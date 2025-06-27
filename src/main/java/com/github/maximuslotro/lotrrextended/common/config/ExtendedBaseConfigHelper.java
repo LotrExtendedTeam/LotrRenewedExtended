@@ -29,7 +29,7 @@ public class ExtendedBaseConfigHelper {
 		if (needsWorldRestart) {
 			builder.worldRestart();
 		}
-		return builder.defineInRange(transKey, defaultValue, minValue, maxValue);
+		return builder.defineInRange(key, defaultValue, minValue, maxValue);
 	}
 
 	protected static ForgeConfigSpec.ConfigValue<String> createStringValue(Builder builder, String key, String defaultValue, boolean needsWorldRestart, String comment){

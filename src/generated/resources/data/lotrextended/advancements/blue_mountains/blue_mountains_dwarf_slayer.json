@@ -58,13 +58,43 @@
           }
         ]
       }
+    },
+    "kill_blue_mountains_miner": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:blue_mountains_miner"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_blue_mountains_merchant": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:blue_mountains_merchant"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
       "kill_blue_mountains_archer",
       "kill_blue_mountains_dwarf",
-      "kill_blue_mountains_warrior"
+      "kill_blue_mountains_warrior",
+      "kill_blue_mountains_miner",
+      "kill_blue_mountains_merchant"
     ]
   ]
 }

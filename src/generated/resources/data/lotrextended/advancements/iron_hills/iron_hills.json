@@ -1,7 +1,8 @@
 {
   "display": {
     "icon": {
-      "item": "minecraft:stone"
+      "item": "lotr:dwarven_pickaxe",
+      "nbt": "{Damage:0}"
     },
     "title": {
       "translate": "advancements.lotrextended.iron_hills.iron_hills.title"

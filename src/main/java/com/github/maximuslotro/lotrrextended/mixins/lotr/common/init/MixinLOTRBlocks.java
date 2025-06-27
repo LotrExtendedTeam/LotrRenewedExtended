@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBlackFurBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedDwarvenBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedGrayFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedOrcBedBlock;
@@ -145,10 +146,11 @@ public class MixinLOTRBlocks {
 
 	/**
 	 * @reason Overrides the default registration of Renewed's block to fix things, override registrations, and replace functionalityUsed for toggleable torches, axe mineable wattle and daub, shovel mineable white sand
-	 * @Redirect (method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/registries/DeferredRegister;register(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraftforge/fml/RegistryObject;"),remap = false)
+	 * @Redirect (method = "&lt;clinit&gt;", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/registries/DeferredRegister;register(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraftforge/fml/RegistryObject;"),remap = false)
 	 * @param register The DeferredRegister instance to register to
 	 * @param name The name of the block to register, is used in the registry name
 	 * @param sup The Block supplier for the block instance to be registered
+	 * @return Returns either the default registration of the Renewed block, or a modified class instance
 	 * */
 	@SuppressWarnings("unchecked")
 	@Redirect(method = "<clinit>",
@@ -889,7 +891,9 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORGUL_CHANDELIER = registerB("morgul_chandelier", () -> new ExtendedChandelierBlock(ExtendedParticles.MORGUL_FLAME));
 		ExtendedBlocks.ORC_CHANDELIER = registerB("orc_chandelier", ChandelierBlock::new);
 		ExtendedBlocks.URUK_CHANDELIER = registerB("uruk_chandelier", ChandelierBlock::new);
-
+		ExtendedBlocks.DWARVEN_CHANDELIER = registerB("dwarven_chandelier", ChandelierBlock::new);
+		ExtendedBlocks.BLUE_DWARVEN_CHANDELIER = registerB("blue_dwarven_chandelier", ChandelierBlock::new);
+		
 		ExtendedBlocks.ORC_STEEL_DOOR = registerB("orc_steel_door", () -> new ExtendedDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
 		ExtendedBlocks.ORC_STEEL_TRAPDOOR = registerB("orc_steel_trapdoor", () -> new ExtendedTrapDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
 		ExtendedBlocks.ORC_CHAIN = registerB("orc_chain", () -> new ExtendedChainBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion()));
@@ -897,7 +901,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new ExtendedLOTRTorchBlock(14).setParticles(ExtendedParticles.MORGUL_FLAME, () -> ParticleTypes.SMOKE));
 		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new ExtendedLOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
 		ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK = registerB("green_fire_hearth_block", ExtendedGreenHearthBlock::new);
-		ExtendedBlocks.GREEN_FIRE_BLOCK = registerB("green_fire", () -> new ExtendedGreenFireBlock(Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((p_235467_0_) -> 10).sound(SoundType.WOOL)));
+		ExtendedBlocks.GREEN_FIRE_BLOCK = registerB("green_fire", () -> new ExtendedGreenFireBlock(Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((blockState) -> 10).sound(SoundType.WOOL)));
 
 		for(ExtendedEntitySpawnTypes type : ExtendedEntitySpawnTypes.values()) {
 			ExtendedBlocks.ENTITYSPAWNERBLOCKS.put(type.getSerializedName(), registerB("entity_spawner_"+type.getSerializedName(), () -> new ExtendedSpawnerBlock(Properties.of(Material.STONE).strength(-1.0F).noCollission().noDrops(), type)));
@@ -923,6 +927,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.SILVER_FUR_BED = registerB("silver_fur_bed", () -> new ExtendedSilverFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 		ExtendedBlocks.WHITE_FUR_BED = registerB("white_fur_bed", () -> new ExtendedWhiteFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 		ExtendedBlocks.BEDROLL = registerB("bedroll", () -> new ExtendedBedrollBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.DWARVEN_BED = registerB("dwarven_bed", () -> new ExtendedDwarvenBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 
 		ExtendedBlocks.ROPE = registerB("rope", () -> new ExtendedRopeBlock(Properties.of(Material.DECORATION).sound(ExtendedSoundTypes.ROPE).strength(0.2F).noOcclusion()));
 
@@ -1040,6 +1045,12 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.DWARVEN_DOOR = registerB("dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
 		ExtendedBlocks.DWARVEN_DOOR_LUIGON = registerB("blue_dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_BLUE).requiresCorrectToolForDrops().strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
 		ExtendedBlocks.DWARVEN_DOOR_CARGON = registerB("red_dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE, MaterialColor.TERRACOTTA_ORANGE).requiresCorrectToolForDrops().strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
+
+		ExtendedBlocks.EDHELVIR_CRYSTAL_CHANDELIER = registerB("edhelvir_crystal_chandelier", () -> new ExtendedCrystalChandelierBlock(Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_BLUE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).lightLevel((s) -> 15).sound(SoundType.STONE).noOcclusion()));
+		ExtendedBlocks.GLOWSTONE_CRYSTAL_CHANDELIER = registerB("glowstone_crystal_chandelier", () -> new ExtendedCrystalChandelierBlock(Properties.of(Material.STONE, MaterialColor.COLOR_YELLOW).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).lightLevel((s) -> 15).sound(SoundType.STONE).noOcclusion()));
+		ExtendedBlocks.GULDURIL_CRYSTAL_CHANDELIER = registerB("gulduril_crystal_chandelier", () -> new ExtendedCrystalChandelierBlock(Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GREEN).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).lightLevel((s) -> 15).sound(SoundType.STONE).noOcclusion()));
+
+		ExtendedBlocks.STONE_SIGN = registerB("stone_engraving", () -> new ExtendedStoneTextSignBlock(AbstractBlock.Properties.of(Material.DECORATION, MaterialColor.NONE).noCollission().strength(0.5F).sound(SoundType.STONE)));
 	}
 
 	/**

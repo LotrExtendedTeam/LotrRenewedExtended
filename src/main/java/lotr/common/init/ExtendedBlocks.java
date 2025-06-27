@@ -393,6 +393,9 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MORGUL_CHANDELIER;
 	public static RegistryObject<Block> ORC_CHANDELIER;
 	public static RegistryObject<Block> URUK_CHANDELIER;
+	public static RegistryObject<Block> DWARVEN_CHANDELIER;
+	public static RegistryObject<Block> BLUE_DWARVEN_CHANDELIER;
+	
 	public static RegistryObject<Block> ORC_STEEL_DOOR;
 	public static RegistryObject<Block> ORC_STEEL_TRAPDOOR;
 	public static RegistryObject<Block> ORC_CHAIN;
@@ -471,6 +474,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SILVER_FUR_BED;
 	public static RegistryObject<Block> WHITE_FUR_BED;
 	public static RegistryObject<Block> BEDROLL;
+	public static RegistryObject<Block> DWARVEN_BED;
 
 	public static RegistryObject<Block> CONQUEST_TABLE;
 	public static RegistryObject<Block> WEAPON_RACK;
@@ -518,4 +522,10 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> DWARVEN_DOOR;
 	public static RegistryObject<Block> DWARVEN_DOOR_LUIGON;
 	public static RegistryObject<Block> DWARVEN_DOOR_CARGON;
+
+	public static RegistryObject<Block> GLOWSTONE_CRYSTAL_CHANDELIER;
+	public static RegistryObject<Block> EDHELVIR_CRYSTAL_CHANDELIER;
+	public static RegistryObject<Block> GULDURIL_CRYSTAL_CHANDELIER;
+
+	public static RegistryObject<Block> STONE_SIGN;
 }

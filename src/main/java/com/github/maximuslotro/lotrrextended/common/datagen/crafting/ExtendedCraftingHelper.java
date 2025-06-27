@@ -13,6 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.Ex
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedMillingRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 
 import lotr.common.block.AxialSlabBlock;
@@ -29,6 +30,7 @@ import lotr.common.item.LOTRShovelItem;
 import lotr.common.item.LOTRSwordItem;
 import lotr.common.recipe.FactionBasedRecipeType;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -52,7 +54,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
     public static final ITag.INamedTag<Item> STICKS = ItemTags.bind("forge:rods/wooden");
     public static final ITag.INamedTag<Item> PLANKS = ItemTags.bind("minecraft:planks");
     public static final ITag.INamedTag<Item> HORNS = ItemTags.bind("forge:horns");
-    public static final ITag.INamedTag<Item> WOOL = ItemTags.bind("minecraft:wool");
 
 	public ExtendedCraftingHelper(DataGenerator gen) {
 		super(gen);
@@ -269,6 +270,57 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
+	protected void makeCrystalChandelierRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> chandelier, Supplier<? extends Item> crystal, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		GENERATEDRECIPES.add(chandelier.get().getRegistryName().getPath());
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(chandelier.get())
+			.pattern(" I ")
+			.pattern("E#E")
+			.pattern(" E ")
+			.define('I', Ingredient.of(ExtendedTags.Items.CHAINS))
+			.define('#', Ingredient.of(Blocks.COBBLESTONE))
+			.define('E', Ingredient.of(crystal.get()))
+			.unlockedBy("has_"+chandelier.get().getRegistryName().getPath(), has(chandelier.get()))
+			.unlockedBy("has_"+crystal.get().getRegistryName().getPath(), has(crystal.get()))
+			.save(consumer, lotrLoc(chandelier.get().getRegistryName().getPath()));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(chandelier.get(), table)
+			.pattern(" I ")
+			.pattern("E#E")
+			.pattern(" E ")
+			.define('I', Ingredient.of(ExtendedTags.Items.CHAINS))
+			.define('#', Ingredient.of(Blocks.COBBLESTONE))
+			.define('E', Ingredient.of(crystal.get()))
+			.unlockedBy("has_"+chandelier.get().getRegistryName().getPath(), has(chandelier.get()))
+			.unlockedBy("has_"+crystal.get().getRegistryName().getPath(), has(crystal.get()))
+			.save(consumer, lotrLoc(chandelier.get().getRegistryName().getPath()));
+		}
+	}
+
+	protected void makeBedRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> bed, ITag<Item> tag, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = bed.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(bed.get())
+			.pattern("###")
+			.pattern("XXX")
+			.define('#', Ingredient.of(tag))
+			.define('X', PLANKS)
+			.unlockedBy("has_"+name, has(bed.get()))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(bed.get(), table)
+			.pattern("###")
+			.pattern("XXX")
+			.define('#', Ingredient.of(tag))
+			.define('X', PLANKS)
+			.unlockedBy("has_"+name, has(bed.get()))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+
 	protected void makeBedRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> bed, Item reasource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = bed.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
@@ -347,10 +399,10 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		.pattern("W")
 		.pattern("S")
 		.pattern("P")
-		.define('W', Ingredient.of(WOOL))
+		.define('W', Ingredient.of(ExtendedTags.Items.WOOL_BLOCKS))
 		.define('S', Ingredient.of(STICKS))
 		.define('P', Ingredient.of(PLANKS))
-		.unlockedBy("has_wool", has(WOOL))
+		.unlockedBy("has_wool", has(ExtendedTags.Items.WOOL_BLOCKS))
 		.unlockedBy("has_"+banner.get().getRegistryName().getPath(), has(banner.get()))
 		.save(consumer, lotrLoc(banner.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(pattern.get().getRegistryName().getPath());

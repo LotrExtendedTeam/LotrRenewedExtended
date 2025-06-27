@@ -32,7 +32,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 /**
- * Code Copied from {@see net.minecraft.data.ShapedRecipeBuilder}
+ * Code Copied from {@link net.minecraft.data.ShapedRecipeBuilder}
  * to add ability to make null requirements
  * */
 public class ExtendedShapedRecipeBuilder {

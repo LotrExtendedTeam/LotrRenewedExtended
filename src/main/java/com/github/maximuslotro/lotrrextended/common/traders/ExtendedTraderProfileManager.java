@@ -35,7 +35,7 @@ public class ExtendedTraderProfileManager extends ReloadListener<Map<ResourceLoc
 
 	/*
 	 * Keep Private
-	 * Don't allow more than one instance than {@Link ExtendedTraderProfileManager#INSTANCE }
+	 * Don't allow more than one instance than {@link ExtendedTraderProfileManager#INSTANCE }
 	 * */
 	private ExtendedTraderProfileManager() {}
 

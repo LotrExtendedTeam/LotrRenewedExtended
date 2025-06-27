@@ -59,7 +59,7 @@ public class MixinModBoatType {
 
 	/**
 	 * Accessing the Enum creation method, DO NOT CALL THIS METHOD DIRECTLY, CALL THE HELPER METHODS
-	 * @Invoker ("<init>")
+	 * @Invoker ("&lt;init&gt;")
 	 * @param internalName The internal name for the Enum entry, must be uppercase and match the variable name
 	 * @param internalId The internal id (ordinal) of this Enum entry
 	 * @param plank A supplier for the boat's plank block

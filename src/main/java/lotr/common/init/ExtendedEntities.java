@@ -57,9 +57,21 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedBreelandLeatherworkerEntity>> BREE_LEATHERWORKER;
 	public static RegistryObject<EntityType<ExtendedBreelandBrewerEntity>> BREE_BREWER;
 	public static RegistryObject<EntityType<ExtendedBreelandStablemasterEntity>> BREE_STABLEMASTER;
-
+	public static RegistryObject<EntityType<ExtendedBreelandHobbitBakerEntity>> BREE_HOBBIT_BAKER;
+	public static RegistryObject<EntityType<ExtendedBreelandHobbitBrewerEntity>> BREE_HOBBIT_BREWER;
+	public static RegistryObject<EntityType<ExtendedBreelandHobbitButcherEntity>> BREE_HOBBIT_BUTCHER;
+	public static RegistryObject<EntityType<ExtendedBreelandHobbitFloristEntity>> BREE_HOBBIT_FLORIST;
+	public static RegistryObject<EntityType<ExtendedBreelandHobbitInnkeeperEntity>> BREE_HOBBIT_INNKEEPER;
+	public static RegistryObject<EntityType<ExtendedBreelandHobbitPotterEntity>> BREE_HOBBIT_POTTER;
 	public static RegistryObject<EntityType<ExtendedHiredDunedainRangerEntity>> HIRED_DUNEDAIN_RANGER;
 	public static RegistryObject<EntityType<ExtendedDunedainRangerCaptainEntity>> DUNEDAIN_RANGER_CAPTAIN;
 	public static RegistryObject<EntityType<ExtendedBreelandSmithEntity>> BREE_SMITH;
 	public static RegistryObject<EntityType<ExtendedTolkienEntity>> TOLKIEN;
+	public static RegistryObject<EntityType<ExtendedBlueMountainsMinerEntity>> BLUE_DWARVEN_MINER;
+	public static RegistryObject<EntityType<ExtendedDwarvenMinerEntity>> DWARVEN_MINER;
+	public static RegistryObject<EntityType<ExtendedBlueMountainsSmithEntity>> BLUE_DWARVEN_SMITH;
+	public static RegistryObject<EntityType<ExtendedDwarvenSmithEntity>> DWARVEN_SMITH;
+	public static RegistryObject<EntityType<ExtendedBlueMountainsCommanderEntity>> BLUE_DWARVEN_COMMANDER;
+	public static RegistryObject<EntityType<ExtendedDwarvenCommanderEntity>> DWARVEN_COMMANDER;
+
 }

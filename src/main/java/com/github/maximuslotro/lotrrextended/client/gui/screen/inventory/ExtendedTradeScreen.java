@@ -70,7 +70,7 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
         for (int i = 0; i < container.getSoldPrices().length; i++) {
             if (isMouseOverElement(p_230459_2_, p_230459_3_, 8 + (18 * i), 43 + 18, 18, 18)) {
                 List<ITextComponent> tooltip = new ArrayList<>();
-                if (container.getSoldQuantities()[i] == 0) {
+                if (container.getSoldQuantities()[i] == 0 || container.trader.getTraderData().isTradesLocked()) {
                     tooltip.add(new TranslationTextComponent("gui.lotrextended.trading.tooltip.cooldown").withStyle(TextFormatting.ITALIC));
                 } else {
                     int tradesUsed = container.getSoldOriginalQuantities()[i] - container.getSoldQuantities()[i];
@@ -89,7 +89,7 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
         for (int i = 0; i < container.getBoughtPrices().length; i++) {
             if (isMouseOverElement(p_230459_2_, p_230459_3_, 8 + (18 * i), 94 + 18, 18, 18)) {
                List<ITextComponent> tooltip = new ArrayList<>();
-               if (container.getBoughtQuantities()[i] == 0) {
+               if (container.getBoughtQuantities()[i] == 0 || container.trader.getTraderData().isTradesLocked()) {
                    tooltip.add(new TranslationTextComponent("gui.lotrextended.trading.tooltip.cooldown").withStyle(TextFormatting.ITALIC));
                } else {
                    int tradesUsed = container.getBoughtOriginalQuantities()[i] - container.getBoughtQuantities()[i];

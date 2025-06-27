@@ -11,7 +11,7 @@ import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /**
- * For {@see net.minecraftforge.eventbus.api.Event} that are fired on the MinecraftForge.EVENT_BUS
+ * For {@link net.minecraftforge.eventbus.api.Event} that are fired on the MinecraftForge.EVENT_BUS
  * */
 public class ForgeInventoryEvents {
 

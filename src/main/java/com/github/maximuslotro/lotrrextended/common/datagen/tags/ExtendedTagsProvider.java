@@ -33,7 +33,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
 /**
- * Copied from {@see TagsProvider} to provide more functionality
+ * Copied from {@link net.minecraft.data.TagsProvider} to provide more functionality
  * @version Minecraft 1.16.5
  * */
 public abstract class ExtendedTagsProvider<T> implements IDataProvider {
@@ -144,7 +144,11 @@ public abstract class ExtendedTagsProvider<T> implements IDataProvider {
 	}
 
 	/**
-	 * Resolves a Path for the location to save the given tag.
+	 * Resolves and returns the file system {@link Path} where the given tag, identified by
+	 * the specified {@link ResourceLocation}, should be saved.
+	 *
+	 * @param pId The resource location identifying the tag to save.
+	 * @return The {@link Path} representing the save location for the tag.
 	 */
 	protected abstract Path getPath(ResourceLocation pId);
 

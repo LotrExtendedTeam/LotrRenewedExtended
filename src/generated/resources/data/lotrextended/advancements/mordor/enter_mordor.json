@@ -1,0 +1,79 @@
+{
+  "display": {
+    "icon": {
+      "item": "lotr:mordor_rock"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.mordor.enter_mordor.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.mordor.enter_mordor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/mordor.png"
+  },
+  "criteria": {
+    "enter_mordor": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:mordor"
+        }
+      }
+    },
+    "enter_mordor_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:mordor_mountains"
+        }
+      }
+    },
+    "enter_morgul_vale": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:morgul_vale"
+        }
+      }
+    },
+    "enter_nurn": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:nurn"
+        }
+      }
+    },
+    "enter_nurnen": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:nurnen"
+        }
+      }
+    },
+    "enter_nurn_marshes": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:nurn_marshes"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_mordor",
+      "enter_mordor_mountains",
+      "enter_morgul_vale",
+      "enter_nurn",
+      "enter_nurnen",
+      "enter_nurn_marshes"
+    ]
+  ]
+}

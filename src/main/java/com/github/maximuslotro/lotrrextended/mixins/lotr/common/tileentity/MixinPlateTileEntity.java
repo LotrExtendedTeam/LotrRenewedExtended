@@ -34,20 +34,42 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
 
+/**
+ * Mixin extension for {@link PlateTileEntity} to support loot table generation and NBT serialization.
+ * Implements {@link ExtendedLootTableAccessor} for extended loot behavior and {@link ITickableTileEntity}
+ * to manage lazy loot unpacking during ticks.
+ */
 @Mixin(PlateTileEntity.class)
 public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickableTileEntity {
-
+	/** 
+	 * Loot table resource location to be unpacked lazily 
+	 * @Unique
+	 * */
 	@Unique
 	@Nullable
 	public ResourceLocation lootTable;
+	/** 
+	 * Loot table seed used to generate deterministic loot 
+	 * @Unique
+	 * */
 	@Unique
 	protected long lootTableSeed;
+	/** 
+	 * Tracks whether loot has been unpacked to avoid duplication 
+	 * @Unique
+	 * */
 	@Unique
 	private boolean ticked=false;
-
+	/** 
+	 * Shadowed item stack representing the food stored in the plate 
+	 * @Shadow (remap = false)
+	 * */
 	@Shadow(remap = false)
 	private ItemStack foodItem;
-
+	/**
+	 * Ticks the tile entity. Unpacks the loot table if not yet done and server-side.
+	 * Prevents re-unpacking by setting the {@code ticked} flag.
+	 */
 	@Override
 	public void tick() {
 		if(!ExtendedServerConfig.enableDevMode.get()) {
@@ -59,7 +81,13 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 		}
 	}
 
-	//Handle saving loot-tables
+	/**
+	 * Injected method that appends loot table data to the NBT after the base save() method.
+	 *
+	 * @param nbt  The compound to write data to.
+	 * @param info The callback return information.
+	 * @Inject (method = "save(Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/nbt/CompoundNBT;", at = @At("TAIL"))
+	 */
 	@Inject(method = "save(Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/nbt/CompoundNBT;", at = @At("TAIL"))
 	public void injectedSave(CompoundNBT nbt, CallbackInfoReturnable<CompoundNBT> info) {
 		if (this.lootTable != null) {
@@ -70,7 +98,14 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 		}
 	}
 
-	//Handle loading loot-tables
+	/**
+	 * Injected method that reads loot table data from NBT after the base load() method.
+	 *
+	 * @param state The block state (unused).
+	 * @param nbt   The compound to read data from.
+	 * @param info  Callback context.
+	 * @Inject (method = "load(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
+	 */
 	@Inject(method = "load(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
 	public void injectedLoad(BlockState state, CompoundNBT nbt, CallbackInfo info) {
 		if (nbt.contains("LootTable", 8)) {
@@ -80,8 +115,11 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 	}
 
 	/**
+	 * Adds logic to unpack loot-tables
 	 * @reason Inject loot-tables
 	 * @author maximuslotro
+	 * @return The contained food item
+	 * @Overwrite (remap = false)
 	 */
 	@Overwrite(remap = false)
 	public ItemStack getFoodItem() {
@@ -95,8 +133,11 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 	}
 
 	/**
+	 * Adds logic to unpack loot-tables
 	 * @reason Inject loot-tables
 	 * @author maximuslotro
+	 * @Overwrite (remap = false)
+	 * @param nbt The {@link CompoundNBT} to save food data to
 	 */
 	@Overwrite(remap = false)
 	private void writeFood(CompoundNBT nbt) {
@@ -107,7 +148,11 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 	}
 
 	/**
-	 * Extended method to load in a loot table for plates, uses chest loot-table code
+	 * Unpacks the loot table and generates the food item from it, using the context of a chest loot table.
+	 * Only executed once per tile entity instance unless manually reset.
+	 * 
+	 * @param player The player triggering the unpack (can be null).
+	 * @Unique
 	 */
 	@Unique
 	private void unpackLootTablePlate(@Nullable PlayerEntity player) {
@@ -145,14 +190,23 @@ public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickabl
 			ExtendedLog.error("Please report this if it happens!");
 		}
 	}
-
+	/**
+	 * Sets the loot table and its seed for this tile entity.
+	 * 
+	 * @param table The loot table resource location.
+	 * @param seed  The random seed used for loot generation.
+	 */
 	@Override
 	public void setLootTable(ResourceLocation table, long seed) {
 		lootTable = table;
 		lootTableSeed = seed;
 		ticked = false;
 	}
-
+	/**
+	 * Gets the current loot table assigned to this tile entity.
+	 * 
+	 * @return The loot table resource location, or {@code null} if not set.
+	 */
 	@Override
 	public ResourceLocation getLootTable() {
 		return lootTable;

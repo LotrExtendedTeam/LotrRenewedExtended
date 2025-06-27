@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:rivendell_wanderer",
-  "entity_type": "lotr:rivendell_wanderer",
   "tradingAlignmentRequired": 100,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,

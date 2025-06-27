@@ -1,0 +1,37 @@
+{
+  "parent": "lotrextended:rhun/rhudel_100",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.rhun.rhudel_200.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.rhun.rhudel_200.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_rhudel_level_200": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:rhudel",
+          "level": {
+            "min": 200.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rhudel_level_200"
+    ]
+  ]
+}

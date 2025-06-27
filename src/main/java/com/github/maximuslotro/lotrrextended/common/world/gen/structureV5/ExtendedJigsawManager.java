@@ -16,7 +16,6 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processo
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.block.JigsawBlock;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
@@ -30,7 +29,6 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.MutableRegistry;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.jigsaw.EmptyJigsawPiece;
@@ -48,12 +46,34 @@ import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
 /**
- * Copied from {@see JigsawManager} and modified to add needed functionality
+ * Manages the generation and assembly of jigsaw-structured village pieces.
+ * Provides static methods to add and assemble structure pieces into villages
+ * using extended logic, including custom processor handling and placement constraints.
+ * Copied from {@link net.minecraft.world.gen.feature.jigsaw.JigsawManager} and modified to add needed functionality
  * @version 1.16.5
- * */
+ */
 public class ExtendedJigsawManager {
 	private static final Logger LOGGER = LogManager.getLogger();
 
+	/**
+     * Adds pieces to a village structure based on configuration, using extended logic for wood palette processing and placement constraints.
+     *
+     * <p>This method bootstraps structure pools, picks a start template from the configured pool,
+     * handles optional WoodPaletteProcessor logic if present,
+     * calculates structure positioning relative to heightmaps,
+     * and recursively places child pieces up to a maximum depth and within a placement distance.</p>
+     *
+     * @param registry                the dynamic registries, used to fetch template pools
+     * @param structureConfig         configuration describing the village structure to build
+     * @param villagePieceBuilder     factory to create village piece instances from templates
+     * @param chunkGenerator          chunk generator, used for heightmap queries and terrain context
+     * @param templateManager         manages loading and placement of structure templates
+     * @param blockpos                starting position for the structure
+     * @param pieces                  list to which generated village pieces will be added
+     * @param random                  random instance for randomized choices
+     * @param doExpansionHack         if true, applies additional placement logic during assembly (specific to implementation)
+     * @param projectStartToHeightmap if true, adjusts vertical placement to surface height from the heightmap
+     */
 	public static void addPieces(DynamicRegistries registry, VillageConfig structureConfig, ExtendedJigsawManager.IPieceFactory villagePieceBuilder, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos blockpos, List<? super AbstractVillagePiece> pieces, Random random, boolean doExpansionHack, boolean projectStartToHeightmap) {
 		Structure.bootstrap();
 		MutableRegistry<JigsawPattern> mutableregistry = registry.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY);
@@ -126,7 +146,22 @@ public class ExtendedJigsawManager {
 		}
 	}
 
-	//Half rebuilt kind function
+	/**
+     * Adds pieces to a village starting from a pre-built piece, assembling child pieces recursively up to a specified build depth.
+     *
+     * <p>This method constructs the village structure starting from an existing {@link AbstractVillagePiece},
+     * and attempts to place child pieces by traversing the jigsaw pools up to {@code buildLevels} deep.
+     * This is a lower-level assembly method that can be used when you already have a starting piece.</p>
+     *
+     * @param registry             the dynamic registries, used to fetch template pools
+     * @param preBuiltAbstractVillagePiece the starting village piece to build from
+     * @param buildLevels          maximum depth of recursive piece placement
+     * @param villagePieceBuilder  factory to create village piece instances from templates
+     * @param chunkGenerator       chunk generator, used for terrain context and height queries
+     * @param templateManager      manages loading and placement of structure templates
+     * @param listBuildablePieces  collection to which placed pieces will be added
+     * @param random               random instance for randomized choices
+     */
 	public static void addPieces(DynamicRegistries registry, AbstractVillagePiece preBuiltAbstractVillagePiece, int buildLevels, ExtendedJigsawManager.IPieceFactory villagePieceBuilder, ChunkGenerator chunkGenerator, TemplateManager templateManager, List<? super AbstractVillagePiece> listBuildablePieces, Random random) {
 		MutableRegistry<JigsawPattern> mutableregistry = registry.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY);
 		ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, buildLevels, villagePieceBuilder, chunkGenerator, templateManager, listBuildablePieces, random, Optional.empty());
@@ -138,7 +173,16 @@ public class ExtendedJigsawManager {
 		}
 
 	}
-
+	/**
+	 * Responsible for assembling village pieces recursively by managing piece placement,
+	 * checking placement constraints, and handling structure pools during generation.
+	 * 
+	 * <p>This class maintains state during the assembly process, including the pool registry,
+	 * maximum recursion depth, piece factory, chunk generator for terrain data,
+	 * structure manager for template loading, list of generated pieces, and a random source.
+	 * It also optionally handles a {@link WoodPaletteProcessor} to carry over wood palette information
+	 * across pieces.</p>
+	 */
 	static final class Assembler {
 		private final Registry<JigsawPattern> pools;
 		private final int maxDepth;
@@ -152,7 +196,18 @@ public class ExtendedJigsawManager {
 		private final Optional<WoodPaletteProcessor> carryOverProcessor;
 		private final List<String> blacklisted_structures = new ArrayList<>();
 
-		// Extended added optional carry over processors
+		/**
+	     * Constructs an assembler for generating village structures.
+	     *
+	     * @param pPools             registry of jigsaw pattern pools used for piece selection
+	     * @param pMaxDepth          maximum recursion depth for piece placement
+	     * @param pFactory           factory used to create village pieces from templates
+	     * @param pChunkGenerator    chunk generator providing terrain and heightmap information
+	     * @param pStructureManager  manages loading and handling of structure templates
+	     * @param pPieces            collection where generated pieces will be added
+	     * @param pRandom            random source for randomized choices
+	     * @param pCarryOverProcessor optional processor to carry over wood palette data between pieces
+	     */
 		private Assembler(Registry<JigsawPattern> pPools, int pMaxDepth, ExtendedJigsawManager.IPieceFactory pFactory, ChunkGenerator pChunkGenerator, TemplateManager pStructureManager, List<? super AbstractVillagePiece> pPieces, Random pRandom, Optional<WoodPaletteProcessor> pCarryOverProcessor) {
 			this.pools = pPools;
 			this.maxDepth = pMaxDepth;
@@ -163,7 +218,19 @@ public class ExtendedJigsawManager {
 			this.random = pRandom;
 			this.carryOverProcessor = pCarryOverProcessor;
 		}
-
+		/**
+	     * Attempts to place child pieces connected to a given parent piece within the village structure.
+	     *
+	     * <p>This method iterates through all jigsaw blocks in the parent piece, resolves their respective pools,
+	     * selects possible child pieces from those pools, and attempts to place them respecting spatial constraints
+	     * and maximum depth. It uses voxel shape checks to avoid overlapping structures.</p>
+	     *
+	     * @param villagePiece      the parent village piece to place children for
+	     * @param freeVoxelShapes   voxel shapes representing free space available for placing children
+	     * @param boundsTop         the upper boundary Y coordinate limiting placement
+	     * @param depth             current recursion depth in the piece placement process
+	     * @param doExpansionHack   whether to apply additional placement logic (specific to implementation)
+	     */
 		private void tryPlacingChildren(AbstractVillagePiece villagePiece, MutableObject<VoxelShape> freeVoxelShapes, int boundsTop, int depth, boolean doExpansionHack) {
 			JigsawPiece jigsawpiece = villagePiece.getElement();
 			BlockPos blockpos = villagePiece.getPosition();
@@ -193,7 +260,7 @@ public class ExtendedJigsawManager {
 							boolean isConnectingJigsawInsideCurrentStructure = mutableboundingbox.isInside(blockpos2);
 							MutableObject<VoxelShape> childPieceStructureShapeInterpolated;
 							int parentPieceBoundsTop;
-							// Handle structure mounds for the current piece, include inside, or change bounds size
+							// Handle structure bounds for the current piece, include inside, or change bounds size
 							if (isConnectingJigsawInsideCurrentStructure) {
 								childPieceStructureShapeInterpolated = structureShapeInterpolated;
 								parentPieceBoundsTop = jigsawPieceRelativeBottomYValue;
@@ -272,12 +339,11 @@ public class ExtendedJigsawManager {
 												if (chunkGeneratorUsableSpawnHeight == -1) {
 													chunkGeneratorUsableSpawnHeight = this.chunkGenerator.getFirstFreeHeight(blockpos1.getX(), blockpos1.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
 												}
+												correctedYconnectingPieceSpawnHeight = chunkGeneratorUsableSpawnHeight - connectingPoolJigsawPieceRelativeYValue;
 												// Extended Start
-												IBlockReader columnOfBlocks = chunkGenerator.getBaseColumn(blockpos2.getX(), blockpos2.getZ());
-												BlockState topBlock1 = columnOfBlocks.getBlockState(new BlockPos(blockpos2.getX(), chunkGeneratorUsableSpawnHeight-1, blockpos2.getZ()));
-												boolean waterPresentBelow = !topBlock1.getFluidState().isEmpty();
-												
-												correctedYconnectingPieceSpawnHeight = chunkGeneratorUsableSpawnHeight - connectingPoolJigsawPieceRelativeYValue + (waterPresentBelow ? 1 : 0);
+												if (correctedYconnectingPieceSpawnHeight < 62 && connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).shouldSnapToWaterHeight()) {
+													correctedYconnectingPieceSpawnHeight = 62;
+												}
 												// Extended End
 											}
 											// Set the y-offset for the piece placement
@@ -297,7 +363,6 @@ public class ExtendedJigsawManager {
 											// Check if bounding box for structure accepts the piece
 											if (!VoxelShapes.joinIsNotEmpty(childPieceStructureShapeInterpolated.getValue(), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox3).deflate(0.25D)), IBooleanFunction.ONLY_SECOND)) {
 												childPieceStructureShapeInterpolated.setValue(VoxelShapes.joinUnoptimized(childPieceStructureShapeInterpolated.getValue(), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox3)), IBooleanFunction.ONLY_FIRST));
-												// Extended End
 												int pieceGroundLevelData = villagePiece.getGroundLevelDelta();
 												int connectingPoolJigsawPieceGroundLevelData;
 												// Get the ground level for placement type
@@ -339,9 +404,7 @@ public class ExtendedJigsawManager {
 												villagePiece.addJunction(new JigsawJunction(blockpos2.getX(), connectingPoolJigsawPieceSpawnHeight - jigsawYRelativeToActualPieceBottom + pieceGroundLevelData, blockpos2.getZ(), relativeYconnectingPieceSpawnHeight, connectingPoolJigsawPiecePlacementBehaviour));
 												abstractvillagepiece.addJunction(new JigsawJunction(blockpos1.getX(), connectingPoolJigsawPieceSpawnHeight - connectingPoolJigsawPieceRelativeYValue + connectingPoolJigsawPieceGroundLevelData, blockpos1.getZ(), -relativeYconnectingPieceSpawnHeight, jigsawPiecePlacementBehaviour));
 												this.pieces.add(abstractvillagepiece);
-												// Extended Start
-												if (depth + 1 <= this.maxDepth && !doesIgnoreBB) {
-													// Extended End
+												if (depth + 1 <= this.maxDepth /* Extended Start */&& !doesIgnoreBB /*Extended End*/) {
 													this.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, childPieceStructureShapeInterpolated, parentPieceBoundsTop, depth + 1));
 												}
 												continue mainStrLoop;
@@ -360,13 +423,25 @@ public class ExtendedJigsawManager {
 
 		}
 	}
-
+	/**
+	 * Represents a single placement entry in the assembly queue for village structure generation.
+	 * 
+	 * <p>Holds the village piece to be placed, the current free voxel shape available for placement,
+	 * the top boundary height for placement, and the recursion depth.</p>
+	 */
 	static final class Entry {
 		private final AbstractVillagePiece piece;
 		private final MutableObject<VoxelShape> free;
 		private final int boundsTop;
 		private final int depth;
-
+		/**
+	     * Creates a new placement entry.
+	     *
+	     * @param pPiece      the village piece to be placed
+	     * @param pFree       the voxel shape representing free space for placement
+	     * @param pBoundsTop  the Y coordinate representing the top bounds limit for placement
+	     * @param pDepth      the current depth of recursive placement
+	     */
 		private Entry(AbstractVillagePiece pPiece, MutableObject<VoxelShape> pFree, int pBoundsTop, int pDepth) {
 			this.piece = pPiece;
 			this.free = pFree;
@@ -374,8 +449,21 @@ public class ExtendedJigsawManager {
 			this.depth = pDepth;
 		}
 	}
-
+	/**
+	 * Factory interface for creating village pieces from jigsaw templates.
+	 */
 	public interface IPieceFactory {
+		/**
+	     * Creates an {@link AbstractVillagePiece} instance from the given parameters.
+	     *
+	     * @param templateManager       manages structure templates and resources
+	     * @param jigsawPiece           the jigsaw piece template to base the village piece on
+	     * @param position              the position to place the piece at
+	     * @param groundLevelDelta      vertical offset relative to ground level
+	     * @param structureRotation     rotation to apply to the structure
+	     * @param structureBoundingBox  bounding box defining the structure's spatial bounds
+	     * @return                      a new {@link AbstractVillagePiece} instance representing the generated piece
+	     */
 		AbstractVillagePiece create(TemplateManager templateManager, JigsawPiece jigsawPiece, BlockPos position, int groundLevelDelta, Rotation structureRotation, MutableBoundingBox structureBoundingBox);
 	}
 }

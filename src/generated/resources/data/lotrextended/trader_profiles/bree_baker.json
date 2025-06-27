@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:bree_baker",
-  "entity_type": "lotr:bree_baker",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,

@@ -5,91 +5,101 @@
 		{
 			"weight": 2,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_1",
-				"processors": "lotrextended:gundabad_encampment_processor"
+				"processors": "lotrextended:gundabad_encampment_processor",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 2,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_1_1",
-				"processors": "lotrextended:gundabad_encampment_processor"
+				"processors": "lotrextended:gundabad_encampment_processor",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 2,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_2",
-				"processors": "lotrextended:gundabad_encampment_processor"
+				"processors": "lotrextended:gundabad_encampment_processor",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 2,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_2_2",
-				"processors": "lotrextended:gundabad_encampment_processor"
+				"processors": "lotrextended:gundabad_encampment_processor",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 3,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_3",
-				"processors": "lotrextended:gundabad_encampment_processor"
+				"processors": "lotrextended:gundabad_encampment_processor",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 3,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_3_3",
-				"processors": "lotrextended:gundabad_encampment_processor"
+				"processors": "lotrextended:gundabad_encampment_processor",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_4",
-				"processors": "lotrextended:gundabad_encampment_processor"
+				"processors": "lotrextended:gundabad_encampment_processor",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_4_4",
-				"processors": "lotrextended:gundabad_encampment_processor"
+				"processors": "lotrextended:gundabad_encampment_processor",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 2,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_5",
-				"processors": "lotrextended:gundabad_encampment_processor"
+				"processors": "lotrextended:gundabad_encampment_processor",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 2,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_5_5",
-				"processors": "lotrextended:gundabad_encampment_processor"
+				"processors": "lotrextended:gundabad_encampment_processor",
+				"snap_to_water_height" : true
 			}
 		}
 	]

@@ -90,16 +90,15 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 	}
 
 	/**
-	 * Code copied from {@see JsonReloadListener} due to if this class extended it, it would cause server crashes
+	 * Code copied from {@link net.minecraft.client.resources.JsonReloadListener} due to if this class extended it, it would cause server crashes
 	 * when running a reload since all data files would disappear?
-	 * Extending {@see ReloadListener} and copying the method fixes this data corruption
+	 * Extending {@link ReloadListener} and copying the method fixes this data corruption
 	 * From Minecraft 1.16.5
 	 * */
 	@Override
 	protected Map<ResourceLocation, JsonElement> prepare(IResourceManager pResourceManager, IProfiler pProfiler) {
 		Map<ResourceLocation, JsonElement> map = Maps.newHashMap();
 		int i = this.directory.length() + 1;
-
 		for(ResourceLocation resourcelocation : pResourceManager.listResources(this.directory, (p_223379_0_) -> p_223379_0_.endsWith(".json"))) {
 			String s = resourcelocation.getPath();
 			ResourceLocation localPathLocation = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));

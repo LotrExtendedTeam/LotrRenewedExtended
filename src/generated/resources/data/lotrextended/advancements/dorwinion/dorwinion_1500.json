@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:dorwinion/dorwinion_1000",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.dorwinion.dorwinion_1500.title"
+    },
+    "description": {
+      "color": "aqua",
+      "translate": "advancements.lotrextended.dorwinion.dorwinion_1500.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_dorwinion_level_1500": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:dorwinion",
+          "level": {
+            "min": 1500.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dorwinion_level_1500"
+    ]
+  ]
+}

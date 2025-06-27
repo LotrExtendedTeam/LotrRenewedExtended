@@ -21,9 +21,16 @@ public abstract class MixinAbstractOrcRenderer{
 	@Shadow(remap=false)
 	private static RandomTextureVariants SKINS;
 	/**
+	 * Overrides the default texture selection logic for orc entities.
+	 * <p>
+	 * On April Fools' Day, it replaces the orc skins with a themed variant.
+	 *
 	 * @author maximuslotro
 	 * @reason Add April fools orc skins
-	 * */
+	 * @param orc The orc entity instance.
+	 * @return A {@link ResourceLocation} pointing to the appropriate skin texture.
+	 * @Overwrite (remap=false)
+	 */
 	@Overwrite(remap=false)
 	public ResourceLocation getEntityTexture(OrcEntity orc) {
 		if(CalendarUtil.isAprilFools()) {

@@ -1,0 +1,35 @@
+{
+  "parent": "lotrextended:general/trade",
+  "display": {
+    "icon": {
+      "item": "lotr:silver_coin_ten"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.general.big_spender.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.big_spender.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_any_trader_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "istraderselling": "true",
+        "coins_moved": {
+          "min": 1000
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_any_trader_sell"
+    ]
+  ]
+}

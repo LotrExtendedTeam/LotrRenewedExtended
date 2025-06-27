@@ -17,20 +17,16 @@
     "hidden": false
   },
   "criteria": {
-    "has_athelas": {
-      "trigger": "minecraft:inventory_changed",
+    "broke_athelas": {
+      "trigger": "extended:break_block",
       "conditions": {
-        "items": [
-          {
-            "item": "lotr:athelas"
-          }
-        ]
+        "block": "lotr:athelas"
       }
     }
   },
   "requirements": [
     [
-      "has_athelas"
+      "broke_athelas"
     ]
   ]
 }

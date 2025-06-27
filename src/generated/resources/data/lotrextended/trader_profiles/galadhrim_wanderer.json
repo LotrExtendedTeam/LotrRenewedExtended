@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:galadhrim_wanderer",
-  "entity_type": "lotr:galadhrim_wanderer",
   "tradingAlignmentRequired": 75,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,

@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:angmar/the_ruin_of_arnor",
+  "display": {
+    "icon": {
+      "item": "lotr:angmar_crafting_table"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.angmar.angmar_crafter.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.angmar.angmar_crafter.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "item_made_on_angmar_crafting_table": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "crafting_block": {
+          "block": "lotr:angmar_crafting_table"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item_made_on_angmar_crafting_table"
+    ]
+  ]
+}

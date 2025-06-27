@@ -1,0 +1,44 @@
+{
+  "parent": "lotrextended:gondor/kingdom_of_men",
+  "display": {
+    "icon": {
+      "item": "lotr:bronze_axe",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.gondor.hills_and_vales.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.gondor.hills_and_vales.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_lamedon": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lamedon"
+        }
+      }
+    },
+    "enter_lamedon_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lamedon_hills"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_lamedon",
+      "enter_lamedon_hills"
+    ]
+  ]
+}

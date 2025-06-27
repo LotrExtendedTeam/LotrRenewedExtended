@@ -1,0 +1,35 @@
+{
+  "parent": "lotrextended:mordor/enter_mordor",
+  "display": {
+    "icon": {
+      "item": "lotr:morgul_shroom"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.mordor.survivalist.title"
+    },
+    "description": {
+      "color": "aqua",
+      "translate": "advancements.lotrextended.mordor.survivalist.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "consume_morgul_shroom": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:morgul_shroom"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "consume_morgul_shroom"
+    ]
+  ]
+}

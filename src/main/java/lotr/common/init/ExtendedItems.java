@@ -144,15 +144,12 @@ public class ExtendedItems {
 	public static RegistryObject<Item> FALLEN_WILLOW_LEAVES;
 	public static RegistryObject<Item> WILLOW_VINES;
 
-	public static RegistryObject<Item> BOWSTRING;
-
 	public static RegistryObject<Item> MORGUL_BLADE;
 	public static RegistryObject<Item> MORGUL_HELMET;
 	public static RegistryObject<Item> MORGUL_CHESTPLATE;
 	public static RegistryObject<Item> MORGUL_LEGGINGS;
 	public static RegistryObject<Item> MORGUL_BOOTS;
 
-	public static RegistryObject<Item> GUNDABAD_URUK_BOW;
 	public static RegistryObject<Item> GUNDABAD_URUK_CLEAVER;
 	public static RegistryObject<Item> GUNDABAD_URUK_SPEAR;
 	public static RegistryObject<Item> GUNDABAD_URUK_DAGGER;
@@ -382,7 +379,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ROASTED_CHESTNUT;
 	public static RegistryObject<Item> CONKER;
 	public static RegistryObject<Item> PLUM;
-	public static RegistryObject<Item> DUCK;
+	public static RegistryObject<Item> COOKED_DUCK;
 	public static RegistryObject<Item> RAW_DUCK;
 
 	public static RegistryObject<Item> TAURETHRIM_CRAFTING_TABLE;
@@ -559,6 +556,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MORGUL_CHANDELIER;
 	public static RegistryObject<Item> ORC_CHANDELIER;
 	public static RegistryObject<Item> URUK_CHANDELIER;
+	public static RegistryObject<Item> DWARVEN_CHANDELIER;
+	public static RegistryObject<Item> BLUE_DWARVEN_CHANDELIER;
 	public static RegistryObject<Item> ORC_STEEL_DOOR;
 	public static RegistryObject<Item> ORC_STEEL_TRAPDOOR;
 	public static RegistryObject<Item> ORC_CHAIN;
@@ -605,6 +604,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SILVER_FUR_BED;
 	public static RegistryObject<Item> WHITE_FUR_BED;
 	public static RegistryObject<Item> BEDROLL;
+	public static RegistryObject<Item> DWARVEN_BED;
 
 	public static RegistryObject<Item> CONQUEST_TABLE;
 	public static RegistryObject<Item> WEAPON_RACK;
@@ -614,8 +614,11 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GUNDABAD_SHIELD;
 	public static RegistryObject<Item> DUNEDAIN_SHIELD;
 	public static RegistryObject<Item> BREE_SHIELD;
-	public static RegistryObject<Item> BLUE_DUNEDAIN_SHIELD;
-
+	public static RegistryObject<Item> BLUE_MOUNTAINS_SHIELD;
+	
+	public static RegistryObject<Item> BOWSTRING;
+	public static RegistryObject<Item> GUNDABAD_URUK_BOW;
+	public static RegistryObject<Item> RANGER_BOW;
 	public static RegistryObject<Item> DUNEDAIN_BOW;
 	public static RegistryObject<Item> LONGBOW;
 	public static RegistryObject<Item> ORC_BOW;
@@ -669,4 +672,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> DWARVEN_DOOR;
 	public static RegistryObject<Item> DWARVEN_DOOR_LUIGON;
 	public static RegistryObject<Item> DWARVEN_DOOR_CARGON;
+
+	public static RegistryObject<Item> GLOWSTONE_CRYSTAL_CHANDELIER;
+	public static RegistryObject<Item> EDHELVIR_CRYSTAL_CHANDELIER;
+	public static RegistryObject<Item> GULDURIL_CRYSTAL_CHANDELIER;
 }

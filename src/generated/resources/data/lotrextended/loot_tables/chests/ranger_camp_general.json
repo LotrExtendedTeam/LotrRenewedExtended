@@ -298,6 +298,24 @@
             {
               "function": "minecraft:set_damage",
               "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:ranger_bow"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 30,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
                 "min": 0.25,
                 "max": 0.85
               }

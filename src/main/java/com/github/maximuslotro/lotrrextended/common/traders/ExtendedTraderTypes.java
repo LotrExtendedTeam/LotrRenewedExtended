@@ -12,7 +12,7 @@ import net.minecraftforge.fml.DatagenModLoader;
  * Stores IDs for built-in trader profiles.
  */
 public class ExtendedTraderTypes {
-	private static final Set<ResourceLocation> UNIT_TYPES = Sets.newHashSet();
+	public static final Set<ResourceLocation> UNIT_TYPES = Sets.newHashSet();
 
 	// Hobbit
 	public static final ResourceLocation HOBBIT_BARTENDER = make("hobbit_bartender");
@@ -34,7 +34,9 @@ public class ExtendedTraderTypes {
 	public static final ResourceLocation BREE_STONEMASON = make("bree_stonemason");
 	// Gundabad
 	public static final ResourceLocation GUNDABAD_TRADER = make("gundabad_trader");
-	// Blue Mountians
+	// Blue Mountains
+	public static final ResourceLocation BLUE_MOUNTAINS_MINER = make("blue_mountains_miner");
+	public static final ResourceLocation BLUE_MOUNTAINS_SMITH = make("blue_mountains_smith");
 	public static final ResourceLocation BLUE_MOUNTAINS_MERCHANT = make("blue_mountains_merchant");
 	// Rivendell
 	public static final ResourceLocation RIVENDELL_WANDERER = make("rivendell_wanderer");
@@ -42,6 +44,9 @@ public class ExtendedTraderTypes {
 	public static final ResourceLocation GALADHRIM_WANDERER = make("galadhrim_wanderer");
 	// Misc
 	public static final ResourceLocation ODDMENT_COLLECTOR = make("oddment_collector");
+	// Dwarven
+	public static final ResourceLocation DWARVEN_MINER = make("dwarven_miner");
+	public static final ResourceLocation DWARVEN_SMITH = make("dwarven_smith");
 
 	private static ResourceLocation make(String pId) {
 		return validate(new ResourceLocation(LotrExtendedMod.MODID, pId));

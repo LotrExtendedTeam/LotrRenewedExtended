@@ -7,74 +7,84 @@ import javax.annotation.Nullable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 
+/**
+ * Base class for extended banner profiles.
+ * Provides abstract methods to access profile details and persistence operations.
+ */
 public abstract class ExtendedBannerProfileBase {
 
 	/**
-	 * Get unique identifier for profile
-	 * @return UUID
-	 * */
+	 * Gets the unique identifier for this profile.
+	 *
+	 * @return the UUID of the profile
+	 */
 	public abstract UUID getId();
 
 	/**
-	 * Get underlying name for profile
-	 * * <p />
-	 * This may be null for partial profile data if constructed manually.
-	 * @return String
-	 * */
+	 * Gets the underlying name of the profile.
+	 * This may be {@code null} for partial profile data constructed manually.
+	 *
+	 * @return the name of the profile, or {@code null} if not available
+	 */
 	@Nullable
 	public abstract String getName();
 
 	/**
-	 * Get display name for profile
-	 * can be the same as getName()
-	 * * <p />
-	 * This may be null for partial profile data if constructed manually.
-	 * @return String
-	 * */
+	 * Gets the display name of the profile.
+	 * Can be the same as {@link #getName()}.
+	 * This may be {@code null} for partial profile data constructed manually.
+	 *
+	 * @return the display name, or {@code null} if not available
+	 */
 	@Nullable
 	public abstract String getDisplayName();
 
 	/**
-	 * Get profile type
-	 * @return String
-	 * */
+	 * Gets the profile type.
+	 *
+	 * @return the type of the profile as a String
+	 */
 	public abstract String getType();
 
 	/**
-	 * Checks if this profile is complete.
-	 * <p />
-	 * A complete profile has no empty fields. Partial profiles may be constructed manually and used as input to methods.
+	 * Determines if this profile is complete.
+	 * A complete profile has no empty fields.
+	 * Partial profiles may be constructed manually and used as input to methods.
 	 *
-	 * @return True if this profile is complete (as opposed to partial)
+	 * @return {@code true} if the profile is complete, {@code false} otherwise
 	 */
 	public abstract boolean isComplete();
 
 	/**
-	 * Check if the child profile class has all fields filled
-	 * @return boolean
-	 * */
+	 * Checks if all fields in the profile class are filled.
+	 *
+	 * @return {@code true} if the profile is valid, {@code false} otherwise
+	 */
 	public abstract boolean isValid();
 
 	/**
-	 * Checks of the passed ServerPlayerEntity has permissions in this entry
-	 * @param player {@see ServerPlayerEntity} instance to be checked
-	 * @return boolean
+	 * Checks if the given player is contained within this profile entry.
 	 *
+	 * @param player the {@link PlayerEntity} instance to check permissions for
+	 * @return {@code true} if the player is contained, {@code false} otherwise
 	 */
 	public abstract boolean isPlayerContained(PlayerEntity player);
 
 	/**
-	 * Saves the profile data to the passed CompoundNBT, returns the modified CompoundNBT
-	 * @param pTag {@see net.minecraft.nbt.CompoundNBT} to be written to
-	 * @return CompoundNBT
+	 * Saves the profile data into the given {@link CompoundNBT}.
+	 *
+	 * @param pTag the {@link CompoundNBT} to write data into
+	 * @return the modified {@link CompoundNBT} containing the profile data
 	 */
 	public abstract CompoundNBT writeProfileData(CompoundNBT pTag);
 
 	/**
-	 * Saves the profile entry to the passed CompoundNBT, returns the modified CompoundNBT
-	 * Don't call this method, instead call {@see writeProfileData}
-	 * @param pTag {@see CompoundNBT} to be written to
-	 * @return CompoundNBT
+	 * Saves the profile entry to the given {@link CompoundNBT}.
+	 * <p>
+	 * Note: Do not call this method directly; instead, call {@link #writeProfileData(CompoundNBT)}.
+	 *
+	 * @param pTag the {@link CompoundNBT} to write to
+	 * @return the modified {@link CompoundNBT} with profile type and data
 	 */
 	public CompoundNBT writeGameProfile(CompoundNBT pTag) {
 		pTag.putString("type", getType());

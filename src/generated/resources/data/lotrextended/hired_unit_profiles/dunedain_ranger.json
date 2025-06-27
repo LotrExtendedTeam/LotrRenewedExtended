@@ -99,6 +99,13 @@
       {
         "weight": 1,
         "equipmentItem": {
+          "item": "lotr:ranger_bow",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon_ranged\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
           "item": "lotr:longbow",
           "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon_ranged\"}'},Damage:0,IsBaseArmor:1b}"
         }

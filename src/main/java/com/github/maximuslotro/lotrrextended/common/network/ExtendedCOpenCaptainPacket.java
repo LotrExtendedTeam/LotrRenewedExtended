@@ -49,6 +49,11 @@ public class ExtendedCOpenCaptainPacket {
     	}
     	ExtendedServerHiredUnitProfile unitProfile = ExtendedServerHiredUnitProfileManager.INSTANCE.get(((ExtendedCaptainEntity)entity).getHireableProfile());
 
+    	if(unitProfile==null) {
+    		ExtendedLog.error("Tried to handle a null unit profile for "+entity.getClass().getName() +". PLEASE REPORT THIS!");
+        	context.get().setPacketHandled(true);
+        	return;
+    	}
         if(unitProfile.isEmptyUnitType()) {
         	ExtendedLog.error("Tried loading an unknown unit profile for captain entity! "+((ExtendedCaptainEntity)entity).getHireableProfile());
         	context.get().setPacketHandled(true);

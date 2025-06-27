@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:gondor/kingdom_of_men",
+  "display": {
+    "icon": {
+      "item": "lotr:gondor_crafting_table"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.gondor.gondor_crafter.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.gondor.gondor_crafter.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "item_made_on_gondor_crafting_table": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "crafting_block": {
+          "block": "lotr:gondor_crafting_table"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item_made_on_gondor_crafting_table"
+    ]
+  ]
+}

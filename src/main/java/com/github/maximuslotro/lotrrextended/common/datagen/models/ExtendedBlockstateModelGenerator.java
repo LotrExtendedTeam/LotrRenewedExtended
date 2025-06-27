@@ -13,9 +13,11 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrassVoidBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneTextSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
@@ -355,6 +357,16 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genHangingBlock((ExtendedHangingBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey()));
 					continue;
 				}
+				if(block.getValue().get() instanceof ExtendedCrystalChandelierBlock) {
+					if(block.getKey().contains("edhelvir")) {
+						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.getValue().get(), lotrLoc("block/edhelvir_crystal"));
+					}else if(block.getKey().contains("glowstone")) {
+						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.getValue().get(), lotrLoc("block/glowstone_crystal"));
+					}else if(block.getKey().contains("gulduril")) {
+						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.getValue().get(), lotrLoc("block/gulduril_crystal"));
+					}
+					continue;
+				}
 				if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
 					genPottedSapplingBlock((LOTRPottedPlantBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey().substring(7)));
 					continue;
@@ -495,6 +507,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedSingleChestBlock) {
 					genChestBlockItem(block.getValue().get(), block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedStoneTextSignBlock) {
+					genNoModelBlockItem(block.getValue().get());
 					continue;
 				}
 				if(block.getKey().equals("barren_dirt")) {
@@ -1402,6 +1418,28 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		simpleBlock(bed, modelFile);
 	}
 
+	private void genCrystalChandelierBlock(ExtendedCrystalChandelierBlock crystal_chandelier, ResourceLocation texture) {
+		registeredBlocks.add(crystal_chandelier);
+		ModelFile modelFile1 = models().withExistingParent("lotrextended:"+crystal_chandelier.getRegistryName().getPath()+"_1", lotrExtendedLoc("block/template_hanging_crystal_1"))
+				.texture("center", lotrExtendedLoc("block/crystal_center_stone")).texture("chain", mcLoc("block/chain")).texture("crystal", texture);
+		ModelFile modelFile2 = models().withExistingParent("lotrextended:"+crystal_chandelier.getRegistryName().getPath()+"_2", lotrExtendedLoc("block/template_hanging_crystal_2"))
+			.texture("center", lotrExtendedLoc("block/crystal_center_stone")).texture("chain", mcLoc("block/chain")).texture("crystal", texture);
+		ModelFile modelFile3 = models().withExistingParent("lotrextended:"+crystal_chandelier.getRegistryName().getPath()+"_3", lotrExtendedLoc("block/template_hanging_crystal_3"))
+			.texture("center", lotrExtendedLoc("block/crystal_center_stone")).texture("chain", mcLoc("block/chain")).texture("crystal", texture);
+		ConfiguredModel[] variant1 = ConfiguredModel.allYRotations(modelFile1, 0, false);
+		ConfiguredModel[] variant2 = ConfiguredModel.allYRotations(modelFile2, 0, false);
+		ConfiguredModel[] variant3 = ConfiguredModel.allYRotations(modelFile3, 0, false);
+		getVariantBuilder(crystal_chandelier).forAllStates(state -> {
+			int type = state.getValue(ExtendedCrystalChandelierBlock.TYPE);
+			if(type==1) {
+				return variant1;
+			}else if(type==2) {
+				return variant2;
+			}
+			return variant3;
+		});
+	}
+
 	private void genBannerBlock(ExtendedMEBannerBlock extendedMEBannerBlock, ResourceLocation texture) {
 		registeredBlocks.add(extendedMEBannerBlock);
 		ModelFile modelFileSmallBottom = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_small_bottom", lotrExtendedLoc("block/template_banner_small_bottom"))
@@ -2111,5 +2149,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
         .partialState().with(BlockStateProperties.AGE_3, 2).modelForState().modelFile(empty).addModel()
         .partialState().with(BlockStateProperties.AGE_3, 3).modelForState().modelFile(full).addModel();
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(full);
+	}
+
+	private void genNoModelBlockItem(Block block) {
+		registeredBlocks.add(block);
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath(), mcLoc("block/block")).texture("particle", lotrExtendedLoc("block/transparent_particle"));
+		simpleBlock(block, modelFile);
 	}
 }

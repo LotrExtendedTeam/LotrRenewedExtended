@@ -5,8 +5,12 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
 import lotr.common.data.ExtendedLevelData;
+import lotr.common.util.LOTREnchantUtils;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -31,10 +35,23 @@ public class ExtendedInfoCommand
         }
 
         // display ExtendedLevelData
-        if (ExtendedLevelData.serverInstance() != null) {
-            source.sendSuccess(new StringTextComponent("Server timeUntilTrader: " + ExtendedLevelData.serverInstance().getTimeUntilTrader()), false);
-            if (source.getEntity() != null) {
-                source.sendSuccess(new StringTextComponent("Your trader cooldown (seconds): " + ExtendedLevelData.serverInstance().getPlayersTraderCooldown(source.getEntity().getUUID())), false);
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.info.server_timeUntilTrader").
+                append(new StringTextComponent("" + ExtendedLevelData.serverInstance().getTimeUntilTrader())), false);
+        if (source.getEntity() != null) {
+            source.sendSuccess(new TranslationTextComponent("command.lotrextended.info.your_trader_cooldown").
+                    append(new StringTextComponent("" + ExtendedLevelData.serverInstance().getPlayersTraderCooldown(source.getEntity().getUUID()))), false);
+        }
+
+        // display bane data
+        if (source.getEntity() instanceof PlayerEntity) {
+            PlayerEntity entity = (PlayerEntity) source.getEntity();
+            ItemStack item = entity.getItemInHand(Hand.MAIN_HAND);
+
+            String baneData = LOTREnchantUtils.getBaneData(item);
+            if (!baneData.isEmpty()) {
+                source.sendSuccess(new StringTextComponent(""), false);
+                source.sendSuccess(new TranslationTextComponent("command.lotrextended.info.bane_progress"), false);
+                source.sendSuccess(new StringTextComponent(baneData), false);
             }
         }
 

@@ -30,21 +30,24 @@ public class MixinLOTRTickHandlerClientJavaPatch {
 	 * @author maximuslotro
 	 * @reason Move code to Access Transformers for Java 9+ systems
 	 * @Overwrite (remap=false)
-	 * @param mc The local Minecraft here
+	 * @param <T> The base type of the field being replaced
+	 * @param <U> The subclass type that extends T and replaces the base class
+	 * @param minecraftInstance The local Minecraft here
 	 * @param baseClass The class to override
 	 * @param subClass The class to replace with
+	 * @param getter A function to retrieve the current {@link Minecraft} instance
 	 * @param newSubClassSupplier A function to return an instance of the overriding class
 	 * @param loggingNameOfField A String that is used in debug logging
 	 */
 	@Overwrite(remap=false)
-	private static <T, U extends T> void replaceFinalMinecraftFieldIfNotReplaced(Minecraft mc, Class<T> baseClass, Class<U> subClass, Function<Minecraft, T> getter, Supplier<U> newSubClassSupplier, String loggingNameOfField) {
+	private static <T, U extends T> void replaceFinalMinecraftFieldIfNotReplaced(Minecraft minecraftInstance, Class<T> baseClass, Class<U> subClass, Function<Minecraft, T> getter, Supplier<U> newSubClassSupplier, String loggingNameOfField) {
 		if("GameRenderer".equals(loggingNameOfField)) {
-			T object = getter.apply(mc);
+			T object = getter.apply(minecraftInstance);
 			if (!subClass.isAssignableFrom(object.getClass())) {
 				U newSubClassObject = newSubClassSupplier.get();
-				mc.gameRenderer = (GameRenderer) newSubClassObject;
+				minecraftInstance.gameRenderer = (GameRenderer) newSubClassObject;
 				if (newSubClassObject instanceof IFutureReloadListener) {
-					IReloadableResourceManager resMgr = (IReloadableResourceManager) mc.getResourceManager();
+					IReloadableResourceManager resMgr = (IReloadableResourceManager) minecraftInstance.getResourceManager();
 					IFutureReloadListener objectAsListener = (IFutureReloadListener) newSubClassObject;
 					resMgr.registerReloadListener(objectAsListener);
 					if (objectAsListener instanceof IResourceManagerReloadListener)
@@ -54,12 +57,12 @@ public class MixinLOTRTickHandlerClientJavaPatch {
 			}
 		}
 		else if("WorldRenderer".equals(loggingNameOfField)) {
-			T object = getter.apply(mc);
+			T object = getter.apply(minecraftInstance);
 			if (!subClass.isAssignableFrom(object.getClass())) {
 				U newSubClassObject = newSubClassSupplier.get();
-				mc.levelRenderer = (WorldRenderer) newSubClassObject;
+				minecraftInstance.levelRenderer = (WorldRenderer) newSubClassObject;
 				if (newSubClassObject instanceof IFutureReloadListener) {
-					IReloadableResourceManager resMgr = (IReloadableResourceManager) mc.getResourceManager();
+					IReloadableResourceManager resMgr = (IReloadableResourceManager) minecraftInstance.getResourceManager();
 					IFutureReloadListener objectAsListener = (IFutureReloadListener) newSubClassObject;
 					resMgr.registerReloadListener(objectAsListener);
 					if (objectAsListener instanceof IResourceManagerReloadListener)

@@ -1,0 +1,55 @@
+{
+  "variants": {
+    "crystal_type=1": [
+      {
+        "model": "lotrextended:block/gulduril_crystal_chandelier_1"
+      },
+      {
+        "model": "lotrextended:block/gulduril_crystal_chandelier_1",
+        "y": 90
+      },
+      {
+        "model": "lotrextended:block/gulduril_crystal_chandelier_1",
+        "y": 180
+      },
+      {
+        "model": "lotrextended:block/gulduril_crystal_chandelier_1",
+        "y": 270
+      }
+    ],
+    "crystal_type=2": [
+      {
+        "model": "lotrextended:block/gulduril_crystal_chandelier_2"
+      },
+      {
+        "model": "lotrextended:block/gulduril_crystal_chandelier_2",
+        "y": 90
+      },
+      {
+        "model": "lotrextended:block/gulduril_crystal_chandelier_2",
+        "y": 180
+      },
+      {
+        "model": "lotrextended:block/gulduril_crystal_chandelier_2",
+        "y": 270
+      }
+    ],
+    "crystal_type=3": [
+      {
+        "model": "lotrextended:block/gulduril_crystal_chandelier_3"
+      },
+      {
+        "model": "lotrextended:block/gulduril_crystal_chandelier_3",
+        "y": 90
+      },
+      {
+        "model": "lotrextended:block/gulduril_crystal_chandelier_3",
+        "y": 180
+      },
+      {
+        "model": "lotrextended:block/gulduril_crystal_chandelier_3",
+        "y": 270
+      }
+    ]
+  }
+}

@@ -109,6 +109,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addMeleePoolItem(new ItemStack(Items.IRON_SWORD), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_SPEAR.get()), 1)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.DUNEDAIN_BOW.get()), 1)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.RANGER_BOW.get()), 1)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.DUNEDAIN_SHIELD.get()), 1)

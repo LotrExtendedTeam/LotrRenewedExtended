@@ -21,14 +21,44 @@ import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * Renderer for the {@link ExtendedStructureSpawnerEntity}, responsible for rendering
+ * the custom model with texture and optional debug bounding boxes in development mode.
+ * <p>
+ * This renderer handles visibility checks to hide the entity if it is invisible to the player
+ * or when the GUI is hidden. In developer mode, it visualizes the entity's check and spawn areas
+ * as colored bounding boxes using line rendering.
+ * </p>
+ */
 @OnlyIn(Dist.CLIENT)
 public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStructureSpawnerEntity> {
+    /** The texture resource location for the entity model. */
 	private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/imgnazgulscreamman.png");
+    /** The model instance used for rendering the spawner entity. */
 	private ExtendedStructureSpawnerModel model =  new ExtendedStructureSpawnerModel();
+	/**
+     * Constructs a new renderer for the ExtendedStructureSpawnerEntity.
+     *
+     * @param entityRenderDispatcher The entity render manager handling this renderer.
+     */
 	public ExtendedStructureSpawnerRenderer(EntityRendererManager entityRenderDispatcher) {
 		super(entityRenderDispatcher);
 	}
 
+	/**
+     * Renders the spawner entity with its model and texture.
+     * <p>
+     * If the entity is invisible to the player or the GUI is hidden, the model is not rendered.
+     * When developer mode is enabled, renders bounding boxes for the check area and spawn area.
+     * </p>
+     *
+     * @param pEntity The spawner entity to render.
+     * @param pEntityYaw The yaw rotation of the entity.
+     * @param pPartialTicks Partial tick time for smooth animation interpolation.
+     * @param pMatrixStack The matrix stack for rendering transformations.
+     * @param pBuffer The buffer source for vertex builders.
+     * @param pPackedLight Packed light information for rendering brightness.
+     */
 	@Override
 	public void render(ExtendedStructureSpawnerEntity pEntity, float pEntityYaw, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pPackedLight) {
 		pMatrixStack.pushPose();
@@ -78,11 +108,24 @@ public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStr
 		super.render(pEntity, pEntityYaw, pPartialTicks, pMatrixStack, pBuffer, pPackedLight);
 	}
 
+	/**
+     * Gets the texture location for the given spawner entity.
+     *
+     * @param entity The spawner entity instance.
+     * @return The texture resource location used for rendering the entity.
+     */
 	@Override
 	public ResourceLocation getTextureLocation(ExtendedStructureSpawnerEntity entity) {
 		return TEXTURE_LOCATION;
 	}
 
+	/**
+     * Determines whether the entity's name tag should be shown.
+     * The name tag is hidden if the entity is invisible to the player or the GUI is hidden.
+     *
+     * @param pEntity The spawner entity.
+     * @return {@code true} if the name tag should be shown; {@code false} otherwise.
+     */
 	@Override
 	protected boolean shouldShowName(ExtendedStructureSpawnerEntity pEntity) {
 		Minecraft minecraft = Minecraft.getInstance();
@@ -91,15 +134,38 @@ public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStr
 	}
 
 	/**
-	 * Modified version of WorldRenderer.renderLineBox to support int colors
-	 * */
+     * Renders a colored bounding box around an {@link AxisAlignedBB} using integer RGBA colors.
+     * This method is a modified version of {@link net.minecraft.client.renderer.WorldRenderer#renderLineBox} to support integer colors.
+     *
+     * @param pMatrixStack The matrix stack for transformations.
+     * @param pBuffer The vertex builder to output vertices to.
+     * @param pAabb The axis-aligned bounding box to render.
+     * @param pRed Red color component (0-255).
+     * @param pGreen Green color component (0-255).
+     * @param pBlue Blue color component (0-255).
+     * @param pAlpha Alpha transparency component (0-255).
+     */
 	public static void renderLineBox(MatrixStack pMatrixStack, IVertexBuilder pBuffer, AxisAlignedBB pAabb, int pRed, int pGreen, int pBlue, int pAlpha) {
 		renderLineBox(pMatrixStack, pBuffer, pAabb.minX, pAabb.minY, pAabb.minZ, pAabb.maxX, pAabb.maxY, pAabb.maxZ, pRed, pGreen, pBlue, pAlpha);
 	}
 
 	/**
-	 * Modified version of WorldRenderer.renderLineBox to support int colors
-	 * */
+     * Renders a colored bounding box defined by min and max coordinates using integer RGBA colors.
+     * This method is a modified version of {@link net.minecraft.client.renderer.WorldRenderer#renderLineBox} to support integer colors.
+     *
+     * @param pMatrixStack The matrix stack for transformations.
+     * @param pBuffer The vertex builder to output vertices to.
+     * @param pMinX Minimum X coordinate.
+     * @param pMinY Minimum Y coordinate.
+     * @param pMinZ Minimum Z coordinate.
+     * @param pMaxX Maximum X coordinate.
+     * @param pMaxY Maximum Y coordinate.
+     * @param pMaxZ Maximum Z coordinate.
+     * @param pRed Red color component (0-255).
+     * @param pGreen Green color component (0-255).
+     * @param pBlue Blue color component (0-255).
+     * @param pAlpha Alpha transparency component (0-255).
+     */
 	public static void renderLineBox(MatrixStack pMatrixStack, IVertexBuilder pBuffer, double pMinX, double pMinY, double pMinZ, double pMaxX, double pMaxY, double pMaxZ, int pRed, int pGreen, int pBlue, int pAlpha) {
 		Matrix4f matrix4f = pMatrixStack.last().pose();
 		float f = (float)pMinX;

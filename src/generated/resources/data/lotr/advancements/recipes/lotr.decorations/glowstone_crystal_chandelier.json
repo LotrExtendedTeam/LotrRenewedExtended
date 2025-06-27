@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:glowstone_crystal_chandelier"
+    ]
+  },
+  "criteria": {
+    "has_glowstone_crystal_chandelier": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:glowstone_crystal_chandelier"
+          }
+        ]
+      }
+    },
+    "has_glowstone_crystal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:glowstone_crystal"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:glowstone_crystal_chandelier"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_glowstone_crystal_chandelier",
+      "has_glowstone_crystal",
+      "has_the_recipe"
+    ]
+  ]
+}

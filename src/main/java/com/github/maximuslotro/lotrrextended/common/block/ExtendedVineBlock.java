@@ -9,23 +9,24 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.extensions.IForgeBlockState;
 
-public class ExtendedVineBlock extends VineBlock implements IForgeBlockState{
+public class ExtendedVineBlock extends VineBlock {
 
 	public ExtendedVineBlock(Properties p_i48303_1_) {
 		super(p_i48303_1_);
 	}
 
+
 	@Override
-	public int getFireSpreadSpeed(IBlockReader world, BlockPos pos, Direction face) {
+	public int getFireSpreadSpeed(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
 		return 15;
 	}
 
 	@Override
-	public int getFlammability(IBlockReader world, BlockPos pos, Direction face) {
-		return 100;
-	}
+	public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+        return 1000;
+    }
+
 	/**
 	 * make grow delay twice vanilla
 	 */

@@ -11,7 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.vector.Vector3d;
 
 /**
- * Modified {@see RunAroundLikeCrazyGoal}
+ * Modified {@link net.minecraft.entity.ai.goal.RunAroundLikeCrazyGoal}
  * */
 public class ExtendedPlayerTypedRunArroundLikeCrazyGoal extends Goal {
 	   private final WargEntity warg;

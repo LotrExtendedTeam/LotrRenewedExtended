@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    "E#E",
+    " E "
+  ],
+  "key": {
+    "I": {
+      "tag": "lotrextended:chains"
+    },
+    "#": {
+      "item": "minecraft:cobblestone"
+    },
+    "E": {
+      "item": "lotr:glowstone_crystal"
+    }
+  },
+  "result": {
+    "item": "lotr:glowstone_crystal_chandelier"
+  }
+}

@@ -157,7 +157,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	/**
 	 * Sets the banner's protection level
-	 * @param protectionLevel {@see BannerProtectionLevel} to be set
+	 * @param protectionLevel {@link BannerProtectionLevel} to be set
 	 * */
 	public void setProtectionLevel(BannerProtectionLevel protectionLevel) {
 		this.protectionLevel = protectionLevel;
@@ -168,7 +168,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	/**
 	 * Sets the banner protection type
-	 * @param protectionType {@see BannerProtectionType} to be set
+	 * @param protectionType {@link BannerProtectionType} to be set
 	 * */
 	public void setProtectionType(BannerProtectionType protectionType) {
 		this.protectionType = protectionType;
@@ -220,7 +220,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	/**
 	 * Sets the Faction protecting alignment level
-	 * @param level{@see float} alignment level to be set
+	 * @param level {@link float} alignment level to be set
 	 * */
 	public void setAlignmentLevel(float level) {
 		this.alignmentLevel = level;
@@ -500,6 +500,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	/**
 	 * Gets the copied item, handling if the banner has protection data and has been used
+	 * @param bannerType The banner type instance to get item from
 	 * @return ItemStack
 	 * */
 	public ItemStack getItem(BannerTypes bannerType) {

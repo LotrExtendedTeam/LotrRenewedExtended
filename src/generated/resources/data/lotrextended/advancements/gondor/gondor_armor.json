@@ -1,0 +1,46 @@
+{
+  "parent": "lotrextended:gondor/kingdom_of_men",
+  "display": {
+    "icon": {
+      "item": "lotr:gondor_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.gondor.gondor_armor.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.gondor.gondor_armor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "gondow_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gondor_helmet"
+          },
+          {
+            "item": "lotr:gondor_chestplate"
+          },
+          {
+            "item": "lotr:gondor_leggings"
+          },
+          {
+            "item": "lotr:gondor_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "gondow_armor"
+    ]
+  ]
+}

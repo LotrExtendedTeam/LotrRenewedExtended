@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:bree_smith",
-  "entity_type": "lotr:bree_smith",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,

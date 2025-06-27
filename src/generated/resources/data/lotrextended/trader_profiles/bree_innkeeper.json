@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:bree_innkeeper",
-  "entity_type": "lotr:bree_innkeeper",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,

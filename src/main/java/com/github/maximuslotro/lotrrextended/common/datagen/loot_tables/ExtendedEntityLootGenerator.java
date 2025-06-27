@@ -101,8 +101,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	@Override
 	protected void addTables() {
 		makePartTables();
-		makeBaseTables();
-		makeExtendedTables();
+		makeRaceBaseTables();
+		makeExtendedRaceTables();
 		makeFactionTables();
 		makeEntities();
 	}
@@ -144,6 +144,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		rareDunedainRangerDrops = makeQuickyBasePart("dunedain_ranger_rare_drops", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
 				.add(genQuickyItemBuilder(ExtendedItems.BARROW_BLADE.get()).apply(SetDamage.setDamage(RandomValueRange.between(0.5F, 0.75F))).setWeight(5))
 				.add(genQuickyItemBuilder(ExtendedItems.DUNEDAIN_BOW.get()).apply(SetDamage.setDamage(RandomValueRange.between(0.5F, 0.75F))).setWeight(5))
+				.add(genQuickyItemBuilder(ExtendedItems.RANGER_BOW.get()).apply(SetDamage.setDamage(RandomValueRange.between(0.5F, 0.75F))).setWeight(5))
 				.when(KilledByPlayer.killedByPlayer())
 				.when(RandomChance.randomChance(0.05F))));
 		coinsRare = makeQuickyBasePart("coins_rare", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
@@ -167,7 +168,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.add(genQuickyItemBuilder(LOTRItems.PEAR.get(), 1, 1).setWeight(5))
 				.add(genQuickyItemBuilder(LOTRItems.LETTUCE.get(), 1, 1).setWeight(5))
 				.add(genQuickyItemBuilder(ExtendedItems.PLUM.get(), 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(ExtendedItems.DUCK.get(), 1, 1).setWeight(5))
+				.add(genQuickyItemBuilder(ExtendedItems.COOKED_DUCK.get(), 1, 1).setWeight(5))
 				.add(genQuickyItemBuilder(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 1).setWeight(5))
 				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.5F, 1F))));
 		gundabadUrukEquipment = makeQuickyBasePart("gundabad_uruk_equipment", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
@@ -187,7 +188,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 			.when(RandomChance.randomChance(0.06F))));
 	}
 
-	private void makeBaseTables() {
+	private void makeRaceBaseTables() {
 		orcBase = makeQuickyBasePart("orc", LootTable.lootTable()
 				.withPool(addAnotherQuickyPoolRefrence(orcBones))
 				.withPool(addAnotherQuickyPoolRefrence(pouch))
@@ -226,7 +227,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.025F, 0.005F))));
 	}
 
-	private void makeExtendedTables() {
+	private void makeExtendedRaceTables() {
 		orcBaseSteel = makeQuickyBasePart("orc_with_orc_steel", LootTable.lootTable()
 				.withPool(addAnotherQuickyPoolRefrence(orcBase))
 				.withPool(genSingleQuickyBuilder(LOTRItems.ORC_STEEL_INGOT.get(), 1, 2)
@@ -349,7 +350,13 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.RIVENDELL_WANDERER, elfBaseMiruvorLembas);
 		makeEntity(ExtendedEntities.GALADHRIM_WANDERER, elfBaseMiruvorLembas);
 		makeEntity(ExtendedEntities.BREE_SHERIFF, manBreeLeatherIronSword);
+		makeEntity(ExtendedEntities.DWARVEN_MINER, dwarfDurinsFolk, foodItems);
+		makeEntity(ExtendedEntities.DWARVEN_SMITH, dwarfDurinsFolk, foodItems);
+		makeEntity(ExtendedEntities.DWARVEN_COMMANDER, dwarfDurinsFolk, foodItems);
 		makeEntity(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT, dwarfBlueMountians, mugs, foodItems);
+		makeEntity(ExtendedEntities.BLUE_DWARVEN_MINER, dwarfBlueMountians, foodItems);
+		makeEntity(ExtendedEntities.BLUE_DWARVEN_SMITH, dwarfBlueMountians, foodItems);
+		makeEntity(ExtendedEntities.BLUE_DWARVEN_COMMANDER, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.GUNDABAD_CAMP_TRADER, orcGundabad);
 		makeEntity(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN, orcGundabad);
 		makeEntity(ExtendedEntities.DUCK, makeQuickyBaseCommon("duck", LootTable.lootTable()
@@ -433,6 +440,12 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.BREE_BREWER, manBree);
 		makeEntity(ExtendedEntities.BREE_SMITH, manBree);
 		makeEntity(ExtendedEntities.BREE_STABLEMASTER, manBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_POTTER, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_BAKER, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_BUTCHER, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_INNKEEPER, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_FLORIST, hobbitBree);
+		makeEntity(ExtendedEntities.BREE_HOBBIT_BREWER, hobbitBree);
 		add(ExtendedEntities.TOLKIEN.get(), LootTable.lootTable()
 			.withPool(LootPool.lootPool()
 				.setRolls(RandomValueRange.between(0, 3))

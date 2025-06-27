@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.eventhandlers.ExtendedHiredUnitHealthbarRenderer;
+import com.github.maximuslotro.lotrrextended.client.eventhandlers.LOTREnchantEventHandlerClient;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedScreenRegisterHandler;
 import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
 import com.github.maximuslotro.lotrrextended.client.render.color.ExtendedBlockItemColors;
@@ -66,6 +67,7 @@ public class ExtendedClientProxy {
 		forgeBus.addListener(this::login);
 		forgeBus.addListener(this::commandevent);
 		forgeBus.addListener(ExtendedHiredUnitHealthbarRenderer::renderHpBar);
+		forgeBus.addListener(LOTREnchantEventHandlerClient::addTooltipsForLOTREnchants);
 		modBus.addListener(this::onParticleRegistry);
 		modBus.addListener(this::clientStartupEvent);
 		modBus.addListener(ExtendedBlockRenderer::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);
@@ -82,6 +84,7 @@ public class ExtendedClientProxy {
 
     /**
      * A fix since forge does not have client commands in 1.16.5
+     * @param event The chat event on the client
      */
     public void commandevent(ClientChatEvent event)
     {
@@ -138,7 +141,7 @@ public class ExtendedClientProxy {
 
     public void login(EntityJoinWorldEvent event)
     {
-        if (event.getEntity() instanceof ClientPlayerEntity)
+        if (event.getEntity() instanceof ClientPlayerEntity && ExtendedClientConfig.enableClientVersionCheck.get())
         {
             VersionChecker.CheckResult result = VersionChecker.getResult(ModList.get().getModContainerById(LotrExtendedMod.MODID).get().getModInfo());
             if (result != null && (result.status == VersionChecker.Status.OUTDATED || result.status == VersionChecker.Status.BETA_OUTDATED))

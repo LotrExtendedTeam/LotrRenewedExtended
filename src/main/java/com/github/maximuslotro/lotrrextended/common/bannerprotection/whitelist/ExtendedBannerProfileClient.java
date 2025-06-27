@@ -8,27 +8,33 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Util;
 
-public class ExtendedBannerProfileClient extends ExtendedBannerProfileBase{
+/**
+ * Client-side implementation of {@link ExtendedBannerProfileBase}.
+ * Represents a banner profile with optional name and a fixed NIL UUID.
+ */
+public class ExtendedBannerProfileClient extends ExtendedBannerProfileBase {
+
 	private String name;
 
 	/**
-	 * Constructs a new Banner Profile with the specified ID and name.
-	 * <p />
-	 * Either ID or name may be null/empty, but at least one must be filled.
+	 * Constructs a new client banner profile with the specified display name.
+	 * Either the name or the ID must be provided (ID is fixed as NIL_UUID here).
 	 *
-	 * @param name Display name of the profile
-	 * @throws java.lang.IllegalArgumentException Both ID and name are either null or empty
+	 * @param name the display name of the profile; may be {@code null} or empty, but ideally not both ID and name empty
+	 * @throws IllegalArgumentException if both ID and name are null or empty
 	 */
 	public ExtendedBannerProfileClient(final String name) {
+		if ((name == null || name.isEmpty())) {
+			throw new IllegalArgumentException("Both ID and name are either null or empty");
+		}
 		this.name = name;
 	}
 
 	/**
 	 * Gets the unique ID of this banner profile.
-	 * <p />
-	 * This may be null for partial profile data if constructed manually.
+	 * For client profiles, this is always {@link Util#NIL_UUID}.
 	 *
-	 * @return ID of the profile
+	 * @return the NIL UUID
 	 */
 	@Override
 	public UUID getId() {
@@ -36,39 +42,55 @@ public class ExtendedBannerProfileClient extends ExtendedBannerProfileBase{
 	}
 
 	/**
-	 * Get underlying name for profile
-	 * * <p />
-	 * This may be null for partial profile data if constructed manually.
-	 * @return String
-	 * */
+	 * Gets the underlying name of the profile.
+	 * May be {@code null} if partial or incomplete.
+	 *
+	 * @return the profile name, or {@code null}
+	 */
 	@Override
 	@Nullable
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Sets the profile name.
+	 *
+	 * @param name the new name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * Get display name for profile
-	 * same as getName()
-	 * * <p />
-	 * This may be null for partial profile data if constructed manually.
-	 * @return String
-	 * */
+	 * Gets the display name of the profile.
+	 * Same as {@link #getName()}.
+	 *
+	 * @return the display name, or {@code null}
+	 */
 	@Override
 	@Nullable
 	public String getDisplayName() {
 		return name;
 	}
 
+	/**
+	 * Gets the profile type.
+	 *
+	 * @return the string literal "client"
+	 */
 	@Override
 	public String getType() {
 		return "client";
 	}
 
+	/**
+	 * Checks if the specified player is contained in this profile.
+	 * Client profiles never contain players.
+	 *
+	 * @param player the player entity to check
+	 * @return {@code false} always
+	 */
 	@Override
 	public boolean isPlayerContained(PlayerEntity player) {
 		return false;
@@ -76,10 +98,9 @@ public class ExtendedBannerProfileClient extends ExtendedBannerProfileBase{
 
 	/**
 	 * Checks if this profile is complete.
-	 * <p />
-	 * A complete profile has no empty fields. Partial profiles may be constructed manually and used as input to methods.
+	 * For client profiles, completeness means having a non-blank name.
 	 *
-	 * @return True if this profile is complete (as opposed to partial)
+	 * @return {@code true} if the name is not blank, otherwise {@code false}
 	 */
 	@Override
 	public boolean isComplete() {
@@ -87,20 +108,28 @@ public class ExtendedBannerProfileClient extends ExtendedBannerProfileBase{
 	}
 
 	/**
-	 * Check if the profile class has all fields filled
-	 * @return boolean
-	 * */
+	 * Checks if the profile is valid.
+	 * Equivalent to {@link #isComplete()} for this implementation.
+	 *
+	 * @return {@code true} if valid, {@code false} otherwise
+	 */
 	@Override
 	public boolean isValid() {
 		return isComplete();
 	}
 
+	/**
+	 * Writes this profile's data to the provided {@link CompoundNBT}.
+	 * Saves the name and ID if present.
+	 *
+	 * @param pTag the NBT compound to write to
+	 * @return the modified {@code pTag} with profile data added
+	 */
 	@Override
 	public CompoundNBT writeProfileData(CompoundNBT pTag) {
 		if (!net.minecraft.util.StringUtils.isNullOrEmpty(this.getName())) {
 			pTag.putString("Name", this.getName());
 		}
-
 		if (this.getId() != null) {
 			pTag.putUUID("Id", this.getId());
 		}

@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:gondor/kingdom_of_men",
+  "display": {
+    "icon": {
+      "item": "minecraft:birch_sapling"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.gondor.five_fair_steams.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.gondor.five_fair_steams.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_lebennin": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lebennin"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_lebennin"
+    ]
+  ]
+}

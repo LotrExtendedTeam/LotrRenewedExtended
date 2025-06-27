@@ -51,6 +51,7 @@ import net.minecraft.world.World;
 public class ExtendedDunedainRangerEntity extends ManEntity {
 
     private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(LOTRItems.ARNOR_SWORD, LOTRItems.BRONZE_SWORD, Items.IRON_SWORD, LOTRItems.ARNOR_DAGGER, LOTRItems.BRONZE_DAGGER, LOTRItems.IRON_DAGGER);
+    private static final SpawnEquipmentTable BOWS = SpawnEquipmentTable.of(ExtendedItems.DUNEDAIN_BOW, ExtendedItems.RANGER_BOW, ExtendedItems.LONGBOW, Items.BOW);
 
     private static final DataParameter<Integer> CLOAK_COOLDOWN = EntityDataManager.defineId(
             ExtendedDunedainRangerEntity.class, DataSerializers.INT);
@@ -111,7 +112,7 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
 
         // setup weapons
         this.npcItemsInv.setMeleeWeapon(WEAPONS.getRandomItem(this.random));
-        this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.DUNEDAIN_BOW.get()));
+        this.npcItemsInv.setRangedWeapon(BOWS.getRandomItem(this.random));
         this.npcItemsInv.setIdleItemsFromRangedWeapons();
 
         if (this.random.nextFloat() < 0.5F) {
@@ -156,7 +157,7 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
 
     /**
      * New method that actually takes into account the additional damage factor of ExtendedBowItem items
-     * @param target {@see LivingEntity} to attack
+     * @param target {@link LivingEntity} to attack
      * @param charge The power at which to shoot
      */
     private void rangerArrowAttack(LivingEntity target, float charge) {
@@ -183,7 +184,9 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
         if (heldItem.getItem().equals(ExtendedItems.DUNEDAIN_BOW.get())) {
             arrow.setBaseDamage(arrow.getBaseDamage() + 2.5D);
         }
-
+        if (heldItem.getItem().equals(ExtendedItems.DUNEDAIN_BOW.get())) {
+            arrow.setBaseDamage(arrow.getBaseDamage() + 1.5D);
+        }
         this.playSound(SoundEvents.SKELETON_SHOOT, 1.0F, 1.0F / (this.random.nextFloat() * 0.4F + 0.8F));
         this.level.addFreshEntity(arrow);
     }

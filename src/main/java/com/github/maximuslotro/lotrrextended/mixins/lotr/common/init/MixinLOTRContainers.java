@@ -59,6 +59,7 @@ public class MixinLOTRContainers {
 
 	/**
 	 * Register our own containers under the lotr namespace, with dataGen handling
+	 * @param <T> the type of module extending Container
 	 * @param name A String name of the container
 	 * @param defaultName A String English Localized name of the container for dataGen
 	 * @param sup A ContainerType supplier to build
@@ -73,6 +74,7 @@ public class MixinLOTRContainers {
 	}
 	/**
 	 * Register our own containers under the lotrextended namespace, with dataGen handling
+	 * @param <T> the type of module extending Container
 	 * @param name A String name of the container
 	 * @param defaultName A String English Localized name of the container for dataGen
 	 * @param sup A ContainerType supplier to build

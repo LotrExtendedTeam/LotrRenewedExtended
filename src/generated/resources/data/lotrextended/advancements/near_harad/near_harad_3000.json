@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:near_harad/near_harad_1500",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.near_harad.near_harad_3000.title"
+    },
+    "description": {
+      "color": "light_purple",
+      "translate": "advancements.lotrextended.near_harad.near_harad_3000.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_near_harad_level_3000": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:near_harad",
+          "level": {
+            "min": 3000.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_near_harad_level_3000"
+    ]
+  ]
+}

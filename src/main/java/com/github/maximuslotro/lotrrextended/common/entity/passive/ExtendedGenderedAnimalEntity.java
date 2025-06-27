@@ -13,45 +13,80 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
+/**
+ * Abstract base class for gendered animal entities with extended behavior.
+ * 
+ * <p>This class extends {@link AnimalEntity} and adds support for gender management,
+ * breeding mechanics based on gender, and serialization of gender data.</p>
+ *
+ * @param <T> The specific subclass type extending this class, used for type-safe breeding offspring.
+ */
 public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAnimalEntity<?>> extends AnimalEntity {
 
 	private static final DataParameter<Integer> GENDER = EntityDataManager.defineId(ExtendedGenderedAnimalEntity.class, DataSerializers.INT);
-
+	/**
+     * Constructs a new ExtendedGenderedAnimalEntity with a randomly assigned gender
+     * if the entity is gendered.
+     *
+     * @param entityType The entity type.
+     * @param world The world the entity belongs to.
+     */
 	protected ExtendedGenderedAnimalEntity(EntityType<? extends ExtendedGenderedAnimalEntity<T>> entityType, World world) {
 		super(entityType, world);
 		this.setGenderRandomly(isGendered(), world);
 	}
 
 	/**
-	 * Overridden vanilla method to ensure an animal has their breedable food set
-	 * */
+     * Checks if the given item stack is the food that this animal breed on.
+     * Overrides the vanilla method to enforce breedable food logic.
+     *
+     * @param pStack The item stack to check.
+     * @return {@code true} if the item is breedable food for this animal; {@code false} otherwise.
+     */
 	@Override
 	public boolean isFood(ItemStack pStack) {
 		return getBreedableFood(pStack);
 	}
 
 	/**
-	 * Abstract helper method to get breedable food for an animal
-	 * */
+     * Abstract method to determine if the specified item stack is considered breedable food.
+     *
+     * @param stack The item stack to check.
+     * @return {@code true} if the item is breedable food; {@code false} otherwise.
+     */
 	public abstract boolean getBreedableFood(ItemStack stack);
 
 	/**
-	 * Abstract method determine if the default gender setting of an animal
-	 * */
+     * Abstract method to indicate whether this animal uses gender mechanics.
+     *
+     * @return {@code true} if the animal has gender; {@code false} otherwise.
+     */
 	public abstract boolean isGendered();
 
 	/**
-	 * Abstract method to get the entities offspring entity
-	 * */
+     * Abstract method to obtain the offspring entity resulting from breeding.
+     *
+     * @param pServerLevel The server world context.
+     * @param pMate The mate entity.
+     * @return The offspring entity of type T.
+     */
 	public abstract T getBreedingOffspring(ServerWorld pServerLevel, AgeableEntity pMate);
 
 	/**
-	 * Allow for modifying a baby's data by the parent after setting it's gender
-	 * */
+     * Allows subclasses to modify the offspring entity after it is created and gender is set.
+     *
+     * @param baby The newly created offspring entity.
+     * @param pServerLevel The server world context.
+     * @param pMate The mate entity.
+     * @return The potentially modified offspring entity.
+     */
 	public T modifyBreedingOffspring(T baby, ServerWorld pServerLevel, AgeableEntity pMate) {
 		return baby;
 	}
-
+	/**
+     * Defines synchronized entity data parameters including gender.
+     * Called during entity initialization.
+     */
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
@@ -59,8 +94,12 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 	}
 
 	/**
-	 * Re-set gender based upon parents gender in the case mob can be gendered and genderless at different times
-	 * */
+     * Produces offspring by resetting gender if needed based on parents' gender status.
+     *
+     * @param pServerLevel The server world context.
+     * @param pMate The mate entity.
+     * @return The offspring entity with appropriately set gender.
+     */
 	@Override
 	public AgeableEntity getBreedOffspring(ServerWorld pServerLevel, AgeableEntity pMate) {
 		T baby = getBreedingOffspring(pServerLevel, pMate);
@@ -71,8 +110,10 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 	}
 
 	/**
-	 * Overridden vanilla method to read entity gender from {@see CompoundNBT}
-	 * */
+     * Reads additional entity data from NBT, including the stored gender.
+     *
+     * @param nbt The compound NBT data.
+     */
 	@Override
 	public void readAdditionalSaveData(CompoundNBT nbt) {
 		super.readAdditionalSaveData(nbt);
@@ -83,8 +124,10 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 	}
 
 	/**
-	 * Overridden vanilla method to save gender to {@see CompoundNBT}
-	 * */
+     * Writes additional entity data to NBT, including the current gender.
+     *
+     * @param nbt The compound NBT data.
+     */
 	@Override
 	public void addAdditionalSaveData(CompoundNBT nbt) {
 		super.addAdditionalSaveData(nbt);
@@ -92,8 +135,11 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 	}
 
 	/**
-	 * Overridden vanilla method to allow for gender checking when determining if two animals can mate
-	 * */
+     * Determines if this animal can mate with another animal, factoring gender compatibility.
+     *
+     * @param pOtherAnimal The other animal to check mating compatibility with.
+     * @return {@code true} if mating is possible; {@code false} otherwise.
+     */
 	@Override
 	public boolean canMate(AnimalEntity pOtherAnimal) {
 		if (pOtherAnimal == this) {
@@ -123,22 +169,30 @@ public abstract class ExtendedGenderedAnimalEntity<T extends ExtendedGenderedAni
 	}
 
 	/**
-	 * Helper method to get an animal's gender
-	 * */
+     * Returns the current gender of this animal entity.
+     *
+     * @return The entity's gender.
+     */
 	public EntityGender getGender() {
 		return EntityGender.byGenderId(this.entityData.get(GENDER));
 	}
 
 	/**
-	 * Helper method to set an animal's gender
-	 * */
+     * Sets the gender of this animal entity.
+     *
+     * @param gender The gender to assign.
+     */
 	public void setGender(EntityGender gender) {
 		this.entityData.set(GENDER, gender.getGenderId());
 	}
 
 	/**
-	 * Helper method to set an animal's gender randomly
-	 * */
+     * Assigns a gender randomly to this animal if it is gendered;
+     * otherwise sets it to genderless.
+     *
+     * @param gendered Whether this entity uses gender mechanics.
+     * @param serverWorld The world instance to use for randomization.
+     */
 	public void setGenderRandomly(boolean gendered, World serverWorld) {
 		if(!gendered) {
 			this.setGender(EntityGender.GENDERLESS);

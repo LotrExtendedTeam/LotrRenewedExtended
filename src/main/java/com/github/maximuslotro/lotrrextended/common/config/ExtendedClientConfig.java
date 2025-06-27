@@ -11,12 +11,14 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	public static final ForgeConfigSpec CLIENT_SPEC = setupConfig(new ForgeConfigSpec.Builder()).build();
 	public static ForgeConfigSpec.BooleanValue enableDevMode;
 	public static ConfigValue<String> lastClientBootVersion;
-	
+	public static ForgeConfigSpec.BooleanValue disableJEILOTRversionCheck;
+	public static ForgeConfigSpec.BooleanValue enableClientVersionCheck;
+
 	public static ForgeConfigSpec.BooleanValue enablePlantParticles;
 	
 	/**
-	 * Do not set this value itself, set {@see ExtendedOptionsScreen#setConfigStrBlockRenderDistance(Double) SetConfigStrBlockRenderDistance}
-	 * to ensure {@see MixinStructureBlockTileEntity} is updated with the non config crashable value, since sliders can change values very quickly.
+	 * Do not set this value itself, set {@link lotr.client.gui.menu.ExtendedOptionsScreen}
+	 * to ensure {@link com.github.maximuslotro.lotrrextended.mixins.net.minecraft.tileentity.MixinStructureBlockTileEntity} is updated with the non config crashable value, since sliders can change values very quickly.
 	 * */
 	public static ForgeConfigSpec.IntValue structureBlockOutlineViewDistance;
 	public static ForgeConfigSpec.BooleanValue forceStructureBlockAirViewing;
@@ -30,6 +32,8 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	private static ForgeConfigSpec.Builder setupConfig(ForgeConfigSpec.Builder builder) {
 		builder.push("General Settings");
 		enablePlantParticles = createBooleanValue(builder, "enablePlantParticles", true, false, "Allow for certian plants to spawn particles.");
+		disableJEILOTRversionCheck = createBooleanValue(builder, "disableJEILOTRversionCheck", true, false, "Disable JEI-LOTR's broken version check.");
+		enableClientVersionCheck = createBooleanValue(builder, "enableClientVersionCheck", true, false, "Disable Extended client version check.");
 		builder.pop();
 
 		builder.push("Technical Settings");

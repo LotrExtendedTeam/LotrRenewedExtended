@@ -217,7 +217,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	public void mobInteract(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResultType> ci) {
 		if(player.getItemInHand(Hand.OFF_HAND).getItem().getUseAnimation(player.getItemInHand(hand))==UseAction.BLOCK) {
 			ci.setReturnValue(ActionResultType.PASS);
-		}else {
+		} else {
 			if(this instanceof ExtendedTraderEntity) {
 				if (player.getItemInHand(hand).getItem() instanceof SpawnEggItem || player.getItemInHand(hand).getItem() instanceof LOTRSpawnEggItem) {
 					ci.setReturnValue(ActionResultType.PASS);

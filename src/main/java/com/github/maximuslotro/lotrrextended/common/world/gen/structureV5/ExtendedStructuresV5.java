@@ -29,10 +29,23 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+/**
+ * Manages the registration and configuration of custom extended structures for lotrextended.
+ * <p>
+ * This class registers various structures with Forge's deferred registry system and sets up their spawning parameters.
+ * It also provides utilities for registering custom jigsaw piece serializers and adding structure separation settings to vanilla Minecraft's world generation.
+ * </p>
+ */
 public class ExtendedStructuresV5 {
+	/**
+	 * Jigsaw deserializer for extended single jigsaw pieces used in custom structure pools.
+	 */
 	public static final IJigsawDeserializer<ExtendedSingleJigsawPiece> SINGLE_EXTENDED = registerJigsaw("extended_single_pool_element", ExtendedSingleJigsawPiece.CODEC);
-
+	/**
+	 * Deferred registry for registering custom structures in the Forge registry.
+	 */
 	public static final DeferredRegister<Structure<?>> STRUCTURE_REGISTRY = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, LotrExtendedMod.MODID);
+
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_BARN = STRUCTURE_REGISTRY.register("hobbit_barn", () -> new SinglePoolStructure(StructureType.HOBBIT));
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOLE_SMALL = STRUCTURE_REGISTRY.register("hobbit_hole_small", () -> new SinglePoolStructure(StructureType.HOBBIT));
 	public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_HOLE_LARGE = STRUCTURE_REGISTRY.register("hobbit_hole_large", () -> new HobbitHoleLargeStructure(StructureType.HOBBIT));
@@ -61,6 +74,13 @@ public class ExtendedStructuresV5 {
 	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_HAMLET = STRUCTURE_REGISTRY.register("bree_hamlet", () -> new SinglePoolStructure(StructureType.BREE_HAMLET));
 	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_VILLAGE = STRUCTURE_REGISTRY.register("bree_village", () -> new SinglePoolStructure(StructureType.BREE_VILLAGE));
 
+	/**
+	 * Initializes and registers all custom structures with their generation parameters.
+	 * <p>
+	 * This method must be called during mod setup to ensure proper structure registration
+	 * and spacing configuration.
+	 * </p>
+	 */
 	public static void setupStructures() {
 		// For StructureSeparationSettings, the first value is the average distance in chunks between spawn attempts (spacing)
 		// the second value it minimum distance in chunks between spawn attempts (separation) (this must always be less than the first!
@@ -91,10 +111,31 @@ public class ExtendedStructuresV5 {
 		register(BREE_VILLAGE.get(), true,             40, 25, 78547894);
 	}
 
+	/**
+	 * Registers a custom jigsaw piece deserializer codec under the mod's namespace.
+	 *
+	 * @param <P>    the type of JigsawPiece
+	 * @param pName  the name of the jigsaw type to register
+	 * @param pCodec the codec used to serialize and deserialize the jigsaw piece
+	 * @return the registered {@link IJigsawDeserializer} instance
+	 */
 	public static <P extends JigsawPiece> IJigsawDeserializer<P> registerJigsaw(String pName, Codec<P> pCodec) {
-	      return Registry.register(Registry.STRUCTURE_POOL_ELEMENT, new ResourceLocation(LotrExtendedMod.MODID, pName), () -> { return pCodec; });
-	   }
-	
+		return Registry.register(Registry.STRUCTURE_POOL_ELEMENT, new ResourceLocation(LotrExtendedMod.MODID, pName), () -> { return pCodec; });
+	}
+	/**
+	 * Registers a structure with its separation and spacing settings for world generation.
+	 * <p>
+	 * Also adds the structure to various internal registries to enable proper generation and
+	 * integration with Minecraft's dimension and noise generator settings.
+	 * </p>
+	 *
+	 * @param structure the structure to register
+	 * @param editLand  whether surrounding terrain should be automatically modified
+	 * @param spacing   average distance in chunks between spawn attempts (must be greater than separation)
+	 * @param seperation minimum distance in chunks between spawn attempts
+	 * @param salt      random seed salt used for structure placement randomness
+	 * @throws IllegalArgumentException if separation is greater than or equal to spacing
+	 */
 	public static void register(Structure<? extends IFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {
 		if(spacing-seperation<= 0) {
 			throw new IllegalArgumentException("Structure SeperationSettings setup detected an invalid configuration where seperation>=spacing: "+seperation+">="+spacing);

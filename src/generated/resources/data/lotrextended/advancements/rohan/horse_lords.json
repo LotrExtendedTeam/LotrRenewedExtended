@@ -1,7 +1,8 @@
 {
   "display": {
     "icon": {
-      "item": "lotr:rohan_brick"
+      "item": "lotr:rohan_spear",
+      "nbt": "{Damage:0}"
     },
     "title": {
       "translate": "advancements.lotrextended.rohan.horse_lords.title"

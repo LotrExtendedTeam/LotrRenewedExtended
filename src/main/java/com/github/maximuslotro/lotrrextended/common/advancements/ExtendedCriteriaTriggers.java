@@ -8,6 +8,7 @@ public class ExtendedCriteriaTriggers {
 	public static final ExtendedBlockBreakTrigger PLAYER_BREAK_BLOCK_TRIGGER = CriteriaTriggers.register(new ExtendedBlockBreakTrigger());
 	public static final ExtendedTameLivingClassTrigger TAME_LIVING_TRIGGER = CriteriaTriggers.register(new ExtendedTameLivingClassTrigger());
 	public static final ExtendedUnitHiredTrigger UNIT_HIRED_TRIGGER = CriteriaTriggers.register(new ExtendedUnitHiredTrigger());
+	public static final ExtendedCraftingTrigger FACTION_CRAFTING_TRIGGER = CriteriaTriggers.register(new ExtendedCraftingTrigger());
 
 	public static void generate() {}
 }

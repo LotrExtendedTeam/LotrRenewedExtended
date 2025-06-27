@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.utils.client;
 
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBannerConfigurationScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedCaptainMainScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedExitStoneTextSignScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedTraderMainScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedTradeScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedWargInventoryScreen;
@@ -9,7 +10,9 @@ import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInvent
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenCaptainPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenStoneTextSignPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneTextSignTileEntity;
 
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
@@ -20,6 +23,7 @@ import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.tileentity.TileEntity;
 
 public class ExtendedClientsideSeparatedScreenHandler {
 
@@ -65,5 +69,15 @@ public class ExtendedClientsideSeparatedScreenHandler {
 		if(mc.screen instanceof ExtendedBannerConfigurationScreen && ((ExtendedBannerConfigurationScreen)mc.screen).getConfigurePos().equals(packet.configurePos)) {
 			((ExtendedBannerConfigurationScreen)mc.screen).updateFromPacket(packet);
 		}
+	}
+
+	public static void openCarvingGUI(ExtendedSOpenStoneTextSignPacket packet) {
+		Minecraft mc = Minecraft.getInstance();
+    	TileEntity tileentity = mc.level.getBlockEntity(packet.getPos());
+        if (!(tileentity instanceof ExtendedStoneTextSignTileEntity)) {
+           tileentity = new ExtendedStoneTextSignTileEntity();
+           tileentity.setLevelAndPosition(mc.level, packet.getPos());
+        }
+    	mc.setScreen(new ExtendedExitStoneTextSignScreen((ExtendedStoneTextSignTileEntity)tileentity));
 	}
 }

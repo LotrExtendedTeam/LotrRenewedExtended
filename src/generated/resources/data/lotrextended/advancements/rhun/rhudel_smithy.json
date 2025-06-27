@@ -1,0 +1,37 @@
+{
+  "parent": "lotrextended:rhun/enter_rhun",
+  "display": {
+    "icon": {
+      "item": "lotr:gilded_iron_ingot"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.rhun.rhudel_smithy.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.rhun.rhudel_smithy.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "item_lotr:gilded_iron_ingot_made_on_alloy_forge": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotr:gilded_iron_ingot"
+        },
+        "crafting_block": {
+          "block": "lotr:alloy_forge"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item_lotr:gilded_iron_ingot_made_on_alloy_forge"
+    ]
+  ]
+}

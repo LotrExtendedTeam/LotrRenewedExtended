@@ -208,8 +208,15 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		catagories.add(sound);
 
+		SettingsCatagory misc = new SettingsCatagory(this, 7, x, y, xTabs);
+		addButton(misc.addCatagoryButton("gui.lotrextended.settings.miscellaneoussettings"));
+		addButton(misc.addButton("gui.lotrextended.settings.lotrextendedversioncheck.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.enableClientVersionCheck), (button, pd) -> ExtendedClientConfig.enableClientVersionCheck.get(), 
+			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
+		addButton(misc.addButton("gui.lotrextended.settings.jeilotrversioncheck.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.disableJEILOTRversionCheck), (button, pd) -> ExtendedClientConfig.disableJEILOTRversionCheck.get(), 
+			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
+		catagories.add(misc);
 
-		SettingsCatagory dev = new SettingsCatagory(this, 7, x, y, xTabs) {
+		SettingsCatagory dev = new SettingsCatagory(this, 8, x, y, xTabs) {
 			@Override
 			public boolean isDev() {
 				return true;

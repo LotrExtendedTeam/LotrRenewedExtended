@@ -1,0 +1,335 @@
+{
+  "id": "lotrextended:dwarven_smith",
+  "tradingAlignmentRequired": 100,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:iron_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:dwarven_steel_ingot"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:coal",
+        "count": 2
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "minecraft:gold_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:copper_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:tin_ingot"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:bronze_ingot"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:diamond"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:emerald"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:sapphire"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:ruby"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:opal"
+      }
+    },
+    {
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:amber"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:amethyst"
+      }
+    },
+    {
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:topaz"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:pearl"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_beef"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_porkchop"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_mutton"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_chicken"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:cooked_duck"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:gammon"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_cod"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_salmon"
+      }
+    },
+    {
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:cooked_rabbit"
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:bread"
+      }
+    },
+    {
+      "averageCost": 16,
+      "stack": {
+        "item": "minecraft:lava_bucket"
+      }
+    },
+    {
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:string",
+        "count": 3
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "averageCost": 100,
+      "stack": {
+        "item": "lotr:dwarven_crafting_table"
+      }
+    },
+    {
+      "averageCost": 18,
+      "stack": {
+        "item": "lotr:blacksmith_hammer",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 20,
+      "stack": {
+        "item": "lotr:dwarven_marriage_ring"
+      }
+    },
+    {
+      "averageCost": 16,
+      "stack": {
+        "item": "lotr:dwarven_sword",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 18,
+      "stack": {
+        "item": "lotr:dwarven_spear",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 13,
+      "stack": {
+        "item": "lotr:dwarven_dagger",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:dwarven_axe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 14,
+      "stack": {
+        "item": "lotr:dwarven_pickaxe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:dwarven_shovel",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:dwarven_helmet",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 36,
+      "stack": {
+        "item": "lotr:dwarven_chestplate",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 30,
+      "stack": {
+        "item": "lotr:dwarven_leggings",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 22,
+      "stack": {
+        "item": "lotr:dwarven_boots",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 50,
+      "stack": {
+        "item": "lotr:silver_trimmed_dwarven_helmet",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 60,
+      "stack": {
+        "item": "lotr:silver_trimmed_dwarven_chestplate",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 55,
+      "stack": {
+        "item": "lotr:silver_trimmed_dwarven_leggings",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 50,
+      "stack": {
+        "item": "lotr:silver_trimmed_dwarven_boots",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 70,
+      "stack": {
+        "item": "lotr:gold_trimmed_dwarven_helmet",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 80,
+      "stack": {
+        "item": "lotr:gold_trimmed_dwarven_chestplate",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 75,
+      "stack": {
+        "item": "lotr:gold_trimmed_dwarven_leggings",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 70,
+      "stack": {
+        "item": "lotr:gold_trimmed_dwarven_boots",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:dwarven_bars",
+        "count": 8
+      }
+    }
+  ]
+}

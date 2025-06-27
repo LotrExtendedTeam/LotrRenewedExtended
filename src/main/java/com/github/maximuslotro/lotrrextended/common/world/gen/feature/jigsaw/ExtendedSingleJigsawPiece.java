@@ -22,7 +22,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	public static final Codec<ExtendedSingleJigsawPiece> CODEC = RecordCodecBuilder.create((instance) -> {
 		return instance.group(templateCodec(), processorsCodec(), projectionCodec(), waterloggingCodec(), maxPlaceDistanceCodec(), 
-			maxDepthCodec(), ingnoreBBconflictsCodec(), blacklistNameCodec()).apply(instance, ExtendedSingleJigsawPiece::new);
+			maxDepthCodec(), ingnoreBBconflictsCodec(), blacklistNameCodec(), snapUpToWaterheightCodec()).apply(instance, ExtendedSingleJigsawPiece::new);
 	});
 
 	protected final boolean apply_waterlogging;
@@ -30,46 +30,55 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	protected final int maxDepth;
 	protected final boolean ingnoreBBconflicts;
 	protected final String blacklistName;
+	protected final boolean snapUpToWaterheight;
 
 	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Boolean> waterloggingCodec() {
-		return Codec.BOOL.optionalFieldOf("apply_waterlogging", true).forGetter((p_236845_0_) -> {
-			return p_236845_0_.apply_waterlogging;
+		return Codec.BOOL.optionalFieldOf("apply_waterlogging", true).forGetter((piece) -> {
+			return piece.apply_waterlogging;
 		});
 	}
 
 	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Integer> maxPlaceDistanceCodec() {
-		return Codec.INT.optionalFieldOf("max_place_distance", 80).forGetter((p_236845_0_) -> {
-			return p_236845_0_.maxPlaceDistance;
+		return Codec.INT.optionalFieldOf("max_place_distance", 80).forGetter((piece) -> {
+			return piece.maxPlaceDistance;
 		});
 	}
 
 	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Integer> maxDepthCodec() {
-		return Codec.INT.optionalFieldOf("max_depth", 7).forGetter((p_236845_0_) -> {
-			return p_236845_0_.maxDepth;
+		return Codec.INT.optionalFieldOf("max_depth", 7).forGetter((piece) -> {
+			return piece.maxDepth;
 		});
 	}
 
 	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Boolean> ingnoreBBconflictsCodec() {
-		return Codec.BOOL.optionalFieldOf("ignore_bb_checks", false).forGetter((p_236845_0_) -> {
-			return p_236845_0_.ingnoreBBconflicts;
+		return Codec.BOOL.optionalFieldOf("ignore_bb_checks", false).forGetter((piece) -> {
+			return piece.ingnoreBBconflicts;
 		});
 	}
 
 	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, String> blacklistNameCodec() {
-		return Codec.STRING.optionalFieldOf("blacklist_name", "NOTSET").forGetter((p_236845_0_) -> {
-			return p_236845_0_.blacklistName;
+		return Codec.STRING.optionalFieldOf("blacklist_name", "NOTSET").forGetter((piece) -> {
+			return piece.blacklistName;
+		});
+	}
+
+	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Boolean> snapUpToWaterheightCodec() {
+		return Codec.BOOL.optionalFieldOf("snap_to_water_height", false).forGetter((piece) -> {
+			return piece.snapUpToWaterheight;
 		});
 	}
 
 	protected ExtendedSingleJigsawPiece(Either<ResourceLocation, Template> p_i242007_1_, Supplier<StructureProcessorList> processors, 
 		JigsawPattern.PlacementBehaviour placementType, boolean apply_waterlogging, int maxPlaceDistance, int maxDepth, boolean ingnoreBBconflicts,
-		String blacklist_name) {
+		String blacklist_name, boolean snapUpToWaterheight) {
 		super(p_i242007_1_, processors, placementType);
 		this.apply_waterlogging = apply_waterlogging;
 		this.maxPlaceDistance = maxPlaceDistance;
 		this.maxDepth = maxDepth;
 		this.ingnoreBBconflicts = ingnoreBBconflicts;
-		this.blacklistName = blacklist_name;	}
+		this.blacklistName = blacklist_name;
+		this.snapUpToWaterheight = snapUpToWaterheight;
+	}
 
 	@Override
 	protected PlacementSettings getSettings(Rotation pRotation, MutableBoundingBox pBoundingBox, boolean keepJigsawBlocks) {
@@ -93,11 +102,16 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 
 	@Override
 	public String toString() {
-		return "ExtendedSingle[" + this.template + "]";
+		return "ExtendedSingle[" + this.template + " " + apply_waterlogging + " " + maxPlaceDistance + " "
+			+ maxDepth + " " + ingnoreBBconflicts + " " + blacklistName + " " + snapUpToWaterheight + "]";
 	}
 
 	public boolean isApply_waterlogging() {
 		return apply_waterlogging;
+	}
+
+	public boolean shouldSnapToWaterHeight() {
+		return snapUpToWaterheight;
 	}
 
 	public int getMaxPlaceDistance() {

@@ -1,0 +1,32 @@
+{
+  "parent": "lotrextended:mordor/orc_smithey",
+  "display": {
+    "icon": {
+      "item": "lotr:durnor_ore"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.mordor.durnaur_ore.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.mordor.durnaur_ore.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "broke_durnor_ore": {
+      "trigger": "extended:break_block",
+      "conditions": {
+        "block": "lotr:durnor_ore"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "broke_durnor_ore"
+    ]
+  ]
+}

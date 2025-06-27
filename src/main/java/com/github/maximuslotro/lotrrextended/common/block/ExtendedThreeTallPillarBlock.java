@@ -13,9 +13,10 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.Direction.AxisDirection;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 
-public class ExtendedThreeTallPillarBlock extends RotatedPillarBlock{
+public class ExtendedThreeTallPillarBlock extends RotatedPillarBlock {
 	public static final EnumProperty<Axis> AXIS = RotatedPillarBlock.AXIS;
 	public static final EnumProperty<PillarType> PILLAR_TYPE = ExtendedBlockStateProperties.PILLAR_STATE;
 	public ExtendedThreeTallPillarBlock(Properties p_i48339_1_) {
@@ -113,4 +114,14 @@ public class ExtendedThreeTallPillarBlock extends RotatedPillarBlock{
 		}
 		return state;
 	}
+	
+	@Override
+	public int getFireSpreadSpeed(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+		return 40;
+	}
+
+	@Override
+	public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+        return 40;
+    }
 }

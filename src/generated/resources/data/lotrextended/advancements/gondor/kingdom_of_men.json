@@ -1,0 +1,179 @@
+{
+  "display": {
+    "icon": {
+      "item": "lotr:gondor_spear",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.gondor.kingdom_of_men.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.gondor.kingdom_of_men.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/gondor.png"
+  },
+  "criteria": {
+    "enter_further_gondor": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:further_gondor"
+        }
+      }
+    },
+    "enter_anfalas": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:anfalas"
+        }
+      }
+    },
+    "enter_anorien": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:anorien"
+        }
+      }
+    },
+    "enter_andrast": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:andrast"
+        }
+      }
+    },
+    "enter_blackroot_vale": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:blackroot_vale"
+        }
+      }
+    },
+    "enter_white_mountains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:white_mountains"
+        }
+      }
+    },
+    "enter_white_mountains_foothills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:white_mountains_foothills"
+        }
+      }
+    },
+    "enter_ethir_anduin": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:ethir_anduin"
+        }
+      }
+    },
+    "enter_lebennin": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lebennin"
+        }
+      }
+    },
+    "enter_ithilien": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:ithilien"
+        }
+      }
+    },
+    "enter_dor_en_ernil": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:dor_en_ernil"
+        }
+      }
+    },
+    "enter_pinnath_gelin": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:pinnath_gelin"
+        }
+      }
+    },
+    "enter_tolfalas": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:tolfalas"
+        }
+      }
+    },
+    "enter_pelargir": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:pelargir"
+        }
+      }
+    },
+    "enter_lossarnach": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lossarnach"
+        }
+      }
+    },
+    "enter_lamedon": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lamedon"
+        }
+      }
+    },
+    "enter_lamedon_hills": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lamedon_hills"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_further_gondor",
+      "enter_anfalas",
+      "enter_anorien",
+      "enter_andrast",
+      "enter_blackroot_vale",
+      "enter_white_mountains",
+      "enter_white_mountains_foothills",
+      "enter_ethir_anduin",
+      "enter_lebennin",
+      "enter_ithilien",
+      "enter_dor_en_ernil",
+      "enter_pinnath_gelin",
+      "enter_tolfalas",
+      "enter_pelargir",
+      "enter_lossarnach",
+      "enter_lamedon",
+      "enter_lamedon_hills"
+    ]
+  ]
+}

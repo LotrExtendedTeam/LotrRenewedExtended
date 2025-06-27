@@ -1,0 +1,25 @@
+{
+  "entries": [
+    {
+	  "entity_type": "lotr:blue_mountains_dwarf",
+	  "weight": 100,
+	  "min_count": 1,
+	  "max_count": 4
+	},
+	{
+	  "mixed_entity_types": [
+	    { "entity_type": "lotr:blue_mountains_warrior", "weight": 10 },
+	    { "entity_type": "lotr:blue_mountains_archer", "weight": 5 }
+	  ],
+	  "weight": 20,
+	  "min_count": 3,
+	  "max_count": 4
+	},
+	{
+	  "entity_type": "lotr:blue_mountains_miner",
+	  "weight": 15,
+	  "min_count": 1,
+	  "max_count": 3
+	}
+  ]
+}

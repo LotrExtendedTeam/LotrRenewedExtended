@@ -11,6 +11,22 @@ import net.minecraft.world.gen.FlatGenerationSettings;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 
+/**
+ * Holds and registers configured structure features for the mod.
+ * <p>
+ * Configured structures are specific instances of structures combined with their generation
+ * configurations, such as template pools or weighted pools. These configured structures
+ * are registered here so they can easily be referenced and added to biome generation.
+ * </p>
+ * <p>
+ * Registration is done manually to the {@link WorldGenRegistries#CONFIGURED_STRUCTURE_FEATURE}
+ * registry and also added to {@link FlatGenerationSettings#STRUCTURE_FEATURES} to avoid conflicts
+ * with flat world generation and other mods' custom chunk generators.
+ * </p>
+ * <p>
+ * It is recommended to call registration during mod setup (e.g., in {@code FMLCommonSetupEvent}).
+ * </p>
+ */
 public class ExtendedConfiguredStructuresV5 {
 	/**
      * Static instances of our structures so we can reference them and add it to biomes easily.
@@ -49,32 +65,36 @@ public class ExtendedConfiguredStructuresV5 {
 
 	public static StructureFeature<?, ?> CONFIGURED_BREE_HAMLET = register(ExtendedStructuresV5.BREE_HAMLET.get().configured(new SinglePoolConfig("bree/hamlet/well_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_BREE_VILLAGE = register(ExtendedStructuresV5.BREE_VILLAGE.get().configured(new SinglePoolConfig("bree/village/start_pool")));
-
+	/**
+     * Empty method intended to be called to ensure static initialization of this class
+     * and the registration of configured structures.
+     */
 	public static void registerConfiguredStructures(){}
 
 	/**
-     * Registers the configured structure which is what gets added to the biomes.
-     * Noticed this is not using a forge registry because there is none for configured structures.
+     * Registers a configured structure feature in the game's registry.
      * <p>
+     * This method registers the configured structure under the mod's namespace with a
+     * name prefixed by "configured_". It also adds the structure to
+     * {@link FlatGenerationSettings#STRUCTURE_FEATURES} to prevent crashes in worlds
+     * using flat chunk generators or other custom chunk generators that rely on this map.
+     * </p>
+     * <p>
+     * This registration must happen before world generation begins, typically in the
+     * mod's common setup phase.
+     * </p>
+     * Noticed this is not using a forge registry because there is none for configured structures.
      * We can register configured structures at any time before a world is clicked on and made.
      * But the best time to register configured features by code is honestly to do it in FMLCommonSetupEvent.
+     * 
+     * @param structure the configured structure feature to register
+     * @return the same configured structure feature instance for chaining or reference
      */
+
     public static StructureFeature<?, ?> register(StructureFeature<?, ?> structure) {
         Registry<StructureFeature<?, ?>> registry = WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE;
 		Registry.register(registry, new ResourceLocation(LotrExtendedMod.MODID, "configured_"+structure.feature.getRegistryName().getPath()), structure);
-        /* Ok so, this part may be hard to grasp but basically, just add your structure to this to
-        * prevent any sort of crash or issue with other mod's custom ChunkGenerators. If they use
-        * FlatGenerationSettings.STRUCTURE_FEATURES in it and you don't add your structure to it, the game
-        * could crash later when you attempt to add the StructureSeparationSettings to the dimension.
-        *
-        * (It would also crash with Superflat WorldType if you omit the below line
-        * and attempt to add the structure's StructureSeparationSettings to the world)
-        *
-        * Note: If we want to have our structures spawn in Superflat, remove the FlatChunkGenerator check
-        * in addDimensionalSpacing and then create a Superflat world, exit it,
-        * and re-enter it and the structures will be spawning. I could not figure out why it needs
-        * the restart but honestly, Superflat is really buggy and shouldn't be your main focus in my opinion.
-        */
+		 // Add to flat generation features to avoid crashes with custom ChunkGenerators or Superflat worlds
         FlatGenerationSettings.STRUCTURE_FEATURES.put(structure.feature, structure);
         return structure;
     }
