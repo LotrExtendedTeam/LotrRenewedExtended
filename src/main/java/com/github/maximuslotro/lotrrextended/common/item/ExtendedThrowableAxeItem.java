@@ -38,7 +38,8 @@ public class ExtendedThrowableAxeItem extends Item {
         return UseAction.BLOCK;
     }
 
-    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    @Override
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         if (canPlayerUseItem(player, hand)) {
          if (!world.isClientSide) {

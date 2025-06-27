@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.datagen.crafting;
 
 import java.util.function.Consumer;
 
-import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedAlloyCookingRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedCustomRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;

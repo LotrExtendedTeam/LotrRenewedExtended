@@ -56,7 +56,8 @@ public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
         this.setBoundingBox(this.getBoundingBox().inflate(-0.3, -0.3, -0.3));
     }
 
-    protected void defineSynchedData() {
+    @Override
+	protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(THROWING_AXE_ITEM, ItemStack.EMPTY);
     }
@@ -69,7 +70,8 @@ public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
         this.entityData.set(THROWING_AXE_ITEM, stack);
     }
 
-    protected ItemStack getPickupItem() {
+    @Override
+	protected ItemStack getPickupItem() {
         return this.getThrowingAxeItem().copy();
     }
 
@@ -108,7 +110,8 @@ public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
         this.playSound(SoundEvents.TRIDENT_HIT, 1.0F, 1.0F);
     }
 
-    protected SoundEvent getDefaultHitGroundSoundEvent() {
+    @Override
+	protected SoundEvent getDefaultHitGroundSoundEvent() {
         return SoundEvents.TRIDENT_HIT_GROUND;
     }
 
@@ -133,11 +136,13 @@ public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
         return base;
     }
 
-    protected int getLifespanTicksInGround() {
+    @Override
+	protected int getLifespanTicksInGround() {
         return this.pickup == PickupStatus.DISALLOWED ? 1200 : 6000;
     }
 
-    public void playerTouch(PlayerEntity player) {
+    @Override
+	public void playerTouch(PlayerEntity player) {
         if (!this.level.isClientSide && (this.inGround || this.isNoPhysics()) && this.shakeTime <= 0) {
             // Don't allow pickup if owner is an mob
             Entity owner = this.getOwner();
@@ -172,19 +177,22 @@ public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
         this.remove();
     }
 
-    public void readAdditionalSaveData(CompoundNBT nbt) {
+    @Override
+	public void readAdditionalSaveData(CompoundNBT nbt) {
         super.readAdditionalSaveData(nbt);
         if (nbt.contains("ThrowingAxeItem", 10)) {
             this.setThrowingAxeItem(ItemStack.of(nbt.getCompound("ThrowingAxeItem")));
         }
     }
 
-    public void addAdditionalSaveData(CompoundNBT nbt) {
+    @Override
+	public void addAdditionalSaveData(CompoundNBT nbt) {
         super.addAdditionalSaveData(nbt);
         nbt.put("ThrowingAxeItem", this.getThrowingAxeItem().save(new CompoundNBT()));
     }
 
-    protected float getWaterInertia() {
+    @Override
+	protected float getWaterInertia() {
         return 0.99F;
     }
 }
