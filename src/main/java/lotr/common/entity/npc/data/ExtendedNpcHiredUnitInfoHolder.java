@@ -72,7 +72,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	// Temporary data
 	private int lastHealed = 0;
 	private boolean resendData = false;
-	public boolean isInterracting = false;
+	public boolean isInteracting = false;
 
 	private Inventory internalUnitInventory = makeUnitInventory();
 

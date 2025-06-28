@@ -58,7 +58,7 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
 			PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
 			ExtendedHiredUnitEquipmentContainer.writeContainerInitData(initData, msg.entityId, info.getUnitProfile(), equipment);
 
-			info.isInterracting = true;
+			info.isInteracting = true;
 
 			// Open GUI on client side
 			NetworkHooks.openGui(context.get().getSender(),

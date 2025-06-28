@@ -36,11 +36,11 @@ public class HiredUnitEventHandlers {
         // make companion no longer stationary
         if (event.getContainer() instanceof ExtendedHiredUnitContainer) {
             if (entity instanceof NPCEntity) {
-            	((ExtendedNPCEntity)entity).getUnitInfo().isInterracting = false;
+            	((ExtendedNPCEntity)entity).getUnitInfo().isInteracting = false;
             }
         } else if (event.getContainer() instanceof ExtendedHiredUnitEquipmentContainer) {
             if (entity instanceof NPCEntity) {
-            	((ExtendedNPCEntity)entity).getUnitInfo().isInterracting = false;
+            	((ExtendedNPCEntity)entity).getUnitInfo().isInteracting = false;
             }
         }
     }

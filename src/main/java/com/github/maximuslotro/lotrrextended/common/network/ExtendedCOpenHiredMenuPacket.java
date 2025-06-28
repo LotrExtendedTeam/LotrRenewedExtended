@@ -53,7 +53,7 @@ public class ExtendedCOpenHiredMenuPacket {
             PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
             ExtendedHiredUnitContainer.writeContainerInitData(initData, msg.entityId, info.getUnitProfile(), info.getOrders());
 
-            info.isInterracting = true;
+            info.isInteracting = true;
 
             // Open GUI on client side
             NetworkHooks.openGui(Objects.requireNonNull(context.get().getSender()),
