@@ -192,7 +192,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 				this.unitProfile = new ResourceLocation(holder.getString("unit_profile"));
 				loadHiredUnitInventory(holder);
 				if (holder.contains("xp_level")) {
-					this.setExpLvl(holder.getInt("xp_level"));
+					this.setUnitLevel(holder.getInt("xp_level"));
 				}
 				if (holder.contains("current_xp")) {
 					this.setCurrentXp(holder.getInt("current_xp"));
@@ -245,7 +245,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 				wasHired = true;
 				// Load other values like normal
 				if (nbt.contains("xp_level")) {
-					this.setExpLvl(nbt.getInt("xp_level"));
+					this.setUnitLevel(nbt.getInt("xp_level"));
 				}
 				if (nbt.contains("current_xp")) {
 					this.setCurrentXp(nbt.getInt("current_xp"));
@@ -288,7 +288,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			saveHiredUnitInventory(holder);
 			holder.putInt("unit_orders", this.getOrders().getUnchangingIndex());
 			holder.putInt("mob_kills", this.getMobKills());
-			holder.putInt("xp_level", this.getExpLvl());
+			holder.putInt("xp_level", this.getUnitLevel());
 			holder.putFloat("current_xp", this.getCurrentXp());
 			holder.putFloat("max_xp", this.getMaxXp());
 			holder.putInt("base_health", this.getBaseHealth());
@@ -321,7 +321,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	}
 
 	/**
-	 * Sync unit data?
+	 * Sync unit data for client GUI
 	 * */
 	@Override
 	public PacketBuffer createDataPacketToClient(PacketBuffer buf) { 
@@ -331,12 +331,16 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			buf.writeUUID(ownerUUID);
 			buf.writeBoolean(isHired);
 			buf.writeBoolean(wasHired);
+			buf.writeInt(unit_level);
+			buf.writeFloat(current_xp);
+			buf.writeFloat(max_xp);
+			buf.writeInt(kills);
 		}
 		return buf;
 	}
 
 	/**
-	 * Sync unit data?
+	 * Sync unit data for client GUI
 	 * */
 	@Override
 	public void sendDataToPlayer(ServerPlayerEntity player) {
@@ -345,7 +349,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	}
 
 	/**
-	 * Sync unit data?
+	 * Sync unit data for client GUI
 	 * */
 	@Override
 	public void sendDataToAllBeings() {
@@ -361,11 +365,15 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 		Entity entity = world.getEntity(entityId);
 		boolean shouldRead = buf.readBoolean();
 		if (shouldRead && entity instanceof NPCEntity) {
-			ExtendedNpcHiredUnitInfoHolder traderInfo = ((ExtendedNPCEntity) entity).getUnitInfo();
-			if(traderInfo!=null) {
-				traderInfo.setOwnerUUID(buf.readUUID());
-				traderInfo.setHired(buf.readBoolean());
-				traderInfo.setWasHired(buf.readBoolean());
+			ExtendedNpcHiredUnitInfoHolder unitInfo = ((ExtendedNPCEntity) entity).getUnitInfo();
+			if(unitInfo!=null) {
+				unitInfo.setOwnerUUID(buf.readUUID());
+				unitInfo.setHired(buf.readBoolean());
+				unitInfo.setWasHired(buf.readBoolean());
+				unitInfo.setUnitLevel(buf.readInt());
+				unitInfo.setCurrentXp(buf.readFloat());
+				unitInfo.setMaxXp(buf.readFloat());
+				unitInfo.setMobKills(buf.readInt());
 			}
 		}
 	}
@@ -423,11 +431,11 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 		return internalUnitInventory;
 	}
 	// ######################################### Experience Points
-	public void setExpLvl(int lvl) {
+	public void setUnitLevel(int lvl) {
 		this.unit_level = lvl;
 	}
 
-	public int getExpLvl() {
+	public int getUnitLevel() {
 		return unit_level;
 	}
 

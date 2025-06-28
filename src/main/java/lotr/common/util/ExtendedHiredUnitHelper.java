@@ -73,7 +73,7 @@ public class ExtendedHiredUnitHelper {
     public static void giveExperiencePoints(ExtendedNpcHiredUnitInfoHolder unitHolder, float points) {
         float newExperience = unitHolder.getCurrentXp() + points;
         if (newExperience >= unitHolder.getMaxXp()) {
-        	unitHolder.setExpLvl(unitHolder.getExpLvl() + 1);
+        	unitHolder.setUnitLevel(unitHolder.getUnitLevel() + 1);
             float difference = newExperience - unitHolder.getMaxXp();
             unitHolder.setCurrentXp(difference);
             unitHolder.setMaxXp(unitHolder.getMaxXp() + 2);
@@ -83,7 +83,7 @@ public class ExtendedHiredUnitHelper {
             if (unitHolder.getUnitOwner() != null) {
             	boolean fancy = ((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unitHolder.getUnitOwner())).getExtendedMiscData().doHighContrastMessages();
             	TextComponent unitName = unitHolder.getHiredUnitNameAndTitle();
-            	TextComponent newlevel = new StringTextComponent(Integer.toString(unitHolder.getExpLvl()));
+            	TextComponent newlevel = new StringTextComponent(Integer.toString(unitHolder.getUnitLevel()));
             	if(fancy) {
             		unitName.withStyle(TextFormatting.AQUA);
             		newlevel.withStyle(TextFormatting.LIGHT_PURPLE);
@@ -97,6 +97,7 @@ public class ExtendedHiredUnitHelper {
         } else {
         	unitHolder.setCurrentXp(newExperience);
         }
+        unitHolder.markDirty();
     }
 
     /**

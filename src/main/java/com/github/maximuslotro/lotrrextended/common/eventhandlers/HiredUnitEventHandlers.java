@@ -69,6 +69,7 @@ public class HiredUnitEventHandlers {
 
             ((ExtendedNPCEntity)companion).getUnitInfo().giveExperiencePoints(xpPoints);
             ((ExtendedNPCEntity)companion).getUnitInfo().setMobKills(((ExtendedNPCEntity)companion).getUnitInfo().getMobKills() + 1);
+            ((ExtendedNPCEntity)companion).getUnitInfo().markDirty();
         }
     }
 }

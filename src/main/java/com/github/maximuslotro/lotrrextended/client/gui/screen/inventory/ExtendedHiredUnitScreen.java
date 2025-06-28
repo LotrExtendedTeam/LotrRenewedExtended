@@ -130,7 +130,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 
 		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.health").withStyle(TextFormatting.UNDERLINE), sidebarX, this.titleLabelY + 32, 4210752);
 		this.font.draw(matrix, new StringTextComponent(df.format(into.getHiredUnitHealth()) + "/" + (int) into.getHiredUnitMaxHealth()), sidebarX, this.titleLabelY + 42, 4210752);
-		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.level", into.getExpLvl()), sidebarX, this.titleLabelY + 56, 4210752);
+		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.level", into.getUnitLevel()), sidebarX, this.titleLabelY + 56, 4210752);
 		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.xp", into.getCurrentXp() + "/" + into.getMaxXp()), sidebarX, this.titleLabelY + 64, 4210752);
 		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.mob_kills", into.getMobKills()), sidebarX, this.titleLabelY + 73, 4210752);
 	}
