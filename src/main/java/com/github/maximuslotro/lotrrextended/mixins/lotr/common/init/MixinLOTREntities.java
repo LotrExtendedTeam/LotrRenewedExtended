@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedThrowableAxeEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChairEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
@@ -294,6 +295,7 @@ public class MixinLOTREntities {
 		ExtendedEntities.ODDMENT_COLLECTOR = regNPCD("oddment_collector", ExtendedOddmentCollectorEntity::new, ExtendedOddmentCollectorEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16225652, 5323553));
 		ExtendedEntities.RIVENDELL_WANDERER = regNPCD("rivendell_wanderer", ExtendedRivendellWandererEntity::new, ExtendedRivendellWandererEntity::createAttributes, LOTREntities.EntitySizeHolder.elfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(869480, 15003391));
 		ExtendedEntities.THROWN_CONKER = regEntityNOND("thrown_conker", ExtendedConkerEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
+		ExtendedEntities.THROWN_AXE = regEntity("thrown_axe", ExtendedThrowableAxeEntity::new, EntityClassification.MISC, 0.5F, 0.5F, 4, 20);
 		ExtendedEntities.DUCK = regAnimalD("duck", ExtendedDuckEntity::new, ExtendedDuckEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.7F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(940841, 11374685), ExtendedDuckEntity::checkTurtleSpawnRules);
 		ExtendedEntities.DUCK_EGG_ENTITY = regEntityNOND("duck_egg", ExtendedDuckEggEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
 		ExtendedEntities.BARROW_WIGHT = regNPCD("barrow_wight", ExtendedBarrowWightEntity::new, ExtendedBarrowWightEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.8F, 1.9f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(529926, 3111505));
@@ -344,9 +346,12 @@ public class MixinLOTREntities {
 		ExtendedEntities.BLUE_MOUNTAINS_MERCHANT = regNPCD("blue_mountains_merchant", ExtendedBlueMountainsMerchantEntity::new, ExtendedBlueMountainsMerchantEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
 		ExtendedEntities.BLUE_DWARVEN_MINER = regNPCD("blue_mountains_miner", ExtendedBlueMountainsMinerEntity::new, ExtendedBlueMountainsMinerEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
 		ExtendedEntities.BLUE_DWARVEN_SMITH = regNPCD("blue_mountains_smith", ExtendedBlueMountainsSmithEntity::new, ExtendedBlueMountainsSmithEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
+		ExtendedEntities.BLUE_DWARVEN_COMMANDER = regNPCD("blue_mountains_commander", ExtendedBlueMountainsCommanderEntity::new, ExtendedBlueMountainsCommanderEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
 		// Dwarves
-		ExtendedEntities.DWARVEN_MINER = regNPCD("dwarf_miner", ExtendedDwarfMinerEntity::new, ExtendedDwarfMinerEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
-		ExtendedEntities.DWARVEN_SMITH = regNPCD("dwarf_smith", ExtendedDwarfSmithEntity::new, ExtendedDwarfSmithEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
+		ExtendedEntities.DWARVEN_MINER = regNPCD("dwarven_miner", ExtendedDwarvenMinerEntity::new, ExtendedDwarvenMinerEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
+		ExtendedEntities.DWARVEN_SMITH = regNPCD("dwarven_smith", ExtendedDwarvenSmithEntity::new, ExtendedDwarvenSmithEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
+		ExtendedEntities.DWARVEN_COMMANDER = regNPCD("dwarven_commander", ExtendedDwarvenCommanderEntity::new, ExtendedDwarvenCommanderEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
+
 		// Special
 		ExtendedEntities.TOLKIEN = regNPCD("tolkien", ExtendedTolkienEntity::new, ExtendedTolkienEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(8160159, 5439358));
 	}

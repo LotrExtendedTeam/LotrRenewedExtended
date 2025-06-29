@@ -340,6 +340,12 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BONE_SPEAR;
 	public static RegistryObject<Item> BONE_DAGGER;
 
+	public static RegistryObject<Item> IRON_THROWABLE_AXE;
+	public static RegistryObject<Item> BRONZE_THROWABLE_AXE;
+	public static RegistryObject<Item> LOSSARNACH_THROWABLE_AXE;
+	public static RegistryObject<Item> BLUE_MOUNTAINS_DWARVEN_THROWABLE_AXE;
+	public static RegistryObject<Item> DWARVEN_THROWABLE_AXE;
+
 	public static RegistryObject<Item> BRANDING_IRON;
 
 	public static RegistryObject<Item> RASPBERRY_HEDGE;
@@ -608,7 +614,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GUNDABAD_SHIELD;
 	public static RegistryObject<Item> DUNEDAIN_SHIELD;
 	public static RegistryObject<Item> BREE_SHIELD;
-	public static RegistryObject<Item> BLUE_DUNEDAIN_SHIELD;
+	public static RegistryObject<Item> BLUE_MOUNTAINS_SHIELD;
 	
 	public static RegistryObject<Item> BOWSTRING;
 	public static RegistryObject<Item> GUNDABAD_URUK_BOW;

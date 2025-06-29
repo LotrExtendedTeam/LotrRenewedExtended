@@ -34,6 +34,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedGuldurilItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableConkerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedUseItemAwardStatItem;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
@@ -59,9 +60,11 @@ import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemTier;
 import net.minecraft.tileentity.BannerPattern;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -930,6 +933,12 @@ public class MixinLOTRItems {
 
 		ExtendedItems.BRANDING_IRON = regItemB("branding_iron", ExtendedBrandingIronItem::new);
 		ExtendedItems.CHISEL = regItemB("chisel", () -> new ExtendedChiselItem(ExtendedBlocks.STONE_SIGN.get(), new Properties().tab(LOTRItemGroups.TOOLS).defaultDurability(100)));
+
+		ExtendedItems.IRON_THROWABLE_AXE = regItemB("iron_throwable_axe", () -> new ExtendedThrowableAxeItem((IItemTier) ItemTier.IRON));
+		ExtendedItems.BRONZE_THROWABLE_AXE = regItemB("bronze_throwable_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BRONZE));
+		ExtendedItems.LOSSARNACH_THROWABLE_AXE = regItemB("lossarnach_throwable_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.GONDOR));
+		ExtendedItems.DWARVEN_THROWABLE_AXE = regItemB("dwarven_throwable_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.DWARVEN));
+		ExtendedItems.BLUE_MOUNTAINS_DWARVEN_THROWABLE_AXE = regItemB("blue_mountains_dwarven_throwable_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BLUE_DWARVEN));
 		//######################################################################FOOD########################################################
 		//Berries
 		ExtendedItems.BLACKBERRY = regItemB("blackberry", () -> new ExtendedBerries(ExtendedBlocks.BLACKBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLACKBERRY)));
@@ -1060,7 +1069,7 @@ public class MixinLOTRItems {
 		ExtendedItems.BREE_SHIELD = regItemB("bree_shield", () -> new LOTRShieldItem(LOTRMaterial.valueOf("BREE")));
 
 		//Blue Mountains equipment
-		ExtendedItems.BLUE_DUNEDAIN_SHIELD = regItemB("blue_dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.BLUE_DWARVEN));
+		ExtendedItems.BLUE_MOUNTAINS_SHIELD = regItemB("blue_dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.BLUE_DWARVEN));
 
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", () -> new ExtendedDyeableLOTRArmorItem(LOTRMaterial.COSMETIC, EquipmentSlotType.HEAD, "leather_hat"));

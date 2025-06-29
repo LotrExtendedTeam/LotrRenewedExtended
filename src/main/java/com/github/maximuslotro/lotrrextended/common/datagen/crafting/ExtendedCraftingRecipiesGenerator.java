@@ -720,6 +720,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			LOTRBlocks.NUMENOREAN_BRICK, LOTRBlocks.NUMENOREAN_BRICK_SLAB, LOTRRecipes.UMBAR_CRAFTING);
 		makeCarvedBlockRecipe(consumer, ExtendedBlocks.CARVED_UMBAR_BRICK,
 			LOTRBlocks.UMBAR_BRICK, LOTRBlocks.UMBAR_BRICK_SLAB, LOTRRecipes.UMBAR_CRAFTING);
+		makeThrowableAxeRecipe(consumer, ExtendedItems.LOSSARNACH_THROWABLE_AXE, Tags.Items.INGOTS_IRON, "iron", LOTRRecipes.GONDOR_CRAFTING);
 		//DWARVEN
 		make2x2BlockRecipe(consumer, ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK,
 			ExtendedItems.OBSIDIAN_SHARD, LOTRRecipes.DWARVEN_CRAFTING);
@@ -727,6 +728,13 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_SLAB,
 			ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_WALL,
 			()->ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK.get().asItem(), LOTRRecipes.DWARVEN_CRAFTING);
+		makeThrowableAxeRecipe(consumer, ExtendedItems.DWARVEN_THROWABLE_AXE, LOTRItems.DWARVEN_STEEL_INGOT, LOTRRecipes.DWARVEN_CRAFTING);
+		// BLUE MOUNTAIN DWARVEN
+		makeThrowableAxeRecipe(consumer, ExtendedItems.BLUE_MOUNTAINS_DWARVEN_THROWABLE_AXE, LOTRItems.DWARVEN_STEEL_INGOT, LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
+		// IRON 
+		makeThrowableAxeRecipe(consumer, ExtendedItems.IRON_THROWABLE_AXE, Tags.Items.INGOTS_IRON, "iron", null);
+		// BRONZE
+		makeThrowableAxeRecipe(consumer, ExtendedItems.BRONZE_THROWABLE_AXE, LOTRTags.Items.INGOTS_BRONZE, "bronze", null);
 		// Crystal Chandeliers
 		makeCrystalChandelierRecipe(consumer, ExtendedBlocks.EDHELVIR_CRYSTAL_CHANDELIER, LOTRItems.EDHELVIR_CRYSTAL, LOTRRecipes.ANY_HIGH_ELVEN);
 		makeCrystalChandelierRecipe(consumer, ExtendedBlocks.GLOWSTONE_CRYSTAL_CHANDELIER, LOTRItems.GLOWSTONE_CRYSTAL, null);
@@ -977,7 +985,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeShieldRecipe(consumer, ExtendedItems.DUNEDAIN_SHIELD, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.RANGER_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.GUNDABAD_SHIELD, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.BREE_SHIELD, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.BREE_CRAFTING);
-		makeShieldRecipe(consumer, ExtendedItems.BLUE_DUNEDAIN_SHIELD, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.RANGER_CRAFTING);
+		makeShieldRecipe(consumer, ExtendedItems.BLUE_MOUNTAINS_SHIELD, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.RANGER_CRAFTING);
 		//Banners and patterns
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.DUNEDAIN_BANNER, ExtendedItems.DUNEDAIN_BANNER_PATTERN, LOTRRecipes.RANGER_CRAFTING);
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.HOBBIT_BANNER, ExtendedItems.HOBBIT_BANNER_PATTERN, LOTRRecipes.HOBBIT_CRAFTING);

@@ -5,8 +5,6 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnit
 
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
 import lotr.common.entity.npc.data.NPCGenderProvider;
-import lotr.common.entity.npc.data.name.NPCNameGenerator;
-import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.entity.npc.util.LeatherDyeUtil;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.entity.EntityType;
@@ -44,11 +42,6 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return BreeManEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0D);
-    }
-
-    @Override
-    protected NPCNameGenerator getNameGenerator() {
-        return NPCNameGenerators.BREE;
     }
 
     @Override
