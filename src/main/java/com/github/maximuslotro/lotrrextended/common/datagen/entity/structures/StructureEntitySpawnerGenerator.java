@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.datagen.structure.entities;
+package com.github.maximuslotro.lotrrextended.common.datagen.entity.structures;
 
 import java.util.function.Consumer;
 
