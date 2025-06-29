@@ -42,8 +42,6 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedBannerEntity>> BANNER_HOLDER;
 	public static RegistryObject<EntityType<ExtendedBreelandMerchantEntity>> BREE_MERCHANT;
 	public static RegistryObject<EntityType<ExtendedChairEntity>> CHAIR;
-	public static RegistryObject<EntityType<ExtendedHiredBreeGuard>> HIRED_BREE_GUARD;
-	public static RegistryObject<EntityType<ExtendedHiredGundabadOrc>> HIRED_GUNDABAD_ORC;
 	public static RegistryObject<EntityType<ExtendedBreelandSheriffEntity>> BREE_SHERIFF;
 	public static RegistryObject<EntityType<ExtendedBreelandFarmerEntity>> BREE_FARMER;
 	public static RegistryObject<EntityType<ExtendedBreelandPotterEntity>> BREE_POTTER;
@@ -63,7 +61,6 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedBreelandHobbitFloristEntity>> BREE_HOBBIT_FLORIST;
 	public static RegistryObject<EntityType<ExtendedBreelandHobbitInnkeeperEntity>> BREE_HOBBIT_INNKEEPER;
 	public static RegistryObject<EntityType<ExtendedBreelandHobbitPotterEntity>> BREE_HOBBIT_POTTER;
-	public static RegistryObject<EntityType<ExtendedHiredDunedainRangerEntity>> HIRED_DUNEDAIN_RANGER;
 	public static RegistryObject<EntityType<ExtendedDunedainRangerCaptainEntity>> DUNEDAIN_RANGER_CAPTAIN;
 	public static RegistryObject<EntityType<ExtendedBreelandSmithEntity>> BREE_SMITH;
 	public static RegistryObject<EntityType<ExtendedTolkienEntity>> TOLKIEN;

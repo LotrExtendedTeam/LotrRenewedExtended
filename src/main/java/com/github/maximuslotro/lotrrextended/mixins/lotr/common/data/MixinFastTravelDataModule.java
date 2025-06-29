@@ -18,7 +18,8 @@ import lotr.common.LOTRLog;
 import lotr.common.data.FastTravelDataModule;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.data.PlayerDataModule;
-import lotr.common.entity.npc.ExtendedHirableEntity;
+import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.NPCEntity;
 import lotr.common.stat.LOTRStats;
 import lotr.common.util.UsernameHelper;
 import lotr.common.world.map.AbstractCustomWaypoint;
@@ -130,7 +131,7 @@ public abstract class MixinFastTravelDataModule extends PlayerDataModule {
 				continue;
 			}
 			// Extended Start
-			if (entity instanceof ExtendedHirableEntity && ((ExtendedHirableEntity) entity).getUnitOwner() == player && ((ExtendedHirableEntity) entity).getOrders().isFollowingPlayer()) {
+			if (entity instanceof NPCEntity && ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedNPCEntity)entity).getUnitInfo().getUnitOwner() == player && ((ExtendedNPCEntity)entity).getUnitInfo().getOrders().isFollowingPlayer()) {
 				entitiesToTransport.add(entity);
 				continue;
 			}

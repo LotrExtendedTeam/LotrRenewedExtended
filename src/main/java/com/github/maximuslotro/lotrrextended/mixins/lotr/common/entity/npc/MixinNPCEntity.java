@@ -6,31 +6,44 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerAttackedEntityTargetGoal;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerHurtByEntityTargetGoal;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.entity.npc.ai.goal.ExtendedNPCUnitHurtByTargetGoal;
+import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
 import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedCaptainHelper;
+import lotr.common.util.ExtendedHiredUnitHelper;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -40,7 +53,7 @@ import net.minecraft.world.World;
  * @Mixin (NPCEntity.class)
  * */
 @Mixin(NPCEntity.class)
-public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedNPCEntity{
+public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedNPCEntity {
 	/**
 	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param type A placeholder variable instance of CreatureEntity
@@ -63,17 +76,25 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	private ExtendedNpcTraderInfoHolder tradeInfo = new ExtendedNpcTraderInfoHolder((NPCEntity)(Object)this);
 
 	/**
+	 * A private data holder for the ExtendedNpcHiredUnitInfoHolder module
+	 * */
+	@Unique
+	private ExtendedNpcHiredUnitInfoHolder unitInfo = new ExtendedNpcHiredUnitInfoHolder((NPCEntity)(Object)this);
+
+	/**
 	 * Get if this NPC requires surface to spawn
 	 * @Shadow (remap = false)
 	 * */
 	@Shadow(remap = false)
 	protected boolean spawnRequiresSurfaceBlock;
+
 	/**
 	 * Get if this NPC requires darkness to spawn
 	 * @Shadow (remap = false)
 	 * */
 	@Shadow(remap = false)
 	protected boolean spawnRequiresDarkness;
+
 	/**
 	 * Check if NPC can spawn on a block
 	 * @Shadow (remap = false)
@@ -83,6 +104,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Shadow(remap = false)
 	private boolean checkSpawningOnSurfaceBlock(IWorld iworld, SpawnReason reason) {return false;}
+
 	/**
 	 * Check if the current light level is valid to spawn at
 	 * @Shadow (remap = false)
@@ -91,6 +113,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Shadow(remap = false)
 	private boolean isValidLightLevelForDarkSpawn(IWorld iworld) {return false;}
+
 	/**
 	 * Check if NPC can be spoken to
 	 * @Shadow (remap = false)
@@ -98,6 +121,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Shadow(remap = false)
 	protected boolean canSpeakToNPC() {return false;}
+
 	/**
 	 * Send a speechbank to a player
 	 * @Shadow (remap = false)
@@ -106,6 +130,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Shadow(remap = false)
 	public boolean sendNormalSpeechTo(ServerPlayerEntity player) {return false;}
+
 	/**
 	 * Set NPC as talking to a given entity
 	 * @Shadow (remap = false)
@@ -114,6 +139,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Shadow(remap = false)
 	public void setTalkingToEntity(LivingEntity entity, int time) {}
+
 	/**
 	 * @reason Save additional entity data modules
 	 * @Inject (method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
@@ -124,6 +150,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	public void addAdditionalSaveData(CompoundNBT nbt, CallbackInfo ci) {
 		marriageInfo.writeToNbtI(nbt);
 		tradeInfo.writeToNbtI(nbt);
+		unitInfo.writeToNbtI(nbt);
 	}
 
 	/**
@@ -136,6 +163,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	public void readAdditionalSaveData(CompoundNBT nbt, CallbackInfo ci) {
 		marriageInfo.loadFromNbtI(nbt);
 		tradeInfo.loadFromNbtI(nbt);
+		unitInfo.loadFromNbtI(nbt);
 	}
 
 	/**
@@ -148,6 +176,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	public void onPlayerStartTrackingNPC(ServerPlayerEntity player, CallbackInfo ci) {
 		marriageInfo.sendDataToPlayerI(player);
 		tradeInfo.sendDataToPlayerI(player);
+		unitInfo.sendDataToPlayerI(player);
 	}
 
 	/**
@@ -159,6 +188,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	public void tick(CallbackInfo ci) {
 		marriageInfo.tickI();
 		tradeInfo.tickI();
+		unitInfo.tickI();
 	}
 
 	/**
@@ -180,11 +210,30 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	}
 
 	/**
-	 * @reason Need to implement banner protection spawn checks to entity spawns
+	 * Gets the ExtendedNpcHiredUnitInfoHolder from this class on runtime via ExtendedNPCEntity
+	 * @return The ExtendedNpcHiredUnitInfoHolder of this NPCEntity instance
+	 * */
+	@Override
+	public ExtendedNpcHiredUnitInfoHolder getUnitInfo() {
+		return unitInfo;
+	}
+
+	@Override
+	public ItemStack getValidOtherFood() {
+		if(unitInfo.isNpcActiveDuty()) {
+			return unitInfo.getValidOtherFood();
+		}
+		return ItemStack.EMPTY;
+	}
+	/**
+	 * Overwrites the default spawn rule logic to include banner protection checks.
+	 * 
 	 * @author maximuslotro
-	 * @param iworld The current IWorld instance
-	 * @param reason The SpawnReason for this check
-	 * @return True if the NPC can spawn
+	 * @reason Need to implement banner protection spawn checks to entity spawns
+	 * @reason Implements spawn checks based on banner protection mechanics to prevent spawning in protected areas.
+	 * @param iworld The current {@link IWorld} instance where the entity is attempting to spawn.
+	 * @param reason The {@link SpawnReason} representing the cause of the spawn event.
+	 * @return {@code true} if the NPC is allowed to spawn; {@code false} otherwise.
 	 */
 	@Override
 	@Overwrite
@@ -207,12 +256,14 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	}
 
 	/**
-	 * @reason  Need to implement proper trader GUI logic
+	 * Injects logic into mob interaction to handle custom trader and captain GUIs, and disallows use of spawn eggs.
+	 * 
 	 * @Inject (method = "mobInteract(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/ActionResultType;", at = @At("HEAD"), remap = true, cancellable = true)
-	 * @param player The PlayerEntity that is interacting with this entity
-	 * @param hand The player's hand that is interacting with this entity
-	 * @param ci The local CallbackInfoReturnable instance for this Inject to return a value
-	 * */
+	 * @reason Adds GUI opening behavior for custom trader and captain entities, and handles hired unit interaction.
+	 * @param player The {@link PlayerEntity} interacting with this NPC.
+	 * @param hand The {@link Hand} used to interact (MAIN_HAND or OFF_HAND).
+	 * @param ci The {@link CallbackInfoReturnable} for controlling method return value.
+	 */
 	@Inject(method = "mobInteract(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/ActionResultType;", at = @At("HEAD"), remap = true, cancellable = true)
 	public void mobInteract(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResultType> ci) {
 		if(player.getItemInHand(Hand.OFF_HAND).getItem().getUseAnimation(player.getItemInHand(hand))==UseAction.BLOCK) {
@@ -232,5 +283,140 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 				}
 			}
 		}
+		if (hand == Hand.MAIN_HAND) {
+			if (unitInfo.isNpcActiveDuty() && player.getUUID().equals(unitInfo.getOwnerUUID())) {
+				if (this.level.isClientSide()) {
+					ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredMenuPacket(getId()));
+				}
+				ci.setReturnValue(ActionResultType.sidedSuccess(this.level.isClientSide()));
+			}
+		}
+	}
+
+	/**
+	 * Overrides the eating behavior of NPCs to apply healing when on active duty.
+	 *
+	 * @param world The current {@link World} instance.
+	 * @param stack The {@link ItemStack} being consumed.
+	 * @return The same item stack after attempting to consume it.
+	 */
+	@Override
+	public ItemStack eat(World world, ItemStack stack) { //TODO override npc eat goal, this does nothing rn (checkFood())
+		if (stack.isEdible() && unitInfo.isNpcActiveDuty()) {
+			this.heal(stack.getItem().getFoodProperties().getNutrition());
+		}
+		super.eat(world, stack);
+		return stack;
+	}
+
+	/**
+	 * Determines if this NPC is allied with another entity.
+	 *
+	 * @param otherEntity The other {@link Entity} to compare with.
+	 * @return {@code true} if allied; otherwise {@code false}.
+	 */
+	@Override
+	public boolean isAlliedTo(Entity otherEntity) {
+		if (unitInfo.isNpcActiveDuty()) {
+			LivingEntity livingentity = unitInfo.getUnitOwner();
+			if (otherEntity == livingentity) {
+				return true;
+			}
+
+			if (livingentity != null) {
+				return livingentity.isAlliedTo(otherEntity);
+			}
+		}
+		return super.isAlliedTo(otherEntity);
+	}
+
+	/**
+	 * Called when the entity dies; handles extended behavior for hired units.
+	 *
+	 * @param damageSource The {@link DamageSource} responsible for the entity’s death.
+	 */
+	@Override
+	public void die(DamageSource damageSource) {
+		if(unitInfo.isNpcActiveDuty()) {
+			ExtendedHiredUnitHelper.die(unitInfo, damageSource);
+		}
+		super.die(damageSource);
+	}
+
+	/**
+	 * Overrides the default loot-dropping behavior for hired NPC units when they die.
+	 * <p>
+	 * If the unit is a hired NPC (active or recently dismissed), this method cancels the
+	 * standard loot drop logic and triggers custom loot logic instead. This ensures that
+	 * hired units only drop their equipment and not standard entity loot.
+	 * 
+	 * @Inject (method = "dropCustomDeathLoot(Lnet/minecraft/util/DamageSource;IZ)V", at = @At("HEAD"), remap = true, cancellable = true)
+	 * @param source     The {@link DamageSource} that caused the entity's death.
+	 * @param looting    The looting level applied from the attacker, typically from enchantments.
+	 * @param playerHit  {@code true} if the final hit was delivered by a player.
+	 * @param ci         The {@link CallbackInfo} object used to cancel the method execution.
+	 */
+	@Inject(method = "dropCustomDeathLoot(Lnet/minecraft/util/DamageSource;IZ)V", at = @At("HEAD"), remap = true, cancellable = true)
+	protected void dropCustomDeathLootExtended(DamageSource source, int looting, boolean playerHit, CallbackInfo ci) {
+		if(unitInfo.isNpcActiveOrDismissed()) {
+			ExtendedHiredUnitHelper.dropCustomDeathLoot(unitInfo, random, looting);
+			ci.cancel();// Hired units should only handle it's own equipment.
+		}
+	}
+
+	/**
+	 * Injects custom targeting goals for NPCs at the start of the entity's goal selector.
+	 *
+	 * @Inject (method = "addTargetingGoals(Z)I", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.BEFORE, ordinal = 0, remap = true), locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
+	 * @param seekTargets Indicates whether the entity should seek targets.
+	 * @param cir         The {@link CallbackInfoReturnable} for controlling return behavior.
+	 * @param index       The initial goal index prior to modification.
+	 */
+	@Inject(method = "addTargetingGoals(Z)I", 
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.BEFORE, 
+		ordinal = 0, remap = true),
+		locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
+	private void extended$addAdditionalTargetingGoals(boolean seekTargets, CallbackInfoReturnable<Integer> cir, int index) {
+		this.targetSelector.addGoal(1, new ExtendedHiredPlayerHurtByEntityTargetGoal((NPCEntity)(Object)this));
+		this.targetSelector.addGoal(2, new ExtendedHiredPlayerAttackedEntityTargetGoal((NPCEntity)(Object)this));
+		index = 3;
+	}
+
+	/**
+	 * Replaces the default {@code HurtByTargetGoal} with {@link ExtendedNPCUnitHurtByTargetGoal} 
+	 * during goal initialization, adding custom logic to prevent NPC units hired by the same player 
+	 * from attacking each other unless explicitly allowed.
+	 * <p>
+	 * This method is injected using Mixin and intercepts the goal registration at the point where
+	 * the first targeting goal is added.
+	 *
+	 * @ModifyArg(method = "addTargetingGoals(Z)I", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", ordinal = 0, remap = true), index = 1, remap = false)
+	 * @param goal The original goal instance being registered (usually a {@code HurtByTargetGoal}).
+	 * @return A new instance of {@link ExtendedNPCUnitHurtByTargetGoal} with unit-aware, friendly-fire-safe behavior.
+	 */
+	@ModifyArg(method = "addTargetingGoals(Z)I",
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", 
+		ordinal = 0, remap = true), index = 1, remap = false)
+	private Goal extended$replaceHurtGoalWithUnitRespectingGoal(Goal goal) {
+		return new ExtendedNPCUnitHurtByTargetGoal((NPCEntity)(Object)this);
+	}
+
+	/**
+	 * Adjusts the targeting goal index offset after custom goals have been injected and injects custom targeting goals for NPCs at the end of the entity's goal selector.
+	 * <p>
+	 * This ensures that the goal priority index continues correctly after the addition
+	 * of custom NPC targeting goals. Prevents conflicts with subsequent goal registrations.
+	 *
+	 * @Inject(method = "addTargetingGoals(Z)I", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.AFTER, ordinal = 0, remap = true), locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
+	 * @param seekTargets Indicates whether the entity should seek targets.
+	 * @param cir         The {@link CallbackInfoReturnable} for controlling return behavior.
+	 * @param index       The targeting goal index after custom goals have been injected.
+	 */
+	@Inject(method = "addTargetingGoals(Z)I", 
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.AFTER, 
+		ordinal = 0, remap = true),
+		locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
+	private void extended$fixTargetingGoalsOffset(boolean seekTargets, CallbackInfoReturnable<Integer> cir, int index) {
+		index = 4;
 	}
 }

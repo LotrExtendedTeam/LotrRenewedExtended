@@ -2,14 +2,14 @@ package lotr.common.util;
 
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
-import lotr.common.entity.npc.ExtendedHirableEntity;
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.entity.npc.ExtendedNPCEntity;
+
+import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.IFormattableTextComponent;
@@ -18,30 +18,27 @@ import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.GameRules;
-import net.minecraft.world.World;
 
 import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
 
 public class ExtendedHiredUnitHelper {
-    public static void die(World world, DamageSource source, ExtendedHirableEntity unit) {
-        if (!world.isClientSide && world.getGameRules().getBoolean(GameRules.RULE_SHOWDEATHMESSAGES) && unit.getUnitOwner() instanceof ServerPlayerEntity) {
-        	if (((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unit.getUnitOwner())).getExtendedMiscData().shouldShowHiredUnitDeathMessages()){
-        		boolean fancy = ((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unit.getUnitOwner())).getExtendedMiscData().doHighContrastMessages();
-        		unit.getUnitOwner().sendMessage(getCompanionDeathMessage(unit, source, fancy), unit.getOwnerUUID());
+    public static void die(ExtendedNpcHiredUnitInfoHolder unitInfo, DamageSource source) {
+        if (!unitInfo.getThisEntity().level.isClientSide && unitInfo.getThisEntity().level.getGameRules().getBoolean(GameRules.RULE_SHOWDEATHMESSAGES) && unitInfo.getUnitOwner() instanceof ServerPlayerEntity) {
+        	if (((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unitInfo.getUnitOwner())).getExtendedMiscData().shouldShowHiredUnitDeathMessages()){
+        		boolean fancy = ((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unitInfo.getUnitOwner())).getExtendedMiscData().doHighContrastMessages();
+        		unitInfo.getUnitOwner().sendMessage(getCompanionDeathMessage(unitInfo, source, fancy), unitInfo.getOwnerUUID());
         	}
         }
     }
 
-    private static TranslationTextComponent getCompanionDeathMessage(ExtendedHirableEntity unit, DamageSource source, boolean fancy) {
-        LivingEntity killer = null;
-        if (unit instanceof LivingEntity) {
-            killer = ((LivingEntity) unit).getKillCredit();
-        }
+    private static TranslationTextComponent getCompanionDeathMessage(ExtendedNpcHiredUnitInfoHolder unitInfo, DamageSource source, boolean fancy) {
+        LivingEntity killerEntity = unitInfo.getThisEntity().getKillCredit();
+
         String s = "death.attack." + source.msgId;
 
-        TextComponent unitName = unit.getHiredUnitNameAndTitle();
+        TextComponent unitName = unitInfo.getHiredUnitNameAndTitle();
         if(fancy) {
         	unitName.withStyle(TextFormatting.AQUA);
         }
@@ -51,42 +48,42 @@ public class ExtendedHiredUnitHelper {
         }
 
         IFormattableTextComponent killerName = new StringTextComponent("");
-        if (killer != null) {
-        	if (killer instanceof ExtendedHirableEntity) {
-                killerName = ((ExtendedHirableEntity) killer).getHiredUnitNameAndTitle();
+        if (killerEntity != null) {
+        	if (killerEntity instanceof NPCEntity && ((ExtendedNPCEntity)killerEntity).getUnitInfo().isNpcActiveDuty()) {
+                killerName = ((ExtendedNPCEntity)killerEntity).getUnitInfo().getHiredUnitNameAndTitle();
             }
         	else {
-        		if(killer.getDisplayName() instanceof IFormattableTextComponent) {
-            		killerName = (IFormattableTextComponent) killer.getDisplayName();
+        		if(killerEntity.getDisplayName() instanceof IFormattableTextComponent) {
+            		killerName = (IFormattableTextComponent) killerEntity.getDisplayName();
             	}else {
-            		killerName = new StringTextComponent(killer.getDisplayName().getString());
+            		killerName = new StringTextComponent(killerEntity.getDisplayName().getString());
             	}
         	}
         	if(fancy) {
             	killerName.withStyle(TextFormatting.RED);
             }
         }
-        TranslationTextComponent output = killer != null ? new TranslationTextComponent(s, companionName, killerName) : new TranslationTextComponent(s, companionName);
+        TranslationTextComponent output = killerEntity != null ? new TranslationTextComponent(s, companionName, killerName) : new TranslationTextComponent(s, companionName);
         if(fancy) {
         	output.withStyle(TextFormatting.YELLOW);
         }
         return output;
     }
 
-    public static void giveExperiencePoints(ExtendedHirableEntity unit, float points) {
-        float newExperience = unit.getCurrentXp() + points;
-        if (newExperience >= unit.getMaxXp()) {
-            unit.setExpLvl(unit.getExpLvl() + 1);
-            float difference = newExperience - unit.getMaxXp();
-            unit.setCurrentXp(difference);
-            unit.setMaxXp(unit.getMaxXp() + 2);
-            unit.setHiredUnitHealth(unit.getHiredUnitHealth() + 2);
-            unit.setBaseHealth(unit.getBaseHealth() + 2);
+    public static void giveExperiencePoints(ExtendedNpcHiredUnitInfoHolder unitHolder, float points) {
+        float newExperience = unitHolder.getCurrentXp() + points;
+        if (newExperience >= unitHolder.getMaxXp()) {
+        	unitHolder.setUnitLevel(unitHolder.getUnitLevel() + 1);
+            float difference = newExperience - unitHolder.getMaxXp();
+            unitHolder.setCurrentXp(difference);
+            unitHolder.setMaxXp(unitHolder.getMaxXp() + 2);
+            unitHolder.setHiredUnitHealth(unitHolder.getHiredUnitHealth() + 2);
+            unitHolder.setBaseHealth(unitHolder.getBaseHealth() + 2);
 
-            if (unit.getUnitOwner() != null) {
-            	boolean fancy = ((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unit.getUnitOwner())).getExtendedMiscData().doHighContrastMessages();
-            	TextComponent unitName = unit.getHiredUnitNameAndTitle();
-            	TextComponent newlevel = new StringTextComponent(Integer.toString(unit.getExpLvl()));
+            if (unitHolder.getUnitOwner() != null) {
+            	boolean fancy = ((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unitHolder.getUnitOwner())).getExtendedMiscData().doHighContrastMessages();
+            	TextComponent unitName = unitHolder.getHiredUnitNameAndTitle();
+            	TextComponent newlevel = new StringTextComponent(Integer.toString(unitHolder.getUnitLevel()));
             	if(fancy) {
             		unitName.withStyle(TextFormatting.AQUA);
             		newlevel.withStyle(TextFormatting.LIGHT_PURPLE);
@@ -95,33 +92,12 @@ public class ExtendedHiredUnitHelper {
                 if(fancy) {
                 	output.withStyle(TextFormatting.YELLOW);
                 }
-                unit.getUnitOwner().sendMessage(output, unit.getOwnerUUID());
+                unitHolder.getUnitOwner().sendMessage(output, unitHolder.getOwnerUUID());
             }
         } else {
-            unit.setCurrentXp(newExperience);
+        	unitHolder.setCurrentXp(newExperience);
         }
-    }
-
-    /**
-     * Checks if an entity is a hired unit, also handles checks where the entity is null
-     * @param entity The Entity to check
-     * @return True if the entity is instance of ExtendedHirableEntity
-     * */
-    public static boolean isEntityHiredUnit(Entity entity) {
-        return entity instanceof ExtendedHirableEntity;
-    }
-
-    public static ExtendedHirableEntity getExtendedHirableEntity(Entity entity) {
-        if (!isEntityHiredUnit(entity)) {
-        	return null;
-        }
-
-        // attempt to cast to proper unit
-        if (entity instanceof ExtendedHirableEntity) {
-            return (ExtendedHirableEntity) entity;
-        }
-
-        return null;
+        unitHolder.markDirty();
     }
 
     /**
@@ -131,23 +107,22 @@ public class ExtendedHiredUnitHelper {
      * @param item The new ItemStack to be placed in the slot
      * */
     public static void updateEquipmentSlot(NPCEntity companion, ExtendedEquipmentSlotType slot, ItemStack item) {
-        if (companion instanceof ExtendedHirableEntity) {
-            ExtendedHirableEntity hirable = (ExtendedHirableEntity) companion;
-            hirable.updateSlot(item, slot);
+        if(!companion.level.isClientSide() && ((ExtendedNPCEntity)companion).getUnitInfo().isNpcActiveDuty()) {
+        	((ExtendedNPCEntity)companion).getUnitInfo().updateSlot(item, slot);
         }
     }
 
-    public static void dropCustomDeathLoot(NPCEntity companion, ExtendedHirableEntity hirable, Random random, Inventory internalUnitInventory, int looting, boolean player) {
+    public static void dropCustomDeathLoot(ExtendedNpcHiredUnitInfoHolder unitInfo, Random random, int looting) {
     	// Disabled due to NPCEntity using new logic we don't want for unit drops
         //super.dropCustomDeathLoot(damageSource, looting, player);
     	// Only try dropping player equipment and general inventory space
         for (int i = 0; i < 19; ++i) {
-        	if(!internalUnitInventory.getItem(i).isEmpty()) {
-        		ItemStack itemstack = internalUnitInventory.getItem(i).copy();
+        	if(!unitInfo.getInternalUnitInventory().getItem(i).isEmpty()) {
+        		ItemStack itemstack = unitInfo.getInternalUnitInventory().getItem(i).copy();
         		boolean isEquipedItem = !(itemstack.hasTag() && itemstack.getTag().getBoolean("IsBaseArmor"));
         		if(isEquipedItem && !EnchantmentHelper.hasVanishingCurse(itemstack)) {
-        			companion.spawnAtLocation(itemstack);
-                    internalUnitInventory.setItem(i, ItemStack.EMPTY);
+        			unitInfo.getThisEntity().spawnAtLocation(itemstack);
+        			unitInfo.getInternalUnitInventory().setItem(i, ItemStack.EMPTY);
         		}
         	}
         }

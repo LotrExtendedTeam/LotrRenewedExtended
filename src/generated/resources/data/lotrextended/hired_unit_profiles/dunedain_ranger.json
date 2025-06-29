@@ -1,6 +1,6 @@
 {
   "id": "lotrextended:dunedain_ranger",
-  "entity_type": "lotr:hired_dunedain_ranger",
+  "entity_type": "lotr:dunedain_ranger",
   "language": {
     "translateStrings": true,
     "entity_title": "entity_title.lotrextended.hired_dunedain_ranger",

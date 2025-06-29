@@ -46,7 +46,7 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
 
     @Override
     protected Goal createAttackGoal() {
-        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.45, new ItemStack(Items.SHIELD), ItemStack.EMPTY);
+        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.45, new ItemStack(ExtendedItems.BREE_SHIELD.get()), ItemStack.EMPTY);
     }
 
     @Override

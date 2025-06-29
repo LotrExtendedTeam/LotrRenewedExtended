@@ -46,6 +46,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSTradeRefreshPacket.class, ExtendedSTradeRefreshPacket::encode, ExtendedSTradeRefreshPacket::decode, ExtendedSTradeRefreshPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCUpdateStoneTextSignPacket.class, ExtendedCUpdateStoneTextSignPacket::encode, ExtendedCUpdateStoneTextSignPacket::decode, ExtendedCUpdateStoneTextSignPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSOpenStoneTextSignPacket.class, ExtendedSOpenStoneTextSignPacket::encode, ExtendedSOpenStoneTextSignPacket::decode, ExtendedSOpenStoneTextSignPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedSNpcUnitInfoPacket.class, ExtendedSNpcUnitInfoPacket::encode, ExtendedSNpcUnitInfoPacket::decode, ExtendedSNpcUnitInfoPacket::handle);
 		if (id >= 255) {
 			// Since IndexedMessageCodec.MessageHandler -> indicies.put((short)(index & 0xff), this);
 			// And 0xFF is 255, so using one byte for index, max messages for one channel is 255

@@ -15,7 +15,8 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import lotr.common.entity.npc.ExtendedHirableEntity;
+import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import net.minecraft.client.gui.IHasContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.Button;
@@ -31,7 +32,6 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 	private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/hired_unit_overview_menu.png");
 	private static final ResourceLocation ORDER_BUTTONS = new ResourceLocation(LotrExtendedMod.MODID, "textures/gui/order_buttons.png");
 
-	private final ExtendedHirableEntity companion;
 	private DecimalFormat df = new DecimalFormat("#.#");
 	int sidebarX;
 	int row1;
@@ -47,12 +47,6 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 
 	public ExtendedHiredUnitScreen(ExtendedHiredUnitContainer unitInventoryContainer, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(unitInventoryContainer, pPlayerInventory, pTitle);
-
-		if (menu.getCompanion() instanceof ExtendedHirableEntity) {
-			companion = (ExtendedHirableEntity)menu.getCompanion();
-		} else {
-			companion = null;
-		}
 
 		this.passEvents = false;
 		this.imageHeight = 256;
@@ -84,7 +78,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 				btn -> {
 					if(orders != ExtendedUnitOrders.PATROL_PLAYER) {
 						orders = ExtendedUnitOrders.PATROL_PLAYER;
-						ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(companion.getHiredUnitId(), ExtendedUnitOrders.PATROL_PLAYER));
+						ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(menu.getCompanion().getId(), ExtendedUnitOrders.PATROL_PLAYER));
 					}
 				}) {
 			@Override
@@ -98,7 +92,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 				btn -> {
 					if(orders != ExtendedUnitOrders.GUARD_STATIONARY) {
 						orders = ExtendedUnitOrders.GUARD_STATIONARY;
-						ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(companion.getHiredUnitId(), ExtendedUnitOrders.GUARD_STATIONARY));
+						ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(menu.getCompanion().getId(), ExtendedUnitOrders.GUARD_STATIONARY));
 					}
 				}) {
 			@Override
@@ -112,7 +106,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 	}
 
 	private void openEquipmentMenu() {
-		ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredEquipmentMenuPacket(companion.getHiredUnitId()));
+		ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredEquipmentMenuPacket(menu.getCompanion().getId()));
 	}
 
 	@Override
@@ -126,6 +120,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 
 	@Override
 	protected void renderLabels(MatrixStack matrix, int p_230451_2_, int p_230451_3_) {
+		ExtendedNpcHiredUnitInfoHolder info =((ExtendedNPCEntity)menu.getCompanion()).getUnitInfo();
 		this.font.draw(matrix, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
 		this.font.draw(matrix, this.inventory.getDisplayName(), (float)this.inventoryLabelX, (float)this.inventoryLabelY, 4210752);
 
@@ -134,10 +129,10 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 		this.font.draw(matrix, new TranslationTextComponent(menu.profile.getEntityUnitTypeName()), sidebarX, this.titleLabelY + 22, 4210752);
 
 		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.health").withStyle(TextFormatting.UNDERLINE), sidebarX, this.titleLabelY + 32, 4210752);
-		this.font.draw(matrix, new StringTextComponent(df.format(companion.getHiredUnitHealth()) + "/" + (int) companion.getHiredUnitMaxHealth()), sidebarX, this.titleLabelY + 42, 4210752);
-		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.level", companion.getExpLvl()), sidebarX, this.titleLabelY + 56, 4210752);
-		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.xp", companion.getCurrentXp() + "/" + companion.getMaxXp()), sidebarX, this.titleLabelY + 64, 4210752);
-		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.mob_kills", companion.getMobKills()), sidebarX, this.titleLabelY + 73, 4210752);
+		this.font.draw(matrix, new StringTextComponent(df.format(info.getHiredUnitHealth()) + "/" + info.getHiredUnitMaxHealth()), sidebarX, this.titleLabelY + 42, 4210752);
+		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.level", info.getUnitLevel()), sidebarX, this.titleLabelY + 56, 4210752);
+		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.xp", info.getCurrentXp() + "/" + info.getMaxXp()), sidebarX, this.titleLabelY + 64, 4210752);
+		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.mob_kills", info.getMobKills()), sidebarX, this.titleLabelY + 73, 4210752);
 	}
 
 	@Override

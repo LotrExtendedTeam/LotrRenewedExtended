@@ -88,8 +88,12 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 	@Override
 	public void writeToNbt(CompoundNBT nbt) {
 		CompoundNBT holder = new CompoundNBT();
-		holder.putInt("Children", numberOfCurrentChildren);
-		holder.putInt("ChildrenMax", maxNumberOfCurrentChildren);
+		if(numberOfCurrentChildren>0) {
+			holder.putInt("Children", numberOfCurrentChildren);
+		}
+		if(maxNumberOfCurrentChildren>0) {
+			holder.putInt("ChildrenMax", maxNumberOfCurrentChildren);
+		}
 		if (spouseID!=null) {
 			holder.putLong("SpouseUUIDMost", spouseID.getMostSignificantBits());
 			holder.putLong("SpouseUUIDLeast", spouseID.getLeastSignificantBits());
@@ -189,7 +193,12 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 	}
 
 	@Override
-	public boolean isActive() {
+	public boolean shouldLoad() {
+		return true;
+	}
+
+	@Override
+	public boolean shouldTick() {
 		return true;
 	}
 }

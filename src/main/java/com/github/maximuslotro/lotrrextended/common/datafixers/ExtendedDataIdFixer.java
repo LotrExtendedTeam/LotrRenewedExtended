@@ -8,8 +8,11 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 
 import lotr.common.init.ExtendedBlocks;
+import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTREntities;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent.MissingMappings;
@@ -19,6 +22,8 @@ import net.minecraftforge.event.RegistryEvent.MissingMappings.Mapping;
 public class ExtendedDataIdFixer {
 	public static final Map<ResourceLocation, Block> BLOCKS = new HashMap<>();
 	public static final Map<ResourceLocation, Item> ITEMS = new HashMap<>();
+	public static final Map<ResourceLocation, EntityType<?>> ENTITIES = new HashMap<>();
+
 	private static boolean hasMappingsBeenCreated = false;
 
 	public static void fixBlockMappings(MissingMappings<Block> event) {
@@ -51,6 +56,24 @@ public class ExtendedDataIdFixer {
 					Item item = ITEMS.get(entryLocation);
 					mapping.remap(item);
 					ExtendedLog.infoParms("Remapped item, old id was=%s, new id is=%s", entryLocation, item.getRegistryName());
+				}
+				continue;
+			}
+		}
+	}
+
+	public static void fixEntityMappings(MissingMappings<EntityType<?>> event) {
+		for(Mapping<EntityType<?>> mapping : event.getAllMappings()) {
+			ResourceLocation entryLocation = mapping.key;
+			//Handle Out Mod's Stuff, or handle Stuff That We Have Registered under "lotr" or Handle stuff we messed with
+			if (entryLocation.getNamespace().equals("lotrextended") || entryLocation.getNamespace().equals("lotr")) {
+				if (!hasMappingsBeenCreated) {
+					createMappings();
+				}
+				if (ENTITIES.containsKey(entryLocation)) {
+					EntityType<?> entity = ENTITIES.get(entryLocation);
+					mapping.remap(entity);
+					ExtendedLog.infoParms("Remapped entity, old id was=%s, new id is=%s", entryLocation, entity.getRegistryName());
 				}
 				continue;
 			}
@@ -98,6 +121,13 @@ public class ExtendedDataIdFixer {
 		addRemapItem("morgul_spear", "lotr", ExtendedItems.ANGMAR_SPEAR);
 		addRemapItem("morgul_dagger", "lotr", ExtendedItems.ANGMAR_DAGGER);
 		addRemapBlockWithItem("stone_taurethrim_crafting_table", "lotr", ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, ExtendedItems.TAURETHRIM_CRAFTING_TABLE);
+
+		//Beta 1.8.0 Remove separate hired unit types
+		addRemapEntity("hired_dunedain_ranger", "lotr", ExtendedEntities.DUNEDAIN_RANGER);
+		addRemapEntity("hired_gundabad_orc", "lotr", LOTREntities.GUNDABAD_ORC);
+		addRemapEntity("hired_bree_guard", "lotr", LOTREntities.BREE_GUARD);
+
+
 	}
 
 	private static void addRemapBlock(String previousMapping, String previousNamespace, Supplier<? extends Block> remapBlock) {
@@ -109,5 +139,8 @@ public class ExtendedDataIdFixer {
 	private static void addRemapBlockWithItem(String previousMapping, String previousNamespace, Supplier<? extends Block> newBlock, Supplier<? extends Item> newItem) {
 		addRemapBlock(previousMapping, previousNamespace, newBlock);
 		addRemapItem(previousMapping, previousNamespace, newItem);
+	}
+	private static void addRemapEntity(String previousMapping, String previousNamespace,  Supplier<? extends EntityType<?>> remapEntity) {
+		ENTITIES.put(new ResourceLocation(previousNamespace, previousMapping), remapEntity.get());
 	}
 }

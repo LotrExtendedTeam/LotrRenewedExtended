@@ -34,6 +34,7 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.Extend
 
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.feature.Feature;
@@ -73,6 +74,7 @@ public class LotrExtendedMod{
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addGenericListener(Block.class, ExtendedDataIdFixer::fixBlockMappings);
 		forgeBus.addGenericListener(Item.class, ExtendedDataIdFixer::fixItemMappings);
+		forgeBus.addGenericListener(EntityType.class, ExtendedDataIdFixer::fixEntityMappings);
 		modBus.addListener(this::extendedCommonSetup);
 		modBus.addListener(DataGeneratorExtended::gatherData);
 		forgeBus.addListener(this::extendedRegisterCommands);
