@@ -71,10 +71,8 @@ public abstract class MixinBipedArmorLayer<T extends LivingEntity, A extends Bip
 		at = @At("HEAD"), cancellable = true, remap=false)
 	private void renderModelLotrExtended(MatrixStack renderStack, IRenderTypeBuffer renderBuffer, int pPackedLight, boolean hasFoil, A armorModel, float colorR, float colorG, float colorB, ResourceLocation armorResource, CallbackInfo ci) {
 		if(armorModel instanceof ExtendedRangerModel) {
-			//if(((ExtendedRangerModel<?>)armorModel).isCloaked){
 			if(isCloakedExtended){
 				ci.cancel();
-				System.out.println("CLOAKED");
 				IVertexBuilder ivertexbuilder = ItemRenderer.getArmorFoilBuffer(renderBuffer, RenderType.itemEntityTranslucentCull(armorResource), false, hasFoil);
 				armorModel.renderToBuffer(renderStack, ivertexbuilder, pPackedLight, OverlayTexture.NO_OVERLAY, colorR, colorG, colorB, 0.6F);
 			}
