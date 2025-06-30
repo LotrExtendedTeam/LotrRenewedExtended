@@ -33,9 +33,8 @@ public class ExtendedDwarvenGateBlock extends GateBlock{
 	@Override
 	public int getLightBlock(BlockState state, IBlockReader world, BlockPos pos) {
 		// If the gate is open, it should not block light
-		return state.getValue(OPEN) ? 0 : 15;
+		return state.getValue(OPEN) ? 0 : world.getMaxLightLevel(); // IDK the level might have different max levels?
 	}
-
 
 	@Override
 	@OnlyIn(Dist.CLIENT)

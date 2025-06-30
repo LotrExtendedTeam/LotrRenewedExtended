@@ -1,0 +1,5 @@
+{
+  "faction": "lotr:northern_orcs",
+  "kill_bonus": 2.0,
+  "speechbank": "lotr:northern_orcs/gundabad/orc"
+}
