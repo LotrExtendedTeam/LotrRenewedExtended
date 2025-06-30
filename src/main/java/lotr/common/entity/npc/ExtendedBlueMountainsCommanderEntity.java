@@ -1,6 +1,8 @@
 package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.init.ExtendedItems;
@@ -61,7 +63,6 @@ public class ExtendedBlueMountainsCommanderEntity extends BlueDwarfEntity implem
 
 	@Override
 	public ResourceLocation getHireableProfile() {
-		// TODO Auto-generated method stub
-		return null;
+		return ExtendedHiredUnitTypes.BLUE_DWARF_WARRIOR;
 	}
 }

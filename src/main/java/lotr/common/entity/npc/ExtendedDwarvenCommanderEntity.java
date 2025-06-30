@@ -2,6 +2,7 @@ package lotr.common.entity.npc;
 
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.NPCGenderProvider;
@@ -50,9 +51,9 @@ public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity implements E
 		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
 		this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.DWARVEN_SWORD.get()));
 		this.npcItemsInv.setIdleItemsFromMeleeWeapons();
-		setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.DWARVEN_BOOTS.get()));
-		setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.DWARVEN_LEGGINGS.get()));
-		setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.DWARVEN_CHESTPLATE.get()));
+		setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.GOLD_TRIMMED_DWARVEN_BOOTS.get()));
+		setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.GOLD_TRIMMED_DWARVEN_LEGGINGS.get()));
+		setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.GOLD_TRIMMED_DWARVEN_CHESTPLATE.get()));
 		return spawnData;
 	}
 
@@ -63,7 +64,6 @@ public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity implements E
 
 	@Override
 	public ResourceLocation getHireableProfile() {
-		// TODO Auto-generated method stub
-		return null;
+		return ExtendedHiredUnitTypes.DWARF_WARRIOR;
 	}
 }

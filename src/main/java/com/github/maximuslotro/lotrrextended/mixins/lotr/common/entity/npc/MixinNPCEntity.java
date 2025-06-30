@@ -15,6 +15,7 @@ import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBan
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerAttackedEntityTargetGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerHurtByEntityTargetGoal;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenCaptainPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 
@@ -27,7 +28,6 @@ import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
 import lotr.common.item.LOTRSpawnEggItem;
-import lotr.common.util.ExtendedCaptainHelper;
 import lotr.common.util.ExtendedHiredUnitHelper;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.CreatureEntity;
@@ -279,7 +279,10 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 				if (player.getItemInHand(hand).getItem() instanceof SpawnEggItem || player.getItemInHand(hand).getItem() instanceof LOTRSpawnEggItem) {
 					ci.setReturnValue(ActionResultType.PASS);
 				}else {
-					ci.setReturnValue(ExtendedCaptainHelper.openCaptainGui((NPCEntity)(Object)this, player, (ExtendedCaptainEntity)this));
+					if (this.level.isClientSide()) {
+			        	ExtendedPacketHandler.sendToServer(new ExtendedCOpenCaptainPacket(this.getId()));
+			        }
+					ci.setReturnValue(ActionResultType.sidedSuccess(this.level.isClientSide()));
 				}
 			}
 		}

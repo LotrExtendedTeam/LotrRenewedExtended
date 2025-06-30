@@ -117,6 +117,34 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addShieldItem(ItemStack.EMPTY, 2)
 		.setIdlePoolFromRangedPool()
 		.save(pConsumer, ExtendedHiredUnitTypes.DUNEDAIN_RANGER);
+
+		// Blue Mountain Units
+		make(LOTREntities.BLUE_MOUNTAINS_WARRIOR.get(), ExtendedUnitAttackType.MELEE).setLocal(true, "blue_mountain_warrior", "Blue Mountains Warrior").setPurchaseInfo(40, false, 250)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_HELMET.get()), 1)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_SWORD.get()), 7)
+		.addMeleePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_SPEAR.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_AXE.get()), 1)
+		.addShieldItem(new ItemStack(ExtendedItems.BLUE_MOUNTAINS_SHIELD.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.setIdlePoolFromMeleePool()
+		.save(pConsumer, ExtendedHiredUnitTypes.BLUE_DWARF_WARRIOR);
+
+		// Dwarven Units
+		make(LOTREntities.DWARF_WARRIOR.get(), ExtendedUnitAttackType.MELEE).setLocal(true, "dwarven_warrior", "Dwarven Warrior").setPurchaseInfo(40, false, 250)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.DWARVEN_HELMET.get()), 1)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.DWARVEN_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.DWARVEN_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.DWARVEN_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.DWARVEN_SWORD.get()), 7)
+		.addMeleePoolItem(new ItemStack(LOTRItems.DWARVEN_SPEAR.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.DWARVEN_AXE.get()), 1)
+		.addShieldItem(new ItemStack(Items.SHIELD), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.setIdlePoolFromMeleePool()
+		.save(pConsumer, ExtendedHiredUnitTypes.DWARF_WARRIOR);
 	}
 
 }

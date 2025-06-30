@@ -17,6 +17,8 @@ public class ExtendedHiredUnitTypes {
 	public static final ResourceLocation BREE_GUARD = make("bree_guard");
 	public static final ResourceLocation GUNDABAD_ORC = make("gundabad_orc");
 	public static final ResourceLocation DUNEDAIN_RANGER = make("dunedain_ranger");
+	public static final ResourceLocation DWARF_WARRIOR = make("dwarven_warrior");
+	public static final ResourceLocation BLUE_DWARF_WARRIOR = make("blue_dwarven_warrior");
 
 	private static ResourceLocation make(String pId) {
 		return validate(new ResourceLocation(LotrExtendedMod.MODID, pId));
