@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.GroundPathNavigator;
@@ -25,7 +26,7 @@ import net.minecraft.world.IWorldReader;
  * A custom goal for hired NPCs that enables different follow or stationary behaviors depending on their unit orders.
  * Supports patrolling the player or standing guard at a location, with specific behavior depending on the environment and order state.
  * 
- * Based on {@link ExtendedHiredSitFollowGoal}.
+ * Based on {@link net.minecraft.entity.ai.goal.SitGoal} and {@link net.minecraft.entity.ai.goal.FollowMobGoal} and {@link net.minecraft.entity.ai.goal.FollowOwnerGoal}.
  */
 public class ExtendedHiredSitFollowGoal extends Goal {
 	/** The NPC executing this goal. */
@@ -89,7 +90,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 			else if ((entity.getLastHurtByMob() != null && entity.getLastHurtByMob() != ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner()) || entity.getTarget() != null) {
 				return false;
 			} else {
-				return !(this.entity.distanceToSqr(this.owner) <= this.stopDistance * this.stopDistance);
+				return this.entity.distanceToSqr(this.owner) > (stopDistance * stopDistance); // Continue following player if to far away squared
 			}
 		}
 		if(currentOrderType==ExtendedUnitOrders.GUARD_STATIONARY) {
@@ -117,7 +118,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 				return false;
 			} else if (livingOwner.isSpectator()) {
 				return false;
-			} else if (this.entity.distanceToSqr(livingOwner) < (this.startDistance * this.startDistance)) {
+			} else if (this.entity.distanceToSqr(livingOwner) < (this.startDistance * this.startDistance)) { // Start following player if too far away, but not as close as the stop follow distance
 				return false;
 			} // Disable entity following player when it's in active combat
 			else if ((entity.getLastHurtByMob() != null && entity.getLastHurtByMob() != livingOwner) || entity.getTarget() != null) {
@@ -135,7 +136,8 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 				if (livingOwner == null) { // Null owner means player is offline, so we should stay put
 					return true; // Sit if owner if offline
 				} else { // Enable unit stationary "sitting" if player is close
-					return this.entity.distanceToSqr(livingOwner) < 144.0D;
+					// Unit should stand still if the player is far, if horn used in the future
+					return true; //this.entity.distanceToSqr(livingOwner) < 144; // within 12 square blocks of unit
 				}
 			}
 		}
@@ -178,7 +180,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 			if (--this.timeToRecalcPath <= 0) {
 				this.timeToRecalcPath = 10;
 				if (!this.entity.isLeashed() && !this.entity.isPassenger()) {
-					if (this.entity.distanceToSqr(this.owner) >= 144.0D) {
+					if (this.entity.distanceToSqr(this.owner) >= entity.getAttributeValue(Attributes.FOLLOW_RANGE)*entity.getAttributeValue(Attributes.FOLLOW_RANGE)) {
 						this.teleportToOwner();
 					} else {
 						this.navigation.moveTo(this.owner, this.speedModifier);

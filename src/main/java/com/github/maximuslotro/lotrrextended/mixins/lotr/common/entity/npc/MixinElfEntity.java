@@ -43,7 +43,7 @@ public abstract class MixinElfEntity extends NPCEntity {
      * @param ci The {@link CallbackInfo} provided by the Mixin injector.
      */
 	@Inject(method = "addNPCAI()V", at = @At("TAIL"), remap = false)
-	protected void dropCustomDeathLootExtended(CallbackInfo ci) {
-		this.goalSelector.addGoal(1, new ExtendedHiredSitFollowGoal((NPCEntity)(Object)this, 1.3D, 8.0F, 3.0F, false));
+	protected void addNPCAIExtended(CallbackInfo ci) {
+		this.goalSelector.addGoal(1, new ExtendedHiredSitFollowGoal((NPCEntity)(Object)this, 1.3D, 8.0F, 6.0F, false));
 	}
 }
