@@ -13,8 +13,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity.PickupStatus;
 import net.minecraft.item.IItemTier;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.TieredItem;
 import net.minecraft.item.UseAction;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
@@ -23,13 +23,13 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
-public class ExtendedThrowableAxeItem extends Item {
+public class ExtendedThrowableAxeItem extends TieredItem {
 
     public ExtendedThrowableAxeItem(IItemTier tier) {
-        super(new Item.Properties().tab(LOTRItemGroups.COMBAT));
+        super(tier, new Properties().tab(LOTRItemGroups.COMBAT));
         DispenserBlock.registerBehavior(this, new ExtendedDispenserThrowingAxe());
-
     }
+
     public ExtendedThrowableAxeItem(LOTRMaterial material) {
         this((IItemTier)material.asTool());
     }

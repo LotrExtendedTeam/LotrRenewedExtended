@@ -60,7 +60,6 @@ import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemGroup;
@@ -934,7 +933,7 @@ public class MixinLOTRItems {
 		ExtendedItems.BRANDING_IRON = regItemB("branding_iron", ExtendedBrandingIronItem::new);
 		ExtendedItems.CHISEL = regItemB("chisel", () -> new ExtendedChiselItem(ExtendedBlocks.STONE_SIGN.get(), new Properties().tab(LOTRItemGroups.TOOLS).defaultDurability(100)));
 
-		ExtendedItems.IRON_THROWABLE_AXE = regItemB("iron_throwable_axe", () -> new ExtendedThrowableAxeItem((IItemTier) ItemTier.IRON));
+		ExtendedItems.IRON_THROWABLE_AXE = regItemB("iron_throwable_axe", () -> new ExtendedThrowableAxeItem(ItemTier.IRON));
 		ExtendedItems.BRONZE_THROWABLE_AXE = regItemB("bronze_throwable_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BRONZE));
 		ExtendedItems.LOSSARNACH_THROWABLE_AXE = regItemB("lossarnach_throwable_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.GONDOR));
 		ExtendedItems.DWARVEN_THROWABLE_AXE = regItemB("dwarven_throwable_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.DWARVEN));
