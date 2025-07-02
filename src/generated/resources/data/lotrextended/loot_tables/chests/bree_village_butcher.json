@@ -242,7 +242,7 @@
               }
             }
           ],
-          "name": "lotr:cooked_duck"
+          "name": "lotr:raw_duck"
         },
         {
           "type": "minecraft:item",

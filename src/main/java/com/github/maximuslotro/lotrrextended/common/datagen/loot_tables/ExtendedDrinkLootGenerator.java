@@ -25,27 +25,32 @@ public class ExtendedDrinkLootGenerator extends ChestLootTables  {
 	@Override
 	public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
 		make(consumer, ExtendedLootTables.HOBBIT_KEGS, ExtendedLootTables.HOBBIT_VESSELS, makePool()
-				.add(addEntry(LOTRItems.ALE.get(), 100))
-				.add(addEntry(LOTRItems.CIDER.get(), 50))
-				.add(addEntry(LOTRItems.PERRY.get(), 50))
-				.add(addEntry(LOTRItems.CHERRY_LIQUEUR.get(), 50))
-				.add(addEntry(LOTRItems.APPLE_JUICE.get(), 50)));
+				.add(addEntry(LOTRItems.ALE.get(), 2))
+				.add(addEntry(LOTRItems.CIDER.get(), 1))
+				.add(addEntry(LOTRItems.PERRY.get(), 1))
+				.add(addEntry(LOTRItems.CHERRY_LIQUEUR.get(), 1))
+				.add(addEntry(LOTRItems.APPLE_JUICE.get(), 1)));
 
 		make(consumer, ExtendedLootTables.RANGER_KEGS, ExtendedLootTables.RANGER_VESSELS, makePool()
-				.add(addEntry(LOTRItems.ALE.get(), 100))
-				.add(addEntry(LOTRItems.CIDER.get(), 50))
-				.add(addEntry(LOTRItems.PERRY.get(), 50))
-				.add(addEntry(LOTRItems.APPLE_JUICE.get(), 50)));
+				.add(addEntry(LOTRItems.ALE.get(), 2))
+				.add(addEntry(LOTRItems.CIDER.get(), 1))
+				.add(addEntry(LOTRItems.PERRY.get(), 1))
+				.add(addEntry(LOTRItems.APPLE_JUICE.get(), 1)));
 
 		make(consumer, ExtendedLootTables.GUNDABAD_KEGS, ExtendedLootTables.GUNDABAD_VESSELS, makePool()
 				.add(addEntry(LOTRItems.ORC_DRAUGHT.get())));
 
 		make(consumer, ExtendedLootTables.BREE_KEGS, ExtendedLootTables.BREE_VESSELS, makePool()
-				.add(addEntry(LOTRItems.ALE.get(), 15))
-				.add(addEntry(LOTRItems.CIDER.get(), 10))
-				.add(addEntry(LOTRItems.PERRY.get(), 5))
-				.add(addEntry(LOTRItems.APPLE_JUICE.get(), 5))
-				.add(addEntry(LOTRItems.MEAD.get(), 5)));
+				.add(addEntry(LOTRItems.ALE.get(), 3))
+				.add(addEntry(LOTRItems.CIDER.get(), 2))
+				.add(addEntry(LOTRItems.PERRY.get(), 1))
+				.add(addEntry(LOTRItems.APPLE_JUICE.get(), 1))
+				.add(addEntry(LOTRItems.MEAD.get(), 1)));
+
+		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_KEGS, ExtendedLootTables.BLUE_MOUNTAINS_VESSELS, makePool()
+			.add(addEntry(LOTRItems.DWARVEN_ALE.get(), 4))
+			.add(addEntry(LOTRItems.DWARVEN_TONIC.get(), 1))
+			.add(addEntry(LOTRItems.ALE.get(), 1)));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight){

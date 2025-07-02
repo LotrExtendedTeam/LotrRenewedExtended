@@ -518,7 +518,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 			}catch(IllegalArgumentException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		}
 		//Only Add entries to this loop if they depend on other models we are generating or are super-types of other block types
@@ -712,7 +712,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 			}catch(IllegalArgumentException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		}
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
