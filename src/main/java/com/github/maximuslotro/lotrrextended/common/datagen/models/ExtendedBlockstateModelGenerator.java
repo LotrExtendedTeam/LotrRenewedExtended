@@ -174,7 +174,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedBirdcageBlock) {
-					genBirdcageBlockItem((ExtendedBirdcageBlock) block.getValue().get(), "block/"+block.getKey());
+					genBirdcageBlock((ExtendedBirdcageBlock) block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedCrucibleBlock) {
@@ -1391,12 +1391,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+crucible.getRegistryName().getPath()).parent(modelFile);
 	}
 
-	private void genBirdcageBlockItem(ExtendedBirdcageBlock birdcage, String cagePath) {
+	private void genBirdcageBlock(ExtendedBirdcageBlock birdcage, String cagePath) {
 		registeredBlocks.add(birdcage);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+birdcage.getRegistryName().getPath(), lotrExtendedLoc("block/template_birdcage"))
 			.texture("cage", lotrExtendedLoc(cagePath));
 		simpleBlock(birdcage, modelFile);
-		itemModels().getBuilder("lotr:"+birdcage.getRegistryName().getPath()).parent(modelFile);
 	}
 
 	private void genMossCarpetBlockItem(ExtendedMossCarpetBlock carpet) {
