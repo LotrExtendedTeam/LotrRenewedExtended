@@ -129,26 +129,26 @@ public class ArnorBrickWeathererProcessor extends StructureProcessor {
 				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(Blocks.MOSSY_STONE_BRICK_WALL, blockstate), null);
 			}
 		}
-//		if (blockstate.is(LOTRBlocks.STONE_PILLAR.get())) {
-//			Random rand = new Random();
-//			int num = rand.nextInt(8);
-//			if(num==0) {
-//				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_STONE_PILLAR.get(), blockstate), (CompoundNBT)null);
-//			}
+		if (blockstate.is(LOTRBlocks.STONE_PILLAR.get())) {
+			Random rand = new Random();
+			int num = rand.nextInt(8);
+			if(num==0) {
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_STONE_PILLAR.get(), blockstate), null);
+			}
 //			else if (num<=2) {
-//				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.MOSSY_STONE_PILLAR.get(), blockstate), (CompoundNBT)null);
+//				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.MOSSY_STONE_PILLAR.get(), blockstate), null);
 //			}
-//		}
-//		if (blockstate.is(LOTRBlocks.STONE_PILLAR_SLAB.get())) {
-//			Random rand = new Random();
-//			int num = rand.nextInt(8);
-//			if(num==0) {
-//				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_STONE_PILLAR_SLAB.get(), blockstate), (CompoundNBT)null);
-//			}
+		}
+		if (blockstate.is(LOTRBlocks.STONE_PILLAR_SLAB.get())) {
+			Random rand = new Random();
+			int num = rand.nextInt(8);
+			if(num==0) {
+				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.CRACKED_STONE_PILLAR_SLAB.get(), blockstate), null);
+			}
 //			else if (num<=2) {
-//				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.MOSSY_STONE_PILLAR_SLAB.get(), blockstate), (CompoundNBT)null);
+//				return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.MOSSY_STONE_PILLAR_SLAB.get(), blockstate), null);
 //			}
-//		}
+		}
 		return blockInfoWorld;
 	}
 

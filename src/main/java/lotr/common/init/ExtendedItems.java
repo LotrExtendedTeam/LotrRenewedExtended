@@ -676,4 +676,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GLOWSTONE_CRYSTAL_CHANDELIER;
 	public static RegistryObject<Item> EDHELVIR_CRYSTAL_CHANDELIER;
 	public static RegistryObject<Item> GULDURIL_CRYSTAL_CHANDELIER;
+
+	public static RegistryObject<Item> CRACKED_STONE_PILLAR;
+	public static RegistryObject<Item> CRACKED_STONE_PILLAR_SLAB;
 }

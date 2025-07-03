@@ -642,6 +642,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB = registerB("cracked_arnor_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.CRACKED_ARNOR_PILLAR));
 		ExtendedBlocks.MOSSY_ARNOR_PILLAR = registerB("mossy_arnor_pillar", () -> new LOTRPillarBlock(MaterialColor.STONE));
 		ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB = registerB("mossy_arnor_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.MOSSY_ARNOR_PILLAR));
+		ExtendedBlocks.CRACKED_STONE_PILLAR = registerB("cracked_stone_pillar", () -> new LOTRPillarBlock(MaterialColor.STONE));
+		ExtendedBlocks.CRACKED_STONE_PILLAR_SLAB = registerB("cracked_stone_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.CRACKED_STONE_PILLAR));
 		// New Blocks
 //		ExtendedBlocks.GNEISS_ROCK = registerB("gneiss", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 //		ExtendedBlocks.GNEISS_ROCK_SLAB = registerB("gneiss_slab", () -> new AxialSlabBlock(ExtendedBlocks.GNEISS_ROCK));
