@@ -408,10 +408,10 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 					.append(new StringTextComponent(fellowship.getFellowshipName()).withStyle(TextFormatting.GOLD)), true);
 			//Send PVP and HYPVP data
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.data.pvp").withStyle(TextFormatting.GREEN)
-					.append(new StringTextComponent(String.valueOf(fellowship.isPreventPVP())).withStyle(TextFormatting.GOLD))
+					.append(new StringTextComponent(String.valueOf(!fellowship.isPreventPVP())).withStyle(TextFormatting.GOLD))
 					.append(new StringTextComponent(", ").withStyle(TextFormatting.WHITE))
 					.append(new TranslationTextComponent("command.lotrextended.fellowship.data.hupvp").withStyle(TextFormatting.GREEN))
-					.append(new StringTextComponent(String.valueOf(fellowship.isPreventHiredFF())).withStyle(TextFormatting.GOLD)), true);
+					.append(new StringTextComponent(String.valueOf(!fellowship.isPreventHiredFF())).withStyle(TextFormatting.GOLD)), true);
 			//Send MAPLOC and ICON data
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.data.maploc").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(String.valueOf(fellowship.isHideMapLocation())).withStyle(TextFormatting.GOLD))

@@ -34,6 +34,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableDevMode;
 	public static ForgeConfigSpec.BooleanValue enableExtendedLogging;
 	public static ForgeConfigSpec.BooleanValue enableSpecialLogging;
+	public static ForgeConfigSpec.BooleanValue enableStaffServer;
 
 	public static void register() {
 		ModLoadingContext.get().registerConfig(Type.SERVER, SERVER_SPEC);
@@ -70,6 +71,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		enableDevMode = createBooleanValue(builder,"enableDevMode", false, true, "Never enable this unless you are on the Extended Dev Team or developing the mod!");
 		enableExtendedLogging = createBooleanValue(builder,"enableExtendedLogging", false, true, "Toggle to show additional log information if stuff is not working properly");
 		enableSpecialLogging = createBooleanValue(builder,"enableSpecialLogging", false, true, "Toggles additional logged information, changes by update, special things");
+		enableStaffServer = createBooleanValue(builder,"enableStaffServer", false, true, "");
 		builder.pop();
 		return builder;
 	}
