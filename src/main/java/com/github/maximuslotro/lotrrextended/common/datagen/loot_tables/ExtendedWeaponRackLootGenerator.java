@@ -194,7 +194,7 @@ public class ExtendedWeaponRackLootGenerator extends ChestLootTables  {
 			.add(addEntry(LOTRItems.BLUE_DWARVEN_HOE.get(), 1, 0.3f, 0.7f))
 			.add(addEntry(LOTRItems.BLUE_DWARVEN_SWORD.get(), 2, 0.3f, 0.7f))
 			.add(addEntry(LOTRItems.BLUE_DWARVEN_SPEAR.get(), 1, 0.3f, 0.7f))
-			.add(addEntry(ExtendedItems.BLUE_MOUNTAINS_DWARVEN_THROWABLE_AXE.get(), 2, 0.3f, 0.7f)));
+			.add(addEntry(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE.get(), 2, 0.3f, 0.7f)));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight, float minDamagePercent, float maxDamagePercent){

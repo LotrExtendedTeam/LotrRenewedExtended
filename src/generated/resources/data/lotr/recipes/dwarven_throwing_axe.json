@@ -1,5 +1,6 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dwarven",
   "pattern": [
     " # ",
     " X#",
@@ -10,10 +11,10 @@
       "tag": "forge:rods/wooden"
     },
     "#": {
-      "tag": "forge:ingots/iron"
+      "item": "lotr:dwarven_steel_ingot"
     }
   },
   "result": {
-    "item": "lotr:iron_throwable_axe"
+    "item": "lotr:dwarven_throwing_axe"
   }
 }

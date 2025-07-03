@@ -2,26 +2,26 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:blue_mountains_dwarven_throwable_axe"
+      "lotr:iron_throwing_axe"
     ]
   },
   "criteria": {
-    "has_blue_mountains_dwarven_throwable_axe": {
+    "has_iron_throwing_axe": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:blue_mountains_dwarven_throwable_axe"
+            "item": "lotr:iron_throwing_axe"
           }
         ]
       }
     },
-    "has_dwarven_steel_ingot": {
+    "has_iron": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:dwarven_steel_ingot"
+            "tag": "forge:ingots/iron"
           }
         ]
       }
@@ -29,14 +29,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:blue_mountains_dwarven_throwable_axe"
+        "recipe": "lotr:iron_throwing_axe"
       }
     }
   },
   "requirements": [
     [
-      "has_blue_mountains_dwarven_throwable_axe",
-      "has_dwarven_steel_ingot",
+      "has_iron_throwing_axe",
+      "has_iron",
       "has_the_recipe"
     ]
   ]

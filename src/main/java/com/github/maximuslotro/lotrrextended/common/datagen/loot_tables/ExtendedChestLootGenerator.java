@@ -1717,7 +1717,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_SPEAR.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
 				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_DAGGER.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
 				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_BOOTS.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_MOUNTAINS_DWARVEN_THROWABLE_AXE.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
+				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
 				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_HELMET.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
 				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
 				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))

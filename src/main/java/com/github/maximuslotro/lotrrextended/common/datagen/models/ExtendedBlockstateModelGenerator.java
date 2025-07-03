@@ -1391,10 +1391,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+crucible.getRegistryName().getPath()).parent(modelFile);
 	}
 
-	private void genBirdcageBlockItem(ExtendedBirdcageBlock birdcage, String name) {
+	private void genBirdcageBlockItem(ExtendedBirdcageBlock birdcage, String cagePath) {
 		registeredBlocks.add(birdcage);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+birdcage.getRegistryName().getPath(), lotrExtendedLoc("block/template_birdcage"))
-									.texture("cage", lotrExtendedLoc("block/wooden_birdcage"));
+			.texture("cage", lotrExtendedLoc(cagePath));
 		simpleBlock(birdcage, modelFile);
 		itemModels().getBuilder("lotr:"+birdcage.getRegistryName().getPath()).parent(modelFile);
 	}
@@ -1493,7 +1493,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			ModelFile modelFile = models().withExistingParent("lotrextended:"+chandelier.getRegistryName().getPath(), lotrLoc("block/template_chandelier")).texture("chandelier", lotrExtendedLoc("block/"+name)).texture("chandelier_chain", lotrExtendedLoc("block/chandelier_chain_"+name.substring(0, name.length() - 11)));
 			simpleBlock(chandelier, modelFile);
 		}catch(IllegalArgumentException e) {
-			System.out.println("Using default chain model for "+name+", chandelier_chain_"+name.substring(0, name.length() - 11)+" not found.");
+			ExtendedLog.infoShown(("Using default chain model for "+name+", chandelier_chain_"+name.substring(0, name.length() - 11)+" not found."));
 			ModelFile modelFile = models().withExistingParent("lotrextended:"+chandelier.getRegistryName().getPath(), lotrLoc("block/template_chandelier")).texture("chandelier", lotrExtendedLoc("block/"+name));
 			simpleBlock(chandelier, modelFile);
 		}

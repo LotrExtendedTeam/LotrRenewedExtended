@@ -2,26 +2,26 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:bronze_throwable_axe"
+      "lotr:blue_dwarven_throwing_axe"
     ]
   },
   "criteria": {
-    "has_bronze_throwable_axe": {
+    "has_blue_dwarven_throwing_axe": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:bronze_throwable_axe"
+            "item": "lotr:blue_dwarven_throwing_axe"
           }
         ]
       }
     },
-    "has_bronze": {
+    "has_dwarven_steel_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/bronze"
+            "item": "lotr:dwarven_steel_ingot"
           }
         ]
       }
@@ -29,14 +29,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:bronze_throwable_axe"
+        "recipe": "lotr:blue_dwarven_throwing_axe"
       }
     }
   },
   "requirements": [
     [
-      "has_bronze_throwable_axe",
-      "has_bronze",
+      "has_blue_dwarven_throwing_axe",
+      "has_dwarven_steel_ingot",
       "has_the_recipe"
     ]
   ]

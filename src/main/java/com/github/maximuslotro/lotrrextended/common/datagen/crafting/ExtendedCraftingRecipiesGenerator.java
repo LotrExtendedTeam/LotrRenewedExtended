@@ -730,7 +730,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			()->ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK.get().asItem(), LOTRRecipes.DWARVEN_CRAFTING);
 		makeThrowableAxeRecipe(consumer, ExtendedItems.DWARVEN_THROWABLE_AXE, LOTRItems.DWARVEN_STEEL_INGOT, LOTRRecipes.DWARVEN_CRAFTING);
 		// BLUE MOUNTAIN DWARVEN
-		makeThrowableAxeRecipe(consumer, ExtendedItems.BLUE_MOUNTAINS_DWARVEN_THROWABLE_AXE, LOTRItems.DWARVEN_STEEL_INGOT, LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
+		makeThrowableAxeRecipe(consumer, ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE, LOTRItems.DWARVEN_STEEL_INGOT, LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
 		// IRON 
 		makeThrowableAxeRecipe(consumer, ExtendedItems.IRON_THROWABLE_AXE, Tags.Items.INGOTS_IRON, "iron", null);
 		// BRONZE

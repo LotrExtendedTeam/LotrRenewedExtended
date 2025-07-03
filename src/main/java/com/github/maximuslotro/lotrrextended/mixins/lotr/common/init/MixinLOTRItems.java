@@ -933,11 +933,11 @@ public class MixinLOTRItems {
 		ExtendedItems.BRANDING_IRON = regItemB("branding_iron", ExtendedBrandingIronItem::new);
 		ExtendedItems.CHISEL = regItemB("chisel", () -> new ExtendedChiselItem(ExtendedBlocks.STONE_SIGN.get(), new Properties().tab(LOTRItemGroups.TOOLS).defaultDurability(100)));
 
-		ExtendedItems.IRON_THROWABLE_AXE = regItemB("iron_throwable_axe", () -> new ExtendedThrowableAxeItem(ItemTier.IRON));
-		ExtendedItems.BRONZE_THROWABLE_AXE = regItemB("bronze_throwable_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BRONZE));
-		ExtendedItems.LOSSARNACH_THROWABLE_AXE = regItemB("lossarnach_throwable_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.GONDOR));
-		ExtendedItems.DWARVEN_THROWABLE_AXE = regItemB("dwarven_throwable_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.DWARVEN));
-		ExtendedItems.BLUE_MOUNTAINS_DWARVEN_THROWABLE_AXE = regItemB("blue_mountains_dwarven_throwable_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BLUE_DWARVEN));
+		ExtendedItems.IRON_THROWABLE_AXE = regItemB("iron_throwing_axe", () -> new ExtendedThrowableAxeItem(ItemTier.IRON));
+		ExtendedItems.BRONZE_THROWABLE_AXE = regItemB("bronze_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BRONZE));
+		ExtendedItems.LOSSARNACH_THROWABLE_AXE = regItemB("lossarnach_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.GONDOR));
+		ExtendedItems.DWARVEN_THROWABLE_AXE = regItemB("dwarven_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.DWARVEN));
+		ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE = regItemB("blue_dwarven_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BLUE_DWARVEN));
 		//######################################################################FOOD########################################################
 		//Berries
 		ExtendedItems.BLACKBERRY = regItemB("blackberry", () -> new ExtendedBerries(ExtendedBlocks.BLACKBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLACKBERRY)));

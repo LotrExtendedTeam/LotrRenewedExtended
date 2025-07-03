@@ -1,5 +1,6 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "lotr:faction_shaped",
+  "table": "lotr:gondor",
   "pattern": [
     " # ",
     " X#",
@@ -10,10 +11,10 @@
       "tag": "forge:rods/wooden"
     },
     "#": {
-      "tag": "forge:ingots/bronze"
+      "tag": "forge:ingots/iron"
     }
   },
   "result": {
-    "item": "lotr:bronze_throwable_axe"
+    "item": "lotr:lossarnach_throwing_axe"
   }
 }

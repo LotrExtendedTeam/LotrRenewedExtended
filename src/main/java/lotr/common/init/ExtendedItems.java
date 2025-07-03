@@ -343,7 +343,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> IRON_THROWABLE_AXE;
 	public static RegistryObject<Item> BRONZE_THROWABLE_AXE;
 	public static RegistryObject<Item> LOSSARNACH_THROWABLE_AXE;
-	public static RegistryObject<Item> BLUE_MOUNTAINS_DWARVEN_THROWABLE_AXE;
+	public static RegistryObject<Item> BLUE_DWARVEN_THROWABLE_AXE;
 	public static RegistryObject<Item> DWARVEN_THROWABLE_AXE;
 
 	public static RegistryObject<Item> BRANDING_IRON;

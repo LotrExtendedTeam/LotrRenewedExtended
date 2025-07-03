@@ -1,6 +1,5 @@
 {
-  "type": "lotr:faction_shaped",
-  "table": "lotr:gondor",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     " # ",
     " X#",
@@ -15,6 +14,6 @@
     }
   },
   "result": {
-    "item": "lotr:lossarnach_throwable_axe"
+    "item": "lotr:iron_throwing_axe"
   }
 }

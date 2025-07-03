@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "lotrextended:item/bronze_throwable_axe"
+    "layer0": "lotrextended:item/blue_dwarven_throwing_axe"
   }
 }

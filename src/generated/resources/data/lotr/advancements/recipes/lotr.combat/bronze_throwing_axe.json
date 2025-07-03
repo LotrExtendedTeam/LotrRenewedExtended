@@ -2,26 +2,26 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:iron_throwable_axe"
+      "lotr:bronze_throwing_axe"
     ]
   },
   "criteria": {
-    "has_iron_throwable_axe": {
+    "has_bronze_throwing_axe": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:iron_throwable_axe"
+            "item": "lotr:bronze_throwing_axe"
           }
         ]
       }
     },
-    "has_iron": {
+    "has_bronze": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/iron"
+            "tag": "forge:ingots/bronze"
           }
         ]
       }
@@ -29,14 +29,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:iron_throwable_axe"
+        "recipe": "lotr:bronze_throwing_axe"
       }
     }
   },
   "requirements": [
     [
-      "has_iron_throwable_axe",
-      "has_iron",
+      "has_bronze_throwing_axe",
+      "has_bronze",
       "has_the_recipe"
     ]
   ]
