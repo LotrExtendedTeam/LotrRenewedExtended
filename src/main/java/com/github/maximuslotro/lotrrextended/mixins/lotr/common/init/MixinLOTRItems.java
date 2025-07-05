@@ -22,7 +22,6 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCompostableItem
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBannerPatterns;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBedItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBerries;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedBirdcageItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBucketOfCheeseCurds;
@@ -710,12 +709,12 @@ public class MixinLOTRItems {
 		ExtendedItems.SILVER_FUR_CARPET = regBlockItemB(ExtendedBlocks.SILVER_FUR_CARPET, LOTRItemGroups.DECO);
 		ExtendedItems.WHITE_FUR_CARPET = regBlockItemB(ExtendedBlocks.WHITE_FUR_CARPET, LOTRItemGroups.DECO);
 
-		ExtendedItems.WOODEN_BIRDCAGE = regExtendedBlockItemD(ExtendedBlocks.WOODEN_BIRDCAGE, block -> new ExtendedBirdcageItem(block, new Properties()));
-		ExtendedItems.BRONZE_BIRDCAGE = regExtendedBlockItemD(ExtendedBlocks.BRONZE_BIRDCAGE, block -> new ExtendedBirdcageItem(block, new Properties()));
-		ExtendedItems.IRON_BIRDCAGE = regExtendedBlockItemD(ExtendedBlocks.IRON_BIRDCAGE, block -> new ExtendedBirdcageItem(block, new Properties()));
-		ExtendedItems.SILVER_BIRDCAGE = regExtendedBlockItemD(ExtendedBlocks.SILVER_BIRDCAGE, block -> new ExtendedBirdcageItem(block, new Properties()));
-		ExtendedItems.GOLDEN_BIRDCAGE = regExtendedBlockItemD(ExtendedBlocks.GOLDEN_BIRDCAGE, block -> new ExtendedBirdcageItem(block, new Properties()));
-		ExtendedItems.MITHRIL_BIRDCAGE = regExtendedBlockItemD(ExtendedBlocks.MITHRIL_BIRDCAGE, block -> new ExtendedBirdcageItem(block, new Properties()));
+		ExtendedItems.WOODEN_BIRDCAGE = regBlockItemB(ExtendedBlocks.WOODEN_BIRDCAGE, LOTRItemGroups.DECO);
+		ExtendedItems.BRONZE_BIRDCAGE = regBlockItemB(ExtendedBlocks.BRONZE_BIRDCAGE, LOTRItemGroups.DECO);
+		ExtendedItems.IRON_BIRDCAGE = regBlockItemB(ExtendedBlocks.IRON_BIRDCAGE, LOTRItemGroups.DECO);
+		ExtendedItems.SILVER_BIRDCAGE = regBlockItemB(ExtendedBlocks.SILVER_BIRDCAGE, LOTRItemGroups.DECO);
+		ExtendedItems.GOLDEN_BIRDCAGE = regBlockItemB(ExtendedBlocks.GOLDEN_BIRDCAGE, LOTRItemGroups.DECO);
+		ExtendedItems.MITHRIL_BIRDCAGE = regBlockItemB(ExtendedBlocks.MITHRIL_BIRDCAGE, LOTRItemGroups.DECO);
 
 		ExtendedItems.MORGUL_TORCH = regWallOrFloorBlockItemB(ExtendedBlocks.MORGUL_TORCH, ExtendedBlocks.MORGUL_WALL_TORCH, LOTRItemGroups.DECO);
 		ExtendedItems.MORGUL_LANTERN = regBlockItemB(ExtendedBlocks.MORGUL_LANTERN, LOTRItemGroups.DECO);
