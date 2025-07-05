@@ -197,4 +197,9 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 		return "general";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 65;
+	}
+
 }

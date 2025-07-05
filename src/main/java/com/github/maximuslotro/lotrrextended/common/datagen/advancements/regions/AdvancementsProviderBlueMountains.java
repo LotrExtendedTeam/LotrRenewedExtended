@@ -92,4 +92,9 @@ public class AdvancementsProviderBlueMountains extends ExtendedBaseAdvancementTy
 		return "blue_mountains";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 19;
+	}
+
 }

@@ -99,4 +99,9 @@ public class AdvancementsProviderLindon extends ExtendedBaseAdvancementType{
 		return "lindon";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 19;
+	}
+
 }

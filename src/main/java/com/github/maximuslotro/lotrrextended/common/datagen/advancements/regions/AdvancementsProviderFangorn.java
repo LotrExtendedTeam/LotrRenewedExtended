@@ -53,4 +53,9 @@ public class AdvancementsProviderFangorn extends ExtendedBaseAdvancementType{
 		return "fangorn";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 12;
+	}
+
 }

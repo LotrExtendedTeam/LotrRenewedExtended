@@ -122,4 +122,9 @@ public class AdvancementsProviderRohan extends ExtendedBaseAdvancementType{
 		return "rohan";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 42;
+	}
+
 }

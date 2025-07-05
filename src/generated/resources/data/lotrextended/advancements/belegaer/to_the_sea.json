@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:oak_boat"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.belegaer.to_the_sea.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.belegaer.to_the_sea.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/belegaer.png"
+  },
+  "criteria": {
+    "enter_sea": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:sea"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_sea"
+    ]
+  ]
+}

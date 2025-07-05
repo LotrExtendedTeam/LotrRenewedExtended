@@ -102,4 +102,9 @@ public class AdvancementsProviderMordor extends ExtendedBaseAdvancementType{
 		return "mordor";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 36;
+	}
+
 }

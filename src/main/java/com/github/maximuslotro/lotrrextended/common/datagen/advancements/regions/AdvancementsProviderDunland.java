@@ -74,4 +74,9 @@ public class AdvancementsProviderDunland extends ExtendedBaseAdvancementType{
 		return "dunland";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 15;
+	}
+
 }

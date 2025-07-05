@@ -22,4 +22,9 @@ public class AdvancementsProviderEregion extends ExtendedBaseAdvancementType{
 		return "eregion";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 1;
+	}
+
 }

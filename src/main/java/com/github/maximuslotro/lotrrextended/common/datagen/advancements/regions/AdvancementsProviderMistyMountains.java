@@ -28,4 +28,9 @@ public class AdvancementsProviderMistyMountains extends ExtendedBaseAdvancementT
 		return "misty_mountains";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 3;
+	}
+
 }

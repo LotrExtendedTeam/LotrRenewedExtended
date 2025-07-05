@@ -73,4 +73,9 @@ public class AdvancementsProviderAngmar extends ExtendedBaseAdvancementType{
 		return "angmar";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 17;
+	}
+
 }
