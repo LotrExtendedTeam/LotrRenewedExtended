@@ -42,6 +42,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedDualTogglePacket.class, ExtendedDualTogglePacket::encode, ExtendedDualTogglePacket::decode, ExtendedDualTogglePacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenCaptainPacket.class, ExtendedCOpenCaptainPacket::encode, ExtendedCOpenCaptainPacket::decode, ExtendedCOpenCaptainPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSOpenCaptainPacket.class, ExtendedSOpenCaptainPacket::encode, ExtendedSOpenCaptainPacket::decode, ExtendedSOpenCaptainPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCCaptainSwitchUnitPacket.class, ExtendedCCaptainSwitchUnitPacket::encode, ExtendedCCaptainSwitchUnitPacket::decode, ExtendedCCaptainSwitchUnitPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSNpcTraderInfoPacket.class, ExtendedSNpcTraderInfoPacket::encode, ExtendedSNpcTraderInfoPacket::decode, ExtendedSNpcTraderInfoPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSTradeRefreshPacket.class, ExtendedSTradeRefreshPacket::encode, ExtendedSTradeRefreshPacket::decode, ExtendedSTradeRefreshPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCUpdateStoneTextSignPacket.class, ExtendedCUpdateStoneTextSignPacket::encode, ExtendedCUpdateStoneTextSignPacket::decode, ExtendedCUpdateStoneTextSignPacket::handle);

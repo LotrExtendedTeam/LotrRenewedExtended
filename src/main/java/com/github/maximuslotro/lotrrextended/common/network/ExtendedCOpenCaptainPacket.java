@@ -4,9 +4,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
+import java.util.List;
+import java.util.ArrayList;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
@@ -47,19 +50,20 @@ public class ExtendedCOpenCaptainPacket {
     		context.get().setPacketHandled(true);
     		return;
     	}
-    	ExtendedServerHiredUnitProfile unitProfile = ExtendedServerHiredUnitProfileManager.INSTANCE.get(((ExtendedCaptainEntity)entity).getHireableProfile());
-
-    	if(unitProfile==null) {
-    		ExtendedLog.error("Tried to handle a null unit profile for "+entity.getClass().getName() +". PLEASE REPORT THIS!");
-        	context.get().setPacketHandled(true);
-        	return;
+    	
+    	// Get all hireable profiles for this captain
+    	List<ResourceLocation> profileIds = ((ExtendedCaptainEntity)entity).getHireableProfiles();
+    	
+    	List<ExtendedServerHiredUnitProfile> serverProfiles = new ArrayList<>();
+    	
+    	for (ResourceLocation profileId : profileIds) {
+    		ExtendedServerHiredUnitProfile unitProfile = ExtendedServerHiredUnitProfileManager.INSTANCE.get(profileId);
+    		if(unitProfile != null && !unitProfile.isEmptyUnitType()) {
+    			serverProfiles.add(unitProfile);
+    		}
     	}
-        if(unitProfile.isEmptyUnitType()) {
-        	ExtendedLog.error("Tried loading an unknown unit profile for captain entity! "+((ExtendedCaptainEntity)entity).getHireableProfile());
-        	context.get().setPacketHandled(true);
-        	return;
-        }
-    	ExtendedSOpenCaptainPacket clientBoundPacket = new ExtendedSOpenCaptainPacket(packet.captainId, null, unitProfile);
+    	// The client profiles list will be null here - it gets populated during packet encoding from serverProfiles
+    	ExtendedSOpenCaptainPacket clientBoundPacket = new ExtendedSOpenCaptainPacket(packet.captainId, null, 0, serverProfiles);
 		ExtendedPacketHandler.sendToClient(clientBoundPacket, context.get().getSender());
         context.get().setPacketHandled(true);
     }

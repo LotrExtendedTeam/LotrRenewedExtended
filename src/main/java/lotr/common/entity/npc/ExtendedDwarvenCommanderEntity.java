@@ -3,6 +3,8 @@ package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenCaptainPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.NPCGenderProvider;
@@ -16,10 +18,15 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+import net.minecraft.entity.player.PlayerEntity;
+
+import java.util.List;
 
 public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity implements ExtendedCaptainEntity {
 
@@ -63,7 +70,18 @@ public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity implements E
 	}
 
 	@Override
-	public ResourceLocation getHireableProfile() {
-		return ExtendedHiredUnitTypes.DWARF_WARRIOR;
+	public List<ResourceLocation> getHireableProfiles() {
+		return java.util.Arrays.asList(
+			ExtendedHiredUnitTypes.DWARF_WARRIOR,
+			ExtendedHiredUnitTypes.BLUE_DWARF_WARRIOR
+		);
+	}
+
+	@Override
+	public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+		if (this.level.isClientSide && hand == Hand.MAIN_HAND) {
+			ExtendedPacketHandler.sendToServer(new ExtendedCOpenCaptainPacket(this.getId()));
+		}
+		return ActionResultType.sidedSuccess(this.level.isClientSide);
 	}
 }
