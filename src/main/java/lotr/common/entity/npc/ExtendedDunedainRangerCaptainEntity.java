@@ -2,8 +2,6 @@ package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenCaptainPacket;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
@@ -16,13 +14,10 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.List;
 
@@ -68,13 +63,5 @@ public class ExtendedDunedainRangerCaptainEntity extends ExtendedDunedainRangerE
 		return java.util.Arrays.asList(
 			ExtendedHiredUnitTypes.DUNEDAIN_RANGER
 		);
-	}
-
-	@Override
-	public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-		if (this.level.isClientSide && hand == Hand.MAIN_HAND) {
-			ExtendedPacketHandler.sendToServer(new ExtendedCOpenCaptainPacket(this.getId()));
-		}
-		return ActionResultType.sidedSuccess(this.level.isClientSide);
 	}
 }

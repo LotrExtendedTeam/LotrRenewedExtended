@@ -6,12 +6,9 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -21,8 +18,6 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenCaptainPacket;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 
 public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity implements ExtendedCaptainEntity {
 
@@ -66,13 +61,5 @@ public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity imp
 		return java.util.Arrays.asList(
 			ExtendedHiredUnitTypes.GUNDABAD_ORC
 		);
-	}
-
-	@Override
-	public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-		if (this.level.isClientSide && hand == Hand.MAIN_HAND) {
-			ExtendedPacketHandler.sendToServer(new ExtendedCOpenCaptainPacket(this.getId()));
-		}
-		return ActionResultType.sidedSuccess(this.level.isClientSide);
 	}
 }
