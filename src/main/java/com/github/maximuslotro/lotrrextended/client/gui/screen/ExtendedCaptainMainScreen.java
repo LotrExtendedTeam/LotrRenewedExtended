@@ -30,13 +30,13 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 	private Button leftArrowButton;
 	private Button rightArrowButton;
 
-	public ExtendedCaptainMainScreen(NPCEntity entity, PlayerEntity player, List<ExtendedClientHiredUnitProfile> profiles, int currentIndex) {
+	public ExtendedCaptainMainScreen(NPCEntity entity, PlayerEntity player, List<ExtendedClientHiredUnitProfile> profiles) {
 		super(new StringTextComponent("Captain Menu"), 176, 256);
 
 		this.npcEntity = entity;
 		this.player = player;
 		this.unitProfiles = profiles;
-		this.currentProfileIndex = Math.max(0, Math.min(currentIndex, profiles.size() - 1));
+		this.currentProfileIndex = 0;
 	}
 	
 	private ExtendedClientHiredUnitProfile getCurrentProfile() {
@@ -94,9 +94,6 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 		// Update the current profile index locally for immediate UI feedback
 		this.currentProfileIndex = Math.max(0, Math.min(newIndex, unitProfiles.size() - 1));
 		updateHireButton();
-		
-		// Send packet to server to switch profile
-		ExtendedPacketHandler.sendToServer(new ExtendedCCaptainSwitchUnitPacket(npcEntity.getId(), newIndex));
 	}
 
 	private void talkWithNPC() {

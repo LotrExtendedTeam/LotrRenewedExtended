@@ -15,14 +15,12 @@ public class ExtendedSOpenCaptainPacket {
 
     private int captainId;
     private List<ExtendedClientHiredUnitProfile> clientProfiles;
-    private int currentProfileIndex;
     // Only used on the server!!!!
     private List<ExtendedServerHiredUnitProfile> serverProfiles;
     
-    public ExtendedSOpenCaptainPacket(int captainId, List<ExtendedClientHiredUnitProfile> profiles, int currentProfileIndex, List<ExtendedServerHiredUnitProfile> serverProfiles) {
+    public ExtendedSOpenCaptainPacket(int captainId, List<ExtendedClientHiredUnitProfile> profiles, List<ExtendedServerHiredUnitProfile> serverProfiles) {
        this.captainId = captainId;
        this.clientProfiles = profiles;
-       this.currentProfileIndex = currentProfileIndex;
        this.serverProfiles = serverProfiles;
     }
 
@@ -32,7 +30,6 @@ public class ExtendedSOpenCaptainPacket {
         for (ExtendedServerHiredUnitProfile profile : packet.serverProfiles) {
             ExtendedClientHiredUnitProfile.toNetwork(profile, buf);
         }
-        buf.writeInt(packet.currentProfileIndex);
     }
 
     public static ExtendedSOpenCaptainPacket decode(PacketBuffer buf) {
@@ -42,8 +39,7 @@ public class ExtendedSOpenCaptainPacket {
         for (int i = 0; i < profileCount; i++) {
             profiles.add(ExtendedClientHiredUnitProfile.fromNetwork(buf));
         }
-        int currentProfileIndex = buf.readInt();
-        return new ExtendedSOpenCaptainPacket(captainId, profiles, currentProfileIndex, null);
+        return new ExtendedSOpenCaptainPacket(captainId, profiles, null);
     }
 
     public static void handle(ExtendedSOpenCaptainPacket packet, Supplier<NetworkEvent.Context> context) {
@@ -57,15 +53,5 @@ public class ExtendedSOpenCaptainPacket {
 
 	public List<ExtendedClientHiredUnitProfile> getClientProfiles() {
 		return clientProfiles;
-	}
-	
-	public int getCurrentProfileIndex() {
-		return currentProfileIndex;
-	}
-	
-	// For backward compatibility
-	public ExtendedClientHiredUnitProfile getClientProfile() {
-		if (clientProfiles.isEmpty()) return null;
-		return clientProfiles.get(Math.min(currentProfileIndex, clientProfiles.size() - 1));
 	}
 }

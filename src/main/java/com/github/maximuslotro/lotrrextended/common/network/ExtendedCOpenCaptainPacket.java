@@ -62,8 +62,14 @@ public class ExtendedCOpenCaptainPacket {
     			serverProfiles.add(unitProfile);
     		}
     	}
+   
+    	if(serverProfiles.isEmpty()) {
+    		ExtendedLog.error("No valid unit profiles found for captain entity! " + entity.getClass().getName());
+        	context.get().setPacketHandled(true);
+        	return;
+    	}
     	// The client profiles list will be null here - it gets populated during packet encoding from serverProfiles
-    	ExtendedSOpenCaptainPacket clientBoundPacket = new ExtendedSOpenCaptainPacket(packet.captainId, null, 0, serverProfiles);
+    	ExtendedSOpenCaptainPacket clientBoundPacket = new ExtendedSOpenCaptainPacket(packet.captainId, null, serverProfiles);
 		ExtendedPacketHandler.sendToClient(clientBoundPacket, context.get().getSender());
         context.get().setPacketHandled(true);
     }

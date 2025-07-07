@@ -36,7 +36,7 @@ public class ExtendedClientsideSeparatedScreenHandler {
 		ClientPlayerEntity player = mc.player;
 		Entity entity = mc.level.getEntity(packet.getCaptainId());		
 		if (entity instanceof ExtendedCaptainEntity && entity instanceof NPCEntity) {
-			Minecraft.getInstance().setScreen(new ExtendedCaptainMainScreen((NPCEntity) entity, player, packet.getClientProfiles(), packet.getCurrentProfileIndex()));
+			Minecraft.getInstance().setScreen(new ExtendedCaptainMainScreen((NPCEntity) entity, player, packet.getClientProfiles()));
 		}
 	}
 
