@@ -48,6 +48,7 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 	public void init() {
 		super.init();		
 		this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 115, 125, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"), button -> talkWithNPC()));
+		hireButton = this.addButton(new Button((this.leftPos + (this.imageWidth - 150) / 2) -1, this.topPos + 92, 150, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire"), button -> hireFromNPC()));
 		// only show if there are multiple profiles
 		if (unitProfiles.size() > 1) {
 			leftArrowButton = this.addButton(new Button(this.leftPos -13 , this.topPos + 92, 25, 20, new StringTextComponent("<<"), button -> {
@@ -56,7 +57,7 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 			rightArrowButton = this.addButton(new Button(this.leftPos + this.imageWidth - 13, this.topPos + 92, 25, 20, new StringTextComponent(">>"), button -> {
 				switchToNext();
 			}));
-		} 
+		}
 		updateHireButton();
 	}
 	
@@ -71,11 +72,7 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 			start.append(new StringTextComponent(currentProfile.getEntityUnitTypeName()));
 		}
 		
-		if (hireButton != null) {
-			this.buttons.remove(hireButton);
-			this.children.remove(hireButton);
-		}
-		hireButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 92, 125, 20, start, button -> hireFromNPC()));
+		hireButton.setMessage(start);
 	}
 	
 	private void switchToPrevious() {
