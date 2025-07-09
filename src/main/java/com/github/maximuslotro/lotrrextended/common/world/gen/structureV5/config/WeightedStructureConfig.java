@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.confi
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Map.Entry;
 
 import com.mojang.serialization.Codec;
@@ -28,14 +29,14 @@ public class WeightedStructureConfig implements IFeatureConfig {
 		return this;
 	}
 
-	public String getRandomLocation() {
+	public String getRandomLocation(Random rand) {
 		if(weightedPools.isEmpty()) {
         	return null;
 		}
 		double completeWeight = 0.0;
 		for (Entry<String, Integer> item : weightedPools.entrySet())
 			completeWeight += item.getValue();
-		double r = Math.random() * completeWeight;
+		double r = rand.nextDouble() * completeWeight;
 		double countWeight = 0.0;
 		for (Entry<String, Integer> item : weightedPools.entrySet()) {
 			countWeight += item.getValue();

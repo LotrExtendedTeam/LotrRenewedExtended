@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.exten
 
 import java.util.Random;
 
-import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedJigsawManager;
 
 import net.minecraft.block.BlockState;
@@ -27,7 +27,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 
 public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends StructureStart<C>{
 
-	public abstract String getLocation();
+	public abstract ResourceLocation getLocation(C config, Random rand);
 
 	public ExtendedStructureStartV5(Structure<C> feature, int chunkX, int chunkZ, MutableBoundingBox boundingBox, int references, long seed) {
 		super(feature, chunkX, chunkZ, boundingBox, references, seed);
@@ -35,15 +35,20 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 
 	@Override
 	public void generatePieces(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, C config) {
-		// Turns the chunk coordinates into actual coordinates we can use. (Gets center of that chunk)
-        int x = (chunkX << 4) + generatePieceOffset();
-        int z = (chunkZ << 4) + generatePieceOffset();
+		// Turns the chunk coordinates into actual coordinates we can use. (From corner of the chunk and offset)
+        int x = (chunkX << 4) + generateChunkCornerOffset();
+        int z = (chunkZ << 4) + generateChunkCornerOffset();
         BlockPos blockpos = new BlockPos(x, 0, z);
 
+        // Handle file location stuff here so we don't have duplicated generatePieces methods
+        ResourceLocation location = getLocation(config, this.random);
+        if(location==null) {
+        	ExtendedLog.error("Tried generating a structure from an empty pool! ");
+        	return;
+        }
         ExtendedJigsawManager.addPieces(dynamicRegistryManager,
-                new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
-                		.get(new ResourceLocation(LotrExtendedMod.MODID, getLocation())), maxDepth()), AbstractVillagePiece::new,
-                chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
+        	new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), maxDepth()), AbstractVillagePiece::new,
+        	chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
 
         this.pieces.forEach(piece -> piece.move(0, yShift(), 0));
 
@@ -60,7 +65,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 		return 0;
 	}
 
-	public int generatePieceOffset() {
+	public int generateChunkCornerOffset() {
 		return 7;
 	}
 

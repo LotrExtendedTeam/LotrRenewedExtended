@@ -44,13 +44,13 @@ public class ExtendedBMSmithy extends SinglePoolStructure {
 	}
 
 	public static class Start extends SinglePoolStructure.Start {
-        public Start(Structure<SinglePoolConfig> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
-            super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
-        }
+		public Start(Structure<SinglePoolConfig> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
+			super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
+		}
 
-    	@Override
-    	public int generatePieceOffset() {
-    		return 0;
-    	}
-    }
+		@Override
+		public int generateChunkCornerOffset() {
+			return 0;
+		}
+	}
 }
