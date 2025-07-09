@@ -5,10 +5,12 @@
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:hobbit/large_hole/hobbit_hill",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false,
+				"shift_structure_up_by" : -1
 			}
 		}
 	]
