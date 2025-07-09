@@ -25,14 +25,56 @@ import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
+/**
+ * Base structure start implementation for Extended Jigsaw-based structures in LotRMod.
+ * <p>
+ * Supports:
+ * <ul>
+ *     <li>Dynamic pool-based generation using {@link ExtendedJigsawManager}.</li>
+ *     <li>Configurable Y-shifts, chunk center offsets, and generation recursion depth.</li>
+ *     <li>Optional full foundation laying beneath structures.</li>
+ * </ul>
+ * 
+ * @param <C> The feature configuration type for this structure.
+ */
 public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends StructureStart<C>{
-
-	public abstract ResourceLocation getLocation(C config, Random rand);
-
+	/**
+     * Constructs a new ExtendedStructureStartV5.
+     *
+     * @param feature       The structure feature associated with this start.
+     * @param chunkX        The X coordinate of the chunk.
+     * @param chunkZ        The Z coordinate of the chunk.
+     * @param boundingBox   The mutable bounding box for this structure.
+     * @param references    Reference count for structure saving/loading.
+     * @param seed          World seed for consistent generation.
+     */
 	public ExtendedStructureStartV5(Structure<C> feature, int chunkX, int chunkZ, MutableBoundingBox boundingBox, int references, long seed) {
 		super(feature, chunkX, chunkZ, boundingBox, references, seed);
 	}
 
+	/**
+     * Returns the {@link ResourceLocation} of the Jigsaw pool to generate for this structure,
+     * depending on the provided configuration and random.
+     *
+     * @param config The feature configuration.
+     * @param rand   The random instance for selection.
+     * @return The location of the Jigsaw pool to use for this structure.
+     */
+	public abstract ResourceLocation getLocation(C config, Random rand);
+	/**
+     * Generates the pieces for this structure using {@link ExtendedJigsawManager}.
+     * <p>
+     * Automatically computes the correct chunk coordinates, selects the Jigsaw pool using {@link #getLocation},
+     * and places pieces with the configured depth, Y shift, and placement flags.
+     *
+     * @param dynamicRegistryManager The dynamic registries used for accessing Jigsaw pools.
+     * @param chunkGenerator         The chunk generator for terrain and structure generation.
+     * @param templateManagerIn      The template manager for structure templates.
+     * @param chunkX                 The X coordinate of the chunk.
+     * @param chunkZ                 The Z coordinate of the chunk.
+     * @param biomeIn                The biome of the chunk.
+     * @param config                 The feature configuration.
+     */
 	@Override
 	public void generatePieces(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, C config) {
 		// Turns the chunk coordinates into actual coordinates we can use. (From corner of the chunk and offset)
@@ -60,32 +102,74 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 //        }
         this.calculateBoundingBox();
 	}
-
+	/**
+     * Returns the vertical Y shift to apply to all structure pieces after generation.
+     * Override to shift structures up or down.
+     *
+     * @return The Y shift amount (default 0).
+     */
 	public int yShift() {
 		return 0;
 	}
-
+	/**
+     * Returns the offset applied to chunk corner coordinates for centering structures.
+     * Default is 7, centering the structure within the chunk.
+     *
+     * @return The chunk corner offset.
+     */
 	public int generateChunkCornerOffset() {
 		return 7;
 	}
-
+	/**
+     * Returns the maximum Jigsaw generation depth for structure generation.
+     * Higher values allow deeper recursive placement of pieces.
+     *
+     * @return The maximum recursion depth (default 7).
+     */
 	public int maxDepth() {
 		return 7;
 	}
 
 	// ############################################ FOUNDATION LAYING LOGIC ###########################################
+	/**
+     * Determines whether to generate a full solid foundation under the structure.
+     * Override to return true if the structure requires filling air/water beneath it.
+     *
+     * @return True to generate full structure foundations; false otherwise.
+     */
 	public boolean usesFullStructureFoundations() {
 		return false;
 	}
-
+	/**
+     * Returns the upwards offset applied to the base Y value when laying foundations.
+     * Override to align the structure basement with terrain.
+     *
+     * @return The upward Y offset for foundations (default 0).
+     */
 	public int foundationUpwardsOffsetBasementSpecial() {
 		return 0;
 	}
-
+	/**
+     * Returns the default block state to use when filling foundations beneath the structure.
+     * Override to use a different block for structural support (e.g., stone, brick, etc.).
+     *
+     * @return The default foundation block state.
+     */
 	public BlockState defaultFoundationmaterial() {
 		return Blocks.COBBLESTONE.defaultBlockState();
 	}
-
+	/**
+     * Handles placing the structure into the world, including optional foundation filling logic.
+     * If {@link #usesFullStructureFoundations()} is true, this will fill air or liquid blocks beneath
+     * the structure down to solid ground using {@link #defaultFoundationmaterial()}.
+     *
+     * @param world          The world reader for block operations.
+     * @param structureManager The structure manager.
+     * @param chunkGenerator The chunk generator.
+     * @param random         Random for structure placement.
+     * @param boundingBox    The bounding box of the structure.
+     * @param chunkPos       The chunk position.
+     */
 	@Override
 	public void placeInChunk(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGenerator, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
 		super.placeInChunk(world, structureManager, chunkGenerator, random, boundingBox, chunkPos);

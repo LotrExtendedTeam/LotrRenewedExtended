@@ -28,9 +28,7 @@ import net.minecraft.world.gen.feature.StructureFeature;
  * </p>
  */
 public class ExtendedConfiguredStructuresV5 {
-	/**
-     * Static instances of our structures so we can reference them and add it to biomes easily.
-     */
+	//Static instances of our structures so we can reference them and add it to biomes easily.
 	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_BARN = register(ExtendedStructuresV5.HOBBIT_BARN.get().configured(new SinglePoolConfig("hobbit/hobbit_barn_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_HOLE_SMALL = register(ExtendedStructuresV5.HOBBIT_HOLE_SMALL.get().configured(new SinglePoolConfig("hobbit/hobbit_hole_small_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_HOLE_LARGE = register(ExtendedStructuresV5.HOBBIT_HOLE_LARGE.get().configured(IFeatureConfig.NONE));
