@@ -36,8 +36,8 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 	@Override
 	public void generatePieces(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, C config) {
 		// Turns the chunk coordinates into actual coordinates we can use. (Gets center of that chunk)
-        int x = (chunkX << 4) + 7;
-        int z = (chunkZ << 4) + 7;
+        int x = (chunkX << 4) + generatePieceOffset();
+        int z = (chunkZ << 4) + generatePieceOffset();
         BlockPos blockpos = new BlockPos(x, 0, z);
 
         ExtendedJigsawManager.addPieces(dynamicRegistryManager,
@@ -58,6 +58,10 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 
 	public int yShift() {
 		return 0;
+	}
+
+	public int generatePieceOffset() {
+		return 7;
 	}
 
 	public int maxDepth() {

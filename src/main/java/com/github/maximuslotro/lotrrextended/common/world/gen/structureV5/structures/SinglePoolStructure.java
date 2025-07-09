@@ -39,8 +39,8 @@ public class SinglePoolStructure extends ExtendedSurfaceStructuresV5<SinglePoolC
     	@Override
     	public void generatePieces(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, SinglePoolConfig config) {
     		// Turns the chunk coordinates into actual coordinates we can use. (Gets center of that chunk)
-            int x = (chunkX << 4) + 7;
-            int z = (chunkZ << 4) + 7;
+    		int x = (chunkX << 4) + generatePieceOffset();
+            int z = (chunkZ << 4) + generatePieceOffset();
             BlockPos blockpos = new BlockPos(x, 0, z);
 
             String pool = config.getPool();

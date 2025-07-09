@@ -48,18 +48,18 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 	//TODO add checking for stuff
 	@Override
 	protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, C featureConfig) {
-		BlockPos centerOfChunk = new BlockPos(chunkX * 16, 0, chunkZ * 16);
+		BlockPos spawnCornerOfChunk = new BlockPos((chunkX << 4), 0, (chunkZ << 4));
 
 		// Grab height of land. Will stop at first non-air block.
-		int landHeight = chunkGenerator.getFirstOccupiedHeight(centerOfChunk.getX(), centerOfChunk.getZ(), net.minecraft.world.gen.Heightmap.Type.WORLD_SURFACE_WG);
+		int landHeight = chunkGenerator.getFirstOccupiedHeight(spawnCornerOfChunk.getX(), spawnCornerOfChunk.getZ(), net.minecraft.world.gen.Heightmap.Type.WORLD_SURFACE_WG);
 
 		// Grabs column of blocks at given position. In overworld, this column will be made of stone, water, and air.
 		// In nether, it will be netherrack, lava, and air. End will only be endstone and air. It depends on what block
 		// the chunk generator will place for that dimension.
-		IBlockReader columnOfBlocks = chunkGenerator.getBaseColumn(centerOfChunk.getX(), centerOfChunk.getZ());
+		IBlockReader columnOfBlocks = chunkGenerator.getBaseColumn(spawnCornerOfChunk.getX(), spawnCornerOfChunk.getZ());
 
 		// Combine the column of blocks with land height and you get the top block itself which you can test.
-		BlockState topBlock = columnOfBlocks.getBlockState(centerOfChunk.above(landHeight));
+		BlockState topBlock = columnOfBlocks.getBlockState(spawnCornerOfChunk.above(landHeight));
 
 		// Now we test to make sure our structure is not spawning on water or other fluids.
 		// You can do height check instead too to make it spawn at high elevations.
@@ -70,7 +70,7 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 			return false;
 		}
 		// Check if structure intersects a road
-		boolean roadExistsInRange = (MapSettingsManager.serverInstance().getCurrentLoadedMap().getRoadPointCache().getRoadCentreCloseness(centerOfChunk.getX(), centerOfChunk.getZ(), 16) >= 0.0F);
+		boolean roadExistsInRange = (MapSettingsManager.serverInstance().getCurrentLoadedMap().getRoadPointCache().getRoadCentreCloseness(spawnCornerOfChunk.getX(), spawnCornerOfChunk.getZ(), 16) >= 0.0F);
 
 		if(!canSpawnNearRoad() && roadExistsInRange) {
 			return false;
@@ -128,6 +128,10 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 				return false;
 			}
 		}
+		return additionalCheck(chunkGenerator, biomeSource, seed, chunkRandom, chunkX, chunkZ, biome, chunkPos, featureConfig);
+	}
+
+	public boolean additionalCheck(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, C featureConfig) {
 		return true;
 	}
 

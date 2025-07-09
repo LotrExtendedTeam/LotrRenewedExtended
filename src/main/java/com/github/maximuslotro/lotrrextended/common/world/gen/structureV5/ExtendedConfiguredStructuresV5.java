@@ -65,6 +65,8 @@ public class ExtendedConfiguredStructuresV5 {
 
 	public static StructureFeature<?, ?> CONFIGURED_BREE_HAMLET = register(ExtendedStructuresV5.BREE_HAMLET.get().configured(new SinglePoolConfig("bree/hamlet/well_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_BREE_VILLAGE = register(ExtendedStructuresV5.BREE_VILLAGE.get().configured(new SinglePoolConfig("bree/village/start_pool")));
+
+	public static StructureFeature<?, ?> CONFIGURED_BLUE_MOUNTAINS_SMITHY = register(ExtendedStructuresV5.BLUE_MOUNTAIN_SMITHY.get().configured(new SinglePoolConfig("blue_mountains/smithy_pool")));
 	/**
      * Empty method intended to be called to ensure static initialization of this class
      * and the registration of configured structures.

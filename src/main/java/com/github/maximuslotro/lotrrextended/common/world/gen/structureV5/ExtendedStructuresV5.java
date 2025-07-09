@@ -11,6 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.struct
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.WeightedPoolStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits.HobbitHoleLargeStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits.HobbitTavernLargeStructure;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special_placement.ExtendedBMSmithy;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
@@ -74,6 +75,8 @@ public class ExtendedStructuresV5 {
 	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_HAMLET = STRUCTURE_REGISTRY.register("bree_hamlet", () -> new SinglePoolStructure(StructureType.BREE_HAMLET));
 	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_VILLAGE = STRUCTURE_REGISTRY.register("bree_village", () -> new SinglePoolStructure(StructureType.BREE_VILLAGE));
 
+	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_SMITHY = STRUCTURE_REGISTRY.register("blue_mountain_smithy", () -> new ExtendedBMSmithy(StructureType.BLUE_MOUNTAINS));
+
 	/**
 	 * Initializes and registers all custom structures with their generation parameters.
 	 * <p>
@@ -87,7 +90,7 @@ public class ExtendedStructuresV5 {
 		// Setting spacing/separation to be 1/0, you can then have the structure spawn only in certain chunks in Structure.isFeatureChunk()
 		// Setting spacing/separation to be 2/1, you can then have the structure spawn in every chunk
 		register(HOBBIT_BARN.get(), true,              32, 12, 795386759);
-		register(HOBBIT_HOLE_SMALL.get(), true,        24, 9, 212561518);
+		register(HOBBIT_HOLE_SMALL.get(), true,        24, 9,  212561518);
 		register(HOBBIT_HOLE_LARGE.get(), false,       40, 25, 445436264);
 		register(HOBBIT_HOUSE.get(), true,             24, 5,  764008750);
 		register(HOBBIT_PICNIC_BLANKET.get(), false,   20, 8,  639354136);
@@ -109,6 +112,7 @@ public class ExtendedStructuresV5 {
 		register(BARROW_DOWN_BARROWS.get(), true,      7,  3,  57854769);
 		register(BREE_HAMLET.get(), true,              50, 35, 57854769);
 		register(BREE_VILLAGE.get(), true,             40, 25, 78547894);
+		register(BLUE_MOUNTAIN_SMITHY.get(), false,    45, 15, 589758935);
 	}
 
 	/**

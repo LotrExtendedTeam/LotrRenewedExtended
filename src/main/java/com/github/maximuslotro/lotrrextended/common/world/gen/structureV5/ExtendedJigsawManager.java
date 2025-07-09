@@ -113,11 +113,15 @@ public class ExtendedJigsawManager {
 		int structureBBAverageZ = (mutableboundingbox.z1 + mutableboundingbox.z0) / 2;
 		int structureStartHeight;
 		if (projectStartToHeightmap) {
+			// blockpos.getY() should always equal 0 when projecting to heightmap
 			structureStartHeight = blockpos.getY() + chunkGenerator.getFirstFreeHeight(structureBBAverageX, structureBBAverageZ, Heightmap.Type.WORLD_SURFACE_WG);
+			// Extended Start
+			if (structureStartHeight < 62 && jigsawpiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)jigsawpiece).shouldSnapToWaterHeight()) {
+				structureStartHeight = 62;
+			}
 		} else {
 			structureStartHeight = blockpos.getY();
 		}
-
 		int relativeStructureYShift = mutableboundingbox.y0 + abstractvillagepiece.getGroundLevelDelta();
 		abstractvillagepiece.move(0, structureStartHeight - relativeStructureYShift, 0);
 		pieces.add(abstractvillagepiece);
