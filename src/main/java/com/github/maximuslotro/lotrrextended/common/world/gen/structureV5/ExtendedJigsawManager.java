@@ -73,14 +73,20 @@ public class ExtendedJigsawManager {
      * @param random                  random instance for randomized choices
      * @param doExpansionHack         if true, applies additional placement logic during assembly (specific to implementation)
      * @param projectStartToHeightmap if true, adjusts vertical placement to surface height from the heightmap
+     * @return the vertical shift amount applied after placement, or {@code 0} if no vertical shift was applied
+     *
+     * @see ExtendedSingleJigsawPiece
+     * @see WoodPaletteProcessor
+     * @see ExtendedJigsawManager.Assembler
+     * @see net.minecraft.world.gen.feature.structure.Structure
      */
-	public static void addPieces(DynamicRegistries registry, VillageConfig structureConfig, ExtendedJigsawManager.IPieceFactory villagePieceBuilder, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos blockpos, List<? super AbstractVillagePiece> pieces, Random random, boolean doExpansionHack, boolean projectStartToHeightmap) {
+	public static int addPieces(DynamicRegistries registry, VillageConfig structureConfig, ExtendedJigsawManager.IPieceFactory villagePieceBuilder, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos blockpos, List<? super AbstractVillagePiece> pieces, Random random, boolean doExpansionHack, boolean projectStartToHeightmap) {
 		Structure.bootstrap();
 		MutableRegistry<JigsawPattern> mutableregistry = registry.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY);
 		Rotation rotation = Rotation.getRandom(random);
 		JigsawPattern jigsawpattern = structureConfig.startPool().get();
 		JigsawPiece jigsawpiece = jigsawpattern.getRandomTemplate(random);
-		// Extended start add
+		// Extended start
 		Optional<WoodPaletteProcessor> carryOverProcessor = Optional.empty();
 		if(jigsawpiece instanceof SingleJigsawPiece) {
 			List<StructureProcessor> processors = new ArrayList<>(((SingleJigsawPiece)jigsawpiece).processors.get().list());
@@ -91,7 +97,7 @@ public class ExtendedJigsawManager {
 						IllegalStateException e =  new IllegalStateException("Structure Processor can't have more than one WoodPaletteProcessor instance!");
 						e.printStackTrace();
                         LOGGER.info("Error adding wood processor present in {} to parent stack! Skipping structure", jigsawpattern.getName().toString());
-						return;
+						return 0;
 					}
 					foundProcessor = true;
 					WoodPaletteProcessor processorWood = (WoodPaletteProcessor)processor;
@@ -148,6 +154,13 @@ public class ExtendedJigsawManager {
 			}
 
 		}
+		// Extended Start
+		int shiftAmount = 0;
+		if(jigsawpiece instanceof ExtendedSingleJigsawPiece) {
+			shiftAmount = ((ExtendedSingleJigsawPiece)jigsawpiece).getVerticalShiftStructureBy();
+		}
+		return shiftAmount;
+		// Extended End
 	}
 
 	/**

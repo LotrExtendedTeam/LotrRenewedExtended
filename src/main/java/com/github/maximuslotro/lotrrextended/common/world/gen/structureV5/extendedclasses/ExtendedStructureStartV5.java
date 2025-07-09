@@ -88,11 +88,11 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
         	ExtendedLog.error("Tried generating a structure from an empty pool! ");
         	return;
         }
-        ExtendedJigsawManager.addPieces(dynamicRegistryManager,
+        int shiftAmount = ExtendedJigsawManager.addPieces(dynamicRegistryManager,
         	new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), maxDepth()), AbstractVillagePiece::new,
         	chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
 
-        this.pieces.forEach(piece -> piece.move(0, yShift(), 0));
+        this.pieces.forEach(piece -> piece.move(0, shiftAmount, 0));
 
 //        Vector3i structureCenter = this.pieces.get(0).getBoundingBox().getCenter();
 //        int xOffset = blockpos.getX() - structureCenter.getX();
@@ -101,15 +101,6 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 //            structurePiece.move(xOffset, 0, zOffset);
 //        }
         this.calculateBoundingBox();
-	}
-	/**
-     * Returns the vertical Y shift to apply to all structure pieces after generation.
-     * Override to shift structures up or down.
-     *
-     * @return The Y shift amount (default 0).
-     */
-	public int yShift() {
-		return 0;
 	}
 	/**
      * Returns the offset applied to chunk corner coordinates for centering structures.

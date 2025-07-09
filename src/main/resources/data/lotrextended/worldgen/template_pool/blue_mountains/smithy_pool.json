@@ -10,7 +10,8 @@
 				"location": "lotrextended:blue_mountains/smithy/blue_mountains_smithy_large_1",
 				"processors": "minecraft:empty",
 				"snap_to_water_height" : true,
-				"apply_waterlogging" : false
+				"apply_waterlogging" : false,
+				"shift_structure_up_by" : -5
 			}
 		},
 		{
@@ -21,7 +22,8 @@
 				"location": "lotrextended:blue_mountains/smithy/blue_mountains_smithy_large_2",
 				"processors": "minecraft:empty",
 				"snap_to_water_height" : true,
-				"apply_waterlogging" : false
+				"apply_waterlogging" : false,
+				"shift_structure_up_by" : -5
 			}
 		},
 		{

@@ -69,15 +69,6 @@ public class HobbitTavernLargeStructure extends ExtendedSurfaceStructuresV5<NoFe
 			return new ResourceLocation(LotrExtendedMod.MODID, "hobbit/hobbit_tavern_large_pool");
 		}
 		/**
-         * Provides a vertical shift applied to all structure pieces during generation.
-         *
-         * @return The vertical shift (-6), shifting the structure downward.
-         */
-		@Override
-		public int yShift() {
-			return -6;
-		}
-		/**
          * Indicates that full structure foundations should be used when placing the structure.
          *
          * @return True, indicating full foundations are used.

@@ -30,6 +30,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
  *     <li>Ignore bounding box conflicts for forced placements.</li>
  *     <li>Restrict multiple buildings of the same type using a blacklist name.</li>
  *     <li>Snap placement height to water surface for smoother generation in oceans or rivers.</li>
+ *     <li>Shift structures up or down for structure where the bottom block in not the ground block.</li>
  * </ul>
  * <p>
  * Used in procedural generation frameworks to gain fine-grained control over structure behavior
@@ -44,36 +45,42 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
  */
 public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	/**
-     * Codec for serializing and deserializing {@link ExtendedSingleJigsawPiece} from JSON or NBT for data-driven generation.
-     */
+	 * Codec for serializing and deserializing {@link ExtendedSingleJigsawPiece} from JSON or NBT for data-driven generation.
+	 */
 	public static final Codec<ExtendedSingleJigsawPiece> CODEC = RecordCodecBuilder.create((instance) -> {
 		return instance.group(templateCodec(), processorsCodec(), projectionCodec(), waterloggingCodec(), maxPlaceDistanceCodec(), 
-			maxDepthCodec(), ingnoreBBconflictsCodec(), blacklistNameCodec(), snapUpToWaterheightCodec()).apply(instance, ExtendedSingleJigsawPiece::new);
+			maxDepthCodec(), ingnoreBBconflictsCodec(), blacklistNameCodec(), snapUpToWaterheightCodec(), 
+			shiftStructureUpByCodec()).apply(instance, ExtendedSingleJigsawPiece::new);
 	});
 	/**
-     * If true, liquids will propagate through waterloggable blocks; if false, water will stay confined inside the designated blocks.
-     */
+	 * If true, liquids will propagate through waterloggable blocks; if false, water will stay confined inside the designated blocks.
+	 */
 	protected final boolean apply_waterlogging;
 	/**
-     * The maximum distance this piece can attempt to place blocks from its starting position.
-     */
+	 * The maximum distance this piece can attempt to place blocks from its starting position.
+	 */
 	protected final int maxPlaceDistance;
 	/**
-     * The maximum recursion depth allowed for structure placement.
-     */
+	 * The maximum recursion depth allowed for structure placement.
+	 */
 	protected final int maxDepth;
 	/**
-     * If true, bounding box conflicts will be ignored during placement.
-     */
+	 * If true, bounding box conflicts will be ignored during placement.
+	 */
 	protected final boolean ingnoreBBconflicts;
 	/**
-     * The blacklist name used to restrict multiple of the same type of buildings from spawning.
-     */
+	 * The blacklist name used to restrict multiple of the same type of buildings from spawning.
+	 */
 	protected final String blacklistName;
 	/**
-     * If true, the piece will snap vertically to water height during placement.
-     */
+	 * If true, the piece will snap vertically to water height during placement.
+	 */
 	protected final boolean snapUpToWaterheight;
+	/**
+	 * The vertical offset (in blocks) to shift the structure upward during placement.
+	 * A value of <code>0</code> will not apply any vertical offset.
+	 */
+	protected final int shiftStructureUpBy;
 
 	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Boolean> waterloggingCodec() {
 		return Codec.BOOL.optionalFieldOf("apply_waterlogging", true).forGetter((piece) -> {
@@ -110,22 +117,28 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 			return piece.snapUpToWaterheight;
 		});
 	}
+
+	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Integer> shiftStructureUpByCodec() {
+		return Codec.INT.optionalFieldOf("shift_structure_up_by", 0).forGetter((piece) -> {
+			return piece.shiftStructureUpBy;
+		});
+	}
 	/**
-     * Constructs an {@link ExtendedSingleJigsawPiece} with advanced configuration for structure placement.
-     *
-     * @param template             Either a {@link ResourceLocation} or a {@link Template} representing the structure.
-     * @param processors           The structure processor list supplier.
-     * @param placementType        The placement behavior for the jigsaw pattern.
-     * @param apply_waterlogging   Whether to enable waterlogging during placement.
-     * @param maxPlaceDistance     The maximum placement distance allowed.
-     * @param maxDepth             The maximum recursion depth.
-     * @param ingnoreBBconflicts   Whether to ignore bounding box conflicts.
-     * @param blacklist_name       The blacklist name for controlling placement conditions.
-     * @param snapUpToWaterheight  Whether to snap placement to water height.
-     */
+	 * Constructs an {@link ExtendedSingleJigsawPiece} with advanced configuration for structure placement.
+	 *
+	 * @param template             Either a {@link ResourceLocation} or a {@link Template} representing the structure.
+	 * @param processors           The structure processor list supplier.
+	 * @param placementType        The placement behavior for the jigsaw pattern.
+	 * @param apply_waterlogging   Whether to enable waterlogging during placement.
+	 * @param maxPlaceDistance     The maximum placement distance allowed.
+	 * @param maxDepth             The maximum recursion depth.
+	 * @param ingnoreBBconflicts   Whether to ignore bounding box conflicts.
+	 * @param blacklist_name       The blacklist name for controlling placement conditions.
+	 * @param snapUpToWaterheight  Whether to snap placement to water height.
+	 */
 	protected ExtendedSingleJigsawPiece(Either<ResourceLocation, Template> p_i242007_1_, Supplier<StructureProcessorList> processors, 
 		JigsawPattern.PlacementBehaviour placementType, boolean apply_waterlogging, int maxPlaceDistance, int maxDepth, boolean ingnoreBBconflicts,
-		String blacklist_name, boolean snapUpToWaterheight) {
+		String blacklist_name, boolean snapUpToWaterheight, int shiftStructureUpBy) {
 		super(p_i242007_1_, processors, placementType);
 		this.apply_waterlogging = apply_waterlogging;
 		this.maxPlaceDistance = maxPlaceDistance;
@@ -133,15 +146,16 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		this.ingnoreBBconflicts = ingnoreBBconflicts;
 		this.blacklistName = blacklist_name;
 		this.snapUpToWaterheight = snapUpToWaterheight;
+		this.shiftStructureUpBy = shiftStructureUpBy;
 	}
 	/**
-     * Retrieves placement settings with liquid retention set according to {@link #apply_waterlogging}.
-     *
-     * @param pRotation The rotation to apply.
-     * @param pBoundingBox The bounding box of placement.
-     * @param keepJigsawBlocks Whether to keep jigsaw blocks.
-     * @return The configured {@link PlacementSettings}.
-     */
+	 * Retrieves placement settings with liquid retention set according to {@link #apply_waterlogging}.
+	 *
+	 * @param pRotation The rotation to apply.
+	 * @param pBoundingBox The bounding box of placement.
+	 * @param keepJigsawBlocks Whether to keep jigsaw blocks.
+	 * @return The configured {@link PlacementSettings}.
+	 */
 	@Override
 	protected PlacementSettings getSettings(Rotation pRotation, MutableBoundingBox pBoundingBox, boolean keepJigsawBlocks) {
 		PlacementSettings placementsettings = super.getSettings(pRotation, pBoundingBox, keepJigsawBlocks);
@@ -149,14 +163,14 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		return placementsettings;
 	}
 	/**
-     * Returns a bounding box for this piece. If {@link #ingnoreBBconflicts} is true,
-     * it will return a 1x1x1 bounding box at the target position to bypass conflicts.
-     *
-     * @param pTemplateManager The template manager.
-     * @param pPos The target position.
-     * @param pRotation The rotation to apply.
-     * @return The computed {@link MutableBoundingBox}.
-     */
+	 * Returns a bounding box for this piece. If {@link #ingnoreBBconflicts} is true,
+	 * it will return a 1x1x1 bounding box at the target position to bypass conflicts.
+	 *
+	 * @param pTemplateManager The template manager.
+	 * @param pPos The target position.
+	 * @param pRotation The rotation to apply.
+	 * @return The computed {@link MutableBoundingBox}.
+	 */
 	@Override
 	public MutableBoundingBox getBoundingBox(TemplateManager pTemplateManager, BlockPos pPos, Rotation pRotation) {
 		if(ingnoreBBconflicts) {
@@ -165,64 +179,70 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		return super.getBoundingBox(pTemplateManager, pPos, pRotation);
 	}
 	/**
-     * Returns the deserializer type used for this piece.
-     *
-     * @return The {@link IJigsawDeserializer} type.
-     */
+	 * Returns the deserializer type used for this piece.
+	 *
+	 * @return The {@link IJigsawDeserializer} type.
+	 */
 	@Override
 	public IJigsawDeserializer<?> getType() {
 		return ExtendedStructuresV5.SINGLE_EXTENDED;
 	}
 	/**
-     * Returns a string representation of this piece for debugging.
-     *
-     * @return A string describing the piece.
-     */
+	 * Returns a string representation of this piece for debugging.
+	 *
+	 * @return A string describing the piece.
+	 */
 	@Override
 	public String toString() {
 		return "ExtendedSingle[" + this.template + " " + apply_waterlogging + " " + maxPlaceDistance + " "
 			+ maxDepth + " " + ingnoreBBconflicts + " " + blacklistName + " " + snapUpToWaterheight + "]";
 	}
-	 /**
-     * @return Whether liquids propagate through waterloggable blocks.
-     */
+	/**
+	 * @return Whether liquids propagate through waterloggable blocks.
+	 */
 	public boolean isApply_waterlogging() {
 		return apply_waterlogging;
 	}
 	/**
-     * @return Whether the piece should snap to water height of y=62 during placement.
-     */
+	 * @return Whether the piece should snap to water height of y=62 during placement.
+	 */
 	public boolean shouldSnapToWaterHeight() {
 		return snapUpToWaterheight;
 	}
-	 /**
-     * @return The maximum placement distance.
-     */
+	/**
+	 * @return The maximum placement distance.
+	 */
 	public int getMaxPlaceDistance() {
 		return maxPlaceDistance;
 	}
-	 /**
-     * @return The maximum recursion depth for placement.
-     */
+	/**
+	 * @return The maximum recursion depth for placement.
+	 */
 	public int getMaxDepth() {
 		return maxDepth;
 	}
-	 /**
-     * @return Whether bounding box conflicts are ignored during placement.
-     */
+	/**
+	 * @return Whether bounding box conflicts are ignored during placement.
+	 */
 	public boolean doesIngnoreBBconflicts() {
 		return ingnoreBBconflicts;
 	}
 	/**
-     * @return The blacklist name used to restrict spawning multiple buildings of the same type.
-     */
+	 * @return The blacklist name used to restrict spawning multiple buildings of the same type.
+	 */
 	public String getBlacklistName() {
 		return blacklistName;
 	}
-	 /**
-     * @return Whether a custom blacklist name has been set.
-     */
+	/**
+	 * @return Whether a custom blacklist name has been set.
+	 */
 	public boolean isBlacklistSet() {
 		return !blacklistName.equals("NOTSET");
 	}
+	/**
+	 * @return The number of blocks the structure should be shifted upward during placement.
+	 */
+	public int getVerticalShiftStructureBy() {
+		return shiftStructureUpBy;
+	}	
 }

@@ -76,15 +76,6 @@ public class HobbitHoleLargeStructure extends ExtendedSurfaceStructuresV5<NoFeat
 		public int maxDepth() {
 			return 7;
 		}
-		/**
-         * Provides a vertical shift applied to all structure pieces during generation.
-         *
-         * @return The vertical shift (-1).
-         */
-		@Override
-		public int yShift() {
-			return -1;
-		}
 		 /**
          * Indicates that full structure foundations should be used when placing the structure.
          *
