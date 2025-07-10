@@ -278,7 +278,7 @@ public class ExtendedLevelData {
 		}
 	}
 
-	public void checkForWanderingTraderSpawns(World world) {
+	public void checkForWanderingTraderSpawns(ServerWorld world) {
 		if (timeUntilTrader > 0) {
 			timeUntilTrader--;
 		} else {

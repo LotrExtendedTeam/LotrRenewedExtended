@@ -47,9 +47,8 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	private int currentTraderBoughtAmount = 0; // Current value of items trader bought from player
 	private int totalTraderBoughtAmount = 0; // Total value of items trader bought from player
 	private int lockTicksAfterRefresh;
-	private int currentTraderLockTicksAmount = 0; // TODO hook up to method to send client lockout
-	// Wandering traders start at 600 ticks (30 seconds) just to make sure there's no chance they immediately despawn
-	private int wanderingTraderAliveTime = 600;
+	private int currentTraderLockTicksAmount = 0;
+	private int wanderingTraderAliveTime = 0;
 	private boolean isWanderingTrader = false;
 
 	private boolean resendData = false;
@@ -259,7 +258,15 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 			totalTraderSoldAmount = holder.getInt("TotalTraderSoldAmount");
 			totalTraderBoughtAmount = holder.getInt("TotalTraderBoughtAmount");
 			wanderingTraderAliveTime = holder.getInt("WanderingTraderTimeLeft"); // Defaults to zero (despawn if wandering if broken)
-			isWanderingTrader = nbt.getBoolean("IsWanderingTrader"); //Defaults to false, (not wandering trader)
+			isWanderingTrader = holder.getBoolean("IsWanderingTrader"); //Defaults to false, (not wandering trader)
+			if(!isWanderingTrader && wanderingTraderAliveTime>0) {
+				if(getProfile().isTypicallyWandering()) {
+					ExtendedLog.warn("Fixed an non-ticking wandering trader: "+getProfile().getId().toString());
+					isWanderingTrader = true;
+				} else {
+					wanderingTraderAliveTime = 0;
+				}
+			}
 			currentTraderLockTicksAmount = holder.getInt("CurrentTraderLockTicksAmount"); // Defaults to zero (no lock activated)
 			if (buys.isEmpty() || sells.isEmpty() || refreshTradesAtValue==0 || lockTicksAfterRefresh==0 || tradingAlignmentRequired==1659) {
 				ExtendedLog.infoShown("Generating new trader for for invalid nbt: "+getProfile().getId().toString());
@@ -274,7 +281,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 			loadedData=false;
 		}
 		// Handle pre-1.7.4 wandering traders
-		if(nbt.contains("isWanderingTrader")) {
+		if(nbt.contains("isWanderingTrader") || nbt.contains("IsWanderingTrader")) {
 			isWanderingTrader = nbt.getBoolean("IsWanderingTrader");
 			wanderingTraderAliveTime = nbt.getInt("WanderingTraderTimeLeft");
 		}
