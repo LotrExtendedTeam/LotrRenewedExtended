@@ -194,7 +194,7 @@ public class WoodPallet {
      * Compares this WoodPallet to another object for equality.
      * Two WoodPallets are considered equal if they have the same name.
      *
-     * @param obj The object to compare against.
+     * @param pallet The object to compare against.
      * @return true if equal, false otherwise.
      */
 	@Override

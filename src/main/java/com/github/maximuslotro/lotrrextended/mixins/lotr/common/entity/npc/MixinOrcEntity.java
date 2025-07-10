@@ -30,8 +30,8 @@ public abstract class MixinOrcEntity extends NPCEntity {
      * @param type  A placeholder {@link EntityType} for {@link OrcEntity}, required for superclass initialization.
      * @param world A placeholder {@link World} instance, required for superclass initialization.
      */
-	public MixinOrcEntity(EntityType<? extends OrcEntity> type, World w) {
-		super(type, w);
+	public MixinOrcEntity(EntityType<? extends OrcEntity> type, World world) {
+		super(type, world);
 	}
 	/**
      * Injects a custom AI goal at the end of the {@code addNPCAI} method execution.

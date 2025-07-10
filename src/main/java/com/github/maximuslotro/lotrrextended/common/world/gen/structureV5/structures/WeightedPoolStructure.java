@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.StructureType;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructureType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.WeightedStructureConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses.ExtendedStructureStartV5;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses.ExtendedSurfaceStructuresV5;
@@ -25,13 +25,13 @@ public class WeightedPoolStructure extends ExtendedSurfaceStructuresV5<WeightedS
      *
      * @param type The structure type used for registry and serialization.
      */
-	public WeightedPoolStructure(StructureType type) {
+	public WeightedPoolStructure(ExtendedStructureType type) {
 		super(WeightedStructureConfig.CODEC, type);
 	}
 	/**
      * Returns the factory responsible for creating structure starts for this structure.
      *
-     * @return The {@link IStartFactory} for {@link WeightedStructureConfig}.
+     * @return The {@link net.minecraft.world.gen.feature.structure.Structure.IStartFactory} for {@link WeightedStructureConfig}.
      */
 	@Override
 	public IStartFactory<WeightedStructureConfig> getStructureStartFactory() {

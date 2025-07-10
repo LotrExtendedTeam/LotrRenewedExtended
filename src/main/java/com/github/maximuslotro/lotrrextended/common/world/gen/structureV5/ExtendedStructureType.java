@@ -5,7 +5,7 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5;
  * <p>
  * Each constant corresponds to a specific thematic or regional structure category.
  */
-public enum StructureType {
+public enum ExtendedStructureType {
 	/** Ranger-themed structures. */
 	RANGER, 
 	/** Structures associated with Gundabad Orcs. */

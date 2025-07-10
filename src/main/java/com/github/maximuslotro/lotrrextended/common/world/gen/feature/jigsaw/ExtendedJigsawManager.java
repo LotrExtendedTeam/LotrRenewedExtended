@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5;
+package com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw;
 
 import java.util.ArrayList;
 import java.util.Deque;
@@ -11,7 +11,6 @@ import org.apache.commons.lang3.mutable.MutableObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedSingleJigsawPiece;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPaletteProcessor;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
@@ -22,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -68,7 +68,7 @@ public class ExtendedJigsawManager {
      * @param villagePieceBuilder     factory to create village piece instances from templates
      * @param chunkGenerator          chunk generator, used for heightmap queries and terrain context
      * @param templateManager         manages loading and placement of structure templates
-     * @param blockpos                starting position for the structure
+     * @param chunkPos                starting position for the structure
      * @param pieces                  list to which generated village pieces will be added
      * @param random                  random instance for randomized choices
      * @param doExpansionHack         if true, applies additional placement logic during assembly (specific to implementation)
@@ -80,13 +80,20 @@ public class ExtendedJigsawManager {
      * @see ExtendedJigsawManager.Assembler
      * @see net.minecraft.world.gen.feature.structure.Structure
      */
-	public static int addPieces(DynamicRegistries registry, VillageConfig structureConfig, ExtendedJigsawManager.IPieceFactory villagePieceBuilder, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos blockpos, List<? super AbstractVillagePiece> pieces, Random random, boolean doExpansionHack, boolean projectStartToHeightmap) {
+	public static int addPieces(DynamicRegistries registry, VillageConfig structureConfig, ExtendedJigsawManager.IPieceFactory villagePieceBuilder, ChunkGenerator chunkGenerator, TemplateManager templateManager, ChunkPos chunkPos, List<? super AbstractVillagePiece> pieces, Random random, boolean doExpansionHack, boolean projectStartToHeightmap) {
 		Structure.bootstrap();
 		MutableRegistry<JigsawPattern> mutableregistry = registry.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY);
 		Rotation rotation = Rotation.getRandom(random);
 		JigsawPattern jigsawpattern = structureConfig.startPool().get();
 		JigsawPiece jigsawpiece = jigsawpattern.getRandomTemplate(random);
 		// Extended start
+		// Turns the chunk coordinates into actual coordinates we can use. (From corner of the chunk and offset)
+        int cornerOffset = 7;
+        if(jigsawpiece instanceof ExtendedSingleJigsawPiece) {
+        	cornerOffset = ((ExtendedSingleJigsawPiece)jigsawpiece).getChunkCornerOffset();
+		}
+        BlockPos blockpos = new BlockPos(chunkPos.getMinBlockX()+cornerOffset, 0, chunkPos.getMinBlockZ()+cornerOffset);
+        
 		Optional<WoodPaletteProcessor> carryOverProcessor = Optional.empty();
 		if(jigsawpiece instanceof SingleJigsawPiece) {
 			List<StructureProcessor> processors = new ArrayList<>(((SingleJigsawPiece)jigsawpiece).processors.get().list());

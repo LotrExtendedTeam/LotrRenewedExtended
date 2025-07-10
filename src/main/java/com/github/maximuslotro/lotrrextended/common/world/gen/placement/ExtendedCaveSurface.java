@@ -53,10 +53,10 @@ public enum ExtendedCaveSurface implements IStringSerializable {
      * @param y the vertical offset associated with this surface (1 for ceiling, -1 for floor)
      * @param id the string identifier for serialization and lookup
      */
-	private ExtendedCaveSurface(Direction p_162104_, int p_162105_, String p_162106_) {
-		this.direction = p_162104_;
-		this.y = p_162105_;
-		this.id = p_162106_;
+	private ExtendedCaveSurface(Direction direction, int y, String id) {
+		this.direction = direction;
+		this.y = y;
+		this.id = id;
 	}
 	 /**
      * Gets the direction this surface faces.
@@ -81,14 +81,14 @@ public enum ExtendedCaveSurface implements IStringSerializable {
      * @return the matching ExtendedCaveSurface enum constant
      * @throws IllegalArgumentException if no matching surface is found
      */
-	public static ExtendedCaveSurface byName(String p_162109_) {
+	public static ExtendedCaveSurface byName(String name) {
 		for(ExtendedCaveSurface cavesurface : VALUES) {
-			if (cavesurface.getSerializedName().equals(p_162109_)) {
+			if (cavesurface.getSerializedName().equals(name)) {
 				return cavesurface;
 			}
 		}
 
-		throw new IllegalArgumentException("Unknown Surface type: " + p_162109_);
+		throw new IllegalArgumentException("Unknown Surface type: " + name);
 	}
 	/**
      * Gets the string identifier for serialization.

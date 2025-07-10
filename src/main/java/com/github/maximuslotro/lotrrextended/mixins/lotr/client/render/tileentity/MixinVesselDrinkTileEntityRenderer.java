@@ -27,6 +27,7 @@ import net.minecraft.util.math.vector.Vector3f;
  *
  * <p>This mixin enables rendering support for vessel types not originally handled due to hardcoded logic in the base renderer.</p>
  *
+ * @param <T> the type of {@link VesselDrinkTileEntity} being rendered
  * @Mixin (VesselDrinkTileEntityRenderer.class)
  */
 @Mixin(VesselDrinkTileEntityRenderer.class)

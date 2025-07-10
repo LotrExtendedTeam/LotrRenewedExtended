@@ -220,7 +220,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	/**
 	 * Sets the Faction protecting alignment level
-	 * @param level {@link float} alignment level to be set
+	 * @param level {@link Float} alignment level to be set
 	 * */
 	public void setAlignmentLevel(float level) {
 		this.alignmentLevel = level;

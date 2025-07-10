@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.StructureType;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructureType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.SinglePoolConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses.ExtendedStructureStartV5;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses.ExtendedSurfaceStructuresV5;
@@ -25,13 +25,13 @@ public class SinglePoolStructure extends ExtendedSurfaceStructuresV5<SinglePoolC
      *
      * @param type The structure type used for registry and serialization.
      */
-	public SinglePoolStructure(StructureType type) {
+	public SinglePoolStructure(ExtendedStructureType type) {
 		super(SinglePoolConfig.CODEC, type);
 	}
 	/**
      * Returns the factory responsible for creating structure starts for this structure.
      *
-     * @return The {@link IStartFactory} for {@link SinglePoolConfig}.
+     * @return The {@link net.minecraft.world.gen.feature.structure.Structure.IStartFactory} for {@link SinglePoolConfig}.
      */
 	@Override
 	public IStartFactory<SinglePoolConfig> getStructureStartFactory() {

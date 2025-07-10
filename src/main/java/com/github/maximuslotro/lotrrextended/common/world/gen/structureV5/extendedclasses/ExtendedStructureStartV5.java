@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.exten
 import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedJigsawManager;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedJigsawManager;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -77,10 +77,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
      */
 	@Override
 	public void generatePieces(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, C config) {
-		// Turns the chunk coordinates into actual coordinates we can use. (From corner of the chunk and offset)
-        int x = (chunkX << 4) + generateChunkCornerOffset();
-        int z = (chunkZ << 4) + generateChunkCornerOffset();
-        BlockPos blockpos = new BlockPos(x, 0, z);
+        ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
 
         // Handle file location stuff here so we don't have duplicated generatePieces methods
         ResourceLocation location = getLocation(config, this.random);
@@ -90,7 +87,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
         }
         int shiftAmount = ExtendedJigsawManager.addPieces(dynamicRegistryManager,
         	new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), maxDepth()), AbstractVillagePiece::new,
-        	chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
+        	chunkGenerator, templateManagerIn, chunkPos, this.pieces, this.random, false, true);
 
         this.pieces.forEach(piece -> piece.move(0, shiftAmount, 0));
 
@@ -101,15 +98,6 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 //            structurePiece.move(xOffset, 0, zOffset);
 //        }
         this.calculateBoundingBox();
-	}
-	/**
-     * Returns the offset applied to chunk corner coordinates for centering structures.
-     * Default is 7, centering the structure within the chunk.
-     *
-     * @return The chunk corner offset.
-     */
-	public int generateChunkCornerOffset() {
-		return 7;
 	}
 	/**
      * Returns the maximum Jigsaw generation depth for structure generation.

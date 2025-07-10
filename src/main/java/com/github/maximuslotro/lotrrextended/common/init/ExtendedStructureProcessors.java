@@ -29,7 +29,7 @@ public class ExtendedStructureProcessors {
      * 
      * Looks like it was being used as a processor until 1.7.4
      * Maybe remove by July 31st, 2026?
-     * @deprecated
+     * @deprecated Scheduled for removal; retained only for legacy structure compatibility.
      */
 	public static final IStructureProcessorType<BrickWeathererProcessor> ARNOR_WEATHERER_PROCESSOR = register("arnor_weatherer_processor", BrickWeathererProcessor.CODEC);
 	/**

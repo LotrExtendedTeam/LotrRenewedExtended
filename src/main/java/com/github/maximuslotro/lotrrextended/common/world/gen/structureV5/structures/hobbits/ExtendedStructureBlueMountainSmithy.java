@@ -1,16 +1,14 @@
-package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special_placement;
+package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits;
 
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.StructureType;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructureType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.SinglePoolConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.SinglePoolStructure;
 
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.structure.Structure;
 
 /**
  * ExtendedBMSmithy is a custom single-pool structure representing a smithy building.
@@ -18,23 +16,14 @@ import net.minecraft.world.gen.feature.structure.Structure;
  * It overrides the terrain suitability check to ensure the structure only generates
  * on relatively flat terrain by sampling surface heights within the chunk.
  */
-public class ExtendedBMSmithy extends SinglePoolStructure {
+public class ExtendedStructureBlueMountainSmithy extends SinglePoolStructure {
 	/**
      * Constructs an ExtendedBMSmithy structure with the specified structure type.
      *
      * @param type The type of the structure.
      */
-	public ExtendedBMSmithy(StructureType type) {
+	public ExtendedStructureBlueMountainSmithy(ExtendedStructureType type) {
 		super(type);
-	}
-	/**
-     * Returns the factory responsible for creating the structure start.
-     *
-     * @return A factory that creates the Start instance for this structure.
-     */
-	@Override
-	public IStartFactory<SinglePoolConfig> getStructureStartFactory() {
-		return ExtendedBMSmithy.Start::new;
 	}
 	/**
 	 * Performs an additional terrain suitability check before structure generation.
@@ -72,22 +61,5 @@ public class ExtendedBMSmithy extends SinglePoolStructure {
 			}
 		}
 		return true; // Flat enough
-	}
-	/**
-     * The Start class handles the initialization and piece generation for the ExtendedBMSmithy structure.
-     */
-	public static class Start extends SinglePoolStructure.Start {
-		public Start(Structure<SinglePoolConfig> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
-			super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
-		}
-		/**
-         * Overrides the chunk corner offset to zero, so pieces generate at chunk corner.
-         *
-         * @return The chunk corner offset for generation, always zero.
-         */
-		@Override
-		public int generateChunkCornerOffset() {
-			return 0;
-		}
 	}
 }

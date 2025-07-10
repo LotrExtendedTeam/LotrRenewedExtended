@@ -30,8 +30,8 @@ public abstract class MixinElfEntity extends NPCEntity {
      * @param type  A placeholder {@link EntityType} for {@link ElfEntity}, required for superclass initialization.
      * @param world A placeholder {@link World} instance, required for superclass initialization.
      */
-	public MixinElfEntity(EntityType<? extends ElfEntity> type, World w) {
-		super(type, w);
+	public MixinElfEntity(EntityType<? extends ElfEntity> type, World world) {
+		super(type, world);
 	}
 	/**
      * Injects a custom AI goal at the end of the {@code addNPCAI} method execution.

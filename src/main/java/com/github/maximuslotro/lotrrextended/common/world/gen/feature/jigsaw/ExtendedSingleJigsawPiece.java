@@ -31,6 +31,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
  *     <li>Restrict multiple buildings of the same type using a blacklist name.</li>
  *     <li>Snap placement height to water surface for smoother generation in oceans or rivers.</li>
  *     <li>Shift structures up or down for structure where the bottom block in not the ground block.</li>
+ *     <li>Shift structures horizontally through the chunk generated in.</li>
  * </ul>
  * <p>
  * Used in procedural generation frameworks to gain fine-grained control over structure behavior
@@ -38,7 +39,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
  * <p>
  * Related references:
  * <ul>
- *     <li>{@link net.minecraft.world.gen.feature.structure.SingleJigsawPiece}</li>
+ *     <li>{@link net.minecraft.world.gen.feature.jigsaw.SingleJigsawPiece}</li>
  *     <li>{@link net.minecraft.world.gen.feature.jigsaw.JigsawPattern.PlacementBehaviour}</li>
  *     <li>{@link ExtendedStructuresV5#SINGLE_EXTENDED}</li>
  * </ul>
@@ -50,7 +51,7 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	public static final Codec<ExtendedSingleJigsawPiece> CODEC = RecordCodecBuilder.create((instance) -> {
 		return instance.group(templateCodec(), processorsCodec(), projectionCodec(), waterloggingCodec(), maxPlaceDistanceCodec(), 
 			maxDepthCodec(), ingnoreBBconflictsCodec(), blacklistNameCodec(), snapUpToWaterheightCodec(), 
-			shiftStructureUpByCodec()).apply(instance, ExtendedSingleJigsawPiece::new);
+			shiftStructureUpByCodec(), chunkCornerOffsetCodec()).apply(instance, ExtendedSingleJigsawPiece::new);
 	});
 	/**
 	 * If true, liquids will propagate through waterloggable blocks; if false, water will stay confined inside the designated blocks.
@@ -81,6 +82,11 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	 * A value of <code>0</code> will not apply any vertical offset.
 	 */
 	protected final int shiftStructureUpBy;
+
+	/**
+	 * The offset applied to chunk corner coordinates for centering structures. (value between 0 and 15)
+	 */
+	protected final int chunkCornerOffset;
 
 	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Boolean> waterloggingCodec() {
 		return Codec.BOOL.optionalFieldOf("apply_waterlogging", true).forGetter((piece) -> {
@@ -123,6 +129,12 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 			return piece.shiftStructureUpBy;
 		});
 	}
+
+	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Integer> chunkCornerOffsetCodec() {
+		return Codec.INT.optionalFieldOf("chunk_corner_offset", 7).forGetter((piece) -> {
+			return piece.chunkCornerOffset;
+		});
+	}
 	/**
 	 * Constructs an {@link ExtendedSingleJigsawPiece} with advanced configuration for structure placement.
 	 *
@@ -135,11 +147,13 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	 * @param ingnoreBBconflicts   Whether to ignore bounding box conflicts.
 	 * @param blacklist_name       The blacklist name for controlling placement conditions.
 	 * @param snapUpToWaterheight  Whether to snap placement to water height.
+	 * @param shiftStructureUpBy   Vertical offset from ground height to spawn at.
+	 * @param chunkCornerOffset    Horizontal offset from chunk corner to spawn at.
 	 */
-	protected ExtendedSingleJigsawPiece(Either<ResourceLocation, Template> p_i242007_1_, Supplier<StructureProcessorList> processors, 
+	protected ExtendedSingleJigsawPiece(Either<ResourceLocation, Template> template, Supplier<StructureProcessorList> processors, 
 		JigsawPattern.PlacementBehaviour placementType, boolean apply_waterlogging, int maxPlaceDistance, int maxDepth, boolean ingnoreBBconflicts,
-		String blacklist_name, boolean snapUpToWaterheight, int shiftStructureUpBy) {
-		super(p_i242007_1_, processors, placementType);
+		String blacklist_name, boolean snapUpToWaterheight, int shiftStructureUpBy, int chunkCornerOffset) {
+		super(template, processors, placementType);
 		this.apply_waterlogging = apply_waterlogging;
 		this.maxPlaceDistance = maxPlaceDistance;
 		this.maxDepth = maxDepth;
@@ -147,6 +161,7 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		this.blacklistName = blacklist_name;
 		this.snapUpToWaterheight = snapUpToWaterheight;
 		this.shiftStructureUpBy = shiftStructureUpBy;
+		this.chunkCornerOffset = chunkCornerOffset;
 	}
 	/**
 	 * Retrieves placement settings with liquid retention set according to {@link #apply_waterlogging}.
@@ -195,7 +210,8 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	@Override
 	public String toString() {
 		return "ExtendedSingle[" + this.template + " " + apply_waterlogging + " " + maxPlaceDistance + " "
-			+ maxDepth + " " + ingnoreBBconflicts + " " + blacklistName + " " + snapUpToWaterheight + "]";
+			+ maxDepth + " " + ingnoreBBconflicts + " " + blacklistName + " " + snapUpToWaterheight + " "
+			+ shiftStructureUpBy +" "+ chunkCornerOffset +"]";
 	}
 	/**
 	 * @return Whether liquids propagate through waterloggable blocks.
@@ -244,5 +260,14 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	 */
 	public int getVerticalShiftStructureBy() {
 		return shiftStructureUpBy;
-	}	
+	}
+	/**
+     * Returns the offset applied to chunk corner coordinates for centering structures.
+     *
+     * @return The chunk corner offset.
+     */
+	public int getChunkCornerOffset() {
+		return chunkCornerOffset;
+	}
+
 }

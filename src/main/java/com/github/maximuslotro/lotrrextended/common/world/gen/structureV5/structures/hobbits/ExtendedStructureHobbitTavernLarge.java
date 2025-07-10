@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.struc
 import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.StructureType;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructureType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses.ExtendedStructureStartV5;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses.ExtendedSurfaceStructuresV5;
 
@@ -21,13 +21,13 @@ import net.minecraft.world.gen.feature.structure.Structure;
  * applies a vertical offset to position the structure lower in the world,
  * and uses full foundations with a special upward offset for basement support.
  */
-public class HobbitTavernLargeStructure extends ExtendedSurfaceStructuresV5<NoFeatureConfig> {
+public class ExtendedStructureHobbitTavernLarge extends ExtendedSurfaceStructuresV5<NoFeatureConfig> {
 	/**
      * Constructs a new HobbitTavernLargeStructure with the specified structure type.
      *
      * @param type The structure type.
      */
-	public HobbitTavernLargeStructure(StructureType type) {
+	public ExtendedStructureHobbitTavernLarge(ExtendedStructureType type) {
 		super(NoFeatureConfig.CODEC, type);
 	}
 	/**
@@ -37,7 +37,7 @@ public class HobbitTavernLargeStructure extends ExtendedSurfaceStructuresV5<NoFe
      */
 	@Override
 	public IStartFactory<NoFeatureConfig> getStructureStartFactory() {
-		return HobbitTavernLargeStructure.Start::new;
+		return ExtendedStructureHobbitTavernLarge.Start::new;
 	}
 	/**
      * Handles the generation logic and configuration for the HobbitTavernLargeStructure.

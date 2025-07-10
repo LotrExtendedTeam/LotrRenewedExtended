@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.struc
 import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.StructureType;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructureType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses.ExtendedStructureStartV5;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses.ExtendedSurfaceStructuresV5;
 
@@ -20,13 +20,13 @@ import net.minecraft.world.gen.feature.structure.Structure;
  * This structure uses a specific Jigsaw pool defined by the "hobbit/hobbit_hole_large_pool" resource location,
  * generates with a maximum depth of 7 pieces, and applies custom foundation and vertical offset settings.
  */
-public class HobbitHoleLargeStructure extends ExtendedSurfaceStructuresV5<NoFeatureConfig> {
+public class ExtendedStructureHobbitHoleLarge extends ExtendedSurfaceStructuresV5<NoFeatureConfig> {
 	/**
      * Constructs a new HobbitHoleLargeStructure with the specified structure type.
      *
      * @param type The structure type.
      */
-	public HobbitHoleLargeStructure(StructureType type) {
+	public ExtendedStructureHobbitHoleLarge(ExtendedStructureType type) {
 		super(NoFeatureConfig.CODEC, type);
 	}
 	/**
@@ -36,7 +36,7 @@ public class HobbitHoleLargeStructure extends ExtendedSurfaceStructuresV5<NoFeat
      */
 	@Override
 	public IStartFactory<NoFeatureConfig> getStructureStartFactory() {
-		return HobbitHoleLargeStructure.Start::new;
+		return ExtendedStructureHobbitHoleLarge.Start::new;
 	}
 	/**
      * Handles the generation logic and configuration for the HobbitHoleLargeStructure.

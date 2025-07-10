@@ -135,7 +135,7 @@ public class WoodPaletteProcessor extends StructureProcessor {
 	 * @param blockInfoWorld The block information as it currently exists in the world.
 	 * @param placmentData Placement settings, including random number generator.
 	 * @param template The structure template being processed, may be null.
-	 * @return A new {@link Template.BlockInfo} with the replaced block state if applicable,
+	 * @return A new {@link net.minecraft.world.gen.feature.template.Template.BlockInfo} with the replaced block state if applicable,
 	 *         or the original block info if no replacement is performed.
 	 */
 	@Override

@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses;
 
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructuresV5;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.StructureType;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructureType;
 import com.mojang.serialization.Codec;
 
 import lotr.common.world.map.MapSettingsManager;
@@ -30,15 +30,15 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 	/**
      * The type of structure used for conditional checks during generation.
      */
-	private final StructureType structureType;
+	private final ExtendedStructureType structureType;
 	/**
      * Constructs a new ExtendedSurfaceStructuresV5 with the specified codec and structure type.
      *
      * @param codec The codec for serializing the feature config.
      * @param type  The structure type for controlling generation behavior.
      */
-	public ExtendedSurfaceStructuresV5(Codec<C> p_i231997_1_, StructureType type) {
-		super(p_i231997_1_);
+	public ExtendedSurfaceStructuresV5(Codec<C> codec, ExtendedStructureType type) {
+		super(codec);
 		this.structureType = type;
 	}
 	/**
@@ -125,7 +125,7 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 			return false;
 		}
 
-		if(structureType==StructureType.RANGER) {
+		if(structureType==ExtendedStructureType.RANGER) {
 			int i = chunkX >> 4;
 			int j = chunkZ >> 4;
 			chunkRandom.setSeed((long)(i ^ j << 4) ^ seed);
@@ -134,7 +134,7 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 				return false;
 			}
 		}
-		if(structureType==StructureType.BREE_HAMLET) {
+		if(structureType==ExtendedStructureType.BREE_HAMLET) {
 			// Bree Town
 			if(calculateChunkDistance(chunkX, chunkZ, 860, 36)<16) {
 				return false;
@@ -152,7 +152,7 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 				return false;
 			}
 		}
-		if(structureType==StructureType.BREE_VILLAGE) {
+		if(structureType==ExtendedStructureType.BREE_VILLAGE) {
 			// Bree Town
 			if(calculateChunkDistance(chunkX, chunkZ, 860, 36)<16) {
 				return false;
@@ -179,12 +179,25 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 		}
 		return additionalCheck(chunkGenerator, biomeSource, seed, chunkRandom, chunkX, chunkZ, biome, chunkPos, featureConfig);
 	}
-	 /**
-     * Hook for subclasses to add additional structure spawn checks.
-     * Override to impose extra restrictions.
-     *
-     * @return {@code true} by default.
-     */
+	/**
+	 * Hook for subclasses to add additional structure spawn checks.
+	 * Override to impose extra restrictions specific to your structure generation.
+	 * <p>
+	 * This method is called during structure placement to determine whether
+	 * the structure can generate at the specified chunk position under the given conditions.
+	 * By default, it returns {@code true}, allowing generation unless further restricted.
+	 *
+	 * @param chunkGenerator the chunk generator used for terrain generation
+	 * @param biomeSource the biome provider used for biome lookups
+	 * @param seed the world seed
+	 * @param chunkRandom the random instance seeded for this chunk position
+	 * @param chunkX the X coordinate of the chunk in chunk coordinates
+	 * @param chunkZ the Z coordinate of the chunk in chunk coordinates
+	 * @param biome the biome at the intended generation location
+	 * @param chunkPos the position of the chunk
+	 * @param featureConfig the structure's configuration
+	 * @return {@code true} if the structure is allowed to generate at this location under these conditions, {@code false} otherwise
+	 */
 	public boolean additionalCheck(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, C featureConfig) {
 		return true;
 	}
