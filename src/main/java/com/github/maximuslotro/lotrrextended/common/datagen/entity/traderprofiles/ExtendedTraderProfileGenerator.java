@@ -502,7 +502,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.PLUM_SAPLING, 10)
 		.save(pConsumer, ExtendedTraderTypes.BREE_LUMBERMAN);
 
-		make(0)
+		make(0).setTypicallyWandering()
 		.addSBuy(new ItemStack(LOTRItems.DRYSTONE.get(), 16), 4)
 		.addSBuy(new ItemStack(LOTRItems.MAPLE_LOG.get(), 16), 4)
 		.addSBuy(LOTRItems.HOBBIT_OVEN, 30)
@@ -736,7 +736,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.GUNDABAD_URUK_BOW, 20)
 		.save(pConsumer, ExtendedTraderTypes.GUNDABAD_TRADER);
 
-		make(0)
+		make(0).setTypicallyWandering()
 		// TODO add venison
 		.addSBuy(LOTRItems.BRONZE_INGOT.get(), 3)
 		.addSBuy(LOTRItems.COPPER_INGOT, 3)
@@ -783,7 +783,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addDrinkSell(LOTRItems.DWARVEN_TONIC, 10, 14, 18)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_MERCHANT);
 
-		make(100)
+		make(100).setTypicallyWandering()
 		// TODO add toll bones, coral
 		.addSBuy(Items.FEATHER, 2)
 		.addSBuy(Items.IRON_INGOT, 3)
@@ -811,7 +811,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addDrinkSell(LOTRItems.MIRUVOR, 6, 8, 10)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_WANDERER);
 
-		make(75)
+		make(75).setTypicallyWandering()
 		// TODO add coral, troll bones
 		.addSBuy(Items.FEATHER, 2)
 		.addSBuy(Items.IRON_INGOT, 3)
@@ -848,7 +848,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addDrinkSell(LOTRItems.MIRUVOR, 6, 8, 10)
 		.save(pConsumer, ExtendedTraderTypes.GALADHRIM_WANDERER);
 
-		make(0)
+		make(0).setTypicallyWandering()
 		// TODO add party hats, blue dwarven ingot, coral
 		.addSBuy(ExtendedItems.BLACK_URUK_STEEL_INGOT, 5)
 		.addSBuy(LOTRItems.BRONZE_INGOT, 3)
