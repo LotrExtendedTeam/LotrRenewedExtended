@@ -3,12 +3,18 @@
 	"fallback": "minecraft:empty",
 	"elements": [
 		{
-			"weight": 100,
+			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:hobbit/hobbit_tavern_large_1",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height": true,
+				"apply_waterlogging": false,
+				"shift_structure_up_by": -6,
+				"foundation_block": {
+					"Name": "minecraft:dirt"
+				}
 			}
 		}
 	]

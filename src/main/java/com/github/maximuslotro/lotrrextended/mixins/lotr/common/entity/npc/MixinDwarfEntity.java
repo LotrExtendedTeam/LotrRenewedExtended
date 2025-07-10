@@ -30,8 +30,8 @@ public abstract class MixinDwarfEntity extends NPCEntity {
      * @param type  A placeholder {@link EntityType} for {@link DwarfEntity}, required for superclass initialization.
      * @param world A placeholder {@link World} instance, required for superclass initialization.
      */
-	public MixinDwarfEntity(EntityType<? extends DwarfEntity> type, World w) {
-		super(type, w);
+	public MixinDwarfEntity(EntityType<? extends DwarfEntity> type, World world) {
+		super(type, world);
 	}
 	/**
      * Injects a custom AI goal at the end of the {@code addNPCAI} method execution.

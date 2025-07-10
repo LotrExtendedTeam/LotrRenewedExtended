@@ -31,8 +31,8 @@ public abstract class MixinManEntity extends AbstractMannishEntity {
      * @param type  A placeholder {@link EntityType} for {@link AbstractMannishEntity}, required for superclass initialization.
      * @param world A placeholder {@link World} instance, required for superclass initialization.
      */
-	public MixinManEntity(EntityType<? extends AbstractMannishEntity> type, World w) {
-		super(type, w);
+	public MixinManEntity(EntityType<? extends AbstractMannishEntity> type, World world) {
+		super(type, world);
 	}
 	/**
      * Injects a custom AI goal at the end of the {@code addNPCAI} method execution.

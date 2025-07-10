@@ -1,0 +1,66 @@
+{
+	"name": "lotrextended:blue_mountains/smithy_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/smithy/blue_mountains_smithy_large_1",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"apply_waterlogging" : false,
+				"shift_structure_up_by" : -5,
+				"chunk_corner_offset" : 0,
+				"foundation_block": {
+					"Name": "minecraft:stone"
+				}
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/smithy/blue_mountains_smithy_large_2",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"apply_waterlogging" : false,
+				"shift_structure_up_by" : -5,
+				"chunk_corner_offset" : 0,
+				"foundation_block": {
+					"Name": "minecraft:stone"
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/smithy/blue_mountains_smithy_small_1",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"chunk_corner_offset" : 0,
+				"foundation_block": {
+					"Name": "lotr:blue_brick"
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/smithy/blue_mountains_smithy_small_2",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"chunk_corner_offset" : 0,
+				"foundation_block": {
+					"Name": "lotr:blue_brick"
+				}
+			}
+		}
+	]
+}

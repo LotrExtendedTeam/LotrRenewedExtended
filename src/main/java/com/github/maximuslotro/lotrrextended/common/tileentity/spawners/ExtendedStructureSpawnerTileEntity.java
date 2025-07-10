@@ -12,9 +12,16 @@ import net.minecraft.world.server.ServerWorld;
 
 /**
  * Replaced by the new Entity Spawner system for Structures
- * @deprecated
+ *
+ * @param <V> the type of {@link TileEntity} associated with the spawner
+ * @param <T> the type of {@link MobEntity} being spawned
+ *
+ * @deprecated Replaced by the new Entity Spawner system for structures.
  * @since beta-1.6
- * */
+ *
+ * @see TileEntity
+ * @see ITickableTileEntity
+ */
 @Deprecated
 public abstract class ExtendedStructureSpawnerTileEntity<V extends TileEntity, T extends MobEntity> extends TileEntity implements ITickableTileEntity {
 

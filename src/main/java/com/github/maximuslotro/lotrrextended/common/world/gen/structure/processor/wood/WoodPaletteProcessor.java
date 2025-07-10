@@ -30,17 +30,48 @@ import net.minecraft.world.gen.feature.template.StructureProcessor;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class WoodPaletteProcessor extends StructureProcessor{
+/**
+ * A structure processor that replaces blocks in a structure based on a wood pallet mapping.
+ * <p>
+ * This processor handles block replacement by swapping blocks from a base wood pallet
+ * with corresponding blocks from a picked wood pallet. It supports weighted random selection
+ * among multiple wood types to vary the structure's wood style.
+ * <p>
+ * The processor uses a codec for serialization and deserialization of its state,
+ * including the base pallet name, an optionally preselected picked pallet name,
+ * and a weighted list of wood type entries.
+ */
+public class WoodPaletteProcessor extends StructureProcessor {
+	/**
+	 * Codec for serializing and deserializing the processor.
+	 * Includes:
+	 * - built_pallet: base wood pallet name
+	 * - picked_pallet: optionally preselected pallet name (default "null")
+	 * - woodTypes: weighted list of wood types with weights
+	 */
 	public static final Codec<WoodPaletteProcessor> CODEC = RecordCodecBuilder.create((processorInstance) -> processorInstance.group(Codec.STRING.fieldOf("built_pallet").forGetter(WoodPaletteProcessor::getBasePalletName),
-            Codec.STRING.fieldOf("picked_pallet").orElse("null").forGetter(WoodPaletteProcessor::getPickedPalletName),
-            Codec.mapPair(Codec.STRING.fieldOf("wood_type"), Codec.INT.fieldOf("weight")).codec().listOf().promotePartial(Util.prefix("Pool element: ", ExtendedLog::error))
-            .fieldOf("woodTypes").forGetter(WoodPaletteProcessor::getRawPallets)).apply(processorInstance, WoodPaletteProcessor::new));
+		Codec.STRING.fieldOf("picked_pallet").orElse("null").forGetter(WoodPaletteProcessor::getPickedPalletName),
+		Codec.mapPair(Codec.STRING.fieldOf("wood_type"), Codec.INT.fieldOf("weight")).codec().listOf().promotePartial(Util.prefix("Pool element: ", ExtendedLog::error))
+		.fieldOf("woodTypes").forGetter(WoodPaletteProcessor::getRawPallets)).apply(processorInstance, WoodPaletteProcessor::new));
+	/** The currently selected wood pallet to apply during structure processing. May be null if not yet initialized. */
 	private WoodPallet pickedPallet;
+	/** The base/default wood pallet used as a reference for block replacements. */
 	private final WoodPallet basePallet;
+	/** Raw list of wood pallet name and weight pairs used to build the weighted pallet selection pool. */
 	private final List<Pair<String, Integer>> rawPallets;
+	/** Flattened list of pallet names duplicated according to their weight, used for random selection. */
 	public final List<String> pallets;
+	/** Flag indicating whether the processor has logged a runtime initialization warning. */
 	private boolean flaged = false;
+	/** Flag indicating whether the pallet replacement has been applied and logged. */
 	private boolean applied = false;
+	/**
+	 * Constructs a WoodPaletteProcessor instance.
+	 *
+	 * @param defaultName The name of the base wood pallet used for initial block mappings.
+	 * @param selectedpallet The optionally preselected wood pallet name; "null" if none.
+	 * @param rawPallets List of pairs of wood pallet names and their weights for random selection.
+	 */
 	public WoodPaletteProcessor(String defaultName, String selectedpallet, List<Pair<String, Integer>> rawPallets) {
 		this.rawPallets = rawPallets;
 		this.pallets = Lists.newArrayList();
@@ -56,19 +87,57 @@ public class WoodPaletteProcessor extends StructureProcessor{
 		}
 		basePallet = WoodPallets.getPalletForname(defaultName);
 	}
-
+	/**
+	 * Checks if the processor has an initialized picked wood pallet.
+	 *
+	 * @return true if a picked pallet has been selected, false otherwise.
+	 */
 	public boolean isInitialized() {
 		return pickedPallet!=null;
 	}
-
+	/**
+	 * Randomly selects a wood pallet from the weighted list.
+	 *
+	 * @param pRandom Random number generator to select the pallet.
+	 * @return The randomly chosen WoodPallet.
+	 */
 	private WoodPallet getRandomTemplate(Random pRandom) {
 		return WoodPallets.getPalletForname(this.pallets.get(pRandom.nextInt(this.pallets.size())));
 	}
-
+	/**
+	 * Generates and sets the picked pallet randomly from the weighted pool.
+	 *
+	 * @param random Random instance to use for selection.
+	 */
 	public void generateAndSetPallet(Random random) {
 		pickedPallet = this.getRandomTemplate(random);
 	}
-
+	/**
+	 * Processes a block during structure placement, replacing blocks from the base wood pallet
+	 * with corresponding blocks from the picked wood pallet according to the pallet mappings.
+	 * <p>
+	 * If the processor is not yet initialized with a picked pallet, it generates one using
+	 * the placement settings' random source. It logs a warning and flags if this happens
+	 * at runtime unexpectedly.
+	 * <p>
+	 * Blocks that belong to the base pallet's block map are replaced by the matching block
+	 * from the picked pallet. Special handling is done for vertical slabs and slab variants
+	 * to ensure correct block type substitutions.
+	 * <p>
+	 * If the picked pallet is empty or the same as the base pallet, the original block is returned unchanged.
+	 * <p>
+	 * Air blocks and missing blocks in the picked pallet map are preserved without replacement.
+	 *
+	 * @param world The world reader providing context about the world.
+	 * @param pos The position of the structure being placed.
+	 * @param blockPos The position of the block within the structure.
+	 * @param blockInfoLocal The block information from the local template.
+	 * @param blockInfoWorld The block information as it currently exists in the world.
+	 * @param placmentData Placement settings, including random number generator.
+	 * @param template The structure template being processed, may be null.
+	 * @return A new {@link net.minecraft.world.gen.feature.template.Template.BlockInfo} with the replaced block state if applicable,
+	 *         or the original block info if no replacement is performed.
+	 */
 	@Override
 	public Template.BlockInfo process(IWorldReader world, BlockPos pos, BlockPos blockPos, Template.BlockInfo blockInfoLocal, Template.BlockInfo blockInfoWorld, PlacementSettings placmentData, @Nullable Template template) {
 		if(!isInitialized()) {
@@ -126,36 +195,64 @@ public class WoodPaletteProcessor extends StructureProcessor{
 	protected IStructureProcessorType<?> getType() {
 		return ExtendedStructureProcessors.WOOD_PALETTE_PROCESSOR;
 	}
-
+	/**
+	 * Gets the currently picked wood pallet.
+	 *
+	 * @return The picked WoodPallet, or null if none selected.
+	 */
 	@Nullable
 	public WoodPallet getPickedPallet() {
 		return pickedPallet;
 	}
-
+	/**
+	 * Gets the name of the currently picked wood pallet.
+	 *
+	 * @return The name of the picked pallet, or "null" if none selected.
+	 */
 	public String getPickedPalletName() {
 		if(!isInitialized()) {
 			return "null";
 		}
 		return pickedPallet.getName();
 	}
-
+	/**
+	 * Gets the base wood pallet used for initial block mappings.
+	 *
+	 * @return The base WoodPallet.
+	 */
 	public WoodPallet getBasePallet() {
 		return basePallet;
 	}
-
+	/**
+	 * Gets the name of the base wood pallet.
+	 *
+	 * @return The base pallet name.
+	 */
 	public String getBasePalletName() {
 		return basePallet.getName();
 	}
-
+	/**
+	 * Helper method to find the reverse key in a map for a given value.
+	 *
+	 * @param map The map to search.
+	 * @param value The value to find.
+	 * @param <K> The key type.
+	 * @param <V> The value type.
+	 * @return The key associated with the given value, or null if not found.
+	 */
 	private <K, V> K getKey(Map<K, V> map, V value) {
-	    for (Entry<K, V> entry : map.entrySet()) {
-	        if (entry.getValue().equals(value)) {
-	            return entry.getKey();
-	        }
-	    }
-	    return null;
+		for (Entry<K, V> entry : map.entrySet()) {
+			if (entry.getValue().equals(value)) {
+				return entry.getKey();
+			}
+		}
+		return null;
 	}
-
+	/**
+	 * Gets the raw weighted list of wood pallets.
+	 *
+	 * @return The list of pairs containing wood pallet names and their weights.
+	 */
 	public List<Pair<String, Integer>> getRawPallets() {
 		return rawPallets;
 	}
