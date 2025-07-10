@@ -4,9 +4,8 @@ import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedJigsawManager;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedSingleJigsawPiece;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -17,6 +16,7 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.jigsaw.JigsawPiece;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureManager;
@@ -38,6 +38,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
  * @param <C> The feature configuration type for this structure.
  */
 public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends StructureStart<C>{
+	public ExtendedSingleJigsawPiece cashedPostProcessedPiece=null;
 	/**
      * Constructs a new ExtendedStructureStartV5.
      *
@@ -85,11 +86,13 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
         	ExtendedLog.error("Tried generating a structure from an empty pool! ");
         	return;
         }
-        int shiftAmount = ExtendedJigsawManager.addPieces(dynamicRegistryManager,
-        	new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), maxDepth()), AbstractVillagePiece::new,
+        JigsawPiece rootJigsawPiece = ExtendedJigsawManager.addPieces(dynamicRegistryManager,
+        	new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), 7), AbstractVillagePiece::new,
         	chunkGenerator, templateManagerIn, chunkPos, this.pieces, this.random, false, true);
-
-        this.pieces.forEach(piece -> piece.move(0, shiftAmount, 0));
+        if(rootJigsawPiece instanceof ExtendedSingleJigsawPiece) {
+        	cashedPostProcessedPiece = ((ExtendedSingleJigsawPiece)rootJigsawPiece);
+        	this.pieces.forEach(piece -> piece.move(0, cashedPostProcessedPiece.getVerticalShiftStructureBy(), 0));
+        }
 
 //        Vector3i structureCenter = this.pieces.get(0).getBoundingBox().getCenter();
 //        int xOffset = blockpos.getX() - structureCenter.getX();
@@ -99,26 +102,8 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 //        }
         this.calculateBoundingBox();
 	}
-	/**
-     * Returns the maximum Jigsaw generation depth for structure generation.
-     * Higher values allow deeper recursive placement of pieces.
-     *
-     * @return The maximum recursion depth (default 7).
-     */
-	public int maxDepth() {
-		return 7;
-	}
 
 	// ############################################ FOUNDATION LAYING LOGIC ###########################################
-	/**
-     * Determines whether to generate a full solid foundation under the structure.
-     * Override to return true if the structure requires filling air/water beneath it.
-     *
-     * @return True to generate full structure foundations; false otherwise.
-     */
-	public boolean usesFullStructureFoundations() {
-		return false;
-	}
 	/**
      * Returns the upwards offset applied to the base Y value when laying foundations.
      * Override to align the structure basement with terrain.
@@ -129,18 +114,9 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 		return 0;
 	}
 	/**
-     * Returns the default block state to use when filling foundations beneath the structure.
-     * Override to use a different block for structural support (e.g., stone, brick, etc.).
-     *
-     * @return The default foundation block state.
-     */
-	public BlockState defaultFoundationmaterial() {
-		return Blocks.COBBLESTONE.defaultBlockState();
-	}
-	/**
      * Handles placing the structure into the world, including optional foundation filling logic.
-     * If {@link #usesFullStructureFoundations()} is true, this will fill air or liquid blocks beneath
-     * the structure down to solid ground using {@link #defaultFoundationmaterial()}.
+     * If {@link ExtendedSingleJigsawPiece#getFoundationBlock()} is not {@link net.minecraft.block.AbstractBlock.AbstractBlockState#isAir()}, this will fill air or liquid blocks beneath
+     * the structure down to solid ground using {@link ExtendedSingleJigsawPiece#getFoundationBlock()}.
      *
      * @param world          The world reader for block operations.
      * @param structureManager The structure manager.
@@ -152,7 +128,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 	@Override
 	public void placeInChunk(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGenerator, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
 		super.placeInChunk(world, structureManager, chunkGenerator, random, boundingBox, chunkPos);
-		if(usesFullStructureFoundations()) {
+		if(cashedPostProcessedPiece!=null && !cashedPostProcessedPiece.getFoundationBlock().isAir()) {
 			int baseYvalue = this.boundingBox.y0 + foundationUpwardsOffsetBasementSpecial();
 			for (int xValue = boundingBox.x0; xValue <= boundingBox.x1; ++xValue) {
 				for (int zValue = boundingBox.z0; zValue <= boundingBox.z1; ++zValue) {
@@ -171,7 +147,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 								if (!world.isEmptyBlock(blockpos1) && !world.getBlockState(blockpos1).getMaterial().isLiquid()) {
 									break;
 								}
-								world.setBlock(blockpos1, defaultFoundationmaterial(), 2);
+								world.setBlock(blockpos1, cashedPostProcessedPiece.getFoundationBlock(), 2);
 							}
 						}
 					}

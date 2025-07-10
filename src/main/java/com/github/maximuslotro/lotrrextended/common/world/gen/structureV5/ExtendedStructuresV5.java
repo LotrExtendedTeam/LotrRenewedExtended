@@ -10,8 +10,6 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.SinglePoolStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.WeightedPoolStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits.ExtendedStructureBlueMountainSmithy;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits.ExtendedStructureHobbitHoleLarge;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits.ExtendedStructureHobbitTavernLarge;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
@@ -20,7 +18,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.jigsaw.IJigsawDeserializer;
 import net.minecraft.world.gen.feature.jigsaw.JigsawPiece;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -49,12 +46,12 @@ public class ExtendedStructuresV5 {
 
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_BARN = STRUCTURE_REGISTRY.register("hobbit_barn", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOLE_SMALL = STRUCTURE_REGISTRY.register("hobbit_hole_small", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
-	public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_HOLE_LARGE = STRUCTURE_REGISTRY.register("hobbit_hole_large", () -> new ExtendedStructureHobbitHoleLarge(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOLE_LARGE = STRUCTURE_REGISTRY.register("hobbit_hole_large", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOUSE = STRUCTURE_REGISTRY.register("hobbit_house", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_PICNIC_BLANKET = STRUCTURE_REGISTRY.register("hobbit_picnic_blanket", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_PICNIC_TABLE = STRUCTURE_REGISTRY.register("hobbit_picnic_table", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_TAVERN_SMALL = STRUCTURE_REGISTRY.register("hobbit_tavern_small", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
-	public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_TAVERN_LARGE = STRUCTURE_REGISTRY.register("hobbit_tavern_large", () -> new ExtendedStructureHobbitTavernLarge(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_TAVERN_LARGE = STRUCTURE_REGISTRY.register("hobbit_tavern_large", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_WINDMILL = STRUCTURE_REGISTRY.register("hobbit_windmill", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
 
 	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_CAMP = STRUCTURE_REGISTRY.register("ranger_camp", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
@@ -112,7 +109,7 @@ public class ExtendedStructuresV5 {
 		register(BARROW_DOWN_BARROWS.get(), true,      7,  3,  57854769);
 		register(BREE_HAMLET.get(), true,              50, 35, 57854769);
 		register(BREE_VILLAGE.get(), true,             40, 25, 78547894);
-		register(BLUE_MOUNTAIN_SMITHY.get(), false,    45, 15, 589758935);
+		register(BLUE_MOUNTAIN_SMITHY.get(), false,    35, 15, 589758935);
 	}
 
 	/**

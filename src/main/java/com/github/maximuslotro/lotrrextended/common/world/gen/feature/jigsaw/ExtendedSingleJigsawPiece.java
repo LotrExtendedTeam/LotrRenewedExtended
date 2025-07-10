@@ -7,6 +7,8 @@ import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -51,7 +53,7 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	public static final Codec<ExtendedSingleJigsawPiece> CODEC = RecordCodecBuilder.create((instance) -> {
 		return instance.group(templateCodec(), processorsCodec(), projectionCodec(), waterloggingCodec(), maxPlaceDistanceCodec(), 
 			maxDepthCodec(), ingnoreBBconflictsCodec(), blacklistNameCodec(), snapUpToWaterheightCodec(), 
-			shiftStructureUpByCodec(), chunkCornerOffsetCodec()).apply(instance, ExtendedSingleJigsawPiece::new);
+			shiftStructureUpByCodec(), chunkCornerOffsetCodec(), foundationBlockCodec()).apply(instance, ExtendedSingleJigsawPiece::new);
 	});
 	/**
 	 * If true, liquids will propagate through waterloggable blocks; if false, water will stay confined inside the designated blocks.
@@ -87,6 +89,11 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	 * The offset applied to chunk corner coordinates for centering structures. (value between 0 and 15)
 	 */
 	protected final int chunkCornerOffset;
+
+	/**
+	 * The blockstate to use when filling foundations beneath the structure.
+	 */
+	protected final BlockState foundation;
 
 	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Boolean> waterloggingCodec() {
 		return Codec.BOOL.optionalFieldOf("apply_waterlogging", true).forGetter((piece) -> {
@@ -135,6 +142,12 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 			return piece.chunkCornerOffset;
 		});
 	}
+
+	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, BlockState> foundationBlockCodec() {
+		return BlockState.CODEC.optionalFieldOf("foundation_block", Blocks.AIR.defaultBlockState()).forGetter((piece) -> {
+			return piece.foundation;
+		});
+	}
 	/**
 	 * Constructs an {@link ExtendedSingleJigsawPiece} with advanced configuration for structure placement.
 	 *
@@ -149,10 +162,11 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	 * @param snapUpToWaterheight  Whether to snap placement to water height.
 	 * @param shiftStructureUpBy   Vertical offset from ground height to spawn at.
 	 * @param chunkCornerOffset    Horizontal offset from chunk corner to spawn at.
+	 * @param foundation           The block to use for a foundation
 	 */
 	protected ExtendedSingleJigsawPiece(Either<ResourceLocation, Template> template, Supplier<StructureProcessorList> processors, 
 		JigsawPattern.PlacementBehaviour placementType, boolean apply_waterlogging, int maxPlaceDistance, int maxDepth, boolean ingnoreBBconflicts,
-		String blacklist_name, boolean snapUpToWaterheight, int shiftStructureUpBy, int chunkCornerOffset) {
+		String blacklist_name, boolean snapUpToWaterheight, int shiftStructureUpBy, int chunkCornerOffset, BlockState foundation) {
 		super(template, processors, placementType);
 		this.apply_waterlogging = apply_waterlogging;
 		this.maxPlaceDistance = maxPlaceDistance;
@@ -162,6 +176,7 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		this.snapUpToWaterheight = snapUpToWaterheight;
 		this.shiftStructureUpBy = shiftStructureUpBy;
 		this.chunkCornerOffset = chunkCornerOffset;
+		this.foundation = foundation;
 	}
 	/**
 	 * Retrieves placement settings with liquid retention set according to {@link #apply_waterlogging}.
@@ -269,5 +284,10 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	public int getChunkCornerOffset() {
 		return chunkCornerOffset;
 	}
-
+	/**
+	 * @return Get the {@link BlockState} that should be used for foundations if need be.
+	 */
+	public BlockState getFoundationBlock() {
+		return foundation;
+	}
 }

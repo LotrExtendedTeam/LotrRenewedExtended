@@ -8,7 +8,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.FlatGenerationSettings;
-import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 
 /**
@@ -31,12 +30,12 @@ public class ExtendedConfiguredStructuresV5 {
 	//Static instances of our structures so we can reference them and add it to biomes easily.
 	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_BARN = register(ExtendedStructuresV5.HOBBIT_BARN.get().configured(new SinglePoolConfig("hobbit/hobbit_barn_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_HOLE_SMALL = register(ExtendedStructuresV5.HOBBIT_HOLE_SMALL.get().configured(new SinglePoolConfig("hobbit/hobbit_hole_small_pool")));
-	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_HOLE_LARGE = register(ExtendedStructuresV5.HOBBIT_HOLE_LARGE.get().configured(IFeatureConfig.NONE));
+	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_HOLE_LARGE = register(ExtendedStructuresV5.HOBBIT_HOLE_LARGE.get().configured(new SinglePoolConfig("hobbit/hobbit_hole_large_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_HOUSE = register(ExtendedStructuresV5.HOBBIT_HOUSE.get().configured(new SinglePoolConfig("hobbit/hobbit_house_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_PICNIC_BLANKET = register(ExtendedStructuresV5.HOBBIT_PICNIC_BLANKET.get().configured(new SinglePoolConfig("hobbit/hobbit_picnic_blanket_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_PICNIC_TABLE = register(ExtendedStructuresV5.HOBBIT_PICNIC_TABLE.get().configured(new SinglePoolConfig("hobbit/hobbit_picnic_table_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_TAVERN_SMALL = register(ExtendedStructuresV5.HOBBIT_TAVERN_SMALL.get().configured(new SinglePoolConfig("hobbit/hobbit_tavern_small_pool")));
-	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_TAVERN_LARGE = register(ExtendedStructuresV5.HOBBIT_TAVERN_LARGE.get().configured(IFeatureConfig.NONE));
+	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_TAVERN_LARGE = register(ExtendedStructuresV5.HOBBIT_TAVERN_LARGE.get().configured(new SinglePoolConfig("hobbit/hobbit_tavern_large_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_HOBBIT_WINDMILL = register(ExtendedStructuresV5.HOBBIT_WINDMILL.get().configured(new SinglePoolConfig("hobbit/hobbit_windmill_pool")));
 
 	public static StructureFeature<?, ?> CONFIGURED_RANGER_CAMP = register(ExtendedStructuresV5.RANGER_CAMP.get().configured(new SinglePoolConfig("ranger/camp_parts/firepit_pool")));
