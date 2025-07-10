@@ -20,6 +20,8 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 public class ExtendedBlueMountainsCommanderEntity extends BlueDwarfEntity implements ExtendedCaptainEntity {
 
 	public ExtendedBlueMountainsCommanderEntity(EntityType<? extends ExtendedBlueMountainsCommanderEntity> type, World w) {
@@ -62,7 +64,8 @@ public class ExtendedBlueMountainsCommanderEntity extends BlueDwarfEntity implem
 	}
 
 	@Override
-	public ResourceLocation getHireableProfile() {
-		return ExtendedHiredUnitTypes.BLUE_DWARF_WARRIOR;
+	public List<ResourceLocation> getHireableProfiles() {
+		// Example of multiple unit types - let's say this captain can hire both Blue Dwarves and regular Dwarves
+		return java.util.Arrays.asList(ExtendedHiredUnitTypes.BLUE_DWARF_WARRIOR, ExtendedHiredUnitTypes.DWARF_WARRIOR);
 	}
 }

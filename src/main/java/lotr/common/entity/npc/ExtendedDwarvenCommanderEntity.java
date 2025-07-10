@@ -1,6 +1,5 @@
 package lotr.common.entity.npc;
 
-
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
@@ -20,6 +19,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity implements ExtendedCaptainEntity {
 
@@ -63,7 +64,10 @@ public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity implements E
 	}
 
 	@Override
-	public ResourceLocation getHireableProfile() {
-		return ExtendedHiredUnitTypes.DWARF_WARRIOR;
+	public List<ResourceLocation> getHireableProfiles() {
+		return java.util.Arrays.asList(
+			ExtendedHiredUnitTypes.DWARF_WARRIOR,
+			ExtendedHiredUnitTypes.BLUE_DWARF_WARRIOR
+		);
 	}
 }
