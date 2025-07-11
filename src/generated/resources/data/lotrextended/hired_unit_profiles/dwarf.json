@@ -3,9 +3,9 @@
   "entity_type": "lotr:dwarf",
   "language": {
     "translateStrings": true,
-    "entity_title": "entity_title.lotrextended.hired_dwarf",
-    "entity_shortname": "entity_shortname.lotrextended.hired_dwarf",
-    "entity_unit_type": "entity_unit_type.lotrextended.hired_dwarf",
+    "entity_title": "entity.lotrextended.hiredunits.entity_title",
+    "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
+    "entity_unit_type": "entity.lotr.dwarf",
     "attack_type": "melee"
   },
   "hiring": {
@@ -46,7 +46,6 @@
         }
       }
     ],
-    "setIdleFromMelee": true,
     "melee": [
       {
         "weight": 7,

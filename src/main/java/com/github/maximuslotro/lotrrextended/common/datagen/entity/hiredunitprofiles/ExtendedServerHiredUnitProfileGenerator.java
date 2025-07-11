@@ -24,7 +24,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 	@Override
 	public void makeStructureSpawnPools(Consumer<ExtendedServerHiredUnitProfile> pConsumer) {
 		// Bree Units
-		make(LOTREntities.BREE_MAN.get(), ExtendedUnitAttackType.MELEE).setLocal(true, "bree_man", "Bree-land Man").setPurchaseInfo(20, false, 75)
+		make(LOTREntities.BREE_MAN.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(20, false, 75)
 		.addHelmetPoolItem(ItemStack.EMPTY, 1)
 		.addChestplatePoolItem(ItemStack.EMPTY, 2)
 		.addLeggingPoolItem(ItemStack.EMPTY, 2)
@@ -34,9 +34,9 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addMeleePoolItem(new ItemStack(Items.IRON_SWORD), 1)
 		.addMeleePoolItem(new ItemStack(Items.IRON_AXE), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.BREE_MAN);
+		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.BREE_MAN);
 
-		make(LOTREntities.BREE_HOBBIT.get(), ExtendedUnitAttackType.MELEE).setLocal(true, "bree_hobbit", "Bree-land Hobbit").setPurchaseInfo(20, false, 75)
+		make(LOTREntities.BREE_HOBBIT.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(20, false, 75)
 		.addHelmetPoolItem(ItemStack.EMPTY, 1)
 		.addChestplatePoolItem(ItemStack.EMPTY, 2)
 		.addLeggingPoolItem(ItemStack.EMPTY, 2)
@@ -44,9 +44,9 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addMeleePoolItem(new ItemStack(LOTRItems.BRONZE_DAGGER.get()), 3)
 		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_DAGGER.get()), 4)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.BREE_HOBBIT);
+		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.BREE_HOBBIT);
 
-		make(LOTREntities.BREE_GUARD.get(), ExtendedUnitAttackType.MELEE).setLocal(true, "bree_guard", "Bree-land Guard").setPurchaseInfo(30, false, 100)
+		make(LOTREntities.BREE_GUARD.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(30, false, 100)
 		.addHelmetPoolItem(new ItemStack(Items.IRON_HELMET), 1)
 		.addChestplatePoolItem(new ItemStack(Items.CHAINMAIL_CHESTPLATE), 2)
 		.addChestplatePoolItem(LeatherDyeUtil.dyeLeather(Items.LEATHER_CHESTPLATE, 11373426), 1)
@@ -66,7 +66,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.BREE_GUARD);
 
 		// Gundabad Units
-		make(LOTREntities.GUNDABAD_ORC.get(), ExtendedUnitAttackType.MELEE).setLocal(true, "gundabad_orc", "Gundabad Orc").setPurchaseInfo(25, false, 100)
+		make(LOTREntities.GUNDABAD_ORC.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(25, false, 100)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BONE_HELMET.get()), 1)
 		.addHelmetPoolItem(new ItemStack(Items.LEATHER_HELMET), 1)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BRONZE_HELMET.get()), 1)
@@ -109,7 +109,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addShieldItem(ItemStack.EMPTY, 2)
 		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.GUNDABAD_ORC);
 
-		make(LOTREntities.GUNDABAD_ORC_ARCHER.get(), ExtendedUnitAttackType.RANGED).setLocal(true, "gundabad_orc_archer", "Gundabad Orc Archer").setPurchaseInfo(50, false, 150)
+		make(LOTREntities.GUNDABAD_ORC_ARCHER.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(50, false, 150)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BONE_HELMET.get()), 1)
 		.addHelmetPoolItem(new ItemStack(Items.LEATHER_HELMET), 1)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BRONZE_HELMET.get()), 1)
@@ -145,7 +145,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.GUNDABAD_ORC_ARCHER);
 
-		make(ExtendedEntities.GUNDABAD_URUK.get(), ExtendedUnitAttackType.MELEE).setLocal(true, "gundabad_uruk", "Gundabad Uruk").setPurchaseInfo(30, false, 350)
+		make(ExtendedEntities.GUNDABAD_URUK.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(30, false, 350)
 		.addHelmetPoolItem(new ItemStack(ExtendedItems.GUNDABAD_URUK_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(ExtendedItems.GUNDABAD_URUK_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(ExtendedItems.GUNDABAD_URUK_LEGGINGS.get()), 1)
@@ -163,7 +163,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.GUNDABAD_URUK);
 
-		make(ExtendedEntities.GUNDABAD_URUK_ARCHER.get(), ExtendedUnitAttackType.RANGED).setLocal(true, "gundabad_uruk_archer", "Gundabad Uruk Archer").setPurchaseInfo(50, false, 400)
+		make(ExtendedEntities.GUNDABAD_URUK_ARCHER.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(50, false, 400)
 		.addHelmetPoolItem(new ItemStack(ExtendedItems.GUNDABAD_URUK_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(ExtendedItems.GUNDABAD_URUK_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(ExtendedItems.GUNDABAD_URUK_LEGGINGS.get()), 1)
@@ -176,7 +176,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.GUNDABAD_URUK_ARCHER);
 
 		// Dunedain Units
-		make(ExtendedEntities.DUNEDAIN_RANGER.get(), ExtendedUnitAttackType.RANGED).setLocal(true, "dunedain_ranger", "Dúnedain Ranger").setPurchaseInfo(40, false, 100)
+		make(ExtendedEntities.DUNEDAIN_RANGER.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(40, false, 100)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.RANGER_NORTH_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.RANGER_NORTH_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.RANGER_NORTH_LEGGINGS.get()), 1)
@@ -195,7 +195,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.DUNEDAIN_RANGER);
 
 		// Blue Mountain Units
-		make(LOTREntities.BLUE_MOUNTAINS_DWARF.get(), ExtendedUnitAttackType.MELEE).setLocal(true, "blue_mountain_dwarf", "Blue Mountains Dwarf").setPurchaseInfo(30, false, 200)
+		make(LOTREntities.BLUE_MOUNTAINS_DWARF.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(30, false, 200)
 		.addHelmetPoolItem(ItemStack.EMPTY, 1)
 		.addChestplatePoolItem(ItemStack.EMPTY, 1)
 		.addLeggingPoolItem(ItemStack.EMPTY, 1)
@@ -205,9 +205,9 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addMeleePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_SPEAR.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_AXE.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.BLUE_DWARF);
+		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.BLUE_DWARF);
 
-		make(LOTREntities.BLUE_MOUNTAINS_WARRIOR.get(), ExtendedUnitAttackType.MELEE).setLocal(true, "blue_mountain_warrior", "Blue Mountains Warrior").setPurchaseInfo(40, false, 250)
+		make(LOTREntities.BLUE_MOUNTAINS_WARRIOR.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(40, false, 250)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()), 1)
@@ -219,7 +219,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.BLUE_DWARF_WARRIOR);
 
-		make(LOTREntities.BLUE_MOUNTAINS_ARCHER.get(), ExtendedUnitAttackType.RANGED).setLocal(true, "blue_mountain_archer", "Blue Mountains Archer").setPurchaseInfo(50, false, 300)
+		make(LOTREntities.BLUE_MOUNTAINS_ARCHER.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(50, false, 300)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()), 1)
@@ -228,10 +228,10 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.BLUE_DWARF_ARCHER);
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.BLUE_DWARF_ARCHER);
 
 		// Dwarven Units
-		make(LOTREntities.DWARF.get(), ExtendedUnitAttackType.MELEE).setLocal(true, "dwarf", "Dwarf").setPurchaseInfo(30, false, 200)
+		make(LOTREntities.DWARF.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(30, false, 200)
 		.addHelmetPoolItem(ItemStack.EMPTY, 1)
 		.addChestplatePoolItem(ItemStack.EMPTY, 1)
 		.addLeggingPoolItem(ItemStack.EMPTY, 1)
@@ -241,9 +241,9 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addMeleePoolItem(new ItemStack(LOTRItems.DWARVEN_SPEAR.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.DWARVEN_AXE.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.DWARF);
+		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.DWARF);
 
-		make(LOTREntities.DWARF_WARRIOR.get(), ExtendedUnitAttackType.MELEE).setLocal(true, "dwarven_warrior", "Dwarven Warrior").setPurchaseInfo(40, false, 250)
+		make(LOTREntities.DWARF_WARRIOR.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(40, false, 250)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.DWARVEN_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.DWARVEN_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.DWARVEN_LEGGINGS.get()), 1)
@@ -255,7 +255,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.DWARF_WARRIOR);
 
-		make(LOTREntities.DWARF_ARCHER.get(), ExtendedUnitAttackType.RANGED).setLocal(true, "dwarven_archer", "Dwarven Archer").setPurchaseInfo(50, false, 300)
+		make(LOTREntities.DWARF_ARCHER.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(50, false, 300)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.DWARVEN_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.DWARVEN_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.DWARVEN_LEGGINGS.get()), 1)
@@ -264,7 +264,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.DWARF_ARCHER);
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.DWARF_ARCHER);
 	}
 
 }

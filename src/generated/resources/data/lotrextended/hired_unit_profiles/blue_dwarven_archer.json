@@ -3,9 +3,9 @@
   "entity_type": "lotr:blue_mountains_archer",
   "language": {
     "translateStrings": true,
-    "entity_title": "entity_title.lotrextended.hired_blue_mountain_archer",
-    "entity_shortname": "entity_shortname.lotrextended.hired_blue_mountain_archer",
-    "entity_unit_type": "entity_unit_type.lotrextended.hired_blue_mountain_archer",
+    "entity_title": "entity.lotrextended.hiredunits.entity_title",
+    "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
+    "entity_unit_type": "entity.lotr.blue_mountains_archer",
     "attack_type": "ranged"
   },
   "hiring": {
@@ -50,7 +50,7 @@
         }
       }
     ],
-    "setIdleFromMelee": true,
+    "setIdleFromRanged": true,
     "melee": [
       {
         "weight": 1,

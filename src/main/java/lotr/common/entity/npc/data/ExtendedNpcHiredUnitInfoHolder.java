@@ -764,7 +764,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	public TextComponent getHiredUnitNameAndTitle() {
 		if(getUnitProfile().stringsAreTranslated()) {
 			return new TranslationTextComponent(getUnitProfile().getEntityUnitTitle(),
-				new StringTextComponent(thisEntity.getPersonalInfo().getName()));
+				new StringTextComponent(thisEntity.getPersonalInfo().getName()), new TranslationTextComponent(getUnitProfile().getEntityUnitTypeName()));
 		}
 		return new StringTextComponent(getUnitProfile().getEntityUnitShorthandName());
 	}
