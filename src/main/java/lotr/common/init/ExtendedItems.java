@@ -614,7 +614,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GUNDABAD_SHIELD;
 	public static RegistryObject<Item> DUNEDAIN_SHIELD;
 	public static RegistryObject<Item> BREE_SHIELD;
-	public static RegistryObject<Item> BLUE_MOUNTAINS_SHIELD;
+	public static RegistryObject<Item> BLUE_DWARVEN_SHIELD;
 	
 	public static RegistryObject<Item> BOWSTRING;
 	public static RegistryObject<Item> GUNDABAD_URUK_BOW;

@@ -67,6 +67,9 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BLUE_MOUNTAINS_MINE_SUPPLY_CHEST = registerChest("blue_mountains_mine_supply");
 	public static final ResourceLocation BLUE_MOUNTAINS_HOUSE_CHEST = registerChest("blue_mountains_house");
 	public static final ResourceLocation BLUE_MOUNTAINS_SMITH_CHEST = registerChest("blue_mountains_smith");
+	public static final ResourceLocation BLUE_MOUNTAINS_STRONGHOLD_CHEST = registerChest("blue_mountains_stronghold");
+	public static final ResourceLocation BLUE_MOUNTAINS_FOOD_CHEST = registerChest("blue_mountains_food");
+	public static final ResourceLocation BLUE_MOUNTAINS_TREASURE_CHEST = registerChest("blue_mountains_treasure");
 
 	public static final ResourceLocation HOBBIT_KEGS = registerKeg("hobbit");
 	public static final ResourceLocation RANGER_KEGS = registerKeg("ranger");

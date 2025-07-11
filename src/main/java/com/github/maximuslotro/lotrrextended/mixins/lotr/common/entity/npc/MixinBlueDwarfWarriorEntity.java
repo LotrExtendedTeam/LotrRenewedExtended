@@ -68,7 +68,7 @@ public abstract class MixinBlueDwarfWarriorEntity extends BlueDwarfEntity{
 			setItemSlot(EquipmentSlotType.HEAD, new ItemStack(LOTRItems.BLUE_DWARVEN_HELMET.get()));
 		}
 		// Extended Start
-		setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.BLUE_MOUNTAINS_SHIELD.get()));
+		setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.BLUE_DWARVEN_SHIELD.get()));
 		// Extended End
 		return spawnData;
 	}

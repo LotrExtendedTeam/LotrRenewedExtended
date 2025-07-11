@@ -44,7 +44,7 @@ public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity implements E
 
 	@Override
     protected Goal createDwarfAttackGoal() {
-        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.3, new ItemStack(ExtendedItems.BLUE_MOUNTAINS_SHIELD.get()), ItemStack.EMPTY);
+        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.3, new ItemStack(ExtendedItems.BLUE_DWARVEN_SHIELD.get()), ItemStack.EMPTY);
     }
 
 	@Override

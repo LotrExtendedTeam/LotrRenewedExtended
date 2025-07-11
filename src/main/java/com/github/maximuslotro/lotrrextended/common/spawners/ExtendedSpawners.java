@@ -87,6 +87,8 @@ public class ExtendedSpawners {
 	public static final ResourceLocation BREE_VILLAGE_MANOR_LORD = register("bree_village_manor_lord_spawner");
 	// BLUE MOUNTAINS
 	public static final ResourceLocation BLUE_MOUNTIAN_SMITH = register("blue_mountains_smith_spawner");
+	public static final ResourceLocation BLUE_MOUNTIAN_COMMANDER = register("blue_mountains_commander_spawner");
+	public static final ResourceLocation BLUE_MOUNTIAN_STRONGHOLD = register("blue_mountains_stronghold_spawner");
 	// DWARVEN
 	public static final ResourceLocation DWARVEN_SMITH = register("dwarf_smith_spawner");
 
