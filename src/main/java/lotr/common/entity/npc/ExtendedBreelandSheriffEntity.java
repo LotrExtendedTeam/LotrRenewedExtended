@@ -74,6 +74,8 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
 
 	@Override
 	public List<ResourceLocation> getHireableProfiles() {
-		return Arrays.asList(ExtendedHiredUnitTypes.BREE_GUARD);
+		return Arrays.asList(ExtendedHiredUnitTypes.BREE_HOBBIT, 
+			ExtendedHiredUnitTypes.BREE_MAN, 
+			ExtendedHiredUnitTypes.BREE_GUARD);
 	}
 }

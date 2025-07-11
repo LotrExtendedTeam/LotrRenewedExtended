@@ -12,7 +12,7 @@ import net.minecraftforge.fml.DatagenModLoader;
  * Stores IDs for built-in trader profiles.
  */
 public class ExtendedTraderTypes {
-	public static final Set<ResourceLocation> UNIT_TYPES = Sets.newHashSet();
+	public static final Set<ResourceLocation> TRADER_TYPES = Sets.newHashSet();
 
 	// Hobbit
 	public static final ResourceLocation HOBBIT_BARTENDER = make("hobbit_bartender");
@@ -54,7 +54,7 @@ public class ExtendedTraderTypes {
 
 	private static ResourceLocation validate(ResourceLocation pId) {
 		if(DatagenModLoader.isRunningDataGen()) {
-			if (UNIT_TYPES.add(pId)) {
+			if (TRADER_TYPES.add(pId)) {
 				return pId;
 			} else {
 				throw new IllegalArgumentException(pId + " is already a registered built-in extended trader type");

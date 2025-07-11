@@ -1,0 +1,135 @@
+{
+  "id": "lotrextended:gundabad_uruk",
+  "entity_type": "lotr:gundabad_uruk",
+  "language": {
+    "translateStrings": true,
+    "entity_title": "entity_title.lotrextended.hired_gundabad_uruk",
+    "entity_shortname": "entity_shortname.lotrextended.hired_gundabad_uruk",
+    "entity_unit_type": "entity_unit_type.lotrextended.hired_gundabad_uruk",
+    "attack_type": "melee"
+  },
+  "hiring": {
+    "hiringCost": 30,
+    "hiringRequiresPledge": false,
+    "hiringAlignmentRequired": 350
+  },
+  "equipmentPools": {
+    "helmets": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:gundabad_uruk_helmet",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.helmet\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "chestplates": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:gundabad_uruk_chestplate",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.chestplate\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "leggings": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:gundabad_uruk_leggings",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.leggings\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "boots": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:gundabad_uruk_boots",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.boots\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "setIdleFromMelee": true,
+    "melee": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:iron_spear",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:iron_sword",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:iron_dagger",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:mordor_dagger",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:mordor_spear",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:mordor_scimitar",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:gundabad_uruk_spear",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:gundabad_uruk_sword",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:gundabad_uruk_dagger",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "offhand": [
+      {
+        "weight": 3,
+        "equipmentItem": {
+          "item": "lotr:gundabad_shield",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.shield\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:air"
+        }
+      }
+    ]
+  }
+}

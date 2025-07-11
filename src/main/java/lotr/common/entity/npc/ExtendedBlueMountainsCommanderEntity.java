@@ -65,7 +65,8 @@ public class ExtendedBlueMountainsCommanderEntity extends BlueDwarfEntity implem
 
 	@Override
 	public List<ResourceLocation> getHireableProfiles() {
-		// Example of multiple unit types - let's say this captain can hire both Blue Dwarves and regular Dwarves
-		return java.util.Arrays.asList(ExtendedHiredUnitTypes.BLUE_DWARF_WARRIOR, ExtendedHiredUnitTypes.DWARF_WARRIOR);
+		return java.util.Arrays.asList(ExtendedHiredUnitTypes.BLUE_DWARF, 
+			ExtendedHiredUnitTypes.BLUE_DWARF_WARRIOR, 
+			ExtendedHiredUnitTypes.BLUE_DWARF_ARCHER);
 	}
 }

@@ -65,9 +65,8 @@ public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity implements E
 
 	@Override
 	public List<ResourceLocation> getHireableProfiles() {
-		return java.util.Arrays.asList(
-			ExtendedHiredUnitTypes.DWARF_WARRIOR,
-			ExtendedHiredUnitTypes.BLUE_DWARF_WARRIOR
-		);
+		return java.util.Arrays.asList(ExtendedHiredUnitTypes.DWARF, 
+			ExtendedHiredUnitTypes.DWARF_WARRIOR, 
+			ExtendedHiredUnitTypes.DWARF_ARCHER);
 	}
 }

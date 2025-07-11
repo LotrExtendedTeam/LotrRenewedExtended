@@ -1,0 +1,75 @@
+{
+  "id": "lotrextended:bree_hobbit",
+  "entity_type": "lotr:bree_hobbit",
+  "language": {
+    "translateStrings": true,
+    "entity_title": "entity_title.lotrextended.hired_bree_hobbit",
+    "entity_shortname": "entity_shortname.lotrextended.hired_bree_hobbit",
+    "entity_unit_type": "entity_unit_type.lotrextended.hired_bree_hobbit",
+    "attack_type": "melee"
+  },
+  "hiring": {
+    "hiringCost": 20,
+    "hiringRequiresPledge": false,
+    "hiringAlignmentRequired": 75
+  },
+  "equipmentPools": {
+    "helmets": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:air"
+        }
+      }
+    ],
+    "chestplates": [
+      {
+        "weight": 2,
+        "equipmentItem": {
+          "item": "minecraft:air"
+        }
+      }
+    ],
+    "leggings": [
+      {
+        "weight": 2,
+        "equipmentItem": {
+          "item": "minecraft:air"
+        }
+      }
+    ],
+    "boots": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:air"
+        }
+      }
+    ],
+    "setIdleFromMelee": true,
+    "melee": [
+      {
+        "weight": 3,
+        "equipmentItem": {
+          "item": "lotr:bronze_dagger",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 4,
+        "equipmentItem": {
+          "item": "lotr:iron_dagger",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "offhand": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:air"
+        }
+      }
+    ]
+  }
+}

@@ -12,13 +12,22 @@ import net.minecraftforge.fml.DatagenModLoader;
  * Stores IDs for built-in hired unit profiles.
  */
 public class ExtendedHiredUnitTypes {
-	private static final Set<ResourceLocation> UNIT_TYPES = Sets.newHashSet();
+	public static final Set<ResourceLocation> UNIT_TYPES = Sets.newHashSet();
 
+	public static final ResourceLocation BREE_MAN = make("bree_man");
+	public static final ResourceLocation BREE_HOBBIT = make("bree_hobbit");
 	public static final ResourceLocation BREE_GUARD = make("bree_guard");
 	public static final ResourceLocation GUNDABAD_ORC = make("gundabad_orc");
+	public static final ResourceLocation GUNDABAD_ORC_ARCHER = make("gundabad_orc_archer");
+	public static final ResourceLocation GUNDABAD_URUK = make("gundabad_uruk");
+	public static final ResourceLocation GUNDABAD_URUK_ARCHER = make("gundabad_uruk_archer");
 	public static final ResourceLocation DUNEDAIN_RANGER = make("dunedain_ranger");
+	public static final ResourceLocation DWARF = make("dwarf");
 	public static final ResourceLocation DWARF_WARRIOR = make("dwarven_warrior");
+	public static final ResourceLocation DWARF_ARCHER = make("dwarven_archer");
+	public static final ResourceLocation BLUE_DWARF = make("blue_dwarf");
 	public static final ResourceLocation BLUE_DWARF_WARRIOR = make("blue_dwarven_warrior");
+	public static final ResourceLocation BLUE_DWARF_ARCHER = make("blue_dwarven_archer");
 
 	private static ResourceLocation make(String pId) {
 		return validate(new ResourceLocation(LotrExtendedMod.MODID, pId));

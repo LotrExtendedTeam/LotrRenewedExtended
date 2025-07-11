@@ -58,8 +58,9 @@ public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity imp
 
 	@Override
 	public List<ResourceLocation> getHireableProfiles() {
-		return java.util.Arrays.asList(
-			ExtendedHiredUnitTypes.GUNDABAD_ORC
-		);
+		return java.util.Arrays.asList(ExtendedHiredUnitTypes.GUNDABAD_ORC, 
+			ExtendedHiredUnitTypes.GUNDABAD_ORC_ARCHER,
+			ExtendedHiredUnitTypes.GUNDABAD_URUK, 
+			ExtendedHiredUnitTypes.GUNDABAD_URUK_ARCHER);
 	}
 }
