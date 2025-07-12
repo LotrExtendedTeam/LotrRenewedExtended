@@ -11,7 +11,6 @@ import org.apache.commons.lang3.mutable.MutableObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPaletteProcessor;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
@@ -74,14 +73,13 @@ public class ExtendedJigsawManager {
      * @param random                  random instance for randomized choices
      * @param doExpansionHack         if true, applies additional placement logic during assembly (specific to implementation)
      * @param projectStartToHeightmap if true, adjusts vertical placement to surface height from the heightmap
-     * @return The root {@link JigsawPiece} that is being places, so we can strip data from it for post-processing of the structure
      *
      * @see ExtendedSingleJigsawPiece
      * @see WoodPaletteProcessor
      * @see ExtendedJigsawManager.Assembler
      * @see net.minecraft.world.gen.feature.structure.Structure
      */
-	public static JigsawPiece addPieces(DynamicRegistries registry, VillageConfig structureConfig, ExtendedJigsawManager.IPieceFactory villagePieceBuilder, ChunkGenerator chunkGenerator, TemplateManager templateManager, ChunkPos chunkPos, List<? super AbstractVillagePiece> pieces, Random random, boolean doExpansionHack, boolean projectStartToHeightmap) {
+	public static void addPieces(DynamicRegistries registry, VillageConfig structureConfig, ExtendedJigsawManager.IPieceFactory villagePieceBuilder, ChunkGenerator chunkGenerator, TemplateManager templateManager, ChunkPos chunkPos, List<? super AbstractVillagePiece> pieces, Random random, boolean doExpansionHack, boolean projectStartToHeightmap) {
 		Structure.bootstrap();
 		MutableRegistry<JigsawPattern> mutableregistry = registry.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY);
 		Rotation rotation = Rotation.getRandom(random);
@@ -91,11 +89,10 @@ public class ExtendedJigsawManager {
 		// Turns the chunk coordinates into actual coordinates we can use. (From corner of the chunk and offset)
         int cornerOffset = 7;
         if(jigsawpiece instanceof ExtendedSingleJigsawPiece) {
-			ExtendedLog.warn("Get corner offset for " +jigsawpiece.toString());
         	cornerOffset = ((ExtendedSingleJigsawPiece)jigsawpiece).getChunkCornerOffset();
 		}
         BlockPos blockpos = new BlockPos(chunkPos.getMinBlockX()+cornerOffset, 0, chunkPos.getMinBlockZ()+cornerOffset);
-        
+
 		Optional<WoodPaletteProcessor> carryOverProcessor = Optional.empty();
 		if(jigsawpiece instanceof SingleJigsawPiece) {
 			List<StructureProcessor> processors = new ArrayList<>(((SingleJigsawPiece)jigsawpiece).processors.get().list());
@@ -106,7 +103,7 @@ public class ExtendedJigsawManager {
 						IllegalStateException e =  new IllegalStateException("Structure Processor can't have more than one WoodPaletteProcessor instance!");
 						e.printStackTrace();
                         LOGGER.info("Error adding wood processor present in {} to parent stack! Skipping structure", jigsawpattern.getName().toString());
-						return jigsawpiece;
+						return;
 					}
 					foundProcessor = true;
 					WoodPaletteProcessor processorWood = (WoodPaletteProcessor)processor;
@@ -163,9 +160,6 @@ public class ExtendedJigsawManager {
 			}
 
 		}
-		// Extended Start
-		return jigsawpiece;
-		// Extended End
 	}
 
 	/**

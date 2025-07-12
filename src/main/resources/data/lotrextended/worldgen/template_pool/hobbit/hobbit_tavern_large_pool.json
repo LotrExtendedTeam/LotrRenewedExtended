@@ -11,7 +11,7 @@
 				"processors": "minecraft:empty",
 				"snap_to_water_height": true,
 				"apply_waterlogging": false,
-				"shift_structure_up_by": -6,
+				"ground_level_delta": 7,
 				"foundation_block": {
 					"Name": "minecraft:dirt"
 				}

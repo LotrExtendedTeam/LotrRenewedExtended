@@ -81,9 +81,9 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	protected final boolean snapUpToWaterheight;
 	/**
 	 * The vertical offset (in blocks) to shift the structure upward during placement.
-	 * A value of <code>0</code> will not apply any vertical offset.
+	 * A value of <code>1</code> will be the default sunk into ground vanilla setting.
 	 */
-	protected final int shiftStructureUpBy;
+	protected final int groundLevelDelta;
 
 	/**
 	 * The offset applied to chunk corner coordinates for centering structures. (value between 0 and 15)
@@ -132,8 +132,8 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	}
 
 	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Integer> shiftStructureUpByCodec() {
-		return Codec.INT.optionalFieldOf("shift_structure_up_by", 0).forGetter((piece) -> {
-			return piece.shiftStructureUpBy;
+		return Codec.INT.optionalFieldOf("ground_level_delta", 1).forGetter((piece) -> {
+			return piece.groundLevelDelta;
 		});
 	}
 
@@ -174,7 +174,7 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		this.ingnoreBBconflicts = ingnoreBBconflicts;
 		this.blacklistName = blacklist_name;
 		this.snapUpToWaterheight = snapUpToWaterheight;
-		this.shiftStructureUpBy = shiftStructureUpBy;
+		this.groundLevelDelta = shiftStructureUpBy;
 		this.chunkCornerOffset = chunkCornerOffset;
 		this.foundation = foundation;
 	}
@@ -224,9 +224,9 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	 */
 	@Override
 	public String toString() {
-		return "ExtendedSingle[" + this.template + " " + apply_waterlogging + " " + maxPlaceDistance + " "
-			+ maxDepth + " " + ingnoreBBconflicts + " " + blacklistName + " " + snapUpToWaterheight + " "
-			+ shiftStructureUpBy +" "+ chunkCornerOffset +"]";
+		return "ExtendedSingle[" + this.template + ", aWater=" + apply_waterlogging + ", mPl=" + maxPlaceDistance 
+			+ ", mDe=" + maxDepth + ", igBB=" + ingnoreBBconflicts + ", bN=" + blacklistName + " " + snapUpToWaterheight 
+			+ ", gLD=" + groundLevelDelta +", cOff="+ chunkCornerOffset + ", found=" + foundation.toString() + "]";
 	}
 	/**
 	 * @return Whether liquids propagate through waterloggable blocks.
@@ -271,10 +271,11 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		return !blacklistName.equals("NOTSET");
 	}
 	/**
-	 * @return The number of blocks the structure should be shifted upward during placement.
+	 * @return The number of blocks the structure is relative to the ground
 	 */
-	public int getVerticalShiftStructureBy() {
-		return shiftStructureUpBy;
+	@Override
+	public int getGroundLevelDelta() {
+		return groundLevelDelta;
 	}
 	/**
      * Returns the offset applied to chunk corner coordinates for centering structures.

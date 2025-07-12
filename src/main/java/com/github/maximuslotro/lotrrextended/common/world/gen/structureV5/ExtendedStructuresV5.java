@@ -111,8 +111,8 @@ public class ExtendedStructuresV5 {
 		register(BARROW_DOWN_BARROWS.get(), true,      7,  3,  57854769);
 		register(BREE_HAMLET.get(), true,              50, 35, 57854769);
 		register(BREE_VILLAGE.get(), true,             40, 25, 78547894);
-		register(BLUE_MOUNTAIN_SMITHY.get(), false,    35, 15, 589758935);
-		register(BLUE_MOUNTAIN_STRONGHOLD.get(), false,35, 20, 889329084);
+		register(BLUE_MOUNTAIN_SMITHY.get(), false,    27, 12, 589758935);
+		register(BLUE_MOUNTAIN_STRONGHOLD.get(), false,35, 15, 889329084);
 
 	}
 

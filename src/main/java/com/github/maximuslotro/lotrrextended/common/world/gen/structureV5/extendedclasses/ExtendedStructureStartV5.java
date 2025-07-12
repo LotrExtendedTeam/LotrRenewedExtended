@@ -16,7 +16,6 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.jigsaw.JigsawPiece;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureManager;
@@ -38,7 +37,6 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
  * @param <C> The feature configuration type for this structure.
  */
 public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends StructureStart<C>{
-	public ExtendedSingleJigsawPiece cashedPostProcessedPiece=null;
 	/**
      * Constructs a new ExtendedStructureStartV5.
      *
@@ -86,13 +84,9 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
         	ExtendedLog.error("Tried generating a structure from an empty pool! ");
         	return;
         }
-        JigsawPiece rootJigsawPiece = ExtendedJigsawManager.addPieces(dynamicRegistryManager,
+        ExtendedJigsawManager.addPieces(dynamicRegistryManager,
         	new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), 7), AbstractVillagePiece::new,
         	chunkGenerator, templateManagerIn, chunkPos, this.pieces, this.random, false, true);
-        if(rootJigsawPiece instanceof ExtendedSingleJigsawPiece) {
-        	cashedPostProcessedPiece = ((ExtendedSingleJigsawPiece)rootJigsawPiece);
-        	this.pieces.forEach(piece -> piece.move(0, cashedPostProcessedPiece.getVerticalShiftStructureBy(), 0));
-        }
 
 //        Vector3i structureCenter = this.pieces.get(0).getBoundingBox().getCenter();
 //        int xOffset = blockpos.getX() - structureCenter.getX();
@@ -127,9 +121,15 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
      */
 	@Override
 	public void placeInChunk(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGenerator, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
+		ExtendedSingleJigsawPiece cachedRootPostProcessedPiece=null;
+		if(!this.pieces.isEmpty()) {
+			StructurePiece piece = this.pieces.get(0);
+			if(piece instanceof AbstractVillagePiece && ((AbstractVillagePiece)piece).getElement() instanceof ExtendedSingleJigsawPiece) {
+				cachedRootPostProcessedPiece = (ExtendedSingleJigsawPiece) ((AbstractVillagePiece)piece).getElement();
+			}
+		}
 		super.placeInChunk(world, structureManager, chunkGenerator, random, boundingBox, chunkPos);
-		if(cashedPostProcessedPiece!=null && !cashedPostProcessedPiece.getFoundationBlock().isAir()) {
-			ExtendedLog.warn("Placing foundation for " +cashedPostProcessedPiece.toString());
+		if(cachedRootPostProcessedPiece!=null && !cachedRootPostProcessedPiece.getFoundationBlock().isAir()) {
 			int baseYvalue = this.boundingBox.y0 + foundationUpwardsOffsetBasementSpecial();
 			for (int xValue = boundingBox.x0; xValue <= boundingBox.x1; ++xValue) {
 				for (int zValue = boundingBox.z0; zValue <= boundingBox.z1; ++zValue) {
@@ -148,7 +148,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 								if (!world.isEmptyBlock(blockpos1) && !world.getBlockState(blockpos1).getMaterial().isLiquid()) {
 									break;
 								}
-								world.setBlock(blockpos1, cashedPostProcessedPiece.getFoundationBlock(), 2);
+								world.setBlock(blockpos1, cachedRootPostProcessedPiece.getFoundationBlock(), 2);
 							}
 						}
 					}

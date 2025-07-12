@@ -11,7 +11,7 @@
 				"processors": "minecraft:empty",
 				"snap_to_water_height" : true,
 				"apply_waterlogging" : false,
-				"shift_structure_up_by" : -5,
+				"ground_level_delta" : 7,
 				"chunk_corner_offset" : 0,
 				"foundation_block": {
 					"Name": "minecraft:stone"
@@ -27,7 +27,7 @@
 				"processors": "minecraft:empty",
 				"snap_to_water_height" : true,
 				"apply_waterlogging" : false,
-				"shift_structure_up_by" : -5,
+				"ground_level_delta" : 7,
 				"chunk_corner_offset" : 0,
 				"foundation_block": {
 					"Name": "minecraft:stone"
@@ -42,7 +42,7 @@
 				"location": "lotrextended:blue_mountains/smithy/blue_mountains_smithy_small_1",
 				"processors": "minecraft:empty",
 				"snap_to_water_height" : true,
-				"chunk_corner_offset" : 0,
+				"chunk_corner_offset" : 2,
 				"foundation_block": {
 					"Name": "lotr:blue_brick"
 				}
@@ -56,7 +56,7 @@
 				"location": "lotrextended:blue_mountains/smithy/blue_mountains_smithy_small_2",
 				"processors": "minecraft:empty",
 				"snap_to_water_height" : true,
-				"chunk_corner_offset" : 0,
+				"chunk_corner_offset" : 2,
 				"foundation_block": {
 					"Name": "lotr:blue_brick"
 				}
