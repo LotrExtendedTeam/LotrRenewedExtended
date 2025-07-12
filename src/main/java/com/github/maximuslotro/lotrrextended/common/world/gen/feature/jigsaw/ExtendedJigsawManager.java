@@ -11,6 +11,7 @@ import org.apache.commons.lang3.mutable.MutableObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPaletteProcessor;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
@@ -90,6 +91,7 @@ public class ExtendedJigsawManager {
 		// Turns the chunk coordinates into actual coordinates we can use. (From corner of the chunk and offset)
         int cornerOffset = 7;
         if(jigsawpiece instanceof ExtendedSingleJigsawPiece) {
+			ExtendedLog.warn("Get corner offset for " +jigsawpiece.toString());
         	cornerOffset = ((ExtendedSingleJigsawPiece)jigsawpiece).getChunkCornerOffset();
 		}
         BlockPos blockpos = new BlockPos(chunkPos.getMinBlockX()+cornerOffset, 0, chunkPos.getMinBlockZ()+cornerOffset);

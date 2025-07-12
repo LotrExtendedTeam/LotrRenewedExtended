@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits;
+package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special;
 
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructureType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.SinglePoolConfig;
@@ -8,7 +8,7 @@ import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.feature.structure.Structure;
 
 /**
- * Represents a large Hobbit Tavern structure extending the custom ExtendedSurfaceStructuresV5.
+ * Represents a large Hobbit Tavern structure extending the custom {@link SinglePoolStructure}.
  * <p>
  * This structure applies a vertical offset to position the structure lower in the world,
  * and uses full foundations with a special upward offset for basement support.

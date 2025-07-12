@@ -9,7 +9,8 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.WeightedStructureConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.SinglePoolStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.WeightedPoolStructure;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits.ExtendedStructureBlueMountainSmithy;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureBlueMountainSmithy;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureBlueMountainStronghold;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
@@ -73,6 +74,7 @@ public class ExtendedStructuresV5 {
 	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_VILLAGE = STRUCTURE_REGISTRY.register("bree_village", () -> new SinglePoolStructure(ExtendedStructureType.BREE_VILLAGE));
 
 	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_SMITHY = STRUCTURE_REGISTRY.register("blue_mountain_smithy", () -> new ExtendedStructureBlueMountainSmithy(ExtendedStructureType.BLUE_MOUNTAINS));
+	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_STRONGHOLD = STRUCTURE_REGISTRY.register("blue_mountain_stronghold", () -> new ExtendedStructureBlueMountainStronghold(ExtendedStructureType.BLUE_MOUNTAINS));
 
 	/**
 	 * Initializes and registers all custom structures with their generation parameters.
@@ -110,6 +112,8 @@ public class ExtendedStructuresV5 {
 		register(BREE_HAMLET.get(), true,              50, 35, 57854769);
 		register(BREE_VILLAGE.get(), true,             40, 25, 78547894);
 		register(BLUE_MOUNTAIN_SMITHY.get(), false,    35, 15, 589758935);
+		register(BLUE_MOUNTAIN_STRONGHOLD.get(), false,35, 20, 889329084);
+
 	}
 
 	/**

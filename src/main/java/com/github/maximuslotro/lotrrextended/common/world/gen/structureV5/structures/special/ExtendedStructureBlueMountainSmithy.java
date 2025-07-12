@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits;
+package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special;
 
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructureType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.SinglePoolConfig;
@@ -11,7 +11,7 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 
 /**
- * ExtendedBMSmithy is a custom single-pool structure representing a smithy building.
+ * {@link ExtendedStructureBlueMountainSmithy} is a custom single-pool structure representing a smithy building.
  * <p>
  * It overrides the terrain suitability check to ensure the structure only generates
  * on relatively flat terrain by sampling surface heights within the chunk.

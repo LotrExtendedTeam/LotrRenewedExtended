@@ -129,6 +129,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 	public void placeInChunk(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGenerator, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
 		super.placeInChunk(world, structureManager, chunkGenerator, random, boundingBox, chunkPos);
 		if(cashedPostProcessedPiece!=null && !cashedPostProcessedPiece.getFoundationBlock().isAir()) {
+			ExtendedLog.warn("Placing foundation for " +cashedPostProcessedPiece.toString());
 			int baseYvalue = this.boundingBox.y0 + foundationUpwardsOffsetBasementSpecial();
 			for (int xValue = boundingBox.x0; xValue <= boundingBox.x1; ++xValue) {
 				for (int zValue = boundingBox.z0; zValue <= boundingBox.z1; ++zValue) {
