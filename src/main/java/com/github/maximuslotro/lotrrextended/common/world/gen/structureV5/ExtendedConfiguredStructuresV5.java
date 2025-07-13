@@ -65,6 +65,7 @@ public class ExtendedConfiguredStructuresV5 {
 
 	public static StructureFeature<?, ?> CONFIGURED_BLUE_MOUNTAINS_SMITHY = register(ExtendedStructuresV5.BLUE_MOUNTAIN_SMITHY.get().configured(new SinglePoolConfig("blue_mountains/smithy_pool")));
 	public static StructureFeature<?, ?> CONFIGURED_BLUE_MOUNTAINS_STRONGHOLD = register(ExtendedStructuresV5.BLUE_MOUNTAIN_STRONGHOLD.get().configured(new SinglePoolConfig("blue_mountains/stronghold_pool")));
+	public static StructureFeature<?, ?> CONFIGURED_BLUE_MOUNTAINS_MINE = register(ExtendedStructuresV5.BLUE_MOUNTAIN_MINE.get().configured(new SinglePoolConfig("blue_mountains/mine_entrance_pool")));
 	/**
      * Empty method intended to be called to ensure static initialization of this class
      * and the registration of configured structures.

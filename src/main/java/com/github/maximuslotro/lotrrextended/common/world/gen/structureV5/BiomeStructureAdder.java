@@ -81,6 +81,7 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.BREE_VILLAGE.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.BLUE_MOUNTAIN_SMITHY.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.BLUE_MOUNTAIN_STRONGHOLD.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.BLUE_MOUNTAIN_MINE.get());
 
 		provider.generator.getSettings().structureConfig = tempMap;
 	}
@@ -273,10 +274,12 @@ public class BiomeStructureAdder {
 			if(event.getName().equals(LOTRBiomes.BLUE_MOUNTAINS.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_SMITHY);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_STRONGHOLD);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_MINE);
 			}
 			if(event.getName().equals(LOTRBiomes.BLUE_MOUNTAINS_FOOTHILLS.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_SMITHY);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_STRONGHOLD);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_MINE);
 			}
 		}
 	}
