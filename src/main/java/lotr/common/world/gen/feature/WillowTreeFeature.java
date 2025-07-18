@@ -4,7 +4,6 @@ import com.mojang.serialization.Codec;
 import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.VineBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.state.BooleanProperty;
@@ -28,7 +27,6 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
     private boolean needsWater;
     private int minHeight = 8;
     private int maxHeight = 13;
-    //private BlockState woodBlock = ExtendedBlocks.WILLOW_LOG.get().defaultBlockState();
 
     public WillowTreeFeature(Codec<NoFeatureConfig> codec, boolean needsWater) {
         super(codec);
@@ -37,6 +35,8 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
 
     @Override
     public boolean place(ISeedReader world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, NoFeatureConfig config) {
+        BlockState woodBlock = ExtendedBlocks.WILLOW_LOG.get().defaultBlockState();
+
         int treeHeight = getIntInRange(random, this.minHeight, this.maxHeight);
         boolean canGrow = true;
 
@@ -51,7 +51,7 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
                 for (int x = pos.getX() - range; x <= pos.getX() + range && canGrow; x++) {
                     for (int z = pos.getZ() - range; z <= pos.getZ() + range && canGrow; z++) {
                         if (y >= 0 && y < 256) {
-                            if (!isReplaceable(world, new BlockPos(x, y, z), true))
+                            if (!isReplaceable(world, new BlockPos(x, y, z)))
                                 canGrow = false;
                         } else {
                             canGrow = false;
@@ -91,7 +91,7 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
         below.onNeighborChange(world, pos.below(), pos);
         List<BlockPos> vineGrows = new ArrayList<>();
 
-        // generate branches?
+        // generate branches
         int angle = 0;
         while (angle < 360) {
             angle += 30 + random.nextInt(30);
@@ -111,33 +111,35 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
                     m = (int)(m + Math.signum(cos));
                 if (random.nextFloat() < Math.abs(sin))
                     k1 = (int)(k1 + Math.signum(sin));
-                this.setBlock(world, new BlockPos(m, n, k1), ExtendedBlocks.WILLOW_LOG.get().defaultBlockState());
+                this.setBlock(world, new BlockPos(m, n, k1), woodBlock);
             }
             spawnLeafCluster(world, random, new BlockPos(m, n, k1));
             vineGrows.add(new BlockPos(m, n, k1));
         }
 
-        // generate trunk?
+        // generate trunk
         for (int yOffset = 0; yOffset < treeHeight; yOffset++) {
             BlockPos currentPos = new BlockPos(pos.getX(), pos.getY() + yOffset, pos.getZ());
-            setBlock(world, currentPos, ExtendedBlocks.WILLOW_LOG.get().defaultBlockState());
+            setBlock(world, currentPos, woodBlock);
             if (yOffset == treeHeight - 1) {
                 spawnLeafCluster(world, random, currentPos);
                 vineGrows.add(currentPos);
             }
         }
-        for (int i1 = pos.getX() - 1; i1 <= pos.getX() + 1; i1++) {
-            for (int k1 = pos.getZ() - 1; k1 <= pos.getZ() + 1; k1++) {
-                int i2 = i1 - pos.getX();
-                int k2 = k1 - pos.getZ();
-                if (Math.abs(i2) != Math.abs(k2)) {
-                    int rootX = i1;
+
+        // generate roots
+        for (int x = pos.getX() - 1; x <= pos.getX() + 1; x++) {
+            for (int z = pos.getZ() - 1; z <= pos.getZ() + 1; z++) {
+                int dx = x - pos.getX();
+                int dz = z - pos.getZ();
+                if (Math.abs(dx) != Math.abs(dz)) {
+                    int rootX = x;
                     int rootY = pos.getY() + 1 + random.nextInt(2);
-                    int rootZ = k1;
+                    int rootZ = z;
                     int roots = 0;
 
-                    while (isReplaceable(world, new BlockPos(rootX, rootY, k1), true)) {
-                        setBlock(world, new BlockPos(rootX, rootY, rootZ), ExtendedBlocks.WILLOW_LOG.get().defaultBlockState());
+                    while (isReplaceable(world, new BlockPos(rootX, rootY, z))) {
+                        setBlock(world, new BlockPos(rootX, rootY, rootZ), woodBlock);
                         // TODO: Add plant grow event back at some point?
                         //world.func_147439_a(rootX, rootY - 1, rootZ).onPlantGrow(world, rootX, rootY - 1, rootZ, rootX, rootY, rootZ);
 
@@ -157,16 +159,17 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
         int leafRange = 3;
         int leafRangeSq = leafRange * leafRange;
         int leafRangeSqLess = (int)((leafRange - 0.5D) * (leafRange - 0.5D));
-        for (int i1 = pos.getX() - leafRange; i1 <= pos.getX() + leafRange; i1++) {
-            for (int j1 = pos.getY() - leafRange; j1 <= pos.getY() + leafRange; j1++) {
-                for (int k1 = pos.getZ() - leafRange; k1 <= pos.getZ() + leafRange; k1++) {
-                    int i2 = i1 - pos.getX();
-                    int j2 = j1 - pos.getY();
-                    int k2 = k1 - pos.getZ();
-                    int dist = i2 * i2 + j2 * j2 + k2 * k2;
-                    int taxicab = Math.abs(i2) + Math.abs(j2) + Math.abs(k2);
+
+        for (int x = pos.getX() - leafRange; x <= pos.getX() + leafRange; x++) {
+            for (int y = pos.getY() - leafRange; y <= pos.getY() + leafRange; y++) {
+                for (int z = pos.getZ() - leafRange; z <= pos.getZ() + leafRange; z++) {
+                    int dx = x - pos.getX();
+                    int dy = y - pos.getY();
+                    int dz = z - pos.getZ();
+                    int dist = dx * dx + dy * dy + dz * dz;
+                    int taxicab = Math.abs(dx) + Math.abs(dy) + Math.abs(dz);
                     if ((dist < leafRangeSqLess || (dist < leafRangeSq && random.nextInt(3) == 0)) && taxicab <= 4) {
-                        BlockPos cPos = new BlockPos(i1, j1, k1);
+                        BlockPos cPos = new BlockPos(x, y, z);
                         BlockState block = world.getBlockState(cPos);
                         if (block.getMaterial().isReplaceable() || block.getMaterial() == Material.PLANT)
                             setBlock(world, cPos, ExtendedBlocks.WILLOW_LEAVES.get().defaultBlockState());
@@ -177,80 +180,42 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
     }
 
     private void spawnVineCluster(ISeedReader world, Random random, BlockPos pos) {
-        //System.out.println("Spawn Vine Cluster called with " + pos);
         int leafRange = 3;
         int leafRangeSq = leafRange * leafRange;
 
-        for (int i1 = pos.getX() - leafRange; i1 <= pos.getX() + leafRange; i1++) {
-            for (int j1 = pos.getY() - leafRange; j1 <= pos.getY() + leafRange; j1++) {
-                for (int k1 = pos.getZ() - leafRange; k1 <= pos.getZ() + leafRange; k1++) {
-                    int i2 = i1 - pos.getX();
-                    int j2 = j1 - pos.getY();
-                    int k2 = k1 - pos.getZ();
-                    int dist = i2 * i2 + j2 * j2 + k2 * k2;
+        // loop through all blocks in range in 3d space
+        for (int x = pos.getX() - leafRange; x <= pos.getX() + leafRange; x++) {
+            for (int y = pos.getY() - leafRange; y <= pos.getY() + leafRange; y++) {
+                for (int z = pos.getZ() - leafRange; z <= pos.getZ() + leafRange; z++) {
+                    // calculate distance
+                    int dx = x - pos.getX();
+                    int dy = y - pos.getY();
+                    int dz = z - pos.getZ();
+                    int dist = dx * dx + dy * dy + dz * dz;
+
+                    // attempt to generate a vine if in range and a willow leaf
                     if (dist < leafRangeSq) {
-                        //System.out.println("dist < leafRangeSq");
-                        BlockPos cPos = new BlockPos(i1, j1, k1);
+                        BlockPos cPos = new BlockPos(x, y, z);
                         BlockState block = world.getBlockState(cPos);
-                        //System.out.println("Block @Pos: " + block.getBlock());
 
                         if (block.getBlock().equals(ExtendedBlocks.WILLOW_LEAVES.get())) {
                             int vineChance = 2;
-                            //System.out.println("Attempting to place vines");
 
-                            BlockPos pos1 = pos.west();
-                            //if (random.nextInt(vineChance) == 0) {
-                                if (Feature.isAir(world, pos1)) {
-                                    addHangingVine(world, pos1, VineBlock.EAST);
+                            // loop through and handle all facing directions
+                            Direction[] directions = {Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH};
+                            for (Direction dir : directions) {
+                                BlockPos offsetPos = cPos.relative(dir);
+                                BooleanProperty vineProperty = VineBlock.PROPERTY_BY_DIRECTION.get(dir.getOpposite());
+                                if (random.nextInt(vineChance) == 0 && Feature.isAir(world, offsetPos)) {
+                                    addHangingVine(world, offsetPos, vineProperty);
                                 }
-                            //}
-
-                            BlockPos pos2 = pos.east();
-                            //if (random.nextInt(vineChance) == 0) {
-                                if (Feature.isAir(world, pos2)) {
-                                    addHangingVine(world, pos2, VineBlock.WEST);
-                                }
-                            //}
-
-                            BlockPos pos3 = pos.north();
-                            //if (random.nextInt(vineChance) == 0) {
-                                if (Feature.isAir(world, pos3)) {
-                                    addHangingVine(world, pos3, VineBlock.SOUTH);
-                                }
-                            //}
-
-                            BlockPos pos4 = pos.south();
-                            //if (random.nextInt(vineChance) == 0) {
-                                if (Feature.isAir(world, pos4)) {
-                                    addHangingVine(world, pos4, VineBlock.NORTH);
-                                }
-                            //}
+                            }
                         }
-                    } else {
-                        //System.out.println("dist not < leafRangeSq");
                     }
                 }
             }
         }
     }
-
-    /*private void growVines(ISeedReader world, Random random, BlockPos pos) {
-        int y = pos.getY();
-        setBlock(world, pos, ExtendedBlocks.WILLOW_VINES.get().defaultBlockState());
-
-        int vines = 0;
-        while (true) {
-            y--;
-            BlockPos cPos = new BlockPos(pos.getX(), y, pos.getZ());
-            BlockState cState = world.getBlockState(cPos);
-
-            // stop growing when we hit something or they exceed a random length
-            if (!cState.getBlock().isAir(cState, world, cPos) || vines >= 2 + random.nextInt(4)) return;
-
-            setBlock(world, cPos, ExtendedBlocks.WILLOW_VINES.get().defaultBlockState());
-            vines++;
-        }
-    }*/
 
     private void addHangingVine(IWorldGenerationReader world, BlockPos pos, BooleanProperty property) {
         this.placeVine(world, pos, property);
@@ -263,18 +228,18 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
     }
 
     protected void placeVine(IWorldWriter world, BlockPos pos, BooleanProperty property) {
-        //System.out.println("Place vine called");
-        this.setBlock(world, pos, Blocks.VINE.defaultBlockState().setValue(property, Boolean.valueOf(true)));
+        this.setBlock(world, pos, ExtendedBlocks.WILLOW_VINES.get().defaultBlockState().setValue(property, Boolean.valueOf(true)));
     }
 
     private int getIntInRange(Random random, int min, int max) {
         return random.nextInt((max - min) + 1) + min;
     }
 
-    private static boolean isReplaceable(IWorld pLevel, BlockPos pPos, boolean pReplacePlants) {
+    private static boolean isReplaceable(IWorld pLevel, BlockPos pPos) {
+        final boolean REPLACE_PLANTS = true;
         return pLevel.isStateAtPosition(pPos, (p_236320_1_) -> {
             Material material = p_236320_1_.getMaterial();
-            return p_236320_1_.getMaterial().isReplaceable() || pReplacePlants && material == Material.PLANT;
+            return p_236320_1_.getMaterial().isReplaceable() || REPLACE_PLANTS && material == Material.PLANT;
         });
     }
 
