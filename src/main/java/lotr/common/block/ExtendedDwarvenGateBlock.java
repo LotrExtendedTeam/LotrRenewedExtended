@@ -25,6 +25,18 @@ public class ExtendedDwarvenGateBlock extends GateBlock{
 	}
 
 	@Override
+	public boolean propagatesSkylightDown(BlockState state, IBlockReader world, BlockPos pos) {
+		// If the gate is open, it should allow skylight to pass through
+		return state.getValue(OPEN);
+	}
+
+	@Override
+	public int getLightBlock(BlockState state, IBlockReader world, BlockPos pos) {
+		// If the gate is open, it should not block light
+		return state.getValue(OPEN) ? 0 : world.getMaxLightLevel(); // IDK the level might have different max levels?
+	}
+
+	@Override
 	@OnlyIn(Dist.CLIENT)
 	public boolean skipRendering(BlockState state, BlockState adjacentState, Direction side) {
 		Block block = adjacentState.getBlock();

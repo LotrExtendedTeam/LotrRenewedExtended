@@ -85,4 +85,9 @@ public class AdvancementsProviderIronHills extends ExtendedBaseAdvancementType{
 		return "iron_hills";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 25;
+	}
+
 }

@@ -60,7 +60,6 @@ import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemGroup;
@@ -587,6 +586,8 @@ public class MixinLOTRItems {
 		ExtendedItems.CRACKED_ARNOR_PILLAR_SLAB = regBlockItemB(ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MOSSY_ARNOR_PILLAR = regBlockItemB(ExtendedBlocks.MOSSY_ARNOR_PILLAR, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MOSSY_ARNOR_PILLAR_SLAB = regBlockItemB(ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_STONE_PILLAR = regBlockItemB(ExtendedBlocks.CRACKED_STONE_PILLAR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_STONE_PILLAR_SLAB = regBlockItemB(ExtendedBlocks.CRACKED_STONE_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
 
 //		ExtendedItems.GNEISS_ROCK = regBlockItemB(ExtendedBlocks.GNEISS_ROCK, LOTRItemGroups.BLOCKS);
 //		ExtendedItems.GNEISS_ROCK_SLAB = regBlockItemB(ExtendedBlocks.GNEISS_ROCK_SLAB, LOTRItemGroups.BLOCKS);
@@ -708,12 +709,12 @@ public class MixinLOTRItems {
 		ExtendedItems.SILVER_FUR_CARPET = regBlockItemB(ExtendedBlocks.SILVER_FUR_CARPET, LOTRItemGroups.DECO);
 		ExtendedItems.WHITE_FUR_CARPET = regBlockItemB(ExtendedBlocks.WHITE_FUR_CARPET, LOTRItemGroups.DECO);
 
-		ExtendedItems.WOODEN_BIRDCAGE = regHiddenBlockItemB(ExtendedBlocks.WOODEN_BIRDCAGE);
-		ExtendedItems.BRONZE_BIRDCAGE = regHiddenBlockItemB(ExtendedBlocks.BRONZE_BIRDCAGE);
-		ExtendedItems.IRON_BIRDCAGE = regHiddenBlockItemB(ExtendedBlocks.IRON_BIRDCAGE);
-		ExtendedItems.SILVER_BIRDCAGE = regHiddenBlockItemB(ExtendedBlocks.SILVER_BIRDCAGE);
-		ExtendedItems.GOLDEN_BIRDCAGE = regHiddenBlockItemB(ExtendedBlocks.GOLDEN_BIRDCAGE);
-		ExtendedItems.MITHRIL_BIRDCAGE = regHiddenBlockItemB(ExtendedBlocks.MITHRIL_BIRDCAGE);
+		ExtendedItems.WOODEN_BIRDCAGE = regBlockItemB(ExtendedBlocks.WOODEN_BIRDCAGE, LOTRItemGroups.DECO);
+		ExtendedItems.BRONZE_BIRDCAGE = regBlockItemB(ExtendedBlocks.BRONZE_BIRDCAGE, LOTRItemGroups.DECO);
+		ExtendedItems.IRON_BIRDCAGE = regBlockItemB(ExtendedBlocks.IRON_BIRDCAGE, LOTRItemGroups.DECO);
+		ExtendedItems.SILVER_BIRDCAGE = regBlockItemB(ExtendedBlocks.SILVER_BIRDCAGE, LOTRItemGroups.DECO);
+		ExtendedItems.GOLDEN_BIRDCAGE = regBlockItemB(ExtendedBlocks.GOLDEN_BIRDCAGE, LOTRItemGroups.DECO);
+		ExtendedItems.MITHRIL_BIRDCAGE = regBlockItemB(ExtendedBlocks.MITHRIL_BIRDCAGE, LOTRItemGroups.DECO);
 
 		ExtendedItems.MORGUL_TORCH = regWallOrFloorBlockItemB(ExtendedBlocks.MORGUL_TORCH, ExtendedBlocks.MORGUL_WALL_TORCH, LOTRItemGroups.DECO);
 		ExtendedItems.MORGUL_LANTERN = regBlockItemB(ExtendedBlocks.MORGUL_LANTERN, LOTRItemGroups.DECO);
@@ -934,11 +935,11 @@ public class MixinLOTRItems {
 		ExtendedItems.BRANDING_IRON = regItemB("branding_iron", ExtendedBrandingIronItem::new);
 		ExtendedItems.CHISEL = regItemB("chisel", () -> new ExtendedChiselItem(ExtendedBlocks.STONE_SIGN.get(), new Properties().tab(LOTRItemGroups.TOOLS).defaultDurability(100)));
 
-		ExtendedItems.IRON_THROWABLE_AXE = regItemB("iron_throwable_axe", () -> new ExtendedThrowableAxeItem((IItemTier) ItemTier.IRON));
-		ExtendedItems.BRONZE_THROWABLE_AXE = regItemB("bronze_throwable_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BRONZE));
-		ExtendedItems.LOSSARNACH_THROWABLE_AXE = regItemB("lossarnach_throwable_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.GONDOR));
-		ExtendedItems.DWARVEN_THROWABLE_AXE = regItemB("dwarven_throwable_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.DWARVEN));
-		ExtendedItems.BLUE_MOUNTAINS_DWARVEN_THROWABLE_AXE = regItemB("blue_mountains_dwarven_throwable_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BLUE_DWARVEN));
+		ExtendedItems.IRON_THROWABLE_AXE = regItemB("iron_throwing_axe", () -> new ExtendedThrowableAxeItem(ItemTier.IRON));
+		ExtendedItems.BRONZE_THROWABLE_AXE = regItemB("bronze_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BRONZE));
+		ExtendedItems.LOSSARNACH_THROWABLE_AXE = regItemB("lossarnach_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.GONDOR));
+		ExtendedItems.DWARVEN_THROWABLE_AXE = regItemB("dwarven_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.DWARVEN));
+		ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE = regItemB("blue_dwarven_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BLUE_DWARVEN));
 		//######################################################################FOOD########################################################
 		//Berries
 		ExtendedItems.BLACKBERRY = regItemB("blackberry", () -> new ExtendedBerries(ExtendedBlocks.BLACKBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLACKBERRY)));
@@ -1069,7 +1070,7 @@ public class MixinLOTRItems {
 		ExtendedItems.BREE_SHIELD = regItemB("bree_shield", () -> new LOTRShieldItem(LOTRMaterial.valueOf("BREE")));
 
 		//Blue Mountains equipment
-		ExtendedItems.BLUE_MOUNTAINS_SHIELD = regItemB("blue_dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.BLUE_DWARVEN));
+		ExtendedItems.BLUE_DWARVEN_SHIELD = regItemB("blue_dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.BLUE_DWARVEN));
 
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", () -> new ExtendedDyeableLOTRArmorItem(LOTRMaterial.COSMETIC, EquipmentSlotType.HEAD, "leather_hat"));

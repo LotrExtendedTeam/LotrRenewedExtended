@@ -51,11 +51,11 @@ public class EItemLootEntry extends ItemLootEntry{
 			float modifiedMin = (100-(int)(maxDamagePercent*100)) / 100.0f;
 			float modifiedMax = (100-(int)(minDamagePercent*100)) / 100.0f;
 			if(!isDamagable) {
-				ExtendedLog.error("Tried Setting damage value range to a non-damageable item! "+modifiedMin+":"+modifiedMax);
+				ExtendedLog.error("Tried Setting damage value range to a non-damageable item! "+minDamagePercent+":"+maxDamagePercent);
 				return this.getThis();
 			}
 			if(modifiedMin > modifiedMax) {
-				ExtendedLog.error("Tried Setting an inverted damage value range to an item! "+modifiedMin+":"+modifiedMax);
+				ExtendedLog.error("Tried Setting an inverted damage value range to an item! "+minDamagePercent+":"+maxDamagePercent);
 				return this.getThis();
 			}
 			this.apply(SetDamage.setDamage(RandomValueRange.between(modifiedMin, modifiedMax)));

@@ -283,6 +283,9 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MOSSY_ARNOR_PILLAR;
 	public static RegistryObject<Block> MOSSY_ARNOR_PILLAR_SLAB;
 
+	public static RegistryObject<Block> CRACKED_STONE_PILLAR;
+	public static RegistryObject<Block> CRACKED_STONE_PILLAR_SLAB;
+
 	public static RegistryObject<Block> GOBLIN_BRICK;
 	public static RegistryObject<Block> GOBLIN_BRICK_SLAB;
 	public static RegistryObject<Block> GOBLIN_BRICK_STAIRS;

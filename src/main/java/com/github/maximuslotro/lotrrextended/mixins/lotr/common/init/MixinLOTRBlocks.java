@@ -642,6 +642,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB = registerB("cracked_arnor_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.CRACKED_ARNOR_PILLAR));
 		ExtendedBlocks.MOSSY_ARNOR_PILLAR = registerB("mossy_arnor_pillar", () -> new LOTRPillarBlock(MaterialColor.STONE));
 		ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB = registerB("mossy_arnor_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.MOSSY_ARNOR_PILLAR));
+		ExtendedBlocks.CRACKED_STONE_PILLAR = registerB("cracked_stone_pillar", () -> new LOTRPillarBlock(MaterialColor.STONE));
+		ExtendedBlocks.CRACKED_STONE_PILLAR_SLAB = registerB("cracked_stone_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.CRACKED_STONE_PILLAR));
 		// New Blocks
 //		ExtendedBlocks.GNEISS_ROCK = registerB("gneiss", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 //		ExtendedBlocks.GNEISS_ROCK_SLAB = registerB("gneiss_slab", () -> new AxialSlabBlock(ExtendedBlocks.GNEISS_ROCK));
@@ -927,7 +929,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.SILVER_FUR_BED = registerB("silver_fur_bed", () -> new ExtendedSilverFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 		ExtendedBlocks.WHITE_FUR_BED = registerB("white_fur_bed", () -> new ExtendedWhiteFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 		ExtendedBlocks.BEDROLL = registerB("bedroll", () -> new ExtendedBedrollBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
-		ExtendedBlocks.DWARVEN_BED = registerB("dwarven_bed", () -> new ExtendedDwarvenBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.DWARVEN_BED = registerB("dwarven_bed", () -> new ExtendedDwarvenBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
 
 		ExtendedBlocks.ROPE = registerB("rope", () -> new ExtendedRopeBlock(Properties.of(Material.DECORATION).sound(ExtendedSoundTypes.ROPE).strength(0.2F).noOcclusion()));
 

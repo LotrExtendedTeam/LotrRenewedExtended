@@ -127,8 +127,8 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		if(!world.hasChunksAt(getCMinBlockPos(), getCMaxBlockPos())) {
 			return false;
 		}
-		// Check if player has a proper distance from the spawner
-		if(world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMinSpawnDistance())) {
+		// Check if player has a proper distance from the spawner if not a single use spawner
+		if(world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMinSpawnDistance()) && !spawnerInstance.getSpawnType().isSingleSpawnType()) {
 			//world.players().forEach(player -> player.sendMessage(new StringTextComponent("Player to close"), Util.NIL_UUID));
 			return false;
 		} else if (!world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMaxSpawnDistance())) {
@@ -144,7 +144,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
                     .contains(entity.getType().getRegistryName().toString());
 			nearbyEntitySpawnCount = world.getEntitiesOfClass(LivingEntity.class, checkBox, pred).size();
 		}
-		//System.out.println("Suscessfully Ran Area Checks: "+nearbyEntitySpawnCount);
+		//System.out.println("Successfully Ran Area Checks: "+nearbyEntitySpawnCount);
 		for(int roll = 0; roll < spawnerInstance.getPoolRolls(); roll++) {
 			if(spawnerInstance.shouldCheckRandomDiscardChance() && random.nextInt(100)+1 <= spawnerInstance.getRandomDiscardChance()) {
 				continue;

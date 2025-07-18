@@ -121,4 +121,9 @@ public class AdvancementsProviderMirkwood extends ExtendedBaseAdvancementType{
 		return "mirkwood";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 33;
+	}
+
 }

@@ -343,7 +343,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> IRON_THROWABLE_AXE;
 	public static RegistryObject<Item> BRONZE_THROWABLE_AXE;
 	public static RegistryObject<Item> LOSSARNACH_THROWABLE_AXE;
-	public static RegistryObject<Item> BLUE_MOUNTAINS_DWARVEN_THROWABLE_AXE;
+	public static RegistryObject<Item> BLUE_DWARVEN_THROWABLE_AXE;
 	public static RegistryObject<Item> DWARVEN_THROWABLE_AXE;
 
 	public static RegistryObject<Item> BRANDING_IRON;
@@ -614,7 +614,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GUNDABAD_SHIELD;
 	public static RegistryObject<Item> DUNEDAIN_SHIELD;
 	public static RegistryObject<Item> BREE_SHIELD;
-	public static RegistryObject<Item> BLUE_MOUNTAINS_SHIELD;
+	public static RegistryObject<Item> BLUE_DWARVEN_SHIELD;
 	
 	public static RegistryObject<Item> BOWSTRING;
 	public static RegistryObject<Item> GUNDABAD_URUK_BOW;
@@ -676,4 +676,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GLOWSTONE_CRYSTAL_CHANDELIER;
 	public static RegistryObject<Item> EDHELVIR_CRYSTAL_CHANDELIER;
 	public static RegistryObject<Item> GULDURIL_CRYSTAL_CHANDELIER;
+
+	public static RegistryObject<Item> CRACKED_STONE_PILLAR;
+	public static RegistryObject<Item> CRACKED_STONE_PILLAR_SLAB;
 }

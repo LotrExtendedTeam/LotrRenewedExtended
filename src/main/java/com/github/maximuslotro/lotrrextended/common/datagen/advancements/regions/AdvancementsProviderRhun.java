@@ -59,4 +59,9 @@ public class AdvancementsProviderRhun extends ExtendedBaseAdvancementType{
 		return "rhun";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 26;
+	}
+
 }

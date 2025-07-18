@@ -44,6 +44,29 @@ import net.minecraft.world.biome.Biome;
 
 public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<Advancement>>{
 
+	private Consumer<Advancement> con;
+	private int legacyMade =0;
+
+	@Override
+	public void accept(Consumer<Advancement> t) {
+		con= t;
+		ExtendedAdvancementProvider.advancementsLegacyNumTotal+=getLegacyCount();
+		generateAdvancements();
+		//ExtendedLog.infoShown("Made "+(legacyMade/(float)getLegacyCount())*100+"% of "+getFolder()+" advancements");
+		ExtendedAdvancementProvider.advancementsLegacyNum += legacyMade;
+	}
+
+	public abstract int getLegacyCount();
+
+	public abstract void generateAdvancements();
+
+	public abstract String getFolder();
+
+
+	public static Advancement.Builder make(){
+		return Advancement.Builder.advancement();
+	}
+
 	public static Advancement.Builder addBiomeTriggers(Advancement.Builder builder, List<PreRegisteredLOTRBiome> biomes) {
 		for(PreRegisteredLOTRBiome lotrBiomeObject : biomes) {
 			addBiomeTrigger(builder, lotrBiomeObject);
@@ -197,21 +220,6 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		return builder;
 	}
 
-	Consumer<Advancement> con;
-	@Override
-	public void accept(Consumer<Advancement> t) {
-		con= t;
-		generateAdvancements();
-	}
-
-	public abstract void generateAdvancements();
-
-	public abstract String getFolder();
-
-	public static Advancement.Builder make(){
-		return Advancement.Builder.advancement();
-	}
-
 	public BaseData data(Item icon, String name, FrameType frame){
 		return data(icon, name, frame, true, true, false);
 	}
@@ -244,7 +252,7 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		}
 		builder.display(data.makeInfo());
 		if(isLegacy) {
-			ExtendedAdvancementProvider.advancementsLegacyNum +=1;
+			legacyMade +=1;
 		}else {
 			ExtendedAdvancementProvider.advancementsExtendedNum +=1;
 		}

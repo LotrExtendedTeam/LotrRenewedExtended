@@ -1,0 +1,93 @@
+{
+  "id": "lotrextended:blue_dwarven_warrior",
+  "entity_type": "lotr:blue_mountains_warrior",
+  "language": {
+    "translateStrings": true,
+    "entity_title": "entity.lotrextended.hiredunits.entity_title",
+    "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
+    "entity_unit_type": "entity.lotr.blue_mountains_warrior",
+    "attack_type": "melee"
+  },
+  "hiring": {
+    "hiringCost": 40,
+    "hiringRequiresPledge": false,
+    "hiringAlignmentRequired": 250
+  },
+  "equipmentPools": {
+    "helmets": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:blue_dwarven_helmet",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.helmet\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "chestplates": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:blue_dwarven_chestplate",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.chestplate\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "leggings": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:blue_dwarven_leggings",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.leggings\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "boots": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:blue_dwarven_boots",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.boots\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "setIdleFromMelee": true,
+    "melee": [
+      {
+        "weight": 7,
+        "equipmentItem": {
+          "item": "lotr:blue_dwarven_sword",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:blue_dwarven_spear",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:blue_dwarven_axe",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.weapon\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "offhand": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:blue_dwarven_shield",
+          "nbt": "{display:{Name:'{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.lotrextended.base_gear.shield\"}'},Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:air"
+        }
+      }
+    ]
+  }
+}

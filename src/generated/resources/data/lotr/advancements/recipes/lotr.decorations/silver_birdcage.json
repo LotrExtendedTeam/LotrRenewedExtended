@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:silver_birdcage"
+    ]
+  },
+  "criteria": {
+    "has_silver_birdcage": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:silver_birdcage"
+          }
+        ]
+      }
+    },
+    "has_silver_bars": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:silver_bars"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:silver_birdcage"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_silver_birdcage",
+      "has_silver_bars",
+      "has_the_recipe"
+    ]
+  ]
+}

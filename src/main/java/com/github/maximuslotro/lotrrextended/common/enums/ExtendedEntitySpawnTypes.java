@@ -13,7 +13,7 @@ import net.minecraft.util.IStringSerializable;
 
 /**
  * Replaced by the new Entity Spawner system for Structures
- * @deprecated
+ * @deprecated Replaced by the new Entity Spawner system for structures.
  * @since beta-1.6
  * */
 public enum ExtendedEntitySpawnTypes implements IStringSerializable {

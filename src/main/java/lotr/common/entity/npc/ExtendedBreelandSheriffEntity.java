@@ -3,6 +3,9 @@ package lotr.common.entity.npc;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
+import java.util.Arrays;
+import java.util.List;
+
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
 import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.entity.npc.util.LeatherDyeUtil;
@@ -70,7 +73,9 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
     }
 
 	@Override
-	public ResourceLocation getHireableProfile() {
-		return ExtendedHiredUnitTypes.BREE_GUARD;
+	public List<ResourceLocation> getHireableProfiles() {
+		return Arrays.asList(ExtendedHiredUnitTypes.BREE_HOBBIT, 
+			ExtendedHiredUnitTypes.BREE_MAN, 
+			ExtendedHiredUnitTypes.BREE_GUARD);
 	}
 }

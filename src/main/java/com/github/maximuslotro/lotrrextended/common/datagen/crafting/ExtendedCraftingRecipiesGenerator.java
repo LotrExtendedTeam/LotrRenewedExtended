@@ -730,7 +730,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			()->ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK.get().asItem(), LOTRRecipes.DWARVEN_CRAFTING);
 		makeThrowableAxeRecipe(consumer, ExtendedItems.DWARVEN_THROWABLE_AXE, LOTRItems.DWARVEN_STEEL_INGOT, LOTRRecipes.DWARVEN_CRAFTING);
 		// BLUE MOUNTAIN DWARVEN
-		makeThrowableAxeRecipe(consumer, ExtendedItems.BLUE_MOUNTAINS_DWARVEN_THROWABLE_AXE, LOTRItems.DWARVEN_STEEL_INGOT, LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
+		makeThrowableAxeRecipe(consumer, ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE, LOTRItems.DWARVEN_STEEL_INGOT, LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
 		// IRON 
 		makeThrowableAxeRecipe(consumer, ExtendedItems.IRON_THROWABLE_AXE, Tags.Items.INGOTS_IRON, "iron", null);
 		// BRONZE
@@ -966,6 +966,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makePillarSlabRecipe(consumer, ExtendedBlocks.MOSSY_ARNOR_PILLAR,
 			ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB,
 			LOTRItems.MOSSY_ARNOR_BRICK, LOTRRecipes.RANGER_CRAFTING);
+		makePillarSlabRecipe(consumer, ExtendedBlocks.CRACKED_STONE_PILLAR,
+			ExtendedBlocks.CRACKED_STONE_PILLAR_SLAB,
+			()->Items.CRACKED_STONE_BRICKS, null);
 		GENERATEDRECIPES.add(ExtendedItems.LARGE_POT.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.LARGE_POT.get())
 		.pattern("# #")
@@ -985,7 +988,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeShieldRecipe(consumer, ExtendedItems.DUNEDAIN_SHIELD, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.RANGER_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.GUNDABAD_SHIELD, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.BREE_SHIELD, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.BREE_CRAFTING);
-		makeShieldRecipe(consumer, ExtendedItems.BLUE_MOUNTAINS_SHIELD, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.RANGER_CRAFTING);
+		makeShieldRecipe(consumer, ExtendedItems.BLUE_DWARVEN_SHIELD, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.RANGER_CRAFTING);
 		//Banners and patterns
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.DUNEDAIN_BANNER, ExtendedItems.DUNEDAIN_BANNER_PATTERN, LOTRRecipes.RANGER_CRAFTING);
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.HOBBIT_BANNER, ExtendedItems.HOBBIT_BANNER_PATTERN, LOTRRecipes.HOBBIT_CRAFTING);
@@ -1033,7 +1036,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('I', Ingredient.of(PLANKS))
 		.unlockedBy("has_"+ExtendedBlocks.WOODEN_BIRDCAGE.get().getRegistryName().getPath(), has(ExtendedBlocks.WOODEN_BIRDCAGE.get()))
 		.unlockedBy("has_sticks", has(STICKS))
-		.saveNoAdvancement(consumer, lotrLoc(ExtendedBlocks.WOODEN_BIRDCAGE.get().getRegistryName().getPath()));
+		.save(consumer, lotrLoc(ExtendedBlocks.WOODEN_BIRDCAGE.get().getRegistryName().getPath()));
 		makeBirdcageRecipe(consumer, ExtendedBlocks.BRONZE_BIRDCAGE, LOTRItems.BRONZE_BARS, ExtendedTags.Items.BRONZE_INGOT, null);
 		makeBirdcageRecipe(consumer, ExtendedBlocks.IRON_BIRDCAGE, ()->Items.IRON_BARS, Tags.Items.INGOTS_IRON, null);
 		makeBirdcageRecipe(consumer, ExtendedBlocks.SILVER_BIRDCAGE, LOTRItems.SILVER_BARS, LOTRTags.Items.INGOTS_SILVER, null);
@@ -1482,6 +1485,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		// Extended cracked recipes from renewed blocks
 		makeStoneGrinderRecipe(consumer, LOTRBlocks.ARNOR_PILLAR, ExtendedItems.CRACKED_ARNOR_PILLAR);
 		makeStoneGrinderRecipe(consumer, LOTRBlocks.ARNOR_PILLAR_SLAB, ExtendedItems.CRACKED_ARNOR_PILLAR_SLAB);
+		makeStoneGrinderRecipe(consumer, LOTRBlocks.STONE_PILLAR, ExtendedItems.CRACKED_STONE_PILLAR);
+		makeStoneGrinderRecipe(consumer, LOTRBlocks.STONE_PILLAR_SLAB, ExtendedItems.CRACKED_STONE_PILLAR_SLAB);
 		// Extended cracked block recipes
 		makeStoneGrinderRecipe(consumer, ExtendedBlocks.DOL_GULDUR_BRICK, ExtendedItems.CRACKED_DOL_GULDUR_BRICK);
 		makeStoneGrinderRecipe(consumer, ExtendedBlocks.DOL_GULDUR_BRICK_SLAB, ExtendedItems.CRACKED_DOL_GULDUR_BRICK_SLAB);
@@ -1887,6 +1892,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_ARNOR_PILLAR, ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.MOSSY_ARNOR_PILLAR, ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_STONE_PILLAR, ExtendedBlocks.CRACKED_STONE_PILLAR_SLAB);
 
 //		makeStoneCutterRecipe(consumer, ExtendedBlocks.GNEISS_ROCK, ExtendedBlocks.GNEISS_ROCK_SLAB, 2);
 //		makeStoneCutterRecipe(consumer, ExtendedBlocks.GNEISS_ROCK, ExtendedBlocks.GNEISS_ROCK_STAIRS);

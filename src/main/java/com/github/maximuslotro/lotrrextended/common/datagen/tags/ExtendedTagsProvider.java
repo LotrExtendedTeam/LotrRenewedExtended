@@ -34,8 +34,14 @@ import net.minecraft.util.registry.Registry;
 
 /**
  * Copied from {@link net.minecraft.data.TagsProvider} to provide more functionality
+ *
+ * @param <T> the type of object for which tags are being generated (e.g., {@link net.minecraft.item.Item}, {@link net.minecraft.block.Block})
+ *
  * @version Minecraft 1.16.5
- * */
+ *
+ * @see net.minecraft.data.TagsProvider
+ * @see IDataProvider
+ */
 public abstract class ExtendedTagsProvider<T> implements IDataProvider {
 	private static final Logger LOGGER = LogManager.getLogger();
 	private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();

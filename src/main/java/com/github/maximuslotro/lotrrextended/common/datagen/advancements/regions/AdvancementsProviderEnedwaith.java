@@ -26,4 +26,9 @@ public class AdvancementsProviderEnedwaith extends ExtendedBaseAdvancementType{
 		return "enedwaith";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 3;
+	}
+
 }

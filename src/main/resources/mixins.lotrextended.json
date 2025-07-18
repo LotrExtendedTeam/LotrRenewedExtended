@@ -14,6 +14,7 @@
 		"lotr.common.data.MixinLOTRPlayerData",
 		"lotr.common.data.MixinPlayerDataModuleInvoker",
 		"lotr.common.entity.item.MixinModBoatType",
+		"lotr.common.entity.npc.MixinBlueDwarfEntity",
 		"lotr.common.entity.npc.MixinBlueDwarfWarriorEntity",
 		"lotr.common.entity.npc.MixinBreeGuardEntity",
 		"lotr.common.entity.npc.MixinDwarfEntity",

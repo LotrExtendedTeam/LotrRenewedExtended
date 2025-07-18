@@ -1,7 +1,7 @@
 package lotr.common.entity.npc;
 
-
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.NPCGenderProvider;
@@ -19,6 +19,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity implements ExtendedCaptainEntity {
 
@@ -42,7 +44,7 @@ public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity implements E
 
 	@Override
     protected Goal createDwarfAttackGoal() {
-        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.3, new ItemStack(ExtendedItems.BLUE_MOUNTAINS_SHIELD.get()), ItemStack.EMPTY);
+        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.3, new ItemStack(ExtendedItems.BLUE_DWARVEN_SHIELD.get()), ItemStack.EMPTY);
     }
 
 	@Override
@@ -50,9 +52,9 @@ public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity implements E
 		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
 		this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.DWARVEN_SWORD.get()));
 		this.npcItemsInv.setIdleItemsFromMeleeWeapons();
-		setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.DWARVEN_BOOTS.get()));
-		setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.DWARVEN_LEGGINGS.get()));
-		setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.DWARVEN_CHESTPLATE.get()));
+		setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.GOLD_TRIMMED_DWARVEN_BOOTS.get()));
+		setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.GOLD_TRIMMED_DWARVEN_LEGGINGS.get()));
+		setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.GOLD_TRIMMED_DWARVEN_CHESTPLATE.get()));
 		return spawnData;
 	}
 
@@ -62,8 +64,9 @@ public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity implements E
 	}
 
 	@Override
-	public ResourceLocation getHireableProfile() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ResourceLocation> getHireableProfiles() {
+		return java.util.Arrays.asList(ExtendedHiredUnitTypes.DWARF, 
+			ExtendedHiredUnitTypes.DWARF_WARRIOR, 
+			ExtendedHiredUnitTypes.DWARF_ARCHER);
 	}
 }

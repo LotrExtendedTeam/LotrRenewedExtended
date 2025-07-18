@@ -68,4 +68,9 @@ public class AdvancementsProviderDale extends ExtendedBaseAdvancementType{
 		return "dale";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 18;
+	}
+
 }

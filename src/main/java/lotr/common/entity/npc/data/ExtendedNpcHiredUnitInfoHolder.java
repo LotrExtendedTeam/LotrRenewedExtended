@@ -358,7 +358,18 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	}
 
 	/**
-	 * Handle data packets from the server
+	 * Handles data packets from the server to synchronize NPC hired unit data on the client.
+	 *
+	 * <p>This method reads an incoming {@link PacketBuffer} containing updated data for an {@link NPCEntity}
+	 * and applies the data to the client's local entity if it exists and is of the correct type.
+	 * Synchronizes ownership, hire status, level, experience, and mob kill counts for hired NPC units.</p>
+	 *
+	 * @param buf the {@link PacketBuffer} containing the server data
+	 * @param world the client {@link World} in which to locate and update the entity
+	 *
+	 * @see PacketBuffer
+	 * @see NPCEntity
+	 * @see ExtendedNpcHiredUnitInfoHolder
 	 */
 	public static void readDataPacketFromServer(PacketBuffer buf, World world) {
 		int entityId = buf.readVarInt();
@@ -753,7 +764,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	public TextComponent getHiredUnitNameAndTitle() {
 		if(getUnitProfile().stringsAreTranslated()) {
 			return new TranslationTextComponent(getUnitProfile().getEntityUnitTitle(),
-				new StringTextComponent(thisEntity.getPersonalInfo().getName()));
+				new StringTextComponent(thisEntity.getPersonalInfo().getName()), new TranslationTextComponent(getUnitProfile().getEntityUnitTypeName()));
 		}
 		return new StringTextComponent(getUnitProfile().getEntityUnitShorthandName());
 	}

@@ -56,7 +56,7 @@ public abstract class MixinHobbitEntity extends AbstractMannishEntity {
 	@Inject(method = "addNPCAI()V", at = @At("TAIL"), remap=false)
 	protected void addNPCAIExtended(CallbackInfo ci) {
 		goalSelector.addGoal(1, new AvoidEntityGoal<>(this, WargEntity.class, 12.0F, 1.5D, 1.8D));
-		goalSelector.addGoal(2, new ExtendedHiredSitFollowGoal((NPCEntity)(Object)this, 1.3D, 8.0F, 3.0F, false));
+		goalSelector.addGoal(2, new ExtendedHiredSitFollowGoal((NPCEntity)(Object)this, 1.3D, 8.0F, 6.0F, false));
 
 	}
 }

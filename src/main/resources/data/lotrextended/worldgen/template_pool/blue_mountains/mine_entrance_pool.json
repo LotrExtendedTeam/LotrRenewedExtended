@@ -1,0 +1,19 @@
+{
+	"name": "lotrextended:blue_mountains/mine_entrance_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_entrance_1",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"apply_waterlogging" : false,
+				"chunk_corner_offset" : 1,
+				"ground_level_delta" : 2
+			}
+		}
+	]
+}

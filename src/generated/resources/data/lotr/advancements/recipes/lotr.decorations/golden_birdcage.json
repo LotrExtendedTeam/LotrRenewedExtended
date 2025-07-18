@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:golden_birdcage"
+    ]
+  },
+  "criteria": {
+    "has_golden_birdcage": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:golden_birdcage"
+          }
+        ]
+      }
+    },
+    "has_gold_bars": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gold_bars"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:golden_birdcage"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_golden_birdcage",
+      "has_gold_bars",
+      "has_the_recipe"
+    ]
+  ]
+}

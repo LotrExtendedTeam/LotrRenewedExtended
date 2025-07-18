@@ -110,7 +110,7 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 	
 	/**
 	 * Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when
-	 * many blocks change at once. This compound comes back to you clientside in {@link handleUpdateTag}
+	 * many blocks change at once. This compound comes back to you clientside in {@link #onDataPacket}
 	 */
 	@Override
 	public CompoundNBT getUpdateTag() {
@@ -119,11 +119,8 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 
 	/**
 	 * Checks if players can use this tile entity to access operator (permission level 2) commands either directly or
-	 * indirectly, such as give or setblock. A similar method exists for entities at {@link
-	 * net.minecraft.entity.Entity#ignoreItemEntityData()}.<p>For example, {@link
-	 * net.minecraft.tileentity.TileEntitySign#onlyOpsCanSetNbt() signs} (player right-clicking) and {@link
-	 * net.minecraft.tileentity.TileEntityCommandBlock#onlyOpsCanSetNbt() command blocks} are considered
-	 * accessible.</p>@return true if this block entity offers ways for unauthorized players to use restricted commands
+	 * indirectly, such as give or setblock. 
+	 * @return true if this block entity offers ways for unauthorized players to use restricted commands
 	 */
 	@Override
 	public boolean onlyOpCanSetNbt() {
@@ -135,7 +132,12 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 	}
 
 	/**
-	 * Sets the sign's isEditable flag to the specified parameter.
+	 * Sets the sign's {@code isEditable} flag to the specified value.
+	 * <p>
+	 * When set to {@code false}, it also clears the {@code playerWhoMayEdit} field,
+	 * preventing any player from editing the sign further until re-enabled.
+	 *
+	 * @param pIsEditable {@code true} to allow the sign to be editable, {@code false} to lock editing and clear the current editing player
 	 */
 	@OnlyIn(Dist.CLIENT)
 	public void setEditable(boolean pIsEditable) {
@@ -143,7 +145,6 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 		if (!pIsEditable) {
 			this.playerWhoMayEdit = null;
 		}
-
 	}
 
 	public void setAllowedPlayerEditor(PlayerEntity p_145912_1_) {

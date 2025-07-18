@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " X#",
+    "X  "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:rods/wooden"
+    },
+    "#": {
+      "tag": "forge:ingots/bronze"
+    }
+  },
+  "result": {
+    "item": "lotr:bronze_throwing_axe"
+  }
+}

@@ -120,4 +120,9 @@ public class AdvancementsProviderBree extends ExtendedBaseAdvancementType{
 		return "bree";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 23;
+	}
+
 }

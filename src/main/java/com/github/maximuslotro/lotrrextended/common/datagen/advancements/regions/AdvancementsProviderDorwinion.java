@@ -74,4 +74,9 @@ public class AdvancementsProviderDorwinion extends ExtendedBaseAdvancementType{
 		return "dorwinion";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 24;
+	}
+
 }

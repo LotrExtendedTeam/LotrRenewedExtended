@@ -19,6 +19,8 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 public class ExtendedDunedainRangerCaptainEntity extends ExtendedDunedainRangerEntity implements ExtendedCaptainEntity{
 
 	public ExtendedDunedainRangerCaptainEntity(EntityType<? extends ExtendedDunedainRangerEntity> type, World w) {
@@ -57,7 +59,9 @@ public class ExtendedDunedainRangerCaptainEntity extends ExtendedDunedainRangerE
 	}
 
 	@Override
-	public ResourceLocation getHireableProfile() {
-		return ExtendedHiredUnitTypes.DUNEDAIN_RANGER;
+	public List<ResourceLocation> getHireableProfiles() {
+		return java.util.Arrays.asList(
+			ExtendedHiredUnitTypes.DUNEDAIN_RANGER
+		);
 	}
 }

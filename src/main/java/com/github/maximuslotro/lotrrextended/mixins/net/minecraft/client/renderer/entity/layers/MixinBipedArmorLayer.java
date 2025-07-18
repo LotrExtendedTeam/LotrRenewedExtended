@@ -24,6 +24,8 @@ import net.minecraft.util.ResourceLocation;
 /**
  * Handles Ranger Transparency effect without the need for additional classes that crash with custom armor
  * @Mixin (BipedArmorLayer.class)
+ * @param <T> the type of {@link LivingEntity} rendered with the armor layer
+ * @param <A> the type of {@link BipedModel} used for rendering the armor
  * */
 @Mixin(BipedArmorLayer.class)
 public abstract class MixinBipedArmorLayer<T extends LivingEntity, A extends BipedModel<T>> {

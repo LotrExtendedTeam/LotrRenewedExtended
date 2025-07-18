@@ -1,6 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.entity;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.entity.hiredunitprofiles.ExtendedServerHiredUnitProfileGenerator;
+import com.github.maximuslotro.lotrrextended.common.datagen.entity.settings.ExtendedEntitySettingsGenerator;
+import com.github.maximuslotro.lotrrextended.common.datagen.entity.settings.ExtendedMissingEntitySettingsValidator;
 import com.github.maximuslotro.lotrrextended.common.datagen.entity.structures.StructureEntitySpawnerGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.entity.traderprofiles.ExtendedTraderProfileGenerator;
 
@@ -13,6 +15,7 @@ public class ExtendedEntityRelatedGenerators {
 		generator.addProvider(new ExtendedTraderProfileGenerator(generator, modid));
 		//generator.addProvider(new ExtendedCaptainProfileGenerator(generator, modid));
 		generator.addProvider(new StructureEntitySpawnerGenerator(generator, modid));
+		generator.addProvider(new ExtendedEntitySettingsGenerator(generator));
 		generator.addProvider(new ExtendedMissingEntitySettingsValidator(existingFileHelper));
 	}
 }

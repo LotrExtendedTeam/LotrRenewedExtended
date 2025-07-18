@@ -350,10 +350,6 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.bow.damage", "Ranged Damage: %s");
 		addD("gui.lotrextended.bow.range", "Range: %s");
 
-		// hired unit menus
-		addD("gui.lotrextended.menu.equipment", "Equipment");
-		addD("gui.lotrextended.menu.back", "Back");
-
 		// Generic command strings
 		addD("command.lotrextended.generic_error.only_player", "This command can only be run by a player");
 
@@ -440,6 +436,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hiring.not_alignment", "Your alignment is too low. You need %s alignment to hire that unit.");
 		addD("gui.lotrextended.hiring.unit_has_been_hired", "The %1$s has been hired for %2$s coins.");
 
+		// hired unit menus
+		addD("gui.lotrextended.menu.equipment", "Equipment");
+		addD("gui.lotrextended.menu.back", "Back");
 		// item names for base gear
 		addD("item.lotrextended.base_gear.chestplate", "Base Chestplate");
 		addD("item.lotrextended.base_gear.helmet", "Base Helmet");

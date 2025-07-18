@@ -31,8 +31,8 @@ public abstract class MixinManEntity extends AbstractMannishEntity {
      * @param type  A placeholder {@link EntityType} for {@link AbstractMannishEntity}, required for superclass initialization.
      * @param world A placeholder {@link World} instance, required for superclass initialization.
      */
-	public MixinManEntity(EntityType<? extends AbstractMannishEntity> type, World w) {
-		super(type, w);
+	public MixinManEntity(EntityType<? extends AbstractMannishEntity> type, World world) {
+		super(type, world);
 	}
 	/**
      * Injects a custom AI goal at the end of the {@code addNPCAI} method execution.
@@ -44,7 +44,7 @@ public abstract class MixinManEntity extends AbstractMannishEntity {
      * @param ci The {@link CallbackInfo} provided by the Mixin injector.
      */
 	@Inject(method = "addNPCAI()V", at = @At("TAIL"), remap = false)
-	protected void dropCustomDeathLootExtended(CallbackInfo ci) {
-		this.goalSelector.addGoal(1, new ExtendedHiredSitFollowGoal((NPCEntity)(Object)this, 1.3D, 8.0F, 3.0F, false));
+	protected void addNPCAIExtended(CallbackInfo ci) {
+		this.goalSelector.addGoal(1, new ExtendedHiredSitFollowGoal((NPCEntity)(Object)this, 1.3D, 8.0F, 6.0F, false));
 	}
 }

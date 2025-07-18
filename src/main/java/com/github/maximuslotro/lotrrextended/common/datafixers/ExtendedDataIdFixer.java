@@ -127,7 +127,12 @@ public class ExtendedDataIdFixer {
 		addRemapEntity("hired_gundabad_orc", "lotr", LOTREntities.GUNDABAD_ORC);
 		addRemapEntity("hired_bree_guard", "lotr", LOTREntities.BREE_GUARD);
 
-
+		// Throwing axes changed names through development of 1.8.0
+		addRemapItem("blue_mountains_dwarven_throwable_axe", "lotr", ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE);
+		addRemapItem("bronze_throwable_axe", "lotr", ExtendedItems.BRONZE_THROWABLE_AXE);
+		addRemapItem("dwarven_throwable_axe", "lotr", ExtendedItems.DWARVEN_THROWABLE_AXE);
+		addRemapItem("iron_throwable_axe", "lotr", ExtendedItems.IRON_THROWABLE_AXE);
+		addRemapItem("lossarnach_throwable_axe", "lotr", ExtendedItems.LOSSARNACH_THROWABLE_AXE);
 	}
 
 	private static void addRemapBlock(String previousMapping, String previousNamespace, Supplier<? extends Block> remapBlock) {

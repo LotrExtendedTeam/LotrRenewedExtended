@@ -174,7 +174,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedBirdcageBlock) {
-					genBirdcageBlockItem((ExtendedBirdcageBlock) block.getValue().get(), "block/"+block.getKey());
+					genBirdcageBlock((ExtendedBirdcageBlock) block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedCrucibleBlock) {
@@ -518,7 +518,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 			}catch(IllegalArgumentException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		}
 		//Only Add entries to this loop if they depend on other models we are generating or are super-types of other block types
@@ -712,7 +712,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 			}catch(IllegalArgumentException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		}
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
@@ -1391,12 +1391,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+crucible.getRegistryName().getPath()).parent(modelFile);
 	}
 
-	private void genBirdcageBlockItem(ExtendedBirdcageBlock birdcage, String name) {
+	private void genBirdcageBlock(ExtendedBirdcageBlock birdcage, String cagePath) {
 		registeredBlocks.add(birdcage);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+birdcage.getRegistryName().getPath(), lotrExtendedLoc("block/template_birdcage"))
-									.texture("cage", lotrExtendedLoc("block/wooden_birdcage"));
+			.texture("cage", lotrExtendedLoc(cagePath));
 		simpleBlock(birdcage, modelFile);
-		itemModels().getBuilder("lotr:"+birdcage.getRegistryName().getPath()).parent(modelFile);
 	}
 
 	private void genMossCarpetBlockItem(ExtendedMossCarpetBlock carpet) {
@@ -1493,7 +1492,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			ModelFile modelFile = models().withExistingParent("lotrextended:"+chandelier.getRegistryName().getPath(), lotrLoc("block/template_chandelier")).texture("chandelier", lotrExtendedLoc("block/"+name)).texture("chandelier_chain", lotrExtendedLoc("block/chandelier_chain_"+name.substring(0, name.length() - 11)));
 			simpleBlock(chandelier, modelFile);
 		}catch(IllegalArgumentException e) {
-			System.out.println("Using default chain model for "+name+", chandelier_chain_"+name.substring(0, name.length() - 11)+" not found.");
+			ExtendedLog.infoShown(("Using default chain model for "+name+", chandelier_chain_"+name.substring(0, name.length() - 11)+" not found."));
 			ModelFile modelFile = models().withExistingParent("lotrextended:"+chandelier.getRegistryName().getPath(), lotrLoc("block/template_chandelier")).texture("chandelier", lotrExtendedLoc("block/"+name));
 			simpleBlock(chandelier, modelFile);
 		}

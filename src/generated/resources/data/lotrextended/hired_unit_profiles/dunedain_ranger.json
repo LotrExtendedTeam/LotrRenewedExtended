@@ -3,9 +3,9 @@
   "entity_type": "lotr:dunedain_ranger",
   "language": {
     "translateStrings": true,
-    "entity_title": "entity_title.lotrextended.hired_dunedain_ranger",
-    "entity_shortname": "entity_shortname.lotrextended.hired_dunedain_ranger",
-    "entity_unit_type": "entity_unit_type.lotrextended.hired_dunedain_ranger",
+    "entity_title": "entity.lotrextended.hiredunits.entity_title",
+    "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
+    "entity_unit_type": "entity.lotr.dunedain_ranger",
     "attack_type": "ranged"
   },
   "hiring": {

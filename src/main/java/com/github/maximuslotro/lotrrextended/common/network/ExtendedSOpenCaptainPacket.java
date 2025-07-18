@@ -4,6 +4,8 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
+import java.util.List;
+import java.util.ArrayList;
 
 import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
@@ -12,23 +14,32 @@ import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClients
 public class ExtendedSOpenCaptainPacket {
 
     private int captainId;
-    private ExtendedClientHiredUnitProfile clientProfile;
+    private List<ExtendedClientHiredUnitProfile> clientProfiles;
     // Only used on the server!!!!
-    private ExtendedServerHiredUnitProfile serverProfile;
+    private List<ExtendedServerHiredUnitProfile> serverProfiles;
     
-    public ExtendedSOpenCaptainPacket(int captainId, ExtendedClientHiredUnitProfile profile, ExtendedServerHiredUnitProfile serverProfile) {
+    public ExtendedSOpenCaptainPacket(int captainId, List<ExtendedClientHiredUnitProfile> profiles, List<ExtendedServerHiredUnitProfile> serverProfiles) {
        this.captainId = captainId;
-       this.clientProfile = profile;
-       this.serverProfile = serverProfile;
+       this.clientProfiles = profiles;
+       this.serverProfiles = serverProfiles;
     }
 
     public static void encode(ExtendedSOpenCaptainPacket packet, PacketBuffer buf) {
         buf.writeInt(packet.captainId);
-        ExtendedClientHiredUnitProfile.toNetwork(packet.serverProfile, buf);
+        buf.writeInt(packet.serverProfiles.size());
+        for (ExtendedServerHiredUnitProfile profile : packet.serverProfiles) {
+            ExtendedClientHiredUnitProfile.toNetwork(profile, buf);
+        }
     }
 
     public static ExtendedSOpenCaptainPacket decode(PacketBuffer buf) {
-        return new ExtendedSOpenCaptainPacket(buf.readInt(), ExtendedClientHiredUnitProfile.fromNetwork(buf), null);
+        int captainId = buf.readInt();
+        int profileCount = buf.readInt();
+        List<ExtendedClientHiredUnitProfile> profiles = new ArrayList<>();
+        for (int i = 0; i < profileCount; i++) {
+            profiles.add(ExtendedClientHiredUnitProfile.fromNetwork(buf));
+        }
+        return new ExtendedSOpenCaptainPacket(captainId, profiles, null);
     }
 
     public static void handle(ExtendedSOpenCaptainPacket packet, Supplier<NetworkEvent.Context> context) {
@@ -40,7 +51,7 @@ public class ExtendedSOpenCaptainPacket {
 		return captainId;
 	}
 
-	public ExtendedClientHiredUnitProfile getClientProfile() {
-		return clientProfile;
+	public List<ExtendedClientHiredUnitProfile> getClientProfiles() {
+		return clientProfiles;
 	}
 }

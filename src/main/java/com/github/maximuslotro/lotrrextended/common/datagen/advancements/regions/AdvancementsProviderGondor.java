@@ -137,4 +137,9 @@ public class AdvancementsProviderGondor extends ExtendedBaseAdvancementType{
 		return "gondor";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 53;
+	}
+
 }
