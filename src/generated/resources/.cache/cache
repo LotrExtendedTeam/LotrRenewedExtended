@@ -751,6 +751,7 @@ a55062ff80ee986e229bb8bfb932fcad62342257 assets/lotr/models/item/dwarven_door.js
 98167609bf3898587f7565736a6fc24a7966cacd assets/lotr/models/item/dwarven_miner_spawn_egg.json
 98167609bf3898587f7565736a6fc24a7966cacd assets/lotr/models/item/dwarven_smith_spawn_egg.json
 48fe99f77ab5b6afd3dda3406ef2c7f049a6a20e assets/lotr/models/item/dwarven_throwing_axe.json
+1b846bca9f4e01ac7512d218f6160f0662ca7687 assets/lotr/models/item/edhelvir_crystal_chandelier.json
 fca01fce6bf2a53bc0e215f4dc51b8e0409fd133 assets/lotr/models/item/elderberry.json
 7c7516a142803e767d21bf523588daf0f7b11a81 assets/lotr/models/item/elderberry_bush.json
 f4dfff327e80f2576e966a5cf12b519f27b97051 assets/lotr/models/item/emerald.json
@@ -770,6 +771,7 @@ cc0c3809134de4faa78f72f2f18054b249723907 assets/lotr/models/item/flowery_rhunic_
 76223217474a0297a5eac2110dd44413f64f016f assets/lotr/models/item/galvorn_ingot.json
 6c4ac82ec163ea1bd8ef2f15dcd2707b4535dfdd assets/lotr/models/item/gilded_iron_block.json
 a90b99dbd8f37c54ebddf8d224055908462e8f46 assets/lotr/models/item/gilded_iron_ingot.json
+60f53377b0673af620a0b8b320fea49559e519bf assets/lotr/models/item/glowstone_crystal_chandelier.json
 36fd8bba2b71b29465275aea07c88b857bab68d1 assets/lotr/models/item/goblin_brick.json
 fd640d01aee45915f3b68fc6c135e52b0e878ab9 assets/lotr/models/item/goblin_brick_slab.json
 5b940482200ee0facf032bcd743f1379d9906c2c assets/lotr/models/item/goblin_brick_stairs.json
@@ -807,6 +809,7 @@ c257fa9d131d30003fdba45e3240607e63d22e8f assets/lotr/models/item/gray_packed_fur
 52a4d33f39c2d1772a3472ab223a89526fa1b65e assets/lotr/models/item/gray_warg_fur_chestplate.json
 1c112b93f8b7ac5d9763979ad09f2a22ca5164e6 assets/lotr/models/item/gray_warg_fur_helmet.json
 982e57c362c2eafed7d15d8c055e015c613d9d5e assets/lotr/models/item/gray_warg_fur_leggings.json
+68a813d948a7391f14ad268f1853b224421df388 assets/lotr/models/item/gulduril_crystal_chandelier.json
 fff88a54c2d322f49a5d32fb721938d21074bc57 assets/lotr/models/item/gundabad_crafting_table.json
 167c8045da3c1f00a2479053727aa9f75e96bfb8 assets/lotr/models/item/gundabad_orc_banner.json
 35b7d7aa8c30c68f3f9696b1ad879017f29d5b45 assets/lotr/models/item/gundabad_orc_banner_pattern.json
