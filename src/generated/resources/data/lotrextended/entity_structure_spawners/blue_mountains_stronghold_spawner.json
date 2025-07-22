@@ -23,6 +23,7 @@
       "maxSpawnCount": 5,
       "entity_types": [
         {
+          "weight": 2,
           "entity_type": "lotr:blue_mountains_warrior"
         },
         {

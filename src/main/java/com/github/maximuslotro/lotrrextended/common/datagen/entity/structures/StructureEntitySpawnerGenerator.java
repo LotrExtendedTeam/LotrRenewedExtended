@@ -147,8 +147,11 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		single(ExtendedEntities.BLUE_DWARVEN_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_SMITH);
 		single(ExtendedEntities.BLUE_DWARVEN_COMMANDER.get()).setRespawnOnDeath().setHomeInfo(false, 4).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_COMMANDER);
 		persisted(MultiSpawnType.Builder.multi()
-			.addPool(LOTREntities.BLUE_MOUNTAINS_WARRIOR.get(), 1).addPool(LOTREntities.BLUE_MOUNTAINS_ARCHER.get(), 1)
+			.addPool(LOTREntities.BLUE_MOUNTAINS_WARRIOR.get(), 2).addPool(LOTREntities.BLUE_MOUNTAINS_ARCHER.get(), 1)
 			.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 4, -2, 5).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_STRONGHOLD);
+		persisted(MultiSpawnType.Builder.multi()
+			.addPool(LOTREntities.BLUE_MOUNTAINS_WARRIOR.get(), 2).addPool(LOTREntities.BLUE_MOUNTAINS_ARCHER.get(), 1)
+			.build(), 2, 5, false, 30, 8).setBoundaries(10, -8, 15, 4, -2, 5).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_STRONGHOLD_ALT);
 		// DWARVEN
 		single(ExtendedEntities.DWARVEN_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.DWARVEN_SMITH);
 	}
