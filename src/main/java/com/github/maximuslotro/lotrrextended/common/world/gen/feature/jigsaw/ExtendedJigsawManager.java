@@ -364,7 +364,6 @@ public class ExtendedJigsawManager {
 											}
 											// Extended Start
 											if (correctedYconnectingPieceSpawnHeight < 12 && connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).shouldProtectYLevel()) {
-												System.out.println("Disabling "+connectingPoolJigsawPiece.toString());
 												continue;
 											}
 											// Extended End

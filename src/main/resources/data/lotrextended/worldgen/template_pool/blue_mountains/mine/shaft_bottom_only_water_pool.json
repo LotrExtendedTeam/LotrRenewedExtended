@@ -9,7 +9,6 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_shaft_bottom_2",
 				"processors": "minecraft:empty",
-				"apply_waterlogging": false,
 				"should_protect_y_level": false
 			}
 		},
@@ -20,7 +19,6 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_shaft_bottom_3",
 				"processors": "minecraft:empty",
-				"apply_waterlogging": false,
 				"should_protect_y_level": false
 			}
 		},
@@ -31,7 +29,6 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_shaft_bottom_4",
 				"processors": "minecraft:empty",
-				"apply_waterlogging": false,
 				"should_protect_y_level": false
 			}
 		},
@@ -42,7 +39,6 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_shaft_bottom_5",
 				"processors": "minecraft:empty",
-				"apply_waterlogging": false,
 				"should_protect_y_level": false
 			}
 		}
