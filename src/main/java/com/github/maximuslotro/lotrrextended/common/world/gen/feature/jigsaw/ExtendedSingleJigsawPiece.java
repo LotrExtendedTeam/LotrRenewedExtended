@@ -34,6 +34,8 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
  *     <li>Snap placement height to water surface for smoother generation in oceans or rivers.</li>
  *     <li>Shift structures up or down for structure where the bottom block in not the ground block.</li>
  *     <li>Shift structures horizontally through the chunk generated in.</li>
+ *     <li>Add foundations under the structure.</li>
+ *     <li>Disable piece from being spawned to low in the world.</li>
  * </ul>
  * <p>
  * Used in procedural generation frameworks to gain fine-grained control over structure behavior
@@ -53,7 +55,8 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	public static final Codec<ExtendedSingleJigsawPiece> CODEC = RecordCodecBuilder.create((instance) -> {
 		return instance.group(templateCodec(), processorsCodec(), projectionCodec(), waterloggingCodec(), maxPlaceDistanceCodec(), 
 			maxDepthCodec(), ingnoreBBconflictsCodec(), blacklistNameCodec(), snapUpToWaterheightCodec(), 
-			shiftStructureUpByCodec(), chunkCornerOffsetCodec(), foundationBlockCodec()).apply(instance, ExtendedSingleJigsawPiece::new);
+			shiftStructureUpByCodec(), chunkCornerOffsetCodec(), foundationBlockCodec(),
+			shouldProtectYLevelCodec()).apply(instance, ExtendedSingleJigsawPiece::new);
 	});
 	/**
 	 * If true, liquids will propagate through waterloggable blocks; if false, water will stay confined inside the designated blocks.
@@ -95,6 +98,11 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	 */
 	protected final BlockState foundation;
 
+	/**
+	 * If true, the piece will not be used if it tries generating below a certain y-level threshold
+	 */
+	protected final boolean shouldProtectYLevel;
+
 	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Boolean> waterloggingCodec() {
 		return Codec.BOOL.optionalFieldOf("apply_waterlogging", true).forGetter((piece) -> {
 			return piece.apply_waterlogging;
@@ -108,7 +116,7 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	}
 
 	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Integer> maxDepthCodec() {
-		return Codec.INT.optionalFieldOf("max_depth", 7).forGetter((piece) -> {
+		return Codec.INT.optionalFieldOf("max_depth", -1).forGetter((piece) -> {
 			return piece.maxDepth;
 		});
 	}
@@ -148,6 +156,13 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 			return piece.foundation;
 		});
 	}
+
+	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Boolean> shouldProtectYLevelCodec() {
+		return Codec.BOOL.optionalFieldOf("should_protect_y_level", true).forGetter((piece) -> {
+			return piece.shouldProtectYLevel;
+		});
+	}
+
 	/**
 	 * Constructs an {@link ExtendedSingleJigsawPiece} with advanced configuration for structure placement.
 	 *
@@ -163,10 +178,11 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	 * @param shiftStructureUpBy   Vertical offset from ground height to spawn at.
 	 * @param chunkCornerOffset    Horizontal offset from chunk corner to spawn at.
 	 * @param foundation           The block to use for a foundation
+	 * @param shouldProtectYLevel  Whether to enforce a minimum y level for pieces
 	 */
 	protected ExtendedSingleJigsawPiece(Either<ResourceLocation, Template> template, Supplier<StructureProcessorList> processors, 
 		JigsawPattern.PlacementBehaviour placementType, boolean apply_waterlogging, int maxPlaceDistance, int maxDepth, boolean ingnoreBBconflicts,
-		String blacklist_name, boolean snapUpToWaterheight, int shiftStructureUpBy, int chunkCornerOffset, BlockState foundation) {
+		String blacklist_name, boolean snapUpToWaterheight, int shiftStructureUpBy, int chunkCornerOffset, BlockState foundation, boolean shouldProtectYLevel) {
 		super(template, processors, placementType);
 		this.apply_waterlogging = apply_waterlogging;
 		this.maxPlaceDistance = maxPlaceDistance;
@@ -177,6 +193,7 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		this.groundLevelDelta = shiftStructureUpBy;
 		this.chunkCornerOffset = chunkCornerOffset;
 		this.foundation = foundation;
+		this.shouldProtectYLevel = shouldProtectYLevel;
 	}
 	/**
 	 * Retrieves placement settings with liquid retention set according to {@link #apply_waterlogging}.
@@ -290,5 +307,11 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	 */
 	public BlockState getFoundationBlock() {
 		return foundation;
+	}
+	/**
+	 * @return Whether the piece should not be used if y level is less a certain y-level threshold
+	 */
+	public boolean shouldProtectYLevel() {
+		return shouldProtectYLevel;
 	}
 }

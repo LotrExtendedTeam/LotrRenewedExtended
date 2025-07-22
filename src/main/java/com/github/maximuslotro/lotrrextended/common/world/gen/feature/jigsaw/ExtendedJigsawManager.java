@@ -139,7 +139,7 @@ public class ExtendedJigsawManager {
 		pieces.add(abstractvillagepiece);
 		// Extended Start
 		int maxDepth = structureConfig.maxDepth();
-		if(jigsawpiece instanceof ExtendedSingleJigsawPiece) {
+		if(jigsawpiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)jigsawpiece).getMaxDepth()!=-1) {
 			maxDepth = ((ExtendedSingleJigsawPiece)jigsawpiece).getMaxDepth();
 		}
 		// Extended End
@@ -362,6 +362,12 @@ public class ExtendedJigsawManager {
 												}
 												// Extended End
 											}
+											// Extended Start
+											if (correctedYconnectingPieceSpawnHeight < 12 && connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).shouldProtectYLevel()) {
+												System.out.println("Disabling "+connectingPoolJigsawPiece.toString());
+												continue;
+											}
+											// Extended End
 											// Set the y-offset for the piece placement
 											int connectingPieceBBShiftYoffset = correctedYconnectingPieceSpawnHeight - connectingPoolJigsawPieceRelativeBottomYValue;
 											MutableBoundingBox mutableboundingbox3 = mutableboundingbox2.moved(0, connectingPieceBBShiftYoffset, 0);
