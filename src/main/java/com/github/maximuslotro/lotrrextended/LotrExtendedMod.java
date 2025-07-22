@@ -77,7 +77,7 @@ public class LotrExtendedMod{
 		forgeBus.addGenericListener(EntityType.class, ExtendedDataIdFixer::fixEntityMappings);
 		modBus.addListener(this::extendedCommonSetup);
 		modBus.addListener(DataGeneratorExtended::gatherData);
-		forgeBus.addListener(this::extendedRegisterCommands);
+		forgeBus.addListener(EventPriority.LOW, this::extendedRegisterCommands);
 		forgeBus.addListener(this::extendedRegisterDataPackListeners);
 		forgeBus.addListener(EventPriority.HIGH, this::extendedAddFeatureToBiomes);
 		forgeBus.addListener(this::extendesAddDimensionalSpacing);
