@@ -5,6 +5,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedCTalkWithTra
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
+import lotr.common.LOTRMod;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.client.Minecraft;
@@ -48,7 +49,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
         		if(canTraderTrade) {
             		ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.trading.trade_button.tooltip"), 200), pMouseX, pMouseY);
         		}else {
-        			if (trader.isFriendly(player)) {
+        			if (!LOTRMod.PROXY.getSidedAttackTarget(entity).isPresent()) {
                 		ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), 200), pMouseX, pMouseY);
         			}else {
                 		ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.trading.trader_unfrendly"), 200), pMouseX, pMouseY);
@@ -62,7 +63,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
         		if(canTraderTrade) {
             		ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.trading.exchange_button.tooltip"), 200), pMouseX, pMouseY);
         		}else {
-        			if (trader.isFriendly(player)) {
+        			if (!LOTRMod.PROXY.getSidedAttackTarget(entity).isPresent()) {
                 		ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), 200), pMouseX, pMouseY);
         			}else {
                 		ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.trading.trader_unfrendly"), 200), pMouseX, pMouseY);
@@ -75,7 +76,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 	@Override
 	public void tick() {
 		super.tick();
-		canTraderTrade = trader.canTradeWithPlayer(player);
+		canTraderTrade = trader.canTradeWithPlayer(player) && !LOTRMod.PROXY.getSidedAttackTarget(entity).isPresent();
 		coinButton.active = canTraderTrade;
 		tradeButton.active = canTraderTrade;
 	}
@@ -105,7 +106,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 	}
 
 	private void sendClientErrorMessage() {
-		if (trader.isFriendly(player)) {
+		if (!LOTRMod.PROXY.getSidedAttackTarget(entity).isPresent()) {
 			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
 			stopTradingClientServer();
 			closeThisMenu();

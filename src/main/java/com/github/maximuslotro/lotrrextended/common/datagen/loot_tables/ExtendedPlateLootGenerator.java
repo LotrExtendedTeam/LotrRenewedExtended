@@ -51,7 +51,7 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.LETTUCE.get()))
 				.add(addEntry(LOTRItems.PEAR.get()))
 				.add(addEntry(LOTRItems.CHERRY.get()))
-				.add(addEntry(ExtendedItems.DUCK.get()))
+				.add(addEntry(ExtendedItems.COOKED_DUCK.get()))
 				.add(addEntry(ExtendedItems.PLUM.get()))
 				.add(addEntry(ExtendedItems.HOBBIT_PANCAKE.get()))
 				.add(addEntry(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get()))
@@ -82,7 +82,7 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 				.add(addEntry(Items.RABBIT_STEW))
 				.add(addEntry(LOTRItems.GREEN_APPLE.get()))
 				.add(addEntry(LOTRItems.PEAR.get()))
-				.add(addEntry(ExtendedItems.DUCK.get()))
+				.add(addEntry(ExtendedItems.COOKED_DUCK.get()))
 				.add(addEntry(ExtendedItems.PLUM.get()))
 				.add(addEntry(ExtendedItems.BLACKBERRY.get()))
 				.add(addEntry(ExtendedItems.BLUEBERRY.get()))
@@ -119,7 +119,7 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.LETTUCE.get()))
 				.add(addEntry(LOTRItems.PEAR.get()))
 				.add(addEntry(LOTRItems.CHERRY.get()))
-				.add(addEntry(ExtendedItems.DUCK.get()))
+				.add(addEntry(ExtendedItems.COOKED_DUCK.get()))
 				.add(addEntry(ExtendedItems.PLUM.get()))
 				.add(addEntry(ExtendedItems.BLACKBERRY.get()))
 				.add(addEntry(ExtendedItems.BLUEBERRY.get()))
@@ -154,7 +154,7 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.LETTUCE.get()))
 				.add(addEntry(LOTRItems.PEAR.get()))
 				.add(addEntry(LOTRItems.CHERRY.get()))
-				.add(addEntry(ExtendedItems.DUCK.get()))
+				.add(addEntry(ExtendedItems.COOKED_DUCK.get()))
 				.add(addEntry(ExtendedItems.PLUM.get()))
 				.add(addEntry(ExtendedItems.BLACKBERRY.get()))
 				.add(addEntry(ExtendedItems.BLUEBERRY.get()))
@@ -192,7 +192,7 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 			.add(addEntry(Items.COOKED_MUTTON, 1, 4))
 			.add(addEntry(Items.COOKED_RABBIT, 1, 4))
 			.add(addEntry(Items.RABBIT_STEW))
-			.add(addEntry(ExtendedItems.DUCK.get(), 1, 4)));
+			.add(addEntry(ExtendedItems.COOKED_DUCK.get(), 1, 4)));
 
 		make(consumer, ExtendedLootTables.BREE_CHEESEMONGER_PLATES, makePool()
 			.add(addEntry(ExtendedItems.CHEESE_CURDS.get(), 1, 5))
@@ -200,6 +200,21 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 			.add(addEntry(ExtendedItems.CHEESE_WHEEL.get()))
 			.add(addEntry(ExtendedItems.AGED_CHEESE_SLICE.get(), 1, 3))
 			.add(addEntry(ExtendedItems.AGED_CHEESE_WHEEL.get())));
+
+		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_PLATE, makePool()
+			.add(addEntry(Items.COOKED_PORKCHOP, 1, 2))
+			.add(addEntry(Items.COOKED_CHICKEN, 1, 2))
+			.add(addEntry(Items.COOKED_BEEF, 1, 2))
+			.add(addEntry(Items.COOKED_PORKCHOP, 1, 2))
+			.add(addEntry(Items.COOKED_MUTTON, 1, 2))
+			.add(addEntry(Items.COOKED_RABBIT, 1, 2))
+			.add(addEntry(Items.COOKED_SALMON, 1, 2))
+			.add(addEntry(Items.COOKED_COD, 1, 2))
+			.add(addEntry(ExtendedItems.COOKED_DUCK.get(), 1, 2))
+			.add(addEntry(LOTRItems.GAMMON.get(), 1, 2))
+			.add(addEntry(Items.BREAD, 1, 2))
+			.add(addEntry(Items.RABBIT_STEW))
+			.add(addEntry(Items.MUSHROOM_STEW)));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item){

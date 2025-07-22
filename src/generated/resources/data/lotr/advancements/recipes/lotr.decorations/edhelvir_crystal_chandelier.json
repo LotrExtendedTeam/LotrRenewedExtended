@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:edhelvir_crystal_chandelier"
+    ]
+  },
+  "criteria": {
+    "has_edhelvir_crystal_chandelier": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:edhelvir_crystal_chandelier"
+          }
+        ]
+      }
+    },
+    "has_edhelvir_crystal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:edhelvir_crystal"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:edhelvir_crystal_chandelier"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_edhelvir_crystal_chandelier",
+      "has_edhelvir_crystal",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -17,20 +17,21 @@
     "hidden": false
   },
   "criteria": {
-    "has_suspicious_meat": {
-      "trigger": "minecraft:inventory_changed",
+    "item_lotr:suspicious_meat_made_on_crafting_table": {
+      "trigger": "lotrextended:crafting_with_block",
       "conditions": {
-        "items": [
-          {
-            "item": "lotr:suspicious_meat"
-          }
-        ]
+        "item": {
+          "item": "lotr:suspicious_meat"
+        },
+        "crafting_block": {
+          "block": "minecraft:crafting_table"
+        }
       }
     }
   },
   "requirements": [
     [
-      "has_suspicious_meat"
+      "item_lotr:suspicious_meat_made_on_crafting_table"
     ]
   ]
 }

@@ -15,7 +15,8 @@ import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.data.PlayerMessageType;
-import lotr.common.entity.npc.ExtendedHirableEntity;
+import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.NPCEntity;
 import lotr.common.fac.AlignmentPredicates;
 import lotr.common.fac.EntityFactionHelper;
 import lotr.common.fac.Faction;
@@ -65,8 +66,17 @@ public class MixinEntityFactionHelper {
 	public static Faction getFaction(Entity entity) {return null;}
 
 	/**
+	 * Determines if a player can cause damage to a target entity, with protection against
+	 * fellowship PvP and hired unit friendly fire.
+	 * 
 	 * @author maximuslotro
-	 * @reason Add fellowship pvp and hired unit friendly fire protection
+	 * @reason Add fellowship PvP and hired unit friendly fire protection
+	 * 
+	 * @param attacker The player attempting to cause damage.
+	 * @param target The target entity to be damaged.
+	 * @param warnFriendlyFire Whether to warn the attacker about friendly fire.
+	 * @return True if damage is allowed, false if it should be prevented.
+	 * @Overwrite (remap=false)
 	 */
 	@Overwrite(remap=false)
 	public static boolean canPlayerCauseDamageToTarget(PlayerEntity attacker, Entity target, boolean warnFriendlyFire) {
@@ -93,8 +103,8 @@ public class MixinEntityFactionHelper {
 			}
 		}
 		// Extended Start
-		if(alignedTarget instanceof ExtendedHirableEntity) {
-			UUID hiredUnitOwnerUUID = ((ExtendedHirableEntity)alignedTarget).getOwnerUUID();
+		if(alignedTarget instanceof NPCEntity && ((ExtendedNPCEntity)alignedTarget).getUnitInfo().isNpcActiveDuty()) {
+			UUID hiredUnitOwnerUUID = ((ExtendedNPCEntity)alignedTarget).getUnitInfo().getOwnerUUID();
 			if(hiredUnitOwnerUUID!=null) {
 				// Check if player can hurt their units
 				if (hiredUnitOwnerUUID.equals(attacker.getUUID())) {
@@ -113,7 +123,7 @@ public class MixinEntityFactionHelper {
 			}
 		}
 		// Extended End
-		if (friendlyFireEnabled || !friendlyFire) {
+		if (friendlyFireEnabled || !friendlyFire) { // TODO integrate hired unit FF check into this statement
 			return true;
 		}
 		if (warnFriendlyFire && !attacker.level.isClientSide) {

@@ -1,43 +1,85 @@
 {
   "variants": {
-    "axis=x,type=top": {
+    "axis=x,lotrtexture=false,type=top": {
       "model": "lotrextended:block/grass_block_slab_top",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
-    "axis=y,type=top": {
+    "axis=y,lotrtexture=false,type=top": {
+      "model": "lotrextended:block/grass_block_slab_top_vanilla"
+    },
+    "axis=z,lotrtexture=false,type=top": {
+      "model": "lotrextended:block/grass_block_slab_top",
+      "x": 270,
+      "uvlock": true
+    },
+    "axis=x,lotrtexture=true,type=top": {
+      "model": "lotrextended:block/grass_block_slab_top",
+      "x": 90,
+      "y": 90,
+      "uvlock": true
+    },
+    "axis=y,lotrtexture=true,type=top": {
       "model": "lotrextended:block/grass_block_slab_top"
     },
-    "axis=z,type=top": {
+    "axis=z,lotrtexture=true,type=top": {
       "model": "lotrextended:block/grass_block_slab_top",
       "x": 270,
       "uvlock": true
     },
-    "axis=x,type=bottom": {
+    "axis=x,lotrtexture=false,type=bottom": {
       "model": "lotrextended:block/grass_block_slab",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
-    "axis=y,type=bottom": {
-      "model": "lotrextended:block/grass_block_slab"
+    "axis=y,lotrtexture=false,type=bottom": {
+      "model": "lotrextended:block/grass_block_slab_vanilla"
     },
-    "axis=z,type=bottom": {
+    "axis=z,lotrtexture=false,type=bottom": {
       "model": "lotrextended:block/grass_block_slab",
       "x": 270,
       "uvlock": true
     },
-    "axis=x,type=double": {
+    "axis=x,lotrtexture=true,type=bottom": {
+      "model": "lotrextended:block/grass_block_slab",
+      "x": 90,
+      "y": 90,
+      "uvlock": true
+    },
+    "axis=y,lotrtexture=true,type=bottom": {
+      "model": "lotrextended:block/grass_block_slab"
+    },
+    "axis=z,lotrtexture=true,type=bottom": {
+      "model": "lotrextended:block/grass_block_slab",
+      "x": 270,
+      "uvlock": true
+    },
+    "axis=x,lotrtexture=false,type=double": {
       "model": "lotrextended:block/grass_block_slab_double",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
-    "axis=y,type=double": {
+    "axis=y,lotrtexture=false,type=double": {
+      "model": "minecraft:block/grass_block"
+    },
+    "axis=z,lotrtexture=false,type=double": {
+      "model": "lotrextended:block/grass_block_slab_double",
+      "x": 270,
+      "uvlock": true
+    },
+    "axis=x,lotrtexture=true,type=double": {
+      "model": "lotrextended:block/grass_block_slab_double",
+      "x": 90,
+      "y": 90,
+      "uvlock": true
+    },
+    "axis=y,lotrtexture=true,type=double": {
       "model": "lotrextended:block/grass_block_slab_double"
     },
-    "axis=z,type=double": {
+    "axis=z,lotrtexture=true,type=double": {
       "model": "lotrextended:block/grass_block_slab_double",
       "x": 270,
       "uvlock": true

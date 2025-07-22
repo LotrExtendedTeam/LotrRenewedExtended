@@ -1,0 +1,35 @@
+{
+  "id": "lotrextended:blue_mountains_stronghold_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 10,
+    "lowerYvalue": -8,
+    "horizontal_bounds": 15
+  },
+  "spawn_area": {
+    "topYvalue": 4,
+    "lowerYvalue": -2,
+    "horizontal_bounds": 5
+  },
+  "inside_spawning": true,
+  "setHomeOnSpawn": true,
+  "homeRadius": 15,
+  "persistenceRequired": true,
+  "spawnCap": 8,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 2,
+      "maxSpawnCount": 5,
+      "entity_types": [
+        {
+          "weight": 2,
+          "entity_type": "lotr:blue_mountains_warrior"
+        },
+        {
+          "entity_type": "lotr:blue_mountains_archer"
+        }
+      ]
+    }
+  ]
+}

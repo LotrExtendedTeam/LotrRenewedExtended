@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:bronze_birdcage"
+    ]
+  },
+  "criteria": {
+    "has_bronze_birdcage": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:bronze_birdcage"
+          }
+        ]
+      }
+    },
+    "has_bronze_bars": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:bronze_bars"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:bronze_birdcage"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bronze_birdcage",
+      "has_bronze_bars",
+      "has_the_recipe"
+    ]
+  ]
+}

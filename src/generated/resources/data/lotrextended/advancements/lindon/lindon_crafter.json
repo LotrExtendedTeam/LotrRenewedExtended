@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:lindon/the_last_fair_realm",
+  "display": {
+    "icon": {
+      "item": "lotr:lindon_crafting_table"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.lindon.lindon_crafter.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.lindon.lindon_crafter.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "item_made_on_lindon_crafting_table": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "crafting_block": {
+          "block": "lotr:lindon_crafting_table"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item_made_on_lindon_crafting_table"
+    ]
+  ]
+}

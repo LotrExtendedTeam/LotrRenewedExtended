@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:gondor/kingdom_of_men",
+  "display": {
+    "icon": {
+      "item": "lotr:blackroot"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.gondor.bows_and_blackroots.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.gondor.bows_and_blackroots.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_blackroot_vale": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:blackroot_vale"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_blackroot_vale"
+    ]
+  ]
+}

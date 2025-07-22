@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:bree_innkeeper",
-  "entity_type": "lotr:bree_innkeeper",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,
@@ -59,7 +58,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:wheat"
+        "item": "minecraft:wheat",
+        "count": 2
       }
     },
     {
@@ -113,7 +113,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:coal"
+        "item": "minecraft:coal",
+        "count": 2
       }
     }
   ],
@@ -163,7 +164,8 @@
     {
       "averageCost": 7,
       "stack": {
-        "item": "minecraft:baked_potato"
+        "item": "minecraft:baked_potato",
+        "count": 2
       }
     },
     {
@@ -325,7 +327,8 @@
     {
       "averageCost": 8,
       "stack": {
-        "item": "lotr:pipeweed"
+        "item": "lotr:pipeweed",
+        "count": 4
       }
     },
     {

@@ -21,11 +21,15 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Vector3f;
-
 /**
- * Adds support for custom and new drink renderer types
+ * Mixin to extend and customize the rendering of {@link VesselDrinkTileEntityRenderer} to support additional
+ * drink container types and custom rendering logic.
+ *
+ * <p>This mixin enables rendering support for vessel types not originally handled due to hardcoded logic in the base renderer.</p>
+ *
+ * @param <T> the type of {@link VesselDrinkTileEntity} being rendered
  * @Mixin (VesselDrinkTileEntityRenderer.class)
- * */
+ */
 @Mixin(VesselDrinkTileEntityRenderer.class)
 public abstract class MixinVesselDrinkTileEntityRenderer<T extends VesselDrinkTileEntity> extends TileEntityRenderer<T> {
 
@@ -38,31 +42,71 @@ public abstract class MixinVesselDrinkTileEntityRenderer<T extends VesselDrinkTi
 	}
 
 	/**
-	 * Renders a liquid texture at a horizontal position
+	 * Renders a flat (horizontal) surface of liquid within a container.
+	 * Used for drink vessels like mugs or goblets.
+	 *
+	 * @param matStack The current matrix stack.
+	 * @param vb The vertex builder for rendering.
+	 * @param icon The texture to use for the liquid.
+	 * @param uvMin Minimum UV coordinate.
+	 * @param uvMax Maximum UV coordinate.
+	 * @param x0 Starting X coordinate.
+	 * @param z0 Starting Z coordinate.
+	 * @param x1 Ending X coordinate.
+	 * @param z1 Ending Z coordinate.
+	 * @param y Height at which to render the liquid surface.
+	 * @param light Combined light value.
+	 * @param overlay Overlay light texture value.
 	 * @Shadow (remap=false)
-	 * */
+	 */
 	@Shadow(remap=false)
 	private void renderLiquidSurface(MatrixStack matStack, IVertexBuilder vb, TextureAtlasSprite icon, int uvMin, int uvMax, float x0, float z0, float x1, float z1, float y, int light, int overlay) {}
 
 	/**
-	 * Renders a liquid texture at a non-horizontal position
-	 * @Shadow (remap=false)
-	 * */
+	 * Renders a vertical or angled surface of liquid.
+	 * This variant is typically used for angled or complex shaped vessels.
+	 *
+	 * @param matStack The current matrix stack.
+	 * @param vb The vertex builder for rendering.
+	 * @param icon The texture to use for the liquid.
+	 * @param uvMin Minimum UV coordinate.
+	 * @param uvMax Maximum UV coordinate.
+	 * @param width Width of the rendered surface.
+	 * @param y Height at which to render the liquid surface.
+	 * @param light Combined light value.
+	 * @param overlay Overlay light texture value.
+	 * @Shadow (remap=false
+	 */
 	@Shadow(remap=false)
 	private void renderLiquidSurface(MatrixStack matStack, IVertexBuilder vb, TextureAtlasSprite icon, int uvMin, int uvMax, float width, float y, int light, int overlay) {}
 
 	/**
-	 * Gets the current rotation of this associated drink container
+	 * Returns the correct rotation direction for aligning the rendered vessel model
+	 * to match the blockstate's JSON configuration.
+	 *
+	 * @param stateFacing The direction the blockstate is facing.
+	 * @return The adjusted facing direction.
 	 * @Shadow (remap=false)
-	 * */
+	 */
 	@Shadow(remap=false)
 	private Direction getRotationToMatchBlockstateJson(Direction stateFacing) {return null;}
 
 	/**
+	 * Overwrites the base renderer to add logic for new and custom vessel types.
+	 * This handles rendering of liquid surfaces based on the {@link VesselType}.
+	 *
+	 * <p>This overwrite removes the hardcoded dependency on a fixed set of vessel types in the original renderer.</p>
+	 * 
 	 * @author maximuslotro
 	 * @reason Adds logic for rendering new drink containers, as VesselType is hardcoded
+	 * @param vessel The tile entity instance representing the vessel.
+	 * @param partialTicks Tick delta used for interpolation.
+	 * @param matStack The current matrix stack.
+	 * @param buffer The rendering buffer.
+	 * @param combinedLight The combined light value.
+	 * @param combinedOverlay The overlay texture value.
 	 * @Overwrite (remap=false)
-	 * */
+	 */
 	@Override
 	@Overwrite(remap=false)
 	public void render(T vessel, float partialTicks, MatrixStack matStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {

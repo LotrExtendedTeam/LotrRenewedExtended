@@ -13,26 +13,42 @@ import lotr.common.fac.FactionPointers;
 import net.minecraft.entity.player.PlayerEntity;
 
 /**
- * Fix hostile aligned mobs not attacking the player
+ * Mixin applied to {@link NPCNearestAttackableTargetGoal} to modify the targeting behavior of NPCs.
+ * <p>
+ * Ensures that hostile-aligned NPCs correctly target players, even when vanilla alignment logic fails.
+ * </p>
+ *
+ * @reason Fixes an issue where hostile-aligned mobs would not attack players as intended.
  * @Mixin (NPCNearestAttackableTargetGoal.class)
- * */
+ */
 @Mixin(NPCNearestAttackableTargetGoal.class)
 public class MixinNPCNearestAttackableTargetGoal {
 
 	/**
-	 * Need to get the NPCEntity instance of this target goal
+	 * Reference to the owning {@link NPCEntity} of this goal.
+	 * <p>
+	 * This field is marked {@code final} and shadowed from the original class for use in the mixin.
+	 * </p>
+	 *
+	 * @see NPCEntity
 	 * @Shadow (remap=false)
 	 * @Final Mark the field to be essentially final
-	 * */
+	 */
 	@Shadow(remap=false)
 	@Final
 	private NPCEntity theNPC;
 
 	/**
+	 * Overwrites the method that determines if a player is a suitable alignment target.
+	 * <p>
+	 * Allows hostile factions to always target players, bypassing the default alignment check.
+	 * </p>
+	 * 
 	 * @author maximuslotro
 	 * @reason Fix hostile aligned mobs not attacking players
-	 * @param player The PlayerEntity being targeted
-	 * @return True if the player can be targeted
+	 * @Overwrite (remap=false)
+	 * @param player The {@link PlayerEntity} being evaluated as a target.
+	 * @return {@code true} if the player should be targeted based on faction hostility or alignment data.
 	 */
 	@Overwrite(remap=false)
 	protected boolean isPlayerSuitableAlignmentTarget(PlayerEntity player) {

@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:bree_lumberman",
-  "entity_type": "lotr:bree_lumberman",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,
@@ -23,7 +22,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:bone_meal"
+        "item": "minecraft:bone_meal",
+        "count": 6
       }
     },
     {
@@ -65,7 +65,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:stick"
+        "item": "minecraft:stick",
+        "count": 4
       }
     },
     {
@@ -89,13 +90,15 @@
     {
       "averageCost": 2,
       "stack": {
-        "item": "minecraft:oak_planks"
+        "item": "minecraft:oak_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 2,
       "stack": {
-        "item": "lotr:oak_beam"
+        "item": "lotr:oak_beam",
+        "count": 3
       }
     },
     {
@@ -125,13 +128,15 @@
     {
       "averageCost": 4,
       "stack": {
-        "item": "minecraft:spruce_planks"
+        "item": "minecraft:spruce_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 4,
       "stack": {
-        "item": "lotr:spruce_beam"
+        "item": "lotr:spruce_beam",
+        "count": 3
       }
     },
     {
@@ -161,13 +166,15 @@
     {
       "averageCost": 3,
       "stack": {
-        "item": "minecraft:birch_planks"
+        "item": "minecraft:birch_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 3,
       "stack": {
-        "item": "lotr:birch_beam"
+        "item": "lotr:birch_beam",
+        "count": 3
       }
     },
     {
@@ -197,13 +204,15 @@
     {
       "averageCost": 6,
       "stack": {
-        "item": "minecraft:dark_oak_planks"
+        "item": "minecraft:dark_oak_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 6,
       "stack": {
-        "item": "lotr:dark_oak_beam"
+        "item": "lotr:dark_oak_beam",
+        "count": 3
       }
     },
     {
@@ -233,13 +242,15 @@
     {
       "averageCost": 4,
       "stack": {
-        "item": "lotr:pine_planks"
+        "item": "lotr:pine_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 4,
       "stack": {
-        "item": "lotr:pine_beam"
+        "item": "lotr:pine_beam",
+        "count": 3
       }
     },
     {
@@ -269,13 +280,15 @@
     {
       "averageCost": 5,
       "stack": {
-        "item": "lotr:apple_planks"
+        "item": "lotr:apple_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 5,
       "stack": {
-        "item": "lotr:apple_beam"
+        "item": "lotr:apple_beam",
+        "count": 3
       }
     },
     {
@@ -305,13 +318,15 @@
     {
       "averageCost": 5,
       "stack": {
-        "item": "lotr:pear_planks"
+        "item": "lotr:pear_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 5,
       "stack": {
-        "item": "lotr:pear_beam"
+        "item": "lotr:pear_beam",
+        "count": 3
       }
     },
     {
@@ -341,13 +356,15 @@
     {
       "averageCost": 3,
       "stack": {
-        "item": "lotr:beech_planks"
+        "item": "lotr:beech_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 3,
       "stack": {
-        "item": "lotr:beech_beam"
+        "item": "lotr:beech_beam",
+        "count": 3
       }
     },
     {
@@ -377,13 +394,15 @@
     {
       "averageCost": 6,
       "stack": {
-        "item": "lotr:holly_planks"
+        "item": "lotr:holly_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 6,
       "stack": {
-        "item": "lotr:holly_beam"
+        "item": "lotr:holly_beam",
+        "count": 3
       }
     },
     {
@@ -413,13 +432,15 @@
     {
       "averageCost": 4,
       "stack": {
-        "item": "lotr:maple_planks"
+        "item": "lotr:maple_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 4,
       "stack": {
-        "item": "lotr:maple_beam"
+        "item": "lotr:maple_beam",
+        "count": 3
       }
     },
     {
@@ -449,13 +470,15 @@
     {
       "averageCost": 4,
       "stack": {
-        "item": "lotr:larch_planks"
+        "item": "lotr:larch_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 4,
       "stack": {
-        "item": "lotr:larch_beam"
+        "item": "lotr:larch_beam",
+        "count": 3
       }
     },
     {
@@ -485,13 +508,15 @@
     {
       "averageCost": 3,
       "stack": {
-        "item": "lotr:chestnut_planks"
+        "item": "lotr:chestnut_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 3,
       "stack": {
-        "item": "lotr:chestnut_beam"
+        "item": "lotr:chestnut_beam",
+        "count": 3
       }
     },
     {
@@ -521,13 +546,15 @@
     {
       "averageCost": 4,
       "stack": {
-        "item": "lotr:fir_planks"
+        "item": "lotr:fir_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 4,
       "stack": {
-        "item": "lotr:fir_beam"
+        "item": "lotr:fir_beam",
+        "count": 3
       }
     },
     {
@@ -557,13 +584,15 @@
     {
       "averageCost": 4,
       "stack": {
-        "item": "lotr:willow_planks"
+        "item": "lotr:willow_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 4,
       "stack": {
-        "item": "lotr:willow_beam"
+        "item": "lotr:willow_beam",
+        "count": 3
       }
     },
     {
@@ -593,13 +622,15 @@
     {
       "averageCost": 3,
       "stack": {
-        "item": "lotr:aspen_planks"
+        "item": "lotr:aspen_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 3,
       "stack": {
-        "item": "lotr:aspen_beam"
+        "item": "lotr:aspen_beam",
+        "count": 3
       }
     },
     {
@@ -629,13 +660,15 @@
     {
       "averageCost": 5,
       "stack": {
-        "item": "lotr:plum_planks"
+        "item": "lotr:plum_planks",
+        "count": 4
       }
     },
     {
       "averageCost": 5,
       "stack": {
-        "item": "lotr:plum_beam"
+        "item": "lotr:plum_beam",
+        "count": 3
       }
     },
     {

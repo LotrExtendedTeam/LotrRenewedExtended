@@ -20,7 +20,6 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.OpenDoorGoal;
@@ -49,7 +48,7 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
     private List<UUID> escorts = new ArrayList<>();
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return DwarfEntity.regAttrs().add(Attributes.ARMOR, 0.0);
+        return DwarfEntity.regAttrs();
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.Map.Entry;
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
@@ -205,6 +206,9 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 			if(block.getKey().contains("packed_fur")||block.getKey().contains("fur_bundle")||block.getKey().contains("fur_carpet")) {
 				tag(ExtendedTags.Blocks.FUR_BLOCKS).add(block.getValue().get());
 			}
+			if(block.getValue().get() instanceof ExtendedChainBlock) {
+				tag(ExtendedTags.Blocks.CHAINS).add(block.getValue().get());
+			}
 		}
 
 		tag(BlockTags.BASE_STONE_OVERWORLD)//.add(ExtendedBlocks.GNEISS_ROCK.get()).add(ExtendedBlocks.LIMESTONE_ROCK.get()).add(ExtendedBlocks.SLATE_ROCK.get())
@@ -280,6 +284,9 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 
 		tag(BlockTags.CLIMBABLE).add(ExtendedBlocks.ROPE.get()).add(ExtendedBlocks.MORDOR_MOSS_VINES.get()).add(ExtendedBlocks.WILLOW_VINES.get());
 
+		tag(ExtendedTags.Blocks.CHAINS).add(Blocks.CHAIN);
+
+
 		tag(ExtendedTags.Blocks.SHEARABLE_BLOCKS).addTag(ExtendedTags.Blocks.FUR_BLOCKS);
 
 		tag(ExtendedTags.Blocks.COPPER_ORE).add(LOTRBlocks.COPPER_ORE.get());
@@ -330,6 +337,10 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.add(ExtendedBlocks.PLUM_WOOD.get()).add(ExtendedBlocks.STRIPPED_PLUM_WOOD.get());
 		tag(ExtendedTags.Blocks.WILLOW_LOGS).add(ExtendedBlocks.WILLOW_LOG.get()).add(ExtendedBlocks.STRIPPED_WILLOW_LOG.get())
 		.add(ExtendedBlocks.WILLOW_WOOD.get()).add(ExtendedBlocks.STRIPPED_WILLOW_WOOD.get());
+		
+		tag(ExtendedTags.Blocks.WOOL_BLOCKS).add(Blocks.BLACK_WOOL).add(Blocks.BLUE_WOOL).add(Blocks.BROWN_WOOL).add(Blocks.CYAN_WOOL).add(Blocks.GRAY_WOOL)
+		.add(Blocks.GREEN_WOOL).add(Blocks.LIGHT_BLUE_WOOL).add(Blocks.LIGHT_GRAY_WOOL).add(Blocks.LIME_WOOL).add(Blocks.MAGENTA_WOOL).add(Blocks.ORANGE_WOOL)
+		.add(Blocks.PINK_WOOL).add(Blocks.PURPLE_WOOL).add(Blocks.RED_WOOL).add(Blocks.WHITE_WOOL).add(Blocks.YELLOW_WOOL);
 	}
 
 	@Override

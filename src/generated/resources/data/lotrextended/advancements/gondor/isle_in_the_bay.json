@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:gondor/kingdom_of_men",
+  "display": {
+    "icon": {
+      "item": "minecraft:stone"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.gondor.isle_in_the_bay.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.gondor.isle_in_the_bay.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_tolfalas": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:tolfalas"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_tolfalas"
+    ]
+  ]
+}

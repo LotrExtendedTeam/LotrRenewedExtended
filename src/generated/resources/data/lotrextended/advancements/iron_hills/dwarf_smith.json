@@ -1,0 +1,41 @@
+{
+  "parent": "lotrextended:iron_hills/iron_hills",
+  "display": {
+    "icon": {
+      "item": "lotr:silver_coin_one"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.iron_hills.dwarf_smith.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.iron_hills.dwarf_smith.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_dwarven_smith_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:dwarven_smith",
+        "istraderselling": "false"
+      }
+    },
+    "trade_dwarven_smith_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:dwarven_smith",
+        "istraderselling": "true"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_dwarven_smith_buy",
+      "trade_dwarven_smith_sell"
+    ]
+  ]
+}

@@ -9,7 +9,6 @@ import com.github.maximuslotro.lotrrextended.common.datagen.language.ExtendedLan
 import com.github.maximuslotro.lotrrextended.common.datagen.loot_tables.ExtendedLootTableGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedBlockstateModelGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedItemModelGenerator;
-import com.github.maximuslotro.lotrrextended.common.datagen.structure.entities.StructureEntitySpawnerGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.tags.ExtendedTagRelatedGenerators;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 
@@ -28,7 +27,6 @@ public class DataGeneratorExtended {
 			generator.addProvider(new ExtendedCraftingRecipiesGenerator(generator));
 			generator.addProvider(new ExtendedGlobalLootModifierGenerator(generator, LotrExtendedMod.MODID));
 			generator.addProvider(new ExtendedAdvancementProvider(generator, existingFileHelper));
-			generator.addProvider(new StructureEntitySpawnerGenerator(generator, LotrExtendedMod.MODID));
 			ExtendedEntityRelatedGenerators.gatherData(generator, existingFileHelper, LotrExtendedMod.MODID);
 		}
 		if (event.includeClient()) {

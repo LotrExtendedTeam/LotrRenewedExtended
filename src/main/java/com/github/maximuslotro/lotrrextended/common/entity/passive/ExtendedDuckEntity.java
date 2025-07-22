@@ -243,7 +243,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 	}
 
 	/**
-	 * Set baby ducks {@see ExtendedGenderedAnimalEntity.isBob} if parent is bob type
+	 * Set baby ducks {@link ExtendedGenderedAnimalEntity} if parent is bob type
 	 * */
 	@Override
 	public ExtendedDuckEntity modifyBreedingOffspring(ExtendedDuckEntity baby, ServerWorld pServerLevel, AgeableEntity pMate) {

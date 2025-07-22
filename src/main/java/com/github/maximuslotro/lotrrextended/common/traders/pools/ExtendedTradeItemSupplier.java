@@ -21,7 +21,7 @@ public interface ExtendedTradeItemSupplier {
 	JsonElement serializeJson();
 
 	/**
-	 * Copied from {@link DisplayInfo#getStack(JsonObject jsonObject)}
+	 * Copied from {@link net.minecraft.advancements.DisplayInfo}
 	 * @param jsonObject The JsonObject to read from
 	 * @return An ItemStack that was contained in the JsonObject
 	 * */
@@ -34,6 +34,9 @@ public interface ExtendedTradeItemSupplier {
 				throw new JsonParseException("Disallowed data tag found");
 			} else {
 				ItemStack generatedItemStack = new ItemStack(basicItem);
+				if (jsonObject.has("count")) {
+					generatedItemStack.setCount(jsonObject.get("count").getAsInt());
+				}
 				if (jsonObject.has("nbt")) {
 					try {
 						CompoundNBT nbt = JsonToNBT.parseTag(JSONUtils.convertToString(jsonObject.get("nbt"), "nbt"));

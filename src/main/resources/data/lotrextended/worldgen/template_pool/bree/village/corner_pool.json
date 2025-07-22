@@ -5,37 +5,41 @@
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/farms/bree_village_corner_field_1",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/farms/bree_village_corner_field_2",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/farms/bree_village_corner_field_3",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
 			"weight": 1,
 			"element": {
-				"element_type": "minecraft:single_pool_element",
+				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/farms/bree_village_corner_field_4",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -45,7 +49,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/corners/bree_village_stalls",
 				"processors": "minecraft:empty",
-				"blacklist_name" : "STALLS"
+				"blacklist_name" : "STALLS",
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -55,7 +60,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/corners/bree_village_well_1",
 				"processors": "minecraft:empty",
-				"apply_waterlogging" : false
+				"apply_waterlogging" : false,
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -65,7 +71,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/corners/bree_village_well_2",
 				"processors": "minecraft:empty",
-				"apply_waterlogging" : false
+				"apply_waterlogging" : false,
+				"snap_to_water_height" : true
 			}
 		}
 	]

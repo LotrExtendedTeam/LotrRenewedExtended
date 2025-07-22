@@ -5,7 +5,7 @@ import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.util.math.vector.Vector3d;
 
 /**
- * Modified {@see RandomWalkingGoal}
+ * Modified {@link net.minecraft.entity.ai.goal.RandomWalkingGoal}
  * */
 public class ExtendedPlayerTypedWaterAvoidingRandomWalkingGoal extends WaterAvoidingRandomWalkingGoal {
 

@@ -9,16 +9,22 @@ import net.minecraft.network.PacketBuffer;
  * */
 public interface ExtendedNpcDataInterface {
 	/*
-	 * Checks if this NPC data holder can function.
-	 * Used to disable trader info if not trader NPC
+	 * Checks if this NPC data holder should try loading data.
+	 * Used to disable trader info if not trader NPC, hired units always loaded, since loaded nbt determines active status
 	 * @return True if is active
 	 * */
-	public boolean isActive();
+	public boolean shouldLoad();
+	/*
+	 * Checks if this NPC data holder can function.
+	 * Hired units use this to disable tick action when not hired unit
+	 * @return True if is active
+	 * */
+	public boolean shouldTick();
 	/*
 	 * Activity blocking Tick NPC Data Module 
 	 * */
 	public default void tickI() {
-		if(isActive()) {
+		if(shouldTick()) {
 			tick();
 		}
 	}
@@ -35,7 +41,7 @@ public interface ExtendedNpcDataInterface {
 	 * @param nbt The {@link CompoundNBT} to load from
 	 * */
 	public default void loadFromNbtI(CompoundNBT nbt) {
-		if(isActive()) {
+		if(shouldLoad()) {
 			loadFromNbt(nbt);
 		}
 	}
@@ -50,7 +56,7 @@ public interface ExtendedNpcDataInterface {
 	 * @param nbt The {@link CompoundNBT} to save from
 	 * */
 	public default void writeToNbtI(CompoundNBT nbt) {
-		if(isActive()) {
+		if(shouldLoad()) {
 			writeToNbt(nbt);
 		}
 	}
@@ -65,7 +71,7 @@ public interface ExtendedNpcDataInterface {
 	 * @param player The {@link ServerPlayerEntity} to send entity data to
 	 * */
 	public default void sendDataToPlayerI(ServerPlayerEntity player) {
-		if(isActive()) {
+		if(shouldTick()) {
 			sendDataToPlayer(player);
 		}
 	}

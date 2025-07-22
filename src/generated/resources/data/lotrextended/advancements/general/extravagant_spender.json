@@ -1,0 +1,36 @@
+{
+  "parent": "lotrextended:general/big_spender",
+  "display": {
+    "icon": {
+      "item": "lotr:silver_coin_hundred"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.general.extravagant_spender.title"
+    },
+    "description": {
+      "color": "aqua",
+      "translate": "advancements.lotrextended.general.extravagant_spender.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_any_trader_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "istraderselling": "true",
+        "coins_moved": {
+          "min": 2500
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_any_trader_sell"
+    ]
+  ]
+}

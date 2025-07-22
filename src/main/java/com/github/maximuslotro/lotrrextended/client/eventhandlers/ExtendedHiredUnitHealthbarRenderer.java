@@ -5,7 +5,8 @@ import com.github.maximuslotro.lotrrextended.client.render.ExtendedHiredUnitHpBa
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import lotr.common.entity.npc.ExtendedHirableEntity;
+import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -19,9 +20,8 @@ public class ExtendedHiredUnitHealthbarRenderer {
 
 	@SubscribeEvent
 	public static void renderHpBar(RenderNameplateEvent event) {
-		if (event.getEntity() instanceof ExtendedHirableEntity) {
-			ExtendedHirableEntity hired = (ExtendedHirableEntity) event.getEntity();
-			if (hired.getOwnerUUID() == null || ExtendedClientProxy.usersUUID.equals(null) || !hired.getOwnerUUID().equals(ExtendedClientProxy.usersUUID)) {
+		if (event.getEntity() instanceof NPCEntity && ((ExtendedNPCEntity)event.getEntity()).getUnitInfo().isNpcActiveDuty()) {
+			if (ExtendedClientProxy.usersUUID.equals(null) || !ExtendedClientProxy.usersUUID.equals(((ExtendedNPCEntity)event.getEntity()).getUnitInfo().getOwnerUUID())) {
 				return;
 			}
 

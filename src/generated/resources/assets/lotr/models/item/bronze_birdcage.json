@@ -1,3 +1,6 @@
 {
-  "parent": "lotrextended:block/bronze_birdcage"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lotrextended:item/bronze_birdcage"
+  }
 }

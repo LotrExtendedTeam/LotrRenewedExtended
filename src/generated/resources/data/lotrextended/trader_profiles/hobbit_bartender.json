@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:hobbit_bartender",
-  "entity_type": "lotr:hobbit_bartender",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,
@@ -65,7 +64,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:potato"
+        "item": "minecraft:potato",
+        "count": 2
       }
     },
     {
@@ -89,7 +89,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:coal"
+        "item": "minecraft:coal",
+        "count": 2
       }
     },
     {
@@ -157,7 +158,8 @@
     {
       "averageCost": 6,
       "stack": {
-        "item": "lotr:pipeweed"
+        "item": "lotr:pipeweed",
+        "count": 6
       }
     },
     {
@@ -182,7 +184,8 @@
     {
       "averageCost": 7,
       "stack": {
-        "item": "minecraft:baked_potato"
+        "item": "minecraft:baked_potato",
+        "count": 2
       }
     },
     {

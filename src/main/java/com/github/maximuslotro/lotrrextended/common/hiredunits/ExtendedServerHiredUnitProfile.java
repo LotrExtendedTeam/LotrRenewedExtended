@@ -92,6 +92,7 @@ public class ExtendedServerHiredUnitProfile {
 	/**
 	 * Check if unitType is of EMPTY type
 	 * Could mean some data corruption happened
+	 * @return Returns TRUE if this is a corrupted hired unit type
 	 * */
 	public boolean isEmptyUnitType() {
 		return this.equals(ExtendedServerHiredUnitProfile.EMPTY) || id.equals(LotrExtendedMod.EMPTY);
@@ -227,10 +228,22 @@ public class ExtendedServerHiredUnitProfile {
 			this.attackType = pAttackType;
 			this.unitEntityType = unitEntityType;
 			this.modId = modId;
+			// TODO remove and replace with new version of setLocals
+			this.entity_title = "entity."+modId+".hiredunits.entity_title";
+			DataGenValueHolder.hiredUnitStrings.put(entity_title, "%1$s the %2$s");
+			this.entity_shortname = "entity."+modId+".hiredunits.entity_shortname";
+			DataGenValueHolder.hiredUnitStrings.put(entity_shortname, "%1$s");
+			this.entity_unit_type = unitEntityType.getDescriptionId();
+			this.translateStrings = true;
 		}
 
 		/**
-		 * Set Hired Unit string localization
+		 * Set Hired Unit string localization.
+		 * @param translateStrings Whether to use translation keys or raw strings
+		 * @param nameKey The key suffix used for localization keys
+		 * @param name The display name used if not translating
+		 * @return This builder instance for chaining
+		 * @deprecated Needs a complete re-write as the way hired unit name and title locals worked was changed, but kept in a working state so LOTR Companions can properly generate unit profiles
 		 */
 		public ExtendedServerHiredUnitProfile.Builder setLocal(boolean translateStrings, String nameKey, String name) {
 			this.translateStrings = translateStrings;
@@ -250,7 +263,12 @@ public class ExtendedServerHiredUnitProfile {
 		}
 
 		/**
-		 * Set Hired Unit purchase info
+		 * Set Hired Unit purchase info.
+		 * 
+		 * @param cost The hiring cost (minimum 1)
+		 * @param pledgeRequired Whether hiring requires a pledge
+		 * @param alignmnetRequired The alignment required to hire (minimum 1)
+		 * @return This builder instance for chaining
 		 */
 		public ExtendedServerHiredUnitProfile.Builder setPurchaseInfo(int cost, boolean pledgeRequired, int alignmnetRequired) {
 			this.hiringRequiresPledge = pledgeRequired;
@@ -264,49 +282,119 @@ public class ExtendedServerHiredUnitProfile {
 			this.hiringAlignmentRequired = alignmnetRequired;
 			return this;
 		}
-
+		/**
+		 * Add a helmet item to the equipment pool with weight.
+		 *
+		 * @param stack The item stack representing the helmet
+		 * @param weight The weight for random selection
+		 * @return This builder instance for chaining
+		 */
 		public ExtendedServerHiredUnitProfile.Builder addHelmetPoolItem(ItemStack stack, int weight) {
 			equipmentPools.addHelmetStack(setBaseItem(stack, "item.lotrextended.base_gear.helmet"), weight);
 			return this;
 		}
+		/**
+		 * Add a chestplate item to the equipment pool with weight.
+		 *
+		 * @param stack The item stack representing the chestplate
+		 * @param weight The weight for random selection
+		 * @return This builder instance for chaining
+		 */
 		public ExtendedServerHiredUnitProfile.Builder addChestplatePoolItem(ItemStack stack, int weight) {
 			equipmentPools.addChestplateStack(setBaseItem(stack, "item.lotrextended.base_gear.chestplate"), weight);
 			return this;
 		}
+		/**
+		 * Add leggings item to the equipment pool with weight.
+		 *
+		 * @param stack The item stack representing the leggings
+		 * @param weight The weight for random selection
+		 * @return This builder instance for chaining
+		 */
 		public ExtendedServerHiredUnitProfile.Builder addLeggingPoolItem(ItemStack stack, int weight) {
 			equipmentPools.addLeggingStack(setBaseItem(stack, "item.lotrextended.base_gear.leggings"), weight);
 			return this;
 		}
+		/**
+		 * Add boots item to the equipment pool with weight.
+		 *
+		 * @param stack The item stack representing the boots
+		 * @param weight The weight for random selection
+		 * @return This builder instance for chaining
+		 */
 		public ExtendedServerHiredUnitProfile.Builder addBootsPoolItem(ItemStack stack, int weight) {
 			equipmentPools.addBootsStack(setBaseItem(stack, "item.lotrextended.base_gear.boots"), weight);
 			return this;
 		}
+		/**
+		 * Add melee weapon item to the equipment pool with weight.
+		 *
+		 * @param stack The item stack representing the melee weapon
+		 * @param weight The weight for random selection
+		 * @return This builder instance for chaining
+		 */
 		public ExtendedServerHiredUnitProfile.Builder addMeleePoolItem(ItemStack stack, int weight) {
 			equipmentPools.addMeleeStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon"), weight);
 			return this;
 		}
+
+/**
+ * Add ranged weapon item to the equipment pool with weight (only if attack type supports ranged).
+ *
+ * @param stack The item stack representing the ranged weapon
+ * @param weight The weight for random selection
+ * @return This builder instance for chaining
+ */
 		public ExtendedServerHiredUnitProfile.Builder addRangedPoolItem(ItemStack stack, int weight) {
 			if(attackType.isCanBeRanged()) {
 				equipmentPools.addRangedStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_ranged"), weight);
 			}
 			return this;
 		}
+		/**
+		 * Add mounted weapon item to the equipment pool with weight (only if attack type supports mounted).
+		 *
+		 * @param stack The item stack representing the mounted weapon
+		 * @param weight The weight for random selection
+		 * @return This builder instance for chaining
+		 */
 		public ExtendedServerHiredUnitProfile.Builder addMountedPoolItem(ItemStack stack, int weight) {
 			if(attackType.isMounted()) {
 				equipmentPools.addMountedStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_mounted"), weight);
 			}
 			return this;
 		}
+		/**
+		 * Add idle weapon item to the equipment pool with weight.
+		 *
+		 * @param stack The item stack representing the idle weapon
+		 * @param weight The weight for random selection
+		 * @return This builder instance for chaining
+		 */
 		public ExtendedServerHiredUnitProfile.Builder addIdlePoolItem(ItemStack stack, int weight) {
 			equipmentPools.addIdleStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_idle"), weight);
 			return this;
 		}
+		/**
+		 * Add idle mounted weapon item to the equipment pool with weight (only if attack type supports mounted).
+		 *
+		 * @param stack The item stack representing the idle mounted weapon
+		 * @param weight The weight for random selection
+		 * @return This builder instance for chaining
+		 */
 		public ExtendedServerHiredUnitProfile.Builder addIdleMountedPoolItem(ItemStack stack, int weight) {
 			if(attackType.isMounted()) {
 				equipmentPools.addIdleStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_idle_mounted"), weight);
 			}
 			return this;
 		}
+		/**
+		 * Add shield item to the equipment pool with weight.
+		 *
+		 * @param stack The item stack representing the shield
+		 * @param weight The weight for random selection
+		 * @return This builder instance for chaining
+		 */
 		public ExtendedServerHiredUnitProfile.Builder addShieldItem(ItemStack stack, int weight) {
 			equipmentPools.addOffhandStack(setBaseItem(stack, "item.lotrextended.base_gear.shield"), weight);
 			return this;
@@ -319,20 +407,38 @@ public class ExtendedServerHiredUnitProfile {
 			compoundnbt.putBoolean("IsBaseArmor", true);
 			return stack.setHoverName(new TranslationTextComponent(name).withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
 		}
+		/**
+		 * Sets the idle equipment pool to match the melee pool.
+		 *
+		 * @return This builder instance for chaining
+		 */
 		public ExtendedServerHiredUnitProfile.Builder setIdlePoolFromMeleePool() {
 			equipmentPools.setIdlePoolFromMeleePool();
 			return this;
 		}
+		/**
+		 * Sets the idle equipment pool to match the ranged pool.
+		 *
+		 * @return This builder instance for chaining
+		 */
 		public ExtendedServerHiredUnitProfile.Builder setIdlePoolFromRangedPool() {
 			equipmentPools.setIdlePoolFromRangedPool();
 			return this;
 		}
+		/**
+		 * Disables using other pools when selecting idle weapons.
+		 *
+		 * @return This builder instance for chaining
+		 */
 		public ExtendedServerHiredUnitProfile.Builder disableIdleWeaponUsingOtherPools() {
 			equipmentPools.disableIdleWeaponUsingOtherPools();
 			return this;
 		}
 		/**
-		 * Generate a ExtendedServerHiredUnitProfile
+		 * Generates an {@link ExtendedServerHiredUnitProfile} instance with the given ID.
+		 *
+		 * @param id The resource location identifier for the profile
+		 * @return The built ExtendedServerHiredUnitProfile instance
 		 */
 		public ExtendedServerHiredUnitProfile build(ResourceLocation id) {
 			ExtendedServerHiredUnitProfile spawner = new ExtendedServerHiredUnitProfile(id, translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType, unitEntityType);
@@ -340,14 +446,22 @@ public class ExtendedServerHiredUnitProfile {
 		}
 
 		/**
-		 * Generate a ExtendedServerHiredUnitProfile and save with a Consumer
+		 * Generates and saves an {@link ExtendedServerHiredUnitProfile} instance using the given consumer and string ID.
+		 *
+		 * @param pConsumer The consumer to accept the built profile
+		 * @param pId The string ID of the profile
+		 * @return The built and consumed ExtendedServerHiredUnitProfile instance
 		 */
 		public ExtendedServerHiredUnitProfile save(Consumer<ExtendedServerHiredUnitProfile> pConsumer, String pId) {
 			return save(pConsumer, new ResourceLocation(pId));
 		}
 
 		/**
-		 * Generate a ExtendedServerHiredUnitProfile and save with a Consumer
+		 * Generates and saves an {@link ExtendedServerHiredUnitProfile} instance using the given consumer and resource location ID.
+		 *
+		 * @param pConsumer The consumer to accept the built profile
+		 * @param pId The resource location ID of the profile
+		 * @return The built and consumed ExtendedServerHiredUnitProfile instance
 		 */
 		public ExtendedServerHiredUnitProfile save(Consumer<ExtendedServerHiredUnitProfile> pConsumer, ResourceLocation pId) {
 			ExtendedServerHiredUnitProfile spawner = this.build(pId);

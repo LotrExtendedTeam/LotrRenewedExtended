@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:blue_dwarven_throwing_axe"
+    ]
+  },
+  "criteria": {
+    "has_blue_dwarven_throwing_axe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:blue_dwarven_throwing_axe"
+          }
+        ]
+      }
+    },
+    "has_dwarven_steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dwarven_steel_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:blue_dwarven_throwing_axe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blue_dwarven_throwing_axe",
+      "has_dwarven_steel_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

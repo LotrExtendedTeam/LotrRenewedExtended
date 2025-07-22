@@ -17,20 +17,21 @@
     "hidden": false
   },
   "criteria": {
-    "has_bronze_ingot": {
-      "trigger": "minecraft:inventory_changed",
+    "item_lotr:bronze_ingot_made_on_crafting_table": {
+      "trigger": "lotrextended:crafting_with_block",
       "conditions": {
-        "items": [
-          {
-            "item": "lotr:bronze_ingot"
-          }
-        ]
+        "item": {
+          "item": "lotr:bronze_ingot"
+        },
+        "crafting_block": {
+          "block": "minecraft:crafting_table"
+        }
       }
     }
   },
   "requirements": [
     [
-      "has_bronze_ingot"
+      "item_lotr:bronze_ingot_made_on_crafting_table"
     ]
   ]
 }

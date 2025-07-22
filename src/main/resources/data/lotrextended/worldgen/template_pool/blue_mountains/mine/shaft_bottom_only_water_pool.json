@@ -1,0 +1,50 @@
+{
+	"name": "lotrextended:blue_mountains/mine/shaft_bottom_only_water_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_shaft_bottom_2",
+				"processors": "minecraft:empty",
+				"apply_waterlogging": false,
+				"should_protect_y_level": false
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_shaft_bottom_3",
+				"processors": "minecraft:empty",
+				"apply_waterlogging": false,
+				"should_protect_y_level": false
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_shaft_bottom_4",
+				"processors": "minecraft:empty",
+				"apply_waterlogging": false,
+				"should_protect_y_level": false
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_shaft_bottom_5",
+				"processors": "minecraft:empty",
+				"apply_waterlogging": false,
+				"should_protect_y_level": false
+			}
+		}
+	]
+}

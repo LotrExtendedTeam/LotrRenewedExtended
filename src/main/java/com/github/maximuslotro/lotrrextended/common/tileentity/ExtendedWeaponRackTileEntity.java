@@ -98,7 +98,7 @@ public class ExtendedWeaponRackTileEntity extends LockableLootTileEntity impleme
 	@Override
 	@Nullable
 	public SUpdateTileEntityPacket getUpdatePacket() {
-		return new SUpdateTileEntityPacket(this.worldPosition, 12, this.getUpdateTag());
+		return new SUpdateTileEntityPacket(this.worldPosition, -1, this.getUpdateTag());
 	}
 
 	@Override

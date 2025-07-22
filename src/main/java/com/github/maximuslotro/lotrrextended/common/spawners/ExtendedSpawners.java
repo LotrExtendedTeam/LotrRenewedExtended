@@ -74,6 +74,7 @@ public class ExtendedSpawners {
 	public static final ResourceLocation BREE_VILLAGE_SMITH = register("bree_village_smith_spawner");
 	public static final ResourceLocation BREE_VILLAGE_BAKER = register("bree_village_baker_spawner");
 	public static final ResourceLocation BREE_VILLAGE_BUTCHER = register("bree_village_butcher_spawner");
+	public static final ResourceLocation BREE_VILLAGE_BREWER = register("bree_village_brewer_spawner");
 	public static final ResourceLocation BREE_VILLAGE_LUMBERMAN = register("bree_village_lumberman_spawner");
 	public static final ResourceLocation BREE_VILLAGE_STONEMASON = register("bree_village_stonemason_spawner");
 	public static final ResourceLocation BREE_VILLAGE_INNKEEPER = register("bree_village_innkeeper_spawner");
@@ -83,6 +84,14 @@ public class ExtendedSpawners {
 	public static final ResourceLocation BREE_VILLAGE_STALL = register("bree_village_stall_spawner");
 	public static final ResourceLocation BREE_VILLAGE_INN = register("bree_village_inn_spawner");
 	public static final ResourceLocation BREE_VILLAGE_STABLEMASTER = register("bree_village_stablemaster_spawner");
+	public static final ResourceLocation BREE_VILLAGE_MANOR_LORD = register("bree_village_manor_lord_spawner");
+	// BLUE MOUNTAINS
+	public static final ResourceLocation BLUE_MOUNTIAN_SMITH = register("blue_mountains_smith_spawner");
+	public static final ResourceLocation BLUE_MOUNTIAN_COMMANDER = register("blue_mountains_commander_spawner");
+	public static final ResourceLocation BLUE_MOUNTIAN_STRONGHOLD = register("blue_mountains_stronghold_spawner");
+	public static final ResourceLocation BLUE_MOUNTIAN_STRONGHOLD_ALT = register("blue_mountains_stronghold_alt_spawner");
+	// DWARVEN
+	public static final ResourceLocation DWARVEN_SMITH = register("dwarf_smith_spawner");
 
 	private static ResourceLocation register(String pId) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, pId));

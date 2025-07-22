@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:bree_stonemason",
-  "entity_type": "lotr:bree_stonemason",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,
@@ -11,13 +10,15 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:coal"
+        "item": "minecraft:coal",
+        "count": 2
       }
     },
     {
       "averageCost": 2,
       "stack": {
-        "item": "minecraft:torch"
+        "item": "minecraft:torch",
+        "count": 16
       }
     },
     {
@@ -113,7 +114,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "lotr:pipeweed"
+        "item": "lotr:pipeweed",
+        "count": 2
       }
     }
   ],
@@ -121,55 +123,64 @@
     {
       "averageCost": 2,
       "stack": {
-        "item": "minecraft:stone"
+        "item": "minecraft:stone",
+        "count": 8
       }
     },
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:cobblestone"
+        "item": "minecraft:cobblestone",
+        "count": 8
       }
     },
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:stone_bricks"
+        "item": "minecraft:stone_bricks",
+        "count": 8
       }
     },
     {
       "averageCost": 5,
       "stack": {
-        "item": "minecraft:bricks"
+        "item": "minecraft:bricks",
+        "count": 8
       }
     },
     {
       "averageCost": 3,
       "stack": {
-        "item": "lotr:drystone"
+        "item": "lotr:drystone",
+        "count": 8
       }
     },
     {
       "averageCost": 3,
       "stack": {
-        "item": "lotr:cobbled_drystone"
+        "item": "lotr:cobbled_drystone",
+        "count": 8
       }
     },
     {
       "averageCost": 3,
       "stack": {
-        "item": "lotr:cut_drystone"
+        "item": "lotr:cut_drystone",
+        "count": 8
       }
     },
     {
       "averageCost": 2,
       "stack": {
-        "item": "lotr:stone_pillar"
+        "item": "lotr:stone_pillar",
+        "count": 4
       }
     },
     {
       "averageCost": 5,
       "stack": {
-        "item": "lotr:brick_pillar"
+        "item": "lotr:brick_pillar",
+        "count": 4
       }
     },
     {

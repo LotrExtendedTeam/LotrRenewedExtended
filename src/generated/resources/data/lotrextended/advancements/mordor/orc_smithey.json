@@ -1,0 +1,37 @@
+{
+  "parent": "lotrextended:mordor/enter_mordor",
+  "display": {
+    "icon": {
+      "item": "lotr:orc_steel_ingot"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.mordor.orc_smithey.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.mordor.orc_smithey.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "item_lotr:orc_steel_ingot_made_on_orc_forge": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotr:orc_steel_ingot"
+        },
+        "crafting_block": {
+          "block": "lotr:orc_forge"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item_lotr:orc_steel_ingot_made_on_orc_forge"
+    ]
+  ]
+}

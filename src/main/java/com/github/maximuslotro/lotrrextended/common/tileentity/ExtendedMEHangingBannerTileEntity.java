@@ -38,6 +38,7 @@ public class ExtendedMEHangingBannerTileEntity extends TileEntity {
 
 	/**
 	 * Gets the copied item, handling if the banner has protection data
+	 * @param bannerType The banner type instance to get item from
 	 * @return ItemStack
 	 * */
 	public ItemStack getItem(BannerTypes bannerType) {

@@ -3,10 +3,11 @@ package lotr.common.entity.npc;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
+import java.util.Arrays;
+import java.util.List;
+
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
 import lotr.common.entity.npc.data.NPCGenderProvider;
-import lotr.common.entity.npc.data.name.NPCNameGenerator;
-import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.entity.npc.util.LeatherDyeUtil;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.entity.EntityType;
@@ -47,13 +48,8 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
     }
 
     @Override
-    protected NPCNameGenerator getNameGenerator() {
-        return NPCNameGenerators.BREE;
-    }
-
-    @Override
     protected Goal createAttackGoal() {
-        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.45, new ItemStack(Items.SHIELD), ItemStack.EMPTY);
+        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.45, new ItemStack(ExtendedItems.BREE_SHIELD.get()), ItemStack.EMPTY);
     }
 
     @Override
@@ -77,7 +73,9 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
     }
 
 	@Override
-	public ResourceLocation getHireableProfile() {
-		return ExtendedHiredUnitTypes.BREE_GUARD;
+	public List<ResourceLocation> getHireableProfiles() {
+		return Arrays.asList(ExtendedHiredUnitTypes.BREE_HOBBIT, 
+			ExtendedHiredUnitTypes.BREE_MAN, 
+			ExtendedHiredUnitTypes.BREE_GUARD);
 	}
 }

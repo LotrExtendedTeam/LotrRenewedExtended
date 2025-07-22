@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:bree_florist",
-  "entity_type": "lotr:bree_florist",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,
@@ -11,7 +10,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:bone_meal"
+        "item": "minecraft:bone_meal",
+        "count": 15
       }
     },
     {

@@ -54,7 +54,8 @@ public class ExtendedWeaponRackLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.ARNOR_SPEAR.get(), 80, 0.2f, 0.65f))
 				.add(addEntry(Items.BOW, 85, 0.2f, 0.65f))
 				.add(addEntry(ExtendedItems.LONGBOW.get(), 65, 0.2f, 0.65f))
-				.add(addEntry(ExtendedItems.DUNEDAIN_BOW.get(), 45, 0.2f, 0.65f)));
+				.add(addEntry(ExtendedItems.DUNEDAIN_BOW.get(), 45, 0.2f, 0.65f))
+				.add(addEntry(ExtendedItems.RANGER_BOW.get(), 65, 0.2f, 0.65f)));
 
 		make(consumer, ExtendedLootTables.GUNDABAD_WEAPONRACKS, makePool()
 				.add(addEntry(Items.WOODEN_AXE, 60, 0.3f, 0.7f))
@@ -184,10 +185,20 @@ public class ExtendedWeaponRackLootGenerator extends ChestLootTables  {
 			.add(addEntry(Items.IRON_HOE, 70, 0.2f, 0.65f))
 			.add(addEntry(Items.IRON_SHOVEL, 50, 0.2f, 0.65f)));
 
+		// Add blue dwarven hammer, battleaxe, mattock, pike
+		make(consumer, ExtendedLootTables.BLUE_MOUNTAIN_WEAPONRACKS, makePool()
+			.add(addEntry(LOTRItems.BLUE_DWARVEN_DAGGER.get(), 2, 0.2f, 0.65f))
+			.add(addEntry(LOTRItems.BLUE_DWARVEN_AXE.get(), 1, 0.3f, 0.7f))
+			.add(addEntry(LOTRItems.BLUE_DWARVEN_PICKAXE.get(), 2, 0.3f, 0.7f))
+			.add(addEntry(LOTRItems.BLUE_DWARVEN_SHOVEL.get(), 1, 0.3f, 0.7f))
+			.add(addEntry(LOTRItems.BLUE_DWARVEN_HOE.get(), 1, 0.3f, 0.7f))
+			.add(addEntry(LOTRItems.BLUE_DWARVEN_SWORD.get(), 2, 0.3f, 0.7f))
+			.add(addEntry(LOTRItems.BLUE_DWARVEN_SPEAR.get(), 1, 0.3f, 0.7f))
+			.add(addEntry(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE.get(), 2, 0.3f, 0.7f)));
 	}
 
-	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight, float min, float max){
-		return EItemLootEntry.lootItem(item).setWeight(weight).setDamageRange(min, max).apply(SetCount.setCount(ConstantRange.exactly(1)));
+	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight, float minDamagePercent, float maxDamagePercent){
+		return EItemLootEntry.lootItem(item).setWeight(weight).setDamageRange(minDamagePercent, maxDamagePercent).apply(SetCount.setCount(ConstantRange.exactly(1)));
 	}
 
 	public LootPool.Builder makePool(){

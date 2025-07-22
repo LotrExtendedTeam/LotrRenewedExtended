@@ -2,7 +2,7 @@
   "parent": "lotrextended:rohan/horse_lords",
   "display": {
     "icon": {
-      "item": "minecraft:dirt"
+      "item": "minecraft:fern"
     },
     "title": {
       "translate": "advancements.lotrextended.rohan.entwash.title"

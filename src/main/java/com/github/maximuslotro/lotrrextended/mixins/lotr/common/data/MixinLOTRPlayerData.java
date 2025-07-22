@@ -39,6 +39,7 @@ public class MixinLOTRPlayerData implements ExtendedLOTRPlayerData{
 	/**
 	 * Used to add new PlayerDataModule to this LOTRPlayerData instance
 	 * @Shadow (remap=false)
+	 * @param <M> the type of module extending PlayerDataModule
 	 * @param code The ID of this module
 	 * @param moduleConstructor A functional constructor for making the new PlayerDataModule
 	 * @return A new PlayerDataModule
@@ -50,7 +51,8 @@ public class MixinLOTRPlayerData implements ExtendedLOTRPlayerData{
 
 	/**
 	 * @reason Adds a new ExtendedFellowshipDataModule and ExtendedMiscDataModule to this LOTRPlayerData instance
-	 * @Inject (method = "<init>(Llotr/common/data/LOTRLevelData;Ljava/util/UUID;)V", at = @At("TAIL"), remap=false)
+	 * @Inject (method = "&lt;init&gt;(Llotr/common/data/LOTRLevelData;Ljava/util/UUID;)V", at = @At("TAIL"), remap=false)
+	 * @param <M> the type of module extending PlayerDataModule
 	 * @param level The parent LOTRLevelData of this LOTRPlayerData
 	 * @param player The UUID of this LOTRPlayerData
 	 * @param info The local CallbackInfo instance for this Inject

@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:mordor/enter_mordor",
+  "display": {
+    "icon": {
+      "item": "lotr:morgul_flower"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.mordor.sickly_moon.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.mordor.sickly_moon.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_morgul_vale": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:morgul_vale"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_morgul_vale"
+    ]
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:gondor/kingdom_of_men",
+  "display": {
+    "icon": {
+      "item": "lotr:cracked_numenorean_brick"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.gondor.land_of_the_moon.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.gondor.land_of_the_moon.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_ithilien": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:ithilien"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_ithilien"
+    ]
+  ]
+}

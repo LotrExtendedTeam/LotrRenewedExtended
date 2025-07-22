@@ -1,0 +1,37 @@
+{
+  "parent": "lotrextended:mordor/guldural_ore",
+  "display": {
+    "icon": {
+      "item": "lotr:morgul_steel_ingot"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.mordor.morgul_orc_smithey.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.mordor.morgul_orc_smithey.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "item_lotr:morgul_steel_ingot_made_on_orc_forge": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotr:morgul_steel_ingot"
+        },
+        "crafting_block": {
+          "block": "lotr:orc_forge"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item_lotr:morgul_steel_ingot_made_on_orc_forge"
+    ]
+  ]
+}

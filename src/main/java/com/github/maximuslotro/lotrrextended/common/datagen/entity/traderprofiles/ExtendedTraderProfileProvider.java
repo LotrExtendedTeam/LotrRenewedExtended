@@ -16,12 +16,12 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
+import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 import com.google.gson.Gson;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
-import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 
 public abstract class ExtendedTraderProfileProvider implements IDataProvider {
@@ -57,6 +57,11 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 	      };
 		makeStructureSpawnPools(consumer);
 		ExtendedLog.infoShown("Built "+dataHere.size()+" trader profiles.");
+		for(ResourceLocation key : ExtendedTraderTypes.TRADER_TYPES) {
+			if(!dataHere.containsKey(key)) {
+				LOGGER.warn("Didn't make expected trader profile type: "+key.toString());
+			}
+		}
 	}
 
 	private static void save(Gson pGson, DirectoryCache pCache, ExtendedTraderProfile spawner, Path pPath) throws IOException {
@@ -86,7 +91,7 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 		return "Extended Trader Profile Provider";
 	}
 
-	public ExtendedTraderProfile.Builder make(EntityType<?> traderEntityType, int pTradingAlignmentRequired) {
-		return new ExtendedTraderProfile.Builder(traderEntityType, pTradingAlignmentRequired);
+	public ExtendedTraderProfile.Builder make(int pTradingAlignmentRequired) {
+		return new ExtendedTraderProfile.Builder(pTradingAlignmentRequired);
 	}
 }

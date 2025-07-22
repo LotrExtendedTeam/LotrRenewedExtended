@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.client.render.tileentity;
 
 import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedDwarvenBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedOrcBedTileEntity;
@@ -133,6 +134,9 @@ public class ExtendedBedTileEntityRenderer<T extends TileEntity> extends TileEnt
 			}
 			if(tileEntity instanceof ExtendedWhiteFurBedTileEntity) {
 				return ExtendedBlockRenderer.WHITE_FUR_BED_MATERIAL;
+			}
+			if(tileEntity instanceof ExtendedDwarvenBedTileEntity) {
+				return ExtendedBlockRenderer.DWARVEN_BED_MATERIAL;
 			}
 			throw new IllegalArgumentException("Recieved invalid Bed Renderign Type!");
 		}

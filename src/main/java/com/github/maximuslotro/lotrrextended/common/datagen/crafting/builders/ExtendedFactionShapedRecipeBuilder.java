@@ -32,7 +32,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 /**
- * Code Copied from {@see net.minecraft.data.ShapedRecipeBuilder}
+ * Code Copied from {@link net.minecraft.data.ShapedRecipeBuilder}
  * to add a table type for faction table types
  * */
 public class ExtendedFactionShapedRecipeBuilder {
@@ -115,6 +115,12 @@ public class ExtendedFactionShapedRecipeBuilder {
 		p_200467_1_.accept(new ExtendedFactionShapedRecipeBuilder.Result(p_200467_2_, this.result, this.count, this.group == null ? "" : this.group, this.rows, this.key, this.advancement, new ResourceLocation(p_200467_2_.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + p_200467_2_.getPath()), tableType));
 	}
 
+	// Extended Start
+	public void saveNoAdvancement(Consumer<IFinishedRecipe> p_200467_1_, ResourceLocation p_200467_2_) {
+		this.ensureValid(p_200467_2_);
+		p_200467_1_.accept(new ExtendedFactionShapedRecipeBuilder.Result(p_200467_2_, this.result, this.count, this.group == null ? "" : this.group, this.rows, this.key, null, null, tableType));
+	}
+	// Extended End
 	private void ensureValid(ResourceLocation p_200463_1_) {
 		if (this.rows.isEmpty()) {
 			throw new IllegalStateException("No pattern is defined for shaped recipe " + p_200463_1_ + "!");
@@ -209,6 +215,11 @@ public class ExtendedFactionShapedRecipeBuilder {
 		@Override
 		@Nullable
 		public JsonObject serializeAdvancement() {
+			// Extended Start
+			if(advancement == null) {
+				return null;
+			}
+			// Extended End
 			return this.advancement.serializeToJson();
 		}
 

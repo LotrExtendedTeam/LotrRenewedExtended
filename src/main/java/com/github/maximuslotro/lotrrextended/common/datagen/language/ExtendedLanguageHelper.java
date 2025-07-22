@@ -84,6 +84,7 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 		}
 	}
 
+	// TODO fix this method saving corrupted lang files for some users
 	private void saveHere(DirectoryCache cache, Object object, Path target) throws IOException {
 		String data = GSON.toJson(object);
 		data = JavaUnicodeEscaper.outsideOf(0, 0x7f).translate(data); // Escape unicode after the fact so that it's not double escaped by GSON
@@ -238,6 +239,7 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 		}
 	}
 
+	// TODO filter out old block and item IDs
 	public void makeLocalisationsFile() {
 		// Sort keys and add to superClass processor
 		TreeMap<String, String> sorted = new TreeMap<>();

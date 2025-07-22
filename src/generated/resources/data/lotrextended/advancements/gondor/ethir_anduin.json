@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:gondor/kingdom_of_men",
+  "display": {
+    "icon": {
+      "item": "minecraft:lily_pad"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.gondor.ethir_anduin.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.gondor.ethir_anduin.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_ethir_anduin": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:ethir_anduin"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_ethir_anduin"
+    ]
+  ]
+}

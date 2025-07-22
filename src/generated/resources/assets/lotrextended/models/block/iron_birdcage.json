@@ -1,6 +1,6 @@
 {
   "parent": "lotrextended:block/template_birdcage",
   "textures": {
-    "cage": "lotrextended:block/wooden_birdcage"
+    "cage": "lotrextended:block/iron_birdcage"
   }
 }

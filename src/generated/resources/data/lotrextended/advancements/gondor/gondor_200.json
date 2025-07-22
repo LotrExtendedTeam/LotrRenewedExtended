@@ -1,0 +1,37 @@
+{
+  "parent": "lotrextended:gondor/gondor_100",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.gondor.gondor_200.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.gondor.gondor_200.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_gondor_level_200": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "lotr:gondor",
+          "level": {
+            "min": 200.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gondor_level_200"
+    ]
+  ]
+}

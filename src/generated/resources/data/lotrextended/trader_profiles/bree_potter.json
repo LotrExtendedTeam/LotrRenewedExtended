@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:bree_potter",
-  "entity_type": "lotr:bree_potter",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,
@@ -11,7 +10,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:clay_ball"
+        "item": "minecraft:clay_ball",
+        "count": 4
       }
     },
     {
@@ -118,31 +118,36 @@
     {
       "averageCost": 3,
       "stack": {
-        "item": "minecraft:brick"
+        "item": "minecraft:brick",
+        "count": 2
       }
     },
     {
       "averageCost": 6,
       "stack": {
-        "item": "minecraft:bricks"
+        "item": "minecraft:bricks",
+        "count": 4
       }
     },
     {
       "averageCost": 6,
       "stack": {
-        "item": "lotr:wattle_and_daub"
+        "item": "lotr:wattle_and_daub",
+        "count": 4
       }
     },
     {
       "averageCost": 5,
       "stack": {
-        "item": "lotr:wattle_and_daub_pillar"
+        "item": "lotr:wattle_and_daub_pillar",
+        "count": 3
       }
     },
     {
       "averageCost": 7,
       "stack": {
-        "item": "lotr:crossed_wattle_and_daub"
+        "item": "lotr:crossed_wattle_and_daub",
+        "count": 4
       }
     },
     {
@@ -172,7 +177,8 @@
     {
       "averageCost": 2,
       "stack": {
-        "item": "lotr:clay_plate"
+        "item": "lotr:clay_plate",
+        "count": 2
       }
     },
     {
@@ -184,13 +190,15 @@
     {
       "averageCost": 3,
       "stack": {
-        "item": "lotr:stoneware_plate"
+        "item": "lotr:stoneware_plate",
+        "count": 2
       }
     },
     {
       "averageCost": 5,
       "stack": {
-        "item": "minecraft:terracotta"
+        "item": "minecraft:terracotta",
+        "count": 4
       }
     },
     {
@@ -249,7 +257,8 @@
     {
       "averageCost": 5,
       "stack": {
-        "item": "lotr:clay_tiling"
+        "item": "lotr:clay_tiling",
+        "count": 4
       }
     },
     {

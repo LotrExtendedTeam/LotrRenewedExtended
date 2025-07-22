@@ -22,6 +22,8 @@ public class MixinLOTRPlayerRendering {
 
 	/**
 	 * Helper method to get if regular should nameplate render
+	 * @param player The player we are rendering their alignment bar
+	 * @return Get regular HUD show logic
 	 * @Shadow (remap=false)
 	 * */
 	@Shadow(remap=false)

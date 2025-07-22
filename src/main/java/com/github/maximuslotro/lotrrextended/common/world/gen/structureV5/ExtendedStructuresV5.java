@@ -9,8 +9,9 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.WeightedStructureConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.SinglePoolStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.WeightedPoolStructure;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits.HobbitHoleLargeStructure;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.hobbits.HobbitTavernLargeStructure;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureBlueMountainMine;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureBlueMountainSmithy;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureBlueMountainStronghold;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
@@ -19,7 +20,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.jigsaw.IJigsawDeserializer;
 import net.minecraft.world.gen.feature.jigsaw.JigsawPiece;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -29,45 +29,69 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+/**
+ * Manages the registration and configuration of custom extended structures for lotrextended.
+ * <p>
+ * This class registers various structures with Forge's deferred registry system and sets up their spawning parameters.
+ * It also provides utilities for registering custom jigsaw piece serializers and adding structure separation settings to vanilla Minecraft's world generation.
+ * </p>
+ */
 public class ExtendedStructuresV5 {
+	/**
+	 * Jigsaw deserializer for extended single jigsaw pieces used in custom structure pools.
+	 */
 	public static final IJigsawDeserializer<ExtendedSingleJigsawPiece> SINGLE_EXTENDED = registerJigsaw("extended_single_pool_element", ExtendedSingleJigsawPiece.CODEC);
-
+	/**
+	 * Deferred registry for registering custom structures in the Forge registry.
+	 */
 	public static final DeferredRegister<Structure<?>> STRUCTURE_REGISTRY = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, LotrExtendedMod.MODID);
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_BARN = STRUCTURE_REGISTRY.register("hobbit_barn", () -> new SinglePoolStructure(StructureType.HOBBIT));
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOLE_SMALL = STRUCTURE_REGISTRY.register("hobbit_hole_small", () -> new SinglePoolStructure(StructureType.HOBBIT));
-	public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_HOLE_LARGE = STRUCTURE_REGISTRY.register("hobbit_hole_large", () -> new HobbitHoleLargeStructure(StructureType.HOBBIT));
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOUSE = STRUCTURE_REGISTRY.register("hobbit_house", () -> new SinglePoolStructure(StructureType.HOBBIT));
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_PICNIC_BLANKET = STRUCTURE_REGISTRY.register("hobbit_picnic_blanket", () -> new SinglePoolStructure(StructureType.HOBBIT));
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_PICNIC_TABLE = STRUCTURE_REGISTRY.register("hobbit_picnic_table", () -> new SinglePoolStructure(StructureType.HOBBIT));
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_TAVERN_SMALL = STRUCTURE_REGISTRY.register("hobbit_tavern_small", () -> new SinglePoolStructure(StructureType.HOBBIT));
-	public static final RegistryObject<Structure<NoFeatureConfig>> HOBBIT_TAVERN_LARGE = STRUCTURE_REGISTRY.register("hobbit_tavern_large", () -> new HobbitTavernLargeStructure(StructureType.HOBBIT));
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_WINDMILL = STRUCTURE_REGISTRY.register("hobbit_windmill", () -> new SinglePoolStructure(StructureType.HOBBIT));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_CAMP = STRUCTURE_REGISTRY.register("ranger_camp", () -> new SinglePoolStructure(StructureType.RANGER));
-	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_ENCAMPMENT = STRUCTURE_REGISTRY.register("ranger_encampment", () -> new SinglePoolStructure(StructureType.RANGER));
-	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_FORT = STRUCTURE_REGISTRY.register("ranger_fort", () -> new SinglePoolStructure(StructureType.RANGER));
-	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_hideout", () -> new SinglePoolStructure(StructureType.RANGER));
-	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new SinglePoolStructure(StructureType.RANGER));
-	public static final RegistryObject<Structure<WeightedStructureConfig>> RANGER_HOUSE_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_house_hideout", () -> new WeightedPoolStructure(StructureType.RANGER));
-	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_HOUSE_RUIN = STRUCTURE_REGISTRY.register("ranger_house_ruin", () -> new SinglePoolStructure(StructureType.RANGER));
-	public static final RegistryObject<Structure<WeightedStructureConfig>> ARNOR_RUINS = STRUCTURE_REGISTRY.register("arnor_ruins", () -> new WeightedPoolStructure(StructureType.RUIN));
+	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_BARN = STRUCTURE_REGISTRY.register("hobbit_barn", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOLE_SMALL = STRUCTURE_REGISTRY.register("hobbit_hole_small", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOLE_LARGE = STRUCTURE_REGISTRY.register("hobbit_hole_large", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOUSE = STRUCTURE_REGISTRY.register("hobbit_house", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_PICNIC_BLANKET = STRUCTURE_REGISTRY.register("hobbit_picnic_blanket", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_PICNIC_TABLE = STRUCTURE_REGISTRY.register("hobbit_picnic_table", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_TAVERN_SMALL = STRUCTURE_REGISTRY.register("hobbit_tavern_small", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_TAVERN_LARGE = STRUCTURE_REGISTRY.register("hobbit_tavern_large", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_WINDMILL = STRUCTURE_REGISTRY.register("hobbit_windmill", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> GUNDABAD_CAMP = STRUCTURE_REGISTRY.register("gundabad_camp", () -> new SinglePoolStructure(StructureType.GUNDABAD_ORC));
-	public static final RegistryObject<Structure<SinglePoolConfig>> GUNDABAD_ENCAMPMENT = STRUCTURE_REGISTRY.register("gundabad_encampment", () -> new SinglePoolStructure(StructureType.GUNDABAD_ORC));
+	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_CAMP = STRUCTURE_REGISTRY.register("ranger_camp", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
+	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_ENCAMPMENT = STRUCTURE_REGISTRY.register("ranger_encampment", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
+	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_FORT = STRUCTURE_REGISTRY.register("ranger_fort", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
+	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_hideout", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
+	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
+	public static final RegistryObject<Structure<WeightedStructureConfig>> RANGER_HOUSE_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_house_hideout", () -> new WeightedPoolStructure(ExtendedStructureType.RANGER));
+	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_HOUSE_RUIN = STRUCTURE_REGISTRY.register("ranger_house_ruin", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
+	public static final RegistryObject<Structure<WeightedStructureConfig>> ARNOR_RUINS = STRUCTURE_REGISTRY.register("arnor_ruins", () -> new WeightedPoolStructure(ExtendedStructureType.RUIN));
 
-	public static final RegistryObject<Structure<WeightedStructureConfig>> BARROW_DOWN_RUINS = STRUCTURE_REGISTRY.register("barrow_down_ruins", () -> new WeightedPoolStructure(StructureType.RUIN));
-	public static final RegistryObject<Structure<WeightedStructureConfig>> BARROW_DOWN_BARROWS = STRUCTURE_REGISTRY.register("barrow_down_barrows", () -> new WeightedPoolStructure(StructureType.BARROW));
+	public static final RegistryObject<Structure<SinglePoolConfig>> GUNDABAD_CAMP = STRUCTURE_REGISTRY.register("gundabad_camp", () -> new SinglePoolStructure(ExtendedStructureType.GUNDABAD_ORC));
+	public static final RegistryObject<Structure<SinglePoolConfig>> GUNDABAD_ENCAMPMENT = STRUCTURE_REGISTRY.register("gundabad_encampment", () -> new SinglePoolStructure(ExtendedStructureType.GUNDABAD_ORC));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_HAMLET = STRUCTURE_REGISTRY.register("bree_hamlet", () -> new SinglePoolStructure(StructureType.BREE_HAMLET));
-	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_VILLAGE = STRUCTURE_REGISTRY.register("bree_village", () -> new SinglePoolStructure(StructureType.BREE_VILLAGE));
+	public static final RegistryObject<Structure<WeightedStructureConfig>> BARROW_DOWN_RUINS = STRUCTURE_REGISTRY.register("barrow_down_ruins", () -> new WeightedPoolStructure(ExtendedStructureType.RUIN));
+	public static final RegistryObject<Structure<WeightedStructureConfig>> BARROW_DOWN_BARROWS = STRUCTURE_REGISTRY.register("barrow_down_barrows", () -> new WeightedPoolStructure(ExtendedStructureType.BARROW));
 
+	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_HAMLET = STRUCTURE_REGISTRY.register("bree_hamlet", () -> new SinglePoolStructure(ExtendedStructureType.BREE_HAMLET));
+	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_VILLAGE = STRUCTURE_REGISTRY.register("bree_village", () -> new SinglePoolStructure(ExtendedStructureType.BREE_VILLAGE));
+
+	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_SMITHY = STRUCTURE_REGISTRY.register("blue_mountain_smithy", () -> new ExtendedStructureBlueMountainSmithy(ExtendedStructureType.BLUE_MOUNTAINS));
+	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_STRONGHOLD = STRUCTURE_REGISTRY.register("blue_mountain_stronghold", () -> new ExtendedStructureBlueMountainStronghold(ExtendedStructureType.BLUE_MOUNTAINS));
+	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_MINE = STRUCTURE_REGISTRY.register("blue_mountain_mine", () -> new ExtendedStructureBlueMountainMine(ExtendedStructureType.BLUE_MOUNTAINS));
+
+	/**
+	 * Initializes and registers all custom structures with their generation parameters.
+	 * <p>
+	 * This method must be called during mod setup to ensure proper structure registration
+	 * and spacing configuration.
+	 * </p>
+	 */
 	public static void setupStructures() {
 		// For StructureSeparationSettings, the first value is the average distance in chunks between spawn attempts (spacing)
 		// the second value it minimum distance in chunks between spawn attempts (separation) (this must always be less than the first!
 		// Setting spacing/separation to be 1/0, you can then have the structure spawn only in certain chunks in Structure.isFeatureChunk()
 		// Setting spacing/separation to be 2/1, you can then have the structure spawn in every chunk
 		register(HOBBIT_BARN.get(), true,              32, 12, 795386759);
-		register(HOBBIT_HOLE_SMALL.get(), true,        24, 9, 212561518);
+		register(HOBBIT_HOLE_SMALL.get(), true,        24, 9,  212561518);
 		register(HOBBIT_HOLE_LARGE.get(), false,       40, 25, 445436264);
 		register(HOBBIT_HOUSE.get(), true,             24, 5,  764008750);
 		register(HOBBIT_PICNIC_BLANKET.get(), false,   20, 8,  639354136);
@@ -89,12 +113,36 @@ public class ExtendedStructuresV5 {
 		register(BARROW_DOWN_BARROWS.get(), true,      7,  3,  57854769);
 		register(BREE_HAMLET.get(), true,              50, 35, 57854769);
 		register(BREE_VILLAGE.get(), true,             40, 25, 78547894);
+		register(BLUE_MOUNTAIN_SMITHY.get(), false,    27, 12, 589758935);
+		register(BLUE_MOUNTAIN_STRONGHOLD.get(), false,35, 15, 889329084);
+		register(BLUE_MOUNTAIN_MINE.get(), false,30, 15, 17277298);
 	}
 
+	/**
+	 * Registers a custom jigsaw piece deserializer codec under the mod's namespace.
+	 *
+	 * @param <P>    the type of JigsawPiece
+	 * @param pName  the name of the jigsaw type to register
+	 * @param pCodec the codec used to serialize and deserialize the jigsaw piece
+	 * @return the registered {@link IJigsawDeserializer} instance
+	 */
 	public static <P extends JigsawPiece> IJigsawDeserializer<P> registerJigsaw(String pName, Codec<P> pCodec) {
-	      return Registry.register(Registry.STRUCTURE_POOL_ELEMENT, new ResourceLocation(LotrExtendedMod.MODID, pName), () -> { return pCodec; });
-	   }
-	
+		return Registry.register(Registry.STRUCTURE_POOL_ELEMENT, new ResourceLocation(LotrExtendedMod.MODID, pName), () -> { return pCodec; });
+	}
+	/**
+	 * Registers a structure with its separation and spacing settings for world generation.
+	 * <p>
+	 * Also adds the structure to various internal registries to enable proper generation and
+	 * integration with Minecraft's dimension and noise generator settings.
+	 * </p>
+	 *
+	 * @param structure the structure to register
+	 * @param editLand  whether surrounding terrain should be automatically modified
+	 * @param spacing   average distance in chunks between spawn attempts (must be greater than separation)
+	 * @param seperation minimum distance in chunks between spawn attempts
+	 * @param salt      random seed salt used for structure placement randomness
+	 * @throws IllegalArgumentException if separation is greater than or equal to spacing
+	 */
 	public static void register(Structure<? extends IFeatureConfig> structure, boolean editLand, int spacing, int seperation, int salt) {
 		if(spacing-seperation<= 0) {
 			throw new IllegalArgumentException("Structure SeperationSettings setup detected an invalid configuration where seperation>=spacing: "+seperation+">="+spacing);

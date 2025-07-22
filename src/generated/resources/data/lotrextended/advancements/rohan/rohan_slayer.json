@@ -2,7 +2,8 @@
   "parent": "lotrextended:rohan/horse_lords",
   "display": {
     "icon": {
-      "item": "minecraft:bone"
+      "item": "lotr:rohan_sword",
+      "nbt": "{Damage:0}"
     },
     "title": {
       "translate": "advancements.lotrextended.rohan.rohan_slayer.title"

@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:hobbit_farmer",
-  "entity_type": "lotr:hobbit_farmer",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,
@@ -11,7 +10,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:bone_meal"
+        "item": "minecraft:bone_meal",
+        "count": 6
       }
     },
     {

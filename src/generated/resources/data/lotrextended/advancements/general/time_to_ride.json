@@ -17,20 +17,21 @@
     "hidden": false
   },
   "criteria": {
-    "has_saddle": {
-      "trigger": "minecraft:inventory_changed",
+    "item_minecraft:saddle_made_on_crafting_table": {
+      "trigger": "lotrextended:crafting_with_block",
       "conditions": {
-        "items": [
-          {
-            "item": "minecraft:saddle"
-          }
-        ]
+        "item": {
+          "item": "minecraft:saddle"
+        },
+        "crafting_block": {
+          "block": "minecraft:crafting_table"
+        }
       }
     }
   },
   "requirements": [
     [
-      "has_saddle"
+      "item_minecraft:saddle_made_on_crafting_table"
     ]
   ]
 }

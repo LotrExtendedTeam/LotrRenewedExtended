@@ -1,0 +1,46 @@
+{
+  "parent": "lotrextended:near_harad/city_of_corsairs",
+  "display": {
+    "icon": {
+      "item": "lotr:umbar_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.near_harad.umbar_armor.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.near_harad.umbar_armor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "umbar_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:umbar_helmet"
+          },
+          {
+            "item": "lotr:umbar_chestplate"
+          },
+          {
+            "item": "lotr:umbar_leggings"
+          },
+          {
+            "item": "lotr:umbar_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "umbar_armor"
+    ]
+  ]
+}

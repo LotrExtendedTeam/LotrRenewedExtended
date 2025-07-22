@@ -6,6 +6,12 @@ import java.util.Map;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 
+/**
+ * Represents a collection ("pallet") of related wood-based blocks grouped under a common theme or wood type.
+ * <p>
+ * Stores the resource locations of various wood-related blocks such as logs, planks, slabs, stairs, fences, doors, and others.
+ * This allows referencing blocks by name keys without directly holding the Block instances.
+ */
 public class WoodPallet {
 //	private Block LOG;
 //	private Block STRIPPED_LOG;
@@ -33,10 +39,56 @@ public class WoodPallet {
 //	private Block SIGN;
 //	private Block WALL_SIGN;
 //	private Block LEAVES;
+	/**
+	 * Indicates whether this wood pallet is empty or uninitialized.
+	 * Defaults to {@code false}. Can be used to check if the pallet contains valid block data.
+	 * Currently unused.
+	 */
 	private boolean isEmpty = false;
+	/**
+	 * The unique name identifier for this wood pallet.
+	 * Typically corresponds to the wood type or theme represented by this pallet.
+	 */
 	private String name;
-	Map<String, ResourceLocation> blockMap = new HashMap<>();
-
+	/**
+	 * A mapping from block type keys (e.g., "LOG", "PLANKS", "DOOR") to their
+	 * corresponding {@link ResourceLocation} instances.
+	 * This allows easy lookup of block resources by standardized keys.
+	 */
+	private Map<String, ResourceLocation> blockMap = new HashMap<>();
+	/**
+     * Constructs a new WoodPallet with a given name and a comprehensive set of wood-related blocks.
+     * Each block's resource location is stored in the internal map with a descriptive key.
+     *
+     * @param pName                The name identifying this wood pallet.
+     * @param lOG                  The log block.
+     * @param sTRIPPED_LOG         The stripped log block.
+     * @param lOG_SLAB             The log slab block.
+     * @param sTRIPPED_LOG_SLAB    The stripped log slab block.
+     * @param wOOD                 The wood block.
+     * @param sTRIPPED_WOOD        The stripped wood block.
+     * @param wOOD_SLAB            The wood slab block.
+     * @param sTRIPPED_WOOD_SLAB   The stripped wood slab block.
+     * @param wOOD_STAIRS          The wood stairs block.
+     * @param sTRIPPED_WOOD_STAIRS The stripped wood stairs block.
+     * @param bRANCH               The branch block.
+     * @param sTRIPPED_BRANCH      The stripped branch block.
+     * @param pLANKS               The planks block.
+     * @param sLAB                 The slab block.
+     * @param sTAIRS               The stairs block.
+     * @param bEAM                 The beam block.
+     * @param bEAM_SLAB            The beam slab block.
+     * @param fENCE                The fence block.
+     * @param fENCE_GATE           The fence gate block.
+     * @param dOOR                 The door block.
+     * @param tRAPDOOR             The trapdoor block.
+     * @param pRESSURE_PLATE       The pressure plate block.
+     * @param bUTTON               The button block.
+     * @param sIGN                 The sign block.
+     * @param wALL_SIGN            The wall sign block.
+     * @param lEAVES               The leaves block.
+     * @param vSLAB                The vertical slab block.
+     */
 	public WoodPallet(String pName, Block lOG, Block sTRIPPED_LOG, Block lOG_SLAB,Block sTRIPPED_LOG_SLAB, Block wOOD, Block sTRIPPED_WOOD,
 			Block wOOD_SLAB, Block sTRIPPED_WOOD_SLAB, Block wOOD_STAIRS,Block sTRIPPED_WOOD_STAIRS, Block bRANCH, Block sTRIPPED_BRANCH,
 			Block pLANKS, Block sLAB, Block sTAIRS, Block bEAM, Block bEAM_SLAB,Block fENCE, Block fENCE_GATE, Block dOOR, Block tRAPDOOR,
@@ -122,20 +174,38 @@ public class WoodPallet {
 //        this.WALL_SIGN = blockMap.get("WALL_SIGN");
 //        this.LEAVES = blockMap.get("LEAVES");
     }
-
+	 /**
+     * Returns whether this pallet is marked as empty.
+     *
+     * @return true if empty, false otherwise.
+     */
 	public boolean isEmpty() {
 		return isEmpty;
 	}
-
+	/**
+     * Returns the name identifying this wood pallet.
+     *
+     * @return The pallet name.
+     */
 	public String getName() {
 		return name;
 	}
-
+	/**
+     * Compares this WoodPallet to another object for equality.
+     * Two WoodPallets are considered equal if they have the same name.
+     *
+     * @param pallet The object to compare against.
+     * @return true if equal, false otherwise.
+     */
 	@Override
 	public boolean equals(Object pallet) {
 		return super.equals(pallet) || (pallet instanceof WoodPallet && this.name.equals(((WoodPallet) pallet).name));
 	}
-
+	/**
+     * Returns the map of block resource locations keyed by block type name.
+     *
+     * @return A map with keys like "LOG", "PLANKS", "DOOR", etc. and their corresponding resource locations.
+     */
 	public Map<String, ResourceLocation> getBlockMap() {
 		return blockMap;
 	}

@@ -19,6 +19,7 @@ public class MixinLamedonBiome {
 	/**
 	 * @author maximuslotro
 	 * @reason don't want to replace class
+	 * @param builder The biome generation settings builder to which vegetation features are added
 	 * */
 	@Overwrite(remap=false)
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {

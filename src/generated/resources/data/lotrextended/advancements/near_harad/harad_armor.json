@@ -1,0 +1,46 @@
+{
+  "parent": "lotrextended:near_harad/southward_bound",
+  "display": {
+    "icon": {
+      "item": "lotr:harad_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.near_harad.harad_armor.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.near_harad.harad_armor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "harad_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:harad_helmet"
+          },
+          {
+            "item": "lotr:harad_chestplate"
+          },
+          {
+            "item": "lotr:harad_leggings"
+          },
+          {
+            "item": "lotr:harad_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "harad_armor"
+    ]
+  ]
+}

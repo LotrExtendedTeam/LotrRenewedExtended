@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:gondor/kingdom_of_men",
+  "display": {
+    "icon": {
+      "item": "lotr:apple_sapling"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.gondor.vale_of_flowers.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.gondor.vale_of_flowers.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_lossarnach": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:lossarnach"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_lossarnach"
+    ]
+  ]
+}

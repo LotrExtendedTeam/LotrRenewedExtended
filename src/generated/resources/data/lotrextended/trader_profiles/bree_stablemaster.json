@@ -1,6 +1,5 @@
 {
   "id": "lotrextended:bree_stablemaster",
-  "entity_type": "lotr:bree_stablemaster",
   "tradingAlignmentRequired": 0,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,
@@ -11,13 +10,15 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:wheat"
+        "item": "minecraft:wheat",
+        "count": 3
       }
     },
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:sugar"
+        "item": "minecraft:sugar",
+        "count": 3
       }
     },
     {
@@ -67,7 +68,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:string"
+        "item": "minecraft:string",
+        "count": 3
       }
     },
     {

@@ -7,12 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.commands.ExtendedCommands;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedDataIdFixer;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGeneratorExtended;
-import com.github.maximuslotro.lotrrextended.common.eventhandlers.BannerEventHandlers;
-import com.github.maximuslotro.lotrrextended.common.eventhandlers.DevEventHandlers;
-import com.github.maximuslotro.lotrrextended.common.eventhandlers.ExtendedTickHandlerServer;
-import com.github.maximuslotro.lotrrextended.common.eventhandlers.ForgeInventoryEvents;
-import com.github.maximuslotro.lotrrextended.common.eventhandlers.HiredUnitEventHandlers;
-import com.github.maximuslotro.lotrrextended.common.eventhandlers.WorldEventHandlers;
+import com.github.maximuslotro.lotrrextended.common.eventhandlers.*;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedAttributes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlockStateProviderTypes;
@@ -39,6 +34,7 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.Extend
 
 import lotr.common.world.gen.MiddleEarthChunkGenerator;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.feature.Feature;
@@ -78,6 +74,7 @@ public class LotrExtendedMod{
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addGenericListener(Block.class, ExtendedDataIdFixer::fixBlockMappings);
 		forgeBus.addGenericListener(Item.class, ExtendedDataIdFixer::fixItemMappings);
+		forgeBus.addGenericListener(EntityType.class, ExtendedDataIdFixer::fixEntityMappings);
 		modBus.addListener(this::extendedCommonSetup);
 		modBus.addListener(DataGeneratorExtended::gatherData);
 		forgeBus.addListener(EventPriority.LOW, this::extendedRegisterCommands);
@@ -90,6 +87,7 @@ public class LotrExtendedMod{
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
 		forgeBus.register(ForgeInventoryEvents.class);
 		forgeBus.register(WorldEventHandlers.class);
+		forgeBus.register(LOTREnchantEventHandlers.class);
 		forgeBus.register(BannerEventHandlers.class);
 		forgeBus.register(HiredUnitEventHandlers.class);
 		ExtendedBlockStateProviderTypes.register(modBus);

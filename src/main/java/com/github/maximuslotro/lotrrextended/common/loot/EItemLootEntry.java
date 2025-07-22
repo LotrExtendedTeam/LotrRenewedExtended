@@ -43,18 +43,19 @@ public class EItemLootEntry extends ItemLootEntry{
 		}
 
 		/**
-		 * minDamagePercent is the smallest damage percent. i.e. 0.90 is the item is at least 90% damaged
-		 * maxDamagePercent is the largest  damage percent. i.e. 0.95 is the item is at most  95% damaged
+		 * @param minDamagePercent is the smallest damage percent. i.e. 0.90 is the item is at least 90% damaged
+		 * @param maxDamagePercent is the largest  damage percent. i.e. 0.95 is the item is at most  95% damaged
+		 * @return This builder instance for chaining
 		 * */
 		public ExtendedBuilder setDamageRange(float minDamagePercent, float maxDamagePercent) {
 			float modifiedMin = (100-(int)(maxDamagePercent*100)) / 100.0f;
 			float modifiedMax = (100-(int)(minDamagePercent*100)) / 100.0f;
 			if(!isDamagable) {
-				ExtendedLog.error("Tried Setting damage value range to a non-damageable item! "+modifiedMin+":"+modifiedMax);
+				ExtendedLog.error("Tried Setting damage value range to a non-damageable item! "+minDamagePercent+":"+maxDamagePercent);
 				return this.getThis();
 			}
 			if(modifiedMin > modifiedMax) {
-				ExtendedLog.error("Tried Setting an inverted damage value range to an item! "+modifiedMin+":"+modifiedMax);
+				ExtendedLog.error("Tried Setting an inverted damage value range to an item! "+minDamagePercent+":"+maxDamagePercent);
 				return this.getThis();
 			}
 			this.apply(SetDamage.setDamage(RandomValueRange.between(modifiedMin, modifiedMax)));

@@ -124,6 +124,8 @@ public class ExtendedFellowship {
 
 	/**
 	 * Check if a player is the fellowship owner
+	 * @param player A player UUID to check
+	 * @return True if the player is the fellowship owner
 	 */
 	public boolean isFellowshipOwner(UUID player) {
 		return fellowshipOwner.equals(player);
@@ -131,6 +133,8 @@ public class ExtendedFellowship {
 
 	/**
 	 * Check if a player is a fellowship member, but the owner
+	 * @param player A player UUID to check
+	 * @return True if the player is a fellowship member
 	 */
 	public boolean isFellowshipMember(UUID player) {
 		return fellowshipMembers.contains(player);
@@ -138,6 +142,8 @@ public class ExtendedFellowship {
 
 	/**
 	 * Check if a player is a fellowship member and in the admin list, but not the owner
+	 * @param player A player UUID to check
+	 * @return True if the player is the fellowship admin, but not owner
 	 */
 	public boolean isFellowshipAdmin(UUID player) {
 		return isFellowshipMember(player) && fellowshipAdmins.contains(player);
@@ -145,6 +151,8 @@ public class ExtendedFellowship {
 
 	/**
 	 * Check if a player is a fellowship member or the owner
+	 * @param player A player UUID to check
+	 * @return True if the player is in the fellowship
 	 */
 	public boolean isInFellowship(UUID player) {
 		return isFellowshipMember(player) || isFellowshipOwner(player);
@@ -152,6 +160,8 @@ public class ExtendedFellowship {
 
 	/**
 	 * Check if a player is a fellowship admin or the owner
+	 * @param player A player UUID to check
+	 * @return True if the player has powers to edit the fellowship
 	 */
 	public boolean hasEditPowers(UUID player) {
 		return (isFellowshipMember(player) && fellowshipAdmins.contains(player)) || fellowshipOwner.equals(player);

@@ -3,25 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements;
 import java.util.function.Consumer;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.AngmarAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.BlueMountainsAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.BreeAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.DaleAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.DunlandAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.EnedwaithAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.EregionAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.EriadorAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.FangornAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.ForodwaithAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.GeneralAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.IronHillsAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.LindonAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.LothlorienAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.MirkwoodAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.MistyMountainsAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.RhovanionAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.RohanAdvancementsProvider;
-import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.ShireAdvancementsProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions.*;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.data.AdvancementProvider;
@@ -30,6 +12,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ExtendedAdvancementProvider extends AdvancementProvider{
 	public static int advancementsLegacyNum = 0;
+	public static float advancementsLegacyNumTotal = 0.0f;
 	public static int advancementsExtendedNum = 0;
 	public static int secrets = 0;
 	public ExtendedAdvancementProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
@@ -38,27 +21,39 @@ public class ExtendedAdvancementProvider extends AdvancementProvider{
 
 	@Override
 	protected void registerAdvancements(Consumer<Advancement> consumer, ExistingFileHelper fileHelper) {
-		new GeneralAdvancementsProvider().accept(consumer);
-		new EriadorAdvancementsProvider().accept(consumer);
-		new AngmarAdvancementsProvider().accept(consumer);
-		new MirkwoodAdvancementsProvider().accept(consumer);
-		new BlueMountainsAdvancementsProvider().accept(consumer);
-		new BreeAdvancementsProvider().accept(consumer);
-		new DunlandAdvancementsProvider().accept(consumer);
-		new ForodwaithAdvancementsProvider().accept(consumer);
-		new EnedwaithAdvancementsProvider().accept(consumer);
-		new EregionAdvancementsProvider().accept(consumer);
-		new MistyMountainsAdvancementsProvider().accept(consumer);
-		new LindonAdvancementsProvider().accept(consumer);
-		new ShireAdvancementsProvider().accept(consumer);
-		new RhovanionAdvancementsProvider().accept(consumer);
-		new DaleAdvancementsProvider().accept(consumer);
-		new IronHillsAdvancementsProvider().accept(consumer);
-		new LothlorienAdvancementsProvider().accept(consumer);
-		new FangornAdvancementsProvider().accept(consumer);
-		new RohanAdvancementsProvider().accept(consumer);
 		ExtendedLog.infoShown("###############EXTENDED###ADVANCEMENTS#############");
-		ExtendedLog.infoShown("Built "+advancementsLegacyNum+" legacy advancements of 666 ("+((advancementsLegacyNum/666.0F)*100.0F)+"%).");
+		new AdvancementsProviderAngmar().accept(consumer);
+		new AdvancementsProviderBelegaer().accept(consumer);
+		new AdvancementsProviderBlueMountains().accept(consumer);
+		new AdvancementsProviderBree().accept(consumer);
+		new AdvancementsProviderDale().accept(consumer);
+		new AdvancementsProviderDorwinion().accept(consumer);
+		new AdvancementsProviderDunland().accept(consumer);
+		new AdvancementsProviderEnedwaith().accept(consumer);
+		new AdvancementsProviderEregion().accept(consumer);
+		new AdvancementsProviderEriador().accept(consumer);
+		new AdvancementsProviderFangorn().accept(consumer);
+		new AdvancementsProviderFarHarad().accept(consumer);
+		new AdvancementsProviderFarHaradJungle().accept(consumer);
+		new AdvancementsProviderForodwaith().accept(consumer);
+		new AdvancementsProviderGeneral().accept(consumer);
+		new AdvancementsProviderGondor().accept(consumer);
+		new AdvancementsProviderIronHills().accept(consumer);
+		new AdvancementsProviderLindon().accept(consumer);
+		new AdvancementsProviderLothlorien().accept(consumer);
+		new AdvancementsProviderMirkwood().accept(consumer);
+		new AdvancementsProviderMistyMountains().accept(consumer);
+		new AdvancementsProviderMordor().accept(consumer);
+		new AdvancementsProviderNearHarad().accept(consumer);
+		new AdvancementsProviderNindalf().accept(consumer);
+		new AdvancementsProviderOrocarni().accept(consumer);
+		new AdvancementsProviderPerdorogwaith().accept(consumer);
+		new AdvancementsProviderRhovanion().accept(consumer);
+		new AdvancementsProviderRhun().accept(consumer);
+		new AdvancementsProviderRohan().accept(consumer);
+		new AdvancementsProviderShire().accept(consumer);
+		new AdvancementsProviderUtumno().accept(consumer);
+		ExtendedLog.infoShown("Built "+advancementsLegacyNum+" legacy advancements of "+advancementsLegacyNumTotal+" ("+((advancementsLegacyNum/advancementsLegacyNumTotal)*100.0F)+"%).");
 		ExtendedLog.infoShown("Also built "+advancementsExtendedNum+" new advancements unique to Extended!");
 		ExtendedLog.infoShown("In addition built "+secrets+" secret advancements!");
 		ExtendedLog.infoShown("###################################################");

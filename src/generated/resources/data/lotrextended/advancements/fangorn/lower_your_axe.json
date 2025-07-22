@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "minecraft:oak_log"
+      "item": "minecraft:oak_leaves"
     },
     "title": {
       "translate": "advancements.lotrextended.fangorn.lower_your_axe.title"

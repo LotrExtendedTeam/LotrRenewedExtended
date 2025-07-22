@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": {
-      "tag": "minecraft:wool"
+      "tag": "lotrextended:wool_blocks"
     },
     "X": {
       "tag": "minecraft:planks"

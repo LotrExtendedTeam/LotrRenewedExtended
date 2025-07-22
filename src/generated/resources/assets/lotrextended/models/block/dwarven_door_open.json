@@ -1,0 +1,6 @@
+{
+  "parent": "lotrextended:block/template_solid_gate_open",
+  "textures": {
+    "all": "minecraft:block/stone"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:block/template_chandelier",
+  "textures": {
+    "chandelier": "lotrextended:block/blue_dwarven_chandelier"
+  }
+}

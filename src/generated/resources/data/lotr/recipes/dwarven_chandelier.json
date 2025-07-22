@@ -1,0 +1,22 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dwarven",
+  "pattern": [
+    " N ",
+    "CIC"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "C": {
+      "item": "lotr:candle"
+    },
+    "I": {
+      "tag": "forge:ingots/dwarven_steel"
+    }
+  },
+  "result": {
+    "item": "lotr:dwarven_chandelier"
+  }
+}

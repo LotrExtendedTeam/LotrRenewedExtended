@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
+
 import lotr.common.init.ExtendedItems;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,14 +30,16 @@ public class CoinUtils {
     }
 
     public static int value(ItemStack stack) {
-        if (!isValidCoin(stack)) return 0;
+        if (!isValidCoin(stack)) {
+        	return 0;
+        }
         return valueOfItem(stack.getItem()) * stack.getCount();
     }
 
     public static boolean isValidCoin(ItemStack stack) {
-        return isSameItem(stack, ExtendedItems.SILVER_COIN_ONE.get()) ||
-                isSameItem(stack, ExtendedItems.SILVER_COIN_TEN.get()) ||
-                isSameItem(stack, ExtendedItems.SILVER_COIN_HUNDRED.get());
+        return ExtendedItemStackUtils.isSameItemStackItemAndTag(stack, ExtendedItems.SILVER_COIN_ONE.get()) ||
+        	ExtendedItemStackUtils.isSameItemStackItemAndTag(stack, ExtendedItems.SILVER_COIN_TEN.get()) ||
+        	ExtendedItemStackUtils.isSameItemStackItemAndTag(stack, ExtendedItems.SILVER_COIN_HUNDRED.get());
     }
 
     public static int totalValueInPlayerInventory(PlayerInventory inv) {
@@ -131,7 +135,7 @@ public class CoinUtils {
             int slot = -1;
 
             for(int i = 0; i < player.inventory.items.size(); ++i) {
-                if (!(player.inventory.items.get(i)).isEmpty() && isSameItem(itemStack, player.inventory.items.get(i))) {
+                if (!(player.inventory.items.get(i)).isEmpty() && ExtendedItemStackUtils.isSameItemStackItemAndTag(itemStack, player.inventory.items.get(i))) {
                     slot = i;
                     break;
                 }
@@ -214,13 +218,4 @@ public class CoinUtils {
 
         return true;
     }
-
-    private static boolean isSameItem(ItemStack p_184431_1_, ItemStack p_184431_2_) {
-        return p_184431_1_.getItem() == p_184431_2_.getItem() && ItemStack.tagMatches(p_184431_1_, p_184431_2_);
-    }
-
-    private static boolean isSameItem(ItemStack stack, Item item) {
-        return stack.getItem() == item && ItemStack.tagMatches(stack, new ItemStack(item));
-    }
-
 }

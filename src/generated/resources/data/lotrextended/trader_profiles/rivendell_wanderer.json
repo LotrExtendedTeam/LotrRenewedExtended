@@ -1,7 +1,7 @@
 {
   "id": "lotrextended:rivendell_wanderer",
-  "entity_type": "lotr:rivendell_wanderer",
   "tradingAlignmentRequired": 100,
+  "isTypicallyWandering": true,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,
   "shouldRefreshTrades": true,
@@ -41,7 +41,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:string"
+        "item": "minecraft:string",
+        "count": 3
       }
     },
     {
@@ -53,7 +54,8 @@
     {
       "averageCost": 1,
       "stack": {
-        "item": "minecraft:wheat"
+        "item": "minecraft:wheat",
+        "count": 3
       }
     },
     {
@@ -128,13 +130,15 @@
     {
       "averageCost": 3,
       "stack": {
-        "item": "minecraft:arrow"
+        "item": "minecraft:arrow",
+        "count": 4
       }
     },
     {
       "averageCost": 8,
       "stack": {
-        "item": "lotr:high_elven_torch"
+        "item": "lotr:high_elven_torch",
+        "count": 4
       }
     },
     {
@@ -146,7 +150,8 @@
     {
       "averageCost": 4,
       "stack": {
-        "item": "lotr:beech_planks"
+        "item": "lotr:beech_planks",
+        "count": 4
       }
     },
     {
