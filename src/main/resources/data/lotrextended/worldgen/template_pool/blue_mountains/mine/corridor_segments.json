@@ -12,7 +12,7 @@
 			}
 		},
 		{
-			"weight": 7,
+			"weight": 3,
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
@@ -66,7 +66,7 @@
 			}
 		},
 		{
-			"weight": 6,
+			"weight": 3,
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
@@ -192,7 +192,7 @@
 			}
 		},
 		{
-			"weight": 5,
+			"weight": 2,
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
@@ -201,11 +201,29 @@
 			}
 		},
 		{
-			"weight": 5,
+			"weight": 4,
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_vertical_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_vertical_3",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_vertical_4",
 				"processors": "minecraft:empty"
 			}
 		}

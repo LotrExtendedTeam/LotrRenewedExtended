@@ -1,0 +1,146 @@
+{
+	"name": "lotrextended:blue_mountains/mine/corridor_segments_initial",
+	"fallback": "lotrextended:blue_mountains/mine/corridor_segments_fallback",
+	"elements": [
+		{
+			"weight": 8,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_long_1",
+				"processors": "minecraft:empty",
+				"reset_max_depth": true
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_long_2",
+				"processors": "minecraft:empty",
+				"reset_max_depth": true
+			}
+		},
+		{
+			"weight": 8,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_long_3",
+				"processors": "minecraft:empty",
+				"reset_max_depth": true
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_longer_1",
+				"processors": "minecraft:empty",
+				"reset_max_depth": true
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_longer_2",
+				"processors": "minecraft:empty",
+				"reset_max_depth": true
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_longer_3",
+				"processors": "minecraft:empty",
+				"reset_max_depth": true
+			}
+		},
+		{
+			"weight": 7,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_medium_1",
+				"processors": "minecraft:empty",
+				"reset_max_depth": true
+			}
+		},
+		{
+			"weight": 3,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_medium_2",
+				"processors": "minecraft:empty",
+				"reset_max_depth": true
+			}
+		},
+		{
+			"weight": 7,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_short_1",
+				"processors": "minecraft:empty",
+				"reset_max_depth": true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_corner_four_1",
+				"processors": "minecraft:empty",
+				"reset_max_depth": true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_corner_three_1",
+				"processors": "minecraft:empty",
+				"reset_max_depth": true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_corner_two_1",
+				"processors": "minecraft:empty",
+				"reset_max_depth": true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_corner_two_2",
+				"processors": "minecraft:empty",
+				"reset_max_depth": true
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_supply_1",
+				"processors": "minecraft:empty",
+				"reset_max_depth": true
+			}
+		}
+	]
+}
