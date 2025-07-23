@@ -478,7 +478,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public boolean isInvisibleTo(PlayerEntity pPlayer) {
-		if (pPlayer.isSpectator() || pPlayer.isCreative() || ExtendedClientConfig.enableDevMode.get()) {
+		if (pPlayer.isSpectator() || pPlayer.isCreative() || ExtendedClientConfig.enableClientDevMode.get()) {
 			isInvisible = false;
 			return false;
 		}

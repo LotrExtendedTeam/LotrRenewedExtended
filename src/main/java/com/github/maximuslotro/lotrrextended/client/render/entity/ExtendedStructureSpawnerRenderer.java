@@ -68,7 +68,7 @@ public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStr
 		if (rendertype != null) {
 			IVertexBuilder ivertexbuilder = pBuffer.getBuffer(rendertype);
 			this.model.renderExtendedToBuffer(pEntity, pMatrixStack, ivertexbuilder, pPartialTicks, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-			if (ExtendedClientConfig.enableDevMode.get() && !pEntity.getCMaxBlockPos().equals(BlockPos.ZERO) && !pEntity.getSMaxBlockPos().equals(BlockPos.ZERO)) {
+			if (ExtendedClientConfig.enableClientDevMode.get() && !pEntity.getCMaxBlockPos().equals(BlockPos.ZERO) && !pEntity.getSMaxBlockPos().equals(BlockPos.ZERO)) {
 //				IVertexBuilder lineBuilder = pBuffer.getBuffer(RenderType.lines());
 //				RenderSystem.lineWidth(10.0f);
 //				BlockPos minPosC = pEntity.getCMinBlockPos();
@@ -129,8 +129,7 @@ public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStr
 	@Override
 	protected boolean shouldShowName(ExtendedStructureSpawnerEntity pEntity) {
 		Minecraft minecraft = Minecraft.getInstance();
-		boolean shouldHide = pEntity.isInvisibleTo(minecraft.player) || minecraft.options.hideGui;
-		return !shouldHide;
+		return ExtendedClientConfig.enableClientDevMode.get() && !minecraft.options.hideGui;
 	}
 
 	/**

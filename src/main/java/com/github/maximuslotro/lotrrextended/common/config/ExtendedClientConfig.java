@@ -9,7 +9,7 @@ import net.minecraftforge.fml.config.ModConfig.Type;
 
 public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	public static final ForgeConfigSpec CLIENT_SPEC = setupConfig(new ForgeConfigSpec.Builder()).build();
-	public static ForgeConfigSpec.BooleanValue enableDevMode;
+	public static ForgeConfigSpec.BooleanValue enableClientDevMode;
 	public static ConfigValue<String> lastClientBootVersion;
 	public static ForgeConfigSpec.BooleanValue disableJEILOTRversionCheck;
 	public static ForgeConfigSpec.BooleanValue enableClientVersionCheck;
@@ -42,7 +42,7 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 		builder.pop();
 
 		builder.push("Special settings");
-		enableDevMode = createBooleanValue(builder, "enableDevModeClient", false, true, "Never enable this unless you are on the Extended Dev Team or debugging the mod!");
+		enableClientDevMode = createBooleanValue(builder, "enableDevModeClient", false, true, "Never enable this unless you are on the Extended Dev Team or debugging the mod!");
 		lastClientBootVersion = createStringValue(builder, "lastClientBootVersion", "null", true, "Last version this mod launched with. Don't touch! Value handled by extended.");
 		builder.pop();
 		return builder;
