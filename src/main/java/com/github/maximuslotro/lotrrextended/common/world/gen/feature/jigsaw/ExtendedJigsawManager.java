@@ -425,6 +425,11 @@ public class ExtendedJigsawManager {
 												villagePiece.addJunction(new JigsawJunction(blockpos2.getX(), connectingPoolJigsawPieceSpawnHeight - jigsawYRelativeToActualPieceBottom + pieceGroundLevelData, blockpos2.getZ(), relativeYconnectingPieceSpawnHeight, connectingPoolJigsawPiecePlacementBehaviour));
 												abstractvillagepiece.addJunction(new JigsawJunction(blockpos1.getX(), connectingPoolJigsawPieceSpawnHeight - connectingPoolJigsawPieceRelativeYValue + connectingPoolJigsawPieceGroundLevelData, blockpos1.getZ(), -relativeYconnectingPieceSpawnHeight, jigsawPiecePlacementBehaviour));
 												this.pieces.add(abstractvillagepiece);
+												// Extended Start
+												if(jigsawpiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)jigsawpiece).shouldResetMaxDepth()) {
+													depth = 0;
+												}
+												// Extended End
 												if (depth + 1 <= this.maxDepth /* Extended Start */&& !doesIgnoreBB /*Extended End*/) {
 													this.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, childPieceStructureShapeInterpolated, parentPieceBoundsTop, depth + 1));
 												}
