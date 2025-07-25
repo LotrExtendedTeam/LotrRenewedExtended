@@ -15,6 +15,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnGro
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedGrassVoidTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedHoistTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneGrinderTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneTextSignTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
@@ -134,5 +135,6 @@ public class MixinLOTRTileEntities {
     	ExtendedTileEntities.GRASS_VOID = register("grass_void_tileentity", () -> Builder.of(ExtendedGrassVoidTileEntity::new, ExtendedBlocks.GRASS_VOID.get()));
     	ExtendedTileEntities.STONE_SIGN = register("stone_engraving", () -> Builder.of(ExtendedStoneTextSignTileEntity::new, ExtendedBlocks.STONE_SIGN.get()));
     	ExtendedTileEntities.DWARVEN_BED = register("dwarven_bed_tileentity", () -> Builder.of(ExtendedDwarvenBedTileEntity::new, ExtendedBlocks.DWARVEN_BED.get()));
+    	ExtendedTileEntities.HOIST = register("hoist_tileentity", () -> Builder.of(ExtendedHoistTileEntity::new, ExtendedBlocks.HOIST.get()));
     }
 }

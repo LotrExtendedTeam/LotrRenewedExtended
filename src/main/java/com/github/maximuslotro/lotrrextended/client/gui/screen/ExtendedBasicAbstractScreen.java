@@ -5,13 +5,17 @@ import net.minecraft.util.text.ITextComponent;
 
 public abstract class ExtendedBasicAbstractScreen extends Screen {
 	/** The X size of the inventory window in pixels. */
-	protected int imageWidth = 176;
+	protected int imageWidth;
 	/** The Y size of the inventory window in pixels. */
-	protected int imageHeight = 166;
+	protected int imageHeight;
 	/** Starting X position for the Gui. Inconsistent use for Gui backgrounds. */
 	protected int leftPos;
 	/** Starting Y position for the Gui. Inconsistent use for Gui backgrounds. */
 	protected int topPos;
+
+	public ExtendedBasicAbstractScreen(ITextComponent pTitle) {
+		this(pTitle, 176, 166);
+	}
 
 	public ExtendedBasicAbstractScreen(ITextComponent pTitle, int imageWidth, int imageHeight) {
 		super(pTitle);

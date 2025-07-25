@@ -115,7 +115,7 @@ public class ExtendedStructuresV5 {
 		register(BREE_VILLAGE.get(), true,             40, 25, 78547894);
 		register(BLUE_MOUNTAIN_SMITHY.get(), false,    27, 12, 589758935);
 		register(BLUE_MOUNTAIN_STRONGHOLD.get(), false,35, 15, 889329084);
-		register(BLUE_MOUNTAIN_MINE.get(), false,30, 15, 17277298);
+		register(BLUE_MOUNTAIN_MINE.get(), false,      30, 15, 17277298);
 	}
 
 	/**

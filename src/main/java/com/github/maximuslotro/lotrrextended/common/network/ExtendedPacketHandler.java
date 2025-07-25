@@ -16,7 +16,7 @@ public class ExtendedPacketHandler {
 	private static SimpleChannel CHANNEL;
 
 	public static void register() {
-		CHANNEL = NetworkRegistry.newSimpleChannel(new ResourceLocation("lotr", "extended"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
+		CHANNEL = NetworkRegistry.newSimpleChannel(new ResourceLocation("lotrextended", "main"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 		int id = 0;
 		// Packets starting with S are sent from the server to the client (originate at the server)
 		// Packets starting with C are sent from the client to the server (originate at the client)
@@ -47,6 +47,8 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedCUpdateStoneTextSignPacket.class, ExtendedCUpdateStoneTextSignPacket::encode, ExtendedCUpdateStoneTextSignPacket::decode, ExtendedCUpdateStoneTextSignPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSOpenStoneTextSignPacket.class, ExtendedSOpenStoneTextSignPacket::encode, ExtendedSOpenStoneTextSignPacket::decode, ExtendedSOpenStoneTextSignPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSNpcUnitInfoPacket.class, ExtendedSNpcUnitInfoPacket::encode, ExtendedSNpcUnitInfoPacket::decode, ExtendedSNpcUnitInfoPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCUpdateHoistPacket.class, ExtendedCUpdateHoistPacket::encode, ExtendedCUpdateHoistPacket::decode, ExtendedCUpdateHoistPacket::handle);
+
 		if (id >= 255) {
 			// Since IndexedMessageCodec.MessageHandler -> indicies.put((short)(index & 0xff), this);
 			// And 0xFF is 255, so using one byte for index, max messages for one channel is 255
