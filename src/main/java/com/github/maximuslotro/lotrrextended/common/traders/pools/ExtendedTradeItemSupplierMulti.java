@@ -47,4 +47,9 @@ public class ExtendedTradeItemSupplierMulti implements ExtendedTradeItemSupplier
 		}
 		return new ExtendedTradeItemSupplierMulti(stacks);
 	}
+
+	@Override
+	public List<ItemStack> returnAllPossableItems() {
+		return stacks;
+	}
 }

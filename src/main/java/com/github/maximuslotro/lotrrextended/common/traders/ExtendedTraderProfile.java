@@ -137,12 +137,27 @@ public class ExtendedTraderProfile {
 	 */
 	public List<ExtendedTraderPoolItem> getTraderPool(ExtendedTradeType type){
 		if(type==ExtendedTradeType.BUY_FROM_PLAYER) {
-			return buyFromPlayerPool;
+			return getTraderBoughtPool();
 		}else {
-			return sellToPlayerPool;
+			return getTraderSellPool();
 		}
 	}
-
+	/**
+	 * Gets the list of trade pool items for bought from player.
+	 *
+	 * @return The list of {@link ExtendedTraderPoolItem} for bought items.
+	 */
+	public List<ExtendedTraderPoolItem> getTraderBoughtPool(){
+		return buyFromPlayerPool;
+	}
+	/**
+	 * Gets the list of trade pool items for sold to player.
+	 *
+	 * @return The list of {@link ExtendedTraderPoolItem} for sold items.
+	 */
+	public List<ExtendedTraderPoolItem> getTraderSellPool(){
+		return sellToPlayerPool;
+	}
 	/**
 	 * Checks if this profile should refresh trades periodically.
 	 *

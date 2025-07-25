@@ -38,7 +38,7 @@
       }
     },
     {
-      "averageCost": 25,
+      "averageCost": 15,
       "stack": {
         "item": "lotr:emerald"
       }
@@ -50,7 +50,7 @@
       }
     },
     {
-      "averageCost": 20,
+      "averageCost": 12,
       "stack": {
         "item": "lotr:ruby"
       }

@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.traders.pools;
 
+import java.util.List;
 import java.util.Random;
 
 import com.google.gson.JsonElement;
@@ -17,6 +18,8 @@ import net.minecraft.util.JSONUtils;
 public interface ExtendedTradeItemSupplier {
 
 	ItemStack chooseItem(Random rand);
+
+	List<ItemStack> returnAllPossableItems();
 
 	JsonElement serializeJson();
 

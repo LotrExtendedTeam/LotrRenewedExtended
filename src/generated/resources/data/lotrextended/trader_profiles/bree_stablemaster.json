@@ -28,13 +28,13 @@
       }
     },
     {
-      "averageCost": 2,
+      "averageCost": 1,
       "stack": {
         "item": "minecraft:apple"
       }
     },
     {
-      "averageCost": 2,
+      "averageCost": 1,
       "stack": {
         "item": "lotr:green_apple"
       }

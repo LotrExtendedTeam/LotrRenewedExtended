@@ -1,5 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.traders.pools;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 import com.google.gson.JsonElement;
@@ -38,5 +41,10 @@ public class ExtendedTradeItemSupplierSingle implements ExtendedTradeItemSupplie
 	public static ExtendedTradeItemSupplier deserializeJson(JsonObject element) {
 		ItemStack stack = ExtendedTradeItemSupplier.getStack(JSONUtils.getAsJsonObject(element, "stack"));
 		return new ExtendedTradeItemSupplierSingle(stack);
+	}
+
+	@Override
+	public List<ItemStack> returnAllPossableItems() {
+		return new ArrayList<>(Arrays.asList(stack));
 	}
 }

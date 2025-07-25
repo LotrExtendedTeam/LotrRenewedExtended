@@ -177,8 +177,7 @@
     {
       "averageCost": 2,
       "stack": {
-        "item": "lotr:clay_plate",
-        "count": 2
+        "item": "lotr:clay_plate"
       }
     },
     {

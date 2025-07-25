@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.traders.pools;
 
 import java.lang.reflect.Type;
+import java.util.List;
 import java.util.Random;
 
 import com.google.gson.JsonDeserializationContext;
@@ -50,6 +51,14 @@ public class ExtendedTraderPoolItem extends WeightedRandom.Item {
 	 * */
 	public ItemStack getStack(Random rand){
 		return itemSupplier.chooseItem(rand);
+	}
+
+	/**
+	 * Gets all contained ItemStack
+	 * @return All available ItemStack instances
+	 * */
+	public List<ItemStack> getAllStacks(){
+		return itemSupplier.returnAllPossableItems();
 	}
 
 	public static class Serializer implements JsonDeserializer<ExtendedTraderPoolItem>, JsonSerializer<ExtendedTraderPoolItem> {
