@@ -3,6 +3,7 @@
   "textures": {
     "center": "lotrextended:block/crystal_center_stone",
     "chain": "minecraft:block/chain",
-    "crystal": "lotr:block/edhelvir_crystal"
+    "crystal": "lotr:block/edhelvir_crystal",
+    "particle": "lotr:block/edhelvir_crystal"
   }
 }
