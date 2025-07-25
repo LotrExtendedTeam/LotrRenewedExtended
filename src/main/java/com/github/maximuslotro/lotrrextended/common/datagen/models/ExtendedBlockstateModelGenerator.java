@@ -23,6 +23,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmland
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedHoistBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
@@ -205,6 +206,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedChainBlock) {
 					genChainBlock(block.getValue().get(), "block/"+block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedHoistBlock) {
+					genCubeBlockItem(block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedBerryHedgeBlock) {

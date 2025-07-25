@@ -672,6 +672,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> DWARVEN_DOOR;
 	public static RegistryObject<Item> DWARVEN_DOOR_LUIGON;
 	public static RegistryObject<Item> DWARVEN_DOOR_CARGON;
+	public static RegistryObject<Item> HOIST;
 
 	public static RegistryObject<Item> GLOWSTONE_CRYSTAL_CHANDELIER;
 	public static RegistryObject<Item> EDHELVIR_CRYSTAL_CHANDELIER;

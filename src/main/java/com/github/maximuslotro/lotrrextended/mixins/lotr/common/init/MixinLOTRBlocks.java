@@ -1044,15 +1044,16 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.GRASS_VOID = registerB("grass_void", () -> new ExtendedGrassVoidBlock(AbstractBlock.Properties.of(Material.STRUCTURAL_AIR).noCollission().noDrops()));
 
-		ExtendedBlocks.DWARVEN_DOOR = registerB("dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
-		ExtendedBlocks.DWARVEN_DOOR_LUIGON = registerB("blue_dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_BLUE).requiresCorrectToolForDrops().strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
-		ExtendedBlocks.DWARVEN_DOOR_CARGON = registerB("red_dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE, MaterialColor.TERRACOTTA_ORANGE).requiresCorrectToolForDrops().strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
+		ExtendedBlocks.DWARVEN_DOOR = registerB("dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
+		ExtendedBlocks.DWARVEN_DOOR_LUIGON = registerB("blue_dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_BLUE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
+		ExtendedBlocks.DWARVEN_DOOR_CARGON = registerB("red_dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE, MaterialColor.TERRACOTTA_ORANGE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
 
 		ExtendedBlocks.EDHELVIR_CRYSTAL_CHANDELIER = registerB("edhelvir_crystal_chandelier", () -> new ExtendedCrystalChandelierBlock(Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_BLUE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).lightLevel((s) -> 17).sound(SoundType.STONE).noOcclusion()));
 		ExtendedBlocks.GLOWSTONE_CRYSTAL_CHANDELIER = registerB("glowstone_crystal_chandelier", () -> new ExtendedCrystalChandelierBlock(Properties.of(Material.STONE, MaterialColor.COLOR_YELLOW).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).lightLevel((s) -> 17).sound(SoundType.STONE).noOcclusion()));
 		ExtendedBlocks.GULDURIL_CRYSTAL_CHANDELIER = registerB("gulduril_crystal_chandelier", () -> new ExtendedCrystalChandelierBlock(Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GREEN).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).lightLevel((s) -> 17).sound(SoundType.STONE).noOcclusion()));
 
 		ExtendedBlocks.STONE_SIGN = registerB("stone_engraving", () -> new ExtendedStoneTextSignBlock(AbstractBlock.Properties.of(Material.DECORATION, MaterialColor.NONE).noCollission().strength(0.5F).sound(SoundType.STONE)));
+		ExtendedBlocks.HOIST = registerB("mine_placeholder", () -> new ExtendedHoistBlock(AbstractBlock.Properties.of(Material.STONE).strength(4.0F, 10.0F).sound(SoundType.STONE)));
 	}
 
 	/**

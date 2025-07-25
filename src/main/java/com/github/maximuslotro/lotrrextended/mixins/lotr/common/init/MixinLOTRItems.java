@@ -1109,6 +1109,7 @@ public class MixinLOTRItems {
 
 		// HIDDEN
 		ExtendedItems.GRASS_VOID = regHiddenBlockItemB(ExtendedBlocks.GRASS_VOID);
+		ExtendedItems.HOIST = regHiddenBlockItemB(ExtendedBlocks.HOIST);
 	}
 
 	/**

@@ -174,13 +174,11 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 	}
 
 	public void addD(String key, String value) {
-		if (!existingStrings.containsKey(key)) {
-			if (!newStrings.containsKey(key)) {
-				newStrings.put(key, value);
-			} else {
-				if (!value.isEmpty()) {
-					System.out.println("Discarding Duplicate Key Found in Language Map With Initialised text: " + key);
-				}
+		if (!newStrings.containsKey(key)) {
+			newStrings.put(key, value);
+		} else {
+			if (!value.isEmpty()) {
+				System.out.println("Discarding Duplicate Key Found in Language Map With Initialised text: " + key);
 			}
 		}
 	}
@@ -239,13 +237,32 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 		}
 	}
 
-	// TODO filter out old block and item IDs
 	public void makeLocalisationsFile() {
-		// Sort keys and add to superClass processor
+		// Check entries from existingStrings that do not exists in the mod
+		long unusedEntries = existingStrings.keySet().stream()
+		    .filter(key -> !newStrings.containsKey(key) && !overrideStrings.containsKey(key))
+		    .count();
+		if(unusedEntries>0) {
+			System.out.println("Found " + unusedEntries + " unused lang entries");
+		}
+		//.forEach(key -> System.out.println("Found unused lang entry: " + key));
+		// Create sorted map while skipping keys containing 'placeholder'
 		TreeMap<String, String> sorted = new TreeMap<>();
-		sorted.putAll(newStrings);
-		sorted.putAll(existingStrings);
-		sorted.putAll(overrideStrings);
+		newStrings.forEach((key, value) -> {
+			if (!key.contains("placeholder")) {
+				sorted.put(key, value);
+			}
+		});
+		existingStrings.forEach((key, value) -> {
+			if (!key.contains("placeholder")) {
+				sorted.put(key, value);
+			}
+		});
+		overrideStrings.forEach((key, value) -> {
+			if (!key.contains("placeholder")) {
+				sorted.put(key, value);
+			}
+		});
 		for (Entry<String, String> entry : sorted.entrySet()) {
 			if (this.dataHere.put(entry.getKey(), entry.getValue()) != null) {
 				throw new IllegalStateException("Duplicate translation key " + entry.getKey());
