@@ -11,18 +11,18 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 
 /**
- * {@link ExtendedStructureBlueMountainSmithy} is a custom single-pool structure representing a smithy building.
+ * {@link ExtendedStructureCheckAreaChunk} is a custom single-pool structure representing a building.
  * <p>
  * It overrides the terrain suitability check to ensure the structure only generates
  * on relatively flat terrain by sampling surface heights within the chunk.
  */
-public class ExtendedStructureBlueMountainSmithy extends SinglePoolStructure {
+public class ExtendedStructureCheckAreaChunk extends SinglePoolStructure {
 	/**
-     * Constructs an ExtendedBMSmithy structure with the specified structure type.
+     * Constructs an ExtendedStructureAreaCheckChunk structure with the specified structure type.
      *
      * @param type The type of the structure.
      */
-	public ExtendedStructureBlueMountainSmithy(ExtendedStructureType type) {
+	public ExtendedStructureCheckAreaChunk(ExtendedStructureType type) {
 		super(type);
 	}
 	/**
@@ -55,7 +55,7 @@ public class ExtendedStructureBlueMountainSmithy extends SinglePoolStructure {
 				int height = chunkGenerator.getFirstOccupiedHeight(blockX, blockZ, net.minecraft.world.gen.Heightmap.Type.WORLD_SURFACE_WG);
 				minY = Math.min(minY, height);
 				maxY = Math.max(maxY, height);
-				if (maxY - minY > 4) {
+				if (maxY - minY > 6) {
 					return false; // Too uneven
 				}
 			}

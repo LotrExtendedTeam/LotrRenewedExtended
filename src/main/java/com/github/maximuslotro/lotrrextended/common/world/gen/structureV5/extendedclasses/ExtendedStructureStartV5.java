@@ -1,11 +1,14 @@
 package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedJigsawManager;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedSingleJigsawPiece;
 
+import net.minecraft.block.material.PushReaction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -99,15 +102,6 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 
 	// ############################################ FOUNDATION LAYING LOGIC ###########################################
 	/**
-     * Returns the upwards offset applied to the base Y value when laying foundations.
-     * Override to align the structure basement with terrain.
-     *
-     * @return The upward Y offset for foundations (default 0).
-     */
-	public int foundationUpwardsOffsetBasementSpecial() {
-		return 0;
-	}
-	/**
      * Handles placing the structure into the world, including optional foundation filling logic.
      * If {@link ExtendedSingleJigsawPiece#getFoundationBlock()} is not {@link net.minecraft.block.AbstractBlock.AbstractBlockState#isAir()}, this will fill air or liquid blocks beneath
      * the structure down to solid ground using {@link ExtendedSingleJigsawPiece#getFoundationBlock()}.
@@ -121,15 +115,37 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
      */
 	@Override
 	public void placeInChunk(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGenerator, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
-		ExtendedSingleJigsawPiece cachedRootPostProcessedPiece=null;
+		List<AbstractVillagePiece> cachedRootPostProcessedPieces = new ArrayList<>();
 		if(!this.pieces.isEmpty()) {
-			StructurePiece piece = this.pieces.get(0);
-			if(piece instanceof AbstractVillagePiece && ((AbstractVillagePiece)piece).getElement() instanceof ExtendedSingleJigsawPiece) {
-				cachedRootPostProcessedPiece = (ExtendedSingleJigsawPiece) ((AbstractVillagePiece)piece).getElement();
+			for(StructurePiece piece : this.pieces) {
+				if(piece instanceof AbstractVillagePiece && ((AbstractVillagePiece)piece).getElement() instanceof ExtendedSingleJigsawPiece
+					&& !((ExtendedSingleJigsawPiece)((AbstractVillagePiece)piece).getElement()).getFoundationBlock().isAir()) {
+					cachedRootPostProcessedPieces.add(((AbstractVillagePiece)piece));
+				}
 			}
 		}
 		super.placeInChunk(world, structureManager, chunkGenerator, random, boundingBox, chunkPos);
-		if(cachedRootPostProcessedPiece!=null && !cachedRootPostProcessedPiece.getFoundationBlock().isAir()) {
+		if(!cachedRootPostProcessedPieces.isEmpty()) {
+			for(AbstractVillagePiece foundationNeedingPiece: cachedRootPostProcessedPieces) {
+				int baseYvalue = foundationNeedingPiece.getBoundingBox().y0;
+				for (int xValue = foundationNeedingPiece.getBoundingBox().x0; xValue <= foundationNeedingPiece.getBoundingBox().x1; ++xValue) {
+					for (int zValue = foundationNeedingPiece.getBoundingBox().z0; zValue <= foundationNeedingPiece.getBoundingBox().z1; ++zValue) {
+						BlockPos blockpos = new BlockPos(xValue, baseYvalue, zValue);
+						if (!world.isEmptyBlock(blockpos) && foundationNeedingPiece.getBoundingBox().isInside(blockpos)) {
+							for (int yColumnValue = baseYvalue - 1; yColumnValue > 1; --yColumnValue) {
+								BlockPos blockpos1 = new BlockPos(xValue, yColumnValue, zValue);
+								if (world.isEmptyBlock(blockpos1) || world.getBlockState(blockpos1).getMaterial().isLiquid() || world.getBlockState(blockpos1).getMaterial().getPushReaction()==PushReaction.DESTROY) {
+									world.setBlock(blockpos1, ((ExtendedSingleJigsawPiece)foundationNeedingPiece.getElement()).getFoundationBlock(), 2);
+								}else {
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+			cachedRootPostProcessedPieces.clear();
+			/*
 			int baseYvalue = this.boundingBox.y0 + foundationUpwardsOffsetBasementSpecial();
 			for (int xValue = boundingBox.x0; xValue <= boundingBox.x1; ++xValue) {
 				for (int zValue = boundingBox.z0; zValue <= boundingBox.z1; ++zValue) {
@@ -154,6 +170,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 					}
 				}
 			}
+			*/
 		}
 	}
 }

@@ -9,9 +9,8 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.WeightedStructureConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.SinglePoolStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.WeightedPoolStructure;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureBlueMountainMine;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureBlueMountainSmithy;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureBlueMountainStronghold;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureCheckAreaChunk;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureCheckAreaCross;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
@@ -53,7 +52,7 @@ public class ExtendedStructuresV5 {
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_PICNIC_BLANKET = STRUCTURE_REGISTRY.register("hobbit_picnic_blanket", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_PICNIC_TABLE = STRUCTURE_REGISTRY.register("hobbit_picnic_table", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_TAVERN_SMALL = STRUCTURE_REGISTRY.register("hobbit_tavern_small", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_TAVERN_LARGE = STRUCTURE_REGISTRY.register("hobbit_tavern_large", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_TAVERN_LARGE = STRUCTURE_REGISTRY.register("hobbit_tavern_large", () -> new ExtendedStructureCheckAreaChunk(ExtendedStructureType.HOBBIT));
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_WINDMILL = STRUCTURE_REGISTRY.register("hobbit_windmill", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
 
 	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_CAMP = STRUCTURE_REGISTRY.register("ranger_camp", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
@@ -74,9 +73,9 @@ public class ExtendedStructuresV5 {
 	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_HAMLET = STRUCTURE_REGISTRY.register("bree_hamlet", () -> new SinglePoolStructure(ExtendedStructureType.BREE_HAMLET));
 	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_VILLAGE = STRUCTURE_REGISTRY.register("bree_village", () -> new SinglePoolStructure(ExtendedStructureType.BREE_VILLAGE));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_SMITHY = STRUCTURE_REGISTRY.register("blue_mountain_smithy", () -> new ExtendedStructureBlueMountainSmithy(ExtendedStructureType.BLUE_MOUNTAINS));
-	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_STRONGHOLD = STRUCTURE_REGISTRY.register("blue_mountain_stronghold", () -> new ExtendedStructureBlueMountainStronghold(ExtendedStructureType.BLUE_MOUNTAINS));
-	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_MINE = STRUCTURE_REGISTRY.register("blue_mountain_mine", () -> new ExtendedStructureBlueMountainMine(ExtendedStructureType.BLUE_MOUNTAINS));
+	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_SMITHY = STRUCTURE_REGISTRY.register("blue_mountain_smithy", () -> new ExtendedStructureCheckAreaChunk(ExtendedStructureType.BLUE_MOUNTAINS));
+	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_STRONGHOLD = STRUCTURE_REGISTRY.register("blue_mountain_stronghold", () -> new ExtendedStructureCheckAreaCross(ExtendedStructureType.BLUE_MOUNTAINS));
+	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_MINE = STRUCTURE_REGISTRY.register("blue_mountain_mine", () -> new ExtendedStructureCheckAreaChunk(ExtendedStructureType.BLUE_MOUNTAINS));
 
 	/**
 	 * Initializes and registers all custom structures with their generation parameters.
