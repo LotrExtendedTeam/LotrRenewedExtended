@@ -1,0 +1,146 @@
+{
+	"name": "lotrextended:blue_mountains/settlement/room_pool",
+	"fallback": "lotrextended:blue_mountains/settlement/hall_pool_bypass",
+	"elements": [
+		{
+			"weight": 20,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_housing_1",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false
+			}
+		},
+		{
+			"weight": 20,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_crossroad_1",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false,
+				"blacklist_name" : "CROSSROAD1"
+			}
+		},
+		{
+			"weight": 20,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_crossroad_1",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false,
+				"blacklist_name" : "CROSSROAD11"
+			}
+		},
+		{
+			"weight": 20,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_crossroad_2",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false,
+				"blacklist_name" : "CROSSROAD2"
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_storage_1",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_storage_2",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false
+			}
+		},
+		{
+			"weight": 3,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_storage_3",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false,
+				"blacklist_name" : "ORESTORAGE"
+			}
+		},
+		{
+			"weight": 10,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_tavern_1",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false,
+				"blacklist_name" : "TAVERN"
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_archives_1",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false,
+				"blacklist_name" : "ARCHIVES"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_vault_1",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false,
+				"blacklist_name" : "VAULT"
+			}
+		},
+		{
+			"weight": 8,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_forge_1",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false,
+				"blacklist_name" : "FORGE"
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_stronghold_1",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false,
+				"blacklist_name" : "STRONGHOLD"
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_mine_1",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false,
+				"blacklist_name" : "MINE"
+			}
+		}
+	]
+}

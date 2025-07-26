@@ -139,7 +139,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_supply_1",
 				"processors": "minecraft:empty",
-				"reset_max_depth": true
+				"reset_max_depth": true,
+				"blacklist_name" : "SUPPLY"
 			}
 		}
 	]

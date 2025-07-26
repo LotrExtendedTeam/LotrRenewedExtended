@@ -128,13 +128,13 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 		if(!cachedRootPostProcessedPieces.isEmpty()) {
 			for(AbstractVillagePiece foundationNeedingPiece: cachedRootPostProcessedPieces) {
 				int baseYvalue = foundationNeedingPiece.getBoundingBox().y0;
-				for (int xValue = foundationNeedingPiece.getBoundingBox().x0; xValue <= foundationNeedingPiece.getBoundingBox().x1; ++xValue) {
-					for (int zValue = foundationNeedingPiece.getBoundingBox().z0; zValue <= foundationNeedingPiece.getBoundingBox().z1; ++zValue) {
+				for(int xValue = foundationNeedingPiece.getBoundingBox().x0; xValue <= foundationNeedingPiece.getBoundingBox().x1; ++xValue) {
+					for(int zValue = foundationNeedingPiece.getBoundingBox().z0; zValue <= foundationNeedingPiece.getBoundingBox().z1; ++zValue) {
 						BlockPos blockpos = new BlockPos(xValue, baseYvalue, zValue);
-						if (!world.isEmptyBlock(blockpos) && foundationNeedingPiece.getBoundingBox().isInside(blockpos)) {
-							for (int yColumnValue = baseYvalue - 1; yColumnValue > 1; --yColumnValue) {
+						if(world.hasChunkAt(blockpos) && !world.isEmptyBlock(blockpos) && foundationNeedingPiece.getBoundingBox().isInside(blockpos)) {
+							for(int yColumnValue = baseYvalue - 1; yColumnValue > 1; --yColumnValue) {
 								BlockPos blockpos1 = new BlockPos(xValue, yColumnValue, zValue);
-								if (world.isEmptyBlock(blockpos1) || world.getBlockState(blockpos1).getMaterial().isLiquid() || world.getBlockState(blockpos1).getMaterial().getPushReaction()==PushReaction.DESTROY) {
+								if(world.isEmptyBlock(blockpos1) || world.getBlockState(blockpos1).getMaterial().isLiquid() || world.getBlockState(blockpos1).getMaterial().getPushReaction()==PushReaction.DESTROY) {
 									world.setBlock(blockpos1, ((ExtendedSingleJigsawPiece)foundationNeedingPiece.getElement()).getFoundationBlock(), 2);
 								}else {
 									break;

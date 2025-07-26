@@ -1,0 +1,17 @@
+{
+	"name": "lotrextended:blue_mountains/settlement/tavern_bottom_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_tavern_bottom_1",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false,
+				"should_protect_y_level": false
+			}
+		}
+	]
+}

@@ -179,7 +179,8 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_supply_1",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"blacklist_name" : "SUPPLY"
 			}
 		},
 		{
@@ -188,7 +189,8 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_treasure_1",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"blacklist_name" : "TREASURE"
 			}
 		},
 		{
@@ -197,7 +199,8 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_treasure_2",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"blacklist_name" : "TREASURE"
 			}
 		},
 		{
@@ -206,7 +209,8 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_treasure_3",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"blacklist_name" : "TREASURE"
 			}
 		},
 		{
@@ -215,7 +219,8 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_treasure_4",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"blacklist_name" : "TREASURE"
 			}
 		},
 		{

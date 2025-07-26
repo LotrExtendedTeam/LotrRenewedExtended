@@ -13,7 +13,10 @@
 				"apply_waterlogging" : false,
 				"foundation_block": {
 					"Name": "lotr:blue_brick"
-				}
+				},
+				"ground_level_delta": 2,
+				"max_depth": 7,
+				"max_place_distance": 120
 			}
 		}
 	]
