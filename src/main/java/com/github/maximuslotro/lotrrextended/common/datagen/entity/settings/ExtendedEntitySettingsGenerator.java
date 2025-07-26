@@ -31,6 +31,7 @@ public class ExtendedEntitySettingsGenerator extends ExtendedEntitySettingsProvi
 		make(ExtendedEntities.BLUE_DWARVEN_COMMANDER.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(2).setBank("blue_mountains/commander").save(pConsumer);
 		make(ExtendedEntities.BLUE_DWARVEN_MINER.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(2).setBank("blue_mountains/miner").save(pConsumer);
 		make(ExtendedEntities.BLUE_DWARVEN_SMITH.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(2).setBank("blue_mountains/smith").save(pConsumer);
+		make(ExtendedEntities.BLUE_DWARVEN_BARTENDER.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(2).setBank("blue_mountains/bartender").save(pConsumer);
 		make(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(1).setBank("blue_mountains/merchant").save(pConsumer);
 		make(LOTREntities.BLUE_MOUNTAINS_ARCHER.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(2).setBank("blue_mountains/warrior").save(pConsumer);
 		make(ExtendedEntities.HOBBIT_BARTENDER.get(), FactionPointers.HOBBITS).setBonus(1).setBank("hobbits/hobbit_bartender").save(pConsumer);

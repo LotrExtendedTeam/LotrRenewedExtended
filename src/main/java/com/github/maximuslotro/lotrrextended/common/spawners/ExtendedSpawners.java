@@ -91,6 +91,7 @@ public class ExtendedSpawners {
 	public static final ResourceLocation BLUE_MOUNTIAN_COMMANDER = register("blue_mountains_commander_spawner");
 	public static final ResourceLocation BLUE_MOUNTIAN_STRONGHOLD = register("blue_mountains_stronghold_spawner");
 	public static final ResourceLocation BLUE_MOUNTIAN_STRONGHOLD_ALT = register("blue_mountains_stronghold_alt_spawner");
+	public static final ResourceLocation BLUE_MOUNTIAN_BARTENDER = register("blue_mountains_bartender_spawner");
 	// DWARVEN
 	public static final ResourceLocation DWARVEN_SMITH = register("dwarf_smith_spawner");
 

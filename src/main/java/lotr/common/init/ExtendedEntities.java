@@ -70,5 +70,6 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedDwarvenSmithEntity>> DWARVEN_SMITH;
 	public static RegistryObject<EntityType<ExtendedBlueMountainsCommanderEntity>> BLUE_DWARVEN_COMMANDER;
 	public static RegistryObject<EntityType<ExtendedDwarvenCommanderEntity>> DWARVEN_COMMANDER;
+	public static RegistryObject<EntityType<ExtendedBlueMountainsBartenderEntity>> BLUE_DWARVEN_BARTENDER;
 
 }

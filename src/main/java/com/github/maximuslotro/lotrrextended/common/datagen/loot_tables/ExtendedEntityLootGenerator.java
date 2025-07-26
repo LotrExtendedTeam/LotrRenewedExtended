@@ -356,6 +356,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT, dwarfBlueMountians, mugs, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_MINER, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_SMITH, dwarfBlueMountians, foodItems);
+		makeEntity(ExtendedEntities.BLUE_DWARVEN_BARTENDER, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_COMMANDER, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.GUNDABAD_CAMP_TRADER, orcGundabad);
 		makeEntity(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN, orcGundabad);
