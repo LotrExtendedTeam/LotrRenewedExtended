@@ -221,7 +221,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedVineBlock) {
-					if(block.getValue()==ExtendedBlocks.MORDOR_MOSS_VINES) {
+					if(block.getValue()==ExtendedBlocks.DEAD_MOSS_VINES) {
 						genVineBlock((ExtendedVineBlock) block.getValue().get(), block.getKey(), true);
 					}else {
 						genVineBlock((ExtendedVineBlock) block.getValue().get(), block.getKey(), false);
@@ -1295,7 +1295,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
         });
 	}
 
-	private void genVineBlock(ExtendedVineBlock vine, String name, boolean isMordor) {
+	private void genVineBlock(ExtendedVineBlock vine, String name, boolean mossVines) {
 		registeredBlocks.add(vine);
 		ModelFile m_u;
 		ModelFile m_1;
@@ -1308,18 +1308,18 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ModelFile m_3u;
 		ModelFile m_4;
 		ModelFile m_4u;
-		if(isMordor) {
-			m_u = models().getExistingFile(lotrExtendedLoc(name+"_u"));
-			m_1 = models().getExistingFile(lotrExtendedLoc(name+"_1"));
-			m_1u = models().getExistingFile(lotrExtendedLoc(name+"_1u"));
-			m_2 = models().getExistingFile(lotrExtendedLoc(name+"_2"));
-			m_2_opposite = models().getExistingFile(lotrExtendedLoc(name+"_2_opposite"));
-			m_2u = models().getExistingFile(lotrExtendedLoc(name+"_2u"));
-			m_2u_opposite = models().getExistingFile(lotrExtendedLoc(name+"_2u_opposite"));
-			m_3 = models().getExistingFile(lotrExtendedLoc(name+"_3"));
-			m_3u = models().getExistingFile(lotrExtendedLoc(name+"_3u"));
-			m_4 = models().getExistingFile(lotrExtendedLoc(name+"_4"));
-			m_4u = models().getExistingFile(lotrExtendedLoc(name+"_4u"));
+		if(mossVines) {
+			m_u = models().withExistingParent("lotrextended:"+name+"_u", lotrExtendedLoc("block/template_moss_vines_u")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_1 = models().withExistingParent("lotrextended:"+name+"_1", lotrExtendedLoc("block/template_moss_vines_1")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_1u = models().withExistingParent("lotrextended:"+name+"_1u", lotrExtendedLoc("block/template_moss_vines_1u")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_2 = models().withExistingParent("lotrextended:"+name+"_2", lotrExtendedLoc("block/template_moss_vines_2")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_2_opposite = models().withExistingParent("lotrextended:"+name+"_2_opposite", lotrExtendedLoc("block/template_moss_vines_2_opposite")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_2u = models().withExistingParent("lotrextended:"+name+"_2u", lotrExtendedLoc("block/template_moss_vines_2u")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_2u_opposite = models().withExistingParent("lotrextended:"+name+"_2u_opposite", lotrExtendedLoc("block/template_moss_vines_2u_opposite")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_3 = models().withExistingParent("lotrextended:"+name+"_3", lotrExtendedLoc("block/template_moss_vines_3")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_3u = models().withExistingParent("lotrextended:"+name+"_3u", lotrExtendedLoc("block/template_moss_vines_3u")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_4 = models().withExistingParent("lotrextended:"+name+"_4", lotrExtendedLoc("block/template_moss_vines_4")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_4u = models().withExistingParent("lotrextended:"+name+"_4u", lotrExtendedLoc("block/template_moss_vines_4u")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
 		}else {
 			m_u = models().withExistingParent("lotrextended:"+name+"_u", lotrExtendedLoc("block/template_vine_u")).texture("vine", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
 			m_1 = models().withExistingParent("lotrextended:"+name+"_1", lotrExtendedLoc("block/template_vine_1")).texture("vine", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));

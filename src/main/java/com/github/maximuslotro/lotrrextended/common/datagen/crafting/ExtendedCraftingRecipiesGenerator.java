@@ -2063,7 +2063,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		for(RegistryObject<Block> blo : ExtendedBlocks.REGISTEREDPOTS.values()) {
 			GENERATEDRECIPES.add(blo.get().getRegistryName().getPath());
 		}
-		GENERATEDRECIPES.add(ExtendedItems.MORDOR_MOSS_VINES.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.DEAD_MOSS_VINES.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.BREE_WALL_BANNER.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.WILLOW_LOG.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.STRIPPED_WILLOW_LOG.get().getRegistryName().getPath());

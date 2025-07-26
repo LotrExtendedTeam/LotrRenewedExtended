@@ -1,10 +1,6 @@
 {
     "ambientocclusion": false,
 	"texture_size": [48, 48],
-	"textures": {
-		"particle": "lotrextended:block/mordor_moss_vines",
-		"vines": "lotrextended:block/mordor_moss_vines"
-	},
 	"elements": [
 		{
 			"name": "cube_f",

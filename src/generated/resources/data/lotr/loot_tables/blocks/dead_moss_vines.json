@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "lotr:mordor_moss_vines"
+          "name": "lotr:dead_moss_vines"
         }
       ],
       "conditions": [

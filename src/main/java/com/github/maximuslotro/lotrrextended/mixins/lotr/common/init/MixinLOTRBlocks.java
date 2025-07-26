@@ -1033,7 +1033,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.BREE_BANNER = registerB("bree_banner", () -> new ExtendedMEBannerBlock(BannerTypes.BREE));
 		ExtendedBlocks.BREE_WALL_BANNER = registerB("bree_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.BREE));
 
-		ExtendedBlocks.MORDOR_MOSS_VINES = registerB("mordor_moss_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
+		ExtendedBlocks.DEAD_MOSS_VINES = registerB("dead_moss_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 		// Birdcages
 		ExtendedBlocks.WOODEN_BIRDCAGE = registerB("wooden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F)));
 		ExtendedBlocks.BRONZE_BIRDCAGE = registerB("bronze_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(1.0F)));

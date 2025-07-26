@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/template_moss_vines_3u",
+  "textures": {
+    "vines": "lotrextended:block/dead_moss_vines",
+    "particle": "lotrextended:block/dead_moss_vines"
+  }
+}

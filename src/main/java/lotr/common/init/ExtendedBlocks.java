@@ -509,7 +509,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> LARGE_FLOWER_POT_CLOVER;
 	public static RegistryObject<Block> LARGE_FLOWER_POT_FOUR_CLOVER;
 	public static RegistryObject<Block> LARGE_FLOWER_POT_FERN;
-	public static RegistryObject<Block> MORDOR_MOSS_VINES;
+	public static RegistryObject<Block> DEAD_MOSS_VINES;
 
 	public static RegistryObject<Block> CROSSED_WATTLE_AND_DAUB;
 

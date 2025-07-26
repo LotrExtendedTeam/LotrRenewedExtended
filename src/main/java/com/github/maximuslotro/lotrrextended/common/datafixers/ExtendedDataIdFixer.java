@@ -133,6 +133,9 @@ public class ExtendedDataIdFixer {
 		addRemapItem("dwarven_throwable_axe", "lotr", ExtendedItems.DWARVEN_THROWABLE_AXE);
 		addRemapItem("iron_throwable_axe", "lotr", ExtendedItems.IRON_THROWABLE_AXE);
 		addRemapItem("lossarnach_throwable_axe", "lotr", ExtendedItems.LOSSARNACH_THROWABLE_AXE);
+		
+		//Beta 1.8.0 Rename Mordor Moss Vines to Dead Moss Vines
+		addRemapBlockWithItem("mordor_moss_vines", "lotr", ExtendedBlocks.DEAD_MOSS_VINES, ExtendedItems.DEAD_MOSS_VINES);
 	}
 
 	private static void addRemapBlock(String previousMapping, String previousNamespace, Supplier<? extends Block> remapBlock) {

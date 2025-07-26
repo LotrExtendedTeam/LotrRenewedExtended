@@ -118,7 +118,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedVineBlock) {
-				if(item.getKey().contains(ExtendedItems.MORDOR_MOSS_VINES.get().getRegistryName().getPath())) {
+				if(item.getKey().contains(ExtendedItems.DEAD_MOSS_VINES.get().getRegistryName().getPath())) {
 					genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()+"_hand"));
 					continue;
 				}else {
