@@ -15,7 +15,7 @@
   "inside_spawning_chance": 70,
   "setHomeOnSpawn": true,
   "homeRadius": 26,
-  "persistenceRequired": true,
+  "persistenceRequired": false,
   "spawnCap": 20,
   "pools": [
     {

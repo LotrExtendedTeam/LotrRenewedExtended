@@ -4,7 +4,7 @@
   "inside_spawning": true,
   "setHomeOnSpawn": true,
   "homeRadius": 10,
-  "persistenceRequired": true,
+  "persistenceRequired": false,
   "entitySpawnTickRate": 24000,
   "spawnCap": 4,
   "pools": [

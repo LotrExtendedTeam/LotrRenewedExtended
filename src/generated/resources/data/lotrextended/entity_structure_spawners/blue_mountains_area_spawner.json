@@ -1,0 +1,32 @@
+{
+  "id": "lotrextended:blue_mountains_area_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 12,
+    "lowerYvalue": -12,
+    "horizontal_bounds": 24
+  },
+  "spawn_area": {
+    "topYvalue": 4,
+    "lowerYvalue": -4,
+    "horizontal_bounds": 16
+  },
+  "inside_spawning": true,
+  "inside_spawning_chance": 30,
+  "setHomeOnSpawn": true,
+  "homeRadius": 26,
+  "persistenceRequired": false,
+  "spawnCap": 20,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 5,
+      "maxSpawnCount": 7,
+      "entity_types": [
+        {
+          "entity_type": "lotr:blue_mountains_dwarf"
+        }
+      ]
+    }
+  ]
+}
