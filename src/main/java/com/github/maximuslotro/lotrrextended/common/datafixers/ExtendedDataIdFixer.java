@@ -37,7 +37,7 @@ public class ExtendedDataIdFixer {
 				if (BLOCKS.containsKey(entryLocation)) {
 					Block block = BLOCKS.get(entryLocation);
 					mapping.remap(block);
-					ExtendedLog.infoParms("Remapped block, old id was=%s, new id is=%s", entryLocation, block.getRegistryName());
+					ExtendedLog.info("Remapped block, old id was=%s, new id is=%s", entryLocation, block.getRegistryName());
 				}
 				continue;
 			}
@@ -55,7 +55,7 @@ public class ExtendedDataIdFixer {
 				if (ITEMS.containsKey(entryLocation)) {
 					Item item = ITEMS.get(entryLocation);
 					mapping.remap(item);
-					ExtendedLog.infoParms("Remapped item, old id was=%s, new id is=%s", entryLocation, item.getRegistryName());
+					ExtendedLog.info("Remapped item, old id was=%s, new id is=%s", entryLocation, item.getRegistryName());
 				}
 				continue;
 			}
@@ -73,7 +73,7 @@ public class ExtendedDataIdFixer {
 				if (ENTITIES.containsKey(entryLocation)) {
 					EntityType<?> entity = ENTITIES.get(entryLocation);
 					mapping.remap(entity);
-					ExtendedLog.infoParms("Remapped entity, old id was=%s, new id is=%s", entryLocation, entity.getRegistryName());
+					ExtendedLog.info("Remapped entity, old id was=%s, new id is=%s", entryLocation, entity.getRegistryName());
 				}
 				continue;
 			}

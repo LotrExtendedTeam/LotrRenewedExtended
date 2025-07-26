@@ -58,7 +58,7 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 	         }
 	      };
 		makeStructureSpawnPools(consumer);
-		ExtendedLog.infoShown("Built "+dataHere.size()+" hired unit profiles.");
+		ExtendedLog.info("Built "+dataHere.size()+" hired unit profiles.");
 		for(ResourceLocation key : ExtendedHiredUnitTypes.UNIT_TYPES) {
 			if(!dataHere.containsKey(key)) {
 				LOGGER.warn("Didn't make expected unit profile type: "+key.toString());

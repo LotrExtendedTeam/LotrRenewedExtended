@@ -21,7 +21,7 @@ public class ExtendedAdvancementProvider extends AdvancementProvider{
 
 	@Override
 	protected void registerAdvancements(Consumer<Advancement> consumer, ExistingFileHelper fileHelper) {
-		ExtendedLog.infoShown("###############EXTENDED###ADVANCEMENTS#############");
+		ExtendedLog.info("###############EXTENDED###ADVANCEMENTS#############");
 		new AdvancementsProviderAngmar().accept(consumer);
 		new AdvancementsProviderBelegaer().accept(consumer);
 		new AdvancementsProviderBlueMountains().accept(consumer);
@@ -53,10 +53,10 @@ public class ExtendedAdvancementProvider extends AdvancementProvider{
 		new AdvancementsProviderRohan().accept(consumer);
 		new AdvancementsProviderShire().accept(consumer);
 		new AdvancementsProviderUtumno().accept(consumer);
-		ExtendedLog.infoShown("Built "+advancementsLegacyNum+" legacy advancements of "+advancementsLegacyNumTotal+" ("+((advancementsLegacyNum/advancementsLegacyNumTotal)*100.0F)+"%).");
-		ExtendedLog.infoShown("Also built "+advancementsExtendedNum+" new advancements unique to Extended!");
-		ExtendedLog.infoShown("In addition built "+secrets+" secret advancements!");
-		ExtendedLog.infoShown("###################################################");
+		ExtendedLog.info("Built "+advancementsLegacyNum+" legacy advancements of "+advancementsLegacyNumTotal+" ("+((advancementsLegacyNum/advancementsLegacyNumTotal)*100.0F)+"%).");
+		ExtendedLog.info("Also built "+advancementsExtendedNum+" new advancements unique to Extended!");
+		ExtendedLog.info("In addition built "+secrets+" secret advancements!");
+		ExtendedLog.info("###################################################");
 	}
 
 	@Override

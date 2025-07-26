@@ -55,7 +55,7 @@ public abstract class ExtendedEntitySettingsProvider implements IDataProvider {
 	         }
 	      };
 		makeEntitySettingBuilders(consumer);
-		ExtendedLog.infoShown("Built "+dataHere.size()+" entity settings.");
+		ExtendedLog.info("Built "+dataHere.size()+" entity settings.");
 	}
 
 	private static void save(Gson pGson, DirectoryCache pCache, ExtendedEntitySettingsBuilder settings, Path pPath) throws IOException {

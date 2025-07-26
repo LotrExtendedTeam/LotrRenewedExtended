@@ -54,7 +54,7 @@ public class BiomeStructureAdder {
      *                 structure configuration will be modified.
      */
 	public static void addDimensionalSpacing(ServerChunkProvider provider) {
-		ExtendedLog.infoShown("Adding structures to valid dimension instanceof MiddleEarthChunkGenerator");
+		ExtendedLog.info("Adding structures to valid dimension instanceof MiddleEarthChunkGenerator");
 		Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(provider.generator.getSettings().structureConfig());
 		addStructureToMap(tempMap, ExtendedStructuresV5.HOBBIT_BARN.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.HOBBIT_HOLE_SMALL.get());

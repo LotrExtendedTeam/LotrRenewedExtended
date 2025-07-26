@@ -86,7 +86,7 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 		builder.put(LotrExtendedMod.EMPTY, ExtendedStructureEntitySpawner.EMPTY);
         // TODO validate loaded data if applicable
 		this.spawners = builder.build();
-		ExtendedLog.infoParms("Loaded Structure Entity Spawners from Json - %s spawners", spawners.size()-1);
+		ExtendedLog.info("Loaded Structure Entity Spawners from Json - %s spawners", spawners.size()-1);
 	}
 
 	/**

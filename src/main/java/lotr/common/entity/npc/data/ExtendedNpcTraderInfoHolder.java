@@ -269,8 +269,8 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 			}
 			currentTraderLockTicksAmount = holder.getInt("CurrentTraderLockTicksAmount"); // Defaults to zero (no lock activated)
 			if (buys.isEmpty() || sells.isEmpty() || refreshTradesAtValue==0 || lockTicksAfterRefresh==0 || tradingAlignmentRequired==1659) {
-				ExtendedLog.infoShown("Generating new trader for for invalid nbt: "+getProfile().getId().toString());
-				ExtendedLog.infoShown(holder.getAsString());
+				ExtendedLog.info("Generating new trader for for invalid nbt: "+getProfile().getId().toString());
+				ExtendedLog.info(holder.getAsString());
 				loadedData=false;
 			}else {
 				itemsBoughtByTrader = buys;	

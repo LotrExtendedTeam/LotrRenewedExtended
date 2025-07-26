@@ -75,7 +75,7 @@ public class ExtendedServerHiredUnitProfileManager extends ReloadListener<Map<Re
 		});
 		builder.put(LotrExtendedMod.EMPTY, ExtendedServerHiredUnitProfile.EMPTY);
 		this.hiredUnitProfiles = builder.build();
-		ExtendedLog.infoParms("Loaded Hired Unit Profile from Json - %s hiredUnitProfiles", hiredUnitProfiles.size()-1);
+		ExtendedLog.info("Loaded Hired Unit Profile from Json - %s hiredUnitProfiles", hiredUnitProfiles.size()-1);
 	}
 
 	/**

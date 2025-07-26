@@ -69,7 +69,7 @@ public class ExtendedTraderProfileManager extends ReloadListener<Map<ResourceLoc
 		});
 		builder.put(LotrExtendedMod.EMPTY, ExtendedTraderProfile.EMPTY);
 		this.traderProfiles = builder.build();
-		ExtendedLog.infoParms("Loaded Trader Profile from Json - %s profiles", traderProfiles.size()-1);
+		ExtendedLog.info("Loaded Trader Profile from Json - %s profiles", traderProfiles.size()-1);
 	}
 
 	/**

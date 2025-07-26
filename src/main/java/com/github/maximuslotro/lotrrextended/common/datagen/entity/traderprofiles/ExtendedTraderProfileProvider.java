@@ -91,7 +91,7 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 			}
 		};
 		makeStructureSpawnPools(consumer);
-		ExtendedLog.infoShown("Built "+dataHere.size()+" trader profiles.");
+		ExtendedLog.info("Built "+dataHere.size()+" trader profiles.");
 		for(ResourceLocation key : ExtendedTraderTypes.TRADER_TYPES) {
 			if(!dataHere.containsKey(key)) {
 				LOGGER.warn("Didn't make expected trader profile type: "+key.toString());

@@ -18,11 +18,11 @@ public class ExtendedLog {
 		LOGGER.debug(String.format("LotrExtended: " + s, params));
 	}
 
-	public static void infoShown(String s) {
+	public static void info(String s) {
 		info(s, true);
 	}
 
-	public static void infoHideable(String s, boolean flag) {
+	public static void infoHideable(boolean flag, String s) {
 		info(s, flag);
 	}
 
@@ -32,7 +32,7 @@ public class ExtendedLog {
 		}
 	}
 
-	public static void infoParms(String s, Object... params) {
+	public static void info(String s, Object... params) {
 		LOGGER.info(String.format("LotrExtended: " + s, params));
 	}
 
