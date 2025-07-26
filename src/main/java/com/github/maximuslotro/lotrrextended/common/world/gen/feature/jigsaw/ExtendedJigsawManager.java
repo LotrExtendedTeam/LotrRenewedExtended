@@ -363,8 +363,10 @@ public class ExtendedJigsawManager {
 												// Extended End
 											}
 											// Extended Start
-											if (correctedYconnectingPieceSpawnHeight < 12 && connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).shouldProtectYLevel()) {
-												continue;
+											if (connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).shouldProtectYLevel()) {
+												if(correctedYconnectingPieceSpawnHeight < ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).getProtectableYLevelHeight()){
+													continue;
+												}
 											}
 											// Extended End
 											// Set the y-offset for the piece placement

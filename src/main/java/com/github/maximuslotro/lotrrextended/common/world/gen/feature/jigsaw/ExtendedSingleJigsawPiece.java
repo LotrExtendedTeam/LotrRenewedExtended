@@ -56,7 +56,7 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		return instance.group(templateCodec(), processorsCodec(), projectionCodec(), waterloggingCodec(), maxPlaceDistanceCodec(), 
 			maxDepthCodec(), ingnoreBBconflictsCodec(), blacklistNameCodec(), snapUpToWaterheightCodec(), 
 			shiftStructureUpByCodec(), chunkCornerOffsetCodec(), foundationBlockCodec(),
-			shouldProtectYLevelCodec(),shouldResetMaxDepthCodec()).apply(instance, ExtendedSingleJigsawPiece::new);
+			shouldProtectYLevelCodec(), shouldResetMaxDepthCodec(), protectableYLevelCodec()).apply(instance, ExtendedSingleJigsawPiece::new);
 	});
 	/**
 	 * If true, liquids will propagate through waterloggable blocks; if false, water will stay confined inside the designated blocks.
@@ -102,6 +102,11 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	 * If true, the piece will not be used if it tries generating below a certain y-level threshold
 	 */
 	protected final boolean shouldProtectYLevel;
+
+	/**
+	 * The y-level threshold for protecting generation for the given piece
+	 */
+	protected final int protectableYLevel;
 
 	/**
 	 * If true, the max depth of a piece will be ignored and a zero depth will be used.
@@ -168,6 +173,12 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		});
 	}
 
+	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Integer> protectableYLevelCodec() {
+		return Codec.INT.optionalFieldOf("protectable_y_level", 12).forGetter((piece) -> {
+			return piece.protectableYLevel;
+		});
+	}
+
 	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Boolean> shouldResetMaxDepthCodec() {
 		return Codec.BOOL.optionalFieldOf("reset_max_depth", false).forGetter((piece) -> {
 			return piece.shouldResetMaxDepth;
@@ -191,11 +202,12 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	 * @param foundation           The block to use for a foundation
 	 * @param shouldProtectYLevel  Whether to enforce a minimum y level for pieces
 	 * @param shouldResetMaxDepth  Whether to reset the max depth of the current piece stack
+	 * @param protectableYLevel    The y-level at which to enforce a spawn minimum height
 	 */
 	protected ExtendedSingleJigsawPiece(Either<ResourceLocation, Template> template, Supplier<StructureProcessorList> processors, 
 		JigsawPattern.PlacementBehaviour placementType, boolean apply_waterlogging, int maxPlaceDistance, int maxDepth, boolean ingnoreBBconflicts,
 		String blacklist_name, boolean snapUpToWaterheight, int shiftStructureUpBy, int chunkCornerOffset, BlockState foundation, 
-		boolean shouldProtectYLevel, boolean shouldResetMaxDepth) {
+		boolean shouldProtectYLevel, boolean shouldResetMaxDepth, int protectableYLevel) {
 		super(template, processors, placementType);
 		this.apply_waterlogging = apply_waterlogging;
 		this.maxPlaceDistance = maxPlaceDistance;
@@ -208,6 +220,7 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		this.foundation = foundation;
 		this.shouldProtectYLevel = shouldProtectYLevel;
 		this.shouldResetMaxDepth = shouldResetMaxDepth;
+		this.protectableYLevel = protectableYLevel;
 	}
 	/**
 	 * Retrieves placement settings with liquid retention set according to {@link #apply_waterlogging}.
@@ -327,6 +340,14 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	 */
 	public boolean shouldProtectYLevel() {
 		return shouldProtectYLevel;
+	}
+	/**
+     * Returns the minimum y-level at which the piece can spawn, and not below
+     *
+     * @return The chunk corner offset.
+     */
+	public int getProtectableYLevelHeight() {
+		return protectableYLevel;
 	}
 	/**
 	 * @return Whether the current max depth stack for a piece should be reset to zero

@@ -275,11 +275,13 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_SMITHY);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_STRONGHOLD);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_MINE);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_SETTLEMENT);
 			}
 			if(event.getName().equals(LOTRBiomes.BLUE_MOUNTAINS_FOOTHILLS.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_SMITHY);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_STRONGHOLD);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_MINE);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_SETTLEMENT);
 			}
 		}
 	}

@@ -76,6 +76,7 @@ public class ExtendedStructuresV5 {
 	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_SMITHY = STRUCTURE_REGISTRY.register("blue_mountain_smithy", () -> new ExtendedStructureCheckAreaChunk(ExtendedStructureType.BLUE_MOUNTAINS));
 	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_STRONGHOLD = STRUCTURE_REGISTRY.register("blue_mountain_stronghold", () -> new ExtendedStructureCheckAreaCross(ExtendedStructureType.BLUE_MOUNTAINS));
 	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_MINE = STRUCTURE_REGISTRY.register("blue_mountain_mine", () -> new ExtendedStructureCheckAreaChunk(ExtendedStructureType.BLUE_MOUNTAINS));
+	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_SETTLEMENT = STRUCTURE_REGISTRY.register("blue_mountain_settlement", () -> new ExtendedStructureCheckAreaCross(ExtendedStructureType.BLUE_MOUNTAINS));
 
 	/**
 	 * Initializes and registers all custom structures with their generation parameters.
@@ -115,6 +116,7 @@ public class ExtendedStructuresV5 {
 		register(BLUE_MOUNTAIN_SMITHY.get(), false,    27, 12, 589758935);
 		register(BLUE_MOUNTAIN_STRONGHOLD.get(), false,35, 15, 889329084);
 		register(BLUE_MOUNTAIN_MINE.get(), false,      30, 15, 17277298);
+		register(BLUE_MOUNTAIN_SETTLEMENT.get(), false,45, 25, 167568658);
 	}
 
 	/**
