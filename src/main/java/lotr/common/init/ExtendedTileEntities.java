@@ -6,6 +6,7 @@ import java.util.Map;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedGrassVoidTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedHoistTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedLargePotTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneGrinderTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneTextSignTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
@@ -56,5 +57,6 @@ public class ExtendedTileEntities {
 	public static RegistryObject<TileEntityType<ExtendedStoneTextSignTileEntity>> STONE_SIGN;
 	public static RegistryObject<TileEntityType<ExtendedDwarvenBedTileEntity>> DWARVEN_BED;
 	public static RegistryObject<TileEntityType<ExtendedHoistTileEntity>> HOIST;
+	public static RegistryObject<TileEntityType<ExtendedLargePotTileEntity>> LARGE_POT;
 }
 
