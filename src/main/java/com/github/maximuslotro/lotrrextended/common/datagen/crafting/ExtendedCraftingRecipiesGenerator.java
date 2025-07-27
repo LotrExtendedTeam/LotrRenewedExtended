@@ -1234,10 +1234,27 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 //			ExtendedBlocks.SMOOTH_LIMESTONE_SLAB,
 //			ExtendedBlocks.SMOOTH_LIMESTONE_WALL,
 //			ExtendedItems.SMOOTH_LIMESTONE, null);
+		GENERATEDRECIPES.add(ExtendedItems.DEAD_MOSS_VINES.get().getRegistryName().getPath());
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.DEAD_MOSS_VINES.get())
+		.requires(Ingredient.of(Items.VINE))
+		.requires(Ingredient.of(LOTRItems.SALT.get()))
+		.unlockedBy("has_string", has(LOTRItems.SALT.get()))
+		.save(consumer, lotrLoc(ExtendedItems.DEAD_MOSS_VINES.get().getRegistryName().getPath()));
 		// Dwarven
 		makeDoorRecipe(consumer, ()->ExtendedItems.DWARVEN_DOOR.get(), ()->Items.STONE, LOTRRecipes.DWARVEN_CRAFTING);
 		makeDoorRecipe(consumer, ()->ExtendedItems.DWARVEN_DOOR_LUIGON.get(), ()->LOTRItems.BLUE_ROCK.get(), LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
 		makeDoorRecipe(consumer, ()->ExtendedItems.DWARVEN_DOOR_CARGON.get(), ()->LOTRItems.RED_ROCK.get(), null);
+		GENERATEDRECIPES.add(ExtendedItems.HOIST.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.HOIST.get())
+		.pattern("LCL")
+		.pattern("GIG")
+		.pattern("LCL")
+		.define('L', Ingredient.of(LOGS))
+		.define('C', Ingredient.of(ExtendedTags.Items.CHAINS))
+		.define('G', Ingredient.of(LOTRItems.GATE_GEAR.get()))
+		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
+		.unlockedBy("has_"+LOTRItems.GATE_GEAR.get().getRegistryName().getPath(), has(LOTRItems.GATE_GEAR.get()))
+		.saveNoAdvancement(consumer, lotrLoc(ExtendedItems.HOIST.get().getRegistryName().getPath()));
 	}
 
 	private void addMissingRenewedRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -2063,7 +2080,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		for(RegistryObject<Block> blo : ExtendedBlocks.REGISTEREDPOTS.values()) {
 			GENERATEDRECIPES.add(blo.get().getRegistryName().getPath());
 		}
-		GENERATEDRECIPES.add(ExtendedItems.DEAD_MOSS_VINES.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.BREE_WALL_BANNER.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.WILLOW_LOG.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.STRIPPED_WILLOW_LOG.get().getRegistryName().getPath());
