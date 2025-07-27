@@ -518,13 +518,13 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			if(stack.isEmpty()) {
 				thisEntity.getNPCItemsInv().setMeleeWeapon(internalUnitInventory.getItem(23));
 				if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()) {
-					internalUnitInventory.setItem(16, ItemStack.EMPTY);
+					//internalUnitInventory.setItem(16, ItemStack.EMPTY);
 					thisEntity.getNPCItemsInv().setIdleItem(internalUnitInventory.getItem(23));
 				}
 			} else {
 				thisEntity.getNPCItemsInv().setMeleeWeapon(stack);
 				if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()) {
-					internalUnitInventory.setItem(16, stack);
+					//internalUnitInventory.setItem(16, stack);
 					thisEntity.getNPCItemsInv().setIdleItem(stack);
 				}
 			}
@@ -533,16 +533,16 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			if(stack.isEmpty()) {
 				thisEntity.getNPCItemsInv().setRangedWeapon(internalUnitInventory.getItem(24));
 				if(getUnitProfile().getEquipmentPools().isSetIdleFromRanged()) {
-					internalUnitInventory.setItem(16, ItemStack.EMPTY);
-					internalUnitInventory.setItem(17, ItemStack.EMPTY);
+					//internalUnitInventory.setItem(16, ItemStack.EMPTY);
+					//internalUnitInventory.setItem(17, ItemStack.EMPTY);
 					thisEntity.getNPCItemsInv().setIdleItem(internalUnitInventory.getItem(24));
 					thisEntity.getNPCItemsInv().setIdleItemMounted(internalUnitInventory.getItem(24));
 				}
 			} else {
 				thisEntity.getNPCItemsInv().setRangedWeapon(stack);
 				if(getUnitProfile().getEquipmentPools().isSetIdleFromRanged()) {
-					internalUnitInventory.setItem(16, stack);
-					internalUnitInventory.setItem(17, stack);
+					//internalUnitInventory.setItem(16, stack);
+					//internalUnitInventory.setItem(17, stack);
 					thisEntity.getNPCItemsInv().setIdleItem(stack);
 					thisEntity.getNPCItemsInv().setIdleItemMounted(stack);
 				}
@@ -552,14 +552,14 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			if(stack.isEmpty()) {
 				thisEntity.getNPCItemsInv().setMeleeWeaponMounted(internalUnitInventory.getItem(25));
 				if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()) {
-					internalUnitInventory.setItem(17, ItemStack.EMPTY);
+					//internalUnitInventory.setItem(17, ItemStack.EMPTY);
 					thisEntity.getNPCItemsInv().setIdleItem(internalUnitInventory.getItem(25));
 
 				}
 			} else {
 				thisEntity.getNPCItemsInv().setMeleeWeaponMounted(stack);
 				if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()) {
-					internalUnitInventory.setItem(17, stack);
+					//internalUnitInventory.setItem(17, stack);
 					thisEntity.getNPCItemsInv().setIdleItem(stack);
 				}
 			}

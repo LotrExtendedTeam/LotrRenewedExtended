@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerAttackedEntityTargetGoal;
@@ -303,14 +304,15 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * @param stack The {@link ItemStack} being consumed.
 	 * @return The same item stack after attempting to consume it.
 	 */
-	@Override
-	public ItemStack eat(World world, ItemStack stack) { //TODO override npc eat goal, this does nothing rn (checkFood())
+	// Double healing?
+	/*@Override
+	public ItemStack eat(World world, ItemStack stack) {
 		if (stack.isEdible() && unitInfo.isNpcActiveDuty()) {
 			this.heal(stack.getItem().getFoodProperties().getNutrition());
 		}
 		super.eat(world, stack);
 		return stack;
-	}
+	}*/ 
 
 	/**
 	 * Determines if this NPC is allied with another entity.
