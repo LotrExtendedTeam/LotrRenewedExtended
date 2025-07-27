@@ -150,7 +150,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     					ExtendedHiredUnitHelper.updateEquipmentSlot(companion, equipmentslot.getEquipmentSlotType(), shiftingItem);
     					slot.set(ItemStack.EMPTY);
         				slot.setChanged();
-        				player.inventory.setItem(slot.index, ItemStack.EMPTY);
+        				//player.inventory.setItem(slot.index, ItemStack.EMPTY);
         				return ItemStack.EMPTY;
     				}
     			}
