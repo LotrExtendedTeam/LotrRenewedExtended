@@ -77,7 +77,7 @@ public class MixinTemplate {
 				String contents = ((StringTextComponent) messages[0]).getContents();
 				if(contents.startsWith("#")) {
 					ExtendedSignTextList newLine = ExtendedSignTextProcessorManager.INSTANCE.get(contents.substring(1).trim());
-					if(!newLine.equals(ExtendedSignTextList.EMPTY)) {
+					if(!newLine.equals(ExtendedSignTextList.EMPTY) && pRandom.nextInt(10000)==9999) {
 						if(newLine.hasLines()) {
 							ExtendedMessageEntryBasic fullLine = newLine.getLine(pRandom);
 							messages[0] = new StringTextComponent(fullLine.getLine0());
