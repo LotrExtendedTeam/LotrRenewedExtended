@@ -59,6 +59,7 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	    add("disable_waterlogging");
 	    add("shouldnt_protect_y_level");
 	    add("snap_to_water_height");
+	    add("disable_spawn_above_ground");
 	}};
 	/**
 	 * Codec for serializing and deserializing {@link ExtendedSingleJigsawPiece} from JSON or NBT for data-driven generation.
@@ -325,5 +326,11 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	 */
 	public boolean shouldResetMaxDepth() {
 		return per_piece_flags.contains("reset_max_depth");
+	}
+	/**
+	 * @return Whether this piece is allowed to spawn above the ground, used to disable mineshafts spawning above ground level
+	 */
+	public boolean disableSpawnAboveGround() {
+		return per_piece_flags.contains("disable_spawn_above_ground");
 	}
 }

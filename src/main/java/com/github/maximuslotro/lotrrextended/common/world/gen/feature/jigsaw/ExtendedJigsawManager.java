@@ -11,6 +11,7 @@ import org.apache.commons.lang3.mutable.MutableObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPaletteProcessor;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
@@ -26,6 +27,7 @@ import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.MutableRegistry;
 import net.minecraft.util.registry.Registry;
@@ -305,9 +307,13 @@ public class ExtendedJigsawManager {
 										continue;
 									}
 								}
+								boolean shouldBreakRotation = false;
 								//Extended End
 								// Try spawning the piece in different directions until it works
 								for(Rotation rotation1 : Rotation.getShuffled(this.random)) {
+									if(shouldBreakRotation) {
+										break;
+									}
 									//if(enableLogging) {ExtendedLog.info("Trying rotation: "+rotation1.toString());}
 									List<Template.BlockInfo> connectingPieceJigsawRandom = connectingPoolJigsawPiece.getShuffledJigsawBlocks(this.structureManager, BlockPos.ZERO, rotation1, this.random);
 									MutableBoundingBox rotatedBBforJigsawRandom = connectingPoolJigsawPiece.getBoundingBox(this.structureManager, BlockPos.ZERO, rotation1);
@@ -363,6 +369,13 @@ public class ExtendedJigsawManager {
 												// Extended End
 											}
 											// Extended Start
+											if (connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).disableSpawnAboveGround()) {
+												Vector3i center = mutableboundingbox2.getCenter();
+												if(chunkGenerator.getFirstFreeHeight(center.getX(), center.getZ(), Heightmap.Type.WORLD_SURFACE_WG)<=mutableboundingbox2.y1 + 1) {
+													shouldBreakRotation = true;
+													break;
+												}
+											}
 											if (connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).shouldProtectYLevel()) {
 												if(correctedYconnectingPieceSpawnHeight < ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).getProtectableYLevelHeight()){
 													continue;
