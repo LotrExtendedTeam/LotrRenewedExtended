@@ -1,6 +1,6 @@
 {
   "id": "lotrextended:blue_mountains_merchant",
-  "tradingAlignmentRequired": 0,
+  "tradingAlignmentRequired": 5,
   "isTypicallyWandering": true,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,

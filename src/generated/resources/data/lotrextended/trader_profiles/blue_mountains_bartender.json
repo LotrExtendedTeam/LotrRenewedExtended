@@ -1,6 +1,6 @@
 {
   "id": "lotrextended:blue_mountains_bartender",
-  "tradingAlignmentRequired": 50,
+  "tradingAlignmentRequired": 10,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,
   "shouldRefreshTrades": true,

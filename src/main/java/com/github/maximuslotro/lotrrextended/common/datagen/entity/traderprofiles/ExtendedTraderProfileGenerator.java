@@ -736,7 +736,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.GUNDABAD_URUK_BOW, 20)
 		.save(pConsumer, ExtendedTraderTypes.GUNDABAD_TRADER);
 
-		make(0).setTypicallyWandering()
+		make(5).setTypicallyWandering()
 		// TODO add venison
 		.addSBuy(LOTRItems.BRONZE_INGOT.get(), 3)
 		.addSBuy(LOTRItems.COPPER_INGOT, 3)
@@ -1056,7 +1056,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(new ItemStack(LOTRItems.BLUE_DWARVEN_BARS.get(), 8), 25)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_SMITH);
 
-		make(50)
+		make(10)
 		// TODO add raw venison, leek
 		.addSBuy(Items.BEEF, 3)
 		.addSBuy(Items.CHICKEN, 3)
