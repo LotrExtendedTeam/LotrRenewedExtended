@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedLargePotTileEntity;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
@@ -20,7 +21,6 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -56,14 +56,14 @@ public class ExtendedLargePotBlock extends HorizontalBlock {
                 if(!stack.isEmpty()) {
                 	if(entity.getContainedItem().isEmpty()) {
                         entity.setContainedItem(stack.split(1));
-    					world.playSound(null, pos, SoundEvents.ARMOR_EQUIP_CHAIN, SoundCategory.PLAYERS, 1.0F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 0.1F);
+    					//world.playSound(null, pos, ExtendedSounds.POT_FILLED.get(), SoundCategory.PLAYERS, 1.0F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 0.1F);
     					return ActionResultType.SUCCESS;
                 	}
                 	else {
                 		if(ExtendedItemStackUtils.isSameItemStackItemAndTag(stack, entity.getContainedItem()) && entity.getContainedItem().getCount()+1<=entity.getContainedItem().getMaxStackSize()) {
                 			stack.shrink(1);
                 			entity.getContainedItem().grow(1);
-        					world.playSound(null, pos, SoundEvents.ARMOR_EQUIP_CHAIN, SoundCategory.PLAYERS, 1.0F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 0.1F);
+        					world.playSound(null, pos, ExtendedSounds.POT_FILLED.get(), SoundCategory.BLOCKS, 1.0F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 0.1F);
         					return ActionResultType.SUCCESS;
                 		}
                 	}

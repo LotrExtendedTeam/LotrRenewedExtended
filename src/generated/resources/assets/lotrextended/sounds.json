@@ -2,7 +2,16 @@
   "item.horn_blow": {
     "subtitle": "subtitles.lotrextended.item.horn_blow",
     "sounds": [
-      "lotrextended:item/horn_blow"
+      {
+        "name": "lotrextended:item/horns/short1",
+        "volume": 0.4,
+        "pitch": 0.5
+      },
+      {
+        "name": "lotrextended:item/horns/short2",
+        "volume": 0.4,
+        "pitch": 0.5
+      }
     ]
   },
   "event.trade": {
@@ -297,6 +306,12 @@
   "block.conquest_table.open": {
     "sounds": [
       "lotrextended:block/conquest_table/open1"
+    ]
+  },
+  "block.pot.fill": {
+    "sounds": [
+      "lotrextended:block/pot/fill1",
+      "lotrextended:block/pot/fill2"
     ]
   }
 }
