@@ -10,7 +10,7 @@
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_shaft_1",
 				"processors": "minecraft:empty",
 				"protectable_y_level": 37,
-				"apply_waterlogging" : false
+				"per_piece_flags": ["disable_waterlogging"]
 			}
 		},
 		{
@@ -21,7 +21,7 @@
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_shaft_2",
 				"processors": "minecraft:empty",
 				"protectable_y_level": 37,
-				"apply_waterlogging" : false
+				"per_piece_flags": ["disable_waterlogging"]
 			}
 		},
 		{
@@ -32,7 +32,7 @@
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_shaft_3",
 				"processors": "minecraft:empty",
 				"protectable_y_level": 40,
-				"apply_waterlogging" : false
+				"per_piece_flags": ["disable_waterlogging"]
 			}
 		}
 	]

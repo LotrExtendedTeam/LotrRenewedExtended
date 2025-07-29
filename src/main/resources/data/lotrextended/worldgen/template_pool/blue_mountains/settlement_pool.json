@@ -9,14 +9,13 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_entrance_1",
 				"processors": "minecraft:empty",
-				"snap_to_water_height" : true,
-				"apply_waterlogging" : false,
 				"foundation_block": {
 					"Name": "lotr:blue_brick"
 				},
 				"ground_level_delta": 2,
 				"max_depth": 7,
-				"max_place_distance": 120
+				"max_place_distance": 120,
+				"per_piece_flags": ["snap_to_water_height", "disable_waterlogging"]
 			}
 		}
 	]

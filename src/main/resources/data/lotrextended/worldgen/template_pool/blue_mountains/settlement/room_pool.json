@@ -9,7 +9,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_housing_1",
 				"processors": "minecraft:empty",
-				"apply_waterlogging" : false
+				"per_piece_flags": ["disable_waterlogging"]
 			}
 		},
 		{
@@ -19,7 +19,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_crossroad_1",
 				"processors": "minecraft:empty",
-				"apply_waterlogging" : false,
+				"per_piece_flags": ["disable_waterlogging"],
 				"blacklist_name" : "CROSSROAD1"
 			}
 		},
@@ -30,7 +30,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_crossroad_1",
 				"processors": "minecraft:empty",
-				"apply_waterlogging" : false,
+				"per_piece_flags": ["disable_waterlogging"],
 				"blacklist_name" : "CROSSROAD11"
 			}
 		},
@@ -41,7 +41,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_crossroad_2",
 				"processors": "minecraft:empty",
-				"apply_waterlogging" : false,
+				"per_piece_flags": ["disable_waterlogging"],
 				"blacklist_name" : "CROSSROAD2"
 			}
 		},
@@ -52,7 +52,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_storage_1",
 				"processors": "minecraft:empty",
-				"apply_waterlogging" : false
+				"per_piece_flags": ["disable_waterlogging"]
 			}
 		},
 		{
@@ -62,7 +62,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_storage_2",
 				"processors": "minecraft:empty",
-				"apply_waterlogging" : false
+				"per_piece_flags": ["disable_waterlogging"]
 			}
 		},
 		{
@@ -72,7 +72,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_storage_3",
 				"processors": "minecraft:empty",
-				"apply_waterlogging" : false,
+				"per_piece_flags": ["disable_waterlogging"],
 				"blacklist_name" : "ORESTORAGE"
 			}
 		},
@@ -83,7 +83,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_tavern_1",
 				"processors": "minecraft:empty",
-				"apply_waterlogging" : false,
+				"per_piece_flags": ["disable_waterlogging"],
 				"blacklist_name" : "TAVERN"
 			}
 		},
@@ -94,7 +94,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_archives_1",
 				"processors": "minecraft:empty",
-				"apply_waterlogging" : false,
+				"per_piece_flags": ["disable_waterlogging"],
 				"blacklist_name" : "ARCHIVES"
 			}
 		},
@@ -105,7 +105,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_vault_1",
 				"processors": "minecraft:empty",
-				"apply_waterlogging" : false,
+				"per_piece_flags": ["disable_waterlogging"],
 				"blacklist_name" : "VAULT"
 			}
 		},
@@ -116,7 +116,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_forge_1",
 				"processors": "minecraft:empty",
-				"apply_waterlogging" : false,
+				"per_piece_flags": ["disable_waterlogging"],
 				"blacklist_name" : "FORGE"
 			}
 		},
@@ -127,7 +127,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_stronghold_1",
 				"processors": "minecraft:empty",
-				"apply_waterlogging" : false,
+				"per_piece_flags": ["disable_waterlogging"],
 				"blacklist_name" : "STRONGHOLD"
 			}
 		},
@@ -138,7 +138,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_mine_1",
 				"processors": "minecraft:empty",
-				"apply_waterlogging" : false,
+				"per_piece_flags": ["disable_waterlogging"],
 				"blacklist_name" : "MINE"
 			}
 		}

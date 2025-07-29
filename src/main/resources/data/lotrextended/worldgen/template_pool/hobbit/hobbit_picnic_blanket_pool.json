@@ -9,8 +9,7 @@
         "processors": "minecraft:empty",
         "projection": "terrain_matching",
         "element_type": "lotrextended:extended_single_pool_element",
-        "snap_to_water_height" : true,
-        "apply_waterlogging" : false
+        "per_piece_flags": ["disable_waterlogging", "snap_to_water_height"]
       }
     }
   ]

@@ -10,7 +10,7 @@
 				"location": "lotrextended:bree/village/bree_village_stone_mason",
 				"processors": "minecraft:empty",
 				"blacklist_name" : "MASON",
-				"snap_to_water_height" : true
+				"per_piece_flags": ["snap_to_water_height"]
 			}
 		},
 		{
@@ -20,7 +20,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/bree_village_house_1",
 				"processors": "minecraft:empty",
-				"snap_to_water_height" : true
+				"per_piece_flags": ["snap_to_water_height"]
 			}
 		},
 		{
@@ -30,7 +30,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/bree_village_house_2",
 				"processors": "minecraft:empty",
-				"snap_to_water_height" : true
+				"per_piece_flags": ["snap_to_water_height"]
 			}
 		},
 		{
@@ -40,7 +40,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/bree_village_house_3",
 				"processors": "minecraft:empty",
-				"snap_to_water_height" : true
+				"per_piece_flags": ["snap_to_water_height"]
 			}
 		},
 		{
@@ -50,7 +50,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/bree_village_house_4",
 				"processors": "minecraft:empty",
-				"snap_to_water_height" : true
+				"per_piece_flags": ["snap_to_water_height"]
 			}
 		},
 		{
@@ -60,7 +60,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/bree_village_house_5",
 				"processors": "minecraft:empty",
-				"snap_to_water_height" : true
+				"per_piece_flags": ["snap_to_water_height"]
 			}
 		},
 		{
@@ -70,7 +70,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/bree_village_house_6",
 				"processors": "minecraft:empty",
-				"snap_to_water_height" : true
+				"per_piece_flags": ["snap_to_water_height"]
 			}
 		},
 		{
@@ -80,7 +80,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/bree_village_house_7",
 				"processors": "minecraft:empty",
-				"snap_to_water_height" : true
+				"per_piece_flags": ["snap_to_water_height"]
 			}
 		},
 		{
@@ -90,7 +90,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/bree_village_house_8",
 				"processors": "minecraft:empty",
-				"snap_to_water_height" : true
+				"per_piece_flags": ["snap_to_water_height"]
 			}
 		},
 		{
@@ -101,7 +101,7 @@
 				"location": "lotrextended:bree/village/bree_village_butcher",
 				"processors": "minecraft:empty",
 				"blacklist_name" : "BUTCHER",
-				"snap_to_water_height" : true
+				"per_piece_flags": ["snap_to_water_height"]
 			}
 		}
 	]
