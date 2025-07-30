@@ -1,5 +1,5 @@
 {
   "faction": "lotr:bree",
   "kill_bonus": 2.0,
-  "speechbank": "lotr:bree/man"
+  "speechbank": "lotrextended:bree/man"
 }

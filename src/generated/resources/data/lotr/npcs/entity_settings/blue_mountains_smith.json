@@ -1,5 +1,5 @@
 {
   "faction": "lotr:blue_mountains",
   "kill_bonus": 2.0,
-  "speechbank": "lotr:blue_mountains/smith"
+  "speechbank": "lotrextended:blue_mountains/smith"
 }

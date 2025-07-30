@@ -1,3 +1,4 @@
 {
-  "faction": "lotr:hostile"
+  "faction": "lotr:hostile",
+  "speechbank": "lotrextended:wight/barrow_wight"
 }

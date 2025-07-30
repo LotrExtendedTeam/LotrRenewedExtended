@@ -15,7 +15,7 @@ public class ExtendedEntityRelatedGenerators {
 		generator.addProvider(new ExtendedTraderProfileGenerator(generator, modid));
 		//generator.addProvider(new ExtendedCaptainProfileGenerator(generator, modid));
 		generator.addProvider(new StructureEntitySpawnerGenerator(generator, modid));
-		generator.addProvider(new ExtendedEntitySettingsGenerator(generator));
+		generator.addProvider(new ExtendedEntitySettingsGenerator(generator, existingFileHelper));
 		generator.addProvider(new ExtendedMissingEntitySettingsValidator(existingFileHelper));
 	}
 }

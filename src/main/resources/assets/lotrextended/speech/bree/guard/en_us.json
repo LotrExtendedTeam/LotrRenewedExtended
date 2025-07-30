@@ -1,5 +1,5 @@
 {
-    "parent": "lotr:bree/common",
+    "parent": "lotrextended:bree/common",
     "speech": [
       {
         "conditions": {

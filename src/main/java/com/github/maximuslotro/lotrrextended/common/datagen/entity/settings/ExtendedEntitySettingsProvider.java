@@ -23,16 +23,21 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
 import net.minecraft.entity.EntityType;
+import net.minecraft.resources.ResourcePackType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.data.ExistingFileHelper;
 
 public abstract class ExtendedEntitySettingsProvider implements IDataProvider {
 	public static final Gson GSON_PRETTY_WRITER = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 	private static final Logger LOGGER = LogManager.getLogger();
 	private final Map<ResourceLocation, ExtendedEntitySettingsBuilder> dataHere = new TreeMap<>();
 	protected final DataGenerator dataGenerator;
+	private final ExistingFileHelper fileHelper;
 
-	public ExtendedEntitySettingsProvider(DataGenerator pDataGenerator) {
+	public ExtendedEntitySettingsProvider(DataGenerator pDataGenerator, ExistingFileHelper fileHelper) {
 		this.dataGenerator = pDataGenerator;
+		this.fileHelper = fileHelper;
+
 	}
 
 	public abstract void makeEntitySettingBuilders(Consumer<ExtendedEntitySettingsBuilder> pConsumer);
@@ -41,19 +46,25 @@ public abstract class ExtendedEntitySettingsProvider implements IDataProvider {
 	public void run(DirectoryCache pCache) throws IOException {
 		Path path = this.dataGenerator.getOutputFolder();
 		Consumer<ExtendedEntitySettingsBuilder> consumer = (settings) -> {
-	         if (dataHere.put(settings.getEntityType().getRegistryName(), settings)!=null) {
-	            throw new IllegalStateException("Duplicate entity settings " + settings.getEntityType().getRegistryName().toString());
-	         } else {
-	            Path path1 = createPath(path, settings);
+			if (dataHere.put(settings.getEntityType().getRegistryName(), settings)!=null) {
+				throw new IllegalStateException("Duplicate entity settings " + settings.getEntityType().getRegistryName().toString());
+			} else {
+				if(settings.speechbank!=null) {
+					ResourceLocation speechLoc = new ResourceLocation(settings.speechbank.getNamespace(), "speech/"+settings.speechbank.getPath().replace(".", "/")+"/en_us.json");
+					if (!fileHelper.exists(speechLoc, ResourcePackType.CLIENT_RESOURCES)) {
+						System.out.println("Missing speechbank "+ speechLoc.toString() +" for: " + settings.getEntityType().getRegistryName().toString());
+					}
+				}
+				Path path1 = createPath(path, settings);
 
-	            try {
-	               save(GSON_PRETTY_WRITER, pCache, settings, path1);
-	            } catch (IOException ioexception) {
-	               LOGGER.error("Couldn't save entity settings {}", path1, ioexception);
-	            }
+				try {
+					save(GSON_PRETTY_WRITER, pCache, settings, path1);
+				} catch (IOException ioexception) {
+					LOGGER.error("Couldn't save entity settings {}", path1, ioexception);
+				}
 
-	         }
-	      };
+			}
+		};
 		makeEntitySettingBuilders(consumer);
 		ExtendedLog.info("Built "+dataHere.size()+" entity settings.");
 	}
@@ -111,6 +122,11 @@ public abstract class ExtendedEntitySettingsProvider implements IDataProvider {
 
 		public ExtendedEntitySettingsBuilder setBank(String pSpeechbankLoc) {
 			this.speechbank = new ResourceLocation("lotr", pSpeechbankLoc);
+			return this;
+		}
+
+		public ExtendedEntitySettingsBuilder setBankE(String pSpeechbankLoc) {
+			this.speechbank = new ResourceLocation("lotrextended", pSpeechbankLoc);
 			return this;
 		}
 

@@ -1,5 +1,5 @@
 {
   "faction": "lotr:dunedain_north",
   "kill_bonus": 1.0,
-  "speechbank": "lotr:dunedain_north/ranger"
+  "speechbank": "lotrextended:dunedain_north/ranger"
 }
