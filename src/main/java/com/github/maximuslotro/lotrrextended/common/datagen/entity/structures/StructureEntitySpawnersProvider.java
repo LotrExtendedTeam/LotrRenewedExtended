@@ -15,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
@@ -63,9 +64,11 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 	         }
 	      };
 		makeStructureSpawnPools(consumer);
-		for(ResourceLocation location : ExtendedSpawners.getSpawners()) {
-			if(!madeSpawners.contains(location)) {
-				System.out.println("Didn't make a sepcified Structure Spawner type: "+location.toString());
+		if(modId.equals(LotrExtendedMod.MODID)) {
+			for(ResourceLocation location : ExtendedSpawners.getSpawners()) {
+				if(!madeSpawners.contains(location)) {
+					System.out.println("Didn't make a sepcified Structure Spawner type: "+location.toString());
+				}
 			}
 		}
 		ExtendedLog.info("Built "+dataHere.size()+" structure entity spawners.");

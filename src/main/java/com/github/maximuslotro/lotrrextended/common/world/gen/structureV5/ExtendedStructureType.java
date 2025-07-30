@@ -21,5 +21,7 @@ public enum ExtendedStructureType {
 	 /** Larger village structures in Bree region. */
 	BREE_VILLAGE, 
 	/** Structures themed around the Blue Mountains. */
-	BLUE_MOUNTAINS;
+	BLUE_MOUNTAINS,
+	/** Structures that are lore builds. */
+	LORE;
 }

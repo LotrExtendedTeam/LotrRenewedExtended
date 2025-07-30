@@ -11,6 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.struct
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.WeightedPoolStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureCheckAreaChunk;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureCheckAreaCross;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureStoneOfHapless;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
@@ -78,6 +79,8 @@ public class ExtendedStructuresV5 {
 	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_MINE = STRUCTURE_REGISTRY.register("blue_mountain_mine", () -> new ExtendedStructureCheckAreaChunk(ExtendedStructureType.BLUE_MOUNTAINS));
 	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_SETTLEMENT = STRUCTURE_REGISTRY.register("blue_mountain_settlement", () -> new ExtendedStructureCheckAreaCross(ExtendedStructureType.BLUE_MOUNTAINS));
 
+	public static final RegistryObject<Structure<SinglePoolConfig>> STONE_OF_HAPLESS = STRUCTURE_REGISTRY.register("stone_of_hapless", () -> new ExtendedStructureStoneOfHapless(ExtendedStructureType.LORE));
+
 	/**
 	 * Initializes and registers all custom structures with their generation parameters.
 	 * <p>
@@ -117,6 +120,7 @@ public class ExtendedStructuresV5 {
 		register(BLUE_MOUNTAIN_STRONGHOLD.get(), false,35, 15, 889329084);
 		register(BLUE_MOUNTAIN_MINE.get(), false,      30, 15, 17277298);
 		register(BLUE_MOUNTAIN_SETTLEMENT.get(), false,45, 25, 167568658);
+		register(STONE_OF_HAPLESS.get(), false,        1,  0,  0);
 	}
 
 	/**

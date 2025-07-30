@@ -82,6 +82,7 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.BLUE_MOUNTAIN_SMITHY.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.BLUE_MOUNTAIN_STRONGHOLD.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.BLUE_MOUNTAIN_MINE.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.STONE_OF_HAPLESS.get());
 
 		provider.generator.getSettings().structureConfig = tempMap;
 	}
@@ -282,6 +283,9 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_STRONGHOLD);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_MINE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_BLUE_MOUNTAINS_SETTLEMENT);
+			}
+			if(event.getName().equals(LOTRBiomes.WESTERN_ISLES.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_STONE_OF_HAPLESS);
 			}
 		}
 	}

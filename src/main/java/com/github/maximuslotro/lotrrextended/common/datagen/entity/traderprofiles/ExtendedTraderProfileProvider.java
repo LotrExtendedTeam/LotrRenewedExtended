@@ -18,6 +18,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
@@ -92,9 +93,11 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 		};
 		makeStructureSpawnPools(consumer);
 		ExtendedLog.info("Built "+dataHere.size()+" trader profiles.");
-		for(ResourceLocation key : ExtendedTraderTypes.TRADER_TYPES) {
-			if(!dataHere.containsKey(key)) {
-				LOGGER.warn("Didn't make expected trader profile type: "+key.toString());
+		if(modId.equals(LotrExtendedMod.MODID)) {
+			for(ResourceLocation key : ExtendedTraderTypes.TRADER_TYPES) {
+				if(!dataHere.containsKey(key)) {
+					LOGGER.warn("Didn't make expected trader profile type: "+key.toString());
+				}
 			}
 		}
 		for(Entry<ItemStack, List<Integer>> entrySold : soldItems.entrySet()) {

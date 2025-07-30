@@ -106,6 +106,7 @@
 		"lotr.common.world.biome.MixinShireWoodlandsBiome",
 		"lotr.common.world.biome.MixinTrollshawsBiome",
 		"lotr.common.world.biome.MixinUmbarBiome",
+		"lotr.common.world.biome.MixinWesternIsles",
 		"lotr.common.world.biome.MixinWilderlandBiome",
 		"lotr.common.world.biome.MixinWoodlandRealmBiome",
 		"lotr.common.world.gen.tree.MixinLOTRTrunkPlacersJavaPatch",

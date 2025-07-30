@@ -1,0 +1,20 @@
+{
+	"name": "lotrextended:lore/stone_of_hapless",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:lore/stone_of_hapless",
+				"processors": "minecraft:empty",
+				"foundation_block": {
+					"Name": "minecraft:dirt"
+				},
+				"ground_level_delta": 2,
+				"per_piece_flags": ["snap_to_water_height"]
+			}
+		}
+	]
+}
