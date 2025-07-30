@@ -9,7 +9,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_1",
 				"processors": "lotrextended:gundabad_encampment_processor",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -19,7 +19,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_1_1",
 				"processors": "lotrextended:gundabad_encampment_processor",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -29,7 +29,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_2",
 				"processors": "lotrextended:gundabad_encampment_processor",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -39,7 +39,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_2_2",
 				"processors": "lotrextended:gundabad_encampment_processor",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -49,7 +49,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_3",
 				"processors": "lotrextended:gundabad_encampment_processor",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -59,7 +59,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_3_3",
 				"processors": "lotrextended:gundabad_encampment_processor",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -69,7 +69,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_4",
 				"processors": "lotrextended:gundabad_encampment_processor",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -79,7 +79,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_4_4",
 				"processors": "lotrextended:gundabad_encampment_processor",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -89,7 +89,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_5",
 				"processors": "lotrextended:gundabad_encampment_processor",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -99,7 +99,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:gundabad/encampment/gundabad_encampment_5_5",
 				"processors": "lotrextended:gundabad_encampment_processor",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		}
 	]

@@ -9,7 +9,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_passage_3",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_waterlogging"]
+				"apply_waterlogging" : false
 			}
 		},
 		{
@@ -19,7 +19,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_passage_4",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_waterlogging"]
+				"apply_waterlogging" : false
 			}
 		}
 	]

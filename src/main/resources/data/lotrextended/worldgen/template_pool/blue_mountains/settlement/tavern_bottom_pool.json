@@ -9,7 +9,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_tavern_bottom_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_waterlogging", "shouldnt_protect_y_level"]
+				"apply_waterlogging" : false,
+				"should_protect_y_level": false
 			}
 		}
 	]

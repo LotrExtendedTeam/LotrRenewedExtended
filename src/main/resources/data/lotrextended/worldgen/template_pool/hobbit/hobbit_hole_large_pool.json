@@ -9,12 +9,12 @@
 				"projection": "rigid",
 				"location": "lotrextended:hobbit/large_hole/hobbit_hill",
 				"processors": "minecraft:empty",
+				"apply_waterlogging" : false,
 				"ground_level_delta" : 2,
 				"max_depth" : 7,
 				"foundation_block": {
 					"Name": "minecraft:dirt"
-				},
-				"per_piece_flags": ["disable_waterlogging"]
+				}
 			}
 		}
 	]

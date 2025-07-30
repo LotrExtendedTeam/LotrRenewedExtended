@@ -9,7 +9,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:hobbit/hobbit_tavern_large_1_bottom",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_waterlogging"]
+				"apply_waterlogging": false
 			}
 		}
 	]

@@ -9,7 +9,7 @@
 				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -19,7 +19,7 @@
 				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_2",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -29,7 +29,7 @@
 				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_3",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -39,7 +39,7 @@
 				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_4",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -49,7 +49,7 @@
 				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_5",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -59,7 +59,7 @@
 				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_6",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -69,7 +69,7 @@
 				"projection": "terrain_matching",
 				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_1_small",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -79,7 +79,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/farms/bree_village_large_center_field_1_house",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		}
 	]

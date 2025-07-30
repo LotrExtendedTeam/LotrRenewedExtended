@@ -9,7 +9,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_long_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -19,7 +19,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_long_2",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -29,7 +29,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_long_3",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -39,7 +39,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_longer_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -49,7 +49,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_longer_2",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -59,7 +59,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_longer_3",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -69,7 +69,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_medium_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -79,7 +79,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_medium_2",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -89,7 +89,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_cor_short_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -99,7 +99,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_corner_four_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -109,7 +109,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_corner_three_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -119,7 +119,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_corner_two_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -129,7 +129,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_corner_two_2",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -139,7 +139,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_stair_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -149,7 +149,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_stair_2",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -159,7 +159,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_stair_3",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -170,7 +170,7 @@
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_supply_1",
 				"processors": "minecraft:empty",
 				"blacklist_name" : "SUPPLY",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -181,7 +181,7 @@
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_treasure_1",
 				"processors": "minecraft:empty",
 				"blacklist_name" : "TREASURE",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -192,7 +192,7 @@
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_treasure_2",
 				"processors": "minecraft:empty",
 				"blacklist_name" : "TREASURE",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -203,7 +203,7 @@
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_treasure_3",
 				"processors": "minecraft:empty",
 				"blacklist_name" : "TREASURE",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -214,7 +214,7 @@
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_treasure_4",
 				"processors": "minecraft:empty",
 				"blacklist_name" : "TREASURE",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -224,7 +224,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_vertical_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -234,7 +234,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_vertical_2",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -244,7 +244,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_vertical_3",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -254,7 +254,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_vertical_4",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_spawn_above_ground"]
+				"disable_spawn_above_ground": true
 			}
 		}
 	]

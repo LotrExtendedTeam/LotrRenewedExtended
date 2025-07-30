@@ -9,7 +9,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_initial_shaft_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_waterlogging"]
+				"apply_waterlogging": false
 			}
 		},
 		{
@@ -19,7 +19,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_initial_shaft_2",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_waterlogging"]
+				"apply_waterlogging": false
 			}
 		}
 	]

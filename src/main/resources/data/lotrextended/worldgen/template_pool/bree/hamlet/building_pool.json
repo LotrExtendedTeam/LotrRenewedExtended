@@ -9,7 +9,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_apiary_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -19,7 +19,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_croft_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -29,7 +29,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_farm_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -39,7 +39,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_farm_2",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -49,7 +49,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_farm_3",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -59,7 +59,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_field_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -69,7 +69,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_field_2",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -79,7 +79,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_guard_house_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -89,7 +89,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_guard_house_2",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -99,7 +99,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_house_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -109,7 +109,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_house_2",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -119,7 +119,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_house_3",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -129,7 +129,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_house_4",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -139,7 +139,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/hamlet/bree_hamlet_house_5",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -150,7 +150,7 @@
 				"location": "lotrextended:bree/hamlet/bree_hamlet_potter_1",
 				"processors": "minecraft:empty",
 				"blacklist_name" : "POTTER",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -161,7 +161,7 @@
 				"location": "lotrextended:bree/hamlet/bree_hamlet_potter_2",
 				"processors": "minecraft:empty",
 				"blacklist_name" : "POTTER",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -172,7 +172,7 @@
 				"location": "lotrextended:bree/hamlet/bree_hamlet_windmill_1",
 				"processors": "minecraft:empty",
 				"blacklist_name" : "WINDMILL",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -183,7 +183,7 @@
 				"location": "lotrextended:bree/hamlet/bree_hamlet_windmill_2",
 				"processors": "minecraft:empty",
 				"blacklist_name" : "WINDMILL",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		}
 	]

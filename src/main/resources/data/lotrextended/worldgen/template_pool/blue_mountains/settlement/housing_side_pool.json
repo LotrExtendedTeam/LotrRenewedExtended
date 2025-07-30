@@ -9,7 +9,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_housing_side_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_waterlogging"]
+				"apply_waterlogging" : false
 			}
 		}
 	]

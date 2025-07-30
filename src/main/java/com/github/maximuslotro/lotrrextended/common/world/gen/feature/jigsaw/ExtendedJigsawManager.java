@@ -26,6 +26,7 @@ import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.MutableRegistry;
 import net.minecraft.util.registry.Registry;
@@ -367,18 +368,17 @@ public class ExtendedJigsawManager {
 												// Extended End
 											}
 											// Extended Start
-											//if (connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).disableSpawnAboveGround()) {
-											//	if(61<mutableboundingbox2.y1) {
-											//		shouldBreakRotation = true;
-											//		break;
-											//	}
-												// TODO use ground relative checking, but it was causing broken mineshafts to spawn
-												//Vector3i center = mutableboundingbox2.getCenter();
-												//if(chunkGenerator.getFirstFreeHeight(center.getX(), center.getZ(), Heightmap.Type.WORLD_SURFACE_WG)<=mutableboundingbox2.y1 + 1) {
+											if (connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).disableSpawnAboveGround()) {
+												//if(61<mutableboundingbox2.y1) {
 												//	shouldBreakRotation = true;
 												//	break;
 												//}
-											//}
+												Vector3i center = mutableboundingbox2.getCenter();
+												if(chunkGenerator.getFirstFreeHeight(center.getX(), center.getZ(), Heightmap.Type.WORLD_SURFACE_WG)<=mutableboundingbox2.y1 + 1) {
+													shouldBreakRotation = true;
+													break;
+												}
+											}
 											if (connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).shouldProtectYLevel()) {
 												if(correctedYconnectingPieceSpawnHeight < ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).getProtectableYLevelHeight()){
 													continue;

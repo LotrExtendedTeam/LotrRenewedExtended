@@ -9,7 +9,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_shaft_zero_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_waterlogging"]
+				"apply_waterlogging": false
 			}
 		},
 		{
@@ -19,7 +19,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_shaft_one_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_waterlogging"]
+				"apply_waterlogging": false
 			}
 		},
 		{
@@ -29,7 +29,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_shaft_two_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_waterlogging"]
+				"apply_waterlogging": false
 			}
 		},
 		{
@@ -39,7 +39,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_shaft_two_2",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_waterlogging"]
+				"apply_waterlogging": false
 			}
 		},
 		{
@@ -49,7 +49,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_shaft_two_3",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_waterlogging"]
+				"apply_waterlogging": false
 			}
 		},
 		{
@@ -59,7 +59,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_shaft_two_4",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_waterlogging"]
+				"apply_waterlogging": false
 			}
 		},
 		{
@@ -69,7 +69,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/mine/blue_mountains_mine_shaft_two_5",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_waterlogging"]
+				"apply_waterlogging": false
 			}
 		}
 	]

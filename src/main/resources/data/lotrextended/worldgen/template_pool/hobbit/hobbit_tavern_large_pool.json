@@ -9,10 +9,11 @@
 				"projection": "rigid",
 				"location": "lotrextended:hobbit/hobbit_tavern_large_1",
 				"processors": "minecraft:empty",
+				"snap_to_water_height": true,
+				"apply_waterlogging": false,
 				"foundation_block": {
 					"Name": "minecraft:dirt"
-				},
-				"per_piece_flags": ["disable_waterlogging", "snap_to_water_height"]
+				}
 			}
 		}
 	]

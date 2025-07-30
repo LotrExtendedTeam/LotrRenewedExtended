@@ -9,7 +9,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/farms/bree_village_corner_field_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -19,7 +19,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/farms/bree_village_corner_field_2",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -29,7 +29,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/farms/bree_village_corner_field_3",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -39,7 +39,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/farms/bree_village_corner_field_4",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -50,7 +50,7 @@
 				"location": "lotrextended:bree/village/corners/bree_village_stalls",
 				"processors": "minecraft:empty",
 				"blacklist_name" : "STALLS",
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -60,7 +60,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/corners/bree_village_well_1",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height", "disable_waterlogging"]
+				"apply_waterlogging" : false,
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -70,7 +71,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:bree/village/corners/bree_village_well_2",
 				"processors": "minecraft:empty",
-				"per_piece_flags": ["snap_to_water_height", "disable_waterlogging"]
+				"apply_waterlogging" : false,
+				"snap_to_water_height" : true
 			}
 		}
 	]
