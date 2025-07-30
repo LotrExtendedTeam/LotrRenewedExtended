@@ -1,3 +1,141 @@
+(Beta 1.8.0)
+* Blocks
+  * Added Cargon Dwarven Door
+  * Added Cracked Stone Pillar Slabs
+  * Added Cracked Stone Pillars
+  * Added Edhelvir Crystal Chandeliers
+  * Added Glowstone Crystal Chandeliers
+  * Added Gulduril Crystal Chandeliers
+  * Added Luigon Dwarven Door
+  * Added the ability to right-click with shears to Dead Vines and Willow Vines to stop it from growing
+  * Dirt Slabs can now turn into Grass Path slabs by shoveling
+  * Fixed Crossed Wattle and Daub not being flammable
+  * Fixed Fur Carpets not being flammable
+  * Fixed Fur Walls not being flammable
+  * Fixed Mordor Moss Vines not being flammable
+  * Fixed Wattle and Daub Pillar not being flammable
+  * Fixed Wool/Fur Stairs not being flammable
+  * Fixed Wool/Fur slabs not being flammable
+  * Grass Slabs can now turn into Grass Path slabs by shoveling
+  * Grass and Grass path slabs now have two model types, a vanilla (literally) half slab variant, and a full texture variant as they did before. (Clicking and/or shift-clicking with a shovel will alternate the texture)
+  * Large Pots can now have items placed inside them (similar to 1.20 pots item storing functionality)
+  * Ported (Stone) Dwarven Door
+  * Ported Blue Dwarven Chandelier
+  * Ported Dwarven Bed
+  * Ported Dwarven Chandelier
+  * Ported Stone Engraving (writing on stones with chisel)
+  * Raised the light level of crystal chandeliers 15->17
+  * Renamed Mordor Moss Vines to Dead Moss Vines
+  * Stone Engravings now have 8 lines, as opposed to 4 in vanilla and legacy(?)
+* Commands
+  * Added lotr_enchant, lotr_modifier, lotrExtendedModifiers commands (aliases)
+  * Added /lotrExtendedTrigger to trigger extended events such as wandering trader spawning
+* Compatibility 
+  * Fixed the crafting table crash with the JEI-Lotr plugin for JEI (once 1.8.0 releases, there will be no need to use the custom JEI-Lotr build we made)
+  * Fixed compatibility with the “Huge Structure Blocks” and “Structure Expansion” mods
+* Config
+  * Added a client config setting to allow disabling the Extended client version check
+  * Added a client config setting to allow enable/disable EvE between owned hired units
+  * Added a client config setting to disable the broken JEI-lotr version check (remove the login spam)
+* Entities
+  * Added Blue Mountains Bartenders
+  * Added Bree Hobbit Potters
+  * Added backend support for most NPC types to be potentially hireable in the future
+  * Added dedicated namebanks for blue dwarves
+  * Fixed Bree Brewers not being aligned to Bree (they now require alignment to trade)
+  * Fixed Bree Sheriffs not carrying Bree Sheilds
+  * Fixed Dwarf, Elf, Orc, and Hobbit traders rendering coins in offhand, even if they are equipped with an item in their offhand
+  * Fixed a Renewed bug where Hobbits don’t run from Wargs
+  * Fixed a rare bug that caused captains to be hireable by players
+  * Fixed units prioritizing following their owner over their current combat target
+  * Fixed wandering traders not despawning since 1.7.4? (This will also retroactively fix older traders to despawn once more)
+  * Ported Blue Dwarven Commanders
+  * Ported Blue Dwarven Miners
+  * Ported Blue Dwarven Smiths
+  * Ported Bree Hobbit Bakers
+  * Ported Bree Hobbit Brewers
+  * Ported Bree Hobbit Butchers
+  * Ported Bree Hobbit Florists
+  * Ported Bree Hobbit Innkeepers
+  * Ported Dwarven Commanders
+  * Ported Dwarven Miners
+  * Ported Dwarven Smiths
+  * Re-worked the entire hired unit backend system
+  * Removed dedicated hired unit entity types
+  * Units now stop stationary mode when attacked and stand again when out of combat
+* Features
+  * Ported Bane Modifiers (weapons can get extra damage against a race after killing many of that race)
+* GUI
+  * Fixed text sometimes overflowing buttons in the captain’s unit hiring menu
+* Hired Units
+  * Added 11 missing hired unit types to current in-game captains
+  * Captains can now offer multiple unit types to be hired
+  * Fixed hired units dropping double equipment items on death
+  * Fixed player inventory items being deleted when shift-clicking items into a hired unit’s equipment inventory
+  * Modified hired unit follow distances to be more similar to legacy distances and teleport logic
+* Items
+  * Added Blue Dwarven Shield
+  * Added Ranger Bows (legacy bow, craftable version)
+  * Added the ability to edit engravings (like how latest MC allows for editing signs)
+  * Ported Blue Dwarven Throwing Axe
+  * Ported Bronze Throwing Axe
+  * Ported Dwarven Throwing Axe
+  * Ported Iron Throwing Axe
+  * Ported Lossarnach Throwing Axe
+  * Ported chisel’s functionality to write on blocks
+* Localization
+  * Added all-new speechbanks for the dwarves of the Blue Mountains
+  * Fixed the lotrExtendedInfo command not being localized
+  * Simplified hired unit keys to reduce the shear amount of duplicate translations
+  * Updated Chinese (zh_tw) and Russian (ru_ru) translations
+* Loot Tables
+  * Large Pots and Bookshelves can now have loot-tables be set
+* Misc
+  * Added 1 new secret advancement in Extended (3 currently)
+  * Added 117 advancements from Legacy (51.2% currently ported)
+  * Added 5 new advancements in Extended (28 currently)
+  * Added Dorwinion, Near Harad, Rhun, and some missed advancements
+  * Added recipes for Dead Moss Vines (formerly Mordor Moss Vines) and Birdcages
+  * Added support for crafting tables and furnace use and craft advancements
+  * Fixed the Minecraft bug in the Advancement screen that causes the change pages buttons to never show in Vanilla (1.12.2->1.21.7+) (should show if more than 26 advancement categories are present)
+* Textures
+  * All-new textures for birdcages, dwarven chandeliers, throwing axes, dwarven beds, crucible, crystal chandeliers, large pots, and dead moss vines
+  * Blue Dwarven Shields now have an all-new model and texture
+  * Crystal Chandelier rendering differences between with/without Optfine
+  * Renewed the Blue Mountains male dwarf textures
+* Trading
+  * Added better trade pool price validation
+  * Clients now know if traders won’t trade because you are in pvp with then (in addition to not having enough alignment)
+  * Fixed 6 instances of buy-low sell-high trades
+  * Fixed traders not trading proper quantities of items
+  * Fixed two player inventory related coin duplication bugs during trading
+  * Reduced the sell price of white fur and removed a duplicate Bree smith trade
+* Sounds
+  * Added all-new sounds for when Items are placed in the Large Pot
+  * New horn sounds
+* Structures
+  * Added 4 types of Blue Mountain Smithies
+  * Added 9 types of Blue Mountain Strongholds
+  * Added Blue Mountain Dwarven Settlements 
+  * Added/Ported Blue Mountain Mines
+  * Added 50% chance for Bree Sheriff to spawn in Village Manors
+  * Added a flag-driven system to add more settings to our custom Jigsaw Pieces
+  * Added structure template support for adding foundations to structures on spawn (should make structures spawn more naturally in the world, sort of how legacy handled it)
+  * Added structure template support for structure horizontal and vertical shifting
+  * Fixed a bree hamlet sign not being processed
+  * Fixed entity spawners not spawning entities if player is teleported to the location on the spawner’s first tick
+  * Fixed structure pieces (like mines) being able to spawn above the ground
+  * Fixed some hobbit structures being submersible
+  * Fixed structure foundations not always spawning
+  * Hid the name of entity spawners in structures in creative
+  * Once and for all fixed structures spawning underwater (might still have rare edge cases, report them if found)
+  * Rewrote structure foundation generator to work on any piece
+* WorldGen
+  * Added Lapiz Ore to the Blue Mountains
+  * Added Maple trees to the Shire
+  * Fixed Willow Vines not spawning on Willow Trees
+  * Made Luigon the main stone type, and stone as the blobs in the Blue Mountains
+
 (Beta 1.7.4)
 * Blocks
   * Added Grass Voids (an internal block to block grass from spawning in buildings on generation)
