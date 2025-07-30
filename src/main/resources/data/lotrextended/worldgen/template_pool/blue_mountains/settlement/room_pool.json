@@ -130,17 +130,6 @@
 				"per_piece_flags": ["disable_waterlogging"],
 				"blacklist_name" : "STRONGHOLD"
 			}
-		},
-		{
-			"weight": 4,
-			"element": {
-				"element_type": "lotrextended:extended_single_pool_element",
-				"projection": "rigid",
-				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_mine_1",
-				"processors": "minecraft:empty",
-				"per_piece_flags": ["disable_waterlogging"],
-				"blacklist_name" : "MINE"
-			}
 		}
 	]
 }
