@@ -1,0 +1,50 @@
+{
+  "parent": "lotrextended:durins_folk/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "What business do you have in these lands, traveller?",
+        "If you want some of my mighty blades, you'll have to prove yourself first!",
+        "Huh? What? I don't deal with strangers!",
+        "Come back when you have a name in these lands.",
+        "You want those shiny axes, eh? Well, you ought to do some deeds to earn 'em!",
+        "I forge the mightiest tools, weapons and armour in these blue halls! But not for you... at least not yet.",
+        "By my beard, the day has come when a stranger thinks he can simply buy something from me!",
+        "One does not simply trade with a stranger.",
+        "I don't trade with odd folk such as you.",
+        "Who are you?",
+        "If you wish to trade with me, you must prove yourself to the folk of these lands.",
+        "I only forge for the mightiest of the mightiest.",
+        "You are not worthy of my mighty blades.",
+        "You're not fit enough to carry Dwarven plates.",
+        "You may only trade with me when you prove yourself to the Lord of these lands."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": ">=100"
+      },
+      "lines": [
+        "Come in, my good fellow! I have some fine Dwarven craftwork ready for sale!",
+        "You won't find goods such as these in all of Eriador! Nor Lindon, for that matter...",
+        "What can I forge for you? An axe? A chestplate? I can do anything!",
+        "The smith-skill of the Dwarves is unmatched!",
+        "What can I get you?",
+        "One, two, and three! There go the ingots!",
+        "My hammer and hands may be old, but I get the job done!",
+        "My skill is matched by no other Dwarf!",
+        "Swords? Axes? Hammers? You've come to the right place!",
+        "Pay me, and you will find in your hand the mightiest smith-work in all of Middle-earth!",
+        "By my beard, what kind of armour are you wearing? Let me get you some proper plates.",
+        "Come in! Come in! I just finished cooling this fine blade!",
+        "Do you want a fine blade? I can offer you one for a cheap price!",
+        "Any wish you have in mind I can turn into forged steel!",
+        "I forge the mightiest blades and the toughest armour!"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+    "parent": "lotrextended:durins_folk/common",
+    "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": ">=100"
+      },
+      "lines": [
+        "Do you have any silver coins, friend?",
+        "My pockets are overflowing with precious minerals!",
+        "Ripe meat off the bone! I'd pay a hefty sum of silver for some of that...",
+        "Have you any ale, #?",
+        "Are you willing to trade, #?",
+        "I'd pay handsomely for a good drink!",
+        "By Belegost, I'm starving!",
+        "Desire you to trade, #?",
+        "I have many precious minerals to offer you.",
+        "We Dwarves enjoy a nice cut of juicy meat!",
+        "By my beard, I get hungry down here in the mines!",
+        "I'd give all of my gold just for a good old pint of Dwarven ale right now!",
+        "You're a bit tall for these mines, aren't you, #?",
+        "Good day, #! Or is it night? I'm not sure. I've been in these mines for an eternity! Ha! Ha!",
+        "Greetings, #! Do you wish to trade with me? I have many types of metals that will satisfy your desires.",
+        "By my beard, this is one deep mine."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": "<=100"
+      },
+      "lines": [
+        "A Dwarf does not just offer to trade his wealth with any stranger who comes along!",
+        "If you want to trade, #, you'll need to do some more to prove yourself!",
+        "The wealth of the Dwarves is surpassed by no other race, #!",
+        "You'll need to earn yourself a bit of a reputation before we can trade, #!",
+        "These mountains are full of riches.",
+        "We Dwarves don't simply trade with any stranger that passes by!",
+        "The smith-skill of my kin is unmatched!",
+        "You wish to trade with me? You'll have to prove your standing amongst my kin first!",
+        "Sorry, #! I don't trade with strangers.",
+        "We Dwarves are great miners! Our shafts and holes reach down to the very depths of the Earth!"
+      ]
+    }
+  ]
+}

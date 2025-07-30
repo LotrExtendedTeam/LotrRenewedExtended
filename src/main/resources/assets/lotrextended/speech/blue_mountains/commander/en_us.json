@@ -1,0 +1,73 @@
+{
+    "parent": "lotrextended:durins_folk/common",
+    "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": ">=100"
+      },
+      "lines": [
+        "If you want some fine warriors, you've come to the right Dwarf!",
+        "Give me some silver coins, and I'll give you some units!",
+        "I have many strong Dwarves for hire.",
+        "My Dwarves are strong and loyal warriors.",
+        "My Dwarves shall serve you... for the right price! Ha! Ha!",
+        "Dwarf warriors aren't cheap! You'll have to pay a good price to command my lads!",
+        "You wish to command the mighty armies of the Dwarves? My men will follow you, but not for free.",
+        "We Dwarves are great and valiant warriors. Do you have what it takes to lead us into battle?"
+      ]
+    },
+        {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=oathfriend",
+        "pledge": "lotr:blue_mountains"
+      },
+      "lines": [
+        "Greetings, #p! Looking to hire some warriors?",
+        "I can offer you some fine fighting Dwarves in exchange for silver coins, #p.",
+        "Good day, #p! I have some fine battle-hungry Dwarves that will serve you valiantly for the right price."
+      ]
+    },
+        {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain",
+        "pledge": "lotr:blue_mountains"
+      },
+      "lines": [
+        "Well met #p! My Dwarves will be proud to serve such an honored warrior!",
+        "I have the bravest warriors ready for you #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "pledge": "lotr:blue_mountains"
+      },
+      "lines": [
+        "By my beard! #p! I can have a whole army ready for you, at your command!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": "<=100"
+      },
+      "lines": [
+        "You'll have to prove your worth if you want to hire some units, #p.",
+        "You want to hire my Dwarves? Go and kill some more Orcs first, or something.",
+        "I'll have to trust you more before I can let you command my Dwarves.",
+        "Prove your allegiance to the Blue Mountains, and they will follow you into battle!",
+        "You've got no chance of commanding a Dwarven army without some deeds to your name, lad!",
+        "Dwarves only follow into battle those whom we can trust!",
+        "I will not let any simple Man command my lads. Prove your worth to our kin and then come back!",
+        "You want to hire some Dwarves? You must prove your standing amongst our people first!",
+        "How many Orcs did you kill? I say not enough. Come back when you do more deeds.",
+        "My lads will not follow any stranger into battle. Prove yourself!",
+        "Who are you? I have not heard of you. Kill some Orcs and give a meaning to your name!"
+      ]
+    }
+  ]
+}

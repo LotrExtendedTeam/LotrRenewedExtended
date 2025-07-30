@@ -1,0 +1,141 @@
+{
+  "parent": "lotrextended:durins_folk/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Roaring fires! Malt beer! Ripe meat off the bone!",
+        "Dwarven ale is the finest drink in all Middle-earth!",
+        "The wealth of the Dwarves is surpassed by no other race.",
+        "What tidings do you bring from the world of Men, #p?",
+        "My beard is the envy of all Dwarves.",
+        "The smith-skill of the Dwarves is unmatched!",
+        "The halls of Belegost and Nogrod were once far greater than they are today.",
+        "I love the rolling blue hills and the rising pines of our home.",
+        "The dwarves of Belegost once forged armor strong enough to stand against dragon-fire! Such secrets have since been lost.",
+        "Two clans there are of Ered Luin, the Broadbeams and Firebeards!",
+        "Our people once had many great halls throughout the Mountains ere the sinking of Beleriand.",
+        "We have had a... complicated history with the Elves, but that was all long ago.",
+        "Our ancient language is sacred, created by Mahal himself! It is forbidden to speak it among any but the Khazâd.",
+        "We trade much with those Elves who await to depart to The West.",
+        "They say the halls of Nogrod and Belegost are the oldest Dwarf-halls not yet overtaken by Orcs!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "m"
+      },
+      "lines": [
+        "Our women are so alike in voice and appearance that they are often mistaken for our men.",
+        "There are so few dwarf-women, that many of our men go unmarried.",
+        "Truth be told, we dwarves focus more on our mines than on women."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "f"
+      },
+      "lines": [
+        "Our men say that we women are so alike in voice and appearance as to be mistaken for men ourselves! Perhaps if they looked up from the smithy once in a while..."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "You're a bit too tall for these mines, #p! Ha! Ha!",
+        "Welcome to the Blue Mountains, #p! Many riches await you here.",
+        "Welcome to the Ered Luin, #! Many riches await you here!",
+        "We have many mines in these mountains.",
+        "We have lived in these mountains since the dawn of our race.",
+        "Welcome to the Ered Luin, #p.",
+        "Have you ever been to Belegost? Some of the halls have been rebuilt since the War of Wrath.",
+        "There are still many refugees of Durin's Folk that live among us.",
+        "We once had many great cities throughout the Ered Luin before Beleriand sunk into the sea."
+      ]
+    },
+        {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=oathfriend"
+
+      },
+      "lines": [
+        "Welcome to Ulbanabâd my friend!"
+      ]
+    },
+        {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "I miss the view of blue hills from the mountain sides of my home."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Do you have news from our folk in the West?",
+        "Well met!",
+        "Well met, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Let us drink together!",
+        "Shall we drink, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=oathfriend"
+      },
+      "lines": [
+        "You may not be one of the Khazâd, #p, but you are always welcome in our halls.",
+        "Ulbanabâd"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <axebearer",
+        "biome": "#home"
+      },
+      "lines": [
+        "By my beard, I've not seen a Man in all my life! Welcome to my home, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "alternatives": [
+          {
+            "biome": "#home"
+          },
+          {
+            "underground": "true"
+          }
+        ]
+      },
+      "lines": [
+        "There is some good stonework here."
+      ]
+    }
+  ]
+}

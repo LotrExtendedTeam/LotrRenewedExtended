@@ -1,0 +1,131 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "大海呼喚著我回家, 但是我對銀幣的珍視不亞於其他商人.",
+        "我是領主艾隆底下的高等精靈子民.",
+        "我應該很快會離開這片海岸.",
+        "我來自伊姆拉崔, 我帶來取多禮物還有寶物在身上!",
+        "直到看過伊姆拉崔的山谷才算是見識到美麗!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<warrior | >=friend"
+      },
+      "lines": [
+        "你為我們人民做許多事#p, 但是在獲得我們信任前還有許多工作要去做.",
+        "你有顆美麗的心#p, 但是在跟我交易之前需向艾爾達證明你自身的誠信."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=warrior"
+      },
+      "lines": [
+        "來自伊姆拉崔的問候!",
+        "瑞文戴爾的寶物可以用銀幣來買.",
+        "如果你想要精靈工藝, 可以用銀幣來跟我做交易.",
+        "你願意交易嗎?",
+        "很高興見到你.或許你有東西想要交易?",
+        "我帶來了瑞文戴爾的工藝!",
+        "Mae govannen! 你願意跟我交易嗎?",
+        "我已造訪四面八方... 然後現在來到你這! 我有許多寶物會讓你有興趣."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=herald"
+      },
+      "lines": [
+        "很高興見到你, 精靈之有! 不知你對我的商品或寶物是否有興趣?",
+        "Mae govannen elendil! 願意瀏覽這精緻的精靈製造商品?",
+        "Mae govannen, mellyn nín! 你願意跟我交易嗎?",
+        "來自伊姆拉崔的問候, #p!",
+        "直到看過伊姆拉崔的山谷才算是見識到美麗, #p!",
+        "我已造訪四面八方... 然後現在來到你這! 我有許多寶物會讓你有興趣, #p.",
+        "你願意跟我交易嗎, #p?",
+        "Mae govannen, #p! 你願意跟我交易嗎?",
+        "很高興見到你, #p. 或許你有東西想要交易?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=noble"
+      },
+      "lines": [
+        "Mae govannen, i-mellyn nín! 你願意跟我交易嗎?",
+        "Mae govannen, i-arben nín!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Mae govannen, Hîril-in-Gelydh!",
+        "Ai! Hîril-in-Gelydh!",
+        "Ai! Suilad i-chîril nín!",
+        "很高興見到你, 我的夫人! 看到妳在這是我最美好的一天! 你願意來交易些這精緻的精靈製造商品?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Mae govannen, Hîr-in-Gelydh!",
+        "Ai! Hîr-in-Gelydh!",
+        "Ai! Suilad i-chîr nín!",
+        "很高興見到你, 我的領主! 看到你在這是我最美好的一天! 你願意來交易些這精緻的精靈製造商品?"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "你在精靈之中不受歡迎, #p.",
+        "艾隆領主不會是妳的朋友.",
+        "像我這類的人，不會對像你這樣的人高度敬重.",
+        "你不是艾爾達之友;這一點顯而易見.",
+        "你踏上伊姆拉崔, 我保證你會後悔, #p.",
+        "你在敵人底下效勞!",
+        "我不會對你這類的人分享銀幣以及精靈工藝.",
+        "消失吧, 邪惡的僕從!",
+        "我寧願死也不會給你任何我的商品!",
+        "沒有邪惡的手能碰觸我所帶的珍藏之物!",
+        "我的族人寧願死去也不要與不可名預之人的僕從結盟!",
+        "回到你所來自的陰影!",
+        "我們的土地不歡迎你.",
+        "你不是精靈之友, #p!",
+        "滾回黑門去!",
+        "滾去親你的獸人!",
+        "是誰把厄運帶來這裡?",
+        "消失吧,邪惡的僕從!",
+        "回到你所來自的陰影!",
+        "我們不歡迎禍害進入我們的領土.離開，否則面對我們的憤怒!",
+        "Lacho calad! Drego morn!",
+        "Naur an edraith ammen!",
+        "Aglar’ni in Ellath!",
+        "A tiro nin, Fanuilos!",
+        "Gurth an Glamhoth!"
+      ]
+    }
+  ]
+}

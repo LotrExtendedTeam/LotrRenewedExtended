@@ -1,0 +1,116 @@
+{
+  "parent": "lotr:high_elves/rivendell/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "精靈的日子正在凋零, 但我們的力量還未消失.",
+        "我守護著伊姆拉崔的精靈.",
+        "很開心見到你, #p.",
+        "我們保護那些中土上的自由之民.",
+        "你看起來似乎是精靈之友, #p.",
+        "願美麗的維拉守護著你.",
+        "今天殺了多少獸人啊, #p?",
+        "世界正在改變, #p... 我能從我的心中感受到.",
+        "如果你為自由而戰,我與你同在.",
+        "很久以前,我們精靈與你們人民建立強大的聯盟. 你對於那次聯盟感到驕傲嗎?",
+        "敵人在這片土地上日益增長.",
+        "歡迎, #p, 來到半精靈艾隆的領地!",
+        "你會發現在瑞文戴爾沒有邪惡, #p! 我們的土地安全且美麗.",
+        "我已經保護這座山谷有好幾年了.",
+        "我保護伊姆拉崔的高等精靈. 沒有邪惡能逃出我的憤怒.",
+        "雖然精靈的勢力日益衰弱,但我們力量還未消失!",
+        "A tiro nin, Fanuilos!",
+        "Gurth an Glamhoth!",
+        "Tôl acharn.",
+        "在中土大陸很少有人能對抗西方的艾爾達."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "在伊姆拉崔你會很安全."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:lone_lands | lotr:eriador | lotr:hills_of_evendim | lotr:eriador_downs | lotr:lone_lands_hills | lotr:minhiriath | lotr:enedwaith"
+      },
+      "lines": [
+
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth"
+      },
+      "lines": [
+        "我在這裡打仗過, 3000年前參與了最後的同盟.",
+        "幾千年前,我在這裡與至高王吉爾加拉德, 對抗索倫的軍隊."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:eregion"
+      },
+      "lines": [
+
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "以埃蘭迪爾之星的名義, 我發誓我要把你殺了!",
+        "你不受伊姆拉崔歡迎!",
+        "你不受伊姆拉崔歡迎, #p!",
+        "你別想踏入這片美麗的山谷!",
+        "逃出這片土地, #p!",
+        "為了伊姆拉崔!",
+        "去死, 你這個魔窟渣仔!",
+        "你別想讓這片土地壟罩陰影, #p!",
+        "我向維拉發誓, 我要把你的邪惡終結!",
+        "滾回黑門去!",
+        "滾去親你的獸人!",
+        "那些精靈的敵人去死!",
+        "是誰把厄運帶來這裡?",
+        "消失吧,邪惡的僕從!",
+        "離開這片土地, 否則面對我們的刀刃!",
+        "我不會允許邪惡污染伊姆拉崔. 你很快就會面對你的末日, #p.",
+        "以維拉的名義! 你怎麼敢踏入這片土地, #p?",
+        "逃吧, 魔多的渣仔, 否則面對箭雨.",
+        "你怎麼敢用你那汙穢的腳玷汙這片美麗的領土?",
+        "Le nallon sí dinguruthos!",
+        "A tiro nin, Fanuilos!",
+        "Gurth an Glamhoth!",
+        "Tôl acharn!"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "parent": "lotr:high_elves/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "沒有邪惡能進入伊姆拉崔這片土地."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "你帶來了什麼消息給伊姆拉崔?",
+        "歡迎來到中土大陸上最後一處庇護所, #p.",
+        "歡迎來到艾隆領主的領地, #p.",
+        "歡迎來到半精靈艾隆的領地!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+        "biome": "#home"
+      },
+      "lines": [
+        "在伊瑞詹滅亡之後, 我們的人們逃向北方然後避難於這座山谷, 隱藏於敵人的眼睛下.",
+        "我們的領主艾隆守護這座山谷有好幾個世紀.",
+        "半精靈艾隆用精靈之戒維雅的力量守衛這片山谷, 然而那個不可名預之人全然歸來他可能不能再使用那枚戒指.",
+        "很久以前伊姆拉崔與亞爾諾王國並肩作戰. 現在王國已經毀滅他的人民散落各地, 但是許多他們的遺物還陳列在這.",
+        "伊姆拉崔永遠歡迎你, #p.",
+        "黑暗生長的陰影永遠不會找到這, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "艾隆領主在3000年前參與了最後的同盟之戰.",
+        "我們有許多西方的遺物在伊姆拉崔.",
+        "奧斯吉力亞斯被佔領, 艾辛格轉向敵方陣營, 幽暗密林王國遭攻擊,還有納茲古在伊利雅德徘徊! 中土大陸圍繞在戰爭中, 且我們的希望如今懸於刀鋒之上."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord"
+      },
+      "lines": [
+        "中土大陸個王國的特使來到瑞文戴爾, 那個不可名預之人集結他的軍隊對抗自由之民.",
+        "納茲古已經移動到伊利雅德. 他們在薩恩渡口攻擊登丹人, 城鎮布理, 且幾乎跨越了布魯南河到我們的土地上! 我很害怕敵人這麼大膽的移動代表只有一件事. 至尊魔戒被找到了.",
+        "力量之戒使我們的土地維持它的壯麗, 然而到了最後只是延續我們在這個世界中的衰弱."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=noble"
+      },
+      "lines": [
+        "Ai! Mae govannen, arben na Imladris!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "none",
+        "biome": "lotr:tower_hills"
+      },
+      "lines": [
+        "我們遠行千里，只為窺視埃蘭迪爾之石中的景象.",
+        "從伊姆拉崔我來查看愛洛斯提理安塔的真知晶球, 然而現在回西方的呼喚更強烈, 我不確定是否該回去."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north",
+        "biome": "#home"
+      },
+      "lines": [
+        "歡迎來到瑞文戴爾, 遊俠.",
+        "Ai! Mae govannen Dúnadan! 歡迎來到伊姆拉崔!",
+        "我們家園永遠歡迎北方的登丹人進入.",
+        "在伊姆拉崔我們有許多登丹人的遺物.",
+        "安努米那斯權杖其中一個還在伊姆拉崔的亞爾諾遺物."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north"
+      },
+      "lines": [
+        "伊姆拉崔的艾爾達跟登丹人長久以來是朋友.",
+        "在幾世紀以前伊姆拉崔的精靈曾是亞爾諾的盟友,當亞爾諾在滅亡之前."
+      ]
+    },
+    {
+      "conditions": {
+        "hired": "own"
+      },
+      "lines": [
+        "為伊姆拉崔而戰!",
+        "Na Imladris!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "沒有邪惡能踏上伊姆拉崔!",
+        "你別想進入瑞文戴爾.",
+        "#p, 你別想踏入瑞文戴爾!",
+        "敵人是無法對伊姆拉崔伸出魔爪的!",
+        "別讓你的影子玷汙了最後一處庇護所!",
+        "Na Imladris!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "敵人是無法對伊姆拉崔伸出魔爪的!",
+        "我們只能接受沒有邪惡在伊姆拉崔!",
+        "你別想把不幸帶來這裡, #p!",
+        "別讓你的影子玷汙了我們的庇護所!",
+        "是誰把厄運帶來這裡?",
+        "我們不歡迎禍害進入我們的領土.離開，否則面對我們的憤怒!",
+        "你帶來了巨大的災禍, #p. 你別想更進一步踏入這裡.",
+        "離開, #p, 否則吃我一箭!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home"
+      },
+      "lines": [
+        "你不會再被歡迎到我們的領土!",
+        "我後悔我再伊姆拉崔招待你!",
+        "我很後悔歡迎你來伊姆拉崔!"
+      ]
+    }
+  ]
+}
