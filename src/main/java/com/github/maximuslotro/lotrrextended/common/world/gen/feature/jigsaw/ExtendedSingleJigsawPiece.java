@@ -245,7 +245,7 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	 */
 	@Override
 	protected PlacementSettings getSettings(Rotation pRotation, MutableBoundingBox pBoundingBox, boolean keepJigsawBlocks) {
-		PlacementSettings placementsettings = super.getSettings(pRotation, pBoundingBox, true);
+		PlacementSettings placementsettings = super.getSettings(pRotation, pBoundingBox, keepJigsawBlocks);
 		placementsettings.keepLiquids = isApply_waterlogging();
 		return placementsettings;
 	}
