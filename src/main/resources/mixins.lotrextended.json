@@ -1,7 +1,7 @@
 {
 	"required": true,
-	"package": "com.github.maximuslotro.lotrrextended.mixins",
-	"plugin": "com.github.maximuslotro.lotrrextended.mixins.MIXINConfig",
+	"package": "com.github.maximuslotro.lotrextended.mixins",
+	"plugin": "com.github.maximuslotro.lotrextended.mixins.MIXINConfig",
 	"refmap": "mixins.lotrextended.refmap.json",
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [

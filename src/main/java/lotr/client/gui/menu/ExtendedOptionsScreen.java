@@ -5,12 +5,12 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrextended.mixinhelpers.MixinConstants;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedColorChangingButton;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTogglableTitleButton;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTogglableTitleButton.IOnTick;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.mixinhelpers.MixinConstants;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.gui.MiddleEarthMenuScreen;

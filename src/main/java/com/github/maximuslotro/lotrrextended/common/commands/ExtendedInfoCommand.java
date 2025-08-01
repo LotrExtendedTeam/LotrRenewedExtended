@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.commands;
 
-import com.github.maximuslotro.lotrrextended.mixins.MIXINConfig;
+import com.github.maximuslotro.lotrextended.mixins.MIXINConfig;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 

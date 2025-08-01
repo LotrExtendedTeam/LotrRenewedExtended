@@ -1,6 +1,6 @@
 package lotr.common.block;
 
-import com.github.maximuslotro.lotrrextended.mixins.lotr.common.block.MixinGateBlockAccessor;
+import com.github.maximuslotro.lotrextended.mixins.lotr.common.block.MixinGateBlockAccessor;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

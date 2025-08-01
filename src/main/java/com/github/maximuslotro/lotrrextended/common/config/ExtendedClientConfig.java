@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.config;
 
-import com.github.maximuslotro.lotrrextended.mixinhelpers.MixinConstants;
+import com.github.maximuslotro.lotrextended.mixinhelpers.MixinConstants;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
@@ -18,7 +18,7 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	
 	/**
 	 * Do not set this value itself, set {@link lotr.client.gui.menu.ExtendedOptionsScreen}
-	 * to ensure {@link com.github.maximuslotro.lotrrextended.mixins.net.minecraft.tileentity.MixinStructureBlockTileEntity} is updated with the non config crashable value, since sliders can change values very quickly.
+	 * to ensure {@link com.github.maximuslotro.lotrextended.mixins.net.minecraft.tileentity.MixinStructureBlockTileEntity} is updated with the non config crashable value, since sliders can change values very quickly.
 	 * */
 	public static ForgeConfigSpec.IntValue structureBlockOutlineViewDistance;
 	public static ForgeConfigSpec.BooleanValue forceStructureBlockAirViewing;
