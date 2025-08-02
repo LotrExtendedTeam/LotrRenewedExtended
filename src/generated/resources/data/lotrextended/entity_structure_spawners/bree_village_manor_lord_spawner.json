@@ -3,7 +3,7 @@
   "spawner_type": "single_use_spawner",
   "disable_for_use_in_future": true,
   "setHomeOnSpawn": true,
-  "homeRadius": 24,
+  "homeRadius": 12,
   "persistenceRequired": true,
   "shouldRespawnOnDeath": true,
   "pools": [

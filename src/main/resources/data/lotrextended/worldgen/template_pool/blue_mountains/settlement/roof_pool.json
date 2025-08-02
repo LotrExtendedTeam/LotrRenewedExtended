@@ -1,0 +1,24 @@
+{
+	"name": "lotrextended:blue_mountains/settlement/roof_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_roof_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_roof_2",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}

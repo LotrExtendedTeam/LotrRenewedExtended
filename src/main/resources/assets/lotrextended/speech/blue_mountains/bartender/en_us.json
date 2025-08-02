@@ -1,0 +1,79 @@
+{
+    "parent": "lotrextended:durins_folk/common",
+    "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": ">=10"
+      },
+      "lines": [
+        "Roaring fires! Malt beer! Ripe meat off the bone!",
+        "Dwarven ale is the finest drink in all Middle-earth!",
+        "We serve the strongest ale! None of that weak Elvish stuff.",
+        "Welcome #p, may I help you to some ale or mead?",
+        "Come on in. Just stoked the fire. Take a seat and get the cold out.",
+        "Welcome. Let me know if you want anything... think I got a clean mug around here somewhere.",
+        "Come on in. We got warm food and warm drinks!",
+        "The mead I brew is best in all the Blue Mountains!",
+        "Can I help you to an ale?",
+        "Want a drink, or perhaps a meal?",
+        "How about some salted pork?",
+        "Welcome! What can I get for you?",
+        "I serve the finest beer!",
+        "At your service!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=oathfriend"
+      },
+      "lines": [
+        "Welcome #p, I got a beer waiting for you!",
+        "I'll put in a discount for you if you want an ale!",
+        "Take a seat #p, always glad to serve someone such as yourself.",
+        "Well met #p, I'm at your service!"
+      ]
+    },
+        {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain"
+      },
+      "lines": [
+        "Welcome #p! Tales of your travels have spread far and wide, let us discuss them over a beer!",
+        "Take a seat and buy an ale! I'd be happy to serve someone so well-travelled.",
+        "Welcome to my halls #p! May my tavern serve as a resting place for your travels.",
+        "Help yourself to anything in my tavern, you deserve a discount for all you have done for my people."
+      ]
+    },
+        {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord"
+      },
+      "lines": [
+        "By my beard! #p in my tavern! You can help yourself to anything I serve.!",
+        "Aulës's Beard! I'm surpised to see someone so well known in my tavern!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": "<=50"
+      },
+      "lines": [
+        "A Dwarf does not just offer to trade his wealth with any stranger who comes along!",
+        "If you want an ale, #, you'll need to do some more to prove yourself!",
+        "You'll need to earn yourself a bit of a reputation before I'll let you eat here.",
+        "We Dwarves don't simply trade with any stranger that passes by!",
+        "You wish to trade with me? You'll have to prove your standing amongst my kin first!",
+        "Sorry, #! I don't trade with strangers.",
+        "I must serve my kin before I can serve a stranger like you.",
+        "My drinks are too strong for you, traveler.",
+        "My ale would kill you, traveler. You cannot handle my drinks.",
+        "You can't handle my strongest ales! No one can! My strongest ales are fit for a beast let alone a man."
+      ]
+    }
+  ]
+}

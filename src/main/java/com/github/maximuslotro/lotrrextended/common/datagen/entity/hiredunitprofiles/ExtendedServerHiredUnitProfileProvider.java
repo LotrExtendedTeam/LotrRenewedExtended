@@ -13,7 +13,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
@@ -57,7 +59,14 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 	         }
 	      };
 		makeStructureSpawnPools(consumer);
-		ExtendedLog.infoShown("Built "+dataHere.size()+" hired unit profiles.");
+		ExtendedLog.info("Built "+dataHere.size()+" hired unit profiles.");
+		if(modId.equals(LotrExtendedMod.MODID)) {
+			for(ResourceLocation key : ExtendedHiredUnitTypes.UNIT_TYPES) {
+				if(!dataHere.containsKey(key)) {
+					LOGGER.warn("Didn't make expected unit profile type: "+key.toString());
+				}
+			}
+		}
 	}
 
 	private static void save(Gson pGson, DirectoryCache pCache, ExtendedServerHiredUnitProfile spawner, Path pPath) throws IOException {

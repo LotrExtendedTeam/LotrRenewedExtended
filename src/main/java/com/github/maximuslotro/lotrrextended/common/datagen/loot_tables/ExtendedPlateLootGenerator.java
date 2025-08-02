@@ -200,6 +200,22 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 			.add(addEntry(ExtendedItems.CHEESE_WHEEL.get()))
 			.add(addEntry(ExtendedItems.AGED_CHEESE_SLICE.get(), 1, 3))
 			.add(addEntry(ExtendedItems.AGED_CHEESE_WHEEL.get())));
+
+		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_PLATE, makePool()
+			.add(addEntry(Items.COOKED_PORKCHOP, 1, 3))
+			.add(addEntry(Items.COOKED_CHICKEN, 1, 2))
+			.add(addEntry(Items.COOKED_BEEF, 1, 3))
+			.add(addEntry(Items.COOKED_PORKCHOP, 1, 3))
+			.add(addEntry(Items.COOKED_MUTTON, 1, 3))
+			.add(addEntry(Items.COOKED_RABBIT, 1, 3))
+			.add(addEntry(Items.COOKED_SALMON, 1, 3))
+			.add(addEntry(Items.COOKED_COD, 1, 3))
+			.add(addEntry(ExtendedItems.COOKED_DUCK.get(), 1, 3))
+			.add(addEntry(LOTRItems.GAMMON.get(), 1, 2))
+			.add(addEntry(LOTRItems.CRAM.get(), 1, 2))
+			.add(addEntry(Items.BREAD, 1, 2))
+			.add(addEntry(Items.RABBIT_STEW))
+			.add(addEntry(Items.MUSHROOM_STEW)));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item){

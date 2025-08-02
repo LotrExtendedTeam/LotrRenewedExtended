@@ -79,4 +79,9 @@ public class AdvancementsProviderLothlorien extends ExtendedBaseAdvancementType{
 		return "lothlorien";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 20;
+	}
+
 }

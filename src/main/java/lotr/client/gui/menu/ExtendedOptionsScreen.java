@@ -5,12 +5,12 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrextended.mixinhelpers.MixinConstants;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedColorChangingButton;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTogglableTitleButton;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTogglableTitleButton.IOnTick;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.mixinhelpers.MixinConstants;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.gui.MiddleEarthMenuScreen;
@@ -39,7 +39,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 	private Slider alignmentX;
 	private Slider alignmentY;
 	private Slider speechDuration;
-
+	private int unlockClientDevCount=0;
 
 	public ExtendedOptionsScreen() {
 		super(new StringTextComponent("OPTIONS"));
@@ -83,6 +83,8 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		addButton(world.addButton("gui.lotrextended.settings.mapLocation.setting", button -> toggleML(), (button, pd) -> pd.getMiscData().getShowMapLocation(), 
 			"gui.lotrextended.base.shown", "gui.lotrextended.base.hidden"));
+		addButton(world.addButton("gui.lotrextended.settings.unit_v_unit.setting", button -> toggleCBU(), (button, pd) -> ((ExtendedLOTRPlayerData)pd).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit(), 
+			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		catagories.add(world);
 
 
@@ -223,12 +225,18 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 			}
 		};
 		addButton(dev.addCatagoryButton("gui.lotrextended.settings.devsettings"));
-		addButton(dev.addButton("gui.lotrextended.settings.devtoggle.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.enableDevMode), (button, pd) -> {
+		addButton(dev.addButton("gui.lotrextended.settings.devtoggle.setting", button -> {
+			if(ExtendedServerConfig.enableDevMode.get()) {
+				setForgeConfigValue(ExtendedClientConfig.enableClientDevMode, true);
+			}else{
+				toggleForgeConfigValue(ExtendedClientConfig.enableClientDevMode);
+			}
+		}, (button, pd) -> {
 			if(ExtendedServerConfig.enableDevMode.get()) {
 				button.setMessage(new TranslationTextComponent("gui.lotrextended.settings.devtoggle.setting.forced"));
 				return null; // Return null so we can catch not updating the title
 			}else {
-				return ExtendedClientConfig.enableDevMode.get();
+				return ExtendedClientConfig.enableClientDevMode.get();
 			}
 		}, "gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		addButton(dev.addButton("gui.lotrextended.settings.fsbr.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.forceStructureBlockAirViewing), (button, pd) -> ExtendedClientConfig.forceStructureBlockAirViewing.get(), 
@@ -280,6 +288,10 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		ExtendedLOTRPlayerData pd = (ExtendedLOTRPlayerData)getPlayerData();
 		pd.getExtendedMiscData().toggleHighContrastMessagesAndSendToServer();
 	}
+	public static void toggleCBU() {
+		ExtendedLOTRPlayerData pd = (ExtendedLOTRPlayerData)getPlayerData();
+		pd.getExtendedMiscData().toggleCombatBetweenUnitsAndSendToServer();
+	}
 	//	public static void toggleA() {
 	//		Minecraft mc = Minecraft.getInstance();
 	//		mc.gui.getChat().addMessage(new StringTextComponent("Not implemented"));
@@ -308,6 +320,9 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 	}
 	public static void toggleForgeConfigValue(ForgeConfigSpec.BooleanValue value) {
 		value.set(!value.get());
+	}
+	public static void setForgeConfigValue(ForgeConfigSpec.BooleanValue value, boolean valueToSet) {
+		value.set(valueToSet);
 	}
 
 	public static void toggleLotrConfigValue(LOTRConfig.BoolHolder value) {
@@ -344,6 +359,23 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 			catagoryButton = new ExtendedColorChangingButton(catagoryXOffset, placementYOffset + 24 * index, 120, 20, new TranslationTextComponent(pMessage), 
 				button -> {
 					screen.option=index;
+					if(screen.unlockClientDevCount==0&&index==0) {
+						screen.unlockClientDevCount=1;
+					}else if(screen.unlockClientDevCount==1&&index==2) {
+						screen.unlockClientDevCount=2;
+					}else if(screen.unlockClientDevCount==2&&index==4) {
+						screen.unlockClientDevCount=3;
+					}else if(screen.unlockClientDevCount==3&&index==6) {
+						screen.unlockClientDevCount=4;
+					}else if(screen.unlockClientDevCount>=4&&index==7) {
+						screen.unlockClientDevCount+=1;
+						if(screen.unlockClientDevCount>=9) {
+							ExtendedClientConfig.enableClientDevMode.set(true);
+							screen.unlockClientDevCount=0;
+						}
+					}else {
+						screen.unlockClientDevCount=0;
+					}
 				}, 0.13f, 0.92f, 0.71f) {
 				@Override
 				public boolean setColor(){
@@ -387,7 +419,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		}
 		public void checkVisability(){
 			if(isDev()) {
-				if(ExtendedClientConfig.enableDevMode.get() || ExtendedServerConfig.enableDevMode.get()) {
+				if(ExtendedClientConfig.enableClientDevMode.get() || ExtendedServerConfig.enableDevMode.get()) {
 					catagoryButton.visible = true;
 				}else {
 					// Enable setting one up on disable

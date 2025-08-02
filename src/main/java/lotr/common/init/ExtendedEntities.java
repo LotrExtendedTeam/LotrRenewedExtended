@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckE
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedThrowableAxeEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChairEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
@@ -30,6 +31,8 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedRivendellWandererEntity>> RIVENDELL_WANDERER;
 	public static RegistryObject<EntityType<ExtendedDuckEntity>> DUCK;
 	public static RegistryObject<EntityType<ExtendedDuckEggEntity>> DUCK_EGG_ENTITY;
+	public static RegistryObject<EntityType<ExtendedHorseBoarEntity>> HORSE_BOAR;
+	public static RegistryObject<EntityType<ExtendedThrowableAxeEntity>> THROWN_AXE;
 	public static RegistryObject<EntityType<ExtendedStructureSpawnerEntity>> STRUCTURE_ENTITY_SPAWNER;
 	public static RegistryObject<EntityType<ExtendedTraderRespawnEntity>> TRADER_RESPAWNER_ENTITY;
 	public static RegistryObject<EntityType<ExtendedGundabadOrcTraderEntity>> GUNDABAD_CAMP_TRADER;
@@ -41,8 +44,6 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedBannerEntity>> BANNER_HOLDER;
 	public static RegistryObject<EntityType<ExtendedBreelandMerchantEntity>> BREE_MERCHANT;
 	public static RegistryObject<EntityType<ExtendedChairEntity>> CHAIR;
-	public static RegistryObject<EntityType<ExtendedHiredBreeGuard>> HIRED_BREE_GUARD;
-	public static RegistryObject<EntityType<ExtendedHiredGundabadOrc>> HIRED_GUNDABAD_ORC;
 	public static RegistryObject<EntityType<ExtendedBreelandSheriffEntity>> BREE_SHERIFF;
 	public static RegistryObject<EntityType<ExtendedBreelandFarmerEntity>> BREE_FARMER;
 	public static RegistryObject<EntityType<ExtendedBreelandPotterEntity>> BREE_POTTER;
@@ -62,13 +63,14 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedBreelandHobbitFloristEntity>> BREE_HOBBIT_FLORIST;
 	public static RegistryObject<EntityType<ExtendedBreelandHobbitInnkeeperEntity>> BREE_HOBBIT_INNKEEPER;
 	public static RegistryObject<EntityType<ExtendedBreelandHobbitPotterEntity>> BREE_HOBBIT_POTTER;
-	public static RegistryObject<EntityType<ExtendedHiredDunedainRangerEntity>> HIRED_DUNEDAIN_RANGER;
 	public static RegistryObject<EntityType<ExtendedDunedainRangerCaptainEntity>> DUNEDAIN_RANGER_CAPTAIN;
 	public static RegistryObject<EntityType<ExtendedBreelandSmithEntity>> BREE_SMITH;
 	public static RegistryObject<EntityType<ExtendedTolkienEntity>> TOLKIEN;
 	public static RegistryObject<EntityType<ExtendedBlueMountainsMinerEntity>> BLUE_DWARVEN_MINER;
-	public static RegistryObject<EntityType<ExtendedDwarfMinerEntity>> DWARVEN_MINER;
+	public static RegistryObject<EntityType<ExtendedDwarvenMinerEntity>> DWARVEN_MINER;
 	public static RegistryObject<EntityType<ExtendedBlueMountainsSmithEntity>> BLUE_DWARVEN_SMITH;
-	public static RegistryObject<EntityType<ExtendedDwarfSmithEntity>> DWARVEN_SMITH;
-	public static RegistryObject<EntityType<ExtendedHorseBoarEntity>> HORSE_BOAR;
+	public static RegistryObject<EntityType<ExtendedDwarvenSmithEntity>> DWARVEN_SMITH;
+	public static RegistryObject<EntityType<ExtendedBlueMountainsCommanderEntity>> BLUE_DWARVEN_COMMANDER;
+	public static RegistryObject<EntityType<ExtendedDwarvenCommanderEntity>> DWARVEN_COMMANDER;
+	public static RegistryObject<EntityType<ExtendedBlueMountainsBartenderEntity>> BLUE_DWARVEN_BARTENDER;
 }

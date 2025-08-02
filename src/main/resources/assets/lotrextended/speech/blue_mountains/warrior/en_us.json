@@ -1,0 +1,64 @@
+{
+  "parent": "lotrextended:blue_mountains/dwarf",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "I am proud to fight for your cause, #p!",
+        "Let us go forth and slay some Rakhâs scum!",
+        "My beard is itching for battle.",
+        "Our foes shall be crushed like a rack of fresh ribs!",
+        "The axes of the Dwarves are sharpened for battle, #p!",
+        "Few in Middle-earth can stand against the might of the Dwarves of Ered Luin!",
+        "This is all well and good, but where has all the ale gone?",
+        "We Dwarves are valiant warriors! All foes shall tremble beneath our hammers and axes!",
+        "No Orc shall escape the edge of my axe!",
+        "It is truly an honour to fight beside a warrior such as yourself, #p!",
+        "You have my axe, #p!",
+        "For Ulbanabâd!",
+        "Let us bring glory to the Ered Luin!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "rank": "<captain"
+      },
+      "lines": [
+        "You are a mighty warrior, #p, but your beard will never be the equal of mine! Ha!",
+        "It is an honour to fight beside you, #p. Even with that modest excuse for a beard!",
+        "You fight well, #p, but your beard has a long way to grow yet!",
+        "Be sure you give that beard of yours time to grow before we fight!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "rank": ">=captain"
+      },
+      "lines": [
+        "Proud am I to fight alongside the mightiest beard the race of Men ever produced!",
+        "I call it an honour to fight with one so full-bearded as yourself!",
+        "With that beard of yours, #p, we'll have no trouble bashing some Orcs!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "I'd sell my beard for a drink of Dwarven ale.",
+        "Ah! I miss the great stone halls of the Iron Hills. But a Dwarf will not run from battle!",
+        "Ah! I miss the pine-clad slopes of the Iron Hills. But a Dwarf will not run from battle!",
+        "By my beard, I would run ten leagues just for one pint of fresh Dwarven ale!"
+      ]
+    }
+  ]
+}

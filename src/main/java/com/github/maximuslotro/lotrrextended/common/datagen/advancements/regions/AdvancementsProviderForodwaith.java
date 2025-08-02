@@ -60,10 +60,10 @@ public class AdvancementsProviderForodwaith extends ExtendedBaseAdvancementType{
 				addAlignmentTrigger(make(), FactionPointers.LOSSOTH, 1000).parent(lossoth_500));
 
 		Advancement lossoth_2000 = build(false, data(LOTRItems.GOLD_RING.get(), "lossoth_eldar", FrameType.CHALLENGE)
-				.setTitle("Lossoth Eldar").setDescription("Reach +2000.0 alignment with the Men of Lossoth."),
+				.setTitle("Lossoth Elder").setDescription("Reach +2000.0 alignment with the Men of Lossoth."),
 				addAlignmentTrigger(make(), FactionPointers.LOSSOTH, 2000).parent(lossoth_1000));
 
-		Advancement lossoth_crafter = build(true, data(LOTRItems.LOSSOTH_CRAFTING_TABLE.get(), "lossoth_crafter", FrameType.TASK)
+		Advancement lossoth_crafter = build(false, data(LOTRItems.LOSSOTH_CRAFTING_TABLE.get(), "lossoth_crafter", FrameType.TASK)
 			.setTitle("Lossoth Crafter").setDescription("Craft an item on the Lossoth Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.LOSSOTH_CRAFTING_TABLE.get()).parent(everlasting_chill));
 	}
@@ -71,6 +71,11 @@ public class AdvancementsProviderForodwaith extends ExtendedBaseAdvancementType{
 	@Override
 	public String getFolder() {
 		return "forodwaith";
+	}
+
+	@Override
+	public int getLegacyCount() {
+		return 1;
 	}
 
 }

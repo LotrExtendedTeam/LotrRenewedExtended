@@ -18,34 +18,79 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
+import java.util.List;
+
 public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 
 	private NPCEntity npcEntity;
 	private final PlayerEntity player;
-	private final ExtendedClientHiredUnitProfile unitprofile;
+	private final List<ExtendedClientHiredUnitProfile> unitProfiles;
+	private int currentProfileIndex;
 	private Button hireButton;
+	private Button leftArrowButton;
+	private Button rightArrowButton;
 
-	public ExtendedCaptainMainScreen(NPCEntity entity, PlayerEntity player, ExtendedClientHiredUnitProfile profile) {
+	public ExtendedCaptainMainScreen(NPCEntity entity, PlayerEntity player, List<ExtendedClientHiredUnitProfile> profiles) {
 		super(new StringTextComponent("Captain Menu"), 176, 256);
 
 		this.npcEntity = entity;
 		this.player = player;
-		this.unitprofile = profile;
+		this.unitProfiles = profiles;
+		this.currentProfileIndex = 0;
+	}
+	
+	private ExtendedClientHiredUnitProfile getCurrentProfile() {
+		if (unitProfiles.isEmpty()) return null;
+		return unitProfiles.get(currentProfileIndex);
 	}
 
 	@Override
 	public void init() {
-		super.init();
+		super.init();		
 		this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 115, 125, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"), button -> talkWithNPC()));
-		// 114 was 57
-		// +5 was +63/then 32
-		TextComponent start = new TranslationTextComponent("gui.lotrextended.hiring.hire");
-		if(unitprofile.stringsAreTranslated()) {
-			start.append(new TranslationTextComponent(unitprofile.getEntityUnitTypeName()));
-		}else {
-			start.append(new StringTextComponent(unitprofile.getEntityUnitTypeName()));
+		hireButton = this.addButton(new Button((this.leftPos + (this.imageWidth - 150) / 2) -1, this.topPos + 92, 150, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire"), button -> hireFromNPC()));
+		// only show if there are multiple profiles
+		if (unitProfiles.size() > 1) {
+			leftArrowButton = this.addButton(new Button(this.leftPos -13 , this.topPos + 92, 25, 20, new StringTextComponent("<<"), button -> {
+				switchToPrevious();
+			}));
+			rightArrowButton = this.addButton(new Button(this.leftPos + this.imageWidth - 13, this.topPos + 92, 25, 20, new StringTextComponent(">>"), button -> {
+				switchToNext();
+			}));
 		}
-		hireButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 92, 125, 20, start, button -> hireFromNPC()));
+		updateHireButton();
+	}
+	
+	private void updateHireButton() {
+		ExtendedClientHiredUnitProfile currentProfile = getCurrentProfile();
+		if (currentProfile == null) return;
+		
+		TextComponent start = new TranslationTextComponent("gui.lotrextended.hiring.hire");
+		if(currentProfile.stringsAreTranslated()) {
+			start.append(new TranslationTextComponent(currentProfile.getEntityUnitTypeName()));
+		} else {
+			start.append(new StringTextComponent(currentProfile.getEntityUnitTypeName()));
+		}
+		
+		hireButton.setMessage(start);
+	}
+	
+	private void switchToPrevious() {
+		if (unitProfiles.size() <= 1) return;
+		int newIndex = (currentProfileIndex - 1 + unitProfiles.size()) % unitProfiles.size();
+		switchToProfile(newIndex);
+	}
+	
+	private void switchToNext() {
+		if (unitProfiles.size() <= 1) return;
+		int newIndex = (currentProfileIndex + 1) % unitProfiles.size();
+		switchToProfile(newIndex);
+	}
+	
+	private void switchToProfile(int newIndex) {
+		// Update the current profile index locally for immediate UI feedback
+		this.currentProfileIndex = Math.max(0, Math.min(newIndex, unitProfiles.size() - 1));
+		updateHireButton();
 	}
 
 	private void talkWithNPC() {
@@ -55,20 +100,23 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 
 	private void hireFromNPC() {
 		// Ensure the client does not disturb the server when a unit shouldn't actually be able to be hired by a player
+		ExtendedClientHiredUnitProfile currentProfile = getCurrentProfile();
+		if (currentProfile == null) return;
+		
 		if(npcEntity instanceof ExtendedCaptainEntity) {
 			Faction fac = npcEntity.getFaction();
 			AlignmentDataModule alignData = LOTRLevelData.sidedInstance(player.level).getData(player).getAlignmentData();
-			if(unitprofile.isHiringRequiresPledge() && !alignData.isPledgedTo(fac)) {
+			if(currentProfile.isHiringRequiresPledge() && !alignData.isPledgedTo(fac)) {
 				player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_pledged"), Util.NIL_UUID);
 				closeConnection();
-			}else if(unitprofile.getHiringAlignmentRequired()>alignData.getAlignment(fac)) {
-				player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_alignment", unitprofile.getHiringAlignmentRequired()), Util.NIL_UUID);
+			}else if(currentProfile.getHiringAlignmentRequired()>alignData.getAlignment(fac)) {
+				player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_alignment", currentProfile.getHiringAlignmentRequired()), Util.NIL_UUID);
 				closeConnection();
-			}else if(unitprofile.getHiringCost()>CoinUtils.totalValueInInventory(player.inventory)) {
-				player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_enough_money", unitprofile.getHiringCost()), Util.NIL_UUID);
+			}else if(currentProfile.getHiringCost()>CoinUtils.totalValueInInventory(player.inventory)) {
+				player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_enough_money", currentProfile.getHiringCost()), Util.NIL_UUID);
 				closeConnection();
 			}else {
-				ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(npcEntity.getId(), unitprofile.getId()));
+				ExtendedPacketHandler.sendToServer(new ExtendedCHireUnitPacket(npcEntity.getId(), currentProfile.getId()));
 			}
 		}
 	}
@@ -85,6 +133,24 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 		renderBackground(matStack);
 		TextComponent title = new StringTextComponent(npcEntity.getName().getString());
 		this.font.draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 67, 16777215);
+		
+		// Display unit type name and page indicator
+		ExtendedClientHiredUnitProfile currentProfile = getCurrentProfile();
+		if (currentProfile != null) {
+			// Show unit type name
+			String unitTypeName = currentProfile.getEntityUnitTypeName();
+			TextComponent unitTypeText = currentProfile.stringsAreTranslated() ? 
+				new TranslationTextComponent(unitTypeName) : new StringTextComponent(unitTypeName);
+			this.font.draw(matStack, unitTypeText, this.leftPos + ((this.imageWidth - font.width(unitTypeText)) / 2), this.topPos + 80, 11184810);
+			
+			// Show page indicator if multiple profiles
+			if (unitProfiles.size() > 1) {
+				String pageIndicator = "(" + (currentProfileIndex + 1) + "/" + unitProfiles.size() + ")";
+				TextComponent pageText = new StringTextComponent(pageIndicator);
+				this.font.draw(matStack, pageText, this.leftPos + ((this.imageWidth - font.width(pageText)) / 2), this.topPos + 35, 11184810);
+			}
+		}
+		
 		super.render(matStack, mouseX, mouseY, tick);
 	}
 }

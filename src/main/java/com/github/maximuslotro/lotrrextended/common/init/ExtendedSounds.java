@@ -27,6 +27,7 @@ public class ExtendedSounds {
 	public static final RegistryObject<SoundEvent> MILLSTONE_GRINDING = register("block.stone_grinder.grinding", "Stone Grinder Grinds");
 	public static final RegistryObject<SoundEvent> CHEESE_SLICE = register("block.cheese_wheel.slice", "Cheese Wheel Sliced");
 	public static final RegistryObject<SoundEvent> CONQUEST_TABLE_OPEN = register("block.conquest_table.open", null);
+	public static final RegistryObject<SoundEvent> POT_FILLED = register("block.pot.fill", null);
 
 	public static final RegistryObject<SoundEvent> MOSS_BROKEN = register("block.moss.break", null);
 	public static final RegistryObject<SoundEvent> MOSS_PLACED = register("block.moss.place", null);

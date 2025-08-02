@@ -42,7 +42,7 @@ import net.minecraftforge.registries.ForgeRegistries;
  */
 public class ExtendedTraderProfile {
 	/** An empty default trader profile instance. */
-	public static final ExtendedTraderProfile EMPTY = new ExtendedTraderProfile(LotrExtendedMod.EMPTY, 1000, 0, 0, new ArrayList<>(), new ArrayList<>(), true, 10, 100000);
+	public static final ExtendedTraderProfile EMPTY = new ExtendedTraderProfile(LotrExtendedMod.EMPTY, 1000, 0, 0, new ArrayList<>(), new ArrayList<>(), true, 10, 100000, false);
 	/** The unique identifier of this trader profile. */
 	private final ResourceLocation id;
 	/** Required trading alignment level to access this trader. */
@@ -61,6 +61,8 @@ public class ExtendedTraderProfile {
 	private final int refreshTradesAtValue;
 	/** Cooldown duration in ticks after a trade refresh before new trades become available. */
 	private final int lockTicksAfterRefresh;
+	/** Whether this trader profile is generally a wandering trader. */
+	private final boolean isTypicallyWandering;
 
 	/**
 	 * Constructs a new {@code ExtendedTraderProfile} instance.
@@ -74,10 +76,11 @@ public class ExtendedTraderProfile {
 	 * @param shouldRefreshTrades Indicates if trades should refresh after thresholds.
 	 * @param refreshTradesAtValue The trade value threshold triggering a refresh.
 	 * @param lockTicksAfterRefresh The cooldown time in ticks after refresh.
+	 * @param isTypicallyWandering Indicates if trader is usually wandering.
 	 */
 	public ExtendedTraderProfile(ResourceLocation id, int pTradingAlignmentRequired, 
 		int minimumTrades, int maximumAdditionalTrades, List<ExtendedTraderPoolItem> buyFromPlayerPool, List<ExtendedTraderPoolItem> sellToPlayerPool, 
-		boolean shouldRefreshTrades, int refreshTradesAtValue, int lockTicksAfterRefresh) {
+		boolean shouldRefreshTrades, int refreshTradesAtValue, int lockTicksAfterRefresh, boolean isTypicallyWandering) {
 		this.id = id;
 		this.tradingAlignmentRequired = pTradingAlignmentRequired;
 		this.minimumTrades = minimumTrades;
@@ -87,6 +90,7 @@ public class ExtendedTraderProfile {
 		this.shouldRefreshTrades = shouldRefreshTrades;
 		this.refreshTradesAtValue = refreshTradesAtValue;
 		this.lockTicksAfterRefresh = lockTicksAfterRefresh;
+		this.isTypicallyWandering = isTypicallyWandering;
 	}
 
 	/**
@@ -133,12 +137,27 @@ public class ExtendedTraderProfile {
 	 */
 	public List<ExtendedTraderPoolItem> getTraderPool(ExtendedTradeType type){
 		if(type==ExtendedTradeType.BUY_FROM_PLAYER) {
-			return buyFromPlayerPool;
+			return getTraderBoughtPool();
 		}else {
-			return sellToPlayerPool;
+			return getTraderSellPool();
 		}
 	}
-
+	/**
+	 * Gets the list of trade pool items for bought from player.
+	 *
+	 * @return The list of {@link ExtendedTraderPoolItem} for bought items.
+	 */
+	public List<ExtendedTraderPoolItem> getTraderBoughtPool(){
+		return buyFromPlayerPool;
+	}
+	/**
+	 * Gets the list of trade pool items for sold to player.
+	 *
+	 * @return The list of {@link ExtendedTraderPoolItem} for sold items.
+	 */
+	public List<ExtendedTraderPoolItem> getTraderSellPool(){
+		return sellToPlayerPool;
+	}
 	/**
 	 * Checks if this profile should refresh trades periodically.
 	 *
@@ -164,6 +183,15 @@ public class ExtendedTraderProfile {
 	 */
 	public int getLockTicksAfterRefresh() {
 		return lockTicksAfterRefresh;
+	}
+
+	/**
+	 * Checks if this profile is typically wandering.
+	 *
+	 * @return {@code true} if usually a wanderer; {@code false} otherwise.
+	 */
+	public boolean isTypicallyWandering() {
+		return isTypicallyWandering;
 	}
 
 	/**
@@ -199,10 +227,11 @@ public class ExtendedTraderProfile {
 			boolean shouldRefreshTrades = jsonobject.get("shouldRefreshTrades").getAsBoolean();
 			int refreshTradesAtValue = jsonobject.get("refreshTradesAtValue").getAsInt();
 			int lockTicksAfterRefresh = jsonobject.get("lockTicksAfterRefresh").getAsInt();
+			boolean isTypicallyWandering = JSONUtils.getAsBoolean(jsonobject, "isTypicallyWandering", false);
 			List<ExtendedTraderPoolItem> buyFromPlayerPool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "buyFromPlayer", new ExtendedTraderPoolItem[0], context, ExtendedTraderPoolItem[].class));
 			List<ExtendedTraderPoolItem> sellToPlayerPool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "sellToPlayer", new ExtendedTraderPoolItem[0], context, ExtendedTraderPoolItem[].class));
 			return new ExtendedTraderProfile(new ResourceLocation(id), hiringAlignment, minimumTrades, maximumAdditionalTrades, buyFromPlayerPool, 
-				sellToPlayerPool, shouldRefreshTrades, refreshTradesAtValue, lockTicksAfterRefresh);
+				sellToPlayerPool, shouldRefreshTrades, refreshTradesAtValue, lockTicksAfterRefresh, isTypicallyWandering);
 		}
 		/**
 		 * Serializes an {@link ExtendedTraderProfile} instance into its JSON representation.
@@ -219,6 +248,9 @@ public class ExtendedTraderProfile {
 			jsonobject.addProperty("id", traderProfile.getId().toString());
 			// Language
 			jsonobject.addProperty("tradingAlignmentRequired", traderProfile.getTradingAlignmentRequired());
+			if(traderProfile.isTypicallyWandering()) {
+				jsonobject.addProperty("isTypicallyWandering", traderProfile.isTypicallyWandering());
+			}
 			jsonobject.addProperty("minimumTradesOffered", traderProfile.getMinimumTrades());
 			jsonobject.addProperty("maximumAdditionalTradesOffered", traderProfile.getMaximumAdditionalTrades());
 			jsonobject.addProperty("shouldRefreshTrades", traderProfile.shouldRefreshTrades());
@@ -241,7 +273,7 @@ public class ExtendedTraderProfile {
 		private boolean shouldRefreshTrades = true;
 		private int refreshTradesAtValue = 5000; // A default refresh at 5000c traded
 		private int lockTicksAfterRefresh = 6000; // A default 5 minute cooldown 
-
+		private boolean isTypicallyWandering = false; // Traders should not wander by default unless set
 		/**
 		 * Creates a builder for {@link ExtendedTraderProfile} with required trading alignment.
 		 *
@@ -315,7 +347,15 @@ public class ExtendedTraderProfile {
 			this.lockTicksAfterRefresh = lockTicksAfterRefresh;
 			return this;
 		}
-
+		/**
+		 * Sets the trader as a wanderer for management purposes.
+		 *
+		 * @return This builder instance.
+		 */
+		public Builder setTypicallyWandering() {
+			this.isTypicallyWandering = true;
+			return this;
+		}
 		// BUY FROM PLAYER Single item methods
 
 		/**
@@ -551,7 +591,7 @@ public class ExtendedTraderProfile {
 				ExtendedLog.error(id.toString()+" has defined a profile with more than 9 max slots");
 			}
 			ExtendedTraderProfile spawner = new ExtendedTraderProfile(id, tradingAlignmentRequired, minimumTrades, maximumAdditionalTrades, 
-				buyFromPlayerPool, sellToPlayerPool, shouldRefreshTrades, refreshTradesAtValue, lockTicksAfterRefresh);
+				buyFromPlayerPool, sellToPlayerPool, shouldRefreshTrades, refreshTradesAtValue, lockTicksAfterRefresh, isTypicallyWandering);
 			return spawner;
 		}
 

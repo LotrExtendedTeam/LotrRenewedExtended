@@ -20,6 +20,7 @@ public class ExtendedEntityRenderers {
 		// Projectiles
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUCK_EGG_ENTITY.get(), manager -> new SpriteRenderer<>(manager, itemRenderer));
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.THROWN_CONKER.get(), manager -> new SpriteRenderer<>(manager, itemRenderer));
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.THROWN_AXE.get(), ExtendedThrowableAxeRenderer::new);
 		// Special
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BANNER_HOLDER.get(), ExtendedBannerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.CHAIR.get(), ExtendedNullEntityRenderer::new);
@@ -33,10 +34,8 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get(), ExtendedGundabadOrcChieftainRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_URUK.get(), LargeOrcRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_URUK_ARCHER.get(), LargeOrcRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HIRED_GUNDABAD_ORC.get(), ExtendedHiredGundabadOrcRenderer::new);
 		// Bree
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_MERCHANT.get(), ExtendedBreeMerchantRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HIRED_BREE_GUARD.get(), ExtendedHiredBreeGuardRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_SHERIFF.get(), ExtendedBreeCaptainRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_FARMER.get(), ExtendedBreeManTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_POTTER.get(), ExtendedBreeManTraderRenderer::new);
@@ -59,15 +58,17 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_HOBBIT_BREWER.get(), ExtendedBreeHobbitTraderRenderer::new);
 		// Ranger North
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNEDAIN_RANGER.get(), ExtendedDunedainRangerRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HIRED_DUNEDAIN_RANGER.get(), ExtendedDunedainRangerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get(), ExtendedDunedainRangerCaptainRenderer::new);
 		// Blue Mountains
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get(), ExtendedBlueMountainsTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_DWARVEN_MINER.get(), ExtendedBlueMountainsTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_DWARVEN_SMITH.get(), ExtendedBlueMountainsTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_DWARVEN_COMMANDER.get(), ExtendedBlueMountainsTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_DWARVEN_BARTENDER.get(), ExtendedBlueMountainsTraderRenderer::new);
 		// Dwarven
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DWARVEN_MINER.get(), ExtendedDurinsFolkTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DWARVEN_SMITH.get(), ExtendedDurinsFolkTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DWARVEN_COMMANDER.get(), ExtendedDurinsFolkTraderRenderer::new);
 		// Special
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TOLKIEN.get(), ExtendedTolkienRenderer::new);
 	}

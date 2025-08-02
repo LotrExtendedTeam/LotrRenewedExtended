@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.commands;
 
-import com.github.maximuslotro.lotrrextended.mixins.MIXINConfig;
+import com.github.maximuslotro.lotrextended.mixins.MIXINConfig;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
@@ -19,7 +19,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 public class ExtendedInfoCommand
 {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
-		dispatcher.register(Commands.literal("lotrExtendedInfo")
+		dispatcher.register(Commands.literal("lotrExtendedInfo").requires(context -> context.hasPermission(2))
 				.executes(CommandContext -> execute(CommandContext.getSource())));
 	}
 

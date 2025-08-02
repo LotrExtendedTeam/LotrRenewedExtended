@@ -1,6 +1,6 @@
 package lotr.common.block;
 
-import com.github.maximuslotro.lotrrextended.mixins.lotr.common.block.MixinGateBlockAccessor;
+import com.github.maximuslotro.lotrextended.mixins.lotr.common.block.MixinGateBlockAccessor;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -22,6 +22,18 @@ public class ExtendedDwarvenGateBlock extends GateBlock{
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
 		return VoxelShapes.block();
+	}
+
+	@Override
+	public boolean propagatesSkylightDown(BlockState state, IBlockReader world, BlockPos pos) {
+		// If the gate is open, it should allow skylight to pass through
+		return state.getValue(OPEN);
+	}
+
+	@Override
+	public int getLightBlock(BlockState state, IBlockReader world, BlockPos pos) {
+		// If the gate is open, it should not block light
+		return state.getValue(OPEN) ? 0 : world.getMaxLightLevel(); // IDK the level might have different max levels?
 	}
 
 	@Override

@@ -1,0 +1,25 @@
+{
+  "line0": {
+  },
+  "line1": {
+    "namebank": [
+      "lotr:npcs/names/bree_forename_male.txt"
+    ],
+    "shouldAddApostrophe": true
+  },
+  "line2": {
+    "string": [
+      "農場",
+      "農田",
+      "農場",
+      "農田",
+      "農地",
+      "農舍",
+      "畜欄",
+      "小農場",
+      "花園"
+    ]
+  },
+  "line3": {
+  }
+}

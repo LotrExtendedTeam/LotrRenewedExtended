@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.config;
 
-import com.github.maximuslotro.lotrrextended.mixinhelpers.MixinConstants;
+import com.github.maximuslotro.lotrextended.mixinhelpers.MixinConstants;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
@@ -9,7 +9,7 @@ import net.minecraftforge.fml.config.ModConfig.Type;
 
 public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	public static final ForgeConfigSpec CLIENT_SPEC = setupConfig(new ForgeConfigSpec.Builder()).build();
-	public static ForgeConfigSpec.BooleanValue enableDevMode;
+	public static ForgeConfigSpec.BooleanValue enableClientDevMode;
 	public static ConfigValue<String> lastClientBootVersion;
 	public static ForgeConfigSpec.BooleanValue disableJEILOTRversionCheck;
 	public static ForgeConfigSpec.BooleanValue enableClientVersionCheck;
@@ -18,7 +18,7 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	
 	/**
 	 * Do not set this value itself, set {@link lotr.client.gui.menu.ExtendedOptionsScreen}
-	 * to ensure {@link com.github.maximuslotro.lotrrextended.mixins.net.minecraft.tileentity.MixinStructureBlockTileEntity} is updated with the non config crashable value, since sliders can change values very quickly.
+	 * to ensure {@link com.github.maximuslotro.lotrextended.mixins.net.minecraft.tileentity.MixinStructureBlockTileEntity} is updated with the non config crashable value, since sliders can change values very quickly.
 	 * */
 	public static ForgeConfigSpec.IntValue structureBlockOutlineViewDistance;
 	public static ForgeConfigSpec.BooleanValue forceStructureBlockAirViewing;
@@ -42,7 +42,7 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 		builder.pop();
 
 		builder.push("Special settings");
-		enableDevMode = createBooleanValue(builder, "enableDevModeClient", false, true, "Never enable this unless you are on the Extended Dev Team or debugging the mod!");
+		enableClientDevMode = createBooleanValue(builder, "enableDevModeClient", false, true, "Never enable this unless you are on the Extended Dev Team or debugging the mod!");
 		lastClientBootVersion = createStringValue(builder, "lastClientBootVersion", "null", true, "Last version this mod launched with. Don't touch! Value handled by extended.");
 		builder.pop();
 		return builder;

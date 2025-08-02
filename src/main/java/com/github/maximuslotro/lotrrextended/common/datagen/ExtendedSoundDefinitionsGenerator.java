@@ -23,7 +23,7 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 
 	@Override
 	public void registerSounds() {
-		add(ExtendedSounds.HORN_BLOW, createSimple(ExtendedSounds.HORN_BLOW));
+		add(ExtendedSounds.HORN_BLOW, createMultipleSameWeight(ExtendedSounds.HORN_BLOW, 2, 0.4F, 0.5F, true, "item/horns/short"));
 
 		add(ExtendedSounds.TRADE, createMultipleSameWeight(ExtendedSounds.TRADE, 4, true));
 
@@ -58,6 +58,8 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		add(ExtendedSounds.ROPE_STEP, createCustomSub("block/rope/step", 2, "subtitles.block.generic.footsteps"));
 
 		add(ExtendedSounds.CONQUEST_TABLE_OPEN, createMultipleSameWeight(ExtendedSounds.CONQUEST_TABLE_OPEN, 1, false));
+
+		add(ExtendedSounds.POT_FILLED, createMultipleSameWeight(ExtendedSounds.POT_FILLED, 2, false));
 	}
 
 	public static SoundDefinition createSimple(RegistryObject<SoundEvent> sound) {
@@ -72,7 +74,17 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 	public static SoundDefinition createMultipleSameWeight(RegistryObject<SoundEvent> sound, int variants, boolean useSub) {
 		List<Sound> sounds = new ArrayList<>();
 		for(int i=0; i<variants; i++) {
-			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, sound.get().getRegistryName().getPath().replace('.', '/')+((i + 1)))));
+			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, sound.get().getRegistryName().getPath().replace('.', '/')+(i + 1))));
+		}if(useSub) {
+			return definition().subtitle("subtitles."+LotrExtendedMod.MODID+"."+sound.get().getRegistryName().getPath()).with(sounds.toArray(new Sound[0]));
+		}
+		return definition().with(sounds.toArray(new Sound[0]));
+	}
+
+	public static SoundDefinition createMultipleSameWeight(RegistryObject<SoundEvent> sound, int variants, float vol, float pitch, boolean useSub, String filePath) {
+		List<Sound> sounds = new ArrayList<>();
+		for(int i=0; i<variants; i++) {
+			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, filePath+(i + 1))).volume(vol).pitch(pitch));
 		}if(useSub) {
 			return definition().subtitle("subtitles."+LotrExtendedMod.MODID+"."+sound.get().getRegistryName().getPath()).with(sounds.toArray(new Sound[0]));
 		}
@@ -82,7 +94,7 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 	public static SoundDefinition createMultipleSameWeight(RegistryObject<SoundEvent> sound, int variants, int distance) {
 		List<Sound> sounds = new ArrayList<>();
 		for(int i=0; i<variants; i++) {
-			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, sound.get().getRegistryName().getPath().replace('.', '/')+((i + 1)))).attenuationDistance(distance));
+			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, sound.get().getRegistryName().getPath().replace('.', '/')+(i + 1))).attenuationDistance(distance));
 		}
 		return definition().subtitle("subtitles."+LotrExtendedMod.MODID+"."+sound.get().getRegistryName().getPath())
 		  .with(sounds.toArray(new Sound[0]));
@@ -91,7 +103,7 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 	public static SoundDefinition createCustomSub(String name, int variants, String subKey) {
 		List<Sound> sounds = new ArrayList<>();
 		for(int i=0; i<variants; i++) {
-			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, name+((i + 1)))));
+			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, name+(i + 1))));
 		}
 		if(subKey!=null) {
 			return definition().subtitle(subKey).with(sounds.toArray(new Sound[0]));
@@ -102,7 +114,7 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 	public static SoundDefinition createFull(String name, int variants, float vol, float pitch, int distance, String subKey) {
 		List<Sound> sounds = new ArrayList<>();
 		for(int i=0; i<variants; i++) {
-			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, name+((i + 1)))).volume(vol).pitch(pitch).attenuationDistance(distance));
+			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, name+(i + 1))).volume(vol).pitch(pitch).attenuationDistance(distance));
 		}
 		if(subKey!=null) {
 			return definition().subtitle(subKey).with(sounds.toArray(new Sound[0]));

@@ -22,7 +22,7 @@ public class ExtendedStoneTextSignTileEntityRenderer extends TileEntityRenderer<
    }
 
    /**
-    * Use method from {@link SignTileEntityRenderer} but remove standing sign logic, and modify sign to render against block
+    * Use method from {@link net.minecraft.client.renderer.tileentity.SignTileEntityRenderer} but remove standing sign logic, and modify sign to render against block
     * */
    @Override
    public void render(ExtendedStoneTextSignTileEntity pBlockEntity, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pCombinedLight, int pCombinedOverlay) {

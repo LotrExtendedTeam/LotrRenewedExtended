@@ -65,4 +65,9 @@ public class AdvancementsProviderRhovanion extends ExtendedBaseAdvancementType{
 		return "rhovanion";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 10;
+	}
+
 }

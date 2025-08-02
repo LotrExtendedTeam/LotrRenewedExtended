@@ -1,6 +1,7 @@
 {
   "id": "lotrextended:galadhrim_wanderer",
   "tradingAlignmentRequired": 75,
+  "isTypicallyWandering": true,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,
   "shouldRefreshTrades": true,

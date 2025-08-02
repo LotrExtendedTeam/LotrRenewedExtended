@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.function.Predicate;
 
+import com.github.maximuslotro.lotrextended.mixins.lotr.common.entity.npc.MixinNPCEntityInvoker;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
@@ -12,7 +13,6 @@ import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEn
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
 import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
-import com.github.maximuslotro.lotrrextended.mixins.lotr.common.entity.npc.MixinNPCEntityInvoker;
 
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -127,8 +127,8 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		if(!world.hasChunksAt(getCMinBlockPos(), getCMaxBlockPos())) {
 			return false;
 		}
-		// Check if player has a proper distance from the spawner
-		if(world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMinSpawnDistance())) {
+		// Check if player has a proper distance from the spawner if not a single use spawner
+		if(world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMinSpawnDistance()) && !spawnerInstance.getSpawnType().isSingleSpawnType()) {
 			//world.players().forEach(player -> player.sendMessage(new StringTextComponent("Player to close"), Util.NIL_UUID));
 			return false;
 		} else if (!world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMaxSpawnDistance())) {
@@ -144,7 +144,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
                     .contains(entity.getType().getRegistryName().toString());
 			nearbyEntitySpawnCount = world.getEntitiesOfClass(LivingEntity.class, checkBox, pred).size();
 		}
-		//System.out.println("Suscessfully Ran Area Checks: "+nearbyEntitySpawnCount);
+		//System.out.println("Successfully Ran Area Checks: "+nearbyEntitySpawnCount);
 		for(int roll = 0; roll < spawnerInstance.getPoolRolls(); roll++) {
 			if(spawnerInstance.shouldCheckRandomDiscardChance() && random.nextInt(100)+1 <= spawnerInstance.getRandomDiscardChance()) {
 				continue;
@@ -478,7 +478,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public boolean isInvisibleTo(PlayerEntity pPlayer) {
-		if (pPlayer.isSpectator() || pPlayer.isCreative() || ExtendedClientConfig.enableDevMode.get()) {
+		if (pPlayer.isSpectator() || pPlayer.isCreative() || ExtendedClientConfig.enableClientDevMode.get()) {
 			isInvisible = false;
 			return false;
 		}

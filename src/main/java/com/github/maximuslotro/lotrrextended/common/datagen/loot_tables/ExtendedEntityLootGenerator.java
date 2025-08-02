@@ -352,9 +352,12 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.BREE_SHERIFF, manBreeLeatherIronSword);
 		makeEntity(ExtendedEntities.DWARVEN_MINER, dwarfDurinsFolk, foodItems);
 		makeEntity(ExtendedEntities.DWARVEN_SMITH, dwarfDurinsFolk, foodItems);
+		makeEntity(ExtendedEntities.DWARVEN_COMMANDER, dwarfDurinsFolk, foodItems);
 		makeEntity(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT, dwarfBlueMountians, mugs, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_MINER, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_SMITH, dwarfBlueMountians, foodItems);
+		makeEntity(ExtendedEntities.BLUE_DWARVEN_BARTENDER, dwarfBlueMountians, foodItems);
+		makeEntity(ExtendedEntities.BLUE_DWARVEN_COMMANDER, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.GUNDABAD_CAMP_TRADER, orcGundabad);
 		makeEntity(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN, orcGundabad);
 		makeEntity(ExtendedEntities.DUCK, makeQuickyBaseCommon("duck", LootTable.lootTable()
@@ -420,10 +423,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.add(EItemLootEntry.lootItem(ExtendedItems.BARROW_BLADE.get()).setWeight(20).setDamageRange(0.6F, 0.8F).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(5).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setExactly(1))));
-		makeEntity(ExtendedEntities.HIRED_DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN, manBase, arrows, rareDunedainRangerDrops);
-		makeEntity(ExtendedEntities.HIRED_BREE_GUARD, manBree);
-		makeEntity(ExtendedEntities.HIRED_GUNDABAD_ORC, orcGundabad);
 		makeEntity(ExtendedEntities.BREE_MERCHANT, manBree); // TODO: Maybe add some other drops here?
 		makeEntity(ExtendedEntities.BREE_FARMER, manBree);
 		makeEntity(ExtendedEntities.BREE_POTTER, manBree);

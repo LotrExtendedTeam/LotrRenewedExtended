@@ -14,6 +14,8 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
@@ -55,7 +57,10 @@ public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity imp
 	}
 
 	@Override
-	public ResourceLocation getHireableProfile() {
-		return ExtendedHiredUnitTypes.GUNDABAD_ORC;
+	public List<ResourceLocation> getHireableProfiles() {
+		return java.util.Arrays.asList(ExtendedHiredUnitTypes.GUNDABAD_ORC, 
+			ExtendedHiredUnitTypes.GUNDABAD_ORC_ARCHER,
+			ExtendedHiredUnitTypes.GUNDABAD_URUK, 
+			ExtendedHiredUnitTypes.GUNDABAD_URUK_ARCHER);
 	}
 }

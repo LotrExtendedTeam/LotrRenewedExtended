@@ -7,7 +7,8 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 
-import lotr.common.entity.npc.ExtendedHirableEntity;
+import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.loot.ILootSerializer;
 import net.minecraft.loot.LootConditionType;
@@ -34,7 +35,7 @@ public class ExtendedRemoveUnitCoinDrops implements ILootCondition {
 	@Override
 	public boolean test(LootContext context) {
 		Entity entity = context.getParamOrNull(LootParameters.THIS_ENTITY);
-		return !(entity instanceof ExtendedHirableEntity);
+		return !(entity instanceof NPCEntity && ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty());
 	}
 
 	public static ILootCondition.IBuilder setRemoveUnitCoinsDropBuilder() {

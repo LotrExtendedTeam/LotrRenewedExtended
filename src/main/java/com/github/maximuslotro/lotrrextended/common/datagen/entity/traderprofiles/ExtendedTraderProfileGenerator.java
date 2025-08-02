@@ -120,7 +120,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(LOTRItems.GREEN_APPLE, 1)
 		.addSBuy(Items.APPLE, 1)
 		.addSBuy(LOTRItems.SALT, 10)
-		.addSBuy(LOTRItems.CLAY_PLATE, 2)
+		.addSBuy(LOTRItems.CLAY_PLATE, 1)
 		// TODO add corn bread, mushroom pie, berry pie, lemon cake
 		.addSSell(Items.BREAD, 5)
 		.addSSell(Items.PUMPKIN_PIE, 8)
@@ -502,7 +502,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.PLUM_SAPLING, 10)
 		.save(pConsumer, ExtendedTraderTypes.BREE_LUMBERMAN);
 
-		make(0)
+		make(0).setTypicallyWandering()
 		.addSBuy(new ItemStack(LOTRItems.DRYSTONE.get(), 16), 4)
 		.addSBuy(new ItemStack(LOTRItems.MAPLE_LOG.get(), 16), 4)
 		.addSBuy(LOTRItems.HOBBIT_OVEN, 30)
@@ -554,7 +554,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.LARGE_POT, 7)
 		.addSSell(ExtendedItems.LARGE_FLOWER_POT, 7)
 		.addSSell(LOTRItems.CLAY_MUG, 3)
-		.addSSell(new ItemStack(LOTRItems.CLAY_PLATE.get(), 2), 2)
+		.addSSell(LOTRItems.CLAY_PLATE, 2)
 		.addSSell(LOTRItems.CERAMIC_MUG, 4)
 		.addSSell(new ItemStack(LOTRItems.STONEWARE_PLATE.get(), 2), 3)
 		.addSSell(new ItemStack(Items.TERRACOTTA, 4), 5)
@@ -648,8 +648,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(new ItemStack(Items.WHEAT, 3), 1)
 		.addSBuy(new ItemStack(Items.SUGAR, 3), 1)
 		.addSBuy(Items.CARROT, 1)
-		.addSBuy(Items.APPLE, 2)
-		.addSBuy(LOTRItems.GREEN_APPLE, 2)
+		.addSBuy(Items.APPLE, 1)
+		.addSBuy(LOTRItems.GREEN_APPLE, 1)
 		.addSBuy(ExtendedItems.PLUM, 2)
 		.addSBuy(Items.WATER_BUCKET, 4)
 		.addSBuy(Items.HAY_BLOCK, 3)
@@ -697,9 +697,9 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.IRON_INGOT, 3)
 		.addSBuy(LOTRItems.BRONZE_INGOT.get(), 3)
 		.addSBuy(ExtendedItems.DIAMOND.get(), 25)
-		.addSBuy(ExtendedItems.EMERALD.get(), 25)
+		.addSBuy(ExtendedItems.EMERALD.get(), 15)
 		.addSBuy(ExtendedItems.SAPPHIRE.get(), 12)
-		.addSBuy(ExtendedItems.RUBY.get(), 20)
+		.addSBuy(ExtendedItems.RUBY.get(), 12)
 		.addSBuy(ExtendedItems.OPAL.get(), 10)
 		.addSBuy(ExtendedItems.PEARL.get(), 25)
 		.addSBuy(new ItemStack(Items.STRING, 3), 1)
@@ -736,7 +736,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.GUNDABAD_URUK_BOW, 20)
 		.save(pConsumer, ExtendedTraderTypes.GUNDABAD_TRADER);
 
-		make(0)
+		make(5).setTypicallyWandering()
 		// TODO add venison
 		.addSBuy(LOTRItems.BRONZE_INGOT.get(), 3)
 		.addSBuy(LOTRItems.COPPER_INGOT, 3)
@@ -783,7 +783,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addDrinkSell(LOTRItems.DWARVEN_TONIC, 10, 14, 18)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_MERCHANT);
 
-		make(100)
+		make(100).setTypicallyWandering()
 		// TODO add toll bones, coral
 		.addSBuy(Items.FEATHER, 2)
 		.addSBuy(Items.IRON_INGOT, 3)
@@ -811,7 +811,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addDrinkSell(LOTRItems.MIRUVOR, 6, 8, 10)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_WANDERER);
 
-		make(75)
+		make(75).setTypicallyWandering()
 		// TODO add coral, troll bones
 		.addSBuy(Items.FEATHER, 2)
 		.addSBuy(Items.IRON_INGOT, 3)
@@ -848,7 +848,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addDrinkSell(LOTRItems.MIRUVOR, 6, 8, 10)
 		.save(pConsumer, ExtendedTraderTypes.GALADHRIM_WANDERER);
 
-		make(0)
+		make(0).setTypicallyWandering()
 		// TODO add party hats, blue dwarven ingot, coral
 		.addSBuy(ExtendedItems.BLACK_URUK_STEEL_INGOT, 5)
 		.addSBuy(LOTRItems.BRONZE_INGOT, 3)
@@ -1056,5 +1056,48 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(new ItemStack(LOTRItems.BLUE_DWARVEN_BARS.get(), 8), 25)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_SMITH);
 
+		make(10)
+		// TODO add raw venison, leek
+		.addSBuy(Items.BEEF, 3)
+		.addSBuy(Items.CHICKEN, 3)
+		.addSBuy(ExtendedItems.RAW_DUCK, 3)
+		.addSBuy(Items.MUTTON, 3)
+		.addSBuy(Items.RABBIT, 3)
+		.addSBuy(Items.POTATO, 1)
+		.addSBuy(Items.SALMON, 2)
+		.addSBuy(Items.COD, 2)
+		.addSBuy(new ItemStack(Items.WHEAT, 2), 1)
+		.addSBuy(LOTRItems.PIPEWEED_LEAF, 2)
+		.addSBuy(LOTRItems.SALT, 10)
+		.addSBuy(Items.BUCKET, 3)
+		.addSBuy(Items.WATER_BUCKET, 4)
+		.addSBuy(Items.COD_BUCKET, 6)
+		.addSBuy(Items.SALMON_BUCKET, 6)
+		.addSBuy(new ItemStack(Items.COAL, 2), 1)
+		// TODO add cooked venison, mushroom pie, leek soup
+		.addSSell(Items.COOKED_BEEF, 7)
+		.addSSell(Items.COOKED_PORKCHOP, 7)
+		.addSSell(Items.COOKED_MUTTON, 7)
+		.addSSell(Items.COOKED_CHICKEN, 6)
+		.addSSell(ExtendedItems.COOKED_DUCK, 6)
+		.addSSell(Items.COOKED_RABBIT, 6)
+		.addSSell(Items.BREAD, 5)
+		.addSSell(new ItemStack(Items.BAKED_POTATO, 2), 7)
+		.addSSell(Items.COOKED_SALMON, 6)
+		.addSSell(Items.COOKED_COD, 6)
+		.addSSell(Items.MUSHROOM_STEW, 10)
+		.addSSell(Items.RABBIT_STEW, 10)
+		.addSSell(LOTRItems.GAMMON, 7)
+		.addSSell(LOTRItems.CRAM, 8)
+		.addSSell(LOTRItems.CERAMIC_MUG, 2)
+		.addSSell(LOTRItems.STONEWARE_PLATE, 2)
+		.addSSell(LOTRItems.FINE_PLATE, 4)
+		.addDrinkSell(LOTRItems.ALE, 8, 10, 12)
+		.addDrinkSell(LOTRItems.DWARVEN_ALE, 10, 12, 14)
+		.addDrinkSell(LOTRItems.MEAD, 8, 10, 12)
+		.addDrinkSell(LOTRItems.DWARVEN_TONIC, 16, 18, 20)
+		.addSSell(new ItemStack(LOTRItems.PIPEWEED.get(), 4), 12)
+		.addSSell(LOTRItems.SMOKING_PIPE, 35)
+		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_BARTENDER);
 	}
 }

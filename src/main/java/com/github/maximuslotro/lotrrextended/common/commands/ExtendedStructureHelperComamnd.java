@@ -5,6 +5,8 @@ import java.util.List;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedLargePotTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
@@ -95,6 +97,18 @@ public class ExtendedStructureHelperComamnd {
 			((ExtendedWeaponRackTileEntity)tileentity).setContainedItem(ItemStack.EMPTY);
 			((ExtendedWeaponRackTileEntity)tileentity).setLootTable(resourceLocation, 0L);
 			source.sendSuccess(new StringTextComponent("Set Weapon Rack Location: "+resourceLocation.toString()), false);
+			return Command.SINGLE_SUCCESS;
+		}
+		if (tileentity instanceof ExtendedBookshelfTileEntity) {
+			((ExtendedBookshelfTileEntity)tileentity).clearContent();
+			((ExtendedBookshelfTileEntity)tileentity).setLootTable(resourceLocation, 0L);
+			source.sendSuccess(new StringTextComponent("Set Bookshelf Location: "+resourceLocation.toString()), false);
+			return Command.SINGLE_SUCCESS;
+		}
+		if (tileentity instanceof ExtendedLargePotTileEntity) {
+			((ExtendedLargePotTileEntity)tileentity).setContainedItem(ItemStack.EMPTY);
+			((ExtendedLargePotTileEntity)tileentity).setLootTable(resourceLocation, 0L);
+			source.sendSuccess(new StringTextComponent("Set Large Pot Location: "+resourceLocation.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}
 		if (tileentity instanceof LockableLootTileEntity) {

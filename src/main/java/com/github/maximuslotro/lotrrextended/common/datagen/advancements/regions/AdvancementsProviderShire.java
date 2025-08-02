@@ -93,4 +93,9 @@ public class AdvancementsProviderShire extends ExtendedBaseAdvancementType{
 		return "shire";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 25;
+	}
+
 }

@@ -92,4 +92,9 @@ public class AdvancementsProviderNearHarad extends ExtendedBaseAdvancementType{
 		return "near_harad";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 50;
+	}
+
 }

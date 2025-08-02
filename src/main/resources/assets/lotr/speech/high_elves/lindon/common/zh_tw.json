@@ -1,0 +1,135 @@
+{
+  "parent": "lotr:high_elves/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "沒有邪惡能進入林頓這片土地.",
+        "我們的王吉爾加拉德在與黑魔王的戰鬥中離世.",
+        "有些人說我們的領主瑟丹是中土大陸上最老的精靈.",
+        "我們的領主瑟丹沒有家系, 因為他是所有精靈中最年長的, 且也是第一批甦醒在東方的海邊的精靈之一."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "你帶來了什麼消息給林頓?",
+        "歡迎來到中土大陸上最後的美麗之地, #p.",
+        "歡迎來到造船者瑟丹的領地!",
+        "這片土地曾被吉爾加拉德統治, 諾多族的至高王. 但是他失蹤了, 很久以前, 在黑暗塔的圍攻.",
+        "在古老的日子這片土地曾經很美麗.",
+        "在古老的日子這片土地被稱為歐西瑞安, 曾是我們最初的族人的家園.",
+        "米斯龍德的港口是白船航向阿曼的地方.",
+        "只有精靈知道筆直航道的路徑.",
+        "大部分的諾多族居住在北方封地佛林頓.",
+        "南方封地哈靈頓市辛達精靈的家園, 在古老的日子裡他們是這片土地上最早的居民.",
+        "你看了那西方的島嶼嗎? 在貝爾蘭遭受破壞之前它們曾是巨大的丘陵.",
+        "在這片土地, 最後的美麗之地, 古老的記憶仍舊徘徊."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=noble"
+      },
+      "lines": [
+        "Ai! Mae govannen, arben na Lindon!",
+        "Mae govannen, arben nín"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north",
+        "biome": "#home"
+      },
+      "lines": [
+        "歡迎來到林頓, 遊俠.",
+        "Ai! Mae govannen Dúnadan! 歡迎來到林頓!",
+        "我們美麗的土地永遠歡迎北方的登丹人進入."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north"
+      },
+      "lines": [
+        "林頓的艾爾達跟登丹人長久以來是朋友.",
+        "在幾世紀以前林頓的精靈曾是亞爾諾的盟友,當亞爾諾在滅亡之前.",
+        "諾多族的至高王, 吉爾加拉德與登丹人在最後同盟之戰中並肩作戰, 且被索倫殺害當與伊蘭迪爾並肩作戰時."
+      ]
+    },
+    {
+      "conditions": {
+        "hired": "own"
+      },
+      "lines": [
+        "為林頓而戰!",
+        "Na Lindon!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "沒有邪惡能踏上這片最後的美麗之地!",
+        "你別想進入林頓.",
+        "#p, 你別想踏入林頓!",
+        "敵人是無法對林頓伸出魔爪的!",
+        "別讓你的影子玷汙了這片大海以東最後的美麗之地!",
+        "Na Lindon!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "敵人是無法對林頓伸出魔爪的!",
+        "我們只能接受沒有邪惡在林頓!",
+        "你別想把不幸帶來這裡, #p!",
+        "別讓你的影子玷汙了我們的美麗之地!",
+        "是誰把厄運帶來這裡?",
+        "我們不歡迎禍害進入我們的領土.離開，否則面對我們的憤怒!",
+        "你帶來了巨大的災禍, #p. 你別想更進一步踏入這裡.",
+        "離開, #p, 否則吃我一箭!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home"
+      },
+      "lines": [
+        "你不會再被歡迎到我們的領土!",
+        "我後悔我再林頓招待你!",
+        "我很後悔歡迎你來林頓!"
+      ]
+    }
+  ]
+}

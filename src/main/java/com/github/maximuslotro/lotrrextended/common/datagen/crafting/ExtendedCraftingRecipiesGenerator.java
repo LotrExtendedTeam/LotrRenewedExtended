@@ -720,6 +720,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			LOTRBlocks.NUMENOREAN_BRICK, LOTRBlocks.NUMENOREAN_BRICK_SLAB, LOTRRecipes.UMBAR_CRAFTING);
 		makeCarvedBlockRecipe(consumer, ExtendedBlocks.CARVED_UMBAR_BRICK,
 			LOTRBlocks.UMBAR_BRICK, LOTRBlocks.UMBAR_BRICK_SLAB, LOTRRecipes.UMBAR_CRAFTING);
+		makeThrowableAxeRecipe(consumer, ExtendedItems.LOSSARNACH_THROWABLE_AXE, Tags.Items.INGOTS_IRON, "iron", LOTRRecipes.GONDOR_CRAFTING);
 		//DWARVEN
 		make2x2BlockRecipe(consumer, ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK,
 			ExtendedItems.OBSIDIAN_SHARD, LOTRRecipes.DWARVEN_CRAFTING);
@@ -727,6 +728,13 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_SLAB,
 			ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_WALL,
 			()->ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK.get().asItem(), LOTRRecipes.DWARVEN_CRAFTING);
+		makeThrowableAxeRecipe(consumer, ExtendedItems.DWARVEN_THROWABLE_AXE, LOTRItems.DWARVEN_STEEL_INGOT, LOTRRecipes.DWARVEN_CRAFTING);
+		// BLUE MOUNTAIN DWARVEN
+		makeThrowableAxeRecipe(consumer, ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE, LOTRItems.DWARVEN_STEEL_INGOT, LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
+		// IRON 
+		makeThrowableAxeRecipe(consumer, ExtendedItems.IRON_THROWABLE_AXE, Tags.Items.INGOTS_IRON, "iron", null);
+		// BRONZE
+		makeThrowableAxeRecipe(consumer, ExtendedItems.BRONZE_THROWABLE_AXE, LOTRTags.Items.INGOTS_BRONZE, "bronze", null);
 		// Crystal Chandeliers
 		makeCrystalChandelierRecipe(consumer, ExtendedBlocks.EDHELVIR_CRYSTAL_CHANDELIER, LOTRItems.EDHELVIR_CRYSTAL, LOTRRecipes.ANY_HIGH_ELVEN);
 		makeCrystalChandelierRecipe(consumer, ExtendedBlocks.GLOWSTONE_CRYSTAL_CHANDELIER, LOTRItems.GLOWSTONE_CRYSTAL, null);
@@ -958,6 +966,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makePillarSlabRecipe(consumer, ExtendedBlocks.MOSSY_ARNOR_PILLAR,
 			ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB,
 			LOTRItems.MOSSY_ARNOR_BRICK, LOTRRecipes.RANGER_CRAFTING);
+		makePillarSlabRecipe(consumer, ExtendedBlocks.CRACKED_STONE_PILLAR,
+			ExtendedBlocks.CRACKED_STONE_PILLAR_SLAB,
+			()->Items.CRACKED_STONE_BRICKS, null);
 		GENERATEDRECIPES.add(ExtendedItems.LARGE_POT.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.LARGE_POT.get())
 		.pattern("# #")
@@ -977,7 +988,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeShieldRecipe(consumer, ExtendedItems.DUNEDAIN_SHIELD, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.RANGER_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.GUNDABAD_SHIELD, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.BREE_SHIELD, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.BREE_CRAFTING);
-		makeShieldRecipe(consumer, ExtendedItems.BLUE_DUNEDAIN_SHIELD, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.RANGER_CRAFTING);
+		makeShieldRecipe(consumer, ExtendedItems.BLUE_DWARVEN_SHIELD, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.RANGER_CRAFTING);
 		//Banners and patterns
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.DUNEDAIN_BANNER, ExtendedItems.DUNEDAIN_BANNER_PATTERN, LOTRRecipes.RANGER_CRAFTING);
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.HOBBIT_BANNER, ExtendedItems.HOBBIT_BANNER_PATTERN, LOTRRecipes.HOBBIT_CRAFTING);
@@ -1025,7 +1036,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('I', Ingredient.of(PLANKS))
 		.unlockedBy("has_"+ExtendedBlocks.WOODEN_BIRDCAGE.get().getRegistryName().getPath(), has(ExtendedBlocks.WOODEN_BIRDCAGE.get()))
 		.unlockedBy("has_sticks", has(STICKS))
-		.saveNoAdvancement(consumer, lotrLoc(ExtendedBlocks.WOODEN_BIRDCAGE.get().getRegistryName().getPath()));
+		.save(consumer, lotrLoc(ExtendedBlocks.WOODEN_BIRDCAGE.get().getRegistryName().getPath()));
 		makeBirdcageRecipe(consumer, ExtendedBlocks.BRONZE_BIRDCAGE, LOTRItems.BRONZE_BARS, ExtendedTags.Items.BRONZE_INGOT, null);
 		makeBirdcageRecipe(consumer, ExtendedBlocks.IRON_BIRDCAGE, ()->Items.IRON_BARS, Tags.Items.INGOTS_IRON, null);
 		makeBirdcageRecipe(consumer, ExtendedBlocks.SILVER_BIRDCAGE, LOTRItems.SILVER_BARS, LOTRTags.Items.INGOTS_SILVER, null);
@@ -1223,10 +1234,27 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 //			ExtendedBlocks.SMOOTH_LIMESTONE_SLAB,
 //			ExtendedBlocks.SMOOTH_LIMESTONE_WALL,
 //			ExtendedItems.SMOOTH_LIMESTONE, null);
+		GENERATEDRECIPES.add(ExtendedItems.DEAD_MOSS_VINES.get().getRegistryName().getPath());
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.DEAD_MOSS_VINES.get())
+		.requires(Ingredient.of(Items.VINE))
+		.requires(Ingredient.of(LOTRItems.SALT.get()))
+		.unlockedBy("has_string", has(LOTRItems.SALT.get()))
+		.save(consumer, lotrLoc(ExtendedItems.DEAD_MOSS_VINES.get().getRegistryName().getPath()));
 		// Dwarven
 		makeDoorRecipe(consumer, ()->ExtendedItems.DWARVEN_DOOR.get(), ()->Items.STONE, LOTRRecipes.DWARVEN_CRAFTING);
 		makeDoorRecipe(consumer, ()->ExtendedItems.DWARVEN_DOOR_LUIGON.get(), ()->LOTRItems.BLUE_ROCK.get(), LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
 		makeDoorRecipe(consumer, ()->ExtendedItems.DWARVEN_DOOR_CARGON.get(), ()->LOTRItems.RED_ROCK.get(), null);
+		GENERATEDRECIPES.add(ExtendedItems.HOIST.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.HOIST.get())
+		.pattern("LCL")
+		.pattern("GIG")
+		.pattern("LCL")
+		.define('L', Ingredient.of(LOGS))
+		.define('C', Ingredient.of(ExtendedTags.Items.CHAINS))
+		.define('G', Ingredient.of(LOTRItems.GATE_GEAR.get()))
+		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
+		.unlockedBy("has_"+LOTRItems.GATE_GEAR.get().getRegistryName().getPath(), has(LOTRItems.GATE_GEAR.get()))
+		.saveNoAdvancement(consumer, lotrLoc(ExtendedItems.HOIST.get().getRegistryName().getPath()));
 	}
 
 	private void addMissingRenewedRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -1474,6 +1502,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		// Extended cracked recipes from renewed blocks
 		makeStoneGrinderRecipe(consumer, LOTRBlocks.ARNOR_PILLAR, ExtendedItems.CRACKED_ARNOR_PILLAR);
 		makeStoneGrinderRecipe(consumer, LOTRBlocks.ARNOR_PILLAR_SLAB, ExtendedItems.CRACKED_ARNOR_PILLAR_SLAB);
+		makeStoneGrinderRecipe(consumer, LOTRBlocks.STONE_PILLAR, ExtendedItems.CRACKED_STONE_PILLAR);
+		makeStoneGrinderRecipe(consumer, LOTRBlocks.STONE_PILLAR_SLAB, ExtendedItems.CRACKED_STONE_PILLAR_SLAB);
 		// Extended cracked block recipes
 		makeStoneGrinderRecipe(consumer, ExtendedBlocks.DOL_GULDUR_BRICK, ExtendedItems.CRACKED_DOL_GULDUR_BRICK);
 		makeStoneGrinderRecipe(consumer, ExtendedBlocks.DOL_GULDUR_BRICK_SLAB, ExtendedItems.CRACKED_DOL_GULDUR_BRICK_SLAB);
@@ -1879,6 +1909,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_ARNOR_PILLAR, ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.MOSSY_ARNOR_PILLAR, ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_STONE_PILLAR, ExtendedBlocks.CRACKED_STONE_PILLAR_SLAB);
 
 //		makeStoneCutterRecipe(consumer, ExtendedBlocks.GNEISS_ROCK, ExtendedBlocks.GNEISS_ROCK_SLAB, 2);
 //		makeStoneCutterRecipe(consumer, ExtendedBlocks.GNEISS_ROCK, ExtendedBlocks.GNEISS_ROCK_STAIRS);
@@ -2049,7 +2080,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		for(RegistryObject<Block> blo : ExtendedBlocks.REGISTEREDPOTS.values()) {
 			GENERATEDRECIPES.add(blo.get().getRegistryName().getPath());
 		}
-		GENERATEDRECIPES.add(ExtendedItems.MORDOR_MOSS_VINES.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.BREE_WALL_BANNER.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.WILLOW_LOG.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.STRIPPED_WILLOW_LOG.get().getRegistryName().getPath());

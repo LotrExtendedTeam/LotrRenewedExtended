@@ -23,6 +23,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmland
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedHoistBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
@@ -174,7 +175,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedBirdcageBlock) {
-					genBirdcageBlockItem((ExtendedBirdcageBlock) block.getValue().get(), "block/"+block.getKey());
+					genBirdcageBlock((ExtendedBirdcageBlock) block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedCrucibleBlock) {
@@ -207,6 +208,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genChainBlock(block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
+				if(block.getValue().get() instanceof ExtendedHoistBlock) {
+					genCubeBlockItem(block.getValue().get(), "block/"+block.getKey());
+					continue;
+				}
 				if(block.getValue().get() instanceof ExtendedBerryHedgeBlock) {
 					genBushAge3Block(block.getValue().get(), "block/"+block.getKey());
 					continue;
@@ -216,7 +221,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedVineBlock) {
-					if(block.getValue()==ExtendedBlocks.MORDOR_MOSS_VINES) {
+					if(block.getValue()==ExtendedBlocks.DEAD_MOSS_VINES) {
 						genVineBlock((ExtendedVineBlock) block.getValue().get(), block.getKey(), true);
 					}else {
 						genVineBlock((ExtendedVineBlock) block.getValue().get(), block.getKey(), false);
@@ -518,7 +523,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 			}catch(IllegalArgumentException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		}
 		//Only Add entries to this loop if they depend on other models we are generating or are super-types of other block types
@@ -712,7 +717,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 			}catch(IllegalArgumentException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		}
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
@@ -1290,7 +1295,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
         });
 	}
 
-	private void genVineBlock(ExtendedVineBlock vine, String name, boolean isMordor) {
+	private void genVineBlock(ExtendedVineBlock vine, String name, boolean mossVines) {
 		registeredBlocks.add(vine);
 		ModelFile m_u;
 		ModelFile m_1;
@@ -1303,18 +1308,18 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ModelFile m_3u;
 		ModelFile m_4;
 		ModelFile m_4u;
-		if(isMordor) {
-			m_u = models().getExistingFile(lotrExtendedLoc(name+"_u"));
-			m_1 = models().getExistingFile(lotrExtendedLoc(name+"_1"));
-			m_1u = models().getExistingFile(lotrExtendedLoc(name+"_1u"));
-			m_2 = models().getExistingFile(lotrExtendedLoc(name+"_2"));
-			m_2_opposite = models().getExistingFile(lotrExtendedLoc(name+"_2_opposite"));
-			m_2u = models().getExistingFile(lotrExtendedLoc(name+"_2u"));
-			m_2u_opposite = models().getExistingFile(lotrExtendedLoc(name+"_2u_opposite"));
-			m_3 = models().getExistingFile(lotrExtendedLoc(name+"_3"));
-			m_3u = models().getExistingFile(lotrExtendedLoc(name+"_3u"));
-			m_4 = models().getExistingFile(lotrExtendedLoc(name+"_4"));
-			m_4u = models().getExistingFile(lotrExtendedLoc(name+"_4u"));
+		if(mossVines) {
+			m_u = models().withExistingParent("lotrextended:"+name+"_u", lotrExtendedLoc("block/template_moss_vines_u")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_1 = models().withExistingParent("lotrextended:"+name+"_1", lotrExtendedLoc("block/template_moss_vines_1")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_1u = models().withExistingParent("lotrextended:"+name+"_1u", lotrExtendedLoc("block/template_moss_vines_1u")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_2 = models().withExistingParent("lotrextended:"+name+"_2", lotrExtendedLoc("block/template_moss_vines_2")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_2_opposite = models().withExistingParent("lotrextended:"+name+"_2_opposite", lotrExtendedLoc("block/template_moss_vines_2_opposite")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_2u = models().withExistingParent("lotrextended:"+name+"_2u", lotrExtendedLoc("block/template_moss_vines_2u")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_2u_opposite = models().withExistingParent("lotrextended:"+name+"_2u_opposite", lotrExtendedLoc("block/template_moss_vines_2u_opposite")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_3 = models().withExistingParent("lotrextended:"+name+"_3", lotrExtendedLoc("block/template_moss_vines_3")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_3u = models().withExistingParent("lotrextended:"+name+"_3u", lotrExtendedLoc("block/template_moss_vines_3u")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_4 = models().withExistingParent("lotrextended:"+name+"_4", lotrExtendedLoc("block/template_moss_vines_4")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+			m_4u = models().withExistingParent("lotrextended:"+name+"_4u", lotrExtendedLoc("block/template_moss_vines_4u")).texture("vines", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
 		}else {
 			m_u = models().withExistingParent("lotrextended:"+name+"_u", lotrExtendedLoc("block/template_vine_u")).texture("vine", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
 			m_1 = models().withExistingParent("lotrextended:"+name+"_1", lotrExtendedLoc("block/template_vine_1")).texture("vine", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
@@ -1391,12 +1396,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+crucible.getRegistryName().getPath()).parent(modelFile);
 	}
 
-	private void genBirdcageBlockItem(ExtendedBirdcageBlock birdcage, String name) {
+	private void genBirdcageBlock(ExtendedBirdcageBlock birdcage, String cagePath) {
 		registeredBlocks.add(birdcage);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+birdcage.getRegistryName().getPath(), lotrExtendedLoc("block/template_birdcage"))
-									.texture("cage", lotrExtendedLoc("block/wooden_birdcage"));
+			.texture("cage", lotrExtendedLoc(cagePath));
 		simpleBlock(birdcage, modelFile);
-		itemModels().getBuilder("lotr:"+birdcage.getRegistryName().getPath()).parent(modelFile);
 	}
 
 	private void genMossCarpetBlockItem(ExtendedMossCarpetBlock carpet) {
@@ -1421,11 +1425,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	private void genCrystalChandelierBlock(ExtendedCrystalChandelierBlock crystal_chandelier, ResourceLocation texture) {
 		registeredBlocks.add(crystal_chandelier);
 		ModelFile modelFile1 = models().withExistingParent("lotrextended:"+crystal_chandelier.getRegistryName().getPath()+"_1", lotrExtendedLoc("block/template_hanging_crystal_1"))
-				.texture("center", lotrExtendedLoc("block/crystal_center_stone")).texture("chain", mcLoc("block/chain")).texture("crystal", texture);
+				.texture("center", lotrExtendedLoc("block/crystal_center_stone")).texture("chain", mcLoc("block/chain")).texture("crystal", texture).texture("particle", texture);
 		ModelFile modelFile2 = models().withExistingParent("lotrextended:"+crystal_chandelier.getRegistryName().getPath()+"_2", lotrExtendedLoc("block/template_hanging_crystal_2"))
-			.texture("center", lotrExtendedLoc("block/crystal_center_stone")).texture("chain", mcLoc("block/chain")).texture("crystal", texture);
+			.texture("center", lotrExtendedLoc("block/crystal_center_stone")).texture("chain", mcLoc("block/chain")).texture("crystal", texture).texture("particle", texture);
 		ModelFile modelFile3 = models().withExistingParent("lotrextended:"+crystal_chandelier.getRegistryName().getPath()+"_3", lotrExtendedLoc("block/template_hanging_crystal_3"))
-			.texture("center", lotrExtendedLoc("block/crystal_center_stone")).texture("chain", mcLoc("block/chain")).texture("crystal", texture);
+			.texture("center", lotrExtendedLoc("block/crystal_center_stone")).texture("chain", mcLoc("block/chain")).texture("crystal", texture).texture("particle", texture);
 		ConfiguredModel[] variant1 = ConfiguredModel.allYRotations(modelFile1, 0, false);
 		ConfiguredModel[] variant2 = ConfiguredModel.allYRotations(modelFile2, 0, false);
 		ConfiguredModel[] variant3 = ConfiguredModel.allYRotations(modelFile3, 0, false);
@@ -1493,7 +1497,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			ModelFile modelFile = models().withExistingParent("lotrextended:"+chandelier.getRegistryName().getPath(), lotrLoc("block/template_chandelier")).texture("chandelier", lotrExtendedLoc("block/"+name)).texture("chandelier_chain", lotrExtendedLoc("block/chandelier_chain_"+name.substring(0, name.length() - 11)));
 			simpleBlock(chandelier, modelFile);
 		}catch(IllegalArgumentException e) {
-			System.out.println("Using default chain model for "+name+", chandelier_chain_"+name.substring(0, name.length() - 11)+" not found.");
+			ExtendedLog.info(("Using default chain model for "+name+", chandelier_chain_"+name.substring(0, name.length() - 11)+" not found."));
 			ModelFile modelFile = models().withExistingParent("lotrextended:"+chandelier.getRegistryName().getPath(), lotrLoc("block/template_chandelier")).texture("chandelier", lotrExtendedLoc("block/"+name));
 			simpleBlock(chandelier, modelFile);
 		}

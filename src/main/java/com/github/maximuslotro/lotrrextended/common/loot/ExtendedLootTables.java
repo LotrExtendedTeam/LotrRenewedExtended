@@ -54,7 +54,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BREE_VILLAGE_LUMBERMAN_CHEST = registerChest("bree_village_lumberman");
 	public static final ResourceLocation BREE_VILLAGE_TREASURE_CHEST = registerChest("bree_village_treasure");
 	public static final ResourceLocation BREE_VILLAGE_STABLE_CHEST = registerChest("bree_village_stable");
-
+	
 	//public static final ResourceLocation BREE_TOWN_HOUSE_CHEST = registerChest("bree_town_house");
 	//public static final ResourceLocation BREE_TOWN_FARM_CHEST = registerChest("bree_town_farm");
 	//public static final ResourceLocation BREE_TOWN_SMITHY_CHEST = registerChest("bree_town_smithy");
@@ -63,15 +63,25 @@ public class ExtendedLootTables {
 	//public static final ResourceLocation BREE_TOWN_SHERIF_CHEST = registerChest("bree_town_sherif");
 	//public static final ResourceLocation BREE_TOWN_SHERIF_CONFISCATED_GOODS_CHEST = registerChest("bree_town_sherif_confiscated_goods");
 
+	public static final ResourceLocation BLUE_MOUNTAINS_MINE_CHEST = registerChest("blue_mountains_mine");
+	public static final ResourceLocation BLUE_MOUNTAINS_MINE_SUPPLY_CHEST = registerChest("blue_mountains_mine_supply");
+	public static final ResourceLocation BLUE_MOUNTAINS_HOUSE_CHEST = registerChest("blue_mountains_house");
+	public static final ResourceLocation BLUE_MOUNTAINS_SMITH_CHEST = registerChest("blue_mountains_smith");
+	public static final ResourceLocation BLUE_MOUNTAINS_STRONGHOLD_CHEST = registerChest("blue_mountains_stronghold");
+	public static final ResourceLocation BLUE_MOUNTAINS_FOOD_CHEST = registerChest("blue_mountains_food");
+	public static final ResourceLocation BLUE_MOUNTAINS_TREASURE_CHEST = registerChest("blue_mountains_treasure");
+
 	public static final ResourceLocation HOBBIT_KEGS = registerKeg("hobbit");
 	public static final ResourceLocation RANGER_KEGS = registerKeg("ranger");
 	public static final ResourceLocation GUNDABAD_KEGS = registerKeg("gundabad");
 	public static final ResourceLocation BREE_KEGS = registerKeg("bree");
+	public static final ResourceLocation BLUE_MOUNTAINS_KEGS = registerKeg("blue_mountains");
 
 	public static final ResourceLocation HOBBIT_VESSELS = registerVessels("hobbit");
 	public static final ResourceLocation RANGER_VESSELS = registerVessels("ranger");
 	public static final ResourceLocation GUNDABAD_VESSELS = registerVessels("gundabad");
 	public static final ResourceLocation BREE_VESSELS = registerVessels("bree");
+	public static final ResourceLocation BLUE_MOUNTAINS_VESSELS = registerVessels("blue_mountains");
 
 	public static final ResourceLocation HOBBIT_PLATES = registerPlate("hobbit");
 	public static final ResourceLocation RANGER_PLATES = registerPlate("ranger");
@@ -81,6 +91,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BREE_CHEESEMONGER_PLATES = registerPlate("bree_cheesemonger");
 	public static final ResourceLocation BREE_BUTCHER_PLATES = registerPlate("bree_butcher");
 	public static final ResourceLocation BREE_BAKERY_PLATES = registerPlate("bree_bakery");
+	public static final ResourceLocation BLUE_MOUNTAINS_PLATE = registerPlate("blue_mountains");
 
 	public static final ResourceLocation HOBBIT_WEAPONRACKS = registerWeaponRack("hobbit");
 	public static final ResourceLocation RANGER_WEAPONRACKS = registerWeaponRack("ranger");
@@ -91,6 +102,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BREE_SMITHY_WEAPONRACKS = registerWeaponRack("bree_smithy");
 	public static final ResourceLocation BREE_BUTCHER_WEAPONRACKS = registerWeaponRack("bree_butcher");
 	public static final ResourceLocation BREE_FARMER_WEAPONRACKS = registerWeaponRack("bree_farmer");
+	public static final ResourceLocation BLUE_MOUNTAIN_WEAPONRACKS = registerWeaponRack("blue_mountains");
 
 	public static void init() {}
 

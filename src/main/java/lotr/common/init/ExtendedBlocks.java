@@ -283,6 +283,9 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MOSSY_ARNOR_PILLAR;
 	public static RegistryObject<Block> MOSSY_ARNOR_PILLAR_SLAB;
 
+	public static RegistryObject<Block> CRACKED_STONE_PILLAR;
+	public static RegistryObject<Block> CRACKED_STONE_PILLAR_SLAB;
+
 	public static RegistryObject<Block> GOBLIN_BRICK;
 	public static RegistryObject<Block> GOBLIN_BRICK_SLAB;
 	public static RegistryObject<Block> GOBLIN_BRICK_STAIRS;
@@ -506,7 +509,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> LARGE_FLOWER_POT_CLOVER;
 	public static RegistryObject<Block> LARGE_FLOWER_POT_FOUR_CLOVER;
 	public static RegistryObject<Block> LARGE_FLOWER_POT_FERN;
-	public static RegistryObject<Block> MORDOR_MOSS_VINES;
+	public static RegistryObject<Block> DEAD_MOSS_VINES;
 
 	public static RegistryObject<Block> CROSSED_WATTLE_AND_DAUB;
 
@@ -528,4 +531,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> GULDURIL_CRYSTAL_CHANDELIER;
 
 	public static RegistryObject<Block> STONE_SIGN;
+	
+	public static RegistryObject<Block> HOIST;
 }

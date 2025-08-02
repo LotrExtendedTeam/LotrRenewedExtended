@@ -1,0 +1,141 @@
+{
+	"name": "lotrextended:blue_mountains/stronghold_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/stronghold/blue_mountains_stronghold_large_1",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"apply_waterlogging" : false,
+				"chunk_corner_offset" : -7,
+				"foundation_block": {
+					"Name": "lotr:blue_brick"
+				}
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/stronghold/blue_mountains_stronghold_large_2",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"apply_waterlogging" : false,
+				"chunk_corner_offset" : -7,
+				"foundation_block": {
+					"Name": "lotr:blue_brick"
+				}
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/stronghold/blue_mountains_stronghold_large_3",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"apply_waterlogging" : false,
+				"chunk_corner_offset" : -7,
+				"foundation_block": {
+					"Name": "lotr:blue_brick"
+				}
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/stronghold/blue_mountains_stronghold_large_4",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"apply_waterlogging" : false,
+				"chunk_corner_offset" : -7,
+				"foundation_block": {
+					"Name": "lotr:blue_brick"
+				}
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/stronghold/blue_mountains_stronghold_small_1",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"apply_waterlogging" : false,
+				"chunk_corner_offset" : 0,
+				"foundation_block": {
+					"Name": "lotr:blue_brick"
+				}
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/stronghold/blue_mountains_stronghold_small_2",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"apply_waterlogging" : false,
+				"chunk_corner_offset" : 0,
+				"foundation_block": {
+					"Name": "lotr:blue_brick"
+				}
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/stronghold/blue_mountains_stronghold_small_3",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"apply_waterlogging" : false,
+				"chunk_corner_offset" : 0,
+				"foundation_block": {
+					"Name": "lotr:blue_brick"
+				}
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/stronghold/blue_mountains_stronghold_small_4",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"apply_waterlogging" : false,
+				"chunk_corner_offset" : 0,
+				"foundation_block": {
+					"Name": "lotr:blue_brick"
+				}
+			}
+		},
+		{
+			"weight": 3,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/stronghold/blue_mountains_stronghold_alt_1",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"apply_waterlogging" : false,
+				"chunk_corner_offset" : -7,
+				"foundation_block": {
+					"Name": "lotr:dwarven_brick"
+				}
+			}
+		}
+	]
+}

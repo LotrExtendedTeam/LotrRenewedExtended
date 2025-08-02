@@ -28,6 +28,7 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.model.RenderMaterial;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedBlockRenderer {
@@ -126,7 +127,11 @@ public class ExtendedBlockRenderer {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
 			}
 			if(block instanceof ExtendedCrystalChandelierBlock) {
-				RenderTypeLookup.setRenderLayer(block, RenderType.translucent());
+				if(ModList.get().isLoaded("optfine")){
+					RenderTypeLookup.setRenderLayer(block, RenderType.solid());
+				}else {
+					RenderTypeLookup.setRenderLayer(block, RenderType.solid());
+				}
 			}
 		}
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.BLACKBERRY_BUSH.get(), RenderType.cutout());
@@ -136,6 +141,5 @@ public class ExtendedBlockRenderer {
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.RASPBERRY_BUSH.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.WILDBERRY_BUSH.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.GRASS_BLOCK_SLAB.get(), RenderType.cutoutMipped());
-
 	}
 }

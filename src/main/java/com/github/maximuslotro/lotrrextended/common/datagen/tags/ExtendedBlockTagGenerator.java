@@ -215,7 +215,7 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.add(LOTRBlocks.BLUE_ROCK.get()).add(LOTRBlocks.GONDOR_ROCK.get()).add(LOTRBlocks.MORDOR_ROCK.get())
 		.add(LOTRBlocks.RED_ROCK.get()).add(LOTRBlocks.ROHAN_ROCK.get());
 
-		tag(ExtendedTags.Blocks.MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_OVERWORLD).add(Blocks.VINE).add(ExtendedBlocks.MORDOR_MOSS_VINES.get())
+		tag(ExtendedTags.Blocks.MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_OVERWORLD).add(Blocks.VINE).add(ExtendedBlocks.DEAD_MOSS_VINES.get())
 		.add(ExtendedBlocks.WILLOW_VINES.get()).add(ExtendedBlocks.BARREN_DIRT.get()).addTag(Tags.Blocks.DIRT).add(ExtendedBlocks.MUD.get())
 		.add(ExtendedBlocks.MUD_GRASS.get());
 
@@ -282,7 +282,7 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		tag(BlockTags.FIRE).add(ExtendedBlocks.GREEN_FIRE_BLOCK.get());
 		tag(ExtendedTags.Blocks.GREEN_FIRE_BASE_BLOCKS).add(ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK.get());
 
-		tag(BlockTags.CLIMBABLE).add(ExtendedBlocks.ROPE.get()).add(ExtendedBlocks.MORDOR_MOSS_VINES.get()).add(ExtendedBlocks.WILLOW_VINES.get());
+		tag(BlockTags.CLIMBABLE).add(ExtendedBlocks.ROPE.get()).add(ExtendedBlocks.DEAD_MOSS_VINES.get()).add(ExtendedBlocks.WILLOW_VINES.get());
 
 		tag(ExtendedTags.Blocks.CHAINS).add(Blocks.CHAIN);
 

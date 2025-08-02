@@ -57,7 +57,7 @@ public class ExtendedBannerProtectionManager {
 		}
 		ExtendedDeniedType isInteractionDenied = getActualProtectionStatus(iWorld, pX, pY, pZ, protInstance);
 		if(doLog && isInteractionDenied!=ExtendedDeniedType.NOBANNER) {
-			ExtendedLog.infoHideable("BannerInstance[x="+pX+",y="+pY+",z="+pZ+",PE=["+protInstance.toString()+"], rejected="+isInteractionDenied+", source:"+source+"]", ExtendedServerConfig.enableExtendedLogging.get());
+			ExtendedLog.infoHideable(ExtendedServerConfig.enableExtendedLogging.get(), "BannerInstance[x="+pX+",y="+pY+",z="+pZ+",PE=["+protInstance.toString()+"], rejected="+isInteractionDenied+", source:"+source+"]");
 		}
 		return isInteractionDenied;
 	}

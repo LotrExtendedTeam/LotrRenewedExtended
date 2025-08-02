@@ -43,15 +43,14 @@ public class ExtendedCHireUnitPacket {
     }
 
     public static void handle(ExtendedCHireUnitPacket packet, Supplier<NetworkEvent.Context> context) {
-        Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.captainId);
-        if (!(entity instanceof ExtendedCaptainEntity)) {
+        Entity entityCaptain = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.captainId);
+        if (!(entityCaptain instanceof ExtendedCaptainEntity)) {
             ExtendedLog.error("Received a captain entity not of type ExtendedCaptainEntity from %s", Objects.requireNonNull(context.get().getSender()).getName().getString());
             context.get().setPacketHandled(true);
             return;
         }
 
-        ExtendedCaptainEntity captain = (ExtendedCaptainEntity) entity;
-        NPCEntity npc = (NPCEntity)captain;
+        NPCEntity captainNpc = (NPCEntity)entityCaptain;
         ServerPlayerEntity player = Objects.requireNonNull(context.get().getSender());
 
         ExtendedServerHiredUnitProfile unitProfile = ExtendedServerHiredUnitProfileManager.INSTANCE.get(packet.unitProfileID);
@@ -64,14 +63,14 @@ public class ExtendedCHireUnitPacket {
         }
 
         // verify the player has pledge if needed
-        if(unitProfile.isHiringRequiresPledge() && !playerData.getAlignmentData().isPledgedTo(npc.getFaction())) {
+        if(unitProfile.isHiringRequiresPledge() && !playerData.getAlignmentData().isPledgedTo(captainNpc.getFaction())) {
         	player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_pledged"), Util.NIL_UUID);
             context.get().setPacketHandled(true);
             return;
         }
 
         // verify the player has enough alignment
-        if(unitProfile.getHiringAlignmentRequired() > playerData.getAlignmentData().getAlignment(npc.getFaction())) {
+        if(unitProfile.getHiringAlignmentRequired() > playerData.getAlignmentData().getAlignment(captainNpc.getFaction())) {
         	player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_alignment", unitProfile.getHiringAlignmentRequired()), Util.NIL_UUID);
             context.get().setPacketHandled(true);
             return;
@@ -84,17 +83,14 @@ public class ExtendedCHireUnitPacket {
         }
 
         // spawn the actual NPC
-        Entity newEntity = unitProfile.getUnitEntityType().spawn((ServerWorld) entity.level, null, player, new BlockPos(entity.getX(), entity.getY(), entity.getZ()), SpawnReason.NATURAL, false, false);
+        Entity newEntity = unitProfile.getUnitEntityType().spawn((ServerWorld) entityCaptain.level, null, player, new BlockPos(entityCaptain.getX(), entityCaptain.getY(), entityCaptain.getZ()), SpawnReason.NATURAL, false, false);
 
-        if (newEntity != null) {
-            if (newEntity instanceof ExtendedHirableEntity) {
-                ((ExtendedHirableEntity) newEntity).tame(player);
-            }
+        if (newEntity != null && newEntity instanceof NPCEntity) {
+        	((ExtendedNPCEntity)newEntity).getUnitInfo().setNpcAsHired(player, unitProfile.getId());
             CoinUtils.removeCoins(player, player.inventory, unitProfile.getHiringCost());
             player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.unit_has_been_hired", new TranslationTextComponent(unitProfile.getEntityUnitTypeName()), unitProfile.getHiringCost()), Util.NIL_UUID);
-            ExtendedCriteriaTriggers.UNIT_HIRED_TRIGGER.trigger(player, entity.getType(), newEntity.getType(), unitProfile.getHiringCost());
+            ExtendedCriteriaTriggers.UNIT_HIRED_TRIGGER.trigger(player, entityCaptain.getType(), newEntity.getType(), unitProfile.getHiringCost());
         }
-
 
         context.get().setPacketHandled(true);
     }

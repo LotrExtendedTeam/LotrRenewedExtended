@@ -1,0 +1,18 @@
+{
+	"name": "lotrextended:blue_mountains/settlement/entrance_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_entrance_stair_1",
+				"processors": "minecraft:empty",
+				"foundation_block": {
+					"Name": "lotr:blue_brick"
+				}
+			}
+		}
+	]
+}

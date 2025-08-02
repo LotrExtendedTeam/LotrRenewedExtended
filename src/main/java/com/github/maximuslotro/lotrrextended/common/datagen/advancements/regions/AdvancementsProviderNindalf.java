@@ -35,4 +35,9 @@ public class AdvancementsProviderNindalf extends ExtendedBaseAdvancementType{
 		return "nindalf";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 5;
+	}
+
 }

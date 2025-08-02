@@ -54,7 +54,7 @@ public class HackyChairDatabase {
 		}
 		BlockPos pos = event.getPos();
 		if(!ExtendedServerConfig.enableChairSlabSitting.get() || (event.isCanceled() && !ExtendedServerConfig.enableChairProtectionOverride.get())) {
-			ExtendedLog.infoHideable("ChairInterraction["+pos.toString()+", Status Disabled: [Config Disabled, or Protection Override]", ExtendedServerConfig.enableSpecialLogging.get());
+			ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Disabled: [Config Disabled, or Protection Override]");
 			return;
 		}
 		// Check for valid player
@@ -72,7 +72,7 @@ public class HackyChairDatabase {
 				}
 				// Players can't sit on vertical slabs
 				if(state.getBlock() instanceof VerticalOnlySlabBlock) {
-					ExtendedLog.infoHideable("ChairInterraction["+pos.toString()+", Status Denied: [No Vertial Slab Sitting]", ExtendedServerConfig.enableSpecialLogging.get());
+					ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [No Vertial Slab Sitting]");
 					return;
 				}
 				if(state.getBlock() instanceof SlabBlock && state.hasProperty(SlabBlock.TYPE)) {
@@ -81,23 +81,23 @@ public class HackyChairDatabase {
 						// Check if vertical slab, players can't sit on vertical slabs
 						if(state.getBlock() instanceof AxialSlabBlock && state.hasProperty(BlockStateProperties.AXIS)) {
 							if(state.getValue(BlockStateProperties.AXIS)!=Axis.Y) {
-								ExtendedLog.infoHideable("ChairInterraction["+pos.toString()+", Status Denied: [No Vertial Slab Sitting]", ExtendedServerConfig.enableSpecialLogging.get());
+								ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [No Vertial Slab Sitting]");
 								return;
 							}
 						}
 						addNewChair(world, pos, event.getPlayer(), null);
 						return;
 					}else {
-						ExtendedLog.infoHideable("ChairInterraction["+pos.toString()+", Status Denied: [No Upper/Vertical Slab Sitting]", ExtendedServerConfig.enableSpecialLogging.get());
+						ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [No Upper/Vertical Slab Sitting]");
 					}
 				}else {
-					ExtendedLog.infoHideable("ChairInterraction["+pos.toString()+", Status Denied: [Not a Slab or Stair Block]", ExtendedServerConfig.enableSpecialLogging.get());
+					ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [Not a Slab or Stair Block]");
 				}
 			}else {
-				ExtendedLog.infoHideable("ChairInterraction["+pos.toString()+", Status Denied: [Invalid Chair Location]", ExtendedServerConfig.enableSpecialLogging.get());
+				ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [Invalid Chair Location]");
 			}
 		}else {
-			ExtendedLog.infoHideable("ChairInterraction["+pos.toString()+", Status Denied: [Hand Not Empty, Not Shifting, or Is Passanger]", ExtendedServerConfig.enableSpecialLogging.get());
+			ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [Hand Not Empty, Not Shifting, or Is Passanger]");
 		}
 	}
 
@@ -119,7 +119,7 @@ public class HackyChairDatabase {
 			}
 		}
 		rider.startRiding(chair);
-		ExtendedLog.infoHideable("ChairInterraction["+pos.toString()+", Status Allowed: [layer Sitting]", ExtendedServerConfig.enableSpecialLogging.get());
+		ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Allowed: [layer Sitting]");
 	}
 
 	@SubscribeEvent

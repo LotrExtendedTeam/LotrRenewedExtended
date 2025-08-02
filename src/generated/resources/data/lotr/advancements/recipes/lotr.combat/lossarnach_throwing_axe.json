@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:lossarnach_throwing_axe"
+    ]
+  },
+  "criteria": {
+    "has_lossarnach_throwing_axe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:lossarnach_throwing_axe"
+          }
+        ]
+      }
+    },
+    "has_iron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/iron"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:lossarnach_throwing_axe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_lossarnach_throwing_axe",
+      "has_iron",
+      "has_the_recipe"
+    ]
+  ]
+}

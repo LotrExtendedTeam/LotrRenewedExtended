@@ -15,5 +15,6 @@ public class ExtendedCommands {
 		//ExtendedStructureScanningCommand.register(dispatcher);
 		//ExtendedStructureSummonv2.register(dispatcher);
 		ExtendedConfigCommand.register(dispatcher);
+		ExtendedTriggerCommand.register(dispatcher);
 	}
 }

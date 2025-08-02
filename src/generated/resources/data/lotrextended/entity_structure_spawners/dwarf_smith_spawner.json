@@ -10,7 +10,7 @@
       "weight": 100,
       "minSpawnCount": 1,
       "maxSpawnCount": 1,
-      "entity_type": "lotr:dwarf_smith"
+      "entity_type": "lotr:dwarven_smith"
     }
   ]
 }

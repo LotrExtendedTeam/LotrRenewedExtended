@@ -62,7 +62,7 @@ public class ExtendedSignTextProcessorManager extends ReloadListener<Map<String,
 
 		});
 		this.signtexts = builder.build();
-		ExtendedLog.infoParms("Loaded Structure Sign Texts from Json - %s lists", signtexts.size());
+		ExtendedLog.info("Loaded Structure Sign Texts from Json - %s lists", signtexts.size());
 	}
 
 	@Override

@@ -11,6 +11,7 @@ public class ExtendedMiscDataModule extends ExtendedPlayerDataModule {
 	private boolean hiredUnitFriendlyFire;
 	private boolean hiredUnitDeathMessages;
 	private boolean highContrastMessages;
+	private boolean hiredUnitInnerCombat;
 
 	public ExtendedMiscDataModule(LOTRPlayerData pd) {
 		super(pd);
@@ -21,6 +22,7 @@ public class ExtendedMiscDataModule extends ExtendedPlayerDataModule {
 		nbt.putBoolean("HiredUnitFriendlyFire", hiredUnitFriendlyFire);
 		nbt.putBoolean("HiredUnitDeathMessages", hiredUnitDeathMessages);
 		nbt.putBoolean("HighContrastMessages", highContrastMessages);
+		nbt.putBoolean("HiredUnitInnerCombat", hiredUnitInnerCombat);
 	}
 
 	@Override
@@ -32,6 +34,7 @@ public class ExtendedMiscDataModule extends ExtendedPlayerDataModule {
 			hiredUnitDeathMessages = nbt.getBoolean("HiredUnitDeathMessages");
 		}
 		highContrastMessages = nbt.getBoolean("HighContrastMessages");
+		hiredUnitInnerCombat = nbt.getBoolean("HiredUnitInnerCombat");
 	}
 
 	@Override
@@ -39,6 +42,7 @@ public class ExtendedMiscDataModule extends ExtendedPlayerDataModule {
 		buf.writeBoolean(hiredUnitFriendlyFire);
 		buf.writeBoolean(hiredUnitDeathMessages);
 		buf.writeBoolean(highContrastMessages);
+		buf.writeBoolean(hiredUnitInnerCombat);
 	}
 
 	@Override
@@ -46,10 +50,15 @@ public class ExtendedMiscDataModule extends ExtendedPlayerDataModule {
 		hiredUnitFriendlyFire = buf.readBoolean();
 		hiredUnitDeathMessages = buf.readBoolean();
 		highContrastMessages = buf.readBoolean();
+		hiredUnitInnerCombat = buf.readBoolean();
 	}
 
 	public boolean canHurtHiredUnits() {
 		return hiredUnitFriendlyFire;
+	}
+
+	public boolean canHiredUnitAttackOtherHiredUnit() {
+		return hiredUnitInnerCombat;
 	}
 
 	public boolean shouldShowHiredUnitDeathMessages() {
@@ -85,6 +94,12 @@ public class ExtendedMiscDataModule extends ExtendedPlayerDataModule {
 				this.markDirty();
 				this.sendPacketToClientExtended(new ExtendedDualTogglePacket(ExtendedNetworkToggles.HIGH_CONTRAST_MESSAGES, highContrastMessages));
 			}
+		}else if(type==ExtendedNetworkToggles.UNIT_V_UNIT) {
+			if (this.hiredUnitInnerCombat != toggle) {
+				this.hiredUnitInnerCombat = toggle;
+				this.markDirty();
+				this.sendPacketToClientExtended(new ExtendedDualTogglePacket(ExtendedNetworkToggles.UNIT_V_UNIT, hiredUnitInnerCombat));
+			}
 		}
 	}
 
@@ -101,5 +116,10 @@ public class ExtendedMiscDataModule extends ExtendedPlayerDataModule {
 	public void toggleHighContrastMessagesAndSendToServer() {
 		this.highContrastMessages = !this.highContrastMessages;
 		this.sendPacketToServerExtended(new ExtendedDualTogglePacket(ExtendedNetworkToggles.HIGH_CONTRAST_MESSAGES, highContrastMessages));
+	}
+
+	public void toggleCombatBetweenUnitsAndSendToServer() {
+		this.hiredUnitInnerCombat = !this.hiredUnitInnerCombat;
+		this.sendPacketToServerExtended(new ExtendedDualTogglePacket(ExtendedNetworkToggles.UNIT_V_UNIT, hiredUnitInnerCombat));
 	}
 }

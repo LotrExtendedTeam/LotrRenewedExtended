@@ -228,14 +228,22 @@ public class ExtendedServerHiredUnitProfile {
 			this.attackType = pAttackType;
 			this.unitEntityType = unitEntityType;
 			this.modId = modId;
+			// TODO remove and replace with new version of setLocals
+			this.entity_title = "entity."+modId+".hiredunits.entity_title";
+			DataGenValueHolder.hiredUnitStrings.put(entity_title, "%1$s the %2$s");
+			this.entity_shortname = "entity."+modId+".hiredunits.entity_shortname";
+			DataGenValueHolder.hiredUnitStrings.put(entity_shortname, "%1$s");
+			this.entity_unit_type = unitEntityType.getDescriptionId();
+			this.translateStrings = true;
 		}
 
 		/**
 		 * Set Hired Unit string localization.
 		 * @param translateStrings Whether to use translation keys or raw strings
- * @param nameKey The key suffix used for localization keys
- * @param name The display name used if not translating
- * @return This builder instance for chaining
+		 * @param nameKey The key suffix used for localization keys
+		 * @param name The display name used if not translating
+		 * @return This builder instance for chaining
+		 * @deprecated Needs a complete re-write as the way hired unit name and title locals worked was changed, but kept in a working state so LOTR Companions can properly generate unit profiles
 		 */
 		public ExtendedServerHiredUnitProfile.Builder setLocal(boolean translateStrings, String nameKey, String name) {
 			this.translateStrings = translateStrings;
@@ -258,9 +266,9 @@ public class ExtendedServerHiredUnitProfile {
 		 * Set Hired Unit purchase info.
 		 * 
 		 * @param cost The hiring cost (minimum 1)
- * @param pledgeRequired Whether hiring requires a pledge
- * @param alignmnetRequired The alignment required to hire (minimum 1)
- * @return This builder instance for chaining
+		 * @param pledgeRequired Whether hiring requires a pledge
+		 * @param alignmnetRequired The alignment required to hire (minimum 1)
+		 * @return This builder instance for chaining
 		 */
 		public ExtendedServerHiredUnitProfile.Builder setPurchaseInfo(int cost, boolean pledgeRequired, int alignmnetRequired) {
 			this.hiringRequiresPledge = pledgeRequired;

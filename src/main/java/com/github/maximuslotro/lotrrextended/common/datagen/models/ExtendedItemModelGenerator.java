@@ -5,7 +5,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
@@ -15,6 +17,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
 import lotr.common.block.ChandelierBlock;
 import lotr.common.block.LOTRDoorBlock;
@@ -94,6 +97,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedBirdcageBlock) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof VesselDrinkBlock) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
@@ -102,12 +109,16 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedCrystalChandelierBlock) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedChainBlock) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedVineBlock) {
-				if(item.getKey().contains(ExtendedItems.MORDOR_MOSS_VINES.get().getRegistryName().getPath())) {
+				if(item.getKey().contains(ExtendedItems.DEAD_MOSS_VINES.get().getRegistryName().getPath())) {
 					genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()+"_hand"));
 					continue;
 				}else {
@@ -185,7 +196,8 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 			if((item.getValue().get() instanceof LOTRPickaxeItem) || (item.getValue().get() instanceof LOTRShovelItem)
 					|| (item.getValue().get() instanceof LOTRAxeItem)
-					|| (item.getValue().get() instanceof LOTRHoeItem) ) {
+					|| (item.getValue().get() instanceof LOTRHoeItem)
+					|| (item.getValue().get() instanceof ExtendedThrowableAxeItem)) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}

@@ -1,0 +1,137 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "A few moons more at the forge, and then I shall have the armour I need to go out hunting those Rakhâs!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend & <oathfriend"
+      },
+      "lines": [
+        "You are not one of the Khazâd, #p, but you seem friendly enough."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<axebearer"
+      },
+      "lines": [
+        "Stature you may have, but a fine beard you have not!",
+        "You need to work on that beard, #p.",
+        "You may come of the race of Men, #p, but I've heard even Men can grow beards if they try! So where's yours? Ha! Ha!",
+        "No beard? I almost mistook you for an Elf."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=axebearer & <captain"
+      },
+      "lines": [
+        "I see you've been working on that beard, #p!",
+        "I see you are working on your beard. May it grow ever longer!",
+        "A fine beard you have underway there! Ha! Ha!",
+        "Stature you may have... and a beard on the way, it seems, but you have some growing to come yet!",
+        "Don't worry, #p. A beard like mine takes time to grow!",
+        "Is that the beginning of a beard I see upon your chin, #p? Did you heed my advice?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain"
+      },
+      "lines": [
+        "Stature you have, and a fine beard to go with it! Well grown, #p!",
+        "A most respectable beard you have, #p. Scarcely shorter than my own! Ha! Ha!",
+        "I never thought I'd see the day when one of the race of Men grew a beard to rival mine own!",
+        "My dear friend #p, with a beard full-grown? I scarcely recognised you!",
+        "A fine beard indeed, #p, and may it grow ever longer!",
+        "Who said the race of Men could not grow beards! You've done a fine job, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:durins_folk"
+      },
+      "lines": [
+        "Bear any news from our western kin?",
+        "Well met, dwarf-friend!",
+        "Did King Dain send you?",
+        "We dwarves of the Ered Luin have long been close to our western kin."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Don't expect to get the better of me, you rowdy lad!",
+        "You are no match for the Dwarves of Ered Luin!",
+        "You should not have come here, #p!",
+        "I'll cleave your miserable skull in twain!",
+        "Come on, lad! Show me what you've got!",
+        "Suffer the wrath of the Dwarves, #p!",
+        "Came you here only to be crushed?",
+        "Draw your last breath, #p!",
+        "No Dwarven ale for you!",
+        "Raaarrrgh!",
+        "I'll crush you like a rock, lad!",
+        "You have underestimated us, #p!",
+        "You're a nasty piece of work, #p!",
+        "What were you thinking, picking a fight with me? Ha!",
+        "Woe and ruin upon you and your kin, #p!",
+        "Khazâd ai-mênu!",
+        "Khazâdûlbanabâd ai-mênu!",
+        "For Ulbanabâd!",
+        "May you roast in dragon-fire!",
+        "Had you a beard, I would tear it from your chin!",
+        "Is this what passes for a warrior among beardless folk?",
+        "Come here, you beardless wretch!",
+        "You couldn't grow a beard if you tried!",
+        "You stink like a pack of Rakhâs!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "How dare you enter our lands?",
+        "You will pay for trespassing here!",
+        "You are not welcome in the Blue Mountains!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:dol_guldur | lotr:northern_orcs | lotr:angmar"
+      },
+      "lines": [
+        "Out with you, Morgul-scum!",
+        "Begone, Rukhs-scum!",
+        "Run back to the Rakhâs you serve!",
+        "Aghh curse the scum of Nargûn!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:dol_guldur | lotr:northern_orcs | lotr:angmar",
+        "biome": "#home"
+      },
+      "lines": [
+        "You will pay for trespassing here, Morgul-scum!"
+      ]
+    }
+  ]
+}

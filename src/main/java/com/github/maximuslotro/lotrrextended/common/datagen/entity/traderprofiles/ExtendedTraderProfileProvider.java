@@ -4,7 +4,12 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.TreeMap;
 import java.util.function.Consumer;
@@ -13,15 +18,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
+import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
 import com.google.gson.Gson;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public abstract class ExtendedTraderProfileProvider implements IDataProvider {
@@ -30,6 +38,9 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 	private final Map<ResourceLocation, ExtendedTraderProfile> dataHere = new TreeMap<>();
 	protected final DataGenerator dataGenerator;
 	protected final String modId;
+
+	private final Map<ItemStack, List<Integer>> soldItems = new HashMap<>();
+	private final Map<ItemStack, List<Integer>> boughtItems = new HashMap<>();
 
 	public ExtendedTraderProfileProvider(DataGenerator pDataGenerator, String pModId) {
 		this.dataGenerator = pDataGenerator;
@@ -42,24 +53,77 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 	public void run(DirectoryCache pCache) throws IOException {
 		Path path = this.dataGenerator.getOutputFolder();
 		Consumer<ExtendedTraderProfile> consumer = (spawner) -> {
-	         if (dataHere.put(spawner.getId(), spawner)!=null) {
-	            throw new IllegalStateException("Duplicate trader profile " + spawner.getId().toString());
-	         } else {
-	            Path path1 = createPath(path, spawner);
+			if (dataHere.put(spawner.getId(), spawner)!=null) {
+				throw new IllegalStateException("Duplicate trader profile " + spawner.getId().toString());
+			} else {
+				for(ExtendedTraderPoolItem entry : spawner.getTraderBoughtPool()) {
+					for(ItemStack stack : entry.getAllStacks()) {
+						if(boughtItems.containsKey(stack)) {
+							List<Integer> costs = boughtItems.get(stack);
+							if(!costs.contains(entry.getAverageCost())) {
+								costs.add(entry.getAverageCost());
+								boughtItems.replace(stack, costs);
+							}
+						}else {
+							boughtItems.put(stack, new ArrayList<>(Arrays.asList(entry.getAverageCost())));
+						}
+					}
+				}
+				for(ExtendedTraderPoolItem entry : spawner.getTraderSellPool()) {
+					for(ItemStack stack : entry.getAllStacks()) {
+						if(soldItems.containsKey(stack)) {
+							List<Integer> costs = soldItems.get(stack);
+							if(!costs.contains(entry.getAverageCost())) {
+								costs.add(entry.getAverageCost());
+								soldItems.replace(stack, costs);
+							}
+						}else {
+							soldItems.put(stack, new ArrayList<>(Arrays.asList(entry.getAverageCost())));
+						}
+					}
+				}
+				Path path1 = createPath(path, spawner);
+				try {
+					save(GSON_PRETTY_WRITER, pCache, spawner, path1);
+				} catch (IOException ioexception) {
+					LOGGER.error("Couldn't save trader profile {}", path1, ioexception);
+				}
 
-	            try {
-	               save(GSON_PRETTY_WRITER, pCache, spawner, path1);
-	            } catch (IOException ioexception) {
-	               LOGGER.error("Couldn't save trader profile {}", path1, ioexception);
-	            }
-
-	         }
-	      };
+			}
+		};
 		makeStructureSpawnPools(consumer);
-		ExtendedLog.infoShown("Built "+dataHere.size()+" trader profiles.");
-		for(ResourceLocation key : ExtendedTraderTypes.UNIT_TYPES) {
-			if(!dataHere.containsKey(key)) {
-				LOGGER.warn("Didn't make expected trader profile type: "+key.toString());
+		ExtendedLog.info("Built "+dataHere.size()+" trader profiles.");
+		if(modId.equals(LotrExtendedMod.MODID)) {
+			for(ResourceLocation key : ExtendedTraderTypes.TRADER_TYPES) {
+				if(!dataHere.containsKey(key)) {
+					LOGGER.warn("Didn't make expected trader profile type: "+key.toString());
+				}
+			}
+		}
+		for(Entry<ItemStack, List<Integer>> entrySold : soldItems.entrySet()) {
+			for(Entry<ItemStack, List<Integer>> entryBought : boughtItems.entrySet()) {
+				if(ItemStack.isSame(entrySold.getKey(), entryBought.getKey())) {
+					boolean isHigher = false;
+					for (Integer buyCost : entryBought.getValue()) {
+						for (Integer soldCost : entrySold.getValue()) {
+							float soldAmount = soldCost / (float)entrySold.getKey().getCount();
+							float boughtAmount = buyCost / (float)entryBought.getKey().getCount();
+							if(soldAmount<boughtAmount) {
+								LOGGER.warn(entrySold.getKey().toString() + " tried being sold for less than the raw buy price of " + soldCost + "<" + buyCost +":fraction:"+ soldAmount + "<" + boughtAmount);
+								isHigher = true;
+							}
+							if(soldAmount==boughtAmount) {
+								if(buyCost!=1 && soldCost!=1) {
+									LOGGER.warn(entrySold.getKey().toString() + " tried being sold same as the buy price of " + soldCost +":fraction:" + soldAmount);
+								}
+							}
+							// TODO better min-max price validation 
+							//if(soldAmount*0.75<boughtAmount*1.25) {
+							//	LOGGER.warn(entrySold.getKey().toString() + " tried being sold for less than the min-max buy price of " + soldCost + "<" + buyCost +":fraction:"+ soldAmount*0.75 + "<" + boughtAmount*1.25);
+							//}
+						}
+					}
+				}
 			}
 		}
 	}

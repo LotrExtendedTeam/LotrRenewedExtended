@@ -1,0 +1,31 @@
+{
+  "line0": {
+  },
+  "line1": {
+    "namebank": [
+      "lotr:npcs/names/bree_forename_male.txt"
+    ],
+    "shouldAddApostrophe": true
+  },
+  "line2": {
+    "string": [
+      "房屋",
+      "住所",
+      "棚屋",
+      "小屋",
+      "住處",
+      "小舍",
+      "蓬屋",
+      "小木屋",
+      "小農宅",
+      "休息所",
+      "荊棘棚屋",
+      "棚屋",
+      "隱匿處",
+      "房子",
+      "平房"
+    ]
+  },
+  "line3": {
+  }
+}

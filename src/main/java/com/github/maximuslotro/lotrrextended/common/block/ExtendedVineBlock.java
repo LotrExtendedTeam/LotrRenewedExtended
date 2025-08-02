@@ -2,20 +2,40 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.VineBlock;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.Tags.Items;
 
 public class ExtendedVineBlock extends VineBlock {
+	public static final BooleanProperty CLIPPED = BlockStateProperties.VINE_END;
 
-	public ExtendedVineBlock(Properties p_i48303_1_) {
-		super(p_i48303_1_);
+	public ExtendedVineBlock(Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.stateDefinition.any().setValue(UP, Boolean.valueOf(false))
+			.setValue(NORTH, Boolean.valueOf(false)).setValue(EAST, Boolean.valueOf(false)).setValue(SOUTH, Boolean.valueOf(false))
+			.setValue(WEST, Boolean.valueOf(false)).setValue(CLIPPED, Boolean.valueOf(false)));
+
 	}
 
+	@Override
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> pBuilder) {
+		pBuilder.add(UP, NORTH, EAST, SOUTH, WEST, CLIPPED);
+	}
 
 	@Override
 	public int getFireSpreadSpeed(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
@@ -24,17 +44,34 @@ public class ExtendedVineBlock extends VineBlock {
 
 	@Override
 	public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
-        return 1000;
-    }
+		return 1000;
+	}
+
+	@Override
+	public boolean isRandomlyTicking(BlockState pState) {
+		return !pState.getValue(CLIPPED);
+	}
+
+
+	@Override
+	public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity pPlayer, Hand hand, BlockRayTraceResult p_225533_6_) {
+		if(pPlayer.getItemInHand(hand).getItem().is(Items.SHEARS) && !blockState.getValue(CLIPPED)) {
+			blockState = blockState.setValue(CLIPPED, true);
+			world.setBlock(blockPos, blockState, 10);
+			world.playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), SoundEvents.SNOW_GOLEM_SHEAR, SoundCategory.PLAYERS, 0.5F, 0.4F / (this.RANDOM.nextFloat() * 0.4F + 0.8F));
+			pPlayer.getItemInHand(hand).hurtAndBreak(1, pPlayer, (player) -> player.broadcastBreakEvent(pPlayer.getUsedItemHand()));
+		}
+		return ActionResultType.sidedSuccess(world.isClientSide);
+	}
 
 	/**
-	 * make grow delay twice vanilla
+	 * make grow delay twice vanilla and add clipped properties
 	 */
 	@Override
 	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState pState, ServerWorld pLevel, BlockPos pPos, Random pRandom) {
 		// Extended Start
-		if (pLevel.random.nextInt(8) == 0 && pLevel.isAreaLoaded(pPos, 4)) { // Forge: check area to prevent loading unloaded chunks
+		if (pState.hasProperty(CLIPPED) && !pState.getValue(CLIPPED) &&pLevel.random.nextInt(8) == 0 && pLevel.isAreaLoaded(pPos, 4)) { // Forge: check area to prevent loading unloaded chunks
 			// Extended End
 			Direction direction = Direction.getRandom(pRandom);
 			BlockPos blockpos = pPos.above();

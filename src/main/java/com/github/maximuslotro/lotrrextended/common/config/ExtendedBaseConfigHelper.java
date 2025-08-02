@@ -9,6 +9,12 @@ import net.minecraftforge.fml.DatagenModLoader;
 
 public class ExtendedBaseConfigHelper {
 	protected static ForgeConfigSpec.BooleanValue createBooleanValue(Builder builder, String key, boolean defaultValue, boolean needsWorldRestart, String comment){
+		if(comment.isEmpty()) {
+			if (needsWorldRestart) {
+				builder.worldRestart();
+			}
+			return builder.define(key, defaultValue);
+		}
 		String transKey = String.format("config.%s.%s", LotrExtendedMod.MODID, key);
 		if(DatagenModLoader.isRunningDataGen()) {
 			DataGenValueHolder.configCommentHolders.put(transKey, comment);

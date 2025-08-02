@@ -17,25 +17,25 @@
     "hidden": false
   },
   "criteria": {
-    "trade_dwarf_smith_buy": {
+    "trade_dwarven_smith_buy": {
       "trigger": "lotrextended:trader_traded_with",
       "conditions": {
-        "entity": "lotr:dwarf_smith",
+        "entity": "lotr:dwarven_smith",
         "istraderselling": "false"
       }
     },
-    "trade_dwarf_smith_sell": {
+    "trade_dwarven_smith_sell": {
       "trigger": "lotrextended:trader_traded_with",
       "conditions": {
-        "entity": "lotr:dwarf_smith",
+        "entity": "lotr:dwarven_smith",
         "istraderselling": "true"
       }
     }
   },
   "requirements": [
     [
-      "trade_dwarf_smith_buy",
-      "trade_dwarf_smith_sell"
+      "trade_dwarven_smith_buy",
+      "trade_dwarven_smith_sell"
     ]
   ]
 }

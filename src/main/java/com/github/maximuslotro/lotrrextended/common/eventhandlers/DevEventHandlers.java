@@ -2,6 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedLargePotTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 
 import lotr.common.tileentity.KegTileEntity;
@@ -44,7 +46,7 @@ public class DevEventHandlers {
 		            		||commandname.contains("zone")||commandname.contains("area")||commandname.contains("discord")) {
 		            	if(player.getDisplayName().getString().equals("MaximustheMiner")||player.getDisplayName().getString().equals("WeirdBob")
 		            			||player.getDisplayName().getString().equals("ServantofMelkor")) {
-		            		ExtendedLog.infoShown("Dangerous command allowed for devs");
+		            		ExtendedLog.info("Dangerous command allowed for devs");
 		            	}
 		            	else {
 		            		ExtendedLog.warn("Blocked a dangerous command for non-devs: "+source.getEntity().getDisplayName().getString());
@@ -106,12 +108,32 @@ public class DevEventHandlers {
 			event.getPlayer().sendMessage(comp2, Util.NIL_UUID);
 			return;
 		}
-		if (tileentity instanceof ExtendedWeaponRackTileEntity&&((LockableLootTileEntity)tileentity).lootTable!=null && !event.getPlayer().isCrouching()) {
+		if (tileentity instanceof ExtendedWeaponRackTileEntity&&((ExtendedWeaponRackTileEntity)tileentity).lootTable!=null && !event.getPlayer().isCrouching()) {
 			event.setCanceled(true);
 			TextComponent comp = new StringTextComponent("Weapon rack item setting is disabled because devworld loot-table is set!");
 			comp.withStyle(TextFormatting.YELLOW);
 			event.getPlayer().sendMessage(comp, Util.NIL_UUID);
-			TextComponent comp2 = new StringTextComponent("Location: "+((LockableLootTileEntity)tileentity).lootTable.toString());
+			TextComponent comp2 = new StringTextComponent("Location: "+((ExtendedWeaponRackTileEntity)tileentity).lootTable.toString());
+			comp2.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp2, Util.NIL_UUID);
+			return;
+		}
+		if (tileentity instanceof ExtendedLargePotTileEntity&&((ExtendedLargePotTileEntity)tileentity).lootTable!=null && !event.getPlayer().isCrouching()) {
+			event.setCanceled(true);
+			TextComponent comp = new StringTextComponent("Large pot item setting is disabled because devworld loot-table is set!");
+			comp.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp, Util.NIL_UUID);
+			TextComponent comp2 = new StringTextComponent("Location: "+((ExtendedLargePotTileEntity)tileentity).lootTable.toString());
+			comp2.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp2, Util.NIL_UUID);
+			return;
+		}
+		if (tileentity instanceof ExtendedBookshelfTileEntity&&((ExtendedBookshelfTileEntity)tileentity).lootTable!=null && !event.getPlayer().isCrouching()) {
+			event.setCanceled(true);
+			TextComponent comp = new StringTextComponent("Bookshelf item setting is disabled because devworld loot-table is set!");
+			comp.withStyle(TextFormatting.YELLOW);
+			event.getPlayer().sendMessage(comp, Util.NIL_UUID);
+			TextComponent comp2 = new StringTextComponent("Location: "+((ExtendedBookshelfTileEntity)tileentity).lootTable.toString());
 			comp2.withStyle(TextFormatting.YELLOW);
 			event.getPlayer().sendMessage(comp2, Util.NIL_UUID);
 			return;

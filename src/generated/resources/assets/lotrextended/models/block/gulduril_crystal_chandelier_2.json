@@ -3,6 +3,7 @@
   "textures": {
     "center": "lotrextended:block/crystal_center_stone",
     "chain": "minecraft:block/chain",
-    "crystal": "lotr:block/gulduril_crystal"
+    "crystal": "lotr:block/gulduril_crystal",
+    "particle": "lotr:block/gulduril_crystal"
   }
 }

@@ -1,11 +1,11 @@
 {
   "id": "lotrextended:bree_guard",
-  "entity_type": "lotr:hired_bree_guard",
+  "entity_type": "lotr:bree_guard",
   "language": {
     "translateStrings": true,
-    "entity_title": "entity_title.lotrextended.hired_bree_guard",
-    "entity_shortname": "entity_shortname.lotrextended.hired_bree_guard",
-    "entity_unit_type": "entity_unit_type.lotrextended.hired_bree_guard",
+    "entity_title": "entity.lotrextended.hiredunits.entity_title",
+    "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
+    "entity_unit_type": "entity.lotr.bree_guard",
     "attack_type": "melee"
   },
   "hiring": {

@@ -55,8 +55,8 @@ public class ExtendedSpawners {
 	// RUINS ORC
 	public static final ResourceLocation GUNDABAD_ORC_RUIN = register("gundabad_orc_ruin_spawner");
 	// BREE HAMLETS
-	public static final ResourceLocation BREE_HAMLET_AREA_SPAWNER = register("bree_hamlet_area_spawner");
-	public static final ResourceLocation BREE_HAMLET_FAMILY_SPAWNER = register("bree_hamlet_family_spawner");
+	public static final ResourceLocation BREE_HAMLET_AREA = register("bree_hamlet_area_spawner");
+	public static final ResourceLocation BREE_HAMLET_FAMILY = register("bree_hamlet_family_spawner");
 	public static final ResourceLocation BREE_HAMLET_ANIMALS = register("bree_hamlet_animals_spawner");
 	public static final ResourceLocation BREE_HAMLET_FARMER = register("bree_hamlet_farmer_spawner");
 	public static final ResourceLocation BREE_HAMLET_GUARD_HOUSE = register("bree_hamlet_guard_house_spawner");
@@ -85,8 +85,15 @@ public class ExtendedSpawners {
 	public static final ResourceLocation BREE_VILLAGE_INN = register("bree_village_inn_spawner");
 	public static final ResourceLocation BREE_VILLAGE_STABLEMASTER = register("bree_village_stablemaster_spawner");
 	public static final ResourceLocation BREE_VILLAGE_MANOR_LORD = register("bree_village_manor_lord_spawner");
+	public static final ResourceLocation BREE_VILLAGE_MANOR_SHERIFF = register("bree_village_manor_sheriff_spawner");
 	// BLUE MOUNTAINS
 	public static final ResourceLocation BLUE_MOUNTIAN_SMITH = register("blue_mountains_smith_spawner");
+	public static final ResourceLocation BLUE_MOUNTIAN_COMMANDER = register("blue_mountains_commander_spawner");
+	public static final ResourceLocation BLUE_MOUNTIAN_STRONGHOLD = register("blue_mountains_stronghold_spawner");
+	public static final ResourceLocation BLUE_MOUNTIAN_STRONGHOLD_ALT = register("blue_mountains_stronghold_alt_spawner");
+	public static final ResourceLocation BLUE_MOUNTIAN_BARTENDER = register("blue_mountains_bartender_spawner");
+	public static final ResourceLocation BLUE_MOUNTIAN_FAMILY = register("blue_mountains_family_spawner");
+	public static final ResourceLocation BLUE_MOUNTIAN_AREA = register("blue_mountains_area_spawner");
 	// DWARVEN
 	public static final ResourceLocation DWARVEN_SMITH = register("dwarf_smith_spawner");
 

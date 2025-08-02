@@ -187,4 +187,9 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 		return "eriador";
 	}
 
+	@Override
+	public int getLegacyCount() {
+		return 55;
+	}
+
 }
