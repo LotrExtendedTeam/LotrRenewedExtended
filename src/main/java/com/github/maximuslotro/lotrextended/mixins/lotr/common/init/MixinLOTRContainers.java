@@ -64,8 +64,10 @@ public class MixinLOTRContainers {
 	 * @param defaultName A String English Localized name of the container for dataGen
 	 * @param sup A ContainerType supplier to build
 	 * @return A built RegistryObject for the container 
+	 * @Deprecated Don't use as our containers eventually should be in out namespace, this will be corrected someday
 	 * */
 	@Unique
+	@Deprecated
 	private static <T extends Container> RegistryObject<ContainerType<T>> register(String name, String defaultName, Supplier<ContainerType<T>> sup) {
 		if(DatagenModLoader.isRunningDataGen()) {
     		DataGenValueHolder.containerTitlesHolders.put("container.lotr."+name, defaultName);
