@@ -28,6 +28,9 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
+/**
+ * Modified version of {@link net.minecraft.entity.passive.horse.HorseEntity}
+ * */
 public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity {
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("556E1665-8B10-40C8-8F9D-CF9B1667F295");
 
@@ -83,9 +86,6 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 		this.setDropChance(EquipmentSlotType.CHEST, 0.0F);
 	}
 
-	/**
-	 * (abstract) Protected helper method to read subclass entity data from NBT.
-	 */
 	@Override
 	public void readAdditionalSaveData(CompoundNBT pCompound) {
 		super.readAdditionalSaveData(pCompound);
@@ -120,9 +120,6 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 		}
 	}
 
-	/**
-	 * Called by InventoryBasic.onInventoryChanged() on a array that is never filled.
-	 */
 	@Override
 	public void containerChanged(IInventory pInvBasic) {
 		ItemStack itemstack = this.getArmor();
@@ -147,15 +144,20 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 	}
 
 	@Override
+	public SoundEvent getSaddleSound() {
+		return SoundEvents.HORSE_SADDLE;
+	}
+
+	@Override
 	protected SoundEvent getAmbientSound() {
 		super.getAmbientSound();
-		return SoundEvents.HORSE_AMBIENT;
+		return SoundEvents.PIG_AMBIENT;
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
 		super.getDeathSound();
-		return SoundEvents.HORSE_DEATH;
+		return SoundEvents.PIG_DEATH;
 	}
 
 	@Override
@@ -167,7 +169,7 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 	@Override
 	protected SoundEvent getHurtSound(DamageSource pDamageSource) {
 		super.getHurtSound(pDamageSource);
-		return SoundEvents.HORSE_HURT;
+		return SoundEvents.PIG_HURT;
 	}
 
 	@Override

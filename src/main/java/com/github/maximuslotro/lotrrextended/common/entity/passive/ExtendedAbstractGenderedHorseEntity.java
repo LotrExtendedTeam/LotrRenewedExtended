@@ -12,6 +12,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -22,6 +23,8 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -116,10 +119,45 @@ public abstract class ExtendedAbstractGenderedHorseEntity extends AbstractHorseE
 	public ExtendedAbstractGenderedHorseEntity modifyBreedingOffspring(ExtendedAbstractGenderedHorseEntity baby, ServerWorld pServerLevel, AgeableEntity pMate) {
 		return baby;
 	}
+	
 	/**
-     * Defines synchronized entity data parameters including gender.
-     * Called during entity initialization.
+     * Abstract method to allow sub-classes to override the saddle sound
+     *
+     * @return The {@link SoundEvent} for equipping a saddle
      */
+	public abstract SoundEvent getSaddleSound();
+
+	/**
+     * Overridden method to allow sub-classes to override the saddle sound
+     *
+     * @param pSource The {@link SoundCategory} associated with this event
+     */
+	@Override
+	public void equipSaddle(@Nullable SoundCategory pSource) {
+		this.inventory.setItem(0, new ItemStack(Items.SADDLE));
+		if (pSource != null) {
+			this.level.playSound((PlayerEntity)null, this, getSaddleSound(), pSource, 0.5F, 1.0F);
+		}
+	}
+
+	/**
+     * Overridden method to allow sub-classes to override the saddle sound
+     *
+     * @param pInvBasic The {@link IInventory} that is being changed
+     */
+	@Override
+	public void containerChanged(IInventory pInvBasic) {
+		boolean flag = this.isSaddled();
+		this.updateContainerEquipment();
+		if (this.tickCount > 20 && !flag && this.isSaddled()) {
+			this.playSound(getSaddleSound(), 0.5F, 1.0F);
+		}
+	}
+
+	/**
+	 * Defines synchronized entity data parameters including gender.
+	 * Called during entity initialization.
+	 */
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
