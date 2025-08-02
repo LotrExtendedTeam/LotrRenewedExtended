@@ -252,6 +252,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.orcwomen.setting", "Orc Women use Alex Model: ");
 		addD("gui.lotrextended.settings.dolchestplatewings.prefix", "Dol Amroth Chestplate: ");
 		addD("gui.lotrextended.settings.dolchestplatewings.suffix", " Wings");
+		addD("gui.lotrextended.settings.earlyduckmodel.setting", "Use Old Duck Model: ");
 		addD("gui.lotrextended.settings.newrainsounds.setting", "New Rain Sounds: ");
 		addD("gui.lotrextended.settings.newthundersounds.setting", "New Thunder Sounds: ");
 		addD("gui.lotrextended.settings.windambience.setting", "Wind Ambience: ");
