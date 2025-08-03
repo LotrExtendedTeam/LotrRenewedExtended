@@ -24,10 +24,9 @@ public class ExtendedHorseBoarModel<T extends Entity> extends QuadrupedModel<T> 
 		texHeight = 64;
 
 		body = new ModelRenderer(this);
-		body.setPos(0.0F, 11.0F, 2.0F);
+		body.setPos(0.0F, 11.0F, -1.0F);
 		setRotationAngle(body, 1.5708F, 0.0F, 0.0F);
 		
-
 		mane_r1 = new ModelRenderer(this);
 		mane_r1.setPos(0.0F, 0.0F, 1.0F);
 		body.addChild(mane_r1);
@@ -41,7 +40,7 @@ public class ExtendedHorseBoarModel<T extends Entity> extends QuadrupedModel<T> 
 		body_r1.texOffs(0, 0).addBox(-5.0F, -22.0F, -5.0F, 10.0F, 19.0F, 10.0F, 0.0F, false);
 
 		head = new ModelRenderer(this);
-		head.setPos(0.0F, 13.0F, -6.0F);
+		head.setPos(0.0F, 13.0F, -9.0F);
 		head.texOffs(0, 29).addBox(-4.0F, -7.0F, -8.0F, 8.0F, 8.0F, 8.0F, 0.0F, false);
 
 		ear_r1 = new ModelRenderer(this);
@@ -70,20 +69,20 @@ public class ExtendedHorseBoarModel<T extends Entity> extends QuadrupedModel<T> 
 		head_r1.texOffs(40, 22).addBox(-3.0F, -14.0F, -14.0F, 6.0F, 4.0F, 3.0F, 0.0F, false);
 
 		leg0 = new ModelRenderer(this);
-		leg0.setPos(-3.0F, 17.0F, 10.0F);
+		leg0.setPos(-3.0F, 17.0F, 7.0F);
 		setRotationAngle(leg0, 0.0F, -0.0436F, 0.0F);
 		leg0.texOffs(32, 40).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 7.0F, 4.0F, 0.0F, false);
 
 		leg1 = new ModelRenderer(this);
-		leg1.setPos(3.0F, 17.0F, 10.0F);
+		leg1.setPos(3.0F, 17.0F, 7.0F);
 		leg1.texOffs(40, 11).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 7.0F, 4.0F, 0.0F, false);
 
 		leg2 = new ModelRenderer(this);
-		leg2.setPos(-3.0F, 17.0F, -4.0F);
+		leg2.setPos(-3.0F, 17.0F, -7.0F);
 		leg2.texOffs(40, 0).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 7.0F, 4.0F, 0.0F, false);
 
 		leg3 = new ModelRenderer(this);
-		leg3.setPos(3.0F, 17.0F, -4.0F);
+		leg3.setPos(3.0F, 17.0F, -7.0F);
 		leg3.texOffs(32, 29).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 7.0F, 4.0F, 0.0F, false);
 	}
 
