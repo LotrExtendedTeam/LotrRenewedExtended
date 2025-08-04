@@ -6,7 +6,6 @@ import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorse
 import com.github.maximuslotro.lotrrextended.common.enums.EntityGender;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.layers.SaddleLayer;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedBoarRenderer extends ExtendedMobRenderer<ExtendedHorseBoarEntity, ExtendedHorseBoarModel<ExtendedHorseBoarEntity>> {
@@ -15,7 +14,6 @@ public class ExtendedBoarRenderer extends ExtendedMobRenderer<ExtendedHorseBoarE
 
 	public ExtendedBoarRenderer(EntityRendererManager p_i47198_1_) {
 		super(p_i47198_1_, new ExtendedHorseBoarModel<>(0.0f), 0.7F);
-		this.addLayer(new SaddleLayer<>(this, new ExtendedHorseBoarModel<>(0.5F), new ResourceLocation("textures/entity/pig/pig_saddle.png")));
 	}
 
 	/**

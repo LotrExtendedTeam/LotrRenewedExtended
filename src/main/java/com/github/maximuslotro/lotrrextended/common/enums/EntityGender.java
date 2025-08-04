@@ -21,6 +21,9 @@ public enum EntityGender {
 		return id;
 	}
 
+	public boolean isMale() {
+		return this == MALE;
+	}
 	public static EntityGender byGenderName(String queryName) {
 		for (EntityGender gender : values()) {
 			if (gender.name.equals(queryName)) {
