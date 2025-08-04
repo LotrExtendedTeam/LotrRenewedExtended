@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:blue_dwarven_boar_armor_2"
+    ]
+  },
+  "criteria": {
+    "has_dwarven_steel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/dwarven_steel"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:blue_dwarven_boar_armor_2"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dwarven_steel",
+      "has_the_recipe"
+    ]
+  ]
+}

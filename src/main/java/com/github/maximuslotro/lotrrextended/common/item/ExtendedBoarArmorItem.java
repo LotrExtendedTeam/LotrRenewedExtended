@@ -15,7 +15,7 @@ public class ExtendedBoarArmorItem extends Item {
 	    * @param pProperties the item properties
 	    */
 	   public ExtendedBoarArmorItem(int pProtection, String pIdentifier, Item.Properties pProperties) {
-	      this(pProtection, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/boar/armor/boar_armor_" + pIdentifier + ".png"), pProperties);
+	      this(pProtection, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/armor/boar_armor_" + pIdentifier + ".png"), pProperties);
 	   }
 
 	   /**

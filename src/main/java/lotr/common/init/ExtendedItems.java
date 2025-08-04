@@ -348,6 +348,10 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> BRANDING_IRON;
 
+	public static RegistryObject<Item> LEATHER_BOAR_ARMOR;
+	public static RegistryObject<Item> DWARVEN_BOAR_ARMOR;
+	public static RegistryObject<Item> BLUE_DWARVEN_BOAR_ARMOR;
+
 	public static RegistryObject<Item> RASPBERRY_HEDGE;
 	public static RegistryObject<Item> BLUEBERRY_HEDGE;
 	public static RegistryObject<Item> BLACKBERRY_HEDGE;
