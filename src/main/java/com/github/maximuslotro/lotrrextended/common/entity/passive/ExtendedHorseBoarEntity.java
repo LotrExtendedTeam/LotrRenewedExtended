@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoarArmorItem;
 
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.SoundType;
@@ -16,7 +16,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.HorseArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -113,7 +112,7 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 		if (!this.level.isClientSide) {
 			this.getAttribute(Attributes.ARMOR).removeModifier(ARMOR_MODIFIER_UUID);
 			if (this.isArmor(pStack)) {
-				int i = ((HorseArmorItem)pStack.getItem()).getProtection();
+				int i = ((ExtendedBoarArmorItem)pStack.getItem()).getProtection();
 				if (i != 0) {
 					this.getAttribute(Attributes.ARMOR).addTransientModifier(new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus", (double)i, AttributeModifier.Operation.ADDITION));
 				}
@@ -225,12 +224,12 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 
 	@Override
 	public boolean canWearArmor() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isArmor(ItemStack pStack) {
-		return false;
+		return pStack.getItem() instanceof ExtendedBoarArmorItem;
 	}
 
 	@Override

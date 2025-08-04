@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.render.entity;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.client.render.entity.layers.ExtendedBoarArmorLayer;
 import com.github.maximuslotro.lotrrextended.client.render.entity.model.ExtendedHorseBoarModel;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.EntityGender;
@@ -14,6 +15,7 @@ public class ExtendedBoarRenderer extends ExtendedMobRenderer<ExtendedHorseBoarE
 
 	public ExtendedBoarRenderer(EntityRendererManager p_i47198_1_) {
 		super(p_i47198_1_, new ExtendedHorseBoarModel<>(0.0f), 0.7F);
+		this.addLayer(new ExtendedBoarArmorLayer(this));
 	}
 
 	/**
