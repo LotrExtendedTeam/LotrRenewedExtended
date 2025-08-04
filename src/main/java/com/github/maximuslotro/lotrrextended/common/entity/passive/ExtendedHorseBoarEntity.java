@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import lotr.common.init.ExtendedEntities;
@@ -193,7 +194,7 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 		}
 
 		if (!itemstack.isEmpty()) {
-			if (this.isFood(itemstack)) {
+			if (this.isPossableFood(itemstack)) {
 				return this.fedFood(pPlayer, itemstack);
 			}
 

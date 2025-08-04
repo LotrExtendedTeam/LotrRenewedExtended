@@ -145,7 +145,7 @@ public abstract class ExtendedAbstractGenderedAnimalEntity<T extends ExtendedAbs
 	@Override
 	public AgeableEntity getBreedOffspring(ServerWorld pServerLevel, AgeableEntity pMate) {
 		T baby = getBreedingOffspring(pServerLevel, pMate);
-		if(baby.isGendered()!=this.isGendered() || baby.isGendered()!=((ExtendedAbstractGenderedAnimalEntity<?>)pMate).isGendered()) {
+		if(baby.isGendered()==this.isGendered() || baby.isGendered()==((ExtendedAbstractGenderedAnimalEntity<?>)pMate).isGendered()) {
 			baby.setGenderRandomly(isGendered(), pServerLevel);
 		}
 		return modifyBreedingOffspring(baby, pServerLevel, pMate);

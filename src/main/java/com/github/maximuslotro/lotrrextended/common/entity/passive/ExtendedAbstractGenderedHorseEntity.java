@@ -2,8 +2,11 @@ package com.github.maximuslotro.lotrrextended.common.entity.passive;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.EntityGender;
 
+import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTRItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -54,7 +57,7 @@ public abstract class ExtendedAbstractGenderedHorseEntity extends AbstractHorseE
      */
 	@Override
 	public boolean isFood(ItemStack pStack) {
-		return isBreedableFood(pStack);
+		return isEdibleFood(pStack);
 	}
 
 	/**
@@ -174,9 +177,10 @@ public abstract class ExtendedAbstractGenderedHorseEntity extends AbstractHorseE
 	@Override
 	public AgeableEntity getBreedOffspring(ServerWorld pServerLevel, AgeableEntity pMate) {
 		ExtendedAbstractGenderedHorseEntity baby = getBreedingOffspring(pServerLevel, pMate);
-		if(baby.isGendered()!=this.isGendered() || baby.isGendered()!=((ExtendedAbstractGenderedHorseEntity)pMate).isGendered()) {
+		if(baby.isGendered()==this.isGendered() || baby.isGendered()==((ExtendedAbstractGenderedHorseEntity)pMate).isGendered()) {
 			baby.setGenderRandomly(isGendered(), pServerLevel);
 		}
+		ExtendedLog.info("getting breed offspring");
 		return modifyBreedingOffspring(baby, pServerLevel, pMate);
 	}
 
@@ -271,33 +275,30 @@ public abstract class ExtendedAbstractGenderedHorseEntity extends AbstractHorseE
 		}
 		this.setGender(serverWorld.random.nextBoolean() ? EntityGender.MALE : EntityGender.FEMALE);
 	}
- 
+
 	@Override
 	public ActionResultType mobInteract(PlayerEntity pPlayer, Hand pHand) {
 		ItemStack itemstack = pPlayer.getItemInHand(pHand);
 		if (this.isBreedableFood(itemstack)) {
-			int i = this.getAge();
-			if (i == 0 && this.canFallInLove()) {
-				if (!this.level.isClientSide) {
-					this.usePlayerItem(pPlayer, itemstack);
-					this.setInLove(pPlayer);
-				}
-				return ActionResultType.sidedSuccess(this.level.isClientSide);
+			if (!this.level.isClientSide && this.getAge() == 0 && this.canFallInLove()) {
+				this.usePlayerItem(pPlayer, itemstack);
+				this.setInLove(pPlayer);
+				return ActionResultType.SUCCESS;
 			}
 		}
-		if (this.isFood(itemstack)) {
-			int i = this.getAge();
+		if (this.isEdibleFood(itemstack)) {
 			if (this.isBaby()) {
 				this.usePlayerItem(pPlayer, itemstack);
-				this.ageUp((int)((float)(-i / 20) * 0.1F), true);
+				this.ageUp((int)((float)(-this.getAge() / 20) * 0.1F), true);
 				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
 			// TODO add system for different heal amounts like horses
-			if (canFoodHealAnimal() && this.getHealth() < this.getMaxHealth()) { //&& f > 0.0F) {
-				this.usePlayerItem(pPlayer, itemstack);
-				this.heal(1.0f);
-				return ActionResultType.sidedSuccess(this.level.isClientSide);
-			}
+			//if (canFoodHealAnimal() && this.getHealth() < this.getMaxHealth()) { //&& f > 0.0F) {
+			//	ExtendedLog.info("healing");
+			//	this.usePlayerItem(pPlayer, itemstack);
+			//	this.heal(1.0f);
+			//	return ActionResultType.sidedSuccess(this.level.isClientSide);
+			//}
 		}
 		return ActionResultType.PASS;
 	}
@@ -319,61 +320,144 @@ public abstract class ExtendedAbstractGenderedHorseEntity extends AbstractHorseE
 	@Override
 	protected boolean handleEating(PlayerEntity pPlayer, ItemStack pStack) {
 		boolean flag = false;
-		float f = 0.0F;
-		int i = 0;
-		int j = 0;
+		float healAmount = 0.0F;
+		int ageUpAmount = 0;
+		int modifyTemperAmount = 0;
 		Item item = pStack.getItem();
-		if (item == Items.WHEAT) {
-			f = 2.0F;
-			i = 20;
-			j = 3;
-		} else if (item == Items.SUGAR) {
-			f = 1.0F;
-			i = 30;
-			j = 3;
-		} else if (item == Blocks.HAY_BLOCK.asItem()) {
-			f = 20.0F;
-			i = 180;
+		if (item == Items.BEETROOT_SEEDS) {
+			healAmount = 0.1F;
+			ageUpAmount = 1;
+		} else if (item == Items.MELON_SEEDS) {
+			healAmount = 0.1F;
+			ageUpAmount = 1;
+		} else if (item == Items.PUMPKIN_SEEDS) {
+			healAmount = 0.1F;
+			ageUpAmount = 1;
+		} else if (item == Items.WHEAT_SEEDS) {
+			healAmount = 0.1F;
+			ageUpAmount = 1;
+		} else if (item == LOTRItems.FLAX_SEEDS.get()) {
+			healAmount = 0.1F;
+			ageUpAmount = 1;
+		} else if (item == LOTRItems.PIPEWEED_SEEDS.get()) {
+			healAmount = 0.1F;
+			ageUpAmount = 1;
 		} else if (item == Items.APPLE) {
-			f = 3.0F;
-			i = 60;
-			j = 3;
+			healAmount = 3.0F;
+			ageUpAmount = 60;
+			modifyTemperAmount = 3;
+		} else if (item == LOTRItems.GREEN_APPLE.get()) {
+			healAmount = 3.0F;
+			ageUpAmount = 60;
+			modifyTemperAmount = 3;
+		} else if (item == LOTRItems.PEAR.get()) {
+			healAmount = 3.0F;
+			ageUpAmount = 60;
+			modifyTemperAmount = 3;
+		} else if (item == LOTRItems.CHERRY.get()) {
+			healAmount = 3.0F;
+			ageUpAmount = 60;
+			modifyTemperAmount = 3;
+		} else if (item == ExtendedItems.PLUM.get()) {
+			healAmount = 3.0F;
+			ageUpAmount = 60;
+			modifyTemperAmount = 3;
+		} else if (item == Items.POTATO) {
+			healAmount = 3.0F;
+			ageUpAmount = 50;
+			modifyTemperAmount = 3;
+		} else if (item == Items.BEETROOT) {
+			healAmount = 2.5F;
+			ageUpAmount = 50;
+			modifyTemperAmount = 3;
+		} else if (item == Items.CARROT) {
+			healAmount = 2.5F;
+			ageUpAmount = 50;
+			modifyTemperAmount = 3;
+			if (!this.level.isClientSide && this.isTamed() && this.getAge() == 0 && !this.isInLove()) {
+				flag = true;
+				this.setInLove(pPlayer);
+			}
+		} else if (item == Items.WHEAT) {
+			healAmount = 2.0F;
+			ageUpAmount = 20;
+			modifyTemperAmount = 3;
+		} else if (item == LOTRItems.LETTUCE.get()) {
+			healAmount = 2.0F;
+			ageUpAmount = 20;
+			modifyTemperAmount = 3;
+		} else if (item == Items.SUGAR) {
+			healAmount = 1.0F;
+			ageUpAmount = 30;
+			modifyTemperAmount = 3;
+		} else if (item == Blocks.HAY_BLOCK.asItem()) {
+			healAmount = 20.0F;
+			ageUpAmount = 180;
+		} else if (item == Items.APPLE) {
+			healAmount = 3.0F;
+			ageUpAmount = 60;
+			modifyTemperAmount = 3;
 		} else if (item == Items.GOLDEN_CARROT) {
-			f = 4.0F;
-			i = 60;
-			j = 5;
+			healAmount = 4.0F;
+			ageUpAmount = 60;
+			modifyTemperAmount = 5;
 			if (!this.level.isClientSide && this.isTamed() && this.getAge() == 0 && !this.isInLove()) {
 				flag = true;
 				this.setInLove(pPlayer);
 			}
 		} else if (item == Items.GOLDEN_APPLE || item == Items.ENCHANTED_GOLDEN_APPLE) {
-			f = 10.0F;
-			i = 240;
-			j = 10;
+			healAmount = 10.0F;
+			ageUpAmount = 240;
+			modifyTemperAmount = 10;
 			if (!this.level.isClientSide && this.isTamed() && this.getAge() == 0 && !this.isInLove()) {
 				flag = true;
 				this.setInLove(pPlayer);
 			}
+		} else if (item == ExtendedItems.BLACKBERRY.get()) {
+			healAmount = 0.5F;
+			ageUpAmount = 20;
+			modifyTemperAmount = 1;
+		} else if (item == ExtendedItems.BLUEBERRY.get()) {
+			healAmount = 0.5F;
+			ageUpAmount = 20;
+			modifyTemperAmount = 1;
+		} else if (item == ExtendedItems.CRANBERRY.get()) {
+			healAmount = 0.5F;
+			ageUpAmount = 20;
+			modifyTemperAmount = 1;
+		} else if (item == ExtendedItems.ELDERBERRY.get()) {
+			healAmount = 0.5F;
+			ageUpAmount = 20;
+			modifyTemperAmount = 1;
+		} else if (item == ExtendedItems.RASPBERRY.get()) {
+			healAmount = 0.5F;
+			ageUpAmount = 20;
+			modifyTemperAmount = 1;
+		} else {
+			// Handle new foods being added
+			healAmount = 0.5F;
+			ageUpAmount = 2;
+			modifyTemperAmount = 1;
 		}
 
-		if (this.getHealth() < this.getMaxHealth() && f > 0.0F) {
-			this.heal(f);
+		if (this.getHealth() < this.getMaxHealth() && healAmount > 0.0F) {
+			this.heal(healAmount);
 			flag = true;
 		}
 
-		if (this.isBaby() && i > 0) {
+		if (this.isBaby() && ageUpAmount > 0) {
 			this.level.addParticle(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), 0.0D, 0.0D, 0.0D);
 			if (!this.level.isClientSide) {
-				this.ageUp(i);
+				this.ageUp(ageUpAmount);
 			}
 
 			flag = true;
 		}
 
-		if (j > 0 && (flag || !this.isTamed()) && this.getTemper() < this.getMaxTemper()) {
+		if (modifyTemperAmount > 0 && (flag || !this.isTamed()) && this.getTemper() < this.getMaxTemper()) {
 			flag = true;
 			if (!this.level.isClientSide) {
-				this.modifyTemper(j);
+				this.modifyTemper(modifyTemperAmount);
 			}
 		}
 
