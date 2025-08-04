@@ -70,5 +70,8 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DWARVEN_COMMANDER.get(), ExtendedDurinsFolkTraderRenderer::new);
 		// Special
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TOLKIEN.get(), ExtendedTolkienRenderer::new);
+
+		// Bandit
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BANDIT.get(), ExtendedBanditRenderer::new);
 	}
 }
