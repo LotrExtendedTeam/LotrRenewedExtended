@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.*;
@@ -47,7 +48,8 @@ public class ExtendedBanditStealHelper {
                 player.level.addFreshEntity(new ItemEntity(player.level, player.getX(), player.getY(), player.getZ(), stack));
             }
         }
-
+        String message = "A bandit stole some items from your inventory!";
+        player.sendMessage(new StringTextComponent(message), player.getUUID());
         player.inventory.setChanged();
         player.containerMenu.broadcastChanges();
     }

@@ -6,6 +6,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBandi
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBanditStealGoal;
 import lotr.common.entity.npc.ai.goal.NPCMeleeAttackGoal;
 import lotr.common.entity.npc.data.NPCFoodPool;
+import lotr.common.entity.npc.data.NPCFoodPools;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -55,7 +56,6 @@ public class ExtendedBanditEntity extends ManEntity {
         this.goalSelector.addGoal(1, new ExtendedBanditStealGoal(this, this.getNavigation()));
         this.goalSelector.addGoal(2, new ExtendedBanditEscapeGoal(this, this.getNavigation()));
 
-
     }
 
     @Override
@@ -65,12 +65,12 @@ public class ExtendedBanditEntity extends ManEntity {
 
     @Override
     protected NPCFoodPool getEatPool() {
-        return null;
+        return NPCFoodPools.DUNLENDING;
     }
 
     @Override
     protected NPCFoodPool getDrinkPool() {
-        return null;
+        return NPCFoodPools.DUNLENDING_DRINK;
     }
 
     @Override
