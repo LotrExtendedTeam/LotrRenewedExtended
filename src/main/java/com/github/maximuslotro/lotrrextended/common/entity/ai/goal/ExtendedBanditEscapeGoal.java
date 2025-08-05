@@ -6,7 +6,9 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathNavigator;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.server.ServerWorld;
 
 
 import java.util.EnumSet;
@@ -54,6 +56,15 @@ public class ExtendedBanditEscapeGoal extends Goal {
             targetPlayer = entity.level.getNearestPlayer(entity, dangerRadius);
             runAwayFromPlayer();
         }
+
+        Vector3d banditPos = entity.position();
+        BlockPos banditBlockPos = new BlockPos(banditPos.x, banditPos.y, banditPos.z);
+        if (entity.level instanceof ServerWorld) {
+            ServerWorld serverWorld = (ServerWorld) entity.level;
+            if (!serverWorld.hasChunkAt(banditBlockPos)) {
+                stop();
+            }
+        }
     }
 
 
@@ -62,7 +73,7 @@ public class ExtendedBanditEscapeGoal extends Goal {
 
         Vector3d banditPos = entity.position();
         Vector3d playerPos = targetPlayer.position();
-        Vector3d direction = banditPos.subtract(playerPos).normalize().scale(25.0D);
+        Vector3d direction = banditPos.subtract(playerPos).normalize().scale(35.0D);
         Vector3d fleeTarget = banditPos.add(direction);
 
         Path path = navigation.createPath(fleeTarget.x, fleeTarget.y, fleeTarget.z, 0);
