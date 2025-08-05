@@ -8,6 +8,7 @@ import lotr.common.entity.npc.ai.goal.NPCMeleeAttackGoal;
 import lotr.common.entity.npc.data.NPCFoodPool;
 import lotr.common.entity.npc.data.NPCFoodPools;
 import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.MobEntity;
@@ -33,11 +34,7 @@ public class ExtendedBanditEntity extends ManEntity {
     private final List<ItemStack> stolenItems = new ArrayList<>();
     private boolean afterStealing = false;
     private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(
-            ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedItems.GUNDABAD_URUK_CLEAVER,
-            ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedItems.GUNDABAD_URUK_CLEAVER,
-            ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedItems.GUNDABAD_URUK_CLEAVER,
-            ExtendedItems.GUNDABAD_URUK_DAGGER, ExtendedItems.GUNDABAD_URUK_DAGGER,
-            ExtendedItems.GUNDABAD_URUK_SPEAR);
+            LOTRItems.BRONZE_DAGGER, LOTRItems.IRON_DAGGER);
     private MobEntity ExtendedBanditEntity;
 
     public ExtendedBanditEntity(EntityType<? extends ManEntity> type, World w) {
@@ -78,11 +75,7 @@ public class ExtendedBanditEntity extends ManEntity {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
         npcItemsInv.setMeleeWeapon(WEAPONS.getRandomItem(random));
         npcItemsInv.setIdleItemsFromMeleeWeapons();
-        setItemSlot(EquipmentSlotType.FEET, new ItemStack(ExtendedItems.GUNDABAD_URUK_BOOTS.get()));
-        setItemSlot(EquipmentSlotType.LEGS, new ItemStack(ExtendedItems.GUNDABAD_URUK_LEGGINGS.get()));
-        setItemSlot(EquipmentSlotType.CHEST, new ItemStack(ExtendedItems.GUNDABAD_URUK_CHESTPLATE.get()));
-        setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.GUNDABAD_URUK_HELMET.get()));
-        setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.GUNDABAD_SHIELD.get()));
+        setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.LEATHER_HAT.get()));
         return spawnData;
     }
 

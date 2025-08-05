@@ -1,0 +1,45 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Stand and deliver! Your money... or your life!",
+        "Hand over the goods, Person!",
+        "I wouldn't put up a fight if I was you!",
+        "I'll be filthy stinkin' rich after I'm done with you!",
+        "You won't be needin' all them things, will you now?",
+        "Well look what we've got here!",
+        "Time to pay!",
+        "Where are you hiding those pretty little coins?",
+        "Come here! I want to make a deal with you...",
+        "Your money is mine, maggot! Pay up!",
+        "What is that shining in your pocket? Is that a coin? Give it to me!"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "Stand and deliver! Your money... or your life!",
+        "Hand over the goods, Person!",
+        "I wouldn't put up a fight if I was you!",
+        "I'll be filthy stinkin' rich after I'm done with you!",
+        "You won't be needin' all them things, will you now?",
+        "Well look what we've got here!",
+        "Time to pay!",
+        "Where are you hiding those pretty little coins?",
+        "Come here! I want to make a deal with you...",
+        "Your money is mine, maggot! Pay up!",
+        "What is that shining in your pocket? Is that a coin? Give it to me!"
+
+      ]
+    }
+  ]
+}
