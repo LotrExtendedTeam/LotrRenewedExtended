@@ -5,6 +5,7 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathNavigator;
+import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
@@ -28,8 +29,8 @@ public class ExtendedBanditEscapeGoal extends Goal {
 
 	@Override
 	public boolean canUse() {
-		if(bandit.hasAlreadyStolen()) { // move simple check outside of getEntitiesOfClass for peformance reasons
-			List<PlayerEntity> players = bandit.level.getEntitiesOfClass(PlayerEntity.class, bandit.getBoundingBox().inflate(20.0D));
+		if(bandit.hasStolen()) { // move simple check outside of getEntitiesOfClass for peformance reasons
+			List<PlayerEntity> players = bandit.level.getEntitiesOfClass(PlayerEntity.class, bandit.getBoundingBox().inflate(20.0D), EntityPredicates.NO_CREATIVE_OR_SPECTATOR);
 			if (!players.isEmpty()) {
 				this.targetPlayer = players.get(0);
 				return true;
@@ -49,7 +50,7 @@ public class ExtendedBanditEscapeGoal extends Goal {
 
 	@Override
 	public void tick() {
-		if (targetPlayer != null && bandit.hasAlreadyStolen()) {
+		if (targetPlayer != null && bandit.hasStolen()) {
 			targetPlayer = bandit.level.getNearestPlayer(bandit, dangerRadius);
 			runAwayFromPlayer();
 		}
@@ -84,6 +85,5 @@ public class ExtendedBanditEscapeGoal extends Goal {
 	public void stop() {
 		this.targetPlayer = null;
 		navigation.stop();
-		bandit.setHasStolen(false);
 	}
 }

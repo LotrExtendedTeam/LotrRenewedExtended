@@ -2,8 +2,7 @@ package lotr.common.entity.npc;
 
 
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBanditEscapeGoal;
-import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBanditFollowGoal;
-import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBanditStealGoal;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBanditFollowAndStealGoal;
 import lotr.common.entity.npc.ai.goal.NPCMeleeAttackGoal;
 import lotr.common.entity.npc.data.NPCFoodPool;
 import lotr.common.entity.npc.data.NPCFoodPools;
@@ -11,11 +10,9 @@ import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.EatGrassGoal;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -32,15 +29,12 @@ import java.util.List;
 public class ExtendedBanditEntity extends ManEntity {
     private final ItemStackHandler inventory = new ItemStackHandler(9); // 9 slotów
     private final List<ItemStack> stolenItems = new ArrayList<>();
-    private boolean afterStealing = false;
-    private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(
-            LOTRItems.BRONZE_DAGGER, LOTRItems.IRON_DAGGER);
-    private MobEntity ExtendedBanditEntity;
+    private boolean hasStolen = false;
+    private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(LOTRItems.BRONZE_DAGGER, LOTRItems.IRON_DAGGER);
 
     public ExtendedBanditEntity(EntityType<? extends ManEntity> type, World w) {
         super(type, w);
     }
-
 
     public void addStolenItem(ItemStack itemStack) {
         this.stolenItems.add(itemStack);
@@ -48,10 +42,9 @@ public class ExtendedBanditEntity extends ManEntity {
 
     @Override
     protected void addNPCAI() {
-        super.addNPCAI();
-        this.goalSelector.addGoal(0, new ExtendedBanditFollowGoal(this, this.getNavigation()));
-        this.goalSelector.addGoal(1, new ExtendedBanditStealGoal(this, this.getNavigation()));
-        this.goalSelector.addGoal(2, new ExtendedBanditEscapeGoal(this, this.getNavigation()));
+    	super.addNPCAI();
+    	this.goalSelector.addGoal(2, new ExtendedBanditFollowAndStealGoal(this, this.getNavigation()));
+    	this.goalSelector.addGoal(3, new ExtendedBanditEscapeGoal(this, this.getNavigation()));
 
     }
 
@@ -87,12 +80,14 @@ public class ExtendedBanditEntity extends ManEntity {
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.put("Inventory", inventory.serializeNBT());
+        compound.putBoolean("hasStolen", hasStolen);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         inventory.deserializeNBT(compound.getCompound("Inventory"));
+        hasStolen = compound.getBoolean("hasStolen"); // defaults to false
     }
 
     @Override
@@ -108,14 +103,13 @@ public class ExtendedBanditEntity extends ManEntity {
     }
 
 
-    public boolean hasAlreadyStolen() {
-        return afterStealing;
+    public boolean hasStolen() {
+        return hasStolen;
     }
 
-    public void setHasStolen(boolean stolen) {
-        this.afterStealing = stolen;
+    public void setStolen() {
+        this.hasStolen = true;
     }
-
 
     @Override
     protected float getVoicePitch() {
