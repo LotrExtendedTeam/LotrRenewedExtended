@@ -1,9 +1,6 @@
 package lotr.client.render.entity;
 
-import lotr.client.render.GenderedRandomTextureVariants;
 import lotr.client.render.RandomTextureVariants;
-import lotr.common.entity.npc.BreeManEntity;
-import lotr.common.entity.npc.ExtendedAbstractElfWandererEntity;
 import lotr.common.entity.npc.ExtendedBanditEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;

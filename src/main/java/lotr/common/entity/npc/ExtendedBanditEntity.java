@@ -60,7 +60,7 @@ public class ExtendedBanditEntity extends ManEntity {
 
     @Override
     protected Goal createAttackGoal() {
-        return null;
+        return new NPCMeleeAttackGoal(this, 1.3);
     }
 
     @Override
