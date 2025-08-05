@@ -217,6 +217,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("speechbank.breeland_merchant.departure.4", "%1$s: I'll be back on the road here soon.");
 		addD("speechbank.breeland_merchant.departure.5", "%1$s: I can't be in these lands for too long, don't want robbers or Goblins to get me.");
 
+		// Bandit lines
+		addD("chat.lotrextended.bandit.stolen", "A bandit stole some items from your inventory!");
+
 		// Add Fellowship Menu strings
 		addD("gui.lotrextended.fellowships.title", "Middle-earth Fellowships");
 		addD("gui.lotrextended.fellowships.creation.disabled", "Fellowship creation is disabled!");
