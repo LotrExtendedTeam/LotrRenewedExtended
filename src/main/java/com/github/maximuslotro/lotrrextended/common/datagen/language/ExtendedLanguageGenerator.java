@@ -198,21 +198,21 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("speechbank.rivendell_wanderer.departure.9", "%1$s: Do you hear the sea calling? I shall soon leave these lands.");
 
 		// Blue Mountains Merchant departure lines
-		addD("speechbank.blue_mountains_merchant.departure.1", "%1$s: Well, I'll be on my way soon enough.");
+		addD("speechbank.blue_mountains_merchant.departure.1", "%1$s: Well %2$s, I'll be on my way soon enough.");
 		addD("speechbank.blue_mountains_merchant.departure.2", "%1$s: I can't stay here forever. Other lands to visit, other goods to trade...");
-		addD("speechbank.blue_mountains_merchant.departure.3", "%1$s: If you wish to trade with me, you would be wise to hurry!");
+		addD("speechbank.blue_mountains_merchant.departure.3", "%1$s: If you wish to trade with me %2$s, you would be wise to hurry!");
 		addD("speechbank.blue_mountains_merchant.departure.4", "%1$s: The riches of the Blue Mountains shall not wait here forever.");
 		addD("speechbank.blue_mountains_merchant.departure.5", "%1$s: This is your last chance to get an excellent Dwarvish bargain!");
-		addD("speechbank.blue_mountains_merchant.departure.6", "%1$s: I shall be leaving soon, but there is still time for a trade or two!");
-		addD("speechbank.blue_mountains_merchant.departure.7", "%1$s: Business cannot wait, Person! I will not stay here for too long.");
+		addD("speechbank.blue_mountains_merchant.departure.6", "%1$s: I shall be leaving soon %2$s, but there is still time for a trade or two!");
+		addD("speechbank.blue_mountains_merchant.departure.7", "%1$s: Business cannot wait, %2$s! I will not stay here for too long.");
 		addD("speechbank.blue_mountains_merchant.departure.8", "%1$s: Other lands await! I'll be leaving soon.");
-		addD("speechbank.blue_mountains_merchant.departure.9", "%1$s: Hurry, Person! I will have to depart these lands soon.");
-		addD("speechbank.blue_mountains_merchant.departure.10", "%1$s: Do you wish to gaze upon the riches of the Dwarves of the Blue Mountains? Well, you had better be quick. I'll be on my way soon!");
+		addD("speechbank.blue_mountains_merchant.departure.9", "%1$s: Hurry %2$s! I will have to depart these lands soon.");
+		addD("speechbank.blue_mountains_merchant.departure.10", "%1$s: Do you wish to gaze upon the riches of the Dwarves of the Blue Mountains? Well %2$s, you had better be quick. I'll be on my way soon!");
 		addD("speechbank.blue_mountains_merchant.departure.11", "%1$s: Time is passing, %2$s! If you wish to trade with me, you must do it now!");
 
 		// Bree-Land Merchant departure lines
 		addD("speechbank.breeland_merchant.departure.1", "%1$s: I hear Black Riders have been wandering around these parts, I can't stay here much longer.");
-		addD("speechbank.breeland_merchant.departure.2", "%1$s: Hurry, I'll be leaving soon.");
+		addD("speechbank.breeland_merchant.departure.2", "%1$s: Hurry %2$s, I'll be leaving soon.");
 		addD("speechbank.breeland_merchant.departure.3", "%1$s: If you'd like some Bree-land goods, now is your last chance!");
 		addD("speechbank.breeland_merchant.departure.4", "%1$s: I'll be back on the road here soon.");
 		addD("speechbank.breeland_merchant.departure.5", "%1$s: I can't be in these lands for too long, don't want robbers or Goblins to get me.");
