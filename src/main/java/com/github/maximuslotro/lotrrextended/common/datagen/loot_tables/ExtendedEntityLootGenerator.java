@@ -454,7 +454,9 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.add(EItemLootEntry.lootItem(Items.FEATHER).setWeight(1).apply(SetCount.setCount(RandomValueRange.between(1, 2))))));
 		add(ExtendedEntities.HORSE_BOAR.get(), LootTable.lootTable()
 			.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
-				.add(EItemLootEntry.lootItem(Items.PORKCHOP).setWeight(1).apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
+				.add(EItemLootEntry.lootItem(Items.PORKCHOP).setWeight(1)
+					.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
+					.apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
 	}
 
 	public ResourceLocation makeQuickyBaseCommon(String name, Builder builder) {
