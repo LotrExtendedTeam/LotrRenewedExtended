@@ -3,6 +3,9 @@ package com.github.maximuslotro.lotrextended.mixins.lotr.common.world.biome;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.common.init.LOTRBlocks;
 import lotr.common.world.biome.BlueMountainsBiome;
@@ -14,6 +17,7 @@ import lotr.common.world.biome.surface.MountainTerrainProvider;
 import lotr.common.world.gen.feature.TreeCluster;
 import lotr.common.world.gen.feature.grassblend.GrassBlends;
 import net.minecraft.block.Blocks;
+import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.biome.Biome.Builder;
 
 @Mixin(BlueMountainsBiome.class)
@@ -35,6 +39,16 @@ public abstract class MixinBlueMountainsBiome extends LOTRBiomeBase{
 	@Shadow(remap=false)
 	protected boolean isFoothills() {
 		return false;
+	}
+
+	/**
+	 * Gets if this mountain biome is a foothills instance
+	 * @param builder The {@link MobSpawnInfo} builder to work with
+	 * @param ci The callback info for additional modification ability
+	 * */
+	@Inject(method = "addAnimals(Lnet/minecraft/world/biome/MobSpawnInfo$Builder;)V", at = @At("TAIL"), remap = false)
+	protected void addAnimalsExtended(MobSpawnInfo.Builder builder, CallbackInfo ci) {
+		this.addBoars(builder, 2);
 	}
 	/**
 	 * @author maximuslotro
