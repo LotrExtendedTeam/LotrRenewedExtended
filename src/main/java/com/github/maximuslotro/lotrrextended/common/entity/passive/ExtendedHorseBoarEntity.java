@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.client.render.entity.ai.goal.ExtendedTamingGoal;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoarArmorItem;
 
@@ -50,8 +51,9 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
-		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
-		this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D, ExtendedHorseBoarEntity.class));
+		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2D, true));
+		this.goalSelector.addGoal(2, new ExtendedTamingGoal(this, 1.2D));
+		this.goalSelector.addGoal(3, new BreedGoal(this, 1.0D, ExtendedHorseBoarEntity.class));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 0.7D));
 		this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));

@@ -10,10 +10,15 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
+import net.minecraft.client.renderer.entity.layers.LeatherHorseArmorLayer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.item.ItemStack;
 
+/**
+ * Based upon {@link LeatherHorseArmorLayer}
+ * 
+ */
 public class ExtendedBoarArmorLayer extends LayerRenderer<ExtendedHorseBoarEntity, ExtendedHorseBoarModel<ExtendedHorseBoarEntity>> {
 	private final ExtendedHorseBoarModel<ExtendedHorseBoarEntity> model = new ExtendedHorseBoarModel<>(0.1F);
 

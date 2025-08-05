@@ -2,9 +2,17 @@ package com.github.maximuslotro.lotrrextended.client.render.entity.model;
 
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
 
+import net.minecraft.client.renderer.entity.model.HorseModel;
+import net.minecraft.client.renderer.entity.model.PigModel;
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.util.math.MathHelper;
 
+/**
+ * Based upon {@link HorseModel} and {@link PigModel}
+ * @param <T> The entity instance extending {@link ExtendedHorseBoarEntity} for this model to render
+ * 
+ */
 public class ExtendedHorseBoarModel<T extends ExtendedHorseBoarEntity> extends QuadrupedModel<T> {
 
 	//public ExtendedHorseBoarModel(float scale) {
@@ -119,6 +127,57 @@ public class ExtendedHorseBoarModel<T extends ExtendedHorseBoarEntity> extends Q
 	@Override
 	public void prepareMobModel(T pEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTick) {
 		super.prepareMobModel(pEntity, pLimbSwing, pLimbSwingAmount, pPartialTick);
+		float partBodyRot = MathHelper.rotlerp(pEntity.yBodyRotO, pEntity.yBodyRot, pPartialTick);
+		float partHeadRot = MathHelper.rotlerp(pEntity.yHeadRotO, pEntity.yHeadRot, pPartialTick);
+		float partRot = MathHelper.lerp(pPartialTick, pEntity.xRotO, pEntity.xRot);
+		float partHeadBodyDiffRot = partHeadRot - partBodyRot;
+		float bodyRotRad = partRot * ((float)Math.PI / 180F);
+		if (partHeadBodyDiffRot > 20.0F) {
+			partHeadBodyDiffRot = 20.0F;
+		}
+
+		if (partHeadBodyDiffRot < -20.0F) {
+			partHeadBodyDiffRot = -20.0F;
+		}
+
+		if (pLimbSwingAmount > 0.2F) {
+			bodyRotRad += MathHelper.cos(pLimbSwing * 0.4F) * 0.15F * pLimbSwingAmount;
+		}
+
+		//float f5 = pEntity.getEatAnim(pPartialTick);
+		//float f6 = pEntity.getStandAnim(pPartialTick);
+		//float f7 = 1.0F - f6;
+		//float f8 = pEntity.getMouthAnim(pPartialTick);
+		//boolean flag = pEntity.tailCounter != 0;
+		float f9 = (float)pEntity.tickCount + pPartialTick;
+		//this.head.y = 4.0F;
+		//this.head.z = -12.0F;
+		this.body.xRot = 0.0F;
+		this.head.xRot = ((float)Math.PI / 6F) + bodyRotRad;
+		this.head.yRot = partHeadBodyDiffRot * ((float)Math.PI / 180F);
+		//float f10 = pEntity.isInWater() ? 0.2F : 1.0F;
+		//float f11 = MathHelper.cos(f10 * pLimbSwing * 0.6662F + (float)Math.PI);
+		//float f12 = f11 * 0.8F * pLimbSwingAmount;
+		//float f13 = (1.0F - Math.max(f6, f5)) * (((float)Math.PI / 6F) + bodyRotRad + f8 * MathHelper.sin(f9) * 0.05F);
+		//this.head.xRot = f6 * (0.2617994F + bodyRotRad) + f5 * (2.1816616F + MathHelper.sin(f9) * 0.05F) + f13;
+		//this.head.yRot = f6 * partHeadBodyDiffRot * ((float)Math.PI / 180F) + (1.0F - Math.max(f6, f5)) * this.head.yRot;
+		//this.head.y = f6 * -4.0F + f5 * 11.0F + (1.0F - Math.max(f6, f5)) * this.head.y;
+		//this.head.z = f6 * -4.0F + f5 * -12.0F + (1.0F - Math.max(f6, f5)) * this.head.z;
+		//this.body.xRot = f6 * (-(float)Math.PI / 4F) + f7 * this.body.xRot;
+		//float f14 = 0.2617994F * f6;
+		//float f15 = MathHelper.cos(f9 * 0.6F + (float)Math.PI);
+		//this.leg2.y = 2.0F * f6 + 14.0F * f7;
+		//this.leg2.z = -6.0F * f6 - 10.0F * f7;
+		//this.leg3.y = this.leg2.y;
+		//this.leg3.z = this.leg2.z;
+		//float f16 = ((-(float)Math.PI / 3F) + f15) * f6 + f12 * f7;
+		//float f17 = ((-(float)Math.PI / 3F) - f15) * f6 - f12 * f7;
+		//this.leg0.xRot = f14 - f11 * 0.5F * pLimbSwingAmount * f7;
+		//this.leg1.xRot = f14 + f11 * 0.5F * pLimbSwingAmount * f7;
+		//this.leg2.xRot = f16;
+		//this.leg3.xRot = f17;
+		//boolean flag1 = pEntity.isBaby();
+		//this.body.y = flag1 ? 10.8F : 0.0F;
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
