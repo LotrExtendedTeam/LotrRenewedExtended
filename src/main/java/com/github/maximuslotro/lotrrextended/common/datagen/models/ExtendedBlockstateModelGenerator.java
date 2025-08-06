@@ -1400,7 +1400,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(birdcage);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+birdcage.getRegistryName().getPath(), lotrExtendedLoc("block/template_birdcage"))
 			.texture("cage", lotrExtendedLoc(cagePath));
-		simpleBlock(birdcage, modelFile);
+		getVariantBuilder(birdcage).forAllStates(state -> {
+			Direction facing = state.getValue(ExtendedBirdcageBlock.FACING);
+			return ConfiguredModel.builder()
+                    .modelFile(modelFile)
+                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
+                    .build();
+		});
 	}
 
 	private void genMossCarpetBlockItem(ExtendedMossCarpetBlock carpet) {
