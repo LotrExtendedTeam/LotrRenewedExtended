@@ -44,8 +44,8 @@ import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSin
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
-import com.github.maximuslotro.lotrrextended.common.enums.PillarType;
-import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPillarType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedRopeType;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
@@ -952,17 +952,17 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		getVariantBuilder(pillarB)
 		.forAllStatesExcept(state -> {
 			Axis axis = state.getValue(ExtendedThreeTallPillarBlock.AXIS);
-			PillarType above = state.getValue(ExtendedThreeTallPillarBlock.PILLAR_TYPE);
+			ExtendedPillarType above = state.getValue(ExtendedThreeTallPillarBlock.PILLAR_TYPE);
 			ModelFile selectedfile = null;
-			if(above.equals(PillarType.BOTTOM_LARGE)) {
+			if(above.equals(ExtendedPillarType.BOTTOM_LARGE)) {
 				selectedfile = pillarTallBottom;
-			}else if(above.equals(PillarType.BOTTOM_SMALL)) {
+			}else if(above.equals(ExtendedPillarType.BOTTOM_SMALL)) {
 				selectedfile = pillarBottom;
-			}else if(above.equals(PillarType.MIDDLE_LARGE)) {
+			}else if(above.equals(ExtendedPillarType.MIDDLE_LARGE)) {
 				selectedfile = pillarTallMiddle;
-			}else if(above.equals(PillarType.TOP_LARGE)) {
+			}else if(above.equals(ExtendedPillarType.TOP_LARGE)) {
 				selectedfile = pillarTallTop;
-			}else if(above.equals(PillarType.TOP_SMALL)) {
+			}else if(above.equals(ExtendedPillarType.TOP_SMALL)) {
 				selectedfile = pillarTop;
 			}else {
 				selectedfile = pillarBlock;
@@ -1149,11 +1149,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		getVariantBuilder(rope)
 		.forAllStatesExcept(state -> {
 			Direction axis = state.getValue(ExtendedRopeBlock.FACING);
-			RopeType type = state.getValue(ExtendedRopeBlock.SECTION_TYPE);
+			ExtendedRopeType type = state.getValue(ExtendedRopeBlock.SECTION_TYPE);
             return ConfiguredModel.builder()
-                    .modelFile((type == RopeType.TOP_LARGE || type == RopeType.TOP_SMALL) ? modelTop :
-                    	((type == RopeType.BOTTOM_LARGE || type == RopeType.BOTTOM_SMALL) ? modelBottom :
-                    	type == RopeType.SINGLE ? modelSingle : modelMiddle))
+                    .modelFile((type == ExtendedRopeType.TOP_LARGE || type == ExtendedRopeType.TOP_SMALL) ? modelTop :
+                    	((type == ExtendedRopeType.BOTTOM_LARGE || type == ExtendedRopeType.BOTTOM_SMALL) ? modelBottom :
+                    	type == ExtendedRopeType.SINGLE ? modelSingle : modelMiddle))
                     .rotationY(axis == Direction.EAST ? 90 : (axis == Direction.WEST ? 270 : (axis == Direction.SOUTH ? 180 : 0)))
                     .build();
         }, ExtendedRopeBlock.WATERLOGGED);

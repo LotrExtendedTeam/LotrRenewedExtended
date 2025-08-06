@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedRopeType;
 import com.github.maximuslotro.lotrrextended.common.state.properties.ExtendedBlockStateProperties;
 
 import lotr.common.block.LOTRBlockStates;
@@ -45,7 +45,7 @@ import net.minecraft.world.World;
 public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	public static final EnumProperty<RopeType> SECTION_TYPE = ExtendedBlockStateProperties.ROPE_TYPE;
+	public static final EnumProperty<ExtendedRopeType> SECTION_TYPE = ExtendedBlockStateProperties.ROPE_TYPE;
 	protected static final VoxelShape NORTH_AABB = Block.box(4.0D, 0.0D, 13.0D, 12.0D, 16.0D, 16.0D);
 	protected static final VoxelShape SOUTH_AABB = Block.box(4.0D, 0.0D, 0.0D, 12.0D, 16.0D, 3.0D);
 	protected static final VoxelShape WEST_AABB = Block.box(13.0D, 0.0D, 4.0D, 16.0D, 16.0D, 12.0D);
@@ -53,7 +53,7 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 
 	public ExtendedRopeBlock(Properties p_i48440_1_) {
 		super(p_i48440_1_);
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SECTION_TYPE, RopeType.SINGLE).setValue(WATERLOGGED, false));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SECTION_TYPE, ExtendedRopeType.SINGLE).setValue(WATERLOGGED, false));
 	}
 
 	@Override
@@ -131,15 +131,15 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 		}
 		if(yValue!=-1 && chosenBlockState!=null) {
 			Direction dir = chosenBlockState.getValue(FACING);
-			RopeType type = chosenBlockState.getValue(SECTION_TYPE);
-			if (type == RopeType.TOP_SMALL && highorlow) {
-				type = RopeType.TOP_LARGE;
-			}else if (type == RopeType.SINGLE && highorlow) {
-				type = RopeType.TOP_SMALL;
-			}else if (type == RopeType.SINGLE && !highorlow) {
-				type = RopeType.BOTTOM_SMALL;
-			}else if (type == RopeType.BOTTOM_SMALL && !highorlow) {
-				type = RopeType.BOTTOM_LARGE;
+			ExtendedRopeType type = chosenBlockState.getValue(SECTION_TYPE);
+			if (type == ExtendedRopeType.TOP_SMALL && highorlow) {
+				type = ExtendedRopeType.TOP_LARGE;
+			}else if (type == ExtendedRopeType.SINGLE && highorlow) {
+				type = ExtendedRopeType.TOP_SMALL;
+			}else if (type == ExtendedRopeType.SINGLE && !highorlow) {
+				type = ExtendedRopeType.BOTTOM_SMALL;
+			}else if (type == ExtendedRopeType.BOTTOM_SMALL && !highorlow) {
+				type = ExtendedRopeType.BOTTOM_LARGE;
 			}
 			BlockState newRopeBlock = ExtendedBlocks.ROPE.get().defaultBlockState().setValue(FACING, dir).setValue(SECTION_TYPE, type);
 			BlockPos newBlockPos = new BlockPos(pos.getX(), yValue, pos.getZ());
@@ -211,70 +211,70 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 		} else {
 			// Actively update rope based upon chance in higher rope and this rope's current state
 			if (pFacing == Direction.UP) {
-				RopeType thisRopeType = pState.getValue(SECTION_TYPE);
+				ExtendedRopeType thisRopeType = pState.getValue(SECTION_TYPE);
 				if (pFacingState.getBlock() instanceof ExtendedRopeBlock) {
-					RopeType aboveRopeType = pFacingState.getValue(SECTION_TYPE);
-					if (thisRopeType == RopeType.SINGLE && aboveRopeType == RopeType.TOP_SMALL) {
-						return pState.setValue(SECTION_TYPE, RopeType.BOTTOM_SMALL);
+					ExtendedRopeType aboveRopeType = pFacingState.getValue(SECTION_TYPE);
+					if (thisRopeType == ExtendedRopeType.SINGLE && aboveRopeType == ExtendedRopeType.TOP_SMALL) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.BOTTOM_SMALL);
 					}
-					if (thisRopeType == RopeType.SINGLE && aboveRopeType == RopeType.MIDDLE_LARGE) {
-						return pState.setValue(SECTION_TYPE, RopeType.BOTTOM_LARGE);
+					if (thisRopeType == ExtendedRopeType.SINGLE && aboveRopeType == ExtendedRopeType.MIDDLE_LARGE) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.BOTTOM_LARGE);
 					}
-					if ((thisRopeType == RopeType.TOP_LARGE && aboveRopeType == RopeType.TOP_LARGE) || (thisRopeType == RopeType.TOP_LARGE && aboveRopeType == RopeType.MIDDLE_LARGE)) {
-						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
+					if ((thisRopeType == ExtendedRopeType.TOP_LARGE && aboveRopeType == ExtendedRopeType.TOP_LARGE) || (thisRopeType == ExtendedRopeType.TOP_LARGE && aboveRopeType == ExtendedRopeType.MIDDLE_LARGE)) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.MIDDLE_LARGE);
 					}
-					if (thisRopeType == RopeType.TOP_SMALL && aboveRopeType == RopeType.TOP_LARGE) {
-						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
+					if (thisRopeType == ExtendedRopeType.TOP_SMALL && aboveRopeType == ExtendedRopeType.TOP_LARGE) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.MIDDLE_LARGE);
 					}
-					if (thisRopeType == RopeType.TOP_SMALL && aboveRopeType == RopeType.MIDDLE_LARGE) {
-						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
+					if (thisRopeType == ExtendedRopeType.TOP_SMALL && aboveRopeType == ExtendedRopeType.MIDDLE_LARGE) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.MIDDLE_LARGE);
 					}
-					if (thisRopeType == RopeType.BOTTOM_SMALL && aboveRopeType == RopeType.MIDDLE_LARGE) {
-						return pState.setValue(SECTION_TYPE, RopeType.BOTTOM_LARGE);
+					if (thisRopeType == ExtendedRopeType.BOTTOM_SMALL && aboveRopeType == ExtendedRopeType.MIDDLE_LARGE) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.BOTTOM_LARGE);
 					}
-					if (thisRopeType == RopeType.BOTTOM_LARGE && aboveRopeType == RopeType.TOP_SMALL) {
-						return pState.setValue(SECTION_TYPE, RopeType.BOTTOM_SMALL);
+					if (thisRopeType == ExtendedRopeType.BOTTOM_LARGE && aboveRopeType == ExtendedRopeType.TOP_SMALL) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.BOTTOM_SMALL);
 					}
 				} else {
 					// Ensure rope dies if above rope is gone and this rope can't be supported
 					if (!pState.canSurvive(pLevel, pCurrentPos)) {
 						return Blocks.AIR.defaultBlockState();
 					}
-					if (thisRopeType == RopeType.BOTTOM_SMALL || thisRopeType == RopeType.BOTTOM_LARGE) {
-						return pState.setValue(SECTION_TYPE, RopeType.SINGLE);
+					if (thisRopeType == ExtendedRopeType.BOTTOM_SMALL || thisRopeType == ExtendedRopeType.BOTTOM_LARGE) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.SINGLE);
 					}
-					if (thisRopeType == RopeType.MIDDLE_LARGE) {
-						return pState.setValue(SECTION_TYPE, RopeType.TOP_LARGE);
+					if (thisRopeType == ExtendedRopeType.MIDDLE_LARGE) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.TOP_LARGE);
 					}
 				}
 			}
 			if (pFacing == Direction.DOWN) {
-				RopeType thisRopeType = pState.getValue(SECTION_TYPE);
+				ExtendedRopeType thisRopeType = pState.getValue(SECTION_TYPE);
 				if (pFacingState.getBlock() instanceof ExtendedRopeBlock) {
-					RopeType belowRopeType = pFacingState.getValue(SECTION_TYPE);
+					ExtendedRopeType belowRopeType = pFacingState.getValue(SECTION_TYPE);
 					// Only Update when rope is of type SINGLE or is at the Bottom
-					if (thisRopeType == RopeType.SINGLE && belowRopeType == RopeType.BOTTOM_SMALL) {
-						return pState.setValue(SECTION_TYPE, RopeType.TOP_SMALL);
+					if (thisRopeType == ExtendedRopeType.SINGLE && belowRopeType == ExtendedRopeType.BOTTOM_SMALL) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.TOP_SMALL);
 					}
-					if (thisRopeType == RopeType.SINGLE && belowRopeType == RopeType.MIDDLE_LARGE) {
-						return pState.setValue(SECTION_TYPE, RopeType.TOP_LARGE);
+					if (thisRopeType == ExtendedRopeType.SINGLE && belowRopeType == ExtendedRopeType.MIDDLE_LARGE) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.TOP_LARGE);
 					}
-					if ((thisRopeType == RopeType.BOTTOM_SMALL && belowRopeType == RopeType.MIDDLE_LARGE) || (thisRopeType == RopeType.BOTTOM_SMALL && belowRopeType == RopeType.BOTTOM_LARGE)) {
-						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
+					if ((thisRopeType == ExtendedRopeType.BOTTOM_SMALL && belowRopeType == ExtendedRopeType.MIDDLE_LARGE) || (thisRopeType == ExtendedRopeType.BOTTOM_SMALL && belowRopeType == ExtendedRopeType.BOTTOM_LARGE)) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.MIDDLE_LARGE);
 					}
-					if (thisRopeType == RopeType.BOTTOM_LARGE && belowRopeType == RopeType.MIDDLE_LARGE) {
-						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
+					if (thisRopeType == ExtendedRopeType.BOTTOM_LARGE && belowRopeType == ExtendedRopeType.MIDDLE_LARGE) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.MIDDLE_LARGE);
 					}
-					if (thisRopeType == RopeType.BOTTOM_LARGE && belowRopeType == RopeType.BOTTOM_LARGE) {
-						return pState.setValue(SECTION_TYPE, RopeType.MIDDLE_LARGE);
+					if (thisRopeType == ExtendedRopeType.BOTTOM_LARGE && belowRopeType == ExtendedRopeType.BOTTOM_LARGE) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.MIDDLE_LARGE);
 					}
 				}else {
 					// Make sure not to send update upstream actively, only act upon the current state knowing no lower rope
-					if (thisRopeType == RopeType.MIDDLE_LARGE) {
-						return pState.setValue(SECTION_TYPE, RopeType.BOTTOM_LARGE);
+					if (thisRopeType == ExtendedRopeType.MIDDLE_LARGE) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.BOTTOM_LARGE);
 					}
-					if (thisRopeType == RopeType.TOP_LARGE || thisRopeType == RopeType.TOP_SMALL) {
-						return pState.setValue(SECTION_TYPE, RopeType.SINGLE);
+					if (thisRopeType == ExtendedRopeType.TOP_LARGE || thisRopeType == ExtendedRopeType.TOP_SMALL) {
+						return pState.setValue(SECTION_TYPE, ExtendedRopeType.SINGLE);
 					}
 				}
 			}
@@ -287,7 +287,7 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext pContext) {
-		RopeType type;
+		ExtendedRopeType type;
 		Direction pickedDirection = Direction.NORTH;
 		IWorldReader iworldreader = pContext.getLevel();
 		BlockPos blockpos = pContext.getClickedPos();
@@ -308,45 +308,45 @@ public class ExtendedRopeBlock extends Block implements IWaterLoggable {
 		BlockState belowState = pContext.getLevel().getBlockState(blockpos.below());
 		FluidState fluidstate = pContext.getLevel().getFluidState(blockpos);
 		if(aboveState.getBlock() instanceof ExtendedRopeBlock && belowState.getBlock() instanceof ExtendedRopeBlock) {
-			type = RopeType.MIDDLE_LARGE;
+			type = ExtendedRopeType.MIDDLE_LARGE;
 		}else if (aboveState.getBlock() instanceof ExtendedRopeBlock) {
-			RopeType aboveType = aboveState.getValue(SECTION_TYPE);
-			if(aboveType==RopeType.BOTTOM_LARGE) {
-				type = RopeType.BOTTOM_LARGE;
-			}else if(aboveType==RopeType.BOTTOM_SMALL) {
-				type = RopeType.BOTTOM_LARGE;
-			}else if(aboveType==RopeType.SINGLE) {
-				type = RopeType.BOTTOM_SMALL;
-			}else if(aboveType==RopeType.TOP_SMALL) {
-				type = RopeType.BOTTOM_SMALL;
-			}else if(aboveType==RopeType.TOP_LARGE) {
-				type = RopeType.BOTTOM_SMALL;
-			}else if(aboveType==RopeType.MIDDLE_LARGE) {
-				type = RopeType.BOTTOM_LARGE;
+			ExtendedRopeType aboveType = aboveState.getValue(SECTION_TYPE);
+			if(aboveType==ExtendedRopeType.BOTTOM_LARGE) {
+				type = ExtendedRopeType.BOTTOM_LARGE;
+			}else if(aboveType==ExtendedRopeType.BOTTOM_SMALL) {
+				type = ExtendedRopeType.BOTTOM_LARGE;
+			}else if(aboveType==ExtendedRopeType.SINGLE) {
+				type = ExtendedRopeType.BOTTOM_SMALL;
+			}else if(aboveType==ExtendedRopeType.TOP_SMALL) {
+				type = ExtendedRopeType.BOTTOM_SMALL;
+			}else if(aboveType==ExtendedRopeType.TOP_LARGE) {
+				type = ExtendedRopeType.BOTTOM_SMALL;
+			}else if(aboveType==ExtendedRopeType.MIDDLE_LARGE) {
+				type = ExtendedRopeType.BOTTOM_LARGE;
 			}else {
-				type = RopeType.MIDDLE_LARGE;
+				type = ExtendedRopeType.MIDDLE_LARGE;
 				ExtendedLog.warn("Rope Model Type Encountered an unknown combo upstream. Please report this! "+aboveType.getSerializedName());
 			}
 		}else if (belowState.getBlock() instanceof ExtendedRopeBlock) {
-			RopeType belowType = belowState.getValue(SECTION_TYPE);
-			if(belowType==RopeType.TOP_LARGE) {
-				type = RopeType.TOP_LARGE;
-			}else if(belowType==RopeType.TOP_SMALL) {
-				type = RopeType.TOP_LARGE;
-			}else if(belowType==RopeType.SINGLE) {
-				type = RopeType.TOP_SMALL;
-			}else if(belowType==RopeType.MIDDLE_LARGE) {
-				type = RopeType.TOP_LARGE;
-			}else if(belowType==RopeType.BOTTOM_SMALL) {
-				type = RopeType.TOP_SMALL;
-			}else if(belowType==RopeType.BOTTOM_LARGE) {
-				type = RopeType.TOP_SMALL;
+			ExtendedRopeType belowType = belowState.getValue(SECTION_TYPE);
+			if(belowType==ExtendedRopeType.TOP_LARGE) {
+				type = ExtendedRopeType.TOP_LARGE;
+			}else if(belowType==ExtendedRopeType.TOP_SMALL) {
+				type = ExtendedRopeType.TOP_LARGE;
+			}else if(belowType==ExtendedRopeType.SINGLE) {
+				type = ExtendedRopeType.TOP_SMALL;
+			}else if(belowType==ExtendedRopeType.MIDDLE_LARGE) {
+				type = ExtendedRopeType.TOP_LARGE;
+			}else if(belowType==ExtendedRopeType.BOTTOM_SMALL) {
+				type = ExtendedRopeType.TOP_SMALL;
+			}else if(belowType==ExtendedRopeType.BOTTOM_LARGE) {
+				type = ExtendedRopeType.TOP_SMALL;
 			}else {
-				type = RopeType.SINGLE;
+				type = ExtendedRopeType.SINGLE;
 				ExtendedLog.warn("Rope Model Type Encountered an unknown combo downstream. Please report this! "+belowType.getSerializedName());
 			}
 		}else {
-			type = RopeType.SINGLE; // Since we are not in the middle or below rope, we must be a single rat
+			type = ExtendedRopeType.SINGLE; // Since we are not in the middle or below rope, we must be a single rat
 		}
 		return this.defaultBlockState().setValue(FACING, pickedDirection).setValue(SECTION_TYPE, type).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 	}

@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.enums;
 
 import net.minecraft.util.IStringSerializable;
 
-public enum PillarType implements IStringSerializable {
+public enum ExtendedPillarType implements IStringSerializable {
 	SINGLE("single"),
 	BOTTOM_SMALL("bottom_small"),
 	TOP_SMALL("top_small"),
@@ -13,7 +13,7 @@ public enum PillarType implements IStringSerializable {
 
 	private final String name;
 
-	private PillarType(String pName) {
+	private ExtendedPillarType(String pName) {
 		this.name = pName;
 	}
 

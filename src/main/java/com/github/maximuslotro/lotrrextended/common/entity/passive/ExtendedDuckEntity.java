@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.entity.passive;
 
 import java.util.Random;
 
-import com.github.maximuslotro.lotrrextended.common.enums.EntityGender;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntityGender;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
@@ -139,7 +139,7 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 		}
 
 		this.flap += this.flapping * 2.0F;
-		if (!this.level.isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && this.getGender()==EntityGender.FEMALE) {
+		if (!this.level.isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && this.getGender()==ExtendedEntityGender.FEMALE) {
 			this.playSound(ExtendedSounds.DUCK_EGG.get(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.spawnAtLocation(ExtendedItems.DUCK_EGG.get());
 			this.eggTime = this.random.nextInt(6000) + 6000;
@@ -151,7 +151,7 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 	public ActionResultType mobInteract(PlayerEntity pPlayer, Hand pHand) {
 		ItemStack itemstack = pPlayer.getItemInHand(pHand);
 		if (Ingredient.of(LOTRItems.FISH_AND_CHIPS.get()).test(itemstack)) {
-			if(this.getGender() == EntityGender.MALE) {
+			if(this.getGender() == ExtendedEntityGender.MALE) {
 				setBob(true);
 			}
 			super.mobInteract(pPlayer, pHand);
@@ -247,12 +247,12 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 	 * */
 	@Override
 	public ExtendedDuckEntity modifyBreedingOffspring(ExtendedDuckEntity baby, ServerWorld pServerLevel, AgeableEntity pMate) {
-		if(baby.getGender() == EntityGender.MALE) {
-			if(getGender()==EntityGender.MALE) {
+		if(baby.getGender() == ExtendedEntityGender.MALE) {
+			if(getGender()==ExtendedEntityGender.MALE) {
 				if(isBob()) {
 					baby.setBob(true);
 				}
-			} else if(((ExtendedDuckEntity)pMate).getGender()==EntityGender.MALE && ((ExtendedDuckEntity)pMate).isBob()) {
+			} else if(((ExtendedDuckEntity)pMate).getGender()==ExtendedEntityGender.MALE && ((ExtendedDuckEntity)pMate).isBob()) {
 				baby.setBob(true);
 			}
 		}

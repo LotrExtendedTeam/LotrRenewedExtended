@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.enums;
 
-public enum EntityGender {
+public enum ExtendedEntityGender {
 	MALE("male", 0),
 	FEMALE("female", 1),
 	GENDERLESS("genderless", 2),
@@ -8,7 +8,7 @@ public enum EntityGender {
 
 	private final String name;
 	private final int id;
-	EntityGender(String pName, int pID) {
+	ExtendedEntityGender(String pName, int pID) {
 		this.name = pName;
 		this.id = pID;
 	}
@@ -24,21 +24,21 @@ public enum EntityGender {
 	public boolean isMale() {
 		return this == MALE;
 	}
-	public static EntityGender byGenderName(String queryName) {
-		for (EntityGender gender : values()) {
+	public static ExtendedEntityGender byGenderName(String queryName) {
+		for (ExtendedEntityGender gender : values()) {
 			if (gender.name.equals(queryName)) {
 				return gender;
 			}
 		}
-		return EntityGender.UNKNOWN;
+		return ExtendedEntityGender.UNKNOWN;
 	}
 
-	public static EntityGender byGenderId(int queryID) {
-		for (EntityGender gender : values()) {
+	public static ExtendedEntityGender byGenderId(int queryID) {
+		for (ExtendedEntityGender gender : values()) {
 			if (gender.id == queryID) {
 				return gender;
 			}
 		}
-		return EntityGender.UNKNOWN;
+		return ExtendedEntityGender.UNKNOWN;
 	}
 }

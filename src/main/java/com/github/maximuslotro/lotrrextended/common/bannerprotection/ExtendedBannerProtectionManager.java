@@ -5,7 +5,7 @@ import java.util.List;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
-import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity.ProtectionEntry;
 import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
@@ -109,13 +109,13 @@ public class ExtendedBannerProtectionManager {
 
 		public static class PlayerProtection extends SingleProtectionInstance{
 			private final PlayerEntity offendingPlayer;
-			private BannerPermission queryingPermission = BannerPermission.EVERYTHING;
+			private ExtendedBannerPermissions queryingPermission = ExtendedBannerPermissions.EVERYTHING;
 
 			public PlayerProtection(PlayerEntity offendingPlayer) {
 				this.offendingPlayer = offendingPlayer;
 			}
 
-			public PlayerProtection(PlayerEntity offendingPlayer, BannerPermission queryingPermission) {
+			public PlayerProtection(PlayerEntity offendingPlayer, ExtendedBannerPermissions queryingPermission) {
 				this(offendingPlayer);
 				this.queryingPermission = queryingPermission;
 			}
@@ -131,7 +131,7 @@ public class ExtendedBannerProtectionManager {
 					}
 					float alignment = LOTRLevelData.serverInstance().getData(offendingPlayer).getAlignmentData().getAlignment(bannerInstance.getFactionProtcting());
 					// Ensure players can't open banners even if they have alignment
-					if(alignment<bannerInstance.getAlignmentLevel() || queryingPermission==BannerPermission.BANNER) {
+					if(alignment<bannerInstance.getAlignmentLevel() || queryingPermission==ExtendedBannerPermissions.BANNER) {
 						if(bannerInstance.getFactionProtcting().resolveFaction(bannerInstance.getLevel()).isPresent()) {
 							tellPlayerYSNP(bannerInstance.getFactionProtcting().resolveFaction(bannerInstance.getLevel()).get().getColoredDisplayName());
 						}else {

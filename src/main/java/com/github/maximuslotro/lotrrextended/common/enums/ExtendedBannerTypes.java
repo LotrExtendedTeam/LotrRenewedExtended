@@ -11,7 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
-public enum BannerTypes {
+public enum ExtendedBannerTypes {
 	DUNEDAIN(ExtendedBlocks.DUNEDAIN_BANNER, ExtendedBlocks.DUNEDAIN_WALL_BANNER, ExtendedItems.DUNEDAIN_BANNER, FactionPointers.DUNEDAIN_NORTH),
 	SHIRE(ExtendedBlocks.HOBBIT_BANNER, ExtendedBlocks.HOBBIT_WALL_BANNER, ExtendedItems.HOBBIT_BANNER, FactionPointers.HOBBITS),
 	BLUEMOUNTIANS(ExtendedBlocks.BLUE_MOUNTAINS_BANNER, ExtendedBlocks.BLUE_MOUNTAINS_WALL_BANNER, ExtendedItems.BLUE_MOUNTAINS_BANNER, FactionPointers.BLUE_MOUNTAINS),
@@ -24,7 +24,7 @@ public enum BannerTypes {
 	private final RegistryObject<Item> bannerItem;
 	private final FactionPointer faction;
 
-	private BannerTypes(RegistryObject<Block> standingBlock, RegistryObject<Block> hangingBlock, RegistryObject<Item> item, FactionPointer faction) {
+	private ExtendedBannerTypes(RegistryObject<Block> standingBlock, RegistryObject<Block> hangingBlock, RegistryObject<Item> item, FactionPointer faction) {
 		this.standingBlock = standingBlock;
 		this.hangingBlock = hangingBlock;
 		this.bannerItem = item;
@@ -49,7 +49,7 @@ public enum BannerTypes {
 
 	public static Block[] getContainedStandingBlocks(){
 		List<Block> containedBanners = new ArrayList<>();
-		for(BannerTypes banner : values()) {
+		for(ExtendedBannerTypes banner : values()) {
 			containedBanners.add(banner.getStandingBlock().get());
 		}
 		return containedBanners.toArray(new Block[0]);
@@ -57,7 +57,7 @@ public enum BannerTypes {
 
 	public static Block[] getContainedHangingBlocks(){
 		List<Block> containedBanners = new ArrayList<>();
-		for(BannerTypes banner : values()) {
+		for(ExtendedBannerTypes banner : values()) {
 			containedBanners.add(banner.getHangingBlock().get());
 		}
 		return containedBanners.toArray(new Block[0]);

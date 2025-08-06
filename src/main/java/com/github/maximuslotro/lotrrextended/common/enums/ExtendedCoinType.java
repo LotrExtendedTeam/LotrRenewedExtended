@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.enums;
 
-public enum CoinType {
+public enum ExtendedCoinType {
 	ZERO(0),
 	ONE(1), 
 	TEN(10), 
@@ -8,7 +8,7 @@ public enum CoinType {
 
 	private final int value;
 	
-	CoinType(int i) {
+	ExtendedCoinType(int i) {
 		value = i;
 	}
 

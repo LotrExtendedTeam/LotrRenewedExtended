@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.enums;
 
 import net.minecraft.util.IStringSerializable;
 
-public enum RopeType implements IStringSerializable {
+public enum ExtendedRopeType implements IStringSerializable {
 	SINGLE("single"),
 	BOTTOM_SMALL("bottom_small"),
 	TOP_SMALL("top_small"),
@@ -13,7 +13,7 @@ public enum RopeType implements IStringSerializable {
 
 	private final String name;
 
-	private RopeType(String pName) {
+	private ExtendedRopeType(String pName) {
 		this.name = pName;
 	}
 

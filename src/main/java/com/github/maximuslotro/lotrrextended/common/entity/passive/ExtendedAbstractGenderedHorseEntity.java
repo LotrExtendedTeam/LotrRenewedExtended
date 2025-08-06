@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.entity.passive;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.common.enums.EntityGender;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntityGender;
 
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
@@ -191,7 +191,7 @@ public abstract class ExtendedAbstractGenderedHorseEntity extends AbstractHorseE
 	public void readAdditionalSaveData(CompoundNBT nbt) {
 		super.readAdditionalSaveData(nbt);
 		if (nbt.contains("EntityGender")) {
-			this.setGender(EntityGender.byGenderName(nbt.getString("EntityGender")));
+			this.setGender(ExtendedEntityGender.byGenderName(nbt.getString("EntityGender")));
 		}
 
 	}
@@ -226,14 +226,14 @@ public abstract class ExtendedAbstractGenderedHorseEntity extends AbstractHorseE
 			if (!canMateGeneric) {
 				return false;
 			}
-			EntityGender otherAnimalGender = ((ExtendedAbstractGenderedHorseEntity) pOtherAnimal).getGender();
-			if(otherAnimalGender == EntityGender.UNKNOWN || getGender() == EntityGender.UNKNOWN) {
+			ExtendedEntityGender otherAnimalGender = ((ExtendedAbstractGenderedHorseEntity) pOtherAnimal).getGender();
+			if(otherAnimalGender == ExtendedEntityGender.UNKNOWN || getGender() == ExtendedEntityGender.UNKNOWN) {
 				return false;
-			} else if(otherAnimalGender == EntityGender.FEMALE && getGender() == EntityGender.MALE) {
+			} else if(otherAnimalGender == ExtendedEntityGender.FEMALE && getGender() == ExtendedEntityGender.MALE) {
 				return true;
-			} else if(otherAnimalGender == EntityGender.MALE && getGender() == EntityGender.FEMALE) {
+			} else if(otherAnimalGender == ExtendedEntityGender.MALE && getGender() == ExtendedEntityGender.FEMALE) {
 				return true;
-			} else if(otherAnimalGender == EntityGender.GENDERLESS && getGender() == EntityGender.GENDERLESS) {
+			} else if(otherAnimalGender == ExtendedEntityGender.GENDERLESS && getGender() == ExtendedEntityGender.GENDERLESS) {
 				return true;
 			} else {
 				return false;
@@ -246,8 +246,8 @@ public abstract class ExtendedAbstractGenderedHorseEntity extends AbstractHorseE
      *
      * @return The entity's gender.
      */
-	public EntityGender getGender() {
-		return EntityGender.byGenderId(this.entityData.get(GENDER));
+	public ExtendedEntityGender getGender() {
+		return ExtendedEntityGender.byGenderId(this.entityData.get(GENDER));
 	}
 
 	/**
@@ -255,7 +255,7 @@ public abstract class ExtendedAbstractGenderedHorseEntity extends AbstractHorseE
      *
      * @param gender The gender to assign.
      */
-	public void setGender(EntityGender gender) {
+	public void setGender(ExtendedEntityGender gender) {
 		this.entityData.set(GENDER, gender.getGenderId());
 	}
 
@@ -268,10 +268,10 @@ public abstract class ExtendedAbstractGenderedHorseEntity extends AbstractHorseE
      */
 	public void setGenderRandomly(boolean gendered, ServerWorld serverWorld) {
 		if(!gendered) {
-			this.setGender(EntityGender.GENDERLESS);
+			this.setGender(ExtendedEntityGender.GENDERLESS);
 			return;
 		}
-		this.setGender(serverWorld.random.nextBoolean() ? EntityGender.MALE : EntityGender.FEMALE);
+		this.setGender(serverWorld.random.nextBoolean() ? ExtendedEntityGender.MALE : ExtendedEntityGender.FEMALE);
 	}
 
 	@Override

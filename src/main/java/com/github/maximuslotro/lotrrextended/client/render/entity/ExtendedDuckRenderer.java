@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.client.render.entity;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.entity.model.ExtendedDuckModel;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
-import com.github.maximuslotro.lotrrextended.common.enums.EntityGender;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntityGender;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
@@ -26,10 +26,10 @@ public class ExtendedDuckRenderer extends ExtendedMobRenderer<ExtendedDuckEntity
 		if(duck.isBob()) {
 			return BOB_DUCK_LOCATION;
 		}
-		if(duck.getGender() == EntityGender.MALE) {
+		if(duck.getGender() == ExtendedEntityGender.MALE) {
 			return MALE_DUCK_LOCATION;
 		}
-		if(duck.getGender() == EntityGender.FEMALE) {
+		if(duck.getGender() == ExtendedEntityGender.FEMALE) {
 			return FEMALE_DUCK_LOCATION;
 		}
 		return null;

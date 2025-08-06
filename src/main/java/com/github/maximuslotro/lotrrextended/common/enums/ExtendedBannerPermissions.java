@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.enums;
 
-public enum BannerPermission {
+public enum ExtendedBannerPermissions {
 	EVERYTHING, DOORS, CRAFTING, CONTAINERS, EDITABLES, BEDS, FLICKABLES, KNOWLEDGE, BANNER;
-	public static final BannerPermission[] values = values();
+	public static final ExtendedBannerPermissions[] values = values();
 }
