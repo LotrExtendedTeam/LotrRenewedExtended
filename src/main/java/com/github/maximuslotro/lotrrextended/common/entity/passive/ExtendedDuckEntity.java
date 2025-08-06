@@ -139,7 +139,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 		}
 
 		this.flap += this.flapping * 2.0F;
-		if (!this.level.isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0) {
+		if (!this.level.isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && this.getGender()==EntityGender.FEMALE) {
 			this.playSound(ExtendedSounds.DUCK_EGG.get(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.spawnAtLocation(ExtendedItems.DUCK_EGG.get());
 			this.eggTime = this.random.nextInt(6000) + 6000;
