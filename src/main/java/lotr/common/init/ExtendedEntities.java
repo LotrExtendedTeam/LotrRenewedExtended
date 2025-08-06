@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedThrowableAxeEntity;
@@ -30,6 +31,7 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedRivendellWandererEntity>> RIVENDELL_WANDERER;
 	public static RegistryObject<EntityType<ExtendedDuckEntity>> DUCK;
 	public static RegistryObject<EntityType<ExtendedDuckEggEntity>> DUCK_EGG_ENTITY;
+	public static RegistryObject<EntityType<ExtendedHorseBoarEntity>> HORSE_BOAR;
 	public static RegistryObject<EntityType<ExtendedThrowableAxeEntity>> THROWN_AXE;
 	public static RegistryObject<EntityType<ExtendedStructureSpawnerEntity>> STRUCTURE_ENTITY_SPAWNER;
 	public static RegistryObject<EntityType<ExtendedTraderRespawnEntity>> TRADER_RESPAWNER_ENTITY;
@@ -71,5 +73,4 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedBlueMountainsCommanderEntity>> BLUE_DWARVEN_COMMANDER;
 	public static RegistryObject<EntityType<ExtendedDwarvenCommanderEntity>> DWARVEN_COMMANDER;
 	public static RegistryObject<EntityType<ExtendedBlueMountainsBartenderEntity>> BLUE_DWARVEN_BARTENDER;
-
 }

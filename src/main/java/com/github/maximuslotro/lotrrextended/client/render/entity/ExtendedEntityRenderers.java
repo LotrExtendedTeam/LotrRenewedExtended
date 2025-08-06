@@ -16,6 +16,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BARROW_WIGHT.get(), ExtendedBarrowWightRenderer::new);
 		// Animals
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUCK.get(), ExtendedDuckRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HORSE_BOAR.get(), ExtendedBoarRenderer::new);
 		// Projectiles
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUCK_EGG_ENTITY.get(), manager -> new SpriteRenderer<>(manager, itemRenderer));
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.THROWN_CONKER.get(), manager -> new SpriteRenderer<>(manager, itemRenderer));

@@ -197,6 +197,8 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 					LOTRConfig.CLIENT.dolAmrothChestplateWings.setAndSave(slider.getValueInt());
 				}
 			}));
+		addButton(model.addButton("gui.lotrextended.settings.earlyduckmodel.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.enableQuerkyDuckMode), (button, pd) -> ExtendedClientConfig.enableQuerkyDuckMode.get(), 
+			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		catagories.add(model);
 
 

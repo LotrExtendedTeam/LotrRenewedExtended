@@ -16,7 +16,7 @@
       "max_count": 4
     },
 	{
-	  "entity_type": "lotr:dwarf_miner",
+	  "entity_type": "lotr:dwarven_miner",
 	  "weight": 15,
 	  "min_count": 1,
 	  "max_count": 3

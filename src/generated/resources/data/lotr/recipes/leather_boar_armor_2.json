@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_dwarven",
+  "pattern": [
+    "  M",
+    "MLM",
+    "M M"
+  ],
+  "key": {
+    "M": {
+      "tag": "forge:leather"
+    },
+    "L": {
+      "tag": "forge:leather"
+    }
+  },
+  "result": {
+    "item": "lotr:leather_boar_armor"
+  }
+}

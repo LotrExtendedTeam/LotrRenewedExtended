@@ -22,6 +22,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCompostableItem
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBannerPatterns;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBedItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBerries;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoarArmorItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBucketOfCheeseCurds;
@@ -29,6 +30,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCopperIngotItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDuckEggItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDyeableBoarArmorItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGuldurilItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
@@ -1071,6 +1073,10 @@ public class MixinLOTRItems {
 
 		//Blue Mountains equipment
 		ExtendedItems.BLUE_DWARVEN_SHIELD = regItemB("blue_dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.BLUE_DWARVEN));
+
+		ExtendedItems.LEATHER_BOAR_ARMOR = regItemB("leather_boar_armor", () -> new ExtendedDyeableBoarArmorItem(3, "leather", new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.DWARVEN_BOAR_ARMOR = regItemB("dwarven_boar_armor", () -> new ExtendedBoarArmorItem(5, "dwarven", new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.BLUE_DWARVEN_BOAR_ARMOR = regItemB("blue_dwarven_boar_armor", () -> new ExtendedBoarArmorItem(5, "blue_dwarven", new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
 
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", () -> new ExtendedDyeableLOTRArmorItem(LOTRMaterial.COSMETIC, EquipmentSlotType.HEAD, "leather_hat"));

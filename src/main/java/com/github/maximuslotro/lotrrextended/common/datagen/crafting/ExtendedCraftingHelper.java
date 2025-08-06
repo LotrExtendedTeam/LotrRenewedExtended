@@ -44,6 +44,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedCraftingHelper extends RecipeProvider {
@@ -390,6 +391,46 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.unlockedBy("has_"+type, has(reasource))
 			.unlockedBy("has_"+shield.get().getRegistryName().getPath(), has(shield.get()))
 			.save(consumer, lotrLoc(shield.get().getRegistryName().getPath()));
+		}
+	}
+
+	protected void makeBoarArmorRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> armor, ITag<Item> reasource, String type, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		GENERATEDRECIPES.add(armor.get().getRegistryName().getPath());
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(armor.get())
+			.pattern("  M")
+			.pattern("MLM")
+			.pattern("M M")
+			.define('M', Ingredient.of(reasource))
+			.define('L', Ingredient.of(Tags.Items.LEATHER))
+			.unlockedBy("has_"+type, has(reasource))
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_1"));
+			ExtendedShapedRecipeBuilder.shaped(armor.get())
+			.pattern("M  ")
+			.pattern("MLM")
+			.pattern("M M")
+			.define('M', Ingredient.of(reasource))
+			.define('L', Ingredient.of(Tags.Items.LEATHER))
+			.unlockedBy("has_"+type, has(reasource))
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_2"));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(armor.get(), table)
+			.pattern("  M")
+			.pattern("MLM")
+			.pattern("M M")
+			.define('M', Ingredient.of(reasource))
+			.define('L', Ingredient.of(Tags.Items.LEATHER))
+			.unlockedBy("has_"+type, has(reasource))
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_1"));
+			ExtendedFactionShapedRecipeBuilder.shaped(armor.get(), table)
+			.pattern("  M")
+			.pattern("MLM")
+			.pattern("M M")
+			.define('M', Ingredient.of(reasource))
+			.define('L', Ingredient.of(Tags.Items.LEATHER))
+			.unlockedBy("has_"+type, has(reasource))
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_2"));
 		}
 	}
 
