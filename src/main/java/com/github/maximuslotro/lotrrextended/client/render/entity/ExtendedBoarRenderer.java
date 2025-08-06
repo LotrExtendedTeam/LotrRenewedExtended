@@ -1,17 +1,26 @@
 package com.github.maximuslotro.lotrrextended.client.render.entity;
 
+import java.util.Map;
+
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.entity.layers.ExtendedBoarArmorLayer;
 import com.github.maximuslotro.lotrrextended.client.render.entity.model.ExtendedHorseBoarModel;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
-import com.github.maximuslotro.lotrrextended.common.enums.EntityGender;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBoarColors;
+import com.google.common.collect.Maps;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
 
 public class ExtendedBoarRenderer extends ExtendedMobRenderer<ExtendedHorseBoarEntity, ExtendedHorseBoarModel<ExtendedHorseBoarEntity>> {
-	private static final ResourceLocation MALE_BOAR_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/male/boar_male.png");
-	private static final ResourceLocation FEMALE_BOAR_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/female/boar_female.png");
+	private static final Map<ExtendedBoarColors, ResourceLocation> LOCATION_BY_VARIANT = Util.make(Maps.newEnumMap(ExtendedBoarColors.class), (p_239384_0_) -> {
+	      p_239384_0_.put(ExtendedBoarColors.REGULAR, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/boar0.png"));
+	      p_239384_0_.put(ExtendedBoarColors.REGULAR_DARK, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/boar2.png"));
+	      p_239384_0_.put(ExtendedBoarColors.DARKER, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/boar1.png"));
+	      p_239384_0_.put(ExtendedBoarColors.DARKER_DARK, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/boar3.png"));
+	      p_239384_0_.put(ExtendedBoarColors.DARK, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/boar4.png"));
+	   });
 
 	public ExtendedBoarRenderer(EntityRendererManager p_i47198_1_) {
 		super(p_i47198_1_, new ExtendedHorseBoarModel<>(0.0f), 0.7F);
@@ -23,12 +32,6 @@ public class ExtendedBoarRenderer extends ExtendedMobRenderer<ExtendedHorseBoarE
 	 */
 	@Override
 	public ResourceLocation getTexture(ExtendedHorseBoarEntity entity) {
-		if(entity.getGender() == EntityGender.MALE) {
-			return MALE_BOAR_LOCATION;
-		}
-		if(entity.getGender() == EntityGender.FEMALE) {
-			return FEMALE_BOAR_LOCATION;
-		}
-		return null;
+		return LOCATION_BY_VARIANT.get(entity.getVariant());
 	}
 }

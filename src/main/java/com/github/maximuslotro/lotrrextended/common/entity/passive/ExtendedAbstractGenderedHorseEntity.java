@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.entity.passive;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.EntityGender;
 
 import lotr.common.init.ExtendedItems;
@@ -180,7 +179,6 @@ public abstract class ExtendedAbstractGenderedHorseEntity extends AbstractHorseE
 		if(baby.isGendered()==this.isGendered() || baby.isGendered()==((ExtendedAbstractGenderedHorseEntity)pMate).isGendered()) {
 			baby.setGenderRandomly(isGendered(), pServerLevel);
 		}
-		ExtendedLog.info("getting breed offspring");
 		return modifyBreedingOffspring(baby, pServerLevel, pMate);
 	}
 

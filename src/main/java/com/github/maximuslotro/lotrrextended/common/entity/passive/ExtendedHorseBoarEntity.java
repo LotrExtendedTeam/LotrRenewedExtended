@@ -4,7 +4,8 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.client.render.entity.ai.goal.ExtendedTamingGoal;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedTamingGoal;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBoarColors;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoarArmorItem;
 
@@ -12,6 +13,8 @@ import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -30,11 +33,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -44,8 +52,16 @@ import net.minecraft.world.server.ServerWorld;
 public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity {
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("556E1665-8B10-40C8-8F9D-CF9B1667F295");
 
+	private static final DataParameter<Integer> DATA_ID_TYPE_VARIANT = EntityDataManager.defineId(ExtendedHorseBoarEntity.class, DataSerializers.INT);
+
 	public ExtendedHorseBoarEntity(EntityType<? extends ExtendedHorseBoarEntity> entityType, World world) {
 		super(entityType, world);
+	}
+
+	@Override
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
 	}
 
 	@Override
@@ -102,12 +118,42 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 		return ((double)0.32F + this.random.nextDouble() * 0.3D + this.random.nextDouble() * 0.3D + this.random.nextDouble() * 0.3D) * 0.25D;
 	}
 
+	private void setTypeVariant(ExtendedBoarColors pVariant) {
+		this.setTypeVariant(pVariant.getId());
+	}
+
+	private void setTypeVariant(int pTypeVariant) {
+		this.entityData.set(DATA_ID_TYPE_VARIANT, pTypeVariant);
+	}
+
+	public ExtendedBoarColors getVariant() {
+		return ExtendedBoarColors.byId(this.getTypeVariant());
+	}
+
+	private int getTypeVariant() {
+		return this.entityData.get(DATA_ID_TYPE_VARIANT);
+	}
+
 	@Override
 	public void addAdditionalSaveData(CompoundNBT pCompound) {
 		super.addAdditionalSaveData(pCompound);
+		pCompound.putInt("Variant", this.getTypeVariant());
 		if (!this.inventory.getItem(1).isEmpty()) {
 			pCompound.put("ArmorItem", this.inventory.getItem(1).save(new CompoundNBT()));
 		}
+	}
+
+	@Override
+	public void readAdditionalSaveData(CompoundNBT pCompound) {
+		super.readAdditionalSaveData(pCompound);
+		this.setTypeVariant(pCompound.getInt("Variant"));
+		if (pCompound.contains("ArmorItem", 10)) {
+			ItemStack itemstack = ItemStack.of(pCompound.getCompound("ArmorItem"));
+			if (!itemstack.isEmpty() && this.isArmor(itemstack)) {
+				this.inventory.setItem(1, itemstack);
+			}
+		}
+		this.updateContainerEquipment();
 	}
 
 	public ItemStack getArmor() {
@@ -117,18 +163,6 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 	private void setArmor(ItemStack pStack) {
 		this.setItemSlot(EquipmentSlotType.CHEST, pStack);
 		this.setDropChance(EquipmentSlotType.CHEST, 0.0F);
-	}
-
-	@Override
-	public void readAdditionalSaveData(CompoundNBT pCompound) {
-		super.readAdditionalSaveData(pCompound);
-		if (pCompound.contains("ArmorItem", 10)) {
-			ItemStack itemstack = ItemStack.of(pCompound.getCompound("ArmorItem"));
-			if (!itemstack.isEmpty() && this.isArmor(itemstack)) {
-				this.inventory.setItem(1, itemstack);
-			}
-		}
-		this.updateContainerEquipment();
 	}
 
 	@Override
@@ -287,7 +321,18 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 
 	@Override
 	public ExtendedHorseBoarEntity getBreedingOffspring(ServerWorld pServerLevel, AgeableEntity pMate) {
-		return ExtendedEntities.HORSE_BOAR.get().create(pServerLevel);
+		ExtendedHorseBoarEntity baby = ExtendedEntities.HORSE_BOAR.get().create(pServerLevel);
+		int i = this.random.nextInt(9);
+		ExtendedBoarColors coatcolors;
+		if (i < 4) {
+			coatcolors = this.getVariant();
+		} else if (i < 8) {
+			coatcolors = ((ExtendedHorseBoarEntity)pMate).getVariant();
+		} else {
+			coatcolors = ExtendedBoarColors.getRandom(this.random);
+		}
+		baby.setTypeVariant(coatcolors);
+		return baby;
 	}
 
 	@Override
@@ -296,4 +341,26 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 		return baby;
 	}
 
+	@Override
+	@Nullable
+	public ILivingEntityData finalizeSpawn(IServerWorld pLevel, DifficultyInstance pDifficulty, SpawnReason pReason, @Nullable ILivingEntityData pSpawnData, @Nullable CompoundNBT pDataTag) {
+		ExtendedBoarColors coatcolors;
+		if (pSpawnData instanceof ExtendedHorseBoarEntity.ExtendedBoarData) {
+			coatcolors = ((ExtendedHorseBoarEntity.ExtendedBoarData)pSpawnData).variant;
+		} else {
+			coatcolors = ExtendedBoarColors.getRandom(this.random);
+			pSpawnData = new ExtendedHorseBoarEntity.ExtendedBoarData(coatcolors);
+		}
+		this.setTypeVariant(coatcolors);
+		return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
+	}
+
+	public static class ExtendedBoarData extends AgeableEntity.AgeableData {
+		public final ExtendedBoarColors variant;
+
+		public ExtendedBoarData(ExtendedBoarColors pVariant) {
+			super(true);
+			this.variant = pVariant;
+		}
+	}
 }

@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.client.render.entity.ai.goal;
+package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 
 import net.minecraft.entity.ai.goal.RunAroundLikeCrazyGoal;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
