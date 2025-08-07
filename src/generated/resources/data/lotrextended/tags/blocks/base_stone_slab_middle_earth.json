@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:blue_rock_slab",
+    "lotr:gondor_rock_slab",
+    "lotr:mordor_rock_slab",
+    "lotr:red_rock_slab",
+    "lotr:rohan_rock_slab",
+    "minecraft:andesite_slab",
+    "minecraft:diorite_slab",
+    "minecraft:granite_slab",
+    "minecraft:stone_slab"
+  ]
+}

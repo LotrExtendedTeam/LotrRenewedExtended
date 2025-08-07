@@ -9,6 +9,17 @@ public class BlockStateUtils {
 	public static BlockState copyBlockStateToBlock(RegistryObject<Block> regBlock, BlockState previousBlockState) {
 		return copyBlockStateToBlock(regBlock.get(), previousBlockState);
 	}
+	public static BlockState copyBlockStateToBlockState(BlockState newBlockStateBlock, BlockState previousBlockState) {
+		return copyBlockStateToBlock(newBlockStateBlock.getBlock(), previousBlockState);
+	}
+	public static BlockState copyBlockStateToBlockStateOverwrite(BlockState newBlockStateBlock, BlockState previousBlockState) {
+		for (Property<?> property : previousBlockState.getProperties()) {
+			if (newBlockStateBlock.hasProperty(property)) {
+				newBlockStateBlock = copyProperty(previousBlockState, newBlockStateBlock, property);
+			}
+		}
+		return newBlockStateBlock;
+	}
 	public static BlockState copyBlockStateToBlock(Block block, BlockState previousBlockState) {
 		BlockState newBlockState = block.defaultBlockState();
 		for (Property<?> property : previousBlockState.getBlock().getStateDefinition().getProperties()) {
