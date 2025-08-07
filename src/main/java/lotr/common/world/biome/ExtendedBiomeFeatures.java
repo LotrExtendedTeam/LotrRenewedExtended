@@ -8,6 +8,8 @@ import java.util.OptionalInt;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.world.gen.blockstateprovider.ExtendedListTypedBlockStateProvider;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeature;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedBlobFeatureConfig;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedBlobFeatureConfig.ExtendedFillerBlockType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedConfiguredFeatures;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedHoleySphereConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.tree.BananaFoliagePlacer;
@@ -16,6 +18,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
 import lotr.common.init.ExtendedBlocks;
+import lotr.common.init.LOTRBlocks;
 import lotr.common.world.gen.tree.ClusterFoliagePlacer;
 import lotr.common.world.gen.tree.PartyTrunkPlacer;
 import net.minecraft.block.Block;
@@ -64,6 +67,22 @@ public class ExtendedBiomeFeatures {
 	private static BlockState PLUM_LEAVES;
 	private static BlockState PLUM_LEAVES_FRUIT;
 
+	// Stones
+	private static BlockState BLUE_ROCK;
+	private static BlockState BLUE_ROCK_SLAB;
+	private static BlockState BLUE_ROCK_STAIRS;
+	private static BlockState STONE;
+	private static BlockState STONE_SLAB;
+	private static BlockState STONE_STAIRS;
+	private static BlockState ANDESITE;
+	private static BlockState ANDESITE_SLAB;
+	private static BlockState ANDESITE_STAIRS;
+	private static BlockState DIORITE;
+	private static BlockState DIORITE_SLAB;
+	private static BlockState DIORITE_STAIRS;
+	private static BlockState GRANITE;
+	private static BlockState GRANITE_SLAB;
+	private static BlockState GRANITE_STAIRS;
 	// Ores
 	private static BlockState AMETHYST_ORE;
 	private static BlockState TOPAZ_ORE;
@@ -183,6 +202,23 @@ public class ExtendedBiomeFeatures {
 		PLUM_LEAVES = ExtendedBlocks.PLUM_LEAVES.get().defaultBlockState();
 		PLUM_LEAVES_FRUIT = ExtendedBlocks.PLUM_LEAVES_FRUIT.get().defaultBlockState();
 
+		// stone block states
+		BLUE_ROCK = LOTRBlocks.BLUE_ROCK.get().defaultBlockState();
+		BLUE_ROCK_SLAB = LOTRBlocks.BLUE_ROCK_SLAB.get().defaultBlockState();
+		BLUE_ROCK_STAIRS = LOTRBlocks.BLUE_ROCK_STAIRS.get().defaultBlockState();
+		STONE = Blocks.STONE.defaultBlockState();
+		STONE_SLAB = Blocks.STONE_SLAB.defaultBlockState();
+		STONE_STAIRS = Blocks.STONE_STAIRS.defaultBlockState();
+		ANDESITE = Blocks.ANDESITE.defaultBlockState();
+		ANDESITE_SLAB = Blocks.ANDESITE_SLAB.defaultBlockState();
+		ANDESITE_STAIRS = Blocks.ANDESITE_STAIRS.defaultBlockState();
+		DIORITE = Blocks.DIORITE.defaultBlockState();
+		DIORITE_SLAB = Blocks.DIORITE_SLAB.defaultBlockState();
+		DIORITE_STAIRS = Blocks.DIORITE_STAIRS.defaultBlockState();
+		GRANITE = Blocks.GRANITE.defaultBlockState();
+		GRANITE_SLAB = Blocks.GRANITE_SLAB.defaultBlockState();
+		GRANITE_STAIRS = Blocks.GRANITE_STAIRS.defaultBlockState();
+
 		// gem block states
 		AMETHYST_ORE = ExtendedBlocks.AMETHYST_ORE.get().defaultBlockState();
 		TOPAZ_ORE = ExtendedBlocks.TOPAZ_ORE.get().defaultBlockState();
@@ -267,10 +303,6 @@ public class ExtendedBiomeFeatures {
 		addUndergroundOre(builder, Blocks.LAPIS_ORE.defaultBlockState(), 7, 32, 2);
 	}
 
-	public static void addStoneBlobs(BiomeGenerationSettings.Builder builder) {
-		addUndergroundOre(builder, Blocks.STONE.defaultBlockState(), 61, 90, 5);
-	}
-
 	private static void addUndergroundOreWeighted(BiomeGenerationSettings.Builder builder, BlockState stone, int size, int maxHightFromBedrock, float weight) {
 		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(FillerBlockType.NATURAL_STONE, stone, size)).range(maxHightFromBedrock).squared().weighted(weight).feature.get());
 	}
@@ -278,7 +310,62 @@ public class ExtendedBiomeFeatures {
 	private static void addUndergroundOre(BiomeGenerationSettings.Builder builder, BlockState stone, int size, int maxHightFromBedrock, int frequency) {
 		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configured(new OreFeatureConfig(FillerBlockType.NATURAL_STONE, stone, size)).range(maxHightFromBedrock).squared().count(frequency));
 	}
-	
+
+	// Common Blobs
+	public static void addCommonAndesiteBlobs(BiomeGenerationSettings.Builder builder) {
+		addUndergroundStones(builder, ANDESITE, ANDESITE_SLAB, ANDESITE_STAIRS, 61, 96, 20);
+	}
+
+	public static void addCommonDioriteBlobs(BiomeGenerationSettings.Builder builder) {
+		addUndergroundStones(builder, DIORITE, DIORITE_SLAB, DIORITE_STAIRS, 61, 96, 12);
+	}
+
+	public static void addCommonGraniteBlobs(BiomeGenerationSettings.Builder builder) {
+		addUndergroundStones(builder, GRANITE_SLAB, GRANITE_SLAB, GRANITE_STAIRS, 61, 96, 12);
+	}
+
+	// Blobs
+	public static void addAndesiteBlobs(BiomeGenerationSettings.Builder builder) {
+		addUndergroundStones(builder, ANDESITE, ANDESITE_SLAB, ANDESITE_STAIRS, 61, 80, 10);
+	}
+
+	public static void addDioriteBlobs(BiomeGenerationSettings.Builder builder) {
+		addUndergroundStones(builder, DIORITE, DIORITE_SLAB, DIORITE_STAIRS, 61, 80, 5);
+	}
+
+	public static void addGraniteBlobs(BiomeGenerationSettings.Builder builder) {
+		addUndergroundStones(builder, GRANITE_SLAB, GRANITE_SLAB, GRANITE_STAIRS, 61, 80, 5);
+	}
+
+	// Deep Blobs
+	public static void addDeepAndesiteBlobs(BiomeGenerationSettings.Builder builder) {
+		addUndergroundStones(builder, ANDESITE, ANDESITE_SLAB, ANDESITE_STAIRS, 61, 32, 10);
+	}
+
+	public static void addDeepDioriteBlobs(BiomeGenerationSettings.Builder builder) {
+		addUndergroundStones(builder, DIORITE, DIORITE_SLAB, DIORITE_STAIRS, 61, 32, 5);
+	}
+
+	public static void addDeepGraniteBlobs(BiomeGenerationSettings.Builder builder) {
+		addUndergroundStones(builder, GRANITE_SLAB, GRANITE_SLAB, GRANITE_STAIRS, 61, 32, 5);
+	}
+
+	public static void addStoneBlobs(BiomeGenerationSettings.Builder builder) {
+		addUndergroundStones(builder, STONE, STONE_SLAB, STONE_STAIRS, 61, 90, 5);
+	}
+
+	public static void addLuigonBlobs(BiomeGenerationSettings.Builder builder) {
+		addUndergroundStones(builder, BLUE_ROCK, BLUE_ROCK_SLAB, BLUE_ROCK_SLAB, 61, 96, 6);
+	}
+
+	private static void addUndergroundStones(BiomeGenerationSettings.Builder builder, BlockState stone, BlockState slab, BlockState stair, int size, int maxHightFromBedrock, int frequency) {
+		builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ExtendedFeature.BLOB_PRE.configured(new ExtendedBlobFeatureConfig(
+			ExtendedFillerBlockType.NATURAL_STONE_MIDDLE_EARTH,
+			ExtendedFillerBlockType.NATURAL_STONE_SLAB_MIDDLE_EARTH,
+			ExtendedFillerBlockType.NATURAL_STONE_STAIRS_MIDDLE_EARTH,
+			stone, slab, stair, size)).range(maxHightFromBedrock).squared().count(frequency));
+	}
+
 	public static void addRemains(BiomeGenerationSettings.Builder builder) {
 		builder.addFeature(GenerationStage.Decoration.TOP_LAYER_MODIFICATION, ExtendedFeature.HOLEY_UNDERWATER_SPHERE.get()
 			.configured(new ExtendedHoleySphereConfig(Arrays.asList(REMAINS_ORC, REMAINS_ELF, REMAINS_MAN, REMAINS_DWARF), FeatureSpread.of(2, 3), 4, ImmutableList.of(Blocks.DIRT.defaultBlockState()), 20))

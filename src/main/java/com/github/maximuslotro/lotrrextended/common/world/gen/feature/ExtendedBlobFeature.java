@@ -6,7 +6,12 @@ import java.util.Random;
 import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
 import com.mojang.serialization.Codec;
 
+import lotr.common.block.AxialSlabBlock;
+import lotr.common.block.LOTRBlockStates;
+import lotr.common.block.VerticalOnlySlabBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.ISeedReader;
@@ -126,7 +131,37 @@ public class ExtendedBlobFeature extends Feature<ExtendedBlobFeatureConfig> {
 												++blocksPlaced;
 												continue;
 											}else if (config.targetSlab.test(state, rand)) {
-												world.setBlock(blockpos$mutable, BlockStateUtils.copyBlockStateToBlockStateOverwrite(config.stateSlab, state), 2);
+												// Try to preserve the verticality of the existing block VerticalOnlySlabBlock
+												if(state.getBlock() instanceof VerticalOnlySlabBlock && !(config.stateSlab.getBlock() instanceof AxialSlabBlock)) {
+													VerticalOnlySlabBlock vanilla$crossover = VerticalOnlySlabBlock.getVerticalSlabFor((SlabBlock) config.stateSlab.getBlock());
+													if(vanilla$crossover==null) {
+														continue;
+													}
+													// Double copy, once for the template state value on to the new vertical slab block, then copy the existing state onto that (probably redundant, but better safe than sorry?)
+													// No need for special copying since they are both VerticalOnlySlabBlock
+													world.setBlock(blockpos$mutable, BlockStateUtils.copyBlockStateToBlockStateOverwrite(BlockStateUtils.copyBlockStateToBlock(vanilla$crossover, config.stateSlab), state), 2);
+												// Try to preserve the verticality of the existing block AxialSlabBlock that is vertical
+												} else if(state.getBlock() instanceof AxialSlabBlock && !(config.stateSlab.getBlock() instanceof AxialSlabBlock) && state.getValue(LOTRBlockStates.SLAB_AXIS) != Axis.Y) {
+													VerticalOnlySlabBlock vanilla$crossover = VerticalOnlySlabBlock.getVerticalSlabFor((SlabBlock) config.stateSlab.getBlock());
+													if(vanilla$crossover==null) {
+														continue;
+													}
+													// Double copy, once for the template state value on to the new vertical slab block, then copy the existing state onto that (probably redundant, but better safe than sorry?)
+													// Also use this copy method so the AXIS can be converted to HORIZONTAL_AXIS
+													world.setBlock(blockpos$mutable, BlockStateUtils.copyBlockStateToBlockStateOverwriteSlab(BlockStateUtils.copyBlockStateToBlock(vanilla$crossover, config.stateSlab), state), 2);
+												// Try to preserve the vertical nature of the replacing axial block (in theory this should not ever be used)
+												} else if(!(state.getBlock() instanceof AxialSlabBlock) && config.stateSlab.getBlock() instanceof AxialSlabBlock && config.stateSlab.getValue(LOTRBlockStates.SLAB_AXIS) != Axis.Y) {
+													VerticalOnlySlabBlock vanilla$crossover = VerticalOnlySlabBlock.getVerticalSlabFor((SlabBlock) state.getBlock());
+													if(vanilla$crossover==null) {
+														continue;
+													}
+													// No need for secondary blockstate copy since both are in the Y-axis, only copy SlabBlock info
+													world.setBlock(blockpos$mutable, BlockStateUtils.copyBlockStateToBlock(vanilla$crossover, state), 2);
+												// Just copy existing properties over if existing
+												} else {
+													// Also use this copy method so the HORIZONTAL_AXIS can be converted to AXIS
+													world.setBlock(blockpos$mutable, BlockStateUtils.copyBlockStateToBlockStateOverwriteSlab(config.stateSlab, state), 2);
+												}
 												++blocksPlaced;
 												continue;
 											}else if (config.targetStair.test(state, rand)) {

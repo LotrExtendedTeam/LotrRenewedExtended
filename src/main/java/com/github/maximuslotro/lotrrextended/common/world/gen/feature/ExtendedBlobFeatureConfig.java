@@ -50,8 +50,8 @@ public class ExtendedBlobFeatureConfig implements IFeatureConfig {
 		this.size = pSize;
 	}
 
-	public static final class FillerBlockType {
-		public static final RuleTest NATURAL_STONE_MIDDLE_EARTH = new TagMatchRuleTest(ExtendedTags.Blocks.BASE_STONE_SLAB_MIDDLE_EARTH);
+	public static final class ExtendedFillerBlockType {
+		public static final RuleTest NATURAL_STONE_MIDDLE_EARTH = new TagMatchRuleTest(ExtendedTags.Blocks.BASE_STONE_MIDDLE_EARTH);
 		public static final RuleTest NATURAL_STONE_SLAB_MIDDLE_EARTH = new TagMatchRuleTest(ExtendedTags.Blocks.BASE_STONE_SLAB_MIDDLE_EARTH);
 		public static final RuleTest NATURAL_STONE_STAIRS_MIDDLE_EARTH = new TagMatchRuleTest(ExtendedTags.Blocks.BASE_STONE_STAIRS_MIDDLE_EARTH);
 	}
