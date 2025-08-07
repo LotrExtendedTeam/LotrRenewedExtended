@@ -216,8 +216,15 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 	}
 
 	public static Advancement.Builder addCraftingTrigger(Advancement.Builder builder, Block tableFurnaceBlock, Item item) {
-		builder.addCriterion("item_"+item.getRegistryName().toString()+"_made_on_"+tableFurnaceBlock.getRegistryName().getPath(), ExtendedCraftingTrigger.Instance.craftedWithItem(item, tableFurnaceBlock));
-		return builder;
+		return addCraftingTrigger(builder, tableFurnaceBlock, item, new Block[0]);
+	}
+
+	public static Advancement.Builder addCraftingTrigger(Advancement.Builder builder, Block tableFurnaceBlock, Item item, Block... additionaBlocks) {
+		builder.addCriterion("item_"+item.getRegistryName().getPath()+"_made_on_"+tableFurnaceBlock.getRegistryName().getPath(), ExtendedCraftingTrigger.Instance.craftedWithItem(item, tableFurnaceBlock));
+		for(Block block : additionaBlocks) {
+			builder.addCriterion("item_"+item.getRegistryName().getPath()+"_made_on_"+block.getRegistryName().getPath(), ExtendedCraftingTrigger.Instance.craftedWithItem(item, block));
+		}
+		return builder.requirements(IRequirementsStrategy.OR);
 	}
 
 	public BaseData data(Item icon, String name, FrameType frame){

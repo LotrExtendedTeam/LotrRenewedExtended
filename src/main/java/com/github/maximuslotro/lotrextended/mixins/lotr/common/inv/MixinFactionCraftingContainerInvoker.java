@@ -13,7 +13,7 @@ import net.minecraft.block.Block;
  * @Mixin (FactionCraftingContainer.class)
  */
 @Mixin(FactionCraftingContainer.class)
-public interface MixinFactionCraftingContainerAccessor {
+public interface MixinFactionCraftingContainerInvoker {
 	/**
      * Invokes the {@code getCraftingBlock} method from {@link FactionCraftingContainer}, which returns the block associated with the crafting operation.
      *

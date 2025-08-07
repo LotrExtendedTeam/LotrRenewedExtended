@@ -40,7 +40,7 @@ public class AdvancementsProviderLindon extends ExtendedBaseAdvancementType{
 				addKillEntityTriggers(make(), LOTREntities.LINDON_WARRIOR.get(), LOTREntities.LINDON_ELF.get()).parent(lindon));
 
 		Advancement elven_ingot = build(true, data(LOTRItems.ELVEN_STEEL_INGOT.get(), "elven_smith", FrameType.TASK)
-				.setTitle("Elven Smith").setDescription("Acquire an Elven Steel Ingot."),
+				.setTitle("Elven Smith").setDescription("Smelt an ingot of Elven Steel in the Elven Forge."),
 				addCraftingTrigger(make(), LOTRBlocks.ELVEN_FORGE.get(), LOTRItems.ELVEN_STEEL_INGOT.get()).parent(lindon));
 
 		Advancement lindon_armor = build(true, data(LOTRItems.LINDON_CHESTPLATE.get(), "a_shining_helm", FrameType.TASK)
@@ -50,7 +50,7 @@ public class AdvancementsProviderLindon extends ExtendedBaseAdvancementType{
 
 		Advancement galvorn_ingot = build(false, data(ExtendedItems.GALVORN_INGOT.get(), "secrets_of_eol", FrameType.GOAL)
 				.setTitle("Secrets of Eöl").setDescription("Find the secret recipe for the coveted Galvorn of the legendary smith Eöl."),
-				addCraftingTrigger(make(), LOTRBlocks.ELVEN_FORGE.get(), ExtendedItems.GALVORN_INGOT.get()).parent(elven_ingot));
+				addCraftingTrigger(make(), LOTRBlocks.DWARVEN_FORGE.get(), ExtendedItems.GALVORN_INGOT.get()).parent(elven_ingot));
 
 //		Advancement galvorn_armor = build(data(ExtendedItems.GALVORN_CHESTPLATE.get(), "dark_elf", FrameType.CHALLENGE)
 //				.setTitle("Dark Elf").setDescription("Acquire a full set of Galvorn armor."),

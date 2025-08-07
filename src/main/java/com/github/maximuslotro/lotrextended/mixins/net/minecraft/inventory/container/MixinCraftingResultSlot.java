@@ -1,12 +1,18 @@
 package com.github.maximuslotro.lotrextended.mixins.net.minecraft.inventory.container;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrextended.mixins.lotr.common.inv.MixinFactionCraftingContainerInvoker;
+import com.github.maximuslotro.lotrextended.mixins.lotr.common.inv.MixinFactionCraftingResultSlotAccessor;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 
+import lotr.common.inv.FactionCraftingContainer;
+import lotr.common.inv.FactionCraftingResultSlot;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -22,6 +28,14 @@ import net.minecraft.item.ItemStack;
  */
 @Mixin(CraftingResultSlot.class)
 public abstract class MixinCraftingResultSlot extends Slot {
+
+	/**
+	 * Get the internal player variable in this class
+	 */
+	@Shadow
+	@Final
+	private PlayerEntity player;
+
 	/**
      * Constructor required for Mixins that extend a superclass with non-default constructors.
      * This constructor is only used at compile-time and is stripped at runtime.
@@ -35,18 +49,27 @@ public abstract class MixinCraftingResultSlot extends Slot {
 		super(pContainer, pIndex, pX, pY);
 	}
 	/**
-     * Injects behavior into the {@code onTake} method to trigger a custom advancement
+     * Injects behavior into the {@code checkTakeAchievements} method to trigger a custom advancement
      * when a player takes the crafted item from the result slot of a vanilla crafting table.
      *
-     * @param player the player who took the item
      * @param stack  the resulting {@link ItemStack} taken from the slot
-     * @param ci     callback info for the returnable {@link ItemStack}, used to preserve original behavior
+     * @param ci     callback info
      * @Inject (method = "onTake", at = @At("HEAD"))
      */
-	@Inject(method = "onTake", at = @At("HEAD"))
-	public void onTakeExtended(PlayerEntity player, ItemStack stack, CallbackInfoReturnable<ItemStack> ci) {
+	@Inject(method = "checkTakeAchievements", at = @At("HEAD"))
+	public void checkTakeAchievementsExtended(ItemStack stack, CallbackInfo ci) {
 		if (!player.level.isClientSide) {
-			ExtendedCriteriaTriggers.FACTION_CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, stack, Blocks.CRAFTING_TABLE);
+			if((CraftingResultSlot)(Object)this instanceof FactionCraftingResultSlot) {
+				FactionCraftingContainer tableContainer = ((MixinFactionCraftingResultSlotAccessor)(Object)this).getTableContainer();
+				if(tableContainer.isStandardCraftingActive()) {
+					ExtendedCriteriaTriggers.FACTION_CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, stack, Blocks.CRAFTING_TABLE);
+				}else {
+					ExtendedCriteriaTriggers.FACTION_CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, stack, ((MixinFactionCraftingContainerInvoker)tableContainer).invokeCraftingBlock());
+				}
+			}else {
+				ExtendedCriteriaTriggers.FACTION_CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, stack, Blocks.CRAFTING_TABLE);
+			}
 		}
 	}
+	
 }

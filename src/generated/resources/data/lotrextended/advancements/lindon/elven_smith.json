@@ -17,7 +17,7 @@
     "hidden": false
   },
   "criteria": {
-    "item_lotr:elven_steel_ingot_made_on_elven_forge": {
+    "item_elven_steel_ingot_made_on_elven_forge": {
       "trigger": "lotrextended:crafting_with_block",
       "conditions": {
         "item": {
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "item_lotr:elven_steel_ingot_made_on_elven_forge"
+      "item_elven_steel_ingot_made_on_elven_forge"
     ]
   ]
 }
