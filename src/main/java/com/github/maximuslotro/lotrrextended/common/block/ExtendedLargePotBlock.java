@@ -63,7 +63,7 @@ public class ExtendedLargePotBlock extends HorizontalBlock {
                 		if(ExtendedItemStackUtils.isSameItemStackItemAndTag(stack, entity.getContainedItem()) && entity.getContainedItem().getCount()+1<=entity.getContainedItem().getMaxStackSize()) {
                 			stack.shrink(1);
                 			entity.getContainedItem().grow(1);
-        					world.playSound(null, pos, ExtendedSounds.POT_FILLED.get(), SoundCategory.BLOCKS, 1.0F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 0.1F);
+        					world.playSound(null, pos, ExtendedSounds.POT_FILLED.get(), SoundCategory.BLOCKS, 1.0F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 0.3F);
         					return ActionResultType.SUCCESS;
                 		}
                 	}

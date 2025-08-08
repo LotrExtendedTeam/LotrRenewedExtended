@@ -52,17 +52,15 @@ public abstract class MixinBlueMountainsBiome extends LOTRBiomeBase{
 	}
 	/**
 	 * @author maximuslotro
-	 * @reason Needed to add new stone blob, To lazy to inject
+	 * @reason Needed to add new stone blob type builders
 	 * */
 	@Override
 	@Overwrite(remap = false)
 	protected void addStoneVariants(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
-		LOTRBiomeFeatures.addAndesite(builder);
-		LOTRBiomeFeatures.addDeepDiorite(builder);
-		LOTRBiomeFeatures.addBlueRockPatches(builder);
-		// Extended Start
+		ExtendedBiomeFeatures.addAndesiteBlobs(builder);
+		ExtendedBiomeFeatures.addDeepDioriteBlobs(builder);
+		ExtendedBiomeFeatures.addLuigonBlobs(builder);
 		ExtendedBiomeFeatures.addStoneBlobs(builder);
-		// Extended End
 	}
 
 	/**

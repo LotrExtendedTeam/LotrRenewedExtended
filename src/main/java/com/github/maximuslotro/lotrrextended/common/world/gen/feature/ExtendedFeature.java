@@ -26,6 +26,9 @@ public class ExtendedFeature {
 	public static final WillowTreeFeature WILLOW_TREE_FEATURE_PRE = new WillowTreeFeature(NoFeatureConfig.CODEC, false);
 	public static final RegistryObject<WillowTreeFeature> WILLOW_TREE_FEATURE = regFeature("willow_tree_feature", WILLOW_TREE_FEATURE_PRE);
 
+	public static final ExtendedBlobFeature BLOB_PRE = new ExtendedBlobFeature(ExtendedBlobFeatureConfig.CODEC);
+	public static final RegistryObject<ExtendedBlobFeature> BLOB = regFeature("blob", BLOB_PRE);
+
 	private static <FC extends IFeatureConfig, F extends Feature<FC>> RegistryObject<F> regFeature(String name, F feature) {
 		return FEATURES.register(name, () -> feature);
 	}

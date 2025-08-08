@@ -27,7 +27,7 @@ public abstract class MixinWesternIsles extends SeaBiome {
 	protected void addBoulders(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		super.addBoulders(builder);
 		LOTRBiomeFeatures.addBoulders(builder, Blocks.STONE.defaultBlockState(), 1, 2, 4, 5);
-		LOTRBiomeFeatures.addBoulders(builder, Blocks.STONE.defaultBlockState(), 1, 2, 7, 4);
+		LOTRBiomeFeatures.addBoulders(builder, Blocks.STONE.defaultBlockState(), 1, 3, 7, 4);
 		LOTRBiomeFeatures.addBoulders(builder, Blocks.STONE.defaultBlockState(), 3, 6, 45, 2);
 	}
 }
