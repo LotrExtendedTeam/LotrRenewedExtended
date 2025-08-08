@@ -26,11 +26,12 @@ public class BlockStateUtils {
 		for (Property<?> property : previousBlockState.getProperties()) {
 			if (newBlockStateBlock.hasProperty(property)) {
 				newBlockStateBlock = copyProperty(previousBlockState, newBlockStateBlock, property);
-			}else if(newBlockStateBlock.hasProperty(BlockStateProperties.AXIS) && previousBlockState.hasProperty(BlockStateProperties.HORIZONTAL_AXIS)) {
-				newBlockStateBlock.setValue(BlockStateProperties.AXIS, previousBlockState.getValue(BlockStateProperties.HORIZONTAL_AXIS));
-			}else if(newBlockStateBlock.hasProperty(BlockStateProperties.HORIZONTAL_AXIS) && previousBlockState.hasProperty(BlockStateProperties.AXIS) && previousBlockState.getValue(BlockStateProperties.AXIS)!=Axis.Y) {
-				newBlockStateBlock.setValue(BlockStateProperties.HORIZONTAL_AXIS, previousBlockState.getValue(BlockStateProperties.AXIS));
 			}
+		}
+		if(newBlockStateBlock.hasProperty(BlockStateProperties.AXIS) && previousBlockState.hasProperty(BlockStateProperties.HORIZONTAL_AXIS)) {
+			newBlockStateBlock = copyDiffProperty(previousBlockState, newBlockStateBlock, BlockStateProperties.HORIZONTAL_AXIS, BlockStateProperties.AXIS);
+		}else if(newBlockStateBlock.hasProperty(BlockStateProperties.HORIZONTAL_AXIS) && previousBlockState.hasProperty(BlockStateProperties.AXIS) && previousBlockState.getValue(BlockStateProperties.AXIS)!=Axis.Y) {
+			newBlockStateBlock = copyDiffProperty(previousBlockState, newBlockStateBlock, BlockStateProperties.AXIS, BlockStateProperties.HORIZONTAL_AXIS);
 		}
 		return newBlockStateBlock;
 	}
@@ -46,5 +47,9 @@ public class BlockStateUtils {
 
 	private static <T extends Comparable<T>> BlockState copyProperty(BlockState previousBlockState, BlockState newBlockState, Property<T> property) {
 		return newBlockState.setValue(property, previousBlockState.getValue(property));
+	}
+
+	private static <T extends Comparable<T>> BlockState copyDiffProperty(BlockState previousBlockState, BlockState newBlockState, Property<T> propertyOld, Property<T> propertyNew) {
+		return newBlockState.setValue(propertyNew, previousBlockState.getValue(propertyOld));
 	}
 }

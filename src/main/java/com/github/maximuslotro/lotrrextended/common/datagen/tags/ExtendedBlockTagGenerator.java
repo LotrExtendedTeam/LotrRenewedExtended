@@ -221,7 +221,8 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		tag(ExtendedTags.Blocks.BASE_STONE_SLAB_MIDDLE_EARTH)
 		.add(Blocks.STONE_SLAB).add(Blocks.GRANITE_SLAB).add(Blocks.DIORITE_SLAB).add(Blocks.ANDESITE_SLAB)
 		.add(LOTRBlocks.BLUE_ROCK_SLAB.get()).add(LOTRBlocks.GONDOR_ROCK_SLAB.get()).add(LOTRBlocks.MORDOR_ROCK_SLAB.get())
-		.add(LOTRBlocks.RED_ROCK_SLAB.get()).add(LOTRBlocks.ROHAN_ROCK_SLAB.get());
+		.add(LOTRBlocks.RED_ROCK_SLAB.get()).add(LOTRBlocks.ROHAN_ROCK_SLAB.get())
+		.add(LOTRBlocks.STONE_VERTICAL_SLAB.get()).add(LOTRBlocks.GRANITE_VERTICAL_SLAB.get()).add(LOTRBlocks.DIORITE_VERTICAL_SLAB.get()).add(LOTRBlocks.ANDESITE_VERTICAL_SLAB.get());
 
 		tag(ExtendedTags.Blocks.BASE_STONE_STAIRS_MIDDLE_EARTH)
 		.add(Blocks.STONE_STAIRS).add(Blocks.GRANITE_STAIRS).add(Blocks.DIORITE_STAIRS).add(Blocks.ANDESITE_STAIRS)

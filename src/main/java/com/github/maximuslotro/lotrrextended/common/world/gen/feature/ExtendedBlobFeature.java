@@ -137,18 +137,16 @@ public class ExtendedBlobFeature extends Feature<ExtendedBlobFeatureConfig> {
 													if(vanilla$crossover==null) {
 														continue;
 													}
-													// Double copy, once for the template state value on to the new vertical slab block, then copy the existing state onto that (probably redundant, but better safe than sorry?)
 													// No need for special copying since they are both VerticalOnlySlabBlock
-													world.setBlock(blockpos$mutable, BlockStateUtils.copyBlockStateToBlockStateOverwrite(BlockStateUtils.copyBlockStateToBlock(vanilla$crossover, config.stateSlab), state), 2);
+													world.setBlock(blockpos$mutable, BlockStateUtils.copyBlockStateToBlock(vanilla$crossover, state), 2);
 												// Try to preserve the verticality of the existing block AxialSlabBlock that is vertical
 												} else if(state.getBlock() instanceof AxialSlabBlock && !(config.stateSlab.getBlock() instanceof AxialSlabBlock) && state.getValue(LOTRBlockStates.SLAB_AXIS) != Axis.Y) {
 													VerticalOnlySlabBlock vanilla$crossover = VerticalOnlySlabBlock.getVerticalSlabFor((SlabBlock) config.stateSlab.getBlock());
 													if(vanilla$crossover==null) {
 														continue;
 													}
-													// Double copy, once for the template state value on to the new vertical slab block, then copy the existing state onto that (probably redundant, but better safe than sorry?)
 													// Also use this copy method so the AXIS can be converted to HORIZONTAL_AXIS
-													world.setBlock(blockpos$mutable, BlockStateUtils.copyBlockStateToBlockStateOverwriteSlab(BlockStateUtils.copyBlockStateToBlock(vanilla$crossover, config.stateSlab), state), 2);
+													world.setBlock(blockpos$mutable, BlockStateUtils.copyBlockStateToBlockStateOverwriteSlab(vanilla$crossover.defaultBlockState(), state), 2);
 												// Try to preserve the vertical nature of the replacing axial block (in theory this should not ever be used)
 												} else if(!(state.getBlock() instanceof AxialSlabBlock) && config.stateSlab.getBlock() instanceof AxialSlabBlock && config.stateSlab.getValue(LOTRBlockStates.SLAB_AXIS) != Axis.Y) {
 													VerticalOnlySlabBlock vanilla$crossover = VerticalOnlySlabBlock.getVerticalSlabFor((SlabBlock) state.getBlock());
