@@ -331,12 +331,8 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 		} else {
 			coatcolors = ExtendedBoarColors.getRandom(this.random);
 		}
+		baby.setGenderRandomly(isGendered(), pServerLevel);
 		baby.setTypeVariant(coatcolors);
-		return baby;
-	}
-
-	@Override
-	public ExtendedAbstractGenderedHorseEntity modifyBreedingOffspring(ExtendedAbstractGenderedHorseEntity baby, ServerWorld pServerLevel, AgeableEntity pMate) {
 		this.setOffspringAttributes(pMate, baby);
 		return baby;
 	}

@@ -115,17 +115,6 @@ public abstract class ExtendedAbstractGenderedAnimalEntity<T extends ExtendedAbs
 	public abstract T getBreedingOffspring(ServerWorld pServerLevel, AgeableEntity pMate);
 
 	/**
-     * Allows subclasses to modify the offspring entity after it is created and gender is set.
-     *
-     * @param baby The newly created offspring entity.
-     * @param pServerLevel The server world context.
-     * @param pMate The mate entity.
-     * @return The potentially modified offspring entity.
-     */
-	public T modifyBreedingOffspring(T baby, ServerWorld pServerLevel, AgeableEntity pMate) {
-		return baby;
-	}
-	/**
      * Defines synchronized entity data parameters including gender.
      * Called during entity initialization.
      */
@@ -144,11 +133,7 @@ public abstract class ExtendedAbstractGenderedAnimalEntity<T extends ExtendedAbs
      */
 	@Override
 	public AgeableEntity getBreedOffspring(ServerWorld pServerLevel, AgeableEntity pMate) {
-		T baby = getBreedingOffspring(pServerLevel, pMate);
-		if(baby.isGendered()==this.isGendered() || baby.isGendered()==((ExtendedAbstractGenderedAnimalEntity<?>)pMate).isGendered()) {
-			baby.setGenderRandomly(isGendered(), pServerLevel);
-		}
-		return modifyBreedingOffspring(baby, pServerLevel, pMate);
+		return getBreedingOffspring(pServerLevel, pMate);
 	}
 
 	/**
@@ -202,7 +187,7 @@ public abstract class ExtendedAbstractGenderedAnimalEntity<T extends ExtendedAbs
 				return true;
 			} else if(otherAnimalGender == ExtendedEntityGender.MALE && getGender() == ExtendedEntityGender.FEMALE) {
 				return true;
-			} else if(otherAnimalGender == ExtendedEntityGender.GENDERLESS && getGender() == ExtendedEntityGender.GENDERLESS) {
+			} else if(otherAnimalGender == ExtendedEntityGender.GENDERLESS || getGender() == ExtendedEntityGender.GENDERLESS) {
 				return true;
 			} else {
 				return false;
@@ -238,9 +223,9 @@ public abstract class ExtendedAbstractGenderedAnimalEntity<T extends ExtendedAbs
 	public void setGenderRandomly(boolean gendered, ServerWorld serverWorld) {
 		if(!gendered) {
 			this.setGender(ExtendedEntityGender.GENDERLESS);
-			return;
+		}else {
+			this.setGender(serverWorld.random.nextBoolean() ? ExtendedEntityGender.MALE : ExtendedEntityGender.FEMALE);
 		}
-		this.setGender(serverWorld.random.nextBoolean() ? ExtendedEntityGender.MALE : ExtendedEntityGender.FEMALE);
 	}
 
 	@Override
