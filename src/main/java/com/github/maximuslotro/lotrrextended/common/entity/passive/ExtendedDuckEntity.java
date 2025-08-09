@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.entity.passive;
 
 import java.util.Random;
 
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedAvoidEntityGoal;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntityGender;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
@@ -58,7 +59,7 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 	public float oFlap;
 	public float flapping = 1.0F;
 	public int eggTime = this.random.nextInt(6000) + 6000;
-	private static final DataParameter<Boolean> IS_BOB = EntityDataManager.defineId(ExtendedDuckEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Byte> DATA_ID_FLAGS = EntityDataManager.defineId(ExtendedDuckEntity.class, DataSerializers.BYTE);
 
 	public ExtendedDuckEntity(EntityType<? extends ExtendedDuckEntity> p_i50282_1_, World p_i50282_2_) {
 		super(p_i50282_1_, p_i50282_2_);
@@ -72,15 +73,32 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 		this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
 		this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, Ingredient.of(ExtendedTags.Items.DUCK_FOOD)));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
-		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
+	    this.goalSelector.addGoal(5, new ExtendedAvoidEntityGoal<>(this, PlayerEntity.class, 16.0F, 1.1D, 1.3D, (living) -> {
+	    	return !((ExtendedDuckEntity) living).isDomesticated();
+	    }));
+		this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
 	}
 
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(IS_BOB, false);
+		this.entityData.define(DATA_ID_FLAGS, (byte)0);
+	}
+
+	protected boolean getFlag(int pFlagId) {
+		return (this.entityData.get(DATA_ID_FLAGS) & pFlagId) != 0;
+	}
+
+	protected void setFlag(int pFlagId, boolean pValue) {
+		byte b0 = this.entityData.get(DATA_ID_FLAGS);
+		if (pValue) {
+			this.entityData.set(DATA_ID_FLAGS, (byte)(b0 | pFlagId));
+		} else {
+			this.entityData.set(DATA_ID_FLAGS, (byte)(b0 & ~pFlagId));
+		}
+
 	}
 
 	@Override
@@ -194,7 +212,9 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 		if (nbt.contains("IsBobModeActivated")) {
 			setBob(nbt.getBoolean("IsBobModeActivated"));
 		}
-
+		if (nbt.contains("IsDomesticated")) {
+			setDomesticated(nbt.getBoolean("IsDomesticated"));
+		}
 	}
 
 	@Override
@@ -203,6 +223,9 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 		nbt.putInt("EggLayTime", this.eggTime);
 		if(isBob()) {
 			nbt.putBoolean("IsBobModeActivated", true);
+		}
+		if(isDomesticated()) {
+			nbt.putBoolean("IsDomesticated", true);
 		}
 	}
 
@@ -225,11 +248,19 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 	}
 
 	public boolean isBob() {
-		return this.entityData.get(IS_BOB);
+		return this.getFlag(2);
 	}
 
 	public void setBob(boolean isBob) {
-		this.entityData.set(IS_BOB, isBob);
+		this.setFlag(2, isBob);
+	}
+
+	public boolean isDomesticated() {
+		return this.getFlag(4);
+	}
+
+	public void setDomesticated(boolean isDemosticated) {
+		this.setFlag(4, isDemosticated);
 	}
 
 	@Override
@@ -254,6 +285,13 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 				}
 			} else if(((ExtendedDuckEntity)pMate).getGender()==ExtendedEntityGender.MALE && ((ExtendedDuckEntity)pMate).isBob()) {
 				baby.setBob(true);
+			}
+			if(this.isDomesticated() && ((ExtendedDuckEntity)pMate).isDomesticated() && this.random.nextFloat()<0.9f) {
+				baby.setDomesticated(true);
+			}else if((this.isDomesticated() || ((ExtendedDuckEntity)pMate).isDomesticated()) && this.random.nextFloat()<0.7f) {
+				baby.setDomesticated(true);
+			}else if(this.random.nextFloat()>0.4f) {
+				baby.setDomesticated(true);
 			}
 		}
 		return baby;
