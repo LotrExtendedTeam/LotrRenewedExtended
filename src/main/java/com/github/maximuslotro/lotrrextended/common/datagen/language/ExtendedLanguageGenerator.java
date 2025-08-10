@@ -330,7 +330,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Horn Select strings
 		addD("gui.lotrextended.horn_select.title", "Horn of Command Type Selection");
 		addD("gui.lotrextended.horn_select.option_summon", "Summon Units");
-		addD("gui.lotrextended.horn_select.option_halt_reddy", "Halt/Reddy Units");
+		addD("gui.lotrextended.horn_select.option_halt_reddy", "Halt/Ready Units");
 
 		// Stone Carving Screen
 		addD("gui.lotrextended.stone_engraving.title", "Engrave Message");
@@ -342,9 +342,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("message.lotrextended.banner.land_protected", "This land is under the protection of %s");
 
 		// Horn Type names
-		addD("item.lotr.horn_of_command.halt");
-		addD("item.lotr.horn_of_command.reddy");
-		addD("item.lotr.horn_of_command.summon");
+		addD("item.lotr.horn_of_command.halt", "Horn of Command - Halt Units");
+		addD("item.lotr.horn_of_command.reddy", "Horn of Command - Ready Units");
+		addD("item.lotr.horn_of_command.summon", "Horn of Command - Summon Units");
 
 		//Bow values
 		addD("gui.lotrextended.bow.speed", "Draw Speed: %s");

@@ -1562,7 +1562,7 @@
   "gui.lotrextended.hiring.not_enough_money": "Not enough money. You need %s coins to hire that unit.",
   "gui.lotrextended.hiring.not_pledged": "You need to be pledged to hire that unit.",
   "gui.lotrextended.hiring.unit_has_been_hired": "The %1$s has been hired for %2$s coins.",
-  "gui.lotrextended.horn_select.option_halt_reddy": "Halt/Reddy Units",
+  "gui.lotrextended.horn_select.option_halt_reddy": "Halt/Ready Units",
   "gui.lotrextended.horn_select.option_summon": "Summon Units",
   "gui.lotrextended.horn_select.title": "Horn of Command Type Selection",
   "gui.lotrextended.menu.achievements": "Achievements",

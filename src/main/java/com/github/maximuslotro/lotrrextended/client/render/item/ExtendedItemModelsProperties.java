@@ -28,8 +28,8 @@ public class ExtendedItemModelsProperties {
 	}
 
 	public static void registerAlternativeHandheldTextures() {
-		ItemModelsProperties.register(ExtendedItems.COMMANDHORN.get(), hornType, (itemStack, clientWorld, LivingEntity) -> ExtendedCommandHornItem.isHalt(itemStack) ? 1.0F : ExtendedCommandHornItem.isReddy(itemStack) ? 2.0F : ExtendedCommandHornItem.isSummon(itemStack) ? 3.0F : 0.0F);
-		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), heated, (itemStack, clientWorld, LivingEntity) -> ExtendedBrandingIronItem.isTempered(itemStack) ? 1.0F : 0.0F);
+		ItemModelsProperties.register(ExtendedItems.COMMANDHORN.get(), hornType, (itemStack, clientWorld, LivingEntity) -> ExtendedCommandHornItem.getType(itemStack).isHalt() ? 1 : ExtendedCommandHornItem.getType(itemStack).isReady() ? 2 : ExtendedCommandHornItem.getType(itemStack).isSummon() ? 3 : 0);
+		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), heated, (itemStack, clientWorld, LivingEntity) -> ExtendedBrandingIronItem.isTempered(itemStack) ? 1 : 0);
 //		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), poisoned, (itemStack, clientWorld, LivingEntity) -> {
 //			return ExtendedDaggerItem.isPoisoned(itemStack) ? 1.0F : 0.0F;
 //		});
