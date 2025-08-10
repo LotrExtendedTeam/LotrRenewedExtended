@@ -16,6 +16,7 @@ public class ExtendedDuckRenderer extends ExtendedMobRenderer<ExtendedDuckEntity
 	private static final ResourceLocation BOB_DUCK_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/duck/bob_duck.png");
 	private static final ResourceLocation MALE_DUCK_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/duck/male/male_duck.png");
 	private static final ResourceLocation FEMALE_DUCK_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/duck/female/female_duck.png");
+	private static final ResourceLocation DOMESTICATED_DUCK_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/duck/domesticated_duck.png");
 
 	public ExtendedDuckRenderer(EntityRendererManager p_i4entityRendererManager) {
 		super(p_i4entityRendererManager, new ExtendedDuckModel<>(), 0.3F);
@@ -23,6 +24,9 @@ public class ExtendedDuckRenderer extends ExtendedMobRenderer<ExtendedDuckEntity
 
 	@Override
 	public ResourceLocation getTexture(ExtendedDuckEntity duck) {
+		if(duck.isDomesticated() || duck.getGender() == ExtendedEntityGender.GENDERLESS) {
+			return DOMESTICATED_DUCK_LOCATION;
+		}
 		if(duck.isBob()) {
 			return BOB_DUCK_LOCATION;
 		}
