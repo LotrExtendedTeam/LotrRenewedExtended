@@ -62,6 +62,10 @@ public class EItemLootEntry extends ItemLootEntry{
 			return this.getThis();
 		}
 
+		public ExtendedBuilder setMaxLootDurability(float maxPercentLeft) {
+			return setDamageRange(1.0f-maxPercentLeft, 1.0f);
+		}
+
 		public ExtendedBuilder setExactly(int number) {
 			this.apply(SetCount.setCount(ConstantRange.exactly(number)));
 			return this.getThis();

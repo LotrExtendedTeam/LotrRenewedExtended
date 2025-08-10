@@ -104,6 +104,11 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BREE_FARMER_WEAPONRACKS = registerWeaponRack("bree_farmer");
 	public static final ResourceLocation BLUE_MOUNTAIN_WEAPONRACKS = registerWeaponRack("blue_mountains");
 
+	public static final ResourceLocation MIDDLE_EARTH_FISHING = registerGameplay("fishing");
+	public static final ResourceLocation MIDDLE_EARTH_FISHING_FISH = registerGameplay("fishing/fish");
+	public static final ResourceLocation MIDDLE_EARTH_FISHING_JUNK = registerGameplay("fishing/junk");
+	public static final ResourceLocation MIDDLE_EARTH_FISHING_TREASURE = registerGameplay("fishing/treasure");
+
 	public static void init() {}
 
 	private static ResourceLocation registerChest(String location) {
@@ -126,6 +131,9 @@ public class ExtendedLootTables {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, "weaponracks/"+location));
 	}
 
+	private static ResourceLocation registerGameplay(String location) {
+		return register(new ResourceLocation(LotrExtendedMod.MODID, "gameplay/"+location));
+	}
 
 	private static ResourceLocation register(ResourceLocation location) {
 		if (LOCATIONS.add(location)) {
