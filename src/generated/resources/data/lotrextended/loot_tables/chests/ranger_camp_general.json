@@ -345,6 +345,12 @@
           ],
           "name": "lotr:longbow"
         }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.25
+        }
       ]
     }
   ]

@@ -158,6 +158,8 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.BLUE_MOUNTAINS_DWARF.get(), 1)
 			.build(), 5, 7, false, 26, 20).setBoundaries(12, -12, 24, 4, -4, 16).setPersistenceRequired(false).enableNonRandomSpawning(30).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_AREA);
+		single(ExtendedEntities.BLUE_DWARVEN_BARTENDER.get()).setRespawnOnDeath().disableForFutureSpawning().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_STONEMASON);
+		single(ExtendedEntities.BLUE_DWARVEN_BARTENDER.get()).setRespawnOnDeath().disableForFutureSpawning().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_BUTCHER);
 
 		// DWARVEN
 		single(ExtendedEntities.DWARVEN_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.DWARVEN_SMITH);
