@@ -15,10 +15,10 @@ import net.minecraft.util.Util;
 
 public class ExtendedBoarRenderer extends ExtendedMobRenderer<ExtendedHorseBoarEntity, ExtendedHorseBoarModel<ExtendedHorseBoarEntity>> {
 	private static final Map<ExtendedBoarColors, ResourceLocation> LOCATION_BY_VARIANT = Util.make(Maps.newEnumMap(ExtendedBoarColors.class), (p_239384_0_) -> {
-	      p_239384_0_.put(ExtendedBoarColors.REGULAR, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/boar0.png"));
-	      p_239384_0_.put(ExtendedBoarColors.REGULAR_DARK, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/boar2.png"));
-	      p_239384_0_.put(ExtendedBoarColors.DARKER, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/boar1.png"));
-	      p_239384_0_.put(ExtendedBoarColors.DARKER_DARK, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/boar3.png"));
+	      p_239384_0_.put(ExtendedBoarColors.REGULAR, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/boar1.png"));
+	      p_239384_0_.put(ExtendedBoarColors.REGULAR_LIGHT, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/boar5.png"));
+	      p_239384_0_.put(ExtendedBoarColors.REGULAR_VERY_LIGHT, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/boar2.png"));
+	      p_239384_0_.put(ExtendedBoarColors.DARKER, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/boar3.png"));
 	      p_239384_0_.put(ExtendedBoarColors.DARK, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/boar4.png"));
 	   });
 

@@ -6,9 +6,9 @@ import java.util.Random;
 
 public enum ExtendedBoarColors {
 	REGULAR(0),
-	REGULAR_DARK(1),
-	DARKER(2),
-	DARKER_DARK(3),
+	REGULAR_LIGHT(1),
+	REGULAR_VERY_LIGHT(2),
+	DARKER(3),
 	DARK(4);
 
 	private static final ExtendedBoarColors[] BY_ID = Arrays.stream(values()).sorted(Comparator.comparingInt(ExtendedBoarColors::getId)).toArray((p_234249_0_) -> {
@@ -33,11 +33,11 @@ public enum ExtendedBoarColors {
 		if(i<20) {
 			return REGULAR;
 		}else if(i<35) {
-			return REGULAR_DARK;
+			return REGULAR_LIGHT;
 		}else if(i<43) {
-			return DARKER;
+			return REGULAR_VERY_LIGHT;
 		}else if(i<49) {
-			return DARKER_DARK;
+			return DARKER;
 		}
 		return DARK;
 	}
