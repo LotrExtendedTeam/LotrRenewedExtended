@@ -39,6 +39,8 @@ public class ExtendedTraderTypes {
 	public static final ResourceLocation BLUE_MOUNTAINS_SMITH = make("blue_mountains_smith");
 	public static final ResourceLocation BLUE_MOUNTAINS_MERCHANT = make("blue_mountains_merchant");
 	public static final ResourceLocation BLUE_MOUNTAINS_BARTENDER = make("blue_mountains_bartender");
+	public static final ResourceLocation BLUE_MOUNTAINS_BUTCHER = make("blue_mountains_butcher");
+	public static final ResourceLocation BLUE_MOUNTAINS_STONEMASON = make("blue_mountains_stonemason");
 
 	// Rivendell
 	public static final ResourceLocation RIVENDELL_WANDERER = make("rivendell_wanderer");
