@@ -302,7 +302,7 @@ public class MixinLOTREntities {
 		ExtendedEntities.DUCK = regAnimalD("duck", ExtendedDuckEntity::new, ExtendedDuckEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.7F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(940841, 11374685), ExtendedDuckEntity::checkDuckSpawnRules);
 		ExtendedEntities.DUCK_EGG_ENTITY = regEntityNOND("duck_egg", ExtendedDuckEggEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
 		ExtendedEntities.BARROW_WIGHT = regNPCD("barrow_wight", ExtendedBarrowWightEntity::new, ExtendedBarrowWightEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.8F, 1.9f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(529926, 3111505));
-		ExtendedEntities.HEDGEHOG = regAnimalD("hedgehog", ExtendedHedgehogEntity::new, ExtendedHedgehogEntity::createHedgehogAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.6F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2167050, 14010033));
+		ExtendedEntities.HEDGEHOG = regAnimalD("hedgehog", ExtendedHedgehogEntity::new, ExtendedHedgehogEntity::createHedgehogAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.4F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2167050, 14010033));
 
 		// Technical
 		ExtendedEntities.STRUCTURE_ENTITY_SPAWNER = regEntityExpanded("structure_spawner", ExtendedStructureSpawnerEntity::new, EntityClassification.MISC, 0.5F, 1.0F);
