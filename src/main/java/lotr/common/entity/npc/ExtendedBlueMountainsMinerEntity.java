@@ -17,7 +17,6 @@ public class ExtendedBlueMountainsMinerEntity extends ExtendedBlueMountainsTrade
 
 	public ExtendedBlueMountainsMinerEntity(EntityType<? extends ExtendedBlueMountainsMinerEntity> type, World w) {
 		super(type, w);
-		this.setPersistenceRequired();
 	}
 
 	@Override
