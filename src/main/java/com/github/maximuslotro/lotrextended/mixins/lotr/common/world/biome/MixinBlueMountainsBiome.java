@@ -42,7 +42,7 @@ public abstract class MixinBlueMountainsBiome extends LOTRBiomeBase{
 	}
 
 	/**
-	 * Gets if this mountain biome is a foothills instance
+	 * Adds boars to the blue mountains
 	 * @param builder The {@link MobSpawnInfo} builder to work with
 	 * @param ci The callback info for additional modification ability
 	 * */

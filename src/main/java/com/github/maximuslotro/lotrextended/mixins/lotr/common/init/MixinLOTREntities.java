@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHedgehogEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
@@ -301,6 +302,8 @@ public class MixinLOTREntities {
 		ExtendedEntities.DUCK = regAnimalD("duck", ExtendedDuckEntity::new, ExtendedDuckEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.7F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(940841, 11374685), ExtendedDuckEntity::checkDuckSpawnRules);
 		ExtendedEntities.DUCK_EGG_ENTITY = regEntityNOND("duck_egg", ExtendedDuckEggEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
 		ExtendedEntities.BARROW_WIGHT = regNPCD("barrow_wight", ExtendedBarrowWightEntity::new, ExtendedBarrowWightEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.8F, 1.9f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(529926, 3111505));
+		ExtendedEntities.HEDGEHOG = regAnimalD("hedgehog", ExtendedHedgehogEntity::new, ExtendedHedgehogEntity::createHedgehogAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.4F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2167050, 14010033));
+
 		// Technical
 		ExtendedEntities.STRUCTURE_ENTITY_SPAWNER = regEntityExpanded("structure_spawner", ExtendedStructureSpawnerEntity::new, EntityClassification.MISC, 0.5F, 1.0F);
 		ExtendedEntities.TRADER_RESPAWNER_ENTITY = regEntityExpanded("trader_respawner", ExtendedTraderRespawnEntity::new, EntityClassification.MISC, 0.5F, 0.5F);
