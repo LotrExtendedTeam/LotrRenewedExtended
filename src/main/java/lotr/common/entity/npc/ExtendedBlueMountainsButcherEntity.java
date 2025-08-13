@@ -31,7 +31,7 @@ public class ExtendedBlueMountainsButcherEntity extends ExtendedBlueMountainsTra
 
 	@Override
 	public ResourceLocation getTraderProfileId() {
-		return ExtendedTraderTypes.BLUE_MOUNTAINS_BARTENDER;
+		return ExtendedTraderTypes.BLUE_MOUNTAINS_BUTCHER;
 	}
 
 }

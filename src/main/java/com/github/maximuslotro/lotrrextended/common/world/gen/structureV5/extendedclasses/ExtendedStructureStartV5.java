@@ -131,7 +131,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 				for(int xValue = foundationNeedingPiece.getBoundingBox().x0; xValue <= foundationNeedingPiece.getBoundingBox().x1; ++xValue) {
 					for(int zValue = foundationNeedingPiece.getBoundingBox().z0; zValue <= foundationNeedingPiece.getBoundingBox().z1; ++zValue) {
 						BlockPos blockpos = new BlockPos(xValue, baseYvalue, zValue);
-						if(world.hasChunkAt(blockpos) && !world.isEmptyBlock(blockpos) && foundationNeedingPiece.getBoundingBox().isInside(blockpos)) {
+						if(world.hasChunkAt(blockpos) && !world.isEmptyBlock(blockpos) && !world.isWaterAt(blockpos) && foundationNeedingPiece.getBoundingBox().isInside(blockpos)) {
 							for(int yColumnValue = baseYvalue - 1; yColumnValue > 1; --yColumnValue) {
 								BlockPos blockpos1 = new BlockPos(xValue, yColumnValue, zValue);
 								if(world.isEmptyBlock(blockpos1) || world.getBlockState(blockpos1).getMaterial().isLiquid() || world.getBlockState(blockpos1).getMaterial().getPushReaction()==PushReaction.DESTROY) {

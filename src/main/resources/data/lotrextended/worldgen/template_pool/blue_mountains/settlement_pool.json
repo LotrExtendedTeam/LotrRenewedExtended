@@ -15,7 +15,7 @@
 					"Name": "lotr:blue_brick"
 				},
 				"ground_level_delta": 2,
-				"max_depth": 8,
+				"max_depth": 9,
 				"max_place_distance": 120
 			}
 		}

@@ -14,6 +14,7 @@ import com.github.maximuslotro.lotrextended.mixins.net.minecraft.tileentity.Mixi
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedMessageEntryBasic;
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextList;
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextProcessorManager;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneTextSignTileEntity;
 import com.mojang.datafixers.util.Pair;
 
 import net.minecraft.block.BlockState;
@@ -91,6 +92,37 @@ public class MixinTemplate {
 							messages[3] = new StringTextComponent(newLine.getLine3(pRandom));
 						}
 						((MixinSignTileEntityAccessor)tileentity1).setMessages(messages);
+					}
+				}
+			}
+		}else if (tileentity1 instanceof ExtendedStoneTextSignTileEntity) {
+			ITextComponent[] messages = ((ExtendedStoneTextSignTileEntity)tileentity1).getMessages();
+			if(messages[0] instanceof StringTextComponent && !((StringTextComponent) messages[0]).equals(StringTextComponent.EMPTY)) {
+				String contents = ((StringTextComponent) messages[0]).getContents();
+				if(contents.startsWith("#")) {
+					ExtendedSignTextList newLine = ExtendedSignTextProcessorManager.INSTANCE.get(contents.substring(1).trim());
+					if(!newLine.equals(ExtendedSignTextList.EMPTY) && pRandom.nextInt(10000)<9999) {
+						if(newLine.hasLines()) {
+							ExtendedMessageEntryBasic fullLine = newLine.getLine(pRandom);
+							messages[0] = new StringTextComponent(fullLine.getLine0());
+							messages[1] = new StringTextComponent("");
+							messages[2] = new StringTextComponent(fullLine.getLine1());
+							messages[3] = new StringTextComponent("");
+							messages[4] = new StringTextComponent(fullLine.getLine2());
+							messages[5] = new StringTextComponent("");
+							messages[6] = new StringTextComponent(fullLine.getLine3());
+							messages[7] = new StringTextComponent("");
+						}else {
+							messages[0] = new StringTextComponent(newLine.getLine0(pRandom));
+							messages[1] = new StringTextComponent("");
+							messages[2] = new StringTextComponent(newLine.getLine1(pRandom));
+							messages[3] = new StringTextComponent("");
+							messages[4] = new StringTextComponent(newLine.getLine2(pRandom));
+							messages[5] = new StringTextComponent("");
+							messages[6] = new StringTextComponent(newLine.getLine3(pRandom));
+							messages[7] = new StringTextComponent("");
+						}
+						((ExtendedStoneTextSignTileEntity)tileentity1).setMessages(messages);
 					}
 				}
 			}

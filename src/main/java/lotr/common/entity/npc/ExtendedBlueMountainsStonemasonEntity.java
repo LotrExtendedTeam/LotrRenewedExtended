@@ -30,7 +30,7 @@ public class ExtendedBlueMountainsStonemasonEntity extends ExtendedBlueMountains
 
 	@Override
 	public ResourceLocation getTraderProfileId() {
-		return ExtendedTraderTypes.BLUE_MOUNTAINS_BARTENDER;
+		return ExtendedTraderTypes.BLUE_MOUNTAINS_STONEMASON;
 	}
 
 }

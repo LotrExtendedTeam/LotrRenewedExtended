@@ -121,7 +121,11 @@ public abstract class ExtendedEntitySettingsProvider implements IDataProvider {
 		}
 
 		public ExtendedEntitySettingsBuilder setBank(String pSpeechbankLoc) {
-			this.speechbank = new ResourceLocation("lotr", pSpeechbankLoc);
+			if(pSpeechbankLoc.contains(":")) {
+				this.speechbank = new ResourceLocation(pSpeechbankLoc);
+			}else {
+				this.speechbank = new ResourceLocation("lotr", pSpeechbankLoc);
+			}
 			return this;
 		}
 

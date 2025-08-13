@@ -1831,6 +1831,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_STRONGHOLD_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
 				.setRolls(RandomValueRange.between(2, 3))
+				.when(RandomChance.randomChance(0.50f)) // 50% chance
 				.add(EItemLootEntry.lootItem(Items.IRON_NUGGET).setWeight(25).setRange(1, 5))
 				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_NUGGET.get()).setWeight(25).setRange(1, 5))
 				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_SWORD.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
@@ -1849,6 +1850,24 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1)))
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(1, 2))
+				.when(RandomChance.randomChance(0.25f)) // 25% chance
+				.add(EItemLootEntry.lootItem(LOTRItems.WOODEN_MUG.get()).setWeight(40).setRange(1, 2))
+				.add(EItemLootEntry.lootItem(LOTRItems.CERAMIC_MUG.get()).setWeight(40).setRange(1, 2))
+				.add(EItemLootEntry.lootItem(LOTRItems.ALE_HORN.get()).setWeight(40).setRange(1, 2))
+				.add(EItemLootEntry.lootItem(LOTRItems.WOODEN_CUP.get()).setWeight(40).setRange(1, 2))
+				.add(EItemLootEntry.lootItem(LOTRItems.COPPER_GOBLET.get()).setWeight(40).setRange(1, 2))
+				.add(EItemLootEntry.lootItem(Items.BREAD).setWeight(100).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(Items.COOKED_CHICKEN).setWeight(75).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(ExtendedItems.COOKED_DUCK.get()).setWeight(75).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.COOKED_MUTTON).setWeight(75).setRange(1, 2))
+				.add(EItemLootEntry.lootItem(Items.COOKED_PORKCHOP).setWeight(75).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.COOKED_RABBIT).setWeight(75).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.COOKED_COD).setWeight(75).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.COOKED_SALMON).setWeight(75).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.COOKED_BEEF).setWeight(75).setRange(1, 2))
+				.add(EItemLootEntry.lootItem(LOTRItems.GAMMON.get()).setWeight(50).setRange(1, 2)))
 			);
 
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_TREASURE_CHEST, makeTable()
@@ -2031,7 +2050,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_MEME_COIN, makeTable()
 			.withPool(LootPool.lootPool()
 				.setRolls(ConstantRange.exactly(1))
-				.when(RandomChance.randomChance(0.95f)) // 5% chance
+				.when(RandomChance.randomChance(0.05f)) // 5% chance
 				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1).setExactly(1)
 					.apply(SetNBT.setTag(Util.make(new CompoundNBT(), (nbt) -> {
 						nbt.putString("coin_type", "dwarven");

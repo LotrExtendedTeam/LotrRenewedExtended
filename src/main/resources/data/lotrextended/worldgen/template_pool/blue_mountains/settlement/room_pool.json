@@ -17,7 +17,7 @@
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_housing_1",
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_housing_2",
 				"processors": "lotrextended:blue_mountains_settlement_underground_processor",
 				"apply_waterlogging" : false
 			}
@@ -62,7 +62,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_storage_1",
 				"processors": "lotrextended:blue_mountains_settlement_underground_processor",
-				"apply_waterlogging" : false
+				"apply_waterlogging" : false,
+				"blacklist_name" : "WOODSTORAGE"
 			}
 		},
 		{
@@ -72,7 +73,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_storage_2",
 				"processors": "lotrextended:blue_mountains_settlement_underground_processor",
-				"apply_waterlogging" : false
+				"apply_waterlogging" : false,
+				"blacklist_name" : "FOODSTORAGE"
 			}
 		},
 		{
