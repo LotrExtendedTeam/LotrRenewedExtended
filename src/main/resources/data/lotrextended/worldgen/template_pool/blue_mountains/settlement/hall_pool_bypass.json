@@ -8,7 +8,7 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_passage_end1",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:blue_mountains_settlement_underground_processor"
 			}
 		},
 		{
@@ -17,7 +17,7 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_passage_end2",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:blue_mountains_settlement_underground_processor"
 			}
 		},
 		{
@@ -26,7 +26,7 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_passage_end3",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:blue_mountains_settlement_underground_processor"
 			}
 		},
 		{
@@ -35,7 +35,7 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_passage_end4",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:blue_mountains_settlement_underground_processor"
 			}
 		},
 		{
@@ -44,7 +44,7 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_passage_end5",
-				"processors": "minecraft:empty"
+				"processors": "lotrextended:blue_mountains_settlement_underground_processor"
 			}
 		}
 	]

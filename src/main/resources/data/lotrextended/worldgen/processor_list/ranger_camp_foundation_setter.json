@@ -1,7 +1,0 @@
-{
-	"processors": [
-		{
-			"processor_type": "lotrextended:single_piece_foundations_processor"
-		}
-	]
-}
