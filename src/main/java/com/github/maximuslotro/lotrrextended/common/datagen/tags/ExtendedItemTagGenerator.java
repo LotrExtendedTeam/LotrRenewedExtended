@@ -232,6 +232,9 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 
 		tag(ExtendedTags.Items.BOAR_BREEDING).add(Items.CARROT);
 
+		tag(ExtendedTags.Items.HEDGEHOG_FOOD).add(Items.BEETROOT).add(ExtendedItems.BLACKBERRY.get()).add(ExtendedItems.BLUEBERRY.get())
+		.add(ExtendedItems.CRANBERRY.get()).add(ExtendedItems.ELDERBERRY.get()).add(ExtendedItems.RASPBERRY.get());
+
 		tag(ExtendedTags.Items.COIN_ALL).add(ExtendedItems.SILVER_COIN_ONE.get())
 		.add(ExtendedItems.SILVER_COIN_TEN.get()).add(ExtendedItems.SILVER_COIN_HUNDRED.get());
 		tag(ExtendedTags.Items.COIN_ONE).add(ExtendedItems.SILVER_COIN_ONE.get());

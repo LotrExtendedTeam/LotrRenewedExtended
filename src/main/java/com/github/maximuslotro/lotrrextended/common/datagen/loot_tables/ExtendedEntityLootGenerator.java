@@ -368,6 +368,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	    				.add(ItemLootEntry.lootTableItem(ExtendedItems.RAW_DUCK.get())
 	    						.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
 	    						.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))));
+		add(ExtendedEntities.HEDGEHOG.get(), LootTable.lootTable());
 		makeEntity(ExtendedEntities.GUNDABAD_URUK, orcGundabadUruk, gundabadUrukEquipment);
 		makeEntity(ExtendedEntities.GUNDABAD_URUK_ARCHER, orcGundabadUruk, gundabadUrukArcherEquipment, arrows);
 		add(ExtendedEntities.BARROW_WIGHT.get(), LootTable.lootTable()

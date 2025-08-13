@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHedgehogEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
@@ -32,6 +33,7 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedDuckEntity>> DUCK;
 	public static RegistryObject<EntityType<ExtendedDuckEggEntity>> DUCK_EGG_ENTITY;
 	public static RegistryObject<EntityType<ExtendedHorseBoarEntity>> HORSE_BOAR;
+	public static RegistryObject<EntityType<ExtendedHedgehogEntity>> HEDGEHOG;
 	public static RegistryObject<EntityType<ExtendedThrowableAxeEntity>> THROWN_AXE;
 	public static RegistryObject<EntityType<ExtendedStructureSpawnerEntity>> STRUCTURE_ENTITY_SPAWNER;
 	public static RegistryObject<EntityType<ExtendedTraderRespawnEntity>> TRADER_RESPAWNER_ENTITY;
