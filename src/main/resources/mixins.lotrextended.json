@@ -116,6 +116,7 @@
 		"net.minecraft.block.MixinBlock",
 		"net.minecraft.block.MixinBlocks",
 		"net.minecraft.block.MixinFarmlandBlock",
+		"net.minecraft.block.MixinPaneBlock",
 		"net.minecraft.block.MixinSpreadableSnowyDirtBlock",
 		"net.minecraft.entity.MixinEntityType",
 		"net.minecraft.entity.MixinLivingEntity",
