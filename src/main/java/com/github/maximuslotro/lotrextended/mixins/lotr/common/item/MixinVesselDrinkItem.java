@@ -9,8 +9,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
-
 import lotr.common.block.VesselDrinkBlock;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.item.VesselDrinkItem;
@@ -36,11 +34,9 @@ public class MixinVesselDrinkItem {
 	
 	@Inject(method = "useOn", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
 	public void useOn$Extended(ItemUseContext context, CallbackInfoReturnable<ActionResultType> ci, ItemStack drinkItem, VesselType vessel) {
-		if(vessel.name().equals("glass_bottle")) {
-			ExtendedLog.info("Tried placing bottle");
+		if(vessel.getCodeName().equals("glass_bottle")) {
 			ActionResultType returnType = place$LotrExtended(new BlockItemUseContext(context));
 			if(returnType.consumesAction()) {
-				ExtendedLog.info("Placed bottle");
 				ci.setReturnValue(returnType);
 			}
 		}
