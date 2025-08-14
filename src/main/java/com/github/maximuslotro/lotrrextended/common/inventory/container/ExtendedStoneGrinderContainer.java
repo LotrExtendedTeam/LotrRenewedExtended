@@ -1,11 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderSlots.ExtendedStoneGrinderLubricationSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderSlots.ExtendedStoneGrinderResultSlot;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 
-import lotr.common.init.ExtendedContainers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;

@@ -9,9 +9,9 @@ import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.Extende
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedHiredUnitEquipmentScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedHiredUnitScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedTradeScreen;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainers;
 
 import lotr.client.gui.inv.ContainerScreenHelper;
-import lotr.common.init.ExtendedContainers;
 import net.minecraft.client.gui.ScreenManager;
 
 /**

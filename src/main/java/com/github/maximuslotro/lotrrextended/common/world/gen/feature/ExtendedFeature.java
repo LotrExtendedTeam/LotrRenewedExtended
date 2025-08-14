@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.world.gen.feature;
 
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+
 import lotr.common.world.gen.feature.WillowTreeFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
@@ -12,7 +14,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedFeature {
 
-	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, "lotrextended");
+	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, LotrExtendedMod.MODID);
 	public static final ExtendedSimpleBlockFeature SIMPLE_BLOCK_PRE = new ExtendedSimpleBlockFeature(ExtendedSimpleBlockFeatureConfig.CODEC);
 	public static final RegistryObject<ExtendedSimpleBlockFeature> SIMPLE_BLOCK = regFeature("simple_block", SIMPLE_BLOCK_PRE);
 	public static final ExtendedVegetationPatchFeature VEGETATION_PATCH_PRE = new ExtendedVegetationPatchFeature(ExtendedVegetationPatchConfig.CODEC);

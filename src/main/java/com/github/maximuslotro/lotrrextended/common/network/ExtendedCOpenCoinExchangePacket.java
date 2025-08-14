@@ -4,11 +4,11 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainers;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeContainer;
 
 import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ExtendedTraderEntity;
-import lotr.common.init.ExtendedContainers;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;

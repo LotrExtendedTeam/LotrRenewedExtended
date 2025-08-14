@@ -3,13 +3,13 @@ package com.github.maximuslotro.lotrrextended.common.network;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainers;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitContainer;
 
 import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
-import lotr.common.init.ExtendedContainers;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.network.PacketBuffer;
