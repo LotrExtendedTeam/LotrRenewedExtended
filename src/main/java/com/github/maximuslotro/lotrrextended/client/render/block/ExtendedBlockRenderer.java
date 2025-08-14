@@ -128,7 +128,7 @@ public class ExtendedBlockRenderer {
 			}
 			if(block instanceof ExtendedCrystalChandelierBlock) {
 				if(ModList.get().isLoaded("optfine")){
-					RenderTypeLookup.setRenderLayer(block, RenderType.solid());
+					RenderTypeLookup.setRenderLayer(block, RenderType.translucent());
 				}else {
 					RenderTypeLookup.setRenderLayer(block, RenderType.solid());
 				}
@@ -141,6 +141,6 @@ public class ExtendedBlockRenderer {
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.RASPBERRY_BUSH.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.WILDBERRY_BUSH.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.GRASS_BLOCK_SLAB.get(), RenderType.cutoutMipped());
-		RenderTypeLookup.setRenderLayer(ExtendedBlocks.GLASS_BOTTLE.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(ExtendedBlocks.GLASS_BOTTLE.get(), RenderType.translucent());
 	}
 }

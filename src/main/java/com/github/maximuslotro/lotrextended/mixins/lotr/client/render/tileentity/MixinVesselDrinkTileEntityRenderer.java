@@ -4,6 +4,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
+import com.github.maximuslotro.lotrrextended.client.render.utils.ExtendedAbstractPlaneRenderer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -40,45 +41,6 @@ public abstract class MixinVesselDrinkTileEntityRenderer<T extends VesselDrinkTi
 	public MixinVesselDrinkTileEntityRenderer(TileEntityRendererDispatcher dispatcher) {
 		super(dispatcher);
 	}
-
-	/**
-	 * Renders a flat (horizontal) surface of liquid within a container.
-	 * Used for drink vessels like mugs or goblets.
-	 *
-	 * @param matStack The current matrix stack.
-	 * @param vb The vertex builder for rendering.
-	 * @param icon The texture to use for the liquid.
-	 * @param uvMin Minimum UV coordinate.
-	 * @param uvMax Maximum UV coordinate.
-	 * @param x0 Starting X coordinate.
-	 * @param z0 Starting Z coordinate.
-	 * @param x1 Ending X coordinate.
-	 * @param z1 Ending Z coordinate.
-	 * @param y Height at which to render the liquid surface.
-	 * @param light Combined light value.
-	 * @param overlay Overlay light texture value.
-	 * @Shadow (remap=false)
-	 */
-	@Shadow(remap=false)
-	private void renderLiquidSurface(MatrixStack matStack, IVertexBuilder vb, TextureAtlasSprite icon, int uvMin, int uvMax, float x0, float z0, float x1, float z1, float y, int light, int overlay) {}
-
-	/**
-	 * Renders a vertical or angled surface of liquid.
-	 * This variant is typically used for angled or complex shaped vessels.
-	 *
-	 * @param matStack The current matrix stack.
-	 * @param vb The vertex builder for rendering.
-	 * @param icon The texture to use for the liquid.
-	 * @param uvMin Minimum UV coordinate.
-	 * @param uvMax Maximum UV coordinate.
-	 * @param width Width of the rendered surface.
-	 * @param y Height at which to render the liquid surface.
-	 * @param light Combined light value.
-	 * @param overlay Overlay light texture value.
-	 * @Shadow (remap=false
-	 */
-	@Shadow(remap=false)
-	private void renderLiquidSurface(MatrixStack matStack, IVertexBuilder vb, TextureAtlasSprite icon, int uvMin, int uvMax, float width, float y, int light, int overlay) {}
 
 	/**
 	 * Returns the correct rotation direction for aligning the rendered vessel model
@@ -127,17 +89,17 @@ public abstract class MixinVesselDrinkTileEntityRenderer<T extends VesselDrinkTi
 			RenderType renderType = RenderType.entitySolid(liquidIcon.atlas().location());
 			IVertexBuilder vb = buffer.getBuffer(renderType);
 			if(vesselType == VesselType.WOODEN_MUG || vesselType == VesselType.CERAMIC_MUG) {
-				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 10, 3.0F, 5.25F, combinedLight, combinedOverlay);
+				ExtendedAbstractPlaneRenderer.renderFaceUp(matStack, vb, liquidIcon, 3, 5, 6.5f, 6.5f, 9.5f, 9.5f, 5.25f, combinedLight, combinedOverlay);
 			}else if(vesselType == VesselType.GOLDEN_GOBLET || vesselType == VesselType.SILVER_GOBLET || vesselType == VesselType.COPPER_GOBLET || vesselType == VesselType.WOODEN_CUP) {
-				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 9, 2.25F, 6.0F, combinedLight, combinedOverlay);
+				ExtendedAbstractPlaneRenderer.renderFaceUp(matStack, vb, liquidIcon, 3, 4.5f, 6.875f, 6.875f, 9.125f, 9.125f, 6.0f, combinedLight, combinedOverlay);
 			}else if(vesselType == VesselType.ALE_HORN || vesselType == VesselType.GOLDEN_ALE_HORN) {
-				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 9, 9.5F, 6.875F, 12.5F, 9.125F, 6.375F, combinedLight, combinedOverlay);
+				ExtendedAbstractPlaneRenderer.renderFaceUp(matStack, vb, liquidIcon, 3, 4.5f, 9.5F, 6.875F, 12.5F, 9.125F, 6.375F, combinedLight, combinedOverlay);
 			}else if(vesselType == VesselType.valueOf("SKULL_GOBLET")) {
-				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 12, 6.0F, 9.0F, combinedLight, combinedOverlay);
+				ExtendedAbstractPlaneRenderer.renderFaceUp(matStack, vb, liquidIcon, 3, 6, 5, 5, 11, 11, 9, combinedLight, combinedOverlay);
 			}else if(vesselType == VesselType.valueOf("GLASS_BOTTLE")) {
-				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 10, 6.5F, 4.5F, combinedLight, combinedOverlay);
-				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 9, 9.5F, 6.875F, 12.5F, 9.125F, 6.375F, combinedLight, combinedOverlay);
-
+				ExtendedAbstractPlaneRenderer.renderCube(matStack, vb, liquidIcon, 3, 5, 6.0f, 0.5f, 6.0f, 10.0f, 3.5f, 10.0f, combinedLight, combinedOverlay);
+				ExtendedAbstractPlaneRenderer.renderCube(matStack, vb, liquidIcon, 3, 4, 7.0f, 3.5f, 7.0f, 9.0f, 5.0f, 9.0f, combinedLight, combinedOverlay);
+				//ExtendedAbstractPlaneRenderer.renderCube(matStack, vb, liquidIcon, 3, 5, 6.5f, 5.0f, 6.5f, 9.5f, 5.75f, 9.5f, combinedLight, combinedOverlay);
 			}
 			matStack.popPose();
 			RenderSystem.disableBlend();

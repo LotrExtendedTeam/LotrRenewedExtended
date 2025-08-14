@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.client.render.color;
+package com.github.maximuslotro.lotrrextended.client.render.utils;
 
 public class ExtendedColorUtil {
 	public static class ARGB32 {
