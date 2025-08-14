@@ -1394,7 +1394,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			Direction facing = state.getValue(ExtendedCrucibleBlock.FACING);
 			return ConfiguredModel.builder()
                     .modelFile(modelFile)
-                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
+                    .rotationY(facing==Direction.EAST ? 180 : facing==Direction.SOUTH ? 270 : facing==Direction.WEST ? 0 : 90)
                     .build();
 		});
 		itemModels().getBuilder("lotr:"+crucible.getRegistryName().getPath()).parent(modelFile);
