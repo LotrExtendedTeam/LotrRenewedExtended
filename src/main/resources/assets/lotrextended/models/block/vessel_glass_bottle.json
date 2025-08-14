@@ -1,8 +1,8 @@
 {
 	"texture_size": [32, 32],
 	"textures": {
-		"bottle": "lotrextended:block/vessels/bottle",
-		"particle": "lotrextended:block/vessels/bottle"
+		"bottle": "lotrextended:block/vessels/bottle_transparent",
+		"particle": "lotrextended:block/vessels/bottle_transparent"
 	},
 	"elements": [
 		{

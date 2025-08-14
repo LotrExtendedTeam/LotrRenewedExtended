@@ -4,6 +4,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
+import com.github.maximuslotro.lotrrextended.client.render.utils.ExtendedAbstractPlaneRenderer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -133,11 +134,11 @@ public abstract class MixinVesselDrinkTileEntityRenderer<T extends VesselDrinkTi
 			}else if(vesselType == VesselType.ALE_HORN || vesselType == VesselType.GOLDEN_ALE_HORN) {
 				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 9, 9.5F, 6.875F, 12.5F, 9.125F, 6.375F, combinedLight, combinedOverlay);
 			}else if(vesselType == VesselType.valueOf("SKULL_GOBLET")) {
-				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 12, 6.0F, 9.0F, combinedLight, combinedOverlay);
+				//this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 12, 6.0F, 9.0F, combinedLight, combinedOverlay);
+				ExtendedAbstractPlaneRenderer.renderFaceUp(matStack, vb, liquidIcon, 3, 6, 5, 5, 11, 11, 9, combinedLight, combinedOverlay);
 			}else if(vesselType == VesselType.valueOf("GLASS_BOTTLE")) {
-				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 10, 6.5F, 4.5F, combinedLight, combinedOverlay);
-				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 9, 9.5F, 6.875F, 12.5F, 9.125F, 6.375F, combinedLight, combinedOverlay);
-
+				ExtendedAbstractPlaneRenderer.renderCube(matStack, vb, liquidIcon, 3, 5, 6.0f, 0.5f, 6.0f, 10.0f, 3.5f, 10.0f, combinedLight, combinedOverlay);
+				//ExtendedAbstractPlaneRenderer.renderCube(matStack, vb, liquidIcon, 3, 5, 7.0f, 3.5f, 7.0f, 9.0f, 4.5f, 9.0f, combinedLight, combinedOverlay);
 			}
 			matStack.popPose();
 			RenderSystem.disableBlend();
