@@ -57,6 +57,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.trees.OakTree;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DatagenModLoader;
@@ -934,6 +935,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.ROPE = registerB("rope", () -> new ExtendedRopeBlock(Properties.of(Material.DECORATION).sound(ExtendedSoundTypes.ROPE).strength(0.2F).noOcclusion()));
 
 		ExtendedBlocks.SKULL_GOBLET = registerB("skull_goblet", () -> new VesselDrinkBlock(SoundType.BONE_BLOCK, 8.0F, 10.0F));
+		ExtendedBlocks.GLASS_BOTTLE = registerB("glass_bottle", () -> new VesselDrinkBlock(Properties.of(Material.DECORATION).strength(0.0F).sound(SoundType.GLASS).noOcclusion(), createVesselShape(5, 7)));
 		ExtendedBlocks.LARGE_POT = registerB("large_pot", () -> new ExtendedLargePotBlock(Properties.of(Material.DECORATION).instabreak().noOcclusion()));
 
 		// Large flower pot
@@ -1065,5 +1067,11 @@ public class MixinLOTRBlocks {
 	@Inject(method = "register()V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, remap=false)
 	private static void bootstrapExtendedBiomeFeatures(CallbackInfo ci, IEventBus bus) {
 		bus.addGenericListener(Block.class, ExtendedBiomeFeatures::setup);
+	}
+
+	private static VoxelShape createVesselShape(float width, float height) {
+		float halfWidth = width / 2.0F;
+		return Block.box(8.0D - (double) halfWidth, 0.0D, 8.0D - (double) halfWidth, 8.0D + (double) halfWidth,
+				(double) height, 8.0D + (double) halfWidth);
 	}
 }

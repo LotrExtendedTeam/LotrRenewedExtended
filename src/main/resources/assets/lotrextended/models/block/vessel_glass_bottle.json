@@ -1,0 +1,65 @@
+{
+	"texture_size": [32, 32],
+	"textures": {
+		"bottle": "lotrextended:block/vessels/bottle",
+		"particle": "lotrextended:block/vessels/bottle"
+	},
+	"elements": [
+		{
+			"name": "bottle",
+			"from": [5.5, 0, 5.5],
+			"to": [10.5, 4, 10.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8.5, 0, 6.5]},
+			"faces": {
+				"north": {"uv": [2.5, 2.5, 5, 4.5], "texture": "#bottle"},
+				"east": {"uv": [0, 2.5, 2.5, 4.5], "texture": "#bottle"},
+				"south": {"uv": [7.5, 2.5, 10, 4.5], "texture": "#bottle"},
+				"west": {"uv": [5, 2.5, 7.5, 4.5], "texture": "#bottle"},
+				"up": {"uv": [5, 2.5, 2.5, 0], "texture": "#bottle"},
+				"down": {"uv": [7.5, 0, 5, 2.5], "texture": "#bottle"}
+			}
+		},
+		{
+			"name": "neck",
+			"from": [6.5, 4, 6.5],
+			"to": [9.5, 5, 9.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8.5, -1, 7.5]},
+			"faces": {
+				"north": {"uv": [1.5, 6, 3, 6.5], "texture": "#bottle"},
+				"east": {"uv": [0, 6, 1.5, 6.5], "texture": "#bottle"},
+				"south": {"uv": [4.5, 6, 6, 6.5], "texture": "#bottle"},
+				"west": {"uv": [3, 6, 4.5, 6.5], "texture": "#bottle"},
+				"up": {"uv": [3, 6, 1.5, 4.5], "texture": "#bottle"},
+				"down": {"uv": [4.5, 4.5, 3, 6], "texture": "#bottle"}
+			}
+		},
+		{
+			"name": "lip",
+			"from": [6.35, 4.85, 6.35],
+			"to": [9.65, 6.15, 9.65],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8.5, 0, 7.5]},
+			"faces": {
+				"north": {"uv": [7.5, 6, 9, 6.5], "texture": "#bottle"},
+				"east": {"uv": [6, 6, 7.5, 6.5], "texture": "#bottle"},
+				"south": {"uv": [10.5, 6, 12, 6.5], "texture": "#bottle"},
+				"west": {"uv": [9, 6, 10.5, 6.5], "texture": "#bottle"},
+				"up": {"uv": [9, 6, 7.5, 4.5], "texture": "#bottle"},
+				"down": {"uv": [10.5, 4.5, 9, 6], "texture": "#bottle"}
+			}
+		},
+		{
+			"name": "cap",
+			"from": [7, 5.75, 7],
+			"to": [9, 6.75, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7.5, 1, 7.5]},
+			"faces": {
+				"north": {"uv": [7, 7.5, 8, 8], "texture": "#bottle"},
+				"east": {"uv": [6, 7.5, 7, 8], "texture": "#bottle"},
+				"south": {"uv": [9, 7.5, 10, 8], "texture": "#bottle"},
+				"west": {"uv": [8, 7.5, 9, 8], "texture": "#bottle"},
+				"up": {"uv": [8, 7.5, 7, 6.5], "texture": "#bottle"},
+				"down": {"uv": [9, 6.5, 8, 7.5], "texture": "#bottle"}
+			}
+		}
+	]
+}

@@ -500,6 +500,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> ROPE;
 
 	public static RegistryObject<Block> SKULL_GOBLET;
+	public static RegistryObject<Block> GLASS_BOTTLE;
 
 	public static RegistryObject<Block> LARGE_POT;
 	public static RegistryObject<Block> LARGE_FLOWER_POT;

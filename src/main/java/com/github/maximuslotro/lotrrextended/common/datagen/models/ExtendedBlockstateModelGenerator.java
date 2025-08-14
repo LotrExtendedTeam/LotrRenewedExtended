@@ -187,6 +187,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						genSkullGobletBlock((VesselDrinkBlock)block.getValue().get());
 						continue;
 					}
+					if(block.getValue().get()==ExtendedBlocks.GLASS_BOTTLE.get()) {
+						genSkullGobletBlock((VesselDrinkBlock)block.getValue().get());
+						continue;
+					}
 				}
 				if(block.getValue().get() instanceof ExtendedRemainsBlock) {
 					numberTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 3);
@@ -1883,7 +1887,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genSkullGobletBlock(VesselDrinkBlock block) {
 		registeredBlocks.add(block);
-		ModelFile modelFile = models().getExistingFile(lotrExtendedLoc(block.getRegistryName().getPath()));
+		ModelFile modelFile = models().getExistingFile(lotrExtendedLoc("vessel_"+block.getRegistryName().getPath()));
 		getVariantBuilder(block).forAllStates(state -> {
 			Direction direction = state.getValue(VesselDrinkBlock.FACING);
 			return ConfiguredModel.builder()

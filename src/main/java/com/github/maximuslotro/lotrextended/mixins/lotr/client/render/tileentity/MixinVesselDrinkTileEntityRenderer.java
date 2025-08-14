@@ -134,6 +134,10 @@ public abstract class MixinVesselDrinkTileEntityRenderer<T extends VesselDrinkTi
 				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 9, 9.5F, 6.875F, 12.5F, 9.125F, 6.375F, combinedLight, combinedOverlay);
 			}else if(vesselType == VesselType.valueOf("SKULL_GOBLET")) {
 				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 12, 6.0F, 9.0F, combinedLight, combinedOverlay);
+			}else if(vesselType == VesselType.valueOf("GLASS_BOTTLE")) {
+				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 10, 6.5F, 4.5F, combinedLight, combinedOverlay);
+				this.renderLiquidSurface(matStack, vb, liquidIcon, 6, 9, 9.5F, 6.875F, 12.5F, 9.125F, 6.375F, combinedLight, combinedOverlay);
+
 			}
 			matStack.popPose();
 			RenderSystem.disableBlend();

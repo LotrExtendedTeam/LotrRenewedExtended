@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.VesselType;
 import lotr.common.util.LOTRUtil;
+import net.minecraft.item.Items;
 import net.minecraft.util.IItemProvider;
 
 /**
@@ -45,11 +46,18 @@ public class MixinVesselType {
 	@Unique
 	private static final VesselType SKULL_GOBLET;
 
+	/**
+	 * Holder for extended's glass bottle vessel type
+	 * */
+	@Unique
+	private static final VesselType GLASS_BOTTLE;
+
 	/*
 	 * @reason Register Extended's vessel types and regenerate the vessel map
 	 * */
 	static {
 		SKULL_GOBLET = lotrmaterialExpansion$addVariant("SKULL_GOBLET", () -> ExtendedItems.SKULL_GOBLET.get(), "skull_goblet", "skull_goblet_drink", true);
+		GLASS_BOTTLE = lotrmaterialExpansion$addVariant("GLASS_BOTTLE", () -> Items.GLASS_BOTTLE, "glass_bottle", "glass_bottle_drink", true);
 		EXTENDED_NAME_LOOKUP = LOTRUtil.createKeyedEnumMap(MixinVesselType.$VALUES, VesselType::getCodeName);
 	}
 

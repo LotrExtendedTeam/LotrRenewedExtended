@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "lotrextended:block/vessel_glass_bottle"
+    },
+    "facing=south": {
+      "model": "lotrextended:block/vessel_glass_bottle",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "lotrextended:block/vessel_glass_bottle",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "lotrextended:block/vessel_glass_bottle",
+      "y": 90
+    }
+  }
+}

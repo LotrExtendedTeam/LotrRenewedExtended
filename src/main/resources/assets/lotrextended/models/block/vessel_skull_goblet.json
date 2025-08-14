@@ -1,8 +1,8 @@
 {
 	"texture_size": [32, 32],
 	"textures": {
-		"texture": "lotrextended:block/skull_goblet",
-		"particle": "lotrextended:block/skull_goblet"
+		"texture": "lotrextended:block/vessels/skull_goblet",
+		"particle": "lotrextended:block/vessels/skull_goblet"
 	},
 	"elements": [
 		{
