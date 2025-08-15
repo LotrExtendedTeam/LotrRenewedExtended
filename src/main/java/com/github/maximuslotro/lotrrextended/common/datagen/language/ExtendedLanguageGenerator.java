@@ -484,7 +484,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("enchant.lotrextended.banedwarf.desc", "+4.0 damage vs. Dwarves");
 		addD("enchant.lotrextended.baneelf.desc", "+4.0 damage vs. Elves");
 		addD("enchant.lotrextended.banewarg.desc", "+4.0 damage vs. Wargs");
-		addD("enchant.lotrextended.banewight.desc", "+4.0 damge vs. Wights");
+		addD("enchant.lotrextended.banewight.desc", "+4.0 damage vs. Wights");
 
 		addD("enchant.lotrextended.baneelf.earn", "Your %s has claimed the lives of many Elves, and it shall be their bane evermore!");
 		addD("enchant.lotrextended.baneelf.earn_name", "%s's %s has claimed the lives of many Elves, and it shall be their bane evermore!");
