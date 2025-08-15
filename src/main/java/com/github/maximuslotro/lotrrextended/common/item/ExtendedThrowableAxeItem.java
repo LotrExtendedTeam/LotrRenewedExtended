@@ -25,95 +25,95 @@ import net.minecraft.world.World;
 
 public class ExtendedThrowableAxeItem extends TieredItem {
 
-    public ExtendedThrowableAxeItem(IItemTier tier) {
-        super(tier, new Properties().tab(LOTRItemGroups.COMBAT));
-        DispenserBlock.registerBehavior(this, new ExtendedDispenserThrowingAxe());
-    }
+	public ExtendedThrowableAxeItem(IItemTier tier) {
+		super(tier, new Properties().tab(LOTRItemGroups.COMBAT));
+		DispenserBlock.registerBehavior(this, new ExtendedDispenserThrowingAxe());
+	}
 
-    public ExtendedThrowableAxeItem(LOTRMaterial material) {
-        this((IItemTier)material.asTool());
-    }
+	public ExtendedThrowableAxeItem(LOTRMaterial material) {
+		this((IItemTier)material.asTool());
+	}
 
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.BLOCK;
-    }
+	public UseAction getUseAction(ItemStack stack) {
+		return UseAction.BOW;
+	}
 
-    @Override
+	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        ItemStack itemstack = player.getItemInHand(hand);
-        if (canPlayerUseItem(player, hand)) {
-         if (!world.isClientSide) {
-            ItemStack EntityItemStack = itemstack.copy();
-            EntityItemStack.setCount(1);
-            ExtendedThrowableAxeEntity AxeEntity = new ExtendedThrowableAxeEntity(world, player, EntityItemStack);
-            
-            // Calculate offset to the right of the player
-            double offsetDistance = 0.5; // Adjust this value to control how far right
-            double rightX = -Math.sin(Math.toRadians(player.yRot + 90.0)); // Right vector X
-            double rightZ = Math.cos(Math.toRadians(player.yRot + 90.0));  // Right vector Z
-            
-            // Apply the offset to the axe position
-            AxeEntity.setPos(
-                player.getX() + rightX * offsetDistance,
-                player.getEyeY() - 0.1, // Slightly below eye level
-                player.getZ() + rightZ * offsetDistance
-            );
-            
-            AxeEntity.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 2.0F, 1.0F);
-            AxeEntity.setCritArrow(true);
+		ItemStack itemstack = player.getItemInHand(hand);
+		if (canPlayerUseItem(player, hand)) {
+			if (!world.isClientSide) {
+				ItemStack axe = itemstack.copy();
+				axe.setCount(1);
+				ExtendedThrowableAxeEntity axeEntity = new ExtendedThrowableAxeEntity(world, player, axe);
 
-            AxeEntity.pickup = this.getPickupStatusForplayer(player);
-            world.addFreshEntity(AxeEntity);
-         }
+				// Calculate offset to the right of the player
+				double offsetDistance = 0.5; // Adjust this value to control how far right
+				double rightX = -Math.sin(Math.toRadians(player.yRot + 90.0)); // Right vector X
+				double rightZ = Math.cos(Math.toRadians(player.yRot + 90.0));  // Right vector Z
 
-         world.playSound((PlayerEntity)null, player.getX(), player.getY(), player.getZ(), SoundEvents.TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F));
-         if (!player.abilities.instabuild) {
-            itemstack.shrink(1);
-            if (itemstack.isEmpty()) {
-               player.inventory.removeItem(itemstack);
-            }
-         }
+				// Apply the offset to the axe position
+				axeEntity.setPos(
+					player.getX() + rightX * offsetDistance,
+					player.getEyeY() - 0.1, // Slightly below eye level
+					player.getZ() + rightZ * offsetDistance
+					);
 
-         player.awardStat(Stats.ITEM_USED.get(this));
-         
-            return ActionResult.success(itemstack);
-        } else {
-            return ActionResult.fail(itemstack);
-        }
-    }
+				axeEntity.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 2.0F, 1.0F);
+				axeEntity.setCritArrow(true);
 
-    private boolean canPlayerUseItem(PlayerEntity player, Hand hand) {
-        if (hand == Hand.MAIN_HAND) {
-            ItemStack offhandItem = player.getOffhandItem();
-            if (offhandItem.getUseAnimation() == UseAction.BLOCK) {
-                return player.isShiftKeyDown();
-            }
-        }
-        return true;
-    }
+				axeEntity.pickup = this.getPickupStatusForplayer(player);
+				world.addFreshEntity(axeEntity);
+			}
 
-   private AbstractArrowEntity.PickupStatus getPickupStatusForplayer(LivingEntity player) {
-      if (player instanceof PlayerEntity) {
-         return ((PlayerEntity)player).abilities.instabuild ? PickupStatus.CREATIVE_ONLY : PickupStatus.ALLOWED;
-      } else {
-         return PickupStatus.DISALLOWED;
-      }
-   }
+			world.playSound((PlayerEntity)null, player.getX(), player.getY(), player.getZ(), SoundEvents.TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F));
+			if (!player.abilities.instabuild) {
+				itemstack.shrink(1);
+				if (itemstack.isEmpty()) {
+					player.inventory.removeItem(itemstack);
+				}
+			}
 
-   public static void applyStandardEnchantmentsFromBow(ItemStack stack, AbstractArrowEntity projectile) {
-      int power = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, stack);
-      if (power > 0) {
-         projectile.setBaseDamage(projectile.getBaseDamage() + (double)power * 0.5 + 0.5);
-      }
+			player.awardStat(Stats.ITEM_USED.get(this));
 
-      int punch = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack);
-      if (punch > 0) {
-         projectile.setKnockback(punch);
-      }
+			return ActionResult.success(itemstack);
+		} else {
+			return ActionResult.fail(itemstack);
+		}
+	}
 
-      if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, stack) > 0) {
-         projectile.setSecondsOnFire(100);
-      }
+	private boolean canPlayerUseItem(PlayerEntity player, Hand hand) {
+		if (hand == Hand.MAIN_HAND) {
+			ItemStack offhandItem = player.getOffhandItem();
+			if (offhandItem.getUseAnimation() == UseAction.BLOCK) {
+				return player.isShiftKeyDown();
+			}
+		}
+		return true;
+	}
 
-   }
+	private AbstractArrowEntity.PickupStatus getPickupStatusForplayer(LivingEntity player) {
+		if (player instanceof PlayerEntity) {
+			return ((PlayerEntity)player).abilities.instabuild ? PickupStatus.CREATIVE_ONLY : PickupStatus.ALLOWED;
+		} else {
+			return PickupStatus.DISALLOWED;
+		}
+	}
+
+	public static void applyStandardEnchantmentsFromBow(ItemStack stack, AbstractArrowEntity projectile) {
+		int power = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, stack);
+		if (power > 0) {
+			projectile.setBaseDamage(projectile.getBaseDamage() + (double)power * 0.5 + 0.5);
+		}
+
+		int punch = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack);
+		if (punch > 0) {
+			projectile.setKnockback(punch);
+		}
+
+		if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, stack) > 0) {
+			projectile.setSecondsOnFire(100);
+		}
+
+	}
 }

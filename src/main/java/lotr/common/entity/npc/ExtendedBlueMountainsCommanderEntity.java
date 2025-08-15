@@ -67,6 +67,7 @@ public class ExtendedBlueMountainsCommanderEntity extends BlueDwarfEntity implem
 	public List<ResourceLocation> getHireableProfiles() {
 		return java.util.Arrays.asList(ExtendedHiredUnitTypes.BLUE_DWARF, 
 			ExtendedHiredUnitTypes.BLUE_DWARF_WARRIOR, 
-			ExtendedHiredUnitTypes.BLUE_DWARF_ARCHER);
+			ExtendedHiredUnitTypes.BLUE_DWARF_ARCHER,
+			ExtendedHiredUnitTypes.BLUE_DWARF_AXE_THROWER);
 	}
 }

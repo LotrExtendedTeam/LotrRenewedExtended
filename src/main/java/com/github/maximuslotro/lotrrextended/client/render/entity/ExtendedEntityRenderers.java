@@ -68,6 +68,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_DWARVEN_BARTENDER.get(), ExtendedBlueMountainsTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_DWARVEN_BUTCHER.get(), ExtendedBlueMountainsTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_DWARVEN_STONEMASON.get(), ExtendedBlueMountainsTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BLUE_DWARVEN_AXE_THROWER.get(), BlueDwarfRenderer::new);
 		// Dwarven
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DWARVEN_MINER.get(), ExtendedDurinsFolkTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DWARVEN_SMITH.get(), ExtendedDurinsFolkTraderRenderer::new);
