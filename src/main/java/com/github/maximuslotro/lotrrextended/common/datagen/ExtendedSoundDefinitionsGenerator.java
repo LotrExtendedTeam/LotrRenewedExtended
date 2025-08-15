@@ -70,6 +70,11 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		add(ExtendedSounds.BOAR_JUMPS, createCustomPathSound(ExtendedSounds.BOAR_JUMPS, new ResourceLocation("mob/horse/jump")));
 		add(ExtendedSounds.BOAR_STEP, createMultipleSameWeight(ExtendedSounds.BOAR_STEP, 4, LotrExtendedMod.MODID+":entity/boar/step", "subtitles.block.generic.footsteps"));
 		add(ExtendedSounds.BOAR_SADDLE, createCustomPathSound(ExtendedSounds.BOAR_SADDLE, new ResourceLocation("mob/horse/leather"), "subtitles.entity.horse.saddle"));
+		
+		add(ExtendedSounds.HEDGEHOG_AMBIENT, createMultipleSameWeight(ExtendedSounds.HEDGEHOG_AMBIENT, 3, true, LotrExtendedMod.MODID+":entity/hedgehog/sniff"));
+		add(ExtendedSounds.HEDGEHOG_DEATH, createMultipleSameWeight(ExtendedSounds.HEDGEHOG_DEATH, 2, true));
+		//add(ExtendedSounds.HEDGEHOG_EAT, createMultipleSameWeight(ExtendedSounds.HEDGEHOG_EAT, 3, true));
+		add(ExtendedSounds.HEDGEHOG_HURT, createMultipleSameWeight(ExtendedSounds.HEDGEHOG_HURT, 4, true));
 	}
 
 	public static SoundDefinition createSimple(RegistryObject<SoundEvent> sound) {

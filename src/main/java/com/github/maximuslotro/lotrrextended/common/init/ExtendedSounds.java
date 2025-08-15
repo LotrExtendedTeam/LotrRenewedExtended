@@ -52,6 +52,11 @@ public class ExtendedSounds {
 	public static final RegistryObject<SoundEvent> BOAR_STEP = register("entity.boar.footsteps", null);
 	public static final RegistryObject<SoundEvent> BOAR_SADDLE = register("entity.boar.saddle", null);
 	public static final RegistryObject<SoundEvent> BOAR_JUMPS = register("entity.boar.jump", "Boar jumps");
+	
+	public static final RegistryObject<SoundEvent> HEDGEHOG_AMBIENT = register("entity.hedgehog.ambient", "Hedgehog sniffs");
+	public static final RegistryObject<SoundEvent> HEDGEHOG_DEATH = register("entity.hedgehog.death", "Hedgehog dies");
+	//public static final RegistryObject<SoundEvent> HEDGEHOG_EAT = register("entity.hedgehog.eat", "Hedgehog eats");
+	public static final RegistryObject<SoundEvent> HEDGEHOG_HURT = register("entity.hedgehog.hurt", "Hedgehog hurts");
 
 	public static RegistryObject<SoundEvent> register(String name, String defaultName) {
 		if(DatagenModLoader.isRunningDataGen() && defaultName!=null) {

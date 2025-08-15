@@ -377,5 +377,29 @@
     "sounds": [
       "mob/horse/leather"
     ]
+  },
+  "entity.hedgehog.ambient": {
+    "subtitle": "subtitles.lotrextended.entity.hedgehog.ambient",
+    "sounds": [
+      "lotrextended:entity/hedgehog/sniff1",
+      "lotrextended:entity/hedgehog/sniff2",
+      "lotrextended:entity/hedgehog/sniff3"
+    ]
+  },
+  "entity.hedgehog.death": {
+    "subtitle": "subtitles.lotrextended.entity.hedgehog.death",
+    "sounds": [
+      "lotrextended:entity/hedgehog/death1",
+      "lotrextended:entity/hedgehog/death2"
+    ]
+  },
+  "entity.hedgehog.hurt": {
+    "subtitle": "subtitles.lotrextended.entity.hedgehog.hurt",
+    "sounds": [
+      "lotrextended:entity/hedgehog/hurt1",
+      "lotrextended:entity/hedgehog/hurt2",
+      "lotrextended:entity/hedgehog/hurt3",
+      "lotrextended:entity/hedgehog/hurt4"
+    ]
   }
 }

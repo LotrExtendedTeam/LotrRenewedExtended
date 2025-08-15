@@ -21,9 +21,9 @@
 		},
 		{
 			"name": "neck",
-			"from": [6.5, 4, 6.5],
-			"to": [9.5, 5, 9.5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8.5, -1, 7.5]},
+			"from": [6.57, 3.995, 6.57],
+			"to": [9.43, 4.855, 9.43],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8.5, -1.075, 7.5]},
 			"faces": {
 				"north": {"uv": [1.5, 6, 3, 6.5], "texture": "#bottle"},
 				"east": {"uv": [0, 6, 1.5, 6.5], "texture": "#bottle"},

@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBlock;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedMoveToBlockOrPanicGoal;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import lotr.common.init.ExtendedEntities;
@@ -36,7 +37,9 @@ import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityPredicates;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorldReader;
@@ -79,6 +82,21 @@ public class ExtendedHedgehogEntity extends AnimalEntity{
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+	}
+
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return ExtendedSounds.HEDGEHOG_AMBIENT.get();
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+		return ExtendedSounds.HEDGEHOG_HURT.get();
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return ExtendedSounds.HEDGEHOG_DEATH.get();
 	}
 
 	@Override
