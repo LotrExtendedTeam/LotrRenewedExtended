@@ -6,10 +6,13 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedTamingGoal;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBoarColors;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoarArmorItem;
 
 import lotr.common.init.ExtendedEntities;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -41,6 +44,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -193,16 +197,16 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 		super.containerChanged(pInvBasic);
 		ItemStack itemstack1 = this.getArmor();
 		if (this.tickCount > 20 && this.isArmor(itemstack1) && itemstack != itemstack1) {
-			this.playSound(SoundEvents.HORSE_ARMOR, 0.5F, 1.0F);
+			this.playSound(ExtendedSounds.BOAR_ARMOR.get(), 0.5F, 1.0F);
 		}
 
 	}
 
 	@Override
 	protected void playGallopSound(SoundType pSoundType) {
-		super.playGallopSound(pSoundType);
+		playSound(ExtendedSounds.BOAR_STEP.get(), pSoundType.getVolume() * 0.35F, pSoundType.getPitch());
 		if (this.random.nextInt(10) == 0) {
-			this.playSound(SoundEvents.HORSE_BREATHE, pSoundType.getVolume() * 0.6F, pSoundType.getPitch());
+			this.playSound(ExtendedSounds.BOAR_STEP.get(), pSoundType.getVolume() * 0.9F, pSoundType.getPitch()*0.5f);
 		}
 		ItemStack stack = this.inventory.getItem(1);
 		if (isArmor(stack)) {
@@ -211,38 +215,70 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 	}
 
 	@Override
+	protected void playStepSound(BlockPos pPos, BlockState pBlock) {
+		if (!pBlock.getMaterial().isLiquid()) {
+			BlockState blockstate = this.level.getBlockState(pPos.above());
+			SoundType soundtype = pBlock.getSoundType(level, pPos, this);
+			if (blockstate.is(Blocks.SNOW)) {
+				soundtype = blockstate.getSoundType(level, pPos, this);
+			}
+
+			if (this.isVehicle() && this.canGallop) {
+				++this.gallopSoundCounter;
+				if (this.gallopSoundCounter > 5 && this.gallopSoundCounter % 2 == 0) {
+					this.playGallopSound(soundtype);
+				} else if (this.gallopSoundCounter <= 5) {
+					this.playSound(SoundEvents.HORSE_STEP_WOOD, soundtype.getVolume() * 0.15F, soundtype.getPitch()* 0.5f);
+				} else if (this.gallopSoundCounter % 3 == 0) {
+					this.playSound(SoundEvents.HORSE_STEP_WOOD, soundtype.getVolume() * 0.15F, soundtype.getPitch()* 0.5f);
+				}
+			} else if (soundtype == SoundType.WOOD) {
+				this.playSound(SoundEvents.HORSE_STEP_WOOD, soundtype.getVolume() * 0.15F, soundtype.getPitch()* 0.5f);
+			} else {
+				this.playSound(ExtendedSounds.BOAR_STEP.get(), soundtype.getVolume() * 0.35F, soundtype.getPitch());
+			}
+
+		}
+	}
+
+	@Override
 	public SoundEvent getSaddleSound() {
-		return SoundEvents.HORSE_SADDLE;
+		return ExtendedSounds.BOAR_SADDLE.get();
 	}
 
 	@Override
 	protected SoundEvent getAmbientSound() {
 		super.getAmbientSound();
-		return SoundEvents.PIG_AMBIENT;
+		return ExtendedSounds.BOAR_AMBIENT.get();
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
 		super.getDeathSound();
-		return SoundEvents.PIG_DEATH;
+		return ExtendedSounds.BOAR_DEATH.get();
 	}
 
 	@Override
 	@Nullable
 	protected SoundEvent getEatingSound() {
-		return SoundEvents.HORSE_EAT;
+		return ExtendedSounds.BOAR_EAT.get();
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource pDamageSource) {
 		super.getHurtSound(pDamageSource);
-		return SoundEvents.PIG_HURT;
+		return ExtendedSounds.BOAR_HURT.get();
 	}
 
 	@Override
 	protected SoundEvent getAngrySound() {
 		super.getAngrySound();
-		return SoundEvents.HORSE_ANGRY;
+		return ExtendedSounds.BOAR_ANGRY.get();
+	}
+
+	@Override
+	protected void playJumpSound() {
+		this.playSound(ExtendedSounds.BOAR_JUMPS.get(), 0.3F, 0.6F);
 	}
 
 	@Override

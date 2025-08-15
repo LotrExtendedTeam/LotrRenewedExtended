@@ -313,5 +313,69 @@
       "lotrextended:block/pot/fill1",
       "lotrextended:block/pot/fill2"
     ]
+  },
+  "entity.boar.ambient": {
+    "subtitle": "subtitles.lotrextended.entity.boar.ambient",
+    "sounds": [
+      "lotrextended:entity/boar/ambient1",
+      "lotrextended:entity/boar/ambient2",
+      "lotrextended:entity/boar/ambient3",
+      "lotrextended:entity/boar/ambient4"
+    ]
+  },
+  "entity.boar.angry": {
+    "subtitle": "subtitles.lotrextended.entity.boar.angry",
+    "sounds": [
+      "lotrextended:entity/boar/angry1"
+    ]
+  },
+  "entity.boar.armor": {
+    "subtitle": "subtitles.lotrextended.entity.boar.armor",
+    "sounds": [
+      "mob/horse/armor"
+    ]
+  },
+  "entity.boar.death": {
+    "subtitle": "subtitles.lotrextended.entity.boar.death",
+    "sounds": [
+      "lotrextended:entity/boar/death1",
+      "lotrextended:entity/boar/death2",
+      "lotrextended:entity/boar/death3"
+    ]
+  },
+  "entity.boar.eat": {
+    "subtitle": "subtitles.lotrextended.entity.boar.eat",
+    "sounds": [
+      "lotrextended:entity/boar/chew1",
+      "lotrextended:entity/boar/chew2",
+      "lotrextended:entity/boar/chew3"
+    ]
+  },
+  "entity.boar.hurt": {
+    "subtitle": "subtitles.lotrextended.entity.boar.hurt",
+    "sounds": [
+      "lotrextended:entity/boar/hurt1"
+    ]
+  },
+  "entity.boar.jump": {
+    "subtitle": "subtitles.lotrextended.entity.boar.jump",
+    "sounds": [
+      "mob/horse/jump"
+    ]
+  },
+  "entity.boar.footsteps": {
+    "subtitle": "subtitles.block.generic.footsteps",
+    "sounds": [
+      "lotrextended:entity/boar/step1",
+      "lotrextended:entity/boar/step2",
+      "lotrextended:entity/boar/step3",
+      "lotrextended:entity/boar/step4"
+    ]
+  },
+  "entity.boar.saddle": {
+    "subtitle": "subtitles.entity.horse.saddle",
+    "sounds": [
+      "mob/horse/leather"
+    ]
   }
 }
