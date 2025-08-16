@@ -4,12 +4,11 @@ import java.util.EnumSet;
 
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
+import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.RangedBowAttackGoal;
-import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.item.BowItem;
 
 /**
@@ -17,7 +16,7 @@ import net.minecraft.item.BowItem;
  * @param <T> The Entity type that implements this goal
  * 
  */
-public class ThrowingAxeAttackGoal<T extends MobEntity & IRangedAttackMob> extends Goal {
+public class ThrowingAxeAttackGoal<T extends NPCEntity & IRangedAttackMob> extends Goal {
 	private final T mob;
 	private final double speedModifier;
 	private int attackIntervalMin;
@@ -27,6 +26,7 @@ public class ThrowingAxeAttackGoal<T extends MobEntity & IRangedAttackMob> exten
 	private boolean strafingClockwise;
 	private boolean strafingBackwards;
 	private int strafingTime = -1;
+	private int ticksUsingItem = -1;
 
 	public ThrowingAxeAttackGoal(T pEntity, double pSpeedModifier, int pAttackIntervalMin, float pAttackRadius) {
 		this.mob = pEntity;
@@ -102,7 +102,6 @@ public class ThrowingAxeAttackGoal<T extends MobEntity & IRangedAttackMob> exten
 				if (mob.getRandom().nextFloat() < 0.3D) {
 					this.strafingBackwards = !this.strafingBackwards;
 				}
-
 				this.strafingTime = 0;
 			}
 
@@ -118,22 +117,21 @@ public class ThrowingAxeAttackGoal<T extends MobEntity & IRangedAttackMob> exten
 			} else {
 				this.mob.getLookControl().setLookAt(livingentity, 30.0F, 30.0F);
 			}
-
-			if (this.mob.isUsingItem()) {
+			if (ticksUsingItem>=0) {
 				if (!canSee && this.seeTime < -60) {
-					this.mob.stopUsingItem();
+					ticksUsingItem = -1;
 				} else if (canSee) {
-					int ticksUsingItem = this.mob.getTicksUsingItem();
-					if (ticksUsingItem >= 20) {
-						this.mob.stopUsingItem();
+					if (ticksUsingItem >= 10) {
+						ticksUsingItem = -1;
 						this.mob.performRangedAttack(livingentity, BowItem.getPowerForTime(ticksUsingItem));
 						this.attackTime = this.attackIntervalMin;
+					}else {
+						ticksUsingItem+=1;
 					}
 				}
 			} else if (--this.attackTime <= 0 && this.seeTime >= -60) {
-				this.mob.startUsingItem(ProjectileHelper.getWeaponHoldingHand(this.mob, item -> item instanceof ExtendedThrowableAxeItem));
+				ticksUsingItem=0;
 			}
-
 		}
 	}
 }

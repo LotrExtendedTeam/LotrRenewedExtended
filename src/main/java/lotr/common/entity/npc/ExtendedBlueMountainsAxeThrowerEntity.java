@@ -57,22 +57,20 @@ public class ExtendedBlueMountainsAxeThrowerEntity extends BlueDwarfWarriorEntit
 		ExtendedThrowableAxeEntity axeEntity = new ExtendedThrowableAxeEntity(this.level, this, axe);
 
 		// ===== OFFSET CALCULATION (like players) =====
-		double offsetDistance = 0.5; // How far to the right
-		double rightX = -Math.sin(Math.toRadians(this.yRot + 90.0));
-		double rightZ = Math.cos(Math.toRadians(this.yRot + 90.0));
-
-		axeEntity.setPos(
-			this.getX() + rightX * offsetDistance,
-			this.getEyeY() - 0.1, // Slightly below eye level
-			this.getZ() + rightZ * offsetDistance
-		);
-		
+		//double offsetDistance = 0.5; // How far to the right
+		//double rightX = -Math.sin(Math.toRadians(this.yRot + 90.0));
+		//double rightZ = Math.cos(Math.toRadians(this.yRot + 90.0));
+		//axeEntity.setPos(
+		//	this.getX() + rightX * offsetDistance,
+		//	this.getEyeY() - 0.1, // Slightly below eye level
+		//	this.getZ() + rightZ * offsetDistance
+		//);
 		double dx = target.getX() - this.getX();
-		double dy = target.getY(0.333D) - axeEntity.getY();
+		double dy = target.getY(0.33333D) - axeEntity.getY();
 		double dz = target.getZ() - this.getZ();
 		double dxzSq = MathHelper.sqrt(dx * dx + dz * dz);
-		axeEntity.pickup = PickupStatus.CREATIVE_ONLY;
-		axeEntity.shoot(dx, dy + dxzSq * 0.2D, dz, 1.0F, (float)getAttributeValue(LOTRAttributes.NPC_RANGED_INACCURACY.get()));
+		axeEntity.pickup = PickupStatus.DISALLOWED;
+		axeEntity.shoot(dx, dy + dxzSq * 0.2D, dz, 1.6F, (float)getAttributeValue(LOTRAttributes.NPC_RANGED_INACCURACY.get()));
 		playSound(SoundEvents.TRIDENT_THROW, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F));
 		level.addFreshEntity(axeEntity);
 	}

@@ -39,6 +39,11 @@ public class ExtendedThrowableAxeItem extends TieredItem {
 	}
 
 	@Override
+	public int getUseDuration(ItemStack pStack) {
+		return 1;
+	}
+
+	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		if (canPlayerUseItem(player, hand)) {

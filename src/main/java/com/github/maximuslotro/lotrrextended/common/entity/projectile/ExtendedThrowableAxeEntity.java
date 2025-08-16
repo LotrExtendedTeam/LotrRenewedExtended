@@ -127,13 +127,12 @@ public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
         ItemStack axeItem = this.getThrowingAxeItem();
         double damageMultiplier = this.getAxeItemAttackDamage(axeItem);
         damageMultiplier += (double)EnchantmentHelper.getDamageBonus(axeItem, hitEntity instanceof LivingEntity ? ((LivingEntity)hitEntity).getMobType() : CreatureAttribute.UNDEFINED);
-        damageMultiplier *= 0.7;
+        damageMultiplier *= 0.9;
         return (float)(speed * damageMultiplier);
     }
 
     private double getAxeItemAttackDamage(ItemStack stack) {
-        Collection<AttributeModifier> modifiers = stack.getAttributeModifiers(EquipmentSlotType.MAINHAND)
-                .get(Attributes.ATTACK_DAMAGE);
+        Collection<AttributeModifier> modifiers = stack.getAttributeModifiers(EquipmentSlotType.MAINHAND).get(Attributes.ATTACK_DAMAGE);
         double base = 1.0;
         if (modifiers != null) {
             for (AttributeModifier mod : modifiers) {
