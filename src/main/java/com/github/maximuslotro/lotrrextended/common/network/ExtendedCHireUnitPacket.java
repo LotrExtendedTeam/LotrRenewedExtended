@@ -62,21 +62,22 @@ public class ExtendedCHireUnitPacket {
         	return;
         }
 
-        // verify the player has pledge if needed
-        if(unitProfile.isHiringRequiresPledge() && !playerData.getAlignmentData().isPledgedTo(captainNpc.getFaction())) {
-        	player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_pledged"), Util.NIL_UUID);
-            context.get().setPacketHandled(true);
-            return;
-        }
-
         // verify the player has enough alignment
         if(unitProfile.getHiringAlignmentRequired() > playerData.getAlignmentData().getAlignment(captainNpc.getFaction())) {
         	player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_alignment", unitProfile.getHiringAlignmentRequired()), Util.NIL_UUID);
             context.get().setPacketHandled(true);
             return;
         }
+        
+        // verify the player has pledge if needed
+        if(unitProfile.isHiringRequiresPledge() && !playerData.getAlignmentData().isPledgedTo(captainNpc.getFaction())) {
+        	player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_pledged"), Util.NIL_UUID);
+            context.get().setPacketHandled(true);
+            return;
+        }
+ 
         // verify the player has enough coins
-        if (unitProfile.getHiringCost() > CoinUtils.totalValueInInventory(player.inventory)) {
+        if (player.isCreative() && unitProfile.getHiringCost() > CoinUtils.totalValueInInventory(player.inventory)) {
             player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_enough_money", unitProfile.getHiringCost()), Util.NIL_UUID);
             context.get().setPacketHandled(true);
             return;
@@ -87,7 +88,9 @@ public class ExtendedCHireUnitPacket {
 
         if (newEntity != null && newEntity instanceof NPCEntity) {
         	((ExtendedNPCEntity)newEntity).getUnitInfo().setNpcAsHired(player, unitProfile.getId());
-            CoinUtils.removeCoins(player, player.inventory, unitProfile.getHiringCost());
+        	if(!player.isCreative()) {
+        		CoinUtils.removeCoins(player, player.inventory, unitProfile.getHiringCost());
+        	}
             player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.unit_has_been_hired", new TranslationTextComponent(unitProfile.getEntityUnitTypeName()), unitProfile.getHiringCost()), Util.NIL_UUID);
             ExtendedCriteriaTriggers.UNIT_HIRED_TRIGGER.trigger(player, entityCaptain.getType(), newEntity.getType(), unitProfile.getHiringCost());
         }

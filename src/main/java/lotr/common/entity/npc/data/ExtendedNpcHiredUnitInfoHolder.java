@@ -762,7 +762,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	 * @param tag A CompoundNBT to be saved to
 	 * */
 	private void saveHiredUnitInventory(CompoundNBT tag) {
-		// create temp NonNullList to save inventory to
+		// create temporary NonNullList to save inventory to
 		NonNullList<ItemStack> items = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		for (int i = 0; i < INVENTORY_SIZE; i++) {
 			ItemStack item = internalUnitInventory.getItem(i);
