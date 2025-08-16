@@ -13,6 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnit
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.inventory.UnitInventory;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcUnitInfoPacket;
 
@@ -31,7 +32,6 @@ import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
@@ -74,7 +74,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	private boolean resendData = false;
 	public boolean isInteracting = false;
 
-	private Inventory internalUnitInventory = makeUnitInventory();
+	private UnitInventory internalUnitInventory = makeUnitInventory();
 
 	public ExtendedNpcHiredUnitInfoHolder(NPCEntity thisEntity) {
 		this.thisEntity = thisEntity;
@@ -433,12 +433,12 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
         ExtendedHiredUnitHelper.giveExperiencePoints(this, points);
     }
 	// ######################################### Inventory Management
-	public Inventory makeUnitInventory() {
+	public UnitInventory makeUnitInventory() {
 		// 9 inventory slots + 10 player equipment slots + 10 base equipment slots
-		return new Inventory(INVENTORY_SIZE);
+		return new UnitInventory(INVENTORY_SIZE);
 	}
 
-	public Inventory getInternalUnitInventory() {
+	public UnitInventory getInternalUnitInventory() {
 		return internalUnitInventory;
 	}
 	// ######################################### Experience Points
@@ -554,7 +554,6 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 				if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()) {
 					//internalUnitInventory.setItem(17, ItemStack.EMPTY);
 					thisEntity.getNPCItemsInv().setIdleItem(internalUnitInventory.getItem(25));
-
 				}
 			} else {
 				thisEntity.getNPCItemsInv().setMeleeWeaponMounted(stack);
@@ -729,8 +728,30 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 		thisEntity.getNPCItemsInv().setMeleeWeapon(internalUnitInventory.getItem(13).isEmpty() ? internalUnitInventory.getItem(23) : internalUnitInventory.getItem(13));
 		thisEntity.getNPCItemsInv().setRangedWeapon(internalUnitInventory.getItem(14).isEmpty() ? internalUnitInventory.getItem(24) : internalUnitInventory.getItem(14));
 		thisEntity.getNPCItemsInv().setMeleeWeaponMounted(internalUnitInventory.getItem(15).isEmpty() ? internalUnitInventory.getItem(25) : internalUnitInventory.getItem(15));
-		thisEntity.getNPCItemsInv().setIdleItem(internalUnitInventory.getItem(16).isEmpty() ? internalUnitInventory.getItem(26) : internalUnitInventory.getItem(16));
-		thisEntity.getNPCItemsInv().setIdleItemMounted(internalUnitInventory.getItem(17).isEmpty() ? internalUnitInventory.getItem(27) : internalUnitInventory.getItem(17));
+		if(!internalUnitInventory.getItem(16).isEmpty()) {
+			thisEntity.getNPCItemsInv().setIdleItem(internalUnitInventory.getItem(16));
+		}
+		else{
+			if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()){
+				internalUnitInventory.setItem(26, internalUnitInventory.getItem(23));
+				thisEntity.getNPCItemsInv().setIdleItem(internalUnitInventory.getItem(13).isEmpty() ? internalUnitInventory.getItem(26) : internalUnitInventory.getItem(13));
+			}else if(getUnitProfile().getEquipmentPools().isSetIdleFromRanged()){
+				internalUnitInventory.setItem(26, internalUnitInventory.getItem(24));
+				thisEntity.getNPCItemsInv().setIdleItem(internalUnitInventory.getItem(14).isEmpty() ? internalUnitInventory.getItem(26) : internalUnitInventory.getItem(14));
+			}
+		}
+		if(!internalUnitInventory.getItem(17).isEmpty()) {
+			thisEntity.getNPCItemsInv().setIdleItemMounted(internalUnitInventory.getItem(17));
+		}
+		else{
+			if(getUnitProfile().getEquipmentPools().isSetIdleFromMelee()){
+				internalUnitInventory.setItem(27, internalUnitInventory.getItem(25));
+				thisEntity.getNPCItemsInv().setIdleItemMounted(internalUnitInventory.getItem(15).isEmpty() ? internalUnitInventory.getItem(27) : internalUnitInventory.getItem(15));
+			}else if(getUnitProfile().getEquipmentPools().isSetIdleFromRanged()){
+				internalUnitInventory.setItem(27, internalUnitInventory.getItem(24));
+				thisEntity.getNPCItemsInv().setIdleItemMounted(internalUnitInventory.getItem(14).isEmpty() ? internalUnitInventory.getItem(27) : internalUnitInventory.getItem(14));
+			}
+		}
 		thisEntity.setItemSlot(EquipmentSlotType.OFFHAND, internalUnitInventory.getItem(18).isEmpty() ? internalUnitInventory.getItem(28) : internalUnitInventory.getItem(18));
 		thisEntity.getNPCCombatUpdater().refreshCurrentAttackMode();
 	}
