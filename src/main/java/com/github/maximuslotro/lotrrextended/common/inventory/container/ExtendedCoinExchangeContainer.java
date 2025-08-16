@@ -30,7 +30,7 @@ import net.minecraft.util.text.TranslationTextComponent;
  * @author maximuslotro
  */
 public class ExtendedCoinExchangeContainer extends Container implements IContainerListener {
-	public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotr.coin_exchange");
+	public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotrextended.coin_exchange");
 
 	public Slot inputSlot;
 	public Slot leftVisualOutputSlot;
