@@ -450,7 +450,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					try {
 						genCubeBlockItem(block.getValue().get(),"block/"+block.getKey());
 					}catch(IllegalArgumentException e) {
-						System.out.println(block.getKey()+" is not CubeBlockItem! Using alternative genEndSideNonRotatableBlockItem model.");
+						System.out.println(block.getKey()+" is not CubeBlockItem. Using alternative genEndSideNonRotatableBlockItem model.");
 						genEndSideNonRotatableBlockItem(block.getValue().get(),"block/"+block.getKey());
 					}
 					continue;
