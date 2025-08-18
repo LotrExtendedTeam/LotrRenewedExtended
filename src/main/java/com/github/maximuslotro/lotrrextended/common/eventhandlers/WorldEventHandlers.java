@@ -28,8 +28,19 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+/**
+ * Handles various world-related events for custom entities and gameplay mechanics.
+ * 
+ * <p>This class listens to Forge events using {@link SubscribeEvent} and modifies
+ * entity behaviors, player spawn logic, block-breaking advancements, trader/captain
+ * death handling, and custom entity size adjustments.</p>
+ */
 public class WorldEventHandlers {
-
+	/**
+     * Prevents cloaked {@link ExtendedDunedainRangerEntity} from being targeted by NPCs.
+     *
+     * @param event the attack target event containing the potential target and attacker
+     */
 	@SubscribeEvent
 	public static void preventCloakedRangersFromBeingTargeted(LivingSetAttackTargetEvent event) {
 		if (event.getTarget() instanceof ExtendedDunedainRangerEntity) {
@@ -43,7 +54,11 @@ public class WorldEventHandlers {
 			}
 		}
 	}
-
+	/**
+     * Cancels setting a spawn point if the bed used is an {@link ExtendedBedrollBlock}.
+     *
+     * @param event the spawn-setting event triggered when a player sets their spawn
+     */
 	@SubscribeEvent
 	public static void handleBedRollCancelSpawn(PlayerSetSpawnEvent event) {
 		if(event.isForced() || event.getNewSpawn()==null) {
@@ -55,7 +70,13 @@ public class WorldEventHandlers {
 			}
 		}
 	}
-
+	/**
+     * Triggers a custom advancement criterion when a block is broken.
+     *
+     * <p>This ensures that the player's block-breaking action is tracked for custom advancements.</p>
+     *
+     * @param event the block break event
+     */
 	@SubscribeEvent(priority=EventPriority.LOWEST)
 	public static void handleBlockBreakAdvancement(BlockEvent.BreakEvent event) {
 		if(event.getPlayer() instanceof ServerPlayerEntity) {
@@ -63,7 +84,16 @@ public class WorldEventHandlers {
 			ExtendedCriteriaTriggers.PLAYER_BREAK_BLOCK_TRIGGER.trigger(player, event.getPos(), player.getItemInHand(player.getUsedItemHand()));
 		}
 	}
-
+	/**
+     * Handles special logic when {@link ExtendedTraderEntity} or {@link ExtendedCaptainEntity} dies.
+     * <ul>
+     *   <li>If the entity is a wandering trader, escorts are removed and players are notified.</li>
+     *   <li>If the entity is persistent, it respawns via {@link ExtendedTraderRespawnEntity}.</li>
+     *   <li>Otherwise, the entity is allowed to die normally.</li>
+     * </ul>
+     *
+     * @param event the living entity death event
+     */
 	@SubscribeEvent
 	public static void handleCaptainTraderDeath(LivingDeathEvent event) {
 		if (!(event.getEntity() instanceof ExtendedTraderEntity || event.getEntity() instanceof ExtendedCaptainEntity)) {
@@ -95,12 +125,12 @@ public class WorldEventHandlers {
 			return;
 		}else {
 			NPCEntity npc = (NPCEntity)event.getEntity();
-			// Check if entity has flag to respawn, also handle older versions where flag is not present and handle despawnable traders such as miners
+			// Check if entity has persistence to respawn, despawnable npcs will fail this check
+			// Also check if spawner spawned npc should respawn, persistable but permanently killable npcs will fail this check
+			// If a persistable npc is spawned via egg or commands, it will bypass this check and will be respawnable
 			if(!npc.isPersistenceRequired() || npc.getPersistentData().contains("ExtendedRespawnOnDeath") && !npc.getPersistentData().getBoolean("ExtendedRespawnOnDeath")) {
 				return; //Let entity die
 			}
-			// Update older entities to have the flag
-			npc.getPersistentData().putBoolean("ExtendedRespawnOnDeath", true);
 			// Make entity respawner
 			ExtendedTraderRespawnEntity respawnerEntity = new ExtendedTraderRespawnEntity(npc.level);
 			respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
@@ -110,10 +140,10 @@ public class WorldEventHandlers {
 
 			//Save trader trades
 			CompoundNBT compound =  new CompoundNBT();
-			if(event.getEntity() instanceof ExtendedTraderEntity) {
-				((ExtendedTraderEntity) event.getEntity()).getTraderData().writeToNbt(compound);
+			if(npc instanceof ExtendedTraderEntity) {
+				((ExtendedTraderEntity) npc).getTraderData().writeToNbt(compound);
 			}
-			if(event.getEntity() instanceof ExtendedCaptainEntity) {
+			if(npc instanceof ExtendedCaptainEntity) {
 				// IDK maybe captains have data to save in the future
 			}
 			respawnerEntity.setEntityData(compound);
@@ -125,7 +155,11 @@ public class WorldEventHandlers {
 			npc.level.addFreshEntity(respawnerEntity);
 		}
 	}
-
+	/**
+     * Adjusts the size of {@link ExtendedBarrowWightEntity} on the client side.
+     *
+     * @param event the size-change event for an entity
+     */
 	@SubscribeEvent
 	public static void handleWightSizeChange(EntityEvent.Size event) {
 		if(event.getEntity()!=null && event.getEntity().level!=null && event.getEntity().level.isClientSide() && event.getEntity() instanceof ExtendedBarrowWightEntity) {
