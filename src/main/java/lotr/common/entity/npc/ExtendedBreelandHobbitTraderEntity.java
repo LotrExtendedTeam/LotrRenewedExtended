@@ -25,7 +25,6 @@ public abstract class ExtendedBreelandHobbitTraderEntity extends BreeHobbitEntit
 
     public ExtendedBreelandHobbitTraderEntity(EntityType<? extends BreeHobbitEntity> type, World w) {
         super(type, w);
-        setPersistenceRequired();
     }
 
     @Override

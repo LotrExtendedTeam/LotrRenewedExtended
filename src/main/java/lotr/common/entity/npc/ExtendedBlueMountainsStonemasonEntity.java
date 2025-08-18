@@ -17,7 +17,6 @@ public class ExtendedBlueMountainsStonemasonEntity extends ExtendedBlueMountains
 
 	public ExtendedBlueMountainsStonemasonEntity(EntityType<? extends ExtendedBlueMountainsStonemasonEntity> type, World w) {
 		super(type, w);
-		setPersistenceRequired();
 	}
 
 	@Override

@@ -95,7 +95,6 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 
     public ExtendedOddmentCollectorEntity(EntityType<? extends ExtendedOddmentCollectorEntity> type, World w) {
         super(type, w);
-        setPersistenceRequired();
     }
 
     @Override

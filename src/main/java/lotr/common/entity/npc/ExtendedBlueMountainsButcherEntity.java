@@ -18,7 +18,6 @@ public class ExtendedBlueMountainsButcherEntity extends ExtendedBlueMountainsTra
 
 	public ExtendedBlueMountainsButcherEntity(EntityType<? extends ExtendedBlueMountainsButcherEntity> type, World w) {
 		super(type, w);
-		setPersistenceRequired();
 	}
 
 	@Override

@@ -70,7 +70,7 @@ public class WanderingTradersSpawner {
 
                 BlockPos spawnPos = pos.offset(new Vector3i(0.5D, 0, 0.5D));
                 Entity trader = type.create((ServerWorld) world, null, null, player, spawnPos, SpawnReason.SPAWN_EGG, true, false);
-                if (trader instanceof ExtendedWanderingTraderEntity) {
+                if (trader instanceof ExtendedWanderingTraderEntity && trader instanceof MobEntity) {
                     // set look angle
                     float yaw = world.random.nextFloat() * 360.0F;
                     trader.setYBodyRot(yaw);
@@ -79,6 +79,7 @@ public class WanderingTradersSpawner {
                     ((ExtendedWanderingTraderEntity) trader).getTraderData().setWanderingTraderAliveTime(24000);
                     ((ExtendedWanderingTraderEntity) trader).getTraderData().setWanderingTrader(true);
                     ((MobEntity) trader).restrictTo(pos, 5); // restrict within 5 blocks of spawn point
+                    ((MobEntity)trader).setPersistenceRequired();
                     world.addFreshEntityWithPassengers(trader);
 
                     int escortCount = world.random.nextInt(3) + 2;
@@ -104,7 +105,7 @@ public class WanderingTradersSpawner {
                 } else if(trader==null) {
                 	ExtendedLog.error("Error attempting to spawn unknown trader. Does " + type + " extend ExtendedTraderEntity?");
                 } else {
-                    ExtendedLog.error("Error attempting to set trader options when spawning wandering trader. Does " + type + " extend ExtendedTraderEntity?");
+                    ExtendedLog.error("Error attempting to set trader options when spawning wandering trader. Does " + type + " extend ExtendedTraderEntity and MobEntity?");
                 }
                 break;
             }
