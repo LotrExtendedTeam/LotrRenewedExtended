@@ -17,7 +17,6 @@ public class ExtendedBlueMountainsBartenderEntity extends ExtendedBlueMountainsT
 
 	public ExtendedBlueMountainsBartenderEntity(EntityType<? extends ExtendedBlueMountainsBartenderEntity> type, World w) {
 		super(type, w);
-		setPersistenceRequired();
 	}
 
 	@Override

@@ -23,7 +23,6 @@ public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity imp
 
 	public ExtendedGundabadOrcChieftain(EntityType<? extends ExtendedGundabadOrcChieftain> type, World w) {
 		super(type, w);
-		setPersistenceRequired();
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {

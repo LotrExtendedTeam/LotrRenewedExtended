@@ -186,7 +186,8 @@ public class ExtendedTraderProfile {
 	}
 
 	/**
-	 * Checks if this profile is typically wandering.
+	 * Checks if this profile is typically wandering. Does not mean the current instance is wandering.
+	 * Only internally used to fix wandering trader data if wandering ticks are greater than zero, but npc is not wandering.
 	 *
 	 * @return {@code true} if usually a wanderer; {@code false} otherwise.
 	 */

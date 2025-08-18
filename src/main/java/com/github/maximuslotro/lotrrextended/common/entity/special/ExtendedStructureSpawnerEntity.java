@@ -312,9 +312,12 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							}
 							// Set respawn data regardless of being respawnable, so handleCaptainTraderDeath can know when not to make respawner
 							entity.getPersistentData().putBoolean("ExtendedRespawnOnDeath", spawnerInstance.shouldRespawnOnDeath());
-							// Finaly add the entity to the world
+							// Finally add the entity to the world
 							world.addFreshEntityWithPassengers(entity);
 							nearbyEntitySpawnCount++;
+							if(spawnerInstance.getSpawnType()==SpawnerType.PERSISTED_SINGLE) {
+								attempt = 100;
+							}
 						}
 						//System.out.println("Spawned entity successfully: "+nearbyEntitySpawnCount);
 						if(nearbyEntitySpawnCount >= spawnerInstance.getLocalSpawnCap() && spawnerInstance.getSpawnType().isShouldCheckBoundries()) {

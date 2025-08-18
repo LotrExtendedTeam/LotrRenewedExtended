@@ -96,7 +96,8 @@ public class ExtendedSpawners {
 	public static final ResourceLocation BLUE_MOUNTIAN_AREA = register("blue_mountains_area_spawner");
 	public static final ResourceLocation BLUE_MOUNTIAN_STONEMASON = register("blue_mountains_stonemason_spawner");
 	public static final ResourceLocation BLUE_MOUNTIAN_BUTCHER = register("blue_mountains_butcher_spawner");
-
+	public static final ResourceLocation BLUE_MOUNTAINS_TEMP_MAN_TRADER = register("blue_mountains_man_trader_spawner");
+	public static final ResourceLocation BLUE_MOUNTAINS_TEMP_ELF_TRADER = register("blue_mountains_elf_trader_spawner");
 	// DWARVEN
 	public static final ResourceLocation DWARVEN_SMITH = register("dwarf_smith_spawner");
 

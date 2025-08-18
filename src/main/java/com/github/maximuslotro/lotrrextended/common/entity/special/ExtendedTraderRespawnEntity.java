@@ -122,7 +122,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 			if(spawnedEntity instanceof NPCEntity) {
 				NPCEntity npcEntity = (NPCEntity) spawnedEntity;
 				npcEntity.finalizeSpawn(world, world.getCurrentDifficultyAt(this.getOnPos()), SpawnReason.SPAWNER, null, null);
-				npcEntity.setPersistenceRequired();
+				npcEntity.setPersistenceRequired(); // Only persisted npcs can even have a chance to respawn. If it made its way here, it should be able to be persisted
 				if(homeRadius > 0) {
 					npcEntity.restrictTo(homePos, homeRadius);
 				}

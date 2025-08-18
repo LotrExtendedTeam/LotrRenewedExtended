@@ -26,7 +26,6 @@ public class ExtendedBlueMountainsCommanderEntity extends BlueDwarfEntity implem
 
 	public ExtendedBlueMountainsCommanderEntity(EntityType<? extends ExtendedBlueMountainsCommanderEntity> type, World w) {
 		super(type, w);
-		setPersistenceRequired();
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {

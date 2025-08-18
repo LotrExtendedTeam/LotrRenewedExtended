@@ -160,7 +160,14 @@ public class StructureEntitySpawnerGenerator extends StructureEntitySpawnersProv
 			.build(), 5, 7, false, 26, 20).setBoundaries(12, -12, 24, 4, -4, 16).setPersistenceRequired(false).enableNonRandomSpawning(30).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_AREA);
 		single(ExtendedEntities.BLUE_DWARVEN_STONEMASON.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_STONEMASON);
 		single(ExtendedEntities.BLUE_DWARVEN_BUTCHER.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_BUTCHER);
-
+		persistedSingle(MultiSpawnType.Builder.multi()
+			.addPool(ExtendedEntities.RIVENDELL_WANDERER.get(), 5)
+			.addPool(ExtendedEntities.GALADHRIM_WANDERER.get(), 1)
+			.build(), false, 5).setPersistenceRequired(false).setEntitySpawnMinutes(15).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.BLUE_MOUNTAINS_TEMP_ELF_TRADER);
+		persistedSingle(MultiSpawnType.Builder.multi()
+			.addPool(ExtendedEntities.ODDMENT_COLLECTOR.get(), 5)
+			.addPool(ExtendedEntities.BREE_MERCHANT.get(), 1)
+			.build(), false, 5).setPersistenceRequired(false).setEntitySpawnMinutes(15).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.BLUE_MOUNTAINS_TEMP_MAN_TRADER);
 		// DWARVEN
 		single(ExtendedEntities.DWARVEN_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.DWARVEN_SMITH);
 	}
