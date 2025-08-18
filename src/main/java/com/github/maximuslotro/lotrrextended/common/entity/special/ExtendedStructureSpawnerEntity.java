@@ -315,6 +315,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							// Finally add the entity to the world
 							world.addFreshEntityWithPassengers(entity);
 							nearbyEntitySpawnCount++;
+							if(spawnerInstance.getSpawnType()==SpawnerType.PERSISTED_SINGLE) {
+								attempt = 100;
+							}
 						}
 						//System.out.println("Spawned entity successfully: "+nearbyEntitySpawnCount);
 						if(nearbyEntitySpawnCount >= spawnerInstance.getLocalSpawnCap() && spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
