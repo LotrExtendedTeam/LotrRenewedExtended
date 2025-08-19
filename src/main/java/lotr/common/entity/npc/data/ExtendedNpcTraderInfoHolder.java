@@ -289,119 +289,27 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 
 	@Override
 	public void writeToNbt(CompoundNBT nbt) {
-		CompoundNBT holder = new CompoundNBT();
-//		holder.putBoolean("HasLoaded", loadedData);
-//		holder.putInt("TradingAlignmentRequired", tradingAlignmentRequired);
-//		holder.putBoolean("ShouldLockTrades", shouldRefreshTrades);
-//		holder.putInt("LockTradeAtValue", refreshTradesAtValue);
-//		holder.putInt("LockValueDecayTicks", lockTicksAfterRefresh);
-//		holder.putInt("CurrentTraderSoldAmount", currentTraderSoldAmount);
-//		holder.putInt("CurrentTraderBoughtAmount", currentTraderBoughtAmount);
-//		holder.putInt("TotalTraderSoldAmount", totalTraderSoldAmount);
-//		holder.putInt("TotalTraderBoughtAmount", totalTraderBoughtAmount);
-//		holder.putInt("WanderingTraderTimeLeft", wanderingTraderAliveTime);
-//		holder.putBoolean("IsWanderingTrader", isWanderingTrader);
-//		holder.putInt("CurrentTraderLockTicksAmount", currentTraderLockTicksAmount);
-//		TradeUtils.saveAllTrades(ExtendedTradeType.BUY_FROM_PLAYER, getBuys(), holder);
-//		TradeUtils.saveAllTrades(ExtendedTradeType.SELL_TO_PLAYER, getSells(), holder);
 		try {
-		    holder.putBoolean("HasLoaded", loadedData);
-		} catch (Exception e) {
-		    System.err.println("Failed at: HasLoaded : "+this.thisEntity.position().toString());
-		    e.printStackTrace();
+			CompoundNBT holder = new CompoundNBT();
+			holder.putBoolean("HasLoaded", loadedData);
+			holder.putInt("TradingAlignmentRequired", tradingAlignmentRequired);
+			holder.putBoolean("ShouldLockTrades", shouldRefreshTrades);
+			holder.putInt("LockTradeAtValue", refreshTradesAtValue);
+			holder.putInt("LockValueDecayTicks", lockTicksAfterRefresh);
+			holder.putInt("CurrentTraderSoldAmount", currentTraderSoldAmount);
+			holder.putInt("CurrentTraderBoughtAmount", currentTraderBoughtAmount);
+			holder.putInt("TotalTraderSoldAmount", totalTraderSoldAmount);
+			holder.putInt("TotalTraderBoughtAmount", totalTraderBoughtAmount);
+			holder.putInt("WanderingTraderTimeLeft", wanderingTraderAliveTime);
+			holder.putBoolean("IsWanderingTrader", isWanderingTrader);
+			holder.putInt("CurrentTraderLockTicksAmount", currentTraderLockTicksAmount);
+			TradeUtils.saveAllTrades(ExtendedTradeType.BUY_FROM_PLAYER, getBuys(), holder);
+			TradeUtils.saveAllTrades(ExtendedTradeType.SELL_TO_PLAYER, getSells(), holder);
+			nbt.put("TraderInfo", holder);
+		} catch (NullPointerException e) {
+			// The only place a NPE can come from is saving the trader pools when they don't exist.
+			// As they are the most important part of the trader information, as they can't save just reset the trader data.
 		}
-
-		try {
-		    holder.putInt("TradingAlignmentRequired", tradingAlignmentRequired);
-		} catch (Exception e) {
-		    System.err.println("Failed at: TradingAlignmentRequired"+this.thisEntity.position().toString());
-		    e.printStackTrace();
-		}
-
-		try {
-		    holder.putBoolean("ShouldLockTrades", shouldRefreshTrades);
-		} catch (Exception e) {
-		    System.err.println("Failed at: ShouldLockTrades"+this.thisEntity.position().toString());
-		    e.printStackTrace();
-		}
-
-		try {
-		    holder.putInt("LockTradeAtValue", refreshTradesAtValue);
-		} catch (Exception e) {
-		    System.err.println("Failed at: LockTradeAtValue"+this.thisEntity.position().toString());
-		    e.printStackTrace();
-		}
-
-		try {
-		    holder.putInt("LockValueDecayTicks", lockTicksAfterRefresh);
-		} catch (Exception e) {
-		    System.err.println("Failed at: LockValueDecayTicks"+this.thisEntity.position().toString());
-		    e.printStackTrace();
-		}
-
-		try {
-		    holder.putInt("CurrentTraderSoldAmount", currentTraderSoldAmount);
-		} catch (Exception e) {
-		    System.err.println("Failed at: CurrentTraderSoldAmount"+this.thisEntity.position().toString());
-		    e.printStackTrace();
-		}
-
-		try {
-		    holder.putInt("CurrentTraderBoughtAmount", currentTraderBoughtAmount);
-		} catch (Exception e) {
-		    System.err.println("Failed at: CurrentTraderBoughtAmount"+this.thisEntity.position().toString());
-		    e.printStackTrace();
-		}
-
-		try {
-		    holder.putInt("TotalTraderSoldAmount", totalTraderSoldAmount);
-		} catch (Exception e) {
-		    System.err.println("Failed at: TotalTraderSoldAmount"+this.thisEntity.position().toString());
-		    e.printStackTrace();
-		}
-
-		try {
-		    holder.putInt("TotalTraderBoughtAmount", totalTraderBoughtAmount);
-		} catch (Exception e) {
-		    System.err.println("Failed at: TotalTraderBoughtAmount"+this.thisEntity.position().toString());
-		    e.printStackTrace();
-		}
-
-		try {
-		    holder.putInt("WanderingTraderTimeLeft", wanderingTraderAliveTime);
-		} catch (Exception e) {
-		    System.err.println("Failed at: WanderingTraderTimeLeft"+this.thisEntity.position().toString());
-		    e.printStackTrace();
-		}
-
-		try {
-		    holder.putBoolean("IsWanderingTrader", isWanderingTrader);
-		} catch (Exception e) {
-		    System.err.println("Failed at: IsWanderingTrader"+this.thisEntity.position().toString());
-		    e.printStackTrace();
-		}
-
-		try {
-		    holder.putInt("CurrentTraderLockTicksAmount", currentTraderLockTicksAmount);
-		} catch (Exception e) {
-		    System.err.println("Failed at: CurrentTraderLockTicksAmount"+this.thisEntity.position().toString());
-		    e.printStackTrace();
-		}
-
-		try {
-		    TradeUtils.saveAllTrades(ExtendedTradeType.BUY_FROM_PLAYER, getBuys(), holder);
-		} catch (Exception e) {
-		    System.err.println("Failed at: saveAllTrades BUY_FROM_PLAYER"+this.thisEntity.position().toString());
-		    e.printStackTrace();
-		}
-
-		try {
-		    TradeUtils.saveAllTrades(ExtendedTradeType.SELL_TO_PLAYER, getSells(), holder);
-		} catch (Exception e) {
-		    System.err.println("Failed at: saveAllTrades SELL_TO_PLAYER"+this.thisEntity.position().toString());
-		    e.printStackTrace();
-		}
-		nbt.put("TraderInfo", holder);
 	}
 
 	/**
