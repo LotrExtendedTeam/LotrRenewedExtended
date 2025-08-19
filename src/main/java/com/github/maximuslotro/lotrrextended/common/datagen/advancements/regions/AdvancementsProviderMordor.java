@@ -79,12 +79,12 @@ public class AdvancementsProviderMordor extends ExtendedBaseAdvancementType{
 			addCraftingTrigger(make(), LOTRBlocks.ORC_FORGE.get(), ExtendedItems.MORGUL_STEEL_INGOT.get()).parent(guldural_ore));
 
 		Advancement mordor_armor = build(true, data(LOTRItems.MORDOR_CHESTPLATE.get(), "mordor_armor", FrameType.TASK)
-			.setTitle("Inspection!").setDescription("Equip a full suit of Mordor armour."),
+			.setTitle("Inspection!").setDescription("Equip a full suit of Mordor armor."),
 			addArmorTrigger(make(), "mordor", LOTRItems.MORDOR_HELMET.get(), LOTRItems.MORDOR_CHESTPLATE.get(),
 					LOTRItems.MORDOR_LEGGINGS.get(), LOTRItems.MORDOR_BOOTS.get()).parent(enter_mordor));
 
 		Advancement morgul_armor = build(true, data(ExtendedItems.MORGUL_CHESTPLATE.get(), "morgul_armor", FrameType.TASK)
-			.setTitle("Witch-king").setDescription("Equip a full suit of Morgul armour."),
+			.setTitle("Witch-king").setDescription("Equip a full suit of Morgul armor."),
 			addArmorTrigger(make(), "morgul", ExtendedItems.MORGUL_HELMET.get(), ExtendedItems.MORGUL_CHESTPLATE.get(),
 				ExtendedItems.MORGUL_LEGGINGS.get(), ExtendedItems.MORGUL_BOOTS.get()).parent(mordor_armor));
 

@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileBase;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileFellowship;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfilePlayer;
-import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity.ProtectionEntry;
 import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
@@ -18,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class ExtendedSBannerOpenChangedScreenPacket {
-	public List<BannerPermission> defaultPerms;
+	public List<ExtendedBannerPermissions> defaultPerms;
 	public float alignmentLevel;
 	public List<ProtectionEntry> whitelist;
 	public boolean canSelfProtect;
@@ -50,14 +50,14 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 
 	public static void encode(ExtendedSBannerOpenChangedScreenPacket packet, PacketBuffer buf) {
 		buf.writeInt(packet.defaultPerms.size());
-		for(BannerPermission perm : packet.defaultPerms) {
+		for(ExtendedBannerPermissions perm : packet.defaultPerms) {
 			buf.writeByte((byte) perm.ordinal());
 		}
 		buf.writeFloat(packet.alignmentLevel);
 		buf.writeInt(packet.whitelist.size());
 		for(ProtectionEntry entry : packet.whitelist) {
 			buf.writeInt(entry.getEntryPerms().size());
-			for(BannerPermission perm : entry.getEntryPerms()) {
+			for(ExtendedBannerPermissions perm : entry.getEntryPerms()) {
 				buf.writeByte((byte) perm.ordinal());
 			}
 			buf.writeUUID(entry.getProfile().getId());
@@ -74,16 +74,16 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		int defaultPermsSize = buf.readInt();
 		packet.defaultPerms = new ArrayList<>();
 		for(int i = 0; i<defaultPermsSize; i++) {
-			packet.defaultPerms.add(BannerPermission.values[buf.readByte()]);
+			packet.defaultPerms.add(ExtendedBannerPermissions.values[buf.readByte()]);
 		}
 		packet.alignmentLevel = buf.readFloat();
 		packet.whitelist = new ArrayList<>();
 		int whitelistSize = buf.readInt();
 		for(int i = 0; i<whitelistSize; i++) {
 			int permListSize = buf.readInt();
-			List<BannerPermission> profilePerms = new ArrayList<>();
+			List<ExtendedBannerPermissions> profilePerms = new ArrayList<>();
 			for(int j = 0; j<permListSize; j++) {
-				profilePerms.add(BannerPermission.values[buf.readByte()]);
+				profilePerms.add(ExtendedBannerPermissions.values[buf.readByte()]);
 			}
 			UUID id = buf.readUUID();
 			String name = buf.readUtf(32767);

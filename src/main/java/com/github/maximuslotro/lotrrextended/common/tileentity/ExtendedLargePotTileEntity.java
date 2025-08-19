@@ -45,11 +45,6 @@ public class ExtendedLargePotTileEntity extends LockableLootTileEntity{
 		}else {
 			if (nbt.contains("contained_item", NBT.TAG_COMPOUND)) {
 				this.containedItem = ItemStack.of(nbt.getCompound("contained_item"));
-				// Should never run, but can if major issues
-				if (containedItem == null) {
-					ExtendedLog.warn("Weapon Rack Loaded with a null Item, this should not happen. All Contained Items Have been lost!" + nbt.getCompound("contained_item").toString());
-					containedItem = ItemStack.EMPTY;
-				}
 			}
 		}
 	}
@@ -59,11 +54,6 @@ public class ExtendedLargePotTileEntity extends LockableLootTileEntity{
 		super.save(nbt);
 		// Don't save item if loot-table is saved
 		if (!this.trySaveLootTable(nbt)) {
-			// Should never run, but can if major issues
-			if (containedItem == null) {
-				ExtendedLog.warn("Weapon Rack failed to save as contained item is NULL! This should not happen. All Contained Items Have been lost!");
-				containedItem = ItemStack.EMPTY;
-			}
 			nbt.put("contained_item", this.containedItem.save(new CompoundNBT()));
 		}
 		return nbt;
@@ -91,22 +81,15 @@ public class ExtendedLargePotTileEntity extends LockableLootTileEntity{
 		super.handleUpdateTag(state, tag);
 	}
 
-	public ItemStack getContainedItem() {
-		// Should never run, but can if major issues
-		if (containedItem == null) {
-			ExtendedLog.warn("Weapon Rack contains a null Item, this should not happen. All Contained Items Have been lost!");
-			containedItem = ItemStack.EMPTY;
+	public ItemStack getContainedItem(boolean triggerTable) {
+		if(triggerTable) {
+			return this.getItem(0);
 		}
 		return containedItem;
 	}
 
 	public void setContainedItem(ItemStack containedItem) {
 		this.containedItem = containedItem;
-		// Should never run, but can if major issues
-		if (containedItem == null) {
-			ExtendedLog.warn("Tried Setting a NULL item to a Weapon Rack, correcting to ItemStack.EMPTY!");
-			containedItem = ItemStack.EMPTY;
-		}
 	}
 
 	@Override
@@ -116,7 +99,7 @@ public class ExtendedLargePotTileEntity extends LockableLootTileEntity{
 
 	@Override
 	protected NonNullList<ItemStack> getItems() {
-		return NonNullList.withSize(1, this.containedItem==null ? ItemStack.EMPTY : this.containedItem);
+		return NonNullList.withSize(1, this.containedItem);
 	}
 
 	@Override

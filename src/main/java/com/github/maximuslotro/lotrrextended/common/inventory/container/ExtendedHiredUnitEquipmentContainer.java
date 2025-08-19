@@ -5,17 +5,18 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainers;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentSlot.ArmorSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentSlot.MeleeSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentSlot.OffhandSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentSlot.RangedSlot;
 
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.init.ExtendedContainers;
 import lotr.common.util.ExtendedHiredUnitHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -42,8 +43,8 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     public final int entityId;
     public final ExtendedClientHiredUnitProfile profile;
 
-    public static final ResourceLocation EMPTY_ARMOR_SLOT_BOW = new ResourceLocation("lotrextended", "item/empty_armor_slot_bow");
-    public static final ResourceLocation EMPTY_ARMOR_SLOT_SWORD = new ResourceLocation("lotrextended", "item/empty_armor_slot_sword");
+    public static final ResourceLocation EMPTY_ARMOR_SLOT_BOW = new ResourceLocation(LotrExtendedMod.MODID, "item/empty_armor_slot_bow");
+    public static final ResourceLocation EMPTY_ARMOR_SLOT_SWORD = new ResourceLocation(LotrExtendedMod.MODID, "item/empty_armor_slot_sword");
 
     private NPCEntity companion;
 

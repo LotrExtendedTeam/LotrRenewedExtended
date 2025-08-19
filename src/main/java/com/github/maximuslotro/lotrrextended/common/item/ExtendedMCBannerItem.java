@@ -8,7 +8,7 @@ import org.apache.commons.lang3.Validate;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
-import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
@@ -39,7 +39,7 @@ public class ExtendedMCBannerItem extends WallOrFloorItem {
 
 
 
-	public BannerTypes getBanner() {
+	public ExtendedBannerTypes getBanner() {
 		return ((ExtendedMEBannerBlock)this.getBlock()).getBanner();
 	}
 

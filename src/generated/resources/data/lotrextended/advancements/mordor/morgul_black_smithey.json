@@ -17,7 +17,7 @@
     "hidden": false
   },
   "criteria": {
-    "item_lotr:black_uruk_steel_ingot_made_on_orc_forge": {
+    "item_black_uruk_steel_ingot_made_on_orc_forge": {
       "trigger": "lotrextended:crafting_with_block",
       "conditions": {
         "item": {
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "item_lotr:black_uruk_steel_ingot_made_on_orc_forge"
+      "item_black_uruk_steel_ingot_made_on_orc_forge"
     ]
   ]
 }

@@ -975,6 +975,12 @@
           ],
           "name": "lotr:bone_boots"
         }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.25
+        }
       ]
     },
     {
@@ -1376,6 +1382,12 @@
             }
           ],
           "name": "lotr:gundabad_uruk_bow"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.25
         }
       ]
     }

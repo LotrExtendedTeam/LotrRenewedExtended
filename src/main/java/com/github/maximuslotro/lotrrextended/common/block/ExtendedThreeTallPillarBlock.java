@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
-import com.github.maximuslotro.lotrrextended.common.enums.PillarType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPillarType;
 import com.github.maximuslotro.lotrrextended.common.state.properties.ExtendedBlockStateProperties;
 
 import net.minecraft.block.Block;
@@ -18,10 +18,10 @@ import net.minecraft.world.IWorld;
 
 public class ExtendedThreeTallPillarBlock extends RotatedPillarBlock {
 	public static final EnumProperty<Axis> AXIS = RotatedPillarBlock.AXIS;
-	public static final EnumProperty<PillarType> PILLAR_TYPE = ExtendedBlockStateProperties.PILLAR_STATE;
+	public static final EnumProperty<ExtendedPillarType> PILLAR_TYPE = ExtendedBlockStateProperties.PILLAR_STATE;
 	public ExtendedThreeTallPillarBlock(Properties p_i48339_1_) {
 		super(p_i48339_1_);
-		this.registerDefaultState(this.stateDefinition.any().setValue(AXIS, Direction.Axis.Y).setValue(PILLAR_TYPE, PillarType.SINGLE));
+		this.registerDefaultState(this.stateDefinition.any().setValue(AXIS, Direction.Axis.Y).setValue(PILLAR_TYPE, ExtendedPillarType.SINGLE));
 	}
 
 	@Override
@@ -52,24 +52,24 @@ public class ExtendedThreeTallPillarBlock extends RotatedPillarBlock {
 			if (!(facingState.getBlock() instanceof ExtendedThreeTallPillarBlock)) {
 				if(blockUpdate) {
 					if (dir.getAxisDirection() == AxisDirection.NEGATIVE) {
-						if(state.getValue(PILLAR_TYPE).equals(PillarType.TOP_SMALL)) {
-							return state.setValue(PILLAR_TYPE, PillarType.SINGLE);
+						if(state.getValue(PILLAR_TYPE).equals(ExtendedPillarType.TOP_SMALL)) {
+							return state.setValue(PILLAR_TYPE, ExtendedPillarType.SINGLE);
 						}
-						if(state.getValue(PILLAR_TYPE).equals(PillarType.TOP_LARGE)) {
-							return state.setValue(PILLAR_TYPE, PillarType.SINGLE);
+						if(state.getValue(PILLAR_TYPE).equals(ExtendedPillarType.TOP_LARGE)) {
+							return state.setValue(PILLAR_TYPE, ExtendedPillarType.SINGLE);
 						}
-						if(state.getValue(PILLAR_TYPE).equals(PillarType.MIDDLE_LARGE)) {
-							return state.setValue(PILLAR_TYPE, PillarType.BOTTOM_SMALL);
+						if(state.getValue(PILLAR_TYPE).equals(ExtendedPillarType.MIDDLE_LARGE)) {
+							return state.setValue(PILLAR_TYPE, ExtendedPillarType.BOTTOM_SMALL);
 						}
 					}else {
-						if(state.getValue(PILLAR_TYPE).equals(PillarType.BOTTOM_SMALL)) {
-							return state.setValue(PILLAR_TYPE, PillarType.SINGLE);
+						if(state.getValue(PILLAR_TYPE).equals(ExtendedPillarType.BOTTOM_SMALL)) {
+							return state.setValue(PILLAR_TYPE, ExtendedPillarType.SINGLE);
 						}
-						if(state.getValue(PILLAR_TYPE).equals(PillarType.BOTTOM_LARGE)) {
-							return state.setValue(PILLAR_TYPE, PillarType.SINGLE);
+						if(state.getValue(PILLAR_TYPE).equals(ExtendedPillarType.BOTTOM_LARGE)) {
+							return state.setValue(PILLAR_TYPE, ExtendedPillarType.SINGLE);
 						}
-						if(state.getValue(PILLAR_TYPE).equals(PillarType.MIDDLE_LARGE)) {
-							return state.setValue(PILLAR_TYPE, PillarType.TOP_SMALL);
+						if(state.getValue(PILLAR_TYPE).equals(ExtendedPillarType.MIDDLE_LARGE)) {
+							return state.setValue(PILLAR_TYPE, ExtendedPillarType.TOP_SMALL);
 						}
 					}
 				}
@@ -78,35 +78,35 @@ public class ExtendedThreeTallPillarBlock extends RotatedPillarBlock {
 			if (facingState.getValue(AXIS) != pillarAxis) {
 				return state;
 			}
-			PillarType type = facingState.getValue(PILLAR_TYPE);
+			ExtendedPillarType type = facingState.getValue(PILLAR_TYPE);
 			if (dir.getAxisDirection() == AxisDirection.NEGATIVE) {
-				if(type.equals(PillarType.SINGLE) && state.getValue(PILLAR_TYPE).equals(PillarType.SINGLE) && !(state.getValue(PILLAR_TYPE)==PillarType.TOP_SMALL)) {
-					return state.setValue(PILLAR_TYPE, PillarType.TOP_SMALL);
+				if(type.equals(ExtendedPillarType.SINGLE) && state.getValue(PILLAR_TYPE).equals(ExtendedPillarType.SINGLE) && !(state.getValue(PILLAR_TYPE)==ExtendedPillarType.TOP_SMALL)) {
+					return state.setValue(PILLAR_TYPE, ExtendedPillarType.TOP_SMALL);
 				}
-				if(type.equals(PillarType.TOP_SMALL) && state.getValue(PILLAR_TYPE).equals(PillarType.SINGLE)) {
-					return state.setValue(PILLAR_TYPE, PillarType.TOP_LARGE);
+				if(type.equals(ExtendedPillarType.TOP_SMALL) && state.getValue(PILLAR_TYPE).equals(ExtendedPillarType.SINGLE)) {
+					return state.setValue(PILLAR_TYPE, ExtendedPillarType.TOP_LARGE);
 				}
 				if(blockUpdate) {
-					if(type.equals(PillarType.BOTTOM_LARGE) && state.getValue(PILLAR_TYPE).equals(PillarType.BOTTOM_SMALL)) {
-						return state.setValue(PILLAR_TYPE, PillarType.MIDDLE_LARGE);
+					if(type.equals(ExtendedPillarType.BOTTOM_LARGE) && state.getValue(PILLAR_TYPE).equals(ExtendedPillarType.BOTTOM_SMALL)) {
+						return state.setValue(PILLAR_TYPE, ExtendedPillarType.MIDDLE_LARGE);
 					}
-					if(type.equals(PillarType.MIDDLE_LARGE) && state.getValue(PILLAR_TYPE).equals(PillarType.TOP_SMALL)) {
-						return state.setValue(PILLAR_TYPE, PillarType.TOP_LARGE);
+					if(type.equals(ExtendedPillarType.MIDDLE_LARGE) && state.getValue(PILLAR_TYPE).equals(ExtendedPillarType.TOP_SMALL)) {
+						return state.setValue(PILLAR_TYPE, ExtendedPillarType.TOP_LARGE);
 					}
 				}
 			}else {
-				if(type.equals(PillarType.BOTTOM_SMALL) && state.getValue(PILLAR_TYPE).equals(PillarType.SINGLE)) {
-					return state.setValue(PILLAR_TYPE, PillarType.BOTTOM_LARGE);
+				if(type.equals(ExtendedPillarType.BOTTOM_SMALL) && state.getValue(PILLAR_TYPE).equals(ExtendedPillarType.SINGLE)) {
+					return state.setValue(PILLAR_TYPE, ExtendedPillarType.BOTTOM_LARGE);
 				}
 				if(blockUpdate) {
-					if(type.equals(PillarType.MIDDLE_LARGE) && state.getValue(PILLAR_TYPE)==PillarType.BOTTOM_SMALL) {
-						return state.setValue(PILLAR_TYPE, PillarType.BOTTOM_LARGE);
+					if(type.equals(ExtendedPillarType.MIDDLE_LARGE) && state.getValue(PILLAR_TYPE)==ExtendedPillarType.BOTTOM_SMALL) {
+						return state.setValue(PILLAR_TYPE, ExtendedPillarType.BOTTOM_LARGE);
 					}
-					if((type.equals(PillarType.TOP_SMALL) && state.getValue(PILLAR_TYPE)==PillarType.SINGLE) || (type.equals(PillarType.TOP_SMALL) && state.getValue(PILLAR_TYPE)==PillarType.BOTTOM_LARGE)) {
-						return state.setValue(PILLAR_TYPE, PillarType.BOTTOM_SMALL);
+					if((type.equals(ExtendedPillarType.TOP_SMALL) && state.getValue(PILLAR_TYPE)==ExtendedPillarType.SINGLE) || (type.equals(ExtendedPillarType.TOP_SMALL) && state.getValue(PILLAR_TYPE)==ExtendedPillarType.BOTTOM_LARGE)) {
+						return state.setValue(PILLAR_TYPE, ExtendedPillarType.BOTTOM_SMALL);
 					}
-					if(type.equals(PillarType.TOP_LARGE) && state.getValue(PILLAR_TYPE)==PillarType.TOP_SMALL) {
-						return state.setValue(PILLAR_TYPE, PillarType.MIDDLE_LARGE);
+					if(type.equals(ExtendedPillarType.TOP_LARGE) && state.getValue(PILLAR_TYPE)==ExtendedPillarType.TOP_SMALL) {
+						return state.setValue(PILLAR_TYPE, ExtendedPillarType.MIDDLE_LARGE);
 					}
 				}
 			}

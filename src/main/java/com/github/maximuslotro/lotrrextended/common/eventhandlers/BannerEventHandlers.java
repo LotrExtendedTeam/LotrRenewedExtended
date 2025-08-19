@@ -8,7 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedBookshelfBlock
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
-import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
 
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.GateBlock;
@@ -116,7 +116,7 @@ public class BannerEventHandlers {
 			}
 		}
 		if (!world.isClientSide() && (entity instanceof ArmorStandEntity)) {
-			if (ExtendedBannerProtectionManager.getProtectionStatus(world, entity.blockPosition(), new SingleProtectionInstance.PlayerProtection(event.getPlayer(), BannerPermission.CONTAINERS), true, "handleBannerEntityInteractArmorStand").isNotAllowed()) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(world, entity.blockPosition(), new SingleProtectionInstance.PlayerProtection(event.getPlayer(), ExtendedBannerPermissions.CONTAINERS), true, "handleBannerEntityInteractArmorStand").isNotAllowed()) {
 				event.setCanceled(true);
 				return;
 			}
@@ -155,30 +155,30 @@ public class BannerEventHandlers {
 			World world = event.getWorld();
 			BlockState bState = world.getBlockState(event.getPos());
 			Block block = bState.getBlock();
-			BannerPermission perm = BannerPermission.EVERYTHING;
+			ExtendedBannerPermissions perm = ExtendedBannerPermissions.EVERYTHING;
 			if(!(event.getPlayer().isShiftKeyDown() && !event.getPlayer().getItemInHand(event.getHand()).isEmpty())) {
 				if (block == Blocks.BOOKSHELF || block instanceof ExtendedBookshelfBlock || block instanceof LecternBlock) {
-					perm = BannerPermission.KNOWLEDGE;
+					perm = ExtendedBannerPermissions.KNOWLEDGE;
 				} else if (block instanceof DoorBlock || block instanceof TrapDoorBlock || block instanceof FenceGateBlock || block instanceof GateBlock) {
-					perm = BannerPermission.DOORS;
+					perm = ExtendedBannerPermissions.DOORS;
 				} else if (block instanceof CraftingTableBlock || block instanceof FactionCraftingTableBlock || block instanceof AnvilBlock || block instanceof ExtendedConquestTableBlock) {
-					perm = BannerPermission.CRAFTING;
+					perm = ExtendedBannerPermissions.CRAFTING;
 				} else if (world.getBlockEntity(event.getPos()) instanceof IInventory) {
 					if (block instanceof KegBlock || block instanceof CampfireBlock) {
-						perm = BannerPermission.EDITABLES;
+						perm = ExtendedBannerPermissions.EDITABLES;
 					} else {
-						perm = BannerPermission.CONTAINERS;
+						perm = ExtendedBannerPermissions.CONTAINERS;
 					}
 				} else if (block instanceof EnderChestBlock || block instanceof ExtendedWeaponRackBlock || block instanceof JukeboxBlock) {
-					perm = BannerPermission.CONTAINERS;
+					perm = ExtendedBannerPermissions.CONTAINERS;
 				} else if (block instanceof PlateBlock || block instanceof CakeBlock || block instanceof VesselDrinkBlock) {
-					perm = BannerPermission.EDITABLES;
+					perm = ExtendedBannerPermissions.EDITABLES;
 				} else if (block instanceof BedBlock) {
-					perm = BannerPermission.BEDS;
+					perm = ExtendedBannerPermissions.BEDS;
 				} else if (block instanceof AbstractButtonBlock || block instanceof LeverBlock || block instanceof DaylightDetectorBlock) {
-					perm = BannerPermission.FLICKABLES;
+					perm = ExtendedBannerPermissions.FLICKABLES;
 				}else if (block instanceof ExtendedMEBannerBlock) {
-					perm = BannerPermission.BANNER;
+					perm = ExtendedBannerPermissions.BANNER;
 				}
 			}
 			if (ExtendedBannerProtectionManager.getProtectionStatus(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer(), perm), true, "handleBannerBlockRightInteract").isNotAllowed()) {

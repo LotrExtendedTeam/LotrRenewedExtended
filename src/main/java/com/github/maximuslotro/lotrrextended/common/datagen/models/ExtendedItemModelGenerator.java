@@ -316,25 +316,20 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	}
 
 	private ItemModelBuilder genCommandHorn(String name, String location) {
-		ResourceLocation horn = lotrExtendedLoc(location);
-		ResourceLocation horn_summon = lotrExtendedLoc(location+"_summon");
-		ResourceLocation horn_halt = lotrExtendedLoc(location+"_halt");
-		ItemModelBuilder builder_halt = genGenerated(name+"_halt", horn_halt);
-		ItemModelBuilder builder_reddy = genGenerated(name+"_reddy", horn_halt);
-		ItemModelBuilder builder_summon = genGenerated(name+"_summon", horn_summon);
-		ItemModelBuilder builder = genGenerated(name, horn);
-		builder.override().model(builder_halt).predicate(ExtendedItemModelsProperties.hornType, 1.0F);
-		builder.override().model(builder_reddy).predicate(ExtendedItemModelsProperties.hornType, 2.0F);
-		builder.override().model(builder_summon).predicate(ExtendedItemModelsProperties.hornType, 3.0F);
+		ItemModelBuilder builder = genGenerated(name, lotrExtendedLoc(location));
+		ItemModelBuilder builder_halt = genGenerated(name+"_halt", lotrExtendedLoc(location+"_halt"));
+		ItemModelBuilder builder_reddy = genGenerated(name+"_reddy", lotrExtendedLoc(location+"_ready"));
+		ItemModelBuilder builder_summon = genGenerated(name+"_summon", lotrExtendedLoc(location+"_summon"));
+		builder.override().model(builder_halt).predicate(ExtendedItemModelsProperties.hornType, 1);
+		builder.override().model(builder_reddy).predicate(ExtendedItemModelsProperties.hornType, 2);
+		builder.override().model(builder_summon).predicate(ExtendedItemModelsProperties.hornType, 3);
 		return builder;
 	}
 
 	private ItemModelBuilder genBrandingIron(String name, String location) {
-		ResourceLocation iron = lotrExtendedLoc(location);
-		ResourceLocation iron_hot = lotrExtendedLoc(location+"_hot");
-		ItemModelBuilder builder_iron_hot = genHandheld(name+"_hot", iron_hot);
-		ItemModelBuilder builder = genHandheld(name, iron);
-		builder.override().model(builder_iron_hot).predicate(ExtendedItemModelsProperties.heated, 1.0F);
+		ItemModelBuilder builder = genHandheld(name, lotrExtendedLoc(location));
+		ItemModelBuilder builder_iron_hot = genHandheld(name+"_hot", lotrExtendedLoc(location+"_hot"));
+		builder.override().model(builder_iron_hot).predicate(ExtendedItemModelsProperties.heated, 1);
 		return builder;
 	}
 

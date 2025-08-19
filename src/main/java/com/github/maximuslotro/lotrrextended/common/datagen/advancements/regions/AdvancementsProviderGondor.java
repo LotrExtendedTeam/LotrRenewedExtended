@@ -112,17 +112,17 @@ public class AdvancementsProviderGondor extends ExtendedBaseAdvancementType{
 			addCraftingTrigger(make(), LOTRBlocks.DOL_AMROTH_CRAFTING_TABLE.get()).parent(land_of_the_prince));
 
 		Advancement dol_amroth_armor = build(true, data(LOTRItems.DOL_AMROTH_CHESTPLATE.get(), "dol_amroth_armor", FrameType.TASK)
-			.setTitle("Swan Knight").setDescription("Acquire a full set of Dol Amroth armour."),
+			.setTitle("Swan Knight").setDescription("Acquire a full set of Dol Amroth armor."),
 			addArmorTrigger(make(), "dol_amroth", LOTRItems.DOL_AMROTH_HELMET.get(), LOTRItems.DOL_AMROTH_CHESTPLATE.get(),
 					LOTRItems.DOL_AMROTH_LEGGINGS.get(), LOTRItems.DOL_AMROTH_BOOTS.get()).parent(land_of_the_prince));
 
 		Advancement gondor_armor = build(true, data(LOTRItems.GONDOR_CHESTPLATE.get(), "gondor_armor", FrameType.TASK)
-			.setTitle("For Gondor!").setDescription("Acquire a full set of Dol Amroth armour."),
+			.setTitle("For Gondor!").setDescription("Acquire a full set of Dol Amroth armor."),
 			addArmorTrigger(make(), "gondow", LOTRItems.GONDOR_HELMET.get(), LOTRItems.GONDOR_CHESTPLATE.get(),
 					LOTRItems.GONDOR_LEGGINGS.get(), LOTRItems.GONDOR_BOOTS.get()).parent(kingdom_of_men));
 
 		Advancement ithilien_ranger_armor = build(true, data(LOTRItems.RANGER_ITHILIEN_CHESTPLATE.get(), "ithilien_ranger_armor", FrameType.TASK)
-			.setTitle("Beneath the Moon").setDescription("Equip a full suit of Ithilien Ranger armour."),
+			.setTitle("Beneath the Moon").setDescription("Equip a full suit of Ithilien Ranger armor."),
 			addArmorTrigger(make(), "ithilien_ranger", LOTRItems.RANGER_ITHILIEN_HELMET.get(), LOTRItems.RANGER_ITHILIEN_CHESTPLATE.get(),
 					LOTRItems.RANGER_ITHILIEN_LEGGINGS.get(), LOTRItems.RANGER_ITHILIEN_BOOTS.get()).parent(land_of_the_moon));
 

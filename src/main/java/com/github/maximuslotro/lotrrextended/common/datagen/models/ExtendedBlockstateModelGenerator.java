@@ -44,8 +44,8 @@ import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSin
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
-import com.github.maximuslotro.lotrrextended.common.enums.PillarType;
-import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPillarType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedRopeType;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
@@ -184,6 +184,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof VesselDrinkBlock) {
 					if(block.getValue().get()==ExtendedBlocks.SKULL_GOBLET.get()) {
+						genSkullGobletBlock((VesselDrinkBlock)block.getValue().get());
+						continue;
+					}
+					if(block.getValue().get()==ExtendedBlocks.GLASS_BOTTLE.get()) {
 						genSkullGobletBlock((VesselDrinkBlock)block.getValue().get());
 						continue;
 					}
@@ -446,7 +450,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					try {
 						genCubeBlockItem(block.getValue().get(),"block/"+block.getKey());
 					}catch(IllegalArgumentException e) {
-						System.out.println(block.getKey()+" is not CubeBlockItem! Using alternative genEndSideNonRotatableBlockItem model.");
+						System.out.println(block.getKey()+" is not CubeBlockItem. Using alternative genEndSideNonRotatableBlockItem model.");
 						genEndSideNonRotatableBlockItem(block.getValue().get(),"block/"+block.getKey());
 					}
 					continue;
@@ -952,17 +956,17 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		getVariantBuilder(pillarB)
 		.forAllStatesExcept(state -> {
 			Axis axis = state.getValue(ExtendedThreeTallPillarBlock.AXIS);
-			PillarType above = state.getValue(ExtendedThreeTallPillarBlock.PILLAR_TYPE);
+			ExtendedPillarType above = state.getValue(ExtendedThreeTallPillarBlock.PILLAR_TYPE);
 			ModelFile selectedfile = null;
-			if(above.equals(PillarType.BOTTOM_LARGE)) {
+			if(above.equals(ExtendedPillarType.BOTTOM_LARGE)) {
 				selectedfile = pillarTallBottom;
-			}else if(above.equals(PillarType.BOTTOM_SMALL)) {
+			}else if(above.equals(ExtendedPillarType.BOTTOM_SMALL)) {
 				selectedfile = pillarBottom;
-			}else if(above.equals(PillarType.MIDDLE_LARGE)) {
+			}else if(above.equals(ExtendedPillarType.MIDDLE_LARGE)) {
 				selectedfile = pillarTallMiddle;
-			}else if(above.equals(PillarType.TOP_LARGE)) {
+			}else if(above.equals(ExtendedPillarType.TOP_LARGE)) {
 				selectedfile = pillarTallTop;
-			}else if(above.equals(PillarType.TOP_SMALL)) {
+			}else if(above.equals(ExtendedPillarType.TOP_SMALL)) {
 				selectedfile = pillarTop;
 			}else {
 				selectedfile = pillarBlock;
@@ -1149,11 +1153,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		getVariantBuilder(rope)
 		.forAllStatesExcept(state -> {
 			Direction axis = state.getValue(ExtendedRopeBlock.FACING);
-			RopeType type = state.getValue(ExtendedRopeBlock.SECTION_TYPE);
+			ExtendedRopeType type = state.getValue(ExtendedRopeBlock.SECTION_TYPE);
             return ConfiguredModel.builder()
-                    .modelFile((type == RopeType.TOP_LARGE || type == RopeType.TOP_SMALL) ? modelTop :
-                    	((type == RopeType.BOTTOM_LARGE || type == RopeType.BOTTOM_SMALL) ? modelBottom :
-                    	type == RopeType.SINGLE ? modelSingle : modelMiddle))
+                    .modelFile((type == ExtendedRopeType.TOP_LARGE || type == ExtendedRopeType.TOP_SMALL) ? modelTop :
+                    	((type == ExtendedRopeType.BOTTOM_LARGE || type == ExtendedRopeType.BOTTOM_SMALL) ? modelBottom :
+                    	type == ExtendedRopeType.SINGLE ? modelSingle : modelMiddle))
                     .rotationY(axis == Direction.EAST ? 90 : (axis == Direction.WEST ? 270 : (axis == Direction.SOUTH ? 180 : 0)))
                     .build();
         }, ExtendedRopeBlock.WATERLOGGED);
@@ -1390,7 +1394,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			Direction facing = state.getValue(ExtendedCrucibleBlock.FACING);
 			return ConfiguredModel.builder()
                     .modelFile(modelFile)
-                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
+                    .rotationY(facing==Direction.EAST ? 180 : facing==Direction.SOUTH ? 270 : facing==Direction.WEST ? 0 : 90)
                     .build();
 		});
 		itemModels().getBuilder("lotr:"+crucible.getRegistryName().getPath()).parent(modelFile);
@@ -1400,7 +1404,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(birdcage);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+birdcage.getRegistryName().getPath(), lotrExtendedLoc("block/template_birdcage"))
 			.texture("cage", lotrExtendedLoc(cagePath));
-		simpleBlock(birdcage, modelFile);
+		getVariantBuilder(birdcage).forAllStates(state -> {
+			Direction facing = state.getValue(ExtendedBirdcageBlock.FACING);
+			return ConfiguredModel.builder()
+                    .modelFile(modelFile)
+                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
+                    .build();
+		});
 	}
 
 	private void genMossCarpetBlockItem(ExtendedMossCarpetBlock carpet) {
@@ -1877,7 +1887,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genSkullGobletBlock(VesselDrinkBlock block) {
 		registeredBlocks.add(block);
-		ModelFile modelFile = models().getExistingFile(lotrExtendedLoc(block.getRegistryName().getPath()));
+		ModelFile modelFile = models().getExistingFile(lotrExtendedLoc("vessel_"+block.getRegistryName().getPath()));
 		getVariantBuilder(block).forAllStates(state -> {
 			Direction direction = state.getValue(VesselDrinkBlock.FACING);
 			return ConfiguredModel.builder()

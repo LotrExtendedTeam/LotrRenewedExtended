@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.recipe;
 
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
@@ -11,7 +13,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedRecipes {
-	public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, "lotrextended");
+	public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, LotrExtendedMod.MODID);
 	public static IRecipeType<ExtendeStoneGrinderRecipe> MILLSTONE;
 	public static final RegistryObject<IRecipeSerializer<ExtendeStoneGrinderRecipe>> STONE_GRINDING_SERIALIZER = RECIPE_SERIALIZERS.register("stone_grinding", ExtendedStoneGrinderRecipeSerializer::new);
 
@@ -21,7 +23,7 @@ public class ExtendedRecipes {
 	}
 
 	private static <T extends IRecipe<?>> IRecipeType<T> register(String key) {
-		final ResourceLocation location = new ResourceLocation("lotrextended", key);
+		final ResourceLocation location = new ResourceLocation(LotrExtendedMod.MODID, key);
 		return Registry.register(Registry.RECIPE_TYPE, location, new IRecipeType<T>() {
 			@Override
 			public String toString() {

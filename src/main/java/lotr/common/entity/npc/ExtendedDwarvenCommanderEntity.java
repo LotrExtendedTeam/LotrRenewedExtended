@@ -26,7 +26,6 @@ public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity implements E
 
 	public ExtendedDwarvenCommanderEntity(EntityType<? extends ExtendedDwarvenCommanderEntity> type, World w) {
 		super(type, w);
-		setPersistenceRequired();
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {

@@ -14,6 +14,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -22,6 +23,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -55,6 +57,11 @@ public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
         // Set smaller collision box
         this.setBoundingBox(this.getBoundingBox().inflate(-0.3, -0.3, -0.3));
     }
+
+	@Override
+	public IPacket<?> getAddEntityPacket() {
+		return NetworkHooks.getEntitySpawningPacket(this);
+	}
 
     @Override
 	protected void defineSynchedData() {
@@ -120,13 +127,12 @@ public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
         ItemStack axeItem = this.getThrowingAxeItem();
         double damageMultiplier = this.getAxeItemAttackDamage(axeItem);
         damageMultiplier += (double)EnchantmentHelper.getDamageBonus(axeItem, hitEntity instanceof LivingEntity ? ((LivingEntity)hitEntity).getMobType() : CreatureAttribute.UNDEFINED);
-        damageMultiplier *= 0.7;
+        damageMultiplier *= 0.9;
         return (float)(speed * damageMultiplier);
     }
 
     private double getAxeItemAttackDamage(ItemStack stack) {
-        Collection<AttributeModifier> modifiers = stack.getAttributeModifiers(EquipmentSlotType.MAINHAND)
-                .get(Attributes.ATTACK_DAMAGE);
+        Collection<AttributeModifier> modifiers = stack.getAttributeModifiers(EquipmentSlotType.MAINHAND).get(Attributes.ATTACK_DAMAGE);
         double base = 1.0;
         if (modifiers != null) {
             for (AttributeModifier mod : modifiers) {

@@ -1,5 +1,5 @@
 {
   "faction": "lotr:blue_mountains",
-  "kill_bonus": 2.0,
+  "kill_bonus": 1,
   "speechbank": "lotrextended:blue_mountains/dwarf"
 }

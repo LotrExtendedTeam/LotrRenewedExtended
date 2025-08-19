@@ -23,7 +23,7 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 
 	@Override
 	public void registerSounds() {
-		add(ExtendedSounds.HORN_BLOW, createMultipleSameWeight(ExtendedSounds.HORN_BLOW, 2, 0.4F, 0.5F, true, "item/horns/short"));
+		add(ExtendedSounds.HORN_BLOW, createMultipleSameWeight(ExtendedSounds.HORN_BLOW, 2, 0.4F, 0.5F, true, LotrExtendedMod.MODID+":item/horns/short"));
 
 		add(ExtendedSounds.TRADE, createMultipleSameWeight(ExtendedSounds.TRADE, 4, true));
 
@@ -60,6 +60,21 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		add(ExtendedSounds.CONQUEST_TABLE_OPEN, createMultipleSameWeight(ExtendedSounds.CONQUEST_TABLE_OPEN, 1, false));
 
 		add(ExtendedSounds.POT_FILLED, createMultipleSameWeight(ExtendedSounds.POT_FILLED, 2, false));
+
+		add(ExtendedSounds.BOAR_AMBIENT, createMultipleSameWeight(ExtendedSounds.BOAR_AMBIENT, 4, true));
+		add(ExtendedSounds.BOAR_ANGRY, createMultipleSameWeight(ExtendedSounds.BOAR_ANGRY, 1, true));
+		add(ExtendedSounds.BOAR_ARMOR, createCustomPathSound(ExtendedSounds.BOAR_ARMOR, new ResourceLocation("mob/horse/armor")));
+		add(ExtendedSounds.BOAR_DEATH, createMultipleSameWeight(ExtendedSounds.BOAR_DEATH, 3, true));
+		add(ExtendedSounds.BOAR_EAT, createMultipleSameWeight(ExtendedSounds.BOAR_EAT, 3, true, LotrExtendedMod.MODID+":entity/boar/chew"));
+		add(ExtendedSounds.BOAR_HURT, createMultipleSameWeight(ExtendedSounds.BOAR_HURT, 1, true));
+		add(ExtendedSounds.BOAR_JUMPS, createCustomPathSound(ExtendedSounds.BOAR_JUMPS, new ResourceLocation("mob/horse/jump")));
+		add(ExtendedSounds.BOAR_STEP, createMultipleSameWeight(ExtendedSounds.BOAR_STEP, 4, LotrExtendedMod.MODID+":entity/boar/step", "subtitles.block.generic.footsteps"));
+		add(ExtendedSounds.BOAR_SADDLE, createCustomPathSound(ExtendedSounds.BOAR_SADDLE, new ResourceLocation("mob/horse/leather"), "subtitles.entity.horse.saddle"));
+		
+		add(ExtendedSounds.HEDGEHOG_AMBIENT, createMultipleSameWeight(ExtendedSounds.HEDGEHOG_AMBIENT, 3, true, LotrExtendedMod.MODID+":entity/hedgehog/sniff"));
+		add(ExtendedSounds.HEDGEHOG_DEATH, createMultipleSameWeight(ExtendedSounds.HEDGEHOG_DEATH, 2, true));
+		//add(ExtendedSounds.HEDGEHOG_EAT, createMultipleSameWeight(ExtendedSounds.HEDGEHOG_EAT, 3, true));
+		add(ExtendedSounds.HEDGEHOG_HURT, createMultipleSameWeight(ExtendedSounds.HEDGEHOG_HURT, 4, true));
 	}
 
 	public static SoundDefinition createSimple(RegistryObject<SoundEvent> sound) {
@@ -69,6 +84,10 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 
 	public static SoundDefinition createCustomPathSound(RegistryObject<SoundEvent> sound, ResourceLocation location) {
 		return definition().subtitle("subtitles."+LotrExtendedMod.MODID+"."+sound.get().getRegistryName().getPath()).with(sound(location));
+	}
+
+	public static SoundDefinition createCustomPathSound(RegistryObject<SoundEvent> sound, ResourceLocation location, String subSound) {
+		return definition().subtitle(subSound).with(sound(location));
 	}
 
 	public static SoundDefinition createMultipleSameWeight(RegistryObject<SoundEvent> sound, int variants, boolean useSub) {
@@ -81,11 +100,33 @@ public class ExtendedSoundDefinitionsGenerator extends SoundDefinitionsProvider{
 		return definition().with(sounds.toArray(new Sound[0]));
 	}
 
+	public static SoundDefinition createMultipleSameWeight(RegistryObject<SoundEvent> sound, int variants, boolean useSub, String filePath) {
+		List<Sound> sounds = new ArrayList<>();
+		for(int i=0; i<variants; i++) {
+			sounds.add(sound(new ResourceLocation(filePath+(i + 1))));
+		}if(useSub) {
+			return definition().subtitle("subtitles."+LotrExtendedMod.MODID+"."+sound.get().getRegistryName().getPath()).with(sounds.toArray(new Sound[0]));
+		}
+		return definition().with(sounds.toArray(new Sound[0]));
+	}
+
+	public static SoundDefinition createMultipleSameWeight(RegistryObject<SoundEvent> sound, int variants, String filePath, String subPath) {
+		List<Sound> sounds = new ArrayList<>();
+		for(int i=0; i<variants; i++) {
+			sounds.add(sound(new ResourceLocation(filePath+(i + 1))));
+		}
+		if(subPath!=null) {
+			return definition().subtitle(subPath).with(sounds.toArray(new Sound[0]));
+		}
+		return definition().with(sounds.toArray(new Sound[0]));
+	}
+
 	public static SoundDefinition createMultipleSameWeight(RegistryObject<SoundEvent> sound, int variants, float vol, float pitch, boolean useSub, String filePath) {
 		List<Sound> sounds = new ArrayList<>();
 		for(int i=0; i<variants; i++) {
-			sounds.add(sound(new ResourceLocation(LotrExtendedMod.MODID, filePath+(i + 1))).volume(vol).pitch(pitch));
-		}if(useSub) {
+			sounds.add(sound(new ResourceLocation(filePath+(i + 1))).volume(vol).pitch(pitch));
+		}
+		if(useSub) {
 			return definition().subtitle("subtitles."+LotrExtendedMod.MODID+"."+sound.get().getRegistryName().getPath()).with(sounds.toArray(new Sound[0]));
 		}
 		return definition().with(sounds.toArray(new Sound[0]));

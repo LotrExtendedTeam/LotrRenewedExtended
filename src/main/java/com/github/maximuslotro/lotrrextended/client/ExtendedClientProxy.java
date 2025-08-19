@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotrextended.mixins.MIXINConfig;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.eventhandlers.ExtendedHiredUnitHealthbarRenderer;
 import com.github.maximuslotro.lotrrextended.client.eventhandlers.LOTREnchantEventHandlerClient;
@@ -14,7 +15,6 @@ import com.github.maximuslotro.lotrrextended.client.render.entity.ExtendedEntity
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
 import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedTileEntityRenderers;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
-import com.github.maximuslotro.lotrrextended.mixins.MIXINConfig;
 import com.google.common.collect.ImmutableSet;
 
 import lotr.common.block.ExtendedSignTypes;

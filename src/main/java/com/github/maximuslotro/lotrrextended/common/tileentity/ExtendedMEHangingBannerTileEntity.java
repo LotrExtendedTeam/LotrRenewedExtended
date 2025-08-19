@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.tileentity;
 
-import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 
 import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.block.BlockState;
@@ -41,7 +41,7 @@ public class ExtendedMEHangingBannerTileEntity extends TileEntity {
 	 * @param bannerType The banner type instance to get item from
 	 * @return ItemStack
 	 * */
-	public ItemStack getItem(BannerTypes bannerType) {
+	public ItemStack getItem(ExtendedBannerTypes bannerType) {
 		ItemStack itemstack = new ItemStack(bannerType.getBannerItem().get());
 		if(itemData!=null) {
 			itemstack.getOrCreateTag().put("ProtectionData", itemData);

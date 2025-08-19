@@ -17,7 +17,7 @@
     "hidden": false
   },
   "criteria": {
-    "item_lotr:gilded_iron_ingot_made_on_alloy_forge": {
+    "item_gilded_iron_ingot_made_on_alloy_forge": {
       "trigger": "lotrextended:crafting_with_block",
       "conditions": {
         "item": {
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "item_lotr:gilded_iron_ingot_made_on_alloy_forge"
+      "item_gilded_iron_ingot_made_on_alloy_forge"
     ]
   ]
 }

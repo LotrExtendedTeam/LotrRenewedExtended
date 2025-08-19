@@ -25,7 +25,6 @@ public class ExtendedDunedainRangerCaptainEntity extends ExtendedDunedainRangerE
 
 	public ExtendedDunedainRangerCaptainEntity(EntityType<? extends ExtendedDunedainRangerEntity> type, World w) {
 		super(type, w);
-		setPersistenceRequired();
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {

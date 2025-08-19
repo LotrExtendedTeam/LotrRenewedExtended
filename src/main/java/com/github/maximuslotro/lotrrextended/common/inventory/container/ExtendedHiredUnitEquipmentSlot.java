@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
 import lotr.common.item.HammerItem;
 import lotr.common.item.SpearItem;
@@ -73,7 +74,7 @@ public abstract class ExtendedHiredUnitEquipmentSlot extends Slot{
 
 		@Override
 		public boolean mayPlace(ItemStack itemStack) {
-			return itemStack.getItem() instanceof BowItem;
+			return itemStack.getItem() instanceof BowItem || itemStack.getItem() instanceof ExtendedThrowableAxeItem;
 		}
 
 		@Override

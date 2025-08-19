@@ -2,7 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.entity.passive;
 
 import java.util.Random;
 
-import com.github.maximuslotro.lotrrextended.common.enums.EntityGender;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedAvoidEntityGoal;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntityGender;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
@@ -51,14 +52,14 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 
-public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuckEntity> {
+public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<ExtendedDuckEntity> {
 	public float flap;
 	public float flapSpeed;
 	public float oFlapSpeed;
 	public float oFlap;
 	public float flapping = 1.0F;
 	public int eggTime = this.random.nextInt(6000) + 6000;
-	private static final DataParameter<Boolean> IS_BOB = EntityDataManager.defineId(ExtendedDuckEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Byte> DATA_ID_FLAGS = EntityDataManager.defineId(ExtendedDuckEntity.class, DataSerializers.BYTE);
 
 	public ExtendedDuckEntity(EntityType<? extends ExtendedDuckEntity> p_i50282_1_, World p_i50282_2_) {
 		super(p_i50282_1_, p_i50282_2_);
@@ -72,15 +73,32 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 		this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
 		this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, Ingredient.of(ExtendedTags.Items.DUCK_FOOD)));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
-		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
+	    this.goalSelector.addGoal(5, new ExtendedAvoidEntityGoal<>(this, PlayerEntity.class, 16.0F, 0.8D, 2.0D, (living) -> {
+	    	return !((ExtendedDuckEntity) living).isDomesticated();
+	    }));
+		this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
 	}
 
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(IS_BOB, false);
+		this.entityData.define(DATA_ID_FLAGS, (byte)0);
+	}
+
+	protected boolean getFlag(int pFlagId) {
+		return (this.entityData.get(DATA_ID_FLAGS) & pFlagId) != 0;
+	}
+
+	protected void setFlag(int pFlagId, boolean pValue) {
+		byte b0 = this.entityData.get(DATA_ID_FLAGS);
+		if (pValue) {
+			this.entityData.set(DATA_ID_FLAGS, (byte)(b0 | pFlagId));
+		} else {
+			this.entityData.set(DATA_ID_FLAGS, (byte)(b0 & ~pFlagId));
+		}
+
 	}
 
 	@Override
@@ -92,11 +110,11 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 		return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.25D);
 	}
 
-	public static boolean checkTurtleSpawnRules(EntityType<ExtendedDuckEntity> pTurtle, IWorld pLevel, SpawnReason pSpawnType, BlockPos pPos, Random pRandom) {
+	public static boolean checkDuckSpawnRules(EntityType<ExtendedDuckEntity> pTurtle, IWorld pLevel, SpawnReason pSpawnType, BlockPos pPos, Random pRandom) {
 		return isNearWater(pLevel, pPos, pRandom) && onSandOrGrassOrGravel(pLevel, pPos) && pLevel.getRawBrightness(pPos, 0) > 8;
 	}
 
-	public static boolean isNearWater(IWorld pReader, BlockPos pPos, Random pRandom) {
+	private static boolean isNearWater(IWorld pReader, BlockPos pPos, Random pRandom) {
 		Biome biome = pReader.getBiome(pPos);
 		if((biome.getBiomeCategory() == Biome.Category.RIVER) || (pRandom.nextInt(4)==0)) {
 			return true;
@@ -109,15 +127,15 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 		return false;
 	}
 
-	public static boolean onSandOrGrassOrGravel(IBlockReader pReader, BlockPos pPos) {
+	private static boolean onSandOrGrassOrGravel(IBlockReader pReader, BlockPos pPos) {
 		return isSand(pReader, pPos.below()) || isGrass(pReader, pPos.below());
 	}
 
-	public static boolean isSand(IBlockReader pReader, BlockPos pPos) {
+	private static boolean isSand(IBlockReader pReader, BlockPos pPos) {
 		return pReader.getBlockState(pPos).is(BlockTags.SAND);
 	}
 
-	public static boolean isGrass(IBlockReader pReader, BlockPos pPos) {
+	private static boolean isGrass(IBlockReader pReader, BlockPos pPos) {
 		return pReader.getBlockState(pPos).is(Blocks.GRASS_BLOCK);
 	}
 
@@ -139,7 +157,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 		}
 
 		this.flap += this.flapping * 2.0F;
-		if (!this.level.isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0) {
+		if (!this.level.isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && !this.getGender().isMale()) {
 			this.playSound(ExtendedSounds.DUCK_EGG.get(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.spawnAtLocation(ExtendedItems.DUCK_EGG.get());
 			this.eggTime = this.random.nextInt(6000) + 6000;
@@ -151,7 +169,7 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 	public ActionResultType mobInteract(PlayerEntity pPlayer, Hand pHand) {
 		ItemStack itemstack = pPlayer.getItemInHand(pHand);
 		if (Ingredient.of(LOTRItems.FISH_AND_CHIPS.get()).test(itemstack)) {
-			if(this.getGender() == EntityGender.MALE) {
+			if(this.getGender() == ExtendedEntityGender.MALE) {
 				setBob(true);
 			}
 			super.mobInteract(pPlayer, pHand);
@@ -191,19 +209,16 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 		if (nbt.contains("EggLayTime")) {
 			this.eggTime = nbt.getInt("EggLayTime");
 		}
-		if (nbt.contains("IsBobModeActivated")) {
-			setBob(nbt.getBoolean("IsBobModeActivated"));
-		}
-
+		setBob(nbt.getBoolean("IsBobModeActivated"));
+		setDomesticated(nbt.getBoolean("IsDomesticated"));
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundNBT nbt) {
 		super.addAdditionalSaveData(nbt);
 		nbt.putInt("EggLayTime", this.eggTime);
-		if(isBob()) {
-			nbt.putBoolean("IsBobModeActivated", true);
-		}
+		nbt.putBoolean("IsBobModeActivated", isBob());
+		nbt.putBoolean("IsDomesticated", isDomesticated());
 	}
 
 	@Override
@@ -220,42 +235,60 @@ public class ExtendedDuckEntity extends ExtendedGenderedAnimalEntity<ExtendedDuc
 	}
 
 	@Override
-	public boolean getBreedableFood(ItemStack stack) {
+	public boolean isEdibleFood(ItemStack stack) {
 		return Ingredient.of(ExtendedTags.Items.DUCK_FOOD).test(stack);
 	}
 
 	public boolean isBob() {
-		return this.entityData.get(IS_BOB);
+		return this.getFlag(2);
 	}
 
 	public void setBob(boolean isBob) {
-		this.entityData.set(IS_BOB, isBob);
+		this.setFlag(2, isBob);
+	}
+
+	public boolean isDomesticated() {
+		return this.getFlag(4);
+	}
+
+	public void setDomesticated(boolean isDemosticated) {
+		this.setFlag(4, isDemosticated);
 	}
 
 	@Override
 	public boolean isGendered() {
-		return true;
+		return !isDomesticated();
 	}
 
 	@Override
 	public ExtendedDuckEntity getBreedingOffspring(ServerWorld pServerLevel, AgeableEntity pMate) {
-		return ExtendedEntities.DUCK.get().create(pServerLevel);
-	}
-
-	/**
-	 * Set baby ducks {@link ExtendedGenderedAnimalEntity} if parent is bob type
-	 * */
-	@Override
-	public ExtendedDuckEntity modifyBreedingOffspring(ExtendedDuckEntity baby, ServerWorld pServerLevel, AgeableEntity pMate) {
-		if(baby.getGender() == EntityGender.MALE) {
-			if(getGender()==EntityGender.MALE) {
-				if(isBob()) {
-					baby.setBob(true);
-				}
-			} else if(((ExtendedDuckEntity)pMate).getGender()==EntityGender.MALE && ((ExtendedDuckEntity)pMate).isBob()) {
+		ExtendedDuckEntity baby = ExtendedEntities.DUCK.get().create(pServerLevel);
+		// Set gender
+		baby.setGenderRandomly(true, pServerLevel);
+		// Set domesticated status
+		if(this.isDomesticated() && ((ExtendedDuckEntity)pMate).isDomesticated() && this.random.nextFloat()<0.9f) {
+			baby.setDomesticated(true);
+			baby.setGenderRandomly(false, pServerLevel);
+		}else if((this.isDomesticated() || ((ExtendedDuckEntity)pMate).isDomesticated()) && this.random.nextFloat()<0.7f) {
+			baby.setDomesticated(true);
+			baby.setGenderRandomly(false, pServerLevel);
+		}else if(this.random.nextFloat()>0.4f) {
+			baby.setDomesticated(true);
+			baby.setGenderRandomly(false, pServerLevel);
+		}
+		// Set bob status
+		if(baby.getGender()==ExtendedEntityGender.MALE) {
+			if(getGender()==ExtendedEntityGender.MALE && isBob()) {
+				baby.setBob(true);
+			} else if(((ExtendedDuckEntity)pMate).getGender()==ExtendedEntityGender.MALE && ((ExtendedDuckEntity)pMate).isBob()) {
 				baby.setBob(true);
 			}
 		}
 		return baby;
+	}
+
+	@Override
+	public boolean canFoodHealAnimal() {
+		return false;
 	}
 }

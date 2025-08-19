@@ -1,19 +1,19 @@
 {
   "variants": {
     "facing=north": {
-      "model": "lotrextended:block/crucible"
+      "model": "lotrextended:block/crucible",
+      "y": 90
     },
     "facing=south": {
       "model": "lotrextended:block/crucible",
-      "y": 180
+      "y": 270
     },
     "facing=west": {
-      "model": "lotrextended:block/crucible",
-      "y": 270
+      "model": "lotrextended:block/crucible"
     },
     "facing=east": {
       "model": "lotrextended:block/crucible",
-      "y": 90
+      "y": 180
     }
   }
 }

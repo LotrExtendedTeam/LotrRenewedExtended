@@ -12,10 +12,10 @@ import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.E
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfilePlayer;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
-import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
-import com.github.maximuslotro.lotrrextended.common.enums.BannerProtectionLevel;
-import com.github.maximuslotro.lotrrextended.common.enums.BannerProtectionType;
-import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerProtectionLevels;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerProtectionOwners;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
 
@@ -51,9 +51,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	private final List<ProtectionEntry> protectionWhitelist = new ArrayList<>();
 	//Use for faction alignment level
 	private float alignmentLevel = 1;
-	private BannerProtectionType protectionType = BannerProtectionType.FACTION;
+	private ExtendedBannerProtectionOwners protectionType = ExtendedBannerProtectionOwners.FACTION;
 	//Default perms for everyone in faction mode
-	private final List<BannerPermission> defaultPerms = new ArrayList<>();
+	private final List<ExtendedBannerPermissions> defaultPerms = new ArrayList<>();
 	//Should protect myself from destruction besides faction member or player placed
 	private boolean canProtectSelf = true;
 	//Should add NBT to dropped items?
@@ -61,7 +61,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	private UUID placedPlayerUUID;
 	private String placedPlayerName;
 	private UUID connectedEntity;
-	private BannerProtectionLevel protectionLevel = BannerProtectionLevel.NONE;
+	private ExtendedBannerProtectionLevels protectionLevel = ExtendedBannerProtectionLevels.NONE;
 
 	public ExtendedMEBannerTileEntity() {
 		super(ExtendedTileEntities.BANNER_STANDING.get());
@@ -95,15 +95,15 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	private void setProtectionLevelFromBelowBlock() {
 		BlockState belowBlockstate = level.getBlockState(this.getBlockPos().below());
 		if(belowBlockstate.is(Blocks.GOLD_BLOCK)) {
-			setProtectionLevel(BannerProtectionLevel.GOLD);
+			setProtectionLevel(ExtendedBannerProtectionLevels.GOLD);
 		}else if(belowBlockstate.is(LOTRBlocks.SILVER_BLOCK.get())) {
-			setProtectionLevel(BannerProtectionLevel.SILVER);
+			setProtectionLevel(ExtendedBannerProtectionLevels.SILVER);
 		}else if(belowBlockstate.is(LOTRBlocks.BRONZE_BLOCK.get())) {
-			setProtectionLevel(BannerProtectionLevel.BRONZE);
+			setProtectionLevel(ExtendedBannerProtectionLevels.BRONZE);
 		}else if(belowBlockstate.is(LOTRBlocks.COPPER_BLOCK.get())) {
-			setProtectionLevel(BannerProtectionLevel.COPPER);
+			setProtectionLevel(ExtendedBannerProtectionLevels.COPPER);
 		}else {
-			setProtectionLevel(BannerProtectionLevel.NONE);
+			setProtectionLevel(ExtendedBannerProtectionLevels.NONE);
 		}
 	}
 
@@ -151,15 +151,15 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * Gets the banner's protection level
 	 * @return BannerProtectionLevel
 	 * */
-	public BannerProtectionLevel getProtectionLevel() {
+	public ExtendedBannerProtectionLevels getProtectionLevel() {
 		return protectionLevel;
 	}
 
 	/**
 	 * Sets the banner's protection level
-	 * @param protectionLevel {@link BannerProtectionLevel} to be set
+	 * @param protectionLevel {@link ExtendedBannerProtectionLevels} to be set
 	 * */
-	public void setProtectionLevel(BannerProtectionLevel protectionLevel) {
+	public void setProtectionLevel(ExtendedBannerProtectionLevels protectionLevel) {
 		this.protectionLevel = protectionLevel;
 		if(protectionLevel.getProtectionRadius()>0) {
 			used = true;
@@ -168,9 +168,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	/**
 	 * Sets the banner protection type
-	 * @param protectionType {@link BannerProtectionType} to be set
+	 * @param protectionType {@link ExtendedBannerProtectionOwners} to be set
 	 * */
-	public void setProtectionType(BannerProtectionType protectionType) {
+	public void setProtectionType(ExtendedBannerProtectionOwners protectionType) {
 		this.protectionType = protectionType;
 	}
 
@@ -178,7 +178,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * Gets the actual banner protection type
 	 * @return BannerProtectionType
 	 * */
-	public BannerProtectionType getProtectionType() {
+	public ExtendedBannerProtectionOwners getProtectionType() {
 		return protectionType;
 	}
 
@@ -187,7 +187,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * @return boolean
 	 * */
 	public boolean isFactionProtecting() {
-		return protectionType==BannerProtectionType.FACTION;
+		return protectionType==ExtendedBannerProtectionOwners.FACTION;
 	}
 
 	/**
@@ -195,7 +195,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * @return boolean
 	 * */
 	public boolean isWhitelistProtecting() {
-		return protectionType==BannerProtectionType.PLAYER;
+		return protectionType==ExtendedBannerProtectionOwners.PLAYER;
 	}
 
 	/**
@@ -271,20 +271,20 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		setPlacedPlayerName(placedPlayerName);
 	}
 
-	public void setDefaultPerms(List<BannerPermission> perms) {
+	public void setDefaultPerms(List<ExtendedBannerPermissions> perms) {
 		defaultPerms.clear();
 		defaultPerms.addAll(perms);
 	}
 
-	public List<BannerPermission> getDefaultPerms() {
+	public List<ExtendedBannerPermissions> getDefaultPerms() {
 		return defaultPerms;
 	}
 
-	public boolean hasDefaultPerm(BannerPermission perm) {
-		if(perm==BannerPermission.BANNER) {
+	public boolean hasDefaultPerm(ExtendedBannerPermissions perm) {
+		if(perm==ExtendedBannerPermissions.BANNER) {
 			return defaultPerms.contains(perm);
 		}
-		return defaultPerms.contains(BannerPermission.EVERYTHING)|| defaultPerms.contains(perm);
+		return defaultPerms.contains(ExtendedBannerPermissions.EVERYTHING)|| defaultPerms.contains(perm);
 	}
 
 	public void setProtectionWhitelist(List<ProtectionEntry> whitelist) {
@@ -300,7 +300,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfilePlayer(player.getUUID(), player.getGameProfile().getName())));
 	}
 
-	public void addWhitelistPlayerWithPerms(PlayerEntity player, List<BannerPermission> perms) {
+	public void addWhitelistPlayerWithPerms(PlayerEntity player, List<ExtendedBannerPermissions> perms) {
 		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfilePlayer(player.getUUID(), player.getGameProfile().getName())).setPerms(perms));
 	}
 
@@ -308,7 +308,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfileFellowship(fellowship.getFellowshipId())));
 	}
 
-	public void addWhitelistPlayerWithPerms(ExtendedFellowship fellowship, List<BannerPermission> perms) {
+	public void addWhitelistPlayerWithPerms(ExtendedFellowship fellowship, List<ExtendedBannerPermissions> perms) {
 		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfileFellowship(fellowship.getFellowshipId())).setPerms(perms));
 	}
 
@@ -401,7 +401,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		}
 		if(loadableData.contains("ProtectionData")) {
 			CompoundNBT pCompound = loadableData.getCompound("ProtectionData");
-			protectionType = BannerProtectionType.getByID(pCompound.getInt("protectionType"));
+			protectionType = ExtendedBannerProtectionOwners.getByID(pCompound.getInt("protectionType"));
 			used = true;
 			if(pCompound.contains("placedPlayer")) {
 				placedPlayerUUID = pCompound.getUUID("placedPlayer");
@@ -429,10 +429,10 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				// Convert each ordinal value back to a BannerPermission enum
 				defaultPerms.clear();
 				for (byte ordinal : ordinalValues) {
-					defaultPerms.add(BannerPermission.values[ordinal]);
+					defaultPerms.add(ExtendedBannerPermissions.values[ordinal]);
 				}
-				if(defaultPerms.contains(BannerPermission.EVERYTHING)) {
-					defaultPerms.removeIf(permission -> permission !=BannerPermission.BANNER && permission !=BannerPermission.EVERYTHING);
+				if(defaultPerms.contains(ExtendedBannerPermissions.EVERYTHING)) {
+					defaultPerms.removeIf(permission -> permission !=ExtendedBannerPermissions.BANNER && permission !=ExtendedBannerPermissions.EVERYTHING);
 				}
 			}
 			if(pCompound.contains("protectionSelf")) {
@@ -503,7 +503,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * @param bannerType The banner type instance to get item from
 	 * @return ItemStack
 	 * */
-	public ItemStack getItem(BannerTypes bannerType) {
+	public ItemStack getItem(ExtendedBannerTypes bannerType) {
 		ItemStack itemstack = new ItemStack(bannerType.getBannerItem().get());
 		if (used) {
 			saveProtectionData(itemstack.getOrCreateTag());
@@ -513,32 +513,32 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 
 	public static class ProtectionEntry {
-		private List<BannerPermission> entryPerms = new ArrayList<>();
+		private List<ExtendedBannerPermissions> entryPerms = new ArrayList<>();
 		private ExtendedBannerProfileBase profile;
 
 		public ProtectionEntry(ExtendedBannerProfileBase profile) {
 			this.profile = profile;
 		}
 
-		public ProtectionEntry setPerms(List<BannerPermission> perms) {
+		public ProtectionEntry setPerms(List<ExtendedBannerPermissions> perms) {
 			entryPerms = perms;
 			return this;
 		}
 
-		public ProtectionEntry addPerm(BannerPermission perm) {
+		public ProtectionEntry addPerm(ExtendedBannerPermissions perm) {
 			entryPerms.add(perm);
 			return this;
 		}
 
-		public boolean containsPermissionNode(BannerPermission permission) {
+		public boolean containsPermissionNode(ExtendedBannerPermissions permission) {
 			return entryPerms.contains(permission);
 		}
 
-		public boolean hasPermission(BannerPermission permission) {
-			if(permission==BannerPermission.BANNER) {
+		public boolean hasPermission(ExtendedBannerPermissions permission) {
+			if(permission==ExtendedBannerPermissions.BANNER) {
 				return containsPermissionNode(permission);
 			}
-			return entryPerms.contains(BannerPermission.EVERYTHING) || containsPermissionNode(permission);
+			return entryPerms.contains(ExtendedBannerPermissions.EVERYTHING) || containsPermissionNode(permission);
 		}
 
 		public ExtendedBannerProfileBase getProfile() {
@@ -549,7 +549,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			profile = newProfile;
 		}
 
-		public List<BannerPermission> getEntryPerms() {
+		public List<ExtendedBannerPermissions> getEntryPerms() {
 			return entryPerms;
 		}
 
@@ -582,17 +582,17 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 		public static ProtectionEntry fromNBT(CompoundNBT nbt) {
 			// Create an empty list to store BannerPermission
-			List<BannerPermission> entryPerms = new ArrayList<>();
+			List<ExtendedBannerPermissions> entryPerms = new ArrayList<>();
 			// Read the byte array of ordinal values from NBT, if present
 			if (nbt.contains("perms", 7)) {  // 7 corresponds to a byte array in NBT
 				byte[] ordinalValues = nbt.getByteArray("perms");
 				// Convert each ordinal value back to a BannerPermission enum
 				for (byte ordinal : ordinalValues) {
-					entryPerms.add(BannerPermission.values[ordinal]);
+					entryPerms.add(ExtendedBannerPermissions.values[ordinal]);
 				}
 			}
-			if(entryPerms.contains(BannerPermission.EVERYTHING)) {
-				entryPerms.removeIf(permission -> permission !=BannerPermission.BANNER && permission !=BannerPermission.EVERYTHING);
+			if(entryPerms.contains(ExtendedBannerPermissions.EVERYTHING)) {
+				entryPerms.removeIf(permission -> permission !=ExtendedBannerPermissions.BANNER && permission !=ExtendedBannerPermissions.EVERYTHING);
 			}
 			ExtendedBannerProfileBase type;
 			if("player".equals(nbt.getString("type"))) {

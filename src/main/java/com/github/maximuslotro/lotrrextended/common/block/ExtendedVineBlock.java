@@ -19,17 +19,15 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.Tags.Items;
+import net.minecraftforge.common.Tags;
 
 public class ExtendedVineBlock extends VineBlock {
 	public static final BooleanProperty CLIPPED = BlockStateProperties.VINE_END;
 
 	public ExtendedVineBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(UP, Boolean.valueOf(false))
-			.setValue(NORTH, Boolean.valueOf(false)).setValue(EAST, Boolean.valueOf(false)).setValue(SOUTH, Boolean.valueOf(false))
-			.setValue(WEST, Boolean.valueOf(false)).setValue(CLIPPED, Boolean.valueOf(false)));
-
+		this.registerDefaultState(this.stateDefinition.any().setValue(UP, false).setValue(NORTH, false).setValue(EAST, false)
+			.setValue(SOUTH, false).setValue(WEST, false).setValue(CLIPPED, false));
 	}
 
 	@Override
@@ -55,7 +53,7 @@ public class ExtendedVineBlock extends VineBlock {
 
 	@Override
 	public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity pPlayer, Hand hand, BlockRayTraceResult p_225533_6_) {
-		if(pPlayer.getItemInHand(hand).getItem().is(Items.SHEARS) && !blockState.getValue(CLIPPED)) {
+		if(pPlayer.getItemInHand(hand).getItem().is(Tags.Items.SHEARS) && !blockState.getValue(CLIPPED)) {
 			blockState = blockState.setValue(CLIPPED, true);
 			world.setBlock(blockPos, blockState, 10);
 			world.playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), SoundEvents.SNOW_GOLEM_SHEAR, SoundCategory.PLAYERS, 0.5F, 0.4F / (this.RANDOM.nextFloat() * 0.4F + 0.8F));

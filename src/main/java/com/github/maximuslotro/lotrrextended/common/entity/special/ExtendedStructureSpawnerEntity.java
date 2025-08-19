@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.function.Predicate;
 
+import com.github.maximuslotro.lotrextended.mixins.lotr.common.entity.npc.MixinNPCEntityInvoker;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
@@ -12,7 +13,6 @@ import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEn
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
 import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
-import com.github.maximuslotro.lotrrextended.mixins.lotr.common.entity.npc.MixinNPCEntityInvoker;
 
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -312,9 +312,12 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							}
 							// Set respawn data regardless of being respawnable, so handleCaptainTraderDeath can know when not to make respawner
 							entity.getPersistentData().putBoolean("ExtendedRespawnOnDeath", spawnerInstance.shouldRespawnOnDeath());
-							// Finaly add the entity to the world
+							// Finally add the entity to the world
 							world.addFreshEntityWithPassengers(entity);
 							nearbyEntitySpawnCount++;
+							if(spawnerInstance.getSpawnType()==SpawnerType.PERSISTED_SINGLE) {
+								attempt = 100;
+							}
 						}
 						//System.out.println("Spawned entity successfully: "+nearbyEntitySpawnCount);
 						if(nearbyEntitySpawnCount >= spawnerInstance.getLocalSpawnCap() && spawnerInstance.getSpawnType().isShouldCheckBoundries()) {

@@ -988,7 +988,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeShieldRecipe(consumer, ExtendedItems.DUNEDAIN_SHIELD, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.RANGER_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.GUNDABAD_SHIELD, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.BREE_SHIELD, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.BREE_CRAFTING);
-		makeShieldRecipe(consumer, ExtendedItems.BLUE_DWARVEN_SHIELD, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.RANGER_CRAFTING);
+		makeShieldRecipe(consumer, ExtendedItems.BLUE_DWARVEN_SHIELD, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
 		//Banners and patterns
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.DUNEDAIN_BANNER, ExtendedItems.DUNEDAIN_BANNER_PATTERN, LOTRRecipes.RANGER_CRAFTING);
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.HOBBIT_BANNER, ExtendedItems.HOBBIT_BANNER_PATTERN, LOTRRecipes.HOBBIT_CRAFTING);
@@ -996,6 +996,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.BLUE_MOUNTAINS_BANNER, ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN, LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.GUNDABAD_ORC_BANNER, ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN, ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.BREE_BANNER, ExtendedItems.BREE_BANNER_PATTERN, LOTRRecipes.BREE_CRAFTING);
+		makeBoarArmorRecipe(consumer, ExtendedItems.LEATHER_BOAR_ARMOR, Tags.Items.LEATHER, "leather", LOTRRecipes.ANY_DWARVEN);
+		makeBoarArmorRecipe(consumer, ExtendedItems.DWARVEN_BOAR_ARMOR, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.DWARVEN_CRAFTING);
+		makeBoarArmorRecipe(consumer, ExtendedItems.BLUE_DWARVEN_BOAR_ARMOR, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
+
 		//Containers
 		GENERATEDRECIPES.add(ExtendedItems.REED_BASKET.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.REED_BASKET.get())
@@ -2090,6 +2094,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.GRASS_VOID.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.CHEESE_CURDS.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.STONE_SIGN.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.GLASS_BOTTLE.get().getRegistryName().getPath());
 	}
 
 	@Override

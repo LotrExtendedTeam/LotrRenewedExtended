@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.client.render.entity;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.entity.model.ExtendedDuckModel;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
-import com.github.maximuslotro.lotrrextended.common.enums.EntityGender;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntityGender;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
@@ -16,6 +16,7 @@ public class ExtendedDuckRenderer extends ExtendedMobRenderer<ExtendedDuckEntity
 	private static final ResourceLocation BOB_DUCK_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/duck/bob_duck.png");
 	private static final ResourceLocation MALE_DUCK_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/duck/male/male_duck.png");
 	private static final ResourceLocation FEMALE_DUCK_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/duck/female/female_duck.png");
+	private static final ResourceLocation DOMESTICATED_DUCK_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/duck/domesticated_duck.png");
 
 	public ExtendedDuckRenderer(EntityRendererManager p_i4entityRendererManager) {
 		super(p_i4entityRendererManager, new ExtendedDuckModel<>(), 0.3F);
@@ -23,13 +24,16 @@ public class ExtendedDuckRenderer extends ExtendedMobRenderer<ExtendedDuckEntity
 
 	@Override
 	public ResourceLocation getTexture(ExtendedDuckEntity duck) {
+		if(duck.isDomesticated() || duck.getGender() == ExtendedEntityGender.GENDERLESS) {
+			return DOMESTICATED_DUCK_LOCATION;
+		}
 		if(duck.isBob()) {
 			return BOB_DUCK_LOCATION;
 		}
-		if(duck.getGender() == EntityGender.MALE) {
+		if(duck.getGender() == ExtendedEntityGender.MALE) {
 			return MALE_DUCK_LOCATION;
 		}
-		if(duck.getGender() == EntityGender.FEMALE) {
+		if(duck.getGender() == ExtendedEntityGender.FEMALE) {
 			return FEMALE_DUCK_LOCATION;
 		}
 		return null;

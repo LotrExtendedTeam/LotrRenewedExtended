@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSUpdateTradeQuantitiesPacket;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
@@ -13,7 +14,6 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils
 
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.init.ExtendedContainers;
 import lotr.common.init.ExtendedItems;
 import lotr.common.util.CoinUtils;
 import lotr.common.util.TradeUtils;
@@ -40,7 +40,7 @@ import net.minecraft.world.World;
  * @author RichardB122
  */
 public class ExtendedTradeContainer extends Container {
-    public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotr.trading");
+    public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotrextended.trading");
 
     private boolean tradedYet = false;
 
@@ -336,18 +336,25 @@ public class ExtendedTradeContainer extends Container {
 
     @Override
     public boolean stillValid(PlayerEntity playerEntity) {
-        return true;
+    	return true;
     }
+   
+    @Override
+	public void removed(PlayerEntity pPlayer) {
+    	super.removed(pPlayer);
+    	this.clearContainer(pPlayer, pPlayer.level, this.sellInventory);
+    	displayInventory.clearContent();
 
+    }
     @Override
     public ItemStack quickMoveStack(PlayerEntity player, int slotId) {
-        Slot slot = this.slots.get(slotId);
-        ItemStack item = slot.getItem();
+    	Slot slot = this.slots.get(slotId);
+    	ItemStack item = slot.getItem();
 
-        if (slot.container.equals(displayInventory)) {
-            if (slot.index < 9) {
-            	if(trader.getTraderData().isTradesLocked()) {
-            		return ItemStack.EMPTY;
+    	if (slot.container.equals(displayInventory)) {
+    		if (slot.index < 9) {
+    			if(trader.getTraderData().isTradesLocked()) {
+    				return ItemStack.EMPTY;
             	}
             	// Fix "java.lang.ArithmeticException: / by zero" crash when shift-clicking sold-out slot
             	if(displayInventory.getItem(slot.index).isEmpty() || displayInventory.getItem(slot.index).getCount()<=0) {
@@ -413,6 +420,7 @@ public class ExtendedTradeContainer extends Container {
             if (player.inventory.add(item)) {
                 slot.set(ItemStack.EMPTY);
                 slot.setChanged();
+                slotsChanged(player.inventory);
             }
             return ItemStack.EMPTY;
         }
@@ -423,13 +431,11 @@ public class ExtendedTradeContainer extends Container {
                 ItemStack remaining = sellInventory.addItem(item);
                 sellInventory.setChanged();
 
-                if (remaining.isEmpty()) {
-                    slot.set(ItemStack.EMPTY);
-                } else {
-                    slot.set(remaining);
-                }
+                slot.set(remaining);
                 slot.setChanged();
+                slotsChanged(player.inventory);
                 player.inventory.setChanged();
+                this.broadcastChanges();
             }
         }
         return ItemStack.EMPTY;

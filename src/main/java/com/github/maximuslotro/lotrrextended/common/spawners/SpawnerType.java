@@ -11,6 +11,8 @@ public enum SpawnerType {
 	SINGLE_FAMILY("single_family_spawner", 1, false, true),
     /** A persisted spawner that checks boundaries and does not restrict to a single spawn type. */
 	PERSISTED("persisted_use_spawner", 2, true, false),
+	/** A persisted spawner that does not check boundaries, allowing only a single spawn type. */
+	PERSISTED_SINGLE("persisted_use_spawner", 3, false, false),
     /** An unknown spawner type used as a fallback or default. */
 	UNKNOWN("unknown", 66, false, true);
     /** Internal name of the spawner type. */

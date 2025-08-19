@@ -377,7 +377,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	 * Even then, ExtendedWanderingTraderEntity can be false when set from an egg.
 	 * @return True if should handle NPC as wandering.
 	 * */
-	public boolean isWanderingTrader() {
+	public boolean isTraderCurrentlyWandering() {
 		return isWanderingTrader;
 	}
 
@@ -398,7 +398,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	}
 
 	private void tickWanderingTrader(NPCEntity npc) {
-		if (isWanderingTrader()) {
+		if (isTraderCurrentlyWandering()) {
 			if (wanderingTraderAliveTime < 1) {
 				// notify players the traveling trader has departed
 				for (PlayerEntity player : npc.level.players()) {

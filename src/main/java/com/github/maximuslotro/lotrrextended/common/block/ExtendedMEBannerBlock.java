@@ -5,8 +5,8 @@ import java.util.Map;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
-import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
@@ -61,7 +61,7 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable{
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	public static final BooleanProperty SMALL = BlockStateProperties.SHORT;
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
-	private final BannerTypes type;
+	private final ExtendedBannerTypes type;
 	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 	private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(
 		Direction.NORTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D),
@@ -69,13 +69,13 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable{
 		Direction.WEST, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D),
 		Direction.EAST, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D)));
 
-	public ExtendedMEBannerBlock(BannerTypes bannerType, AbstractBlock.Properties p_i48453_2_) {
+	public ExtendedMEBannerBlock(ExtendedBannerTypes bannerType, AbstractBlock.Properties p_i48453_2_) {
 		super(p_i48453_2_);
 		type = bannerType;
 		this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(SMALL, false).setValue(FACING, Direction.NORTH).setValue(HALF, DoubleBlockHalf.LOWER));
 	}
 
-	public ExtendedMEBannerBlock(BannerTypes bannerType) {
+	public ExtendedMEBannerBlock(ExtendedBannerTypes bannerType) {
 		this(bannerType, AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD).noOcclusion());
 	}
 
@@ -116,7 +116,7 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable{
 		}
 	}
 
-	public BannerTypes getBanner() {
+	public ExtendedBannerTypes getBanner() {
 		return this.type;
 	}
 
@@ -260,7 +260,7 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable{
 					ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
 					return ActionResultType.sidedSuccess(world.isClientSide);
 				}
-				if(ExtendedBannerProtectionManager.getProtectionStatus(world, blockPos, new SingleProtectionInstance.PlayerProtection(player, BannerPermission.BANNER), true, "bannerBlocknteract").isAllowed()) {
+				if(ExtendedBannerProtectionManager.getProtectionStatus(world, blockPos, new SingleProtectionInstance.PlayerProtection(player, ExtendedBannerPermissions.BANNER), true, "bannerBlocknteract").isAllowed()) {
 					ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket((ExtendedMEBannerTileEntity)tileentity);
 					ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
 					return ActionResultType.sidedSuccess(world.isClientSide);

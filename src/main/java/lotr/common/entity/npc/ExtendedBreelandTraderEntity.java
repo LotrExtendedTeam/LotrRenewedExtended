@@ -25,7 +25,6 @@ public abstract class ExtendedBreelandTraderEntity extends BreeManEntity impleme
 
     public ExtendedBreelandTraderEntity(EntityType<? extends BreeManEntity> type, World w) {
         super(type, w);
-        setPersistenceRequired();
     }
 
     @Override

@@ -1,13 +1,13 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainers;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeSlots.ExtendedInputCoinSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeSlots.ExtendedOutputCoinSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeSlots.ExtendedVisualCoinSlot;
 
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.init.ExtendedContainers;
 import lotr.common.init.ExtendedItems;
 import lotr.common.util.CoinUtils;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,7 +30,7 @@ import net.minecraft.util.text.TranslationTextComponent;
  * @author maximuslotro
  */
 public class ExtendedCoinExchangeContainer extends Container implements IContainerListener {
-	public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotr.coin_exchange");
+	public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotrextended.coin_exchange");
 
 	public Slot inputSlot;
 	public Slot leftVisualOutputSlot;

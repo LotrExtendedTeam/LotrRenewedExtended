@@ -43,7 +43,6 @@ public class ExtendedDwarvenSmithEntity extends DwarfEntity implements ExtendedT
 
 	public ExtendedDwarvenSmithEntity(EntityType<? extends ExtendedDwarvenSmithEntity> type, World w) {
 		super(type, w);
-		setPersistenceRequired();
 	}
 
 	@Override

@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "lotrextended:block/bronze_birdcage"
+    },
+    "facing=south": {
+      "model": "lotrextended:block/bronze_birdcage",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "lotrextended:block/bronze_birdcage",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "lotrextended:block/bronze_birdcage",
+      "y": 90
     }
   }
 }

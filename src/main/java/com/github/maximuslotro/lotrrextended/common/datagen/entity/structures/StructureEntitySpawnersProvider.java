@@ -172,6 +172,10 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 		return multiWeighted(SpawnerType.PERSISTED, type, 100, spawnMin, spawnMax, spawnCap).setHomeInfo(randomHome, radius);
 	}
 
+	public ExtendedStructureEntitySpawner.Builder persistedSingle(MultiSpawnType type, boolean randomHome, int radius) {
+		return multiWeighted(SpawnerType.PERSISTED_SINGLE, type, 100, 1, 1, -1).setHomeInfo(randomHome, radius);
+	}
+
 	public ExtendedStructureEntitySpawner.Builder multiWeighted(SpawnerType spawnerType, MultiSpawnType type, int weight, int spawnMin, int spawnMax, int spawnCap) {
 		return make(spawnerType).addMultiPool(type, weight, spawnMin, spawnMax).setlocalSpawnCap(spawnCap);
 	}

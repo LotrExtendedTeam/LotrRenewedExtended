@@ -1,0 +1,162 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:name_tag"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 200,
+          "name": "lotr:pearl"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.0,
+                "max": 0.75
+              }
+            }
+          ],
+          "name": "minecraft:bow"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.0,
+                "max": 0.75
+              }
+            }
+          ],
+          "name": "minecraft:fishing_rod"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.0,
+                "max": 0.75
+              }
+            }
+          ],
+          "name": "lotr:iron_dagger"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.0,
+                "max": 0.75
+              }
+            }
+          ],
+          "name": "lotr:bronze_dagger"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "name": "lotr:silver_coin_one"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "lotr:silver_coin_ten"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "lotr:silver_coin_hundred"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "name": "lotr:small_pouch"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "lotr:medium_pouch"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "lotr:large_pouch"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "name": "minecraft:iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "lotr:bronze_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "lotr:copper_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "lotr:tin_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "name": "minecraft:gold_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "minecraft:gold_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "name": "lotr:silver_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "lotr:silver_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "lotr:mithril_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "lotr:silver_ring"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "lotr:gold_ring"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "lotr:mithril_ring"
+        }
+      ]
+    }
+  ]
+}

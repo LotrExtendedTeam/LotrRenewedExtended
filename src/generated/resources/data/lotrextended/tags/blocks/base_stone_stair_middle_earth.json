@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:blue_rock_stairs",
+    "lotr:gondor_rock_stairs",
+    "lotr:mordor_rock_stairs",
+    "lotr:red_rock_stairs",
+    "lotr:rohan_rock_stairs",
+    "minecraft:andesite_stairs",
+    "minecraft:diorite_stairs",
+    "minecraft:granite_stairs",
+    "minecraft:stone_stairs"
+  ]
+}

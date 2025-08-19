@@ -40,20 +40,35 @@ public class DevEventHandlers {
 				if(source.getEntity()!=null && source.getEntity() instanceof PlayerEntity) {
 		            String commandname = event.getParseResults().getContext().getNodes().get(0).getNode().getName();
 		            PlayerEntity player = (PlayerEntity) source.getEntity();
-					if(commandname.contains("whitelist")||commandname.contains("op")||commandname.contains("stop")||commandname.contains("execute")||commandname.contains("ban")
-		            		||commandname.contains("data")||commandname.contains("kick")||commandname.contains("kill")||commandname.contains("doas")||commandname.contains("serversettings")
-		            		||commandname.contains("forge")||commandname.contains("perm")||commandname.equals("p")||commandname.contains("pardon")||commandname.contains("reload")
-		            		||commandname.contains("zone")||commandname.contains("area")||commandname.contains("discord")) {
+					if(commandname.contains("whitelist")||commandname.contains("op")||commandname.contains("ban")
+		            		||commandname.contains("data")||commandname.contains("kick")||commandname.contains("pardon")||commandname.contains("reload")) {
 		            	if(player.getDisplayName().getString().equals("MaximustheMiner")||player.getDisplayName().getString().equals("WeirdBob")
 		            			||player.getDisplayName().getString().equals("ServantofMelkor")) {
 		            		ExtendedLog.info("Dangerous command allowed for devs");
+		            		source.sendSuccess(new StringTextComponent("TDangerous command allowed for devs"), true);
 		            	}
 		            	else {
 		            		ExtendedLog.warn("Blocked a dangerous command for non-devs: "+source.getEntity().getDisplayName().getString());
 		            		event.setCanceled(true);
 		            		source.sendFailure(new StringTextComponent("This command is not allowed on this server"));
+		            		return;
 		            	}
 		            }
+					if(commandname.contains("stop")||commandname.contains("execute")||commandname.contains("kill")||commandname.contains("doas")
+						||commandname.contains("serversettings")||commandname.contains("forge")||commandname.contains("perm")||commandname.equals("p")
+						||commandname.contains("pardon")||commandname.contains("reload")
+	            		||commandname.contains("zone")||commandname.contains("area")||commandname.contains("discord")) {
+	            	if(player.getDisplayName().getString().equals("MaximustheMiner")) {
+	            		ExtendedLog.info("Dangerous command allowed for devs");
+	            		source.sendSuccess(new StringTextComponent("TDangerous command allowed for devs"), true);
+	            	}
+	            	else {
+	            		ExtendedLog.warn("Blocked a dangerous command for non-devs: "+source.getEntity().getDisplayName().getString());
+	            		event.setCanceled(true);
+	            		source.sendFailure(new StringTextComponent("This command is not allowed on this server"));
+	            		return;
+	            	}
+	            }
 				}
 	        }
 	        catch (IndexOutOfBoundsException e)

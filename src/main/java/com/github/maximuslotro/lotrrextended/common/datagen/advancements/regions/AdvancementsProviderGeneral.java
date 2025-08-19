@@ -151,7 +151,7 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 
 		Advancement double_bronze = build(true, data(LOTRItems.BRONZE_INGOT.get(), "double_bronze", FrameType.GOAL)
 			.setTitle("Double Bronze").setDescription("Smelt bronze ingots in any alloy forge."),
-			addCraftingTrigger(make(), LOTRBlocks.ALLOY_FORGE.get(), LOTRItems.BRONZE_INGOT.get()).parent(bronze_award));
+			addCraftingTrigger(make(), LOTRBlocks.ALLOY_FORGE.get(), LOTRItems.BRONZE_INGOT.get(), LOTRBlocks.DWARVEN_FORGE.get(), LOTRBlocks.ELVEN_FORGE.get(), LOTRBlocks.ORC_FORGE.get()).parent(bronze_award));
 
 		Advancement get_moldy_bread = build(true, data(LOTRItems.MAGGOTY_BREAD.get(), "three_stinking_days", FrameType.TASK)
 				.setTitle("Three Stinking Days!").setDescription("Eat some Maggoty Bread."),

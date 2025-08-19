@@ -1,8 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneGrinderTileEntity;
 
+import lotr.common.init.ExtendedBlocks;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.inventory.container.Slot;
@@ -70,6 +73,7 @@ public class ExtendedStoneGrinderSlots {
 
 		@Override
 		public ItemStack onTake(PlayerEntity pPlayer, ItemStack pStack) {
+			ExtendedCriteriaTriggers.FACTION_CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, pStack, ExtendedBlocks.STONE_GRINDER.get());
 			this.checkTakeAchievements(pStack);
 			super.onTake(pPlayer, pStack);
 			return pStack;

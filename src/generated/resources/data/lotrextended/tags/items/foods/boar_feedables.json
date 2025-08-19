@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:blackberry",
+    "lotr:blueberry",
+    "lotr:cherry",
+    "lotr:cranberry",
+    "lotr:elderberry",
+    "lotr:flax_seeds",
+    "lotr:green_apple",
+    "lotr:lettuce",
+    "lotr:pear",
+    "lotr:pipeweed_seeds",
+    "lotr:plum",
+    "lotr:raspberry",
+    "minecraft:apple",
+    "minecraft:beetroot",
+    "minecraft:beetroot_seeds",
+    "minecraft:carrot",
+    "minecraft:hay_block",
+    "minecraft:melon_seeds",
+    "minecraft:potato",
+    "minecraft:pumpkin_seeds",
+    "minecraft:wheat",
+    "minecraft:wheat_seeds"
+  ]
+}

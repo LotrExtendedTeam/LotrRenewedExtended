@@ -102,7 +102,7 @@ public abstract class ExtendedEntitySettingsProvider implements IDataProvider {
 	protected static class ExtendedEntitySettingsBuilder {
 		private final EntityType<?> entityType;
 		private final FactionPointer factionPointer;
-		private float killBonus = 0.0f;
+		private int killBonus = 0;
 		private ResourceLocation speechbank = null;
 
 		public ExtendedEntitySettingsBuilder(EntityType<?> entityType, FactionPointer factionPointer) {
@@ -110,7 +110,7 @@ public abstract class ExtendedEntitySettingsProvider implements IDataProvider {
 			this.factionPointer = factionPointer;
 		}
 
-		public ExtendedEntitySettingsBuilder setBonus(float pKillBonus) {
+		public ExtendedEntitySettingsBuilder setBonus(int pKillBonus) {
 			this.killBonus = pKillBonus;
 			return this;
 		}
@@ -121,7 +121,11 @@ public abstract class ExtendedEntitySettingsProvider implements IDataProvider {
 		}
 
 		public ExtendedEntitySettingsBuilder setBank(String pSpeechbankLoc) {
-			this.speechbank = new ResourceLocation("lotr", pSpeechbankLoc);
+			if(pSpeechbankLoc.contains(":")) {
+				this.speechbank = new ResourceLocation(pSpeechbankLoc);
+			}else {
+				this.speechbank = new ResourceLocation("lotr", pSpeechbankLoc);
+			}
 			return this;
 		}
 
@@ -137,7 +141,7 @@ public abstract class ExtendedEntitySettingsProvider implements IDataProvider {
 		public JsonElement writeToFile() {
 			JsonObject element = new JsonObject();
 			element.addProperty("faction", factionPointer.getNameString());
-			if(killBonus>0.0f) {
+			if(killBonus>0) {
 				element.addProperty("kill_bonus", killBonus);
 			}
 			if(speechbank!=null) {
