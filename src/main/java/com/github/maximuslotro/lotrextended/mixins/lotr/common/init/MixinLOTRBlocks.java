@@ -1037,7 +1037,7 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.DEAD_MOSS_VINES = registerB("dead_moss_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 		// Birdcages
-		ExtendedBlocks.WOODEN_BIRDCAGE = registerB("wooden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F)));
+		ExtendedBlocks.WOODEN_BIRDCAGE = registerB("wooden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).strength(0.5F)));
 		ExtendedBlocks.BRONZE_BIRDCAGE = registerB("bronze_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(1.0F)));
 		ExtendedBlocks.IRON_BIRDCAGE = registerB("iron_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(2.0F)));
 		ExtendedBlocks.SILVER_BIRDCAGE = registerB("silver_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(3.0F)));

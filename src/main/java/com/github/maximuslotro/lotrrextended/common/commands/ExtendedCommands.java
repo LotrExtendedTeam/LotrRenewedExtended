@@ -16,5 +16,6 @@ public class ExtendedCommands {
 		//ExtendedStructureSummonv2.register(dispatcher);
 		ExtendedConfigCommand.register(dispatcher);
 		ExtendedTriggerCommand.register(dispatcher);
+		ExtendedSummonCommand.register(dispatcher);
 	}
 }
