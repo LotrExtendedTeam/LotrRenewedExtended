@@ -36,6 +36,11 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableSpecialLogging;
 	public static ForgeConfigSpec.BooleanValue enableStaffServer;
 
+	// Server Enhancements
+	public static ForgeConfigSpec.BooleanValue enableExtendedSpawnProtection;
+	public static ForgeConfigSpec.IntValue overworldSpawnProtectionRadius;
+	public static ForgeConfigSpec.IntValue middleEarthSpawnProtectionRadius;
+
 	public static void register() {
 		ModLoadingContext.get().registerConfig(Type.SERVER, SERVER_SPEC);
 	}
@@ -72,6 +77,12 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		enableExtendedLogging = createBooleanValue(builder,"enableExtendedLogging", false, true, "Toggle to show additional log information if stuff is not working properly");
 		enableSpecialLogging = createBooleanValue(builder,"enableSpecialLogging", false, true, "Toggles additional logged information, changes by update, special things");
 		enableStaffServer = createBooleanValue(builder,"enableStaffServer", false, true, "");
+		builder.pop();
+
+		builder.push("Server Enhancements");
+		enableExtendedSpawnProtection = createBooleanValue(builder,"enableExtendedSpawnProtection", false, true, "Enable extended spawn protection for servers");
+		overworldSpawnProtectionRadius = createIntegerValue(builder, "overworldSpawnProtectionRadius", 16, 0, 500, true, "The radius for Overworld spawn server protection (allows larger area than vanilla protection)");
+		middleEarthSpawnProtectionRadius = createIntegerValue(builder, "middleEarthSpawnProtectionRadius", 16, 0, 500, true, "The radius for Middle Earth spawn server protection");
 		builder.pop();
 		return builder;
 	}
