@@ -12,8 +12,11 @@ import lotr.common.init.LOTRDimensions;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.dedicated.DedicatedPlayerList;
 import net.minecraft.server.dedicated.DedicatedServer;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -38,7 +41,11 @@ public class MixinDedicatedServer {
 					int i = MathHelper.abs(pPos.getX() - blockpos.getX());
 					int j = MathHelper.abs(pPos.getZ() - blockpos.getZ());
 					int k = Math.max(i, j);
-					cir.setReturnValue(k <= ExtendedServerConfig.overworldSpawnProtectionRadius.get());
+					boolean isProtected = k <= ExtendedServerConfig.overworldSpawnProtectionRadius.get();
+					if(isProtected) {
+						pPlayer.sendMessage(new StringTextComponent("This land is under spawn protection").withStyle(TextFormatting.RED), Util.NIL_UUID);
+					}
+					cir.setReturnValue(isProtected);
 				}
 			}else if (pLevel.dimension() == LOTRDimensions.MIDDLE_EARTH_WORLD_KEY) {
 				if (this.getPlayerList().getOps().isEmpty()) {
@@ -52,7 +59,11 @@ public class MixinDedicatedServer {
 					int i = MathHelper.abs(pPos.getX() - blockpos.getX());
 					int j = MathHelper.abs(pPos.getZ() - blockpos.getZ());
 					int k = Math.max(i, j);
-					cir.setReturnValue(k <= ExtendedServerConfig.middleEarthSpawnProtectionRadius.get());
+					boolean isProtected = k <= ExtendedServerConfig.middleEarthSpawnProtectionRadius.get();
+					if(isProtected) {
+						pPlayer.sendMessage(new StringTextComponent("This land is under Middle Earth spawn protection").withStyle(TextFormatting.RED), Util.NIL_UUID);
+					}
+					cir.setReturnValue(isProtected);
 				}
 			}
 		}
