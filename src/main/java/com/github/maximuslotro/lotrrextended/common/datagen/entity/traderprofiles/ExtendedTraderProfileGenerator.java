@@ -1121,9 +1121,10 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.HORN, 6)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_BUTCHER);
 
-		make(0)
+		make(50)
 		.addSBuy(new ItemStack(Items.COAL, 2), 1)
 		.addSBuy(new ItemStack(Items.TORCH, 16), 2)
+		.addSBuy(new ItemStack(LOTRItems.DWARVEN_TORCH.get(), 16), 2)
 		.addSBuy(Items.BUCKET, 3)
 		.addSBuy(Items.WATER_BUCKET, 4)
 		.addSBuy(LOTRItems.BRONZE_PICKAXE, 6)

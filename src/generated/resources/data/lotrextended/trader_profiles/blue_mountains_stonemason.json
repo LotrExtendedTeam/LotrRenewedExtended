@@ -1,6 +1,6 @@
 {
   "id": "lotrextended:blue_mountains_stonemason",
-  "tradingAlignmentRequired": 0,
+  "tradingAlignmentRequired": 50,
   "minimumTradesOffered": 3,
   "maximumAdditionalTradesOffered": 6,
   "shouldRefreshTrades": true,
@@ -18,6 +18,13 @@
       "averageCost": 2,
       "stack": {
         "item": "minecraft:torch",
+        "count": 16
+      }
+    },
+    {
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:dwarven_torch",
         "count": 16
       }
     },
