@@ -6,10 +6,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:name_tag"
-        },
-        {
-          "type": "minecraft:item",
           "weight": 200,
           "name": "lotr:pearl"
         },

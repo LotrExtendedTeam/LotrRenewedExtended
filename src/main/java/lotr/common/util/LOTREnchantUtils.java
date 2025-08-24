@@ -109,10 +109,10 @@ public class LOTREnchantUtils {
         if (updatedKillCount >= 100) {
             // announce in chat that the item has acquired the bane
             if (player != null) {
-                player.sendMessage(new TranslationTextComponent("enchant.lotrextended." + enchantment.getKey().toLowerCase() + ".earn", stack.getDisplayName()), Util.NIL_UUID);
+                player.sendMessage(new TranslationTextComponent("enchant.lotrextended.bane.earn", stack.getDisplayName(), new TranslationTextComponent("enchant.lotrextended."+ enchantment.getKey().toLowerCase() + ".race")), Util.NIL_UUID);
                 for (ServerPlayerEntity cPlayer : player.getServer().getPlayerList().getPlayers()) {
                     if (cPlayer.getUUID() == player.getUUID()) continue;
-                    cPlayer.sendMessage(new TranslationTextComponent("enchant.lotrextended." + enchantment.getKey().toLowerCase() + ".earn_name", player.getName(), stack.getDisplayName()), Util.NIL_UUID);
+                    cPlayer.sendMessage(new TranslationTextComponent("enchant.lotrextended.bane.earn_name", player.getName(), stack.getDisplayName(), new TranslationTextComponent("enchant.lotrextended."+ enchantment.getKey().toLowerCase() + ".race")), Util.NIL_UUID);
                 }
             }
 
@@ -193,5 +193,4 @@ public class LOTREnchantUtils {
         }
         return bane;
     }
-
 }

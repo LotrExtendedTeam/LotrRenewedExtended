@@ -79,7 +79,6 @@ public class ExtendedFishingLootGenerator extends FishingLootTables  {
 		make(consumer, ExtendedLootTables.MIDDLE_EARTH_FISHING_TREASURE, makeTable()
 			.withPool(LootPool.lootPool()
 				// Using wiki values, with 0.165 (silver coin 100 and mithril ring) being one weight, the rest of these were calculated
-				.add(EItemLootEntry.lootItem(Items.NAME_TAG).setWeight(1))
 				.add(EItemLootEntry.lootItem(ExtendedItems.PEARL.get()).setWeight(200))
 				.add(EItemLootEntry.lootItem(Items.BOW).setWeight(1).setMaxLootDurability(0.75f))
 				.add(EItemLootEntry.lootItem(Items.FISHING_ROD).setWeight(20).setMaxLootDurability(0.75f))

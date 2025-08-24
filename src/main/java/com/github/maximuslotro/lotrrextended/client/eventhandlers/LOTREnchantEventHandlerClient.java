@@ -30,7 +30,7 @@ public class LOTREnchantEventHandlerClient {
         List<ITextComponent> entries = new ArrayList<>();
         for (LOTREnchantment enchant : enchants) {
         	entries.add(new TranslationTextComponent("enchant.lotrextended." + enchant.getKey().toLowerCase()).append(": ")
-        		.append(new TranslationTextComponent("enchant.lotrextended." + enchant.getKey().toLowerCase() + ".desc")).withStyle(TextFormatting.GRAY));
+        		.append(new TranslationTextComponent("enchant.lotrextended.bane.desc", new TranslationTextComponent("enchant.lotrextended." + enchant.getKey().toLowerCase() + ".race"))).withStyle(TextFormatting.GRAY));
         }
         event.getToolTip().addAll(1, entries);
     }
