@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.LOTREnchantUtils;
-import lotr.common.util.representation.LOTREnchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,6 +12,8 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.List;
+
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
 
 public class LOTREnchantEventHandlers {
 
@@ -29,9 +30,9 @@ public class LOTREnchantEventHandlers {
 
         ItemStack weapon = ((LivingEntity) source).getMainHandItem();
         LivingEntity target = event.getEntityLiving();
-        List<LOTREnchantment> enchants = LOTREnchantUtils.getEnchantList(weapon);
+        List<ExtendedModifiers> enchants = LOTREnchantUtils.getEnchantList(weapon);
 
-        for (LOTREnchantment enchant : enchants) {
+        for (ExtendedModifiers enchant : enchants) {
             if (LOTREnchantUtils.isBaneEffectiveAgainst(enchant, target)) {
                 // only increase damage if > 0 (prevents damage going through shields)
                 if (event.getAmount() > 0F) {

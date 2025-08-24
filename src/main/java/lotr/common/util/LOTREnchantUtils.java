@@ -1,9 +1,7 @@
 package lotr.common.util;
 
 import lotr.common.entity.npc.*;
-import lotr.common.util.representation.LOTREnchantment;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.WitchEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -16,25 +14,27 @@ import net.minecraft.util.text.TranslationTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
+
 public class LOTREnchantUtils {
 
-    public static void enchant(ItemStack stack, LOTREnchantment enchantment, int pLevel) {
+    public static void enchant(ItemStack stack, ExtendedModifiers enchantment, int pLevel) {
        enchant(stack, enchantment, pLevel, true);
     }
 
-    public static void enchant(ItemStack stack, LOTREnchantment enchantment, int pLevel, boolean renameItem) {
+    public static void enchant(ItemStack stack, ExtendedModifiers enchantment, int pLevel, boolean renameItem) {
         CompoundNBT tag = stack.getOrCreateTag();
         if (!tag.contains("LOTREnchantments", 9)) {
             tag.put("LOTREnchantments", new ListNBT());
         }
         ListNBT listnbt = tag.getList("LOTREnchantments", 10);
         CompoundNBT compoundnbt = new CompoundNBT();
-        compoundnbt.putString("key", enchantment.getKey());
+        compoundnbt.putString("key", enchantment.getNbtKey());
         compoundnbt.putShort("lvl", (byte) pLevel);
         listnbt.add(compoundnbt);
     }
 
-    public static void removeEnchant(ItemStack stack, LOTREnchantment enchantment) {
+    public static void removeEnchant(ItemStack stack, ExtendedModifiers enchantment) {
         if (!getEnchantList(stack).contains(enchantment)) {
             return;
         }
@@ -45,7 +45,7 @@ public class LOTREnchantUtils {
             if (!(nbt instanceof CompoundNBT)) continue;
 
             CompoundNBT entry = (CompoundNBT) nbt;
-            if (entry.getString("key").equals(enchantment.getKey())) entriesToRemove.add(entry);
+            if (entry.getString("key").equals(enchantment.getNbtKey())) entriesToRemove.add(entry);
         }
 
         listnbt.removeAll(entriesToRemove);
@@ -76,7 +76,7 @@ public class LOTREnchantUtils {
         }
 
         // exit the method if there is applicable bane for that entity
-        LOTREnchantment enchantment = getBaneByEntity(entity);
+        ExtendedModifiers enchantment = getBaneByEntity(entity);
         if (enchantment == null) {
             return;
         }
@@ -91,7 +91,7 @@ public class LOTREnchantUtils {
         boolean containsProgress = false;
         for (INBT nbt : listnbt) {
             CompoundNBT entry = (CompoundNBT) nbt;
-            if (entry.getString("key").equals(enchantment.getKey())) {
+            if (entry.getString("key").equals(enchantment.getNbtKey())) {
                 containsProgress = true;
                 updatedKillCount = entry.getInt("kills") + 1;
                 entry.putInt("kills", updatedKillCount);
@@ -101,7 +101,7 @@ public class LOTREnchantUtils {
         if (!containsProgress) {
             updatedKillCount = 1;
             CompoundNBT compoundnbt = new CompoundNBT();
-            compoundnbt.putString("key", enchantment.getKey());
+            compoundnbt.putString("key", enchantment.getNbtKey());
             compoundnbt.putInt("kills", updatedKillCount);
             listnbt.add(compoundnbt);
         }
@@ -109,10 +109,10 @@ public class LOTREnchantUtils {
         if (updatedKillCount >= 100) {
             // announce in chat that the item has acquired the bane
             if (player != null) {
-                player.sendMessage(new TranslationTextComponent("enchant.lotrextended.bane.earn", stack.getDisplayName(), new TranslationTextComponent("enchant.lotrextended."+ enchantment.getKey().toLowerCase() + ".race")), Util.NIL_UUID);
+                player.sendMessage(new TranslationTextComponent("enchant.lotrextended.bane.earn", stack.getDisplayName(), new TranslationTextComponent("enchant.lotrextended."+ enchantment.getLocalKey() + ".race")), Util.NIL_UUID);
                 for (ServerPlayerEntity cPlayer : player.getServer().getPlayerList().getPlayers()) {
                     if (cPlayer.getUUID() == player.getUUID()) continue;
-                    cPlayer.sendMessage(new TranslationTextComponent("enchant.lotrextended.bane.earn_name", player.getName(), stack.getDisplayName(), new TranslationTextComponent("enchant.lotrextended."+ enchantment.getKey().toLowerCase() + ".race")), Util.NIL_UUID);
+                    cPlayer.sendMessage(new TranslationTextComponent("enchant.lotrextended.bane.earn_name", player.getName(), stack.getDisplayName(), new TranslationTextComponent("enchant.lotrextended."+ enchantment.getLocalKey() + ".race")), Util.NIL_UUID);
                 }
             }
 
@@ -144,27 +144,27 @@ public class LOTREnchantUtils {
         }
     }
 
-    public static boolean containsBane(List<LOTREnchantment> enchantments) {
-        return enchantments.contains(LOTREnchantment.DWARF_BANE) ||
-                enchantments.contains(LOTREnchantment.ELF_BANE) ||
-                enchantments.contains(LOTREnchantment.ORC_BANE) ||
-                enchantments.contains(LOTREnchantment.WIGHT_BANE) ||
-                enchantments.contains(LOTREnchantment.WARG_BANE);
+    public static boolean containsBane(List<ExtendedModifiers> enchantments) {
+        return enchantments.contains(ExtendedModifiers.DWARF_BANE) ||
+                enchantments.contains(ExtendedModifiers.ELF_BANE) ||
+                enchantments.contains(ExtendedModifiers.ORC_BANE) ||
+                enchantments.contains(ExtendedModifiers.WIGHT_BANE) ||
+                enchantments.contains(ExtendedModifiers.WARG_BANE);
     }
 
-    public static List<LOTREnchantment> getEnchantList(ItemStack stack) {
+    public static List<ExtendedModifiers> getEnchantList(ItemStack stack) {
         if (!stack.hasTag() || !stack.getTag().contains("LOTREnchantments", 9)) {
             return new ArrayList<>();
         }
-        List<LOTREnchantment> result = new ArrayList<>();
+        List<ExtendedModifiers> result = new ArrayList<>();
         ListNBT listnbt = stack.getTag().getList("LOTREnchantments", 10);
         for (INBT nbt : listnbt) {
             if (!(nbt instanceof CompoundNBT)) continue;
             CompoundNBT entry = (CompoundNBT) nbt;
             String key = entry.getString("key");
-            LOTREnchantment enchant = null;
-            if (LOTREnchantment.ENCHANT_MAP.containsKey(key)) {
-                enchant = LOTREnchantment.ENCHANT_MAP.get(key);
+            ExtendedModifiers enchant = null;
+            if (ExtendedModifiers.MODIFIER_MAP.containsKey(key)) {
+                enchant = ExtendedModifiers.MODIFIER_MAP.get(key);
             }
 
             if (enchant != null) {
@@ -174,22 +174,20 @@ public class LOTREnchantUtils {
         return result;
     }
 
-    public static boolean isBaneEffectiveAgainst(LOTREnchantment enchantment, Entity entity) {
+    public static boolean isBaneEffectiveAgainst(ExtendedModifiers enchantment, Entity entity) {
         return getBaneByEntity(entity) == enchantment;
     }
 
-    public static LOTREnchantment getBaneByEntity(Entity entity) {
-        LOTREnchantment bane = null;
+    public static ExtendedModifiers getBaneByEntity(Entity entity) {
+        ExtendedModifiers bane = null;
         if (entity instanceof OrcEntity) {
-            bane = LOTREnchantment.ORC_BANE;
+            bane = ExtendedModifiers.ORC_BANE;
         } else if (entity instanceof ElfEntity) {
-            bane = LOTREnchantment.ELF_BANE;
+            bane = ExtendedModifiers.ELF_BANE;
         } else if (entity instanceof DwarfEntity) {
-            bane = LOTREnchantment.DWARF_BANE;
+            bane = ExtendedModifiers.DWARF_BANE;
         } else if (entity instanceof WargEntity) {
-            bane = LOTREnchantment.WARG_BANE;
-        } else if (entity instanceof WitchEntity) {
-            bane = LOTREnchantment.WIGHT_BANE;
+            bane = ExtendedModifiers.WARG_BANE;
         }
         return bane;
     }
