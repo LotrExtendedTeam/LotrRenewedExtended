@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.commands;
 
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifierItemType;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifierTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
 import com.mojang.brigadier.Command;
@@ -14,11 +13,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.ToolItem;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -57,33 +52,10 @@ public class ExtendedLotrEnchantCommand {
 		ItemStack stack = ((PlayerEntity) source.getEntity()).getItemInHand(Hand.MAIN_HAND);
 
 		ExtendedModifiers enchant = ExtendedModifiers.MODIFIER_MAP.get(enchantName);
-		if (enchant.getItemType().contains(ExtendedModifierItemType.MELEE)) {
-			if (!(stack.getItem() instanceof SwordItem)) {
-				ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchant.getLocalKey());
-				source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_only_melee", newName));
-				return 0;
-			}
-		}
-		if (enchant.getItemType().contains(ExtendedModifierItemType.RANGED)) {
-			if (!(stack.getItem() instanceof BowItem)) {
-				ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchant.getLocalKey());
-				source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_only_ranged", newName));
-				return 0;
-			}
-		}
-		if (enchant.getItemType().contains(ExtendedModifierItemType.ARMOR)) {
-			if (!(stack.getItem() instanceof ArmorItem)) {
-				ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchant.getLocalKey());
-				source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_only_ranged", newName));
-				return 0;
-			}
-		}
-		if (enchant.getItemType().contains(ExtendedModifierItemType.TOOL)) {
-			if (!(stack.getItem() instanceof ToolItem)) {
-				ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchant.getLocalKey());
-				source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_only_tools", newName));
-				return 0;
-			}
+		if (!enchant.canApplyTo(stack.getItem())) {
+			ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchant.getLocalKey());
+			source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_cant_item", newName));
+			return 0;
 		}
 		if(add) {
 			// don't allow duplicates

@@ -413,10 +413,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.enchant.only_one_bane", "Only one bane can be applied to a weapon.");
 		addD("command.lotrextended.enchant.no_present_modifiers", "Your item does not have any modifiers.");
 		addD("command.lotrextended.enchant.modifier_invalid", "Invalid modifier: %s.");
-		addD("command.lotrextended.enchant.modifier_only_melee", "%s can only be applied to melee weapons.");
-		addD("command.lotrextended.enchant.modifier_only_ranged", "%s can only be applied to ranged weapons.");
-		addD("command.lotrextended.enchant.modifier_only_armor", "%s can only be applied to armors.");
-		addD("command.lotrextended.enchant.modifier_only_tools", "%s can only be applied to tools.");
+		addD("command.lotrextended.enchant.modifier_cant_item", "%s can not be applied to this item.");
 		addD("command.lotrextended.enchant.modifier_duplicate", "Your item already contains that modifier.");
 		addD("command.lotrextended.enchant.modifier_missing", "Your item does not have that modifier.");
 		addD("command.lotrextended.enchant.modifier_removed_all", "All modifiers removed from %s.");
