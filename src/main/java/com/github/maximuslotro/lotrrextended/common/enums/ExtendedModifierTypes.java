@@ -110,8 +110,11 @@ public enum ExtendedModifierTypes {
 
 	/** Reduces explosion or blast damage. */
 	PROTECTION_BLAST("enchant.lotrextended.armor_protect_blast.disc", "+", 
-			item -> item instanceof ArmorItem);
+			item -> item instanceof ArmorItem),
 
+	/** Reduces explosion or blast damage. */
+	UNKNOWN("enchant.lotrextended.unknown.disc", "$", 
+			item -> false);
 	static {
 		// wire up after enum construction due to inability to forward reference
 		BANE.predicateCompatible = m -> (m != HEADHUNTING);

@@ -95,7 +95,9 @@ public enum ExtendedModifiers {
 	HARDENED("protect1", "armor_protect.one", ExtendedModifierTypes.PROTECTION, 1, 1.0f, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.SILVER),
 	POOR("protectWeak1", "armor_protect.weak_one", ExtendedModifierTypes.PROTECTION, -1, -1.0f, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.NOSCROLL),
 	CRUDE("protectWeak2", "armor_protect.weak_two", ExtendedModifierTypes.PROTECTION, -2, -2.0f, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.NOSCROLL),
-	TRUE("protectMithril", "armor_protect_mithril", ExtendedModifierTypes.PROTECTION_MITHRIL, 1, 4.0f, ExtendedModifierRarity.APPLIED, ExtendedModifierScroll.GOLD);
+	TRUE("protectMithril", "armor_protect_mithril", ExtendedModifierTypes.PROTECTION_MITHRIL, 1, 4.0f, ExtendedModifierRarity.APPLIED, ExtendedModifierScroll.GOLD),
+	// Unknown
+	UNKNOWN("unknown", "unknown", ExtendedModifierTypes.UNKNOWN, 0, 3.14159f, ExtendedModifierRarity.UNIQUE, ExtendedModifierScroll.WOODEN);
 
 	/**
      * Immutable map of modifiers keyed by their NBT identifiers.
@@ -176,5 +178,9 @@ public enum ExtendedModifiers {
 	/** @return the rarity classification of this modifier. */
 	public ExtendedModifierRarity getRarity() {
 		return rarity;
+	}
+
+	public ExtendedModifierScroll getScroll() {
+		return scroll;
 	}
 }

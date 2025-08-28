@@ -872,6 +872,7 @@ c7bb60131d54117ea98b1a3f145538bc187165ae assets/lotr/models/item/longbow_handhel
 29f70b42305c9237a9a2c17935a86033ad1d6b2e assets/lotr/models/item/lossarnach_throwing_axe.json
 5f6681225527e8322c2ecdbd0426acf983f7fb18 assets/lotr/models/item/mine_placeholder.json
 e8239dbc61c906ac2aedde37b73df3b649e38d6b assets/lotr/models/item/mithril_birdcage.json
+40f3ad25587ab9cc3ae7c1f82ca9e1274663ac85 assets/lotr/models/item/modifier_scroll.json
 6c1fdc8abe7a4792b28962cd1a299d67f945aaf1 assets/lotr/models/item/morgul_blade.json
 88e931f02320f7cc3582d5ad7f1c9e150959fa8a assets/lotr/models/item/morgul_blade_handheld.json
 dc74739cd4c090c196d4275c92219441654094b0 assets/lotr/models/item/morgul_boots.json
@@ -1156,7 +1157,7 @@ c84eae259a47559ead729e4347ffea6d7501f424 assets/lotr/models/item/willow_wood.jso
 4186944b4eeadba1a3a1ddb90dbff20560be6178 assets/lotr/models/item/willow_wood_slab.json
 b66208f52b71740229ce72fc311fca8285eeb69b assets/lotr/models/item/willow_wood_stairs.json
 7414885b7f1bd5611a25313574f1a0869028ba2b assets/lotr/models/item/wooden_birdcage.json
-712085556a637b77a99b3402c7064a51ed310ad5 assets/lotrextended/lang/en_us.json
+055ad1759df32380943c4ed14bd1a4c70ad5dee5 assets/lotrextended/lang/en_us.json
 f92a839c3ca2d718c24620379a6dfe7f6b1da56a assets/lotrextended/models/block/aged_cheese_wheel.json
 49726eaeacec21ddcdca269035e7d714a71afee2 assets/lotrextended/models/block/aged_cheese_wheel1.json
 b247a199d6c842a60642d920e78ba3135e032bf2 assets/lotrextended/models/block/aged_cheese_wheel2.json
