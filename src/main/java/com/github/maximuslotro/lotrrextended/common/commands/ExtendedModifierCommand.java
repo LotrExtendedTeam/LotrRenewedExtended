@@ -21,7 +21,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.*;
 
-public class ExtendedLotrEnchantCommand {
+public class ExtendedModifierCommand {
 
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		// Build the sub-command nodes
@@ -71,6 +71,10 @@ public class ExtendedLotrEnchantCommand {
 					source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.only_one_bane"));
 					return 0;
 				}
+			}
+			if (!ExtendedModifierTypes.isItemApplicableWithModifier(stack, enchant.getModifierType())) {
+				source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_cant_modifier"));
+				return 0;
 			}
 			LOTREnchantUtils.enchant(stack, enchant, 1);
 			ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchant.getLocalKey());

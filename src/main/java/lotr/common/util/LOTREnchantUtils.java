@@ -14,15 +14,12 @@ import net.minecraft.util.text.TranslationTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifierRarity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
 
 public class LOTREnchantUtils {
 
     public static void enchant(ItemStack stack, ExtendedModifiers enchantment, int pLevel) {
-       enchant(stack, enchantment, pLevel, true);
-    }
-
-    public static void enchant(ItemStack stack, ExtendedModifiers enchantment, int pLevel, boolean renameItem) {
         CompoundNBT tag = stack.getOrCreateTag();
         if (!tag.contains("LOTREnchantments", 9)) {
             tag.put("LOTREnchantments", new ListNBT());
@@ -77,7 +74,8 @@ public class LOTREnchantUtils {
 
         // exit the method if there is applicable bane for that entity
         ExtendedModifiers enchantment = getBaneByEntity(entity);
-        if (enchantment == null) {
+        // Only allow earned banes to be progressed
+        if (enchantment == null || enchantment.getRarity()!=ExtendedModifierRarity.EARNED) {
             return;
         }
 
@@ -162,7 +160,7 @@ public class LOTREnchantUtils {
             if (!(nbt instanceof CompoundNBT)) continue;
             CompoundNBT entry = (CompoundNBT) nbt;
             String key = entry.getString("key");
-            ExtendedModifiers enchant = null;
+            ExtendedModifiers enchant = null; //TODO simplify logic
             if (ExtendedModifiers.MODIFIER_MAP.containsKey(key)) {
                 enchant = ExtendedModifiers.MODIFIER_MAP.get(key);
             }
@@ -188,6 +186,8 @@ public class LOTREnchantUtils {
             bane = ExtendedModifiers.DWARF_BANE;
         } else if (entity instanceof WargEntity) {
             bane = ExtendedModifiers.WARG_BANE;
+        } else if (entity instanceof ExtendedBarrowWightEntity) {
+            bane = ExtendedModifiers.WIGHT_BANE;
         }
         return bane;
     }

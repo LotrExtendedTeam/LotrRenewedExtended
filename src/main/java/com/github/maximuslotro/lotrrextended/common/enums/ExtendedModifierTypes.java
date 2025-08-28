@@ -6,11 +6,13 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeIte
 
 import lotr.common.init.LOTRMaterial;
 import lotr.common.item.LOTRArmorItem;
+import lotr.common.util.LOTREnchantUtils;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShearsItem;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolItem;
@@ -180,7 +182,18 @@ public enum ExtendedModifierTypes {
 	 * @param modifierType the {@link ExtendedModifierTypes} to check
 	 * @return {@code true} if the modifier can be applied, {@code false} otherwise
 	 */
-	public boolean isModifierApplicable(ExtendedModifierTypes modifierType) {
-		return modifierType!=this && predicateCompatible.test(modifierType);
+	public boolean isModifierApplicable(ExtendedModifierTypes otherType) {
+		return otherType!=this && predicateCompatible.test(otherType);
+	}
+	/**
+	 * Checks whether {@code modifierType} can be applied to the given ItemStack.
+	 *
+	 * @param stack        the ItemStack to check
+	 * @param modifierType the modifier being applied
+	 * @return {@code true} if applicable, otherwise {@code false}
+	 */
+	public static boolean isItemApplicableWithModifier(ItemStack stack, ExtendedModifierTypes modifierType) {
+	    return modifierType.isItemApplicable(stack.getItem())
+	        || LOTREnchantUtils.getEnchantList(stack).stream().map(ExtendedModifiers::getModifierType).allMatch(modifierType::isModifierApplicable);
 	}
 }

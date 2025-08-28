@@ -419,6 +419,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.enchant.modifier_removed_all", "All modifiers removed from %s.");
 		addD("command.lotrextended.enchant.modifier_added", "%s added to %s.");
 		addD("command.lotrextended.enchant.modifier_removed", "%s removed from %s.");
+		addD("command.lotrextended.enchant.modifier_cant_modifier", "%s can not be applied as there is a conflicting modifier.");
 
 		
 		//Extended containers
