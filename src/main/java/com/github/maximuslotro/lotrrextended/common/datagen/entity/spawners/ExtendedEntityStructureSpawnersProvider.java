@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.datagen.entity.structures;
+package com.github.maximuslotro.lotrrextended.common.datagen.entity.spawners;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -30,7 +30,7 @@ import net.minecraft.data.IDataProvider;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class StructureEntitySpawnersProvider implements IDataProvider {
+public abstract class ExtendedEntityStructureSpawnersProvider implements IDataProvider {
 	public static final Gson GSON_PRETTY_WRITER = GsonSerializers.createStructureSpawnerSerializer().disableHtmlEscaping().setPrettyPrinting().create();
 	private static final Logger LOGGER = LogManager.getLogger();
 	private final Map<ResourceLocation, ExtendedStructureEntitySpawner> dataHere = new TreeMap<>();
@@ -38,7 +38,7 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 	protected final String modId;
 	protected static final List<ResourceLocation> madeSpawners = new ArrayList<>();
 
-	StructureEntitySpawnersProvider(DataGenerator pDataGenerator, String pModId) {
+	ExtendedEntityStructureSpawnersProvider(DataGenerator pDataGenerator, String pModId) {
 		this.dataGenerator = pDataGenerator;
 		this.modId = pModId;
 
@@ -173,7 +173,7 @@ public abstract class StructureEntitySpawnersProvider implements IDataProvider {
 	}
 
 	public ExtendedStructureEntitySpawner.Builder persistedSingle(MultiSpawnType type, boolean randomHome, int radius) {
-		return multiWeighted(SpawnerType.PERSISTED_SINGLE, type, 100, 1, 1, -1).setHomeInfo(randomHome, radius);
+		return multiWeighted(SpawnerType.PERSISTED_SINGLE, type, 100, 1, 1, 0).setHomeInfo(randomHome, radius);
 	}
 
 	public ExtendedStructureEntitySpawner.Builder multiWeighted(SpawnerType spawnerType, MultiSpawnType type, int weight, int spawnMin, int spawnMax, int spawnCap) {

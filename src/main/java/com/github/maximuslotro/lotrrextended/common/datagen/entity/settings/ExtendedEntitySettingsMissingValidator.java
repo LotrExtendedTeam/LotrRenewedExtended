@@ -7,11 +7,11 @@ import net.minecraft.resources.ResourcePackType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public class ExtendedMissingEntitySettingsValidator implements IDataProvider {
+public class ExtendedEntitySettingsMissingValidator implements IDataProvider {
 
     private final ExistingFileHelper fileHelper;
 
-    public ExtendedMissingEntitySettingsValidator(ExistingFileHelper fileHelper) {
+    public ExtendedEntitySettingsMissingValidator(ExistingFileHelper fileHelper) {
         this.fileHelper = fileHelper;
     }
 

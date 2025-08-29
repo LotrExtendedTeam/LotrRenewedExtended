@@ -21,7 +21,7 @@ public enum SpawnerType {
 	private final int id;
     /** Whether this spawner type requires boundary checks. */
 	private final boolean shoudlCheckBoundries;
-    /** Whether this spawner type allows only a single spawn type. */
+    /** Whether this spawner type allows only one spawn before deletion. */
 	private final boolean singleSpawnType;
 	/**
      * Constructs a SpawnerType with specified parameters.
@@ -72,9 +72,9 @@ public enum SpawnerType {
 		return shoudlCheckBoundries;
 	}
 	/**
-     * Indicates whether this spawner type restricts to a single spawn type.
+     * Indicates whether this spawner type restricts to a single spawn instance before deletion
      *
-     * @return True if only a single spawn type is allowed, false otherwise.
+     * @return True if only a single spawn is allowed, false otherwise.
      */
 	public boolean isSingleSpawnType() {
 		return singleSpawnType;
