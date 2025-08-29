@@ -1,6 +1,32 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lotrextended:item/modifier_scroll"
-  }
+    "layer0": "lotrextended:item/modifier_scroll_wooden"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "lotrextended:scroll_type": 0.0
+      },
+      "model": "lotr:item/modifier_scroll_wooden"
+    },
+    {
+      "predicate": {
+        "lotrextended:scroll_type": 1.0
+      },
+      "model": "lotr:item/modifier_scroll_bronze"
+    },
+    {
+      "predicate": {
+        "lotrextended:scroll_type": 2.0
+      },
+      "model": "lotr:item/modifier_scroll_silver"
+    },
+    {
+      "predicate": {
+        "lotrextended:scroll_type": 3.0
+      },
+      "model": "lotr:item/modifier_scroll_golden"
+    }
+  ]
 }

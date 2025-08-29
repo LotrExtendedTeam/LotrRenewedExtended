@@ -147,7 +147,7 @@ public enum ExtendedModifierTypes {
 	 *
 	 * @param keyLocal             the localization/translation key for this modifier
 	 * @param frontValue           the display prefix (e.g., "+", "x") for formatting
-	 * @param predicate            the condition to check if this modifier can apply to an item
+	 * @param pPredicateItem       the condition to check if this modifier can apply to an item
 	 */
 	ExtendedModifierTypes(String keyLocal, String frontValue, Predicate<Item> pPredicateItem) {
 		this.keyLocal = keyLocal;
@@ -182,7 +182,7 @@ public enum ExtendedModifierTypes {
 	/**
 	 * Checks whether this modifier can be applied alongside a give modifier.
 	 *
-	 * @param modifierType the {@link ExtendedModifierTypes} to check
+	 * @param otherType     the {@link ExtendedModifierTypes} to check
 	 * @return {@code true} if the modifier can be applied, {@code false} otherwise
 	 */
 	public boolean isModifierApplicable(ExtendedModifierTypes otherType) {

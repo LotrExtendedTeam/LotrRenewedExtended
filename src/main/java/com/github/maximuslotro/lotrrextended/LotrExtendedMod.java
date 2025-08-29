@@ -88,7 +88,7 @@ public class LotrExtendedMod{
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
 		forgeBus.register(ForgeInventoryEvents.class);
 		forgeBus.register(WorldEventHandlers.class);
-		forgeBus.register(LOTREnchantEventHandlers.class);
+		forgeBus.register(ExtendedServerModifierEventHandlers.class);
 		forgeBus.register(BannerEventHandlers.class);
 		forgeBus.register(HiredUnitEventHandlers.class);
 		ExtendedBlockStateProviderTypes.register(modBus);

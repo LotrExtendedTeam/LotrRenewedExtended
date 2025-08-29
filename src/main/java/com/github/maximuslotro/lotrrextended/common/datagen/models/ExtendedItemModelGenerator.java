@@ -17,6 +17,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedSmithScroll;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
 import lotr.common.block.ChandelierBlock;
@@ -69,9 +70,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		genGenerated(ExtendedItems.WEAPON_RACK.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.WEAPON_RACK.getId().getPath()));
 		genGenerated(ExtendedItems.ENTITY_SPAWNER.getId().getPath(), lotrExtendedLoc("block/spawner_block"));
 		genGenerated(ExtendedItems.ROPE.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.ROPE.getId().getPath()));
-		genGenerated(ExtendedItems.ROPE.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.ROPE.getId().getPath()));
 		genGenerated(ExtendedItems.GRASS_VOID.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.GRASS_VOID.getId().getPath()));
-
 	}
 	@Override
 	protected void registerModels() {
@@ -209,6 +208,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genBrandingIron(item.getKey(), "item/"+item.getKey());
 				continue;
 			}
+			if(item.getValue().get() instanceof ExtendedSmithScroll) {
+				genModifierScroll(item.getKey(), "item/"+item.getKey());
+				continue;
+			}
 			if(item.getValue().get() instanceof ExtendedMCBannerItem) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/banner/"+item.getKey()));
 				continue;
@@ -324,6 +327,19 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		builder.override().model(builder_reddy).predicate(ExtendedItemModelsProperties.hornType, 2);
 		builder.override().model(builder_summon).predicate(ExtendedItemModelsProperties.hornType, 3);
 		return builder;
+	}
+
+	private ItemModelBuilder genModifierScroll(String name, String location) {
+		ItemModelBuilder builder = genGenerated(name, lotrExtendedLoc(location+"_wooden"));//TODO maybe have a "basic" modifier scroll texture in the future?
+		ItemModelBuilder builder_wooden = genGenerated(name+"_wooden", lotrExtendedLoc(location+"_wooden"));
+		ItemModelBuilder builder_bronze = genGenerated(name+"_bronze", lotrExtendedLoc(location+"_bronze"));
+		ItemModelBuilder builder_silver = genGenerated(name+"_silver", lotrExtendedLoc(location+"_silver"));
+		ItemModelBuilder builder_golden = genGenerated(name+"_golden", lotrExtendedLoc(location+"_golden"));
+		builder.override().model(builder_wooden).predicate(ExtendedItemModelsProperties.scroll_type, 0);
+		builder.override().model(builder_bronze).predicate(ExtendedItemModelsProperties.scroll_type, 1);
+		builder.override().model(builder_silver).predicate(ExtendedItemModelsProperties.scroll_type, 2);
+		builder.override().model(builder_golden).predicate(ExtendedItemModelsProperties.scroll_type, 3);
+		return builder_wooden;
 	}
 
 	private ItemModelBuilder genBrandingIron(String name, String location) {

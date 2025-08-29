@@ -15,7 +15,7 @@ import java.util.List;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifierTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
 
-public class LOTREnchantEventHandlerClient {
+public class ExtendedClientModifierEventHandlers {
 
     @SubscribeEvent
     public static void addTooltipsForLOTREnchants(ItemTooltipEvent event) {

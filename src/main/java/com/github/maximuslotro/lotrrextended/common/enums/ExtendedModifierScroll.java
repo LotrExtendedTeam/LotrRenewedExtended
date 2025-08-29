@@ -16,28 +16,38 @@ package com.github.maximuslotro.lotrrextended.common.enums;
  */
 public enum ExtendedModifierScroll {
 	/** A basic wooden scroll, the first tier in a 4-level chain. */
-	WOODEN("wooden"),
+	WOODEN("wooden", 0),
 	/** A bronze scroll, usable as the first tier in a 3-level chain. */
-	BRONZE("bronze"),
+	BRONZE("bronze", 1),
 	/** A silver scroll, usable as the first tier in a 2-level chain. */
-	SILVER("silver"),
+	SILVER("silver", 2),
 	/** A gold scroll, the final tier or a standalone 1-level chain. */
-	GOLD("gold"),
+	GOLD("golden", 3),
 	/** Does not use a scroll. */
-	NOSCROLL("NOSCROLL");
+	NOSCROLL("NOSCROLL", -1);
 
-    /** The localization/texture key. */
-    private final String key;
+	/** The localization/texture key. */
+	private final String key;
 
-    ExtendedModifierScroll(String key) {
-        this.key = key;
-    }
+	/** The localization/texture id. */
+	private final int id ;
 
-    /**
-     * @return the texture/localization key for this scroll.
-     */
-    public String getKey() {
-        return key;
-    }
+	ExtendedModifierScroll(String pKey, int pId) {
+		this.key = pKey;
+		this.id = pId;
+	}
 
+	/**
+	 * @return the texture/localization key for this scroll.
+	 */
+	public String getKey() {
+		return key;
+	}
+
+	/**
+	 * @return the texture/localization id for this scroll.
+	 */
+	public int getId() {
+		return id;
+	}
 }

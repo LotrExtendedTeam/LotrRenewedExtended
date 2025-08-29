@@ -341,10 +341,12 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Banner protection info
 		addD("message.lotrextended.banner.land_protected", "This land is under the protection of %s");
 
-		// Horn Type names
-		addD("item.lotr.horn_of_command.halt", "Horn of Command - Halt Units");
-		addD("item.lotr.horn_of_command.reddy", "Horn of Command - Ready Units");
-		addD("item.lotr.horn_of_command.summon", "Horn of Command - Summon Units");
+		// Additional item strings
+		addD("item."+ExtendedItems.COMMANDHORN.getId().getNamespace()+"."+ExtendedItems.COMMANDHORN.getId().getPath()+".halt", "Horn of Command - Halt Units");
+		addD("item."+ExtendedItems.COMMANDHORN.getId().getNamespace()+"."+ExtendedItems.COMMANDHORN.getId().getPath()+".reddy", "Horn of Command - Ready Units");
+		addD("item."+ExtendedItems.COMMANDHORN.getId().getNamespace()+"."+ExtendedItems.COMMANDHORN.getId().getPath()+".summon", "Horn of Command - Summon Units");
+		addOverride("item."+ExtendedItems.MODIFIER_SCROLL.getId().getNamespace()+"."+ExtendedItems.MODIFIER_SCROLL.getId().getPath(), "Modifier Scroll");
+		addOverride("item."+ExtendedItems.MODIFIER_SCROLL.getId().getNamespace()+"."+ExtendedItems.MODIFIER_SCROLL.getId().getPath()+".named", "%s Modifier Scroll");
 
 		//Bow values
 		addD("gui.lotrextended.bow.speed", "Draw Speed: %s");

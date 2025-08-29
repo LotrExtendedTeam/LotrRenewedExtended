@@ -1884,6 +1884,7 @@
   "item.lotr.longbow": "Longbow",
   "item.lotr.lossarnach_throwing_axe": "Lossarnach Throwing Axe",
   "item.lotr.modifier_scroll": "Modifier Scroll",
+  "item.lotr.modifier_scroll.named": "%s Modifier Scroll",
   "item.lotr.morgul_blade": "Morgul Blade",
   "item.lotr.morgul_boots": "Morgul Boots",
   "item.lotr.morgul_chestplate": "Morgul Chestplate",

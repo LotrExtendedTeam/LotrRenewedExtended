@@ -4,6 +4,7 @@ import com.github.maximuslotro.lotrrextended.common.inventory.container.Extended
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedSmithScroll;
 
 import lotr.common.init.ExtendedItems;
 import net.minecraft.inventory.container.PlayerContainer;
@@ -19,6 +20,7 @@ public class ExtendedItemModelsProperties {
 	public static ResourceLocation poisoned = new ResourceLocation("lotrextended", "poisoned");
 	public static ResourceLocation pull = new ResourceLocation("lotrextended", "pull");
 	public static ResourceLocation pulling = new ResourceLocation("lotrextended", "pulling");
+	public static ResourceLocation scroll_type = new ResourceLocation("lotrextended", "scroll_type");
 
 	public static void addGuiItemSprites(TextureStitchEvent.Pre event) {
 		if (event.getMap().location().equals(PlayerContainer.BLOCK_ATLAS)) {
@@ -38,6 +40,7 @@ public class ExtendedItemModelsProperties {
 		registerBowItemModelProperties(ExtendedItems.ORC_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.GUNDABAD_URUK_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.RANGER_BOW.get());
+		ItemModelsProperties.register(ExtendedItems.MODIFIER_SCROLL.get(), scroll_type, (itemStack, clientWorld, LivingEntity) -> ExtendedSmithScroll.getModifier(itemStack).getScroll().getId());
 	}
 
 	public static void registerBowItemModelProperties(Item item) {

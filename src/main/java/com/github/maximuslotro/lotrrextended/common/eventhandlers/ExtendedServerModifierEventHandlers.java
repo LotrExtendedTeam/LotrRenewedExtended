@@ -15,7 +15,7 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
 
-public class LOTREnchantEventHandlers {
+public class ExtendedServerModifierEventHandlers {
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {

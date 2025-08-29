@@ -36,11 +36,25 @@ public class ExtendedSmithScroll extends Item {
         		.withStyle(TextFormatting.GRAY));
 	}
 
+	/**
+	 * Returns the name of this scroll. This accepts an ItemStack so different stacks can have different names based on their NBT data.
+	 * @param pStack The stack to get the name for
+	 * @return An text component representation of the name for this scroll
+	 */
+	@Override
+	public ITextComponent getName(ItemStack pStack) {
+		if (pStack.getItem() == ExtendedItems.MODIFIER_SCROLL.get() && pStack.hasTag()) {
+			ExtendedModifiers modifier = getModifier(pStack);
+			return new TranslationTextComponent(this.getDescriptionId() + ".named", new TranslationTextComponent("enchant.lotrextended."+modifier.getLocalKey()));
+		}
+		return super.getName(pStack);
+	}
+
 	@Override
 	public void fillItemCategory(ItemGroup pGroup, NonNullList<ItemStack> pItems) {
 		if (this.allowdedIn(pGroup)) {
 			for(ExtendedModifiers modifier : ExtendedModifiers.MODIFIER_MAP.values()) {
-				if(modifier.getRarity()==ExtendedModifierRarity.BASIC || modifier.getRarity()==ExtendedModifierRarity.SKILLFUL && modifier.getModifierLevel()>0) {
+				if((modifier.getRarity()==ExtendedModifierRarity.BASIC || modifier.getRarity()==ExtendedModifierRarity.SKILLFUL) && modifier.getModifierLevel()>0) {
 					if(modifier.getScroll()!=ExtendedModifierScroll.GOLD && pGroup != ItemGroup.TAB_SEARCH) {
 						continue;
 					}
