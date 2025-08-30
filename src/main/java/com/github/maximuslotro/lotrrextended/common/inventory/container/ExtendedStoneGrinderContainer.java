@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderSlots.ExtendedStoneGrinderLubricationSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderSlots.ExtendedStoneGrinderResultSlot;
@@ -28,7 +28,7 @@ public class ExtendedStoneGrinderContainer extends Container {
 	}
 
 	public ExtendedStoneGrinderContainer(int pContainerId, PlayerInventory pPlayerInventory, IInventory pContainer, IIntArray pData, PacketBuffer extraData) {
-		super(ExtendedContainers.STONE_GRINDER.get(), pContainerId);
+		super(ExtendedContainerTypes.STONE_GRINDER.get(), pContainerId);
 		checkContainerSize(pContainer, 3);
 		checkContainerDataCount(pData, 3);
 		this.container = pContainer;

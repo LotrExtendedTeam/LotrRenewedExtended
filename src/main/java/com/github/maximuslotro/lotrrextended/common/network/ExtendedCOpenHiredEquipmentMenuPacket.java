@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentContainer;
 
 import io.netty.buffer.Unpooled;
@@ -63,7 +63,7 @@ public class ExtendedCOpenHiredEquipmentMenuPacket {
 			// Open GUI on client side
 			NetworkHooks.openGui(context.get().getSender(),
 					new SimpleNamedContainerProvider(
-							(windowId, playerInventory, player) -> ExtendedContainers.HIRED_UNIT_EQUIPMENT.get().create(windowId, playerInventory, initData),
+							(windowId, playerInventory, player) -> ExtendedContainerTypes.HIRED_UNIT_EQUIPMENT.get().create(windowId, playerInventory, initData),
 							ExtendedHiredUnitEquipmentContainer.CONTAINER_TITLE
 							),
 					buf -> ExtendedHiredUnitEquipmentContainer.writeContainerInitData(buf, msg.entityId, info.getUnitProfile(), equipment)

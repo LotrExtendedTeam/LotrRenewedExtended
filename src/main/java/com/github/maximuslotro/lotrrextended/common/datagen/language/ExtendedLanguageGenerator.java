@@ -428,6 +428,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("container.lotrextended.reed_basket", "Reed Basket");
 		addD("container.lotrextended.stone_chest", "Stone Chest");
 		addD("container.lotrextended.orc_barrel", "Orc Barrel");
+		addD("container.lotrextended.repair", "Lotr Repair & Name");
+		addD("container.lotrextended.repair.cost", "Material Cost: %1$s");
+		addD("container.lotrextended.repair.reforge", "Reforge");
+		addD("container.lotrextended.repair.reforge.cost", "Reforge Cost: %1$s");
+		addD("container.lotrextended.repair.expensive", "Too Expensive!");
 
 		// hired unit messages and tooltips for captains
 		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");

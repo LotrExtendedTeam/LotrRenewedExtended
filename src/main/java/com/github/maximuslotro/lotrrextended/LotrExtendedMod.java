@@ -11,7 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.eventhandlers.*;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedAttributes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlockStateProviderTypes;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedEffects;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
@@ -96,7 +96,7 @@ public class LotrExtendedMod{
 		ExtendedCriteriaTriggers.generate();
 		ExtendedRecipes.register(modBus);
 		ExtendedParticles.register(modBus);
-		ExtendedContainers.register(modBus);
+		ExtendedContainerTypes.register(modBus);
 		ExtendedPacketHandler.register();
 		ExtendedFeature.register(modBus);
 		modBus.addGenericListener(Feature.class, this::extendedRegisterFeatures);

@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.inventory.container.Extended
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedTradeContainer;
 
@@ -20,7 +21,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class ExtendedContainers {
+public class ExtendedContainerTypes {
 	public static final DeferredRegister<ContainerType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, LotrExtendedMod.MODID);
 
 	public static RegistryObject<ContainerType<ExtendedCoinExchangeContainer>> COIN_TRADING = register("coin_exchange", "Coin Exchange", () -> IForgeContainerType.create(ExtendedCoinExchangeContainer::new));
@@ -29,9 +30,10 @@ public class ExtendedContainers {
 	public static RegistryObject<ContainerType<ExtendedStoneGrinderContainer>> STONE_GRINDER = register("stone_grinder", "Stone Grinder", () -> IForgeContainerType.create(ExtendedStoneGrinderContainer::new));
 	public static RegistryObject<ContainerType<ExtendedHiredUnitContainer>> HIRED_UNIT_CONTAINER = register("hired_unit_menu", "Hired Unit Inventory", () -> IForgeContainerType.create(ExtendedHiredUnitContainer::new));
 	public static RegistryObject<ContainerType<ExtendedHiredUnitEquipmentContainer>> HIRED_UNIT_EQUIPMENT = register("hired_unit_equipment", "Unit Equipment", () -> IForgeContainerType.create(ExtendedHiredUnitEquipmentContainer::new));
+	public static RegistryObject<ContainerType<ExtendedRepairContainer>> EXTENDED_ANVIL = register("repair", null, () -> IForgeContainerType.create(ExtendedRepairContainer::new));
 
 	private static <T extends Container> RegistryObject<ContainerType<T>> register(String name, String defaultName, Supplier<ContainerType<T>> sup) {
-		if(DatagenModLoader.isRunningDataGen()) {
+		if(DatagenModLoader.isRunningDataGen() && defaultName!=null) {
     		DataGenValueHolder.containerTitlesHolders.put("container."+LotrExtendedMod.MODID+"."+name, defaultName);
     	}
 		return CONTAINERS.register(name, sup);
