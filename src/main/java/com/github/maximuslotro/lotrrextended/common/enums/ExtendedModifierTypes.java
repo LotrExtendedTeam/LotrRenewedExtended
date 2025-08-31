@@ -176,8 +176,8 @@ public enum ExtendedModifierTypes {
 	 * @param item the {@link Item} to check
 	 * @return {@code true} if the modifier can be applied, {@code false} otherwise
 	 */
-	public boolean isItemApplicable(Item item) {
-		return predicateItem.test(item);
+	public boolean isItemApplicable(ItemStack item) {
+		return predicateItem.test(item.getItem());
 	}
 	/**
 	 * Checks whether this modifier can be applied alongside a give modifier.
@@ -196,7 +196,7 @@ public enum ExtendedModifierTypes {
 	 * @return {@code true} if applicable, otherwise {@code false}
 	 */
 	public static boolean isItemApplicableWithModifier(ItemStack stack, ExtendedModifierTypes modifierType) {
-	    return modifierType.isItemApplicable(stack.getItem())
+	    return modifierType.isItemApplicable(stack)
 	        || LOTREnchantUtils.getEnchantList(stack).stream().map(ExtendedModifiers::getModifierType).allMatch(modifierType::isModifierApplicable);
 	}
 }

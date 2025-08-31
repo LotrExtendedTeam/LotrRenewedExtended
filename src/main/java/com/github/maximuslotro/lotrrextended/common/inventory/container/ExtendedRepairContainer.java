@@ -1,16 +1,19 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
-import java.util.Map;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifierRarity;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedSmithScroll;
 
 import io.netty.buffer.Unpooled;
+import lotr.common.init.ExtendedItems;
+import lotr.common.util.LOTREnchantUtils;
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftResultInventory;
@@ -19,9 +22,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.RepairContainer;
 import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.IWorldPosCallable;
@@ -46,7 +47,6 @@ public class ExtendedRepairContainer extends Container {
 	};
 	protected final IWorldPosCallable access;
 	protected final PlayerEntity player;
-	public int repairItemCountCost;
 	private String itemName;
 	private final IntReferenceHolder cost = IntReferenceHolder.standalone();
 	public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotrextended.repair");
@@ -108,23 +108,28 @@ public class ExtendedRepairContainer extends Container {
 	}
 
 	protected ItemStack onTake(PlayerEntity pPlayer, ItemStack pInputItem) {
-		if (!pPlayer.abilities.instabuild) {
-			pPlayer.giveExperienceLevels(-this.cost.get());
-		}
 
 		//float breakChance = net.minecraftforge.common.ForgeHooks.onAnvilRepair(pPlayer, pInputItem, ExtendedRepairContainer.this.inputSlots.getItem(0), ExtendedRepairContainer.this.inputSlots.getItem(1));
 
 		this.inputSlots.setItem(0, ItemStack.EMPTY);
-		if (this.repairItemCountCost > 0) {
-			ItemStack itemstack = this.inputSlots.getItem(1);
-			if (!itemstack.isEmpty() && itemstack.getCount() > this.repairItemCountCost) {
-				itemstack.shrink(this.repairItemCountCost);
+		if (this.cost.get() > 0) {
+			ItemStack itemstack = this.inputSlots.getItem(2);
+			if (!itemstack.isEmpty() && itemstack.getCount() > this.cost.get()) {
+				itemstack.shrink(this.cost.get());
+				this.inputSlots.setItem(2, itemstack);
+			} else {
+				this.inputSlots.setItem(2, ItemStack.EMPTY);
+			}
+			ItemStack itemstackCombinded = this.inputSlots.getItem(1);
+			if (!itemstack.isEmpty() && itemstack.getCount() > 1) {
+				itemstack.shrink(1);
 				this.inputSlots.setItem(1, itemstack);
 			} else {
 				this.inputSlots.setItem(1, ItemStack.EMPTY);
 			}
 		} else {
 			this.inputSlots.setItem(1, ItemStack.EMPTY);
+			this.inputSlots.setItem(2, ItemStack.EMPTY);
 		}
 
 		this.cost.set(0);
@@ -184,26 +189,27 @@ public class ExtendedRepairContainer extends Container {
 	 * called when the Anvil Input Slot changes, calculates the new result and puts it in the output slot
 	 */
 	public void createResult() {
-		ItemStack itemstack = this.inputSlots.getItem(0);
-		this.cost.set(1);
-		int extraCost = 0; // Total additional cost from various actions
-		int repairBaseCost = 0;  // How many materials consumed in repair
+		ItemStack inputItem = this.inputSlots.getItem(0);
+		this.cost.set(0);
+		int repairCost = 0; // Total additional cost from repairs
+		int baseCost = 0;  // How many materials consumed in repair
 		int renameCost = 0; // Cost for renaming
-		if (itemstack.isEmpty()) {
+		if (inputItem.isEmpty()) {
 			this.resultSlots.setItem(0, ItemStack.EMPTY);
 			this.cost.set(0);
 		} else {
-			ItemStack resultItem = itemstack.copy();
-			ItemStack materialItem = this.inputSlots.getItem(1);
-			Map<Enchantment, Integer> mbaseEnchantments = EnchantmentHelper.getEnchantments(resultItem);
-			repairBaseCost = + itemstack.getBaseRepairCost() + (materialItem.isEmpty() ? 0 : materialItem.getBaseRepairCost());
-			this.repairItemCountCost = 0;
+			ItemStack resultItem = inputItem.copy();
+			ItemStack mergableItem = this.inputSlots.getItem(1);
+			ItemStack resourceItem = this.inputSlots.getItem(2);
+			List<ExtendedModifiers> inputModifiers = LOTREnchantUtils.getEnchantList(resultItem);
+			baseCost = inputItem.getBaseRepairCost() + (mergableItem.isEmpty() ? 0 : mergableItem.getBaseRepairCost());
+			this.cost.set(0);
 			boolean canPeformEnchanting = false;
 
-			if (!materialItem.isEmpty()) {
+			if (!mergableItem.isEmpty()) {
 				//if (!net.minecraftforge.common.ForgeHooks.onAnvilChange(this, itemstack, itemstack2, resultSlots, itemName, j, this.player)) return;
-				canPeformEnchanting = materialItem.getItem() == Items.ENCHANTED_BOOK && !EnchantedBookItem.getEnchantments(materialItem).isEmpty();
-				if (resultItem.isDamageableItem() && resultItem.getItem().isValidRepairItem(itemstack, materialItem)) {
+				canPeformEnchanting = (mergableItem.getItem() == ExtendedItems.MODIFIER_SCROLL.get() && !ExtendedSmithScroll.getModifier(inputItem).isUnknown());
+				if (resultItem.isDamageableItem() && resultItem.getItem().isValidRepairItem(inputItem, resourceItem)) {
 					int repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
 					if (repairAmount <= 0) {
 						this.resultSlots.setItem(0, ItemStack.EMPTY);
@@ -212,24 +218,23 @@ public class ExtendedRepairContainer extends Container {
 					}
 
 					int materialsUsed;
-					for(materialsUsed = 0; repairAmount > 0 && materialsUsed < materialItem.getCount(); ++materialsUsed) {
+					for(materialsUsed = 0; repairAmount > 0 && materialsUsed < resourceItem.getCount(); ++materialsUsed) {
 						int newDamage = resultItem.getDamageValue() - repairAmount;
 						resultItem.setDamageValue(newDamage);
-						++extraCost;
+						++repairCost;
 						repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
 					}
 
-					this.repairItemCountCost = materialsUsed;
 				} else {
-					if (!canPeformEnchanting && (resultItem.getItem() != materialItem.getItem() || !resultItem.isDamageableItem())) {
+					if (!canPeformEnchanting && (resultItem.getItem() != mergableItem.getItem() || !resultItem.isDamageableItem())) {
 						this.resultSlots.setItem(0, ItemStack.EMPTY);
 						this.cost.set(0);
 						return;
 					}
 
 					if (resultItem.isDamageableItem() && !canPeformEnchanting) {
-						int durabilityLeftBase = itemstack.getMaxDamage() - itemstack.getDamageValue();
-						int durabilityLeftMaterial = materialItem.getMaxDamage() - materialItem.getDamageValue();
+						int durabilityLeftBase = inputItem.getMaxDamage() - inputItem.getDamageValue();
+						int durabilityLeftMaterial = mergableItem.getMaxDamage() - mergableItem.getDamageValue();
 						int bonusDurability = durabilityLeftMaterial + resultItem.getMaxDamage() * 12 / 100;
 						int combinedDurability = durabilityLeftBase + bonusDurability;
 						int newDurability = resultItem.getMaxDamage() - combinedDurability;
@@ -239,68 +244,94 @@ public class ExtendedRepairContainer extends Container {
 
 						if (newDurability < resultItem.getDamageValue()) {
 							resultItem.setDamageValue(newDurability);
-							extraCost += 2;
+							repairCost += 2; // TODO calculate based upon item damage values
 						}
 					}
 
-					Map<Enchantment, Integer> materialEnchantments = EnchantmentHelper.getEnchantments(materialItem);
-					boolean hasIncompatibleEnchant = false;
-					boolean hasSuccessfulMerge = false;
+					List<ExtendedModifiers> mergableModifiers = LOTREnchantUtils.getEnchantList(mergableItem);
+					boolean hasCompatibleEnchant = true;
 
-					for(Enchantment enchantment : materialEnchantments.keySet()) {
-						if (enchantment != null) {
-							int baseLevel = mbaseEnchantments.getOrDefault(enchantment, 0);
-							int materialLevel = materialEnchantments.get(enchantment);
-							int newLevel = (baseLevel == materialLevel) ? materialLevel + 1 : Math.max(materialLevel, baseLevel);
-							boolean canApply = enchantment.canEnchant(itemstack);
-							if (this.player.abilities.instabuild || itemstack.getItem() == Items.ENCHANTED_BOOK) {
+					int currentModifierCount = (int) inputModifiers.stream().filter(m -> m.getRarity() == ExtendedModifierRarity.BASIC || m.getRarity() == ExtendedModifierRarity.SKILLFUL).count();
+					int newModifierCount=0;
+					for(ExtendedModifiers modifier : mergableModifiers) {
+						if (modifier != null) {
+							// Use the lowest tier value if the modifier does not exist on the original item, so that the new item can override this lowest possible value.
+							int slot0Level = inputModifiers.stream()
+								.filter(m -> m.getModifierType() == modifier.getModifierType())
+							    .mapToInt(ExtendedModifiers::getModifierLevel)
+							    .findFirst()
+							    .orElse(modifier.getMinLevel());
+							int slot1Level = modifier.getModifierLevel();
+							int outputSlotLevel = (slot0Level == slot1Level) ? slot1Level + 1 : Math.max(slot1Level, slot0Level);
+							boolean canApply = modifier.canApplyToItem(inputItem);
+							if (this.player.abilities.instabuild) {
 								canApply = true;
 							}
 
-							for(Enchantment existing : mbaseEnchantments.keySet()) {
-								if (existing != enchantment && !enchantment.isCompatibleWith(existing)) {
+							for(ExtendedModifiers existing : inputModifiers) {
+								if (modifier.getModifierType()!=existing.getModifierType() && !modifier.canApplyToModifier(existing.getModifierType())) {
 									canApply = false;
-									++extraCost;
 								}
 							}
-
+							boolean skipMaxBypassMax = false;
+							if ((modifier.getRarity() == ExtendedModifierRarity.BASIC || modifier.getRarity() == ExtendedModifierRarity.SKILLFUL) && currentModifierCount+newModifierCount>=3) {
+								skipMaxBypassMax = true;
+							}
 							if (!canApply) {
-								hasSuccessfulMerge = true;
-							} else {
-								hasIncompatibleEnchant = true;
-								if (newLevel > enchantment.getMaxLevel()) {
-									newLevel = enchantment.getMaxLevel();
+								hasCompatibleEnchant = false;
+							} else if(skipMaxBypassMax){
+								continue;
+							}else {
+								if (outputSlotLevel > modifier.getMaxLevel()) {
+									outputSlotLevel = modifier.getMaxLevel();
 								}
+								// Remove old modifier of the same type
+								inputModifiers.removeIf(m -> m.getModifierType() == modifier.getModifierType());
 
-								mbaseEnchantments.put(enchantment, newLevel);
+								// Get the list of modifiers for this type
+								List<ExtendedModifiers> list = ExtendedModifiers.MODIFIERS_BY_TYPE.get(modifier.getModifierType());
+
+								// Find the modifier with the desired level
+								final int outoutLevel = outputSlotLevel;
+								ExtendedModifiers result = list.stream()
+								    .filter(m -> m.getModifierLevel() == outoutLevel)
+								    .findFirst()
+								    .orElse(ExtendedModifiers.UNKNOWN); // fallback if no exact match
+
+								// result now contains the modifier of the same type with the requested level
+								inputModifiers.add(result);
 								int rarityCost = 0;
-								switch(enchantment.getRarity()) {
-								case COMMON:
+								switch(modifier.getRarity()) {
+								case BASIC:
 									rarityCost = 1;
 									break;
-								case UNCOMMON:
+								case SKILLFUL:
 									rarityCost = 2;
 									break;
-								case RARE:
+								case APPLIED:
 									rarityCost = 4;
 									break;
-								case VERY_RARE:
-									rarityCost = 8;
+								default:
+									rarityCost = 100;
+									break;
 								}
 
 								if (canPeformEnchanting) {
 									rarityCost = Math.max(1, rarityCost / 2);
 								}
 
-								extraCost += rarityCost * newLevel;
-								if (itemstack.getCount() > 1) {
-									extraCost = 40; // Max cost if stack > 1
+								repairCost += rarityCost * outputSlotLevel;
+								if (inputItem.getCount() > 1) {
+									repairCost = 40; // Max cost if stack > 1
+								}
+								if (modifier.getRarity() == ExtendedModifierRarity.BASIC || modifier.getRarity() == ExtendedModifierRarity.SKILLFUL) {
+									newModifierCount++;
 								}
 							}
 						}
 					}
 
-					if (hasSuccessfulMerge && !hasIncompatibleEnchant) {
+					if (!hasCompatibleEnchant) {
 						this.resultSlots.setItem(0, ItemStack.EMPTY);
 						this.cost.set(0);
 						return;
@@ -309,24 +340,22 @@ public class ExtendedRepairContainer extends Container {
 			}
 
 			if (StringUtils.isBlank(this.itemName)) {
-				if (itemstack.hasCustomHoverName()) {
-					renameCost = 1;
-					extraCost += renameCost;
+				if (inputItem.hasCustomHoverName()) {
+					renameCost =+1;
 					resultItem.resetHoverName();
 				}
-			} else if (!this.itemName.equals(itemstack.getHoverName().getString())) {
-				renameCost = 1;
-				extraCost += renameCost;
+			} else if (!this.itemName.equals(inputItem.getHoverName().getString())) {
+				renameCost =+1;
 				resultItem.setHoverName(new StringTextComponent(this.itemName));
 			}
-			if (canPeformEnchanting && !resultItem.isBookEnchantable(materialItem)) resultItem = ItemStack.EMPTY;
+			//if (canPeformEnchanting && !resultItem.isBookEnchantable(mergableItem)) resultItem = ItemStack.EMPTY;
 
-			this.cost.set(repairBaseCost + extraCost);
-			if (extraCost <= 0) {
+			this.cost.set(baseCost + repairCost + renameCost);
+			if (repairCost <= 0) {
 				resultItem = ItemStack.EMPTY;
 			}
 
-			if (renameCost == extraCost && renameCost > 0 && this.cost.get() >= 40) {
+			if (repairCost==0 && renameCost > 0 && this.cost.get() >= 40) {
 				this.cost.set(39);
 			}
 
@@ -336,16 +365,16 @@ public class ExtendedRepairContainer extends Container {
 
 			if (!resultItem.isEmpty()) {
 				int newRepairCost = resultItem.getBaseRepairCost();
-				if (!materialItem.isEmpty() && newRepairCost < materialItem.getBaseRepairCost()) {
-					newRepairCost = materialItem.getBaseRepairCost();
+				if (!mergableItem.isEmpty() && newRepairCost < mergableItem.getBaseRepairCost()) {
+					newRepairCost = mergableItem.getBaseRepairCost();
 				}
 
-				if (renameCost != extraCost || renameCost == 0) {
+				if (repairCost>0 || renameCost == 0) {
 					newRepairCost = calculateIncreasedRepairCost(newRepairCost);
 				}
 
 				resultItem.setRepairCost(newRepairCost);
-				EnchantmentHelper.setEnchantments(mbaseEnchantments, resultItem);
+				LOTREnchantUtils.setEnchantments(resultItem, inputModifiers);
 			}
 
 			this.resultSlots.setItem(0, resultItem);

@@ -52,7 +52,7 @@ public class ExtendedModifierCommand {
 		ItemStack stack = ((PlayerEntity) source.getEntity()).getItemInHand(Hand.MAIN_HAND);
 
 		ExtendedModifiers enchant = ExtendedModifiers.MODIFIER_MAP.get(enchantName);
-		if (!enchant.canApplyTo(stack.getItem())) {
+		if (!enchant.canApplyToItem(stack)) {
 			ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchant.getLocalKey());
 			source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_cant_item", newName));
 			return 0;
@@ -76,7 +76,7 @@ public class ExtendedModifierCommand {
 				source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_cant_modifier"));
 				return 0;
 			}
-			LOTREnchantUtils.enchant(stack, enchant, 1);
+			LOTREnchantUtils.enchant(stack, enchant);
 			ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchant.getLocalKey());
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.enchant.modifier_added", newName, stack.getItem().getName(stack)).withStyle(TextFormatting.GOLD), true);
 		}else {

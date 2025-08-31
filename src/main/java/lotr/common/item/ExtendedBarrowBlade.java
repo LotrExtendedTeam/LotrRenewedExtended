@@ -21,7 +21,7 @@ public class ExtendedBarrowBlade extends ExtendedDaggerItem {
         if (!world.isClientSide && entity instanceof PlayerEntity) {
             if (!stack.hasTag() || !stack.getTag().getBoolean("WightBaneEnchantAdded")) {
             	stack.getTag().putBoolean("WightBaneEnchantAdded", true);
-                LOTREnchantUtils.enchant(stack, ExtendedModifiers.WIGHT_BANE, 1);
+                LOTREnchantUtils.enchant(stack, ExtendedModifiers.WIGHT_BANE);
             }
         }
     }
