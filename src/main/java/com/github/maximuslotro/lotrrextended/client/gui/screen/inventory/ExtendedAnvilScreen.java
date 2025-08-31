@@ -144,6 +144,14 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 				textColor = 16736352;
 			} else if (!this.menu.getSlot(3).hasItem()) {
 				itextcomponent = null;
+				if (this.menu.hasFlag(ExtendedRepairContainer.FLAG_INVALID_COMBINATION)) {
+					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.cost");
+					textColor = 16736352;
+				}
+				if (this.menu.hasFlag(ExtendedRepairContainer.FLAG_INVALID_COMBINATION)) {
+					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.cost");
+					textColor = 16736352;
+				}
 			} else {
 				itextcomponent = new TranslationTextComponent("container.lotrextended.repair.cost", repairCost);
 				if (!this.menu.getSlot(3).mayPickup(this.inventory.player)) {
