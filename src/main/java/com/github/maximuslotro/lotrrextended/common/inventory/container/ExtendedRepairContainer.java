@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifierRarity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSmithScroll;
 
 import io.netty.buffer.Unpooled;
@@ -28,18 +29,20 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.IntReferenceHolder;
+import net.minecraft.util.text.Color;
+import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 /**
  * Based off of {@link RepairContainer}
+ * Something is broken with the class in regards to saving old data using {@code lastCost} and {@code lastGemColoring} to try rectifying this
  * */
 public class ExtendedRepairContainer extends Container {
-	public static final int FLAG_INVALID_COMBINATION = 1 << 0; // 0001
-	public static final int FLAG_GEM_COLOR_USED      = 1 << 1; // 0010
 
 	protected final CraftResultInventory resultSlots = new CraftResultInventory();
 	protected final IInventory inputSlots = new Inventory(3) {
@@ -53,8 +56,13 @@ public class ExtendedRepairContainer extends Container {
 	protected final PlayerEntity player;
 	private String itemName;
 	private final IntReferenceHolder cost = IntReferenceHolder.standalone();
-	private final IntReferenceHolder dataIntHolder = IntReferenceHolder.standalone();
+	private final IntReferenceHolder incompatable = IntReferenceHolder.standalone();
+	private final IntReferenceHolder gemprocessing = IntReferenceHolder.standalone();
+	private final IntReferenceHolder toManyModifiers = IntReferenceHolder.standalone();
+	private int lastCost = 0;
 	public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotrextended.repair");
+	private boolean isGemColoring = false;
+	private boolean lastGemColoring = false;
 
 	public ExtendedRepairContainer(int pContainerId, PlayerInventory pPlayerInventory) {
 		this(pContainerId, pPlayerInventory, IWorldPosCallable.NULL, new PacketBuffer(Unpooled.buffer()));
@@ -73,7 +81,9 @@ public class ExtendedRepairContainer extends Container {
 		this.access = pAccess;
 		this.player = pPlayerInventory.player;
 		this.addDataSlot(this.cost);
-		this.addDataSlot(dataIntHolder);
+		this.addDataSlot(incompatable);
+		this.addDataSlot(gemprocessing);
+		this.addDataSlot(toManyModifiers);
 		this.slots.clear();
 		this.addSlot(new Slot(this.inputSlots, 0, 27, 58));
 		this.addSlot(new Slot(this.inputSlots, 1, 76, 47));
@@ -93,21 +103,24 @@ public class ExtendedRepairContainer extends Container {
 			 */
 			@Override
 			public boolean mayPickup(PlayerEntity pPlayer) {
-				if(pPlayer.abilities.instabuild && ExtendedRepairContainer.this.cost.get() > 0) {
-					return true;
-				}
+				//if(pPlayer.abilities.instabuild && (ExtendedRepairContainer.this.cost.get() > 0 || isGemColoring)) {
+				//	return true;
+				//}
 				if(ExtendedRepairContainer.this.inputSlots.getItem(0).getItem().isValidRepairItem(ExtendedRepairContainer.this.inputSlots.getItem(0), ExtendedRepairContainer.this.inputSlots.getItem(2))) {
-					ExtendedLog.info("cost "+ ExtendedRepairContainer.this.cost.get() + ":" + ExtendedRepairContainer.this.inputSlots.getItem(2).getCount());
 					if(ExtendedRepairContainer.this.cost.get() > 0 && ExtendedRepairContainer.this.inputSlots.getItem(2).getCount() >= ExtendedRepairContainer.this.cost.get()){
 						return true;
 					}
+				}
+				if(ExtendedRepairContainer.this.cost.get()==0 && isGemColoring && ExtendedRepairContainer.this.inputSlots.getItem(1).getCount()>=1) {
+					return true;
 				}
 				return false;
 			}
 
 			@Override
 			public ItemStack onTake(PlayerEntity pPlayer, ItemStack pStack) {
-				return ExtendedRepairContainer.this.onTake(pPlayer, pStack);
+				ExtendedRepairContainer.this.onTake(pPlayer, pStack);
+				return super.onTake(pPlayer, pStack);
 			}
 		});
 
@@ -121,35 +134,47 @@ public class ExtendedRepairContainer extends Container {
 			this.addSlot(new Slot(pPlayerInventory, k, 8 + k * 18, 174));
 		}
 	}
-
+	/**
+	 * Something is broken with the class in regards to saving old data using {@code lastCost} and {@code lastGemColoring} to try rectifying this
+	 * @param pPlayer The player taking the item
+	 * @param pInputItem the stack being taken
+	 * @return unused, returns the input stack
+	 * */
 	protected ItemStack onTake(PlayerEntity pPlayer, ItemStack pInputItem) {
-
 		//float breakChance = net.minecraftforge.common.ForgeHooks.onAnvilRepair(pPlayer, pInputItem, ExtendedRepairContainer.this.inputSlots.getItem(0), ExtendedRepairContainer.this.inputSlots.getItem(1));
-
 		this.inputSlots.setItem(0, ItemStack.EMPTY);
-		if (this.cost.get() >=0) {
-			ItemStack itemstack = this.inputSlots.getItem(2);
-			if (!itemstack.isEmpty() && itemstack.getCount() > this.cost.get()) {
-				itemstack.shrink(this.cost.get());
-				this.inputSlots.setItem(2, itemstack);
+		if (this.cost.get()>0 || lastCost>0) {
+			ItemStack resourceSlot = this.inputSlots.getItem(2);
+			if (!resourceSlot.isEmpty() && resourceSlot.getCount() > (this.cost.get()>0 ? this.cost.get() :lastCost)) {
+				resourceSlot.shrink(this.cost.get()>0 ? this.cost.get() :lastCost);
+				this.inputSlots.setItem(2, resourceSlot);
 			} else {
 				this.inputSlots.setItem(2, ItemStack.EMPTY);
 			}
-			ItemStack itemstackCombinded = this.inputSlots.getItem(1);
-			if (!itemstackCombinded.isEmpty() && itemstackCombinded.getCount() > 1) {
-				itemstackCombinded.shrink(1);
-				this.inputSlots.setItem(1, itemstackCombinded);
+			ItemStack combinerSlot = this.inputSlots.getItem(1);
+			if (!combinerSlot.isEmpty() && combinerSlot.getCount() > 1) {
+				combinerSlot.shrink(1);
+				this.inputSlots.setItem(1, combinerSlot);
 			} else {
 				this.inputSlots.setItem(1, ItemStack.EMPTY);
 			}
 		} else {
-			ExtendedLog.info("cost was zero");
-			this.inputSlots.setItem(1, ItemStack.EMPTY);
-			this.inputSlots.setItem(2, ItemStack.EMPTY);
+			if(isGemColoring || lastGemColoring) {
+				ItemStack combinerSlot = this.inputSlots.getItem(1);
+				if (!combinerSlot.isEmpty() && combinerSlot.getCount() > 1) {
+					combinerSlot.shrink(1);
+					this.inputSlots.setItem(1, combinerSlot);
+				} else {
+					this.inputSlots.setItem(1, ItemStack.EMPTY);
+				}
+			}
 		}
-
+		lastCost=0;
+		lastGemColoring=false;
 		this.cost.set(0);
-		this.dataIntHolder.set(0);
+		this.gemprocessing.set(0);
+		this.incompatable.set(0);
+		this.toManyModifiers.set(0);
 		this.access.execute((world, pos) -> {
 			BlockState blockstate = world.getBlockState(pos);
 			if (!pPlayer.abilities.instabuild && blockstate.is(BlockTags.ANVIL) && pPlayer.getRandom().nextFloat() < 0.12f) { // breakChance set to default value
@@ -205,14 +230,23 @@ public class ExtendedRepairContainer extends Container {
 	 * called when the Anvil Input Slot changes, calculates the new result and puts it in the output slot
 	 */
 	public void createResult() {
+		ExtendedLog.info("createResult");
 		ItemStack inputItem = this.inputSlots.getItem(0);
-		this.cost.set(0);
-		this.dataIntHolder.set(0);
+		this.gemprocessing.set(0);
+		this.incompatable.set(0);
+		this.toManyModifiers.set(0);
 		int repairCost = 0; // Total additional cost from repairs
 		int baseCost = 0;  // How many materials consumed in repair
 		int renameCost = 0; // Cost for renaming
+		lastGemColoring = false;
+		lastCost = 0;
 		if (inputItem.isEmpty()) {
 			this.resultSlots.setItem(0, ItemStack.EMPTY);
+			if(this.cost.get()>0) {
+				lastCost=this.cost.get();
+			}
+			//new Exception("Debug stack trace").printStackTrace();
+			lastGemColoring = isGemColoring;
 			this.cost.set(0);
 		} else {
 			ItemStack resultItem = inputItem.copy();
@@ -221,17 +255,23 @@ public class ExtendedRepairContainer extends Container {
 			List<ExtendedModifiers> inputModifiers = LOTREnchantUtils.getEnchantList(resultItem);
 			baseCost = inputItem.getBaseRepairCost() + (mergableItem.isEmpty() ? 0 : mergableItem.getBaseRepairCost());
 			this.cost.set(0);
+			isGemColoring = false;
 			boolean canPeformEnchanting = false;
 
 			if (!mergableItem.isEmpty()) {
 				//if (!net.minecraftforge.common.ForgeHooks.onAnvilChange(this, itemstack, itemstack2, resultSlots, itemName, j, this.player)) return;
 				canPeformEnchanting = (mergableItem.getItem() == ExtendedItems.MODIFIER_SCROLL.get() && !ExtendedSmithScroll.getModifier(mergableItem).isUnknown());
-				ExtendedLog.info("canPeformEnchanting "+canPeformEnchanting + ":"+ExtendedSmithScroll.getModifier(mergableItem).getNbtKey());
-				if (!canPeformEnchanting && resultItem.isDamageableItem() && resultItem.isDamaged() && mergableItem.isEmpty() && resultItem.getItem().isValidRepairItem(inputItem, resourceItem)) {
+				if(!canPeformEnchanting && mergableItem.getItem() instanceof ExtendedGemstoneColoringItem) {
+					isGemColoring=true;
+				}else if (!canPeformEnchanting && resultItem.isDamageableItem() && resultItem.isDamaged() && mergableItem.isEmpty() && resultItem.getItem().isValidRepairItem(inputItem, resourceItem)) {
 					int repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
 					if (repairAmount <= 0) {
 						this.resultSlots.setItem(0, ItemStack.EMPTY);
 						this.cost.set(0);
+						this.gemprocessing.set(0);
+						this.incompatable.set(0);
+						this.toManyModifiers.set(0);
+						this.broadcastChanges();
 						return;
 					}
 
@@ -242,18 +282,18 @@ public class ExtendedRepairContainer extends Container {
 						++repairCost;
 						repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
 					}
-					ExtendedLog.info("Repair amount "+repairAmount);
 				} else {
-					ExtendedLog.info("Passed valid item repair amount check");
-					if (!canPeformEnchanting && (resultItem.getItem() != mergableItem.getItem() || !resultItem.isDamageableItem())) {
+					if (!canPeformEnchanting && (resultItem.getItem() != mergableItem.getItem() || !resultItem.isDamageableItem()) && !isGemColoring) {
 						this.resultSlots.setItem(0, ItemStack.EMPTY);
 						this.cost.set(0);
-						ExtendedLog.info("exiting at mest check dnufh");
+						this.gemprocessing.set(0);
+						this.incompatable.set(0);
+						this.toManyModifiers.set(0);
+						this.broadcastChanges();
 						return;
 					}
 
-					if (resultItem.isDamageableItem() && !canPeformEnchanting) {
-						ExtendedLog.info("Is damagable and not enchanting");
+					if (resultItem.isDamageableItem() && !canPeformEnchanting && !isGemColoring) {
 						int durabilityLeftBase = inputItem.getMaxDamage() - inputItem.getDamageValue();
 						int durabilityLeftMaterial = mergableItem.getMaxDamage() - mergableItem.getDamageValue();
 						int bonusDurability = durabilityLeftMaterial + resultItem.getMaxDamage() * 12 / 100;
@@ -268,45 +308,78 @@ public class ExtendedRepairContainer extends Container {
 							repairCost += 2; // TODO calculate based upon item damage values
 						}
 					}
-					ExtendedLog.info("Checking enchanting");
 					List<ExtendedModifiers> mergableModifiers = LOTREnchantUtils.getEnchantList(mergableItem);
-					boolean hasCompatibleEnchant = true;
+					boolean hasInCompatibleModifier = false;
 
 					int currentModifierCount = (int) inputModifiers.stream().filter(m -> m.getRarity() == ExtendedModifierRarity.BASIC || m.getRarity() == ExtendedModifierRarity.SKILLFUL).count();
 					int newModifierCount=0;
+					//boolean notAllModifiersAtMax = false;
 					for(ExtendedModifiers modifier : mergableModifiers) {
 						// Use the lowest tier value if the modifier does not exist on the original item, so that the new item can override this lowest possible value.
-						int slot0Level = inputModifiers.stream()
+						ExtendedModifiers existingModifier = inputModifiers.stream()
 							.filter(m -> m.getModifierType() == modifier.getModifierType())
-							.mapToInt(ExtendedModifiers::getModifierLevel)
-							.findFirst()
-							.orElse(modifier.getMinLevel());
+							.findFirst().orElse(ExtendedModifiers.UNKNOWN);
+						int slot0Level = !existingModifier.isUnknown() ? existingModifier.getModifierLevel() : modifier.getMinLevel();
 						int slot1Level = modifier.getModifierLevel();
 						int outputSlotLevel = (slot0Level == slot1Level) ? slot1Level + 1 : Math.max(slot1Level, slot0Level);
-						boolean canApply = modifier.canApplyToItem(inputItem);
-						if (this.player.abilities.instabuild) {
-							canApply = true;
-						}
-
+						if (!modifier.canApplyToItem(inputItem)) {
+							if(canPeformEnchanting) {
+								hasInCompatibleModifier = true;
+								ExtendedLog.info("cant apply to item");
+							}
+							continue;
+						}						
 						for(ExtendedModifiers existing : inputModifiers) {
 							if (modifier.getModifierType()!=existing.getModifierType() && !modifier.canApplyToModifier(existing.getModifierType())) {
-								canApply = false;
+								hasInCompatibleModifier = true;
+								ExtendedLog.info("hasInCompatibleModifier");
 							}
 						}
-						boolean skipMaxBypassMax = false;
-						if ((modifier.getRarity() == ExtendedModifierRarity.BASIC || modifier.getRarity() == ExtendedModifierRarity.SKILLFUL) && currentModifierCount+newModifierCount>=3) {
-							skipMaxBypassMax = true;
-						}
-						if (!canApply) {
-							hasCompatibleEnchant = false;
-							ExtendedLog.info("cantapply");
-						} else if(skipMaxBypassMax){
-							ExtendedLog.info("skipMaxBypassMax");
+						if(hasInCompatibleModifier) {
 							continue;
-						}else {
-							if (outputSlotLevel > modifier.getMaxLevel()) {
-								outputSlotLevel = modifier.getMaxLevel();
+						}
+						boolean maxedLevelForBook = false;
+						if (outputSlotLevel > modifier.getMaxLevel()) {
+							if (canPeformEnchanting) {
+								maxedLevelForBook = true;
+								ExtendedLog.info("surpassed max level on item1");
+							}else {
+								ExtendedLog.info("surpassed max level on item2");
+								continue;
 							}
+						}
+						//notAllModifiersAtMax=true;
+						boolean maximumModifiersReached = false;
+						if ((modifier.getRarity() == ExtendedModifierRarity.BASIC || modifier.getRarity() == ExtendedModifierRarity.SKILLFUL) 
+							&& currentModifierCount+newModifierCount>=3 && existingModifier.isUnknown()) {
+							maximumModifiersReached = true;
+							ExtendedLog.info("maximumModifiersReached");
+						}
+						if(maximumModifiersReached){
+							if(canPeformEnchanting) {
+								//Only trigger when modifier scroll is placed
+								this.cost.set(0);
+								this.gemprocessing.set(0);
+								this.incompatable.set(0);
+								this.toManyModifiers.set(1);
+								this.resultSlots.setItem(0, ItemStack.EMPTY);
+								this.broadcastChanges();
+								ExtendedLog.info("to many modifiers");
+								return;
+							}
+							continue;// skip 3 max warning if combining items, not using scrolls
+						}else if(maxedLevelForBook){
+							//Only trigger when modifier scroll is placed
+							this.cost.set(0);
+							this.gemprocessing.set(0);
+							this.incompatable.set(0);
+							this.toManyModifiers.set(2);
+							this.resultSlots.setItem(0, ItemStack.EMPTY);
+							this.broadcastChanges();
+							ExtendedLog.info("maxed modifier level");
+							return;
+						}else {
+
 							// Remove old modifier of the same type
 							inputModifiers.removeIf(m -> m.getModifierType() == modifier.getModifierType());
 
@@ -322,7 +395,6 @@ public class ExtendedRepairContainer extends Container {
 
 							// result now contains the modifier of the same type with the requested level
 							inputModifiers.add(result);
-							ExtendedLog.info("Adding new modifier");
 							int rarityCost = 0;
 							switch(modifier.getRarity()) {
 							case BASIC:
@@ -353,15 +425,18 @@ public class ExtendedRepairContainer extends Container {
 						}
 					}
 
-					if (!hasCompatibleEnchant) {
-						this.resultSlots.setItem(0, ItemStack.EMPTY);
+					if (hasInCompatibleModifier){//)|| (mergableModifiers.size()>0 && !notAllModifiersAtMax)) {
 						this.cost.set(0);
-						setFlag(FLAG_INVALID_COMBINATION);
+						this.gemprocessing.set(0);
+						this.incompatable.set(1);
+						this.toManyModifiers.set(0);
+						this.resultSlots.setItem(0, ItemStack.EMPTY);
+						this.broadcastChanges();
+						ExtendedLog.info("sent hasInCompatibleModifier");
 						return;
 					}
 				}
 			}
-
 			if (StringUtils.isBlank(this.itemName)) {
 				if (inputItem.hasCustomHoverName()) {
 					renameCost =+1;
@@ -371,36 +446,44 @@ public class ExtendedRepairContainer extends Container {
 				renameCost =+1;
 				resultItem.setHoverName(new StringTextComponent(this.itemName));
 			}
-			//if (canPeformEnchanting && !resultItem.isBookEnchantable(mergableItem)) resultItem = ItemStack.EMPTY;
-			ExtendedLog.info(baseCost +":"+ repairCost +":"+ renameCost);
+			if(isGemColoring) {
+				if(!this.canApplyColor(resultItem, ((ExtendedGemstoneColoringItem)mergableItem.getItem()).getExtendedGemstoneColor())) {
+					isGemColoring=false;
+					this.cost.set(0);
+					this.gemprocessing.set(1);
+					this.incompatable.set(0);
+					this.toManyModifiers.set(0);
+					this.resultSlots.setItem(0, ItemStack.EMPTY);
+					return;
+				}
+				applyColor(resultItem, ((ExtendedGemstoneColoringItem)mergableItem.getItem()).getExtendedGemstoneColor());
+			}
 			this.cost.set(baseCost + repairCost + renameCost);
-			if (repairCost <= 0 && renameCost==0) {
+			if (repairCost <= 0 && renameCost==0 && !isGemColoring) {
 				resultItem = ItemStack.EMPTY;
-				ExtendedLog.info("Clearing as there is no cost");
 			}
 
 			if (repairCost==0 && renameCost > 0 && this.cost.get() >= 40) {
 				this.cost.set(39);
-				ExtendedLog.info("bypassing cost for naming");
 			}
 
-			if (this.cost.get() >= 40 && !this.player.abilities.instabuild) {
+			if (this.cost.get() >= 40 && !this.player.abilities.instabuild && !isGemColoring) {
 				resultItem = ItemStack.EMPTY;
-				ExtendedLog.info("to expensive");
 			}
-
+			if(isGemColoring && renameCost == 0) {
+				this.cost.set(0);
+			}
 			if (!resultItem.isEmpty()) {
 				int newRepairCost = resultItem.getBaseRepairCost();
 				if (!mergableItem.isEmpty() && newRepairCost < mergableItem.getBaseRepairCost()) {
 					newRepairCost = mergableItem.getBaseRepairCost();
 				}
 
-				if (repairCost>0 || renameCost == 0) {
+				if (repairCost>0 || renameCost == 0 && !isGemColoring) {
 					newRepairCost = calculateIncreasedRepairCost(newRepairCost);
 				}
 
 				resultItem.setRepairCost(newRepairCost);
-				ExtendedLog.info("Adding enchanting");
 				LOTREnchantUtils.setEnchantments(resultItem, inputModifiers);
 			}
 			this.resultSlots.setItem(0, resultItem);
@@ -419,20 +502,20 @@ public class ExtendedRepairContainer extends Container {
 		if (slot != null && slot.hasItem()) {
 			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
-			if (pIndex == 2) {
-				if (!this.moveItemStackTo(itemstack1, 3, 39, true)) {
+			if (pIndex == 3) {
+				if (!this.moveItemStackTo(itemstack1, 4, 40, true)) {
 					return ItemStack.EMPTY;
 				}
 
 				slot.onQuickCraft(itemstack1, itemstack);
-			} else if (pIndex != 0 && pIndex != 1) {
-				if (pIndex >= 3 && pIndex < 39) {
+			} else if (pIndex != 0 && pIndex != 1 && pIndex != 2) {
+				if (pIndex >= 4 && pIndex < 40) {
 					int i = this.shouldQuickMoveToAdditionalSlot(itemstack) ? 1 : 0;
-					if (!this.moveItemStackTo(itemstack1, i, 2, false)) {
+					if (!this.moveItemStackTo(itemstack1, 0, 3, false)) {
 						return ItemStack.EMPTY;
 					}
 				}
-			} else if (!this.moveItemStackTo(itemstack1, 3, 39, false)) {
+			} else if (!this.moveItemStackTo(itemstack1, 4, 40, false)) {
 				return ItemStack.EMPTY;
 			}
 
@@ -478,6 +561,23 @@ public class ExtendedRepairContainer extends Container {
 		this.createResult();
 	}
 
+	public void applyColor(ItemStack stack, TextFormatting gemColor) {
+		IFormattableTextComponent newName = stack.getHoverName().copy();
+		stack.setHoverName(newName.withStyle(gemColor));
+	}
+
+	public boolean canApplyColor(ItemStack stack, TextFormatting gemColor) {
+		if(!stack.hasCustomHoverName()) {
+			return true;
+		}
+		ITextComponent name = stack.getHoverName();
+		// TODO better color checking for more formatted item names
+		if(name.getStyle().getColor()==Color.fromLegacyFormat(gemColor)) {
+			return false;
+		}
+		return true;
+	}
+
 	/**
 	 * Get's the maximum xp cost
 	 * @return The cost for the operation
@@ -488,31 +588,17 @@ public class ExtendedRepairContainer extends Container {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public int getFlags() {
-		return this.dataIntHolder.get();
+	public boolean getGemIncompatable() {
+		return this.gemprocessing.get()==1? true : false;
 	}
 
-	// enable a flag
-	public void setFlag(int flag) {
-		int value = dataIntHolder.get();
-		dataIntHolder.set(value |= flag);
+	@OnlyIn(Dist.CLIENT)
+	public int getToManyModifiers() {
+		return this.toManyModifiers.get();
 	}
 
-	// disable a flag
-	public void clearFlag(int flag) {
-		int value = dataIntHolder.get();
-		dataIntHolder.set(value &= ~flag);
-	}
-
-	// check if set
-	public boolean hasFlag(int flag) {
-		int value = dataIntHolder.get();
-	    return (value & flag) != 0;
-	}
-
-	// toggle
-	public void toggleFlag(int flag) {
-		int value = dataIntHolder.get();
-		dataIntHolder.set(value ^= flag);
+	@OnlyIn(Dist.CLIENT)
+	public boolean getIncompatable() {
+		return this.incompatable.get()==1? true : false;
 	}
 }

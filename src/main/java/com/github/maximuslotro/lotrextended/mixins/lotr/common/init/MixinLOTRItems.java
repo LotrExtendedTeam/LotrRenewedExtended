@@ -31,7 +31,9 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCopperIngotItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDuckEggItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDyeableBoarArmorItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedEdhelvirItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGuldurilItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleItem;
@@ -68,6 +70,7 @@ import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemTier;
 import net.minecraft.tileentity.BannerPattern;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DatagenModLoader;
@@ -357,6 +360,15 @@ public class MixinLOTRItems {
 		return item;
 	}
 
+	@Unique
+	private static RegistryObject<Item> regGemstoneItemB(String name, TextFormatting color)  {
+		RegistryObject<Item> item = regItem(name, () -> new ExtendedGemstoneItem(new Properties().tab(LOTRItemGroups.MATERIALS), color));
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedItems.REGISTEREDITEMS.put(name, item);
+		}
+		return item;
+	}
+
 	/**
 	 * @author maximuslotro
 	 * @reason Extended's method for registering material items, but also handling overwriting renewed items with needed new classes, DO NOT DIRECTLY CALL
@@ -368,6 +380,9 @@ public class MixinLOTRItems {
 	private static RegistryObject<Item> regMaterialItem(String name) {
 		if(name.equals("gulduril")) {
 			return regItem(name, () -> new ExtendedGuldurilItem(new Properties().tab(LOTRItemGroups.MATERIALS)));
+		}
+		if(name.equals("edhelvir")) {
+			return regItem(name, () -> new ExtendedEdhelvirItem(new Properties().tab(LOTRItemGroups.MATERIALS)));
 		}
 		if(name.equals("copper_ingot")) {
 			return regItem(name, () -> new ExtendedCopperIngotItem(new Properties().tab(LOTRItemGroups.MATERIALS)));
@@ -899,15 +914,15 @@ public class MixinLOTRItems {
 		ExtendedItems.MORGUL_STEEL_INGOT = regMaterialItemB("morgul_steel_ingot");
 		ExtendedItems.ORC_STEEL_NUGGET = regMaterialItemB("orc_steel_nugget");
 		//Gems
-		ExtendedItems.TOPAZ = regMaterialItemB("topaz");
-		ExtendedItems.AMETHYST = regMaterialItemB("amethyst");
-		ExtendedItems.SAPPHIRE = regMaterialItemB("sapphire");
-		ExtendedItems.RUBY = regMaterialItemB("ruby");
-		ExtendedItems.AMBER = regMaterialItemB("amber");
-		ExtendedItems.DIAMOND = regMaterialItemB("diamond");
-		ExtendedItems.OPAL = regMaterialItemB("opal");
-		ExtendedItems.EMERALD = regMaterialItemB("emerald");
-		ExtendedItems.PEARL = regMaterialItemB("pearl");
+		ExtendedItems.TOPAZ = regGemstoneItemB("topaz", TextFormatting.GOLD);
+		ExtendedItems.AMETHYST = regGemstoneItemB("amethyst", TextFormatting.LIGHT_PURPLE);
+		ExtendedItems.SAPPHIRE = regGemstoneItemB("sapphire", TextFormatting.BLUE);
+		ExtendedItems.RUBY = regGemstoneItemB("ruby", TextFormatting.RED);
+		ExtendedItems.AMBER = regGemstoneItemB("amber", TextFormatting.YELLOW);
+		ExtendedItems.DIAMOND = regGemstoneItemB("diamond", TextFormatting.GRAY);
+		ExtendedItems.OPAL = regGemstoneItemB("opal", TextFormatting.AQUA);
+		ExtendedItems.EMERALD = regGemstoneItemB("emerald", TextFormatting.GREEN);
+		ExtendedItems.PEARL = regGemstoneItemB("pearl", TextFormatting.WHITE);
 		ExtendedItems.CORAL = regMaterialItemB("coral");
 
 		//#########################################################################TOOLS#####################################################

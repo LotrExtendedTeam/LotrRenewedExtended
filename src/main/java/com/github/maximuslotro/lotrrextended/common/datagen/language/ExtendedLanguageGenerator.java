@@ -432,7 +432,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("container.lotrextended.repair.cost", "Material Cost: %1$s");
 		addD("container.lotrextended.repair.reforge", "Reforge");
 		addD("container.lotrextended.repair.reforge.cost", "Reforge Cost: %1$s");
-		addD("container.lotrextended.repair.expensive", "Too Expensive!");
+		addD("container.lotrextended.repair.info.expensive", "Too Expensive!");
+		addD("container.lotrextended.repair.info.invalid_combination", "Incompatable Modifiers!");
+		addD("container.lotrextended.repair.info.gem_used", "Gem already used!");
+		addD("container.lotrextended.repair.info.too_many_modifiers", "Limit: 3 regular modifiers!");
+		addD("container.lotrextended.repair.info.modifier_maxed", "Modifier is maxed!");
 
 		// hired unit messages and tooltips for captains
 		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");

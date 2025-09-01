@@ -26,7 +26,6 @@ import net.minecraft.util.text.TranslationTextComponent;
  * */
 public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer> implements IContainerListener  {
 	private static final ResourceLocation ANVIL_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/gui/container/anvil.png");
-	private static final ITextComponent TOO_EXPENSIVE_TEXT = new TranslationTextComponent("container.lotrextended.repair.expensive");
 	private TextFieldWidget name;
 
 	public ExtendedAnvilScreen(ExtendedRepairContainer pAnvilMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
@@ -136,20 +135,24 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 		RenderSystem.disableBlend();
 		super.renderLabels(pMatrixStack, pX, pY);
 		int repairCost = this.menu.getCost();
+		int textColor = 8453920;
+		ITextComponent itextcomponent = null;
 		if (repairCost > 0) {
-			int textColor = 8453920;
-			ITextComponent itextcomponent;
 			if (repairCost >= 40 && !this.minecraft.player.abilities.instabuild) {
-				itextcomponent = TOO_EXPENSIVE_TEXT;
+				itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.expensive");
 				textColor = 16736352;
 			} else if (!this.menu.getSlot(3).hasItem()) {
-				itextcomponent = null;
-				if (this.menu.hasFlag(ExtendedRepairContainer.FLAG_INVALID_COMBINATION)) {
-					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.cost");
+				if (this.menu.getIncompatable()) {
+					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.invalid_combination");
 					textColor = 16736352;
-				}
-				if (this.menu.hasFlag(ExtendedRepairContainer.FLAG_INVALID_COMBINATION)) {
-					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.cost");
+				}else if (this.menu.getGemIncompatable()) {
+					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.gem_used");
+					textColor = 16736352;
+				}else if (this.menu.getToManyModifiers()==1) {
+					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.too_many_modifiers");
+					textColor = 16736352;
+				}else if (this.menu.getToManyModifiers()==2) {
+					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.modifier_maxed");
 					textColor = 16736352;
 				}
 			} else {
@@ -159,11 +162,28 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 				}
 			}
 
-			if (itextcomponent != null) {
-				int textCordStart = this.imageWidth - 8 - this.font.width(itextcomponent) - 2;
-				fill(pMatrixStack, textCordStart - 2, 91, this.imageWidth - 8, 103, 1325400064);
-				this.font.drawShadow(pMatrixStack, itextcomponent, textCordStart, 93, textColor);
+		}else {
+			if (!this.menu.getSlot(3).hasItem()) {
+				if (this.menu.getIncompatable()) {
+					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.invalid_combination");
+					textColor = 16736352;
+				}else if (this.menu.getGemIncompatable()) {
+					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.gem_used");
+					textColor = 16736352;
+				}else if (this.menu.getToManyModifiers()==1) {
+					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.too_many_modifiers");
+					textColor = 16736352;
+				}else if (this.menu.getToManyModifiers()==2) {
+					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.modifier_maxed");
+					textColor = 16736352;
+				}
 			}
+
+		}
+		if (itextcomponent != null) {
+			int textCordStart = this.imageWidth - 8 - this.font.width(itextcomponent) - 2;
+			fill(pMatrixStack, textCordStart - 2, 91, this.imageWidth - 8, 103, 1325400064);
+			this.font.drawShadow(pMatrixStack, itextcomponent, textCordStart, 93, textColor);
 		}
 
 	}

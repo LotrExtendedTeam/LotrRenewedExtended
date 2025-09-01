@@ -49,6 +49,7 @@
 		"lotr.common.inv.MixinFactionCraftingContainerInvoker",
 		"lotr.common.inv.MixinFactionCraftingResultSlotAccessor",
 		"lotr.common.inv.MixinForgeResultSlot",
+		"lotr.common.item.MixinDurnorItem",
 		"lotr.common.item.MixinRedBookItem",
 		"lotr.common.item.MixinVesselDrinkItem",
 		"lotr.common.item.MixinVesselOperations",
@@ -125,6 +126,7 @@
 		"net.minecraft.entity.projectile.MixinFishingBobberEntity",
 		"net.minecraft.inventory.container.MixinCraftingResultSlot",
 		"net.minecraft.item.MixinGlassBottleItem",
+		"net.minecraft.item.MixinItems",
 		"net.minecraft.item.MixinShearsItem",
 		"net.minecraft.tileentity.MixinSignTileEntityAccessor",
 		"net.minecraft.world.gen.feature.template.MixinTemplate"
