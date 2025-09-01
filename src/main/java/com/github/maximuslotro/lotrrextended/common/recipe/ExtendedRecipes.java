@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.recipe;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 
+import lotr.common.recipe.PouchRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
@@ -15,10 +16,13 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ExtendedRecipes {
 	public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, LotrExtendedMod.MODID);
 	public static IRecipeType<ExtendeStoneGrinderRecipe> MILLSTONE;
+	public static IRecipeType<ExtendedLeatherHatRecipe> LEATHER_HAT_RECIPE;
 	public static final RegistryObject<IRecipeSerializer<ExtendeStoneGrinderRecipe>> STONE_GRINDING_SERIALIZER = RECIPE_SERIALIZERS.register("stone_grinding", ExtendedStoneGrinderRecipeSerializer::new);
+	public static final RegistryObject<IRecipeSerializer<ExtendedLeatherHatRecipe>> CRAFTING_SPECIAL_LEATHER_HAT = RECIPE_SERIALIZERS.register("crafting_special_leather_hat", ExtendedLeatherHatRecipe.Serializer::new);
 
 	public static void register(IEventBus modBus) {
 		MILLSTONE = register("stone_grinding");
+		LEATHER_HAT_RECIPE = register("crafting_special_leather_hat");
 		RECIPE_SERIALIZERS.register(modBus);
 	}
 

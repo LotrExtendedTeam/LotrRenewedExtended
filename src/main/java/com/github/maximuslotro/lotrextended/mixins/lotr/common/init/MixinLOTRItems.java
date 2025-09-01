@@ -4,6 +4,7 @@ import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.common.item.*;
 import lotr.common.item.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -18,27 +19,6 @@ import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCoinType;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedCompostableItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedBannerPatterns;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedBedItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedBerries;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoarArmorItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedBucketOfCheeseCurds;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedCopperIngotItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedDuckEggItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedDyeableBoarArmorItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedGuldurilItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableConkerItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedUseItemAwardStatItem;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedDwarvenBedTileEntity;
@@ -1080,7 +1060,7 @@ public class MixinLOTRItems {
 		ExtendedItems.BLUE_DWARVEN_BOAR_ARMOR = regItemB("blue_dwarven_boar_armor", () -> new ExtendedBoarArmorItem(10, "blue_dwarven", new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
 
 		// misc equipment
-		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", () -> new ExtendedDyeableLOTRArmorItem(LOTRMaterial.COSMETIC, EquipmentSlotType.HEAD, "leather_hat"));
+		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", ExtendedLeatherHatItem::new);
 		ExtendedItems.BARROW_BLADE = regItemB("barrow_blade", ExtendedBarrowBlade::new);
 		ExtendedItems.COMMANDHORN = regItemB("horn_of_command", ExtendedCommandHornItem::new);
 
