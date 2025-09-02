@@ -322,38 +322,47 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.WHITE_FUR, ExtendedBlocks.WHITE_FUR_BUNDLE, null);
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, LOTRItems.FUR, LOTRBlocks.FUR_BUNDLE, null);
 
-		// hobbit pancakes
+		// Hobbit pancakes
 		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().getPath());
-		ExtendedFactionShapelessRecipeBuilder.shapeless(ExtendedItems.HOBBIT_PANCAKE.get(), 1, LOTRRecipes.HOBBIT_CRAFTING)
-				.requires(Items.EGG)
-				.requires(Items.MILK_BUCKET)
-				.requires(Items.WHEAT)
-				.unlockedBy("has_eggs", has(Items.EGG))
-				.unlockedBy("has_wheat", has(Items.WHEAT))
-				.unlockedBy("has_milk", has(Items.MILK_BUCKET))
-				.save(consumer, lotrLoc(ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().getPath()));
-
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HOBBIT_PANCAKE.get(), 1, LOTRRecipes.HOBBIT_CRAFTING)
+		.pattern("EW")
+		.pattern("M ")
+		.define('E', Items.EGG)
+		.define('M', Items.MILK_BUCKET)
+		.define('W', Items.WHEAT)
+		.unlockedBy("has_eggs", has(Items.EGG))
+		.unlockedBy("has_wheat", has(Items.WHEAT))
+		.unlockedBy("has_milk", has(Items.MILK_BUCKET))
+		.save(consumer, lotrLoc(ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().getPath()));
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HOBBIT_PANCAKE.get(), 2, LOTRRecipes.HOBBIT_CRAFTING)
+		.pattern("EW")
+		.pattern("M ")
+		.define('E', ExtendedItems.DUCK_EGG.get())
+		.define('M', Items.MILK_BUCKET)
+		.define('W', Items.WHEAT)
+		.unlockedBy("has_duck_egg", has(ExtendedItems.DUCK_EGG.get()))
+		.unlockedBy("has_milk", has(Items.MILK_BUCKET))
+		.save(consumer, lotrLoc(ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().getPath()+"_with_duck_egg"));
 		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get(), 8, LOTRRecipes.HOBBIT_CRAFTING)
-				.define('X', ExtendedItems.HOBBIT_PANCAKE.get())
-				.define('Y', LOTRItems.MAPLE_SYRUP.get())
-				.pattern("XXX")
-				.pattern("XYX")
-				.pattern("XXX")
-				.unlockedBy("has_" + ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_PANCAKE.get()))
-				.unlockedBy("has_" + LOTRItems.MAPLE_SYRUP.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_PANCAKE.get()))
-				.save(consumer, lotrLoc(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get().getRegistryName().getPath()));
-
+		.define('X', ExtendedItems.HOBBIT_PANCAKE.get())
+		.define('Y', LOTRItems.MAPLE_SYRUP.get())
+		.pattern("XXX")
+		.pattern("XYX")
+		.pattern("XXX")
+		.unlockedBy("has_" + ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_PANCAKE.get()))
+		.unlockedBy("has_" + LOTRItems.MAPLE_SYRUP.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_PANCAKE.get()))
+		.save(consumer, lotrLoc(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get(), 8, LOTRRecipes.HOBBIT_CRAFTING)
-				.define('X', ExtendedItems.HOBBIT_PANCAKE_SYRUP.get())
-				.define('Y', ExtendedItems.BUTTER.get())
-				.pattern("XXX")
-				.pattern("XYX")
-				.pattern("XXX")
-				.unlockedBy("has_" + ExtendedItems.HOBBIT_PANCAKE_SYRUP.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get()))
-				.unlockedBy("has_" + ExtendedItems.BUTTER.get().getRegistryName().getPath(), has(ExtendedItems.BUTTER.get()))
-				.save(consumer, lotrLoc(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get().getRegistryName().getPath()));
+		.define('X', ExtendedItems.HOBBIT_PANCAKE_SYRUP.get())
+		.define('Y', ExtendedItems.BUTTER.get())
+		.pattern("XXX")
+		.pattern("XYX")
+		.pattern("XXX")
+		.unlockedBy("has_" + ExtendedItems.HOBBIT_PANCAKE_SYRUP.get().getRegistryName().getPath(), has(ExtendedItems.HOBBIT_PANCAKE_SYRUP.get()))
+		.unlockedBy("has_" + ExtendedItems.BUTTER.get().getRegistryName().getPath(), has(ExtendedItems.BUTTER.get()))
+		.save(consumer, lotrLoc(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get().getRegistryName().getPath()));
 
 		//MORGUL
 		makeArmorRecipe(consumer, ExtendedItems.MORGUL_HELMET,

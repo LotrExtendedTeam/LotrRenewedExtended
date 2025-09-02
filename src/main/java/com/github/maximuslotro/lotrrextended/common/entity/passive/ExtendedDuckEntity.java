@@ -58,7 +58,7 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 	public float oFlapSpeed;
 	public float oFlap;
 	public float flapping = 1.0F;
-	public int eggTime = this.random.nextInt(6000) + 6000;
+	public int eggTime = getRandomEggTime();
 	private static final DataParameter<Byte> DATA_ID_FLAGS = EntityDataManager.defineId(ExtendedDuckEntity.class, DataSerializers.BYTE);
 
 	public ExtendedDuckEntity(EntityType<? extends ExtendedDuckEntity> p_i50282_1_, World p_i50282_2_) {
@@ -160,9 +160,13 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 		if (!this.level.isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && !this.getGender().isMale()) {
 			this.playSound(ExtendedSounds.DUCK_EGG.get(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.spawnAtLocation(ExtendedItems.DUCK_EGG.get());
-			this.eggTime = this.random.nextInt(6000) + 6000;
+			this.eggTime = getRandomEggTime();
 		}
 
+	}
+
+	private int getRandomEggTime() {
+		return this.random.nextInt(24000) + 12000;
 	}
 
 	@Override
