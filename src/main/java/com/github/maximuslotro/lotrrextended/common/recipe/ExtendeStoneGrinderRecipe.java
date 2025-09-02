@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.recipe;
 
 import java.util.Random;
 
+import lotr.common.init.ExtendedBlocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -101,5 +102,10 @@ public class ExtendeStoneGrinderRecipe implements IRecipe<IInventory> {
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
 		return ExtendedRecipes.STONE_GRINDING_SERIALIZER.get();
+	}
+
+	@Override
+	public ItemStack getToastSymbol() {
+		return new ItemStack(ExtendedBlocks.STONE_GRINDER.get());
 	}
 }
