@@ -1057,7 +1057,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeBirdcageRecipe(consumer, ExtendedBlocks.MITHRIL_BIRDCAGE, LOTRItems.MITHRIL_BARS, ExtendedTags.Items.MITHRIL_INGOT, null);
 		//Dirts
 		GENERATEDRECIPES.add(ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath());
-		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.BARREN_DIRT.get())
+		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.BARREN_DIRT.get(), 8)
 		.pattern("###")
 		.pattern("#X#")
 		.pattern("###")
