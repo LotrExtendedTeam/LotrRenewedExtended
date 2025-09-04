@@ -15,6 +15,8 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedEffects;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipesTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProcessors;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
@@ -22,7 +24,6 @@ import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedLootF
 import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedLootModifiers;
 import com.github.maximuslotro.lotrrextended.common.loot.modifiers.global.ExtendedGlobalLootModifiers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
-import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextProcessorManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
@@ -94,6 +95,7 @@ public class LotrExtendedMod{
 		ExtendedBlockStateProviderTypes.register(modBus);
 		ExtendedAttributes.register(modBus);
 		ExtendedCriteriaTriggers.generate();
+		ExtendedRecipesTypes.register();
 		ExtendedRecipes.register(modBus);
 		ExtendedParticles.register(modBus);
 		ExtendedContainerTypes.register(modBus);

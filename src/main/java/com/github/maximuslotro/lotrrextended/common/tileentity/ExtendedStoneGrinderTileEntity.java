@@ -6,10 +6,10 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipesTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderContainer;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendeStoneGrinderRecipe;
-import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 import com.google.common.collect.Lists;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
@@ -144,7 +144,7 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 				usingLubrication=false;
 			}
 			if (this.isPowered() && !this.items.get(0).isEmpty()) {
-				ExtendeStoneGrinderRecipe irecipe = this.level.getRecipeManager().getRecipeFor(ExtendedRecipes.MILLSTONE, this, this.level).orElse(null);
+				ExtendeStoneGrinderRecipe irecipe = this.level.getRecipeManager().getRecipeFor(ExtendedRecipesTypes.MILLSTONE, this, this.level).orElse(null);
 				if (this.isPowered() && this.canGrind(irecipe)) {
 					++this.grindingProgress;
 					if (this.grindingProgress == this.grindingTotalTime) {
@@ -239,7 +239,7 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 	}
 
 	protected int getTotalMillingTime() {
-		return this.level.getRecipeManager().getRecipeFor(ExtendedRecipes.MILLSTONE, this, this.level).map(ExtendeStoneGrinderRecipe::getMillingTime).orElse(200);
+		return this.level.getRecipeManager().getRecipeFor(ExtendedRecipesTypes.MILLSTONE, this, this.level).map(ExtendeStoneGrinderRecipe::getMillingTime).orElse(200);
 	}
 
 	@Override
