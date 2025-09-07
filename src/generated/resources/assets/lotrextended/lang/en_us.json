@@ -1378,7 +1378,7 @@
   "config.lotrextended.enableDefaultWaypointTeleportation": "Enable Teleportation To Default Waypoints",
   "config.lotrextended.enableDevMode": "Never enable this unless you are on the Extended Dev Team or developing the mod!",
   "config.lotrextended.enableDevModeClient": "Never enable this unless you are on the Extended Dev Team or debugging the mod!",
-  "config.lotrextended.enableEnchantedLootDrops": "Enable any enchated loot drops in Middle Earth (overall setting)",
+  "config.lotrextended.enableEnchantedLootDrops": "Enable any enchanted loot in Middle Earth (overall setting)",
   "config.lotrextended.enableExtendedLogging": "Toggle to show additional log information if stuff is not working properly",
   "config.lotrextended.enableFellowshipCreation": "Enable fellowship creation",
   "config.lotrextended.enableFishingEnchantedItems": "Enable fishing enchanted items in Middle Earth",

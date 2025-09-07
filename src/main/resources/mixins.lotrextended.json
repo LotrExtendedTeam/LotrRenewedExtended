@@ -118,6 +118,7 @@
 		"net.minecraft.block.MixinBlock",
 		"net.minecraft.block.MixinBlocks",
 		"net.minecraft.block.MixinFarmlandBlock",
+		"net.minecraft.block.MixinGrindstoneBlock",
 		"net.minecraft.block.MixinPaneBlock",
 		"net.minecraft.block.MixinSmithingTableBlock",
 		"net.minecraft.block.MixinSpreadableSnowyDirtBlock",

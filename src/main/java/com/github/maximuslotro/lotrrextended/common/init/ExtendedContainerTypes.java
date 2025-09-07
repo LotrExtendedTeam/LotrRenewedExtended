@@ -6,6 +6,7 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedBookshelfContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedGrindstoneContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainer;
@@ -33,6 +34,7 @@ public class ExtendedContainerTypes {
 	public static RegistryObject<ContainerType<ExtendedHiredUnitEquipmentContainer>> HIRED_UNIT_EQUIPMENT = register("hired_unit_equipment", "Unit Equipment", () -> IForgeContainerType.create(ExtendedHiredUnitEquipmentContainer::new));
 	public static RegistryObject<ContainerType<ExtendedRepairContainer>> EXTENDED_ANVIL = register("repair", null, () -> IForgeContainerType.create(ExtendedRepairContainer::new));
 	public static RegistryObject<ContainerType<ExtendedSmithingTableContainer>> EXTENDED_SMITHING = register("smithing", null, () -> IForgeContainerType.create(ExtendedSmithingTableContainer::new));
+	public static RegistryObject<ContainerType<ExtendedGrindstoneContainer>> EXTENDED_GRINDSTONE = register("grindstone", null, () -> IForgeContainerType.create(ExtendedGrindstoneContainer::new));
 
 	private static <T extends Container> RegistryObject<ContainerType<T>> register(String name, String defaultName, Supplier<ContainerType<T>> sup) {
 		if(DatagenModLoader.isRunningDataGen() && defaultName!=null) {

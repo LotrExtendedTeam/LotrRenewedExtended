@@ -63,7 +63,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		builder.pop();
 
 		builder.push("Vanilla Patches");
-		enableEnchantedLootDrops = createBooleanValue(builder, "enableEnchantedLootDrops", true, false, "Enable any enchated loot drops in Middle Earth (overall setting)");
+		enableEnchantedLootDrops = createBooleanValue(builder, "enableEnchantedLootDrops", true, false, "Enable any enchanted loot in Middle Earth (overall setting)");
 		enableFishingEnchantedItems = createBooleanValue(builder, "enableFishingEnchantedItems", false, false, "Enable fishing enchanted items in Middle Earth");
 		builder.pop();
 

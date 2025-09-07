@@ -5,7 +5,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedSmithingTableContainer;
 
 import lotr.common.init.LOTRDimensions;
@@ -25,7 +24,7 @@ public class MixinSmithingTableBlock {
 	 * <p>
 	 * If the world dimension is a mod-defined dimension (checked via 
 	 * {@link LOTRDimensions#isModDimension(World)}), the smithing table opens an 
-	 * {@link ExtendedRepairContainer} instead of the vanilla smithing container.
+	 * {@link ExtendedSmithingTableContainer} instead of the vanilla smithing container.
 	 * </p>
 	 *
 	 * @param pState The current block state of the smithing table being interacted with.
