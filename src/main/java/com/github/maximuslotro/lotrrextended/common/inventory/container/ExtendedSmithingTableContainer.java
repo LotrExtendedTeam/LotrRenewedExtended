@@ -66,7 +66,7 @@ public class ExtendedSmithingTableContainer extends AbstractRepairContainer {
 	@Override
 	protected boolean mayPickup(PlayerEntity pPlayer, boolean pHasStack) {
 		return (this.selectedRecipe != null && this.selectedRecipe.matches(this.inputSlots, this.level))
-				||(this.selectedExtendedRecipe != null && this.selectedExtendedRecipe.matches(this.inputSlots, this.level));
+			||(this.selectedExtendedRecipe != null && this.selectedExtendedRecipe.matches(this.inputSlots, this.level));
 	}
 
 	@Override
@@ -74,8 +74,10 @@ public class ExtendedSmithingTableContainer extends AbstractRepairContainer {
 		pInputItem.onCraftedBy(pPlayer.level, pPlayer, pInputItem.getCount());
 		this.resultSlots.awardUsedRecipes(pPlayer);
 		if(selectedExtendedRecipe!=null) {
-			selectedExtendedRecipe.postProcess(inputSlots, 0, pInputItem);
-			selectedExtendedRecipe.postProcess(inputSlots, 1, pInputItem);
+			ExtendedISmithingRecipe nonModifiableRecipe = selectedExtendedRecipe;
+			nonModifiableRecipe.postProcess(inputSlots, 0, pInputItem);
+			nonModifiableRecipe.postProcess(inputSlots, 1, pInputItem);
+			nonModifiableRecipe=null;
 		}else if(selectedRecipe!=null) {
 			this.shrinkStackInSlot(0);
 			this.shrinkStackInSlot(1);
@@ -97,45 +99,45 @@ public class ExtendedSmithingTableContainer extends AbstractRepairContainer {
 	/**
 	 * called when the Anvil Input Slot changes, calculates the new result and puts it in the output slot
 	 */
-	 @Override
-	 public void createResult() {
-		 List<SmithingRecipe> list = this.level.getRecipeManager().getRecipesFor(IRecipeType.SMITHING, this.inputSlots, this.level);
-		 if (list.isEmpty()) {
-			 //Extended Start
-			 List<ExtendedISmithingRecipe> extendedList = this.level.getRecipeManager().getRecipesFor(ExtendedRecipeTypes.EXTENDED_SMITHING, this.inputSlots, this.level);
-			 if (list.isEmpty()) {
-				 this.resultSlots.setItem(0, ItemStack.EMPTY);
-				 this.selectedRecipe = null;
-				 this.selectedExtendedRecipe = null;
-			 } else {
-				 this.selectedRecipe = null;
-				 this.selectedExtendedRecipe = extendedList.get(0);
-				 ItemStack itemstack = this.selectedExtendedRecipe.assemble(this.inputSlots);
-				 this.resultSlots.setRecipeUsed(this.selectedExtendedRecipe);
-				 this.resultSlots.setItem(0, itemstack);
-			 }
-			 //Extended End
-		 } else {
-			 this.selectedExtendedRecipe = null;
-			 this.selectedRecipe = list.get(0);
-			 ItemStack itemstack = this.selectedRecipe.assemble(this.inputSlots);
-			 this.resultSlots.setRecipeUsed(this.selectedRecipe);
-			 this.resultSlots.setItem(0, itemstack);
-		 }
-	 }
+	@Override
+	public void createResult() {
+		List<SmithingRecipe> list = this.level.getRecipeManager().getRecipesFor(IRecipeType.SMITHING, this.inputSlots, this.level);
+		if (list.isEmpty()) {
+			//Extended Start
+			List<ExtendedISmithingRecipe> extendedList = this.level.getRecipeManager().getRecipesFor(ExtendedRecipeTypes.EXTENDED_SMITHING, this.inputSlots, this.level);
+			if (extendedList.isEmpty()) {
+				this.resultSlots.setItem(0, ItemStack.EMPTY);
+				this.selectedRecipe = null;
+				this.selectedExtendedRecipe = null;
+			} else {
+				this.selectedRecipe = null;
+				this.selectedExtendedRecipe = extendedList.get(0);
+				ItemStack itemstack = this.selectedExtendedRecipe.assemble(this.inputSlots);
+				this.resultSlots.setRecipeUsed(this.selectedExtendedRecipe);
+				this.resultSlots.setItem(0, itemstack);
+			}
+			//Extended End
+		} else {
+			this.selectedExtendedRecipe = null;
+			this.selectedRecipe = list.get(0);
+			ItemStack itemstack = this.selectedRecipe.assemble(this.inputSlots);
+			this.resultSlots.setRecipeUsed(this.selectedRecipe);
+			this.resultSlots.setItem(0, itemstack);
+		}
+	}
 
-	 @Override
-	 protected boolean shouldQuickMoveToAdditionalSlot(ItemStack pStack) {
-		 return this.recipes.stream().anyMatch((recipe) -> {return recipe.isAdditionIngredient(pStack);}) 
-				 || this.extendedRecipes.stream().anyMatch((recipe) -> {return recipe.isAdditionalIngredient(pStack);});
-	 }
+	@Override
+	protected boolean shouldQuickMoveToAdditionalSlot(ItemStack pStack) {
+		return this.recipes.stream().anyMatch((recipe) -> {return recipe.isAdditionIngredient(pStack);}) 
+			|| this.extendedRecipes.stream().anyMatch((recipe) -> {return recipe.isAdditionalIngredient(pStack);});
+	}
 
-	 /**
-	  * Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is
-	  * null for the initial slot that was double-clicked.
-	  */
-	 @Override
-	 public boolean canTakeItemForPickAll(ItemStack pStack, Slot pSlot) {
-		 return pSlot.container != this.resultSlots && super.canTakeItemForPickAll(pStack, pSlot);
-	 }
+	/**
+	 * Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is
+	 * null for the initial slot that was double-clicked.
+	 */
+	@Override
+	public boolean canTakeItemForPickAll(ItemStack pStack, Slot pSlot) {
+		return pSlot.container != this.resultSlots && super.canTakeItemForPickAll(pStack, pSlot);
+	}
 }
