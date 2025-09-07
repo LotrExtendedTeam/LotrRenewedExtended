@@ -191,5 +191,10 @@ public class ExtendedTags {
 
 		public static final ITag.INamedTag<Item> CHAINS = ItemTags.bind("lotrextended:chains");
 		public static final ITag.INamedTag<Item> WOOL_BLOCKS = ItemTags.bind("lotrextended:wool_blocks");
+		
+		public static final ITag.INamedTag<Item> COIN_MINTING_ONE = ItemTags.bind("lotrextended:coin_mintables_one");
+		public static final ITag.INamedTag<Item> COIN_MINTING_TEN = ItemTags.bind("lotrextended:coin_mintables_ten");
+		public static final ITag.INamedTag<Item> COIN_MINTING_HUNDRED = ItemTags.bind("lotrextended:coin_mintables_hundred");
+
 	}
 }

@@ -2,8 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.recipe;
 
 import java.util.Random;
 
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipes;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipesTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipeSerializers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipeTypes;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
@@ -107,12 +107,12 @@ public class ExtendeStoneGrinderRecipe implements IRecipe<IInventory> {
 
 	@Override
 	public IRecipeType<?> getType() {
-		return ExtendedRecipesTypes.MILLSTONE;
+		return ExtendedRecipeTypes.MILLSTONE;
 	}
 
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
-		return ExtendedRecipes.STONE_GRINDING_SERIALIZER.get();
+		return ExtendedRecipeSerializers.STONE_GRINDING_SERIALIZER.get();
 	}
 
 	@Override

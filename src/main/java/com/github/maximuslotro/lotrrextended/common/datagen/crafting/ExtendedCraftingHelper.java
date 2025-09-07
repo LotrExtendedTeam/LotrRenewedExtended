@@ -13,7 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.Ex
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedMillingRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipeSerializers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import lotr.common.block.AxialSlabBlock;
@@ -1942,7 +1942,7 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 	protected void makeMillingRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output, float breakChance, int countMin, int countMax) {
 		String name1 = output.get().getRegistryName().getNamespace()+"_"+output.get().getRegistryName().getPath();
 		String name2 = input.get().getRegistryName().getNamespace()+"_"+input.get().getRegistryName().getPath();
-		ExtendedMillingRecipeBuilder.grinding(output.get(), countMin, countMax, Ingredient.of(input.get()), breakChance, ExtendedRecipes.STONE_GRINDING_SERIALIZER.get()).save(consumer, extendedLoc(name1+"_grinded_from_"+name2));
+		ExtendedMillingRecipeBuilder.grinding(output.get(), countMin, countMax, Ingredient.of(input.get()), breakChance, ExtendedRecipeSerializers.STONE_GRINDING_SERIALIZER.get()).save(consumer, extendedLoc(name1+"_grinded_from_"+name2));
 	}
 
 	public void checkForMissingRecipes() {

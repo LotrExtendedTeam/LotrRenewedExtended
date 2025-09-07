@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipesTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipeTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderSlots.ExtendedStoneGrinderLubricationSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderSlots.ExtendedStoneGrinderResultSlot;
@@ -113,7 +113,7 @@ public class ExtendedStoneGrinderContainer extends Container {
 	}
 
 	protected boolean canMill(ItemStack pStack) {
-		return this.level.getRecipeManager().getRecipeFor(ExtendedRecipesTypes.MILLSTONE, new Inventory(pStack), this.level).isPresent();
+		return this.level.getRecipeManager().getRecipeFor(ExtendedRecipeTypes.MILLSTONE, new Inventory(pStack), this.level).isPresent();
 	}
 
 	protected boolean isLubrication(ItemStack pStack) {

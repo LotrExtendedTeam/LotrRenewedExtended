@@ -6,8 +6,8 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipesTypes;
-import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedISmeltingRecipe;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipeTypes;
+import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedISmithingRecipe;
 
 import io.netty.buffer.Unpooled;
 import net.minecraft.block.BlockState;
@@ -30,12 +30,12 @@ public class ExtendedSmithingTableContainer extends AbstractRepairContainer {
 	private final World level;
 	@Nullable
 	private SmithingRecipe selectedRecipe;
-	private ExtendedISmeltingRecipe selectedExtendedRecipe;
+	private ExtendedISmithingRecipe selectedExtendedRecipe;
 	private final List<SmithingRecipe> recipes;
 	/**
 	 * Recipes added by extended injected into the logic
 	 */
-	private final List<ExtendedISmeltingRecipe> extendedRecipes;
+	private final List<ExtendedISmithingRecipe> extendedRecipes;
 
 	public ExtendedSmithingTableContainer(int pContainerId, PlayerInventory pPlayerInventory) {
 		this(pContainerId, pPlayerInventory, IWorldPosCallable.NULL, new PacketBuffer(Unpooled.buffer()));
@@ -54,7 +54,7 @@ public class ExtendedSmithingTableContainer extends AbstractRepairContainer {
 		this.level = pPlayerInventory.player.level;
 		this.recipes = this.level.getRecipeManager().getAllRecipesFor(IRecipeType.SMITHING);
 		// Extended Start
-		this.extendedRecipes = this.level.getRecipeManager().getAllRecipesFor(ExtendedRecipesTypes.EXTENDED_SMELTING);
+		this.extendedRecipes = this.level.getRecipeManager().getAllRecipesFor(ExtendedRecipeTypes.EXTENDED_SMITHING);
 		// Extended End
 	}
 
@@ -74,8 +74,8 @@ public class ExtendedSmithingTableContainer extends AbstractRepairContainer {
 		pInputItem.onCraftedBy(pPlayer.level, pPlayer, pInputItem.getCount());
 		this.resultSlots.awardUsedRecipes(pPlayer);
 		if(selectedExtendedRecipe!=null) {
-			selectedExtendedRecipe.postProcess(inputSlots, 0);
-			selectedExtendedRecipe.postProcess(inputSlots, 1);
+			selectedExtendedRecipe.postProcess(inputSlots, 0, pInputItem);
+			selectedExtendedRecipe.postProcess(inputSlots, 1, pInputItem);
 		}else if(selectedRecipe!=null) {
 			this.shrinkStackInSlot(0);
 			this.shrinkStackInSlot(1);
@@ -102,7 +102,7 @@ public class ExtendedSmithingTableContainer extends AbstractRepairContainer {
 		 List<SmithingRecipe> list = this.level.getRecipeManager().getRecipesFor(IRecipeType.SMITHING, this.inputSlots, this.level);
 		 if (list.isEmpty()) {
 			 //Extended Start
-			 List<ExtendedISmeltingRecipe> extendedList = this.level.getRecipeManager().getRecipesFor(ExtendedRecipesTypes.EXTENDED_SMELTING, this.inputSlots, this.level);
+			 List<ExtendedISmithingRecipe> extendedList = this.level.getRecipeManager().getRecipesFor(ExtendedRecipeTypes.EXTENDED_SMITHING, this.inputSlots, this.level);
 			 if (list.isEmpty()) {
 				 this.resultSlots.setItem(0, ItemStack.EMPTY);
 				 this.selectedRecipe = null;
@@ -127,7 +127,7 @@ public class ExtendedSmithingTableContainer extends AbstractRepairContainer {
 	 @Override
 	 protected boolean shouldQuickMoveToAdditionalSlot(ItemStack pStack) {
 		 return this.recipes.stream().anyMatch((recipe) -> {return recipe.isAdditionIngredient(pStack);}) 
-				 || this.extendedRecipes.stream().anyMatch((recipe) -> {return recipe.isAdditionIngredient(pStack);});
+				 || this.extendedRecipes.stream().anyMatch((recipe) -> {return recipe.isAdditionalIngredient(pStack);});
 	 }
 
 	 /**

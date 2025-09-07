@@ -2,17 +2,17 @@ package com.github.maximuslotro.lotrrextended.common.init;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendeStoneGrinderRecipe;
-import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedISmeltingRecipe;
+import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedISmithingRecipe;
 
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
-public class ExtendedRecipesTypes {
+public class ExtendedRecipeTypes {
 
 	public static IRecipeType<ExtendeStoneGrinderRecipe> MILLSTONE = register("stone_grinding");
-	public static IRecipeType<ExtendedISmeltingRecipe> EXTENDED_SMELTING = register("smelting");
+	public static IRecipeType<ExtendedISmithingRecipe> EXTENDED_SMITHING = register("smithing");
 
 	public static void register() {}
 

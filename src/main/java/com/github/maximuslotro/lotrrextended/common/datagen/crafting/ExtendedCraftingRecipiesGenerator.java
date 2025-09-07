@@ -2,12 +2,14 @@ package com.github.maximuslotro.lotrrextended.common.datagen.crafting;
 
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedAlloyCookingRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedCustomRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedVesselBrewingRecipeBuilder;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipeSerializers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import lotr.common.init.ExtendedBlocks;
@@ -20,6 +22,7 @@ import lotr.common.recipe.LOTRRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.CookingRecipeBuilder;
+import net.minecraft.data.CustomRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapelessRecipeBuilder;
@@ -46,6 +49,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		buildStoneGrinderRecipes(consumer);
 		buildStonecutterRecipes(consumer);
 		buildSmeltingRecipes(consumer);
+		buildSmithingRecipes(consumer);
 		addOverrides();
 		checkForMissingRecipes();
 	}
@@ -1322,6 +1326,11 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeSmeltingRecipes(consumer, ExtendedItems.RUBY_ORE.get(), ExtendedItems.RUBY.get());
 		makeSmeltingRecipes(consumer, ExtendedItems.SAPPHIRE_ORE.get(), ExtendedItems.SAPPHIRE.get());
 		makeSmeltingRecipes(consumer, ExtendedItems.TOPAZ_ORE.get(), ExtendedItems.TOPAZ.get());
+	}
+
+	private void buildSmithingRecipes(Consumer<IFinishedRecipe> consumer) {
+		CustomRecipeBuilder.special(ExtendedRecipeSerializers.EXTENDED_SMITHING_GEM.get()).save(consumer, LotrExtendedMod.MODID+":gem_coloring");
+		CustomRecipeBuilder.special(ExtendedRecipeSerializers.EXTENDED_SMITHING_COIN.get()).save(consumer, LotrExtendedMod.MODID+":coin_minting");
 	}
 
 	private static void makeSmeltingRecipes(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result) {

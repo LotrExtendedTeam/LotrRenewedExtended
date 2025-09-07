@@ -1,21 +1,24 @@
 package com.github.maximuslotro.lotrrextended.common.recipe;
 
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipeSerializers;
 import com.google.gson.JsonObject;
 
-import net.minecraft.block.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.ShapedRecipe;
+import net.minecraft.item.crafting.SmithingRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class ExtendedSmithingRecipe implements ExtendedISmeltingRecipe {
+/**
+ * Based off of {@link SmithingRecipe}
+ * */
+public class ExtendedSmithingRecipe implements ExtendedISmithingRecipe {
 	private final Ingredient base;
 	private final Ingredient addition;
 	private final ItemStack result;
@@ -51,14 +54,6 @@ public class ExtendedSmithingRecipe implements ExtendedISmeltingRecipe {
 	}
 
 	/**
-	 * Used to determine if this recipe can fit in a grid of the given width/height
-	 */
-	@Override
-	public boolean canCraftInDimensions(int pWidth, int pHeight) {
-		return pWidth * pHeight >= 2;
-	}
-
-	/**
 	 * Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one
 	 * possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
 	 */
@@ -68,13 +63,8 @@ public class ExtendedSmithingRecipe implements ExtendedISmeltingRecipe {
 	}
 
 	@Override
-	public boolean isAdditionIngredient(ItemStack pAddition) {
+	public boolean isAdditionalIngredient(ItemStack pAddition) {
 		return this.addition.test(pAddition);
-	}
-
-	@Override
-	public ItemStack getToastSymbol() {
-		return new ItemStack(Blocks.SMITHING_TABLE);
 	}
 
 	@Override
@@ -84,7 +74,7 @@ public class ExtendedSmithingRecipe implements ExtendedISmeltingRecipe {
 
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
-		return ExtendedRecipes.EXTENDED_SMITHING.get();
+		return ExtendedRecipeSerializers.EXTENDED_SMITHING.get();
 	}
 
 	public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ExtendedSmithingRecipe> {
