@@ -4,11 +4,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import io.netty.buffer.Unpooled;
-import lotr.common.util.LOTREnchantUtils;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -28,6 +29,10 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
+/**
+ * Based off of {@link net.minecraft.inventory.container.GrindstoneContainer}
+ * 
+ * */
 public class ExtendedGrindstoneContainer extends Container {
 	public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.grindstone_title");
 	/** The inventory slot that stores the output of the crafting recipe. */
@@ -66,7 +71,7 @@ public class ExtendedGrindstoneContainer extends Container {
 			 */
 			@Override
 			public boolean mayPlace(ItemStack pStack) {
-				return pStack.isDamageableItem() || pStack.getItem() == Items.ENCHANTED_BOOK || pStack.isEnchanted() || !LOTREnchantUtils.getEnchantList(pStack).isEmpty();
+				return pStack.isDamageableItem() || pStack.getItem() == Items.ENCHANTED_BOOK || pStack.isEnchanted() || ExtendedModifierUtils.hasModifiers(pStack);
 			}
 		});
 		this.addSlot(new Slot(this.repairSlots, 1, 49, 40) {
@@ -75,7 +80,7 @@ public class ExtendedGrindstoneContainer extends Container {
 			 */
 			@Override
 			public boolean mayPlace(ItemStack pStack) {
-				return pStack.isDamageableItem() || pStack.getItem() == Items.ENCHANTED_BOOK || pStack.isEnchanted() || !LOTREnchantUtils.getEnchantList(pStack).isEmpty();
+				return pStack.isDamageableItem() || pStack.getItem() == Items.ENCHANTED_BOOK || pStack.isEnchanted() || ExtendedModifierUtils.hasModifiers(pStack);
 			}
 		});
 		this.addSlot(new Slot(this.resultSlots, 2, 129, 34) {
@@ -171,9 +176,10 @@ public class ExtendedGrindstoneContainer extends Container {
 		if (!hasAnyInput) {
 			this.resultSlots.setItem(0, ItemStack.EMPTY);
 		} else {
-			boolean hasNonEnchantableItem = (!leftInput.isEmpty() && leftInput.getItem() != Items.ENCHANTED_BOOK && (!leftInput.isEnchanted() && !LOTREnchantUtils.getEnchantList(leftInput).isEmpty())) 
-				|| (!rightInput.isEmpty() && rightInput.getItem() != Items.ENCHANTED_BOOK && (!rightInput.isEnchanted() && !LOTREnchantUtils.getEnchantList(rightInput).isEmpty()));
-			if (leftInput.getCount() > 1 || rightInput.getCount() > 1 || (!hasBothInputs && hasNonEnchantableItem)) {
+			boolean hasNonEnchantedItem = (!leftInput.isEmpty() && leftInput.getItem() != Items.ENCHANTED_BOOK && !leftInput.isEnchanted() && !ExtendedModifierUtils.hasModifiers(leftInput)) 
+				|| (!rightInput.isEmpty() && rightInput.getItem() != Items.ENCHANTED_BOOK && !rightInput.isEnchanted() && !ExtendedModifierUtils.hasModifiers(rightInput));
+			if (leftInput.getCount() > 1 || rightInput.getCount() > 1 || (!hasBothInputs && hasNonEnchantedItem)) {
+				ExtendedLog.info("Failed first check");
 				this.resultSlots.setItem(0, ItemStack.EMPTY);
 				this.broadcastChanges();
 				return;

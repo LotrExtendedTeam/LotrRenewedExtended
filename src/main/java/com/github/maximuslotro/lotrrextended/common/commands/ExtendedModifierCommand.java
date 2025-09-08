@@ -2,13 +2,13 @@ package com.github.maximuslotro.lotrrextended.common.commands;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifierTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 
-import lotr.common.util.LOTREnchantUtils;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
@@ -59,13 +59,13 @@ public class ExtendedModifierCommand {
 		}
 		if(add) {
 			// don't allow duplicates
-			if (LOTREnchantUtils.getEnchantList(stack).contains(enchant)) {
+			if (ExtendedModifierUtils.getModifierList(stack).contains(enchant)) {
 				source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_duplicate"));
 				return 0;
 			}
 			// only allow one bane at a time
 			if (enchant.getModifierType().equals(ExtendedModifierTypes.BANE)) {
-				List<ExtendedModifiers> enchants = LOTREnchantUtils.getEnchantList(stack);
+				List<ExtendedModifiers> enchants = ExtendedModifierUtils.getModifierList(stack);
 				boolean containsBane = enchants.stream().anyMatch(enchantment -> ExtendedModifierTypes.BANE.equals(enchantment.getModifierType()));
 				if (containsBane) {
 					source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.only_one_bane"));
@@ -76,12 +76,12 @@ public class ExtendedModifierCommand {
 				source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_cant_modifier"));
 				return 0;
 			}
-			LOTREnchantUtils.enchant(stack, enchant);
+			ExtendedModifierUtils.addModifier(stack, enchant);
 			ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + enchant.getLocalKey());
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.enchant.modifier_added", newName, stack.getItem().getName(stack)).withStyle(TextFormatting.GOLD), true);
 		}else {
-			if (LOTREnchantUtils.getEnchantList(stack).contains(enchant)) {
-				LOTREnchantUtils.removeEnchant(stack, enchant);
+			if (ExtendedModifierUtils.getModifierList(stack).contains(enchant)) {
+				ExtendedModifierUtils.removeModifier(stack, enchant);
 				ITextComponent removedName = new TranslationTextComponent("enchant.lotrextended." + enchant.getLocalKey());
 				source.sendSuccess(new TranslationTextComponent("command.lotrextended.enchant.modifier_removed", removedName, stack.getItem().getName(stack)).withStyle(TextFormatting.GOLD), true);
 			} else {
@@ -99,7 +99,7 @@ public class ExtendedModifierCommand {
 		}
 
 		ItemStack stack = ((PlayerEntity) source.getEntity()).getItemInHand(Hand.MAIN_HAND);
-		if (LOTREnchantUtils.clearEnchants(stack)) {
+		if (ExtendedModifierUtils.clearModifiers(stack)) {
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.enchant.modifier_removed_all", stack.getItem().getName(stack)).withStyle(TextFormatting.GOLD), true);
 		} else {
 			source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.no_present_modifiers"));

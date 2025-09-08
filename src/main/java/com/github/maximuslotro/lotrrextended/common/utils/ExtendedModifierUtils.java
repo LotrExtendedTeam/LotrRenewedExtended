@@ -1,4 +1,4 @@
-package lotr.common.util;
+package com.github.maximuslotro.lotrrextended.common.utils;
 
 import lotr.common.entity.npc.*;
 import lotr.common.init.ExtendedItems;
@@ -22,62 +22,62 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifierTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSmithScroll;
 
-public class LOTREnchantUtils {
-
-    public static void enchant(ItemStack stack, ExtendedModifiers enchantment) {
+public class ExtendedModifierUtils {
+	private static final String NBTMODIFIER = "LOTREnchantments";
+    public static void addModifier(ItemStack stack, ExtendedModifiers modifier) {
         CompoundNBT tag = stack.getOrCreateTag();
-        if (!tag.contains("LOTREnchantments", 9)) {
-            tag.put("LOTREnchantments", new ListNBT());
+        if (!tag.contains(NBTMODIFIER, 9)) {
+            tag.put(NBTMODIFIER, new ListNBT());
         }
-        ListNBT listnbt = tag.getList("LOTREnchantments", 10);
+        ListNBT listnbt = tag.getList(NBTMODIFIER, 10);
         CompoundNBT compoundnbt = new CompoundNBT();
-        compoundnbt.putString("key", enchantment.getNbtKey());
+        compoundnbt.putString("key", modifier.getNbtKey());
         listnbt.add(compoundnbt);
     }
 
-    public static void setEnchantments(ItemStack stack, List<ExtendedModifiers> enchantments) {
-    	clearEnchants(stack);
+    public static void setModifiers(ItemStack stack, List<ExtendedModifiers> modifiers) {
+    	clearModifiers(stack);
         CompoundNBT tag = stack.getOrCreateTag();
-        if (!tag.contains("LOTREnchantments", 9)) {
-            tag.put("LOTREnchantments", new ListNBT());
+        if (!tag.contains(NBTMODIFIER, 9)) {
+            tag.put(NBTMODIFIER, new ListNBT());
         }
-        ListNBT listnbt = tag.getList("LOTREnchantments", 10);
-        for(ExtendedModifiers modifier : enchantments) {
+        ListNBT listnbt = tag.getList(NBTMODIFIER, 10);
+        for(ExtendedModifiers modifier : modifiers) {
         	CompoundNBT compoundnbt = new CompoundNBT();
             compoundnbt.putString("key", modifier.getNbtKey());
             listnbt.add(compoundnbt);
         }
     }
 
-    public static void removeEnchant(ItemStack stack, ExtendedModifiers enchantment) {
-        if (!getEnchantList(stack).contains(enchantment)) {
+    public static void removeModifier(ItemStack stack, ExtendedModifiers modifier) {
+        if (!getModifierList(stack).contains(modifier)) {
             return;
         }
 
-        ListNBT listnbt = stack.getTag().getList("LOTREnchantments", 10); //Null tag already validated by getEnchantList
+        ListNBT listnbt = stack.getTag().getList(NBTMODIFIER, 10); //Null tag already validated by getModifierList
         List<CompoundNBT> entriesToRemove = new ArrayList<>();
         for (INBT nbt : listnbt) {
             if (!(nbt instanceof CompoundNBT)) continue;
 
             CompoundNBT entry = (CompoundNBT) nbt;
-            if (entry.getString("key").equals(enchantment.getNbtKey())) entriesToRemove.add(entry);
+            if (entry.getString("key").equals(modifier.getNbtKey())) entriesToRemove.add(entry);
         }
 
         listnbt.removeAll(entriesToRemove);
         if(listnbt.isEmpty()) {
-        	stack.getTag().remove("LOTREnchantments");
+        	stack.getTag().remove(NBTMODIFIER);
         	 if(stack.getTag().isEmpty()) {
              	stack.setTag(null);
              }
         }
     }
 
-    public static boolean clearEnchants(ItemStack stack) {
-        if (getEnchantList(stack).isEmpty()) {
+    public static boolean clearModifiers(ItemStack stack) {
+        if (!hasModifiers(stack)) {
             return false;
         }
-        CompoundNBT tag = stack.getTag(); //Null tag already validated by getEnchantList
-        tag.remove("LOTREnchantments");
+        CompoundNBT tag = stack.getTag(); //Null tag already validated by getModifierList
+        tag.remove(NBTMODIFIER);
         if(tag.isEmpty()) {
         	stack.setTag(null);
         }
@@ -86,14 +86,14 @@ public class LOTREnchantUtils {
 
     public static void incrementBaneProgress(ItemStack stack, Entity entity, PlayerEntity player) {
         // exit the method if the item already has a bane
-        if (containsBane(getEnchantList(stack))) {
+        if (containsBane(getModifierList(stack))) {
             return;
         }
 
         // exit the method if there is applicable bane for that entity
-        ExtendedModifiers enchantment = getBaneByEntity(entity);
+        ExtendedModifiers modifier = getBaneByEntity(entity);
         // Only allow earned banes to be progressed
-        if (enchantment == null || enchantment.getRarity()!=ExtendedModifierRarity.EARNED) {
+        if (modifier == null || modifier.getRarity()!=ExtendedModifierRarity.EARNED) {
             return;
         }
 
@@ -107,7 +107,7 @@ public class LOTREnchantUtils {
         boolean containsProgress = false;
         for (INBT nbt : listnbt) {
             CompoundNBT entry = (CompoundNBT) nbt;
-            if (entry.getString("key").equals(enchantment.getNbtKey())) {
+            if (entry.getString("key").equals(modifier.getNbtKey())) {
                 containsProgress = true;
                 updatedKillCount = entry.getInt("kills") + 1;
                 entry.putInt("kills", updatedKillCount);
@@ -117,7 +117,7 @@ public class LOTREnchantUtils {
         if (!containsProgress) {
             updatedKillCount = 1;
             CompoundNBT compoundnbt = new CompoundNBT();
-            compoundnbt.putString("key", enchantment.getNbtKey());
+            compoundnbt.putString("key", modifier.getNbtKey());
             compoundnbt.putInt("kills", updatedKillCount);
             listnbt.add(compoundnbt);
         }
@@ -125,14 +125,14 @@ public class LOTREnchantUtils {
         if (updatedKillCount >= 100) {
             // announce in chat that the item has acquired the bane
             if (player != null) {
-                player.sendMessage(new TranslationTextComponent("enchant.lotrextended.bane.earn", stack.getDisplayName(), new TranslationTextComponent("enchant.lotrextended."+ enchantment.getLocalKey() + ".race")), Util.NIL_UUID);
+                player.sendMessage(new TranslationTextComponent("enchant.lotrextended.bane.earn", stack.getDisplayName(), new TranslationTextComponent("enchant.lotrextended."+ modifier.getLocalKey() + ".race")), Util.NIL_UUID);
                 for (ServerPlayerEntity cPlayer : player.getServer().getPlayerList().getPlayers()) {
                     if (cPlayer.getUUID() == player.getUUID()) continue;
-                    cPlayer.sendMessage(new TranslationTextComponent("enchant.lotrextended.bane.earn_name", player.getName(), stack.getDisplayName(), new TranslationTextComponent("enchant.lotrextended."+ enchantment.getLocalKey() + ".race")), Util.NIL_UUID);
+                    cPlayer.sendMessage(new TranslationTextComponent("enchant.lotrextended.bane.earn_name", player.getName(), stack.getDisplayName(), new TranslationTextComponent("enchant.lotrextended."+ modifier.getLocalKey() + ".race")), Util.NIL_UUID);
                 }
             }
 
-            LOTREnchantUtils.enchant(stack, enchantment);
+            ExtendedModifierUtils.addModifier(stack, modifier);
             tag.remove("LOTRBaneProgress");
             if(tag.isEmpty()) {
             	stack.setTag(null);
@@ -160,15 +160,19 @@ public class LOTREnchantUtils {
         }
     }
 
-    public static boolean containsBane(List<ExtendedModifiers> enchantments) {
-        return enchantments.contains(ExtendedModifiers.DWARF_BANE) ||
-                enchantments.contains(ExtendedModifiers.ELF_BANE) ||
-                enchantments.contains(ExtendedModifiers.ORC_BANE) ||
-                enchantments.contains(ExtendedModifiers.WIGHT_BANE) ||
-                enchantments.contains(ExtendedModifiers.WARG_BANE);
+    public static boolean containsBane(List<ExtendedModifiers> modifiers) {
+    	return modifiers.stream().anyMatch((modifier)-> modifier.getModifierType()==ExtendedModifierTypes.BANE);
     }
 
-    public static List<ExtendedModifiers> getEnchantList(ItemStack stack) {
+    public static boolean hasModifiers(ItemStack stack) {
+        if (stack.hasTag() && stack.getTag().contains(NBTMODIFIER, 9)) {
+           return !stack.getTag().getList(NBTMODIFIER, 10).isEmpty();
+        } else {
+           return false;
+        }
+     }
+
+    public static List<ExtendedModifiers> getModifierList(ItemStack stack) {
     	if(stack.getItem() == ExtendedItems.MODIFIER_SCROLL.get()){
     		List<ExtendedModifiers> result = new ArrayList<>();
     		if(!ExtendedSmithScroll.getModifier(stack).isUnknown()) {
@@ -176,30 +180,25 @@ public class LOTREnchantUtils {
     		}
     		return result;
     	}else {
-    		if (!stack.hasTag() || !stack.getTag().contains("LOTREnchantments", 9)) {
+    		if (!hasModifiers(stack)) {
     			return new ArrayList<>();
     		}
     		List<ExtendedModifiers> result = new ArrayList<>();
-    		ListNBT listnbt = stack.getTag().getList("LOTREnchantments", 10);
+    		ListNBT listnbt = stack.getTag().getList(NBTMODIFIER, 10);
     		for (INBT nbt : listnbt) {
-    			if (!(nbt instanceof CompoundNBT)) continue;
-    			CompoundNBT entry = (CompoundNBT) nbt;
-    			String key = entry.getString("key");
-    			ExtendedModifiers enchant = null; //TODO simplify logic
-    			if (ExtendedModifiers.MODIFIER_MAP.containsKey(key)) {
-    				enchant = ExtendedModifiers.MODIFIER_MAP.get(key);
-    			}
-
-    			if (enchant != null) {
-    				result.add(enchant);
+    			CompoundNBT entry = (CompoundNBT) nbt;//Already checked above getList(NBTMODIFIER, 10)
+    			ExtendedModifiers modifier = ExtendedModifiers.MODIFIER_MAP.get(entry.getString("key"));
+    			if (modifier != null) {
+    			    result.add(modifier);
     			}
     		}
     		return result;
     	}
     }
 
-    public static Map<ExtendedModifierTypes, Integer> getEnchantListByLevel(ItemStack stack) {
-    	List<ExtendedModifiers> mergableModifiers = LOTREnchantUtils.getEnchantList(stack);
+    // Do we need this?
+    public static Map<ExtendedModifierTypes, Integer> getModifierListByLevel(ItemStack stack) {
+    	List<ExtendedModifiers> mergableModifiers = ExtendedModifierUtils.getModifierList(stack);
     	Map<ExtendedModifierTypes, Integer> map = new LinkedHashMap<>();
     	for(ExtendedModifiers modifier : mergableModifiers) {
     		map.put(modifier.getModifierType(), modifier.getModifierLevel());
@@ -207,8 +206,9 @@ public class LOTREnchantUtils {
     	return map;
     }
 
-    public static boolean isBaneEffectiveAgainst(ExtendedModifiers enchantment, Entity entity) {
-        return getBaneByEntity(entity) == enchantment;
+    
+    public static boolean isBaneEffectiveAgainst(ExtendedModifiers modifier, Entity entity) {
+        return getBaneByEntity(entity) == modifier;
     }
 
     public static ExtendedModifiers getBaneByEntity(Entity entity) {

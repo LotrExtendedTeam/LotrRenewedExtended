@@ -10,10 +10,10 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSmithScroll;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import io.netty.buffer.Unpooled;
 import lotr.common.init.ExtendedItems;
-import lotr.common.util.LOTREnchantUtils;
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -252,7 +252,7 @@ public class ExtendedRepairContainer extends Container {
 			ItemStack resultItem = inputItem.copy();
 			ItemStack mergableItem = this.inputSlots.getItem(1);
 			ItemStack resourceItem = this.inputSlots.getItem(2);
-			List<ExtendedModifiers> inputModifiers = LOTREnchantUtils.getEnchantList(resultItem);
+			List<ExtendedModifiers> inputModifiers = ExtendedModifierUtils.getModifierList(resultItem);
 			baseCost = inputItem.getBaseRepairCost() + (mergableItem.isEmpty() ? 0 : mergableItem.getBaseRepairCost());
 			this.cost.set(0);
 			isGemColoring = false;
@@ -308,7 +308,7 @@ public class ExtendedRepairContainer extends Container {
 							repairCost += 2; // TODO calculate based upon item damage values
 						}
 					}
-					List<ExtendedModifiers> mergableModifiers = LOTREnchantUtils.getEnchantList(mergableItem);
+					List<ExtendedModifiers> mergableModifiers = ExtendedModifierUtils.getModifierList(mergableItem);
 					boolean hasInCompatibleModifier = false;
 
 					int currentModifierCount = (int) inputModifiers.stream().filter(m -> m.getRarity() == ExtendedModifierRarity.BASIC || m.getRarity() == ExtendedModifierRarity.SKILLFUL).count();
@@ -484,7 +484,7 @@ public class ExtendedRepairContainer extends Container {
 				}
 
 				resultItem.setRepairCost(newRepairCost);
-				LOTREnchantUtils.setEnchantments(resultItem, inputModifiers);
+				ExtendedModifierUtils.setModifiers(resultItem, inputModifiers);
 			}
 			this.resultSlots.setItem(0, resultItem);
 			this.broadcastChanges();

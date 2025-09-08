@@ -1,9 +1,9 @@
 package lotr.common.item;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import lotr.common.init.LOTRMaterial;
-import lotr.common.util.LOTREnchantUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -21,7 +21,7 @@ public class ExtendedBarrowBlade extends ExtendedDaggerItem {
         if (!world.isClientSide && entity instanceof PlayerEntity) {
             if (!stack.hasTag() || !stack.getTag().getBoolean("WightBaneEnchantAdded")) {
             	stack.getTag().putBoolean("WightBaneEnchantAdded", true);
-                LOTREnchantUtils.enchant(stack, ExtendedModifiers.WIGHT_BANE);
+                ExtendedModifierUtils.addModifier(stack, ExtendedModifiers.WIGHT_BANE);
             }
         }
     }

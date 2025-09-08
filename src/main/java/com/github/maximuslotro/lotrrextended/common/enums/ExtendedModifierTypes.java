@@ -3,10 +3,10 @@ package com.github.maximuslotro.lotrrextended.common.enums;
 import java.util.function.Predicate;
 
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import lotr.common.init.LOTRMaterial;
 import lotr.common.item.LOTRArmorItem;
-import lotr.common.util.LOTREnchantUtils;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
@@ -197,6 +197,6 @@ public enum ExtendedModifierTypes {
 	 */
 	public static boolean isItemApplicableWithModifier(ItemStack stack, ExtendedModifierTypes modifierType) {
 	    return modifierType.isItemApplicable(stack)
-	        || LOTREnchantUtils.getEnchantList(stack).stream().map(ExtendedModifiers::getModifierType).allMatch(modifierType::isModifierApplicable);
+	        || ExtendedModifierUtils.getModifierList(stack).stream().map(ExtendedModifiers::getModifierType).allMatch(modifierType::isModifierApplicable);
 	}
 }

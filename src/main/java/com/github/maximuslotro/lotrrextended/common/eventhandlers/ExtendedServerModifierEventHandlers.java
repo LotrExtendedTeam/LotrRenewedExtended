@@ -1,7 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.util.LOTREnchantUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,6 +13,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 public class ExtendedServerModifierEventHandlers {
 
@@ -30,10 +30,10 @@ public class ExtendedServerModifierEventHandlers {
 
         ItemStack weapon = ((LivingEntity) source).getMainHandItem();
         LivingEntity target = event.getEntityLiving();
-        List<ExtendedModifiers> enchants = LOTREnchantUtils.getEnchantList(weapon);
+        List<ExtendedModifiers> enchants = ExtendedModifierUtils.getModifierList(weapon);
 
         for (ExtendedModifiers enchant : enchants) {
-            if (LOTREnchantUtils.isBaneEffectiveAgainst(enchant, target)) {
+            if (ExtendedModifierUtils.isBaneEffectiveAgainst(enchant, target)) {
                 // only increase damage if > 0 (prevents damage going through shields)
                 if (event.getAmount() > 0F) {
                     event.setAmount(event.getAmount() + 4.0F);
@@ -61,9 +61,9 @@ public class ExtendedServerModifierEventHandlers {
     	LivingEntity source = (LivingEntity) event.getSource().getEntity();
     	ItemStack weapon = source.getItemInHand(Hand.MAIN_HAND);
     	if (source instanceof PlayerEntity) {
-    		LOTREnchantUtils.incrementBaneProgress(weapon, event.getEntity(), (PlayerEntity) source);
+    		ExtendedModifierUtils.incrementBaneProgress(weapon, event.getEntity(), (PlayerEntity) source);
     	} else {
-    		LOTREnchantUtils.incrementBaneProgress(weapon, event.getEntity(), null);
+    		ExtendedModifierUtils.incrementBaneProgress(weapon, event.getEntity(), null);
     	}
     }
 }
