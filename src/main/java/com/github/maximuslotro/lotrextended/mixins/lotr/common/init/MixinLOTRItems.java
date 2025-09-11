@@ -38,7 +38,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedGuldurilItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedSmithScroll;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedSmithScrollItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableConkerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedUseItemAwardStatItem;
@@ -1129,7 +1129,7 @@ public class MixinLOTRItems {
 		ExtendedItems.BREE_BANNER_PATTERN = regBannerPaternItem("bree_banner_pattern", ExtendedBannerPatterns.bree, () -> new BannerPatternItem(ExtendedBannerPatterns.bree, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
 		ExtendedItems.ENTITY_SPAWNER = regItemB("structure_entity_spawner", () -> new ExtendedEntitySpawnerItem(new Properties().tab(LOTRItemGroups.MISC).fireResistant()));
 		ExtendedItems.ROPE = regExtendedBlockItemD(ExtendedBlocks.ROPE, block -> new BlockItem(block, new Properties().stacksTo(64).tab(LOTRItemGroups.MISC)));
-		ExtendedItems.MODIFIER_SCROLL = regItemB("modifier_scroll", () -> new ExtendedSmithScroll(new Properties().tab(LOTRItemGroups.MISC).stacksTo(1)));
+		ExtendedItems.MODIFIER_SCROLL = regItemB("modifier_scroll", () -> new ExtendedSmithScrollItem(new Properties().tab(LOTRItemGroups.MISC).stacksTo(1)));
 
 		// HIDDEN
 		ExtendedItems.GRASS_VOID = regHiddenBlockItemB(ExtendedBlocks.GRASS_VOID);

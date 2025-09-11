@@ -12,9 +12,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedSmithScroll extends Item {
+public class ExtendedSmithScrollItem extends Item {
 
-	public ExtendedSmithScroll(Properties pProperties) {
+	public ExtendedSmithScrollItem(Properties pProperties) {
 		super(pProperties);
 	}
 

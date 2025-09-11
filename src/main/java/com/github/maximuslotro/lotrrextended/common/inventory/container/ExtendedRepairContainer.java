@@ -9,7 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifierRarity
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedSmithScroll;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedSmithScrollItem;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import io.netty.buffer.Unpooled;
@@ -260,7 +260,7 @@ public class ExtendedRepairContainer extends Container {
 
 			if (!mergableItem.isEmpty()) {
 				//if (!net.minecraftforge.common.ForgeHooks.onAnvilChange(this, itemstack, itemstack2, resultSlots, itemName, j, this.player)) return;
-				canPeformEnchanting = (mergableItem.getItem() == ExtendedItems.MODIFIER_SCROLL.get() && !ExtendedSmithScroll.getModifier(mergableItem).isUnknown());
+				canPeformEnchanting = (mergableItem.getItem() == ExtendedItems.MODIFIER_SCROLL.get() && !ExtendedSmithScrollItem.getModifier(mergableItem).isUnknown());
 				if(!canPeformEnchanting && mergableItem.getItem() instanceof ExtendedGemstoneColoringItem) {
 					isGemColoring=true;
 				}else if (!canPeformEnchanting && resultItem.isDamageableItem() && resultItem.isDamaged() && mergableItem.isEmpty() && resultItem.getItem().isValidRepairItem(inputItem, resourceItem)) {

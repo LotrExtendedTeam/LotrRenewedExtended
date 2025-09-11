@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
@@ -179,7 +178,6 @@ public class ExtendedGrindstoneContainer extends Container {
 			boolean hasNonEnchantedItem = (!leftInput.isEmpty() && leftInput.getItem() != Items.ENCHANTED_BOOK && !leftInput.isEnchanted() && !ExtendedModifierUtils.hasModifiers(leftInput)) 
 				|| (!rightInput.isEmpty() && rightInput.getItem() != Items.ENCHANTED_BOOK && !rightInput.isEnchanted() && !ExtendedModifierUtils.hasModifiers(rightInput));
 			if (leftInput.getCount() > 1 || rightInput.getCount() > 1 || (!hasBothInputs && hasNonEnchantedItem)) {
-				ExtendedLog.info("Failed first check");
 				this.resultSlots.setItem(0, ItemStack.EMPTY);
 				this.broadcastChanges();
 				return;

@@ -17,7 +17,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedSmithScroll;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedSmithScrollItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
 import lotr.common.block.ChandelierBlock;
@@ -208,7 +208,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genBrandingIron(item.getKey(), "item/"+item.getKey());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedSmithScroll) {
+			if(item.getValue().get() instanceof ExtendedSmithScrollItem) {
 				genModifierScroll(item.getKey(), "item/"+item.getKey());
 				continue;
 			}
