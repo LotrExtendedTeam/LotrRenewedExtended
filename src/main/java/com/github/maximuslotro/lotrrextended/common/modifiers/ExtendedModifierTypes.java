@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.enums;
+package com.github.maximuslotro.lotrrextended.common.modifiers;
 
 import java.util.function.Predicate;
 
@@ -197,6 +197,6 @@ public enum ExtendedModifierTypes {
 	 */
 	public static boolean isItemApplicableWithModifier(ItemStack stack, ExtendedModifierTypes modifierType) {
 	    return modifierType.isItemApplicable(stack)
-	        || ExtendedModifierUtils.getModifierList(stack).stream().map(ExtendedModifiers::getModifierType).allMatch(modifierType::isModifierApplicable);
+	        || ExtendedModifierUtils.getModifierList(stack).stream().map(ExtendedModifier::getModifierType).allMatch(modifierType::isModifierApplicable);
 	}
 }

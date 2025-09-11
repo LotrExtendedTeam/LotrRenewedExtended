@@ -1,8 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifierRarity;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifierScroll;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierRarity;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierScroll;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 
 import lotr.common.init.ExtendedItems;
 import net.minecraft.item.Item;
@@ -26,7 +27,7 @@ public class ExtendedSmithScrollItem extends Item {
 	@Override
 	public ITextComponent getName(ItemStack pStack) {
 		if (pStack.getItem() == ExtendedItems.MODIFIER_SCROLL.get() && pStack.hasTag()) {
-			ExtendedModifiers modifier = getModifier(pStack);
+			ExtendedModifier modifier = getModifier(pStack);
 			return new TranslationTextComponent(this.getDescriptionId() + ".named", new TranslationTextComponent("enchant.lotrextended."+modifier.getLocalKey()));
 		}
 		return super.getName(pStack);
@@ -35,7 +36,7 @@ public class ExtendedSmithScrollItem extends Item {
 	@Override
 	public void fillItemCategory(ItemGroup pGroup, NonNullList<ItemStack> pItems) {
 		if (this.allowdedIn(pGroup)) {
-			for(ExtendedModifiers modifier : ExtendedModifiers.MODIFIER_MAP.values()) {
+			for(ExtendedModifier modifier : ExtendedModifiers.MODIFIER_MAP.values()) {
 				if((modifier.getRarity()==ExtendedModifierRarity.BASIC || modifier.getRarity()==ExtendedModifierRarity.SKILLFUL) && modifier.getModifierLevel()>0) {
 					if(modifier.getScroll()!=ExtendedModifierScroll.GOLD && pGroup != ItemGroup.TAB_SEARCH) {
 						continue;
@@ -46,7 +47,7 @@ public class ExtendedSmithScrollItem extends Item {
 		}
 	}
 
-	public static ItemStack createForModifier(ExtendedModifiers pInstance) {
+	public static ItemStack createForModifier(ExtendedModifier pInstance) {
 		ItemStack itemstack = new ItemStack(ExtendedItems.MODIFIER_SCROLL.get());
 		setModifier(itemstack, pInstance);
 		return itemstack;
@@ -57,11 +58,11 @@ public class ExtendedSmithScrollItem extends Item {
 		return false;
 	}
 
-	public static void setModifier(ItemStack stack, ExtendedModifiers modifier) {
+	public static void setModifier(ItemStack stack, ExtendedModifier modifier) {
 		stack.getOrCreateTag().putString("ExtendedModifierType", modifier.getNbtKey());
 	}
 
-	public static ExtendedModifiers getModifier(ItemStack stack) {
+	public static ExtendedModifier getModifier(ItemStack stack) {
 		if(!stack.hasTag() || !stack.getTag().contains("ExtendedModifierType")) {
 			return ExtendedModifiers.UNKNOWN;
 		}

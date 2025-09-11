@@ -2,41 +2,38 @@ package com.github.maximuslotro.lotrrextended.common.utils;
 
 import lotr.common.entity.npc.*;
 import lotr.common.init.ExtendedItems;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.Util;
 import net.minecraft.util.WeightedRandom;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifierRarity;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifierTypes;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSmithScrollItem;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierRarity;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierTypes;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.google.common.collect.Lists;
 
+/**
+ * Based on {@link EnchantmentHelper}
+ */
 public class ExtendedModifierUtils {
 	private static final String NBTMODIFIER = "LOTREnchantments";
-	public static void addModifier(ItemStack stack, ExtendedModifiers modifier) {
+	public static void addModifier(ItemStack stack, ExtendedModifier modifier) {
 		CompoundNBT tag = stack.getOrCreateTag();
 		if (!tag.contains(NBTMODIFIER, 9)) {
 			tag.put(NBTMODIFIER, new ListNBT());
@@ -47,10 +44,10 @@ public class ExtendedModifierUtils {
 		listnbt.add(compoundnbt);
 	}
 
-	public static void setModifiers(ItemStack stack, List<ExtendedModifiers> modifiers) {
+	public static void setModifiers(ItemStack stack, List<ExtendedModifier> modifiers) {
 		clearModifiers(stack);
 		ListNBT listnbt = new ListNBT();
-		for(ExtendedModifiers modifier : modifiers) {
+		for(ExtendedModifier modifier : modifiers) {
 			CompoundNBT compoundnbt = new CompoundNBT();
 			compoundnbt.putString("key", modifier.getNbtKey());
 			listnbt.add(compoundnbt);
@@ -60,7 +57,7 @@ public class ExtendedModifierUtils {
 		}
 	}
 
-	public static void removeModifier(ItemStack stack, ExtendedModifiers modifier) {
+	public static void removeModifier(ItemStack stack, ExtendedModifier modifier) {
 		if (!getModifierList(stack).contains(modifier)) {
 			return;
 		}
@@ -100,7 +97,7 @@ public class ExtendedModifierUtils {
 		}
 
 		// exit the method if there is applicable bane for that entity
-		ExtendedModifiers modifier = getBaneByEntity(entity);
+		ExtendedModifier modifier = getBaneByEntity(entity);
 		// Only allow earned banes to be progressed
 		if (modifier == null || modifier.getRarity()!=ExtendedModifierRarity.EARNED) {
 			return;
@@ -169,7 +166,7 @@ public class ExtendedModifierUtils {
 		}
 	}
 
-	public static boolean containsBane(List<ExtendedModifiers> modifiers) {
+	public static boolean containsBane(List<ExtendedModifier> modifiers) {
 		return modifiers.stream().anyMatch((modifier)-> modifier.getModifierType()==ExtendedModifierTypes.BANE);
 	}
 
@@ -181,9 +178,9 @@ public class ExtendedModifierUtils {
 		}
 	}
 
-	public static List<ExtendedModifiers> getModifierList(ItemStack stack) {
+	public static List<ExtendedModifier> getModifierList(ItemStack stack) {
 		if(stack.getItem() == ExtendedItems.MODIFIER_SCROLL.get()){
-			List<ExtendedModifiers> result = new ArrayList<>();
+			List<ExtendedModifier> result = new ArrayList<>();
 			if(!ExtendedSmithScrollItem.getModifier(stack).isUnknown()) {
 				result.add(ExtendedSmithScrollItem.getModifier(stack));
 			}
@@ -192,11 +189,11 @@ public class ExtendedModifierUtils {
 			if (!hasModifiers(stack)) {
 				return new ArrayList<>();
 			}
-			List<ExtendedModifiers> result = new ArrayList<>();
+			List<ExtendedModifier> result = new ArrayList<>();
 			ListNBT listnbt = stack.getTag().getList(NBTMODIFIER, 10);
 			for (INBT nbt : listnbt) {
 				CompoundNBT entry = (CompoundNBT) nbt;//Already checked above getList(NBTMODIFIER, 10)
-				ExtendedModifiers modifier = ExtendedModifiers.MODIFIER_MAP.get(entry.getString("key"));
+				ExtendedModifier modifier = ExtendedModifiers.MODIFIER_MAP.get(entry.getString("key"));
 				if (modifier != null) {
 					result.add(modifier);
 				}
@@ -207,21 +204,21 @@ public class ExtendedModifierUtils {
 
 	// Do we need this?
 	public static Map<ExtendedModifierTypes, Integer> getModifierListByLevel(ItemStack stack) {
-		List<ExtendedModifiers> mergableModifiers = ExtendedModifierUtils.getModifierList(stack);
+		List<ExtendedModifier> mergableModifiers = ExtendedModifierUtils.getModifierList(stack);
 		Map<ExtendedModifierTypes, Integer> map = new LinkedHashMap<>();
-		for(ExtendedModifiers modifier : mergableModifiers) {
+		for(ExtendedModifier modifier : mergableModifiers) {
 			map.put(modifier.getModifierType(), modifier.getModifierLevel());
 		}
 		return map;
 	}
 
 
-	public static boolean isBaneEffectiveAgainst(ExtendedModifiers modifier, Entity entity) {
+	public static boolean isBaneEffectiveAgainst(ExtendedModifier modifier, Entity entity) {
 		return getBaneByEntity(entity) == modifier;
 	}
 
-	public static ExtendedModifiers getBaneByEntity(Entity entity) {
-		ExtendedModifiers bane = null;
+	public static ExtendedModifier getBaneByEntity(Entity entity) {
+		ExtendedModifier bane = null;
 		if (entity instanceof OrcEntity) {
 			bane = ExtendedModifiers.ORC_BANE;
 		} else if (entity instanceof ElfEntity) {
@@ -239,8 +236,8 @@ public class ExtendedModifierUtils {
 	/**
 	 * Applies a random modifier to the specified item.
 	 */
-	public static ItemStack enchantItem(Random pRandom, ItemStack pStack, boolean reforging, boolean pAllowTreasure) {
-		List<ExtendedModifiers> list = selectEnchantment(pRandom, pStack, reforging, pAllowTreasure);
+	public static ItemStack generateItemModifiers(Random pRandom, ItemStack pStack, boolean reforging, boolean noNegatives) {
+		List<ExtendedModifier> list = selectModifiers(pRandom, pStack, reforging, noNegatives);
 		if(!list.isEmpty()) {
 			if (pStack.getItem() instanceof ExtendedSmithScrollItem) {
 				ExtendedSmithScrollItem.setModifier(pStack, list.get(0));
@@ -255,72 +252,64 @@ public class ExtendedModifierUtils {
 	/**
 	 * Create a list of random modifiers that can be added together to the ItemStack;
 	 */
-	public static List<ExtendedModifiers> selectEnchantment(Random pRandom, ItemStack pItemStack, boolean reforging, boolean pAllowTreasure) {
-		List<ExtendedModifiers> list = Lists.newArrayList();
+	public static List<ExtendedModifier> selectModifiers(Random pRandom, ItemStack pItemStack, boolean reforging, boolean noNegatives) {
+		List<ExtendedModifier> newModifiers = Lists.newArrayList();
 		Item item = pItemStack.getItem();
-		int i = pItemStack.getItemEnchantability();
-		if (i <= 0) {
-			return list;
+		if(item == ExtendedItems.MODIFIER_SCROLL.get()) {
+			noNegatives = true;
+		}
+		if (pItemStack.getItemEnchantability() <= 0) {
+			return newModifiers;
 		} else {
-			pLevel = pLevel + 1 + pRandom.nextInt(i / 4 + 1) + pRandom.nextInt(i / 4 + 1);
-			float f = (pRandom.nextFloat() + pRandom.nextFloat() - 1.0F) * 0.15F;
-			pLevel = MathHelper.clamp(Math.round((float)pLevel + (float)pLevel * f), 1, Integer.MAX_VALUE);
-			int countToGet = 1;
-			List<ExtendedModifiers> list1 = getAvailableEnchantmentResults(reforging, pItemStack, pAllowTreasure, countToGet);
-			if (!list1.isEmpty()) {
-				list.add(WeightedRandom.getRandomItem(pRandom, list1));
-
-				while(pRandom.nextInt(50) <= pLevel) {
-					filterCompatibleEnchantments(list1, Util.lastOf(list));
-					if (list1.isEmpty()) {
-						break;
+			List<ExtendedModifier> applicableModifiers = getAvailableModifiersResults(reforging, pItemStack, noNegatives);
+			if (!applicableModifiers.isEmpty()) {
+				if(item == ExtendedItems.MODIFIER_SCROLL.get()) {
+					newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
+					return newModifiers;
+				}
+				int chance = pRandom.nextInt(100);
+				if(chance < 60) {
+					newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
+					filterCompatibleModifiers(applicableModifiers, Util.lastOf(newModifiers));
+					if(chance < 15 && !applicableModifiers.isEmpty()) {
+						newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
+						filterCompatibleModifiers(applicableModifiers, Util.lastOf(newModifiers));
+						if(chance == 1 && !applicableModifiers.isEmpty()) {
+							newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
+						}
 					}
-
-					list.add(WeightedRandom.getRandomItem(pRandom, list1));
-					pLevel /= 2;
+				}else if(chance < 15) {
+					newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 				}
 			}
-
-			return list;
+			return newModifiers;
 		}
 	}
 
-	public static void filterCompatibleEnchantments(List<ExtendedModifiers> pDataList, ExtendedModifiers pData) {
-		Iterator<ExtendedModifiers> iterator = pDataList.iterator();
+	public static void filterCompatibleModifiers(List<ExtendedModifier> pDataList, ExtendedModifier pData) {
+		Iterator<ExtendedModifier> iterator = pDataList.iterator();
 		while(iterator.hasNext()) {
 			if (!pData.canApplyToModifier((iterator.next()).getModifierType())) {
 				iterator.remove();
 			}
 		}
-
 	}
 
-	public static boolean isEnchantmentCompatible(Collection<ExtendedModifiers> pEnchantments, ExtendedModifiers pEnchantment) {
-		for(ExtendedModifiers enchantment : pEnchantments) {
-			if (!enchantment.canApplyToModifier(pEnchantment.getModifierType())) {
-				return false;
+	public static List<ExtendedModifier> getAvailableModifiersResults(boolean reforging, ItemStack pStack, boolean noNegatives) {
+		List<ExtendedModifier> list = Lists.newArrayList();
+		boolean scroll = pStack.getItem() == ExtendedItems.MODIFIER_SCROLL.get();
+
+		for(ExtendedModifier modifier : ExtendedModifiers.ALL) {
+			if (modifier.weight>0 && (scroll ? modifier.isAllowedOnScrolls() : true)) {
+				if(noNegatives && modifier.getModifierLevel()<0) {
+					continue;
+				}
+				if(!reforging && modifier.getRarity().equals(ExtendedModifierRarity.SKILLFUL)) {
+					continue;
+				}
+				list.add(modifier);
 			}
 		}
-
-		return true;
-	}
-
-	public static List<ExtendedModifiers> getAvailableEnchantmentResults(boolean reforging, ItemStack pStack, boolean pAllowTreasure, int countToGet) {
-		List<ExtendedModifiers> list = Lists.newArrayList();
-//		Item item = pStack.getItem();
-//		boolean flag = pStack.getItem() == Items.BOOK;
-//
-//		for(Enchantment enchantment : Registry.ENCHANTMENT) {
-//			if ((!enchantment.isTreasureOnly() || pAllowTreasure) && enchantment.isDiscoverable() && (enchantment.canApplyAtEnchantingTable(pStack) || (flag && enchantment.isAllowedOnBooks()))) {
-//				for(int i = enchantment.getMaxLevel(); i > enchantment.getMinLevel() - 1; --i) {
-//					if (pLevel >= enchantment.getMinCost(i) && pLevel <= enchantment.getMaxCost(i)) {
-//						list.add(new EnchantmentData(enchantment, i));
-//						break;
-//					}
-//				}
-//			}
-//		}
-
 		return list;
 	}
 }

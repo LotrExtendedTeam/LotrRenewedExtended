@@ -1,6 +1,6 @@
 package lotr.common.item;
 
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import lotr.common.init.LOTRMaterial;

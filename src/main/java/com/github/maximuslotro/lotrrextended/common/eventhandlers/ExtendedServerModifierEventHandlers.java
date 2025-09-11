@@ -12,7 +12,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 public class ExtendedServerModifierEventHandlers {
@@ -30,9 +30,9 @@ public class ExtendedServerModifierEventHandlers {
 
         ItemStack weapon = ((LivingEntity) source).getMainHandItem();
         LivingEntity target = event.getEntityLiving();
-        List<ExtendedModifiers> enchants = ExtendedModifierUtils.getModifierList(weapon);
+        List<ExtendedModifier> enchants = ExtendedModifierUtils.getModifierList(weapon);
 
-        for (ExtendedModifiers enchant : enchants) {
+        for (ExtendedModifier enchant : enchants) {
             if (ExtendedModifierUtils.isBaneEffectiveAgainst(enchant, target)) {
                 // only increase damage if > 0 (prevents damage going through shields)
                 if (event.getAmount() > 0F) {

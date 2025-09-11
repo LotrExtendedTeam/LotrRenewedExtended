@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.enums;
+package com.github.maximuslotro.lotrrextended.common.modifiers;
 
 /**
  * Defines different types of modifier scrolls, each representing

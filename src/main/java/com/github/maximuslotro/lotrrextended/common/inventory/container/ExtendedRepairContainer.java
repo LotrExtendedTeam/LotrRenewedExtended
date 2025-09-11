@@ -5,11 +5,12 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifierRarity;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSmithScrollItem;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierRarity;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import io.netty.buffer.Unpooled;
@@ -252,7 +253,7 @@ public class ExtendedRepairContainer extends Container {
 			ItemStack resultItem = inputItem.copy();
 			ItemStack mergableItem = this.inputSlots.getItem(1);
 			ItemStack resourceItem = this.inputSlots.getItem(2);
-			List<ExtendedModifiers> inputModifiers = ExtendedModifierUtils.getModifierList(resultItem);
+			List<ExtendedModifier> inputModifiers = ExtendedModifierUtils.getModifierList(resultItem);
 			baseCost = inputItem.getBaseRepairCost() + (mergableItem.isEmpty() ? 0 : mergableItem.getBaseRepairCost());
 			this.cost.set(0);
 			isGemColoring = false;
@@ -308,15 +309,15 @@ public class ExtendedRepairContainer extends Container {
 							repairCost += 2; // TODO calculate based upon item damage values
 						}
 					}
-					List<ExtendedModifiers> mergableModifiers = ExtendedModifierUtils.getModifierList(mergableItem);
+					List<ExtendedModifier> mergableModifiers = ExtendedModifierUtils.getModifierList(mergableItem);
 					boolean hasInCompatibleModifier = false;
 
 					int currentModifierCount = (int) inputModifiers.stream().filter(m -> m.getRarity() == ExtendedModifierRarity.BASIC || m.getRarity() == ExtendedModifierRarity.SKILLFUL).count();
 					int newModifierCount=0;
 					//boolean notAllModifiersAtMax = false;
-					for(ExtendedModifiers modifier : mergableModifiers) {
+					for(ExtendedModifier modifier : mergableModifiers) {
 						// Use the lowest tier value if the modifier does not exist on the original item, so that the new item can override this lowest possible value.
-						ExtendedModifiers existingModifier = inputModifiers.stream()
+						ExtendedModifier existingModifier = inputModifiers.stream()
 							.filter(m -> m.getModifierType() == modifier.getModifierType())
 							.findFirst().orElse(ExtendedModifiers.UNKNOWN);
 						int slot0Level = !existingModifier.isUnknown() ? existingModifier.getModifierLevel() : modifier.getMinLevel();
@@ -329,7 +330,7 @@ public class ExtendedRepairContainer extends Container {
 							}
 							continue;
 						}						
-						for(ExtendedModifiers existing : inputModifiers) {
+						for(ExtendedModifier existing : inputModifiers) {
 							if (modifier.getModifierType()!=existing.getModifierType() && !modifier.canApplyToModifier(existing.getModifierType())) {
 								hasInCompatibleModifier = true;
 								ExtendedLog.info("hasInCompatibleModifier");
@@ -384,11 +385,11 @@ public class ExtendedRepairContainer extends Container {
 							inputModifiers.removeIf(m -> m.getModifierType() == modifier.getModifierType());
 
 							// Get the list of modifiers for this type
-							List<ExtendedModifiers> list = ExtendedModifiers.MODIFIERS_BY_TYPE.get(modifier.getModifierType());
+							List<ExtendedModifier> list = ExtendedModifiers.MODIFIERS_BY_TYPE.get(modifier.getModifierType());
 
 							// Find the modifier with the desired level
 							final int outoutLevel = outputSlotLevel;
-							ExtendedModifiers result = list.stream()
+							ExtendedModifier result = list.stream()
 								.filter(m -> m.getModifierLevel() == outoutLevel)
 								.findFirst()
 								.orElse(ExtendedModifiers.UNKNOWN); // fallback if no exact match

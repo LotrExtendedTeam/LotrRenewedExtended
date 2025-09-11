@@ -8,6 +8,7 @@ import net.minecraft.util.registry.Registry;
 
 public class ExtendedLootFunctions {
 	public static LootFunctionType WARG_FUR_TYPE = register("warg_fur_type", new ExtendedSetWargFurType.Serializer());
+	public static LootFunctionType MODIFIER_ADDER = register("modifier_adder", new ExtendedModifierAdder.Serializer());
 
 	private static LootFunctionType register(String name, ILootSerializer<? extends ILootFunction> serializer) {
 		return Registry.register(Registry.LOOT_FUNCTION_TYPE, new ResourceLocation("lotrextended", name), new LootFunctionType(serializer));
