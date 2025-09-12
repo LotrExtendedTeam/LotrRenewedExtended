@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.loot;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedModifierAdder;
 
 import net.minecraft.item.Item;
 import net.minecraft.loot.ConstantRange;
@@ -64,6 +65,26 @@ public class EItemLootEntry extends ItemLootEntry{
 
 		public ExtendedBuilder setMaxLootDurability(float maxPercentLeft) {
 			return setDamageRange(1.0f-maxPercentLeft, 1.0f);
+		}
+
+		public ExtendedBuilder addModifiers() {
+			if(!isDamagable) {
+				ExtendedLog.error("Tried adding modifiers to a non-damageable item!");
+				new Exception().printStackTrace();
+				return this.getThis();
+			}
+			this.apply(ExtendedModifierAdder.modifiers());
+			return this.getThis();
+		}
+
+		public ExtendedBuilder addModifiersNoNegative() {
+			if(!isDamagable) {
+				ExtendedLog.error("Tried adding modifiers to a non-damageable item!");
+				new Exception().printStackTrace();
+				return this.getThis();
+			}
+			this.apply(ExtendedModifierAdder.modifiers().noNegatives());
+			return this.getThis();
 		}
 
 		public ExtendedBuilder setExactly(int number) {

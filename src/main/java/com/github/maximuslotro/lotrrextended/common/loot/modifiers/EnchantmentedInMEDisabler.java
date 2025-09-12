@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.loot.modifiers.global;
+package com.github.maximuslotro.lotrrextended.common.loot.modifiers;
 
 import java.util.ArrayList;
 import java.util.List;

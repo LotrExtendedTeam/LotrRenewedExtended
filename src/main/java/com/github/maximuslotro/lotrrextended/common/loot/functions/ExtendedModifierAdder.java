@@ -36,7 +36,7 @@ public class ExtendedModifierAdder extends LootFunction {
 		return ExtendedModifierUtils.generateItemModifiers(random, pStack, reforging, noNegatives);
 	}
 
-	public static ExtendedModifierAdder.Builder modifier() {
+	public static ExtendedModifierAdder.Builder modifiers() {
 		return new ExtendedModifierAdder.Builder();
 	}
 

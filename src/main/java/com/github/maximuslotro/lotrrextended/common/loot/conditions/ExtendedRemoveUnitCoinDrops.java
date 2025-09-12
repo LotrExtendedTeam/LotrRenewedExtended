@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.loot.modifiers;
+package com.github.maximuslotro.lotrrextended.common.loot.conditions;
 
 import java.util.Set;
 
@@ -21,7 +21,7 @@ public class ExtendedRemoveUnitCoinDrops implements ILootCondition {
 
 	@Override
 	public LootConditionType getType() {
-		return ExtendedLootModifiers.REMOVE_UNIT_COINS;
+		return ExtendedLootConditions.REMOVE_UNIT_COINS;
 	}
 
 	/**

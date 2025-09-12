@@ -3,8 +3,8 @@ package com.github.maximuslotro.lotrrextended.common.datagen;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.common.loot.modifiers.global.EnchantmentedInMEDisabler;
-import com.github.maximuslotro.lotrrextended.common.loot.modifiers.global.ExtendedGlobalLootModifiers;
+import com.github.maximuslotro.lotrrextended.common.loot.modifiers.EnchantmentedInMEDisabler;
+import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedGlobalLootModifiers;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Items;
