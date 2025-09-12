@@ -153,6 +153,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:smoking_pipe"

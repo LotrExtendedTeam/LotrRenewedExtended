@@ -18,6 +18,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_dagger"
@@ -35,6 +38,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_axe"
@@ -53,6 +59,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_pickaxe"
@@ -70,6 +79,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_shovel"
@@ -87,6 +99,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_hoe"
@@ -105,6 +120,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_sword"
@@ -122,6 +140,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_spear"
@@ -140,6 +161,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_throwing_axe"

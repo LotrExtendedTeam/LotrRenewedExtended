@@ -6,7 +6,6 @@ import java.util.function.BiConsumer;
 
 import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
-import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedModifierAdder;
 
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
@@ -45,27 +44,17 @@ public class ExtendedFishingLootGenerator extends FishingLootTables  {
 		make(consumer, ExtendedLootTables.MIDDLE_EARTH_FISHING_JUNK, makeTable()
 			.withPool(LootPool.lootPool()
 				// Using wiki values, with 0.515 (hobbit bone) being one weight, the rest of these were calculated
-				.add(EItemLootEntry.lootItem(Items.FISHING_ROD).setWeight(5).setMaxLootDurability(0.1f)
-						.apply(ExtendedModifierAdder.modifiers()))
-				.add(EItemLootEntry.lootItem(Items.WOODEN_SWORD).setWeight(2).setMaxLootDurability(0.5f)
-						.apply(ExtendedModifierAdder.modifiers()))
-				.add(EItemLootEntry.lootItem(Items.WOODEN_AXE).setWeight(2).setMaxLootDurability(0.5f)
-						.apply(ExtendedModifierAdder.modifiers()))
-				.add(EItemLootEntry.lootItem(Items.WOODEN_PICKAXE).setWeight(2).setMaxLootDurability(0.5f)
-						.apply(ExtendedModifierAdder.modifiers()))
-				.add(EItemLootEntry.lootItem(Items.WOODEN_SHOVEL).setWeight(2).setMaxLootDurability(0.5f)
-						.apply(ExtendedModifierAdder.modifiers()))
-				.add(EItemLootEntry.lootItem(Items.WOODEN_HOE).setWeight(2).setMaxLootDurability(0.5f)
-						.apply(ExtendedModifierAdder.modifiers()))
+				.add(EItemLootEntry.lootItem(Items.FISHING_ROD).setWeight(5).setMaxLootDurability(0.1f))
+				.add(EItemLootEntry.lootItem(Items.WOODEN_SWORD).setWeight(2).setMaxLootDurability(0.5f))
+				.add(EItemLootEntry.lootItem(Items.WOODEN_AXE).setWeight(2).setMaxLootDurability(0.5f))
+				.add(EItemLootEntry.lootItem(Items.WOODEN_PICKAXE).setWeight(2).setMaxLootDurability(0.5f))
+				.add(EItemLootEntry.lootItem(Items.WOODEN_SHOVEL).setWeight(2).setMaxLootDurability(0.5f))
+				.add(EItemLootEntry.lootItem(Items.WOODEN_HOE).setWeight(2).setMaxLootDurability(0.5f))
 				.add(EItemLootEntry.lootItem(ExtendedItems.LEATHER_HAT.get()).setWeight(10))
-				.add(EItemLootEntry.lootItem(Items.LEATHER_HELMET).setWeight(5).setMaxLootDurability(0.5f)
-						.apply(ExtendedModifierAdder.modifiers()))
-				.add(EItemLootEntry.lootItem(Items.LEATHER_BOOTS).setWeight(5).setMaxLootDurability(0.5f)
-						.apply(ExtendedModifierAdder.modifiers()))
-				.add(EItemLootEntry.lootItem(LOTRItems.BONE_HELMET.get()).setWeight(2).setMaxLootDurability(0.5f)
-						.apply(ExtendedModifierAdder.modifiers()))
-				.add(EItemLootEntry.lootItem(LOTRItems.BONE_BOOTS.get()).setWeight(2).setMaxLootDurability(0.5f)
-						.apply(ExtendedModifierAdder.modifiers()))
+				.add(EItemLootEntry.lootItem(Items.LEATHER_HELMET).setWeight(5).setMaxLootDurability(0.5f))
+				.add(EItemLootEntry.lootItem(Items.LEATHER_BOOTS).setWeight(5).setMaxLootDurability(0.5f))
+				.add(EItemLootEntry.lootItem(LOTRItems.BONE_HELMET.get()).setWeight(2).setMaxLootDurability(0.5f))
+				.add(EItemLootEntry.lootItem(LOTRItems.BONE_BOOTS.get()).setWeight(2).setMaxLootDurability(0.5f))
 				.add(EItemLootEntry.lootItem(Items.SKELETON_SKULL).setWeight(5))
 				.add(EItemLootEntry.lootItem(Items.BONE).setWeight(20))
 				.add(EItemLootEntry.lootItem(LOTRItems.ORC_BONE.get()).setWeight(10))
@@ -91,13 +80,10 @@ public class ExtendedFishingLootGenerator extends FishingLootTables  {
 			.withPool(LootPool.lootPool()
 				// Using wiki values, with 0.165 (silver coin 100 and mithril ring) being one weight, the rest of these were calculated
 				.add(EItemLootEntry.lootItem(ExtendedItems.PEARL.get()).setWeight(200))
-				.add(EItemLootEntry.lootItem(Items.BOW).setWeight(1).setMaxLootDurability(0.75f))
-				.add(EItemLootEntry.lootItem(Items.FISHING_ROD).setWeight(20).setMaxLootDurability(0.75f)
-						.apply(ExtendedModifierAdder.modifiers().noNegatives()))
-				.add(EItemLootEntry.lootItem(LOTRItems.IRON_DAGGER.get()).setWeight(20).setMaxLootDurability(0.75f)
-						.apply(ExtendedModifierAdder.modifiers()))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_DAGGER.get()).setWeight(20).setMaxLootDurability(0.75f)
-						.apply(ExtendedModifierAdder.modifiers()))
+				.add(EItemLootEntry.lootItem(Items.BOW).setWeight(1).setMaxLootDurability(0.75f).addModifiersNoNegative())
+				.add(EItemLootEntry.lootItem(Items.FISHING_ROD).setWeight(20).setMaxLootDurability(0.75f).addModifiersNoNegative())
+				.add(EItemLootEntry.lootItem(LOTRItems.IRON_DAGGER.get()).setWeight(20).setMaxLootDurability(0.75f).addModifiersNoNegative())
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_DAGGER.get()).setWeight(20).setMaxLootDurability(0.75f).addModifiersNoNegative())
 				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(100))
 				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_TEN.get()).setWeight(10))
 				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1))

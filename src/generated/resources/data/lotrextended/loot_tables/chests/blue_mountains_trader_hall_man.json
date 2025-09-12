@@ -120,6 +120,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:flint_and_steel"
@@ -131,6 +134,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:fishing_rod"

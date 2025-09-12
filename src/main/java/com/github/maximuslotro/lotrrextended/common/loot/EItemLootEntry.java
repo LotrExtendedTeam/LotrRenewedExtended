@@ -28,9 +28,13 @@ public class EItemLootEntry extends ItemLootEntry{
 	public static class ExtendedBuilder extends StandaloneLootEntry.Builder<EItemLootEntry.ExtendedBuilder> {
 		private final StandaloneLootEntry.ILootEntryBuilder constructor;
 		private final boolean isDamagable;
+		private ExtendedModifierAdder.Builder modifierBuilder;
 		public ExtendedBuilder(StandaloneLootEntry.ILootEntryBuilder lootEntryConstructor, boolean canDamage) {
 			this.constructor = lootEntryConstructor;
 			this.isDamagable = canDamage;
+			if(isDamagable) {
+				modifierBuilder = ExtendedModifierAdder.modifiers();
+			}
 		}
 
 		@Override
@@ -40,6 +44,9 @@ public class EItemLootEntry extends ItemLootEntry{
 
 		@Override
 		public LootEntry build() {
+			if(modifierBuilder!=null && isDamagable) {
+				this.apply(modifierBuilder);
+			}
 			return this.constructor.build(this.weight, this.quality, this.getConditions(), this.getFunctions());
 		}
 
@@ -68,22 +75,12 @@ public class EItemLootEntry extends ItemLootEntry{
 		}
 
 		public ExtendedBuilder addModifiers() {
-			if(!isDamagable) {
-				ExtendedLog.error("Tried adding modifiers to a non-damageable item!");
-				new Exception().printStackTrace();
-				return this.getThis();
-			}
-			this.apply(ExtendedModifierAdder.modifiers());
+			modifierBuilder = ExtendedModifierAdder.modifiers();
 			return this.getThis();
 		}
 
 		public ExtendedBuilder addModifiersNoNegative() {
-			if(!isDamagable) {
-				ExtendedLog.error("Tried adding modifiers to a non-damageable item!");
-				new Exception().printStackTrace();
-				return this.getThis();
-			}
-			this.apply(ExtendedModifierAdder.modifiers().noNegatives());
+			modifierBuilder = ExtendedModifierAdder.modifiers().noNegatives();
 			return this.getThis();
 		}
 
