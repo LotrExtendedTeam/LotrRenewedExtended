@@ -987,6 +987,11 @@
           ],
           "name": "lotr:silver_coin_hundred"
         }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder"
+        }
       ]
     }
   ]

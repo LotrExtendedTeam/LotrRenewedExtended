@@ -259,6 +259,11 @@
           ],
           "name": "lotr:large_pouch"
         }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder"
+        }
       ]
     },
     {

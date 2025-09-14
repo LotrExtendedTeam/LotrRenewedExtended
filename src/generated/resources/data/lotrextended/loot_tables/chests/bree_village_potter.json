@@ -596,6 +596,11 @@
           ],
           "name": "lotr:large_pot"
         }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder"
+        }
       ]
     }
   ]

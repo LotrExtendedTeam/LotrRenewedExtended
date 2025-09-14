@@ -168,6 +168,13 @@
           "type": "minecraft:item",
           "name": "lotr:mithril_ring"
         }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder",
+          "chance": 100,
+          "skillful": true
+        }
       ]
     }
   ]

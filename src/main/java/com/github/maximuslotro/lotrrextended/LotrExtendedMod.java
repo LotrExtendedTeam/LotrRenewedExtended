@@ -23,6 +23,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.loot.conditions.ExtendedLootConditions;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedLootFunctions;
 import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedGlobalLootModifiers;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextProcessorManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
@@ -105,6 +106,7 @@ public class LotrExtendedMod{
 		ExtendedStats.init();
 		ExtendedFoods.init();
 		ExtendedSounds.register(modBus);
+		ExtendedModifiers.buildModifierLists();
 		ExtendedGlobalLootModifiers.register(modBus);
 		ExtendedLootFunctions.setup();
 		ExtendedLootConditions.setup();

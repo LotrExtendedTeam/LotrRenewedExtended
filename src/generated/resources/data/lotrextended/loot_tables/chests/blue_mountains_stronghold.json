@@ -319,6 +319,11 @@
           "condition": "minecraft:random_chance",
           "chance": 0.5
         }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder"
+        }
       ]
     },
     {

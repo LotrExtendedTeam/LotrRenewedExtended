@@ -1081,6 +1081,11 @@
           ],
           "name": "lotr:silver_ring"
         }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder"
+        }
       ]
     }
   ]

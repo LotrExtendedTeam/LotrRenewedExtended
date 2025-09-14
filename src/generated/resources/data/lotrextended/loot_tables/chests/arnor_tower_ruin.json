@@ -724,6 +724,11 @@
           ],
           "name": "minecraft:arrow"
         }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder"
+        }
       ]
     }
   ]

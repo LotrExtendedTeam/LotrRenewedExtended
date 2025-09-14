@@ -13,9 +13,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedSmithScrollItem extends Item {
-
-	public ExtendedSmithScrollItem(Properties pProperties) {
+public class ExtendedModifierScrollItem extends Item {
+	private static final String NBTMODIFIER = "ExtendedScrollModifier";
+	public ExtendedModifierScrollItem(Properties pProperties) {
 		super(pProperties);
 	}
 
@@ -26,9 +26,8 @@ public class ExtendedSmithScrollItem extends Item {
 	 */
 	@Override
 	public ITextComponent getName(ItemStack pStack) {
-		if (pStack.getItem() == ExtendedItems.MODIFIER_SCROLL.get() && pStack.hasTag()) {
-			ExtendedModifier modifier = getModifier(pStack);
-			return new TranslationTextComponent(this.getDescriptionId() + ".named", new TranslationTextComponent("enchant.lotrextended."+modifier.getLocalKey()));
+		if(hasModifier(pStack)) {
+			return new TranslationTextComponent(this.getDescriptionId() + ".named", new TranslationTextComponent("enchant.lotrextended."+getModifier(pStack).getLocalKey()));
 		}
 		return super.getName(pStack);
 	}
@@ -58,14 +57,22 @@ public class ExtendedSmithScrollItem extends Item {
 		return false;
 	}
 
-	public static void setModifier(ItemStack stack, ExtendedModifier modifier) {
-		stack.getOrCreateTag().putString("ExtendedModifierType", modifier.getNbtKey());
+	public static boolean hasModifier(ItemStack stack) {
+		if (stack.hasTag() && stack.getTag().contains(NBTMODIFIER, 8)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
-	public static ExtendedModifier getModifier(ItemStack stack) {
-		if(!stack.hasTag() || !stack.getTag().contains("ExtendedModifierType")) {
+	public static void setModifier(ItemStack stack, ExtendedModifier modifier) {
+		stack.getOrCreateTag().putString(NBTMODIFIER, modifier.getNbtKey());
+	}
+
+	public static ExtendedModifier getModifier(ItemStack pStack) {
+		if(!hasModifier(pStack)) {
 			return ExtendedModifiers.UNKNOWN;
 		}
-		return ExtendedModifiers.MODIFIER_MAP.getOrDefault(stack.getTag().getString("ExtendedModifierType"), ExtendedModifiers.UNKNOWN);
+		return ExtendedModifiers.MODIFIER_MAP.getOrDefault(pStack.getTag().getString(NBTMODIFIER), ExtendedModifiers.UNKNOWN);
 	}
 }

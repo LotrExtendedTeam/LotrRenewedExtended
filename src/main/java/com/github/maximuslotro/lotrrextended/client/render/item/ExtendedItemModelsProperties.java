@@ -4,7 +4,7 @@ import com.github.maximuslotro.lotrrextended.common.inventory.container.Extended
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedSmithScrollItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 
 import lotr.common.init.ExtendedItems;
 import net.minecraft.inventory.container.PlayerContainer;
@@ -40,7 +40,7 @@ public class ExtendedItemModelsProperties {
 		registerBowItemModelProperties(ExtendedItems.ORC_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.GUNDABAD_URUK_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.RANGER_BOW.get());
-		ItemModelsProperties.register(ExtendedItems.MODIFIER_SCROLL.get(), scroll_type, (itemStack, clientWorld, LivingEntity) -> ExtendedSmithScrollItem.getModifier(itemStack).getScroll().getId());
+		ItemModelsProperties.register(ExtendedItems.MODIFIER_SCROLL.get(), scroll_type, (itemStack, clientWorld, LivingEntity) -> ExtendedModifierScrollItem.getModifier(itemStack).getScroll().getId());
 	}
 
 	public static void registerBowItemModelProperties(Item item) {

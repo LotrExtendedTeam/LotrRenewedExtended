@@ -16,11 +16,6 @@ import net.minecraft.util.WeightedRandom;
  *     <li>{@link #effect} – The numeric effect applied by this modifier.</li>
  *     <li>{@link #rarity} – How the modifier is obtained (crafting, reforging, applied, earned, etc.).</li>
  * </ul>
- *
- * <p>
- * Additionally, a static {@link #MODIFIER_MAP} provides fast lookup of
- * specific modifiers by their NBT key.
- * </p>
  * 
  */
 public class ExtendedModifier extends WeightedRandom.Item{
@@ -122,7 +117,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	 * Indicates if this modifier represents an "unknown" placeholder.
 	 * The unknown modifier is used if no valid modifiers are found.
 	 *
-	 * @return {@code true} if this modifier is the {@link #UNKNOWN} entry,
+	 * @return {@code true} if this modifier is the {@link ExtendedModifierTypes#UNKNOWN} entry,
 	 *         {@code false} otherwise
 	 */
 	public boolean isUnknown() {

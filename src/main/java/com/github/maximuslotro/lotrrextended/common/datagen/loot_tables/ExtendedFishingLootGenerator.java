@@ -6,6 +6,7 @@ import java.util.function.BiConsumer;
 
 import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
+import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedModifierScrollAdder;
 
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
@@ -101,7 +102,8 @@ public class ExtendedFishingLootGenerator extends FishingLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_NUGGET.get()).setWeight(5))
 				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(10))
 				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(5))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_RING.get()).setWeight(1))));
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_RING.get()).setWeight(1))
+				.apply(ExtendedModifierScrollAdder.chanceCustom(100).setSkillful())));
 	}
 
 	public LootTable.Builder makeTable(){
