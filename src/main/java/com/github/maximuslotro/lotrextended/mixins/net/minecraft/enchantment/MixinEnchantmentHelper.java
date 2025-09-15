@@ -66,7 +66,7 @@ public class MixinEnchantmentHelper {
 			return;
 		}
 		int vanillaValue = MathHelper.clamp(compoundnbt.getInt("lvl"), 0, 255);
-		ExtendedModifierTypes modifierType = ExtendedModifierUtils.vanillaEnchantToModifierInteger(pEnchantment);
+		ExtendedModifierTypes modifierType = ExtendedModifierUtils.vanillaEnchantToModifier(pEnchantment, false);
 		Map<ExtendedModifierTypes, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(pStack);
 		int newValue = 0;
 		if(modifiers.containsKey(modifierType)) {
@@ -92,7 +92,7 @@ public class MixinEnchantmentHelper {
 		if(!ExtendedModifierUtils.hasModifiers(pStack)) {
 			return;
 		}
-		ExtendedModifierTypes modifierType = ExtendedModifierUtils.vanillaEnchantToModifierInteger(pEnchantment);
+		ExtendedModifierTypes modifierType = ExtendedModifierUtils.vanillaEnchantToModifier(pEnchantment, false);
 		Map<ExtendedModifierTypes, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(pStack);
 		if(modifiers.containsKey(modifierType)) {
 			cir.setReturnValue((int) modifiers.get(modifierType).getModifierEffect());

@@ -126,6 +126,7 @@
 		"net.minecraft.entity.MixinEntityType",
 		"net.minecraft.entity.MixinLivingEntity",
 		"net.minecraft.entity.MixinRabbitEntityRaidFarmGoal",
+		"net.minecraft.entity.player.MixinPlayerEntity",
 		"net.minecraft.entity.projectile.MixinFishingBobberEntity",
 		"net.minecraft.inventory.container.MixinCraftingResultSlot",
 		"net.minecraft.item.MixinGlassBottleItem",

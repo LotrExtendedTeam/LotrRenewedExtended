@@ -137,6 +137,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	 * Creates a new map containing all items equipped by an entity in {@linkplain #slots slots that the enchantment
 	 * cares about}. These items are not tested for having the enchantment.
 	 * @param pEntity The entity to collect equipment for.
+	 * @return A map for slots to valid itemstacks
 	 */
 	public Map<EquipmentSlotType, ItemStack> getSlotItems(LivingEntity pEntity) {
 		Map<EquipmentSlotType, ItemStack> map = Maps.newEnumMap(EquipmentSlotType.class);

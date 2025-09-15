@@ -6,14 +6,18 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.WeightedRandom;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.ArrayList;
@@ -427,44 +431,127 @@ public class ExtendedModifierUtils {
 		}
 		return list;
 	}
-
-	public static ExtendedModifierTypes vanillaEnchantToModifierInteger(Enchantment enchantment) {
+	/**
+	 * Maps a vanilla {@link Enchantment} to a corresponding {@link ExtendedModifierTypes}.
+	 * <p>
+	 * If the enchantment is not explicitly mapped, {@link ExtendedModifierTypes#UNKNOWN} is returned.
+	 * </p>
+	 *
+	 * @param enchantment the vanilla enchantment to map
+	 * @param shouldFloat if true, allows returning float-based modifiers for tools
+	 * @return the corresponding {@link ExtendedModifierTypes}, or UNKNOWN if unmapped
+	 */
+	public static ExtendedModifierTypes vanillaEnchantToModifier(Enchantment enchantment, boolean shouldFloat) {
 		if (enchantment == Enchantments.MOB_LOOTING || enchantment == Enchantments.BLOCK_FORTUNE) {
-	        return ExtendedModifierTypes.LOOTING;
-	    } else if (enchantment == Enchantments.KNOCKBACK) {
-	        return ExtendedModifierTypes.MEELE_KNOCKBACK;
-	    } else if (enchantment == Enchantments.FIRE_ASPECT || enchantment == Enchantments.FLAMING_ARROWS) {
-	        return ExtendedModifierTypes.INFERNAL;
-	    } else if (enchantment == Enchantments.SILK_TOUCH) {
-	        return ExtendedModifierTypes.TOOL_SILK;
-	    } else if (enchantment == Enchantments.ALL_DAMAGE_PROTECTION) {
-	        return ExtendedModifierTypes.PROTECTION;
-	    } else if (enchantment == Enchantments.FIRE_PROTECTION) {
-	        return ExtendedModifierTypes.PROTECTION_FIRE;
-	    } else if (enchantment == Enchantments.PROJECTILE_PROTECTION) {
-	        return ExtendedModifierTypes.PROTECTION_RANGED;
-	    } else if (enchantment == Enchantments.FALL_PROTECTION) {
-	        return ExtendedModifierTypes.PROTECTION_FALLING;
-	    } else if (enchantment == Enchantments.BLAST_PROTECTION) {
-	        return ExtendedModifierTypes.PROTECTION_BLAST;
-	    } else if (enchantment == Enchantments.PUNCH_ARROWS) {
-	        return ExtendedModifierTypes.RANGED_KNOCKBACK;
-	    } else {
-	        // Not mapped → return UNKNOWN
-	        return ExtendedModifierTypes.UNKNOWN;
-	    }
+			return ExtendedModifierTypes.LOOTING;
+		} else if (enchantment == Enchantments.KNOCKBACK) {
+			return ExtendedModifierTypes.MEELE_KNOCKBACK;
+		} else if (enchantment == Enchantments.FIRE_ASPECT || enchantment == Enchantments.FLAMING_ARROWS) {
+			return ExtendedModifierTypes.INFERNAL;
+		} else if (enchantment == Enchantments.SILK_TOUCH) {
+			return ExtendedModifierTypes.TOOL_SILK;
+		} else if (enchantment == Enchantments.ALL_DAMAGE_PROTECTION) {
+			return ExtendedModifierTypes.PROTECTION;
+		} else if (enchantment == Enchantments.FIRE_PROTECTION) {
+			return ExtendedModifierTypes.PROTECTION_FIRE;
+		} else if (enchantment == Enchantments.PROJECTILE_PROTECTION) {
+			return ExtendedModifierTypes.PROTECTION_RANGED;
+		} else if (enchantment == Enchantments.FALL_PROTECTION) {
+			return ExtendedModifierTypes.PROTECTION_FALLING;
+		} else if (enchantment == Enchantments.BLAST_PROTECTION) {
+			return ExtendedModifierTypes.PROTECTION_BLAST;
+		} else if (enchantment == Enchantments.PUNCH_ARROWS) {
+			return ExtendedModifierTypes.RANGED_KNOCKBACK;
+		} else if (enchantment == Enchantments.BLOCK_EFFICIENCY && shouldFloat) {
+			return ExtendedModifierTypes.TOOL_SPEED;
+		} else {
+			// Not mapped or blocked → return UNKNOWN
+			return ExtendedModifierTypes.UNKNOWN;
+		}
+	}
+	/**
+	 * Retrieves the level of a given enchantment on an item stack as a float.
+	 * <p>
+	 * Unlike vanilla {@link EnchantmentHelper#getItemEnchantmentLevel}, this method
+	 * returns a float and adds any effects from {@link ExtendedModifierTypes}.
+	 * </p>
+	 *
+	 * @param pEnchantment the enchantment to check
+	 * @param pStack       the item stack
+	 * @return the enchantment level as a float, including extended modifier effects
+	 */
+	public static float getItemEnchantmentLevelFloat(Enchantment pEnchantment, ItemStack pStack) {
+		if (pStack.isEmpty()) {
+			return 0.0f;
+		} else {
+			ResourceLocation resourcelocation = Registry.ENCHANTMENT.getKey(pEnchantment);
+			ListNBT listnbt = pStack.getEnchantmentTags();
+
+			float output = 0.0f;
+			for(int i = 0; i < listnbt.size(); ++i) {
+				CompoundNBT compoundnbt = listnbt.getCompound(i);
+				ResourceLocation resourcelocation1 = ResourceLocation.tryParse(compoundnbt.getString("id"));
+				if (resourcelocation1 != null && resourcelocation1.equals(resourcelocation)) {
+					output = MathHelper.clamp(compoundnbt.getInt("lvl"), 0, 255);
+					break;
+				}
+			}
+			ExtendedModifierTypes modifierType = ExtendedModifierUtils.vanillaEnchantToModifier(pEnchantment, true);
+			if(modifierType != ExtendedModifierTypes.UNKNOWN) {
+				Map<ExtendedModifierTypes, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(pStack);
+				if(modifiers.containsKey(modifierType)) {
+					output += modifiers.get(modifierType).getModifierEffect();
+				}
+			}
+			return output;
+		}
+	}
+	/**
+	 * Retrieves the highest float-level of a given enchantment across all items equipped by an entity.
+	 * <p>
+	 * Works similarly to {@link EnchantmentHelper#getEnchantmentLevel}, but returns a float
+	 * and includes extended modifier effects.
+	 * </p>
+	 *
+	 * @param pEnchantment the enchantment to check
+	 * @param pEntity      the living entity
+	 * @return the highest enchantment level as a float across all equipped items
+	 */
+	public static float getEnchantmentLevelFloat(Enchantment pEnchantment, LivingEntity pEntity) {
+		Iterable<ItemStack> iterable = pEnchantment.getSlotItems(pEntity).values();
+		if (iterable == null) {
+			return 0.0f;
+		} else {
+			float finalLevel = 0.0f;
+
+			for(ItemStack itemstack : iterable) {
+				float localLevel = getItemEnchantmentLevelFloat(pEnchantment, itemstack);
+				if (localLevel > finalLevel) {
+					finalLevel = localLevel;
+				}
+			}
+
+			return finalLevel;
+		}
+	}
+	/**
+	 * Convenience method to get the effective block efficiency for a living entity,
+	 * based on the BLOCK_EFFICIENCY enchantment and extended modifiers.
+	 *
+	 * @param pEntity the entity to check
+	 * @return the effective block-breaking efficiency as a float
+	 */
+	public static float getBlockEfficiencyFloat(LivingEntity pEntity) {
+		return getEnchantmentLevelFloat(Enchantments.BLOCK_EFFICIENCY, pEntity);
 	}
 
 	public static ExtendedModifierTypes toFinish(Enchantment enchantment) {
-		if (enchantment == Enchantments.BLOCK_EFFICIENCY) {
-	    	return ExtendedModifierTypes.UNKNOWN;
-	        //return ExtendedModifierTypes.TOOL_SPEED;//BAD
-	    } else if (enchantment == Enchantments.POWER_ARROWS) {
-	    	return ExtendedModifierTypes.UNKNOWN;
-	        //return ExtendedModifierTypes.RANGED_SPEED;//BAD
-	    } else {
-	        // Not mapped → return UNKNOWN
-	        return ExtendedModifierTypes.UNKNOWN;
-	    }
+		if (enchantment == Enchantments.POWER_ARROWS) {
+			return ExtendedModifierTypes.UNKNOWN;
+			//return ExtendedModifierTypes.RANGED_SPEED;//BAD
+		} else {
+			// Not mapped → return UNKNOWN
+			return ExtendedModifierTypes.UNKNOWN;
+		}
 	}
 }
