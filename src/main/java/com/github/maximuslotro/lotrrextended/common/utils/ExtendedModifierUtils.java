@@ -459,8 +459,6 @@ public class ExtendedModifierUtils {
 		if (enchantment == Enchantments.UNBREAKING) {
 			return ExtendedModifierTypes.UNKNOWN;
 	        //return ExtendedModifierTypes.DURABILITY;//BAD
-	    } else if (enchantment == Enchantments.SHARPNESS) {
-	        return ExtendedModifierTypes.MELEE_DAMAGE;
 	    } else if (enchantment == Enchantments.BLOCK_EFFICIENCY) {
 	    	return ExtendedModifierTypes.UNKNOWN;
 	        //return ExtendedModifierTypes.TOOL_SPEED;//BAD
