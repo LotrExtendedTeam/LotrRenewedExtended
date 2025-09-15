@@ -558,7 +558,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("enchant.lotrextended.armor_protect_fall.one", "Thicksoled");
 		addD("enchant.lotrextended.armor_protect_fall.two", "Strongshod");
 		addD("enchant.lotrextended.armor_protect_fall.three", "Lightfooted");
-		addD("enchant.lotrextended.armor_protect_fall.disc", "%s protection vs. falling");
+		addD("enchant.lotrextended.armor_protect_fall.disc", "protection vs. falling");
 		addD("enchant.lotrextended.armor_protect_blast.one", "Reinforced");
 		addD("enchant.lotrextended.armor_protect_blast.two", "Safeguarded");
 		addD("enchant.lotrextended.armor_protect_blast.three", "Rúvina Norna");

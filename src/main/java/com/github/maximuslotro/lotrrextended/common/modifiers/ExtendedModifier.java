@@ -1,7 +1,12 @@
 package com.github.maximuslotro.lotrrextended.common.modifiers;
 
 import java.util.List;
+import java.util.Map;
 
+import com.google.common.collect.Maps;
+
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
 
@@ -15,6 +20,7 @@ import net.minecraft.util.WeightedRandom;
  *     <li>{@link #level} – The tier or strength level of the modifier.</li>
  *     <li>{@link #effect} – The numeric effect applied by this modifier.</li>
  *     <li>{@link #rarity} – How the modifier is obtained (crafting, reforging, applied, earned, etc.).</li>
+ *     <li>{@link #slots} – The valid slots this modifier can be applied from.</li>
  * </ul>
  * 
  */
@@ -41,8 +47,11 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	/** The scroll texture to use for this modifier*/
 	private final ExtendedModifierScroll scroll;
 
-	ExtendedModifier(String pNbtKey, String pLocalKey, ExtendedModifierTypes pModifierType, int pLevel, 
-			float pModifierEffect, ExtendedModifierRarity pModifierRarity, ExtendedModifierScroll pScroll, int pWeight) {
+	/** The valid equipment slots for the enchantment. */
+	private final EquipmentSlotType[] slots;
+
+	public ExtendedModifier(String pNbtKey, String pLocalKey, ExtendedModifierTypes pModifierType, int pLevel, 
+			float pModifierEffect, ExtendedModifierRarity pModifierRarity, ExtendedModifierScroll pScroll, int pWeight, EquipmentSlotType[] pApplicableSlots) {
 		super(pWeight);
 		this.keyNbt = pNbtKey;
 		this.keyLocal = pLocalKey;
@@ -51,6 +60,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 		this.effect = pModifierEffect;
 		this.rarity = pModifierRarity;
 		this.scroll = pScroll;
+		this.slots = pApplicableSlots;
 	}
 	/** 
 	 * @return the NBT save key for this modifier. 
@@ -122,6 +132,23 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	 */
 	public boolean isUnknown() {
 		return this==ExtendedModifiers.UNKNOWN;
+	}
+	/**
+	 * Creates a new map containing all items equipped by an entity in {@linkplain #slots slots that the enchantment
+	 * cares about}. These items are not tested for having the enchantment.
+	 * @param pEntity The entity to collect equipment for.
+	 */
+	public Map<EquipmentSlotType, ItemStack> getSlotItems(LivingEntity pEntity) {
+		Map<EquipmentSlotType, ItemStack> map = Maps.newEnumMap(EquipmentSlotType.class);
+
+		for(EquipmentSlotType equipmentslottype : this.slots) {
+			ItemStack itemstack = pEntity.getItemBySlot(equipmentslottype);
+			if (!itemstack.isEmpty()) {
+				map.put(equipmentslottype, itemstack);
+			}
+		}
+
+		return map;
 	}
 	/**
 	 * @return the maximum level available for this modifier's type,

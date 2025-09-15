@@ -2,7 +2,9 @@ package com.github.maximuslotro.lotrrextended.common.utils;
 
 import lotr.common.entity.npc.*;
 import lotr.common.init.ExtendedItems;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -245,12 +247,11 @@ public class ExtendedModifierUtils {
 		}
 	}
 
-	// Do we need this?
-	public static Map<ExtendedModifierTypes, Integer> getModifierListByLevel(ItemStack stack) {
+	public static Map<ExtendedModifierTypes, ExtendedModifier> getModifierListByType(ItemStack stack) {
 		List<ExtendedModifier> mergableModifiers = ExtendedModifierUtils.getModifierList(stack);
-		Map<ExtendedModifierTypes, Integer> map = new LinkedHashMap<>();
+		Map<ExtendedModifierTypes, ExtendedModifier> map = new LinkedHashMap<>();
 		for(ExtendedModifier modifier : mergableModifiers) {
-			map.put(modifier.getModifierType(), modifier.getModifierLevel());
+			map.put(modifier.getModifierType(), modifier);
 		}
 		return map;
 	}
@@ -425,5 +426,50 @@ public class ExtendedModifierUtils {
 			}
 		}
 		return list;
+	}
+
+	public static ExtendedModifierTypes vanillaEnchantToModifierInteger(Enchantment enchantment) {
+		if (enchantment == Enchantments.MOB_LOOTING || enchantment == Enchantments.BLOCK_FORTUNE) {
+	        return ExtendedModifierTypes.LOOTING;
+	    } else if (enchantment == Enchantments.KNOCKBACK) {
+	        return ExtendedModifierTypes.MEELE_KNOCKBACK;
+	    } else if (enchantment == Enchantments.FIRE_ASPECT || enchantment == Enchantments.FLAMING_ARROWS) {
+	        return ExtendedModifierTypes.INFERNAL;
+	    } else if (enchantment == Enchantments.SILK_TOUCH) {
+	        return ExtendedModifierTypes.TOOL_SILK;
+	    } else if (enchantment == Enchantments.ALL_DAMAGE_PROTECTION) {
+	        return ExtendedModifierTypes.PROTECTION;
+	    } else if (enchantment == Enchantments.FIRE_PROTECTION) {
+	        return ExtendedModifierTypes.PROTECTION_FIRE;
+	    } else if (enchantment == Enchantments.PROJECTILE_PROTECTION) {
+	        return ExtendedModifierTypes.PROTECTION_RANGED;
+	    } else if (enchantment == Enchantments.FALL_PROTECTION) {
+	        return ExtendedModifierTypes.PROTECTION_FALLING;
+	    } else if (enchantment == Enchantments.BLAST_PROTECTION) {
+	        return ExtendedModifierTypes.PROTECTION_BLAST;
+	    } else if (enchantment == Enchantments.PUNCH_ARROWS) {
+	        return ExtendedModifierTypes.RANGED_KNOCKBACK;
+	    } else {
+	        // Not mapped → return UNKNOWN
+	        return ExtendedModifierTypes.UNKNOWN;
+	    }
+	}
+
+	public static ExtendedModifierTypes toFinish(Enchantment enchantment) {
+		if (enchantment == Enchantments.UNBREAKING) {
+			return ExtendedModifierTypes.UNKNOWN;
+	        //return ExtendedModifierTypes.DURABILITY;//BAD
+	    } else if (enchantment == Enchantments.SHARPNESS) {
+	        return ExtendedModifierTypes.MELEE_DAMAGE;
+	    } else if (enchantment == Enchantments.BLOCK_EFFICIENCY) {
+	    	return ExtendedModifierTypes.UNKNOWN;
+	        //return ExtendedModifierTypes.TOOL_SPEED;//BAD
+	    } else if (enchantment == Enchantments.POWER_ARROWS) {
+	    	return ExtendedModifierTypes.UNKNOWN;
+	        //return ExtendedModifierTypes.RANGED_SPEED;//BAD
+	    } else {
+	        // Not mapped → return UNKNOWN
+	        return ExtendedModifierTypes.UNKNOWN;
+	    }
 	}
 }
