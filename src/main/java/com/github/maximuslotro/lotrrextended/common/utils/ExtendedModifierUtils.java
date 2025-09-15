@@ -456,10 +456,7 @@ public class ExtendedModifierUtils {
 	}
 
 	public static ExtendedModifierTypes toFinish(Enchantment enchantment) {
-		if (enchantment == Enchantments.UNBREAKING) {
-			return ExtendedModifierTypes.UNKNOWN;
-	        //return ExtendedModifierTypes.DURABILITY;//BAD
-	    } else if (enchantment == Enchantments.BLOCK_EFFICIENCY) {
+		if (enchantment == Enchantments.BLOCK_EFFICIENCY) {
 	    	return ExtendedModifierTypes.UNKNOWN;
 	        //return ExtendedModifierTypes.TOOL_SPEED;//BAD
 	    } else if (enchantment == Enchantments.POWER_ARROWS) {
