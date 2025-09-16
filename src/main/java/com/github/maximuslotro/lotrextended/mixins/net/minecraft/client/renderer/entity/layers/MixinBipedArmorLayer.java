@@ -70,7 +70,7 @@ public abstract class MixinBipedArmorLayer<T extends LivingEntity, A extends Bip
 	/**
 	 * Injects at the start of {@code renderModel} to conditionally cancel armor rendering
 	 * for cloaked entities. When cancelled, a translucent version of the armor is rendered
-	 * to give a “ghostly” cloaking effect.
+	 * to give a "ghostly" cloaking effect.
 	 *
 	 * @param renderStack   the matrix stack used for transformations during rendering
 	 * @param renderBuffer  the buffer into which the armor model will be rendered

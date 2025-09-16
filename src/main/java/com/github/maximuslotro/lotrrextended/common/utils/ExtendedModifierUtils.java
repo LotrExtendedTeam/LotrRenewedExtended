@@ -464,6 +464,8 @@ public class ExtendedModifierUtils {
 			return ExtendedModifierTypes.RANGED_KNOCKBACK;
 		} else if (enchantment == Enchantments.BLOCK_EFFICIENCY && shouldFloat) {
 			return ExtendedModifierTypes.TOOL_SPEED;
+		} else if (enchantment == Enchantments.POWER_ARROWS && shouldFloat) {
+			return ExtendedModifierTypes.RANGED_SPEED;
 		} else {
 			// Not mapped or blocked → return UNKNOWN
 			return ExtendedModifierTypes.UNKNOWN;

@@ -118,6 +118,7 @@ public class MixinEnchantmentHelper {
 		Map<ExtendedModifierTypes, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(pStack);
 		if(modifiers.containsKey(ExtendedModifierTypes.MELEE_DAMAGE)) {
 			mutablefloat.add(modifiers.get(ExtendedModifierTypes.MELEE_DAMAGE).getModifierEffect());
+			cir.setReturnValue(mutablefloat.getValue());
 		}
 	}
 	/**
@@ -148,14 +149,19 @@ public class MixinEnchantmentHelper {
 			Map<ExtendedModifierTypes, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(stack);
 			if(pSource.isFire() && modifiers.containsKey(ExtendedModifierTypes.PROTECTION_FIRE)) {
 				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION_FIRE).getModifierEffect());
+				cir.setReturnValue(mutableint.getValue());
 			}else if(pSource.isProjectile() && modifiers.containsKey(ExtendedModifierTypes.PROTECTION_RANGED)) {
 				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION_RANGED).getModifierEffect());
+				cir.setReturnValue(mutableint.getValue());
 			}else if(pSource.isProjectile() && modifiers.containsKey(ExtendedModifierTypes.PROTECTION_BLAST)) {
 				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION_BLAST).getModifierEffect());
+				cir.setReturnValue(mutableint.getValue());
 			}else if(pSource == DamageSource.FALL && modifiers.containsKey(ExtendedModifierTypes.PROTECTION_FALLING)) {
 				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION_FALLING).getModifierEffect());
+				cir.setReturnValue(mutableint.getValue());
 			}else {
 				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION).getModifierEffect());
+				cir.setReturnValue(mutableint.getValue());
 			}
 		}
 	}
