@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
@@ -93,18 +92,16 @@ public class ExtendedGrindstoneContainer extends Container {
 
 			@Override
 			public ItemStack onTake(PlayerEntity pPlayer, ItemStack pStack) {
-				if(ExtendedServerConfig.enableEnchantedLootDrops.get()) {
-					pAccess.execute((p_216944_1_, p_216944_2_) -> {
-						int xpAmount = this.getExperienceAmount(p_216944_1_);
-						while(xpAmount > 0) {
-							int teiredAmount = ExperienceOrbEntity.getExperienceValue(xpAmount);
-							xpAmount -= teiredAmount;
-							p_216944_1_.addFreshEntity(new ExperienceOrbEntity(p_216944_1_, p_216944_2_.getX(), p_216944_2_.getY() + 0.5D, p_216944_2_.getZ() + 0.5D, teiredAmount));
-						}
+				pAccess.execute((p_216944_1_, p_216944_2_) -> {
+					int xpAmount = this.getExperienceAmount(p_216944_1_);
+					while(xpAmount > 0) {
+						int teiredAmount = ExperienceOrbEntity.getExperienceValue(xpAmount);
+						xpAmount -= teiredAmount;
+						p_216944_1_.addFreshEntity(new ExperienceOrbEntity(p_216944_1_, p_216944_2_.getX(), p_216944_2_.getY() + 0.5D, p_216944_2_.getZ() + 0.5D, teiredAmount));
+					}
 
-						p_216944_1_.levelEvent(1042, p_216944_2_, 0);
-					});
-				}
+					p_216944_1_.levelEvent(1042, p_216944_2_, 0);
+				});
 				ExtendedGrindstoneContainer.this.repairSlots.setItem(0, ItemStack.EMPTY);
 				ExtendedGrindstoneContainer.this.repairSlots.setItem(1, ItemStack.EMPTY);
 				return pStack;

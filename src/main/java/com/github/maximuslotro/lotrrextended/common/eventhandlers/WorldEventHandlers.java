@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
 
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
@@ -13,7 +14,10 @@ import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.init.LOTRDimensions;
+import net.minecraft.block.EnchantingTableBlock;
 import net.minecraft.entity.EntitySize;
+import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -21,8 +25,10 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -156,14 +162,39 @@ public class WorldEventHandlers {
 		}
 	}
 	/**
-     * Adjusts the size of {@link ExtendedBarrowWightEntity} on the client side.
-     *
-     * @param event the size-change event for an entity
-     */
+	 * Adjusts the size of {@link ExtendedBarrowWightEntity} on the client side.
+	 *
+	 * @param event the size-change event for an entity
+	 */
 	@SubscribeEvent
 	public static void handleWightSizeChange(EntityEvent.Size event) {
 		if(event.getEntity()!=null && event.getEntity().level!=null && event.getEntity().level.isClientSide() && event.getEntity() instanceof ExtendedBarrowWightEntity) {
 			event.setNewSize(EntitySize.scalable(0.8f, 2.4f));
+		}
+	}
+	/**
+	 * Modifies entities as they spawn
+	 *
+	 * @param event the entity modifier event
+	 */
+	@SubscribeEvent
+	public static void handleEntitySpawn(EntityJoinWorldEvent event) {
+		if(LOTRDimensions.isModDimension(event.getWorld())) {
+			if (!event.getWorld().isClientSide() && event.getEntity() instanceof ExperienceOrbEntity && !ExtendedServerConfig.enableVanillaEnchanting.get()) {
+				event.setCanceled(true);
+				return;
+			}
+		}
+	}
+
+	@SubscribeEvent()
+	public static void handleBlockLeftInteract(PlayerInteractEvent.LeftClickBlock event) {
+		if(LOTRDimensions.isModDimension(event.getWorld())) {
+			if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof EnchantingTableBlock) {
+				if(!ExtendedServerConfig.enableVanillaEnchanting.get()) {
+					event.setCanceled(true);
+				}
+			}
 		}
 	}
 }

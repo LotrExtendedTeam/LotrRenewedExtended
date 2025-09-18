@@ -2,17 +2,20 @@ package com.github.maximuslotro.lotrrextended.client.eventhandlers;
 
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedHiredUnitHpBar;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.init.LOTRDimensions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderNameplateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -51,6 +54,16 @@ public class ExtendedHiredUnitHealthbarRenderer {
 
 				matrixStackIn.popPose();
 				RenderSystem.disableDepthTest();
+			}
+		}
+	}
+	@SubscribeEvent
+	public void onPreRenderGameOverlay(final RenderGameOverlayEvent.Pre event) {
+		Minecraft mc = Minecraft.getInstance();
+		if(LOTRDimensions.isModDimension(mc.level)) {
+			if (event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE && !ExtendedServerConfig.enableVanillaEnchanting.get()) {
+				event.setCanceled(true);
+				return;
 			}
 		}
 	}
