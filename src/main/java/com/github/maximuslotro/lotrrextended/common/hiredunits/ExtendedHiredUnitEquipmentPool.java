@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -121,7 +122,14 @@ public class ExtendedHiredUnitEquipmentPool {
 		if(pool==null || pool.isEmpty()) {
 			return ItemStack.EMPTY;
 		}
-		return WeightedRandom.getRandomItem(random, pool).getStack();
+		ItemStack generated = WeightedRandom.getRandomItem(random, pool).getStack();
+		if(generated.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(generated)) {
+			if(!ExtendedModifierUtils.hasModifiers(generated)) {
+				ExtendedModifierUtils.generateItemModifiers(random, generated, false, false);
+			}
+			ExtendedModifierUtils.addModifierAddedTag(generated);
+		}
+		return generated;
 	}
 
 	protected void addHelmetStack(ItemStack item, int weight) {

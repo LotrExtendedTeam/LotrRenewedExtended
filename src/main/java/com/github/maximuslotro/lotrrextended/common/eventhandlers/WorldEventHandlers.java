@@ -6,6 +6,7 @@ import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteri
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
@@ -19,7 +20,9 @@ import net.minecraft.block.EnchantingTableBlock;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -27,6 +30,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
@@ -48,7 +52,7 @@ public class WorldEventHandlers {
      * @param event the attack target event containing the potential target and attacker
      */
 	@SubscribeEvent
-	public static void preventCloakedRangersFromBeingTargeted(LivingSetAttackTargetEvent event) {
+	public static void preventCloakedRangersFromBeingTargeted$Extended(LivingSetAttackTargetEvent event) {
 		if (event.getTarget() instanceof ExtendedDunedainRangerEntity) {
 			ExtendedDunedainRangerEntity ranger = (ExtendedDunedainRangerEntity) event.getTarget();
 			if (ranger.isCloaked()) {
@@ -66,7 +70,7 @@ public class WorldEventHandlers {
      * @param event the spawn-setting event triggered when a player sets their spawn
      */
 	@SubscribeEvent
-	public static void handleBedRollCancelSpawn(PlayerSetSpawnEvent event) {
+	public static void handleBedRollCancelSpawn$Extended(PlayerSetSpawnEvent event) {
 		if(event.isForced() || event.getNewSpawn()==null) {
 			return;
 		}
@@ -84,7 +88,7 @@ public class WorldEventHandlers {
      * @param event the block break event
      */
 	@SubscribeEvent(priority=EventPriority.LOWEST)
-	public static void handleBlockBreakAdvancement(BlockEvent.BreakEvent event) {
+	public static void handleBlockBreakAdvancement$Extended(BlockEvent.BreakEvent event) {
 		if(event.getPlayer() instanceof ServerPlayerEntity) {
 			ServerPlayerEntity player = (ServerPlayerEntity)event.getPlayer();
 			ExtendedCriteriaTriggers.PLAYER_BREAK_BLOCK_TRIGGER.trigger(player, event.getPos(), player.getItemInHand(player.getUsedItemHand()));
@@ -101,7 +105,7 @@ public class WorldEventHandlers {
      * @param event the living entity death event
      */
 	@SubscribeEvent
-	public static void handleCaptainTraderDeath(LivingDeathEvent event) {
+	public static void handleCaptainTraderDeath$Extended(LivingDeathEvent event) {
 		if (!(event.getEntity() instanceof ExtendedTraderEntity || event.getEntity() instanceof ExtendedCaptainEntity)) {
 			return;
 		}
@@ -167,7 +171,7 @@ public class WorldEventHandlers {
 	 * @param event the size-change event for an entity
 	 */
 	@SubscribeEvent
-	public static void handleWightSizeChange(EntityEvent.Size event) {
+	public static void handleWightSizeChange$Extended(EntityEvent.Size event) {
 		if(event.getEntity()!=null && event.getEntity().level!=null && event.getEntity().level.isClientSide() && event.getEntity() instanceof ExtendedBarrowWightEntity) {
 			event.setNewSize(EntitySize.scalable(0.8f, 2.4f));
 		}
@@ -178,7 +182,7 @@ public class WorldEventHandlers {
 	 * @param event the entity modifier event
 	 */
 	@SubscribeEvent
-	public static void handleEntitySpawn(EntityJoinWorldEvent event) {
+	public static void handleEntitySpawn$Extended(EntityJoinWorldEvent event) {
 		if(LOTRDimensions.isModDimension(event.getWorld())) {
 			if (!event.getWorld().isClientSide() && event.getEntity() instanceof ExperienceOrbEntity && !ExtendedServerConfig.enableVanillaEnchanting.get()) {
 				event.setCanceled(true);
@@ -188,11 +192,30 @@ public class WorldEventHandlers {
 	}
 
 	@SubscribeEvent()
-	public static void handleBlockLeftInteract(PlayerInteractEvent.LeftClickBlock event) {
+	public static void handleBlockLeftInteract$Extended(PlayerInteractEvent.LeftClickBlock event) {
 		if(LOTRDimensions.isModDimension(event.getWorld())) {
 			if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof EnchantingTableBlock) {
 				if(!ExtendedServerConfig.enableVanillaXp.get()) {
 					event.setCanceled(true);
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent()
+	public static void handleEntityUpdate$Extended(LivingUpdateEvent event) {
+		if(event.getEntity().level.isClientSide()) {
+			if(event.getEntity() instanceof ServerPlayerEntity) {
+				ServerPlayerEntity player = (ServerPlayerEntity)event.getEntity();
+				PlayerInventory inventory = player.inventory;
+				for(int slotIndex=0; slotIndex < inventory.getContainerSize(); slotIndex++) {
+					ItemStack stack = inventory.getItem(slotIndex);
+					if(stack.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(stack)) {
+						if(!ExtendedModifierUtils.hasModifiers(stack)) {
+							ExtendedModifierUtils.generateItemModifiers(player.random, stack, false, false);
+						}
+						ExtendedModifierUtils.addModifierAddedTag(stack);
+					}
 				}
 			}
 		}

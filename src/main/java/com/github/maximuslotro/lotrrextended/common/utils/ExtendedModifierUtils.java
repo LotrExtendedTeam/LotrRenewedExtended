@@ -211,6 +211,18 @@ public class ExtendedModifierUtils {
 			return false;
 		}
 	}
+
+	public static boolean hasRandomModifiers(ItemStack stack) {
+		if (stack.hasTag() && stack.getTag().contains("ERModAdded")) {
+			return stack.getTag().getBoolean(NBTMODIFIER);
+		} else {
+			return false;
+		}
+	}
+
+	public static void addModifierAddedTag(ItemStack stack) {
+		stack.getOrCreateTag().putBoolean("ERModAdded", true);
+	}
 	/**
 	 * Retrieves all modifiers associated with the given {@link ItemStack}.
 	 * <p>
@@ -252,7 +264,7 @@ public class ExtendedModifierUtils {
 	}
 
 	public static Map<ExtendedModifierTypes, ExtendedModifier> getModifierListByType(ItemStack stack) {
-		List<ExtendedModifier> mergableModifiers = ExtendedModifierUtils.getModifierList(stack);
+		List<ExtendedModifier> mergableModifiers = getModifierList(stack);
 		Map<ExtendedModifierTypes, ExtendedModifier> map = new LinkedHashMap<>();
 		for(ExtendedModifier modifier : mergableModifiers) {
 			map.put(modifier.getModifierType(), modifier);
