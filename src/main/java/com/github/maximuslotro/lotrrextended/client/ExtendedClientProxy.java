@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import com.github.maximuslotro.lotrextended.mixins.MIXINConfig;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.client.eventhandlers.ExtendedHiredUnitHealthbarRenderer;
+import com.github.maximuslotro.lotrrextended.client.eventhandlers.ExtendedRendererEventHandler;
 import com.github.maximuslotro.lotrrextended.client.eventhandlers.ExtendedClientModifierEventHandlers;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedScreenRegisterHandler;
 import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
@@ -66,7 +66,7 @@ public class ExtendedClientProxy {
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addListener(this::login);
 		forgeBus.addListener(this::commandevent);
-		forgeBus.addListener(ExtendedHiredUnitHealthbarRenderer::renderHpBar);
+		forgeBus.addListener(ExtendedRendererEventHandler::renderHpBar);
 		forgeBus.addListener(ExtendedClientModifierEventHandlers::addTooltipsForLOTREnchants);
 		modBus.addListener(this::onParticleRegistry);
 		modBus.addListener(this::clientStartupEvent);

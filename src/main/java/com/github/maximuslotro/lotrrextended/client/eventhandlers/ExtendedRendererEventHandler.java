@@ -19,7 +19,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderNameplateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class ExtendedHiredUnitHealthbarRenderer {
+public class ExtendedRendererEventHandler {
 
 	@SubscribeEvent
 	public static void renderHpBar(RenderNameplateEvent event) {
@@ -61,7 +61,7 @@ public class ExtendedHiredUnitHealthbarRenderer {
 	public void onPreRenderGameOverlay(final RenderGameOverlayEvent.Pre event) {
 		Minecraft mc = Minecraft.getInstance();
 		if(LOTRDimensions.isModDimension(mc.level)) {
-			if (event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE && !ExtendedServerConfig.enableVanillaEnchanting.get()) {
+			if (event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE && !ExtendedServerConfig.enableVanillaXp.get()) {
 				event.setCanceled(true);
 				return;
 			}

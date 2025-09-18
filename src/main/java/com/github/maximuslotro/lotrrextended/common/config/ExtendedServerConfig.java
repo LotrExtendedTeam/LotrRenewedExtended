@@ -28,6 +28,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 
 	// Vanilla patches
 	public static ForgeConfigSpec.BooleanValue enableVanillaEnchanting;
+	public static ForgeConfigSpec.BooleanValue enableVanillaXp;
 	public static ForgeConfigSpec.BooleanValue enableExtendedModifiers;
 
 	// Special Settings
@@ -63,7 +64,8 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		builder.pop();
 
 		builder.push("Gameplay");
-		enableVanillaEnchanting = createBooleanValue(builder, "enableVanillaEnchanting", false, true, "Enables vanilla enchanting system");
+		enableVanillaEnchanting = createBooleanValue(builder, "enableVanillaEnchanting", false, true, "Enables vanilla enchanting system in Middle Earth");
+		enableVanillaXp = createBooleanValue(builder, "enableVanillaXp", false, true, "Enables Xp orbs and bar in Middle Earth");
 		enableExtendedModifiers = createBooleanValue(builder, "enableExtendedModifiers", true, true, "Enables Extended modifier system");
 		builder.pop();
 

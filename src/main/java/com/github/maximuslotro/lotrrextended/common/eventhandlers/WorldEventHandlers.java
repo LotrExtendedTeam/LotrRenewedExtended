@@ -191,7 +191,7 @@ public class WorldEventHandlers {
 	public static void handleBlockLeftInteract(PlayerInteractEvent.LeftClickBlock event) {
 		if(LOTRDimensions.isModDimension(event.getWorld())) {
 			if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof EnchantingTableBlock) {
-				if(!ExtendedServerConfig.enableVanillaEnchanting.get()) {
+				if(!ExtendedServerConfig.enableVanillaXp.get()) {
 					event.setCanceled(true);
 				}
 			}
