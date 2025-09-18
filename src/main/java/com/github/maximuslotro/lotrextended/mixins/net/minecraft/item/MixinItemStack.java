@@ -95,8 +95,7 @@ public class MixinItemStack {
 	@Inject(method="hurt(ILjava/util/Random;Lnet/minecraft/entity/player/ServerPlayerEntity;)Z", 
 			at = @At("HEAD"), cancellable=true)
 	private void hurt$Extended(int pAmount, Random pRandom, @Nullable ServerPlayerEntity pUser, CallbackInfoReturnable<Boolean> cir) {
-		if (!isDamageableItem() || 
-				(ExtendedModifierUtils.hasModifiers((ItemStack)(Object)this) && !ExtendedModifierUtils.getModifierListByType((ItemStack)(Object)this).containsKey(ExtendedModifierTypes.DURABILITY))) {
+		if (!isDamageableItem() || !ExtendedModifierUtils.getModifierListByType((ItemStack)(Object)this).containsKey(ExtendedModifierTypes.DURABILITY)) {
 			return;
 		} else {
 			if (pAmount > 0) {

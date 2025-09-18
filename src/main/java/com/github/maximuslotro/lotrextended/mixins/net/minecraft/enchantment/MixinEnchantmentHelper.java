@@ -159,7 +159,7 @@ public class MixinEnchantmentHelper {
 			}else if(pSource == DamageSource.FALL && modifiers.containsKey(ExtendedModifierTypes.PROTECTION_FALLING)) {
 				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION_FALLING).getModifierEffect());
 				cir.setReturnValue(mutableint.getValue());
-			}else {
+			}else if(modifiers.containsKey(ExtendedModifierTypes.PROTECTION)){
 				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION).getModifierEffect());
 				cir.setReturnValue(mutableint.getValue());
 			}
