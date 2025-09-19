@@ -430,13 +430,17 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("container.lotrextended.orc_barrel", "Orc Barrel");
 		addD("container.lotrextended.repair", "Lotr Repair & Name");
 		addD("container.lotrextended.repair.cost", "Material Cost: %1$s");
-		addD("container.lotrextended.repair.reforge", "Reforge");
+		addD("container.lotrextended.repair.reforge", "Reforging repairs the item and re-rolls the modifiers.");
 		addD("container.lotrextended.repair.reforge.cost", "Reforge Cost: %1$s");
+		addD("container.lotrextended.repair.engrave", "Engrave ownership on item.");
+		addD("container.lotrextended.repair.engrave.cost", "Engrave Cost: %1$s");
 		addD("container.lotrextended.repair.info.expensive", "Too Expensive!");
 		addD("container.lotrextended.repair.info.invalid_combination", "Incompatable Modifiers!");
 		addD("container.lotrextended.repair.info.gem_used", "Gem already used!");
 		addD("container.lotrextended.repair.info.too_many_modifiers", "Limit: 3 regular modifiers!");
 		addD("container.lotrextended.repair.info.modifier_maxed", "Modifier is maxed!");
+		addD("container.lotrextended.repair.info.invalid_material", "Invalid Material!");
+		addD("container.lotrextended.repair.info.missing_material", "Missing Materials!");
 
 		// hired unit messages and tooltips for captains
 		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
