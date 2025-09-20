@@ -36,7 +36,7 @@ public class ExtendedModifierScrollItem extends Item {
 	public void fillItemCategory(ItemGroup pGroup, NonNullList<ItemStack> pItems) {
 		if (this.allowdedIn(pGroup)) {
 			for(ExtendedModifier modifier : ExtendedModifiers.MODIFIER_MAP.values()) {
-				if((modifier.getRarity()==ExtendedModifierRarity.BASIC || modifier.getRarity()==ExtendedModifierRarity.SKILLFUL) && modifier.getModifierLevel()>0) {
+				if((modifier.getRarity()==ExtendedModifierRarity.BASIC || modifier.getRarity()==ExtendedModifierRarity.SKILLFUL) && modifier.getModifierTeir()>0) {
 					if(modifier.getScroll()!=ExtendedModifierScroll.GOLD && pGroup != ItemGroup.TAB_SEARCH) {
 						continue;
 					}

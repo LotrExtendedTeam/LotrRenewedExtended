@@ -77,7 +77,7 @@ public class ExtendedModifierAdder extends LootFunction {
 	/**
 	 * Applies random modifiers to the given item stack.
 	 * <p>
-	 * Uses {@link ExtendedModifierUtils#generateItemModifiers(Random, ItemStack, boolean, boolean)}
+	 * Uses {@link ExtendedModifierUtils#generateItemModifiersTagged(Random, ItemStack, boolean, boolean)}
 	 * to apply one or more modifiers depending on the configuration flags.
 	 * </p>
 	 *
@@ -87,7 +87,7 @@ public class ExtendedModifierAdder extends LootFunction {
 	 */
 	@Override
 	public ItemStack run(ItemStack pStack, LootContext pContext) {
-		return ExtendedModifierUtils.generateItemModifiers(pContext.getRandom(), pStack, reforging, noNegatives);
+		return ExtendedModifierUtils.generateItemModifiersTagged(pContext.getRandom(), pStack, reforging, noNegatives);
 	}
 	/**
 	 * Creates a new {@link Builder} for constructing

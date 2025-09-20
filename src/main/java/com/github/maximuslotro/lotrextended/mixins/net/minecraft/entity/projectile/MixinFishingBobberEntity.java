@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 
 import lotr.common.init.LOTRDimensions;
 import net.minecraft.entity.projectile.FishingBobberEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTableManager;
 import net.minecraft.util.ResourceLocation;

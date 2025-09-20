@@ -124,10 +124,7 @@ public class ExtendedHiredUnitEquipmentPool {
 		}
 		ItemStack generated = WeightedRandom.getRandomItem(random, pool).getStack();
 		if(generated.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(generated)) {
-			if(!ExtendedModifierUtils.hasModifiers(generated)) {
-				ExtendedModifierUtils.generateItemModifiers(random, generated, false, false);
-			}
-			ExtendedModifierUtils.addModifierAddedTag(generated);
+			ExtendedModifierUtils.generateItemModifiersTagged(random, generated, false, false);
 		}
 		return generated;
 	}

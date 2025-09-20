@@ -66,7 +66,7 @@ public enum ExtendedModifierTypes {
 
 	/** Grants bonus damage against specific enemy types (e.g., "Bane of..."). */
 	BANE("enchant.lotrextended.bane.desc", "", 
-			item -> item instanceof SwordItem || item instanceof ExtendedThrowableAxeItem),
+			item -> item instanceof SwordItem || item instanceof BowItem || item instanceof ExtendedThrowableAxeItem),
 
 	/** Applies chilling or slowing effects to enemies. */
 	CHILLING("enchant.lotrextended.chilling.disc", "", 
@@ -78,7 +78,7 @@ public enum ExtendedModifierTypes {
 
 	/** Drops enemy heads on death. */
 	HEADHUNTING("enchant.lotrextended.headhunting.disc", "", 
-			item -> item instanceof SwordItem || item instanceof AxeItem || item instanceof BowItem),
+			item -> item instanceof SwordItem || item instanceof BowItem || item instanceof AxeItem ),
 
 	/** Increases efficiency and mining speed for tools. */
 	TOOL_SPEED("enchant.lotrextended.tool_speed.disc", "x", 

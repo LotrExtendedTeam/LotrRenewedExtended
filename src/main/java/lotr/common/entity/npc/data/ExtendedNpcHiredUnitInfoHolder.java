@@ -655,10 +655,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 					ItemStack stack = itemsStacks.get(i);
 					// Ensure older stacks have modifiers added (even player given items should have modifiers added)
 					if(stack.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(stack)) {
-						if(!ExtendedModifierUtils.hasModifiers(stack)) {
-							ExtendedModifierUtils.generateItemModifiers(thisEntity.random, stack, false, false);
-						}
-						ExtendedModifierUtils.addModifierAddedTag(stack);
+						ExtendedModifierUtils.generateItemModifiersTagged(thisEntity.random, stack, false, false);
 					}
 					internalUnitInventory.setItem(i, stack);
 				}

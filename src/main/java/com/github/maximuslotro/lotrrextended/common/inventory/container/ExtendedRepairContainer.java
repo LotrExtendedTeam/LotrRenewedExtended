@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
@@ -224,7 +223,6 @@ public class ExtendedRepairContainer extends Container {
 	 * called when the Anvil Input Slot changes, calculates the new result and puts it in the output slot
 	 */
 	public void createResult() {
-		ExtendedLog.info("createResult");
 		ItemStack inputItem = this.inputSlots.getItem(0);
 		this.gemprocessing.set(0);
 		this.incompatable.set(0);
@@ -244,7 +242,6 @@ public class ExtendedRepairContainer extends Container {
 			//new Exception("Debug stack trace").printStackTrace();
 			lastGemColoring = isGemColoring;
 			this.cost.set(0);
-			ExtendedLog.info("ItemEmpty");
 		} else {
 			ItemStack resultItem = inputItem.copy();
 			ItemStack mergableItem = this.inputSlots.getItem(1);
@@ -256,7 +253,6 @@ public class ExtendedRepairContainer extends Container {
 			boolean hasApplicableScroll = false;
 
 			if (!mergableItem.isEmpty()) {
-				ExtendedLog.info("HasMergable");
 				//if (!net.minecraftforge.common.ForgeHooks.onAnvilChange(this, itemstack, itemstack2, resultSlots, itemName, j, this.player)) return;
 				hasApplicableScroll = (mergableItem.getItem() == ExtendedItems.MODIFIER_SCROLL.get() && !ExtendedModifierScrollItem.getModifier(mergableItem).isUnknown());
 				if(!hasApplicableScroll && mergableItem.getItem() instanceof ExtendedGemstoneColoringItem) {
@@ -298,20 +294,18 @@ public class ExtendedRepairContainer extends Container {
 						ExtendedModifier existingModifier = inputModifiers.stream()
 							.filter(m -> m.getModifierType() == modifier.getModifierType())
 							.findFirst().orElse(ExtendedModifiers.UNKNOWN);
-						int slot0Level = !existingModifier.isUnknown() ? existingModifier.getModifierLevel() : modifier.getMinLevel();
-						int slot1Level = modifier.getModifierLevel();
+						int slot0Level = !existingModifier.isUnknown() ? existingModifier.getModifierTeir() : modifier.getMinLevel();
+						int slot1Level = modifier.getModifierTeir();
 						int outputSlotLevel = (slot0Level == slot1Level) ? slot1Level + 1 : Math.max(slot1Level, slot0Level);
 						if (!modifier.canApplyToItem(inputItem)) {
 							if(hasApplicableScroll) {
 								hasInCompatibleModifier = true;
-								ExtendedLog.info("cant apply to item");
 							}
 							continue;
 						}						
 						for(ExtendedModifier existing : inputModifiers) {
 							if (modifier.getModifierType()!=existing.getModifierType() && !modifier.canApplyToModifier(existing.getModifierType())) {
 								hasInCompatibleModifier = true;
-								ExtendedLog.info("hasInCompatibleModifier");
 							}
 						}
 						if(hasInCompatibleModifier) {
@@ -321,9 +315,7 @@ public class ExtendedRepairContainer extends Container {
 						if (outputSlotLevel > modifier.getMaxLevel()) {
 							if (hasApplicableScroll) {
 								maxedLevelForBook = true;
-								ExtendedLog.info("surpassed max level on item1");
 							}else {
-								ExtendedLog.info("surpassed max level on item2");
 								continue;
 							}
 						}
@@ -332,7 +324,6 @@ public class ExtendedRepairContainer extends Container {
 						if ((modifier.getRarity() == ExtendedModifierRarity.BASIC || modifier.getRarity() == ExtendedModifierRarity.SKILLFUL) 
 							&& currentModifierCount+newModifierCount>=3 && existingModifier.isUnknown()) {
 							maximumModifiersReached = true;
-							ExtendedLog.info("maximumModifiersReached");
 						}
 						if(maximumModifiersReached){
 							if(hasApplicableScroll) {
@@ -343,7 +334,6 @@ public class ExtendedRepairContainer extends Container {
 								this.toManyModifiers.set(1);
 								this.resultSlots.setItem(0, ItemStack.EMPTY);
 								this.broadcastChanges();
-								ExtendedLog.info("to many modifiers");
 								return;
 							}
 							continue;// skip 3 max warning if combining items, not using scrolls
@@ -355,7 +345,6 @@ public class ExtendedRepairContainer extends Container {
 							this.toManyModifiers.set(2);
 							this.resultSlots.setItem(0, ItemStack.EMPTY);
 							this.broadcastChanges();
-							ExtendedLog.info("maxed modifier level");
 							return;
 						}else {
 
@@ -368,7 +357,7 @@ public class ExtendedRepairContainer extends Container {
 							// Find the modifier with the desired level
 							final int outoutLevel = outputSlotLevel;
 							ExtendedModifier result = list.stream()
-								.filter(m -> m.getModifierLevel() == outoutLevel)
+								.filter(m -> m.getModifierTeir() == outoutLevel)
 								.findFirst()
 								.orElse(ExtendedModifiers.UNKNOWN); // fallback if no exact match
 
@@ -411,12 +400,10 @@ public class ExtendedRepairContainer extends Container {
 						this.toManyModifiers.set(0);
 						this.resultSlots.setItem(0, ItemStack.EMPTY);
 						this.broadcastChanges();
-						ExtendedLog.info("sent hasInCompatibleModifier");
 						return;
 					}
 				}
 			}else if (resultItem.isDamageableItem() && resultItem.getItem().isValidRepairItem(inputItem, resourceItem)) {
-				ExtendedLog.info("Damagable and Repair");
 				int repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
 				this.engraveCost.set(2);
 				this.reforgeCost.set(2);
@@ -438,7 +425,6 @@ public class ExtendedRepairContainer extends Container {
 					resultItem.resetHoverName();
 				}
 			} else if (!this.itemName.equals(inputItem.getHoverName().getString())) {
-				ExtendedLog.info("Set item name");
 				renameCost =+1;
 				resultItem.setHoverName(new StringTextComponent(this.itemName));
 			}
@@ -456,21 +442,21 @@ public class ExtendedRepairContainer extends Container {
 			}
 			this.cost.set(baseCost + repairCost + renameCost);
 			if (repairCost <= 0 && renameCost==0 && !isGemColoring) {
-				ExtendedLog.info("repairCost <= 0 && renameCost==0 && !isGemColoring");
+				//ExtendedLog.info("repairCost <= 0 && renameCost==0 && !isGemColoring");
 				resultItem = ItemStack.EMPTY;
 			}
 
 			if (repairCost==0 && renameCost > 0 && this.cost.get() >= 40) {
-				ExtendedLog.info("repairCost==0 && renameCost > 0 && this.cost.get() >= 40");
+				//ExtendedLog.info("repairCost==0 && renameCost > 0 && this.cost.get() >= 40");
 				this.cost.set(39);
 			}
 
 			if (this.cost.get() >= 40 && !this.player.abilities.instabuild && !isGemColoring) {
-				ExtendedLog.info("this.cost.get() >= 40 && !this.player.abilities.instabuild && !isGemColoring");
+				//ExtendedLog.info("this.cost.get() >= 40 && !this.player.abilities.instabuild && !isGemColoring");
 				resultItem = ItemStack.EMPTY;
 			}
 			if(isGemColoring && renameCost == 0) {
-				ExtendedLog.info("isGemColoring && renameCost == 0");
+				//ExtendedLog.info("isGemColoring && renameCost == 0");
 				this.cost.set(0);
 			}
 			if (!resultItem.isEmpty()) {
@@ -486,7 +472,6 @@ public class ExtendedRepairContainer extends Container {
 				resultItem.setRepairCost(newRepairCost);
 				ExtendedModifierUtils.setModifiers(resultItem, inputModifiers);
 			}
-			ExtendedLog.info("Has EG: "+engraveCost.get()+", RC: "+this.reforgeCost.get());
 			this.resultSlots.setItem(0, resultItem);
 			this.broadcastChanges();
 		}
@@ -501,7 +486,7 @@ public class ExtendedRepairContainer extends Container {
 				if(inputItem.isDamageableItem()) {
 					inputItem.setDamageValue(0);
 				}
-				inputItem = ExtendedModifierUtils.generateItemModifiers(this.player.random, inputItem, true, true);
+				ExtendedModifierUtils.generateItemModifiersTagged(this.player.random, inputItem, true, true);
 				hurtOrDamageAnvilSound();
 				if (resourceItem.getCount()>reforgeCostCopy) {
 					resourceItem.shrink(reforgeCostCopy);

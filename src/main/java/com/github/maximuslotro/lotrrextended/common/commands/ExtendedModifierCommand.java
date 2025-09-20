@@ -6,6 +6,7 @@ import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
@@ -31,10 +32,16 @@ public class ExtendedModifierCommand {
 			.suggests(ENCHANTMENTS).executes(context -> modifyEnchant(context.getSource(), StringArgumentType.getString(context, "modifierType"), true)));
 		LiteralArgumentBuilder<CommandSource> remove = Commands.literal("remove").then(Commands.argument("modifierType", StringArgumentType.greedyString())
 			.suggests(ENCHANTMENTS).executes(context -> modifyEnchant(context.getSource(), StringArgumentType.getString(context, "modifierType"), false)));
+		LiteralArgumentBuilder<CommandSource> generate = Commands.literal("generate").executes(context -> generateEnchant(context.getSource(), false, false))
+			.then(Commands.argument("reforge", BoolArgumentType.bool())
+				.executes(context -> generateEnchant(context.getSource(), BoolArgumentType.getBool(context, "reforge"), false))
+				.then(Commands.argument("noNegatives", BoolArgumentType.bool())
+					.executes(context -> generateEnchant(context.getSource(), BoolArgumentType.getBool(context, "reforge"), BoolArgumentType.getBool(context, "noNegatives")))))
+			;
 		// Register multiple alias commands
-		dispatcher.register(Commands.literal("lotr_enchant").requires(context -> context.hasPermission(4)).then(clear).then(add).then(remove));
-		dispatcher.register(Commands.literal("lotr_modifiers").requires(context -> context.hasPermission(4)).then(clear).then(add).then(remove));
-		dispatcher.register(Commands.literal("lotrExtendedModifiers").requires(context -> context.hasPermission(4)).then(clear).then(add).then(remove));
+		dispatcher.register(Commands.literal("lotr_enchant").requires(context -> context.hasPermission(4)).then(clear).then(add).then(remove).then(generate));
+		dispatcher.register(Commands.literal("lotr_modifiers").requires(context -> context.hasPermission(4)).then(clear).then(add).then(remove).then(generate));
+		dispatcher.register(Commands.literal("lotrExtendedModifiers").requires(context -> context.hasPermission(4)).then(clear).then(add).then(remove).then(generate));
 	}
 
 	public static final SuggestionProvider<CommandSource> ENCHANTMENTS = (ctx, builder) -> {
@@ -107,6 +114,18 @@ public class ExtendedModifierCommand {
 			return 0;
 		}
 
+		return Command.SINGLE_SUCCESS;
+	}
+
+	public static int generateEnchant(CommandSource source, boolean reforge, boolean noNegatives) {
+		if (!(source.getEntity() != null && source.getEntity() instanceof PlayerEntity)) {
+			source.sendFailure(new TranslationTextComponent("command.lotrextended.generic_error.only_player"));
+			return 0;
+		}
+
+		ItemStack stack = ((PlayerEntity) source.getEntity()).getItemInHand(Hand.MAIN_HAND);
+		ExtendedModifierUtils.generateItemModifiersTagged(source.getEntity().random, stack, false, false);
+		source.sendSuccess(new TranslationTextComponent("command.lotrextended.enchant.generated"), true);
 		return Command.SINGLE_SUCCESS;
 	}
 }

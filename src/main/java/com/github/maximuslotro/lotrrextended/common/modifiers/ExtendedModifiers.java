@@ -19,7 +19,7 @@ import net.minecraft.inventory.EquipmentSlotType;
  * </p>
  *
  * <p>
- * Modifiers are registered statically via the {@link #register} method,
+ * Modifiers are registered statically via the {@link #registerInt} or {@link #registerFloat} methods,
  * and all registered modifiers are stored in the {@link #ALL} list.
  * </p>
  *
@@ -125,6 +125,7 @@ public class ExtendedModifiers {
      * @param pModifierRarity The rarity classification of the modifier.
      * @param pScroll The scroll type used to apply the modifier.
      * @param pWeight The relative chance of occurrence for loot generation.
+	 * @param pApplicableSlots The slots that this modifier can be applied from
      * @return The registered {@link ExtendedModifier} instance.
      */
 	private static ExtendedModifier registerInt(String pNbtKey, String pLocalKey, ExtendedModifierTypes pModifierType, int pLevel, 
@@ -144,6 +145,7 @@ public class ExtendedModifiers {
      * @param pModifierRarity The rarity classification of the modifier.
      * @param pScroll The scroll type used to apply the modifier.
      * @param pWeight The relative chance of occurrence for loot generation.
+     * @param pApplicableSlots The slots that this modifier can be applied from
      * @return The registered {@link ExtendedModifier} instance.
      */
 	private static ExtendedModifier registerFloat(String pNbtKey, String pLocalKey, ExtendedModifierTypes pModifierType, int pLevel, 
@@ -195,7 +197,7 @@ public class ExtendedModifiers {
 		}
 		// Sort modifiers within each type by their tier/level
 		for (List<ExtendedModifier> list : grouped.values()) {
-			list.sort(Comparator.comparingInt(ExtendedModifier::getModifierLevel));
+			list.sort(Comparator.comparingInt(ExtendedModifier::getModifierTeir));
 		}
 		MODIFIERS_BY_TYPE.putAll(grouped);
 	}

@@ -27,8 +27,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierRarity;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierScroll;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierTypes;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
@@ -59,7 +61,7 @@ public class ExtendedModifierUtils {
 			listnbt.add(compoundnbt);
 		}
 		if(!listnbt.isEmpty()) {
-			stack.getOrCreateTag().put(NBTMODIFIER, new ListNBT());
+			stack.getOrCreateTag().put(NBTMODIFIER, listnbt);
 		}
 	}
 
@@ -67,14 +69,14 @@ public class ExtendedModifierUtils {
 		if (!getModifierList(stack).contains(modifier)) {
 			return;
 		}
-
 		ListNBT listnbt = stack.getTag().getList(NBTMODIFIER, 10); //Null tag already validated by getModifierList
 		List<CompoundNBT> entriesToRemove = new ArrayList<>();
 		for (INBT nbt : listnbt) {
 			CompoundNBT entry = (CompoundNBT) nbt;
-			if (entry.getString("key").equals(modifier.getNbtKey())) entriesToRemove.add(entry);
+			if (entry.getString("key").equals(modifier.getNbtKey())) {
+				entriesToRemove.add(entry);
+			}
 		}
-
 		listnbt.removeAll(entriesToRemove);
 		if(listnbt.isEmpty()) {
 			stack.getTag().remove(NBTMODIFIER);
@@ -214,7 +216,7 @@ public class ExtendedModifierUtils {
 
 	public static boolean hasRandomModifiers(ItemStack stack) {
 		if (stack.hasTag() && stack.getTag().contains("ERModAdded")) {
-			return stack.getTag().getBoolean(NBTMODIFIER);
+			return stack.getTag().getBoolean("ERModAdded");
 		} else {
 			return false;
 		}
@@ -322,6 +324,12 @@ public class ExtendedModifierUtils {
 		return bane;
 	}
 
+	public static ItemStack generateItemModifiersTagged(Random pRandom, ItemStack pStack, boolean reforging, boolean noNegatives) {
+		generateItemModifiers(pRandom, pStack, reforging, noNegatives);
+		addModifierAddedTag(pStack);
+		return pStack;
+	}
+
 	/**
 	 * Applies one or more randomly selected modifiers to the given {@link ItemStack}.
 	 * <p>
@@ -337,14 +345,14 @@ public class ExtendedModifierUtils {
 	 */
 	public static ItemStack generateItemModifiers(Random pRandom, ItemStack pStack, boolean reforging, boolean noNegatives) {
 		List<ExtendedModifier> list = selectModifiers(pRandom, pStack, reforging, noNegatives);
-		if(!list.isEmpty()) {
-			if (pStack.getItem() instanceof ExtendedModifierScrollItem) {
+		if (pStack.getItem() instanceof ExtendedModifierScrollItem) {
+			if(!list.isEmpty()) {
 				ExtendedModifierScrollItem.setModifier(pStack, list.get(0));
-			} else {
-				setModifiers(pStack, list);
 			}
+		} else {
+			setModifiers(pStack, list);
 		}
-
+		ExtendedLog.info("generateItemModifiers: "+pStack.save(new CompoundNBT()).toString());
 		return pStack;
 	}
 
@@ -378,13 +386,14 @@ public class ExtendedModifierUtils {
 				return newModifiers;
 			}
 			int chance = pRandom.nextInt(100);
-			if(chance < 60) {
+			ExtendedLog.info("chance: "+chance);
+			if(chance < 70) {
 				newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 				filterCompatibleModifiers(applicableModifiers, Util.lastOf(newModifiers));
 				if(chance < 15 && !applicableModifiers.isEmpty()) {
 					newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 					filterCompatibleModifiers(applicableModifiers, Util.lastOf(newModifiers));
-					if(chance == 1 && !applicableModifiers.isEmpty()) {
+					if(chance == 0 && !applicableModifiers.isEmpty()) {
 						newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 					}
 				}
@@ -431,11 +440,15 @@ public class ExtendedModifierUtils {
 		List<ExtendedModifier> list = Lists.newArrayList();
 
 		for(ExtendedModifier modifier : ExtendedModifiers.ALL) {
+			// Bypass non-random modifiers and additionally ones that can't be applied to scrolls if using scrolls.
 			if (modifier.weight>0 && (isScroll ? modifier.isAllowedOnScrolls() : true)) {
-				if(noNegatives && modifier.getModifierLevel()<0) {
+				if(noNegatives && modifier.getModifierTeir()<1) {
 					continue;
 				}
 				if(!reforging && modifier.getRarity().equals(ExtendedModifierRarity.SKILLFUL)) {
+					continue;
+				}
+				if(!modifier.canApplyToItem(pStack) && !(pStack.getItem()==ExtendedItems.MODIFIER_SCROLL.get() && modifier.getScroll()!=ExtendedModifierScroll.NOSCROLL)) {
 					continue;
 				}
 				list.add(modifier);

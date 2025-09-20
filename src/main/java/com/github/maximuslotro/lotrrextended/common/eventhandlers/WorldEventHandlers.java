@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
@@ -204,18 +205,14 @@ public class WorldEventHandlers {
 
 	@SubscribeEvent()
 	public static void handleEntityUpdate$Extended(LivingUpdateEvent event) {
-		if(event.getEntity().level.isClientSide()) {
-			if(event.getEntity() instanceof ServerPlayerEntity) {
-				ServerPlayerEntity player = (ServerPlayerEntity)event.getEntity();
-				PlayerInventory inventory = player.inventory;
-				for(int slotIndex=0; slotIndex < inventory.getContainerSize(); slotIndex++) {
-					ItemStack stack = inventory.getItem(slotIndex);
-					if(stack.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(stack)) {
-						if(!ExtendedModifierUtils.hasModifiers(stack)) {
-							ExtendedModifierUtils.generateItemModifiers(player.random, stack, false, false);
-						}
-						ExtendedModifierUtils.addModifierAddedTag(stack);
-					}
+		if(event.getEntity() instanceof ServerPlayerEntity) {
+			ServerPlayerEntity player = (ServerPlayerEntity)event.getEntity();
+			PlayerInventory inventory = player.inventory;
+			for(int slotIndex=0; slotIndex < inventory.getContainerSize(); slotIndex++) {
+				ItemStack stack = inventory.getItem(slotIndex);
+				if(stack.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(stack)) {
+					ExtendedModifierUtils.generateItemModifiersTagged(player.random, stack, false, false);
+					ExtendedLog.info("handleEntityUpdate$Extended: "+inventory.getItem(slotIndex).save(new CompoundNBT()).toString());
 				}
 			}
 		}

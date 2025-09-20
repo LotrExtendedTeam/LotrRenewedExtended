@@ -23,6 +23,7 @@ import net.minecraft.util.ResourceLocation;
  * </p>
  * @Mixin (Items.class)
  */
+@SuppressWarnings("javadoc")
 @Mixin(Items.class)
 public class MixinItems {
 	/**

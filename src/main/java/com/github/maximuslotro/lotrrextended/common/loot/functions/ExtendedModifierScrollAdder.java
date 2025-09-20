@@ -91,7 +91,7 @@ public class ExtendedModifierScrollAdder extends LootFunction {
 	public ItemStack run(ItemStack stack, LootContext context) {
 		if(context.getRandom().nextInt(chance)==0) {
 			stack = new ItemStack(ExtendedItems.MODIFIER_SCROLL.get());
-			ExtendedModifierUtils.generateItemModifiers(context.getRandom(), stack, skillful, true);
+			ExtendedModifierUtils.generateItemModifiersTagged(context.getRandom(), stack, skillful, true);
 		}
 		return stack;
 	}
