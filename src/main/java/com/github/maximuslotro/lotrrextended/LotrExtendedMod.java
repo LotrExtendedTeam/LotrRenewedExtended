@@ -85,14 +85,14 @@ public class LotrExtendedMod{
 		forgeBus.addListener(EventPriority.HIGH, this::extendedAddFeatureToBiomes);
 		forgeBus.addListener(this::extendesAddDimensionalSpacing);
 		forgeBus.addListener(this::extendedServerStopping);
-		DevEventHandlers.registerDevListender(modBus, forgeBus);
 		ExtendedServerConfig.register();
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
-		forgeBus.register(ForgeInventoryEvents.class);
-		forgeBus.register(WorldEventHandlers.class);
-		forgeBus.register(ExtendedServerModifierEventHandlers.class);
 		forgeBus.register(BannerEventHandlers.class);
+		DevEventHandlers.registerDevListender(modBus, forgeBus);
+		forgeBus.register(ExtendedServerModifierEventHandlers.class);
+		forgeBus.register(ForgeInventoryEvents.class);
 		forgeBus.register(HiredUnitEventHandlers.class);
+		forgeBus.register(WorldEventHandlers.class);
 		ExtendedBlockStateProviderTypes.register(modBus);
 		ExtendedAttributes.register(modBus);
 		ExtendedCriteriaTriggers.generate();

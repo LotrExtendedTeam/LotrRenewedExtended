@@ -37,10 +37,22 @@ import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.google.common.collect.Lists;
 
 /**
- * Based on {@link EnchantmentHelper}
+ * Utility class for applying, storing, and managing {@link ExtendedModifier}s on
+ * {@link ItemStack}s. Inspired by {@link EnchantmentHelper}, this class provides
+ * methods to add, remove, clear, and track modifiers via custom NBT data.
  */
 public class ExtendedModifierUtils {
-	private static final String NBTMODIFIER = "LOTREnchantments";
+	public static final String NBTMODIFIER = "REModifiers";
+	/**
+     * Adds a single {@link ExtendedModifier} to the given {@link ItemStack}.
+     * <p>
+     * If the item does not already have a modifier list, one is created and
+     * stored under the {@code NBTMODIFIER} tag.
+     * </p>
+     *
+     * @param stack    the {@link ItemStack} to modify
+     * @param modifier the {@link ExtendedModifier} to add
+     */
 	public static void addModifier(ItemStack stack, ExtendedModifier modifier) {
 		CompoundNBT tag = stack.getOrCreateTag();
 		if (!tag.contains(NBTMODIFIER, 9)) {
@@ -51,7 +63,16 @@ public class ExtendedModifierUtils {
 		compoundnbt.putString("key", modifier.getNbtKey());
 		listnbt.add(compoundnbt);
 	}
-
+	/**
+     * Replaces all existing modifiers on the given {@link ItemStack} with the provided list.
+     * <p>
+     * Existing modifiers are cleared before adding the new ones. If the list is empty,
+     * no changes will be made to the item.
+     * </p>
+     *
+     * @param stack     the {@link ItemStack} to update
+     * @param modifiers the list of {@link ExtendedModifier}s to set
+     */
 	public static void setModifiers(ItemStack stack, List<ExtendedModifier> modifiers) {
 		clearModifiers(stack);
 		ListNBT listnbt = new ListNBT();
@@ -64,7 +85,17 @@ public class ExtendedModifierUtils {
 			stack.getOrCreateTag().put(NBTMODIFIER, listnbt);
 		}
 	}
-
+	/**
+     * Removes a specific {@link ExtendedModifier} from the given {@link ItemStack}.
+     * <p>
+     * If the modifier is not present, the method does nothing. When the last modifier
+     * is removed, the {@code NBTMODIFIER} tag is also removed, and if the tag
+     * becomes empty, the entire NBT tag is cleared from the stack.
+     * </p>
+     *
+     * @param stack    the {@link ItemStack} to modify
+     * @param modifier the {@link ExtendedModifier} to remove
+     */
 	public static void removeModifier(ItemStack stack, ExtendedModifier modifier) {
 		if (!getModifierList(stack).contains(modifier)) {
 			return;
@@ -85,7 +116,17 @@ public class ExtendedModifierUtils {
 			}
 		}
 	}
-
+	/**
+     * Clears all {@link ExtendedModifier}s from the given {@link ItemStack}.
+     * <p>
+     * This removes the {@code NBTMODIFIER} tag from the item, and if
+     * the NBT data becomes empty, the tag is fully cleared.
+     * </p>
+     *
+     * @param stack the {@link ItemStack} to clear
+     * @return {@code true} if one or more modifiers were cleared,
+     *         {@code false} if the item had no modifiers
+     */
 	public static boolean clearModifiers(ItemStack stack) {
 		if (!hasModifiers(stack)) {
 			return false;
@@ -97,7 +138,20 @@ public class ExtendedModifierUtils {
 		}
 		return true;
 	}
-
+	/**
+     * Progresses the "bane" achievement mechanic for the given {@link ItemStack} when it kills an entity.
+     * <p>
+     * - If the item already has a bane, nothing happens. <br>
+     * - If no applicable bane exists for the entity, nothing happens. <br>
+     * - Otherwise, the kill count is tracked in the {@code "LOTRBaneProgress"} tag until it reaches 100,
+     *   at which point the bane modifier is awarded to the item, players are notified via chat,
+     *   and the progress data is cleared.
+     * </p>
+     *
+     * @param stack  the {@link ItemStack} that inflicted the kill
+     * @param entity the killed {@link Entity}
+     * @param player the {@link PlayerEntity} responsible for the kill (used for chat notifications)
+     */
 	public static void incrementBaneProgress(ItemStack stack, Entity entity, PlayerEntity player) {
 		// exit the method if the item already has a bane
 		if (containsBane(getModifierList(stack))) {
@@ -213,7 +267,20 @@ public class ExtendedModifierUtils {
 			return false;
 		}
 	}
-
+	/**
+     * Checks whether the given {@link ItemStack} has been tagged as having random modifiers applied.
+     * <p>
+     * This is determined by inspecting the {@code "ERModAdded"} boolean tag stored in the
+     * {@link CompoundNBT} of the stack. If the tag exists and is set to
+     * {@code true}, the item has had modifiers added using
+     * {@link #generateItemModifiersTagged(Random, ItemStack, boolean, boolean)}.
+     * </p>
+     *
+     * @param stack the {@link ItemStack} to check
+     * @return {@code true} if the item has the {@code "ERModAdded"} tag set to {@code true}, otherwise {@code false}
+     * @see #addModifierAddedTag(ItemStack)
+     * @see #generateItemModifiersTagged(Random, ItemStack, boolean, boolean)
+     */
 	public static boolean hasRandomModifiers(ItemStack stack) {
 		if (stack.hasTag() && stack.getTag().contains("ERModAdded")) {
 			return stack.getTag().getBoolean("ERModAdded");
@@ -221,7 +288,18 @@ public class ExtendedModifierUtils {
 			return false;
 		}
 	}
-
+	/**
+     * Adds or updates the {@code "ERModAdded"} tag on the given {@link ItemStack}, marking
+     * it as having random modifiers applied.
+     * <p>
+     * This method does not apply modifiers by itself — it simply ensures that the item
+     * can be recognized as modified by {@link #hasRandomModifiers(ItemStack)}.
+     * </p>
+     *
+     * @param stack the {@link ItemStack} to tag
+     * @see #hasRandomModifiers(ItemStack)
+     * @see #generateItemModifiersTagged(Random, ItemStack, boolean, boolean)
+     */
 	public static void addModifierAddedTag(ItemStack stack) {
 		stack.getOrCreateTag().putBoolean("ERModAdded", true);
 	}
@@ -323,7 +401,25 @@ public class ExtendedModifierUtils {
 		}
 		return bane;
 	}
-
+	  /**
+     * Generates and applies one or more modifiers to the given {@link ItemStack}, then
+     * marks the item with a persistent tag indicating that modifiers have been added.
+     * <p>
+     * This method behaves like {@link #generateItemModifiers(Random, ItemStack, boolean, boolean)},
+     * but additionally sets the {@code "ERModAdded"} tag on the {@link ItemStack}. This tag can be
+     * checked using {@link #hasRandomModifiers(ItemStack)} to determine whether the item has been
+     * processed by the modifier system.
+     * </p>
+     *
+     * @param pRandom      the {@link Random} instance used to generate modifier selection
+     * @param pStack       the {@link ItemStack} to which modifiers will be applied
+     * @param reforging    whether the item is being reforged (affects which modifiers are eligible)
+     * @param noNegatives  if true, negative modifiers are excluded from the selection pool
+     * @return the modified {@link ItemStack}, tagged as having modifiers added
+     * @see #generateItemModifiers(Random, ItemStack, boolean, boolean)
+     * @see #hasRandomModifiers(ItemStack)
+     * @see #addModifierAddedTag(ItemStack)
+     */
 	public static ItemStack generateItemModifiersTagged(Random pRandom, ItemStack pStack, boolean reforging, boolean noNegatives) {
 		generateItemModifiers(pRandom, pStack, reforging, noNegatives);
 		addModifierAddedTag(pStack);
@@ -352,7 +448,6 @@ public class ExtendedModifierUtils {
 		} else {
 			setModifiers(pStack, list);
 		}
-		ExtendedLog.info("generateItemModifiers: "+pStack.save(new CompoundNBT()).toString());
 		return pStack;
 	}
 
@@ -570,15 +665,5 @@ public class ExtendedModifierUtils {
 	 */
 	public static float getBlockEfficiencyFloat(LivingEntity pEntity) {
 		return getEnchantmentLevelFloat(Enchantments.BLOCK_EFFICIENCY, pEntity);
-	}
-
-	public static ExtendedModifierTypes toFinish(Enchantment enchantment) {
-		if (enchantment == Enchantments.POWER_ARROWS) {
-			return ExtendedModifierTypes.UNKNOWN;
-			//return ExtendedModifierTypes.RANGED_SPEED;//BAD
-		} else {
-			// Not mapped → return UNKNOWN
-			return ExtendedModifierTypes.UNKNOWN;
-		}
 	}
 }

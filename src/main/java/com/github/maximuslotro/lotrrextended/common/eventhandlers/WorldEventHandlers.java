@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
@@ -212,8 +211,12 @@ public class WorldEventHandlers {
 				ItemStack stack = inventory.getItem(slotIndex);
 				if(stack.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(stack)) {
 					ExtendedModifierUtils.generateItemModifiersTagged(player.random, stack, false, false);
-					ExtendedLog.info("handleEntityUpdate$Extended: "+inventory.getItem(slotIndex).save(new CompoundNBT()).toString());
 				}
+			}
+			ItemStack carried = inventory.getCarried();
+			if(carried.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(carried)) {
+				ExtendedModifierUtils.generateItemModifiersTagged(player.random, carried, false, false);
+				player.broadcastCarriedItem();
 			}
 		}
 	}

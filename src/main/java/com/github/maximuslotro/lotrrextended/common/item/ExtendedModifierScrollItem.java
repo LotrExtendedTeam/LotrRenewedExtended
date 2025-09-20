@@ -14,7 +14,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedModifierScrollItem extends Item {
-	private static final String NBTMODIFIER = "ExtendedScrollModifier";
+	private static final String NBTMODIFIER = "REScrollMod";
 	public ExtendedModifierScrollItem(Properties pProperties) {
 		super(pProperties);
 	}

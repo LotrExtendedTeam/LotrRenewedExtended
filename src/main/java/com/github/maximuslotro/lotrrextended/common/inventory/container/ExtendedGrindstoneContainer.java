@@ -242,7 +242,7 @@ public class ExtendedGrindstoneContainer extends Container {
 			itemstack.removeTagKey("Damage");
 		}
 		// Extended Start
-		itemstack.removeTagKey("LOTREnchantments");
+		itemstack.removeTagKey(ExtendedModifierUtils.NBTMODIFIER);
 		// Extended End
 		itemstack.setCount(pCount);
 		// TODO add handling for cursed modifiers in the future
