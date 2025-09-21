@@ -12,17 +12,23 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierTypes;
+import com.github.maximuslotro.lotrrextended.common.utils.AttributeUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
+import com.google.common.collect.Multimap;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.CreatureAttribute;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.common.ForgeMod;
 
 /**
  * A Mixin targeting {@link EnchantmentHelper} to integrate custom {@link ExtendedModifier}s
@@ -159,10 +165,25 @@ public class MixinEnchantmentHelper {
 			}else if(pSource == DamageSource.FALL && modifiers.containsKey(ExtendedModifierTypes.PROTECTION_FALLING)) {
 				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION_FALLING).getModifierEffect());
 				cir.setReturnValue(mutableint.getValue());
+			}else if(pSource.getEntity()!=null && containsLongWeapon(pSource.getEntity().getHandSlots()) && modifiers.containsKey(ExtendedModifierTypes.PROTECTION_MITHRIL)) {
+				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION_MITHRIL).getModifierEffect());
+				cir.setReturnValue(mutableint.getValue());
 			}else if(modifiers.containsKey(ExtendedModifierTypes.PROTECTION)){
 				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION).getModifierEffect());
 				cir.setReturnValue(mutableint.getValue());
 			}
 		}
+	}
+
+	public static boolean containsLongWeapon(Iterable<ItemStack> iterable) {
+	    for (ItemStack stack : iterable) {
+	        if (stack.getItem().getAttributeModifiers(EquipmentSlotType.MAINHAND, stack).containsKey(ForgeMod.REACH_DISTANCE.get())) {
+	        	Multimap<Attribute, AttributeModifier> multimap = stack.getItem().getAttributeModifiers(EquipmentSlotType.MAINHAND, stack);
+	        	if(AttributeUtils.getItemAttributeValue(stack, EquipmentSlotType.MAINHAND, ForgeMod.REACH_DISTANCE.get())>1.3D) {
+	        		return true; // Spear, polearms, and lances
+	        	}
+	        }
+	    }
+	    return false;
 	}
 }
