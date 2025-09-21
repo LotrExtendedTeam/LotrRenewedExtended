@@ -65,7 +65,7 @@ public enum ExtendedModifierTypes {
 			item -> item instanceof BowItem),
 
 	/** Grants bonus damage against specific enemy types (e.g., "Bane of..."). */
-	BANE("enchant.lotrextended.bane.desc", "", 
+	BANE("enchant.lotrextended.bane.desc", "+", 
 			item -> item instanceof SwordItem || item instanceof BowItem || item instanceof ExtendedThrowableAxeItem),
 
 	/** Applies chilling or slowing effects to enemies. */

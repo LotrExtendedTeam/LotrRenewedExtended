@@ -528,7 +528,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("enchant.lotrextended.melee_speed.disc", "melee speed");
 		addD("enchant.lotrextended.melee_knockback.one", "Hefty");
 		addD("enchant.lotrextended.melee_knockback.two", "Hulking");
-		addD("enchant.lotrextended.melee_knockback.disc", "knockback");
+		addD("enchant.lotrextended.melee_knockback.disc", "melee knockback");
 		addD("enchant.lotrextended.tool_speed.one", "Handy");
 		addD("enchant.lotrextended.tool_speed.two", "Nimble");
 		addD("enchant.lotrextended.tool_speed.three", "Hasty");
@@ -545,7 +545,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("enchant.lotrextended.ranged_speed.disc", "launch speed");
 		addD("enchant.lotrextended.ranged_knockback.one", "Punching");
 		addD("enchant.lotrextended.ranged_knockback.two", "Striking");
-		addD("enchant.lotrextended.ranged_knockback.disc", "knockback");
+		addD("enchant.lotrextended.ranged_knockback.disc", "ranged knockback");
 		addD("enchant.lotrextended.armor_protect.one", "Hardened");
 		addD("enchant.lotrextended.armor_protect.two", "Steadfast");
 		addD("enchant.lotrextended.armor_protect.weak_one", "Poor");
@@ -570,11 +570,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("enchant.lotrextended.armor_protect_mithril", "True");
 		addD("enchant.lotrextended.armor_protect_mithril.disc", "protection vs. polearms");
 		addD("enchant.lotrextended.chilling", "Chilling");
-		addD("enchant.lotrextended.chilling.disc", "chills targets");
+		addD("enchant.lotrextended.chilling.disc", "Chills targets");
 		addD("enchant.lotrextended.infernal", "Infernal");
-		addD("enchant.lotrextended.infernal.disc", "sets target aflame");
+		addD("enchant.lotrextended.infernal.disc", "Sets target aflame");
 		addD("enchant.lotrextended.headhunting", "Headhunting");
-		addD("enchant.lotrextended.headhunting.disc", "drops player heads");
+		addD("enchant.lotrextended.headhunting.disc", "Drops player heads");
 	}
 
 	@Override

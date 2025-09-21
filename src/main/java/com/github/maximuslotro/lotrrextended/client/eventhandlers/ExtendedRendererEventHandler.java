@@ -96,7 +96,7 @@ public class ExtendedRendererEventHandler {
 						.append(new StringTextComponent((modifier.getModifierEffect()>0 ? modifier.getModifierType().getFrontValue() : "")+String.valueOf(modifier.getModifierEffect())+ " "))
 						.append(new TranslationTextComponent(modifier.getModifierType().getKeyLocal(), new TranslationTextComponent("enchant.lotrextended."+modifier.getLocalKey()+ ".race")))
 						.withStyle(TextFormatting.GRAY));
-				}else if(modifier.getMaxLevel()==1){
+				}else if(modifier.getModifierType().getFrontValue().isEmpty()){
 					entries.add(new TranslationTextComponent("enchant.lotrextended."+modifier.getLocalKey()).append(": ")
 						.append(new TranslationTextComponent(modifier.getModifierType().getKeyLocal()))
 						.withStyle(TextFormatting.GRAY));
@@ -111,7 +111,7 @@ public class ExtendedRendererEventHandler {
 		}else if(ExtendedModifierScrollItem.hasModifier(stack)) {
 			ExtendedModifier modifier = ExtendedModifierScrollItem.getModifier(stack);
 			List<ITextComponent> entries = new ArrayList<>();
-			if(modifier.getMaxLevel()==1){
+			if(modifier.getModifierType().getFrontValue().isEmpty()){
 				entries.add(new TranslationTextComponent("enchant.lotrextended."+modifier.getLocalKey()).append(": ")
 					.append(new TranslationTextComponent(modifier.getModifierType().getKeyLocal()))
 					.withStyle(TextFormatting.GRAY));

@@ -90,8 +90,8 @@ public class ExtendedModifiers {
 	public static final ExtendedModifier STRIKING = registerInt("rangedKnockback2", "ranged_knockback.two", ExtendedModifierTypes.RANGED_KNOCKBACK, 2, 2, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 5, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier PUNCHING = registerInt("rangedKnockback1", "ranged_knockback.one", ExtendedModifierTypes.RANGED_KNOCKBACK, 1, 1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.SILVER, 2, EquipmentSlotType.MAINHAND);
 	// === Applied / Special Modifiers ===
-	public static final ExtendedModifier INFERNAL = registerInt("fire", "fire", ExtendedModifierTypes.INFERNAL, 1, 1, ExtendedModifierRarity.APPLIED, ExtendedModifierScroll.NOSCROLL, 0, EquipmentSlotType.MAINHAND);
-	public static final ExtendedModifier CHILLING = registerInt("chill", "chill", ExtendedModifierTypes.CHILLING, 1, 1, ExtendedModifierRarity.APPLIED, ExtendedModifierScroll.NOSCROLL, 0, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier INFERNAL = registerInt("fire", "infernal", ExtendedModifierTypes.INFERNAL, 1, 1, ExtendedModifierRarity.APPLIED, ExtendedModifierScroll.NOSCROLL, 0, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier CHILLING = registerInt("chill", "chilling", ExtendedModifierTypes.CHILLING, 1, 1, ExtendedModifierRarity.APPLIED, ExtendedModifierScroll.NOSCROLL, 0, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier HEADHUNTING = registerInt("headhunting", "headhunting", ExtendedModifierTypes.HEADHUNTING, 1, 1, ExtendedModifierRarity.APPLIED, ExtendedModifierScroll.NOSCROLL, 0, EquipmentSlotType.MAINHAND);
 	// === Armor Protection Modifiers ===
 	private static final EquipmentSlotType[] ARMOR_SLOTS = new EquipmentSlotType[]{EquipmentSlotType.HEAD, EquipmentSlotType.CHEST, EquipmentSlotType.LEGS, EquipmentSlotType.FEET};
