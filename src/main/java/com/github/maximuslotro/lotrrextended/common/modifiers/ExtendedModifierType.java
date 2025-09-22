@@ -31,7 +31,7 @@ import net.minecraft.item.ToolItem;
  *   <li>A predicate to determine whether the modifier is applicable to a given modifier.</li>
  * </ul>
  */
-public enum ExtendedModifierTypes {
+public enum ExtendedModifierType {
 	/** Increases item durability or reduces wear. */
 	DURABILITY("enchant.lotrextended.durability.disc", "+", 
 			item -> item.canBeDepleted()),
@@ -141,15 +141,15 @@ public enum ExtendedModifierTypes {
 	/** Predicate used to determine whether this modifier is valid for a given item. */
 	private final Predicate<Item> predicateItem;
 	/** Predicate used to determine whether this modifier is valid for a given modifier. */
-	private Predicate<ExtendedModifierTypes> predicateCompatible = (m -> true);
+	private Predicate<ExtendedModifierType> predicateCompatible = (m -> true);
 	/**
-	 * Constructs a new {@link ExtendedModifierTypes}.
+	 * Constructs a new {@link ExtendedModifierType}.
 	 *
 	 * @param keyLocal             the localization/translation key for this modifier
 	 * @param frontValue           the display prefix (e.g., "+", "x") for formatting
 	 * @param pPredicateItem       the condition to check if this modifier can apply to an item
 	 */
-	ExtendedModifierTypes(String keyLocal, String frontValue, Predicate<Item> pPredicateItem) {
+	ExtendedModifierType(String keyLocal, String frontValue, Predicate<Item> pPredicateItem) {
 		this.keyLocal = keyLocal;
 		this.frontValue = frontValue;
 		this.predicateItem = pPredicateItem;
@@ -182,10 +182,10 @@ public enum ExtendedModifierTypes {
 	/**
 	 * Checks whether this modifier can be applied alongside a give modifier.
 	 *
-	 * @param otherType     the {@link ExtendedModifierTypes} to check
+	 * @param otherType     the {@link ExtendedModifierType} to check
 	 * @return {@code true} if the modifier can be applied, {@code false} otherwise
 	 */
-	public boolean isModifierApplicable(ExtendedModifierTypes otherType) {
+	public boolean isModifierApplicable(ExtendedModifierType otherType) {
 		return otherType!=this && predicateCompatible.test(otherType);
 	}
 	/**
@@ -195,7 +195,7 @@ public enum ExtendedModifierTypes {
 	 * @param modifierType the modifier being applied
 	 * @return {@code true} if applicable, otherwise {@code false}
 	 */
-	public static boolean isItemApplicableWithModifier(ItemStack stack, ExtendedModifierTypes modifierType) {
+	public static boolean isItemApplicableWithModifier(ItemStack stack, ExtendedModifierType modifierType) {
 	    return modifierType.isItemApplicable(stack)
 	        || ExtendedModifierUtils.getModifierList(stack).stream().map(ExtendedModifier::getModifierType).allMatch(modifierType::isModifierApplicable);
 	}

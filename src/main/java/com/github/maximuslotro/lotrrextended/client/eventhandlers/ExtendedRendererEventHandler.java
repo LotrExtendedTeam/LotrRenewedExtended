@@ -8,7 +8,7 @@ import com.github.maximuslotro.lotrrextended.client.render.ExtendedHiredUnitHpBa
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
-import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierTypes;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -91,7 +91,7 @@ public class ExtendedRendererEventHandler {
 			}
 			List<ITextComponent> entries = new ArrayList<>();
 			for (ExtendedModifier modifier : modifiers) {
-				if(modifier.getModifierType().equals(ExtendedModifierTypes.BANE)) {
+				if(modifier.getModifierType().equals(ExtendedModifierType.BANE)) {
 					entries.add(new TranslationTextComponent("enchant.lotrextended."+modifier.getLocalKey()).append(": ")
 						.append(new StringTextComponent((modifier.getModifierEffect()>0 ? modifier.getModifierType().getFrontValue() : "")+String.valueOf(modifier.getModifierEffect())+ " "))
 						.append(new TranslationTextComponent(modifier.getModifierType().getKeyLocal(), new TranslationTextComponent("enchant.lotrextended."+modifier.getLocalKey()+ ".race")))

@@ -33,7 +33,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	private final String keyLocal;
 
 	/** Functional category used for compatibility (e.g., only one BANE per item). */
-	private final ExtendedModifierTypes modifierType;
+	private final ExtendedModifierType modifierType;
 
 	/** Tier or strength level of the modifier. */
 	private final int teir;
@@ -50,7 +50,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	/** The valid equipment slots for the enchantment. */
 	private final EquipmentSlotType[] slots;
 
-	public ExtendedModifier(String pNbtKey, String pLocalKey, ExtendedModifierTypes pModifierType, int pLevel, 
+	public ExtendedModifier(String pNbtKey, String pLocalKey, ExtendedModifierType pModifierType, int pLevel, 
 			float pModifierEffect, ExtendedModifierRarity pModifierRarity, ExtendedModifierScroll pScroll, int pWeight, EquipmentSlotType[] pApplicableSlots) {
 		super(pWeight);
 		this.keyNbt = pNbtKey;
@@ -77,7 +77,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	/** 
 	 * @return the functional type of this modifier. 
 	 */
-	public ExtendedModifierTypes getModifierType() {
+	public ExtendedModifierType getModifierType() {
 		return modifierType;
 	}
 	/**
@@ -95,7 +95,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	 * @param pModifierType the item to check compatibility against
 	 * @return {@code true} if the modifier can be applied to the item, {@code false} otherwise
 	 */
-	public boolean canApplyToModifier(ExtendedModifierTypes pModifierType) {
+	public boolean canApplyToModifier(ExtendedModifierType pModifierType) {
 		return modifierType.isModifierApplicable(pModifierType);
 	}
 	/** 
@@ -127,7 +127,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	 * Indicates if this modifier represents an "unknown" placeholder.
 	 * The unknown modifier is used if no valid modifiers are found.
 	 *
-	 * @return {@code true} if this modifier is the {@link ExtendedModifierTypes#UNKNOWN} entry,
+	 * @return {@code true} if this modifier is the {@link ExtendedModifierType#UNKNOWN} entry,
 	 *         {@code false} otherwise
 	 */
 	public boolean isUnknown() {

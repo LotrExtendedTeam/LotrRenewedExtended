@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.commands;
 
-import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierTypes;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
@@ -72,15 +72,15 @@ public class ExtendedModifierCommand {
 				return 0;
 			}
 			// only allow one bane at a time
-			if (enchant.getModifierType().equals(ExtendedModifierTypes.BANE)) {
+			if (enchant.getModifierType().equals(ExtendedModifierType.BANE)) {
 				List<ExtendedModifier> enchants = ExtendedModifierUtils.getModifierList(stack);
-				boolean containsBane = enchants.stream().anyMatch(enchantment -> ExtendedModifierTypes.BANE.equals(enchantment.getModifierType()));
+				boolean containsBane = enchants.stream().anyMatch(enchantment -> ExtendedModifierType.BANE.equals(enchantment.getModifierType()));
 				if (containsBane) {
 					source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.only_one_bane"));
 					return 0;
 				}
 			}
-			if (!ExtendedModifierTypes.isItemApplicableWithModifier(stack, enchant.getModifierType())) {
+			if (!ExtendedModifierType.isItemApplicableWithModifier(stack, enchant.getModifierType())) {
 				source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_cant_modifier"));
 				return 0;
 			}

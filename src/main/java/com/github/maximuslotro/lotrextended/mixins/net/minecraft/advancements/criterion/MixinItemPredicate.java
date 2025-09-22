@@ -10,8 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
-import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierTypes;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import net.minecraft.advancements.criterion.EnchantmentPredicate;
@@ -31,8 +30,7 @@ public class MixinItemPredicate {
 		target = "Lnet/minecraft/enchantment/EnchantmentHelper;deserializeEnchantments(Lnet/minecraft/nbt/ListNBT;)Ljava/util/Map;", ordinal = 0),
 		locals = LocalCapture.CAPTURE_FAILHARD)
 	 public void containedIn(ItemStack pItem, CallbackInfoReturnable<Boolean> cir, Map<Enchantment, Integer> map) {
-		 Map<ExtendedModifierTypes, ExtendedModifier> modifierMap = ExtendedModifierUtils.getModifierListByType(pItem);
-		 if(modifierMap.containsKey(ExtendedModifierTypes.TOOL_SILK)) {
+		 if(!ExtendedModifierUtils.getModifierByTypeStack(pItem, ExtendedModifierType.TOOL_SILK).isUnknown()) {
 			 map.put(Enchantments.SILK_TOUCH, 1);
 		 }
 	 }

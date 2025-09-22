@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
-import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierTypes;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
 import com.github.maximuslotro.lotrrextended.common.utils.AttributeUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.google.common.collect.Multimap;
@@ -72,8 +72,8 @@ public class MixinEnchantmentHelper {
 			return;
 		}
 		int vanillaValue = MathHelper.clamp(compoundnbt.getInt("lvl"), 0, 255);
-		ExtendedModifierTypes modifierType = ExtendedModifierUtils.vanillaEnchantToModifier(pEnchantment, false);
-		Map<ExtendedModifierTypes, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(pStack);
+		ExtendedModifierType modifierType = ExtendedModifierUtils.vanillaEnchantToModifier(pEnchantment, false);
+		Map<ExtendedModifierType, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(pStack);
 		int newValue = 0;
 		if(modifiers.containsKey(modifierType)) {
 			newValue = (int) modifiers.get(modifierType).getModifierEffect();
@@ -98,8 +98,8 @@ public class MixinEnchantmentHelper {
 		if(!ExtendedModifierUtils.hasModifiers(pStack)) {
 			return;
 		}
-		ExtendedModifierTypes modifierType = ExtendedModifierUtils.vanillaEnchantToModifier(pEnchantment, false);
-		Map<ExtendedModifierTypes, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(pStack);
+		ExtendedModifierType modifierType = ExtendedModifierUtils.vanillaEnchantToModifier(pEnchantment, false);
+		Map<ExtendedModifierType, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(pStack);
 		if(modifiers.containsKey(modifierType)) {
 			cir.setReturnValue((int) modifiers.get(modifierType).getModifierEffect());
 		}
@@ -108,7 +108,7 @@ public class MixinEnchantmentHelper {
 	 * Injects into {@link EnchantmentHelper#getDamageBonus(ItemStack, CreatureAttribute)} to
 	 * apply additional melee damage from custom modifiers.
 	 * <p>
-	 * If {@link ExtendedModifierTypes#MELEE_DAMAGE} is present, its effect is added to the
+	 * If {@link ExtendedModifierType#MELEE_DAMAGE} is present, its effect is added to the
 	 * running {@code mutablefloat} damage bonus value.
 	 * </p>
 	 *
@@ -121,9 +121,9 @@ public class MixinEnchantmentHelper {
 	@Inject(method = "getDamageBonus(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/CreatureAttribute;)F", 
 			at = @At("TAIL"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
 	private static void getDamageBonus$Extended(ItemStack pStack, CreatureAttribute pCreatureAttribute, CallbackInfoReturnable<Float> cir, MutableFloat mutablefloat) {
-		Map<ExtendedModifierTypes, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(pStack);
-		if(modifiers.containsKey(ExtendedModifierTypes.MELEE_DAMAGE)) {
-			mutablefloat.add(modifiers.get(ExtendedModifierTypes.MELEE_DAMAGE).getModifierEffect());
+		Map<ExtendedModifierType, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(pStack);
+		if(modifiers.containsKey(ExtendedModifierType.MELEE_DAMAGE)) {
+			mutablefloat.add(modifiers.get(ExtendedModifierType.MELEE_DAMAGE).getModifierEffect());
 			cir.setReturnValue(mutablefloat.getValue());
 		}
 	}
@@ -134,11 +134,11 @@ public class MixinEnchantmentHelper {
 	 * Iterates through all equipped {@link ItemStack}s and applies any protection modifiers
 	 * that correspond to the incoming {@link DamageSource}.
 	 * <ul>
-	 *   <li>{@link ExtendedModifierTypes#PROTECTION_FIRE} for fire damage</li>
-	 *   <li>{@link ExtendedModifierTypes#PROTECTION_RANGED} for projectiles</li>
-	 *   <li>{@link ExtendedModifierTypes#PROTECTION_BLAST} for explosions</li>
-	 *   <li>{@link ExtendedModifierTypes#PROTECTION_FALLING} for fall damage</li>
-	 *   <li>{@link ExtendedModifierTypes#PROTECTION} as a general fallback</li>
+	 *   <li>{@link ExtendedModifierType#PROTECTION_FIRE} for fire damage</li>
+	 *   <li>{@link ExtendedModifierType#PROTECTION_RANGED} for projectiles</li>
+	 *   <li>{@link ExtendedModifierType#PROTECTION_BLAST} for explosions</li>
+	 *   <li>{@link ExtendedModifierType#PROTECTION_FALLING} for fall damage</li>
+	 *   <li>{@link ExtendedModifierType#PROTECTION} as a general fallback</li>
 	 * </ul>
 	 * </p>
 	 *
@@ -152,24 +152,24 @@ public class MixinEnchantmentHelper {
 			at = @At("TAIL"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
 	private static void getDamageProtection$Extended(Iterable<ItemStack> pStacks, DamageSource pSource, CallbackInfoReturnable<Integer> cir, MutableInt mutableint) {
 		for(ItemStack stack : pStacks) {
-			Map<ExtendedModifierTypes, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(stack);
-			if(pSource.isFire() && modifiers.containsKey(ExtendedModifierTypes.PROTECTION_FIRE)) {
-				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION_FIRE).getModifierEffect());
+			Map<ExtendedModifierType, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(stack);
+			if(pSource.isFire() && modifiers.containsKey(ExtendedModifierType.PROTECTION_FIRE)) {
+				mutableint.add(modifiers.get(ExtendedModifierType.PROTECTION_FIRE).getModifierEffect());
 				cir.setReturnValue(mutableint.getValue());
-			}else if(pSource.isProjectile() && modifiers.containsKey(ExtendedModifierTypes.PROTECTION_RANGED)) {
-				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION_RANGED).getModifierEffect());
+			}else if(pSource.isProjectile() && modifiers.containsKey(ExtendedModifierType.PROTECTION_RANGED)) {
+				mutableint.add(modifiers.get(ExtendedModifierType.PROTECTION_RANGED).getModifierEffect());
 				cir.setReturnValue(mutableint.getValue());
-			}else if(pSource.isProjectile() && modifiers.containsKey(ExtendedModifierTypes.PROTECTION_BLAST)) {
-				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION_BLAST).getModifierEffect());
+			}else if(pSource.isProjectile() && modifiers.containsKey(ExtendedModifierType.PROTECTION_BLAST)) {
+				mutableint.add(modifiers.get(ExtendedModifierType.PROTECTION_BLAST).getModifierEffect());
 				cir.setReturnValue(mutableint.getValue());
-			}else if(pSource == DamageSource.FALL && modifiers.containsKey(ExtendedModifierTypes.PROTECTION_FALLING)) {
-				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION_FALLING).getModifierEffect());
+			}else if(pSource == DamageSource.FALL && modifiers.containsKey(ExtendedModifierType.PROTECTION_FALLING)) {
+				mutableint.add(modifiers.get(ExtendedModifierType.PROTECTION_FALLING).getModifierEffect());
 				cir.setReturnValue(mutableint.getValue());
-			}else if(pSource.getEntity()!=null && containsLongWeapon(pSource.getEntity().getHandSlots()) && modifiers.containsKey(ExtendedModifierTypes.PROTECTION_MITHRIL)) {
-				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION_MITHRIL).getModifierEffect());
+			}else if(pSource.getEntity()!=null && containsLongWeapon(pSource.getEntity().getHandSlots()) && modifiers.containsKey(ExtendedModifierType.PROTECTION_MITHRIL)) {
+				mutableint.add(modifiers.get(ExtendedModifierType.PROTECTION_MITHRIL).getModifierEffect());
 				cir.setReturnValue(mutableint.getValue());
-			}else if(modifiers.containsKey(ExtendedModifierTypes.PROTECTION)){
-				mutableint.add(modifiers.get(ExtendedModifierTypes.PROTECTION).getModifierEffect());
+			}else if(modifiers.containsKey(ExtendedModifierType.PROTECTION)){
+				mutableint.add(modifiers.get(ExtendedModifierType.PROTECTION).getModifierEffect());
 				cir.setReturnValue(mutableint.getValue());
 			}
 		}

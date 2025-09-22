@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierTypes;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import net.minecraft.advancements.CriteriaTriggers;
@@ -95,12 +95,12 @@ public class MixinItemStack {
 	@Inject(method="hurt(ILjava/util/Random;Lnet/minecraft/entity/player/ServerPlayerEntity;)Z", 
 			at = @At("HEAD"), cancellable=true)
 	private void hurt$Extended(int pAmount, Random pRandom, @Nullable ServerPlayerEntity pUser, CallbackInfoReturnable<Boolean> cir) {
-		if (!isDamageableItem() || !ExtendedModifierUtils.getModifierListByType((ItemStack)(Object)this).containsKey(ExtendedModifierTypes.DURABILITY)) {
+		if (!isDamageableItem() || !ExtendedModifierUtils.getModifierListByType((ItemStack)(Object)this).containsKey(ExtendedModifierType.DURABILITY)) {
 			return;
 		} else {
 			if (pAmount > 0) {
 				float modAmount = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, (ItemStack)(Object)this);
-				modAmount += ExtendedModifierUtils.getModifierListByType((ItemStack)(Object)this).get(ExtendedModifierTypes.DURABILITY).getModifierEffect();
+				modAmount += ExtendedModifierUtils.getModifierListByType((ItemStack)(Object)this).get(ExtendedModifierType.DURABILITY).getModifierEffect();
 				int removeAmount = 0;
 
 				for(int k = 0; modAmount > 0 && k < pAmount; ++k) {

@@ -47,10 +47,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
  */
 public class WorldEventHandlers {
 	/**
-     * Prevents cloaked {@link ExtendedDunedainRangerEntity} from being targeted by NPCs.
-     *
-     * @param event the attack target event containing the potential target and attacker
-     */
+	 * Prevents cloaked {@link ExtendedDunedainRangerEntity} from being targeted by NPCs.
+	 *
+	 * @param event the attack target event containing the potential target and attacker
+	 */
 	@SubscribeEvent
 	public static void preventCloakedRangersFromBeingTargeted$Extended(LivingSetAttackTargetEvent event) {
 		if (event.getTarget() instanceof ExtendedDunedainRangerEntity) {
@@ -65,10 +65,10 @@ public class WorldEventHandlers {
 		}
 	}
 	/**
-     * Cancels setting a spawn point if the bed used is an {@link ExtendedBedrollBlock}.
-     *
-     * @param event the spawn-setting event triggered when a player sets their spawn
-     */
+	 * Cancels setting a spawn point if the bed used is an {@link ExtendedBedrollBlock}.
+	 *
+	 * @param event the spawn-setting event triggered when a player sets their spawn
+	 */
 	@SubscribeEvent
 	public static void handleBedRollCancelSpawn$Extended(PlayerSetSpawnEvent event) {
 		if(event.isForced() || event.getNewSpawn()==null) {
@@ -81,12 +81,12 @@ public class WorldEventHandlers {
 		}
 	}
 	/**
-     * Triggers a custom advancement criterion when a block is broken.
-     *
-     * <p>This ensures that the player's block-breaking action is tracked for custom advancements.</p>
-     *
-     * @param event the block break event
-     */
+	 * Triggers a custom advancement criterion when a block is broken.
+	 *
+	 * <p>This ensures that the player's block-breaking action is tracked for custom advancements.</p>
+	 *
+	 * @param event the block break event
+	 */
 	@SubscribeEvent(priority=EventPriority.LOWEST)
 	public static void handleBlockBreakAdvancement$Extended(BlockEvent.BreakEvent event) {
 		if(event.getPlayer() instanceof ServerPlayerEntity) {
@@ -95,15 +95,15 @@ public class WorldEventHandlers {
 		}
 	}
 	/**
-     * Handles special logic when {@link ExtendedTraderEntity} or {@link ExtendedCaptainEntity} dies.
-     * <ul>
-     *   <li>If the entity is a wandering trader, escorts are removed and players are notified.</li>
-     *   <li>If the entity is persistent, it respawns via {@link ExtendedTraderRespawnEntity}.</li>
-     *   <li>Otherwise, the entity is allowed to die normally.</li>
-     * </ul>
-     *
-     * @param event the living entity death event
-     */
+	 * Handles special logic when {@link ExtendedTraderEntity} or {@link ExtendedCaptainEntity} dies.
+	 * <ul>
+	 *   <li>If the entity is a wandering trader, escorts are removed and players are notified.</li>
+	 *   <li>If the entity is persistent, it respawns via {@link ExtendedTraderRespawnEntity}.</li>
+	 *   <li>Otherwise, the entity is allowed to die normally.</li>
+	 * </ul>
+	 *
+	 * @param event the living entity death event
+	 */
 	@SubscribeEvent
 	public static void handleCaptainTraderDeath$Extended(LivingDeathEvent event) {
 		if (!(event.getEntity() instanceof ExtendedTraderEntity || event.getEntity() instanceof ExtendedCaptainEntity)) {
@@ -204,13 +204,15 @@ public class WorldEventHandlers {
 
 	@SubscribeEvent()
 	public static void handleEntityUpdate$Extended(LivingUpdateEvent event) {
-		if(event.getEntity() instanceof ServerPlayerEntity) {
+		if(event.getEntity() instanceof ServerPlayerEntity && event.getEntity().tickCount%20 ==0) {
 			ServerPlayerEntity player = (ServerPlayerEntity)event.getEntity();
 			PlayerInventory inventory = player.inventory;
 			for(int slotIndex=0; slotIndex < inventory.getContainerSize(); slotIndex++) {
 				ItemStack stack = inventory.getItem(slotIndex);
-				if(stack.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(stack)) {
-					ExtendedModifierUtils.generateItemModifiersTagged(player.random, stack, false, false);
+				if(stack.isDamageableItem()) { 
+					if(!ExtendedModifierUtils.hasRandomModifiers(stack)) {
+						ExtendedModifierUtils.generateItemModifiersTagged(player.random, stack, false, false);
+					}
 				}
 			}
 			ItemStack carried = inventory.getCarried();

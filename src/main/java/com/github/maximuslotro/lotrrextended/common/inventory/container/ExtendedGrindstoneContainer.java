@@ -5,9 +5,11 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import io.netty.buffer.Unpooled;
+import lotr.common.item.ExtendedBarrowBlade;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -226,7 +228,7 @@ public class ExtendedGrindstoneContainer extends Container {
 	}
 
 	/**
-	 * Removes all enchantments from the {@plainlink ItemStack}. Note that the curses are not removed.
+	 * Removes all enchantments from the {@link ItemStack}. Note that the curses are not removed.
 	 * @param pStack Stack to remove data from
 	 * @param pDamage Damage value to set
 	 * @param pCount Stack count to set
@@ -243,6 +245,10 @@ public class ExtendedGrindstoneContainer extends Container {
 		}
 		// Extended Start
 		itemstack.removeTagKey(ExtendedModifierUtils.NBTMODIFIER);
+		// Preserve Wight Bane on barrow blades
+		if(pStack.getItem() instanceof ExtendedBarrowBlade) {
+			ExtendedModifierUtils.addModifier(pStack, ExtendedModifiers.WIGHT_BANE);
+		}
 		// Extended End
 		itemstack.setCount(pCount);
 		// TODO add handling for cursed modifiers in the future
