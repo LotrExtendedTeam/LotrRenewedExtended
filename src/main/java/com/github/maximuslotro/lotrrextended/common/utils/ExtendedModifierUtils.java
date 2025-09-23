@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierRarity;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierScroll;
@@ -507,7 +506,6 @@ public class ExtendedModifierUtils {
 				return newModifiers;
 			}
 			int chance = pRandom.nextInt(100);
-			ExtendedLog.info("chance: "+chance);
 			if(chance < 70) {
 				newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 				filterCompatibleModifiers(applicableModifiers, Util.lastOf(newModifiers));

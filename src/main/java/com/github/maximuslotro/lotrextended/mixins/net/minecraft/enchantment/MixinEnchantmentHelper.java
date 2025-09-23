@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.commons.lang3.mutable.MutableFloat;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -151,35 +152,39 @@ public class MixinEnchantmentHelper {
 	@Inject(method = "getDamageProtection(Ljava/lang/Iterable;Lnet/minecraft/util/DamageSource;)I", 
 			at = @At("TAIL"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
 	private static void getDamageProtection$Extended(Iterable<ItemStack> pStacks, DamageSource pSource, CallbackInfoReturnable<Integer> cir, MutableInt mutableint) {
+		int mod = 0;
 		for(ItemStack stack : pStacks) {
 			Map<ExtendedModifierType, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(stack);
 			if(pSource.isFire() && modifiers.containsKey(ExtendedModifierType.PROTECTION_FIRE)) {
-				mutableint.add(modifiers.get(ExtendedModifierType.PROTECTION_FIRE).getModifierEffect());
-				cir.setReturnValue(mutableint.getValue());
-			}else if(pSource.isProjectile() && modifiers.containsKey(ExtendedModifierType.PROTECTION_RANGED)) {
-				mutableint.add(modifiers.get(ExtendedModifierType.PROTECTION_RANGED).getModifierEffect());
-				cir.setReturnValue(mutableint.getValue());
-			}else if(pSource.isProjectile() && modifiers.containsKey(ExtendedModifierType.PROTECTION_BLAST)) {
-				mutableint.add(modifiers.get(ExtendedModifierType.PROTECTION_BLAST).getModifierEffect());
-				cir.setReturnValue(mutableint.getValue());
-			}else if(pSource == DamageSource.FALL && modifiers.containsKey(ExtendedModifierType.PROTECTION_FALLING)) {
-				mutableint.add(modifiers.get(ExtendedModifierType.PROTECTION_FALLING).getModifierEffect());
-				cir.setReturnValue(mutableint.getValue());
-			}else if(pSource.getEntity()!=null && containsLongWeapon(pSource.getEntity().getHandSlots()) && modifiers.containsKey(ExtendedModifierType.PROTECTION_MITHRIL)) {
-				mutableint.add(modifiers.get(ExtendedModifierType.PROTECTION_MITHRIL).getModifierEffect());
-				cir.setReturnValue(mutableint.getValue());
-			}else if(modifiers.containsKey(ExtendedModifierType.PROTECTION)){
-				mutableint.add(modifiers.get(ExtendedModifierType.PROTECTION).getModifierEffect());
-				cir.setReturnValue(mutableint.getValue());
+				mod += modifiers.get(ExtendedModifierType.PROTECTION_FIRE).getModifierEffect();
 			}
+			if(pSource.isProjectile() && modifiers.containsKey(ExtendedModifierType.PROTECTION_RANGED)) {
+				mod += modifiers.get(ExtendedModifierType.PROTECTION_RANGED).getModifierEffect();
+			}
+			if(pSource.isExplosion() && modifiers.containsKey(ExtendedModifierType.PROTECTION_BLAST)) {
+				mod += modifiers.get(ExtendedModifierType.PROTECTION_BLAST).getModifierEffect();
+			}
+			if(pSource == DamageSource.FALL && modifiers.containsKey(ExtendedModifierType.PROTECTION_FALLING)) {
+				mod += modifiers.get(ExtendedModifierType.PROTECTION_FALLING).getModifierEffect();
+			}
+			if(modifiers.containsKey(ExtendedModifierType.PROTECTION_MITHRIL) && pSource.getEntity()!=null && containsLongWeapon$Extended(pSource.getEntity().getHandSlots())) {
+				mod += modifiers.get(ExtendedModifierType.PROTECTION_MITHRIL).getModifierEffect();
+			}
+			if(modifiers.containsKey(ExtendedModifierType.PROTECTION)){
+				mod += modifiers.get(ExtendedModifierType.PROTECTION).getModifierEffect();
+			}
+		}
+		if(mod>0) {
+			cir.setReturnValue(mutableint.getValue()+mod);
 		}
 	}
 
-	public static boolean containsLongWeapon(Iterable<ItemStack> iterable) {
+	@Unique
+	private static boolean containsLongWeapon$Extended(Iterable<ItemStack> iterable) {
 	    for (ItemStack stack : iterable) {
 	        if (stack.getItem().getAttributeModifiers(EquipmentSlotType.MAINHAND, stack).containsKey(ForgeMod.REACH_DISTANCE.get())) {
 	        	Multimap<Attribute, AttributeModifier> multimap = stack.getItem().getAttributeModifiers(EquipmentSlotType.MAINHAND, stack);
-	        	if(AttributeUtils.getItemAttributeValue(stack, EquipmentSlotType.MAINHAND, ForgeMod.REACH_DISTANCE.get())>1.3D) {
+	        	if(AttributeUtils.getItemAttributeValue(stack, EquipmentSlotType.MAINHAND, ForgeMod.REACH_DISTANCE.get())>=1.0D) {
 	        		return true; // Spear, polearms, and lances
 	        	}
 	        }

@@ -11,11 +11,10 @@ public class AttributeUtils {
 	public static double getItemAttributeValue(ItemStack stack, EquipmentSlotType slot, Attribute attribute) {
 		double d0 = attribute.getDefaultValue();
 		double newValue = 0.0;
-
 		Multimap<Attribute, AttributeModifier> modifiers = stack.getAttributeModifiers(slot);
-
 		if (modifiers.containsKey(attribute)) {
 			for (AttributeModifier mod : modifiers.get(attribute)) {
+				//ExtendedLog.info("OP: "+mod.getOperation()+", AMOUNT: "+mod.getAmount());
 				switch (mod.getOperation()) {
 				case ADDITION:
 					newValue += mod.getAmount();
@@ -29,6 +28,7 @@ public class AttributeUtils {
 				}
 			}
 		}
+		//ExtendedLog.info("Reach: "+newValue);
 		return attribute.sanitizeValue(newValue);
 	}
 }
