@@ -57,7 +57,6 @@ import lotr.common.entity.item.LOTRBoatEntity;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItemGroups;
-import lotr.common.init.LOTRItemGroups.LOTRItemGroup;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.LOTRMaterial;
 import net.minecraft.block.Block;
@@ -987,7 +986,7 @@ public class MixinLOTRItems {
 		ExtendedItems.ROASTED_CHESTNUT = regItemB("roasted_chestnut", () -> new ExtendedCompostableItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ROASTED_CHESTNUT), 0.5F));
 		ExtendedItems.PLUM = regItemB("plum", () -> new ExtendedCompostableItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.PLUM), 0.65F));
 
-		ExtendedItems.DUCK_EGG = regItemB("duck_egg", () -> new ExtendedDuckEggItem(new Properties().stacksTo(16).tab(LOTRItemGroup.TAB_FOOD)));
+		ExtendedItems.DUCK_EGG = regItemB("duck_egg", () -> new ExtendedDuckEggItem(new Properties().stacksTo(16).tab(LOTRItemGroups.FOOD)));
 		ExtendedItems.RAW_DUCK = regItemB("raw_duck", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.DUCK)));
 		ExtendedItems.COOKED_DUCK = regItemB("cooked_duck", () -> new Item(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.COOKED_DUCK)));
 

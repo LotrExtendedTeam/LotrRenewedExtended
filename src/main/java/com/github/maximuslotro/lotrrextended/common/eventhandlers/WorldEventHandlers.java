@@ -27,6 +27,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -191,7 +192,7 @@ public class WorldEventHandlers {
 		}
 	}
 
-	@SubscribeEvent()
+	@SubscribeEvent
 	public static void handleBlockLeftInteract$Extended(PlayerInteractEvent.LeftClickBlock event) {
 		if(LOTRDimensions.isModDimension(event.getWorld())) {
 			if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof EnchantingTableBlock) {
@@ -202,10 +203,10 @@ public class WorldEventHandlers {
 		}
 	}
 
-	@SubscribeEvent()
-	public static void handleEntityUpdate$Extended(LivingUpdateEvent event) {
-		if(event.getEntity() instanceof ServerPlayerEntity && event.getEntity().tickCount%20 ==0) {
-			ServerPlayerEntity player = (ServerPlayerEntity)event.getEntity();
+	@SubscribeEvent
+	public static void handleEntityUpdate$Extended(LivingUpdateEvent pEvent) {
+		if(pEvent.getEntity() instanceof ServerPlayerEntity && pEvent.getEntity().tickCount%20 ==0) {
+			ServerPlayerEntity player = (ServerPlayerEntity)pEvent.getEntity();
 			PlayerInventory inventory = player.inventory;
 			for(int slotIndex=0; slotIndex < inventory.getContainerSize(); slotIndex++) {
 				ItemStack stack = inventory.getItem(slotIndex);
@@ -221,5 +222,10 @@ public class WorldEventHandlers {
 				player.broadcastCarriedItem();
 			}
 		}
+	}
+
+	@SubscribeEvent
+	public static void handleItemAttributeChanges(ItemAttributeModifierEvent pEvent) {
+		ExtendedModifierUtils.processItemAttributes(pEvent);
 	}
 }

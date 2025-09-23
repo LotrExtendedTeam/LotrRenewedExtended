@@ -8,8 +8,12 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.AttributeModifier.Operation;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
@@ -20,6 +24,8 @@ import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.event.ItemAttributeModifierEvent;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,6 +33,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierRarity;
@@ -42,6 +49,12 @@ import com.google.common.collect.Lists;
  * methods to add, remove, clear, and track modifiers via custom NBT data.
  */
 public class ExtendedModifierUtils {
+	protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("889c253a-f9f9-4ce9-a9a1-5148a7e2b1a7");
+	protected static final UUID ATTACK_SPEED_MODIFIER = UUID.fromString("17d1ae62-924b-4df4-bdcc-5dae72cb3ab8");
+	private static final AttributeModifier reachModifierPlus = new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", 0.5D, Operation.ADDITION);
+	private static final AttributeModifier reachModifierNeg = new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", -0.5D, Operation.ADDITION);
+	private static final AttributeModifier speedModifierPlus = new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", 0.5D, Operation.ADDITION);
+	private static final AttributeModifier speedModifierNeg = new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -0.5D, Operation.ADDITION);
 	public static final String NBTMODIFIER = "REModifiers";
 	/**
 	 * Adds a single {@link ExtendedModifier} to the given {@link ItemStack}.
@@ -116,12 +129,32 @@ public class ExtendedModifierUtils {
 			}
 		}
 	}
+	/**
+	 * Removes all {@link ExtendedModifier}s of a specific type from the given {@link ItemStack}.
+	 * <p>
+	 * This method first retrieves the current list of modifiers from the stack,
+	 * removes all modifiers matching the specified {@link ExtendedModifierType},
+	 * and then updates the stack with the filtered list.
+	 * </p>
+	 *
+	 * @param pStack        the {@link ItemStack} to modify
+	 * @param pModifierType the {@link ExtendedModifierType} to remove
+	 */
 	public static void removeModifierType(ItemStack pStack, ExtendedModifierType pModifierType) {
 		List<ExtendedModifier> mergableModifiers = getModifierList(pStack);
 		removeModifierType(mergableModifiers, pModifierType);
 		setModifiers(pStack, mergableModifiers);
 	}
-
+	/**
+	 * Removes all {@link ExtendedModifier}s of a specific type from the provided list.
+	 * <p>
+	 * Unlike {@link #removeModifierType(ItemStack, ExtendedModifierType)}, this method
+	 * operates directly on a list without modifying an {@link ItemStack}'s NBT.
+	 * </p>
+	 *
+	 * @param mergableModifiers the list of {@link ExtendedModifier}s to filter
+	 * @param pModifierType     the {@link ExtendedModifierType} to remove
+	 */
 	public static void removeModifierType(List<ExtendedModifier> mergableModifiers, ExtendedModifierType pModifierType) {
 		Iterator<ExtendedModifier> iterator = mergableModifiers.iterator();
 		while(iterator.hasNext()) {
@@ -405,15 +438,45 @@ public class ExtendedModifierUtils {
 			return result;
 		}
 	}
-
+	/**
+	 * Retrieves the first {@link ExtendedModifier} of a specific type from the given {@link ItemStack}.
+	 * <p>
+	 * If no modifier of the specified type is present, {@link ExtendedModifiers#UNKNOWN}
+	 * is returned.
+	 * </p>
+	 *
+	 * @param stack the {@link ItemStack} to inspect
+	 * @param pType the {@link ExtendedModifierType} to search for
+	 * @return the first matching {@link ExtendedModifier}, or UNKNOWN if none exist
+	 */
 	public static ExtendedModifier getModifierByTypeStack(ItemStack stack, ExtendedModifierType pType) {
 		return getModifierByTypeList(getModifierList(stack), pType);
 	}
-
+	/**
+	 * Retrieves the first {@link ExtendedModifier} of a specific type from a provided list.
+	 * <p>
+	 * If no modifier of the specified type exists in the list,
+	 * {@link ExtendedModifiers#UNKNOWN} is returned.
+	 * </p>
+	 *
+	 * @param modifiers the list of {@link ExtendedModifier}s to search
+	 * @param pType     the {@link ExtendedModifierType} to match
+	 * @return the first matching {@link ExtendedModifier}, or UNKNOWN if none exist
+	 */
 	public static ExtendedModifier getModifierByTypeList(List<ExtendedModifier> modifiers, ExtendedModifierType pType) {
 		return modifiers.stream().filter((modifier)-> modifier.getModifierType()==pType).findFirst().orElse(ExtendedModifiers.UNKNOWN);
 	}
-
+	/**
+	 * Builds a map of {@link ExtendedModifierType} to {@link ExtendedModifier} from
+	 * the given {@link ItemStack}.
+	 * <p>
+	 * Only one modifier per type is stored in the resulting map. If multiple modifiers
+	 * of the same type exist, the last encountered is kept.
+	 * </p>
+	 *
+	 * @param stack the {@link ItemStack} to inspect
+	 * @return a {@link Map} associating each modifier type with its corresponding modifier
+	 */
 	public static Map<ExtendedModifierType, ExtendedModifier> getModifierListByType(ItemStack stack) {
 		List<ExtendedModifier> mergableModifiers = getModifierList(stack);
 		Map<ExtendedModifierType, ExtendedModifier> map = new LinkedHashMap<>();
@@ -421,6 +484,41 @@ public class ExtendedModifierUtils {
 			map.put(modifier.getModifierType(), modifier);
 		}
 		return map;
+	}
+	/**
+	 * Synchronizes attribute modifiers for an {@link ItemStack} during the
+	 * {@link ItemAttributeModifierEvent}.
+	 * <p>
+	 * This method ensures that modifiers such as melee reach and attack speed
+	 * are applied or removed depending on the {@link ExtendedModifier}s attached
+	 * to the item. It uses fixed UUIDs to prevent duplicate stacking and to allow
+	 * proper replacement of modifiers when values change.
+	 * </p>
+	 *
+	 * <p>Processing steps:</p>
+	 * <ol>
+	 *   <li>Verify the slot is {@link EquipmentSlotType#MAINHAND}.</li>
+	 *   <li>Clear any existing reach and attack speed modifiers associated with the item.</li>
+	 *   <li>Re-apply modifiers based on current {@link ExtendedModifierType}s present.</li>
+	 * </ol>
+	 *
+	 * @param pEvent the {@link ItemAttributeModifierEvent} containing the
+	 *               {@link ItemStack} and attribute context
+	 */
+	public static void processItemAttributes(ItemAttributeModifierEvent pEvent) {
+		if(pEvent.getSlotType()==EquipmentSlotType.MAINHAND) {
+			Map<ExtendedModifierType, ExtendedModifier> modifiers = getModifierListByType(pEvent.getItemStack());
+			pEvent.removeModifier(ForgeMod.REACH_DISTANCE.get(), reachModifierPlus);
+			pEvent.removeModifier(ForgeMod.REACH_DISTANCE.get(), reachModifierNeg);
+			pEvent.removeModifier(Attributes.ATTACK_SPEED, speedModifierPlus);
+			pEvent.removeModifier(Attributes.ATTACK_SPEED, speedModifierNeg);
+			if(modifiers.containsKey(ExtendedModifierType.MELEE_REACH)) {
+				pEvent.addModifier(ForgeMod.REACH_DISTANCE.get(), modifiers.get(ExtendedModifierType.MELEE_REACH).getModifierEffect()>1 ? reachModifierPlus : reachModifierNeg);
+			}
+			if(modifiers.containsKey(ExtendedModifierType.MELEE_SPEED)) {
+				pEvent.addModifier(Attributes.ATTACK_SPEED, modifiers.get(ExtendedModifierType.MELEE_SPEED).getModifierEffect()>1 ? speedModifierPlus : speedModifierNeg);
+			}
+		}
 	}
 	/**
 	 * Generates and applies one or more modifiers to the given {@link ItemStack}, then
