@@ -185,7 +185,7 @@ public class WorldEventHandlers {
 	@SubscribeEvent
 	public static void handleEntitySpawn$Extended(EntityJoinWorldEvent event) {
 		if(LOTRDimensions.isModDimension(event.getWorld())) {
-			if (!event.getWorld().isClientSide() && event.getEntity() instanceof ExperienceOrbEntity && !ExtendedServerConfig.enableVanillaEnchanting.get()) {
+			if (!event.getWorld().isClientSide() && event.getEntity() instanceof ExperienceOrbEntity && !ExtendedServerConfig.enableVanillaXp.get()) {
 				event.setCanceled(true);
 				return;
 			}
@@ -196,7 +196,7 @@ public class WorldEventHandlers {
 	public static void handleBlockLeftInteract$Extended(PlayerInteractEvent.LeftClickBlock event) {
 		if(LOTRDimensions.isModDimension(event.getWorld())) {
 			if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof EnchantingTableBlock) {
-				if(!ExtendedServerConfig.enableVanillaXp.get()) {
+				if(!ExtendedServerConfig.enableVanillaEnchanting.get()) {
 					event.setCanceled(true);
 				}
 			}
