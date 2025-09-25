@@ -64,11 +64,11 @@
       },
       "lines": [
         "A Dwarf does not just offer to trade his wealth with any stranger who comes along!",
-        "If you want an ale, #, you'll need to do some more to prove yourself!",
+        "If you want an ale, #p, you'll need to do some more to prove yourself!",
         "You'll need to earn yourself a bit of a reputation before I'll let you eat here.",
         "We Dwarves don't simply trade with any stranger that passes by!",
         "You wish to trade with me? You'll have to prove your standing amongst my kin first!",
-        "Sorry, #! I don't trade with strangers.",
+        "Sorry, #p! I don't trade with strangers.",
         "I must serve my kin before I can serve a stranger like you.",
         "My drinks are too strong for you, traveler.",
         "My ale would kill you, traveler. You cannot handle my drinks.",
