@@ -11,6 +11,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BowItem;
+import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShearsItem;
@@ -112,6 +113,14 @@ public enum ExtendedModifierType {
 	PROTECTION_BLAST("enchant.lotrextended.armor_protect_blast.disc", "+", 
 			item -> item instanceof ArmorItem),
 
+	/** Enhances fishing luck. */
+	FISHING_LUCK("enchant.lotrextended.fishing_luck.disc", "+", 
+			item -> item instanceof FishingRodItem),
+
+	/** Enhances fishing speed. */
+	FISHING_SPEED("enchant.lotrextended.fishing_speed.disc", "+", 
+			item -> item instanceof FishingRodItem),
+
 	/** Reduces explosion or blast damage. */
 	UNKNOWN("enchant.lotrextended.unknown.disc", "$", 
 			item -> false);
@@ -132,6 +141,9 @@ public enum ExtendedModifierType {
 		PROTECTION_RANGED.predicateCompatible = m -> (m != PROTECTION_FIRE && m != PROTECTION && m != PROTECTION_MITHRIL && m != PROTECTION_BLAST);
 		PROTECTION_MITHRIL.predicateCompatible = m -> (m != PROTECTION_FIRE && m != PROTECTION_RANGED && m != PROTECTION && m != PROTECTION_BLAST);
 		PROTECTION_BLAST.predicateCompatible = m -> (m != PROTECTION_FIRE && m != PROTECTION_RANGED && m != PROTECTION_MITHRIL && m != PROTECTION);
+		
+		FISHING_SPEED.predicateCompatible = m -> (m != FISHING_LUCK);
+		FISHING_LUCK.predicateCompatible = m -> (m != FISHING_SPEED);
 	}
 
 	/** The localization/translation key for item descriptions. */

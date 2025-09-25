@@ -112,6 +112,12 @@ public class ExtendedModifiers {
 	public static final ExtendedModifier POOR = registerInt("protectWeak1", "armor_protect.weak_one", ExtendedModifierType.PROTECTION, 0, -1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.NOSCROLL, 4, ARMOR_SLOTS);
 	public static final ExtendedModifier CRUDE = registerInt("protectWeak2", "armor_protect.weak_two", ExtendedModifierType.PROTECTION, -1, -2, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.NOSCROLL, 3, ARMOR_SLOTS);
 	public static final ExtendedModifier TRUE = registerInt("protectMithril", "armor_protect_mithril", ExtendedModifierType.PROTECTION_MITHRIL, 1, 4, ExtendedModifierRarity.APPLIED, ExtendedModifierScroll.GOLD, 0, ARMOR_SLOTS);
+	// FISHING
+	public static final ExtendedModifier PROSPEROUS  = registerInt("fishLuck3", "fishing_luck.three", ExtendedModifierType.FISHING_LUCK, 3, 3, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 2, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier GIFTED = registerInt("fishLuck2", "fishing_luck.two", ExtendedModifierType.FISHING_LUCK, 2, 2, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.SILVER, 4, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier FLUKED = registerInt("fishLuck1", "fishing_luck.one", ExtendedModifierType.FISHING_LUCK, 1, 1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.BRONZE, 6, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier TANTALIZED = registerInt("fishSpeed2", "fishing_speed.two", ExtendedModifierType.FISHING_SPEED, 2, 2, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 2, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier ALLURING = registerInt("fishSpeed1", "fishing_speed.one", ExtendedModifierType.FISHING_SPEED, 1, 1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.SILVER, 6, EquipmentSlotType.MAINHAND);
 	// Unknown
 	public static final ExtendedModifier UNKNOWN = registerFloat("unknown", "unknown", ExtendedModifierType.UNKNOWN, 0, 3.14159f, ExtendedModifierRarity.UNIQUE, ExtendedModifierScroll.WOODEN, 0);
 	/**

@@ -604,13 +604,13 @@ public class ExtendedModifierUtils {
 				return newModifiers;
 			}
 			int chance = pRandom.nextInt(100);
-			if(chance < 70) {
+			if(chance < 60) {
 				newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 				filterCompatibleModifiers(applicableModifiers, Util.lastOf(newModifiers));
 				if(chance < 15 && !applicableModifiers.isEmpty()) {
 					newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 					filterCompatibleModifiers(applicableModifiers, Util.lastOf(newModifiers));
-					if(chance == 0 && !applicableModifiers.isEmpty()) {
+					if(pRandom.nextInt(100) == 0 && !applicableModifiers.isEmpty()) {
 						newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 					}
 				}
@@ -704,6 +704,10 @@ public class ExtendedModifierUtils {
 			return ExtendedModifierType.PROTECTION_BLAST;
 		} else if (enchantment == Enchantments.PUNCH_ARROWS) {
 			return ExtendedModifierType.RANGED_KNOCKBACK;
+		} else if (enchantment == Enchantments.FISHING_LUCK) {
+			return ExtendedModifierType.FISHING_LUCK;
+		} else if (enchantment == Enchantments.FISHING_SPEED) {
+			return ExtendedModifierType.FISHING_SPEED;
 		} else if (enchantment == Enchantments.BLOCK_EFFICIENCY && shouldFloat) {
 			return ExtendedModifierType.TOOL_SPEED;
 		} else if (enchantment == Enchantments.POWER_ARROWS && shouldFloat) {

@@ -575,6 +575,13 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("enchant.lotrextended.infernal.disc", "Sets target aflame");
 		addD("enchant.lotrextended.headhunting", "Headhunting");
 		addD("enchant.lotrextended.headhunting.disc", "Drops player heads");
+		addD("enchant.lotrextended.fishing_luck.one", "Fluked");
+		addD("enchant.lotrextended.fishing_luck.two", "Gifted");
+		addD("enchant.lotrextended.fishing_luck.three", "Prosperous");
+		addD("enchant.lotrextended.fishing_luck.disc", "fishing luck");
+		addD("enchant.lotrextended.fishing_speed.one", "Alluring");
+		addD("enchant.lotrextended.fishing_speed.two", "Tantalized");
+		addD("enchant.lotrextended.fishing_speed.disc", "fishing speed");
 	}
 
 	@Override
