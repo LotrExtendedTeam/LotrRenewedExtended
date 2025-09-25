@@ -24,7 +24,7 @@ public class ExtendedDuckRenderer extends ExtendedMobRenderer<ExtendedDuckEntity
 
 	@Override
 	public ResourceLocation getTexture(ExtendedDuckEntity duck) {
-		if(duck.isDomesticated() || duck.getGender() == ExtendedEntityGender.GENDERLESS) {
+		if(duck.getGender() == ExtendedEntityGender.GENDERLESS) {
 			return DOMESTICATED_DUCK_LOCATION;
 		}
 		if(duck.isBob()) {
