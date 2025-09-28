@@ -582,6 +582,14 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("enchant.lotrextended.fishing_speed.one", "Alluring");
 		addD("enchant.lotrextended.fishing_speed.two", "Tantalized");
 		addD("enchant.lotrextended.fishing_speed.disc", "fishing speed");
+		addD("enchant.lotrextended.underwater_movement.one", "Webbed");
+		addD("enchant.lotrextended.underwater_movement.two", "Finned");
+		addD("enchant.lotrextended.underwater_movement.three", "Ulmoqint");
+		addD("enchant.lotrextended.underwater_movement.disc", "underwater speed");
+		addD("enchant.lotrextended.underwater_breathing.one", "Shut");
+		addD("enchant.lotrextended.underwater_breathing.two", "Latched");
+		addD("enchant.lotrextended.underwater_breathing.three", "Sealed");
+		addD("enchant.lotrextended.underwater_breathing.disc", "underwater time");
 	}
 
 	@Override

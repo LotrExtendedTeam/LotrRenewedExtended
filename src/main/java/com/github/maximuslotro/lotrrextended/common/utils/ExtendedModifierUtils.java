@@ -704,14 +704,20 @@ public class ExtendedModifierUtils {
 			return ExtendedModifierType.PROTECTION_BLAST;
 		} else if (enchantment == Enchantments.PUNCH_ARROWS) {
 			return ExtendedModifierType.RANGED_KNOCKBACK;
-		} else if (enchantment == Enchantments.FISHING_LUCK) {
-			return ExtendedModifierType.FISHING_LUCK;
-		} else if (enchantment == Enchantments.FISHING_SPEED) {
-			return ExtendedModifierType.FISHING_SPEED;
 		} else if (enchantment == Enchantments.BLOCK_EFFICIENCY && shouldFloat) {
 			return ExtendedModifierType.TOOL_SPEED;
 		} else if (enchantment == Enchantments.POWER_ARROWS && shouldFloat) {
 			return ExtendedModifierType.RANGED_SPEED;
+		} else if (enchantment == Enchantments.FISHING_LUCK) {
+			return ExtendedModifierType.FISHING_LUCK;
+		} else if (enchantment == Enchantments.FISHING_SPEED) {
+			return ExtendedModifierType.FISHING_SPEED;
+		} else if (enchantment == Enchantments.DEPTH_STRIDER) {
+			return ExtendedModifierType.UNDERWATER_MOVEMENT;
+		} else if (enchantment == Enchantments.AQUA_AFFINITY) {
+			return ExtendedModifierType.UNDERWATER_BREATHING;
+		} else if (enchantment == Enchantments.RESPIRATION) {
+			return ExtendedModifierType.UNDERWATER_BREATHING;
 		} else {
 			// Not mapped or blocked → return UNKNOWN
 			return ExtendedModifierType.UNKNOWN;

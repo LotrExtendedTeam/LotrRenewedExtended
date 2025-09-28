@@ -121,6 +121,14 @@ public enum ExtendedModifierType {
 	FISHING_SPEED("enchant.lotrextended.fishing_speed.disc", "+", 
 			item -> item instanceof FishingRodItem),
 
+	/** Enhances underwater speed. */
+	UNDERWATER_MOVEMENT("enchant.lotrextended.underwater_movement.disc", "+", 
+		item -> item instanceof ArmorItem && ((ArmorItem) item).getSlot()==EquipmentSlotType.FEET),
+
+	/** Enhances underwater length. */
+	UNDERWATER_BREATHING("enchant.lotrextended.underwater_breathing.disc", "+", 
+		item -> item instanceof ArmorItem && ((ArmorItem) item).getSlot()==EquipmentSlotType.HEAD),
+
 	/** Reduces explosion or blast damage. */
 	UNKNOWN("enchant.lotrextended.unknown.disc", "$", 
 			item -> false);
