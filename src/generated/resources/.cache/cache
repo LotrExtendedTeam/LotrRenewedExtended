@@ -1158,7 +1158,7 @@ c84eae259a47559ead729e4347ffea6d7501f424 assets/lotr/models/item/willow_wood.jso
 4186944b4eeadba1a3a1ddb90dbff20560be6178 assets/lotr/models/item/willow_wood_slab.json
 b66208f52b71740229ce72fc311fca8285eeb69b assets/lotr/models/item/willow_wood_stairs.json
 7414885b7f1bd5611a25313574f1a0869028ba2b assets/lotr/models/item/wooden_birdcage.json
-5a3f84c633a4ee4a11d006e44b0d96017bfb6499 assets/lotrextended/lang/en_us.json
+6b353e92c60fc662f53977edf52af7c19c88432d assets/lotrextended/lang/en_us.json
 f92a839c3ca2d718c24620379a6dfe7f6b1da56a assets/lotrextended/models/block/aged_cheese_wheel.json
 49726eaeacec21ddcdca269035e7d714a71afee2 assets/lotrextended/models/block/aged_cheese_wheel1.json
 b247a199d6c842a60642d920e78ba3135e032bf2 assets/lotrextended/models/block/aged_cheese_wheel2.json
@@ -2665,6 +2665,7 @@ df7ec3f184ea28a20d4959a2510e08353c6a2e84 data/lotr/advancements/recipes/lotr.com
 c0f61c59cdb1d3cea18487c30ecc9fc49135f3c2 data/lotr/advancements/recipes/lotr.combat/morgul_leggings.json
 11c77974d84cd893ab0a20afa7557e2f6ea1f7c4 data/lotr/advancements/recipes/lotr.combat/orc_bow.json
 8fb128eea713f71190115e49108be9dec7ff9468 data/lotr/advancements/recipes/lotr.combat/ranger_bow.json
+707e560007dae05390d2c4b7967a65b8471a2ee7 data/lotr/advancements/recipes/lotr.combat/rivendell_shield.json
 d19ca38782621b2c5e034c44f102fa7b78a825dc data/lotr/advancements/recipes/lotr.combat/silver_warg_fur_boots.json
 7d4d86a05f1b18733cd4ddc427ae8e8badd3a98f data/lotr/advancements/recipes/lotr.combat/silver_warg_fur_chestplate.json
 5d8c9935e719b0c2a83a5cf0c4d4a3e84ccbdef2 data/lotr/advancements/recipes/lotr.combat/silver_warg_fur_leggings.json
@@ -3869,6 +3870,7 @@ ce4f8a8f22133201365ed7401ddc8669118dc5af data/lotr/recipes/rhunic_brick_wall.jso
 5b351df0dfd27c43f43b9d28d69a2b032fa8f61c data/lotr/recipes/rhunic_pillar_1.json
 689c345a97b3da1be7afc997e558ddaa6c5e3e50 data/lotr/recipes/rhunic_pillar_2.json
 414bdcd0976c5b230154e39ed3e295913fe1de50 data/lotr/recipes/rhunic_pillar_slab.json
+51a913e566690ff1b8db0555f378f02956969a68 data/lotr/recipes/rivendell_shield.json
 0a5956df9ad12b2cba0b169131e4d790cf4ab903 data/lotr/recipes/roasted_chestnut.json
 401c70cbb3e50fb965b37d47baa75a5b55b1946a data/lotr/recipes/rohan_beam.json
 51177d0cebe21960d2a2ec598e1b68782ba2419d data/lotr/recipes/rope.json

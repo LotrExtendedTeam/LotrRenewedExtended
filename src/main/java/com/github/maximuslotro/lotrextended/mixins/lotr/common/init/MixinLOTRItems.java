@@ -1081,6 +1081,9 @@ public class MixinLOTRItems {
 		ExtendedItems.DWARVEN_BOAR_ARMOR = regItemB("dwarven_boar_armor", () -> new ExtendedBoarArmorItem(10, "dwarven", new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
 		ExtendedItems.BLUE_DWARVEN_BOAR_ARMOR = regItemB("blue_dwarven_boar_armor", () -> new ExtendedBoarArmorItem(10, "blue_dwarven", new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
 
+		// High Elven Equipment
+		ExtendedItems.RIVENDELL_SHIELD = regItemB("rivendell_shield", () -> new LOTRShieldItem(LOTRMaterial.RIVENDELL));
+
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", () -> new ExtendedDyeableLOTRArmorItem(LOTRMaterial.COSMETIC, EquipmentSlotType.HEAD, "leather_hat"));
 		ExtendedItems.BARROW_BLADE = regItemB("barrow_blade", ExtendedBarrowBlade::new);

@@ -1,5 +1,4 @@
 {
-	"credit": "Made with Blockbench",
 	"parent": "lotr:item/template_shield",
 	"textures": {
 		"particle": "lotrextended:item/blue_dwarven_shield_front",
