@@ -590,6 +590,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("enchant.lotrextended.underwater_breathing.two", "Latched");
 		addD("enchant.lotrextended.underwater_breathing.three", "Sealed");
 		addD("enchant.lotrextended.underwater_breathing.disc", "underwater time");
+		addD("enchant.lotrextended.toughness.one", "Tough");
+		addD("enchant.lotrextended.toughness.two", "Thick");
+		addD("enchant.lotrextended.toughness.three", "Unwavering");
+		addD("enchant.lotrextended.toughness.disc", "toughness");
 	}
 
 	@Override

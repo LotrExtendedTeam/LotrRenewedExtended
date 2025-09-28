@@ -79,7 +79,7 @@ public enum ExtendedModifierType {
 
 	/** Drops enemy heads on death. */
 	HEADHUNTING("enchant.lotrextended.headhunting.disc", "", 
-			item -> item instanceof SwordItem || item instanceof BowItem || item instanceof AxeItem ),
+			item -> item instanceof SwordItem || item instanceof BowItem || item instanceof AxeItem),
 
 	/** Increases efficiency and mining speed for tools. */
 	TOOL_SPEED("enchant.lotrextended.tool_speed.disc", "x", 
@@ -129,6 +129,10 @@ public enum ExtendedModifierType {
 	UNDERWATER_BREATHING("enchant.lotrextended.underwater_breathing.disc", "+", 
 		item -> item instanceof ArmorItem && ((ArmorItem) item).getSlot()==EquipmentSlotType.HEAD),
 
+	/** Enhances underwater length. */
+	TOUGHNESS("enchant.lotrextended.toughness.disc", "+", 
+		item -> item instanceof ArmorItem),
+
 	/** Reduces explosion or blast damage. */
 	UNKNOWN("enchant.lotrextended.unknown.disc", "$", 
 			item -> false);
@@ -149,9 +153,11 @@ public enum ExtendedModifierType {
 		PROTECTION_RANGED.predicateCompatible = m -> (m != PROTECTION_FIRE && m != PROTECTION && m != PROTECTION_MITHRIL && m != PROTECTION_BLAST);
 		PROTECTION_MITHRIL.predicateCompatible = m -> (m != PROTECTION_FIRE && m != PROTECTION_RANGED && m != PROTECTION && m != PROTECTION_BLAST);
 		PROTECTION_BLAST.predicateCompatible = m -> (m != PROTECTION_FIRE && m != PROTECTION_RANGED && m != PROTECTION_MITHRIL && m != PROTECTION);
-		
+		PROTECTION_FALLING.predicateCompatible = m -> (m != UNDERWATER_MOVEMENT);
+		UNDERWATER_MOVEMENT.predicateCompatible = m -> (m != PROTECTION_FALLING);
 		FISHING_SPEED.predicateCompatible = m -> (m != FISHING_LUCK);
 		FISHING_LUCK.predicateCompatible = m -> (m != FISHING_SPEED);
+		TOUGHNESS.predicateCompatible = m -> (m != PROTECTION);
 	}
 
 	/** The localization/translation key for item descriptions. */

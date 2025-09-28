@@ -119,6 +119,9 @@ public class ExtendedModifiers {
 	public static final ExtendedModifier SEALED  = registerInt("waterBreath3", "underwater_breathing.three", ExtendedModifierType.UNDERWATER_BREATHING, 3, 3, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 1, ARMOR_SLOTS);
 	public static final ExtendedModifier LATCHED = registerInt("waterBreath2", "underwater_breathing.two", ExtendedModifierType.UNDERWATER_BREATHING, 2, 2, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.SILVER, 3, ARMOR_SLOTS);
 	public static final ExtendedModifier SHUT = registerInt("waterBreath1", "underwater_breathing.one", ExtendedModifierType.UNDERWATER_BREATHING, 1, 1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.BRONZE, 4, ARMOR_SLOTS);
+	public static final ExtendedModifier UNWAVERING  = registerInt("toughness3", "toughness.three", ExtendedModifierType.TOUGHNESS, 3, 3, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 1, ARMOR_SLOTS);
+	public static final ExtendedModifier THICK = registerInt("toughness2", "toughness.two", ExtendedModifierType.TOUGHNESS, 2, 2, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.SILVER, 2, ARMOR_SLOTS);
+	public static final ExtendedModifier TOUGH = registerInt("toughness1", "toughness.one", ExtendedModifierType.TOUGHNESS, 1, 1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.BRONZE, 3, ARMOR_SLOTS);
 	// ===Fishing Modifiers ===
 	public static final ExtendedModifier PROSPEROUS  = registerInt("fishLuck3", "fishing_luck.three", ExtendedModifierType.FISHING_LUCK, 3, 3, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 2, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier GIFTED = registerInt("fishLuck2", "fishing_luck.two", ExtendedModifierType.FISHING_LUCK, 2, 2, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.SILVER, 4, EquipmentSlotType.MAINHAND);

@@ -14,6 +14,7 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
@@ -51,10 +52,14 @@ import com.google.common.collect.Lists;
 public class ExtendedModifierUtils {
 	protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("889c253a-f9f9-4ce9-a9a1-5148a7e2b1a7");
 	protected static final UUID ATTACK_SPEED_MODIFIER = UUID.fromString("17d1ae62-924b-4df4-bdcc-5dae72cb3ab8");
+	protected static final UUID TOUGHNESS_MODIFIER = UUID.fromString("0199917a-d418-715d-b0c2-f88291d994cd");
 	private static final AttributeModifier reachModifierPlus = new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", 0.5D, Operation.ADDITION);
 	private static final AttributeModifier reachModifierNeg = new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", -0.5D, Operation.ADDITION);
 	private static final AttributeModifier speedModifierPlus = new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", 0.5D, Operation.ADDITION);
 	private static final AttributeModifier speedModifierNeg = new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -0.5D, Operation.ADDITION);
+	private static final AttributeModifier toughness1 = new AttributeModifier(TOUGHNESS_MODIFIER, "Armor toughness", 1, Operation.ADDITION);
+	private static final AttributeModifier toughness2 = new AttributeModifier(TOUGHNESS_MODIFIER, "Armor toughness", 2, Operation.ADDITION);
+	private static final AttributeModifier toughness3 = new AttributeModifier(TOUGHNESS_MODIFIER, "Armor toughness", 3, Operation.ADDITION);
 	public static final String NBTMODIFIER = "REModifiers";
 	/**
 	 * Adds a single {@link ExtendedModifier} to the given {@link ItemStack}.
@@ -505,6 +510,7 @@ public class ExtendedModifierUtils {
 	 * @param pEvent the {@link ItemAttributeModifierEvent} containing the
 	 *               {@link ItemStack} and attribute context
 	 */
+	// TODO re-think the usage of this method, there has got to a be a better way to do this right?
 	public static void processItemAttributes(ItemAttributeModifierEvent pEvent) {
 		if(pEvent.getSlotType()==EquipmentSlotType.MAINHAND) {
 			Map<ExtendedModifierType, ExtendedModifier> modifiers = getModifierListByType(pEvent.getItemStack());
@@ -517,6 +523,16 @@ public class ExtendedModifierUtils {
 			}
 			if(modifiers.containsKey(ExtendedModifierType.MELEE_SPEED)) {
 				pEvent.addModifier(Attributes.ATTACK_SPEED, modifiers.get(ExtendedModifierType.MELEE_SPEED).getModifierEffect()>1 ? speedModifierPlus : speedModifierNeg);
+			}
+		}
+		if (pEvent.getItemStack().getItem() instanceof ArmorItem && ((ArmorItem) pEvent.getItemStack().getItem()).getSlot()==pEvent.getSlotType()) {
+			Map<ExtendedModifierType, ExtendedModifier> modifiers = getModifierListByType(pEvent.getItemStack());
+			pEvent.removeModifier(Attributes.ARMOR_TOUGHNESS, toughness1);
+			pEvent.removeModifier(Attributes.ARMOR_TOUGHNESS, toughness2);
+			pEvent.removeModifier(Attributes.ARMOR_TOUGHNESS, toughness3);
+			if(modifiers.containsKey(ExtendedModifierType.TOUGHNESS)) {
+				int teir = modifiers.get(ExtendedModifierType.TOUGHNESS).getModifierTeir();
+				pEvent.addModifier(Attributes.ARMOR_TOUGHNESS, teir==3 ? toughness3 : teir==2 ? toughness2 : toughness1);
 			}
 		}
 	}
