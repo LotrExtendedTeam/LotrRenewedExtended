@@ -402,6 +402,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> ORC_STEEL_DOOR;
 	public static RegistryObject<Block> ORC_STEEL_TRAPDOOR;
 	public static RegistryObject<Block> ORC_CHAIN;
+	public static RegistryObject<Block> HIGH_ELVEN_CHAIN;
 
 	public static RegistryObject<Block> DRYSTONE_SLAB;
 	public static RegistryObject<Block> DRYSTONE_STAIRS;
