@@ -686,4 +686,6 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> CRACKED_STONE_PILLAR;
 	public static RegistryObject<Item> CRACKED_STONE_PILLAR_SLAB;
+	
+	public static RegistryObject<Item> MODIFIER_SCROLL;
 }

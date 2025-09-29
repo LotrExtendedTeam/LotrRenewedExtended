@@ -52,6 +52,9 @@
                 "min": 0.35,
                 "max": 1.0
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_sword"
@@ -70,6 +73,9 @@
                 "min": 0.35,
                 "max": 1.0
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_spear"
@@ -88,6 +94,9 @@
                 "min": 0.35,
                 "max": 1.0
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_dagger"
@@ -106,6 +115,9 @@
                 "min": 0.35,
                 "max": 1.0
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_boots"
@@ -124,6 +136,9 @@
                 "min": 0.35,
                 "max": 1.0
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_throwing_axe"
@@ -142,6 +157,9 @@
                 "min": 0.35,
                 "max": 1.0
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_helmet"
@@ -160,6 +178,9 @@
                 "min": 0.35,
                 "max": 1.0
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_chestplate"
@@ -178,6 +199,9 @@
                 "min": 0.35,
                 "max": 1.0
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_leggings"
@@ -196,6 +220,9 @@
                 "min": 0.35,
                 "max": 1.0
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_boots"
@@ -214,6 +241,9 @@
                 "min": 0.35,
                 "max": 1.0
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_shield"
@@ -288,6 +318,11 @@
         {
           "condition": "minecraft:random_chance",
           "chance": 0.5
+        }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder"
         }
       ]
     },

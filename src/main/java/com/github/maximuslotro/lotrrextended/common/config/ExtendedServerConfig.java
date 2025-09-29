@@ -27,8 +27,9 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableChairProtectionOverride;
 
 	// Vanilla patches
-	public static ForgeConfigSpec.BooleanValue enableFishingEnchantedItems;
-	public static ForgeConfigSpec.BooleanValue enableEnchantedLootDrops;
+	public static ForgeConfigSpec.BooleanValue enableVanillaEnchanting;
+	public static ForgeConfigSpec.BooleanValue enableVanillaXp;
+	public static ForgeConfigSpec.BooleanValue enableExtendedModifiers;
 
 	// Special Settings
 	public static ForgeConfigSpec.BooleanValue enableDevMode;
@@ -62,9 +63,10 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		enableChairProtectionOverride = createBooleanValue(builder, "enableChairProtectionOverride", true, false, "Allow players sit on seats in banner-protected areas (global setting overriding banner spicific settings)");
 		builder.pop();
 
-		builder.push("Vanilla Patches");
-		enableEnchantedLootDrops = createBooleanValue(builder, "enableEnchantedLootDrops", true, false, "Enable any enchated loot drops in Middle Earth (overall setting)");
-		enableFishingEnchantedItems = createBooleanValue(builder, "enableFishingEnchantedItems", false, false, "Enable fishing enchanted items in Middle Earth");
+		builder.push("Gameplay");
+		enableVanillaEnchanting = createBooleanValue(builder, "enableVanillaEnchanting", false, true, "Enables vanilla enchanting system in Middle Earth");
+		enableVanillaXp = createBooleanValue(builder, "enableVanillaXp", false, true, "Enables Xp orbs and bar in Middle Earth");
+		enableExtendedModifiers = createBooleanValue(builder, "enableExtendedModifiers", true, true, "Enables Extended modifier system");
 		builder.pop();
 
 		builder.push("Special settings");

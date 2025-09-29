@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeContainer;
 
 import io.netty.buffer.Unpooled;
@@ -60,7 +60,7 @@ public class ExtendedCOpenCoinExchangePacket {
     		return;
     	}
 
-    	ContainerType<ExtendedCoinExchangeContainer> containerType = ExtendedContainers.COIN_TRADING.get();
+    	ContainerType<ExtendedCoinExchangeContainer> containerType = ExtendedContainerTypes.COIN_TRADING.get();
     	PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
     	ExtendedCoinExchangeContainer.writeContainerInitData(initData, packet.traderId);
     	NetworkHooks.openGui(context.get().getSender(), new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedCoinExchangeContainer.CONTAINER_TITLE), buf -> ExtendedCoinExchangeContainer.writeContainerInitData(buf, packet.traderId));

@@ -1,11 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.commands;
 
 import com.github.maximuslotro.lotrextended.mixins.MIXINConfig;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
 import lotr.common.data.ExtendedLevelData;
-import lotr.common.util.LOTREnchantUtils;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.player.PlayerEntity;
@@ -47,7 +47,7 @@ public class ExtendedInfoCommand
             PlayerEntity entity = (PlayerEntity) source.getEntity();
             ItemStack item = entity.getItemInHand(Hand.MAIN_HAND);
 
-            String baneData = LOTREnchantUtils.getBaneData(item);
+            String baneData = ExtendedModifierUtils.getBaneData(item);
             if (!baneData.isEmpty()) {
                 source.sendSuccess(new StringTextComponent(""), false);
                 source.sendSuccess(new TranslationTextComponent("command.lotrextended.info.bane_progress"), false);

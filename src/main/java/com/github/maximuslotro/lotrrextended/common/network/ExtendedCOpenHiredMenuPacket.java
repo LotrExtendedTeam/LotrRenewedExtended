@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.network;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitContainer;
 
 import io.netty.buffer.Unpooled;
@@ -59,7 +59,7 @@ public class ExtendedCOpenHiredMenuPacket {
             NetworkHooks.openGui(Objects.requireNonNull(context.get().getSender()),
                     new SimpleNamedContainerProvider(
                             (windowId, playerInventory, player) ->
-                                    ExtendedContainers.HIRED_UNIT_CONTAINER.get().create(windowId, playerInventory, initData),
+                                    ExtendedContainerTypes.HIRED_UNIT_CONTAINER.get().create(windowId, playerInventory, initData),
                                     info.getHiredUnitName()
                     ),
                     buf -> ExtendedHiredUnitContainer.writeContainerInitData(buf, msg.entityId, info.getUnitProfile(), info.getOrders())
