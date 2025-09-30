@@ -550,7 +550,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("enchant.lotrextended.armor_protect.two", "Steadfast");
 		addD("enchant.lotrextended.armor_protect.weak_one", "Poor");
 		addD("enchant.lotrextended.armor_protect.weak_two", "Crude");
-		addD("enchant.lotrextended.armor_protect.disc", "protection");
+		addD("enchant.lotrextended.armor_protect.disc", "armor points");
 		addD("enchant.lotrextended.armor_protect_fire.one", "Cooling");
 		addD("enchant.lotrextended.armor_protect_fire.two", "Unwithering");
 		addD("enchant.lotrextended.armor_protect_fire.three", "Belegostian");

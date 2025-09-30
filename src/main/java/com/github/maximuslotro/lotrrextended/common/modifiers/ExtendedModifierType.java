@@ -148,16 +148,16 @@ public enum ExtendedModifierType {
 		TOOL_SILK.predicateCompatible = m -> (m != LOOTING);
 
 		// multi-OR cases wrapped with parentheses
-		PROTECTION.predicateCompatible = m -> (m != PROTECTION_FIRE && m != PROTECTION_RANGED && m != PROTECTION_MITHRIL && m != PROTECTION_BLAST);
-		PROTECTION_FIRE.predicateCompatible = m -> (m != PROTECTION && m != PROTECTION_RANGED && m != PROTECTION_MITHRIL && m != PROTECTION_BLAST);
-		PROTECTION_RANGED.predicateCompatible = m -> (m != PROTECTION_FIRE && m != PROTECTION && m != PROTECTION_MITHRIL && m != PROTECTION_BLAST);
-		PROTECTION_MITHRIL.predicateCompatible = m -> (m != PROTECTION_FIRE && m != PROTECTION_RANGED && m != PROTECTION && m != PROTECTION_BLAST);
-		PROTECTION_BLAST.predicateCompatible = m -> (m != PROTECTION_FIRE && m != PROTECTION_RANGED && m != PROTECTION_MITHRIL && m != PROTECTION);
+		PROTECTION_FIRE.predicateCompatible = m -> (m != PROTECTION_RANGED && m != PROTECTION_MITHRIL && m != PROTECTION_BLAST);
+		PROTECTION_RANGED.predicateCompatible = m -> (m != PROTECTION_FIRE && m != PROTECTION_MITHRIL && m != PROTECTION_BLAST);
+		PROTECTION_MITHRIL.predicateCompatible = m -> (m != PROTECTION_FIRE && m != PROTECTION_RANGED && m != PROTECTION_BLAST);
+		PROTECTION_BLAST.predicateCompatible = m -> (m != PROTECTION_FIRE && m != PROTECTION_RANGED && m != PROTECTION_MITHRIL );
 		PROTECTION_FALLING.predicateCompatible = m -> (m != UNDERWATER_MOVEMENT);
 		UNDERWATER_MOVEMENT.predicateCompatible = m -> (m != PROTECTION_FALLING);
 		FISHING_SPEED.predicateCompatible = m -> (m != FISHING_LUCK);
 		FISHING_LUCK.predicateCompatible = m -> (m != FISHING_SPEED);
 		TOUGHNESS.predicateCompatible = m -> (m != PROTECTION);
+		PROTECTION.predicateCompatible = m -> (m != TOUGHNESS);
 	}
 
 	/** The localization/translation key for item descriptions. */

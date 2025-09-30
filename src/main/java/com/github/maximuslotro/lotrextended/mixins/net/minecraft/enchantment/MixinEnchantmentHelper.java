@@ -66,9 +66,9 @@ public class MixinEnchantmentHelper {
 	 * @Inject (method = "getItemEnchantmentLevel(Lnet/minecraft/enchantment/Enchantment;Lnet/minecraft/item/ItemStack;)I", at = @At(value = "RETURN", ordinal = 1), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
 	 */
 	@Inject(method = "getItemEnchantmentLevel(Lnet/minecraft/enchantment/Enchantment;Lnet/minecraft/item/ItemStack;)I", 
-			at = @At(value = "RETURN", ordinal = 1), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
+		at = @At(value = "RETURN", ordinal = 1), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
 	private static void getItemEnchantmentLevel$ExtendedMerged(Enchantment pEnchantment, ItemStack pStack, CallbackInfoReturnable<Integer> cir,
-			ResourceLocation resourcelocation, ListNBT listnbt, int i, CompoundNBT compoundnbt, ResourceLocation resourcelocation1) {
+		ResourceLocation resourcelocation, ListNBT listnbt, int i, CompoundNBT compoundnbt, ResourceLocation resourcelocation1) {
 		if(pStack.isEmpty() || !ExtendedModifierUtils.hasModifiers(pStack)) {
 			return;
 		}
@@ -94,7 +94,7 @@ public class MixinEnchantmentHelper {
 	 * @Inject (method = "getItemEnchantmentLevel(Lnet/minecraft/enchantment/Enchantment;Lnet/minecraft/item/ItemStack;)I", at = @At(value = "RETURN", ordinal = 2), cancellable = true)
 	 */
 	@Inject(method = "getItemEnchantmentLevel(Lnet/minecraft/enchantment/Enchantment;Lnet/minecraft/item/ItemStack;)I", 
-			at = @At(value = "RETURN", ordinal = 2), cancellable = true)
+		at = @At(value = "RETURN", ordinal = 2), cancellable = true)
 	private static void getItemEnchantmentLevel$ExtendedOnlyModifiers(Enchantment pEnchantment, ItemStack pStack, CallbackInfoReturnable<Integer> cir) {
 		if(!ExtendedModifierUtils.hasModifiers(pStack)) {
 			return;
@@ -120,7 +120,7 @@ public class MixinEnchantmentHelper {
 	 * @Inject (method = "getDamageBonus(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/CreatureAttribute;)F", at = @At("TAIL"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
 	 */
 	@Inject(method = "getDamageBonus(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/CreatureAttribute;)F", 
-			at = @At("TAIL"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
+		at = @At("TAIL"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
 	private static void getDamageBonus$Extended(ItemStack pStack, CreatureAttribute pCreatureAttribute, CallbackInfoReturnable<Float> cir, MutableFloat mutablefloat) {
 		Map<ExtendedModifierType, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(pStack);
 		if(modifiers.containsKey(ExtendedModifierType.MELEE_DAMAGE)) {
@@ -150,7 +150,7 @@ public class MixinEnchantmentHelper {
 	 * @Inject (method = "getDamageProtection(Ljava/lang/Iterable;Lnet/minecraft/util/DamageSource;)I", at = @At("TAIL"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
 	 */
 	@Inject(method = "getDamageProtection(Ljava/lang/Iterable;Lnet/minecraft/util/DamageSource;)I", 
-			at = @At("TAIL"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
+		at = @At("TAIL"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
 	private static void getDamageProtection$Extended(Iterable<ItemStack> pStacks, DamageSource pSource, CallbackInfoReturnable<Integer> cir, MutableInt mutableint) {
 		int mod = 0;
 		for(ItemStack stack : pStacks) {
@@ -170,9 +170,9 @@ public class MixinEnchantmentHelper {
 			if(modifiers.containsKey(ExtendedModifierType.PROTECTION_MITHRIL) && pSource.getEntity()!=null && containsLongWeapon$Extended(pSource.getEntity().getHandSlots())) {
 				mod += modifiers.get(ExtendedModifierType.PROTECTION_MITHRIL).getModifierEffect();
 			}
-			if(modifiers.containsKey(ExtendedModifierType.PROTECTION)){
-				mod += modifiers.get(ExtendedModifierType.PROTECTION).getModifierEffect();
-			}
+			//if(modifiers.containsKey(ExtendedModifierType.PROTECTION)){
+			//	mod += modifiers.get(ExtendedModifierType.PROTECTION).getModifierEffect();
+			//}
 		}
 		if(mod>0) {
 			cir.setReturnValue(mutableint.getValue()+mod);
@@ -181,14 +181,14 @@ public class MixinEnchantmentHelper {
 
 	@Unique
 	private static boolean containsLongWeapon$Extended(Iterable<ItemStack> iterable) {
-	    for (ItemStack stack : iterable) {
-	        if (stack.getItem().getAttributeModifiers(EquipmentSlotType.MAINHAND, stack).containsKey(ForgeMod.REACH_DISTANCE.get())) {
-	        	Multimap<Attribute, AttributeModifier> multimap = stack.getItem().getAttributeModifiers(EquipmentSlotType.MAINHAND, stack);
-	        	if(AttributeUtils.getItemAttributeValue(stack, EquipmentSlotType.MAINHAND, ForgeMod.REACH_DISTANCE.get())>=1.0D) {
-	        		return true; // Spear, polearms, and lances
-	        	}
-	        }
-	    }
-	    return false;
+		for (ItemStack stack : iterable) {
+			if (stack.getItem().getAttributeModifiers(EquipmentSlotType.MAINHAND, stack).containsKey(ForgeMod.REACH_DISTANCE.get())) {
+				Multimap<Attribute, AttributeModifier> multimap = stack.getItem().getAttributeModifiers(EquipmentSlotType.MAINHAND, stack);
+				if(AttributeUtils.getItemAttributeValue(stack, EquipmentSlotType.MAINHAND, ForgeMod.REACH_DISTANCE.get())>=1.0D) {
+					return true; // Spear, polearms, and lances
+				}
+			}
+		}
+		return false;
 	}
 }
