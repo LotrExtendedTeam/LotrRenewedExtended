@@ -9,9 +9,9 @@ import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.Extende
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedHiredUnitEquipmentScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedHiredUnitScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedTradeScreen;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 
 import lotr.client.gui.inv.ContainerScreenHelper;
-import lotr.common.init.ExtendedContainers;
 import net.minecraft.client.gui.ScreenManager;
 
 /**
@@ -33,9 +33,9 @@ public class MixinContainerScreenHelper {
      */
 	@Inject(method = "registerScreens()V", at = @At("HEAD"), remap=false)
 	private static void addAdditionalScreens(CallbackInfo ci) {
-		ScreenManager.register(ExtendedContainers.COIN_TRADING.get(), ExtendedCoinExchangeScreen::new);
-		ScreenManager.register(ExtendedContainers.TRADING.get(), ExtendedTradeScreen::new);
-		ScreenManager.register(ExtendedContainers.HIRED_UNIT_EQUIPMENT.get(), ExtendedHiredUnitEquipmentScreen::new);
-		ScreenManager.register(ExtendedContainers.HIRED_UNIT_CONTAINER.get(), ExtendedHiredUnitScreen::new);
+		ScreenManager.register(ExtendedContainerTypes.COIN_TRADING.get(), ExtendedCoinExchangeScreen::new);
+		ScreenManager.register(ExtendedContainerTypes.TRADING.get(), ExtendedTradeScreen::new);
+		ScreenManager.register(ExtendedContainerTypes.HIRED_UNIT_EQUIPMENT.get(), ExtendedHiredUnitEquipmentScreen::new);
+		ScreenManager.register(ExtendedContainerTypes.HIRED_UNIT_CONTAINER.get(), ExtendedHiredUnitScreen::new);
 	}
 }

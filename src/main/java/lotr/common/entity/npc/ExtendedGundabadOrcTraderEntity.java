@@ -45,8 +45,6 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
 	@SuppressWarnings("unchecked")
 	public ExtendedGundabadOrcTraderEntity(EntityType<? extends GundabadOrcEntity> type, World w) {
 		super(type, w);
-
-		setPersistenceRequired();
 		this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeOnly());
 	}
 

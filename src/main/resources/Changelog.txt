@@ -1,3 +1,70 @@
+(Beta 1.8.1)
+* Blocks
+  * Added the ability to “clip” berry bushes with shears to disable growing berries and growing into hedges
+  * Allowed bars and glass to connect to vertical slabs
+  * Lowered the light level of Morgul Lanterns and Torches (14->12)
+  * Made all 6 Birdcage types rotatable
+  * Ported placeable Glass Bottles
+* Entities
+  * Added Blue Mountains Butchers
+  * Added Blue Mountains Stonemasons
+  * Added Hedgehogs
+  * Make Hedgehogs hide in hedges when scared
+  * Added a domesticated duck variant
+  * Made domesticated ducks genderless
+  * Wild Ducks now tend to stay away from the player
+  * Fixed male Ducks being able to lay eggs
+  * Ported Wild Boars
+  * Made boars group attack when provoked
+  * Made Wild Boars spawn in the Blue Mountains and the Iron Hills
+  * Added five variants for wild boars (similar to horses)
+  * Fixed Dwarven Miners not spawning in the Iron Hills
+  * Fixed several Bree npcs not having speechbanks
+  * Port Blue Mountains Axe Throwers
+* Hired Units
+  * Fixed units having holding their base idle weapon on reload instead of player given weapons
+  * Units don't cost coins anymore when hired by creative players
+* Items
+  * Added Halt/Ready/Summon functionality to the Horn of Command
+  * Added Leather Boar Armor
+  * Ported Blue Dwarven Boar Armor
+  * Ported Dwarven Boar Armor
+  * Ported Glass Bottles vessels
+* Localization
+  * Fixed BM Merchants leave message missing player name
+* Misc
+  * Added loot tables for Middle Earth fishing finally
+  * Fixed Blue Mountains Shields being made on ranger crafting tables
+  * Fixed Double Bronze advancement not being obtainable on forges other than the Alloy Forge
+  * Fixed ELOTR-13 biome dataGen crash
+  * Fixed Secrets Of Eol advancement not being obtainable
+  * Fixed Tolkien crashing some servers when spawning
+  * Fixed crafting and Forging advancements not being bestowed when shift-clicking items out of the result slot
+  * Updated several foods with proper saturation values
+* Sounds
+  * Added all-new sounds for boars
+  * Added all-new sounds for hedgehogs
+* Structures
+  * Added despawnable visiting traders to Blue Mountain Settlement trader halls
+  * Fixed crystals spawning inside Blue Mountain Settlements
+  * Fixed settlements sometimes spawn so low that the shaft does not spawn
+  * Fixed silverfish spawning in BM settlement housing (332 blocks exterminated)
+  * Re-worked the Blue Mountains Settlements room decorations and add new rooms
+* Textures
+  * Added all-new model and texture for Glass Bottles
+  * Fixed crucible block model orientation on place
+* Trading
+  * Fixed items not shift-clicking into the player sell row slots
+  * Fixed traders player sell row items being sometimes lost on GUI close
+* Textures
+  * Added a new texture for when horns are in their ready units mode
+  * Added all-new Wild Boar skin, armor and armor item textures
+  * Fixed duck wing and neck pivot points (old model enableable via config)
+  * Fixed z-fighting on the top of the rope model
+  * Re-worked vessel rendering to allow for non-flat render types
+* WorldGen
+  * Added a new underground blob generator that also processes slabs and stairs (mines look better when rock deposits also modify slabs and stairs)
+
 (Beta 1.8.0)
 * Blocks
   * Added Cargon Dwarven Door

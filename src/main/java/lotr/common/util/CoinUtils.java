@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.common.enums.CoinType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCoinType;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
 import lotr.common.init.ExtendedItems;
@@ -19,15 +19,15 @@ public class CoinUtils {
 
     private CoinUtils() {}
 
-    public static CoinType valueOfItem(Item item) {
+    public static ExtendedCoinType valueOfItem(Item item) {
         if (item.equals(ExtendedItems.SILVER_COIN_ONE.get())) {
-            return CoinType.ONE;
+            return ExtendedCoinType.ONE;
         } else if (item.equals(ExtendedItems.SILVER_COIN_TEN.get())) {
-            return CoinType.TEN;
+            return ExtendedCoinType.TEN;
         } else if (item.equals(ExtendedItems.SILVER_COIN_HUNDRED.get())) {
-            return CoinType.HUNDRED;
+            return ExtendedCoinType.HUNDRED;
         }
-        return CoinType.ZERO;
+        return ExtendedCoinType.ZERO;
     }
 
     public static int value(ItemStack stack) {
@@ -72,11 +72,11 @@ public class CoinUtils {
     }
 
     // total the amount of each denomination they have
-    private static HashMap<CoinType, Integer> totalOfEachDenomination(PlayerInventory inventory) {
-        HashMap<CoinType, Integer> denominations = new HashMap<>();
-        denominations.put(CoinType.ONE, 0);
-        denominations.put(CoinType.TEN, 0);
-        denominations.put(CoinType.HUNDRED, 0);
+    private static HashMap<ExtendedCoinType, Integer> totalOfEachDenomination(PlayerInventory inventory) {
+        HashMap<ExtendedCoinType, Integer> denominations = new HashMap<>();
+        denominations.put(ExtendedCoinType.ONE, 0);
+        denominations.put(ExtendedCoinType.TEN, 0);
+        denominations.put(ExtendedCoinType.HUNDRED, 0);
 
         for (int i = 0; i < inventory.getContainerSize(); i++) {
             ItemStack stack = inventory.getItem(i);
@@ -88,19 +88,19 @@ public class CoinUtils {
         return denominations;
     }
 
-    private static Item itemFromDenomination(CoinType denomination) {
-        if (denomination == CoinType.ONE) {
+    private static Item itemFromDenomination(ExtendedCoinType denomination) {
+        if (denomination == ExtendedCoinType.ONE) {
             return ExtendedItems.SILVER_COIN_ONE.get();
-        } else if (denomination == CoinType.TEN) {
+        } else if (denomination == ExtendedCoinType.TEN) {
             return ExtendedItems.SILVER_COIN_TEN.get();
-        } else if (denomination == CoinType.HUNDRED) {
+        } else if (denomination == ExtendedCoinType.HUNDRED) {
             return ExtendedItems.SILVER_COIN_HUNDRED.get();
         }
 
         return null;
     }
 
-    private static void givePlayerCoins(PlayerEntity player, CoinType denomination, int amount) {
+    private static void givePlayerCoins(PlayerEntity player, ExtendedCoinType denomination, int amount) {
         List<ItemStack> stacks = new ArrayList<>();
         while (amount > 0) {
             if (amount > 64) {
@@ -120,7 +120,7 @@ public class CoinUtils {
         }
     }
 
-    private static boolean removeCoinsByDenomination(PlayerEntity player, CoinType denomination, int amount) {
+    private static boolean removeCoinsByDenomination(PlayerEntity player, ExtendedCoinType denomination, int amount) {
         while (amount > 0) {
             int stackSize = Math.min(amount, 64); // determine the stack size to remove
             ItemStack itemStack = new ItemStack(itemFromDenomination(denomination), 1); //Stack of one
@@ -148,11 +148,11 @@ public class CoinUtils {
     public static boolean removeCoins(PlayerEntity player, PlayerInventory inventory, int amount) {
         if (CoinUtils.totalValueInPlayerInventory(inventory) < amount) return false;
 
-        HashMap<CoinType, Integer> denominations = totalOfEachDenomination(inventory);
+        HashMap<ExtendedCoinType, Integer> denominations = totalOfEachDenomination(inventory);
 
         // attempt to pay directly from a single denomination first
-        CoinType[] denominationOrder = new CoinType[] {CoinType.ONE, CoinType.TEN, CoinType.HUNDRED};
-        for (CoinType denomination : denominationOrder) {
+        ExtendedCoinType[] denominationOrder = new ExtendedCoinType[] {ExtendedCoinType.ONE, ExtendedCoinType.TEN, ExtendedCoinType.HUNDRED};
+        for (ExtendedCoinType denomination : denominationOrder) {
             int quantity = denominations.get(denomination);
 
             if (denomination.getValue() * quantity >= amount) {
@@ -167,12 +167,12 @@ public class CoinUtils {
                     int changeInTens = change / 10;
                     int changeInOnes = change % 10;
 
-                    givePlayerCoins(player, CoinType.TEN, changeInTens);
+                    givePlayerCoins(player, ExtendedCoinType.TEN, changeInTens);
                     if (changeInOnes > 0) {
-                    	givePlayerCoins(player, CoinType.ONE, changeInOnes);
+                    	givePlayerCoins(player, ExtendedCoinType.ONE, changeInOnes);
                     }
                 } else {
-                    givePlayerCoins(player, CoinType.ONE, change);
+                    givePlayerCoins(player, ExtendedCoinType.ONE, change);
                 }
 
                 removeCoinsByDenomination(player, denomination, coinsToConsume); // consume coins
@@ -181,7 +181,7 @@ public class CoinUtils {
         }
 
         int amountLeft = amount;
-        for (CoinType denomination : denominationOrder) {
+        for (ExtendedCoinType denomination : denominationOrder) {
             if (amountLeft == 0) break;
             int quantity = denominations.get(denomination);
 
@@ -201,12 +201,12 @@ public class CoinUtils {
                     int changeInTens = change / 10;
                     int changeInOnes = change % 10;
 
-                    givePlayerCoins(player, CoinType.TEN, changeInTens);
+                    givePlayerCoins(player, ExtendedCoinType.TEN, changeInTens);
                     if (changeInOnes > 0) {
-                    	givePlayerCoins(player, CoinType.ONE, changeInOnes);
+                    	givePlayerCoins(player, ExtendedCoinType.ONE, changeInOnes);
                     }
                 } else {
-                    givePlayerCoins(player, CoinType.ONE, change);
+                    givePlayerCoins(player, ExtendedCoinType.ONE, change);
                 }
 
                 removeCoinsByDenomination(player, denomination, coinsToConsume); // consume coins

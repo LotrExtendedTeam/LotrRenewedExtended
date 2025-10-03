@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnGroupTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
@@ -84,7 +84,7 @@ public class MixinLOTRTileEntities {
 		if("vessel_drink".equals(key)) {
 			builderSupEXTENDED = () -> (Builder<T>) Builder.of(VesselDrinkTileEntity::new, LOTRBlocks.WOODEN_MUG.get(), LOTRBlocks.CERAMIC_MUG.get(),
 					LOTRBlocks.GOLDEN_GOBLET.get(), LOTRBlocks.SILVER_GOBLET.get(), LOTRBlocks.COPPER_GOBLET.get(), LOTRBlocks.WOODEN_CUP.get(),
-					LOTRBlocks.ALE_HORN.get(), LOTRBlocks.GOLDEN_ALE_HORN.get(), ExtendedBlocks.SKULL_GOBLET.get());
+					LOTRBlocks.ALE_HORN.get(), LOTRBlocks.GOLDEN_ALE_HORN.get(), ExtendedBlocks.SKULL_GOBLET.get(), ExtendedBlocks.GLASS_BOTTLE.get());
 		}else {
 			builderSupEXTENDED = builderSup;
 		}
@@ -131,8 +131,8 @@ public class MixinLOTRTileEntities {
     	ExtendedTileEntities.REED_BASKET = register("reed_basket_tileentity", () -> Builder.of(ExtendedReedBasketTileEntity::new, ExtendedBlocks.REED_BASKET.get()));
     	ExtendedTileEntities.ORC_BARREL = register("orc_barrel_tileentity", () -> Builder.of(ExtendedOrcBarrelTileEntity::new, ExtendedBlocks.ORC_BARREL.get()));
     	ExtendedTileEntities.MILLSTONE = register("stone_grinder_tileentity", () -> Builder.of(ExtendedStoneGrinderTileEntity::new, ExtendedBlocks.STONE_GRINDER.get()));
-    	ExtendedTileEntities.BANNER_STANDING = register("banner_s_tileentity", () -> Builder.of(ExtendedMEBannerTileEntity::new, BannerTypes.getContainedStandingBlocks()));
-    	ExtendedTileEntities.BANNER_HANGING = register("banner_h_tileentity", () -> Builder.of(ExtendedMEHangingBannerTileEntity::new, BannerTypes.getContainedHangingBlocks()));
+    	ExtendedTileEntities.BANNER_STANDING = register("banner_s_tileentity", () -> Builder.of(ExtendedMEBannerTileEntity::new, ExtendedBannerTypes.getContainedStandingBlocks()));
+    	ExtendedTileEntities.BANNER_HANGING = register("banner_h_tileentity", () -> Builder.of(ExtendedMEHangingBannerTileEntity::new, ExtendedBannerTypes.getContainedHangingBlocks()));
     	ExtendedTileEntities.GRASS_VOID = register("grass_void_tileentity", () -> Builder.of(ExtendedGrassVoidTileEntity::new, ExtendedBlocks.GRASS_VOID.get()));
     	ExtendedTileEntities.STONE_SIGN = register("stone_engraving", () -> Builder.of(ExtendedStoneTextSignTileEntity::new, ExtendedBlocks.STONE_SIGN.get()));
     	ExtendedTileEntities.DWARVEN_BED = register("dwarven_bed_tileentity", () -> Builder.of(ExtendedDwarvenBedTileEntity::new, ExtendedBlocks.DWARVEN_BED.get()));

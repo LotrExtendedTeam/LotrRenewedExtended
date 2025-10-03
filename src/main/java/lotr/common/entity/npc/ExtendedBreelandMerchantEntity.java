@@ -95,7 +95,6 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
 
     public ExtendedBreelandMerchantEntity(EntityType<? extends ExtendedBreelandMerchantEntity> type, World w) {
         super(type, w);
-        setPersistenceRequired();
     }
 
     @Override

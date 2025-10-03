@@ -1,15 +1,10 @@
 package com.github.maximuslotro.lotrrextended.common.datagen;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.github.maximuslotro.lotrrextended.common.loot.modifiers.global.EnchantmentedInMEDisabler;
-import com.github.maximuslotro.lotrrextended.common.loot.modifiers.global.ExtendedGlobalLootModifiers;
+import com.github.maximuslotro.lotrrextended.common.loot.modifiers.EnchantmentedInMEDisabler;
+import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedGlobalLootModifiers;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.Items;
 import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.data.GlobalLootModifierProvider;
 
 public class ExtendedGlobalLootModifierGenerator extends GlobalLootModifierProvider{
@@ -21,9 +16,7 @@ public class ExtendedGlobalLootModifierGenerator extends GlobalLootModifierProvi
 	@Override
 	protected void start() {
 		//add("warg_fur_colorizer", ExtendedGlobalLootModifiers.WARG_FUR.get(), new WargFurColorizer(new ILootCondition[0]));
-		List<ResourceLocation> fishingRods = new ArrayList<>();
-		fishingRods.add(Items.FISHING_ROD.getRegistryName());
-		add("me_enchantment_disabler", ExtendedGlobalLootModifiers.ENCHANTMENT_DISABLER.get(), new EnchantmentedInMEDisabler(new ILootCondition[0], fishingRods));
+		add("me_enchantment_disabler", ExtendedGlobalLootModifiers.ENCHANTMENT_DISABLER.get(), new EnchantmentedInMEDisabler(new ILootCondition[0]));
 	}
 
 	@Override

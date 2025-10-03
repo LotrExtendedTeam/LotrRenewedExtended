@@ -6,11 +6,11 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedTradeContainer;
 
 import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ExtendedTraderEntity;
-import lotr.common.init.ExtendedContainers;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
@@ -58,7 +58,7 @@ public class ExtendedCOpenTradeMenuPacket {
     		return;
     	}
 
-    	ContainerType<ExtendedTradeContainer> containerType = ExtendedContainers.TRADING.get();
+    	ContainerType<ExtendedTradeContainer> containerType = ExtendedContainerTypes.TRADING.get();
     	PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
 
     	int[] boughtPrices = new int[9];

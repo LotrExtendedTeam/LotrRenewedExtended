@@ -11,6 +11,8 @@ public enum SpawnerType {
 	SINGLE_FAMILY("single_family_spawner", 1, false, true),
     /** A persisted spawner that checks boundaries and does not restrict to a single spawn type. */
 	PERSISTED("persisted_use_spawner", 2, true, false),
+	/** A persisted spawner that does not check boundaries, allowing only a single spawn type. */
+	PERSISTED_SINGLE("persisted_use_spawner", 3, false, false),
     /** An unknown spawner type used as a fallback or default. */
 	UNKNOWN("unknown", 66, false, true);
     /** Internal name of the spawner type. */
@@ -19,7 +21,7 @@ public enum SpawnerType {
 	private final int id;
     /** Whether this spawner type requires boundary checks. */
 	private final boolean shoudlCheckBoundries;
-    /** Whether this spawner type allows only a single spawn type. */
+    /** Whether this spawner type allows only one spawn before deletion. */
 	private final boolean singleSpawnType;
 	/**
      * Constructs a SpawnerType with specified parameters.
@@ -70,9 +72,9 @@ public enum SpawnerType {
 		return shoudlCheckBoundries;
 	}
 	/**
-     * Indicates whether this spawner type restricts to a single spawn type.
+     * Indicates whether this spawner type restricts to a single spawn instance before deletion
      *
-     * @return True if only a single spawn type is allowed, false otherwise.
+     * @return True if only a single spawn is allowed, false otherwise.
      */
 	public boolean isSingleSpawnType() {
 		return singleSpawnType;

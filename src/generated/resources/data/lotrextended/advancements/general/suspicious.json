@@ -17,7 +17,7 @@
     "hidden": false
   },
   "criteria": {
-    "item_lotr:suspicious_meat_made_on_crafting_table": {
+    "item_suspicious_meat_made_on_crafting_table": {
       "trigger": "lotrextended:crafting_with_block",
       "conditions": {
         "item": {
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "item_lotr:suspicious_meat_made_on_crafting_table"
+      "item_suspicious_meat_made_on_crafting_table"
     ]
   ]
 }

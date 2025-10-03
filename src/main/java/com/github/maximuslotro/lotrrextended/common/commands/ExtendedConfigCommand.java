@@ -36,9 +36,9 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableChairSlabSitting", ExtendedServerConfig.enableChairSlabSitting));
 		command.then(buildBoolean("enableChairSwapping", ExtendedServerConfig.enableChairSwapping));
 		command.then(buildBoolean("enableChairProtectionOverride", ExtendedServerConfig.enableChairProtectionOverride));
-		// Vanilla Patches
-		command.then(buildBoolean("enableFishingEnchantedItems", ExtendedServerConfig.enableFishingEnchantedItems));
-		command.then(buildBoolean("enableEnchantedLootDrops", ExtendedServerConfig.enableEnchantedLootDrops));
+		// Gameplay
+		command.then(buildBoolean("enableVanillaEnchanting", ExtendedServerConfig.enableVanillaEnchanting));
+		command.then(buildBoolean("enableExtendedModifiers", ExtendedServerConfig.enableExtendedModifiers));
 		// Special
 		command.then(buildBoolean("enableExtendedLogging", ExtendedServerConfig.enableExtendedLogging));
 		// Register

@@ -13,8 +13,8 @@ import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.Ex
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedMillingRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipeSerializers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
-import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.LOTRPillarBlock;
@@ -44,6 +44,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedCraftingHelper extends RecipeProvider {
@@ -390,6 +391,46 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.unlockedBy("has_"+type, has(reasource))
 			.unlockedBy("has_"+shield.get().getRegistryName().getPath(), has(shield.get()))
 			.save(consumer, lotrLoc(shield.get().getRegistryName().getPath()));
+		}
+	}
+
+	protected void makeBoarArmorRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> armor, ITag<Item> reasource, String type, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		GENERATEDRECIPES.add(armor.get().getRegistryName().getPath());
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(armor.get())
+			.pattern("  M")
+			.pattern("MLM")
+			.pattern("M M")
+			.define('M', Ingredient.of(reasource))
+			.define('L', Ingredient.of(Tags.Items.LEATHER))
+			.unlockedBy("has_"+type, has(reasource))
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_1"));
+			ExtendedShapedRecipeBuilder.shaped(armor.get())
+			.pattern("M  ")
+			.pattern("MLM")
+			.pattern("M M")
+			.define('M', Ingredient.of(reasource))
+			.define('L', Ingredient.of(Tags.Items.LEATHER))
+			.unlockedBy("has_"+type, has(reasource))
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_2"));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(armor.get(), table)
+			.pattern("  M")
+			.pattern("MLM")
+			.pattern("M M")
+			.define('M', Ingredient.of(reasource))
+			.define('L', Ingredient.of(Tags.Items.LEATHER))
+			.unlockedBy("has_"+type, has(reasource))
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_1"));
+			ExtendedFactionShapedRecipeBuilder.shaped(armor.get(), table)
+			.pattern("  M")
+			.pattern("MLM")
+			.pattern("M M")
+			.define('M', Ingredient.of(reasource))
+			.define('L', Ingredient.of(Tags.Items.LEATHER))
+			.unlockedBy("has_"+type, has(reasource))
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_2"));
 		}
 	}
 
@@ -1901,7 +1942,7 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 	protected void makeMillingRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output, float breakChance, int countMin, int countMax) {
 		String name1 = output.get().getRegistryName().getNamespace()+"_"+output.get().getRegistryName().getPath();
 		String name2 = input.get().getRegistryName().getNamespace()+"_"+input.get().getRegistryName().getPath();
-		ExtendedMillingRecipeBuilder.grinding(output.get(), countMin, countMax, Ingredient.of(input.get()), breakChance, ExtendedRecipes.STONE_GRINDING_SERIALIZER.get()).save(consumer, extendedLoc(name1+"_grinded_from_"+name2));
+		ExtendedMillingRecipeBuilder.grinding(output.get(), countMin, countMax, Ingredient.of(input.get()), breakChance, ExtendedRecipeSerializers.STONE_GRINDING_SERIALIZER.get()).save(consumer, extendedLoc(name1+"_grinded_from_"+name2));
 	}
 
 	public void checkForMissingRecipes() {

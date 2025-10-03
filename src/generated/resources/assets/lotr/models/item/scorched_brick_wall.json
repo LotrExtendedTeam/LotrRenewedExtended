@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "lotrextended:block/scorched_brick"
+    "wall": "lotrextended:block/scorched_brick_1"
   }
 }

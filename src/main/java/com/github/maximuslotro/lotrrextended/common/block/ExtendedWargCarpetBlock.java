@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
-import com.github.maximuslotro.lotrrextended.common.enums.WargFurType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedWargFurType;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -16,14 +16,14 @@ import net.minecraft.world.IBlockReader;
 
 public class ExtendedWargCarpetBlock extends CarpetBlock {
 	protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
-	private final WargFurType wargFurType;
+	private final ExtendedWargFurType wargFurType;
 
-	public ExtendedWargCarpetBlock(WargFurType wargFurType) {
+	public ExtendedWargCarpetBlock(ExtendedWargFurType wargFurType) {
 		super(wargFurType.getDyeColor(), AbstractBlock.Properties.of(Material.CLOTH_DECORATION, wargFurType.getDyeColor()).strength(0.1F).sound(SoundType.WOOL));
 		this.wargFurType = wargFurType;
 	}
 
-	public WargFurType getWargFurType() {
+	public ExtendedWargFurType getWargFurType() {
 		return this.wargFurType;
 	}
 

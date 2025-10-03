@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:blue_mountains",
+  "pattern": [
+    "  M",
+    "MLM",
+    "M M"
+  ],
+  "key": {
+    "M": {
+      "tag": "forge:ingots/dwarven_steel"
+    },
+    "L": {
+      "tag": "forge:leather"
+    }
+  },
+  "result": {
+    "item": "lotr:blue_dwarven_boar_armor"
+  }
+}

@@ -31,7 +31,6 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
 
     public ExtendedBreelandSheriffEntity(EntityType<? extends ExtendedBreelandSheriffEntity> type, World w) {
         super(type, w);
-        setPersistenceRequired();
     }
 
     @Override

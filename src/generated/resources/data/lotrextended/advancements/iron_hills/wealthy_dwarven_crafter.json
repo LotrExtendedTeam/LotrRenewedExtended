@@ -18,7 +18,7 @@
     "hidden": false
   },
   "criteria": {
-    "item_lotr:mithril_trimmed_dwarven_brick_made_on_dwarven_crafting_table": {
+    "item_mithril_trimmed_dwarven_brick_made_on_dwarven_crafting_table": {
       "trigger": "lotrextended:crafting_with_block",
       "conditions": {
         "item": {
@@ -32,7 +32,7 @@
   },
   "requirements": [
     [
-      "item_lotr:mithril_trimmed_dwarven_brick_made_on_dwarven_crafting_table"
+      "item_mithril_trimmed_dwarven_brick_made_on_dwarven_crafting_table"
     ]
   ]
 }

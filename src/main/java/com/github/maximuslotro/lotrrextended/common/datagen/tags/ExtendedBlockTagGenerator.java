@@ -215,6 +215,20 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.add(LOTRBlocks.BLUE_ROCK.get()).add(LOTRBlocks.GONDOR_ROCK.get()).add(LOTRBlocks.MORDOR_ROCK.get())
 		.add(LOTRBlocks.RED_ROCK.get()).add(LOTRBlocks.ROHAN_ROCK.get());
 
+		tag(ExtendedTags.Blocks.BASE_STONE_MIDDLE_EARTH).addTag(BlockTags.BASE_STONE_OVERWORLD).add(LOTRBlocks.BLUE_ROCK.get()).add(LOTRBlocks.GONDOR_ROCK.get())
+		.add(LOTRBlocks.MORDOR_ROCK.get()).add(LOTRBlocks.RED_ROCK.get()).add(LOTRBlocks.ROHAN_ROCK.get());
+
+		tag(ExtendedTags.Blocks.BASE_STONE_SLAB_MIDDLE_EARTH)
+		.add(Blocks.STONE_SLAB).add(Blocks.GRANITE_SLAB).add(Blocks.DIORITE_SLAB).add(Blocks.ANDESITE_SLAB)
+		.add(LOTRBlocks.BLUE_ROCK_SLAB.get()).add(LOTRBlocks.GONDOR_ROCK_SLAB.get()).add(LOTRBlocks.MORDOR_ROCK_SLAB.get())
+		.add(LOTRBlocks.RED_ROCK_SLAB.get()).add(LOTRBlocks.ROHAN_ROCK_SLAB.get())
+		.add(LOTRBlocks.STONE_VERTICAL_SLAB.get()).add(LOTRBlocks.GRANITE_VERTICAL_SLAB.get()).add(LOTRBlocks.DIORITE_VERTICAL_SLAB.get()).add(LOTRBlocks.ANDESITE_VERTICAL_SLAB.get());
+
+		tag(ExtendedTags.Blocks.BASE_STONE_STAIRS_MIDDLE_EARTH)
+		.add(Blocks.STONE_STAIRS).add(Blocks.GRANITE_STAIRS).add(Blocks.DIORITE_STAIRS).add(Blocks.ANDESITE_STAIRS)
+		.add(LOTRBlocks.BLUE_ROCK_STAIRS.get()).add(LOTRBlocks.GONDOR_ROCK_STAIRS.get()).add(LOTRBlocks.MORDOR_ROCK_STAIRS.get())
+		.add(LOTRBlocks.RED_ROCK_STAIRS.get()).add(LOTRBlocks.ROHAN_ROCK_STAIRS.get());
+
 		tag(ExtendedTags.Blocks.MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_OVERWORLD).add(Blocks.VINE).add(ExtendedBlocks.DEAD_MOSS_VINES.get())
 		.add(ExtendedBlocks.WILLOW_VINES.get()).add(ExtendedBlocks.BARREN_DIRT.get()).addTag(Tags.Blocks.DIRT).add(ExtendedBlocks.MUD.get())
 		.add(ExtendedBlocks.MUD_GRASS.get());
@@ -341,6 +355,8 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		tag(ExtendedTags.Blocks.WOOL_BLOCKS).add(Blocks.BLACK_WOOL).add(Blocks.BLUE_WOOL).add(Blocks.BROWN_WOOL).add(Blocks.CYAN_WOOL).add(Blocks.GRAY_WOOL)
 		.add(Blocks.GREEN_WOOL).add(Blocks.LIGHT_BLUE_WOOL).add(Blocks.LIGHT_GRAY_WOOL).add(Blocks.LIME_WOOL).add(Blocks.MAGENTA_WOOL).add(Blocks.ORANGE_WOOL)
 		.add(Blocks.PINK_WOOL).add(Blocks.PURPLE_WOOL).add(Blocks.RED_WOOL).add(Blocks.WHITE_WOOL).add(Blocks.YELLOW_WOOL);
+
+		tag(ExtendedTags.Blocks.FUR_BLOCKS).add(LOTRBlocks.FUR_BUNDLE.get());
 	}
 
 	@Override

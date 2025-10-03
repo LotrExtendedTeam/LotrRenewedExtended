@@ -46,7 +46,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	private int totalTraderSoldAmount = 0; // Total value of items trader sold to player
 	private int currentTraderBoughtAmount = 0; // Current value of items trader bought from player
 	private int totalTraderBoughtAmount = 0; // Total value of items trader bought from player
-	private int lockTicksAfterRefresh;
+	private int lockTicksAfterRefresh = 0;
 	private int currentTraderLockTicksAmount = 0;
 	private int wanderingTraderAliveTime = 0;
 	private boolean isWanderingTrader = false;
@@ -289,22 +289,27 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 
 	@Override
 	public void writeToNbt(CompoundNBT nbt) {
-		CompoundNBT holder = new CompoundNBT();
-		holder.putBoolean("HasLoaded", loadedData);
-		holder.putInt("TradingAlignmentRequired", tradingAlignmentRequired);
-		holder.putBoolean("ShouldLockTrades", shouldRefreshTrades);
-		holder.putInt("LockTradeAtValue", refreshTradesAtValue);
-		holder.putInt("LockValueDecayTicks", lockTicksAfterRefresh);
-		holder.putInt("CurrentTraderSoldAmount", currentTraderSoldAmount);
-		holder.putInt("CurrentTraderBoughtAmount", currentTraderBoughtAmount);
-		holder.putInt("TotalTraderSoldAmount", totalTraderSoldAmount);
-		holder.putInt("TotalTraderBoughtAmount", totalTraderBoughtAmount);
-		holder.putInt("WanderingTraderTimeLeft", wanderingTraderAliveTime);
-		holder.putBoolean("IsWanderingTrader", isWanderingTrader);
-		holder.putInt("CurrentTraderLockTicksAmount", currentTraderLockTicksAmount);
-		TradeUtils.saveAllTrades(ExtendedTradeType.BUY_FROM_PLAYER, getBuys(), holder);
-		TradeUtils.saveAllTrades(ExtendedTradeType.SELL_TO_PLAYER, getSells(), holder);
-		nbt.put("TraderInfo", holder);
+		try {
+			CompoundNBT holder = new CompoundNBT();
+			holder.putBoolean("HasLoaded", loadedData);
+			holder.putInt("TradingAlignmentRequired", tradingAlignmentRequired);
+			holder.putBoolean("ShouldLockTrades", shouldRefreshTrades);
+			holder.putInt("LockTradeAtValue", refreshTradesAtValue);
+			holder.putInt("LockValueDecayTicks", lockTicksAfterRefresh);
+			holder.putInt("CurrentTraderSoldAmount", currentTraderSoldAmount);
+			holder.putInt("CurrentTraderBoughtAmount", currentTraderBoughtAmount);
+			holder.putInt("TotalTraderSoldAmount", totalTraderSoldAmount);
+			holder.putInt("TotalTraderBoughtAmount", totalTraderBoughtAmount);
+			holder.putInt("WanderingTraderTimeLeft", wanderingTraderAliveTime);
+			holder.putBoolean("IsWanderingTrader", isWanderingTrader);
+			holder.putInt("CurrentTraderLockTicksAmount", currentTraderLockTicksAmount);
+			TradeUtils.saveAllTrades(ExtendedTradeType.BUY_FROM_PLAYER, getBuys(), holder);
+			TradeUtils.saveAllTrades(ExtendedTradeType.SELL_TO_PLAYER, getSells(), holder);
+			nbt.put("TraderInfo", holder);
+		} catch (NullPointerException e) {
+			// The only place a NPE can come from is saving the trader pools when they don't exist.
+			// As they are the most important part of the trader information, as they can't save just reset the trader data.
+		}
 	}
 
 	/**
@@ -372,7 +377,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	 * Even then, ExtendedWanderingTraderEntity can be false when set from an egg.
 	 * @return True if should handle NPC as wandering.
 	 * */
-	public boolean isWanderingTrader() {
+	public boolean isTraderCurrentlyWandering() {
 		return isWanderingTrader;
 	}
 
@@ -393,7 +398,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	}
 
 	private void tickWanderingTrader(NPCEntity npc) {
-		if (isWanderingTrader()) {
+		if (isTraderCurrentlyWandering()) {
 			if (wanderingTraderAliveTime < 1) {
 				// notify players the traveling trader has departed
 				for (PlayerEntity player : npc.level.players()) {

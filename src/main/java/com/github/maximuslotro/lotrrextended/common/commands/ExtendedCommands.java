@@ -11,10 +11,11 @@ public class ExtendedCommands {
 		FellowshipMessageCommand.register(dispatcher);
 		ExtendedFellowshipCommand.register(dispatcher);
 		ExtendedStructureHelperComamnd.register(dispatcher);
-		ExtendedLotrEnchantCommand.register(dispatcher);
+		ExtendedModifierCommand.register(dispatcher);
 		//ExtendedStructureScanningCommand.register(dispatcher);
 		//ExtendedStructureSummonv2.register(dispatcher);
 		ExtendedConfigCommand.register(dispatcher);
 		ExtendedTriggerCommand.register(dispatcher);
+		ExtendedSummonCommand.register(dispatcher);
 	}
 }

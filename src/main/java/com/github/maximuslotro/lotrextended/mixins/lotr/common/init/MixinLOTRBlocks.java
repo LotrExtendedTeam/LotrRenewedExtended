@@ -31,11 +31,11 @@ import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawn
 import com.github.maximuslotro.lotrrextended.common.block.trees.BananaTree;
 import com.github.maximuslotro.lotrrextended.common.block.trees.ChestnutTree;
 import com.github.maximuslotro.lotrrextended.common.block.trees.PlumTree;
-import com.github.maximuslotro.lotrrextended.common.enums.BannerTypes;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnGroupTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
-import com.github.maximuslotro.lotrrextended.common.enums.WargFurType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedWargFurType;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedMaterials;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSoundTypes;
@@ -57,6 +57,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.trees.OakTree;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DatagenModLoader;
@@ -546,27 +547,27 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.WILLOW_VINES = registerB("willow_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 
 		//Packed Fur
-		ExtendedBlocks.WHITE_PACKED_FUR = registerB("white_packed_fur", () -> new ExtendedPackedFurBlock(WargFurType.WHITE));
+		ExtendedBlocks.WHITE_PACKED_FUR = registerB("white_packed_fur", () -> new ExtendedPackedFurBlock(ExtendedWargFurType.WHITE));
 		ExtendedBlocks.WHITE_PACKED_FUR_SLAB = registerB("white_packed_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.WHITE_PACKED_FUR));
 		ExtendedBlocks.WHITE_PACKED_FUR_STAIRS = registerB("white_packed_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.WHITE_PACKED_FUR));
 		ExtendedBlocks.WHITE_PACKED_FUR_WALL = registerB("white_packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.WHITE_PACKED_FUR));
 
-		ExtendedBlocks.SILVER_PACKED_FUR = registerB("silver_packed_fur", () -> new ExtendedPackedFurBlock(WargFurType.SILVER));
+		ExtendedBlocks.SILVER_PACKED_FUR = registerB("silver_packed_fur", () -> new ExtendedPackedFurBlock(ExtendedWargFurType.SILVER));
 		ExtendedBlocks.SILVER_PACKED_FUR_SLAB = registerB("silver_packed_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.SILVER_PACKED_FUR));
 		ExtendedBlocks.SILVER_PACKED_FUR_STAIRS = registerB("silver_packed_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.SILVER_PACKED_FUR));
 		ExtendedBlocks.SILVER_PACKED_FUR_WALL = registerB("silver_packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.SILVER_PACKED_FUR));
 
-		ExtendedBlocks.GRAY_PACKED_FUR = registerB("gray_packed_fur", () -> new ExtendedPackedFurBlock(WargFurType.GRAY));
+		ExtendedBlocks.GRAY_PACKED_FUR = registerB("gray_packed_fur", () -> new ExtendedPackedFurBlock(ExtendedWargFurType.GRAY));
 		ExtendedBlocks.GRAY_PACKED_FUR_SLAB = registerB("gray_packed_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.GRAY_PACKED_FUR));
 		ExtendedBlocks.GRAY_PACKED_FUR_STAIRS = registerB("gray_packed_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.GRAY_PACKED_FUR));
 		ExtendedBlocks.GRAY_PACKED_FUR_WALL = registerB("gray_packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.GRAY_PACKED_FUR));
 
-		ExtendedBlocks.BROWN_PACKED_FUR = registerB("packed_fur", () -> new ExtendedPackedFurBlock(WargFurType.BROWN));
+		ExtendedBlocks.BROWN_PACKED_FUR = registerB("packed_fur", () -> new ExtendedPackedFurBlock(ExtendedWargFurType.BROWN));
 		ExtendedBlocks.BROWN_PACKED_FUR_SLAB = registerB("packed_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.BROWN_PACKED_FUR));
 		ExtendedBlocks.BROWN_PACKED_FUR_STAIRS = registerB("packed_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.BROWN_PACKED_FUR));
 		ExtendedBlocks.BROWN_PACKED_FUR_WALL = registerB("packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.BROWN_PACKED_FUR));
 
-		ExtendedBlocks.BLACK_PACKED_FUR = registerB("black_packed_fur", () -> new ExtendedPackedFurBlock(WargFurType.BLACK));
+		ExtendedBlocks.BLACK_PACKED_FUR = registerB("black_packed_fur", () -> new ExtendedPackedFurBlock(ExtendedWargFurType.BLACK));
 		ExtendedBlocks.BLACK_PACKED_FUR_SLAB = registerB("black_packed_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.BLACK_PACKED_FUR));
 		ExtendedBlocks.BLACK_PACKED_FUR_STAIRS = registerB("black_packed_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.BLACK_PACKED_FUR));
 		ExtendedBlocks.BLACK_PACKED_FUR_WALL = registerB("black_packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.BLACK_PACKED_FUR));
@@ -578,11 +579,11 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.BLACK_FUR_BUNDLE = registerB("black_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.COLOR_BLACK));
 
 		//Fur carpets
-		ExtendedBlocks.BLACK_FUR_CARPET = registerB("black_fur_carpet", () -> new ExtendedWargCarpetBlock(WargFurType.BLACK));
-		ExtendedBlocks.BROWN_FUR_CARPET = registerB("brown_fur_carpet", () -> new ExtendedWargCarpetBlock(WargFurType.BROWN));
-		ExtendedBlocks.GRAY_FUR_CARPET = registerB("gray_fur_carpet", () -> new ExtendedWargCarpetBlock(WargFurType.GRAY));
-		ExtendedBlocks.SILVER_FUR_CARPET = registerB("silver_fur_carpet", () -> new ExtendedWargCarpetBlock(WargFurType.SILVER));
-		ExtendedBlocks.WHITE_FUR_CARPET = registerB("white_fur_carpet", () -> new ExtendedWargCarpetBlock(WargFurType.SILVER));
+		ExtendedBlocks.BLACK_FUR_CARPET = registerB("black_fur_carpet", () -> new ExtendedWargCarpetBlock(ExtendedWargFurType.BLACK));
+		ExtendedBlocks.BROWN_FUR_CARPET = registerB("brown_fur_carpet", () -> new ExtendedWargCarpetBlock(ExtendedWargFurType.BROWN));
+		ExtendedBlocks.GRAY_FUR_CARPET = registerB("gray_fur_carpet", () -> new ExtendedWargCarpetBlock(ExtendedWargFurType.GRAY));
+		ExtendedBlocks.SILVER_FUR_CARPET = registerB("silver_fur_carpet", () -> new ExtendedWargCarpetBlock(ExtendedWargFurType.SILVER));
+		ExtendedBlocks.WHITE_FUR_CARPET = registerB("white_fur_carpet", () -> new ExtendedWargCarpetBlock(ExtendedWargFurType.SILVER));
 
 		//GEM STORAGE
 		ExtendedBlocks.TOPAZ_BLOCK = registerB("topaz_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_ORANGE).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
@@ -612,10 +613,10 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.REMAINS_DWARF = registerB("remains_ore_dwarf", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
 
 		///////////////////////////////BRICKS
-		ExtendedBlocks.BARREN_DIRT = registerB("barren_dirt", () -> new ExtendedBarrenDirt(Properties.copy(Blocks.DIRT)));
+		ExtendedBlocks.BARREN_DIRT = registerB("barren_dirt", () -> new ExtendedBarrenDirt(Properties.copy(Blocks.DIRT).harvestTool(ToolType.SHOVEL)));
 		ExtendedBlocks.BARREN_DIRT_SLAB = registerB("barren_dirt_slab", () -> new ExtendedStemableAxialSlabBlock(ExtendedBlocks.BARREN_DIRT));
 		ExtendedBlocks.COARSE_DIRT_SLAB = registerB("coarse_dirt_slab", () -> new ExtendedPlantableAxialSlabBlock(Blocks.COARSE_DIRT));
-		ExtendedBlocks.DIRT_SLAB = registerB("dirt_slab", () -> new ExtendedDirtSlabBlock(Blocks.DIRT));		
+		ExtendedBlocks.DIRT_SLAB = registerB("dirt_slab", () -> new ExtendedDirtSlabBlock(Blocks.DIRT));
 		ExtendedBlocks.GRASS_BLOCK_SLAB = registerB("grass_block_slab", () -> new ExtendedPlantableSpreadableGrowableAxialSlabBlock(Blocks.GRASS_BLOCK, ExtendedBlocks.DIRT_SLAB, () -> Blocks.DIRT, () -> Blocks.GRASS_BLOCK));
 		ExtendedBlocks.GRASS_PATH_SLAB = registerB("grass_path_slab", () -> new ExtendedSwappablePathSlabBlock(Blocks.GRASS_PATH));
 		ExtendedBlocks.PODZOL_SLAB = registerB("podzol_slab", () -> new ExtendedPlantableAxialSlabBlock(Blocks.PODZOL));
@@ -889,7 +890,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STONE_GRINDER = registerB("stone_grinder", () -> new ExtendedStoneGrinderBlock(Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(4.0f)));
 		ExtendedBlocks.CRUCIBLE = registerB("crucible", () -> new ExtendedCrucibleBlock(Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(4.0F, 6.0F)));
 
-		ExtendedBlocks.MORGUL_LANTERN = registerB("morgul_lantern", () -> new ExtendedLanternBlock(14));
+		ExtendedBlocks.MORGUL_LANTERN = registerB("morgul_lantern", () -> new ExtendedLanternBlock(12));
 		ExtendedBlocks.MORGUL_CHANDELIER = registerB("morgul_chandelier", () -> new ExtendedChandelierBlock(ExtendedParticles.MORGUL_FLAME));
 		ExtendedBlocks.ORC_CHANDELIER = registerB("orc_chandelier", ChandelierBlock::new);
 		ExtendedBlocks.URUK_CHANDELIER = registerB("uruk_chandelier", ChandelierBlock::new);
@@ -900,7 +901,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.ORC_STEEL_TRAPDOOR = registerB("orc_steel_trapdoor", () -> new ExtendedTrapDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
 		ExtendedBlocks.ORC_CHAIN = registerB("orc_chain", () -> new ExtendedChainBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion()));
 
-		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new ExtendedLOTRTorchBlock(14).setParticles(ExtendedParticles.MORGUL_FLAME, () -> ParticleTypes.SMOKE));
+		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new ExtendedLOTRTorchBlock(12).setParticles(ExtendedParticles.MORGUL_FLAME, () -> ParticleTypes.SMOKE));
 		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new ExtendedLOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
 		ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK = registerB("green_fire_hearth_block", ExtendedGreenHearthBlock::new);
 		ExtendedBlocks.GREEN_FIRE_BLOCK = registerB("green_fire", () -> new ExtendedGreenFireBlock(Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((blockState) -> 10).sound(SoundType.WOOL)));
@@ -934,6 +935,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.ROPE = registerB("rope", () -> new ExtendedRopeBlock(Properties.of(Material.DECORATION).sound(ExtendedSoundTypes.ROPE).strength(0.2F).noOcclusion()));
 
 		ExtendedBlocks.SKULL_GOBLET = registerB("skull_goblet", () -> new VesselDrinkBlock(SoundType.BONE_BLOCK, 8.0F, 10.0F));
+		ExtendedBlocks.GLASS_BOTTLE = registerB("glass_bottle", () -> new VesselDrinkBlock(Properties.of(Material.DECORATION).strength(0.0F).sound(SoundType.GLASS).noOcclusion(), createVesselShape(5, 7)));
 		ExtendedBlocks.LARGE_POT = registerB("large_pot", () -> new ExtendedLargePotBlock(Properties.of(Material.DECORATION).instabreak().noOcclusion()));
 
 		// Large flower pot
@@ -1020,29 +1022,29 @@ public class MixinLOTRBlocks {
 		registerPOT("large_pot_wither_rose", () -> new ExtendedLargeFlowerPotBlock(Blocks.WITHER_ROSE));
 
 		//Banners
-		ExtendedBlocks.DUNEDAIN_BANNER = registerB("dunedain_banner", () -> new ExtendedMEBannerBlock(BannerTypes.DUNEDAIN));
-		ExtendedBlocks.DUNEDAIN_WALL_BANNER = registerB("dunedain_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.DUNEDAIN));
-		ExtendedBlocks.HOBBIT_BANNER = registerB("hobbit_banner", () -> new ExtendedMEBannerBlock(BannerTypes.SHIRE));
-		ExtendedBlocks.HOBBIT_WALL_BANNER = registerB("hobbit_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.SHIRE));
-		ExtendedBlocks.DURINS_FOLK_BANNER = registerB("durins_folk_banner", () -> new ExtendedMEBannerBlock(BannerTypes.DURINSFOLK));
-		ExtendedBlocks.DURINS_FOLK_WALL_BANNER = registerB("durins_folk_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.DURINSFOLK));
-		ExtendedBlocks.BLUE_MOUNTAINS_BANNER = registerB("blue_mountains_banner", () -> new ExtendedMEBannerBlock(BannerTypes.BLUEMOUNTIANS));
-		ExtendedBlocks.BLUE_MOUNTAINS_WALL_BANNER = registerB("blue_mountains_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.BLUEMOUNTIANS));
-		ExtendedBlocks.GUNDABAD_ORC_BANNER = registerB("gundabad_orc_banner", () -> new ExtendedMEBannerBlock(BannerTypes.GUNDABAD_ORC));
-		ExtendedBlocks.GUNDABAD_ORC_WALL_BANNER = registerB("gundabad_orc_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.GUNDABAD_ORC));
-		ExtendedBlocks.BREE_BANNER = registerB("bree_banner", () -> new ExtendedMEBannerBlock(BannerTypes.BREE));
-		ExtendedBlocks.BREE_WALL_BANNER = registerB("bree_wall_banner", () -> new ExtendedMEBannerWallBlock(BannerTypes.BREE));
+		ExtendedBlocks.DUNEDAIN_BANNER = registerB("dunedain_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.DUNEDAIN));
+		ExtendedBlocks.DUNEDAIN_WALL_BANNER = registerB("dunedain_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.DUNEDAIN));
+		ExtendedBlocks.HOBBIT_BANNER = registerB("hobbit_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.SHIRE));
+		ExtendedBlocks.HOBBIT_WALL_BANNER = registerB("hobbit_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.SHIRE));
+		ExtendedBlocks.DURINS_FOLK_BANNER = registerB("durins_folk_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.DURINSFOLK));
+		ExtendedBlocks.DURINS_FOLK_WALL_BANNER = registerB("durins_folk_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.DURINSFOLK));
+		ExtendedBlocks.BLUE_MOUNTAINS_BANNER = registerB("blue_mountains_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.BLUEMOUNTIANS));
+		ExtendedBlocks.BLUE_MOUNTAINS_WALL_BANNER = registerB("blue_mountains_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.BLUEMOUNTIANS));
+		ExtendedBlocks.GUNDABAD_ORC_BANNER = registerB("gundabad_orc_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.GUNDABAD_ORC));
+		ExtendedBlocks.GUNDABAD_ORC_WALL_BANNER = registerB("gundabad_orc_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.GUNDABAD_ORC));
+		ExtendedBlocks.BREE_BANNER = registerB("bree_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.BREE));
+		ExtendedBlocks.BREE_WALL_BANNER = registerB("bree_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.BREE));
 
 		ExtendedBlocks.DEAD_MOSS_VINES = registerB("dead_moss_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 		// Birdcages
-		ExtendedBlocks.WOODEN_BIRDCAGE = registerB("wooden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F)));
+		ExtendedBlocks.WOODEN_BIRDCAGE = registerB("wooden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).strength(0.5F)));
 		ExtendedBlocks.BRONZE_BIRDCAGE = registerB("bronze_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(1.0F)));
 		ExtendedBlocks.IRON_BIRDCAGE = registerB("iron_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(2.0F)));
 		ExtendedBlocks.SILVER_BIRDCAGE = registerB("silver_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(3.0F)));
 		ExtendedBlocks.GOLDEN_BIRDCAGE = registerB("golden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(4.0F)));
 		ExtendedBlocks.MITHRIL_BIRDCAGE = registerB("mithril_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(5.0f)));
 
-		ExtendedBlocks.GRASS_VOID = registerB("grass_void", () -> new ExtendedGrassVoidBlock(AbstractBlock.Properties.of(Material.STRUCTURAL_AIR).noCollission().noDrops()));
+		ExtendedBlocks.GRASS_VOID = registerB("grass_void", () -> new ExtendedGrassVoidBlock(AbstractBlock.Properties.of(Material.STRUCTURAL_AIR).noCollission().noDrops().isValidSpawn(ExtendedBlockParms::always)));
 
 		ExtendedBlocks.DWARVEN_DOOR = registerB("dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
 		ExtendedBlocks.DWARVEN_DOOR_LUIGON = registerB("blue_dwarven_door", () -> new ExtendedDwarvenGateBlock(Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_BLUE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(4.0F, 10.0F).sound(SoundType.STONE).noOcclusion(), false));
@@ -1054,6 +1056,9 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.STONE_SIGN = registerB("stone_engraving", () -> new ExtendedStoneTextSignBlock(AbstractBlock.Properties.of(Material.DECORATION, MaterialColor.NONE).noCollission().strength(0.5F).sound(SoundType.STONE)));
 		ExtendedBlocks.HOIST = registerB("mine_placeholder", () -> new ExtendedHoistBlock(AbstractBlock.Properties.of(Material.STONE).strength(4.0F, 10.0F).sound(SoundType.STONE)));
+
+		ExtendedBlocks.HIGH_ELVEN_CHAIN = registerB("high_elven_chain", () -> new ExtendedChainBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion()));
+
 	}
 
 	/**
@@ -1065,5 +1070,11 @@ public class MixinLOTRBlocks {
 	@Inject(method = "register()V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, remap=false)
 	private static void bootstrapExtendedBiomeFeatures(CallbackInfo ci, IEventBus bus) {
 		bus.addGenericListener(Block.class, ExtendedBiomeFeatures::setup);
+	}
+
+	private static VoxelShape createVesselShape(float width, float height) {
+		float halfWidth = width / 2.0F;
+		return Block.box(8.0D - (double) halfWidth, 0.0D, 8.0D - (double) halfWidth, 8.0D + (double) halfWidth,
+				(double) height, 8.0D + (double) halfWidth);
 	}
 }

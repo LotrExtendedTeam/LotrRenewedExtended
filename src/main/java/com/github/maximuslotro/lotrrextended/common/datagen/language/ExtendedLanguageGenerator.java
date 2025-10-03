@@ -198,21 +198,21 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("speechbank.rivendell_wanderer.departure.9", "%1$s: Do you hear the sea calling? I shall soon leave these lands.");
 
 		// Blue Mountains Merchant departure lines
-		addD("speechbank.blue_mountains_merchant.departure.1", "%1$s: Well, I'll be on my way soon enough.");
+		addD("speechbank.blue_mountains_merchant.departure.1", "%1$s: Well %2$s, I'll be on my way soon enough.");
 		addD("speechbank.blue_mountains_merchant.departure.2", "%1$s: I can't stay here forever. Other lands to visit, other goods to trade...");
-		addD("speechbank.blue_mountains_merchant.departure.3", "%1$s: If you wish to trade with me, you would be wise to hurry!");
+		addD("speechbank.blue_mountains_merchant.departure.3", "%1$s: If you wish to trade with me %2$s, you would be wise to hurry!");
 		addD("speechbank.blue_mountains_merchant.departure.4", "%1$s: The riches of the Blue Mountains shall not wait here forever.");
 		addD("speechbank.blue_mountains_merchant.departure.5", "%1$s: This is your last chance to get an excellent Dwarvish bargain!");
-		addD("speechbank.blue_mountains_merchant.departure.6", "%1$s: I shall be leaving soon, but there is still time for a trade or two!");
-		addD("speechbank.blue_mountains_merchant.departure.7", "%1$s: Business cannot wait, Person! I will not stay here for too long.");
+		addD("speechbank.blue_mountains_merchant.departure.6", "%1$s: I shall be leaving soon %2$s, but there is still time for a trade or two!");
+		addD("speechbank.blue_mountains_merchant.departure.7", "%1$s: Business cannot wait, %2$s! I will not stay here for too long.");
 		addD("speechbank.blue_mountains_merchant.departure.8", "%1$s: Other lands await! I'll be leaving soon.");
-		addD("speechbank.blue_mountains_merchant.departure.9", "%1$s: Hurry, Person! I will have to depart these lands soon.");
-		addD("speechbank.blue_mountains_merchant.departure.10", "%1$s: Do you wish to gaze upon the riches of the Dwarves of the Blue Mountains? Well, you had better be quick. I'll be on my way soon!");
+		addD("speechbank.blue_mountains_merchant.departure.9", "%1$s: Hurry %2$s! I will have to depart these lands soon.");
+		addD("speechbank.blue_mountains_merchant.departure.10", "%1$s: Do you wish to gaze upon the riches of the Dwarves of the Blue Mountains? Well %2$s, you had better be quick. I'll be on my way soon!");
 		addD("speechbank.blue_mountains_merchant.departure.11", "%1$s: Time is passing, %2$s! If you wish to trade with me, you must do it now!");
 
 		// Bree-Land Merchant departure lines
 		addD("speechbank.breeland_merchant.departure.1", "%1$s: I hear Black Riders have been wandering around these parts, I can't stay here much longer.");
-		addD("speechbank.breeland_merchant.departure.2", "%1$s: Hurry, I'll be leaving soon.");
+		addD("speechbank.breeland_merchant.departure.2", "%1$s: Hurry %2$s, I'll be leaving soon.");
 		addD("speechbank.breeland_merchant.departure.3", "%1$s: If you'd like some Bree-land goods, now is your last chance!");
 		addD("speechbank.breeland_merchant.departure.4", "%1$s: I'll be back on the road here soon.");
 		addD("speechbank.breeland_merchant.departure.5", "%1$s: I can't be in these lands for too long, don't want robbers or Goblins to get me.");
@@ -255,6 +255,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.orcwomen.setting", "Orc Women use Alex Model: ");
 		addD("gui.lotrextended.settings.dolchestplatewings.prefix", "Dol Amroth Chestplate: ");
 		addD("gui.lotrextended.settings.dolchestplatewings.suffix", " Wings");
+		addD("gui.lotrextended.settings.earlyduckmodel.setting", "Use Old Duck Model: ");
 		addD("gui.lotrextended.settings.newrainsounds.setting", "New Rain Sounds: ");
 		addD("gui.lotrextended.settings.newthundersounds.setting", "New Thunder Sounds: ");
 		addD("gui.lotrextended.settings.windambience.setting", "Wind Ambience: ");
@@ -332,7 +333,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Horn Select strings
 		addD("gui.lotrextended.horn_select.title", "Horn of Command Type Selection");
 		addD("gui.lotrextended.horn_select.option_summon", "Summon Units");
-		addD("gui.lotrextended.horn_select.option_halt_reddy", "Halt/Reddy Units");
+		addD("gui.lotrextended.horn_select.option_halt_reddy", "Halt/Ready Units");
 
 		// Stone Carving Screen
 		addD("gui.lotrextended.stone_engraving.title", "Engrave Message");
@@ -343,10 +344,12 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Banner protection info
 		addD("message.lotrextended.banner.land_protected", "This land is under the protection of %s");
 
-		// Horn Type names
-		addD("item.lotr.horn_of_command.halt");
-		addD("item.lotr.horn_of_command.reddy");
-		addD("item.lotr.horn_of_command.summon");
+		// Additional item strings
+		addD("item."+ExtendedItems.COMMANDHORN.getId().getNamespace()+"."+ExtendedItems.COMMANDHORN.getId().getPath()+".halt", "Horn of Command - Halt Units");
+		addD("item."+ExtendedItems.COMMANDHORN.getId().getNamespace()+"."+ExtendedItems.COMMANDHORN.getId().getPath()+".reddy", "Horn of Command - Ready Units");
+		addD("item."+ExtendedItems.COMMANDHORN.getId().getNamespace()+"."+ExtendedItems.COMMANDHORN.getId().getPath()+".summon", "Horn of Command - Summon Units");
+		addOverride("item."+ExtendedItems.MODIFIER_SCROLL.getId().getNamespace()+"."+ExtendedItems.MODIFIER_SCROLL.getId().getPath(), "Modifier Scroll");
+		addOverride("item."+ExtendedItems.MODIFIER_SCROLL.getId().getNamespace()+"."+ExtendedItems.MODIFIER_SCROLL.getId().getPath()+".named", "%s Modifier Scroll");
 
 		//Bow values
 		addD("gui.lotrextended.bow.speed", "Draw Speed: %s");
@@ -415,20 +418,32 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.enchant.only_one_bane", "Only one bane can be applied to a weapon.");
 		addD("command.lotrextended.enchant.no_present_modifiers", "Your item does not have any modifiers.");
 		addD("command.lotrextended.enchant.modifier_invalid", "Invalid modifier: %s.");
-		addD("command.lotrextended.enchant.modifier_only_melee", "%s can only be applied to melee weapons.");
+		addD("command.lotrextended.enchant.modifier_cant_item", "%s can not be applied to this item.");
 		addD("command.lotrextended.enchant.modifier_duplicate", "Your item already contains that modifier.");
 		addD("command.lotrextended.enchant.modifier_missing", "Your item does not have that modifier.");
 		addD("command.lotrextended.enchant.modifier_removed_all", "All modifiers removed from %s.");
 		addD("command.lotrextended.enchant.modifier_added", "%s added to %s.");
 		addD("command.lotrextended.enchant.modifier_removed", "%s removed from %s.");
-
+		addD("command.lotrextended.enchant.modifier_cant_modifier", "%s can not be applied as there is a conflicting modifier.");
+		addD("command.lotrextended.enchant.generated", "Generated random modifiers.");
 		
 		//Extended containers
 		addD("container.lotrextended.reed_basket", "Reed Basket");
 		addD("container.lotrextended.stone_chest", "Stone Chest");
 		addD("container.lotrextended.orc_barrel", "Orc Barrel");
-		addD("container.lotrextended.hired_unit_equipment", "Unit Equipment");
-		addD("container.lotrextended.hired_unit_menu", "Hired Unit Inventory");
+		addD("container.lotrextended.repair", "Lotr Repair & Name");
+		addD("container.lotrextended.repair.cost", "Material Cost: %1$s");
+		addD("container.lotrextended.repair.reforge", "Reforging repairs the item and re-rolls the modifiers.");
+		addD("container.lotrextended.repair.reforge.cost", "Reforge Cost: %1$s");
+		addD("container.lotrextended.repair.engrave", "Engrave ownership on item.");
+		addD("container.lotrextended.repair.engrave.cost", "Engrave Cost: %1$s");
+		addD("container.lotrextended.repair.info.expensive", "Too Expensive!");
+		addD("container.lotrextended.repair.info.invalid_combination", "Incompatable Modifiers!");
+		addD("container.lotrextended.repair.info.gem_used", "Gem already used!");
+		addD("container.lotrextended.repair.info.too_many_modifiers", "Limit: 3 regular modifiers!");
+		addD("container.lotrextended.repair.info.modifier_maxed", "Modifier is maxed!");
+		addD("container.lotrextended.repair.info.invalid_material", "Invalid Material!");
+		addD("container.lotrextended.repair.info.missing_material", "Missing Materials!");
 
 		// hired unit messages and tooltips for captains
 		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
@@ -480,26 +495,108 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 		// custom enchantments
 		addD("enchant.lotrextended.baneorc", "Orcbane");
+		addD("enchant.lotrextended.baneorc.race", "Orcs");
 		addD("enchant.lotrextended.banedwarf", "Dwarfbane");
+		addD("enchant.lotrextended.banedwarf.race", "Dwarves");
 		addD("enchant.lotrextended.baneelf", "Elfbane");
+		addD("enchant.lotrextended.baneelf.race", "Elves");
 		addD("enchant.lotrextended.banewarg", "Wargbane");
+		addD("enchant.lotrextended.banewarg.race", "Wargs");
 		addD("enchant.lotrextended.banewight", "Wightbane");
-		addD("enchant.lotrextended.baneorc.desc", "+4.0 damage vs. Orcs");
-		addD("enchant.lotrextended.banedwarf.desc", "+4.0 damage vs. Dwarves");
-		addD("enchant.lotrextended.baneelf.desc", "+4.0 damage vs. Elves");
-		addD("enchant.lotrextended.banewarg.desc", "+4.0 damage vs. Wargs");
-		addD("enchant.lotrextended.banewight.desc", "+4.0 damge vs. Wights");
-
-		addD("enchant.lotrextended.baneelf.earn", "Your %s has claimed the lives of many Elves, and it shall be their bane evermore!");
-		addD("enchant.lotrextended.baneelf.earn_name", "%s's %s has claimed the lives of many Elves, and it shall be their bane evermore!");
-		addD("enchant.lotrextended.baneorc.earn", "Your %s has claimed the lives of many Orcs, and it shall be their bane evermore!");
-		addD("enchant.lotrextended.baneorc.earn_name", "%s's %s has claimed the lives of many Orcs, and it shall be their bane evermore!");
-		addD("enchant.lotrextended.banedwarf.earn", "Your %s has claimed the lives of many Dwarves, and it shall be their bane evermore!");
-		addD("enchant.lotrextended.banedwarf.earn_name", "%s's %s has claimed the lives of many Dwarves, and it shall be their bane evermore!");
-		addD("enchant.lotrextended.banewarg.earn", "Your %s has claimed the lives of many Wargs, and it shall be their bane evermore!");
-		addD("enchant.lotrextended.banewarg.earn_name", "%s's %s has claimed the lives of many Wargs, and it shall be their bane evermore!");
-		addD("enchant.lotrextended.banewight.earn", "Your %s has claimed the lives of many Wights, and it shall be their bane evermore!");
-		addD("enchant.lotrextended.banewight.earn_name", "%s's %s has claimed the lives of many Wights, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.banewight.race", "Wights");
+		addD("enchant.lotrextended.bane.desc", "damage vs. %s");
+		addD("enchant.lotrextended.bane.earn", "Your %s has claimed the lives of many %s, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.bane.earn_name", "%s's %s has claimed the lives of many %s, and it shall be their bane evermore!");
+		addD("enchant.lotrextended.durability.one", "Lasting");
+		addD("enchant.lotrextended.durability.two", "Hardy");
+		addD("enchant.lotrextended.durability.three", "Enduring");
+		addD("enchant.lotrextended.durability.disc", "durability");
+		addD("enchant.lotrextended.looting.one", "Lucky");
+		addD("enchant.lotrextended.looting.two", "Fortunate");
+		addD("enchant.lotrextended.looting.three", "Blessed");
+		addD("enchant.lotrextended.looting.disc", "looting luck");
+		addD("enchant.lotrextended.melee_damage.weak_one", "Dull");
+		addD("enchant.lotrextended.melee_damage.weak_two", "Blunt");
+		addD("enchant.lotrextended.melee_damage.weak_three", "Crooked");
+		addD("enchant.lotrextended.melee_damage.one", "Sharp");
+		addD("enchant.lotrextended.melee_damage.two", "Keen");
+		addD("enchant.lotrextended.melee_damage.three", "Mighty");
+		addD("enchant.lotrextended.melee_damage.four", "Legendary");
+		addD("enchant.lotrextended.melee_damage.disc", "melee damage");
+		addD("enchant.lotrextended.melee_reach.one", "Long");
+		addD("enchant.lotrextended.melee_reach.short_one", "Stunted");
+		addD("enchant.lotrextended.melee_reach.disc", "melee reach");
+		addD("enchant.lotrextended.melee_speed.one", "Swift");
+		addD("enchant.lotrextended.melee_speed.slow_one", "Slow");
+		addD("enchant.lotrextended.melee_speed.disc", "melee speed");
+		addD("enchant.lotrextended.melee_knockback.one", "Hefty");
+		addD("enchant.lotrextended.melee_knockback.two", "Hulking");
+		addD("enchant.lotrextended.melee_knockback.disc", "melee knockback");
+		addD("enchant.lotrextended.tool_speed.one", "Handy");
+		addD("enchant.lotrextended.tool_speed.two", "Nimble");
+		addD("enchant.lotrextended.tool_speed.three", "Hasty");
+		addD("enchant.lotrextended.tool_speed.four", "Masterful");
+		addD("enchant.lotrextended.tool_speed.slow_one", "Sluggish");
+		addD("enchant.lotrextended.tool_speed.disc", "tool speed");
+		addD("enchant.lotrextended.tool_silk", "Silken");
+		addD("enchant.lotrextended.tool_silk.disc", "Harvests special blocks");
+		addD("enchant.lotrextended.ranged_speed.one", "Strong");
+		addD("enchant.lotrextended.ranged_speed.two", "Powerful");
+		addD("enchant.lotrextended.ranged_speed.three", "Fierce");
+		addD("enchant.lotrextended.ranged_speed.weak_one", "Weak");
+		addD("enchant.lotrextended.ranged_speed.weak_two", "Feeble");
+		addD("enchant.lotrextended.ranged_speed.disc", "launch speed");
+		addD("enchant.lotrextended.ranged_knockback.one", "Punching");
+		addD("enchant.lotrextended.ranged_knockback.two", "Striking");
+		addD("enchant.lotrextended.ranged_knockback.disc", "ranged knockback");
+		addD("enchant.lotrextended.armor_protect.one", "Hardened");
+		addD("enchant.lotrextended.armor_protect.two", "Steadfast");
+		addD("enchant.lotrextended.armor_protect.weak_one", "Poor");
+		addD("enchant.lotrextended.armor_protect.weak_two", "Crude");
+		addD("enchant.lotrextended.armor_protect.disc", "armor points");
+		addD("enchant.lotrextended.armor_protect_fire.one", "Cooling");
+		addD("enchant.lotrextended.armor_protect_fire.two", "Unwithering");
+		addD("enchant.lotrextended.armor_protect_fire.three", "Belegostian");
+		addD("enchant.lotrextended.armor_protect_fire.disc", "protection vs. fire");
+		addD("enchant.lotrextended.armor_protect_ranged.one", "Glancing");
+		addD("enchant.lotrextended.armor_protect_ranged.two", "Deflecting");
+		addD("enchant.lotrextended.armor_protect_ranged.three", "Eölean");
+		addD("enchant.lotrextended.armor_protect_ranged.disc", "protection vs. projectiles");
+		addD("enchant.lotrextended.armor_protect_fall.one", "Thicksoled");
+		addD("enchant.lotrextended.armor_protect_fall.two", "Strongshod");
+		addD("enchant.lotrextended.armor_protect_fall.three", "Lightfooted");
+		addD("enchant.lotrextended.armor_protect_fall.disc", "protection vs. falling");
+		addD("enchant.lotrextended.armor_protect_blast.one", "Reinforced");
+		addD("enchant.lotrextended.armor_protect_blast.two", "Safeguarded");
+		addD("enchant.lotrextended.armor_protect_blast.three", "Rúvina Norna");
+		addD("enchant.lotrextended.armor_protect_blast.disc", "protection vs. explosions");
+		addD("enchant.lotrextended.armor_protect_mithril", "True");
+		addD("enchant.lotrextended.armor_protect_mithril.disc", "protection vs. polearms");
+		addD("enchant.lotrextended.chilling", "Chilling");
+		addD("enchant.lotrextended.chilling.disc", "Chills targets");
+		addD("enchant.lotrextended.infernal", "Infernal");
+		addD("enchant.lotrextended.infernal.disc", "Sets target aflame");
+		addD("enchant.lotrextended.headhunting", "Headhunting");
+		addD("enchant.lotrextended.headhunting.disc", "Drops player heads");
+		addD("enchant.lotrextended.fishing_luck.one", "Fluked");
+		addD("enchant.lotrextended.fishing_luck.two", "Gifted");
+		addD("enchant.lotrextended.fishing_luck.three", "Prosperous");
+		addD("enchant.lotrextended.fishing_luck.disc", "fishing luck");
+		addD("enchant.lotrextended.fishing_speed.one", "Alluring");
+		addD("enchant.lotrextended.fishing_speed.two", "Tantalized");
+		addD("enchant.lotrextended.fishing_speed.disc", "fishing speed");
+		addD("enchant.lotrextended.underwater_movement.one", "Webbed");
+		addD("enchant.lotrextended.underwater_movement.two", "Finned");
+		addD("enchant.lotrextended.underwater_movement.three", "Ulmoqint");
+		addD("enchant.lotrextended.underwater_movement.disc", "underwater speed");
+		addD("enchant.lotrextended.underwater_breathing.one", "Shut");
+		addD("enchant.lotrextended.underwater_breathing.two", "Latched");
+		addD("enchant.lotrextended.underwater_breathing.three", "Sealed");
+		addD("enchant.lotrextended.underwater_breathing.disc", "underwater time");
+		addD("enchant.lotrextended.toughness.one", "Tough");
+		addD("enchant.lotrextended.toughness.two", "Thick");
+		addD("enchant.lotrextended.toughness.three", "Unwavering");
+		addD("enchant.lotrextended.toughness.disc", "toughness");
 	}
 
 	@Override

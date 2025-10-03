@@ -1,16 +1,16 @@
 package lotr.common.block;
 
-import com.github.maximuslotro.lotrrextended.common.enums.WargFurType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedWargFurType;
 
 public class ExtendedPackedFurBlock extends BundleBlock {
-	private final WargFurType wargFurType;
+	private final ExtendedWargFurType wargFurType;
 
-	public ExtendedPackedFurBlock(WargFurType wargFurType) {
+	public ExtendedPackedFurBlock(ExtendedWargFurType wargFurType) {
 		super(wargFurType.getDyeColor().getMaterialColor());
 		this.wargFurType = wargFurType;
 	}
 
-	public WargFurType getWargFurType() {
+	public ExtendedWargFurType getWargFurType() {
 		return this.wargFurType;
 	}
 }

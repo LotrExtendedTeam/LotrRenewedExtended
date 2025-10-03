@@ -15,7 +15,12 @@ import net.minecraft.world.biome.MobSpawnInfo.Spawners;
 public class MixinLOTRBiomeBase {
 
 	@Inject(method = "addAnimals(Lnet/minecraft/world/biome/MobSpawnInfo$Builder;)V", at = @At("TAIL"), remap = false)
-	protected void addAnimals(MobSpawnInfo.Builder builder, CallbackInfo ci) {
+	protected void addAnimalsExtended(MobSpawnInfo.Builder builder, CallbackInfo ci) {
 		builder.addSpawn(EntityClassification.CREATURE, new Spawners(ExtendedEntities.DUCK.get(), 20, 4, 4));
+	}
+
+	@Inject(method = "addBoars(Lnet/minecraft/world/biome/MobSpawnInfo$Builder;I)V", at = @At("TAIL"), remap = false)
+	protected void addBoarsExtended(MobSpawnInfo.Builder builder, int mul, CallbackInfo ci) {
+		builder.addSpawn(EntityClassification.CREATURE, new Spawners(ExtendedEntities.HORSE_BOAR.get(), 10 * mul, 1, 4));
 	}
 }

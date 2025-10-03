@@ -63,7 +63,7 @@ public class MixinLOTRRecipes {
 	@Unique
 	private static FactionTableType registerFactionD(String id, String defaultName, Supplier<Block> blockSup) {
 		if(DatagenModLoader.isRunningDataGen()) {
-			DataGenValueHolder.containerTitlesHolders.put("container.lotr."+id+"_crafting", defaultName);
+			DataGenValueHolder.containerTitlesHolders.put("container.lotr."+id+"_crafting", defaultName); // lotr is hardcoded in the register method
 		}
 		return registerFaction(id, blockSup);
 	}

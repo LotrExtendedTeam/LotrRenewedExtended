@@ -47,8 +47,9 @@ public class WanderingTradersSpawner {
             // if entity is null skip some attempts as they are probably in a biome that just doesn't
             // support wandering traders, and we should not try all 16 attempts
             if (entityName == null) {
-                ExtendedLog.warn("Got null entity when determining if a wandering trader could spawn at " + pos + ". This biome likely doesn't support wandering traders.");
-                attempts += 2;
+                //ExtendedLog.warn("Got null entity when determining if a wandering trader could spawn at " + pos + ". This biome likely doesn't support wandering traders.");
+                //attempts += 2;
+            	// Disabled attempts += 2; due to the fact that the spawner could run endlessly if in a non-spawnable biome
                 continue;
             }
 
@@ -70,7 +71,7 @@ public class WanderingTradersSpawner {
 
                 BlockPos spawnPos = pos.offset(new Vector3i(0.5D, 0, 0.5D));
                 Entity trader = type.create((ServerWorld) world, null, null, player, spawnPos, SpawnReason.SPAWN_EGG, true, false);
-                if (trader instanceof ExtendedWanderingTraderEntity) {
+                if (trader instanceof ExtendedWanderingTraderEntity && trader instanceof MobEntity) {
                     // set look angle
                     float yaw = world.random.nextFloat() * 360.0F;
                     trader.setYBodyRot(yaw);
@@ -79,6 +80,7 @@ public class WanderingTradersSpawner {
                     ((ExtendedWanderingTraderEntity) trader).getTraderData().setWanderingTraderAliveTime(24000);
                     ((ExtendedWanderingTraderEntity) trader).getTraderData().setWanderingTrader(true);
                     ((MobEntity) trader).restrictTo(pos, 5); // restrict within 5 blocks of spawn point
+                    ((MobEntity)trader).setPersistenceRequired();
                     world.addFreshEntityWithPassengers(trader);
 
                     int escortCount = world.random.nextInt(3) + 2;
@@ -102,9 +104,10 @@ public class WanderingTradersSpawner {
                         otherPlayer.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_player", trader.getName().copy().withStyle(TextFormatting.YELLOW), player.getName()), Util.NIL_UUID);
                     }
                 } else if(trader==null) {
-                	ExtendedLog.error("Error attempting to spawn unknown trader. Does " + type + " extend ExtendedTraderEntity?");
+                	// Entity was denied spawning
+                	//ExtendedLog.error("Error attempting to spawn unknown trader. Does " + type + " extend ExtendedTraderEntity?");
                 } else {
-                    ExtendedLog.error("Error attempting to set trader options when spawning wandering trader. Does " + type + " extend ExtendedTraderEntity?");
+                    ExtendedLog.error("Error attempting to set trader options when spawning wandering trader. Does " + type + " extend ExtendedTraderEntity and MobEntity?");
                 }
                 break;
             }

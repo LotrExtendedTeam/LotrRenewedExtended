@@ -17,7 +17,7 @@
     "hidden": false
   },
   "criteria": {
-    "item_lotr:dwarven_steel_ingot_made_on_dwarven_forge": {
+    "item_dwarven_steel_ingot_made_on_dwarven_forge": {
       "trigger": "lotrextended:crafting_with_block",
       "conditions": {
         "item": {
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "item_lotr:dwarven_steel_ingot_made_on_dwarven_forge"
+      "item_dwarven_steel_ingot_made_on_dwarven_forge"
     ]
   ]
 }

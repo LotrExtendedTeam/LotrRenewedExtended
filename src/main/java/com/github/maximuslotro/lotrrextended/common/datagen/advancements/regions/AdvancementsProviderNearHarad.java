@@ -39,17 +39,17 @@ public class AdvancementsProviderNearHarad extends ExtendedBaseAdvancementType{
 			addBiomeTriggers(make(), LOTRBiomes.HARNENNOR).parent(southward_bound));
 
 		Advancement harad_armor = build(true, data(LOTRItems.HARAD_CHESTPLATE.get(), "harad_armor", FrameType.TASK)
-			.setTitle("Coastland Soldier").setDescription("Equip a full suit of Near Harad armour."),
+			.setTitle("Coastland Soldier").setDescription("Equip a full suit of Near Harad armor."),
 			addArmorTrigger(make(), "harad", LOTRItems.HARAD_HELMET.get(), LOTRItems.HARAD_CHESTPLATE.get(),
 					LOTRItems.HARAD_LEGGINGS.get(), LOTRItems.HARAD_BOOTS.get()).parent(southward_bound));
 
 		Advancement harnennor_armor = build(true, data(LOTRItems.HARNENNOR_CHESTPLATE.get(), "harnennor_armor", FrameType.TASK)
-			.setTitle("Cruel Bronze Spikes").setDescription("Equip a full suit of Harnennor armour."),
+			.setTitle("Cruel Bronze Spikes").setDescription("Equip a full suit of Harnennor armor."),
 			addArmorTrigger(make(), "harnennor", LOTRItems.HARNENNOR_HELMET.get(), LOTRItems.HARNENNOR_CHESTPLATE.get(),
 					LOTRItems.HARNENNOR_LEGGINGS.get(), LOTRItems.HARNENNOR_BOOTS.get()).parent(beyond_harnen));
 
 		Advancement umbar_armor = build(true, data(LOTRItems.UMBAR_CHESTPLATE.get(), "umbar_armor", FrameType.TASK)
-			.setTitle("Soldier of Umbar").setDescription("Equip a full suit of Umbaric armour."),
+			.setTitle("Soldier of Umbar").setDescription("Equip a full suit of Umbaric armor."),
 			addArmorTrigger(make(), "umbar", LOTRItems.UMBAR_HELMET.get(), LOTRItems.UMBAR_CHESTPLATE.get(),
 					LOTRItems.UMBAR_LEGGINGS.get(), LOTRItems.UMBAR_BOOTS.get()).parent(city_of_corsairs));
 

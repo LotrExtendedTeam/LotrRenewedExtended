@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.render;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.client.render.color.ExtendedColorUtil;
+import com.github.maximuslotro.lotrrextended.client.render.utils.ExtendedColorUtil;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 

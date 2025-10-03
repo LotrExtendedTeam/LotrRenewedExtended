@@ -15,7 +15,9 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableClientVersionCheck;
 
 	public static ForgeConfigSpec.BooleanValue enablePlantParticles;
-	
+
+	public static ForgeConfigSpec.BooleanValue enableQuerkyDuckMode;
+
 	/**
 	 * Do not set this value itself, set {@link lotr.client.gui.menu.ExtendedOptionsScreen}
 	 * to ensure {@link com.github.maximuslotro.lotrextended.mixins.net.minecraft.tileentity.MixinStructureBlockTileEntity} is updated with the non config crashable value, since sliders can change values very quickly.
@@ -44,6 +46,10 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 		builder.push("Special settings");
 		enableClientDevMode = createBooleanValue(builder, "enableDevModeClient", false, true, "Never enable this unless you are on the Extended Dev Team or debugging the mod!");
 		lastClientBootVersion = createStringValue(builder, "lastClientBootVersion", "null", true, "Last version this mod launched with. Don't touch! Value handled by extended.");
+		builder.pop();
+
+		builder.push("Model Settings");
+		enableQuerkyDuckMode = createBooleanValue(builder, "enableQuerkyDuckMode", false, false, "Enable early extended duck model querkyness.");
 		builder.pop();
 		return builder;
 	}

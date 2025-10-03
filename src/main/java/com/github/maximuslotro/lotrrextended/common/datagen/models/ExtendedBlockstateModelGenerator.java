@@ -44,8 +44,8 @@ import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSin
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
-import com.github.maximuslotro.lotrrextended.common.enums.PillarType;
-import com.github.maximuslotro.lotrrextended.common.enums.RopeType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPillarType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedRopeType;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
@@ -187,9 +187,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						genSkullGobletBlock((VesselDrinkBlock)block.getValue().get());
 						continue;
 					}
+					if(block.getValue().get()==ExtendedBlocks.GLASS_BOTTLE.get()) {
+						genSkullGobletBlock((VesselDrinkBlock)block.getValue().get());
+						continue;
+					}
 				}
 				if(block.getValue().get() instanceof ExtendedRemainsBlock) {
-					numberTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 3);
+					numberTexturedRandomYBlockItem(block.getValue().get(), "block/"+block.getKey(), 3);
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
@@ -431,6 +435,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						genMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), true);
 						continue;
 					}
+					if(block.getKey().equals("scorched_brick")) {
+						numberTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 3);
+						continue;
+					}
 					if(block.getKey().equals("gneiss")) {
 						genCubeTopBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrExtendedLoc("block/"+block.getKey()+"_top"));
 						continue;
@@ -446,7 +454,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					try {
 						genCubeBlockItem(block.getValue().get(),"block/"+block.getKey());
 					}catch(IllegalArgumentException e) {
-						System.out.println(block.getKey()+" is not CubeBlockItem! Using alternative genEndSideNonRotatableBlockItem model.");
+						System.out.println(block.getKey()+" is not CubeBlockItem. Using alternative genEndSideNonRotatableBlockItem model.");
 						genEndSideNonRotatableBlockItem(block.getValue().get(),"block/"+block.getKey());
 					}
 					continue;
@@ -632,6 +640,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/dirt"));
 							continue;
 						}
+						if(block.getKey().equals("scorched_brick_slab")) {
+							genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/scorched_brick_1"));
+							continue;
+						}
 						genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
 						continue;
 					}
@@ -649,6 +661,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						}
 						if(block.getKey().contains("smooth_stone_stairs")) {
 							genStairsBlockItem((StairsBlock) block.getValue().get(), mcLoc("block/smooth_stone"));
+							continue;
+						}
+						if(block.getKey().equals("scorched_brick_stairs")) {
+							genStairsBlockItem((StairsBlock) block.getValue().get(), lotrExtendedLoc("block/scorched_brick_1"));
 							continue;
 						}
 						if(block.getKey().contains("wood")) {
@@ -694,6 +710,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						}
 						if(block.getKey().contains("mud_path")) {
 							genWallBlockItem((WallBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_1"));
+							continue;
+						}
+						if(block.getKey().equals("scorched_brick_wall")) {
+							genWallBlockItem((WallBlock) block.getValue().get(), lotrExtendedLoc("block/scorched_brick_1"));
 							continue;
 						}
 						if(block.getKey().contains("bone_block_wall")) {
@@ -952,17 +972,17 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		getVariantBuilder(pillarB)
 		.forAllStatesExcept(state -> {
 			Axis axis = state.getValue(ExtendedThreeTallPillarBlock.AXIS);
-			PillarType above = state.getValue(ExtendedThreeTallPillarBlock.PILLAR_TYPE);
+			ExtendedPillarType above = state.getValue(ExtendedThreeTallPillarBlock.PILLAR_TYPE);
 			ModelFile selectedfile = null;
-			if(above.equals(PillarType.BOTTOM_LARGE)) {
+			if(above.equals(ExtendedPillarType.BOTTOM_LARGE)) {
 				selectedfile = pillarTallBottom;
-			}else if(above.equals(PillarType.BOTTOM_SMALL)) {
+			}else if(above.equals(ExtendedPillarType.BOTTOM_SMALL)) {
 				selectedfile = pillarBottom;
-			}else if(above.equals(PillarType.MIDDLE_LARGE)) {
+			}else if(above.equals(ExtendedPillarType.MIDDLE_LARGE)) {
 				selectedfile = pillarTallMiddle;
-			}else if(above.equals(PillarType.TOP_LARGE)) {
+			}else if(above.equals(ExtendedPillarType.TOP_LARGE)) {
 				selectedfile = pillarTallTop;
-			}else if(above.equals(PillarType.TOP_SMALL)) {
+			}else if(above.equals(ExtendedPillarType.TOP_SMALL)) {
 				selectedfile = pillarTop;
 			}else {
 				selectedfile = pillarBlock;
@@ -1149,11 +1169,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		getVariantBuilder(rope)
 		.forAllStatesExcept(state -> {
 			Direction axis = state.getValue(ExtendedRopeBlock.FACING);
-			RopeType type = state.getValue(ExtendedRopeBlock.SECTION_TYPE);
+			ExtendedRopeType type = state.getValue(ExtendedRopeBlock.SECTION_TYPE);
             return ConfiguredModel.builder()
-                    .modelFile((type == RopeType.TOP_LARGE || type == RopeType.TOP_SMALL) ? modelTop :
-                    	((type == RopeType.BOTTOM_LARGE || type == RopeType.BOTTOM_SMALL) ? modelBottom :
-                    	type == RopeType.SINGLE ? modelSingle : modelMiddle))
+                    .modelFile((type == ExtendedRopeType.TOP_LARGE || type == ExtendedRopeType.TOP_SMALL) ? modelTop :
+                    	((type == ExtendedRopeType.BOTTOM_LARGE || type == ExtendedRopeType.BOTTOM_SMALL) ? modelBottom :
+                    	type == ExtendedRopeType.SINGLE ? modelSingle : modelMiddle))
                     .rotationY(axis == Direction.EAST ? 90 : (axis == Direction.WEST ? 270 : (axis == Direction.SOUTH ? 180 : 0)))
                     .build();
         }, ExtendedRopeBlock.WATERLOGGED);
@@ -1390,7 +1410,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			Direction facing = state.getValue(ExtendedCrucibleBlock.FACING);
 			return ConfiguredModel.builder()
                     .modelFile(modelFile)
-                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
+                    .rotationY(facing==Direction.EAST ? 180 : facing==Direction.SOUTH ? 270 : facing==Direction.WEST ? 0 : 90)
                     .build();
 		});
 		itemModels().getBuilder("lotr:"+crucible.getRegistryName().getPath()).parent(modelFile);
@@ -1400,7 +1420,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(birdcage);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+birdcage.getRegistryName().getPath(), lotrExtendedLoc("block/template_birdcage"))
 			.texture("cage", lotrExtendedLoc(cagePath));
-		simpleBlock(birdcage, modelFile);
+		getVariantBuilder(birdcage).forAllStates(state -> {
+			Direction facing = state.getValue(ExtendedBirdcageBlock.FACING);
+			return ConfiguredModel.builder()
+                    .modelFile(modelFile)
+                    .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
+                    .build();
+		});
 	}
 
 	private void genMossCarpetBlockItem(ExtendedMossCarpetBlock carpet) {
@@ -1877,7 +1903,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genSkullGobletBlock(VesselDrinkBlock block) {
 		registeredBlocks.add(block);
-		ModelFile modelFile = models().getExistingFile(lotrExtendedLoc(block.getRegistryName().getPath()));
+		ModelFile modelFile = models().getExistingFile(lotrExtendedLoc("vessel_"+block.getRegistryName().getPath()));
 		getVariantBuilder(block).forAllStates(state -> {
 			Direction direction = state.getValue(VesselDrinkBlock.FACING);
 			return ConfiguredModel.builder()
@@ -2025,7 +2051,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
 
-	private void numberTexturedRandomBlockItem(Block block, String location, int numVariants) {
+	private void numberTexturedRandomYBlockItem(Block block, String location, int numVariants) {
 		registeredBlocks.add(block);
 		if(numVariants==4) {
 			ConfiguredModel[] variant1 = ConfiguredModel.allYRotations(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_1", lotrExtendedLoc(location+"_1")), 0, false);
@@ -2035,11 +2061,30 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			getVariantBuilder(block).partialState().addModels(variant1).addModels(variant2).addModels(variant3).addModels(variant4);
 			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_1", lotrExtendedLoc(location+"_1")));
 			return;
-		}
-		if(numVariants==3) {
+		}else if(numVariants==3) {
 			ConfiguredModel[] variant1 = ConfiguredModel.allYRotations(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_1", lotrExtendedLoc(location+"_1")), 0, false);
 			ConfiguredModel[] variant2 = ConfiguredModel.allYRotations(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_2", lotrExtendedLoc(location+"_2")), 0, false);
 			ConfiguredModel[] variant3 = ConfiguredModel.allYRotations(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_3", lotrExtendedLoc(location+"_3")), 0, false);
+			getVariantBuilder(block).partialState().addModels(variant1).addModels(variant2).addModels(variant3);
+			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_1", lotrExtendedLoc(location+"_1")));
+			return;
+		}
+	}
+
+	private void numberTexturedRandomBlockItem(Block block, String location, int numVariants) {
+		registeredBlocks.add(block);
+		if(numVariants==4) {
+			ConfiguredModel variant1 = new ConfiguredModel(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_1", lotrExtendedLoc(location+"_1")));
+			ConfiguredModel variant2 = new ConfiguredModel(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_2", lotrExtendedLoc(location+"_2")));
+			ConfiguredModel variant3 = new ConfiguredModel(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_3", lotrExtendedLoc(location+"_3")));
+			ConfiguredModel variant4 = new ConfiguredModel(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_4", lotrExtendedLoc(location+"_4")));
+			getVariantBuilder(block).partialState().addModels(variant1).addModels(variant2).addModels(variant3).addModels(variant4);
+			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_1", lotrExtendedLoc(location+"_1")));
+			return;
+		}else if(numVariants==3) {
+			ConfiguredModel variant1 = new ConfiguredModel(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_1", lotrExtendedLoc(location+"_1")));
+			ConfiguredModel variant2 = new ConfiguredModel(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_2", lotrExtendedLoc(location+"_2")));
+			ConfiguredModel variant3 = new ConfiguredModel(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_3", lotrExtendedLoc(location+"_3")));
 			getVariantBuilder(block).partialState().addModels(variant1).addModels(variant2).addModels(variant3);
 			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_1", lotrExtendedLoc(location+"_1")));
 			return;

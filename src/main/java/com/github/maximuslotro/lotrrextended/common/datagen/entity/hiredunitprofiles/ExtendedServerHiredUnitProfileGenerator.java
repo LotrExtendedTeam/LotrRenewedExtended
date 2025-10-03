@@ -243,7 +243,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.DWARF);
 
-		make(LOTREntities.DWARF_WARRIOR.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(40, false, 250)
+		make(LOTREntities.DWARF_WARRIOR.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(45, false, 250)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.DWARVEN_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.DWARVEN_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.DWARVEN_LEGGINGS.get()), 1)
@@ -265,6 +265,15 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.DWARF_ARCHER);
-	}
 
+		make(ExtendedEntities.BLUE_DWARVEN_AXE_THROWER.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(75, false, 300)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.DWARVEN_HELMET.get()), 1)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.DWARVEN_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.DWARVEN_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.DWARVEN_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.DWARVEN_DAGGER.get()), 1)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.BLUE_DWARF_AXE_THROWER);
+	}
 }

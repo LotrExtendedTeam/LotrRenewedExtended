@@ -72,7 +72,7 @@ public class AdvancementsProviderShire extends ExtendedBaseAdvancementType{
 				addAlignmentTrigger(make(), FactionPointers.HOBBITS, 3000).parent(hobbit_2000));
 
 		Advancement hobbit_farmer_trade = build(false, data(ExtendedItems.SILVER_COIN_ONE.get(), "hobbit_farmer_trade", FrameType.TASK)
-				.setTitle("Farmer Maggot's cousin").setDescription("Trade with a Hobbit Farmer."),
+				.setTitle("Farmer Maggot's Cousin").setDescription("Trade with a Hobbit Farmer."),
 				addTradeEntityTrigger(make(), ExtendedEntities.HOBBIT_FARMER.get()).parent(shire));
 
 		Advancement hobbit_farmer_potato = build(true, data(Items.POTATO, "boil_em", FrameType.GOAL)

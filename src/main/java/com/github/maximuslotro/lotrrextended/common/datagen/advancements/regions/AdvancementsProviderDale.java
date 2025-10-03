@@ -58,7 +58,7 @@ public class AdvancementsProviderDale extends ExtendedBaseAdvancementType{
 			addCraftingTrigger(make(), LOTRBlocks.DALE_CRAFTING_TABLE.get()).parent(dale));
 
 		Advancement dale_armor = build(true, data(LOTRItems.DALE_CHESTPLATE.get(), "dale_armor", FrameType.TASK)
-			.setTitle("For the North!").setDescription("Equip a full suit of Dalish armour."),
+			.setTitle("For the North!").setDescription("Equip a full suit of Dalish armor."),
 			addArmorTrigger(make(), "dale", LOTRItems.DALE_HELMET.get(), LOTRItems.DALE_CHESTPLATE.get(),
 					LOTRItems.DALE_LEGGINGS.get(), LOTRItems.DALE_BOOTS.get()).parent(dale));
 	}

@@ -6,8 +6,8 @@ import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
+import com.github.maximuslotro.lotrrextended.common.loot.conditions.ExtendedRemoveUnitCoinDrops;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedSetWargFurType;
-import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedRemoveUnitCoinDrops;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
@@ -359,9 +359,12 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT, dwarfBlueMountians, mugs, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_MINER, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_SMITH, dwarfBlueMountians, foodItems);
+		makeEntity(ExtendedEntities.BLUE_DWARVEN_BUTCHER, dwarfBlueMountians, foodItems);
+		makeEntity(ExtendedEntities.BLUE_DWARVEN_STONEMASON, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_BARTENDER, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_COMMANDER, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.BANDIT, coinsBandit, manBones, pouch);
+		makeEntity(ExtendedEntities.BLUE_DWARVEN_AXE_THROWER, dwarfBlueMountians);
 		makeEntity(ExtendedEntities.GUNDABAD_CAMP_TRADER, orcGundabad);
 		makeEntity(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN, orcGundabad);
 		makeEntity(ExtendedEntities.DUCK, makeQuickyBaseCommon("duck", LootTable.lootTable()
@@ -370,6 +373,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	    				.add(ItemLootEntry.lootTableItem(ExtendedItems.RAW_DUCK.get())
 	    						.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
 	    						.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))));
+		add(ExtendedEntities.HEDGEHOG.get(), LootTable.lootTable());
 		makeEntity(ExtendedEntities.GUNDABAD_URUK, orcGundabadUruk, gundabadUrukEquipment);
 		makeEntity(ExtendedEntities.GUNDABAD_URUK_ARCHER, orcGundabadUruk, gundabadUrukArcherEquipment, arrows);
 		add(ExtendedEntities.BARROW_WIGHT.get(), LootTable.lootTable()
@@ -456,6 +460,11 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 			.withPool(LootPool.lootPool()
 				.setRolls(RandomValueRange.between(0, 1))
 				.add(EItemLootEntry.lootItem(Items.FEATHER).setWeight(1).apply(SetCount.setCount(RandomValueRange.between(1, 2))))));
+		add(ExtendedEntities.HORSE_BOAR.get(), LootTable.lootTable()
+			.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+				.add(EItemLootEntry.lootItem(Items.PORKCHOP).setWeight(1)
+					.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
+					.apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
 	}
 
 	public ResourceLocation makeQuickyBaseCommon(String name, Builder builder) {

@@ -348,6 +348,10 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> BRANDING_IRON;
 
+	public static RegistryObject<Item> LEATHER_BOAR_ARMOR;
+	public static RegistryObject<Item> DWARVEN_BOAR_ARMOR;
+	public static RegistryObject<Item> BLUE_DWARVEN_BOAR_ARMOR;
+
 	public static RegistryObject<Item> RASPBERRY_HEDGE;
 	public static RegistryObject<Item> BLUEBERRY_HEDGE;
 	public static RegistryObject<Item> BLACKBERRY_HEDGE;
@@ -561,6 +565,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ORC_STEEL_DOOR;
 	public static RegistryObject<Item> ORC_STEEL_TRAPDOOR;
 	public static RegistryObject<Item> ORC_CHAIN;
+	public static RegistryObject<Item> HIGH_ELVEN_CHAIN;
 
 	public static RegistryObject<Item> DRYSTONE_SLAB;
 	public static RegistryObject<Item> DRYSTONE_STAIRS;
@@ -615,7 +620,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> DUNEDAIN_SHIELD;
 	public static RegistryObject<Item> BREE_SHIELD;
 	public static RegistryObject<Item> BLUE_DWARVEN_SHIELD;
-	
+	public static RegistryObject<Item> RIVENDELL_SHIELD;
+
 	public static RegistryObject<Item> BOWSTRING;
 	public static RegistryObject<Item> GUNDABAD_URUK_BOW;
 	public static RegistryObject<Item> RANGER_BOW;
@@ -680,4 +686,6 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> CRACKED_STONE_PILLAR;
 	public static RegistryObject<Item> CRACKED_STONE_PILLAR_SLAB;
+	
+	public static RegistryObject<Item> MODIFIER_SCROLL;
 }

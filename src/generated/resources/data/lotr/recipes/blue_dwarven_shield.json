@@ -1,6 +1,6 @@
 {
   "type": "lotr:faction_shaped",
-  "table": "lotr:ranger",
+  "table": "lotr:blue_mountains",
   "pattern": [
     "PIP",
     "PPP",

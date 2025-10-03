@@ -1,17 +1,21 @@
 {
-  "type": "lotr:faction_shapeless",
+  "type": "lotr:faction_shaped",
   "table": "lotr:hobbit",
-  "ingredients": [
-    {
+  "pattern": [
+    "EW",
+    "M "
+  ],
+  "key": {
+    "E": {
       "item": "minecraft:egg"
     },
-    {
+    "M": {
       "item": "minecraft:milk_bucket"
     },
-    {
+    "W": {
       "item": "minecraft:wheat"
     }
-  ],
+  },
   "result": {
     "item": "lotr:hobbit_pancake"
   }

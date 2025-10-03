@@ -1,9 +1,11 @@
 package com.github.maximuslotro.lotrextended.mixins.lotr.common.inv;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 
@@ -24,6 +26,14 @@ import net.minecraft.item.ItemStack;
  */
 @Mixin(ForgeResultSlot.class)
 public abstract class MixinForgeResultSlot extends Slot {
+
+	/**
+	 * Get the internal player variable in this class
+	 */
+	@Shadow(remap = false)
+	@Final
+	private PlayerEntity player;
+
 	/**
      * Constructor required for Mixins that extend a superclass with non-default constructors.
      * This constructor is only used at compile-time and is stripped at runtime.
@@ -40,13 +50,12 @@ public abstract class MixinForgeResultSlot extends Slot {
      * Injected behavior that triggers a custom advancement when the player takes the output item from the forge.
      * This only applies if the container is an instance of {@link AbstractAlloyForgeTileEntity} and the world is server-side.
      *
-     * @param player the player taking the item
      * @param stack  the item stack being taken
      * @param ci     callback info for the returnable {@link Block}, used to preserve method behavior
      * @Inject (method = "onTake", at = @At("HEAD"))
      */
-	@Inject(method = "onTake", at = @At("HEAD"))
-	public void onTakeExtended(PlayerEntity player, ItemStack stack, CallbackInfoReturnable<ItemStack> ci) {
+	@Inject(method = "checkTakeAchievements", at = @At("HEAD"))
+	public void checkTakeAchievementsExtended(ItemStack stack, CallbackInfo ci) {
 		if (!player.level.isClientSide && container instanceof AbstractAlloyForgeTileEntity) {
 			ExtendedCriteriaTriggers.FACTION_CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, stack, ((AbstractAlloyForgeTileEntity) container).getBlockState().getBlock());
 		}

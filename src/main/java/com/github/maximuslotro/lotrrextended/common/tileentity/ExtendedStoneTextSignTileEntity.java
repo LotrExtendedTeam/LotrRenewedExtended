@@ -20,7 +20,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ExtendedStoneTextSignTileEntity extends TileEntity {
-	private final ITextComponent[] messages = new ITextComponent[]{StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY};
+	private ITextComponent[] messages = new ITextComponent[]{StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY};
 	private boolean isEditable = true;
 	private PlayerEntity playerWhoMayEdit;
 	private final IReorderingProcessor[] renderMessages = new IReorderingProcessor[8];
@@ -71,9 +71,12 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 
 	}
 
-	@OnlyIn(Dist.CLIENT)
 	public ITextComponent getMessage(int p_212366_1_) {
 		return this.messages[p_212366_1_];
+	}
+
+	public ITextComponent[] getMessages() {
+		return this.messages;
 	}
 
 	public void setMessage(int pLine, ITextComponent pSignText) {
@@ -81,8 +84,11 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 		this.renderMessages[pLine] = null;
 	}
 
+	public void setMessages(ITextComponent[] p_212366_1_) {
+		this.messages = p_212366_1_;
+	}
+
 	@Nullable
-	@OnlyIn(Dist.CLIENT)
 	public IReorderingProcessor getRenderMessage(int p_242686_1_, Function<ITextComponent, IReorderingProcessor> p_242686_2_) {
 		if (this.renderMessages[p_242686_1_] == null && this.messages[p_242686_1_] != null) {
 			this.renderMessages[p_242686_1_] = p_242686_2_.apply(this.messages[p_242686_1_]);

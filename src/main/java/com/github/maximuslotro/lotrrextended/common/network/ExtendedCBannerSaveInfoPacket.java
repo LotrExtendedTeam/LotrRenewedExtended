@@ -11,8 +11,8 @@ import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.E
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileFellowship;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfilePlayer;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.enums.BannerPermission;
-import com.github.maximuslotro.lotrrextended.common.enums.BannerProtectionType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerProtectionOwners;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity.ProtectionEntry;
 
@@ -23,7 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class ExtendedCBannerSaveInfoPacket {
-	public List<BannerPermission> defaultPerms;
+	public List<ExtendedBannerPermissions> defaultPerms;
 	public float alignmentLevel;
 	public List<ProtectionEntry> whitelist;
 	public boolean canSelfProtect;
@@ -32,7 +32,7 @@ public class ExtendedCBannerSaveInfoPacket {
 
 	public ExtendedCBannerSaveInfoPacket() {}
 
-	public ExtendedCBannerSaveInfoPacket(List<BannerPermission> defaultPerms, float alignmentLevel, List<ProtectionEntry> whitelist, boolean canSelfProtect, int protectionType, BlockPos configurePos) {
+	public ExtendedCBannerSaveInfoPacket(List<ExtendedBannerPermissions> defaultPerms, float alignmentLevel, List<ProtectionEntry> whitelist, boolean canSelfProtect, int protectionType, BlockPos configurePos) {
 		this.defaultPerms = defaultPerms;
 		this.alignmentLevel = alignmentLevel;
 		this.whitelist = whitelist;
@@ -43,14 +43,14 @@ public class ExtendedCBannerSaveInfoPacket {
 
 	public static void encode(ExtendedCBannerSaveInfoPacket packet, PacketBuffer buf) {
 		buf.writeInt(packet.defaultPerms.size());
-		for(BannerPermission perm : packet.defaultPerms) {
+		for(ExtendedBannerPermissions perm : packet.defaultPerms) {
 			buf.writeByte((byte) perm.ordinal());
 		}
 		buf.writeFloat(packet.alignmentLevel);
 		buf.writeInt(packet.whitelist.size());
 		for(ProtectionEntry entry : packet.whitelist) {
 			buf.writeInt(entry.getEntryPerms().size());
-			for(BannerPermission perm : entry.getEntryPerms()) {
+			for(ExtendedBannerPermissions perm : entry.getEntryPerms()) {
 				buf.writeByte((byte) perm.ordinal());
 			}
 			buf.writeUUID(entry.getProfile().getId());
@@ -66,16 +66,16 @@ public class ExtendedCBannerSaveInfoPacket {
 		int defaultPermsSize = buf.readInt();
 		packet.defaultPerms = new ArrayList<>();
 		for(int i = 0; i<defaultPermsSize; i++) {
-			packet.defaultPerms.add(BannerPermission.values[buf.readByte()]);
+			packet.defaultPerms.add(ExtendedBannerPermissions.values[buf.readByte()]);
 		}
 		packet.alignmentLevel = buf.readFloat();
 		packet.whitelist = new ArrayList<>();
 		int whitelistSize = buf.readInt();
 		for(int i = 0; i<whitelistSize; i++) {
 			int permListSize = buf.readInt();
-			List<BannerPermission> profilePerms = new ArrayList<>();
+			List<ExtendedBannerPermissions> profilePerms = new ArrayList<>();
 			for(int j = 0; j<permListSize; j++) {
-				profilePerms.add(BannerPermission.values[buf.readByte()]);
+				profilePerms.add(ExtendedBannerPermissions.values[buf.readByte()]);
 			}
 			UUID id = buf.readUUID();
 			String name = buf.readUtf(32767);
@@ -100,12 +100,12 @@ public class ExtendedCBannerSaveInfoPacket {
 		TileEntity tileEntity = player.level.getBlockEntity(pPacket.configurePos);
 	    if (tileEntity instanceof ExtendedMEBannerTileEntity && ExtendedServerConfig.enableBannerProtection.get()) {
 	    	ExtendedMEBannerTileEntity bannerTE = (ExtendedMEBannerTileEntity)tileEntity;
-	    	if(ExtendedBannerProtectionManager.getProtectionStatus(player.level, pPacket.configurePos, new SingleProtectionInstance.PlayerProtection(player, BannerPermission.BANNER), true, "ExtendedCBannerSaveInfoPacket").isAllowed()) {
+	    	if(ExtendedBannerProtectionManager.getProtectionStatus(player.level, pPacket.configurePos, new SingleProtectionInstance.PlayerProtection(player, ExtendedBannerPermissions.BANNER), true, "ExtendedCBannerSaveInfoPacket").isAllowed()) {
 	    		bannerTE.setDefaultPerms(pPacket.defaultPerms);
 	    		bannerTE.setAlignmentLevel(pPacket.alignmentLevel);
 	    		bannerTE.setProtectionWhitelist(pPacket.whitelist);
 	    		bannerTE.setCanProtectSelf(pPacket.canSelfProtect);
-	    		bannerTE.setProtectionType(BannerProtectionType.getByID(pPacket.protectionType));
+	    		bannerTE.setProtectionType(ExtendedBannerProtectionOwners.getByID(pPacket.protectionType));
 	    		ExtendedSBannerOpenChangedScreenPacket returnPacket = bannerTE.verifyInfo(true, player);
 	    		if(returnPacket!=null) {
 	    			ExtendedPacketHandler.sendToClient(returnPacket, player);

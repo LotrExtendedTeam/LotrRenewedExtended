@@ -1,12 +1,12 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
-import com.github.maximuslotro.lotrrextended.common.enums.CoinType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCoinType;
 
 import net.minecraft.item.Item;
 
 public class ExtendedSilverCoin extends Item {
-	public final CoinType type;
-	public ExtendedSilverCoin(Properties p_i48487_1_, CoinType type) {
+	public final ExtendedCoinType type;
+	public ExtendedSilverCoin(Properties p_i48487_1_, ExtendedCoinType type) {
 		super(p_i48487_1_);
 		this.type = type;
 	}
