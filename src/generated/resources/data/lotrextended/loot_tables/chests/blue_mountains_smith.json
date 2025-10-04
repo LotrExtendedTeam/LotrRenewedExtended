@@ -246,6 +246,9 @@
                 "min": 0.5,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blacksmith_hammer"
@@ -286,6 +289,9 @@
                 "min": 0.35,
                 "max": 0.8
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_helmet"
@@ -304,6 +310,9 @@
                 "min": 0.35,
                 "max": 0.8
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_chestplate"
@@ -322,6 +331,9 @@
                 "min": 0.35,
                 "max": 0.8
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_leggings"
@@ -340,6 +352,9 @@
                 "min": 0.35,
                 "max": 0.8
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_boots"
@@ -358,6 +373,9 @@
                 "min": 0.25,
                 "max": 0.6
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:chainmail_helmet"
@@ -376,6 +394,9 @@
                 "min": 0.25,
                 "max": 0.6
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:chainmail_chestplate"
@@ -394,6 +415,9 @@
                 "min": 0.25,
                 "max": 0.6
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:chainmail_leggings"
@@ -412,6 +436,9 @@
                 "min": 0.25,
                 "max": 0.6
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:chainmail_boots"
@@ -552,6 +579,12 @@
             }
           ],
           "name": "lotr:large_pouch"
+        }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder",
+          "chance": 40
         }
       ]
     },

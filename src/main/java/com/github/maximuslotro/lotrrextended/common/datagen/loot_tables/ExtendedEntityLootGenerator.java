@@ -6,8 +6,8 @@ import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
+import com.github.maximuslotro.lotrrextended.common.loot.conditions.ExtendedRemoveUnitCoinDrops;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedSetWargFurType;
-import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedRemoveUnitCoinDrops;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;

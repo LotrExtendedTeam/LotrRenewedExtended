@@ -145,7 +145,7 @@ public abstract class MixinPaneBlock extends FourWayBlock {
 	@Unique
 	private static boolean connects(BlockState pFacingState, Direction pFacing) {
 		if (pFacingState.getBlock() instanceof VerticalOnlySlabBlock || pFacingState.getBlock() instanceof AxialSlabBlock) {
-			Axis axis = pFacingState.getValue(pFacingState.getBlock() instanceof AxialSlabBlock ? LOTRBlockStates.SLAB_AXIS : LOTRBlockStates.VERTICAL_ONLY_SLAB_AXIS);
+			Axis axis = pFacingState.getValue(pFacingState.getBlock() instanceof VerticalOnlySlabBlock ? LOTRBlockStates.VERTICAL_ONLY_SLAB_AXIS : LOTRBlockStates.SLAB_AXIS);
 			SlabType type = pFacingState.getValue(BlockStateProperties.SLAB_TYPE);//Do we really need this check, double already connects?
 
 			// Only connect when slab is vertical (X or Z axis) and not DOUBLE

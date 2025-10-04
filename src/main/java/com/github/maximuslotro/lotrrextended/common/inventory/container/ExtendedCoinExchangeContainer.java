@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeSlots.ExtendedInputCoinSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeSlots.ExtendedOutputCoinSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeSlots.ExtendedVisualCoinSlot;
@@ -44,7 +44,7 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 	public final ExtendedTraderEntity trader;
 
 	public ExtendedCoinExchangeContainer(int containerId, PlayerInventory inventory, PacketBuffer extraData) {
-		super(ExtendedContainers.COIN_TRADING.get(), containerId);
+		super(ExtendedContainerTypes.COIN_TRADING.get(), containerId);
 
 		this.trader = (ExtendedTraderEntity) inventory.player.level.getEntity(extraData.readVarInt());
 

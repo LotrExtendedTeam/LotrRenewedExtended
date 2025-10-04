@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.item;
 
 import com.github.maximuslotro.lotrrextended.common.dispenser.ExtendedDispenserThrowingAxe;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedThrowableAxeEntity;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import lotr.common.init.LOTRItemGroups;
 import lotr.common.init.LOTRMaterial;
@@ -106,9 +107,9 @@ public class ExtendedThrowableAxeItem extends TieredItem {
 	}
 
 	public static void applyStandardEnchantmentsFromBow(ItemStack stack, AbstractArrowEntity projectile) {
-		int power = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, stack);
+		float power = ExtendedModifierUtils.getItemEnchantmentLevelFloat(Enchantments.POWER_ARROWS, stack);
 		if (power > 0) {
-			projectile.setBaseDamage(projectile.getBaseDamage() + (double)power * 0.5 + 0.5);
+			projectile.setBaseDamage(projectile.getBaseDamage() + power * 0.5 + 0.5);
 		}
 
 		int punch = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack);

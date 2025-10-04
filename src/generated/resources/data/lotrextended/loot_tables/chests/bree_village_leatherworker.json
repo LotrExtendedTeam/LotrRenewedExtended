@@ -142,6 +142,9 @@
                 "min": 0.35,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:wooden_dagger"
@@ -160,6 +163,9 @@
                 "min": 0.3,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:stone_dagger"
@@ -178,6 +184,9 @@
                 "min": 0.25,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_dagger"
@@ -196,6 +205,9 @@
                 "min": 0.2,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:iron_dagger"
@@ -225,6 +237,9 @@
                 "min": 0.35,
                 "max": 0.8
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:leather_helmet"
@@ -243,6 +258,9 @@
                 "min": 0.35,
                 "max": 0.8
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:leather_chestplate"
@@ -261,6 +279,9 @@
                 "min": 0.35,
                 "max": 0.8
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:leather_leggings"
@@ -279,6 +300,9 @@
                 "min": 0.35,
                 "max": 0.8
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:leather_boots"
@@ -340,6 +364,11 @@
             }
           ],
           "name": "lotr:large_pouch"
+        }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder"
         }
       ]
     }

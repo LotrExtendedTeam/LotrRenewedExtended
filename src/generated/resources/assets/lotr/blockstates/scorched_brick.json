@@ -1,7 +1,15 @@
 {
   "variants": {
-    "": {
-      "model": "lotrextended:block/scorched_brick"
-    }
+    "": [
+      {
+        "model": "lotrextended:block/scorched_brick_1"
+      },
+      {
+        "model": "lotrextended:block/scorched_brick_2"
+      },
+      {
+        "model": "lotrextended:block/scorched_brick_3"
+      }
+    ]
   }
 }

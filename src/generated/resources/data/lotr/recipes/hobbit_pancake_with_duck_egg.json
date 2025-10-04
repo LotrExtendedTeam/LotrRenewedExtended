@@ -1,0 +1,23 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:hobbit",
+  "pattern": [
+    "EW",
+    "M "
+  ],
+  "key": {
+    "E": {
+      "item": "lotr:duck_egg"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "result": {
+    "item": "lotr:hobbit_pancake",
+    "count": 2
+  }
+}

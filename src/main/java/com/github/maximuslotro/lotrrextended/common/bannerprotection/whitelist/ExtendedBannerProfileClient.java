@@ -18,14 +18,14 @@ public class ExtendedBannerProfileClient extends ExtendedBannerProfileBase {
 
 	/**
 	 * Constructs a new client banner profile with the specified display name.
-	 * Either the name or the ID must be provided (ID is fixed as NIL_UUID here).
+	 * Requires a name, (ID is fixed as NIL_UUID here in the client profile).
 	 *
-	 * @param name the display name of the profile; may be {@code null} or empty, but ideally not both ID and name empty
-	 * @throws IllegalArgumentException if both ID and name are null or empty
+	 * @param name the display name of the profile; may be {@code null}, but ideally the name should not be empty
+	 * @throws IllegalArgumentException if the name is null
 	 */
 	public ExtendedBannerProfileClient(final String name) {
-		if ((name == null || name.isEmpty())) {
-			throw new IllegalArgumentException("Both ID and name are either null or empty");
+		if ((name == null)) {
+			throw new IllegalArgumentException("Name is null");
 		}
 		this.name = name;
 	}

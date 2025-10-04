@@ -29,16 +29,16 @@
       "uvlock": true
     },
     "axis=x,type=double": {
-      "model": "lotrextended:block/scorched_brick",
+      "model": "lotrextended:block/scorched_brick_1",
       "x": 90,
       "y": 90,
       "uvlock": true
     },
     "axis=y,type=double": {
-      "model": "lotrextended:block/scorched_brick"
+      "model": "lotrextended:block/scorched_brick_1"
     },
     "axis=z,type=double": {
-      "model": "lotrextended:block/scorched_brick",
+      "model": "lotrextended:block/scorched_brick_1",
       "x": 270,
       "uvlock": true
     }

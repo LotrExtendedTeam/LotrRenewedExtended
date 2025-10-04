@@ -97,6 +97,11 @@
           ],
           "name": "minecraft:paper"
         }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder"
+        }
       ]
     }
   ]

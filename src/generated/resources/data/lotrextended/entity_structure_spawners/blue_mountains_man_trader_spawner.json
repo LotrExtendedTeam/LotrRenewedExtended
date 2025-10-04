@@ -6,7 +6,7 @@
   "homeRadius": 5,
   "persistenceRequired": false,
   "entitySpawnTickRate": 18000,
-  "spawnCap": -1,
+  "spawnCap": 0,
   "pools": [
     {
       "weight": 100,

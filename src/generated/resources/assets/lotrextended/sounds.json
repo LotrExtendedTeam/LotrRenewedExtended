@@ -45,7 +45,7 @@
     ]
   },
   "entity.duck.step": {
-    "subtitle": "subtitles.lotrextended.entity.duck.step",
+    "subtitle": "subtitles.block.generic.footsteps",
     "sounds": [
       "lotrextended:entity/duck/step1",
       "lotrextended:entity/duck/step2",

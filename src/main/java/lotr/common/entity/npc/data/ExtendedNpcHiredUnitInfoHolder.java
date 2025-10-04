@@ -16,6 +16,7 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHir
 import com.github.maximuslotro.lotrrextended.common.inventory.UnitInventory;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcUnitInfoPacket;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import lotr.common.entity.npc.BreeGuardEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
@@ -651,7 +652,12 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 				NonNullList<ItemStack> itemsStacks = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
 				ItemStackHelper.loadAllItems(unitInventory, itemsStacks);
 				for (int i = 0; i < INVENTORY_SIZE; i++) {
-					internalUnitInventory.setItem(i, itemsStacks.get(i));
+					ItemStack stack = itemsStacks.get(i);
+					// Ensure older stacks have modifiers added (even player given items should have modifiers added)
+					if(stack.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(stack)) {
+						ExtendedModifierUtils.generateItemModifiersTagged(thisEntity.random, stack, false, false);
+					}
+					internalUnitInventory.setItem(i, stack);
 				}
 			}else {
 				ExtendedLog.error("Tried loading a Hired Unit Inventory with a malformed/unknown version number, dumping nbt to logs and loading default base inventory!");

@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rivendell",
+  "pattern": [
+    "PIP",
+    "PPP",
+    " P "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/elven_steel"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "lotr:rivendell_shield"
+  }
+}
