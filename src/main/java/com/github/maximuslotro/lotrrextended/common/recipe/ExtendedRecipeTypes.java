@@ -1,8 +1,6 @@
-package com.github.maximuslotro.lotrrextended.common.init;
+package com.github.maximuslotro.lotrrextended.common.recipe;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.recipe.ExtendeStoneGrinderRecipe;
-import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedISmithingRecipe;
 
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;

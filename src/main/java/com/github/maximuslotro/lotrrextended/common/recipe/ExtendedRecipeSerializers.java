@@ -1,12 +1,6 @@
-package com.github.maximuslotro.lotrrextended.common.init;
+package com.github.maximuslotro.lotrrextended.common.recipe;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.recipe.ExtendeStoneGrinderRecipe;
-import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedCoinSmithingHundredRecipe;
-import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedCoinSmithingOneRecipe;
-import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedCoinSmithingTenRecipe;
-import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedGemSmithingRecipe;
-import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedSmithingRecipe;
 
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.SpecialRecipeSerializer;
@@ -23,6 +17,8 @@ public class ExtendedRecipeSerializers {
 	public static final RegistryObject<SpecialRecipeSerializer<ExtendedCoinSmithingOneRecipe>> EXTENDED_SMITHING_COIN_ONE = RECIPE_SERIALIZERS.register("crafting_special_smithing_coin_one", () -> new SpecialRecipeSerializer<>(ExtendedCoinSmithingOneRecipe::new));
 	public static final RegistryObject<SpecialRecipeSerializer<ExtendedCoinSmithingTenRecipe>> EXTENDED_SMITHING_COIN_TEN = RECIPE_SERIALIZERS.register("crafting_special_smithing_coin_ten", () -> new SpecialRecipeSerializer<>(ExtendedCoinSmithingTenRecipe::new));
 	public static final RegistryObject<SpecialRecipeSerializer<ExtendedCoinSmithingHundredRecipe>> EXTENDED_SMITHING_COIN_HUNDRED = RECIPE_SERIALIZERS.register("crafting_special_smithing_coin_hundred", () -> new SpecialRecipeSerializer<>(ExtendedCoinSmithingHundredRecipe::new));
+	public static final RegistryObject<ExtendedLeatherHatRecipe.Serializer> EXTENDED_LEATHER_HAT = RECIPE_SERIALIZERS.register("crafting_special_leather_hat", ExtendedLeatherHatRecipe.Serializer::new);
+	public static final RegistryObject<SpecialRecipeSerializer<ExtendedTippedArrowRecipe>> EXTENDED_TIPPED_ARROW = RECIPE_SERIALIZERS.register("crafting_special_tippedarrow", ()-> new SpecialRecipeSerializer<>(ExtendedTippedArrowRecipe::new));
 
 	public static void register(IEventBus modBus) {
 		RECIPE_SERIALIZERS.register(modBus);

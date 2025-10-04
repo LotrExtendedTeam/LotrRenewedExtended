@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.recipe;
 
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipeSerializers;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
 
 import net.minecraft.inventory.IInventory;

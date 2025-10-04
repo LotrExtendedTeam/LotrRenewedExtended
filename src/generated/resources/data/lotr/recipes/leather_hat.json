@@ -1,4 +1,4 @@
 {
   "type": "lotrextended:crafting_special_leather_hat",
-  "table_type": "lotr:any_faction"
+  "recipe_type": "minecraft:crafting"
 }

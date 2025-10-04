@@ -6,8 +6,8 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipeTypes;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedISmithingRecipe;
+import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeTypes;
 
 import io.netty.buffer.Unpooled;
 import net.minecraft.block.BlockState;

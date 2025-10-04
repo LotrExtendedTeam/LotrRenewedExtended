@@ -1,159 +1,189 @@
 package com.github.maximuslotro.lotrrextended.common.recipe;
 
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedLeatherHatItem;
+import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
+
 import lotr.common.fac.Faction;
 import lotr.common.inv.FactionCraftingInventory;
-import lotr.common.inv.PouchInventory;
-import lotr.common.item.PouchItem;
-import lotr.common.recipe.LOTRRecipes;
-import lotr.common.recipe.PouchRecipe;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.DyeItem;
+import net.minecraft.item.IDyeableArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.ArmorDyeRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.SpecialRecipe;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Based off of {@link ArmorDyeRecipe}
+ * */
 public class ExtendedLeatherHatRecipe extends SpecialRecipe {
-    private final IRecipeType<?> recipeType;
+	private final IRecipeType<?> recipeType;
 
-    public ExtendedLeatherHatRecipe(ResourceLocation id, IRecipeType<?> recipeType) {
-        super(id);
-        this.recipeType = recipeType;
-    }
+	public ExtendedLeatherHatRecipe(ResourceLocation id, IRecipeType<?> recipeType) {
+		super(id);
+		this.recipeType = recipeType;
+	}
 
-    public IRecipeType<?> getType() {
-        return this.recipeType;
-    }
+	@Override
+	public IRecipeSerializer<?> getSerializer() {
+		return ExtendedRecipeSerializers.EXTENDED_LEATHER_HAT.get();
+	}
 
-    public boolean matches(CraftingInventory inv, World world) {
-        System.out.println("matches() called");
-        return !this.getCraftingResult(inv).isEmpty();
-    }
+	@Override
+	public IRecipeType<?> getType() {
+	      return recipeType;
+	   }
 
-    @Override
-    public ItemStack assemble(CraftingInventory pInv) {
-        // TODO: Not sure if this is an issue yet but I can't even get it to detect the recipe
-        return null;
-    }
+	@Override
+	public boolean matches(CraftingInventory pInv, World pLevel) {
+		ItemStack itemstack = ItemStack.EMPTY;
+		List<ItemStack> list = Lists.newArrayList();
 
-    public ItemStack getCraftingResult(CraftingInventory inv) {
-        System.out.println("getCraftingResult called");
-        Optional<Faction> tableColoringFaction = inv instanceof FactionCraftingInventory ? ((FactionCraftingInventory)inv).getPouchColoringFaction() : Optional.empty();
-        List<ItemStack> hats = new ArrayList<>();
-        int[] rgb = new int[3];
-        int brightestIngredientColor = 0;
-        int coloredItems = 0;
-        boolean anyDye = false;
-        boolean shouldApplyColorToResult = false;
+		for(int i = 0; i < pInv.getContainerSize(); ++i) {
+			ItemStack itemstack1 = pInv.getItem(i);
+			if (!itemstack1.isEmpty()) {
+				if (itemstack1.getItem() instanceof ExtendedLeatherHatItem) {
+					if (!itemstack.isEmpty()) {
+						// No more than one dyeable item
+						return false;
+					}
+					itemstack = itemstack1;
+				} else {
+					if (!(itemstack1.getItem() instanceof DyeItem)) {
+						return false;
+					}
 
-        // TODO: Verify the dying part on crafting tables work
-        for(int i = 0; i < inv.getContainerSize(); ++i) {
-            ItemStack ingredient = inv.getItem(i);
-            if (!ingredient.isEmpty()) {
-                Item ingredientItem = ingredient.getItem();
-                if (ingredientItem instanceof ExtendedLeatherHatItem) {
-                    hats.add(ingredient);
-                    int hatColor = ExtendedLeatherHatItem.getHatColor(ingredient);
-                    float r = (float)(hatColor >> 16 & 255) / 255.0F;
-                    float g = (float)(hatColor >> 8 & 255) / 255.0F;
-                    float b = (float)(hatColor & 255) / 255.0F;
-                    brightestIngredientColor = (int)((float)brightestIngredientColor + Math.max(r, Math.max(g, b)) * 255.0F);
-                    rgb[0] = (int)((float)rgb[0] + r * 255.0F);
-                    rgb[1] = (int)((float)rgb[1] + g * 255.0F);
-                    rgb[2] = (int)((float)rgb[2] + b * 255.0F);
-                    ++coloredItems;
-                    if (ExtendedLeatherHatItem.isHatDyed(ingredient)) {
-                        shouldApplyColorToResult = true;
-                    }
-                } else {
-                    if (!(ingredientItem instanceof DyeItem)) {
-                        return ItemStack.EMPTY;
-                    }
+					list.add(itemstack1);
+				}
+			}
+		}
+		Optional<Faction> tableFaction = pInv instanceof FactionCraftingInventory ? ((FactionCraftingInventory) pInv).getPouchColoringFaction() : Optional.empty();
+		return !itemstack.isEmpty() && (!list.isEmpty() || tableFaction.isPresent());
+	}
 
-                    float[] dyeColors = ((DyeItem)ingredientItem).getDyeColor().getTextureDiffuseColors();
-                    int r = (int)(dyeColors[0] * 255.0F);
-                    int g = (int)(dyeColors[1] * 255.0F);
-                    int b = (int)(dyeColors[2] * 255.0F);
-                    brightestIngredientColor += Math.max(r, Math.max(g, b));
-                    rgb[0] += r;
-                    rgb[1] += g;
-                    rgb[2] += b;
-                    ++coloredItems;
-                    shouldApplyColorToResult = true;
-                    anyDye = true;
-                }
-            }
-        }
+	/**
+	 * Returns an Item that is the result of this recipe
+	 */
+	@Override
+	public ItemStack assemble(CraftingInventory pInv) {
+		List<DyeItem> pDyes = Lists.newArrayList();
+		ItemStack itemstack = ItemStack.EMPTY;
 
-        if (hats.isEmpty()) {
-            return ItemStack.EMPTY;
-        } else {
-            ItemStack hat = null;
-            if (hats.size() == 1) {
-                if (!anyDye && !tableColoringFaction.isPresent()) {
-                    return ItemStack.EMPTY;
-                }
+		for(int i = 0; i < pInv.getContainerSize(); ++i) {
+			ItemStack itemstack1 = pInv.getItem(i);
+			if (!itemstack1.isEmpty()) {
+				Item item = itemstack1.getItem();
+				if (item instanceof ExtendedLeatherHatItem) {
+					if (!itemstack.isEmpty()) {
+						return ItemStack.EMPTY;
+					}
 
-                hat = hats.get(0);
-                // TODO: I don't think this code is necessary for hats - commenting it out for now
-            }
-            // TODO: Add functionality for dying multiple hats at the same time?
+					itemstack = itemstack1.copy();
+				} else {
+					if (!(item instanceof DyeItem)) {
+						return ItemStack.EMPTY;
+					}
 
-            if (tableColoringFaction.isPresent() && !anyDye && hat != null) {
-                ExtendedLeatherHatItem.setHatDyedByFaction(hat, (Faction)tableColoringFaction.get());
-            } else if (shouldApplyColorToResult && coloredItems > 0 && hat != null) {
-                int r = rgb[0] / coloredItems;
-                int g = rgb[1] / coloredItems;
-                int b = rgb[2] / coloredItems;
-                float brightestIngredientColorPerItem = (float)brightestIngredientColor / (float)coloredItems;
-                float brightestAvgIngredientRgb = (float)Math.max(r, Math.max(g, b));
-                r = (int)((float)r * brightestIngredientColorPerItem / brightestAvgIngredientRgb);
-                g = (int)((float)g * brightestIngredientColorPerItem / brightestAvgIngredientRgb);
-                b = (int)((float)b * brightestIngredientColorPerItem / brightestAvgIngredientRgb);
-                int color = (r << 16) + (g << 8) + b;
-                ExtendedLeatherHatItem.setHatDyedColor(hat, color);
-            }
+					pDyes.add((DyeItem)item);
+				}
+			}
+		}
+		Optional<Faction> tableFaction = pInv instanceof FactionCraftingInventory ? ((FactionCraftingInventory) pInv).getPouchColoringFaction() : Optional.empty();
+		if(!itemstack.isEmpty() && (!pDyes.isEmpty() || tableFaction.isPresent())) {
+			ItemStack resultItem = ItemStack.EMPTY;
+			int[] aint = new int[3];
+			int i = 0;
+			int colorsApplied = 0;
+			IDyeableArmorItem dyeableItem = null;
+			Item item = itemstack.getItem();
+			if (item instanceof ExtendedLeatherHatItem) {
+				dyeableItem = (IDyeableArmorItem)item;
+				resultItem = itemstack.copy();
+				resultItem.setCount(1);
+				if (dyeableItem.hasCustomColor(itemstack)) {
+					int k = dyeableItem.getColor(resultItem);
+					float f = (float)(k >> 16 & 255) / 255.0F;
+					float f1 = (float)(k >> 8 & 255) / 255.0F;
+					float f2 = (float)(k & 255) / 255.0F;
+					i = (int)((float)i + Math.max(f, Math.max(f1, f2)) * 255.0F);
+					aint[0] = (int)((float)aint[0] + f * 255.0F);
+					aint[1] = (int)((float)aint[1] + f1 * 255.0F);
+					aint[2] = (int)((float)aint[2] + f2 * 255.0F);
+					++colorsApplied;
+				}
 
-            return hat;
-        }
-    }
+				for(DyeItem dyeitem : pDyes) {
+					float[] afloat = dyeitem.getDyeColor().getTextureDiffuseColors();
+					int i2 = (int)(afloat[0] * 255.0F);
+					int l = (int)(afloat[1] * 255.0F);
+					int i1 = (int)(afloat[2] * 255.0F);
+					i += Math.max(i2, Math.max(l, i1));
+					aint[0] += i2;
+					aint[1] += l;
+					aint[2] += i1;
+					++colorsApplied;
+				}
+			}
 
-    public boolean canCraftInDimensions(int width, int height) {
-        return width * height >= 2;
-    }
+			if (dyeableItem == null) {
+				return ItemStack.EMPTY;
+			} else if (pDyes.isEmpty() && tableFaction.isPresent()){
+				dyeableItem.setColor(resultItem, tableFaction.get().getColor());
+				return resultItem;
+			}else {
+				int r = aint[0] / colorsApplied;
+				int g = aint[1] / colorsApplied;
+				int b = aint[2] / colorsApplied;
+				float f3 = (float)i / (float)colorsApplied;
+				float f4 = (float)Math.max(r, Math.max(g, b));
+				r = (int)((float)r * f3 / f4);
+				g = (int)((float)g * f3 / f4);
+				b = (int)((float)b * f3 / f4);
+				int resultColor = (r << 8) + g;
+				resultColor = (resultColor << 8) + b;
+				dyeableItem.setColor(resultItem, resultColor);
+				return resultItem;
+			}
+		}
+		return ItemStack.EMPTY;
+	}
 
-    public IRecipeSerializer<?> getSerializer() {
-        return LOTRRecipes.CRAFTING_SPECIAL_POUCH.get();
-    }
+	@Override
+	public boolean canCraftInDimensions(int pWidth, int pHeight) {
+		return pWidth * pHeight >= 2;
+	}
 
-    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ExtendedLeatherHatRecipe> {
+	/**
+	 * Save and load recipe type to check for
+	 * */
+	public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ExtendedLeatherHatRecipe> {
+		@Override
+		public ExtendedLeatherHatRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+			IRecipeType<?> recipeType = Registry.RECIPE_TYPE.get(new ResourceLocation(JSONUtils.getAsString(json, "recipe_type", "")));
+			return new ExtendedLeatherHatRecipe(recipeId, recipeType);
+		}
 
-        @Override
-        public ExtendedLeatherHatRecipe fromJson(ResourceLocation pRecipeId, JsonObject pJson) {
-            return null;
-        }
+		@Override
+		public ExtendedLeatherHatRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+			IRecipeType<?> recipeType = Registry.RECIPE_TYPE.get(new ResourceLocation(buffer.readUtf()));
+			return new ExtendedLeatherHatRecipe(recipeId, recipeType);
+		}
 
-        @Nullable
-        @Override
-        public ExtendedLeatherHatRecipe fromNetwork(ResourceLocation pRecipeId, PacketBuffer pBuffer) {
-            return null;
-        }
-
-        @Override
-        public void toNetwork(PacketBuffer pBuffer, ExtendedLeatherHatRecipe pRecipe) {
-
-        }
-    }
+		@Override
+		public void toNetwork(PacketBuffer buffer, ExtendedLeatherHatRecipe recipe) {
+			buffer.writeUtf(Registry.RECIPE_TYPE.getKey(recipe.recipeType).toString());
+		}
+	}
 }

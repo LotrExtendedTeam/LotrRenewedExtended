@@ -6,10 +6,10 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipeTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderContainer;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendeStoneGrinderRecipe;
+import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeTypes;
 import com.google.common.collect.Lists;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
