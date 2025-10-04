@@ -51,7 +51,7 @@ public class ExtendedBanditStealHelper {
 				player.level.addFreshEntity(new ItemEntity(player.level, player.getX(), player.getY(), player.getZ(), stack));
 			}
 		}
-		player.sendMessage(new TranslationTextComponent("chat.lotrextended.bandit.stole"), Util.NIL_UUID);
+		player.sendMessage(new TranslationTextComponent("chat.lotrextended.bandit.stolen"), Util.NIL_UUID);
 		player.inventory.setChanged();
 		player.containerMenu.broadcastChanges();
 	}
