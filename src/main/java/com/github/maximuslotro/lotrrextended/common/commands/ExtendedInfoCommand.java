@@ -41,6 +41,10 @@ public class ExtendedInfoCommand
             source.sendSuccess(new TranslationTextComponent("command.lotrextended.info.your_trader_cooldown").
                     append(new StringTextComponent("" + ExtendedLevelData.serverInstance().getPlayersTraderCooldown(source.getEntity().getUUID()))), false);
         }
+        if (source.getEntity() != null) {
+            source.sendSuccess(new TranslationTextComponent("command.lotrextended.info.your_bandit_cooldown").
+                    append(new StringTextComponent("" + ExtendedLevelData.serverInstance().getPlayersBanditCooldown(source.getEntity().getUUID()))), false);
+        }
 
         // display bane data
         if (source.getEntity() instanceof PlayerEntity) {

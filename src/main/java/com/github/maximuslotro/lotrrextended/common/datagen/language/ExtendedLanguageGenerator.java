@@ -364,6 +364,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.info.bane_progress", "Bane Progress (for item in your main hand):");
 		addD("command.lotrextended.info.server_timeUntilTrader", "Server timeUntilTrader: ");
 		addD("command.lotrextended.info.your_trader_cooldown", "Your trader cooldown (seconds): ");
+		addD("command.lotrextended.info.your_bandit_cooldown", "Your Bandit Spawn Attempt Cooldown (seconds): ");
 		addD("command.lotrextended.fellowship.error", "Fellowship does not exist or you are missing permissions!");
 		addD("command.lotrextended.fellowship.error.noexists", "No fellowship by that name exists!");
 		addD("command.lotrextended.fellowship.error.exists", "Fellowship with the name [%s] already exists!");

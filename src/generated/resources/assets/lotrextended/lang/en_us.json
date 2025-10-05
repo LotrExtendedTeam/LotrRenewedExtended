@@ -1366,6 +1366,7 @@
   "command.lotrextended.info.bane_progress": "Bane Progress (for item in your main hand):",
   "command.lotrextended.info.listPatches": "Injected patches:",
   "command.lotrextended.info.server_timeUntilTrader": "Server timeUntilTrader: ",
+  "command.lotrextended.info.your_bandit_cooldown": "Your Bandit Spawn Attempt Cooldown (seconds): ",
   "command.lotrextended.info.your_trader_cooldown": "Your trader cooldown (seconds): ",
   "command.lotrextended.version.left": "A new version",
   "command.lotrextended.version.right": "was found",
