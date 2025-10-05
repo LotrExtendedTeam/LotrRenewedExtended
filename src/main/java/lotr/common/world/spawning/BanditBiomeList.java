@@ -1,38 +1,58 @@
 package lotr.common.world.spawning;
 
+import net.minecraft.world.World;
+
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * For now my logic for spawning bandits will work very different than it did in Legacy because I would like to make
+ * it simple and keep it similar to how I did Wandering Traders.
+ *
+ * In Legacy there were 3 possible frequencies for 3 bandits that a biome could have, RARE, UNCOMMON, and COMMON. These
+ * were 10%, 30%, and 80% per hour roughly with a precalculated probability table and a check run once a second.
+ *
+ * To make it match it Wandering Traders and be simpler for now, I will simply have a time that must always pass for a player
+ * before it checks if they should spawn a bandit. The full reset period for this for a player will be 30 minutes to give them
+ * a respite. Then when that timer elapses it will look at the biome they are in and check the chance. RARE for us is 5%.
+ * If the check fails it will add a random amount of seconds between 30 seconds and 3 minutes and try again. Eventually
+ * when it succeeds the clock will be reset to 30 minutes again.
+ *
+ * @author RichardB122
+ */
 public class BanditBiomeList {
 
+
+
     // biome name and percent chance every roll
-    protected static Map<String, Integer> bandits = new HashMap<>();
+    private static Map<String, BanditChance> bandits = new HashMap<>();
 
     static {
         // According to Legacy wiki no bandits in the shire except the Moors
-        bandits.put("lotr:shire", 0);
-        bandits.put("lotr:shire_moors", 5);
-        bandits.put("lotr:shire_marshes", 0);
-        bandits.put("lotr:shire_woodlands", 0);
-        bandits.put("lotr:white_downs", 0);
+        bandits.put("lotr:shire", BanditChance.NONE);
+        bandits.put("lotr:shire_moors", BanditChance.RARE);
+        bandits.put("lotr:shire_marshes", BanditChance.NONE);
+        bandits.put("lotr:shire_woodlands", BanditChance.NONE);
+        bandits.put("lotr:white_downs", BanditChance.NONE);
 
-        // TODO: Finish going through and updating these
-        /* bandits.put("lotr:blue_mountains", genMap("lotr:rivendell_wanderer", 25, "lotr:oddment_collector", 75));
-        bandits.put("lotr:blue_mountains_foothills", genMap("lotr:rivendell_wanderer", 25, "lotr:oddment_collector", 75));
+        bandits.put("lotr:blue_mountains", BanditChance.RARE);
+        bandits.put("lotr:blue_mountains_foothills", BanditChance.RARE);
 
         // Eriador
-        bandits.put("lotr:eriador", genMap("lotr:bree_merchant", 35, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 25));
-        bandits.put("lotr:eryn_vorn", genMap("lotr:galadhrim_wanderer", 35, "lotr:rivendell_wanderer", 35, "lotr:oddment_collector", 20, "lotr:blue_mountains_merchant", 10));
-        bandits.put("lotr:hills_of_evendim", genMap("lotr:galadhrim_wanderer", 15, "lotr:rivendell_wanderer", 15, "lotr:oddment_collector", 40, "lotr:blue_mountains_merchant", 30));
-        bandits.put("lotr:eriador_downs", genMap("lotr:bree_merchant", 35, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 25));
-        bandits.put("lotr:tower_hills", genMap("lotr:bree_merchant", 35, "lotr:galadhrim_wanderer", 5, "lotr:rivendell_wanderer", 5, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 25));
-        bandits.put("lotr:minhiriath", genMap("lotr:galadhrim_wanderer", 20, "lotr:oddment_collector", 45, "lotr:blue_mountains_merchant", 35));
-        bandits.put("lotr:swanfleet", new HashMap<>()); // Swanfleet has no wandering bandits according to the wiki
+        bandits.put("lotr:eriador", BanditChance.UNCOMMON);
+        bandits.put("lotr:eryn_vorn", BanditChance.UNCOMMON);
+        bandits.put("lotr:hills_of_evendim", BanditChance.UNCOMMON);
+        bandits.put("lotr:eriador_downs", BanditChance.UNCOMMON);
+        bandits.put("lotr:tower_hills", BanditChance.NONE);
+        bandits.put("lotr:minhiriath", BanditChance.UNCOMMON);
+        bandits.put("lotr:swanfleet", BanditChance.RARE);
 
-        // Rivendell only gets Galadhrim bandits
-        bandits.put("lotr:rivendell", genRates("lotr:galadhrim_wanderer"));
-        bandits.put("lotr:rivendell_hills", genRates("lotr:galadhrim_wanderer"));
+        // Rivendell
+        bandits.put("lotr:rivendell", BanditChance.NONE);
+        bandits.put("lotr:rivendell_hills", BanditChance.NONE);
 
+        // TODO: Finish going through and updating these
+        /*
         bandits.put("lotr:gondor", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
         bandits.put("lotr:further_gondor", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
         bandits.put("lotr:field_of_cormallen", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
@@ -44,6 +64,7 @@ public class BanditBiomeList {
         bandits.put("lotr:anfalas", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
         bandits.put("lotr:lossarnach", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
         bandits.put("lotr:pinnath_gelin", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+
         // higher chance of elves in Ithilien because of the forests
         bandits.put("lotr:ithilien", genMap("lotr:galadhrim_wanderer", 50, "lotr:oddment_collector", 50));
         bandits.put("lotr:lebennin", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
@@ -159,5 +180,33 @@ public class BanditBiomeList {
         // TODO: since this is close to Harad it seems like from the wiki it should only have Harad bandits
         //  which means there is nothing that can go here yet
         bandits.put("lotr:wilderland", new HashMap<>());*/
+    }
+
+    /**
+     * This method given a biome name from World#getBiomeName() will attempt to check if it is a valid LOTR Mod biome
+     * and if it is return the chance a bandit spawn there.
+     *
+     * @param world the {@link World} to check
+     * @param biomeName the name of the biome to query
+     * @return The percent chance a bandit should spawn there
+     * @throws IllegalArgumentException if the given biome is not a LOTR biome
+     */
+    public static int getChanceOfBanditFromBiomeName(String biomeName) throws IllegalArgumentException {
+        // determine the LOTR biome
+        String lotrBiome;
+        int index = biomeName.indexOf("lotr");
+        if (index != -1) {
+            lotrBiome = biomeName.substring(index);
+            lotrBiome = lotrBiome.replace("]", "");
+        } else {
+            throw new IllegalArgumentException(biomeName + " is not a LOTR Mod biome");
+        }
+
+        if (bandits.containsKey(lotrBiome)) {
+            BanditChance chance = bandits.get(lotrBiome);
+            return chance.getChance();
+        } else {
+            return 0;
+        }
     }
 }

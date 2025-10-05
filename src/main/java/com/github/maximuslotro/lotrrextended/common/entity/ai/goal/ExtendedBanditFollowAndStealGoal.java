@@ -23,7 +23,7 @@ public class ExtendedBanditFollowAndStealGoal extends Goal {
 	@Override
 	public boolean canUse() {
 		if(!bandit.hasStolen()) {
-			List<PlayerEntity> players = bandit.level.getEntitiesOfClass(PlayerEntity.class, bandit.getBoundingBox().inflate(20.0D), EntityPredicates.NO_CREATIVE_OR_SPECTATOR);
+			List<PlayerEntity> players = bandit.level.getEntitiesOfClass(PlayerEntity.class, bandit.getBoundingBox().inflate(45.0D), EntityPredicates.NO_CREATIVE_OR_SPECTATOR);
 			if (!players.isEmpty()) {
 				this.targetPlayer = players.get(0);
 				return true;

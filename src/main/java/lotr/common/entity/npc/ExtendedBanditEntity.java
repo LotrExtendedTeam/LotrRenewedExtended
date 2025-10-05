@@ -14,6 +14,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExtendedBanditEntity extends ManEntity {
-    private final ItemStackHandler inventory = new ItemStackHandler(9); // 9 slotów
+    private final ItemStackHandler inventory = new ItemStackHandler(9); // 9 slots
     private final List<ItemStack> stolenItems = new ArrayList<>();
     private boolean hasStolen = false;
     private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(LOTRItems.BRONZE_DAGGER, LOTRItems.IRON_DAGGER);
