@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.recipe;
 
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedLeatherHatItem;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 
@@ -14,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ArmorDyeRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.SpecialRecipe;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
@@ -28,33 +28,34 @@ import java.util.Optional;
 /**
  * Based off of {@link ArmorDyeRecipe}
  * */
-public class ExtendedLeatherHatRecipe extends SpecialRecipe {
+public class ExtendedTableDyeableRecipe extends SpecialRecipe {
 	private final IRecipeType<?> recipeType;
+	private final Ingredient ingredient;
 
-	public ExtendedLeatherHatRecipe(ResourceLocation id, IRecipeType<?> recipeType) {
+	public ExtendedTableDyeableRecipe(ResourceLocation id, IRecipeType<?> recipeType, Ingredient pIngredient) {
 		super(id);
 		this.recipeType = recipeType;
+		this.ingredient = pIngredient;
 	}
 
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
-		return ExtendedRecipeSerializers.EXTENDED_LEATHER_HAT.get();
+		return ExtendedRecipeSerializers.EXTENDED_TABLE_ARMOR_DYE.get();
 	}
 
 	@Override
 	public IRecipeType<?> getType() {
-	      return recipeType;
-	   }
+		return recipeType;
+	}
 
 	@Override
 	public boolean matches(CraftingInventory pInv, World pLevel) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		List<ItemStack> list = Lists.newArrayList();
-
 		for(int i = 0; i < pInv.getContainerSize(); ++i) {
 			ItemStack itemstack1 = pInv.getItem(i);
 			if (!itemstack1.isEmpty()) {
-				if (itemstack1.getItem() instanceof ExtendedLeatherHatItem) {
+				if (ingredient.test(itemstack1)) {
 					if (!itemstack.isEmpty()) {
 						// No more than one dyeable item
 						return false;
@@ -84,14 +85,14 @@ public class ExtendedLeatherHatRecipe extends SpecialRecipe {
 		for(int i = 0; i < pInv.getContainerSize(); ++i) {
 			ItemStack itemstack1 = pInv.getItem(i);
 			if (!itemstack1.isEmpty()) {
-				Item item = itemstack1.getItem();
-				if (item instanceof ExtendedLeatherHatItem) {
+				if (ingredient.test(itemstack1)) {
 					if (!itemstack.isEmpty()) {
 						return ItemStack.EMPTY;
 					}
 
 					itemstack = itemstack1.copy();
 				} else {
+					Item item = itemstack1.getItem();
 					if (!(item instanceof DyeItem)) {
 						return ItemStack.EMPTY;
 					}
@@ -108,7 +109,7 @@ public class ExtendedLeatherHatRecipe extends SpecialRecipe {
 			int colorsApplied = 0;
 			IDyeableArmorItem dyeableItem = null;
 			Item item = itemstack.getItem();
-			if (item instanceof ExtendedLeatherHatItem) {
+			if (item instanceof IDyeableArmorItem) {
 				dyeableItem = (IDyeableArmorItem)item;
 				resultItem = itemstack.copy();
 				resultItem.setCount(1);
@@ -168,22 +169,25 @@ public class ExtendedLeatherHatRecipe extends SpecialRecipe {
 	/**
 	 * Save and load recipe type to check for
 	 * */
-	public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ExtendedLeatherHatRecipe> {
+	public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ExtendedTableDyeableRecipe> {
 		@Override
-		public ExtendedLeatherHatRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+		public ExtendedTableDyeableRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
 			IRecipeType<?> recipeType = Registry.RECIPE_TYPE.get(new ResourceLocation(JSONUtils.getAsString(json, "recipe_type", "")));
-			return new ExtendedLeatherHatRecipe(recipeId, recipeType);
+			Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "ingredient"));
+			return new ExtendedTableDyeableRecipe(recipeId, recipeType, ingredient);
 		}
 
 		@Override
-		public ExtendedLeatherHatRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+		public ExtendedTableDyeableRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
 			IRecipeType<?> recipeType = Registry.RECIPE_TYPE.get(new ResourceLocation(buffer.readUtf()));
-			return new ExtendedLeatherHatRecipe(recipeId, recipeType);
+			Ingredient ingredient = Ingredient.fromNetwork(buffer);
+			return new ExtendedTableDyeableRecipe(recipeId, recipeType, ingredient);
 		}
 
 		@Override
-		public void toNetwork(PacketBuffer buffer, ExtendedLeatherHatRecipe recipe) {
+		public void toNetwork(PacketBuffer buffer, ExtendedTableDyeableRecipe recipe) {
 			buffer.writeUtf(Registry.RECIPE_TYPE.getKey(recipe.recipeType).toString());
+			recipe.ingredient.toNetwork(buffer);
 		}
 	}
 }

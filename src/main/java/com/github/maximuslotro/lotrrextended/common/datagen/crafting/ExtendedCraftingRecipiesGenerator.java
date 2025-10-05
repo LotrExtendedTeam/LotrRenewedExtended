@@ -31,7 +31,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.CookingRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.RegistryObject;
@@ -926,10 +925,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.WILDBERRY.get().getRegistryName().getPath(), has(ExtendedItems.WILDBERRY.get()))
 		.unlockedBy("has_"+ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath(), has(ExtendedItems.BOTTLE_OF_POISON.get()))
 		.save(consumer, lotrLoc(ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath()));
-		ExtendedDyeableRecipeBuilder.dyeing(ExtendedRecipeSerializers.EXTENDED_LEATHER_HAT.get(), IRecipeType.CRAFTING)
-		.save(consumer, lotrLoc("leather_hat"));
-		ExtendedDyeableRecipeBuilder.dyeing(ExtendedRecipeSerializers.EXTENDED_LEATHER_HAT.get(), LOTRRecipes.ANY_FACTION)
-		.save(consumer, lotrLoc("leather_hat_on_faction_table"));
+		//ExtendedDyeableRecipeBuilder.dyeing(ExtendedRecipeSerializers.EXTENDED_LEATHER_HAT.get(), IRecipeType.CRAFTING)
+		//.save(consumer, lotrLoc("leather_hat"));
+		ExtendedDyeableRecipeBuilder.dyeing(LOTRRecipes.ANY_FACTION, ExtendedItems.LEATHER_HAT.get()).save(consumer, lotrLoc("leather_hat_on_faction_table"));
+		ExtendedDyeableRecipeBuilder.dyeing(LOTRRecipes.ANY_FACTION, ExtendedItems.LEATHER_BOAR_ARMOR.get()).save(consumer, lotrLoc("leather_boar_armor_on_faction_table"));
+		ExtendedDyeableRecipeBuilder.dyeing(LOTRRecipes.ANY_FACTION, Items.LEATHER_BOOTS).save(consumer, lotrLoc("leather_boots_on_faction_table"));
+		ExtendedDyeableRecipeBuilder.dyeing(LOTRRecipes.ANY_FACTION, Items.LEATHER_LEGGINGS).save(consumer, lotrLoc("leather_leggings_on_faction_table"));
+		ExtendedDyeableRecipeBuilder.dyeing(LOTRRecipes.ANY_FACTION, Items.LEATHER_CHESTPLATE).save(consumer, lotrLoc("leather_chestplate_on_faction_table"));
+		ExtendedDyeableRecipeBuilder.dyeing(LOTRRecipes.ANY_FACTION, Items.LEATHER_HELMET).save(consumer, lotrLoc("leather_helmet_on_faction_table"));
+		ExtendedDyeableRecipeBuilder.dyeing(LOTRRecipes.ANY_FACTION, Items.LEATHER_HORSE_ARMOR).save(consumer, lotrLoc("leather_horse_armor_on_faction_table"));
 		GENERATEDRECIPES.add(ExtendedItems.COMMANDHORN.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.COMMANDHORN.get())
 		.pattern("#X#")

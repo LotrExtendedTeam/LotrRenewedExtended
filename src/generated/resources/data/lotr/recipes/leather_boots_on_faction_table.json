@@ -1,0 +1,7 @@
+{
+  "type": "lotrextended:crafting_special_tablearmordye",
+  "recipe_type": "lotr:any_faction",
+  "ingredient": {
+    "item": "minecraft:leather_boots"
+  }
+}

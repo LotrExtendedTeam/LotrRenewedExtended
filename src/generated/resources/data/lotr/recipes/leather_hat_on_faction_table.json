@@ -1,4 +1,7 @@
 {
-  "type": "lotrextended:crafting_special_leather_hat",
-  "recipe_type": "lotr:any_faction"
+  "type": "lotrextended:crafting_special_tablearmordye",
+  "recipe_type": "lotr:any_faction",
+  "ingredient": {
+    "item": "lotr:leather_hat"
+  }
 }

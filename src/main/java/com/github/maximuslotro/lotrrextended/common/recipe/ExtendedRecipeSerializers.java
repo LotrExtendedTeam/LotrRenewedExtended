@@ -17,7 +17,7 @@ public class ExtendedRecipeSerializers {
 	public static final RegistryObject<SpecialRecipeSerializer<ExtendedCoinSmithingOneRecipe>> EXTENDED_SMITHING_COIN_ONE = RECIPE_SERIALIZERS.register("crafting_special_smithing_coin_one", () -> new SpecialRecipeSerializer<>(ExtendedCoinSmithingOneRecipe::new));
 	public static final RegistryObject<SpecialRecipeSerializer<ExtendedCoinSmithingTenRecipe>> EXTENDED_SMITHING_COIN_TEN = RECIPE_SERIALIZERS.register("crafting_special_smithing_coin_ten", () -> new SpecialRecipeSerializer<>(ExtendedCoinSmithingTenRecipe::new));
 	public static final RegistryObject<SpecialRecipeSerializer<ExtendedCoinSmithingHundredRecipe>> EXTENDED_SMITHING_COIN_HUNDRED = RECIPE_SERIALIZERS.register("crafting_special_smithing_coin_hundred", () -> new SpecialRecipeSerializer<>(ExtendedCoinSmithingHundredRecipe::new));
-	public static final RegistryObject<ExtendedLeatherHatRecipe.Serializer> EXTENDED_LEATHER_HAT = RECIPE_SERIALIZERS.register("crafting_special_leather_hat", ExtendedLeatherHatRecipe.Serializer::new);
+	public static final RegistryObject<ExtendedTableDyeableRecipe.Serializer> EXTENDED_TABLE_ARMOR_DYE = RECIPE_SERIALIZERS.register("crafting_special_tablearmordye", ExtendedTableDyeableRecipe.Serializer::new);
 	public static final RegistryObject<SpecialRecipeSerializer<ExtendedTippedArrowRecipe>> EXTENDED_TIPPED_ARROW = RECIPE_SERIALIZERS.register("crafting_special_tippedarrow", ()-> new SpecialRecipeSerializer<>(ExtendedTippedArrowRecipe::new));
 
 	public static void register(IEventBus modBus) {

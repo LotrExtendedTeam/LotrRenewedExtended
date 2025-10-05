@@ -15,6 +15,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedLeatherHatItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
@@ -28,7 +29,6 @@ import lotr.common.block.VesselDrinkBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.DaggerItem;
-import lotr.common.item.ExtendedDyeableLOTRArmorItem;
 import lotr.common.item.FallenLeavesItem;
 import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRAxeItem;
@@ -138,8 +138,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			if(item.getValue().get() instanceof ExtendedEntitySpawnerItem) {
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedDyeableLOTRArmorItem) {
-				ItemModelBuilder builder = withExistingParent("lotr:"+item.getKey(), "lotrextended:item/template_coin");
+			if(item.getValue().get() instanceof ExtendedLeatherHatItem) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()), lotrExtendedLoc("item/"+item.getKey()+"_overlay"));
 				continue;
 			}
