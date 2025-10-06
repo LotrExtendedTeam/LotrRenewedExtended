@@ -1007,6 +1007,13 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('#', Ingredient.of(Items.BRICK))
 		.unlockedBy("has_brick", has(Items.BRICK))
 		.save(consumer, lotrLoc(ExtendedItems.LARGE_FLOWER_POT.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.CHIMNEYPOT.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CHIMNEYPOT.get())
+		.pattern("# #")
+		.pattern("# #")
+		.define('#', Ingredient.of(Items.BRICK))
+		.unlockedBy("has_brick", has(Items.BRICK))
+		.save(consumer, lotrLoc(ExtendedItems.CHIMNEYPOT.get().getRegistryName().getPath()));
 		//Shields
 		makeShieldRecipe(consumer, ExtendedItems.DUNEDAIN_SHIELD, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.RANGER_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.GUNDABAD_SHIELD, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
