@@ -1473,13 +1473,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	private void genBannerBlock(ExtendedMEBannerBlock extendedMEBannerBlock, ResourceLocation texture) {
 		registeredBlocks.add(extendedMEBannerBlock);
 		ModelFile modelFileSmallBottom = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_small_bottom", lotrExtendedLoc("block/template_banner_small_bottom"))
-				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture);
+				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture).texture("stand", lotrExtendedLoc("block/banner/banner_base"));
 		ModelFile modelFileSmallTop = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_small_top", lotrExtendedLoc("block/template_banner_small_top"))
-				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture);
+				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture).texture("stand", lotrExtendedLoc("block/banner/banner_base"));
 		ModelFile modelFileBottom = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_bottom", lotrExtendedLoc("block/template_banner_bottom"))
-				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture);
+				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture).texture("stand", lotrExtendedLoc("block/banner/banner_base"));
 		ModelFile modelFileTop = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_top", lotrExtendedLoc("block/template_banner_top"))
-				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture);
+				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture).texture("stand", lotrExtendedLoc("block/banner/banner_base"));
 		getVariantBuilder(extendedMEBannerBlock).forAllStatesExcept(state -> {
 			Direction direction = state.getValue(ExtendedMEBannerBlock.FACING);
 			DoubleBlockHalf half = state.getValue(ExtendedMEBannerBlock.HALF);
@@ -1496,7 +1496,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	private void genBannerWallBlock(ExtendedMEBannerWallBlock banner, ResourceLocation texture) {
 		registeredBlocks.add(banner);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+banner.getRegistryName().getPath(), lotrExtendedLoc("block/template_banner_wall"))
-				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture);
+				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture).texture("stand", lotrExtendedLoc("block/banner/banner_base_wall"));
 		getVariantBuilder(banner).forAllStates(state -> {
 			Direction direction = state.getValue(ExtendedMEBannerWallBlock.FACING);
 			return ConfiguredModel.builder()

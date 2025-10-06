@@ -9,12 +9,12 @@
 			"to": [16, 16, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [10, 1, 7]},
 			"faces": {
-				"north": {"uv": [0, 12.33333, 6.66667, 13], "texture": "#banner"},
-				"east": {"uv": [13.33333, 0, 14, 0.66667], "texture": "#banner"},
-				"south": {"uv": [6.66667, 12.33333, 13.33333, 13], "texture": "#banner"},
-				"west": {"uv": [13.33333, 0.66667, 14, 1.33333], "texture": "#banner"},
-				"up": {"uv": [6.66667, 13.66667, 0, 13], "texture": "#banner"},
-				"down": {"uv": [13.33333, 13, 6.66667, 13.66667], "texture": "#banner"}
+				"north": {"uv": [0, 12.33333, 6.66667, 13], "texture": "#stand"},
+				"east": {"uv": [13.33333, 0, 14, 0.66667], "texture": "#stand"},
+				"south": {"uv": [6.66667, 12.33333, 13.33333, 13], "texture": "#stand"},
+				"west": {"uv": [13.33333, 0.66667, 14, 1.33333], "texture": "#stand"},
+				"up": {"uv": [6.66667, 13.66667, 0, 13], "texture": "#stand"},
+				"down": {"uv": [13.33333, 13, 6.66667, 13.66667], "texture": "#stand"}
 			}
 		},
 		{

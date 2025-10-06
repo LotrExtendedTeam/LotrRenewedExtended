@@ -2,9 +2,6 @@
 	"parent": "block/block",
 	"ambientocclusion": false,
 	"texture_size": [128, 128],
-	"textures": {
-		"banner": "block/banner_base"
-	},
 	"elements": [
 		{
 			"name": "stand",
@@ -12,12 +9,12 @@
 			"to": [14.5, 14.5, 10],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
 			"faces": {
-				"north": {"uv": [6.5, 0.5, 9, 0.75], "texture": "#banner"},
-				"east": {"uv": [6, 0.5, 6.5, 0.75], "texture": "#banner"},
-				"south": {"uv": [9.5, 0.5, 12, 0.75], "texture": "#banner"},
-				"west": {"uv": [9, 0.5, 9.5, 0.75], "texture": "#banner"},
-				"up": {"uv": [9, 0.5, 6.5, 0], "texture": "#banner"},
-				"down": {"uv": [11.5, 0, 9, 0.5], "texture": "#banner"}
+				"north": {"uv": [6.5, 0.5, 9, 0.75], "texture": "#stand"},
+				"east": {"uv": [6, 0.5, 6.5, 0.75], "texture": "#stand"},
+				"south": {"uv": [9.5, 0.5, 12, 0.75], "texture": "#stand"},
+				"west": {"uv": [9, 0.5, 9.5, 0.75], "texture": "#stand"},
+				"up": {"uv": [9, 0.5, 6.5, 0], "texture": "#stand"},
+				"down": {"uv": [11.5, 0, 9, 0.5], "texture": "#stand"}
 			}
 		},
 		{
@@ -26,11 +23,11 @@
 			"to": [8.75, 16, 8.75],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
 			"faces": {
-				"north": {"uv": [0.25, 7.125, 0.5, 10.5], "texture": "#banner"},
-				"east": {"uv": [0, 7.125, 0.25, 10.5], "texture": "#banner"},
-				"south": {"uv": [0.75, 7.125, 1, 10.5], "texture": "#banner"},
-				"west": {"uv": [0.5, 7.125, 0.75, 10.5], "texture": "#banner"},
-				"up": {"uv": [0.25, 6.875, 0.5, 7.125], "texture": "#banner"}
+				"north": {"uv": [0.25, 7.125, 0.5, 10.5], "texture": "#stand"},
+				"east": {"uv": [0, 7.125, 0.25, 10.5], "texture": "#stand"},
+				"south": {"uv": [0.75, 7.125, 1, 10.5], "texture": "#stand"},
+				"west": {"uv": [0.5, 7.125, 0.75, 10.5], "texture": "#stand"},
+				"up": {"uv": [0.25, 6.875, 0.5, 7.125], "texture": "#stand"}
 			}
 		},
 		{
