@@ -1201,6 +1201,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc(ExtendedItems.MOSS_CARPET.get().getRegistryName().getPath()));
 		makeMossyBlockRecipe(consumer, ()->Blocks.MOSSY_COBBLESTONE,
                 Blocks.COBBLESTONE::asItem, null, "", false);
+		makeMossyBlockRecipe(consumer, ()->Blocks.MOSSY_STONE_BRICKS,
+                Blocks.STONE_BRICKS::asItem, null, "", false);
 		//Natural Stones
 //		makeStairSlabWallRecipe(consumer, ExtendedBlocks.GNEISS_ROCK_STAIRS,
 //			ExtendedBlocks.GNEISS_ROCK_SLAB,
