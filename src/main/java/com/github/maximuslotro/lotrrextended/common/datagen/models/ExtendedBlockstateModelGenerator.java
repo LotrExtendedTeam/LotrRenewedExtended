@@ -557,8 +557,9 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/mud_path")), false, true);
 							continue;
 						}
-						if(block.getKey().contains("wood")) {
-							genSlabBlockItemWOOD((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 10)+"_log"));
+						if(block.getKey().contains("wood_slab")) {
+							genSlabBlockItemWOOD((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 10)+"_log"),
+									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
 							continue;
 						}
 						if(block.getKey().contains("log")) {
@@ -1000,8 +1001,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		genSlabBlockItem(slab, texture, texture, texture, texture);
 	}
 
-	private void genSlabBlockItemWOOD(SlabBlock slab, ResourceLocation texture) {
-		ModelFile slabDouble = models().getExistingFile(texture);
+	private void genSlabBlockItemWOOD(SlabBlock slab, ResourceLocation texture, ResourceLocation doubleModel) {
+		ModelFile slabDouble = models().getExistingFile(doubleModel);
 		genSlabBlockItem(slab, texture, texture, texture, slabDouble, false, false);
 	}
 
