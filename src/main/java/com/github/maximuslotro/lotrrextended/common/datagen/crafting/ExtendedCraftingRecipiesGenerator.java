@@ -5,12 +5,13 @@ import java.util.function.Consumer;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedAlloyCookingRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedCustomRecipeBuilder;
+import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedDyeableRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedVesselBrewingRecipeBuilder;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipeSerializers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeSerializers;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
@@ -924,6 +925,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.WILDBERRY.get().getRegistryName().getPath(), has(ExtendedItems.WILDBERRY.get()))
 		.unlockedBy("has_"+ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath(), has(ExtendedItems.BOTTLE_OF_POISON.get()))
 		.save(consumer, lotrLoc(ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath()));
+		//ExtendedDyeableRecipeBuilder.dyeing(ExtendedRecipeSerializers.EXTENDED_LEATHER_HAT.get(), IRecipeType.CRAFTING)
+		//.save(consumer, lotrLoc("leather_hat"));
+		ExtendedDyeableRecipeBuilder.dyeing(LOTRRecipes.ANY_FACTION, ExtendedItems.LEATHER_HAT.get()).save(consumer, lotrLoc("leather_hat_on_faction_table"));
+		ExtendedDyeableRecipeBuilder.dyeing(LOTRRecipes.ANY_FACTION, ExtendedItems.LEATHER_BOAR_ARMOR.get()).save(consumer, lotrLoc("leather_boar_armor_on_faction_table"));
+		ExtendedDyeableRecipeBuilder.dyeing(LOTRRecipes.ANY_FACTION, Items.LEATHER_BOOTS).save(consumer, lotrLoc("leather_boots_on_faction_table"));
+		ExtendedDyeableRecipeBuilder.dyeing(LOTRRecipes.ANY_FACTION, Items.LEATHER_LEGGINGS).save(consumer, lotrLoc("leather_leggings_on_faction_table"));
+		ExtendedDyeableRecipeBuilder.dyeing(LOTRRecipes.ANY_FACTION, Items.LEATHER_CHESTPLATE).save(consumer, lotrLoc("leather_chestplate_on_faction_table"));
+		ExtendedDyeableRecipeBuilder.dyeing(LOTRRecipes.ANY_FACTION, Items.LEATHER_HELMET).save(consumer, lotrLoc("leather_helmet_on_faction_table"));
+		ExtendedDyeableRecipeBuilder.dyeing(LOTRRecipes.ANY_FACTION, Items.LEATHER_HORSE_ARMOR).save(consumer, lotrLoc("leather_horse_armor_on_faction_table"));
 		GENERATEDRECIPES.add(ExtendedItems.COMMANDHORN.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.COMMANDHORN.get())
 		.pattern("#X#")
@@ -932,7 +942,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.COMMANDHORN.get().getRegistryName().getPath(), has(ExtendedItems.COMMANDHORN.get()))
 		.unlockedBy("has_horn", has(HORNS))
 		.save(consumer, lotrLoc(ExtendedItems.COMMANDHORN.get().getRegistryName().getPath()));
-		ExtendedCustomRecipeBuilder.special(ExtendedRecipes.EXTENDED_TIPPED_ARROW.get()).save(consumer, lotrLoc("tipped_arrow_poison"));
+		ExtendedCustomRecipeBuilder.special(ExtendedRecipeSerializers.EXTENDED_TIPPED_ARROW.get()).save(consumer, lotrLoc("tipped_arrow_poison"));
 		GENERATEDRECIPES.add(ExtendedItems.BLACK_URUK_STEEL_INGOT.get().getRegistryName().getPath());
 		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.BLACK_URUK_STEEL_INGOT.get(), LOTRRecipes.ORC_FORGE_ALLOY_SERIALIZER.get())
 		.requires(ExtendedTags.Items.ORC_STEEL_INGOT)

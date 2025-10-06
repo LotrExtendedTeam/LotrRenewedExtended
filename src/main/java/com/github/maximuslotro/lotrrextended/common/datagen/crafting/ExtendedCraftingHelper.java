@@ -13,8 +13,8 @@ import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.Ex
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedMillingRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipeSerializers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeSerializers;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.LOTRPillarBlock;
