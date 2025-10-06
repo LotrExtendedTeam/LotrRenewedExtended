@@ -893,16 +893,16 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 	}
 
 	protected void makeMossyBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
-		makeMossyBlockRecipe(consumer, blockToBeCrafted, resource, table, "", false);
+		makeMossyBlockRecipe(consumer, blockToBeCrafted, resource, table, "", true);
 	}
 	protected void makeMossyBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table, String altName) {
-		makeMossyBlockRecipe(consumer, blockToBeCrafted, resource, table, altName, false);
+		makeMossyBlockRecipe(consumer, blockToBeCrafted, resource, table, altName, true);
 	}
-	protected void makeMossyBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table, String altName, boolean noVines) {
+	protected void makeMossyBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table, String altName, boolean useVinesVanillaOverride) {
 		String name = blockToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
-			if(!noVines) {
+			if(useVinesVanillaOverride) {
 				ShapelessRecipeBuilder.shapeless(blockToBeCrafted.get())
 				.requires(Ingredient.of(resource.get()))
 				.requires((Ingredient.of(()->Items.VINE)))
@@ -910,6 +910,12 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 				.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 				.save(consumer, lotrLoc(name+altName+"_using_vines"));
 			}
+			ShapelessRecipeBuilder.shapeless(blockToBeCrafted.get())
+			.requires(Ingredient.of(resource.get()))
+			.requires((Ingredient.of(ExtendedItems.WILLOW_VINES.get())))
+			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name+altName+"_using_vines_willow"));
 			ShapelessRecipeBuilder.shapeless(blockToBeCrafted.get())
 			.requires(Ingredient.of(resource.get()))
 			.requires((Ingredient.of(ExtendedItems.MOSS_BLOCK.get())))
@@ -924,7 +930,7 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.save(consumer, lotrLoc(name+altName+"_using_moss_carpet"));
 		}
 		else {
-			if(!noVines) {
+			if(useVinesVanillaOverride) {
 				ExtendedFactionShapelessRecipeBuilder.shapeless(blockToBeCrafted.get(), table)
 				.requires(Ingredient.of(resource.get()))
 				.requires((Ingredient.of(()->Items.VINE)))
@@ -932,6 +938,12 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 				.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 				.save(consumer, lotrLoc(name+altName+"_using_vines"));
 			}
+			ExtendedFactionShapelessRecipeBuilder.shapeless(blockToBeCrafted.get(), table)
+			.requires(Ingredient.of(resource.get()))
+			.requires((Ingredient.of(ExtendedItems.WILLOW_VINES.get())))
+			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name+altName+"_using_vines_willow"));
 			ExtendedFactionShapelessRecipeBuilder.shapeless(blockToBeCrafted.get(), table)
 			.requires(Ingredient.of(resource.get()))
 			.requires((Ingredient.of(ExtendedItems.MOSS_BLOCK.get())))
