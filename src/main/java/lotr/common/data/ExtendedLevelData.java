@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 
 import lotr.common.LOTRLog;
 import lotr.common.entity.npc.ExtendedTolkienEntity;
+import lotr.common.world.spawning.BanditsSpawner;
 import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -339,11 +340,19 @@ public class ExtendedLevelData {
 			// skip creative mode players and spectators
 			if (player.isCreative() || player.isSpectator()) continue;
 
-			// TODO: Attempt to spawn if it's at 0
-
-			// TODO: If spawn attempt fails pick a random amount of time between 30s and 10 minutes
-
-			// TODO: If spawn attempt succeeds give them between 10 and 30 minutes as leeway again
+			// attempt to spawn if it's at 0
+			if (cooldownLeft == 0) {
+				boolean success = BanditsSpawner.spawn(world, player, false, false);
+				if (!success) {
+					// try again in between 1 and 13 minutes
+					int newCooldown = world.random.nextInt(12 * 60) + 60;
+					playerBanditSpawnCooldowns.put(player.getUUID(), newCooldown);
+				} else {
+					// give the player between 10 and 35 minutes of leeway
+					int newCooldown = world.random.nextInt(1500) + 600;
+					playerBanditSpawnCooldowns.put(player.getUUID(), newCooldown);
+				}
+			}
 		}
 	}
 

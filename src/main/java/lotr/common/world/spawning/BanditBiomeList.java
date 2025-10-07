@@ -51,41 +51,39 @@ public class BanditBiomeList {
         bandits.put("lotr:rivendell", BanditChance.NONE);
         bandits.put("lotr:rivendell_hills", BanditChance.NONE);
 
-        // TODO: Finish going through and updating these
-        /*
-        bandits.put("lotr:gondor", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
-        bandits.put("lotr:further_gondor", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
-        bandits.put("lotr:field_of_cormallen", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
-        bandits.put("lotr:anorien", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
-        bandits.put("lotr:blackroot_vale", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
-        bandits.put("lotr:lamedon", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
-        bandits.put("lotr:lamedon_hills", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
-        bandits.put("lotr:pelargir", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
-        bandits.put("lotr:anfalas", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
-        bandits.put("lotr:lossarnach", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
-        bandits.put("lotr:pinnath_gelin", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
-
-        // higher chance of elves in Ithilien because of the forests
-        bandits.put("lotr:ithilien", genMap("lotr:galadhrim_wanderer", 50, "lotr:oddment_collector", 50));
-        bandits.put("lotr:lebennin", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
-        bandits.put("lotr:emyn_en_ernil", new HashMap<>()); // Emyn-En-Ernil has no bandits in Legacy code
-        bandits.put("lotr:dor_en_ernil", genMap("lotr:galadhrim_wanderer", 35, "lotr:oddment_collector", 65));
+        // Gondor
+        bandits.put("lotr:gondor", BanditChance.RARE);
+        bandits.put("lotr:further_gondor", BanditChance.RARE);
+        bandits.put("lotr:field_of_cormallen", BanditChance.RARE);
+        bandits.put("lotr:anorien", BanditChance.RARE);
+        bandits.put("lotr:blackroot_vale", BanditChance.RARE);
+        bandits.put("lotr:lamedon", BanditChance.RARE);
+        bandits.put("lotr:lamedon_hills", BanditChance.RARE);
+        bandits.put("lotr:pelargir", BanditChance.RARE);
+        bandits.put("lotr:anfalas", BanditChance.RARE);
+        bandits.put("lotr:lossarnach", BanditChance.RARE);
+        bandits.put("lotr:pinnath_gelin", BanditChance.RARE);
+        bandits.put("lotr:ithilien", BanditChance.UNCOMMON);
+        bandits.put("lotr:lebennin", BanditChance.RARE);
+        bandits.put("lotr:emyn_en_ernil", BanditChance.RARE);
+        bandits.put("lotr:dor_en_ernil", BanditChance.RARE);
 
         // Older elven regions
-        bandits.put("lotr:lindon", genMap("lotr:galadhrim_wanderer", 40, "lotr:rivendell_wanderer", 35, "lotr:blue_mountains_merchant", 25));
-        bandits.put("lotr:lindon_woodlands", genMap("lotr:galadhrim_wanderer", 40, "lotr:rivendell_wanderer", 35, "lotr:blue_mountains_merchant", 25));
-        bandits.put("lotr:eregion", genMap("lotr:galadhrim_wanderer", 20, "lotr:rivendell_wanderer", 20, "lotr:oddment_collector", 30, "lotr:blue_mountains_merchant", 30));
+        bandits.put("lotr:lindon", BanditChance.NONE);
+        bandits.put("lotr:lindon_woodlands", BanditChance.NONE);
+        bandits.put("lotr:eregion", BanditChance.RARE);
 
-        // Lothlorien only gets Rivendell bandits
-        bandits.put("lotr:lothlorien_eaves", genRates("lotr:rivendell_wanderer"));
-        bandits.put("lotr:lothlorien", genRates("lotr:rivendell_wanderer"));
+        bandits.put("lotr:lothlorien_eaves", BanditChance.NONE);
+        bandits.put("lotr:lothlorien", BanditChance.NONE);
 
-        bandits.put("lotr:gladden_fields", genMap("lotr:galadhrim_wanderer", 50, "lotr:oddment_collector", 50));
+        bandits.put("lotr:gladden_fields", BanditChance.UNCOMMON);
 
         // Bree-land
-        bandits.put("lotr:breeland", genMap("lotr:galadhrim_wanderer", 7, "lotr:rivendell_wanderer", 8, "lotr:oddment_collector", 45, "lotr:blue_mountains_merchant", 40));
-        bandits.put("lotr:chetwood", genMap("lotr:bree_merchant", 35, "lotr:galadhrim_wanderer", 8, "lotr:rivendell_wanderer", 12, "lotr:oddment_collector", 25, "lotr:blue_mountains_merchant", 20));
+        bandits.put("lotr:breeland", BanditChance.RARE);
+        bandits.put("lotr:chetwood", BanditChance.UNCOMMON);
 
+        /*
+        // TODO: Finish going through and updating these
         bandits.put("lotr:rohan", genMap("lotr:galadhrim_wanderer", 30, "lotr:oddment_collector", 70));
         bandits.put("lotr:wold", genMap("lotr:galadhrim_wanderer", 30, "lotr:oddment_collector", 70));
 

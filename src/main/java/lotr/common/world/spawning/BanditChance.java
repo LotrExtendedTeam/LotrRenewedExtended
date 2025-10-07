@@ -5,7 +5,7 @@ public enum BanditChance {
     NONE(0),
     RARE(10),
     UNCOMMON(30),
-    COMMON(80);
+    COMMON(70);
 
     private int chance;
 
