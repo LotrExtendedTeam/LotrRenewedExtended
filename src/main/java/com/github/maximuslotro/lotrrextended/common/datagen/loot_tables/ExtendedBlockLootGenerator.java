@@ -11,7 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedChimneypotBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedChimneyPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
@@ -365,7 +365,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.getValue().get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedChimneypotBlock) {
+			if(block.getValue().get() instanceof ExtendedChimneyPotBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}
