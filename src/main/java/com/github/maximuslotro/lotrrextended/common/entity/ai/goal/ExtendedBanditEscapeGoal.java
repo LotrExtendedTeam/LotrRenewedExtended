@@ -41,7 +41,7 @@ public class ExtendedBanditEscapeGoal extends Goal {
 
 	@Override
 	public boolean canContinueToUse() {
-		return targetPlayer != null && bandit.distanceTo(targetPlayer) < dangerRadius;
+		return targetPlayer != null && bandit.distanceTo(targetPlayer) < dangerRadius && !bandit.getNPCCombatUpdater().isCombatStance();
 	}
 
 	@Override

@@ -1,23 +1,31 @@
 package lotr.common.entity.npc;
 
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBanditEscapeGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBanditFollowAndStealGoal;
+import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
+import lotr.common.entity.npc.ai.goal.FriendlyNPCConversationGoal;
 import lotr.common.entity.npc.ai.goal.NPCMeleeAttackGoal;
+import lotr.common.entity.npc.ai.goal.TalkToCurrentGoal;
+import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
 import lotr.common.entity.npc.data.NPCFoodPool;
 import lotr.common.entity.npc.data.NPCFoodPools;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.pathfinding.GroundPathNavigator;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -35,6 +43,7 @@ public class ExtendedBanditEntity extends ManEntity {
 
     public ExtendedBanditEntity(EntityType<? extends ManEntity> type, World w) {
         super(type, w);
+        this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeOnly());
     }
 
     public void addStolenItem(ItemStack itemStack) {
@@ -43,10 +52,26 @@ public class ExtendedBanditEntity extends ManEntity {
 
     @Override
     protected void addNPCAI() {
-    	super.addNPCAI();
-    	this.goalSelector.addGoal(2, new ExtendedBanditFollowAndStealGoal(this, this.getNavigation()));
-    	this.goalSelector.addGoal(3, new ExtendedBanditEscapeGoal(this, this.getNavigation()));
+        ((GroundPathNavigator)this.getNavigation()).setCanOpenDoors(true);
+        this.getNavigation().setCanFloat(true);
+        this.setPathfindingMalus(PathNodeType.DANGER_FIRE, 16.0F);
+        this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, -1.0F);
+        this.initialiseAttackGoals(this.getAttackGoalsHolder());
+        this.addNPCTargetingAI();
 
+        this.goalSelector.addGoal(0, new SwimGoal(this));
+        this.addAttackGoal(2);
+        this.goalSelector.addGoal(3, new ExtendedBanditFollowAndStealGoal(this, this.getNavigation()));
+        this.goalSelector.addGoal(4, new ExtendedBanditEscapeGoal(this, this.getNavigation()));
+        this.goalSelector.addGoal(5, new OpenDoorGoal(this, true));
+        this.goalSelector.addGoal(6, new TalkToCurrentGoal(this));
+        this.goalSelector.addGoal(7, new WatchSunriseSunsetGoal(this, 0.005F));
+        this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, (double)1.0F));
+        this.addConsumingGoals(9);
+        this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.02F));
+        this.goalSelector.addGoal(10, new LookAtGoal(this, NPCEntity.class, 5.0F, 0.02F));
+        this.goalSelector.addGoal(11, new LookAtGoal(this, LivingEntity.class, 8.0F, 0.02F));
+        this.goalSelector.addGoal(12, new LookRandomlyGoal(this));
     }
 
     @Override
@@ -103,6 +128,10 @@ public class ExtendedBanditEntity extends ManEntity {
         }
     }
 
+    @Override
+    protected void addNPCTargetingAI() {
+        this.addNonAggressiveTargetingGoals();
+    }
 
     public boolean hasStolen() {
         return hasStolen;

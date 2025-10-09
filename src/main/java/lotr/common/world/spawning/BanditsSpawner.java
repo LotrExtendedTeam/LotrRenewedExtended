@@ -66,8 +66,13 @@ public class BanditsSpawner {
             } catch (IllegalArgumentException ex) {
                 ExtendedLog.error("Issue while determining LOTR biome when spawning a bandit", ex);
             }
-            // try again as this point must have gone into a biome that there can be no bandits in
-            if (chance == 0) continue;
+
+            // all possible conditions that should make us quit and pick a new location
+            BlockPos plusOneY = new BlockPos(x, y + 1, z);
+            if (y < 62 || world.getBlockState(pos).isSuffocating(world, pos) || world.getBlockState(plusOneY).isSuffocating(world, plusOneY)
+                    || (chance == 0 && !alwaysSpawn)) {
+                continue;
+            }
 
             ExtendedBanditEntity bandit = ExtendedEntities.BANDIT.get().create(world, null, null, player, pos, SpawnReason.SPAWN_EGG, true, false);
             if (bandit != null) {
@@ -85,22 +90,35 @@ public class BanditsSpawner {
                 bandit.setYHeadRot(yaw);
                 bandit.setPersistenceRequired();
                 world.addFreshEntityWithPassengers(bandit);
-                return true;
 
-                // TODO: should there be more than one bandit potentially?
-                /*int escortCount = world.random.nextInt(3) + 2;
-                for (int i = 0; i < escortCount; i++) {
-                    NPCEntity escort = ((ExtendedWanderingTraderEntity) trader).createEscort();
-                    if (escort != null) {
-                        escort.setPersistenceRequired();
-                        BlockPos escortPos = new BlockPos(trader.getX(), trader.getY(), trader.getZ());
-                        escort.finalizeSpawn((IServerWorld) world, world.getCurrentDifficultyAt(escortPos), SpawnReason.EVENT, null, null);
-                        escort.setPos(trader.getX(), trader.getY(), trader.getZ());
-                        world.addFreshEntity(escort);
-                        escort.restrictTo(escortPos, 8);
-                        ((ExtendedWanderingTraderEntity) trader).addEscort(escort.getUUID());
+                // determine if there should be additional bandits (only for uncommon and common)
+                if (chance > 10) {
+                    int additionalBandits = 0;
+                    if (chance == 30) {
+                        // 20% chance for additional bandit in uncommon
+                        int roll = world.random.nextInt(100) + 1;
+                        if (roll <= 20) additionalBandits = 1;
+                    } else if (chance == 70) {
+                        // 20% chance for additional 2 bandits in common
+                        int roll = world.random.nextInt(100) + 1;
+                        if (roll <= 20) {
+                            additionalBandits = 2;
+                        } else if (roll >= 40) {
+                            additionalBandits = 1; // 60% chance for additional bandit
+                        }
                     }
-                }*/
+
+                    for (int i = 0; i < additionalBandits; i++) {
+                        ExtendedBanditEntity additional = ExtendedEntities.BANDIT.get().create(world, null, null, player, pos, SpawnReason.SPAWN_EGG, true, false);
+                        yaw = world.random.nextFloat() * 360.0F; // set look angle
+                        bandit.setYBodyRot(yaw);
+                        bandit.setYHeadRot(yaw);
+                        bandit.setPersistenceRequired();
+                        world.addFreshEntityWithPassengers(additional);
+                    }
+                }
+
+                return true;
             }
         }
 
