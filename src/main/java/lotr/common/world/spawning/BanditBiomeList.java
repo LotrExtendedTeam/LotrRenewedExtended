@@ -171,28 +171,31 @@ public class BanditBiomeList {
 
         bandits.put("lotr:mordor", BanditChance.NONE);
         bandits.put("lotr:mordor_mountains", BanditChance.NONE);
+        bandits.put("lotr:morgul_vale", BanditChance.NONE);
+        bandits.put("lotr:nan_curunir", BanditChance.UNCOMMON);
 
-        /*
-        // TODO: Finish going through and updating these
-        bandits.put("lotr:morgul_vale", new HashMap<>());
-        bandits.put("lotr:nan_curunir", new HashMap<>());
-        bandits.put("lotr:nindalf", new HashMap<>());
-        bandits.put("lotr:northlands", new HashMap<>());
-        bandits.put("lotr:northlands_forest", new HashMap<>());
-        bandits.put("lotr:nurn", new HashMap<>());
-        bandits.put("lotr:nurn_marshes", new HashMap<>());
-        bandits.put("lotr:nurnen", new HashMap<>()); // nurnen is a sea no bandits spawn here
-        bandits.put("lotr:old_forest", new HashMap<>());
-        bandits.put("lotr:snowy_northlands", new HashMap<>());
-        bandits.put("lotr:snowy_northlands_forest", new HashMap<>());
-        bandits.put("lotr:southron_coasts", new HashMap<>());
-        bandits.put("lotr:southron_coasts_forest", new HashMap<>());
-        bandits.put("lotr:tolfalas", new HashMap<>());
-        bandits.put("lotr:western_isles", new HashMap<>());
-        bandits.put("lotr:white_beach", new HashMap<>());
-        bandits.put("lotr:white_mountains", new HashMap<>());
-        bandits.put("lotr:white_mountains_foothills", new HashMap<>());
-        bandits.put("lotr:wilderland", new HashMap<>());*/
+        bandits.put("lotr:nindalf", BanditChance.UNCOMMON);
+        bandits.put("lotr:northlands", BanditChance.UNCOMMON);
+        bandits.put("lotr:northlands_forest", BanditChance.UNCOMMON);
+        bandits.put("lotr:nurn", BanditChance.NONE);
+        bandits.put("lotr:nurn_marshes", BanditChance.NONE);
+        bandits.put("lotr:nurnen", BanditChance.NONE); // nurnen is a sea
+        bandits.put("lotr:snowy_northlands", BanditChance.UNCOMMON);
+        bandits.put("lotr:snowy_northlands_forest", BanditChance.UNCOMMON);
+
+        bandits.put("lotr:old_forest", BanditChance.NONE);
+
+        bandits.put("lotr:southron_coasts", BanditChance.RARE);
+        bandits.put("lotr:southron_coasts_forest", BanditChance.RARE);
+
+        bandits.put("lotr:tolfalas", BanditChance.COMMON);
+        bandits.put("lotr:western_isles", BanditChance.NONE); // TODO: I think this should be NONE
+
+        bandits.put("lotr:white_beach", BanditChance.NONE);
+        bandits.put("lotr:white_mountains", BanditChance.RARE);
+        bandits.put("lotr:white_mountains_foothills", BanditChance.RARE);
+
+        bandits.put("lotr:wilderland", BanditChance.UNCOMMON);
     }
 
     /**
