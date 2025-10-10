@@ -5,14 +5,17 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathNavigator;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
+import org.lwjgl.system.CallbackI;
 
 
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Objects;
 
 public class ExtendedBanditEscapeGoal extends Goal {
 	private final ExtendedBanditEntity bandit;
@@ -30,7 +33,14 @@ public class ExtendedBanditEscapeGoal extends Goal {
 	@Override
 	public boolean canUse() {
 		if(bandit.hasStolen()) { // move simple check outside of getEntitiesOfClass for peformance reasons
-			List<PlayerEntity> players = bandit.level.getEntitiesOfClass(PlayerEntity.class, bandit.getBoundingBox().inflate(20.0D), EntityPredicates.NO_CREATIVE_OR_SPECTATOR);
+			if (bandit.getLastDamageSource() != null) {
+				DamageSource last = bandit.getLastDamageSource();
+				if (last.getEntity() != null && last.getEntity() instanceof PlayerEntity) {
+					return false;
+				}
+			}
+
+			List<PlayerEntity> players = bandit.level.getEntitiesOfClass(PlayerEntity.class, bandit.getBoundingBox().inflate(30.0D), EntityPredicates.NO_CREATIVE_OR_SPECTATOR);
 			if (!players.isEmpty()) {
 				this.targetPlayer = players.get(0);
 				return true;
@@ -41,7 +51,15 @@ public class ExtendedBanditEscapeGoal extends Goal {
 
 	@Override
 	public boolean canContinueToUse() {
-		return targetPlayer != null && bandit.distanceTo(targetPlayer) < dangerRadius && !bandit.getNPCCombatUpdater().isCombatStance();
+		if (targetPlayer != null && bandit.distanceTo(targetPlayer) < dangerRadius) {
+			if (bandit.getLastDamageSource() != null) {
+				DamageSource last = bandit.getLastDamageSource();
+                return last.getEntity() == null || !(last.getEntity() instanceof PlayerEntity);
+			}
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override

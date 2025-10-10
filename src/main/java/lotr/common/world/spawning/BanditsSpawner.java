@@ -49,6 +49,19 @@ public class BanditsSpawner {
             }
         }
 
+        // check protection against where the player is standing - this prevent a bandit from being generated for the player
+        // at all if they are inside a protected area - can be reverted if we decided to but it might be nice to prevent them
+        // from getting ambushed outside the wall of their base by a bunch bandits that were spawned while they were in their base
+        if (!ignoreProtection) {
+            BlockPos pos = new BlockPos(player.position());
+            if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ExtendedBannerProtectionManager.SingleProtectionInstance.AnyProtection(), false, "checkSpawnRules").isNotAllowed()) {
+                ExtendedLog.info("In Banner Area");
+                return false;
+            } else {
+                ExtendedLog.info("Not In Banner Area");
+            }
+        }
+
         // if we have made it this point the roll succeeded - make 20 attempts to find a point to spawn them
         for (int attempts = 0; attempts < 20; attempts++) {
             // pick a random angle and distance from the player
