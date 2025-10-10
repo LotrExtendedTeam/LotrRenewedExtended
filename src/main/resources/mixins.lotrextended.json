@@ -116,6 +116,7 @@
 		"net.minecraft.block.MixinFarmlandBlock",
 		"net.minecraft.block.MixinSpreadableSnowyDirtBlock",
 		"net.minecraft.entity.MixinEntityType",
+        "net.minecraft.entity.PlayerEntityMixin",
 		"net.minecraft.entity.MixinLivingEntity",
 		"net.minecraft.entity.MixinRabbitEntityRaidFarmGoal",
 		"net.minecraft.inventory.container.MixinCraftingResultSlot",
