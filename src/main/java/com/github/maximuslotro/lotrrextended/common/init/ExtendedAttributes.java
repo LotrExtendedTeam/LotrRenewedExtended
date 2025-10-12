@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.init;
 
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 
 import net.minecraft.entity.ai.attributes.Attribute;
@@ -11,7 +12,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedAttributes {
-	public static final DeferredRegister<Attribute> REGISTRY = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, "lotrextended");
+	public static final DeferredRegister<Attribute> REGISTRY = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, LotrExtendedMod.MODID);
 	public static final RegistryObject<Attribute> WARG_JUMP_STRENGTH = registryAttribute("warg.jump_strength", "Warg Jump Strength", 0.7D, 0.0D, 2.0D);
 
 	public static void register(IEventBus modBus) {

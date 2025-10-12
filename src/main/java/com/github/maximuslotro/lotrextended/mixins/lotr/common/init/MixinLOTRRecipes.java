@@ -13,7 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
-import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedTippedArrowRecipe;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.init.ExtendedBlocks;
@@ -23,7 +22,6 @@ import lotr.common.recipe.LOTRRecipes;
 import lotr.common.recipe.MultiTableType;
 import net.minecraft.block.Block;
 import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.fml.DatagenModLoader;
@@ -63,7 +61,7 @@ public class MixinLOTRRecipes {
 	@Unique
 	private static FactionTableType registerFactionD(String id, String defaultName, Supplier<Block> blockSup) {
 		if(DatagenModLoader.isRunningDataGen()) {
-			DataGenValueHolder.containerTitlesHolders.put("container.lotr."+id+"_crafting", defaultName);
+			DataGenValueHolder.containerTitlesHolders.put("container.lotr."+id+"_crafting", defaultName); // lotr is hardcoded in the register method
 		}
 		return registerFaction(id, blockSup);
 	}
@@ -80,8 +78,6 @@ public class MixinLOTRRecipes {
 		ExtendedRecipes.MORWAITH_CRAFTING = registerFactionD("morwaith", "Morwaith Crafting", ExtendedBlocks.MORWAITH_CRAFTING_TABLE);
 		ExtendedRecipes.HALF_TROLL_CRAFTING = registerFactionD("half_troll", "Half Troll Crafting", ExtendedBlocks.HALF_TROLL_CRAFTING_TABLE);
 		ExtendedRecipes.NORTHERN_ORC_CRAFTING = registerFactionD("northern_orc", "Gundabad Crafting", ExtendedBlocks.NORTHERN_ORC_CRAFTING_TABLE);
-
-		ExtendedRecipes.EXTENDED_TIPPED_ARROW = RECIPE_SERIALIZERS.register("extended_crafting_special_tippedarrow", ()-> new SpecialRecipeSerializer<>(ExtendedTippedArrowRecipe::new));
 	}
 	/**
 	 * @reason Need to override renewed MultiTableType types to add missing crafting table types

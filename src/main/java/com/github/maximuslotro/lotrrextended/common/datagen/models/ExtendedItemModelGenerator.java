@@ -15,8 +15,10 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedLeatherHatItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
 import lotr.common.block.ChandelierBlock;
@@ -27,7 +29,6 @@ import lotr.common.block.VesselDrinkBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.DaggerItem;
-import lotr.common.item.ExtendedDyeableLOTRArmorItem;
 import lotr.common.item.FallenLeavesItem;
 import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRAxeItem;
@@ -69,9 +70,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		genGenerated(ExtendedItems.WEAPON_RACK.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.WEAPON_RACK.getId().getPath()));
 		genGenerated(ExtendedItems.ENTITY_SPAWNER.getId().getPath(), lotrExtendedLoc("block/spawner_block"));
 		genGenerated(ExtendedItems.ROPE.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.ROPE.getId().getPath()));
-		genGenerated(ExtendedItems.ROPE.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.ROPE.getId().getPath()));
 		genGenerated(ExtendedItems.GRASS_VOID.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.GRASS_VOID.getId().getPath()));
-
 	}
 	@Override
 	protected void registerModels() {
@@ -139,8 +138,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			if(item.getValue().get() instanceof ExtendedEntitySpawnerItem) {
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedDyeableLOTRArmorItem) {
-				ItemModelBuilder builder = withExistingParent("lotr:"+item.getKey(), "lotrextended:item/template_coin");
+			if(item.getValue().get() instanceof ExtendedLeatherHatItem) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()), lotrExtendedLoc("item/"+item.getKey()+"_overlay"));
 				continue;
 			}
@@ -207,6 +205,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			if(item.getValue().get() instanceof ExtendedBrandingIronItem) {
 				genBrandingIron(item.getKey(), "item/"+item.getKey());
+				continue;
+			}
+			if(item.getValue().get() instanceof ExtendedModifierScrollItem) {
+				genModifierScroll(item.getKey(), "item/"+item.getKey());
 				continue;
 			}
 			if(item.getValue().get() instanceof ExtendedMCBannerItem) {
@@ -316,25 +318,33 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	}
 
 	private ItemModelBuilder genCommandHorn(String name, String location) {
-		ResourceLocation horn = lotrExtendedLoc(location);
-		ResourceLocation horn_summon = lotrExtendedLoc(location+"_summon");
-		ResourceLocation horn_halt = lotrExtendedLoc(location+"_halt");
-		ItemModelBuilder builder_halt = genGenerated(name+"_halt", horn_halt);
-		ItemModelBuilder builder_reddy = genGenerated(name+"_reddy", horn_halt);
-		ItemModelBuilder builder_summon = genGenerated(name+"_summon", horn_summon);
-		ItemModelBuilder builder = genGenerated(name, horn);
-		builder.override().model(builder_halt).predicate(ExtendedItemModelsProperties.hornType, 1.0F);
-		builder.override().model(builder_reddy).predicate(ExtendedItemModelsProperties.hornType, 2.0F);
-		builder.override().model(builder_summon).predicate(ExtendedItemModelsProperties.hornType, 3.0F);
+		ItemModelBuilder builder = genGenerated(name, lotrExtendedLoc(location));
+		ItemModelBuilder builder_halt = genGenerated(name+"_halt", lotrExtendedLoc(location+"_halt"));
+		ItemModelBuilder builder_reddy = genGenerated(name+"_reddy", lotrExtendedLoc(location+"_ready"));
+		ItemModelBuilder builder_summon = genGenerated(name+"_summon", lotrExtendedLoc(location+"_summon"));
+		builder.override().model(builder_halt).predicate(ExtendedItemModelsProperties.hornType, 1);
+		builder.override().model(builder_reddy).predicate(ExtendedItemModelsProperties.hornType, 2);
+		builder.override().model(builder_summon).predicate(ExtendedItemModelsProperties.hornType, 3);
 		return builder;
 	}
 
+	private ItemModelBuilder genModifierScroll(String name, String location) {
+		ItemModelBuilder builder = genGenerated(name, lotrExtendedLoc(location+"_wooden"));//TODO maybe have a "basic" modifier scroll texture in the future?
+		ItemModelBuilder builder_wooden = genGenerated(name+"_wooden", lotrExtendedLoc(location+"_wooden"));
+		ItemModelBuilder builder_bronze = genGenerated(name+"_bronze", lotrExtendedLoc(location+"_bronze"));
+		ItemModelBuilder builder_silver = genGenerated(name+"_silver", lotrExtendedLoc(location+"_silver"));
+		ItemModelBuilder builder_golden = genGenerated(name+"_golden", lotrExtendedLoc(location+"_golden"));
+		builder.override().model(builder_wooden).predicate(ExtendedItemModelsProperties.scroll_type, 0);
+		builder.override().model(builder_bronze).predicate(ExtendedItemModelsProperties.scroll_type, 1);
+		builder.override().model(builder_silver).predicate(ExtendedItemModelsProperties.scroll_type, 2);
+		builder.override().model(builder_golden).predicate(ExtendedItemModelsProperties.scroll_type, 3);
+		return builder_wooden;
+	}
+
 	private ItemModelBuilder genBrandingIron(String name, String location) {
-		ResourceLocation iron = lotrExtendedLoc(location);
-		ResourceLocation iron_hot = lotrExtendedLoc(location+"_hot");
-		ItemModelBuilder builder_iron_hot = genHandheld(name+"_hot", iron_hot);
-		ItemModelBuilder builder = genHandheld(name, iron);
-		builder.override().model(builder_iron_hot).predicate(ExtendedItemModelsProperties.heated, 1.0F);
+		ItemModelBuilder builder = genHandheld(name, lotrExtendedLoc(location));
+		ItemModelBuilder builder_iron_hot = genHandheld(name+"_hot", lotrExtendedLoc(location+"_hot"));
+		builder.override().model(builder_iron_hot).predicate(ExtendedItemModelsProperties.heated, 1);
 		return builder;
 	}
 

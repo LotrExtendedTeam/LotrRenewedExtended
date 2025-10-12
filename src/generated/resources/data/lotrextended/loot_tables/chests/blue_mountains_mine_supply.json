@@ -202,6 +202,9 @@
                 "min": 0.25,
                 "max": 1.0
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_pickaxe"
@@ -220,6 +223,9 @@
                 "min": 0.25,
                 "max": 1.0
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:iron_pickaxe"
@@ -238,6 +244,9 @@
                 "min": 0.25,
                 "max": 1.0
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:blue_dwarven_pickaxe"
@@ -273,6 +282,11 @@
             }
           ],
           "name": "lotr:large_pouch"
+        }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder"
         }
       ]
     }

@@ -46,8 +46,6 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
 
     public ExtendedHobbitFarmerEntity(EntityType<? extends HobbitEntity> type, World w) {
         super(type, w);
-        setPersistenceRequired();
-
     }
 
     // Remove, drink, smoke and eat AIs

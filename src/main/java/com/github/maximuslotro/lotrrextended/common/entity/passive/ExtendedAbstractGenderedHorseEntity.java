@@ -109,18 +109,6 @@ public abstract class ExtendedAbstractGenderedHorseEntity extends AbstractHorseE
      * @return The offspring entity of type T.
      */
 	public abstract ExtendedAbstractGenderedHorseEntity getBreedingOffspring(ServerWorld pServerLevel, AgeableEntity pMate);
-
-	/**
-     * Allows subclasses to modify the offspring entity after it is created and gender is set.
-     *
-     * @param baby The newly created offspring entity.
-     * @param pServerLevel The server world context.
-     * @param pMate The mate entity.
-     * @return The potentially modified offspring entity.
-     */
-	public ExtendedAbstractGenderedHorseEntity modifyBreedingOffspring(ExtendedAbstractGenderedHorseEntity baby, ServerWorld pServerLevel, AgeableEntity pMate) {
-		return baby;
-	}
 	
 	/**
      * Abstract method to allow sub-classes to override the saddle sound
@@ -175,11 +163,7 @@ public abstract class ExtendedAbstractGenderedHorseEntity extends AbstractHorseE
      */
 	@Override
 	public AgeableEntity getBreedOffspring(ServerWorld pServerLevel, AgeableEntity pMate) {
-		ExtendedAbstractGenderedHorseEntity baby = getBreedingOffspring(pServerLevel, pMate);
-		if(baby.isGendered()==this.isGendered() || baby.isGendered()==((ExtendedAbstractGenderedHorseEntity)pMate).isGendered()) {
-			baby.setGenderRandomly(isGendered(), pServerLevel);
-		}
-		return modifyBreedingOffspring(baby, pServerLevel, pMate);
+		return getBreedingOffspring(pServerLevel, pMate);
 	}
 
 	/**

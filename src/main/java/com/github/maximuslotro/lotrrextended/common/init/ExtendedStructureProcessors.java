@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.init;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.BrickWeathererProcessor;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.GraniteWhiteWoolBeehiveThatchRemoverProcessor;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.SinglePieceFoundationProcessor;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.ReplaceAirWithGrassVoidsProcessor;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPaletteProcessor;
 import com.mojang.serialization.Codec;
 
@@ -27,7 +27,7 @@ public class ExtendedStructureProcessors {
      * Kept for legacy support of 1.5.2 structures.
      * Scheduled for removal by December 31st, 2025.
      * 
-     * Looks like it was being used as a processor until 1.7.4
+     * Looks like it was being used as a processor until 1.8.0
      * Maybe remove by July 31st, 2026?
      * @deprecated Scheduled for removal; retained only for legacy structure compatibility.
      */
@@ -37,17 +37,17 @@ public class ExtendedStructureProcessors {
      */
 	public static final IStructureProcessorType<BrickWeathererProcessor> LOTR_WEATHERER_PROCESSOR = register("lotr_brick_weatherer_processor", BrickWeathererProcessor.CODEC);
 	/**
-     * Processor that handles foundation placement for single-piece structures.
-     * <p>
-     * Currently marked as possibly unused.
+     * Processor for protecting the air inside structures
      */
-	public static final IStructureProcessorType<SinglePieceFoundationProcessor> SINGLE_PIECE_FOUNDATIONS_PROCESSOR = register("single_piece_foundations_processor", SinglePieceFoundationProcessor.CODEC);
+	public static final IStructureProcessorType<ReplaceAirWithGrassVoidsProcessor> GRASS_VOID_AIR_PROCESSOR = register("air_replacer_grass_void_processor", ReplaceAirWithGrassVoidsProcessor.CODEC);
+
 	/**
      * Processor that removes thatch, polished granite, beehives, and white wool blocks
      * from structures during generation.
      * <p>
-     * Marked TODO to simplify in the future.
-     */	public static final IStructureProcessorType<GraniteWhiteWoolBeehiveThatchRemoverProcessor> THATCH_POLISHED_GRANITE_BEEHIVE_WHITE_WOOL_PROCESSOR = register("thatch_polished_granite_white_wool_beehive_remover_processor", GraniteWhiteWoolBeehiveThatchRemoverProcessor.CODEC);
+     * Marked TODO to simplify in the future or remove.
+     */	
+	public static final IStructureProcessorType<GraniteWhiteWoolBeehiveThatchRemoverProcessor> THATCH_POLISHED_GRANITE_BEEHIVE_WHITE_WOOL_PROCESSOR = register("thatch_polished_granite_white_wool_beehive_remover_processor", GraniteWhiteWoolBeehiveThatchRemoverProcessor.CODEC);
      /**
       * Initialization method to trigger class loading and registration.
       * Typically called during mod setup.

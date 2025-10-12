@@ -54,16 +54,16 @@ public class ExtendedLargePotBlock extends HorizontalBlock {
 			if (!player.isCrouching()) {
 				ItemStack stack = player.getMainHandItem();
                 if(!stack.isEmpty()) {
-                	if(entity.getContainedItem().isEmpty()) {
+                	if(entity.getContainedItem(true).isEmpty()) {
                         entity.setContainedItem(stack.split(1));
     					//world.playSound(null, pos, ExtendedSounds.POT_FILLED.get(), SoundCategory.PLAYERS, 1.0F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 0.1F);
     					return ActionResultType.SUCCESS;
                 	}
                 	else {
-                		if(ExtendedItemStackUtils.isSameItemStackItemAndTag(stack, entity.getContainedItem()) && entity.getContainedItem().getCount()+1<=entity.getContainedItem().getMaxStackSize()) {
+                		if(ExtendedItemStackUtils.isSameItemStackItemAndTag(stack, entity.getContainedItem(true)) && entity.getContainedItem(true).getCount()+1<=entity.getContainedItem(true).getMaxStackSize()) {
                 			stack.shrink(1);
-                			entity.getContainedItem().grow(1);
-        					world.playSound(null, pos, ExtendedSounds.POT_FILLED.get(), SoundCategory.BLOCKS, 1.0F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 0.1F);
+                			entity.getContainedItem(true).grow(1);
+        					world.playSound(null, pos, ExtendedSounds.POT_FILLED.get(), SoundCategory.BLOCKS, 1.0F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 1.4F + 0.3F);
         					return ActionResultType.SUCCESS;
                 		}
                 	}
@@ -91,7 +91,7 @@ public class ExtendedLargePotBlock extends HorizontalBlock {
 		if (!blockState.is(blockStateOther.getBlock())) {
 			TileEntity tileentity = world.getBlockEntity(blockPos);
 			if (tileentity instanceof ExtendedLargePotTileEntity) {
-				InventoryHelper.dropItemStack(world, blockPos.getX(), blockPos.getY(), blockPos.getZ(), ((ExtendedLargePotTileEntity)tileentity).getContainedItem().copy());
+				InventoryHelper.dropItemStack(world, blockPos.getX(), blockPos.getY(), blockPos.getZ(), ((ExtendedLargePotTileEntity)tileentity).getContainedItem(true).copy());
 				world.updateNeighbourForOutputSignal(blockPos, this);
 			}
 			super.onRemove(blockState, world, blockPos, blockStateOther, p_196243_5_);
@@ -107,7 +107,7 @@ public class ExtendedLargePotBlock extends HorizontalBlock {
 	public int getAnalogOutputSignal(BlockState blockState, World world, BlockPos blockPos) {
 		TileEntity tileentity = world.getBlockEntity(blockPos);
 		if (tileentity instanceof ExtendedLargePotTileEntity) {
-			if(!((ExtendedLargePotTileEntity)tileentity).getContainedItem().isEmpty()) {
+			if(!((ExtendedLargePotTileEntity)tileentity).getContainedItem(false).isEmpty()) {
 				return 15;
 			}
 		}

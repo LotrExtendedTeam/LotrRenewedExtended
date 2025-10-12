@@ -1,0 +1,23 @@
+{
+	"line0": {
+	},
+	"line1": {
+		"namebank": [
+			"lotr:npcs/names/dwarf_male.txt"
+		],
+		"shouldAddApostrophe": true
+	},
+	"line2": {
+		"string": [
+			"Abode",
+			"Burrow",
+			"Delving",
+			"Dwelling",
+			"Hall",
+			"Hold",
+			"House"
+		]
+	},
+	"line3": {
+	}
+}

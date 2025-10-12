@@ -51,12 +51,12 @@ public class AdvancementsProviderDorwinion extends ExtendedBaseAdvancementType{
 			addCraftingTrigger(make(), LOTRBlocks.DORWINION_CRAFTING_TABLE.get()).parent(enter_dorwinion));
 
 		Advancement dorwinion_armor = build(true, data(LOTRItems.DORWINION_CHESTPLATE.get(), "dorwinion_armor", FrameType.TASK)
-			.setTitle("Vintner Guard").setDescription("Equip a full suit of Dorwinion armour."),
+			.setTitle("Vintner Guard").setDescription("Equip a full suit of Dorwinion armor."),
 			addArmorTrigger(make(), "dorwinion", LOTRItems.DORWINION_HELMET.get(), LOTRItems.DORWINION_CHESTPLATE.get(),
 					LOTRItems.DORWINION_LEGGINGS.get(), LOTRItems.DORWINION_BOOTS.get()).parent(enter_dorwinion));
 
 		Advancement dorwinion_elven_armor = build(true, data(LOTRItems.DORWINION_ELVEN_CHESTPLATE.get(), "dorwinion_elven_armor", FrameType.TASK)
-			.setTitle("Warrior of Bladorthin").setDescription("Equip a full suit of Dorwinion Elven armour."),
+			.setTitle("Warrior of Bladorthin").setDescription("Equip a full suit of Dorwinion Elven armor."),
 			addArmorTrigger(make(), "dorwinion_elven", LOTRItems.DORWINION_ELVEN_HELMET.get(), LOTRItems.DORWINION_ELVEN_CHESTPLATE.get(),
 					LOTRItems.DORWINION_ELVEN_LEGGINGS.get(), LOTRItems.DORWINION_ELVEN_BOOTS.get()).parent(enter_dorwinion));
 

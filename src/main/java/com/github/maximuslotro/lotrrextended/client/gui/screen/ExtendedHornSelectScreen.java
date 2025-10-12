@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
 import org.lwjgl.opengl.GL11;
 
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitHornTypes;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCSelectHornPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
@@ -27,11 +28,11 @@ public class ExtendedHornSelectScreen extends ExtendedBasicAbstractScreen {
 	public void init() {
 		super.init();
 		this.addButton(new Button(this.leftPos + 40, this.topPos + 40, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_halt_reddy"), button -> {
-			ExtendedPacketHandler.sendToServer(new ExtendedCSelectHornPacket(1.0f));
+			ExtendedPacketHandler.sendToServer(new ExtendedCSelectHornPacket(ExtendedUnitHornTypes.HALT));
 			this.minecraft.player.closeContainer();
 		}));
 		this.addButton(new Button(this.leftPos + 40, this.topPos + 75, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_summon"), button -> {
-			ExtendedPacketHandler.sendToServer(new ExtendedCSelectHornPacket(3.0f));
+			ExtendedPacketHandler.sendToServer(new ExtendedCSelectHornPacket(ExtendedUnitHornTypes.SUMMON));
 			this.minecraft.player.closeContainer();
 		}));
 	}
@@ -58,7 +59,7 @@ public class ExtendedHornSelectScreen extends ExtendedBasicAbstractScreen {
 			this.minecraft.player.closeContainer();
 			this.onClose();
 		}
-		if(ExtendedCommandHornItem.isNotEmpty(itemstack)){
+		if(!ExtendedCommandHornItem.getType(itemstack).isUnset()){
 			this.minecraft.player.closeContainer();
 			this.onClose();
 			return;

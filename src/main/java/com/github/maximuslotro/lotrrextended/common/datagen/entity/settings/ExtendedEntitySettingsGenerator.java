@@ -33,9 +33,12 @@ public class ExtendedEntitySettingsGenerator extends ExtendedEntitySettingsProvi
 		make(ExtendedEntities.BLUE_DWARVEN_SMITH.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(2).setBankE("blue_mountains/smith").save(pConsumer);
 		make(ExtendedEntities.BLUE_DWARVEN_BARTENDER.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(2).setBankE("blue_mountains/bartender").save(pConsumer);
 		make(ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(1).setBankE("blue_mountains/merchant").save(pConsumer);
+		make(ExtendedEntities.BLUE_DWARVEN_BUTCHER.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(2).setBankE("blue_mountains/dwarf").save(pConsumer);
+		make(ExtendedEntities.BLUE_DWARVEN_STONEMASON.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(2).setBankE("blue_mountains/dwarf").save(pConsumer);
 		make(LOTREntities.BLUE_MOUNTAINS_DWARF.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(1).setBankE("blue_mountains/dwarf").save(pConsumer);
 		make(LOTREntities.BLUE_MOUNTAINS_WARRIOR.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(2).setBankE("blue_mountains/warrior").save(pConsumer);
 		make(LOTREntities.BLUE_MOUNTAINS_ARCHER.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(2).setBankE("blue_mountains/warrior").save(pConsumer);
+		make(ExtendedEntities.BLUE_DWARVEN_AXE_THROWER.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(2).setBankE("blue_mountains/warrior").save(pConsumer);
 		make(ExtendedEntities.HOBBIT_BARTENDER.get(), FactionPointers.HOBBITS).setBonus(1).setBank("hobbits/hobbit_bartender").save(pConsumer);
 		make(ExtendedEntities.HOBBIT_FARMER.get(), FactionPointers.HOBBITS).setBonus(1).setBank("hobbits/hobbit_farmer").save(pConsumer);
 		make(ExtendedEntities.ODDMENT_COLLECTOR.get(), ExtendedFactionPointers.ODDMENT_COLLECTORS).setBankE("oddment_collectors/oddment_collector").save(pConsumer);

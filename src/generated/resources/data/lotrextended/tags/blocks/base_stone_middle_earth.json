@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:base_stone_overworld",
+    "lotr:blue_rock",
+    "lotr:gondor_rock",
+    "lotr:mordor_rock",
+    "lotr:red_rock",
+    "lotr:rohan_rock"
+  ]
+}

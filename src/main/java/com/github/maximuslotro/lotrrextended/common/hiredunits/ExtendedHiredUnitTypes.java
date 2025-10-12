@@ -28,6 +28,7 @@ public class ExtendedHiredUnitTypes {
 	public static final ResourceLocation BLUE_DWARF = make("blue_dwarf");
 	public static final ResourceLocation BLUE_DWARF_WARRIOR = make("blue_dwarven_warrior");
 	public static final ResourceLocation BLUE_DWARF_ARCHER = make("blue_dwarven_archer");
+	public static final ResourceLocation BLUE_DWARF_AXE_THROWER = make("blue_dwarven_axe_thrower");
 
 	private static ResourceLocation make(String pId) {
 		return validate(new ResourceLocation(LotrExtendedMod.MODID, pId));

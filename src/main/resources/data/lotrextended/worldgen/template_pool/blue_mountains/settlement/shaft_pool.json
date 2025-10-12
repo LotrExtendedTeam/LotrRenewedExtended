@@ -1,25 +1,14 @@
 {
 	"name": "lotrextended:blue_mountains/settlement/shaft_pool",
-	"fallback": "minecraft:empty",
+	"fallback": "lotrextended:blue_mountains/settlement/shaft_pool_fallback",
 	"elements": [
 		{
-			"weight": 9,
+			"weight": 20,
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_shaft_1",
-				"processors": "minecraft:empty",
-				"protectable_y_level": 37,
-				"apply_waterlogging" : false
-			}
-		},
-		{
-			"weight": 3,
-			"element": {
-				"element_type": "lotrextended:extended_single_pool_element",
-				"projection": "rigid",
-				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_shaft_2",
-				"processors": "minecraft:empty",
+				"processors": "lotrextended:blue_mountains_settlement_underground_processor",
 				"protectable_y_level": 37,
 				"apply_waterlogging" : false
 			}
@@ -29,9 +18,9 @@
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_shaft_3",
-				"processors": "minecraft:empty",
-				"protectable_y_level": 40,
+				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_shaft_2",
+				"processors": "lotrextended:blue_mountains_settlement_underground_processor",
+				"protectable_y_level": 37,
 				"apply_waterlogging" : false
 			}
 		}

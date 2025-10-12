@@ -258,6 +258,9 @@
                 "min": 0.35,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:wooden_dagger"
@@ -276,6 +279,9 @@
                 "min": 0.3,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:stone_dagger"
@@ -294,6 +300,9 @@
                 "min": 0.25,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_dagger"
@@ -312,6 +321,9 @@
                 "min": 0.2,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:iron_dagger"
@@ -330,6 +342,9 @@
                 "min": 0.35,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:bow"
@@ -380,6 +395,11 @@
             }
           ],
           "name": "lotr:large_pouch"
+        }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder"
         }
       ]
     }

@@ -57,6 +57,7 @@ public class ExtendedBrandingIronItem extends Item {
 					animal.setPersistenceRequired();
 					animal.playAmbientSound();
 					animal.getJumpControl().jump();
+					animal.setLastHurtByMob(player);
 					entity.level.playSound(player, entity.blockPosition(), SoundEvents.FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1, 1);
 					if(!entity.level.isClientSide()) {
 						setTempererName(entity, player.getUUID());
