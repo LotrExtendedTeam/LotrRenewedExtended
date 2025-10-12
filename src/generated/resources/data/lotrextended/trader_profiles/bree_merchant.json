@@ -9,6 +9,7 @@
   "lockTicksAfterRefresh": 6000,
   "buyFromPlayer": [
     {
+      "weight": 50,
       "averageCost": 4,
       "stack": {
         "item": "lotr:drystone",
@@ -16,6 +17,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 4,
       "stack": {
         "item": "lotr:maple_log",
@@ -23,30 +25,35 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 30,
       "stack": {
         "item": "lotr:hobbit_oven"
       }
     },
     {
+      "weight": 50,
       "averageCost": 6,
       "stack": {
         "item": "lotr:cherry_pie"
       }
     },
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
         "item": "lotr:apple_crumble"
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "lotr:hobbit_pancake"
       }
     },
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
         "item": "lotr:smoking_pipe",
@@ -54,12 +61,14 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "lotr:pipeweed_leaf"
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "lotr:pipeweed",
@@ -67,6 +76,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "lotr:pipeweed_seeds",
@@ -76,24 +86,28 @@
   ],
   "sellToPlayer": [
     {
+      "weight": 50,
       "averageCost": 100,
       "stack": {
         "item": "lotr:bree_crafting_table"
       }
     },
     {
+      "weight": 50,
       "averageCost": 50,
       "stack": {
         "item": "lotr:bree_banner"
       }
     },
     {
+      "weight": 50,
       "averageCost": 25,
       "stack": {
         "item": "lotr:bree_banner_pattern"
       }
     },
     {
+      "weight": 50,
       "averageCost": 50,
       "stack": {
         "item": "lotr:bree_shield",
@@ -101,6 +115,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 12,
       "stack": {
         "item": "minecraft:iron_sword",
@@ -108,6 +123,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
         "item": "lotr:bronze_sword",
@@ -115,6 +131,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 15,
       "stack": {
         "item": "lotr:iron_spear",
@@ -122,6 +139,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 13,
       "stack": {
         "item": "lotr:bronze_spear",
@@ -129,18 +147,21 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 6,
       "stack": {
         "item": "lotr:maple_syrup"
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "lotr:maple_sapling"
       }
     },
     {
+      "weight": 50,
       "averageCost": 9,
       "stack": {
         "item": "lotr:mead",
@@ -148,6 +169,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 12,
       "stack": {
         "item": "lotr:mead",
@@ -155,6 +177,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 15,
       "stack": {
         "item": "lotr:mead",
@@ -162,6 +185,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "lotr:maple_beer",
@@ -169,6 +193,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
         "item": "lotr:maple_beer",
@@ -176,6 +201,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 12,
       "stack": {
         "item": "lotr:maple_beer",

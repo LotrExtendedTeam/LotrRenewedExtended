@@ -8,30 +8,35 @@
   "lockTicksAfterRefresh": 6000,
   "buyFromPlayer": [
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:copper_ingot"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:tin_ingot"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:bronze_ingot"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:iron_ingot"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:iron_nugget",
@@ -39,12 +44,14 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 15,
       "stack": {
         "item": "minecraft:gold_ingot"
       }
     },
     {
+      "weight": 50,
       "averageCost": 15,
       "stack": {
         "item": "minecraft:gold_nugget",
@@ -52,6 +59,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:string",
@@ -59,66 +67,77 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "minecraft:leather"
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "lotr:fur"
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "lotr:black_fur"
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "lotr:gray_fur"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:silver_fur"
       }
     },
     {
+      "weight": 50,
       "averageCost": 25,
       "stack": {
         "item": "lotr:white_fur"
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:rabbit_hide"
       }
     },
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
         "item": "lotr:amber"
       }
     },
     {
+      "weight": 50,
       "averageCost": 15,
       "stack": {
         "item": "lotr:emerald"
       }
     },
     {
+      "weight": 50,
       "averageCost": 12,
       "stack": {
         "item": "lotr:sapphire"
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "lotr:topaz"
@@ -127,6 +146,7 @@
   ],
   "sellToPlayer": [
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
         "item": "lotr:bronze_helmet",
@@ -134,6 +154,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 14,
       "stack": {
         "item": "lotr:bronze_chestplate",
@@ -141,6 +162,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 12,
       "stack": {
         "item": "lotr:bronze_leggings",
@@ -148,6 +170,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "lotr:bronze_boots",
@@ -155,6 +178,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 12,
       "stack": {
         "item": "minecraft:chainmail_helmet",
@@ -162,6 +186,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 16,
       "stack": {
         "item": "minecraft:chainmail_chestplate",
@@ -169,6 +194,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 14,
       "stack": {
         "item": "minecraft:chainmail_leggings",
@@ -176,6 +202,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
         "item": "minecraft:chainmail_boots",
@@ -183,6 +210,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 16,
       "stack": {
         "item": "minecraft:iron_helmet",
@@ -190,6 +218,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 22,
       "stack": {
         "item": "minecraft:iron_chestplate",
@@ -197,6 +226,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 18,
       "stack": {
         "item": "minecraft:iron_leggings",
@@ -204,6 +234,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 14,
       "stack": {
         "item": "minecraft:iron_boots",
@@ -211,18 +242,21 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 30,
       "stack": {
         "item": "minecraft:iron_horse_armor"
       }
     },
     {
+      "weight": 50,
       "averageCost": 100,
       "stack": {
         "item": "lotr:bree_crafting_table"
       }
     },
     {
+      "weight": 50,
       "averageCost": 20,
       "stack": {
         "item": "lotr:bronze_bars",
@@ -230,6 +264,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 20,
       "stack": {
         "item": "minecraft:iron_bars",
@@ -237,6 +272,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 7,
       "stack": {
         "item": "lotr:bronze_dagger",
@@ -244,6 +280,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
         "item": "lotr:bronze_sword",
@@ -251,6 +288,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 13,
       "stack": {
         "item": "lotr:bronze_spear",
@@ -258,6 +296,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 9,
       "stack": {
         "item": "lotr:iron_dagger",
@@ -265,6 +304,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 12,
       "stack": {
         "item": "minecraft:iron_sword",
@@ -272,6 +312,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 15,
       "stack": {
         "item": "lotr:iron_spear",
@@ -279,6 +320,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 16,
       "stack": {
         "item": "lotr:blacksmith_hammer",
@@ -286,6 +328,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 25,
       "stack": {
         "item": "lotr:branding_iron",

@@ -24,7 +24,6 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.item.VesselDrinkItem.Potency;
 import lotr.common.util.DrinkUtils;
@@ -41,6 +40,7 @@ import net.minecraftforge.registries.ForgeRegistries;
  * including trade pools, trade counts, refresh behavior, and alignment requirements.
  */
 public class ExtendedTraderProfile {
+	public static final int DEFAULT_WEIGHT = 50;
 	/** An empty default trader profile instance. */
 	public static final ExtendedTraderProfile EMPTY = new ExtendedTraderProfile(LotrExtendedMod.EMPTY, 1000, 0, 0, new ArrayList<>(), new ArrayList<>(), true, 10, 100000, false);
 	/** The unique identifier of this trader profile. */
@@ -387,10 +387,11 @@ public class ExtendedTraderProfile {
 		 * @param weight Weight of this trade entry.
 		 * @param averageCost Average cost.
 		 * @param maxTransferQuantity Maximum transfer quantity
+		 * @param shouldTradePersist Should the trade tick back down
 		 * @return This builder instance.
 		 */
-		public Builder addSBuy(Item item, int weight, int averageCost, int maxTransferQuantity) {
-			return addSBuy(new ItemStack(item), weight, averageCost, maxTransferQuantity);
+		public Builder addSBuy(Item item, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
+			return addSBuy(new ItemStack(item), weight, averageCost, maxTransferQuantity, shouldTradePersist);
 		}
 
 		/**
@@ -402,7 +403,7 @@ public class ExtendedTraderProfile {
 		 * @return The instance of this builder
 		 */
 		public Builder addSBuy(ItemStack stack, int averageCost) {
-			return addSBuy(stack, 1, averageCost, 200);
+			return addSBuy(stack, DEFAULT_WEIGHT, averageCost, 200, true);
 		}
 
 		/**
@@ -412,10 +413,11 @@ public class ExtendedTraderProfile {
 		 * @param weight The relative weight for trade roll selection
 		 * @param averageCost The average cost the trader will pay
 		 * @param maxTransferQuantity The max quantity per trade transaction
+		 * @param shouldTradePersist Should the trade tick back down
 		 * @return The instance of this builder
 		 */
-		public Builder addSBuy(ItemStack stack, int weight, int averageCost, int maxTransferQuantity) {
-			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(stack), weight, averageCost, maxTransferQuantity));
+		public Builder addSBuy(ItemStack stack, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
+			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(stack), weight, averageCost, maxTransferQuantity, shouldTradePersist));
 			return this;
 		}
 
@@ -430,7 +432,7 @@ public class ExtendedTraderProfile {
 		 */
 		public Builder addMBuy(int averageCost, Item... items) {
 			List<ItemStack> itemStacks = Arrays.stream(items).map(ItemStack::new).collect(Collectors.toList());
-			return addMBuy(itemStacks, 1, averageCost, 200);
+			return addMBuy(itemStacks, DEFAULT_WEIGHT, averageCost, 200, true);
 		}
 		/**
 		 * Adds a multi-item entry to the buy-from-player pool using item stacks.
@@ -442,7 +444,7 @@ public class ExtendedTraderProfile {
 		 */
 		public Builder addMBuy(int averageCost, ItemStack... stacks) {
 			List<ItemStack> itemStacks = Arrays.stream(stacks).collect(Collectors.toList());
-			return addMBuy(itemStacks, 1, averageCost, 200);
+			return addMBuy(itemStacks, DEFAULT_WEIGHT, averageCost, 200, true);
 		}
 
 		/**
@@ -452,10 +454,11 @@ public class ExtendedTraderProfile {
 		 * @param weight Relative chance of this entry being selected
 		 * @param averageCost Average cost the trader pays
 		 * @param maxTransferQuantity Max amount of items bought per trade
+		 * @param shouldTradePersist Should the trade tick back down
 		 * @return The instance of this builder
 		 */
-		public Builder addMBuy(List<ItemStack> stacks, int weight, int averageCost, int maxTransferQuantity) {
-			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierMulti(stacks), weight, averageCost, maxTransferQuantity));
+		public Builder addMBuy(List<ItemStack> stacks, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
+			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierMulti(stacks), weight, averageCost, maxTransferQuantity, shouldTradePersist));
 			return this;
 		}
 
@@ -469,7 +472,7 @@ public class ExtendedTraderProfile {
 		 * @return The instance of this builder
 		 */
 		public Builder addSSell(Item item, int averageCost) {
-			return addSSell(new ItemStack(item), 1, averageCost, 200);
+			return addSSell(new ItemStack(item), DEFAULT_WEIGHT, averageCost, 200, true);
 		}
 
 		/**
@@ -481,7 +484,7 @@ public class ExtendedTraderProfile {
 		 * @return The instance of this builder
 		 */
 		public Builder addSSell(RegistryObject<Item> item, int averageCost) {
-			return addSSell(new ItemStack(item.get()), 1, averageCost, 200);
+			return addSSell(new ItemStack(item.get()), DEFAULT_WEIGHT, averageCost, 200, true);
 		}
 		/**
 		 * Adds a single-item sale with full configuration.
@@ -490,10 +493,11 @@ public class ExtendedTraderProfile {
 		 * @param weight The relative weight of the offer
 		 * @param averageCost The average cost to the player
 		 * @param maxTransferQuantity Maximum quantity per trade
+		 * @param shouldTradePersist Should the trade tick back down
 		 * @return The instance of this builder
 		 */
-		public Builder addSSell(Item item, int weight, int averageCost, int maxTransferQuantity) {
-			return addSSell(new ItemStack(item), weight, averageCost, maxTransferQuantity);
+		public Builder addSSell(Item item, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
+			return addSSell(new ItemStack(item), weight, averageCost, maxTransferQuantity, shouldTradePersist);
 		}
 
 		/**
@@ -505,7 +509,7 @@ public class ExtendedTraderProfile {
 		 * @return The instance of this builder
 		 */
 		public Builder addSSell(ItemStack stack, int averageCost) {
-			return addSSell(stack, 1, averageCost, 200);
+			return addSSell(stack, DEFAULT_WEIGHT, averageCost, 200, true);
 		}
 
 		/**
@@ -515,10 +519,11 @@ public class ExtendedTraderProfile {
 		 * @param weight The relative weight of the offer
 		 * @param averageCost The average cost to the player
 		 * @param maxTransferQuantity Maximum quantity per trade
+		 * @param shouldTradePersist Should the trade tick back down
 		 * @return The instance of this builder
 		 */
-		public Builder addSSell(ItemStack stack, int weight, int averageCost, int maxTransferQuantity) {
-			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(stack), weight, averageCost, maxTransferQuantity));
+		public Builder addSSell(ItemStack stack, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
+			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(stack), weight, averageCost, maxTransferQuantity, shouldTradePersist));
 			return this;
 		}
 
@@ -538,9 +543,9 @@ public class ExtendedTraderProfile {
 				ExtendedLog.warn("Recieved invalid drink from args, SKIPPING!: "+item.get().getRegistryName().toString());
 				return this;
 			}
-			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.LIGHT), 1, lightCost, 200, true);
-			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.MODERATE), 1, moderateCost, 200, true);
-			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.STRONG), 1, strongCost, 200, true);
+			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.LIGHT), DEFAULT_WEIGHT, lightCost, 200, true);
+			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.MODERATE), DEFAULT_WEIGHT, moderateCost, 200, true);
+			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.STRONG), DEFAULT_WEIGHT, strongCost, 200, true);
 			return this;
 		}
 		/**
@@ -553,7 +558,7 @@ public class ExtendedTraderProfile {
 		 */
 		public Builder addMSell(int averageCost, Item... items) {
 			List<ItemStack> itemStacks = Arrays.stream(items).map(ItemStack::new).collect(Collectors.toList());
-			return addMSell(itemStacks, 1, averageCost, 200);
+			return addMSell(itemStacks, 1, averageCost, 200, true);
 		}
 		/**
 		 * Builds a multi sell pool with multiple item stacks
@@ -564,7 +569,7 @@ public class ExtendedTraderProfile {
 		 */
 		public Builder addMSell(int averageCost, ItemStack... stacks) {
 			List<ItemStack> itemStacks = Arrays.stream(stacks).collect(Collectors.toList());
-			return addMSell(itemStacks, 1, averageCost, 200);
+			return addMSell(itemStacks, 1, averageCost, 200, true);
 		}
 
 		/**
@@ -574,10 +579,11 @@ public class ExtendedTraderProfile {
 		 * @param weight The relative weight of this trade entry in the pool
 		 * @param averageCost The average cost of the trade
 		 * @param maxTransferQuantity The maximum quantity of items transferred in one trade
+		 * @param shouldTradePersist Should the trade tick back down
 		 * @return The instance of this builder
 		 */
-		public Builder addMSell(List<ItemStack> stacks, int weight, int averageCost, int maxTransferQuantity) {
-			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierMulti(stacks), weight, averageCost, maxTransferQuantity));
+		public Builder addMSell(List<ItemStack> stacks, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
+			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierMulti(stacks), weight, averageCost, maxTransferQuantity, shouldTradePersist));
 			return this;
 		}
 

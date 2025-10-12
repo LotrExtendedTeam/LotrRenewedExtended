@@ -8,6 +8,7 @@
   "lockTicksAfterRefresh": 6000,
   "buyFromPlayer": [
     {
+      "weight": 50,
       "averageCost": 1,
       "stacks": [
         {
@@ -61,6 +62,7 @@
       ]
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stacks": [
         {
@@ -114,6 +116,7 @@
       ]
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:string",
@@ -121,78 +124,91 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "minecraft:leather"
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "lotr:fur"
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "lotr:black_fur"
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "lotr:gray_fur"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:silver_fur"
       }
     },
     {
+      "weight": 50,
       "averageCost": 25,
       "stack": {
         "item": "lotr:white_fur"
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:rabbit_hide"
       }
     },
     {
+      "weight": 50,
       "averageCost": 18,
       "stack": {
         "item": "lotr:packed_fur"
       }
     },
     {
+      "weight": 50,
       "averageCost": 18,
       "stack": {
         "item": "lotr:black_packed_fur"
       }
     },
     {
+      "weight": 50,
       "averageCost": 18,
       "stack": {
         "item": "lotr:gray_packed_fur"
       }
     },
     {
+      "weight": 50,
       "averageCost": 27,
       "stack": {
         "item": "lotr:silver_packed_fur"
       }
     },
     {
+      "weight": 50,
       "averageCost": 200,
       "stack": {
         "item": "lotr:white_packed_fur"
       }
     },
     {
+      "weight": 50,
       "averageCost": 5,
       "stack": {
         "item": "minecraft:shears",
@@ -255,12 +271,14 @@
       ]
     },
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
         "item": "lotr:leather_hat"
       }
     },
     {
+      "weight": 50,
       "averageCost": 7,
       "stack": {
         "item": "minecraft:leather_helmet",
@@ -268,6 +286,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 12,
       "stack": {
         "item": "minecraft:leather_chestplate",
@@ -275,6 +294,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 11,
       "stack": {
         "item": "minecraft:leather_leggings",
@@ -282,6 +302,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 6,
       "stack": {
         "item": "minecraft:leather_boots",
@@ -289,6 +310,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 15,
       "stack": {
         "item": "minecraft:leather_horse_armor"
