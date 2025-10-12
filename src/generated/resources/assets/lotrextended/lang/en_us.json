@@ -1385,6 +1385,7 @@
   "config.lotrextended.enableExtendedModifiers": "Enables Extended modifier system",
   "config.lotrextended.enableFellowshipCreation": "Enable fellowship creation",
   "config.lotrextended.enableLegacyCaptainPassiveBehavior": "Make captains passive until attacked, like in legacy",
+  "config.lotrextended.enableLegacyFeastMode": "Enable the eating of food even if player is not hungry, like in legacy",
   "config.lotrextended.enableLegacyTraderPassiveBehavior": "Make traders passive until attacked, like in legacy",
   "config.lotrextended.enableLegacyWaypointCreation": "Enable legacy based waypoint creation (Not added yet)",
   "config.lotrextended.enablePlantParticles": "Allow for certian plants to spawn particles.",

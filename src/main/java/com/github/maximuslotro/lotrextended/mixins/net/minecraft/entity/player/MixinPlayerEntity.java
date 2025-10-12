@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import net.minecraft.block.BlockState;
@@ -25,12 +26,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /**
- * Mixin targeting {@link PlayerEntity} to extend block-breaking speed calculations.
+ * Mixin for {@link PlayerEntity} that changes some player behaviors.
  * <p>
- * This mixin overrides {@link PlayerEntity#getDigSpeed(BlockState, BlockPos)} to:
+ * New logic includes:
  * <ul>
- *     <li>Include custom modifiers from {@link ExtendedModifierUtils} to adjust mining speed.</li>
- * </p>
+ *     <li>Adjusting block-breaking speed through extended modifiers.</li>
+ *     <li>Allowing custom behavior for when the player can eat food.</li>
+ * </ul>
  * @Mixin (PlayerEntity.class)
  */
 @Mixin(PlayerEntity.class)
@@ -121,4 +123,20 @@ public abstract class MixinPlayerEntity extends LivingEntity {
 		itemDestroySpeed = net.minecraftforge.event.ForgeEventFactory.getBreakSpeed((PlayerEntity)(Object)this, pState, itemDestroySpeed, pos);
 		cir.setReturnValue(itemDestroySpeed);
 	}
+	/**
+     * Injects into {@link PlayerEntity#canEat(boolean)} to optionally enable a
+     * "feast mode" as seen in legacy, allowing players to eat regardless of hunger level.
+     * <p>
+     * This only activates when {@link ExtendedServerConfig#enableLegacyFeastMode} is true
+     * and the player is not riding an entity.
+     *
+     * @param ignoreHunger whether vanilla logic should ignore hunger restrictions
+     * @param cir          callback info for returning the modified result
+     */
+    @Inject(method = "canEat(Z)Z", at = @At("HEAD"), cancellable = true)
+    private void feastMode(boolean ignoreHunger, CallbackInfoReturnable<Boolean> cir) {
+        if(ExtendedServerConfig.enableLegacyFeastMode.get() && !((PlayerEntity)(Object)(this)).isVehicle()) {
+            cir.setReturnValue(true);
+        }
+    }
 }

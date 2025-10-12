@@ -57,7 +57,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		enableCustomWaypointTeleportation = createBooleanValue(builder, "enableCustomWaypointTeleportation", true, false, "Enable Teleportation To Custom Waypoints");
 		enableLegacyCaptainPassiveBehavior = createBooleanValue(builder, "enableLegacyCaptainPassiveBehavior", true, true, "Make captains passive until attacked, like in legacy");
 		enableLegacyTraderPassiveBehavior = createBooleanValue(builder, "enableLegacyTraderPassiveBehavior", true, true, "Make traders passive until attacked, like in legacy");
-        enableLegacyFeastMode = createBooleanValue(builder, "enableLegacyFeastMode", true, false, "Enable function of eating even if player is not hungry, like in legacy");
+        enableLegacyFeastMode = createBooleanValue(builder, "enableLegacyFeastMode", true, false, "Enable the eating of food even if player is not hungry, like in legacy");
         builder.pop();
 
 		builder.push("Chair settings");
