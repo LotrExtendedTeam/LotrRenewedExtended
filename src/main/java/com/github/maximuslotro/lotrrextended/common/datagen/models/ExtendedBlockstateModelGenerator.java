@@ -296,7 +296,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedChimneyPotBlock) {
-					genChimneyBlock((ExtendedChimneyPotBlock) block.getValue().get());
+					genChimneyBlock((ExtendedChimneyPotBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedGroundPathBlock) {
@@ -1454,9 +1454,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		simpleBlock(bed, modelFile);
 	}
 
-	private void genChimneyBlock(ExtendedChimneyPotBlock pot) {
+	private void genChimneyBlock(ExtendedChimneyPotBlock pot, ResourceLocation texture) {
 		registeredBlocks.add(pot);
-		ModelFile modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_chimneypot"));
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_chimneypot"))
+			.texture("particle", texture).texture("chimney", texture);
 		simpleBlock(pot, modelFile);
 		itemModels().getBuilder("lotr:"+pot.getRegistryName().getPath()).parent(modelFile);
 	}

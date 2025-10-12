@@ -1,3 +1,7 @@
 {
-  "parent": "lotrextended:block/template_chimneypot"
+  "parent": "lotrextended:block/template_chimneypot",
+  "textures": {
+    "particle": "lotrextended:block/chimney_pot",
+    "chimney": "lotrextended:block/chimney_pot"
+  }
 }

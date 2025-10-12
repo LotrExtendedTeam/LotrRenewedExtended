@@ -937,7 +937,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.SKULL_GOBLET = registerB("skull_goblet", () -> new VesselDrinkBlock(SoundType.BONE_BLOCK, 8.0F, 10.0F));
 		ExtendedBlocks.GLASS_BOTTLE = registerB("glass_bottle", () -> new VesselDrinkBlock(Properties.of(Material.DECORATION).strength(0.0F).sound(SoundType.GLASS).noOcclusion(), createVesselShape(5, 7)));
 		ExtendedBlocks.LARGE_POT = registerB("large_pot", () -> new ExtendedLargePotBlock(Properties.of(Material.DECORATION).instabreak().noOcclusion()));
-		ExtendedBlocks.CHIMNEYPOT = registerB("chimney_pot", () -> new ExtendedChimneyPotBlock(Properties.of(Material.DECORATION).instabreak().noOcclusion()));
+		ExtendedBlocks.CHIMNEYPOT = registerB("chimney_pot", () -> new ExtendedChimneyPotBlock(Properties.of(Material.DECORATION).instabreak().noOcclusion().randomTicks()));
 		// Large flower pot
 		ExtendedBlocks.LARGE_FLOWER_POT = registerB("large_flower_pot", ExtendedLargeFlowerPotBlock::new);
 		registerPOT("large_pot_apple_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.APPLE_SAPLING));

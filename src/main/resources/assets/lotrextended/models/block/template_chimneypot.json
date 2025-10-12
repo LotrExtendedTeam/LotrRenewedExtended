@@ -1,42 +1,42 @@
 {
 	"ambientocclusion": false,
 	"textures": {
-		"particle": "flower_pot",
-		"chimney": "flower_pot"
+		"particle": "chimney_pot",
+		"chimney": "chimney_pot"
 	},
 	"elements": [
 		{
 			"from": [5, 0, 5],
 			"to": [6, 8, 11],
 			"faces": {
-				"north": {"uv": [10, 10, 11, 16], "texture": "#chimney"},
+				"north": {"uv": [10, 8, 11, 16], "texture": "#chimney"},
 				"east": {"uv": [5, 10, 11, 16], "texture": "#chimney"},
-				"south": {"uv": [5, 10, 6, 16], "texture": "#chimney"},
-				"west": {"uv": [5, 10, 11, 16], "texture": "#chimney"},
-				"up": {"uv": [5, 5, 6, 11], "texture": "#chimney"},
-				"down": {"uv": [5, 5, 6, 11], "texture": "#chimney", "cullface": "down"}
+				"south": {"uv": [5, 8, 6, 16], "texture": "#chimney"},
+				"west": {"uv": [5, 8, 11, 16], "texture": "#chimney"},
+				"up": {"uv": [5, 3, 6, 9], "texture": "#chimney"},
+				"down": {"uv": [5, 3, 6, 9], "texture": "#chimney", "cullface": "down"}
 			}
 		},
 		{
 			"from": [10, 0, 5],
 			"to": [11, 8, 11],
 			"faces": {
-				"north": {"uv": [5, 10, 6, 16], "texture": "#chimney"},
-				"east": {"uv": [5, 10, 11, 16], "texture": "#chimney"},
-				"south": {"uv": [10, 10, 11, 16], "texture": "#chimney"},
+				"north": {"uv": [5, 8, 6, 16], "texture": "#chimney"},
+				"east": {"uv": [5, 8, 11, 16], "texture": "#chimney"},
+				"south": {"uv": [10, 8, 11, 16], "texture": "#chimney"},
 				"west": {"uv": [5, 10, 11, 16], "texture": "#chimney"},
-				"up": {"uv": [10, 5, 11, 11], "texture": "#chimney"},
-				"down": {"uv": [10, 5, 11, 11], "texture": "#chimney", "cullface": "down"}
+				"up": {"uv": [10, 3, 11, 9], "texture": "#chimney"},
+				"down": {"uv": [10, 3, 11, 9], "texture": "#chimney", "cullface": "down"}
 			}
 		},
 		{
 			"from": [6, 0, 5],
 			"to": [10, 8, 6],
 			"faces": {
-				"north": {"uv": [6, 10, 10, 16], "texture": "#chimney"},
+				"north": {"uv": [6, 8, 10, 16], "texture": "#chimney"},
 				"south": {"uv": [6, 10, 10, 16], "texture": "#chimney"},
-				"up": {"uv": [6, 5, 10, 6], "texture": "#chimney"},
-				"down": {"uv": [6, 10, 10, 11], "texture": "#chimney", "cullface": "down"}
+				"up": {"uv": [6, 3, 10, 4], "texture": "#chimney"},
+				"down": {"uv": [6, 8, 10, 9], "texture": "#chimney", "cullface": "down"}
 			}
 		},
 		{
@@ -44,9 +44,9 @@
 			"to": [10, 8, 11],
 			"faces": {
 				"north": {"uv": [6, 10, 10, 16], "texture": "#chimney"},
-				"south": {"uv": [6, 10, 10, 16], "texture": "#chimney"},
-				"up": {"uv": [6, 10, 10, 11], "texture": "#chimney"},
-				"down": {"uv": [6, 5, 10, 6], "texture": "#chimney", "cullface": "down"}
+				"south": {"uv": [6, 8, 10, 16], "texture": "#chimney"},
+				"up": {"uv": [6, 8, 10, 9], "texture": "#chimney"},
+				"down": {"uv": [6, 3, 10, 4], "texture": "#chimney", "cullface": "down"}
 			}
 		}
 	],

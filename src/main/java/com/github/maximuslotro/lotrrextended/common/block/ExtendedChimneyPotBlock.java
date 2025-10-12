@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedChimneyTileEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -14,13 +14,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.CampfireTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
@@ -45,9 +43,20 @@ public class ExtendedChimneyPotBlock extends Block implements IWaterLoggable {
 	}
 
 	@Override
+	public boolean hasTileEntity(BlockState state) {
+		return true;
+	}
+
+	@Override
+	public TileEntity createTileEntity(BlockState state, IBlockReader reader) {
+		return new ExtendedChimneyTileEntity();
+	}
+	
+	@Override
 	public VoxelShape getShape(BlockState pState, IBlockReader pLevel, BlockPos pPos, ISelectionContext pContext) {
 		return SHAPE;
 	}
+
 	@Override
 	public BlockRenderType getRenderShape(BlockState pState) {
 		return BlockRenderType.MODEL;
@@ -56,36 +65,14 @@ public class ExtendedChimneyPotBlock extends Block implements IWaterLoggable {
 	@Override
 	public void animateTick(BlockState pState, World pLevel, BlockPos pPos, Random pRand) {
 		if (!pState.getValue(WATERLOGGED)) {
-
-			if (pRand.nextInt(5) == 0) {
+			if (pRand.nextInt(10) == 0) {
 				for(int i = 0; i < pRand.nextInt(1) + 1; ++i) {
-					pLevel.addParticle(ParticleTypes.LAVA, (double)pPos.getX() + 0.5D, (double)pPos.getY() + 0.5D, (double)pPos.getZ() + 0.5D, (double)(pRand.nextFloat() / 2.0F), 5.0E-5D, (double)(pRand.nextFloat() / 2.0F));
+					pLevel.addParticle(ParticleTypes.LAVA, pPos.getX() + 0.5D, pPos.getY() + 0.5D, pPos.getZ() + 0.5D, (pRand.nextFloat() / 2.0F), 5.0E-5D, (pRand.nextFloat() / 2.0F));
 				}
 			}
-			makeParticles(pState, pLevel, pPos, pRand);
-
 		}
 	}
 
-	private void makeParticles(BlockState pState, World pLevel, BlockPos pPos, Random pRand) {
-		if (pLevel != null) {
-			if (pRand.nextFloat() < 0.11F) {
-				for(int i = 0; i < pRand.nextInt(2) + 2; ++i) {
-					CampfireBlock.makeParticles(pLevel, pPos, pState.getValue(CampfireBlock.SIGNAL_FIRE), false);
-				}
-			}
-
-		}
-	}
-	public static void makeParticles(World pLevel, BlockPos pPos, boolean pIsSignalFire, boolean pSpawnExtraSmoke) {
-	      Random random = pLevel.getRandom();
-	      BasicParticleType basicparticletype = pIsSignalFire ? ParticleTypes.CAMPFIRE_SIGNAL_SMOKE : ParticleTypes.CAMPFIRE_COSY_SMOKE;
-	      pLevel.addAlwaysVisibleParticle(basicparticletype, true, (double)pPos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pPos.getY() + random.nextDouble() + random.nextDouble(), (double)pPos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
-	      if (pSpawnExtraSmoke) {
-	         pLevel.addParticle(ParticleTypes.SMOKE, (double)pPos.getX() + 0.25D + random.nextDouble() / 2.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pPos.getY() + 0.4D, (double)pPos.getZ() + 0.25D + random.nextDouble() / 2.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.005D, 0.0D);
-	      }
-
-	   }
 	@Override
 	public boolean placeLiquid(IWorld pLevel, BlockPos pPos, BlockState pState, FluidState pFluidState) {
 		if (!pState.getValue(BlockStateProperties.WATERLOGGED) && pFluidState.getType() == Fluids.WATER) {
@@ -93,7 +80,6 @@ public class ExtendedChimneyPotBlock extends Block implements IWaterLoggable {
 				pLevel.playSound((PlayerEntity)null, pPos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 			dowse(pLevel, pPos, pState);
-
 			pLevel.setBlock(pPos, pState.setValue(WATERLOGGED, Boolean.valueOf(true)), 3);
 			pLevel.getLiquidTicks().scheduleTick(pPos, pFluidState.getType(), pFluidState.getType().getTickDelay(pLevel));
 			return true;
@@ -102,19 +88,22 @@ public class ExtendedChimneyPotBlock extends Block implements IWaterLoggable {
 		}
 	}
 
-	public static void dowse(IWorld p_235475_0_, BlockPos p_235475_1_, BlockState p_235475_2_) {
-		if (p_235475_0_.isClientSide()) {
+	public static void dowse(IWorld pLevel, BlockPos pPos, BlockState p_235475_2_) {
+		if (pLevel.isClientSide() && pLevel instanceof World) {
 			for(int i = 0; i < 20; ++i) {
-				makeParticles((World)p_235475_0_, p_235475_1_, false, true);
+				makeParticles((World)pLevel, pPos, true);
 			}
 		}
-
-		TileEntity tileentity = p_235475_0_.getBlockEntity(p_235475_1_);
-		if (tileentity instanceof CampfireTileEntity) {
-			((CampfireTileEntity)tileentity).dowse();
-		}
-
 	}
+
+	public static void makeParticles(World pLevel, BlockPos pPos, boolean pSpawnExtraSmoke) {
+		Random random = pLevel.getRandom();
+		pLevel.addAlwaysVisibleParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pPos.getX() + 0.5D + random.nextDouble() / 3.0D * (random.nextBoolean() ? 1 : -1), pPos.getY() + random.nextDouble() + random.nextDouble(), pPos.getZ() + 0.5D + random.nextDouble() / 3.0D * (random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
+		if (pSpawnExtraSmoke) {
+			pLevel.addParticle(ParticleTypes.SMOKE, (double)pPos.getX() + 0.25D + random.nextDouble() / 2.0D * (random.nextBoolean() ? 1 : -1), pPos.getY() + 0.4D, pPos.getZ() + 0.25D + random.nextDouble() / 2.0D * (random.nextBoolean() ? 1 : -1), 0.0D, 0.005D, 0.0D);
+		}
+	}
+
 	@Override
 	public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, IWorld pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
 		if (pState.getValue(WATERLOGGED)) {
@@ -129,17 +118,18 @@ public class ExtendedChimneyPotBlock extends Block implements IWaterLoggable {
 	}
 
 	@Override
-	@Nullable
 	public BlockState getStateForPlacement(BlockItemUseContext pContext) {
 		IWorld iworld = pContext.getLevel();
 		BlockPos blockpos = pContext.getClickedPos();
 		boolean flag = iworld.getFluidState(blockpos).getType() == Fluids.WATER;
 		return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(flag));
 	}
+
 	@Override
 	public FluidState getFluidState(BlockState pState) {
 		return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
 	}
+
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> pBuilder) {
 		pBuilder.add(WATERLOGGED);
