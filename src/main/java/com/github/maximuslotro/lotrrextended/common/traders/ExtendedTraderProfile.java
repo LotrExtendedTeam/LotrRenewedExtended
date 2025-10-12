@@ -538,9 +538,9 @@ public class ExtendedTraderProfile {
 				ExtendedLog.warn("Recieved invalid drink from args, SKIPPING!: "+item.get().getRegistryName().toString());
 				return this;
 			}
-			addSSell(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.LIGHT), 1, lightCost, 200);
-			addSSell(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.MODERATE), 1, moderateCost, 200);
-			addSSell(DrinkUtils.drinkOfPotency(LOTRItems.ALE.get(), Potency.STRONG), 1, strongCost, 200);
+			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.LIGHT), 1, lightCost, 200, true);
+			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.MODERATE), 1, moderateCost, 200, true);
+			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.STRONG), 1, strongCost, 200, true);
 			return this;
 		}
 		/**

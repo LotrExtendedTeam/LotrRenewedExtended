@@ -266,7 +266,7 @@
     {
       "averageCost": 6,
       "stack": {
-        "item": "lotr:ale",
+        "item": "lotr:dwarven_ale",
         "nbt": "{vessel:{potency:\"light\"}}"
       }
     },
@@ -280,28 +280,28 @@
     {
       "averageCost": 11,
       "stack": {
-        "item": "lotr:ale",
+        "item": "lotr:dwarven_ale",
         "nbt": "{vessel:{potency:\"strong\"}}"
       }
     },
     {
       "averageCost": 10,
       "stack": {
-        "item": "lotr:ale",
+        "item": "lotr:dwarven_tonic",
         "nbt": "{vessel:{potency:\"light\"}}"
       }
     },
     {
       "averageCost": 14,
       "stack": {
-        "item": "lotr:ale",
+        "item": "lotr:dwarven_tonic",
         "nbt": "{vessel:{potency:\"moderate\"}}"
       }
     },
     {
       "averageCost": 18,
       "stack": {
-        "item": "lotr:ale",
+        "item": "lotr:dwarven_tonic",
         "nbt": "{vessel:{potency:\"strong\"}}"
       }
     }

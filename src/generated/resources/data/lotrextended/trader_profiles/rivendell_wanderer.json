@@ -157,21 +157,21 @@
     {
       "averageCost": 6,
       "stack": {
-        "item": "lotr:ale",
+        "item": "lotr:miruvor",
         "nbt": "{vessel:{potency:\"light\"}}"
       }
     },
     {
       "averageCost": 8,
       "stack": {
-        "item": "lotr:ale",
+        "item": "lotr:miruvor",
         "nbt": "{vessel:{potency:\"moderate\"}}"
       }
     },
     {
       "averageCost": 10,
       "stack": {
-        "item": "lotr:ale",
+        "item": "lotr:miruvor",
         "nbt": "{vessel:{potency:\"strong\"}}"
       }
     }
