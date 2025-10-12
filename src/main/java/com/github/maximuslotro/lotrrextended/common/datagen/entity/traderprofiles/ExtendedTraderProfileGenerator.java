@@ -2,6 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.datagen.entity.traderprofil
 
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 
@@ -779,6 +781,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.AMETHYST, 12)
 		.addSSell(ExtendedItems.TOPAZ, 12)
 		.addSSell(new ItemStack(LOTRItems.BLUE_ROCK.get(), 8), 2)
+		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.KEEN), 1, 200, 1, false)
 		.addDrinkSell(LOTRItems.DWARVEN_ALE, 6, 9, 11)
 		.addDrinkSell(LOTRItems.DWARVEN_TONIC, 10, 14, 18)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_MERCHANT);

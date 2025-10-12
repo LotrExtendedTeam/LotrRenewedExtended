@@ -304,6 +304,15 @@
       }
     },
     {
+      "averageCost": 200,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:modifier_scroll",
+        "nbt": "{REScrollMod:\"strong2\"}"
+      }
+    },
+    {
       "weight": 50,
       "averageCost": 6,
       "stack": {
