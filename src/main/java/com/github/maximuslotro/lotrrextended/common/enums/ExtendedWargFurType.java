@@ -5,9 +5,9 @@ import java.util.Comparator;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedPackedFurBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 
-import lotr.common.block.ExtendedPackedFurBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeColor;

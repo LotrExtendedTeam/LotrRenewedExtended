@@ -1,6 +1,6 @@
 {
   "type": "lotr:faction_shaped",
-  "table": "lotr:any_morgul",
+  "table": "lotr:any_high_elven",
   "pattern": [
     "YYY",
     "Y#Y",
@@ -8,13 +8,13 @@
   ],
   "key": {
     "#": {
-      "item": "lotr:morgul_torch"
+      "item": "lotr:high_elven_torch"
     },
     "Y": {
-      "tag": "forge:nuggets/orc_steel"
+      "tag": "forge:nuggets/silver"
     }
   },
   "result": {
-    "item": "lotr:morgul_lantern"
+    "item": "lotr:high_elven_lantern"
   }
 }

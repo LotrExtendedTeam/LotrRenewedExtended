@@ -8,10 +8,10 @@
   ],
   "key": {
     "#": {
-      "item": "lotr:elven_steel_ingot"
+      "item": "lotr:silver_ingot"
     },
     "N": {
-      "item": "minecraft:iron_nugget"
+      "item": "lotr:silver_nugget"
     }
   },
   "result": {

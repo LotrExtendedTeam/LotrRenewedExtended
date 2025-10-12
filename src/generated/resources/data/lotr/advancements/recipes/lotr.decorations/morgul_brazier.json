@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:morgul_lantern"
+      "lotr:morgul_brazier"
     ]
   },
   "criteria": {
-    "has_morgul_lantern": {
+    "has_morgul_brazier": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:morgul_lantern"
+            "item": "lotr:morgul_brazier"
           }
         ]
       }
@@ -39,13 +39,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:morgul_lantern"
+        "recipe": "lotr:morgul_brazier"
       }
     }
   },
   "requirements": [
     [
-      "has_morgul_lantern",
+      "has_morgul_brazier",
       "has_morgul_torch",
       "has_orc_steel_nugget",
       "has_the_recipe"

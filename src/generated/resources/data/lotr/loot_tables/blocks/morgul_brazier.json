@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "lotr:morgul_lantern"
+          "name": "lotr:morgul_brazier"
         }
       ],
       "conditions": [

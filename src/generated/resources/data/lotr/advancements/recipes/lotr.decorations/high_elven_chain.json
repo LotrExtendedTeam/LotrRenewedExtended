@@ -16,12 +16,12 @@
         ]
       }
     },
-    "has_iron_nugget": {
+    "has_silver_nugget": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:iron_nugget"
+            "item": "lotr:silver_nugget"
           }
         ]
       }
@@ -36,7 +36,7 @@
   "requirements": [
     [
       "has_high_elven_chain",
-      "has_iron_nugget",
+      "has_silver_nugget",
       "has_the_recipe"
     ]
   ]

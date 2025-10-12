@@ -376,17 +376,28 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedItems.MORGUL_BOOTS,
 			ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_MORGUL);
 		makeSwordRecipe(consumer, ExtendedItems.MORGUL_BLADE, ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_MORGUL);
-		GENERATEDRECIPES.add(ExtendedItems.MORGUL_LANTERN.get().getRegistryName().getPath());
-		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.MORGUL_LANTERN.get(), LOTRRecipes.ANY_MORGUL)
+		GENERATEDRECIPES.add(ExtendedItems.MORGUL_BRAZIER.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.MORGUL_BRAZIER.get(), LOTRRecipes.ANY_MORGUL)
 		.pattern("YYY")
 		.pattern("Y#Y")
 		.pattern("YYY")
 		.define('#', Ingredient.of(ExtendedBlocks.MORGUL_TORCH.get()))
 		.define('Y', Ingredient.of(ExtendedTags.Items.ORC_STEEL_NUGGET))
-		.unlockedBy("has_"+ExtendedItems.MORGUL_LANTERN.get().getRegistryName().getPath(), has(ExtendedItems.MORGUL_LANTERN.get()))
+		.unlockedBy("has_"+ExtendedItems.MORGUL_BRAZIER.get().getRegistryName().getPath(), has(ExtendedItems.MORGUL_BRAZIER.get()))
 		.unlockedBy("has_"+ExtendedBlocks.MORGUL_TORCH.get().getRegistryName().getPath(), has(ExtendedBlocks.MORGUL_TORCH.get()))
 		.unlockedBy("has_orc_steel_nugget", has(ExtendedTags.Items.ORC_STEEL_NUGGET))
-		.save(consumer, lotrLoc(ExtendedItems.MORGUL_LANTERN.get().getRegistryName().getPath()));
+		.save(consumer, lotrLoc(ExtendedItems.MORGUL_BRAZIER.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.HIGH_ELVEN_LANTERN.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HIGH_ELVEN_LANTERN.get(), LOTRRecipes.ANY_HIGH_ELVEN)
+		.pattern("YYY")
+		.pattern("Y#Y")
+		.pattern("YYY")
+		.define('#', Ingredient.of(LOTRBlocks.HIGH_ELVEN_TORCH.get()))
+		.define('Y', Ingredient.of(ExtendedTags.Items.SILVER_NUGGET))
+		.unlockedBy("has_"+ExtendedItems.HIGH_ELVEN_LANTERN.get().getRegistryName().getPath(), has(ExtendedItems.HIGH_ELVEN_LANTERN.get()))
+		.unlockedBy("has_"+LOTRBlocks.HIGH_ELVEN_TORCH.get().getRegistryName().getPath(), has(LOTRBlocks.HIGH_ELVEN_TORCH.get()))
+		.unlockedBy("has_silver_nugget", has(ExtendedTags.Items.SILVER_NUGGET))
+		.save(consumer, lotrLoc(ExtendedItems.HIGH_ELVEN_LANTERN.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.MORGUL_CHANDELIER.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.MORGUL_CHANDELIER.get(), LOTRRecipes.ANY_MORGUL)
 		.pattern(" N ")
@@ -401,7 +412,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeDoorRecipe(consumer, ExtendedItems.ORC_STEEL_DOOR, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANY_ORC);
 		makeMetalTrapdoorRecipe(consumer, ExtendedBlocks.ORC_STEEL_TRAPDOOR, LOTRItems.ORC_STEEL_INGOT, LOTRRecipes.ANY_ORC);
 		makeChainRecipe(consumer, ExtendedBlocks.ORC_CHAIN, LOTRItems.ORC_STEEL_INGOT, ExtendedItems.ORC_STEEL_NUGGET, LOTRRecipes.ANY_ORC);
-		makeChainRecipe(consumer, ExtendedBlocks.HIGH_ELVEN_CHAIN, LOTRItems.ELVEN_STEEL_INGOT, ()->Items.IRON_NUGGET, LOTRRecipes.ANY_HIGH_ELVEN);
+		makeChainRecipe(consumer, ExtendedBlocks.HIGH_ELVEN_CHAIN, LOTRItems.SILVER_INGOT, LOTRItems.SILVER_NUGGET, LOTRRecipes.ANY_HIGH_ELVEN);
 		//DOL GULDUR
 		makeArmorRecipe(consumer, ExtendedItems.DOL_GULDUR_HELMET,
 			ExtendedItems.DOL_GULDUR_CHESTPLATE,

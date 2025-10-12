@@ -9,12 +9,14 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRu
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBundleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChimneyPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedElvenLanternBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneTextSignBlock;
@@ -29,6 +31,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedPackedFurBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
@@ -45,12 +48,10 @@ import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawn
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
 import lotr.common.block.ChandelierBlock;
-import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedDwarvenGateBlock;
 import lotr.common.block.ExtendedPlantableSpreadableAxialSlabBlock;
 import lotr.common.block.ExtendedHearthBlock;
-import lotr.common.block.ExtendedLanternBlock;
-import lotr.common.block.ExtendedPackedFurBlock;
+import lotr.common.block.ExtendedBrazierBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.FallenLeavesBlock;
@@ -165,7 +166,11 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				add(block.getValue().get(), noDrop());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedLanternBlock) {
+			if(block.getValue().get() instanceof ExtendedBrazierBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedElvenLanternBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}
@@ -361,7 +366,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				createCakePool(block.getValue().get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedDirectionalBundleBlock) {
+			if(block.getValue().get() instanceof ExtendedBundleBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}

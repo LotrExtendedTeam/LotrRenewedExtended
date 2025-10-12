@@ -9,12 +9,14 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRu
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBundleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChimneyPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedElvenLanternBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrassVoidBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
@@ -31,6 +33,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedPackedFurBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
@@ -51,13 +54,11 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedRopeType;
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
 import lotr.common.block.ChandelierBlock;
-import lotr.common.block.ExtendedDirectionalBundleBlock;
 import lotr.common.block.ExtendedDwarvenGateBlock;
 import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedLOTRTorchBlock;
 import lotr.common.block.ExtendedLOTRWallTorchBlock;
-import lotr.common.block.ExtendedLanternBlock;
-import lotr.common.block.ExtendedPackedFurBlock;
+import lotr.common.block.ExtendedBrazierBlock;
 import lotr.common.block.ExtendedRemainsBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
 import lotr.common.block.FactionCraftingTableBlock;
@@ -167,7 +168,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			try {
 				if(registeredBlocks.contains(block.getValue().get())) {continue;}
-				if(block.getValue().get() instanceof ExtendedDirectionalBundleBlock) {
+				if(block.getValue().get() instanceof ExtendedBundleBlock) {
 					genCubeBottomTopSideBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()+"_side"), lotrExtendedLoc("block/"+block.getKey()+"_bottom"), lotrExtendedLoc("block/"+block.getKey()+"_top"));
 					continue;
 				}
@@ -498,8 +499,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						continue;
 					}
 				}
-				if(block.getValue().get() instanceof ExtendedLanternBlock) {
-					genHangingLanternBlockItem((ExtendedLanternBlock) block.getValue().get(), "block/"+block.getKey());
+				if(block.getValue().get() instanceof ExtendedBrazierBlock) {
+					genHangingBrazierBlockItem((ExtendedBrazierBlock) block.getValue().get(), "block/"+block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedElvenLanternBlock) {
+					genElvenHangingLanternBlockItem((ExtendedElvenLanternBlock) block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
 				if((block.getValue().get() instanceof ExtendedSpawnerBlock) || (block.getValue().get() instanceof ExtendedGroupSpawnerBlock)) {
@@ -1298,7 +1303,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+table.getRegistryName().getPath()).parent(cubeModel);
 	}
 
-	private void genHangingLanternBlockItem(ExtendedLanternBlock lantern, String name) {
+	private void genHangingBrazierBlockItem(ExtendedBrazierBlock lantern, String name) {
 		registeredBlocks.add(lantern);
 		ResourceLocation lamp = lotrExtendedLoc(name);
 		ResourceLocation fire = lotrExtendedLoc(name+"_fire");
@@ -1312,6 +1317,26 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                 .texture("lamp", lamp)
                 .texture("fire", fire)
                 .texture("chain", chain);
+		getVariantBuilder(lantern)
+		.forAllStates(state -> {
+			Boolean hanging = state.getValue(NonWaterloggableLanternBlock.HANGING);
+            return ConfiguredModel.builder()
+                    .modelFile(hanging ? hangingModel : lanternModel)
+                    .build();
+        });
+	}
+
+	private void genElvenHangingLanternBlockItem(ExtendedElvenLanternBlock lantern, String name) {
+		registeredBlocks.add(lantern);
+		ResourceLocation lamp = lotrExtendedLoc(name);
+		ResourceLocation parent = lotrExtendedLoc("block/template_elven_lantern");
+		ResourceLocation parentHanging = lotrExtendedLoc("block/template_hanging_elven_lantern");
+		ModelFile lanternModel = models().withExistingParent("lotrextended:"+lantern.getRegistryName().getPath(), parent)
+                .texture("lantern", lamp)
+                .texture("particle", lamp);
+		ModelFile hangingModel = models().withExistingParent("lotrextended:"+lantern.getRegistryName().getPath()+"_hanging", parentHanging)
+                .texture("lantern", lamp)
+                .texture("particle", lamp);
 		getVariantBuilder(lantern)
 		.forAllStates(state -> {
 			Boolean hanging = state.getValue(NonWaterloggableLanternBlock.HANGING);

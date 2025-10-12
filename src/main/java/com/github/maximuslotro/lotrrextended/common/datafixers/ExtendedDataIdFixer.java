@@ -136,6 +136,9 @@ public class ExtendedDataIdFixer {
 		
 		//Beta 1.8.0 Rename Mordor Moss Vines to Dead Moss Vines
 		addRemapBlockWithItem("mordor_moss_vines", "lotr", ExtendedBlocks.DEAD_MOSS_VINES, ExtendedItems.DEAD_MOSS_VINES);
+
+		//Beta 1.9.0 Renamed Morgul Lantern to Morgul Brazier
+		addRemapBlockWithItem("morgul_lantern", "lotr", ExtendedBlocks.MORGUL_BRAZIER, ExtendedItems.MORGUL_BRAZIER);
 	}
 
 	private static void addRemapBlock(String previousMapping, String previousNamespace, Supplier<? extends Block> remapBlock) {
