@@ -20,8 +20,10 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableCustomWaypointTeleportation;
 	public static ForgeConfigSpec.BooleanValue enableLegacyCaptainPassiveBehavior;
 	public static ForgeConfigSpec.BooleanValue enableLegacyTraderPassiveBehavior;
+    public static ForgeConfigSpec.BooleanValue enableLegacyFeastMode;
 
-	// Chair Settings
+
+    // Chair Settings
 	public static ForgeConfigSpec.BooleanValue enableChairSlabSitting;
 	public static ForgeConfigSpec.BooleanValue enableChairSwapping;
 	public static ForgeConfigSpec.BooleanValue enableChairProtectionOverride;
@@ -55,7 +57,8 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		enableCustomWaypointTeleportation = createBooleanValue(builder, "enableCustomWaypointTeleportation", true, false, "Enable Teleportation To Custom Waypoints");
 		enableLegacyCaptainPassiveBehavior = createBooleanValue(builder, "enableLegacyCaptainPassiveBehavior", true, true, "Make captains passive until attacked, like in legacy");
 		enableLegacyTraderPassiveBehavior = createBooleanValue(builder, "enableLegacyTraderPassiveBehavior", true, true, "Make traders passive until attacked, like in legacy");
-		builder.pop();
+        enableLegacyFeastMode = createBooleanValue(builder, "enableLegacyFeastMode", true, false, "Enable the eating of food even if player is not hungry, like in legacy");
+        builder.pop();
 
 		builder.push("Chair settings");
 		enableChairSlabSitting = createBooleanValue(builder, "enableChairSlabSitting", true, false, "Allow players to sit on slabs or stairs (overrides all below)");
