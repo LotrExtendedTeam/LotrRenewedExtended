@@ -374,6 +374,60 @@
       }
     },
     {
+      "weight": 5,
+      "averageCost": 350,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stacks": [
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"rangedKnockback2\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"rangedStrong3\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"toolSpeed4\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"toolSilk\"}"
+        }
+      ]
+    },
+    {
+      "weight": 10,
+      "averageCost": 350,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stacks": [
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"protectRanged2\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"strong3\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"toolSpeed3\"}"
+        }
+      ]
+    },
+    {
+      "weight": 40,
+      "averageCost": 150,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:modifier_scroll",
+        "nbt": "{REScrollMod:\"toughness1\"}"
+      }
+    },
+    {
       "weight": 50,
       "averageCost": 25,
       "stack": {

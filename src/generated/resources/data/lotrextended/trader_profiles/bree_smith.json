@@ -334,6 +334,30 @@
         "item": "lotr:branding_iron",
         "nbt": "{Damage:0}"
       }
+    },
+    {
+      "weight": 10,
+      "averageCost": 100,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stacks": [
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"toughness1\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"strong1\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"meleeSpeed1\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"meleeReach1\"}"
+        }
+      ]
     }
   ]
 }

@@ -304,13 +304,27 @@
       }
     },
     {
-      "averageCost": 200,
+      "averageCost": 350,
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
-      "stack": {
-        "item": "lotr:modifier_scroll",
-        "nbt": "{REScrollMod:\"strong2\"}"
-      }
+      "stacks": [
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"strong4\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"protect2\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"looting3\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"toolSpeed4\"}"
+        }
+      ]
     },
     {
       "weight": 50,
