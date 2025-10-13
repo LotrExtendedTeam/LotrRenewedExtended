@@ -90,7 +90,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 			float finalFloatPrice = entry.getAverageCost() * priceModifier;
 			// Convert to whole number and ensure minimum of price of 1
 			int nicePrice = Math.max(Math.round(finalFloatPrice), 1);
-			outputTrades.add(new ExtendedTrade(entry.getStack(rand), nicePrice, entry.getMaxTransferQuantity(), entry.getMaxTransferQuantity()));
+			outputTrades.add(new ExtendedTrade(entry.getStack(rand), nicePrice, entry.getMaxTransferQuantity(), entry.getMaxTransferQuantity(), entry.shouldTradePersist()));
 		});
 
 		return outputTrades;

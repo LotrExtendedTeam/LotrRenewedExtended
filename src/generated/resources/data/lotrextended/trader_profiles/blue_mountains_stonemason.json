@@ -8,6 +8,7 @@
   "lockTicksAfterRefresh": 6000,
   "buyFromPlayer": [
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:coal",
@@ -15,6 +16,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "minecraft:torch",
@@ -22,6 +24,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "lotr:dwarven_torch",
@@ -29,18 +32,21 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:bucket"
       }
     },
     {
+      "weight": 50,
       "averageCost": 4,
       "stack": {
         "item": "minecraft:water_bucket"
       }
     },
     {
+      "weight": 50,
       "averageCost": 6,
       "stack": {
         "item": "lotr:bronze_pickaxe",
@@ -48,6 +54,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "minecraft:iron_pickaxe",
@@ -55,6 +62,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 9,
       "stack": {
         "item": "lotr:blue_dwarven_pickaxe",
@@ -62,6 +70,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 6,
       "stack": {
         "item": "lotr:bronze_shovel",
@@ -69,6 +78,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "minecraft:iron_shovel",
@@ -76,6 +86,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 9,
       "stack": {
         "item": "lotr:blue_dwarven_shovel",
@@ -83,48 +94,56 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "minecraft:bread"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:cooked_beef"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:cooked_chicken"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:cooked_mutton"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:cooked_rabbit"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:cooked_duck"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:gammon"
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "lotr:pipeweed",
@@ -134,6 +153,7 @@
   ],
   "sellToPlayer": [
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "minecraft:stone",
@@ -141,6 +161,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "lotr:blue_rock",
@@ -148,6 +169,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:drystone",
@@ -155,6 +177,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:stone_bricks",
@@ -162,6 +185,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "lotr:blue_brick",
@@ -169,6 +193,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 5,
       "stack": {
         "item": "lotr:brick_pillar",
@@ -176,6 +201,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "lotr:stone_pillar",
@@ -183,6 +209,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 5,
       "stack": {
         "item": "lotr:blue_pillar",
@@ -190,18 +217,21 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:light_blue_clay_tiling"
       }
     },
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
         "item": "minecraft:stonecutter"
       }
     },
     {
+      "weight": 50,
       "averageCost": 100,
       "stack": {
         "item": "lotr:blue_mountains_crafting_table"

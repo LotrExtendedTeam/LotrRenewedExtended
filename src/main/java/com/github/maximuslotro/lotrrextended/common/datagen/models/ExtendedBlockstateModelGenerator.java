@@ -168,12 +168,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			try {
 				if(registeredBlocks.contains(block.getValue().get())) {continue;}
-				if(block.getValue().get() instanceof ExtendedBundleBlock) {
-					genCubeBottomTopSideBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()+"_side"), lotrExtendedLoc("block/"+block.getKey()+"_bottom"), lotrExtendedLoc("block/"+block.getKey()+"_top"));
-					continue;
-				}
 				if(block.getValue().get() instanceof ExtendedPackedFurBlock) {
 					genMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), true);
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedBundleBlock) {
+					genCubeBottomTopSideBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()+"_side"), lotrExtendedLoc("block/"+block.getKey()+"_bottom"), lotrExtendedLoc("block/"+block.getKey()+"_top"));
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedBirdcageBlock) {
