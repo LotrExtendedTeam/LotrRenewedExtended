@@ -237,4 +237,9 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.RIVENDELL_WANDERER;
 	}
+
+    @Override
+    public int getFactionColor() {
+        return this.getFaction().getColor();
+    }
 }

@@ -237,4 +237,9 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.GALADHRIM_WANDERER;
 	}
+
+    @Override
+    public int getFactionColor() {
+        return this.getFaction().getColor();
+    }
 }

@@ -252,5 +252,10 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.BREE_MERCHANT;
 	}
+
+    @Override
+    public int getFactionColor() {
+        return this.getFaction().getColor();
+    }
 }
 
