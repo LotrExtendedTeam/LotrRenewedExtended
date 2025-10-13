@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:dol_guldur",
+  "ingredients": [
+    {
+      "item": "lotr:dol_guldur_brick"
+    },
+    {
+      "item": "lotr:willow_vines"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_dol_guldur_brick"
+  }
+}

@@ -58,7 +58,6 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
 	@SuppressWarnings("unchecked")
 	public ExtendedRivendellWandererEntity(EntityType<? extends ExtendedAbstractElfWandererEntity> type, World w) {
         super(type, w);
-        setPersistenceRequired();
         this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeOnly());
     }
 

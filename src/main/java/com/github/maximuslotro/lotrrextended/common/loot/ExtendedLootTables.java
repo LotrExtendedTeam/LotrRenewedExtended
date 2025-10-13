@@ -70,6 +70,13 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BLUE_MOUNTAINS_STRONGHOLD_CHEST = registerChest("blue_mountains_stronghold");
 	public static final ResourceLocation BLUE_MOUNTAINS_FOOD_CHEST = registerChest("blue_mountains_food");
 	public static final ResourceLocation BLUE_MOUNTAINS_TREASURE_CHEST = registerChest("blue_mountains_treasure");
+	public static final ResourceLocation BLUE_MOUNTAINS_ARCHIVES_CHEST = registerChest("blue_mountains_archives");
+	public static final ResourceLocation BLUE_MOUNTAINS_STONEMASON_CHEST = registerChest("blue_mountains_stonemason");
+	public static final ResourceLocation BLUE_MOUNTAINS_BUTCHER_CHEST = registerChest("blue_mountains_butcher");
+	public static final ResourceLocation BLUE_MOUNTAINS_TRADER_HALL_CHEST = registerChest("blue_mountains_trader_hall");
+	public static final ResourceLocation BLUE_MOUNTAINS_TRADER_HALL_MAN_CHEST = registerChest("blue_mountains_trader_hall_man");
+	public static final ResourceLocation BLUE_MOUNTAINS_TRADER_HALL_ELF_CHEST = registerChest("blue_mountains_trader_hall_elf");
+	public static final ResourceLocation BLUE_MOUNTAINS_MEME_COIN = registerChest("blue_mountains_meme_coin");
 
 	public static final ResourceLocation HOBBIT_KEGS = registerKeg("hobbit");
 	public static final ResourceLocation RANGER_KEGS = registerKeg("ranger");
@@ -104,6 +111,11 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BREE_FARMER_WEAPONRACKS = registerWeaponRack("bree_farmer");
 	public static final ResourceLocation BLUE_MOUNTAIN_WEAPONRACKS = registerWeaponRack("blue_mountains");
 
+	public static final ResourceLocation MIDDLE_EARTH_FISHING = registerGameplay("fishing");
+	public static final ResourceLocation MIDDLE_EARTH_FISHING_FISH = registerGameplay("fishing/fish");
+	public static final ResourceLocation MIDDLE_EARTH_FISHING_JUNK = registerGameplay("fishing/junk");
+	public static final ResourceLocation MIDDLE_EARTH_FISHING_TREASURE = registerGameplay("fishing/treasure");
+
 	public static void init() {}
 
 	private static ResourceLocation registerChest(String location) {
@@ -126,6 +138,9 @@ public class ExtendedLootTables {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, "weaponracks/"+location));
 	}
 
+	private static ResourceLocation registerGameplay(String location) {
+		return register(new ResourceLocation(LotrExtendedMod.MODID, "gameplay/"+location));
+	}
 
 	private static ResourceLocation register(ResourceLocation location) {
 		if (LOCATIONS.add(location)) {

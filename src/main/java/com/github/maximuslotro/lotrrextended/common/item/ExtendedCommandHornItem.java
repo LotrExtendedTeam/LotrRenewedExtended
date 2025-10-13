@@ -1,8 +1,15 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
+import java.util.List;
+
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredSitFollowGoal;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitHornTypes;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.item.clientside.ExtendedCommandHornClientSide;
 
+import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.LOTRItemGroups;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,6 +20,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class ExtendedCommandHornItem extends Item {
@@ -38,10 +46,35 @@ public class ExtendedCommandHornItem extends Item {
 
 	@Override
 	public ItemStack finishUsingItem(ItemStack itemstack, World world, LivingEntity entityplayer) {
-		if (isHalt(itemstack)) {
-			setType(itemstack, 2.0F);
-		} else if (isReddy(itemstack)) {
-			setType(itemstack, 1.0F);
+		ExtendedUnitHornTypes type = getType(itemstack);
+		if(type.isSummon()) {
+			List<NPCEntity> teleportableUnits = world.getEntitiesOfClass(NPCEntity.class, new AxisAlignedBB(entityplayer.blockPosition()).inflate(64), (entity)->{
+				return ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedNPCEntity)entity).getUnitInfo().getOwnerUUID().equals(entityplayer.getUUID())
+					&& ((ExtendedNPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.PATROL_PLAYER;
+			});
+			for(NPCEntity unit : teleportableUnits) {
+				ExtendedHiredSitFollowGoal.teleportToOwner(unit, entityplayer, true);
+			}
+		}
+		if(type.isHalt()) {
+			List<NPCEntity> followingUnits = world.getEntitiesOfClass(NPCEntity.class, new AxisAlignedBB(entityplayer.blockPosition()).inflate(64), (entity)->{
+				return ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedNPCEntity)entity).getUnitInfo().getOwnerUUID().equals(entityplayer.getUUID())
+					&& ((ExtendedNPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.PATROL_PLAYER;
+			});
+			for(NPCEntity unit : followingUnits) {
+				((ExtendedNPCEntity)unit).getUnitInfo().setOrders(ExtendedUnitOrders.GUARD_STATIONARY);
+			}
+			setType(itemstack, ExtendedUnitHornTypes.READY);
+		}
+		if(type.isReady()) {
+			List<NPCEntity> stationaryUnits = world.getEntitiesOfClass(NPCEntity.class, new AxisAlignedBB(entityplayer.blockPosition()).inflate(64), (entity)->{
+				return ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedNPCEntity)entity).getUnitInfo().getOwnerUUID().equals(entityplayer.getUUID())
+					&& ((ExtendedNPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.GUARD_STATIONARY;
+			});
+			for(NPCEntity unit : stationaryUnits) {
+				((ExtendedNPCEntity)unit).getUnitInfo().setOrders(ExtendedUnitOrders.PATROL_PLAYER);
+			}
+			setType(itemstack, ExtendedUnitHornTypes.HALT);
 		}
 		world.playSound(null, entityplayer.blockPosition(), ExtendedSounds.HORN_BLOW.get(), SoundCategory.PLAYERS, 4.0F, 1.0F);
 		return itemstack;
@@ -50,56 +83,34 @@ public class ExtendedCommandHornItem extends Item {
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		ItemStack heldItem = player.getItemInHand(hand);
-		if (!isNotEmpty(heldItem)) {
+		if (getType(heldItem).isUnset()) {
 			if (world.isClientSide()) {
 				new ExtendedCommandHornClientSide().openMenu();
 			}
 			return ActionResult.sidedSuccess(heldItem, world.isClientSide());
-		}
-		if (isNotEmpty(heldItem)) {
+		}else {
 			player.startUsingItem(hand);
 			return ActionResult.sidedSuccess(heldItem, world.isClientSide());
 		}
-		return ActionResult.fail(heldItem);
 	}
 
 	@Override
 	public String getDescriptionId(ItemStack itemstack) {
-		String s = "";
-		if (isHalt(itemstack)) {
-			s = ".halt";
-		} else if (isReddy(itemstack)) {
-			s = ".reddy";
-		} else if (isSummon(itemstack)) {
-			s = ".summon";
+		return super.getDescriptionId()+getType(itemstack).getDisc();
+	}
+
+	public static ExtendedUnitHornTypes getType(ItemStack itemStack) {
+		CompoundNBT compoundnbt = itemStack.getTag();
+		if(compoundnbt == null || !compoundnbt.contains(NBTvalue)) {
+			return ExtendedUnitHornTypes.NOTSET;
 		}
-		return super.getDescriptionId()+s;
+		return ExtendedUnitHornTypes.getByUnchangingIndex(compoundnbt.getInt(NBTvalue));
 	}
 
-	public static boolean isNotEmpty(ItemStack itemStack) {
-		CompoundNBT compoundnbt = itemStack.getTag();
-		return compoundnbt != null && compoundnbt.contains(NBTvalue);
-	}
-
-	public static boolean isHalt(ItemStack itemStack) {
-		CompoundNBT compoundnbt = itemStack.getTag();
-		return isNotEmpty(itemStack) && compoundnbt.getInt(NBTvalue) == 1.0F;
-	}
-
-	public static boolean isReddy(ItemStack itemStack) {
-		CompoundNBT compoundnbt = itemStack.getTag();
-		return isNotEmpty(itemStack) && compoundnbt.getInt(NBTvalue) == 2.0F;
-	}
-
-	public static boolean isSummon(ItemStack itemStack) {
-		CompoundNBT compoundnbt = itemStack.getTag();
-		return isNotEmpty(itemStack) && compoundnbt.getInt(NBTvalue) == 3.0F;
-	}
-
-	public static void setType(ItemStack itemStack, float type) {
+	public static void setType(ItemStack itemStack, ExtendedUnitHornTypes type) {
 		if(!itemStack.hasTag()) {
 			itemStack.setTag(new CompoundNBT());
 		}
-		itemStack.getTag().putFloat(NBTvalue, type);
+		itemStack.getTag().putInt(NBTvalue, type.getUnchangingIndex());
 	}
 }

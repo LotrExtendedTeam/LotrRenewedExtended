@@ -8,7 +8,7 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_passage_1",
-				"processors": "minecraft:empty",
+				"processors": "lotrextended:blue_mountains_settlement_underground_processor",
 				"apply_waterlogging" : false
 			}
 		},
@@ -18,7 +18,7 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:blue_mountains/settlement/blue_mountains_settement_passage_2",
-				"processors": "minecraft:empty",
+				"processors": "lotrextended:blue_mountains_settlement_underground_processor",
 				"apply_waterlogging" : false
 			}
 		}

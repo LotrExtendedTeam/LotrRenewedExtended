@@ -2,6 +2,8 @@ package lotr.common.block;
 
 import java.util.Random;
 
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.world.World;
@@ -11,7 +13,7 @@ public class ExtendedChandelierBlock extends ChandelierBlock{
 	private final RegistryObject<BasicParticleType> typeOverride;
 
 	public ExtendedChandelierBlock(RegistryObject<BasicParticleType> typeOverride) {
-		super();
+		super(Properties.of(Material.DECORATION).noCollission().strength(0.0F, 2.0F).lightLevel((state) -> { return 14;}).sound(SoundType.CHAIN));
 		this.typeOverride = typeOverride;
 	}
 

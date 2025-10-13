@@ -11,9 +11,10 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
-public class ExtendedGuldurilItem extends Item {
+public class ExtendedGuldurilItem extends Item implements ExtendedGemstoneColoringItem {
 	public ExtendedGuldurilItem(Properties properties) {
 		super(properties);
 	}
@@ -34,5 +35,10 @@ public class ExtendedGuldurilItem extends Item {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public TextFormatting getExtendedGemstoneColor() {
+		return TextFormatting.DARK_GREEN;
 	}
 }

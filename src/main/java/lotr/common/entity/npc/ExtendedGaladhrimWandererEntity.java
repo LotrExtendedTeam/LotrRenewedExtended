@@ -58,7 +58,6 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
 	@SuppressWarnings("unchecked")
 	public ExtendedGaladhrimWandererEntity(EntityType<? extends ExtendedAbstractElfWandererEntity> type, World w) {
         super(type, w);
-        setPersistenceRequired();
         this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeOnly());
     }
 

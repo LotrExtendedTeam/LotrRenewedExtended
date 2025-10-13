@@ -113,9 +113,6 @@ public class ExtendedTolkienEntity extends ManEntity {
 			int y = world.getHeight(Heightmap.Type.WORLD_SURFACE, x, z);
 			BlockPos pos = new BlockPos(x, y, z);
 
-			// get the biome and pick a wandering trader for the location that was selected
-			String biomeName = world.getBiomeName(pos).toString();
-
 			// if the type is invalid try again but add a few attempts
 			EntityType<?> type = ExtendedEntities.TOLKIEN.get();
 
@@ -123,9 +120,11 @@ public class ExtendedTolkienEntity extends ManEntity {
 			if (y > 62 && !world.getBlockState(pos).isSuffocating(world, pos) && !world.getBlockState(plusOneY).isSuffocating(world, plusOneY)) {
 				BlockPos spawnPos = pos.offset(new Vector3i(0.5D, 0, 0.5D));
 				Entity tolkien = type.spawn((ServerWorld) world, null, null, spawnPos, SpawnReason.TRIGGERED, true, true);
-				world.addFreshEntity(tolkien);
-				player.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_you", tolkien.getName().copy().withStyle(TextFormatting.YELLOW)), Util.NIL_UUID);
-				spawned=true;
+				if(tolkien!=null) {
+					world.addFreshEntity(tolkien);
+					player.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_you", tolkien.getName().copy().withStyle(TextFormatting.YELLOW)), Util.NIL_UUID);
+					spawned=true;
+				}
 			}
 			if(spawned) {
 				break;

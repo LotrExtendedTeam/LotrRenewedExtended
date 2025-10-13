@@ -1,0 +1,136 @@
+{
+  "id": "lotrextended:blue_mountains_butcher",
+  "tradingAlignmentRequired": 50,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "weight": 50,
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:wheat",
+        "count": 3
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:salt"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:string",
+        "count": 3
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:bronze_dagger",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:iron_dagger",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:lead"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:iron_ingot"
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "weight": 50,
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:gammon"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 5,
+      "stack": {
+        "item": "minecraft:beef"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 5,
+      "stack": {
+        "item": "minecraft:mutton"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 5,
+      "stack": {
+        "item": "minecraft:porkchop"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:chicken"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:raw_duck"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 4,
+      "stack": {
+        "item": "minecraft:rabbit"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:leather"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:feather"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 6,
+      "stack": {
+        "item": "lotr:horn"
+      }
+    }
+  ]
+}

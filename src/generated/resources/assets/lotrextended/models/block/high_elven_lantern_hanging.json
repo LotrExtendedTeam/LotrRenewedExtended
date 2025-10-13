@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/template_hanging_elven_lantern",
+  "textures": {
+    "lantern": "lotrextended:block/high_elven_lantern",
+    "particle": "lotrextended:block/high_elven_lantern"
+  }
+}

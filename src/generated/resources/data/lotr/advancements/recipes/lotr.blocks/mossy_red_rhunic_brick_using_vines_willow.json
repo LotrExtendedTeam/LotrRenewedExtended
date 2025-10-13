@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:mossy_red_rhunic_brick_using_vines_willow"
+    ]
+  },
+  "criteria": {
+    "has_mossy_red_rhunic_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mossy_red_rhunic_brick"
+          }
+        ]
+      }
+    },
+    "has_red_rhunic_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:red_rhunic_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:mossy_red_rhunic_brick_using_vines_willow"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mossy_red_rhunic_brick",
+      "has_red_rhunic_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

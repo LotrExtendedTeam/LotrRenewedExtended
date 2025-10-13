@@ -87,7 +87,6 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
 
     public ExtendedBlueMountainsMerchantEntity(EntityType<? extends ExtendedBlueMountainsMerchantEntity> type, World w) {
         super(type, w);
-        setPersistenceRequired();
     }
 
     @Override

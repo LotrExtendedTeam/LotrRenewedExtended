@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 
 import java.util.EnumSet;
+import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
 
@@ -9,6 +10,7 @@ import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
@@ -49,8 +51,6 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 	private final float startDistance;
 	/** Original water pathfinding cost. */
 	private float oldWaterCost;
-	/** Whether this NPC is allowed to fly. */
-	private final boolean canFly;
 	/**
      * Constructs a new ExtendedHiredSitFollowGoal.
      *
@@ -67,7 +67,6 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 		this.navigation = entity.getNavigation();
 		this.startDistance = goalStartDistance;
 		this.stopDistance = goalEndDistance;
-		this.canFly = canFly;
 		if (!(entity.getNavigation() instanceof GroundPathNavigator) && !(entity.getNavigation() instanceof FlyingPathNavigator)) {
 			throw new IllegalArgumentException("Unsupported mob type for FollowOwnerGoal");
 		}
@@ -181,7 +180,9 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 				this.timeToRecalcPath = 10;
 				if (!this.entity.isLeashed() && !this.entity.isPassenger()) {
 					if (this.entity.distanceToSqr(this.owner) >= entity.getAttributeValue(Attributes.FOLLOW_RANGE)*entity.getAttributeValue(Attributes.FOLLOW_RANGE)) {
-						this.teleportToOwner();
+						if(teleportToOwner(this.entity, owner, false)) {
+							this.navigation.stop();
+						}
 					} else {
 						this.navigation.moveTo(this.owner, this.speedModifier);
 					}
@@ -192,80 +193,92 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 	}
 	/**
      * Attempts to teleport the NPC to its owner if they are too far apart.
+	 * @param entity The unit entity to teleport
+	 * @param owner The owner of the unit
+	 * @param forceTeleport Should force teleport unit into owner if no surrounding area found
+	 * @return True if teleported
      */
-	private void teleportToOwner() {
-		BlockPos blockpos = this.owner.blockPosition();
+	public static boolean teleportToOwner(Entity entity, Entity owner, Boolean forceTeleport) {
+		BlockPos blockpos = owner.blockPosition();
 
 		for(int i = 0; i < 10; ++i) {
-			int j = this.randomIntInclusive(-3, 3);
-			int k = this.randomIntInclusive(-1, 1);
-			int l = this.randomIntInclusive(-3, 3);
-			boolean teleported = this.maybeTeleportTo(blockpos.getX() + j, blockpos.getY() + k, blockpos.getZ() + l);
+			int j = randomIntInclusive(owner.random, -3, 3);
+			int k = randomIntInclusive(owner.random, -1, 1);
+			int l = randomIntInclusive(owner.random, -3, 3);
+			boolean teleported = maybeTeleportTo(entity, owner, blockpos.getX() + j, blockpos.getY() + k, blockpos.getZ() + l);
 			if (teleported) {
-				return;
+				return true;
 			}
 		}
-
+		if(forceTeleport) {
+			entity.moveTo(owner.position());
+			return true;
+		}
+		return false;
 	}
 	/**
      * Generates a random integer within an inclusive range.
-     *
+	 *
+     * @param rand     The random to query for this math
      * @param minRange Minimum value (inclusive).
      * @param maxRange Maximum value (inclusive).
      * @return A random integer in the given range.
      */
-	private int randomIntInclusive(int minRange, int maxRange) {
-		return this.entity.getRandom().nextInt(maxRange - minRange + 1) + minRange;
+	private static int randomIntInclusive(Random rand, int minRange, int maxRange) {
+		return rand.nextInt(maxRange - minRange + 1) + minRange;
 	}
 	/**
      * Attempts teleportation to a specific position if valid.
      *
+     * @param entity The unit entity to teleport
+	 * @param owner The owner of the unit
      * @param x X-coordinate of target position.
      * @param y Y-coordinate of target position.
      * @param z Z-coordinate of target position.
      * @return true if teleportation succeeded, false otherwise.
      */
-	private boolean maybeTeleportTo(int x, int y, int z) {
-		if (Math.abs(x - this.owner.getX()) < 2.0D && Math.abs(z - this.owner.getZ()) < 2.0D) {
+	private static boolean maybeTeleportTo(Entity entity, Entity owner, int x, int y, int z) {
+		if (Math.abs(x - owner.getX()) < 2.0D && Math.abs(z - owner.getZ()) < 2.0D) {
 			return false;
-		} else if (!this.canTeleportTo(new BlockPos(x, y, z)) || !canTeleportFrom()) {
+		} else if (!canTeleportTo(entity, new BlockPos(x, y, z)) || !canTeleportFrom(entity)) {
 			return false;
 		} else {
-			this.entity.moveTo(x + 0.5D, y, z + 0.5D, this.entity.yRot, this.entity.xRot);
-			this.navigation.stop();
+			entity.moveTo(x + 0.5D, y, z + 0.5D, entity.yRot, entity.xRot);
 			return true;
 		}
 	}
 	/**
      * Validates whether the NPC can teleport from its current location.
      *
+     * @param entity The unit entity to teleport
      * @return true if teleportation is allowed, false otherwise.
      */
-	private boolean canTeleportFrom() {
-		return this.entity.isOnGround() || this.entity.isInWaterOrBubble();
+	private static boolean canTeleportFrom(Entity entity) {
+		return entity.isOnGround() || entity.isInWaterOrBubble();
 	}
 	/**
      * Validates if a specific teleportation destination is allowed.
      *
+     * @param entity The entity to target with
      * @param teleportToPos Target position to teleport to.
      * @return true if the destination is valid for teleportation, false otherwise.
      */
-	private boolean canTeleportTo(BlockPos teleportToPos) {
-		BlockState belowTeleportState = level.getBlockState(teleportToPos.below());
-		boolean full = Block.isFaceFull(belowTeleportState.getCollisionShape(level, teleportToPos, ISelectionContext.empty()), Direction.UP);
+	private static boolean canTeleportTo(Entity entity, BlockPos teleportToPos) {
+		BlockState belowTeleportState = entity.level.getBlockState(teleportToPos.below());
+		boolean full = Block.isFaceFull(belowTeleportState.getCollisionShape(entity.level, teleportToPos, ISelectionContext.empty()), Direction.UP);
 		boolean isSolid = belowTeleportState.getMaterial().isSolid();
 
-		PathNodeType pathnodetype = WalkNodeProcessor.getBlockPathTypeStatic(this.level, teleportToPos.mutable());
+		PathNodeType pathnodetype = WalkNodeProcessor.getBlockPathTypeStatic(entity.level, teleportToPos.mutable());
 		if (pathnodetype != PathNodeType.WALKABLE || !(isSolid && full)) {
 			return false;
 		} else {
-			BlockState blockstate = this.level.getBlockState(teleportToPos.below());
-			if (!this.canFly && blockstate.getBlock() instanceof LeavesBlock) {
+			BlockState blockstate = entity.level.getBlockState(teleportToPos.below());
+			if (blockstate.getBlock() instanceof LeavesBlock) {
 				return false;
 			} else {
-				BlockPos blockpos = teleportToPos.subtract(this.entity.blockPosition());
+				BlockPos blockpos = teleportToPos.subtract(entity.blockPosition());
 				//ExtendedLog.info("Checking "+teleportState.toString()+":"+teleportToPos.toString()+":full="+full+":isSolid="+isSolid+":coll="+can+":path="+pathnodetype.name());
-				return this.level.noCollision(this.entity, this.entity.getBoundingBox().move(blockpos));
+				return entity.level.noCollision(entity, entity.getBoundingBox().move(blockpos));
 			}
 		}
 	}

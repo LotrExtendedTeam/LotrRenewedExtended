@@ -1,11 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderSlots.ExtendedStoneGrinderLubricationSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderSlots.ExtendedStoneGrinderResultSlot;
-import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipes;
+import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeTypes;
 
-import lotr.common.init.ExtendedContainers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -28,7 +28,7 @@ public class ExtendedStoneGrinderContainer extends Container {
 	}
 
 	public ExtendedStoneGrinderContainer(int pContainerId, PlayerInventory pPlayerInventory, IInventory pContainer, IIntArray pData, PacketBuffer extraData) {
-		super(ExtendedContainers.STONE_GRINDER.get(), pContainerId);
+		super(ExtendedContainerTypes.STONE_GRINDER.get(), pContainerId);
 		checkContainerSize(pContainer, 3);
 		checkContainerDataCount(pData, 3);
 		this.container = pContainer;
@@ -113,7 +113,7 @@ public class ExtendedStoneGrinderContainer extends Container {
 	}
 
 	protected boolean canMill(ItemStack pStack) {
-		return this.level.getRecipeManager().getRecipeFor(ExtendedRecipes.MILLSTONE, new Inventory(pStack), this.level).isPresent();
+		return this.level.getRecipeManager().getRecipeFor(ExtendedRecipeTypes.MILLSTONE, new Inventory(pStack), this.level).isPresent();
 	}
 
 	protected boolean isLubrication(ItemStack pStack) {

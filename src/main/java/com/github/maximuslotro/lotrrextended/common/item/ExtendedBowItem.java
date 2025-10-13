@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import lotr.common.init.LOTRItemGroups;
 import net.minecraft.client.util.ITooltipFlag;
@@ -79,7 +80,7 @@ public class ExtendedBowItem extends BowItem {
                             abstractarrowentity.setCritArrow(true);
                         }
 
-                        int j = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, bow);
+                        float j = ExtendedModifierUtils.getItemEnchantmentLevelFloat(Enchantments.POWER_ARROWS, bow);
                         if (j > 0) {
                             abstractarrowentity.setBaseDamage(abstractarrowentity.getBaseDamage() + j * 0.5 + 0.5);
                         }
@@ -122,8 +123,7 @@ public class ExtendedBowItem extends BowItem {
             if (itemstack.getItem() instanceof ExtendedBowItem) {
                 f = f * ((ExtendedBowItem)itemstack.getItem()).getMaterial().getAttackDamageBonusScale();
             }
-            // TODO: When we add smithing scrolls back in we can use this code
-            //f*= LOTREnchantmentHelper.calcRangedDamageFactor(itemstack);
+            f*= ExtendedModifierUtils.getItemEnchantmentLevelFloat(Enchantments.POWER_ARROWS, itemstack);
         }
         return f;
     }

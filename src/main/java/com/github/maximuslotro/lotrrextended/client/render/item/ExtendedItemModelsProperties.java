@@ -4,6 +4,7 @@ import com.github.maximuslotro.lotrrextended.common.inventory.container.Extended
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 
 import lotr.common.init.ExtendedItems;
 import net.minecraft.inventory.container.PlayerContainer;
@@ -19,6 +20,7 @@ public class ExtendedItemModelsProperties {
 	public static ResourceLocation poisoned = new ResourceLocation("lotrextended", "poisoned");
 	public static ResourceLocation pull = new ResourceLocation("lotrextended", "pull");
 	public static ResourceLocation pulling = new ResourceLocation("lotrextended", "pulling");
+	public static ResourceLocation scroll_type = new ResourceLocation("lotrextended", "scroll_type");
 
 	public static void addGuiItemSprites(TextureStitchEvent.Pre event) {
 		if (event.getMap().location().equals(PlayerContainer.BLOCK_ATLAS)) {
@@ -28,8 +30,8 @@ public class ExtendedItemModelsProperties {
 	}
 
 	public static void registerAlternativeHandheldTextures() {
-		ItemModelsProperties.register(ExtendedItems.COMMANDHORN.get(), hornType, (itemStack, clientWorld, LivingEntity) -> ExtendedCommandHornItem.isHalt(itemStack) ? 1.0F : ExtendedCommandHornItem.isReddy(itemStack) ? 2.0F : ExtendedCommandHornItem.isSummon(itemStack) ? 3.0F : 0.0F);
-		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), heated, (itemStack, clientWorld, LivingEntity) -> ExtendedBrandingIronItem.isTempered(itemStack) ? 1.0F : 0.0F);
+		ItemModelsProperties.register(ExtendedItems.COMMANDHORN.get(), hornType, (itemStack, clientWorld, LivingEntity) -> ExtendedCommandHornItem.getType(itemStack).isHalt() ? 1 : ExtendedCommandHornItem.getType(itemStack).isReady() ? 2 : ExtendedCommandHornItem.getType(itemStack).isSummon() ? 3 : 0);
+		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), heated, (itemStack, clientWorld, LivingEntity) -> ExtendedBrandingIronItem.isTempered(itemStack) ? 1 : 0);
 //		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), poisoned, (itemStack, clientWorld, LivingEntity) -> {
 //			return ExtendedDaggerItem.isPoisoned(itemStack) ? 1.0F : 0.0F;
 //		});
@@ -38,6 +40,7 @@ public class ExtendedItemModelsProperties {
 		registerBowItemModelProperties(ExtendedItems.ORC_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.GUNDABAD_URUK_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.RANGER_BOW.get());
+		ItemModelsProperties.register(ExtendedItems.MODIFIER_SCROLL.get(), scroll_type, (itemStack, clientWorld, LivingEntity) -> ExtendedModifierScrollItem.getModifier(itemStack).getScroll().getId());
 	}
 
 	public static void registerBowItemModelProperties(Item item) {

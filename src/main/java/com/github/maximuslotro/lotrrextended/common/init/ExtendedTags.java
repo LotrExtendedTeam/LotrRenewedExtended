@@ -78,6 +78,9 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Block> CHAINS = BlockTags.bind("lotrextended:chains");
 		public static final ITag.INamedTag<Block> WOOL_BLOCKS = BlockTags.bind("lotrextended:wool_blocks");
 
+		public static final ITag.INamedTag<Block> BASE_STONE_MIDDLE_EARTH = BlockTags.bind("lotrextended:base_stone_middle_earth");
+		public static final ITag.INamedTag<Block> BASE_STONE_SLAB_MIDDLE_EARTH = BlockTags.bind("lotrextended:base_stone_slab_middle_earth");
+		public static final ITag.INamedTag<Block> BASE_STONE_STAIRS_MIDDLE_EARTH = BlockTags.bind("lotrextended:base_stone_stair_middle_earth");
 	}
 
 	public static class Items {
@@ -174,6 +177,7 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> DUCK_FOOD = ItemTags.bind("lotrextended:foods/duck_feedables");
 		public static final ITag.INamedTag<Item> BOAR_FOOD = ItemTags.bind("lotrextended:foods/boar_feedables");
 		public static final ITag.INamedTag<Item> BOAR_BREEDING = ItemTags.bind("lotrextended:foods/boar_breedables");
+		public static final ITag.INamedTag<Item> HEDGEHOG_FOOD = ItemTags.bind("lotrextended:foods/hedgehog_food");
 
 		public static final ITag.INamedTag<Item> COIN_ALL = ItemTags.bind("lotrextended:coins/coin_all");
 		public static final ITag.INamedTag<Item> COIN_ONE = ItemTags.bind("lotrextended:coins/coin_one");
@@ -187,5 +191,10 @@ public class ExtendedTags {
 
 		public static final ITag.INamedTag<Item> CHAINS = ItemTags.bind("lotrextended:chains");
 		public static final ITag.INamedTag<Item> WOOL_BLOCKS = ItemTags.bind("lotrextended:wool_blocks");
+		
+		public static final ITag.INamedTag<Item> COIN_MINTING_ONE = ItemTags.bind("lotrextended:coin_mintables_one");
+		public static final ITag.INamedTag<Item> COIN_MINTING_TEN = ItemTags.bind("lotrextended:coin_mintables_ten");
+		public static final ITag.INamedTag<Item> COIN_MINTING_HUNDRED = ItemTags.bind("lotrextended:coin_mintables_hundred");
+
 	}
 }

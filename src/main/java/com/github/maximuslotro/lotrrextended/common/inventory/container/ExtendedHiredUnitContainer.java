@@ -3,10 +3,10 @@ package com.github.maximuslotro.lotrrextended.common.inventory.container;
 import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.init.ExtendedContainers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -28,7 +28,7 @@ public class ExtendedHiredUnitContainer extends Container {
     public final ExtendedUnitOrders initialOrders;
     
     public ExtendedHiredUnitContainer(int pContainerId, PlayerInventory pPlayerInventory, PacketBuffer extraData) {
-        super(ExtendedContainers.HIRED_UNIT_CONTAINER.get(), pContainerId);
+        super(ExtendedContainerTypes.HIRED_UNIT_CONTAINER.get(), pContainerId);
 
         // read in packet data
         CompoundNBT nbt = extraData.readAnySizeNbt();

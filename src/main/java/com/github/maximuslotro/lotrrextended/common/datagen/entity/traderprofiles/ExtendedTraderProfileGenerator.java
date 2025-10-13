@@ -1,10 +1,15 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.entity.traderprofiles;
 
+import java.util.Arrays;
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.data.DataGenerator;
@@ -525,6 +530,12 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.MAPLE_SAPLING, 8)
 		.addDrinkSell(LOTRItems.MEAD, 9, 12, 15)
 		.addDrinkSell(LOTRItems.MAPLE_BEER, 8, 10, 12)
+		.addMSell( Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SHARP),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SWIFT),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.LONG)
+				),
+				10, 100, 1, false)
 		.save(pConsumer, ExtendedTraderTypes.BREE_MERCHANT);
 
 		make(0)
@@ -641,6 +652,12 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.IRON_SPEAR, 15)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 16)
 		.addSSell(ExtendedItems.BRANDING_IRON, 25)
+		.addMSell( Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SHARP),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SWIFT),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.LONG)
+				),
+				10, 100, 1, false)
 		.save(pConsumer, ExtendedTraderTypes.BREE_SMITH);
 
 		make(0)
@@ -779,6 +796,13 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.AMETHYST, 12)
 		.addSSell(ExtendedItems.TOPAZ, 12)
 		.addSSell(new ItemStack(LOTRItems.BLUE_ROCK.get(), 8), 2)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.LEGENDARY),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STEADFAST),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.BLESSED),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL)
+				),
+				1, 350, 1, false)
 		.addDrinkSell(LOTRItems.DWARVEN_ALE, 6, 9, 11)
 		.addDrinkSell(LOTRItems.DWARVEN_TONIC, 10, 14, 18)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_MERCHANT);
@@ -809,6 +833,12 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.LEMBAS, 16)
 		.addSSell(new ItemStack(LOTRItems.BEECH_PLANKS.get(), 4), 4)
 		.addDrinkSell(LOTRItems.MIRUVOR, 6, 8, 10)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL)
+				),
+				1, 350, 1, false)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_WANDERER);
 
 		make(75).setTypicallyWandering()
@@ -846,6 +876,12 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.NIPHREDIL, 2)
 		.addSSell(ExtendedItems.HITHLAIN, 4)
 		.addDrinkSell(LOTRItems.MIRUVOR, 6, 8, 10)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL)
+				),
+				1, 350, 1, false)
 		.save(pConsumer, ExtendedTraderTypes.GALADHRIM_WANDERER);
 
 		make(0).setTypicallyWandering()
@@ -1005,6 +1041,20 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.GOLD_TRIMMED_DWARVEN_CHESTPLATE, 80)
 		.addSSell(LOTRItems.GOLD_TRIMMED_DWARVEN_LEGGINGS, 75)
 		.addSSell(LOTRItems.GOLD_TRIMMED_DWARVEN_BOOTS, 70)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SILKEN)
+				),
+				5, 350, 1, false)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.DEFLECTING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MIGHTY),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.HASTY)
+				),
+				10, 350, 1, false)
+		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 40, 150, 1, false)
 		.addSSell(new ItemStack(LOTRItems.DWARVEN_BARS.get(), 8), 25)
 		.save(pConsumer, ExtendedTraderTypes.DWARVEN_SMITH);
 
@@ -1053,6 +1103,20 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.BLUE_DWARVEN_CHESTPLATE, 36)
 		.addSSell(LOTRItems.BLUE_DWARVEN_LEGGINGS, 30)
 		.addSSell(LOTRItems.BLUE_DWARVEN_BOOTS, 22)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SILKEN)
+				),
+				5, 350, 1, false)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.DEFLECTING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MIGHTY),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.HASTY)
+				),
+				10, 350, 1, false)
+		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 40, 150, 1, false)
 		.addSSell(new ItemStack(LOTRItems.BLUE_DWARVEN_BARS.get(), 8), 25)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_SMITH);
 
@@ -1099,5 +1163,59 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(new ItemStack(LOTRItems.PIPEWEED.get(), 4), 12)
 		.addSSell(LOTRItems.SMOKING_PIPE, 35)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_BARTENDER);
+
+		make(50)
+		// TODO add venison
+		.addSBuy(new ItemStack(Items.WHEAT, 3), 1)
+		.addSBuy(LOTRItems.SALT, 10)
+		.addSBuy(new ItemStack(Items.STRING, 3), 1)
+		.addSBuy(LOTRItems.BRONZE_DAGGER, 3)
+		.addSBuy(LOTRItems.IRON_DAGGER, 3)
+		.addSBuy(Items.LEAD, 4)
+		.addSBuy(Items.IRON_INGOT, 3)
+		.addSSell(LOTRItems.GAMMON, 6)
+		.addSSell(Items.BEEF, 5)
+		.addSSell(Items.MUTTON, 5)
+		.addSSell(Items.PORKCHOP, 5)
+		.addSSell(Items.CHICKEN, 4)
+		.addSSell(ExtendedItems.RAW_DUCK, 4)
+		.addSSell(Items.RABBIT, 4)
+		.addSSell(Items.LEATHER, 3)
+		.addSSell(Items.FEATHER, 3)
+		.addSSell(LOTRItems.HORN, 6)
+		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_BUTCHER);
+
+		make(50)
+		.addSBuy(new ItemStack(Items.COAL, 2), 1)
+		.addSBuy(new ItemStack(Items.TORCH, 16), 2)
+		.addSBuy(new ItemStack(LOTRItems.DWARVEN_TORCH.get(), 16), 2)
+		.addSBuy(Items.BUCKET, 3)
+		.addSBuy(Items.WATER_BUCKET, 4)
+		.addSBuy(LOTRItems.BRONZE_PICKAXE, 6)
+		.addSBuy(Items.IRON_PICKAXE, 8)
+		.addSBuy(LOTRItems.BLUE_DWARVEN_PICKAXE, 9)
+		.addSBuy(LOTRItems.BRONZE_SHOVEL, 6)
+		.addSBuy(Items.IRON_SHOVEL, 8)
+		.addSBuy(LOTRItems.BLUE_DWARVEN_SHOVEL, 9)
+		.addSBuy(Items.BREAD, 2)
+		.addSBuy(Items.COOKED_BEEF, 3)
+		.addSBuy(Items.COOKED_CHICKEN, 3)
+		.addSBuy(Items.COOKED_MUTTON, 3)
+		.addSBuy(Items.COOKED_RABBIT, 3)
+		.addSBuy(ExtendedItems.COOKED_DUCK, 3)
+		.addSBuy(LOTRItems.GAMMON, 3)
+		.addSBuy(new ItemStack(LOTRItems.PIPEWEED.get(), 2), 1)
+		.addSSell(new ItemStack(Items.STONE, 8), 2)
+		.addSSell(new ItemStack(LOTRItems.BLUE_ROCK.get(), 8), 2)
+		.addSSell(new ItemStack(LOTRItems.DRYSTONE.get(), 8), 3)
+		.addSSell(new ItemStack(Items.STONE_BRICKS, 8), 1)
+		.addSSell(new ItemStack(LOTRItems.BLUE_BRICK.get(), 8), 1)
+		.addSSell(new ItemStack(LOTRItems.BRICK_PILLAR.get(), 4), 5)
+		.addSSell(new ItemStack(LOTRItems.STONE_PILLAR.get(), 4), 2)
+		.addSSell(new ItemStack(LOTRItems.BLUE_PILLAR.get(), 4), 5)
+		.addSSell(new ItemStack(LOTRItems.LIGHT_BLUE_CLAY_TILING.get(), 1), 3)
+		.addSSell(Items.STONECUTTER, 10)
+		.addSSell(LOTRItems.BLUE_MOUNTAINS_CRAFTING_TABLE.get(), 100)
+		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_STONEMASON);
 	}
 }
