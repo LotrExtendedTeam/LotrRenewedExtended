@@ -225,5 +225,10 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
 		return ExtendedTraderTypes.BLUE_MOUNTAINS_MERCHANT;
 	}
 
+    @Override
+    public int getFactionColor() {
+        return this.getFaction().getColor();
+    }
+
 }
 

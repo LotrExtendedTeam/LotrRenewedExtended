@@ -4,6 +4,7 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.fac.FactionPointer;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.SlabBlock;
@@ -17,6 +18,8 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3i;
+import net.minecraft.util.text.Color;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IServerWorld;
@@ -96,10 +99,10 @@ public class WanderingTradersSpawner {
                     }
 
                     // send message to the original player
-                    player.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_you", trader.getName().copy().withStyle(TextFormatting.YELLOW)), Util.NIL_UUID);
+                    player.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_you", trader.getName().copy().withStyle(Style.EMPTY.withColor(Color.fromRgb(((ExtendedWanderingTraderEntity) trader).getFactionColor())))), Util.NIL_UUID);
                     for (PlayerEntity otherPlayer : world.players()) {
                         if (otherPlayer.getUUID().equals(player.getUUID())) continue;
-                        otherPlayer.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_player", trader.getName().copy().withStyle(TextFormatting.YELLOW), player.getName()), Util.NIL_UUID);
+                        otherPlayer.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_player", trader.getName().copy().withStyle(Style.EMPTY.withColor(Color.fromRgb(((ExtendedWanderingTraderEntity) trader).getFactionColor()))), player.getName()), Util.NIL_UUID);
                     }
                 } else if(trader==null) {
                 	ExtendedLog.error("Error attempting to spawn unknown trader. Does " + type + " extend ExtendedTraderEntity?");

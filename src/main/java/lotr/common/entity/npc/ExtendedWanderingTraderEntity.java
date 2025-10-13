@@ -15,4 +15,7 @@ public interface ExtendedWanderingTraderEntity extends ExtendedTraderEntity {
 	void addEscort(UUID uuid);
 
 	NPCEntity createEscort();
+
+    int getFactionColor();
+
 }

@@ -256,5 +256,10 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.ODDMENT_COLLECTOR;
 	}
+
+    @Override
+    public int getFactionColor() {
+        return 0xFF00FF;
+    }
 }
 
