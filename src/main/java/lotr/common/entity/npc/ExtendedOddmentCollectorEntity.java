@@ -259,7 +259,7 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 
     @Override
     public int getFactionColor() {
-        return 0xFF00FF;
+        return this.getFaction().getColor();
     }
 }
 
