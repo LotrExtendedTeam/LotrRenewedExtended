@@ -86,7 +86,6 @@ import lotr.common.block.LOTRWoodButtonBlock;
 import lotr.common.block.LOTRWoodPressurePlateBlock;
 import lotr.common.block.MineralBlock;
 import lotr.common.block.NettleBlock;
-import lotr.common.block.NonWaterloggableLanternBlock;
 import lotr.common.block.StrippableLogBlock;
 import lotr.common.block.StrippableWoodBlock;
 import lotr.common.block.ThistleBlock;
@@ -1318,32 +1317,33 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                 .texture("fire", fire)
                 .texture("chain", chain);
 		getVariantBuilder(lantern)
-		.forAllStates(state -> {
-			Boolean hanging = state.getValue(NonWaterloggableLanternBlock.HANGING);
+		.forAllStatesExcept(state -> {
+			boolean hanging = state.getValue(ExtendedBrazierBlock.HANGING);
             return ConfiguredModel.builder()
                     .modelFile(hanging ? hangingModel : lanternModel)
                     .build();
-        });
+        }, ExtendedBrazierBlock.LIT);
 	}
 
 	private void genElvenHangingLanternBlockItem(ExtendedElvenLanternBlock lantern, String name) {
 		registeredBlocks.add(lantern);
-		ResourceLocation lamp = lotrExtendedLoc(name);
+		ResourceLocation lanternText = lotrExtendedLoc(name);
+		ResourceLocation lanternTextGround = lotrExtendedLoc(name+"_ground");
 		ResourceLocation parent = lotrExtendedLoc("block/template_elven_lantern");
 		ResourceLocation parentHanging = lotrExtendedLoc("block/template_hanging_elven_lantern");
 		ModelFile lanternModel = models().withExistingParent("lotrextended:"+lantern.getRegistryName().getPath(), parent)
-                .texture("lantern", lamp)
-                .texture("particle", lamp);
+                .texture("lantern", lanternTextGround)
+                .texture("particle", lanternTextGround);
 		ModelFile hangingModel = models().withExistingParent("lotrextended:"+lantern.getRegistryName().getPath()+"_hanging", parentHanging)
-                .texture("lantern", lamp)
-                .texture("particle", lamp);
+                .texture("lantern", lanternText)
+                .texture("particle", lanternText);
 		getVariantBuilder(lantern)
-		.forAllStates(state -> {
-			Boolean hanging = state.getValue(NonWaterloggableLanternBlock.HANGING);
+		.forAllStatesExcept(state -> {
+			boolean hanging = state.getValue(ExtendedElvenLanternBlock.HANGING);
             return ConfiguredModel.builder()
                     .modelFile(hanging ? hangingModel : lanternModel)
                     .build();
-        });
+        }, ExtendedElvenLanternBlock.WATERLOGGED, ExtendedElvenLanternBlock.LIT);
 	}
 
 	private void genVineBlock(ExtendedVineBlock vine, String name, boolean mossVines) {

@@ -3,27 +3,27 @@
 	"texture_size": [32, 32],
 	"elements": [
 		{
-			"from": [8, 2, 5],
-			"to": [8, 16, 11],
-			"rotation": {"angle": -45, "axis": "y", "origin": [8, 15, 8]},
+			"from": [8, -5, 5],
+			"to": [8, 9, 11],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 8, 8]},
 			"faces": {
-				"east": {"uv": [0, 0, 3, 7], "texture": "#lantern"},
-				"west": {"uv": [3, 0, 6, 7], "texture": "#lantern"}
+				"east": {"uv": [0, 7, 3, 0], "texture": "#lantern"},
+				"west": {"uv": [3, 7, 6, 0], "texture": "#lantern"}
 			}
 		},
 		{
-			"from": [8, 2, 5],
-			"to": [8, 16, 11],
-			"rotation": {"angle": 45, "axis": "y", "origin": [8, 15, 8]},
+			"from": [8, -5, 5],
+			"to": [8, 9, 11],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
 			"faces": {
-				"east": {"uv": [0, 0, 3, 7], "texture": "#lantern"},
-				"west": {"uv": [3, 0, 6, 7], "texture": "#lantern"}
+				"east": {"uv": [0, 7, 3, 0], "texture": "#lantern"},
+				"west": {"uv": [3, 7, 6, 0], "texture": "#lantern"}
 			}
 		},
 		{
-			"from": [6.5, 5, 6.5],
-			"to": [9.5, 11, 9.5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [7, 5, 6]},
+			"from": [6.5, 0, 6.5],
+			"to": [9.5, 6, 9.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 6]},
 			"faces": {
 				"north": {"uv": [10.5, 1.5, 12, 4.5], "texture": "#lantern"},
 				"east": {"uv": [9, 1.5, 10.5, 4.5], "texture": "#lantern"},
@@ -34,12 +34,21 @@
 			}
 		},
 		{
-			"from": [6, 11, 8],
-			"to": [10, 13, 8],
-			"rotation": {"angle": 0, "axis": "y", "origin": [7, 7, 7]},
+			"from": [6, 6, 8],
+			"to": [10, 8, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 2, 7]},
 			"faces": {
-				"north": {"uv": [0, 7, 2, 8], "texture": "#lantern"},
+				"north": {"uv": [0, 8, 2, 7], "texture": "#lantern"},
 				"south": {"uv": [2, 7, 4, 8], "texture": "#lantern"}
+			}
+		},
+		{
+			"from": [8, 6, 6],
+			"to": [8, 8, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 6, 8]},
+			"faces": {
+				"east": {"uv": [2, 7, 4, 8], "texture": "#lantern"},
+				"west": {"uv": [0, 7, 2, 8], "texture": "#lantern"}
 			}
 		}
 	]

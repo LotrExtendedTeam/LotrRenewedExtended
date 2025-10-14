@@ -1,27 +1,9 @@
 {
   "variants": {
-    "hanging=false,lit=false,waterlogged=false": {
+    "hanging=false": {
       "model": "lotrextended:block/high_elven_lantern"
     },
-    "hanging=true,lit=false,waterlogged=false": {
-      "model": "lotrextended:block/high_elven_lantern_hanging"
-    },
-    "hanging=false,lit=true,waterlogged=false": {
-      "model": "lotrextended:block/high_elven_lantern"
-    },
-    "hanging=true,lit=true,waterlogged=false": {
-      "model": "lotrextended:block/high_elven_lantern_hanging"
-    },
-    "hanging=false,lit=false,waterlogged=true": {
-      "model": "lotrextended:block/high_elven_lantern"
-    },
-    "hanging=true,lit=false,waterlogged=true": {
-      "model": "lotrextended:block/high_elven_lantern_hanging"
-    },
-    "hanging=false,lit=true,waterlogged=true": {
-      "model": "lotrextended:block/high_elven_lantern"
-    },
-    "hanging=true,lit=true,waterlogged=true": {
+    "hanging=true": {
       "model": "lotrextended:block/high_elven_lantern_hanging"
     }
   }
