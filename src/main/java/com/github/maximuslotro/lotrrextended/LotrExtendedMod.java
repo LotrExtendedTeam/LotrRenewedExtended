@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended;
 
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
+import com.github.maximuslotro.lotrrextended.client.render.ExtendedBannerWarningRenderer;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.chairs.HackyChairDatabase;
 import com.github.maximuslotro.lotrrextended.common.commands.ExtendedCommands;
@@ -89,7 +90,8 @@ public class LotrExtendedMod{
 		forgeBus.register(WorldEventHandlers.class);
 		forgeBus.register(LOTREnchantEventHandlers.class);
 		forgeBus.register(BannerEventHandlers.class);
-		forgeBus.register(HiredUnitEventHandlers.class);
+        forgeBus.register(ExtendedBannerWarningRenderer.class);
+        forgeBus.register(HiredUnitEventHandlers.class);
 		ExtendedBlockStateProviderTypes.register(modBus);
 		ExtendedAttributes.register(modBus);
 		ExtendedCriteriaTriggers.generate();

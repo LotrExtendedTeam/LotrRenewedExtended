@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionDetector;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBookshelfBlock;
@@ -10,6 +11,8 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
 
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerProtectionLevels;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.GateBlock;
 import lotr.common.block.KegBlock;
@@ -48,9 +51,11 @@ import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
@@ -243,6 +248,42 @@ public class BannerEventHandlers {
 			}
 		}
 	}
+
+    public static ExtendedBannerProtectionLevels getProtectionLevelNear(PlayerEntity player) {
+        for (ExtendedBannerProtectionLevels level : ExtendedBannerProtectionLevels.values()) {
+            if (ExtendedBannerProtectionDetector.isPlayerNearAnyBannerProtection(player, level)) {
+                return level;
+            }
+        }
+        return null;
+    }
+
+    @SubscribeEvent
+    public static void onPlayerTickCheckBannerType(TickEvent.PlayerTickEvent event) {
+        if (event.phase == TickEvent.Phase.END) {
+            PlayerEntity player = event.player;
+
+            ExtendedBannerProtectionLevels level = BannerEventHandlers.getProtectionLevelNear(player);
+
+            if (level != null) {
+                ExtendedBannerTypes type = ExtendedBannerProtectionDetector.getNearbyBannerType(player, level);
+
+                if (type != null) {
+                    player.sendMessage(
+                            new StringTextComponent("You are in the banner zone: " + type.name() + ", level: " + level.name()),
+                            player.getUUID()
+                    );
+                } else {
+                    player.sendMessage(
+                            new StringTextComponent("You are in the banner zone (unknown type), level: " + level.name()),
+                            player.getUUID()
+                    );
+                }
+            }
+        }
+    }
+
+
 
 	private static void saveBlocks(World world, List<BlockPos> blocksToBlow, SingleProtectionInstance instance) {
 		blocksToBlow.removeIf(pos -> ExtendedBannerProtectionManager.getProtectionStatus(world, pos, instance, true, "handleBannerDetonateEvent").isNotAllowed());
