@@ -111,7 +111,7 @@ public class LotrExtendedMod{
 		ExtendedLootFunctions.setup();
 		ExtendedLootConditions.setup();
 		ExtendedTags.init();
-		ExtendedEffects.register();
+		ExtendedEffects.register(modBus);
 		serverTickEventHandler = new ExtendedTickHandlerServer();
 		hackyChairManager = new HackyChairDatabase();
 	}
