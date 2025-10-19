@@ -8,6 +8,7 @@ import lotr.common.entity.npc.ai.goal.TalkToCurrentGoal;
 import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
 import lotr.common.entity.npc.data.NPCFoodPool;
 import lotr.common.entity.npc.data.NPCFoodPools;
+import lotr.common.entity.npc.util.LeatherDyeUtil;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
@@ -91,7 +92,12 @@ public class ExtendedBanditEntity extends ManEntity {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
         npcItemsInv.setMeleeWeapon(WEAPONS.getRandomItem(random));
         npcItemsInv.setIdleItemsFromMeleeWeapons();
-        setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.LEATHER_HAT.get()));
+
+        // 50% chance they spawn with a hat
+        if (random.nextBoolean()) {
+            setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.LEATHER_HAT.get()));
+        }
+
         return spawnData;
     }
 
