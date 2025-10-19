@@ -1,11 +1,8 @@
 package lotr.common.entity.npc;
 
-
-import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBanditEscapeGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBanditFollowAndStealGoal;
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
-import lotr.common.entity.npc.ai.goal.FriendlyNPCConversationGoal;
 import lotr.common.entity.npc.ai.goal.NPCMeleeAttackGoal;
 import lotr.common.entity.npc.ai.goal.TalkToCurrentGoal;
 import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
@@ -40,7 +37,7 @@ public class ExtendedBanditEntity extends ManEntity {
     private final List<ItemStack> stolenItems = new ArrayList<>();
     private boolean hasStolen = false;
     private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(LOTRItems.BRONZE_DAGGER, LOTRItems.IRON_DAGGER);
-
+    @SuppressWarnings("unchecked")
     public ExtendedBanditEntity(EntityType<? extends ManEntity> type, World w) {
         super(type, w);
         this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeOnly());
@@ -147,6 +144,6 @@ public class ExtendedBanditEntity extends ManEntity {
     }
 
     public static MutableAttribute createAttributes() {
-        return OrcEntity.regAttrs().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.22D);
+        return AbstractMannishEntity.regAttrs().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.22D);
     }
 }

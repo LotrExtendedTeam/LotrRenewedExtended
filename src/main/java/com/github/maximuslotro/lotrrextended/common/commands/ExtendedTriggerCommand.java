@@ -11,7 +11,6 @@ import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
 
 public class ExtendedTriggerCommand {

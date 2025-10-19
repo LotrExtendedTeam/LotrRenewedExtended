@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedBanditRenderer extends AbstractManRenderer<ExtendedBanditEntity> {
-    private static final RandomTextureVariants SKINS = RandomTextureVariants.loadSkinsList("lotr", "textures/entity/bandit");
+    private static final RandomTextureVariants SKINS = RandomTextureVariants.loadSkinsList("lotrextended", "textures/entity/bandit/generic");
 
     public ExtendedBanditRenderer(EntityRendererManager mgr) {
         super(mgr);

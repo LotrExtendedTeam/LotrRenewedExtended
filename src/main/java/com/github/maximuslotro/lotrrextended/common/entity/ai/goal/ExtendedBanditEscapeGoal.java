@@ -10,12 +10,10 @@ import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
-import org.lwjgl.system.CallbackI;
 
 
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Objects;
 
 public class ExtendedBanditEscapeGoal extends Goal {
 	private final ExtendedBanditEntity bandit;
