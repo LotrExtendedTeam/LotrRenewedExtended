@@ -100,6 +100,9 @@ public class ExtendedSpawners {
 	public static final ResourceLocation BLUE_MOUNTAINS_TEMP_ELF_TRADER = register("blue_mountains_elf_trader_spawner");
 	// DWARVEN
 	public static final ResourceLocation DWARVEN_SMITH = register("dwarf_smith_spawner");
+	// RIVENDELL
+	public static final ResourceLocation RIVENDELL_SMITH = register("rivendell_smith_spawner");
+	public static final ResourceLocation RIVENDELL_CAPTAIN = register("rivendell_captain_spawner");
 
 	private static ResourceLocation register(String pId) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, pId));
