@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_high_elven",
+  "pattern": [
+    "N",
+    "#",
+    "N"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:silver_ingot"
+    },
+    "N": {
+      "item": "lotr:silver_nugget"
+    }
+  },
+  "result": {
+    "item": "lotr:high_elven_chain"
+  }
+}

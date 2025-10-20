@@ -392,7 +392,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SILVER_FUR_CARPET;
 	public static RegistryObject<Block> WHITE_FUR_CARPET;
 
-	public static RegistryObject<Block> MORGUL_LANTERN;
+	public static RegistryObject<Block> MORGUL_BRAZIER;
+	public static RegistryObject<Block> HIGH_ELVEN_LANTERN;
 	public static RegistryObject<Block> MORGUL_CHANDELIER;
 	public static RegistryObject<Block> ORC_CHANDELIER;
 	public static RegistryObject<Block> URUK_CHANDELIER;
@@ -503,6 +504,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SKULL_GOBLET;
 	public static RegistryObject<Block> GLASS_BOTTLE;
 
+	public static RegistryObject<Block> CHIMNEYPOT;
 	public static RegistryObject<Block> LARGE_POT;
 	public static RegistryObject<Block> LARGE_FLOWER_POT;
 	public static RegistryObject<Block> LARGE_FLOWER_POT_NETTLES;

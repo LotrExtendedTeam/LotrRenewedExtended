@@ -1,10 +1,10 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedRecipeTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderSlots.ExtendedStoneGrinderLubricationSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedStoneGrinderSlots.ExtendedStoneGrinderResultSlot;
+import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeTypes;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

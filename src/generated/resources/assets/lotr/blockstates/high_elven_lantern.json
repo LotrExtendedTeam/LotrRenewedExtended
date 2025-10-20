@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "lotrextended:block/high_elven_lantern"
+    },
+    "hanging=true": {
+      "model": "lotrextended:block/high_elven_lantern_hanging"
+    }
+  }
+}

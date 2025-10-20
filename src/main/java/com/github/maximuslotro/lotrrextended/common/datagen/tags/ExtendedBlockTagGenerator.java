@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
@@ -13,7 +14,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
-import lotr.common.block.ExtendedLanternBlock;
+import lotr.common.block.ExtendedBrazierBlock;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRFenceBlock;
 import lotr.common.block.LOTRFenceGateBlock;
@@ -177,6 +178,9 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 				}
 			}
 			if(block.getValue().get() instanceof LOTRTorchBlock) {
+				tag(BlockTags.WALL_POST_OVERRIDE).add(block.getValue().get());
+			}
+			if(block.getValue().get() instanceof ExtendedBrazierBlock) {
 				tag(BlockTags.WALL_POST_OVERRIDE).add(block.getValue().get());
 			}
 			if(block.getValue().get() instanceof ExtendedLanternBlock) {

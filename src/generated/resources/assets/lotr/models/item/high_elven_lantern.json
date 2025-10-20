@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lotrextended:item/morgul_lantern"
+    "layer0": "lotrextended:item/high_elven_lantern"
   }
 }

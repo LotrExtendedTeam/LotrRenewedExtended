@@ -2,36 +2,26 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:morgul_lantern"
+      "lotr:mossy_drystone_using_vines_willow"
     ]
   },
   "criteria": {
-    "has_morgul_lantern": {
+    "has_mossy_drystone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:morgul_lantern"
+            "item": "lotr:mossy_drystone"
           }
         ]
       }
     },
-    "has_morgul_torch": {
+    "has_drystone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:morgul_torch"
-          }
-        ]
-      }
-    },
-    "has_orc_steel_nugget": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "tag": "forge:nuggets/orc_steel"
+            "item": "lotr:drystone"
           }
         ]
       }
@@ -39,15 +29,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:morgul_lantern"
+        "recipe": "lotr:mossy_drystone_using_vines_willow"
       }
     }
   },
   "requirements": [
     [
-      "has_morgul_lantern",
-      "has_morgul_torch",
-      "has_orc_steel_nugget",
+      "has_mossy_drystone",
+      "has_drystone",
       "has_the_recipe"
     ]
   ]

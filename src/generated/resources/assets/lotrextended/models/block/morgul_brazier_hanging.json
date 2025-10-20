@@ -1,0 +1,8 @@
+{
+  "parent": "lotr:block/template_lamp_hanging",
+  "textures": {
+    "lamp": "lotrextended:block/morgul_brazier",
+    "fire": "lotrextended:block/morgul_brazier_fire",
+    "chain": "lotrextended:block/morgul_brazier_chain"
+  }
+}

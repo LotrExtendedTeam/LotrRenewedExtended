@@ -1,7 +1,6 @@
-package com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders;
+package com.github.maximuslotro.lotrrextended.common.recipe;
 
 import lotr.common.init.ExtendedItems;
-import lotr.common.init.ExtendedRecipes;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,11 +18,11 @@ public class ExtendedTippedArrowRecipe extends SpecialRecipe {
 	}
 
 	@Override
-	public boolean matches(CraftingInventory p_77569_1_, World p_77569_2_) {
-		if (p_77569_1_.getWidth() == 3 && p_77569_1_.getHeight() == 3) {
-			for(int i = 0; i < p_77569_1_.getWidth(); ++i) {
-				for(int j = 0; j < p_77569_1_.getHeight(); ++j) {
-					ItemStack itemstack = p_77569_1_.getItem(i + j * p_77569_1_.getWidth());
+	public boolean matches(CraftingInventory craftInv, World world) {
+		if (craftInv.getWidth() == 3 && craftInv.getHeight() == 3) {
+			for(int i = 0; i < craftInv.getWidth(); ++i) {
+				for(int j = 0; j < craftInv.getHeight(); ++j) {
+					ItemStack itemstack = craftInv.getItem(i + j * craftInv.getWidth());
 					if (itemstack.isEmpty()) {
 						return false;
 					}
@@ -59,12 +58,12 @@ public class ExtendedTippedArrowRecipe extends SpecialRecipe {
 	}
 
 	@Override
-	public boolean canCraftInDimensions(int p_194133_1_, int p_194133_2_) {
-		return p_194133_1_ > 2 && p_194133_2_ > 2;
+	public boolean canCraftInDimensions(int width, int height) {
+		return width > 2 && height > 2;
 	}
 
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
-		return ExtendedRecipes.EXTENDED_TIPPED_ARROW.get();
+		return ExtendedRecipeSerializers.EXTENDED_TIPPED_ARROW.get();
 	}
 }

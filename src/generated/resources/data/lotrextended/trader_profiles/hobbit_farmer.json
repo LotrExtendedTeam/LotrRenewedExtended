@@ -8,6 +8,7 @@
   "lockTicksAfterRefresh": 6000,
   "buyFromPlayer": [
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:bone_meal",
@@ -15,6 +16,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:stone_hoe",
@@ -22,6 +24,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 6,
       "stack": {
         "item": "lotr:bronze_hoe",
@@ -29,6 +32,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "minecraft:iron_hoe",
@@ -36,12 +40,14 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:bucket"
       }
     },
     {
+      "weight": 50,
       "averageCost": 4,
       "stack": {
         "item": "minecraft:water_bucket"
@@ -50,54 +56,63 @@
   ],
   "sellToPlayer": [
     {
+      "weight": 50,
       "averageCost": 12,
       "stack": {
         "item": "minecraft:hay_block"
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "minecraft:lead"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:lettuce"
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "minecraft:milk_bucket"
       }
     },
     {
+      "weight": 50,
       "averageCost": 4,
       "stack": {
         "item": "lotr:pipeweed_leaf"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:pipeweed_seeds"
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "minecraft:potato"
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:wheat_seeds"
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "minecraft:wheat"
@@ -157,6 +172,7 @@
       ]
     },
     {
+      "weight": 50,
       "averageCost": 25,
       "stack": {
         "item": "lotr:branding_iron",
@@ -164,6 +180,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
         "item": "lotr:butter"

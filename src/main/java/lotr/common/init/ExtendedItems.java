@@ -556,7 +556,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> WHITE_WARG_LEGGINGS;
 	public static RegistryObject<Item> WHITE_WARG_BOOTS;
 
-	public static RegistryObject<Item> MORGUL_LANTERN;
+	public static RegistryObject<Item> MORGUL_BRAZIER;
+	public static RegistryObject<Item> HIGH_ELVEN_LANTERN;
 	public static RegistryObject<Item> MORGUL_CHANDELIER;
 	public static RegistryObject<Item> ORC_CHANDELIER;
 	public static RegistryObject<Item> URUK_CHANDELIER;
@@ -661,6 +662,7 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> LARGE_POT;
 	public static RegistryObject<Item> LARGE_FLOWER_POT;
+	public static RegistryObject<Item> CHIMNEYPOT;
 
 	public static RegistryObject<Item> DEAD_MOSS_VINES;
 

@@ -8,6 +8,7 @@
   "lockTicksAfterRefresh": 6000,
   "buyFromPlayer": [
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:clay_ball",
@@ -15,24 +16,28 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:clay"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:bucket"
       }
     },
     {
+      "weight": 50,
       "averageCost": 4,
       "stack": {
         "item": "minecraft:water_bucket"
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:wooden_shovel",
@@ -40,6 +45,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:stone_shovel",
@@ -47,6 +53,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 4,
       "stack": {
         "item": "lotr:bronze_shovel",
@@ -54,6 +61,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 6,
       "stack": {
         "item": "minecraft:iron_shovel",
@@ -61,6 +69,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stacks": [
         {
@@ -116,6 +125,7 @@
   ],
   "sellToPlayer": [
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:brick",
@@ -123,6 +133,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 6,
       "stack": {
         "item": "minecraft:bricks",
@@ -130,6 +141,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 6,
       "stack": {
         "item": "lotr:wattle_and_daub",
@@ -137,6 +149,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 5,
       "stack": {
         "item": "lotr:wattle_and_daub_pillar",
@@ -144,6 +157,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 7,
       "stack": {
         "item": "lotr:crossed_wattle_and_daub",
@@ -151,42 +165,49 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 6,
       "stack": {
         "item": "minecraft:flower_pot"
       }
     },
     {
+      "weight": 50,
       "averageCost": 7,
       "stack": {
         "item": "lotr:large_pot"
       }
     },
     {
+      "weight": 50,
       "averageCost": 7,
       "stack": {
         "item": "lotr:large_flower_pot"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:clay_mug"
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "lotr:clay_plate"
       }
     },
     {
+      "weight": 50,
       "averageCost": 4,
       "stack": {
         "item": "lotr:ceramic_mug"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:stoneware_plate",
@@ -194,6 +215,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 5,
       "stack": {
         "item": "minecraft:terracotta",
@@ -254,6 +276,7 @@
       ]
     },
     {
+      "weight": 50,
       "averageCost": 5,
       "stack": {
         "item": "lotr:clay_tiling",

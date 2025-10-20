@@ -8,6 +8,7 @@
   "lockTicksAfterRefresh": 6000,
   "buyFromPlayer": [
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:bone_meal",
@@ -15,18 +16,21 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:bucket"
       }
     },
     {
+      "weight": 50,
       "averageCost": 4,
       "stack": {
         "item": "minecraft:water_bucket"
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:stone_hoe",
@@ -34,6 +38,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:wooden_hoe",
@@ -41,6 +46,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 6,
       "stack": {
         "item": "lotr:bronze_hoe",
@@ -48,6 +54,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "minecraft:iron_hoe",
@@ -55,6 +62,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:stone_shovel",
@@ -62,6 +70,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:wooden_shovel",
@@ -69,6 +78,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 5,
       "stack": {
         "item": "lotr:bronze_shovel",
@@ -76,6 +86,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 7,
       "stack": {
         "item": "minecraft:iron_shovel",
@@ -85,126 +96,147 @@
   ],
   "sellToPlayer": [
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:poppy"
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "minecraft:blue_orchid"
       }
     },
     {
+      "weight": 50,
       "averageCost": 6,
       "stack": {
         "item": "minecraft:allium"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:azure_bluet"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:red_tulip"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:orange_tulip"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:white_tulip"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:pink_tulip"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:oxeye_daisy"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:dandelion"
       }
     },
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
         "item": "minecraft:sunflower"
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "minecraft:lilac"
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "minecraft:rose_bush"
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "minecraft:peony"
       }
     },
     {
+      "weight": 50,
       "averageCost": 4,
       "stack": {
         "item": "minecraft:cornflower"
       }
     },
     {
+      "weight": 50,
       "averageCost": 5,
       "stack": {
         "item": "minecraft:lily_of_the_valley"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:marigold"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:bluebell"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:lavender"
       }
     },
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
         "item": "lotr:yellow_iris"
       }
     },
     {
+      "weight": 50,
       "averageCost": 6,
       "stack": {
         "item": "lotr:shire_heather"

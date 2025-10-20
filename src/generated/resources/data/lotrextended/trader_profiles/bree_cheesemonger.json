@@ -8,30 +8,35 @@
   "lockTicksAfterRefresh": 6000,
   "buyFromPlayer": [
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
         "item": "lotr:salt"
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "minecraft:brown_mushroom"
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "minecraft:red_mushroom"
       }
     },
     {
+      "weight": 50,
       "averageCost": 4,
       "stack": {
         "item": "minecraft:milk_bucket"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:bronze_dagger",
@@ -39,6 +44,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "lotr:iron_dagger",
@@ -46,12 +52,14 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:bucket"
       }
     },
     {
+      "weight": 50,
       "averageCost": 4,
       "stack": {
         "item": "minecraft:water_bucket"
@@ -60,36 +68,42 @@
   ],
   "sellToPlayer": [
     {
+      "weight": 50,
       "averageCost": 9,
       "stack": {
         "item": "lotr:bucket_of_cheese_curds"
       }
     },
     {
+      "weight": 50,
       "averageCost": 5,
       "stack": {
         "item": "lotr:cheese_curds"
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "lotr:cheese_slice"
       }
     },
     {
+      "weight": 50,
       "averageCost": 50,
       "stack": {
         "item": "lotr:cheese_wheel"
       }
     },
     {
+      "weight": 50,
       "averageCost": 12,
       "stack": {
         "item": "lotr:aged_cheese_slice"
       }
     },
     {
+      "weight": 50,
       "averageCost": 60,
       "stack": {
         "item": "lotr:aged_cheese_wheel"

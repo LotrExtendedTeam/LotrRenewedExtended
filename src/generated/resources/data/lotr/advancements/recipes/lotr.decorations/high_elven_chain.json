@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:high_elven_chain"
+    ]
+  },
+  "criteria": {
+    "has_high_elven_chain": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:high_elven_chain"
+          }
+        ]
+      }
+    },
+    "has_silver_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:silver_nugget"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:high_elven_chain"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_high_elven_chain",
+      "has_silver_nugget",
+      "has_the_recipe"
+    ]
+  ]
+}
