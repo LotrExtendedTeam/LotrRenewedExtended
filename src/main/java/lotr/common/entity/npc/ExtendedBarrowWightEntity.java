@@ -3,7 +3,7 @@ package lotr.common.entity.npc;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
-import com.github.maximuslotro.lotrrextended.common.utils.EffectDurationUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedEffectUtils;
 
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.goal.NPCMeleeAttackGoal;
@@ -90,7 +90,7 @@ public class ExtendedBarrowWightEntity extends NPCEntity {
 		if (super.doHurtTarget(target)) {
 			if (target instanceof LivingEntity) {
 				LivingEntity livingTarget = (LivingEntity)target;
-				int effectDuration = EffectDurationUtils.calculateDifficulityBasedEffectTime(level.getDifficulty().getId());
+				int effectDuration = ExtendedEffectUtils.calculateDifficulityBasedEffectTime(level.getDifficulty().getId());
 				if(effectDuration>0) {
 					livingTarget.addEffect(new EffectInstance(Effects.WITHER, effectDuration * 20, 0));
 					livingTarget.addEffect(new EffectInstance(Effects.DIG_SLOWDOWN, effectDuration * 20, 0));

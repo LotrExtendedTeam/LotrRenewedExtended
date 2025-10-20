@@ -27,7 +27,7 @@ public class BanditsSpawner {
      * @param player
      * @param alwaysSpawn
      * @param ignoreProtection
-     * @return
+     * @return True if bandit spawned
      */
     public static boolean spawn(ServerWorld world, PlayerEntity player, boolean alwaysSpawn, boolean ignoreProtection) {
         // get the biome the player is in and check if we should attempt to spawn a

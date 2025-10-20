@@ -2,13 +2,14 @@ package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBanditEscapeGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBanditFollowAndStealGoal;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
+
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
 import lotr.common.entity.npc.ai.goal.NPCMeleeAttackGoal;
 import lotr.common.entity.npc.ai.goal.TalkToCurrentGoal;
 import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
 import lotr.common.entity.npc.data.NPCFoodPool;
 import lotr.common.entity.npc.data.NPCFoodPools;
-import lotr.common.entity.npc.util.LeatherDyeUtil;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
@@ -25,6 +26,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -95,7 +97,7 @@ public class ExtendedBanditEntity extends ManEntity {
 
         // 50% chance they spawn with a hat
         if (random.nextBoolean()) {
-            setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.LEATHER_HAT.get()));
+            setItemSlot(EquipmentSlotType.HEAD, ExtendedItemStackUtils.dyeItemStack(new ItemStack(ExtendedItems.LEATHER_HAT.get()), TextFormatting.BLACK.getColor()));
         }
 
         return spawnData;
@@ -122,7 +124,6 @@ public class ExtendedBanditEntity extends ManEntity {
     @Override
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
         super.dropCustomDeathLoot(source, looting, recentlyHitIn);
-
         for (int i = 0; i < inventory.getSlots(); i++) {
             ItemStack stack = inventory.getStackInSlot(i);
             if (!stack.isEmpty()) {
