@@ -230,6 +230,16 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.BLUE_DWARF_ARCHER);
 
+		make(ExtendedEntities.BLUE_DWARVEN_AXE_THROWER.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(75, false, 300)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_HELMET.get()), 1)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.BLUE_DWARVEN_DAGGER.get()), 1)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.BLUE_DWARF_AXE_THROWER);
+
 		// Dwarven Units
 		make(LOTREntities.DWARF.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(30, false, 200)
 		.addHelmetPoolItem(ItemStack.EMPTY, 1)
@@ -266,14 +276,31 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.DWARF_ARCHER);
 
-		make(ExtendedEntities.BLUE_DWARVEN_AXE_THROWER.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(75, false, 300)
-		.addHelmetPoolItem(new ItemStack(LOTRItems.DWARVEN_HELMET.get()), 1)
-		.addChestplatePoolItem(new ItemStack(LOTRItems.DWARVEN_CHESTPLATE.get()), 1)
-		.addLeggingPoolItem(new ItemStack(LOTRItems.DWARVEN_LEGGINGS.get()), 1)
-		.addBootsPoolItem(new ItemStack(LOTRItems.DWARVEN_BOOTS.get()), 1)
-		.addMeleePoolItem(new ItemStack(LOTRItems.DWARVEN_DAGGER.get()), 1)
-		.addRangedPoolItem(new ItemStack(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE.get()), 1)
+		// Rivendell units
+		make(LOTREntities.RIVENDELL_ELF.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(45, false, 300)
+		.addHelmetPoolItem(ItemStack.EMPTY, 1)
+		.addChestplatePoolItem(ItemStack.EMPTY, 1)
+		.addLeggingPoolItem(ItemStack.EMPTY, 1)
+		.addBootsPoolItem(ItemStack.EMPTY, 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_DAGGER.get()), 6)
+		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_AXE.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_SHOVEL.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_PICKAXE.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_HOE.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
-		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.BLUE_DWARF_AXE_THROWER);
+		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.RIVENDELL_ELF);
+
+		make(LOTREntities.RIVENDELL_WARRIOR.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(75, false, 400)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.RIVENDELL_HELMET.get()), 1)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.RIVENDELL_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.RIVENDELL_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.RIVENDELL_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_SWORD.get()), 7)
+		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_SPEAR.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_AXE.get()), 1)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
+		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
+		.addShieldItem(new ItemStack(ExtendedItems.RIVENDELL_SHIELD.get()), 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.RIVENDELL_WARRIOR);
 	}
 }
