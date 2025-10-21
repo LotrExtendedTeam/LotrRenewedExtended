@@ -2148,6 +2148,11 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.STONE_SIGN.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.GLASS_BOTTLE.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.MODIFIER_SCROLL.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.IMLADRIS_GUARD_BOOTS.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.IMLADRIS_GUARD_LEGGINGS.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.IMLADRIS_GUARD_HELMET.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.IMLADRIS_GUARD_SHIELD.get().getRegistryName().getPath());
 	}
 
 	@Override

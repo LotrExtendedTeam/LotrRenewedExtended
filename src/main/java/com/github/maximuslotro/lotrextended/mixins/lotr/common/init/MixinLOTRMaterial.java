@@ -121,6 +121,9 @@ public class MixinLOTRMaterial {
 	@Unique
 	private static final LOTRMaterial IRON = lotrmaterialExpansion$addVariant("IRON", "iron", 2, 300, 6.0F, 2.0F, 10, 0.5F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
 			() -> Ingredient.of(Tags.Items.INGOTS_IRON));
+	@Unique
+	private static final LOTRMaterial IMLADRIS_GUARD = lotrmaterialExpansion$addVariant("IMLADRIS_GUARD", "imladris_guard", 0, 950, 0, 0, 10, 0.7F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
+			() -> Ingredient.of(LOTRItems.ELVEN_STEEL_INGOT.get()));
 
 	
 

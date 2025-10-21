@@ -555,7 +555,11 @@ public class ExtendedItems {
 	public static RegistryObject<Item> WHITE_WARG_CHESTPLATE;
 	public static RegistryObject<Item> WHITE_WARG_LEGGINGS;
 	public static RegistryObject<Item> WHITE_WARG_BOOTS;
-
+	public static RegistryObject<Item> IMLADRIS_GUARD_HELMET;
+	public static RegistryObject<Item> IMLADRIS_GUARD_CHESTPLATE;
+	public static RegistryObject<Item> IMLADRIS_GUARD_LEGGINGS;
+	public static RegistryObject<Item> IMLADRIS_GUARD_BOOTS;
+	
 	public static RegistryObject<Item> MORGUL_BRAZIER;
 	public static RegistryObject<Item> HIGH_ELVEN_LANTERN;
 	public static RegistryObject<Item> MORGUL_CHANDELIER;
@@ -622,6 +626,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BREE_SHIELD;
 	public static RegistryObject<Item> BLUE_DWARVEN_SHIELD;
 	public static RegistryObject<Item> RIVENDELL_SHIELD;
+	public static RegistryObject<Item> IMLADRIS_GUARD_SHIELD;
 
 	public static RegistryObject<Item> BOWSTRING;
 	public static RegistryObject<Item> GUNDABAD_URUK_BOW;

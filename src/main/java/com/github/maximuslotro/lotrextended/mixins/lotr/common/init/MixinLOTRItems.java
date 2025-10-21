@@ -1101,6 +1101,11 @@ public class MixinLOTRItems {
 
 		// High Elven Equipment
 		ExtendedItems.RIVENDELL_SHIELD = regItemB("rivendell_shield", () -> new LOTRShieldItem(LOTRMaterial.RIVENDELL));
+		ExtendedItems.IMLADRIS_GUARD_HELMET = regItemB("imladris_guard_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("IMLADRIS_GUARD"), EquipmentSlotType.HEAD));
+		ExtendedItems.IMLADRIS_GUARD_CHESTPLATE = regItemB("imladris_guard_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("IMLADRIS_GUARD"), EquipmentSlotType.CHEST));
+		ExtendedItems.IMLADRIS_GUARD_LEGGINGS = regItemB("imladris_guard_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("IMLADRIS_GUARD"), EquipmentSlotType.LEGS));
+		ExtendedItems.IMLADRIS_GUARD_BOOTS = regItemB("imladris_guard_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("IMLADRIS_GUARD"), EquipmentSlotType.FEET));
+		ExtendedItems.IMLADRIS_GUARD_SHIELD = regItemB("imladris_guard_shield", () -> new LOTRShieldItem(LOTRMaterial.valueOf("IMLADRIS_GUARD")));
 
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", ExtendedLeatherHatItem::new);
