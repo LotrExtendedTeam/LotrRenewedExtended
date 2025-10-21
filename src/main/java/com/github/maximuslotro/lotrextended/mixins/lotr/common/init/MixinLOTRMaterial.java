@@ -59,31 +59,31 @@ public class MixinLOTRMaterial {
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial BLACK_WARG = lotrmaterialExpansion$addVariant("BLACK_WARG", "black_warg", 1, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
+	private static final LOTRMaterial BLACK_WARG = lotrmaterialExpansion$addVariant("BLACK_WARG", "black_warg", 0, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
 									() -> Ingredient.of(ExtendedItems.BLACK_FUR.get()));
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial BROWN_WARG = lotrmaterialExpansion$addVariant("BROWN_WARG", "brown_warg", 1, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
+	private static final LOTRMaterial BROWN_WARG = lotrmaterialExpansion$addVariant("BROWN_WARG", "brown_warg", 0, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
 									() -> Ingredient.of(LOTRItems.FUR.get()));
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial GRAY_WARG = lotrmaterialExpansion$addVariant("GRAY_WARG", "gray_warg", 1, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
+	private static final LOTRMaterial GRAY_WARG = lotrmaterialExpansion$addVariant("GRAY_WARG", "gray_warg", 0, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
 									() -> Ingredient.of(ExtendedItems.GRAY_FUR.get()));
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial SILVER_WARG = lotrmaterialExpansion$addVariant("SILVER_WARG", "silver_warg", 1, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
+	private static final LOTRMaterial SILVER_WARG = lotrmaterialExpansion$addVariant("SILVER_WARG", "silver_warg", 0, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
 									() -> Ingredient.of(ExtendedItems.SILVER_FUR.get()));
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial WHITE_WARG = lotrmaterialExpansion$addVariant("WHITE_WARG", "white_warg", 1, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
+	private static final LOTRMaterial WHITE_WARG = lotrmaterialExpansion$addVariant("WHITE_WARG", "white_warg", 0, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
 									() -> Ingredient.of(ExtendedItems.WHITE_FUR.get()));
 	/**
 	 * Local Extended LOTRMaterial instance
@@ -113,13 +113,13 @@ public class MixinLOTRMaterial {
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial BREE = lotrmaterialExpansion$addVariant("BREE", "bree", 2, 300, 6.0F, 2.0F, 100, 0.5F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F,
+	private static final LOTRMaterial BREE = lotrmaterialExpansion$addVariant("BREE", "bree", 2, 300, 6.0F, 2.0F, 10, 0.5F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F,
 			() -> Ingredient.of(Tags.Items.INGOTS_IRON));
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial IRON = lotrmaterialExpansion$addVariant("IRON", "iron", 2, 300, 6.0F, 2.0F, 100, 0.5F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F,
+	private static final LOTRMaterial IRON = lotrmaterialExpansion$addVariant("IRON", "iron", 2, 300, 6.0F, 2.0F, 10, 0.5F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
 			() -> Ingredient.of(Tags.Items.INGOTS_IRON));
 
 	
