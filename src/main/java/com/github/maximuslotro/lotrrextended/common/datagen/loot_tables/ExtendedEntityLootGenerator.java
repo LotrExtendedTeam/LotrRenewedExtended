@@ -462,6 +462,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 					.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
 					.apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
 		makeEntity(ExtendedEntities.RIVENDELL_CAPTAIN, elfRivendell);
+		makeEntity(ExtendedEntities.RIVENDELL_SMITH, elfRivendell);
 	}
 
 	public ResourceLocation makeQuickyBaseCommon(String name, Builder builder) {

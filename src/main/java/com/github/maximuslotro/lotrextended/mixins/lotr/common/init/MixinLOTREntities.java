@@ -364,6 +364,7 @@ public class MixinLOTREntities {
 		ExtendedEntities.DWARVEN_COMMANDER = regNPCD("dwarven_commander", ExtendedDwarvenCommanderEntity::new, ExtendedDwarvenCommanderEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
 		// Rivendell
 		ExtendedEntities.RIVENDELL_CAPTAIN = regNPCD("rivendell_captain", ExtendedRivendellCaptainEntity::new, ExtendedRivendellCaptainEntity::regAttrs, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(14738662, 10723248));
+		ExtendedEntities.RIVENDELL_SMITH = regNPCD("rivendell_smith", ExtendedRivendellSmithEntity::new, ExtendedRivendellSmithEntity::regAttrs, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(14738662, 10723248));
 
 		// Special
 		ExtendedEntities.TOLKIEN = regNPCD("tolkien", ExtendedTolkienEntity::new, ExtendedTolkienEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(8160159, 5439358));

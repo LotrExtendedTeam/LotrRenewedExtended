@@ -79,5 +79,6 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedBlueMountainsButcherEntity>> BLUE_DWARVEN_BUTCHER;
 	public static RegistryObject<EntityType<ExtendedBlueMountainsAxeThrowerEntity>> BLUE_DWARVEN_AXE_THROWER;
 	public static RegistryObject<EntityType<ExtendedRivendellCaptainEntity>> RIVENDELL_CAPTAIN;
+	public static RegistryObject<EntityType<ExtendedRivendellSmithEntity>> RIVENDELL_SMITH;
 
 }

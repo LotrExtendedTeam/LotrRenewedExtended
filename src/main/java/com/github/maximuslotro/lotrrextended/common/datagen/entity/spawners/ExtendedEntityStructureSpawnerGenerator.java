@@ -171,7 +171,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		// DWARVEN
 		single(ExtendedEntities.DWARVEN_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.DWARVEN_SMITH);
 		//RIVENDELL
-		single(ExtendedEntities.RIVENDELL_CAPTAIN.get()).disableForFutureSpawning().setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.RIVENDELL_SMITH);
+		single(ExtendedEntities.RIVENDELL_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.RIVENDELL_SMITH);
 		single(ExtendedEntities.RIVENDELL_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.RIVENDELL_CAPTAIN);
 
 	}
