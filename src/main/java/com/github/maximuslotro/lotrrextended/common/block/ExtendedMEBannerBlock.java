@@ -80,14 +80,17 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable{
 	}
 
 	@Override
-	public BlockRenderType getRenderShape(BlockState p_149645_1_) {
+	public BlockRenderType getRenderShape(BlockState pState) {
+		if(pState.getValue(HALF)==DoubleBlockHalf.LOWER) {
+			return BlockRenderType.INVISIBLE;
+		}
 		return BlockRenderType.MODEL;
 	}
 
 	@Override
-	public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos) {
-		if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
-			boolean isPresent = state.getBlock() == this;
+	public boolean canSurvive(BlockState pState, IWorldReader world, BlockPos pos) {
+		if (pState.getValue(HALF) == DoubleBlockHalf.UPPER) {
+			boolean isPresent = pState.getBlock() == this;
 			if (!isPresent) {
 				return true;
 			} else {
@@ -121,8 +124,8 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable{
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
-		return SHAPES.get(state.getValue(FACING));
+	public VoxelShape getShape(BlockState pState, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
+		return SHAPES.get(pState.getValue(FACING));
 	}
 
 	@Override
@@ -192,14 +195,14 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable{
 	}
 
 	@Override
-	public BlockState rotate(BlockState p_185499_1_, Rotation p_185499_2_) {
-		return p_185499_1_.setValue(FACING, p_185499_2_.rotate(p_185499_1_.getValue(FACING)));
+	public BlockState rotate(BlockState pState, Rotation p_185499_2_) {
+		return pState.setValue(FACING, p_185499_2_.rotate(pState.getValue(FACING)));
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public BlockState mirror(BlockState p_185471_1_, Mirror p_185471_2_) {
-		return p_185471_1_.rotate(p_185471_2_.getRotation(p_185471_1_.getValue(FACING)));
+	public BlockState mirror(BlockState pState, Mirror p_185471_2_) {
+		return pState.rotate(p_185471_2_.getRotation(pState.getValue(FACING)));
 	}
 
 	@Override

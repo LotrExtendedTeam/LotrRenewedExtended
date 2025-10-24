@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:block/template_banner_bottom",
+  "parent": "lotrextended:block/template_banner_small",
   "textures": {
     "particle": "minecraft:block/oak_planks",
     "banner": "lotrextended:block/banner/bree_banner",
