@@ -95,7 +95,7 @@
 				"north": {"uv": [5, 11.5, 6, 13], "texture": "#front"},
 				"east": {"uv": [5, 11.5, 5.5, 13], "texture": "#front"},
 				"south": {"uv": [10, 11.5, 11, 13], "texture": "#back"},
-				"up": {"uv": [6, 1.5, 4.5, 2], "texture": "#missing"},
+				"up": {"uv": [6, 1.5, 4.5, 2], "texture": "#front"},
 				"down": {"uv": [6, 12.5, 5, 13], "texture": "#front"}
 			}
 		},

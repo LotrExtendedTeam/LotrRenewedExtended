@@ -565,4 +565,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STONE_SIGN;
 	
 	public static RegistryObject<Block> HOIST;
+
+	public static RegistryObject<Block> SHARDS_OF_NARSIL;
 }

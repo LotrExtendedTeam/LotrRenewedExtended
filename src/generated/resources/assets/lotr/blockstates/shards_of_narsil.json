@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "lotrextended:block/narsil_shards",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "lotrextended:block/narsil_shards",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "lotrextended:block/narsil_shards",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "lotrextended:block/narsil_shards"
+    }
+  }
+}

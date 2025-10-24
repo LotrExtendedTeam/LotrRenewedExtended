@@ -33,6 +33,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPackedFurBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
@@ -180,6 +181,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedCrucibleBlock) {
 					genCrucibleBlockItem((ExtendedCrucibleBlock) block.getValue().get());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedNarsilShardsBlock) {
+					genNarsilShardsBlock((ExtendedNarsilShardsBlock) block.getValue().get());
 					continue;
 				}
 				if(block.getValue().get() instanceof VesselDrinkBlock) {
@@ -1444,6 +1449,18 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .build();
 		});
 		itemModels().getBuilder("lotr:"+crucible.getRegistryName().getPath()).parent(modelFile);
+	}
+
+	private void genNarsilShardsBlock(ExtendedNarsilShardsBlock shards) {
+		registeredBlocks.add(shards);
+		ModelFile modelFile = models().getExistingFile(lotrExtendedLoc("block/narsil_shards"));
+		getVariantBuilder(shards).forAllStates(state -> {
+			Direction facing = state.getValue(ExtendedNarsilShardsBlock.FACING);
+			return ConfiguredModel.builder()
+                    .modelFile(modelFile)
+                    .rotationY(facing==Direction.EAST ? 0 : facing==Direction.SOUTH ? 90 : facing==Direction.WEST ? 180 : 270)
+                    .build();
+		});
 	}
 
 	private void genBirdcageBlock(ExtendedBirdcageBlock birdcage, String cagePath) {
