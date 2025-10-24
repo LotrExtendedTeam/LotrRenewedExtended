@@ -498,6 +498,34 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> DURINS_FOLK_WALL_BANNER;
 	public static RegistryObject<Block> BREE_BANNER;
 	public static RegistryObject<Block> BREE_WALL_BANNER;
+	public static RegistryObject<Block> ANGMAR_BANNER;
+	public static RegistryObject<Block> ANGMAR_WALL_BANNER;
+	public static RegistryObject<Block> DALE_BANNER;
+	public static RegistryObject<Block> DALE_WALL_BANNER;
+	public static RegistryObject<Block> DOL_AMROTH_BANNER;
+	public static RegistryObject<Block> DOL_AMROTH_WALL_BANNER;
+	public static RegistryObject<Block> DOL_GULDUR_BANNER;
+	public static RegistryObject<Block> DOL_GULDUR_WALL_BANNER;
+	public static RegistryObject<Block> DORWINION_BANNER;
+	public static RegistryObject<Block> DORWINION_WALL_BANNER;
+	public static RegistryObject<Block> DUNLAND_BANNER;
+	public static RegistryObject<Block> DUNLAND_WALL_BANNER;
+	public static RegistryObject<Block> GONDOR_BANNER;
+	public static RegistryObject<Block> GONDOR_WALL_BANNER;
+	public static RegistryObject<Block> ISENGARD_BANNER;
+	public static RegistryObject<Block> ISENGARD_WALL_BANNER;
+	public static RegistryObject<Block> LINDON_BANNER;
+	public static RegistryObject<Block> LINDON_WALL_BANNER;
+	public static RegistryObject<Block> LOTHLORIEN_BANNER;
+	public static RegistryObject<Block> LOTHLORIEN_WALL_BANNER;
+	public static RegistryObject<Block> MORDOR_BANNER;
+	public static RegistryObject<Block> MORDOR_WALL_BANNER;
+	public static RegistryObject<Block> RIVENDELL_BANNER;
+	public static RegistryObject<Block> RIVENDELL_WALL_BANNER;
+	public static RegistryObject<Block> ROHAN_BANNER;
+	public static RegistryObject<Block> ROHAN_WALL_BANNER;
+	public static RegistryObject<Block> WOODLAND_REALM_BANNER;
+	public static RegistryObject<Block> WOODLAND_REALM_WALL_BANNER;
 
 	public static RegistryObject<Block> ROPE;
 

@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:angmar_banner"
+    ]
+  },
+  "criteria": {
+    "has_wool": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "lotrextended:wool_blocks"
+          }
+        ]
+      }
+    },
+    "has_angmar_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:angmar_banner"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:angmar_banner"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wool",
+      "has_angmar_banner",
+      "has_the_recipe"
+    ]
+  ]
+}

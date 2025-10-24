@@ -1039,6 +1039,33 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.BLUE_MOUNTAINS_BANNER, ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN, LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.GUNDABAD_ORC_BANNER, ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN, ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.BREE_BANNER, ExtendedItems.BREE_BANNER_PATTERN, LOTRRecipes.BREE_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.ANGMAR_BANNER, LOTRRecipes.ANGMAR_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.DALE_BANNER, LOTRRecipes.DALE_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.DOL_AMROTH_BANNER, LOTRRecipes.DOL_AMROTH_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.DOL_GULDUR_BANNER, ExtendedRecipes.DOL_GULDUR_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.DORWINION_BANNER, LOTRRecipes.DORWINION_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.DUNLAND_BANNER, LOTRRecipes.DUNLENDING_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.GONDOR_BANNER, LOTRRecipes.GONDOR_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.ISENGARD_BANNER, LOTRRecipes.URUK_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.LINDON_BANNER, LOTRRecipes.LINDON_CRAFTING);
+		GENERATEDRECIPES.add(ExtendedItems.LOTHLORIEN_BANNER.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.LOTHLORIEN_BANNER.get(), LOTRRecipes.GALADHRIM_CRAFTING)
+		.pattern("W")
+		.pattern("S")
+		.pattern("P")
+		.define('W', Ingredient.of(ExtendedTags.Items.WOOL_BLOCKS))
+		.define('S', Ingredient.of(LOTRItems.MALLORN_STICK.get()))
+		.define('P', Ingredient.of(LOTRItems.MALLORN_PLANKS.get()))
+		.unlockedBy("has_mallorn_stick", has(LOTRItems.MALLORN_STICK.get()))
+		.unlockedBy("has_mallorn_plank", has(LOTRItems.MALLORN_PLANKS.get()))
+		.unlockedBy("has_"+ExtendedItems.LOTHLORIEN_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.LOTHLORIEN_BANNER.get()))
+		.save(consumer, lotrLoc(ExtendedItems.LOTHLORIEN_BANNER.get().getRegistryName().getPath()));
+		makeBannerRecipe(consumer, ExtendedItems.MORDOR_BANNER, LOTRRecipes.MORDOR_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.RIVENDELL_BANNER, LOTRRecipes.RIVENDELL_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.ROHAN_BANNER, LOTRRecipes.ROHAN_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.WOODLAND_REALM_BANNER, LOTRRecipes.WOOD_ELVEN_CRAFTING);
+
+
 		makeBoarArmorRecipe(consumer, ExtendedItems.LEATHER_BOAR_ARMOR, Tags.Items.LEATHER, "leather", LOTRRecipes.ANY_DWARVEN);
 		makeBoarArmorRecipe(consumer, ExtendedItems.DWARVEN_BOAR_ARMOR, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.DWARVEN_CRAFTING);
 		makeBoarArmorRecipe(consumer, ExtendedItems.BLUE_DWARVEN_BOAR_ARMOR, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);

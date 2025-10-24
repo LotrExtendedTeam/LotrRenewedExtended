@@ -1035,7 +1035,36 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.GUNDABAD_ORC_WALL_BANNER = registerB("gundabad_orc_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.GUNDABAD_ORC));
 		ExtendedBlocks.BREE_BANNER = registerB("bree_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.BREE));
 		ExtendedBlocks.BREE_WALL_BANNER = registerB("bree_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.BREE));
+		ExtendedBlocks.ANGMAR_BANNER = registerB("angmar_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.ANGMAR));
+		ExtendedBlocks.ANGMAR_WALL_BANNER = registerB("angmar_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.ANGMAR));
+		ExtendedBlocks.DALE_BANNER = registerB("dale_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.DALE));
+		ExtendedBlocks.DALE_WALL_BANNER = registerB("dale_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.DALE));
+		ExtendedBlocks.DOL_AMROTH_BANNER = registerB("dol_amroth_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.DOL_AMROTH));
+		ExtendedBlocks.DOL_AMROTH_WALL_BANNER = registerB("dol_amroth_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.DOL_AMROTH));
+		ExtendedBlocks.DOL_GULDUR_BANNER = registerB("dol_guldur_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.DOL_GULDUR));
+		ExtendedBlocks.DOL_GULDUR_WALL_BANNER = registerB("dol_guldur_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.DOL_GULDUR));
+		ExtendedBlocks.DORWINION_BANNER = registerB("dorwinion_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.DORWINION));
+		ExtendedBlocks.DORWINION_WALL_BANNER = registerB("dorwinion_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.DORWINION));
+		ExtendedBlocks.DUNLAND_BANNER = registerB("dunland_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.DUNLAND));
+		ExtendedBlocks.DUNLAND_WALL_BANNER = registerB("dunland_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.DUNLAND));
+		ExtendedBlocks.GONDOR_BANNER = registerB("gondor_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.GONDOR));
+		ExtendedBlocks.GONDOR_WALL_BANNER = registerB("gondor_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.GONDOR));
+		ExtendedBlocks.ISENGARD_BANNER = registerB("isengard_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.ISENGARD));
+		ExtendedBlocks.ISENGARD_WALL_BANNER = registerB("isengard_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.ISENGARD));
+		ExtendedBlocks.LINDON_BANNER = registerB("lindon_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.LINDON));
+		ExtendedBlocks.LINDON_WALL_BANNER = registerB("lindon_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.LINDON));
+		ExtendedBlocks.LOTHLORIEN_BANNER = registerB("lothlorien_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.LOTHLORIEN));
+		ExtendedBlocks.LOTHLORIEN_WALL_BANNER = registerB("lothlorien_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.LOTHLORIEN));
+		ExtendedBlocks.MORDOR_BANNER = registerB("mordor_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.MORDOR));
+		ExtendedBlocks.MORDOR_WALL_BANNER = registerB("mordor_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.MORDOR));
+		ExtendedBlocks.RIVENDELL_BANNER = registerB("rivendell_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.RIVENDELL));
+		ExtendedBlocks.RIVENDELL_WALL_BANNER = registerB("rivendell_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.RIVENDELL));
+		ExtendedBlocks.ROHAN_BANNER = registerB("rohan_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.ROHAN));
+		ExtendedBlocks.ROHAN_WALL_BANNER = registerB("rohan_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.ROHAN));
+		ExtendedBlocks.WOODLAND_REALM_BANNER = registerB("woodland_realm_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.WOODLAND_REALM));
+		ExtendedBlocks.WOODLAND_REALM_WALL_BANNER = registerB("woodland_realm_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.WOODLAND_REALM));
 
+		
 		ExtendedBlocks.DEAD_MOSS_VINES = registerB("dead_moss_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 		// Birdcages
 		ExtendedBlocks.WOODEN_BIRDCAGE = registerB("wooden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).strength(0.5F)));

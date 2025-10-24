@@ -434,7 +434,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
-	protected void makeBannerAndPatternRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> banner, Supplier<? extends Item> pattern, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void makeBannerAndPatternRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> banner, Supplier<? extends Item> pattern, FactionBasedRecipeType<ICraftingRecipe> table) {
 		GENERATEDRECIPES.add(banner.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(banner.get(), table)
 		.pattern("W")
@@ -454,7 +454,28 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		.unlockedBy("has_"+pattern.get().getRegistryName().getPath(), has(pattern.get()))
 		.save(consumer, lotrLoc(pattern.get().getRegistryName().getPath()));
 	}
-
+	protected void makeBannerRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> banner, FactionBasedRecipeType<ICraftingRecipe> table) {
+		GENERATEDRECIPES.add(banner.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(banner.get(), table)
+		.pattern("W")
+		.pattern("S")
+		.pattern("P")
+		.define('W', Ingredient.of(ExtendedTags.Items.WOOL_BLOCKS))
+		.define('S', Ingredient.of(STICKS))
+		.define('P', Ingredient.of(PLANKS))
+		.unlockedBy("has_wool", has(ExtendedTags.Items.WOOL_BLOCKS))
+		.unlockedBy("has_"+banner.get().getRegistryName().getPath(), has(banner.get()))
+		.save(consumer, lotrLoc(banner.get().getRegistryName().getPath()));
+	}
+	protected void makeBannerPatternRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> banner, Supplier<? extends Item> pattern, FactionBasedRecipeType<ICraftingRecipe> table) {
+		GENERATEDRECIPES.add(pattern.get().getRegistryName().getPath());
+		ExtendedFactionShapelessRecipeBuilder.shapeless(pattern.get(), table)
+		.requires(Items.PAPER)
+		.requires(banner.get())
+		.unlockedBy("has_"+banner.get().getRegistryName().getPath(), has(banner.get()))
+		.unlockedBy("has_"+pattern.get().getRegistryName().getPath(), has(pattern.get()))
+		.save(consumer, lotrLoc(pattern.get().getRegistryName().getPath()));
+	}
 	protected void makeBedRecipeTag(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> bed, ITag<Item> reasource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = bed.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);

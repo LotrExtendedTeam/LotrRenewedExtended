@@ -1,0 +1,23 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "pattern": [
+    "W",
+    "S",
+    "P"
+  ],
+  "key": {
+    "W": {
+      "tag": "lotrextended:wool_blocks"
+    },
+    "S": {
+      "item": "lotr:mallorn_stick"
+    },
+    "P": {
+      "item": "lotr:mallorn_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:lothlorien_banner"
+  }
+}
