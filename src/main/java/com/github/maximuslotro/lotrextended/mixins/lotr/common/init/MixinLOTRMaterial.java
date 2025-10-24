@@ -41,89 +41,92 @@ public class MixinLOTRMaterial {
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial MORGUL = lotrmaterialExpansion$addVariant("MORGUL", "morgul", 2, 450, 5.5F, 2.5F, 8, 0.7F, SoundEvents.ARMOR_EQUIP_IRON, 0,
+	private static final LOTRMaterial MORGUL = lE$addVariant("MORGUL", "morgul", 2, 450, 5.5F, 2.5F, 8, 0.7F, SoundEvents.ARMOR_EQUIP_IRON, 0,
 									() -> Ingredient.of(ExtendedItems.MORGUL_STEEL_INGOT.get()), new LOTRMaterial.Specials[]{LOTRMaterial.Specials.MAN_FLESH});
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial TAURETHRIM = lotrmaterialExpansion$addVariant("TAURETHRIM", "taurethrim", 2, 300, 5.5F, 2.5F, 10, 0.5F, SoundEvents.ARMOR_EQUIP_IRON, 0,
+	private static final LOTRMaterial TAURETHRIM = lE$addVariant("TAURETHRIM", "taurethrim", 2, 300, 5.5F, 2.5F, 10, 0.5F, SoundEvents.ARMOR_EQUIP_IRON, 0,
 									() -> Ingredient.of(ExtendedItems.OBSIDIAN_SHARD.get()),() -> Ingredient.of(LOTRItems.BRONZE_INGOT.get()), new LOTRMaterial.Specials[0]);
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial GOLDEN_TAURETHRIM = lotrmaterialExpansion$addVariant("GOLDEN_TAURETHRIM", "golden_taurethrim", 2, 450, 0, 0, 8, 0.6F, SoundEvents.ARMOR_EQUIP_GOLD, 0,
+	private static final LOTRMaterial GOLDEN_TAURETHRIM = lE$addVariant("GOLDEN_TAURETHRIM", "golden_taurethrim", 2, 450, 0, 0, 8, 0.6F, SoundEvents.ARMOR_EQUIP_GOLD, 0,
 									() -> Ingredient.of(Items.INGOTS_GOLD));
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial BLACK_WARG = lotrmaterialExpansion$addVariant("BLACK_WARG", "black_warg", 0, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
+	private static final LOTRMaterial BLACK_WARG = lE$addVariant("BLACK_WARG", "black_warg", 0, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
 									() -> Ingredient.of(ExtendedItems.BLACK_FUR.get()));
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial BROWN_WARG = lotrmaterialExpansion$addVariant("BROWN_WARG", "brown_warg", 0, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
+	private static final LOTRMaterial BROWN_WARG = lE$addVariant("BROWN_WARG", "brown_warg", 0, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
 									() -> Ingredient.of(LOTRItems.FUR.get()));
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial GRAY_WARG = lotrmaterialExpansion$addVariant("GRAY_WARG", "gray_warg", 0, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
+	private static final LOTRMaterial GRAY_WARG = lE$addVariant("GRAY_WARG", "gray_warg", 0, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
 									() -> Ingredient.of(ExtendedItems.GRAY_FUR.get()));
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial SILVER_WARG = lotrmaterialExpansion$addVariant("SILVER_WARG", "silver_warg", 0, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
+	private static final LOTRMaterial SILVER_WARG = lE$addVariant("SILVER_WARG", "silver_warg", 0, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
 									() -> Ingredient.of(ExtendedItems.SILVER_FUR.get()));
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial WHITE_WARG = lotrmaterialExpansion$addVariant("WHITE_WARG", "white_warg", 0, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
+	private static final LOTRMaterial WHITE_WARG = lE$addVariant("WHITE_WARG", "white_warg", 0, 230, 0, 0, 8, 0.4F, SoundEvents.ARMOR_EQUIP_LEATHER, 0,
 									() -> Ingredient.of(ExtendedItems.WHITE_FUR.get()));
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial ANGMAR = lotrmaterialExpansion$addVariant("ANGMAR", "angmar", 2, 350, 5.5F, 2.5F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0,
+	private static final LOTRMaterial ANGMAR = lE$addVariant("ANGMAR", "angmar", 2, 350, 5.5F, 2.5F, 8, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0,
 									() -> Ingredient.of(LOTRItems.ORC_STEEL_INGOT.get()), new LOTRMaterial.Specials[]{LOTRMaterial.Specials.MAN_FLESH});
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial DOL_GULDUR = lotrmaterialExpansion$addVariant("DOL_GULDUR", "dol_guldur", 2, 350, 5.5F, 2.5F, 10, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0,
+	private static final LOTRMaterial DOL_GULDUR = lE$addVariant("DOL_GULDUR", "dol_guldur", 2, 350, 5.5F, 2.5F, 10, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0,
 									() -> Ingredient.of(LOTRItems.ORC_STEEL_INGOT.get()), new LOTRMaterial.Specials[]{LOTRMaterial.Specials.MAN_FLESH});
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial GUNDABAD_URUK = lotrmaterialExpansion$addVariant("GUNDABAD_URUK", "gundabad_uruk", 2, 550, 6.0F, 3.0F, 4, 0.7F, SoundEvents.ARMOR_EQUIP_IRON, 0,
+	private static final LOTRMaterial GUNDABAD_URUK = lE$addVariant("GUNDABAD_URUK", "gundabad_uruk", 2, 550, 6.0F, 3.0F, 4, 0.7F, SoundEvents.ARMOR_EQUIP_IRON, 0,
 			() -> Ingredient.of(LOTRItems.URUK_STEEL_INGOT.get()), new LOTRMaterial.Specials[]{LOTRMaterial.Specials.MAN_FLESH});
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial EXT_BONE = lotrmaterialExpansion$addVariant("EXT_BONE", "ext_bone", 0, 150, 3.0F, 2.0F, 10, 0.3F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F,
+	private static final LOTRMaterial EXT_BONE = lE$addVariant("EXT_BONE", "ext_bone", 0, 150, 3.0F, 2.0F, 10, 0.3F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F,
 									() -> Ingredient.of(Tags.Items.BONES));
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial BREE = lotrmaterialExpansion$addVariant("BREE", "bree", 2, 300, 6.0F, 2.0F, 10, 0.5F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F,
+	private static final LOTRMaterial BREE = lE$addVariant("BREE", "bree", 2, 300, 6.0F, 2.0F, 10, 0.5F, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F,
 			() -> Ingredient.of(Tags.Items.INGOTS_IRON));
 	/**
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
-	private static final LOTRMaterial IRON = lotrmaterialExpansion$addVariant("IRON", "iron", 2, 300, 6.0F, 2.0F, 10, 0.5F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
+	private static final LOTRMaterial IRON = lE$addVariant("IRON", "iron", 2, 300, 6.0F, 2.0F, 10, 0.5F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
 			() -> Ingredient.of(Tags.Items.INGOTS_IRON));
 	@Unique
-	private static final LOTRMaterial IMLADRIS_GUARD = lotrmaterialExpansion$addVariant("IMLADRIS_GUARD", "imladris_guard", 0, 950, 0, 0, 10, 0.7F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
+	private static final LOTRMaterial IMLADRIS_GUARD = lE$addVariant("IMLADRIS_GUARD", "imladris_guard", 0, 950, 0, 0, 10, 0.7F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
 			() -> Ingredient.of(LOTRItems.ELVEN_STEEL_INGOT.get()));
+	@Unique
+	private static final LOTRMaterial ANDURIL = lE$addVariant("ANDURIL", "anduril", 2, 1500, 0.0f, 5.0f, 14, 0.0F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
+			() -> Ingredient.of(Tags.Items.INGOTS_IRON));
 
 	
 
@@ -168,9 +171,9 @@ public class MixinLOTRMaterial {
 	 * @Unique There will only be one instance of this
 	 * */
 	@Unique
-	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int toolTier, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
+	private static LOTRMaterial lE$addVariant(String internalName, String name, int toolTier, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
 																 float tough, Supplier<Ingredient> repair) {
-		return lotrmaterialExpansion$addVariant(internalName, name, toolTier, uses, efficiency, atk, ench, pr, sound, tough, repair, repair, new LOTRMaterial.Specials[0]);
+		return lE$addVariant(internalName, name, toolTier, uses, efficiency, atk, ench, pr, sound, tough, repair, repair, new LOTRMaterial.Specials[0]);
 	}
 	/**
 	 * Accessing the Enum creation method, with single repair ingredient and special modifiers
@@ -190,9 +193,9 @@ public class MixinLOTRMaterial {
 	 * @Unique There will only be one instance of this
 	 * */
 	@Unique
-	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int toolTier, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
+	private static LOTRMaterial lE$addVariant(String internalName, String name, int toolTier, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
 																 float tough, Supplier<Ingredient> repair, LOTRMaterial.Specials[] specs) {
-		return lotrmaterialExpansion$addVariant(internalName, name, toolTier, uses, efficiency, atk, ench, pr, sound, tough, repair, repair, specs);
+		return lE$addVariant(internalName, name, toolTier, uses, efficiency, atk, ench, pr, sound, tough, repair, repair, specs);
 	}	/**
 	 * Accessing the Enum creation method, with full parameter set
 	 * @param internalName The internal name for the Enum entry, must be uppercase and match the variable name
@@ -212,7 +215,7 @@ public class MixinLOTRMaterial {
 	 * @Unique There will only be one instance of this
 	 * */
 	@Unique
-	private static LOTRMaterial lotrmaterialExpansion$addVariant(String internalName, String name, int toolTier, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
+	private static LOTRMaterial lE$addVariant(String internalName, String name, int toolTier, int uses, float efficiency, float atk, int ench, float pr, SoundEvent sound,
 																 float tough, Supplier<Ingredient> repair, Supplier<Ingredient> armorRepair, LOTRMaterial.Specials[] specs) {
 		ArrayList<LOTRMaterial> variants = new ArrayList<>(Arrays.asList(MixinLOTRMaterial.$VALUES));
 		LOTRMaterial instrument = lotrmaterialExpansion$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, name, toolTier, uses, efficiency, atk, ench, pr, sound, tough, repair, armorRepair, specs);

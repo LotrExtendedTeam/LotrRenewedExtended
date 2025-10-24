@@ -19,6 +19,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerIt
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedLeatherHatItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedSwordItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
@@ -31,13 +32,13 @@ import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.DaggerItem;
 import lotr.common.item.FallenLeavesItem;
+import lotr.common.item.HammerItem;
 import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRAxeItem;
 import lotr.common.item.LOTRHoeItem;
 import lotr.common.item.LOTRPickaxeItem;
 import lotr.common.item.LOTRShieldItem;
 import lotr.common.item.LOTRShovelItem;
-import lotr.common.item.LOTRSwordItem;
 import lotr.common.item.SpearItem;
 import lotr.common.item.VesselDrinkItem;
 import net.minecraft.block.DoorBlock;
@@ -176,7 +177,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genDagger(item.getKey());
 				continue;
 			}
-			if(item.getValue().get() instanceof LOTRSwordItem) {
+			if(item.getValue().get() instanceof ExtendedSwordItem || item.getValue().get() instanceof HammerItem) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				genSword(item.getKey());
 				continue;

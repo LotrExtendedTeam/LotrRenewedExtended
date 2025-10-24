@@ -266,15 +266,26 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc(ExtendedItems.CONQUEST_TABLE.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.STONE_GRINDER.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.STONE_GRINDER.get())
-		.pattern("CZC")
-		.pattern("CYC")
+		.pattern("CIC")
+		.pattern("CSC")
 		.pattern("CCC")
 		.define('C', Ingredient.of(Items.COBBLESTONE))
-		.define('Y', Ingredient.of(STICKS))
-		.define('Z', Ingredient.of(Tags.Items.INGOTS_IRON))
+		.define('S', Ingredient.of(STICKS))
+		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
 		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
 		.unlockedBy("has_"+ExtendedItems.STONE_GRINDER.get().getRegistryName().getPath(), has(ExtendedItems.STONE_GRINDER.get()))
 		.save(consumer, lotrLoc(ExtendedItems.STONE_GRINDER.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.CRUCIBLE.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CRUCIBLE.get())
+		.pattern("I I")
+		.pattern("SIS")
+		.pattern("CCC")
+		.define('C', Ingredient.of(Items.COBBLESTONE))
+		.define('S', Ingredient.of(STICKS))
+		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
+		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
+		.unlockedBy("has_"+ExtendedItems.CRUCIBLE.get().getRegistryName().getPath(), has(ExtendedItems.CRUCIBLE.get()))
+		.save(consumer, lotrLoc(ExtendedItems.CRUCIBLE.get().getRegistryName().getPath()));
 		//STORAGE BLOCKS AND ITEMS
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.AMBER, ExtendedBlocks.AMBER_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.AMETHYST, ExtendedBlocks.AMETHYST_BLOCK, null);
@@ -2180,6 +2191,21 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.IMLADRIS_GUARD_HELMET.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.IMLADRIS_GUARD_SHIELD.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.ANGMAR_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.DALE_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.GONDOR_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.ISENGARD_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.WOODLAND_REALM_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.ROHAN_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.DORWINION_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.DUNLAND_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.RIVENDELL_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.LINDON_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.DOL_GULDUR_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.DOL_AMROTH_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.LOTHLORIEN_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.MORDOR_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.ANDURIL.get().getRegistryName().getPath());
 	}
 
 	@Override

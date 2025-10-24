@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.Ex
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedMillingRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedShapedRecipeBuilder;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedSwordItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeSerializers;
@@ -27,7 +28,6 @@ import lotr.common.item.LOTRAxeItem;
 import lotr.common.item.LOTRHoeItem;
 import lotr.common.item.LOTRPickaxeItem;
 import lotr.common.item.LOTRShovelItem;
-import lotr.common.item.LOTRSwordItem;
 import lotr.common.recipe.FactionBasedRecipeType;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -2014,7 +2014,7 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 					System.out.println("MISSING ARMOR RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 				}
 			}
-			if(item.getValue().get() instanceof LOTRSwordItem) {
+			if(item.getValue().get() instanceof ExtendedSwordItem) {
 				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
 					System.out.println("MISSING SWORD RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 				}
