@@ -8,6 +8,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 
 public class AttributeUtils {
+	// Gets the approximate value of a simple attribute map, may mess up calculations of complex attribute systems
 	public static double getItemAttributeValue(ItemStack stack, EquipmentSlotType slot, Attribute attribute) {
 		double d0 = attribute.getDefaultValue();
 		double newValue = 0.0;

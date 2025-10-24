@@ -18,6 +18,7 @@ public class ExtendedEntitySettingsGenerator extends ExtendedEntitySettingsProvi
 	@Override
 	public void makeEntitySettingBuilders(Consumer<ExtendedEntitySettingsBuilder> pConsumer) {
 		make(ExtendedEntities.BARROW_WIGHT.get(), FactionPointers.HOSTILE).setBankE("wight/barrow_wight").save(pConsumer);
+		make(ExtendedEntities.BANDIT.get(), FactionPointers.UNALIGNED).setBankE("bandit").save(pConsumer);
 		make(ExtendedEntities.GUNDABAD_URUK.get(), FactionPointers.NORTHERN_ORCS).setBonus(2).setBank("northern_orcs/gundabad/orc").save(pConsumer);
 		make(ExtendedEntities.GUNDABAD_URUK_ARCHER.get(), FactionPointers.NORTHERN_ORCS).setBonus(2).setBank("northern_orcs/gundabad/orc").save(pConsumer);
 		make(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get(), FactionPointers.NORTHERN_ORCS).setBonus(2).setBank("northern_orcs/gundabad/orc_chieftain").save(pConsumer);
