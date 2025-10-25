@@ -1453,11 +1453,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genNarsilShardsBlock(ExtendedNarsilShardsBlock shards) {
 		registeredBlocks.add(shards);
-		ModelFile modelFile = models().getExistingFile(lotrExtendedLoc("block/narsil_shards"));
+		ModelFile modelFileSmall = models().getExistingFile(lotrExtendedLoc("block/narsil_shards_small"));
+		ModelFile modelFileLarge = models().getExistingFile(lotrExtendedLoc("block/narsil_shards_large"));
 		getVariantBuilder(shards).forAllStates(state -> {
 			Direction facing = state.getValue(ExtendedNarsilShardsBlock.FACING);
+			Boolean largeModel = state.getValue(ExtendedNarsilShardsBlock.LARGE_MODEL);
 			return ConfiguredModel.builder()
-                    .modelFile(modelFile)
+                    .modelFile(largeModel ? modelFileLarge : modelFileSmall)
                     .rotationY(facing==Direction.EAST ? 0 : facing==Direction.SOUTH ? 90 : facing==Direction.WEST ? 180 : 270)
                     .build();
 		});

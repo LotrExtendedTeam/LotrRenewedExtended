@@ -1,19 +1,34 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "lotrextended:block/narsil_shards",
+    "facing=north,large=false": {
+      "model": "lotrextended:block/narsil_shards_small",
       "y": 270
     },
-    "facing=south": {
-      "model": "lotrextended:block/narsil_shards",
+    "facing=south,large=false": {
+      "model": "lotrextended:block/narsil_shards_small",
       "y": 90
     },
-    "facing=west": {
-      "model": "lotrextended:block/narsil_shards",
+    "facing=west,large=false": {
+      "model": "lotrextended:block/narsil_shards_small",
       "y": 180
     },
-    "facing=east": {
-      "model": "lotrextended:block/narsil_shards"
+    "facing=east,large=false": {
+      "model": "lotrextended:block/narsil_shards_small"
+    },
+    "facing=north,large=true": {
+      "model": "lotrextended:block/narsil_shards_large",
+      "y": 270
+    },
+    "facing=south,large=true": {
+      "model": "lotrextended:block/narsil_shards_large",
+      "y": 90
+    },
+    "facing=west,large=true": {
+      "model": "lotrextended:block/narsil_shards_large",
+      "y": 180
+    },
+    "facing=east,large=true": {
+      "model": "lotrextended:block/narsil_shards_large"
     }
   }
 }
