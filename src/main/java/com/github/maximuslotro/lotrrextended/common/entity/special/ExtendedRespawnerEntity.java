@@ -41,9 +41,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class ExtendedTraderRespawnEntity extends Entity{
-	private static final DataParameter<String> DATA_SPAWNER_TYPE = EntityDataManager.defineId(ExtendedTraderRespawnEntity.class, DataSerializers.STRING);
-	private static final DataParameter<Integer> TICKPERCENTAGE = EntityDataManager.defineId(ExtendedTraderRespawnEntity.class, DataSerializers.INT);
+public class ExtendedRespawnerEntity extends Entity{
+	private static final DataParameter<String> DATA_SPAWNER_TYPE = EntityDataManager.defineId(ExtendedRespawnerEntity.class, DataSerializers.STRING);
+	private static final DataParameter<Integer> TICKPERCENTAGE = EntityDataManager.defineId(ExtendedRespawnerEntity.class, DataSerializers.INT);
 
 	private boolean queueToRemove = false;
 	private int setEntityTickBackRate = 24000;
@@ -58,12 +58,12 @@ public class ExtendedTraderRespawnEntity extends Entity{
 	// if -1 assume no homeIsSet
 	private int homeRadius = -1;
 
-	public ExtendedTraderRespawnEntity(EntityType<? extends ExtendedTraderRespawnEntity> pType, World pLevel) {
+	public ExtendedRespawnerEntity(EntityType<? extends ExtendedRespawnerEntity> pType, World pLevel) {
 		super(pType, pLevel);
 	}
 
-	public ExtendedTraderRespawnEntity(World pLevel) {
-		this(ExtendedEntities.TRADER_RESPAWNER_ENTITY.get(), pLevel);
+	public ExtendedRespawnerEntity(World pLevel) {
+		this(ExtendedEntities.RESPAWNER_ENTITY.get(), pLevel);
 	}
 
 	public void setTickValues(int tickBackRate) {
@@ -106,7 +106,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 			if(queueToRemove) {
 				this.remove();
 			}else if(entityTickBacksRemaining==0) {
-				spawnTrader((ServerWorld) this.level);
+				spawnEntity((ServerWorld) this.level);
 			}else if(entityTickBacksRemaining==-1) {
 			}else {
 				entityTickBacksRemaining -=1;
@@ -114,7 +114,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 		}
 	}
 
-	private void spawnTrader(ServerWorld world) {
+	private void spawnEntity(ServerWorld world) {
 		EntityType<?> traderEntityType =ExtendedStructureEntitySpawnerEntry.Serializer.getEntityTypeFromString(entityType);
 		if(traderEntityType!=null) {
 			Entity spawnedEntity = traderEntityType.create(world);
@@ -236,7 +236,7 @@ public class ExtendedTraderRespawnEntity extends Entity{
 
 	@Override
 	public ITextComponent getDisplayName() {
-		return new StringTextComponent("Trader Respawner: "+getSpawnerName());
+		return new StringTextComponent("Respawner: "+getSpawnerName());
 	}
 
 	@Override

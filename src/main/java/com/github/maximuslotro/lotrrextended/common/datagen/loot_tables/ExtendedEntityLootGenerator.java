@@ -464,6 +464,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.RIVENDELL_CAPTAIN, elfRivendell);
 		makeEntity(ExtendedEntities.RIVENDELL_SMITH, elfRivendell);
 		makeEntity(ExtendedEntities.IMLADRIS_GUARD, elfRivendell);
+		makeEntity(ExtendedEntities.ELROND, elfRivendell);
 	}
 
 	public ResourceLocation makeQuickyBaseCommon(String name, Builder builder) {

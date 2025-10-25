@@ -12,7 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedTh
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChairEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 
 import lotr.common.entity.npc.*;
 import net.minecraft.entity.EntityType;
@@ -36,7 +36,7 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedHedgehogEntity>> HEDGEHOG;
 	public static RegistryObject<EntityType<ExtendedThrowableAxeEntity>> THROWN_AXE;
 	public static RegistryObject<EntityType<ExtendedStructureSpawnerEntity>> STRUCTURE_ENTITY_SPAWNER;
-	public static RegistryObject<EntityType<ExtendedTraderRespawnEntity>> TRADER_RESPAWNER_ENTITY;
+	public static RegistryObject<EntityType<ExtendedRespawnerEntity>> RESPAWNER_ENTITY;
 	public static RegistryObject<EntityType<ExtendedGundabadOrcTraderEntity>> GUNDABAD_CAMP_TRADER;
 	public static RegistryObject<EntityType<ExtendedBlueMountainsMerchantEntity>> BLUE_MOUNTAINS_MERCHANT;
 	public static RegistryObject<EntityType<ExtendedGundabadUrukEntity>> GUNDABAD_URUK;
@@ -81,4 +81,5 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedRivendellCaptainEntity>> RIVENDELL_CAPTAIN;
 	public static RegistryObject<EntityType<ExtendedRivendellSmithEntity>> RIVENDELL_SMITH;
 	public static RegistryObject<EntityType<ExtendedRivendellGuardEntity>> IMLADRIS_GUARD;
+	public static RegistryObject<EntityType<ExtendedElrondEntity>> ELROND;
 }

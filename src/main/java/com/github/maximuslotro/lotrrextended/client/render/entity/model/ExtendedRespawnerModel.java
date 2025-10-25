@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.render.entity.model;
 
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
@@ -8,10 +8,10 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class ExtendedTraderRespawnModel extends ExtendedNonLivingModel<ExtendedTraderRespawnEntity> {
+public class ExtendedRespawnerModel extends ExtendedNonLivingModel<ExtendedRespawnerEntity> {
 	private final ModelRenderer coin;
 
-	public ExtendedTraderRespawnModel() {
+	public ExtendedRespawnerModel() {
 		texWidth = 32;
 		texHeight = 32;
 
@@ -25,7 +25,7 @@ public class ExtendedTraderRespawnModel extends ExtendedNonLivingModel<ExtendedT
 	}
 
 	@Override
-	public void renderExtendedToBuffer(ExtendedTraderRespawnEntity entity, MatrixStack matrixStack, IVertexBuilder buffer, float ageInTicks, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+	public void renderExtendedToBuffer(ExtendedRespawnerEntity entity, MatrixStack matrixStack, IVertexBuilder buffer, float ageInTicks, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		matrixStack.pushPose();
 		if (entity != null) {
 			//float f = 0.53125F;
