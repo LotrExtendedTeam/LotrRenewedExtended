@@ -70,5 +70,6 @@ public class ExtendedEntitySettingsGenerator extends ExtendedEntitySettingsProvi
 		make(ExtendedEntities.BREE_STONEMASON.get(), FactionPointers.BREE).setBonus(2).setBankE("bree/man").save(pConsumer);
 		make(ExtendedEntities.RIVENDELL_CAPTAIN.get(), FactionPointers.HIGH_ELVES).setBonus(2).setBank("high_elves/rivendell/warrior").save(pConsumer);
 		make(ExtendedEntities.RIVENDELL_SMITH.get(), FactionPointers.HIGH_ELVES).setBonus(2).setBank("high_elves/rivendell/elf").save(pConsumer);
+		make(ExtendedEntities.IMLADRIS_GUARD.get(), FactionPointers.HIGH_ELVES).setBonus(2).setBank("high_elves/rivendell/warrior").save(pConsumer);
 	}
 }

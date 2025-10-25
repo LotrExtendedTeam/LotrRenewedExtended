@@ -103,7 +103,9 @@ public class ExtendedSpawners {
 	// RIVENDELL
 	public static final ResourceLocation RIVENDELL_SMITH = register("rivendell_smith_spawner");
 	public static final ResourceLocation RIVENDELL_CAPTAIN = register("rivendell_captain_spawner");
-
+	public static final ResourceLocation RIVENDELL_AREA = register("rivendell_area_spawner");
+	public static final ResourceLocation RIVENDELL_GUARD = register("rivendell_guard_spawner");
+	
 	private static ResourceLocation register(String pId) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, pId));
 	}

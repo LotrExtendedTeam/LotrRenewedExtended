@@ -173,6 +173,12 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		//RIVENDELL
 		single(ExtendedEntities.RIVENDELL_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.RIVENDELL_SMITH);
 		single(ExtendedEntities.RIVENDELL_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.RIVENDELL_CAPTAIN);
+		persisted(MultiSpawnType.Builder.multi()
+			.addPool(LOTREntities.RIVENDELL_ELF.get(), 1).addPool(LOTREntities.RIVENDELL_WARRIOR.get(), 1)
+			.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 10, -2, 8).setPersistenceRequired(false).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.RIVENDELL_AREA);
+		persisted(MultiSpawnType.Builder.multi()
+			.addPool(ExtendedEntities.IMLADRIS_GUARD.get(), 7).addPool(LOTREntities.RIVENDELL_WARRIOR.get(), 1)
+			.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 10, -2, 8).setPersistenceRequired(false).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.RIVENDELL_GUARD);
 
 	}
 }

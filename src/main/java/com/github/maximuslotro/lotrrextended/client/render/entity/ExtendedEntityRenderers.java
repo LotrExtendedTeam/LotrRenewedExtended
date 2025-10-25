@@ -76,6 +76,7 @@ public class ExtendedEntityRenderers {
 		// Rivendell
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RIVENDELL_CAPTAIN.get(), ExtendedHighElfTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RIVENDELL_SMITH.get(), ExtendedHighElfTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.IMLADRIS_GUARD.get(), HighElfRenderer::new);
 		// Special
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TOLKIEN.get(), ExtendedTolkienRenderer::new);
 	}
