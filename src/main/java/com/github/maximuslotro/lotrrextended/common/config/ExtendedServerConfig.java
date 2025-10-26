@@ -23,9 +23,9 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableLegacyTraderPassiveBehavior;
 
 	// Block Settings
-	public static ForgeConfigSpec.BooleanValue makeMetalDoorsRequirePower;
 	public static ForgeConfigSpec.BooleanValue barsConnectToBranches;
 	public static ForgeConfigSpec.BooleanValue barsConnectToSlabSides;
+	public static ForgeConfigSpec.BooleanValue makeMetalDoorsRequirePower;
 	public static ForgeConfigSpec.DoubleValue dripstoneMinimumDamageHeight;
 
 	// Chair Settings
@@ -57,7 +57,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		npcGlobalSpawnDampingCoefficient = createDoubleValue(builder, "npcGlobalSpawnDampingCoefficient", 1.0D, 0.0D, 1.0D, false, "Reduce the global npc spawning rate, the lower the value, the less spawns. This is a linear setting, (1.0 is the default renewed spawn rate)");
 		enableDefaultWaypointTeleportation = createBooleanValue(builder, "enableDefaultWaypointTeleportation", true, false, "Enable Teleportation To Default Waypoints");
 		enableCustomWaypointTeleportation = createBooleanValue(builder, "enableCustomWaypointTeleportation", true, false, "Enable Teleportation To Custom Waypoints");
-		enableLegacyFeastMode = createBooleanValue(builder, "enableLegacyFeastMode", true, false, "Enable the eating of food even if player is not hungry, like in legacy");
+		enableLegacyFeastMode = createBooleanValue(builder, "enableLegacyFeastMode", true, true, "Enable the eating of food even if player is not hungry, like in legacy");
 		builder.pop();
 
 		builder.push("Entity settings");
@@ -69,8 +69,8 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		builder.push("Block settings");
 		barsConnectToBranches = createBooleanValue(builder, "barsConnectToBranches", true, true, "Make bars and panes connect to branch blocks");
 		barsConnectToSlabSides = createBooleanValue(builder, "barsConnectToSlabSides", true, true, "Make bars and panes connect to half sides of vertical slabs");
-		dripstoneMinimumDamageHeight = createDoubleValue(builder, "dripstoneMinimumDamageHeight", 1.0D, 0.0D, 5.0D, false, "Set the height at which dripstone hurts entities when interacting, (0.0 is the default value in renewed)");
 		makeMetalDoorsRequirePower = createBooleanValue(builder, "makeMetalDoorsRequirePower", false, true, "Make Extended's metal doors and trapdoors require power to open");
+		dripstoneMinimumDamageHeight = createDoubleValue(builder, "dripstoneMinimumDamageHeight", 1.0D, 0.0D, 5.0D, false, "Set the height at which dripstone hurts entities when interacting, (0.0 is the default value in renewed)");
 		builder.pop();
 
 		builder.push("Chair settings");
