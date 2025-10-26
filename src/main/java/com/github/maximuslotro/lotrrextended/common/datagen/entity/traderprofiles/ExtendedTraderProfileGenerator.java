@@ -773,7 +773,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.COOKED_PORKCHOP, 3)
 		.addSBuy(Items.COOKED_RABBIT, 3)
 		.addSBuy(LOTRItems.GAMMON, 3)
-		// TODO add blue( battleaxe, mattock, pike, throwing axe, warhammer), kegs
+		// TODO add blue( battleaxe, mattock, pike, warhammer), kegs
 		.addSSell(LOTRItems.BLUE_DWARVEN_HELMET, 25)
 		.addSSell(LOTRItems.BLUE_DWARVEN_CHESTPLATE, 26)
 		.addSSell(LOTRItems.BLUE_DWARVEN_LEGGINGS, 31)
@@ -784,6 +784,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.BLUE_DWARVEN_SHOVEL, 12)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SPEAR, 18)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SWORD, 16)
+		.addSSell(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE, 15)
 		.addSSell(new ItemStack(Items.GLOWSTONE_DUST, 4), 2)
 		.addSSell(LOTRItems.DWARVEN_FORGE, 40)
 		.addSSell(ExtendedItems.DWARF_MARRIAGE_RING, 16)
@@ -1017,7 +1018,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.BREAD, 2)
 		.addSBuy(Items.LAVA_BUCKET, 16)
 		.addSBuy(new ItemStack(Items.STRING, 3), 1)
-		// TODO add Dwarven(BattleAxe, Warhammer, pike, mattock, throwing axe, boar armor)
+		// TODO add Dwarven(BattleAxe, Warhammer, pike, mattock)
 		.addSSell(LOTRItems.DWARVEN_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
 		.addSSell(ExtendedItems.DWARF_MARRIAGE_RING, 20)
@@ -1027,6 +1028,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.DWARVEN_AXE, 15)
 		.addSSell(LOTRItems.DWARVEN_PICKAXE, 14)
 		.addSSell(LOTRItems.DWARVEN_SHOVEL, 12)
+		.addSSell(ExtendedItems.DWARVEN_THROWABLE_AXE, 15)
 		.addSSell(LOTRItems.DWARVEN_HELMET, 25)
 		.addSSell(LOTRItems.DWARVEN_CHESTPLATE, 36)
 		.addSSell(LOTRItems.DWARVEN_LEGGINGS, 30)
@@ -1039,6 +1041,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.GOLD_TRIMMED_DWARVEN_CHESTPLATE, 80)
 		.addSSell(LOTRItems.GOLD_TRIMMED_DWARVEN_LEGGINGS, 75)
 		.addSSell(LOTRItems.GOLD_TRIMMED_DWARVEN_BOOTS, 70)
+		.addSSell(ExtendedItems.DWARVEN_BOAR_ARMOR, 25)
 		.addMSell(
 				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
@@ -1087,7 +1090,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.BREAD, 2)
 		.addSBuy(Items.LAVA_BUCKET, 16)
 		.addSBuy(new ItemStack(Items.STRING, 3), 1)
-		// TODO add Blue Dwarven(BattleAxe, Warhammer, pike, mattock, throwing axe, boar armor)
+		// TODO add Blue Dwarven(BattleAxe, Warhammer, pike, mattock)
 		.addSSell(LOTRItems.BLUE_MOUNTAINS_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
 		.addSSell(ExtendedItems.DWARF_MARRIAGE_RING, 20)
@@ -1096,11 +1099,13 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.BLUE_DWARVEN_DAGGER, 13)
 		.addSSell(LOTRItems.BLUE_DWARVEN_AXE, 15)
 		.addSSell(LOTRItems.BLUE_DWARVEN_PICKAXE, 14)
+		.addSSell(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE, 15)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SHOVEL, 12)
 		.addSSell(LOTRItems.BLUE_DWARVEN_HELMET, 25)
 		.addSSell(LOTRItems.BLUE_DWARVEN_CHESTPLATE, 36)
 		.addSSell(LOTRItems.BLUE_DWARVEN_LEGGINGS, 30)
 		.addSSell(LOTRItems.BLUE_DWARVEN_BOOTS, 22)
+		.addSSell(ExtendedItems.BLUE_DWARVEN_BOAR_ARMOR, 25)
 		.addMSell(
 				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
@@ -1215,5 +1220,57 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(Items.STONECUTTER, 10)
 		.addSSell(LOTRItems.BLUE_MOUNTAINS_CRAFTING_TABLE.get(), 100)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_STONEMASON);
+
+		make(100)
+		.addSBuy(Items.IRON_ORE, 5)
+		.addSBuy(Items.GOLD_ORE, 15)
+		.addSBuy(LOTRItems.COPPER_ORE, 5)
+		.addSBuy(LOTRItems.TIN_ORE, 5)
+		.addSBuy(Items.IRON_INGOT, 3)
+		.addSBuy(LOTRItems.ELVEN_STEEL_INGOT, 3)
+		.addSBuy(new ItemStack(Items.COAL, 2), 1)
+		.addSBuy(Items.GOLD_INGOT, 15)
+		.addSBuy(LOTRItems.COPPER_INGOT, 3)
+		.addSBuy(LOTRItems.TIN_INGOT, 3)
+		.addSBuy(LOTRItems.BRONZE_INGOT, 3)
+		.addSBuy(ExtendedItems.GALVORN_INGOT, 4)
+		.addSBuy(ExtendedItems.EMERALD, 15)
+		.addSBuy(ExtendedItems.SAPPHIRE, 12)
+		.addSBuy(ExtendedItems.OPAL, 10)
+		.addSBuy(ExtendedItems.AMETHYST, 8)
+		.addSBuy(ExtendedItems.PEARL, 25)
+		.addSBuy(Items.LAVA_BUCKET, 16)
+		.addSBuy(new ItemStack(Items.STICK, 8), 1)
+		.addSBuy(new ItemStack(Items.STRING, 3), 1)
+		.addSBuy(LOTRItems.MITHRIL_NUGGET, 40)
+		// TODO add Rivendell(BattleStaff, Longspear, rivendell bow)
+		.addSSell(LOTRItems.RIVENDELL_CRAFTING_TABLE, 100)
+		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
+		.addSSell(LOTRItems.RIVENDELL_SWORD, 20)
+		.addSSell(LOTRItems.RIVENDELL_SPEAR, 18)
+		.addSSell(LOTRItems.RIVENDELL_DAGGER, 14)
+		.addSSell(LOTRItems.RIVENDELL_AXE, 15)
+		.addSSell(LOTRItems.RIVENDELL_PICKAXE, 15)
+		.addSSell(LOTRItems.RIVENDELL_SHOVEL, 12)
+		.addSSell(LOTRItems.RIVENDELL_HELMET, 18)
+		.addSSell(LOTRItems.RIVENDELL_CHESTPLATE, 25)
+		.addSSell(LOTRItems.RIVENDELL_LEGGINGS, 22)
+		.addSSell(LOTRItems.RIVENDELL_BOOTS, 16)
+		.addSSell(new ItemStack(Items.ARROW, 4), 3)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.NIMBLE),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SILKEN)
+				),
+				5, 350, 1, false)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.DEFLECTING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MIGHTY),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.HASTY)
+				),
+				10, 350, 1, false)
+		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 20, 150, 1, false)
+		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_SMITH);
 	}
 }

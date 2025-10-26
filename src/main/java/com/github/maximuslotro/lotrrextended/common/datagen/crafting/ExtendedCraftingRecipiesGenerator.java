@@ -266,15 +266,26 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc(ExtendedItems.CONQUEST_TABLE.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.STONE_GRINDER.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.STONE_GRINDER.get())
-		.pattern("CZC")
-		.pattern("CYC")
+		.pattern("CIC")
+		.pattern("CSC")
 		.pattern("CCC")
 		.define('C', Ingredient.of(Items.COBBLESTONE))
-		.define('Y', Ingredient.of(STICKS))
-		.define('Z', Ingredient.of(Tags.Items.INGOTS_IRON))
+		.define('S', Ingredient.of(STICKS))
+		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
 		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
 		.unlockedBy("has_"+ExtendedItems.STONE_GRINDER.get().getRegistryName().getPath(), has(ExtendedItems.STONE_GRINDER.get()))
 		.save(consumer, lotrLoc(ExtendedItems.STONE_GRINDER.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.CRUCIBLE.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CRUCIBLE.get())
+		.pattern("I I")
+		.pattern("SIS")
+		.pattern("CCC")
+		.define('C', Ingredient.of(Items.COBBLESTONE))
+		.define('S', Ingredient.of(STICKS))
+		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
+		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
+		.unlockedBy("has_"+ExtendedItems.CRUCIBLE.get().getRegistryName().getPath(), has(ExtendedItems.CRUCIBLE.get()))
+		.save(consumer, lotrLoc(ExtendedItems.CRUCIBLE.get().getRegistryName().getPath()));
 		//STORAGE BLOCKS AND ITEMS
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.AMBER, ExtendedBlocks.AMBER_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.AMETHYST, ExtendedBlocks.AMETHYST_BLOCK, null);
@@ -1039,6 +1050,33 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.BLUE_MOUNTAINS_BANNER, ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN, LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.GUNDABAD_ORC_BANNER, ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN, ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.BREE_BANNER, ExtendedItems.BREE_BANNER_PATTERN, LOTRRecipes.BREE_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.ANGMAR_BANNER, LOTRRecipes.ANGMAR_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.DALE_BANNER, LOTRRecipes.DALE_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.DOL_AMROTH_BANNER, LOTRRecipes.DOL_AMROTH_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.DOL_GULDUR_BANNER, ExtendedRecipes.DOL_GULDUR_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.DORWINION_BANNER, LOTRRecipes.DORWINION_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.DUNLAND_BANNER, LOTRRecipes.DUNLENDING_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.GONDOR_BANNER, LOTRRecipes.GONDOR_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.ISENGARD_BANNER, LOTRRecipes.URUK_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.LINDON_BANNER, LOTRRecipes.LINDON_CRAFTING);
+		GENERATEDRECIPES.add(ExtendedItems.LOTHLORIEN_BANNER.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.LOTHLORIEN_BANNER.get(), LOTRRecipes.GALADHRIM_CRAFTING)
+		.pattern("W")
+		.pattern("S")
+		.pattern("P")
+		.define('W', Ingredient.of(ExtendedTags.Items.WOOL_BLOCKS))
+		.define('S', Ingredient.of(LOTRItems.MALLORN_STICK.get()))
+		.define('P', Ingredient.of(LOTRItems.MALLORN_PLANKS.get()))
+		.unlockedBy("has_mallorn_stick", has(LOTRItems.MALLORN_STICK.get()))
+		.unlockedBy("has_mallorn_plank", has(LOTRItems.MALLORN_PLANKS.get()))
+		.unlockedBy("has_"+ExtendedItems.LOTHLORIEN_BANNER.get().getRegistryName().getPath(), has(ExtendedItems.LOTHLORIEN_BANNER.get()))
+		.save(consumer, lotrLoc(ExtendedItems.LOTHLORIEN_BANNER.get().getRegistryName().getPath()));
+		makeBannerRecipe(consumer, ExtendedItems.MORDOR_BANNER, LOTRRecipes.MORDOR_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.RIVENDELL_BANNER, LOTRRecipes.RIVENDELL_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.ROHAN_BANNER, LOTRRecipes.ROHAN_CRAFTING);
+		makeBannerRecipe(consumer, ExtendedItems.WOODLAND_REALM_BANNER, LOTRRecipes.WOOD_ELVEN_CRAFTING);
+
+
 		makeBoarArmorRecipe(consumer, ExtendedItems.LEATHER_BOAR_ARMOR, Tags.Items.LEATHER, "leather", LOTRRecipes.ANY_DWARVEN);
 		makeBoarArmorRecipe(consumer, ExtendedItems.DWARVEN_BOAR_ARMOR, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.DWARVEN_CRAFTING);
 		makeBoarArmorRecipe(consumer, ExtendedItems.BLUE_DWARVEN_BOAR_ARMOR, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
@@ -2148,6 +2186,27 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.STONE_SIGN.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.GLASS_BOTTLE.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.MODIFIER_SCROLL.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.IMLADRIS_GUARD_BOOTS.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.IMLADRIS_GUARD_LEGGINGS.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.IMLADRIS_GUARD_HELMET.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.IMLADRIS_GUARD_SHIELD.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.ANGMAR_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.DALE_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.GONDOR_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.ISENGARD_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.WOODLAND_REALM_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.ROHAN_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.DORWINION_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.DUNLAND_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.RIVENDELL_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.LINDON_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.DOL_GULDUR_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.DOL_AMROTH_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.LOTHLORIEN_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.MORDOR_WALL_BANNER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.ANDURIL.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.SHARDS_OF_NARSIL.get().getRegistryName().getPath());
 	}
 
 	@Override

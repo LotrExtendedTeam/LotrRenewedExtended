@@ -233,6 +233,14 @@
     },
     {
       "weight": 50,
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:blue_dwarven_throwing_axe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "minecraft:glowstone_dust",

@@ -92,6 +92,12 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 				.setTitle("Rivendell Elf Slayer").setDescription("Kill a Rivendell Elf."),
 				addKillEntityTriggers(make(), LOTREntities.RIVENDELL_ELF.get(), LOTREntities.RIVENDELL_WARRIOR.get(), 
 					ExtendedEntities.RIVENDELL_WANDERER.get()).parent(rivendell));
+		Advancement rivendell_smith = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "rivendell_smith", FrameType.TASK)
+			.setTitle("The Blade Shall be Reforged!").setDescription("Trade with a Rivendell Smith"),
+			addTradeEntityTrigger(make(), ExtendedEntities.RIVENDELL_SMITH.get()).parent(rivendell));
+		Advancement for_imladris = build(true, data(Items.IRON_SWORD, "for_imladris", FrameType.TASK)
+			.setTitle("For Imladris!").setDescription("Hire a unit from a Rivendell Captain."),
+			addUnitHireTrigger(make(), ExtendedEntities.RIVENDELL_CAPTAIN.get()).parent(rivendell));
 
 		Advancement coldfells = build(true, data(Items.OAK_SAPLING, "the_wild_north", FrameType.TASK)
 				.setTitle("The Wild North").setDescription("Enter the Coldfells."),
@@ -169,14 +175,19 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 						.setTitle("Scrounging and Scavenging").setDescription("Trade with a Gundabad Orc Scrounger."),
 				addTradeEntityTrigger(make(), ExtendedEntities.GUNDABAD_CAMP_TRADER.get()).parent(eriadorBase));
 
+		Advancement rabble_rouser = build(true, data(Items.IRON_SWORD, "rabble_rouser", FrameType.TASK)
+			.setTitle("Rabble Rouser").setDescription("Hire a unit from a Gundabad Orc Chieftain."),
+			addUnitHireTrigger(make(), ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get()).parent(eriadorBase));
+		Advancement masters_of_stealth = build(true, data(Items.IRON_SWORD, "masters_of_stealth", FrameType.TASK)
+			.setTitle("Masters of Stealth").setDescription("Hire a unit from a Ranger of the North Captain."),
+			addUnitHireTrigger(make(), ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).parent(eriadorBase));
+
 		Advancement ranger_crafter = build(true, data(LOTRItems.RANGER_CRAFTING_TABLE.get(), "ranger_crafter", FrameType.TASK)
 			.setTitle("Dúnedain Crafter").setDescription("Craft an item on the Ranger Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.RANGER_CRAFTING_TABLE.get()).parent(eriadorBase));
-
 		Advancement gundabad_crafter = build(true, data(ExtendedItems.NORTHERN_ORC_CRAFTING_TABLE.get(), "gundabad_crafter", FrameType.TASK)
 			.setTitle("Crude Worker").setDescription("Craft an item on the Gundabad crafting Ttable."),
 			addCraftingTrigger(make(), ExtendedBlocks.NORTHERN_ORC_CRAFTING_TABLE.get()).parent(eriadorBase));
-
 		Advancement rivendell_crafter = build(true, data(LOTRItems.RIVENDELL_CRAFTING_TABLE.get(), "rivendell_crafter", FrameType.TASK)
 			.setTitle("Rivendell Crafter").setDescription("Craft an item on the Rivendell Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.RIVENDELL_CRAFTING_TABLE.get()).parent(eriadorBase));

@@ -2,7 +2,7 @@
   "parent": "lotrextended:block/template_banner_wall",
   "textures": {
     "particle": "minecraft:block/oak_planks",
-    "banner": "lotrextended:block/banner/bree_wall_banner",
-    "stand": "lotrextended:block/banner/banner_base_wall"
+    "banner": "lotrextended:block/banner/bree_banner",
+    "stand": "lotrextended:block/banner/banner_base"
   }
 }

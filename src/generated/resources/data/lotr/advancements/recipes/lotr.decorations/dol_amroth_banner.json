@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:dol_amroth_banner"
+    ]
+  },
+  "criteria": {
+    "has_wool": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "lotrextended:wool_blocks"
+          }
+        ]
+      }
+    },
+    "has_dol_amroth_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dol_amroth_banner"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:dol_amroth_banner"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wool",
+      "has_dol_amroth_banner",
+      "has_the_recipe"
+    ]
+  ]
+}

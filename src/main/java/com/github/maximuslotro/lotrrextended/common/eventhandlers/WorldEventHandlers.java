@@ -5,7 +5,7 @@ import java.util.List;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
@@ -99,7 +99,7 @@ public class WorldEventHandlers {
 	 * Handles special logic when {@link ExtendedTraderEntity} or {@link ExtendedCaptainEntity} dies.
 	 * <ul>
 	 *   <li>If the entity is a wandering trader, escorts are removed and players are notified.</li>
-	 *   <li>If the entity is persistent, it respawns via {@link ExtendedTraderRespawnEntity}.</li>
+	 *   <li>If the entity is persistent, it respawns via {@link ExtendedRespawnerEntity}.</li>
 	 *   <li>Otherwise, the entity is allowed to die normally.</li>
 	 * </ul>
 	 *
@@ -143,7 +143,7 @@ public class WorldEventHandlers {
 				return; //Let entity die
 			}
 			// Make entity respawner
-			ExtendedTraderRespawnEntity respawnerEntity = new ExtendedTraderRespawnEntity(npc.level);
+			ExtendedRespawnerEntity respawnerEntity = new ExtendedRespawnerEntity(npc.level);
 			respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
 
 			//Set entity Type

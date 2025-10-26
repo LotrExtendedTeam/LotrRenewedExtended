@@ -1,18 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CZC",
-    "CYC",
+    "CIC",
+    "CSC",
     "CCC"
   ],
   "key": {
     "C": {
       "item": "minecraft:cobblestone"
     },
-    "Y": {
+    "S": {
       "tag": "forge:rods/wooden"
     },
-    "Z": {
+    "I": {
       "tag": "forge:ingots/iron"
     }
   },

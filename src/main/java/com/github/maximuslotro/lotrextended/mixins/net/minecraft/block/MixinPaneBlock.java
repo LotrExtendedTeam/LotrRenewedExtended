@@ -8,7 +8,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+
 import lotr.common.block.AxialSlabBlock;
+import lotr.common.block.BranchBlock;
 import lotr.common.block.LOTRBlockStates;
 import lotr.common.block.VerticalOnlySlabBlock;
 import net.minecraft.block.BlockState;
@@ -26,7 +29,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 
 /**
- * A mixin extension for {@link PaneBlock} that allows glass panes to connect to
+ * A mixin extension for {@link PaneBlock} that allows glass panes or branches to connect to
  * custom vertical slab blocks (such as {@link VerticalOnlySlabBlock} and {@link AxialSlabBlock})
  * when their exposed edges are aligned with the pane's side.
  * <p>
@@ -144,7 +147,7 @@ public abstract class MixinPaneBlock extends FourWayBlock {
      */
 	@Unique
 	private static boolean connects(BlockState pFacingState, Direction pFacing) {
-		if (pFacingState.getBlock() instanceof VerticalOnlySlabBlock || pFacingState.getBlock() instanceof AxialSlabBlock) {
+		if ((pFacingState.getBlock() instanceof VerticalOnlySlabBlock || pFacingState.getBlock() instanceof AxialSlabBlock) && ExtendedServerConfig.barsConnectToSlabSides.get()) {
 			Axis axis = pFacingState.getValue(pFacingState.getBlock() instanceof VerticalOnlySlabBlock ? LOTRBlockStates.VERTICAL_ONLY_SLAB_AXIS : LOTRBlockStates.SLAB_AXIS);
 			SlabType type = pFacingState.getValue(BlockStateProperties.SLAB_TYPE);//Do we really need this check, double already connects?
 
@@ -152,6 +155,9 @@ public abstract class MixinPaneBlock extends FourWayBlock {
 			if (axis != Axis.Y && type != SlabType.DOUBLE && connectsOnSide(axis, pFacing)) {
 				return true;
 			}
+		}
+		if (pFacingState.getBlock() instanceof BranchBlock && ExtendedServerConfig.barsConnectToBranches.get()) {
+			return true;
 		}
 		return false;
 	}

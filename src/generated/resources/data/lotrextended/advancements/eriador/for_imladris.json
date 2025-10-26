@@ -1,0 +1,33 @@
+{
+  "parent": "lotrextended:eriador/the_hidden_valley",
+  "display": {
+    "icon": {
+      "item": "minecraft:iron_sword",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.eriador.for_imladris.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.eriador.for_imladris.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "hire_units_from_rivendell_captain": {
+      "trigger": "lotrextended:unit_hired",
+      "conditions": {
+        "captain_type": "lotr:rivendell_captain"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "hire_units_from_rivendell_captain"
+    ]
+  ]
+}

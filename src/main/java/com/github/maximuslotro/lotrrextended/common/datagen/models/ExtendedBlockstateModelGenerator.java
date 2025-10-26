@@ -33,6 +33,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPackedFurBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
@@ -122,7 +123,6 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.BedPart;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Axis;
@@ -181,6 +181,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedCrucibleBlock) {
 					genCrucibleBlockItem((ExtendedCrucibleBlock) block.getValue().get());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedNarsilShardsBlock) {
+					genNarsilShardsBlock((ExtendedNarsilShardsBlock) block.getValue().get());
 					continue;
 				}
 				if(block.getValue().get() instanceof VesselDrinkBlock) {
@@ -328,7 +332,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedMEBannerWallBlock) {
-					genBannerWallBlock((ExtendedMEBannerWallBlock) block.getValue().get(), lotrExtendedLoc("block/banner/"+block.getKey()));
+					genBannerWallBlock((ExtendedMEBannerWallBlock) block.getValue().get(), lotrExtendedLoc("block/banner/"+block.getKey().substring(0, block.getKey().length() - 12)+"_banner"));
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedWeaponRackBlock) {
@@ -1447,6 +1451,20 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+crucible.getRegistryName().getPath()).parent(modelFile);
 	}
 
+	private void genNarsilShardsBlock(ExtendedNarsilShardsBlock shards) {
+		registeredBlocks.add(shards);
+		ModelFile modelFileSmall = models().getExistingFile(lotrExtendedLoc("block/narsil_shards_small"));
+		ModelFile modelFileLarge = models().getExistingFile(lotrExtendedLoc("block/narsil_shards_large"));
+		getVariantBuilder(shards).forAllStates(state -> {
+			Direction facing = state.getValue(ExtendedNarsilShardsBlock.FACING);
+			Boolean largeModel = state.getValue(ExtendedNarsilShardsBlock.LARGE_MODEL);
+			return ConfiguredModel.builder()
+                    .modelFile(largeModel ? modelFileLarge : modelFileSmall)
+                    .rotationY(facing==Direction.EAST ? 0 : facing==Direction.SOUTH ? 90 : facing==Direction.WEST ? 180 : 270)
+                    .build();
+		});
+	}
+
 	private void genBirdcageBlock(ExtendedBirdcageBlock birdcage, String cagePath) {
 		registeredBlocks.add(birdcage);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+birdcage.getRegistryName().getPath(), lotrExtendedLoc("block/template_birdcage"))
@@ -1511,31 +1529,24 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genBannerBlock(ExtendedMEBannerBlock extendedMEBannerBlock, ResourceLocation texture) {
 		registeredBlocks.add(extendedMEBannerBlock);
-		ModelFile modelFileSmallBottom = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_small_bottom", lotrExtendedLoc("block/template_banner_small_bottom"))
+		ModelFile modelFileSmall = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_small", lotrExtendedLoc("block/template_banner_small"))
 				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture).texture("stand", lotrExtendedLoc("block/banner/banner_base"));
-		ModelFile modelFileSmallTop = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_small_top", lotrExtendedLoc("block/template_banner_small_top"))
-				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture).texture("stand", lotrExtendedLoc("block/banner/banner_base"));
-		ModelFile modelFileBottom = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_bottom", lotrExtendedLoc("block/template_banner_bottom"))
-				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture).texture("stand", lotrExtendedLoc("block/banner/banner_base"));
-		ModelFile modelFileTop = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_top", lotrExtendedLoc("block/template_banner_top"))
+		ModelFile modelFileLarge = models().withExistingParent("lotrextended:"+extendedMEBannerBlock.getRegistryName().getPath()+"_tall", lotrExtendedLoc("block/template_banner_tall"))
 				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture).texture("stand", lotrExtendedLoc("block/banner/banner_base"));
 		getVariantBuilder(extendedMEBannerBlock).forAllStatesExcept(state -> {
 			Direction direction = state.getValue(ExtendedMEBannerBlock.FACING);
-			DoubleBlockHalf half = state.getValue(ExtendedMEBannerBlock.HALF);
 			boolean small = state.getValue(ExtendedMEBannerBlock.SMALL);
 			return ConfiguredModel.builder()
-                    .modelFile(small&&half==DoubleBlockHalf.LOWER ? modelFileSmallBottom :
-                    	(small&&half==DoubleBlockHalf.UPPER ? modelFileSmallTop :
-                    		(!small&&half==DoubleBlockHalf.LOWER ? modelFileBottom : modelFileTop)))
+                    .modelFile(small ? modelFileSmall : modelFileLarge)
                     .rotationY(direction==Direction.EAST ? 90 : direction==Direction.SOUTH ? 180 : direction==Direction.WEST ? 270 : 0)
                     .build();
-		},ExtendedMEBannerBlock.WATERLOGGED);
+		},ExtendedMEBannerBlock.WATERLOGGED, ExtendedMEBannerBlock.HALF);
 	}
 
 	private void genBannerWallBlock(ExtendedMEBannerWallBlock banner, ResourceLocation texture) {
 		registeredBlocks.add(banner);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+banner.getRegistryName().getPath(), lotrExtendedLoc("block/template_banner_wall"))
-				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture).texture("stand", lotrExtendedLoc("block/banner/banner_base_wall"));
+				.texture("particle", mcLoc("block/oak_planks")).texture("banner", texture).texture("stand", lotrExtendedLoc("block/banner/banner_base"));
 		getVariantBuilder(banner).forAllStates(state -> {
 			Direction direction = state.getValue(ExtendedMEBannerWallBlock.FACING);
 			return ConfiguredModel.builder()

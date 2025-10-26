@@ -1,0 +1,41 @@
+{
+  "parent": "lotrextended:eriador/the_hidden_valley",
+  "display": {
+    "icon": {
+      "item": "lotr:silver_coin_one"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.eriador.rivendell_smith.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.eriador.rivendell_smith.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_rivendell_smith_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:rivendell_smith",
+        "istraderselling": "false"
+      }
+    },
+    "trade_rivendell_smith_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:rivendell_smith",
+        "istraderselling": "true"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_rivendell_smith_buy",
+      "trade_rivendell_smith_sell"
+    ]
+  ]
+}

@@ -26,7 +26,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BANNER_HOLDER.get(), ExtendedBannerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.CHAIR.get(), ExtendedNullEntityRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.STRUCTURE_ENTITY_SPAWNER.get(), ExtendedStructureSpawnerRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TRADER_RESPAWNER_ENTITY.get(), ExtendedTraderRespawnerRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RESPAWNER_ENTITY.get(), ExtendedRespawnerRenderer::new);
 		// Hobbit
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_BARTENDER.get(), ExtendedHobbitBartenderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_FARMER.get(), ExtendedHobbitFarmerRenderer::new);
@@ -73,6 +73,11 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DWARVEN_MINER.get(), ExtendedDurinsFolkTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DWARVEN_SMITH.get(), ExtendedDurinsFolkTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DWARVEN_COMMANDER.get(), ExtendedDurinsFolkTraderRenderer::new);
+		// Rivendell
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RIVENDELL_CAPTAIN.get(), ExtendedHighElfTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RIVENDELL_SMITH.get(), ExtendedHighElfTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.IMLADRIS_GUARD.get(), HighElfRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.ELROND.get(), HighElfRenderer::new);
 		// Special
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TOLKIEN.get(), ExtendedTolkienRenderer::new);
 

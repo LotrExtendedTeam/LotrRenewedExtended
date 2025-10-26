@@ -279,6 +279,14 @@
     },
     {
       "weight": 50,
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:blue_dwarven_throwing_axe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
       "averageCost": 12,
       "stack": {
         "item": "lotr:blue_dwarven_shovel",
@@ -315,6 +323,13 @@
       "stack": {
         "item": "lotr:blue_dwarven_boots",
         "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:blue_dwarven_boar_armor"
       }
     },
     {
