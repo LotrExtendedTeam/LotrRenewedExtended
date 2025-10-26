@@ -370,5 +370,8 @@ public class MixinLOTREntities {
 
 		// Special
 		ExtendedEntities.TOLKIEN = regNPCD("tolkien", ExtendedTolkienEntity::new, ExtendedTolkienEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(8160159, 5439358));
+
+		// Bandits
+		ExtendedEntities.BANDIT = regNPCD("bandit", ExtendedBanditEntity::new, ExtendedBanditEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2563350, 6382678));
 	}
 }

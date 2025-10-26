@@ -42,6 +42,7 @@ import net.minecraftforge.fml.RegistryObject;
 public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	//Parts
 	ResourceLocation coins;
+	ResourceLocation coinsBandit;
 	ResourceLocation coinsRare;
 	ResourceLocation wargFur;
 	ResourceLocation wargHead;
@@ -109,6 +110,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 
 	private void makePartTables() {
 		coins = makeQuickyBasePart("coins", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.SILVER_COIN_ONE.get(), 0, 3)
+			.when(ExtendedRemoveUnitCoinDrops.setRemoveUnitCoinsDropBuilder())));
+		coinsBandit = makeQuickyBasePart("coins_bandit", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.SILVER_COIN_ONE.get(), 12, 28)
 			.when(ExtendedRemoveUnitCoinDrops.setRemoveUnitCoinsDropBuilder())));
 		wargFur = makeQuickyBasePart("warg_fur", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.FUR.get(), 1, 3)
 			.apply(ExtendedSetWargFurType.setWargFurTypeBuilder())));
@@ -360,6 +363,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_STONEMASON, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_BARTENDER, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_COMMANDER, dwarfBlueMountians, foodItems);
+		makeEntity(ExtendedEntities.BANDIT, coinsBandit, manBones, pouch);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_AXE_THROWER, dwarfBlueMountians);
 		makeEntity(ExtendedEntities.GUNDABAD_CAMP_TRADER, orcGundabad);
 		makeEntity(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN, orcGundabad);

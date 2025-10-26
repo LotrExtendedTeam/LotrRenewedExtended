@@ -80,5 +80,8 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.ELROND.get(), HighElfRenderer::new);
 		// Special
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TOLKIEN.get(), ExtendedTolkienRenderer::new);
+
+		// Bandit
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BANDIT.get(), ExtendedBanditRenderer::new);
 	}
 }

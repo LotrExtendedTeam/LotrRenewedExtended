@@ -82,4 +82,5 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedRivendellSmithEntity>> RIVENDELL_SMITH;
 	public static RegistryObject<EntityType<ExtendedRivendellGuardEntity>> IMLADRIS_GUARD;
 	public static RegistryObject<EntityType<ExtendedElrondEntity>> ELROND;
+	public static RegistryObject<EntityType<ExtendedBanditEntity>> BANDIT;
 }

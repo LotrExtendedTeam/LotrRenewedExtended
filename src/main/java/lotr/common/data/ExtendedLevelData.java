@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 
 import lotr.common.LOTRLog;
 import lotr.common.entity.npc.ExtendedTolkienEntity;
+import lotr.common.world.spawning.BanditsSpawner;
 import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -54,6 +55,7 @@ public class ExtendedLevelData {
 	}
 
 	private Map<UUID, Integer> playerTraderSpawnCooldowns = new HashMap<>();
+	private Map<UUID, Integer> playerBanditSpawnCooldowns = new HashMap<>();
 
 	/** -1 if the player is marked to be cursed
 	 *  -2 if the player was cursed
@@ -80,6 +82,7 @@ public class ExtendedLevelData {
 				levelData.put("traderData", traderData);
 
 				savePlayerTraderCooldowns(levelData);
+				savePlayerBanditCooldowns(levelData);
 				saveSecondsInBarrows(levelData);
 				saveTolkienTalkedTo(levelData);
 
@@ -100,6 +103,7 @@ public class ExtendedLevelData {
 			this.requireRandom = traderData.getBoolean("requireRandom");
 
 			loadPlayerTraderCooldownTimes(levelData);
+			loadPlayerBanditCooldowns(levelData);
 			loadSecondsInBarrows(levelData);
 			loadTolkienTalkedTo(levelData);
 
@@ -118,6 +122,10 @@ public class ExtendedLevelData {
 
 	public int getPlayersTraderCooldown(UUID uuid) {
         return playerTraderSpawnCooldowns.getOrDefault(uuid, -1);
+	}
+
+	public int getPlayersBanditCooldown(UUID uuid) {
+		return playerBanditSpawnCooldowns.getOrDefault(uuid, -1);
 	}
 
 	public boolean isPlayerBarrowCursed(PlayerEntity player) {
@@ -144,6 +152,23 @@ public class ExtendedLevelData {
 			}
 		}
 	}
+
+	public void decrementPlayerBanditCooldowns(World world) {
+		for (PlayerEntity player : world.players()) {
+			UUID playerUUID = player.getUUID();
+			if (playerBanditSpawnCooldowns.containsKey(playerUUID)) {
+				int secondsLeft = playerBanditSpawnCooldowns.get(playerUUID);
+				if (secondsLeft > 0) {
+					secondsLeft--;
+				}
+				playerBanditSpawnCooldowns.put(playerUUID, secondsLeft);
+			} else {
+				// start their initial cooldown at 30m
+				playerBanditSpawnCooldowns.put(playerUUID, 60 * 30);
+			}
+		}
+	}
+
 	public void incrementPlayerTimeInBarrows(World world) {
 		for (PlayerEntity player : world.players()) {
 			Biome biome = world.getBiome(player.blockPosition());
@@ -195,6 +220,20 @@ public class ExtendedLevelData {
 		}
 	}
 
+	private void loadPlayerBanditCooldowns(CompoundNBT tag) {
+		ListNBT listnbt = tag.getList("banditCooldowns", 10);
+		if (listnbt.isEmpty()) {
+			playerBanditSpawnCooldowns = new HashMap<>();
+		}
+
+		for (int i = 0; i < listnbt.size(); ++i) {
+			CompoundNBT compoundnbt = listnbt.getCompound(i);
+			UUID playerUUID = compoundnbt.getUUID("player");
+			int cooldown = compoundnbt.getInt("cooldown");
+			playerBanditSpawnCooldowns.put(playerUUID, cooldown);
+		}
+	}
+
 	private void loadSecondsInBarrows(CompoundNBT tag) {
 		ListNBT listnbt = tag.getList("secondsInBarrows", 10);
 		if (listnbt.isEmpty()) {
@@ -238,6 +277,17 @@ public class ExtendedLevelData {
 		tag.put("playerCooldowns", list);
 	}
 
+	private void savePlayerBanditCooldowns(CompoundNBT tag) {
+		ListNBT list = new ListNBT();
+		for (UUID uuid : playerBanditSpawnCooldowns.keySet()) {
+			CompoundNBT entry = new CompoundNBT();
+			entry.putUUID("player", uuid);
+			entry.putInt("cooldown", playerBanditSpawnCooldowns.get(uuid));
+			list.add(entry);
+		}
+		tag.put("banditCooldowns", list);
+	}
+
 	private void saveSecondsInBarrows(CompoundNBT tag) {
 		ListNBT list = new ListNBT();
 		for (UUID uuid : secondsInBarrows.keySet()) {
@@ -274,6 +324,34 @@ public class ExtendedLevelData {
 			}
 			if(ExtendedTolkienEntity.spawn(world, player)) {
 				tolkienTalkedTo.add(player.getUUID());
+			}
+		}
+	}
+
+	public void checkForBanditSpawns(ServerWorld world) {
+		for (PlayerEntity player : world.players()) {
+			int cooldownLeft = getPlayersBanditCooldown(player.getUUID());
+			// Start at 30 minutes to give them some leeway
+			if (cooldownLeft == -1) {
+				playerBanditSpawnCooldowns.put(player.getUUID(), 60 * 30);
+				continue;
+			}
+
+			// skip creative mode players and spectators
+			if (player.isCreative() || player.isSpectator()) continue;
+
+			// attempt to spawn if it's at 0
+			if (cooldownLeft == 0) {
+				boolean success = BanditsSpawner.spawn(world, player, false, false);
+				if (!success) {
+					// try again in between 1 and 13 minutes
+					int newCooldown = world.random.nextInt(12 * 60) + 60;
+					playerBanditSpawnCooldowns.put(player.getUUID(), newCooldown);
+				} else {
+					// give the player between 10 and 35 minutes of leeway
+					int newCooldown = world.random.nextInt(1500) + 600;
+					playerBanditSpawnCooldowns.put(player.getUUID(), newCooldown);
+				}
 			}
 		}
 	}
