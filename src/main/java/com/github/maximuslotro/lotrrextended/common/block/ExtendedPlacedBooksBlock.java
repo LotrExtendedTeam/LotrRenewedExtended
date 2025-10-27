@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
-
 import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
@@ -13,6 +12,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
@@ -24,6 +24,7 @@ import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -86,7 +87,21 @@ public class ExtendedPlacedBooksBlock extends Block {
 
 	@Override
 	public ActionResultType use(BlockState state, World world, BlockPos blockPos, PlayerEntity player, Hand pHand, BlockRayTraceResult p_225533_6_) {
+		ItemStack itemstack = player.getItemInHand(pHand);
+		if(state.getValue(HEIGHT)<3 && itemstack.getItem()==state.getValue(BOOK_TYPE).getItemType()) {
+			state = state.cycle(HEIGHT);
+			world.setBlock(blockPos, state, 10);
+			if (!player.abilities.instabuild) {
+				itemstack.shrink(1);
+			}
+			return ActionResultType.sidedSuccess(world.isClientSide);
+		}
 		return super.use(state, world, blockPos, player, pHand, p_225533_6_);
 		//return ActionResultType.sidedSuccess(world.isClientSide);
+	}
+
+	@Override
+	public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
+		return new ItemStack(state.getValue(BOOK_TYPE).getItemType());
 	}
 }

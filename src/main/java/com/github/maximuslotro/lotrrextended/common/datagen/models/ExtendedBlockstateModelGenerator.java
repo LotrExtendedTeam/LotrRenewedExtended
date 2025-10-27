@@ -1632,7 +1632,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	        for (int height = 1; height <= 3; height++) {
 	            ResourceLocation texture = lotrExtendedLoc("block/placed_books/" + type.getSerializedName());
 	            ModelFile model = models().withExistingParent("lotrextended:"+book.getRegistryName().getPath()+"_"+type.getSerializedName()+"_"+height, lotrExtendedLoc("block/template_placed_book_"+height))
-						.texture("book", texture).texture("book", texture);
+						.texture("book", texture).texture("particle", texture);
 	            heightModels.put(height, model);
 	        }
 	        modelMap.put(type, heightModels);
