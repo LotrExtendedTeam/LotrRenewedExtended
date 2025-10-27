@@ -23,11 +23,11 @@ public class BanditsSpawner {
      *
      * IgnoreProtection can be used to spawn a bandit even if the area is protected
      *
-     * @param world
-     * @param player
-     * @param alwaysSpawn
-     * @param ignoreProtection
-     * @return True if bandit spawned
+     * @param world            The {@link ServerWorld} instance where the bandit should be spawned.
+     * @param player           The {@link PlayerEntity} for whom the bandit is being spawned. Used as the spawn center.
+     * @param alwaysSpawn      Whether to force spawning regardless of biome restrictions or spawn chance.
+     * @param ignoreProtection Whether to bypass area protection checks (e.g., banner protection) when spawning.
+     * @return {@code true} if a bandit was successfully spawned; {@code false} otherwise.
      */
     public static boolean spawn(ServerWorld world, PlayerEntity player, boolean alwaysSpawn, boolean ignoreProtection) {
         // get the biome the player is in and check if we should attempt to spawn a

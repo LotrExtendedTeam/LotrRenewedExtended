@@ -9,8 +9,10 @@ import com.google.common.collect.Maps;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
@@ -25,6 +27,8 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 public class ExtendedPlacedBooksBlock extends Block {
@@ -42,8 +46,13 @@ public class ExtendedPlacedBooksBlock extends Block {
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
-		p_206840_1_.add(HEIGHT).add(BOOK_TYPE).add(FACING);
+	public BlockState getStateForPlacement(BlockItemUseContext placeContext) {
+		return this.defaultBlockState().setValue(FACING, placeContext.getHorizontalDirection().getCounterClockWise());
+	}
+
+	@Override
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> pStateBuilder) {
+		pStateBuilder.add(HEIGHT).add(BOOK_TYPE).add(FACING);
 	}
 
 	@Override
@@ -56,6 +65,19 @@ public class ExtendedPlacedBooksBlock extends Block {
 		return pState.setValue(FACING, p_185499_2_.rotate(pState.getValue(FACING)));
 	}
 
+	@Override
+	@SuppressWarnings("deprecation")
+	public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, IWorld pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
+		return !pState.canSurvive(pLevel, pCurrentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
+	}
+
+	@Override
+	public boolean canSurvive(BlockState pState, IWorldReader pLevel, BlockPos pPos) {
+		BlockPos blockpos = pPos.below();
+		BlockState below = pLevel.getBlockState(blockpos);
+		return below.isFaceSturdy(pLevel, blockpos, Direction.UP) && Block.canSupportCenter(pLevel, pPos.below(), Direction.UP);
+	}
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public BlockState mirror(BlockState pState, Mirror p_185471_2_) {
@@ -64,6 +86,7 @@ public class ExtendedPlacedBooksBlock extends Block {
 
 	@Override
 	public ActionResultType use(BlockState state, World world, BlockPos blockPos, PlayerEntity player, Hand pHand, BlockRayTraceResult p_225533_6_) {
-		return ActionResultType.sidedSuccess(world.isClientSide);
+		return super.use(state, world, blockPos, player, pHand, p_225533_6_);
+		//return ActionResultType.sidedSuccess(world.isClientSide);
 	}
 }

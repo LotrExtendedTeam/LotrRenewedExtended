@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
-import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -63,7 +62,7 @@ public class ExtendedNarsilShardsBlock extends HorizontalBlock {
 	public boolean canSurvive(BlockState pState, IWorldReader pLevel, BlockPos pPos) {
 		BlockPos blockpos = pPos.below();
 		BlockState below = pLevel.getBlockState(blockpos);
-		return below.isFaceSturdy(pLevel, blockpos, Direction.UP) && !below.is(ExtendedBlocks.SHARDS_OF_NARSIL.get());
+		return below.isFaceSturdy(pLevel, blockpos, Direction.UP) && Block.canSupportCenter(pLevel, pPos.below(), Direction.UP);
 	}
 
 	@Override
