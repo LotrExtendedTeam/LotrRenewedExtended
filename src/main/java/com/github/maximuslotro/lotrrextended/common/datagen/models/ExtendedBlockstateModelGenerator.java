@@ -1,7 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
@@ -35,6 +37,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPackedFurBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
@@ -50,6 +53,7 @@ import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroup
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPillarType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedRopeType;
 
 import lotr.common.block.AxialSlabBlock;
@@ -243,6 +247,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof FallenLeavesBlock) {
 					genFallenLeavesBlock((FallenLeavesBlock) block.getValue().get(), block.getKey().substring(7));
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedPlacedBooksBlock) {
+					genPlaceableBooksBlock((ExtendedPlacedBooksBlock) block.getValue().get());
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedAncientStoneRuneBlock) {
@@ -1612,6 +1620,33 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		}, ExtendedDwarvenGateBlock.WATERLOGGED, ExtendedDwarvenGateBlock.UP,ExtendedDwarvenGateBlock.DOWN,ExtendedDwarvenGateBlock.NORTH,
 			ExtendedDwarvenGateBlock.SOUTH,ExtendedDwarvenGateBlock.WEST,ExtendedDwarvenGateBlock.EAST,ExtendedDwarvenGateBlock.POWERED);
 		itemModels().getBuilder("lotr:"+gate.getRegistryName().getPath()).parent(modelItem);
+	}
+
+	private void genPlaceableBooksBlock(ExtendedPlacedBooksBlock book) {
+		registeredBlocks.add(book);
+		Map<ExtendedPlaceableBookTypes, Map<Integer, ModelFile>> modelMap = new HashMap<>();
+
+	    for (ExtendedPlaceableBookTypes type : ExtendedPlaceableBookTypes.values()) {
+	        Map<Integer, ModelFile> heightModels = new HashMap<>();
+
+	        for (int height = 1; height <= 3; height++) {
+	            ResourceLocation texture = lotrExtendedLoc("block/placed_books/" + type.getSerializedName());
+	            ModelFile model = models().withExistingParent("lotrextended:"+book.getRegistryName().getPath()+"_"+type.getSerializedName()+"_"+height, lotrExtendedLoc("block/template_placed_book_"+height))
+						.texture("book", texture).texture("book", texture);
+	            heightModels.put(height, model);
+	        }
+	        modelMap.put(type, heightModels);
+	    }
+		 getVariantBuilder(book).forAllStates(state -> {
+		        ExtendedPlaceableBookTypes type = state.getValue(ExtendedPlacedBooksBlock.BOOK_TYPE);
+		        Direction facing = state.getValue(ExtendedPlacedBooksBlock.FACING);
+		        int height = state.getValue(ExtendedPlacedBooksBlock.HEIGHT);
+				ModelFile model = modelMap.get(type).get(height);
+		        return ConfiguredModel.builder()
+		                .modelFile(model)
+		                .rotationY(facing == Direction.EAST ? 90 : facing == Direction.SOUTH ? 180 : facing == Direction.WEST ? 270 : 0)
+		                .build();
+		    });
 	}
 
 	private void genLargePotBlockItem(ExtendedLargePotBlock pot, String key) {

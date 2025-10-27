@@ -13,6 +13,8 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -73,5 +75,16 @@ public class ExtendedNarsilShardsBlock extends HorizontalBlock {
 			return ActionResultType.sidedSuccess(world.isClientSide);
 		}
 		return ActionResultType.PASS;
+	}
+
+	@Override
+	public BlockState rotate(BlockState pState, Rotation p_185499_2_) {
+		return pState.setValue(FACING, p_185499_2_.rotate(pState.getValue(FACING)));
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public BlockState mirror(BlockState pState, Mirror p_185471_2_) {
+		return pState.rotate(p_185471_2_.getRotation(pState.getValue(FACING)));
 	}
 }
