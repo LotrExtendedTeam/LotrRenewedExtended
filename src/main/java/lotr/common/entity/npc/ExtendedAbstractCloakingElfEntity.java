@@ -4,7 +4,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public abstract class ExtendedAbstractElfWandererEntity extends ElfEntity {
+public abstract class ExtendedAbstractCloakingElfEntity extends ElfEntity {
 
     public double xCloakO;
     public double yCloakO;
@@ -15,9 +15,11 @@ public abstract class ExtendedAbstractElfWandererEntity extends ElfEntity {
     public float oBob;
     public float bob;
 
-    protected ExtendedAbstractElfWandererEntity(EntityType<? extends ElfEntity> type, World w) {
+    protected ExtendedAbstractCloakingElfEntity(EntityType<? extends ElfEntity> type, World w) {
         super(type, w);
     }
+
+    public abstract ResourceLocation getCapeTextureLocation();
 
     public abstract ResourceLocation getCloakTextureLocation();
 

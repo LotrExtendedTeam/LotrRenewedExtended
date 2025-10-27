@@ -40,7 +40,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWandererEntity implements ExtendedWanderingTraderEntity {
+public class ExtendedRivendellWandererEntity extends ExtendedAbstractCloakingElfEntity implements ExtendedWanderingTraderEntity {
 
     int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
@@ -56,7 +56,7 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     }
 
 	@SuppressWarnings("unchecked")
-	public ExtendedRivendellWandererEntity(EntityType<? extends ExtendedAbstractElfWandererEntity> type, World w) {
+	public ExtendedRivendellWandererEntity(EntityType<? extends ExtendedAbstractCloakingElfEntity> type, World w) {
         super(type, w);
         this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeOnly());
     }
@@ -178,9 +178,8 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     public void tick() {
         super.tick();
 
-        moveCloak();
-
         if (level.isClientSide) {
+        	moveCloak();
             return;
         }
 
@@ -199,8 +198,8 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     }
 
     @Override
-    public ResourceLocation getCloakTextureLocation() {
-        return new ResourceLocation("lotr", "textures/cape/rivendell_trader.png");
+    public ResourceLocation getCapeTextureLocation() {
+        return new ResourceLocation("lotrextended", "textures/capes/rivendell_trader.png");
     }
 
     @Override
@@ -242,4 +241,9 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractElfWanderer
     public int getFactionColor() {
         return this.getFaction().getColor();
     }
+
+	@Override
+	public ResourceLocation getCloakTextureLocation() {
+		return new ResourceLocation("lotr", "textures/entity/elf/rivendell_trader_cloak.png");
+	}
 }

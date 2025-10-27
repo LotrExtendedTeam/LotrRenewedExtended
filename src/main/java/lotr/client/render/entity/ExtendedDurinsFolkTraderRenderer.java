@@ -1,13 +1,15 @@
 package lotr.client.render.entity;
 
-import lotr.client.render.entity.layers.coinlayers.DwarfHeldCoinLayer;
+import lotr.client.render.entity.layers.ExtendedHeldCoinLayer;
+import lotr.client.render.entity.model.DwarfModel;
+import lotr.common.entity.npc.DwarfEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 
 public class ExtendedDurinsFolkTraderRenderer extends DurinsFolkRenderer{
 
 	public ExtendedDurinsFolkTraderRenderer(EntityRendererManager mgr) {
 		super(mgr);
-		this.addLayer(new DwarfHeldCoinLayer(this));
+		this.addLayer(new ExtendedHeldCoinLayer<DwarfEntity, DwarfModel<DwarfEntity>>(this));
 	}
 
 }

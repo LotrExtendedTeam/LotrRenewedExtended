@@ -7,27 +7,27 @@ import lotr.common.entity.npc.ElfEntity;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
 
-public class ExtendedElfWandererModel<E extends ElfEntity> extends ElfModel<E> {
+public class ExtendedCloakingElfModel<E extends ElfEntity> extends ElfModel<E> {
 
-    private final ModelRenderer cloak;
+    private final ModelRenderer cape;
 
-    public ExtendedElfWandererModel(boolean smallArms) {
+    public ExtendedCloakingElfModel(boolean smallArms) {
         this(0.0F, false, smallArms);
     }
 
-    public ExtendedElfWandererModel(float f) {
+    public ExtendedCloakingElfModel(float f) {
         this(f, true, false);
     }
 
-    public ExtendedElfWandererModel(float f, boolean isArmor, boolean smallArms) {
+    public ExtendedCloakingElfModel(float f, boolean isArmor, boolean smallArms) {
         super(f, isArmor, smallArms);
         if (!isArmor) {
             this.createLongHairModel(0.0F, f);
         }
 
-        this.cloak = new ModelRenderer(this, 0, 0);
-        this.cloak.setTexSize(64, 32);
-        this.cloak.addBox(-5.0F, 0.0F, -1.0F, 10.0F, 16.0F, 1.0F, f);
+        this.cape = new ModelRenderer(this, 0, 0);
+        this.cape.setTexSize(64, 32);
+        this.cape.addBox(-5.0F, 0.0F, -1.0F, 10.0F, 16.0F, 1.0F, f);
     }
 
     /*
@@ -44,23 +44,23 @@ public class ExtendedElfWandererModel<E extends ElfEntity> extends ElfModel<E> {
 
         if (entity.getItemBySlot(EquipmentSlotType.CHEST).isEmpty()) {
             if (entity.isCrouching()) {
-                this.cloak.z = 1.4F;
-                this.cloak.y = 1.85F;
+                this.cape.z = 1.4F;
+                this.cape.y = 1.85F;
             } else {
-                this.cloak.z = 0.0F;
-                this.cloak.y = 0.0F;
+                this.cape.z = 0.0F;
+                this.cape.y = 0.0F;
             }
         } else if (entity.isCrouching()) {
-            this.cloak.z = 0.3F;
-            this.cloak.y = 0.8F;
+            this.cape.z = 0.3F;
+            this.cape.y = 0.8F;
         } else {
-            this.cloak.z = -1.1F;
-            this.cloak.y = -0.85F;
+            this.cape.z = -1.1F;
+            this.cape.y = -0.85F;
         }
     }
 
-    public void renderCloak(E elf, MatrixStack p_228289_1_, IVertexBuilder p_228289_2_, int p_228289_3_, int p_228289_4_) {
-        this.cloak.render(p_228289_1_, p_228289_2_, p_228289_3_, p_228289_4_);
+    public void renderCape(E elf, MatrixStack p_228289_1_, IVertexBuilder p_228289_2_, int p_228289_3_, int p_228289_4_) {
+        this.cape.render(p_228289_1_, p_228289_2_, p_228289_3_, p_228289_4_);
     }
 
 }

@@ -39,8 +39,7 @@ public class MixinResourcePackLoader {
 	 * Current behavior:
 	 * <ul>
 	 *   <li>{@link ExtendedClientProxy#createRenewedPack(ResourcePackList)} — adds a "renewed" resource pack.</li>
-	 *   <li>{@link ExtendedClientProxy#createForcedPack(ResourcePackList)} — injects a forced resource pack 
-	 *       (cannot be disabled by the player).</li>
+	 *   <li>{@link ExtendedClientProxy#createForcedPack(ResourcePackList)} — injects a forced resource pack (cannot be disabled by the player).</li>
 	 * </ul>
 	 * </p>
 	 *
@@ -49,11 +48,11 @@ public class MixinResourcePackLoader {
 	 *
 	 * @param resourcePacks the game’s active {@link ResourcePackList}
 	 * @param packFinder    the pack discovery function used to locate resource packs
-	 * @param cl            callback info (unused here, injection only)
+	 * @param ci            callback info (unused here, injection only)
 	 * @Inject (method = "loadResourcePacks(Lnet/minecraft/resources/ResourcePackList;Ljava/util/function/BiFunction;)V", at = @At("TAIL"), remap = false)
 	 */
 	@Inject(method = "loadResourcePacks(Lnet/minecraft/resources/ResourcePackList;Ljava/util/function/BiFunction;)V", at = @At("TAIL"), remap = false)
-	private static void loadExtendedResourcePacks(ResourcePackList resourcePacks, BiFunction<Map<ModFile, ? extends ModFileResourcePack>, BiConsumer<? super ModFileResourcePack, ResourcePackInfo>, IPackInfoFinder> packFinder, CallbackInfo cl) {
+	private static void loadExtendedResourcePacks(ResourcePackList resourcePacks, BiFunction<Map<ModFile, ? extends ModFileResourcePack>, BiConsumer<? super ModFileResourcePack, ResourcePackInfo>, IPackInfoFinder> packFinder, CallbackInfo ci) {
 		//ExtendedClientProxy.createLecacyPack(resourcePacks);
 		ExtendedClientProxy.createRenewedPack(resourcePacks);
 		ExtendedClientProxy.createForcedPack(resourcePacks);
