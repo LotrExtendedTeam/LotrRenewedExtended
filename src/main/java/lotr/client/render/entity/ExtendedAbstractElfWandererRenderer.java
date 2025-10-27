@@ -5,6 +5,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import lotr.client.render.entity.layers.ElfCapeLayer;
 import lotr.client.render.entity.layers.ElfCloakLayer;
 import lotr.client.render.entity.layers.ExtendedHeldCoinLayer;
+import lotr.client.render.entity.model.ExtendedCloakingCloakedElfModel;
 import lotr.client.render.entity.model.ExtendedCloakingElfModel;
 import lotr.common.entity.npc.ExtendedAbstractCloakingElfEntity;
 import lotr.common.util.CalendarUtil;
@@ -14,10 +15,10 @@ import net.minecraft.util.ResourceLocation;
 public abstract class ExtendedAbstractElfWandererRenderer<E extends ExtendedAbstractCloakingElfEntity> extends LOTRBipedRenderer<E, ExtendedCloakingElfModel<E>> {
 
 	public ExtendedAbstractElfWandererRenderer(EntityRendererManager mgr) {
-		super(mgr, ExtendedCloakingElfModel::new, new ExtendedCloakingElfModel<>(0.5F), new ExtendedCloakingElfModel<>(1.0F), 0.5F);
-		this.addLayer(new ElfCapeLayer<>(this));
+		super(mgr, ExtendedCloakingCloakedElfModel::new, new ExtendedCloakingCloakedElfModel<>(0.5F), new ExtendedCloakingCloakedElfModel<>(1.0F), 0.5F);
+		this.addLayer(new ElfCapeLayer<E>(this));
 		this.addLayer(new ExtendedHeldCoinLayer<>(this));
-		this.addLayer(new ElfCloakLayer<>(this, new ExtendedCloakingElfModel<>(0.5F), new ExtendedCloakingElfModel<>(1.0F)));
+		this.addLayer(new ElfCloakLayer<E>(this, new ExtendedCloakingCloakedElfModel<>(0.5F), new ExtendedCloakingCloakedElfModel<>(1.0F)));
 	}
 
 	@Override

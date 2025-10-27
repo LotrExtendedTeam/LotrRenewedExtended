@@ -30,14 +30,6 @@ public class ExtendedCloakingElfModel<E extends ElfEntity> extends ElfModel<E> {
         this.cape.addBox(-5.0F, 0.0F, -1.0F, 10.0F, 16.0F, 1.0F, f);
     }
 
-    /*
-     Hide elven wanderers long hair because it is not visible under the hood
-     */
-    @Override
-    protected void createLongHairModel(float headRotationY, float f) {
-        this.hat = new ModelRenderer(this, 56, 0);
-    }
-
     @Override
     public void setupAnim(E entity, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
         super.setupAnim(entity, p_225597_2_, p_225597_3_, p_225597_4_, p_225597_5_, p_225597_6_);
