@@ -1,9 +1,9 @@
-package lotr.client.render.entity.layers.coinlayers;
+package lotr.client.render.entity.layers;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import lotr.client.render.entity.model.HobbitModel;
-import lotr.common.entity.npc.HobbitEntity;
+import lotr.client.render.entity.model.LOTRBipedModel;
+import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -15,15 +15,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class HobbitHeldCoinLayer extends LayerRenderer<HobbitEntity, HobbitModel<HobbitEntity>> {
+public class ExtendedHeldCoinLayer<E extends NPCEntity, M extends LOTRBipedModel<E>> extends LayerRenderer<E, M> {
 
-    public HobbitHeldCoinLayer(IEntityRenderer<HobbitEntity, HobbitModel<HobbitEntity>> renderer) {
-        super(renderer);
+    public ExtendedHeldCoinLayer(IEntityRenderer<E, M> p_i50926_1_) {
+        super(p_i50926_1_);
     }
 
     @Override
-	public void render(MatrixStack matStack, IRenderTypeBuffer buf, int packedLight, HobbitEntity hobbit, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (!hobbit.getItemBySlot(EquipmentSlotType.OFFHAND).isEmpty()) return;
+	public void render(MatrixStack matStack, IRenderTypeBuffer buf, int packedLight, E elf, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+        if (!elf.getItemBySlot(EquipmentSlotType.OFFHAND).isEmpty()) return;
 
     	matStack.pushPose();
 
@@ -36,7 +36,7 @@ public class HobbitHeldCoinLayer extends LayerRenderer<HobbitEntity, HobbitModel
         matStack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
         ItemStack heldItem = new ItemStack(ExtendedItems.SILVER_COIN_ONE.get(), 1);
         matStack.translate((1) / 16.0F, -0.3D, -0.05D);
-        Minecraft.getInstance().getItemInHandRenderer().renderItem(hobbit, heldItem, ItemCameraTransforms.TransformType.GROUND, false, matStack, buf, packedLight);
+        Minecraft.getInstance().getItemInHandRenderer().renderItem(elf, heldItem, ItemCameraTransforms.TransformType.GROUND, false, matStack, buf, packedLight);
         matStack.popPose();
     }
 

@@ -1,7 +1,8 @@
 package lotr.client.render.entity;
 
 import lotr.client.render.GenderedRandomTextureVariants;
-import lotr.client.render.entity.layers.coinlayers.BreeManHeldCoinLayer;
+import lotr.client.render.entity.layers.ExtendedHeldCoinLayer;
+import lotr.client.render.entity.model.ManModel;
 import lotr.common.entity.npc.BreeManEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
@@ -11,7 +12,7 @@ public class ExtendedBreeManTraderRenderer extends BreeManRenderer {
 
 	public ExtendedBreeManTraderRenderer(EntityRendererManager mgr) {
 		super(mgr);
-		this.addLayer(new BreeManHeldCoinLayer(this));
+		this.addLayer(new ExtendedHeldCoinLayer<BreeManEntity, ManModel<BreeManEntity>>(this));
 	}
 
 	@Override

@@ -40,7 +40,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -210,8 +209,8 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
     }
 
     @Override
-    public TranslationTextComponent getDepartureLine(PlayerEntity player) {
-        return new TranslationTextComponent("speechbank.breeland_merchant.departure." + (random.nextInt(5) + 1), getName(), player.getName());
+    public String getDepartureLine() {
+        return "speechbank.breeland_merchant.departure." + (random.nextInt(5) + 1);
     }
 
     static {

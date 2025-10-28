@@ -3,8 +3,8 @@ package lotr.client.render.entity.layers;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
-import lotr.client.render.entity.model.ExtendedElfWandererModel;
-import lotr.common.entity.npc.ExtendedAbstractElfWandererEntity;
+import lotr.client.render.entity.model.ExtendedCloakingElfModel;
+import lotr.common.entity.npc.ExtendedAbstractCloakingElfEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
@@ -16,15 +16,15 @@ import net.minecraft.item.Items;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class ElfWandererCapeLayer<E extends ExtendedAbstractElfWandererEntity> extends LayerRenderer<E, ExtendedElfWandererModel<E>> {
+public class ElfCapeLayer<E extends ExtendedAbstractCloakingElfEntity> extends LayerRenderer<E, ExtendedCloakingElfModel<E>> {
 
-    public ElfWandererCapeLayer(IEntityRenderer<E, ExtendedElfWandererModel<E>> elf) {
+    public ElfCapeLayer(IEntityRenderer<E, ExtendedCloakingElfModel<E>> elf) {
         super(elf);
     }
 
     @Override
 	public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, E elf, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (elf.getCloakTextureLocation() != null) {
+        if (elf.getCapeTextureLocation() != null) {
             ItemStack chestItemStack = elf.getItemBySlot(EquipmentSlotType.CHEST);
             if (chestItemStack.getItem() != Items.ELYTRA) {
                 matrixStack.pushPose();
@@ -55,8 +55,8 @@ public class ElfWandererCapeLayer<E extends ExtendedAbstractElfWandererEntity> e
                 matrixStack.mulPose(Vector3f.ZP.rotationDegrees(zRotationOffset / 2.0F));
                 matrixStack.mulPose(Vector3f.YP.rotationDegrees(180.0F - zRotationOffset / 2.0F));
 
-                IVertexBuilder vertexBuilder = buffer.getBuffer(RenderType.entitySolid(elf.getCloakTextureLocation()));
-                getParentModel().renderCloak(elf, matrixStack, vertexBuilder, combinedLight, OverlayTexture.NO_OVERLAY);
+                IVertexBuilder vertexBuilder = buffer.getBuffer(RenderType.entitySolid(elf.getCapeTextureLocation()));
+                getParentModel().renderCape(elf, matrixStack, vertexBuilder, combinedLight, OverlayTexture.NO_OVERLAY);
                 matrixStack.popPose();
             }
         }

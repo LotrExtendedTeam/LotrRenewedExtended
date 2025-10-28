@@ -31,13 +31,13 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_BARTENDER.get(), ExtendedHobbitBartenderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_FARMER.get(), ExtendedHobbitFarmerRenderer::new);
 		// Gundabad
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_CAMP_TRADER.get(), ExtendedGundabadOrcScroungerRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get(), ExtendedGundabadOrcChieftainRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_CAMP_TRADER.get(), ExtendedSmallOrcTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get(), ExtendedLargeOrcTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_URUK.get(), LargeOrcRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_URUK_ARCHER.get(), LargeOrcRenderer::new);
 		// Bree
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_MERCHANT.get(), ExtendedBreeMerchantRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_SHERIFF.get(), ExtendedBreeCaptainRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_MERCHANT.get(), ExtendedBreeManTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_SHERIFF.get(), ExtendedBreeManTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_FARMER.get(), ExtendedBreeManTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_POTTER.get(), ExtendedBreeManTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_BAKER.get(), ExtendedBreeManTraderRenderer::new);
@@ -77,7 +77,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RIVENDELL_CAPTAIN.get(), ExtendedHighElfTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RIVENDELL_SMITH.get(), ExtendedHighElfTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.IMLADRIS_GUARD.get(), HighElfRenderer::new);
-		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.ELROND.get(), HighElfRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.ELROND.get(), ExtendedElrondRenderer::new);
 		// Special
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TOLKIEN.get(), ExtendedTolkienRenderer::new);
 
