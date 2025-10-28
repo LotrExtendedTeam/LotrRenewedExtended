@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import java.util.Map;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -11,6 +12,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
@@ -48,7 +50,12 @@ public class ExtendedPlacedBooksBlock extends Block {
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext placeContext) {
-		return this.defaultBlockState().setValue(FACING, placeContext.getHorizontalDirection().getCounterClockWise());
+		ExtendedPlaceableBookTypes type = ExtendedPlaceableBookTypes.getByItem(placeContext.getItemInHand().getItem());
+		if(type==null) {
+			return null;
+		}
+		ExtendedLog.info("F4.5");
+		return this.defaultBlockState().setValue(FACING, placeContext.getHorizontalDirection()).setValue(BOOK_TYPE, type);
 	}
 
 	@Override
@@ -83,6 +90,25 @@ public class ExtendedPlacedBooksBlock extends Block {
 	@Override
 	public BlockState mirror(BlockState pState, Mirror p_185471_2_) {
 		return pState.rotate(p_185471_2_.getRotation(pState.getValue(FACING)));
+	}
+
+	@Override
+	public void onRemove(BlockState blockState, World world, BlockPos blockPos, BlockState pNewState, boolean pIsMoving) {
+		if (!blockState.is(pNewState.getBlock())) {
+			InventoryHelper.dropItemStack(world, blockPos.getX(), blockPos.getY(), blockPos.getZ(), new ItemStack(blockState.getValue(BOOK_TYPE).getItemType(), blockState.getValue(HEIGHT)));
+			world.updateNeighbourForOutputSignal(blockPos, this);
+			super.onRemove(blockState, world, blockPos, pNewState, pIsMoving);
+		}
+	}
+
+	@Override
+	public boolean hasAnalogOutputSignal(BlockState p_149740_1_) {
+		return true;
+	}
+
+	@Override
+	public int getAnalogOutputSignal(BlockState blockState, World world, BlockPos blockPos) {
+		return blockState.getValue(HEIGHT);
 	}
 
 	@Override

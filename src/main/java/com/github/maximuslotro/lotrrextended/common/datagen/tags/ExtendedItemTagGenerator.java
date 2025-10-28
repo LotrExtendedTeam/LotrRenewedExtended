@@ -250,6 +250,8 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		tag(ExtendedTags.Items.TORCH_EXTINGUISHING).add(Items.POTION).add(LOTRItems.WATER_DRINK.get());
 		tag(ExtendedTags.Items.TORCH_LIGHTING).add(LOTRItems.POCKET_MATCH.get()).add(Items.FLINT_AND_STEEL);
 
+		tag(ExtendedTags.Items.PLACEABLE_BOOKS).add(LOTRItems.BOOK_OF_TRUE_SILVER.get()).add(Items.BOOK).add(LOTRItems.RED_BOOK.get()).add(Items.WRITTEN_BOOK);
+
 		TreeMap<String, Item> fullitems = new TreeMap<>();
 		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {
 			if(item.get() instanceof SpearItem) {

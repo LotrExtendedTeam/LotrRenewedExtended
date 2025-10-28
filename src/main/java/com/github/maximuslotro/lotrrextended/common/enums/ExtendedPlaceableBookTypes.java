@@ -11,7 +11,7 @@ public enum ExtendedPlaceableBookTypes implements IStringSerializable {
 	BOOK("book", ()->Items.BOOK),
 	WRITTEN_BOOK("written_book", ()->Items.WRITTEN_BOOK),
 	RED_BOOK("red_book", ()->LOTRItems.RED_BOOK.get()),
-	BOOK_OF_TRUE_SILVER("true_silver_book", ()->LOTRItems.RED_BOOK.get());
+	BOOK_OF_TRUE_SILVER("true_silver_book", ()->LOTRItems.BOOK_OF_TRUE_SILVER.get());
 
 	private final String name;
 	private final Supplier<Item> itemType;
@@ -33,5 +33,14 @@ public enum ExtendedPlaceableBookTypes implements IStringSerializable {
 
 	public Item getItemType() {
 		return itemType.get();
+	}
+
+	public static ExtendedPlaceableBookTypes getByItem(Item item) {
+		for (ExtendedPlaceableBookTypes type : values()) {
+			if (type.getItemType() == item) {
+				return type;
+			}
+		}
+		return null;
 	}
 }

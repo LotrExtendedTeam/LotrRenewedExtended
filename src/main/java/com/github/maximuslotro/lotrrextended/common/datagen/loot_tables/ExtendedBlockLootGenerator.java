@@ -46,7 +46,6 @@ import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBar
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
@@ -166,6 +165,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedStoneTextSignBlock) {
+				add(block.getValue().get(), noDrop());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedPlacedBooksBlock) {
 				add(block.getValue().get(), noDrop());
 				continue;
 			}
@@ -462,24 +465,6 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 					.withPool(LootPool.lootPool()
 						.when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 0)))
 						.add(ItemLootEntry.lootTableItem(blok.getBerryItem())).apply(SetCount.setCount(ConstantRange.exactly(1))).apply(ExplosionDecay.explosionDecay()))
-					);
-				continue;
-			}
-			if(block.getValue().get() instanceof ExtendedPlacedBooksBlock) {
-				ExtendedPlacedBooksBlock thingy = (ExtendedPlacedBooksBlock)block.getValue().get();
-				add(thingy, (p_241171_0_) -> LootTable.lootTable()
-					.withPool(LootPool.lootPool()
-						.when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedPlacedBooksBlock.HEIGHT, 1)))
-						.add(ItemLootEntry.lootTableItem(ExtendedPlaceableBookTypes.BOOK.getItemType())).apply(SetCount.setCount(ConstantRange.exactly(1)))
-						.apply(ExplosionDecay.explosionDecay()))
-					.withPool(LootPool.lootPool()
-						.when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedPlacedBooksBlock.HEIGHT, 2)))
-						.add(ItemLootEntry.lootTableItem(ExtendedPlaceableBookTypes.BOOK.getItemType())).apply(SetCount.setCount(ConstantRange.exactly(2)))
-						.apply(ExplosionDecay.explosionDecay()))
-					.withPool(LootPool.lootPool()
-						.when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedPlacedBooksBlock.HEIGHT, 3)))
-						.add(ItemLootEntry.lootTableItem(ExtendedPlaceableBookTypes.BOOK.getItemType())).apply(SetCount.setCount(ConstantRange.exactly(3)))
-						.apply(ExplosionDecay.explosionDecay()))
 					);
 				continue;
 			}
