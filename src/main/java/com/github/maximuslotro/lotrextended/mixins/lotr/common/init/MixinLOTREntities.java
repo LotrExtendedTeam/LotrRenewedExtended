@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedTapestryEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHedgehogEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
@@ -316,6 +317,7 @@ public class MixinLOTREntities {
 			builder.noSummon();
 			//builder.noSave();
 		});
+		ExtendedEntities.TAPESTRY = regEntityExpanded("tapestry", ExtendedTapestryEntity::new, EntityClassification.MISC, 0.5F, 0.5F, 10, Integer.MAX_VALUE);
 		// Rangers of the North
 		ExtendedEntities.DUNEDAIN_RANGER = regNPCD("dunedain_ranger", ExtendedDunedainRangerEntity::new, ExtendedDunedainRangerEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.6F, 1.93f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(4473912, 2302748));
 		ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN = regNPCD("dunedain_ranger_captain", ExtendedDunedainRangerCaptainEntity::new, ExtendedDunedainRangerCaptainEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.6F, 1.93f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(4473912, 2302748));

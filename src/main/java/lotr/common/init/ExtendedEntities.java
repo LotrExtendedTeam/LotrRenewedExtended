@@ -3,6 +3,7 @@ package lotr.common.init;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedTapestryEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHedgehogEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
@@ -83,4 +84,5 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedRivendellGuardEntity>> IMLADRIS_GUARD;
 	public static RegistryObject<EntityType<ExtendedElrondEntity>> ELROND;
 	public static RegistryObject<EntityType<ExtendedBanditEntity>> BANDIT;
+	public static RegistryObject<EntityType<ExtendedTapestryEntity>> TAPESTRY;
 }
