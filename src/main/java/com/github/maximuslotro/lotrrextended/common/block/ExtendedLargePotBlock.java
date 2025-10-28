@@ -87,14 +87,14 @@ public class ExtendedLargePotBlock extends HorizontalBlock {
 	}
 
 	@Override
-	public void onRemove(BlockState blockState, World world, BlockPos blockPos, BlockState blockStateOther, boolean p_196243_5_) {
-		if (!blockState.is(blockStateOther.getBlock())) {
+	public void onRemove(BlockState blockState, World world, BlockPos blockPos, BlockState pNewState, boolean pIsMoving) {
+		if (!blockState.is(pNewState.getBlock())) {
 			TileEntity tileentity = world.getBlockEntity(blockPos);
 			if (tileentity instanceof ExtendedLargePotTileEntity) {
 				InventoryHelper.dropItemStack(world, blockPos.getX(), blockPos.getY(), blockPos.getZ(), ((ExtendedLargePotTileEntity)tileentity).getContainedItem(true).copy());
 				world.updateNeighbourForOutputSignal(blockPos, this);
 			}
-			super.onRemove(blockState, world, blockPos, blockStateOther, p_196243_5_);
+			super.onRemove(blockState, world, blockPos, pNewState, pIsMoving);
 		}
 	}
 

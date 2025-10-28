@@ -2,11 +2,16 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils;
 
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
@@ -15,6 +20,7 @@ import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRDimensions;
 import net.minecraft.block.EnchantingTableBlock;
 import net.minecraft.entity.EntitySize;
@@ -22,7 +28,9 @@ import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -198,6 +206,29 @@ public class WorldEventHandlers {
 			if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof EnchantingTableBlock) {
 				if(!ExtendedServerConfig.enableVanillaEnchanting.get()) {
 					event.setCanceled(true);
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void handleBlockLeftInteract$Extended(PlayerInteractEvent.RightClickBlock event) {
+		if(event.getPlayer().getMainHandItem().getItem().is(ExtendedTags.Items.PLACEABLE_BOOKS)) {
+			ExtendedLog.info("F1");
+			ExtendedPlaceableBookTypes type = ExtendedPlaceableBookTypes.getByItem(event.getPlayer().getMainHandItem().getItem());
+			ExtendedLog.info("F2");
+			if(type!=null && !(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof ExtendedPlacedBooksBlock)) {
+				ExtendedLog.info("F3");
+				BlockItemUseContext blockusecontext = new BlockItemUseContext(new ItemUseContext(event.getPlayer(), event.getHand(), event.getHitVec()));
+				ExtendedLog.info("F4");
+				if(ExtendedPlacementUtils.place(ExtendedBlocks.PLACED_BOOKS.get(), new BlockItemUseContext(blockusecontext))) {
+					ExtendedLog.info("F5");
+					if (!event.getPlayer().abilities.instabuild) {
+						ExtendedLog.info("F6");
+						event.getPlayer().getMainHandItem().shrink(1);
+					}
+					event.setCanceled(true);
+					return;
 				}
 			}
 		}

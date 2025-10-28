@@ -1,7 +1,5 @@
 package lotr.common.world.spawning;
 
-import net.minecraft.world.World;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -202,7 +200,6 @@ public class BanditBiomeList {
      * This method given a biome name from World#getBiomeName() will attempt to check if it is a valid LOTR Mod biome
      * and if it is return the chance a bandit spawn there.
      *
-     * @param world the {@link World} to check
      * @param biomeName the name of the biome to query
      * @return The percent chance a bandit should spawn there
      * @throws IllegalArgumentException if the given biome is not a LOTR biome

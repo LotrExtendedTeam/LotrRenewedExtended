@@ -1090,6 +1090,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.HIGH_ELVEN_CHAIN = registerB("high_elven_chain", () -> new ExtendedChainBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion()));
 		ExtendedBlocks.SHARDS_OF_NARSIL = registerB("shards_of_narsil", () -> new ExtendedNarsilShardsBlock(Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.5F).noOcclusion()));
 
+		ExtendedBlocks.PLACED_BOOKS = registerB("placed_books", () -> new ExtendedPlacedBooksBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noOcclusion()));
 	}
 
 	/**
@@ -1105,7 +1106,6 @@ public class MixinLOTRBlocks {
 
 	private static VoxelShape createVesselShape(float width, float height) {
 		float halfWidth = width / 2.0F;
-		return Block.box(8.0D - (double) halfWidth, 0.0D, 8.0D - (double) halfWidth, 8.0D + (double) halfWidth,
-				(double) height, 8.0D + (double) halfWidth);
+		return Block.box(8.0D - halfWidth, 0.0D, 8.0D - halfWidth, 8.0D + halfWidth, height, 8.0D + halfWidth);
 	}
 }

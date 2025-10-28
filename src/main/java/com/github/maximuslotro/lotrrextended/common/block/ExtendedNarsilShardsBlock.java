@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
-import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -13,6 +12,8 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -61,7 +62,7 @@ public class ExtendedNarsilShardsBlock extends HorizontalBlock {
 	public boolean canSurvive(BlockState pState, IWorldReader pLevel, BlockPos pPos) {
 		BlockPos blockpos = pPos.below();
 		BlockState below = pLevel.getBlockState(blockpos);
-		return below.isFaceSturdy(pLevel, blockpos, Direction.UP) && !below.is(ExtendedBlocks.SHARDS_OF_NARSIL.get());
+		return below.isFaceSturdy(pLevel, blockpos, Direction.UP) && Block.canSupportCenter(pLevel, pPos.below(), Direction.UP);
 	}
 
 	@Override
@@ -73,5 +74,16 @@ public class ExtendedNarsilShardsBlock extends HorizontalBlock {
 			return ActionResultType.sidedSuccess(world.isClientSide);
 		}
 		return ActionResultType.PASS;
+	}
+
+	@Override
+	public BlockState rotate(BlockState pState, Rotation p_185499_2_) {
+		return pState.setValue(FACING, p_185499_2_.rotate(pState.getValue(FACING)));
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public BlockState mirror(BlockState pState, Mirror p_185471_2_) {
+		return pState.rotate(p_185471_2_.getRotation(pState.getValue(FACING)));
 	}
 }
