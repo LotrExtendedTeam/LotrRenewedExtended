@@ -21,6 +21,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.GameRules;
@@ -67,13 +68,6 @@ public class ExtendedTapestryEntity extends HangingEntity implements IEntityAddi
 			this.type = list.get(this.random.nextInt(list.size()));
 		}
 
-		this.setDirection(pFacingDirection);
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public ExtendedTapestryEntity(World pLevel, BlockPos pPos, Direction pFacingDirection, ExtendedTapestryType pMotive) {
-		this(pLevel, pPos, pFacingDirection);
-		this.type = pMotive;
 		this.setDirection(pFacingDirection);
 	}
 
@@ -146,13 +140,46 @@ public class ExtendedTapestryEntity extends HangingEntity implements IEntityAddi
 
 	@Override
 	public void writeSpawnData(PacketBuffer pBuffer) {
-		pBuffer.writeByte(this.direction.get2DDataValue());
 		pBuffer.writeResourceLocation(type.getRegistryName());
+		pBuffer.writeByte(this.direction.get2DDataValue());
 	}
 
 	@Override
 	public void readSpawnData(PacketBuffer additionalData) {
-		this.direction = Direction.from2DDataValue(additionalData.readUnsignedByte());
 		this.type = ExtendedTapestryType.TAPESTRIE_REGISTRY.get().getValue(additionalData.readResourceLocation());
+		this.setDirection(Direction.from2DDataValue(additionalData.readUnsignedByte()));
+	}
+
+	@Override
+	protected void recalculateBoundingBox() {
+		if (this.direction != null) {
+			double centerX = this.pos.getX() + 0.5D;
+			double centerY = this.pos.getY() + 0.5D;
+			double centerZ = this.pos.getZ() + 0.5D;
+			double wallOffset = 0.46875D;
+			double widthOffset = (this.getWidth()% 32 == 0 ? 0.5D : 0.0D);
+			double heightOffset = (this.getHeight()% 32 == 0 ? 0.5D : 0.0D);
+			centerX -= this.direction.getStepX() * wallOffset;
+			centerZ -= this.direction.getStepZ() * wallOffset;
+			centerY += heightOffset;
+			Direction sideways = this.direction.getCounterClockWise();
+			centerX += widthOffset * sideways.getStepX();
+			centerZ += widthOffset * sideways.getStepZ();
+			this.setPosRaw(centerX, centerY, centerZ);
+			double width = this.getWidth();
+			double height = this.getHeight();
+			double depth = this.getWidth();
+			if (this.direction.getAxis() == Direction.Axis.Z) {
+				depth = 1.0D;
+			} else {
+				width = 1.0D;
+			}
+
+			width /= 32.0D;
+			height /= 32.0D;
+			depth /= 32.0D;
+			AxisAlignedBB box = new AxisAlignedBB(centerX - width,  centerY - height, centerZ - depth, centerX + width,  centerY + height, centerZ + depth);
+			this.setBoundingBox(box);
+		}
 	}
 }
