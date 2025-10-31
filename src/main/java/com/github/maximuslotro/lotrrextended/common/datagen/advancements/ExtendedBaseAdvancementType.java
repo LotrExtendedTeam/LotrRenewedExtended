@@ -131,6 +131,12 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		return builder.addCriterion("has_"+factionPointer.getName().getPath()+"_level_"+Math.round(level), trigegr);
 	}
 
+	public static Advancement.Builder addAlignmentTrigger(Advancement.Builder builder, String faction, float level) {
+		ExtendedAlignmentPredicate pred = new ExtendedAlignmentPredicate(FloatBound.atLeast(level), faction);
+		ExtendedAlignmentLevelTrigger.Instance trigegr = ExtendedAlignmentLevelTrigger.Instance.alignmentLevel(pred);
+		return builder.addCriterion("has_"+faction+"_level_"+Math.round(level), trigegr);
+	}
+
 	public static Advancement.Builder addFishTrigger(Advancement.Builder builder, Item item) {
 		return builder.addCriterion("fished"+item.getRegistryName().getPath(), FishingRodHookedTrigger.Instance.fishedItem(ItemPredicate.ANY, EntityPredicate.ANY, ItemPredicate.Builder.item().of(item).build()));
 	}

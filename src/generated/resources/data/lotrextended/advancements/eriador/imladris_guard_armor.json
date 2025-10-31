@@ -1,0 +1,47 @@
+{
+  "parent": "lotrextended:eriador/livery_of_lord_elrond",
+  "display": {
+    "icon": {
+      "item": "lotr:imladris_guard_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.eriador.imladris_guard_armor.title"
+    },
+    "description": {
+      "color": "aqua",
+      "translate": "advancements.lotrextended.eriador.imladris_guard_armor.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "imladris_guard_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:imladris_guard_helmet"
+          },
+          {
+            "item": "lotr:imladris_guard_chestplate"
+          },
+          {
+            "item": "lotr:imladris_guard_leggings"
+          },
+          {
+            "item": "lotr:imladris_guard_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "imladris_guard_armor"
+    ]
+  ]
+}

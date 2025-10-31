@@ -88,6 +88,10 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 				.setTitle("Livery of Lord Elrond").setDescription("Acquire a full set of Rivendell armor."),
 				addArmorTrigger(make(), "rivendell", LOTRItems.RIVENDELL_HELMET.get(), LOTRItems.RIVENDELL_CHESTPLATE.get(),
 						LOTRItems.RIVENDELL_LEGGINGS.get(), LOTRItems.RIVENDELL_BOOTS.get()).parent(rivendell));
+		Advancement imladris_guard_armor = build(false, data(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE.get(), "imladris_guard_armor", FrameType.GOAL)
+			.setTitle("Guard of Elrond").setDescription("Acquire a full set of Imladris Guard armor."),
+			addArmorTrigger(make(), "imladris_guard", ExtendedItems.IMLADRIS_GUARD_HELMET.get(), ExtendedItems.IMLADRIS_GUARD_CHESTPLATE.get(),
+				ExtendedItems.IMLADRIS_GUARD_LEGGINGS.get(), ExtendedItems.IMLADRIS_GUARD_BOOTS.get()).parent(rivendell_armor));
 		Advancement riv_elf_slayer = build(true, data(LOTRItems.ELF_BONE.get(), "rivendell_elf_slayer", FrameType.TASK)
 				.setTitle("Rivendell Elf Slayer").setDescription("Kill a Rivendell Elf."),
 				addKillEntityTriggers(make(), LOTREntities.RIVENDELL_ELF.get(), LOTREntities.RIVENDELL_WARRIOR.get(), 
@@ -95,6 +99,12 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 		Advancement rivendell_smith = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "rivendell_smith", FrameType.TASK)
 			.setTitle("The Blade Shall be Reforged!").setDescription("Trade with a Rivendell Smith"),
 			addTradeEntityTrigger(make(), ExtendedEntities.RIVENDELL_SMITH.get()).parent(rivendell));
+		Advancement its_still_sharp = build(false, data(ExtendedItems.SHARDS_OF_NARSIL.get(), "its_still_sharp", FrameType.GOAL, true, true, false)
+			.setTitle("It's Still sharp").setDescription("Hold the shards of Narsil."),
+			addItemTrigger(make(), ExtendedItems.SHARDS_OF_NARSIL.get()).parent(rivendell_smith));
+		Advancement flame_of_the_west = build(false, data(ExtendedItems.ANDURIL.get(), "flame_of_the_west", FrameType.CHALLENGE, true, true, false)
+			.setTitle("Flame of the West").setDescription("Equip the sword of the king of men."),
+			addItemTrigger(make(), ExtendedItems.ANDURIL.get()).parent(its_still_sharp));
 		Advancement for_imladris = build(true, data(Items.IRON_SWORD, "for_imladris", FrameType.TASK)
 			.setTitle("For Imladris!").setDescription("Hire a unit from a Rivendell Captain."),
 			addUnitHireTrigger(make(), ExtendedEntities.RIVENDELL_CAPTAIN.get()).parent(rivendell));

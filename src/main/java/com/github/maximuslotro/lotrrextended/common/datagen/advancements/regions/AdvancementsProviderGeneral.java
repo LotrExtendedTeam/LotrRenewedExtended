@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -189,6 +188,18 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 		Advancement exp_fish_ring = build(false, data(Items.FISHING_ROD, "swag_catch", FrameType.CHALLENGE)
 				.setTitle("Swaggest Catch Ever").setDescription("Catch a mithril ring with a fishing rod."),
 				addFishTrigger(make(), LOTRItems.MITHRIL_RING.get()).parent(fish_ring));
+
+		Advancement stand_and_deliver = build(true, data(LOTRItems.IRON_DAGGER.get(), "stand_and_deliver", FrameType.TASK)
+			.setTitle("Stand and Deliver!").setDescription("Kill a bandit who has stolen some items."),
+			addKillEntityTrigger(make(), ExtendedEntities.BANDIT.get()).parent(base));
+
+		Advancement alignment = build(false, data(LOTRItems.SILVER_RING.get(), "alignment", FrameType.TASK)
+			.setTitle("Alignment").setDescription("Reach +1.0 alignment with any faction."),
+			addAlignmentTrigger(make(), "any", 1).parent(base));
+		
+		Advancement true_fealty = build(false, data(LOTRItems.GOLD_RING.get(), "true_fealty", FrameType.GOAL)
+			.setTitle("True Fealty").setDescription("Reach +10000.0 alignment with any faction."),
+			addAlignmentTrigger(make(), "any", 10000).parent(alignment));
 
 	}
 

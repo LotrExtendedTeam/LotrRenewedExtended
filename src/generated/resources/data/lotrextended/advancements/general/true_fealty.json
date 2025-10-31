@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:general/alignment",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.general.true_fealty.title"
+    },
+    "description": {
+      "color": "aqua",
+      "translate": "advancements.lotrextended.general.true_fealty.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_any_level_10000": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "alignment": {
+          "faction": "any",
+          "level": {
+            "min": 10000.0
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_any_level_10000"
+    ]
+  ]
+}
