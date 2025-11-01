@@ -14,6 +14,7 @@ public class ExtendedSpawners {
 	private static final Set<ResourceLocation> LOCATIONS = Sets.newHashSet();
 	// ANIMALS
 	public static final ResourceLocation DUCK_SINGLE  = register("duck_single_spawner");
+	public static final ResourceLocation SHEEP_SINGLE  = register("animal_sheep_single_spawner");
 	public static final ResourceLocation HORSE_SINGLE  = register("generic_horse_single_spawner");
 
 	// HOBBITS
@@ -101,6 +102,7 @@ public class ExtendedSpawners {
 	// DWARVEN
 	public static final ResourceLocation DWARVEN_SMITH = register("dwarf_smith_spawner");
 	// RIVENDELL
+	public static final ResourceLocation RIVENDELL_HOUSE = register("rivendell_house_spawner");
 	public static final ResourceLocation RIVENDELL_SMITH = register("rivendell_smith_spawner");
 	public static final ResourceLocation RIVENDELL_CAPTAIN = register("rivendell_captain_spawner");
 	public static final ResourceLocation RIVENDELL_AREA = register("rivendell_area_spawner");

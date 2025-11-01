@@ -78,17 +78,22 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BLUE_MOUNTAINS_TRADER_HALL_ELF_CHEST = registerChest("blue_mountains_trader_hall_elf");
 	public static final ResourceLocation BLUE_MOUNTAINS_MEME_COIN = registerChest("blue_mountains_meme_coin");
 
+	public static final ResourceLocation RIVENDELL_SMITH_CHEST = registerChest("rivendell_smith");
+	public static final ResourceLocation RIVENDELL_HOUSE_CHEST = registerChest("rivendell_house");
+	
 	public static final ResourceLocation HOBBIT_KEGS = registerKeg("hobbit");
 	public static final ResourceLocation RANGER_KEGS = registerKeg("ranger");
 	public static final ResourceLocation GUNDABAD_KEGS = registerKeg("gundabad");
 	public static final ResourceLocation BREE_KEGS = registerKeg("bree");
 	public static final ResourceLocation BLUE_MOUNTAINS_KEGS = registerKeg("blue_mountains");
+	public static final ResourceLocation RIVENDELL_KEGS = registerKeg("rivendell");
 
 	public static final ResourceLocation HOBBIT_VESSELS = registerVessels("hobbit");
 	public static final ResourceLocation RANGER_VESSELS = registerVessels("ranger");
 	public static final ResourceLocation GUNDABAD_VESSELS = registerVessels("gundabad");
 	public static final ResourceLocation BREE_VESSELS = registerVessels("bree");
 	public static final ResourceLocation BLUE_MOUNTAINS_VESSELS = registerVessels("blue_mountains");
+	public static final ResourceLocation RIVENDELL_VESSELS = registerVessels("rivendell");
 
 	public static final ResourceLocation HOBBIT_PLATES = registerPlate("hobbit");
 	public static final ResourceLocation RANGER_PLATES = registerPlate("ranger");
@@ -99,6 +104,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BREE_BUTCHER_PLATES = registerPlate("bree_butcher");
 	public static final ResourceLocation BREE_BAKERY_PLATES = registerPlate("bree_bakery");
 	public static final ResourceLocation BLUE_MOUNTAINS_PLATE = registerPlate("blue_mountains");
+	public static final ResourceLocation RIVENDELL_PLATE = registerPlate("rivendell");
 
 	public static final ResourceLocation HOBBIT_WEAPONRACKS = registerWeaponRack("hobbit");
 	public static final ResourceLocation RANGER_WEAPONRACKS = registerWeaponRack("ranger");
@@ -110,6 +116,8 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BREE_BUTCHER_WEAPONRACKS = registerWeaponRack("bree_butcher");
 	public static final ResourceLocation BREE_FARMER_WEAPONRACKS = registerWeaponRack("bree_farmer");
 	public static final ResourceLocation BLUE_MOUNTAIN_WEAPONRACKS = registerWeaponRack("blue_mountains");
+	public static final ResourceLocation RIVENDELL_WEAPONRACKS = registerWeaponRack("rivendell");
+	public static final ResourceLocation RIVENDELL_SMITHY_WEAPONRACKS = registerWeaponRack("rivendell_smithy");
 
 	public static final ResourceLocation MIDDLE_EARTH_FISHING = registerGameplay("fishing");
 	public static final ResourceLocation MIDDLE_EARTH_FISHING_FISH = registerGameplay("fishing/fish");

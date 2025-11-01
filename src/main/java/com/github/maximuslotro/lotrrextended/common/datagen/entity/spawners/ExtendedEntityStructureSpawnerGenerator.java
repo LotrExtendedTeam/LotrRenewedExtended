@@ -22,6 +22,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		// ANIMALS
 		single(ExtendedEntities.DUCK.get()).setHomeInfo(false, 5).save(pConsumer, ExtendedSpawners.DUCK_SINGLE);
 		single(EntityType.HORSE).save(pConsumer, ExtendedSpawners.HORSE_SINGLE);
+		single(EntityType.SHEEP).save(pConsumer, ExtendedSpawners.SHEEP_SINGLE);
 		// HOBBITS
 		single(ExtendedEntities.HOBBIT_FARMER.get()).setRespawnOnDeath().setHomeInfo(false, 16).save(pConsumer, ExtendedSpawners.HOBBIT_BARN_FARMER);
 		// un-disable when hobbit farmhands is added
@@ -171,6 +172,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		// DWARVEN
 		single(ExtendedEntities.DWARVEN_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.DWARVEN_SMITH);
 		//RIVENDELL
+		single(LOTREntities.RIVENDELL_ELF.get(), 1, 2, 0).setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.RIVENDELL_HOUSE);
 		single(ExtendedEntities.RIVENDELL_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.RIVENDELL_SMITH);
 		single(ExtendedEntities.RIVENDELL_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.RIVENDELL_CAPTAIN);
 		persisted(MultiSpawnType.Builder.multi()
