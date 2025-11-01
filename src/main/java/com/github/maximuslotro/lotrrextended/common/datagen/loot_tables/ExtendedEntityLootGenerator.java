@@ -459,16 +459,25 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.add(EItemLootEntry.lootItem(Items.BOOK).setWeight(4).apply(SetCount.setCount(RandomValueRange.between(1, 2)))))
 			.withPool(LootPool.lootPool()
 				.setRolls(RandomValueRange.between(0, 1))
-				.add(EItemLootEntry.lootItem(Items.FEATHER).setWeight(1).apply(SetCount.setCount(RandomValueRange.between(1, 2))))));
+				.add(EItemLootEntry.lootItem(Items.FEATHER).apply(SetCount.setCount(RandomValueRange.between(1, 2))))));
 		add(ExtendedEntities.HORSE_BOAR.get(), LootTable.lootTable()
 			.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
-				.add(EItemLootEntry.lootItem(Items.PORKCHOP).setWeight(1)
+				.add(EItemLootEntry.lootItem(Items.PORKCHOP)
 					.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
 					.apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
 		makeEntity(ExtendedEntities.RIVENDELL_CAPTAIN, elfRivendell);
 		makeEntity(ExtendedEntities.RIVENDELL_SMITH, elfRivendell);
 		makeEntity(ExtendedEntities.IMLADRIS_GUARD, elfRivendell);
-		makeEntity(ExtendedEntities.ELROND, elfRivendell);
+		add(ExtendedEntities.ELROND.get(), LootTable.lootTable()
+			.withPool(addAnotherQuickyPoolRefrence(elfRivendell))
+			.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ELVEN_STEEL_INGOT.get())
+					.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.01F, 0.0F))
+					.apply(SetCount.setCount(RandomValueRange.between(1, 2)))))
+			.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.SAPPHIRE.get())
+					.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F))
+					.apply(SetCount.setCount(ConstantRange.exactly(1))))));
 	}
 
 	public ResourceLocation makeQuickyBaseCommon(String name, Builder builder) {

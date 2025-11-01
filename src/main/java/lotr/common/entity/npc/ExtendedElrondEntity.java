@@ -1,5 +1,6 @@
 package lotr.common.entity.npc;
 
+import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
 import lotr.common.init.LOTRItems;
@@ -38,6 +39,11 @@ public class ExtendedElrondEntity extends ExtendedAbstractCloakingElfEntity {
 	@Override
 	protected NPCNameGenerator getNameGenerator() {
 		return NPCNameGenerators.NAMELESS_THING;
+	}
+
+	@Override
+	protected NPCGenderProvider getGenderProvider() {
+		return NPCGenderProvider.MALE;
 	}
 
 	@Override

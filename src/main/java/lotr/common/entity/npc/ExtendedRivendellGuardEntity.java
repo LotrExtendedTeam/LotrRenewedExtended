@@ -22,7 +22,7 @@ public class ExtendedRivendellGuardEntity extends RivendellWarriorEntity {
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return RivendellWarriorEntity.regAttrs().add(Attributes.MAX_HEALTH, 30.0D);
+		return RivendellWarriorEntity.regAttrs().add(Attributes.MAX_HEALTH, 40.0D);
 	}
 
 	@Override
