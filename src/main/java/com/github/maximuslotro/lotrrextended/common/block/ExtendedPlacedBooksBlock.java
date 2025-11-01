@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import java.util.Map;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
