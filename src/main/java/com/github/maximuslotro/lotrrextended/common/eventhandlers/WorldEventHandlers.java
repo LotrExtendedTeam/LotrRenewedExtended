@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
@@ -214,17 +213,11 @@ public class WorldEventHandlers {
 	@SubscribeEvent
 	public static void handleBlockLeftInteract$Extended(PlayerInteractEvent.RightClickBlock event) {
 		if(event.getPlayer().getMainHandItem().getItem().is(ExtendedTags.Items.PLACEABLE_BOOKS)) {
-			ExtendedLog.info("F1");
 			ExtendedPlaceableBookTypes type = ExtendedPlaceableBookTypes.getByItem(event.getPlayer().getMainHandItem().getItem());
-			ExtendedLog.info("F2");
-			if(type!=null && !(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof ExtendedPlacedBooksBlock)) {
-				ExtendedLog.info("F3");
+			if(type.notEmpty() && !(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof ExtendedPlacedBooksBlock)) {
 				BlockItemUseContext blockusecontext = new BlockItemUseContext(new ItemUseContext(event.getPlayer(), event.getHand(), event.getHitVec()));
-				ExtendedLog.info("F4");
 				if(ExtendedPlacementUtils.place(ExtendedBlocks.PLACED_BOOKS.get(), new BlockItemUseContext(blockusecontext))) {
-					ExtendedLog.info("F5");
 					if (!event.getPlayer().abilities.instabuild) {
-						ExtendedLog.info("F6");
 						event.getPlayer().getMainHandItem().shrink(1);
 					}
 					event.setCanceled(true);

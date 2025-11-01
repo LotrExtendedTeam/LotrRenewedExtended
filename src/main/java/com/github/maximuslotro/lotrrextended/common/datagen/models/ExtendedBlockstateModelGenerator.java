@@ -1624,29 +1624,58 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genPlaceableBooksBlock(ExtendedPlacedBooksBlock book) {
 		registeredBlocks.add(book);
-		Map<ExtendedPlaceableBookTypes, Map<Integer, ModelFile>> modelMap = new HashMap<>();
+		Map<ExtendedPlaceableBookTypes, Map<ExtendedPlaceableBookTypes, Map<ExtendedPlaceableBookTypes, ModelFile>>> modelMap = new HashMap<>();
+		ModelFile none = models().withExistingParent("lotrextended:"+book.getRegistryName().getPath()+"_"+ExtendedPlaceableBookTypes.NONE.getSerializedName(), lotrExtendedLoc("block/template_placed_book_1"))
+			.texture("book1", lotrExtendedLoc("block/placed_books/" + ExtendedPlaceableBookTypes.NONE.getSerializedName())).texture("particle", "block/placed_books/" + ExtendedPlaceableBookTypes.NONE.getSerializedName());
+		for (ExtendedPlaceableBookTypes type1 : ExtendedPlaceableBookTypes.values()) {
+			ResourceLocation texture1 = lotrExtendedLoc("block/placed_books/" + type1.getSerializedName());
+			ModelFile model1 = null;
+			if(type1.notEmpty()) {
+				model1 = models().withExistingParent("lotrextended:"+book.getRegistryName().getPath()+"_"+type1.getSerializedName(), lotrExtendedLoc("block/template_placed_book_1"))
+					.texture("book1", texture1).texture("particle", texture1);
+			}
+			for (ExtendedPlaceableBookTypes type2 : ExtendedPlaceableBookTypes.values()) {
+				ResourceLocation texture2 = lotrExtendedLoc("block/placed_books/" + type2.getSerializedName());
+				ModelFile model2 = null;
+				if(type1.notEmpty() && type2.notEmpty()) {
+					model2 = models().withExistingParent("lotrextended:"+book.getRegistryName().getPath()+"_"+type1.getSerializedName()+"_"+type2.getSerializedName(), lotrExtendedLoc("block/template_placed_book_2"))
+						.texture("book1", texture1).texture("book2", texture2).texture("particle", texture2);
+				}
+				for (ExtendedPlaceableBookTypes type3 : ExtendedPlaceableBookTypes.values()) {
+					ResourceLocation texture3 = lotrExtendedLoc("block/placed_books/" + type3.getSerializedName());
+					ModelFile model3 = null;
+					if(type1.notEmpty() && type2.notEmpty() && type3.notEmpty()) {
+						model3 = models().withExistingParent("lotrextended:"+book.getRegistryName().getPath()+"_"+type1.getSerializedName()+"_"+type2.getSerializedName()+"_"+type3.getSerializedName(), lotrExtendedLoc("block/template_placed_book_3"))
+							.texture("book1", texture1).texture("book2", texture2).texture("book3", texture3).texture("particle", texture3);
+					}
+					boolean t1Empty = type1.isEmpty();
+					boolean t2Empty = type2.isEmpty();
+					boolean t3Empty = type3.isEmpty();
+					ModelFile savingModel;
+					if (!t3Empty && !t2Empty && !t1Empty) {
+					    savingModel = model3;
+					} else if (t3Empty && !t2Empty && !t1Empty) {
+					    savingModel = model2;
+					} else if (t3Empty && t2Empty && !t1Empty) {
+					    savingModel = model1;
+					} else {
+					    savingModel = none;
+					}
+					modelMap.computeIfAbsent(type1, k -> new HashMap<>()).computeIfAbsent(type2, k -> new HashMap<>()).put(type3, savingModel);
+				}
+			}
+		}
+		getVariantBuilder(book).forAllStates(state -> {
+			ExtendedPlaceableBookTypes type1 = state.getValue(ExtendedPlacedBooksBlock.BOOK_TYPE1);
+			ExtendedPlaceableBookTypes type2 = state.getValue(ExtendedPlacedBooksBlock.BOOK_TYPE2);
+			ExtendedPlaceableBookTypes type3 = state.getValue(ExtendedPlacedBooksBlock.BOOK_TYPE3);
 
-	    for (ExtendedPlaceableBookTypes type : ExtendedPlaceableBookTypes.values()) {
-	        Map<Integer, ModelFile> heightModels = new HashMap<>();
-
-	        for (int height = 1; height <= 3; height++) {
-	            ResourceLocation texture = lotrExtendedLoc("block/placed_books/" + type.getSerializedName());
-	            ModelFile model = models().withExistingParent("lotrextended:"+book.getRegistryName().getPath()+"_"+type.getSerializedName()+"_"+height, lotrExtendedLoc("block/template_placed_book_"+height))
-						.texture("book", texture).texture("particle", texture);
-	            heightModels.put(height, model);
-	        }
-	        modelMap.put(type, heightModels);
-	    }
-		 getVariantBuilder(book).forAllStates(state -> {
-		        ExtendedPlaceableBookTypes type = state.getValue(ExtendedPlacedBooksBlock.BOOK_TYPE);
-		        Direction facing = state.getValue(ExtendedPlacedBooksBlock.FACING);
-		        int height = state.getValue(ExtendedPlacedBooksBlock.HEIGHT);
-				ModelFile model = modelMap.get(type).get(height);
-		        return ConfiguredModel.builder()
-		                .modelFile(model)
-		                .rotationY(facing == Direction.EAST ? 90 : facing == Direction.SOUTH ? 180 : facing == Direction.WEST ? 270 : 0)
-		                .build();
-		    });
+			Direction facing = state.getValue(ExtendedPlacedBooksBlock.FACING);
+			return ConfiguredModel.builder()
+				.modelFile(modelMap.get(type1).get(type2).get(type3))
+				.rotationY(facing == Direction.EAST ? 90 : facing == Direction.SOUTH ? 180 : facing == Direction.WEST ? 270 : 0)
+				.build();
+		});
 	}
 
 	private void genLargePotBlockItem(ExtendedLargePotBlock pot, String key) {

@@ -1,183 +1,963 @@
 {
   "variants": {
-    "book_type=book,facing=north,stack_height=1": {
-      "model": "lotrextended:block/placed_books_book_1"
+    "book_type=book,book_type2=book,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_book_book_book"
     },
-    "book_type=written_book,facing=north,stack_height=1": {
-      "model": "lotrextended:block/placed_books_written_book_1"
+    "book_type=red_book,book_type2=book,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_red_book_book_book"
     },
-    "book_type=red_book,facing=north,stack_height=1": {
-      "model": "lotrextended:block/placed_books_red_book_1"
+    "book_type=true_silver_book,book_type2=book,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book_book"
     },
-    "book_type=true_silver_book,facing=north,stack_height=1": {
-      "model": "lotrextended:block/placed_books_true_silver_book_1"
+    "book_type=none,book_type2=book,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
     },
-    "book_type=book,facing=south,stack_height=1": {
-      "model": "lotrextended:block/placed_books_book_1",
+    "book_type=book,book_type2=red_book,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_book_red_book_book"
+    },
+    "book_type=red_book,book_type2=red_book,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_red_book_red_book_book"
+    },
+    "book_type=true_silver_book,book_type2=red_book,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book_book"
+    },
+    "book_type=none,book_type2=red_book,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=book,book_type2=true_silver_book,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book_book"
+    },
+    "book_type=red_book,book_type2=true_silver_book,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book_book"
+    },
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book_book"
+    },
+    "book_type=none,book_type2=true_silver_book,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=book,book_type2=none,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=red_book,book_type2=none,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=none,book_type2=none,book_type3=book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=book,book_type2=book,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_book_book_red_book"
+    },
+    "book_type=red_book,book_type2=book,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_red_book_book_red_book"
+    },
+    "book_type=true_silver_book,book_type2=book,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book_red_book"
+    },
+    "book_type=none,book_type2=book,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=book,book_type2=red_book,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_book_red_book_red_book"
+    },
+    "book_type=red_book,book_type2=red_book,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_red_book_red_book_red_book"
+    },
+    "book_type=true_silver_book,book_type2=red_book,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book_red_book"
+    },
+    "book_type=none,book_type2=red_book,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=book,book_type2=true_silver_book,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book_red_book"
+    },
+    "book_type=red_book,book_type2=true_silver_book,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book_red_book"
+    },
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book_red_book"
+    },
+    "book_type=none,book_type2=true_silver_book,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=book,book_type2=none,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=red_book,book_type2=none,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=none,book_type2=none,book_type3=red_book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=book,book_type2=book,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_book_book_true_silver_book"
+    },
+    "book_type=red_book,book_type2=book,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_red_book_book_true_silver_book"
+    },
+    "book_type=true_silver_book,book_type2=book,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book_true_silver_book"
+    },
+    "book_type=none,book_type2=book,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=book,book_type2=red_book,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_book_red_book_true_silver_book"
+    },
+    "book_type=red_book,book_type2=red_book,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_red_book_red_book_true_silver_book"
+    },
+    "book_type=true_silver_book,book_type2=red_book,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book_true_silver_book"
+    },
+    "book_type=none,book_type2=red_book,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=book,book_type2=true_silver_book,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book_true_silver_book"
+    },
+    "book_type=red_book,book_type2=true_silver_book,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book_true_silver_book"
+    },
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book_true_silver_book"
+    },
+    "book_type=none,book_type2=true_silver_book,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=book,book_type2=none,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=red_book,book_type2=none,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=none,book_type2=none,book_type3=true_silver_book,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=book,book_type2=book,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_book_book"
+    },
+    "book_type=red_book,book_type2=book,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_red_book_book"
+    },
+    "book_type=true_silver_book,book_type2=book,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book"
+    },
+    "book_type=none,book_type2=book,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=book,book_type2=red_book,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_book_red_book"
+    },
+    "book_type=red_book,book_type2=red_book,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_red_book_red_book"
+    },
+    "book_type=true_silver_book,book_type2=red_book,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book"
+    },
+    "book_type=none,book_type2=red_book,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=book,book_type2=true_silver_book,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book"
+    },
+    "book_type=red_book,book_type2=true_silver_book,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book"
+    },
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book"
+    },
+    "book_type=none,book_type2=true_silver_book,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=book,book_type2=none,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_book"
+    },
+    "book_type=red_book,book_type2=none,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_red_book"
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_true_silver_book"
+    },
+    "book_type=none,book_type2=none,book_type3=none,facing=north": {
+      "model": "lotrextended:block/placed_books_none"
+    },
+    "book_type=book,book_type2=book,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_book_book_book",
       "y": 180
     },
-    "book_type=written_book,facing=south,stack_height=1": {
-      "model": "lotrextended:block/placed_books_written_book_1",
+    "book_type=red_book,book_type2=book,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_red_book_book_book",
       "y": 180
     },
-    "book_type=red_book,facing=south,stack_height=1": {
-      "model": "lotrextended:block/placed_books_red_book_1",
+    "book_type=true_silver_book,book_type2=book,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book_book",
       "y": 180
     },
-    "book_type=true_silver_book,facing=south,stack_height=1": {
-      "model": "lotrextended:block/placed_books_true_silver_book_1",
+    "book_type=none,book_type2=book,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
       "y": 180
     },
-    "book_type=book,facing=west,stack_height=1": {
-      "model": "lotrextended:block/placed_books_book_1",
+    "book_type=book,book_type2=red_book,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_book_red_book_book",
+      "y": 180
+    },
+    "book_type=red_book,book_type2=red_book,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_red_book_red_book_book",
+      "y": 180
+    },
+    "book_type=true_silver_book,book_type2=red_book,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book_book",
+      "y": 180
+    },
+    "book_type=none,book_type2=red_book,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=book,book_type2=true_silver_book,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book_book",
+      "y": 180
+    },
+    "book_type=red_book,book_type2=true_silver_book,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book_book",
+      "y": 180
+    },
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book_book",
+      "y": 180
+    },
+    "book_type=none,book_type2=true_silver_book,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=book,book_type2=none,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=red_book,book_type2=none,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=none,book_type2=none,book_type3=book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=book,book_type2=book,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_book_book_red_book",
+      "y": 180
+    },
+    "book_type=red_book,book_type2=book,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_red_book_book_red_book",
+      "y": 180
+    },
+    "book_type=true_silver_book,book_type2=book,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book_red_book",
+      "y": 180
+    },
+    "book_type=none,book_type2=book,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=book,book_type2=red_book,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_book_red_book_red_book",
+      "y": 180
+    },
+    "book_type=red_book,book_type2=red_book,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_red_book_red_book_red_book",
+      "y": 180
+    },
+    "book_type=true_silver_book,book_type2=red_book,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book_red_book",
+      "y": 180
+    },
+    "book_type=none,book_type2=red_book,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=book,book_type2=true_silver_book,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book_red_book",
+      "y": 180
+    },
+    "book_type=red_book,book_type2=true_silver_book,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book_red_book",
+      "y": 180
+    },
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book_red_book",
+      "y": 180
+    },
+    "book_type=none,book_type2=true_silver_book,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=book,book_type2=none,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=red_book,book_type2=none,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=none,book_type2=none,book_type3=red_book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=book,book_type2=book,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_book_book_true_silver_book",
+      "y": 180
+    },
+    "book_type=red_book,book_type2=book,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_red_book_book_true_silver_book",
+      "y": 180
+    },
+    "book_type=true_silver_book,book_type2=book,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book_true_silver_book",
+      "y": 180
+    },
+    "book_type=none,book_type2=book,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=book,book_type2=red_book,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_book_red_book_true_silver_book",
+      "y": 180
+    },
+    "book_type=red_book,book_type2=red_book,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_red_book_red_book_true_silver_book",
+      "y": 180
+    },
+    "book_type=true_silver_book,book_type2=red_book,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book_true_silver_book",
+      "y": 180
+    },
+    "book_type=none,book_type2=red_book,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=book,book_type2=true_silver_book,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book_true_silver_book",
+      "y": 180
+    },
+    "book_type=red_book,book_type2=true_silver_book,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book_true_silver_book",
+      "y": 180
+    },
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book_true_silver_book",
+      "y": 180
+    },
+    "book_type=none,book_type2=true_silver_book,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=book,book_type2=none,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=red_book,book_type2=none,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=none,book_type2=none,book_type3=true_silver_book,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=book,book_type2=book,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_book_book",
+      "y": 180
+    },
+    "book_type=red_book,book_type2=book,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_red_book_book",
+      "y": 180
+    },
+    "book_type=true_silver_book,book_type2=book,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book",
+      "y": 180
+    },
+    "book_type=none,book_type2=book,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=book,book_type2=red_book,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_book_red_book",
+      "y": 180
+    },
+    "book_type=red_book,book_type2=red_book,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_red_book_red_book",
+      "y": 180
+    },
+    "book_type=true_silver_book,book_type2=red_book,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book",
+      "y": 180
+    },
+    "book_type=none,book_type2=red_book,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=book,book_type2=true_silver_book,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book",
+      "y": 180
+    },
+    "book_type=red_book,book_type2=true_silver_book,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book",
+      "y": 180
+    },
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book",
+      "y": 180
+    },
+    "book_type=none,book_type2=true_silver_book,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=book,book_type2=none,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_book",
+      "y": 180
+    },
+    "book_type=red_book,book_type2=none,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_red_book",
+      "y": 180
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_true_silver_book",
+      "y": 180
+    },
+    "book_type=none,book_type2=none,book_type3=none,facing=south": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 180
+    },
+    "book_type=book,book_type2=book,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_book_book_book",
       "y": 270
     },
-    "book_type=written_book,facing=west,stack_height=1": {
-      "model": "lotrextended:block/placed_books_written_book_1",
+    "book_type=red_book,book_type2=book,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_red_book_book_book",
       "y": 270
     },
-    "book_type=red_book,facing=west,stack_height=1": {
-      "model": "lotrextended:block/placed_books_red_book_1",
+    "book_type=true_silver_book,book_type2=book,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book_book",
       "y": 270
     },
-    "book_type=true_silver_book,facing=west,stack_height=1": {
-      "model": "lotrextended:block/placed_books_true_silver_book_1",
+    "book_type=none,book_type2=book,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
       "y": 270
     },
-    "book_type=book,facing=east,stack_height=1": {
-      "model": "lotrextended:block/placed_books_book_1",
+    "book_type=book,book_type2=red_book,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_book_red_book_book",
+      "y": 270
+    },
+    "book_type=red_book,book_type2=red_book,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_red_book_red_book_book",
+      "y": 270
+    },
+    "book_type=true_silver_book,book_type2=red_book,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book_book",
+      "y": 270
+    },
+    "book_type=none,book_type2=red_book,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=book,book_type2=true_silver_book,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book_book",
+      "y": 270
+    },
+    "book_type=red_book,book_type2=true_silver_book,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book_book",
+      "y": 270
+    },
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book_book",
+      "y": 270
+    },
+    "book_type=none,book_type2=true_silver_book,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=book,book_type2=none,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=red_book,book_type2=none,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=none,book_type2=none,book_type3=book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=book,book_type2=book,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_book_book_red_book",
+      "y": 270
+    },
+    "book_type=red_book,book_type2=book,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_red_book_book_red_book",
+      "y": 270
+    },
+    "book_type=true_silver_book,book_type2=book,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book_red_book",
+      "y": 270
+    },
+    "book_type=none,book_type2=book,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=book,book_type2=red_book,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_book_red_book_red_book",
+      "y": 270
+    },
+    "book_type=red_book,book_type2=red_book,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_red_book_red_book_red_book",
+      "y": 270
+    },
+    "book_type=true_silver_book,book_type2=red_book,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book_red_book",
+      "y": 270
+    },
+    "book_type=none,book_type2=red_book,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=book,book_type2=true_silver_book,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book_red_book",
+      "y": 270
+    },
+    "book_type=red_book,book_type2=true_silver_book,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book_red_book",
+      "y": 270
+    },
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book_red_book",
+      "y": 270
+    },
+    "book_type=none,book_type2=true_silver_book,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=book,book_type2=none,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=red_book,book_type2=none,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=none,book_type2=none,book_type3=red_book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=book,book_type2=book,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_book_book_true_silver_book",
+      "y": 270
+    },
+    "book_type=red_book,book_type2=book,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_red_book_book_true_silver_book",
+      "y": 270
+    },
+    "book_type=true_silver_book,book_type2=book,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book_true_silver_book",
+      "y": 270
+    },
+    "book_type=none,book_type2=book,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=book,book_type2=red_book,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_book_red_book_true_silver_book",
+      "y": 270
+    },
+    "book_type=red_book,book_type2=red_book,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_red_book_red_book_true_silver_book",
+      "y": 270
+    },
+    "book_type=true_silver_book,book_type2=red_book,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book_true_silver_book",
+      "y": 270
+    },
+    "book_type=none,book_type2=red_book,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=book,book_type2=true_silver_book,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book_true_silver_book",
+      "y": 270
+    },
+    "book_type=red_book,book_type2=true_silver_book,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book_true_silver_book",
+      "y": 270
+    },
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book_true_silver_book",
+      "y": 270
+    },
+    "book_type=none,book_type2=true_silver_book,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=book,book_type2=none,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=red_book,book_type2=none,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=none,book_type2=none,book_type3=true_silver_book,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=book,book_type2=book,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_book_book",
+      "y": 270
+    },
+    "book_type=red_book,book_type2=book,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_red_book_book",
+      "y": 270
+    },
+    "book_type=true_silver_book,book_type2=book,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book",
+      "y": 270
+    },
+    "book_type=none,book_type2=book,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=book,book_type2=red_book,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_book_red_book",
+      "y": 270
+    },
+    "book_type=red_book,book_type2=red_book,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_red_book_red_book",
+      "y": 270
+    },
+    "book_type=true_silver_book,book_type2=red_book,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book",
+      "y": 270
+    },
+    "book_type=none,book_type2=red_book,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=book,book_type2=true_silver_book,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book",
+      "y": 270
+    },
+    "book_type=red_book,book_type2=true_silver_book,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book",
+      "y": 270
+    },
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book",
+      "y": 270
+    },
+    "book_type=none,book_type2=true_silver_book,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=book,book_type2=none,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_book",
+      "y": 270
+    },
+    "book_type=red_book,book_type2=none,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_red_book",
+      "y": 270
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_true_silver_book",
+      "y": 270
+    },
+    "book_type=none,book_type2=none,book_type3=none,facing=west": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 270
+    },
+    "book_type=book,book_type2=book,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_book_book_book",
       "y": 90
     },
-    "book_type=written_book,facing=east,stack_height=1": {
-      "model": "lotrextended:block/placed_books_written_book_1",
+    "book_type=red_book,book_type2=book,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_red_book_book_book",
       "y": 90
     },
-    "book_type=red_book,facing=east,stack_height=1": {
-      "model": "lotrextended:block/placed_books_red_book_1",
+    "book_type=true_silver_book,book_type2=book,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book_book",
       "y": 90
     },
-    "book_type=true_silver_book,facing=east,stack_height=1": {
-      "model": "lotrextended:block/placed_books_true_silver_book_1",
+    "book_type=none,book_type2=book,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
       "y": 90
     },
-    "book_type=book,facing=north,stack_height=2": {
-      "model": "lotrextended:block/placed_books_book_2"
-    },
-    "book_type=written_book,facing=north,stack_height=2": {
-      "model": "lotrextended:block/placed_books_written_book_2"
-    },
-    "book_type=red_book,facing=north,stack_height=2": {
-      "model": "lotrextended:block/placed_books_red_book_2"
-    },
-    "book_type=true_silver_book,facing=north,stack_height=2": {
-      "model": "lotrextended:block/placed_books_true_silver_book_2"
-    },
-    "book_type=book,facing=south,stack_height=2": {
-      "model": "lotrextended:block/placed_books_book_2",
-      "y": 180
-    },
-    "book_type=written_book,facing=south,stack_height=2": {
-      "model": "lotrextended:block/placed_books_written_book_2",
-      "y": 180
-    },
-    "book_type=red_book,facing=south,stack_height=2": {
-      "model": "lotrextended:block/placed_books_red_book_2",
-      "y": 180
-    },
-    "book_type=true_silver_book,facing=south,stack_height=2": {
-      "model": "lotrextended:block/placed_books_true_silver_book_2",
-      "y": 180
-    },
-    "book_type=book,facing=west,stack_height=2": {
-      "model": "lotrextended:block/placed_books_book_2",
-      "y": 270
-    },
-    "book_type=written_book,facing=west,stack_height=2": {
-      "model": "lotrextended:block/placed_books_written_book_2",
-      "y": 270
-    },
-    "book_type=red_book,facing=west,stack_height=2": {
-      "model": "lotrextended:block/placed_books_red_book_2",
-      "y": 270
-    },
-    "book_type=true_silver_book,facing=west,stack_height=2": {
-      "model": "lotrextended:block/placed_books_true_silver_book_2",
-      "y": 270
-    },
-    "book_type=book,facing=east,stack_height=2": {
-      "model": "lotrextended:block/placed_books_book_2",
+    "book_type=book,book_type2=red_book,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_book_red_book_book",
       "y": 90
     },
-    "book_type=written_book,facing=east,stack_height=2": {
-      "model": "lotrextended:block/placed_books_written_book_2",
+    "book_type=red_book,book_type2=red_book,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_red_book_red_book_book",
       "y": 90
     },
-    "book_type=red_book,facing=east,stack_height=2": {
-      "model": "lotrextended:block/placed_books_red_book_2",
+    "book_type=true_silver_book,book_type2=red_book,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book_book",
       "y": 90
     },
-    "book_type=true_silver_book,facing=east,stack_height=2": {
-      "model": "lotrextended:block/placed_books_true_silver_book_2",
+    "book_type=none,book_type2=red_book,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
       "y": 90
     },
-    "book_type=book,facing=north,stack_height=3": {
-      "model": "lotrextended:block/placed_books_book_3"
-    },
-    "book_type=written_book,facing=north,stack_height=3": {
-      "model": "lotrextended:block/placed_books_written_book_3"
-    },
-    "book_type=red_book,facing=north,stack_height=3": {
-      "model": "lotrextended:block/placed_books_red_book_3"
-    },
-    "book_type=true_silver_book,facing=north,stack_height=3": {
-      "model": "lotrextended:block/placed_books_true_silver_book_3"
-    },
-    "book_type=book,facing=south,stack_height=3": {
-      "model": "lotrextended:block/placed_books_book_3",
-      "y": 180
-    },
-    "book_type=written_book,facing=south,stack_height=3": {
-      "model": "lotrextended:block/placed_books_written_book_3",
-      "y": 180
-    },
-    "book_type=red_book,facing=south,stack_height=3": {
-      "model": "lotrextended:block/placed_books_red_book_3",
-      "y": 180
-    },
-    "book_type=true_silver_book,facing=south,stack_height=3": {
-      "model": "lotrextended:block/placed_books_true_silver_book_3",
-      "y": 180
-    },
-    "book_type=book,facing=west,stack_height=3": {
-      "model": "lotrextended:block/placed_books_book_3",
-      "y": 270
-    },
-    "book_type=written_book,facing=west,stack_height=3": {
-      "model": "lotrextended:block/placed_books_written_book_3",
-      "y": 270
-    },
-    "book_type=red_book,facing=west,stack_height=3": {
-      "model": "lotrextended:block/placed_books_red_book_3",
-      "y": 270
-    },
-    "book_type=true_silver_book,facing=west,stack_height=3": {
-      "model": "lotrextended:block/placed_books_true_silver_book_3",
-      "y": 270
-    },
-    "book_type=book,facing=east,stack_height=3": {
-      "model": "lotrextended:block/placed_books_book_3",
+    "book_type=book,book_type2=true_silver_book,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book_book",
       "y": 90
     },
-    "book_type=written_book,facing=east,stack_height=3": {
-      "model": "lotrextended:block/placed_books_written_book_3",
+    "book_type=red_book,book_type2=true_silver_book,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book_book",
       "y": 90
     },
-    "book_type=red_book,facing=east,stack_height=3": {
-      "model": "lotrextended:block/placed_books_red_book_3",
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book_book",
       "y": 90
     },
-    "book_type=true_silver_book,facing=east,stack_height=3": {
-      "model": "lotrextended:block/placed_books_true_silver_book_3",
+    "book_type=none,book_type2=true_silver_book,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=book,book_type2=none,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=red_book,book_type2=none,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=none,book_type2=none,book_type3=book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=book,book_type2=book,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_book_book_red_book",
+      "y": 90
+    },
+    "book_type=red_book,book_type2=book,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_red_book_book_red_book",
+      "y": 90
+    },
+    "book_type=true_silver_book,book_type2=book,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book_red_book",
+      "y": 90
+    },
+    "book_type=none,book_type2=book,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=book,book_type2=red_book,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_book_red_book_red_book",
+      "y": 90
+    },
+    "book_type=red_book,book_type2=red_book,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_red_book_red_book_red_book",
+      "y": 90
+    },
+    "book_type=true_silver_book,book_type2=red_book,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book_red_book",
+      "y": 90
+    },
+    "book_type=none,book_type2=red_book,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=book,book_type2=true_silver_book,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book_red_book",
+      "y": 90
+    },
+    "book_type=red_book,book_type2=true_silver_book,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book_red_book",
+      "y": 90
+    },
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book_red_book",
+      "y": 90
+    },
+    "book_type=none,book_type2=true_silver_book,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=book,book_type2=none,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=red_book,book_type2=none,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=none,book_type2=none,book_type3=red_book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=book,book_type2=book,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_book_book_true_silver_book",
+      "y": 90
+    },
+    "book_type=red_book,book_type2=book,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_red_book_book_true_silver_book",
+      "y": 90
+    },
+    "book_type=true_silver_book,book_type2=book,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book_true_silver_book",
+      "y": 90
+    },
+    "book_type=none,book_type2=book,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=book,book_type2=red_book,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_book_red_book_true_silver_book",
+      "y": 90
+    },
+    "book_type=red_book,book_type2=red_book,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_red_book_red_book_true_silver_book",
+      "y": 90
+    },
+    "book_type=true_silver_book,book_type2=red_book,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book_true_silver_book",
+      "y": 90
+    },
+    "book_type=none,book_type2=red_book,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=book,book_type2=true_silver_book,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book_true_silver_book",
+      "y": 90
+    },
+    "book_type=red_book,book_type2=true_silver_book,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book_true_silver_book",
+      "y": 90
+    },
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book_true_silver_book",
+      "y": 90
+    },
+    "book_type=none,book_type2=true_silver_book,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=book,book_type2=none,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=red_book,book_type2=none,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=none,book_type2=none,book_type3=true_silver_book,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=book,book_type2=book,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_book_book",
+      "y": 90
+    },
+    "book_type=red_book,book_type2=book,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_red_book_book",
+      "y": 90
+    },
+    "book_type=true_silver_book,book_type2=book,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_true_silver_book_book",
+      "y": 90
+    },
+    "book_type=none,book_type2=book,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=book,book_type2=red_book,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_book_red_book",
+      "y": 90
+    },
+    "book_type=red_book,book_type2=red_book,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_red_book_red_book",
+      "y": 90
+    },
+    "book_type=true_silver_book,book_type2=red_book,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_true_silver_book_red_book",
+      "y": 90
+    },
+    "book_type=none,book_type2=red_book,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=book,book_type2=true_silver_book,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_book_true_silver_book",
+      "y": 90
+    },
+    "book_type=red_book,book_type2=true_silver_book,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_red_book_true_silver_book",
+      "y": 90
+    },
+    "book_type=true_silver_book,book_type2=true_silver_book,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_true_silver_book_true_silver_book",
+      "y": 90
+    },
+    "book_type=none,book_type2=true_silver_book,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
+      "y": 90
+    },
+    "book_type=book,book_type2=none,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_book",
+      "y": 90
+    },
+    "book_type=red_book,book_type2=none,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_red_book",
+      "y": 90
+    },
+    "book_type=true_silver_book,book_type2=none,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_true_silver_book",
+      "y": 90
+    },
+    "book_type=none,book_type2=none,book_type3=none,facing=east": {
+      "model": "lotrextended:block/placed_books_none",
       "y": 90
     }
   }

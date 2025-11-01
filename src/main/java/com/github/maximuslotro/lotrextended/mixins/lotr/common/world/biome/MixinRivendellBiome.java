@@ -44,12 +44,13 @@ public class MixinRivendellBiome {
 				LOTRBiomeFeatures.birchBees(), 50, LOTRBiomeFeatures.birchFancyBees(), 10,
 				LOTRBiomeFeatures.beech(), 500, LOTRBiomeFeatures.beechFancy(), 200,
 				LOTRBiomeFeatures.beechBees(), 5, LOTRBiomeFeatures.beechFancyBees(), 2,
-				ExtendedBiomeFeatures.chestnut(), 500, ExtendedBiomeFeatures.chestnutFancy(), 100,
-				ExtendedBiomeFeatures.chestnutBees(), 5, ExtendedBiomeFeatures.chestnutFancyBees(), 1,
-				LOTRBiomeFeatures.larch(), 1500, LOTRBiomeFeatures.aspen(), 1000,
-				LOTRBiomeFeatures.aspenLarge(), 500, LOTRBiomeFeatures.apple(), 50,
-				LOTRBiomeFeatures.pear(), 50, LOTRBiomeFeatures.appleBees(), 1,
-				LOTRBiomeFeatures.pearBees(), 1 };
+				ExtendedBiomeFeatures.chestnut(), 100, ExtendedBiomeFeatures.chestnutBees(), 5,
+				ExtendedBiomeFeatures.chestnutFancy(), 100, ExtendedBiomeFeatures.chestnutFancyBees(), 1,
+				LOTRBiomeFeatures.larch(), 1500, 
+				LOTRBiomeFeatures.aspen(), 1000, LOTRBiomeFeatures.aspenLarge(), 500, 
+				LOTRBiomeFeatures.apple(), 50, LOTRBiomeFeatures.appleBees(), 1,
+				LOTRBiomeFeatures.pear(), 50, LOTRBiomeFeatures.pearBees(), 1,
+				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1};
 		LOTRBiomeFeatures.addTreesWithClusters((RivendellBiome)(Object)this, builder, 0, 0.25F, TreeCluster.of(12, 16), weightedTrees);
 		LOTRBiomeFeatures.addTreesAboveTreelineIncrease((RivendellBiome)(Object)this, builder, 2, 0.2F, 2, 85, weightedTrees);
 		LOTRBiomeFeatures.addGrass((RivendellBiome)(Object)this, builder, 6, GrassBlends.STANDARD);
