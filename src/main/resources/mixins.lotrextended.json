@@ -165,6 +165,7 @@
 		"lotr.common.block.MixinGateBlockAccessor",
 		"lotr.common.block.MixinWildPipeweedBlock",
 		"net.minecraft.client.gui.advancements.MixinAdvancementsScreen",
+		"net.minecraft.client.gui.advancements.MixinAdvancementTabGui",
 		"net.minecraft.client.gui.screen.inventory.MixinBlastFurnaceScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinChestScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinCraftingScreen",
