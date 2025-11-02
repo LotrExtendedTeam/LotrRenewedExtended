@@ -1256,6 +1256,11 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.RIVENDELL_CHESTPLATE, 25)
 		.addSSell(LOTRItems.RIVENDELL_LEGGINGS, 22)
 		.addSSell(LOTRItems.RIVENDELL_BOOTS, 16)
+		// Sell at a x20 price increase compared to regular Rivendell armor
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_HELMET, 10, 360, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE, 10, 500, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_LEGGINGS, 10, 440, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_BOOTS, 10, 320, 1, false)
 		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addMSell(
 				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),

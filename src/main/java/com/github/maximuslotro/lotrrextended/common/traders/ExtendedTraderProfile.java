@@ -499,7 +499,19 @@ public class ExtendedTraderProfile {
 		public Builder addSSell(Item item, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
 			return addSSell(new ItemStack(item), weight, averageCost, maxTransferQuantity, shouldTradePersist);
 		}
-
+		/**
+		 * Adds a single-item sale with full configuration.
+		 *
+		 * @param item The registry object representing the item
+		 * @param weight The relative weight of the offer
+		 * @param averageCost The average cost to the player
+		 * @param maxTransferQuantity Maximum quantity per trade
+		 * @param shouldTradePersist Should the trade tick back down
+		 * @return The instance of this builder
+		 */
+		public Builder addSSell(RegistryObject<Item> item, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
+			return addSSell(new ItemStack(item.get()), weight, averageCost, maxTransferQuantity, shouldTradePersist);
+		}
 		/**
 		 * Adds a single-item sale using an ItemStack.
 		 * Uses default weight and max transfer quantity.

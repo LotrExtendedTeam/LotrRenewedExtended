@@ -201,6 +201,22 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 			.setTitle("True Fealty").setDescription("Reach +10000.0 alignment with any faction."),
 			addAlignmentTrigger(make(), "any", 10000).parent(alignment));
 
+		Advancement conqueror = build(true, data(ExtendedItems.GONDOR_BANNER.get(), "conqueror", FrameType.TASK)
+			.setTitle("The Conqueror").setDescription("Lay claim to some land by protecting it with a banner."),
+			addStringTrigger(make(), "bannerPlaced").parent(base));
+
+		Advancement conqueror_faction = build(false, data(ExtendedItems.GONDOR_BANNER.get(), "conqueror_faction", FrameType.TASK)
+			.setTitle("Faction’s Standard").setDescription("Lay claim to some land for your faction."),
+			addStringTrigger(make(), "bannerFaction").parent(conqueror));
+
+		Advancement conqueror_self = build(false, data(ExtendedItems.GONDOR_BANNER.get(), "conqueror_self", FrameType.TASK)
+			.setTitle("The Sovereign").setDescription("Lay claim to some land for yourself."),
+			addStringTrigger(make(), "bannerSelf").parent(conqueror_faction));
+
+		Advancement shared_dominion = build(false, data(ExtendedItems.GONDOR_BANNER.get(), "shared_dominion", FrameType.TASK)
+			.setTitle("Shared Dominion").setDescription("Grant land rights to trusted companions."),
+			addStringTrigger(make(), "bannerOthers").parent(conqueror));
+
 	}
 
 	@Override
