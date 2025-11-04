@@ -82,7 +82,7 @@ public class ExtendedBowItem extends BowItem {
 
                         float j = ExtendedModifierUtils.getItemEnchantmentLevelFloat(Enchantments.POWER_ARROWS, bow);
                         if (j > 0) {
-                            abstractarrowentity.setBaseDamage(abstractarrowentity.getBaseDamage() + j * 0.5 + 0.5);
+                            abstractarrowentity.setBaseDamage(abstractarrowentity.getBaseDamage() + (double)j * 0.5 + 0.5);
                         }
 
                         int k = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, bow);

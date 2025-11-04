@@ -18,6 +18,7 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlac
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedDwarvenBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedHighElvenBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedOrcBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedSilverFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStrawBedTileEntity;
@@ -60,5 +61,6 @@ public class ExtendedTileEntities {
 	public static RegistryObject<TileEntityType<ExtendedHoistTileEntity>> HOIST;
 	public static RegistryObject<TileEntityType<ExtendedLargePotTileEntity>> LARGE_POT;
 	public static RegistryObject<TileEntityType<ExtendedChimneyTileEntity>> CHIMNEY_POT;
+	public static RegistryObject<TileEntityType<ExtendedHighElvenBedTileEntity>> HIGH_ELVEN_BED;
 }
 
