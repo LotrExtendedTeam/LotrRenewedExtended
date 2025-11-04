@@ -635,6 +635,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> DUNEDAIN_BOW;
 	public static RegistryObject<Item> LONGBOW;
 	public static RegistryObject<Item> ORC_BOW;
+	public static RegistryObject<Item> RIVENDELL_BOW;
 
 	public static RegistryObject<Item> BARROW_BLADE;
 	public static RegistryObject<Item> ANDURIL;

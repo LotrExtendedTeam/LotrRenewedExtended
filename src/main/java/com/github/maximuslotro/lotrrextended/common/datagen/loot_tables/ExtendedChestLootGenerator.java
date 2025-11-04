@@ -2150,7 +2150,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
 					.apply(ExtendedModifierScrollAdder.chanceSmithWild())));
-		// TODO add Miruvor, rivendell (bow, polearm, longspear), leeks, turnips
+		// TODO add Miruvor, rivendell (polearm, longspear), leeks, turnips
 		make(consumer, ExtendedLootTables.RIVENDELL_HOUSE_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
 					.setRolls(RandomValueRange.between(4, 6))
@@ -2160,7 +2160,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.SILVER_GOBLET.get()).setWeight(10).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(Items.GLASS_BOTTLE).setWeight(10).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(50).setRange(2, 6))
-					
+					.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BOW.get()).setWeight(10).setExactly(1).setDamageRange(0, 0.65f))
 					.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_SWORD.get()).setWeight(10).setExactly(1).setDamageRange(0, 0.65f))
 					.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_SPEAR.get()).setWeight(10).setExactly(1).setDamageRange(0, 0.65f))
 					.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_DAGGER.get()).setWeight(10).setExactly(1).setDamageRange(0, 0.65f))

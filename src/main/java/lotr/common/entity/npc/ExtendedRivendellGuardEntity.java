@@ -9,7 +9,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -29,7 +28,7 @@ public class ExtendedRivendellGuardEntity extends RivendellWarriorEntity {
 	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
 		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
 		this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.RIVENDELL_SWORD.get()));
-		this.npcItemsInv.setRangedWeapon(new ItemStack(Items.BOW));
+		this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.RIVENDELL_BOW.get()));
 		this.npcItemsInv.setIdleItemsFromMeleeWeapons();
 		setItemSlot(EquipmentSlotType.FEET, new ItemStack(ExtendedItems.IMLADRIS_GUARD_BOOTS.get()));
 		setItemSlot(EquipmentSlotType.LEGS, new ItemStack(ExtendedItems.IMLADRIS_GUARD_LEGGINGS.get()));

@@ -119,11 +119,11 @@ public class ExtendedBowItem extends BowItem {
 
     public static float getLaunchSpeedFactor(ItemStack itemstack) {
         float f = 1.0F;
-        if (itemstack != null) {
+        if (!itemstack.isEmpty()) {
             if (itemstack.getItem() instanceof ExtendedBowItem) {
                 f = f * ((ExtendedBowItem)itemstack.getItem()).getMaterial().getAttackDamageBonusScale();
             }
-            f*= ExtendedModifierUtils.getItemEnchantmentLevelFloat(Enchantments.POWER_ARROWS, itemstack);
+            f = f * ExtendedModifierUtils.getItemEnchantmentLevelFloat(Enchantments.POWER_ARROWS, itemstack);
         }
         return f;
     }
