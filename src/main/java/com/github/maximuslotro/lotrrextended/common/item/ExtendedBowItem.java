@@ -117,21 +117,23 @@ public class ExtendedBowItem extends BowItem {
 
     }
 
-    public static float getLaunchSpeedFactor(ItemStack itemstack) {
+    public float getLaunchSpeedFactor(ItemStack itemstack) {
         float f = 1.0F;
         if (!itemstack.isEmpty()) {
             if (itemstack.getItem() instanceof ExtendedBowItem) {
-                f = f * ((ExtendedBowItem)itemstack.getItem()).getMaterial().getAttackDamageBonusScale();
+                f *= bowMaterial.getAttackDamageBonusScale();
             }
-            f = f * ExtendedModifierUtils.getItemEnchantmentLevelFloat(Enchantments.POWER_ARROWS, itemstack);
+            float additionalSpeed = ExtendedModifierUtils.getItemEnchantmentLevelFloat(Enchantments.POWER_ARROWS, itemstack);
+            if(additionalSpeed!=0) {
+            	f *= additionalSpeed;
+            }
         }
         return f;
     }
 
     @Override
     public int getDefaultProjectileRange() {
-        return 15;
-        //return (int) Math.ceil(15 * arrowDamageFactor);
+       return (int) Math.ceil(15 * bowMaterial.getAttackDamageBonusScale());
     }
 
 	/**
