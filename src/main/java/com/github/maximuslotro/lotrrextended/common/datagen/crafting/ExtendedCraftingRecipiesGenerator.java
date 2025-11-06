@@ -1130,6 +1130,16 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeBirdcageRecipe(consumer, ExtendedBlocks.GOLDEN_BIRDCAGE, LOTRItems.GOLD_BARS, Tags.Items.INGOTS_GOLD, null);
 		makeBirdcageRecipe(consumer, ExtendedBlocks.MITHRIL_BIRDCAGE, LOTRItems.MITHRIL_BARS, ExtendedTags.Items.MITHRIL_INGOT, null);
 		//Dirts
+		GENERATEDRECIPES.add(ExtendedBlocks.WASTE_BLOCK.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.WASTE_BLOCK.get(), 4)
+		.pattern("FD")
+		.pattern("DB")
+		.define('D', Ingredient.of(Items.DIRT))
+		.define('F', Ingredient.of(ExtendedTags.Items.FLESH))
+		.define('B', Ingredient.of(Tags.Items.BONES))
+		.unlockedBy("has_"+Items.DIRT.getRegistryName().getPath(), has(Items.DIRT))
+		.unlockedBy("has_"+ExtendedBlocks.WASTE_BLOCK.get().getRegistryName().getPath(), has(ExtendedBlocks.WASTE_BLOCK.get()))
+		.save(consumer, lotrLoc(ExtendedBlocks.WASTE_BLOCK.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.BARREN_DIRT.get(), 8)
 		.pattern("###")

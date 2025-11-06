@@ -43,6 +43,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedWasteBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
@@ -203,6 +204,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedRemainsBlock) {
 					numberTexturedRandomYBlockItem(block.getValue().get(), "block/"+block.getKey(), 3);
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedWasteBlock) {
+					numberTexturedRandomYBlockItem(block.getValue().get(), "block/"+block.getKey(), 4);
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedBerryBushBlock) {

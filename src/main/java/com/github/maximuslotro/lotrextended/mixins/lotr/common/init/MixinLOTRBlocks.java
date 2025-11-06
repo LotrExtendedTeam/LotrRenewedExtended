@@ -907,7 +907,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new ExtendedLOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
 		ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK = registerB("green_fire_hearth_block", ExtendedGreenHearthBlock::new);
 		ExtendedBlocks.GREEN_FIRE_BLOCK = registerB("green_fire", () -> new ExtendedGreenFireBlock(Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((blockState) -> 10).sound(SoundType.WOOL)));
-
+		ExtendedBlocks.WASTE_BLOCK = registerB("waste_block", () -> new ExtendedWasteBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.COLOR_BROWN).strength(1.0F).speedFactor(0.4F).harvestTool(ToolType.SHOVEL).sound(SoundType.GRASS).isValidSpawn(ExtendedBlockParms::always).isRedstoneConductor(ExtendedBlockParms::always).isViewBlocking(ExtendedBlockParms::always).isSuffocating(ExtendedBlockParms::always)));
 		for(ExtendedEntitySpawnTypes type : ExtendedEntitySpawnTypes.values()) {
 			ExtendedBlocks.ENTITYSPAWNERBLOCKS.put(type.getSerializedName(), registerB("entity_spawner_"+type.getSerializedName(), () -> new ExtendedSpawnerBlock(Properties.of(Material.STONE).strength(-1.0F).noCollission().noDrops(), type)));
 		}

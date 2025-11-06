@@ -506,6 +506,7 @@ bcf163314dbadff10fbad6a9be711363c60afc98 assets/lotr/blockstates/taurethrim_pill
 cad6864124deaf400e33cf321cd22c42342c1cc6 assets/lotr/blockstates/topaz_block.json
 3d7478ca50a7ff250525df27072503d0aac553f4 assets/lotr/blockstates/topaz_ore.json
 85344123692c89ca7f3327b758e4401ff3f670e4 assets/lotr/blockstates/uruk_chandelier.json
+6e8d7d85104388fafce7e57a3c4797fb305495ed assets/lotr/blockstates/waste_block.json
 184a0d7db02ca0c59876f655f77f5d3d0d8759df assets/lotr/blockstates/weapon_rack.json
 9f55f8911e364bf34389068f6ca05d6882fab7ab assets/lotr/blockstates/white_fur_bed.json
 863cd1821753a5ffb8f6a10811ca91aff048914d assets/lotr/blockstates/white_fur_bundle.json
@@ -1192,6 +1193,7 @@ fe34588396135a8f91535ff822d54ab45f2c518e assets/lotr/models/item/uruk_chandelier
 ae77baa0f9a940f1e531cd9d98cd1cbcb32a1c7f assets/lotr/models/item/warg_fur_chestplate.json
 19be0467cced9a61a75a270a97215712f9cfd57b assets/lotr/models/item/warg_fur_helmet.json
 8f57af6b37947e90b3e8c7fb2e11d5811d378458 assets/lotr/models/item/warg_fur_leggings.json
+017d011cd319faae98bf2aecb42e7475ee8b43fd assets/lotr/models/item/waste_block.json
 9b75de255b0e6476ff908b64b96638231ae34678 assets/lotr/models/item/weapon_rack.json
 5b33d9a77bbad2666ee888ee17bc6a404088c0f9 assets/lotr/models/item/white_fur.json
 1d88d196c645b34955da98c88bc97e0186909d3c assets/lotr/models/item/white_fur_bed.json
@@ -1232,7 +1234,7 @@ c84eae259a47559ead729e4347ffea6d7501f424 assets/lotr/models/item/willow_wood.jso
 b66208f52b71740229ce72fc311fca8285eeb69b assets/lotr/models/item/willow_wood_stairs.json
 7414885b7f1bd5611a25313574f1a0869028ba2b assets/lotr/models/item/wooden_birdcage.json
 0b682447ce6d7a7b87d3fe4da20643a1b4f47674 assets/lotr/models/item/woodland_realm_banner.json
-58bddb8566ab9ca93f321bcffebe0020b25441ee assets/lotrextended/lang/en_us.json
+587a83387a35f4e0ed6a04aed987982918b48eb2 assets/lotrextended/lang/en_us.json
 f92a839c3ca2d718c24620379a6dfe7f6b1da56a assets/lotrextended/models/block/aged_cheese_wheel.json
 49726eaeacec21ddcdca269035e7d714a71afee2 assets/lotrextended/models/block/aged_cheese_wheel1.json
 b247a199d6c842a60642d920e78ba3135e032bf2 assets/lotrextended/models/block/aged_cheese_wheel2.json
@@ -2238,6 +2240,10 @@ b89e62540ff9e8fcdc3d493005f975b3e8d81e72 assets/lotrextended/models/block/tauret
 748a373d3bd27724ce506560242445618fa0bc41 assets/lotrextended/models/block/topaz_block.json
 fa3e8054e4c97cf443bebfcaa7a0176465adfcf4 assets/lotrextended/models/block/topaz_ore.json
 c569e36c6c2e00a55649f071f28ce72671835238 assets/lotrextended/models/block/uruk_chandelier.json
+9c830b89d5334f62f6defb5b9f3484e6f9e571c9 assets/lotrextended/models/block/waste_block_1.json
+734980837636db7568f4519badacb49ed4cb225e assets/lotrextended/models/block/waste_block_2.json
+83d5b884c9cd8b8ed922b9ec054b87bc7d4c4526 assets/lotrextended/models/block/waste_block_3.json
+e9f139dd67e695cba1d10e4427fe9fd2b38678ad assets/lotrextended/models/block/waste_block_4.json
 2f8e5bfe6d2cc69d21b91d3d8af5321fefc18082 assets/lotrextended/models/block/white_fur_bed.json
 6654b5c3d05abe8b8e1cc8887d3e635ec73a992f assets/lotrextended/models/block/white_fur_bundle.json
 cf0b4f71fda5a6d00500c08b83ef5bcdd94743f5 assets/lotrextended/models/block/white_fur_carpet.json
@@ -2322,7 +2328,7 @@ c70c45e3c5816d26d3cb61a908e5f1ee454d9e12 data/forge/loot_modifiers/global_loot_m
 fac00bd7bf5ecbedcaf64811182ce98a5c776e05 data/forge/tags/blocks/barrels.json
 fac00bd7bf5ecbedcaf64811182ce98a5c776e05 data/forge/tags/blocks/barrels/wooden.json
 0fa07fc7da64342829214b580c533a6513146b82 data/forge/tags/blocks/chests.json
-c88cdcf00bc8546c794537ebcf0550c73058e2f9 data/forge/tags/blocks/dirt.json
+0acd580e1af92ba2496e0d35e33f3f1fc16dcddd data/forge/tags/blocks/dirt.json
 dc834dca864327595426cdca8782685eb8adf0a2 data/forge/tags/blocks/ores.json
 e474fa607631f1bc964e9a3e3ebb8e31f641e752 data/forge/tags/blocks/ores/copper.json
 f82d30250ecdf5fb1713cd2eaa78f5d5863d85a4 data/forge/tags/blocks/ores/durnor.json
@@ -2757,6 +2763,7 @@ bcbc3dbb26b316f11c8ebaf4c401c69b8c233bcc data/lotr/advancements/recipes/lotr.blo
 f5d3ac7ee64ec23ad07a4fdd09b571552b1ab6b8 data/lotr/advancements/recipes/lotr.blocks/taurethrim_pillar.json
 18cd5d9340046d92a3da51576bc7005bef9f339b data/lotr/advancements/recipes/lotr.blocks/taurethrim_pillar_slab.json
 63a7718d0372370db233de6be242c0c40663b668 data/lotr/advancements/recipes/lotr.blocks/topaz_block_from_topaz.json
+3fe5bd133e60cf91d70028816fb1faf6fa5b1bde data/lotr/advancements/recipes/lotr.blocks/waste_block.json
 7b37eb460bfcc86b669cb51040fcf33a2dfd673c data/lotr/advancements/recipes/lotr.blocks/white_packed_fur_from_white_fur.json
 a2a2f513a24447d0820afd37045900629c7f4545 data/lotr/advancements/recipes/lotr.blocks/white_packed_fur_slab.json
 ce6f5929db7ef4f5e1db740ced3494ee4ddf690f data/lotr/advancements/recipes/lotr.blocks/white_packed_fur_stairs.json
@@ -3551,6 +3558,7 @@ af8cdf570d86a516fc2a53f08e9cf277027cb548 data/lotr/loot_tables/blocks/taurethrim
 32eef1a9fc90963a5fe26ec90bf5dc1eb7da4a4f data/lotr/loot_tables/blocks/topaz_block.json
 3ee3fce3e8b8925c872bb5ca9120ff6897850c50 data/lotr/loot_tables/blocks/topaz_ore.json
 a6ae842b2c0c536ebeb83ce1ab5cd8b21e47c129 data/lotr/loot_tables/blocks/uruk_chandelier.json
+1ee737e0043cec9c77968a95a827e8cc5825562a data/lotr/loot_tables/blocks/waste_block.json
 fd9b46e743fe93d0e3c0b817544fa1dd6ce3196b data/lotr/loot_tables/blocks/weapon_rack.json
 35d960d3a79ac88322eb859bc49431c26c038555 data/lotr/loot_tables/blocks/white_fur_bed.json
 bbd3139e8d6cbfc1c15d7403c3f6cb7986636b35 data/lotr/loot_tables/blocks/white_fur_bundle.json
@@ -4223,6 +4231,7 @@ e75d5c8c4a8a36334dba0ff4bfd8764bf41cfbe6 data/lotr/recipes/torch_from_silver_mal
 14ddf2808bc4034b533f570eaba16292cc5b87f4 data/lotr/recipes/warg_fur_boots.json
 9edcd27cfedb99ecd75bb8e3e7a76e3857264bde data/lotr/recipes/warg_fur_chestplate.json
 19ded18fe92a9b0360f3dfcf81c050ba71e956d2 data/lotr/recipes/warg_fur_leggings.json
+d14edc08e5881c43c532f02495f3b42a5bef7ee9 data/lotr/recipes/waste_block.json
 9020c5f5b486ef3d99e9dc79bce0e3e31200d140 data/lotr/recipes/weapon_rack.json
 71705c505da04fc1fc996107c05a7b2341c81dce data/lotr/recipes/white_fur_bed.json
 8bf23be82eb54d6c356b555bc5eb76e134ee54e5 data/lotr/recipes/white_fur_bundle_from_white_fur.json
@@ -5176,7 +5185,7 @@ fceff0a769652ec51e91f12bb486ec270d149df8 data/lotrextended/tags/blocks/chains.js
 aa7b4509baec8a665c3b51821282bfa8d448a8e1 data/lotrextended/tags/blocks/fur_blocks.json
 6c812bb15724e109c88223c397bec1dd021a34a0 data/lotrextended/tags/blocks/green_fire_base_blocks.json
 7522d70cbf0daec466a0f50cc5f3379475e4db60 data/lotrextended/tags/blocks/large_flower_pot_compatable.json
-4eed32bf735421f2a77d9a291b22537fcc803651 data/lotrextended/tags/blocks/moss_replaceable.json
+901e197291203463dbd19c1e2e2147bf5f607e84 data/lotrextended/tags/blocks/moss_replaceable.json
 063dbcf0b8c5ed3a05cfbd7bb9b869bdb7077176 data/lotrextended/tags/blocks/plum_logs.json
 8192443a582d8dd880c9529f412fd635421923df data/lotrextended/tags/blocks/remains_ores.json
 e24196951182db1117f1057f3c6e3a97e34da779 data/lotrextended/tags/blocks/willow_logs.json
@@ -5191,6 +5200,7 @@ f678efe959ace348c7ccd49b63318757f582377c data/lotrextended/tags/items/coin_minta
 67e0f9489cd09100154da8275519f7ce406a9048 data/lotrextended/tags/items/coins/coin_hundred.json
 a2e665b6357fe429fd9109aab46f5d134d1e9645 data/lotrextended/tags/items/coins/coin_one.json
 25ec3e9a933819b41a67a08f4d6ba604a1914eff data/lotrextended/tags/items/coins/coin_ten.json
+e9cc922542e59ff89a73a80baecd1c8770a364ca data/lotrextended/tags/items/flesh.json
 42065df7e74f6d89a1937c7876e342a03cdb97f2 data/lotrextended/tags/items/foods/boar_breedables.json
 c5a99b8c2fbd1b50ec15c79799e59287fdf2482e data/lotrextended/tags/items/foods/boar_feedables.json
 3a557c2d511f95bfb78cc0df2b033cfcfb49e065 data/lotrextended/tags/items/foods/duck_feedables.json
@@ -5987,14 +5997,16 @@ fe02f63826a185efa871997e8b3182b4d8f86f6c data/minecraft/tags/blocks/beacon_base_
 0bc381017b17cb69d0df424b61b65b2b8fca0823 data/minecraft/tags/blocks/beds.json
 33298a475a09d21821ed2c68380e721e14226aeb data/minecraft/tags/blocks/climbable.json
 ebd9387a672222819c5f7a9c25cd0646b2ac5654 data/minecraft/tags/blocks/doors.json
-1aece830f03b403661e52fa07e94a41853088186 data/minecraft/tags/blocks/enderman_holdable.json
+0eabd3a80c244a98d5760cbbdbdcbab1519cda9d data/minecraft/tags/blocks/enderman_holdable.json
 1d09fa0c1397470e527d12492612740c4772aa34 data/minecraft/tags/blocks/fire.json
 626205570cd225a32c5c0ff2d780d2217485a7a8 data/minecraft/tags/blocks/flower_pots.json
+f38630455a93d762511da64b0a5db0ad7648676a data/minecraft/tags/blocks/infiniburn_overworld.json
 c1cb2a0dc7dd3eb166a0ad4466c871f9f0880ac1 data/minecraft/tags/blocks/leaves.json
 22ba909365b3401e878d24f35f9c35a2a80faab5 data/minecraft/tags/blocks/logs_that_burn.json
 3a1d397925079b5859513209a2c1ebf4ad678339 data/minecraft/tags/blocks/planks.json
 d5d74dd989108ad5231b799e97787e070544dbf0 data/minecraft/tags/blocks/saplings.json
 ce698769560518b4e5e21adda21f266d13a9e47a data/minecraft/tags/blocks/slabs.json
+f38630455a93d762511da64b0a5db0ad7648676a data/minecraft/tags/blocks/soul_speed_blocks.json
 e41ea8e93a5d3037c2771d11962990adc2de327e data/minecraft/tags/blocks/stairs.json
 4e9932569dbb2a8ed8c980d44e6cc5018d430f70 data/minecraft/tags/blocks/standing_signs.json
 2c4fef8118198a0dd67060f207a3fa1a7ea385d8 data/minecraft/tags/blocks/trapdoors.json

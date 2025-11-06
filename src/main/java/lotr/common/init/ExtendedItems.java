@@ -200,6 +200,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GRASS_BLOCK_SLAB;
 	public static RegistryObject<Item> PODZOL_SLAB;
 	public static RegistryObject<Item> MYCELIUM_SLAB;
+	public static RegistryObject<Item> WASTE_BLOCK;
 	//Scorched stuff
 	public static RegistryObject<Item> SCORCHED_COBBLESTONE;
 	public static RegistryObject<Item> SCORCHED_COBBLESTONE_SLAB;
