@@ -132,6 +132,15 @@ public class ExtendedModifierScrollAdder extends LootFunction {
 		return new ExtendedModifierScrollAdder.Builder(75);
 	}
 	/**
+	 * Returns a new {@link Builder} configured for a "Very Rare" scroll with a
+	 * 1-in-100 chance of generating a modifier scroll.
+	 *
+	 * @return a new builder instance for Smith Rare scrolls
+	 */
+	public static ExtendedModifierScrollAdder.Builder chanceVeryRare() {
+		return new ExtendedModifierScrollAdder.Builder(100);
+	}
+	/**
 	 * Returns a new {@link Builder} configured with a custom chance.
 	 *
 	 * @param pChance the 1-in-N chance of generating a modifier scroll

@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class ExtendedLootTables {
 	private static final Set<ResourceLocation> LOCATIONS = Sets.newHashSet();
+	// CHESTS
 	public static final ResourceLocation HOBBIT_LARDER_CHEST = registerChest("hobbit_larder");
 	public static final ResourceLocation HOBBIT_LIVING_CHEST = registerChest("hobbit_living");
 	public static final ResourceLocation HOBBIT_TREASURE_CHEST = registerChest("hobbit_treasure");
@@ -80,21 +81,21 @@ public class ExtendedLootTables {
 
 	public static final ResourceLocation RIVENDELL_SMITH_CHEST = registerChest("rivendell_smith");
 	public static final ResourceLocation RIVENDELL_HOUSE_CHEST = registerChest("rivendell_house");
-	
+	// KEGS
 	public static final ResourceLocation HOBBIT_KEGS = registerKeg("hobbit");
 	public static final ResourceLocation RANGER_KEGS = registerKeg("ranger");
 	public static final ResourceLocation GUNDABAD_KEGS = registerKeg("gundabad");
 	public static final ResourceLocation BREE_KEGS = registerKeg("bree");
 	public static final ResourceLocation BLUE_MOUNTAINS_KEGS = registerKeg("blue_mountains");
 	public static final ResourceLocation RIVENDELL_KEGS = registerKeg("rivendell");
-
+	// VESSELS (MUGS, CUPS, GOBBLETS, HORNS, BOTTLES)
 	public static final ResourceLocation HOBBIT_VESSELS = registerVessels("hobbit");
 	public static final ResourceLocation RANGER_VESSELS = registerVessels("ranger");
 	public static final ResourceLocation GUNDABAD_VESSELS = registerVessels("gundabad");
 	public static final ResourceLocation BREE_VESSELS = registerVessels("bree");
 	public static final ResourceLocation BLUE_MOUNTAINS_VESSELS = registerVessels("blue_mountains");
 	public static final ResourceLocation RIVENDELL_VESSELS = registerVessels("rivendell");
-
+	// PLATES
 	public static final ResourceLocation HOBBIT_PLATES = registerPlate("hobbit");
 	public static final ResourceLocation RANGER_PLATES = registerPlate("ranger");
 	public static final ResourceLocation GUNDABAD_PLATES = registerPlate("gundabad");
@@ -105,20 +106,25 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BREE_BAKERY_PLATES = registerPlate("bree_bakery");
 	public static final ResourceLocation BLUE_MOUNTAINS_PLATE = registerPlate("blue_mountains");
 	public static final ResourceLocation RIVENDELL_PLATE = registerPlate("rivendell");
-
+	// WEAPONRACKS
 	public static final ResourceLocation HOBBIT_WEAPONRACKS = registerWeaponRack("hobbit");
 	public static final ResourceLocation RANGER_WEAPONRACKS = registerWeaponRack("ranger");
 	public static final ResourceLocation GUNDABAD_WEAPONRACKS = registerWeaponRack("gundabad");
 	public static final ResourceLocation BARROW_DOWN_WEAPONRACKS = registerWeaponRack("barrow_down");
+	
 	public static final ResourceLocation BREE_MAN_WEAPONRACKS = registerWeaponRack("bree_man");
 	public static final ResourceLocation BREE_HOBBIT_WEAPONRACKS = registerWeaponRack("bree_hobbit");
 	public static final ResourceLocation BREE_SMITHY_WEAPONRACKS = registerWeaponRack("bree_smithy");
 	public static final ResourceLocation BREE_BUTCHER_WEAPONRACKS = registerWeaponRack("bree_butcher");
 	public static final ResourceLocation BREE_FARMER_WEAPONRACKS = registerWeaponRack("bree_farmer");
+	
 	public static final ResourceLocation BLUE_MOUNTAIN_WEAPONRACKS = registerWeaponRack("blue_mountains");
 	public static final ResourceLocation RIVENDELL_WEAPONRACKS = registerWeaponRack("rivendell");
 	public static final ResourceLocation RIVENDELL_SMITHY_WEAPONRACKS = registerWeaponRack("rivendell_smithy");
-
+	// POTS
+	public static final ResourceLocation BLUE_MOUNTAINS_TRADER_HALL_POT = registerPot("blue_mountains_trader_hall");
+	public static final ResourceLocation RIVENDELL_POT = registerPot("rivendell");
+	// FISHING
 	public static final ResourceLocation MIDDLE_EARTH_FISHING = registerGameplay("fishing");
 	public static final ResourceLocation MIDDLE_EARTH_FISHING_FISH = registerGameplay("fishing/fish");
 	public static final ResourceLocation MIDDLE_EARTH_FISHING_JUNK = registerGameplay("fishing/junk");
@@ -144,6 +150,10 @@ public class ExtendedLootTables {
 
 	private static ResourceLocation registerWeaponRack(String location) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, "weaponracks/"+location));
+	}
+
+	private static ResourceLocation registerPot(String location) {
+		return register(new ResourceLocation(LotrExtendedMod.MODID, "pots/"+location));
 	}
 
 	private static ResourceLocation registerGameplay(String location) {
