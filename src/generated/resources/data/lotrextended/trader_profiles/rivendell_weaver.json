@@ -1,0 +1,401 @@
+{
+  "id": "lotrextended:rivendell_weaver",
+  "tradingAlignmentRequired": 50,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "weight": 50,
+      "averageCost": 1,
+      "stacks": [
+        {
+          "item": "minecraft:white_dye"
+        },
+        {
+          "item": "minecraft:black_dye"
+        },
+        {
+          "item": "minecraft:blue_dye"
+        },
+        {
+          "item": "minecraft:brown_dye"
+        },
+        {
+          "item": "minecraft:cyan_dye"
+        },
+        {
+          "item": "minecraft:gray_dye"
+        },
+        {
+          "item": "minecraft:green_dye"
+        },
+        {
+          "item": "minecraft:light_blue_dye"
+        },
+        {
+          "item": "minecraft:light_gray_dye"
+        },
+        {
+          "item": "minecraft:lime_dye"
+        },
+        {
+          "item": "minecraft:magenta_dye"
+        },
+        {
+          "item": "minecraft:orange_dye"
+        },
+        {
+          "item": "minecraft:pink_dye"
+        },
+        {
+          "item": "minecraft:purple_dye"
+        },
+        {
+          "item": "minecraft:red_dye"
+        },
+        {
+          "item": "minecraft:yellow_dye"
+        }
+      ]
+    },
+    {
+      "weight": 50,
+      "averageCost": 1,
+      "stacks": [
+        {
+          "item": "minecraft:white_wool"
+        },
+        {
+          "item": "minecraft:black_wool"
+        },
+        {
+          "item": "minecraft:blue_wool"
+        },
+        {
+          "item": "minecraft:brown_wool"
+        },
+        {
+          "item": "minecraft:cyan_wool"
+        },
+        {
+          "item": "minecraft:gray_wool"
+        },
+        {
+          "item": "minecraft:green_wool"
+        },
+        {
+          "item": "minecraft:light_blue_wool"
+        },
+        {
+          "item": "minecraft:light_gray_wool"
+        },
+        {
+          "item": "minecraft:lime_wool"
+        },
+        {
+          "item": "minecraft:magenta_wool"
+        },
+        {
+          "item": "minecraft:orange_wool"
+        },
+        {
+          "item": "minecraft:pink_wool"
+        },
+        {
+          "item": "minecraft:purple_wool"
+        },
+        {
+          "item": "minecraft:red_wool"
+        },
+        {
+          "item": "minecraft:yellow_wool"
+        }
+      ]
+    },
+    {
+      "weight": 50,
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:string",
+        "count": 3
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 2,
+      "stack": {
+        "item": "minecraft:leather"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:fur"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:flax"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 1,
+      "stack": {
+        "item": "lotr:flax_seeds"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:black_fur"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 2,
+      "stack": {
+        "item": "lotr:gray_fur"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:silver_fur"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:white_fur"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:rabbit_hide"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 18,
+      "stack": {
+        "item": "lotr:packed_fur"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 18,
+      "stack": {
+        "item": "lotr:black_packed_fur"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 18,
+      "stack": {
+        "item": "lotr:gray_packed_fur"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 27,
+      "stack": {
+        "item": "lotr:silver_packed_fur"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 200,
+      "stack": {
+        "item": "lotr:white_packed_fur"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 5,
+      "stack": {
+        "item": "minecraft:shears",
+        "nbt": "{Damage:0}"
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "averageCost": 2,
+      "stacks": [
+        {
+          "item": "minecraft:white_carpet"
+        },
+        {
+          "item": "minecraft:black_carpet"
+        },
+        {
+          "item": "minecraft:blue_carpet"
+        },
+        {
+          "item": "minecraft:brown_carpet"
+        },
+        {
+          "item": "minecraft:cyan_carpet"
+        },
+        {
+          "item": "minecraft:gray_carpet"
+        },
+        {
+          "item": "minecraft:green_carpet"
+        },
+        {
+          "item": "minecraft:light_blue_carpet"
+        },
+        {
+          "item": "minecraft:light_gray_carpet"
+        },
+        {
+          "item": "minecraft:lime_carpet"
+        },
+        {
+          "item": "minecraft:magenta_carpet"
+        },
+        {
+          "item": "minecraft:orange_carpet"
+        },
+        {
+          "item": "minecraft:pink_carpet"
+        },
+        {
+          "item": "minecraft:purple_carpet"
+        },
+        {
+          "item": "minecraft:red_carpet"
+        },
+        {
+          "item": "minecraft:yellow_carpet"
+        }
+      ]
+    },
+    {
+      "averageCost": 4,
+      "stacks": [
+        {
+          "item": "minecraft:white_wool"
+        },
+        {
+          "item": "minecraft:black_wool"
+        },
+        {
+          "item": "minecraft:blue_wool"
+        },
+        {
+          "item": "minecraft:brown_wool"
+        },
+        {
+          "item": "minecraft:cyan_wool"
+        },
+        {
+          "item": "minecraft:gray_wool"
+        },
+        {
+          "item": "minecraft:green_wool"
+        },
+        {
+          "item": "minecraft:light_blue_wool"
+        },
+        {
+          "item": "minecraft:light_gray_wool"
+        },
+        {
+          "item": "minecraft:lime_wool"
+        },
+        {
+          "item": "minecraft:magenta_wool"
+        },
+        {
+          "item": "minecraft:orange_wool"
+        },
+        {
+          "item": "minecraft:pink_wool"
+        },
+        {
+          "item": "minecraft:purple_wool"
+        },
+        {
+          "item": "minecraft:red_wool"
+        },
+        {
+          "item": "minecraft:yellow_wool"
+        }
+      ]
+    },
+    {
+      "weight": 50,
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:leather_hat"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 7,
+      "stack": {
+        "item": "minecraft:leather_helmet",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 12,
+      "stack": {
+        "item": "minecraft:leather_chestplate",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 11,
+      "stack": {
+        "item": "minecraft:leather_leggings",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 6,
+      "stack": {
+        "item": "minecraft:leather_boots",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 6,
+      "stack": {
+        "item": "minecraft:painting"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 15,
+      "stack": {
+        "item": "minecraft:leather_horse_armor"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:rivendell_banner"
+      }
+    }
+  ]
+}

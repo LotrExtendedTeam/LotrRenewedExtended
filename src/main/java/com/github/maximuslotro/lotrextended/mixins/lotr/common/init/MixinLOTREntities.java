@@ -364,8 +364,9 @@ public class MixinLOTREntities {
 		ExtendedEntities.DWARVEN_COMMANDER = regNPCD("dwarven_commander", ExtendedDwarvenCommanderEntity::new, ExtendedDwarvenCommanderEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
 		// Rivendell
 		ExtendedEntities.RIVENDELL_CAPTAIN = regNPCD("rivendell_captain", ExtendedRivendellCaptainEntity::new, ExtendedRivendellCaptainEntity::regAttrs, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(14738662, 10723248));
-		ExtendedEntities.RIVENDELL_SMITH = regNPCD("rivendell_smith", ExtendedRivendellSmithEntity::new, ExtendedRivendellSmithEntity::regAttrs, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(14738662, 10723248));
-		ExtendedEntities.IMLADRIS_GUARD = regNPCD("imladris_guard", ExtendedRivendellGuardEntity::new, ExtendedRivendellGuardEntity::regAttrs, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(14738662, 10723248));
+		ExtendedEntities.RIVENDELL_SMITH = regNPCD("rivendell_smith", ExtendedRivendellSmithEntity::new, ExtendedRivendellSmithEntity::regAttrs, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(16761223, 15721387));
+		ExtendedEntities.RIVENDELL_WEAVER = regNPCD("rivendell_weaver", ExtendedRivendellWeaverEntity::new, ExtendedRivendellWeaverEntity::regAttrs, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(16761223, 15721387));
+		ExtendedEntities.IMLADRIS_GUARD = regNPCD("imladris_guard", ExtendedRivendellGuardEntity::new, ExtendedRivendellGuardEntity::regAttrs, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(16761223, 15721387));
 		ExtendedEntities.ELROND = regNPCD("elrond", ExtendedElrondEntity::new, ExtendedElrondEntity::regAttrs, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(16761223, 15721387));
 
 		// Special

@@ -76,11 +76,11 @@ public class ExtendedEntityRenderers {
 		// Rivendell
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RIVENDELL_CAPTAIN.get(), ExtendedHighElfTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RIVENDELL_SMITH.get(), ExtendedHighElfTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RIVENDELL_WEAVER.get(), ExtendedHighElfTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.IMLADRIS_GUARD.get(), HighElfRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.ELROND.get(), ExtendedElrondRenderer::new);
 		// Special
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TOLKIEN.get(), ExtendedTolkienRenderer::new);
-
 		// Bandit
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BANDIT.get(), ExtendedBanditRenderer::new);
 	}

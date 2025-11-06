@@ -182,6 +182,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 			.addPool(ExtendedEntities.IMLADRIS_GUARD.get(), 7).addPool(LOTREntities.RIVENDELL_WARRIOR.get(), 1)
 			.build(), 2, 5, false, 15, 8).setBoundaries(20, -10, 32, 10, -2, 8).setPersistenceRequired(false).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.RIVENDELL_GUARD);
 		single(ExtendedEntities.ELROND.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.RIVENDELL_ELROND);
+		single(ExtendedEntities.RIVENDELL_WEAVER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.RIVENDELL_WEAVER);
 
 	}
 }

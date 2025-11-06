@@ -467,6 +467,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 					.apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
 		makeEntity(ExtendedEntities.RIVENDELL_CAPTAIN, elfRivendell);
 		makeEntity(ExtendedEntities.RIVENDELL_SMITH, elfRivendell);
+		makeEntity(ExtendedEntities.RIVENDELL_WEAVER, elfRivendell);
 		makeEntity(ExtendedEntities.IMLADRIS_GUARD, elfRivendell);
 		add(ExtendedEntities.ELROND.get(), LootTable.lootTable()
 			.withPool(addAnotherQuickyPoolRefrence(elfRivendell))

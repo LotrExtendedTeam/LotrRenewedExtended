@@ -1277,5 +1277,67 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				10, 350, 1, false)
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 20, 150, 1, false)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_SMITH);
+
+		make(50)
+		.addMBuy(1, Items.WHITE_DYE, Items.BLACK_DYE,
+			Items.BLUE_DYE, Items.BROWN_DYE,
+			Items.CYAN_DYE, Items.GRAY_DYE,
+			Items.GREEN_DYE, Items.LIGHT_BLUE_DYE,
+			Items.LIGHT_GRAY_DYE, Items.LIME_DYE,
+			Items.MAGENTA_DYE, Items.ORANGE_DYE,
+			Items.PINK_DYE, Items.PURPLE_DYE,
+			Items.RED_DYE, Items.YELLOW_DYE)
+		.addMBuy(1, Items.WHITE_WOOL, Items.BLACK_WOOL,
+			Items.BLUE_WOOL, Items.BROWN_WOOL,
+			Items.CYAN_WOOL, Items.GRAY_WOOL,
+			Items.GREEN_WOOL, Items.LIGHT_BLUE_WOOL,
+			Items.LIGHT_GRAY_WOOL, Items.LIME_WOOL,
+			Items.MAGENTA_WOOL, Items.ORANGE_WOOL,
+			Items.PINK_WOOL, Items.PURPLE_WOOL,
+			Items.RED_WOOL, Items.YELLOW_WOOL)
+		.addSBuy(new ItemStack(Items.STRING, 3), 1)
+		.addSBuy(Items.LEATHER, 2)
+		.addSBuy(LOTRItems.FUR, 2)
+		.addSBuy(LOTRItems.FLAX, 1)
+		.addSBuy(LOTRItems.FLAX_SEEDS, 1)
+		.addSBuy(ExtendedItems.BLACK_FUR, 2)
+		.addSBuy(ExtendedItems.GRAY_FUR, 2)
+		.addSBuy(ExtendedItems.SILVER_FUR, 3)
+		.addSBuy(ExtendedItems.WHITE_FUR, 25)
+		.addSBuy(Items.RABBIT_HIDE, 1)
+		.addSBuy(ExtendedItems.BROWN_PACKED_FUR, 18)
+		.addSBuy(ExtendedItems.BLACK_PACKED_FUR, 18)
+		.addSBuy(ExtendedItems.GRAY_PACKED_FUR, 18)
+		.addSBuy(ExtendedItems.SILVER_PACKED_FUR, 27)
+		.addSBuy(ExtendedItems.WHITE_PACKED_FUR, 200)
+		.addSBuy(Items.SHEARS, 5)
+		.addMSell(2, Items.WHITE_CARPET, Items.BLACK_CARPET,
+			Items.BLUE_CARPET, Items.BROWN_CARPET,
+			Items.CYAN_CARPET, Items.GRAY_CARPET,
+			Items.GREEN_CARPET, Items.LIGHT_BLUE_CARPET,
+			Items.LIGHT_GRAY_CARPET, Items.LIME_CARPET,
+			Items.MAGENTA_CARPET, Items.ORANGE_CARPET,
+			Items.PINK_CARPET, Items.PURPLE_CARPET,
+			Items.RED_CARPET, Items.YELLOW_CARPET)
+		.addMSell(4, Items.WHITE_WOOL, Items.BLACK_WOOL,
+			Items.BLUE_WOOL, Items.BROWN_WOOL,
+			Items.CYAN_WOOL, Items.GRAY_WOOL,
+			Items.GREEN_WOOL, Items.LIGHT_BLUE_WOOL,
+			Items.LIGHT_GRAY_WOOL, Items.LIME_WOOL,
+			Items.MAGENTA_WOOL, Items.ORANGE_WOOL,
+			Items.PINK_WOOL, Items.PURPLE_WOOL,
+			Items.RED_WOOL, Items.YELLOW_WOOL)
+		// TODO make hat and armor dyed
+		.addSSell(ExtendedItems.LEATHER_HAT, 10)
+		.addSSell(Items.LEATHER_HELMET, 7)
+		.addSSell(Items.LEATHER_CHESTPLATE, 12)
+		.addSSell(Items.LEATHER_LEGGINGS, 11)
+		.addSSell(Items.LEATHER_BOOTS, 6)
+		.addSSell(Items.PAINTING, 6)
+		// TODO add tapestry
+		.addSSell(Items.LEATHER_HORSE_ARMOR, 15)
+		.addSSell(ExtendedItems.RIVENDELL_BANNER, 4)
+		//.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 4)
+		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_WEAVER);
 	}
 }
