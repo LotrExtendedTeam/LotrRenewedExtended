@@ -103,16 +103,11 @@ public class ExtendedPotLootGenerator extends ChestLootTables  {
 				.setRolls(ConstantRange.exactly(1))
 				.when(RandomChance.randomChance(0.25f)) // 25% chance
 				.add(EItemLootEntry.lootItem(Items.BOOK).setWeight(50).setRange(1, 3))
-				.add(EItemLootEntry.lootItem(LOTRItems.WOODEN_MUG.get()).setWeight(10).setRange(1, 3))
-				.add(EItemLootEntry.lootItem(LOTRItems.GOLDEN_GOBLET.get()).setWeight(10).setRange(1, 3))
-				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_GOBLET.get()).setWeight(10).setRange(1, 3))
-				.add(EItemLootEntry.lootItem(Items.GLASS_BOTTLE).setWeight(10).setRange(1, 3))
 				.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(50).setRange(2, 6))
 				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BOW.get()).setWeight(10).setExactly(1).setDamageRange(0, 0.65f))
 				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_SWORD.get()).setWeight(10).setExactly(1).setDamageRange(0, 0.65f))
 				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_SPEAR.get()).setWeight(10).setExactly(1).setDamageRange(0, 0.65f))
 				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_DAGGER.get()).setWeight(10).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_SHIELD.get()).setWeight(10).setExactly(1).setDamageRange(0, 0.65f))
 				.add(EItemLootEntry.lootItem(Items.FEATHER).setWeight(20).setRange(2, 6))
 				.add(EItemLootEntry.lootItem(Items.STICK).setWeight(25).setRange(3, 8))
 				.add(EItemLootEntry.lootItem(Items.APPLE).setWeight(25).setRange(1, 3))
@@ -130,7 +125,6 @@ public class ExtendedPotLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(1).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(1).setExactly(1))
 				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(10).setRange(1, 10))
-				.add(EItemLootEntry.lootItem(LOTRItems.BOOK_OF_TRUE_SILVER.get()).setWeight(10).setRange(1, 10))
 				.apply(ExtendedModifierScrollAdder.chanceVeryRare()))
 			);
 	}

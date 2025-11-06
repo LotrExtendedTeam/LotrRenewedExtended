@@ -175,6 +175,17 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:gundabad_orc_banner_pattern"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 50,
           "functions": [
             {

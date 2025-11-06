@@ -130,6 +130,17 @@
           "functions": [
             {
               "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:hobbit_banner_pattern"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
               "count": {
                 "min": 1.0,
                 "max": 4.0,

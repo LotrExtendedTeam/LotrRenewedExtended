@@ -188,6 +188,17 @@
           "functions": [
             {
               "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:dunedain_banner_pattern"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
               "count": {
                 "min": 1.0,
                 "max": 3.0,
