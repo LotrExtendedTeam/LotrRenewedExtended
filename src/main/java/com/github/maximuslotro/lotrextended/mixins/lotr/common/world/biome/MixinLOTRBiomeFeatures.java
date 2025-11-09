@@ -59,6 +59,9 @@ public class MixinLOTRBiomeFeatures {
 		if(table.getBlock()==LOTRBlocks.BLUE_MOUNTAINS_CRAFTING_TABLE.get()) {
 			info.cancel();
 		}
+		if(table.getBlock()==LOTRBlocks.RIVENDELL_CRAFTING_TABLE.get()) {
+			info.cancel();
+		}
 	}
 	/**
      * Injected at the end of the {@code setup} method to add extended biome feature

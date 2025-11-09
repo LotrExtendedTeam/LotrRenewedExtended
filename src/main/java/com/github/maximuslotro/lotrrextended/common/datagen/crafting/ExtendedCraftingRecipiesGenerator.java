@@ -2219,6 +2219,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.MORDOR_WALL_BANNER.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.ANDURIL.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.SHARDS_OF_NARSIL.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.PLACED_BOOKS.get().getRegistryName().getPath());
 	}
 
 	@Override

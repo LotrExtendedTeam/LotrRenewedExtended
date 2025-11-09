@@ -1,0 +1,16 @@
+{
+  "faction_spawn_lists": [
+    {
+      "faction": "lotr:high_elves",
+      "base_weight": 100,
+      "lists": [
+        {
+          "list": "lotr:rivendell_warriors",
+          "weight": 1
+        }
+      ]
+    }
+  ],
+  "npc_density": 0.05,
+  "conquest_gain_rate": 0.2
+}
