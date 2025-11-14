@@ -51,7 +51,7 @@ public class ExtendedBlockRenderer {
 	public static final RenderMaterial WHITE_FUR_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, WHITE_FUR_BED);
 	public static final ResourceLocation DWARVEN_BED = createNewBedModel("dwarven_bed");
 	public static final RenderMaterial DWARVEN_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, DWARVEN_BED);
-	public static final ResourceLocation HIGH_ELVEN_BED = createNewBedModel("high_elven");
+	public static final ResourceLocation HIGH_ELVEN_BED = createNewBedModel("high_elven_bed");
 	public static final RenderMaterial HIGH_ELVEN_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, HIGH_ELVEN_BED);
 
 	public static ResourceLocation createNewChestModel(String name) {

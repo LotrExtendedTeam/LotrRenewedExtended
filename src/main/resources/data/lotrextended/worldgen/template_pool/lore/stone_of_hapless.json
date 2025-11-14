@@ -13,7 +13,7 @@
 					"Name": "minecraft:dirt"
 				},
 				"ground_level_delta": 2,
-				"per_piece_flags": ["snap_to_water_height"]
+				"snap_to_water_height" : true
 			}
 		}
 	]

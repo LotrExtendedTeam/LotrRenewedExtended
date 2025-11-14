@@ -1,1 +1,6 @@
-{}
+{
+  "parent": "minecraft:item/template_bed",
+  "textures": {
+    "particle": "lotrextended:entity/bed/high_elven_bed"
+  }
+}
