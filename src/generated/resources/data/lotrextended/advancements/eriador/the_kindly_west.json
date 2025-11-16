@@ -113,6 +113,30 @@
         }
       }
     },
+    "enter_rivendell_cliffs": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:rivendell_cliffs"
+        }
+      }
+    },
+    "enter_rivendell_river": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:rivendell_river"
+        }
+      }
+    },
+    "enter_rivendell_valley": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:rivendell_valley"
+        }
+      }
+    },
     "enter_rivendell_hills": {
       "trigger": "minecraft:location",
       "conditions": {
@@ -152,6 +176,9 @@
       "enter_coldfells",
       "enter_swanfleet",
       "enter_rivendell",
+      "enter_rivendell_cliffs",
+      "enter_rivendell_river",
+      "enter_rivendell_valley",
       "enter_rivendell_hills",
       "enter_barrow_downs",
       "enter_barrow_downs_river"

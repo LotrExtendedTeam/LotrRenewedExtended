@@ -24,8 +24,9 @@ import net.minecraft.item.Items;
 public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> ERIADOR_BIOMES = ImmutableList.of(LOTRBiomes.ERIADOR, LOTRBiomes.ERIADOR_DOWNS,
 			LOTRBiomes.LONE_LANDS, LOTRBiomes.LONE_LANDS_HILLS, LOTRBiomes.MIDGEWATER, LOTRBiomes.MINHIRIATH, LOTRBiomes.ERYN_VORN,
-			LOTRBiomes.TROLLSHAWS, LOTRBiomes.ETTENMOORS, LOTRBiomes.COLDFELLS, LOTRBiomes.SWANFLEET, LOTRBiomes.RIVENDELL,
-			LOTRBiomes.RIVENDELL_HILLS, ExtendedBiomes.BARROW_DOWNS, ExtendedBiomes.BARROW_DOWNS_RIVER);//, LOTRBiomes.THE_ANGLE);
+			LOTRBiomes.TROLLSHAWS, LOTRBiomes.ETTENMOORS, LOTRBiomes.COLDFELLS, LOTRBiomes.SWANFLEET, LOTRBiomes.RIVENDELL, ExtendedBiomes.RIVENDELL_CLIFFS,
+			ExtendedBiomes.RIVENDELL_RIVER, ExtendedBiomes.RIVENDELL_VALLEY, LOTRBiomes.RIVENDELL_HILLS, ExtendedBiomes.BARROW_DOWNS, 
+			ExtendedBiomes.BARROW_DOWNS_RIVER);//, LOTRBiomes.THE_ANGLE);
 
 	@Override
 	public void generateAdvancements() {
@@ -83,7 +84,8 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 
 		Advancement rivendell = build(true, data(LOTRItems.HIGH_ELVEN_BRICK.get(), "the_hidden_valley", FrameType.TASK)
 				.setTitle("The Hidden Valley").setDescription("Enter the realm of Rivendell."),
-				addBiomeTriggers(make(), LOTRBiomes.RIVENDELL, LOTRBiomes.RIVENDELL_HILLS).parent(eriadorBase));
+				addBiomeTriggers(make(), LOTRBiomes.RIVENDELL, LOTRBiomes.RIVENDELL_HILLS, ExtendedBiomes.RIVENDELL_CLIFFS, 
+					ExtendedBiomes.RIVENDELL_RIVER, ExtendedBiomes.RIVENDELL_VALLEY).parent(eriadorBase));
 		Advancement rivendell_armor = build(true, data(LOTRItems.RIVENDELL_CHESTPLATE.get(), "livery_of_lord_elrond", FrameType.TASK)
 				.setTitle("Livery of Lord Elrond").setDescription("Acquire a full set of Rivendell armor."),
 				addArmorTrigger(make(), "rivendell", LOTRItems.RIVENDELL_HELMET.get(), LOTRItems.RIVENDELL_CHESTPLATE.get(),

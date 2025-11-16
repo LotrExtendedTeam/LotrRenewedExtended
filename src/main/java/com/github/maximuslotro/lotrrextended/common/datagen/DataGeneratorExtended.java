@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.entity.ExtendedEntit
 import com.github.maximuslotro.lotrrextended.common.datagen.language.ExtendedLanguageGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.loot_tables.ExtendedLootTableGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedBlockstateModelGenerator;
+import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedEntityTextureValidator;
 import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedItemModelGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.tags.ExtendedTagRelatedGenerators;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
@@ -33,6 +34,7 @@ public class DataGeneratorExtended {
 			ExtendedClientConfig.registerDataGen();
 			generator.addProvider(new ExtendedBlockstateModelGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedItemModelGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
+			generator.addProvider(new ExtendedEntityTextureValidator(LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedSoundDefinitionsGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedLanguageGenerator(generator, LotrExtendedMod.MODID,"en_us"));
 		}

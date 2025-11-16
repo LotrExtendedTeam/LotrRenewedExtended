@@ -18,6 +18,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProcessors;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedTapestryType;
 import com.github.maximuslotro.lotrrextended.common.loot.conditions.ExtendedLootConditions;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedLootFunctions;
 import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedGlobalLootModifiers;
@@ -93,6 +94,7 @@ public class LotrExtendedMod{
 		forgeBus.register(ForgeInventoryEvents.class);
 		forgeBus.register(HiredUnitEventHandlers.class);
 		forgeBus.register(WorldEventHandlers.class);
+		ExtendedTapestryType.register(modBus);
 		ExtendedBlockStateProviderTypes.register(modBus);
 		ExtendedAttributes.register(modBus);
 		ExtendedCriteriaTriggers.generate();

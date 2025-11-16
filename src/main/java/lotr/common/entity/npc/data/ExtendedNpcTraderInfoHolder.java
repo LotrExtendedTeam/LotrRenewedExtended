@@ -3,7 +3,6 @@ package lotr.common.entity.npc.data;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedTradeType;
@@ -30,6 +29,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Util;
+import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.Color;
 import net.minecraft.util.text.Style;
@@ -77,13 +77,15 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		// Number of trades that should generate, handle  pools smaller than generated trade count or larger than 9 slots
 		int tradeCount = Math.min(Math.min(rand.nextInt(getProfile().getMaximumAdditionalTrades()+1) + getProfile().getMinimumTrades(), profileTradePool.size()), 9);
 		// Get random list of trade pool items
-		List<ExtendedTraderPoolItem> randomElements = rand
-			.ints(0, profileTradePool.size())
-			.distinct()
-			.limit(tradeCount)
-			.mapToObj(profileTradePool::get)
-			.collect(Collectors.toList());
-
+		// Weighted picks
+		List<ExtendedTraderPoolItem> randomElements = new ArrayList<>();
+		for (int i = 0; i < tradeCount; i++) {
+		    ExtendedTraderPoolItem chosen = WeightedRandom.getRandomItem(rand, profileTradePool);
+		    // Catch end of list
+		    if (chosen == null) break;
+		    randomElements.add(chosen);
+		    profileTradePool.remove(chosen);
+		}
 		// Generate a random price for each entry
 		randomElements.forEach(entry -> {
 			// Doing a bit of math from (https://lotrminecraftmod.fandom.com/wiki/Trading) results in all items

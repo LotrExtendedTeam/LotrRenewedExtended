@@ -774,6 +774,8 @@ public class MixinLOTRItems {
 		ExtendedItems.ORC_BARREL = regBlockItemB(ExtendedBlocks.ORC_BARREL, LOTRItemGroups.DECO);
 		ExtendedItems.WEAPON_RACK = regBlockItemB(ExtendedBlocks.WEAPON_RACK, LOTRItemGroups.DECO);
 
+		ExtendedItems.TAPESTRY = regItemB("tapestry", () -> new ExtendedTapestryEntityItem(new Properties().tab(LOTRItemGroups.DECO)));
+
 		//BANNERS
 		ExtendedItems.ANGMAR_BANNER = regItemB("angmar_banner", () -> new ExtendedMCBannerItem(ExtendedBlocks.ANGMAR_BANNER.get(), ExtendedBlocks.ANGMAR_WALL_BANNER.get(), new Properties().stacksTo(16).tab(LOTRItemGroups.DECO)));
 		ExtendedItems.BLUE_MOUNTAINS_BANNER = regItemB("blue_mountains_banner", () -> new ExtendedMCBannerItem(ExtendedBlocks.BLUE_MOUNTAINS_BANNER.get(), ExtendedBlocks.BLUE_MOUNTAINS_WALL_BANNER.get(), new Properties().stacksTo(16).tab(LOTRItemGroups.DECO)));
