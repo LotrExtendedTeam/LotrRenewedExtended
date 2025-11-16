@@ -1345,9 +1345,9 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(Items.LEATHER_LEGGINGS, 11)
 		.addSSell(Items.LEATHER_BOOTS, 6)
 		.addSSell(Items.PAINTING, 6)
-		// TODO add tapestry
 		.addSSell(Items.LEATHER_HORSE_ARMOR, 15)
 		.addSSell(ExtendedItems.RIVENDELL_BANNER, 4)
+		.addSSell(ExtendedItems.TAPESTRY, 300)
 		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 4)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_WEAVER);
 	}

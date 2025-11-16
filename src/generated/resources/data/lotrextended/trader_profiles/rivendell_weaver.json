@@ -399,6 +399,13 @@
     },
     {
       "weight": 50,
+      "averageCost": 300,
+      "stack": {
+        "item": "lotr:tapestry"
+      }
+    },
+    {
+      "weight": 50,
       "averageCost": 4,
       "stack": {
         "item": "lotr:rivendell_banner_pattern"

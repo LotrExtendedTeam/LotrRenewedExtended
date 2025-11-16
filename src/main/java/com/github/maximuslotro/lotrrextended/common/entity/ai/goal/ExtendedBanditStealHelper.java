@@ -21,7 +21,10 @@ public class ExtendedBanditStealHelper {
 		List<Integer> filledSlots = new ArrayList<>();
 		for (int i = 0; i < player.inventory.getContainerSize(); i++) {
 			if (!player.inventory.getItem(i).isEmpty()) {
-				filledSlots.add(i);
+				// Don't allow bandits to steal the held item or armor
+				if(player.inventory.selected !=i && (i<36 || i>39)) {
+					filledSlots.add(i);
+				}
 			}
 		}
 
@@ -46,8 +49,7 @@ public class ExtendedBanditStealHelper {
 				}
 				stack = remainder;
 			}
-
-			if (!stack.isEmpty()) {
+			if (!player.inventory.add(stack)) {
 				player.level.addFreshEntity(new ItemEntity(player.level, player.getX(), player.getY(), player.getZ(), stack));
 			}
 		}
