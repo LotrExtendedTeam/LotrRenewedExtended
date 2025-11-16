@@ -38,22 +38,22 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
  */
 public class BiomeStructureAdder {
 	/**
-     * Injects structure spacing configuration into the given {@link ServerChunkProvider}'s
-     * chunk generator settings to ensure custom structures can spawn.
-     * <p>
-     * This method clones the current structure spacing map, adds required structures
-     * with their default separation settings if not already present, and replaces
-     * the chunk generator's structure configuration with the updated map.
-     * <p>
-     * Use this method to guarantee that structures spawn in valid dimensions, or to
-     * blacklist structures from certain dimensions by controlling this map.
-     * <p>
-     * <b>Note:</b> When blacklisting, also attempt to remove the structures from
-     * the map if they might have already been added.
-     *
-     * @param provider the {@link ServerChunkProvider} whose chunk generator's
-     *                 structure configuration will be modified.
-     */
+	 * Injects structure spacing configuration into the given {@link ServerChunkProvider}'s
+	 * chunk generator settings to ensure custom structures can spawn.
+	 * <p>
+	 * This method clones the current structure spacing map, adds required structures
+	 * with their default separation settings if not already present, and replaces
+	 * the chunk generator's structure configuration with the updated map.
+	 * <p>
+	 * Use this method to guarantee that structures spawn in valid dimensions, or to
+	 * blacklist structures from certain dimensions by controlling this map.
+	 * <p>
+	 * <b>Note:</b> When blacklisting, also attempt to remove the structures from
+	 * the map if they might have already been added.
+	 *
+	 * @param provider the {@link ServerChunkProvider} whose chunk generator's
+	 *                 structure configuration will be modified.
+	 */
 	public static void addDimensionalSpacing(ServerChunkProvider provider) {
 		ExtendedLog.info("Adding structures to valid dimension instanceof MiddleEarthChunkGenerator");
 		Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(provider.generator.getSettings().structureConfig());
@@ -84,35 +84,35 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.BLUE_MOUNTAIN_STRONGHOLD.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.BLUE_MOUNTAIN_MINE.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.STONE_OF_HAPLESS.get());
-
+		addStructureToMap(tempMap, ExtendedStructuresV5.RIVENDELL_STRUCTURE.get());
 		provider.generator.getSettings().structureConfig = tempMap;
 	}
 
 	/**
-     * Adds a structure and its default separation settings to the provided structure spacing map,
-     * only if it is not already present.
-     *
-     * @param tempMap   the map of structures to their separation settings to update.
-     * @param structure the {@link Structure} to add.
-     */
+	 * Adds a structure and its default separation settings to the provided structure spacing map,
+	 * only if it is not already present.
+	 *
+	 * @param tempMap   the map of structures to their separation settings to update.
+	 * @param structure the {@link Structure} to add.
+	 */
 	private static void addStructureToMap(Map<Structure<?>, StructureSeparationSettings> tempMap, Structure<? extends IFeatureConfig> structure) {
 		tempMap.putIfAbsent(structure, DimensionStructuresSettings.DEFAULTS.get(structure));
 	}
 
 	/**
-     * Adds configured structures to biomes during the {@link BiomeLoadingEvent}.
-     * <p>
-     * This method selectively adds LOTR mod structures to specific biomes based on their registry names.
-     * Structures are added to the biome's generation list if the biome's namespace is "lotr".
-     * <p>
-     * The method handles many specific biome names, adding appropriate configured structures 
-     * to each biome's generation structures list.
-     * <p>
-     * This allows for fine control of structure spawning per biome, including adding structures
-     * only to suitable biomes and skipping others.
-     *
-     * @param event the {@link BiomeLoadingEvent} during which structures should be added to the biome.
-     */
+	 * Adds configured structures to biomes during the {@link BiomeLoadingEvent}.
+	 * <p>
+	 * This method selectively adds LOTR mod structures to specific biomes based on their registry names.
+	 * Structures are added to the biome's generation list if the biome's namespace is "lotr".
+	 * <p>
+	 * The method handles many specific biome names, adding appropriate configured structures 
+	 * to each biome's generation structures list.
+	 * <p>
+	 * This allows for fine control of structure spawning per biome, including adding structures
+	 * only to suitable biomes and skipping others.
+	 *
+	 * @param event the {@link BiomeLoadingEvent} during which structures should be added to the biome.
+	 */
 	public static void addStructuresToBiomes(BiomeLoadingEvent event) {
 		if(event.getName()!=null && event.getName().getNamespace().equals("lotr")) {
 			ResourceLocation biomeName = event.getName();
@@ -126,8 +126,12 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_TAVERN_SMALL);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_TAVERN_LARGE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_WINDMILL);
-			}else if(biomeName.equals(LOTRBiomes.SHIRE_WOODLANDS.getRegistryName())
-					||biomeName.equals(LOTRBiomes.SHIRE_MOORS.getRegistryName())||biomeName.equals(LOTRBiomes.WHITE_DOWNS.getRegistryName())) {
+			}else if(biomeName.equals(LOTRBiomes.SHIRE_WOODLANDS.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_BARN);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOLE_SMALL);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOUSE);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_TAVERN_SMALL);
+			}else if(biomeName.equals(LOTRBiomes.SHIRE_MOORS.getRegistryName())||biomeName.equals(LOTRBiomes.WHITE_DOWNS.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_BARN);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOLE_SMALL);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_HOBBIT_HOUSE);
