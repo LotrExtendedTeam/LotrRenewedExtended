@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:gondor_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_gondor_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gondor_banner"
+          }
+        ]
+      }
+    },
+    "has_gondor_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gondor_banner_pattern"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:gondor_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gondor_banner",
+      "has_gondor_banner_pattern",
+      "has_the_recipe"
+    ]
+  ]
+}

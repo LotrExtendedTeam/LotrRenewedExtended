@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:dale_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_dale_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dale_banner"
+          }
+        ]
+      }
+    },
+    "has_dale_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dale_banner_pattern"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:dale_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dale_banner",
+      "has_dale_banner_pattern",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -19,6 +19,7 @@ import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBlackFurB
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedDwarvenBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedGrayFurBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedHighElvenBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedOrcBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedSilverFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedStrawBedBlock;
@@ -906,7 +907,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new ExtendedLOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
 		ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK = registerB("green_fire_hearth_block", ExtendedGreenHearthBlock::new);
 		ExtendedBlocks.GREEN_FIRE_BLOCK = registerB("green_fire", () -> new ExtendedGreenFireBlock(Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((blockState) -> 10).sound(SoundType.WOOL)));
-
+		ExtendedBlocks.WASTE_BLOCK = registerB("waste_block", () -> new ExtendedWasteBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.COLOR_BROWN).strength(1.0F).speedFactor(0.4F).harvestTool(ToolType.SHOVEL).sound(SoundType.GRASS).isValidSpawn(ExtendedBlockParms::always).isRedstoneConductor(ExtendedBlockParms::always).isViewBlocking(ExtendedBlockParms::always).isSuffocating(ExtendedBlockParms::always)));
 		for(ExtendedEntitySpawnTypes type : ExtendedEntitySpawnTypes.values()) {
 			ExtendedBlocks.ENTITYSPAWNERBLOCKS.put(type.getSerializedName(), registerB("entity_spawner_"+type.getSerializedName(), () -> new ExtendedSpawnerBlock(Properties.of(Material.STONE).strength(-1.0F).noCollission().noDrops(), type)));
 		}
@@ -932,11 +933,12 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.WHITE_FUR_BED = registerB("white_fur_bed", () -> new ExtendedWhiteFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 		ExtendedBlocks.BEDROLL = registerB("bedroll", () -> new ExtendedBedrollBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 		ExtendedBlocks.DWARVEN_BED = registerB("dwarven_bed", () -> new ExtendedDwarvenBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.HIGH_ELVEN_BED = registerB("high_elven_bed", () -> new ExtendedHighElvenBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
 
 		ExtendedBlocks.ROPE = registerB("rope", () -> new ExtendedRopeBlock(Properties.of(Material.DECORATION).sound(ExtendedSoundTypes.ROPE).strength(0.2F).noOcclusion()));
 
 		ExtendedBlocks.SKULL_GOBLET = registerB("skull_goblet", () -> new VesselDrinkBlock(SoundType.BONE_BLOCK, 8.0F, 10.0F));
-		ExtendedBlocks.GLASS_BOTTLE = registerB("glass_bottle", () -> new VesselDrinkBlock(Properties.of(Material.DECORATION).strength(0.0F).sound(SoundType.GLASS).noOcclusion(), createVesselShape(5, 7)));
+		ExtendedBlocks.GLASS_BOTTLE = registerB("glass_bottle", () -> new ExtendedBottleVesselDrinkBlock(Properties.of(Material.DECORATION).strength(0.0F).sound(SoundType.GLASS).noOcclusion(), createVesselShape(5, 7)));
 		ExtendedBlocks.LARGE_POT = registerB("large_pot", () -> new ExtendedLargePotBlock(Properties.of(Material.DECORATION).instabreak().noOcclusion()));
 		ExtendedBlocks.CHIMNEYPOT = registerB("chimney_pot", () -> new ExtendedChimneyPotBlock(Properties.of(Material.DECORATION).instabreak().noOcclusion().randomTicks()));
 		// Large flower pot

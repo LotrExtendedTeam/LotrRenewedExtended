@@ -23,6 +23,7 @@ public class ExtendedRivendellSmithEntity extends ExtendedRivendellTraderEntity 
 	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
 		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
 		this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.BLACKSMITH_HAMMER.get()));
+		this.npcItemsInv.clearRangedWeapon();
 		this.npcItemsInv.setIdleItemsFromMeleeWeapons();
 		return spawnData;
 	}

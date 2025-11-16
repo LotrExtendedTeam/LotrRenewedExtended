@@ -419,6 +419,28 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 40,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:bree_banner"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:bree_banner_pattern"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 30,
           "functions": [
             {

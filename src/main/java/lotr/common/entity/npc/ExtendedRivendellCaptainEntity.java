@@ -3,6 +3,7 @@ package lotr.common.entity.npc;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
+import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -10,7 +11,6 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
@@ -42,7 +42,7 @@ public class ExtendedRivendellCaptainEntity extends RivendellWarriorEntity imple
 	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
 		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
 		this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.RIVENDELL_SWORD.get()));
-		this.npcItemsInv.setRangedWeapon(new ItemStack(Items.BOW));
+		this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.RIVENDELL_BOW.get()));
 		this.npcItemsInv.setIdleItemsFromMeleeWeapons();
 		setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.RIVENDELL_BOOTS.get()));
 		setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.RIVENDELL_LEGGINGS.get()));

@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:dunland_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_dunland_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dunland_banner"
+          }
+        ]
+      }
+    },
+    "has_dunland_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dunland_banner_pattern"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:dunland_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dunland_banner",
+      "has_dunland_banner_pattern",
+      "has_the_recipe"
+    ]
+  ]
+}

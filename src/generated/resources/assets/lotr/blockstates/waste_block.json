@@ -1,0 +1,66 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "lotrextended:block/waste_block_1"
+      },
+      {
+        "model": "lotrextended:block/waste_block_1",
+        "y": 90
+      },
+      {
+        "model": "lotrextended:block/waste_block_1",
+        "y": 180
+      },
+      {
+        "model": "lotrextended:block/waste_block_1",
+        "y": 270
+      },
+      {
+        "model": "lotrextended:block/waste_block_2"
+      },
+      {
+        "model": "lotrextended:block/waste_block_2",
+        "y": 90
+      },
+      {
+        "model": "lotrextended:block/waste_block_2",
+        "y": 180
+      },
+      {
+        "model": "lotrextended:block/waste_block_2",
+        "y": 270
+      },
+      {
+        "model": "lotrextended:block/waste_block_3"
+      },
+      {
+        "model": "lotrextended:block/waste_block_3",
+        "y": 90
+      },
+      {
+        "model": "lotrextended:block/waste_block_3",
+        "y": 180
+      },
+      {
+        "model": "lotrextended:block/waste_block_3",
+        "y": 270
+      },
+      {
+        "model": "lotrextended:block/waste_block_4"
+      },
+      {
+        "model": "lotrextended:block/waste_block_4",
+        "y": 90
+      },
+      {
+        "model": "lotrextended:block/waste_block_4",
+        "y": 180
+      },
+      {
+        "model": "lotrextended:block/waste_block_4",
+        "y": 270
+      }
+    ]
+  }
+}

@@ -25,7 +25,7 @@ public class ExtendedBanditFollowAndStealGoal extends Goal {
 		if(!bandit.hasStolen() && !bandit.getNPCCombatUpdater().isCombatStance()) {
 			List<PlayerEntity> players = bandit.level.getEntitiesOfClass(PlayerEntity.class, bandit.getBoundingBox().inflate(45.0D), EntityPredicates.NO_CREATIVE_OR_SPECTATOR);
 			if (!players.isEmpty()) {
-				this.targetPlayer = players.get(0);
+				this.targetPlayer = players.get(bandit.random.nextInt(players.size()));
 				return true;
 			}
 		}
@@ -34,7 +34,7 @@ public class ExtendedBanditFollowAndStealGoal extends Goal {
 
 	@Override
 	public boolean canContinueToUse() {
-		return targetPlayer != null && bandit.distanceTo(targetPlayer) < 30.0D && !bandit.hasStolen();
+		return targetPlayer != null && targetPlayer.isAlive() && bandit.distanceTo(targetPlayer) < 30.0D && !bandit.hasStolen();
 	}
 
 	@Override
@@ -45,8 +45,8 @@ public class ExtendedBanditFollowAndStealGoal extends Goal {
 	public void tick() {
 		if (targetPlayer != null && !bandit.hasStolen()) {
 			bandit.getLookControl().setLookAt(targetPlayer, 10.0F, bandit.getMaxHeadXRot());
-			navigation.moveTo(targetPlayer, 2.0D);
-			if (bandit.distanceTo(targetPlayer) < 1.0D) {
+			navigation.moveTo(targetPlayer, 1.8D);
+			if (bandit.distanceTo(targetPlayer) < 2.0D) {
 				ExtendedBanditStealHelper.stealItemsFromPlayer(targetPlayer, bandit.getInventory());
 				bandit.setStolen();
 				this.targetPlayer = null;

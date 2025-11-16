@@ -15,4 +15,7 @@ public class ExtendedBlockParms {
 	public static Boolean always(BlockState blockState, IBlockReader world, BlockPos pos, EntityType<?> entityType) {
 		return true;
 	}
+	public static Boolean always(BlockState blockState, IBlockReader world, BlockPos pos) {
+		return true;
+	}
 }

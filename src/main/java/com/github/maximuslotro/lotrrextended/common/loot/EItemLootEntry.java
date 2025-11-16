@@ -123,6 +123,14 @@ public class EItemLootEntry extends ItemLootEntry{
 			return this.constructor.build(this.weight, this.quality, this.getConditions(), this.getFunctions());
 		}
 		/**
+		 * Sets a standard damage range for this item of 0% to 75% damaged.
+		 *
+		 * @return this builder instance for chaining
+		 */
+		public ExtendedBuilder standardDamageRange() {
+			return setDamageRange(0.0f, 0.75f);
+		}
+		/**
 		 * Sets a damage range for this item.
 		 *
 		 * @param minDamagePercent the minimum damage percent (e.g., 0.90 for at least 90% damaged)

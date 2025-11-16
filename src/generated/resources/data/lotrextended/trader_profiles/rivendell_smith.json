@@ -255,6 +255,46 @@
       }
     },
     {
+      "weight": 10,
+      "averageCost": 360,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_helmet",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "averageCost": 500,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_chestplate",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "averageCost": 440,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_leggings",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "averageCost": 320,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_boots",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
       "weight": 50,
       "averageCost": 3,
       "stack": {
@@ -314,6 +354,13 @@
       "stack": {
         "item": "lotr:modifier_scroll",
         "nbt": "{REScrollMod:\"toughness1\"}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:rivendell_banner_pattern"
       }
     }
   ]

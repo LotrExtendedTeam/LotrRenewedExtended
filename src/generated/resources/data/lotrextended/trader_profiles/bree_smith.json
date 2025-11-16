@@ -358,6 +358,13 @@
           "nbt": "{REScrollMod:\"meleeReach1\"}"
         }
       ]
+    },
+    {
+      "weight": 50,
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:bree_banner_pattern"
+      }
     }
   ]
 }

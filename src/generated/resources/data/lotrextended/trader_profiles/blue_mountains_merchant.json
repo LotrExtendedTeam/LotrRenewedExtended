@@ -233,6 +233,20 @@
     },
     {
       "weight": 50,
+      "averageCost": 50,
+      "stack": {
+        "item": "lotr:blue_mountains_banner"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:blue_mountains_banner_pattern"
+      }
+    },
+    {
+      "weight": 50,
       "averageCost": 15,
       "stack": {
         "item": "lotr:blue_dwarven_throwing_axe",

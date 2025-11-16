@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lotrextended:item/durin_banner_pattern"
+    "layer0": "lotrextended:item/banner_pattern"
   }
 }

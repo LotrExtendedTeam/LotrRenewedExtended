@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:dorwinion_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_dorwinion_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dorwinion_banner"
+          }
+        ]
+      }
+    },
+    "has_dorwinion_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dorwinion_banner_pattern"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:dorwinion_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dorwinion_banner",
+      "has_dorwinion_banner_pattern",
+      "has_the_recipe"
+    ]
+  ]
+}

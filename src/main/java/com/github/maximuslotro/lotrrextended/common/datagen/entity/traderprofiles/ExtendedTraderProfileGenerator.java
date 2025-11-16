@@ -376,6 +376,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(Items.LEATHER_LEGGINGS, 11)
 		.addSSell(Items.LEATHER_BOOTS, 6)
 		.addSSell(Items.LEATHER_HORSE_ARMOR, 15)
+		.addSSell(ExtendedItems.BREE_BANNER_PATTERN, 25)
 		.save(pConsumer, ExtendedTraderTypes.BREE_LEATHERWORKER);
 
 		make(0)
@@ -656,6 +657,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.LONG)
 				),
 				10, 100, 1, false)
+		.addSSell(ExtendedItems.BREE_BANNER_PATTERN, 25)
 		.save(pConsumer, ExtendedTraderTypes.BREE_SMITH);
 
 		make(0)
@@ -784,6 +786,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.BLUE_DWARVEN_SHOVEL, 12)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SPEAR, 18)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SWORD, 16)
+		.addSSell(ExtendedItems.BLUE_MOUNTAINS_BANNER, 50)
+		.addSSell(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN, 25)
 		.addSSell(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE, 15)
 		.addSSell(new ItemStack(Items.GLOWSTONE_DUST, 4), 2)
 		.addSSell(LOTRItems.DWARVEN_FORGE, 40)
@@ -838,6 +842,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL)
 				),
 				1, 350, 1, false)
+		.addSSell(ExtendedItems.RIVENDELL_BANNER, 50)
+		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 25)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_WANDERER);
 
 		make(75).setTypicallyWandering()
@@ -881,6 +887,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL)
 				),
 				1, 350, 1, false)
+		.addSSell(ExtendedItems.LOTHLORIEN_BANNER, 75)
+		.addSSell(ExtendedItems.LOTHLORIEN_BANNER_PATTERN, 25)
 		.save(pConsumer, ExtendedTraderTypes.GALADHRIM_WANDERER);
 
 		make(0).setTypicallyWandering()
@@ -1022,6 +1030,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.DWARVEN_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
 		.addSSell(ExtendedItems.DWARF_MARRIAGE_RING, 20)
+		.addSSell(ExtendedItems.DURINS_FOLK_BANNER_PATTERN, 25)
 		.addSSell(LOTRItems.DWARVEN_SWORD, 16)
 		.addSSell(LOTRItems.DWARVEN_SPEAR, 18)
 		.addSSell(LOTRItems.DWARVEN_DAGGER, 13)
@@ -1094,6 +1103,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.BLUE_MOUNTAINS_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
 		.addSSell(ExtendedItems.DWARF_MARRIAGE_RING, 20)
+		.addSSell(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN, 25)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SWORD, 16)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SPEAR, 18)
 		.addSSell(LOTRItems.BLUE_DWARVEN_DAGGER, 13)
@@ -1256,6 +1266,11 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.RIVENDELL_CHESTPLATE, 25)
 		.addSSell(LOTRItems.RIVENDELL_LEGGINGS, 22)
 		.addSSell(LOTRItems.RIVENDELL_BOOTS, 16)
+		// Sell at a x20 price increase compared to regular Rivendell armor
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_HELMET, 10, 360, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE, 10, 500, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_LEGGINGS, 10, 440, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_BOOTS, 10, 320, 1, false)
 		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addMSell(
 				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
@@ -1271,6 +1286,69 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				),
 				10, 350, 1, false)
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 20, 150, 1, false)
+		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 25)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_SMITH);
+
+		make(50)
+		.addMBuy(1, Items.WHITE_DYE, Items.BLACK_DYE,
+			Items.BLUE_DYE, Items.BROWN_DYE,
+			Items.CYAN_DYE, Items.GRAY_DYE,
+			Items.GREEN_DYE, Items.LIGHT_BLUE_DYE,
+			Items.LIGHT_GRAY_DYE, Items.LIME_DYE,
+			Items.MAGENTA_DYE, Items.ORANGE_DYE,
+			Items.PINK_DYE, Items.PURPLE_DYE,
+			Items.RED_DYE, Items.YELLOW_DYE)
+		.addMBuy(1, Items.WHITE_WOOL, Items.BLACK_WOOL,
+			Items.BLUE_WOOL, Items.BROWN_WOOL,
+			Items.CYAN_WOOL, Items.GRAY_WOOL,
+			Items.GREEN_WOOL, Items.LIGHT_BLUE_WOOL,
+			Items.LIGHT_GRAY_WOOL, Items.LIME_WOOL,
+			Items.MAGENTA_WOOL, Items.ORANGE_WOOL,
+			Items.PINK_WOOL, Items.PURPLE_WOOL,
+			Items.RED_WOOL, Items.YELLOW_WOOL)
+		.addSBuy(new ItemStack(Items.STRING, 3), 1)
+		.addSBuy(Items.LEATHER, 2)
+		.addSBuy(LOTRItems.FUR, 2)
+		.addSBuy(LOTRItems.FLAX, 1)
+		.addSBuy(LOTRItems.FLAX_SEEDS, 1)
+		.addSBuy(ExtendedItems.BLACK_FUR, 2)
+		.addSBuy(ExtendedItems.GRAY_FUR, 2)
+		.addSBuy(ExtendedItems.SILVER_FUR, 3)
+		.addSBuy(ExtendedItems.WHITE_FUR, 25)
+		.addSBuy(Items.RABBIT_HIDE, 1)
+		.addSBuy(ExtendedItems.BROWN_PACKED_FUR, 18)
+		.addSBuy(ExtendedItems.BLACK_PACKED_FUR, 18)
+		.addSBuy(ExtendedItems.GRAY_PACKED_FUR, 18)
+		.addSBuy(ExtendedItems.SILVER_PACKED_FUR, 27)
+		.addSBuy(ExtendedItems.WHITE_PACKED_FUR, 200)
+		.addSBuy(Items.SHEARS, 5)
+		.addMSell(2, Items.WHITE_CARPET, Items.BLACK_CARPET,
+			Items.BLUE_CARPET, Items.BROWN_CARPET,
+			Items.CYAN_CARPET, Items.GRAY_CARPET,
+			Items.GREEN_CARPET, Items.LIGHT_BLUE_CARPET,
+			Items.LIGHT_GRAY_CARPET, Items.LIME_CARPET,
+			Items.MAGENTA_CARPET, Items.ORANGE_CARPET,
+			Items.PINK_CARPET, Items.PURPLE_CARPET,
+			Items.RED_CARPET, Items.YELLOW_CARPET)
+		.addMSell(4, Items.WHITE_WOOL, Items.BLACK_WOOL,
+			Items.BLUE_WOOL, Items.BROWN_WOOL,
+			Items.CYAN_WOOL, Items.GRAY_WOOL,
+			Items.GREEN_WOOL, Items.LIGHT_BLUE_WOOL,
+			Items.LIGHT_GRAY_WOOL, Items.LIME_WOOL,
+			Items.MAGENTA_WOOL, Items.ORANGE_WOOL,
+			Items.PINK_WOOL, Items.PURPLE_WOOL,
+			Items.RED_WOOL, Items.YELLOW_WOOL)
+		// TODO make hat and armor dyed
+		.addSSell(ExtendedItems.LEATHER_HAT, 10)
+		.addSSell(Items.LEATHER_HELMET, 7)
+		.addSSell(Items.LEATHER_CHESTPLATE, 12)
+		.addSSell(Items.LEATHER_LEGGINGS, 11)
+		.addSSell(Items.LEATHER_BOOTS, 6)
+		.addSSell(Items.PAINTING, 6)
+		// TODO add tapestry
+		.addSSell(Items.LEATHER_HORSE_ARMOR, 15)
+		.addSSell(ExtendedItems.RIVENDELL_BANNER, 4)
+		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 4)
+		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_WEAVER);
 	}
 }

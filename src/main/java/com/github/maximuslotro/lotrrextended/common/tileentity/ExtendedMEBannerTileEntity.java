@@ -7,6 +7,7 @@ import java.util.UUID;
 import java.util.function.Predicate;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileBase;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileFellowship;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfilePlayer;
@@ -62,6 +63,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	private String placedPlayerName;
 	private UUID connectedEntity;
 	private ExtendedBannerProtectionLevels protectionLevel = ExtendedBannerProtectionLevels.NONE;
+	private boolean firstTick = false;
 
 	public ExtendedMEBannerTileEntity() {
 		super(ExtendedTileEntities.BANNER_STANDING.get());
@@ -73,6 +75,18 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		if(isActiveHalf) {
 			setProtectionLevelFromBelowBlock();
 			if(isProtecting()) {
+				if(!firstTick && this.level!=null && !this.level.isClientSide()) {
+					ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(placedPlayerUUID);
+					if(player!=null) {
+						ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(player, "bannerPlaced");
+						if(protectionType == ExtendedBannerProtectionOwners.PLAYER) {
+							ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(player, "bannerSelf");
+						}else if(protectionType == ExtendedBannerProtectionOwners.FACTION) {
+							ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(player, "bannerFaction");
+						}
+					}
+					firstTick = true;
+				}
 				if(connectedEntity==null) {
 					createAndSetBannerEntity();
 				}else {
@@ -380,6 +394,10 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		if(!toRemove.isEmpty()) {
 			protectionWhitelist.removeAll(toRemove);
 			fixedBroken = true;
+		}
+		firstTick=false;
+		if(!protectionWhitelist.isEmpty()) {
+			ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(serverPlayer, "bannerOthers");
 		}
 		if(shouldReturn) {
 			return new ExtendedSBannerOpenChangedScreenPacket(this);

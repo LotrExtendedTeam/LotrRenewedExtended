@@ -277,6 +277,17 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:blue_mountains_banner_pattern"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 5,
           "functions": [
             {
@@ -585,31 +596,6 @@
         {
           "function": "lotrextended:modifier_scroll_adder",
           "chance": 40
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            },
-            {
-              "function": "minecraft:set_nbt",
-              "tag": "{coin_type:\"dwarven\"}"
-            }
-          ],
-          "name": "lotr:silver_coin_hundred"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:random_chance",
-          "chance": 0.02
         }
       ]
     }

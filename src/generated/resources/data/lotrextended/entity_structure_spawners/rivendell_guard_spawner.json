@@ -2,9 +2,9 @@
   "id": "lotrextended:rivendell_guard_spawner",
   "spawner_type": "persisted_use_spawner",
   "check_boundaries": {
-    "topYvalue": 10,
-    "lowerYvalue": -8,
-    "horizontal_bounds": 15
+    "topYvalue": 20,
+    "lowerYvalue": -10,
+    "horizontal_bounds": 32
   },
   "spawn_area": {
     "topYvalue": 10,

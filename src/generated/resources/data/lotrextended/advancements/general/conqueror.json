@@ -1,0 +1,32 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "icon": {
+      "item": "lotr:gondor_banner"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.general.conqueror.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.conqueror.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_string_trigger_bannerplaced": {
+      "trigger": "lotrextended:string_trigger",
+      "conditions": {
+        "triggerName": "bannerPlaced"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_string_trigger_bannerplaced"
+    ]
+  ]
+}

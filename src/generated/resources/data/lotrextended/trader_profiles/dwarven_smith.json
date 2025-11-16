@@ -231,6 +231,13 @@
     },
     {
       "weight": 50,
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:durin_banner_pattern"
+      }
+    },
+    {
+      "weight": 50,
       "averageCost": 16,
       "stack": {
         "item": "lotr:dwarven_sword",

@@ -218,7 +218,7 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		tag(BlockTags.BASE_STONE_OVERWORLD)//.add(ExtendedBlocks.GNEISS_ROCK.get()).add(ExtendedBlocks.LIMESTONE_ROCK.get()).add(ExtendedBlocks.SLATE_ROCK.get())
 		.add(LOTRBlocks.BLUE_ROCK.get()).add(LOTRBlocks.GONDOR_ROCK.get()).add(LOTRBlocks.MORDOR_ROCK.get())
 		.add(LOTRBlocks.RED_ROCK.get()).add(LOTRBlocks.ROHAN_ROCK.get());
-
+	
 		tag(ExtendedTags.Blocks.BASE_STONE_MIDDLE_EARTH).addTag(BlockTags.BASE_STONE_OVERWORLD).add(LOTRBlocks.BLUE_ROCK.get()).add(LOTRBlocks.GONDOR_ROCK.get())
 		.add(LOTRBlocks.MORDOR_ROCK.get()).add(LOTRBlocks.RED_ROCK.get()).add(LOTRBlocks.ROHAN_ROCK.get());
 
@@ -233,18 +233,22 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.add(LOTRBlocks.BLUE_ROCK_STAIRS.get()).add(LOTRBlocks.GONDOR_ROCK_STAIRS.get()).add(LOTRBlocks.MORDOR_ROCK_STAIRS.get())
 		.add(LOTRBlocks.RED_ROCK_STAIRS.get()).add(LOTRBlocks.ROHAN_ROCK_STAIRS.get());
 
+		tag(BlockTags.INFINIBURN_OVERWORLD).add(ExtendedBlocks.WASTE_BLOCK.get());
+
+		tag(BlockTags.SOUL_SPEED_BLOCKS).add(ExtendedBlocks.WASTE_BLOCK.get());
+
 		tag(ExtendedTags.Blocks.MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_OVERWORLD).add(Blocks.VINE).add(ExtendedBlocks.DEAD_MOSS_VINES.get())
 		.add(ExtendedBlocks.WILLOW_VINES.get()).add(ExtendedBlocks.BARREN_DIRT.get()).addTag(Tags.Blocks.DIRT).add(ExtendedBlocks.MUD.get())
-		.add(ExtendedBlocks.MUD_GRASS.get());
+		.add(ExtendedBlocks.MUD_GRASS.get()).add(ExtendedBlocks.WASTE_BLOCK.get());
 
 		tag(Tags.Blocks.DIRT).add(ExtendedBlocks.MOSS_BLOCK.get()).add(ExtendedBlocks.MUD.get()).add(ExtendedBlocks.MUD_GRASS.get())
-		.add(ExtendedBlocks.BARREN_DIRT.get()).addTag(ExtendedTags.Blocks.REMAINS_ORE);
+		.add(ExtendedBlocks.BARREN_DIRT.get()).addTag(ExtendedTags.Blocks.REMAINS_ORE).add(ExtendedBlocks.WASTE_BLOCK.get());
 
 		tag(LOGS_THAT_BURN).addTag(ExtendedTags.Blocks.CHESTNUT_LOGS).addTag(ExtendedTags.Blocks.BANANA_LOGS).addTag(ExtendedTags.Blocks.PLUM_LOGS)
 		.addTag(ExtendedTags.Blocks.WILLOW_LOGS);
 
 		tag(BlockTags.ENDERMAN_HOLDABLE).add(ExtendedBlocks.BARREN_DIRT.get()).add(ExtendedBlocks.MOSS_BLOCK.get()).add(ExtendedBlocks.MUD.get())
-		.add(ExtendedBlocks.MUD_GRASS.get());
+		.add(ExtendedBlocks.MUD_GRASS.get()).add(ExtendedBlocks.WASTE_BLOCK.get());
 
 		tag(BlockTags.BAMBOO_PLANTABLE_ON).add(ExtendedBlocks.MOSS_BLOCK.get()).add(ExtendedBlocks.MUD.get()).add(ExtendedBlocks.MUD_GRASS.get())
 		.addTag(ExtendedTags.Blocks.REMAINS_ORE);

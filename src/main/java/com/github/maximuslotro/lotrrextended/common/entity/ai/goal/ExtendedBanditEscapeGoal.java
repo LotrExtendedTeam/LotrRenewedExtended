@@ -38,9 +38,19 @@ public class ExtendedBanditEscapeGoal extends Goal {
 				}
 			}
 
-			List<PlayerEntity> players = bandit.level.getEntitiesOfClass(PlayerEntity.class, bandit.getBoundingBox().inflate(30.0D), EntityPredicates.NO_CREATIVE_OR_SPECTATOR);
+			List<PlayerEntity> players = bandit.level.getEntitiesOfClass(PlayerEntity.class, bandit.getBoundingBox().inflate(dangerRadius), EntityPredicates.NO_CREATIVE_OR_SPECTATOR);
 			if (!players.isEmpty()) {
-				this.targetPlayer = players.get(0);
+				// Instead of picking the first player in the closest list, pick the closest player to run away from
+				double minDistance = dangerRadius;
+				PlayerEntity closestTarget = players.get(0);
+				for(PlayerEntity player : players) {
+					double playerDistance = bandit.distanceTo(player);
+					if(playerDistance < minDistance) {
+						minDistance = playerDistance;
+						closestTarget = player;
+					}
+				}
+				this.targetPlayer = closestTarget;
 				return true;
 			}
 		}
@@ -49,7 +59,7 @@ public class ExtendedBanditEscapeGoal extends Goal {
 
 	@Override
 	public boolean canContinueToUse() {
-		if (targetPlayer != null && bandit.distanceTo(targetPlayer) < dangerRadius) {
+		if (targetPlayer != null && targetPlayer.isAlive() && bandit.distanceTo(targetPlayer) < dangerRadius) {
 			if (bandit.getLastDamageSource() != null) {
 				DamageSource last = bandit.getLastDamageSource();
                 return last.getEntity() == null || !(last.getEntity() instanceof PlayerEntity);
@@ -88,12 +98,12 @@ public class ExtendedBanditEscapeGoal extends Goal {
 
 		Vector3d banditPos = bandit.position();
 		Vector3d playerPos = targetPlayer.position();
-		Vector3d direction = banditPos.subtract(playerPos).normalize().scale(35.0D);
+		Vector3d direction = banditPos.subtract(playerPos).normalize().scale(dangerRadius);
 		Vector3d fleeTarget = banditPos.add(direction);
 
 		Path path = navigation.createPath(fleeTarget.x, fleeTarget.y, fleeTarget.z, 0);
 		if (path != null) {
-			navigation.moveTo(path, 2.0D);
+			navigation.moveTo(path, 1.5D);
 		}
 	}
 

@@ -9,9 +9,11 @@ import net.minecraft.util.IStringSerializable;
 
 public enum ExtendedPlaceableBookTypes implements IStringSerializable {
 	BOOK("book", ()->Items.BOOK),
-	WRITTEN_BOOK("written_book", ()->Items.WRITTEN_BOOK),
+	//WRITABLE_BOOK("writable_book", ()->Items.WRITABLE_BOOK),
+	//WRITTEN_BOOK("written_book", ()->Items.WRITTEN_BOOK),
 	RED_BOOK("red_book", ()->LOTRItems.RED_BOOK.get()),
-	BOOK_OF_TRUE_SILVER("true_silver_book", ()->LOTRItems.BOOK_OF_TRUE_SILVER.get());
+	BOOK_OF_TRUE_SILVER("true_silver_book", ()->LOTRItems.BOOK_OF_TRUE_SILVER.get()),
+	NONE("none", ()->Items.AIR);
 
 	private final String name;
 	private final Supplier<Item> itemType;
@@ -35,12 +37,20 @@ public enum ExtendedPlaceableBookTypes implements IStringSerializable {
 		return itemType.get();
 	}
 
+	public boolean notEmpty() {
+		return this != NONE;
+	}
+
+	public boolean isEmpty() {
+		return this == NONE;
+	}
+
 	public static ExtendedPlaceableBookTypes getByItem(Item item) {
 		for (ExtendedPlaceableBookTypes type : values()) {
-			if (type.getItemType() == item) {
+			if (type.getItemType() == item && item != Items.AIR) {
 				return type;
 			}
 		}
-		return null;
+		return NONE;
 	}
 }

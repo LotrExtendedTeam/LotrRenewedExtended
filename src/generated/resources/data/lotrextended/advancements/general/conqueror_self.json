@@ -1,0 +1,32 @@
+{
+  "parent": "lotrextended:general/conqueror_faction",
+  "display": {
+    "icon": {
+      "item": "lotr:gondor_banner"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.general.conqueror_self.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.conqueror_self.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_string_trigger_bannerself": {
+      "trigger": "lotrextended:string_trigger",
+      "conditions": {
+        "triggerName": "bannerSelf"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_string_trigger_bannerself"
+    ]
+  ]
+}

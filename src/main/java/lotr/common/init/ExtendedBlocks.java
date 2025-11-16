@@ -33,6 +33,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> EMERALD_BLOCK;
 	public static RegistryObject<Block> PEARL_BLOCK;
 	public static RegistryObject<Block> CORAL_BLOCK;
+	public static RegistryObject<Block> WASTE_BLOCK;
 
 	public static RegistryObject<Block> CHESTNUT_LOG;
 	public static RegistryObject<Block> CHESTNUT_WOOD;
@@ -480,6 +481,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> WHITE_FUR_BED;
 	public static RegistryObject<Block> BEDROLL;
 	public static RegistryObject<Block> DWARVEN_BED;
+	public static RegistryObject<Block> HIGH_ELVEN_BED;
 
 	public static RegistryObject<Block> CONQUEST_TABLE;
 	public static RegistryObject<Block> WEAPON_RACK;

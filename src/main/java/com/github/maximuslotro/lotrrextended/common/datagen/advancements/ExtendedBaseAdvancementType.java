@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements;
 import java.util.List;
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAbstractStringTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAlignmentLevelTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedBlockBreakTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCraftingTrigger;
@@ -127,8 +128,19 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 
 	public static Advancement.Builder addAlignmentTrigger(Advancement.Builder builder, FactionPointer factionPointer, float level) {
 		ExtendedAlignmentPredicate pred = new ExtendedAlignmentPredicate(FloatBound.atLeast(level), factionPointer.getNameString());
-		ExtendedAlignmentLevelTrigger.Instance trigegr = ExtendedAlignmentLevelTrigger.Instance.alignmentLevel(pred);
-		return builder.addCriterion("has_"+factionPointer.getName().getPath()+"_level_"+Math.round(level), trigegr);
+		ExtendedAlignmentLevelTrigger.Instance trigger = ExtendedAlignmentLevelTrigger.Instance.alignmentLevel(pred);
+		return builder.addCriterion("has_"+factionPointer.getName().getPath()+"_level_"+Math.round(level), trigger);
+	}
+
+	public static Advancement.Builder addAlignmentTrigger(Advancement.Builder builder, String faction, float level) {
+		ExtendedAlignmentPredicate pred = new ExtendedAlignmentPredicate(FloatBound.atLeast(level), faction);
+		ExtendedAlignmentLevelTrigger.Instance trigger = ExtendedAlignmentLevelTrigger.Instance.alignmentLevel(pred);
+		return builder.addCriterion("has_"+faction+"_level_"+Math.round(level), trigger);
+	}
+
+	public static Advancement.Builder addStringTrigger(Advancement.Builder builder, String triggerName) {
+		ExtendedAbstractStringTrigger.Instance trigger = ExtendedAbstractStringTrigger.Instance.stringTrigger(triggerName);
+		return builder.addCriterion("has_string_trigger_"+triggerName.toLowerCase(), trigger);
 	}
 
 	public static Advancement.Builder addFishTrigger(Advancement.Builder builder, Item item) {

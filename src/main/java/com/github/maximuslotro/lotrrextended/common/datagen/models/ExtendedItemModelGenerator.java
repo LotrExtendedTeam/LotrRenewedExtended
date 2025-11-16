@@ -47,6 +47,8 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.resources.ResourcePackType;
+import net.minecraft.tileentity.BannerPattern;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -169,7 +171,14 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 			}
 			if(item.getValue().get() instanceof BannerPatternItem) {
-				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				genGenerated(item.getKey(), lotrExtendedLoc("item/banner_pattern"));
+				BannerPattern pattern = ((BannerPatternItem)item.getValue().get()).getBannerPattern();
+				if (!this.existingFileHelper.exists(new ResourceLocation("minecraft", "textures/entity/banner/"+pattern.getFilename()+".png"), ResourcePackType.CLIENT_RESOURCES)) {
+	                System.out.println("Missing banner banner pattern texture: " + pattern.getFilename() + ".png");
+	            }
+				if (!this.existingFileHelper.exists(new ResourceLocation("minecraft", "textures/entity/shield/"+pattern.getFilename()+".png"), ResourcePackType.CLIENT_RESOURCES)) {
+	                System.out.println("Missing shield banner pattern texture: " + pattern.getFilename() + ".png");
+	            }
 				continue;
 			}
 			if(item.getValue().get() instanceof SpearItem) {

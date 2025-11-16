@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:dol_amroth",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotr:dol_amroth_banner"
+    }
+  ],
+  "result": {
+    "item": "lotr:dol_amroth_banner_pattern"
+  }
+}

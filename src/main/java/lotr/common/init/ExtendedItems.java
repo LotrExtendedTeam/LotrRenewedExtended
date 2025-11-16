@@ -200,6 +200,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GRASS_BLOCK_SLAB;
 	public static RegistryObject<Item> PODZOL_SLAB;
 	public static RegistryObject<Item> MYCELIUM_SLAB;
+	public static RegistryObject<Item> WASTE_BLOCK;
 	//Scorched stuff
 	public static RegistryObject<Item> SCORCHED_COBBLESTONE;
 	public static RegistryObject<Item> SCORCHED_COBBLESTONE_SLAB;
@@ -615,6 +616,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> WHITE_FUR_BED;
 	public static RegistryObject<Item> BEDROLL;
 	public static RegistryObject<Item> DWARVEN_BED;
+	public static RegistryObject<Item> HIGH_ELVEN_BED;
 
 	public static RegistryObject<Item> CONQUEST_TABLE;
 	public static RegistryObject<Item> WEAPON_RACK;
@@ -634,6 +636,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> DUNEDAIN_BOW;
 	public static RegistryObject<Item> LONGBOW;
 	public static RegistryObject<Item> ORC_BOW;
+	public static RegistryObject<Item> RIVENDELL_BOW;
 
 	public static RegistryObject<Item> BARROW_BLADE;
 	public static RegistryObject<Item> ANDURIL;
@@ -651,19 +654,34 @@ public class ExtendedItems {
 	public static RegistryObject<Item> HOBBIT_BANNER;
 	public static RegistryObject<Item> BREE_BANNER_PATTERN;
 	public static RegistryObject<Item> BREE_BANNER;
+	
+	public static RegistryObject<Item> ANGMAR_BANNER_PATTERN;
 	public static RegistryObject<Item> ANGMAR_BANNER;
+	public static RegistryObject<Item> DALE_BANNER_PATTERN;
 	public static RegistryObject<Item> DALE_BANNER;
+	public static RegistryObject<Item> DOL_AMROTH_BANNER_PATTERN;
 	public static RegistryObject<Item> DOL_AMROTH_BANNER;
+	public static RegistryObject<Item> DOL_GULDUR_BANNER_PATTERN;
 	public static RegistryObject<Item> DOL_GULDUR_BANNER;
+	public static RegistryObject<Item> DORWINION_BANNER_PATTERN;
 	public static RegistryObject<Item> DORWINION_BANNER;
+	public static RegistryObject<Item> DUNLAND_BANNER_PATTERN;
 	public static RegistryObject<Item> DUNLAND_BANNER;
+	public static RegistryObject<Item> GONDOR_BANNER_PATTERN;
 	public static RegistryObject<Item> GONDOR_BANNER;
+	public static RegistryObject<Item> ISENGARD_BANNER_PATTERN;
 	public static RegistryObject<Item> ISENGARD_BANNER;
+	public static RegistryObject<Item> LINDON_BANNER_PATTERN;
 	public static RegistryObject<Item> LINDON_BANNER;
+	public static RegistryObject<Item> LOTHLORIEN_BANNER_PATTERN;
 	public static RegistryObject<Item> LOTHLORIEN_BANNER;
+	public static RegistryObject<Item> MORDOR_BANNER_PATTERN;
 	public static RegistryObject<Item> MORDOR_BANNER;
+	public static RegistryObject<Item> RIVENDELL_BANNER_PATTERN;
 	public static RegistryObject<Item> RIVENDELL_BANNER;
+	public static RegistryObject<Item> ROHAN_BANNER_PATTERN;
 	public static RegistryObject<Item> ROHAN_BANNER;
+	public static RegistryObject<Item> WOODLAND_REALM_BANNER_PATTERN;
 	public static RegistryObject<Item> WOODLAND_REALM_BANNER;
 
 	public static RegistryObject<Item> HOBBIT_PANCAKE;

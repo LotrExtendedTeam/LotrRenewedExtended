@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/template_placed_book_1",
+  "textures": {
+    "book1": "lotrextended:block/placed_books/none",
+    "particle": "lotrextended:block/placed_books/none"
+  }
+}

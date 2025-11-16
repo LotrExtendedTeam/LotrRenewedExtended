@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:rohan",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotr:rohan_banner"
+    }
+  ],
+  "result": {
+    "item": "lotr:rohan_banner_pattern"
+  }
+}

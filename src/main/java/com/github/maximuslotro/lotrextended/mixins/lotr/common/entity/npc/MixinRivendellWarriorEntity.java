@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 * This Mixin extends {@link RivendellElfEntity} and injects additional logic
 * into the entity's spawning process. Specifically, it ensures that
 * Rivendell Warriors are equipped with a Rivendell Shield in their offhand
-* when they spawn.
+* when they spawn, and are given a Rivendell Bow.
 * </p>
 * @Mixin (RivendellWarriorEntity.class)
 */
@@ -48,7 +48,7 @@ public class MixinRivendellWarriorEntity extends RivendellElfEntity{
      * Injected method called at the end of {@code finalizeSpawn}.
      * <p>
      * This ensures that every Rivendell Warrior is automatically given
-     * a Rivendell Shield in their offhand when they are spawned into the world.
+     * a Rivendell Shield in their offhand and a Rivendell Bow when they are spawned into the world.
      * </p>
      *
      * @param sw        The {@link IServerWorld} where the entity is being spawned.
@@ -63,5 +63,6 @@ public class MixinRivendellWarriorEntity extends RivendellElfEntity{
 			at = @At("TAIL"))
 	public void finalizeSpawn$Extended(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag, CallbackInfoReturnable<ILivingEntityData> cir) {
 		setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.RIVENDELL_SHIELD.get()));
+		this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.RIVENDELL_BOW.get()));
 	}
 }
