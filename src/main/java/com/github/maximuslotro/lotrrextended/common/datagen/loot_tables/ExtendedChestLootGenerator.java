@@ -2206,6 +2206,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(ExtendedItems.ROASTED_CHESTNUT.get()).setWeight(25).setRange(1, 3))
 				.add(EItemLootEntry.lootItem(Items.CHARCOAL).setWeight(10).setRange(2, 4))
 				.add(EItemLootEntry.lootItem(Items.GOLD_NUGGET).setWeight(1).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BANNER_PATTERN.get()).setWeight(1).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(1).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(1).setExactly(1))
 				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(10).setRange(1, 10))
@@ -2232,6 +2233,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_CHESTPLATE.get()).setWeight(10).setExactly(1).standardDamageRange())
 				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_LEGGINGS.get()).setWeight(10).setExactly(1).standardDamageRange())
 				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_BOOTS.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BANNER.get()).setWeight(1).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BANNER_PATTERN.get()).setWeight(1).setExactly(1))
 				.add(EItemLootEntry.lootItem(ExtendedItems.IMLADRIS_GUARD_HELMET.get()).setWeight(1).setExactly(1).standardDamageRange()
 					.when(RandomChance.randomChance(0.2f)))
 				.add(EItemLootEntry.lootItem(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE.get()).setWeight(1).setExactly(1).standardDamageRange()
@@ -2287,13 +2290,15 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_CHESTPLATE.get()).setWeight(10).setExactly(1).standardDamageRange())
 				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_LEGGINGS.get()).setWeight(10).setExactly(1).standardDamageRange())
 				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_BOOTS.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BANNER.get()).setWeight(5).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BANNER_PATTERN.get()).setWeight(1).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(5).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(1).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
 				.apply(ExtendedModifierScrollAdder.chanceSmith())));
-		// TODO add tapestry, rivendell banner pattern
+		// TODO add tapestry
 		make(consumer, ExtendedLootTables.RIVENDELL_WEAVER_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
 				.setRolls(RandomValueRange.between(2, 4))
@@ -2302,6 +2307,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(Items.FEATHER).setWeight(20).setRange(2, 6))
 				.add(EItemLootEntry.lootItem(Items.STICK).setWeight(25).setRange(3, 8))
 				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BANNER.get()).setWeight(50).setRange(2, 8))
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BANNER_PATTERN.get()).setWeight(20).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.FUR.get()).setWeight(50).setRange(1, 4)))
 			);
 	}

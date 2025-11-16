@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:mordor",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotr:mordor_banner"
+    }
+  ],
+  "result": {
+    "item": "lotr:mordor_banner_pattern"
+  }
+}

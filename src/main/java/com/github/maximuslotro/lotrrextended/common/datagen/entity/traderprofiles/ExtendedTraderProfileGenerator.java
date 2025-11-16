@@ -376,6 +376,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(Items.LEATHER_LEGGINGS, 11)
 		.addSSell(Items.LEATHER_BOOTS, 6)
 		.addSSell(Items.LEATHER_HORSE_ARMOR, 15)
+		.addSSell(ExtendedItems.BREE_BANNER_PATTERN, 25)
 		.save(pConsumer, ExtendedTraderTypes.BREE_LEATHERWORKER);
 
 		make(0)
@@ -656,6 +657,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.LONG)
 				),
 				10, 100, 1, false)
+		.addSSell(ExtendedItems.BREE_BANNER_PATTERN, 25)
 		.save(pConsumer, ExtendedTraderTypes.BREE_SMITH);
 
 		make(0)
@@ -784,6 +786,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.BLUE_DWARVEN_SHOVEL, 12)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SPEAR, 18)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SWORD, 16)
+		.addSSell(ExtendedItems.BLUE_MOUNTAINS_BANNER, 50)
+		.addSSell(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN, 25)
 		.addSSell(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE, 15)
 		.addSSell(new ItemStack(Items.GLOWSTONE_DUST, 4), 2)
 		.addSSell(LOTRItems.DWARVEN_FORGE, 40)
@@ -838,6 +842,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL)
 				),
 				1, 350, 1, false)
+		.addSSell(ExtendedItems.RIVENDELL_BANNER, 50)
+		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 25)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_WANDERER);
 
 		make(75).setTypicallyWandering()
@@ -881,6 +887,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL)
 				),
 				1, 350, 1, false)
+		.addSSell(ExtendedItems.LOTHLORIEN_BANNER, 75)
+		.addSSell(ExtendedItems.LOTHLORIEN_BANNER_PATTERN, 25)
 		.save(pConsumer, ExtendedTraderTypes.GALADHRIM_WANDERER);
 
 		make(0).setTypicallyWandering()
@@ -1022,6 +1030,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.DWARVEN_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
 		.addSSell(ExtendedItems.DWARF_MARRIAGE_RING, 20)
+		.addSSell(ExtendedItems.DURINS_FOLK_BANNER_PATTERN, 25)
 		.addSSell(LOTRItems.DWARVEN_SWORD, 16)
 		.addSSell(LOTRItems.DWARVEN_SPEAR, 18)
 		.addSSell(LOTRItems.DWARVEN_DAGGER, 13)
@@ -1094,6 +1103,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.BLUE_MOUNTAINS_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
 		.addSSell(ExtendedItems.DWARF_MARRIAGE_RING, 20)
+		.addSSell(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN, 25)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SWORD, 16)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SPEAR, 18)
 		.addSSell(LOTRItems.BLUE_DWARVEN_DAGGER, 13)
@@ -1276,6 +1286,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				),
 				10, 350, 1, false)
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 20, 150, 1, false)
+		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 25)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_SMITH);
 
 		make(50)
@@ -1337,7 +1348,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		// TODO add tapestry
 		.addSSell(Items.LEATHER_HORSE_ARMOR, 15)
 		.addSSell(ExtendedItems.RIVENDELL_BANNER, 4)
-		//.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 4)
+		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 4)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_WEAVER);
 	}
 }

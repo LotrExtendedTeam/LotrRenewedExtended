@@ -521,6 +521,27 @@
               "count": 1
             }
           ],
+          "name": "lotr:rivendell_banner"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:rivendell_banner_pattern"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
           "name": "lotr:silver_ring"
         },
         {

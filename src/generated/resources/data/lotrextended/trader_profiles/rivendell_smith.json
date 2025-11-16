@@ -355,6 +355,13 @@
         "item": "lotr:modifier_scroll",
         "nbt": "{REScrollMod:\"toughness1\"}"
       }
+    },
+    {
+      "weight": 50,
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:rivendell_banner_pattern"
+      }
     }
   ]
 }

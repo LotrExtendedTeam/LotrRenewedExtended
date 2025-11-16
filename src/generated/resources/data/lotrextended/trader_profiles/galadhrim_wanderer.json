@@ -286,6 +286,20 @@
           "nbt": "{REScrollMod:\"toolSpeed4\"}"
         }
       ]
+    },
+    {
+      "weight": 50,
+      "averageCost": 75,
+      "stack": {
+        "item": "lotr:lothlorien_banner"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:lothlorien_banner_pattern"
+      }
     }
   ]
 }

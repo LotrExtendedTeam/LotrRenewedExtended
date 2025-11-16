@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:dorwinion",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotr:dorwinion_banner"
+    }
+  ],
+  "result": {
+    "item": "lotr:dorwinion_banner_pattern"
+  }
+}

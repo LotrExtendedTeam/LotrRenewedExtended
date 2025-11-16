@@ -218,6 +218,20 @@
           "nbt": "{REScrollMod:\"toolSpeed4\"}"
         }
       ]
+    },
+    {
+      "weight": 50,
+      "averageCost": 50,
+      "stack": {
+        "item": "lotr:rivendell_banner"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:rivendell_banner_pattern"
+      }
     }
   ]
 }
