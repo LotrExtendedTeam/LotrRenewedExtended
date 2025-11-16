@@ -123,7 +123,7 @@ public class ExtendedStructuresV5 {
 		register(BLUE_MOUNTAIN_MINE.get(), false,      30, 15, 17277298);
 		register(BLUE_MOUNTAIN_SETTLEMENT.get(), false,45, 25, 167568658);
 		register(STONE_OF_HAPLESS.get(), false,        1,  0,  0);
-		register(RIVENDELL_STRUCTURE.get(), false,     16, 9,  534646346);
+		register(RIVENDELL_STRUCTURE.get(), false,     14, 8,  534646346);
 	}
 
 	/**
