@@ -398,8 +398,9 @@
       }
     },
     {
-      "weight": 50,
       "averageCost": 300,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
       "stack": {
         "item": "lotr:tapestry"
       }

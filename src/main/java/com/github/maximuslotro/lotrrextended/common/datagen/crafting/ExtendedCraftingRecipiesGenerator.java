@@ -2221,6 +2221,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.ANDURIL.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.SHARDS_OF_NARSIL.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.PLACED_BOOKS.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.TAPESTRY.get().getRegistryName().getPath());
 	}
 
 	@Override
