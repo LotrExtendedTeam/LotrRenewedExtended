@@ -1,0 +1,31 @@
+{
+  "entity": "lotr:hedgehog",
+  "biomes": [
+    "lotr:anduin_hills",
+    "lotr:breeland",
+    "lotr:chetwood",
+    "lotr:eriador",
+    "lotr:eriador_downs",
+    "lotr:eryn_vorn",
+    "lotr:fangorn",
+    "lotr:hills_of_evendim",
+    "lotr:lindon",
+    "lotr:lindon_woodlands",
+    "lotr:minhiriath",
+    "lotr:mirkwood",
+    "lotr:mirkwood_mountains",
+    "lotr:northern_mirkwood",
+    "lotr:rivendell",
+    "lotr:rivendell_cliffs",
+    "lotr:rivendell_hills",
+    "lotr:rivendell_valley",
+    "lotr:rohan",
+    "lotr:shire",
+    "lotr:shire_moors",
+    "lotr:shire_woodlands",
+    "lotr:vales_of_anduin",
+    "lotr:white_downs",
+    "lotr:wold",
+    "lotr:woodland_realm"
+  ]
+}

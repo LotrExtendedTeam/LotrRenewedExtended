@@ -1,0 +1,7 @@
+{
+  "entity": "minecraft:turtle",
+  "biomes": [
+    "lotr:beach",
+    "lotr:white_beach"
+  ]
+}

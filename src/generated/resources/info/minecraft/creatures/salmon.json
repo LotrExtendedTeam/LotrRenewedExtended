@@ -1,0 +1,9 @@
+{
+  "entity": "minecraft:salmon",
+  "biomes": [
+    "lotr:barrow_downs_river",
+    "lotr:lake",
+    "lotr:rivendell_river",
+    "lotr:river"
+  ]
+}

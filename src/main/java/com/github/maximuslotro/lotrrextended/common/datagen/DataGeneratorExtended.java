@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedAdvancementProvider;
+import com.github.maximuslotro.lotrrextended.common.datagen.aggregation.ExtendedBiomeInfoGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.ExtendedCraftingRecipiesGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.entity.ExtendedEntityRelatedGenerators;
 import com.github.maximuslotro.lotrrextended.common.datagen.language.ExtendedLanguageGenerator;
@@ -29,6 +30,7 @@ public class DataGeneratorExtended {
 			generator.addProvider(new ExtendedGlobalLootModifierGenerator(generator, LotrExtendedMod.MODID));
 			generator.addProvider(new ExtendedAdvancementProvider(generator, existingFileHelper));
 			ExtendedEntityRelatedGenerators.gatherData(generator, existingFileHelper, LotrExtendedMod.MODID);
+			generator.addProvider(new ExtendedBiomeInfoGenerator(generator, existingFileHelper));
 		}
 		if (event.includeClient()) {
 			ExtendedClientConfig.registerDataGen();
