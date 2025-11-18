@@ -30,7 +30,7 @@ public class ExtendedBanditEscapeGoal extends Goal {
 
 	@Override
 	public boolean canUse() {
-		if(bandit.hasStolen()) { // move simple check outside of getEntitiesOfClass for peformance reasons
+		if(bandit.hasStolen()) { // move simple check outside of getEntitiesOfClass for performance reasons
 			if (bandit.getLastDamageSource() != null) {
 				DamageSource last = bandit.getLastDamageSource();
 				if (last.getEntity() != null && last.getEntity() instanceof PlayerEntity) {
@@ -62,16 +62,12 @@ public class ExtendedBanditEscapeGoal extends Goal {
 		if (targetPlayer != null && targetPlayer.isAlive() && bandit.distanceTo(targetPlayer) < dangerRadius) {
 			if (bandit.getLastDamageSource() != null) {
 				DamageSource last = bandit.getLastDamageSource();
-                return last.getEntity() == null || !(last.getEntity() instanceof PlayerEntity);
+				return last.getEntity() == null || !(last.getEntity() instanceof PlayerEntity);
 			}
 			return true;
 		} else {
 			return false;
 		}
-	}
-
-	@Override
-	public void start() {
 	}
 
 	@Override

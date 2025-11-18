@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -11,28 +12,14 @@ import java.util.*;
 
 public class ExtendedBanditStealHelper {
 
-	public static void stealItemsFromPlayer(PlayerEntity player, ItemStackHandler npcInventory) {
-		if (player.level.isClientSide) {
-			return;
-		}
-
-		Random rand = new Random();
-
-		List<Integer> filledSlots = new ArrayList<>();
-		for (int i = 0; i < player.inventory.getContainerSize(); i++) {
-			if (!player.inventory.getItem(i).isEmpty()) {
-				// Don't allow bandits to steal the held item or armor
-				if(player.inventory.selected !=i && (i<36 || i>39)) {
-					filledSlots.add(i);
-				}
-			}
-		}
+	public static boolean stealItemsFromPlayer(PlayerEntity player, ItemStackHandler npcInventory) {
+		List<Integer> filledSlots = getApplicableSlots(player.inventory);
 
 		if (filledSlots.isEmpty()) {
-			return;
+			return false;
 		}
 
-		int stealCount = 1 + rand.nextInt(3); // 1–3
+		int stealCount = 1 + player.random.nextInt(3); // 1–3
 		Collections.shuffle(filledSlots);
 
 		for (int i = 0; i < Math.min(stealCount, filledSlots.size()); i++) {
@@ -56,6 +43,34 @@ public class ExtendedBanditStealHelper {
 		player.sendMessage(new TranslationTextComponent("chat.lotrextended.bandit.stolen"), Util.NIL_UUID);
 		player.inventory.setChanged();
 		player.containerMenu.broadcastChanges();
+		return true;
+	}
+
+	public static boolean canSteal(PlayerInventory inventory) {
+		for (int i = 0; i < inventory.getContainerSize(); i++) {
+			if (!inventory.getItem(i).isEmpty()) {
+				boolean isSelected = (i == inventory.selected);
+				boolean isArmor = (i >= 36 && i <= 39);
+				if (!isSelected && !isArmor) {
+					return true; // At least one valid stealable slot
+				}
+			}
+		}
+		return false;
+	}
+
+	public static List<Integer> getApplicableSlots(PlayerInventory inventory){
+		List<Integer> filledSlots = new ArrayList<>();
+		for (int i = 0; i < inventory.getContainerSize(); i++) {
+			if (!inventory.getItem(i).isEmpty()) {
+				boolean isSelected = (i == inventory.selected);
+				boolean isArmor = (i >= 36 && i <= 39);
+				if (!isSelected && !isArmor) {
+					filledSlots.add(i);
+				}
+			}
+		}
+		return filledSlots;
 	}
 }
 

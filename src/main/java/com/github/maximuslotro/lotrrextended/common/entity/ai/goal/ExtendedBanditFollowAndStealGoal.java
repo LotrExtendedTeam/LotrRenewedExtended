@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.EntityPredicates;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -24,21 +25,29 @@ public class ExtendedBanditFollowAndStealGoal extends Goal {
 	public boolean canUse() {
 		if(!bandit.hasStolen() && !bandit.getNPCCombatUpdater().isCombatStance()) {
 			List<PlayerEntity> players = bandit.level.getEntitiesOfClass(PlayerEntity.class, bandit.getBoundingBox().inflate(45.0D), EntityPredicates.NO_CREATIVE_OR_SPECTATOR);
-			if (!players.isEmpty()) {
-				this.targetPlayer = players.get(bandit.random.nextInt(players.size()));
-				return true;
+			// Build a list of only eligible players
+			List<PlayerEntity> eligible = new ArrayList<>();
+			for (PlayerEntity p : players) {
+				if (ExtendedBanditStealHelper.canSteal(p.inventory)) {
+					eligible.add(p);
+				}
 			}
+
+			// If none are eligible, abort
+			if (eligible.isEmpty()) {
+				return false;
+			}
+
+			// Pick a random eligible target
+			this.targetPlayer = eligible.get(bandit.random.nextInt(eligible.size()));
+			return true;
 		}
 		return false;
 	}
 
 	@Override
 	public boolean canContinueToUse() {
-		return targetPlayer != null && targetPlayer.isAlive() && bandit.distanceTo(targetPlayer) < 30.0D && !bandit.hasStolen();
-	}
-
-	@Override
-	public void start() {
+		return targetPlayer != null && targetPlayer.isAlive() && bandit.distanceTo(targetPlayer) < 30.0D && !bandit.hasStolen() && ExtendedBanditStealHelper.canSteal(targetPlayer.inventory);
 	}
 
 	@Override
