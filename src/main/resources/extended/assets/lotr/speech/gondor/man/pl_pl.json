@@ -1,0 +1,212 @@
+{
+  "parent": "lotr:gondor/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Mam nadzieję że moja rodzina nie zostanie zabrana do gondorskiej piechoty.",
+        "Zaprawdę, te dni to upadek rasy ludzi. Wygląda na to że nawet moje plony upadają."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "m"
+      },
+      "lines": [
+        "Kiedy byłem młodszy, marzyłem o zostaniu Łabędzim Rycerzem z Dol Amroth. Te czasy wydają się teraz bardzo odległe."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "f"
+      },
+      "lines": [
+        "Kiedy byłam młodsza, marzyłam o zostaniu Łabędzim Rycerzem z Dol Amroth. Te czasy wydają się teraz bardzo odległe."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Po okolicy krążą jakieś niepokojące wieści. Tyle ci mogę powiedzieć.",
+        "Robimy co możemy aby przetrwać, #p. Lecz jeśli nadejdzie Nieprzyjaciel, niewiele będziemy w stanie zrobić.",
+        "Nasze plony obumierają, #p. Może w przyszłym roku będziemy mieli więcej szczęścia."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Bohaterowie Gondoru powstaną aby nas chronić, #p.",
+        "Muszę wrócić do pracy, #p. Te pola nie zaorają się same.",
+        "Nie będę cię przynudzać starymi opowieściami ze wsi."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<atarms"
+      },
+      "lines": [
+        "Z jakiej wsi przybywasz, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms",
+		"gender": "m",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Jestem twoim szczerym przyjacielem, #, na tyle długo jak ty pozostaniesz szczery wobec Gondoru."
+      ]
+    },
+	{
+     "conditions": {
+		"relation": "friendly",
+		"rank": ">=atarms",
+		"gender": "f",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Jestem twoją szczerą przyjaciółką, #, na tyle długo jak ty pozostaniesz szczery wobec Gondoru."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms",
+		"gender": "m",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Jestem twoim szczerym przyjacielem, #, na tyle długo jak ty pozostaniesz szczera wobec Gondoru."
+      ]
+    },
+	{
+     "conditions": {
+		"relation": "friendly",
+		"rank": ">=atarms",
+		"gender": "f",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Jestem twoją szczerą przyjaciółką, #, na tyle długo jak ty pozostaniesz szczera wobec Gondoru."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=atarms",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Jesteś jednym z bohaterów Gondoru? Przybyłeś żeby nas obronić?",
+        "Chwała, #p, przybywasz z daleka aby zdobyć chwałę dla Gondoru!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=atarms",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Jesteś jedną z bohaterów Gondoru? Przybyłaś żeby nas obronić?",
+        "Chwała, #p, przybywasz z daleka aby zdobyć chwałę dla Gondoru!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Jesteś złoczyńcą!",
+        "Zejdź mi z oczu, #p.",
+        "Ale z ciebie paskuda, #p.",
+        "Precz stąd!",
+        "Nasi ludzie nie mają miłości dla takich złoczyńców jak ty!",
+        "Bohaterowie Gondoru rozprawią się z tobą, #p.",
+        "Twoje miejsce jest w dybach, #p!",
+        "Nie patrz tak na mnie.",
+        "Nie mamy miłości dla ludzi twojego pokroju.",
+        "Jesteś hultajem, #p, to na pewno."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Nie jesteś moim przyjacielem, #p.",
+        "Czego ode mnie chcesz, łajdaku?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Nie jesteś moją przyjaciółką, #p.",
+        "Czego ode mnie chcesz, łajdaczko?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Uciekaj stąd, #p, albo zawołam po ciebie strażników.",
+        "Nie otrzymasz tu żadnych powitań.",
+        "Lepiej miej się tu na baczności. To nie jest bezpieczne miejsce dla kryminalistów takich jak ty.",
+        "Opuść Gondor póki jeszcze możesz, #p.",
+		"Lepiej odejdź, #p. Czy wolisz aby cię do tego zmuszono?".
+        "Precz stąd, #p! Nie chcemy żadnych hultajów w Gondorze."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Sugeruję abyś opuścił to miejsce, #p."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Sugeruję abyś opuściła to miejsce, #p."
+      ]
+    }
+  ]
+}

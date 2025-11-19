@@ -1,0 +1,246 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "The world is indeed full of peril.",
+        "What tidings do you bring, #p?",
+        "To the sea, to the sea!",
+        "I long for the sea, #p.",
+        "Our days are ending and our years failing.",
+        "Grey ship, grey ship, do you hear them calling?",
+        "Gilthoniel! O Elbereth!",
+        "Miruvor! It refreshes the body and cleanses the spirit.",
+        "The days grow cold and the years fade.",
+        "The call of the sea in my heart grows ever stronger.",
+        "Soon... soon, I shall depart these lands, #p.",
+        "Rarely have we spoken with Men since the changing of the world.",
+        "A darkness is gathering in these lands. I feel it in my flesh.",
+        "The strength of the Elves is dwindling here.",
+        "I have seen years of the sun beyond the count of mortal Men.",
+        "How long shall I linger here, #p?",
+        "Ae Aerendil, angalef in-elin!",
+        "Ai, #p!",
+        "Don't look for trouble, #p - it will come to you.",
+        "Nover.",
+        "The world is changed. I feel it in the water... I feel it in the earth... I smell it in the air.",
+        "The days of our kin are almost done.",
+        "Our hearts desire to behold the land of Aman.",
+        "Soon we shall leave this Middle-earth.",
+        "White gulls are calling...",
+        "Can you hear the white gulls calling?",
+        "The Nameless One has returned. We cannot stay in these lands for long.",
+        "That which has stood so long against the darkness may soon fall.",
+        "We must depart into the West, or dwindle to a rustic folk of dell and cave, slowly to forget and to be forgotten.",
+        "That which should be shall be.",
+        "We would rather cast all that we love away than submit to the will of the Dark Lord.",
+        "Rumour grows of a shadow in the East. We fear that the Nameless One has returned.",
+        "The Sea calls us home.",
+        "The time of the Elves is ending.",
+        "My people are leaving these shores.",
+        "Some things that should have not been forgotten are lost.",
+        "Long are the waves on the Last Shore falling.",
+        "O Lórien!",
+        "A shadow rises in the East.",
+        "Soon all lands will be filled with despair and grief, but hope still remains - while we are true.",
+        "Our time in this world is ending, but it is not yet over.",
+        "Evil is gathering again in the fortress of Dol Guldur. It cannot be allowed to threaten our lands.",
+        "The world is changing, #p... I feel it in my heart."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "What tidings do you bring to the Elves of the Golden Wood?",
+        "O Lórien! Too long I have dwelt upon this Hither Shore.",
+        "The ways of Lothlórien are beautiful and restful.",
+        "It is easy to lose oneself among our folk.",
+        "No evil shall enter Lórien.",
+        "Not idly do the leaves of Lórien fall.",
+        "In our woods, the memory of the Elder Days lingers still.",
+        "Men such as yourself would often enter our forest realms in the Elder Days.",
+        "Our love for this land is deeper than the depths of the Sea.",
+        "The memories of old still linger here."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening | dusk"
+      },
+      "lines": [
+        "West, west away, the round sun is falling."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk | night | dawn",
+        "weather": "clear"
+      },
+      "lines": [
+        "A star rises out of the darkness.",
+        "Hail, Eärendil, brightest of stars!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest"
+      },
+      "lines": [
+        "Are you an Elf-friend, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Greetings, traveller from afar! What news do you bring to us from the lands of Men?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Greetings, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Welcome to my dwelling, #p.",
+        "Do not fear, #p. No evil may enter the Golden Wood. A secret power protects us.",
+        "Welcome to the realm of the Lord Celeborn, and of Galadriel, Lady of Light!",
+        "Do not let your heart be troubled, #p. In Lórien you may rest with no fear of danger.",
+        "Welcome, #p, to the land of the Lord Celeborn and the Lady Galadriel!",
+        "In Lothlórien you shall find healing and peace. No evil may taint our land."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Drink some miruvor, #p, and all the pains in your bones shall wash away!",
+        "You cannot call yourself a true Elf-friend until you have tasted lembas, #p.",
+        "May the stars of Elbereth guide you!",
+        "May the winds of Manwë show you the way!",
+        "A star shines upon the hour of our meeting, #p.",
+        "May the wind fill your sails!",
+        "May the leaves of your life tree never turn brown, #p!",
+        "Hail, elf-friend!",
+        "Ai, elvellon!",
+        "It seems you are a friend of the Elves, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "You breathe so loudly I could have shot you in the dark.",
+        "You are no Elf-friend, #p!",
+        "To Udûn with you!",
+        "Go and kiss an Orc!",
+        "Begone, elven-foe!",
+        "Begone, servant of evil!",
+        "Go back to the shadow whence you came!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "No evil may set foot in the Golden Wood!",
+        "You may not enter Lórien.",
+        "#p, you may not set foot in Lothlórien!",
+        "You are unwelcome in our lands.",
+        "Your presence is unwelcome here.",
+        "The Enemy has no hold over Lórien!",
+        "We suffer no evil in Lothlórien!",
+        "You may not bring evil here, #p!",
+        "Your shadow shall not poison our blessed woods!",
+        "Who brings to us this token of doom?",
+        "We shall not allow evil to enter our realm. Leave now or face our wrath!",
+        "You bring great evil here, #p. You can go no further.",
+        "Leave, #p, or face the might of our arrows!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy"
+      },
+      "lines": [
+        "I knew you were no friend of our people!",
+        "I knew you could not be trusted, #p!",
+        "You are an Orc in the garments of a friend!",
+        "I saw through you from the first, Morgul-spy!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home"
+      },
+      "lines": [
+        "No longer are you are welcome in our land!",
+        "I despair that we ever sheltered you in Lórien!",
+        "Bitterly now I regret welcoming you into Lórien!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "We Elves are among the finest warriors in all Middle-earth.",
+        "It has been long indeed since the races of Men and Elves fought side by side, #p.",
+        "Few can match the prowess of an Elf in combat.",
+        "The Morgul-scum shall perish by bow and blade!",
+        "You have our allegiance, #p.",
+        "I seek to defend all that is good in this world.",
+        "For Lothlórien!",
+        "May the Valar protect us in combat, #p.",
+        "Silver coins mean little to an Elf, #p, but we fight for a common cause.",
+        "My bow shall sing with your sword, #p!",
+        "The bones of our foes will gleam beneath the Sun, #p.",
+        "Let us cleanse this world of the foul folk of Mordor!",
+        "The days grow dark and cold, but the light of the Elves is not yet gone!",
+        "I fear that the Nameless One has returned. The Shadow must be destroyed before it is too late.",
+        "In the name of all that is good, let us cleanse this world of evil!",
+        "We must not allow the evil of Mordor to spread!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "biome": "#home"
+      },
+      "lines": [
+        "No evil may enter Lórien under our watch."
+      ]
+    }
+  ]
+}

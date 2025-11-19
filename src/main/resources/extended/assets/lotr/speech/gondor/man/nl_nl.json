@@ -1,0 +1,110 @@
+{
+  "parent": "lotr:gondor/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Toen ik jonger was keek ik er naar uit om een Zwaanridder van Dol Amroth te worden. Die tijden lijken nu heel ver weg.",
+        "Ik hoop dat mijn familie niet in dienst komt van het leger van Gondor.",
+        "Deze dagen zijn werkelijk de neergang van de mens. Het ziet er naar uit dat zelfs mijn gewassen neergaan."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Er gaat wat verontrustend nieuws rond. Dat kan ik je wel vertellen.",
+        "We doen wat we moeten om te overleven, #p. Maar als de vijand komt, kunnen we niet heel veel.",
+        "Onze oogst is mislukt, #p. Ik hoop voor meer geluk volgend jaar."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "De helden van Gondor komen ons redden, #p.",
+        "Ik moet weer aan het werk, #p. Die velden ploegen zichzelf niet.",
+        "Ik zal je niet vervelen met oude verhalen van het dorp."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<atarms"
+      },
+      "lines": [
+        "Uit welk dorp kom jij, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Ik ben je vriend, #p, zo lang als je trouw blijft aan gondor."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Ben jij een van de helden van Gondor? Ben je gekomen om ons te verdedigen?",
+        "Gegroet, #p, kom van ver om de glorie voor Gondor te winnen!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Je bent geen vriend van mij, #p.",
+        "Je bent een schurk!",
+        "Verdwijn uit mijn zicht, #p.",
+        "Je bent een lastig kreng, #p.",
+        "Weg met je!",
+        "Ons folk heeft geen medelijden met je!",
+        "De helden van Gondor zullen je neerslaan, #p.",
+        "Je behoort aan de galg, #p!",
+        "Kijk me niet zo aan.",
+        "Wat wil je van me, onderkruipsel?",
+        "We hebben geen medelijden met jouw soort volk.",
+        "Je bedoelt niets goeds, #p, dat is zeker."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Keer om, #p, anders roep ik de wachters.",
+        "Je gaat hier geen warm welkom krijgen.",
+        "Je zou maar beter voorzichtig wezen. Het is niet veilig voor criminelen zoals jou.",
+        "Verlaat Gondor nu je het nog kan, #p.",
+        "Ik verzoek dat je deze plek verlaat, #p.",
+        "Je zou maar beter weggaan, #p. Of wil je eruit gegooid worden?",
+        "Weg met je, #p! We heten hier geen onweldoeners welkom in Gondor."
+      ]
+    }
+  ]
+}

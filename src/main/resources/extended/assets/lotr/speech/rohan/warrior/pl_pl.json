@@ -1,0 +1,265 @@
+{
+  "parent": "lotr:rohan/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "To są ziemie naszych ojców, oraz ojców naszych ojców. Naszym obowiązkiem jest ich chronić.",
+        "Na tych ziemiach żyje wiele wspaniałych koni, #p, i wszystkie nadają się do walki.",
+        "Mówią że tłumy Południowców zbierają się za Południowym Strumieniem.",
+        "Obawiam się, że za niedługo znów pojedziemy i ponownie pokonamy okrutnych ludzi znad Słonecznych Strumieni."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Od zawsze musimy oczyszczać nasz kraj z nękającego go orkijskiego plugastwa, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Jakie sprawy masz w Riddermarchii, #p?",
+        "Bacz na to, aby stąpać ostrożnie po Marchii. Od dłuższego czasu mamy wielu wrogów."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman",
+        "in_conversation": "other"
+      },
+      "lines": [
+        "Co ci daje prawo do wtrącania się w nasze narady wojenne! Mów gdy nadejdzie twoja kolej, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman"
+      },
+      "lines": [
+        "Chwała, #p! Jesteśmy jeźdzcami Rohanu.",
+        "Rzadko widujemy podróżników w tym kraju. Jaki są twoje zamiary?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Wybiła godzina w której razem chwycimy za miecze!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=rider"
+      },
+      "lines": [
+        "Pojedziemy razem do walki, #p?",
+        "Teraz pojedziemy razem jako Eorlingowie."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain"
+      },
+      "lines": [
+        "Gdy nadejdzie godzina, #p, pojadę u twego boku."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Szczery przyjacielu, #p, za tobą podążyłbym nawet na kraniec świata!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Szczera przyjaciółko, #p, za tobą podążyłbym nawet na kraniec świata!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=marshal"
+      },
+      "lines": [
+        "Gdy nadejdzie godzina, #p, pojadę w twoim éoredzie."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+        "Służysz teraz Domowi Eorla, #p.",
+        "Służysz teraz Domowi Eorla. Zauważ, że twoje czyny przynoszą nam chwałę na polu bitwy."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home",
+        "daytime": "dusk | night",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Co sprowadza nieznajomego z daleka, wędrującego po Marchii w nocy?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home",
+        "daytime": "dusk | night",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Co sprowadza nieznajomą z daleka, wędrującą po Marchii w nocy?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "weather": "rain"
+      },
+      "lines": [
+        "Być może tą burzę wywołał podły wiatr ze wschodu.",
+        "Chmury się rozdarły. Zapewnij schronienie swoim koniom!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:anorien"
+      },
+      "lines": [
+        "Od dawna chciałem pojechać do Kraju Kamienia. Może teraz pojedziemy nawet do samego Mundburga?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Nie zdzierżę twojej obecności tutaj!",
+        "Drżyj ze strachu, #p!",
+        "Żadnej litości dla wrogów Marchii!",
+        "Żadnej litości dla wrogów Eorla!",
+        "Odejdź, albo czeka cię zguba!",
+        "Twoje czynienie zła kończy się w tym momencie!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Zaprawdę głupotą z twojej strony było zapuszczenie się na nasze ziemie!",
+        "Nie zaplamisz Marchii swoim diabelstwem!",
+        "Odejdź z naszych ziem, lub zmierz się z ostrymi końcami naszych włóczni!",
+        "Uciekaj z Marchii jeżeli oddech jest ci cenny!",
+        "Uciekaj z Marchii, nigdy nie wracaj!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:isengard"
+      },
+      "lines": [
+        "Twoja zguba będzie szybka, sługo Isengardu!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "Wracaj do swojego pana w Krainie Cienia!",
+        "Wrócisz do Saurona z pustymi rękami!",
+        "Nie! Żadnych więcej koni dla Mordoru!",
+        "Nie! Żadnych więcej koni dla władcy Czarnego Kraju!",
+        "Ty i twój mistrz nie odbierzecie nam żadnych więcej karych koni!",
+        "Żadnych więcej koni Marchii ani dla ciebie, ani dla twojego podłego władcy!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "To ty ukradłeś nasze konie i zabrałeś je do Mordoru, #p? Żadnych więcej nie dostaniesz!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "To ty ukradłaś nasze konie i zabrałaś je do Mordoru, #p? Żadnych więcej nie dostaniesz!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "Pożałujesz przysięgi służby Nieprzyjacielowi!",
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Dla Rohanu! Dla naszych ludzi!",
+        "Wybiła godzina, w której razem chwycimy za miecze, #p!",
+        "Pozwól nam walczyć razem dla Riddermarchii, #p!",
+        "Za Riddermarchię!",
+        "Nasi wrogowie zostaną zniszczeni!",
+        "Zyskamy razem wiele chwały na polu bitwy, #p.",
+        "Wrogowie Marchii będą trząść się ze strachu!",
+        "Pojedziemy razem. Po chwałę. Dla Rohanu!",
+        "Wrogowie Rohanu będą drżeć pod naszymi stopami!",
+        "Żaden ork ani dziki człowiek nie będzie plądrował Riddermarchii na naszej straży!",
+        "Zapolujmy na jakiegoś orka!",
+        "Za Króla Rohanu! Za Edoras!",
+        "Pozwól nam pojechać razem i oczyścić Marchię ze wszystkich złoczyńców!"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,280 @@
+{
+  "speech": [
+    {
+      "conditions": {
+       "relation": "friendly"
+      },
+      "lines": [
+        "Je veux de la chair humaine !",
+        "Ca sent la chair humaine !",
+        "Où est la chair humaine ?",
+        "Tu veux quoi ?",
+        "Je n'ai rien avalé à part du pain moisi depuis trois jours !",
+        "Encore du pain moisi ? Je veux de la chair fraîche !",
+        "J'ai hâte de planter mes crocs dans de la chair humaine !",
+        "Tu cherches quoi ?",
+        "L'air empeste ici.",
+        "On va leur briser les os et festoyer de leur chair !",
+        "Mort aux royaumes des hommes ! Morts aux sales elfes !",
+        "Ces loques puent !",
+        "Le monde des hommes sera détruit et anéanti.",
+        "Les peuples libres seront plus que ruines !",
+        "De la chair humaine !",
+        "Y'a de la chair humaine pas loin ? Je crève de faim !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=thrall"
+      },
+      "lines": [
+        "Nous servons le même maître, #p.",
+        "Le maître nous prépare pour la guerre. Bientôt, le monde des hommes s'écroulera.",
+        "Nous envahirons les terres des peuples libres telle une peste dévastant toute vie !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<snaga"
+      },
+      "lines": [
+        "Qui sers-tu ?",
+        "Sers-tu le grand oeil ou ces sales tarks du Gondor ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<brigand"
+      },
+      "lines": [
+        "Hors de ma vue, insecte !",
+        "Au travail, vermine !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand"
+      },
+      "lines": [
+        "Bientôt, #p! Bientôt, nous serons en guerre avec les sales fils des Hommes !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Pas mal pour un humain !",
+        "Pas mal pour un humain, #p! Même si t' as un air de tark qui te colle à la peau !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Pas mal pour une humaine !",
+        "Pas mal pour une humaine, #p! Même si t' as un air de tark qui te colle à la peau !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand & <captain"
+      },
+      "lines": [
+        "Sale asticot ! Oh, c' est toi, #p..",
+        "T'as toujours pas une gueule de gobelin, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<slavedriver"
+      },
+      "lines": [
+        "Si tu me trouve de la chair humaine, je te mangerai pas ! Ah, ah !",
+        "Tu cherches quoi, asticot ?",
+        "Suis les instructions, vermine !",
+        "Reste pas juste ici ! Fais quelque chose !",
+        "Je te fais pas confiance, asticot !",
+        "Avance, vermine !",
+        "Tu veux déclencher un combat ?",
+        "Je fais pas confiance à une saleté d'Homme !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=despoiler"
+      },
+      "lines": [
+        "À ton service, #p!",
+        "Quels ordres de notre seigneur, #p?",
+        "L'Oeil dit du bien de toi, #p.",
+        "J'aurais jamais pensé voir un Homme puant comme toi monter si haut dans l'estime de l'Oeil !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<despoiler"
+      },
+      "lines": [
+        "Oh ! Surveille ton language !",
+        "Y'a quelque chose qui pue dans le coin. C'est toi, #p ! Dégage !",
+        "Tu pues !",
+        "Tu sens le ver moisi !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<captain"
+      },
+      "lines": [
+        "T'as pas une gueule de gobelin  !",
+        "Tu cherches quelque chose ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain"
+      },
+      "lines": [
+        "Quels sont les ordres de Lugbúrz ?",
+        "Quels sont les ordres de Lugbúrz, #p?",
+        "Que nous commande le grand Oeil ?",
+        "À votre service, asticot ! Je veux dire, #p!",
+        "Je vais prévenir les gars que c'est l'heure de l'inspection !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lieutenant"
+      },
+      "lines": [
+        "C'est toi le nouveau chef, alors ?",
+        "Nous marchons vers la guerre sous ton commandement !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Je vais te saigner comme un cochon égaré !",
+        "Profite de ton dernier souffle, vermine !",
+        "T'as l'air bon et frais !",
+        "À mort la vermine !",
+        "Y'a de la viande fraîche au menu, mes amis !",
+        "Tu empestes de peur !",
+        "Meurs, vermine humaine !",
+        "T'as l'air d'avoir du bon sang frais !",
+        "J'vais t'embrocher comme un morceau de viande !",
+        "Tu ferais mieux de commencer à courir, asticot !",
+        "Approche toi un peu et j'vais te planter comme un morceau de viande fraîche !",
+        "Ce soir, y'a de la chair humaine au dîner !",
+        "Tu ne seras plus qu'un tas d'os lorsque j'en aurai fini avec toi !",
+        "Je danserai sur ta chair, saleté d'Homme !",
+        "J'vais faire de toi mon dîner !",
+        "Tu t'es frotté au mauvais orc, vermine d'homme !",
+        "J'aurais ta tête, vermine du Gondor !",
+        "Une vermine de tark ! Venez, les gars !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Attrapez le, les gars !"
+        "Tuez le tark!",
+        "Ce sale tark a essayé de me poignarder !",
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Attrapez la, les gars !"
+        "Tuez la tark!",
+        "Cette sale tark a essayé de me poignarder !",
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "T'as toujours pas été chassé par nos armées, vermine ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "T'as toujours pas été chassée par nos armées, vermine ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Mène nous à la guerre, #p!",
+        "L'air est infecté par la puanteur de la peur !",
+        "Les Peuples Libres de la terre tomberont sous notre puissance !",
+        "A mort ! Mort à tous ceux qui se dressent contre nous !",
+        "On va chasser de la chair humaine, #p?",
+        "Mon estomac réclame de la chair humaine !",
+        "Je suis prêt à chasser de la chair humaine.",
+        "Mort à ces sales tarks et à tous leurs alliés !",
+        "Faisons des ravages à travers le monde des hommes !",
+        "Allons chasser des tarks !",
+        "Les tarks puants ne savent pas ce qui les attend !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Quels sont vos ordres, mon seigneur ?",
+        "T'es peut être mon commandant, #p, mais t'es toujours un sale asticot !",
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Quels sont vos ordres, ma dame ?",
+        "T'es peut être ma commandante, #p, mais t'es toujours un sale asticot !",
+      ]
+    }
+  ]
+}

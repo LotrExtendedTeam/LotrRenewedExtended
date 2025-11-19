@@ -1,0 +1,246 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "De wereld is inderdaad vol met gevaren.",
+        "Wat voor nieuws breng je, #p?",
+        "Naar de zee, naar de zee!",
+        "Ik verlang naar de zee, #p.",
+        "Onze dagen eindigen en ons gezag verdwijnt.",
+        "Grijs schip, grijs schip, hoor je ze roepen?",
+        "Gilthoniel! O Elbereth!",
+        "Miruvor! Het ververst het lijf en heelt de ziel.",
+        "De dag wordt koud en de jaren lang.",
+        "De roep van de zee in ons land wordt aals maar sterker.",
+        "Binnenkort... Binnenkort zal ik vertrekken, #p.",
+        "Maar soms hebben wij met mensen gesproken sinds de verandering van de wereld.",
+        "Een duisternis hoopt zich op in deze landen. Ik voel het in mijn botten.",
+        "De kracht van de elven dwaalt hier.",
+        "Ik heb meer jaren van de zon gezien dan dat de mensen zich kunnen herinneren.",
+        "Hoe lang zal ik hier blijven, #p?",
+        "Ae Aerendil, angalef in-elin!",
+        "Ai, #p!",
+        "Zoek niet naar problemen , #p - ze komen dan naar je toe.",
+        "Nover.",
+        "De wereld is verandered. Ik voel het in het water... Ik voel het in de aarde... Ik ruik het in de lucht.",
+        "De dagen van ons volk zijn bijna voorbij.",
+        "Onze harten zouden graag nog eens de landen van Aman willen zien.",
+        "Binnenkort zullen we Midden-aarde verlaten.",
+        "De meeuwen roepen...",
+        "Kan je de witte meeuwen hooren roepen?",
+        "Hij-zonder-naam is teruggekeerd. We kunnen hier niet lang meer blijven.",
+        "Dat wat zo lang goed is gebleven zou daadwerkelijk nog eens kunnen vallen.",
+        "We moeten vertekken voor het westen, of zakken tot een volk dat in dallen en grotten leeft, langzaam aan het vergeten en vergeten te worden.",
+        "Dat wat zou moeten, wordt.",
+        "We gooien liever alles wat we liefhebben weg dan dat we dienen onder de wil van de Duistere Heer.",
+        "Het gerucht gaat over een schaduw in het oosten. We zijn bang dat hij-zonder-naam terug is gekeerd.",
+        "De zee roept ons terug naar huis.",
+        "De tijd van de elven is nabij.",
+        "Mijn volk verlaat deze kusten.",
+        "Sommige dingen die niet vergeten horen te worden, zijn verloren.",
+        "Hoog zijn de golfen die op de laatste kust vallen.",
+        "O Lórien!",
+        "Er komt een schaduw op uit het oosten.",
+        "Binnenkort zullen alle landen gevuld worden met wantrouwen en angst, maar hoop is er nogsteeds - zolang als wij er zijn.",
+        "Onze tijd in deze wereld wordt steeds minder, maar het is nog niet over.",
+        "Het kwade hoopt zich weer op in het fort van Dol Guldur. Het mag niet ons landi n gevaar brengen.",
+        "De wereld verandert, #p... Ik voel het in mijn hart."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Wat voor nieuws breng je voor de elven van het Gouden Woud?",
+        "O Lórien! Te lang heb ik op deze kust gedwalen.",
+        "Het pad van Lothlórien is zeer mooi en rustgevend.",
+        "Het is makkelijk jezelf te verliezen in ons volk.",
+        "Geen kwaad zal Lórien binnentreden.",
+        "De bladeren van Lórien vallen niet zonder reden.",
+        "In ons woud hangen de herinneringen van de dagen lang geleden nog in de lucht.",
+        "Mensen zoals jij kwamen ooit vaak in ons woud, lang geleden.",
+        "Onze liefde voor dit land is groter dan de diepte van de zee.",
+        "De herinneringen van de dagen lang geleden zijn hier nog zeer aanwezig."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening | dusk"
+      },
+      "lines": [
+        "In het westen, ver in het westen, valt de zon."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk | night | dawn",
+        "weather": "clear"
+      },
+      "lines": [
+        "Een ster komt op uit het duister.",
+        "Gegroet, Eärendil, velste van de sterren!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest"
+      },
+      "lines": [
+        "Ben je een elf-vriend, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Gegroet, reiziger van ver! Wat voor nieuws breng je van de landen van de mensen?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Gegroet, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Welkom in mijn huis, #p.",
+        "Vrees niet, #p. Geen kwaad mag het Gouden Woud binnendringen. Een verborgen kracht verdedigt ons.",
+        "Welkom in het rijk van heer Celeborn en van Galadriel, Dame van het Licht!",
+        "Laat je hard niet in paniek raken, #p. In Lórien zal je rusten zonder angst voor het kwaad.",
+        "Welkom, #p, tot het land van heer Celeborn en mijndame Galadriel!",
+        "In Lothlórien zal je rust en vrede vinden. Geen kwaad zal ons land bevuilen."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Drink wat Miruvor, #p, en alle pijn in je botten zal verdwijnen!",
+        "Je kan jezelf geen elf-vriend noemen, totdat je wat lembas geproefd hebt, #p.",
+        "Moge de sterren van Elberet je de weg wijzen!",
+        "Moge de wind van Manwë je weg wijzen!",
+        "Een ster schijnt op het uur van onze ontmoeting, #p.",
+        "Moge de wind in je zeilen staan!",
+        "Moge de bladeren van jouw boom des levens nooit bruin worden, #p!",
+        "Gegroet, elf-vriend!",
+        "Ai, elvellon!",
+        "Het ziet er naar uit dat je een vriend bent van de elven, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Je ademt zo luidt, ik had je in het donker neer kunnen schieten.",
+        "Je bent geen elf-vriend, #p!",
+        "Naar Udûn met je!",
+        "Ga maar een orc kussen!",
+        "Verdwijn, elf-vijand!",
+        "Verwdijn, knecht van het kwaad!",
+        "Ga terug naar het duistere gat waar je uitgekropen bent!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Geen kwaad zal een stap verder zetten in Lothlórien!",
+        "Je mag niet Lórien binnentreden.",
+        "#p, je mag geen stap verder zetten in Lothlórien!",
+        "Je bent niet welkom in ons land.",
+        "Je aanwezigheid is niet welkom hier.",
+        "De vijand heeft geen grip over Lórien!",
+        "We accepteren geen kwaad hier in Lothlórien!",
+        "Je zal geen kwaad hier brengen, #p!",
+        "Je schaduw zal ons heilige woud niet vergiftigen!",
+        "Wie brengt ons dit teken van duisternis?",
+        "Wij welkomen geen kwaad in ons land. Verdwijn of voel onze wraak!",
+        "Je brengt een groot kwaad met je mee, #p. Je zal niet verder gaan.",
+        "Verdwijn, #p, of voel de regen van onze pijlen!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy"
+      },
+      "lines": [
+        "Ik wist dat je geen vriend van ons volk was!",
+        "Ik wist dat je niet te vertrouwen viel, #p!",
+        "Je bent een orc in de kleding van een vriend!",
+        "Ik zag direct door je heen, Morgul-tuig!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home"
+      },
+      "lines": [
+        "Je bent niet langer welkom in ons land!",
+        "Ik betreut dat we je ooit onderdak hebben gegeven in Lórien!",
+        "Het voelt bitter dat ik je ooit toegang heb gegeven tot Lórien!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Wij elven zijn wat van de beste krijgers die er in Midden-aarde te vinden zijn.",
+        "Het is lang geleden dat mensen en elven samen vochten, #p.",
+        "Maar weinig kunnen een elf verslaan in een duel.",
+        "Het Morgul-tuig zal lijden onder ons zwaard!",
+        "Je hebt onze alliantie, #p.",
+        "Ik streef om alles wat goed is in deze wereld te beschermen.",
+        "Voor Lothlórien!",
+        "Moge de Valar ons beschermen in ons gevecht tegen het kwaad, #p.",
+        "Zilveren munten beteknen weinig voor een elf, #p, maar we vechten voor een gemeenschappelijk doel.",
+        "Mijn boog zal dansen met jouw zwaard, #p!",
+        "De botten van onze vijanden zullen glitteren onder de zon, #p.",
+        "Laten we deze wereld af helpen van het vuile gespuis van Mordor!",
+        "De dagen worden lang en koud, maar het licht van de elven is nog lang niet verdwenen!",
+        "Ik ben bang dat hij-zonder-naam terug is gekeerd. Het duister moet worden verslagen voordat het te laat is.",
+        "In de naam van alles dat goed is, laten we dit kwaad verwoesten!",
+        "We zullen niet de spreiding van Mordor toestaan!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "biome": "#home"
+      },
+      "lines": [
+        "Geen kwaad zal Lórien binnendringen onder mijn wacht."
+      ]
+    }
+  ]
+}

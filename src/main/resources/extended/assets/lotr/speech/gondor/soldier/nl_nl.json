@@ -1,0 +1,176 @@
+{
+  "parent": "lotr:gondor/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Ik ben een soldaat van Gondor.",
+        "Ik heb mijn hele leven geoefent om orks te bestrijden. Maar moge de Valar me redden als er een trol voorbij komt!",
+        "Vervloek de Zuiderlingen, en hun gebogen zwaarden!",
+        "Ze zeggen dat de mensen van Harad in de ban zijn van de vijand."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Als het niet was voor de brave helden van Gondor, zou de wereld allang in duisternis bedekt zijn.",
+        "Mijn broeders verdedigen dit land."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Denk niet dat Gondor slap is, #p. Mentaal zijn wij mannen van Gondor zo goed als maar kan.",
+        "Vrees voor de slipperige ork, maar vrees de oosterling in zijn kar meer. Maar dat ras hebben wij in jaren al niet meer gevochten."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "biome": "lotr:anorien"
+      },
+      "lines": [
+        "We leven in angst hier, #p. Als veiligheid is wat je zoekt, beveel ik je aan om naar het land van de prins te gaan."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Er zijn vuilde winden in de lucht. Ik ben bang dat er iets broeit achter de bergen van as.",
+        "Het zal duizenden orks nodig zijn om ook maar een paar goede soldaten van Gondor neer te krijgen!",
+        "Zou er ook maar iets vuil naar Gondor rijden, dan zal de Rohirrim ons te hulp schieten. Dat weet ik zeker.",
+        "Onze vijanden verzamelen zich voorbij de Harnen.",
+        "Er zijn rare geruchten uit het zuiden. Men zecht dat de zuiderlingen zich verzamelen in de landen voorbij de Harnen."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Als de vijand zijn volle kracht naar ons to zou sturen, #p... zou ik twijfelen of we de volgende zonsopgang nog zouden zien!",
+        "Ik heb medelijden met de wachters van Ithilien, #p. Zij zullen de eerste zijn die vallen.",
+        "Ik heb mijn twijfels over hoe onze oude verdedigingen in stand zullen houden tegen Mordor. Maar nogsteeds zou ik vechten tot het laatst voor Gondor."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "hired": "own"
+          }
+        ]
+      },
+      "lines": [
+        "Voor Gondor!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Zonen van Gondor! Houd de linie!",
+        "Je bent een vijand van de troon van Gondor, #p!",
+        "In naam van de witte boom, ik zal je vermoorden!",
+        "Ik zweer op Gondor dat je dood snel zal zijn!",
+        "Je dood zal snel zijn, #p!",
+        "Geen medelijden voor de vijanden van Gondor!",
+        "Je zal niet het einde van de dag meemaken, dienaar van het duister!",
+        "Je gaat niet de onschuldigen van Gondor verwonden, #p!",
+        "Je zal Gondor geen pijn meer doen! Of ik zorg er voor dat je dat niet meer kan!",
+        "Je zal geen hand meer leggen op ons folk!",
+        "In naam van de koningen van oudsher, verdwijn uit Gondor!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Je mag niet verder. Je komt Gondor niet binnen!",
+        "Je mag niet naar binnen in Gondor, #p!",
+        "De vijand is Gondor binnengedrongen!",
+        "Geen vijand mag zo maar ons land binnenkomen!",
+        "Verlaat dit land, #p, kom niet meer terug!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "Scheer je weg, vuil beest!",
+        "Scheer je weg, slaaf van de duisternis!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "Verdwijn uit Gondor, slaaf van de vijand!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "Kruip terug naar je meester in het land der schaduwen!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "Verdwijn uit ons land, gespuis van Mordor!",
+        "Verdwijn uit ons land, slaaf van Sauron!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Ik vecht voor Gondor, #p.",
+        "Moge onze daden Gondor naar haar oude glorie terug zien keren!",
+        "De vijanden van Gondor zullen voor ons neervallen!",
+        "Onze vijanden zijn slim om de macht van Gondor te vrezen, #p!",
+        "Je bent een echte vriend van Gondor, #p.",
+        "Vandaag vechten we voor Gondor!",
+        "We zullen je volgen tot de dood!",
+        "We zijn trots om te mogen vechten samen met een grote krijger zoals jij!",
+        "Voor Gondor! Voor al het goede in de wereld!",
+        "Het gespuis van Mordor zal onze wraak kennen!",
+        "De dood aan de vijanden van Gondor!"
+      ]
+    }
+  ]
+}

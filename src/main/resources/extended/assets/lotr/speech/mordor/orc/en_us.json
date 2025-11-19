@@ -1,0 +1,230 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "I seek Man-flesh!",
+        "I smell Man-flesh!",
+        "Where is the Man-flesh?",
+        "What do you want?",
+        "I've had nothing but maggoty bread for three stinking days!",
+        "Maggoty bread again? Give me some Man-flesh!",
+        "I can't wait to get my teeth into some Man-flesh!",
+        "What are you after?",
+        "The air is foul here.",
+        "We shall break their bones and feast on their flesh!",
+        "Death to the kingdoms of Men! Death to the filthy Elves!",
+        "These rags stink!",
+        "The world of Men shall be broken and destroyed.",
+        "Ruin! Ruin to the free peoples!",
+        "Man-flesh!",
+        "Where's the nearest Man-flesh? I'm starving here!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=thrall"
+      },
+      "lines": [
+        "We serve a common master, #p.",
+        "The Master is readying us for war. Soon the world of Men shall fall.",
+        "We shall swarm into the lands of the free peoples like a plague! Leave nothing alive!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<snaga"
+      },
+      "lines": [
+        "Whom do you serve?",
+        "Do you serve the great Eye, or those filthy tarks in Gondor?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<brigand"
+      },
+      "lines": [
+        "Get out of my sight, worm!",
+        "Get back to work, scum!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand"
+      },
+      "lines": [
+        "Soon, #p! Soon we will be at war with the filthy sons of Men!",
+        "You're not bad for a Man!",
+        "You're not bad for a Man, #p! Even if you do have an air of tark about you!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand & <captain"
+      },
+      "lines": [
+        "Filthy maggot! Oh, it's you, #p...",
+        "You still don't look like a Goblin-Man, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<slavedriver"
+      },
+      "lines": [
+        "If you can get me some Man-flesh, I won't eat you instead! Ha! Ha!",
+        "What are you after, maggot?",
+        "Follow your orders, scum!",
+        "Don't just stand there! Do something!",
+        "I don't trust you, maggot!",
+        "Move along, scum!",
+        "Are you trying to start a fight?",
+        "I don't trust filthy Men!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=despoiler"
+      },
+      "lines": [
+        "At your service, #p!",
+        "What orders from our lord, #p?",
+        "The Eye speaks highly of you, #p.",
+        "Never thought I'd see a stinky Man like you rising so high in the Eye's favour!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<despoiler"
+      },
+      "lines": [
+        "Oi! Watch yer mouth!",
+        "Something smells disgusting here. It's you, #p! Go away!",
+        "You stink!",
+        "You smell like a rotten maggot!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<captain"
+      },
+      "lines": [
+        "You don't look like a Goblin-Man!",
+        "Do you want something?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain"
+      },
+      "lines": [
+        "What orders from Lugbúrz?",
+        "What orders from Lugbúrz, #p?",
+        "What does the great Eye command?",
+        "At your service, maggot! - I mean - #p!",
+        "I'll let the boys know it's time for an inspection!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lieutenant"
+      },
+      "lines": [
+        "So? Are you the new Boss?",
+        "We march to war at your command!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "I'll bleed you like a stuck pig!",
+        "Enjoy your last breath, scum!",
+        "You're nice and fresh!",
+        "Kill the scum!",
+        "Looks like meat's back on the menu, boys!",
+        "You stink of fear!",
+        "Die, Man-scum!",
+        "Your blood smells fresh!",
+        "I'll skewer you like a piece of meat!",
+        "You'd better start running, maggot!",
+        "Come any closer and I'll stick you like a fresh cut of meat!",
+        "We dine on Man-flesh tonight!",
+        "Once I'm done with you, you'll be nothing but a pile of bones!",
+        "I will feast on your flesh, Man-filth!",
+        "I'll make dinner out of you!",
+        "You've messed with the wrong Orc, Man-scum!",
+        "I will have your head, scum of Gondor!",
+        "Kill the tark!",
+        "Filthy tark tried to knife me!",
+        "Tark scum! Come on, boys!",
+        "Worm!",
+        "Scum!",
+        "Maggot!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Get 'im, boys!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Get 'er, boys!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Have you not been driven out by our armies yet, scum?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "What are your orders, my lord?",
+        "You may be my commander, #p, but you're still a filthy maggot!",
+        "Lead us to war, #p!",
+        "The air is ripe with the stink of fear!",
+        "The free peoples of the earth shall fall before our might!",
+        "Death! Death to all who oppose us!",
+        "Shall we hunt some Man-flesh, #p?",
+        "My stomach is dying for Man-flesh!",
+        "I am ready to hunt some Man-scum.",
+        "Death to those filthy tarks and all their allies!",
+        "Let us wreak havoc upon the world of Men!",
+        "Let's hunt some tarks!",
+        "Stinking tarks don't know what's coming for them!"
+      ]
+    }
+  ]
+}

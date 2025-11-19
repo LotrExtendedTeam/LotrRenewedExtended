@@ -1,0 +1,121 @@
+{
+  "parent": "lotr:rohan/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "We are the herdsmen and farmers of the Mark.",
+        "If those Orcs of the White Hand ever come 'round here, I'm ready to fight.",
+        "I wish I could join the King's Riders, and fight for my family.",
+        "Orcs are multiplying in the mountains. I fear for my family, #p.",
+        "I am afraid for our people.",
+        "There's talk of raiders from the Black Land sneaking in by night and stealing our horses. I can't bear to think of it, to tell truth.",
+        "Men say the cruel folk of Sutherstreams are gathering for an assault on Stoningland.",
+        "Where is the horse and the rider? We are in need of them more than ever, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "What is your business here, traveller?",
+        "You're not some wizard's spy, are you, #p?",
+        "The White Wizard has many spies in his service. You're not one of them, are you?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "The King is ill, some say. He is not how he once was.",
+        "Where is the King when we need him, #p? Where are his riders?",
+        "Our crops wither, our horses are stolen, and they say the King's illness worsens by the day."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "You're a villain!",
+        "Get out of my sight, #p.",
+        "What do you want from me, you scoundrel?",
+        "You ruffian! Back to where you came from!",
+        "You're worse than the wild Men!",
+        "Don't hurt my horses!",
+        "Off with you, you villain!",
+        "I don't do dealings with ne'er-do-wells like you!",
+        "What are you, #p, bandit, Goblin-man, or some devilry of Isengard?",
+        "Stay away from me.",
+        "I'll be having nothing to do with you."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "I suggest you leave this place, #p.",
+        "I suggest you leave this place. The King's Riders will be along soon.",
+        "You shall get no welcome here.",
+        "The heroes of Rohan will strike you down, #p.",
+        "The King's Riders will strike you down, #p.",
+        "Guards! Guards!",
+        "Away with you, #p. We want no evil here.",
+        "Ruffians like you aren't welcome here.",
+        "You and your kind aren't welcome in Rohan.",
+        "You and your kind aren't welcome in the Mark.",
+        "Scoundrels like you aren't welcome in these lands."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:isengard"
+      },
+      "lines": [
+        "You serve the White Hand!",
+        "Away with you, thrall of Isengard!",
+        "You are a devil in the White Wizard's service! Begone!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:dunland"
+      },
+      "lines": [
+        "Away with you, Dunlending!",
+        "Away with you, Dunlending thrall!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:near_harad | lotr:rhudel"
+      },
+      "lines": [
+        "You serve the Dark Lord!",
+        "Away with you, thrall of Mordor!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "You serve the Enemy!",
+        "Away with you, thrall of the Enemy!"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "lotr:durins_folk/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Nog een paar manen in de smederij en dan zal ik het perfecte harnas hebben om die vuile Rakhâs te jagen!"
+      ]
+    }
+  ]
+}

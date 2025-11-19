@@ -1,0 +1,11 @@
+{
+    "parent": "lotr:durins_folk/common",
+    "speech": [{
+        "conditions": {
+            "relation": "friendly"
+        },
+        "lines": [
+            "再过个把月，我就能锻出最棒的铠甲，将拉卡斯杀个片甲不留！"
+        ]
+    }]
+}

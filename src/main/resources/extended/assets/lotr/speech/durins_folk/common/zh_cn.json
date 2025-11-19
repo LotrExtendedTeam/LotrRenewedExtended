@@ -1,0 +1,218 @@
+{
+    "speech": [{
+            "conditions": {
+                "relation": "friendly"
+            },
+            "lines": [
+                "吹起火！酿好酒！从骨头上撕下肉！",
+                "矮人麦芽酒是全中洲最棒的！",
+                "矮人一族财富无人能比！",
+                "你从人类那边儿带来啥了，#p？",
+                "大家伙都嫉妒我的胡子！",
+                "矮人铁匠艺天下第一！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "gender": "m"
+            },
+            "lines": [
+                "我们的女人老是被认成男人，我们嗓音也像，长得也像！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "gender": "f"
+            },
+            "lines": [
+                "那群男人总是说我们女人容易被认成男人，但凡他们能从铁匠铺里出来好好看看……"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "biome": "lotr:iron_hills"
+            },
+            "lines": [
+                "欢迎来到铁丘陵，#p！这里的财宝数不清！",
+                "这里最多的是铁矿！当然其它也不少！",
+                "这儿的山里矿藏多得很！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "biome": "#home"
+            },
+            "lines": [
+                "你对矿井来说有点儿高了，#p！哈哈！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": ">=guest"
+            },
+            "lines": [
+                "你有我们西方兄弟们的消息吗？",
+                "你看上去不错，#p！",
+                "看到你真不错！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": ">=friend"
+            },
+            "lines": [
+                "来喝两杯！",
+                "想喝一杯吗，#p？"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": ">=friend & <oathfriend"
+            },
+            "lines": [
+                "你不是卡扎德人，#p，但你看起来还不赖！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": ">=oathfriend"
+            },
+            "lines": [
+                "你可不是卡扎德人，#p！但我们挺喜欢你！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": ">=guest & <axebearer",
+                "biome": "#home"
+            },
+            "lines": [
+                "我的胡子啊！我这辈子第一次看到个人类！你好啊，#p！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": "<axebearer"
+            },
+            "lines": [
+                "你长得是挺高，但你胡子没我长！",
+                "你得在胡子上下点儿功夫，#p！",
+                "我可听说人类也能留胡子，怎么没看到你的，#p？哈哈！",
+                "没胡子？我差点把你当作个精灵！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": ">=axebearer & <commander"
+            },
+            "lines": [
+                "你确实有好好保养胡子，#p！",
+                "我看到你在胡子上下的功夫了！希望能更长点！",
+                "你来这儿后胡子长长了不少！哈哈！",
+                "你是长得高，胡子……还能长得更长！哈哈！",
+                "别急，#p！胡子不是一天留长的！",
+                "你听我的话开始留胡子了？哈哈！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": ">=commander"
+            },
+            "lines": [
+                "长得高，胡子也长！干的好啊，#p！",
+                "你这胡子长得真好啊！可惜还是比我短了一点，#p！哈哈！",
+                "我可从没想过有天能看到人类的胡子和我相当！",
+                "好兄弟#p啊，你这胡子真不错！我差点认不出你！",
+                "真是好胡子，#p，但还能更长！",
+                "谁说人类留不长胡子的？看看你！真不错，#p！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "alternatives": [{
+                        "biome": "#home"
+                    },
+                    {
+                        "underground": "true"
+                    }
+                ]
+            },
+            "lines": [
+                "这片石头可真适合做些东西。"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "hostile"
+            },
+            "lines": [
+                "别想打赢我，小兔崽子！",
+                "你都没资格和我打！",
+                "你怎么敢来这儿！",
+                "我要拿你的头盖骨当碗使！",
+                "来啊！看看你有啥本事！",
+                "尝尝矮人的火气，#p！",
+                "你是来送脑袋的吧！",
+                "好好尝尝你最后一口气！",
+                "一口麦芽酒都别想尝！",
+                "嗷啊啊啊啊！",
+                "你就像块石头要被我锤烂！",
+                "你狗眼看人低，#p！",
+                "你真是坨脏东西,#p!",
+                "你想啥呢，敢和我打！#p！",
+                "咒死你和你全族！",
+                "Khazâd ai-mênu！矮人向你冲来了！",
+                "你就该被龙炎烤熟！",
+                "你要是有胡子我就把他们扯下来！",
+                "嘴上没毛的家伙哪来的资格当战士！",
+                "来啊！你这嘴上没毛的崽子！",
+                "你做梦也长不出胡子！",
+                "你臭得像坨拉卡斯！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "hostile",
+                "biome": "#home"
+            },
+            "lines": [
+                "你哪来的狗胆跑到我这儿！",
+                "来了可别想跑！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "hostile",
+                "pledge": "lotr:mordor | lotr:dol_guldur | lotr:northern_orcs | lotr:angmar"
+            },
+            "lines": [
+                "滚出去！魔古尔渣！",
+                "快滚！脏鲁克！",
+                "爬回你那拉卡斯老家去吧！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "hostile",
+                "pledge": "lotr:mordor | lotr:dol_guldur | lotr:northern_orcs | lotr:angmar",
+                "biome": "#home"
+            },
+            "lines": [
+                "来了就别走了！魔古尔渣！"
+            ]
+        }
+    ]
+}

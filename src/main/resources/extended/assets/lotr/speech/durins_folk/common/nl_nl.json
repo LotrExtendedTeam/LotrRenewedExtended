@@ -1,0 +1,220 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Brullend vuur! Moutbier! Heerlijk vlees van het bot!",
+        "Dwergenbier is de beste drank in geheel Midden-aarde!",
+        "De rijkdommen van de dwergen wordt door niemand overtroffen.",
+        "Wat voor bericht breng je vanuit de mensenwereld, #p?",
+        "Mijn baard is de afgunst van alle dwergen van Durin's volk.",
+        "De smeedkunst van de dwergen wordt door niemand overtroffen!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "m"
+      },
+      "lines": [
+        "Onze vrouwen lijken zoveel op ons qua stem en uiterlijk dat ze vaak voor ons vergist worden."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "f"
+      },
+      "lines": [
+        "Onze mannen zeggen dat we zoveel op elkaar lijken qua stem en uiterlijk dat we makkelijk te vergissen zijn met ze! Misschien als ze ooit een keer op zouden kijken van hun smederij zouden ze het realiseren..."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:iron_hills"
+      },
+      "lines": [
+        "Welkom in de Ijzeren Heuvels, #p! Veel rijkdommen wachten hier op je.",
+        "Deze heuvels zijn rijk in ijzer, maar ook in andere mineralen.",
+        "We hebben veel mijnen in deze heuvels."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Je bent iets te lang voor deze mijnen, #p! Ha! Ha!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Heb je nieuws van onze familie uit het westen?",
+        "Goed ontmoet!",
+        "Goed ontmoet, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Laten we drinken!",
+        "Zin om te drinken, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend & <oathfriend"
+      },
+      "lines": [
+        "Je mag dan wel niet een van de Khazâd zijn, #p, maar je ziet er vriendelijk genoeg uit."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=oathfriend"
+      },
+      "lines": [
+        "Je mag dan wel niet een van de Khazâd zijn, #p, maar je zal altijd welkom zijn in onze hallen."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <axebearer",
+        "biome": "#home"
+      },
+      "lines": [
+        "Bij mijn baard, ik heb nog nooit in mijn leven een mensenkind gezien! Welkom in mijn huis, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<axebearer"
+      },
+      "lines": [
+        "Je mag dan wel een goede bouw hebben, maar een baard mis je nog!",
+        "Je moet aan die baard werken, #p.",
+        "Je mag dan wel een mensenkind zijn, #p, maar ik heb gehoord dat die ook een baard kunnen groeien! Dus waar is de jouwe? Ha! Ha!",
+        "Geen baard? Ik had je bijna vergist voor een elf."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=axebearer & <commander"
+      },
+      "lines": [
+        "Ik zie dat je baard hebt laten uitgroeien, #p!",
+        "Die baard groeit al behoorlijk. Mag die als maar langer groeien!",
+        "Ik zie al een fijne baard onderweg! Ha! Ha!",
+        "Je lichaamsbouw is als een dwerg... en je baard is onderweg, maar je bent er nog niet helemaal!",
+        "Maak je geen zorgen, #p. Een baard zoals de mijne is tijd nodig om te groeien!",
+        "Is dat het beginsel van een baard die ik op je kin zie, #p? heb je naar mijn advies geluisterd?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=commander"
+      },
+      "lines": [
+        "Je hebt een lichaamsbouw en een baard die eer zou doen aan elke dwerg. Bravo, #p!",
+        "Je hebt een zeer respectabele baard, #p. Als is die maar een klein beetje korter dan die van mij! Ha! Ha!",
+        "Ik had nooit gedacht dat ik de dag zou zien waar een mensenkind een baard zou groeien die vergelijkbaar is met die van mij!",
+        "Mijn goede vriend #p, met je volgegroeide baard? Ik had je bijna niet herkend!",
+        "Een flinke baard, #p, en mag die als maar langer groeien!",
+        "Wie heeft er ooit gezegd dat de mensenkinderen geen baarden kunnen groeien. Je hebt het ze laten zien, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "alternatives": [
+          {
+            "biome": "#home"
+          },
+          {
+            "underground": "true"
+          }
+        ]
+      },
+      "lines": [
+        "Er is hier goed metselwerk."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Verwacht niet dat je beter dan mij bent, knaap!",
+        "Je bent niks voor de volgers van Durin!",
+        "Je had hier nooit moeten komen, #p!",
+        "Ik split die vuile kop van je in tweëen!",
+        "Kom maar, Knul! Laat eens zien wat je in huis hebt!",
+        "Lijdt onder de wraak van de dwergen, #p!",
+        "Kwam je hier alleen om vermorseld te worden?",
+        "Adem je laatste adem in, #p!",
+        "Geen dwergenbier voor jou!",
+        "Raaarrrgh!",
+        "Ik zal je breken als een steen, knul!",
+        "Je hebt ons onderschat, #p!",
+        "Je bent een lastig stuk tuig, #p!",
+        "Wat had je in gedachten, een gevecht met mij beginnen? Ha!",
+        "Vervloekt zal je zijn, jij en al je verwanten, #p!",
+        "Khazâd ai-mênu!",
+        "Ik zou je in drakenvuur braden, jij!",
+        "Als je een baard had gehad, had ik hem van je kin afgetrokken!",
+        "Is dit wat de baardloozen een krijger noemen?",
+        "Kom hier jij baardeloos kreng!",
+        "Je zou niet eens een baard kunnen groeien als je het had geprobeerd!",
+        "Je stinkt net zoals een roedel Rakhâs!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Hoe durf je ons land binnen te komen?",
+        "Je zult boeten voor het binnendringen van ons land!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:dol_guldur | lotr:northern_orcs | lotr:angmar"
+      },
+      "lines": [
+        "Weg met jou, morgul-tuig!",
+        "Pleur op, Rukhs-truig!",
+        "Ren terug naar de Rakhâs die je dient!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:dol_guldur | lotr:northern_orcs | lotr:angmar",
+        "biome": "#home"
+      },
+      "lines": [
+        "Je zult boeten voor het binnendringen van ons land, morgul-tuig!"
+      ]
+    }
+  ]
+}

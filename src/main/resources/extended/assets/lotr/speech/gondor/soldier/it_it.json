@@ -1,0 +1,288 @@
+{
+  "parent": "lotr:gondor/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Maledetti i Sudroni e le loro spade ricurve!",
+        "Dicono che gli Uomini dell'Harad siano quasi tutti sotto l'influenza del Nemico."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "m"
+      },
+      "lines": [
+        "Sono un soldato di Gondor.",
+        "Mi sono addestrato per tutta la vita a uccidere orchi. Ma possano i Valar salvarmi se arrivasse un troll!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "f"
+      },
+      "lines": [
+        "Sono una soldatessa di Gondor.",
+        "Mi sono addestrata per tutta la vita a uccidere orchi. Ma possano i Valar salvarmi se arrivasse un troll!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Se non fosse stato per i coraggiosi Uomini di Gondor, il mondo avrebbe ceduto all'Ombra molto tempo fa.",
+        "Il mio popolo protegge queste terre."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Non pensare che Gondor sia debole, #p. Nel cuore e nello spirito, noi Uomini di Gondor rimarremo sempre forti.",
+        "Fai attenzione al viscido orco, ma temi di più il Carriere e il suo carro. Anche se non abbiamo combattuto né incontrato quel popolo da molte generazioni."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "biome": "lotr:anorien"
+      },
+      "lines": [
+        "Qui viviamo nel terrore, #p. Se cerchi sicurezza, ti consiglierei di recarti nelle terre del Principe."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Negli ultimi tempi il vento ha portato un'aria fetida. Temiamo che qualcosa si stia radunando dietro i Monti di Cenere.",
+        "Ci vorrebbero migliaia di orchi per abbattere anche solo una dozzina di valorosi gondoriani!",
+        "I nostri nemici si stanno radunando oltre l'Harnen.",
+        "Ci sono cattive voci provenienti dall'Harad. La gente dice che i Sudroni stanno raccogliendo tutte le loro forze nelle terre oltre l'Harnen."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+        "gender": "m"
+      },
+      "lines": [
+        "Se qualcosa dovesse marciare su Gondor, i Rohirrim accorrerebbero in nostro aiuto. Ne sono sicuro."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+        "gender": "f"
+      },
+      "lines": [
+        "Se qualcosa dovesse marciare su Gondor, i Rohirrim accorrerebbero in nostro aiuto. Ne sono sicura."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Se il Nemico scatenasse tutte le sue forze contro di noi, #p... beh, dubito che vedremmo un'altra alba!",
+        "Provo pena per i raminghi dell'Ithilien, #p. Saranno i primi a cadere.",
+        "Dubito fortemente che le nostre vecchie difese possano resistere alla potenza di Mordor. Eppure, combatterò fino all'ultimo, per la libertà degli Uomini."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "hired": "own"
+          }
+        ]
+      },
+      "lines": [
+        "Per Gondor!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Figli di Gondor! Mantenete la posizione!",
+        "Per l'Albero Bianco, ti vedrò perire!",
+        "Giuro su Gondor che la tua morte sarà rapida!",
+        "La tua morte sarà rapida, #p!",
+        "Nessuna pietà per i nemici di Gondor!",
+        "Non ti permetterò di fare del male al popolo libero di Gondor, #p!",
+        "Bada a non farci più del male! O mi occuperò personalmente di te!",
+        "Non metterai più mano sul nostro popolo!",
+        "Nel nome degli antichi Re, ti distruggerò!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Sei un nemico del trono di Gondor, #p!",
+        "Non vedrai la fine di questo giorno, servo dell'Ombra!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Sei una nemica del trono di Gondor, #p!",
+        "Non vedrai la fine di questo giorno, serva dell'Ombra!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Non andrai oltre. Non entrerai a Gondor!",
+        "Non puoi entrare a Gondor, #p!",
+        "Dei nemici sono entrati a Gondor!",
+        "Nessun nemico di Gondor passerà liberamente nella nostra terra!",
+        "Lascia questa terra, #p, e non tornare mai più!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Vattene, creatura dell'Ombra!",
+        "Vattene, servo dell'Ombra!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Vattene, creatura dell'Ombra!",
+        "Vattene, serva dell'Ombra!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "pledge_relation": "bad",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Vattene da Gondor, servo del Nemico!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "pledge_relation": "bad",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Vattene da Gondor, serva del Nemico!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "Torna strisciando dal tuo padrone nella Terra dell'Ombra!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "pledge": "lotr:mordor",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Vattene dalle nostre terre, feccia di Mordor!",
+        "Vattene dalle nostre terre, servo di Sauron!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "pledge": "lotr:mordor",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Vattene dalle nostre terre, feccia di Mordor!",
+        "Vattene dalle nostre terre, serva di Sauron!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Combatto per Gondor, #p.",
+        "Possano le nostre azioni riportare Gondor al suo antico splendore!",
+        "I nemici di Gondor cadranno davanti a noi!",
+        "I nostri nemici fanno bene a temere la potenza di Gondor, #p!",
+        "Oggi combattiamo! Per Gondor!",
+        "Ti seguiremo attraverso la morte e la rovina!",
+        "Per Gondor! Per tutto ciò che c'è di buono in questo mondo!",
+        "La feccia di Mordor affronterà la nostra ira!",
+        "Rovina a tutti i nemici di Gondor!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Sei un vero amico di Gondor, #p.",
+        "Siamo orgogliosi di combattere accanto a un guerriero valoroso come te!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Sei una vera amica di Gondor, #p.",
+        "Siamo orgogliosi di combattere accanto a una guerriera valorosa come te!"
+      ]
+    }
+  ]
+}

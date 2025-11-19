@@ -1,0 +1,62 @@
+{
+  "parent": "lotr:durins_folk/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Ik ben trots dat ik voor jou mag vechten, #p!",
+        "Laten we gaan en wat Rakhâs-tuig een lesje leren!",
+        "Mijn baard jeukt voor een nieuw gevecht.",
+        "Onze vijanden zullen worden gebroken zoals een vers paar ribben na het braden!",
+        "De bijlen van de dwergen zijn aangescheprt voor het gevecht, #p!",
+        "Maar weinig in Midden-aarde kunnen opstaan tegen de macht van Durin's volk!",
+        "Dit is fijn allemaal, maar waar is al het bier naartoe?",
+        "Wij dwergen zijn dappere strijders! Al onze vijanden zullen trillen onder onze hamers en bijlen!",
+        "Geen ork zal ooit aan mijn bijl ontkomen!",
+        "Het is werkelijk een eer om naast een krijger zoals jij te vechten, #p!",
+        "Je hebt mijn bijl, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "rank": "<commander"
+      },
+      "lines": [
+        "Je bent een machtige krijger, #p, maar je baard zal nooit vergelijkbaar zijn met die van mij! Ha!",
+        "Het is een eer om naast je te vechten, #p. Zelfs met dat bescheiden excuus van een baard!",
+        "Je vecht goed, #p, maar je baard heeft nog een lange weg te gaan!",
+        "Geef je baard nog wat tijd om te groeien voordat we ten strijde trekken!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "rank": ">=commander"
+      },
+      "lines": [
+        "Ik ben zeer trots om te vechten zij aan zij met de beste baard die het ras van mensen ooit heeft geproduceerd!",
+        "Ik noem het een eer om te vechten samen met iemand met zo'n volgroeide baard!",
+        "Met die baard van je, #p, zullen we geen problemen hebben met orkschedels inbeuken!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "Ik zou mijn baar verkopen voor een slok dwergenbier.",
+        "Ah! Ik mis de stenen hallen van de Ijzeren Heuvels. Maar een dwerg rent nooit weg voor een gevecht!",
+        "Ah! Ik mis de dennenbekladde Ijzeren Heuvels. Maar een dwerg rent nooit weg voor een gevecht!",
+        "Bij mijn baard, ik zou tien mijl rennen voor een fijne slok dwergenbier!"
+      ]
+    }
+  ]
+}

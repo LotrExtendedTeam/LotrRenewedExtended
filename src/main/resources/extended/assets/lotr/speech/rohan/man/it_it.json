@@ -1,0 +1,206 @@
+{
+  "parent": "lotr:rohan/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Siamo i pastori e gli agricoltori del Mark",
+        "Se gli Orchi della Mano Bianca dovessero mai venire da queste parti, sono pronto a combattere.",
+        "Mi piacerebbe potermi unire ai Cavalieri del Re e combattere per difendere la mia famiglia.",
+        "Gli orchi si stanno moltiplicando sulle montagne. Temo per la mia famiglia, #p.",
+        "Ho paura per il nostro popolo.",
+        "C'è chi parla di predoni della Terra Oscura che si intrufolano di notte e rubano i nostri cavalli. Non ce la faccio neanche a pensarci, a dir la verità.",
+        "La gente dice che gli uomini crudeli del Sud si stanno radunando per un assalto a Stoningland.",
+        "Dove sono il cavallo e il cavaliere? Ne abbiamo più bisogno oggi più che mai, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "m"
+      },
+      "lines": [
+        "Se gli Orchi della Mano Bianca dovessero mai venire da queste parti, sono pronto a combattere."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "f"
+      },
+      "lines": [
+        "Se gli Orchi della Mano Bianca dovessero mai venire da queste parti, sono pronta a combattere."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Cosa ci fai qui, viaggiatore?",
+        "Non sei la spia di qualche stregone, vero, #p?",
+        "Lo Stregone Bianco ha molte spie al suo servizio. Tu non sei uno di loro, vero?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Cosa ci fai qui, viaggiatrice?",
+        "Non sei la spia di qualche stregone, vero, #p?",
+        "Lo Stregone Bianco ha molte spie al suo servizio. Tu non sei una di loro, vero?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Alcuni dicono che il Re è malato. Non è più quello di una volta",
+        "Dov'è il Re quando abbiamo bisogno di lui, #p? Dove sono i suoi cavalieri?",
+        "I nostri raccolti appassiscono, i nostri cavalli vengono rubati e si dice che la malattia del re peggiori di giorno in giorno."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Sei malvagio!",
+        "Fuori dalla mia vista, #p.",
+        "Cosa vuoi da me, farabutto?",
+        "Maledetto ruffiano! Torna da dove sei venuto!",
+        "Sei peggio degli uomini selvaggi!",
+        "Non fare del male ai miei cavalli!",
+        "Vai via, furfante!",
+        "Non tratto con i mascalzoni come te!",
+        "Che cosa sei, #p? Un bandito, un mezzorco o qualche diavoleria di Isengard?",
+        "Stai lontano da me.",
+        "Non voglio avere niente a che fare con te."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Sei malvagia!",
+        "Fuori dalla mia vista, #p.",
+        "Cosa vuoi da me, farabutta?",
+        "Maledetta ruffiana! Torna da dove sei venuta!",
+        "Sei peggio degli uomini selvaggi!",
+        "Non fare del male ai miei cavalli!",
+        "Vai via, furfante!",
+        "Non tratto con i mascalzoni come te!",
+        "Che cosa sei, #p? Una bandita, una mezzorca o qualche diavoleria di Isengard?",
+        "Stai lontana da me.",
+        "Non voglio avere niente a che fare con te."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Ti consiglio di lasciare questo posto, #p.",
+        "Ti consiglio di lasciare questo posto. I Cavalieri del Re arriveranno presto.",
+        "Non sarai il benvenuto qui.",
+        "Gli eroi di Rohan ti abbatteranno, #p.",
+        "I Cavalieri del Re ti abbatteranno, #p.",
+        "Guardie! Guardie!",
+        "Va' via, #p. Non vogliamo gente malvagia qui.",
+        "I ruffiani come te non sono i benvenuti qui.",
+        "Tu e quelli come te non siete i benvenuti a Rohan.",
+        "Tu e quelli come te non siete i benvenuti nel Mark.",
+        "Farabutti come te non sono i benvenuti in queste terre."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Ti consiglio di lasciare questo posto, #p.",
+        "Ti consiglio di lasciare questo posto. I Cavalieri del Re arriveranno presto.",
+        "Non sarai la benvenuta qui.",
+        "Gli eroi di Rohan ti abbatteranno, #p.",
+        "I Cavalieri del Re ti abbatteranno, #p.",
+        "Guardie! Guardie!",
+        "Va' via, #p. Non vogliamo gente malvagia qui.",
+        "I ruffiani come te non sono i benvenuti qui.",
+        "Tu e quelli come te non siete i benvenuti a Rohan.",
+        "Tu e quelli come te non siete i benvenuti nel Mark.",
+        "Farabutti come te non sono i benvenuti in queste terre."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:isengard"
+      },
+      "lines": [
+        "Tu servi la Mano Bianca!",
+        "Va' via, thrall di Isengard!",
+        "Sei un demonio al servizio dello Stregone Bianco! Vattene!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:dunland",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Va' via, Dunlandiano!",
+        "Va' via, thrall dunlandiano!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:dunland",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Va' via, Dunlandiana!",
+        "Va' via, thrall dunlandiana!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:near_harad | lotr:rhudel"
+      },
+      "lines": [
+        "Tu servi il Signore Oscuro!",
+        "Va' via, thrall di Mordor!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "Tu servi il Nemico!",
+        "Va' via, thrall del Nemico!"
+      ]
+    }
+  ]
+}

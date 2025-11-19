@@ -1,0 +1,437 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Trzaskający ogień! Piwo słodowe! Pyszne mięsiwa!",
+        "Krasnoludzkie piwo jest najlepsze w całym Śródziemiu!",
+        "Bogactwa krasnoludów nie przewyższa żadna inna rasa.",
+        "Jakie wieści przynosisz ze świata ludzi, #p?",
+        "Mojej brody zazdrości mi całe Plemię Durina.",
+        "Zdolności kowalskie krasnoludów są niezrównane!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "m"
+      },
+      "lines": [
+        "Nasze kobiety są tak do nas podobne pod względem głosu i wyglądu że często są mylone z naszymi mężczyznami."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "f"
+      },
+      "lines": [
+        "Nasi mężowie mówią że my kobiety jesteśmy tak podobne pod względem głosu i wyglądu że często mylą nas z nimi samymi! Może gdyby tylko wyglądali zza kuźni od czasu do czasu..."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:iron_hills"
+      },
+      "lines": [
+        "Witaj w Żelaznych Wzgórzach, #p! Czeka cię tu wiele bogactw.",
+        "Te wzgórza są bogate w żelazo, jak również inne minerały.",
+        "Mamy wiele kopalń w tych wzgórzach."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Jesteś trochę za wysoki na te kopalnie, #p! Ha! Ha!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Jesteś trochę za wysoka na te kopalnie, #p! Ha! Ha!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Masz jakieś wieści od naszych krewniaków na zachodzie?",
+        "Cóż za spotkanie!",
+        "Cóż za spotkanie, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Napijmy się razem!",
+        "Napijemy się, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend & <oathfriend",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Nie jesteś jednym z Khazâdów, #p, ale wydajesz się wystarczająco przyjazny."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend & <oathfriend",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Nie jesteś jedną z Khazâdów, #p, ale wydajesz się wystarczająco przyjazna."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=oathfriend",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Może i nie jesteś jednym z Khazâdów, #p, ale zawsze będziesz mile widziany w naszych halach."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=oathfriend",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Może i nie jesteś jednyą z Khazâdów, #p, ale zawsze będziesz mile widziana w naszych halach."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <axebearer",
+        "biome": "#home",
+		"gender": "m"
+      },
+      "lines": [
+        "Na moją brodę, nigdy wcześniej nie spotkałem człowieka! Witaj w moim domu, #p!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <axebearer",
+        "biome": "#home",
+		"gender": "f"
+      },
+      "lines": [
+        "Na moją brodę, nigdy wcześniej nie spotkałam człowieka! Witaj w moim domu, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<axebearer"
+      },
+      "lines": [
+        "Wzrost to ty masz, ale dobrej brody to już nie!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<axebearer",
+		"gender": "m",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Musisz popracować nad tą brodą, #p.",
+        "Może i pochodzisz z rasy ludzi, #p, ale słyszałem że ludzie mogą mieć brody jeśli się postarają! Więc gdzie jest twoja? Ha! Ha!",
+        "Bez brody? Prawie wziąłem cię za elfa."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<axebearer",
+		"gender": "m",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Musisz popracować nad tą brodą, #p.",
+        "Może i pochodzisz z rasy ludzi, #p, ale słyszałem że ludzie mogą mieć brody jeśli się postarają! Więc gdzie jest twoja? Ha! Ha!",
+        "Bez brody? Prawie wziąłem cię za elfkę."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<axebearer",
+		"gender": "m",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Musisz popracować nad tą brodą, #p.",
+        "Może i pochodzisz z rasy ludzi, #p, ale słyszałem że ludzie mogą mieć brody jeśli się postarają! Więc gdzie jest twoja? Ha! Ha!",
+        "Bez brody? Prawie wziąłem cię za elfa."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<axebearer",
+		"gender": "f",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Musisz popracować nad tą brodą, #p.",
+        "Może i pochodzisz z rasy ludzi, #p, ale słyszałam że ludzie mogą mieć brody jeśli się postarają! Więc gdzie jest twoja? Ha! Ha!",
+        "Bez brody? Prawie wzięłam cię za elfa."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<axebearer",
+		"gender": "f",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Musisz popracować nad tą brodą, #p.",
+        "Może i pochodzisz z rasy ludzi, #p, ale słyszałam że ludzie mogą mieć brody jeśli się postarają! Więc gdzie jest twoja? Ha! Ha!",
+        "Bez brody? Prawie wzięłam cię za elfkę."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=axebearer & <commander",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Widzę że pracowałeś nad tą brodą, #p!",
+        "Widzę że pracujesz nad swoją brodą. Niech urośnie jeszcze dłuższa!",
+        "Ładna broda ci tam rośnie! Ha! Ha!",
+        "Wzrost to ty masz... a i zarost się pokazał, na to wygląda, ale jeszcze przed nim dużo do urośnięcia!",
+        "Nie przejmuj się, #p. Broda taka jak moja potrzebuje czasu aby urosnąć!",
+        "Czy to aby nie lekki zarost na twoim podbródku, #p? Czyżbyś poszedł za moją radą?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=axebearer & <commander",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Co? Ludzkim kobietom nie rosną brody? Szkoda, byłoby wam w nich do twarzy."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=commander",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Masz wzrost i do tego wspaniałą brodę! Niezły zarost, #p!",
+        "Masz brodę godną szacunku, #p. Ledwie krótszą od mojej! Ha! Ha!",
+        "Zaiste zacna broda, #p, i niech urośnie jeszcze dłuższa!",
+        "Kto powiedział że rasa ludzi nie może mieć brody! Świetna robota, #p!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=commander",
+		"player_gender_pref": "m",
+		"gender": "m"
+      },
+      "lines": [
+        "Nigdy nie sądziłem że nadejdzie dzień gdy ktoś z rasy ludzi będzie miał brodę godną konkurowania z moją własną!",
+        "Mój drogi przyjaciel #p, z pełni wyrośniętą brodą? Ledwie cię poznałem!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=commander",
+		"player_gender_pref": "m",
+		"gender": "f"
+      },
+      "lines": [
+        "Nigdy nie sądziłam że nadejdzie dzień gdy ktoś z rasy ludzi będzie miał brodę godną konkurowania z moją własną!",
+        "Mój drogi przyjaciel #p, z pełni wyrośniętą brodą? Ledwie cię poznałam!"
+      ]
+    },
+	 {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=commander",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Ach, żałuj że nie możesz mieć takiej brody, #p!",
+        "Może i nie możesz mieć brody, #p, ale gdybyś mogła, na pewno byłaby zacna!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "alternatives": [
+          {
+            "biome": "#home"
+          },
+          {
+            "underground": "true"
+          }
+        ]
+      },
+      "lines": [
+        "Dużo tu dobrej kamieniarki."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Nie masz szans z rodakami Durina!",
+        "Rozpłatam twoją żałosną czaskę na pół!",
+        "Poczuj gniew krasnoludów, #p!",
+        "Weź swój ostatni oddech, #p!",
+        "Żadnego krasnoludzkiego piwa dla ciebie!",
+        "Raaarrrgh!",
+        "Ale z ciebie paskuda, #p!",
+        "Biada i zguba tobie i twojej rasie, #p!",
+        "Khazâd ai-mênu!",
+        "To to uchodzi za wojownika pośród plemion bez brody?",
+        "Cuchniesz jak zgraja Rakhâsów!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Nie myśl sobie że mnie przezwyciężysz, chuliganie!",
+        "Nie powinieneś był tu przychodzić, #p!",
+        "No dawaj, koleżko! Pokaż co potrafisz!",
+        "Przyszedłeś tu tylko po to aby cię zmiażdżyć?",
+        "Zmiażdżę cię jak skałę, koleżko!",
+        "Nie doceniłeś nas, #p!",
+        "Co ty sobie myślałeś, zadzierać ze mną? Ha!",
+        "Obyś się zmażył w smoczym ogniu!",
+        "Chodź tu, nędzniku bez brody!",
+        "Broda by ci nie urosła nawet gdybyś próbował!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Nie myśl sobie że mnie przezwyciężysz, chuliganko!",
+        "Nie powinnaś była tu przychodzić, #p!",
+        "No dawaj, koleżanko! Pokaż co potrafisz!",
+        "Przyszłaś tu tylko po to aby cię zmiażdżyć?",
+        "Zmiażdżę cię jak skałę, koleżanko!",
+        "Nie doceniłaś nas, #p!",
+        "Co ty sobie myślałaś, zadzierać ze mną? Ha!",
+        "Obyś się zmażyła w smoczym ogniu!",
+        "Chodź tu, nędznico bez brody!",
+        "Broda by ci nie urosła nawet gdybyś próbowała!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "m",
+		"gender": "m"
+      },
+      "lines": [
+        "Gdybyś miał brodę, wyrwałbym ci ją z podbródka!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "m",
+		"gender": "f"
+      },
+      "lines": [
+        "Gdybyś miał brodę, wyrwałabym ci ją z podbródka!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "f",
+		"gender": "m"
+      },
+      "lines": [
+        "Gdybyś miała brodę, wyrwałbym ci ją z podbródka!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "f",
+		"gender": "f"
+      },
+      "lines": [
+        "Gdybyś miała brodę, wyrwałabym ci ją z podbródka!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Jak śmiesz wkraczać na nasze ziemie?",
+        "Zapłacisz za wtargnięcie tutaj!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:dol_guldur | lotr:northern_orcs | lotr:angmar"
+      },
+      "lines": [
+        "Precz, morgulskie ścierwo!",
+        "Odejdź, Rukhski ścierwie!",
+        "Uciekaj do Rakhâsów którym służysz!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:dol_guldur | lotr:northern_orcs | lotr:angmar",
+        "biome": "#home"
+      },
+      "lines": [
+        "Zapłacisz za wtargnięcie tutaj, morgulski ścierwie!"
+      ]
+    }
+  ]
+}

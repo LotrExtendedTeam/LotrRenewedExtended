@@ -1,0 +1,291 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Szukam ludzkiego mięsa!",
+        "Czuję ludzike mięso!",
+        "Gdzie ludzkie mięso?",
+        "Czego chcesz?",
+        "Trzy parszywe dni o cuchnącym chlebie!",
+        "Znowu cuchnący chleb? Dawaj ludzkie mięso!",
+        "Nie mogę się doczekać aby zatopić swoje zęby w ludzkim mięsie!",
+        "Czego szukasz?",
+        "Powietrze jest tutaj wstrętne.",
+        "Złamiemy ich kości i pożywimy się ich mięsem!",
+        "Śmierć królestwom ludzi! Śmierć plugawym elfom!",
+        "Te łachmany śmierdzą!",
+        "Świat ludzi zostanie złamany i zniszczony.",
+        "Zguba! Zguba wolnym ludom!",
+        "Ludzkie mięso!",
+        "Gdzie najbliższe ludzkie mięso? Umieram z głodu!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=thrall"
+      },
+      "lines": [
+        "Służymy wspólnemu władcy, #p.",
+        "Pan szykuje nas na wojnę. Wkrótce świat ludzi upadnie.",
+        "Zalejemy kraje wolnych ludów jak plaga! Nic nie zostanie przy życiu!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<snaga"
+      },
+      "lines": [
+        "Komu służysz?",
+        "Służysz Wielkiemu Oku, czy tym plugawym tarkom w Gondorze?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<brigand"
+      },
+      "lines": [
+        "Zejdź mi z oczu, robaku!",
+        "Wracaj do pracy, ścierwo!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand"
+      },
+      "lines": [
+        "Wkrótce, #p! Wkrótce będziemy na wojnie z tymi plugawymi synami ludzi!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Nie jesteś taki zły jak na człowieka!",
+        "Nie jesteś taki zły jak na człowieka, #p! Nawet mimo tego że czuć od ciebie tarkiem!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Nie jesteś taka zła jak na człowieka!",
+        "Nie jesteś taka zła jak na człowieka, #p! Nawet mimo tego że czuć od ciebie tarkiem!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand & <captain"
+      },
+      "lines": [
+        "Plugawe ścierwo! Och, to ty, #p...",
+        "Nadal nie wyglądasz na Półgoblina, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<slavedriver"
+      },
+      "lines": [
+        "Jak przyniesiesz mi ludzkie mięso, to cię nie zjem! Ha! Ha!",
+        "Czego szukasz, larwo?",
+        "Wykonuj swoje rozkazy, ścierwo!",
+        "Nie stój tak! Zrób coś!",
+        "Nie ufam ci, larwo!",
+        "Ruszać się, ścierwa!",
+        "Próbujesz zacząć bójkę?",
+        "Nie ufam plugawym ludziom!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=despoiler"
+      },
+      "lines": [
+        "Na twój rozkaz, #p!",
+        "Jakie rozkazy od naszego władcy, #p?",
+        "Oko mówi wysoce o tobie, #p.",
+        "Nigdy nie sądziłem że śmierdzący człowiek taki jak ty wzniesie się tak wysoko w szeregach Oka!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<despoiler"
+      },
+      "lines": [
+        "Ej! Uważaj co mówisz!",
+        "Coś tu paskudnie pachnie. To ty, #p! Idź sobie!",
+        "Śmierdzisz!",
+        "Śmierdzisz zgniłymi larwami!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<captain"
+      },
+      "lines": [
+        "Nie wyglądasz jak Półgoblin!",
+        "Chcesz czegoś?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain"
+      },
+      "lines": [
+        "Jakie rozkazy z Lugbúrza?",
+        "Jakie rozkazy z Lugbúrza, #p?",
+        "Jakie rozkazy ze strony Oka?",
+        "Na twój rozkaz, larwo! - To znaczy - #p!",
+        "Dam chłopcom znać że pora na przegląd!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lieutenant"
+      },
+      "lines": [
+        "Idziemy na wojnę pod twoją komendą!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"player_gender_pref": "m",
+        "rank": ">=lieutenant"
+      },
+      "lines": [
+        "Więc? Ty jesteś nowym szefem?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"player_gender_pref": "f",
+        "rank": ">=lieutenant"
+      },
+      "lines": [
+        "Więc? Ty jesteś nową szefową?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Wykrwawię cię jak przekłute prosię!",
+        "Ciesz się ostatnim oddechem, ścierwo!",
+        "Zabić ścierwo!",
+        "Mięso wraca do jadłospisu, chłopcy!",
+        "Cuchniesz strachem!",
+        "Giń, ludzkie ścierwo",
+        "Twoja krew pachnie świeżo!",
+        "Nadzieję cię jak kawałek mięsa!",
+        "Lepiej zacznij uciekać, larwo!",
+        "Podejdź bliżej a nadzieję cię jak świeży kawałek mięsa",
+        "Najemy się dziś ludzkim mięsem!",
+        "Jak z tobą skończe, zostanie z ciebie tylko sterta kości!",
+        "Pożywię się twoim mięsem, ludzki plugastwie!",
+        "Zrobię z ciebie obiad!",
+        "Utnę ci głowę, ścierwo Gondoru!",
+        "Zabić tarka!",
+        "Plugawy tark próbował mnie dźgnąć!",
+        "Tarkijskie ścierwo! Chodźcie, chłopcy!",
+		"Robak!",
+        "Ścierwo!",
+        "Larwa!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Brać go, chłopcy!",
+		"Zadarłeś z niewłaściwym orkiem, ludzkie ścierwo!",
+		"Taki ładny i świeży!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Brać ją, chłopcy!",
+		"Zadarłaś z niewłaściwym orkiem, ludzkie ścierwo!",
+		"Taka ładna i świeża!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Nasze armie jeszcze cię nie wypędziły, ścierwo?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Poprowadź nas na wojnę, #p!",
+        "W powietrzu czuć smród strachu!",
+        "Wolne ludy tego świata upadną przed naszą potęgą!",
+        "Śmierć! Śmierć wszystkim którzy się nam sprzeciwią!",
+        "Zapolujemy na ludzkie mięso, #p?",
+        "Mój żołądek pragnie ludzkiego mięsa!",
+        "Jestem gotowy aby upolować jakieś ludzkie ścierwo.",
+        "Śmierć plugawym tarkom i wszystkim ich sojusznikom!",
+        "Pozwól nam siać zniszczenie w świecie ludzi!",
+        "Zapolujmy na jakichś tarków!",
+        "Cuchnący tarkowie nie wiedzą co ich czeka!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"player_gender_pref": "m",
+        "hired": "own"
+      },
+      "lines": [
+        "Jakie są twoje rozkazy, mój Panie?",
+        "Może i jesteś moim dowódcą, #p, ale nadal jesteś plugawą larwą!",
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"player_gender_pref": "f",
+        "hired": "own"
+      },
+      "lines": [
+        "Jakie są twoje rozkazy, moja Pani?",
+        "Może i jesteś moją dowódczynią, #p, ale nadal jesteś plugawą larwą!",
+      ]
+    }
+  ]
+}

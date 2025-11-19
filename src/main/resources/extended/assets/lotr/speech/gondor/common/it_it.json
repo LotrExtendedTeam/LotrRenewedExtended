@@ -1,0 +1,368 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Sono tempi bui per Gondor.",
+        "Sono tempi bui per Gondor, #p.",
+        "Gli uomini sussurrano di creature malvagie che si riproducono a Est e raccontano storie di un orrore senza nome...",
+        "Se dovessi imbatterti in una pianta selvatica di erba occidentale, faresti bene a raccoglierla e portarla a casa.",
+        "Preferirei essere alla taverna in questo momento.",
+        "Dicono che l'ombra di Mordor stia crescendo a Est.",
+        "Questi sono tempi bui. Un grande potere sta sorgendo a Est.",
+        "Come te la passi?",
+        "Hai qualcosa da bere?",
+        "Siamo gente onesta noi Uomini di Gondor",
+        "Gondor era un tempo uno dei più grandi regni degli Uomini. Eppure oggi è solo una terra di mattoni sgretolati e falsità...",
+        "Che notizie porti?",
+        "Racconta, #p. Quali notizie porti da terre lontane?",
+        "Sono questi gli ultimi giorni degli Uomini? Un tempo Gondor era grande, ora temo ogni giorno di più per il nostro futuro.",
+        "Sta calando una fredda oscurità sui regni degli Uomini.",
+        "Alte navi e alti re, tre volte tre. Che portaron da terre sommerse, oltre il mare in tempesta? Sette stelle e sette pietre, e un albero bianco.",
+        "Dicono che i Sudroni portino spade ricurve in battaglia. Spade ricurve!",
+        "Un giorno spero di vedere restaurata la gloria di Gondor.",
+        "Gondor non è più grande come un tempo.",
+        "Un grande male sta sorgendo ancora una volta dietro le mura di Mordor. Temo che sarà la nostra rovina.",
+        "Hai mai visto gli Argonath, #p? Sono uno spettacolo!",
+        "Hai mai visto gli Argonath, #p? L'ultima volta che sono stato a nord erano scomparsi...",
+        "Le Valli dell'Anduin sono terre meravigliose, quasi paragonabili alla bellezza di Gondor.",
+        "L'Albero Bianco è seccato da tempo, eppure i nostri cuori battono ancora con ardore.",
+        "Si dice che le cime dei Monti Bianchi",
+        "Non vedo l'ora di vedere i Cavalieri del Cigno delle Dor-en-Ernil cavalcare in battaglia.",
+        "Stai lontano dai pini di Tawar-in-Drúedain, #p. Vi abitano strani Uomini che adorano la pietra e la foglia.",
+        "Se i fari della Torre Bianca dovessero venire accesi allora sapremo che la nostra fine è arrivata.",
+        "I porti di Umbar un tempo facevano parte del nostro regno, ma sono caduti da tempo nelle mani degli Haradrim."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn, morning"
+      },
+      "lines": [
+        "Buongiorno.",
+        "Buongiorno, #p.",
+        "Buongiorno, #p! Ma intendo dire che che è un buon giorno o che è un giorno in cui occorre essere buoni?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Buon pomeriggio.",
+        "Buon pomeriggio, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening, dusk, night"
+      },
+      "lines": [
+        "Buonasera.",
+        "Buonasera, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "daytime": "dawn",
+        "sun_admiring": "true"
+      },
+      "lines": [
+        "Poche cose sono belle come la vista dei primi raggi del sole proiettati sulla cima dei Monti Bianchi."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Questo paese ospitava un grande regno nei tempi antichi, ma quei giorni sono passati da tempo...",
+        "Ah, la galenas dolce! Un'erba così bella e profumata. La si trova spesso selvatica in queste terre, #p.",
+        "L'erba occidentale di questi campi è un'erba meravigliosa e profumata.",
+        "I cuori degli uomini vengono corrotti dalla falsità, #p, ma le nostre terre sono belle come sempre.",
+        "Nella lingua di Rohan il nostro regno viene chiamato Stoningland, cioè “Terra di Roccia”. Beh, non possiamo dire che la roccia ci manchi, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Salve, #p!",
+        "Qualche notizia, #p?",
+        "Il vecchio tumulo funerario di Elendil viene chiamato Halifirien nella lingua di Rohan. Ma la sua bara è stata spostata nelle Tombe dei Re della Città di Pietra cinquecento anni fa.",
+        "Abbiamo costruito un muro intorno ai Campi del Pelennor per tenere fuori le incursioni degli orchi. Dovremmo fare lo stesso lungo il Poros, se me lo chiedi.",
+        "Ho visto con i miei occhi le rovine di Osgiliath, dove un tempo sorgeva la nostra capitale. Ma per cinquecento anni, quella città non ha ospitato altro che un silenzioso dolore, promemoria del sempre più oscuro declino di Gondor.",
+        "Gli studiosi parlano di tempi in cui Gondor era un gioiello splendente tra i regni degli Uomini. Temo che quei giorni siano andati per sempre, #p.",
+        "Porti buone notizie, #p?",
+        "Gondor non ha mai riguadagnato la gloria che aveva ai tempi della stirpe di Anárion."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Questo paese è la mia casa, #p. Temo per tutti noi in questi giorni bui.",
+        "Molti Uomini dell'Ithilien e delle Terre del Sud cercarono rifugio qui, cento anni fa. Spero che un giorno le nostre armate marcino verso est e riprendano quelle terre!",
+        "Saluti, #p. Quali notizie porti a Gondor da lontano?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <champion"
+      },
+      "lines": [
+        "Ah, #p! Mi sembra che ci siamo già incontrati. O mi sbaglio?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<friend"
+      },
+      "lines": [
+        "Non desideriamo stranieri nella nostra terra in questo momento, a meno che non siano potenti uomini d'arme in cui possiamo confidare.",
+        "Sappi, #p, che non desideriamo stranieri a Gondor in questo momento."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Questi sono tempi difficili per la nostra gente. L'oscurità si accumula a Mordor e i signori della Città Bianca tacciono.",
+        "Nel mio cuore, #p, sogno ancora un giorno in cui i Re torneranno sul trono di Gondor.",
+        "Vorrei rivedere un re sul trono di Gondor.",
+        "Ho sentito dire che un giorno i Re potrebbero torneranno e governeranno ancora una volta Gondor. Ma sono solo storie popolari; non possono essere vere...",
+        "Gondor. Ah, Gondor. Il grande e antico regno del Sud, un tempo! Ma ora, #p, questo è il nostro lungo declino. Il crepuscolo dell'Occidente.",
+        "Gli uomini delle terre esterne stanno arrivando nelle terre centrali, lontano dai conflitti. Portano guai, ma penso che ce la faremo",
+        "Vieni, #p, raccontami qualche storia per rallegrare il mio cuore..."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Ben trovato, #p!",
+        "Ben trovato.",
+        "Non aver paura, amico mio #p. Rohan verrà in nostro aiuto. Vengono sempre in nostro aiuto."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Ben trovata, #p!",
+        "Ben trovata.",
+        "Non aver paura, amica mia #p. Rohan verrà in nostro aiuto. Vengono sempre in nostro aiuto."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<atarms",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Dovrei avvertirti, #p. Gondor non è più come una volta.",
+        "Non assomigli molto a un uomo di Gondor, #p. Non sei del sud, vero?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<atarms",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Dovrei avvertirti, #p. Gondor non è più come una volta.",
+        "Non assomigli molto a una donna di Gondor, #p. Non sei del sud, vero?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<atarms",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Benvenuto a Gondor.",
+        "Benvenuto a Gondor, #p.",
+        "Gondor ti dà il benvenuto, #p.",
+        "Benvenuto, #p. Vorrei che fossi venuto a Gondor in giorni più felici.",
+        "È un peccato che tu non sia potuto venire a Gondor in giorni più felici, #p.",
+        "Vorrei poterti dare il benvenuto a Gondor in tempi più felici.",
+        "Benvenuto, #p. Cosa ti porta a Gondor?",
+        "Salve, #p! Benvenuto nella terra di Gondor.",
+        "Arrivi in una bella giornata, #p. Gli orchi non razziano le nostre terre da più di una settimana.",
+        "Avrai viaggiato molto per venire a vedere Gondor, #p. Eppure penso che tu sia arrivato nei suoi giorni bui."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<atarms",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Benvenuta a Gondor.",
+        "Benvenuta a Gondor, #p.",
+        "Gondor ti dà il benvenuto, #p.",
+        "Benvenuta, #p. Vorrei che fossi venuta a Gondor in giorni più felici.",
+        "È un peccato che tu non sia potuta venire a Gondor in giorni più felici, #p.",
+        "Vorrei poterti dare il benvenuto a Gondor in tempi più felici.",
+        "Benvenuta, #p. Cosa ti porta a Gondor?",
+        "Salve, #p! Benvenuta nella terra di Gondor.",
+        "Arrivi in una bella giornata, #p. Gli orchi non razziano le nostre terre da più di una settimana.",
+        "Avrai viaggiato molto per venire a vedere Gondor, #p. Eppure penso che tu sia arrivato nei suoi giorni bui."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<captain"
+      },
+      "lines": [
+        "Non sei di queste parti, vero #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "m",
+        "daytime": "dawn, morning"
+      },
+      "lines": [
+        "Buongiorno, mio signore #p. C'è qualcosa che posso fare per voi?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "f",
+        "daytime": "dawn, morning"
+      },
+      "lines": [
+        "Buongiorno, mia signora #p. C'è qualcosa che posso fare per voi?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "m",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Buon pomeriggio, mio signore #p. C'è qualcosa che posso fare per voi?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "f",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Buon pomeriggio, mia signora #p. C'è qualcosa che posso fare per voi?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "m",
+        "daytime": "evening, dusk, night"
+      },
+      "lines": [
+        "Buonasera, mio signore #p. C'è qualcosa che posso fare per voi?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "f",
+        "daytime": "evening, dusk, night"
+      },
+      "lines": [
+        "Buonasera, mia signora #p. C'è qualcosa che posso fare per voi?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day",
+        "weather": "clear"
+      },
+      "lines": [
+        "Bella giornata."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "weather": "rain"
+      },
+      "lines": [
+        "L'oscurità si sta addensando su Gondor. E, #p, sembra che le nuvole di pioggia si stiano radunando all'orizzonte."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Non commetterai alcun crimine qui!",
+        "Non siamo gentili con i criminali qui!",
+        "Questa è davvero un'ora terribile per Gondor!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Non sei amico di Gondor, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Non sei amica di Gondor, #p."
+      ]
+    }
+  ]
+}

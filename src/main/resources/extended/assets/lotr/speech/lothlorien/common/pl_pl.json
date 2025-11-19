@@ -1,0 +1,444 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Świat zaprawdę jest pełen niebezpieczeństw.",
+        "Jakie wieści przynosisz, #p?",
+        "Na morze, na morze!",
+        "Tęsknię za morzem, #p.",
+        "Nasze dni się kończą, już nam ciążą lata.",
+        "Statku, o szary statku, czy słyszysz ich wołanie?",
+        "Gilthoniel! O Elbereth!",
+        "Miruvor! Odświeża ciało i oczyszcza duszę.",
+        "Dni coraz zimniejsze a lata przemijają.",
+        "Zew morza w moim sercu jest coraz silniejszy.",
+        "Wkrótce... wkrótce będę opuszczać te ziemie, #p.",
+        "Rzadko rozmawialiśmy z ludźmi od kiedy zmienił się świat.",
+        "Ciemność gromadzi się na tych ziemiach. Czuję to w moim ciele.",
+        "Siła elfów słabnie tutaj.",
+        "Jak długo będę tu trwać, #p?",
+        "Ae Aerendil, angalef in-elin!",
+        "Ai, #p!",
+        "Nie szukaj kłopotów, #p - same cię znajdą.",
+        "Nover.",
+        "Świat się zmienił. Mówi mi to woda... mówi mi to ziemia... wyczuwam to w powietrzu.",
+        "Dni naszego ludu już prawie dobiegły końca.",
+        "Nasze serca pragną tego abyśmy podziwiali ziemie Amanu.",
+        "Wkrótce opuścimy to Śródziemie.",
+        "Białe mewy wzywają...",
+        "Słyszysz zew białych mew?",
+        "Bezimienny powrócił. Nie możemy pozostać na tych ziemiach na długo.",
+        "To co stało tak długo przeciwko ciemności wkrótce może upaść.",
+        "Będziemy musieli odejść na Zachód lub zmienić się w zwykłych wieśniaków, mieszkać w norach i jaskiniach, z wolna zapomnieć i utonąć w zapomnieniu.",
+        "To co powinno być to będzie.",
+        "Wolelibyśmy odrzucić wszytko co kachamy niż poddać się woli Mrocznego Władcy.",
+        "Krążą plotki o cieniu na wschodzie. Obawiamy się że Bezimienny powrócił.",
+        "Morze wzywa nas do domu.",
+        "Czas elfów się kończy.",
+        "Moi ludzie opuszczają te brzegi.",
+        "Sprawy, których pamięć powinna przetrwać, uległy zatraceniu.",
+        "Na Brzeg Ostatni fale szeroko się niosą.",
+        "O Lórien!",
+        "Cień nadchodzi ze wschodu.",
+        "Wkrótce wszystko wypełni rozpacz i żal, lecz wciąż jest nadzieja - póki jesteśmy szczerzy.",
+        "Nasz czas na tym świecie się kończy, ale jeszcze się nie skończył.",
+        "Zło gromadzi się znów w fortecy Dol Guldur. Nie można mu pozwolić aby zagrażało naszym ziemiom.",
+        "Świat się zmienia, #p..., czuję to w głębi serca."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "m"
+      },
+      "lines": [
+        "Widziałem lata słońca poza rachubą ludzi śmiertelnych."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "f"
+      },
+      "lines": [
+        "Widziałam lata słońca poza rachubą ludzi śmiertelnych."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Jakie wieści przynosisz elfom ze Złotego Lasu?",
+        "Ścieżki Lothlórien są piękne i spokojne.",
+        "Łatwo jest się zatracić pośród naszego plemienia.",
+        "Zło nigdy nie wejdzie do Lórien.",
+        "Liście Lórien nie opadają bezczynnie.",
+        "W naszych lasach, pamięć Starszych Dni wciąż trwa.",
+        "Ludzie tacy jak ty często przychodzili do naszych leśnych krain za czasu Starszych Dni.",
+        "Nasza miłość do tego kraju jest głębsza niż odchłanie Morza.",
+        "Wspomnienia dawnych lat wciąż tutaj trwają."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+		"gender": "m"
+      },
+      "lines": [
+        "O Lórien! Zbyt długo mieszkałem na tym brzegu."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+		"gender": "f"
+      },
+      "lines": [
+        "O Lórien! Zbyt długo mieszkałam na tym brzegu."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening | dusk"
+      },
+      "lines": [
+        "Na zachodzie, dalekim zachodzie, okrągłe słońce opada."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk | night | dawn",
+        "weather": "clear"
+      },
+      "lines": [
+        "Gwiazda wznosi się z ciemności.",
+        "Chwała Eärendilowi, najjaśniejszej z gwiazd!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Jesteś Przyjacielem Elfów, #p?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Jesteś Przyjaciółką Elfów, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "biome": "#home",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Witaj, podróżniku z daleka! Jakie wieści przynosisz nam z krajów ludzi?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "biome": "#home",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Witaj, podróżniczko z daleka! Jakie wieści przynosisz nam z krajów ludzi?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Witaj, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Witaj w moim domu, #p.",
+        "Nie obawiaj się, #p. Żadne zło nie ma wstępu do Złotego Lasu. Chroni nas sekretna moc.",
+        "Witaj w krainie Władcy Celeborna i Galadrieli, Pani Światła!",
+        "Nie zamartwiaj swojego serca, #p. W Lórien możesz odpocząć nie martwiąc się niebezpieczeństwem.",
+        "Witaj, #p, w krainie Władcy Celeborna i Pani Galadrieli!",
+        "W Lothlórien znajdziesz uzdrowienie i pokój. Żadno zło nie splami naszej ziemi."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Wypij trochę miruvoru, #p, a cały twój ból w kościach zniknie!",
+        "Niech gwiazdy Elbereth rozświetlą ci drogę!",
+        "Niech wichry Manwëgo pokażą ci drogę!",
+        "Gwiazda błyszczy nad godziną naszego spotkania, #p.",
+        "Niechaj wiatr wieje w twoje żagle!",
+        "Aby liście twego drzewa życia nigdy nie zwiędły, #p!",
+        "Ai, elvellon!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Nie możesz nazywać siebie prawdziwym Przyjacielem Elfów dopóki nie spróbujesz lembasu, #p.",
+        "Chwała, Przyjacielu Elfów!",
+        "Zdaje się że jesteś Przyjacielem Elfów, #p."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Nie możesz nazywać siebie prawdziwą Przyjaciółką Elfów dopóki nie spróbujesz lembasu, #p.",
+        "Chwała, Przyjaciółko Elfów!",
+        "Zdaje się że jesteś Przyjaciółką Elfów, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Nie jesteś Przyjacielem Elfów, #p!",
+        "Do Udûnu z tobą!",
+        "Idź i pocałuj orka!",
+        "Przepadnij, wrogu elfów!",
+        "Przepadnij, sługo zła!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"gender": "m"
+      },
+      "lines": [
+        "Tak głośno oddychasz że trafiłbym cię w ciemnościach."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"gender": "f"
+      },
+      "lines": [
+        "Tak głośno oddychasz że trafiłabym cię w ciemnościach."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Wracaj do cienia z którego przyszedłeś!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Wracaj do cienia z którego przyszłaś!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Żadne zło nie postawi nogi w Złotym Lesie!",
+        "Nie możesz wejść do Lórien.",
+        "#p, nie możesz postawić stopy w Lothlórien!",
+        "Twoja obecność nie jest tu mile widziana.",
+        "Nieprzyjaciel nie ma władzy nad Lórien!",
+        "Nie zdzierżymy zła w Lothlórien!",
+        "Nie przyniesiesz tutaj zła, #p!",
+        "Twój cień nie zatruje naszych błogosławionych lasów!",
+        "Kto sprowadził na nas ten znak zagłady?",
+        "Nie pozwolimy złu wkroczyć do naszej krainy. Odejdź albo zmierz się z naszym gniewem!",
+        "Przynosisz to wielkie zło, #p. Nie możesz iść dalej.",
+        "Odejdź, #p, albo zmierz się z potęgą naszych strzał!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Nie jesteś mile widziany na tych ziemiach."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Nie jesteś mile widziana na tych ziemiach."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+		"gender": "m",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Wiedziałem że nie jesteś przyjacielem naszegu ludu!",
+        "Wiedziałem że nie można ci ufać, #p!",
+        "Jesteś orkiem pod przykrywką przyjaciela!",
+        "Przejrzałem cię od samego początku, morgulski szpiegu!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+		"gender": "m",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Wiedziałem że nie jesteś przyjaciółką naszegu ludu!",
+        "Wiedziałem że nie można ci ufać, #p!",
+        "Jesteś orkiem pod przykrywką przyjaciela!",
+        "Przejrzałem cię od samego początku, morgulski szpiegu!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+		"gender": "f",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Wiedziałam że nie jesteś przyjacielem naszegu ludu!",
+        "Wiedziałam że nie można ci ufać, #p!",
+        "Jesteś orkiem pod przykrywką przyjaciela!",
+        "Przejrzałam cię od samego początku, morgulski szpiegu!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+		"gender": "f",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Wiedziałam że nie jesteś przyjaciółką naszegu ludu!",
+        "Wiedziałam że nie można ci ufać, #p!",
+        "Jesteś orkiem pod przykrywką przyjaciela!",
+        "Przejrzałam cię od samego początku, morgulski szpiegu!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home"
+      },
+      "lines": [
+        "Żałuję że daliśmy ci schronienie w Lórien!",
+        "Gorzko teraz żałuję powitania cię w Lórien!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Nie jesteś już mile widziany w naszej krainie!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Nie jesteś już mile widziana w naszej krainie!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "My elfowie jesteśmy pośród najlepszych wojowników w całym Śródziemiu.",
+        "Wiele czasu minęło odkąd rasy ludzi i elfów walczyły ramię w ramię, #p.",
+        "Niewielu może się równać waleczności elfów.",
+        "Morgulskie ściera zginą od łuku i ostrza!",
+        "Masz naszą wierność, #p.",
+        "Staram się chronić wszystkiego co dobre na tym świecie.",
+        "Dla Lothlórien!",
+        "Niech Valarowie chronią nas w trakcie bitwy, #p.",
+        "Srebrne monety mają niewiele wartości dla elfa, #p, ale walczymy we wspólnej sprawie.",
+        "Mój łuk zaśpiewa z twoim mieczem, #p!",
+        "Kości naszych wrogów będą błyszczeć pod Słońcem, #p.",
+        "Pozwól nam oczyścić ten świat z podłego plemienia Mordoru!",
+        "Dni są coraż mroczniejsze i chłodniejsze, lecz światło elfów jeszcze nie zgasło!",
+        "Obawiam się że Bezimienny powrócił. Cień musi zostać zniszczony zanim będzie za późno.",
+        "W imieniu wszystkiego co dobre, oczyśćmy ten świat ze zła!",
+        "Nie możemy pozwolić aby zło Mordoru rozprzestrzeniało się!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "biome": "#home"
+      },
+      "lines": [
+        "Żadne zło nie wejdzie do Lórien na naszej straży."
+      ]
+    }
+  ]
+}

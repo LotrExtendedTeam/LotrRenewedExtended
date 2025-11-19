@@ -1,0 +1,414 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Il mondo è davvero pieno di pericoli.",
+        "Che notizie porti, #p?",
+        "Al mare, al mare!",
+        "Desidero il mare, #p.",
+        "I nostri giorni stanno finendo e il nostro tempo sta per concludersi.",
+        "Nave grigia, nave grigia, le senti chiamare, le voci della mia gente già arrivata?",
+        "Gilthoniel! O Elbereth!",
+        "Miruvor! Rinfresca il corpo e purifica lo spirito.",
+        "I giorni si fanno freddi e gli anni svaniscono.",
+        "Il richiamo del mare nel mio cuore diventa sempre più forte.",
+        "Presto... presto, lascerò queste terre, #p.",
+        "Raramente abbiamo parlato con gli Uomini dopo il cambiamento del mondo.",
+        "Un'oscurità si sta addensando su queste terre. Lo sento dentro di me.",
+        "La forza degli Elfi si sta riducendo.",
+        "Ho visto più anni del sole del numero degli Uomini mortali.",
+        "Per quanto tempo dovrò indugiare qui, #p?",
+        "Ae Aerendil, angalef in-elin!",
+        "Ai, #p!",
+        "Non cercare guai, #p - verranno da te.",
+        "Nover.",
+        "Il mondo è cambiato. Lo sento nell'acqua... lo sento nella terra... lo sento nell'aria.",
+        "I giorni della nostra specie sono quasi finiti.",
+        "I nostri cuori desiderano contemplare la terra di Aman.",
+        "Presto lasceremo questa Terra di Mezzo.",
+        "I bianchi gabbiani chiamano...",
+        "Senti il richiamo dei gabbiani bianchi?",
+        "Il Senza Nome è tornato. Non potremo rimanere a lungo in queste terre.",
+        "Ciò che ha resistito così a lungo all'oscurità potrebbe presto cadere.",
+        "Dobbiamo partire verso l'Occidente, o ridurci a un popolo rustico di valle e caverna, per poi lentamente dimenticare ed essere dimenticati.",
+        "Ciò che deve essere sarà.",
+        "Preferiremmo gettare via tutto ciò che amiamo piuttosto che sottometterci alla volontà del Signore Oscuro.",
+        "Si mormora di un'ombra a Est. Temiamo che il Senza Nome sia tornato.",
+        "Il mare ci richiama a casa.",
+        "Il tempo degli Elfi sta finendo.",
+        "La mia gente sta lasciando queste coste.",
+        "Cose che non avrebbero dovuto essere dimenticate sono andate perdute.",
+        "Lunghe son le onde sull'Ultima Spiaggia.",
+        "O Lórien!",
+        "Un'ombra sorge a Est.",
+        "Presto tutte le terre saranno colme di disperazione e dolore, ma la speranza rimane ancora - finché resisteremo.",
+        "Il nostro tempo in questo mondo sta finendo, ma non si è ancora concluso.",
+        "Il male si sta radunando di nuovo nella fortezza di Dol Guldur. Non possiamo permettere che minacci le nostre terre.",
+        "Il mondo sta cambiando, #p... lo sento nel mio cuore."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Che notizie porti agli Elfi del Bosco d'Oro?",
+        "O Lórien! Troppo a lungo ho dimorato da questa parte del mondo.",
+        "I sentieri di Lothlórien sono carichi di bellezza e di pace.",
+        "È facile perdersi tra la nostra gente.",
+        "Il male non entrerà mai a Lórien.",
+        "Le foglie di Lórien non cadono pigramente.",
+        "Nei nostri boschi aleggia ancora il ricordo degli Antichi Giorni.",
+        "Umani come te entravano spesso nei nostri regni dei boschi nei Tempi Antichi.",
+        "Il nostro amore per questa terra è più profondo degli abissi del Mare.",
+        "I ricordi del passato resistono ancora qui."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening | dusk"
+      },
+      "lines": [
+        "A ovest, a ovest, il sole sta tramontando"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk | night | dawn",
+        "weather": "clear"
+      },
+      "lines": [
+        "Una stella sorge dall'oscurità.",
+        "Salve, Eärendil, stella più luminosa!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Sei un amico degli elfi, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Sei un'amica degli elfi, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Saluti, viaggiatore da lontano! Che notizie ci porti dalle terre degli Uomini?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Saluti, viaggiatrice da lontano! Che notizie ci porti dalle terre degli Uomini?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Saluti, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Non temere, #p. Il Male non può entrare nel Bosco d'Oro. Un potere segreto ci protegge.",
+        "Non lasciare che il tuo cuore sia turbato, #p. A Lórien puoi riposare senza temere pericoli.",
+        "A Lothlórien troverai guarigione e pace. Nessun male può contaminare la nostra terra."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Benvenuto nella nostra dimora, #p.",
+        "Benvenuto nel regno di Re Celeborn e di Galadriel, Dama della Luce!",
+        "Benvenuto, #p, nella terra di Re Celeborn e Dama Galadriel!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Benvenuta nella nostra dimora, #p.",
+        "Benvenuta nel regno di Re Celeborn e di Galadriel, Dama della Luce!",
+        "Benvenuta, #p, nella terra di Re Celeborn e Dama Galadriel!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Bevi del miruvor, #p, e tutti i dolori nelle tue ossa verranno lavati via!",
+        "Non puoi definirti un vero amico degli elfi finché non avrai assaggiato il lembas, #p.",
+        "Che le stelle di Elbereth ti guidino!",
+        "Possano i venti di Manwë mostrarti la via!",
+        "Una stella splende sull'ora del nostro incontro, #p.",
+        "Che il vento gonfi le tue vele!",
+        "Possano le foglie del tuo albero della vita non imbrunirsi mai, #p!",
+        "Salve, amico degli elfi",
+        "Ai, elvellon!",
+        "Sembra che tu sia un amico degli Elfi, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Non puoi definirti un vero amico degli elfi finché non avrai assaggiato il lembas, #p.",
+        "Salve, amico degli elfi",
+        "Sembra che tu sia un amico degli Elfi, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Non puoi definirti una vera amica degli elfi finché non avrai assaggiato il lembas, #p.",
+        "Salve, amica degli elfi",
+        "Sembra che tu sia un'amica degli Elfi, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Vai a Udûn!",
+        "Vai a baciare un orco!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "gender": "m"
+      },
+      "lines": [
+        "Respiri così forte che sarei riuscito a colpirti al buio."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "gender": "f"
+      },
+      "lines": [
+        "Respiri così forte che sarei riuscita a colpirti al buio."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Non sei un amico degli elfi, #p!",
+        "Vattene, nemico degli elfi!",
+        "Vattene, servo del male!",
+        "Torna nell'ombra da cui sei venuto!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Non sei un'amica degli elfi, #p!",
+        "Vattene, nemica degli elfi!",
+        "Vattene, serva del male!",
+        "Torna nell'ombra da cui sei venuta!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "I malvagi non possono mettere piede nel Bosco d'Oro!",
+        "Non puoi entrare a Lórien.",
+        "#p, non puoi mettere piede a Lothlórien!",
+        "La tua presenza non è gradita.",
+        "Il Nemico non ha potere su Lórien!",
+        "Non tolleriamo alcun male a Lothlórien!",
+        "Non puoi portare il male qui, #p!",
+        "La tua ombra non avvelenerà i nostri boschi benedetti!",
+        "Chi ci porta questo segno di sventura?",
+        "Non permetteremo che il male entri nel nostro regno. Vattene ora o affronta la nostra ira!",
+        "Porti qui un grande male, #p. Non puoi procedere oltre.",
+        "Vattene, #p, o affronta la potenza delle nostre frecce!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Non sei gradito nelle nostre terre."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Non sei gradita nelle nostre terre."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy"
+      },
+      "lines": [
+        "Sapevo che non c'era da fidarsi di te, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Sapevo che non eri amico del nostro popolo!",
+        "Sei un orco nei panni di un amico!",
+        "Ti ho capito dall'inizio, spia morgul!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Sapevo che non eri amica del nostro popolo!",
+        "Sei un'orchessa nei panni di un'amica!",
+        "Ti ho capita dall'inizio, spia morgul!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home"
+      },
+      "lines": [
+        "Mi pento di averti dato rifugio a Lórien!",
+        "Mi pento amaramente di averti accolto a Lórien!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Non sei più il benvenuto nella nostra terra!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Non sei più la benvenuta nella nostra terra!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Noi Elfi siamo tra i migliori guerrieri di tutta la Terra di Mezzo.",
+        "È passato molto tempo dall'ultima volta che le razze di Uomini ed Elfi hanno combattuto fianco a fianco, #p.",
+        "Pochi possono eguagliare la prodezza di un elfo in combattimento.",
+        "La feccia morgul perirà sotto l'arco e la lama!",
+        "Hai la nostra fedeltà, #p.",
+        "Voglio difendere tutto ciò che è buono in questo mondo.",
+        "Per Lothlórien!",
+        "Che i Valar ci proteggano in battaglia, #p.",
+        "Le monete d'argento significano poco per un elfo, #p, ma combattiamo per una causa comune.",
+        "Il mio arco canterà con la tua spada, #p!",
+        "Le ossa dei nostri nemici luccicheranno sotto il sole, #p.",
+        "Purifichiamo questo mondo dalla malvagia progenie di Mordor!",
+        "I giorni si fanno scuri e freddi, ma la luce degli Elfi non è ancora tramontata!",
+        "Temo che il Senza Nome sia tornato. L'Ombra deve essere distrutta prima che sia troppo tardi.",
+        "In nome di tutto ciò che è buono, purifichiamo questo mondo dal male!",
+        "Non dobbiamo permettere che il male di Mordor si diffonda!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "biome": "#home"
+      },
+      "lines": [
+        "Nessun male entrerà a Lórien sotto la nostra sorveglianza."
+      ]
+    }
+  ]
+}

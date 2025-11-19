@@ -1,0 +1,43 @@
+{
+    "parent": "lotr:lothlorien/common",
+    "speech": [{
+            "conditions": {
+                "relation": "friendly"
+            },
+            "lines": [
+                "我们守护中洲的自由生灵。",
+                "大敌对这片土地的影响日益加深。",
+                "精灵的力量日益消减，但强盛依旧！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "biome": "#home"
+            },
+            "lines": [
+                "只要我活着，就无人能伤害我背后的生灵。"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": ">=friend"
+            },
+            "lines": [
+                "愿维拉守护你。",
+                "你今天杀了多少奥克，#p？",
+                "若你为自由而战，我便与你并肩。"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": "<=warden"
+            },
+            "lines": [
+                "许久许久前，我们和你们建立了伟大联盟。那是我们的骄傲。"
+            ]
+        }
+    ]
+}

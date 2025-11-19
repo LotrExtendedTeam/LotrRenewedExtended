@@ -1,0 +1,44 @@
+{
+  "parent": "lotr:lothlorien/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "We defend the free peoples of Middle-earth.",
+        "Ever stronger grows the sway of the Enemy over our lands.",
+        "The power of the Elves is waning in this world, but our strength is not yet gone!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "I defend the Elves of Lothlórien."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "May the grace of the Valar protect you.",
+        "How many Orcs have you slain today, #p?",
+        "If you fight for freedom, then I am with you."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=warden"
+      },
+      "lines": [
+        "Long ago, an alliance existed between my people and yours. Will you honour that alliance?"
+      ]
+    }
+  ]
+}
