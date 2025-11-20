@@ -1,0 +1,13 @@
+{
+  "entity": "minecraft:polar_bear",
+  "biomes": [
+    "lotr:beach",
+    "lotr:forochel",
+    "lotr:forodwaith",
+    "lotr:forodwaith_mountains",
+    "lotr:island",
+    "lotr:sea",
+    "lotr:western_isles",
+    "lotr:white_beach"
+  ]
+}

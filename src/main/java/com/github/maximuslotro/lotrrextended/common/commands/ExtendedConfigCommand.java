@@ -23,22 +23,28 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableFellowshipCreation", ExtendedServerConfig.enableFellowshipCreation));
 		command.then(buildBoolean("enableRenewedWaypointCreation", ExtendedServerConfig.enableRenewedWaypointCreation));
 		command.then(buildBoolean("enableLegacyWaypointCreation", ExtendedServerConfig.enableLegacyWaypointCreation));
-		command.then(buildBoolean("makeMetalDoorsRequirePower", ExtendedServerConfig.makeMetalDoorsRequirePower, true));
 		command.then(buildBoolean("enableBannerProtection", ExtendedServerConfig.enableBannerProtection));
-		command.then(buildInt("barrowWightChestFirstSpawnChance", ExtendedServerConfig.barrowWightChestFirstSpawnChance, 0, 100));
 		command.then(buildDouble("npcGlobalSpawnDampingCoefficient", ExtendedServerConfig.npcGlobalSpawnDampingCoefficient, 0.0D, 1.0D));
-		command.then(buildDouble("dripstoneMinimumDamageHeight", ExtendedServerConfig.dripstoneMinimumDamageHeight, 0.0D, 5.0D));
 		command.then(buildBoolean("enableDefaultWaypointTeleportation", ExtendedServerConfig.enableDefaultWaypointTeleportation));
 		command.then(buildBoolean("enableCustomWaypointTeleportation", ExtendedServerConfig.enableCustomWaypointTeleportation));
+		command.then(buildBoolean("enableLegacyFeastMode", ExtendedServerConfig.enableLegacyFeastMode, true));
+		// Entity
+		command.then(buildInt("barrowWightChestFirstSpawnChance", ExtendedServerConfig.barrowWightChestFirstSpawnChance, 0, 100));
 		command.then(buildBoolean("enableLegacyCaptainAggressionBehavior", ExtendedServerConfig.enableLegacyCaptainPassiveBehavior, true));
 		command.then(buildBoolean("enableLegacyTraderPassiveBehavior", ExtendedServerConfig.enableLegacyTraderPassiveBehavior, true));
+		// Blocks
+		command.then(buildBoolean("makeMetalDoorsRequirePower", ExtendedServerConfig.makeMetalDoorsRequirePower, true));
+		command.then(buildBoolean("barsConnectToBranches", ExtendedServerConfig.barsConnectToBranches, true));
+		command.then(buildBoolean("barsConnectToSlabSides", ExtendedServerConfig.barsConnectToSlabSides, true));
+		command.then(buildDouble("dripstoneMinimumDamageHeight", ExtendedServerConfig.dripstoneMinimumDamageHeight, 0.0D, 5.0D));
+
 		// Chair
 		command.then(buildBoolean("enableChairSlabSitting", ExtendedServerConfig.enableChairSlabSitting));
 		command.then(buildBoolean("enableChairSwapping", ExtendedServerConfig.enableChairSwapping));
 		command.then(buildBoolean("enableChairProtectionOverride", ExtendedServerConfig.enableChairProtectionOverride));
-		// Vanilla Patches
-		command.then(buildBoolean("enableFishingEnchantedItems", ExtendedServerConfig.enableFishingEnchantedItems));
-		command.then(buildBoolean("enableEnchantedLootDrops", ExtendedServerConfig.enableEnchantedLootDrops));
+		// Gameplay
+		command.then(buildBoolean("enableVanillaEnchanting", ExtendedServerConfig.enableVanillaEnchanting));
+		command.then(buildBoolean("enableExtendedModifiers", ExtendedServerConfig.enableExtendedModifiers));
 		// Special
 		command.then(buildBoolean("enableExtendedLogging", ExtendedServerConfig.enableExtendedLogging));
 		// Register

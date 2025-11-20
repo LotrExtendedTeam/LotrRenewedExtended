@@ -134,6 +134,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:flint_and_steel"
@@ -145,6 +148,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:fishing_rod"
@@ -719,6 +725,17 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:bree_banner_pattern"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 10,
           "functions": [
             {
@@ -731,6 +748,9 @@
                 "min": 0.35,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_axe"
@@ -749,6 +769,9 @@
                 "min": 0.3,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:stone_axe"
@@ -767,6 +790,9 @@
                 "min": 0.25,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_axe"
@@ -785,6 +811,9 @@
                 "min": 0.2,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:iron_axe"
@@ -803,6 +832,9 @@
                 "min": 0.35,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:wooden_dagger"
@@ -821,6 +853,9 @@
                 "min": 0.3,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:stone_dagger"
@@ -839,6 +874,9 @@
                 "min": 0.25,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_dagger"
@@ -857,6 +895,9 @@
                 "min": 0.2,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:iron_dagger"
@@ -875,6 +916,9 @@
                 "min": 0.35,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:bow"
@@ -893,6 +937,9 @@
                 "min": 0.25,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:longbow"
@@ -926,6 +973,9 @@
                 "min": 0.35,
                 "max": 0.8
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_helmet"
@@ -944,6 +994,9 @@
                 "min": 0.35,
                 "max": 0.8
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_chestplate"
@@ -962,6 +1015,9 @@
                 "min": 0.35,
                 "max": 0.8
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_leggings"
@@ -980,6 +1036,9 @@
                 "min": 0.35,
                 "max": 0.8
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_boots"
@@ -997,6 +1056,9 @@
                 "min": 0.1,
                 "max": 0.4
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:iron_helmet"
@@ -1014,6 +1076,9 @@
                 "min": 0.1,
                 "max": 0.4
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:iron_chestplate"
@@ -1031,6 +1096,9 @@
                 "min": 0.1,
                 "max": 0.4
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:iron_leggings"
@@ -1048,6 +1116,9 @@
                 "min": 0.1,
                 "max": 0.4
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:iron_boots"
@@ -1066,6 +1137,9 @@
                 "min": 0.25,
                 "max": 0.6
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:chainmail_helmet"
@@ -1084,6 +1158,9 @@
                 "min": 0.25,
                 "max": 0.6
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:chainmail_chestplate"
@@ -1102,6 +1179,9 @@
                 "min": 0.25,
                 "max": 0.6
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:chainmail_leggings"
@@ -1120,6 +1200,9 @@
                 "min": 0.25,
                 "max": 0.6
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:chainmail_boots"
@@ -1241,6 +1324,11 @@
             }
           ],
           "name": "lotr:large_pouch"
+        }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder"
         }
       ]
     }

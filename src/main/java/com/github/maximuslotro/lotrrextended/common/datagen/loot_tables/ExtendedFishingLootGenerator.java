@@ -6,6 +6,7 @@ import java.util.function.BiConsumer;
 
 import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
+import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedModifierScrollAdder;
 
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
@@ -79,12 +80,11 @@ public class ExtendedFishingLootGenerator extends FishingLootTables  {
 		make(consumer, ExtendedLootTables.MIDDLE_EARTH_FISHING_TREASURE, makeTable()
 			.withPool(LootPool.lootPool()
 				// Using wiki values, with 0.165 (silver coin 100 and mithril ring) being one weight, the rest of these were calculated
-				.add(EItemLootEntry.lootItem(Items.NAME_TAG).setWeight(1))
 				.add(EItemLootEntry.lootItem(ExtendedItems.PEARL.get()).setWeight(200))
-				.add(EItemLootEntry.lootItem(Items.BOW).setWeight(1).setMaxLootDurability(0.75f))
-				.add(EItemLootEntry.lootItem(Items.FISHING_ROD).setWeight(20).setMaxLootDurability(0.75f))
-				.add(EItemLootEntry.lootItem(LOTRItems.IRON_DAGGER.get()).setWeight(20).setMaxLootDurability(0.75f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_DAGGER.get()).setWeight(20).setMaxLootDurability(0.75f))
+				.add(EItemLootEntry.lootItem(Items.BOW).setWeight(1).setMaxLootDurability(0.75f).addModifiersNoNegative())
+				.add(EItemLootEntry.lootItem(Items.FISHING_ROD).setWeight(20).setMaxLootDurability(0.75f).addModifiersNoNegative())
+				.add(EItemLootEntry.lootItem(LOTRItems.IRON_DAGGER.get()).setWeight(20).setMaxLootDurability(0.75f).addModifiersNoNegative())
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_DAGGER.get()).setWeight(20).setMaxLootDurability(0.75f).addModifiersNoNegative())
 				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(100))
 				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_TEN.get()).setWeight(10))
 				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1))
@@ -102,7 +102,8 @@ public class ExtendedFishingLootGenerator extends FishingLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_NUGGET.get()).setWeight(5))
 				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(10))
 				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(5))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_RING.get()).setWeight(1))));
+				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_RING.get()).setWeight(1))
+				.apply(ExtendedModifierScrollAdder.chanceCustom(100).setSkillful())));
 	}
 
 	public LootTable.Builder makeTable(){

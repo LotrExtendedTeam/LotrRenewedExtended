@@ -1,0 +1,196 @@
+{
+  "parent": "lotr:gondor/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Jestem żołnierzem Gondoru.",
+        "Trenowałem całe życie aby zabijać orków. Lecz niech Valarowie mnie ocalą jeżeli Troll zapuka do mych drzwi!",
+        "Przeklinam Południowców i ich zakrzywione miecze!",
+        "Mówią że ludzie z Haradu są prawie całkowicie podporządkowani Nieprzyjacielowi."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Gdyby nie odwaga ludzi z Gondoru, świat już dawno uległby Cieniowi.",
+        "Mój ród broni tych ziem."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Nie myśl że Gondor jest słaby, #p. W sercu i duchu, my ludzie z Gondoru zawsze pozostaniemy silni.",
+        "Strzeż się oślizgłego orka, ale jeszcze bardziej obawiaj się Woźnika w swoim rydwanie. Chociaż z tą rasą nie walczyliśmy ani nie zmierzyliśmy się od wielu generacji."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "biome": "lotr:anorien"
+      },
+      "lines": [
+        "Żyjemy tu w strachu, #p. Jeżeli szukasz bezpieczeństwa, radziłbym wybrać się do krainy Księcia."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Ostatnio w wietrze jest podłe powietrze. Boimy się że coś się zbiera za górami z popiołu.",
+        "Potrzeba tysiąca orków aby pokonać chociaż tuzin dobrych Gondorczyków!",
+        "Jeżeli cokolwiek podłęgo pomaszeruje na Gondor, wtedy Rohirrimowie przyjadą nam na pomoc. Jestem tego pewien.",
+        "Nasi wrogowie zbierają się za Harnen.",
+        "Krążą niepokojące plotki z Haradu. Ludzie mówią że Południowcy zbierają całe swoje siły na ziemiach za Harnen."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Jeżeli Nieprzyjaciel wyśle na nas całą swoją potęgę, #p... cóż, wątpię że ujrzymy kolejny świt!",
+        "Współczuję strażnikom z Ithilien, #p. Upadną jako pierwsi.",
+        "Szczerze wątpię aby nasza stara defensywa wytrzymała potęgę Mordoru. Mimo to, wciąż będę walczył do otatniego, za wolność ludzi."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "hired": "own"
+          }
+        ]
+      },
+      "lines": [
+        "Za Gondor!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Synowie Gondoru! Utrzymajcie pozycje!",
+        "Jesteś wrogiem tronu Gondoru, #p!",
+        "Na Białe Drzewo, pokonam cię!",
+        "Przysięgam na Gondor że twoja śmierć będzie szybka!",
+        "Twoja śmierć będzie szybka, #p!",
+        "Żadnej litości dla wrogów Gondoru!",
+        "Nie zobaczysz końca tego dnia, sługo Cienia!",
+        "Nie pozwolę ci krzywdzić wolnych ludzi Gondoru, #p!",
+        "Przestań wyrządzać nam krzywdy! Albo osobiście to zakończę!",
+        "Nie położysz kolejnej ręki na naszych ludzi!",
+        "W imieniu pradawnych Królów, zniszczę cię!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Nie przejdziesz dalej. Nie wejdziesz do Gondoru!",
+        "Nie wejdziesz do Gondoru, #p!",
+        "Wrogowie wkroczyli do Gondoru!",
+        "Żaden wróg Gondoru nie będzie przechodził bezkarnie po naszych ziemiach!",
+        "Opuść te ziemie, #p, nigdy nie wracaj!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "Przepadnij, podła istoto Cienia!",
+        "Przepadnij, sługo Cienia!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "Odejdź z Gondoru, sługo Nieprzyjaciela!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "Wracaj z powrotem do swojego pana w Krainie Cienia!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "Opuść nasze ziemie, plugawe ścierwo Mordoru!",
+        "Opuść nasze ziemie, sługo Saurona!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Walczę dla Gondoru, #p.",
+        "Niech twoje czyny przywrócą Gondorowi jego dawną chwałę!",
+        "Wrogowie Gondoru upadną przed nami!",
+        "Nasi wrogowie mają prawo do strachu przed potęgą Gondoru, #p!",
+        "Dzisaj, walczymy! Dla Gondoru!",
+        "Podążymy za tobą przez śmierć i ruinę!",
+        "Dla Gondoru! Dla całego dobra na tym świecie!",
+        "Ścierwa Mordoru poznają nasz gniew!",
+        "Zguba wszystkim wrogom Gondoru!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Jesteś prawdziwym przyjacielem Gondoru, #p.",
+        "Jesteśmy dumni z tego że walczymy u boku tak wspaniałego wojownika jak ty!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Jesteś prawdziwą przyjaciółką Gondoru, #p.",
+        "Jesteśmy dumni z tego że walczymy u boku tak wspaniałej wojowniczki jak ty!"
+      ]
+    }
+  ]
+}

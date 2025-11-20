@@ -24,8 +24,9 @@ import net.minecraft.item.Items;
 public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> ERIADOR_BIOMES = ImmutableList.of(LOTRBiomes.ERIADOR, LOTRBiomes.ERIADOR_DOWNS,
 			LOTRBiomes.LONE_LANDS, LOTRBiomes.LONE_LANDS_HILLS, LOTRBiomes.MIDGEWATER, LOTRBiomes.MINHIRIATH, LOTRBiomes.ERYN_VORN,
-			LOTRBiomes.TROLLSHAWS, LOTRBiomes.ETTENMOORS, LOTRBiomes.COLDFELLS, LOTRBiomes.SWANFLEET, LOTRBiomes.RIVENDELL,
-			LOTRBiomes.RIVENDELL_HILLS, ExtendedBiomes.BARROW_DOWNS, ExtendedBiomes.BARROW_DOWNS_RIVER);//, LOTRBiomes.THE_ANGLE);
+			LOTRBiomes.TROLLSHAWS, LOTRBiomes.ETTENMOORS, LOTRBiomes.COLDFELLS, LOTRBiomes.SWANFLEET, LOTRBiomes.RIVENDELL, ExtendedBiomes.RIVENDELL_CLIFFS,
+			ExtendedBiomes.RIVENDELL_RIVER, ExtendedBiomes.RIVENDELL_VALLEY, LOTRBiomes.RIVENDELL_HILLS, ExtendedBiomes.BARROW_DOWNS, 
+			ExtendedBiomes.BARROW_DOWNS_RIVER);//, LOTRBiomes.THE_ANGLE);
 
 	@Override
 	public void generateAdvancements() {
@@ -83,15 +84,32 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 
 		Advancement rivendell = build(true, data(LOTRItems.HIGH_ELVEN_BRICK.get(), "the_hidden_valley", FrameType.TASK)
 				.setTitle("The Hidden Valley").setDescription("Enter the realm of Rivendell."),
-				addBiomeTriggers(make(), LOTRBiomes.RIVENDELL, LOTRBiomes.RIVENDELL_HILLS).parent(eriadorBase));
+				addBiomeTriggers(make(), LOTRBiomes.RIVENDELL, LOTRBiomes.RIVENDELL_HILLS, ExtendedBiomes.RIVENDELL_CLIFFS, 
+					ExtendedBiomes.RIVENDELL_RIVER, ExtendedBiomes.RIVENDELL_VALLEY).parent(eriadorBase));
 		Advancement rivendell_armor = build(true, data(LOTRItems.RIVENDELL_CHESTPLATE.get(), "livery_of_lord_elrond", FrameType.TASK)
 				.setTitle("Livery of Lord Elrond").setDescription("Acquire a full set of Rivendell armor."),
 				addArmorTrigger(make(), "rivendell", LOTRItems.RIVENDELL_HELMET.get(), LOTRItems.RIVENDELL_CHESTPLATE.get(),
 						LOTRItems.RIVENDELL_LEGGINGS.get(), LOTRItems.RIVENDELL_BOOTS.get()).parent(rivendell));
+		Advancement imladris_guard_armor = build(false, data(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE.get(), "imladris_guard_armor", FrameType.GOAL)
+			.setTitle("Guard of Elrond").setDescription("Acquire a full set of Imladris Guard armor."),
+			addArmorTrigger(make(), "imladris_guard", ExtendedItems.IMLADRIS_GUARD_HELMET.get(), ExtendedItems.IMLADRIS_GUARD_CHESTPLATE.get(),
+				ExtendedItems.IMLADRIS_GUARD_LEGGINGS.get(), ExtendedItems.IMLADRIS_GUARD_BOOTS.get()).parent(rivendell_armor));
 		Advancement riv_elf_slayer = build(true, data(LOTRItems.ELF_BONE.get(), "rivendell_elf_slayer", FrameType.TASK)
 				.setTitle("Rivendell Elf Slayer").setDescription("Kill a Rivendell Elf."),
 				addKillEntityTriggers(make(), LOTREntities.RIVENDELL_ELF.get(), LOTREntities.RIVENDELL_WARRIOR.get(), 
 					ExtendedEntities.RIVENDELL_WANDERER.get()).parent(rivendell));
+		Advancement rivendell_smith = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "rivendell_smith", FrameType.TASK)
+			.setTitle("The Blade Shall be Reforged!").setDescription("Trade with a Rivendell Smith"),
+			addTradeEntityTrigger(make(), ExtendedEntities.RIVENDELL_SMITH.get()).parent(rivendell));
+		Advancement its_still_sharp = build(false, data(ExtendedItems.SHARDS_OF_NARSIL.get(), "its_still_sharp", FrameType.GOAL, true, true, false)
+			.setTitle("It's Still sharp").setDescription("Hold the shards of Narsil."),
+			addItemTrigger(make(), ExtendedItems.SHARDS_OF_NARSIL.get()).parent(rivendell_smith));
+		Advancement flame_of_the_west = build(false, data(ExtendedItems.ANDURIL.get(), "flame_of_the_west", FrameType.CHALLENGE, true, true, false)
+			.setTitle("Flame of the West").setDescription("Equip the sword of the king of men."),
+			addItemTrigger(make(), ExtendedItems.ANDURIL.get()).parent(its_still_sharp));
+		Advancement for_imladris = build(true, data(Items.IRON_SWORD, "for_imladris", FrameType.TASK)
+			.setTitle("For Imladris!").setDescription("Hire a unit from a Rivendell Captain."),
+			addUnitHireTrigger(make(), ExtendedEntities.RIVENDELL_CAPTAIN.get()).parent(rivendell));
 
 		Advancement coldfells = build(true, data(Items.OAK_SAPLING, "the_wild_north", FrameType.TASK)
 				.setTitle("The Wild North").setDescription("Enter the Coldfells."),
@@ -169,14 +187,19 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 						.setTitle("Scrounging and Scavenging").setDescription("Trade with a Gundabad Orc Scrounger."),
 				addTradeEntityTrigger(make(), ExtendedEntities.GUNDABAD_CAMP_TRADER.get()).parent(eriadorBase));
 
+		Advancement rabble_rouser = build(true, data(Items.IRON_SWORD, "rabble_rouser", FrameType.TASK)
+			.setTitle("Rabble Rouser").setDescription("Hire a unit from a Gundabad Orc Chieftain."),
+			addUnitHireTrigger(make(), ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get()).parent(eriadorBase));
+		Advancement masters_of_stealth = build(true, data(Items.IRON_SWORD, "masters_of_stealth", FrameType.TASK)
+			.setTitle("Masters of Stealth").setDescription("Hire a unit from a Ranger of the North Captain."),
+			addUnitHireTrigger(make(), ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).parent(eriadorBase));
+
 		Advancement ranger_crafter = build(true, data(LOTRItems.RANGER_CRAFTING_TABLE.get(), "ranger_crafter", FrameType.TASK)
 			.setTitle("Dúnedain Crafter").setDescription("Craft an item on the Ranger Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.RANGER_CRAFTING_TABLE.get()).parent(eriadorBase));
-
 		Advancement gundabad_crafter = build(true, data(ExtendedItems.NORTHERN_ORC_CRAFTING_TABLE.get(), "gundabad_crafter", FrameType.TASK)
 			.setTitle("Crude Worker").setDescription("Craft an item on the Gundabad crafting Ttable."),
 			addCraftingTrigger(make(), ExtendedBlocks.NORTHERN_ORC_CRAFTING_TABLE.get()).parent(eriadorBase));
-
 		Advancement rivendell_crafter = build(true, data(LOTRItems.RIVENDELL_CRAFTING_TABLE.get(), "rivendell_crafter", FrameType.TASK)
 			.setTitle("Rivendell Crafter").setDescription("Craft an item on the Rivendell Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.RIVENDELL_CRAFTING_TABLE.get()).parent(eriadorBase));

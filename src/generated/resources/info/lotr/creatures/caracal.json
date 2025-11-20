@@ -1,0 +1,12 @@
+{
+  "entity": "lotr:caracal",
+  "biomes": [
+    "lotr:harnennor",
+    "lotr:harondor",
+    "lotr:southron_coasts",
+    "lotr:southron_coasts_forest",
+    "lotr:umbar",
+    "lotr:umbar_forest",
+    "lotr:umbar_hills"
+  ]
+}

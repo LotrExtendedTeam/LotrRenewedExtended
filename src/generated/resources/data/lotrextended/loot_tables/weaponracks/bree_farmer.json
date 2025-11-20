@@ -18,6 +18,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_axe"
@@ -36,6 +39,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_shovel"
@@ -54,6 +60,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_hoe"
@@ -72,6 +81,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:wooden_dagger"
@@ -90,6 +102,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:stone_axe"
@@ -108,6 +123,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:stone_shovel"
@@ -126,6 +144,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:stone_hoe"
@@ -144,6 +165,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:stone_dagger"
@@ -162,6 +186,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_axe"
@@ -180,6 +207,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_shovel"
@@ -198,6 +228,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_hoe"
@@ -216,6 +249,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_dagger"
@@ -234,6 +270,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:iron_hoe"
@@ -252,6 +291,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:iron_shovel"

@@ -19,6 +19,7 @@ import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBlackFurB
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedDwarvenBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedGrayFurBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedHighElvenBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedOrcBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedSilverFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedStrawBedBlock;
@@ -573,10 +574,10 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.BLACK_PACKED_FUR_WALL = registerB("black_packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.BLACK_PACKED_FUR));
 
 		//Bundled Fur
-		ExtendedBlocks.WHITE_FUR_BUNDLE = registerB("white_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.WOOL));
-		ExtendedBlocks.SILVER_FUR_BUNDLE = registerB("silver_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.COLOR_LIGHT_GRAY));
-		ExtendedBlocks.GRAY_FUR_BUNDLE = registerB("gray_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.COLOR_GRAY));
-		ExtendedBlocks.BLACK_FUR_BUNDLE = registerB("black_fur_bundle", () -> new ExtendedDirectionalBundleBlock(MaterialColor.COLOR_BLACK));
+		ExtendedBlocks.WHITE_FUR_BUNDLE = registerB("white_fur_bundle", () -> new ExtendedBundleBlock(MaterialColor.WOOL));
+		ExtendedBlocks.SILVER_FUR_BUNDLE = registerB("silver_fur_bundle", () -> new ExtendedBundleBlock(MaterialColor.COLOR_LIGHT_GRAY));
+		ExtendedBlocks.GRAY_FUR_BUNDLE = registerB("gray_fur_bundle", () -> new ExtendedBundleBlock(MaterialColor.COLOR_GRAY));
+		ExtendedBlocks.BLACK_FUR_BUNDLE = registerB("black_fur_bundle", () -> new ExtendedBundleBlock(MaterialColor.COLOR_BLACK));
 
 		//Fur carpets
 		ExtendedBlocks.BLACK_FUR_CARPET = registerB("black_fur_carpet", () -> new ExtendedWargCarpetBlock(ExtendedWargFurType.BLACK));
@@ -598,14 +599,14 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.PEARL_BLOCK = registerB("pearl_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.WOOL).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
 
 		//GEM ORES
-		ExtendedBlocks.AMBER_ORE = registerB("amber_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
-		ExtendedBlocks.TOPAZ_ORE = registerB("topaz_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
-		ExtendedBlocks.AMETHYST_ORE = registerB("amethyst_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
-		ExtendedBlocks.SAPPHIRE_ORE = registerB("sapphire_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
-		ExtendedBlocks.RUBY_ORE = registerB("ruby_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
-		ExtendedBlocks.DIAMOND_ORE = registerB("diamond_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
-		ExtendedBlocks.OPAL_ORE = registerB("opal_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
-		ExtendedBlocks.EMERALD_ORE = registerB("emerald_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(1));
+		ExtendedBlocks.AMBER_ORE = registerB("amber_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
+		ExtendedBlocks.TOPAZ_ORE = registerB("topaz_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
+		ExtendedBlocks.AMETHYST_ORE = registerB("amethyst_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
+		ExtendedBlocks.SAPPHIRE_ORE = registerB("sapphire_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
+		ExtendedBlocks.RUBY_ORE = registerB("ruby_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
+		ExtendedBlocks.DIAMOND_ORE = registerB("diamond_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
+		ExtendedBlocks.OPAL_ORE = registerB("opal_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
+		ExtendedBlocks.EMERALD_ORE = registerB("emerald_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
 		//Remains ores
 		ExtendedBlocks.REMAINS_ORC = registerB("remains_ore_orc", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
 		ExtendedBlocks.REMAINS_ELF = registerB("remains_ore_elf", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
@@ -890,13 +891,14 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STONE_GRINDER = registerB("stone_grinder", () -> new ExtendedStoneGrinderBlock(Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(4.0f)));
 		ExtendedBlocks.CRUCIBLE = registerB("crucible", () -> new ExtendedCrucibleBlock(Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(4.0F, 6.0F)));
 
-		ExtendedBlocks.MORGUL_LANTERN = registerB("morgul_lantern", () -> new ExtendedLanternBlock(12));
+		ExtendedBlocks.MORGUL_BRAZIER = registerB("morgul_brazier", () -> new ExtendedBrazierBlock(12));
 		ExtendedBlocks.MORGUL_CHANDELIER = registerB("morgul_chandelier", () -> new ExtendedChandelierBlock(ExtendedParticles.MORGUL_FLAME));
 		ExtendedBlocks.ORC_CHANDELIER = registerB("orc_chandelier", ChandelierBlock::new);
 		ExtendedBlocks.URUK_CHANDELIER = registerB("uruk_chandelier", ChandelierBlock::new);
 		ExtendedBlocks.DWARVEN_CHANDELIER = registerB("dwarven_chandelier", ChandelierBlock::new);
 		ExtendedBlocks.BLUE_DWARVEN_CHANDELIER = registerB("blue_dwarven_chandelier", ChandelierBlock::new);
-		
+		ExtendedBlocks.HIGH_ELVEN_LANTERN = registerB("high_elven_lantern", () -> new ExtendedElvenLanternBlock(12));
+
 		ExtendedBlocks.ORC_STEEL_DOOR = registerB("orc_steel_door", () -> new ExtendedDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
 		ExtendedBlocks.ORC_STEEL_TRAPDOOR = registerB("orc_steel_trapdoor", () -> new ExtendedTrapDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
 		ExtendedBlocks.ORC_CHAIN = registerB("orc_chain", () -> new ExtendedChainBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion()));
@@ -905,7 +907,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new ExtendedLOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
 		ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK = registerB("green_fire_hearth_block", ExtendedGreenHearthBlock::new);
 		ExtendedBlocks.GREEN_FIRE_BLOCK = registerB("green_fire", () -> new ExtendedGreenFireBlock(Properties.of(Material.FIRE, MaterialColor.COLOR_LIGHT_GREEN).noCollission().instabreak().lightLevel((blockState) -> 10).sound(SoundType.WOOL)));
-
+		ExtendedBlocks.WASTE_BLOCK = registerB("waste_block", () -> new ExtendedWasteBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.COLOR_BROWN).strength(1.0F).speedFactor(0.4F).harvestTool(ToolType.SHOVEL).sound(SoundType.GRASS).isValidSpawn(ExtendedBlockParms::always).isRedstoneConductor(ExtendedBlockParms::always).isViewBlocking(ExtendedBlockParms::always).isSuffocating(ExtendedBlockParms::always)));
 		for(ExtendedEntitySpawnTypes type : ExtendedEntitySpawnTypes.values()) {
 			ExtendedBlocks.ENTITYSPAWNERBLOCKS.put(type.getSerializedName(), registerB("entity_spawner_"+type.getSerializedName(), () -> new ExtendedSpawnerBlock(Properties.of(Material.STONE).strength(-1.0F).noCollission().noDrops(), type)));
 		}
@@ -931,13 +933,14 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.WHITE_FUR_BED = registerB("white_fur_bed", () -> new ExtendedWhiteFurBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 		ExtendedBlocks.BEDROLL = registerB("bedroll", () -> new ExtendedBedrollBlock(Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.2F).noOcclusion()));
 		ExtendedBlocks.DWARVEN_BED = registerB("dwarven_bed", () -> new ExtendedDwarvenBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
+		ExtendedBlocks.HIGH_ELVEN_BED = registerB("high_elven_bed", () -> new ExtendedHighElvenBedBlock(Properties.of(Material.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
 
 		ExtendedBlocks.ROPE = registerB("rope", () -> new ExtendedRopeBlock(Properties.of(Material.DECORATION).sound(ExtendedSoundTypes.ROPE).strength(0.2F).noOcclusion()));
 
 		ExtendedBlocks.SKULL_GOBLET = registerB("skull_goblet", () -> new VesselDrinkBlock(SoundType.BONE_BLOCK, 8.0F, 10.0F));
-		ExtendedBlocks.GLASS_BOTTLE = registerB("glass_bottle", () -> new VesselDrinkBlock(Properties.of(Material.DECORATION).strength(0.0F).sound(SoundType.GLASS).noOcclusion(), createVesselShape(5, 7)));
+		ExtendedBlocks.GLASS_BOTTLE = registerB("glass_bottle", () -> new ExtendedBottleVesselDrinkBlock(Properties.of(Material.DECORATION).strength(0.0F).sound(SoundType.GLASS).noOcclusion(), createVesselShape(5, 7)));
 		ExtendedBlocks.LARGE_POT = registerB("large_pot", () -> new ExtendedLargePotBlock(Properties.of(Material.DECORATION).instabreak().noOcclusion()));
-
+		ExtendedBlocks.CHIMNEYPOT = registerB("chimney_pot", () -> new ExtendedChimneyPotBlock(Properties.of(Material.DECORATION).instabreak().noOcclusion().randomTicks()));
 		// Large flower pot
 		ExtendedBlocks.LARGE_FLOWER_POT = registerB("large_flower_pot", ExtendedLargeFlowerPotBlock::new);
 		registerPOT("large_pot_apple_sapling", () -> new ExtendedLargeFlowerPotBlock(LOTRBlocks.APPLE_SAPLING));
@@ -1034,7 +1037,36 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.GUNDABAD_ORC_WALL_BANNER = registerB("gundabad_orc_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.GUNDABAD_ORC));
 		ExtendedBlocks.BREE_BANNER = registerB("bree_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.BREE));
 		ExtendedBlocks.BREE_WALL_BANNER = registerB("bree_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.BREE));
+		ExtendedBlocks.ANGMAR_BANNER = registerB("angmar_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.ANGMAR));
+		ExtendedBlocks.ANGMAR_WALL_BANNER = registerB("angmar_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.ANGMAR));
+		ExtendedBlocks.DALE_BANNER = registerB("dale_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.DALE));
+		ExtendedBlocks.DALE_WALL_BANNER = registerB("dale_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.DALE));
+		ExtendedBlocks.DOL_AMROTH_BANNER = registerB("dol_amroth_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.DOL_AMROTH));
+		ExtendedBlocks.DOL_AMROTH_WALL_BANNER = registerB("dol_amroth_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.DOL_AMROTH));
+		ExtendedBlocks.DOL_GULDUR_BANNER = registerB("dol_guldur_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.DOL_GULDUR));
+		ExtendedBlocks.DOL_GULDUR_WALL_BANNER = registerB("dol_guldur_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.DOL_GULDUR));
+		ExtendedBlocks.DORWINION_BANNER = registerB("dorwinion_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.DORWINION));
+		ExtendedBlocks.DORWINION_WALL_BANNER = registerB("dorwinion_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.DORWINION));
+		ExtendedBlocks.DUNLAND_BANNER = registerB("dunland_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.DUNLAND));
+		ExtendedBlocks.DUNLAND_WALL_BANNER = registerB("dunland_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.DUNLAND));
+		ExtendedBlocks.GONDOR_BANNER = registerB("gondor_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.GONDOR));
+		ExtendedBlocks.GONDOR_WALL_BANNER = registerB("gondor_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.GONDOR));
+		ExtendedBlocks.ISENGARD_BANNER = registerB("isengard_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.ISENGARD));
+		ExtendedBlocks.ISENGARD_WALL_BANNER = registerB("isengard_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.ISENGARD));
+		ExtendedBlocks.LINDON_BANNER = registerB("lindon_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.LINDON));
+		ExtendedBlocks.LINDON_WALL_BANNER = registerB("lindon_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.LINDON));
+		ExtendedBlocks.LOTHLORIEN_BANNER = registerB("lothlorien_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.LOTHLORIEN));
+		ExtendedBlocks.LOTHLORIEN_WALL_BANNER = registerB("lothlorien_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.LOTHLORIEN));
+		ExtendedBlocks.MORDOR_BANNER = registerB("mordor_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.MORDOR));
+		ExtendedBlocks.MORDOR_WALL_BANNER = registerB("mordor_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.MORDOR));
+		ExtendedBlocks.RIVENDELL_BANNER = registerB("rivendell_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.RIVENDELL));
+		ExtendedBlocks.RIVENDELL_WALL_BANNER = registerB("rivendell_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.RIVENDELL));
+		ExtendedBlocks.ROHAN_BANNER = registerB("rohan_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.ROHAN));
+		ExtendedBlocks.ROHAN_WALL_BANNER = registerB("rohan_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.ROHAN));
+		ExtendedBlocks.WOODLAND_REALM_BANNER = registerB("woodland_realm_banner", () -> new ExtendedMEBannerBlock(ExtendedBannerTypes.WOODLAND_REALM));
+		ExtendedBlocks.WOODLAND_REALM_WALL_BANNER = registerB("woodland_realm_wall_banner", () -> new ExtendedMEBannerWallBlock(ExtendedBannerTypes.WOODLAND_REALM));
 
+		
 		ExtendedBlocks.DEAD_MOSS_VINES = registerB("dead_moss_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 		// Birdcages
 		ExtendedBlocks.WOODEN_BIRDCAGE = registerB("wooden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).strength(0.5F)));
@@ -1056,6 +1088,11 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.STONE_SIGN = registerB("stone_engraving", () -> new ExtendedStoneTextSignBlock(AbstractBlock.Properties.of(Material.DECORATION, MaterialColor.NONE).noCollission().strength(0.5F).sound(SoundType.STONE)));
 		ExtendedBlocks.HOIST = registerB("mine_placeholder", () -> new ExtendedHoistBlock(AbstractBlock.Properties.of(Material.STONE).strength(4.0F, 10.0F).sound(SoundType.STONE)));
+
+		ExtendedBlocks.HIGH_ELVEN_CHAIN = registerB("high_elven_chain", () -> new ExtendedChainBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion()));
+		ExtendedBlocks.SHARDS_OF_NARSIL = registerB("shards_of_narsil", () -> new ExtendedNarsilShardsBlock(Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.5F).noOcclusion()));
+
+		ExtendedBlocks.PLACED_BOOKS = registerB("placed_books", () -> new ExtendedPlacedBooksBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noOcclusion()));
 	}
 
 	/**
@@ -1071,7 +1108,6 @@ public class MixinLOTRBlocks {
 
 	private static VoxelShape createVesselShape(float width, float height) {
 		float halfWidth = width / 2.0F;
-		return Block.box(8.0D - (double) halfWidth, 0.0D, 8.0D - (double) halfWidth, 8.0D + (double) halfWidth,
-				(double) height, 8.0D + (double) halfWidth);
+		return Block.box(8.0D - halfWidth, 0.0D, 8.0D - halfWidth, 8.0D + halfWidth, height, 8.0D + halfWidth);
 	}
 }

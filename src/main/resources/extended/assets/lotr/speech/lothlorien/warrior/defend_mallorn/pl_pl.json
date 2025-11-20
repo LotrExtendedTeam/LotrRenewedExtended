@@ -1,0 +1,38 @@
+{
+  "speech": [
+    {
+      "conditions": {},
+      "lines": [
+        "Nie możesz wejść do Lórien, #p!",
+        "Nie waż się dotykać drzew Złotego Lasu!",
+        "Żadne zło nie będzie ranić drzew Lothlórien!",
+        "Topory Nieprzyjaciela są tutaj zakazane!",
+        "Nasze drzewa mallornu nie będą ścinane!",
+        "Nie postawisz nogi w Lothlórien, #p!",
+        "Żaden mallorn nie upadnie ze złej ręki w tym lesie!",
+        "Ci którzy sprowadzają zniszczenie na Lórien sami go doznają!",
+        "Evil is not allowed in this land!",
+        "Jak śmiesz ścinać mellyrny ze Złotego Lasu? Zaprawdę jesteś sługą zła!",
+        "Cóż to za zło? Odejdź z naszej krainy, pomiocie Morgotha.",
+        "Plugawy pomiocie Morgotha! Zapłacisz za zbezczeszczanie drzew Złotego Lasu.",
+        "Odpowiesz za swoje zbrodnie, #p!"
+      ]
+    },
+	{
+      "conditions": {
+	    "player_gender_pref": "m"
+	  },
+      "lines": [
+        "Nie jesteś tu mile widziany!"
+      ]
+    },
+	{
+      "conditions": {
+	    "player_gender_pref": "f"
+	  },
+      "lines": [
+        "Nie jesteś tu mile widziana!"
+      ]
+    }
+  ]
+}

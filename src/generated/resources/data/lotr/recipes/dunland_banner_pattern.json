@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:dunlending",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotr:dunland_banner"
+    }
+  ],
+  "result": {
+    "item": "lotr:dunland_banner_pattern"
+  }
+}

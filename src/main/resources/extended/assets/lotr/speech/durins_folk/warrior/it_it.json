@@ -1,0 +1,136 @@
+{
+  "parent": "lotr:durins_folk/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Andiamo a uccidere un po' di feccia Rakhâ!",
+        "Ho così tanta voglia di combattere che mi prude la barba.",
+        "I nostri nemici verranno spolpati come un ammasso di costolette fresche!",
+        "Le asce dei Nani sono affilate per la battaglia, #p!",
+        "Pochi nella Terra di Mezzo possono resistere alla potenza del Popolo di Durin!",
+        "Tutto bene, ma dov'è finita tutta la birra?",
+        "Noi Nani siamo valorosi guerrieri! Tutti i nemici tremeranno sotto i nostri martelli e le nostre asce!",
+        "Nessun orco potrà sfuggire alla lama della mia ascia!",
+        "Hai la mia ascia, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "gender": "m"
+      },
+      "lines": [
+        "Sono orgoglioso di combattere per la tua causa, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "gender": "f"
+      },
+      "lines": [
+        "Sono orgogliosa di combattere per la tua causa, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "È davvero un onore combattere al fianco di un guerriero come te, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "È davvero un onore combattere al fianco di una guerriera come te, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "rank": "<commander",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Sei un potente guerriero, #p, ma la tua barba non sarà mai al pari della mia! Ha!",
+        "È un onore combattere al tuo fianco, #p. Anche se hai una barba così corta!",
+        "Combatti bene, #p, ma la tua barba ha ancora molta strada da fare!",
+        "Assicurati di dare a quella barba il tempo di crescere prima di combattere!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "rank": "<commander",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Sei una potente guerriera, #p, ma la tua barba non sarà mai al pari della mia! Ha!",
+        "È un onore combattere al tuo fianco, #p. Anche se hai una barba così corta!",
+        "Combatti bene, #p, ma la tua barba ha ancora molta strada da fare!",
+        "Assicurati di dare a quella barba il tempo di crescere prima di combattere!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "rank": ">=commander"
+      },
+      "lines": [
+        "È un onore combattere insieme a qualcuno di così barbuto!",
+        "Con quella tua barba, #p, non avremo problemi a fare a pezzi qualche orco!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "rank": ">=commander",
+        "gender": "m"
+      },
+      "lines": [
+        "Sono orgoglioso di combattere al fianco della barba più possente che la razza degli Uomini abbia mai prodotto!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "rank": ">=commander",
+        "gender": "f"
+      },
+      "lines": [
+        "Sono orgogliosa di combattere al fianco della barba più possente che la razza degli Uomini abbia mai prodotto!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "Venderei la mia barba per un sorso di birra nanica.",
+        "Ah! Mi mancano le grandi sale di pietra dei Colli Ferrosi. Ma un nano non fugge dalla battaglia!",
+        "Ah! Mi mancano i pendii ricoperti di pini dei Colli Ferrosi. Ma un nano non fugge dalla battaglia!",
+        "Per la mia barba, correrei dieci leghe solo per una pinta di birra nanica fresca!"
+      ]
+    }
+  ]
+}

@@ -33,6 +33,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> EMERALD_BLOCK;
 	public static RegistryObject<Block> PEARL_BLOCK;
 	public static RegistryObject<Block> CORAL_BLOCK;
+	public static RegistryObject<Block> WASTE_BLOCK;
 
 	public static RegistryObject<Block> CHESTNUT_LOG;
 	public static RegistryObject<Block> CHESTNUT_WOOD;
@@ -392,7 +393,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SILVER_FUR_CARPET;
 	public static RegistryObject<Block> WHITE_FUR_CARPET;
 
-	public static RegistryObject<Block> MORGUL_LANTERN;
+	public static RegistryObject<Block> MORGUL_BRAZIER;
+	public static RegistryObject<Block> HIGH_ELVEN_LANTERN;
 	public static RegistryObject<Block> MORGUL_CHANDELIER;
 	public static RegistryObject<Block> ORC_CHANDELIER;
 	public static RegistryObject<Block> URUK_CHANDELIER;
@@ -402,6 +404,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> ORC_STEEL_DOOR;
 	public static RegistryObject<Block> ORC_STEEL_TRAPDOOR;
 	public static RegistryObject<Block> ORC_CHAIN;
+	public static RegistryObject<Block> HIGH_ELVEN_CHAIN;
 
 	public static RegistryObject<Block> DRYSTONE_SLAB;
 	public static RegistryObject<Block> DRYSTONE_STAIRS;
@@ -478,6 +481,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> WHITE_FUR_BED;
 	public static RegistryObject<Block> BEDROLL;
 	public static RegistryObject<Block> DWARVEN_BED;
+	public static RegistryObject<Block> HIGH_ELVEN_BED;
 
 	public static RegistryObject<Block> CONQUEST_TABLE;
 	public static RegistryObject<Block> WEAPON_RACK;
@@ -496,12 +500,41 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> DURINS_FOLK_WALL_BANNER;
 	public static RegistryObject<Block> BREE_BANNER;
 	public static RegistryObject<Block> BREE_WALL_BANNER;
+	public static RegistryObject<Block> ANGMAR_BANNER;
+	public static RegistryObject<Block> ANGMAR_WALL_BANNER;
+	public static RegistryObject<Block> DALE_BANNER;
+	public static RegistryObject<Block> DALE_WALL_BANNER;
+	public static RegistryObject<Block> DOL_AMROTH_BANNER;
+	public static RegistryObject<Block> DOL_AMROTH_WALL_BANNER;
+	public static RegistryObject<Block> DOL_GULDUR_BANNER;
+	public static RegistryObject<Block> DOL_GULDUR_WALL_BANNER;
+	public static RegistryObject<Block> DORWINION_BANNER;
+	public static RegistryObject<Block> DORWINION_WALL_BANNER;
+	public static RegistryObject<Block> DUNLAND_BANNER;
+	public static RegistryObject<Block> DUNLAND_WALL_BANNER;
+	public static RegistryObject<Block> GONDOR_BANNER;
+	public static RegistryObject<Block> GONDOR_WALL_BANNER;
+	public static RegistryObject<Block> ISENGARD_BANNER;
+	public static RegistryObject<Block> ISENGARD_WALL_BANNER;
+	public static RegistryObject<Block> LINDON_BANNER;
+	public static RegistryObject<Block> LINDON_WALL_BANNER;
+	public static RegistryObject<Block> LOTHLORIEN_BANNER;
+	public static RegistryObject<Block> LOTHLORIEN_WALL_BANNER;
+	public static RegistryObject<Block> MORDOR_BANNER;
+	public static RegistryObject<Block> MORDOR_WALL_BANNER;
+	public static RegistryObject<Block> RIVENDELL_BANNER;
+	public static RegistryObject<Block> RIVENDELL_WALL_BANNER;
+	public static RegistryObject<Block> ROHAN_BANNER;
+	public static RegistryObject<Block> ROHAN_WALL_BANNER;
+	public static RegistryObject<Block> WOODLAND_REALM_BANNER;
+	public static RegistryObject<Block> WOODLAND_REALM_WALL_BANNER;
 
 	public static RegistryObject<Block> ROPE;
 
 	public static RegistryObject<Block> SKULL_GOBLET;
 	public static RegistryObject<Block> GLASS_BOTTLE;
 
+	public static RegistryObject<Block> CHIMNEYPOT;
 	public static RegistryObject<Block> LARGE_POT;
 	public static RegistryObject<Block> LARGE_FLOWER_POT;
 	public static RegistryObject<Block> LARGE_FLOWER_POT_NETTLES;
@@ -534,4 +567,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STONE_SIGN;
 	
 	public static RegistryObject<Block> HOIST;
+
+	public static RegistryObject<Block> SHARDS_OF_NARSIL;
+
+	public static RegistryObject<Block> PLACED_BOOKS;
 }

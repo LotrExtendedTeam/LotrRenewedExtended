@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedTapestryEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHedgehogEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
@@ -23,10 +24,12 @@ import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedTh
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChairEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedTraderRespawnEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTREntities;
+import lotr.common.init.LOTREntities.EntitySizeHolder;
+import lotr.common.init.LOTREntities.SpawnEggInfo;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.IPlacementPredicate;
@@ -306,7 +309,7 @@ public class MixinLOTREntities {
 
 		// Technical
 		ExtendedEntities.STRUCTURE_ENTITY_SPAWNER = regEntityExpanded("structure_spawner", ExtendedStructureSpawnerEntity::new, EntityClassification.MISC, 0.5F, 1.0F);
-		ExtendedEntities.TRADER_RESPAWNER_ENTITY = regEntityExpanded("trader_respawner", ExtendedTraderRespawnEntity::new, EntityClassification.MISC, 0.5F, 0.5F);
+		ExtendedEntities.RESPAWNER_ENTITY = regEntityExpanded("trader_respawner", ExtendedRespawnerEntity::new, EntityClassification.MISC, 0.5F, 0.5F);
 		ExtendedEntities.BANNER_HOLDER = regEntityExpanded("banner_dataholder", ExtendedBannerEntity::new, EntityClassification.MISC, 0.125F, 1.0F);
 		ExtendedEntities.CHAIR = regEntityExpanded("chair", ExtendedChairEntity::new, EntityClassification.MISC, 0.0001F, 0.0001F, 64, 20, (builder) -> {
 			builder.canSpawnFarFromPlayer();
@@ -314,6 +317,7 @@ public class MixinLOTREntities {
 			builder.noSummon();
 			//builder.noSave();
 		});
+		ExtendedEntities.TAPESTRY = regEntityExpanded("tapestry", ExtendedTapestryEntity::new, EntityClassification.MISC, 0.5F, 0.5F, 10, Integer.MAX_VALUE);
 		// Rangers of the North
 		ExtendedEntities.DUNEDAIN_RANGER = regNPCD("dunedain_ranger", ExtendedDunedainRangerEntity::new, ExtendedDunedainRangerEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.6F, 1.93f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(4473912, 2302748));
 		ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN = regNPCD("dunedain_ranger_captain", ExtendedDunedainRangerCaptainEntity::new, ExtendedDunedainRangerCaptainEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.6F, 1.93f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(4473912, 2302748));
@@ -360,8 +364,17 @@ public class MixinLOTREntities {
 		ExtendedEntities.DWARVEN_MINER = regNPCD("dwarven_miner", ExtendedDwarvenMinerEntity::new, ExtendedDwarvenMinerEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
 		ExtendedEntities.DWARVEN_SMITH = regNPCD("dwarven_smith", ExtendedDwarvenSmithEntity::new, ExtendedDwarvenSmithEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
 		ExtendedEntities.DWARVEN_COMMANDER = regNPCD("dwarven_commander", ExtendedDwarvenCommanderEntity::new, ExtendedDwarvenCommanderEntity::createAttributes, LOTREntities.EntitySizeHolder.dwarfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16353133, 15357472));
+		// Rivendell
+		ExtendedEntities.RIVENDELL_CAPTAIN = regNPCD("rivendell_captain", ExtendedRivendellCaptainEntity::new, ExtendedRivendellCaptainEntity::regAttrs, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(14738662, 10723248));
+		ExtendedEntities.RIVENDELL_SMITH = regNPCD("rivendell_smith", ExtendedRivendellSmithEntity::new, ExtendedRivendellSmithEntity::regAttrs, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(16761223, 15721387));
+		ExtendedEntities.RIVENDELL_WEAVER = regNPCD("rivendell_weaver", ExtendedRivendellWeaverEntity::new, ExtendedRivendellWeaverEntity::regAttrs, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(16761223, 15721387));
+		ExtendedEntities.IMLADRIS_GUARD = regNPCD("imladris_guard", ExtendedRivendellGuardEntity::new, ExtendedRivendellGuardEntity::regAttrs, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(16761223, 15721387));
+		ExtendedEntities.ELROND = regNPCD("elrond", ExtendedElrondEntity::new, ExtendedElrondEntity::regAttrs, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(16761223, 15721387));
 
 		// Special
 		ExtendedEntities.TOLKIEN = regNPCD("tolkien", ExtendedTolkienEntity::new, ExtendedTolkienEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(8160159, 5439358));
+
+		// Bandits
+		ExtendedEntities.BANDIT = regNPCD("bandit", ExtendedBanditEntity::new, ExtendedBanditEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2563350, 6382678));
 	}
 }

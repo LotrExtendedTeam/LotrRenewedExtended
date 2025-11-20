@@ -1,0 +1,8 @@
+{
+  "parent": "lotrextended:block/template_banner_wall",
+  "textures": {
+    "particle": "minecraft:block/oak_planks",
+    "banner": "lotrextended:block/banner/rivendell_banner",
+    "stand": "lotrextended:block/banner/banner_base"
+  }
+}

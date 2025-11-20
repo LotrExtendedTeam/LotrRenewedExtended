@@ -34,13 +34,13 @@ public class ExtendedUnitHiredTrigger extends AbstractCriterionTrigger<ExtendedU
 	public static class Instance extends CriterionInstance {
 		private final EntityTypePredicate captainType;
 		private final EntityTypePredicate unitType;
-		private final MinMaxBounds.IntBound coinsTransphered;
+		private final MinMaxBounds.IntBound coinsTransfered;
 
-		public Instance(EntityPredicate.AndPredicate playerPredicate, EntityTypePredicate captainType, EntityTypePredicate unitType, MinMaxBounds.IntBound coinsTransphered) {
+		public Instance(EntityPredicate.AndPredicate playerPredicate, EntityTypePredicate captainType, EntityTypePredicate unitType, MinMaxBounds.IntBound coinsTransfered) {
 			super(ExtendedUnitHiredTrigger.ID, playerPredicate);
 			this.captainType = captainType;
 			this.unitType = unitType;
-			this.coinsTransphered = coinsTransphered;
+			this.coinsTransfered = coinsTransfered;
 		}
 
 		public static ExtendedUnitHiredTrigger.Instance tradedWithAndItem(EntityTypePredicate captainType, EntityTypePredicate unitType, MinMaxBounds.IntBound coinsTransphered) {
@@ -52,7 +52,7 @@ public class ExtendedUnitHiredTrigger extends AbstractCriterionTrigger<ExtendedU
 		}
 
 		public boolean matches(ServerPlayerEntity player, EntityType<?> captainType, EntityType<?> unitType, int coinAmount) {
-			return this.captainType.matches(captainType) && this.unitType.matches(unitType) && coinsTransphered.matches(coinAmount);
+			return this.captainType.matches(captainType) && this.unitType.matches(unitType) && coinsTransfered.matches(coinAmount);
 		}
 
 		@Override
@@ -60,7 +60,7 @@ public class ExtendedUnitHiredTrigger extends AbstractCriterionTrigger<ExtendedU
 			JsonObject jsonobject = super.serializeToJson(serializer);
 			jsonobject.add("captain_type", this.captainType.serializeToJson());
 			jsonobject.add("unit_type", this.unitType.serializeToJson());
-			jsonobject.add("coins_moved", this.coinsTransphered.serializeToJson());
+			jsonobject.add("coins_moved", this.coinsTransfered.serializeToJson());
 			return jsonobject;
 		}
 	}

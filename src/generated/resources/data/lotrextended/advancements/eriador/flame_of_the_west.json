@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:eriador/its_still_sharp",
+  "display": {
+    "icon": {
+      "item": "lotr:anduril",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.eriador.flame_of_the_west.title"
+    },
+    "description": {
+      "color": "light_purple",
+      "translate": "advancements.lotrextended.eriador.flame_of_the_west.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_anduril": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:anduril"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_anduril"
+    ]
+  ]
+}

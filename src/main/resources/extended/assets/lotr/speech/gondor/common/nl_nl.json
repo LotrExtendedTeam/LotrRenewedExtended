@@ -1,0 +1,213 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Goedendag.",
+        "Goedendag, #p.",
+        "Dit zijn donkere tijden voor Gondor.",
+        "Dit zijn donkere tijden voor Gondor, #p.",
+        "Men spreekt over vuile beesten die opkomen in het oosten en naamlose angsten...",
+        "Als je ooit het westerse onkruid ziet groeien, kan je die het beste plukken en meenemen.",
+        "Ik zou veel liever in de kroeg zitten momenteel.",
+        "Ze zeggen dat de schaduw van Mordor groeit in het oosten.",
+        "Dit zijn donkere tijden. Een grote macht komt op in het oosten.",
+        "Hoe gaat het met je?",
+        "Heb je iets om te drinken?",
+        "Er is niets zo mooi als het eerste zonlicht van de dag dat weerspiegeld wordt door de puntjes van de bergen.",
+        "Goedendag, #p! Bedoel ik dat de dag goed is, of dat je je goed moet voelen op deze dag?",
+        "Wij spreken enkel de waarheid, wij mensen van Gondor.",
+        "Gondor was ooit het beste rijk van mensen. Hedendaags is het alleen maar een land van losse stenen en donkere harten...",
+        "Wat voor nieuws breng je met je mee?",
+        "Vertel me, #p. Wat voor nieuws komt er van over ver?",
+        "Zijn dit de laatste dagen van de mensen? Ooit was Gondor groot en machtig, iedere dag vrees ik meer voor de toekomst.",
+        "Een koude duisternis komt op het land van de mensen af.",
+        "Lange schepen en lange koningen, twee keer twee. Wat brachten ze over de woeste zee? Zeven sterren, zeven stenen en een witte boom namen ze mee.",
+        "Ze zeggen dat die zuiderlingen kromme zwaarden dragen, kromme zwaarden!",
+        "Ik hoop dat ik ooit nog een keer de glorie van Gondor terug zie keren.",
+        "Gondor is niet zo groot als het ooit was.",
+        "Een kwaad komt wederom op achter de muren van Mordor. Ik ben bang dat het ons einde betekend.",
+        "Heb je de Argonath gezien, #p? Ze zijn wonderlijk om te zien!",
+        "Heb je de Argonath gezien, #p? Wanneer ik voor het laatst in het noorden was, waren ze er neit...",
+        "De dallen van Anduin zijn mooie landen, bijna vergelijkbaar met Gondor haarzelf.",
+        "De witte boom heeft al lang gevaald, echter blijven onze harten geloven.",
+        "Er wordt gezegd dat de pieken van de witte bergen te zien zijn waar je ook maar staat in Gondor.",
+        "Ik hoop de zwaanridders van Dor-en-Ernil te zien op het slachtveld.",
+        "Blijf weg van de bomen in Tawar-in-Drúedain, #p. Vreemde mannen bidden daar tot stenen en bladeren.",
+        "Als het baken van de witte toren ooit zal schijnen, weten we dat het einde nabij is.",
+        "De havens van Umbar maakten ooit deel uit van ons land, het is echter al lang in handen gevallen van de Haradrim."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Dit land was een van de grote oude koninkrijken maar die dagen zijn al lang voorbij...",
+        "Ah, zoete galenas! Een zeer mooi, geurig kruid. Je zult ze veel vinden in ons land, #p.",
+        "Het westersontkruid is een mooie plant in deze velden.",
+        "De harten van het volk mogen dan donkerder raken, #p, maar ons land is zo mooi als ooit.",
+        "Dit land heet Steenigland in de taal van Rohan. Nou kan ik ook niet echt zeggen dat we te weinig steen hebben, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Hallo daar, #p!",
+        "Wat is het nieuws, #p?",
+        "De graftombe van Elendil heet Halifirien in de taal van Rohan. Maar zijn kist is naar de stenen stad verplaatst 500 jaar geleden.",
+        "We hebben een muur om de velden geplaatst om de orks buiten te houden. We zouden hetzelfde moeten doen bij Poros als je het mij vraagt.",
+        "Ik heb de ruïnes van Osgiliath nooit met mijn eigen ogen gezien, waar ooit onze hoofdstad was. Maar voor vijfhonderd jaar is het enige in die stad treurigheid, een herinnering aan de neerslag van Gondor.",
+        "De geleerden praten over dagen waar gondor het kroonjuweel was van de menselijke koninkrijken. Ik ben bang dat die dagen voor altijd voorbij zijn, #p.",
+        "Heb je nieuws, #p?",
+        "Gondor heeft nooit meer dezelfde glorie gehad als de tijd van de lijn van Anárion."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Dit land is mijn thuis, #p. Ik vrees voor ons in deze donkere dagen.",
+        "Veel man van Ithilien en de Provincies zochten voor onderdak heir, honderd jaar geleden. Ik hoop dat we op een dag oost marcheren en hun land terug nemen!",
+        "Gegroet, #p. Wat voor nieuws breng je van de wijde wereld?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <champion"
+      },
+      "lines": [
+        "Ah, #p! Volgensmij hebben we elkaar nog niet ontmoet of vergis ik me?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<friend"
+      },
+      "lines": [
+        "We willen geen vreemdelingen in ons land, zij het dat ze sterke krijgers zijn in wiens kracht we kunnen vertrouwen.",
+        "Weet het, #p, dat we momenteel geen vreemdelingen willen in ons land."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Goed ontmoet, #p!",
+        "Goed ontmoet.",
+        "Wees niet bang #p. Rohan zal ons helpen. Rohan helpt altijd.",
+        "Het is een moeizame tijd voor ons volk. De duisternis verzamelt zich in Mordor en de heren van de Witte Stad blijven stil.",
+        "In mijn hart, #p, droom ik nogsteeds van de dag dat er weer een koning zit op de troon van Gondor.",
+        "Ik verlang er naar om weer een koning op de troon van Gondor te zien.",
+        "Ik heb verhalen gehoord dat een koning ooit terug zou komen om Gondor te regeren. Maar dat zijn maar verhalen, het kan toch niet waar zijn...",
+        "Gondor. Oh gondor. Het grote zuiderlijke koninkrijk, ooit! Maar nu, #p, dit is onze neerslag. De schemer van het westen.",
+        "Mensen van de provincie komen steeds meer naar de stad, ver weg van de oorlog. Ze brengen onrust, maar ik denk dat we het wel aan kunnen.",
+        "Kom, #p, vertel me eens een verhaal."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<atarms"
+      },
+      "lines": [
+        "Ik zou je waarschuwen, #p. Gondor is niet meer zoals het was.",
+        "Je ziet er niet echt uit als een man van Gondor, #p. Je bent toch geen zuiderling, of wel?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<atarms"
+      },
+      "lines": [
+        "Welkom in Gondor.",
+        "Welkom in Gondor, #p.",
+        "Gondor heet je welkom, #p.",
+        "Welkom, #p. Was het maar een betere tijd.",
+        "Het is treurig dat je Gondor vindt in deze donkere tijd, #p.",
+        "Ik had gehoopt dat ik je welkom kon heten in Gondor in een frolijkere tijd.",
+        "Welkom, #p. Wat is je reden voor je beozek aan Gondor?",
+        "Goedendag, #p! welkom in het land van Gondor.",
+        "Je komt op een fijne dag, #p. De orks zijn al langer dan een week niet langs geweest.",
+        "Je mag dan wel ver gereisd hebben om Gondor te zien, #p. Jammergenoeg heb je het gevonden in donkere dagen."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<captain"
+      },
+      "lines": [
+        "Je bent hier niet geboren, of wel, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Goedendag, heer #p. Is er iets wat ik voor u kan doen?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Goedendag, madam #p. Is er iets wat ik voor u kan doen?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day",
+        "weather": "clear"
+      },
+      "lines": [
+        "Wat een fijne dag."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "weather": "rain"
+      },
+      "lines": [
+        "De duisternis valt over Gondor en, #p, het zier er naar uit dat regenwolken formeren op de horizon."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Je zult hier geen misdaden plegen!",
+        "Je bent niet welkom in Gondor, #p.",
+        "We zijn hier niet zo vriendelijk met criminelen!",
+        "Dit is zeker een donkere dag voor Gondor!"
+      ]
+    }
+  ]
+}

@@ -14,6 +14,7 @@ public class ExtendedSpawners {
 	private static final Set<ResourceLocation> LOCATIONS = Sets.newHashSet();
 	// ANIMALS
 	public static final ResourceLocation DUCK_SINGLE  = register("duck_single_spawner");
+	public static final ResourceLocation SHEEP_SINGLE  = register("animal_sheep_single_spawner");
 	public static final ResourceLocation HORSE_SINGLE  = register("generic_horse_single_spawner");
 
 	// HOBBITS
@@ -100,6 +101,14 @@ public class ExtendedSpawners {
 	public static final ResourceLocation BLUE_MOUNTAINS_TEMP_ELF_TRADER = register("blue_mountains_elf_trader_spawner");
 	// DWARVEN
 	public static final ResourceLocation DWARVEN_SMITH = register("dwarf_smith_spawner");
+	// RIVENDELL
+	public static final ResourceLocation RIVENDELL_HOUSE = register("rivendell_house_spawner");
+	public static final ResourceLocation RIVENDELL_SMITH = register("rivendell_smith_spawner");
+	public static final ResourceLocation RIVENDELL_CAPTAIN = register("rivendell_captain_spawner");
+	public static final ResourceLocation RIVENDELL_AREA = register("rivendell_area_spawner");
+	public static final ResourceLocation RIVENDELL_GUARD = register("rivendell_guard_spawner");
+	public static final ResourceLocation RIVENDELL_ELROND = register("rivendell_elrond_spawner");
+	public static final ResourceLocation RIVENDELL_WEAVER = register("rivendell_weaver_spawner");
 
 	private static ResourceLocation register(String pId) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, pId));

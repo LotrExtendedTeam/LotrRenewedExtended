@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:rivendell_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_rivendell_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:rivendell_banner"
+          }
+        ]
+      }
+    },
+    "has_rivendell_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:rivendell_banner_pattern"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:rivendell_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rivendell_banner",
+      "has_rivendell_banner_pattern",
+      "has_the_recipe"
+    ]
+  ]
+}

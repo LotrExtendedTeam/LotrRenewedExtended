@@ -9,36 +9,42 @@
   "lockTicksAfterRefresh": 6000,
   "buyFromPlayer": [
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "minecraft:feather"
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:iron_ingot"
       }
     },
     {
+      "weight": 50,
       "averageCost": 40,
       "stack": {
         "item": "lotr:mithril_nugget"
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "lotr:wooden_mug"
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "lotr:orc_bone"
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:string",
@@ -46,12 +52,14 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "lotr:warg_bone"
       }
     },
     {
+      "weight": 50,
       "averageCost": 1,
       "stack": {
         "item": "minecraft:wheat",
@@ -59,24 +67,28 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 15,
       "stack": {
         "item": "lotr:emerald"
       }
     },
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
         "item": "lotr:opal"
       }
     },
     {
+      "weight": 50,
       "averageCost": 25,
       "stack": {
         "item": "lotr:pearl"
       }
     },
     {
+      "weight": 50,
       "averageCost": 25,
       "stack": {
         "item": "lotr:diamond"
@@ -85,6 +97,7 @@
   ],
   "sellToPlayer": [
     {
+      "weight": 50,
       "averageCost": 25,
       "stack": {
         "item": "lotr:galadhrim_helmet",
@@ -92,6 +105,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 36,
       "stack": {
         "item": "lotr:galadhrim_chestplate",
@@ -99,6 +113,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 30,
       "stack": {
         "item": "lotr:galadhrim_leggings",
@@ -106,6 +121,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 22,
       "stack": {
         "item": "lotr:galadhrim_boots",
@@ -113,6 +129,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 18,
       "stack": {
         "item": "lotr:galadhrim_axe",
@@ -120,6 +137,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 13,
       "stack": {
         "item": "lotr:galadhrim_dagger",
@@ -127,6 +145,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 21,
       "stack": {
         "item": "lotr:galadhrim_spear",
@@ -134,6 +153,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 21,
       "stack": {
         "item": "lotr:galadhrim_sword",
@@ -141,6 +161,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 18,
       "stack": {
         "item": "lotr:mallorn_sword",
@@ -148,6 +169,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 3,
       "stack": {
         "item": "minecraft:arrow",
@@ -155,6 +177,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 4,
       "stack": {
         "item": "lotr:mallorn_planks",
@@ -162,6 +185,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "lotr:blue_mallorn_torch",
@@ -169,6 +193,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "lotr:gold_mallorn_torch",
@@ -176,6 +201,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "lotr:green_mallorn_torch",
@@ -183,6 +209,7 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
         "item": "lotr:silver_mallorn_torch",
@@ -190,48 +217,88 @@
       }
     },
     {
+      "weight": 50,
       "averageCost": 16,
       "stack": {
         "item": "lotr:lembas"
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "lotr:elanor"
       }
     },
     {
+      "weight": 50,
       "averageCost": 2,
       "stack": {
         "item": "lotr:niphredil"
       }
     },
     {
+      "weight": 50,
       "averageCost": 4,
       "stack": {
         "item": "lotr:hithlain"
       }
     },
     {
+      "weight": 50,
       "averageCost": 6,
       "stack": {
-        "item": "lotr:ale",
+        "item": "lotr:miruvor",
         "nbt": "{vessel:{potency:\"light\"}}"
       }
     },
     {
+      "weight": 50,
       "averageCost": 8,
       "stack": {
-        "item": "lotr:ale",
+        "item": "lotr:miruvor",
         "nbt": "{vessel:{potency:\"moderate\"}}"
       }
     },
     {
+      "weight": 50,
       "averageCost": 10,
       "stack": {
-        "item": "lotr:ale",
+        "item": "lotr:miruvor",
         "nbt": "{vessel:{potency:\"strong\"}}"
+      }
+    },
+    {
+      "averageCost": 350,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stacks": [
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"rangedKnockback2\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"rangedStrong3\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"toolSpeed4\"}"
+        }
+      ]
+    },
+    {
+      "weight": 50,
+      "averageCost": 75,
+      "stack": {
+        "item": "lotr:lothlorien_banner"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:lothlorien_banner_pattern"
       }
     }
   ]

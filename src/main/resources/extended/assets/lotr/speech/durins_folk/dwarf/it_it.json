@@ -1,0 +1,13 @@
+{
+  "parent": "lotr:durins_folk/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Ancora qualche luna alla forgia, e poi avrò l'armatura che mi serve per andare a caccia di quei Rakhâ!"
+      ]
+    }
+  ]
+}

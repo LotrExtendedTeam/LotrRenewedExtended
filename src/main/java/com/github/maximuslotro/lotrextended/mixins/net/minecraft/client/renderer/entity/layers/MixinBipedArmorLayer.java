@@ -22,33 +22,45 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.util.ResourceLocation;
 
 /**
- * Handles Ranger Transparency effect without the need for additional classes that crash with custom armor
- * @Mixin (BipedArmorLayer.class)
- * @param <T> the type of {@link LivingEntity} rendered with the armor layer
+ * Handles Ranger Transparency effect for armor rendering without requiring additional classes
+ * that may crash with custom armor.
+ * <p>
+ * This mixin targets {@link BipedArmorLayer} and provides two main features:
+ * <ul>
+ *     <li>Tracks whether an entity is cloaked during armor rendering.</li>
+ *     <li>Conditionally cancels armor rendering if the entity is cloaked, while still rendering
+ *         a translucent version of the armor for visual effects.</li>
+ * </ul>
+ *
+ * @param <T> the type of {@link LivingEntity} rendered with this armor layer
  * @param <A> the type of {@link BipedModel} used for rendering the armor
- * */
+ * @Mixin (BipedArmorLayer.class)
+ */
 @Mixin(BipedArmorLayer.class)
 public abstract class MixinBipedArmorLayer<T extends LivingEntity, A extends BipedModel<T>> {
 
 	/**
-	 * Local variable to know how to do cloaking logic
-	 * */
+	 * Local variable to track cloaking state for Ranger armor logic.
+	 * @Unique
+	 */
 	@Unique
 	private boolean isCloakedExtended;
 
 	/**
-	 * @reason Injects into armor piece rendering to check if the entity is cloaked. Required because direct type casting to {@link ExtendedRangerModel} does not reliably expose the cloaking state.
-	 * @param renderStack The matrix stack used for rendering transformations
-	 * @param renderBuffer The rendering buffer used to draw the armor piece
-	 * @param entity The entity wearing the armor
-	 * @param slot The equipment slot currently being rendered
-	 * @param pPackedLight Lightmap coordinate used for lighting the model
-	 * @param armorModel The model of the armor piece
-	 * @param ci Callback info to control method flow
-	 * @Inject (method = "renderArmorPiece(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/inventory/EquipmentSlotType;ILnet/minecraft/client/renderer/entity/model/BipedModel;)V", at = @At("HEAD"), remap=true)
-	 * */
+	 * Injects at the start of {@code renderArmorPiece} to check whether the entity
+	 * is cloaked. Necessary because direct type casting to {@link ExtendedRangerModel}
+	 * does not reliably expose the cloaking state.
+	 *
+	 * @param renderStack   the matrix stack used for rendering transformations
+	 * @param renderBuffer  the buffer used to draw the armor piece
+	 * @param entity        the entity wearing the armor
+	 * @param slot          the equipment slot currently being rendered
+	 * @param pPackedLight  the packed light value for lighting calculations
+	 * @param armorModel    the armor model being rendered
+	 * @param ci            callback info, allows cancelling or modifying method behavior
+	 */
 	@Inject(method = "renderArmorPiece(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/inventory/EquipmentSlotType;ILnet/minecraft/client/renderer/entity/model/BipedModel;)V", 
-		at = @At("HEAD"), remap=true)
+			at = @At("HEAD"), remap=true)
 	private void renderArmorPieceLotrExtended(MatrixStack renderStack, IRenderTypeBuffer renderBuffer, T entity, EquipmentSlotType slot, int pPackedLight, A armorModel, CallbackInfo ci) {
 		if(entity instanceof ExtendedDunedainRangerEntity) {
 			isCloakedExtended = ((ExtendedDunedainRangerEntity)entity).isCloaked();
@@ -56,21 +68,24 @@ public abstract class MixinBipedArmorLayer<T extends LivingEntity, A extends Bip
 	}
 
 	/**
-	 * @reason Injects into model rendering to cancel armor rendering if the entity is cloaked. This logic is only valid in the base ranger armor class and not in subclasses.
-	 * @param renderStack The matrix stack used for transformations during rendering
-	 * @param renderBuffer The buffer into which the armor model will be rendered
-	 * @param pPackedLight The packed light value (lightmap) for lighting effects
-	 * @param hasFoil Whether the armor has the enchanted "foil" glint effect
-	 * @param armorModel The model being rendered
-	 * @param colorR Red color channel for tinting the armor
-	 * @param colorG Green color channel for tinting the armor
-	 * @param colorB Blue color channel for tinting the armor
-	 * @param armorResource The texture resource location used for this armor model
-	 * @param ci Callback info that can cancel the method execution
-	 * @Inject (method = "renderModel(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;IZLnet/minecraft/client/renderer/entity/model/BipedModel;FFFLnet/minecraft/util/ResourceLocation;)V", at = @At("HEAD"), cancellable = true, remap=false)
-	 * */
+	 * Injects at the start of {@code renderModel} to conditionally cancel armor rendering
+	 * for cloaked entities. When cancelled, a translucent version of the armor is rendered
+	 * to give a "ghostly" cloaking effect.
+	 *
+	 * @param renderStack   the matrix stack used for transformations during rendering
+	 * @param renderBuffer  the buffer into which the armor model will be rendered
+	 * @param pPackedLight  the packed light value for lighting effects
+	 * @param hasFoil       whether the armor has the enchanted glint effect
+	 * @param armorModel    the model being rendered
+	 * @param colorR        red channel for tinting
+	 * @param colorG        green channel for tinting
+	 * @param colorB        blue channel for tinting
+	 * @param armorResource the texture resource for this armor model
+	 * @param ci            callback info, allows cancelling the original method
+	 * @Inject(method = "renderModel(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;IZLnet/minecraft/client/renderer/entity/model/BipedModel;FFFLnet/minecraft/util/ResourceLocation;)V", at = @At("HEAD"), cancellable = true, remap=false)
+	 */
 	@Inject(method = "renderModel(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;IZLnet/minecraft/client/renderer/entity/model/BipedModel;FFFLnet/minecraft/util/ResourceLocation;)V", 
-		at = @At("HEAD"), cancellable = true, remap=false)
+			at = @At("HEAD"), cancellable = true, remap=false)
 	private void renderModelLotrExtended(MatrixStack renderStack, IRenderTypeBuffer renderBuffer, int pPackedLight, boolean hasFoil, A armorModel, float colorR, float colorG, float colorB, ResourceLocation armorResource, CallbackInfo ci) {
 		if(armorModel instanceof ExtendedRangerModel) {
 			if(isCloakedExtended){

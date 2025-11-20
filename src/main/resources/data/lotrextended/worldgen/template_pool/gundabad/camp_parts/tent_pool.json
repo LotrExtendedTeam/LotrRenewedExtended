@@ -26,7 +26,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:gundabad/camp/sleeping/general/gundabad_tent_sleeping_brown",
+				"location": "lotrextended:gundabad/camp/tent/sleeping/gundabad_tent_sleeping_brown",
 				"processors": "lotrextended:gundabad_camp_tent_processor"
 			}
 		},
@@ -81,7 +81,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:gundabad/camp/sleeping/general/gundabad_tent_sleeping_gray",
+				"location": "lotrextended:gundabad/camp/tent/sleeping/gundabad_tent_sleeping_gray",
 				"processors": "lotrextended:gundabad_camp_tent_processor"
 			}
 		},
@@ -136,7 +136,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:gundabad/camp/sleeping/general/gundabad_tent_sleeping_silver",
+				"location": "lotrextended:gundabad/camp/tent/sleeping/gundabad_tent_sleeping_silver",
 				"processors": "lotrextended:gundabad_camp_tent_processor"
 			}
 		},
@@ -191,7 +191,7 @@
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:gundabad/camp/sleeping/general/gundabad_tent_sleeping_white",
+				"location": "lotrextended:gundabad/camp/tent/sleeping/gundabad_tent_sleeping_white",
 				"processors": "lotrextended:gundabad_camp_tent_processor"
 			}
 		},

@@ -2,6 +2,7 @@ package lotr.common.data;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedNetworkToggles;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedDualTogglePacket;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedNBTUtils;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
@@ -27,14 +28,10 @@ public class ExtendedMiscDataModule extends ExtendedPlayerDataModule {
 
 	@Override
 	public void load(CompoundNBT nbt) {
-		hiredUnitFriendlyFire = nbt.getBoolean("HiredUnitFriendlyFire");
-		if(!nbt.contains("HiredUnitDeathMessages")) {
-			hiredUnitDeathMessages = true; // Need to return true by default
-		}else {
-			hiredUnitDeathMessages = nbt.getBoolean("HiredUnitDeathMessages");
-		}
-		highContrastMessages = nbt.getBoolean("HighContrastMessages");
-		hiredUnitInnerCombat = nbt.getBoolean("HiredUnitInnerCombat");
+		hiredUnitFriendlyFire = ExtendedNBTUtils.getBoolean(nbt, "HiredUnitFriendlyFire", false);
+		hiredUnitDeathMessages = ExtendedNBTUtils.getBoolean(nbt, "HiredUnitDeathMessages", true);
+		highContrastMessages = ExtendedNBTUtils.getBoolean(nbt, "HighContrastMessages", false);
+		hiredUnitInnerCombat = ExtendedNBTUtils.getBoolean(nbt, "HiredUnitInnerCombat", false);
 	}
 
 	@Override

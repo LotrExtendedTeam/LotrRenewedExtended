@@ -18,13 +18,43 @@ import net.minecraftforge.fml.packs.ModFileResourcePack;
 import net.minecraftforge.fml.packs.ResourcePackLoader;
 import net.minecraftforge.fml.packs.ResourcePackLoader.IPackInfoFinder;
 
+/**
+ * A Mixin targeting {@link ResourcePackLoader} to inject additional custom resource packs
+ * into the game’s pack list during initialization.
+ * <p>
+ * This mixin runs at the end of 
+ * {@link ResourcePackLoader#loadResourcePacks(ResourcePackList, BiFunction)} 
+ * to ensure that vanilla and modded resource packs are already loaded, then appends
+ * custom-defined packs provided by {@link ExtendedClientProxy}.
+ * </p>
+ * @Mixin (ResourcePackLoader.class)
+ */
 @Mixin(ResourcePackLoader.class)
 public class MixinResourcePackLoader {
 
+	/**
+	 * Injects into {@link ResourcePackLoader#loadResourcePacks(ResourcePackList, BiFunction)}
+	 * at the {@code TAIL}, adding extended resource packs after vanilla packs are registered.
+	 * <p>
+	 * Current behavior:
+	 * <ul>
+	 *   <li>{@link ExtendedClientProxy#createRenewedPack(ResourcePackList)} — adds a "renewed" resource pack.</li>
+	 *   <li>{@link ExtendedClientProxy#createForcedPack(ResourcePackList)} — injects a forced resource pack (cannot be disabled by the player).</li>
+	 * </ul>
+	 * </p>
+	 *
+	 * <p>This ensures that extended packs are available alongside vanilla and mod resource packs,
+	 * allowing custom assets (textures, sounds, models) to be distributed seamlessly.</p>
+	 *
+	 * @param resourcePacks the game’s active {@link ResourcePackList}
+	 * @param packFinder    the pack discovery function used to locate resource packs
+	 * @param ci            callback info (unused here, injection only)
+	 * @Inject (method = "loadResourcePacks(Lnet/minecraft/resources/ResourcePackList;Ljava/util/function/BiFunction;)V", at = @At("TAIL"), remap = false)
+	 */
 	@Inject(method = "loadResourcePacks(Lnet/minecraft/resources/ResourcePackList;Ljava/util/function/BiFunction;)V", at = @At("TAIL"), remap = false)
-    private static void loadExtendedResourcePacks(ResourcePackList resourcePacks, BiFunction<Map<ModFile, ? extends ModFileResourcePack>, BiConsumer<? super ModFileResourcePack, ResourcePackInfo>, IPackInfoFinder> packFinder, CallbackInfo cl) {
+	private static void loadExtendedResourcePacks(ResourcePackList resourcePacks, BiFunction<Map<ModFile, ? extends ModFileResourcePack>, BiConsumer<? super ModFileResourcePack, ResourcePackInfo>, IPackInfoFinder> packFinder, CallbackInfo ci) {
 		//ExtendedClientProxy.createLecacyPack(resourcePacks);
 		ExtendedClientProxy.createRenewedPack(resourcePacks);
 		ExtendedClientProxy.createForcedPack(resourcePacks);
-    }
+	}
 }

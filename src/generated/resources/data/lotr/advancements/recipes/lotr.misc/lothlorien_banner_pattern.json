@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:lothlorien_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_lothlorien_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:lothlorien_banner"
+          }
+        ]
+      }
+    },
+    "has_lothlorien_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:lothlorien_banner_pattern"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:lothlorien_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_lothlorien_banner",
+      "has_lothlorien_banner_pattern",
+      "has_the_recipe"
+    ]
+  ]
+}

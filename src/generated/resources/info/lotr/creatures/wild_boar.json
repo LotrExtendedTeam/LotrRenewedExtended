@@ -1,0 +1,8 @@
+{
+  "entity": "lotr:wild_boar",
+  "biomes": [
+    "lotr:blue_mountains",
+    "lotr:blue_mountains_foothills",
+    "lotr:iron_hills"
+  ]
+}

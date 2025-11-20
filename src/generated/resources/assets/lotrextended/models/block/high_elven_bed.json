@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/bed",
+  "textures": {
+    "particle": "minecraft:block/oak_planks"
+  }
+}

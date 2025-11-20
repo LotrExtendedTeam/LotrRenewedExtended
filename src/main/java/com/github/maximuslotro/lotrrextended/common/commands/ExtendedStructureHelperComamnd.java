@@ -68,7 +68,7 @@ public class ExtendedStructureHelperComamnd {
         	return Command.SINGLE_SUCCESS;
     	}
 
-    	entity.setSpawnerToDefaultPreset(resourceLocation, false);
+    	entity.setSpawnerToPreset(resourceLocation);
     	source.sendSuccess(new StringTextComponent("Set Spawner Type: "+resourceLocation.toString()), false);
     	return Command.SINGLE_SUCCESS;
     }

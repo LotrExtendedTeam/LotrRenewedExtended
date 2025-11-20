@@ -8,15 +8,20 @@ import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemMode
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedElvenLanternBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargePotBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedLeatherHatItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedSwordItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
 import lotr.common.block.ChandelierBlock;
@@ -27,15 +32,14 @@ import lotr.common.block.VesselDrinkBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.DaggerItem;
-import lotr.common.item.ExtendedDyeableLOTRArmorItem;
 import lotr.common.item.FallenLeavesItem;
+import lotr.common.item.HammerItem;
 import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRAxeItem;
 import lotr.common.item.LOTRHoeItem;
 import lotr.common.item.LOTRPickaxeItem;
 import lotr.common.item.LOTRShieldItem;
 import lotr.common.item.LOTRShovelItem;
-import lotr.common.item.LOTRSwordItem;
 import lotr.common.item.SpearItem;
 import lotr.common.item.VesselDrinkItem;
 import net.minecraft.block.DoorBlock;
@@ -43,6 +47,8 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.resources.ResourcePackType;
+import net.minecraft.tileentity.BannerPattern;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -65,13 +71,11 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
     }
 
 	public void registerOverrides() {
-		genGenerated(ExtendedItems.MORGUL_LANTERN.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.MORGUL_LANTERN.getId().getPath()));
+		genGenerated(ExtendedItems.MORGUL_BRAZIER.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.MORGUL_BRAZIER.getId().getPath()));
 		genGenerated(ExtendedItems.WEAPON_RACK.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.WEAPON_RACK.getId().getPath()));
 		genGenerated(ExtendedItems.ENTITY_SPAWNER.getId().getPath(), lotrExtendedLoc("block/spawner_block"));
 		genGenerated(ExtendedItems.ROPE.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.ROPE.getId().getPath()));
-		genGenerated(ExtendedItems.ROPE.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.ROPE.getId().getPath()));
 		genGenerated(ExtendedItems.GRASS_VOID.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.GRASS_VOID.getId().getPath()));
-
 	}
 	@Override
 	protected void registerModels() {
@@ -113,8 +117,17 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedElvenLanternBlock) {
+				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedChainBlock) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedNarsilShardsBlock) {
+				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				genSword(item.getKey());
 				continue;
 			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedVineBlock) {
@@ -139,8 +152,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			if(item.getValue().get() instanceof ExtendedEntitySpawnerItem) {
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedDyeableLOTRArmorItem) {
-				ItemModelBuilder builder = withExistingParent("lotr:"+item.getKey(), "lotrextended:item/template_coin");
+			if(item.getValue().get() instanceof ExtendedLeatherHatItem) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()), lotrExtendedLoc("item/"+item.getKey()+"_overlay"));
 				continue;
 			}
@@ -159,7 +171,14 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 			}
 			if(item.getValue().get() instanceof BannerPatternItem) {
-				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				genGenerated(item.getKey(), lotrExtendedLoc("item/banner_pattern"));
+				BannerPattern pattern = ((BannerPatternItem)item.getValue().get()).getBannerPattern();
+				if (!this.existingFileHelper.exists(new ResourceLocation("minecraft", "textures/entity/banner/"+pattern.getFilename()+".png"), ResourcePackType.CLIENT_RESOURCES)) {
+	                System.out.println("Missing banner banner pattern texture: " + pattern.getFilename() + ".png");
+	            }
+				if (!this.existingFileHelper.exists(new ResourceLocation("minecraft", "textures/entity/shield/"+pattern.getFilename()+".png"), ResourcePackType.CLIENT_RESOURCES)) {
+	                System.out.println("Missing shield banner pattern texture: " + pattern.getFilename() + ".png");
+	            }
 				continue;
 			}
 			if(item.getValue().get() instanceof SpearItem) {
@@ -173,7 +192,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genDagger(item.getKey());
 				continue;
 			}
-			if(item.getValue().get() instanceof LOTRSwordItem) {
+			if(item.getValue().get() instanceof ExtendedSwordItem || item.getValue().get() instanceof HammerItem) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				genSword(item.getKey());
 				continue;
@@ -207,6 +226,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			if(item.getValue().get() instanceof ExtendedBrandingIronItem) {
 				genBrandingIron(item.getKey(), "item/"+item.getKey());
+				continue;
+			}
+			if(item.getValue().get() instanceof ExtendedModifierScrollItem) {
+				genModifierScroll(item.getKey(), "item/"+item.getKey());
 				continue;
 			}
 			if(item.getValue().get() instanceof ExtendedMCBannerItem) {
@@ -324,6 +347,19 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		builder.override().model(builder_reddy).predicate(ExtendedItemModelsProperties.hornType, 2);
 		builder.override().model(builder_summon).predicate(ExtendedItemModelsProperties.hornType, 3);
 		return builder;
+	}
+
+	private ItemModelBuilder genModifierScroll(String name, String location) {
+		ItemModelBuilder builder = genGenerated(name, lotrExtendedLoc(location+"_wooden"));//TODO maybe have a "basic" modifier scroll texture in the future?
+		ItemModelBuilder builder_wooden = genGenerated(name+"_wooden", lotrExtendedLoc(location+"_wooden"));
+		ItemModelBuilder builder_bronze = genGenerated(name+"_bronze", lotrExtendedLoc(location+"_bronze"));
+		ItemModelBuilder builder_silver = genGenerated(name+"_silver", lotrExtendedLoc(location+"_silver"));
+		ItemModelBuilder builder_golden = genGenerated(name+"_golden", lotrExtendedLoc(location+"_golden"));
+		builder.override().model(builder_wooden).predicate(ExtendedItemModelsProperties.scroll_type, 0);
+		builder.override().model(builder_bronze).predicate(ExtendedItemModelsProperties.scroll_type, 1);
+		builder.override().model(builder_silver).predicate(ExtendedItemModelsProperties.scroll_type, 2);
+		builder.override().model(builder_golden).predicate(ExtendedItemModelsProperties.scroll_type, 3);
+		return builder_wooden;
 	}
 
 	private ItemModelBuilder genBrandingIron(String name, String location) {

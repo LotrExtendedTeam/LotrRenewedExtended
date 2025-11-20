@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedSwordItem;
 
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
@@ -208,6 +209,8 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 
 		tag(Tags.Items.EGGS).add(ExtendedItems.DUCK_EGG.get());
 
+		tag(ExtendedTags.Items.FLESH).add(Items.ROTTEN_FLESH, LOTRItems.MAN_FLESH.get());
+
 		tag(ExtendedTags.Items.FURS).add(ExtendedItems.BLACK_FUR.get(),ExtendedItems.GRAY_FUR.get(),ExtendedItems.SILVER_FUR.get(),ExtendedItems.WHITE_FUR.get());
 
 		tag(ItemTags.BOATS).add(ExtendedItems.CHESTNUT_BOAT.get()).add(ExtendedItems.BANANA_BOAT.get()).add(ExtendedItems.PLUM_BOAT.get());
@@ -240,11 +243,16 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		tag(ExtendedTags.Items.COIN_ONE).add(ExtendedItems.SILVER_COIN_ONE.get());
 		tag(ExtendedTags.Items.COIN_TEN).add(ExtendedItems.SILVER_COIN_TEN.get());
 		tag(ExtendedTags.Items.COIN_HUNDRED).add(ExtendedItems.SILVER_COIN_HUNDRED.get());
+		tag(ExtendedTags.Items.COIN_MINTING_ONE).add(LOTRItems.SILVER_NUGGET.get());
+		tag(ExtendedTags.Items.COIN_MINTING_TEN).add(LOTRItems.SILVER_INGOT.get());
+		tag(ExtendedTags.Items.COIN_MINTING_HUNDRED).add(LOTRItems.SILVER_BLOCK.get());
 
 		tag(LOTRTags.Items.DRINK_VESSELS).add(ExtendedItems.SKULL_GOBLET.get());
 
 		tag(ExtendedTags.Items.TORCH_EXTINGUISHING).add(Items.POTION).add(LOTRItems.WATER_DRINK.get());
 		tag(ExtendedTags.Items.TORCH_LIGHTING).add(LOTRItems.POCKET_MATCH.get()).add(Items.FLINT_AND_STEEL);
+
+		tag(ExtendedTags.Items.PLACEABLE_BOOKS).add(LOTRItems.BOOK_OF_TRUE_SILVER.get()).add(Items.BOOK).add(LOTRItems.RED_BOOK.get()).add(Items.WRITTEN_BOOK);
 
 		TreeMap<String, Item> fullitems = new TreeMap<>();
 		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {
@@ -261,7 +269,7 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 			if(item.get() instanceof DaggerItem) {
 				continue;
 			}
-			if(item.get() instanceof LOTRSwordItem) {
+			if(item.get() instanceof ExtendedSwordItem || item.get() instanceof LOTRSwordItem) {
 				if(addTagWithFilter(item.get())) {
 					fullitems.put(item.get().getRegistryName().getPath(), item.get());
 				}
@@ -284,7 +292,8 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		TreeMap<String, Item> additems = new TreeMap<>();
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
 			if((item.getValue().get() instanceof SpearItem) || (item.getValue().get() instanceof DaggerItem)
-					|| (item.getValue().get() instanceof LOTRSwordItem)
+					|| (item.getValue().get() instanceof ExtendedSwordItem)
+					|| (item.getValue().get() instanceof HammerItem)
 					|| (item.getValue().get() instanceof LOTRPickaxeItem)) {
 				additems.put(item.getKey(), item.getValue().get());
 				continue;

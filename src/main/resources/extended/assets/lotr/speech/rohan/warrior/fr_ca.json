@@ -1,0 +1,361 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Le monde des Hommes est bien loin de sa gloire passée.",
+        "J'espère voir le monde des Hommes restauré à sa grandeur d'antan.",
+        "Ce sont les terres de nos pères, et des pères de nos pères. Il est de notre devoir de les protéger.",
+        "Les chevaux du Riddermark sont les meilleurs de toute la Terre du Milieu.",
+        "Méfiez-vous des Uruk-hai. Ils viennent souvent ici lors de raids, ne laissant que la destruction dans leur sillage.",
+        "Une nouvelle vie pousse partout où reposent les pères du Rohan.",
+        "Le loup que l'on entend est pire que l'Orc que l'on craint.",
+        "J'espère que vous n'oubliez pas de nourrir ces chevaux.",
+        "En ces temps sombres, nos terres sont souvent assiégées par les serviteurs de l'Ennemi.",
+        "La Main et l'Oeil du Seigneur noir nous harcèlent sans répit en ces temps difficiles.",
+        "Je me demande comment ces Dunlendings peuvent être aussi stupides que disgracieux... oh, tu me parlais, #p ?",
+        "Connaissez-vous les chansons de Helm Poing-de-marteau ? On dit qu'il a tué des Dunlendings jusqu'à son dernier jour sur terre.",
+        "Connaissez-vous les chansons de Helm Poing-de-marteau ? On raconte qu'il a été retrouvé mort dans la neige, avec du sang de Dunlendings encore gelé sur ses mains.",
+        "Les hommes sauvages de Dun nous nomment Têtes de paille. Eh bien, #p, je préfère avoir de la paille pour cheveux que de de vivre tous les jours dans la saleté et la crasse de porc.",
+        "Il y a beaucoup de chevaux vigoureux dans ces terres, #p, et tous sont aptes au combat.",
+        "Un bon cheval a besoin de bon foin, #p. Alors n'oubliez pas de les nourrir !",
+        "Les jours sont sombres à Stoningland.",
+        "On dit que les armées des Suderons se rassemblent au-delà de la Rivière du sud. ",
+        "D'ici peu, je le crains, nous aurons besoin de chevaucher une fois de plus pour aller vaincre les cruels Hommes des Rivières du sud.",
+        "Nous avons de vieilles querelles avec les Corsaires du Sud lointain.",
+        "Cinq-cents ans se sont écoulés depuis qu'Eorl le Jeune nous a fait descendre du Nord.",
+        "Nous, le peuple d'Eorl, sommes fiers et tenons notre parole."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Salutation, #p !",
+        "N'oublie pas de nourrir les chevaux !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest"
+      },
+      "lines": [
+        "Salutation, étranger!",
+        "Bien le bonjour. Vous venez d'un pays étranger ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Vous marchez sur les terres vertes du Riddermark.",
+        "Ces terres sont tourmentées, #p. Les Orcs franchissent souvent nos frontières.",
+        "Nous devons sans cesse débarrasser nos terres de la vermine orc qui nous harcèle, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Que venez vous faire dans le Riddermark , #p ?",
+        "Restez sur vos gardes dans la Marche. Nous avons beaucoup d'ennemis ces derniers temps."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "in_conversation": "other"
+      },
+      "lines": [
+        "Silence, étranger !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman",
+        "in_conversation": "other"
+      },
+      "lines": [
+        "Silence !",
+        "Silence ! Nous discutons !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman",
+        "in_conversation": "other"
+      },
+      "lines": [
+        "Qu'est-ce qui te donne le droit de nous déranger pendant notre conseil de guerre ! Tu parleras quand ton tour viendra, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <atarms"
+      },
+      "lines": [
+        "Ah, c'est encore toi, #p.",
+        "Bonne journée, #p. De quel pays lointain viens-tu ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<atarms",
+        "biome": "#home"
+      },
+      "lines": [
+        "Bienvenue dans le Riddermark.",
+        "Bienvenue au Rohan. De quelle terre venez-vous ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <atarms",
+        "biome": "#home"
+      },
+      "lines": [
+        "Bienvenue dans le Riddermark, #p.",
+        "Bienvenue dans les terres du Rohan, #p !",
+        "Bienvenue, #p. Qu'est-ce qui vous amène sur les terres du Rohan ?",
+        "Bienvenue au Rohan, #p.",
+        "Quelles nouvelles apportez-vous au Riddermark ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman"
+      },
+      "lines": [
+        "Salutation, #p ! Nous sommes les cavaliers du Rohan.",
+        "Êtes-vous de mèche avec la sorcière du Bois Doré ? Des toiles de tromperie ont toujours été tissées à Dwimordene.",
+        "Nous voyons rarement des voyageurs dans ce pays. Que venez vous faire par ici ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms & <captain"
+      },
+      "lines": [
+        "Salutation #p, ami de la Marche !",
+        "J'ai entendu parler de tes actes valeureux au nom de la Marche, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Voici venue l'heure de tirer l'épée ensemble !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=rider"
+      },
+      "lines": [
+        "Salutation #p, cavalier de la Marche !",
+        "Irons-nous au combat ensemble, #p?",
+        "Nous chevaucherons ensemble en tant qu'Eorlingas."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain"
+      },
+      "lines": [
+        "#p, mon ami, je vous suivrai jusqu’aux confins de la terre!" ,
+        "Quand l'heure viendra, #p, je chevaucherai à vos côtés."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=marshal"
+      },
+      "lines": [
+        "Quand l'heure viendra, #p, je chevaucherai dans votre éored." 
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+        "Vous servez maintenant la Maison d'Eorl, #p.",
+        "Vous servez maintenant la Maison d'Eorl. Puissent vos prouesses nous apporter la gloire sur le champ de bataille !" 
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "daytime": "evening | dusk",
+        "weather": "clear"
+      },
+      "lines": [
+        "Le soleil se couche derrière les montagnes.",
+        "Voyez comme le soleil se couche sur les plaines de la Marche."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk | night"
+      },
+      "lines": [
+        "La nuit est tombée. Attention au loup qui rôde dans le noir, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home",
+        "daytime": "dusk | night"
+      },
+      "lines": [
+        "Que peut bien faire un étranger, errant dans la Marche à cette heure de la nuit ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn",
+        "weather": "clear"
+      },
+      "lines": [
+        "Regardez à l'est ! Le soleil se lève !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "weather": "rain"
+      },
+      "lines": [
+        "Peut-être que cette tempête nous vient d'un vent nauséabond de l'Est.",
+        "Ces nuages sont bien sombres. Mettez vos chevaux à l'abri !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:anorien"
+      },
+      "lines": [
+        "J'ai toujours rêvé d'aller à Stoningland.",
+        "J’ai longtemps voulu venir à Stoningland, le foyer de nos puissants amis d’autrefois.",
+        "Cela fait longtemps que je voulais chevaucher jusqu'à Stoningland. Peut-être même irons-nous jusqu'à Mundburg ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Je ne tolèrerai pas ta présence ici !",
+        "Tremble, peu importe où tu te trouves, #p !",
+        "Ta mort viendra rapidement, #p!",
+        "Pas de pitié pour les ennemis de la Marche !",
+        "Pas de pitié pour les ennemis d'Eorl !",
+        "Pars, ou fait face à ton destin !",
+        "Tu paieras pour tes crimes, #p!",
+        "Ton infâme existence se termine ici !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "On ne tolérera pas ta présence sur ces terres, #p !",
+        "Tu n'es pas le bienvenu dans la Marche, #p !",
+        "Tu n'es pas le bienvenu dans le Riddermark !",
+        "Tu aurais dû fuir ces terres il y a longtemps !",
+        "Tu dois être fou pour t'aventurer sur nos terres !",
+        "Tu ne souilleras pas la Marche de ta vile présence !",
+        "Sors de nos terres, ou affronte les pointes acérées de nos lances !",
+        "Fuis la Marche si tu tiens à ton souffle !",
+        "Fuis la Marche et n'y reviens jamais !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:isengard"
+      },
+      "lines": [
+        "Ta fin est proche, esclave d'Isengard !",
+        "La fourberie d’Isengard n’est pas la bienvenue ici.",
+        "Comment as tu pu tomber au service d'Isengard ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "Comment as tu pu tomber au service du Mordor ?",
+        "Arrière, esclave de Sauron !",
+        "Arrière, esclave du Mordor !",
+        "Toi et ton maître n’aurez plus aucun de nos chevaux noirs !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "Tu regrettera d’avoir juré service à l’Ennemi !",
+        "Comment as tu pu tomber au service de l’Ombre ?",
+        "Arrière, serviteur de l'Ennemi !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Pour le Rohan ! Pour notre peuple !",
+        "Voici venue l'heure de tirer l'épée ensemble, #p !",
+        "Combattons ensemble pour le Riddermark, #p !",
+        "Pour le Riddermark !",
+        "Nos ennemis seront détruits !",
+        "Ensemble, nous nous couvrirons de gloire sur le champ de bataille, #p.",
+        "Que les ennemis de la Marche tremblent où qu'ils se trouvent !",
+        "Nous chevaucherons ensemble. Pour la gloire. Pour le Rohan !",
+        "Les ennemis du Rohan trembleront à nos pieds !",
+        "Aucun Orc ou homme sauvage ne pillera le Riddermark sous notre surveillance !",
+        "Allons chasser de l'Orc !",
+        "Pour le roi du Rohan ! Pour Edoras !",
+        "Chevauchons ensemble et purifions la Marche de ses malfaiteurs !"
+      ]
+    }
+  ]
+}

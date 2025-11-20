@@ -2,8 +2,10 @@ package lotr.client.render.entity;
 
 import lotr.client.render.GenderedRandomTextureVariants;
 import lotr.client.render.RandomTextureVariants;
+import lotr.client.render.entity.layers.ExtendedHeldCoinLayer;
 import lotr.client.render.entity.layers.HobbitOutfitLayer;
-import lotr.client.render.entity.layers.coinlayers.HobbitHeldCoinLayer;
+import lotr.client.render.entity.model.HobbitModel;
+import lotr.common.entity.npc.HobbitEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.inventory.EquipmentSlotType;
 
@@ -17,7 +19,7 @@ public class ExtendedHobbitBartenderRenderer extends HobbitRenderer {
 	public ExtendedHobbitBartenderRenderer(EntityRendererManager mgr) {
 		super(mgr);
 		this.addLayer(new HobbitOutfitLayer<>(this, OUTFITS, EquipmentSlotType.CHEST));
-		this.addLayer(new HobbitHeldCoinLayer(this));
+		this.addLayer(new ExtendedHeldCoinLayer<HobbitEntity, HobbitModel<HobbitEntity>>(this));
 	}
 
 

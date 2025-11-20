@@ -1,0 +1,230 @@
+{
+  "parent": "lotr:rohan/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Jesteśmy pasterzami i rolnikami Marchii.",
+        "Orkowie mnożą się w górach. Boję się o moją rodzinę, #p.",
+        "Boję się o naszych ludzi.",
+        "Ludzie mówią że okrutne plemię ze Słonecznych Strumieni szykuje się do szturmu na Kraj Kamienia.",
+        "Gdzie jest koń i jego jeździec? Potrzebujemy ich bardziej niż kiedykolwiek, #p.",
+		"Krążą plotki o najeźdzcach z Czarnego Kraju którzy zakradają się w nocy i kradną nasze konie. Prawdę mówiąc, nie mogę nawet o tym myśleć."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "m"
+      },
+      "lines": [
+        "Jeżeli ci orkowie Białej Ręki kiedykolwiek tu przyjdą, jestem gotowy by walczyć.",
+        "Chciałbym dołączyć do Jeźdzców Króla i walczyć za moją rodzinę."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "f"
+      },
+      "lines": [
+        "Jeżeli ci orkowie Białej Ręki kiedykolwiek tu przyjdą, jestem gotowa by walczyć.",
+        "Chciałabym dołączyć do Jeźdzców Króla i walczyć za moją rodzinę."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Nie jesteś jakimś szpiegiem czarodzieja, prawda, #p?",
+        "Biały Czarodziej ma wielu szpiegów na swoich usługach. Nie jesteś jednym z nich, prawda?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "biome": "#home",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Co cię tu sprowadza, podróżniku?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "biome": "#home",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Co cię tu sprowadza, podróżniczko?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Niektórzy mówią że król jest chory. Nie jest taki jak kiedyś.",
+        "Gdzie jest nasz król gdy go potrzebujemy, #p? Gdzie są jego jeźdzcy?",
+        "Nasze plony obumierają, nasze konie są kradzione, mówią że choroba króla pogarsza się z każdym dniem."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Jesteś złoczyńcą!",
+        "Zejdź mi z oczu, #p.",
+        "Nie krzywdź moich koni!",
+        "Odejdź, złoczyńco!",
+        "Nie mam układów z takimi hultajami jak ty!",
+        "Czym jesteś, #p, bandytą, półgoblinem, czy jakimś Isengardzkim diabelstwem?",
+        "Trzymaj się z daleka ode mnie.",
+        "Nie chcę mieć z tobą nic wspólnego."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Czego ode mnie chcesz, łajdaku?",
+        "Ty łotrze! Wracaj tam skąd przybyłeś!",
+        "Jesteś gorszy niż dzicy ludzie!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Czego ode mnie chcesz, łajdaczko?",
+        "Ty łotrzyco! Wracaj tam skąd przybyłaś!",
+        "Jesteś gorsza niż dzicy ludzie!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Nikt cię tu nie przywita.",
+        "Bohaterowie Rohanu rozprawią się z tobą, #p.",
+        "Jeźdzcy Króla rozprawią się z tobą, #p.",
+        "Straż! Straż!",
+        "Precz stąd, #p. Nie chcemy tu zła.",
+        "Łotry twojego pokroju nie są tu mile widziane.",
+        "Ty i tobie podobni nie jesteście mile widziani w Rohanie.",
+        "Ty i tobie podobni nie jesteście mile widziani w Marchii.",
+        "Łajdacy tacy jak ty nie są mile widziani na tych ziemiach."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Sugeruję abyś opuścił to miejsce, #p.",
+        "Sugeruję abyś opuścił to miejsce. Jeźdzcy Króla za chwilę tu będą."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Sugeruję abyś opuściła to miejsce, #p.",
+        "Sugeruję abyś opuściła to miejsce. Jeźdzcy Króla za chwilę tu będą."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:isengard"
+      },
+      "lines": [
+        "Służysz Białej Ręce!",
+        "Precz stąd, sługo Isengardu!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:isengard",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Jesteś demonem na usługach Białego Czarodzieja! Odejdź!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:isengard",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Jesteś demonicą na usługach Białego Czarodzieja! Odejdź!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:dunland",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Precz stąd, Dunlendingu!",
+        "Precz stąd, dunlendindzki sługo!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:dunland",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Precz stąd, Dunlendingu!",
+        "Precz stąd, dunlendindzka sługo!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:near_harad | lotr:rhudel"
+      },
+      "lines": [
+        "Służysz Czarnemu Władcy!",
+        "Precz stąd, sługo Mordoru!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "Służysz Nieprzyjacielowi!",
+        "Precz stąd, sługo Nieprzyjaciela!"
+      ]
+    }
+  ]
+}

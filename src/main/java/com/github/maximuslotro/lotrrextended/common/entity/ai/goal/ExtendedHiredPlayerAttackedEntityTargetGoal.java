@@ -78,8 +78,9 @@ public class ExtendedHiredPlayerAttackedEntityTargetGoal extends TargetGoal {
 					}
 					// prevent hired units of the same player from fighting each other
 					else if (this.ownerLastAttacked instanceof ExtendedNPCEntity && ((ExtendedNPCEntity)ownerLastAttacked).getUnitInfo().isNpcActiveDuty()) {
-						if (((ExtendedNPCEntity)ownerLastAttacked).getUnitInfo().getUnitOwner().equals(unitOwner)) {
+						if (unitOwner!=null && unitOwner.equals(((ExtendedNPCEntity)ownerLastAttacked).getUnitInfo().getUnitOwner())) {
 							if (!((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unitOwner)).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit()) {
+								ownerLastAttacked=null;
 								return false;
 							}
 						}

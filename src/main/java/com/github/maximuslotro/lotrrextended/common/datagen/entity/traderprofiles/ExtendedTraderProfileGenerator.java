@@ -1,7 +1,10 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.entity.traderprofiles;
 
+import java.util.Arrays;
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 
@@ -373,6 +376,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(Items.LEATHER_LEGGINGS, 11)
 		.addSSell(Items.LEATHER_BOOTS, 6)
 		.addSSell(Items.LEATHER_HORSE_ARMOR, 15)
+		.addSSell(ExtendedItems.BREE_BANNER_PATTERN, 25)
 		.save(pConsumer, ExtendedTraderTypes.BREE_LEATHERWORKER);
 
 		make(0)
@@ -525,6 +529,12 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.MAPLE_SAPLING, 8)
 		.addDrinkSell(LOTRItems.MEAD, 9, 12, 15)
 		.addDrinkSell(LOTRItems.MAPLE_BEER, 8, 10, 12)
+		.addMSell( Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SHARP),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SWIFT),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.LONG)
+				),
+				10, 100, 1, false)
 		.save(pConsumer, ExtendedTraderTypes.BREE_MERCHANT);
 
 		make(0)
@@ -641,6 +651,13 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.IRON_SPEAR, 15)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 16)
 		.addSSell(ExtendedItems.BRANDING_IRON, 25)
+		.addMSell( Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SHARP),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SWIFT),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.LONG)
+				),
+				10, 100, 1, false)
+		.addSSell(ExtendedItems.BREE_BANNER_PATTERN, 25)
 		.save(pConsumer, ExtendedTraderTypes.BREE_SMITH);
 
 		make(0)
@@ -758,7 +775,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.COOKED_PORKCHOP, 3)
 		.addSBuy(Items.COOKED_RABBIT, 3)
 		.addSBuy(LOTRItems.GAMMON, 3)
-		// TODO add blue( battleaxe, mattock, pike, throwing axe, warhammer), kegs
+		// TODO add blue( battleaxe, mattock, pike, warhammer), kegs
 		.addSSell(LOTRItems.BLUE_DWARVEN_HELMET, 25)
 		.addSSell(LOTRItems.BLUE_DWARVEN_CHESTPLATE, 26)
 		.addSSell(LOTRItems.BLUE_DWARVEN_LEGGINGS, 31)
@@ -769,6 +786,9 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.BLUE_DWARVEN_SHOVEL, 12)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SPEAR, 18)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SWORD, 16)
+		.addSSell(ExtendedItems.BLUE_MOUNTAINS_BANNER, 50)
+		.addSSell(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN, 25)
+		.addSSell(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE, 15)
 		.addSSell(new ItemStack(Items.GLOWSTONE_DUST, 4), 2)
 		.addSSell(LOTRItems.DWARVEN_FORGE, 40)
 		.addSSell(ExtendedItems.DWARF_MARRIAGE_RING, 16)
@@ -779,6 +799,13 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.AMETHYST, 12)
 		.addSSell(ExtendedItems.TOPAZ, 12)
 		.addSSell(new ItemStack(LOTRItems.BLUE_ROCK.get(), 8), 2)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.LEGENDARY),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STEADFAST),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.BLESSED),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL)
+				),
+				1, 350, 1, false)
 		.addDrinkSell(LOTRItems.DWARVEN_ALE, 6, 9, 11)
 		.addDrinkSell(LOTRItems.DWARVEN_TONIC, 10, 14, 18)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_MERCHANT);
@@ -809,6 +836,14 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.LEMBAS, 16)
 		.addSSell(new ItemStack(LOTRItems.BEECH_PLANKS.get(), 4), 4)
 		.addDrinkSell(LOTRItems.MIRUVOR, 6, 8, 10)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL)
+				),
+				1, 350, 1, false)
+		.addSSell(ExtendedItems.RIVENDELL_BANNER, 50)
+		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 25)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_WANDERER);
 
 		make(75).setTypicallyWandering()
@@ -846,6 +881,14 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.NIPHREDIL, 2)
 		.addSSell(ExtendedItems.HITHLAIN, 4)
 		.addDrinkSell(LOTRItems.MIRUVOR, 6, 8, 10)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL)
+				),
+				1, 350, 1, false)
+		.addSSell(ExtendedItems.LOTHLORIEN_BANNER, 75)
+		.addSSell(ExtendedItems.LOTHLORIEN_BANNER_PATTERN, 25)
 		.save(pConsumer, ExtendedTraderTypes.GALADHRIM_WANDERER);
 
 		make(0).setTypicallyWandering()
@@ -983,16 +1026,18 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.BREAD, 2)
 		.addSBuy(Items.LAVA_BUCKET, 16)
 		.addSBuy(new ItemStack(Items.STRING, 3), 1)
-		// TODO add Dwarven(BattleAxe, Warhammer, pike, mattock, throwing axe, boar armor)
+		// TODO add Dwarven(BattleAxe, Warhammer, pike, mattock)
 		.addSSell(LOTRItems.DWARVEN_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
 		.addSSell(ExtendedItems.DWARF_MARRIAGE_RING, 20)
+		.addSSell(ExtendedItems.DURINS_FOLK_BANNER_PATTERN, 25)
 		.addSSell(LOTRItems.DWARVEN_SWORD, 16)
 		.addSSell(LOTRItems.DWARVEN_SPEAR, 18)
 		.addSSell(LOTRItems.DWARVEN_DAGGER, 13)
 		.addSSell(LOTRItems.DWARVEN_AXE, 15)
 		.addSSell(LOTRItems.DWARVEN_PICKAXE, 14)
 		.addSSell(LOTRItems.DWARVEN_SHOVEL, 12)
+		.addSSell(ExtendedItems.DWARVEN_THROWABLE_AXE, 15)
 		.addSSell(LOTRItems.DWARVEN_HELMET, 25)
 		.addSSell(LOTRItems.DWARVEN_CHESTPLATE, 36)
 		.addSSell(LOTRItems.DWARVEN_LEGGINGS, 30)
@@ -1005,6 +1050,21 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.GOLD_TRIMMED_DWARVEN_CHESTPLATE, 80)
 		.addSSell(LOTRItems.GOLD_TRIMMED_DWARVEN_LEGGINGS, 75)
 		.addSSell(LOTRItems.GOLD_TRIMMED_DWARVEN_BOOTS, 70)
+		.addSSell(ExtendedItems.DWARVEN_BOAR_ARMOR, 25)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SILKEN)
+				),
+				5, 350, 1, false)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.DEFLECTING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MIGHTY),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.HASTY)
+				),
+				10, 350, 1, false)
+		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 40, 150, 1, false)
 		.addSSell(new ItemStack(LOTRItems.DWARVEN_BARS.get(), 8), 25)
 		.save(pConsumer, ExtendedTraderTypes.DWARVEN_SMITH);
 
@@ -1039,20 +1099,37 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.BREAD, 2)
 		.addSBuy(Items.LAVA_BUCKET, 16)
 		.addSBuy(new ItemStack(Items.STRING, 3), 1)
-		// TODO add Blue Dwarven(BattleAxe, Warhammer, pike, mattock, throwing axe, boar armor)
+		// TODO add Blue Dwarven(BattleAxe, Warhammer, pike, mattock)
 		.addSSell(LOTRItems.BLUE_MOUNTAINS_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
 		.addSSell(ExtendedItems.DWARF_MARRIAGE_RING, 20)
+		.addSSell(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN, 25)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SWORD, 16)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SPEAR, 18)
 		.addSSell(LOTRItems.BLUE_DWARVEN_DAGGER, 13)
 		.addSSell(LOTRItems.BLUE_DWARVEN_AXE, 15)
 		.addSSell(LOTRItems.BLUE_DWARVEN_PICKAXE, 14)
+		.addSSell(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE, 15)
 		.addSSell(LOTRItems.BLUE_DWARVEN_SHOVEL, 12)
 		.addSSell(LOTRItems.BLUE_DWARVEN_HELMET, 25)
 		.addSSell(LOTRItems.BLUE_DWARVEN_CHESTPLATE, 36)
 		.addSSell(LOTRItems.BLUE_DWARVEN_LEGGINGS, 30)
 		.addSSell(LOTRItems.BLUE_DWARVEN_BOOTS, 22)
+		.addSSell(ExtendedItems.BLUE_DWARVEN_BOAR_ARMOR, 25)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SILKEN)
+				),
+				5, 350, 1, false)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.DEFLECTING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MIGHTY),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.HASTY)
+				),
+				10, 350, 1, false)
+		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 40, 150, 1, false)
 		.addSSell(new ItemStack(LOTRItems.BLUE_DWARVEN_BARS.get(), 8), 25)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_SMITH);
 
@@ -1121,9 +1198,10 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.HORN, 6)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_BUTCHER);
 
-		make(0)
+		make(50)
 		.addSBuy(new ItemStack(Items.COAL, 2), 1)
 		.addSBuy(new ItemStack(Items.TORCH, 16), 2)
+		.addSBuy(new ItemStack(LOTRItems.DWARVEN_TORCH.get(), 16), 2)
 		.addSBuy(Items.BUCKET, 3)
 		.addSBuy(Items.WATER_BUCKET, 4)
 		.addSBuy(LOTRItems.BRONZE_PICKAXE, 6)
@@ -1152,5 +1230,125 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(Items.STONECUTTER, 10)
 		.addSSell(LOTRItems.BLUE_MOUNTAINS_CRAFTING_TABLE.get(), 100)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_STONEMASON);
+
+		make(100)
+		.addSBuy(Items.IRON_ORE, 5)
+		.addSBuy(Items.GOLD_ORE, 15)
+		.addSBuy(LOTRItems.COPPER_ORE, 5)
+		.addSBuy(LOTRItems.TIN_ORE, 5)
+		.addSBuy(Items.IRON_INGOT, 3)
+		.addSBuy(LOTRItems.ELVEN_STEEL_INGOT, 3)
+		.addSBuy(new ItemStack(Items.COAL, 2), 1)
+		.addSBuy(Items.GOLD_INGOT, 15)
+		.addSBuy(LOTRItems.COPPER_INGOT, 3)
+		.addSBuy(LOTRItems.TIN_INGOT, 3)
+		.addSBuy(LOTRItems.BRONZE_INGOT, 3)
+		.addSBuy(ExtendedItems.GALVORN_INGOT, 4)
+		.addSBuy(ExtendedItems.EMERALD, 15)
+		.addSBuy(ExtendedItems.SAPPHIRE, 12)
+		.addSBuy(ExtendedItems.OPAL, 10)
+		.addSBuy(ExtendedItems.AMETHYST, 8)
+		.addSBuy(ExtendedItems.PEARL, 25)
+		.addSBuy(Items.LAVA_BUCKET, 16)
+		.addSBuy(new ItemStack(Items.STICK, 8), 1)
+		.addSBuy(new ItemStack(Items.STRING, 3), 1)
+		.addSBuy(LOTRItems.MITHRIL_NUGGET, 40)
+		// TODO add Rivendell(BattleStaff, Longspear, rivendell bow)
+		.addSSell(LOTRItems.RIVENDELL_CRAFTING_TABLE, 100)
+		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
+		.addSSell(LOTRItems.RIVENDELL_SWORD, 20)
+		.addSSell(LOTRItems.RIVENDELL_SPEAR, 18)
+		.addSSell(LOTRItems.RIVENDELL_DAGGER, 14)
+		.addSSell(LOTRItems.RIVENDELL_AXE, 15)
+		.addSSell(LOTRItems.RIVENDELL_PICKAXE, 15)
+		.addSSell(LOTRItems.RIVENDELL_SHOVEL, 12)
+		.addSSell(LOTRItems.RIVENDELL_HELMET, 18)
+		.addSSell(LOTRItems.RIVENDELL_CHESTPLATE, 25)
+		.addSSell(LOTRItems.RIVENDELL_LEGGINGS, 22)
+		.addSSell(LOTRItems.RIVENDELL_BOOTS, 16)
+		// Sell at a x20 price increase compared to regular Rivendell armor
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_HELMET, 10, 360, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE, 10, 500, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_LEGGINGS, 10, 440, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_BOOTS, 10, 320, 1, false)
+		.addSSell(new ItemStack(Items.ARROW, 4), 3)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.NIMBLE),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SILKEN)
+				),
+				5, 350, 1, false)
+		.addMSell(
+				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.DEFLECTING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MIGHTY),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.HASTY)
+				),
+				10, 350, 1, false)
+		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 20, 150, 1, false)
+		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 25)
+		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_SMITH);
+
+		make(50)
+		.addMBuy(1, Items.WHITE_DYE, Items.BLACK_DYE,
+			Items.BLUE_DYE, Items.BROWN_DYE,
+			Items.CYAN_DYE, Items.GRAY_DYE,
+			Items.GREEN_DYE, Items.LIGHT_BLUE_DYE,
+			Items.LIGHT_GRAY_DYE, Items.LIME_DYE,
+			Items.MAGENTA_DYE, Items.ORANGE_DYE,
+			Items.PINK_DYE, Items.PURPLE_DYE,
+			Items.RED_DYE, Items.YELLOW_DYE)
+		.addMBuy(1, Items.WHITE_WOOL, Items.BLACK_WOOL,
+			Items.BLUE_WOOL, Items.BROWN_WOOL,
+			Items.CYAN_WOOL, Items.GRAY_WOOL,
+			Items.GREEN_WOOL, Items.LIGHT_BLUE_WOOL,
+			Items.LIGHT_GRAY_WOOL, Items.LIME_WOOL,
+			Items.MAGENTA_WOOL, Items.ORANGE_WOOL,
+			Items.PINK_WOOL, Items.PURPLE_WOOL,
+			Items.RED_WOOL, Items.YELLOW_WOOL)
+		.addSBuy(new ItemStack(Items.STRING, 3), 1)
+		.addSBuy(Items.LEATHER, 2)
+		.addSBuy(LOTRItems.FUR, 2)
+		.addSBuy(LOTRItems.FLAX, 1)
+		.addSBuy(LOTRItems.FLAX_SEEDS, 1)
+		.addSBuy(ExtendedItems.BLACK_FUR, 2)
+		.addSBuy(ExtendedItems.GRAY_FUR, 2)
+		.addSBuy(ExtendedItems.SILVER_FUR, 3)
+		.addSBuy(ExtendedItems.WHITE_FUR, 25)
+		.addSBuy(Items.RABBIT_HIDE, 1)
+		.addSBuy(ExtendedItems.BROWN_PACKED_FUR, 18)
+		.addSBuy(ExtendedItems.BLACK_PACKED_FUR, 18)
+		.addSBuy(ExtendedItems.GRAY_PACKED_FUR, 18)
+		.addSBuy(ExtendedItems.SILVER_PACKED_FUR, 27)
+		.addSBuy(ExtendedItems.WHITE_PACKED_FUR, 200)
+		.addSBuy(Items.SHEARS, 5)
+		.addMSell(2, Items.WHITE_CARPET, Items.BLACK_CARPET,
+			Items.BLUE_CARPET, Items.BROWN_CARPET,
+			Items.CYAN_CARPET, Items.GRAY_CARPET,
+			Items.GREEN_CARPET, Items.LIGHT_BLUE_CARPET,
+			Items.LIGHT_GRAY_CARPET, Items.LIME_CARPET,
+			Items.MAGENTA_CARPET, Items.ORANGE_CARPET,
+			Items.PINK_CARPET, Items.PURPLE_CARPET,
+			Items.RED_CARPET, Items.YELLOW_CARPET)
+		.addMSell(4, Items.WHITE_WOOL, Items.BLACK_WOOL,
+			Items.BLUE_WOOL, Items.BROWN_WOOL,
+			Items.CYAN_WOOL, Items.GRAY_WOOL,
+			Items.GREEN_WOOL, Items.LIGHT_BLUE_WOOL,
+			Items.LIGHT_GRAY_WOOL, Items.LIME_WOOL,
+			Items.MAGENTA_WOOL, Items.ORANGE_WOOL,
+			Items.PINK_WOOL, Items.PURPLE_WOOL,
+			Items.RED_WOOL, Items.YELLOW_WOOL)
+		// TODO make hat and armor dyed
+		.addSSell(ExtendedItems.LEATHER_HAT, 10)
+		.addSSell(Items.LEATHER_HELMET, 7)
+		.addSSell(Items.LEATHER_CHESTPLATE, 12)
+		.addSSell(Items.LEATHER_LEGGINGS, 11)
+		.addSSell(Items.LEATHER_BOOTS, 6)
+		.addSSell(Items.PAINTING, 6)
+		.addSSell(Items.LEATHER_HORSE_ARMOR, 15)
+		.addSSell(ExtendedItems.RIVENDELL_BANNER, 4)
+		.addSSell(ExtendedItems.TAPESTRY, 1, 300, 1, false)
+		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 4)
+		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_WEAVER);
 	}
 }

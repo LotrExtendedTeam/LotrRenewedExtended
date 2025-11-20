@@ -120,6 +120,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:flint_and_steel"
@@ -131,6 +134,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:fishing_rod"
@@ -194,6 +200,17 @@
             }
           ],
           "name": "minecraft:hay_block"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:bree_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -353,6 +370,12 @@
             }
           ],
           "name": "lotr:large_pouch"
+        }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder",
+          "chance": 75
         }
       ]
     }

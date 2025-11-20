@@ -1,0 +1,24 @@
+{
+  "entity": "minecraft:wolf",
+  "biomes": [
+    "lotr:angmar",
+    "lotr:chetwood",
+    "lotr:coldfells",
+    "lotr:dense_northlands_forest",
+    "lotr:dense_snowy_northlands_forest",
+    "lotr:druwaith_iaur",
+    "lotr:dunland",
+    "lotr:eregion",
+    "lotr:eryn_vorn",
+    "lotr:ettenmoors",
+    "lotr:forochel",
+    "lotr:further_gondor",
+    "lotr:iron_hills",
+    "lotr:lone_lands_hills",
+    "lotr:northlands",
+    "lotr:northlands_forest",
+    "lotr:snowy_northlands",
+    "lotr:snowy_northlands_forest",
+    "lotr:trollshaws"
+  ]
+}

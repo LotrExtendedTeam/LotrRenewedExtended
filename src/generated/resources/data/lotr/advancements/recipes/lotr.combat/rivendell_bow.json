@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:rivendell_bow"
+    ]
+  },
+  "criteria": {
+    "has_rivendell_bow": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:rivendell_bow"
+          }
+        ]
+      }
+    },
+    "has_sticks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:rods/wooden"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:rivendell_bow"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rivendell_bow",
+      "has_sticks",
+      "has_the_recipe"
+    ]
+  ]
+}

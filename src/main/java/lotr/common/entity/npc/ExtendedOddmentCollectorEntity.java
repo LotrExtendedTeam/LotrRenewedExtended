@@ -40,7 +40,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -217,8 +216,8 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     }
 
     @Override
-    public TranslationTextComponent getDepartureLine(PlayerEntity player) {
-        return new TranslationTextComponent("speechbank.oddment_collector.departure." + (random.nextInt(18) + 1), getName(), player.getName());
+    public String getDepartureLine() {
+        return "speechbank.oddment_collector.departure." + (random.nextInt(18) + 1);
     }
 
     @Override
@@ -255,5 +254,10 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.ODDMENT_COLLECTOR;
 	}
+
+    @Override
+    public int getFactionColor() {
+        return this.getFaction().getColor();
+    }
 }
 

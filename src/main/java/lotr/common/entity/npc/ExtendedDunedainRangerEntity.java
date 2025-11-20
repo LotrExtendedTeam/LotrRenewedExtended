@@ -329,6 +329,6 @@ public class ExtendedDunedainRangerEntity extends ManEntity {
     }
 
     public ResourceLocation getCloakTextureLocation() {
-        return new ResourceLocation("lotr", "textures/cape/ranger.png");
+        return new ResourceLocation("lotrextended", "textures/capes/ranger.png");
     }
 }

@@ -1,0 +1,801 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Le scorciatoie portano a lunghi ritardi!",
+        "La vera birra per chi è coraggioso e sincero... la trovi solo al Drago Verde!",
+        "Dove saremmo noi hobbit senza erba pipa?",
+        "Non vorresti vivere anche tu in un buco hobbit?",
+        "Buchi hobbit! Calore, buon cibo e comodità.",
+        "È un affare pericoloso uscire dalla propria porta.",
+        "Ieri sono venuti a pranzo i Sackville-Baggins. Ora non trovo più nessuno dei miei piatti, né dei miei boccali...",
+        "La via prosegue senza fine...",
+        "Avventure? Sono cose cattive. Ti fanno fare tardi a cena.",
+        "Non c'è niente di meglio di una pinta di birra al Drago Verde!",
+        "Non so come farei senza una buona foglia di Pianilungone in una calda giornata estiva!",
+        "Ho dei parenti nella Terra di Buck. Sono tipi simpatici...",
+        "Il mercato di Scorta è un ottimo posto per cibo, bevande ed erba pipa!",
+        "Hai visto le rane nelle paludi intorno a Chianarana?",
+        "Le Brughiere del Nord sono selvagge e ventose, ma piene di belle locande con focolari accoglienti.",
+        "La gente racconta di Elfi nei boschi vicino a Pianasalice. Secondo me è solo la famiglia Largopiede!",
+        "È meglio evitare il Guado del Sarn. È lì che si incontrano tutti i viaggiatori, e alcuni di loro possono essere molto strani!!",
+        "Non voglio nessuna avventura, grazie mille!",
+        "La mia conoscenza delle patate è seconda solo a quella dei Gamgee!",
+        "In una giornata ventilata mi piace sdraiarmi sotto una quercia e dormire. Come dovremmo fare noi hobbit!",
+        "La foglia di Pianilungone è la foglia delle meraviglie! Non è vero, #p?",
+        "Dovrei annaffiare le mie aiuole!",
+        "Per una giornata allegra ti suggerisco Forodago... o il cibo!",
+        "Un buon pasto è sempre l'opzione migliore!",
+        "Mmm, patate al burro e piselli...",
+        "L'erba pipa è buona. I funghi sono meglio!",
+        "Amo i funghi di campo.",
+        "Il buon cibo semplice è il migliore secondo me.",
+        "Vado a letto tardi e mi alzo tardi per la colazione. È il miglior modo di vivere!",
+        "Fare giardinaggio è un buon modo per trascorrere una giornata.",
+        "Per me una tazza di tè!",
+        "Le feste nella Contea sono le migliori che ci siano. Cibo, bevande e allegria!",
+        "Dicono che le famiglie ricche custodiscano tesori nei loro cunicoli. Forzieri pieni di oro e argento... e gioielli!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Sei alto quasi quanto lo era il vecchio Ruggitoro! Hai sentito la storia di come ha inventato il gioco del golf?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Sei alta quasi quanto lo era il vecchio Ruggitoro! Hai sentito la storia di come ha inventato il gioco del golf?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Buona giornata, #p.",
+        "Buona giornata.",
+        "Buona giornata!",
+        "Buona giornata a te, #p! Come va?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Questo campo qui è pieno di conigli! Meglio mandare i bambini a scacciarli!",
+        "I miei parenti a Brea raccontano di strani avvenimenti..."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Buon giorno!",
+        "Buon giorno a te!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Buon giorno, #p!",
+        "Buon giorno a te, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Buon pomeriggio!",
+        "Buon pomeriggio a te!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Buon pomeriggio, #p!",
+        "Buon pomeriggio a te, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "Buona sera!",
+        "Buona sera a te!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Buona sera, #p!",
+        "Buona sera a te, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn | dusk",
+        "weather": "clear"
+      },
+      "lines": [
+        "Che bel cielo lassù!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn",
+        "sun_admiring": "true",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Una bellissima alba, non è vero #p?",
+        "Oh, buongiorno, #p. Stavo giusto guardando il sole sorgere. Bello vero?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk",
+        "sun_admiring": "true",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Un bellissimo tramonto, non è vero #p?",
+        "Oh, buonasera, #p. Stavo giusto guardando il sole tramontare. Bello vero?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "Beh, farei meglio ad andare a letto!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Possano i peli sui tuoi piedi non cadere mai, #p!",
+        "Possano i peli sui tuoi piedi non cadere mai.",
+        "Sempre un piacere, #p!",
+        "Non sei male per appartenere alla Gente Alta!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Oh, sei tu, #p! Non ti avevo riconosciuto all'inizio.",
+        "Vedi? L'ho sempre detto che tra la Gente Alta c'erano anche brave persone come te, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Oh, sei tu, #p! Non ti avevo riconosciuta all'inizio.",
+        "Vedi? L'ho sempre detto che tra la Gente Alta c'erano anche brave persone come te, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Guarda un po' chi si rivede, #p! Come va oggi?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "Guarda chi c'è, #p! Come va stasera?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Buon giorno, signore!",
+        "Buon giorno, signor #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Buon giorno, signora!",
+        "Buon giorno, signora #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff"
+      },
+      "lines": [
+        "Ciao, #p! Un giorno di questi dovrei invitarti per il tè pomeridiano.",
+        "Ciao, #p! Un giorno di questi dovrei invitarti per la seconda colazione.",
+        "Ciao, #p! Un giorno di questi dovrei invitarti per dell'erba pipa.",
+        "Va tutto bene nella Contea grazie a te!",
+        "Va tutto bene nella Contea grazie a te, #p!",
+        "Oh, #p... devo invitarti alla festa per il trentatreesimo compleanno di mio cugino. Non lasciare che mi dimentichi!",
+        "Oh, #p... devo invitarti alla festa di matrimonio di mio cugino di secondo grado. Non lasciare che mi dimentichi!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "È già ora della seconda colazione?",
+        "Qualcuno per una terza colazione?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "È già l'ora del tè pomeridiano!",
+        "Farei meglio ad andare per il tè del pomeriggio."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "Sarà presto ora di cena!",
+        "È quasi ora di andare a tavola."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "weather": "rain"
+      },
+      "lines": [
+        "Stai al riparo dalla pioggia, #p!",
+        "Stai al riparo dalla pioggia!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend",
+        "biome": "#home"
+      },
+      "lines": [
+        "Saluti, #p! Raramente ho visto Gente Alta come te da queste parti!",
+        "Ciao, #p. Ti fermi a lungo?",
+        "Gente Alta nella Contea? Succedono cose strane ultimamente!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Benvenuto nella Contea!",
+        "Benvenuto nella Contea, #p!",
+        "Benvenuto nella Contea, viaggiatore da lontano! Quali notizie porti dal vasto mondo?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Benvenuta nella Contea!",
+        "Benvenuta nella Contea, #p!",
+        "Benvenuta nella Contea, viaggiatrice da lontano! Quali notizie porti dal vasto mondo?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend"
+      },
+      "lines": [
+        "Oh, #p. Ci siamo già incontrati?",
+        "#p, vero? Si, mi ricordo di te adesso. Voi Gente Alta vi assomigliate tutti.",
+        "Ci siamo già incontrati, #p? Non dimentico mai una faccia!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "Mi manca tanto la Contea.",
+        "Forse è ora di tornare a casa. Mi manca la Contea.",
+        "Avventure? Sono cose brutte. Penso che sia ora di tornare a casa.",
+        "La via prosegue senza fine, sotto gli alberi e sopra i ruscelli, e io devo seguirla, così pare! Ma tornerò presto a casa.",
+        "È questa la terra della tua gente, #p? È un posto strano, questo è sicuro!",
+        "Ora dovremmo trovare la strada per tornare a casa, #p.",
+        "Buchi hobbit! Calore, buon cibo e comodità. Mi manca il mio...",
+        "Ne ho abbastanza di terre straniere per ora, #p. Torneremo presto a casa?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign",
+        "gender": "m"
+      },
+      "lines": [
+        "Non sono mai stato così lontano dalla Contea.",
+        "Se faccio ancora un passo non sarò mai stato così lontano da casa mia."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign",
+        "gender": "f"
+      },
+      "lines": [
+        "Non sono mai stata così lontano dalla Contea.",
+        "Se faccio ancora un passo non sarò mai stata così lontana da casa mia."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+        "Che posto terribile! Torniamo subito nella Contea!",
+        "Come siamo arrivati in un posto così terribile?",
+        "Che posto orribile è questo, #p!",
+        "Che terra terrificante! Dobbiamo ritrovare la strada per la Contea!",
+        "Questo paese è abbastanza per riempire di terrore anche i cuori più robusti!",
+        "Dichiaro di aver visto abbastanza di questo posto! Torniamo nella Contea, e in fretta!",
+        "Bene, #p, questo è un brutto posto se mai ne ho visto uno!",
+        "Mi sento a disagio qui. Dì, #p, conosci la strada per tornare nella Contea?",
+        "Non so come abbiamo fatto a trovarci in un posto come questo, #p.",
+        "Anche l'aria qui è disgustosa!",
+        "Mi hanno sempre detto di non seguire quelle strade fuori dalla Contea!",
+        "Se solo avessi prestato più attenzione al vecchio Gaffiero! Non avrei mai dovuto lasciare la Contea, no no!",
+        "Se avessi saputo che questo era ciò che si trova oltre i confini della Contea, non me ne sarei mai andato in giro!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains",
+        "gender": "m"
+      },
+      "lines": [
+        "Se avessi saputo che questo era ciò che si trova oltre i confini della Contea, non me ne sarei mai andato in giro!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains",
+        "gender": "f"
+      },
+      "lines": [
+        "Se avessi saputo che questo era ciò che si trova oltre i confini della Contea, non me ne sarei mai andata in giro!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Hai dell'erba pipa, #p?",
+        "Trovo che l'agricoltura sia un piacevole passatempo! L'hai mai provata, #p?",
+        "Il più bel piacere è un pasto ben fatto. Conosci quella sensazione, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "E come stai oggi, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff"
+      },
+      "lines": [
+        "Ti dispiace? Ero nel bel mezzo di una conversazione!",
+        "#p! Ero proprio nel bel mezzo di una conversazione.",
+        "È un po' scortese interrompere, non è così?",
+        "Non c'è motivo di interrompere, no?",
+        "Stavo parlando! Aspetta il tuo turno!",
+        "Che maleducato! Stavamo facendo una bella chiacchierata, se non ti dispiace.",
+        "Fatti gli affari tuoi. Non vedi che stavamo parlando?",
+        "Fatti gli affari tuoi, grazie! Ora lasciaci in pace.",
+        "Vedo che non ti fai scrupoli a interrompere una bella chiacchierata tra hobbit!",
+        "Se vuoi scusarmi, #p, ero nel bel mezzo di una conversazione."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Che maleducato! Stavamo facendo una bella chiacchierata, se non ti dispiace."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Che maleducata! Stavamo facendo una bella chiacchierata, se non ti dispiace."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff",
+        "gender": "m"
+      },
+      "lines": [
+        "...e io mi sono girato e ho detto - Scusami? Ti dispiacerebbe non interromperci, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff",
+        "gender": "f"
+      },
+      "lines": [
+        "...e io mi sono girata e ho detto - Scusami? Ti dispiacerebbe non interromperci, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Questa Gente Alta! Vengono qui e ci rubano fattorie. La Contea agli hobbit, ecco che dico!",
+        "Non vediamo spesso Gente Alta nella Contea.",
+        "Gente Alta nella Contea? Spero che tu faccia attenzione!",
+        "#p, giusto? Non capita spesso che voi Gente Alta passiate per la nostra Contea.",
+        "Ci siamo già incontrati? No? Bene, questa è la nostra Contea. Posto incantevole, vero?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Chi ti ha fatto entrare nella Contea? Spero che tu non sia qui per causare guai!",
+        "Non credo che ci siamo mai incontrati, vero? Benvenuto nella Contea."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Chi ti ha fatta entrare nella Contea? Spero che tu non sia qui per causare guai!",
+        "Non credo che ci siamo mai incontrati, vero? Benvenuta nella Contea."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest"
+      },
+      "lines": [
+        "Allora, come ti chiami? #p? Non mi sembra che ci conosciamo.",
+        "Non credo che ci siamo mai incontrati prima.",
+        "#p, dici? Non ci capita spesso di incontrare voi Gente Alta.",
+        "E tu chi sei? #p? Beh, spero che tu non sia una di quelle persone strane!",
+        "Ci conosciamo?",
+        "Ci conosciamo? No? Beh, allora me ne vado.",
+        "Mhh... non credo che ci conosciamo",
+        "Come hai detto che ti chiami? Dillo!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "gender": "f",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Non credo che ci siamo mai incontrate prima."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Uno della Gente Alta? Come hai detto che ti chiami?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Una della Gente Alta? Come hai detto che ti chiami?"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ],
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Da queste parti è stata vista gente strana e tu sembri uno di loro.",
+        "Sei una di quelle strane persone di cui ho sentito parlare?",
+        "Si parla di gente strana da queste parti. Potresti essere uno di loro?",
+        "Ho visto persone strane aggirarsi da queste parti e tu me ne ricordi una. Non mi fido di te.",
+        "Non mi fido di te..."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ],
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Da queste parti è stata vista gente strana e tu sembri una di loro.",
+        "Sei una di quelle strane persone di cui ho sentito parlare?",
+        "Si parla di gente strana da queste parti. Potresti essere una di loro?",
+        "Ho visto persone strane aggirarsi da queste parti e tu me ne ricordi una. Non mi fido di te.",
+        "Non mi fido di te..."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ],
+        "biome": "#home"
+      },
+      "lines": [
+        "La Gente Alta mi mette a disagio. Ricordati di chi è la Contea."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Ho sentito che stai causando problemi da queste parti.",
+        "Stai fuori dalla Contea!",
+        "Non ti darò la mia erba pipa!",
+        "Non siamo gentili con gente come te.",
+        "Tu voglia scusarmi, ma mi metti a disagio.",
+        "Lo sapevo che voi Gente Alta portavate solo guai!",
+        "Non apprezziamo gente come te nella Contea.",
+        "Non provare i tuoi trucchi da Gente Alta su di me!",
+        "Non provare i tuoi trucchi da Gente Alta su di me, #p!",
+        "Possa tu non assaporare mai più Foglia di Pianilungone!",
+        "Sapevo di non potermi fidare di te. I tuoi piedi sono troppo piccoli!",
+        "Il Drago Verde non ti servirà mai!",
+        "Lasciami in pace!",
+        "Lasciami in pace, #p!",
+        "Mio cugino ha dei cani molto grandi. Non vorrai incontrarli, vero?",
+        "Smettila! Piantagrane!",
+        "Il vecchio Ruggitoro ti farebbe cadere in un buco o due!",
+        "Il lupo che si sente è peggio dell'orco che si teme. Ma mettiti tra uno Hobbit e la sua pace...",
+        "La gente strana incontra fini strane!",
+        "Non costringermi a prendere la falce!",
+        "Sarai anche più alto di me, #p. Ma non sei più grande in nessun altro modo!",
+        "La gente come te dovrebbe essere annegata!",
+        "Stai indietro!!",
+        "Non voglio problemi, #p!",
+        "Ora, ora, cerchiamo di non avere problemi!",
+        "Non voglio problemi con te, #p.",
+        "Vai via ora o prenderò il rastrello!",
+        "Non farmi prendere il rastrello!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Sembri un piantagrane!",
+        "Sembri un piantagrane, #p.",
+        "Stai lontano dalla Contea, #p.",
+        "Tu non sei una brava persona, #p.",
+        "Sei uno dei mewlip, #p!",
+        "Disturbatore della pace!",
+        "Solo uno sciocco interromperebbe i miei pasti!",
+        "Devi essere uno di quei malandrini di cui continuo sentir a parlare!",
+        "Noi della Contea non vediamo di buon occhio i buoni a nulla come te, #p.",
+        "Sei un buono a nulla se mai ne ho visto uno, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Sembri una piantagrane!",
+        "Sembri una piantagrane, #p.",
+        "Stai lontana dalla Contea, #p.",
+        "Tu non sei una brava persona, #p.",
+        "Sei una dei mewlip, #p!",
+        "Disturbatrice della pace!",
+        "Solo una sciocca interromperebbe i miei pasti!",
+        "Devi essere una di quelle malandrine di cui continuo sentir a parlare!",
+        "Noi della Contea non vediamo di buon occhio le buone a nulla come te, #p.",
+        "Sei una buona a nulla se mai ne ho visto uno, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "La Contea non è un posto per piantagrane come te!",
+        "Faresti meglio a lasciare la Contea, #p, o chiamerò gli Sceriffi!",
+        "Vattene via dalla mia terra!",
+        "Vattene via dalla mia terra, #p!",
+        "Il mio forcone è abbastanza appuntito da farti pensare due volte prima di tornare nella Contea!",
+        "La Contea è stata pacifica per centinaia di anni e oserei dire che ti pentirai di averlo cambiato!",
+        "Gli Shirriff si occuperanno di te, #p!",
+        "Torna oltre la siepe!",
+        "Torna oltre la siepe, #p!",
+        "Vedo un piantagrane? La Contea dà il benvenuto solo agli hobbit! Sparisci!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Stai lontano dalle mie patate!",
+        "Vedo un piantagrane? La Contea dà il benvenuto solo agli hobbit! Sparisci!",
+        "Non voglio farti del male, #p, ma quelli come te non sono i benvenuti qui."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Stai lontana dalle mie patate!",
+        "Vedo una piantagrane? La Contea dà il benvenuto solo agli hobbit! Sparisci!",
+        "Non voglio farti del male, #p, ma quelle come te non sono le benvenute qui."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "daytime": "morning"
+      },
+      "lines": [
+        "La seconda colazione sarebbe troppo buona per te, #p!"
+      ]
+    }
+  ]
+}

@@ -177,6 +177,12 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 				return false;
 			}
 		}
+		if(structureType==ExtendedStructureType.RIVENDELL) {
+			// Rivendell waypoint
+			if(calculateChunkDistance(chunkX, chunkZ, 2988, -76)<6) {
+				return false;
+			}
+		}
 		return additionalCheck(chunkGenerator, biomeSource, seed, chunkRandom, chunkX, chunkZ, biome, chunkPos, featureConfig);
 	}
 	/**

@@ -1,0 +1,367 @@
+{
+  "id": "lotrextended:rivendell_smith",
+  "tradingAlignmentRequired": 100,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "weight": 50,
+      "averageCost": 5,
+      "stack": {
+        "item": "minecraft:iron_ore"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 15,
+      "stack": {
+        "item": "minecraft:gold_ore"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:copper_ore"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 5,
+      "stack": {
+        "item": "lotr:tin_ore"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:iron_ingot"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:elven_steel_ingot"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:coal",
+        "count": 2
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 15,
+      "stack": {
+        "item": "minecraft:gold_ingot"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:copper_ingot"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:tin_ingot"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 3,
+      "stack": {
+        "item": "lotr:bronze_ingot"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 4,
+      "stack": {
+        "item": "lotr:galvorn_ingot"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:emerald"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:sapphire"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 10,
+      "stack": {
+        "item": "lotr:opal"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 8,
+      "stack": {
+        "item": "lotr:amethyst"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:pearl"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 16,
+      "stack": {
+        "item": "minecraft:lava_bucket"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:stick",
+        "count": 8
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 1,
+      "stack": {
+        "item": "minecraft:string",
+        "count": 3
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 40,
+      "stack": {
+        "item": "lotr:mithril_nugget"
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "weight": 50,
+      "averageCost": 100,
+      "stack": {
+        "item": "lotr:rivendell_crafting_table"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 18,
+      "stack": {
+        "item": "lotr:blacksmith_hammer",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 20,
+      "stack": {
+        "item": "lotr:rivendell_sword",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 18,
+      "stack": {
+        "item": "lotr:rivendell_spear",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 14,
+      "stack": {
+        "item": "lotr:rivendell_dagger",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:rivendell_axe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 15,
+      "stack": {
+        "item": "lotr:rivendell_pickaxe",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 12,
+      "stack": {
+        "item": "lotr:rivendell_shovel",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 18,
+      "stack": {
+        "item": "lotr:rivendell_helmet",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:rivendell_chestplate",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 22,
+      "stack": {
+        "item": "lotr:rivendell_leggings",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 16,
+      "stack": {
+        "item": "lotr:rivendell_boots",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "averageCost": 360,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_helmet",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "averageCost": 500,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_chestplate",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "averageCost": 440,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_leggings",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "averageCost": 320,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_boots",
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 3,
+      "stack": {
+        "item": "minecraft:arrow",
+        "count": 4
+      }
+    },
+    {
+      "weight": 5,
+      "averageCost": 350,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stacks": [
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"rangedKnockback2\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"rangedStrong3\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"toolSpeed2\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"toolSilk\"}"
+        }
+      ]
+    },
+    {
+      "weight": 10,
+      "averageCost": 350,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stacks": [
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"protectRanged2\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"strong3\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "nbt": "{REScrollMod:\"toolSpeed3\"}"
+        }
+      ]
+    },
+    {
+      "weight": 20,
+      "averageCost": 150,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:modifier_scroll",
+        "nbt": "{REScrollMod:\"toughness1\"}"
+      }
+    },
+    {
+      "weight": 50,
+      "averageCost": 25,
+      "stack": {
+        "item": "lotr:rivendell_banner_pattern"
+      }
+    }
+  ]
+}

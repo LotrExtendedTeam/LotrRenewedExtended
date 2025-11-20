@@ -33,7 +33,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -185,8 +184,8 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
     }
 
     @Override
-    public TranslationTextComponent getDepartureLine(PlayerEntity player) {
-        return new TranslationTextComponent("speechbank.blue_mountains_merchant.departure." + (random.nextInt(10) + 1), getName(), player.getName());
+    public String getDepartureLine() {
+        return "speechbank.blue_mountains_merchant.departure." + (random.nextInt(10) + 1);
     }
 
     @Override
@@ -223,6 +222,11 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.BLUE_MOUNTAINS_MERCHANT;
 	}
+
+    @Override
+    public int getFactionColor() {
+        return this.getFaction().getColor();
+    }
 
 }
 

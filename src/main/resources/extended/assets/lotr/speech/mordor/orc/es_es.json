@@ -1,0 +1,232 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "¡Busco carne humana!",
+        "¡Huelo carne humana!",
+        "¡Dónde está la carne humana?",
+        "¿Qué es lo que quieres?",
+        "¡Llevo tres días comiendo pan con gusanos!",
+        "¿Otra vez pan con gusanos? ¡Quiero carne humana!",
+        "¡Deseo comer carne humana!",
+        "Entonces ¿qué eres?",
+        "El aire aquí es ascqueroso.",
+        "¡Romperemos sus huesos y nos deleitaremos con su carne!",
+        "¡Muerte al reino de los hombres! ¡Muerte a los ascquerosos elfos!",
+        "¡Estos trapos apestan.!",
+        "¡Destruiremos el mundo de los humanos!",
+        "¡Muerte! ¡Muerte al mundo de los libres!",
+        "¡Carne humana!",
+        "¡Me muero de hambre!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=thrall"
+      },
+      "lines": [
+        "Servimos a un mismo maestro, #p.",
+        "Nuestro maestro está preparando una guerra. Pronto caerá el mundo de los humanos.",
+        "Debemos colarnos en las tierras de la gente libre ¡como una plaga! ¡No quedará nadie con vida!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<snaga"
+      },
+      "lines": [
+        "¿A quien sirves?",
+        "¿Sigues al Señor Oscuro, o a esos asquerosos de Gondor?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<brigand"
+      },
+      "lines": [
+        "¡Apártete de mi vista gusano!",
+        "Vuelve al trabajo, escoria.",
+        "¡Apártete de mi vista escoria!",
+        "Vuelve al trabajo, gusano."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand"
+      },
+      "lines": [
+        "Pronto, #p... Pronto acabaremos con los humanos.",
+        "Eres bueno para ser un humano.",
+        "¡Eres bueno para ser un humano, #p! Incluso si hueles a tark."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand & <captain"
+      },
+      "lines": [
+        "¡Gusano asqueroso! Pero si eres tú, #p...",
+        "¡Todavía no pareces uno de los nuestros, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<slavedriver"
+      },
+      "lines": [
+        "Si me das carne humana, no tendré que matrte #p, ¡Ja Ja Ja!",
+        "Entonces que eres, ¿Un gusano?",
+        "Acata las órdenes escoria.",
+        "¡Haz algo inútil!",
+        "No confío en ti escoria.",
+        "Muévete, escoria.",
+        "¿Quieres empezar una pelea?",
+        "¡Odio a los humanos inmundos!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=despoiler"
+      },
+      "lines": [
+        "¡A tu servicio, #p!",
+        "¿Cuáles son sus órdenes, #p?",
+        "El Señor Oscuro habla bien de ti, #p.",
+        "Nunca pensé que u humano sería aliado del Señor Oscuro."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<despoiler"
+      },
+      "lines": [
+        "¡Oye! ¡Cuida tus palabras!",
+        "Algo apesta aquí, ¡eres tú, #p! ¡Apártate!",
+        "¡Apestas!",
+        "Hueles a gusano podrido."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<captain"
+      },
+      "lines": [
+        "¡No pareces uno de los nuestros!",
+        "¿Qué quieres?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain"
+      },
+      "lines": [
+        "Cuáles son las órdenes de Lugbúrz?",
+        "Qué ordena Lugbúrz, #p?",
+        "Cuáles son las órdenes del Señor Oscuro?",
+        "At your service, maggot! - I mean - #p!",
+        "I'll let the boys know it's time for an inspection!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lieutenant"
+      },
+      "lines": [
+        "So? Are you the new Boss?",
+        "We march to war at your command!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "¡Te destrozaré como a un ratón!",
+        "¡Disfruta tu último aliento, escoria!",
+        "Eres agradable y estás fresco.",
+        "¡Matad a esa escoria!",
+        "¡Hoy comeremos carne!",
+        "¡Apestas a miedo!",
+        "¡Muere escoria!",
+        "Tu carne parece fresca.",
+        "¡Eres tan frágil como una hoja!",
+        "Más te vale correr, ¡Gusano!",
+        "Acércate, quiero probar tu carne humana.",
+        "¡Hoy se cena carne!",
+        "Cuando acabe contigo solo serás huesos.",
+        "Me deleitaré con tu asquerosa carne humana.",
+        "Haré de ti mi cena.",
+        "Te has metido con el orco equivocado.",
+        "Voy a cortar tu cabeza, ¡escoria de Gondor!",
+        "¡Matad al tark!",
+        "El tark repugnante a intentado matarme.",
+        "¡A por el tark!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "¡A por él!",
+        "¡Tras él!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "¡A por ella!",
+        "¡Tras ella!",
+        "Una piba jugando a esto lol"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Todavía no conocces la ira de los orcos."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "¿Qué desea mi señor?",
+        "Puede que seas mi jefe, #p, ¡pero sigues siendo escoria!",
+        "¡Guíanos en la guerra, #p!",
+        "¡El aire está repleto de miedo!",
+        "¡Todos caerán ante nuestro poder!",
+        "¡Muerte!¡Muerte a nuestros rivales!",
+        "¿Deberíamos conseguir carne humana, #p?",
+        "¡Quiero carne humana!",
+        "Estoy preparando para cazar humanos.",
+        "¡Muerte a los tark y sus aliados!",
+        "¡Destrocemos el mundo de los hombres!",
+        "¡Salgamos a cazar tarks!",
+        "Apestosos tarks nunca sabes que harán."
+      ]
+    }
+  ]
+}

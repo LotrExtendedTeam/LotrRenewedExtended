@@ -6,6 +6,7 @@ import java.util.function.BiConsumer;
 
 import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
+import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedModifierScrollAdder;
 
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
@@ -73,6 +74,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.WOODEN_MUG.get()).setWeight(25).setRange(1, 2))
 						.add(EItemLootEntry.lootItem(LOTRItems.CERAMIC_MUG.get()).setWeight(25).setRange(1, 2))
 						.add(EItemLootEntry.lootItem(LOTRItems.WOODEN_CUP.get()).setWeight(25).setRange(1, 2))
+						.add(EItemLootEntry.lootItem(ExtendedItems.HOBBIT_BANNER_PATTERN.get()).setWeight(30).setExactly(1))
 						.add(EItemLootEntry.lootItem(ExtendedItems.BLACKBERRY.get()).setWeight(10).setRange(2, 5))
 						.add(EItemLootEntry.lootItem(ExtendedItems.BLUEBERRY.get()).setWeight(10).setRange(2, 5))
 						.add(EItemLootEntry.lootItem(ExtendedItems.CRANBERRY.get()).setWeight(10).setRange(2, 5))
@@ -96,12 +98,14 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(50).setRange(1, 25))
 						.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_TEN.get()).setWeight(20).setRange(1, 10))
 						.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(20).setRange(1, 2))
+						.add(EItemLootEntry.lootItem(ExtendedItems.HOBBIT_BANNER_PATTERN.get()).setWeight(30).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(10).setRange(1, 2))
 						.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(10).setRange(1, 2))
 						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_NUGGET.get()).setWeight(3).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+						.apply(ExtendedModifierScrollAdder.chanceDefault().setSkillful())));
 
 		make(consumer, ExtendedLootTables.HOBBIT_LIVING_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
@@ -114,12 +118,14 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(Items.STRING).setWeight(50).setRange(1, 5))
 						.add(EItemLootEntry.lootItem(Items.COMPASS).setWeight(50).setExactly(1))
 						.add(EItemLootEntry.lootItem(Items.LEAD).setWeight(50).setRange(1, 2))
+						.add(EItemLootEntry.lootItem(ExtendedItems.HOBBIT_BANNER_PATTERN.get()).setWeight(50).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.POCKET_MATCH.get()).setWeight(50).setRange(1, 4))
 						.add(EItemLootEntry.lootItem(LOTRItems.SMOKING_PIPE.get()).setWeight(10).setDamageRange(0.05F, 0.65F).setExactly(1))
 						.add(EItemLootEntry.lootItem(ExtendedItems.CONKER.get()).setWeight(50).setRange(1, 6))
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+						.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.RANGER_CAMP_FARM_WHEAT_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
@@ -171,6 +177,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.GREEN_APPLE.get()).setWeight(30).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_INGOT.get()).setWeight(70).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(Items.COAL).setWeight(100).setRange(5, 8))
+						.add(EItemLootEntry.lootItem(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get()).setWeight(40).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.BLACKSMITH_HAMMER.get()).setWeight(20).setDamageRange(0.15F, 0.9F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_AXE.get()).setWeight(20).setDamageRange(0.25F, 0.8F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_PICKAXE.get()).setWeight(20).setDamageRange(0.15F, 0.7F).setExactly(1))
@@ -185,7 +192,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(Items.CHARCOAL).setWeight(70).setRange(5, 7))
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+						.apply(ExtendedModifierScrollAdder.chanceSmithWild())));
 
 		make(consumer, ExtendedLootTables.RANGER_CAMP_SUPPLIES_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
@@ -199,9 +207,11 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(Items.IRON_NUGGET).setWeight(40).setRange(2, 5))
 						.add(EItemLootEntry.lootItem(Items.COAL).setWeight(40).setRange(4, 7))
 						.add(EItemLootEntry.lootItem(Items.STICK).setWeight(30).setRange(3, 6))
+						.add(EItemLootEntry.lootItem(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get()).setWeight(20).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1)))
+						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+						.apply(ExtendedModifierScrollAdder.chanceDefault()))
 				.withPool(LootPool.lootPool()
 						.setRolls(ConstantRange.exactly(1))
 						.when(RandomChance.randomChance(0.25f)) // 25% chance
@@ -228,12 +238,14 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_SWORD.get()).setWeight(40).setDamageRange(0.15F, 0.75F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_DAGGER.get()).setWeight(40).setDamageRange(0.15F, 0.75F).setExactly(1))
 						.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(70).setRange(7, 9))
+						.add(EItemLootEntry.lootItem(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get()).setWeight(20).setExactly(1))
 						.add(EItemLootEntry.lootItem(Items.IRON_INGOT).setWeight(20).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(Items.IRON_NUGGET).setWeight(40).setRange(2, 5))
 						.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(30).setRange(4, 7))
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1)))
+						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+						.apply(ExtendedModifierScrollAdder.chanceDefault()))
 				.withPool(LootPool.lootPool()
 						.setRolls(ConstantRange.exactly(1))
 						.when(RandomChance.randomChance(0.25f)) // 25% chance
@@ -266,6 +278,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(ExtendedItems.CRANBERRY.get()).setWeight(67).setRange(3, 6))
 						.add(EItemLootEntry.lootItem(ExtendedItems.ELDERBERRY.get()).setWeight(67).setRange(3, 6))
 						.add(EItemLootEntry.lootItem(ExtendedItems.RASPBERRY.get()).setWeight(67).setRange(3, 6))
+						.add(EItemLootEntry.lootItem(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get()).setWeight(20).setExactly(1))
 						.add(EItemLootEntry.lootItem(Items.STICK).setWeight(40).setRange(5, 12))
 						.add(EItemLootEntry.lootItem(Items.WHEAT).setWeight(60).setRange(4, 10))
 						.add(EItemLootEntry.lootItem(Items.WHEAT_SEEDS).setWeight(55).setRange(2, 7))
@@ -296,7 +309,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.PINE_PLANKS.get()).setWeight(65).setRange(2, 5))
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+						.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.RANGER_HOUSE_BARREL, makeTable()
 				.withPool(LootPool.lootPool()
@@ -310,6 +324,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.IRON_DAGGER.get()).setWeight(50).setDamageRange(0.15F, 0.75F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_SWORD.get()).setWeight(50).setDamageRange(0.15F, 0.75F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_DAGGER.get()).setWeight(50).setDamageRange(0.15F, 0.75F).setExactly(1))
+						.add(EItemLootEntry.lootItem(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get()).setWeight(10).setExactly(1))
 						.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(70).setRange(3, 6))
 						.add(EItemLootEntry.lootItem(Items.HAY_BLOCK).setWeight(60).setRange(2, 4))
 						.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(80).setRange(4, 8))
@@ -321,7 +336,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(40).setRange(4, 7))
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1)))
+						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+						.apply(ExtendedModifierScrollAdder.chanceDefault()))
 				.withPool(LootPool.lootPool()
 						.setRolls(ConstantRange.exactly(1))
 						.when(RandomChance.randomChance(0.25f)) // 25% chance
@@ -375,7 +391,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
-						.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(80).setRange(4, 8))));
+						.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(80).setRange(4, 8))
+						.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.GENERIC_RUIN_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
@@ -443,7 +460,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.FINE_PLATE.get()).setWeight(10).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(LOTRItems.STONEWARE_PLATE.get()).setWeight(10).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(10).setRange(1, 3))
-						.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(10).setRange(1, 3))));
+						.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(10).setRange(1, 3))
+						.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.GUNDABAD_CAMP_SMITHY_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
@@ -462,6 +480,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.ORC_STEEL_INGOT.get()).setWeight(70).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(ExtendedItems.ORC_STEEL_NUGGET.get()).setWeight(50).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(Items.COAL).setWeight(100).setRange(5, 8))
+						.add(EItemLootEntry.lootItem(ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get()).setWeight(20).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.BLACKSMITH_HAMMER.get()).setWeight(20).setDamageRange(0.15F, 0.50F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_AXE.get()).setWeight(20).setDamageRange(0.15F, 0.55F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_PICKAXE.get()).setWeight(20).setDamageRange(0.15F, 0.55F).setExactly(1))
@@ -476,7 +495,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(Items.CHARCOAL).setWeight(70).setRange(5, 7))
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+						.apply(ExtendedModifierScrollAdder.chanceSmithWild())));
 
 		make(consumer, ExtendedLootTables.GUNDABAD_CAMP_WOOD_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
@@ -523,6 +543,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_NUGGET.get()).setWeight(40).setRange(2, 5))
 						.add(EItemLootEntry.lootItem(LOTRItems.ORC_STEEL_INGOT.get()).setWeight(35).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(ExtendedItems.ORC_STEEL_NUGGET.get()).setWeight(40).setRange(2, 5))
+						.add(EItemLootEntry.lootItem(ExtendedItems.GUNDABAD_ORC_BANNER_PATTERN.get()).setWeight(20).setExactly(1))
 						.add(EItemLootEntry.lootItem(Items.COAL).setWeight(50).setRange(4, 7))
 						.add(EItemLootEntry.lootItem(Items.STICK).setWeight(40).setRange(3, 6))
 						.add(EItemLootEntry.lootItem(Items.FLINT).setWeight(60).setRange(2, 5))
@@ -534,7 +555,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_FUR.get()).setWeight(20).setRange(2, 3))
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1)))
+						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+						.apply(ExtendedModifierScrollAdder.chanceDefault()))
 				.withPool(LootPool.lootPool()
 						.setRolls(RandomValueRange.between(0, 1))
 						.when(RandomChance.randomChance(0.25f)) // 25% chance
@@ -649,9 +671,10 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_SWORD.get()).setWeight(1).setDamageRange(0.95F, 0.98F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_DAGGER.get()).setWeight(1).setDamageRange(0.95F, 0.98F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_SPEAR.get()).setWeight(1).setDamageRange(0.95F, 0.98F).setExactly(1))
-						.add(EItemLootEntry.lootItem(ExtendedItems.BARROW_BLADE.get()).setWeight(30).setExactly(1))
+						.add(EItemLootEntry.lootItem(ExtendedItems.BARROW_BLADE.get()).setWeight(30).setExactly(1).addModifiersNoNegative())
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(5).setExactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setExactly(1))));
+						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setExactly(1))
+						.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		//TODO add leeks/soup, turnip/soup, mush pie, cook deer, ale, cider, perry, mead, apple juice
 		make(consumer, ExtendedLootTables.BREE_HAMLET_HOUSE_CHEST, makeTable()
@@ -685,6 +708,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(Items.COOKED_PORKCHOP).setWeight(10).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(Items.COOKED_RABBIT).setWeight(10).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(Items.COOKED_COD).setWeight(10).setRange(1, 3))
+						.add(EItemLootEntry.lootItem(ExtendedItems.BREE_BANNER_PATTERN.get()).setWeight(10).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_INGOT.get()).setWeight(30).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_NUGGET.get()).setWeight(35).setRange(1, 6))
 						.add(EItemLootEntry.lootItem(LOTRItems.SILVER_INGOT.get()).setWeight(5).setRange(1, 3))
@@ -715,7 +739,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.WATERSKIN.get()).setWeight(25).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+						.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.BREE_HAMLET_GUARD_HOUSE_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -748,6 +773,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(Items.COOKED_PORKCHOP).setWeight(10).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(Items.COOKED_RABBIT).setWeight(10).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(Items.COOKED_COD).setWeight(10).setRange(1, 3))
+					.add(EItemLootEntry.lootItem(ExtendedItems.BREE_BANNER_PATTERN.get()).setWeight(20).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_INGOT.get()).setWeight(30).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_NUGGET.get()).setWeight(35).setRange(1, 6))
 					.add(EItemLootEntry.lootItem(LOTRItems.SILVER_INGOT.get()).setWeight(5).setRange(1, 3))
@@ -789,7 +815,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.WATERSKIN.get()).setWeight(25).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.BREE_HAMLET_FARM_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
@@ -893,7 +920,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(Items.BRICK).setWeight(70).setRange(2, 3))
 						.add(EItemLootEntry.lootItem(Items.FLOWER_POT).setWeight(80).setRange(1, 4))
 						.add(EItemLootEntry.lootItem(ExtendedItems.LARGE_FLOWER_POT.get()).setWeight(80).setRange(1, 4))
-						.add(EItemLootEntry.lootItem(ExtendedItems.LARGE_POT.get()).setWeight(80).setRange(1, 4))));
+						.add(EItemLootEntry.lootItem(ExtendedItems.LARGE_POT.get()).setWeight(80).setRange(1, 4))
+						.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.BREE_VILLAGE_FARM_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -987,6 +1015,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(Items.COOKED_PORKCHOP).setWeight(10).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(Items.COOKED_RABBIT).setWeight(10).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(Items.COOKED_COD).setWeight(10).setRange(1, 3))
+						.add(EItemLootEntry.lootItem(ExtendedItems.BREE_BANNER_PATTERN.get()).setWeight(20).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_INGOT.get()).setWeight(30).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_NUGGET.get()).setWeight(35).setRange(1, 6))
 						.add(EItemLootEntry.lootItem(LOTRItems.SILVER_INGOT.get()).setWeight(5).setRange(1, 3))
@@ -1017,7 +1046,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.WATERSKIN.get()).setWeight(25).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+						.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.BREE_VILLAGE_TREASURE_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1029,12 +1059,14 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(50).setRange(1, 25))
 					.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_TEN.get()).setWeight(20).setRange(1, 10))
 					.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(20).setRange(1, 2))
+					.add(EItemLootEntry.lootItem(ExtendedItems.BREE_BANNER_PATTERN.get()).setWeight(30).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(10).setRange(1, 2))
 					.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(10).setRange(1, 2))
 					.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_NUGGET.get()).setWeight(3).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceDefault().setSkillful())));
 
 		make(consumer, ExtendedLootTables.BREE_VILLAGE_GUARD_HOUSE_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1067,6 +1099,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(Items.COOKED_PORKCHOP).setWeight(10).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(Items.COOKED_RABBIT).setWeight(10).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(Items.COOKED_COD).setWeight(10).setRange(1, 3))
+					.add(EItemLootEntry.lootItem(ExtendedItems.BREE_BANNER.get()).setWeight(40).setExactly(1))
+					.add(EItemLootEntry.lootItem(ExtendedItems.BREE_BANNER_PATTERN.get()).setWeight(20).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_INGOT.get()).setWeight(30).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_NUGGET.get()).setWeight(35).setRange(1, 6))
 					.add(EItemLootEntry.lootItem(LOTRItems.SILVER_INGOT.get()).setWeight(1).setRange(1, 3))
@@ -1108,7 +1142,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.WATERSKIN.get()).setWeight(25).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.BREE_VILLAGE_BUTCHER_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1137,7 +1172,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(10).setRange(2, 8))
 					.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.BREE_VILLAGE_SMITHY_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1161,6 +1197,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.SILVER_NUGGET.get()).setWeight(10).setRange(1, 6))
 					.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(5).setExactly(1))
+					.add(EItemLootEntry.lootItem(ExtendedItems.BREE_BANNER_PATTERN.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(Items.WOODEN_AXE).setWeight(10).setExactly(1).setDamageRange(0.1f, 0.65f))
 					.add(EItemLootEntry.lootItem(Items.STONE_AXE).setWeight(10).setExactly(1).setDamageRange(0.1f, 0.70f))
 					.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_AXE.get()).setWeight(10).setExactly(1).setDamageRange(0.1f, 0.75f))
@@ -1186,7 +1223,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(Items.CHAINMAIL_BOOTS).setWeight(5).setExactly(1).setDamageRange(0.4f, 0.75f))
 					.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceSmith())));
 
 		make(consumer, ExtendedLootTables.BREE_VILLAGE_POTTER_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
@@ -1231,7 +1269,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(Items.BRICK).setWeight(70).setRange(2, 3))
 						.add(EItemLootEntry.lootItem(Items.FLOWER_POT).setWeight(80).setRange(1, 4))
 						.add(EItemLootEntry.lootItem(ExtendedItems.LARGE_FLOWER_POT.get()).setWeight(80).setRange(1, 4))
-						.add(EItemLootEntry.lootItem(ExtendedItems.LARGE_POT.get()).setWeight(80).setRange(1, 4))));
+						.add(EItemLootEntry.lootItem(ExtendedItems.LARGE_POT.get()).setWeight(80).setRange(1, 4))
+						.apply(ExtendedModifierScrollAdder.chanceDefault())));
 		
 		make(consumer, ExtendedLootTables.BREE_VILLAGE_INN_CUSTOMER_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1260,6 +1299,10 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.LETTUCE.get()).setWeight(25).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(LOTRItems.GREEN_APPLE.get()).setWeight(50).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(LOTRItems.PEAR.get()).setWeight(50).setRange(1, 3))
+					.add(EItemLootEntry.lootItem(ExtendedItems.BREE_BANNER_PATTERN.get()).setWeight(5).setExactly(1))
+					.add(EItemLootEntry.lootItem(ExtendedItems.DUNEDAIN_BANNER_PATTERN.get()).setWeight(5).setExactly(1))
+					.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN.get()).setWeight(5).setExactly(1))
+					.add(EItemLootEntry.lootItem(ExtendedItems.HOBBIT_BANNER_PATTERN.get()).setWeight(5).setExactly(1))
 					.add(EItemLootEntry.lootItem(Items.WOODEN_AXE).setWeight(10).setExactly(1).setDamageRange(0.1f, 0.65f))
 					.add(EItemLootEntry.lootItem(Items.STONE_AXE).setWeight(10).setExactly(1).setDamageRange(0.1f, 0.70f))
 					.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_AXE.get()).setWeight(10).setExactly(1).setDamageRange(0.1f, 0.75f))
@@ -1294,7 +1337,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
 					.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(10).setRange(1, 25))
 					.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_TEN.get()).setWeight(5).setRange(1, 3))
-					.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1).setExactly(1))));
+					.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceDefault())));
 		
 		make(consumer, ExtendedLootTables.BREE_VILLAGE_CHEESEMONGER_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1404,7 +1448,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(ExtendedItems.LEATHER_HAT.get()).setWeight(50).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.BREE_VILLAGE_STABLE_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1425,7 +1470,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(ExtendedItems.LEATHER_HAT.get()).setWeight(50).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.BREE_VILLAGE_STALLS_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1479,6 +1525,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.GREEN_APPLE.get()).setWeight(50).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(LOTRItems.PEAR.get()).setWeight(50).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(ExtendedItems.PLUM.get()).setWeight(50).setRange(1, 3))
+					.add(EItemLootEntry.lootItem(ExtendedItems.BREE_BANNER_PATTERN.get()).setWeight(5).setExactly(1))
 					.add(EItemLootEntry.lootItem(Items.WOODEN_AXE).setWeight(10).setExactly(1).setDamageRange(0.1f, 0.65f))
 					.add(EItemLootEntry.lootItem(Items.STONE_AXE).setWeight(10).setExactly(1).setDamageRange(0.1f, 0.70f))
 					.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_AXE.get()).setWeight(10).setExactly(1).setDamageRange(0.1f, 0.75f))
@@ -1510,7 +1557,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.WATERSKIN.get()).setWeight(25).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.BREE_VILLAGE_INN_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1571,7 +1619,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.FUR.get()).setWeight(60).setRange(2, 6))
 					.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.BREE_VILLAGE_LEATHERWORKER_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1597,7 +1646,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.WATERSKIN.get()).setWeight(60).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceDefault())));
 		
 		make(consumer, ExtendedLootTables.BREE_VILLAGE_STONEMASON_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1623,7 +1673,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.WATERSKIN.get()).setWeight(25).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.BREE_VILLAGE_MANOR_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1635,12 +1686,14 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(50).setRange(1, 25))
 					.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_TEN.get()).setWeight(20).setRange(1, 10))
 					.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(20).setRange(1, 2))
+					.add(EItemLootEntry.lootItem(ExtendedItems.BREE_BANNER_PATTERN.get()).setWeight(20).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(10).setRange(1, 2))
 					.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(10).setRange(1, 2))
 					.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_NUGGET.get()).setWeight(3).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1)))
+					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceDefault()))
 			.withPool(LootPool.lootPool()
 				.setRolls(ConstantRange.exactly(1))
 				.add(EItemLootEntry.lootItem(Items.WRITABLE_BOOK).setWeight(1).setRange(1, 4))));
@@ -1674,7 +1727,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.DWARVEN_TORCH.get()).setWeight(100).setRange(2, 8))
 				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1)))
+				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceDefault()))
 			.withPool(LootPool.lootPool()
 				.setRolls(ConstantRange.exactly(1))
 				.when(RandomChance.randomChance(0.04f)) // 4% chance
@@ -1699,12 +1753,13 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.GAMMON.get()).setWeight(75).setRange(2, 5))
 				.add(EItemLootEntry.lootItem(Items.TORCH).setWeight(100).setRange(2, 8))
 				.add(EItemLootEntry.lootItem(LOTRItems.DWARVEN_TORCH.get()).setWeight(100).setRange(2, 8))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_PICKAXE.get()).setWeight(60).setExactly(1).setDamageRange(0, 0.75f))
-				.add(EItemLootEntry.lootItem(Items.IRON_PICKAXE).setWeight(75).setExactly(1).setDamageRange(0, 0.75f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_PICKAXE.get()).setWeight(70).setExactly(1).setDamageRange(0, 0.75f))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_PICKAXE.get()).setWeight(60).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(Items.IRON_PICKAXE).setWeight(75).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_PICKAXE.get()).setWeight(70).setExactly(1).standardDamageRange())
 				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_HOUSE_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1729,16 +1784,17 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(Items.COOKED_SALMON).setWeight(75).setRange(1, 3))
 				.add(EItemLootEntry.lootItem(Items.COOKED_BEEF).setWeight(75).setRange(1, 2))
 				.add(EItemLootEntry.lootItem(LOTRItems.GAMMON.get()).setWeight(50).setRange(1, 2))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_SWORD.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_SPEAR.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_DAGGER.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_BOOTS.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_HELMET.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_BOOTS.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_DWARVEN_SHIELD.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
+				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN.get()).setWeight(20).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_SWORD.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_SPEAR.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_DAGGER.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_BOOTS.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_HELMET.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_BOOTS.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_DWARVEN_SHIELD.get()).setWeight(25).setExactly(1).standardDamageRange())
 				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_MOUNTAINS_BANNER.get()).setWeight(30).setExactly(1))
 				.add(EItemLootEntry.lootItem(Items.COAL).setWeight(100).setRange(1, 3))
 				.add(EItemLootEntry.lootItem(Items.TORCH).setWeight(100).setRange(2, 3))
@@ -1747,14 +1803,15 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(ExtendedItems.DWARF_MARRIAGE_RING.get()).setWeight(25).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1)))
-			.withPool(LootPool.lootPool()
-				.setRolls(ConstantRange.exactly(1))
-				.when(RandomChance.randomChance(0.01f)) // 1% chance
-				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1).setExactly(1)
-					.apply(SetNBT.setTag(Util.make(new CompoundNBT(), (nbt) -> {
-						nbt.putString("coin_type", "dwarven");
-						})))))
+				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceDefault()))
+//			.withPool(LootPool.lootPool()
+//				.setRolls(ConstantRange.exactly(1))
+//				.when(RandomChance.randomChance(0.001f)) // 1% chance
+//				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1).setExactly(1)
+//					.apply(SetNBT.setTag(Util.make(new CompoundNBT(), (nbt) -> {
+//						nbt.putString("coin_type", "dwarven");
+//						})))))
 			);
 
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_SMITH_CHEST, makeTable()
@@ -1779,6 +1836,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.BLACKSMITH_HAMMER.get()).setWeight(30).setExactly(1).setDamageRange(0.1f, 0.5f))
 				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(10).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(5).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN.get()).setWeight(20).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_HELMET.get()).setWeight(5).setExactly(1).setDamageRange(0.2f, 0.65f))
 				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()).setWeight(5).setExactly(1).setDamageRange(0.2f, 0.65f))
 				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()).setWeight(5).setExactly(1).setDamageRange(0.2f, 0.65f))
@@ -1796,14 +1854,16 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.GAMMON.get()).setWeight(25).setRange(1, 2))
 				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1)))
-			.withPool(LootPool.lootPool()
-				.setRolls(ConstantRange.exactly(1))
-				.when(RandomChance.randomChance(0.02f)) // 2% chance
-				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1).setExactly(1)
-					.apply(SetNBT.setTag(Util.make(new CompoundNBT(), (nbt) -> {
-						nbt.putString("coin_type", "dwarven");
-						}))))));
+				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceSmith()))
+//			.withPool(LootPool.lootPool()
+//				.setRolls(ConstantRange.exactly(1))
+//				.when(RandomChance.randomChance(0.02f)) // 2% chance
+//				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1).setExactly(1)
+//					.apply(SetNBT.setTag(Util.make(new CompoundNBT(), (nbt) -> {
+//						nbt.putString("coin_type", "dwarven");
+//						})))))
+			);
 
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_FOOD_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1832,24 +1892,26 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 			.withPool(LootPool.lootPool()
 				.setRolls(RandomValueRange.between(2, 3))
 				.when(RandomChance.randomChance(0.50f)) // 50% chance
-				.add(EItemLootEntry.lootItem(Items.IRON_NUGGET).setWeight(25).setRange(1, 5))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_NUGGET.get()).setWeight(25).setRange(1, 5))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_SWORD.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_SPEAR.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_DAGGER.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_BOOTS.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_HELMET.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_BOOTS.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_DWARVEN_SHIELD.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
+				.add(EItemLootEntry.lootItem(Items.IRON_NUGGET).setWeight(35).setRange(1, 5))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_NUGGET.get()).setWeight(35).setRange(1, 5))
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_SWORD.get()).setWeight(35).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_SPEAR.get()).setWeight(35).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_DAGGER.get()).setWeight(35).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_BOOTS.get()).setWeight(35).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE.get()).setWeight(35).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_HELMET.get()).setWeight(35).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()).setWeight(35).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()).setWeight(35).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_BOOTS.get()).setWeight(35).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_DWARVEN_SHIELD.get()).setWeight(35).setExactly(1).standardDamageRange())
 				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_MOUNTAINS_BANNER.get()).setWeight(20).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN.get()).setWeight(20).setExactly(1))
 				.add(EItemLootEntry.lootItem(Items.COMPASS).setWeight(20).setExactly(1))
 				.add(EItemLootEntry.lootItem(ExtendedItems.DWARF_MARRIAGE_RING.get()).setWeight(15).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1)))
+				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceDefault()))
 			.withPool(LootPool.lootPool()
 				.setRolls(RandomValueRange.between(1, 2))
 				.when(RandomChance.randomChance(0.25f)) // 25% chance
@@ -1886,17 +1948,19 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_NUGGET.get()).setWeight(3).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1)))
+					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceDefault().setSkillful()))
 			.withPool(LootPool.lootPool()
 				.setRolls(ConstantRange.exactly(1))
-				.add(EItemLootEntry.lootItem(Items.WRITABLE_BOOK).setWeight(1).setRange(1, 4)))
-			.withPool(LootPool.lootPool()
-				.setRolls(ConstantRange.exactly(1))
-				.when(RandomChance.randomChance(0.02f)) // 2% chance
-				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1).setExactly(1)
-					.apply(SetNBT.setTag(Util.make(new CompoundNBT(), (nbt) -> {
-						nbt.putString("coin_type", "dwarven");
-						})))))
+				.add(EItemLootEntry.lootItem(Items.WRITABLE_BOOK).setWeight(1).setRange(1, 4))
+				.apply(ExtendedModifierScrollAdder.chanceDefault()))
+//			.withPool(LootPool.lootPool()
+//				.setRolls(ConstantRange.exactly(1))
+//				.when(RandomChance.randomChance(0.02f)) // 2% chance
+//				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1).setExactly(1)
+//					.apply(SetNBT.setTag(Util.make(new CompoundNBT(), (nbt) -> {
+//						nbt.putString("coin_type", "dwarven");
+//						})))))
 			);
 
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_ARCHIVES_CHEST, makeTable()
@@ -1907,7 +1971,9 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(Items.INK_SAC).setWeight(5).setRange(1, 3))
 				.add(EItemLootEntry.lootItem(Items.BOOKSHELF).setWeight(1).setRange(1, 2))
 				.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(3).setRange(1, 2))
-				.add(EItemLootEntry.lootItem(Items.PAPER).setWeight(5).setRange(1, 6))));
+				.add(EItemLootEntry.lootItem(Items.PAPER).setWeight(5).setRange(1, 6))
+				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN.get()).setWeight(1).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_STONEMASON_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1934,7 +2000,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.WATERSKIN.get()).setWeight(25).setRange(1, 3))
 				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_BUTCHER_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -1962,7 +2029,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(10).setRange(2, 8))
 				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_TRADER_HALL_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -2013,16 +2081,17 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(Items.PAPER).setWeight(25).setRange(1, 6))
 				.add(EItemLootEntry.lootItem(Items.IRON_NUGGET).setWeight(25).setRange(1, 5))
 				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_NUGGET.get()).setWeight(25).setRange(1, 5))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_SWORD.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_SPEAR.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_BOOTS.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_HELMET.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_BOOTS.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
-				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_DWARVEN_SHIELD.get()).setWeight(25).setExactly(1).setDamageRange(0, 0.65f))
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_SWORD.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_SPEAR.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_BOOTS.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_HELMET.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.BLUE_DWARVEN_BOOTS.get()).setWeight(25).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_DWARVEN_SHIELD.get()).setWeight(25).setExactly(1).standardDamageRange())
 				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_MOUNTAINS_BANNER.get()).setWeight(20).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN.get()).setWeight(20).setExactly(1))
 				.add(EItemLootEntry.lootItem(Items.COMPASS).setWeight(20).setExactly(1))
 				.add(EItemLootEntry.lootItem(ExtendedItems.DWARF_MARRIAGE_RING.get()).setWeight(15).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.WOODEN_MUG.get()).setWeight(40).setRange(1, 2))
@@ -2037,14 +2106,15 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(Items.COOKED_SALMON).setWeight(50).setRange(1, 3))
 				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1)))
-			.withPool(LootPool.lootPool()
-				.setRolls(ConstantRange.exactly(1))
-				.when(RandomChance.randomChance(0.01f)) // 1% chance
-				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1).setExactly(1)
-					.apply(SetNBT.setTag(Util.make(new CompoundNBT(), (nbt) -> {
-						nbt.putString("coin_type", "dwarven");
-						})))))
+				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceSmithRare()))
+//			.withPool(LootPool.lootPool()
+//				.setRolls(ConstantRange.exactly(1))
+//				.when(RandomChance.randomChance(0.01f)) // 1% chance
+//				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1).setExactly(1)
+//					.apply(SetNBT.setTag(Util.make(new CompoundNBT(), (nbt) -> {
+//						nbt.putString("coin_type", "dwarven");
+//						})))))
 			);
 
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_MEME_COIN, makeTable()
@@ -2073,6 +2143,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(Items.FEATHER).setWeight(50).setRange(1, 4))
 					.add(EItemLootEntry.lootItem(Items.STICK).setWeight(100).setRange(1, 8))
 					.add(EItemLootEntry.lootItem(Blocks.HAY_BLOCK).setWeight(50).setRange(1, 6))
+					.add(EItemLootEntry.lootItem(ExtendedItems.BREE_BANNER_PATTERN.get()).setWeight(15).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_NUGGET.get()).setWeight(25).setRange(1, 6))
 					.add(EItemLootEntry.lootItem(LOTRItems.SILVER_NUGGET.get()).setWeight(5).setRange(1, 6))
 					.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(10).setExactly(1))
@@ -2084,8 +2155,9 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.WATERSKIN.get()).setWeight(25).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
-
+					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceSmithRare())));
+		// TODO add rivendell and lindon banner patterns
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_TRADER_HALL_ELF_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
 					.setRolls(RandomValueRange.between(2, 5))
@@ -2106,7 +2178,138 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(LOTRItems.SILVER_GOBLET.get()).setWeight(25).setRange(1, 3))
 					.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
-					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
+					.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+					.apply(ExtendedModifierScrollAdder.chanceSmithWild())));
+		// TODO add Miruvor, rivendell (polearm, longspear), leeks, turnips
+		make(consumer, ExtendedLootTables.RIVENDELL_HOUSE_CHEST, makeTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(4, 6))
+				.add(EItemLootEntry.lootItem(Items.BOOK).setWeight(50).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.WOODEN_MUG.get()).setWeight(10).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.GOLDEN_GOBLET.get()).setWeight(10).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_GOBLET.get()).setWeight(10).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.GLASS_BOTTLE).setWeight(10).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(50).setRange(2, 6))
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BOW.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_SWORD.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_SPEAR.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_DAGGER.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_SHIELD.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(Items.APPLE).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.BREAD).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.CARROT).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.GREEN_APPLE.get()).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.PEAR.get()).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.LETTUCE.get()).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.LEMBAS.get()).setWeight(10).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.PLUM.get()).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(ExtendedItems.ROASTED_CHESTNUT.get()).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.CHARCOAL).setWeight(10).setRange(2, 4))
+				.add(EItemLootEntry.lootItem(Items.GOLD_NUGGET).setWeight(1).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BANNER_PATTERN.get()).setWeight(1).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(1).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(1).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(10).setRange(1, 10))
+				.add(EItemLootEntry.lootItem(LOTRItems.BOOK_OF_TRUE_SILVER.get()).setWeight(10).setRange(1, 10))
+				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceDefault())));
+		// TODO add Miruvor, rivendell (polearm, longspear), leeks, turnips
+		make(consumer, ExtendedLootTables.RIVENDELL_LORD_CHEST, makeTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(4, 6))
+				.add(EItemLootEntry.lootItem(Items.BOOK).setWeight(50).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.GOLDEN_GOBLET.get()).setWeight(10).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_GOBLET.get()).setWeight(10).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.GLASS_BOTTLE).setWeight(10).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(50).setRange(2, 6))
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BOW.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_SWORD.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_SPEAR.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_DAGGER.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_SHIELD.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_HELMET.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_CHESTPLATE.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_LEGGINGS.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_BOOTS.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BANNER.get()).setWeight(1).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BANNER_PATTERN.get()).setWeight(1).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.IMLADRIS_GUARD_HELMET.get()).setWeight(1).setExactly(1).standardDamageRange()
+					.when(RandomChance.randomChance(0.2f)))
+				.add(EItemLootEntry.lootItem(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE.get()).setWeight(1).setExactly(1).standardDamageRange()
+					.when(RandomChance.randomChance(0.2f)))
+				.add(EItemLootEntry.lootItem(ExtendedItems.IMLADRIS_GUARD_LEGGINGS.get()).setWeight(1).setExactly(1).standardDamageRange()
+					.when(RandomChance.randomChance(0.2f)))
+				.add(EItemLootEntry.lootItem(ExtendedItems.IMLADRIS_GUARD_BOOTS.get()).setWeight(1).setExactly(1).standardDamageRange()
+					.when(RandomChance.randomChance(0.2f)))
+				.add(EItemLootEntry.lootItem(Items.BREAD).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.LEMBAS.get()).setWeight(10).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.ROASTED_CHESTNUT.get()).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.CHARCOAL).setWeight(10).setRange(2, 4))
+				.add(EItemLootEntry.lootItem(Items.GOLD_NUGGET).setWeight(1).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(1).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(1).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(10).setRange(1, 10))
+				.add(EItemLootEntry.lootItem(LOTRItems.BOOK_OF_TRUE_SILVER.get()).setWeight(10).setRange(1, 10))
+				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceSmithWild())));
+		// TODO add rivendell banner pattern
+		make(consumer, ExtendedLootTables.RIVENDELL_SMITH_CHEST, makeTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(2, 4))
+				.add(EItemLootEntry.lootItem(Items.BOOK).setWeight(25).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(Items.COAL).setWeight(100).setRange(2, 8))
+				.add(EItemLootEntry.lootItem(Items.CHARCOAL).setWeight(50).setRange(2, 8))
+				.add(EItemLootEntry.lootItem(LOTRItems.ELVEN_STEEL_INGOT.get()).setWeight(50).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(Items.IRON_INGOT).setWeight(25).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(Items.IRON_NUGGET).setWeight(10).setRange(1, 6))
+				.add(EItemLootEntry.lootItem(Items.IRON_ORE).setWeight(25).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(LOTRItems.COPPER_INGOT.get()).setWeight(10).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(LOTRItems.COPPER_ORE.get()).setWeight(10).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(LOTRItems.TIN_INGOT.get()).setWeight(10).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(LOTRItems.TIN_ORE.get()).setWeight(10).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_INGOT.get()).setWeight(10).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_INGOT.get()).setWeight(5).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_ORE.get()).setWeight(5).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_NUGGET.get()).setWeight(5).setRange(1, 6))
+				.add(EItemLootEntry.lootItem(Items.GOLD_INGOT).setWeight(5).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(Items.GOLD_ORE).setWeight(5).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(Items.GOLD_NUGGET).setWeight(5).setRange(1, 6))
+				.add(EItemLootEntry.lootItem(Items.FEATHER).setWeight(20).setRange(2, 6))
+				.add(EItemLootEntry.lootItem(Items.STICK).setWeight(25).setRange(3, 8))
+				.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(50).setRange(2, 6))
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BOW.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_SWORD.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_SPEAR.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_DAGGER.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_SHIELD.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_HELMET.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_CHESTPLATE.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_LEGGINGS.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_BOOTS.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BANNER.get()).setWeight(5).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BANNER_PATTERN.get()).setWeight(1).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(5).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(1).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceSmith())));
+		// TODO add tapestry
+		make(consumer, ExtendedLootTables.RIVENDELL_WEAVER_CHEST, makeTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(2, 4))
+				.add(EItemLootEntry.lootItem(Items.WHITE_WOOL).setWeight(50).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(Items.STRING).setWeight(100).setRange(2, 8))
+				.add(EItemLootEntry.lootItem(Items.FEATHER).setWeight(20).setRange(2, 6))
+				.add(EItemLootEntry.lootItem(Items.STICK).setWeight(25).setRange(3, 8))
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BANNER.get()).setWeight(50).setRange(2, 8))
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BANNER_PATTERN.get()).setWeight(20).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.FUR.get()).setWeight(50).setRange(1, 4)))
+			);
 	}
 
 	public LootTable.Builder makeTable(){

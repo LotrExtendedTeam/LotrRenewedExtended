@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:taurethrim",
+  "ingredients": [
+    {
+      "item": "lotr:taurethrim_brick"
+    },
+    {
+      "item": "lotr:willow_vines"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_taurethrim_brick"
+  }
+}

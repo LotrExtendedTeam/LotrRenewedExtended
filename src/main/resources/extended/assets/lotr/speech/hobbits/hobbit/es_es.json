@@ -1,0 +1,543 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Los atajos cortos traen retrasos largos.",
+        "pero a los valientes les serviréis...¡la del Dragón Verde!",
+        "¿Dónde habrá un hobbit sin su pipa?",
+        "Quién no desearía vivir en un agujero-hobbit.",
+        "Un agujero-hobbit, y eso significa comodidad.",
+        "Es muy peligroso, Frodo, cruzar la puerta.",
+        "Ayer vinieron los Sacovilla-Bolsón a comer. Ahora no puedo encontrar ni los platos ni las tazas...",
+        "Los caminos siguen avanzando...",
+        "¿Una aventura? Cosas desagradables, molestas e incómodas que retrasan la cena.",
+        "¡No hay nada como una jarra de cerveza del Dragón Verde!",
+        "¡No sé qué haría sin la buena hierba de Longbottom en un caluroso día de verano!",
+        "Tengo familia en Gamos, son unos tipos divertidos...",
+        "El mercado tiene toda la comida bebida y hierba que puedas desear.",
+        "¿Has visto las ranas en los pantanos alrededor de Frogmorton?",
+        "Los Dúnedain del Norte son salvajes, pero tienen hogares acojedores.",
+        "La gente habla de elfos en los bosques cerca de hueco de sauce ¡Creo que es solo son los Ganapié!",
+        "No quiero ninguna aventura, gracias, Hoy no.",
+        "Solo los Gamyi saben más de patatas que yo'!",
+        "En los días de viento me gusta sentarme bajo un árbol y dormir, ¡cómo todo Hobbit debe hacer!",
+        "¡No hay nada mejor que la hierba de Longbotton! ¿No es así, #p?",
+        "¡Tengo que regar mis tierras!",
+        "Para un buen día sugiero Needlehole... ¡o comida!",
+        "¡La comida es siempre la mejor opción!",
+        "Mmm, patatas con mantequilla y guisan...",
+        "La hierba es buena, pero los champiñones son mejores.",
+        "Amo las setas fuera de l campo.",
+        "La comida sencilla es deliciosa.",
+        "Acostarse tarde y levantarse tarde para poder desayunar.",
+        "El campo es una buena forma de pasar el día.",
+        "Para mi una taza de té.",
+        "Nunca encontrarás mejores fiestas fuera de la Comarca ¡Comida, bebida y alegría!",
+        "Eres casi tan viejo como alto es Bandobras, conoces la historia del golf?",
+        "Bien y bien y bien mis pequeños drugos.",
+        "Dicen que las familias ricas guardan tesoros en sus madrigueras. Cofres llenos de oro y plata ... ¡y anillos!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "día"
+      },
+      "lines": [
+        "Buenos días, #p.",
+        "Buenos días.",
+        "¡Buenos días!",
+        "¡Buenos días, #p! ¿Qué tal?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Este sitio está lleno de conejos, deja que los pequeños juegen con ellos.",
+        "Mis parientes de Bree cuentan cosas increíbles..."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "¡Buenos días!",
+        "Buenos días, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "¡Buenos días!",
+        "Buenos días, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "¡Buenas tardes!",
+        "Buenas tardes, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "¡Buenas tardes!",
+        "Buenas tardes, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "¡Buenas noches!",
+        "Buenas noches, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "¡Buenas noches!",
+        "Buenas noches, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn | dusk",
+        "weather": "clear"
+      },
+      "lines": [
+        "¡Qué hermoso día hace hoy!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn",
+        "sun_admiring": "true",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "¿No es hermoso el amanecer, #p?",
+        "Oh, buenos días, #p. Acabo de ver el Sol salir. ¿No es maravilloso?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk",
+        "sun_admiring": "true",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "¿No es hermoso el anochecer, #p?",
+        "Oh, buenos días, #p. Acabo de ver la Luna salir. ¿No es maravilloso?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "Será mejor ir a la cama."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Que no se te caigan lo pelos de lo pies, #p!",
+        "Que no se te caigan lo pelos de lo pies.",
+        "Siempre un placer, #p!",
+        "Eres un gran aliado de los Hobbits."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder"
+      },
+      "lines": [
+        "Oh, eras tú, #p! Me costó reconocerte.",
+        "Siempre he dicho que hay buenas personas, como tú"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Bueno, pero si es #p ¿cómo estas hoy?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "Bueno, pero si es #p ¿que tal la velada?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Buenos días señor",
+        "Buenos días señor #p"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Buenos días señora",
+        "Buenos días señora #p"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff"
+      },
+      "lines": [
+        "Hola, #p! Deberías venir a tomarte un té uno de estos días.",
+        "Hola, #p! Deberías venir a tomar un segundo desayuno uno de estos días.",
+        "Hello, #p! Deberías venir a probar la hierba uno de estos días.",
+        "Todo va bien en la Comarca, gracias a ti",
+        "Todo va bien en la Comarca, gracias a ti, #p",
+        "Oh, #p... Debería invitarte al trigésimo tercer cumpleaños de mi prima.",
+        "Oh, #p... Debería invitarte al trigésimo tercer cumpleaños de mi prima. ¡Recuérdamelo!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "¿No has tomado aún el segundo desayuno?",
+        "¿Alguien para el tercer desayuno?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Al fin es la hora del té",
+        "Será mejor que vaya a tomar el té de la tarde."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "Pronto será la hora de cenar.",
+        "Estaba deseando que llegara la hora de la cena."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "weather": "rain"
+      },
+      "lines": [
+        "Permanece alejado de la lluvia, #p",
+        "¡Permanece alejado de la lluvia!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend",
+        "biome": "#home"
+      },
+      "lines": [
+        "¡Bienvenido a la Comarca!",
+        "¡Bienvenido a la Comarca, #p!",
+        "Buenas, pocas veces me he encontrado con alguien como tú!",
+        "Bienvenido a la Comarca, ¿Qué noticias te traes?",
+        "Buenas, #p. ¿Hasta cuando te vas a quedar?",
+        "¿Gente grande en la Comarca? ¡Qué cosa tan extraña!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend"
+      },
+      "lines": [
+        "Buenas, #p.Creo que te he visto antes.",
+        "#¿p, eres tú? Sí, ya re recuerdo. Es que toda la gente grande parece igual.",
+        "¿Nos conocemos, #p? ¡Nunca olvido una cara!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "Gente, extraño la Comarca.",
+        "Nunca me había alejado tanto de la Comarca.",
+        "Si doy un paso más, será lo mas lejos que he estado de mi hogar en mi vida.",
+        "Ya va siendo hora de volver a la Comarca.",
+        "¿Una aventura? Cosas desagradables, molestas e incómodas que retrasan la cena.",
+        "Los caminos siguen avanzando, sobre rocas y bajo árboles, pronto volveré a casa. ",
+        "¿Es esta la tierra de los tuyos, #p? Sin duda es un lugar extraño.",
+        "Cual es el camino de vuelta a casa #p.",
+        "Un agujero-hobbit, y eso significa comodidad, extraño el mío.",
+        "Ya me he cansado de este lugar, ¿volvemos a casa?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+        "¡Qué horror de sitio!, volvamos a la Comarca.",
+        "¿Cómo hemos llegado a un lugar tan horrible?",
+        "¡Que sitio tan espantoso, #p!",
+        "¡Qué lugar más espantoso! ¡Debemos encontrar el camino de vuelta a la Comarca!",
+        "Este lugar aterroriza hasta a los más valientes.",
+        "Diría que ya hemos visto suficiente #p, volvamos a casa.",
+        "Bueno, #p, este es un lugar desagradable.",
+        "Me siento mal aquí, #p, ¿conoces el camino de vuelta a la Comarca?",
+        "No se como hemos llegado hasta aquí, #p.",
+        "Hasta el aire es desagradable aquí.",
+        "Siempre me han dicho que no siga esos caminos.",
+        "Ojalá le hubiera hecho más caso a mi tío, no tuve que haberme alejado de la Comarca.",
+        "Si hubiera sabido que era así, nunca habría salido de la Comarca."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "No tendrás hierba, #p?",
+        "El huerto es relajante, lo has probado alguna vez, #p?",
+        "No hay nada mejor que una comida bien hecha, no te parece, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "¿Cómo estás, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff"
+      },
+      "lines": [
+        "¿Te importaría? ¡Estamos en medio de una conversación!",
+        "#p! Estábamos teniendo una conversación.",
+        "¿Podrías dejarnos terminar?",
+        "¿Hay algún motivo para interrumpirnos?",
+        "Estaba esperando, ¡espérate!",
+        "Si me disculpas estamos teniendo una charla.",
+        "Acaso no ves que estamos hablando.",
+        "Porfavo estamos hablando, espérate.",
+        "Veo que no tienes ningún problema con interrumpir la conversación de los Hobbits.",
+        "Si no te importa, #p, Estamos en una conversación.",
+        "...y se giró y le dijo - ¡Te importaría interrumpirnos!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Esta gente grande, vienen aquí a robarnos de nuestras granjas, ¡La Comarca es para Hobbits!",
+        "No es habitual encontrar gente grande en la Comarca.",
+        "Gente grande en la Comarca, ¡Ve con cuidado!",
+        "Quién te dejó entrar en la Comarca, espero que no generes problemas.",
+        "¿#p, No es así? No es habitual encontrar gente grande en la Comarca.",
+        "No me creo que no nos hayan presentrado, bienvenido a la Comarca.",
+        "Creo que no nos conocemos, bueno, esta es la Comarca, un lugar encantador ¿no le parece?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest"
+      },
+      "lines": [
+        "Entonces tu nombre es #p, no me creo que no nos conociéramos.",
+        "Creo que no nos conocemos.",
+        "¿Dices que te llamas #p? No solemos encontrar gente grande en la Comarca.",
+        "¿Dices que te llamas #p?, espero que no seas de esa gente extraña.",
+        "¿Nos conocemos?",
+        "Buenas #p, ¿eres nuevo por aquí?",
+        "Hmm... Creo que no nos conocemos.",
+        "Eres de la gente grande, ¿cuál es tu nombre?",
+        "¿Cuál es tu nombre?"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ]
+      },
+      "lines": [
+        "Parece ser que hay gente extraña por aquí, y tu pareces ser uno de ellos.",
+        "¿Eres de esa gente rara de la que se está habladno?",
+        "¿Se está hablando de gente extraña, eres uno de ellos?",
+        "No me fío de ti, te pareces a esa gente extraña que he visto recientemente.",
+        "No se nada de ti..."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ],
+        "biome": "#home"
+      },
+      "lines": [
+        "La gente grande me hace sentir incómodo, recuerda que esta es nuestra Comarca."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "He oído que eres problemático.",
+        "Pareces problemático",
+        "Pareces ser problemático, #p.",
+        "Aléjate de la Comarca, #p.",
+        "¡Aléjate de la Comarca!",
+        "No te voy a prestar mi hierba",
+        "No somos amables con la gente como tú.",
+        "No eres una buena persona, #p.",
+        "If you'll be begging my pardon, you make me feel uncomfortable.",
+        "You're one for the Mewlips, #p!",
+        "Sabía que la gente grande son un problema.",
+        "No nos agrada la gente como tú en la Comarca.",
+        "Tus trucos no funcionarán conmigo.",
+        "¡Tus trucos no funcionarán conmigo, #p!",
+        "¡No volverás a probar la hierba de Longbottom!",
+        "No se puede confiar en alguien de pies pequeños.",
+        "No podrás tomar nada en el Dragón Verde.",
+        "¡Déjame en paz!",
+        "¡Déjame en paz, #p!",
+        "Mi tío tiene unos perros muy grandes, te importaría ir a verlos.",
+        "¡No interrumpas mi paz!",
+        "¡Para! problemático.",
+        "El buen Bandobras te echaría de aquí.",
+        "No te atrevas a meterte en la tranquilidad de un Hobbit.",
+        "¡Sólo un idiota me interrumpiría mientras como!",
+        "La gente extraña hace cosas extrañas.",
+        "No me hagas ir por mi guadaña.",
+        "Puede que seas más alto que yo, #p ¡pero nunca mejor!",
+        "La gente como tú debería ser ajusticiada.",
+        "Pareces ser uno de esos locos de los que tanto se habla.",
+        "En la Comarca no somos amgigables con los locos como tú, #p.",
+        "¡Apártate!",
+        "Eres un psicópata, #p.",
+        "No me metas en tus problemas, #p!",
+        "No quiero tener problemas contigo",
+        "No quiero tener problemas contigo, #p.",
+        "O te vas o saco mi rastrillo.",
+        "No me hagas it por mi rastrillo"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "La Comarca no está hecha para los problemáticos como tú.",
+        "O sales de la Comarca, #p, o llamaré a los shirriffs",
+        "¡Fuera de mis tierras!",
+        "¡Apártate de mis tierras, #p!",
+        "La Comarca siempre ha sido un lugar pacífico, ¡Ni se te ocurra cambiarlo!",
+        "¡Apártate de mis patatas!",
+        "Los Shirriffs te atraparán, #p!",
+        "Vuelve por donde has venido",
+        "Vuelve por donde has venido, #p!",
+        "Eres un extranjero, en la Comarca solo queremos Hobbits.",
+        "No es mi intencion ser grosero, pero no eres bienvenido por la Comarca."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "daytime": "morning"
+      },
+      "lines": [
+        "No mereces un segundo desayuno, #p!"
+      ]
+    }
+  ]
+}

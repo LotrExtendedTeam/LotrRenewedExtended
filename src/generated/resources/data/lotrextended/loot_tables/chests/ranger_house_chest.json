@@ -22,6 +22,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_axe"
@@ -40,6 +43,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_pickaxe"
@@ -58,6 +64,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_shovel"
@@ -76,6 +85,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_axe"
@@ -94,6 +106,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_pickaxe"
@@ -112,6 +127,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_shovel"
@@ -280,6 +298,17 @@
             }
           ],
           "name": "lotr:raspberry"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:dunedain_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -732,6 +761,11 @@
             }
           ],
           "name": "lotr:large_pouch"
+        }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder"
         }
       ]
     }

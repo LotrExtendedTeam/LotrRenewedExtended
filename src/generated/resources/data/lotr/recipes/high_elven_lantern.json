@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_high_elven",
+  "pattern": [
+    "YYY",
+    "Y#Y",
+    "YYY"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:high_elven_torch"
+    },
+    "Y": {
+      "tag": "forge:nuggets/silver"
+    }
+  },
+  "result": {
+    "item": "lotr:high_elven_lantern"
+  }
+}
