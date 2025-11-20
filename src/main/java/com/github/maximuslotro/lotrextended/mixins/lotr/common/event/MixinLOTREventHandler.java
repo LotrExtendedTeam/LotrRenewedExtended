@@ -5,8 +5,6 @@ import java.util.Optional;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
-
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.MiscDataModule;
 import lotr.common.entity.npc.data.NPCEntitySettingsManager;
@@ -46,7 +44,7 @@ public class MixinLOTREventHandler {
 			ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
 			// Extended Start
 			if(serverPlayer.hasDisconnected()) {
-				ExtendedLog.info("Prevented playerData login1 on disconnected player: "+player.getStringUUID());
+				//ExtendedLog.info("Prevented playerData login1 on disconnected player: "+player.getStringUUID());
 				return;
 			}
 			// Extended End
@@ -64,7 +62,7 @@ public class MixinLOTREventHandler {
 			}
 			// Extended Start
 			if(serverPlayer.hasDisconnected()) {
-				ExtendedLog.info("Prevented playerData login2 on disconnected player: "+player.getStringUUID());
+				//ExtendedLog.info("Prevented playerData login2 on disconnected player: "+player.getStringUUID());
 				return;
 			}
 			// Extended End
@@ -75,7 +73,7 @@ public class MixinLOTREventHandler {
 			LOTRDate.sendLoginPacket(serverPlayer);
 			// Extended Start
 			if(serverPlayer.hasDisconnected()) {
-				ExtendedLog.info("Prevented playerData login3 on disconnected player: "+player.getStringUUID());
+				//ExtendedLog.info("Prevented playerData login3 on disconnected player: "+player.getStringUUID());
 				return;
 			}
 			// Extended End

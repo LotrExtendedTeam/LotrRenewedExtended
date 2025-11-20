@@ -3,8 +3,6 @@ package com.github.maximuslotro.lotrextended.mixins.lotr.common.event;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
-
 import lotr.common.data.LOTRLevelData;
 import lotr.common.event.LOTRTickHandlerServer;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -34,7 +32,7 @@ public class MixinLOTRTickHandlerServer {
 			if (event.phase == Phase.END) {
 				// Extended Start
 				if(serverPlayer.hasDisconnected()) {
-					ExtendedLog.info("Prevented playerData update on disconnected player: "+serverPlayer.getStringUUID());
+					//ExtendedLog.info("Prevented playerData update on disconnected player: "+serverPlayer.getStringUUID());
 					return;
 				}
 				// Extended End
