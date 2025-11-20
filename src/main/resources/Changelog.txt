@@ -1,3 +1,157 @@
+(Beta 1.9.0)
+* Biomes
+  * Added Rivendell Cliffs (a more sharp version of the Rivendell Hills biome)
+  * Added Rivendell River (a Rivendell specific river biome for water colors and such)
+  * Added Rivendell Valley (a more level version of the Rivendell biome)
+  * Removed lava falls from Rivendell Hills
+  * Tweaked the regular Rivendell biome to be a tiny bit more hilly
+* Blocks
+  * Added Chimney Pots
+  * Added High Elven Chain
+  * Added High Elven Lanterns
+  * Added Placed Books (Book, Red Book, and Book of true silver can be placed)
+  * Added the Shards of Narsil
+  * Added the ability for bars to connect to branches
+  * Finally fixed some fur type blocks not mining faster with shears
+  * Fixed a crash when placing bars next to a vertical slab
+  * Fixed empty placed glass bottles not being pickable
+  * Gem ores now require iron tier or above tools to mine
+  * Placed books can be stacked up to three in any random book order
+  * Ported Angmar, Dale, Dol Amroth, Dol Guldur, Dowinion, Dunland, Gondor, Isenguard, Lindon, Lothlorien, Mordor, Rivendell, Rohan, and Woodland Realm banners
+  * Ported High Elven Beds
+  * Ported Waste Blocks
+  * Renamed Morgul Lantern to Morgul Brazier
+* Config
+  * Added a server config setting to allow bars to connect to branches
+  * Added a server config setting to allow bars to connect to half sides of vertical slabs
+  * Added a server config setting to enable/disable XP orbs/bar in Middle Earth
+  * Added a server config setting to enable/disable enchanting in Middle Earth
+  * Added a server config setting to enable/disable feast mode
+  * Added a server config setting to enable/disable modifiers in Middle Earth
+  * Added several server config settings for better basic overworld/middle earth spawn protection for servers
+* Entities
+  * Added Elrond
+  * Added Imladris Guards
+  * Added Rivendell Weavers
+  * Disallowed bandits from stealing from the armor slots or the player’s held item
+  * Ducks lay eggs about half as often now
+  * Fixed domesticated ducks textures sometimes being completely black
+  * Ported Bandits
+  * Ported Rivendell Captains
+  * Ported Rivendell Smiths
+  * Reduced the run speed of wild ducks so it is possible to catch them now
+* Features
+  * Added a modifier system (Middle Earth friendly alternative for enchanting) (based on legacy)
+  * Implemented a “Feast Mode” (eat whenever like in legacy)
+  * Ported Bandit encounters (chance based upon biome)
+* GUI
+  * Added ability to hide the XP bar in Middle Earth
+  * Fixed a crash in the banner gui when pressing “add player”
+  * Fixed MC-167448 bug in minecraft (advancement tooltips being hidden by the category background texture on the bottom and left side)
+* Hired Units
+  * Added 2 more hired units (Rivendell Elves and Warriors)
+  * Fixed Blue Mountains Axe Throwers wearing Dwarven armor instead of Blue Dwarven armor
+  * Potentially fixed an attack goal crash
+* Items
+  * Added 14 new Pattern Banner Items and textures (Angmar, Dale, Dol Amroth, Dol Guldur, Dowinion, Dunland, Gondor, Isenguard, Lindon, Lothlorien, Mordor, Rivendell, Rohan, and Woodland Realm)
+  * Added Imladris Guard Boots
+  * Added Imladris Guard Chestplate
+  * Added Imladris Guard Helmet
+  * Added Imladris Guard Leggings
+  * Added Imladris Guard Shield
+  * Added a Rivendell Shield
+  * Added tapestries (currently only one: The Last Alliance)
+  * Fixed Extended’s Bows sometimes shooting arrows with zero velocity
+  * Fixed duck eggs being present in the vanilla foods tab
+  * Ported Anduril
+  * Ported Modifier scrolls
+  * Ported Rivendell Bow
+* Localization
+  * Added Russian (ru_ru) speechbank translations
+  * Added Spanish (es_es) translation
+  * Fixed Tolkien having two names (a localizable and hardcoded one)
+  * Fixed some BM speechbanks not saying the player name
+  * Simplified the localization for banes
+  * Updated Chinese (zh_tw) translation
+* Loot Tables
+  * Added Modifier scrolls to chests loot tables
+* Misc
+  * Added 11 new advancements in Extended (39 currently)
+  * Added 7 advancements from Legacy (52.2% currently ported)
+  * Faction tables can now be used to all leather armors (like pouches)
+  * Faction tables can now be used to dye leather hats (like pouches)
+  * Fixed millstone result slot crashing clients
+  * Fixed mossy blocks not being craftable with willow vines
+  * Fixed mossy stone bricks not craftable with extended greens
+  * Fixed picked spawners items not showing type when placed
+  * Fixed poison bottles crashing some servers
+  * Fixed renewed sending playerData for logged-out players for unstable server connections that would cause lag
+  * Fixed the barren dirt recipe only resulting in one block
+  * Hobbit pancakes now craft two pancakes when using duck eggs
+  * Hobbit pancakes recipe now supports duck eggs
+  * Made crucibles craftable (but still don’t have unsmeltary functionality)
+* Modifiers
+  * Added 2 new fishing luck modifiers (Alluring, Tantalized)
+  * Added 3 new armor toughness modifiers (Tough, Thick, Unwavering)
+  * Added 3 new blast protection modifiers (Layered, Reinforced, Fortified)
+  * Added 3 new fishing speed modifiers (Fluked, Gifted, Prosperous)
+  * Added 3 new underwater breath/strength modifiers (Shut, Latched, Sealed)
+  * Added 3 new underwater speed modifiers (Webbed, Finned, Ulmoqint)
+  * Anvils can now color item names with gemstones
+  * Anvils can now engrave the user’s name on item
+  * Anvils can now reforge items to re-roll the present modifiers
+  * Anvils now accept materials instead of xp as payment in Middle Earth
+  * Anvils now accept scrolls instead of books in Middle Earth
+  * Fixed killing witches giving Wightbane
+  * Grindstones can now be used to remove all modifiers from an item
+  * Items found in chests, weapon racks and fishing have a chance to have random modifiers applied
+  * Modifiers now apply to newly crafted items
+  * Modifiers now retroactively apply to existing items a player picks up
+  * Modifiers now retroactively apply to existing player/unit held/equipped items
+  * Moved Basic Protection modifiers to armor points (like in legacy)
+  * Renamed legacy “Tough” to “Steadfast” (+2 protection)
+  * Reset some banes on items as they could easily be gotten sometimes
+  * Smithing tables can now be used to mint coins with silver and chisels
+  * Smithing tables can now color item names with gemstones
+* Sounds
+  * Fixed duck footsteps subtitle being broken
+* Structures
+  * Added Rivendell Captain Tower
+  * Added Rivendell Weaver House
+  * Fixed Gundabad camps not generating sleeping tents
+  * Ported Rivendell Houses
+  * Ported Rivendell Smithy
+  * Remove windmills from spawning in the shire woodlands biome
+* Textures
+  * Added a custom skin and cape for Elrond
+  * Added different scroll textures depending on the contained modifier tier
+  * All-new High Elven Bed texture
+  * Changed how banner textures are stored
+  * Fixed wood slabs using log model instead of wood model
+  * Re-mastered the legacy hobbit gate textures (Redone Renewed pack)
+  * Re-worked scorched stone and brick textures
+  * Re-worked the Bree shield back texture
+  * Re-worked the Dunedain shield front texture
+  * Re-worked the Dwarven Bed texture
+  * Re-worked the Ranger of the North armor textures (Redone Renewed pack)
+  * Re-worked the Rivendell armor textures (Redone Renewed pack)
+  * Re-worked the banner model
+  * Reworked all banner item textures
+  * Reworked the Dunedain Ranger’s cape texture
+  * Tweaked Extended’s Rivendell armor item textures (Redone Renewed pack)
+  * Tweaked Extended’s hobbit textures (Redone Renewed pack)
+* Trading
+  * Added the ability to have non-persistent trades
+  * All wandering traders chat messages colors the npc’s name based on their faction
+  * Bree Merchants and Smiths now have a low chance to sell a single low tier scroll
+  * Fixed traders only selling Ale instead of other drinks since maybe 1.7.3?
+  * Rivendell, Blue Mountains, and Galadhrim Traders now have a low chance to sell a single high-tier scroll
+* WorldGen
+  * Moved the Fords of Bruinen waypoint a bit south so that a bridge wouldn’t spawn half out into the river
+  * Moved the Rivendell waypoint slightly more north to reduce the chance it spawns in the river
+  * Re-worked the Rivendell biome map layout
+  * Tweaked the road layout in Rivendell
+
 (Beta 1.8.1)
 * Blocks
   * Added the ability to “clip” berry bushes with shears to disable growing berries and growing into hedges
