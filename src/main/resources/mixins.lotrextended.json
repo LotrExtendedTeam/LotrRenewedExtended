@@ -38,7 +38,9 @@
 		"lotr.common.entity.npc.ai.goal.MixinNPCEatGoal",
 		"lotr.common.entity.npc.ai.goal.MixinNPCNearestAttackableTargetGoal",
 		"lotr.common.entity.projectile.MixinThrownPlateEntity",
+		"lotr.common.event.MixinLOTREventHandler",
 		"lotr.common.event.MixinLOTREventHandlerJavaPatch",
+		"lotr.common.event.MixinLOTRTickHandlerServer",
 		"lotr.common.fac.MixinEntityFactionHelper",
 		"lotr.common.fac.MixinTechnicalFactions",
 		"lotr.common.init.MixinLOTRBiomes",
@@ -139,6 +141,7 @@
 		"net.minecraft.item.MixinItems",
 		"net.minecraft.item.MixinItemStack",
 		"net.minecraft.item.MixinShearsItem",
+		"net.minecraft.server.dedicated.MixinDedicatedServer",
 		"net.minecraft.tileentity.MixinSignTileEntityAccessor",
 		"net.minecraft.world.gen.feature.template.MixinTemplate"
 	],
