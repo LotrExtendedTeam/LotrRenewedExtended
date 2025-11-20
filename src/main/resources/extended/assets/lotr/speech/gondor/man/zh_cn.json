@@ -1,0 +1,108 @@
+{
+    "parent": "lotr:gondor/common",
+    "speech": [{
+            "conditions": {
+                "relation": "friendly"
+            },
+            "lines": [
+                "小时候我想成为多阿姆洛斯的天鹅骑士，已经过去好久了。",
+                "但愿我的家人不会被强征入伍。",
+                "不仅人类的日子越来越不好过，我的庄稼也越来越不好过了。"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "biome": "#home"
+            },
+            "lines": []
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": ">=guest"
+            },
+            "lines": [
+                "最近有些大事要发生了，我只知道这些。",
+                "大家都在努力求生，#p，但这在大敌面前不值一提。",
+                "我们作物烂在地里了，#p，希望来年不会这样。"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "biome": "#home",
+                "rank": ">=guest"
+            },
+            "lines": [
+                "刚铎的英雄会出现守护我们，#p。",
+                "我得去干活了，#p，庄稼可不会给自己浇水。",
+                "我可没什么古老传说来唬弄你。"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "biome": "#home",
+                "rank": "<atarms"
+            },
+            "lines": [
+                "你从哪个村子来，#p？"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": ">=atarms"
+            },
+            "lines": [
+                "只要你真心对待刚铎，#p，我也会真心对待你。"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "biome": "#home",
+                "rank": ">=atarms"
+            },
+            "lines": [
+                "你是刚铎英雄？你会保护大家？",
+                "远道而来为刚铎而战的勇士，#p，向你致敬！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "hostile"
+            },
+            "lines": [
+                "你可不是什么朋友！",
+                "你这恶棍！",
+                "别让我看到你，#p！",
+                "真是臭不可闻，#p！",
+                "快滚！",
+                "我们可不对你这恶棍甩什么好脸色看！",
+                "刚铎英雄会把你打个屁滚尿流，#p！",
+                "你真该和畜生待在一起，#p！",
+                "别盯着我看！",
+                "你想干什么，你这贼人！",
+                "我对你可不会客气！",
+                "真是个懒鬼，#p！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "hostile",
+                "biome": "#home"
+            },
+            "lines": [
+                "快滚，#p，不然叫守卫来收拾你！",
+                "这儿没你的地方！",
+                "你这罪犯在这儿可不安全！",
+                "趁早滚出刚铎，#p。",
+                "你最好快滚，#p。",
+                "还不滚？那你等着被收拾吧，#p！",
+                "刚铎不收你这种懒虫！快滚，#p！"
+            ]
+        }
+    ]
+}

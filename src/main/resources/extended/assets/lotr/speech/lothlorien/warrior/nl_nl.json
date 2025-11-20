@@ -1,0 +1,44 @@
+{
+  "parent": "lotr:lothlorien/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "We verdedigen het vrije volk van Midden-aarde.",
+        "De grip van de vijand over ons land groeit bij de dag.",
+        "De kracht van de elven vermindert in deze landen, maar onze macht is nog lang niet kwijt!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Ik verdedig de elven van Lothlórien."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Moge de Valar je beschermen.",
+        "Hoeveel orcs heb je vandaag verslagen, #p?",
+        "Als je voor vrijheid vecht, dan sta ik naast je."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=warden"
+      },
+      "lines": [
+        "Lang geleden bestond er een alliantie tussen mijn volk en jouw volk. Kom je de alliantie na?"
+      ]
+    }
+  ]
+}

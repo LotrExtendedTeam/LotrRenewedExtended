@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:dale",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotr:dale_banner"
+    }
+  ],
+  "result": {
+    "item": "lotr:dale_banner_pattern"
+  }
+}

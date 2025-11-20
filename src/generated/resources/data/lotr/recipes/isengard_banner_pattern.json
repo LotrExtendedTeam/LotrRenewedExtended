@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:uruk",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotr:isengard_banner"
+    }
+  ],
+  "result": {
+    "item": "lotr:isengard_banner_pattern"
+  }
+}

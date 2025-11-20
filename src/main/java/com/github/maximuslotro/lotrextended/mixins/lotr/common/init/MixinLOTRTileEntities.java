@@ -14,6 +14,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnGroupTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedChimneyTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedGrassVoidTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedHoistTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedLargePotTileEntity;
@@ -27,6 +28,7 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlac
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedDwarvenBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedGrayFurBedTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedHighElvenBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedOrcBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedSilverFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStrawBedTileEntity;
@@ -138,5 +140,7 @@ public class MixinLOTRTileEntities {
     	ExtendedTileEntities.DWARVEN_BED = register("dwarven_bed_tileentity", () -> Builder.of(ExtendedDwarvenBedTileEntity::new, ExtendedBlocks.DWARVEN_BED.get()));
     	ExtendedTileEntities.HOIST = register("hoist_tileentity", () -> Builder.of(ExtendedHoistTileEntity::new, ExtendedBlocks.HOIST.get()));
     	ExtendedTileEntities.LARGE_POT = register("large_pot_tileentity", () -> Builder.of(ExtendedLargePotTileEntity::new, ExtendedBlocks.LARGE_POT.get()));
+    	ExtendedTileEntities.CHIMNEY_POT = register("chimney_pot_tileentity", () -> Builder.of(ExtendedChimneyTileEntity::new, ExtendedBlocks.CHIMNEYPOT.get()));
+    	ExtendedTileEntities.HIGH_ELVEN_BED = register("high_elven_bed_tileentity", () -> Builder.of(ExtendedHighElvenBedTileEntity::new, ExtendedBlocks.HIGH_ELVEN_BED.get()));
     }
 }

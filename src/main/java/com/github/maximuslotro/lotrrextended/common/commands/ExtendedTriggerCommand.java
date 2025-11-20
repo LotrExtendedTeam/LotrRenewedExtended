@@ -6,10 +6,12 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import lotr.common.entity.npc.ExtendedTolkienEntity;
+import lotr.common.world.spawning.BanditsSpawner;
 import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.text.StringTextComponent;
 
 public class ExtendedTriggerCommand {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
@@ -20,12 +22,33 @@ public class ExtendedTriggerCommand {
 			.then(Commands.literal("spawnTolkien")
 				.executes(context -> triggerTolkien(context.getSource())))
 			.then(Commands.literal("wightJumpscare")
-				.executes(context -> triggerJumpscare(context.getSource()))));
+				.executes(context -> triggerJumpscare(context.getSource())))
+			.then(Commands.literal("attemptBanditSpawn")
+				.executes(context -> triggerBanditSpawn(context.getSource())))
+			.then(Commands.literal("banditSpawn")
+				.executes(context -> triggerGuaranteedBanditSpawn(context.getSource()))));
 	}
 
 	public static int triggerTrader(CommandSource source) throws CommandSyntaxException {
 		ServerPlayerEntity player = source.getPlayerOrException();
 		WanderingTradersSpawner.spawn(player.getLevel(), player);
+		return Command.SINGLE_SUCCESS;
+	}
+
+	public static int triggerGuaranteedBanditSpawn(CommandSource source) throws CommandSyntaxException {
+		ServerPlayerEntity player = source.getPlayerOrException();
+		BanditsSpawner.spawn(player.getLevel(), player, true, true);
+		return Command.SINGLE_SUCCESS;
+	}
+
+	public static int triggerBanditSpawn(CommandSource source) throws CommandSyntaxException {
+		ServerPlayerEntity player = source.getPlayerOrException();
+		boolean result = BanditsSpawner.spawn(player.getLevel(), player, false, false);
+		if (result) {
+			source.sendSuccess(new StringTextComponent("Attempt to spawn bandit was successful."), true);
+		} else {
+			source.sendSuccess(new StringTextComponent("Attempt to spawn bandit was unsuccessful."), true);
+		}
 		return Command.SINGLE_SUCCESS;
 	}
 

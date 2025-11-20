@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "lotrextended:block/morgul_brazier"
+    },
+    "hanging=true": {
+      "model": "lotrextended:block/morgul_brazier_hanging"
+    }
+  }
+}

@@ -1,0 +1,174 @@
+{
+    "parent": "lotr:gondor/common",
+    "speech": [{
+            "conditions": {
+                "relation": "friendly"
+            },
+            "lines": [
+                "我是刚铎的士卒。",
+                "我所受训练皆为杀死奥克，希望面对食人妖时维拉保佑我。",
+                "该死的索南蛮子，还有它们的弯刀！",
+                "他们说哈拉德人都被大敌操纵了。"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "biome": "#home"
+            },
+            "lines": [
+                "若非刚铎勇士，中洲早已落入魔影之手。",
+                "我和同伴一起守护这片土地。"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": ">=guest"
+            },
+            "lines": [
+                "不要认为刚铎不堪一击，#p。刚铎永远强大。",
+                "小心狡猾奥克，但更要提防战车民。即便他们未曾谋面已久。"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": ">=guest",
+                "biome": "lotr:anorien"
+            },
+            "lines": [
+                "我们生活在恐惧之中，#p。如果你寻求安全，我建议你前往亲王之地。"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": ">=friend"
+            },
+            "lines": [
+                "晚风中有脏东西。灰烬山脉后恐怕有东西集结。",
+                "百倍于其的奥克才有可能击败骁勇善战的刚铎守卫。",
+                "刚铎若有污秽染指，洛希尔人必将驰援。",
+                "哈尔能外只有一团接一团的敌人。",
+                "最近流言四起，人们说南蛮子正在哈尔能外聚集。"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "rank": ">=atarms"
+            },
+            "lines": [
+                "若大敌投入全身心对抗我们，#p，那还能不能看到明天的太阳，我不好说。",
+                "我很同情伊希利恩的突击队员们，#p。他们将首当其冲。",
+                "我很怀疑我们的老旧防御能否抵挡魔多进攻。但我仍将为人类的自由战斗至死！"
+            ]
+        },
+        {
+            "conditions": {
+                "alternatives": [{
+                        "relation": "hostile"
+                    },
+                    {
+                        "relation": "friendly",
+                        "hired": "own"
+                    }
+                ]
+            },
+            "lines": [
+                "为了刚铎！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "hostile"
+            },
+            "lines": [
+                "刚铎的子民们！坚守阵地！",
+                "#p，你是刚铎之敌！",
+                "以白树之名，我会砍碎你！",
+                "以刚铎之名，你死期已到！",
+                "你死到临头了，#p！",
+                "刚铎之敌无人怜悯！",
+                "魔影仆从，别想看到明天朝阳！",
+                "别想伤害刚铎群众，#p！",
+                "停手！否则我会把它砍下来！",
+                "别想再用脏手碰我们的人！",
+                "以刚铎之名，我会把你砍成碎片！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "hostile",
+                "biome": "#home"
+            },
+            "lines": [
+                "来了就别走了！",
+                "少来刚铎，#p！",
+                "有敌袭！",
+                "你还能想来就来，想走就走？",
+                "滚出去！#p，别回来！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "hostile",
+                "pledge_relation": "bad"
+            },
+            "lines": [
+                "你这魔影的畜生，快滚！",
+                "滚吧！阴影爪牙！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "hostile",
+                "biome": "#home",
+                "pledge_relation": "bad"
+            },
+            "lines": [
+                "快滚！大敌走狗！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "hostile",
+                "pledge": "lotr:mordor"
+            },
+            "lines": [
+                "爬回你阴影之地的主子那儿去！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "hostile",
+                "biome": "#home",
+                "pledge": "lotr:mordor"
+            },
+            "lines": [
+                "滚出这里，魔多臭虫！",
+                "索隆爪牙，滚出刚铎！"
+            ]
+        },
+        {
+            "conditions": {
+                "relation": "friendly",
+                "hired": "own"
+            },
+            "lines": [
+                "我为刚铎而战，#p。",
+                "愿我们所做能让刚铎恢复昔日荣耀！",
+                "大敌将先于我们灭亡！",
+                "敌人将惧怕我们刚铎之力，#p！",
+                "你确实是刚铎之友，#p。",
+                "今天我们为刚铎而战！",
+                "我们将随你出生入死！",
+                "能同你并肩作战，我无比自豪！",
+                "为了刚铎！为了世间良善！",
+                "魔多渣滓将面临怒火！",
+                "把刚铎敌人杀个片甲不留！"
+            ]
+        }
+    ]
+}

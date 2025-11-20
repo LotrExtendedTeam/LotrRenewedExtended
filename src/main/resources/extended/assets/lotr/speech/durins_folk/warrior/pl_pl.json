@@ -1,0 +1,108 @@
+{
+  "parent": "lotr:durins_folk/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Jestem dumny z tego że walczę w twojej sprawie, #p!",
+        "Chodźmy naprzód i ubijmy jakieś Rakhâskie ścierwa!",
+        "Broda mnie świerzbi do walki.",
+        "Nasi wrogowie zostaną zmiażdżeni jak świeże żeberka!",
+        "Topory krasnoludów są naostrzone do walki, #p!",
+        "Niewielu w Śródziemiu może mierzyć się z potęgą Plemienia Durina!",
+        "Wszystko w porządku, ale gdzie zniknęło piwo?",
+        "My krasnoludowie jesteśmy dzielnymi wojownikami! Wszyscy wrogowie zadrżą pod naszymi młotami i toporami!",
+        "Żaden ork nie umknie przed krawędzią mojego topora!",
+        "Masz mój topór, #p!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "To naprawdę zaszczyt walczyć u boku wojownika takiego jak ty, #p!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "To naprawdę zaszczyt walczyć u boku wojowniczki takiej jak ty, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "rank": "<commander",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Jesteś potężnym wojownikiem, #p, ale twoja broda nigdy nie będzie równa mojej! Ha!",
+        "To zaszczyt walczyć u twego boku, #p. Nawet z tą skromną wymówką zamiast brody!",
+        "Dobrze walczysz, #p, ale twoja broda musi jeszcze sporo urosnąć!",
+        "Upewnij się że dasz tej brodzie trochę urosnąć zanim wyruszymy do walki!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "rank": "<commander",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Jesteś potężną wojownikiczką, #p, szkoda że twoja broda nigdy nie będzie równa mojej! Ha!",
+        "To zaszczyt walczyć u twego boku, #p. Nawet pomimo braku brody!",
+        "Dobrze walczysz, #p, brak brody nadrabiasz umiejętnościami!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "rank": ">=commander",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+	    "Jestem dumny z tego że walczę u boku najpotężniejszej brody jaką wyhodowała ludzka rasa!",
+        "Dla mnie to zaszczyt walczyć z kimś o takiej brodzie jak swoja własna!",
+        "Z twoją brodą, #p, nie będziemy mieli problemu z miażdżeniem orków!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "rank": ">=commander",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Co z tego że nie masz brody? W walce nie masz sobie równych!",
+        "Z moją brodą i twoim orężem nie będziemy mieli problemu z miażdżeniem orków!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "Sprzedałbym swoją brodę za łyk krasnoludzkiego piwa.",
+        "Ach! Tęsknię za wspaniałymi kamiennymi halami w Żelaznych Wzgórzach. Ale krasnolud nie ucieka przed walką!",
+        "Ach! Tęsknię za porośniętymi sosnami stokami Żelaznych Wzgórz. Ale krasnolud nie ucieka przed walką!",
+        "Na moją brodę, przebiegłbym dziesięć mil nawet dla małego łyka świeżego krasnoludzkiego piwa!"
+      ]
+    }
+  ]
+}

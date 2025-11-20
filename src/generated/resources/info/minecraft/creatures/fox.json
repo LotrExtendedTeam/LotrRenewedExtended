@@ -1,0 +1,26 @@
+{
+  "entity": "minecraft:fox",
+  "biomes": [
+    "lotr:chetwood",
+    "lotr:dense_northlands_forest",
+    "lotr:dense_snowy_northlands_forest",
+    "lotr:druwaith_iaur",
+    "lotr:dunland",
+    "lotr:eregion",
+    "lotr:eryn_vorn",
+    "lotr:field_of_cormallen",
+    "lotr:forochel",
+    "lotr:ithilien",
+    "lotr:northern_mirkwood",
+    "lotr:northlands",
+    "lotr:northlands_forest",
+    "lotr:shire",
+    "lotr:shire_moors",
+    "lotr:shire_woodlands",
+    "lotr:shire_woodlands",
+    "lotr:snowy_northlands",
+    "lotr:snowy_northlands_forest",
+    "lotr:trollshaws",
+    "lotr:white_downs"
+  ]
+}

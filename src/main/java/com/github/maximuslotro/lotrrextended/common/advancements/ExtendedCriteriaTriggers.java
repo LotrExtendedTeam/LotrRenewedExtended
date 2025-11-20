@@ -9,6 +9,7 @@ public class ExtendedCriteriaTriggers {
 	public static final ExtendedTameLivingClassTrigger TAME_LIVING_TRIGGER = CriteriaTriggers.register(new ExtendedTameLivingClassTrigger());
 	public static final ExtendedUnitHiredTrigger UNIT_HIRED_TRIGGER = CriteriaTriggers.register(new ExtendedUnitHiredTrigger());
 	public static final ExtendedCraftingTrigger FACTION_CRAFTING_TRIGGER = CriteriaTriggers.register(new ExtendedCraftingTrigger());
+	public static final ExtendedAbstractStringTrigger ABSTRACT_STRING_TRIGGER = CriteriaTriggers.register(new ExtendedAbstractStringTrigger());
 
 	public static void generate() {}
 }

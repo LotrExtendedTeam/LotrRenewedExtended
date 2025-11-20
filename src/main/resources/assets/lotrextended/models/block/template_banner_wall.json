@@ -1,45 +1,38 @@
 {
 	"parent": "block/block",
-	"texture_size": [48, 48],
-	"ambientocclusion": false,
+	"texture_size": [64, 64],
 	"elements": [
 		{
-			"name": "stand",
+			"name": "bar",
 			"from": [0, 14, 14],
 			"to": [16, 16, 16],
-			"rotation": {"angle": 0, "axis": "y", "origin": [10, 1, 7]},
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 15, 16]},
 			"faces": {
-				"north": {"uv": [0, 12.33333, 6.66667, 13], "texture": "#banner"},
-				"east": {"uv": [13.33333, 0, 14, 0.66667], "texture": "#banner"},
-				"south": {"uv": [6.66667, 12.33333, 13.33333, 13], "texture": "#banner"},
-				"west": {"uv": [13.33333, 0.66667, 14, 1.33333], "texture": "#banner"},
-				"up": {"uv": [6.66667, 13.66667, 0, 13], "texture": "#banner"},
-				"down": {"uv": [13.33333, 13, 6.66667, 13.66667], "texture": "#banner"}
+				"north": {"uv": [8.5, 2, 13.5, 2.5], "texture": "#stand"},
+				"east": {"uv": [6.5, 4, 5.5, 4.5], "texture": "#stand"},
+				"south": {"uv": [8.5, 2, 13.5, 2.5], "texture": "#stand"},
+				"west": {"uv": [5.5, 4, 6, 4.5], "texture": "#stand"},
+				"up": {"uv": [13.5, 1, 8.5, 0.5], "texture": "#stand"},
+				"down": {"uv": [13.5, 1.5, 8.5, 2], "texture": "#stand"}
 			}
 		},
 		{
 			"name": "banner",
-			"from": [0, -16, 15.3141],
-			"to": [16, 14, 15.3141],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 2, 7]},
+			"from": [0.5, -16, 14.5],
+			"to": [15.5, 14, 14.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8.5, 19, 17.5]},
 			"faces": {
-				"north": {"uv": [0, 0, 6.66667, 12.33333], "texture": "#banner"},
-				"south": {"uv": [0, 0, 6.66667, 12.33333], "texture": "#banner"}
+				"north": {"uv": [0, 0, 5, 9.25], "texture": "#banner"},
+				"south": {"uv": [0, 0, 5, 9.25], "texture": "#banner"}
 			}
 		}
 	],
 	"groups": [
 		{
-			"name": "stand",
-			"origin": [8, 0, 7],
+			"name": "BannerWall",
+			"origin": [8, 8, 8],
 			"color": 0,
-			"children": [0]
-		},
-		{
-			"name": "banner",
-			"origin": [8, 44, 7],
-			"color": 0,
-			"children": [1]
+			"children": [0, 1]
 		}
 	]
 }

@@ -35,64 +35,64 @@ public class DevEventHandlers {
 		}
 		try {
 			try
-	        {
+			{
 				CommandSource source = event.getParseResults().getContext().getSource();
 				if(source.getEntity()!=null && source.getEntity() instanceof PlayerEntity) {
-		            String commandname = event.getParseResults().getContext().getNodes().get(0).getNode().getName();
-		            PlayerEntity player = (PlayerEntity) source.getEntity();
+					String commandname = event.getParseResults().getContext().getNodes().get(0).getNode().getName();
+					PlayerEntity player = (PlayerEntity) source.getEntity();
 					if(commandname.contains("whitelist")||commandname.contains("op")||commandname.contains("ban")
-		            		||commandname.contains("data")||commandname.contains("kick")||commandname.contains("pardon")||commandname.contains("reload")) {
-		            	if(player.getDisplayName().getString().equals("MaximustheMiner")||player.getDisplayName().getString().equals("WeirdBob")
-		            			||player.getDisplayName().getString().equals("ServantofMelkor")) {
-		            		ExtendedLog.info("Dangerous command allowed for devs");
-		            		source.sendSuccess(new StringTextComponent("TDangerous command allowed for devs"), true);
-		            	}
-		            	else {
-		            		ExtendedLog.warn("Blocked a dangerous command for non-devs: "+source.getEntity().getDisplayName().getString());
-		            		event.setCanceled(true);
-		            		source.sendFailure(new StringTextComponent("This command is not allowed on this server"));
-		            		return;
-		            	}
-		            }
+						||commandname.contains("data")||commandname.contains("kick")||commandname.contains("pardon")||commandname.contains("reload")) {
+						if(player.getDisplayName().getString().equals("MaximustheMiner")||player.getDisplayName().getString().equals("WeirdBob")
+							||player.getDisplayName().getString().equals("ServantofMelkor")) {
+							ExtendedLog.info("Dangerous command allowed for devs");
+							source.sendSuccess(new StringTextComponent("TDangerous command allowed for devs"), true);
+						}
+						else {
+							ExtendedLog.warn("Blocked a dangerous command for non-devs: "+source.getEntity().getDisplayName().getString());
+							event.setCanceled(true);
+							source.sendFailure(new StringTextComponent("This command is not allowed on this server"));
+							return;
+						}
+					}
 					if(commandname.contains("stop")||commandname.contains("execute")||commandname.contains("kill")||commandname.contains("doas")
 						||commandname.contains("serversettings")||commandname.contains("forge")||commandname.contains("perm")||commandname.equals("p")
 						||commandname.contains("pardon")||commandname.contains("reload")
-	            		||commandname.contains("zone")||commandname.contains("area")||commandname.contains("discord")) {
-	            	if(player.getDisplayName().getString().equals("MaximustheMiner")) {
-	            		ExtendedLog.info("Dangerous command allowed for devs");
-	            		source.sendSuccess(new StringTextComponent("TDangerous command allowed for devs"), true);
-	            	}
-	            	else {
-	            		ExtendedLog.warn("Blocked a dangerous command for non-devs: "+source.getEntity().getDisplayName().getString());
-	            		event.setCanceled(true);
-	            		source.sendFailure(new StringTextComponent("This command is not allowed on this server"));
-	            		return;
-	            	}
-	            }
+						||commandname.contains("zone")||commandname.contains("area")||commandname.contains("discord")) {
+						if(player.getDisplayName().getString().equals("MaximustheMiner")) {
+							ExtendedLog.info("Dangerous command allowed for devs");
+							source.sendSuccess(new StringTextComponent("TDangerous command allowed for devs"), true);
+						}
+						else {
+							ExtendedLog.warn("Blocked a dangerous command for non-devs: "+source.getEntity().getDisplayName().getString());
+							event.setCanceled(true);
+							source.sendFailure(new StringTextComponent("This command is not allowed on this server"));
+							return;
+						}
+					}
 				}
-	        }
-	        catch (IndexOutOfBoundsException e)
-	        {
-	            ExtendedLog.error("Dev command handler recieved an invalid command node, ignoring!");
-	            event.setCanceled(false);
+			}
+			catch (IndexOutOfBoundsException e)
+			{
+				ExtendedLog.error("Dev command handler recieved an invalid command node, ignoring!");
+				event.setCanceled(false);
 
-	        }
+			}
 		}
 		catch (NullPointerException e)
-        {
-            e.printStackTrace();
-            event.setCanceled(false);
-        }
+		{
+			e.printStackTrace();
+			event.setCanceled(false);
+		}
 	}
 
-    public static void devSpawnerListener(final PlayerInteractEvent event) {
-    	if(event.getPlayer().level.isClientSide || !ExtendedServerConfig.enableDevMode.get()) {
-    		return;
-    	}
-    	TileEntity tileentity = event.getPlayer().level.getBlockEntity(event.getPos());
-    	if(tileentity==null) {
-    		return;
-    	}
+	public static void devSpawnerListener(final PlayerInteractEvent event) {
+		if(event.getPlayer().level.isClientSide || !ExtendedServerConfig.enableDevMode.get()) {
+			return;
+		}
+		TileEntity tileentity = event.getPlayer().level.getBlockEntity(event.getPos());
+		if(tileentity==null) {
+			return;
+		}
 		if (tileentity instanceof KegTileEntity&&((ExtendedLootTableAccessor)tileentity).getLootTable()!=null && !event.getPlayer().isCrouching()) {
 			event.setCanceled(true);
 			TextComponent comp = new StringTextComponent("Keg opening disabled because devworld loot-table is set!");
@@ -163,5 +163,5 @@ public class DevEventHandlers {
 			event.getPlayer().sendMessage(comp2, Util.NIL_UUID);
 			return;
 		}
-    }
+	}
 }

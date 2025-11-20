@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:book_of_true_silver",
+    "lotr:red_book",
+    "minecraft:book",
+    "minecraft:written_book"
+  ]
+}

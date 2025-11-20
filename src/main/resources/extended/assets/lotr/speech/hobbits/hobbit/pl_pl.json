@@ -1,0 +1,941 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Kto drogi prostuje, ten w polu nocuje!",
+        "Lecz prawdziwy miód na rycerski trud... pod Zielonym znajdziesz Smokiem!",
+        "Gdzie byliby teraz hobbici bez fajkowego ziela?",
+        "Nie marzysz o tym aby też mieszkać w hobbickej norce?",
+        "Hobbickie nory! Ciepło, dobre jedzenie i komfort.",
+        "Niebezpiecznie wychodzić za własny próg.",
+        "Bagginsowie z Sackville przyszli wczoraj na lunch. Teraz nie mogę znaleźć ani moich talerzy, ani moich kubków...",
+        "A droga wiedzie w przód i w przód...",
+        "Przygody? To same nieprzyjemności. Przez takie rzeczy można się spóźnić na obiad.",
+        "Nie ma nic lepszego od pół kwarty piwa z tawerny Pod Zielonym Smokiem!",
+        "Mam krewnych w Bucklandzie. Zabawni z nich hobbici...",
+        "Market w Słupkach to świetne miejsce aby kupić jedzenie, picie i fajkowe ziele!",
+        "Północne Wrzosowiska są dzikie i wietrzne, ale pełne dobrych gospód z przytulnymi paleniskami.",
+        "Ludzie mówią o elfach w lasach w pobliżu Wierzbiny. Ja myślę że to tylko rodzinka Largefootów!",
+        "Najlepiej unikać Brodu Sarn. Tam się spotykają wszyscy podróżnicy, a niektórzy z nich bywają bardzo dziwni!",
+        "Nie chcę żadnych przygód, dziękuję bardzo!",
+        "Moja wiedza o ziemniakach jest druga zaraz po Gamgeech!",
+        "W wietrzny dzień lubie leżeć pod dębem i spać. Jak na prawdziwego hobbita przystało!",
+        "Longbottomski liść to cudowny liść! Nieprawdaż, #p?",
+        "Mojemu kwietnikowi przydałoby się porządne podlewanie!",
+        "Na wesoły dzień wolny proponuję Świerkowy Dwór... albo jedzenie!",
+        "Dobry posiłek to zawsze najlepsza opcja!",
+        "Mmm, ziemniaki z masełkiem i groszkiem...",
+        "Fajkowe ziele jest dobre. Pieczarki są lepsze!",
+        "Uwielbiam pieczarki prosto z pola.",
+        "Dobre proste jedzenie to dla mnie najlepsze jedzenie.",
+        "Idę późno do łóżka i wstaję późno na śniadanie. To jedyny sposób bycia!",
+        "Prace ogrodowe to świetny sposób na spędzenie dnia.",
+        "Filiżankę herbaty dla mnie!",
+        "Przyjęcia w Shire to najlepsze jakie kiedykolwiek zobaczysz. Jedzenie, picie i radość!",
+        "Mówią że bogate rodziny trzymają skarby w swoich kopcach. Skrzynie pełne złota i srebra... i klejnotów!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Widziałeś żaby na mokradłach wokół drogi do Żabiej Łąki?",
+        "Jesteś prawie tak samo wysoki jak kiedyś stary Bullroarer! Słyszałeś opowieść o tym jak wymyślił grę w golfa?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Widziałaś żaby na mokradłach wokół drogi do Żabiej Łąki?",
+        "Jesteś prawie tak samo wysoka jak kiedyś stary Bullroarer! Słyszałaś opowieść o tym jak wymyślił grę w golfa?"
+      ]
+    },
+	{
+	  "conditions": {
+        "relation": "friendly",
+		"gender": "m"
+      },
+      "lines": [
+		"Nie wiem co bym zrobił bez dobrego liścia z Longbottom w gorący letni dzień!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "f"
+      },
+      "lines": [
+        "Nie wiem co bym zrobiła bez dobrego liścia z Longbottom w gorący letni dzień!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Dzień dobry, #p.",
+        "Dzień dobry.",
+        "Dzień dobry!",
+        "Dzień dobry, #p! Jak się masz?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "To pole jest pełne królików! Trzeba zawołać dzieciaki żeby je pogoniły!",
+        "Moi krewni z Bree mówią o dziwnych wydarzeniach..."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning | afternoon"
+      },
+      "lines": [
+        "Dzień dobry!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning | afternoon",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Dzień dobry, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "Dobry wieczór!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Dobry wieczór, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn | dusk",
+        "weather": "clear"
+      },
+      "lines": [
+        "Jakie śliczne niebo!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn",
+        "sun_admiring": "true",
+        "rank": ">=guest",
+		"gender": "m"
+      },
+      "lines": [
+        "Czyż to nie przepiękny wschód słońca, #p?",
+        "Och, dzień dobry, #p. Właśnie patrzałem jak wschodzi słońce. Ładne, nieprawdaż?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn",
+        "sun_admiring": "true",
+        "rank": ">=guest",
+		"gender": "f"
+      },
+      "lines": [
+        "Czyż to nie przepiękny wschód słońca, #p?",
+        "Och, dzień dobry, #p. Właśnie patrzałam jak wschodzi słońce. Ładne, nieprawdaż?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk",
+        "sun_admiring": "true",
+        "rank": ">=guest",
+		"gender": "m"
+      },
+      "lines": [
+        "Czyż to nie przepiękny zachód słońca, #p?",
+        "Och, dobry wieczór, #p. Właśnie patrzałem jak zachodzi słońce. Ładne, nieprawdaż?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk",
+        "sun_admiring": "true",
+        "rank": ">=guest",
+		"gender": "f"
+      },
+      "lines": [
+        "Czyż to nie przepiękny zachód słońca, #p?",
+        "Och, dobry wieczór, #p. Właśnie patrzałam jak zachodzi słońce. Ładne, nieprawdaż?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "Cóż, chyba pora iść do łóżka!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Oby włos nawet nie spadł z twojej nogi, #p!",
+        "Oby włos nawet nie spadł z twojej nogi.",
+        "Zawsze do usług, #p!",
+        "You're not bad for one of the Big Folk!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Nie jesteś taki zły jak na jednego z Dużych Ludzi!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Nie jesteś taka zła jak na jedną z Dużych Ludzi!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+		"gender": "m"
+      },
+      "lines": [
+        "Och, to ty, #p! Widzisz, nie poznałem cię na początku.",
+        "Widzicie? Zawsze powtarzałem że są dobrzy Duzi Ludzie, tacy jak ty, #p!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+		"gender": "f"
+      },
+      "lines": [
+        "Och, to ty, #p! Widzisz, nie poznałam cię na początku.",
+        "Widzicie? Zawsze powtarzałam że są dobrzy Duzi Ludzie, tacy jak ty, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "No proszę, czy to aby nie #p! Jak się masz dzisiaj?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "No proszę, czy to aby nie #p! Jak się masz tej nocy?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Dzień dobry panu!",
+        "Dzień dobry, panie #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Dzień dobry pani!",
+        "Dzień dobry, pani #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff"
+      },
+      "lines": [
+        "W Shire wszystko w porządku, dzięki tobie!",
+        "W Shire wszystko w porządku, dzięki tobie, #p!",
+		"Och, #p... muszę zaprosić cię na przyjęcie z okazji trzydziestych trzecich urodzin mojego kuzyna. Nie pozwól mi zapomnieć!",
+        "Och, #p... muszę zaprosić cię na wesele mojego drugiego kuzyna. Nie pozwól mi zapomnieć!",
+		"Och, #p... muszę zaprosić cię na przyjęcie z okazji trzydziestych trzecich urodzin mojej kuzynki. Nie pozwól mi zapomnieć!",
+        "Och, #p... muszę zaprosić cię na wesele mojej drugiej kuzynki. Nie pozwól mi zapomnieć!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+		"gender": "m"
+      },
+      "lines": [
+        "Witaj, #p! Powinienem kiedyś zaprosić cię na popołudniową herbatkę.",
+        "Witaj, #p! Powinienem kiedyś zaprosić cię na drugie śniadanie.",
+        "Witaj, #p! Powinienem kiedyś zaprosić cię na fajkowe zielę."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+		"gender": "f"
+      },
+      "lines": [
+        "Witaj, #p! Powinnam kiedyś zaprosić cię na popołudniową herbatkę.",
+        "Witaj, #p! Powinnam kiedyś zaprosić cię na drugie śniadanie.",
+        "Witaj, #p! Powinnam kiedyś zaprosić cię na fajkowe zielę."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Czy to już pora na drugie śniadanie?",
+        "Ktoś chętny na trzecie śniadanie?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Rany, już pora na popołudniową herbatkę!",
+        "Najlepiej pójdę już na popołudniową herbatkę."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening",
+		"gender": "m"
+      },
+      "lines": [
+        "Zaraz pora na kolację!",
+        "Już czas abym poszedł do stołu kolacyjnego."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening",
+		"gender": "f"
+      },
+      "lines": [
+        "Zaraz pora na kolację!",
+        "Już czas abym poszła do stołu kolacyjnego."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "weather": "rain"
+      },
+      "lines": [
+        "Trzymaj się z dala od deszczu, #p!",
+        "Trzymaj się z dala od deszczu!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend",
+        "biome": "#home"
+      },
+      "lines": [
+        "Witaj w Shire!",
+        "Witaj w Shire, #p!",
+        "Pozdrowienia, #p! Rzadko widujemy Dużych Ludzi takich jak ty w tych okolicach!",
+        "Witaj w Shire, podróżniku z daleka! Jakie wieści przynosisz z szerokiego świata?",
+        "Witaj, #p. Zostajesz na długo?",
+        "Duzi Ludzie w Shire? Same dziwactwa dookoła!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend",
+        "biome": "#home",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Witaj w Shire, podróżniku z daleka! Jakie wieści przynosisz z szerokiego świata?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend",
+        "biome": "#home",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Witaj w Shire, podróżniczko z daleka! Jakie wieści przynosisz z szerokiego świata?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend"
+      },
+      "lines": [
+        "Och, #p. Wydaje mi się że już się spotkaliśmy?",
+        "#p, czyż nie? Tak, teraz pamiętam. Dla mnie wy Duzi Ludzie wyglądacie podobnie.",
+        "Spotkaliśmy się, #p? Nigdy nie zapominam twarzy!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "Tak tęsknię za Shire.",
+        "Jeszcze krok, i będę dalej od domu niż kiedykolwiek w życiu.",
+        "Być może to czas wracać do domu. Tęsknię za Shire.",
+        "A droga wiedzie w przód i w przód, pod drzewami i nad stawami, a ja podążać muszę nią, wielki świat przed nami! Ale wkrótce wracam do domu.",
+        "Czy to kraj twego plemienia, #p? Dziwne to miejsce, na pewno!",
+        "Teraz powinniśmy znaleźć drogę do domu, #p.",
+        "Hobbickie nory! Ciepło, dobre jedzenie i komfort. Tęsknię za moją...",
+        "Już nie mam ochoty na obce krainy, #p. Czy będziemy za niedługo wracać do domu?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign",
+		"gender": "m"
+      },
+      "lines": [
+        "Nigdy nie byłem tak daleko od Shire.",
+        "Przygody? To same nieprzyjemności. Myślę że to już pora abym wracał do domu."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign",
+		"gender": "f"
+      },
+      "lines": [
+        "Nigdy nie byłam tak daleko od Shire.",
+        "Przygody? To same nieprzyjemności. Myślę że to już pora abym wracała do domu."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+        "Cóż za koszmarne miejsce! Pozwól nam w końcu wrócić do Shire!",
+        "Jak myśmy dotarli do tak koszmarnego miejsca?",
+        "Co za okropna kraina, #p!",
+        "Coż za straszne ziemie! Musimy znaleźć drogę powrotną do Shire!",
+        "Ta kraina wystarczy aby napełnić nawet najmężniejsze serca strachem!",
+        "Czuję się tutaj okropnie. Powiedz mi, #p, znasz drogę z powrotem do Shire?",
+        "Nie wiem w jaki sposób znaleźliśmy się w takim miejscu jak to, #p.",
+        "Tutaj nawet powietrze jest wstrętne!",
+        "Zawsze ostrzegali mnie, aby nie podążać tymi drogami idącymi poza Shire!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains",
+		"gender": "m"
+      },
+      "lines": [
+        "Deklaruję że naoglądałem się już tego miejsca wystarczająco! Wracajmy do Shire i to szybko!",
+        "Cóż, #p, to chyba najochydniejsze miejsce jakie widziałem!",
+        "Gdybym tylko zwracał większą uwagę na to co mówił mój stary Dziadunio! Nigdy nie powinienem był opuszczać Shire, nie nie!",
+        "Gdybym wiedział, że takie coś znajduje się poza granicami Shire, nigdzie bym nie wędrował!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains",
+		"gender": "f"
+      },
+      "lines": [
+        "Deklaruję że naoglądałam się już tego miejsca wystarczająco! Wracajmy do Shire i to szybko!",
+        "Cóż, #p, to chyba najochydniejsze miejsce jakie widziałam!",
+        "Gdybym tylko zwracała większą uwagę na to co mówił mój stary Dziadunio! Nigdy nie powinnam była opuszczać Shire, nie nie!",
+        "Gdybym wiedziała, że takie coś znajduje się poza granicami Shire, nigdzie bym nie wędrowała!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Masz może trochę fajkowego ziela, #p?",
+        "Największą przyjemnością jest dobrze przyrządzony posiłek. Znasz to uczucie, #p?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Rolnictwo uważam za najlepszą formę spędzania czasu! Próbowałeś go, #p?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Rolnictwo uważam za najlepszą formę spędzania czasu! Próbowałaś go, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "A jak się dzisiaj czujesz, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff"
+      },
+      "lines": [
+        "Trochę niegrzecznie przeszkadzać, czyż nie?",
+        "Nie ma potrzeby przerywać, nieprawdaż?",
+        "Właśnie rozmawiam! Poczekaj na swoją kolej!",
+        "Zajmij się swoimi sprawami. Nie widzisz że rozmawiamy?",
+        "Zajmij się swoimi sprawami, proszę! Zostaw nas samych.",
+        "Widzę że nie masz skrupułów co do przerywania dobrej hobbickiej pogadanki!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff",
+		"gender": "m"
+      },
+      "lines": [
+        "#p! Byłem w środku rozmowy.",
+        "Jeśli możesz, #p, byłem właśnie w trakcie rozmowy."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff",
+		"gender": "f"
+      },
+      "lines": [
+        "#p! Byłam w środku rozmowy.",
+        "Jeśli możesz, #p, byłam właśnie w trakcie rozmowy."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Czy mogłabyś? Jestem w trakcie rozmowy!",
+        "Cóż za nieuprzejmość! Mieliśmy tutaj dobrą pogadankę, mogłabyś proszę?",
+        "...odwracam się i mówię - przepraszam? Czy mogłabyś nam nie przeszkadzać, #p?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Czy mógłbyś? Jestem w trakcie rozmowy!",
+        "Cóż za nieuprzejmość! Mieliśmy tutaj dobrą pogadankę, mógłbyś proszę?",
+        "...odwracam się i mówię - przepraszam? Czy mógłbyś nam nie przeszkadzać, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Ci Duzi Ludzie! Przychodzą tu i okradają nasze farmy. Shire dla Hobbitów, oto co mówię!",
+        "Nieczęsto widujemy Dużych Ludzi tutaj w Shire.",
+        "Jeden z Dużych Ludzi w Shire? Uważaj i trzymaj się!",
+        "Kto cię wpuścił do Shire? Mam nadzieję że nie jesteś tu aby sprawiać problemy!",
+        "#p, tak? Nieczęsto jeden z was, Dużych Ludzi, wędruje do naszego Shire'u.",
+        "Nie wydaje mi się abyśmy się wcześniej spotakli, nieprawdaż? Witaj w Shire.",
+        "Znamy się? Nie? Cóż, oto nasz Shire. Urocze miejsce, czyż nie?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest"
+      },
+      "lines": [
+        "Więc jakie jest twoje imię? #p? Nie wydaje mi się abyśmy się wcześniej spotkali.",
+        "Nie wydaje mi się abyśmy się znali.",
+        "#p, mówisz? Nieczęsto spotyka się tutaj Dużych Ludzi.",
+        "Znamy się?",
+        "Znamy się? Nie? Cóż, w takim razie idę dalej.",
+        "Hmm... my się chyba nie znamy.",
+        "Jeden z Dużych Ludzi? Przypomnij mi swoje imię?",
+        "Jakie było twoje imię? No mów!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "A kim ty jesteś? #p? Cóż, mam nadzieję że nie jesteś jednym z tych dziwnych ludzi!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "A kim ty jesteś? #p? Cóż, mam nadzieję że nie jesteś jedną z tych dziwnych ludzi!"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ]
+      },
+      "lines": [
+        "Nic o tobie nie wiem..."
+      ]
+    },
+	{
+      "conditions": {
+		"player_gender_pref": "m",
+		"gender": "m",
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ]
+      },
+      "lines": [
+		"Dziwni ludzie byli ostatnio widywani w okolicy, a ty wyglądasz jak jeden z nich.",
+        "Czy aby nie jesteś jednym z tych dziwnych ludzi o których słyszałem?",
+        "Mówi się o dziwnych ludziach w okolicy. Jesteś jednym z nich?",
+        "Widziałem dziwnych ludzi kręcących się w okolicy, a ty mi przypominasz jednego z nich. Nie ufam ci."
+      ]
+    },
+	{
+      "conditions": {
+		"player_gender_pref": "m",
+		"gender": "f",
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ]
+      },
+      "lines": [
+		"Dziwni ludzie byli ostatnio widywani w okolicy, a ty wyglądasz jak jeden z nich.",
+        "Czy aby nie jesteś jednym z tych dziwnych ludzi o których słyszałam?",
+        "Mówi się o dziwnych ludziach w okolicy. Jesteś jednym z nich?",
+        "Widziałam dziwnych ludzi kręcących się w okolicy, a ty mi przypominasz jednego z nich. Nie ufam ci."
+      ]
+    },
+	{
+      "conditions": {
+		"player_gender_pref": "f",
+		"gender": "m",
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ]
+      },
+      "lines": [
+		"Dziwni ludzie byli ostatnio widywani w okolicy, a ty wyglądasz jak jedna z nich.",
+        "Czy aby nie jesteś jedną z tych dziwnych ludzi o których słyszałem?",
+        "Mówi się o dziwnych ludziach w okolicy. Jesteś jedną z nich?",
+        "Widziałem dziwnych ludzi kręcących się w okolicy, a ty mi przypominasz jedną z nich. Nie ufam ci."
+      ]
+    },
+	{
+      "conditions": {
+		"player_gender_pref": "f",
+		"gender": "f",
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ]
+      },
+      "lines": [
+		"Dziwni ludzie byli ostatnio widywani w okolicy, a ty wyglądasz jak jedna z nich.",
+        "Czy aby nie jesteś jedną z tych dziwnych ludzi o których słyszałam?",
+        "Mówi się o dziwnych ludziach w okolicy. Jesteś jedną z nich?",
+        "Widziałam dziwnych ludzi kręcących się w okolicy, a ty mi przypominasz jedną z nich. Nie ufam ci."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ],
+        "biome": "#home"
+      },
+      "lines": [
+        "Przy Dużych Ludziach czuję się źle. Pamiętaj do kogo należy Shire."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Wyglądasz na kogoś kto sprawia problemy!",
+        "Wyglądasz na kogoś kto sprawia problemy, #p.",
+        "Trzymaj się z dala od Shire, #p.",
+        "Trzymaj się z dala od Shire!",
+        "Nie pożyczę ci żadnego fajkowego ziela!",
+        "Nie traktujemy lekko takich jak ty.",
+        "Nie należysz to przyjemnych osób, #p.",
+        "Jeżeli pozwolisz, czuję się przy tobie niespokojnie.",
+        "Nie chcemy takich jak ty w Shire.",
+        "Nie próbuj na mnie żadnych sztuczek Dużych Ludzi!",
+        "Nie próbuj na mnie żadnych sztuczek Dużych Ludzi, #p!",
+        "Pod Zielonym Smokiem nigdy cię nie obsłużą!",
+        "Zostaw mnie w spokoju!",
+        "Zostaw mnie w spokoju, #p!",
+        "Mój kuzyn ma parę bardzo dużych psów. Nie chcesz ich poznać, prawda?",
+        "Stary Bullroarer powaliłby cię do dziury albo nawet dwóch!",
+        "Wilki już wyją, orków natomiast boimy się, aleśmy jeszcze ich nie spotkali. Ale stań pomiędzy hobbitem a jego spokojem...",
+        "Tylko głupiec przeszkodziłby mi w posiłku!",
+        "Dziwnych ludzi spotyka dziwny koniec!",
+        "Tacy jak ty zasługują na porządne utopienie!",
+        "My w Shire nie traktujemy lekko takich hultajów jak ty, #p.",
+        "Cofnij się!",
+        "Nie chcę żadnych kłopotów, #p!",
+        "Już, już, nie chcemy żadnych problemów!",
+        "Nie chcę mieć żadnych problemów z tobą, #p.",
+        "Won mi stąd, albo pójdę po grabie!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"gender": "m"
+      },
+      "lines": [
+        "Słyszałem że sprawiasz problemy w okolicy.",
+        "Wiedziałem że wy starzy dziwni Duzi Ludzie powodujecie kłopoty!",
+        "Wiedziałem że nie można tobie ufać. Masz za małe stopy!",
+        "Nie zmuszaj mnie abym wyciągnął kosę!",
+        "Jesteś hultajem jakiego nie widziałem, #p.",
+        "Nie zmuszaj mnie abym sięgał po grabie!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"gender": "f"
+      },
+      "lines": [
+        "Słyszałam że sprawiasz problemy w okolicy.",
+        "Wiedziałam że wy starzy dziwni Duzi Ludzie powodujecie kłopoty!",
+        "Wiedziałam że nie można tobie ufać. Masz za małe stopy!",
+        "Nie zmuszaj mnie abym wyciągnęła kosę!",
+        "Jesteś hultajem jakiego nie widziałam, #p.",
+        "Nie zmuszaj mnie abym sięgała po grabie!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Jesteś jednym z Warguli, #p!",
+        "Abyś nigdy ponownie nie zasmakował Longbottomskiego liścia!",
+        "Zakłucacz spokoju!",
+        "Stój! Przestępca!",
+        "Może i jesteś wyższy ode mnie, #p, ale w niczym innym nie jesteś lepszy!",
+        "Ty musisz być jednym z tych hultajów o których ciągle słyszę!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Jesteś jedną z Warguli, #p!",
+        "Abyś nigdy ponownie nie zasmakowałą Longbottomskiego liścia!",
+        "Zakłucackka spokoju!",
+        "Stój! Przestępczyni!",
+        "Może i jesteś wyższa ode mnie, #p, ale w niczym innym nie jesteś lepsza!",
+        "Ty musisz być jedną z tych hultajów o których ciągle słyszę!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Shire nie jest miejscem dla takich jak ty!",
+        "Lepiej opuść Shire, #p, albo zawołam Szeryfów!",
+        "Wynocha z mojego pola!",
+        "Wynocha z mojego pola, #p!",
+        "Trzymaj się z dala od moich ziemniaków!",
+        "Szeryfowie złożą ci wizytę, #p!",
+        "Wracaj za żywopłot!",
+        "Wracaj za żywopłot, #p!",
+        "Czyżby ktoś sprawiający problemy? W Shire mile widziani są tylko hobbici! Odejdź!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Moje widły są wystarczająco ostre abyś dwa razy zastanowił się czy wracać do Shire!",
+        "W Shire było spokojnie przez setki lat i śmiem twierdzić że pożałujesz tego że to zmieniłeś!",
+        "Nie chcę cię zranić, #p, ale tak jakby nie jesteś tu mile widziany."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Moje widły są wystarczająco ostre abyś dwa razy zastanowiła się czy wracać do Shire!",
+        "W Shire było spokojnie przez setki lat i śmiem twierdzić że pożałujesz tego że to zmieniłaś!",
+        "Nie chcę cię zranić, #p, ale tak jakby nie jesteś tu mile widziana."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Drugie śniadanie byłoby zbyt dobre dla ciebie, #p!"
+      ]
+    }
+  ]
+}

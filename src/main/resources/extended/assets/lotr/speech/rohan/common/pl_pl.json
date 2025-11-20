@@ -1,0 +1,455 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Świat ludzi utracił swoją dawną chwałę.",
+        "Królestwa ludzi nie są już tak wspaniałe jak kiedyś.",
+        "Konie Riddermarchii są najlepsze z całego Śródziemia.",
+        "My Eorlingowie cenimy sobie nasze konie ponad wszystko. Są najlepsze w całym Śródziemiu!",
+        "Strzeż się Uruk-hai. Często najeżdżają te ziemie, pozostawiając po sobie tylko zniszczenie.",
+        "Nowe życie wciąż rośnie tam gdzie śpią przodkowie Rohanu.",
+        "Wilki już wyją, orków natomiast boimy się, aleśmy jeszcze ich nie spotkali.",
+        "Mam nadzieję że nie zapominasz o karmieniu tych koni.",
+        "W tych ponurych czasach nasze ziemie są często oblegane przez sługi Nieprzyjaciela.",
+        "Ręka i Oko Czrnego Władcy zsyłają na nas cierpienie w tych podłych czasach.",
+        "Silny koń potrzebuje zdrowego siana, #p. Więc nie zapomnij ich nakarmić!",
+        "Dla Kraju Kamienia nadeszły mroczne dni.",
+        "Od dawna mamy spór z Korsarzami z Kraju Słońca.",
+        "Pięc setek lat minęło odkąd Eorl Młody przyprowadził nas tutaj z północy.",
+        "Jakże smukły i piękny był Eorl Młody, gdy przybył tu z północy!",
+        "My z ludu Eorla jesteśmy dumni i szczerzy.",
+        "My Eorlingowie jesteśmy dumną i samowolną rasą.",
+        "Dni coraz ciemniejsze, a noce coraz zimniejsze.",
+        "W tych ponurych czasach nasze ziemie są często oblegane przez sługi zła.",
+        "Orkowie rzadko wędrują pod gołym niebem, w blasku słońca, a mimo to od niedawna tak robią. Boję się o naszych ludzi.",
+        "Orkowie ze znakiem Białej Ręki byli widziani jak przekraczają nasze granice i najeżdżają na nasze wsie.",
+        "Biały Czarodziej wziął sobię na usługi orków, wilczych jeźdzców i nikczemnych ludzi. Zbliża się wojna.",
+        "Strzeż się Białego Czarodzieja, #p. Mówią że przybiera postać starca, w szatach i zakapturzonego.",
+        "Strzeż się drzew z Lasu Entów, #p!",
+        "Opowieści o najazdach orków na Zachodnią Bruzdę z roku na rok jest coraz więcej.",
+        "Have you ridden today, #p, or did you journey on foot?",
+        "Na zachód odeszły dni. Za góry mroczne i mgliste.",
+        "I pomyśleć że byliśmy dobrymi przyjaciółmi ludzi z Kraju Kamienia! Już dawno o nas zapomnieli."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Dziwi mnie jak ci Dunlendingowie mogą być tak głupi i ślepi... och, mówiłeś do mnie, #p?",
+        "Słyszałeś pieśni o Helmie Żelaznorękim? Mówią że zabijał Dunlendingów aż po ostatnie dni swego życia.",
+        "Słyszałeś pieśni o Helmie Żelaznorękim? Mówią że znaleziono go martwego w śniegu, z krwią Dunlendingów wciąż zamrożoną na jego rękach.",
+		"Czy kiedykolwiek widziałeś Złoty Dwór, #p? Blask od Meduseld bije szeroko w krąg!",
+		"Czy jechałeś dzisiaj, #p, czy podróżowałeś pieszo?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Dziwi mnie jak ci Dunlendingowie mogą być tak głupi i ślepi... och, mówiłaś do mnie, #p?",
+        "Słyszałaś pieśni o Helmie Żelaznorękim? Mówią że zabijał Dunlendingów aż po ostatnie dni swego życia.",
+        "Słyszałaś pieśni o Helmie Żelaznorękim? Mówią że znaleziono go martwego w śniegu, z krwią Dunlendingów wciąż zamrożoną na jego rękach.",
+		"Czy kiedykolwiek widziałaś Złoty Dwór, #p? Blask od Meduseld bije szeroko w krąg!",
+		"Czy jechałaś dzisiaj, #p, czy podróżowałaś pieszo?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "m"
+      },
+      "lines": [
+        "Chicałbym, aby świat ludzi został przywrócony do tego, czym był za dawnych dni.",
+		"Dzicy z Dunlandu nazywają nas Słomianymi Łbami. Cóż, #p, wolałbym mieć słomę zamiast włosów niż każdego dnia żyć w brudzie i świńskim gnoju.",
+		"Stare opowieści mówią o gadających drzewach z Lasu Entów. Chciałbym znać prawdę, ale nikt nie ma tyle odwagi aby tam wejść.",
+		"Górale są coraz bardziej agresywni. Słyszałem wiele opowieści o spalonych wioskach i zabitych koniach."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "f"
+      },
+      "lines": [
+        "Chicałabym, aby świat ludzi został przywrócony do tego, czym był za dawnych dni.",
+		"Dzicy z Dunlandu nazywają nas Słomianymi Łbami. Cóż, #p, wolałabym mieć słomę zamiast włosów niż każdego dnia żyć w brudzie i świńskim gnoju.",
+		"Stare opowieści mówią o gadających drzewach z Lasu Entów. Chciałabym znać prawdę, ale nikt nie ma tyle odwagi aby tam wejść.",
+		"Górale są coraz bardziej agresywni. Słyszałam wiele opowieści o spalonych wioskach i zabitych koniach."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Chwała, #p!",
+        "Nie zapomnij nakarmić koni!",
+        "Konie potrzebują karmienia, #p!",
+        "Upewnij się że karmisz te konie, #p.",
+        "Upewnij się że dobrze karmisz te konie.",
+        "Wiesz, konie zawsze potrzebują karmienia.",
+        "Chcesz zobaczyć moje konie?",
+        "Mam nadzieję że nie zapominasz o karmieniu tych koni.",
+        "Have you fed your horses well?",
+        "Konie uwielbiają dobrą marchewkę od czasu do czasu.",
+        "Mam nadzieję że dobrze ci idzie karmienie tych koni.",
+        "Masz może wieści od naszych przyjaciół z Kraju Kamienia, #p? Czy zapomnieli o nas?",
+        "Obawiam się że nie starczy nam jedzenia na zimę, #p.",
+        "Ludzie z Dunlandu są dzicy i okrutni. Uważaj na nich."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+		"daytime": "dawn | morning | afternoon"
+      },
+      "lines": [
+        "Dzień dobry. Z jakiego obcego kraju przybywasz?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+		"daytime": "evening | dusk | night"
+      },
+      "lines": [
+        "Dobry wieczór. Z jakiego obcego kraju przybywasz?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Chwała, nieznajomy!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Chwała, nieznajoma!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Wędrujesz właśnie po zielonych polach Riddermarchii.",
+        "Te ziemie są zagrożone, #p. Orkowie często przełamują się przez nasze granice.",
+        "Nie jesteśmy jeszcze w otwartej wojnie z potęgą Czarnego Kraju daleko stąd; ale jeżeli uciekasz przed nim, to najlepiej będzie jak opuścisz te ziemie."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "in_conversation": "other",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Bądź cicho, nieznajomy!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "in_conversation": "other",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Bądź cicho, nieznajoma!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman",
+        "in_conversation": "other"
+      },
+      "lines": [
+        "Bądź cicho!",
+        "Bądź cicho! Rozmawiamy!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <atarms",
+		"daytime": "dawn | morning | afternoon"
+      },
+      "lines": [
+        "Ach, to znowu ty, #p.",
+        "Dzień dobry, #p. Z jakiej odległej krainy przybywasz?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <atarms",
+		"daytime": "evening | dusk | night"
+      },
+      "lines": [
+        "Ach, to znowu ty, #p.",
+        "Dobry wieczór, #p. Z jakiej odległej krainy przybywasz?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<atarms",
+        "biome": "#home"
+      },
+      "lines": [
+        "Witaj w Riddermarchii.",
+        "Witaj w Rohanie. Z jakiej krainy przybywasz?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <atarms",
+        "biome": "#home"
+      },
+      "lines": [
+        "Witaj w Riddermarchii, #p.",
+        "Witaj w krainie Rohaniu, #p!",
+        "Witaj, #p. Co cię sprowadza do Rohanu?",
+        "Witaj w Rohanie, #p.",
+        "Witaj, #p! Jakie wiadomości przynosisz do Riddermarchii?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman"
+      },
+      "lines": [
+        "Jesteś w zmowie z Czarownicą ze Złotego Lasu? W Dwimordene od zawsze były plecione sieci oszustwa."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=footman",
+        "biome": "#home",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Jesteś mile widziany w Riddermarchii, #p."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=footman",
+        "biome": "#home",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Jesteś mile widziana w Riddermarchii, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms & <captain"
+      },
+      "lines": [
+        "Słyszałem opowieści o twoich czynach w imieniu Marchii, #p."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms & <captain",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Chwała #p, przyjacielu Marchii!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms & <captain",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Chwała #p, przyjaciółko Marchii!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=rider",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Chwała #p, jeźdzcu Marchii!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=rider",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Chwała #p, jeźdźczyni Marchii!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "daytime": "evening | dusk",
+        "weather": "clear"
+      },
+      "lines": [
+        "Słońce zachodzi za górami.",
+        "Spójrz jak słońce zachodzi nad łąkami Marchii."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk | night"
+      },
+      "lines": [
+        "Noc zapadła. Strzeż się wilka co czycha w ciemnościach, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn",
+        "weather": "clear"
+      },
+      "lines": [
+       "Spójrz na wschód! Słońce wstaje!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "weather": "rain"
+      },
+      "lines": [
+        "Być może tą burzę wywołał podły wiatr ze wschodu.",
+        "Chmury się rozdarły. Zapewnij schronienie swoim koniom!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:anorien",
+		"gender": "m"
+      },
+      "lines": [
+        "Od zawsze marzyłem aby postawić stopę w Kraju Kamienia.",
+        "Od dawna chciałem postawić stopę w Kraju Kamienia, krainie naszych potężnych przyjaciół z dawnych czasów."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:anorien",
+		"gender": "f"
+      },
+      "lines": [
+        "Od zawsze marzyłam aby postawić stopę w Kraju Kamienia.",
+        "Od dawna chciałam postawić stopę w Kraju Kamienia, krainie naszych potężnych przyjaciół z dawnych czasów."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Twoja zguba nadejdzie szybko, #p!",
+        "Zapłacisz za swoje zbrodnie, #p!",
+        "Zapłacisz za swoje zbrodnie!",
+        "Precz stąd!",
+        "Precz stąd, złoczyńco!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Powinieneś uciec z tych ziem już dawno temu!",
+        "Nie zdzierżymy twojej obecności na tych ziemiach, #p!",
+        "Nie jesteś mile widziany w Marchii, #p!",
+        "Nie jesteś mile widziany w Riddermarchii!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Powinnaś uciec z tych ziem już dawno temu!",
+        "Nie zdzierżymy twojej obecności na tych ziemiach, #p!",
+        "Nie jesteś mile widziana w Marchii, #p!",
+        "Nie jesteś mile widziana w Riddermarchii!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:isengard"
+      },
+      "lines": [
+        "Zdrada Isengardu nie jest tu mile widziana.",
+        "Jak to się stało, że służysz Isengardowi?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+       "Jak to się stało, że służysz Mordorowi?",
+        "Odejdź, sługo Saurona!",
+        "Odejdź, sługo Mordoru!",
+        "Ty i twój mistrz nie odbierzecie nam żadnych więcej karych koni!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "Jak to się stało, że służysz Cieniowi?",
+        "Odejdź, sługo Nieprzyjaciela!"
+      ]
+    }
+  ]
+}

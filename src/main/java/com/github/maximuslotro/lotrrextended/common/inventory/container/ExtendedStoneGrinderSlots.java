@@ -73,7 +73,9 @@ public class ExtendedStoneGrinderSlots {
 
 		@Override
 		public ItemStack onTake(PlayerEntity pPlayer, ItemStack pStack) {
-			ExtendedCriteriaTriggers.FACTION_CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, pStack, ExtendedBlocks.STONE_GRINDER.get());
+			if(!player.level.isClientSide) {
+				ExtendedCriteriaTriggers.FACTION_CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, pStack, ExtendedBlocks.STONE_GRINDER.get());
+			}
 			this.checkTakeAchievements(pStack);
 			super.onTake(pPlayer, pStack);
 			return pStack;

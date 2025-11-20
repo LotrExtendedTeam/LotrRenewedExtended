@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,short=false": {
+      "model": "lotrextended:block/lothlorien_banner_tall"
+    },
+    "facing=south,short=false": {
+      "model": "lotrextended:block/lothlorien_banner_tall",
+      "y": 180
+    },
+    "facing=west,short=false": {
+      "model": "lotrextended:block/lothlorien_banner_tall",
+      "y": 270
+    },
+    "facing=east,short=false": {
+      "model": "lotrextended:block/lothlorien_banner_tall",
+      "y": 90
+    },
+    "facing=north,short=true": {
+      "model": "lotrextended:block/lothlorien_banner_small"
+    },
+    "facing=south,short=true": {
+      "model": "lotrextended:block/lothlorien_banner_small",
+      "y": 180
+    },
+    "facing=west,short=true": {
+      "model": "lotrextended:block/lothlorien_banner_small",
+      "y": 270
+    },
+    "facing=east,short=true": {
+      "model": "lotrextended:block/lothlorien_banner_small",
+      "y": 90
+    }
+  }
+}

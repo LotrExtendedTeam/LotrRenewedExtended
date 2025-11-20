@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FD",
+    "DB"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:dirt"
+    },
+    "F": {
+      "tag": "lotrextended:flesh"
+    },
+    "B": {
+      "tag": "forge:bones"
+    }
+  },
+  "result": {
+    "item": "lotr:waste_block",
+    "count": 4
+  }
+}

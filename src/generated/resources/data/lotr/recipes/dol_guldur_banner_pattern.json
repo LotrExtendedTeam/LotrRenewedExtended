@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:dol_guldur",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotr:dol_guldur_banner"
+    }
+  ],
+  "result": {
+    "item": "lotr:dol_guldur_banner_pattern"
+  }
+}

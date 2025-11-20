@@ -156,20 +156,6 @@
               }
             }
           ],
-          "name": "lotr:cram"
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 2.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
           "name": "minecraft:bread"
         },
         {

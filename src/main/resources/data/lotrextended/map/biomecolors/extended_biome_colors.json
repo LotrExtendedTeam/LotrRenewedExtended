@@ -1,7 +1,12 @@
 {
-  "load_order": 2,
-  "biome_colors": {
-    "lotr:barrow_downs": "7B8E52",
-    "lotr:barrow_downs_river": "677A72"
-  }
+	"load_order": 2,
+	"biome_colors": {
+		"lotr:barrow_downs": "7B8E52",
+		"lotr:barrow_downs_river": "677A72",
+		"lotr:rivendell": "7DA82D",
+		"lotr:rivendell_valley": "86B72A",
+		"lotr:rivendell_hills": "C4C59E",
+		"lotr:rivendell_cliffs": "D8D5B1",
+		"lotr:rivendell_river": "557CB5"
+	}
 }

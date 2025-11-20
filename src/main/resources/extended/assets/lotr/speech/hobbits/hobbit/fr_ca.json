@@ -1,0 +1,667 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Les raccourcis font de longs délais !",
+        "La seule boisson pour les braves... vient du Dragon vert !",
+        "Que serions nous autres Hobbits sans herbe à pipe ?",
+        "Ne rêves-tu pas de vivre dans un trou de Hobbit ?",
+        "Les trous de Hobbit ! Chauds, confortables et pleins de bonne nourriture !",
+        "C'est une affaire dangereuse de passer sa porte.",
+        "Les Sacquet-de-Besace sont venus déjeuner hier...",
+        "La route se poursuit sans fin...",
+        "Une aventure ? Ce sont des choses désagréables, qui n'apportent que des ennuis et retardent votre dîner !",
+        "Jamais bière n'aura aussi bon goût que celle qu'on trouve par chez nous !",
+        "Je ne sais pas ce que je ferai un jour d'été sans une bonne feuille de Longoulet !",
+        "J'ai de la famille dans le Pays de Bouc. Ce sont d'étranges gens...",
+        "Il y a plein de bonne nourriture, boisson et herbe à pipe au marché de Stock !",
+        "As-tu vu les grenouilles des marais de Lagrenouillère ?",
+        "Les Landes du Nord sont sauvages, mais on y trouve de bonnes auberges avec un foyer accueillant.",
+        "On parle d'Elfes dans les bois du Creux-aux-Saules. Moi je dis que c'est juste la famille Largepied !",
+        "Il vaut mieux éviter le Gué de Sarn... C'est là que tous les voyageurs se rencontrent, et certains sont vraiment étranges !",
+        "Je ne veux pas d'aventures, merci bien !",
+        "Ma connaissance des pommes de terre n'est surpassée que par les Gamegie !",
+        "Les jours venteux, j'aime m'allonger sous un chêne et dormir. Comme tout Hobbit le devrait !",
+        "La feuille de Longoulet est la feuille des merveilles ! N'est-ce pas, #p ?",
+        "Mes parterres ont besoin d'un bon arrosage !",
+        "Pour un joyeux jour au dehors, je propose le Trou d'Aiguille... ou de quoi manger !",
+        "Un bon repas est ce qu'il y a de meilleur !",
+        "Mmm, des pommes de terre au beurre avec des petits pois...",
+        "L'herbe à pipe c'est bien. Les champignons c'est mieux !",
+        "J'aime les champignons tout juste ramassés dans un champ.",
+        "J'aime la bonne nourriture simple !",
+        "Je me couche tard et je me lève tard pour le petit-déjeuner. C'est la seule façon de vivre !",
+        "Jardiner est un bon moyen de passer la journée.",
+        "Une tasse de thé pour moi !",
+        "Les fêtes de la Comté sont les plus belles que vous verrez. Nourriture, boisson et amusement à foison !",
+        "On dit que les familles riches cachent leurs trésors dans leur trou. Des coffres pleins d'or, d'argent... et de joyaux !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Tu es presque aussi grand que le vieux Taureau Rugissant ! Sais-tu comment il a inventé le golf ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Tu es presque aussi grande que le vieux Taureau Rugissant ! Sais-tu comment il a inventé le golf ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Bonjour, #p.",
+        "Bonjour.",
+        "Bonjour !",
+        "Bien le bonjour, #p ! Comment vas-tu ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Ce champ est plein de lapins ! Je devrais appeler les gamins pour les chasser !",
+        "Ma famille à Bree parle d'étranges affaires..."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Bonne matinée !",
+        "Bonne journée à vous !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Bonne matinée, #p !",
+        "C'est une belle matinée, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Bon après-midi !",
+        "Passez un bon après-midi !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Bon après-midi, #p !",
+        "Passe un bon après-midi, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "Bonne soirée !",
+        "Passez une bonne soirée !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Bonne soirée, #p !",
+        "Passe une bonne soirée, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn",
+        "weather": "clear"
+      },
+      "lines": [
+        "Que le ciel est beau ce matin !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk",
+        "weather": "clear"
+      },
+      "lines": [
+        "Que le ciel est beau ce soir !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn",
+        "sun_admiring": "true",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "N'est-ce pas un magnifique lever de soleil, #p ?",
+        "Oh, bonjour, #p. Je regardais juste la Soleil se lever. Magnifique, n'est-ce pas ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk",
+        "sun_admiring": "true",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Quel beau coucher de soleil, n'est-ce pas, #p ?",
+        "Oh, bonsoir, #p. Je regardais juste la Soleil se coucher. N'est-ce pas magnifique ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "Eh bien, je ferais mieux d'aller au lit !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Puissent les poils de tes orteils ne jamais tomber, #p !",
+        "Puissent les poils de tes orteils ne jamais tomber !",
+        "C'est toujours un plaisir, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Tu n'es pas si mal pour l'un des Grandes Gens !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Tu n'es pas si mal pour l'une des Grandes Gens !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder"
+      },
+      "lines": [
+        "Oh, c'est toi, #p ! Je ne t'avais pas reconnu.",
+        "Tu vois ? J'ai toujours dit qu'il y avait de bonnes Grandes Gens, comme toi, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Tiens, si ce n'est pas #p ! Comment vas-tu aujourd'hui ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "Tiens, si ce n'est pas #p ! Comment vas-tu ce soir ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Bonne journée, monsieur !",
+        "Bonne journée, monsieur #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Bonjour, madame !",
+        "Bonjour, madame #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff"
+      },
+      "lines": [
+        "Bonjour, #p ! Il faut que je vous invite à prendre un thé un de ces jours.",
+        "Bonjour, #p ! Il faut que je vous invite prendre le second petit déjeuner un de ces jours.",
+        "Bonjour, #p ! Il faut que je vous invite venir fumer chez moi un de ces jours.",
+        "Tout va bien dans la Comté grâce à vous !",
+        "Tout va bien dans la Comté grâce à vous, #p !",
+        "Oh, #p... Je dois vous inviter au trente-troisième anniversaire de mon cousin. Rappelez le moi !",
+        "Oh, #p... Je dois vous inviter au mariage de mon cousin germain. Ne me laissez pas oublier !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Est-ce l'heure du second petit déjeuner ?",
+        "Quelqu'un pour un troisième petit déjeuner ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Eh bien, il est déjà l'heure du thé !",
+        "Je ferais mieux d'aller prendre le thé."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "Il va bientôt être temps de souper !",
+        "Vivement que je sois à table pour le souper."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "weather": "rain"
+      },
+      "lines": [
+        "Ne reste pas sous la pluie, #p !",
+        "Ne restez pas sous la pluie !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend",
+        "biome": "#home"
+      },
+      "lines": [
+        "Bienvenue dans la Comté !",
+        "Bienvenue dans la Comté, #p !",
+        "Bonjour, #p ! J'ai rarement vu des grandes gens comme vous par ici !",
+        "Bienvenue dans la Comté, voyageur venu de loin ! Quelles nouvelles apportez vous du vaste monde ?",
+        "Bonjour, #p. Allez-vous rester longtemps ?",
+        "Des Grandes Gens dans la Comté ? Que le monde devient étrange !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend"
+      },
+      "lines": [
+        "Oh, #p. Je crois que nous nous sommes déjà rencontrés ?",
+        "#p, n'est-ce pas ? Oui, je me souviens de vous maintenant. Vous autres Grandes Gens vous ressemblez tous à mes yeux.",
+        "Nous sommes nous déjà rencontrés, #p ? Je n'oublie jamais un visage !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "Que la Comté me manque.",
+        "Je n'ai jamais été aussi loin de la Comté...",
+        "Encore un pas de plus et ce sera l'endroit le plus éloigné de chez moi où j'ai jamais été.",
+        "Peut être qu'il est temps de rentrer. La Comté me manque.",
+        "Des aventures ? Quelles choses désagréables. Je crois qu'il est temps que je rentre chez moi.",
+        "La route se poursuit sans fin, sous les arbres et par dessus les rivières, et il me faut la suivre, semble-t-il ! Mais je rentrerai bientôt à la maison.",
+        "Est-ce le pays de ton peuple, #p ? Pour sûr, c'est un endroit étrange !",
+        "Il nous faut à présent trouver le chemin du retour, #p.",
+        "Les trous de Hobbit ! Leur confort, leur chaleur, leur nourriture... Le mien me manque...",
+        "J'en ai assez des terres étrangères pour le moment, #p. Allons-nous bientôt rentrer chez nous ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+        "Quel horrible endroit ! Rentrons à la Comté immédiatement !",
+        "Comment sommes-nous arrivés dans un endroit si terrible ?",
+        "Quelle terre affreuse, #p !",
+        "Quel pays terrifiant ! Nous devons trouver comment rentrer à la Comté !",
+        "Ce pays pourrait emplir de terreur même le plus solide des coeurs !",
+        "Je le dis, j'ai vu assez de cet endroit ! Rentrons à la Comté, et vite !",
+        "Eh bien, #p, c'est un endroit épouvantable !",
+        "Je suis très mal à l'aise ici. Dites, #p, connaissez vous le chemin qui mène à la Comté ?",
+        "Je ne sais même pas comment nous avons pu nous retrouver dans un endroit pareil, #p.",
+        "Même l'air est mauvais !",
+        "On m'a toujours dit de ne pas suivre les routes qui quittaient la Comté !",
+        "Si seulement j'avais mieux écouté mon Ancien ! J'aurais jamais dû quitter la Comté, ça non !",
+        "Si j'avais su ce qui m'attendait en dehors de la Comté, je ne serais jamais parti explorer !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "As-tu un peu d'herbe à pipe, #p ?",
+        "Je trouve que cultiver la terre est un bon passe temps ! As-tu déjà essayé, #p ?",
+        "Un bon repas est le meilleur des plaisirs. Connais-tu cette sensation, #p ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Comment vas-tu aujourd'hui, #p ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff"
+      },
+      "lines": [
+        "Vous permettez ? J'étais en plein dans une conversation !",
+        "#p ! J'étais au beau milieu d'une conversation.",
+        "C'est un peu malpoli d'interrompre la discussion, non ?",
+        "Pas besoin de me couper la parole, non ?",
+        "J'étais entrain de parler ! Attendez votre tour !",
+        "Quelle impolitesse ! Nous étions en train de discuter, merci bien.",
+        "Occupez vous de vos affaires. Vous ne voyez pas que nous sommes entrain de parler ?",
+        "Occupez vous de vos affaires ! Laissez nous tranquille.",
+        "Je vois que vous n'avez aucun scrupule à interrompre une bonne conversation entre Hobbits. !",
+        "Si vous permettez, #p, j'étais en plein dans une conversation.",
+        "...et là je me suis tourné vers lui pour dire - pardon ? Pourriez vous ne pas nous interrompre, #p ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Ces Grandes Gens ! Ils viennent et volent nos fermes. La Comté est aux Hobbits !",
+        "On ne voit pas souvent de grandes gens ici dans la Comté.",
+        "Une des Grandes Gens dans la Comté ? Faites attention où vous mettez les pieds !",
+        "Qui vous a laissé entrer dans la Comté ? J'espère que vous n'êtes pas ici pour causer des ennuis !",
+        "#p, c'est cela ? Ca n'arrive pas souvent que des Grandes Gens s'aventurent dans la Comté.",
+        "Je ne crois pas vous avoir déjà rencontré ? Bienvenue dans la Comté.",
+        "Vous ai-je déjà rencontré ? Non ? Eh bien, voici notre Comté. Charmant pays, n'est-ce pas ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest"
+      },
+      "lines": [
+        "Quel est votre nom, déjà ? #p ? Je ne crois pas vous avoir déjà rencontré.",
+        "Je ne crois pas vous avoir déjà vu auparavant.",
+        "#p, vous dites ? Ca n'est pas souvent qu'on rencontre des Grandes Gens comme vous.",
+        "Et vous êtes ? #p ? J'espère que vous n'êtes pas de ces gens étranges !",
+        "Nous sommes nous déjà rencontrés ?",
+        "Vous ai-je déjà vu quelque part ? Non ? Bon, je vais m'en aller, alors.",
+        "Hmm... Je ne crois pas vous avoir déjà rencontré.",
+        "Une des Grandes Gens ? Quel est votre nom, déjà ?",
+        "Quel était votre nom, déjà ? Dites moi !"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ]
+      },
+      "lines": [
+        "D'étranges gens ont été aperçus dans les environs, vous leur ressemblez.",
+        "N'êtes vous pas l'un de ces étrangers dont on entend parler ?",
+        "J'ai vu d'étranges gens rôder dans les parages, et vous me les rappelez. Je n'ai pas confiance en vous.",
+        "Vous ne m'inspirez pas confiance..."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile",
+            "player_gender_pref": "m"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest",
+            "player_gender_pref": "m"
+          }
+        ]
+      },
+      "lines": [
+        "On raconte qu'il y a d'étranges gens par ici. Seriez vous l'un d'entre eux ?"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile",
+            "player_gender_pref": "f"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest",
+            "player_gender_pref": "f"
+          }
+        ]
+      },
+      "lines": [
+        "On raconte qu'il y a d'étranges gens par ici. Seriez vous l'une d'entre eux ?"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ],
+        "biome": "#home"
+      },
+      "lines": [
+        "Les Grandes Gens me mettent mal à l'aise. Rappelez vous à qui est cette Comté."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "J'ai entendu dire que vous causez des ennuis par ici.",
+        "Vous avez l'air d'un fauteur de troubles !",
+        "Vous avez l'air d'un fauteur de troubles, #p.",
+        "Restez loin de la Comté, #p.",
+        "Sortez de notre Comté !",
+        "Je ne vous prêterais certainement pas d'herbe à pipe !",
+        "On n'aime pas trop les gens comme vous.",
+        "Vous n'êtes pas quelqu'un de bien, #p.",
+        "Si vous voulez bien m'excuser, vous me mettez mal à l'aise.",
+        "Tu es un des Mewlips, #p !",
+        "Je savais que des Grandes Gens étranges comme vous amenaient des ennuis !",
+        "On n'apprécie pas les gens comme vous dans la Comté.",
+        "N'essayez pas vos tromperies de Grandes Gens sur moi !",
+        "N'essayez pas vos tromperies de Grandes Gens sur moi, #p !",
+        "Puissiez vous ne jamais savourer la feuille de Longoulet à nouveau !",
+        "Je savais qu'on ne pouvais pas vous faire confiance. Vos pieds sont trop petits !",
+        "Le Dragon Vert ne vous servira jamais !",
+        "Laissez moi tranquille !",
+        "Laissez moi en paix, #p !",
+        "Mon cousin a de très gros chiens. Vous n'aimeriez pas les rencontrer, j'imagine ?",
+        "Trouble-paix !",
+        "Le Vieux Taureau Rugissant vous aurait envoyé dans un trou de lapin !",
+        "Le loup que l'on entend est pire que l'Orc que l'on craint. Mais mettez vous entre un Hobbit et sa vie paisible...",
+        "Etranges gens ont d'étranges fins !",
+        "Ne me faites pas aller chercher ma faux !",
+        "Les gens comme vous méritent une bonne noyade !",
+        "Du balai !",
+        "Je ne veux pas d'ennuis, #p !",
+        "Allons, ne cherchons pas les ennuis !",
+        "Je ne veux pas d'ennuis avec vous, #p.",
+        "Aller, du vent, ou bien je vais chercher mon râteau !",
+        "Ne me faites pas prendre mon râteau !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Arrêtez-vous ! Fauteur de troubles !",
+        "Seul un fou oserait interrompre mon repas  !",
+        "Vous êtes peut-être plus grand que moi, #p. Mais c'est bien le seul domaine où vous êtes meilleur !",
+        "Vous devez être un de ces bons à rien dont j'entend parler sans cesse !",
+        "On n'aime pas beaucoup les bons à rien comme vous dans la Comté, #p.",
+        "Vous êtes un sacré bon à rien, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Arrêtez-vous ! Fauteuse de troubles !",
+        "Seul une folle oserait interrompre mon repas  !",
+        "Vous êtes peut-être plus grande que moi, #p. Mais c'est bien le seul domaine où vous êtes meilleure !",
+        "Vous devez être une de ces bonnes à rien dont j'entend parler sans cesse !",
+        "On n'aime pas beaucoup les bonnes à rien comme vous dans la Comté, #p.",
+        "Vous êtes une sacrée bonne à rien, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Vous feriez mieux de quitter la Comté, #p, ou bien j'appellerais les Shirriffs !",
+        "Sortez de mes terres !",
+        "Sortez de mes terres, #p !",
+        "Ma fourche est assez pointue pour vous faire hésiter à revenir dans la Comté !",
+        "La Comté a été en paix pendant des centaines d'année, et vous regretterez d'avoir changé ça !",
+        "Eloignez vous de mes patates !",
+        "Les Shirriffs s'occuperont de vous, #p !",
+        "Retournez derrière la haie !",
+        "Retournez derrière la haie, #p !",
+        "Sans vouloir être méchant, #p, vous autres n'êtes pas les bienvenus ici."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "La Comté n'est pas un endroit pour les fauteurs de troubles comme vous !",
+        "Un fauteur de troubles ? La Comté n'accueille que les Hobbits ! Allez vous en !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "La Comté n'est pas un endroit pour les fauteuses de troubles comme vous !",
+        "Une fauteuse de troubles ? La Comté n'accueille que les Hobbits ! Allez vous en !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Un second petit déjeuner serait gâché sur vous, #p !"
+      ]
+    }
+  ]
+}

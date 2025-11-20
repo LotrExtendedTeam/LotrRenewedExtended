@@ -14,6 +14,9 @@
                 "min": 0.0,
                 "max": 0.1
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:fishing_rod"
@@ -28,6 +31,9 @@
                 "min": 0.0,
                 "max": 0.5
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_sword"
@@ -42,6 +48,9 @@
                 "min": 0.0,
                 "max": 0.5
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_axe"
@@ -56,6 +65,9 @@
                 "min": 0.0,
                 "max": 0.5
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_pickaxe"
@@ -70,6 +82,9 @@
                 "min": 0.0,
                 "max": 0.5
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_shovel"
@@ -84,6 +99,9 @@
                 "min": 0.0,
                 "max": 0.5
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_hoe"
@@ -103,6 +121,9 @@
                 "min": 0.0,
                 "max": 0.5
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:leather_helmet"
@@ -117,6 +138,9 @@
                 "min": 0.0,
                 "max": 0.5
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:leather_boots"
@@ -131,6 +155,9 @@
                 "min": 0.0,
                 "max": 0.5
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bone_helmet"
@@ -145,6 +172,9 @@
                 "min": 0.0,
                 "max": 0.5
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bone_boots"

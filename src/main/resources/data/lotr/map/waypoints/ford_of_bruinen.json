@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "waypoint.lotr.ford_of_bruinen",
+    "translate": true
+  },
+  "lore": {
+    "text": "waypoint.lotr.ford_of_bruinen.lore",
+    "translate": true
+  },
+  "x": 1162,
+  "z": 725.5,
+  "travel_region": "lotr:rivendell",
+  "faction": "lotr:high_elves"
+}

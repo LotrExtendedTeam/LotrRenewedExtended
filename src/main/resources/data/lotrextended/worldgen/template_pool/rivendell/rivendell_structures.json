@@ -1,0 +1,85 @@
+{
+	"name": "lotrextended:rivendell/rivendell_structures",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:rivendell/rivendell_house_1",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"foundation_block": {
+					"Name": "minecraft:dirt"
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:rivendell/rivendell_house_2",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"foundation_block": {
+					"Name": "minecraft:dirt"
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:rivendell/rivendell_house_3",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"foundation_block": {
+					"Name": "minecraft:dirt"
+				}
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:rivendell/rivendell_captain_tower",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"foundation_block": {
+					"Name": "minecraft:dirt"
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:rivendell/rivendell_smith",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"foundation_block": {
+					"Name": "minecraft:dirt"
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:rivendell/rivendell_weaver_1",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"foundation_block": {
+					"Name": "minecraft:dirt"
+				},
+				"apply_waterlogging" : false
+			}
+		}
+	]
+}

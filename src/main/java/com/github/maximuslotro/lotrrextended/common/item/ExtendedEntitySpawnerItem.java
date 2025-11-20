@@ -39,7 +39,7 @@ public class ExtendedEntitySpawnerItem extends Item{
 			ExtendedStructureSpawnerEntity spawnerEntity = new ExtendedStructureSpawnerEntity(world);
 			ItemStack pStack = player.getItemInHand(hand);
 			if (!pStack.isEmpty() && pStack.hasTag() && pStack.getTag().contains("setSpawnerType")) {
-				spawnerEntity.setSpawnerToDefaultPreset(new ResourceLocation(pStack.getTag().getString("setSpawnerType")), true);
+				spawnerEntity.setSpawnerToPreset(new ResourceLocation(pStack.getTag().getString("setSpawnerType")));
 			}
 			BlockPos setPos = new BlockPos(player.getX(), player.getEyeY(), player.getZ());
 			spawnerEntity.moveTo(setPos.relative(player.getDirection(), 1), 0.0F, 0.0F);
@@ -70,7 +70,7 @@ public class ExtendedEntitySpawnerItem extends Item{
 				ExtendedStructureSpawnerEntity spawnerEntity = new ExtendedStructureSpawnerEntity(world);
 				ItemStack pStack = playerentity.getItemInHand(hand);
 				if (!pStack.isEmpty() && pStack.hasTag() && pStack.getTag().contains("setSpawnerType")) {
-					spawnerEntity.setSpawnerToDefaultPreset(new ResourceLocation(pStack.getTag().getString("setSpawnerType")), true);
+					spawnerEntity.setSpawnerToPreset(new ResourceLocation(pStack.getTag().getString("setSpawnerType")));
 				}
 				spawnerEntity.moveTo(blockpos.getX()+0.5D, blockpos.getY(), blockpos.getZ()+0.5D, 0.0F, 0.0F);
 				world.addFreshEntity(spawnerEntity);

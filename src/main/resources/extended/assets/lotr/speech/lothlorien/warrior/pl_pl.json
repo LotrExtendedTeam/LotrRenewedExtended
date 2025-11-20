@@ -1,0 +1,64 @@
+{
+  "parent": "lotr:lothlorien/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Bronimy wolnych ludów Śródziemia.",
+        "Coraz silniejszy jest wpływ Nieprzyjaciela nad naszym krajem.",
+        "Potęga elfów zanika na tym świecie, ale nie straciliśmy jeszcze naszej siły!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Bronię elfów z Lothlórien."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Niech łaska Valarów cię ochrania.",
+        "_PGP_How many Orcs have you slain today, #p?",
+        "Jeżeli walczysz o wolność, to jestem z tobą."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Ilu orków dzisiaj zabiłeś, #p?"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Ilu orków dzisiaj zabiłaś, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=warden"
+      },
+      "lines": [
+        "Dawno temu istniał sojusz między moją rasą a twoją. Czy uhonorujesz ten sojusz?"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "lotrextended:block/lothlorien_wall_banner"
+    },
+    "facing=south": {
+      "model": "lotrextended:block/lothlorien_wall_banner",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "lotrextended:block/lothlorien_wall_banner",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "lotrextended:block/lothlorien_wall_banner",
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "lotr:durins_folk/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Ещё несколько лун у горна, и у меня будет доспех, чтобы отправиться на охоту за этими рахасами!"
+      ]
+    }
+  ]
+}

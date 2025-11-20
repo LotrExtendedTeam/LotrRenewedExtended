@@ -25,15 +25,15 @@
       "x": 270
     },
     "axis=x,type=double": {
-      "model": "lotrextended:block/stripped_chestnut_log",
+      "model": "lotrextended:block/stripped_chestnut_wood",
       "x": 90,
       "y": 90
     },
     "axis=y,type=double": {
-      "model": "lotrextended:block/stripped_chestnut_log"
+      "model": "lotrextended:block/stripped_chestnut_wood"
     },
     "axis=z,type=double": {
-      "model": "lotrextended:block/stripped_chestnut_log",
+      "model": "lotrextended:block/stripped_chestnut_wood",
       "x": 270
     }
   }

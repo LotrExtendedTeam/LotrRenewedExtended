@@ -3,7 +3,6 @@ package lotr.common.entity.npc.data;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedTradeType;
@@ -14,6 +13,8 @@ import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfil
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
 
+import lotr.common.data.ExtendedLOTRPlayerData;
+import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
@@ -28,7 +29,10 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Util;
+import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.text.Color;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -73,13 +77,15 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		// Number of trades that should generate, handle  pools smaller than generated trade count or larger than 9 slots
 		int tradeCount = Math.min(Math.min(rand.nextInt(getProfile().getMaximumAdditionalTrades()+1) + getProfile().getMinimumTrades(), profileTradePool.size()), 9);
 		// Get random list of trade pool items
-		List<ExtendedTraderPoolItem> randomElements = rand
-			.ints(0, profileTradePool.size())
-			.distinct()
-			.limit(tradeCount)
-			.mapToObj(profileTradePool::get)
-			.collect(Collectors.toList());
-
+		// Weighted picks
+		List<ExtendedTraderPoolItem> randomElements = new ArrayList<>();
+		for (int i = 0; i < tradeCount; i++) {
+		    ExtendedTraderPoolItem chosen = WeightedRandom.getRandomItem(rand, profileTradePool);
+		    // Catch end of list
+		    if (chosen == null) break;
+		    randomElements.add(chosen);
+		    profileTradePool.remove(chosen);
+		}
 		// Generate a random price for each entry
 		randomElements.forEach(entry -> {
 			// Doing a bit of math from (https://lotrminecraftmod.fandom.com/wiki/Trading) results in all items
@@ -90,7 +96,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 			float finalFloatPrice = entry.getAverageCost() * priceModifier;
 			// Convert to whole number and ensure minimum of price of 1
 			int nicePrice = Math.max(Math.round(finalFloatPrice), 1);
-			outputTrades.add(new ExtendedTrade(entry.getStack(rand), nicePrice, entry.getMaxTransferQuantity(), entry.getMaxTransferQuantity()));
+			outputTrades.add(new ExtendedTrade(entry.getStack(rand), nicePrice, entry.getMaxTransferQuantity(), entry.getMaxTransferQuantity(), entry.shouldTradePersist()));
 		});
 
 		return outputTrades;
@@ -399,10 +405,15 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 
 	private void tickWanderingTrader(NPCEntity npc) {
 		if (isTraderCurrentlyWandering()) {
+			Style npcNameStyle = Style.EMPTY.withColor(Color.fromRgb(((ExtendedWanderingTraderEntity) npc).getFactionColor()));
 			if (wanderingTraderAliveTime < 1) {
 				// notify players the traveling trader has departed
 				for (PlayerEntity player : npc.level.players()) {
-					player.sendMessage(new TranslationTextComponent("chat.wandering_trader.left_the_area", npc.getName().copy().withStyle(TextFormatting.YELLOW)), Util.NIL_UUID);
+					if(((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(player)).getExtendedMiscData().doHighContrastMessages()) {
+						player.sendMessage(new TranslationTextComponent("chat.wandering_trader.left_the_area", npc.getName().copy().withStyle(npcNameStyle)), Util.NIL_UUID);
+					}else {
+						player.sendMessage(new TranslationTextComponent("chat.wandering_trader.left_the_area", npc.getName().copy().withStyle(TextFormatting.YELLOW)), Util.NIL_UUID);
+					}
 				}
 
                 npc.remove();
@@ -427,7 +438,11 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
                     List<PlayerEntity> playersInRange = npc.level.getEntitiesOfClass(PlayerEntity.class, initial.inflate(80));
 
                     for (PlayerEntity player : playersInRange) {
-                        player.sendMessage(((ExtendedWanderingTraderEntity)npc).getDepartureLine(player), Util.NIL_UUID);
+                    	if(((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(player)).getExtendedMiscData().doHighContrastMessages()) {
+    						player.sendMessage(new TranslationTextComponent(((ExtendedWanderingTraderEntity)npc).getDepartureLine(), npc.getName().copy().withStyle(npcNameStyle), player.getName()), Util.NIL_UUID);
+    					}else {
+    						player.sendMessage(new TranslationTextComponent(((ExtendedWanderingTraderEntity)npc).getDepartureLine(), npc.getName().copy().withStyle(TextFormatting.YELLOW), player.getName()), Util.NIL_UUID);
+    					}
                     }
                 }
             }

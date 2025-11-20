@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:isengard_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_isengard_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:isengard_banner"
+          }
+        ]
+      }
+    },
+    "has_isengard_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:isengard_banner_pattern"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:isengard_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_isengard_banner",
+      "has_isengard_banner_pattern",
+      "has_the_recipe"
+    ]
+  ]
+}

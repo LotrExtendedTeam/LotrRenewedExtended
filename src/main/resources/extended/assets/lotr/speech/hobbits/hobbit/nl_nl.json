@@ -1,0 +1,543 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+      	"Een binnenweg zorgt voor buitensporig lang uitstel!"
+        "Het enk'le bier zo koud en fier ... komt van de Groene Draak!",
+        "Waar zouden wij Hobbits zijn zonder ons pijpkruid?",
+        "Zou jij niet ook in een hobbithol wonen?",
+        "Hobbitholen! Warmte, Goed eten, en comfort!",
+        "Het is gevaarlijk om je deur uit te stappen.",
+        "De Buul-Balingsen kwamen voor de lunch gisteren. Nu kan ik geen van mijn borden vinden, laat staan mijn mokken...",
+        "De weg gaat verder eindeloos...",
+        "Avonturen? Nare dingen, dat zijn het! Straks kom je te laat voor het eten",
+        "Niks beter dan een pul bier van de Groene Draak!",
+        "Ik weet niet wat ik zou doen zonder een goede portie Langedaalblad op een hete zomerdag!",
+        "Ik heb familie in Bokland. Aparte mensen...",
+        "De markt in Stok is een fantastische plek voor eten, drinken en Pijpkruid!",
+        "Heb je de kikkers gezien in de moerassen rondom Puitenlee?",
+        "De Noorder Moerassen zijn wild en winderig, maar gevuld met fijne herbergen met huiselijke haarden.",
+        "Mensen vertellen van Elfen in de bossen bij Wilgedal. Ik denk dat het gewoon de Grootsvoet-familie is!",
+        "Het is beter om Sarnvoorde te vermijden. Dat is waar alle reizigers ontmoeten, en sommigen zijn erg maf!",
+        "Ik hoef absoluut geen avonturen, dankje de koekoek!",
+        "Mijn kennis van aardappelen staat slechts achter die van de Gewissiesen'!",
+        "Op een winderige dag vind ik het fijn om onder een Eik te liggen en te slapen. Zoals alle Hobbits zouden doen!",
+        "Langedaalblad is het blad der wonderen! Is het niet, #p?",
+        "Mijn bloembedden kunnen wel wat bewatering gebruiken",
+        "Voor een jolig dagje uit raad ik Naaldhol aan... of eten!",
+        "Een goede maaltijd is altijd de beste optie!",
+        "Hmmmm, geboterde aardappels en erwten...",
+        "Pijpkruid is goed. Paddestoelen zijn beter!",
+        "Ik ben gek op paddestoelen uit het veld.",
+        "Goed eten is het eten voor mij",
+        "Ik ga laat naar bed en sta laat op voor ontbijt. Het is de enige manier van leven!",
+        "Tuinieren! Zo spendeer je de dag met een lach.",
+        "Een kop thee voor mij!",
+        "De feesten in de Gouw zijn de beste die je zult zien! Eten, drinken en feestelijkheden!",
+        "Je bent bijna zo groot als ouwe Bullbruller! Heb je het verhaal gehoord over hoe hij golf uitvond?",
+        "Men zegt dat de rijke families hun schatten in hun holen bewaard. Kisten gevuld met goud en zilver... en kostbaarheden!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Goedendag, #p.",
+        "Goedendag.",
+        "Goedendag!",
+        "Een goede dag, #p! Hoe gaat het?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Dit veld hier zit vol konijnen! Ik zal ervoor zorgen dat de kleintjes erachter aan gaan!",
+        "Mijn familie in Breeg vertelt over rare gebeurtenissen..."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Goedemorgen!",
+        "Goedemorgen voor jou!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Goedemorgen, #p!",
+        "Goedemorgen voor jou, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Goedemiddag!",
+        "Goedemiddag voor jou!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Goedemiddag, #p!",
+        "Goedemiddag voor jou, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "Goedenavond!",
+        "Goedenavond voor jou!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Goedenavond, #p!",
+        "Goedenavond voor jou, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn | dusk",
+        "weather": "clear"
+      },
+      "lines": [
+        "Wat een prachtige lucht daarboven!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn",
+        "sun_admiring": "true",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Is dat niet een prachtige zonsopkomst, #p?",
+        "Oh, goedemorgen, #p. Ik keek net even naar de opkomende zon. Is het niet mooi?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk",
+        "sun_admiring": "true",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Is het geen prachtige zonsondergang, #p?",
+        "Oh, goedenavond, #p. Ik keek net naar de ondergaande zon. Is het niet mooi?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "Nou, ik kan maar beter naar bed gaan!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Moge de haren op je tenen nooit uitvallen, #p!",
+        "Moge de haren op je tenen nooit uitvallen.",
+        "Altijd een genoegen, #p!",
+        "Jij bent zo slecht nog niet, voor een Mens"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder"
+      },
+      "lines": [
+        "Oh, jij bent het, #p! Ik herkende je eerst niet, zie je wel?",
+        "Zie? Ik heb altijd gezegd dat er grote lieden zijn zoals jij, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Wel als dat #p niet is! Hoe gaat het deze dag?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "Wel als dat #p niet is! Hoe gaat het deze avond?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Goedendag meneer!",
+        "Goedendag meneer #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Goedendag mevrouw!",
+        "Goedendag mevrouw #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff"
+      },
+      "lines": [
+        "Hallo, #p! Ik zou je een dezer dagen uit moeten nodigen voor een kop thee.",
+        "Hallo, #p! Ik zou je een dezer dagen uit moeten nodigen voor tweede Ontbijt.",
+        "Hallo, #p! Ik zou je een dezer dagen uit moeten nodigen voor wat pijpkruid.",
+        "Alles gaat goed in de Gouw, dankzij jou!!",
+        "Alles gaat goed in de Gouw, dankzij jou, #p!",
+        "Oh, #p... Ik zou je moeten uitnodigen voor het 33ste verjaardagsfeest van mijn neef! Help me dat onthouden!",
+        "Oh, #p... Ik zou je moeten uitnodigen voor de bruiloft van mijn achterneef! Help me dat onthouden!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Is het al tijd voor een Tweede Ontbijt?",
+        "Iemand in voor een Derde Ontbijt?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Nee maar, het is al tijd voor een kop thee!",
+        "Ik moest maar eens gaan, tijd voor thee."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "Het is bijna tijd voor souper!",
+        "'T zal tijd worden dat ik aan de souper begin."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "weather": "rain"
+      },
+      "lines": [
+        "Blijf uit de regen, #p!",
+        "Blijf uit de regen!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend",
+        "biome": "#home"
+      },
+      "lines": [
+        "Welkom in de Gouw!",
+        "Welkom in de Gouw, #p!",
+        "Gegroet, #p! Ik heb in deze gebieden zelden Grote Lieden zoals jij gezien!",
+        "Welkom in de Gouw, reiziger van verre! Welk nieuws breng je van de wijde wereld?",
+        "Hallo, #p. Verblijf je hier lang?",
+        "Grote Lieden in de Gouw? Maffe gebeurtenissen hier!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend"
+      },
+      "lines": [
+        "Oh, #p. We hebben elkaar wel eens ontmoet toch?",
+        "#p, is 't niet? Ja, ik herinner je me nu. Jullie Grote Lieden lijken allemaal op elkaar.",
+        "Hebben we elkaar ontmoet, #p? Ik vergeet nooit een gezicht!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "Ik mis de Gouw toch wel.",
+        "Ik ben nog nooit zo ver de Gouw uit geweest",
+        "Als ik nog één stap zet, is dat het verste van huis dat ik ooit ben geweest.",
+        "Misschien is het tijd om naar huis te gaan. Ik mis de Gouw.",
+        "Avonturen? Nare dingen, dat zijn het. Ik denk dat het tijd is dat ik terugkeer naar huis.",
+        "De weg blijft gaan, eindeloos, Onder bomen en over de beek, en ik moest volgen, zoals bleek! Maar ik zal vlug weer richting huis aan.",
+        "Is dit het land van jouw volk, #p? Een rare plek, da's iets wat zeker is!",
+        "Nu moeten we de weg naar huis vinden, #p.",
+        "Hobbitholen! Warmte, goed eten, en comfort. En ik mis het mijne...",
+        "Ik heb nu wel genoeg gehad van onbekende landen, Zullen we maar vlug naar huis gaan?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+        "Wat een afschuwelijke plek! Laten we onmiddelijk terugkeren naar de Gouw!",
+        "Hoe zijn we op zo'n afschuwelijke plek beland?",
+        "Wat een vreselijk land dit, #p!",
+        "Wat een beangstigend land! We moeten snel onze weg naar de Gouw weer vinden!",
+        "Dit land is genoeg om zelfs de Dappersten van hart te vervullen met angst!",
+        "Ik heb maar mooi genoeg gezien van deze plek! Laten we terug gaan naar de Gouw, en snel een beetje!",
+        "Nou, #p, ik herken een smerige plek als ik er eentje zie!",
+        "Ik voel me hier totaal niet op mijn gemak. Zeg eens, #p, weet jij de weg terug naar de Gouw?",
+        "Ik weet niet hoe wij ooit op zo'n nare plek zijn gekomen, #p.",
+        "Zelfs de lucht hier is smerig spul!",
+        "Ze hebben me altijd over het volgen van deze wegen gewaarschuwd!",
+        "Ik wou dat ik meer had geluisterd naar m'n Ouwe Paps! Nooit had ik de Gouw moeten verlaten, nooit niet!",
+        "Als ik had geweten dat dit voorbij de grenzen van de Gouw lag, was ik nooit vertrokken!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Have you any pipe-weed, #p?",
+        "Ik vind het boerenleven aardig plezierig! Heb je dat wel eens geprobeerd, #p?",
+        "Het allerbeste is een goede maaltijd. Ken je dat gevoel, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "En hoe gaat het met jou vandaag, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff"
+      },
+      "lines": [
+        "Even wachten, ik was met iemand anders aan het praten!",
+        "#p! Ik was net in een ander gesprek",
+        "Beetje onbeleefd om te storen, vind je niet?",
+        "Het is niet nodig om me te onderbreken, of wel soms?",
+        "Ik was aan het woord. Wacht op je beurt!",
+        "Hoe onbeleefd! We hadden hier net een goed gesprek.",
+        "Bemoei je met je eigen zaken. Kan je niet zien dat we aan het praten waren?",
+        "Bemoei je met je eigen zaken, alstublieft! Hup, laat ons met rust.",
+        "Ik zie dat je er geen problemen mee hebt om sprekende Hobbits te onderbreken!",
+        "Ah toe nou #p, ik was midden in een gesprek.",
+        "...en ik draaide me om en ik zei - Pardon? Wil je ons niet onderbreken, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Die Grote Lieden! Ze komen hier en stelen onze boerderijen. Houd de Gouw voor de Hobbits, dat is wat ik zeg!",
+        "We zien niet vaak Grote Lieden in de Gouw.",
+        "Een van de Grote Lieden in de Gouw? Wees maar voorzichtig!",
+        "Wie heeft jou in de Gouw gelaten? Ik hoop dat je hier niet bent om ongein uit te halen!",
+        "#p, is het niet? 'T gebeurt niet vaak dat een van jullie Grote Lieden de Gouw binnenkomt.",
+        "We hebben nog niet ontmoet, of wel? Welkom in de Gouw.",
+        "Hebben wij elkaar ontmoet? Nee? Nou, dit is dus de Gouw. Prachtige plek, of niet soms?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest"
+      },
+      "lines": [
+        "Wat is jouw naam dan? #p? Ik geloof niet dat we elkaar hebben ontmoet.",
+        "Ik geloof niet dat we elkaar hebben ontmoet.",
+        "#p, zeg je? We ontmoeten niet vaak een van jullie Grote Lieden.",
+        "En wie ben jij? #p? Nou, ik hoop dat je niet een van die rare lieden bent!",
+        "Kennen wij elkaar?",
+        "Kennen wij elkaar? Nee? Nou, dan loop ik maar weer verder.",
+        "Hmm...Volgens mij hebben wij elkaar nog niet ontmoet.",
+        "Een van de Grote Lieden? Wat was je naam ook alweer?",
+        "Wat was jouw naam ook alweer? Zeg op!"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ]
+      },
+      "lines": [
+        "Er zijn rare lieden gezien in deze gebieden, en volgens mij ben jij er eentje van.",
+        "Ben jij niet een van die rare lieden waarik over gehoord heb",
+        "Er wordt hier vaak over rare lieden gepraat. Kan het zijn dat jij daar een van bent?",
+        "Ik heb rare lieden rond zien hangen hier, en jij doet me aan ze denken. Ik vertrouw je niet.",
+        "Ik weet het nog net zo niet met jou..."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ],
+        "biome": "#home"
+      },
+      "lines": [
+        "Grote Lieden maken me oncomfortabel. Onthoud goed wiens Gouw dit is."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Ik hoorde dat jij hier problemen veroorzaakt.",
+        "Je ziet er uit als een problemenzoeker!",
+        "Je ziet er uit als een problemenzoeker, #p.",
+        "Blijf weg uit de Gouw, #p.",
+        "Blijf uit de Gouw!",
+        "Ik ga je geen pijpkruid uitlenen!",
+        "We houden niet van lieden zoals jij.",
+        "Jij bent geen aardig persoon, #p.",
+        "Sorry, maar ik voel me niet op mijn gemak bij jou.",
+        "Jij bent voor de Muspels, #p!",
+        "Ik wist wel dat jullie maffe Grote Lieden problemen betekenden!",
+        "We apprecieren volk zoals jij niet in de Gouw.",
+        "Probeer maar geen Grote Liedentrucjes uit te halen!",
+        "Probeer maar geen Grote Liedentrucjes uit te halen, #p!",
+        "Moge je nooit meer genieten van Langedalblad!",
+        "Ik wist dat ik je niet kon vertrouwen. Je voeten zijn te klein!",
+        "De Groene Draak zal jou niet bedienen!",
+        "Laat me met rust!",
+        "Laat me met rust, #p!",
+        "Mijn neef heeft hele grote honden. Die wil jij niet ontmoeten, of wel soms?",
+        "Rustverstoorder!",
+        "Stop! Problemenzoeker!",
+        "Oude Bullbruller zou je in een gat of twee slaan!",
+        "Alleen een dwaas zou mijn etenstijden verstoren!",
+        "Rare Lieden komen tot een raar eind!",
+        "Als ik mijn zeis moet gaan halen is het te laat!",
+        "Je mag dan wel langer zijn dan ik, #p. Maar op geen enkele andere manier ben je grootser!",
+        "Lieden zoals jij zouden ze moeten verdrinken!",
+        "Jij moet een van die niegoedoeners zijn waar ik zoveel over hoor!",
+        "In de Gouw houden we niet van Niegoedoeners zoals jij, #p.",
+        "Achteruit!",
+        "Jij bent een typische Niegoedoener, #p.",
+        "Ik wil geen problemen, #p!",
+        "kom nou, ik wil geen problemen!",
+        "Ik nooit geen problemen met jou, #p.",
+        "Nou hup, weg nu, anders haal ik m'n hark!",
+        "Laat me niet m'n hark moeten halen!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "De Gouw is geen plek voor onruststokers zoals jij!",
+        "Beter verlaat je de Gouw, #p, anders roep ik de Shirriffs!",
+        "Van mijn land af!",
+        "Van mijn land af, #p!",
+        "Mijn hooivork is scherp genoeg om je vaker na te laten denken over terugekeren naar de Gouw!",
+        "De Gouw is vredig geweest voor hondereden jaren en je gaat er spijt van krijgen dat je daar verandering in bracht!",
+        "Blijf weg van m'n aardappelen!",
+        "De Shirrifs handelen jou wel af, #p!",
+        "Terug, weg over de haag!",
+        "Terug, weg over de haag, #p!",
+        "Een onruststoker? De Gouw verwelkomt alleen Hobbits! Scheer je weg!",
+        "Ik wil geen kwaad doen, #p, maar jouw soort is hier niet welkom."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Jij bent niet goed genoeg voor Tweede Ontbijt, #p!"
+      ]
+    }
+  ]
+}

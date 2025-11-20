@@ -1,0 +1,13 @@
+{
+  "parent": "lotr:durins_folk/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Jeszcze kilka nocy w kuźni i będę mieć zbroję której potrzebuję aby zapolować na tych Rakhâsów!"
+      ]
+    }
+  ]
+}

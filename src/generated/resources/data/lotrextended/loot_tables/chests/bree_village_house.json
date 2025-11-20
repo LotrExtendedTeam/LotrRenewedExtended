@@ -135,6 +135,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:flint_and_steel"
@@ -146,6 +149,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:fishing_rod"
@@ -414,6 +420,17 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:bree_banner_pattern"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 30,
           "functions": [
             {
@@ -568,6 +585,9 @@
                 "min": 0.35,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_axe"
@@ -586,6 +606,9 @@
                 "min": 0.3,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:stone_axe"
@@ -604,6 +627,9 @@
                 "min": 0.25,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_axe"
@@ -622,6 +648,9 @@
                 "min": 0.2,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:iron_axe"
@@ -640,6 +669,9 @@
                 "min": 0.35,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_shovel"
@@ -658,6 +690,9 @@
                 "min": 0.3,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:stone_shovel"
@@ -676,6 +711,9 @@
                 "min": 0.25,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_shovel"
@@ -694,6 +732,9 @@
                 "min": 0.2,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:iron_hoe"
@@ -712,6 +753,9 @@
                 "min": 0.35,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_hoe"
@@ -730,6 +774,9 @@
                 "min": 0.3,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:stone_hoe"
@@ -748,6 +795,9 @@
                 "min": 0.25,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bronze_hoe"
@@ -766,6 +816,9 @@
                 "min": 0.2,
                 "max": 0.9
               }
+            },
+            {
+              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:iron_shovel"
@@ -887,6 +940,11 @@
             }
           ],
           "name": "lotr:large_pouch"
+        }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_adder"
         }
       ]
     }

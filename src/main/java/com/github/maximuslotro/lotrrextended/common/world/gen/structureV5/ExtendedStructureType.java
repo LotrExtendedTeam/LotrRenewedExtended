@@ -23,5 +23,7 @@ public enum ExtendedStructureType {
 	/** Structures themed around the Blue Mountains. */
 	BLUE_MOUNTAINS,
 	/** Structures that are lore builds. */
-	LORE;
+	LORE,
+	/** Structures themed around the Rivendell. */
+	RIVENDELL;
 }

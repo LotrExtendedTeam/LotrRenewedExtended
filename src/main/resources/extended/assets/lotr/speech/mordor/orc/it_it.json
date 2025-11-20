@@ -1,0 +1,338 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Voglio carne umana!",
+        "Sento odore di carne umana!",
+        "Dov'è la carne umana?",
+        "Che vuoi?",
+        "Sono tre giorni che mangio solo pane pieno di vermi schifosi!",
+        "Di nuovo pane coi vermi? Dammi della carne umana!",
+        "Non vedo l'ora di affondare i denti in della carne umana!",
+        "Cosa stai cercando?",
+        "L'aria è fetida qui.",
+        "Spezzeremo le loro ossa e banchetteremo con la loro carne!",
+        "Morte ai regni degli Uomini! Morte agli schifosi Elfi!",
+        "Questi stracci puzzano!",
+        "Il mondo degli uomini sarà spezzato e distrutto.",
+        "Rovina! Rovina ai popoli liberi!",
+        "Carne umana!",
+        "Dov'è la carne umana più vicina? Sto morendo di fame!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=thrall"
+      },
+      "lines": [
+        "Serviamo lo stesso padrone, #p.",
+        "Il Padrone ci sta preparando per la guerra. Presto il mondo degli Uomini cadrà.",
+        "Piomberemo sulle terre dei popoli liberi come una piaga! Non lasceremo nulla in vita!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<snaga"
+      },
+      "lines": [
+        "Chi servi tu?",
+        "Servi il grande Occhio o quegli sporchi tark di Gondor?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<brigand"
+      },
+      "lines": [
+        "Via dalla mia vista, verme!",
+        "Torna al lavoro, feccia!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Presto, #p! Presto saremo in guerra con gli schifosi figli degli Uomini!",
+        "Non sei male per essere un umano!",
+        "Non sei male per un umano, #p! Anche se hai l'aria di un tark!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Presto, #p! Presto saremo in guerra con gli schifosi figli degli Uomini!",
+        "Non sei male per essere un'umana!",
+        "Non sei male per un'umana, #p! Anche se hai l'aria di una tark!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand & <captain",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Verme schifoso! Oh, sei tu, #p...",
+        "Non somigli ancora ad un mezzorco, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=brigand & <captain",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Verme schifoso! Oh, sei tu, #p...",
+        "Non somigli ancora ad una mezzorca, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<slavedriver",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Se riesci a procurarmi un po' di carne umana non mi mangerò te! Ah! Ah!",
+        "Cosa stai cercando, verme?",
+        "Segui gli ordini, feccia!",
+        "Non stare lì impalato! Fai qualcosa!",
+        "Non mi fido di te, verme!",
+        "Muoviti, feccia!",
+        "Stai cercando rogne?",
+        "Non mi fido degli schifosi umani!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<slavedriver",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Se riesci a procurarmi un po' di carne umana non mi mangerò te! Ah! Ah!",
+        "Cosa stai cercando, verme?",
+        "Segui gli ordini, feccia!",
+        "Non stare lì impalata! Fai qualcosa!",
+        "Non mi fido di te, verme!",
+        "Muoviti, feccia!",
+        "Stai cercando rogne?",
+        "Non mi fido degli schifosi umani!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=despoiler",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Al tuo servizio, #p!",
+        "Che ordini dal nostro signore, #p?",
+        "L'Occhio parla molto bene di te, #p.",
+        "Non avrei mai pensato di vedere un fetido umano come te salire così in alto nelle grazie dell'Occhio!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=despoiler",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Al tuo servizio, #p!",
+        "Che ordini dal nostro signore, #p?",
+        "L'Occhio parla molto bene di te, #p.",
+        "Non avrei mai pensato di vedere una fetida umana come te salire così in alto nelle grazie dell'Occhio!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<despoiler"
+      },
+      "lines": [
+        "Ehi! Occhio a come parli!",
+        "C'è qualcosa di fetido qui. Sei tu, #p! Vattene!",
+        "Puzzi!",
+        "Puzzi di verme marcio!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<captain",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Non sembri un mezzorco!",
+        "Vuoi qualcosa?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<captain",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Non sembri una mezzorca!",
+        "Vuoi qualcosa?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain"
+      },
+      "lines": [
+        "Ordini da Lugbúrz?",
+        "Ordini da Lugbúrz, #p?",
+        "Cosa comanda il grande Occhio?",
+        "Al tuo servizio, verme! - Volevo dire - #p!",
+        "Farò sapere ai ragazzi che è l'ora di un'ispezione!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lieutenant"
+      },
+      "lines": [
+        "Quindi sei tu il nuovo capo?",
+        "Marciamo in guerra al tuo comando!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Ti dissanguo come un maiale",
+        "Goditi il tuo ultimo respiro, feccia!",
+        "Ammazzate la feccia!",
+        "Sembra che la carne sia tornata sul menù, ragazzi!",
+        "Puzzi di paura",
+        "Muori, feccia umana!",
+        "Il tuo sangue sembra fresco!",
+        "Ti infilzo sullo spiedo come un pezzo di carne!",
+        "È meglio che inizi a correre, verme!",
+        "Avvicinati e ti impalo come un pezzo di carne fresca!",
+        "Stanotte ceniamo con carne umana!",
+        "Quando avrò finito con te, non sarai altro che un mucchio di ossa!",
+        "Ti cucinerò per cena!",
+        "Avrò la tua testa, feccia di Gondor!",
+        "Feccia tark! Forza ragazzi!",
+        "Verme!",
+        "Feccia!",
+        "Verme schifoso!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Prendetelo, ragazzi!",
+        "Sei bello fresco!",
+        "Banchetterò con la tua carne, schifoso umano!",
+        "Ti sei messo contro l'orco sbagliato, feccia!",
+        "Uccidete il tark!",
+        "Lo schifoso tark ha provato a pugnalarmi!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Prendetela, ragazzi!",
+        "Sei bella fresca!",
+        "Banchetterò con la tua carne, schifosa umana!",
+        "Ti sei messa contro l'orco sbagliato, feccia!",
+        "Uccidete la tark!",
+        "La schifosa tark ha provato a pugnalarmi!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Non sei ancora stato cacciato dai nostri eserciti, feccia?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Non sei ancora stata cacciata dai nostri eserciti, feccia?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Quali sono i tuoi ordini, mio signore?",
+        "Potrai essere il mio comandante, #p, ma rimani un verme schifoso!",
+        "Guidaci in guerra, #p!",
+        "L'aria è carica del fetore di paura!",
+        "I popoli liberi della terra cadranno di fronte alla nostra potenza!",
+        "Morte! Morte a tutti quelli che si oppongono a noi!",
+        "Dobbiamo andare a cacccia di carne umana, #p?",
+        "Il mio stomaco ha bisogno di carne umana!",
+        "Sono pronto a cacciare un po' di feccia umana.",
+        "Morte a quegli schifosi tark e a tutti i loro alleati!",
+        "Devastiamo il mondo degli uomini!",
+        "Andiamo a caccia di tark!",
+        "Gli schifosi tark non sanno cosa sta per arrivare!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Quali sono i tuoi ordini, mia signora?",
+        "Potrai essere la mia comandante, #p, ma rimani un verme schifoso!",
+        "Guidaci in guerra, #p!",
+        "L'aria è carica del fetore di paura!",
+        "I popoli liberi della terra cadranno di fronte alla nostra potenza!",
+        "Morte! Morte a tutti quelli che si oppongono a noi!",
+        "Dobbiamo andare a cacccia di carne umana, #p?",
+        "Il mio stomaco ha bisogno di carne umana!",
+        "Sono pronto a cacciare un po' di feccia umana.",
+        "Morte a quegli schifosi tark e a tutti i loro alleati!",
+        "Devastiamo il mondo degli uomini!",
+        "Andiamo a caccia di tark!",
+        "Gli schifosi tark non sanno cosa sta per arrivare!"
+      ]
+    }
+  ]
+}

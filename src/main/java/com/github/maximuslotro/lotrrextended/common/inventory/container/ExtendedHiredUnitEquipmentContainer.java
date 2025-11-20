@@ -10,7 +10,7 @@ import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHir
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentSlot.ArmorSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentSlot.MeleeSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentSlot.OffhandSlot;
@@ -55,7 +55,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     private Inventory baseEquipment;
 
     public ExtendedHiredUnitEquipmentContainer(int pContainerId, PlayerInventory pPlayerInventory, PacketBuffer extraData) {
-        super(ExtendedContainers.HIRED_UNIT_EQUIPMENT.get(), pContainerId);
+        super(ExtendedContainerTypes.HIRED_UNIT_EQUIPMENT.get(), pContainerId);
 
         // Read in packet data
         CompoundNBT nbt = extraData.readAnySizeNbt();

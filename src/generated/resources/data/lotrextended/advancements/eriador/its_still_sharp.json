@@ -1,0 +1,37 @@
+{
+  "parent": "lotrextended:eriador/rivendell_smith",
+  "display": {
+    "icon": {
+      "item": "lotr:shards_of_narsil"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.eriador.its_still_sharp.title"
+    },
+    "description": {
+      "color": "aqua",
+      "translate": "advancements.lotrextended.eriador.its_still_sharp.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_shards_of_narsil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:shards_of_narsil"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_shards_of_narsil"
+    ]
+  ]
+}

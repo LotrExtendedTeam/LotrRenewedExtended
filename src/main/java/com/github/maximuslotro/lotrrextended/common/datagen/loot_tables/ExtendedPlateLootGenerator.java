@@ -201,6 +201,7 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 			.add(addEntry(ExtendedItems.AGED_CHEESE_SLICE.get(), 1, 3))
 			.add(addEntry(ExtendedItems.AGED_CHEESE_WHEEL.get())));
 
+		// TODO add turnips
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_PLATE, makePool()
 			.add(addEntry(Items.COOKED_PORKCHOP, 1, 3))
 			.add(addEntry(Items.COOKED_CHICKEN, 1, 2))
@@ -212,10 +213,21 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 			.add(addEntry(Items.COOKED_COD, 1, 3))
 			.add(addEntry(ExtendedItems.COOKED_DUCK.get(), 1, 3))
 			.add(addEntry(LOTRItems.GAMMON.get(), 1, 2))
-			.add(addEntry(LOTRItems.CRAM.get(), 1, 2))
 			.add(addEntry(Items.BREAD, 1, 2))
 			.add(addEntry(Items.RABBIT_STEW))
 			.add(addEntry(Items.MUSHROOM_STEW)));
+
+		// TODO add leeks and turnips
+		make(consumer, ExtendedLootTables.RIVENDELL_PLATE, makePool()
+			.add(addEntry(Items.BREAD, 1, 1))
+			.add(addEntry(Items.APPLE, 1, 2))
+			.add(addEntry(Items.CARROT, 1, 3))
+			.add(addEntry(LOTRItems.GREEN_APPLE.get(), 1, 2))
+			.add(addEntry(LOTRItems.PEAR.get(), 1, 2))
+			.add(addEntry(LOTRItems.LETTUCE.get(), 1, 5))
+			.add(addEntry(LOTRItems.LEMBAS.get(), 1, 2))
+			.add(addEntry(ExtendedItems.PLUM.get(), 1, 2))
+			.add(addEntry(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 4)));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item){

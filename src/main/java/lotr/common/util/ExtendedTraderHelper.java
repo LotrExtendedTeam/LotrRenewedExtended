@@ -125,14 +125,14 @@ public class ExtendedTraderHelper {
         //  20-30 minutes to become available again whereas selling another individual pipe-weed might be just a few seconds
         if (trader.setLastTickCooldownReduced() >= 1200) {
             for (ExtendedTrade trade : trader.getTraderData().getSells()) {
-                if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
-                    trade.setQuantityLeft(trade.getQuantityLeft() + 1);
-                }
+            	if(trade.shouldTradePersist() && (trade.getQuantityLeft() < trade.getOriginalQuantity())) {
+            		trade.incrementQuantityLeft();
+            	}
             }
 
             for (ExtendedTrade trade : trader.getTraderData().getBuys()) {
-                if (trade.getQuantityLeft() < trade.getOriginalQuantity()) {
-                    trade.setQuantityLeft(trade.getQuantityLeft() + 1);
+                if (trade.shouldTradePersist() && (trade.getQuantityLeft() < trade.getOriginalQuantity())) {
+                	trade.incrementQuantityLeft();
                 }
             }
             trader.getLastTickCooldownReduced(0);

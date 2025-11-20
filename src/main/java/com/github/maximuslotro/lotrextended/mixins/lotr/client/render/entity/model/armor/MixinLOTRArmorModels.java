@@ -15,6 +15,7 @@ import lotr.client.render.entity.model.armor.ExtendedModelLeatherHat;
 import lotr.client.render.entity.model.armor.ExtendedModelMorgulHelmet;
 import lotr.client.render.entity.model.armor.ExtendedModelTaurethrimChieftanHelmet;
 import lotr.client.render.entity.model.armor.ExtendedModelWargHat;
+import lotr.client.render.entity.model.armor.HighElvenHelmetModel;
 import lotr.client.render.entity.model.armor.LOTRArmorModels;
 import lotr.client.render.entity.model.armor.SpecialArmorModelHolder.SpecialArmorModelFactory;
 import lotr.common.init.ExtendedItems;
@@ -59,5 +60,6 @@ public class MixinLOTRArmorModels {
 		addSpecialArmorModel(ExtendedItems.SILVER_WARG_HELMET, ExtendedModelWargHat::new);
 		addSpecialArmorModel(ExtendedItems.WHITE_WARG_HELMET, ExtendedModelWargHat::new);
 		addSpecialArmorModel(ExtendedItems.GUNDABAD_URUK_HELMET, ExtendedModelGundabadUrukHelmet::new);
+		addSpecialArmorModel(ExtendedItems.IMLADRIS_GUARD_HELMET, HighElvenHelmetModel::new);
 	}
 }

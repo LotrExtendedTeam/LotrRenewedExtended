@@ -35,12 +35,11 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWandererEntity implements ExtendedWanderingTraderEntity {
+public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractCloakingElfEntity implements ExtendedWanderingTraderEntity {
 
     int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
@@ -56,7 +55,7 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
     }
 
 	@SuppressWarnings("unchecked")
-	public ExtendedGaladhrimWandererEntity(EntityType<? extends ExtendedAbstractElfWandererEntity> type, World w) {
+	public ExtendedGaladhrimWandererEntity(EntityType<? extends ExtendedAbstractCloakingElfEntity> type, World w) {
         super(type, w);
         this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeOnly());
     }
@@ -178,9 +177,8 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
     public void tick() {
         super.tick();
 
-        moveCloak();
-
         if (level.isClientSide) {
+        	moveCloak();
             return;
         }
 
@@ -199,13 +197,13 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
     }
 
     @Override
-    public ResourceLocation getCloakTextureLocation() {
-        return new ResourceLocation("lotr", "textures/cape/galadhrim_trader.png");
+    public ResourceLocation getCapeTextureLocation() {
+        return new ResourceLocation("lotrextended", "textures/capes/galadhrim_trader.png");
     }
 
     @Override
-    public TranslationTextComponent getDepartureLine(PlayerEntity player) {
-        return new TranslationTextComponent("speechbank.galadhrim_wanderer.departure." + (random.nextInt(8) + 1), getName(), player.getName());
+    public String getDepartureLine() {
+        return "speechbank.galadhrim_wanderer.departure." + (random.nextInt(8) + 1);
     }
 
     @Override
@@ -236,5 +234,15 @@ public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractElfWanderer
 	@Override
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.GALADHRIM_WANDERER;
+	}
+
+    @Override
+    public int getFactionColor() {
+        return this.getFaction().getColor();
+    }
+
+	@Override
+	public ResourceLocation getCloakTextureLocation() {
+		return new ResourceLocation("lotr", "textures/entity/elf/galadhrim_trader_cloak.png");
 	}
 }

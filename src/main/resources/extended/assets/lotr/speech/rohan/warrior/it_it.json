@@ -1,0 +1,246 @@
+{
+  "parent": "lotr:rohan/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Queste sono le terre dei nostri padri e dei padri dei nostri padri. È nostro dovere proteggerle.",
+        "Ci sono molti ottimi cavalli in queste terre, #p, e tutti sono adatti alla battaglia.",
+        "Dicono che le armate dei Sudroni stiano aumentando oltre il fiume Harnen.",
+        "Tra non molto, temo, dovremo cavalcare e sconfiggere ancora una volta i crudeli Uomini del Sud."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "È nostro dovere liberare queste terre dalla feccia orchesca che le affligge, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Che affari hai nel Riddermark, #p?",
+        "Assicurati di procedere con cautela nel Mark. Abbiamo molti nemici negli ultimi tempi."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman",
+        "in_conversation": "other"
+      },
+      "lines": [
+        "Cosa ti concede il diritto di partecipare ai nostri consigli di guerra?! Come giustifichi la tua insolenza, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman"
+      },
+      "lines": [
+        "Salve, #p! Noi siamo i cavalieri di Rohan.",
+        "Raramente si incontrano viaggiatori nelle nostre terre. Perché ti trovi qui?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Che questa sia l'ora in cui sguainiamo le spade insieme!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=rider"
+      },
+      "lines": [
+        "Cavalcheremo insieme in battaglia, #p?",
+        "Cavalcheremo insieme come Eorlingas."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Sei un vero amico del Mark, #p. Ti seguirei anche in capo al mondo!",
+        "Quando arriverà l'ora, #p, cavalcherò al tuo fianco!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Sei una vera amica del Mark, #p. Ti seguirei anche in capo al mondo!",
+        "Quando arriverà l'ora, #p, cavalcherò al tuo fianco!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=marshal"
+      },
+      "lines": [
+        "Quando arriverà l'ora, #p, vorrei cavalcare nel tuo éored."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+        "Ora servi la Casa di Eorl, #p.",
+        "Ora servi la Casa di Eorl. Fa' che le tue gesta ci portino gloria sul campo."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home",
+        "daytime": "dusk | night"
+      },
+      "lines": [
+        "Che cosa ci fa uno straniero venuto da lontano in giro per il Mark durante la notte?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:anorien"
+      },
+      "lines": [
+        "Da tempo desideravo cavalcare a Stoningland. Ora forse arriveremo persino al Mundburg?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Non tollererò la tua presenza qui!",
+        "Trema, #p!",
+        "Nessuna pietà per i nemici del Mark!",
+        "Nessuna pietà per i nemici di Eorl!",
+        "Vattene, o incontra la tua fine!",
+        "La tua malvagità finisce qui!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "È stato davvero sciocco da parte tua avventurarti nelle nostre terre!",
+        "Non macchierai il Mark con la tua malvagità!",
+        "Vattene dalle nostre terre, o affronta le punte aguzze delle nostre lance!",
+        "Fuggi dal Mark se ti è cara la vita!",
+        "Fuggi dal Mark, e non tornare mai più!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:isengard",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Incontrerai presto la tua fine, servo di Isengard!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:isengard",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Incontrerai presto la tua fine, serva di Isengard!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "Ti pentirai di aver scelto di servire il Nemico!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "Torna strisciando dal tuo padrone nella Terra dell'Ombra!",
+        "Tornerai da Sauron a mani vuote!",
+        "No! Non ci sono più cavalli per Mordor!",
+        "No! Non ci sono più cavalli per il Signore della Terra Oscura!",
+        "Tu e il tuo padrone non avrete più cavalli neri da noi!",
+        "Niente più cavalli del Mark per te e per il tuo perfido padrone!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Sei stato tu a rubare i nostri cavalli e portarli a Mordor, #p? Non ne avrai più!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Sei stata tu a rubare i nostri cavalli e portarli a Mordor, #p? Non ne avrai più!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Per Rohan! Per il nostro popolo!",
+        "Che questa sia l'ora in cui sguainiamo le spade insieme, #p!",
+        "Combattiamo insieme per il Riddermark, #p!",
+        "Per il Riddermark!",
+        "I nostri nemici saranno ridotti in rovina!",
+        "Guadagneremo insieme molta gloria sul campo di battaglia, #p.",
+        "I nemici del Mark tremeranno!",
+        "Cavalchiamo insieme. Per la gloria. Per Rohan!",
+        "I nemici di Rohan tremeranno sotto i nostri piedi!",
+        "Nessun orco o uomo selvaggio saccheggerà il Riddermark sotto i nostri occhi!",
+        "Diamo la caccia a qualche orco!",
+        "Per il Re di Rohan! Per Edoras!",
+        "Cavalchiamo insieme e ripuliamo il Mark da tutti i malvagi!"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,392 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Grandi falò, birra di malto, carne stagionata con l'osso!",
+        "La birra nanica è la bevanda più prelibata di tutta la Terra di Mezzo!",
+        "Le ricchezze dei nani non sono superate da nessun'altra razza.",
+        "Che notizie porti dal mondo degli uomini, #p?",
+        "La mia barba è l'invidia di tutto il Popolo di Durin.",
+        "L'abilità dei nani nel lavorare i metalli non ha eguali!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "m"
+      },
+      "lines": [
+        "Le nostre donne sono cosi simili a noi nella voce e nell'aspetto che spesso vengono confuse con noi maschi."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "f"
+      },
+      "lines": [
+        "I nostri uomini dicono che noi donne siamo così simili a loro nella voce e nell'aspetto che ci si scambia per loro! Se solo alzassero gli occhi dalla fucina di tanto in tanto..."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:iron_hills",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Benvenuto sui Colli Ferrosi, #p! Ti attendono molte ricchezze.",
+        "Queste colline sono ricche di ferro e altri minerali.",
+        "Abbiamo molte miniere in queste colline."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:iron_hills",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Benvenuta sui Colli Ferrosi, #p! Ti attendono molte ricchezze.",
+        "Queste colline sono ricche di ferro e altri minerali.",
+        "Abbiamo molte miniere in queste colline."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Sei un po' troppo alto per queste miniere, #p! Ha! Ha!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Sei un po' troppo alta per queste miniere, #p! Ha! Ha!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Hai notizie dalla nostra gente a Ovest?",
+        "Ben trovato!",
+        "Ben trovato, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Hai notizie dalla nostra gente a Ovest?",
+        "Ben trovata!",
+        "Ben trovata, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Brindiamo assieme!",
+        "Berrai con noi, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend & <oathfriend",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Non sei uno dei Khazâd, #p, ma sembri abbastanza amichevole."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend & <oathfriend",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Non sei una dei Khazâd, #p, ma sembri abbastanza amichevole."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=oathfriend",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Potrai anche non essere uno dei Khazâd, #p, ma sarai sempre il benvenuto nelle nostre sale."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=oathfriend",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Potrai anche non essere una dei Khazâd, #p, ma sarai sempre la benvenuta nelle nostre sale."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <axebearer",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Per la mia barba, non ho mai visto un umano in tutta la mia vita! Benvenuto nella mia casa, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <axebearer",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Per la mia barba, non ho mai visto un'umana in tutta la mia vita! Benvenuta nella mia casa, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<axebearer",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Avrai pure la tua statura, ma non una bella barba!",
+        "Devi lavorare su quella barba, #p.",
+        "Sarai pure della stirpe degli uomini, #p, ma ho sentito dire che anche voi riuscite a farvi crescere la barba se ci provate! E quindi la tua dov'è? Ha! Ha!",
+        "Niente barba? Ti ho quasi scambiato per un elfo."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<axebearer",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Avrai pure la tua statura, ma non una bella barba!",
+        "Dovresti farti crescere la barba, #p.",
+        "Sarai pure della stirpe degli uomini, #p, ma ho sentito dire che anche voi riuscite a farvi crescere la barba se ci provate! E quindi la tua dov'è? Ha! Ha!",
+        "Niente barba? Ti ho quasi scambiata per un'elfa."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=axebearer & <commander",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Vedo che hai lavorato su quella barba, #p!",
+        "Vedo che stai lavorando su quella barba. Possa crescerti ancora più lunga!",
+        "Vedo che stai mettendo su un'ottima barba! Ha! Ha!",
+        "Avrai pure la tua statura... e una degna barba in arrivo, a quanto pare, ma può ancora crescerti parecchio!",
+        "Non disperare, #p. Una barba come la mia richede tempo per crescere!",
+        "È l'inizio di una barba quello che vedo sul tuo mento, #p? Hai ascoltato il mio consiglio?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=axebearer & <commander",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Vedo che hai lavorato su quella barba, #p!",
+        "Vedo che stai lavorando su quella barba. Possa crescerti ancora più lunga!",
+        "Vedo che stai mettendo su un'ottima barba! Ha! Ha!",
+        "Avrai pure la tua statura... e una degna barba in arrivo, a quanto pare, ma può ancora crescerti parecchio!",
+        "Non disperare, #p. Una barba come la mia richede tempo per crescere!",
+        "È l'inizio di una barba quello che vedo sul tuo mento, #p? Hai ascoltato il mio consiglio?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=commander",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Hai la tua statura, e un'ottima barba per accompagnarla! È cresciuta bene, #p!",
+        "Hai una barba rispettabilissima, #p. Poco più corta della mia! Ha! Ha!",
+        "Non avrei mai pensato di vedere un giorno uno della razza degli uomini farsi crescere una barba in grado di rivaleggiare con la mia!",
+        "Il mio caro amico #p, con una barba cosi folta? Ti ho riconosciuto a stento!",
+        "Davvero una bella barba, #p, e possa crescerti ancora più lunga!",
+        "Chi ha detto che la razza degli uomini non sa farsi crescere la barba! Hai fatto un ottimo lavoro, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=commander",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Hai la tua statura, e un'ottima barba per accompagnarla! È cresciuta bene, #p!",
+        "Hai una barba rispettabilissima, #p. Poco più corta della mia! Ha! Ha!",
+        "Non avrei mai pensato di vedere un giorno una della razza degli uomini farsi crescere una barba in grado di rivaleggiare con la mia!",
+        "La mia cara amica #p, con una barba cosi folta? Ti ho riconosciuta a stento!",
+        "Davvero una bella barba, #p, e possa crescerti ancora più lunga!",
+        "Chi ha detto che la razza degli uomini non sa farsi crescere la barba! Hai fatto un ottimo lavoro, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "alternatives": [
+          {
+            "biome": "#home"
+          },
+          {
+            "underground": "true"
+          }
+        ]
+      },
+      "lines": [
+        "Qui la pietra è stata lavorata con maestria."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Non aspettarti di avere la meglio su di me, teppista",
+        "Non sei all'altezza della stirpe di Durin!",
+        "Non saresti dovuto venire qui, #p!",
+        "Spaccherò in due quel tuo miserabile cranio!",
+        "Fatti sotto, ragazzo! Vediamo quello che sai fare!",
+        "Subisci la furia dei nani, #p!",
+        "Sei venuto qui per farti schiacciare?",
+        "Esala il tuo ultimo respiro, #p!",
+        "Niente birra nanica per te!",
+        "Raaarrrgh!",
+        "Ti sbriciolerò come un sasso, ragazzo!",
+        "Ci hai sottovalutato, #p!",
+        "Una spregevole scocciatura, ecco cosa sei, #p!",
+        "Come ti è venuto in mente di scontrarti con me? Ha!",
+        "Sventura e sofferenza su te e la tua stirpe, #p!",
+        "Khazâd ai-mênu!",
+        "Che tu possa arrostire nel fuoco del drago!",
+        "Ti strapperei la barba dal mento, se solo ne avessi una!",
+        "E questo sarebbe un guerriero per voi gente senza barba?",
+        "Fatti avanti, miserabile senza barba!",
+        "Non riusciresti a farti crescere la barba nemmeno se ci provassi!",
+        "Puzzi come un branco di Rakhâ!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Non aspettarti di avere la meglio su di me, teppista",
+        "Non sei all'altezza della stirpe di Durin!",
+        "Non saresti dovuta venire qui, #p!",
+        "Spaccherò in due quel tuo miserabile cranio!",
+        "Fatti sotto, ragazza! Vediamo quello che sai fare!",
+        "Subisci la furia dei nani, #p!",
+        "Sei venuta qui per farti schiacciare?",
+        "Esala il tuo ultimo respiro, #p!",
+        "Niente birra nanica per te!",
+        "Raaarrrgh!",
+        "Ti sbriciolerò come un sasso, ragazza!",
+        "Ci hai sottovalutato, #p!",
+        "Una spregevole scocciatura, ecco cosa sei, #p!",
+        "Come ti è venuto in mente di scontrarti con me? Ha!",
+        "Sventura e sofferenza su te e la tua stirpe, #p!",
+        "Khazâd ai-mênu!",
+        "Che tu possa arrostire nel fuoco del drago!",
+        "Ti strapperei la barba dal mento, se solo ne avessi una!",
+        "E questa sarebbe una guerriera per voi gente senza barba?",
+        "Fatti avanti, miserabile senza barba!",
+        "Non riusciresti a farti crescere la barba nemmeno se ci provassi!",
+        "Puzzi come un branco di Rakhâ!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Come osi entrare nelle nostre terre?",
+        "La pagherai per essere entrato qui!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Come osi entrare nelle nostre terre?",
+        "La pagherai per essere entrata qui!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:dol_guldur | lotr:northern_orcs | lotr:angmar"
+      },
+      "lines": [
+        "È finita per te, feccia Morgul!",
+        "Sparisci, feccia Rukhs!",
+        "Tornatene dai Rakhâ che servi!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:dol_guldur | lotr:northern_orcs | lotr:angmar",
+        "biome": "#home",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "La pagherai per essere entrato qui, feccia Morgul!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:dol_guldur | lotr:northern_orcs | lotr:angmar",
+        "biome": "#home",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "La pagherai per essere entrata qui, feccia Morgul!"
+      ]
+    }
+  ]
+}

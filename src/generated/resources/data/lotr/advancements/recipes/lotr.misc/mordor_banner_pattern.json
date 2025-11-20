@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:mordor_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_mordor_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mordor_banner"
+          }
+        ]
+      }
+    },
+    "has_mordor_banner_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mordor_banner_pattern"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:mordor_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mordor_banner",
+      "has_mordor_banner_pattern",
+      "has_the_recipe"
+    ]
+  ]
+}

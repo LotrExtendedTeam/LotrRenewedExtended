@@ -1,0 +1,23 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rivendell",
+  "pattern": [
+    "W",
+    "S",
+    "P"
+  ],
+  "key": {
+    "W": {
+      "tag": "lotrextended:wool_blocks"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "lotr:rivendell_banner"
+  }
+}

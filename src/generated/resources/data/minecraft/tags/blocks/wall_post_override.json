@@ -1,7 +1,8 @@
 {
   "replace": false,
   "values": [
-    "lotr:morgul_lantern",
+    "lotr:high_elven_lantern",
+    "lotr:morgul_brazier",
     "lotr:morgul_torch"
   ]
 }

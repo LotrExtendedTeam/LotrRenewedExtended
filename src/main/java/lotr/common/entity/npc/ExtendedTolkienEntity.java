@@ -98,7 +98,6 @@ public class ExtendedTolkienEntity extends ManEntity {
 		this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.RED_BOOK.get()));
 		this.npcItemsInv.setIdleItem(new ItemStack(LOTRItems.SMOKING_PIPE.get()));
 		this.personalInfo.setMale(true);
-		this.personalInfo.setName("J. R. R. Tolkien");
 		return spawnData;
 	}
 
@@ -119,7 +118,7 @@ public class ExtendedTolkienEntity extends ManEntity {
 			BlockPos plusOneY = new BlockPos(x, y + 1, z);
 			if (y > 62 && !world.getBlockState(pos).isSuffocating(world, pos) && !world.getBlockState(plusOneY).isSuffocating(world, plusOneY)) {
 				BlockPos spawnPos = pos.offset(new Vector3i(0.5D, 0, 0.5D));
-				Entity tolkien = type.spawn((ServerWorld) world, null, null, spawnPos, SpawnReason.TRIGGERED, true, true);
+				Entity tolkien = type.spawn((ServerWorld) world, null, null, spawnPos, SpawnReason.EVENT, true, true);
 				if(tolkien!=null) {
 					world.addFreshEntity(tolkien);
 					player.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_you", tolkien.getName().copy().withStyle(TextFormatting.YELLOW)), Util.NIL_UUID);

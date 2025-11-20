@@ -360,13 +360,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		reCalculateBounds();
 	}
 
-	public void setSpawnerToDefaultPreset(ResourceLocation preset, boolean isCreation) {
+	public void setSpawnerToPreset(ResourceLocation preset) {
 		spawnerType = preset;
-		if(!isCreation) {
-			setSpawnerFromResourceLocation();
-		}else {
-			spawnerInstance = ExtendedStructureEntitySpawner.EMPTY;
-		}
+		setSpawnerFromResourceLocation();
 	}
 
 	@Override

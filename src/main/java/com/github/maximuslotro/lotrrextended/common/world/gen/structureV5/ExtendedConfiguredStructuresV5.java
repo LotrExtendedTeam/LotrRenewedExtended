@@ -70,6 +70,8 @@ public class ExtendedConfiguredStructuresV5 {
 
 	public static StructureFeature<?, ?> CONFIGURED_STONE_OF_HAPLESS = register(ExtendedStructuresV5.STONE_OF_HAPLESS.get().configured(new SinglePoolConfig("lore/stone_of_hapless")));
 
+	public static StructureFeature<?, ?> CONFIGURED_RIVENDELL_STRUCTURES = register(ExtendedStructuresV5.RIVENDELL_STRUCTURE.get().configured(new SinglePoolConfig("rivendell/rivendell_structures")));
+
 	/**
      * Empty method intended to be called to ensure static initialization of this class
      * and the registration of configured structures.

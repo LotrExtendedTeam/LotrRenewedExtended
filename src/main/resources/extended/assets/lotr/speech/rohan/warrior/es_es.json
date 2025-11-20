@@ -1,0 +1,360 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "El mundo de los hombres renacerá cuan ave fénix.",
+        "Espero ver el mundo de los hombres como fue una vez.",
+        "Esta es la tierra de nuestros padres, y de los padres de nuestros padres, la debemos proteger.",
+        "No existe mejor caballería que los Rohirrim.",
+        "Cuidado con los Uruk-hai. Suelen arrasar con todo lo que se encuentran.",
+        "Siemre aparece nueva vida donde se encuentran los antepasados de Rohan.",
+        "El lobo que uno escucha es peor que el Orco al que uno teme.",
+        "No olvides alimentar a los caballos.",
+        "En estos tiempos hay que tener cuidado con los sirvientes del Señor Oscuro.",
+        "La mano y el ojo del Señor Oscuro siempre nos acechan.",
+        "Por qué son tan tontos los Dunlendinos.",
+        "¿Has escuchado las canciones de Helm Mano de hierro? Dicen que mató Dunlendinos hasta el fin de seus días.",
+        "¿Has escuchado las canciones de Helm Mano de hierro? Dicen que lo encontraron conjelado en la nieve con la sangre de los Dunlendinos.",
+        "#p, Sabías que los Dunlendinos nos llaman cabezas de paja, nosotros preferimos eso a vivir entre la suciedad de los cerdos.",
+        "Tenemos muchos caballos en estas tierras, #p, todos preparados para la guerra.",
+        "Un buen caballo requiere de buena paja, #p, ¡No olvides alimentarlos!",
+        "Pronto tendremos que atacar a los Harad.",
+        "Son malos tiempos para Gondor.",
+        "Tenemos algunos problemas con los de Harad.",
+        "Ya han pasado cinco años des que el joven Eorl nos trajo de las Tierras del Norte.",
+        "Nosotros, la gente de Eorl, somos fieles defensores de la verdad."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "¡Heyla, #p!",
+        "No olvides alimentar a los caballos."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest"
+      },
+      "lines": [
+        "¡Heyla, extraño!",
+        "Buenos días, ¿de dónde eres?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Ahora caminas sobre los campos de Rohan.",
+        "Tenemos problemas en Rohan, #p. Muchos Orcos tratan de asediarnos.",
+        "#p, liberaremos nuestras tierras de los Orcos."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "¿Tienes mucho que hacer en Rohan, #p?",
+        "Ve con cuidado, hay muchos enemigos acechando."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "in_conversation": "other"
+      },
+      "lines": [
+        "¡Cállate, extraño!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman",
+        "in_conversation": "other"
+      },
+      "lines": [
+        "¡Cállate!",
+        "¡Cállate!¡Estamos hablandos!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman",
+        "in_conversation": "other"
+      },
+      "lines": [
+        "¿Quien te da derecho a interrumpirnos? Espera tu turno #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <atarms"
+      },
+      "lines": [
+        "Eres tú otra vez, #p.",
+        "Buenos días, #p. ¿De dónde eres?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<atarms",
+        "biome": "#home"
+      },
+      "lines": [
+        "Bienvenido a Rohan.",
+        "Bienvenido a Rohan. ¿De dónde eres?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <atarms",
+        "biome": "#home"
+      },
+      "lines": [
+        "Bienvenido a Rohan, #p.",
+        "Bienvenido a las tierras de los Rohirrim, #p!",
+        "Bienvenido, #p. ¿Por qué viniste a Rohan?",
+        "Saludos, #p ¿traes nuevas noticias?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman"
+      },
+      "lines": [
+        "¡Buenas, #p! Somos los Rohirrim.",
+        "¿Eres un aliado de la hechicera de Lothlórien?",
+        "No es normal tener visitantes, ¿cuál es tu cometido aquí?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms & <captain"
+      },
+      "lines": [
+        "Buenas #p, amigo de Marca!",
+        "He oído hablar de tus hazañas, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "¡Crucemos espadas!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=rider"
+      },
+      "lines": [
+        "Buenas Rohirrim",
+        "¿Deberíamos ir juntos a la guerra, #p?",
+        "Cabalguemos juntos como Rohirrims."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain"
+      },
+      "lines": [
+        "Mi buen amigo #p, ¡te seguiría hasta el fin del mundo!",
+        "Cuando llege el momento, #p, cabalgaremos juntos."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=marshal"
+      },
+      "lines": [
+        "Cuando llege el momento #p, me uniré a tu éored."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+        "Ahora sirves a la casa de Eorl, #p.",
+        "Ahora sirves a la casa de Eorl. Esperamos que tus obras trigan la gloria."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "daytime": "evening | dusk",
+        "weather": "clear"
+      },
+      "lines": [
+        "El sol se pone detrás de las montañas.",
+        "Observa como se pone el sol tras las llanuras de Marca."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk | night"
+      },
+      "lines": [
+        "La noche ha llegado. Cudiado con los lobos que acechan en la oscuridad, #p.",
+        "La noche ha llegado. Cudiado con los Orcos que acechan en la oscuridad, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home",
+        "daytime": "dusk | night"
+      },
+      "lines": [
+        "¿Qué busca un viajero de tan lejos tan tarde?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn",
+        "weather": "clear"
+      },
+      "lines": [
+        "¡Mira al este!¡El Sol se eleva!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "weather": "rain"
+      },
+      "lines": [
+        "La tormenta proviene del este.",
+        "La nubes han estallado, ¡protege a los caballos!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:anorien"
+      },
+      "lines": [
+        "Siempre había querido caminar en Gondor.",
+        "Siempre había querido caminar en Gondor, el país de nuestros viejos aliados.",
+        "Siempre había querido cabalgar en Gondor."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "¡No toleraré tu presencia aquí!",
+        "¡Tiembla #p!",
+        "¡Prepárate para tu condena, #p!",
+        "Sin piedad con los enemigos de Marca!",
+        "Sin piedad con los enemigos de Eorl!",
+        "¡Vete o muere!",
+        "¡Pagarás por tus pecados, #p!",
+        "¡Tus días de maldad acaban aquí!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "No deberías estar en nuestras tierras, #p!",
+        "¡No eres bienvenido en Marca, #p!",
+        "¡No eres bienvenido en Rohan!",
+        "¡Debías abandonar estas tierras hace mucho!",
+        "Fue una estupidez meterte en nuestras tierras.",
+        "No te dejaré manchar Rohan con tu maldad.",
+        "¡Apártate de nuestras tierras!",
+        "Huye de Rohan si valoras tu vida!",
+        "¡Vete y no regreses!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:isengard"
+      },
+      "lines": [
+        "¡Acabaré contigo, esclavo de Isengard!",
+        "No apreciamos la traición de Isengard.",
+        "¿Cómo has caído ante Isengard?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "¿Cómo has caído ante Mordor?",
+        "Vete esclavo de Sauron!",
+        "Vete esclavo de Mordor!",
+        "¡Vuestros caballeros negros no pueden con los Rohirrim!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "¡Te arrepentirás de haberte enemistado con nosotros!",
+        "¿Cómo caíste al servicio de la Sombra?",
+        "¡Desaparece maldito!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "¡Por Rohan!¡Por los nuestros!",
+        "¡Crucemos espadas, #p!",
+        "¡Luchemos por Rohan, #p!",
+        "¡Por Rohan!",
+        "¡Llevemos la ruina a nuestros enemigos!",
+        "Si luchamos juntos nos llenaremos de gloria, #p.",
+        "¡Estén donde esstén los enemigos de Rohan temblarán!",
+        "Cabalguemos juntos. Por la gloria. ¡Por Rohan!",
+        "Los enemigos de Rohan temblarán bajo nuestros pies!",
+        "No dejaremos ningún Orco vivo en Rohan.",
+        "¡Vamos a cazar Orcos!",
+        "¡Por el rey de Rohan! ¡Por Edoras!",
+        "¡Cabalguemos juntos, y vaciaremos de Orcos la Marca!"
+      ]
+    }
+  ]
+}

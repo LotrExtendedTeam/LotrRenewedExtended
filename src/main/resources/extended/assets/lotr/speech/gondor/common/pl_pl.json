@@ -1,0 +1,405 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Dzień dobry.",
+        "Dzień dobry, #p.",
+        "Nadeszły mroczne czasy dla Gondoru.",
+        "Nadeszły mroczne czasy dla Gondoru, #p.",
+        "Ludzie szepczą o podłych stworzeniach pojawiających się na wschodzie, oraz opowiadają o bezimiennym strachu...",
+        "Jeżeli kiedykolwiek natkniesz się na dziko rosnące fajkowe liście, mądrze by było zebrać je i zabrać ze sobą.",
+        "Mówią że cień Mordoru rośnie na wschodzie.",
+        "Nastały mroczne czasy. Wielka potęga rośnie na wschodzie.",
+        "Jak się masz?",
+        "Masz coś do picia?",
+        "Niewiele jest rzeczy tak pięknych jak widok pierwszych promieni Słońca padających na białe stoki górskie.",
+        "Dzień dobry, #p! Ale czy chcę przez to powiedzieć że dzień jest dobry, czy może że dzisiaj należy być dobrym?",
+        "Jesteśmy prawdomówcami, my, ludzie Gondor.",
+        "Gondor był kiedyś jednym z największych królestw ludzi. A dziś jest lewdwie krajem rozpadających się cegieł i fałszywych serc...",
+        "Jakie wieści ze sobą przynosisz?",
+        "Powiedz mi, #p. Jakie wieści z dalekich krain?",
+        "Czy to ostatnie dni ludzi? Niegdyś, Gondor był wspaniały, ale z każdym dniem coraz bardziej obawiam się o naszą przyszłość.",
+        "Lodowata ciemność zstępuje na królestwa ludzi.",
+        "Smukłe okręty i smukli królowie, trzykroć po trzy. Co nam przynieśli z ziem zatopionych, ponad potopu falą? Gwiazd siedem nieśli, siedem kamieni, i drzewa białego pęd.",
+        "Mówią że Południowcy idą do walki z zakrzywionymi mieczami. Zakrzywione miecze!",
+        "Mam nadzieję że ujrzę jak Gondor odzyska kiedyś swoją potęgę.",
+        "Gondor nie jest już taki wspaniały jak kiedyś.",
+        "Zło rośnie ponownie za murami Mordoru. Boję się że będzie to nasza zguba.",
+        "Dolina Anduiny to przepiękna kraina, prawie tak samo piękna jak sam Gondor.",
+        "Białe Drzewo już od dawna jest stracone, lecz nasze serca nadal biją szczerze.",
+        "Mówi się że szczyty Gór Białych widać z każdego miejsca w Gondorze.",
+        "Trzymaj się z dala od sosen Tawar-in-Drúedain, #p. Żyją tam Dziwni Ludzie którzy czczą kamień i liść.",
+        "Jeżeli ogniska Białej Wieży zapłoną, wtedy będziemy wiedzieli że nadszedł nasz kres.",
+        "Przystanie Umbaru były niegdyś częścią naszego królestwa, ale już dawno temu wpadły w ręce Haradrimów."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "m"
+      },
+      "lines": [
+        "Wolałbym teraz być w tawernie.",
+        "Chciałbym zobaczyć jak Łabędzi Rycerze z Dor-en-Ernil jadą do walki."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "f"
+      },
+      "lines": [
+        "Wolałabym teraz być w tawernie.",
+        "Chciałabym zobaczyć jak Łabędzi Rycerze z Dor-en-Ernil jadą do walki."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "m",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Czy widziałeś Argonath, #p? Jest to widok godny podziwu!",
+        "Czy widziałeś Argonath, #p? Kiedy ostatnio podróżowałem na północ, nie było ich tam...",
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "m",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Czy widziałaś Argonath, #p? Jest to widok godny podziwu!",
+        "Czy widziałaś Argonath, #p? Kiedy ostatnio podróżowałem na północ, nie było ich tam...",
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "m",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Czy widziałeś Argonath, #p? Jest to widok godny podziwu!",
+        "Czy widziałeś Argonath, #p? Kiedy ostatnio podróżowałem na północ, nie było ich tam...",
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "f",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Czy widziałeś Argonath, #p? Jest to widok godny podziwu!",
+        "Czy widziałeś Argonath, #p? Kiedy ostatnio podróżowałam na północ, nie było ich tam...",
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+		"gender": "f",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Czy widziałaś Argonath, #p? Jest to widok godny podziwu!",
+        "Czy widziałaś Argonath, #p? Kiedy ostatnio podróżowałam na północ, nie było ich tam...",
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Ten kraj był niegdyś wielkim królestwem, ale te dni już dawno przeminęły...",
+        "Ach, słodki galenas! Takie piękne, pachnące ziele. Często można je znaleźć na tych ziemiach, #p.",
+        "Fajkowy liść na tych ziemiach to cudowne i pachnące zioło.",
+        "Serca ludzi może i są przepełnione kłamstwem, #p, ale nasze ziemie wciąż są tak czyste jak zawsze.",
+        "Ta kraina w języku Rohanu zwie się Krajem Kamienia. Coż, kamienia nam nie brakuje, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Witaj, #p!",
+        "Jakie wieści, #p?",
+        "Stary kurhan Elendila w języku Rohanu nosi nazwę Halifirien. Lecz jego kasetka została wysłana na Cichą Ulicę w Kamiennym Mieście, pięćset lat temu.",
+        "Wybudowaliśmy mur wokół pól Pelennoru aby ochronić je przed najazdami orków. Moim zdaniem powinniśmy zrobić tak samo przy Poros.",
+        "Uczeni mówią o dniach kiedy Gondor był błyszczącym klejnotem pośród królestw ludzi. Obawiam się że te dni preminęły na dobre, #p.",
+        "Masz jakieś dobre wieści, #p?",
+        "Gondor nigdy do tej pory nie odzyskał potęgi jaką był za czasów panowania linii Anáriona."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+		"gender": "m"
+      },
+      "lines": [
+        "Na własne oczy widziałem ruiny Osgiliath, naszej dawnej stolicy. Lecz przez pięćset lat, to miasto było siedliskiem niczego innego niż cichej żałoby, pamiątką o coraz to ciemniejszym upadku Gondoru."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+		"gender": "f"
+      },
+      "lines": [
+        "Na własne oczy widziałam ruiny Osgiliath, naszej dawnej stolicy. Lecz przez pięćset lat, to miasto było siedliskiem niczego innego niż cichej żałoby, pamiątką o coraz to ciemniejszym upadku Gondoru."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Ten kraj to mój dom, #p. Boję się o nas wszytkich w tych mrocznych czasach.",
+        "Wielu ludzi z Ithilien i Południowych Krain szukało tu schronienia, sto lat temu. Mam nadzieję że pewnego dnia nasza armia ruszy na wschód i odzyska nasze nawiedzone ziemie!",
+        "Witaj, #p. Jakie wieści z daleka przynosisz do Gondoru?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <champion"
+      },
+      "lines": [
+        "Ach, #p! Wydaje mi się że spotkaliśmy się już wcześniej. Czy się mylę?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<friend"
+      },
+      "lines": [
+        "Nie życzymy sobie nieznajomych na tych ziemiach w tym momencie, chyba że są silnymi zbrojnymi mężczyznami na których wiarę i pomoc możemy liczyć.",
+        "Wiedz, #p, że nie życzymy sobie nieznajomych w Gondorze w tym momencie."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Cóż za spotkanie, #p!",
+        "Cóż za spotkanie.",
+        "_PGP_Do not be afraid, my friend #p. Rohan will come to our aid. They always come to our aid.",
+        "To trudne czasy dla naszych ludzi. Ciemność gromadzi się w Mordorze, a władcy Białego Miasta milczą.",
+        "W moim sercu, #p, nadal śnię o dniu w którym Królowie powrócą na tron Gondoru.",
+        "Pragnę ponownie zobaczyć króla na tronie Gondoru.",
+        "Gondor. Ach, Gondor. Dawne wspaniałe Południowe Królestwo, kiedyś! Ale teraz, #p, to nasze długie słabnięcie. Zmierzch zachodu.",
+        "Ludzie z daleka przybywają do centrum krainy, z dala od konfliktu. Przynoszą ze sobą kłopoty, ale myślę że sobie poradzimy.",
+        "Podejdź, #p, opowiedz mi historię na pokrzepienie serca."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+		"gender": "m"
+      },
+      "lines": [
+        "Słyszałem opowieści o tym że Królowie powrócą pewnego dnia i ponownie obejmą władzę w Gondorze. Ale to pewnie tylko plotki; nie mogą być prawdziwe..."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+		"gender": "f"
+      },
+      "lines": [
+        "Słyszałam opowieści o tym że Królowie powrócą pewnego dnia i ponownie obejmą władzę w Gondorze. Ale to pewnie tylko plotki; nie mogą być prawdziwe..."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Nie obawiaj się, mój przyjacielu. Rohan przybędzie nam na pomoc. Zawsze przychodzą nam z pomocą."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Nie obawiaj się, moja przyjaciółko. Rohan przybędzie nam na pomoc. Zawsze przychodzą nam z pomocą."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<atarms"
+      },
+      "lines": [
+        "Muszę cię ostrzec, #p. Gondor nie jest taki jak kiedyś.",
+        "Nie wyglądasz zbytnio na człowieka z Gondoru, #p. Nie jesteś chyba z południa, prawda?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<atarms"
+      },
+      "lines": [
+        "Witaj w Gondorze.",
+        "Witaj w Gondorze, #p.",
+        "Gondor cię wita, #p.",
+        "_G_I wish that I could welcome you to Gondor in happier times.",
+        "Witaj, #p. Jakie sprawy przywiodły cię do Gondoru?",
+        "Dzień dobry, #p! Witaj w krainie Gondoru.",
+        "Przychodzisz w dobrym momencie, #p. Orkowie nie najechali na nasze ziemie dłużej niż tydzień."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<atarms",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Witaj, #p. Gdybyś tylko przybył do Gondoru w szczęśliwszych czasach.",
+        "Szkoda że nie mogłeś przybyć do Gondoru w szczęśliwszych czasach, #p.",
+        "Może i podróżowałeś długo aby zobaczyć Gondor, #p. Jednak myślę że ujrzałeś go w ponurych czasach."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<atarms",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Witaj, #p. Gdybyś tylko przybyła do Gondoru w szczęśliwszych czasach.",
+        "Szkoda że nie mogłaś przybyć do Gondoru w szczęśliwszych czasach, #p.",
+        "Może i podróżowałaś długo aby zobaczyć Gondor, #p. Jednak myślę że ujrzałaś go w ponurych czasach."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<atarms",
+		"gender": "m"
+      },
+      "lines": [
+        "Chciałbym powitać cię w Gondorze w szczęśliwszych czasach."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<atarms",
+		"gender": "f"
+      },
+      "lines": [
+        "Chciałabym powitać cię w Gondorze w szczęśliwszych czasach."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<captain"
+      },
+      "lines": [
+        "Nie jesteś z tych okolic, prawda, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Dzień dobry, mój Panie. Czy jest coś co mogę dla ciebie zrobić?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Dzień dobry, moja Pani. Czy jest coś co mogę dla ciebie zrobić?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day",
+        "weather": "clear"
+      },
+      "lines": [
+        "Dobry dzień na to."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "weather": "rain"
+      },
+      "lines": [
+        "Ciemność się zbiera nad Gondorem. A wygląda na to, #p, że deszczowe chmury zbierają się nad horyzontem."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Nie patrzymy tu łaskawie na kryminalistów!",
+        "To faktycznie zła godzina dla Gondoru!"
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "m"
+      },
+      "lines": [
+        "Nie będziesz tu popełniał żadnych zbrodni!",
+        "Nie jesteś przyjacielem Gondoru, #p."
+      ]
+    },
+	{
+      "conditions": {
+        "relation": "hostile",
+		"player_gender_pref": "f"
+      },
+      "lines": [
+        "Nie będziesz tu popełniała żadnych zbrodni!",
+        "Nie jesteś przyjaciółką Gondoru, #p."
+      ]
+    }
+  ]
+}

@@ -6,8 +6,8 @@ import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
+import com.github.maximuslotro.lotrrextended.common.loot.conditions.ExtendedRemoveUnitCoinDrops;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedSetWargFurType;
-import com.github.maximuslotro.lotrrextended.common.loot.modifiers.ExtendedRemoveUnitCoinDrops;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
@@ -42,6 +42,7 @@ import net.minecraftforge.fml.RegistryObject;
 public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	//Parts
 	ResourceLocation coins;
+	ResourceLocation coinsBandit;
 	ResourceLocation coinsRare;
 	ResourceLocation wargFur;
 	ResourceLocation wargHead;
@@ -109,6 +110,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 
 	private void makePartTables() {
 		coins = makeQuickyBasePart("coins", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.SILVER_COIN_ONE.get(), 0, 3)
+			.when(ExtendedRemoveUnitCoinDrops.setRemoveUnitCoinsDropBuilder())));
+		coinsBandit = makeQuickyBasePart("coins_bandit", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.SILVER_COIN_ONE.get(), 12, 28)
 			.when(ExtendedRemoveUnitCoinDrops.setRemoveUnitCoinsDropBuilder())));
 		wargFur = makeQuickyBasePart("warg_fur", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.FUR.get(), 1, 3)
 			.apply(ExtendedSetWargFurType.setWargFurTypeBuilder())));
@@ -360,6 +363,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_STONEMASON, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_BARTENDER, dwarfBlueMountians, foodItems);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_COMMANDER, dwarfBlueMountians, foodItems);
+		makeEntity(ExtendedEntities.BANDIT, coinsBandit, manBones, pouch);
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_AXE_THROWER, dwarfBlueMountians);
 		makeEntity(ExtendedEntities.GUNDABAD_CAMP_TRADER, orcGundabad);
 		makeEntity(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN, orcGundabad);
@@ -455,12 +459,26 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 				.add(EItemLootEntry.lootItem(Items.BOOK).setWeight(4).apply(SetCount.setCount(RandomValueRange.between(1, 2)))))
 			.withPool(LootPool.lootPool()
 				.setRolls(RandomValueRange.between(0, 1))
-				.add(EItemLootEntry.lootItem(Items.FEATHER).setWeight(1).apply(SetCount.setCount(RandomValueRange.between(1, 2))))));
+				.add(EItemLootEntry.lootItem(Items.FEATHER).apply(SetCount.setCount(RandomValueRange.between(1, 2))))));
 		add(ExtendedEntities.HORSE_BOAR.get(), LootTable.lootTable()
 			.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
-				.add(EItemLootEntry.lootItem(Items.PORKCHOP).setWeight(1)
+				.add(EItemLootEntry.lootItem(Items.PORKCHOP)
 					.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
 					.apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
+		makeEntity(ExtendedEntities.RIVENDELL_CAPTAIN, elfRivendell);
+		makeEntity(ExtendedEntities.RIVENDELL_SMITH, elfRivendell);
+		makeEntity(ExtendedEntities.RIVENDELL_WEAVER, elfRivendell);
+		makeEntity(ExtendedEntities.IMLADRIS_GUARD, elfRivendell);
+		add(ExtendedEntities.ELROND.get(), LootTable.lootTable()
+			.withPool(addAnotherQuickyPoolRefrence(elfRivendell))
+			.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.ELVEN_STEEL_INGOT.get())
+					.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.01F, 0.0F))
+					.apply(SetCount.setCount(RandomValueRange.between(1, 2)))))
+			.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.SAPPHIRE.get())
+					.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F))
+					.apply(SetCount.setCount(ConstantRange.exactly(1))))));
 	}
 
 	public ResourceLocation makeQuickyBaseCommon(String name, Builder builder) {

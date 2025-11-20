@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:mud_brick"
+    },
+    {
+      "item": "lotr:willow_vines"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_mud_brick"
+  }
+}

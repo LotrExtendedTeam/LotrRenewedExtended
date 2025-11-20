@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
@@ -50,6 +51,8 @@ public class ExtendedBlockRenderer {
 	public static final RenderMaterial WHITE_FUR_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, WHITE_FUR_BED);
 	public static final ResourceLocation DWARVEN_BED = createNewBedModel("dwarven_bed");
 	public static final RenderMaterial DWARVEN_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, DWARVEN_BED);
+	public static final ResourceLocation HIGH_ELVEN_BED = createNewBedModel("high_elven_bed");
+	public static final RenderMaterial HIGH_ELVEN_BED_MATERIAL = new RenderMaterial(Atlases.BED_SHEET, HIGH_ELVEN_BED);
 
 	public static ResourceLocation createNewChestModel(String name) {
 		return new ResourceLocation(LotrExtendedMod.MODID, "entity/chest/"+name);
@@ -72,6 +75,7 @@ public class ExtendedBlockRenderer {
 			event.addSprite(SILVER_FUR_BED);
 			event.addSprite(WHITE_FUR_BED);
 			event.addSprite(DWARVEN_BED);
+			event.addSprite(HIGH_ELVEN_BED);
 		}
 	}
 
@@ -132,6 +136,10 @@ public class ExtendedBlockRenderer {
 				}else {
 					RenderTypeLookup.setRenderLayer(block, RenderType.solid());
 				}
+			}
+			if (block instanceof ExtendedLanternBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+				continue;
 			}
 		}
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.BLACKBERRY_BUSH.get(), RenderType.cutout());

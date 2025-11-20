@@ -1,0 +1,39 @@
+{
+  "speech": [
+    {
+      "conditions": {},
+      "lines": [
+        "Non osare entrare a Lórien, #p!",
+        "Non toccare gli alberi del Bosco d'Oro!",
+        "Nessuna mano malvagia toccherà gli alberi di Lothlórien!",
+        "Le asce del Nemico sono proibite qui!",
+        "I nostri alberi di mallorn non devono essere abbattuti!",
+        "Non osare mettere piede a Lothlórien, #p!",
+        "Nessun mallorn cadrà per mano del male in questi boschi!",
+        "Quelli che porteranno distruzione a Lórien, la riceveranno loro stessi!",
+        "Il male non può entrare in questa terra!",
+        "Come osi? Vattene dalle nostre terre, progenie di Morgoth.",
+        "Ripugnante progenie di Morgoth! Pagherai per aver profanato gli alberi del Bosco d'Oro.",
+        "Risponderai dei tuoi crimini, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Non sei il benvenuto qui!",
+        "Come osi abbattere i mellyrn del Bosco d'Oro? Sei davvero un servo del male!"
+      ]
+    },
+    {
+      "conditions": {
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Non sei la benvenuta qui!",
+        "Come osi abbattere i mellyrn del Bosco d'Oro? Sei davvero una serva del male!"
+      ]
+    }
+  ]
+}
