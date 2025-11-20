@@ -3,6 +3,8 @@ package lotr.common.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedTradeType;
 
 import lotr.common.util.representation.ExtendedTrade;
@@ -13,10 +15,11 @@ import net.minecraft.nbt.ListNBT;
 
 public class TradeUtils {
 
+	@Nonnull
 	public static ArrayList<ExtendedTrade> loadAllTrades(ExtendedTradeType type, CompoundNBT tag) {
 		ListNBT listnbt = tag.getList(type.name(), 10);
 		if (listnbt.isEmpty()) {
-			return null;
+			return new ArrayList<>(); // Return empty list if invalid
 		}
 
 		ArrayList<ExtendedTrade> result = new ArrayList<>();

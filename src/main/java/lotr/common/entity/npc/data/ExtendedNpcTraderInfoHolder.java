@@ -72,17 +72,19 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 
 	public List<ExtendedTrade> generateTrades(Random rand, ExtendedTradeType type) {
 		List<ExtendedTrade> outputTrades = new ArrayList<>();
-		List<ExtendedTraderPoolItem> profileTradePool = getProfile().getTraderPool(type);
+		List<ExtendedTraderPoolItem> profileTradePool = new ArrayList<>(getProfile().getTraderPool(type));
 
 		// Number of trades that should generate, handle  pools smaller than generated trade count or larger than 9 slots
 		int tradeCount = Math.min(Math.min(rand.nextInt(getProfile().getMaximumAdditionalTrades()+1) + getProfile().getMinimumTrades(), profileTradePool.size()), 9);
 		// Get random list of trade pool items
-		// Weighted picks
 		List<ExtendedTraderPoolItem> randomElements = new ArrayList<>();
 		for (int i = 0; i < tradeCount; i++) {
 		    ExtendedTraderPoolItem chosen = WeightedRandom.getRandomItem(rand, profileTradePool);
 		    // Catch end of list
-		    if (chosen == null) break;
+		    if (chosen == null) {
+		    	ExtendedLog.warn("Profile: "+getProfile().getId() + " is trying to generate null pool items :(");
+		    	break;
+		    }
 		    randomElements.add(chosen);
 		    profileTradePool.remove(chosen);
 		}
