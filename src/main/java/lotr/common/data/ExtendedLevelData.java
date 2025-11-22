@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 
 import lotr.common.LOTRLog;
@@ -311,6 +312,9 @@ public class ExtendedLevelData {
 	}
 
 	public void checkForTolkienSpawns(World world) {
+		if(!ExtendedServerConfig.enableTolkienSpawning.get()) {
+			return;
+		}
 		if (world.players().isEmpty() || (requireRandom && world.random.nextInt(4) > 0)) {
 			return;
 		}
@@ -329,6 +333,9 @@ public class ExtendedLevelData {
 	}
 
 	public void checkForBanditSpawns(ServerWorld world) {
+		if(!ExtendedServerConfig.enableBanditEncounters.get()) {
+			return;
+		}
 		for (PlayerEntity player : world.players()) {
 			int cooldownLeft = getPlayersBanditCooldown(player.getUUID());
 			// Start at 30 minutes to give them some leeway
@@ -357,6 +364,9 @@ public class ExtendedLevelData {
 	}
 
 	public void checkForWanderingTraderSpawns(ServerWorld world) {
+		if(!ExtendedServerConfig.enableWanderingTraderSpawns.get()) {
+			return;
+		}
 		if (timeUntilTrader > 0) {
 			timeUntilTrader--;
 		} else {

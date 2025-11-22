@@ -32,22 +32,28 @@ public class ExtendedConfigCommand {
 		command.then(buildInt("barrowWightChestFirstSpawnChance", ExtendedServerConfig.barrowWightChestFirstSpawnChance, 0, 100));
 		command.then(buildBoolean("enableLegacyCaptainAggressionBehavior", ExtendedServerConfig.enableLegacyCaptainPassiveBehavior, true));
 		command.then(buildBoolean("enableLegacyTraderPassiveBehavior", ExtendedServerConfig.enableLegacyTraderPassiveBehavior, true));
+		command.then(buildBoolean("enableWanderingTraderSpawns", ExtendedServerConfig.enableWanderingTraderSpawns));
+		command.then(buildBoolean("enableBanditEncounters", ExtendedServerConfig.enableBanditEncounters));
+		command.then(buildBoolean("enableTolkienSpawning", ExtendedServerConfig.enableTolkienSpawning));
 		// Blocks
 		command.then(buildBoolean("makeMetalDoorsRequirePower", ExtendedServerConfig.makeMetalDoorsRequirePower, true));
 		command.then(buildBoolean("barsConnectToBranches", ExtendedServerConfig.barsConnectToBranches, true));
 		command.then(buildBoolean("barsConnectToSlabSides", ExtendedServerConfig.barsConnectToSlabSides, true));
 		command.then(buildDouble("dripstoneMinimumDamageHeight", ExtendedServerConfig.dripstoneMinimumDamageHeight, 0.0D, 5.0D));
-
 		// Chair
 		command.then(buildBoolean("enableChairSlabSitting", ExtendedServerConfig.enableChairSlabSitting));
 		command.then(buildBoolean("enableChairSwapping", ExtendedServerConfig.enableChairSwapping));
 		command.then(buildBoolean("enableChairProtectionOverride", ExtendedServerConfig.enableChairProtectionOverride));
 		// Gameplay
-		command.then(buildBoolean("enableVanillaEnchanting", ExtendedServerConfig.enableVanillaEnchanting));
-		command.then(buildBoolean("enableExtendedModifiers", ExtendedServerConfig.enableExtendedModifiers));
+		command.then(buildBoolean("enableVanillaEnchanting", ExtendedServerConfig.enableVanillaEnchanting, true));
+		command.then(buildBoolean("enableVanillaXp", ExtendedServerConfig.enableVanillaXp, true));
+		command.then(buildBoolean("enableExtendedModifiers", ExtendedServerConfig.enableExtendedModifiers, true));
 		// Special
 		command.then(buildBoolean("enableExtendedLogging", ExtendedServerConfig.enableExtendedLogging));
 		// Register
+		command.then(buildBoolean("enableExtendedSpawnProtection", ExtendedServerConfig.enableExtendedSpawnProtection));
+		command.then(buildInt("overworldSpawnProtectionRadius", ExtendedServerConfig.overworldSpawnProtectionRadius, 0, 500));
+		command.then(buildInt("middleEarthSpawnProtectionRadius", ExtendedServerConfig.middleEarthSpawnProtectionRadius, 0, 500));
 		dispatcher.register(command);
 	}
 
