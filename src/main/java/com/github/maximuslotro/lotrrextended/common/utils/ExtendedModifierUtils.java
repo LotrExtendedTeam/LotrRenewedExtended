@@ -404,10 +404,10 @@ public class ExtendedModifierUtils {
 	}
 	/**
 	 * Retrieves all modifiers associated with the given {@link ItemStack}.
-	 * 
+	 * <p>
 	 * WARNING, this method is unsafe for retrieving applied modifiers since it can contain non-applicable modifiers.
-	 * Use {@link getModifierByTypeSafe} or {@link getModifierListByTypeSafe} as it actively checks for this.
-	 * 
+	 * Use {@link ExtendedModifierUtils#getModifierByTypeSafe} or {@link ExtendedModifierUtils#getModifierListByTypeSafe} as it actively checks for this.
+	 * </p>
 	 * @param stack the {@link ItemStack} whose modifiers should be retrieved
 	 * @return a {@link List} of {@link ExtendedModifier} instances for the item;
 	 *         the list will be empty if no modifiers are present

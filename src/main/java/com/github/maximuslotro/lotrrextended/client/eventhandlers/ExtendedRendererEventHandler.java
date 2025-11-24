@@ -6,6 +6,8 @@ import java.util.List;
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedHiredUnitHpBar;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
@@ -20,6 +22,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
@@ -122,6 +125,22 @@ public class ExtendedRendererEventHandler {
 					.withStyle(TextFormatting.GRAY));
 			}
 			event.getToolTip().addAll(1, entries);
+		}
+		if(stack.getItem() instanceof BowItem) {
+			int drawSpeed = 20;
+			float damage = 1.0f;
+			if(stack.getItem() instanceof ExtendedBowItem) {
+				ExtendedBowMaterial material = ((ExtendedBowItem)stack.getItem()).getMaterial();
+				drawSpeed = material.getDrawSpeedTicks();
+				damage = material.getAttackDamageBonusScale();
+			}
+			if(!ExtendedModifierUtils.getModifierByTypeSafe(stack, ExtendedModifierType.RANGED_SPEED).isUnknown()) {
+				damage = damage * ExtendedModifierUtils.getModifierByTypeSafe(stack, ExtendedModifierType.RANGED_SPEED).getModifierEffect();
+			}
+			event.getToolTip().add(new StringTextComponent(""));
+			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.speed", (int)((1.0f/(drawSpeed/20.0F)) * 100)+"%").withStyle(TextFormatting.DARK_GREEN));
+			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.damage", String.format("%.0f%%", damage * 100)).withStyle(TextFormatting.DARK_GREEN));
+			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.range", String.format("%.0f%%", damage * 100)).withStyle(TextFormatting.DARK_GREEN));
 		}
 	}
 }

@@ -1,14 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import lotr.common.init.LOTRItemGroups;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -22,10 +17,6 @@ import net.minecraft.item.Items;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 
@@ -36,15 +27,6 @@ public class ExtendedBowItem extends BowItem {
 	public ExtendedBowItem(ExtendedBowMaterial material) {
 		super((new Item.Properties()).tab(LOTRItemGroups.COMBAT).durability(material.getDurability()));
 		this.bowMaterial = material;
-	}
-
-	@Override
-	public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-		super.appendHoverText(stack, world, tooltip, flag);
-		tooltip.add(new StringTextComponent(""));
-		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.speed", (int)((1.0f/(bowMaterial.getDrawSpeedTicks()/20.0F)) * 100)+"%").withStyle(TextFormatting.DARK_GREEN));
-		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.damage", String.format("%.0f%%", bowMaterial.getAttackDamageBonusScale() * 100)).withStyle(TextFormatting.DARK_GREEN));
-		tooltip.add(new TranslationTextComponent("gui.lotrextended.bow.range", String.format("%.0f%%", bowMaterial.getAttackDamageBonusScale() * 100)).withStyle(TextFormatting.DARK_GREEN));
 	}
 
     @Override
