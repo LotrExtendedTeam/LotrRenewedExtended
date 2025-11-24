@@ -284,6 +284,9 @@ public class ExtendedRepairContainer extends Container {
 						}
 					}
 					List<ExtendedModifier> mergableModifiers = ExtendedModifierUtils.getModifierList(mergableItem);
+					if(hasApplicableScroll) {
+						mergableModifiers.add(ExtendedModifierScrollItem.getModifier(mergableItem));
+					}
 					boolean hasInCompatibleModifier = false;
 
 					int currentModifierCount = (int) inputModifiers.stream().filter(m -> m.getRarity() == ExtendedModifierRarity.BASIC || m.getRarity() == ExtendedModifierRarity.SKILLFUL).count();

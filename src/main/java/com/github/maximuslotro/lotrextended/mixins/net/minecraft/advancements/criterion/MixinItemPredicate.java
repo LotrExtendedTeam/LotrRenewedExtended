@@ -30,7 +30,7 @@ public class MixinItemPredicate {
 		target = "Lnet/minecraft/enchantment/EnchantmentHelper;deserializeEnchantments(Lnet/minecraft/nbt/ListNBT;)Ljava/util/Map;", ordinal = 0),
 		locals = LocalCapture.CAPTURE_FAILHARD)
 	 public void containedIn(ItemStack pItem, CallbackInfoReturnable<Boolean> cir, Map<Enchantment, Integer> map) {
-		 if(!ExtendedModifierUtils.getModifierByTypeStack(pItem, ExtendedModifierType.TOOL_SILK).isUnknown()) {
+		 if(!ExtendedModifierUtils.getModifierByTypeSafe(pItem, ExtendedModifierType.TOOL_SILK).isUnknown()) {
 			 map.put(Enchantments.SILK_TOUCH, 1);
 		 }
 	 }

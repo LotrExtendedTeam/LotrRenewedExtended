@@ -95,12 +95,12 @@ public class MixinItemStack {
 	@Inject(method="hurt(ILjava/util/Random;Lnet/minecraft/entity/player/ServerPlayerEntity;)Z", 
 			at = @At("HEAD"), cancellable=true)
 	private void hurt$Extended(int pAmount, Random pRandom, @Nullable ServerPlayerEntity pUser, CallbackInfoReturnable<Boolean> cir) {
-		if (!isDamageableItem() || !ExtendedModifierUtils.getModifierListByType((ItemStack)(Object)this).containsKey(ExtendedModifierType.DURABILITY)) {
+		if (!isDamageableItem() || ExtendedModifierUtils.getModifierByTypeSafe((ItemStack)(Object)this, ExtendedModifierType.DURABILITY).isUnknown()) {
 			return;
 		} else {
 			if (pAmount > 0) {
 				float modAmount = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, (ItemStack)(Object)this);
-				modAmount += ExtendedModifierUtils.getModifierListByType((ItemStack)(Object)this).get(ExtendedModifierType.DURABILITY).getModifierEffect();
+				modAmount += ExtendedModifierUtils.getModifierByTypeSafe((ItemStack)(Object)this, ExtendedModifierType.DURABILITY).getModifierEffect();
 				int removeAmount = 0;
 
 				for(int k = 0; modAmount > 0 && k < pAmount; ++k) {

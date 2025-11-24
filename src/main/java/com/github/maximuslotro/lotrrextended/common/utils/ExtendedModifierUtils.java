@@ -211,10 +211,13 @@ public class ExtendedModifierUtils {
 	 */
 	public static void incrementBaneProgress(ItemStack stack, Entity entity, PlayerEntity player) {
 		// exit the method if the item already has a bane
-		if (containsBane(getModifierList(stack))) {
+		if (!getModifierByTypeSafe(stack, ExtendedModifierType.BANE).isUnknown()) {
 			return;
 		}
-
+		// Filter for items banes can be applied to
+		if (ExtendedModifierType.BANE.isItemApplicable(stack)) {
+			return;
+		}
 		// exit the method if there is applicable bane for that entity
 		ExtendedModifier modifier = getBaneByEntity(entity);
 		// Only allow earned banes to be progressed
@@ -298,16 +301,6 @@ public class ExtendedModifierUtils {
 		} else {
 			return result.toString();
 		}
-	}
-	/**
-	 * Determines if the given list of modifiers contains at least one
-	 * bane-type modifier.
-	 *
-	 * @param modifiers the list of {@link ExtendedModifier} objects to search
-	 * @return {@code true} if a bane modifier is present, {@code false} otherwise
-	 */
-	public static boolean containsBane(List<ExtendedModifier> modifiers) {
-		return !getModifierByTypeList(modifiers, ExtendedModifierType.BANE).isUnknown();
 	}
 	/**
 	 * Checks whether the specified {@link ExtendedModifier} is effective as a "bane"
@@ -411,70 +404,48 @@ public class ExtendedModifierUtils {
 	}
 	/**
 	 * Retrieves all modifiers associated with the given {@link ItemStack}.
-	 * <p>
-	 * Behavior depends on item type:
-	 * <ul>
-	 *   <li>If the item is a {@link ExtendedModifierScrollItem}, only its single stored
-	 *       modifier is returned (if known).</li>
-	 *   <li>Otherwise, all modifiers stored in the item's NBT list under
-	 *       {@code NBTMODIFIER} are returned.</li>
-	 * </ul>
-	 * </p>
-	 *
+	 * 
+	 * WARNING, this method is unsafe for retrieving applied modifiers since it can contain non-applicable modifiers.
+	 * Use {@link getModifierByTypeSafe} or {@link getModifierListByTypeSafe} as it actively checks for this.
+	 * 
 	 * @param stack the {@link ItemStack} whose modifiers should be retrieved
 	 * @return a {@link List} of {@link ExtendedModifier} instances for the item;
 	 *         the list will be empty if no modifiers are present
 	 */
 	public static List<ExtendedModifier> getModifierList(ItemStack stack) {
-		if(stack.getItem() == ExtendedItems.MODIFIER_SCROLL.get()){
-			List<ExtendedModifier> result = new ArrayList<>();
-			if(!ExtendedModifierScrollItem.getModifier(stack).isUnknown()) {
-				result.add(ExtendedModifierScrollItem.getModifier(stack));
-			}
-			return result;
-		}else {
-			if (!hasModifiers(stack)) {
-				return new ArrayList<>();
-			}
-			List<ExtendedModifier> result = new ArrayList<>();
-			ListNBT listnbt = stack.getTag().getList(NBTMODIFIER, 10);
-			for (INBT nbt : listnbt) {
-				CompoundNBT entry = (CompoundNBT) nbt;//Already checked above getList(NBTMODIFIER, 10)
-				ExtendedModifier modifier = ExtendedModifiers.MODIFIER_MAP.get(entry.getString("key"));
-				if (modifier != null) {
-					result.add(modifier);
-				}
-			}
-			return result;
+		if (!hasModifiers(stack)) {
+			return new ArrayList<>();
 		}
+		List<ExtendedModifier> result = new ArrayList<>();
+		ListNBT listnbt = stack.getTag().getList(NBTMODIFIER, 10);
+		for (INBT nbt : listnbt) {
+			CompoundNBT entry = (CompoundNBT) nbt;//Already checked above getList(NBTMODIFIER, 10)
+			ExtendedModifier modifier = ExtendedModifiers.MODIFIER_MAP.get(entry.getString("key"));
+			if (modifier != null) {
+				result.add(modifier);
+			}
+		}
+		return result;
 	}
 	/**
 	 * Retrieves the first {@link ExtendedModifier} of a specific type from the given {@link ItemStack}.
 	 * <p>
-	 * If no modifier of the specified type is present, {@link ExtendedModifiers#UNKNOWN}
-	 * is returned.
+	 * If no modifier of the specified type is present, {@link ExtendedModifiers#UNKNOWN} is returned.
+	 * </p>
+	 * <p>
+	 * If the returned modifier is not applicable to the given item, {@link ExtendedModifiers#UNKNOWN} is returned.
 	 * </p>
 	 *
 	 * @param stack the {@link ItemStack} to inspect
 	 * @param pType the {@link ExtendedModifierType} to search for
 	 * @return the first matching {@link ExtendedModifier}, or UNKNOWN if none exist
 	 */
-	public static ExtendedModifier getModifierByTypeStack(ItemStack stack, ExtendedModifierType pType) {
-		return getModifierByTypeList(getModifierList(stack), pType);
-	}
-	/**
-	 * Retrieves the first {@link ExtendedModifier} of a specific type from a provided list.
-	 * <p>
-	 * If no modifier of the specified type exists in the list,
-	 * {@link ExtendedModifiers#UNKNOWN} is returned.
-	 * </p>
-	 *
-	 * @param modifiers the list of {@link ExtendedModifier}s to search
-	 * @param pType     the {@link ExtendedModifierType} to match
-	 * @return the first matching {@link ExtendedModifier}, or UNKNOWN if none exist
-	 */
-	public static ExtendedModifier getModifierByTypeList(List<ExtendedModifier> modifiers, ExtendedModifierType pType) {
-		return modifiers.stream().filter((modifier)-> modifier.getModifierType()==pType).findFirst().orElse(ExtendedModifiers.UNKNOWN);
+	public static ExtendedModifier getModifierByTypeSafe(ItemStack stack, ExtendedModifierType pType) {
+		ExtendedModifier modifierRet = getModifierList(stack).stream().filter((modifier)-> modifier.getModifierType()==pType).findFirst().orElse(ExtendedModifiers.UNKNOWN);
+		if(!modifierRet.canApplyToItem(stack)) {
+			return ExtendedModifiers.UNKNOWN;
+		}
+		return modifierRet;
 	}
 	/**
 	 * Builds a map of {@link ExtendedModifierType} to {@link ExtendedModifier} from
@@ -483,15 +454,20 @@ public class ExtendedModifierUtils {
 	 * Only one modifier per type is stored in the resulting map. If multiple modifiers
 	 * of the same type exist, the last encountered is kept.
 	 * </p>
+	 * <p>
+	 * If the returned modifier is not applicable to the given item, {@link ExtendedModifiers#UNKNOWN} is returned.
+	 * </p>
 	 *
 	 * @param stack the {@link ItemStack} to inspect
 	 * @return a {@link Map} associating each modifier type with its corresponding modifier
 	 */
-	public static Map<ExtendedModifierType, ExtendedModifier> getModifierListByType(ItemStack stack) {
+	public static Map<ExtendedModifierType, ExtendedModifier> getModifierListByTypeSafe(ItemStack stack) {
 		List<ExtendedModifier> mergableModifiers = getModifierList(stack);
 		Map<ExtendedModifierType, ExtendedModifier> map = new LinkedHashMap<>();
 		for(ExtendedModifier modifier : mergableModifiers) {
-			map.put(modifier.getModifierType(), modifier);
+			if(modifier.canApplyToItem(stack)) {
+				map.put(modifier.getModifierType(), modifier);
+			}
 		}
 		return map;
 	}
@@ -518,7 +494,7 @@ public class ExtendedModifierUtils {
 	// TODO re-think the usage of this method, there has got to a be a better way to do this right?
 	public static void processItemAttributes(ItemAttributeModifierEvent pEvent) {
 		if(pEvent.getSlotType()==EquipmentSlotType.MAINHAND) {
-			Map<ExtendedModifierType, ExtendedModifier> modifiers = getModifierListByType(pEvent.getItemStack());
+			Map<ExtendedModifierType, ExtendedModifier> modifiers = getModifierListByTypeSafe(pEvent.getItemStack());
 			pEvent.removeModifier(ForgeMod.REACH_DISTANCE.get(), reachModifierPlus);
 			pEvent.removeModifier(ForgeMod.REACH_DISTANCE.get(), reachModifierNeg);
 			pEvent.removeModifier(Attributes.ATTACK_SPEED, speedModifierPlus);
@@ -531,7 +507,7 @@ public class ExtendedModifierUtils {
 			}
 		}
 		if (pEvent.getItemStack().getItem() instanceof ArmorItem && ((ArmorItem) pEvent.getItemStack().getItem()).getSlot()==pEvent.getSlotType()) {
-			Map<ExtendedModifierType, ExtendedModifier> modifiers = getModifierListByType(pEvent.getItemStack());
+			Map<ExtendedModifierType, ExtendedModifier> modifiers = getModifierListByTypeSafe(pEvent.getItemStack());
 			pEvent.removeModifier(Attributes.ARMOR_TOUGHNESS, toughness1);
 			pEvent.removeModifier(Attributes.ARMOR_TOUGHNESS, toughness2);
 			pEvent.removeModifier(Attributes.ARMOR_TOUGHNESS, toughness3);
@@ -781,7 +757,7 @@ public class ExtendedModifierUtils {
 			}
 			ExtendedModifierType modifierType = ExtendedModifierUtils.vanillaEnchantToModifier(pEnchantment, true);
 			if(modifierType != ExtendedModifierType.UNKNOWN) {
-				Map<ExtendedModifierType, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(pStack);
+				Map<ExtendedModifierType, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByTypeSafe(pStack);
 				if(modifiers.containsKey(modifierType)) {
 					output += modifiers.get(modifierType).getModifierEffect();
 				}

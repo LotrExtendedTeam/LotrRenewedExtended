@@ -13,8 +13,6 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-import java.util.List;
-
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
@@ -34,14 +32,12 @@ public class ExtendedServerModifierEventHandlers {
 
 		ItemStack weapon = ((LivingEntity) source).getMainHandItem();
 		LivingEntity target = event.getEntityLiving();
-		List<ExtendedModifier> enchants = ExtendedModifierUtils.getModifierList(weapon);
+		ExtendedModifier modifier = ExtendedModifierUtils.getModifierByTypeSafe(weapon, ExtendedModifierType.BANE);
 
-		for (ExtendedModifier enchant : enchants) {
-			if (ExtendedModifierUtils.isBaneEffectiveAgainst(enchant, target)) {
-				// only increase damage if > 0 (prevents damage going through shields)
-				if (event.getAmount() > 0F) {
-					event.setAmount(event.getAmount() + 4.0F);
-				}
+		if(!weapon.isEmpty() && !modifier.isUnknown() && ExtendedModifierUtils.isBaneEffectiveAgainst(modifier, target)) {
+			// only increase damage if > 0 (prevents damage going through shields)
+			if (event.getAmount() > 0F) {
+				event.setAmount(event.getAmount() + modifier.getModifierEffect());
 			}
 		}
 	}
@@ -66,7 +62,7 @@ public class ExtendedServerModifierEventHandlers {
 			}
 		}else if (event.getEntityLiving() instanceof PlayerEntity && !event.getEntityLiving().level.isClientSide()) {
 			if (event.getSource().getEntity() instanceof LivingEntity) {
-				if(!ExtendedModifierUtils.getModifierByTypeStack(((LivingEntity)event.getSource().getEntity()).getMainHandItem(), ExtendedModifierType.HEADHUNTING).isUnknown()) {
+				if(!ExtendedModifierUtils.getModifierByTypeSafe(((LivingEntity)event.getSource().getEntity()).getMainHandItem(), ExtendedModifierType.HEADHUNTING).isUnknown()) {
 					ItemStack head = new ItemStack(Items.PLAYER_HEAD);
 					head.getOrCreateTag().put("SkullOwner", NBTUtil.writeGameProfile(new CompoundNBT(), ((PlayerEntity)event.getEntityLiving()).getGameProfile()));
 					event.getEntityLiving().spawnAtLocation(head);

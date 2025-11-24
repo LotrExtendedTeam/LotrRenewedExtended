@@ -74,10 +74,10 @@ public class MixinEnchantmentHelper {
 		}
 		int vanillaValue = MathHelper.clamp(compoundnbt.getInt("lvl"), 0, 255);
 		ExtendedModifierType modifierType = ExtendedModifierUtils.vanillaEnchantToModifier(pEnchantment, false);
-		Map<ExtendedModifierType, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(pStack);
+		ExtendedModifier modifier = ExtendedModifierUtils.getModifierByTypeSafe(pStack, modifierType);
 		int newValue = 0;
-		if(modifiers.containsKey(modifierType)) {
-			newValue = (int) modifiers.get(modifierType).getModifierEffect();
+		if(!modifier.isUnknown()) {
+			newValue = (int) modifier.getModifierEffect();
 		}
 		cir.setReturnValue(vanillaValue+newValue);
 	}
@@ -100,9 +100,9 @@ public class MixinEnchantmentHelper {
 			return;
 		}
 		ExtendedModifierType modifierType = ExtendedModifierUtils.vanillaEnchantToModifier(pEnchantment, false);
-		Map<ExtendedModifierType, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(pStack);
-		if(modifiers.containsKey(modifierType)) {
-			cir.setReturnValue((int) modifiers.get(modifierType).getModifierEffect());
+		ExtendedModifier modifier = ExtendedModifierUtils.getModifierByTypeSafe(pStack, modifierType);
+		if(!modifier.isUnknown()) {
+			cir.setReturnValue((int) modifier.getModifierEffect());
 		}
 	}
 	/**
@@ -122,9 +122,9 @@ public class MixinEnchantmentHelper {
 	@Inject(method = "getDamageBonus(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/CreatureAttribute;)F", 
 		at = @At("TAIL"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
 	private static void getDamageBonus$Extended(ItemStack pStack, CreatureAttribute pCreatureAttribute, CallbackInfoReturnable<Float> cir, MutableFloat mutablefloat) {
-		Map<ExtendedModifierType, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(pStack);
-		if(modifiers.containsKey(ExtendedModifierType.MELEE_DAMAGE)) {
-			mutablefloat.add(modifiers.get(ExtendedModifierType.MELEE_DAMAGE).getModifierEffect());
+		ExtendedModifier modifier = ExtendedModifierUtils.getModifierByTypeSafe(pStack, ExtendedModifierType.MELEE_DAMAGE);
+		if(!modifier.isUnknown()) {
+			mutablefloat.add(modifier.getModifierEffect());
 			cir.setReturnValue(mutablefloat.getValue());
 		}
 	}
@@ -139,7 +139,6 @@ public class MixinEnchantmentHelper {
 	 *   <li>{@link ExtendedModifierType#PROTECTION_RANGED} for projectiles</li>
 	 *   <li>{@link ExtendedModifierType#PROTECTION_BLAST} for explosions</li>
 	 *   <li>{@link ExtendedModifierType#PROTECTION_FALLING} for fall damage</li>
-	 *   <li>{@link ExtendedModifierType#PROTECTION} as a general fallback</li>
 	 * </ul>
 	 * </p>
 	 *
@@ -154,7 +153,7 @@ public class MixinEnchantmentHelper {
 	private static void getDamageProtection$Extended(Iterable<ItemStack> pStacks, DamageSource pSource, CallbackInfoReturnable<Integer> cir, MutableInt mutableint) {
 		int mod = 0;
 		for(ItemStack stack : pStacks) {
-			Map<ExtendedModifierType, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByType(stack);
+			Map<ExtendedModifierType, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByTypeSafe(stack);
 			if(pSource.isFire() && modifiers.containsKey(ExtendedModifierType.PROTECTION_FIRE)) {
 				mod += modifiers.get(ExtendedModifierType.PROTECTION_FIRE).getModifierEffect();
 			}
