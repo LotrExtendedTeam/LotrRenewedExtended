@@ -16,6 +16,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableDefaultWaypointTeleportation;
 	public static ForgeConfigSpec.BooleanValue enableCustomWaypointTeleportation;
 	public static ForgeConfigSpec.BooleanValue enableLegacyFeastMode;
+	public static ForgeConfigSpec.BooleanValue enableHungerDecrease;
 
 	// Entity Settings
 	public static ForgeConfigSpec.IntValue barrowWightChestFirstSpawnChance;
@@ -66,6 +67,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		enableDefaultWaypointTeleportation = createBooleanValue(builder, "enableDefaultWaypointTeleportation", true, false, "Enable Teleportation To Default Waypoints");
 		enableCustomWaypointTeleportation = createBooleanValue(builder, "enableCustomWaypointTeleportation", true, false, "Enable Teleportation To Custom Waypoints");
 		enableLegacyFeastMode = createBooleanValue(builder, "enableLegacyFeastMode", true, true, "Enable the eating of food even if player is not hungry, like in legacy");
+		enableHungerDecrease = createBooleanValue(builder, "enableHungerDecrease", true, false, "Decrease hunger meter exhaustion");
 		builder.pop();
 
 		builder.push("Entity settings");
