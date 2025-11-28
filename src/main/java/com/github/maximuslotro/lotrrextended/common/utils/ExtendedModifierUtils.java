@@ -755,12 +755,9 @@ public class ExtendedModifierUtils {
 					break;
 				}
 			}
-			ExtendedModifierType modifierType = ExtendedModifierUtils.vanillaEnchantToModifier(pEnchantment, true);
-			if(modifierType != ExtendedModifierType.UNKNOWN) {
-				Map<ExtendedModifierType, ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierListByTypeSafe(pStack);
-				if(modifiers.containsKey(modifierType)) {
-					output += modifiers.get(modifierType).getModifierEffect();
-				}
+			ExtendedModifier modifier = ExtendedModifierUtils.getModifierByTypeSafe(pStack, ExtendedModifierUtils.vanillaEnchantToModifier(pEnchantment, true));
+			if(!modifier.isUnknown()) {
+				output += modifier.getModifierEffect();
 			}
 			return output;
 		}

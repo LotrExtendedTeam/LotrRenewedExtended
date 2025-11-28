@@ -15,6 +15,7 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import io.netty.buffer.Unpooled;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.ItemOwnership;
+import lotr.common.item.SmokingPipeItem;
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,7 +27,15 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.RepairContainer;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.BowItem;
+import net.minecraft.item.CrossbowItem;
+import net.minecraft.item.FishingRodItem;
+import net.minecraft.item.FlintAndSteelItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.OnAStickItem;
+import net.minecraft.item.ShearsItem;
+import net.minecraft.item.TridentItem;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.IWorldPosCallable;
@@ -39,6 +48,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.Tags;
 
 /**
  * Based off of {@link RepairContainer}
@@ -112,7 +122,7 @@ public class ExtendedRepairContainer extends Container {
 				//if(pPlayer.abilities.instabuild && (ExtendedRepairContainer.this.cost.get() > 0 || isGemColoring)) {
 				//	return true;
 				//}
-				if(ExtendedRepairContainer.this.inputSlots.getItem(0).getItem().isValidRepairItem(ExtendedRepairContainer.this.inputSlots.getItem(0), ExtendedRepairContainer.this.inputSlots.getItem(2))) {
+				if(isValidRepairMaterial(ExtendedRepairContainer.this.inputSlots.getItem(0), ExtendedRepairContainer.this.inputSlots.getItem(2))) {
 					if(ExtendedRepairContainer.this.cost.get() > 0 && ExtendedRepairContainer.this.inputSlots.getItem(2).getCount() >= ExtendedRepairContainer.this.cost.get()){
 						return true;
 					}
@@ -406,7 +416,7 @@ public class ExtendedRepairContainer extends Container {
 						return;
 					}
 				}
-			}else if (resultItem.isDamageableItem() && resultItem.getItem().isValidRepairItem(inputItem, resourceItem)) {
+			}else if (resultItem.isDamageableItem() && isValidRepairMaterial(inputItem, resourceItem)) {
 				int repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
 				this.engraveCost.set(2);
 				this.reforgeCost.set(2);
@@ -485,7 +495,7 @@ public class ExtendedRepairContainer extends Container {
 		int reforgeCostCopy = this.reforgeCost.get();
 		if (!inputItem.isEmpty() && reforgeCostCopy > 0) {
 			ItemStack resourceItem = this.inputSlots.getItem(2);
-			if(inputItem.getItem().isValidRepairItem(inputItem, resourceItem) && resourceItem.getCount()>=reforgeCostCopy) {
+			if(isValidRepairMaterial(inputItem, resourceItem) && resourceItem.getCount()>=reforgeCostCopy) {
 				if(inputItem.isDamageableItem()) {
 					inputItem.setDamageValue(0);
 				}
@@ -510,7 +520,7 @@ public class ExtendedRepairContainer extends Container {
 		int engraveCostCopy = this.engraveCost.get();
 		if (!inputItem.isEmpty() && engraveCostCopy > 0) {
 			ItemStack resourceItem = this.inputSlots.getItem(2);
-			if(inputItem.getItem().isValidRepairItem(inputItem, resourceItem) && resourceItem.getCount()>=engraveCostCopy) {
+			if(isValidRepairMaterial(inputItem, resourceItem) && resourceItem.getCount()>=engraveCostCopy) {
 				ItemOwnership.setCurrentOwner(inputItem, player.getDisplayName());
 				hurtOrDamageAnvilSound();
 				if (resourceItem.getCount()>engraveCostCopy) {
@@ -663,5 +673,36 @@ public class ExtendedRepairContainer extends Container {
 				world.levelEvent(1030, pos, 0);
 			}
 		});
+	}
+
+	public static boolean isValidRepairMaterial(ItemStack inputItem, ItemStack repairMaterial) {
+		boolean regularRapair = inputItem.getItem().isValidRepairItem(inputItem, repairMaterial);
+		if(!regularRapair) {
+			if(inputItem.getItem() instanceof BowItem) {
+				return repairMaterial.getItem() == ExtendedItems.BOWSTRING.get();
+			}
+			if(inputItem.getItem() instanceof FishingRodItem) {
+				return repairMaterial.getItem() == Items.STRING;
+			}
+			if(inputItem.getItem() instanceof OnAStickItem) {
+				return repairMaterial.getItem() == Items.STRING;
+			}
+			if(inputItem.getItem() instanceof ShearsItem) {
+				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
+			}
+			if(inputItem.getItem() instanceof SmokingPipeItem) {
+				return Tags.Items.LEATHER.contains(repairMaterial.getItem());
+			}
+			if(inputItem.getItem() instanceof CrossbowItem) {
+				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
+			}
+			if(inputItem.getItem() instanceof FlintAndSteelItem) {
+				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
+			}
+			if(inputItem.getItem() instanceof TridentItem) {
+				return Tags.Items.DUSTS_PRISMARINE.contains(repairMaterial.getItem());
+			}
+		}
+		return regularRapair;
 	}
 }

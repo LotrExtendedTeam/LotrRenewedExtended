@@ -15,7 +15,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ActionResultType;
@@ -24,6 +23,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.common.Tags;
 
 public class ExtendedBrandingIronItem extends Item {
 	public static final String isHot = "heated";
@@ -40,8 +40,8 @@ public class ExtendedBrandingIronItem extends Item {
 	}
 
 	@Override
-	public boolean isValidRepairItem(ItemStack p_82789_1_, ItemStack p_82789_2_) {
-		return p_82789_2_.getItem() == Items.IRON_INGOT;
+	public boolean isValidRepairItem(ItemStack p_82789_1_, ItemStack repairItem) {
+		return Tags.Items.INGOTS_IRON.contains(repairItem.getItem());
 	}
 
 	@Override
