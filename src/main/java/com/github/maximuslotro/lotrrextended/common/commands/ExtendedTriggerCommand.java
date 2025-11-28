@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.commands;
 
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedInvasionSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
@@ -26,7 +27,9 @@ public class ExtendedTriggerCommand {
 			.then(Commands.literal("attemptBanditSpawn")
 				.executes(context -> triggerBanditSpawn(context.getSource())))
 			.then(Commands.literal("banditSpawn")
-				.executes(context -> triggerGuaranteedBanditSpawn(context.getSource()))));
+				.executes(context -> triggerGuaranteedBanditSpawn(context.getSource())))
+			.then(Commands.literal("invasionTest")
+				.executes(context -> triggerInvasionTest(context.getSource()))));
 	}
 
 	public static int triggerTrader(CommandSource source) throws CommandSyntaxException {
@@ -49,6 +52,15 @@ public class ExtendedTriggerCommand {
 		} else {
 			source.sendSuccess(new StringTextComponent("Attempt to spawn bandit was unsuccessful."), true);
 		}
+		return Command.SINGLE_SUCCESS;
+	}
+
+	public static int triggerInvasionTest(CommandSource source) throws CommandSyntaxException {
+		ServerPlayerEntity player = source.getPlayerOrException();
+		ExtendedInvasionSpawnerEntity spawner = new ExtendedInvasionSpawnerEntity(player.getLevel());
+		spawner.setPos(player.getX(), player.getY(), player.getZ());
+		player.getLevel().addFreshEntity(spawner);
+
 		return Command.SINGLE_SUCCESS;
 	}
 

@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.common.entity.special.*;
 import lotr.common.entity.npc.*;
 
 import org.spongepowered.asm.mixin.Final;
@@ -21,10 +22,6 @@ import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorse
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedThrowableAxeEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChairEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTREntities;
@@ -310,6 +307,7 @@ public class MixinLOTREntities {
 		// Technical
 		ExtendedEntities.STRUCTURE_ENTITY_SPAWNER = regEntityExpanded("structure_spawner", ExtendedStructureSpawnerEntity::new, EntityClassification.MISC, 0.5F, 1.0F);
 		ExtendedEntities.RESPAWNER_ENTITY = regEntityExpanded("trader_respawner", ExtendedRespawnerEntity::new, EntityClassification.MISC, 0.5F, 0.5F);
+		ExtendedEntities.INVASION_SPAWNER = regEntityExpanded("invasion_spawner", ExtendedInvasionSpawnerEntity::new, EntityClassification.MISC, 1.0F, 2.0F);
 		ExtendedEntities.BANNER_HOLDER = regEntityExpanded("banner_dataholder", ExtendedBannerEntity::new, EntityClassification.MISC, 0.125F, 1.0F);
 		ExtendedEntities.CHAIR = regEntityExpanded("chair", ExtendedChairEntity::new, EntityClassification.MISC, 0.0001F, 0.0001F, 64, 20, (builder) -> {
 			builder.canSpawnFarFromPlayer();

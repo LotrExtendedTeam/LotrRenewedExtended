@@ -27,6 +27,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.CHAIR.get(), ExtendedNullEntityRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.STRUCTURE_ENTITY_SPAWNER.get(), ExtendedStructureSpawnerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RESPAWNER_ENTITY.get(), ExtendedRespawnerRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.INVASION_SPAWNER.get(), ExtendedInvasionSpawnerEntityRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TAPESTRY.get(), ExtendedTapestryRenderer::new);
 		// Hobbit
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_BARTENDER.get(), ExtendedHobbitBartenderRenderer::new);
