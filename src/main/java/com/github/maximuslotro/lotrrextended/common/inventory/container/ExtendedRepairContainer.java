@@ -684,9 +684,6 @@ public class ExtendedRepairContainer extends Container {
 			if(inputItem.getItem() instanceof FishingRodItem) {
 				return repairMaterial.getItem() == Items.STRING;
 			}
-			if(inputItem.getItem() instanceof OnAStickItem) {
-				return repairMaterial.getItem() == Items.STRING;
-			}
 			if(inputItem.getItem() instanceof ShearsItem) {
 				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
 			}
@@ -695,12 +692,6 @@ public class ExtendedRepairContainer extends Container {
 			}
 			if(inputItem.getItem() instanceof CrossbowItem) {
 				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
-			}
-			if(inputItem.getItem() instanceof FlintAndSteelItem) {
-				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
-			}
-			if(inputItem.getItem() instanceof TridentItem) {
-				return Tags.Items.DUSTS_PRISMARINE.contains(repairMaterial.getItem());
 			}
 		}
 		return regularRapair;

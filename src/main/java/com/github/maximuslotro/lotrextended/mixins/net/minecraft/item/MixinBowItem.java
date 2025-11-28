@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrextended.mixins.net.minecraft.item;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.At.Shift;
@@ -61,9 +62,22 @@ public class MixinBowItem {
 	public void releaseUsing(ItemStack pStack, World pLevel, LivingEntity pShooter, int pTimeLeft, CallbackInfo ci,
 			PlayerEntity playerentity,  boolean infinity, ItemStack itemstack, int useDuration, float powerForTime, boolean specialInfinity, 
 			ArrowItem arrowitem, AbstractArrowEntity abstractarrowentity, int power) {
+		abstractarrowentity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot, 0.0F, powerForTime * 3.0F * getLaunchSpeedFactorExtended(pStack), 1.0F);
 		float properPower = ExtendedModifierUtils.getEnchantmentLevelFloat(Enchantments.POWER_ARROWS, pShooter);
 		if (properPower > 0) {
 			abstractarrowentity.setBaseDamage(abstractarrowentity.getBaseDamage() + properPower * 0.5D + 0.5D);
 		}
+	}
+
+	@Unique
+	private static float getLaunchSpeedFactorExtended(ItemStack itemstack) {
+		float f = 1.0F;
+		if (!itemstack.isEmpty()) {
+			float additionalSpeed = ExtendedModifierUtils.getItemEnchantmentLevelFloat(Enchantments.POWER_ARROWS, itemstack);
+			if(additionalSpeed!=0) {
+				f *= additionalSpeed;
+			}
+		}
+		return f;
 	}
 }
