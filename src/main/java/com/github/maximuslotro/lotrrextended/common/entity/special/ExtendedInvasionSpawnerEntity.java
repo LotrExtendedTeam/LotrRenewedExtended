@@ -42,7 +42,12 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
     @Override
     protected void readAdditionalSaveData(CompoundNBT compoundNBT) {
-        // TODO: Read Faction data
+        if(compoundNBT.contains("faction_key")) {
+            System.out.println("FACTION_KEY FOUND");
+            this.getEntityData().set(DATA_FACTION_KEY, compoundNBT.getString("faction_key"));
+        } else {
+            System.out.println("FACTION_KEY NOT FOUND");
+        }
     }
 
     public void tick() {
@@ -62,11 +67,11 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
     @Override
     protected void addAdditionalSaveData(CompoundNBT compoundNBT) {
-        // TODO: Save Faction data
+        compoundNBT.putString("faction_key", getFactionKey());
     }
 
-    public void setFaction(FactionType facType) {
-        this.getEntityData().set(DATA_FACTION_KEY, facType.name());
+    public void setFaction(String factionKey) {
+        this.getEntityData().set(DATA_FACTION_KEY, factionKey);
     }
 
     public String getFactionKey() {
@@ -75,7 +80,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
     @Override
     public ITextComponent getDisplayName() {
-        return new StringTextComponent("Invasion Spanwer: " + getFactionKey());
+        return new StringTextComponent("Invasion Spawner: " + getFactionKey());
     }
 
     @Override
