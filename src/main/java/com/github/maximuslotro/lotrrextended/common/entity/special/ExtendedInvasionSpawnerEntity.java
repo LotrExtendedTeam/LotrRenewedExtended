@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.entity.special;
 
-import lotr.common.fac.Faction;
 import lotr.common.fac.FactionType;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.material.PushReaction;
@@ -22,11 +21,11 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import java.util.Locale;
-
 public class ExtendedInvasionSpawnerEntity extends Entity {
 
     private static final DataParameter<String> DATA_FACTION_KEY = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, DataSerializers.STRING);
+
+    private static final float ROTATION_SPEED = 1.0F;
 
     public ExtendedInvasionSpawnerEntity(EntityType<? extends ExtendedInvasionSpawnerEntity> pType, World pLevel) {
         super(pType, pLevel);
@@ -43,12 +42,27 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
     @Override
     protected void readAdditionalSaveData(CompoundNBT compoundNBT) {
+        // TODO: Read Faction data
+    }
 
+    public void tick() {
+        this.noPhysics = true;
+        super.tick();
+        this.noPhysics = false;
+        this.setNoGravity(true);
+
+        if(!this.level.isClientSide()) {
+            this.yRot += ROTATION_SPEED;
+
+            if (this.yRot >= 360.0F) {
+                this.yRot -= 360.0F;
+            }
+        }
     }
 
     @Override
     protected void addAdditionalSaveData(CompoundNBT compoundNBT) {
-
+        // TODO: Save Faction data
     }
 
     public void setFaction(FactionType facType) {
