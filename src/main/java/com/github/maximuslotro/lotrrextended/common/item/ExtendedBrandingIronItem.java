@@ -31,10 +31,6 @@ public class ExtendedBrandingIronItem extends Item {
 	public static final String Name = "TempererName";
 	public static final String USES_LEFT = "Uses";
 
-	public ExtendedBrandingIronItem(Properties p_i48487_1_) {
-		super(p_i48487_1_);
-	}
-
 	public ExtendedBrandingIronItem() {
 		super(new Properties().stacksTo(1).tab(LOTRItemGroups.TOOLS).durability(100));
 	}

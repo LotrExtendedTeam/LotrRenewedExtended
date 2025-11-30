@@ -264,7 +264,7 @@ public class ExtendedGrindstoneContainer extends Container {
 			}
 		}
 		for(int i = 0; i < map.size(); ++i) {
-			itemstack.setRepairCost(ExtendedRepairContainer.calculateIncreasedRepairCost(itemstack.getBaseRepairCost()));
+			itemstack.setRepairCost(itemstack.getBaseRepairCost()*2 +1);
 		}
 		return itemstack;
 	}
