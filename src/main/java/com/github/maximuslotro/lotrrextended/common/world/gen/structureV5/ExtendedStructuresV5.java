@@ -116,14 +116,14 @@ public class ExtendedStructuresV5 {
 		register(GUNDABAD_ENCAMPMENT.get(), true,      50, 35, 43757456);
 		register(BARROW_DOWN_RUINS.get(), true,        7,  3,  45574576);
 		register(BARROW_DOWN_BARROWS.get(), true,      7,  3,  57854769);
-		register(BREE_HAMLET.get(), true,              50, 35, 57854769);
-		register(BREE_VILLAGE.get(), true,             40, 25, 78547894);
+		register(BREE_HAMLET.get(), true,              40, 25, 57854769);
+		register(BREE_VILLAGE.get(), true,             60, 45, 78547894);
 		register(BLUE_MOUNTAIN_SMITHY.get(), false,    27, 12, 589758935);
 		register(BLUE_MOUNTAIN_STRONGHOLD.get(), false,35, 15, 889329084);
 		register(BLUE_MOUNTAIN_MINE.get(), false,      30, 15, 17277298);
 		register(BLUE_MOUNTAIN_SETTLEMENT.get(), false,45, 25, 167568658);
 		register(STONE_OF_HAPLESS.get(), false,        1,  0,  0);
-		register(RIVENDELL_STRUCTURE.get(), false,     14, 8,  534646346);
+		register(RIVENDELL_STRUCTURE.get(), false,     20, 10,  534646346);
 	}
 
 	/**
