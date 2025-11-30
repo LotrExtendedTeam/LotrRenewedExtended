@@ -25,5 +25,7 @@ public enum ExtendedStructureType {
 	/** Structures that are lore builds. */
 	LORE,
 	/** Structures themed around the Rivendell. */
-	RIVENDELL;
+	RIVENDELL,
+	/** Structures themed around the Eregion. */
+	EREGION_RUIN;
 }

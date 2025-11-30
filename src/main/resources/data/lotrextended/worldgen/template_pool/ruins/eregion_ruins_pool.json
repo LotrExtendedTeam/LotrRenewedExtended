@@ -1,0 +1,72 @@
+{
+	"name": "lotrextended:ruins/eregion_ruins_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:eregion/ruins/eregion_arch_ruin_1",
+				"processors": "lotrextended:arnor_ruins_processor",
+				"ground_level_delta": 2,
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 20,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:eregion/ruins/eregion_arch_ruin_2",
+				"processors": "lotrextended:arnor_ruins_processor",
+				"ground_level_delta": 3,
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:eregion/ruins/eregion_large_ruin_1",
+				"processors": "lotrextended:arnor_ruins_processor",
+				"ground_level_delta": 2,
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:eregion/ruins/eregion_small_ruin_1",
+				"processors": "lotrextended:arnor_ruins_processor",
+				"ground_level_delta": 2,
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 15,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:eregion/ruins/eregion_small_ruin_2",
+				"processors": "lotrextended:arnor_ruins_processor",
+				"ground_level_delta": 2,
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 10,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:eregion/ruins/eregion_smith_ruin_1",
+				"processors": "lotrextended:arnor_ruins_processor",
+				"ground_level_delta": 2,
+				"snap_to_water_height" : true
+			}
+		}
+	]
+}
