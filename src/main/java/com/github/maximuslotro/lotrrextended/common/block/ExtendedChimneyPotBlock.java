@@ -65,7 +65,7 @@ public class ExtendedChimneyPotBlock extends Block implements IWaterLoggable {
 	@Override
 	public void animateTick(BlockState pState, World pLevel, BlockPos pPos, Random pRand) {
 		if (!pState.getValue(WATERLOGGED)) {
-			if (pRand.nextInt(10) == 0) {
+			if (pRand.nextInt(500) == 0) {
 				for(int i = 0; i < pRand.nextInt(1) + 1; ++i) {
 					pLevel.addParticle(ParticleTypes.LAVA, pPos.getX() + 0.5D, pPos.getY() + 0.5D, pPos.getZ() + 0.5D, (pRand.nextFloat() / 2.0F), 5.0E-5D, (pRand.nextFloat() / 2.0F));
 				}
