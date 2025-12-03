@@ -26,7 +26,7 @@ public class ExtendedBannerPatterns {
 	public static final BannerPattern gondor = registerNewPattern("gondor", "Gondor", true);
 	public static final BannerPattern isengard = registerNewPattern("isengard", "Isengard", true);
 	public static final BannerPattern lindon = registerNewPattern("lindon", "Lindon", true);
-	public static final BannerPattern lothlorien = registerNewPattern("lothlorien", "Lothlorien", true);
+	public static final BannerPattern lothlorien = registerNewPattern("lothlorien", "Lothlórien", true);
 	public static final BannerPattern mordor = registerNewPattern("mordor", "Mordor", true);
 	public static final BannerPattern rivendell = registerNewPattern("rivendell", "Rivendell", true);
 	public static final BannerPattern rohan = registerNewPattern("rohan", "Rohan", true);

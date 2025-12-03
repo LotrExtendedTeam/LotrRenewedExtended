@@ -75,11 +75,9 @@ public class MixinEnchantmentHelper {
 		int vanillaValue = MathHelper.clamp(compoundnbt.getInt("lvl"), 0, 255);
 		ExtendedModifierType modifierType = ExtendedModifierUtils.vanillaEnchantToModifier(pEnchantment, false);
 		ExtendedModifier modifier = ExtendedModifierUtils.getModifierByTypeSafe(pStack, modifierType);
-		int newValue = 0;
 		if(!modifier.isUnknown()) {
-			newValue = (int) modifier.getModifierEffect();
+			cir.setReturnValue(vanillaValue+ (int)modifier.getModifierEffect());
 		}
-		cir.setReturnValue(vanillaValue+newValue);
 	}
 	/**
 	 * Injects into {@link EnchantmentHelper#getItemEnchantmentLevel(Enchantment, ItemStack)}

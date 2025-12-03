@@ -5,16 +5,20 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
-import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierRarity;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import io.netty.buffer.Unpooled;
 import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTRItems;
 import lotr.common.item.ItemOwnership;
+import lotr.common.item.SmokingPipeItem;
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,7 +30,16 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.RepairContainer;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.BowItem;
+import net.minecraft.item.CrossbowItem;
+import net.minecraft.item.FishingRodItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.ShearsItem;
+import net.minecraft.item.ShieldItem;
+import net.minecraft.item.SwordItem;
+import net.minecraft.item.ToolItem;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.IWorldPosCallable;
@@ -39,6 +52,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.Tags;
 
 /**
  * Based off of {@link RepairContainer}
@@ -67,6 +81,7 @@ public class ExtendedRepairContainer extends Container {
 	public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotrextended.repair");
 	private boolean isGemColoring = false;
 	private boolean lastGemColoring = false;
+	private boolean isRenaming = false;
 
 	public ExtendedRepairContainer(int pContainerId, PlayerInventory pPlayerInventory) {
 		this(pContainerId, pPlayerInventory, IWorldPosCallable.NULL, new PacketBuffer(Unpooled.buffer()));
@@ -112,12 +127,15 @@ public class ExtendedRepairContainer extends Container {
 				//if(pPlayer.abilities.instabuild && (ExtendedRepairContainer.this.cost.get() > 0 || isGemColoring)) {
 				//	return true;
 				//}
-				if(ExtendedRepairContainer.this.inputSlots.getItem(0).getItem().isValidRepairItem(ExtendedRepairContainer.this.inputSlots.getItem(0), ExtendedRepairContainer.this.inputSlots.getItem(2))) {
+				if(isValidRepairMaterial(ExtendedRepairContainer.this.inputSlots.getItem(0), ExtendedRepairContainer.this.inputSlots.getItem(2))) {
 					if(ExtendedRepairContainer.this.cost.get() > 0 && ExtendedRepairContainer.this.inputSlots.getItem(2).getCount() >= ExtendedRepairContainer.this.cost.get()){
 						return true;
 					}
 				}
 				if(ExtendedRepairContainer.this.cost.get()==0 && isGemColoring && ExtendedRepairContainer.this.inputSlots.getItem(1).getCount()>=1) {
+					return true;
+				}
+				if(ExtendedRepairContainer.this.cost.get()==0 && isRenaming) {
 					return true;
 				}
 				return false;
@@ -250,15 +268,17 @@ public class ExtendedRepairContainer extends Container {
 			baseCost = inputItem.getBaseRepairCost() + (mergableItem.isEmpty() ? 0 : mergableItem.getBaseRepairCost());
 			this.cost.set(0);
 			isGemColoring = false;
-			boolean hasApplicableScroll = false;
+			isRenaming = false;
+			boolean hasModifierItem = false;
 
 			if (!mergableItem.isEmpty()) {
 				//if (!net.minecraftforge.common.ForgeHooks.onAnvilChange(this, itemstack, itemstack2, resultSlots, itemName, j, this.player)) return;
-				hasApplicableScroll = (mergableItem.getItem() == ExtendedItems.MODIFIER_SCROLL.get() && !ExtendedModifierScrollItem.getModifier(mergableItem).isUnknown());
-				if(!hasApplicableScroll && mergableItem.getItem() instanceof ExtendedGemstoneColoringItem) {
+				hasModifierItem = (mergableItem.getItem() == ExtendedItems.MODIFIER_SCROLL.get() && !ExtendedModifierScrollItem.getModifier(mergableItem).isUnknown()) ||
+						mergableItem.getItem() == LOTRItems.BOOK_OF_TRUE_SILVER.get();
+				if(!hasModifierItem && mergableItem.getItem() instanceof ExtendedGemstoneColoringItem) {
 					isGemColoring=true;
 				} else {
-					if (!hasApplicableScroll && (resultItem.getItem() != mergableItem.getItem() || !resultItem.isDamageableItem())) {
+					if (!hasModifierItem && (resultItem.getItem() != mergableItem.getItem() || !resultItem.isDamageableItem())) {
 						this.resultSlots.setItem(0, ItemStack.EMPTY);
 						this.cost.set(0);
 						this.gemprocessing.set(0);
@@ -268,7 +288,7 @@ public class ExtendedRepairContainer extends Container {
 						return;
 					}
 
-					if (resultItem.isDamageableItem() && !hasApplicableScroll) {
+					if (resultItem.isDamageableItem() && !hasModifierItem) {
 						int durabilityLeftBase = inputItem.getMaxDamage() - inputItem.getDamageValue();
 						int durabilityLeftMaterial = mergableItem.getMaxDamage() - mergableItem.getDamageValue();
 						int bonusDurability = durabilityLeftMaterial + resultItem.getMaxDamage() * 12 / 100;
@@ -284,39 +304,57 @@ public class ExtendedRepairContainer extends Container {
 						}
 					}
 					List<ExtendedModifier> mergableModifiers = ExtendedModifierUtils.getModifierList(mergableItem);
-					if(hasApplicableScroll) {
-						mergableModifiers.add(ExtendedModifierScrollItem.getModifier(mergableItem));
+					if(hasModifierItem) {
+						if(mergableItem.getItem() == LOTRItems.BOOK_OF_TRUE_SILVER.get()) {
+							mergableModifiers.add(ExtendedModifiers.TRUE);
+						}else {
+							mergableModifiers.add(ExtendedModifierScrollItem.getModifier(mergableItem));
+						}
 					}
 					boolean hasInCompatibleModifier = false;
-
-					int currentModifierCount = (int) inputModifiers.stream().filter(m -> m.getRarity() == ExtendedModifierRarity.BASIC || m.getRarity() == ExtendedModifierRarity.SKILLFUL).count();
+					int currentModifierCount = (int) inputModifiers.stream().filter(m -> m.getRarity().isLimited()).count();
 					int newModifierCount=0;
 					//boolean notAllModifiersAtMax = false;
-					for(ExtendedModifier modifier : mergableModifiers) {
+					for(ExtendedModifier mergingModifier : mergableModifiers) {
 						// Use the lowest tier value if the modifier does not exist on the original item, so that the new item can override this lowest possible value.
 						ExtendedModifier existingModifier = inputModifiers.stream()
-							.filter(m -> m.getModifierType() == modifier.getModifierType())
-							.findFirst().orElse(ExtendedModifiers.UNKNOWN);
-						int slot0Level = !existingModifier.isUnknown() ? existingModifier.getModifierTeir() : modifier.getMinLevel();
-						int slot1Level = modifier.getModifierTeir();
-						int outputSlotLevel = (slot0Level == slot1Level) ? slot1Level + 1 : Math.max(slot1Level, slot0Level);
-						if (!modifier.canApplyToItem(inputItem)) {
-							if(hasApplicableScroll) {
+								.filter(m -> m.getModifierType() == mergingModifier.getModifierType())
+								.findFirst().orElse(ExtendedModifiers.UNKNOWN);
+						int outputSlotLevel = 0;
+						// Split logic so a tier one modifier + unknown that defaults to lowest tier does trigger (slot1Level + 1)
+						if(!existingModifier.isUnknown()) {
+							int slot0Level = existingModifier.getModifierTeir();
+							int slot1Level = mergingModifier.getModifierTeir();
+							// Stop low tier books still applying to items with higher tier modifiers
+							if(slot1Level < slot0Level && hasModifierItem) {
+								hasInCompatibleModifier = true;
+								continue;
+							}
+							// If same then increase level, otherwise get the max of the two levels
+							outputSlotLevel = (slot0Level == slot1Level) ? slot1Level + 1 : Math.max(slot1Level, slot0Level);
+						}else {
+							outputSlotLevel = mergingModifier.getModifierTeir();
+						}
+						// Skip modifier it it can't apply to the item
+						if (!mergingModifier.canApplyToItem(inputItem)) {
+							if(hasModifierItem) {
 								hasInCompatibleModifier = true;
 							}
 							continue;
-						}						
+						}
+						// Check if modifier can apply alongside other modifiers
 						for(ExtendedModifier existing : inputModifiers) {
-							if (modifier.getModifierType()!=existing.getModifierType() && !modifier.canApplyToModifier(existing.getModifierType())) {
+							if (mergingModifier.getModifierType()!=existing.getModifierType() && !mergingModifier.canApplyToModifier(existing.getModifierType())) {
 								hasInCompatibleModifier = true;
 							}
 						}
 						if(hasInCompatibleModifier) {
 							continue;
 						}
+						// If applied modifier pushes past max tier, skip it and reject if is applied from scroll
 						boolean maxedLevelForBook = false;
-						if (outputSlotLevel > modifier.getMaxLevel()) {
-							if (hasApplicableScroll) {
+						if (outputSlotLevel > mergingModifier.getMaxLevel()) {
+							if (hasModifierItem) {
 								maxedLevelForBook = true;
 							}else {
 								continue;
@@ -324,12 +362,11 @@ public class ExtendedRepairContainer extends Container {
 						}
 						//notAllModifiersAtMax=true;
 						boolean maximumModifiersReached = false;
-						if ((modifier.getRarity() == ExtendedModifierRarity.BASIC || modifier.getRarity() == ExtendedModifierRarity.SKILLFUL) 
-							&& currentModifierCount+newModifierCount>=3 && existingModifier.isUnknown()) {
+						if (mergingModifier.getRarity().isLimited() && currentModifierCount+newModifierCount>=3 && existingModifier.isUnknown()) {
 							maximumModifiersReached = true;
 						}
 						if(maximumModifiersReached){
-							if(hasApplicableScroll) {
+							if(hasModifierItem) {
 								//Only trigger when modifier scroll is placed
 								this.cost.set(0);
 								this.gemprocessing.set(0);
@@ -352,37 +389,37 @@ public class ExtendedRepairContainer extends Container {
 						}else {
 
 							// Remove old modifier of the same type
-							inputModifiers.removeIf(m -> m.getModifierType() == modifier.getModifierType());
+							inputModifiers.removeIf(m -> m.getModifierType() == mergingModifier.getModifierType());
 
 							// Get the list of modifiers for this type
-							List<ExtendedModifier> list = ExtendedModifiers.MODIFIERS_BY_TYPE.get(modifier.getModifierType());
+							List<ExtendedModifier> list = ExtendedModifiers.MODIFIERS_BY_TYPE.get(mergingModifier.getModifierType());
 
 							// Find the modifier with the desired level
 							final int outoutLevel = outputSlotLevel;
 							ExtendedModifier result = list.stream()
-								.filter(m -> m.getModifierTeir() == outoutLevel)
-								.findFirst()
-								.orElse(ExtendedModifiers.UNKNOWN); // fallback if no exact match
+									.filter(m -> m.getModifierTeir() == outoutLevel)
+									.findFirst()
+									.orElse(ExtendedModifiers.UNKNOWN); // fallback if no exact match
 
 							// result now contains the modifier of the same type with the requested level
 							inputModifiers.add(result);
 							int rarityCost = 0;
-							switch(modifier.getRarity()) {
-							case BASIC:
-								rarityCost = 1;
-								break;
-							case SKILLFUL:
-								rarityCost = 2;
-								break;
-							case APPLIED:
-								rarityCost = 4;
-								break;
-							default:
-								rarityCost = 100;
-								break;
+							switch(mergingModifier.getRarity()) {
+								case BASIC:
+									rarityCost = 1;
+									break;
+								case SKILLFUL:
+									rarityCost = 2;
+									break;
+								case APPLIED:
+									rarityCost = 4;
+									break;
+								default:
+									rarityCost = 100;
+									break;
 							}
 
-							if (hasApplicableScroll) {
+							if (hasModifierItem) {
 								rarityCost = Math.max(1, rarityCost / 2);
 							}
 
@@ -390,7 +427,7 @@ public class ExtendedRepairContainer extends Container {
 							if (inputItem.getCount() > 1) {
 								repairCost = 40; // Max cost if stack > 1
 							}
-							if (modifier.getRarity() == ExtendedModifierRarity.BASIC || modifier.getRarity() == ExtendedModifierRarity.SKILLFUL) {
+							if (mergingModifier.getRarity().isLimited()) {
 								newModifierCount++;
 							}
 						}
@@ -406,7 +443,7 @@ public class ExtendedRepairContainer extends Container {
 						return;
 					}
 				}
-			}else if (resultItem.isDamageableItem() && resultItem.getItem().isValidRepairItem(inputItem, resourceItem)) {
+			}else if (resultItem.isDamageableItem() && isValidRepairMaterial(inputItem, resourceItem)) {
 				int repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
 				this.engraveCost.set(2);
 				this.reforgeCost.set(2);
@@ -426,10 +463,12 @@ public class ExtendedRepairContainer extends Container {
 				if (inputItem.hasCustomHoverName()) {
 					renameCost =+1;
 					resultItem.resetHoverName();
+					isRenaming = true;
 				}
 			} else if (!this.itemName.equals(inputItem.getHoverName().getString())) {
 				renameCost =+1;
 				resultItem.setHoverName(new StringTextComponent(this.itemName));
+				isRenaming = true;
 			}
 			if(isGemColoring) {
 				if(!this.canApplyColor(resultItem, ((ExtendedGemstoneColoringItem)mergableItem.getItem()).getExtendedGemstoneColor())) {
@@ -449,7 +488,7 @@ public class ExtendedRepairContainer extends Container {
 				resultItem = ItemStack.EMPTY;
 			}
 
-			if (repairCost==0 && renameCost > 0 && this.cost.get() >= 40) {
+			if (repairCost==0 && isRenaming && this.cost.get() >= 40) {
 				//ExtendedLog.info("repairCost==0 && renameCost > 0 && this.cost.get() >= 40");
 				this.cost.set(39);
 			}
@@ -458,9 +497,15 @@ public class ExtendedRepairContainer extends Container {
 				//ExtendedLog.info("this.cost.get() >= 40 && !this.player.abilities.instabuild && !isGemColoring");
 				resultItem = ItemStack.EMPTY;
 			}
-			if(isGemColoring && renameCost == 0) {
-				//ExtendedLog.info("isGemColoring && renameCost == 0");
+			// Can't repair and gem color at same time, so remove gem cost if not renaming
+			if(isGemColoring && !isRenaming) {
+				//ExtendedLog.info("isGemColoring && !isRenaming");
 				this.cost.set(0);
+			}
+			// Allow items to be renamed if they don't have a repair material
+			if (repairCost==0 && isRenaming && !shouldHardcodedForceRenameCosts(resultItem.getItem())) {
+				this.cost.set(0);
+				//ExtendedLog.info("repairCost==0 && isRenaming && !shouldHardcodedForceRenameCosts(resultItem.getItem())");
 			}
 			if (!resultItem.isEmpty()) {
 				int newRepairCost = resultItem.getBaseRepairCost();
@@ -468,8 +513,8 @@ public class ExtendedRepairContainer extends Container {
 					newRepairCost = mergableItem.getBaseRepairCost();
 				}
 
-				if (repairCost>0 || renameCost == 0 && !isGemColoring) {
-					newRepairCost = calculateIncreasedRepairCost(newRepairCost);
+				if (repairCost>0) {
+					newRepairCost += 2;
 				}
 
 				resultItem.setRepairCost(newRepairCost);
@@ -485,7 +530,7 @@ public class ExtendedRepairContainer extends Container {
 		int reforgeCostCopy = this.reforgeCost.get();
 		if (!inputItem.isEmpty() && reforgeCostCopy > 0) {
 			ItemStack resourceItem = this.inputSlots.getItem(2);
-			if(inputItem.getItem().isValidRepairItem(inputItem, resourceItem) && resourceItem.getCount()>=reforgeCostCopy) {
+			if(isValidRepairMaterial(inputItem, resourceItem) && resourceItem.getCount()>=reforgeCostCopy) {
 				if(inputItem.isDamageableItem()) {
 					inputItem.setDamageValue(0);
 				}
@@ -510,7 +555,7 @@ public class ExtendedRepairContainer extends Container {
 		int engraveCostCopy = this.engraveCost.get();
 		if (!inputItem.isEmpty() && engraveCostCopy > 0) {
 			ItemStack resourceItem = this.inputSlots.getItem(2);
-			if(inputItem.getItem().isValidRepairItem(inputItem, resourceItem) && resourceItem.getCount()>=engraveCostCopy) {
+			if(isValidRepairMaterial(inputItem, resourceItem) && resourceItem.getCount()>=engraveCostCopy) {
 				ItemOwnership.setCurrentOwner(inputItem, player.getDisplayName());
 				hurtOrDamageAnvilSound();
 				if (resourceItem.getCount()>engraveCostCopy) {
@@ -572,10 +617,6 @@ public class ExtendedRepairContainer extends Container {
 
 	protected boolean shouldQuickMoveToAdditionalSlot(ItemStack pStack) {
 		return false;
-	}
-
-	public static int calculateIncreasedRepairCost(int pOldRepairCost) {
-		return pOldRepairCost * 2 + 1;
 	}
 
 	/**
@@ -650,7 +691,7 @@ public class ExtendedRepairContainer extends Container {
 	public void hurtOrDamageAnvilSound() {
 		this.access.execute((world, pos) -> {
 			BlockState blockstate = world.getBlockState(pos);
-			if (!player.abilities.instabuild && blockstate.is(BlockTags.ANVIL) && player.getRandom().nextFloat() < 0.12f) { // breakChance set to default value
+			if (!player.abilities.instabuild && blockstate.is(BlockTags.ANVIL) && player.getRandom().nextFloat() < 0.06f) { // breakChance set to default value
 				BlockState blockstate1 = AnvilBlock.damage(blockstate);
 				if (blockstate1 == null) {
 					world.removeBlock(pos, false);
@@ -663,5 +704,35 @@ public class ExtendedRepairContainer extends Container {
 				world.levelEvent(1030, pos, 0);
 			}
 		});
+	}
+
+	public static boolean isValidRepairMaterial(ItemStack inputItem, ItemStack repairMaterial) {
+		boolean regularRapair = inputItem.getItem().isValidRepairItem(inputItem, repairMaterial);
+		if(!regularRapair) {
+			if(inputItem.getItem() instanceof BowItem) {
+				return repairMaterial.getItem() == ExtendedItems.BOWSTRING.get();
+			}
+			if(inputItem.getItem() instanceof FishingRodItem) {
+				return repairMaterial.getItem() == Items.STRING;
+			}
+			if(inputItem.getItem() instanceof ShearsItem) {
+				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
+			}
+			if(inputItem.getItem() instanceof SmokingPipeItem) {
+				return Tags.Items.LEATHER.contains(repairMaterial.getItem());
+			}
+			if(inputItem.getItem() instanceof CrossbowItem) {
+				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
+			}
+		}
+		return regularRapair;
+	}
+
+	// TODO hook this up with data tag lists so additional items can be blacklisted from free renames
+	public static boolean shouldHardcodedForceRenameCosts(Item item) {
+		return item instanceof SwordItem || item instanceof ArmorItem || item instanceof ToolItem || 
+				item instanceof BowItem || item instanceof FishingRodItem || item instanceof ShearsItem || 
+				item instanceof SmokingPipeItem || item instanceof CrossbowItem || item instanceof ShieldItem|| 
+				item instanceof ExtendedBrandingIronItem || item instanceof ExtendedChiselItem || item instanceof ExtendedThrowableAxeItem;
 	}
 }

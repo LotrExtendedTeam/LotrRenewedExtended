@@ -85,6 +85,7 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.BLUE_MOUNTAIN_MINE.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.STONE_OF_HAPLESS.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.RIVENDELL_STRUCTURE.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.EREGION_RUINS_STRUCTURE.get());
 		provider.generator.getSettings().structureConfig = tempMap;
 	}
 
@@ -272,6 +273,8 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_STONE_OF_HAPLESS);
 			}else if(biomeName.equals(LOTRBiomes.RIVENDELL.getRegistryName()) || biomeName.equals(ExtendedBiomes.RIVENDELL_VALLEY.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RIVENDELL_STRUCTURES);
+			}else if(biomeName.equals(LOTRBiomes.EREGION.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_EREGION_RUINS_STRUCTURES);
 			}
 		}
 	}

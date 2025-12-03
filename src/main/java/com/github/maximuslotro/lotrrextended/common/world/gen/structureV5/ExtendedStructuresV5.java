@@ -10,6 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.SinglePoolStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.WeightedPoolStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureCheckAreaChunk;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureCheckAreaChunkFlat;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureCheckAreaCross;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureStoneOfHapless;
 import com.google.common.collect.ImmutableList;
@@ -81,7 +82,9 @@ public class ExtendedStructuresV5 {
 
 	public static final RegistryObject<Structure<SinglePoolConfig>> STONE_OF_HAPLESS = STRUCTURE_REGISTRY.register("stone_of_hapless", () -> new ExtendedStructureStoneOfHapless(ExtendedStructureType.LORE));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> RIVENDELL_STRUCTURE = STRUCTURE_REGISTRY.register("rivendell_structures", () -> new ExtendedStructureCheckAreaChunk(ExtendedStructureType.RIVENDELL));
+	public static final RegistryObject<Structure<SinglePoolConfig>> RIVENDELL_STRUCTURE = STRUCTURE_REGISTRY.register("rivendell_structures", () -> new ExtendedStructureCheckAreaChunkFlat(ExtendedStructureType.RIVENDELL));
+
+	public static final RegistryObject<Structure<SinglePoolConfig>> EREGION_RUINS_STRUCTURE = STRUCTURE_REGISTRY.register("eregion_ruins", () -> new ExtendedStructureCheckAreaChunkFlat(ExtendedStructureType.EREGION_RUIN));
 
 	/**
 	 * Initializes and registers all custom structures with their generation parameters.
@@ -116,14 +119,15 @@ public class ExtendedStructuresV5 {
 		register(GUNDABAD_ENCAMPMENT.get(), true,      50, 35, 43757456);
 		register(BARROW_DOWN_RUINS.get(), true,        7,  3,  45574576);
 		register(BARROW_DOWN_BARROWS.get(), true,      7,  3,  57854769);
-		register(BREE_HAMLET.get(), true,              50, 35, 57854769);
-		register(BREE_VILLAGE.get(), true,             40, 25, 78547894);
+		register(BREE_HAMLET.get(), true,              40, 25, 57854769);
+		register(BREE_VILLAGE.get(), true,             60, 45, 78547894);
 		register(BLUE_MOUNTAIN_SMITHY.get(), false,    27, 12, 589758935);
 		register(BLUE_MOUNTAIN_STRONGHOLD.get(), false,35, 15, 889329084);
 		register(BLUE_MOUNTAIN_MINE.get(), false,      30, 15, 17277298);
 		register(BLUE_MOUNTAIN_SETTLEMENT.get(), false,45, 25, 167568658);
 		register(STONE_OF_HAPLESS.get(), false,        1,  0,  0);
-		register(RIVENDELL_STRUCTURE.get(), false,     14, 8,  534646346);
+		register(RIVENDELL_STRUCTURE.get(), false,     20, 8,  534646346);
+		register(EREGION_RUINS_STRUCTURE.get(), true,  25, 10,  875649477);
 	}
 
 	/**

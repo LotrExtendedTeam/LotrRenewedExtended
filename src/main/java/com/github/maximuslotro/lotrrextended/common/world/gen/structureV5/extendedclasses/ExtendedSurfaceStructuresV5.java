@@ -28,98 +28,115 @@ import net.minecraft.world.gen.settings.StructureSeparationSettings;
  */
 public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> extends Structure<C>{
 	/**
-     * The type of structure used for conditional checks during generation.
-     */
+	 * The type of structure used for conditional checks during generation.
+	 */
 	private final ExtendedStructureType structureType;
 	/**
-     * Constructs a new ExtendedSurfaceStructuresV5 with the specified codec and structure type.
-     *
-     * @param codec The codec for serializing the feature config.
-     * @param type  The structure type for controlling generation behavior.
-     */
+	 * Constructs a new ExtendedSurfaceStructuresV5 with the specified codec and structure type.
+	 *
+	 * @param codec The codec for serializing the feature config.
+	 * @param type  The structure type for controlling generation behavior.
+	 */
 	public ExtendedSurfaceStructuresV5(Codec<C> codec, ExtendedStructureType type) {
 		super(codec);
 		this.structureType = type;
 	}
 	/**
-     * Returns the generation stage for this structure, which is set to {@code SURFACE_STRUCTURES}.
-     *
-     * @return The decoration stage for generation.
-     */
+	 * Returns the generation stage for this structure, which is set to {@code SURFACE_STRUCTURES}.
+	 *
+	 * @return The decoration stage for generation.
+	 */
 	@Override
 	public GenerationStage.Decoration step() {
 		return GenerationStage.Decoration.SURFACE_STRUCTURES;
 	}
 	/**
-     * Returns the start factory for this structure, delegating to {@link #getStructureStartFactory()}.
-     *
-     * @return The start factory.
-     */
+	 * Returns the start factory for this structure, delegating to {@link #getStructureStartFactory()}.
+	 *
+	 * @return The start factory.
+	 */
 	@Override
 	public IStartFactory<C> getStartFactory() {
 		return getStructureStartFactory();
 	}
 	/**
-     * Determines if this structure can spawn in water.
-     * Override to allow structures to spawn in water.
-     *
-     * @return {@code false} by default.
-     */
+	 * Determines if this structure can spawn in water.
+	 * Override to allow structures to spawn in water.
+	 *
+	 * @return {@code false} by default.
+	 */
 	public boolean canSpawnInWater() {
 		return false;
 	}
-	 /**
-     * Determines if this structure can spawn near roads.
-     * Override to allow structures to spawn near roads.
-     *
-     * @return {@code false} by default.
-     */
+	/**
+	 * Determines if this structure can spawn near roads.
+	 * Override to allow structures to spawn near roads.
+	 *
+	 * @return {@code false} by default.
+	 */
 	public boolean canSpawnNearRoad() {
 		return false;
 	}
 	/**
-     * Provides the start factory for this structure type.
-     *
-     * @return The start factory implementation for the structure.
-     */
+	 * Provides the start factory for this structure type.
+	 *
+	 * @return The start factory implementation for the structure.
+	 */
 	public abstract IStartFactory<C> getStructureStartFactory();
 
 	/**
-     * Checks if the structure can spawn at the specified chunk coordinates under various conditions:
-     * <ul>
-     *     <li>Water presence check unless {@link #canSpawnInWater()} is true.</li>
-     *     <li>Road proximity check unless {@link #canSpawnNearRoad()} is true.</li>
-     *     <li>Structure type-specific proximity restrictions (e.g., for Ranger camps and Bree settlements).</li>
-     *     <li>Calls {@link #additionalCheck} for further extensible checks.</li>
-     * </ul>
-     *
-     * @return {@code true} if the structure can spawn, {@code false} otherwise.
-     */
+	 * Checks if the structure can spawn at the specified chunk coordinates under various conditions:
+	 * <ul>
+	 *     <li>Water presence check unless {@link #canSpawnInWater()} is true.</li>
+	 *     <li>Road proximity check unless {@link #canSpawnNearRoad()} is true.</li>
+	 *     <li>Structure type-specific proximity restrictions (e.g., for Ranger camps and Bree settlements).</li>
+	 *     <li>Calls {@link #additionalCheck} for further extensible checks.</li>
+	 * </ul>
+	 *
+	 * @return {@code true} if the structure can spawn, {@code false} otherwise.
+	 */
 	@Override
 	protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, C featureConfig) {
-		BlockPos spawnCornerOfChunk = new BlockPos((chunkX << 4), 0, (chunkZ << 4));
+		int minX = chunkX << 4;
+		int minZ = chunkZ << 4;
+		int maxX = minX + 15;
+		int maxZ = minZ + 15;
 
-		// Grab height of land. Will stop at first non-air block.
-		int landHeight = chunkGenerator.getFirstOccupiedHeight(spawnCornerOfChunk.getX(), spawnCornerOfChunk.getZ(), net.minecraft.world.gen.Heightmap.Type.WORLD_SURFACE_WG);
+		// All 4 opposite corners
+		int[][] corners = {
+				{minX, minZ}, // NW
+				{maxX, minZ}, // NE
+				{minX, maxZ}, // SW
+				{maxX, maxZ}  // SE
+		};
+		boolean waterPresent = false;
+		for (int[] c : corners) {
+			int x = c[0];
+			int z = c[1];
 
-		// Grabs column of blocks at given position. In overworld, this column will be made of stone, water, and air.
-		// In nether, it will be netherrack, lava, and air. End will only be endstone and air. It depends on what block
-		// the chunk generator will place for that dimension.
-		IBlockReader columnOfBlocks = chunkGenerator.getBaseColumn(spawnCornerOfChunk.getX(), spawnCornerOfChunk.getZ());
+			// Grab height of land. Will stop at first non-air block.
+			int landHeight = chunkGenerator.getFirstOccupiedHeight(x, z, net.minecraft.world.gen.Heightmap.Type.WORLD_SURFACE_WG);
 
-		// Combine the column of blocks with land height and you get the top block itself which you can test.
-		BlockState topBlock = columnOfBlocks.getBlockState(spawnCornerOfChunk.above(landHeight));
+			// Grabs column of blocks at given position.
+			IBlockReader column = chunkGenerator.getBaseColumn(x, z);
 
-		// Now we test to make sure our structure is not spawning on water or other fluids.
-		// You can do height check instead too to make it spawn at high elevations.
-		boolean waterPresent = !topBlock.getFluidState().isEmpty(); //landHeight > 100;
+			// Top solid block at this corner
+			BlockState topBlock = column.getBlockState(new BlockPos(x, landHeight, z));
+
+			// Check for water
+			if (!topBlock.getFluidState().isEmpty()) {
+				waterPresent = true;
+				break; // no need to check the rest
+			}
+		}
 
 		// Check if can spawn in water
-		if(!canSpawnInWater() && waterPresent) {
+		if(waterPresent && !canSpawnInWater()) {
 			return false;
 		}
+
 		// Check if structure intersects a road
-		boolean roadExistsInRange = (MapSettingsManager.serverInstance().getCurrentLoadedMap().getRoadPointCache().getRoadCentreCloseness(spawnCornerOfChunk.getX(), spawnCornerOfChunk.getZ(), 16) >= 0.0F);
+		boolean roadExistsInRange = (MapSettingsManager.serverInstance().getCurrentLoadedMap().getRoadPointCache().getRoadCentreCloseness(minX+7, minZ+7, 16) >= 0.0F);
 
 		if(!canSpawnNearRoad() && roadExistsInRange) {
 			return false;
@@ -127,12 +144,12 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 
 		if(structureType==ExtendedStructureType.RANGER) {
 			int i = chunkX >> 4;
-			int j = chunkZ >> 4;
-			chunkRandom.setSeed((long)(i ^ j << 4) ^ seed);
-			chunkRandom.nextInt();
-			if(isNearStructure(ExtendedStructuresV5.GUNDABAD_CAMP.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10) || isNearStructure(ExtendedStructuresV5.GUNDABAD_ENCAMPMENT.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10)) {
-				return false;
-			}
+		int j = chunkZ >> 4;
+		chunkRandom.setSeed((long)(i ^ j << 4) ^ seed);
+		chunkRandom.nextInt();
+		if(isNearStructure(ExtendedStructuresV5.GUNDABAD_CAMP.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10) || isNearStructure(ExtendedStructuresV5.GUNDABAD_ENCAMPMENT.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10)) {
+			return false;
+		}
 		}
 		if(structureType==ExtendedStructureType.BREE_HAMLET) {
 			// Bree Town
@@ -208,41 +225,41 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 		return true;
 	}
 	/**
-     * Checks if another structure exists within a specified radius of the target chunk position.
-     *
-     * @param structure    The structure to check proximity for.
-     * @param chunkGenerator The chunk generator.
-     * @param seed         The world seed.
-     * @param sharedSeedRandom The shared random generator.
-     * @param chunkPosX    The X chunk coordinate.
-     * @param chunkPosZ    The Z chunk coordinate.
-     * @param checkRadius  The radius in chunks to check.
-     * @return {@code true} if a structure exists within the specified radius, {@code false} otherwise.
-     */
+	 * Checks if another structure exists within a specified radius of the target chunk position.
+	 *
+	 * @param structure    The structure to check proximity for.
+	 * @param chunkGenerator The chunk generator.
+	 * @param seed         The world seed.
+	 * @param sharedSeedRandom The shared random generator.
+	 * @param chunkPosX    The X chunk coordinate.
+	 * @param chunkPosZ    The Z chunk coordinate.
+	 * @param checkRadius  The radius in chunks to check.
+	 * @return {@code true} if a structure exists within the specified radius, {@code false} otherwise.
+	 */
 	private boolean isNearStructure(Structure<?> structure, ChunkGenerator chunkGenerator, long seed, SharedSeedRandom sharedSeedRandom, int chunkPosX, int chunkPosZ, int checkRadius) {
 		StructureSeparationSettings structureseparationsettings = chunkGenerator.getSettings().getConfig(Structure.VILLAGE);
-        if (structureseparationsettings != null) {
-            for (int i = chunkPosX - checkRadius; i <= chunkPosX + checkRadius; ++i) {
-                for (int j = chunkPosZ - checkRadius; j <= chunkPosZ + checkRadius; ++j) {
-                    ChunkPos chunkpos = structure.getPotentialFeatureChunk(structureseparationsettings, seed, sharedSeedRandom, i, j);
-                    if (i == chunkpos.x && j == chunkpos.z) {
-                        return true;
-                    }
-                }
-            }
+		if (structureseparationsettings != null) {
+			for (int i = chunkPosX - checkRadius; i <= chunkPosX + checkRadius; ++i) {
+				for (int j = chunkPosZ - checkRadius; j <= chunkPosZ + checkRadius; ++j) {
+					ChunkPos chunkpos = structure.getPotentialFeatureChunk(structureseparationsettings, seed, sharedSeedRandom, i, j);
+					if (i == chunkpos.x && j == chunkpos.z) {
+						return true;
+					}
+				}
+			}
 
-        }
-        return false;
-    }
+		}
+		return false;
+	}
 	/**
-     * Calculates the Euclidean distance in chunk coordinates between two chunk positions.
-     *
-     * @param chunkX1 First chunk X.
-     * @param chunkZ1 First chunk Z.
-     * @param chunkX2 Second chunk X.
-     * @param chunkZ2 Second chunk Z.
-     * @return The calculated distance.
-     */
+	 * Calculates the Euclidean distance in chunk coordinates between two chunk positions.
+	 *
+	 * @param chunkX1 First chunk X.
+	 * @param chunkZ1 First chunk Z.
+	 * @param chunkX2 Second chunk X.
+	 * @param chunkZ2 Second chunk Z.
+	 * @return The calculated distance.
+	 */
 	public static double calculateChunkDistance(int chunkX1, int chunkZ1, int chunkX2, int chunkZ2) {
 		// Calculate the difference in x and z coordinates
 		int deltaX = chunkX2 - chunkX1;

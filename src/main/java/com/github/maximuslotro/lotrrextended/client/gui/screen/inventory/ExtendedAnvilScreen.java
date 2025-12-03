@@ -178,7 +178,7 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 				}else {
 					ItemStack inputItem = this.menu.getSlot(0).getItem();
 					ItemStack resourceItem = this.menu.getSlot(2).getItem();
-					if(inputItem.getItem().isValidRepairItem(inputItem, resourceItem)) {
+					if(ExtendedRepairContainer.isValidRepairMaterial(inputItem, resourceItem)) {
 						itextcomponent = new TranslationTextComponent("container.lotrextended.repair.reforge.cost", this.menu.getReforgeCost());
 						if(resourceItem.getCount()<this.menu.getReforgeCost()) {
 							textColor = ERRORTEXTCOLOR;

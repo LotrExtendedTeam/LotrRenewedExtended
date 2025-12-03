@@ -25,6 +25,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.Tags;
 
 public class ExtendedChiselItem extends BlockItem {
 
@@ -140,5 +141,10 @@ public class ExtendedChiselItem extends BlockItem {
 		return pProperty.getValue(pValueIdentifier).map((p_219986_2_) -> {
 			return pState.setValue(pProperty, p_219986_2_);
 		}).orElse(pState);
+	}
+
+	@Override
+	public boolean isValidRepairItem(ItemStack p_82789_1_, ItemStack repairItem) {
+		return Tags.Items.INGOTS_IRON.contains(repairItem.getItem());
 	}
 }

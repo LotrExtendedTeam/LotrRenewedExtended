@@ -143,6 +143,7 @@
 		"net.minecraft.item.MixinShearsItem",
 		"net.minecraft.server.dedicated.MixinDedicatedServer",
 		"net.minecraft.tileentity.MixinSignTileEntityAccessor",
+		"net.minecraft.util.MixinFoodStats",
 		"net.minecraft.world.gen.feature.template.MixinTemplate"
 	],
 	"client": [

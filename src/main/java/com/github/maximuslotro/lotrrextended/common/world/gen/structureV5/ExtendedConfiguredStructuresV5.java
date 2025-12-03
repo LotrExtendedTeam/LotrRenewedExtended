@@ -72,6 +72,8 @@ public class ExtendedConfiguredStructuresV5 {
 
 	public static StructureFeature<?, ?> CONFIGURED_RIVENDELL_STRUCTURES = register(ExtendedStructuresV5.RIVENDELL_STRUCTURE.get().configured(new SinglePoolConfig("rivendell/rivendell_structures")));
 
+	public static StructureFeature<?, ?> CONFIGURED_EREGION_RUINS_STRUCTURES = register(ExtendedStructuresV5.EREGION_RUINS_STRUCTURE.get().configured(new SinglePoolConfig("ruins/eregion_ruins_pool")));
+
 	/**
      * Empty method intended to be called to ensure static initialization of this class
      * and the registration of configured structures.

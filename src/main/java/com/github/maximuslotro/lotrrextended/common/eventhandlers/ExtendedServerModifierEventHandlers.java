@@ -11,6 +11,7 @@ import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.Hand;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
@@ -69,5 +70,15 @@ public class ExtendedServerModifierEventHandlers {
 				}
 			}
 		}
+	}
+
+	@SubscribeEvent
+	public void onBreakSpeed(BreakSpeed event) {
+		float currentOtherModModifiableSpeed = event.getNewSpeed();
+		float f = event.getPlayer().inventory.getDestroySpeed(event.getState());
+		if (f > 1.0f) {
+			currentOtherModModifiableSpeed *= ExtendedModifierUtils.getBlockEfficiencyFloat(event.getPlayer());
+		}
+		event.setNewSpeed(currentOtherModModifiableSpeed);
 	}
 }

@@ -24,6 +24,7 @@ public class ExtendedLootTables {
 
 	public static final ResourceLocation GENERIC_RUIN_CHEST = registerChest("generic_ruin");
 	public static final ResourceLocation ARNOR_TOWER_RUIN_CHEST = registerChest("arnor_tower_ruin");
+	public static final ResourceLocation EREGION_RUIN_CHEST = registerChest("eregion_ruin");
 
 	public static final ResourceLocation GUNDABAD_CAMP_SUPPLIES_CHEST = registerChest("gundabad_camp_general");
 	public static final ResourceLocation GUNDABAD_CAMP_SMITHY_CHEST = registerChest("gundabad_camp_smithy");

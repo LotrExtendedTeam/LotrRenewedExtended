@@ -111,7 +111,7 @@ public class ExtendedModifiers {
 	public static final ExtendedModifier HARDENED = registerInt("protect1", "armor_protect.one", ExtendedModifierType.PROTECTION, 1, 1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.SILVER, 10, ARMOR_SLOTS);
 	public static final ExtendedModifier POOR = registerInt("protectWeak1", "armor_protect.weak_one", ExtendedModifierType.PROTECTION, 0, -1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.NOSCROLL, 4, ARMOR_SLOTS);
 	public static final ExtendedModifier CRUDE = registerInt("protectWeak2", "armor_protect.weak_two", ExtendedModifierType.PROTECTION, -1, -2, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.NOSCROLL, 3, ARMOR_SLOTS);
-	public static final ExtendedModifier TRUE = registerInt("protectMithril", "armor_protect_mithril", ExtendedModifierType.PROTECTION_MITHRIL, 1, 4, ExtendedModifierRarity.APPLIED, ExtendedModifierScroll.GOLD, 0, ARMOR_SLOTS);
+	public static final ExtendedModifier TRUE = registerInt("protectMithril", "armor_protect_mithril", ExtendedModifierType.PROTECTION_MITHRIL, 1, 4, ExtendedModifierRarity.APPLIED, ExtendedModifierScroll.NOSCROLL, 0, ARMOR_SLOTS);
 	// === Armor Special Modifiers ===
 	public static final ExtendedModifier ULMOQINT  = registerInt("waterSpeed3", "underwater_movement.three", ExtendedModifierType.UNDERWATER_MOVEMENT, 3, 3, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 1, ARMOR_SLOTS);
 	public static final ExtendedModifier FINNED = registerInt("waterSpeed2", "underwater_movement.two", ExtendedModifierType.UNDERWATER_MOVEMENT, 2, 2, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.SILVER, 3, ARMOR_SLOTS);

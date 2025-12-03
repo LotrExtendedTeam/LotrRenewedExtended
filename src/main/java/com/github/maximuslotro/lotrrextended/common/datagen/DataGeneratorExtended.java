@@ -31,6 +31,7 @@ public class DataGeneratorExtended {
 			generator.addProvider(new ExtendedAdvancementProvider(generator, existingFileHelper));
 			ExtendedEntityRelatedGenerators.gatherData(generator, existingFileHelper, LotrExtendedMod.MODID);
 			generator.addProvider(new ExtendedBiomeInfoGenerator(generator, existingFileHelper));
+			//generator.addProvider(new ExtendedItemsValidator());
 		}
 		if (event.includeClient()) {
 			ExtendedClientConfig.registerDataGen();
