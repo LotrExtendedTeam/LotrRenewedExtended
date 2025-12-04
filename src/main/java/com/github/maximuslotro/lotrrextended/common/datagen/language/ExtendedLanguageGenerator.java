@@ -598,6 +598,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("enchant.lotrextended.toughness.two", "Thick");
 		addD("enchant.lotrextended.toughness.three", "Unwavering");
 		addD("enchant.lotrextended.toughness.disc", "toughness");
+
+		//Damage types
+		addD("death.attack.lotrextended.thrownaxe", "%1$s was precision-axed by %2$s");
+		addD("death.attack.lotrextended.thrownaxe.item", "%1$s was precision-axed by %2$s using %3$s");
 	}
 
 	@Override

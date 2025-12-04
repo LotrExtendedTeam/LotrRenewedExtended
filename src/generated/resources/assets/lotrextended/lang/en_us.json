@@ -1712,6 +1712,8 @@
   "container.lotrextended.stone_chest": "Stone Chest",
   "container.lotrextended.stone_grinder": "Stone Grinder",
   "container.lotrextended.trading": "Trading",
+  "death.attack.lotrextended.thrownaxe": "%1$s was precision-axed by %2$s",
+  "death.attack.lotrextended.thrownaxe.item": "%1$s was precision-axed by %2$s using %3$s",
   "enchant.lotrextended.armor_protect.disc": "armor points",
   "enchant.lotrextended.armor_protect.one": "Hardened",
   "enchant.lotrextended.armor_protect.two": "Steadfast",
