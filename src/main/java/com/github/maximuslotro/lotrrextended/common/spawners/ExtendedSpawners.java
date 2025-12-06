@@ -14,9 +14,14 @@ public class ExtendedSpawners {
 	private static final Set<ResourceLocation> LOCATIONS = Sets.newHashSet();
 	// ANIMALS
 	public static final ResourceLocation DUCK_SINGLE  = register("duck_single_spawner");
+	public static final ResourceLocation DUCK_SINGLENEW  = register("animal_duck_single_spawner");
 	public static final ResourceLocation SHEEP_SINGLE  = register("animal_sheep_single_spawner");
+	public static final ResourceLocation HORSE_SINGLENEW  = register("animal_horse_single_spawner");
 	public static final ResourceLocation HORSE_SINGLE  = register("generic_horse_single_spawner");
-
+	public static final ResourceLocation PIG_SINGLE  = register("animal_pig_single_spawner");
+	public static final ResourceLocation BOAR_SINGLE  = register("animal_boar_single_spawner");
+	public static final ResourceLocation RABBIT_SINGLE  = register("animal_rabbit_single_spawner");
+	public static final ResourceLocation HEDGEHOG_SINGLE  = register("animal_hedgehog_single_spawner");
 	// HOBBITS
 	public static final ResourceLocation HOBBIT_PICNIC_TABLE = register("hobbit_picnic_table_spawner");
 	public static final ResourceLocation HOBBIT_PICNIC_BLANKET = register("hobbit_picnic_blanket_spawner");

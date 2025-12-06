@@ -6,6 +6,7 @@ import lotr.common.world.biome.LOTRBiomeFeatures;
 import lotr.common.world.biome.RivendellBiome;
 import lotr.common.world.biome.surface.MiddleEarthSurfaceConfig;
 import lotr.common.world.gen.feature.TreeCluster;
+import lotr.common.world.gen.feature.grassblend.ExtendedGrassBlends;
 import lotr.common.world.gen.feature.grassblend.GrassBlends;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -51,7 +52,7 @@ public class ExtendedRivendellBiome extends RivendellBiome {
 		};
 		LOTRBiomeFeatures.addTreesWithClusters(this, builder, 0, 0.25F, TreeCluster.of(12, 16), weightedTrees);
 		LOTRBiomeFeatures.addTreesAboveTreelineIncrease(this, builder, 2, 0.2F, 2, 85, weightedTrees);
-		LOTRBiomeFeatures.addGrass(this, builder, 6, GrassBlends.STANDARD);
+		LOTRBiomeFeatures.addGrass(this, builder, 6, ExtendedGrassBlends.STANDARD_WITH_MOORS);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 1, GrassBlends.DOUBLE_STANDARD);
 		LOTRBiomeFeatures.addPlainsFlowers(builder, 5);
 	}
@@ -87,7 +88,7 @@ public class ExtendedRivendellBiome extends RivendellBiome {
 			};
 			LOTRBiomeFeatures.addTreesWithClusters(this, builder, 0, 0.25F, TreeCluster.of(12, 16), weightedTrees);
 			LOTRBiomeFeatures.addTreesAboveTreelineIncrease(this, builder, 2, 0.2F, 2, 85, weightedTrees);
-			LOTRBiomeFeatures.addGrass(this, builder, 6, GrassBlends.STANDARD);
+			LOTRBiomeFeatures.addGrass(this, builder, 6, ExtendedGrassBlends.STANDARD_WITH_MOORS);
 			LOTRBiomeFeatures.addDoubleGrass(builder, 1, GrassBlends.DOUBLE_STANDARD);
 			LOTRBiomeFeatures.addPlainsFlowers(builder, 5);
 		}
@@ -126,7 +127,7 @@ public class ExtendedRivendellBiome extends RivendellBiome {
 					LOTRBiomeFeatures.birchFancy(), 500, LOTRBiomeFeatures.birchBees(), 10, 
 					LOTRBiomeFeatures.birchFancyBees(), 5 };
 			LOTRBiomeFeatures.addTreesIncrease(this, builder, 7, 0.3F, 3, weightedTrees);
-			LOTRBiomeFeatures.addGrass(this, builder, 5, GrassBlends.STANDARD);
+			LOTRBiomeFeatures.addGrass(this, builder, 5, ExtendedGrassBlends.STANDARD_WITH_MOORS);
 			LOTRBiomeFeatures.addDoubleGrass(builder, 1, GrassBlends.DOUBLE_STANDARD);
 			LOTRBiomeFeatures.addMountainsFlowers(builder, 2);
 		}
@@ -183,7 +184,7 @@ public class ExtendedRivendellBiome extends RivendellBiome {
 					ExtendedBiomeFeatures.willowTree(), 250
 			};			
 			LOTRBiomeFeatures.addTreesWithClusters(this, builder, 0, 0.4F, TreeCluster.of(10, 20), weightedTrees);
-			LOTRBiomeFeatures.addGrass(this, builder, 6, GrassBlends.STANDARD);
+			LOTRBiomeFeatures.addGrass(this, builder, 6, ExtendedGrassBlends.STANDARD_WITH_MOORS);
 			LOTRBiomeFeatures.addDoubleGrass(builder, 6, GrassBlends.DOUBLE_MUTED);
 			LOTRBiomeFeatures.addPlainsFlowers(builder, 5);
 			LOTRBiomeFeatures.addSeagrass(builder, 48, 0.4F);

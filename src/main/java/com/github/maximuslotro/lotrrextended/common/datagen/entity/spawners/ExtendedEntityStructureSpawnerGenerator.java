@@ -21,8 +21,14 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 	public void makeStructureSpawnPools(Consumer<ExtendedStructureEntitySpawner> pConsumer) {
 		// ANIMALS
 		single(ExtendedEntities.DUCK.get()).setHomeInfo(false, 5).save(pConsumer, ExtendedSpawners.DUCK_SINGLE);
+		single(ExtendedEntities.DUCK.get()).setHomeInfo(false, 5).save(pConsumer, ExtendedSpawners.DUCK_SINGLENEW);
 		single(EntityType.HORSE).save(pConsumer, ExtendedSpawners.HORSE_SINGLE);
+		single(EntityType.HORSE).save(pConsumer, ExtendedSpawners.HORSE_SINGLENEW);
 		single(EntityType.SHEEP).save(pConsumer, ExtendedSpawners.SHEEP_SINGLE);
+		single(EntityType.PIG).save(pConsumer, ExtendedSpawners.PIG_SINGLE);
+		single(EntityType.RABBIT).save(pConsumer, ExtendedSpawners.RABBIT_SINGLE);
+		single(ExtendedEntities.HORSE_BOAR.get()).save(pConsumer, ExtendedSpawners.BOAR_SINGLE);
+		single(ExtendedEntities.HEDGEHOG.get()).save(pConsumer, ExtendedSpawners.HEDGEHOG_SINGLE);
 		// HOBBITS
 		single(ExtendedEntities.HOBBIT_FARMER.get()).setRespawnOnDeath().setHomeInfo(false, 16).save(pConsumer, ExtendedSpawners.HOBBIT_BARN_FARMER);
 		// un-disable when hobbit farmhands is added
