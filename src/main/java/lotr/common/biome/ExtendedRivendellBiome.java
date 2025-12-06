@@ -52,7 +52,7 @@ public class ExtendedRivendellBiome extends RivendellBiome {
 		};
 		LOTRBiomeFeatures.addTreesWithClusters(this, builder, 0, 0.25F, TreeCluster.of(12, 16), weightedTrees);
 		LOTRBiomeFeatures.addTreesAboveTreelineIncrease(this, builder, 2, 0.2F, 2, 85, weightedTrees);
-		LOTRBiomeFeatures.addGrass(this, builder, 6, ExtendedGrassBlends.STANDARD_WITH_MOORS);
+		LOTRBiomeFeatures.addGrass(this, builder, 10, ExtendedGrassBlends.STANDARD_WITH_MOORS);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 1, GrassBlends.DOUBLE_STANDARD);
 		LOTRBiomeFeatures.addPlainsFlowers(builder, 5);
 	}
