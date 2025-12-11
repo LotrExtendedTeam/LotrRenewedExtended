@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import com.github.maximuslotro.lotrextended.mixins.lotr.common.entity.npc.MixinNPCEntityInvoker;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
@@ -588,7 +589,11 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	 */
 	@Override
 	public boolean isPickable() {
-		return true;
+		if (!this.level.isClientSide()) {
+			return false;
+		}
+		PlayerEntity entityplayer = ExtendedClientProxy.INSTANCE.getClientPlayerEntity();
+		return (entityplayer != null && entityplayer.isCreative() || ExtendedClientConfig.enableClientDevMode.get());
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.config;
 
+import javax.annotation.Nonnull;
+
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig.Type;
@@ -53,6 +55,10 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.IntValue overworldSpawnProtectionRadius;
 	public static ForgeConfigSpec.IntValue middleEarthSpawnProtectionRadius;
 
+	// World Generation
+	public static ForgeConfigSpec.BooleanValue enableFixedStructures;
+	public static ForgeConfigSpec.BooleanValue enableFixedStructureImladris;
+
 	public static void register() {
 		ModLoadingContext.get().registerConfig(Type.SERVER, SERVER_SPEC);
 	}
@@ -72,8 +78,8 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 
 		builder.push("Entity settings");
 		barrowWightChestFirstSpawnChance = createIntegerValue(builder, "barrowWightChestFirstSpawnChance", 50, 0, 100, false, "Should stone chests in the barrow downs spawn wight on first open. 0=only when cursed, 100=spawns on every first open like in legacy");
-		enableLegacyCaptainPassiveBehavior = createBooleanValue(builder, "enableLegacyCaptainPassiveBehavior", true, true, "Make captains passive until attacked, like in legacy");
-		enableLegacyTraderPassiveBehavior = createBooleanValue(builder, "enableLegacyTraderPassiveBehavior", true, true, "Make traders passive until attacked, like in legacy");
+		enableLegacyCaptainPassiveBehavior = createBooleanValue(builder, "enableLegacyCaptainPassiveBehavior", true, false, "Make captains passive until attacked, like in legacy");
+		enableLegacyTraderPassiveBehavior = createBooleanValue(builder, "enableLegacyTraderPassiveBehavior", true, false, "Make traders passive until attacked, like in legacy");
 		enableWanderingTraderSpawns = createBooleanValue(builder, "enableWanderingTraderSpawns", true, false, "Enable wandering traders");
 		enableBanditEncounters = createBooleanValue(builder, "enableBanditEncounters", true, false, "Enable bandit encounters");
 		enableTolkienSpawning = createBooleanValue(builder, "enableTolkienSpawning", true, false, "Enable tolkien spawning");
@@ -110,6 +116,20 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		overworldSpawnProtectionRadius = createIntegerValue(builder, "overworldSpawnProtectionRadius", 16, 0, 500, false, "The radius for Overworld spawn server protection (allows larger area than vanilla protection)");
 		middleEarthSpawnProtectionRadius = createIntegerValue(builder, "middleEarthSpawnProtectionRadius", 16, 0, 500, false, "The radius for Middle Earth spawn server protection");
 		builder.pop();
+
+		builder.push("World Generation");
+		enableFixedStructures = createBooleanValue(builder,"enableFixedStructures", true, true, "Enable fixed structures to generate, OVERRIDES ALL OTHER STRUCTURE SETTINGS!");
+		enableFixedStructureImladris = createBooleanValue(builder,"enableFixedStructureImladris", true, true, "Enable Imladris lore structure");
+		builder.pop();
 		return builder;
+	}
+
+
+	public static boolean canSpawnStructures() {
+		return enableFixedStructures.get();
+	}
+
+	public static boolean canSpawnStructure(@Nonnull ForgeConfigSpec.BooleanValue additionalCheck) {
+		return canSpawnStructures() && additionalCheck.get();
 	}
 }

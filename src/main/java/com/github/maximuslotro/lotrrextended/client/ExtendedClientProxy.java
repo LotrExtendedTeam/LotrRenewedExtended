@@ -20,6 +20,7 @@ import lotr.common.block.ExtendedSignTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.Atlases;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.resources.IPackNameDecorator;
 import net.minecraft.resources.ResourcePackInfo;
 import net.minecraft.resources.ResourcePackInfo.Priority;
@@ -43,6 +44,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @OnlyIn(Dist.CLIENT)
 public class ExtendedClientProxy {
+	private Minecraft MC;
 
 	public static void staticClientSetup() {
 		if(Minecraft.getInstance()==null) {
@@ -75,6 +77,7 @@ public class ExtendedClientProxy {
 		modBus.addListener(ExtendedItemModelsProperties::addGuiItemSprites);
 		modBus.addListener(ExtendedBlockItemColors::makeItemsColors);
 		ExtendedClientConfig.register();
+		MC = Minecraft.getInstance();
 		//Moved to Mixin
 		//createPack("legacy", "Legacy TexturePack");
 		//createPack("renewed", "Remastered Renewed TexturePack");
@@ -82,6 +85,9 @@ public class ExtendedClientProxy {
 		//DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> this::setupUsersUUID);
 	}
 
+	public PlayerEntity getClientPlayerEntity() {
+		return MC.player;
+	}
     /**
      * A fix since forge does not have client commands in 1.16.5
      * @param event The chat event on the client

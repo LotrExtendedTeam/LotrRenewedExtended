@@ -31,8 +31,8 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableHungerDecrease", ExtendedServerConfig.enableHungerDecrease));
 		// Entity
 		command.then(buildInt("barrowWightChestFirstSpawnChance", ExtendedServerConfig.barrowWightChestFirstSpawnChance, 0, 100));
-		command.then(buildBoolean("enableLegacyCaptainAggressionBehavior", ExtendedServerConfig.enableLegacyCaptainPassiveBehavior, true));
-		command.then(buildBoolean("enableLegacyTraderPassiveBehavior", ExtendedServerConfig.enableLegacyTraderPassiveBehavior, true));
+		command.then(buildBoolean("enableLegacyCaptainAggressionBehavior", ExtendedServerConfig.enableLegacyCaptainPassiveBehavior));
+		command.then(buildBoolean("enableLegacyTraderPassiveBehavior", ExtendedServerConfig.enableLegacyTraderPassiveBehavior));
 		command.then(buildBoolean("enableWanderingTraderSpawns", ExtendedServerConfig.enableWanderingTraderSpawns));
 		command.then(buildBoolean("enableBanditEncounters", ExtendedServerConfig.enableBanditEncounters));
 		command.then(buildBoolean("enableTolkienSpawning", ExtendedServerConfig.enableTolkienSpawning));
@@ -49,12 +49,12 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableVanillaEnchanting", ExtendedServerConfig.enableVanillaEnchanting, true));
 		command.then(buildBoolean("enableVanillaXp", ExtendedServerConfig.enableVanillaXp, true));
 		command.then(buildBoolean("enableExtendedModifiers", ExtendedServerConfig.enableExtendedModifiers, true));
-		// Special
+		// Server Enhancements
 		command.then(buildBoolean("enableExtendedLogging", ExtendedServerConfig.enableExtendedLogging));
+		// World Generation
+		command.then(buildBoolean("enableFixedStructures", ExtendedServerConfig.enableFixedStructures, true));
+		command.then(buildBoolean("enableFixedStructureImladris", ExtendedServerConfig.enableFixedStructureImladris, true));
 		// Register
-		command.then(buildBoolean("enableExtendedSpawnProtection", ExtendedServerConfig.enableExtendedSpawnProtection));
-		command.then(buildInt("overworldSpawnProtectionRadius", ExtendedServerConfig.overworldSpawnProtectionRadius, 0, 500));
-		command.then(buildInt("middleEarthSpawnProtectionRadius", ExtendedServerConfig.middleEarthSpawnProtectionRadius, 0, 500));
 		dispatcher.register(command);
 	}
 

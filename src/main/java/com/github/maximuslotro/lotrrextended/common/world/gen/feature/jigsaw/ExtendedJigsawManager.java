@@ -151,9 +151,9 @@ public class ExtendedJigsawManager {
 				maxPlaceDistance = ((ExtendedSingleJigsawPiece)jigsawpiece).getMaxPlaceDistance();
 			}
 			// Extended End
-			AxisAlignedBB axisalignedbb = new AxisAlignedBB(structureBBAverageX - maxPlaceDistance, structureStartHeight - maxPlaceDistance, structureBBAverageZ - maxPlaceDistance, structureBBAverageX + maxPlaceDistance + 1, structureStartHeight + maxPlaceDistance + 1, structureBBAverageZ + maxPlaceDistance + 1);
+			AxisAlignedBB maxStructureSizeBB = new AxisAlignedBB(structureBBAverageX - maxPlaceDistance, structureStartHeight - maxPlaceDistance, structureBBAverageZ - maxPlaceDistance, structureBBAverageX + maxPlaceDistance + 1, structureStartHeight + maxPlaceDistance + 1, structureBBAverageZ + maxPlaceDistance + 1);
 			ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, maxDepth, villagePieceBuilder, chunkGenerator, templateManager, pieces, random, carryOverProcessor);
-			jigsawmanager$assembler.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, new MutableObject<>(VoxelShapes.join(VoxelShapes.create(axisalignedbb), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox)), IBooleanFunction.ONLY_FIRST)), structureStartHeight + 80, 0));
+			jigsawmanager$assembler.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, new MutableObject<>(VoxelShapes.join(VoxelShapes.create(maxStructureSizeBB), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox)), IBooleanFunction.ONLY_FIRST)), structureStartHeight + 80, 0));
 
 			while(!jigsawmanager$assembler.placing.isEmpty()) {
 				ExtendedJigsawManager.Entry jigsawmanager$entry = jigsawmanager$assembler.placing.removeFirst();

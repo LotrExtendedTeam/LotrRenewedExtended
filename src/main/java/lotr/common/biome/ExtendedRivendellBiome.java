@@ -52,8 +52,8 @@ public class ExtendedRivendellBiome extends RivendellBiome {
 		};
 		LOTRBiomeFeatures.addTreesWithClusters(this, builder, 0, 0.25F, TreeCluster.of(12, 16), weightedTrees);
 		LOTRBiomeFeatures.addTreesAboveTreelineIncrease(this, builder, 2, 0.2F, 2, 85, weightedTrees);
-		LOTRBiomeFeatures.addGrass(this, builder, 10, ExtendedGrassBlends.STANDARD_WITH_MOORS);
-		LOTRBiomeFeatures.addDoubleGrass(builder, 1, GrassBlends.DOUBLE_STANDARD);
+		LOTRBiomeFeatures.addGrass(this, builder, 20, ExtendedGrassBlends.STANDARD_WITH_MOORS);
+		LOTRBiomeFeatures.addDoubleGrass(builder, 2, GrassBlends.DOUBLE_STANDARD);
 		LOTRBiomeFeatures.addPlainsFlowers(builder, 5);
 	}
 
@@ -88,8 +88,8 @@ public class ExtendedRivendellBiome extends RivendellBiome {
 			};
 			LOTRBiomeFeatures.addTreesWithClusters(this, builder, 0, 0.25F, TreeCluster.of(12, 16), weightedTrees);
 			LOTRBiomeFeatures.addTreesAboveTreelineIncrease(this, builder, 2, 0.2F, 2, 85, weightedTrees);
-			LOTRBiomeFeatures.addGrass(this, builder, 6, ExtendedGrassBlends.STANDARD_WITH_MOORS);
-			LOTRBiomeFeatures.addDoubleGrass(builder, 1, GrassBlends.DOUBLE_STANDARD);
+			LOTRBiomeFeatures.addGrass(this, builder, 20, ExtendedGrassBlends.STANDARD_WITH_MOORS);
+			LOTRBiomeFeatures.addDoubleGrass(builder, 2, GrassBlends.DOUBLE_STANDARD);
 			LOTRBiomeFeatures.addPlainsFlowers(builder, 5);
 		}
 
@@ -127,8 +127,8 @@ public class ExtendedRivendellBiome extends RivendellBiome {
 					LOTRBiomeFeatures.birchFancy(), 500, LOTRBiomeFeatures.birchBees(), 10, 
 					LOTRBiomeFeatures.birchFancyBees(), 5 };
 			LOTRBiomeFeatures.addTreesIncrease(this, builder, 7, 0.3F, 3, weightedTrees);
-			LOTRBiomeFeatures.addGrass(this, builder, 5, ExtendedGrassBlends.STANDARD_WITH_MOORS);
-			LOTRBiomeFeatures.addDoubleGrass(builder, 1, GrassBlends.DOUBLE_STANDARD);
+			LOTRBiomeFeatures.addGrass(this, builder, 10, ExtendedGrassBlends.STANDARD_WITH_MOORS);
+			LOTRBiomeFeatures.addDoubleGrass(builder, 2, GrassBlends.DOUBLE_STANDARD);
 			LOTRBiomeFeatures.addMountainsFlowers(builder, 2);
 		}
 
@@ -143,7 +143,7 @@ public class ExtendedRivendellBiome extends RivendellBiome {
 
 	public static class ExtendedRivendellRiverBiome extends ExtendedRivendellBiome {
 		public ExtendedRivendellRiverBiome() {
-			super(new Builder().precipitation(RainType.RAIN).biomeCategory(Category.RIVER).depth(-0.75F).scale(0.0F).temperature(0.6F).downfall(1.0F), false);
+			super(new Builder().precipitation(RainType.RAIN).biomeCategory(Category.RIVER).depth(-0.65F).scale(0.0F).temperature(0.6F).downfall(1.0F), false);
 		}
 
 		@Override
