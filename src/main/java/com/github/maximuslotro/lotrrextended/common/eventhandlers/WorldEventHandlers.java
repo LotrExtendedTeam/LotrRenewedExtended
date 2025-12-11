@@ -158,7 +158,8 @@ public class WorldEventHandlers {
 			}
 			// Make entity respawner
 			ExtendedRespawnerEntity respawnerEntity = new ExtendedRespawnerEntity(npc.level);
-			respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
+			//respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
+			respawnerEntity.moveTo(npc.getX(), npc.getY()+npc.getBbHeight()+1, npc.getZ());
 
 			//Set entity Type
 			respawnerEntity.setEntityType(npc.getType());
