@@ -30,7 +30,7 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableLegacyFeastMode", ExtendedServerConfig.enableLegacyFeastMode));
 		command.then(buildBoolean("enableHungerDecrease", ExtendedServerConfig.enableHungerDecrease));
 		// Entity
-		command.then(buildInt("barrowWightChestFirstSpawnChance", ExtendedServerConfig.barrowWightChestFirstSpawnChance, 0, 100));
+		command.then(buildInteger("barrowWightChestFirstSpawnChance", ExtendedServerConfig.barrowWightChestFirstSpawnChance, 0, 100));
 		command.then(buildBoolean("enableLegacyCaptainAggressionBehavior", ExtendedServerConfig.enableLegacyCaptainPassiveBehavior));
 		command.then(buildBoolean("enableLegacyTraderPassiveBehavior", ExtendedServerConfig.enableLegacyTraderPassiveBehavior));
 		command.then(buildBoolean("enableWanderingTraderSpawns", ExtendedServerConfig.enableWanderingTraderSpawns));
@@ -41,6 +41,8 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("barsConnectToBranches", ExtendedServerConfig.barsConnectToBranches, true));
 		command.then(buildBoolean("barsConnectToSlabSides", ExtendedServerConfig.barsConnectToSlabSides, true));
 		command.then(buildDouble("dripstoneMinimumDamageHeight", ExtendedServerConfig.dripstoneMinimumDamageHeight, 0.0D, 5.0D));
+		command.then(buildInteger("bellRingChainMaxLength", ExtendedServerConfig.bellRingChainMaxLength, 1, 50));
+
 		// Chair
 		command.then(buildBoolean("enableChairSlabSitting", ExtendedServerConfig.enableChairSlabSitting));
 		command.then(buildBoolean("enableChairSwapping", ExtendedServerConfig.enableChairSwapping));
@@ -87,7 +89,7 @@ public class ExtendedConfigCommand {
 			.executes(context -> retrieveDoubleValue(context.getSource(), name, configType.get()));
 	}
 
-	public static LiteralArgumentBuilder<CommandSource> buildInt(String name, ForgeConfigSpec.IntValue configType, int min, int max){
+	public static LiteralArgumentBuilder<CommandSource> buildInteger(String name, ForgeConfigSpec.IntValue configType, int min, int max){
 		return Commands.literal(name)
 			.then(Commands.argument("set", IntegerArgumentType.integer(min, max))
 				.executes(context -> {

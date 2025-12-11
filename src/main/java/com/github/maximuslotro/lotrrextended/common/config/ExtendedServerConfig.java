@@ -33,6 +33,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue barsConnectToSlabSides;
 	public static ForgeConfigSpec.BooleanValue makeMetalDoorsRequirePower;
 	public static ForgeConfigSpec.DoubleValue dripstoneMinimumDamageHeight;
+	public static ForgeConfigSpec.IntValue bellRingChainMaxLength;
 
 	// Chair Settings
 	public static ForgeConfigSpec.BooleanValue enableChairSlabSitting;
@@ -90,6 +91,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		barsConnectToSlabSides = createBooleanValue(builder, "barsConnectToSlabSides", true, true, "Make bars and panes connect to half sides of vertical slabs");
 		makeMetalDoorsRequirePower = createBooleanValue(builder, "makeMetalDoorsRequirePower", false, true, "Make Extended's metal doors and trapdoors require power to open");
 		dripstoneMinimumDamageHeight = createDoubleValue(builder, "dripstoneMinimumDamageHeight", 1.0D, 0.0D, 5.0D, false, "Set the height at which dripstone hurts entities when interacting, (0.0 is the default value in renewed)");
+		bellRingChainMaxLength = createIntegerValue(builder, "bellRingChainMaxLength", 10, 1, 50, false, "Max chain length a bell ring will attempt");
 		builder.pop();
 
 		builder.push("Chair settings");
