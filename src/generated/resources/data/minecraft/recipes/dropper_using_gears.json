@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "C C",
+    "CGC"
+  ],
+  "key": {
+    "C": {
+      "tag": "forge:cobblestone"
+    },
+    "G": {
+      "item": "lotr:gate_gear"
+    }
+  },
+  "result": {
+    "item": "minecraft:dropper"
+  }
+}
