@@ -65,7 +65,7 @@ public abstract class ExtendedEntityStructureSpawnersProvider implements IDataPr
 	      };
 		makeStructureSpawnPools(consumer);
 		if(modId.equals(LotrExtendedMod.MODID)) {
-			for(ResourceLocation location : ExtendedSpawners.getSpawners()) {
+			for(ResourceLocation location : ExtendedSpawners.getSpawnersValidation()) {
 				if(!madeSpawners.contains(location)) {
 					System.out.println("Didn't make a sepcified Structure Spawner type: "+location.toString());
 				}

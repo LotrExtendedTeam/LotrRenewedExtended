@@ -34,28 +34,28 @@ public class ExtendedStructureHelperComamnd {
 		dispatcher.register(Commands.literal("lotrExtendedStructureHelper")
 				.requires(context -> context.hasPermission(2))
 				.then(Commands.literal("setloottable")
-						.then(Commands.argument("location", ResourceLocationArgument.id())
-								.suggests(LOCATIONS)
+						.then(Commands.argument("table", ResourceLocationArgument.id())
+								.suggests(LOOT_TABLES)
 								.then(Commands.argument("pos", BlockPosArgument.blockPos())
-										.executes(context -> execute(context.getSource(), ResourceLocationArgument.getId(context, "location"), BlockPosArgument.getLoadedBlockPos(context, "pos")))
+										.executes(context -> execute(context.getSource(), ResourceLocationArgument.getId(context, "table"), BlockPosArgument.getLoadedBlockPos(context, "pos")))
 										)
 								.then(Commands.literal("here")
-										.executes(context -> execute(context.getSource(), ResourceLocationArgument.getId(context, "location"), new BlockPos(context.getSource().getPosition())))
+										.executes(context -> execute(context.getSource(), ResourceLocationArgument.getId(context, "table"), new BlockPos(context.getSource().getPosition())))
 										)
 								)
 						)
 				.then(Commands.literal("setEntitySpawner")
-						.then(Commands.argument("location", ResourceLocationArgument.id())
+						.then(Commands.argument("type", ResourceLocationArgument.id())
 								.suggests(SPAWNERS)
-								.executes(context -> executeEntity(context.getSource(), ResourceLocationArgument.getId(context, "location"), context.getSource().getEntity().blockPosition()))
+								.executes(context -> executeEntity(context.getSource(), ResourceLocationArgument.getId(context, "type"), context.getSource().getEntity().blockPosition()))
 								)
 						)
 				);
 	}
 
-	public static final SuggestionProvider<CommandSource> LOCATIONS = (ctx, builder) -> ISuggestionProvider.suggestResource(ExtendedLootTables.getLocations(), builder);
+	public static final SuggestionProvider<CommandSource> LOOT_TABLES = (ctx, builder) -> ISuggestionProvider.suggestResource(ExtendedLootTables.getLootTables(), builder);
 
-	public static final SuggestionProvider<CommandSource> SPAWNERS = (ctx, builder) -> ISuggestionProvider.suggestResource(ExtendedSpawners.getSpawners(), builder);
+	public static final SuggestionProvider<CommandSource> SPAWNERS = (ctx, builder) -> ISuggestionProvider.suggestResource(ExtendedSpawners.getSpawnersCommand(), builder);
 
     public static int executeEntity(CommandSource source, ResourceLocation resourceLocation, BlockPos pos) {
     	List<ExtendedStructureSpawnerEntity> entities = source.getLevel()

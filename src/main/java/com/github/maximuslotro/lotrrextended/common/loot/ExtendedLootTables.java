@@ -175,7 +175,7 @@ public class ExtendedLootTables {
 		}
 	}
 
-	public static Set<ResourceLocation> getLocations() {
+	public static Set<ResourceLocation> getLootTables() {
 		return LOCATIONS;
 	}
 }

@@ -19,16 +19,29 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 
 	@Override
 	public void makeStructureSpawnPools(Consumer<ExtendedStructureEntitySpawner> pConsumer) {
+		// old
+		single(ExtendedEntities.DUCK.get()).setHomeInfo(false, 5).save(pConsumer, ExtendedSpawners.DUCK_SINGLE_old);
+		single(EntityType.HORSE).save(pConsumer, ExtendedSpawners.HORSE_SINGLE_old);
 		// ANIMALS
 		single(ExtendedEntities.DUCK.get()).setHomeInfo(false, 5).save(pConsumer, ExtendedSpawners.DUCK_SINGLE);
-		single(ExtendedEntities.DUCK.get()).setHomeInfo(false, 5).save(pConsumer, ExtendedSpawners.DUCK_SINGLENEW);
 		single(EntityType.HORSE).save(pConsumer, ExtendedSpawners.HORSE_SINGLE);
-		single(EntityType.HORSE).save(pConsumer, ExtendedSpawners.HORSE_SINGLENEW);
 		single(EntityType.SHEEP).save(pConsumer, ExtendedSpawners.SHEEP_SINGLE);
 		single(EntityType.PIG).save(pConsumer, ExtendedSpawners.PIG_SINGLE);
 		single(EntityType.RABBIT).save(pConsumer, ExtendedSpawners.RABBIT_SINGLE);
 		single(ExtendedEntities.HORSE_BOAR.get()).save(pConsumer, ExtendedSpawners.BOAR_SINGLE);
 		single(ExtendedEntities.HEDGEHOG.get()).save(pConsumer, ExtendedSpawners.HEDGEHOG_SINGLE);
+		single(EntityType.CAT).save(pConsumer, ExtendedSpawners.CAT_SINGLE);
+		single(EntityType.BEE).save(pConsumer, ExtendedSpawners.BEE_SINGLE);
+		single(EntityType.CHICKEN).save(pConsumer, ExtendedSpawners.CHICKEN_SINGLE);
+		single(EntityType.COW).save(pConsumer, ExtendedSpawners.COW_SINGLE);
+		single(EntityType.DONKEY).save(pConsumer, ExtendedSpawners.DONKEY_SINGLE);
+		single(EntityType.FOX).save(pConsumer, ExtendedSpawners.FOX_SINGLE);
+		single(EntityType.MULE).save(pConsumer, ExtendedSpawners.MULE_SINGLE);
+		singleWeighted(EntityType.MULE, 1, 1, 1).addSinglePool(EntityType.DONKEY, 2, 1, 1).addSinglePool(EntityType.HORSE, 5, 1, 1).save(pConsumer, ExtendedSpawners.EQUINE_SINGLE);
+		single(EntityType.PARROT).save(pConsumer, ExtendedSpawners.PARROT_SINGLE);
+		single(EntityType.POLAR_BEAR).save(pConsumer, ExtendedSpawners.POLAR_BEAR_SINGLE);
+		single(LOTREntities.CARACAL.get()).save(pConsumer, ExtendedSpawners.CARACAL_SINGLE);
+
 		// HOBBITS
 		single(ExtendedEntities.HOBBIT_FARMER.get()).setRespawnOnDeath().setHomeInfo(false, 16).save(pConsumer, ExtendedSpawners.HOBBIT_BARN_FARMER);
 		// un-disable when hobbit farmhands is added
