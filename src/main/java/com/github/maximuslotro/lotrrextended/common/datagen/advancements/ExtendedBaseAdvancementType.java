@@ -29,6 +29,7 @@ import net.minecraft.advancements.criterion.KilledTrigger;
 import net.minecraft.advancements.criterion.LocationPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.MinMaxBounds.FloatBound;
+import net.minecraft.advancements.criterion.PlayerEntityInteractionTrigger;
 import net.minecraft.advancements.criterion.PositionTrigger;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
@@ -42,6 +43,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.structure.Structure;
 
 public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<Advancement>>{
 
@@ -99,7 +101,10 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		}
 		return builder.requirements(IRequirementsStrategy.AND);
 	}
-
+	public static Advancement.Builder addStructureTrigger(Advancement.Builder builder, Structure<?> biome) {
+		builder.addCriterion("enter_"+biome.getFeatureName(), inStructure(biome));
+		return builder;
+	}
 	public static Advancement.Builder addDimensionTrigger(Advancement.Builder builder, RegistryKey<World> dim) {
 		builder.addCriterion("entered_"+dim.location().getPath(), ChangeDimensionTrigger.Instance.changedDimensionTo(dim));
 		return builder;
@@ -222,6 +227,12 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		return builder;
 	}
 
+	public static Advancement.Builder entityInterractTrigger(Advancement.Builder builder, EntityType<?> entityType) {
+		builder.addCriterion("interact_with_"+entityType.getRegistryName().getPath(), 
+			new PlayerEntityInteractionTrigger.Instance(EntityPredicate.AndPredicate.ANY, ItemPredicate.ANY, EntityPredicate.AndPredicate.wrap(EntityPredicate.Builder.entity().of(entityType).build())));
+		return builder;
+	}
+
 	public static Advancement.Builder addCraftingTrigger(Advancement.Builder builder, Block tableFurnaceBlock) {
 		builder.addCriterion("item_made_on_"+tableFurnaceBlock.getRegistryName().getPath(), ExtendedCraftingTrigger.Instance.crafted(tableFurnaceBlock));
 		return builder;
@@ -291,6 +302,10 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 
 	public static PositionTrigger.Instance inBiome(ResourceLocation biome){
 		return PositionTrigger.Instance.located(LocationPredicate.inBiome(RegistryKey.create(Registry.BIOME_REGISTRY, biome)));
+	}
+
+	public static PositionTrigger.Instance inStructure(Structure<?> structure){
+		return PositionTrigger.Instance.located(LocationPredicate.inFeature(structure));
 	}
 
 	public class BaseData {

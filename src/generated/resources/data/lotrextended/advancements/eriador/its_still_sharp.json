@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:eriador/rivendell_smith",
+  "parent": "lotrextended:eriador/elrond",
   "display": {
     "icon": {
       "item": "lotr:shards_of_narsil"
