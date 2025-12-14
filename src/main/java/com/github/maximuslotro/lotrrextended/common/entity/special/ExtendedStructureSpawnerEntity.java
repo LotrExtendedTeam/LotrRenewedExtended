@@ -107,7 +107,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		setInvulnerable(true);
 		if(!level.isClientSide()) {
 			if(queueToRemove) {
-				//this.remove();
+				this.remove();
 			}else {
 				if (spawnerInstance.isEmptySpawner()) {
 					if (spawnerType!=null && !spawnerType.equals(LotrExtendedMod.EMPTY) && !ExtendedServerConfig.enableDevMode.get()) {
