@@ -16,7 +16,6 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -80,9 +79,7 @@ public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStr
 					return;
 				IVertexBuilder builder = buffer.getBuffer(RenderType.LINES);
 				// Translate to entity frame
-				pMatrixStack.translate(-MathHelper.floor(pEntity.getX()) - 0.5D,
-                    -MathHelper.floor(pEntity.getY()),
-                    -MathHelper.floor(pEntity.getZ()) - 0.5D);
+				pMatrixStack.translate(-pEntity.getX(), -pEntity.getY(), -pEntity.getZ());
 				// Render check box
 				pMatrixStack.pushPose();
 				renderLineBox(pMatrixStack, builder, pEntity.getCheckArea(), 51, 204, 255, 255);
@@ -90,6 +87,7 @@ public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStr
 				// Render spawn box
 				pMatrixStack.pushPose();
 				renderLineBox(pMatrixStack, builder, pEntity.getSpawnArea(), 255, 255, 0, 255);
+				System.out.println(pEntity.getSpawnArea());
 				pMatrixStack.popPose();
 				RenderSystem.disableDepthTest();
 				//RenderSystem.disableCull();

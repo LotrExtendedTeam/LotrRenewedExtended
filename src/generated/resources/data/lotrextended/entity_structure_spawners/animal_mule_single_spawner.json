@@ -1,6 +1,11 @@
 {
   "id": "lotrextended:animal_mule_single_spawner",
   "spawner_type": "single_use_spawner",
+  "bbInflateFactor": {
+    "x": 0.5,
+    "y": 1.0,
+    "z": 0.5
+  },
   "persistenceRequired": true,
   "pools": [
     {

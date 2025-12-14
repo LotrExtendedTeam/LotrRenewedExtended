@@ -10,6 +10,7 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSerializers;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
@@ -39,6 +40,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -61,12 +63,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class ExtendedStructureSpawnerEntity extends Entity{
+	private static Vector3d ZERO = new Vector3d(0.0f, 0.0f, 0.0f);
 	private static final DataParameter<String> DATA_SPAWNER_TYPE = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, DataSerializers.STRING);
-	private static final DataParameter<BlockPos> DATA_SPAWNER_CBoundMin = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, DataSerializers.BLOCK_POS);
-	private static final DataParameter<BlockPos> DATA_SPAWNER_CBoundMax = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, DataSerializers.BLOCK_POS);
+	private static final DataParameter<Vector3d> DATA_SPAWNER_CBoundMin = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, ExtendedDataSerializers.VECTOR3D_POS);
+	private static final DataParameter<Vector3d> DATA_SPAWNER_CBoundMax = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, ExtendedDataSerializers.VECTOR3D_POS);
 
-	private static final DataParameter<BlockPos> DATA_SPAWNER_SBoundMin = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, DataSerializers.BLOCK_POS);
-	private static final DataParameter<BlockPos> DATA_SPAWNER_SBoundMax = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, DataSerializers.BLOCK_POS);
+	private static final DataParameter<Vector3d> DATA_SPAWNER_SBoundMin = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, ExtendedDataSerializers.VECTOR3D_POS);
+	private static final DataParameter<Vector3d> DATA_SPAWNER_SBoundMax = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, ExtendedDataSerializers.VECTOR3D_POS);
 
 	private ExtendedStructureEntitySpawner spawnerInstance = ExtendedStructureEntitySpawner.EMPTY;
 	private ResourceLocation spawnerType;
@@ -104,7 +107,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		setInvulnerable(true);
 		if(!level.isClientSide()) {
 			if(queueToRemove) {
-				this.remove();
+				//this.remove();
 			}else {
 				if (spawnerInstance.isEmptySpawner()) {
 					if (spawnerType!=null && !spawnerType.equals(LotrExtendedMod.EMPTY) && !ExtendedServerConfig.enableDevMode.get()) {
@@ -125,7 +128,8 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	@SuppressWarnings("deprecation")
 	private boolean trySpawningEntities(ServerWorld world) {
 		// Check if spawner bounds exist
-		if(!world.hasChunksAt(getCMinBlockPos(), getCMaxBlockPos())) {
+		if(!world.hasChunksAt((int)getCMinBlockPos().x(), (int)getCMinBlockPos().y(), (int)getCMinBlockPos().z(), 
+			(int)getCMaxBlockPos().x(), (int)getCMaxBlockPos().y(), (int)getCMaxBlockPos().z())) {
 			return false;
 		}
 		// Check if player has a proper distance from the spawner if not a single use spawner
@@ -140,9 +144,10 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		int nearbyEntitySpawnCount = 0;
 		if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
 			//System.out.println("Running Area Checks");
-			AxisAlignedBB checkBox = new AxisAlignedBB(getCMinBlockPos(), getCMaxBlockPos());
+			AxisAlignedBB checkBox = new AxisAlignedBB(getCMinBlockPos().x(), getCMinBlockPos().y(), getCMinBlockPos().z(), 
+				getCMaxBlockPos().x(), getCMaxBlockPos().y(), getCMaxBlockPos().z());
 			Predicate<LivingEntity> pred = (entity) -> ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())
-                    .contains(entity.getType().getRegistryName().toString());
+				.contains(entity.getType().getRegistryName().toString());
 			nearbyEntitySpawnCount = world.getEntitiesOfClass(LivingEntity.class, checkBox, pred).size();
 		}
 		//System.out.println("Successfully Ran Area Checks: "+nearbyEntitySpawnCount);
@@ -155,22 +160,22 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 				// Check spawn cap number if not single type
 				//System.out.println("Main Loop, roll:"+roll+", attempt:"+attempt);
 				if(nearbyEntitySpawnCount < spawnerInstance.getLocalSpawnCap() || !spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
-					int x;
-					int y;
-					int z;
+					double x;
+					double y;
+					double z;
 					// Set spawn cords based upon spawner type
 					if(spawnerInstance.getSpawnType().isShouldCheckBoundries() && !shouldSpawnInside()) {
-						x = MathHelper.floor(getX()) + MathHelper.nextInt(random, -spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().horizontalBounds);
-						z = MathHelper.floor(getZ()) + MathHelper.nextInt(random, -spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().horizontalBounds);
-						y = world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, x, z);
-						if(!spawnerInstance.getSpawnBoundaries().isInYRange(y, MathHelper.floor(getY()))) {
+						x = getX() + MathHelper.nextInt(random, -spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().horizontalBounds);
+						z = getZ() + MathHelper.nextInt(random, -spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().horizontalBounds);
+						y = world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, (int)x, (int)z);
+						if(!spawnerInstance.getSpawnBoundaries().isInYRange(y, getY())) {
 							//System.out.println("Failed Y bounds check");
 							continue; // Try spawning again
 						}
 					}else {
-						x = MathHelper.floor(getX());
-						y = MathHelper.floor(getY());
-						z = MathHelper.floor(getZ());
+						x = getX();
+						y = getY();
+						z = getZ();
 					}
 					// Set spawn position
 					BlockPos footPos = new BlockPos(x, y, z);
@@ -210,7 +215,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 						} else {
 							BlockState floorBlock = world.getBlockState(new BlockPos(x, y -1, z));
 							if(!Block.isFaceFull(floorBlock.getCollisionShape(world, new BlockPos(x, y -1, z), ISelectionContext.empty()), Direction.UP)
-									|| !floorBlock.getMaterial().isSolid()) {
+								|| !floorBlock.getMaterial().isSolid()) {
 								//System.out.println("Failed spawn check fullface+solid");
 								continue; // Try spawning again
 							}
@@ -235,8 +240,8 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							NPCEntity entityMaleNpc = (NPCEntity) entityMale;
 							NPCEntity entityFemaleNpc = (NPCEntity) entityFemale;
 							if(((MixinNPCEntityInvoker)entityMaleNpc).invokeGenderProvider().equals(NPCGenderProvider.MALE)
-									||((MixinNPCEntityInvoker)entityMaleNpc).invokeGenderProvider().equals(NPCGenderProvider.FEMALE) || ((MixinNPCEntityInvoker)entityFemaleNpc).invokeGenderProvider().equals(NPCGenderProvider.MALE)
-									||((MixinNPCEntityInvoker)entityFemaleNpc).invokeGenderProvider().equals(NPCGenderProvider.FEMALE)) {
+								||((MixinNPCEntityInvoker)entityMaleNpc).invokeGenderProvider().equals(NPCGenderProvider.FEMALE) || ((MixinNPCEntityInvoker)entityFemaleNpc).invokeGenderProvider().equals(NPCGenderProvider.MALE)
+								||((MixinNPCEntityInvoker)entityFemaleNpc).invokeGenderProvider().equals(NPCGenderProvider.FEMALE)) {
 								ExtendedLog.error("Failed spawning %s because it does not support multiple genders - %s", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
 								return false;
 							}
@@ -277,7 +282,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 						}else {
 							// Moved code from ExtendedStructureSpawnerTileEntity
 							Entity entity = generatedSpawn.create(world);
-							entity.moveTo(footPos, random.nextFloat() * 360.0F, 0.0F);
+							entity.moveTo(x, y, z, random.nextFloat() * 360.0F, 0.0F);
 							// Set entity info based upon the superclass
 							if(entity instanceof NPCEntity) {
 								((NPCEntity)entity).finalizeSpawn(world, world.getCurrentDifficultyAt(footPos), SpawnReason.SPAWNER, null, null);
@@ -401,44 +406,52 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	@Override
 	public ActionResultType interact(PlayerEntity pPlayer, Hand pHand) {
 		if(!pPlayer.level.isClientSide() && pPlayer.isCreative()) {
-			pPlayer.sendMessage(new StringTextComponent("Spawner Raw Type: ").withStyle(TextFormatting.GREEN)
+			if(pPlayer.isShiftKeyDown() && pPlayer.getDirection().getAxis()!=Axis.Y) {
+				 this.moveTo(this.position().x+ (pPlayer.getDirection().getNormal().getX()*0.5f),
+					 this.position().y+ (pPlayer.getDirection().getNormal().getY()*0.5f),
+					 this.position().z+ (pPlayer.getDirection().getNormal().getZ()*0.5f));
+				 reCalculateBounds();
+			}else {
+				pPlayer.sendMessage(new StringTextComponent("Spawner Raw Type: ").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(spawnerType!=null ? spawnerType.getPath() : "Unset").withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
-			pPlayer.sendMessage(new StringTextComponent("Spawner Instanced: ").withStyle(TextFormatting.GREEN)
+				pPlayer.sendMessage(new StringTextComponent("Spawner Instanced: ").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(spawnerInstance.getId().getPath()).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
-			pPlayer.sendMessage(new StringTextComponent("Is Empty Spawner: ").withStyle(TextFormatting.GREEN)
+				pPlayer.sendMessage(new StringTextComponent("Is Empty Spawner: ").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(Boolean.toString(spawnerInstance.isEmptySpawner())).withStyle(TextFormatting.WHITE))
 					.append(new StringTextComponent(", Is Ticking: ").withStyle(TextFormatting.GREEN))
 					.append(new StringTextComponent(Boolean.toString(spawnerInstance.shouldTick())).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
-			pPlayer.sendMessage(new StringTextComponent("Local Spawn Cap: ").withStyle(TextFormatting.GREEN)
+				pPlayer.sendMessage(new StringTextComponent("Local Spawn Cap: ").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(Integer.toString(spawnerInstance.getLocalSpawnCap())).withStyle(TextFormatting.WHITE))
 					.append(new StringTextComponent(", Spawn TickRate: ").withStyle(TextFormatting.GREEN))
 					.append(new StringTextComponent(Integer.toString(spawnerInstance.getEntitySpawnTickRate())).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
-			pPlayer.sendMessage(new StringTextComponent("Inside Spawning: ").withStyle(TextFormatting.GREEN)
+				pPlayer.sendMessage(new StringTextComponent("Inside Spawning: ").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(Boolean.toString(spawnerInstance.insideSpawning())).withStyle(TextFormatting.WHITE))
 					.append(new StringTextComponent(", Inside Chance: ").withStyle(TextFormatting.GREEN))
 					.append(new StringTextComponent(Integer.toString(spawnerInstance.getinsideSpawningChance())).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
-			String str = "";
-			for(String entity : ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())) {
-				if(str.isEmpty()) {
-					str = entity;
-				}else {
-					str = str+ ", "+entity;
+				String str = "";
+				for(String entity : ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())) {
+					if(str.isEmpty()) {
+						str = entity;
+					}else {
+						str = str+ ", "+entity;
+					}
+				}
+				pPlayer.sendMessage(new StringTextComponent("Pool Entities: ").withStyle(TextFormatting.GREEN)
+					.append(new StringTextComponent(str).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
+				if(spawnerInstance.shouldTick()) {
+					int tickModulus = this.tickCount % spawnerInstance.getEntitySpawnTickRate();
+					double percent = tickModulus/(float)spawnerInstance.getEntitySpawnTickRate() ;
+					pPlayer.sendMessage(new StringTextComponent("Current tick times: ").withStyle(TextFormatting.GREEN)
+						.append(new StringTextComponent(Integer.toString(tickModulus)).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
+					pPlayer.sendMessage(new StringTextComponent("Current spawns percents: ").withStyle(TextFormatting.GREEN)
+						.append(new StringTextComponent(String.format(Locale.US,"%.2f", percent*100)).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
+					pPlayer.sendMessage(new StringTextComponent("Current spawns sec till: ").withStyle(TextFormatting.GREEN)
+						.append(new StringTextComponent(String.format(Locale.US,"%.2f", (1-percent) * (spawnerInstance.getEntitySpawnTickRate()/20.0F))).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
+					pPlayer.sendMessage(new StringTextComponent("Current spawns min till: ").withStyle(TextFormatting.GREEN)
+						.append(new StringTextComponent(String.format(Locale.US,"%.2f", (1-percent) * ((spawnerInstance.getEntitySpawnTickRate()/20.0F)/60.0F))).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
 				}
 			}
-			pPlayer.sendMessage(new StringTextComponent("Pool Entities: ").withStyle(TextFormatting.GREEN)
-					.append(new StringTextComponent(str).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
-			if(spawnerInstance.shouldTick()) {
-				int tickModulus = this.tickCount % spawnerInstance.getEntitySpawnTickRate();
-				double percent = tickModulus/(float)spawnerInstance.getEntitySpawnTickRate() ;
-				pPlayer.sendMessage(new StringTextComponent("Current tick times: ").withStyle(TextFormatting.GREEN)
-						.append(new StringTextComponent(Integer.toString(tickModulus)).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
-				pPlayer.sendMessage(new StringTextComponent("Current spawns percents: ").withStyle(TextFormatting.GREEN)
-						.append(new StringTextComponent(String.format(Locale.US,"%.2f", percent*100)).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
-				pPlayer.sendMessage(new StringTextComponent("Current spawns sec till: ").withStyle(TextFormatting.GREEN)
-						.append(new StringTextComponent(String.format(Locale.US,"%.2f", (1-percent) * (spawnerInstance.getEntitySpawnTickRate()/20.0F))).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
-				pPlayer.sendMessage(new StringTextComponent("Current spawns min till: ").withStyle(TextFormatting.GREEN)
-						.append(new StringTextComponent(String.format(Locale.US,"%.2f", (1-percent) * ((spawnerInstance.getEntitySpawnTickRate()/20.0F)/60.0F))).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
-			}
+
 			pPlayer.sendMessage(new StringTextComponent("In future will open GUI"), Util.NIL_UUID);
 		}
 		return ActionResultType.sidedSuccess(this.level.isClientSide);
@@ -486,16 +499,20 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		return true;
 	}
 
-	public BlockPos getCMinBlockPos() {
+	public Vector3d getCMinBlockPos() {
 		return this.getEntityData().get(DATA_SPAWNER_CBoundMin);
 	}
-	public BlockPos getCMaxBlockPos() {
+	public Vector3d getCMaxBlockPos() {
 		return this.getEntityData().get(DATA_SPAWNER_CBoundMax);
 	}
-	public BlockPos getSMinBlockPos() {
+	/**
+	 * Only used on client as this method also contains bounding box offset data
+	 * @return A minimum position for the spawning area
+	 * */
+	public Vector3d getSMinBlockPos() {
 		return this.getEntityData().get(DATA_SPAWNER_SBoundMin);
 	}
-	public BlockPos getSMaxBlockPos() {
+	public Vector3d getSMaxBlockPos() {
 		return this.getEntityData().get(DATA_SPAWNER_SBoundMax);
 	}
 	public String getSpawnerName() {
@@ -503,18 +520,29 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	}
 
 	public void reCalculateBounds() {
-		this.getEntityData().set(DATA_SPAWNER_CBoundMin, spawnerInstance.getCheckBoundaries().getMinPos(MathHelper.floor(getX()), MathHelper.floor(getY()), MathHelper.floor(getZ())));
-		this.getEntityData().set(DATA_SPAWNER_CBoundMax, spawnerInstance.getCheckBoundaries().getMaxPos(MathHelper.floor(getX()), MathHelper.floor(getY()), MathHelper.floor(getZ())));
-		this.getEntityData().set(DATA_SPAWNER_SBoundMin, spawnerInstance.getSpawnBoundaries().getMinPos(MathHelper.floor(getX()), MathHelper.floor(getY()), MathHelper.floor(getZ())));
-		this.getEntityData().set(DATA_SPAWNER_SBoundMax, spawnerInstance.getSpawnBoundaries().getMaxPos(MathHelper.floor(getX()), MathHelper.floor(getY()), MathHelper.floor(getZ())));
+		this.getEntityData().set(DATA_SPAWNER_CBoundMin, spawnerInstance.getCheckBoundaries().getMinPos(getX(), getY(), getZ()));
+		this.getEntityData().set(DATA_SPAWNER_CBoundMax, spawnerInstance.getCheckBoundaries().getMaxPos(getX(), getY(), getZ()));
+		if(spawnerInstance.getBBInflateFactor()!=null) {
+			this.getEntityData().set(DATA_SPAWNER_SBoundMin, spawnerInstance.getSpawnBoundaries().getMinPos(
+				getX() - spawnerInstance.getBBInflateFactor().x(), 
+				getY(), 
+				getZ() - spawnerInstance.getBBInflateFactor().z()));
+			this.getEntityData().set(DATA_SPAWNER_SBoundMax, spawnerInstance.getSpawnBoundaries().getMaxPos(
+				getX() + spawnerInstance.getBBInflateFactor().x(), 
+				getY() + spawnerInstance.getBBInflateFactor().y(), 
+				getZ() + spawnerInstance.getBBInflateFactor().z()));
+		}else{
+			this.getEntityData().set(DATA_SPAWNER_SBoundMin, spawnerInstance.getSpawnBoundaries().getMinPos(getX(), getY(), getZ()));
+			this.getEntityData().set(DATA_SPAWNER_SBoundMax, spawnerInstance.getSpawnBoundaries().getMaxPos(getX(), getY(), getZ()));
+		}
 	}
 
 	public AxisAlignedBB getSpawnArea() {
-		return AxisAlignedBBUtils.makeCroppedBB(getSMinBlockPos(), 0, 0, getSMaxBlockPos(), 1, 1);
+		return AxisAlignedBBUtils.makeOffsetBB(getSMinBlockPos(), -0.5f, -0.5f, getSMaxBlockPos(), 0.5f, 0.5f);
 	}
 
 	public AxisAlignedBB getCheckArea() {
-		return AxisAlignedBBUtils.makeCroppedBB(getCMinBlockPos(), 0, 0, getCMaxBlockPos(), 1, 1);
+		return AxisAlignedBBUtils.makeOffsetBB(getCMinBlockPos(), -0.5f, -0.5f, getCMaxBlockPos(), 0.5f, 0.5f);
 	}
 
 	@Override
@@ -536,10 +564,10 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	@Override
 	protected void defineSynchedData() {
 		this.getEntityData().define(DATA_SPAWNER_TYPE, LotrExtendedMod.EMPTY.toString());
-		this.getEntityData().define(DATA_SPAWNER_CBoundMin, BlockPos.ZERO);
-		this.getEntityData().define(DATA_SPAWNER_CBoundMax, BlockPos.ZERO);
-		this.getEntityData().define(DATA_SPAWNER_SBoundMin, BlockPos.ZERO);
-		this.getEntityData().define(DATA_SPAWNER_SBoundMax, BlockPos.ZERO);
+		this.getEntityData().define(DATA_SPAWNER_CBoundMin, ZERO);
+		this.getEntityData().define(DATA_SPAWNER_CBoundMax, ZERO);
+		this.getEntityData().define(DATA_SPAWNER_SBoundMin, ZERO);
+		this.getEntityData().define(DATA_SPAWNER_SBoundMax, ZERO);
 	}
 
 	@Override

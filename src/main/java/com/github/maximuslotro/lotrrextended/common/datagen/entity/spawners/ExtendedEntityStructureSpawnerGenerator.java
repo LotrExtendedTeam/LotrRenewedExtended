@@ -21,33 +21,34 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 	public void makeStructureSpawnPools(Consumer<ExtendedStructureEntitySpawner> pConsumer) {
 		// old
 		single(ExtendedEntities.DUCK.get()).setHomeInfo(false, 5).save(pConsumer, ExtendedSpawners.DUCK_SINGLE_old);
-		single(EntityType.HORSE).save(pConsumer, ExtendedSpawners.HORSE_SINGLE_old);
+		single(EntityType.HORSE).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.HORSE_SINGLE_old);
 		// ANIMALS
-		single(ExtendedEntities.DUCK.get()).setHomeInfo(false, 5).save(pConsumer, ExtendedSpawners.DUCK_SINGLE);
-		single(EntityType.HORSE).save(pConsumer, ExtendedSpawners.HORSE_SINGLE);
-		single(EntityType.SHEEP).save(pConsumer, ExtendedSpawners.SHEEP_SINGLE);
-		single(EntityType.PIG).save(pConsumer, ExtendedSpawners.PIG_SINGLE);
 		single(EntityType.RABBIT).save(pConsumer, ExtendedSpawners.RABBIT_SINGLE);
-		single(ExtendedEntities.HORSE_BOAR.get()).save(pConsumer, ExtendedSpawners.BOAR_SINGLE);
 		single(ExtendedEntities.HEDGEHOG.get()).save(pConsumer, ExtendedSpawners.HEDGEHOG_SINGLE);
-		single(EntityType.CAT).save(pConsumer, ExtendedSpawners.CAT_SINGLE);
 		single(EntityType.BEE).save(pConsumer, ExtendedSpawners.BEE_SINGLE);
 		single(EntityType.CHICKEN).save(pConsumer, ExtendedSpawners.CHICKEN_SINGLE);
-		single(EntityType.COW).save(pConsumer, ExtendedSpawners.COW_SINGLE);
-		single(EntityType.DONKEY).save(pConsumer, ExtendedSpawners.DONKEY_SINGLE);
-		single(EntityType.FOX).save(pConsumer, ExtendedSpawners.FOX_SINGLE);
-		single(EntityType.MULE).save(pConsumer, ExtendedSpawners.MULE_SINGLE);
-		singleWeighted(EntityType.MULE, 1, 1, 1).addSinglePool(EntityType.DONKEY, 2, 1, 1).addSinglePool(EntityType.HORSE, 5, 1, 1).save(pConsumer, ExtendedSpawners.EQUINE_SINGLE);
+		single(ExtendedEntities.DUCK.get()).setHomeInfo(false, 5).save(pConsumer, ExtendedSpawners.DUCK_SINGLE);
 		single(EntityType.PARROT).save(pConsumer, ExtendedSpawners.PARROT_SINGLE);
-		single(EntityType.POLAR_BEAR).save(pConsumer, ExtendedSpawners.POLAR_BEAR_SINGLE);
+		single(EntityType.SHEEP).save(pConsumer, ExtendedSpawners.SHEEP_SINGLE);
+		single(EntityType.PIG).save(pConsumer, ExtendedSpawners.PIG_SINGLE);
+		single(ExtendedEntities.HORSE_BOAR.get()).save(pConsumer, ExtendedSpawners.BOAR_SINGLE);
+		single(EntityType.CAT).save(pConsumer, ExtendedSpawners.CAT_SINGLE);
+		single(EntityType.COW).save(pConsumer, ExtendedSpawners.COW_SINGLE);
+		single(EntityType.FOX).save(pConsumer, ExtendedSpawners.FOX_SINGLE);
 		single(LOTREntities.CARACAL.get()).save(pConsumer, ExtendedSpawners.CARACAL_SINGLE);
+		single(EntityType.HORSE).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.HORSE_SINGLE);
+		single(EntityType.DONKEY).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.DONKEY_SINGLE);
+		single(EntityType.MULE).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.MULE_SINGLE);
+		singleWeighted(EntityType.MULE, 1, 1, 1).addSinglePool(EntityType.DONKEY, 2, 1, 1).addSinglePool(EntityType.HORSE, 5, 1, 1)
+		.setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.EQUINE_SINGLE);
+		single(EntityType.POLAR_BEAR).save(pConsumer, ExtendedSpawners.POLAR_BEAR_SINGLE);
 
 		// HOBBITS
 		single(ExtendedEntities.HOBBIT_FARMER.get()).setRespawnOnDeath().setHomeInfo(false, 16).save(pConsumer, ExtendedSpawners.HOBBIT_BARN_FARMER);
 		// un-disable when hobbit farmhands is added
 		single(LOTREntities.HOBBIT.get()).setHomeInfo(false, 12).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.HOBBIT_BARN_FARMHAND);
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
-		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).save(pConsumer, ExtendedSpawners.HOBBIT_BARN_ANIMALS);
+		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.HOBBIT_BARN_ANIMALS);
 		// un-disable when windmill hobbit is added
 		single(LOTREntities.HOBBIT.get()).setRespawnOnDeath().setHomeInfo(false, 8).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.HOBBIT_WINDMILL);
 		couple(LOTREntities.HOBBIT.get(), 8).save(pConsumer, ExtendedSpawners.HOBBIT_FAMILY_HOLE_SMALL);
@@ -61,7 +62,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		persisted(LOTREntities.HOBBIT.get(), 4, 7, false, 18, 15).setBoundaries(12, -9, 20, 4, -4, 12).setPersistenceRequired(false).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.HOBBIT_TAVERN_LARGE);
 		// un-disable when sheriff hobbit is added
 		single(LOTREntities.HOBBIT.get(), 1, 1, false, 12, 1).setBoundaries(12, -9, 20, 1, -1, 2).disableForFutureSpawning().enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.HOBBIT_TAVERN_LARGE_SHERIFF);
-
+		single(LOTREntities.HOBBIT.get()).disableForFutureSpawning().setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.HOBBIT_BILBO);
 		// RANGERS
 		single(ExtendedEntities.DUNEDAIN_RANGER.get()).setHomeInfo(false, 3).setRandomDiscardChance(60).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_SINGLE_CHANCE);
 		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 16, 4).setBoundaries(20, -12, 20, 4, -4, 8).setPersistenceRequired(false).enableNonRandomSpawning(60).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_WATCHTOWER);
@@ -72,7 +73,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		single(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).setHomeInfo(false, 10).setRandomDiscardChance(80).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_CAPTAIN);
 		single(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_CAPTAIN_PERMANENT);
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
-		.addSinglePool(EntityType.CHICKEN, 90, 1, 5).addSinglePool(EntityType.HORSE, 100, 1, 2).setPoolRolls(3).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_ANIMALS);
+		.addSinglePool(EntityType.CHICKEN, 90, 1, 5).addSinglePool(EntityType.HORSE, 100, 1, 2).setPoolRolls(3).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_ANIMALS);
 		//Gundabad
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.GUNDABAD_ORC.get(), 100).addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 80)
@@ -106,7 +107,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		// Bree Hamlets
 		couple(LOTREntities.BREE_MAN.get(), 10).save(pConsumer, ExtendedSpawners.BREE_HAMLET_FAMILY);
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
-		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).save(pConsumer, ExtendedSpawners.BREE_HAMLET_ANIMALS);
+		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.BREE_HAMLET_ANIMALS);
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.BREE_GUARD.get(), 10).addPool(LOTREntities.BREE_MAN.get(), 100)
 			.build(), 1, 4, false, 25, 5).setPersistenceRequired(false).setBoundaries(12, -12, 24, 8, -4, 14).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.BREE_HAMLET_AREA);
@@ -118,7 +119,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		// Bree Villages
 		couple(LOTREntities.BREE_MAN.get(), 10).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_FAMILY_SPAWNER);
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
-		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_ANIMALS);
+		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.BREE_VILLAGE_ANIMALS);
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.BREE_GUARD.get(), 20).addPool(LOTREntities.BREE_MAN.get(), 100).addPool(LOTREntities.BREE_HOBBIT.get(), 20)
 			.build(), 1, 4, false, 25, 5).setBoundaries(12, -12, 32, 8, -4, 18).setPersistenceRequired(false).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_AREA_SPAWNER);

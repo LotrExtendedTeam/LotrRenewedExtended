@@ -6,9 +6,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
 
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedSerialization;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.SingleSpawnType;
 import com.google.common.collect.Lists;
@@ -24,6 +27,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
+import net.minecraft.util.math.vector.Vector3f;
 
 /**
  * Represents an extended entity spawner configuration within a structure,
@@ -93,7 +97,8 @@ public class ExtendedStructureEntitySpawner {
 	private boolean isPersistenceRequired = true;
 	/** Whether entities should respawn upon death. */
 	private boolean shouldRespawnOnDeath = false;
-
+	/** How much to offset spawning bounding box, use for larger entities like horses. */
+	private Vector3f bbInflateFactor = null;
 	/**
 	 * Constructs a new spawner with given core parameters.
 	 * 
@@ -134,11 +139,13 @@ public class ExtendedStructureEntitySpawner {
 	 * @param enableInsideSpawningChance Chance of inside spawning.
 	 * @param isPersistenceRequired Whether persistence is required.
 	 * @param shouldRespawnOnDeath Whether to respawn on death.
+	 * @param bbInflateFactor The bounding box offset for larger entities
 	 */
 	public ExtendedStructureEntitySpawner(ResourceLocation id, List<ExtendedStructureEntitySpawnerEntry> entries, SpawnerType spawnType, boolean setHomePositionOnSpawn,
 		boolean setHomeRandom, int homeRadius, int entitySpawnTickRate, int playerMinSpawnDistance, int playerMaxSpawnDistance,
 		ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion, int poolRolls, int localSpawnCap, boolean shouldDisableFutureSpawn,
-		int randomDiscardChance, boolean enableInsideSpawning, int enableInsideSpawningChance, boolean isPersistenceRequired,boolean shouldRespawnOnDeath) {
+		int randomDiscardChance, boolean enableInsideSpawning, int enableInsideSpawningChance, boolean isPersistenceRequired,boolean shouldRespawnOnDeath,
+		@Nullable Vector3f bbInflateFactor) {
 		this(id, entries, spawnType, checkBoundaries, spawnRegion);
 		this.setHomePositionOnSpawn = setHomePositionOnSpawn;
 		this.setHomeRandom = setHomeRandom;
@@ -154,6 +161,7 @@ public class ExtendedStructureEntitySpawner {
 		this.enableInsideSpawningChance = enableInsideSpawningChance;
 		this.isPersistenceRequired = isPersistenceRequired;
 		this.shouldRespawnOnDeath = shouldRespawnOnDeath;
+		this.bbInflateFactor = bbInflateFactor;
 	}
 	/**
 	 * Returns the unique identifier of this spawner.
@@ -645,7 +653,26 @@ public class ExtendedStructureEntitySpawner {
 		setCheckBoundaries(new ExtendedSpawnerBoundsEntry(topYC, bottomYC, horizontalC));
 		setSpawnArea(new ExtendedSpawnerBoundsEntry(topYS, bottomYS, horizontalS));
 	}
-
+	/** 
+	 * Gets the bounding box offset an entity can be spawned with
+	 * Marks the spawner as custom.
+	 * 
+	 * @return A float based vector offset
+	 */
+	@Nullable
+	public Vector3f getBBInflateFactor() {
+		return bbInflateFactor;
+	}
+	/** 
+	 * Gets the bounding box offset an entity can be spawned with
+	 * Marks the spawner as custom.
+	 * 
+	 * @param bbInflateFactor The bounding box offset for the spawner
+	 */
+	public void setSpawnBBOffset(@Nullable Vector3f bbInflateFactor) {
+		isCustom = true;
+		this.bbInflateFactor = bbInflateFactor;
+	}
 	/**
 	 * Handles JSON serialization and deserialization for {@link ExtendedStructureEntitySpawner} objects.
 	 * 
@@ -782,6 +809,9 @@ public class ExtendedStructureEntitySpawner {
 					ExtendedLog.warn("Loaded Structure Spawner with invalid randomDiscardChance set! Resetting to default! - %s", id);
 				}
 			}
+			if(jsonobject.has("bbInflateFactor")) {
+				spawner.setSpawnBBOffset(ExtendedSerialization.Vector3fSerializer.fromJson(jsonobject.get("bbInflateFactor")));
+			}
 			// Set to false since above operations set it to true and only the below check can properly set it!
 			spawner.isCustom = false;
 			// If this flag is being triggered, the Spawners are loading custom spawner data, else this is the manager loading spawners
@@ -829,6 +859,9 @@ public class ExtendedStructureEntitySpawner {
 					jsonobject.addProperty("setHomeRandomly", entitySpawner.isSetHomeRandom());
 				}
 				jsonobject.addProperty("homeRadius", entitySpawner.getHomeRadius());
+			}
+			if(entitySpawner.getBBInflateFactor()!=null) {
+				jsonobject.add("bbInflateFactor", ExtendedSerialization.Vector3fSerializer.toJson(entitySpawner.getBBInflateFactor()));
 			}
 			jsonobject.addProperty("persistenceRequired", entitySpawner.isPersistenceRequired());
 			if(entitySpawner.shouldRespawnOnDeath()) {
@@ -943,7 +976,10 @@ public class ExtendedStructureEntitySpawner {
 		 * If true, the entity will respawn after death. Typically used for specific roles like Traders or Captains.
 		 */
 		private boolean shouldRespawnOnDeath = false;
-
+		/** 
+		 * How much to offset spawning bounding box, use for larger entities like horses. 
+		 */
+		private Vector3f bbInflateFactor = null;
 		/**
 		 * Full constructor for manual instantiation of the Builder with all configuration options.
 		 *
@@ -965,12 +1001,14 @@ public class ExtendedStructureEntitySpawner {
 		 * @param enableInsideSpawningChance Chance (0-100) that inside spawning is allowed.
 		 * @param isPersistenceRequired Whether spawned entities should persist (not despawn).
 		 * @param shouldRespawnOnDeath Whether entities should respawn after death.
+		 * @param spawnOffset The offset that can be applied to entities on spawn
+		 * @param bbInflateFactor The bounding box offset that should be applied
 		 */
 		public Builder(List<ExtendedStructureEntitySpawnerEntry> entries, SpawnerType spawnType, boolean setHomePositionOnSpawn,
 			boolean setHomeRandom, int homeRadius, int entitySpawnTickRate, int playerMinSpawnDistance, int playerMaxSpawnDistance,
 			ExtendedSpawnerBoundsEntry checkBoundaries, ExtendedSpawnerBoundsEntry spawnRegion, int poolRolls, int localSpawnCap, 
 			boolean shouldDisableFutureSpawn, int randomDiscardChance, boolean enableInsideSpawning, int enableInsideSpawningChance, 
-			boolean isPersistenceRequired, boolean shouldRespawnOnDeath) {
+			boolean isPersistenceRequired, boolean shouldRespawnOnDeath, @Nullable Vector3f spawnOffset, @Nullable Vector3f bbInflateFactor) {
 			this.entries = entries;
 			this.spawnType = spawnType;
 			this.setHomePositionOnSpawn = setHomePositionOnSpawn;
@@ -989,6 +1027,7 @@ public class ExtendedStructureEntitySpawner {
 			this.enableInsideSpawningChance = enableInsideSpawningChance;
 			this.isPersistenceRequired = isPersistenceRequired;
 			this.shouldRespawnOnDeath = shouldRespawnOnDeath;
+			this.bbInflateFactor = bbInflateFactor;
 		}
 
 		/**
@@ -1162,7 +1201,25 @@ public class ExtendedStructureEntitySpawner {
 			this.shouldRespawnOnDeath = true;
 			return this;
 		}
-
+		/**
+		 * Set a bounding box offset for larger entities
+		 * 
+		 * @param bbInflateFactor The offset to apply to this spawner bounding box
+		 * @return This builder instance.
+		 */
+		public ExtendedStructureEntitySpawner.Builder setSpawnBBOffset(Vector3f bbInflateFactor) {
+			this.bbInflateFactor = bbInflateFactor;
+			return this;
+		}
+		/**
+		 * Set a spawn offset for larger entities
+		 * 
+		 * @return This builder instance.
+		 */
+		public ExtendedStructureEntitySpawner.Builder setSpawnOffset2x2() {
+			this.bbInflateFactor = new Vector3f(0.5f, 1, 0.5f);
+			return this;
+		}
 		/**
 		 * Builds the {@link ExtendedStructureEntitySpawner} with the current configuration.
 		 *
@@ -1173,7 +1230,7 @@ public class ExtendedStructureEntitySpawner {
 		public ExtendedStructureEntitySpawner build(ResourceLocation id, boolean isCustom) {
 			ExtendedStructureEntitySpawner spawner = new ExtendedStructureEntitySpawner(id, entries, spawnType, setHomePositionOnSpawn, setHomeRandom, homeRadius,
 				entitySpawnTickRate, playerMinSpawnDistance, playerMaxSpawnDistance, checkBoundaries, spawnRegion, poolRolls, localSpawnCap, shouldDisableFutureSpawn,
-				randomDiscardChance, enableInsideSpawning, enableInsideSpawningChance, isPersistenceRequired, shouldRespawnOnDeath);
+				randomDiscardChance, enableInsideSpawning, enableInsideSpawningChance, isPersistenceRequired, shouldRespawnOnDeath, bbInflateFactor);
 			spawner.isCustom = isCustom;
 			return spawner;
 		}

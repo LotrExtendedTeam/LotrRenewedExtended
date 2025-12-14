@@ -69,11 +69,11 @@ public class ExtendedEntitySpawnerItem extends Item{
 				Hand hand = pContext.getHand();
 				ExtendedStructureSpawnerEntity spawnerEntity = new ExtendedStructureSpawnerEntity(world);
 				ItemStack pStack = playerentity.getItemInHand(hand);
+				spawnerEntity.moveTo(blockpos.getX()+0.5D, blockpos.getY(), blockpos.getZ()+0.5D, 0.0F, 0.0F);
+				world.addFreshEntity(spawnerEntity);
 				if (!pStack.isEmpty() && pStack.hasTag() && pStack.getTag().contains("setSpawnerType")) {
 					spawnerEntity.setSpawnerToPreset(new ResourceLocation(pStack.getTag().getString("setSpawnerType")));
 				}
-				spawnerEntity.moveTo(blockpos.getX()+0.5D, blockpos.getY(), blockpos.getZ()+0.5D, 0.0F, 0.0F);
-				world.addFreshEntity(spawnerEntity);
 			}
 			world.playSound(playerentity, blockpos, SoundEvents.GLASS_PLACE, SoundCategory.NEUTRAL, 0.7F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 			playerentity.awardStat(Stats.ITEM_USED.get(this));
