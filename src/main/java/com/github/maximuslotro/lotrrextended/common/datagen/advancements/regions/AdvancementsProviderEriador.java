@@ -3,7 +3,6 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructuresV5;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
@@ -102,7 +101,7 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 			addTradeEntityTrigger(make(), ExtendedEntities.RIVENDELL_SMITH.get()).parent(rivendell));
 		Advancement last_homely_house = build(true, data(ExtendedItems.RIVENDELL_BANNER.get(), "last_homely_house", FrameType.TASK)
 			.setTitle("The Last Homely House").setDescription("Enter the Last Homely House"),
-			addStructureTrigger(make(), ExtendedStructuresV5.THE_LAST_HOMELY_HOUSE.get()).parent(rivendell));
+			addStructureTrigger(make(), "last_homely_house").parent(rivendell));
 		Advancement elrond = build(true, data(LOTRItems.EDHELVIR.get(), "elrond", FrameType.TASK)
 			.setTitle("Son of Eärendil").setDescription("Speak with Elrond"),
 			entityInterractTrigger(make(), ExtendedEntities.ELROND.get()).parent(last_homely_house));

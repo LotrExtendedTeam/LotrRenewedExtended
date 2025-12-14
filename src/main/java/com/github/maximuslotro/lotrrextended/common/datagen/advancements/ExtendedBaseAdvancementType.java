@@ -3,13 +3,16 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements;
 import java.util.List;
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAbstractStringTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAlignmentLevelTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedBlockBreakTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCraftingTrigger;
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedFakePositionalTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedTraderTradedTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedUnitHiredTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.predicates.ExtendedAlignmentPredicate;
+import com.github.maximuslotro.lotrrextended.common.advancements.predicates.ExtendedFakeLocationPredicate;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 
 import lotr.common.fac.FactionPointer;
@@ -43,7 +46,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.structure.Structure;
 
 public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<Advancement>>{
 
@@ -101,8 +103,8 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		}
 		return builder.requirements(IRequirementsStrategy.AND);
 	}
-	public static Advancement.Builder addStructureTrigger(Advancement.Builder builder, Structure<?> biome) {
-		builder.addCriterion("enter_"+biome.getFeatureName(), inStructure(biome));
+	public static Advancement.Builder addStructureTrigger(Advancement.Builder builder, String structure) {
+		builder.addCriterion("enter_"+structure, inStructure(new ResourceLocation(LotrExtendedMod.MODID, structure)));
 		return builder;
 	}
 	public static Advancement.Builder addDimensionTrigger(Advancement.Builder builder, RegistryKey<World> dim) {
@@ -304,8 +306,8 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		return PositionTrigger.Instance.located(LocationPredicate.inBiome(RegistryKey.create(Registry.BIOME_REGISTRY, biome)));
 	}
 
-	public static PositionTrigger.Instance inStructure(Structure<?> structure){
-		return PositionTrigger.Instance.located(LocationPredicate.inFeature(structure));
+	public static ExtendedFakePositionalTrigger.Instance inStructure(ResourceLocation structure){
+		return ExtendedFakePositionalTrigger.Instance.located(ExtendedFakeLocationPredicate.inFeature(structure));
 	}
 
 	public class BaseData {

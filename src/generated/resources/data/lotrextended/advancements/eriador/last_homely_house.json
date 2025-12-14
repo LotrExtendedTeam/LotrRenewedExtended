@@ -17,16 +17,18 @@
     "hidden": false
   },
   "criteria": {
-    "enter_null": {
+    "enter_last_homely_house": {
       "trigger": "minecraft:location",
       "conditions": {
-        "location": {}
+        "location": {
+          "feature": "lotrextended:last_homely_house"
+        }
       }
     }
   },
   "requirements": [
     [
-      "enter_null"
+      "enter_last_homely_house"
     ]
   ]
 }
