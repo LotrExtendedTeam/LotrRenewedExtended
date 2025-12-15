@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHurtByTargetGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedTamingGoal;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBoarColors;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
@@ -23,7 +24,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.BreedGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
-import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
@@ -78,7 +78,7 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 0.7D));
 		this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers());
+		this.targetSelector.addGoal(1, new ExtendedHurtByTargetGoal(this).setAlertOthers());
 
 	}
 
