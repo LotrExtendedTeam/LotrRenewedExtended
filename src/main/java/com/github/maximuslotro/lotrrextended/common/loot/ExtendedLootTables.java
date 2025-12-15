@@ -88,6 +88,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation RIVENDELL_LORD_CHEST = registerChest("rivendell_lord");
 	public static final ResourceLocation RIVENDELL_WEAVER_CHEST = registerChest("rivendell_weaver");
 	public static final ResourceLocation RIVENDELL_TREASURE_CHEST = registerChest("rivendell_treasure");
+	public static final ResourceLocation RIVENDELL_WEAPONS_CHEST = registerChest("rivendell_weapons");
 	// KEGS
 	public static final ResourceLocation HOBBIT_KEGS = registerKeg("hobbit");
 	public static final ResourceLocation RANGER_KEGS = registerKeg("ranger");

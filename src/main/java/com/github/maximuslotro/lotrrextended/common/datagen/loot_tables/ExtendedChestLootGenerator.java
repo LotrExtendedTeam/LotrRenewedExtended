@@ -2434,6 +2434,23 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(ExtendedItems.IMLADRIS_GUARD_BOOTS.get()).setWeight(1).setExactly(1).standardDamageRange()
 					.when(RandomChance.randomChance(0.5f)))
 				.apply(ExtendedModifierScrollAdder.chanceCustom(10).setSkillful())));
+		make(consumer, ExtendedLootTables.RIVENDELL_WEAPONS_CHEST, makeTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(1, 3))
+				.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(80).setRange(2, 6))
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_BOW.get()).setWeight(80).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_SWORD.get()).setWeight(70).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_SPEAR.get()).setWeight(70).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_DAGGER.get()).setWeight(60).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.RIVENDELL_SHIELD.get()).setWeight(50).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_HELMET.get()).setWeight(50).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_CHESTPLATE.get()).setWeight(50).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_LEGGINGS.get()).setWeight(50).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.RIVENDELL_BOOTS.get()).setWeight(50).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.IMLADRIS_GUARD_HELMET.get()).setWeight(1).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE.get()).setWeight(1).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.IMLADRIS_GUARD_LEGGINGS.get()).setWeight(1).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.IMLADRIS_GUARD_BOOTS.get()).setWeight(1).setExactly(1).standardDamageRange())));
 	}
 
 	public LootTable.Builder makeTable(){
