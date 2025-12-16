@@ -119,9 +119,7 @@ public class ExtendedChimneyPotBlock extends Block implements IWaterLoggable {
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext pContext) {
-		IWorld iworld = pContext.getLevel();
-		BlockPos blockpos = pContext.getClickedPos();
-		boolean flag = iworld.getFluidState(blockpos).getType() == Fluids.WATER;
+		boolean flag = pContext.getLevel().getFluidState(pContext.getClickedPos()).getType() == Fluids.WATER;
 		return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(flag));
 	}
 

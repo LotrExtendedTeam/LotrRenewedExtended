@@ -1,0 +1,13 @@
+{
+  "id": "lotrextended:animal_rabbit_single_spawner",
+  "spawner_type": "single_use_spawner",
+  "persistenceRequired": true,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 1,
+      "entity_type": "minecraft:rabbit"
+    }
+  ]
+}

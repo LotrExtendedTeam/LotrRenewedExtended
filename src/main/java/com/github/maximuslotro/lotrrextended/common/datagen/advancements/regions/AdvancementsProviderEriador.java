@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
-
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
@@ -19,7 +18,6 @@ import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.item.Items;
-
 
 public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> ERIADOR_BIOMES = ImmutableList.of(LOTRBiomes.ERIADOR, LOTRBiomes.ERIADOR_DOWNS,
@@ -99,11 +97,17 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 				addKillEntityTriggers(make(), LOTREntities.RIVENDELL_ELF.get(), LOTREntities.RIVENDELL_WARRIOR.get(), 
 					ExtendedEntities.RIVENDELL_WANDERER.get()).parent(rivendell));
 		Advancement rivendell_smith = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "rivendell_smith", FrameType.TASK)
-			.setTitle("The Blade Shall be Reforged!").setDescription("Trade with a Rivendell Smith"),
+			.setTitle("Armament of Imladris").setDescription("Trade with a Rivendell Smith"),
 			addTradeEntityTrigger(make(), ExtendedEntities.RIVENDELL_SMITH.get()).parent(rivendell));
+		Advancement last_homely_house = build(true, data(ExtendedItems.RIVENDELL_BANNER.get(), "last_homely_house", FrameType.TASK)
+			.setTitle("The Last Homely House").setDescription("Enter the Last Homely House"),
+			addStructureTrigger(make(), "last_homely_house").parent(rivendell));
+		Advancement elrond = build(true, data(LOTRItems.EDHELVIR.get(), "elrond", FrameType.TASK)
+			.setTitle("Son of Eärendil").setDescription("Speak with Elrond"),
+			entityInterractTrigger(make(), ExtendedEntities.ELROND.get()).parent(last_homely_house));
 		Advancement its_still_sharp = build(false, data(ExtendedItems.SHARDS_OF_NARSIL.get(), "its_still_sharp", FrameType.GOAL, true, true, false)
-			.setTitle("It's Still sharp").setDescription("Hold the shards of Narsil."),
-			addItemTrigger(make(), ExtendedItems.SHARDS_OF_NARSIL.get()).parent(rivendell_smith));
+			.setTitle("It's Still Sharp!").setDescription("Hold the shards of Narsil."),
+			addItemTrigger(make(), ExtendedItems.SHARDS_OF_NARSIL.get()).parent(elrond));
 		Advancement flame_of_the_west = build(false, data(ExtendedItems.ANDURIL.get(), "flame_of_the_west", FrameType.CHALLENGE, true, true, false)
 			.setTitle("Flame of the West").setDescription("Equip the sword of the king of men."),
 			addItemTrigger(make(), ExtendedItems.ANDURIL.get()).parent(its_still_sharp));

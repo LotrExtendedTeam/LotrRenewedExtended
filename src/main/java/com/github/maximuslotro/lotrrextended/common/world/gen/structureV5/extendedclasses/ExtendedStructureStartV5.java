@@ -10,6 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.Ext
 
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
@@ -64,6 +65,14 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
      */
 	public abstract ResourceLocation getLocation(C config, Random rand);
 	/**
+     * Allows for setting a fixed rotation for a structure
+     * 
+     * @return A fixed rotation for the structure
+     */
+	public Rotation setRotation() {
+		return null;
+	}
+	/**
      * Generates the pieces for this structure using {@link ExtendedJigsawManager}.
      * <p>
      * Automatically computes the correct chunk coordinates, selects the Jigsaw pool using {@link #getLocation},
@@ -89,7 +98,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
         }
         ExtendedJigsawManager.addPieces(dynamicRegistryManager,
         	new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), 7), AbstractVillagePiece::new,
-        	chunkGenerator, templateManagerIn, chunkPos, this.pieces, this.random, false, true);
+        	chunkGenerator, templateManagerIn, chunkPos, this.pieces, this.random, false, true, setRotation());
 
 //        Vector3i structureCenter = this.pieces.get(0).getBoundingBox().getCenter();
 //        int xOffset = blockpos.getX() - structureCenter.getX();

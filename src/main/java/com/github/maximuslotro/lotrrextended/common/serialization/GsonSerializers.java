@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.json;
+package com.github.maximuslotro.lotrrextended.common.serialization;
 
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentItem;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentPool;

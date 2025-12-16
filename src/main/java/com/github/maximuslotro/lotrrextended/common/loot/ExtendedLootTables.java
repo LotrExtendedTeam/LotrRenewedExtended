@@ -10,6 +10,9 @@ import net.minecraft.util.ResourceLocation;
 public class ExtendedLootTables {
 	private static final Set<ResourceLocation> LOCATIONS = Sets.newHashSet();
 	// CHESTS
+	public static final ResourceLocation FISHING_GENERIC_CHEST = registerChest("fishing_generic");
+	public static final ResourceLocation FISHING_TROPICS_CHEST = registerChest("fishing_tropics");
+
 	public static final ResourceLocation HOBBIT_LARDER_CHEST = registerChest("hobbit_larder");
 	public static final ResourceLocation HOBBIT_LIVING_CHEST = registerChest("hobbit_living");
 	public static final ResourceLocation HOBBIT_TREASURE_CHEST = registerChest("hobbit_treasure");
@@ -84,6 +87,8 @@ public class ExtendedLootTables {
 	public static final ResourceLocation RIVENDELL_HOUSE_CHEST = registerChest("rivendell_house");
 	public static final ResourceLocation RIVENDELL_LORD_CHEST = registerChest("rivendell_lord");
 	public static final ResourceLocation RIVENDELL_WEAVER_CHEST = registerChest("rivendell_weaver");
+	public static final ResourceLocation RIVENDELL_TREASURE_CHEST = registerChest("rivendell_treasure");
+	public static final ResourceLocation RIVENDELL_WEAPONS_CHEST = registerChest("rivendell_weapons");
 	// KEGS
 	public static final ResourceLocation HOBBIT_KEGS = registerKeg("hobbit");
 	public static final ResourceLocation RANGER_KEGS = registerKeg("ranger");
@@ -171,7 +176,7 @@ public class ExtendedLootTables {
 		}
 	}
 
-	public static Set<ResourceLocation> getLocations() {
+	public static Set<ResourceLocation> getLootTables() {
 		return LOCATIONS;
 	}
 }

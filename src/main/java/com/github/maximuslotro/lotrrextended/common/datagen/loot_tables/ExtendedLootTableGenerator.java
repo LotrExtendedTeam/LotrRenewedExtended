@@ -27,7 +27,7 @@ public class ExtendedLootTableGenerator extends LootTableProvider {
 
 	@Override
 	protected void validate(Map<ResourceLocation, LootTable> map, ValidationTracker validationtracker) {
-		for(ResourceLocation location : ExtendedLootTables.getLocations()) {
+		for(ResourceLocation location : ExtendedLootTables.getLootTables()) {
 			boolean found = false;
 			if(ExtendedChestLootGenerator.madeChests.contains(location)) {
 				found = true;

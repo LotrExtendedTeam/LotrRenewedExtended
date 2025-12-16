@@ -1,7 +1,7 @@
 {
 	"texture_size": [32, 32],
 	"textures": {
-		"particle": "lotrextended:item/shards_of_narsil_large",
+		"particle": "minecraft:block/iron_block",
 		"0": "lotrextended:item/shards_of_narsil_large"
 	},
 	"elements": [

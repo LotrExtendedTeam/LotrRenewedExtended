@@ -1,0 +1,40 @@
+{
+  "parent": "lotrextended:eriador/last_homely_house",
+  "display": {
+    "icon": {
+      "item": "lotr:edhelvir"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.eriador.elrond.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.eriador.elrond.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "interact_with_elrond": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:elrond"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "interact_with_elrond"
+    ]
+  ]
+}

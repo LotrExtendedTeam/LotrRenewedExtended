@@ -1686,13 +1686,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	private void genLargePotBlockItem(ExtendedLargePotBlock pot, String key) {
 		registeredBlocks.add(pot);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+pot.getRegistryName().getPath(), lotrExtendedLoc("block/template_large_pot")).texture("pot", lotrExtendedLoc(key)).texture("particle", lotrExtendedLoc(key));
-		getVariantBuilder(pot).forAllStates(state -> {
+		getVariantBuilder(pot).forAllStatesExcept(state -> {
 			Direction facing = state.getValue(ExtendedLargePotBlock.FACING);
 			return ConfiguredModel.builder()
                     .modelFile(modelFile)
                     .rotationY(facing==Direction.EAST ? 90 : facing==Direction.SOUTH ? 180 : facing==Direction.WEST ? 270 : 0)
                     .build();
-		});
+		}, ExtendedLargePotBlock.WATERLOGGED);
 	}
 
 	private void genLargeFlowerPotBlockItem(ExtendedLargeFlowerPotBlock pot, String key) {

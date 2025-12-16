@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:note_block_using_gears"
+    ]
+  },
+  "criteria": {
+    "has_gate_gear": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gate_gear"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:note_block_using_gears"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gate_gear",
+      "has_the_recipe"
+    ]
+  ]
+}

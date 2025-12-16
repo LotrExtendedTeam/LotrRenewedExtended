@@ -1,0 +1,17 @@
+{
+	"name": "lotrextended:lore/last_homely_house_start",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lore/last_homely_house/homely_house_start",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"max_place_distance": 112
+			}
+		}
+	]
+}

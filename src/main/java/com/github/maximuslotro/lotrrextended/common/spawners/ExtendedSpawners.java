@@ -11,11 +11,29 @@ import net.minecraft.util.ResourceLocation;
  * Stores IDs for built-in entity spawners.
  */
 public class ExtendedSpawners {
-	private static final Set<ResourceLocation> LOCATIONS = Sets.newHashSet();
+	private static final Set<ResourceLocation> LOCATIONS_COMMAND = Sets.newHashSet();
+	private static final Set<ResourceLocation> LOCATIONS_ALL = Sets.newHashSet();
 	// ANIMALS
-	public static final ResourceLocation DUCK_SINGLE  = register("duck_single_spawner");
+	public static final ResourceLocation DUCK_SINGLE_old  = registerNOC("duck_single_spawner");
+	public static final ResourceLocation DUCK_SINGLE  = register("animal_duck_single_spawner");
 	public static final ResourceLocation SHEEP_SINGLE  = register("animal_sheep_single_spawner");
-	public static final ResourceLocation HORSE_SINGLE  = register("generic_horse_single_spawner");
+	public static final ResourceLocation HORSE_SINGLE  = register("animal_horse_single_spawner");
+	public static final ResourceLocation HORSE_SINGLE_old  = registerNOC("generic_horse_single_spawner");
+	public static final ResourceLocation PIG_SINGLE  = register("animal_pig_single_spawner");
+	public static final ResourceLocation BOAR_SINGLE  = register("animal_boar_single_spawner");
+	public static final ResourceLocation RABBIT_SINGLE  = register("animal_rabbit_single_spawner");
+	public static final ResourceLocation HEDGEHOG_SINGLE  = register("animal_hedgehog_single_spawner");
+	public static final ResourceLocation CAT_SINGLE  = register("animal_cat_single_spawner");
+	public static final ResourceLocation BEE_SINGLE  = register("animal_bee_single_spawner");
+	public static final ResourceLocation CHICKEN_SINGLE  = register("animal_chicken_single_spawner");
+	public static final ResourceLocation COW_SINGLE  = register("animal_cow_single_spawner");
+	public static final ResourceLocation DONKEY_SINGLE  = register("animal_donkey_single_spawner");
+	public static final ResourceLocation FOX_SINGLE  = register("animal_fox_single_spawner");
+	public static final ResourceLocation MULE_SINGLE  = register("animal_mule_single_spawner");
+	public static final ResourceLocation EQUINE_SINGLE  = register("animal_equine_single_spawner");
+	public static final ResourceLocation PARROT_SINGLE  = register("animal_parrot_single_spawner");
+	public static final ResourceLocation POLAR_BEAR_SINGLE  = register("animal_polar_bear_single_spawner");
+	public static final ResourceLocation CARACAL_SINGLE  = register("animal_caracal_single_spawner");
 
 	// HOBBITS
 	public static final ResourceLocation HOBBIT_PICNIC_TABLE = register("hobbit_picnic_table_spawner");
@@ -32,6 +50,7 @@ public class ExtendedSpawners {
 	public static final ResourceLocation HOBBIT_FAMILY_HOUSE = register("hobbit_family_house_spawner");
 	public static final ResourceLocation HOBBIT_FAMILY_HOLE_SMALL = register("hobbit_family_hole_small_spawner");
 	public static final ResourceLocation HOBBIT_FAMILY_HOLE_LARGE = register("hobbit_family_hole_large_spawner");
+	public static final ResourceLocation HOBBIT_BILBO = register("hobbit_bilbo_spawner");
 	// RANGERS
 	public static final ResourceLocation DUNEDAIN_RANGER_SINGLE_CHANCE = register("dunedain_ranger_single_chance_spawner");
 	public static final ResourceLocation DUNEDAIN_RANGER_WATCHTOWER = register("dunedain_watchtower_ranger_spawner");
@@ -111,18 +130,29 @@ public class ExtendedSpawners {
 	public static final ResourceLocation RIVENDELL_WEAVER = register("rivendell_weaver_spawner");
 
 	private static ResourceLocation register(String pId) {
-		return register(new ResourceLocation(LotrExtendedMod.MODID, pId));
+		return register(new ResourceLocation(LotrExtendedMod.MODID, pId), true);
 	}
 
-	private static ResourceLocation register(ResourceLocation pId) {
-		if (LOCATIONS.add(pId)) {
+	private static ResourceLocation registerNOC(String pId) {
+		return register(new ResourceLocation(LotrExtendedMod.MODID, pId), false);
+	}
+
+	private static ResourceLocation register(ResourceLocation pId, boolean command) {
+		if(command) {
+			LOCATIONS_COMMAND.add(pId);
+		}
+		if (LOCATIONS_ALL.add(pId)) {
 			return pId;
 		} else {
 			throw new IllegalArgumentException(pId + " is already a registered built-in extended structure entity spawner");
 		}
 	}
 
-	public static Set<ResourceLocation> getSpawners() {
-		return LOCATIONS;
+	public static Set<ResourceLocation> getSpawnersValidation() {
+		return LOCATIONS_ALL;
+	}
+
+	public static Set<ResourceLocation> getSpawnersCommand() {
+		return LOCATIONS_COMMAND;
 	}
 }

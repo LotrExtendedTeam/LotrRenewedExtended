@@ -3,13 +3,16 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements;
 import java.util.List;
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAbstractStringTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAlignmentLevelTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedBlockBreakTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCraftingTrigger;
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedFakePositionalTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedTraderTradedTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedUnitHiredTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.predicates.ExtendedAlignmentPredicate;
+import com.github.maximuslotro.lotrrextended.common.advancements.predicates.ExtendedFakeLocationPredicate;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 
 import lotr.common.fac.FactionPointer;
@@ -29,6 +32,7 @@ import net.minecraft.advancements.criterion.KilledTrigger;
 import net.minecraft.advancements.criterion.LocationPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.MinMaxBounds.FloatBound;
+import net.minecraft.advancements.criterion.PlayerEntityInteractionTrigger;
 import net.minecraft.advancements.criterion.PositionTrigger;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
@@ -99,7 +103,10 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		}
 		return builder.requirements(IRequirementsStrategy.AND);
 	}
-
+	public static Advancement.Builder addStructureTrigger(Advancement.Builder builder, String structure) {
+		builder.addCriterion("enter_"+structure, inStructure(new ResourceLocation(LotrExtendedMod.MODID, structure)));
+		return builder;
+	}
 	public static Advancement.Builder addDimensionTrigger(Advancement.Builder builder, RegistryKey<World> dim) {
 		builder.addCriterion("entered_"+dim.location().getPath(), ChangeDimensionTrigger.Instance.changedDimensionTo(dim));
 		return builder;
@@ -222,6 +229,12 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		return builder;
 	}
 
+	public static Advancement.Builder entityInterractTrigger(Advancement.Builder builder, EntityType<?> entityType) {
+		builder.addCriterion("interact_with_"+entityType.getRegistryName().getPath(), 
+			new PlayerEntityInteractionTrigger.Instance(EntityPredicate.AndPredicate.ANY, ItemPredicate.ANY, EntityPredicate.AndPredicate.wrap(EntityPredicate.Builder.entity().of(entityType).build())));
+		return builder;
+	}
+
 	public static Advancement.Builder addCraftingTrigger(Advancement.Builder builder, Block tableFurnaceBlock) {
 		builder.addCriterion("item_made_on_"+tableFurnaceBlock.getRegistryName().getPath(), ExtendedCraftingTrigger.Instance.crafted(tableFurnaceBlock));
 		return builder;
@@ -291,6 +304,10 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 
 	public static PositionTrigger.Instance inBiome(ResourceLocation biome){
 		return PositionTrigger.Instance.located(LocationPredicate.inBiome(RegistryKey.create(Registry.BIOME_REGISTRY, biome)));
+	}
+
+	public static ExtendedFakePositionalTrigger.Instance inStructure(ResourceLocation structure){
+		return ExtendedFakePositionalTrigger.Instance.located(ExtendedFakeLocationPredicate.inFeature(structure));
 	}
 
 	public class BaseData {

@@ -196,7 +196,7 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 		}
 		if(structureType==ExtendedStructureType.RIVENDELL) {
 			// Rivendell waypoint
-			if(calculateChunkDistance(chunkX, chunkZ, 2988, -76)<6) {
+			if(calculateChunkDistance(chunkX, chunkZ, 2988, -76)<10) {
 				return false;
 			}
 		}

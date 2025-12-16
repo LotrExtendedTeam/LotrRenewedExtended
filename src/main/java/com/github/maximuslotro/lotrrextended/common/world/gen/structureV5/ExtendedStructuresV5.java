@@ -12,7 +12,8 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.struct
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureCheckAreaChunk;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureCheckAreaChunkFlat;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureCheckAreaCross;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.ExtendedStructureStoneOfHapless;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.fixed.ExtendedStructureLastHomelyHouse;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.fixed.ExtendedStructureStoneOfHapless;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
@@ -81,6 +82,7 @@ public class ExtendedStructuresV5 {
 	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_SETTLEMENT = STRUCTURE_REGISTRY.register("blue_mountain_settlement", () -> new ExtendedStructureCheckAreaCross(ExtendedStructureType.BLUE_MOUNTAINS));
 
 	public static final RegistryObject<Structure<SinglePoolConfig>> STONE_OF_HAPLESS = STRUCTURE_REGISTRY.register("stone_of_hapless", () -> new ExtendedStructureStoneOfHapless(ExtendedStructureType.LORE));
+	public static final RegistryObject<Structure<SinglePoolConfig>> THE_LAST_HOMELY_HOUSE = STRUCTURE_REGISTRY.register("last_homely_house", () -> new ExtendedStructureLastHomelyHouse(ExtendedStructureType.LORE));
 
 	public static final RegistryObject<Structure<SinglePoolConfig>> RIVENDELL_STRUCTURE = STRUCTURE_REGISTRY.register("rivendell_structures", () -> new ExtendedStructureCheckAreaChunkFlat(ExtendedStructureType.RIVENDELL));
 
@@ -128,6 +130,7 @@ public class ExtendedStructuresV5 {
 		register(STONE_OF_HAPLESS.get(), false,        1,  0,  0);
 		register(RIVENDELL_STRUCTURE.get(), false,     20, 8,  534646346);
 		register(EREGION_RUINS_STRUCTURE.get(), true,  25, 10,  875649477);
+		register(THE_LAST_HOMELY_HOUSE.get(), true,    1,  0,  0);
 	}
 
 	/**

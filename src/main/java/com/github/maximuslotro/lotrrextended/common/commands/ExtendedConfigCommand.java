@@ -30,9 +30,9 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableLegacyFeastMode", ExtendedServerConfig.enableLegacyFeastMode));
 		command.then(buildBoolean("enableHungerDecrease", ExtendedServerConfig.enableHungerDecrease));
 		// Entity
-		command.then(buildInt("barrowWightChestFirstSpawnChance", ExtendedServerConfig.barrowWightChestFirstSpawnChance, 0, 100));
-		command.then(buildBoolean("enableLegacyCaptainAggressionBehavior", ExtendedServerConfig.enableLegacyCaptainPassiveBehavior, true));
-		command.then(buildBoolean("enableLegacyTraderPassiveBehavior", ExtendedServerConfig.enableLegacyTraderPassiveBehavior, true));
+		command.then(buildInteger("barrowWightChestFirstSpawnChance", ExtendedServerConfig.barrowWightChestFirstSpawnChance, 0, 100));
+		command.then(buildBoolean("enableLegacyCaptainAggressionBehavior", ExtendedServerConfig.enableLegacyCaptainPassiveBehavior));
+		command.then(buildBoolean("enableLegacyTraderPassiveBehavior", ExtendedServerConfig.enableLegacyTraderPassiveBehavior));
 		command.then(buildBoolean("enableWanderingTraderSpawns", ExtendedServerConfig.enableWanderingTraderSpawns));
 		command.then(buildBoolean("enableBanditEncounters", ExtendedServerConfig.enableBanditEncounters));
 		command.then(buildBoolean("enableTolkienSpawning", ExtendedServerConfig.enableTolkienSpawning));
@@ -41,6 +41,8 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("barsConnectToBranches", ExtendedServerConfig.barsConnectToBranches, true));
 		command.then(buildBoolean("barsConnectToSlabSides", ExtendedServerConfig.barsConnectToSlabSides, true));
 		command.then(buildDouble("dripstoneMinimumDamageHeight", ExtendedServerConfig.dripstoneMinimumDamageHeight, 0.0D, 5.0D));
+		command.then(buildInteger("bellRingChainMaxLength", ExtendedServerConfig.bellRingChainMaxLength, 1, 50));
+
 		// Chair
 		command.then(buildBoolean("enableChairSlabSitting", ExtendedServerConfig.enableChairSlabSitting));
 		command.then(buildBoolean("enableChairSwapping", ExtendedServerConfig.enableChairSwapping));
@@ -49,12 +51,12 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableVanillaEnchanting", ExtendedServerConfig.enableVanillaEnchanting, true));
 		command.then(buildBoolean("enableVanillaXp", ExtendedServerConfig.enableVanillaXp, true));
 		command.then(buildBoolean("enableExtendedModifiers", ExtendedServerConfig.enableExtendedModifiers, true));
-		// Special
+		// Server Enhancements
 		command.then(buildBoolean("enableExtendedLogging", ExtendedServerConfig.enableExtendedLogging));
+		// World Generation
+		command.then(buildBoolean("enableFixedStructures", ExtendedServerConfig.enableFixedStructures, true));
+		command.then(buildBoolean("enableFixedStructureImladris", ExtendedServerConfig.enableFixedStructureImladris, true));
 		// Register
-		command.then(buildBoolean("enableExtendedSpawnProtection", ExtendedServerConfig.enableExtendedSpawnProtection));
-		command.then(buildInt("overworldSpawnProtectionRadius", ExtendedServerConfig.overworldSpawnProtectionRadius, 0, 500));
-		command.then(buildInt("middleEarthSpawnProtectionRadius", ExtendedServerConfig.middleEarthSpawnProtectionRadius, 0, 500));
 		dispatcher.register(command);
 	}
 
@@ -87,7 +89,7 @@ public class ExtendedConfigCommand {
 			.executes(context -> retrieveDoubleValue(context.getSource(), name, configType.get()));
 	}
 
-	public static LiteralArgumentBuilder<CommandSource> buildInt(String name, ForgeConfigSpec.IntValue configType, int min, int max){
+	public static LiteralArgumentBuilder<CommandSource> buildInteger(String name, ForgeConfigSpec.IntValue configType, int min, int max){
 		return Commands.literal(name)
 			.then(Commands.argument("set", IntegerArgumentType.integer(min, max))
 				.executes(context -> {

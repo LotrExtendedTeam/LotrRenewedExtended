@@ -266,26 +266,6 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		return super.getBoundingBox(pTemplateManager, pPos, pRotation);
 	}
 	/**
-	 * Returns the deserializer type used for this piece.
-	 *
-	 * @return The {@link IJigsawDeserializer} type.
-	 */
-	@Override
-	public IJigsawDeserializer<?> getType() {
-		return ExtendedStructuresV5.SINGLE_EXTENDED;
-	}
-	/**
-	 * Returns a string representation of this piece for debugging.
-	 *
-	 * @return A string describing the piece.
-	 */
-	@Override
-	public String toString() {
-		return "ExtendedSingle[" + this.template + ", aWater=" + apply_waterlogging + ", mPl=" + maxPlaceDistance 
-			+ ", mDe=" + maxDepth + ", igBB=" + ingnoreBBconflicts + ", bN=" + blacklistName + " " + snapUpToWaterheight 
-			+ ", gLD=" + groundLevelDelta +", cOff="+ chunkCornerOffset + ", found=" + foundation.toString() + "]";
-	}
-	/**
 	 * @return Whether liquids propagate through waterloggable blocks.
 	 */
 	public boolean isApply_waterlogging() {
@@ -374,5 +354,24 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	public boolean disableSpawnAboveGround() {
 		return disableSpawnAaboveGround;
 	}
-
+	/**
+	 * Returns the deserializer type used for this piece.
+	 *
+	 * @return The {@link IJigsawDeserializer} type.
+	 */
+	@Override
+	public IJigsawDeserializer<?> getType() {
+		return ExtendedStructuresV5.SINGLE_EXTENDED;
+	}
+	/**
+	 * Returns a string representation of this piece for debugging.
+	 *
+	 * @return A string describing the piece.
+	 */
+	@Override
+	public String toString() {
+		return "ExtendedSingle[" + this.template + ", aWater=" + apply_waterlogging + ", mPl=" + maxPlaceDistance 
+			+ ", mDe=" + maxDepth + ", igBB=" + ingnoreBBconflicts + ", bN=" + blacklistName + " " + snapUpToWaterheight 
+			+ ", gLD=" + groundLevelDelta +", cOff="+ chunkCornerOffset + ", found=" + foundation.toString() + "]";
+	}
 }

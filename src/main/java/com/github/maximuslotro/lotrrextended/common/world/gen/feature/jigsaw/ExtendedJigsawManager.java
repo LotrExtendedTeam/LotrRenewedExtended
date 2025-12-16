@@ -74,16 +74,24 @@ public class ExtendedJigsawManager {
      * @param random                  random instance for randomized choices
      * @param doExpansionHack         if true, applies additional placement logic during assembly (specific to implementation)
      * @param projectStartToHeightmap if true, adjusts vertical placement to surface height from the heightmap
+	 * @param pRotation                Set a fixed rotation for the structure
      *
      * @see ExtendedSingleJigsawPiece
      * @see WoodPaletteProcessor
      * @see ExtendedJigsawManager.Assembler
      * @see net.minecraft.world.gen.feature.structure.Structure
      */
-	public static void addPieces(DynamicRegistries registry, VillageConfig structureConfig, ExtendedJigsawManager.IPieceFactory villagePieceBuilder, ChunkGenerator chunkGenerator, TemplateManager templateManager, ChunkPos chunkPos, List<? super AbstractVillagePiece> pieces, Random random, boolean doExpansionHack, boolean projectStartToHeightmap) {
+	public static void addPieces(DynamicRegistries registry, VillageConfig structureConfig, ExtendedJigsawManager.IPieceFactory villagePieceBuilder, 
+		ChunkGenerator chunkGenerator, TemplateManager templateManager, ChunkPos chunkPos, List<? super AbstractVillagePiece> pieces, Random random, 
+		boolean doExpansionHack, boolean projectStartToHeightmap, Rotation pRotation) {
 		Structure.bootstrap();
 		MutableRegistry<JigsawPattern> mutableregistry = registry.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY);
-		Rotation rotation = Rotation.getRandom(random);
+		// Extended start
+		Rotation rotation = pRotation;
+		if(rotation==null) {
+			rotation = Rotation.getRandom(random);
+		}
+		// Extended end
 		JigsawPattern jigsawpattern = structureConfig.startPool().get();
 		JigsawPiece jigsawpiece = jigsawpattern.getRandomTemplate(random);
 		// Extended start
@@ -151,9 +159,9 @@ public class ExtendedJigsawManager {
 				maxPlaceDistance = ((ExtendedSingleJigsawPiece)jigsawpiece).getMaxPlaceDistance();
 			}
 			// Extended End
-			AxisAlignedBB axisalignedbb = new AxisAlignedBB(structureBBAverageX - maxPlaceDistance, structureStartHeight - maxPlaceDistance, structureBBAverageZ - maxPlaceDistance, structureBBAverageX + maxPlaceDistance + 1, structureStartHeight + maxPlaceDistance + 1, structureBBAverageZ + maxPlaceDistance + 1);
+			AxisAlignedBB maxStructureSizeBB = new AxisAlignedBB(structureBBAverageX - maxPlaceDistance, structureStartHeight - maxPlaceDistance, structureBBAverageZ - maxPlaceDistance, structureBBAverageX + maxPlaceDistance + 1, structureStartHeight + maxPlaceDistance + 1, structureBBAverageZ + maxPlaceDistance + 1);
 			ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, maxDepth, villagePieceBuilder, chunkGenerator, templateManager, pieces, random, carryOverProcessor);
-			jigsawmanager$assembler.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, new MutableObject<>(VoxelShapes.join(VoxelShapes.create(axisalignedbb), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox)), IBooleanFunction.ONLY_FIRST)), structureStartHeight + 80, 0));
+			jigsawmanager$assembler.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, new MutableObject<>(VoxelShapes.join(VoxelShapes.create(maxStructureSizeBB), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox)), IBooleanFunction.ONLY_FIRST)), structureStartHeight + 80, 0));
 
 			while(!jigsawmanager$assembler.placing.isEmpty()) {
 				ExtendedJigsawManager.Entry jigsawmanager$entry = jigsawmanager$assembler.placing.removeFirst();

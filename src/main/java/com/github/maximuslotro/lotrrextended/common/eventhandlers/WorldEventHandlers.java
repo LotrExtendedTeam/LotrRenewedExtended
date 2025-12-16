@@ -20,7 +20,11 @@ import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedBlocks;
+import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRDimensions;
+import net.minecraft.block.BellBlock;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ChainBlock;
 import net.minecraft.block.EnchantingTableBlock;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.item.ExperienceOrbEntity;
@@ -34,7 +38,9 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.World;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -127,7 +133,7 @@ public class WorldEventHandlers {
 			}
 
 			AxisAlignedBB initial = new AxisAlignedBB(event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(),
-					event.getEntity().getX() + 1, event.getEntity().getY() + 1, event.getEntity().getZ() + 1);
+				event.getEntity().getX() + 1, event.getEntity().getY() + 1, event.getEntity().getZ() + 1);
 			List<NPCEntity> potentialEscorts = event.getEntity().level.getEntitiesOfClass(NPCEntity.class, initial.inflate(256));
 
 			for (NPCEntity entity : potentialEscorts) {
@@ -152,7 +158,8 @@ public class WorldEventHandlers {
 			}
 			// Make entity respawner
 			ExtendedRespawnerEntity respawnerEntity = new ExtendedRespawnerEntity(npc.level);
-			respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
+			//respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
+			respawnerEntity.moveTo(npc.getX(), npc.getY()+npc.getBbHeight()+1, npc.getZ());
 
 			//Set entity Type
 			respawnerEntity.setEntityType(npc.getType());
@@ -222,6 +229,32 @@ public class WorldEventHandlers {
 					event.setCanceled(true);
 					return;
 				}
+			}
+		}
+		World level = event.getPlayer().level;
+		BlockState clickedState = level.getBlockState(event.getPos());
+		if (clickedState.is(LOTRBlocks.WICKER_FENCE.get())) {
+			BlockPos checkPos = event.getPos().above();
+			BlockState state = level.getBlockState(checkPos);
+			int steps = 0;
+		    int maxSteps = ExtendedServerConfig.bellRingChainMaxLength.get();
+		    int worldTop = level.getMaxBuildHeight();  // get build limit
+		    while (state.getBlock() instanceof ChainBlock) {
+		        if (checkPos.getY() >= worldTop) {
+		            break;
+		        }
+		        if (steps >= maxSteps) {
+		            break;
+		        }
+		        checkPos = checkPos.above();
+		        state = level.getBlockState(checkPos);
+		        steps++;
+		    }
+			if (state.getBlock() instanceof BellBlock) {
+				BellBlock bell = (BellBlock) state.getBlock();
+				bell.attemptToRing(level, checkPos, null);
+				event.getPlayer().swing(Hand.MAIN_HAND, true);
+				event.setCanceled(true);
 			}
 		}
 	}

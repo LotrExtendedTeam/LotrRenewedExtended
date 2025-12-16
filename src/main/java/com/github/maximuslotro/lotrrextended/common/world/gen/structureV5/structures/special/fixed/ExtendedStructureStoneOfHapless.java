@@ -1,5 +1,6 @@
-package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special;
+package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.fixed;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructureType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.SinglePoolConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.SinglePoolStructure;
@@ -12,9 +13,6 @@ import net.minecraft.world.gen.ChunkGenerator;
 
 /**
  * {@link ExtendedStructureStoneOfHapless} is a custom single-pool structure that generates the stone of hapless in a certain location
- * <p>
- * It overrides the terrain suitability check to ensure the structure only generates
- * on relatively flat terrain by sampling surface heights within the chunk.
  */
 public class ExtendedStructureStoneOfHapless extends SinglePoolStructure {
 	/**
@@ -28,6 +26,6 @@ public class ExtendedStructureStoneOfHapless extends SinglePoolStructure {
 
 	@Override
 	protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, SinglePoolConfig featureConfig) {
-		return chunkX == -5773 && chunkZ == -246;
+		return chunkX == -5773 && chunkZ == -246 && ExtendedServerConfig.canSpawnStructures();
 	}
 }

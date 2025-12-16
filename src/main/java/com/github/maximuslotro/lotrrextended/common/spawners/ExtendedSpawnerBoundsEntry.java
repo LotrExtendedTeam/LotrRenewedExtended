@@ -11,7 +11,7 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 import net.minecraft.util.JSONUtils;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 
 public class ExtendedSpawnerBoundsEntry {
 	public static final ExtendedSpawnerBoundsEntry DEFAULT = new ExtendedSpawnerBoundsEntry(0, 0, 0);
@@ -26,16 +26,17 @@ public class ExtendedSpawnerBoundsEntry {
 		this.horizontalBounds = horizontal;
 	}
 
-	public BlockPos getMinPos(int x, int y, int z) {
-		return new BlockPos(x - horizontalBounds, y + lowerYvalue, z - horizontalBounds);
+	public Vector3d getMinPos(double x, double y, double z) {
+		return new Vector3d(x - horizontalBounds, y + lowerYvalue, z - horizontalBounds);
 	}
 
-	public BlockPos getMaxPos(int x, int y, int z) {
-		return new BlockPos(x + horizontalBounds, y + topYvalue, z + horizontalBounds);
+	public Vector3d getMaxPos(double x, double y, double z) {
+		// Add 1 to y since the spawner since the spawner itself is on block tall
+		return new Vector3d(x + horizontalBounds, y + topYvalue + 1, z + horizontalBounds);
 	}
 
-	public boolean isInYRange(int blockHeight, int entityHeight) {
-		return entityHeight + lowerYvalue < blockHeight && blockHeight < entityHeight + topYvalue;
+	public boolean isInYRange(double blockHeight, double entityHeight) {
+		return blockHeight > entityHeight + lowerYvalue  && blockHeight < entityHeight + topYvalue + 1;
 	}
 
 	public static class Serializer implements JsonDeserializer<ExtendedSpawnerBoundsEntry>, JsonSerializer<ExtendedSpawnerBoundsEntry> {

@@ -26,9 +26,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.Collection;
-import java.util.Optional;
 
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedDamageSource;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedDamageSourceRepository;
 
 public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
 
@@ -96,7 +95,7 @@ public class ExtendedThrowableAxeEntity extends LOTRAbstractArrowEntity {
         Entity hitEntity = result.getEntity();
         int damage = this.calculateImpactDamageIncludingCritical(this.getBaseImpactDamage(hitEntity));
         Entity shooter = this.getOwner();
-        DamageSource damageSource = ExtendedDamageSource.causeThrownAxeDamage(this, Optional.ofNullable(shooter).orElse(this));
+        DamageSource damageSource = ExtendedDamageSourceRepository.causeThrownAxeDamage(this, shooter);
 
         if (hitEntity.hurt(damageSource, (float) damage)) {
             if (this.isOnFire()) {

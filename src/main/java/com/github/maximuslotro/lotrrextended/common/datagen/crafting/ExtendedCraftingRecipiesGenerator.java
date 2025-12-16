@@ -45,6 +45,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		buildRecipes(consumer);
 		addMissingRenewedRecipes(consumer);
 		addMissingVanillaRecipes(consumer);
+		buildVanillaRecipeOverrides(consumer);
 		buildCookingRecipes(consumer);
 		makeDrinkRecipes(consumer);
 		buildStoneGrinderRecipes(consumer);
@@ -270,7 +271,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("CIC")
 		.pattern("CSC")
 		.pattern("CCC")
-		.define('C', Ingredient.of(Items.COBBLESTONE))
+		.define('C', Ingredient.of(Tags.Items.COBBLESTONE))
 		.define('S', Ingredient.of(STICKS))
 		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
 		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
@@ -281,7 +282,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("I I")
 		.pattern("SIS")
 		.pattern("CCC")
-		.define('C', Ingredient.of(Items.COBBLESTONE))
+		.define('C', Ingredient.of(Tags.Items.COBBLESTONE))
 		.define('S', Ingredient.of(STICKS))
 		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
 		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
@@ -869,23 +870,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath(), has(ExtendedItems.BRANDING_IRON.get()))
 		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
 		.save(consumer, lotrLoc(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath()));
-		//Vanilla egg fixes
-		ExtendedShapedRecipeBuilder.shaped(Items.CAKE)
-		.pattern("MMM")
-		.pattern("SES")
-		.pattern("WWW")
-		.define('M', Ingredient.of(Items.MILK_BUCKET))
-		.define('S', Ingredient.of(Items.SUGAR))
-		.define('E', Ingredient.of(Tags.Items.EGGS))
-		.define('W', Ingredient.of(Items.WHEAT))
-		.unlockedBy("has_"+Items.CAKE.getRegistryName().getPath(), has(Items.CAKE))
-		.save(consumer, mcLoc(Items.CAKE.getRegistryName().getPath()));
-		ShapelessRecipeBuilder.shapeless(Items.PUMPKIN_PIE)
-		.requires(Items.SUGAR)
-		.requires(Items.PUMPKIN)
-		.requires(Tags.Items.EGGS)
-		.unlockedBy("has_"+Items.PUMPKIN_PIE.getRegistryName().getPath(), has(Items.PUMPKIN_PIE))
-		.save(consumer, mcLoc(Items.PUMPKIN_PIE.getRegistryName().getPath()));
 		// Extended cheese
 		GENERATEDRECIPES.add(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CHEESE_WHEEL.get())
@@ -1409,6 +1393,68 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			Blocks.INFESTED_STONE_BRICKS, null);
 	}
 
+	private void buildVanillaRecipeOverrides(Consumer<IFinishedRecipe> consumer) {
+		ExtendedShapedRecipeBuilder.shaped(Items.CAKE)
+		.pattern("MMM")
+		.pattern("SES")
+		.pattern("WWW")
+		.define('M', Ingredient.of(Items.MILK_BUCKET))
+		.define('S', Ingredient.of(Items.SUGAR))
+		.define('E', Ingredient.of(Tags.Items.EGGS))
+		.define('W', Ingredient.of(Items.WHEAT))
+		.unlockedBy("has_"+Items.CAKE.getRegistryName().getPath(), has(Items.CAKE))
+		.save(consumer, mcLoc(Items.CAKE.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(Items.PUMPKIN_PIE)
+		.requires(Items.SUGAR)
+		.requires(Items.PUMPKIN)
+		.requires(Tags.Items.EGGS)
+		.unlockedBy("has_"+Items.PUMPKIN_PIE.getRegistryName().getPath(), has(Items.PUMPKIN_PIE))
+		.save(consumer, mcLoc(Items.PUMPKIN_PIE.getRegistryName().getPath()));
+		ExtendedShapedRecipeBuilder.shaped(Items.PISTON)
+		.pattern("PPP")
+		.pattern("CIC")
+		.pattern("CGC")
+		.define('P', Ingredient.of(PLANKS))
+		.define('C', Ingredient.of(Tags.Items.COBBLESTONE))
+		.define('G', Ingredient.of(LOTRItems.GATE_GEAR.get()))
+		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
+		.unlockedBy("has_"+LOTRItems.GATE_GEAR.get().getRegistryName().getPath(), has(LOTRItems.GATE_GEAR.get()))
+		.save(consumer, mcLoc(Items.PISTON.getRegistryName().getPath()+"_using_gears"));
+		ExtendedShapedRecipeBuilder.shaped(Items.DROPPER)
+		.pattern("CCC")
+		.pattern("C C")
+		.pattern("CGC")
+		.define('C', Ingredient.of(Tags.Items.COBBLESTONE))
+		.define('G', Ingredient.of(LOTRItems.GATE_GEAR.get()))
+		.unlockedBy("has_"+LOTRItems.GATE_GEAR.get().getRegistryName().getPath(), has(LOTRItems.GATE_GEAR.get()))
+		.save(consumer, mcLoc(Items.DROPPER.getRegistryName().getPath()+"_using_gears"));
+		ExtendedShapedRecipeBuilder.shaped(Items.DISPENSER)
+		.pattern("CCC")
+		.pattern("CBC")
+		.pattern("CGC")
+		.define('C', Ingredient.of(Tags.Items.COBBLESTONE))
+		.define('G', Ingredient.of(LOTRItems.GATE_GEAR.get()))
+		.define('B', Ingredient.of(Items.BOW))
+		.unlockedBy("has_"+LOTRItems.GATE_GEAR.get().getRegistryName().getPath(), has(LOTRItems.GATE_GEAR.get()))
+		.save(consumer, mcLoc(Items.DISPENSER.getRegistryName().getPath()+"_using_gears"));
+		ExtendedShapedRecipeBuilder.shaped(Items.NOTE_BLOCK)
+		.pattern("PPP")
+		.pattern("PGP")
+		.pattern("PPP")
+		.define('P', Ingredient.of(PLANKS))
+		.define('G', Ingredient.of(LOTRItems.GATE_GEAR.get()))
+		.unlockedBy("has_"+LOTRItems.GATE_GEAR.get().getRegistryName().getPath(), has(LOTRItems.GATE_GEAR.get()))
+		.save(consumer, mcLoc(Items.NOTE_BLOCK.getRegistryName().getPath()+"_using_gears"));
+		ExtendedShapedRecipeBuilder.shaped(Items.TARGET)
+		.pattern(" S ")
+		.pattern("SHS")
+		.pattern(" S ")
+		.define('H', Ingredient.of(Items.HAY_BLOCK))
+		.define('S', Ingredient.of(Tags.Items.STRING))
+		.unlockedBy("has_"+Items.HAY_BLOCK.getRegistryName().getPath(), has(Items.HAY_BLOCK))
+		.save(consumer, mcLoc(Items.TARGET.getRegistryName().getPath()+"_using_string"));
+	}
+
 	private void buildSmeltingRecipes(Consumer<IFinishedRecipe> consumer) {
 		makeSmeltingRecipes(consumer, ExtendedItems.AMBER_ORE.get(), ExtendedItems.AMBER.get());
 		makeSmeltingRecipes(consumer, ExtendedItems.AMETHYST_ORE.get(), ExtendedItems.AMETHYST.get());
@@ -1467,7 +1513,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 	private void makeCookingRecipes(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, String pCookingMethod, CookingRecipeSerializer<?> pCookingSerializer, int pCookingTime) {
 		CookingRecipeBuilder.cooking(Ingredient.of(ExtendedItems.CONKER.get()), ExtendedItems.ROASTED_CHESTNUT.get(), 0.15F, pCookingTime, pCookingSerializer).unlockedBy("has_conker", has(ExtendedItems.CONKER.get())).save(pFinishedRecipeConsumer, "cooked_conker_from_" + pCookingMethod);
 		CookingRecipeBuilder.cooking(Ingredient.of(ExtendedItems.RAW_DUCK.get()), ExtendedItems.COOKED_DUCK.get(), 0.35F, pCookingTime, pCookingSerializer).unlockedBy("has_raw_duck", has(ExtendedItems.RAW_DUCK.get())).save(pFinishedRecipeConsumer, "cooked_duck_from_" + pCookingMethod);
-
 	}
 
 	private void makeDrinkRecipes(Consumer<IFinishedRecipe> consumer) {

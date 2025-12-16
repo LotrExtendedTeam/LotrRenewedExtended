@@ -18,7 +18,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
-import com.github.maximuslotro.lotrrextended.common.json.GsonSerializers;
+import com.github.maximuslotro.lotrrextended.common.serialization.GsonSerializers;
 import com.google.gson.Gson;
 
 import net.minecraft.data.DataGenerator;
