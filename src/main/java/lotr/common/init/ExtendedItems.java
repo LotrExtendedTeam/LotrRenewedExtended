@@ -560,6 +560,10 @@ public class ExtendedItems {
 	public static RegistryObject<Item> IMLADRIS_GUARD_CHESTPLATE;
 	public static RegistryObject<Item> IMLADRIS_GUARD_LEGGINGS;
 	public static RegistryObject<Item> IMLADRIS_GUARD_BOOTS;
+	public static RegistryObject<Item> EREGION_HELMET;
+	public static RegistryObject<Item> EREGION_CHESTPLATE;
+	public static RegistryObject<Item> EREGION_LEGGINGS;
+	public static RegistryObject<Item> EREGION_BOOTS;
 	
 	public static RegistryObject<Item> MORGUL_BRAZIER;
 	public static RegistryObject<Item> HIGH_ELVEN_LANTERN;

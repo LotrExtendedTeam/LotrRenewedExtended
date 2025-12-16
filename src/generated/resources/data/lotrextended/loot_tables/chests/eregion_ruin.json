@@ -1018,6 +1018,97 @@
           "function": "lotrextended:modifier_scroll_adder"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 1.0
+              }
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            }
+          ],
+          "name": "lotr:eregion_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 1.0
+              }
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            }
+          ],
+          "name": "lotr:eregion_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 1.0
+              }
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            }
+          ],
+          "name": "lotr:eregion_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 1.0
+              }
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            }
+          ],
+          "name": "lotr:eregion_boots"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.05
+        }
+      ]
     }
   ]
 }

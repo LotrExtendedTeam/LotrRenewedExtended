@@ -61,5 +61,6 @@ public class MixinLOTRArmorModels {
 		addSpecialArmorModel(ExtendedItems.WHITE_WARG_HELMET, ExtendedModelWargHat::new);
 		addSpecialArmorModel(ExtendedItems.GUNDABAD_URUK_HELMET, ExtendedModelGundabadUrukHelmet::new);
 		addSpecialArmorModel(ExtendedItems.IMLADRIS_GUARD_HELMET, HighElvenHelmetModel::new);
+		addSpecialArmorModel(ExtendedItems.EREGION_HELMET, HighElvenHelmetModel::new);
 	}
 }

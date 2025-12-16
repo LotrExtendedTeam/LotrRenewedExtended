@@ -2267,6 +2267,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.SHARDS_OF_NARSIL.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.PLACED_BOOKS.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.TAPESTRY.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.EREGION_BOOTS.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.EREGION_LEGGINGS.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.EREGION_CHESTPLATE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.EREGION_HELMET.get().getRegistryName().getPath());
 	}
 
 	@Override

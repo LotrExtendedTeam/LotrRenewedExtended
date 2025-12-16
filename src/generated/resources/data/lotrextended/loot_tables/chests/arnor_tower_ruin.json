@@ -40,90 +40,6 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 25,
-          "functions": [
-            {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.2,
-                "max": 0.65
-              }
-            },
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            },
-            {
-              "function": "lotrextended:modifier_adder"
-            }
-          ],
-          "name": "lotr:arnor_chestplate"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 25,
-          "functions": [
-            {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.2,
-                "max": 0.65
-              }
-            },
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            },
-            {
-              "function": "lotrextended:modifier_adder"
-            }
-          ],
-          "name": "lotr:arnor_leggings"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 25,
-          "functions": [
-            {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.2,
-                "max": 0.65
-              }
-            },
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            },
-            {
-              "function": "lotrextended:modifier_adder"
-            }
-          ],
-          "name": "lotr:arnor_boots"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 25,
-          "functions": [
-            {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.2,
-                "max": 0.65
-              }
-            },
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            },
-            {
-              "function": "lotrextended:modifier_adder"
-            }
-          ],
-          "name": "lotr:arnor_helmet"
-        },
-        {
-          "type": "minecraft:item",
           "weight": 40,
           "functions": [
             {
@@ -728,6 +644,97 @@
       "functions": [
         {
           "function": "lotrextended:modifier_scroll_adder"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 1.0
+              }
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            }
+          ],
+          "name": "lotr:arnor_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 1.0
+              }
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            }
+          ],
+          "name": "lotr:arnor_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 1.0
+              }
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            }
+          ],
+          "name": "lotr:arnor_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 1.0
+              }
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            }
+          ],
+          "name": "lotr:arnor_boots"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.05
         }
       ]
     }

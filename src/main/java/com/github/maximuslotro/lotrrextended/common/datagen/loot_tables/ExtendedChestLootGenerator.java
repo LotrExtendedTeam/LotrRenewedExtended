@@ -389,10 +389,6 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.setRolls(RandomValueRange.between(3, 5))
 						.add(EItemLootEntry.lootItem(Items.BONE).setWeight(100).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(Items.SKELETON_SKULL).setWeight(25).setRange(1, 2))
-						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_CHESTPLATE.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_LEGGINGS.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_BOOTS.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
-						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_HELMET.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_HELMET.get()).setWeight(40).setDamageRange(0.25F, 0.75F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_CHESTPLATE.get()).setWeight(40).setDamageRange(0.25F, 0.75F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_LEGGINGS.get()).setWeight(40).setDamageRange(0.25F, 0.75F).setExactly(1))
@@ -426,7 +422,14 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
 						.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(80).setRange(4, 8))
-						.apply(ExtendedModifierScrollAdder.chanceDefault())));
+						.apply(ExtendedModifierScrollAdder.chanceDefault()))
+				.withPool(LootPool.lootPool()
+					.setRolls(ConstantRange.exactly(1))
+					.when(RandomChance.randomChance(0.05f)) // 5% chance
+					.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_HELMET.get()).setWeight(1).standardDamageRange().setExactly(1))
+					.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_CHESTPLATE.get()).setWeight(1).standardDamageRange().setExactly(1))
+					.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_LEGGINGS.get()).setWeight(1).standardDamageRange().setExactly(1))
+					.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_BOOTS.get()).setWeight(1).standardDamageRange().setExactly(1))));
 
 		make(consumer, ExtendedLootTables.GENERIC_RUIN_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
@@ -561,7 +564,14 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.STONEWARE_PLATE.get()).setWeight(10).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(10).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(10).setRange(1, 3))
-						.apply(ExtendedModifierScrollAdder.chanceDefault())));
+						.apply(ExtendedModifierScrollAdder.chanceDefault()))
+				.withPool(LootPool.lootPool()
+					.setRolls(ConstantRange.exactly(1))
+					.when(RandomChance.randomChance(0.05f)) // 5% chance
+					.add(EItemLootEntry.lootItem(ExtendedItems.EREGION_HELMET.get()).setWeight(1).standardDamageRange().setExactly(1))
+					.add(EItemLootEntry.lootItem(ExtendedItems.EREGION_CHESTPLATE.get()).setWeight(1).standardDamageRange().setExactly(1))
+					.add(EItemLootEntry.lootItem(ExtendedItems.EREGION_LEGGINGS.get()).setWeight(1).standardDamageRange().setExactly(1))
+					.add(EItemLootEntry.lootItem(ExtendedItems.EREGION_BOOTS.get()).setWeight(1).standardDamageRange().setExactly(1))));
 
 		make(consumer, ExtendedLootTables.GUNDABAD_CAMP_SMITHY_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
