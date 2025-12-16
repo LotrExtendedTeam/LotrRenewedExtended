@@ -11,6 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRu
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBookshelfBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBundleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
@@ -204,6 +205,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedRemainsBlock) {
 					numberTexturedRandomYBlockItem(block.getValue().get(), "block/"+block.getKey(), 3);
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedBookshelfBlock) {
+					genExistingMcBlock(block.getValue().get(), "block/bookshelf");
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedWasteBlock) {
@@ -779,12 +784,16 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		return "Renewed Extended Blockstate Provider";
 	}
 
-	private void genExistingMcBlock(Block block, String model) {
+	private void genExistingMcBlockItem(Block block, String model) {
+		itemModels().getBuilder("lotr:" + block.getRegistryName().getPath()).parent(genExistingMcBlock(block, model));
+	}
+	private ModelFile genExistingMcBlock(Block block, String model) {
 		registeredBlocks.add(block);
 		ModelFile modelFile = models().getExistingFile(mcLoc(model));
 		simpleBlock(block, modelFile);
-		itemModels().getBuilder("lotr:" + block.getRegistryName().getPath()).parent(modelFile);
+		return modelFile;
 	}
+	
 	private void genStairsBlockItem(StairsBlock stairs, ResourceLocation texture) {
 		genStairsBlockItem(stairs, texture, texture, texture);
 	}

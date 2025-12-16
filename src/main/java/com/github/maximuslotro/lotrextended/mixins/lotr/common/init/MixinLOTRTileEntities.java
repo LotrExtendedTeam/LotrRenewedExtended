@@ -44,7 +44,6 @@ import lotr.common.init.ExtendedTileEntities;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRTileEntities;
 import lotr.common.tileentity.VesselDrinkTileEntity;
-import net.minecraft.block.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.tileentity.TileEntityType.Builder;
@@ -128,7 +127,7 @@ public class MixinLOTRTileEntities {
     	ExtendedTileEntities.SILVER_FUR_BED = register("silver_fur_bed_tileentity", () -> Builder.of(ExtendedSilverFurBedTileEntity::new, ExtendedBlocks.SILVER_FUR_BED.get()));
     	ExtendedTileEntities.WHITE_FUR_BED = register("white_fur_bed_tileentity", () -> Builder.of(ExtendedWhiteFurBedTileEntity::new, ExtendedBlocks.WHITE_FUR_BED.get()));
     	ExtendedTileEntities.NORENDER = register("no_render_tileentity", () -> Builder.of(ExtendedNoRenderTileEntity::new, ExtendedBlocks.BEDROLL.get()));
-    	ExtendedTileEntities.BOOKSHELF = register("bookshelf_tileentity", () -> Builder.of(ExtendedBookshelfTileEntity::new, Blocks.BOOKSHELF));
+    	ExtendedTileEntities.BOOKSHELF = register("bookshelf_tileentity", () -> Builder.of(ExtendedBookshelfTileEntity::new, ExtendedBlocks.EXTENDED_BOOKSHELF.get()));
     	ExtendedTileEntities.WEAPON_RACK = register("weapon_rack_tileentity", () -> Builder.of(ExtendedWeaponRackTileEntity::new, ExtendedBlocks.WEAPON_RACK.get()));
     	ExtendedTileEntities.REED_BASKET = register("reed_basket_tileentity", () -> Builder.of(ExtendedReedBasketTileEntity::new, ExtendedBlocks.REED_BASKET.get()));
     	ExtendedTileEntities.ORC_BARREL = register("orc_barrel_tileentity", () -> Builder.of(ExtendedOrcBarrelTileEntity::new, ExtendedBlocks.ORC_BARREL.get()));

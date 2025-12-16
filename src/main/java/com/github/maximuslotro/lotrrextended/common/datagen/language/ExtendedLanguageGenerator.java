@@ -37,6 +37,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 				// Skip adding all variations of large pots
 				continue;
 			}
+			if(block.getKey().contains("bookshelf")) {
+				// We are using key for vanilla bookshelf localization
+				continue;
+			}
 			addBlock(block.getValue(), "");
 		}
 

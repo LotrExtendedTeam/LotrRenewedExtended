@@ -4,69 +4,88 @@ import com.github.maximuslotro.lotrrextended.common.inventory.container.Extended
 
 import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 
-public class ExtendedBookshelfTileEntity extends LockableLootTileEntity{
-	   private NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
+public class ExtendedBookshelfTileEntity extends LockableLootTileEntity implements ITickableTileEntity{
+	private NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
 
-	   protected ExtendedBookshelfTileEntity(TileEntityType<?> p_i48287_1_) {
-	      super(p_i48287_1_);
-	   }
-
-	   public ExtendedBookshelfTileEntity() {
-	      this(ExtendedTileEntities.BOOKSHELF.get());
-	   }
-
-	   @Override
-	   public int getContainerSize() {
-	      return 27;
-	   }
-
-	   @Override
-	   protected ITextComponent getDefaultName() {
-	      return new TranslationTextComponent("container.lotrextended.bookshelf");
-	   }
-
-	   @Override
-	   public void load(BlockState p_230337_1_, CompoundNBT p_230337_2_) {
-	      super.load(p_230337_1_, p_230337_2_);
-	      this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-	      if (!this.tryLoadLootTable(p_230337_2_)) {
-	         ItemStackHelper.loadAllItems(p_230337_2_, this.items);
-	      }
-	   }
-
-	   @Override
-	   public CompoundNBT save(CompoundNBT p_189515_1_) {
-	      super.save(p_189515_1_);
-	      if (!this.trySaveLootTable(p_189515_1_)) {
-	         ItemStackHelper.saveAllItems(p_189515_1_, this.items);
-	      }
-	      return p_189515_1_;
-	   }
-
-	   @Override
-	   protected NonNullList<ItemStack> getItems() {
-	      return this.items;
-	   }
-
-	   @Override
-	   protected void setItems(NonNullList<ItemStack> p_199721_1_) {
-	      this.items = p_199721_1_;
-	   }
-
-	   @Override
-	   protected Container createMenu(int p_213906_1_, PlayerInventory p_213906_2_) {
-	      return ExtendedBookshelfContainer.threeRows(p_213906_1_, p_213906_2_, this, null);
-	   }
-
+	protected ExtendedBookshelfTileEntity(TileEntityType<?> p_i48287_1_) {
+		super(p_i48287_1_);
 	}
+
+	public ExtendedBookshelfTileEntity() {
+		this(ExtendedTileEntities.BOOKSHELF.get());
+	}
+
+	@Override
+	public int getContainerSize() {
+		return 27;
+	}
+
+	@Override
+	protected ITextComponent getDefaultName() {
+		return new TranslationTextComponent("container.lotrextended.bookshelf");
+	}
+
+	@Override
+	public void load(BlockState p_230337_1_, CompoundNBT p_230337_2_) {
+		super.load(p_230337_1_, p_230337_2_);
+		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+		if (!this.tryLoadLootTable(p_230337_2_)) {
+			ItemStackHelper.loadAllItems(p_230337_2_, this.items);
+		}
+	}
+
+	@Override
+	public CompoundNBT save(CompoundNBT p_189515_1_) {
+		super.save(p_189515_1_);
+		if (!this.trySaveLootTable(p_189515_1_)) {
+			ItemStackHelper.saveAllItems(p_189515_1_, this.items);
+		}
+		return p_189515_1_;
+	}
+
+	@Override
+	public void tick() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void stopOpen(PlayerEntity pPlayer) {
+        if (this.getItems().stream().allMatch(ItemStack::isEmpty)) {
+            World level = this.getLevel();
+            if (level != null && !level.isClientSide) {
+                level.setBlockAndUpdate(this.getBlockPos(), Blocks.BOOKSHELF.defaultBlockState());
+            }
+        }
+	}
+
+	@Override
+	public NonNullList<ItemStack> getItems() {
+		return this.items;
+	}
+
+	@Override
+	protected void setItems(NonNullList<ItemStack> pItems) {
+		this.items = pItems;
+	}
+
+	@Override
+	protected Container createMenu(int pContainerId, PlayerInventory pPlayerInventory) {
+		return ExtendedBookshelfContainer.threeRows(pContainerId, pPlayerInventory, this, null);
+	}
+}

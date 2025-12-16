@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelf
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.ContainerBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,14 +16,20 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ExtendedBookshelfBlock extends ContainerBlock {
 
@@ -58,7 +65,16 @@ public class ExtendedBookshelfBlock extends ContainerBlock {
 		}
 	}
 
-	@Nullable
+	public boolean hasTileEntity() {
+        return true;
+    }
+
+    @Nullable
+    public TileEntity createTileEntity(IBlockReader world) {
+        return new ExtendedBookshelfTileEntity();
+    }
+    
+    // Keep as this block still extends ITileEntityProvider and we need to keep functionality even if we define above using forge method
 	@Override
 	public TileEntity newBlockEntity(IBlockReader p_196283_1_) {
 		return new ExtendedBookshelfTileEntity();
@@ -93,5 +109,20 @@ public class ExtendedBookshelfBlock extends ContainerBlock {
 	@Override
 	public float getEnchantPowerBonus(BlockState state, IWorldReader world, BlockPos pos){
 		return 1;
+	}
+
+	@Override
+	@OnlyIn(Dist.CLIENT)
+	public IFormattableTextComponent getName() {
+		return new TranslationTextComponent(Blocks.BOOKSHELF.getDescriptionId());
+	}
+
+	@Override
+	public ItemStack getPickBlock(BlockState pState, RayTraceResult pTarget, IBlockReader pLevel, BlockPos pBlockPos, PlayerEntity pPlayer) {
+		ItemStack stack = super.getPickBlock(pState, pTarget, pLevel, pBlockPos, pPlayer);
+		if(stack.isEmpty()) {
+			return new ItemStack(Items.BOOKSHELF);
+		}
+		return stack;
 	}
 }

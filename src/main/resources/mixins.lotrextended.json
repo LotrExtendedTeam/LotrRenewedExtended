@@ -122,7 +122,6 @@
 		"net.minecraft.advancements.criterion.MixinItemPredicate",
 		"net.minecraft.block.MixinAnvilBlock",
 		"net.minecraft.block.MixinBlock",
-		"net.minecraft.block.MixinBlocks",
 		"net.minecraft.block.MixinFarmlandBlock",
 		"net.minecraft.block.MixinGrindstoneBlock",
 		"net.minecraft.block.MixinPaneBlock",

@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRu
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBookshelfBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBundleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
@@ -183,6 +184,12 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			}
 			if(block.getValue().get() instanceof ExtendedCrucibleBlock) {
 				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedBookshelfBlock) {
+				add(block.getValue().get(), (blockP) -> {
+			         return createSingleItemTableWithSilkTouch(Blocks.BOOKSHELF, Items.BOOK, ConstantRange.exactly(3));
+			      });
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedWasteBlock) {
@@ -402,7 +409,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof FallenLeavesBlock) {
-				dropWhenSilkTouch(block.getValue().get());
+				dropWhenSilkTouch(block.getValue().get());//TODO apply shears or explosion conition
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedGroundFarmlandBlock) {

@@ -24,6 +24,7 @@ import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRDimensions;
 import net.minecraft.block.BellBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.ChainBlock;
 import net.minecraft.block.EnchantingTableBlock;
 import net.minecraft.entity.EntitySize;
@@ -35,7 +36,6 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.Hand;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -225,7 +225,7 @@ public class WorldEventHandlers {
 			if(type.notEmpty() && !(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof ExtendedPlacedBooksBlock)) {
 				BlockItemUseContext blockusecontext = new BlockItemUseContext(new ItemUseContext(event.getPlayer(), event.getHand(), event.getHitVec()));
 				if(ExtendedPlacementUtils.place(ExtendedBlocks.PLACED_BOOKS.get(), new BlockItemUseContext(blockusecontext))) {
-					event.getPlayer().swing(Hand.MAIN_HAND, true);
+					event.getPlayer().swing(event.getHand(), true);
 					event.setCanceled(true);
 					return;
 				}
@@ -253,9 +253,19 @@ public class WorldEventHandlers {
 			if (state.getBlock() instanceof BellBlock) {
 				BellBlock bell = (BellBlock) state.getBlock();
 				bell.attemptToRing(level, checkPos, null);
-				event.getPlayer().swing(Hand.MAIN_HAND, true);
+				event.getPlayer().swing(event.getHand(), true);
 				event.setCanceled(true);
+				return;
 			}
+		}
+		if (clickedState.is(Blocks.BOOKSHELF)) {
+		    if (!level.isClientSide) {
+		    	PlayerEntity player = event.getPlayer();
+		        level.setBlock(event.getPos(), ExtendedBlocks.EXTENDED_BOOKSHELF.get().defaultBlockState(), 3);
+		        player.swing(event.getHand(), true);
+		    }
+		    event.setCanceled(true);
+		    return;
 		}
 	}
 

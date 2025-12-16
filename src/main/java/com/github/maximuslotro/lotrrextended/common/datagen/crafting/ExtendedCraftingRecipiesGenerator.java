@@ -2271,6 +2271,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.EREGION_LEGGINGS.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.EREGION_CHESTPLATE.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.EREGION_HELMET.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.EXTENDED_BOOKSHELF.get().getRegistryName().getPath());
 	}
 
 	@Override
