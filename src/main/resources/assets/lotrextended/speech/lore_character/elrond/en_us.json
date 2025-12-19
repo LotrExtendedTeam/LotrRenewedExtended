@@ -1,0 +1,149 @@
+{
+  "parent": "lotr:high_elves/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "My memory reaches back even to the Elder Days.",
+        "Eärendil was my sire, who was born in Gondolin before its fall; and my mother was Elwing, daughter of Dior, son of Lúthien of Doriath.",
+        "I have seen three ages in the West of the world, and many defeats, and many fruitless victories.",
+        "I was the herald of Gil-galad and marched with his host. I was at the Battle of Dagorlad before the Black Gate of Mordor, where we had the mastery: for the Spear of Gil-galad and the Sword of Elendil, Aeglos and Narsil, none could withstand.",
+        "I beheld the defeat of Sauron on the slopes of Orodruin, where Gil-galad died, and Elendil fell, and Narsil broke beneath him; but Sauron himself was overthrown, and Isildur cut the Ring from his hand with the hilt-shard of his father's sword, and took it for his own.",
+        "Fruitless did I call the victory of the Last Alliance? Not wholly so, yet it did not achieve its end. Sauron was diminished, but not destroyed.",
+        "The realm of Gondor long endured; and for a while its splendour grew, recalling somewhat of the might of Nu´ menor, ere it fell.",
+        "In the days of Isildur the Ruling Ring passed out of all knowledge, and the Three were released from its dominion; but now in this latter day they are in peril once more.",
+        "It is perilous to study too deeply the arts of the Enemy, for good or for ill.",
+        "The world has changed much since I last was on the westward roads.",
+        "Time was when a squirrel could go from tree to tree from what is now the Shire to Dunland west of Isengard. In those lands I journeyed once, and many things wild and strange I knew.",
+        "There are other powers and realms that you know not, and they are hidden from you.",
+        "The Shadow has crept now to the feet of the Mountains, and draws nigh even to the borders of the Greyflood; and under the Shadow all is dark to me.",
+        "Such is of the course of deeds that move the wheels of the world: small hands do them because they must, while the eyes of the great are elsewhere.",
+        "Our list of allies grows thin.",
+        "I was there 3000 years ago. I was there the day the strength of men failed.",
+        "The sea call us home, yet I must remain until the last of my people depart.",
+        "Men are weak. The Blood of Númenor is all but spent, its pride and dignity forgotten.",
+        "We hold many relics of The West here in Imladris.",
+        "Imladris fought alongside the Kingdom of Arnor long ago. Now the Kingdom is ruined and its people scattered, but many of their relics are held here."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "What brings you to me?",
+        "I have long forseen your coming, what brings you to my Homely House?",
+        "What tidings do you bring to the land of Imladris?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+        "biome": "#home"
+      },
+      "lines": [
+        "Welcome to the last Homely House in Middle-earth, #p.",
+        "May the stars shine upon your face!",
+        "Welcome to the House of Rivendell, #p.",
+        "Welcome to the valley of Imladris, the last Homely House of elves east of the Sea.",
+        "I have kept watch over this valley for many centuries.",
+        "You are always welcome in Imladris, #p.",
+        "The darkness that grows in the shadows will never find itself here, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord"
+      },
+      "lines": [
+        "Dark forces move against us, the Nazgûl begin to prowl the lands of Eriador."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=noble"
+      },
+      "lines": [
+        "Ai! Mae govannen, arben na Imladris!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+        "You have served my house well, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north"
+      },
+      "lines": [
+        "Long have I been friends with the Dúnedain of the North.",
+        "The Dúnedain are the last of Númenor's once great people.",
+        "Ai! Mae govannen Dúnadan! Welcome to Imladris!",
+        "The Dúnedain of the North have always been welcome in my house.",
+        "I hold many relics of the Dúnedain here in Imladris.",
+        "The Sceptre of Annúminas is but one of the relics of Arnor still held in Imladris."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "No evil may set foot in Imladris!",
+        "You may not enter Rivendell.",
+        "#p, you may not set foot in Rivendell!",
+        "The Enemy has no hold over Imladris!",
+        "Your darkness shall not poison the Last Homely House!",
+        "Na Imladris!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "The Enemy has no hold over Imladris!",
+        "We suffer no evil in Imladris!",
+        "You may not bring evil here, #p!",
+        "Your shadow shall not poison our homely house!",
+        "Who brings to us this token of doom?",
+        "We shall not allow evil to enter our realm. Leave now or face our wrath!",
+        "You bring great evil here, #p. You can go no further.",
+        "Leave, #p, or face the might of our arrows!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home"
+      },
+      "lines": [
+        "No longer are you are welcome in our land!",
+        "I despair that we ever sheltered you in Imladris!",
+        "Bitterly now I regret welcoming you into Imladris!"
+      ]
+    }
+  ]
+}
