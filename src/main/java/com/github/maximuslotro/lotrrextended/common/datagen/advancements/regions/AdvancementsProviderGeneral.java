@@ -18,6 +18,7 @@ import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.IRequirementsStrategy;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.RegistryObject;
@@ -129,7 +130,7 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 					"gray_warg", ExtendedItems.GRAY_WARG_HELMET.get(), ExtendedItems.GRAY_WARG_CHESTPLATE.get(), ExtendedItems.GRAY_WARG_LEGGINGS.get(), ExtendedItems.GRAY_WARG_BOOTS.get()), 
 					"warg", ExtendedItems.BROWN_WARG_HELMET.get(), ExtendedItems.BROWN_WARG_CHESTPLATE.get(), ExtendedItems.BROWN_WARG_LEGGINGS.get(), ExtendedItems.BROWN_WARG_BOOTS.get()), 
 					"black_warg", ExtendedItems.BLACK_WARG_HELMET.get(), ExtendedItems.BLACK_WARG_CHESTPLATE.get(), ExtendedItems.BLACK_WARG_LEGGINGS.get(), ExtendedItems.BLACK_WARG_BOOTS.get())
-				.requirements(IRequirementsStrategy.OR).parent(base));
+				.requirements(IRequirementsStrategy.OR).parent(warg_slayer));
 
 		Advancement white_warg_armor = build(false, data(ExtendedItems.WHITE_WARG_CHESTPLATE.get(), "super_master_hunter", FrameType.CHALLENGE)
 				.setTitle("Got the Drip").setDescription("Acquire a full set of White Warg Fur armor."),
@@ -217,6 +218,25 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 			.setTitle("Shared Dominion").setDescription("Grant land rights to trusted companions."),
 			addStringTrigger(make(), "bannerOthers").parent(conqueror));
 
+		Advancement drunkard = build(true, data(LOTRItems.ALE.get(), "drunkard", FrameType.TASK)
+				.setTitle("Drunkard").setDescription("Suffer the effects of an alcoholic drink."),
+				addDrinkDurationTrigger(make(), 0).parent(base));
+
+		Advancement hooligan = build(true, data(LOTRItems.ALE.get(), "hooligan", FrameType.TASK)
+				.setTitle("Hooligan").setDescription("Kill a foe while drunk."),
+				addKillEntityPlayerEffectTrigger(make(), Effects.CONFUSION).parent(drunkard));
+
+		Advancement tipsy = build(false, data(LOTRItems.MEAD.get(), "tipsy", FrameType.TASK)
+				.setTitle("Tipsy").setDescription("Drink a very strong drink."),
+				addDrinkDurationTrigger(make(), 120).parent(drunkard));
+
+		Advancement seasoned_drinker = build(false, data(LOTRItems.RUM.get(), "seasoned_drinker", FrameType.TASK)
+				.setTitle("Seasoned Drinker").setDescription("Start to build an alcohol tolerance."),
+				addDrinkToleranceTrigger(make(), 100).parent(tipsy));
+
+		Advancement alcoholism = build(true, data(LOTRItems.VODKA.get(), "alcoholism", FrameType.TASK)
+				.setTitle("Alcoholism").setDescription("Achieve a fearsome level of alcohol tolerance."),
+				addDrinkToleranceTrigger(make(), 500).parent(seasoned_drinker));//guessing the legacy value though trial and error
 	}
 
 	@Override

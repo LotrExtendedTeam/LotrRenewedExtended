@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:general/drunkard",
+  "display": {
+    "icon": {
+      "item": "lotr:ale"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.general.hooligan.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.hooligan.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_entity": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "killing_blow": {
+          "source_entity": {
+            "effects": {
+              "minecraft:nausea": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_entity"
+    ]
+  ]
+}

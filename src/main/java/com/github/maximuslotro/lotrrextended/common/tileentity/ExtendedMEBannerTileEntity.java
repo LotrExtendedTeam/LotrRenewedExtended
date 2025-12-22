@@ -84,6 +84,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 						}else if(protectionType == ExtendedBannerProtectionOwners.FACTION) {
 							ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(player, "bannerFaction");
 						}
+						if(!protectionWhitelist.isEmpty()) {
+							ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(player, "bannerOthers");
+						}
 					}
 					firstTick = true;
 				}
