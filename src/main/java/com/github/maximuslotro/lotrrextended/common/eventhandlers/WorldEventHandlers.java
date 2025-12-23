@@ -2,10 +2,12 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.entity.npc.ExtendedLoreEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
@@ -28,6 +30,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.ChainBlock;
 import net.minecraft.block.EnchantingTableBlock;
 import net.minecraft.entity.EntitySize;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -121,10 +124,6 @@ public class WorldEventHandlers {
 	 */
 	@SubscribeEvent
 	public static void handleCaptainTraderDeath$Extended(LivingDeathEvent event) {
-		if (!(event.getEntity() instanceof ExtendedTraderEntity || event.getEntity() instanceof ExtendedCaptainEntity)) {
-			return;
-		}
-
 		// If an NPC is a wandering trader, no respawns, even it is a captain
 		if(event.getEntity() instanceof ExtendedTraderEntity && ((ExtendedNPCEntity) event.getEntity()).getTraderInfo().isTraderCurrentlyWandering()) {
 			ExtendedWanderingTraderEntity trader = (ExtendedWanderingTraderEntity) event.getEntity();
@@ -133,7 +132,7 @@ public class WorldEventHandlers {
 			}
 
 			AxisAlignedBB initial = new AxisAlignedBB(event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(),
-				event.getEntity().getX() + 1, event.getEntity().getY() + 1, event.getEntity().getZ() + 1);
+					event.getEntity().getX() + 1, event.getEntity().getY() + 1, event.getEntity().getZ() + 1);
 			List<NPCEntity> potentialEscorts = event.getEntity().level.getEntitiesOfClass(NPCEntity.class, initial.inflate(256));
 
 			for (NPCEntity entity : potentialEscorts) {
@@ -149,36 +148,37 @@ public class WorldEventHandlers {
 			}
 			return;
 		}else {
-			NPCEntity npc = (NPCEntity)event.getEntity();
-			// Check if entity has persistence to respawn, despawnable npcs will fail this check
-			// Also check if spawner spawned npc should respawn, persistable but permanently killable npcs will fail this check
-			// If a persistable npc is spawned via egg or commands, it will bypass this check and will be respawnable
-			if(!npc.isPersistenceRequired() || npc.getPersistentData().contains("ExtendedRespawnOnDeath") && !npc.getPersistentData().getBoolean("ExtendedRespawnOnDeath")) {
-				return; //Let entity die
-			}
-			// Make entity respawner
-			ExtendedRespawnerEntity respawnerEntity = new ExtendedRespawnerEntity(npc.level);
-			//respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
-			respawnerEntity.moveTo(npc.getX(), npc.getY()+npc.getBbHeight()+1, npc.getZ());
+			if(event.getEntity() instanceof MobEntity) {
+				MobEntity mob = (MobEntity) event.getEntity();
+				if((mob.isPersistenceRequired() && (mob instanceof ExtendedTraderEntity || mob instanceof ExtendedCaptainEntity || mob instanceof ExtendedLoreEntity))
+						|| (mob.getPersistentData().contains("ExtendedRespawn") && mob.getPersistentData().getBoolean("ExtendedRespawn")) 
+						|| (mob.getPersistentData().contains("ExtendedRespawnOnDeath") && mob.getPersistentData().getBoolean("ExtendedRespawnOnDeath"))) {
+					ExtendedLog.info("Spawned entity respawner");
+					// Make entity respawner
+					ExtendedRespawnerEntity respawnerEntity = new ExtendedRespawnerEntity(mob.level);
+					//respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
+					respawnerEntity.moveTo(mob.getX(), mob.getY()+mob.getBbHeight(), mob.getZ());
 
-			//Set entity Type
-			respawnerEntity.setEntityType(npc.getType());
+					//Set entity Type
+					respawnerEntity.setEntityType(mob.getType());
 
-			//Save trader trades
-			CompoundNBT compound =  new CompoundNBT();
-			if(npc instanceof ExtendedTraderEntity) {
-				((ExtendedTraderEntity) npc).getTraderData().writeToNbt(compound);
-			}
-			if(npc instanceof ExtendedCaptainEntity) {
-				// IDK maybe captains have data to save in the future
-			}
-			respawnerEntity.setEntityData(compound);
+					//Save trader trades
+					CompoundNBT compound =  new CompoundNBT();
+					if(mob instanceof ExtendedTraderEntity) {
+						((ExtendedTraderEntity) mob).getTraderData().writeToNbt(compound);
+					}
+					if(mob instanceof ExtendedCaptainEntity) {
+						// IDK maybe captains have data to save in the future
+					}
+					respawnerEntity.setEntityData(compound);
 
-			//Save Trader Home info
-			if(npc.hasRestriction()){
-				respawnerEntity.setHomeInfo(npc.getRestrictCenter(), (int)npc.getRestrictRadius());
+					//Save Trader Home info
+					if(mob.hasRestriction()){
+						respawnerEntity.setHomeInfo(mob.getRestrictCenter(), (int)mob.getRestrictRadius());
+					}
+					mob.level.addFreshEntity(respawnerEntity);
+				}
 			}
-			npc.level.addFreshEntity(respawnerEntity);
 		}
 	}
 	/**
@@ -237,19 +237,19 @@ public class WorldEventHandlers {
 			BlockPos checkPos = event.getPos().above();
 			BlockState state = level.getBlockState(checkPos);
 			int steps = 0;
-		    int maxSteps = ExtendedServerConfig.bellRingChainMaxLength.get();
-		    int worldTop = level.getMaxBuildHeight();  // get build limit
-		    while (state.getBlock() instanceof ChainBlock) {
-		        if (checkPos.getY() >= worldTop) {
-		            break;
-		        }
-		        if (steps >= maxSteps) {
-		            break;
-		        }
-		        checkPos = checkPos.above();
-		        state = level.getBlockState(checkPos);
-		        steps++;
-		    }
+			int maxSteps = ExtendedServerConfig.bellRingChainMaxLength.get();
+			int worldTop = level.getMaxBuildHeight();  // get build limit
+			while (state.getBlock() instanceof ChainBlock) {
+				if (checkPos.getY() >= worldTop) {
+					break;
+				}
+				if (steps >= maxSteps) {
+					break;
+				}
+				checkPos = checkPos.above();
+				state = level.getBlockState(checkPos);
+				steps++;
+			}
 			if (state.getBlock() instanceof BellBlock) {
 				BellBlock bell = (BellBlock) state.getBlock();
 				bell.attemptToRing(level, checkPos, null);
@@ -259,13 +259,13 @@ public class WorldEventHandlers {
 			}
 		}
 		if (clickedState.is(Blocks.BOOKSHELF)) {
-		    if (!level.isClientSide) {
-		    	PlayerEntity player = event.getPlayer();
-		        level.setBlock(event.getPos(), ExtendedBlocks.EXTENDED_BOOKSHELF.get().defaultBlockState(), 3);
-		        player.swing(event.getHand(), true);
-		    }
-		    event.setCanceled(true);
-		    return;
+			if (!level.isClientSide) {
+				PlayerEntity player = event.getPlayer();
+				level.setBlock(event.getPos(), ExtendedBlocks.EXTENDED_BOOKSHELF.get().defaultBlockState(), 3);
+				player.swing(event.getHand(), true);
+			}
+			event.setCanceled(true);
+			return;
 		}
 	}
 

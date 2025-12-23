@@ -1,5 +1,7 @@
 package lotr.common.entity.npc;
 
+import com.github.maximuslotro.lotrrextended.common.entity.npc.ExtendedLoreEntity;
+
 import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
@@ -17,14 +19,14 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedElrondEntity extends ExtendedAbstractCloakingElfEntity {
+public class ExtendedElrondEntity extends ExtendedAbstractCloakingElfEntity implements ExtendedLoreEntity{
 
 	public ExtendedElrondEntity(EntityType<? extends ExtendedElrondEntity> type, World w) {
 		super(type, w);
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return RivendellWarriorEntity.regAttrs().add(Attributes.MAX_HEALTH, 30.0D).add(Attributes.ARMOR, 9.0D);
+		return RivendellWarriorEntity.regAttrs().add(Attributes.MAX_HEALTH, 40.0D).add(Attributes.ARMOR, 9.0D);
 	}
 
 	@Override
@@ -68,4 +70,5 @@ public class ExtendedElrondEntity extends ExtendedAbstractCloakingElfEntity {
 	public ResourceLocation getCloakTextureLocation() {
 		return null;
 	}
+
 }
