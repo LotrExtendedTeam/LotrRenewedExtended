@@ -134,7 +134,7 @@ public class ExtendedBanditEntity extends ManEntity {
 
     @Override
     protected void addNPCTargetingAI() {
-        this.addNonAggressiveTargetingGoals();
+        this.addAggressiveTargetingGoals();
     }
 
     public boolean hasStolen() {

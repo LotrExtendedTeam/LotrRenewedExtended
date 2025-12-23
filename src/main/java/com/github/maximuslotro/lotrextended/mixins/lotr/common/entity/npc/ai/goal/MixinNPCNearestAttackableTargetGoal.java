@@ -6,16 +6,20 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 import lotr.common.data.LOTRLevelData;
+import lotr.common.entity.npc.ExtendedBanditEntity;
+import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.ai.goal.NPCNearestAttackableTargetGoal;
 import lotr.common.fac.AlignmentPredicates;
 import lotr.common.fac.FactionPointers;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
 /**
  * Mixin applied to {@link NPCNearestAttackableTargetGoal} to modify the targeting behavior of NPCs.
  * <p>
  * Ensures that hostile-aligned NPCs correctly target players, even when vanilla alignment logic fails.
+ * Also causes hired units to target bandits
  * </p>
  *
  * @reason Fixes an issue where hostile-aligned mobs would not attack players as intended.
@@ -38,6 +42,31 @@ public class MixinNPCNearestAttackableTargetGoal {
 	@Final
 	private NPCEntity theNPC;
 
+	/**
+	 * Make hired units target bandits
+	 * 
+	 * @author maximuslotro
+	 * @reason Make hired units target bandits
+	 * @Overwrite (remap=false)
+	 * @param entity The {@link LivingEntity} being evaluated as a target.
+	 * @return {@code true} if the entity should be targeted
+	 */
+	@Overwrite(remap=false)
+	protected boolean canNPCTarget(LivingEntity entity) {
+		if (entity != theNPC.getVehicle() && !theNPC.hasPassenger(entity)) {
+			if(entity instanceof PlayerEntity) {
+				return isPlayerSuitableAlignmentTarget((PlayerEntity) entity);
+			}
+			// Extended Start
+			if(entity instanceof ExtendedBanditEntity && ((ExtendedNPCEntity)theNPC).getUnitInfo().isNpcActiveDuty()) {
+				return ((ExtendedNPCEntity)theNPC).getUnitInfo().getOrders().doesOrderAllowsMovement();
+			}
+			// Extended End
+			return true;
+		}
+		return false;
+	}
+	
 	/**
 	 * Overwrites the method that determines if a player is a suitable alignment target.
 	 * <p>
