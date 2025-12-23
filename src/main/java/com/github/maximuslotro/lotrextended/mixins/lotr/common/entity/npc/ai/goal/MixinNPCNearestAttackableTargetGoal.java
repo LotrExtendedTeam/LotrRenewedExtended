@@ -58,8 +58,8 @@ public class MixinNPCNearestAttackableTargetGoal {
 				return isPlayerSuitableAlignmentTarget((PlayerEntity) entity);
 			}
 			// Extended Start
-			if(entity instanceof ExtendedBanditEntity && ((ExtendedNPCEntity)theNPC).getUnitInfo().isNpcActiveDuty()) {
-				return ((ExtendedNPCEntity)theNPC).getUnitInfo().getOrders().doesOrderAllowsMovement();
+			if(entity instanceof ExtendedBanditEntity) {
+				return ((ExtendedNPCEntity)theNPC).getUnitInfo().isNpcActiveDuty() && ((ExtendedNPCEntity)theNPC).getUnitInfo().getOrders().doesOrderAllowsMovement();
 			}
 			// Extended End
 			return true;
