@@ -22,8 +22,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedServerHiredUnitProfile {
@@ -405,7 +403,9 @@ public class ExtendedServerHiredUnitProfile {
 			}
 			CompoundNBT compoundnbt = stack.getOrCreateTag();
 			compoundnbt.putBoolean("IsBaseArmor", true);
-			return stack.setHoverName(new TranslationTextComponent(name).withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
+			// Only save item localization title 
+			compoundnbt.putString("langTitle", name);
+			return stack;//.setHoverName(new TranslationTextComponent(name).withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
 		}
 		/**
 		 * Sets the idle equipment pool to match the melee pool.
