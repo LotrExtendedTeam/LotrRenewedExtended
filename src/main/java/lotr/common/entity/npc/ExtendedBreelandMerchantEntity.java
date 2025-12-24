@@ -43,7 +43,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-public class ExtendedBreelandMerchantEntity extends BreeManEntity implements ExtendedWanderingTraderEntity {
+public class ExtendedBreelandMerchantEntity extends BreeManEntity  implements ExtendedNPCEntitySettings, ExtendedWanderingTraderEntity {
 
     private static final SpawnEquipmentTable WEAPONS;
 
@@ -256,5 +256,10 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity implements Ext
     public int getFactionColor() {
         return this.getFaction().getColor();
     }
+
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
+	}
 }
 

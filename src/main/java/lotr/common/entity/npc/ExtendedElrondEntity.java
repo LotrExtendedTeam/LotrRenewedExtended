@@ -70,5 +70,4 @@ public class ExtendedElrondEntity extends ExtendedAbstractCloakingElfEntity impl
 	public ResourceLocation getCloakTextureLocation() {
 		return null;
 	}
-
 }

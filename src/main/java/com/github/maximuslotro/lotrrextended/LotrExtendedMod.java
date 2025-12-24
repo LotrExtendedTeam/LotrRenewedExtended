@@ -94,7 +94,6 @@ public class LotrExtendedMod{
 		DevEventHandlers.registerDevListender(modBus, forgeBus);
 		forgeBus.register(ExtendedServerModifierEventHandlers.class);
 		forgeBus.register(ForgeInventoryEvents.class);
-		forgeBus.register(HiredUnitEventHandlers.class);
 		forgeBus.register(WorldEventHandlers.class);
 		ExtendedTapestryType.register(modBus);
 		ExtendedBlockStateProviderTypes.register(modBus);

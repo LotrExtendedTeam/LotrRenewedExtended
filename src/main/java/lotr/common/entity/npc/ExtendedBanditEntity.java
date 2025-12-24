@@ -35,7 +35,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExtendedBanditEntity extends ManEntity {
+public class ExtendedBanditEntity extends ManEntity implements ExtendedNPCEntitySettings {
     private final ItemStackHandler inventory = new ItemStackHandler(9); // 9 slots
     private final List<ItemStack> stolenItems = new ArrayList<>();
     private boolean hasStolen = false;
@@ -153,4 +153,9 @@ public class ExtendedBanditEntity extends ManEntity {
     public static MutableAttribute createAttributes() {
         return AbstractMannishEntity.regAttrs().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.22D);
     }
+
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
+	}
 }

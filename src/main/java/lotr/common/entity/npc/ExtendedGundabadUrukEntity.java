@@ -15,7 +15,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedGundabadUrukEntity extends GundabadOrcEntity {
+public class ExtendedGundabadUrukEntity extends GundabadOrcEntity implements ExtendedNPCEntitySettings {
 	private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(
 		ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedItems.GUNDABAD_URUK_CLEAVER,
 		ExtendedItems.GUNDABAD_URUK_CLEAVER, ExtendedItems.GUNDABAD_URUK_CLEAVER,
@@ -53,5 +53,10 @@ public class ExtendedGundabadUrukEntity extends GundabadOrcEntity {
 
 	public static MutableAttribute createAttributes() {
 		return OrcEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0D).add(Attributes.MOVEMENT_SPEED, 0.22D);
+	}
+
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
 	}
 }

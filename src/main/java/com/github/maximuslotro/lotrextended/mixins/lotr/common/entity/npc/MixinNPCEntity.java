@@ -13,17 +13,21 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredHurtByTargetGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerAttackedEntityTargetGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerHurtByEntityTargetGoal;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedNearestAttackableTargetNPCGoal;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenCaptainPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.google.common.base.Predicates;
 
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedNPCEntitySettings;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.entity.npc.ai.goal.ExtendedNPCUnitHurtByTargetGoal;
+import lotr.common.entity.npc.ai.NPCTargetSelector;
 import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
@@ -53,7 +57,7 @@ import net.minecraft.world.World;
  * @Mixin (NPCEntity.class)
  * */
 @Mixin(NPCEntity.class)
-public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedNPCEntity {
+public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedNPCEntity, ExtendedNPCEntitySettings {
 	/**
 	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param type A placeholder variable instance of CreatureEntity
@@ -94,6 +98,20 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Shadow(remap = false)
 	protected boolean spawnRequiresDarkness;
+
+	/**
+	 * Get if this NPC has had targeting goals set
+	 * @Shadow (remap = false)
+	 * */
+	@Shadow(remap = false)
+	protected boolean addedTargetingGoals;
+
+	/**
+	 * Get if this NPC has aggressive AI
+	 * @Shadow (remap = false)
+	 * */
+	@Shadow(remap = false)
+	protected boolean isTargetSeeker;
 
 	/**
 	 * Check if NPC can spawn on a block
@@ -139,6 +157,15 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Shadow(remap = false)
 	public void setTalkingToEntity(LivingEntity entity, int time) {}
+
+	/**
+	 * Add NPC targeting goals
+	 * @Shadow (remap = false)
+	 * @param seekTargets If the entity should be aggressive
+	 * @return The top index of the added targeting goals
+	 * */
+	@Shadow(remap = false)
+	private int addTargetingGoals(boolean seekTargets) {return 0;}
 
 	/**
 	 * @reason Save additional entity data modules
@@ -218,6 +245,15 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		return unitInfo;
 	}
 
+	/**
+	 * Determines if this entity should use extended targeting goals
+	 * @return TRUE if the targeting goals should use extended goals
+	 * */
+	@Override
+	public boolean addExtendedGoals() {
+		return false;
+	}
+
 	@Override
 	public ItemStack getValidOtherFood() {
 		if(unitInfo.isNpcActiveDuty()) {
@@ -280,8 +316,8 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 					ci.setReturnValue(ActionResultType.PASS);
 				}else {
 					if (this.level.isClientSide()) {
-			        	ExtendedPacketHandler.sendToServer(new ExtendedCOpenCaptainPacket(this.getId()));
-			        }
+						ExtendedPacketHandler.sendToServer(new ExtendedCOpenCaptainPacket(this.getId()));
+					}
 					ci.setReturnValue(ActionResultType.sidedSuccess(this.level.isClientSide()));
 				}
 			}
@@ -367,6 +403,73 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 			ci.cancel();// Hired units should only handle it's own equipment.
 		}
 	}
+	/**
+	 * Overrides the method to add aggressive targeting goals for NPCs,
+	 * injecting extended targeting logic at the head of the goal list.
+	 * 
+	 * @author maximuslotro
+	 * @reason to inject extended targeting goals at the head
+	 * @return the current top goal index after adding aggressive goals
+	 */
+	@Overwrite(remap = false)
+	protected final int addAggressiveTargetingGoals() {
+	    if (addExtendedGoals()) {
+	        return this.addExtendedTargetingGoals(true);
+	    }
+	    return this.addTargetingGoals(true);
+	}
+
+	/**
+	 * Overrides the method to add non-aggressive targeting goals for NPCs,
+	 * injecting extended targeting logic at the head of the goal list.
+	 * 
+	 * @author maximuslotro
+	 * @reason to inject extended targeting goals at the head
+	 * @return the current top goal index after adding non-aggressive goals
+	 */
+	@Overwrite(remap = false)
+	protected final int addNonAggressiveTargetingGoals() {
+	    if (addExtendedGoals()) {
+	        return this.addExtendedTargetingGoals(false);
+	    }
+	    return this.addTargetingGoals(false);
+	}
+
+	/**
+	 * Adds extended targeting goals to the NPC's {@link #targetSelector}.
+	 * <p>
+	 * The following goals are added:
+	 * <ul>
+	 *     <li>{@link ExtendedHiredPlayerHurtByEntityTargetGoal}</li>
+	 *     <li>{@link ExtendedHiredPlayerAttackedEntityTargetGoal}</li>
+	 *     <li>{@link ExtendedHiredHurtByTargetGoal}</li>
+	 *     <li>{@link ExtendedNearestAttackableTargetNPCGoal} for players (if {@code seekTargets})</li>
+	 *     <li>{@link ExtendedNearestAttackableTargetNPCGoal} for other NPCs (if {@code seekTargets})</li>
+	 * </ul>
+	 * This method can only be called once per NPC instance.
+	 *
+	 * @param seekTargets whether to include nearest attackable target goals
+	 * @return the highest goal index added (always 5)
+	 * @throws IllegalStateException if called more than once
+	 */
+	@Unique
+	private int addExtendedTargetingGoals(boolean seekTargets) {
+	    if (this.addedTargetingGoals) {
+	        throw new IllegalStateException("Mod development error - NPC addTargetingGoals can only be called once!");
+	    } else {
+	        this.addedTargetingGoals = true;
+	        this.targetSelector.addGoal(1, new ExtendedHiredPlayerHurtByEntityTargetGoal((NPCEntity)(Object)this));
+	        this.targetSelector.addGoal(2, new ExtendedHiredPlayerAttackedEntityTargetGoal((NPCEntity)(Object)this));
+	        this.targetSelector.addGoal(3, new ExtendedHiredHurtByTargetGoal((NPCEntity)(Object)this));
+	        if (seekTargets) {
+	            this.targetSelector.addGoal(4, new ExtendedNearestAttackableTargetNPCGoal<PlayerEntity>((NPCEntity)(Object)this, PlayerEntity.class, true, Predicates.alwaysTrue()));
+	            this.targetSelector.addGoal(5, new ExtendedNearestAttackableTargetNPCGoal<NPCEntity>((NPCEntity)(Object)this, NPCEntity.class, true, new NPCTargetSelector((NPCEntity)(Object)this)));
+	        }
+
+	        this.isTargetSeeker = seekTargets;
+	        return 5;
+	    }
+	}
 
 	/**
 	 * Injects custom targeting goals for NPCs at the start of the entity's goal selector.
@@ -377,9 +480,9 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * @param index       The initial goal index prior to modification.
 	 */
 	@Inject(method = "addTargetingGoals(Z)I", 
-		at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.BEFORE, 
-		ordinal = 0, remap = true),
-		locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.BEFORE, 
+			ordinal = 0, remap = true),
+			locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
 	private void extended$addAdditionalTargetingGoals(boolean seekTargets, CallbackInfoReturnable<Integer> cir, int index) {
 		this.targetSelector.addGoal(1, new ExtendedHiredPlayerHurtByEntityTargetGoal((NPCEntity)(Object)this));
 		this.targetSelector.addGoal(2, new ExtendedHiredPlayerAttackedEntityTargetGoal((NPCEntity)(Object)this));
@@ -387,7 +490,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	}
 
 	/**
-	 * Replaces the default {@code HurtByTargetGoal} with {@link ExtendedNPCUnitHurtByTargetGoal} 
+	 * Replaces the default {@code HurtByTargetGoal} with {@link ExtendedHiredHurtByTargetGoal} 
 	 * during goal initialization, adding custom logic to prevent NPC units hired by the same player 
 	 * from attacking each other unless explicitly allowed.
 	 * <p>
@@ -396,13 +499,13 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 *
 	 * @ModifyArg(method = "addTargetingGoals(Z)I", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", ordinal = 0, remap = true), index = 1, remap = false)
 	 * @param goal The original goal instance being registered (usually a {@code HurtByTargetGoal}).
-	 * @return A new instance of {@link ExtendedNPCUnitHurtByTargetGoal} with unit-aware, friendly-fire-safe behavior.
+	 * @return A new instance of {@link ExtendedHiredHurtByTargetGoal} with unit-aware, friendly-fire-safe behavior.
 	 */
 	@ModifyArg(method = "addTargetingGoals(Z)I",
-		at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", 
-		ordinal = 0, remap = true), index = 1, remap = false)
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", 
+			ordinal = 0, remap = true), index = 1, remap = false)
 	private Goal extended$replaceHurtGoalWithUnitRespectingGoal(Goal goal) {
-		return new ExtendedNPCUnitHurtByTargetGoal((NPCEntity)(Object)this);
+		return new ExtendedHiredHurtByTargetGoal((NPCEntity)(Object)this);
 	}
 
 	/**
@@ -417,9 +520,9 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * @param index       The targeting goal index after custom goals have been injected.
 	 */
 	@Inject(method = "addTargetingGoals(Z)I", 
-		at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.AFTER, 
-		ordinal = 0, remap = true),
-		locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.AFTER, 
+			ordinal = 0, remap = true),
+			locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
 	private void extended$fixTargetingGoalsOffset(boolean seekTargets, CallbackInfoReturnable<Integer> cir, int index) {
 		index = 4;
 	}

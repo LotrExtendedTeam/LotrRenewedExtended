@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity implements ExtendedCaptainEntity {
+public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity  implements ExtendedNPCEntitySettings, ExtendedCaptainEntity {
 
 	public ExtendedDwarvenCommanderEntity(EntityType<? extends ExtendedDwarvenCommanderEntity> type, World w) {
 		super(type, w);
@@ -67,5 +67,10 @@ public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity implements E
 		return java.util.Arrays.asList(ExtendedHiredUnitTypes.DWARF, 
 			ExtendedHiredUnitTypes.DWARF_WARRIOR, 
 			ExtendedHiredUnitTypes.DWARF_ARCHER);
+	}
+
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
 	}
 }

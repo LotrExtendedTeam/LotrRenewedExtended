@@ -34,7 +34,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
 
-public class ExtendedTolkienEntity extends ManEntity {
+public class ExtendedTolkienEntity extends ManEntity implements ExtendedNPCEntitySettings {
 	public ExtendedTolkienEntity(EntityType<ExtendedTolkienEntity> type, World world) {
 		super(type, world);
 	}
@@ -130,5 +130,10 @@ public class ExtendedTolkienEntity extends ManEntity {
 			}
 		}
 		return spawned;
+	}
+
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
 	}
 }

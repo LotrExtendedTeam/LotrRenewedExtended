@@ -35,7 +35,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implements ExtendedTraderEntity {
+public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
     int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
@@ -206,5 +206,10 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity implement
 	@Override
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.GUNDABAD_TRADER;
+	}
+
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
 	}
 }

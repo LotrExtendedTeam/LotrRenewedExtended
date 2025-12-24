@@ -44,7 +44,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedOddmentCollectorEntity extends ManEntity implements ExtendedWanderingTraderEntity {
+public class ExtendedOddmentCollectorEntity extends ManEntity  implements ExtendedNPCEntitySettings, ExtendedWanderingTraderEntity {
 
     private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(LOTRItems.IRON_DAGGER, LOTRItems.BRONZE_DAGGER);
 
@@ -259,5 +259,10 @@ public class ExtendedOddmentCollectorEntity extends ManEntity implements Extende
     public int getFactionColor() {
         return this.getFaction().getColor();
     }
+
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
+	}
 }
 
