@@ -29,7 +29,6 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.model.RenderMaterial;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedBlockRenderer {
@@ -131,11 +130,7 @@ public class ExtendedBlockRenderer {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
 			}
 			if(block instanceof ExtendedCrystalChandelierBlock) {
-				if(ModList.get().isLoaded("optfine")){
-					RenderTypeLookup.setRenderLayer(block, RenderType.translucent());
-				}else {
-					RenderTypeLookup.setRenderLayer(block, RenderType.solid());
-				}
+				RenderTypeLookup.setRenderLayer(block, RenderType.solid());
 			}
 			if (block instanceof ExtendedLanternBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());

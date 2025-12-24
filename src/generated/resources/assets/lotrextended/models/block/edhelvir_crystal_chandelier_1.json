@@ -1,9 +1,7 @@
 {
   "parent": "lotrextended:block/template_hanging_crystal_1",
   "textures": {
-    "center": "lotrextended:block/crystal_center_stone",
-    "chain": "minecraft:block/chain",
-    "crystal": "lotr:block/edhelvir_crystal",
+    "crystal": "lotrextended:block/edhelvir_crystal_chandelier",
     "particle": "lotr:block/edhelvir_crystal"
   }
 }

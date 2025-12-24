@@ -395,11 +395,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedCrystalChandelierBlock) {
 					if(block.getKey().contains("edhelvir")) {
-						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.getValue().get(), lotrLoc("block/edhelvir_crystal"));
+						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrLoc("block/edhelvir_crystal"));
 					}else if(block.getKey().contains("glowstone")) {
-						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.getValue().get(), lotrLoc("block/glowstone_crystal"));
+						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrLoc("block/glowstone_crystal"));
 					}else if(block.getKey().contains("gulduril")) {
-						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.getValue().get(), lotrLoc("block/gulduril_crystal"));
+						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrLoc("block/gulduril_crystal"));
 					}
 					continue;
 				}
@@ -1527,14 +1527,14 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+pot.getRegistryName().getPath()).parent(modelFile);
 	}
 
-	private void genCrystalChandelierBlock(ExtendedCrystalChandelierBlock crystal_chandelier, ResourceLocation texture) {
+	private void genCrystalChandelierBlock(ExtendedCrystalChandelierBlock crystal_chandelier, ResourceLocation fullTexture, ResourceLocation particle) {
 		registeredBlocks.add(crystal_chandelier);
 		ModelFile modelFile1 = models().withExistingParent("lotrextended:"+crystal_chandelier.getRegistryName().getPath()+"_1", lotrExtendedLoc("block/template_hanging_crystal_1"))
-				.texture("center", lotrExtendedLoc("block/crystal_center_stone")).texture("chain", mcLoc("block/chain")).texture("crystal", texture).texture("particle", texture);
+			.texture("crystal", fullTexture).texture("particle", particle);
 		ModelFile modelFile2 = models().withExistingParent("lotrextended:"+crystal_chandelier.getRegistryName().getPath()+"_2", lotrExtendedLoc("block/template_hanging_crystal_2"))
-			.texture("center", lotrExtendedLoc("block/crystal_center_stone")).texture("chain", mcLoc("block/chain")).texture("crystal", texture).texture("particle", texture);
+			.texture("crystal", fullTexture).texture("particle", particle);
 		ModelFile modelFile3 = models().withExistingParent("lotrextended:"+crystal_chandelier.getRegistryName().getPath()+"_3", lotrExtendedLoc("block/template_hanging_crystal_3"))
-			.texture("center", lotrExtendedLoc("block/crystal_center_stone")).texture("chain", mcLoc("block/chain")).texture("crystal", texture).texture("particle", texture);
+			.texture("crystal", fullTexture).texture("particle", particle);
 		ConfiguredModel[] variant1 = ConfiguredModel.allYRotations(modelFile1, 0, false);
 		ConfiguredModel[] variant2 = ConfiguredModel.allYRotations(modelFile2, 0, false);
 		ConfiguredModel[] variant3 = ConfiguredModel.allYRotations(modelFile3, 0, false);

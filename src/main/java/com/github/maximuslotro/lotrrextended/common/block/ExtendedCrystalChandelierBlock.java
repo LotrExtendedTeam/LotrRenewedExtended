@@ -15,10 +15,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ExtendedCrystalChandelierBlock extends Block {
 	private static final int maxTypes = 3;
@@ -46,6 +49,22 @@ public class ExtendedCrystalChandelierBlock extends Block {
 	}
 
 	@Override
+	public VoxelShape getVisualShape(BlockState p_230322_1_, IBlockReader p_230322_2_, BlockPos p_230322_3_, ISelectionContext p_230322_4_) {
+		return VoxelShapes.empty();
+	}
+
+	@Override
+	@OnlyIn(Dist.CLIENT)
+	public float getShadeBrightness(BlockState p_220080_1_, IBlockReader p_220080_2_, BlockPos p_220080_3_) {
+		return 1.0F;
+	}
+
+	@Override
+	public boolean propagatesSkylightDown(BlockState p_200123_1_, IBlockReader p_200123_2_, BlockPos p_200123_3_) {
+		return true;
+	}
+
+	@Override
 	public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos) {
 		return canSupportCenter(world, pos.above(), Direction.DOWN);
 	}
@@ -65,5 +84,5 @@ public class ExtendedCrystalChandelierBlock extends Block {
 			itemstack.hurtAndBreak(1, player, (p_226874_1_) -> {});
 		}
 		return ActionResultType.sidedSuccess(world.isClientSide);
-     }
+	}
 }
