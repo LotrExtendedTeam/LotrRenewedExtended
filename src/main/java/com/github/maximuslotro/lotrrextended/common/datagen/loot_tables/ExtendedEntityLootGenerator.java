@@ -6,7 +6,8 @@ import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
-import com.github.maximuslotro.lotrrextended.common.loot.conditions.ExtendedRemoveUnitCoinDrops;
+import com.github.maximuslotro.lotrrextended.common.loot.conditions.ExtendedRemoveFromUnitDrops;
+import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedModifierScrollSetter;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedSetWargFurType;
 
 import lotr.common.init.ExtendedEntities;
@@ -24,7 +25,6 @@ import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.LootTable.Builder;
 import net.minecraft.loot.RandomValueRange;
 import net.minecraft.loot.TableLootEntry;
 import net.minecraft.loot.conditions.EntityHasProperty;
@@ -63,6 +63,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	ResourceLocation foodItems;
 	ResourceLocation gundabadUrukEquipment;
 	ResourceLocation gundabadUrukArcherEquipment;
+	ResourceLocation scroll;
 	//Bases
 	ResourceLocation orcBase;
 	ResourceLocation elfBase;
@@ -109,161 +110,192 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	}
 
 	private void makePartTables() {
-		coins = makeQuickyBasePart("coins", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.SILVER_COIN_ONE.get(), 0, 3)
-			.when(ExtendedRemoveUnitCoinDrops.setRemoveUnitCoinsDropBuilder())));
-		coinsBandit = makeQuickyBasePart("coins_bandit", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.SILVER_COIN_ONE.get(), 12, 28)
-			.when(ExtendedRemoveUnitCoinDrops.setRemoveUnitCoinsDropBuilder())));
-		wargFur = makeQuickyBasePart("warg_fur", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.FUR.get(), 1, 3)
-			.apply(ExtendedSetWargFurType.setWargFurTypeBuilder())));
-		wargHead = makeQuickyBasePart("warg_head", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.BROWN_WARG_HELMET.get())
-			.apply(ExtendedSetWargFurType.setWargFurTypeBuilder())
-			.when(KilledByPlayer.killedByPlayer())
-			.when(RandomChance.randomChance(0.02F))));
-		orcBones = makeQuickyBasePart("orc_bones", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.ORC_BONE.get(), 0, 1)));
-		manBones = makeQuickyBasePart("man_bones", LootTable.lootTable().withPool(genSingleQuickyBuilder(Items.BONE, 0, 1)));
-		elfBones = makeQuickyBasePart("elf_bones", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.ELF_BONE.get(), 0, 1)));
-		hobbitBones = makeQuickyBasePart("hobbit_bones", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.HOBBIT_BONE.get(), 0, 1)));
-		dwarfBones = makeQuickyBasePart("dwarf_bones", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.DWARF_BONE.get(), 0, 1)));
-		wargBones = makeQuickyBasePart("warg_bones", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.WARG_BONE.get(), 0, 3)));
-		arrows = makeQuickyBasePart("arrows", LootTable.lootTable().withPool(genSingleQuickyBuilder(Items.ARROW, 1, 2)));
-		lembas = makeQuickyBasePart("elf_lembas", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.LEMBAS.get())));
-		shireHeather = makeQuickyBasePart("shire_heather", LootTable.lootTable().withPool(genSingleQuickyBuilder(LOTRItems.SHIRE_HEATHER.get())
+		coins = makeLootCommonPart("coins", LootTable.lootTable().withPool(genSinglePoolItem(ExtendedItems.SILVER_COIN_ONE.get())
+				.when(KilledByPlayer.killedByPlayer())//Requires player kill
+				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.125F, 0.125F))//Requires chance to spawn adding a looting modifier
+				.when(ExtendedRemoveFromUnitDrops.setRemoveFromUnitDropsBuilder())//Requires no hired units
+				.apply(SetCount.setCount(RandomValueRange.between(1, 7)))// Spawn between 1,7 of them
+				.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(1.5F, 2.5F)))));// Apply a looting multiplier 
+		coinsBandit = makeLootCommonPart("coins_bandit", LootTable.lootTable().withPool(genSinglePoolItemLooting(ExtendedItems.SILVER_COIN_ONE.get(), 12, 28)
+				.when(KilledByPlayer.killedByPlayer())//Requires player kill
+				.when(ExtendedRemoveFromUnitDrops.setRemoveFromUnitDropsBuilder())));//Requires no hired units
+		scroll = makeLootCommonPart("scroll", LootTable.lootTable().withPool(genSinglePoolItem(ExtendedItems.MODIFIER_SCROLL.get())
+				.when(KilledByPlayer.killedByPlayer())//Requires player kill
+				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.016666F, 0.00185F))//Requires chance to spawn adding a looting modifier
+				.when(ExtendedRemoveFromUnitDrops.setRemoveFromUnitDropsBuilder())//Requires no hired units
+				.apply(ExtendedModifierScrollSetter.random())));//Applies modifiers to scroll
+		wargFur = makeLootCommonPart("warg_fur", LootTable.lootTable().withPool(genSinglePoolItem(LOTRItems.FUR.get())
+				.apply(SetCount.setCount(RandomValueRange.between(1, 3)))
+				.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 0.5F)))
+				.apply(ExtendedSetWargFurType.setWargFurTypeBuilder())));//Applies warg fur color based on warg type
+		wargHead = makeLootCommonPart("warg_head", LootTable.lootTable().withPool(genSinglePoolItem(ExtendedItems.BROWN_WARG_HELMET.get())
+				.when(KilledByPlayer.killedByPlayer())//Requires player kill
+				.when(RandomChance.randomChance(0.02F))//Requires chance to spawn
+				.apply(ExtendedSetWargFurType.setWargFurTypeBuilder())));//Applies warg fur color based on warg type
+		orcBones = makeLootCommonPart("orc_bones", LootTable.lootTable().withPool(genSinglePoolItem(LOTRItems.ORC_BONE.get())
+				.apply(SetCount.setCount(RandomValueRange.between(0, 1)))
+				.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 0.5F)))));
+		manBones = makeLootCommonPart("man_bones", LootTable.lootTable().withPool(genSinglePoolItem(Items.BONE))
+				.apply(SetCount.setCount(RandomValueRange.between(0, 1)))
+				.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 0.5F))));
+		elfBones = makeLootCommonPart("elf_bones", LootTable.lootTable().withPool(genSinglePoolItem(LOTRItems.ELF_BONE.get())
+				.apply(SetCount.setCount(RandomValueRange.between(0, 1)))
+				.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 0.5F)))));
+		hobbitBones = makeLootCommonPart("hobbit_bones", LootTable.lootTable().withPool(genSinglePoolItem(LOTRItems.HOBBIT_BONE.get())
+				.apply(SetCount.setCount(RandomValueRange.between(0, 1)))
+				.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 0.5F)))));
+		dwarfBones = makeLootCommonPart("dwarf_bones", LootTable.lootTable().withPool(genSinglePoolItem(LOTRItems.DWARF_BONE.get())
+				.apply(SetCount.setCount(RandomValueRange.between(0, 1)))
+				.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 0.5F)))));
+		wargBones = makeLootCommonPart("warg_bones", LootTable.lootTable().withPool(genSinglePoolItem(LOTRItems.WARG_BONE.get())
+				.apply(SetCount.setCount(RandomValueRange.between(2, 3)))
+				.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 0.5F)))));
+		arrows = makeLootCommonPart("arrows", LootTable.lootTable().withPool(genSinglePoolItemLooting(Items.ARROW, 1, 2)));
+		lembas = makeLootCommonPart("elf_lembas", LootTable.lootTable().withPool(genSinglePoolItem(LOTRItems.LEMBAS.get())));
+		shireHeather = makeLootCommonPart("shire_heather", LootTable.lootTable().withPool(genSinglePoolItem(LOTRItems.SHIRE_HEATHER.get())
 				.when(KilledByPlayer.killedByPlayer())
 				.when(RandomChance.randomChance(0.10F))));
-		leatherHat = makeQuickyBasePart("leather_hat", LootTable.lootTable().withPool(genSingleQuickyBuilder(ExtendedItems.LEATHER_HAT.get())
+		leatherHat = makeLootCommonPart("leather_hat", LootTable.lootTable().withPool(genSinglePoolItem(ExtendedItems.LEATHER_HAT.get())
 				.when(KilledByPlayer.killedByPlayer())
 				.when(RandomChance.randomChance(0.10F))));
-		rareDwarfDrops = makeQuickyBasePart("dwarf_rare_drops", LootTable.lootTable().withPool(genSingleQuickyBuilder(Items.IRON_INGOT)
-				.add(genQuickyItemBuilder(LOTRItems.DWARVEN_STEEL_INGOT.get()))
-				.add(genQuickyItemBuilder(Items.GOLD_NUGGET, 1, 3))
-				.add(genQuickyItemBuilder(LOTRItems.SILVER_NUGGET.get(), 1, 3))));
-		pouch = makeQuickyBasePart("pouch", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
-				.add(genQuickyItemBuilder(LOTRItems.SMALL_POUCH.get()).setWeight(6))
-				.add(genQuickyItemBuilder(LOTRItems.MEDIUM_POUCH.get()).setWeight(3))
-				.add(genQuickyItemBuilder(LOTRItems.LARGE_POUCH.get()).setWeight(1))
-				.apply(SetPouchColorFromEntityFaction.setPouchColorFromEntityFactionBuilder(0.5F))
+		rareDwarfDrops = makeLootCommonPart("dwarf_rare_drops", LootTable.lootTable().withPool(genSinglePoolItem(Items.IRON_INGOT)
+				.add(genSingleItem(LOTRItems.DWARVEN_STEEL_INGOT.get()))
+				.add(genSingleItemLooting(Items.GOLD_NUGGET, 1, 3))
+				.add(genSingleItemLooting(LOTRItems.SILVER_NUGGET.get(), 1, 3))));
+		pouch = makeLootCommonPart("pouch", LootTable.lootTable().withPool(makePool(1)
+				.add(genSingleItem(LOTRItems.SMALL_POUCH.get()).setWeight(6))
+				.add(genSingleItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(3))
+				.add(genSingleItem(LOTRItems.LARGE_POUCH.get()).setWeight(1))
 				.when(KilledByPlayer.killedByPlayer())
-				.when(RandomChance.randomChance(0.016666F))));
-		rareDunedainRangerDrops = makeQuickyBasePart("dunedain_ranger_rare_drops", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
-				.add(genQuickyItemBuilder(ExtendedItems.BARROW_BLADE.get()).apply(SetDamage.setDamage(RandomValueRange.between(0.5F, 0.75F))).setWeight(5))
-				.add(genQuickyItemBuilder(ExtendedItems.DUNEDAIN_BOW.get()).apply(SetDamage.setDamage(RandomValueRange.between(0.5F, 0.75F))).setWeight(5))
-				.add(genQuickyItemBuilder(ExtendedItems.RANGER_BOW.get()).apply(SetDamage.setDamage(RandomValueRange.between(0.5F, 0.75F))).setWeight(5))
+				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.016666F, 0.00185F))//Requires chance to spawn and looting modifier
+				.apply(SetPouchColorFromEntityFaction.setPouchColorFromEntityFactionBuilder(0.5F))));
+		rareDunedainRangerDrops = makeLootCommonPart("dunedain_ranger_rare_drops", LootTable.lootTable().withPool(makePool(1)
+				.add(genSingleItem(ExtendedItems.BARROW_BLADE.get()).apply(SetDamage.setDamage(RandomValueRange.between(0.5F, 0.75F))).setWeight(5))
+				.add(genSingleItem(ExtendedItems.DUNEDAIN_BOW.get()).apply(SetDamage.setDamage(RandomValueRange.between(0.5F, 0.75F))).setWeight(5))
+				.add(genSingleItem(ExtendedItems.RANGER_BOW.get()).apply(SetDamage.setDamage(RandomValueRange.between(0.5F, 0.75F))).setWeight(5))
 				.when(KilledByPlayer.killedByPlayer())
 				.when(RandomChance.randomChance(0.05F))));
-		coinsRare = makeQuickyBasePart("coins_rare", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
-				.add(genQuickyItemBuilder(ExtendedItems.SILVER_COIN_ONE.get(), 1, 4).setWeight(5))
+		coinsRare = makeLootCommonPart("coins_rare", LootTable.lootTable().withPool(makePool(1)
+				.add(genSingleItemLooting(ExtendedItems.SILVER_COIN_ONE.get(), 1, 4).setWeight(5))
+				.when(KilledByPlayer.killedByPlayer())
 				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.12F, 0.025F))
-				.when(ExtendedRemoveUnitCoinDrops.setRemoveUnitCoinsDropBuilder())));
-		mugs = makeQuickyBasePart("mugs", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
-				.add(genQuickyItemBuilder(LOTRItems.WOODEN_MUG.get(), 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(LOTRItems.CERAMIC_MUG.get(), 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(LOTRItems.CLAY_MUG.get(), 1, 1).setWeight(5))
+				.when(ExtendedRemoveFromUnitDrops.setRemoveFromUnitDropsBuilder())));
+		mugs = makeLootCommonPart("mugs", LootTable.lootTable().withPool(makePool(1)
+				.add(genSingleItemLooting(LOTRItems.WOODEN_MUG.get(), 1, 1).setWeight(5))
+				.add(genSingleItemLooting(LOTRItems.CERAMIC_MUG.get(), 1, 1).setWeight(5))
+				.add(genSingleItemLooting(LOTRItems.CLAY_MUG.get(), 1, 1).setWeight(5))
 				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.5F, 1F))));
-		foodItems = makeQuickyBasePart("food_items", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
-				.add(genQuickyItemBuilder(Items.COOKED_BEEF, 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(Items.COOKED_CHICKEN, 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(Items.COOKED_COD, 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(Items.COOKED_RABBIT, 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(Items.COOKED_MUTTON, 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(Items.COOKED_PORKCHOP, 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(Items.APPLE, 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(LOTRItems.GREEN_APPLE.get(), 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(LOTRItems.PEAR.get(), 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(LOTRItems.LETTUCE.get(), 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(ExtendedItems.PLUM.get(), 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(ExtendedItems.COOKED_DUCK.get(), 1, 1).setWeight(5))
-				.add(genQuickyItemBuilder(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 1).setWeight(5))
+		foodItems = makeLootCommonPart("food_items", LootTable.lootTable().withPool(makePool(1)
+				.add(genSingleItemLooting(Items.COOKED_BEEF, 1, 1).setWeight(5))
+				.add(genSingleItemLooting(Items.COOKED_CHICKEN, 1, 1).setWeight(5))
+				.add(genSingleItemLooting(Items.COOKED_COD, 1, 1).setWeight(5))
+				.add(genSingleItemLooting(Items.COOKED_RABBIT, 1, 1).setWeight(5))
+				.add(genSingleItemLooting(Items.COOKED_MUTTON, 1, 1).setWeight(5))
+				.add(genSingleItemLooting(Items.COOKED_PORKCHOP, 1, 1).setWeight(5))
+				.add(genSingleItemLooting(Items.APPLE, 1, 1).setWeight(5))
+				.add(genSingleItemLooting(LOTRItems.GREEN_APPLE.get(), 1, 1).setWeight(5))
+				.add(genSingleItemLooting(LOTRItems.PEAR.get(), 1, 1).setWeight(5))
+				.add(genSingleItemLooting(LOTRItems.LETTUCE.get(), 1, 1).setWeight(5))
+				.add(genSingleItemLooting(ExtendedItems.PLUM.get(), 1, 1).setWeight(5))
+				.add(genSingleItemLooting(ExtendedItems.COOKED_DUCK.get(), 1, 1).setWeight(5))
+				.add(genSingleItemLooting(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 1).setWeight(5))
 				.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.5F, 1F))));
-		gundabadUrukEquipment = makeQuickyBasePart("gundabad_uruk_equipment", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
-			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_SHIELD.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(4))
-			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_URUK_CLEAVER.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(5))
-			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_URUK_DAGGER.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(4))
-			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_URUK_SPEAR.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(5))
-			.when(KilledByPlayer.killedByPlayer())
-			.when(RandomChance.randomChance(0.06F))));
-		gundabadUrukArcherEquipment = makeQuickyBasePart("gundabad_uruk_archer_equipment", LootTable.lootTable().withPool(makeQuickyPoolBuilder(1)
-			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_SHIELD.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(4))
-			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_URUK_BOW.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(5))
-			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_URUK_CLEAVER.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(5))
-			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_URUK_DAGGER.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(4))
-			.add(genQuickyItemBuilder(ExtendedItems.GUNDABAD_URUK_SPEAR.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(5))
-			.when(KilledByPlayer.killedByPlayer())
-			.when(RandomChance.randomChance(0.06F))));
+		gundabadUrukEquipment = makeLootCommonPart("gundabad_uruk_equipment", LootTable.lootTable().withPool(makePool(1)
+				.add(genSingleItemLooting(ExtendedItems.GUNDABAD_SHIELD.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(4))
+				.add(genSingleItemLooting(ExtendedItems.GUNDABAD_URUK_CLEAVER.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(5))
+				.add(genSingleItemLooting(ExtendedItems.GUNDABAD_URUK_DAGGER.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(4))
+				.add(genSingleItemLooting(ExtendedItems.GUNDABAD_URUK_SPEAR.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(5))
+				.when(KilledByPlayer.killedByPlayer())
+				.when(RandomChance.randomChance(0.06F))));
+		gundabadUrukArcherEquipment = makeLootCommonPart("gundabad_uruk_archer_equipment", LootTable.lootTable().withPool(makePool(1)
+				.add(genSingleItemLooting(ExtendedItems.GUNDABAD_SHIELD.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(4))
+				.add(genSingleItemLooting(ExtendedItems.GUNDABAD_URUK_BOW.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(5))
+				.add(genSingleItemLooting(ExtendedItems.GUNDABAD_URUK_CLEAVER.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(5))
+				.add(genSingleItemLooting(ExtendedItems.GUNDABAD_URUK_DAGGER.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(4))
+				.add(genSingleItemLooting(ExtendedItems.GUNDABAD_URUK_SPEAR.get(), 1, 1).apply(SetDamage.setDamage(RandomValueRange.between(0.1F, 0.75F))).setWeight(5))
+				.when(KilledByPlayer.killedByPlayer())
+				.when(RandomChance.randomChance(0.06F))));
 	}
 
 	private void makeRaceBaseTables() {
-		orcBase = makeQuickyBasePart("orc", LootTable.lootTable()
-				.withPool(addAnotherQuickyPoolRefrence(orcBones))
-				.withPool(addAnotherQuickyPoolRefrence(pouch))
-				.withPool(addAnotherQuickyPoolRefrence(coins))
-				.withPool(genSingleQuickyBuilder(Items.ROTTEN_FLESH, 0, 2))
-				.withPool(genSingleQuickyBuilder(LOTRItems.MAGGOTY_BREAD.get(), 1, 2)
+		orcBase = makeLootCommonPart("orc", LootTable.lootTable()
+				.withPool(addPoolRefrence(orcBones))
+				.withPool(addPoolRefrence(pouch))
+				.withPool(addPoolRefrence(coins))
+				.withPool(addPoolRefrence(scroll))
+				.withPool(genSinglePoolItemLooting(Items.ROTTEN_FLESH, 0, 2))
+				.withPool(genSinglePoolItemLooting(LOTRItems.MAGGOTY_BREAD.get(), 1, 2)
 						.when(RandomChance.randomChance(0.1F)))
-				.withPool(createQuickyDrinkBuilder(LOTRItems.ORC_DRAUGHT.get())
+				.withPool(createDrinkBuilder(LOTRItems.ORC_DRAUGHT.get())
 						.when(KilledByPlayer.killedByPlayer())
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.025F, 0.008F))));
-		elfBase = makeQuickyBasePart("elf", LootTable.lootTable()
-				.withPool(addAnotherQuickyPoolRefrence(elfBones))
-				.withPool(addAnotherQuickyPoolRefrence(pouch))
-				.withPool(addAnotherQuickyPoolRefrence(coins))
-				.withPool(addAnotherQuickyPoolRefrence(arrows)));
-		hobbitBase = makeQuickyBasePart("hobbit", LootTable.lootTable()
-				.withPool(addAnotherQuickyPoolRefrence(hobbitBones))
-				.withPool(addAnotherQuickyPoolRefrence(pouch)));
-		wargBase = makeQuickyBasePart("warg", LootTable.lootTable()
-				.withPool(addAnotherQuickyPoolRefrence(wargBones))
-				.withPool(addAnotherQuickyPoolRefrence(wargFur))
-				.withPool(addAnotherQuickyPoolRefrence(wargHead)));
-		manBase = makeQuickyBasePart("man", LootTable.lootTable()
-				.withPool(addAnotherQuickyPoolRefrence(manBones))
-				.withPool(addAnotherQuickyPoolRefrence(pouch))
-				.withPool(addAnotherQuickyPoolRefrence(coins)));
-		dwarfBase = makeQuickyBasePart("dwarf", LootTable.lootTable()
-				.withPool(addAnotherQuickyPoolRefrence(dwarfBones))
-				.withPool(addAnotherQuickyPoolRefrence(pouch))
-				.withPool(addAnotherQuickyPoolRefrence(coins))
-				.withPool(addAnotherQuickyPoolRefrence(rareDwarfDrops)
+		elfBase = makeLootCommonPart("elf", LootTable.lootTable()
+				.withPool(addPoolRefrence(elfBones))
+				.withPool(addPoolRefrence(pouch))
+				.withPool(addPoolRefrence(coins))
+				.withPool(addPoolRefrence(scroll))
+				.withPool(addPoolRefrence(arrows)));
+		hobbitBase = makeLootCommonPart("hobbit", LootTable.lootTable()
+				.withPool(addPoolRefrence(hobbitBones))
+				.withPool(addPoolRefrence(coins))
+				.withPool(addPoolRefrence(scroll))
+				.withPool(addPoolRefrence(pouch)));
+		wargBase = makeLootCommonPart("warg", LootTable.lootTable()
+				.withPool(addPoolRefrence(wargBones))
+				.withPool(addPoolRefrence(wargFur))
+				.withPool(addPoolRefrence(wargHead)));
+		manBase = makeLootCommonPart("man", LootTable.lootTable()
+				.withPool(addPoolRefrence(manBones))
+				.withPool(addPoolRefrence(pouch))
+				.withPool(addPoolRefrence(coins))
+				.withPool(addPoolRefrence(scroll)));
+		dwarfBase = makeLootCommonPart("dwarf", LootTable.lootTable()
+				.withPool(addPoolRefrence(dwarfBones))
+				.withPool(addPoolRefrence(pouch))
+				.withPool(addPoolRefrence(coins))
+				.withPool(addPoolRefrence(scroll))
+				.withPool(addPoolRefrence(rareDwarfDrops)
 						.when(KilledByPlayer.killedByPlayer())
-						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F)))
-				.withPool(genSingleQuickyBuilder(LOTRItems.BOOK_OF_TRUE_SILVER.get())
+						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.023F)))
+				.withPool(genSinglePoolItem(LOTRItems.BOOK_OF_TRUE_SILVER.get())
 						.when(KilledByPlayer.killedByPlayer())
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.025F, 0.005F))));
 	}
 
 	private void makeExtendedRaceTables() {
-		orcBaseSteel = makeQuickyBasePart("orc_with_orc_steel", LootTable.lootTable()
-				.withPool(addAnotherQuickyPoolRefrence(orcBase))
-				.withPool(genSingleQuickyBuilder(LOTRItems.ORC_STEEL_INGOT.get(), 1, 2)
+		orcBaseSteel = makeLootCommonPart("orc_with_orc_steel", LootTable.lootTable()
+				.withPool(addPoolRefrence(orcBase))
+				.withPool(genSinglePoolItemLooting(LOTRItems.ORC_STEEL_INGOT.get(), 1, 2)
 						.when(KilledByPlayer.killedByPlayer())
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.025F, 0.008F))));
-		orcBaseUrukSteel = makeQuickyBasePart("orc_with_uruk_steel", LootTable.lootTable()
-				.withPool(addAnotherQuickyPoolRefrence(orcBase))
-				.withPool(genSingleQuickyBuilder(LOTRItems.URUK_STEEL_INGOT.get(), 1, 2)
+		orcBaseUrukSteel = makeLootCommonPart("orc_with_uruk_steel", LootTable.lootTable()
+				.withPool(addPoolRefrence(orcBase))
+				.withPool(genSinglePoolItemLooting(LOTRItems.URUK_STEEL_INGOT.get(), 1, 2)
 						.when(KilledByPlayer.killedByPlayer())
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.025F, 0.008F))));
-		elfBaseMiruvor = makeQuickyBasePart("elf_with_miruvor", LootTable.lootTable()
-				.withPool(addAnotherQuickyPoolRefrence(elfBase))
-				.withPool(createQuickyDrinkBuilder(LOTRItems.MIRUVOR.get())
+		elfBaseMiruvor = makeLootCommonPart("elf_with_miruvor", LootTable.lootTable()
+				.withPool(addPoolRefrence(elfBase))
+				.withPool(createDrinkBuilder(LOTRItems.MIRUVOR.get())
 						.when(KilledByPlayer.killedByPlayer())
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F))));
-		elfBaseMiruvorLembas = makeQuickyBasePart("elf_with_miruvor_lembas", LootTable.lootTable()
-				.withPool(addAnotherQuickyPoolRefrence(elfBase))
-				.withPool(createQuickyDrinkBuilder(LOTRItems.MIRUVOR.get())
+		elfBaseMiruvorLembas = makeLootCommonPart("elf_with_miruvor_lembas", LootTable.lootTable()
+				.withPool(addPoolRefrence(elfBase))
+				.withPool(createDrinkBuilder(LOTRItems.MIRUVOR.get())
 						.when(KilledByPlayer.killedByPlayer())
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F)))
-				.withPool(genSingleQuickyBuilder(LOTRItems.LEMBAS.get())
+				.withPool(genSinglePoolItem(LOTRItems.LEMBAS.get())
 						.when(KilledByPlayer.killedByPlayer())
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F)))
-		);
-		manBreeLeatherIronSword = makeQuickyBasePart("man_bree_leather_iron_sword", LootTable.lootTable()
-				.withPool(addAnotherQuickyPoolRefrence(manBase))
-				.withPool(genSingleQuickyBuilder(Items.LEATHER_CHESTPLATE, 1, 1)
+				);
+		manBreeLeatherIronSword = makeLootCommonPart("man_bree_leather_iron_sword", LootTable.lootTable()
+				.withPool(addPoolRefrence(manBase))
+				.withPool(genSinglePoolItemLooting(Items.LEATHER_CHESTPLATE, 1, 1)
 						.when(KilledByPlayer.killedByPlayer())
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.025F, 0.008F)))
-				.withPool(genSingleQuickyBuilder(Items.LEATHER_LEGGINGS, 1, 1)
+				.withPool(genSinglePoolItemLooting(Items.LEATHER_LEGGINGS, 1, 1)
 						.when(KilledByPlayer.killedByPlayer())
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.025F, 0.008F)))
-				.withPool(genSingleQuickyBuilder(Items.IRON_SWORD, 1, 1)
+				.withPool(genSinglePoolItemLooting(Items.IRON_SWORD, 1, 1)
 						.when(KilledByPlayer.killedByPlayer())
 						.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.025F, 0.008F)))
 				);
@@ -271,27 +303,27 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 	}
 
 	private void makeFactionTables() {
-		hobbit = makeQuickyFactionPart("hobbit", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(hobbitBase)));
-		hobbitBree = makeQuickyFactionPart("bree_hobbit", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(hobbitBase)));
-		manBree = makeQuickyFactionPart("bree_man", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(manBase)));
-		manDale = makeQuickyFactionPart("dale", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(manBase)));
-		manDunlending = makeQuickyFactionPart("dunlending", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(manBase)));
-		manRohan = makeQuickyFactionPart("rohan", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(manBase)));
-		manGondor = makeQuickyFactionPart("gondor", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(manBase)));
-		manHarnedhrim = makeQuickyFactionPart("harnedhrim", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(manBase)));
-		manCoastSouthron = makeQuickyFactionPart("coast_southron", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(manBase)));
-		manUmbar = makeQuickyFactionPart("umbar", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(manBase)));
-		dwarfBlueMountians = makeQuickyFactionPart("blue_mountians", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(dwarfBase)));
-		dwarfDurinsFolk = makeQuickyFactionPart("durins_folk", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(dwarfBase)));
-		elfLindon = makeQuickyFactionPart("lindon", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(elfBase)));
-		elfRivendell = makeQuickyFactionPart("rivendell", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(elfBase)));
-		elfWoodElf = makeQuickyFactionPart("wood_elf", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(elfBase)));
-		elfGaladhrim = makeQuickyFactionPart("galadhrim", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(elfBaseMiruvor)));
-		orcGundabad = makeQuickyFactionPart("gundabad", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(orcBaseSteel)));
-		orcUruk = makeQuickyFactionPart("uruk", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(orcBaseUrukSteel)));
-		orcMordor = makeQuickyFactionPart("mordor", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(orcBaseSteel)));
-		orcIsengard = makeQuickyFactionPart("isengard_snaga", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(orcBaseSteel)));
-		orcGundabadUruk = makeQuickyFactionPart("gundabad_uruk", LootTable.lootTable().withPool(addAnotherQuickyPoolRefrence(orcBaseUrukSteel)));
+		hobbit = makeLootCommonFaction("hobbit", LootTable.lootTable().withPool(addPoolRefrence(hobbitBase)));
+		hobbitBree = makeLootCommonFaction("bree_hobbit", LootTable.lootTable().withPool(addPoolRefrence(hobbitBase)));
+		manBree = makeLootCommonFaction("bree_man", LootTable.lootTable().withPool(addPoolRefrence(manBase)));
+		manDale = makeLootCommonFaction("dale", LootTable.lootTable().withPool(addPoolRefrence(manBase)));
+		manDunlending = makeLootCommonFaction("dunlending", LootTable.lootTable().withPool(addPoolRefrence(manBase)));
+		manRohan = makeLootCommonFaction("rohan", LootTable.lootTable().withPool(addPoolRefrence(manBase)));
+		manGondor = makeLootCommonFaction("gondor", LootTable.lootTable().withPool(addPoolRefrence(manBase)));
+		manHarnedhrim = makeLootCommonFaction("harnedhrim", LootTable.lootTable().withPool(addPoolRefrence(manBase)));
+		manCoastSouthron = makeLootCommonFaction("coast_southron", LootTable.lootTable().withPool(addPoolRefrence(manBase)));
+		manUmbar = makeLootCommonFaction("umbar", LootTable.lootTable().withPool(addPoolRefrence(manBase)));
+		dwarfBlueMountians = makeLootCommonFaction("blue_mountians", LootTable.lootTable().withPool(addPoolRefrence(dwarfBase)));
+		dwarfDurinsFolk = makeLootCommonFaction("durins_folk", LootTable.lootTable().withPool(addPoolRefrence(dwarfBase)));
+		elfLindon = makeLootCommonFaction("lindon", LootTable.lootTable().withPool(addPoolRefrence(elfBase)));
+		elfRivendell = makeLootCommonFaction("rivendell", LootTable.lootTable().withPool(addPoolRefrence(elfBase)));
+		elfWoodElf = makeLootCommonFaction("wood_elf", LootTable.lootTable().withPool(addPoolRefrence(elfBase)));
+		elfGaladhrim = makeLootCommonFaction("galadhrim", LootTable.lootTable().withPool(addPoolRefrence(elfBaseMiruvor)));
+		orcGundabad = makeLootCommonFaction("gundabad", LootTable.lootTable().withPool(addPoolRefrence(orcBaseSteel)));
+		orcUruk = makeLootCommonFaction("uruk", LootTable.lootTable().withPool(addPoolRefrence(orcBaseUrukSteel)));
+		orcMordor = makeLootCommonFaction("mordor", LootTable.lootTable().withPool(addPoolRefrence(orcBaseSteel)));
+		orcIsengard = makeLootCommonFaction("isengard_snaga", LootTable.lootTable().withPool(addPoolRefrence(orcBaseSteel)));
+		orcGundabadUruk = makeLootCommonFaction("gundabad_uruk", LootTable.lootTable().withPool(addPoolRefrence(orcBaseUrukSteel)));
 	}
 
 	private void makeEntities() {
@@ -367,70 +399,70 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.BLUE_DWARVEN_AXE_THROWER, dwarfBlueMountians);
 		makeEntity(ExtendedEntities.GUNDABAD_CAMP_TRADER, orcGundabad);
 		makeEntity(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN, orcGundabad);
-		makeEntity(ExtendedEntities.DUCK, makeQuickyBaseCommon("duck", LootTable.lootTable()
-	    		.withPool(makeQuickyPoolBuilder(1).add(genQuickyItemBuilder(Items.FEATHER, 0.0F, 2.0F)))
-	    		.withPool(makeQuickyPoolBuilder(1)
-	    				.add(ItemLootEntry.lootTableItem(ExtendedItems.RAW_DUCK.get())
-	    						.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
-	    						.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))));
+		makeEntity(ExtendedEntities.DUCK, makeLootCommon("duck", LootTable.lootTable()
+				.withPool(makePool(1).add(genSingleItemLooting(Items.FEATHER, 0.0F, 2.0F)))
+				.withPool(makePool(1)
+						.add(ItemLootEntry.lootTableItem(ExtendedItems.RAW_DUCK.get())
+								.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
+								.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))));
 		add(ExtendedEntities.HEDGEHOG.get(), LootTable.lootTable());
 		makeEntity(ExtendedEntities.GUNDABAD_URUK, orcGundabadUruk, gundabadUrukEquipment);
 		makeEntity(ExtendedEntities.GUNDABAD_URUK_ARCHER, orcGundabadUruk, gundabadUrukArcherEquipment, arrows);
 		add(ExtendedEntities.BARROW_WIGHT.get(), LootTable.lootTable()
-			.withPool(LootPool.lootPool()
-				.setRolls(ConstantRange.exactly(1))
-				.add(EItemLootEntry.lootItem(Items.BONE).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 4)))))
-			.withPool(LootPool.lootPool()
-				.setRolls(RandomValueRange.between(0, 1))
-				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(200).apply(SetCount.setCount(RandomValueRange.between(1, 20))))
-				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_TEN.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 8))))
-				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1, 2))))
-				.add(EItemLootEntry.lootItem(Items.GOLD_NUGGET).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 5))))
-				.add(EItemLootEntry.lootItem(Items.GOLD_INGOT).setWeight(75).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
-				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_NUGGET.get()).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 5))))
-				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_INGOT.get()).setWeight(75).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_NUGGET.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
-				.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 8))))
-				.add(EItemLootEntry.lootItem(Items.SKELETON_SKULL).setWeight(100).setExactly(1))
-				.add(EItemLootEntry.lootItem(Items.BONE).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
-				.add(EItemLootEntry.lootItem(Items.GLASS_BOTTLE).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
-				.add(EItemLootEntry.lootItem(Items.BOOK).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 2))))
-				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(20).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(20).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_RING.get()).setWeight(1).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.COPPER_GOBLET.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
-				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_GOBLET.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
-				.add(EItemLootEntry.lootItem(LOTRItems.GOLDEN_GOBLET.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
-				.add(EItemLootEntry.lootItem(Items.IRON_HELMET).setWeight(10).setDamageRange(0.20F, 0.75F).setExactly(1))
-				.add(EItemLootEntry.lootItem(Items.IRON_CHESTPLATE).setWeight(10).setDamageRange(0.20F, 0.75F).setExactly(1))
-				.add(EItemLootEntry.lootItem(Items.IRON_LEGGINGS).setWeight(10).setDamageRange(0.20F, 0.75F).setExactly(1))
-				.add(EItemLootEntry.lootItem(Items.IRON_BOOTS).setWeight(10).setDamageRange(0.20F, 0.75F).setExactly(1))
-				.add(EItemLootEntry.lootItem(Items.IRON_SWORD).setWeight(25).setDamageRange(0.20F, 0.75F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.IRON_DAGGER.get()).setWeight(25).setDamageRange(0.20F, 0.75F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.IRON_SPEAR.get()).setWeight(25).setDamageRange(0.20F, 0.75F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_HELMET.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_CHESTPLATE.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_LEGGINGS.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_BOOTS.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_SWORD.get()).setWeight(25).setDamageRange(0.15F, 0.65F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_DAGGER.get()).setWeight(25).setDamageRange(0.15F, 0.65F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_SPEAR.get()).setWeight(25).setDamageRange(0.15F, 0.65F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_CHESTPLATE.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_LEGGINGS.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_BOOTS.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_HELMET.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_SWORD.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_DAGGER.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_SPEAR.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_CHESTPLATE.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_LEGGINGS.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_BOOTS.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_HELMET.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_SWORD.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_DAGGER.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
-				.add(EItemLootEntry.lootItem(ExtendedItems.BARROW_BLADE.get()).setWeight(20).setDamageRange(0.6F, 0.8F).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(5).setExactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setExactly(1))));
+				.withPool(LootPool.lootPool()
+						.setRolls(ConstantRange.exactly(1))
+						.add(EItemLootEntry.lootItem(Items.BONE).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 4)))))
+				.withPool(LootPool.lootPool()
+						.setRolls(RandomValueRange.between(0, 1))
+						.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(200).apply(SetCount.setCount(RandomValueRange.between(1, 20))))
+						.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_TEN.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 8))))
+						.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1, 2))))
+						.add(EItemLootEntry.lootItem(Items.GOLD_NUGGET).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 5))))
+						.add(EItemLootEntry.lootItem(Items.GOLD_INGOT).setWeight(75).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
+						.add(EItemLootEntry.lootItem(LOTRItems.SILVER_NUGGET.get()).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 5))))
+						.add(EItemLootEntry.lootItem(LOTRItems.SILVER_INGOT.get()).setWeight(75).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
+						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_NUGGET.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+						.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 8))))
+						.add(EItemLootEntry.lootItem(Items.SKELETON_SKULL).setWeight(100).setExactly(1))
+						.add(EItemLootEntry.lootItem(Items.BONE).setWeight(100).apply(SetCount.setCount(RandomValueRange.between(1, 4))))
+						.add(EItemLootEntry.lootItem(Items.GLASS_BOTTLE).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+						.add(EItemLootEntry.lootItem(Items.BOOK).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 2))))
+						.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(20).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(20).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_RING.get()).setWeight(1).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.COPPER_GOBLET.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+						.add(EItemLootEntry.lootItem(LOTRItems.SILVER_GOBLET.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+						.add(EItemLootEntry.lootItem(LOTRItems.GOLDEN_GOBLET.get()).setWeight(20).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+						.add(EItemLootEntry.lootItem(Items.IRON_HELMET).setWeight(10).setDamageRange(0.20F, 0.75F).setExactly(1))
+						.add(EItemLootEntry.lootItem(Items.IRON_CHESTPLATE).setWeight(10).setDamageRange(0.20F, 0.75F).setExactly(1))
+						.add(EItemLootEntry.lootItem(Items.IRON_LEGGINGS).setWeight(10).setDamageRange(0.20F, 0.75F).setExactly(1))
+						.add(EItemLootEntry.lootItem(Items.IRON_BOOTS).setWeight(10).setDamageRange(0.20F, 0.75F).setExactly(1))
+						.add(EItemLootEntry.lootItem(Items.IRON_SWORD).setWeight(25).setDamageRange(0.20F, 0.75F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.IRON_DAGGER.get()).setWeight(25).setDamageRange(0.20F, 0.75F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.IRON_SPEAR.get()).setWeight(25).setDamageRange(0.20F, 0.75F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_HELMET.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_CHESTPLATE.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_LEGGINGS.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_BOOTS.get()).setWeight(10).setDamageRange(0.15F, 0.65F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_SWORD.get()).setWeight(25).setDamageRange(0.15F, 0.65F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_DAGGER.get()).setWeight(25).setDamageRange(0.15F, 0.65F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_SPEAR.get()).setWeight(25).setDamageRange(0.15F, 0.65F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_CHESTPLATE.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_LEGGINGS.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_BOOTS.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_HELMET.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_SWORD.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_DAGGER.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_SPEAR.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_CHESTPLATE.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_LEGGINGS.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_BOOTS.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_HELMET.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_SWORD.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_DAGGER.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
+						.add(EItemLootEntry.lootItem(ExtendedItems.BARROW_BLADE.get()).setWeight(20).setDamageRange(0.6F, 0.8F).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(5).setExactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setExactly(1))));
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.BREE_MERCHANT, manBree); // TODO: Maybe add some other drops here?
 		makeEntity(ExtendedEntities.BREE_FARMER, manBree);
@@ -453,56 +485,57 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.BREE_HOBBIT_FLORIST, hobbitBree);
 		makeEntity(ExtendedEntities.BREE_HOBBIT_BREWER, hobbitBree);
 		add(ExtendedEntities.TOLKIEN.get(), LootTable.lootTable()
-			.withPool(LootPool.lootPool()
-				.setRolls(RandomValueRange.between(0, 3))
-				.add(EItemLootEntry.lootItem(Items.WRITABLE_BOOK).setWeight(6).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
-				.add(EItemLootEntry.lootItem(Items.BOOK).setWeight(4).apply(SetCount.setCount(RandomValueRange.between(1, 2)))))
-			.withPool(LootPool.lootPool()
-				.setRolls(RandomValueRange.between(0, 1))
-				.add(EItemLootEntry.lootItem(Items.FEATHER).apply(SetCount.setCount(RandomValueRange.between(1, 2))))));
+				.withPool(LootPool.lootPool()
+						.setRolls(RandomValueRange.between(0, 3))
+						.add(EItemLootEntry.lootItem(Items.WRITABLE_BOOK).setWeight(6).apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+						.add(EItemLootEntry.lootItem(Items.BOOK).setWeight(4).apply(SetCount.setCount(RandomValueRange.between(1, 2)))))
+				.withPool(LootPool.lootPool()
+						.setRolls(RandomValueRange.between(0, 1))
+						.add(EItemLootEntry.lootItem(Items.FEATHER).apply(SetCount.setCount(RandomValueRange.between(1, 2))))));
 		add(ExtendedEntities.HORSE_BOAR.get(), LootTable.lootTable()
-			.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
-				.add(EItemLootEntry.lootItem(Items.PORKCHOP)
-					.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
-					.apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
+				.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+						.add(EItemLootEntry.lootItem(Items.PORKCHOP)
+								.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
+								.apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
 		makeEntity(ExtendedEntities.RIVENDELL_CAPTAIN, elfRivendell);
 		makeEntity(ExtendedEntities.RIVENDELL_SMITH, elfRivendell);
 		makeEntity(ExtendedEntities.RIVENDELL_WEAVER, elfRivendell);
 		makeEntity(ExtendedEntities.IMLADRIS_GUARD, elfRivendell);
 		add(ExtendedEntities.ELROND.get(), LootTable.lootTable()
-			.withPool(addAnotherQuickyPoolRefrence(elfRivendell))
-			.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
-				.add(EItemLootEntry.lootItem(LOTRItems.ELVEN_STEEL_INGOT.get())
-					.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.01F, 0.0F))
-					.apply(SetCount.setCount(RandomValueRange.between(1, 2)))))
-			.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
-				.add(EItemLootEntry.lootItem(ExtendedItems.SAPPHIRE.get())
-					.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F))
-					.apply(SetCount.setCount(ConstantRange.exactly(1))))));
+				.withPool(addPoolRefrence(elfRivendell))
+				.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+						.add(EItemLootEntry.lootItem(LOTRItems.ELVEN_STEEL_INGOT.get())
+								.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.01F, 0.0F))
+								.apply(SetCount.setCount(RandomValueRange.between(1, 2)))))
+				.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+						.add(EItemLootEntry.lootItem(ExtendedItems.SAPPHIRE.get())
+								.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F))
+								.apply(SetCount.setCount(ConstantRange.exactly(1))))));
 	}
 
-	public ResourceLocation makeQuickyBaseCommon(String name, Builder builder) {
+	
+	public ResourceLocation makeLootCommon(String name, LootTable.Builder builder) {
 		ResourceLocation loc = new ResourceLocation(LotrExtendedMod.MODID, "entities/common/" + name);
 		add(loc, builder);
 		return loc;
 	}
 
-	public ResourceLocation makeQuickyBasePart(String name, Builder builder) {
+	public ResourceLocation makeLootCommonPart(String name, LootTable.Builder builder) {
 		ResourceLocation loc = new ResourceLocation(LotrExtendedMod.MODID, "entities/common/parts/" + name);
 		add(loc, builder);
 		return loc;
 	}
 
-	public ResourceLocation makeQuickyFactionPart(String name, Builder builder) {
+	public ResourceLocation makeLootCommonFaction(String name, LootTable.Builder builder) {
 		ResourceLocation loc = new ResourceLocation(LotrExtendedMod.MODID, "entities/common/faction_bases/" + name);
 		add(loc, builder);
 		return loc;
 	}
 
 	public void makeEntity(Supplier<? extends EntityType<?>> entityType, ResourceLocation... pools) {
-		Builder table = LootTable.lootTable();
+		LootTable.Builder table = LootTable.lootTable();
 		for(ResourceLocation loc : pools) {
-			table.withPool(addAnotherQuickyPoolRefrence(loc));
+			table.withPool(addPoolRefrence(loc));
 		}
 		add(entityType.get(), table);
 	}
@@ -513,42 +546,42 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		for(RegistryObject<EntityType<?>> bl : LOTREntities.ENTITIES.getEntries()) {
 			filtered.add(bl.get());
 		}
-        return filtered.stream()::iterator;
+		return filtered.stream()::iterator;
 	}
 
-	public LootPool.Builder makeQuickyPoolBuilder(int numRoles){
+	public LootPool.Builder makePool(int numRoles){
 		return LootPool.lootPool().setRolls(ConstantRange.exactly(numRoles));
 	}
 
-	public LootPool.Builder genSingleQuickyBuilder(IItemProvider item, float minCount, float maxCount){
-		return makeQuickyPoolBuilder(1).add(genQuickyItemBuilder(item, minCount, maxCount));
+	public LootPool.Builder genSinglePoolItem(IItemProvider item){
+		return makePool(1).add(genSingleItem(item));
 	}
 
-	public LootPool.Builder genSingleQuickyBuilder(IItemProvider item){
-		return makeQuickyPoolBuilder(1).add(genQuickyItemBuilder(item));
-	}
-
-	public ItemLootEntry.Builder<?> genQuickyItemBuilder(IItemProvider item){
+	public ItemLootEntry.Builder<?> genSingleItem(IItemProvider item){
 		return ItemLootEntry.lootTableItem(item);
 	}
 
-	public ItemLootEntry.Builder<?> genQuickyItemBuilder(IItemProvider item, float minCount, float maxCount){
-		return genQuickyItemBuilder(item, minCount, maxCount, 0.0F, 1.0F);
+	public LootPool.Builder addPoolRefrence(ResourceLocation quickyLocation) {
+		return makePool(1).add(TableLootEntry.lootTableReference(quickyLocation));
 	}
 
-	public LootPool.Builder addAnotherQuickyPoolRefrence(ResourceLocation quickyLocation) {
-		return makeQuickyPoolBuilder(1).add(TableLootEntry.lootTableReference(quickyLocation));
+	public LootPool.Builder genSinglePoolItemLooting(IItemProvider item, float minCount, float maxCount){
+		return makePool(1).add(genSingleItemLooting(item, minCount, maxCount));
 	}
 
-	public ItemLootEntry.Builder<?> genQuickyItemBuilder(IItemProvider item, float minCount, float maxCount, float minloot, float maxloot){
-		return genQuickyItemBuilder(item)
+	public ItemLootEntry.Builder<?> genSingleItemLooting(IItemProvider item, float minCount, float maxCount){
+		return genItemBuilder(item, minCount, maxCount, 0.0F, 1.0F);
+	}
+
+	public ItemLootEntry.Builder<?> genItemBuilder(IItemProvider item, float minCount, float maxCount, float minloot, float maxloot){
+		return genSingleItem(item)
 				.apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(minloot, maxloot)))
 				.apply(SetCount.setCount(RandomValueRange.between(minCount, maxCount)));
 	}
 
-	public LootPool.Builder createQuickyDrinkBuilder(IItemProvider item) {
+	public LootPool.Builder createDrinkBuilder(IItemProvider item) {
 		if ((item.asItem() instanceof VesselDrinkItem) && ((VesselDrinkItem) item.asItem()).hasPotencies) {
-			return makeQuickyPoolBuilder(1).add(genQuickyItemBuilder(item).apply(SetNPCDrinkPotency.setNPCDrinkPotencyBuilder()));
+			return makePool(1).add(genSingleItem(item).apply(SetNPCDrinkPotency.setNPCDrinkPotencyBuilder()));
 		}
 		throw new IllegalArgumentException("INCORRECT SYNTAX WITH DRINK ITEM: "+item.asItem().getRegistryName());
 	}

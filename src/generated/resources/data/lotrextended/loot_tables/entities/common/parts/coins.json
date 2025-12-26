@@ -6,29 +6,37 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:looting_enchant",
-              "count": {
-                "min": 0.0,
-                "max": 1.0
-              }
-            },
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 0.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
           "name": "lotr:silver_coin_one"
         }
       ],
       "conditions": [
         {
-          "condition": "lotrextended:remove_unit_coins"
+          "condition": "minecraft:killed_by_player"
+        },
+        {
+          "condition": "minecraft:random_chance_with_looting",
+          "chance": 0.125,
+          "looting_multiplier": 0.125
+        },
+        {
+          "condition": "lotrextended:remove_from_unit_drops"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 1.0,
+            "max": 7.0,
+            "type": "minecraft:uniform"
+          }
+        },
+        {
+          "function": "minecraft:looting_enchant",
+          "count": {
+            "min": 1.5,
+            "max": 2.5
+          }
         }
       ]
     }

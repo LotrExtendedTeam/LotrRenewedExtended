@@ -50,6 +50,8 @@ public class ExtendedLootFunctions {
 	 * </p>
 	 */
 	public static LootFunctionType MODIFIER_ACROLL_ADDER = register("modifier_scroll_adder", new ExtendedModifierScrollAdder.Serializer());
+	public static LootFunctionType MODIFIER_ACROLL_SETTER = register("modifier_scroll_setter", new ExtendedModifierScrollSetter.Serializer());
+
 	/**
 	 * Helper method to register a new {@link LootFunctionType}.
 	 *

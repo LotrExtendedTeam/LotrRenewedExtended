@@ -33,6 +33,15 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
+          "name": "lotrextended:entities/common/parts/scroll"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
           "name": "lotrextended:entities/common/parts/dwarf_rare_drops"
         }
       ],
@@ -43,7 +52,7 @@
         {
           "condition": "minecraft:random_chance_with_looting",
           "chance": 0.05,
-          "looting_multiplier": 0.016
+          "looting_multiplier": 0.023
         }
       ]
     },

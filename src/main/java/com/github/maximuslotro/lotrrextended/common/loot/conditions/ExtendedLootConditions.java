@@ -21,13 +21,13 @@ import net.minecraft.util.registry.Registry;
  */
 public class ExtendedLootConditions {
 	/**
-	 * Loot condition type for {@link ExtendedRemoveUnitCoinDrops}.
+	 * Loot condition type for {@link ExtendedRemoveFromUnitDrops}.
 	 * <p>
 	 * Prevents unit NPCs on active duty from dropping unit coins,
 	 * ensuring coins are only dropped from inactive or non-unit NPCs.
 	 * </p>
 	 */
-	public static LootConditionType REMOVE_UNIT_COINS = register("remove_unit_coins", new ExtendedRemoveUnitCoinDrops.Serializer());
+	public static LootConditionType REMOVE_FROM_UNIT_DROPS = register("remove_from_unit_drops", new ExtendedRemoveFromUnitDrops.Serializer());
 	/**
 	 * Registers a new {@link LootConditionType}.
 	 *

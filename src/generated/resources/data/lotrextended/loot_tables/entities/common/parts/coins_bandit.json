@@ -28,7 +28,10 @@
       ],
       "conditions": [
         {
-          "condition": "lotrextended:remove_unit_coins"
+          "condition": "minecraft:killed_by_player"
+        },
+        {
+          "condition": "lotrextended:remove_from_unit_drops"
         }
       ]
     }

@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lotr:modifier_scroll"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        },
+        {
+          "condition": "minecraft:random_chance_with_looting",
+          "chance": 0.016666,
+          "looting_multiplier": 0.00185
+        },
+        {
+          "condition": "lotrextended:remove_from_unit_drops"
+        }
+      ],
+      "functions": [
+        {
+          "function": "lotrextended:modifier_scroll_setter"
+        }
+      ]
+    }
+  ]
+}
