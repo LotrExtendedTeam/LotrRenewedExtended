@@ -131,6 +131,8 @@
 		"net.minecraft.entity.MixinEntityType",
 		"net.minecraft.entity.MixinLivingEntity",
 		"net.minecraft.entity.MixinRabbitEntityRaidFarmGoal",
+		"net.minecraft.entity.item.MixinArmorStandEntity",
+		"net.minecraft.entity.item.MixinItemFrameEntity",
 		"net.minecraft.entity.player.MixinPlayerEntity",
 		"net.minecraft.entity.projectile.MixinAbstractArrowEntity",
 		"net.minecraft.entity.projectile.MixinFishingBobberEntity",
