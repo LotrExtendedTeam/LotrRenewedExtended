@@ -75,6 +75,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	private int lastHealed = 0;
 	private boolean resendData = false;
 	public boolean isInteracting = false;
+	private int currentHealth = -1;
 
 	private UnitInventory internalUnitInventory = makeUnitInventory();
 
@@ -208,6 +209,9 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 				if (holder.contains("base_health")) {
 					this.setBaseHealth(holder.getInt("base_health"));
 				}
+				if (holder.contains("current_health")) {
+					this.setCurrentHealth(holder.getInt("current_health"));
+				}
 				if(holder.contains("unit_orders")) {
 					unitOrders = ExtendedUnitOrders.getByUnchangingIndex(holder.getInt("unit_orders"));
 				}
@@ -295,6 +299,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			holder.putFloat("max_xp", this.getMaxXp());
 			holder.putInt("base_health", this.getBaseHealth());
 			holder.putBoolean("is_hired", isHired);
+			holder.putInt("current_health", (int) this.thisEntity.getHealth());
 		}
 		nbt.put("HiredUnitInfo", holder);
 	}
@@ -417,6 +422,10 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 
 	public void setBaseHealth(int health) {
 		this.baseHealth = health;
+	}
+
+	public void setCurrentHealth(int health) {
+		this.currentHealth = health;
 	}
 
 	public float getHiredUnitHealth() {
@@ -815,6 +824,11 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	public void checkHealthStat() {
 		if ((int) this.thisEntity.getMaxHealth() != getBaseHealth()) {
 			modifyMaxHealth(getBaseHealth() - 20, "Base Health from current level", false);
+			// restore their current health and only perform it once
+			if (currentHealth > 0) {
+				this.thisEntity.setHealth(currentHealth);
+				currentHealth = -1;
+			}
 		}
 	}
 
