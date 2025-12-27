@@ -17,7 +17,7 @@ import net.minecraft.util.JSONUtils;
 
 public interface ExtendedTradeItemSupplier {
 
-	ItemStack chooseItem(Random rand);
+	ItemStackAndPrice chooseItem(Random rand);
 
 	List<ItemStack> returnAllPossableItems();
 
@@ -28,11 +28,19 @@ public interface ExtendedTradeItemSupplier {
 	 * @param jsonObject The JsonObject to read from
 	 * @return An ItemStack that was contained in the JsonObject
 	 * */
-	public static ItemStack getStack(JsonObject jsonObject) {
+	public static ItemStackAndPrice getStack(JsonObject jsonObject) {
 		if (!jsonObject.has("item")) {
 			throw new JsonSyntaxException("Missing Equipment item type (add 'item' key)");
 		} else {
 			Item basicItem = JSONUtils.getAsItem(jsonObject, "item");
+
+			boolean hasSpecificPrice = false;
+			int price = -1;
+			if (jsonObject.has("price")) {
+				hasSpecificPrice = true;
+				price = jsonObject.get("price").getAsInt();
+			}
+
 			if (jsonObject.has("data")) {
 				throw new JsonParseException("Disallowed data tag found");
 			} else {
@@ -49,7 +57,11 @@ public interface ExtendedTradeItemSupplier {
 					}
 				}
 
-				return generatedItemStack;
+				if (hasSpecificPrice) {
+					return new ItemStackAndPrice(generatedItemStack, price);
+				} else {
+					return new ItemStackAndPrice(generatedItemStack);
+				}
 			}
 		}
 	}

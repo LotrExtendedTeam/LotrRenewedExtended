@@ -15,6 +15,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedTradeType;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTradeItemSupplierMulti;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTradeItemSupplierSingle;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
+import com.github.maximuslotro.lotrrextended.common.traders.pools.ItemStackAndPrice;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -417,7 +418,7 @@ public class ExtendedTraderProfile {
 		 * @return The instance of this builder
 		 */
 		public Builder addSBuy(ItemStack stack, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
-			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(stack), weight, averageCost, maxTransferQuantity, shouldTradePersist));
+			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(new ItemStackAndPrice(stack)), weight, averageCost, maxTransferQuantity, shouldTradePersist));
 			return this;
 		}
 
@@ -535,7 +536,7 @@ public class ExtendedTraderProfile {
 		 * @return The instance of this builder
 		 */
 		public Builder addSSell(ItemStack stack, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
-			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(stack), weight, averageCost, maxTransferQuantity, shouldTradePersist));
+			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(new ItemStackAndPrice(stack)), weight, averageCost, maxTransferQuantity, shouldTradePersist));
 			return this;
 		}
 
@@ -552,7 +553,7 @@ public class ExtendedTraderProfile {
 		 */
 		public Builder addDrinkSell(RegistryObject<Item> item, int lightCost, int moderateCost, int strongCost) {
 			if(!(item.get() instanceof VesselDrinkItem)) {
-				ExtendedLog.warn("Recieved invalid drink from args, SKIPPING!: "+item.get().getRegistryName().toString());
+				ExtendedLog.warn("Received invalid drink from args, SKIPPING!: "+item.get().getRegistryName().toString());
 				return this;
 			}
 			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.LIGHT), DEFAULT_WEIGHT, lightCost, 200, true);
@@ -560,6 +561,31 @@ public class ExtendedTraderProfile {
 			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.STRONG), DEFAULT_WEIGHT, strongCost, 200, true);
 			return this;
 		}
+
+		/* SELL TO PLAYER MULTI METHODS*/
+		/**
+		 * Adds a multi of the three specificed potencies for a drink so that only one can be picked.
+		 *
+		 * @param item The registry object of a {@link VesselDrinkItem}
+		 * @param lightCost Cost of the light potency version
+		 * @param moderateCost Cost of the moderate potency version
+		 * @param strongCost Cost of the strong potency version
+		 * @return The instance of this builder
+		 */
+		public Builder addDrinkSellSingle(RegistryObject<Item> item, int lightCost, int moderateCost, int strongCost) {
+			if(!(item.get() instanceof VesselDrinkItem)) {
+				ExtendedLog.warn("Received invalid drink from args, SKIPPING!: "+item.get().getRegistryName().toString());
+				return this;
+			}
+			addMSell(
+
+			)
+			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.LIGHT), DEFAULT_WEIGHT, lightCost, 200, true);
+			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.MODERATE), DEFAULT_WEIGHT, moderateCost, 200, true);
+			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.STRONG), DEFAULT_WEIGHT, strongCost, 200, true);
+			return this;
+		}
+
 		/**
 		 * Adds a multi-item sale pool to the trader's sell-to-player pool using individual items.
 		 * Uses default weight and max transfer quantity.
@@ -595,6 +621,21 @@ public class ExtendedTraderProfile {
 		 * @return The instance of this builder
 		 */
 		public Builder addMSell(List<ItemStack> stacks, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
+			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierMulti(stacks), weight, averageCost, maxTransferQuantity, shouldTradePersist));
+			return this;
+		}
+
+		/**
+		 * Adds a multi-item sell pool entry with explicit control over price per item, weight and quantity
+		 *
+		 * @param stacks The ItemStackAndPrice stacks to include
+		 * @param weight The relative weight of this trade entry in the pool
+		 * @param averageCost The average cost of the trade
+		 * @param maxTransferQuantity The maximum quantity of items transferred in one trade
+		 * @param shouldTradePersist Should the trade tick back down
+		 * @return The instance of this builder
+		 */
+		public Builder addMSell(List<ItemStackAndPrice> stacks, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
 			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierMulti(stacks), weight, averageCost, maxTransferQuantity, shouldTradePersist));
 			return this;
 		}

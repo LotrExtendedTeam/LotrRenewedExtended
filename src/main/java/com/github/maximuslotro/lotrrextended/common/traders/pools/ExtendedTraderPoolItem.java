@@ -55,7 +55,7 @@ public class ExtendedTraderPoolItem extends WeightedRandom.Item {
 	 * @param rand A passed Random instance to pick from multi pools
 	 * @return A chosen ItemStack instance
 	 * */
-	public ItemStack getStack(Random rand){
+	public ItemStackAndPrice getStack(Random rand){
 		return itemSupplier.chooseItem(rand);
 	}
 

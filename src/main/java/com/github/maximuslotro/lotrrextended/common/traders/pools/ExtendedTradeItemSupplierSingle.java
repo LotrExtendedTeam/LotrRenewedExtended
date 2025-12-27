@@ -1,9 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.traders.pools;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -13,38 +10,38 @@ import net.minecraft.util.JSONUtils;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedTradeItemSupplierSingle implements ExtendedTradeItemSupplier {
-	private final ItemStack stack;
+	private final ItemStackAndPrice stackAndPrice;
 
-	public ExtendedTradeItemSupplierSingle(ItemStack stack) {
-		this.stack = stack;
+	public ExtendedTradeItemSupplierSingle(ItemStackAndPrice stack) {
+		this.stackAndPrice = stack;
 	}
 
 	@Override
 	public ItemStack chooseItem(Random rand) {
-		return stack;
+		return stackAndPrice.getItemStack();
 	}
 
 	@Override
 	public JsonElement serializeJson() {
 		JsonObject itemJson = new JsonObject();
-		itemJson.addProperty("item", ForgeRegistries.ITEMS.getKey(stack.getItem()).toString());
-		if(stack.getCount()>1) {
-			itemJson.addProperty("count", stack.getCount());
+		itemJson.addProperty("item", ForgeRegistries.ITEMS.getKey(stackAndPrice.getItemStack().getItem()).toString());
+		if(stackAndPrice.getItemStack().getCount()>1) {
+			itemJson.addProperty("count", stackAndPrice.getItemStack().getCount());
 		}
-		if (stack.hasTag()) {
-			itemJson.addProperty("nbt", stack.getTag().toString());
+		if (stackAndPrice.getItemStack().hasTag()) {
+			itemJson.addProperty("nbt", stackAndPrice.getItemStack().getTag().toString());
 		}
 
 		return itemJson;
 	}
 
 	public static ExtendedTradeItemSupplier deserializeJson(JsonObject element) {
-		ItemStack stack = ExtendedTradeItemSupplier.getStack(JSONUtils.getAsJsonObject(element, "stack"));
+		ItemStackAndPrice stack = ExtendedTradeItemSupplier.getStack(JSONUtils.getAsJsonObject(element, "stack"));
 		return new ExtendedTradeItemSupplierSingle(stack);
 	}
 
 	@Override
 	public List<ItemStack> returnAllPossableItems() {
-		return new ArrayList<>(Arrays.asList(stack));
+		return new ArrayList<>(Collections.singletonList(stackAndPrice.getItemStack()));
 	}
 }

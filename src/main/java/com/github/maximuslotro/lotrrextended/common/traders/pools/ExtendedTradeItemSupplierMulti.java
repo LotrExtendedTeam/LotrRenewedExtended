@@ -13,14 +13,22 @@ import net.minecraft.util.JSONUtils;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedTradeItemSupplierMulti implements ExtendedTradeItemSupplier {
-	private final List<ItemStack> stacks;
+	private final List<ItemStackAndPrice> stacks;
 
 	public ExtendedTradeItemSupplierMulti(List<ItemStack> stacks) {
+		List<ItemStackAndPrice> stacksAndPrice = new ArrayList<>();
+		for (ItemStack stack : stacks) {
+			stacksAndPrice.add(new ItemStackAndPrice(stack));
+		}
+		this.stacks = stacksAndPrice;
+	}
+
+	public ExtendedTradeItemSupplierMulti(List<ItemStackAndPrice> stacks) {
 		this.stacks = stacks;
 	}
 
 	@Override
-	public ItemStack chooseItem(Random rand) {
+	public ItemStackAndPrice chooseItem(Random rand) {
 		return stacks.get(rand.nextInt(stacks.size()));
 	}
 
