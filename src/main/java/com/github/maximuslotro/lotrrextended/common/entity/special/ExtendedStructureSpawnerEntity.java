@@ -316,8 +316,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 								ExtendedLog.error("Failed spawning %s because it is not a supported Entity Class - %s", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
 								return false;
 							}
-							// Set respawn data regardless of being respawnable, so handleCaptainTraderDeath can know when not to make respawner
-							entity.getPersistentData().putBoolean("ExtendedRespawnOnDeath", spawnerInstance.shouldRespawnOnDeath());
+							if(spawnerInstance.shouldRespawnOnDeath()){
+								entity.getPersistentData().putBoolean("ExtendedRespawn", spawnerInstance.shouldRespawnOnDeath());
+							}
 							// Finally add the entity to the world
 							world.addFreshEntityWithPassengers(entity);
 							nearbyEntitySpawnCount++;

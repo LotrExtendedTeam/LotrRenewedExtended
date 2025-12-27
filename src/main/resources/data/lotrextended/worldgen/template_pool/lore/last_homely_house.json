@@ -7,11 +7,18 @@
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
+				"location": "lotrextended:lore/last_homely_house/homely_house_start",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
 				"location": "lotrextended:lore/last_homely_house/homely_house_1",
 				"processors": "minecraft:empty",
-				"foundation_block": {
-					"Name": "minecraft:dirt"
-				},
 				"apply_waterlogging" : false
 			}
 		},
@@ -22,9 +29,6 @@
 				"projection": "rigid",
 				"location": "lotrextended:lore/last_homely_house/homely_house_2",
 				"processors": "minecraft:empty",
-				"foundation_block": {
-					"Name": "minecraft:dirt"
-				},
 				"apply_waterlogging" : false
 			}
 		},
@@ -35,9 +39,6 @@
 				"projection": "rigid",
 				"location": "lotrextended:lore/last_homely_house/homely_house_3",
 				"processors": "minecraft:empty",
-				"foundation_block": {
-					"Name": "minecraft:dirt"
-				},
 				"apply_waterlogging" : false
 			}
 		},
@@ -48,9 +49,6 @@
 				"projection": "rigid",
 				"location": "lotrextended:lore/last_homely_house/homely_house_4",
 				"processors": "minecraft:empty",
-				"foundation_block": {
-					"Name": "minecraft:dirt"
-				},
 				"apply_waterlogging" : false
 			}
 		},
@@ -61,9 +59,6 @@
 				"projection": "rigid",
 				"location": "lotrextended:lore/last_homely_house/homely_house_5",
 				"processors": "minecraft:empty",
-				"foundation_block": {
-					"Name": "minecraft:dirt"
-				},
 				"apply_waterlogging" : false
 			}
 		},
@@ -74,9 +69,6 @@
 				"projection": "rigid",
 				"location": "lotrextended:lore/last_homely_house/homely_house_6",
 				"processors": "minecraft:empty",
-				"foundation_block": {
-					"Name": "minecraft:dirt"
-				},
 				"apply_waterlogging" : false
 			}
 		},
@@ -87,9 +79,6 @@
 				"projection": "rigid",
 				"location": "lotrextended:lore/last_homely_house/homely_house_7",
 				"processors": "minecraft:empty",
-				"foundation_block": {
-					"Name": "minecraft:dirt"
-				},
 				"apply_waterlogging" : false
 			}
 		},
@@ -100,9 +89,6 @@
 				"projection": "rigid",
 				"location": "lotrextended:lore/last_homely_house/homely_house_8",
 				"processors": "minecraft:empty",
-				"foundation_block": {
-					"Name": "minecraft:dirt"
-				},
 				"apply_waterlogging" : false
 			}
 		},
@@ -113,9 +99,6 @@
 				"projection": "rigid",
 				"location": "lotrextended:lore/last_homely_house/homely_house_9",
 				"processors": "minecraft:empty",
-				"foundation_block": {
-					"Name": "minecraft:dirt"
-				},
 				"apply_waterlogging" : false
 			}
 		},
@@ -125,10 +108,7 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:lore/last_homely_house/homely_house_tower_1",
-				"processors": "minecraft:empty",
-				"foundation_block": {
-					"Name": "minecraft:dirt"
-				}
+				"processors": "minecraft:empty"
 			}
 		},
 		{
@@ -137,10 +117,34 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:lore/last_homely_house/homely_house_tower_2",
-				"processors": "minecraft:empty",
-				"foundation_block": {
-					"Name": "minecraft:dirt"
-				}
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:lore/last_homely_house/homely_river_start",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:lore/last_homely_house/homely_river_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:lore/last_homely_house/homely_river_2",
+				"processors": "minecraft:empty"
 			}
 		}
 	]

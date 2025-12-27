@@ -15,6 +15,24 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
+          "name": "lotrextended:entities/common/parts/coins"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "lotrextended:entities/common/parts/scroll"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
           "name": "lotrextended:entities/common/parts/pouch"
         }
       ]

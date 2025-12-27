@@ -1,0 +1,46 @@
+{
+  "parent": "lotrextended:eregion/faded_splendor",
+  "display": {
+    "icon": {
+      "item": "lotr:eregion_helmet",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.eregion.eregion_armor.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.eregion.eregion_armor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "eregion_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:eregion_helmet"
+          },
+          {
+            "item": "lotr:eregion_chestplate"
+          },
+          {
+            "item": "lotr:eregion_leggings"
+          },
+          {
+            "item": "lotr:eregion_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "eregion_armor"
+    ]
+  ]
+}

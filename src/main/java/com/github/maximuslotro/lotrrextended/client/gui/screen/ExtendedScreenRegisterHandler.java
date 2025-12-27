@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedAnvilScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedBookshelfScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedGrindstoneScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedSmithingTableScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedStoneGrinderScreen;
@@ -14,5 +15,6 @@ public class ExtendedScreenRegisterHandler {
 		ScreenManager.register(ExtendedContainerTypes.EXTENDED_ANVIL.get(), ExtendedAnvilScreen::new);
 		ScreenManager.register(ExtendedContainerTypes.EXTENDED_SMITHING.get(), ExtendedSmithingTableScreen::new);
 		ScreenManager.register(ExtendedContainerTypes.EXTENDED_GRINDSTONE.get(), ExtendedGrindstoneScreen::new);
+		ScreenManager.register(ExtendedContainerTypes.BOOKSHELF.get(), ExtendedBookshelfScreen::new);
 	}
 }

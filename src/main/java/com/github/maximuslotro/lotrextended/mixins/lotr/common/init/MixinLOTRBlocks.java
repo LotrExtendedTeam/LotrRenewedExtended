@@ -1093,6 +1093,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.SHARDS_OF_NARSIL = registerB("shards_of_narsil", () -> new ExtendedNarsilShardsBlock(Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.5F).noOcclusion()));
 
 		ExtendedBlocks.PLACED_BOOKS = registerB("placed_books", () -> new ExtendedPlacedBooksBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noOcclusion()));
+		ExtendedBlocks.EXTENDED_BOOKSHELF = registerB("bookshelf", () -> new ExtendedBookshelfBlock(AbstractBlock.Properties.of(Material.WOOD).strength(1.5F).sound(SoundType.WOOD)));
 	}
 
 	/**

@@ -99,10 +99,10 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 		Advancement rivendell_smith = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "rivendell_smith", FrameType.TASK)
 			.setTitle("Armament of Imladris").setDescription("Trade with a Rivendell Smith"),
 			addTradeEntityTrigger(make(), ExtendedEntities.RIVENDELL_SMITH.get()).parent(rivendell));
-		Advancement last_homely_house = build(true, data(ExtendedItems.RIVENDELL_BANNER.get(), "last_homely_house", FrameType.TASK)
+		Advancement last_homely_house = build(false, data(ExtendedItems.RIVENDELL_BANNER.get(), "last_homely_house", FrameType.TASK)
 			.setTitle("The Last Homely House").setDescription("Enter the Last Homely House"),
 			addStructureTrigger(make(), "last_homely_house").parent(rivendell));
-		Advancement elrond = build(true, data(LOTRItems.EDHELVIR.get(), "elrond", FrameType.TASK)
+		Advancement elrond = build(false, data(LOTRItems.EDHELVIR.get(), "elrond", FrameType.TASK)
 			.setTitle("Son of Eärendil").setDescription("Speak with Elrond"),
 			entityInterractTrigger(make(), ExtendedEntities.ELROND.get()).parent(last_homely_house));
 		Advancement its_still_sharp = build(false, data(ExtendedItems.SHARDS_OF_NARSIL.get(), "its_still_sharp", FrameType.GOAL, true, true, false)

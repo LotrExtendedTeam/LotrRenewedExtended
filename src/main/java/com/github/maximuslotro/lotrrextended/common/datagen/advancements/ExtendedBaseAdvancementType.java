@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAbstrac
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAlignmentLevelTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedBlockBreakTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCraftingTrigger;
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedDrinkingTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedFakePositionalTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedTraderTradedTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedUnitHiredTrigger;
@@ -23,6 +24,7 @@ import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.IRequirementsStrategy;
 import net.minecraft.advancements.criterion.ChangeDimensionTrigger;
 import net.minecraft.advancements.criterion.ConsumeItemTrigger;
+import net.minecraft.advancements.criterion.DamageSourcePredicate;
 import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.advancements.criterion.EntityTypePredicate;
 import net.minecraft.advancements.criterion.FishingRodHookedTrigger;
@@ -32,12 +34,14 @@ import net.minecraft.advancements.criterion.KilledTrigger;
 import net.minecraft.advancements.criterion.LocationPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.MinMaxBounds.FloatBound;
+import net.minecraft.advancements.criterion.MobEffectsPredicate;
 import net.minecraft.advancements.criterion.PlayerEntityInteractionTrigger;
 import net.minecraft.advancements.criterion.PositionTrigger;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Effect;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
@@ -173,6 +177,9 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		}
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
+	public static Advancement.Builder addKillEntityPlayerEffectTrigger(Advancement.Builder builder, Effect effect) {
+		return builder.addCriterion("kill_entity", new KilledTrigger.Instance(new ResourceLocation("player_killed_entity"), EntityPredicate.AndPredicate.ANY, EntityPredicate.AndPredicate.ANY, new DamageSourcePredicate(null, null, null, null, null, null, null, null, EntityPredicate.ANY, EntityPredicate.Builder.entity().effects(MobEffectsPredicate.effects().and(effect)).build())));
+	}
 
 	public static Advancement.Builder addTradeEntityTrigger(Advancement.Builder builder, EntityType<?> entityType) {
 		return addTradeEntityTriggers(builder, entityType);
@@ -226,6 +233,21 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 
 	public static Advancement.Builder addUnitHireTrigger(Advancement.Builder builder, EntityType<?> captainType, EntityType<?> unitType) {
 		builder.addCriterion("hire_"+unitType.getRegistryName().getPath()+"_from_"+captainType.getRegistryName().getPath(), ExtendedUnitHiredTrigger.Instance.tradedWithAndItem(EntityTypePredicate.of(captainType), EntityTypePredicate.of(unitType), MinMaxBounds.IntBound.ANY));
+		return builder;
+	}
+
+	public static Advancement.Builder addDrinkDurationTrigger(Advancement.Builder builder, int duration) {
+		builder.addCriterion("drink_any", ExtendedDrinkingTrigger.Instance.drinkStrengeth(duration));
+		return builder;
+	}
+
+	public static Advancement.Builder addDrinkToleranceTrigger(Advancement.Builder builder, int tolerance) {
+		builder.addCriterion("drink_any", ExtendedDrinkingTrigger.Instance.tolerance(tolerance));
+		return builder;
+	}
+
+	public static Advancement.Builder addDrinkItemTrigger(Advancement.Builder builder, Item item) {
+		builder.addCriterion("drink_any", ExtendedDrinkingTrigger.Instance.item(item));
 		return builder;
 	}
 

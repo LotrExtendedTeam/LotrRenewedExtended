@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:general/first_steps",
+  "parent": "lotrextended:general/warg_slayer",
   "display": {
     "icon": {
       "item": "lotr:warg_fur_chestplate",

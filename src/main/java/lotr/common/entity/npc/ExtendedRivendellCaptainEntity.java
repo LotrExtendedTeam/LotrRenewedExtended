@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ExtendedRivendellCaptainEntity extends RivendellWarriorEntity implements ExtendedCaptainEntity {
+public class ExtendedRivendellCaptainEntity extends RivendellWarriorEntity  implements ExtendedNPCEntitySettings, ExtendedCaptainEntity {
 
 	public ExtendedRivendellCaptainEntity(EntityType<? extends ExtendedRivendellCaptainEntity> type, World w) {
 		super(type, w);
@@ -54,5 +54,10 @@ public class ExtendedRivendellCaptainEntity extends RivendellWarriorEntity imple
 	@Override
 	public List<ResourceLocation> getHireableProfiles() {
 		return java.util.Arrays.asList(ExtendedHiredUnitTypes.RIVENDELL_ELF, ExtendedHiredUnitTypes.RIVENDELL_WARRIOR);
+	}
+
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
 	}
 }

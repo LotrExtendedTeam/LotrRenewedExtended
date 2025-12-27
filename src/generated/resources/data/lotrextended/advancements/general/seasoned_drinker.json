@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:general/tipsy",
+  "display": {
+    "icon": {
+      "item": "lotr:rum"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.general.seasoned_drinker.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.seasoned_drinker.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "drink_any": {
+      "trigger": "lotrextended:drinking",
+      "conditions": {
+        "tolerance": {
+          "min": 100
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "drink_any"
+    ]
+  ]
+}

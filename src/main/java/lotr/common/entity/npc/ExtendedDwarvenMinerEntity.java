@@ -34,7 +34,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedDwarvenMinerEntity extends DwarfEntity implements ExtendedTraderEntity {
+public class ExtendedDwarvenMinerEntity extends DwarfEntity  implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
 
 	int lastTickCooldownReduced = 0;
 	int lastTickVerifiedPlayerTradingWithIsOnline = 0;
@@ -188,5 +188,9 @@ public class ExtendedDwarvenMinerEntity extends DwarfEntity implements ExtendedT
 		return ExtendedTraderTypes.DWARVEN_MINER;
 	}
 
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
+	}
 }
 

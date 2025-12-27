@@ -5,7 +5,7 @@ import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteri
 import com.github.maximuslotro.lotrrextended.common.chairs.HackyChairDatabase;
 import com.github.maximuslotro.lotrrextended.common.commands.ExtendedCommands;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedDataIdFixer;
+import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedMissingMappings;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGeneratorExtended;
 import com.github.maximuslotro.lotrrextended.common.eventhandlers.*;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
@@ -77,9 +77,9 @@ public class LotrExtendedMod{
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ExtendedClientProxy::staticClientSetup);
 		modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-		forgeBus.addGenericListener(Block.class, ExtendedDataIdFixer::fixBlockMappings);
-		forgeBus.addGenericListener(Item.class, ExtendedDataIdFixer::fixItemMappings);
-		forgeBus.addGenericListener(EntityType.class, ExtendedDataIdFixer::fixEntityMappings);
+		forgeBus.addGenericListener(Block.class, ExtendedMissingMappings::fixBlockMappings);
+		forgeBus.addGenericListener(Item.class, ExtendedMissingMappings::fixItemMappings);
+		forgeBus.addGenericListener(EntityType.class, ExtendedMissingMappings::fixEntityMappings);
 		modBus.addListener(this::extendedCommonSetup);
 		modBus.addListener(DataGeneratorExtended::gatherData);
 		forgeBus.addListener(EventPriority.LOW, this::extendedRegisterCommands);
@@ -94,7 +94,6 @@ public class LotrExtendedMod{
 		DevEventHandlers.registerDevListender(modBus, forgeBus);
 		forgeBus.register(ExtendedServerModifierEventHandlers.class);
 		forgeBus.register(ForgeInventoryEvents.class);
-		forgeBus.register(HiredUnitEventHandlers.class);
 		forgeBus.register(WorldEventHandlers.class);
 		ExtendedTapestryType.register(modBus);
 		ExtendedBlockStateProviderTypes.register(modBus);

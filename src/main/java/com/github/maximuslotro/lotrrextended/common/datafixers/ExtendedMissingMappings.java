@@ -19,7 +19,7 @@ import net.minecraftforge.event.RegistryEvent.MissingMappings;
 import net.minecraftforge.event.RegistryEvent.MissingMappings.Mapping;
 
 @SuppressWarnings("deprecation")
-public class ExtendedDataIdFixer {
+public class ExtendedMissingMappings {
 	public static final Map<ResourceLocation, Block> BLOCKS = new HashMap<>();
 	public static final Map<ResourceLocation, Item> ITEMS = new HashMap<>();
 	public static final Map<ResourceLocation, EntityType<?>> ENTITIES = new HashMap<>();

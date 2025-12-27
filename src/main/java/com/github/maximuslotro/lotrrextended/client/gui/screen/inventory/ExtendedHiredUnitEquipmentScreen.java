@@ -147,15 +147,19 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
 		ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredMenuPacket(menu.entityId));
 	}
 
-	private void renderBaseGearSlot(int slotX, int slotY, ItemStack item) {
+	private void renderBaseGearSlot(int slotX, int slotY, ItemStack stack) {
 		// Set rendering offsets
 		this.setBlitOffset(100);
 		this.itemRenderer.blitOffset = 100.0F;
 
+		if(stack.hasTag() && stack.getTag().contains("langTitle")) {
+			String name = stack.getTag().getString("langTitle");
+			stack.setHoverName(new TranslationTextComponent(name).withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD));
+		}
 		// Render the item in the slot
 		RenderSystem.enableDepthTest();
-		this.itemRenderer.renderAndDecorateItem(this.minecraft.player, item, slotX, slotY);
-		this.itemRenderer.renderGuiItemDecorations(this.font, item, slotX, slotY, null);
+		this.itemRenderer.renderAndDecorateItem(this.minecraft.player, stack, slotX, slotY);
+		this.itemRenderer.renderGuiItemDecorations(this.font, stack, slotX, slotY, null);
 
 		// Reset rendering offsets
 		this.itemRenderer.blitOffset = 0.0F;

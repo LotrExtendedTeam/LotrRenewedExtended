@@ -34,14 +34,7 @@ public class MixinResourcePackLoader {
 
 	/**
 	 * Injects into {@link ResourcePackLoader#loadResourcePacks(ResourcePackList, BiFunction)}
-	 * at the {@code TAIL}, adding extended resource packs after vanilla packs are registered.
-	 * <p>
-	 * Current behavior:
-	 * <ul>
-	 *   <li>{@link ExtendedClientProxy#createRenewedPack(ResourcePackList)} — adds a "renewed" resource pack.</li>
-	 *   <li>{@link ExtendedClientProxy#createForcedPack(ResourcePackList)} — injects a forced resource pack (cannot be disabled by the player).</li>
-	 * </ul>
-	 * </p>
+	 * at the {@code TAIL}, adding additional resource packs after vanilla packs are registered.
 	 *
 	 * <p>This ensures that extended packs are available alongside vanilla and mod resource packs,
 	 * allowing custom assets (textures, sounds, models) to be distributed seamlessly.</p>
@@ -53,8 +46,8 @@ public class MixinResourcePackLoader {
 	 */
 	@Inject(method = "loadResourcePacks(Lnet/minecraft/resources/ResourcePackList;Ljava/util/function/BiFunction;)V", at = @At("TAIL"), remap = false)
 	private static void loadExtendedResourcePacks(ResourcePackList resourcePacks, BiFunction<Map<ModFile, ? extends ModFileResourcePack>, BiConsumer<? super ModFileResourcePack, ResourcePackInfo>, IPackInfoFinder> packFinder, CallbackInfo ci) {
-		//ExtendedClientProxy.createLecacyPack(resourcePacks);
-		ExtendedClientProxy.createRenewedPack(resourcePacks);
-		ExtendedClientProxy.createForcedPack(resourcePacks);
+		ExtendedClientProxy.createAdditionalPack(resourcePacks, "extended_textures", "extended", "Forced Extended Textures", true);
+		ExtendedClientProxy.createAdditionalPack(resourcePacks, "renewed_textures", "renewed", "Redone Renewed Textures", false);
+		ExtendedClientProxy.createAdditionalPack(resourcePacks, "vanilla_textures", "vanilla", "Redone Vanilla Textures", false);
 	}
 }

@@ -1,15 +1,21 @@
 package com.github.maximuslotro.lotrextended.mixins.lotr.common.item;
 
+import java.util.Optional;
+
 import javax.annotation.Nullable;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.At.Shift;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+
 import lotr.common.block.VesselDrinkBlock;
+import lotr.common.data.MiscDataModule;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.item.VesselType;
@@ -17,6 +23,7 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -105,5 +112,15 @@ public class MixinVesselDrinkItem {
 			return true;
 		}
 		return false;
+	}
+
+	@Inject(method = "finishUsingItem", at = @At(value = "INVOKE_ASSIGN", target = "Ljava/lang/Math;round(F)I", ordinal = 1, shift = Shift.AFTER), 
+			locals = LocalCapture.CAPTURE_FAILEXCEPTION)
+	public void finishUsingItem$Extended(ItemStack stack, World world, LivingEntity entity, CallbackInfoReturnable<ItemStack> cir, 
+			PlayerEntity asPlayer, VesselType vessel, ItemStack emptyVessel, float benefitEffectiveness, float healF, float sat, int heal, 
+			float alcStrength, Optional<MiscDataModule> playerMiscData, int tolerance, int duration, int durationTicks, int toleranceAdd) {
+		if (asPlayer instanceof ServerPlayerEntity) {
+			ExtendedCriteriaTriggers.PLAYER_DRINK_TRIGGER.trigger((ServerPlayerEntity) asPlayer, stack, duration, tolerance+toleranceAdd);
+		}
 	}
 }

@@ -110,24 +110,10 @@ public class ExtendedClientProxy {
         }
     }
 
-//	public static void createLecacyPack(ResourcePackList packs) {
-//		packs.addPackFinder((consumer, iFactory) -> consumer.accept(ResourcePackInfo.create(
-//				LotrExtendedMod.MODID+":legacy_textures",
-//				false, () -> new ExtendedAlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "legacy", "Legacy TexturePack"),
-//				iFactory, Priority.TOP, IPackNameDecorator.BUILT_IN)));
-//	}
-
-	public static void createForcedPack(ResourcePackList packs) {
+	public static void createAdditionalPack(ResourcePackList packs, String id, String folder, String title, boolean forced) {
 		packs.addPackFinder((consumer, iFactory) -> consumer.accept(ResourcePackInfo.create(
-				LotrExtendedMod.MODID+":extended_textures",
-				true, () -> new ExtendedAlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "extended", "Forced Extended Textures"),
-				iFactory, Priority.TOP, IPackNameDecorator.BUILT_IN)));
-	}
-
-	public static void createRenewedPack(ResourcePackList packs) {
-		packs.addPackFinder((consumer, iFactory) -> consumer.accept(ResourcePackInfo.create(
-				LotrExtendedMod.MODID+":renewed_textures",
-				false, () -> new ExtendedAlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), "renewed", "Redone Renewed Textures"),
+				LotrExtendedMod.MODID+":"+id,
+				forced, () -> new ExtendedAlternateResourcePacks(INSTANCE.getParentInstance().getModfile(), folder, title),
 				iFactory, Priority.TOP, IPackNameDecorator.BUILT_IN)));
 	}
 
@@ -176,6 +162,13 @@ public class ExtendedClientProxy {
 			//Handle version change resource pack load
 			ResourcePackList rpl = Minecraft.getInstance().getResourcePackRepository();
 			if(!rpl.getSelectedIds().contains("lotrextended:renewed_textures") && rpl.isAvailable("lotrextended:renewed_textures")) {
+				//Catch Minecraft using ImmutableSet!
+				List<String> packs = new ArrayList<>(rpl.getSelectedIds());
+				packs.add("lotrextended:renewed_textures");
+				//Return ImmutableSet!
+				rpl.setSelected(packs.stream().collect(ImmutableSet.toImmutableSet()));
+			}
+			if(!rpl.getSelectedIds().contains("lotrextended:vanilla_textures") && rpl.isAvailable("lotrextended:vanilla_textures")) {
 				//Catch Minecraft using ImmutableSet!
 				List<String> packs = new ArrayList<>(rpl.getSelectedIds());
 				packs.add("lotrextended:renewed_textures");

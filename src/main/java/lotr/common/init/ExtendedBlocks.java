@@ -571,4 +571,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SHARDS_OF_NARSIL;
 
 	public static RegistryObject<Block> PLACED_BOOKS;
+
+	public static RegistryObject<Block> EXTENDED_BOOKSHELF;
 }

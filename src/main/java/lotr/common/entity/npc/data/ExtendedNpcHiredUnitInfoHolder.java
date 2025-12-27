@@ -51,9 +51,10 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	/**
 	 * Defines the hired unit inventory version
 	 * DNE/0 for 1.7.1&lt;1.7.2
-	 * 1 for 1.7.3&lt;?.?.?
+	 * 1 for 1.7.3&lt;1.9.0
+	 * 2 for 1.9.1&lt;?.?.?
 	 * */
-	public static final int UNIT_INVENTORY_VERSION = 1;
+	public static final int UNIT_INVENTORY_VERSION = 2;
 	public static final int INVENTORY_SIZE = 29;
 	private static final int HEAL_RATE = 80;
 	// Unit meta data
@@ -646,20 +647,35 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 				setupUnitEquipment();
 				return;
 			}
-			if(unitInventory.getInt("unit_inventory_version")==UNIT_INVENTORY_VERSION) {
+			if(unitInventory.getInt("unit_inventory_version")>=1 && unitInventory.getInt("unit_inventory_version")<=UNIT_INVENTORY_VERSION) {
 				// 1.7.3 Added ranged, mounted, idle and idle mounted slots
 				// 9 inventory slots + 10 player equipment slots + 10 base equipment slots
 				NonNullList<ItemStack> itemsStacks = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
 				ItemStackHelper.loadAllItems(unitInventory, itemsStacks);
 				for (int i = 0; i < INVENTORY_SIZE; i++) {
 					ItemStack stack = itemsStacks.get(i);
-					// Ensure older stacks have modifiers added (even player given items should have modifiers added)
+					// Ensure pre 1.9.0 stacks have modifiers added (even player given items should have modifiers added)
 					if(stack.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(stack)) {
 						ExtendedModifierUtils.generateItemModifiersTagged(thisEntity.random, stack, false, false);
 					}
 					internalUnitInventory.setItem(i, stack);
 				}
-			}else {
+				if(unitInventory.getInt("unit_inventory_version")==1) {
+					ExtendedLog.info("Loaded Hired Unit Inventory in format [1]. Upgrading inventory to format ["+2+"]");
+					// 1.9.1 fixes base items having custom stack names which show in chat
+					// by re-setting all base equipment
+					internalUnitInventory.setItem(19, getUnitProfile().getEquipmentPools().getRandomHelmetStack(thisEntity.getRandom()));
+					internalUnitInventory.setItem(20, getUnitProfile().getEquipmentPools().getRandomChestplateStack(thisEntity.getRandom()));
+					internalUnitInventory.setItem(21, getUnitProfile().getEquipmentPools().getRandomLeggingsStack(thisEntity.getRandom()));
+					internalUnitInventory.setItem(22, getUnitProfile().getEquipmentPools().getRandomBootsStack(thisEntity.getRandom()));
+					internalUnitInventory.setItem(23, getUnitProfile().getEquipmentPools().getRandomMeleeStack(thisEntity.getRandom()));
+					internalUnitInventory.setItem(24, getUnitProfile().getEquipmentPools().getRandomRangedStack(thisEntity.getRandom()));
+					internalUnitInventory.setItem(25, getUnitProfile().getEquipmentPools().getRandomMountedStack(thisEntity.getRandom()));
+					internalUnitInventory.setItem(26, getUnitProfile().getEquipmentPools().getRandomIdleStack(thisEntity.getRandom()));
+					internalUnitInventory.setItem(27, getUnitProfile().getEquipmentPools().getRandomIdleMountedStack(thisEntity.getRandom()));
+					internalUnitInventory.setItem(28, getUnitProfile().getEquipmentPools().getRandomOffhandStack(thisEntity.getRandom()));
+				}
+			} else {
 				ExtendedLog.error("Tried loading a Hired Unit Inventory with a malformed/unknown version number, dumping nbt to logs and loading default base inventory!");
 				ExtendedLog.error(unitInventory.toString());
 				setupUnitEquipment();
@@ -671,7 +687,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			// 9 inventory slots + 6 combined equipment slots
 			// 1.7.2 Added split base and player equipment slots
 			// 9 inventory slots + 6 player equipment slots + 6 base equipment slots
-			ExtendedLog.error("Loaded Hired Unit Inventory in format [0]. Upgrading inventory to format ["+UNIT_INVENTORY_VERSION+"]");
+			ExtendedLog.info("Loaded Hired Unit Inventory in format [0]. Upgrading inventory to format ["+UNIT_INVENTORY_VERSION+"]");
 			NonNullList<ItemStack> itemsStacks = NonNullList.withSize(21, ItemStack.EMPTY);
 			ItemStackHelper.loadAllItems(tag, itemsStacks);
 			// Load old item slot index into new positions

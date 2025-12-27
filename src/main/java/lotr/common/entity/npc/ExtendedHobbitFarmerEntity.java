@@ -37,7 +37,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedHobbitFarmerEntity extends HobbitEntity implements ExtendedTraderEntity {
+public class ExtendedHobbitFarmerEntity extends HobbitEntity  implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
 
     int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
@@ -174,5 +174,10 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity implements Extended
 		}else {
 			this.addAggressiveTargetingGoals();
 		}
+	}
+
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
 	}
 }

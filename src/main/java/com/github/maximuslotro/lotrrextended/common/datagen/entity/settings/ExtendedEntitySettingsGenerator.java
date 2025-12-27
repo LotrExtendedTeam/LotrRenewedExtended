@@ -18,7 +18,7 @@ public class ExtendedEntitySettingsGenerator extends ExtendedEntitySettingsProvi
 	@Override
 	public void makeEntitySettingBuilders(Consumer<ExtendedEntitySettingsBuilder> pConsumer) {
 		make(ExtendedEntities.BARROW_WIGHT.get(), FactionPointers.HOSTILE).setBankE("wight/barrow_wight").save(pConsumer);
-		make(ExtendedEntities.BANDIT.get(), FactionPointers.UNALIGNED).setBankE("bandit").save(pConsumer);
+		make(ExtendedEntities.BANDIT.get(), FactionPointers.HOSTILE).setBankE("bandit").save(pConsumer);
 		make(ExtendedEntities.GUNDABAD_URUK.get(), FactionPointers.NORTHERN_ORCS).setBonus(2).setBank("northern_orcs/gundabad/orc").save(pConsumer);
 		make(ExtendedEntities.GUNDABAD_URUK_ARCHER.get(), FactionPointers.NORTHERN_ORCS).setBonus(2).setBank("northern_orcs/gundabad/orc").save(pConsumer);
 		make(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get(), FactionPointers.NORTHERN_ORCS).setBonus(2).setBank("northern_orcs/gundabad/orc_chieftain").save(pConsumer);
@@ -72,7 +72,7 @@ public class ExtendedEntitySettingsGenerator extends ExtendedEntitySettingsProvi
 		make(ExtendedEntities.RIVENDELL_CAPTAIN.get(), FactionPointers.HIGH_ELVES).setBonus(2).setBank("high_elves/rivendell/warrior").save(pConsumer);
 		make(ExtendedEntities.RIVENDELL_SMITH.get(), FactionPointers.HIGH_ELVES).setBonus(2).setBank("high_elves/rivendell/elf").save(pConsumer);
 		make(ExtendedEntities.IMLADRIS_GUARD.get(), FactionPointers.HIGH_ELVES).setBonus(2).setBank("high_elves/rivendell/warrior").save(pConsumer);
-		make(ExtendedEntities.ELROND.get(), FactionPointers.HIGH_ELVES).setBonus(0).setBank("lore_character/elrond").save(pConsumer);
+		make(ExtendedEntities.ELROND.get(), FactionPointers.HIGH_ELVES).setBonus(0).setBankE("lore_character/elrond").save(pConsumer);
 		make(ExtendedEntities.RIVENDELL_WEAVER.get(), FactionPointers.HIGH_ELVES).setBonus(2).setBank("high_elves/rivendell/elf").save(pConsumer);
 	}
 }

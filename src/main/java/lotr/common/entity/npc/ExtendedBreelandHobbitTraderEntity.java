@@ -16,7 +16,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 
-public abstract class ExtendedBreelandHobbitTraderEntity extends BreeHobbitEntity implements ExtendedTraderEntity {
+public abstract class ExtendedBreelandHobbitTraderEntity extends BreeHobbitEntity  implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
 
     int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
@@ -116,5 +116,10 @@ public abstract class ExtendedBreelandHobbitTraderEntity extends BreeHobbitEntit
 		}else {
 			this.addAggressiveTargetingGoals();
 		}
+	}
+
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
 	}
 }

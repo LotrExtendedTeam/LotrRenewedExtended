@@ -23,7 +23,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedBlueMountainsAxeThrowerEntity extends BlueDwarfWarriorEntity {
+public class ExtendedBlueMountainsAxeThrowerEntity extends BlueDwarfWarriorEntity implements ExtendedNPCEntitySettings{
 	@SuppressWarnings("unchecked")
 	public ExtendedBlueMountainsAxeThrowerEntity(EntityType<? extends BlueDwarfWarriorEntity> type, World w) {
 		super(type, w);
@@ -73,5 +73,11 @@ public class ExtendedBlueMountainsAxeThrowerEntity extends BlueDwarfWarriorEntit
 		axeEntity.shoot(dx, dy + dxzSq * 0.2D, dz, 1.6F, (float)getAttributeValue(LOTRAttributes.NPC_RANGED_INACCURACY.get()));
 		playSound(SoundEvents.TRIDENT_THROW, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F));
 		level.addFreshEntity(axeEntity);
+	}
+
+
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
 	}
 }

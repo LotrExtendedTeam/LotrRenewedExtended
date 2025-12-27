@@ -14,7 +14,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedRivendellGuardEntity extends RivendellWarriorEntity {
+public class ExtendedRivendellGuardEntity extends RivendellWarriorEntity implements ExtendedNPCEntitySettings {
 
 	public ExtendedRivendellGuardEntity(EntityType<? extends ExtendedRivendellGuardEntity> type, World w) {
 		super(type, w);
@@ -36,5 +36,10 @@ public class ExtendedRivendellGuardEntity extends RivendellWarriorEntity {
 		setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.IMLADRIS_GUARD_HELMET.get()));
 		setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.IMLADRIS_GUARD_SHIELD.get()));
 		return spawnData;
+	}
+
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
 	}
 }

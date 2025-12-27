@@ -127,6 +127,9 @@ public class MixinLOTRMaterial {
 	@Unique
 	private static final LOTRMaterial ANDURIL = lE$addVariant("ANDURIL", "anduril", 2, 1500, 0.0f, 5.0f, 14, 0.0F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
 			() -> Ingredient.of(Tags.Items.INGOTS_IRON));
+	@Unique
+	private static final LOTRMaterial EREGION = lE$addVariant("EREGION", "eregion", 0, 950, 0, 0, 10, 0.7F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
+			() -> Ingredient.of(LOTRItems.ELVEN_STEEL_INGOT.get()));
 
 	
 

@@ -37,7 +37,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity implements ExtendedWanderingTraderEntity {
+public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity  implements ExtendedNPCEntitySettings, ExtendedWanderingTraderEntity {
 
     int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
@@ -228,5 +228,9 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity impleme
         return this.getFaction().getColor();
     }
 
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
+	}
 }
 

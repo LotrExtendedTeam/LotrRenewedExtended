@@ -7,10 +7,12 @@
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "terrain_matching",
-				"location": "lotrextended:lore/last_homely_house/homely_house_start",
+				"location": "lotrextended:lore/last_homely_house/homely_house_start_point",
 				"processors": "minecraft:empty",
 				"snap_to_water_height" : true,
-				"max_place_distance": 112
+				"max_place_distance": 140,
+				"chunk_corner_offset": 0,
+				"max_depth": 10
 			}
 		}
 	]

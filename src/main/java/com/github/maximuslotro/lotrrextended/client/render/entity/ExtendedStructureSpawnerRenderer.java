@@ -87,7 +87,6 @@ public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStr
 				// Render spawn box
 				pMatrixStack.pushPose();
 				renderLineBox(pMatrixStack, builder, pEntity.getSpawnArea(), 255, 255, 0, 255);
-				System.out.println(pEntity.getSpawnArea());
 				pMatrixStack.popPose();
 				RenderSystem.disableDepthTest();
 				//RenderSystem.disableCull();

@@ -25,7 +25,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedBreelandSheriffEntity extends BreeManEntity implements ExtendedCaptainEntity {
+public class ExtendedBreelandSheriffEntity extends BreeManEntity  implements ExtendedNPCEntitySettings, ExtendedCaptainEntity {
 
     private static final int[] SUIT_COLORS = new int[]{11373426, 7823440, 5983041, 9535090};
 
@@ -76,5 +76,10 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
 		return Arrays.asList(ExtendedHiredUnitTypes.BREE_HOBBIT, 
 			ExtendedHiredUnitTypes.BREE_MAN, 
 			ExtendedHiredUnitTypes.BREE_GUARD);
+	}
+
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
 	}
 }

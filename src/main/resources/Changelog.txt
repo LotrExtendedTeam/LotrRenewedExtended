@@ -1,3 +1,82 @@
+(Beta 1.9.1)
+* Blocks
+  * Added scroll/paper/maps/banner pattern to bookshelf slots
+  * Changed Chimney Pots to only very rarely produce embers
+  * Fixed placed a book not swinging the players hand
+  * Fixed placed a book taking two books
+  * Large Pots are now waterloggable
+  * Made bookshelves with filled inventory its own block
+* Config
+  * Added a server config setting to disable Imladris lore structure
+  * Added a server config setting to disable bandit encounters
+  * Added a server config setting to disable fixed structures
+  * Added a server config setting to disable tolkien spawning
+  * Added a server config setting to disable wandering trader spawning
+  * Added a server config setting to enable decreased hunger exhaustion
+* Entities
+  * Fixed Elrond not respawning when killed
+  * Fixed entity spawners debug render being offset
+  * Fixed entity spawners in structures being attackable in survival
+  * Fixed left handed NPCs still holding trade coins in the wrong hand
+  * Fixed sometimes every entity in render distance wanting to target any loaded bandit
+  * Fixed tamed boars participating in group agro against owner
+  * Replaced the targeting AI used by every NPC added by Extended
+  * Wargs eyes now glow
+* Features
+  * Added Bell Ringing
+  * Added legacy decreased hunger level (fyi this was x0.3)
+* Hired Units
+  * Fixed hired unit base item’s names showing in chat on kills
+  * Fixed hired units not targeting bandits
+* Items
+  * Added Eregion armor
+  * Changed held horn rotation to face outward
+  * Fixed Rivendell bow not having a drawing animation
+* Localization
+  * Added speechbanks for Elrond
+  * Fixed Lothlorien banner patterns not being accented (ó)
+  * Fixed thrown axes not having localized death messages
+* Loot Tables
+  * NPCs can now rarely drop scrolls
+* Misc
+  * Added 3 advancements from Legacy (52.6% currently ported)
+  * Added 5 new advancements in Extended (44 currently)
+  * Added 5 redstoneless recipes (dropper, dispenser, target block, note block, piston
+* Modifiers
+  * Added the ability to reforge/repair lotr pipes
+  * Fixed armor uuid attributes not being unique (resulting in partial protection being applied)
+  * Fixed banes being earnable on any item
+  * Fixed books of true silver not applying on the anvil
+  * Fixed bow tooltips not applying modifiers
+  * Fixed bronze tier scrolls giving iron tier modifiers
+  * Fixed modifier scrolls granting stats when held
+  * Fixed modifiers granting stats on non-applicable items
+  * Fixed renaming non-repairable items
+  * Fixed sluggish modifier not working, granting x1.75 instead of x0.75
+  * Fixed vanilla bows not applying ranged launch speed factor
+  * Fixed vanilla bows not having tooltips
+  * Fixed vanilla fishing rod, bow, shears and crossbow not being reforgable
+  * Reduce anvil damage chance from 12% to 6%
+  * Reduce anvil item cost increase levels to legacy thresholds
+* Structures
+  * Added Eregion Ruins
+  * Added Imladris lore build (The Last Homely House)
+  * Added better water checking algorithm for some structure spawning
+  * Added more animal spawning in some Bree structures
+  * Added stacked food for shire, bree and ranger plates
+  * Fix larger entities suffocating when spawning (horses in stables)
+  * Fixed Blue Mountain Settlement stairs allowing dirt to block doors
+  * Slightly increase rarity of Bree and Rivendell structures
+  * Updated all Rivendell structures with new blocks and designs
+* Textures
+  * Fixed some banner pattern textures being pixel offset
+* Trading
+  * Fixed an issue where loading an empty trade pools deletes the npc
+  * Fixed an issue where trade pools decrease the global trade pool index
+* WorldGen
+  * Added sparse moors grass to Rivendell biome
+
+
 (Beta 1.9.0)
 * Biomes
   * Added Rivendell Cliffs (a more sharp version of the Rivendell Hills biome)

@@ -37,7 +37,7 @@ import net.minecraft.world.World;
 /**
  * @author RichardB122, maximuslotro
  */
-public class ExtendedHobbitBartenderEntity extends HobbitEntity implements ExtendedTraderEntity {
+public class ExtendedHobbitBartenderEntity extends HobbitEntity  implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
 
     int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
@@ -173,5 +173,10 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity implements Exten
 		}else {
 			this.addAggressiveTargetingGoals();
 		}
+	}
+
+	@Override
+	public boolean addExtendedGoals() {
+		return true;
 	}
 }

@@ -25,7 +25,7 @@ import net.minecraft.loot.conditions.ILootCondition;
  * so that only inactive or non-unit NPCs can provide them.
  * </p>
  */
-public class ExtendedRemoveUnitCoinDrops implements ILootCondition {
+public class ExtendedRemoveFromUnitDrops implements ILootCondition {
 	/**
 	 * Returns the registered type of this loot condition.
 	 *
@@ -33,7 +33,7 @@ public class ExtendedRemoveUnitCoinDrops implements ILootCondition {
 	 */
 	@Override
 	public LootConditionType getType() {
-		return ExtendedLootConditions.REMOVE_UNIT_COINS;
+		return ExtendedLootConditions.REMOVE_FROM_UNIT_DROPS;
 	}
 	/**
 	 * Returns the set of loot context parameters used by this condition.
@@ -72,16 +72,16 @@ public class ExtendedRemoveUnitCoinDrops implements ILootCondition {
 	/**
 	 * Creates a new loot condition builder for this condition type.
 	 *
-	 * @return a builder for {@link ExtendedRemoveUnitCoinDrops}
+	 * @return a builder for {@link ExtendedRemoveFromUnitDrops}
 	 */
-	public static ILootCondition.IBuilder setRemoveUnitCoinsDropBuilder() {
-		return ExtendedRemoveUnitCoinDrops::new;
+	public static ILootCondition.IBuilder setRemoveFromUnitDropsBuilder() {
+		return ExtendedRemoveFromUnitDrops::new;
 	}
 	/**
 	 * Handles JSON serialization and deserialization of
-	 * {@link ExtendedRemoveUnitCoinDrops} for loot tables.
+	 * {@link ExtendedRemoveFromUnitDrops} for loot tables.
 	 */
-	public static class Serializer implements ILootSerializer<ExtendedRemoveUnitCoinDrops> {
+	public static class Serializer implements ILootSerializer<ExtendedRemoveFromUnitDrops> {
 		/**
 		 * Serializes the loot condition into a JSON object.
 		 * <p>
@@ -94,21 +94,21 @@ public class ExtendedRemoveUnitCoinDrops implements ILootCondition {
 		 * @param pSerializationContext the serialization context
 		 */
 		@Override
-		public void serialize(JsonObject pJson, ExtendedRemoveUnitCoinDrops pValue, JsonSerializationContext pSerializationContext) {}
+		public void serialize(JsonObject pJson, ExtendedRemoveFromUnitDrops pValue, JsonSerializationContext pSerializationContext) {}
 		/**
 		 * Deserializes the loot condition from a JSON object.
 		 * <p>
 		 * Since this condition has no parameters, it always
-		 * returns a new instance of {@link ExtendedRemoveUnitCoinDrops}.
+		 * returns a new instance of {@link ExtendedRemoveFromUnitDrops}.
 		 * </p>
 		 *
 		 * @param pJson the JSON data
 		 * @param pSerializationContext the deserialization context
-		 * @return a new {@link ExtendedRemoveUnitCoinDrops} instance
+		 * @return a new {@link ExtendedRemoveFromUnitDrops} instance
 		 */
 		@Override
-		public ExtendedRemoveUnitCoinDrops deserialize(JsonObject pJson, JsonDeserializationContext pSerializationContext) {
-			return new ExtendedRemoveUnitCoinDrops();
+		public ExtendedRemoveFromUnitDrops deserialize(JsonObject pJson, JsonDeserializationContext pSerializationContext) {
+			return new ExtendedRemoveFromUnitDrops();
 		}
 	}
 }

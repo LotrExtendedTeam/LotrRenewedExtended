@@ -6,6 +6,8 @@ import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteri
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.entity.npc.ExtendedLoreEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
@@ -19,15 +21,23 @@ import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.entity.npc.data.NPCEntitySettings;
+import lotr.common.entity.npc.data.NPCEntitySettingsManager;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRDimensions;
 import net.minecraft.block.BellBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.ChainBlock;
 import net.minecraft.block.EnchantingTableBlock;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySize;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -35,7 +45,6 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.Hand;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -121,10 +130,30 @@ public class WorldEventHandlers {
 	 */
 	@SubscribeEvent
 	public static void handleCaptainTraderDeath$Extended(LivingDeathEvent event) {
-		if (!(event.getEntity() instanceof ExtendedTraderEntity || event.getEntity() instanceof ExtendedCaptainEntity)) {
-			return;
-		}
+		Entity sourceEntity = event.getSource().getEntity();
+        if (sourceEntity instanceof NPCEntity && ((ExtendedNPCEntity)sourceEntity).getUnitInfo().isNpcActiveDuty()) {
+            // base amount of xp off kill alignment bonus
+            float xpPoints = 0;
+            if (event.getEntity() instanceof NPCEntity) {
+                NPCEntitySettings settings = NPCEntitySettingsManager.getEntityTypeSettings(event.getEntity());
+                if (settings != null && settings.getKillAlignmentBonus() > 0) {
+                    xpPoints = (int) settings.getKillAlignmentBonus();
+                } else {
+                    xpPoints = 1;
+                }
+            } else {
+               if (event.getEntity() instanceof PigEntity ||
+                       event.getEntity() instanceof ChickenEntity ||
+                       event.getEntity() instanceof CowEntity ||
+                       event.getEntity() instanceof ExtendedDuckEntity) {
+                    xpPoints = 0.25f;
+               }
+            }
 
+            ((ExtendedNPCEntity)sourceEntity).getUnitInfo().giveExperiencePoints(xpPoints);
+            ((ExtendedNPCEntity)sourceEntity).getUnitInfo().setMobKills(((ExtendedNPCEntity)sourceEntity).getUnitInfo().getMobKills() + 1);
+            ((ExtendedNPCEntity)sourceEntity).getUnitInfo().markDirty();
+        }
 		// If an NPC is a wandering trader, no respawns, even it is a captain
 		if(event.getEntity() instanceof ExtendedTraderEntity && ((ExtendedNPCEntity) event.getEntity()).getTraderInfo().isTraderCurrentlyWandering()) {
 			ExtendedWanderingTraderEntity trader = (ExtendedWanderingTraderEntity) event.getEntity();
@@ -133,7 +162,7 @@ public class WorldEventHandlers {
 			}
 
 			AxisAlignedBB initial = new AxisAlignedBB(event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(),
-				event.getEntity().getX() + 1, event.getEntity().getY() + 1, event.getEntity().getZ() + 1);
+					event.getEntity().getX() + 1, event.getEntity().getY() + 1, event.getEntity().getZ() + 1);
 			List<NPCEntity> potentialEscorts = event.getEntity().level.getEntitiesOfClass(NPCEntity.class, initial.inflate(256));
 
 			for (NPCEntity entity : potentialEscorts) {
@@ -148,37 +177,36 @@ public class WorldEventHandlers {
 				player.sendMessage(text, Util.NIL_UUID);
 			}
 			return;
-		}else {
-			NPCEntity npc = (NPCEntity)event.getEntity();
-			// Check if entity has persistence to respawn, despawnable npcs will fail this check
-			// Also check if spawner spawned npc should respawn, persistable but permanently killable npcs will fail this check
-			// If a persistable npc is spawned via egg or commands, it will bypass this check and will be respawnable
-			if(!npc.isPersistenceRequired() || npc.getPersistentData().contains("ExtendedRespawnOnDeath") && !npc.getPersistentData().getBoolean("ExtendedRespawnOnDeath")) {
-				return; //Let entity die
-			}
-			// Make entity respawner
-			ExtendedRespawnerEntity respawnerEntity = new ExtendedRespawnerEntity(npc.level);
-			//respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
-			respawnerEntity.moveTo(npc.getX(), npc.getY()+npc.getBbHeight()+1, npc.getZ());
+		}
+		if(event.getEntity() instanceof MobEntity) {
+			MobEntity mob = (MobEntity) event.getEntity();
+			if((mob.isPersistenceRequired() && (mob instanceof ExtendedTraderEntity || mob instanceof ExtendedCaptainEntity || mob instanceof ExtendedLoreEntity))
+					|| (mob.getPersistentData().contains("ExtendedRespawn") && mob.getPersistentData().getBoolean("ExtendedRespawn")) 
+					|| (mob.getPersistentData().contains("ExtendedRespawnOnDeath") && mob.getPersistentData().getBoolean("ExtendedRespawnOnDeath"))) {
+				// Make entity respawner
+				ExtendedRespawnerEntity respawnerEntity = new ExtendedRespawnerEntity(mob.level);
+				//respawnerEntity.moveTo(npc.getX(), npc.getY()+(npc.getBbHeight()/2.0F), npc.getZ());
+				respawnerEntity.moveTo(mob.getX(), mob.getY()+mob.getBbHeight(), mob.getZ());
 
-			//Set entity Type
-			respawnerEntity.setEntityType(npc.getType());
+				//Set entity Type
+				respawnerEntity.setEntityType(mob.getType());
 
-			//Save trader trades
-			CompoundNBT compound =  new CompoundNBT();
-			if(npc instanceof ExtendedTraderEntity) {
-				((ExtendedTraderEntity) npc).getTraderData().writeToNbt(compound);
-			}
-			if(npc instanceof ExtendedCaptainEntity) {
-				// IDK maybe captains have data to save in the future
-			}
-			respawnerEntity.setEntityData(compound);
+				//Save trader trades
+				CompoundNBT compound =  new CompoundNBT();
+				if(mob instanceof ExtendedTraderEntity) {
+					((ExtendedTraderEntity) mob).getTraderData().writeToNbt(compound);
+				}
+				if(mob instanceof ExtendedCaptainEntity) {
+					// IDK maybe captains have data to save in the future
+				}
+				respawnerEntity.setEntityData(compound);
 
-			//Save Trader Home info
-			if(npc.hasRestriction()){
-				respawnerEntity.setHomeInfo(npc.getRestrictCenter(), (int)npc.getRestrictRadius());
+				//Save Trader Home info
+				if(mob.hasRestriction()){
+					respawnerEntity.setHomeInfo(mob.getRestrictCenter(), (int)mob.getRestrictRadius());
+				}
+				mob.level.addFreshEntity(respawnerEntity);
 			}
-			npc.level.addFreshEntity(respawnerEntity);
 		}
 	}
 	/**
@@ -225,7 +253,7 @@ public class WorldEventHandlers {
 			if(type.notEmpty() && !(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof ExtendedPlacedBooksBlock)) {
 				BlockItemUseContext blockusecontext = new BlockItemUseContext(new ItemUseContext(event.getPlayer(), event.getHand(), event.getHitVec()));
 				if(ExtendedPlacementUtils.place(ExtendedBlocks.PLACED_BOOKS.get(), new BlockItemUseContext(blockusecontext))) {
-					event.getPlayer().swing(Hand.MAIN_HAND, true);
+					event.getPlayer().swing(event.getHand(), true);
 					event.setCanceled(true);
 					return;
 				}
@@ -237,25 +265,35 @@ public class WorldEventHandlers {
 			BlockPos checkPos = event.getPos().above();
 			BlockState state = level.getBlockState(checkPos);
 			int steps = 0;
-		    int maxSteps = ExtendedServerConfig.bellRingChainMaxLength.get();
-		    int worldTop = level.getMaxBuildHeight();  // get build limit
-		    while (state.getBlock() instanceof ChainBlock) {
-		        if (checkPos.getY() >= worldTop) {
-		            break;
-		        }
-		        if (steps >= maxSteps) {
-		            break;
-		        }
-		        checkPos = checkPos.above();
-		        state = level.getBlockState(checkPos);
-		        steps++;
-		    }
+			int maxSteps = ExtendedServerConfig.bellRingChainMaxLength.get();
+			int worldTop = level.getMaxBuildHeight();  // get build limit
+			while (state.getBlock() instanceof ChainBlock) {
+				if (checkPos.getY() >= worldTop) {
+					break;
+				}
+				if (steps >= maxSteps) {
+					break;
+				}
+				checkPos = checkPos.above();
+				state = level.getBlockState(checkPos);
+				steps++;
+			}
 			if (state.getBlock() instanceof BellBlock) {
 				BellBlock bell = (BellBlock) state.getBlock();
 				bell.attemptToRing(level, checkPos, null);
-				event.getPlayer().swing(Hand.MAIN_HAND, true);
+				event.getPlayer().swing(event.getHand(), true);
 				event.setCanceled(true);
+				return;
 			}
+		}
+		if (clickedState.is(Blocks.BOOKSHELF)) {
+			if (!level.isClientSide) {
+				PlayerEntity player = event.getPlayer();
+				level.setBlock(event.getPos(), ExtendedBlocks.EXTENDED_BOOKSHELF.get().defaultBlockState(), 3);
+				player.swing(event.getHand(), true);
+			}
+			event.setCanceled(true);
+			return;
 		}
 	}
 
