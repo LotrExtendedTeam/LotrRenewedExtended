@@ -4,6 +4,7 @@ import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.chairs.HackyChairDatabase;
 import com.github.maximuslotro.lotrrextended.common.commands.ExtendedCommands;
+import com.github.maximuslotro.lotrrextended.common.commands.ExtendedSpawnCommand;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedMissingMappings;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGeneratorExtended;
@@ -58,9 +59,11 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.moddiscovery.ModFile;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 @Mod(value = LotrExtendedMod.MODID)
 public class LotrExtendedMod{
@@ -86,7 +89,9 @@ public class LotrExtendedMod{
 		forgeBus.addListener(this::extendedRegisterDataPackListeners);
 		forgeBus.addListener(EventPriority.HIGH, this::extendedAddFeatureToBiomes);
 		forgeBus.addListener(this::extendesAddDimensionalSpacing);
+		forgeBus.addListener(this::extendedServerStarted);
 		forgeBus.addListener(this::extendedServerStopping);
+
 		ExtendedDataSerializers.register(modBus);
 		ExtendedServerConfig.register();
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
@@ -120,12 +125,12 @@ public class LotrExtendedMod{
 	}
 
 	public void extendedCommonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-        	ExtendedStructureProcessors.init();
-            ExtendedStructuresV5.setupStructures();
-            ExtendedConfiguredStructuresV5.registerConfiguredStructures();
-        });
-    }
+		event.enqueueWork(() -> {
+			ExtendedStructureProcessors.init();
+			ExtendedStructuresV5.setupStructures();
+			ExtendedConfiguredStructuresV5.registerConfiguredStructures();
+		});
+	}
 
 	public IEventBus getModBus() {
 		return modBus;
@@ -155,16 +160,22 @@ public class LotrExtendedMod{
 		BiomeFeatureAdder.addFeatureToBiomes(event);
 	}
 
-    public void extendesAddDimensionalSpacing(WorldEvent.Load event) {
+	public void extendesAddDimensionalSpacing(WorldEvent.Load event) {
 		if(event.getWorld() instanceof ServerWorld){
-            ServerWorld serverWorld = (ServerWorld)event.getWorld();
-            ServerChunkProvider provider = serverWorld.getChunkSource();
-            if(!(provider.generator instanceof MiddleEarthChunkGenerator)){
-            	return;
-            }
-            BiomeStructureAdder.addDimensionalSpacing(provider);
-        }
-    }
+			ServerWorld serverWorld = (ServerWorld)event.getWorld();
+			ServerChunkProvider provider = serverWorld.getChunkSource();
+			if(!(provider.generator instanceof MiddleEarthChunkGenerator)){
+				return;
+			}
+			BiomeStructureAdder.addDimensionalSpacing(provider);
+		}
+	}
+
+	public void extendedServerStarted(FMLServerStartedEvent event) {
+		if(ExtendedServerConfig.enableStaffServer.get()) {
+			ExtendedSpawnCommand.register(ServerLifecycleHooks.getCurrentServer().getCommands().getDispatcher());
+		}
+	}
 
 	public void extendedServerStopping(FMLServerStoppingEvent event) {
 		hackyChairManager.handleServerStopping();

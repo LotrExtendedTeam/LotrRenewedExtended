@@ -1,7 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import java.util.List;
+import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.ExtendedProtectionHandlers;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
@@ -49,18 +51,23 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 /**
  * Handles various world-related events for custom entities and gameplay mechanics.
@@ -70,6 +77,31 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
  * death handling, and custom entity size adjustments.</p>
  */
 public class WorldEventHandlers {
+
+	@SubscribeEvent
+	public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+		ExtendedProtectionHandlers.extendedWarnedPlayers.remove(event.getPlayer().getUUID());
+		ExtendedProtectionHandlers.wasInProtection.remove(event.getPlayer().getUUID());
+	}
+
+	@SubscribeEvent
+	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+		if (event.phase == TickEvent.Phase.END && event.player instanceof ServerPlayerEntity && ExtendedServerConfig.enableExtendedSpawnProtection.get()) {
+			ServerPlayerEntity player = (ServerPlayerEntity) event.player;
+
+			boolean isProtected = ExtendedProtectionHandlers.isUnderSpawnProtection(player.getLevel(), player.blockPosition(), player, ServerLifecycleHooks.getCurrentServer().getPlayerList(), false, true);
+			UUID id = player.getUUID();
+			boolean wasProtected = ExtendedProtectionHandlers.wasInProtection.getOrDefault(id, false);
+
+			if (!wasProtected && isProtected) {
+				player.sendMessage(new StringTextComponent("Entered spawn protection").withStyle(TextFormatting.RED), Util.NIL_UUID);
+			} else if (wasProtected && !isProtected) {
+				player.sendMessage(new StringTextComponent("Left spawn protection").withStyle(TextFormatting.GREEN), Util.NIL_UUID);
+			}
+
+			ExtendedProtectionHandlers.wasInProtection.put(id, isProtected);
+		}
+	}
 	/**
 	 * Prevents cloaked {@link ExtendedDunedainRangerEntity} from being targeted by NPCs.
 	 *
@@ -131,29 +163,29 @@ public class WorldEventHandlers {
 	@SubscribeEvent
 	public static void handleCaptainTraderDeath$Extended(LivingDeathEvent event) {
 		Entity sourceEntity = event.getSource().getEntity();
-        if (sourceEntity instanceof NPCEntity && ((ExtendedNPCEntity)sourceEntity).getUnitInfo().isNpcActiveDuty()) {
-            // base amount of xp off kill alignment bonus
-            float xpPoints = 0;
-            if (event.getEntity() instanceof NPCEntity) {
-                NPCEntitySettings settings = NPCEntitySettingsManager.getEntityTypeSettings(event.getEntity());
-                if (settings != null && settings.getKillAlignmentBonus() > 0) {
-                    xpPoints = (int) settings.getKillAlignmentBonus();
-                } else {
-                    xpPoints = 1;
-                }
-            } else {
-               if (event.getEntity() instanceof PigEntity ||
-                       event.getEntity() instanceof ChickenEntity ||
-                       event.getEntity() instanceof CowEntity ||
-                       event.getEntity() instanceof ExtendedDuckEntity) {
-                    xpPoints = 0.25f;
-               }
-            }
+		if (sourceEntity instanceof NPCEntity && ((ExtendedNPCEntity)sourceEntity).getUnitInfo().isNpcActiveDuty()) {
+			// base amount of xp off kill alignment bonus
+			float xpPoints = 0;
+			if (event.getEntity() instanceof NPCEntity) {
+				NPCEntitySettings settings = NPCEntitySettingsManager.getEntityTypeSettings(event.getEntity());
+				if (settings != null && settings.getKillAlignmentBonus() > 0) {
+					xpPoints = (int) settings.getKillAlignmentBonus();
+				} else {
+					xpPoints = 1;
+				}
+			} else {
+				if (event.getEntity() instanceof PigEntity ||
+						event.getEntity() instanceof ChickenEntity ||
+						event.getEntity() instanceof CowEntity ||
+						event.getEntity() instanceof ExtendedDuckEntity) {
+					xpPoints = 0.25f;
+				}
+			}
 
-            ((ExtendedNPCEntity)sourceEntity).getUnitInfo().giveExperiencePoints(xpPoints);
-            ((ExtendedNPCEntity)sourceEntity).getUnitInfo().setMobKills(((ExtendedNPCEntity)sourceEntity).getUnitInfo().getMobKills() + 1);
-            ((ExtendedNPCEntity)sourceEntity).getUnitInfo().markDirty();
-        }
+			((ExtendedNPCEntity)sourceEntity).getUnitInfo().giveExperiencePoints(xpPoints);
+			((ExtendedNPCEntity)sourceEntity).getUnitInfo().setMobKills(((ExtendedNPCEntity)sourceEntity).getUnitInfo().getMobKills() + 1);
+			((ExtendedNPCEntity)sourceEntity).getUnitInfo().markDirty();
+		}
 		// If an NPC is a wandering trader, no respawns, even it is a captain
 		if(event.getEntity() instanceof ExtendedTraderEntity && ((ExtendedNPCEntity) event.getEntity()).getTraderInfo().isTraderCurrentlyWandering()) {
 			ExtendedWanderingTraderEntity trader = (ExtendedWanderingTraderEntity) event.getEntity();
