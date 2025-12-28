@@ -9,104 +9,104 @@
   "buyFromPlayer": [
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
-        "item": "lotr:salt"
+        "item": "lotr:salt",
+        "averageCost": 10
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
-        "item": "minecraft:brown_mushroom"
+        "item": "minecraft:brown_mushroom",
+        "averageCost": 2
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
-        "item": "minecraft:red_mushroom"
+        "item": "minecraft:red_mushroom",
+        "averageCost": 2
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
-        "item": "minecraft:milk_bucket"
+        "item": "minecraft:milk_bucket",
+        "averageCost": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
         "item": "lotr:bronze_dagger",
+        "averageCost": 3,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
         "item": "lotr:iron_dagger",
+        "averageCost": 3,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:bucket"
+        "item": "minecraft:bucket",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
-        "item": "minecraft:water_bucket"
+        "item": "minecraft:water_bucket",
+        "averageCost": 4
       }
     }
   ],
   "sellToPlayer": [
     {
       "weight": 50,
-      "averageCost": 9,
       "stack": {
-        "item": "lotr:bucket_of_cheese_curds"
+        "item": "lotr:bucket_of_cheese_curds",
+        "averageCost": 9
       }
     },
     {
       "weight": 50,
-      "averageCost": 5,
       "stack": {
-        "item": "lotr:cheese_curds"
+        "item": "lotr:cheese_curds",
+        "averageCost": 5
       }
     },
     {
       "weight": 50,
-      "averageCost": 8,
       "stack": {
-        "item": "lotr:cheese_slice"
+        "item": "lotr:cheese_slice",
+        "averageCost": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 50,
       "stack": {
-        "item": "lotr:cheese_wheel"
+        "item": "lotr:cheese_wheel",
+        "averageCost": 50
       }
     },
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
-        "item": "lotr:aged_cheese_slice"
+        "item": "lotr:aged_cheese_slice",
+        "averageCost": 12
       }
     },
     {
       "weight": 50,
-      "averageCost": 60,
       "stack": {
-        "item": "lotr:aged_cheese_wheel"
+        "item": "lotr:aged_cheese_wheel",
+        "averageCost": 60
       }
     }
   ]

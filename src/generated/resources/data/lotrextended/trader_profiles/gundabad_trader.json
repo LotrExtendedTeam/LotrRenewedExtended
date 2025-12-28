@@ -9,310 +9,310 @@
   "buyFromPlayer": [
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:orc_steel_ingot"
+        "item": "lotr:orc_steel_ingot",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:uruk_steel_ingot"
+        "item": "lotr:uruk_steel_ingot",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:iron_ingot"
+        "item": "minecraft:iron_ingot",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:bronze_ingot"
+        "item": "lotr:bronze_ingot",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 25,
       "stack": {
-        "item": "lotr:diamond"
+        "item": "lotr:diamond",
+        "averageCost": 25
       }
     },
     {
       "weight": 50,
-      "averageCost": 15,
       "stack": {
-        "item": "lotr:emerald"
+        "item": "lotr:emerald",
+        "averageCost": 15
       }
     },
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
-        "item": "lotr:sapphire"
+        "item": "lotr:sapphire",
+        "averageCost": 12
       }
     },
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
-        "item": "lotr:ruby"
+        "item": "lotr:ruby",
+        "averageCost": 12
       }
     },
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
-        "item": "lotr:opal"
+        "item": "lotr:opal",
+        "averageCost": 10
       }
     },
     {
       "weight": 50,
-      "averageCost": 25,
       "stack": {
-        "item": "lotr:pearl"
+        "item": "lotr:pearl",
+        "averageCost": 25
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:string",
+        "averageCost": 1,
         "count": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
-        "item": "minecraft:feather"
+        "item": "minecraft:feather",
+        "averageCost": 2
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
-        "item": "lotr:wooden_mug"
+        "item": "lotr:wooden_mug",
+        "averageCost": 1
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
-        "item": "lotr:waterskin"
+        "item": "lotr:waterskin",
+        "averageCost": 2
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:wheat",
+        "averageCost": 1,
         "count": 2
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
-        "item": "lotr:elf_bone"
+        "item": "lotr:elf_bone",
+        "averageCost": 1
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
-        "item": "lotr:dwarf_bone"
+        "item": "lotr:dwarf_bone",
+        "averageCost": 1
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
-        "item": "lotr:hobbit_bone"
+        "item": "lotr:hobbit_bone",
+        "averageCost": 1
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
-        "item": "minecraft:bone"
+        "item": "minecraft:bone",
+        "averageCost": 1
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:man_flesh"
+        "item": "lotr:man_flesh",
+        "averageCost": 3
       }
     }
   ],
   "sellToPlayer": [
     {
       "weight": 50,
-      "averageCost": 100,
       "stack": {
-        "item": "lotr:gundabad_crafting_table"
+        "item": "lotr:gundabad_crafting_table",
+        "averageCost": 100
       }
     },
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
         "item": "lotr:bronze_helmet",
+        "averageCost": 12,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 16,
       "stack": {
         "item": "lotr:bronze_chestplate",
+        "averageCost": 16,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 14,
       "stack": {
         "item": "lotr:bronze_leggings",
+        "averageCost": 14,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
         "item": "lotr:bronze_boots",
+        "averageCost": 10,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
         "item": "lotr:bronze_sword",
+        "averageCost": 12,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 15,
       "stack": {
         "item": "lotr:bronze_spear",
+        "averageCost": 15,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 9,
       "stack": {
         "item": "lotr:bronze_dagger",
+        "averageCost": 9,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
-        "item": "lotr:fur"
+        "item": "lotr:fur",
+        "averageCost": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
         "item": "minecraft:arrow",
+        "averageCost": 3,
         "count": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
         "item": "lotr:bronze_pickaxe",
+        "averageCost": 10,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
         "item": "lotr:bronze_axe",
+        "averageCost": 10,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 15,
       "stack": {
         "item": "minecraft:iron_pickaxe",
+        "averageCost": 15,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 15,
       "stack": {
         "item": "minecraft:iron_axe",
+        "averageCost": 15,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
-        "item": "lotr:maggoty_bread"
+        "item": "lotr:maggoty_bread",
+        "averageCost": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 15,
       "stack": {
         "item": "lotr:fur_helmet",
+        "averageCost": 15,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 20,
       "stack": {
         "item": "lotr:fur_chestplate",
+        "averageCost": 20,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 16,
       "stack": {
         "item": "lotr:fur_leggings",
+        "averageCost": 16,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
         "item": "lotr:fur_boots",
+        "averageCost": 12,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
         "item": "lotr:orc_bow",
+        "averageCost": 12,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 20,
       "stack": {
         "item": "lotr:gundabad_uruk_bow",
+        "averageCost": 20,
         "nbt": "{Damage:0}"
       }
     }

@@ -7,41 +7,35 @@ import com.google.gson.JsonObject;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JSONUtils;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedTradeItemSupplierSingle implements ExtendedTradeItemSupplier {
 	private final ItemStackAndPrice stackAndPrice;
 
-	public ExtendedTradeItemSupplierSingle(ItemStackAndPrice stack) {
-		this.stackAndPrice = stack;
+	public ExtendedTradeItemSupplierSingle(ItemStackAndPrice pStackAndPrice) {
+		this.stackAndPrice = pStackAndPrice;
+	}
+
+	public ExtendedTradeItemSupplierSingle(ItemStack pStack, int pPrice) {
+		this.stackAndPrice = new ItemStackAndPrice(pStack, pPrice);
 	}
 
 	@Override
-	public ItemStack chooseItem(Random rand) {
-		return stackAndPrice.getItemStack();
+	public ItemStackAndPrice chooseItemStackAndPrice(Random pRand) {
+		return stackAndPrice;
 	}
 
 	@Override
 	public JsonElement serializeJson() {
-		JsonObject itemJson = new JsonObject();
-		itemJson.addProperty("item", ForgeRegistries.ITEMS.getKey(stackAndPrice.getItemStack().getItem()).toString());
-		if(stackAndPrice.getItemStack().getCount()>1) {
-			itemJson.addProperty("count", stackAndPrice.getItemStack().getCount());
-		}
-		if (stackAndPrice.getItemStack().hasTag()) {
-			itemJson.addProperty("nbt", stackAndPrice.getItemStack().getTag().toString());
-		}
-
-		return itemJson;
+		return ExtendedTradeItemSupplier.serializeStack(stackAndPrice);
 	}
 
 	public static ExtendedTradeItemSupplier deserializeJson(JsonObject element) {
-		ItemStackAndPrice stack = ExtendedTradeItemSupplier.getStack(JSONUtils.getAsJsonObject(element, "stack"));
+		ItemStackAndPrice stack = ExtendedTradeItemSupplier.deserializeStack(JSONUtils.getAsJsonObject(element, "stack"));
 		return new ExtendedTradeItemSupplierSingle(stack);
 	}
 
 	@Override
-	public List<ItemStack> returnAllPossableItems() {
-		return new ArrayList<>(Collections.singletonList(stackAndPrice.getItemStack()));
+	public List<ItemStackAndPrice> returnAllPossableItemsAndPrices() {
+		return new ArrayList<>(Collections.singletonList(stackAndPrice));
 	}
 }

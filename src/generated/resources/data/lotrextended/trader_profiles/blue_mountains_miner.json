@@ -9,225 +9,225 @@
   "buyFromPlayer": [
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
         "item": "lotr:blue_dwarven_pickaxe",
+        "averageCost": 10,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
-        "item": "minecraft:bread"
+        "item": "minecraft:bread",
+        "averageCost": 2
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_chicken"
+        "item": "minecraft:cooked_chicken",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_cod"
+        "item": "minecraft:cooked_cod",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_salmon"
+        "item": "minecraft:cooked_salmon",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_mutton"
+        "item": "minecraft:cooked_mutton",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_porkchop"
+        "item": "minecraft:cooked_porkchop",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_rabbit"
+        "item": "minecraft:cooked_rabbit",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:cooked_duck"
+        "item": "lotr:cooked_duck",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:gammon"
+        "item": "lotr:gammon",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_beef"
+        "item": "minecraft:cooked_beef",
+        "averageCost": 3
       }
     }
   ],
   "sellToPlayer": [
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
         "item": "minecraft:coal",
+        "averageCost": 4,
         "count": 2
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
         "item": "minecraft:glowstone_dust",
+        "averageCost": 3,
         "count": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:cobblestone",
+        "averageCost": 1,
         "count": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 7,
       "stack": {
-        "item": "lotr:copper_ore"
+        "item": "lotr:copper_ore",
+        "averageCost": 7
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
-        "item": "minecraft:flint"
+        "item": "minecraft:flint",
+        "averageCost": 2
       }
     },
     {
       "weight": 50,
-      "averageCost": 22,
       "stack": {
-        "item": "minecraft:gold_ore"
+        "item": "minecraft:gold_ore",
+        "averageCost": 22
       }
     },
     {
       "weight": 50,
-      "averageCost": 8,
       "stack": {
-        "item": "minecraft:iron_ore"
+        "item": "minecraft:iron_ore",
+        "averageCost": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 20,
       "stack": {
-        "item": "minecraft:lava_bucket"
+        "item": "minecraft:lava_bucket",
+        "averageCost": 20
       }
     },
     {
       "weight": 50,
-      "averageCost": 6,
       "stack": {
-        "item": "lotr:niter"
+        "item": "lotr:niter",
+        "averageCost": 6
       }
     },
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
-        "item": "lotr:silver_ore"
+        "item": "lotr:silver_ore",
+        "averageCost": 12
       }
     },
     {
       "weight": 50,
-      "averageCost": 6,
       "stack": {
-        "item": "lotr:sulfur"
+        "item": "lotr:sulfur",
+        "averageCost": 6
       }
     },
     {
       "weight": 50,
-      "averageCost": 7,
       "stack": {
-        "item": "lotr:tin_ore"
+        "item": "lotr:tin_ore",
+        "averageCost": 7
       }
     },
     {
       "weight": 50,
-      "averageCost": 40,
       "stack": {
-        "item": "lotr:diamond"
+        "item": "lotr:diamond",
+        "averageCost": 40
       }
     },
     {
       "weight": 50,
-      "averageCost": 25,
       "stack": {
-        "item": "lotr:emerald"
+        "item": "lotr:emerald",
+        "averageCost": 25
       }
     },
     {
       "weight": 50,
-      "averageCost": 20,
       "stack": {
-        "item": "lotr:sapphire"
+        "item": "lotr:sapphire",
+        "averageCost": 20
       }
     },
     {
       "weight": 50,
-      "averageCost": 20,
       "stack": {
-        "item": "lotr:ruby"
+        "item": "lotr:ruby",
+        "averageCost": 20
       }
     },
     {
       "weight": 50,
-      "averageCost": 15,
       "stack": {
-        "item": "lotr:opal"
+        "item": "lotr:opal",
+        "averageCost": 15
       }
     },
     {
       "weight": 50,
-      "averageCost": 15,
       "stack": {
-        "item": "lotr:amber"
+        "item": "lotr:amber",
+        "averageCost": 15
       }
     },
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
-        "item": "lotr:amethyst"
+        "item": "lotr:amethyst",
+        "averageCost": 12
       }
     },
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
-        "item": "lotr:topaz"
+        "item": "lotr:topaz",
+        "averageCost": 12
       }
     }
   ]
