@@ -151,47 +151,6 @@ public class ExtendedDunedainRangerEntity extends ManEntity implements ExtendedN
     }
 
     @Override
-	public void performRangedAttack(LivingEntity target, float charge) {
-        this.rangerArrowAttack(target, charge);
-    }
-
-    /**
-     * New method that actually takes into account the additional damage factor of ExtendedBowItem items
-     * @param target {@link LivingEntity} to attack
-     * @param charge The power at which to shoot
-     */
-    private void rangerArrowAttack(LivingEntity target, float charge) {
-        ItemStack heldItem = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, (item) -> item instanceof BowItem));
-        ItemStack ammoItem = this.getProjectile(heldItem);
-        AbstractArrowEntity arrow = ProjectileHelper.getMobArrow(this, ammoItem, charge);
-        if (heldItem.getItem() instanceof BowItem) {
-            arrow = ((BowItem)heldItem.getItem()).customArrow(arrow);
-        }
-
-        // TODO: Figure out how to calculate dx, dy, and dz with a higher power number but to still not miss all the time
-        double dx = target.getX() - this.getX();
-        double dy = target.getY(0.3333333333333333) - arrow.getY();
-        double dz = target.getZ() - this.getZ();
-        double dxzSq = MathHelper.sqrt(dx * dx + dz * dz);
-
-        // this section right here has been updated
-        /*float power = 2.0F;
-        if (heldItem.getItem() instanceof ExtendedBowItem) {
-            power *= ExtendedBowItem.getLaunchSpeedFactor(heldItem);
-        }*/
-        float power = 1.6F;
-        arrow.shoot(dx, dy + dxzSq * 0.20000000298023224, dz, power, (float)this.getAttributeValue(LOTRAttributes.NPC_RANGED_INACCURACY.get()));
-        if (heldItem.getItem().equals(ExtendedItems.DUNEDAIN_BOW.get())) {
-            arrow.setBaseDamage(arrow.getBaseDamage() + 2.5D);
-        }
-        if (heldItem.getItem().equals(ExtendedItems.DUNEDAIN_BOW.get())) {
-            arrow.setBaseDamage(arrow.getBaseDamage() + 1.5D);
-        }
-        this.playSound(SoundEvents.SKELETON_SHOOT, 1.0F, 1.0F / (this.random.nextFloat() * 0.4F + 0.8F));
-        this.level.addFreshEntity(arrow);
-    }
-
-    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(IS_CLOAKED, false);
