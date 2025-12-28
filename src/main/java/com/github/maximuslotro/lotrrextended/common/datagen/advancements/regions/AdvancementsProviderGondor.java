@@ -31,7 +31,7 @@ public class AdvancementsProviderGondor extends ExtendedBaseAdvancementType{
 			addBiomeTriggers(make(), LOTRBiomes.WHITE_MOUNTAINS, LOTRBiomes.WHITE_MOUNTAINS_FOOTHILLS).parent(kingdom_of_men));
 
 		Advancement ethir_anduin = build(true, data(Items.LILY_PAD, "ethir_anduin", FrameType.TASK)
-			.setTitle("Ered Nimrais").setDescription("Enter the mouths of the Anduin."),
+			.setTitle("Ethir Anduin").setDescription("Enter the mouths of the Anduin."),
 			addBiomeTrigger(make(), LOTRBiomes.ETHIR_ANDUIN).parent(kingdom_of_men));
 
 		Advancement five_fair_steams = build(true, data(Items.BIRCH_SAPLING, "five_fair_steams", FrameType.TASK)
