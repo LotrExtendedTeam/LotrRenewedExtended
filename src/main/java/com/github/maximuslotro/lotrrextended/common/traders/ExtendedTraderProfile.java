@@ -15,6 +15,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedTradeType;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTradeItemSupplierMulti;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTradeItemSupplierSingle;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
+import com.github.maximuslotro.lotrrextended.common.traders.pools.ItemStackAndPrice;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -357,8 +358,8 @@ public class ExtendedTraderProfile {
 			this.isTypicallyWandering = true;
 			return this;
 		}
-		// BUY FROM PLAYER Single item methods
 
+		/* BUY FROM PLAYER SINGLE METHODS */
 		/**
 		 * Adds a single item to the buy-from-player pool with average cost.
 		 *
@@ -417,11 +418,11 @@ public class ExtendedTraderProfile {
 		 * @return The instance of this builder
 		 */
 		public Builder addSBuy(ItemStack stack, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
-			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(stack), weight, averageCost, maxTransferQuantity, shouldTradePersist));
+			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(stack, averageCost), weight, maxTransferQuantity, shouldTradePersist));
 			return this;
 		}
 
-		// BUY FROM PLAYER MULTI METHODS
+		/* BUY FROM PLAYER MULTI METHODS */
 		/**
 		 * Adds a multi-item entry to the buy-from-player pool using Item objects.
 		 * Defaults to weight 1 and max transfer quantity 200.
@@ -431,8 +432,8 @@ public class ExtendedTraderProfile {
 		 * @return The instance of this builder
 		 */
 		public Builder addMBuy(int averageCost, Item... items) {
-			List<ItemStack> itemStacks = Arrays.stream(items).map(ItemStack::new).collect(Collectors.toList());
-			return addMBuy(itemStacks, DEFAULT_WEIGHT, averageCost, 200, true);
+			List<ItemStackAndPrice> stacksAndPrices = Arrays.stream(items).map(item -> new ItemStackAndPrice(new ItemStack(item), averageCost)).collect(Collectors.toList());
+			return addMBuy(stacksAndPrices, DEFAULT_WEIGHT, 200, true);
 		}
 		/**
 		 * Adds a multi-item entry to the buy-from-player pool using item stacks.
@@ -443,26 +444,34 @@ public class ExtendedTraderProfile {
 		 * @return The instance of this builder
 		 */
 		public Builder addMBuy(int averageCost, ItemStack... stacks) {
-			List<ItemStack> itemStacks = Arrays.stream(stacks).collect(Collectors.toList());
-			return addMBuy(itemStacks, DEFAULT_WEIGHT, averageCost, 200, true);
+			List<ItemStackAndPrice> stacksAndPrices = Arrays.stream(stacks).map(stack -> new ItemStackAndPrice(stack, averageCost)).collect(Collectors.toList());
+			return addMBuy(stacksAndPrices, DEFAULT_WEIGHT, 200, true);
 		}
-
 		/**
-		 * Adds a multi-item entry to the buy-from-player pool.
+		 * Adds a multi-item entry to the buy-from-player pool using item stacks.
+		 * Defaults to weight 1 and max transfer quantity 200.
 		 *
-		 * @param stacks The item stacks the trader will buy
+		 * @param pStacksAndPrices The item stacks and prices the trader will buy
+		 * @return The instance of this builder
+		 */
+		public Builder addMBuy(ItemStackAndPrice... pStacksAndPrices) {
+			return addMBuy(Arrays.asList(pStacksAndPrices), DEFAULT_WEIGHT, 200, true);
+		}
+		/**
+		 * Adds a multi-item buy pool entry with explicit control over weight, quantity, and price per item
+		 * 
+		 * @param stacksAndPrices The item stacks and prices the trader will buy
 		 * @param weight Relative chance of this entry being selected
-		 * @param averageCost Average cost the trader pays
 		 * @param maxTransferQuantity Max amount of items bought per trade
 		 * @param shouldTradePersist Should the trade tick back down
 		 * @return The instance of this builder
 		 */
-		public Builder addMBuy(List<ItemStack> stacks, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
-			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierMulti(stacks), weight, averageCost, maxTransferQuantity, shouldTradePersist));
+		public Builder addMBuy(List<ItemStackAndPrice> stacksAndPrices, int weight, int maxTransferQuantity, boolean shouldTradePersist) {
+			this.buyFromPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierMulti(stacksAndPrices), weight, maxTransferQuantity, shouldTradePersist));
 			return this;
 		}
 
-		// SELL TO PLAYER SINGLE METHODS
+		/* SELL TO PLAYER SINGLE METHODS */
 		/**
 		 * Adds a single-item sale to the trader's sell-to-player pool.
 		 * Uses default weight and max transfer quantity.
@@ -535,14 +544,15 @@ public class ExtendedTraderProfile {
 		 * @return The instance of this builder
 		 */
 		public Builder addSSell(ItemStack stack, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
-			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(stack), weight, averageCost, maxTransferQuantity, shouldTradePersist));
+			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierSingle(stack, averageCost), weight, maxTransferQuantity, shouldTradePersist));
 			return this;
 		}
 
-		/* SELL TO PLAYER MULTI METHODS*/
+		/* SELL TO PLAYER MULTI METHODS */
 		/**
 		 * Adds a drink item to the sell-to-player pool with three potencies (Light, Moderate, Strong).
-		 * Each potency has its own average cost and will be sold separately.
+		 * NOTE: Adds a multi of the three specified potencies for a drink so that only one can be picked.
+		 * This emulates legacy behavior
 		 *
 		 * @param item The registry object of a {@link VesselDrinkItem}
 		 * @param lightCost Cost of the light potency version
@@ -552,7 +562,28 @@ public class ExtendedTraderProfile {
 		 */
 		public Builder addDrinkSell(RegistryObject<Item> item, int lightCost, int moderateCost, int strongCost) {
 			if(!(item.get() instanceof VesselDrinkItem)) {
-				ExtendedLog.warn("Recieved invalid drink from args, SKIPPING!: "+item.get().getRegistryName().toString());
+				ExtendedLog.warn("Received invalid drink from args, SKIPPING!: "+item.get().getRegistryName().toString());
+				return this;
+			}
+			addMSell(new ItemStackAndPrice(DrinkUtils.drinkOfPotency(item.get(), Potency.LIGHT), lightCost),
+					new ItemStackAndPrice(DrinkUtils.drinkOfPotency(item.get(), Potency.MODERATE), moderateCost),
+					new ItemStackAndPrice(DrinkUtils.drinkOfPotency(item.get(), Potency.STRONG), strongCost));
+			return this;
+		}
+		/**
+		 * Adds a drink item to the sell-to-player pool with three potencies (Light, Moderate, Strong).
+		 * NOTE: Each potency has its own average cost and will be sold separately.
+		 * This allows for multiple potencies to appear in a trade menu
+		 *
+		 * @param item The registry object of a {@link VesselDrinkItem}
+		 * @param lightCost Cost of the light potency version
+		 * @param moderateCost Cost of the moderate potency version
+		 * @param strongCost Cost of the strong potency version
+		 * @return The instance of this builder
+		 */
+		public Builder addDrinkSellSingle(RegistryObject<Item> item, int lightCost, int moderateCost, int strongCost) {
+			if(!(item.get() instanceof VesselDrinkItem)) {
+				ExtendedLog.warn("Received invalid drink from args, SKIPPING!: "+item.get().getRegistryName().toString());
 				return this;
 			}
 			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.LIGHT), DEFAULT_WEIGHT, lightCost, 200, true);
@@ -560,6 +591,7 @@ public class ExtendedTraderProfile {
 			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.STRONG), DEFAULT_WEIGHT, strongCost, 200, true);
 			return this;
 		}
+
 		/**
 		 * Adds a multi-item sale pool to the trader's sell-to-player pool using individual items.
 		 * Uses default weight and max transfer quantity.
@@ -569,8 +601,8 @@ public class ExtendedTraderProfile {
 		 * @return The instance of this builder
 		 */
 		public Builder addMSell(int averageCost, Item... items) {
-			List<ItemStack> itemStacks = Arrays.stream(items).map(ItemStack::new).collect(Collectors.toList());
-			return addMSell(itemStacks, 1, averageCost, 200, true);
+			List<ItemStackAndPrice> stacksAndPrices = Arrays.stream(items).map(item -> new ItemStackAndPrice(new ItemStack(item), averageCost)).collect(Collectors.toList());
+			return addMSell(stacksAndPrices, 1, 200, true);
 		}
 		/**
 		 * Builds a multi sell pool with multiple item stacks
@@ -580,14 +612,23 @@ public class ExtendedTraderProfile {
 		 * @return The instance of this builder
 		 */
 		public Builder addMSell(int averageCost, ItemStack... stacks) {
-			List<ItemStack> itemStacks = Arrays.stream(stacks).collect(Collectors.toList());
-			return addMSell(itemStacks, 1, averageCost, 200, true);
+			List<ItemStackAndPrice> stacksAndPrices = Arrays.stream(stacks).map(stack -> new ItemStackAndPrice(stack, averageCost)).collect(Collectors.toList());
+			return addMSell(stacksAndPrices, 1, 200, true);
 		}
-
 		/**
-		 * Adds a multi-item sell pool entry with explicit control over weight and quantity
+		 * Adds a multi-item entry to the sell-from-player pool using item stacks.
+		 * Defaults to weight 1 and max transfer quantity 200.
+		 *
+		 * @param pStacksAndPrices The item stacks and prices the trader will buy
+		 * @return The instance of this builder
+		 */
+		public Builder addMSell(ItemStackAndPrice... pStacksAndPrices) {
+			return addMSell(Arrays.asList(pStacksAndPrices), DEFAULT_WEIGHT, 200, true);
+		}
+		/**
+		 * Adds a multi-item sell pool entry with explicit control over weight, quantity, and price
 		 * 
-		 * @param stacks The item stacks to include
+		 * @param stacks The item stacks and prices to include
 		 * @param weight The relative weight of this trade entry in the pool
 		 * @param averageCost The average cost of the trade
 		 * @param maxTransferQuantity The maximum quantity of items transferred in one trade
@@ -595,7 +636,20 @@ public class ExtendedTraderProfile {
 		 * @return The instance of this builder
 		 */
 		public Builder addMSell(List<ItemStack> stacks, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
-			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierMulti(stacks), weight, averageCost, maxTransferQuantity, shouldTradePersist));
+			return addMSell(stacks.stream().map(stack -> new ItemStackAndPrice(stack, averageCost)).collect(Collectors.toList()), weight, maxTransferQuantity, shouldTradePersist);
+		}
+		/**
+		 * Adds a multi-item sell pool entry with explicit control over weight, quantity, and price per item
+		 * 
+		 * @param stacksAndPrices The item stacks and prices to include
+		 * @param weight The relative weight of this trade entry in the pool
+		 * @param averageCost The average cost of the trade
+		 * @param maxTransferQuantity The maximum quantity of items transferred in one trade
+		 * @param shouldTradePersist Should the trade tick back down
+		 * @return The instance of this builder
+		 */
+		public Builder addMSell(List<ItemStackAndPrice> stacksAndPrices, int weight, int maxTransferQuantity, boolean shouldTradePersist) {
+			this.sellToPlayerPool.add(new ExtendedTraderPoolItem(new ExtendedTradeItemSupplierMulti(stacksAndPrices), weight, maxTransferQuantity, shouldTradePersist));
 			return this;
 		}
 

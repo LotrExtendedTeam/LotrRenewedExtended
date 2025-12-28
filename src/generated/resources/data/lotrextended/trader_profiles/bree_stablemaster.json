@@ -9,98 +9,98 @@
   "buyFromPlayer": [
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:wheat",
+        "averageCost": 1,
         "count": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:sugar",
+        "averageCost": 1,
         "count": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
-        "item": "minecraft:carrot"
+        "item": "minecraft:carrot",
+        "averageCost": 1
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
-        "item": "minecraft:apple"
+        "item": "minecraft:apple",
+        "averageCost": 1
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
-        "item": "lotr:green_apple"
+        "item": "lotr:green_apple",
+        "averageCost": 1
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
-        "item": "lotr:plum"
+        "item": "lotr:plum",
+        "averageCost": 2
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
-        "item": "minecraft:water_bucket"
+        "item": "minecraft:water_bucket",
+        "averageCost": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:hay_block"
+        "item": "minecraft:hay_block",
+        "averageCost": 3
       }
     }
   ],
   "sellToPlayer": [
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
-        "item": "lotr:leather_hat"
+        "item": "lotr:leather_hat",
+        "averageCost": 10
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:string",
+        "averageCost": 1,
         "count": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
-        "item": "minecraft:saddle"
+        "item": "minecraft:saddle",
+        "averageCost": 10
       }
     },
     {
       "weight": 50,
-      "averageCost": 8,
       "stack": {
-        "item": "minecraft:lead"
+        "item": "minecraft:lead",
+        "averageCost": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 15,
       "stack": {
-        "item": "minecraft:leather_horse_armor"
+        "item": "minecraft:leather_horse_armor",
+        "averageCost": 15
       }
     }
   ]

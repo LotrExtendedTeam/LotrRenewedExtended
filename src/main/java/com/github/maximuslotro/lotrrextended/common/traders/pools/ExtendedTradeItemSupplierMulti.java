@@ -8,48 +8,40 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.JSONUtils;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedTradeItemSupplierMulti implements ExtendedTradeItemSupplier {
-	private final List<ItemStack> stacks;
+	private final List<ItemStackAndPrice> stacks;
 
-	public ExtendedTradeItemSupplierMulti(List<ItemStack> stacks) {
-		this.stacks = stacks;
+	public ExtendedTradeItemSupplierMulti(List<ItemStackAndPrice> pStacks) {
+		this.stacks = pStacks;
 	}
 
 	@Override
-	public ItemStack chooseItem(Random rand) {
-		return stacks.get(rand.nextInt(stacks.size()));
+	public ItemStackAndPrice chooseItemStackAndPrice(Random pRand) {
+		return stacks.get(pRand.nextInt(stacks.size()));
 	}
 
 	@Override
 	public JsonElement serializeJson() {
 		JsonArray itemArray = new JsonArray();
-		for(ItemStack stack : stacks) {
-			JsonObject itemJson = new JsonObject();
-			itemJson.addProperty("item", ForgeRegistries.ITEMS.getKey(stack.getItem()).toString());
-			if (stack.hasTag()) {
-				itemJson.addProperty("nbt", stack.getTag().toString());
-			}
-			itemArray.add(itemJson);
+		for(ItemStackAndPrice stack : stacks) {
+			itemArray.add(ExtendedTradeItemSupplier.serializeStack(stack));
 		}
 		return itemArray;
 	}
 
 	public static ExtendedTradeItemSupplier deserializeJson(JsonObject element) {
-		List<ItemStack> stacks = new ArrayList<>();
+		List<ItemStackAndPrice> stacks = new ArrayList<>();
 		JsonArray stackArray = element.getAsJsonArray("stacks");
 		for(JsonElement ele : stackArray) {
-			ItemStack stack = ExtendedTradeItemSupplier.getStack(JSONUtils.convertToJsonObject(ele, "stack"));
-			stacks.add(stack);
+			stacks.add(ExtendedTradeItemSupplier.deserializeStack(JSONUtils.convertToJsonObject(ele, "stack")));
 		}
 		return new ExtendedTradeItemSupplierMulti(stacks);
 	}
 
 	@Override
-	public List<ItemStack> returnAllPossableItems() {
+	public List<ItemStackAndPrice> returnAllPossableItemsAndPrices() {
 		return stacks;
 	}
 }

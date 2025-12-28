@@ -24,6 +24,7 @@ import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfil
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
+import com.github.maximuslotro.lotrrextended.common.traders.pools.ItemStackAndPrice;
 import com.google.gson.Gson;
 
 import net.minecraft.data.DataGenerator;
@@ -56,32 +57,8 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 			if (dataHere.put(spawner.getId(), spawner)!=null) {
 				throw new IllegalStateException("Duplicate trader profile " + spawner.getId().toString());
 			} else {
-				for(ExtendedTraderPoolItem entry : spawner.getTraderBoughtPool()) {
-					for(ItemStack stack : entry.getAllStacks()) {
-						if(boughtItems.containsKey(stack)) {
-							List<Integer> costs = boughtItems.get(stack);
-							if(!costs.contains(entry.getAverageCost())) {
-								costs.add(entry.getAverageCost());
-								boughtItems.replace(stack, costs);
-							}
-						}else {
-							boughtItems.put(stack, new ArrayList<>(Arrays.asList(entry.getAverageCost())));
-						}
-					}
-				}
-				for(ExtendedTraderPoolItem entry : spawner.getTraderSellPool()) {
-					for(ItemStack stack : entry.getAllStacks()) {
-						if(soldItems.containsKey(stack)) {
-							List<Integer> costs = soldItems.get(stack);
-							if(!costs.contains(entry.getAverageCost())) {
-								costs.add(entry.getAverageCost());
-								soldItems.replace(stack, costs);
-							}
-						}else {
-							soldItems.put(stack, new ArrayList<>(Arrays.asList(entry.getAverageCost())));
-						}
-					}
-				}
+				populateCheckingList(spawner.getTraderBoughtPool(), boughtItems);
+				populateCheckingList(spawner.getTraderSellPool(), soldItems);
 				Path path1 = createPath(path, spawner);
 				try {
 					save(GSON_PRETTY_WRITER, pCache, spawner, path1);
@@ -123,6 +100,22 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 							//}
 						}
 					}
+				}
+			}
+		}
+	}
+
+	private static void populateCheckingList(List<ExtendedTraderPoolItem> pool, Map<ItemStack, List<Integer>> list) {
+		for(ExtendedTraderPoolItem entry : pool) {
+			for(ItemStackAndPrice stackAndPrice : entry.getAllStacksAndPrices()) {
+				if(list.containsKey(stackAndPrice.getItemStack())) {
+					List<Integer> costs = list.get(stackAndPrice.getItemStack());
+					if(!costs.contains(stackAndPrice.getAverageCost())) {
+						costs.add(stackAndPrice.getAverageCost());
+						list.replace(stackAndPrice.getItemStack(), costs);
+					}
+				}else {
+					list.put(stackAndPrice.getItemStack(), new ArrayList<>(Arrays.asList(stackAndPrice.getAverageCost())));
 				}
 			}
 		}

@@ -14,25 +14,28 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.util.JSONUtils;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public interface ExtendedTradeItemSupplier {
 
-	ItemStack chooseItem(Random rand);
+	ItemStackAndPrice chooseItemStackAndPrice(Random rand);
 
-	List<ItemStack> returnAllPossableItems();
+	List<ItemStackAndPrice> returnAllPossableItemsAndPrices();
 
 	JsonElement serializeJson();
 
 	/**
-	 * Copied from {@link net.minecraft.advancements.DisplayInfo}
+	 * Copied and modified from {@link net.minecraft.advancements.DisplayInfo}
 	 * @param jsonObject The JsonObject to read from
-	 * @return An ItemStack that was contained in the JsonObject
+	 * @return An ItemStackAndPrice that was contained in the JsonObject
 	 * */
-	public static ItemStack getStack(JsonObject jsonObject) {
+	public static ItemStackAndPrice deserializeStack(JsonObject jsonObject) {
 		if (!jsonObject.has("item")) {
 			throw new JsonSyntaxException("Missing Equipment item type (add 'item' key)");
 		} else {
 			Item basicItem = JSONUtils.getAsItem(jsonObject, "item");
+			int price = JSONUtils.getAsInt(jsonObject, "averageCost", 1000);
+
 			if (jsonObject.has("data")) {
 				throw new JsonParseException("Disallowed data tag found");
 			} else {
@@ -48,9 +51,21 @@ public interface ExtendedTradeItemSupplier {
 						throw new JsonSyntaxException("Invalid nbt tag: " + exception.getMessage());
 					}
 				}
-
-				return generatedItemStack;
+				return new ItemStackAndPrice(generatedItemStack, price);
 			}
 		}
+	}
+
+	public static JsonObject serializeStack(ItemStackAndPrice pStackAndPrice) {
+		JsonObject itemJson = new JsonObject();
+		itemJson.addProperty("item", ForgeRegistries.ITEMS.getKey(pStackAndPrice.getItemStack().getItem()).toString());
+		itemJson.addProperty("averageCost", pStackAndPrice.getAverageCost());
+		if(pStackAndPrice.getItemStack().getCount()>1) {
+			itemJson.addProperty("count", pStackAndPrice.getItemStack().getCount());
+		}
+		if (pStackAndPrice.getItemStack().hasTag()) {
+			itemJson.addProperty("nbt", pStackAndPrice.getItemStack().getTag().toString());
+		}
+		return itemJson;
 	}
 }

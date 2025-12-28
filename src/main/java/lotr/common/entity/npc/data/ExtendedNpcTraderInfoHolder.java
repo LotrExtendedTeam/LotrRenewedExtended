@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedSTradeRefres
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
+import com.github.maximuslotro.lotrrextended.common.traders.pools.ItemStackAndPrice;
 
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
@@ -92,13 +93,14 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		randomElements.forEach(entry -> {
 			// Doing a bit of math from (https://lotrminecraftmod.fandom.com/wiki/Trading) results in all items
 			// having a average price such that the minimum price shown is 0.75 of the average and 
-			// the maximum price shown is 1.25 of the average, both values rounded to the nearest whole number, with a minimum of 1
+			// the maximum price shown is 1.25 of the average, both values rounded to the nearest whole number, with a minimum of 1 approximately
+			ItemStackAndPrice trade = entry.getStackAndPrice(rand);
 			float priceModifier = (rand.nextFloat() * 0.5F) + 0.75F;
 			// Multiply with average entry price to get final float price
-			float finalFloatPrice = entry.getAverageCost() * priceModifier;
+			float finalFloatPrice = trade.getAverageCost() * priceModifier;
 			// Convert to whole number and ensure minimum of price of 1
 			int nicePrice = Math.max(Math.round(finalFloatPrice), 1);
-			outputTrades.add(new ExtendedTrade(entry.getStack(rand), nicePrice, entry.getMaxTransferQuantity(), entry.getMaxTransferQuantity(), entry.shouldTradePersist()));
+			outputTrades.add(new ExtendedTrade(trade.getItemStack(), nicePrice, entry.getMaxTransferQuantity(), entry.getMaxTransferQuantity(), entry.shouldTradePersist()));
 		});
 
 		return outputTrades;
