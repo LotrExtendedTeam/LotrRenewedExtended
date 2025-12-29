@@ -22,7 +22,7 @@ public class ExtendedHiredUnitHpBar {
     private static final int TEXT_POS_Y = 0;
 
     private static final int HB_POS_X_OFFSET = 0;
-    private static final int HB_POS_Y_OFFSET = 0;
+    private static final int HB_POS_Y_OFFSET = 5;
 
     private static final int HB_POS_X = -50;
     private static final int HB_POS_Y = 20;
@@ -55,8 +55,13 @@ public class ExtendedHiredUnitHpBar {
         // render healthbar
         ResourceLocation bar = new ResourceLocation(LotrExtendedMod.MODID, "textures/gui/healthbar.png");
 
-        matrixStackIn.translate(HB_POS_X_OFFSET, HB_POS_Y_OFFSET, 0.0D);
-        matrixStackIn.scale(1.0F, 1.0F, 1.0F);
+        if (ExtendedClientConfig.enableLargeHiredUnitHealthbars.get()) {
+            matrixStackIn.translate(HB_POS_X_OFFSET, HB_POS_Y_OFFSET, 0.0D);
+            matrixStackIn.scale(1.0F, 1.0F, 1.0F);
+        } else {
+            matrixStackIn.translate(HB_POS_X_OFFSET, HB_POS_Y_OFFSET + 15, 0.0D);
+            matrixStackIn.scale(0.5F, 0.5F, 0.5F);
+        }
         ExtendedBarRendererHelper.bind(bar);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
@@ -71,10 +76,12 @@ public class ExtendedHiredUnitHpBar {
         }
         ExtendedBarRendererHelper.blit(matrixStackIn, HB_POS_X, HB_POS_Y, 0, 19, endOfHealth, HB_HEIGHT);
 
+        // TODO: Remove opacity for smaller healthbars
+        // TODO: Reduce height of smaller helathbars
+        // TODO: Add outlines to smaller healthbars
+
         // render background
         if (endOfHealth < 100) {
-            matrixStackIn.translate(HB_POS_X_OFFSET, HB_POS_Y_OFFSET, 0.0D);
-            matrixStackIn.scale(1.0F, 1.0F, 1.0F);
             ExtendedBarRendererHelper.bind(bar);
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
