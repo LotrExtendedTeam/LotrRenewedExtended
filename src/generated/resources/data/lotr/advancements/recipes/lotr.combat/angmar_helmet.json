@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_angmar_helmet": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:angmar_helmet"
-          }
-        ]
-      }
-    },
     "has_orc_steel_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_angmar_helmet",
       "has_orc_steel_ingot",
       "has_the_recipe"
     ]

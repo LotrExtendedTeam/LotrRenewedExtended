@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_mossy_drystone_wall": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:mossy_drystone_wall"
-          }
-        ]
-      }
-    },
     "has_mossy_drystone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_mossy_drystone_wall",
       "has_mossy_drystone",
       "has_the_recipe"
     ]

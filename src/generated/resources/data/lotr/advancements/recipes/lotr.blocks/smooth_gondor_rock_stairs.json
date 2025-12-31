@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_smooth_gondor_rock_stairs": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:smooth_gondor_rock_stairs"
-          }
-        ]
-      }
-    },
     "has_smooth_gondor_rock": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_smooth_gondor_rock_stairs",
       "has_smooth_gondor_rock",
       "has_the_recipe"
     ]

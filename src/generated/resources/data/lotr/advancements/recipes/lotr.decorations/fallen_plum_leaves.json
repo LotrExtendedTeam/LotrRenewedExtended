@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_fallen_plum_leaves": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:fallen_plum_leaves"
-          }
-        ]
-      }
-    },
     "has_plum_leaves": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_fallen_plum_leaves",
       "has_plum_leaves",
       "has_the_recipe"
     ]

@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_gundabad_uruk_chestplate": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:gundabad_uruk_chestplate"
-          }
-        ]
-      }
-    },
     "has_uruk_steel_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_gundabad_uruk_chestplate",
       "has_uruk_steel_ingot",
       "has_the_recipe"
     ]

@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_cracked_mud_brick_wall": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:cracked_mud_brick_wall"
-          }
-        ]
-      }
-    },
     "has_cracked_mud_brick": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_cracked_mud_brick_wall",
       "has_cracked_mud_brick",
       "has_the_recipe"
     ]

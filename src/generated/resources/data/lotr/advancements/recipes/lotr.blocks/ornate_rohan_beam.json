@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_ornate_rohan_beam": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:ornate_rohan_beam"
-          }
-        ]
-      }
-    },
     "has_rohan_beam": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_ornate_rohan_beam",
       "has_rohan_beam",
       "has_the_recipe"
     ]

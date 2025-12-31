@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_silver_packed_fur_wall": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:silver_packed_fur_wall"
-          }
-        ]
-      }
-    },
     "has_silver_packed_fur": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_silver_packed_fur_wall",
       "has_silver_packed_fur",
       "has_the_recipe"
     ]

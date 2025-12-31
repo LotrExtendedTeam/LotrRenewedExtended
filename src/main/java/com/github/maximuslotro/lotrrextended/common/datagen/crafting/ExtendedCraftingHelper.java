@@ -123,7 +123,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("# #")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(boatOnject.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -133,7 +132,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("# #")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(boatOnject.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -153,7 +151,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.group(group)
 			.pattern("##")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(pressurePlate.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -162,7 +159,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.group(group)
 			.pattern("##")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(pressurePlate.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -182,7 +178,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("###")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(trapdoor.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -192,7 +187,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("###")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(trapdoor.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -206,7 +200,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(trapdoor.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -215,7 +208,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(trapdoor.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -229,7 +221,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("###")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(trapdoor.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -238,7 +229,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("###")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(trapdoor.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -254,7 +244,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("N")
 			.define('#', Ingredient.of(ingot.get()))
 			.define('N', Ingredient.of(nugget.get()))
-			.unlockedBy("has_"+name, has(chain.get()))
 			.unlockedBy("has_"+nugget.get().getRegistryName().getPath(), has(nugget.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -265,7 +254,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("N")
 			.define('#', Ingredient.of(ingot.get()))
 			.define('N', Ingredient.of(nugget.get()))
-			.unlockedBy("has_"+name, has(chain.get()))
 			.unlockedBy("has_"+nugget.get().getRegistryName().getPath(), has(nugget.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -281,7 +269,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.define('I', Ingredient.of(ExtendedTags.Items.CHAINS))
 			.define('#', Ingredient.of(Blocks.COBBLESTONE))
 			.define('E', Ingredient.of(crystal.get()))
-			.unlockedBy("has_"+chandelier.get().getRegistryName().getPath(), has(chandelier.get()))
 			.unlockedBy("has_"+crystal.get().getRegistryName().getPath(), has(crystal.get()))
 			.save(consumer, lotrLoc(chandelier.get().getRegistryName().getPath()));
 		}
@@ -293,7 +280,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.define('I', Ingredient.of(ExtendedTags.Items.CHAINS))
 			.define('#', Ingredient.of(Blocks.COBBLESTONE))
 			.define('E', Ingredient.of(crystal.get()))
-			.unlockedBy("has_"+chandelier.get().getRegistryName().getPath(), has(chandelier.get()))
 			.unlockedBy("has_"+crystal.get().getRegistryName().getPath(), has(crystal.get()))
 			.save(consumer, lotrLoc(chandelier.get().getRegistryName().getPath()));
 		}
@@ -308,7 +294,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("XXX")
 			.define('#', Ingredient.of(tag))
 			.define('X', PLANKS)
-			.unlockedBy("has_"+name, has(bed.get()))
+			.unlockedBy("has_planks", has(PLANKS))
 			.save(consumer, lotrLoc(name));
 		}
 		else {
@@ -317,7 +303,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("XXX")
 			.define('#', Ingredient.of(tag))
 			.define('X', PLANKS)
-			.unlockedBy("has_"+name, has(bed.get()))
+			.unlockedBy("has_planks", has(PLANKS))
 			.save(consumer, lotrLoc(name));
 		}
 	}
@@ -331,7 +317,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("XXX")
 			.define('#', Ingredient.of(reasource))
 			.define('X', PLANKS)
-			.unlockedBy("has_"+name, has(bed.get()))
 			.unlockedBy("has_"+reasource.getRegistryName().getPath(), has(reasource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -341,12 +326,32 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("XXX")
 			.define('#', Ingredient.of(reasource))
 			.define('X', PLANKS)
-			.unlockedBy("has_"+name, has(bed.get()))
 			.unlockedBy("has_"+reasource.getRegistryName().getPath(), has(reasource))
 			.save(consumer, lotrLoc(name));
 		}
 	}
-
+	protected void makeBedRecipeTag(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> bed, ITag<Item> reasource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = bed.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(bed.get())
+			.pattern("###")
+			.pattern("XXX")
+			.define('#', reasource)
+			.define('X', PLANKS)
+			.unlockedBy("has_planks", has(PLANKS))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(bed.get(), table)
+			.pattern("###")
+			.pattern("XXX")
+			.define('#', reasource)
+			.define('X', PLANKS)
+			.unlockedBy("has_planks", has(PLANKS))
+			.save(consumer, lotrLoc(name));
+		}
+	}
 	protected void makeCarpetRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> carpet, Supplier<? extends Item> reasource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = carpet.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
@@ -354,7 +359,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			ExtendedShapedRecipeBuilder.shaped(carpet.get())
 			.pattern("##")
 			.define('#', Ingredient.of(reasource.get()))
-			.unlockedBy("has_"+name, has(carpet.get()))
 			.unlockedBy("has_"+reasource.get().getRegistryName().getPath(), has(reasource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -362,7 +366,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			ExtendedFactionShapedRecipeBuilder.shaped(carpet.get(), table)
 			.pattern("##")
 			.define('#', Ingredient.of(reasource.get()))
-			.unlockedBy("has_"+name, has(carpet.get()))
 			.unlockedBy("has_"+reasource.get().getRegistryName().getPath(), has(reasource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -378,7 +381,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.define('I', Ingredient.of(reasource))
 			.define('P', Ingredient.of(PLANKS))
 			.unlockedBy("has_"+type, has(reasource))
-			.unlockedBy("has_"+shield.get().getRegistryName().getPath(), has(shield.get()))
 			.save(consumer, lotrLoc(shield.get().getRegistryName().getPath()));
 		}
 		else {
@@ -389,7 +391,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.define('I', Ingredient.of(reasource))
 			.define('P', Ingredient.of(PLANKS))
 			.unlockedBy("has_"+type, has(reasource))
-			.unlockedBy("has_"+shield.get().getRegistryName().getPath(), has(shield.get()))
 			.save(consumer, lotrLoc(shield.get().getRegistryName().getPath()));
 		}
 	}
@@ -444,14 +445,12 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		.define('S', Ingredient.of(STICKS))
 		.define('P', Ingredient.of(PLANKS))
 		.unlockedBy("has_wool", has(ExtendedTags.Items.WOOL_BLOCKS))
-		.unlockedBy("has_"+banner.get().getRegistryName().getPath(), has(banner.get()))
 		.save(consumer, lotrLoc(banner.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(pattern.get().getRegistryName().getPath());
 		ExtendedFactionShapelessRecipeBuilder.shapeless(pattern.get(), table)
 		.requires(Items.PAPER)
 		.requires(banner.get())
 		.unlockedBy("has_"+banner.get().getRegistryName().getPath(), has(banner.get()))
-		.unlockedBy("has_"+pattern.get().getRegistryName().getPath(), has(pattern.get()))
 		.save(consumer, lotrLoc(pattern.get().getRegistryName().getPath()));
 	}
 	protected void makeBannerRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> banner, FactionBasedRecipeType<ICraftingRecipe> table) {
@@ -464,7 +463,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		.define('S', Ingredient.of(STICKS))
 		.define('P', Ingredient.of(PLANKS))
 		.unlockedBy("has_wool", has(ExtendedTags.Items.WOOL_BLOCKS))
-		.unlockedBy("has_"+banner.get().getRegistryName().getPath(), has(banner.get()))
 		.save(consumer, lotrLoc(banner.get().getRegistryName().getPath()));
 	}
 	protected void makeBannerPatternRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> banner, Supplier<? extends Item> pattern, FactionBasedRecipeType<ICraftingRecipe> table) {
@@ -473,30 +471,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		.requires(Items.PAPER)
 		.requires(banner.get())
 		.unlockedBy("has_"+banner.get().getRegistryName().getPath(), has(banner.get()))
-		.unlockedBy("has_"+pattern.get().getRegistryName().getPath(), has(pattern.get()))
 		.save(consumer, lotrLoc(pattern.get().getRegistryName().getPath()));
-	}
-	protected void makeBedRecipeTag(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> bed, ITag<Item> reasource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
-		String name = bed.get().getRegistryName().getPath();
-		GENERATEDRECIPES.add(name);
-		if(table==null) {
-			ExtendedShapedRecipeBuilder.shaped(bed.get())
-			.pattern("###")
-			.pattern("XXX")
-			.define('#', reasource)
-			.define('X', PLANKS)
-			.unlockedBy("has_"+name, has(bed.get()))
-			.save(consumer, lotrLoc(name));
-		}
-		else {
-			ExtendedFactionShapedRecipeBuilder.shaped(bed.get(), table)
-			.pattern("###")
-			.pattern("XXX")
-			.define('#', reasource)
-			.define('X', PLANKS)
-			.unlockedBy("has_"+name, has(bed.get()))
-			.save(consumer, lotrLoc(name));
-		}
 	}
 
 	protected void makeWoodenDoorRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> door, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
@@ -516,7 +491,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(door.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -527,7 +501,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(door.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -545,7 +518,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			ShapelessRecipeBuilder.shapeless(button.get())
 			.group(group)
 			.requires(resource.get())
-			.unlockedBy("has_"+name, has(button.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -553,7 +525,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			ExtendedFactionShapelessRecipeBuilder.shapeless(button.get(), table)
 			.group(group)
 			.requires(resource.get())
-			.unlockedBy("has_"+name, has(button.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -566,7 +537,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			ShapelessRecipeBuilder.shapeless(planks.get(), 4)
 			.group("planks")
 			.requires(resource)
-			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+log.get().getRegistryName().getPath(), has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -574,7 +544,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			ExtendedFactionShapelessRecipeBuilder.shapeless(planks.get(), 4, table)
 			.group("planks")
 			.requires(resource)
-			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+log.get().getRegistryName().getPath(), has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -595,28 +564,24 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			ShapelessRecipeBuilder.shapeless(planks.get(), 2)
 			.group("planks")
 			.requires(Ingredient.of(branch.get(), stripped_branch.get()))
-			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+branch.get().getRegistryName().getPath(), has(branch.get()))
 			.unlockedBy("has_"+stripped_branch.get().getRegistryName().getPath(), has(stripped_branch.get()))
 			.save(consumer, lotrLoc(name+"_from_"+branch.get().getRegistryName().getPath()));
 			ShapelessRecipeBuilder.shapeless(planks.get(), 2)
 			.group("planks")
 			.requires(Ingredient.of(log_slab.get(), stripped_log_slab.get()))
-			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+log_slab.get().getRegistryName().getPath(), has(log_slab.get()))
 			.unlockedBy("has_"+stripped_log_slab.get().getRegistryName().getPath(), has(stripped_log_slab.get()))
 			.save(consumer, lotrLoc(name+"_from_"+log_slab.get().getRegistryName().getPath()));
 			ShapelessRecipeBuilder.shapeless(planks.get(), 2)
 			.group("planks")
 			.requires(Ingredient.of(wood_slab.get(), stripped_wood_slab.get()))
-			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+wood_slab.get().getRegistryName().getPath(), has(wood_slab.get()))
 			.unlockedBy("has_"+stripped_wood_slab.get().getRegistryName().getPath(), has(stripped_wood_slab.get()))
 			.save(consumer, lotrLoc(name+"_from_"+wood_slab.get().getRegistryName().getPath()));
 			ShapelessRecipeBuilder.shapeless(planks.get(), 3)
 			.group("planks")
 			.requires(Ingredient.of(wood_stairs.get(), stripped_wood_stairs.get()))
-			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+wood_stairs.get().getRegistryName().getPath(), has(wood_stairs.get()))
 			.unlockedBy("has_"+stripped_wood_stairs.get().getRegistryName().getPath(), has(stripped_wood_stairs.get()))
 			.save(consumer, lotrLoc(name+"_from_"+wood_stairs.get().getRegistryName().getPath()));
@@ -625,28 +590,24 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			ExtendedFactionShapelessRecipeBuilder.shapeless(planks.get(), 2, table)
 			.group("planks")
 			.requires(Ingredient.of(branch.get(), stripped_branch.get()))
-			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+branch.get().getRegistryName().getPath(), has(branch.get()))
 			.unlockedBy("has_"+stripped_branch.get().getRegistryName().getPath(), has(stripped_branch.get()))
 			.save(consumer, lotrLoc(name+"_from_"+branch.get().getRegistryName().getPath()));
 			ExtendedFactionShapelessRecipeBuilder.shapeless(planks.get(), 2, table)
 			.group("planks")
 			.requires(Ingredient.of(log_slab.get(), stripped_log_slab.get()))
-			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+log_slab.get().getRegistryName().getPath(), has(log_slab.get()))
 			.unlockedBy("has_"+stripped_log_slab.get().getRegistryName().getPath(), has(stripped_log_slab.get()))
 			.save(consumer, lotrLoc(name+"_from_"+log_slab.get().getRegistryName().getPath()));
 			ExtendedFactionShapelessRecipeBuilder.shapeless(planks.get(), 2, table)
 			.group("planks")
 			.requires(Ingredient.of(wood_slab.get(), stripped_wood_slab.get()))
-			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+wood_slab.get().getRegistryName().getPath(), has(wood_slab.get()))
 			.unlockedBy("has_"+stripped_wood_slab.get().getRegistryName().getPath(), has(stripped_wood_slab.get()))
 			.save(consumer, lotrLoc(name+"_from_"+wood_slab.get().getRegistryName().getPath()));
 			ExtendedFactionShapelessRecipeBuilder.shapeless(planks.get(), 3, table)
 			.group("planks")
 			.requires(Ingredient.of(wood_stairs.get(), stripped_wood_stairs.get()))
-			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+wood_stairs.get().getRegistryName().getPath(), has(wood_stairs.get()))
 			.unlockedBy("has_"+stripped_wood_stairs.get().getRegistryName().getPath(), has(stripped_wood_stairs.get()))
 			.save(consumer, lotrLoc(name+"_from_"+wood_stairs.get().getRegistryName().getPath()));
@@ -662,7 +623,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			ShapelessRecipeBuilder.shapeless(planks.get(), 2)
 			.group("planks")
 			.requires(Ingredient.of(log_slab.get(), stripped_log_slab.get()))
-			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+log_slab.get().getRegistryName().getPath(), has(log_slab.get()))
 			.unlockedBy("has_"+stripped_log_slab.get().getRegistryName().getPath(), has(stripped_log_slab.get()))
 			.save(consumer, lotrLoc(name+"_from_"+log_slab.get().getRegistryName().getPath()));
@@ -671,7 +631,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			ExtendedFactionShapelessRecipeBuilder.shapeless(planks.get(), 2, table)
 			.group("planks")
 			.requires(Ingredient.of(log_slab.get(), stripped_log_slab.get()))
-			.unlockedBy("has_"+name, has(planks.get()))
 			.unlockedBy("has_"+log_slab.get().getRegistryName().getPath(), has(log_slab.get()))
 			.unlockedBy("has_"+stripped_log_slab.get().getRegistryName().getPath(), has(stripped_log_slab.get()))
 			.save(consumer, lotrLoc(name+"_from_"+log_slab.get().getRegistryName().getPath()));
@@ -691,7 +650,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("#I#")
 			.define('#', Ingredient.of(resource.get()))
 			.define('I', STICKS)
-			.unlockedBy("has_"+fenceName, has(fence.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(fenceName));
 			ExtendedShapedRecipeBuilder.shaped(gate.get())
@@ -700,7 +658,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("I#I")
 			.define('#', Ingredient.of(resource.get()))
 			.define('I', STICKS)
-			.unlockedBy("has_"+gateName, has(gate.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(gateName));
 		}
@@ -711,7 +668,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("#I#")
 			.define('#', Ingredient.of(resource.get()))
 			.define('I', STICKS)
-			.unlockedBy("has_"+fenceName, has(fence.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(fenceName));
 			ExtendedFactionShapedRecipeBuilder.shaped(gate.get(), table)
@@ -720,7 +676,6 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.pattern("I#I")
 			.define('#', Ingredient.of(resource.get()))
 			.define('I', STICKS)
-			.unlockedBy("has_"+gateName, has(gate.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(gateName));
 		}
@@ -737,7 +692,6 @@ ExtendedShapedRecipeBuilder.shaped(sign.get(), 3)
 			.pattern(" I ")
 			.define('#', Ingredient.of(resource.get()))
 			.define('I', STICKS)
-			.unlockedBy("has_"+signName, has(sign.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(signName));
 		}
@@ -748,7 +702,6 @@ ExtendedShapedRecipeBuilder.shaped(sign.get(), 3)
 			.pattern(" I ")
 			.define('#', Ingredient.of(resource.get()))
 			.define('I', STICKS)
-			.unlockedBy("has_"+signName, has(sign.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(signName));
 		}
@@ -762,7 +715,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(objectToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -771,7 +723,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(objectToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -785,7 +736,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(objectToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -794,7 +744,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(objectToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -808,7 +757,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(resource1.get()))
-			.unlockedBy("has_"+name, has(objectToBeCrafted.get()))
 			.unlockedBy("has_"+resource1.get().getRegistryName().getPath(), has(resource1.get()))
 			.save(consumer, lotrLoc(name));
 			makeCarvedBlockRecipeOnlySlabs(consumer, objectToBeCrafted, resource2, table);
@@ -818,7 +766,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("##")
 			.pattern("##")
 			.define('#', Ingredient.of(resource1.get()))
-			.unlockedBy("has_"+name, has(objectToBeCrafted.get()))
 			.unlockedBy("has_"+resource1.get().getRegistryName().getPath(), has(resource1.get()))
 			.save(consumer, lotrLoc(name));
 			makeCarvedBlockRecipeOnlySlabs(consumer, objectToBeCrafted, resource2, table);
@@ -833,7 +780,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("#")
 			.pattern("#")
 			.define('#', Ingredient.of(resource2.get()))
-			.unlockedBy("has_"+name, has(objectToBeCrafted.get()))
 			.unlockedBy("has_"+resource2.get().getRegistryName().getPath(), has(resource2.get()))
 			.save(consumer, lotrLoc(name+"_from_slabs"));
 		}
@@ -842,7 +788,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("#")
 			.pattern("#")
 			.define('#', Ingredient.of(resource2.get()))
-			.unlockedBy("has_"+name, has(objectToBeCrafted.get()))
 			.unlockedBy("has_"+resource2.get().getRegistryName().getPath(), has(resource2.get()))
 			.save(consumer, lotrLoc(name+"_from_slabs"));
 		}
@@ -854,7 +799,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		.pattern("##")
 		.pattern("##")
 		.define('#', Ingredient.of(resource1))
-		.unlockedBy("has_"+name, has(objectToBeCrafted))
 		.unlockedBy("has_"+resource1.getRegistryName().getPath(), has(resource1))
 		.save(consumer, mcLoc(name));
 		makeCarvedBlockRecipeOnlySlabsVanilla(consumer, objectToBeCrafted, resource2);
@@ -867,7 +811,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("#")
 			.pattern("#")
 			.define('#', Ingredient.of(resource2))
-			.unlockedBy("has_"+name, has(objectToBeCrafted))
 			.unlockedBy("has_"+resource2.getRegistryName().getPath(), has(resource2))
 			.save(consumer, mcLoc(name+"_from_slabs"));
 		}
@@ -886,7 +829,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("###")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(objectToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -896,7 +838,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("###")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(objectToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -908,7 +849,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		CookingRecipeBuilder.smelting(
 				Ingredient.of(resource.get()),
 				blockToBeCrafted.get(), 0.1F, 200)
-		.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 		.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 		.save(consumer, lotrLoc(name));
 	}
@@ -927,26 +867,22 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 				ShapelessRecipeBuilder.shapeless(blockToBeCrafted.get())
 				.requires(Ingredient.of(resource.get()))
 				.requires((Ingredient.of(()->Items.VINE)))
-				.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 				.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 				.save(consumer, lotrLoc(name+altName+"_using_vines"));
 			}
 			ShapelessRecipeBuilder.shapeless(blockToBeCrafted.get())
 			.requires(Ingredient.of(resource.get()))
 			.requires((Ingredient.of(ExtendedItems.WILLOW_VINES.get())))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name+altName+"_using_vines_willow"));
 			ShapelessRecipeBuilder.shapeless(blockToBeCrafted.get())
 			.requires(Ingredient.of(resource.get()))
 			.requires((Ingredient.of(ExtendedItems.MOSS_BLOCK.get())))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name+altName+"_using_moss_block"));
 			ShapelessRecipeBuilder.shapeless(blockToBeCrafted.get())
 			.requires(Ingredient.of(resource.get()))
 			.requires((Ingredient.of(ExtendedItems.MOSS_CARPET.get())))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name+altName+"_using_moss_carpet"));
 		}
@@ -955,26 +891,22 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 				ExtendedFactionShapelessRecipeBuilder.shapeless(blockToBeCrafted.get(), table)
 				.requires(Ingredient.of(resource.get()))
 				.requires((Ingredient.of(()->Items.VINE)))
-				.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 				.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 				.save(consumer, lotrLoc(name+altName+"_using_vines"));
 			}
 			ExtendedFactionShapelessRecipeBuilder.shapeless(blockToBeCrafted.get(), table)
 			.requires(Ingredient.of(resource.get()))
 			.requires((Ingredient.of(ExtendedItems.WILLOW_VINES.get())))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name+altName+"_using_vines_willow"));
 			ExtendedFactionShapelessRecipeBuilder.shapeless(blockToBeCrafted.get(), table)
 			.requires(Ingredient.of(resource.get()))
 			.requires((Ingredient.of(ExtendedItems.MOSS_BLOCK.get())))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name+altName+"_using_moss_block"));
 			ExtendedFactionShapelessRecipeBuilder.shapeless(blockToBeCrafted.get(), table)
 			.requires(Ingredient.of(resource.get()))
 			.requires((Ingredient.of(ExtendedItems.MOSS_CARPET.get())))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name+altName+"_using_moss_carpet"));
 		}
@@ -995,7 +927,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("#")
 			.pattern("#")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1006,7 +937,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("#")
 			.pattern("#")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1025,7 +955,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("XX")
 			.define('#', Ingredient.of(PLANKS))
 			.define('X', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name+altName));
 		}
@@ -1035,7 +964,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("XX")
 			.define('#', Ingredient.of(PLANKS))
 			.define('X', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name+altName));
 		}
@@ -1051,7 +979,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("I")
 			.define('#', Ingredient.of(resource.get()))
 			.define('I', STICKS)
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1061,7 +988,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("I")
 			.define('#', Ingredient.of(resource.get()))
 			.define('I', STICKS)
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1100,7 +1026,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" ##")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1110,7 +1035,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" ##")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1123,7 +1047,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 16)
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1131,7 +1054,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			ExtendedFactionShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 16, table)
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1152,7 +1074,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("###")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1162,7 +1083,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("###")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1175,7 +1095,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 6)
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1183,7 +1102,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			ExtendedFactionShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 6, table)
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1215,7 +1133,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("###")
 			.pattern("# #")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1224,7 +1141,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("###")
 			.pattern("# #")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1239,7 +1155,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("###")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1249,7 +1164,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("###")
 			.pattern("###")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1263,7 +1177,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("# #")
 			.pattern("# #")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1273,7 +1186,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("# #")
 			.pattern("# #")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1286,7 +1198,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("# #")
 			.pattern("# #")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1295,7 +1206,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("# #")
 			.pattern("# #")
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1312,7 +1222,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1323,7 +1232,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1339,7 +1247,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1350,7 +1257,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1366,7 +1272,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X  ")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_" + name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_" + resource.get().getRegistryName().getPath(),has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		} else {
@@ -1376,7 +1281,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X  ")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_" + name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_" + resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1392,7 +1296,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X  ")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_" + name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_" + resourceName,has(resource))
 			.save(consumer, lotrLoc(name));
 		} else {
@@ -1402,7 +1305,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X  ")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_" + name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_" + resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1417,7 +1319,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_" + name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_" + resource.get().getRegistryName().getPath(),has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		} else {
@@ -1426,7 +1327,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_" + name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_" + resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1441,7 +1341,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_" + name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_" + resourceName,has(resource))
 			.save(consumer, lotrLoc(name));
 		} else {
@@ -1450,7 +1349,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_" + name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_" + resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1466,7 +1364,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X#")
 			.define('#', Ingredient.of(bandItem.get()))
 			.define('X', Ingredient.of(resource))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		} else {
@@ -1476,7 +1373,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X#")
 			.define('#', Ingredient.of(bandItem.get()))
 			.define('X', Ingredient.of(resource))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1503,7 +1399,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X ")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1514,7 +1409,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X ")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1529,7 +1423,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1540,7 +1433,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1555,7 +1447,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1566,7 +1457,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1581,7 +1471,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1592,7 +1481,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1616,7 +1504,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X ")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1627,7 +1514,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X ")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1642,7 +1528,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1653,7 +1538,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1668,7 +1552,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1679,7 +1562,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1694,7 +1576,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1705,7 +1586,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1721,7 +1601,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X  ")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1732,7 +1611,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X  ")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1748,7 +1626,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X  ")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1759,7 +1636,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("X  ")
 			.define('X', STICKS)
 			.define('#', Ingredient.of(resource))
-			.unlockedBy("has_"+name, has(itemToBeCrafted.get()))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1772,14 +1648,12 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			ShapelessRecipeBuilder.shapeless(toItem.get())
 			.requires(fromItem.get())
 			.unlockedBy("has_"+name1, has(fromItem.get()))
-			.unlockedBy("has_"+name2, has(toItem.get()))
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 		else {
 			ExtendedFactionShapelessRecipeBuilder.shapeless(toItem.get(), table)
 			.requires(fromItem.get())
 			.unlockedBy("has_"+name1, has(fromItem.get()))
-			.unlockedBy("has_"+name2, has(toItem.get()))
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 	}
@@ -1795,7 +1669,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.define('T', Ingredient.of(fromItem.get()))
 			.define('M', Ingredient.of(material.get()))
 			.unlockedBy("has_"+name1, has(fromItem.get()))
-			.unlockedBy("has_"+name2, has(toItem.get()))
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 		else {
@@ -1806,7 +1679,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.define('T', Ingredient.of(fromItem.get()))
 			.define('M', Ingredient.of(material.get()))
 			.unlockedBy("has_"+name1, has(fromItem.get()))
-			.unlockedBy("has_"+name2, has(toItem.get()))
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 	}
@@ -1822,7 +1694,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.define('T', Ingredient.of(fromItem.get()))
 			.define('M', Ingredient.of(resource))
 			.unlockedBy("has_"+name1, has(fromItem.get()))
-			.unlockedBy("has_"+name2, has(toItem.get()))
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 		else {
@@ -1833,7 +1704,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.define('T', Ingredient.of(fromItem.get()))
 			.define('M', Ingredient.of(resource))
 			.unlockedBy("has_"+name1, has(fromItem.get()))
-			.unlockedBy("has_"+name2, has(toItem.get()))
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 	}
@@ -1845,7 +1715,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		if(table==null) {
 			ShapelessRecipeBuilder.shapeless(item.get(), 9)
 			.requires(block.get())
-			.unlockedBy("has_"+name1, has(item.get()))
 			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name1+"_from_"+name2));
 			ExtendedShapedRecipeBuilder.shaped(block.get())
@@ -1854,13 +1723,11 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("###")
 			.define('#', Ingredient.of(item.get()))
 			.unlockedBy("has_"+name1, has(item.get()))
-			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 		else {
 			ExtendedFactionShapelessRecipeBuilder.shapeless(item.get(), 9, table)
 			.requires(block.get())
-			.unlockedBy("has_"+name1, has(item.get()))
 			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name1+"_from_"+name2));
 			ExtendedFactionShapedRecipeBuilder.shaped(block.get(), table)
@@ -1869,7 +1736,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("###")
 			.define('#', Ingredient.of(item.get()))
 			.unlockedBy("has_"+name1, has(item.get()))
-			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 	}
@@ -1881,7 +1747,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		if(table==null) {
 			ShapelessRecipeBuilder.shapeless(item.get(), 4)
 			.requires(block.get())
-			.unlockedBy("has_"+name1, has(item.get()))
 			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name1+"_from_"+name2));
 			ExtendedShapedRecipeBuilder.shaped(block.get())
@@ -1889,13 +1754,11 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("##")
 			.define('#', Ingredient.of(item.get()))
 			.unlockedBy("has_"+name1, has(item.get()))
-			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 		else {
 			ExtendedFactionShapelessRecipeBuilder.shapeless(item.get(), 4, table)
 			.requires(block.get())
-			.unlockedBy("has_"+name1, has(item.get()))
 			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name1+"_from_"+name2));
 			ExtendedFactionShapedRecipeBuilder.shaped(block.get(), table)
@@ -1903,7 +1766,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("##")
 			.define('#', Ingredient.of(item.get()))
 			.unlockedBy("has_"+name1, has(item.get()))
-			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 	}
@@ -1916,7 +1778,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			ShapelessRecipeBuilder.shapeless(nugget.get(), 9)
 			.requires(ingot.get())
 			.unlockedBy("has_"+name1, has(ingot.get()))
-			.unlockedBy("has_"+name2, has(nugget.get()))
 			.save(consumer, lotrLoc(name1+"_from_"+name2));
 			ExtendedShapedRecipeBuilder.shaped(ingot.get())
 			.pattern("###")
@@ -1924,13 +1785,11 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("###")
 			.define('#', Ingredient.of(nugget.get()))
 			.unlockedBy("has_"+name1, has(nugget.get()))
-			.unlockedBy("has_"+name2, has(ingot.get()))
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 		else {
 			ExtendedFactionShapelessRecipeBuilder.shapeless(nugget.get(), 9, table)
 			.requires(ingot.get())
-			.unlockedBy("has_"+name1, has(nugget.get()))
 			.unlockedBy("has_"+name2, has(ingot.get()))
 			.save(consumer, lotrLoc(name1+"_from_"+name2));
 			ExtendedFactionShapedRecipeBuilder.shaped(ingot.get(), table)
@@ -1939,7 +1798,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("###")
 			.define('#', Ingredient.of(nugget.get()))
 			.unlockedBy("has_"+name1, has(nugget.get()))
-			.unlockedBy("has_"+name2, has(ingot.get()))
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 	}
@@ -1951,7 +1809,8 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 	protected void makeStoneCutterRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> ing, Supplier<? extends Block> output, int num) {
 		String name1 = ing.get().getRegistryName().getPath();
 		String name2 = output.get().getRegistryName().getPath();
-		SingleItemRecipeBuilder.stonecutting(Ingredient.of(ing.get()), output.get(), num).unlocks("has_"+name1, has(ing.get())).save(consumer, name2+"_from_"+name1);
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(ing.get()), output.get(), num).unlocks("has_"+name1, has(ing.get()))
+		.save(consumer, name2+"_from_"+name1);
 	}
 
 	protected void makeStoneGrinderRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output) {
@@ -1973,7 +1832,8 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 	protected void makeMillingRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> input, Supplier<? extends Item> output, float breakChance, int countMin, int countMax) {
 		String name1 = output.get().getRegistryName().getNamespace()+"_"+output.get().getRegistryName().getPath();
 		String name2 = input.get().getRegistryName().getNamespace()+"_"+input.get().getRegistryName().getPath();
-		ExtendedMillingRecipeBuilder.grinding(output.get(), countMin, countMax, Ingredient.of(input.get()), breakChance, ExtendedRecipeSerializers.STONE_GRINDING_SERIALIZER.get()).save(consumer, extendedLoc(name1+"_grinded_from_"+name2));
+		ExtendedMillingRecipeBuilder.grinding(output.get(), countMin, countMax, Ingredient.of(input.get()), breakChance, ExtendedRecipeSerializers.STONE_GRINDING_SERIALIZER.get())
+		.save(consumer, extendedLoc(name1+"_grinded_from_"+name2));
 	}
 
 	public void checkForMissingRecipes() {

@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_chestnut_trapdoor": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:chestnut_trapdoor"
-          }
-        ]
-      }
-    },
     "has_chestnut_planks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_chestnut_trapdoor",
       "has_chestnut_planks",
       "has_the_recipe"
     ]

@@ -26,16 +26,6 @@
         ]
       }
     },
-    "has_lothlorien_banner": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:lothlorien_banner"
-          }
-        ]
-      }
-    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -47,7 +37,6 @@
     [
       "has_mallorn_stick",
       "has_mallorn_plank",
-      "has_lothlorien_banner",
       "has_the_recipe"
     ]
   ]

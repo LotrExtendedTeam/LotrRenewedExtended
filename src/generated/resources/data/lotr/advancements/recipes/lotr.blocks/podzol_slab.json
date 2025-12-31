@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_podzol_slab": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:podzol_slab"
-          }
-        ]
-      }
-    },
     "has_podzol": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_podzol_slab",
       "has_podzol",
       "has_the_recipe"
     ]

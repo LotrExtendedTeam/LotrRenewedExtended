@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_dol_guldur_brick_wall": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:dol_guldur_brick_wall"
-          }
-        ]
-      }
-    },
     "has_dol_guldur_brick": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_dol_guldur_brick_wall",
       "has_dol_guldur_brick",
       "has_the_recipe"
     ]

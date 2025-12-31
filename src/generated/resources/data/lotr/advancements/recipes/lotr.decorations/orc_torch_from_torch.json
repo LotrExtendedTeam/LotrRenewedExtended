@@ -26,16 +26,6 @@
         ]
       }
     },
-    "has_orc_torch": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:orc_torch"
-          }
-        ]
-      }
-    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -47,7 +37,6 @@
     [
       "has_torch",
       "has_stick",
-      "has_orc_torch",
       "has_the_recipe"
     ]
   ]

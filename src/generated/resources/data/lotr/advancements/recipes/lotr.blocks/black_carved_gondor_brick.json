@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_black_carved_gondor_brick": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:black_carved_gondor_brick"
-          }
-        ]
-      }
-    },
     "has_numenorean_brick": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_black_carved_gondor_brick",
       "has_numenorean_brick",
       "has_the_recipe"
     ]

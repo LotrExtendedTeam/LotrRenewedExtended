@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_mud_slab": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:mud_slab"
-          }
-        ]
-      }
-    },
     "has_mud": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_mud_slab",
       "has_mud",
       "has_the_recipe"
     ]

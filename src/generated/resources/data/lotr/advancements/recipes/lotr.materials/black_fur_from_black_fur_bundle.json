@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_black_fur": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:black_fur"
-          }
-        ]
-      }
-    },
     "has_black_fur_bundle": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_black_fur",
       "has_black_fur_bundle",
       "has_the_recipe"
     ]
