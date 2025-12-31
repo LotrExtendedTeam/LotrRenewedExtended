@@ -1076,7 +1076,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("III")
 			.define('B', Ingredient.of(bars.get()))
 			.define('I', Ingredient.of(base))
-			.unlockedBy("has_"+blockToBeCrafted.get().getRegistryName().getPath(), has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+bars.get().getRegistryName().getPath(), has(bars.get()))
 			.save(consumer, lotrLoc(blockToBeCrafted.get().getRegistryName().getPath()));
 		}
@@ -1087,7 +1086,6 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern("III")
 			.define('B', Ingredient.of(bars.get()))
 			.define('I', Ingredient.of(base))
-			.unlockedBy("has_"+blockToBeCrafted.get().getRegistryName().getPath(), has(blockToBeCrafted.get()))
 			.unlockedBy("has_"+bars.get().getRegistryName().getPath(), has(bars.get()))
 			.save(consumer, lotrLoc(blockToBeCrafted.get().getRegistryName().getPath()));
 		}

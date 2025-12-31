@@ -2,7 +2,7 @@
   "type": "lotr:dwarven_forge_alloy",
   "ingredient": [
     {
-      "tag": "forge:ingots/elven_steel"
+      "item": "lotr:sky_iron"
     }
   ],
   "alloy": [

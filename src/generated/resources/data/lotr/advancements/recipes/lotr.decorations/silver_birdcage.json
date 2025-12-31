@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_silver_birdcage": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:silver_birdcage"
-          }
-        ]
-      }
-    },
     "has_silver_bars": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_silver_birdcage",
       "has_silver_bars",
       "has_the_recipe"
     ]

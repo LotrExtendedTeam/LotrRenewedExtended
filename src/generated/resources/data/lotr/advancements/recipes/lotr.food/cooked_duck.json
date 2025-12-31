@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_cooked_duck": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:cooked_duck"
-          }
-        ]
-      }
-    },
     "has_raw_duck": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_cooked_duck",
       "has_raw_duck",
       "has_the_recipe"
     ]

@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_iron_birdcage": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:iron_birdcage"
-          }
-        ]
-      }
-    },
     "has_iron_bars": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_iron_birdcage",
       "has_iron_bars",
       "has_the_recipe"
     ]

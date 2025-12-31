@@ -34,7 +34,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedDuckEggItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDyeableBoarArmorItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEdhelvirItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedColoringItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGuldurilItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleItem;
@@ -371,8 +371,8 @@ public class MixinLOTRItems {
 	}
 
 	@Unique
-	private static RegistryObject<Item> regGemstoneItemB(String name, TextFormatting color)  {
-		RegistryObject<Item> item = regItem(name, () -> new ExtendedGemstoneItem(new Properties().tab(LOTRItemGroups.MATERIALS), color));
+	private static RegistryObject<Item> regColoredMaterialItemB(String name, TextFormatting color)  {
+		RegistryObject<Item> item = regItem(name, () -> new ExtendedColoringItem(new Properties().tab(LOTRItemGroups.MATERIALS), color));
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedItems.REGISTEREDITEMS.put(name, item);
 		}
@@ -568,6 +568,7 @@ public class MixinLOTRItems {
 		ExtendedItems.CORAL_BLOCK = regBlockItemB(ExtendedBlocks.CORAL_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.WASTE_BLOCK = regBlockItemB(ExtendedBlocks.WASTE_BLOCK, LOTRItemGroups.BLOCKS);
 		//ORE
+		ExtendedItems.METEORITE_ORE = regBlockItemB(ExtendedBlocks.METEORITE_ORE, LOTRItemGroups.BLOCKS);
 		ExtendedItems.TOPAZ_ORE = regBlockItemB(ExtendedBlocks.TOPAZ_ORE, LOTRItemGroups.BLOCKS);
 		ExtendedItems.AMETHYST_ORE = regBlockItemB(ExtendedBlocks.AMETHYST_ORE, LOTRItemGroups.BLOCKS);
 		ExtendedItems.SAPPHIRE_ORE = regBlockItemB(ExtendedBlocks.SAPPHIRE_ORE, LOTRItemGroups.BLOCKS);
@@ -939,21 +940,22 @@ public class MixinLOTRItems {
 		ExtendedItems.BLACK_FUR = regMaterialItemB("black_fur");
 
 		//Ingots
+		ExtendedItems.SKY_IRON = regColoredMaterialItemB("sky_iron", TextFormatting.DARK_GRAY);
 		ExtendedItems.GALVORN_INGOT = regMaterialItemB("galvorn_ingot");
 		ExtendedItems.BLACK_URUK_STEEL_INGOT = regMaterialItemB("black_uruk_steel_ingot");
 		ExtendedItems.GILDED_IRON_INGOT = regMaterialItemB("gilded_iron_ingot");
 		ExtendedItems.MORGUL_STEEL_INGOT = regMaterialItemB("morgul_steel_ingot");
 		ExtendedItems.ORC_STEEL_NUGGET = regMaterialItemB("orc_steel_nugget");
 		//Gems
-		ExtendedItems.TOPAZ = regGemstoneItemB("topaz", TextFormatting.GOLD);
-		ExtendedItems.AMETHYST = regGemstoneItemB("amethyst", TextFormatting.LIGHT_PURPLE);
-		ExtendedItems.SAPPHIRE = regGemstoneItemB("sapphire", TextFormatting.BLUE);
-		ExtendedItems.RUBY = regGemstoneItemB("ruby", TextFormatting.RED);
-		ExtendedItems.AMBER = regGemstoneItemB("amber", TextFormatting.YELLOW);
-		ExtendedItems.DIAMOND = regGemstoneItemB("diamond", TextFormatting.GRAY);
-		ExtendedItems.OPAL = regGemstoneItemB("opal", TextFormatting.AQUA);
-		ExtendedItems.EMERALD = regGemstoneItemB("emerald", TextFormatting.GREEN);
-		ExtendedItems.PEARL = regGemstoneItemB("pearl", TextFormatting.WHITE);
+		ExtendedItems.TOPAZ = regColoredMaterialItemB("topaz", TextFormatting.GOLD);
+		ExtendedItems.AMETHYST = regColoredMaterialItemB("amethyst", TextFormatting.LIGHT_PURPLE);
+		ExtendedItems.SAPPHIRE = regColoredMaterialItemB("sapphire", TextFormatting.BLUE);
+		ExtendedItems.RUBY = regColoredMaterialItemB("ruby", TextFormatting.RED);
+		ExtendedItems.AMBER = regColoredMaterialItemB("amber", TextFormatting.YELLOW);
+		ExtendedItems.DIAMOND = regColoredMaterialItemB("diamond", TextFormatting.GRAY);
+		ExtendedItems.OPAL = regColoredMaterialItemB("opal", TextFormatting.AQUA);
+		ExtendedItems.EMERALD = regColoredMaterialItemB("emerald", TextFormatting.GREEN);
+		ExtendedItems.PEARL = regColoredMaterialItemB("pearl", TextFormatting.WHITE);
 		ExtendedItems.CORAL = regMaterialItemB("coral");
 
 		//#########################################################################TOOLS#####################################################
