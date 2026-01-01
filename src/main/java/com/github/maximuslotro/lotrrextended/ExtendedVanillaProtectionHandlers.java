@@ -17,19 +17,22 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class ExtendedProtectionHandlers {
+public class ExtendedVanillaProtectionHandlers {
 	public static Map<UUID, Long> extendedWarnedPlayers = new HashMap<>();
 	public static final Map<UUID, Boolean> wasInProtection = new HashMap<>();
 
+	public static boolean isUnderSpawnProtection(ServerWorld pLevel, BlockPos pPos, PlayerEntity pPlayer, boolean canSendWarning, boolean bypassOpCheck) {
+		return isUnderSpawnProtection(pLevel, pPos, pPlayer, pLevel.getServer().getPlayerList(), canSendWarning, bypassOpCheck);
+	}
 	public static boolean isUnderSpawnProtection(ServerWorld pLevel, BlockPos pPos, PlayerEntity pPlayer, PlayerList playerList, 
-			boolean canSendWarning, boolean bypassOps) {
+			boolean canSendWarning, boolean bypassOpCheck) {
 		if(ExtendedServerConfig.enableExtendedSpawnProtection.get()) {
 			if (pLevel.dimension() == World.OVERWORLD) {
 				if (playerList.getOps().isEmpty()) {
 					return false;
 				} else if (ExtendedServerConfig.overworldSpawnProtectionRadius.get() <= 0) {
 					return false;
-				} else if (playerList.isOp(pPlayer.getGameProfile()) && !bypassOps) {
+				} else if (!bypassOpCheck && playerList.isOp(pPlayer.getGameProfile())) {
 					return false;
 				}  else {
 					BlockPos blockpos = pLevel.getSharedSpawnPos();
@@ -47,7 +50,7 @@ public class ExtendedProtectionHandlers {
 					return false;
 				} else if (ExtendedServerConfig.middleEarthSpawnProtectionRadius.get() <= 0) {
 					return false;
-				} else if (playerList.isOp(pPlayer.getGameProfile()) && !bypassOps) {
+				} else if (playerList.isOp(pPlayer.getGameProfile()) && !bypassOpCheck) {
 					return false;
 				}  else {
 					BlockPos blockpos = pLevel.getSharedSpawnPos();

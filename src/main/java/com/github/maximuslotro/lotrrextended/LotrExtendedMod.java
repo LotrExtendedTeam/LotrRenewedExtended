@@ -4,7 +4,8 @@ import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.chairs.HackyChairDatabase;
 import com.github.maximuslotro.lotrrextended.common.commands.ExtendedCommands;
-import com.github.maximuslotro.lotrrextended.common.commands.ExtendedSpawnCommand;
+import com.github.maximuslotro.lotrrextended.common.commands.staff.ExtendedModControl;
+import com.github.maximuslotro.lotrrextended.common.commands.staff.ExtendedSpawnCommand;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedMissingMappings;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGeneratorExtended;
@@ -60,6 +61,7 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.moddiscovery.ModFile;
@@ -89,6 +91,7 @@ public class LotrExtendedMod{
 		forgeBus.addListener(this::extendedRegisterDataPackListeners);
 		forgeBus.addListener(EventPriority.HIGH, this::extendedAddFeatureToBiomes);
 		forgeBus.addListener(this::extendesAddDimensionalSpacing);
+		forgeBus.addListener(this::extendedServerStarting);
 		forgeBus.addListener(this::extendedServerStarted);
 		forgeBus.addListener(this::extendedServerStopping);
 
@@ -171,9 +174,16 @@ public class LotrExtendedMod{
 		}
 	}
 
+	public void extendedServerStarting(FMLServerStartingEvent event) {
+		if(ExtendedServerConfig.enableStaffServer.get()) {
+			ExtendedSpecialConfig.loadAll();
+		}
+	}
+
 	public void extendedServerStarted(FMLServerStartedEvent event) {
 		if(ExtendedServerConfig.enableStaffServer.get()) {
 			ExtendedSpawnCommand.register(ServerLifecycleHooks.getCurrentServer().getCommands().getDispatcher());
+			ExtendedModControl.register(ServerLifecycleHooks.getCurrentServer().getCommands().getDispatcher());
 		}
 	}
 

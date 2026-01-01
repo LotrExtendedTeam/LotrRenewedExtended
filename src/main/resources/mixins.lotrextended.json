@@ -142,6 +142,7 @@
 		"net.minecraft.item.MixinItems",
 		"net.minecraft.item.MixinItemStack",
 		"net.minecraft.item.MixinShearsItem",
+		"net.minecraft.network.login.MixinServerLoginNetHandler",
 		"net.minecraft.server.dedicated.MixinDedicatedServer",
 		"net.minecraft.tileentity.MixinSignTileEntityAccessor",
 		"net.minecraft.util.MixinFoodStats",

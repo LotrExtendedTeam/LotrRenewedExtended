@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 import java.util.List;
 import java.util.UUID;
 
-import com.github.maximuslotro.lotrrextended.ExtendedProtectionHandlers;
+import com.github.maximuslotro.lotrrextended.ExtendedVanillaProtectionHandlers;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
@@ -58,6 +58,7 @@ import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -67,7 +68,6 @@ import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 /**
  * Handles various world-related events for custom entities and gameplay mechanics.
@@ -80,8 +80,8 @@ public class WorldEventHandlers {
 
 	@SubscribeEvent
 	public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-		ExtendedProtectionHandlers.extendedWarnedPlayers.remove(event.getPlayer().getUUID());
-		ExtendedProtectionHandlers.wasInProtection.remove(event.getPlayer().getUUID());
+		ExtendedVanillaProtectionHandlers.extendedWarnedPlayers.remove(event.getPlayer().getUUID());
+		ExtendedVanillaProtectionHandlers.wasInProtection.remove(event.getPlayer().getUUID());
 	}
 
 	@SubscribeEvent
@@ -89,9 +89,9 @@ public class WorldEventHandlers {
 		if (event.phase == TickEvent.Phase.END && event.player instanceof ServerPlayerEntity && ExtendedServerConfig.enableExtendedSpawnProtection.get()) {
 			ServerPlayerEntity player = (ServerPlayerEntity) event.player;
 
-			boolean isProtected = ExtendedProtectionHandlers.isUnderSpawnProtection(player.getLevel(), player.blockPosition(), player, ServerLifecycleHooks.getCurrentServer().getPlayerList(), false, true);
+			boolean isProtected = ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(player.getLevel(), player.blockPosition(), player, false, true);
 			UUID id = player.getUUID();
-			boolean wasProtected = ExtendedProtectionHandlers.wasInProtection.getOrDefault(id, false);
+			boolean wasProtected = ExtendedVanillaProtectionHandlers.wasInProtection.getOrDefault(id, false);
 
 			if (!wasProtected && isProtected) {
 				player.sendMessage(new StringTextComponent("Entered spawn protection").withStyle(TextFormatting.RED), Util.NIL_UUID);
@@ -99,7 +99,7 @@ public class WorldEventHandlers {
 				player.sendMessage(new StringTextComponent("Left spawn protection").withStyle(TextFormatting.GREEN), Util.NIL_UUID);
 			}
 
-			ExtendedProtectionHandlers.wasInProtection.put(id, isProtected);
+			ExtendedVanillaProtectionHandlers.wasInProtection.put(id, isProtected);
 		}
 	}
 	/**
@@ -351,7 +351,17 @@ public class WorldEventHandlers {
 	}
 
 	@SubscribeEvent
-	public static void handleItemAttributeChanges(ItemAttributeModifierEvent pEvent) {
+	public static void handleItemAttributeChanges$Extended(ItemAttributeModifierEvent pEvent) {
 		ExtendedModifierUtils.processItemAttributes(pEvent);
+	}
+
+	@SubscribeEvent
+	public static void onLivingAttacked$Extended(LivingAttackEvent event) {
+		if(ExtendedServerConfig.enableStaffServer.get() && event.getSource().getEntity() instanceof ServerPlayerEntity && event.getEntityLiving() instanceof ServerPlayerEntity) {
+			if(ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(((ServerPlayerEntity) event.getEntityLiving()).getLevel(), 
+					event.getEntityLiving().blockPosition(), ((ServerPlayerEntity)event.getSource().getEntity()), true, true)) {
+				event.setCanceled(true);
+			}
+		}
 	}
 }

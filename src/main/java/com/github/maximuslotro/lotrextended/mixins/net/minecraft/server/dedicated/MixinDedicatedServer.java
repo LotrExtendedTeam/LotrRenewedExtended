@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import com.github.maximuslotro.lotrrextended.ExtendedProtectionHandlers;
+import com.github.maximuslotro.lotrrextended.ExtendedVanillaProtectionHandlers;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.dedicated.DedicatedPlayerList;
@@ -22,6 +22,6 @@ public class MixinDedicatedServer {
 
 	@Inject(method = "isUnderSpawnProtection(Lnet/minecraft/world/server/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/player/PlayerEntity;)Z", at = @At(value = "HEAD"), cancellable = true)
 	private void isUnderSpawnProtection$Extended(ServerWorld pLevel, BlockPos pPos, PlayerEntity pPlayer, CallbackInfoReturnable<Boolean> cir) {
-		cir.setReturnValue(ExtendedProtectionHandlers.isUnderSpawnProtection(pLevel, pPos, pPlayer, this.getPlayerList(), true, false));
+		cir.setReturnValue(ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(pLevel, pPos, pPlayer, this.getPlayerList(), true, false));
 	}
 }
