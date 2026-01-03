@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended;
+package com.github.maximuslotro.lotrrextended.common.staffserver;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.commands.staff;
+package com.github.maximuslotro.lotrrextended.common.staffserver;
 
 import java.util.EnumSet;
 

@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import com.github.maximuslotro.lotrrextended.ExtendedSpecialConfig;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedSpecialConfig;
 import com.mojang.authlib.GameProfile;
 
 import net.minecraft.network.NetworkManager;

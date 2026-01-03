@@ -1,9 +1,8 @@
-package com.github.maximuslotro.lotrrextended.common.commands.staff;
+package com.github.maximuslotro.lotrrextended.common.staffserver;
 
 import java.util.Map;
 import java.util.Set;
 
-import com.github.maximuslotro.lotrrextended.ExtendedSpecialConfig;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -15,7 +14,7 @@ import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
-public class ExtendedModControl {
+public class ExtendedModControlCommand {
 
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("mod_control")

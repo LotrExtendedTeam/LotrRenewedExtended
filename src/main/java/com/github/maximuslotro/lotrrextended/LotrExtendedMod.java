@@ -4,8 +4,6 @@ import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.chairs.HackyChairDatabase;
 import com.github.maximuslotro.lotrrextended.common.commands.ExtendedCommands;
-import com.github.maximuslotro.lotrrextended.common.commands.staff.ExtendedModControl;
-import com.github.maximuslotro.lotrrextended.common.commands.staff.ExtendedSpawnCommand;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedMissingMappings;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGeneratorExtended;
@@ -31,6 +29,8 @@ import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeTypes;
 import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSerializers;
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextProcessorManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
+import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedSpecialConfig;
+import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedStaffEvents;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.BiomeFeatureAdder;
@@ -65,7 +65,6 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.moddiscovery.ModFile;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 @Mod(value = LotrExtendedMod.MODID)
 public class LotrExtendedMod{
@@ -177,13 +176,13 @@ public class LotrExtendedMod{
 	public void extendedServerStarting(FMLServerStartingEvent event) {
 		if(ExtendedServerConfig.enableStaffServer.get()) {
 			ExtendedSpecialConfig.loadAll();
+			MinecraftForge.EVENT_BUS.register(ExtendedStaffEvents.class);
 		}
 	}
 
 	public void extendedServerStarted(FMLServerStartedEvent event) {
 		if(ExtendedServerConfig.enableStaffServer.get()) {
-			ExtendedSpawnCommand.register(ServerLifecycleHooks.getCurrentServer().getCommands().getDispatcher());
-			ExtendedModControl.register(ServerLifecycleHooks.getCurrentServer().getCommands().getDispatcher());
+			ExtendedStaffEvents.registerStaffCommands();
 		}
 	}
 
