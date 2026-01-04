@@ -293,6 +293,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.immersivespeechduration.suffix", " Seconds");
 		addD("gui.lotrextended.settings.jeilotrversioncheck.setting", "Patch broken JEI-lotr VC: ");
 		addD("gui.lotrextended.settings.lotrextendedversioncheck.setting", "Extended Version Check: ");
+		addD("gui.lotrextended.settings.show_hired_unit_hp_numbers.setting", "Large hired HP bars with values: ");
 
 		// Banner Menu strings
 		addD("gui.lotrextended.banner_configuration.title", "Banner Protection");
