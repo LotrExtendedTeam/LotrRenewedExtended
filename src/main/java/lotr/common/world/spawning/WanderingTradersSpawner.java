@@ -113,9 +113,9 @@ public class WanderingTradersSpawner {
 							continue;
 						}
 						if(((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(otherPlayer)).getExtendedMiscData().doHighContrastMessages()) {
-							otherPlayer.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_you", trader.getName().copy().withStyle(npcNameStyle)), Util.NIL_UUID);
+							otherPlayer.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_player", trader.getName().copy().withStyle(npcNameStyle), player.getName()), Util.NIL_UUID);
 						}else {
-							otherPlayer.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_you", trader.getName().copy().withStyle(TextFormatting.YELLOW)), Util.NIL_UUID);
+							otherPlayer.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_player", trader.getName().copy().withStyle(TextFormatting.YELLOW), player.getName()), Util.NIL_UUID);
 						}
 					}
 				} else if(trader==null) {
