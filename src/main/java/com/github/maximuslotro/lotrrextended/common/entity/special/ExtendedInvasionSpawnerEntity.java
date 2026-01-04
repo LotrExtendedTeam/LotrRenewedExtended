@@ -31,6 +31,8 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         super(pType, pLevel);
     }
 
+    // TODO: Make sure to support "lotr:northern_orcs,wargs" in spawn logic
+
     public ExtendedInvasionSpawnerEntity(World pLevel) {
         this(ExtendedEntities.INVASION_SPAWNER.get(), pLevel);
     }
@@ -43,10 +45,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     @Override
     protected void readAdditionalSaveData(CompoundNBT compoundNBT) {
         if(compoundNBT.contains("faction_key")) {
-            System.out.println("FACTION_KEY FOUND");
             this.getEntityData().set(DATA_FACTION_KEY, compoundNBT.getString("faction_key"));
-        } else {
-            System.out.println("FACTION_KEY NOT FOUND");
         }
     }
 
