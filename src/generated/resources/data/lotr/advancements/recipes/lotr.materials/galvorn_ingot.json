@@ -6,22 +6,12 @@
     ]
   },
   "criteria": {
-    "has_galvorn_ingot": {
+    "has_sky_iron": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "lotr:galvorn_ingot"
-          }
-        ]
-      }
-    },
-    "has_edhelvir": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:edhelvir"
+            "item": "lotr:sky_iron"
           }
         ]
       }
@@ -35,8 +25,7 @@
   },
   "requirements": [
     [
-      "has_galvorn_ingot",
-      "has_edhelvir",
+      "has_sky_iron",
       "has_the_recipe"
     ]
   ]

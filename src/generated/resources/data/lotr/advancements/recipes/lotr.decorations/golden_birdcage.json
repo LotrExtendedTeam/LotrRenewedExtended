@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_golden_birdcage": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:golden_birdcage"
-          }
-        ]
-      }
-    },
     "has_gold_bars": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_golden_birdcage",
       "has_gold_bars",
       "has_the_recipe"
     ]

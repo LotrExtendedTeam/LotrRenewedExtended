@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_white_warg_fur_boots": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:white_warg_fur_boots"
-          }
-        ]
-      }
-    },
     "has_white_fur": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_white_warg_fur_boots",
       "has_white_fur",
       "has_the_recipe"
     ]

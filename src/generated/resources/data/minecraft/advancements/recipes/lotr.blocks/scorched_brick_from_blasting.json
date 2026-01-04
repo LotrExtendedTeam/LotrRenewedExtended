@@ -16,16 +16,6 @@
         ]
       }
     },
-    "has_scorched_brick": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:scorched_brick"
-          }
-        ]
-      }
-    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -36,7 +26,6 @@
   "requirements": [
     [
       "has_stone_bricks",
-      "has_scorched_brick",
       "has_the_recipe"
     ]
   ]

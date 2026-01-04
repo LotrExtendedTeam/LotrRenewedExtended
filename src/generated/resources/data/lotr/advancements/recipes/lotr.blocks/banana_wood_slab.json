@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_banana_wood_slab": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:banana_wood_slab"
-          }
-        ]
-      }
-    },
     "has_banana_wood": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_banana_wood_slab",
       "has_banana_wood",
       "has_the_recipe"
     ]

@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_mithril_birdcage": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:mithril_birdcage"
-          }
-        ]
-      }
-    },
     "has_mithril_bars": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_mithril_birdcage",
       "has_mithril_bars",
       "has_the_recipe"
     ]

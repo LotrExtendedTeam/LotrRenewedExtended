@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_stripped_chestnut_branch": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:stripped_chestnut_branch"
-          }
-        ]
-      }
-    },
     "has_stripped_chestnut_wood": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_stripped_chestnut_branch",
       "has_stripped_chestnut_wood",
       "has_the_recipe"
     ]

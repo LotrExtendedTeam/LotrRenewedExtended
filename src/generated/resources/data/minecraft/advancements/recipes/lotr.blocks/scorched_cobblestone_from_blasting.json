@@ -16,16 +16,6 @@
         ]
       }
     },
-    "has_scorched_cobblestone": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:scorched_cobblestone"
-          }
-        ]
-      }
-    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -36,7 +26,6 @@
   "requirements": [
     [
       "has_cobblestone",
-      "has_scorched_cobblestone",
       "has_the_recipe"
     ]
   ]

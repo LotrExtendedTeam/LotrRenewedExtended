@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_banana_trapdoor": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:banana_trapdoor"
-          }
-        ]
-      }
-    },
     "has_banana_planks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_banana_trapdoor",
       "has_banana_planks",
       "has_the_recipe"
     ]

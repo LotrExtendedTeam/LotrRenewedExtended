@@ -16,16 +16,6 @@
         ]
       }
     },
-    "has_taurethrim_chieftain_helmet": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:taurethrim_chieftain_helmet"
-          }
-        ]
-      }
-    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -36,7 +26,6 @@
   "requirements": [
     [
       "has_flame_of_harad",
-      "has_taurethrim_chieftain_helmet",
       "has_the_recipe"
     ]
   ]

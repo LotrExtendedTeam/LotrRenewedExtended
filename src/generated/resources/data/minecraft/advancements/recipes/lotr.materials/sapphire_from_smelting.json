@@ -16,16 +16,6 @@
         ]
       }
     },
-    "has_sapphire": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:sapphire"
-          }
-        ]
-      }
-    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -36,7 +26,6 @@
   "requirements": [
     [
       "has_sapphire_ore",
-      "has_sapphire",
       "has_the_recipe"
     ]
   ]

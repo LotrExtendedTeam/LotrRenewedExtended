@@ -30,10 +30,7 @@ import net.minecraft.entity.ai.goal.OpenDoorGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
@@ -42,8 +39,6 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -53,15 +48,9 @@ public class ExtendedDunedainRangerEntity extends ManEntity implements ExtendedN
     private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(LOTRItems.ARNOR_SWORD, LOTRItems.BRONZE_SWORD, Items.IRON_SWORD, LOTRItems.ARNOR_DAGGER, LOTRItems.BRONZE_DAGGER, LOTRItems.IRON_DAGGER);
     private static final SpawnEquipmentTable BOWS = SpawnEquipmentTable.of(ExtendedItems.DUNEDAIN_BOW, ExtendedItems.RANGER_BOW, ExtendedItems.LONGBOW, Items.BOW);
 
-    private static final DataParameter<Integer> CLOAK_COOLDOWN = EntityDataManager.defineId(
-            ExtendedDunedainRangerEntity.class, DataSerializers.INT);
-
-    private static final DataParameter<Integer> AUTO_DECLOAK_IN = EntityDataManager.defineId(
-            ExtendedDunedainRangerEntity.class, DataSerializers.INT
-    );
-
-    private static final DataParameter<Boolean> IS_CLOAKED = EntityDataManager.defineId(ExtendedDunedainRangerEntity.class,
-            DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> CLOAK_COOLDOWN = EntityDataManager.defineId(ExtendedDunedainRangerEntity.class, DataSerializers.INT);
+    private static final DataParameter<Integer> AUTO_DECLOAK_IN = EntityDataManager.defineId(ExtendedDunedainRangerEntity.class, DataSerializers.INT);
+    private static final DataParameter<Boolean> IS_CLOAKED = EntityDataManager.defineId(ExtendedDunedainRangerEntity.class,DataSerializers.BOOLEAN);
 
     public double xCloakO;
     public double yCloakO;

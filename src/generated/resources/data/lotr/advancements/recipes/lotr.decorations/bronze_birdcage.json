@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_bronze_birdcage": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:bronze_birdcage"
-          }
-        ]
-      }
-    },
     "has_bronze_bars": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_bronze_birdcage",
       "has_bronze_bars",
       "has_the_recipe"
     ]

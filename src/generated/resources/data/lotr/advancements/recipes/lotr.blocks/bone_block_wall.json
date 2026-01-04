@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_bone_block_wall": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:bone_block_wall"
-          }
-        ]
-      }
-    },
     "has_bone_block": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_bone_block_wall",
       "has_bone_block",
       "has_the_recipe"
     ]

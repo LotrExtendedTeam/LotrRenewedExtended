@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_carved_rhunic_brick": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:carved_rhunic_brick"
-          }
-        ]
-      }
-    },
     "has_rhunic_brick": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_carved_rhunic_brick",
       "has_rhunic_brick",
       "has_the_recipe"
     ]

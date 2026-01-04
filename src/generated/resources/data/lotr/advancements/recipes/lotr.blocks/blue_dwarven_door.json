@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_blue_dwarven_door": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:blue_dwarven_door"
-          }
-        ]
-      }
-    },
     "has_blue_rock": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_blue_dwarven_door",
       "has_blue_rock",
       "has_the_recipe"
     ]

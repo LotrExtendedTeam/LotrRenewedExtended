@@ -16,16 +16,6 @@
         ]
       }
     },
-    "has_reed_basket": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:reed_basket"
-          }
-        ]
-      }
-    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -36,7 +26,6 @@
   "requirements": [
     [
       "has_dried_reeds",
-      "has_reed_basket",
       "has_the_recipe"
     ]
   ]

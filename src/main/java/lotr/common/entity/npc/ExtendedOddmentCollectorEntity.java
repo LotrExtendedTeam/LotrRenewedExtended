@@ -160,13 +160,6 @@ public class ExtendedOddmentCollectorEntity extends ManEntity  implements Extend
     	ExtendedInteractableHelper.removePlayerFromInteracting(player, entityData, PLAYER_TRADING_WITH);
     }
 
-    // TODO: Maybe some sort of negative reputation limit should prevent a player from trading but for now I don't want killing
-    //  an Oddment Collector once to prevent you from being able to sell to them
-    @Override
-	public boolean canTradeWithPlayer(PlayerEntity player) {
-        return this.isFriendly(player);
-    }
-
     @Override
     public void openCoinExchange(PlayerEntity player) {
         ExtendedTraderHelper.openCoinExchange(this, player, this);

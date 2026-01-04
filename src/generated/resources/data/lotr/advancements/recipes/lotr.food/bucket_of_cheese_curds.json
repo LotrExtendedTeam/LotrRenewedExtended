@@ -26,16 +26,6 @@
         ]
       }
     },
-    "has_bucket_of_cheese_curds": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:bucket_of_cheese_curds"
-          }
-        ]
-      }
-    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -47,7 +37,6 @@
     [
       "has_milk_bucket",
       "has_cheese_curds",
-      "has_bucket_of_cheese_curds",
       "has_the_recipe"
     ]
   ]

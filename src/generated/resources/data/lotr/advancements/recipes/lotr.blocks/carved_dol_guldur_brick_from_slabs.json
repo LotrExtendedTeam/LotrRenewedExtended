@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_carved_dol_guldur_brick": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:carved_dol_guldur_brick"
-          }
-        ]
-      }
-    },
     "has_dol_guldur_brick_slab": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_carved_dol_guldur_brick",
       "has_dol_guldur_brick_slab",
       "has_the_recipe"
     ]
