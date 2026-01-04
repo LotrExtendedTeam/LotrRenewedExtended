@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_hithlain": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:hithlain"
-          }
-        ]
-      }
-    },
     "has_string": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_hithlain",
       "has_string",
       "has_the_recipe"
     ]

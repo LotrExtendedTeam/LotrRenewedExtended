@@ -587,8 +587,8 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	 */
 	@Override
 	public boolean canBeControlledByRider() {
-		System.out.println("canBeControlledByRider"+(getControllingPassenger() instanceof PlayerEntity));
-		return this.getControllingPassenger() instanceof PlayerEntity;
+		System.out.println("canBeControlledByRider"+(getControllingPassenger() instanceof LivingEntity));
+		return this.getControllingPassenger() instanceof LivingEntity;
 	}
 
 	/**
@@ -598,7 +598,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	@Nullable
 	@Override
 	public Entity getControllingPassenger() {
-		return this.getPassengers().isEmpty() ? null : (this.getPassengers().get(0) instanceof PlayerEntity ? this.getPassengers().get(0) : null);
+		return this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
 	}
 
 	@Override

@@ -9,144 +9,144 @@
   "buyFromPlayer": [
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:coal",
+        "averageCost": 1,
         "count": 2
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
         "item": "minecraft:torch",
+        "averageCost": 2,
         "count": 16
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
         "item": "lotr:dwarven_torch",
+        "averageCost": 2,
         "count": 16
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:bucket"
+        "item": "minecraft:bucket",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
-        "item": "minecraft:water_bucket"
+        "item": "minecraft:water_bucket",
+        "averageCost": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 6,
       "stack": {
         "item": "lotr:bronze_pickaxe",
+        "averageCost": 6,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 8,
       "stack": {
         "item": "minecraft:iron_pickaxe",
+        "averageCost": 8,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 9,
       "stack": {
         "item": "lotr:blue_dwarven_pickaxe",
+        "averageCost": 9,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 6,
       "stack": {
         "item": "lotr:bronze_shovel",
+        "averageCost": 6,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 8,
       "stack": {
         "item": "minecraft:iron_shovel",
+        "averageCost": 8,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 9,
       "stack": {
         "item": "lotr:blue_dwarven_shovel",
+        "averageCost": 9,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
-        "item": "minecraft:bread"
+        "item": "minecraft:bread",
+        "averageCost": 2
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_beef"
+        "item": "minecraft:cooked_beef",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_chicken"
+        "item": "minecraft:cooked_chicken",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_mutton"
+        "item": "minecraft:cooked_mutton",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_rabbit"
+        "item": "minecraft:cooked_rabbit",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:cooked_duck"
+        "item": "lotr:cooked_duck",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:gammon"
+        "item": "lotr:gammon",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "lotr:pipeweed",
+        "averageCost": 1,
         "count": 2
       }
     }
@@ -154,87 +154,87 @@
   "sellToPlayer": [
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
         "item": "minecraft:stone",
+        "averageCost": 2,
         "count": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
         "item": "lotr:blue_rock",
+        "averageCost": 2,
         "count": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
         "item": "lotr:drystone",
+        "averageCost": 3,
         "count": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:stone_bricks",
+        "averageCost": 1,
         "count": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "lotr:blue_brick",
+        "averageCost": 1,
         "count": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 5,
       "stack": {
         "item": "lotr:brick_pillar",
+        "averageCost": 5,
         "count": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
         "item": "lotr:stone_pillar",
+        "averageCost": 2,
         "count": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 5,
       "stack": {
         "item": "lotr:blue_pillar",
+        "averageCost": 5,
         "count": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:light_blue_clay_tiling"
+        "item": "lotr:light_blue_clay_tiling",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
-        "item": "minecraft:stonecutter"
+        "item": "minecraft:stonecutter",
+        "averageCost": 10
       }
     },
     {
       "weight": 50,
-      "averageCost": 100,
       "stack": {
-        "item": "lotr:blue_mountains_crafting_table"
+        "item": "lotr:blue_mountains_crafting_table",
+        "averageCost": 100
       }
     }
   ]

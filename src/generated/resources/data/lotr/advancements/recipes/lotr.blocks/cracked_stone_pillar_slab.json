@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_cracked_stone_pillar_slab": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:cracked_stone_pillar_slab"
-          }
-        ]
-      }
-    },
     "has_cracked_stone_pillar": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_cracked_stone_pillar_slab",
       "has_cracked_stone_pillar",
       "has_the_recipe"
     ]

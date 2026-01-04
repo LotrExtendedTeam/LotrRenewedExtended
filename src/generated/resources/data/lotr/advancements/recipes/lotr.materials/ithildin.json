@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_ithildin": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:ithildin"
-          }
-        ]
-      }
-    },
     "has_mithril_nugget": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_ithildin",
       "has_mithril_nugget",
       "has_the_recipe"
     ]

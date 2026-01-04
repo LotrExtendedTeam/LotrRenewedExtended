@@ -16,16 +16,6 @@
         ]
       }
     },
-    "has_conquest_table": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:conquest_table"
-          }
-        ]
-      }
-    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -36,7 +26,6 @@
   "requirements": [
     [
       "has_bronze_ingot",
-      "has_conquest_table",
       "has_the_recipe"
     ]
   ]

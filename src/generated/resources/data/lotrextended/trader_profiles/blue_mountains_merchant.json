@@ -10,391 +10,386 @@
   "buyFromPlayer": [
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:bronze_ingot"
+        "item": "lotr:bronze_ingot",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:copper_ingot"
+        "item": "lotr:copper_ingot",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:tin_ingot"
+        "item": "lotr:tin_ingot",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 15,
       "stack": {
-        "item": "minecraft:gold_ingot"
+        "item": "minecraft:gold_ingot",
+        "averageCost": 15
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:iron_ingot"
+        "item": "minecraft:iron_ingot",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 25,
       "stack": {
-        "item": "lotr:diamond"
+        "item": "lotr:diamond",
+        "averageCost": 25
       }
     },
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
-        "item": "lotr:sapphire"
+        "item": "lotr:sapphire",
+        "averageCost": 12
       }
     },
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
-        "item": "lotr:opal"
+        "item": "lotr:opal",
+        "averageCost": 10
       }
     },
     {
       "weight": 50,
-      "averageCost": 25,
       "stack": {
-        "item": "lotr:pearl"
+        "item": "lotr:pearl",
+        "averageCost": 25
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:coal",
+        "averageCost": 1,
         "count": 2
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
-        "item": "minecraft:bread"
+        "item": "minecraft:bread",
+        "averageCost": 2
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_chicken"
+        "item": "minecraft:cooked_chicken",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_beef"
+        "item": "minecraft:cooked_beef",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_cod"
+        "item": "minecraft:cooked_cod",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_salmon"
+        "item": "minecraft:cooked_salmon",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_mutton"
+        "item": "minecraft:cooked_mutton",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:cooked_duck"
+        "item": "lotr:cooked_duck",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_porkchop"
+        "item": "minecraft:cooked_porkchop",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:cooked_rabbit"
+        "item": "minecraft:cooked_rabbit",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:gammon"
+        "item": "lotr:gammon",
+        "averageCost": 3
       }
     }
   ],
   "sellToPlayer": [
     {
       "weight": 50,
-      "averageCost": 25,
       "stack": {
         "item": "lotr:blue_dwarven_helmet",
+        "averageCost": 25,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 26,
       "stack": {
         "item": "lotr:blue_dwarven_chestplate",
+        "averageCost": 26,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 31,
       "stack": {
         "item": "lotr:blue_dwarven_leggings",
+        "averageCost": 31,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 23,
       "stack": {
         "item": "lotr:blue_dwarven_boots",
+        "averageCost": 23,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 15,
       "stack": {
         "item": "lotr:blue_dwarven_axe",
+        "averageCost": 15,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 13,
       "stack": {
         "item": "lotr:blue_dwarven_dagger",
+        "averageCost": 13,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 14,
       "stack": {
         "item": "lotr:blue_dwarven_pickaxe",
+        "averageCost": 14,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
         "item": "lotr:blue_dwarven_shovel",
+        "averageCost": 12,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 18,
       "stack": {
         "item": "lotr:blue_dwarven_spear",
+        "averageCost": 18,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 16,
       "stack": {
         "item": "lotr:blue_dwarven_sword",
+        "averageCost": 16,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 50,
       "stack": {
-        "item": "lotr:blue_mountains_banner"
+        "item": "lotr:blue_mountains_banner",
+        "averageCost": 50
       }
     },
     {
       "weight": 50,
-      "averageCost": 25,
       "stack": {
-        "item": "lotr:blue_mountains_banner_pattern"
+        "item": "lotr:blue_mountains_banner_pattern",
+        "averageCost": 25
       }
     },
     {
       "weight": 50,
-      "averageCost": 15,
       "stack": {
         "item": "lotr:blue_dwarven_throwing_axe",
+        "averageCost": 15,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
         "item": "minecraft:glowstone_dust",
+        "averageCost": 2,
         "count": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 40,
       "stack": {
-        "item": "lotr:dwarven_forge"
+        "item": "lotr:dwarven_forge",
+        "averageCost": 40
       }
     },
     {
       "weight": 50,
-      "averageCost": 16,
       "stack": {
-        "item": "lotr:dwarven_marriage_ring"
+        "item": "lotr:dwarven_marriage_ring",
+        "averageCost": 16
       }
     },
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
-        "item": "lotr:dwarfwort"
+        "item": "lotr:dwarfwort",
+        "averageCost": 10
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
-        "item": "lotr:glowing_dwarven_brick"
+        "item": "lotr:glowing_dwarven_brick",
+        "averageCost": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 25,
       "stack": {
-        "item": "lotr:emerald"
+        "item": "lotr:emerald",
+        "averageCost": 25
       }
     },
     {
       "weight": 50,
-      "averageCost": 20,
       "stack": {
-        "item": "lotr:ruby"
+        "item": "lotr:ruby",
+        "averageCost": 20
       }
     },
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
-        "item": "lotr:amethyst"
+        "item": "lotr:amethyst",
+        "averageCost": 12
       }
     },
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
-        "item": "lotr:topaz"
+        "item": "lotr:topaz",
+        "averageCost": 12
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
         "item": "lotr:blue_rock",
+        "averageCost": 2,
         "count": 8
       }
     },
     {
-      "averageCost": 350,
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
       "stacks": [
         {
           "item": "lotr:modifier_scroll",
+          "averageCost": 350,
           "nbt": "{REScrollMod:\"strong4\"}"
         },
         {
           "item": "lotr:modifier_scroll",
+          "averageCost": 350,
           "nbt": "{REScrollMod:\"protect2\"}"
         },
         {
           "item": "lotr:modifier_scroll",
+          "averageCost": 350,
           "nbt": "{REScrollMod:\"looting3\"}"
         },
         {
           "item": "lotr:modifier_scroll",
+          "averageCost": 350,
           "nbt": "{REScrollMod:\"toolSpeed4\"}"
         }
       ]
     },
     {
       "weight": 50,
-      "averageCost": 6,
-      "stack": {
-        "item": "lotr:dwarven_ale",
-        "nbt": "{vessel:{potency:\"light\"}}"
-      }
+      "stacks": [
+        {
+          "item": "lotr:dwarven_ale",
+          "averageCost": 6,
+          "nbt": "{vessel:{potency:\"light\"}}"
+        },
+        {
+          "item": "lotr:dwarven_ale",
+          "averageCost": 9,
+          "nbt": "{vessel:{potency:\"moderate\"}}"
+        },
+        {
+          "item": "lotr:dwarven_ale",
+          "averageCost": 11,
+          "nbt": "{vessel:{potency:\"strong\"}}"
+        }
+      ]
     },
     {
       "weight": 50,
-      "averageCost": 9,
-      "stack": {
-        "item": "lotr:dwarven_ale",
-        "nbt": "{vessel:{potency:\"moderate\"}}"
-      }
-    },
-    {
-      "weight": 50,
-      "averageCost": 11,
-      "stack": {
-        "item": "lotr:dwarven_ale",
-        "nbt": "{vessel:{potency:\"strong\"}}"
-      }
-    },
-    {
-      "weight": 50,
-      "averageCost": 10,
-      "stack": {
-        "item": "lotr:dwarven_tonic",
-        "nbt": "{vessel:{potency:\"light\"}}"
-      }
-    },
-    {
-      "weight": 50,
-      "averageCost": 14,
-      "stack": {
-        "item": "lotr:dwarven_tonic",
-        "nbt": "{vessel:{potency:\"moderate\"}}"
-      }
-    },
-    {
-      "weight": 50,
-      "averageCost": 18,
-      "stack": {
-        "item": "lotr:dwarven_tonic",
-        "nbt": "{vessel:{potency:\"strong\"}}"
-      }
+      "stacks": [
+        {
+          "item": "lotr:dwarven_tonic",
+          "averageCost": 10,
+          "nbt": "{vessel:{potency:\"light\"}}"
+        },
+        {
+          "item": "lotr:dwarven_tonic",
+          "averageCost": 14,
+          "nbt": "{vessel:{potency:\"moderate\"}}"
+        },
+        {
+          "item": "lotr:dwarven_tonic",
+          "averageCost": 18,
+          "nbt": "{vessel:{potency:\"strong\"}}"
+        }
+      ]
     }
   ]
 }

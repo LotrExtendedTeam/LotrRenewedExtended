@@ -9,87 +9,87 @@
   "buyFromPlayer": [
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:bone_meal",
+        "averageCost": 1,
         "count": 15
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:bucket"
+        "item": "minecraft:bucket",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
-        "item": "minecraft:water_bucket"
+        "item": "minecraft:water_bucket",
+        "averageCost": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:stone_hoe",
+        "averageCost": 1,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:wooden_hoe",
+        "averageCost": 1,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 6,
       "stack": {
         "item": "lotr:bronze_hoe",
+        "averageCost": 6,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 8,
       "stack": {
         "item": "minecraft:iron_hoe",
+        "averageCost": 8,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:stone_shovel",
+        "averageCost": 1,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:wooden_shovel",
+        "averageCost": 1,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 5,
       "stack": {
         "item": "lotr:bronze_shovel",
+        "averageCost": 5,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 7,
       "stack": {
         "item": "minecraft:iron_shovel",
+        "averageCost": 7,
         "nbt": "{Damage:0}"
       }
     }
@@ -97,149 +97,149 @@
   "sellToPlayer": [
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:poppy"
+        "item": "minecraft:poppy",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 8,
       "stack": {
-        "item": "minecraft:blue_orchid"
+        "item": "minecraft:blue_orchid",
+        "averageCost": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 6,
       "stack": {
-        "item": "minecraft:allium"
+        "item": "minecraft:allium",
+        "averageCost": 6
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:azure_bluet"
+        "item": "minecraft:azure_bluet",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:red_tulip"
+        "item": "minecraft:red_tulip",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:orange_tulip"
+        "item": "minecraft:orange_tulip",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:white_tulip"
+        "item": "minecraft:white_tulip",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:pink_tulip"
+        "item": "minecraft:pink_tulip",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:oxeye_daisy"
+        "item": "minecraft:oxeye_daisy",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:dandelion"
+        "item": "minecraft:dandelion",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
-        "item": "minecraft:sunflower"
+        "item": "minecraft:sunflower",
+        "averageCost": 10
       }
     },
     {
       "weight": 50,
-      "averageCost": 8,
       "stack": {
-        "item": "minecraft:lilac"
+        "item": "minecraft:lilac",
+        "averageCost": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 8,
       "stack": {
-        "item": "minecraft:rose_bush"
+        "item": "minecraft:rose_bush",
+        "averageCost": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 8,
       "stack": {
-        "item": "minecraft:peony"
+        "item": "minecraft:peony",
+        "averageCost": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
-        "item": "minecraft:cornflower"
+        "item": "minecraft:cornflower",
+        "averageCost": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 5,
       "stack": {
-        "item": "minecraft:lily_of_the_valley"
+        "item": "minecraft:lily_of_the_valley",
+        "averageCost": 5
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:marigold"
+        "item": "lotr:marigold",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:bluebell"
+        "item": "lotr:bluebell",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:lavender"
+        "item": "lotr:lavender",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
-        "item": "lotr:yellow_iris"
+        "item": "lotr:yellow_iris",
+        "averageCost": 10
       }
     },
     {
       "weight": 50,
-      "averageCost": 6,
       "stack": {
-        "item": "lotr:shire_heather"
+        "item": "lotr:shire_heather",
+        "averageCost": 6
       }
     }
   ]

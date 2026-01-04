@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_gundabad_uruk_bow": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:gundabad_uruk_bow"
-          }
-        ]
-      }
-    },
     "has_uruk_steel": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_gundabad_uruk_bow",
       "has_uruk_steel",
       "has_the_recipe"
     ]

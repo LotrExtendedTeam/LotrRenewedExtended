@@ -13,6 +13,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> BLACK_URUK_STEEL_BLOCK;
 	public static RegistryObject<Block> GILDED_IRON_BLOCK;
 	public static RegistryObject<Block> MORGUL_STEEL_BLOCK;
+	public static RegistryObject<Block> METEORITE_ORE;
 
 	public static RegistryObject<Block> TOPAZ_ORE;
 	public static RegistryObject<Block> AMETHYST_ORE;

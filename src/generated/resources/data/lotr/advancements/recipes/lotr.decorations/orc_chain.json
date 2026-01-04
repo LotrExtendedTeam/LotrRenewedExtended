@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_orc_chain": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:orc_chain"
-          }
-        ]
-      }
-    },
     "has_orc_steel_nugget": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_orc_chain",
       "has_orc_steel_nugget",
       "has_the_recipe"
     ]

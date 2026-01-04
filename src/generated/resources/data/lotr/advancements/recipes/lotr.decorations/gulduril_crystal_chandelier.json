@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_gulduril_crystal_chandelier": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:gulduril_crystal_chandelier"
-          }
-        ]
-      }
-    },
     "has_gulduril_crystal": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_gulduril_crystal_chandelier",
       "has_gulduril_crystal",
       "has_the_recipe"
     ]

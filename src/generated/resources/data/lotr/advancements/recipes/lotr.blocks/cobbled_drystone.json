@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_cobbled_drystone": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:cobbled_drystone"
-          }
-        ]
-      }
-    },
     "has_drystone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_cobbled_drystone",
       "has_drystone",
       "has_the_recipe"
     ]

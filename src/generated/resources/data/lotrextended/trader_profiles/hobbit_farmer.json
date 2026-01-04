@@ -9,181 +9,196 @@
   "buyFromPlayer": [
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:bone_meal",
+        "averageCost": 1,
         "count": 6
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:stone_hoe",
+        "averageCost": 1,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 6,
       "stack": {
         "item": "lotr:bronze_hoe",
+        "averageCost": 6,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 8,
       "stack": {
         "item": "minecraft:iron_hoe",
+        "averageCost": 8,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:bucket"
+        "item": "minecraft:bucket",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
-        "item": "minecraft:water_bucket"
+        "item": "minecraft:water_bucket",
+        "averageCost": 4
       }
     }
   ],
   "sellToPlayer": [
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
-        "item": "minecraft:hay_block"
+        "item": "minecraft:hay_block",
+        "averageCost": 12
       }
     },
     {
       "weight": 50,
-      "averageCost": 8,
       "stack": {
-        "item": "minecraft:lead"
+        "item": "minecraft:lead",
+        "averageCost": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:lettuce"
+        "item": "lotr:lettuce",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 8,
       "stack": {
-        "item": "minecraft:milk_bucket"
+        "item": "minecraft:milk_bucket",
+        "averageCost": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
-        "item": "lotr:pipeweed_leaf"
+        "item": "lotr:pipeweed_leaf",
+        "averageCost": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "lotr:pipeweed_seeds"
+        "item": "lotr:pipeweed_seeds",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
-        "item": "minecraft:potato"
+        "item": "minecraft:potato",
+        "averageCost": 2
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
-        "item": "minecraft:wheat_seeds"
+        "item": "minecraft:wheat_seeds",
+        "averageCost": 1
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
-        "item": "minecraft:wheat"
+        "item": "minecraft:wheat",
+        "averageCost": 2
       }
     },
     {
-      "averageCost": 2,
       "stacks": [
         {
-          "item": "minecraft:white_wool"
+          "item": "minecraft:white_wool",
+          "averageCost": 2
         },
         {
-          "item": "minecraft:black_wool"
+          "item": "minecraft:black_wool",
+          "averageCost": 2
         },
         {
-          "item": "minecraft:blue_wool"
+          "item": "minecraft:blue_wool",
+          "averageCost": 2
         },
         {
-          "item": "minecraft:brown_wool"
+          "item": "minecraft:brown_wool",
+          "averageCost": 2
         },
         {
-          "item": "minecraft:cyan_wool"
+          "item": "minecraft:cyan_wool",
+          "averageCost": 2
         },
         {
-          "item": "minecraft:gray_wool"
+          "item": "minecraft:gray_wool",
+          "averageCost": 2
         },
         {
-          "item": "minecraft:green_wool"
+          "item": "minecraft:green_wool",
+          "averageCost": 2
         },
         {
-          "item": "minecraft:light_blue_wool"
+          "item": "minecraft:light_blue_wool",
+          "averageCost": 2
         },
         {
-          "item": "minecraft:light_gray_wool"
+          "item": "minecraft:light_gray_wool",
+          "averageCost": 2
         },
         {
-          "item": "minecraft:lime_wool"
+          "item": "minecraft:lime_wool",
+          "averageCost": 2
         },
         {
-          "item": "minecraft:magenta_wool"
+          "item": "minecraft:magenta_wool",
+          "averageCost": 2
         },
         {
-          "item": "minecraft:orange_wool"
+          "item": "minecraft:orange_wool",
+          "averageCost": 2
         },
         {
-          "item": "minecraft:pink_wool"
+          "item": "minecraft:pink_wool",
+          "averageCost": 2
         },
         {
-          "item": "minecraft:purple_wool"
+          "item": "minecraft:purple_wool",
+          "averageCost": 2
         },
         {
-          "item": "minecraft:red_wool"
+          "item": "minecraft:red_wool",
+          "averageCost": 2
         },
         {
-          "item": "minecraft:yellow_wool"
+          "item": "minecraft:yellow_wool",
+          "averageCost": 2
         }
       ]
     },
     {
       "weight": 50,
-      "averageCost": 25,
       "stack": {
         "item": "lotr:branding_iron",
+        "averageCost": 25,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
-        "item": "lotr:butter"
+        "item": "lotr:butter",
+        "averageCost": 10
       }
     }
   ]

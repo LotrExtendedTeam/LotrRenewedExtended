@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_gold_trimmed_rhunic_brick": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:gold_trimmed_rhunic_brick"
-          }
-        ]
-      }
-    },
     "has_gold_nugget": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -45,7 +35,6 @@
   },
   "requirements": [
     [
-      "has_gold_trimmed_rhunic_brick",
       "has_gold_nugget",
       "has_rhunic_brick",
       "has_the_recipe"

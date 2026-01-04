@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_morgul_torch": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:morgul_torch"
-          }
-        ]
-      }
-    },
     "has_gulduril": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_morgul_torch",
       "has_gulduril",
       "has_the_recipe"
     ]

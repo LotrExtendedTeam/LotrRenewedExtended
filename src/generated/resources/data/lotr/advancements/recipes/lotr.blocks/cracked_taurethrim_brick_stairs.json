@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_cracked_taurethrim_brick_stairs": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:cracked_taurethrim_brick_stairs"
-          }
-        ]
-      }
-    },
     "has_cracked_taurethrim_brick": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_cracked_taurethrim_brick_stairs",
       "has_cracked_taurethrim_brick",
       "has_the_recipe"
     ]

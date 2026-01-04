@@ -4,6 +4,6 @@
     "item": "lotr:ruby_ore"
   },
   "result": "lotr:ruby",
-  "experience": 1.0,
+  "experience": 0.5,
   "cookingtime": 200
 }

@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_goblin_pillar": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:goblin_pillar"
-          }
-        ]
-      }
-    },
     "has_stone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_goblin_pillar",
       "has_stone",
       "has_the_recipe"
     ]

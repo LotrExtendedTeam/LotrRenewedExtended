@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_obsidian_taurethrim_brick": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:obsidian_taurethrim_brick"
-          }
-        ]
-      }
-    },
     "has_obsidian_shard": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_obsidian_taurethrim_brick",
       "has_obsidian_shard",
       "has_the_recipe"
     ]

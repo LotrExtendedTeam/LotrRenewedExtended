@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_banana_planks": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:banana_planks"
-          }
-        ]
-      }
-    },
     "has_banana_wood_slab": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -45,7 +35,6 @@
   },
   "requirements": [
     [
-      "has_banana_planks",
       "has_banana_wood_slab",
       "has_stripped_banana_wood_slab",
       "has_the_recipe"
