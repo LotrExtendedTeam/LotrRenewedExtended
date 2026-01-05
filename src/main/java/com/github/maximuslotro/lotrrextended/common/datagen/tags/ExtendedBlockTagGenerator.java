@@ -15,6 +15,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
 import lotr.common.block.ExtendedBrazierBlock;
+import lotr.common.block.ExtendedBurnableAxialSlabBlock;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRFenceBlock;
 import lotr.common.block.LOTRFenceGateBlock;
@@ -33,7 +34,9 @@ import lotr.common.block.LOTRWallBlock;
 import lotr.common.block.LOTRWallSignBlock;
 import lotr.common.block.LOTRWoodButtonBlock;
 import lotr.common.block.LOTRWoodPressurePlateBlock;
+import lotr.common.block.LogSlabBlock;
 import lotr.common.block.StrippableLogBlock;
+import lotr.common.block.StrippableLogSlabBlock;
 import lotr.common.block.StrippableWoodBlock;
 import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.ExtendedBlocks;
@@ -122,7 +125,11 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 			}
 			if(block.getValue().get() instanceof AxialSlabBlock) {
 				tag(BlockTags.SLABS).add(block.getValue().get());
-				if(block.getValue().get().properties.material.isFlammable()) {
+				if(block.getValue().get().properties.material.isFlammable() 
+						&& !(block.getValue().get() instanceof ExtendedBurnableAxialSlabBlock)
+						&& !(block.getValue().get() instanceof LogSlabBlock)
+						&& !(block.getValue().get() instanceof StrippableLogSlabBlock)
+						&& !(block.getValue().get() instanceof ExtendedBurnableAxialSlabBlock)) {
 					tag(BlockTags.WOODEN_SLABS).add(block.getValue().get());
 				}
 				if(block.getKey().contains("_log_slab")||block.getKey().contains("_wood_slab")) {

@@ -203,6 +203,7 @@ public class BannerEventHandlers {
 		}
 	}
 
+	//TODO allow owner to blow up their own land
 	@SubscribeEvent(priority=EventPriority.HIGH)
 	public static void handleBannerDetonateEvent(ExplosionEvent.Detonate event) {
 		Explosion explosion = event.getExplosion();

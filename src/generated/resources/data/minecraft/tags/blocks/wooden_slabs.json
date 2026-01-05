@@ -1,34 +1,9 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_beam_slab",
-    "lotr:banana_log_slab",
     "lotr:banana_slab",
-    "lotr:banana_wood_slab",
-    "lotr:black_packed_fur_slab",
-    "lotr:chestnut_beam_slab",
-    "lotr:chestnut_log_slab",
     "lotr:chestnut_slab",
-    "lotr:chestnut_wood_slab",
-    "lotr:gray_packed_fur_slab",
-    "lotr:packed_fur_slab",
-    "lotr:plum_beam_slab",
-    "lotr:plum_log_slab",
     "lotr:plum_slab",
-    "lotr:plum_wood_slab",
-    "lotr:silver_packed_fur_slab",
-    "lotr:stripped_banana_log_slab",
-    "lotr:stripped_banana_wood_slab",
-    "lotr:stripped_chestnut_log_slab",
-    "lotr:stripped_chestnut_wood_slab",
-    "lotr:stripped_plum_log_slab",
-    "lotr:stripped_plum_wood_slab",
-    "lotr:stripped_willow_log_slab",
-    "lotr:stripped_willow_wood_slab",
-    "lotr:white_packed_fur_slab",
-    "lotr:willow_beam_slab",
-    "lotr:willow_log_slab",
-    "lotr:willow_slab",
-    "lotr:willow_wood_slab"
+    "lotr:willow_slab"
   ]
 }
