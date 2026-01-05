@@ -263,7 +263,7 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable{
 					ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
 					return ActionResultType.sidedSuccess(world.isClientSide);
 				}
-				if(ExtendedBannerProtectionManager.getProtectionStatus(world, blockPos, new SingleProtectionInstance.PlayerProtection(player, ExtendedBannerPermissions.BANNER), true, "bannerBlocknteract").isAllowed()) {
+				if(ExtendedBannerProtectionManager.getProtectionStatus(world, blockPos, new SingleProtectionInstance.PlayerProtection(player, ExtendedBannerPermissions.BANNER)).isAllowed()) {
 					ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket((ExtendedMEBannerTileEntity)tileentity);
 					ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
 					return ActionResultType.sidedSuccess(world.isClientSide);

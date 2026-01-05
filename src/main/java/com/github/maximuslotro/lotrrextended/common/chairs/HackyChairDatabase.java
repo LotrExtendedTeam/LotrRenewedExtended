@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChairEntity;
 
@@ -54,7 +53,7 @@ public class HackyChairDatabase {
 		}
 		BlockPos pos = event.getPos();
 		if(!ExtendedServerConfig.enableChairSlabSitting.get() || (event.isCanceled() && !ExtendedServerConfig.enableChairProtectionOverride.get())) {
-			ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Disabled: [Config Disabled, or Protection Override]");
+			//ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Disabled: [Config Disabled, or Protection Override]");
 			return;
 		}
 		// Check for valid player
@@ -72,7 +71,7 @@ public class HackyChairDatabase {
 				}
 				// Players can't sit on vertical slabs
 				if(state.getBlock() instanceof VerticalOnlySlabBlock) {
-					ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [No Vertial Slab Sitting]");
+					//ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [No Vertial Slab Sitting]");
 					return;
 				}
 				if(state.getBlock() instanceof SlabBlock && state.hasProperty(SlabBlock.TYPE)) {
@@ -81,23 +80,23 @@ public class HackyChairDatabase {
 						// Check if vertical slab, players can't sit on vertical slabs
 						if(state.getBlock() instanceof AxialSlabBlock && state.hasProperty(BlockStateProperties.AXIS)) {
 							if(state.getValue(BlockStateProperties.AXIS)!=Axis.Y) {
-								ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [No Vertial Slab Sitting]");
+								//ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [No Vertial Slab Sitting]");
 								return;
 							}
 						}
 						addNewChair(world, pos, event.getPlayer(), null);
 						return;
 					}else {
-						ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [No Upper/Vertical Slab Sitting]");
+						//ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [No Upper/Vertical Slab Sitting]");
 					}
 				}else {
-					ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [Not a Slab or Stair Block]");
+					//ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [Not a Slab or Stair Block]");
 				}
 			}else {
-				ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [Invalid Chair Location]");
+				//ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [Invalid Chair Location]");
 			}
 		}else {
-			ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [Hand Not Empty, Not Shifting, or Is Passanger]");
+			//ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Denied: [Hand Not Empty, Not Shifting, or Is Passanger]");
 		}
 	}
 
@@ -119,7 +118,7 @@ public class HackyChairDatabase {
 			}
 		}
 		rider.startRiding(chair);
-		ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Allowed: [layer Sitting]");
+		//ExtendedLog.infoHideable(ExtendedServerConfig.enableSpecialLogging.get(), "ChairInterraction["+pos.toString()+", Status Allowed: [layer Sitting]");
 	}
 
 	@SubscribeEvent

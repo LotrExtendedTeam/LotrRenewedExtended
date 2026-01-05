@@ -5,20 +5,49 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
+
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.World;
 
 @Mixin(ArmorStandEntity.class)
-public class MixinArmorStandEntity {
+public abstract class MixinArmorStandEntity extends LivingEntity {
+
+	// Virtual constructor will be discarded on compile
+	protected MixinArmorStandEntity(EntityType<? extends LivingEntity> p_i48577_1_, World p_i48577_2_) {
+		super(p_i48577_1_, p_i48577_2_);
+	}
 
 	@Inject(method = "interactAt(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/math/vector/Vector3d;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/ActionResultType;",
-			at = @At("HEAD"))
-	public void interactAt$Extended(PlayerEntity pPlayer, Vector3d pVec, Hand pHand, CallbackInfoReturnable<ActionResultType>  cir) {
-		if(!((ArmorStandEntity)(Object)this).level.mayInteract(pPlayer, ((ArmorStandEntity)(Object)this).blockPosition())){
+			at = @At("HEAD"), cancellable = true)
+	public void interactAt$Extended(PlayerEntity pPlayer, Vector3d pVec, Hand pHand, CallbackInfoReturnable<ActionResultType> cir) {
+		if(!this.level.mayInteract(pPlayer, this.blockPosition())){
 			cir.setReturnValue(ActionResultType.PASS);
+			return;
+		}
+		if (!this.level.isClientSide && !pPlayer.isSpectator()) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(this.level, this.blockPosition(), new SingleProtectionInstance.PlayerProtection(pPlayer)).isNotAllowed()) {
+				cir.setReturnValue(ActionResultType.PASS);
+				return;
+			}
+		}
+	}
+
+	@Inject(method = "hurt(Lnet/minecraft/util/DamageSource;F)Z", at = @At("HEAD"), cancellable = true)
+	public void interact$Extended(DamageSource pSource, float pAmount, CallbackInfoReturnable<Boolean> cir) {
+		if (!this.level.isClientSide && !this.removed && !this.isInvulnerableTo(pSource)) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(this.level, this.blockPosition(), new SingleProtectionInstance.DamageSourceProtection(pSource)).isNotAllowed()) {
+				cir.setReturnValue(false);
+				return;
+			}
 		}
 	}
 }
