@@ -13,6 +13,7 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	public static ConfigValue<String> lastClientBootVersion;
 	public static ForgeConfigSpec.BooleanValue disableJEILOTRversionCheck;
 	public static ForgeConfigSpec.BooleanValue enableClientVersionCheck;
+	public static ForgeConfigSpec.BooleanValue enableLargeHiredUnitHealthbars;
 
 	public static ForgeConfigSpec.BooleanValue enablePlantParticles;
 
@@ -36,6 +37,7 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 		enablePlantParticles = createBooleanValue(builder, "enablePlantParticles", true, false, "Allow for certian plants to spawn particles.");
 		disableJEILOTRversionCheck = createBooleanValue(builder, "disableJEILOTRversionCheck", true, false, "Disable JEI-LOTR's broken version check.");
 		enableClientVersionCheck = createBooleanValue(builder, "enableClientVersionCheck", true, false, "Disable Extended client version check.");
+		enableLargeHiredUnitHealthbars = createBooleanValue(builder, "enableShowHiredUnitHPNumbers", false, false, "Enable large hired unit health bars with HP value");
 		builder.pop();
 
 		builder.push("Technical Settings");

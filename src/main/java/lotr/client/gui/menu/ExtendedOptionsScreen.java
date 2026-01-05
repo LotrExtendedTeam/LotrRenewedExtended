@@ -141,6 +141,8 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		addButton(gui.addButton("gui.lotrextended.settings.worldhelp.setting", button -> toggleLotrConfigValue(LOTRConfig.CLIENT.showWorldTypeHelp), (button, pd) -> LOTRConfig.CLIENT.showWorldTypeHelp.get(), 
 			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
+		addButton(gui.addButton("gui.lotrextended.settings.show_hired_unit_hp_numbers.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.enableLargeHiredUnitHealthbars), (button, pd) -> ExtendedClientConfig.enableLargeHiredUnitHealthbars.get(),
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		catagories.add(gui);
 
 
