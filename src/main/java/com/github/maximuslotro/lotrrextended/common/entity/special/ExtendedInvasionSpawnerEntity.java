@@ -32,6 +32,9 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     }
 
     // TODO: Make sure to support "lotr:northern_orcs,wargs" in spawn logic
+    // TODO: Make sure to support "lotr:mordor" in spawn logic
+    // TODO: Make sure to support "lotr:gondor" in spawn logic
+    // TODO: Make sure to support "lotr:lothlorien" in spawn logic
 
     public ExtendedInvasionSpawnerEntity(World pLevel) {
         this(ExtendedEntities.INVASION_SPAWNER.get(), pLevel);
