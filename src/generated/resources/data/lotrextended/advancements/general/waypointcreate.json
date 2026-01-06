@@ -1,0 +1,33 @@
+{
+  "parent": "lotrextended:general/fasttravel",
+  "display": {
+    "icon": {
+      "item": "minecraft:iron_boots",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.general.waypointcreate.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.waypointcreate.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_string_trigger_waypointcreated": {
+      "trigger": "lotrextended:string_trigger",
+      "conditions": {
+        "triggerName": "waypointCreated"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_string_trigger_waypointcreated"
+    ]
+  ]
+}

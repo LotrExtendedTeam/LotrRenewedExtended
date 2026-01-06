@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
@@ -23,6 +24,7 @@ import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.CraftResultInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
@@ -546,6 +548,9 @@ public class ExtendedRepairContainer extends Container {
 				this.reforgeCost.set(0);
 				this.broadcastChanges();
 				this.createResult();
+				if(player instanceof ServerPlayerEntity) {
+					ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger((ServerPlayerEntity) player, "reforged");
+				}
 			}
 		}
 	}
@@ -568,6 +573,9 @@ public class ExtendedRepairContainer extends Container {
 				this.engraveCost.set(0);
 				this.broadcastChanges();
 				this.createResult();
+				if(player instanceof ServerPlayerEntity) {
+					ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger((ServerPlayerEntity) player, "engraved");
+				}
 			}
 		}
 	}

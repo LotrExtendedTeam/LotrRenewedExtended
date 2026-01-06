@@ -25,7 +25,6 @@ import lotr.common.item.LOTRSwordItem;
 import lotr.common.item.SpearItem;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.BoatItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.tags.BlockTags;

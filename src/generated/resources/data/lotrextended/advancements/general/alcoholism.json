@@ -5,13 +5,14 @@
       "item": "lotr:vodka"
     },
     "title": {
+      "color": "dark_purple",
       "translate": "advancements.lotrextended.general.alcoholism.title"
     },
     "description": {
-      "color": "green",
+      "color": "light_purple",
       "translate": "advancements.lotrextended.general.alcoholism.description"
     },
-    "frame": "task",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false

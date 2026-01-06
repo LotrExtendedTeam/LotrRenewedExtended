@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import java.util.List;
 
+import com.github.maximuslotro.lotrextended.api.events.world.ExtendedFastTravelWaypointEvent;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
@@ -321,5 +322,10 @@ public class WorldEventHandlers {
 	@SubscribeEvent
 	public static void handleItemAttributeChanges(ItemAttributeModifierEvent pEvent) {
 		ExtendedModifierUtils.processItemAttributes(pEvent);
+	}
+
+	@SubscribeEvent
+	public static void handleExtendedFastTravelWaypointEventPost(ExtendedFastTravelWaypointEvent.Post pEvent) {
+		ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(pEvent.getPlayer(), "fastTraveled");
 	}
 }
