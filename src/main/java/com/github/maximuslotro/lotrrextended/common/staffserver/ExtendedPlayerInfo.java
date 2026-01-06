@@ -9,6 +9,9 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -47,14 +50,17 @@ public class ExtendedPlayerInfo {
 		return lastLogout;
 	}
 
-	public static boolean doesPlayerInfoExist(UUID id) {
+	public static boolean doesPlayerInfoExist(@Nullable UUID id) {
+		if (id == null) {
+			return false;
+		}
 		if(cachedPlayerInfo.containsKey(id)) {
 			return true;
 		}
 		return getProfileFile(id).exists();
 	}
 
-	public static ExtendedPlayerInfo getPlayerInfo(UUID id) {
+	public static ExtendedPlayerInfo getPlayerInfo(@Nonnull UUID id) {
 		if(cachedPlayerInfo.containsKey(id)) {
 			return cachedPlayerInfo.get(id);
 		}
@@ -111,7 +117,7 @@ public class ExtendedPlayerInfo {
 		info.savePlayerInfo();
 	}
 
-	public static File getProfileFile(UUID id) {
+	public static File getProfileFile(@Nonnull UUID id) {
 		profileFolder.mkdirs();
 		return new File(profileFolder, id.toString() + ".json");
 	}
@@ -137,6 +143,7 @@ public class ExtendedPlayerInfo {
 		}
 	}
 
+	@Nullable
 	public static UUID getPlayerUUIDFromUsername(String username) {
 		UUID id = null;
 		for(Entry<UUID, String> profile : UsernameCache.getMap().entrySet()) {

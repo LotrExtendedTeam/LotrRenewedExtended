@@ -7,6 +7,8 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
+import javax.annotation.Nullable;
+
 import com.google.common.collect.Lists;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
@@ -32,7 +34,7 @@ public class ExtendedFirstLastSeenCommand {
 	}
 
 	private static int firstJoinedPlayer(CommandSource source, String playername) {
-		UUID player = ExtendedPlayerInfo.getPlayerUUIDFromUsername(playername);
+		@Nullable UUID player = ExtendedPlayerInfo.getPlayerUUIDFromUsername(playername);
 		if(!ExtendedPlayerInfo.doesPlayerInfoExist(player)) {
 			source.sendFailure(new StringTextComponent(TextFormatting.RED + "Player not found"));
 			return Command.SINGLE_SUCCESS;
@@ -56,7 +58,7 @@ public class ExtendedFirstLastSeenCommand {
 			source.sendSuccess(new StringTextComponent(TextFormatting.GREEN + playername+ " is currently online"), true);
 			return Command.SINGLE_SUCCESS;
 		}
-		UUID player = ExtendedPlayerInfo.getPlayerUUIDFromUsername(playername);
+		@Nullable UUID player = ExtendedPlayerInfo.getPlayerUUIDFromUsername(playername);
 		if(!ExtendedPlayerInfo.doesPlayerInfoExist(player)) {
 			source.sendFailure(new StringTextComponent(TextFormatting.RED + "Player not found"));
 			return Command.SINGLE_SUCCESS;
