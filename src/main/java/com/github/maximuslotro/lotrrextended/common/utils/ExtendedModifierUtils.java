@@ -611,7 +611,7 @@ public class ExtendedModifierUtils {
 	public static void filterCompatibleModifiers(List<ExtendedModifier> pDataList, ExtendedModifier pData) {
 		Iterator<ExtendedModifier> iterator = pDataList.iterator();
 		while(iterator.hasNext()) {
-			if (!pData.canApplyToModifier((iterator.next()).getModifierType())) {
+			if (!pData.isCompatableModifier((iterator.next()).getModifierType())) {
 				iterator.remove();
 			}
 		}

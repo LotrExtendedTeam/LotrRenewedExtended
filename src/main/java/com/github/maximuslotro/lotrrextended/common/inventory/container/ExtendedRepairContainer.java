@@ -344,7 +344,7 @@ public class ExtendedRepairContainer extends Container {
 						}
 						// Check if modifier can apply alongside other modifiers
 						for(ExtendedModifier existing : inputModifiers) {
-							if (mergingModifier.getModifierType()!=existing.getModifierType() && !mergingModifier.canApplyToModifier(existing.getModifierType())) {
+							if (mergingModifier.getModifierType()!=existing.getModifierType() && !mergingModifier.isCompatableModifier(existing.getModifierType())) {
 								hasInCompatibleModifier = true;
 							}
 						}

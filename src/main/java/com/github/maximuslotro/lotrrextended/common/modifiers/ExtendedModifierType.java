@@ -216,6 +216,7 @@ public enum ExtendedModifierType {
 	}
 	/**
 	 * Checks whether {@code modifierType} can be applied to the given ItemStack.
+	 * Please don't use, need to re-do entire modifier compatibility checking system
 	 *
 	 * @param stack        the ItemStack to check
 	 * @param modifierType the modifier being applied
