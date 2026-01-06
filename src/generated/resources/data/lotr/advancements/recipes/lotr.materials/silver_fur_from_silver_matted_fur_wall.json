@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:silver_fur_from_silver_matted_fur_wall"
+    ]
+  },
+  "criteria": {
+    "has_silver_matted_fur_wall": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:silver_matted_fur_wall"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:silver_fur_from_silver_matted_fur_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_silver_matted_fur_wall",
+      "has_the_recipe"
+    ]
+  ]
+}

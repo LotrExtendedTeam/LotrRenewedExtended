@@ -68,11 +68,11 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 		Advancement frighteningly_rich = build(false, data(Items.GOLD_INGOT, "frighteningly_rich", FrameType.CHALLENGE)
 			.setTitle("Frighteningly Rich").setDescription("Earn 5000 coins from a single trade."),
 			addTradeNoEntityTrigger(make(), "any_trader", false, 5000).parent(ludicrously_rich));
-		// Obtainable with the current 200 max item limit, at 50c per item for 64 stackable item, only white packed fur currently works for this
+		// Obtainable with the current 200 max item limit, at 50c per item for 64 stackable item, only white matted fur currently works for this
 		Advancement unfathomably_rich = build(false, data(LOTRItems.MITHRIL_INGOT.get(), "unfathomably_rich", FrameType.CHALLENGE)
 			.setTitle("Unfathomably Rich").setDescription("Earn 10,000 coins from a single trade."),
 			addTradeNoEntityTrigger(make(), "any_trader", false, 10000).parent(frighteningly_rich));
-		// Obtainable with the current 200 max item limit, at 100c per item for 64 stackable items, only white packed fur currently works for this
+		// Obtainable with the current 200 max item limit, at 100c per item for 64 stackable items, only white matted fur currently works for this
 		Advancement god_rich = build(false, data(LOTRItems.MITHRIL_BLOCK.get(), "god_rich", FrameType.CHALLENGE).setHidden()
 			.setTitle("Reality-Bendingly Rich").setDescription("Earn 20,000 coins from a single trade."),
 			addTradeNoEntityTrigger(make(), "any_trader", false, 20000).parent(unfathomably_rich));

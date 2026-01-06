@@ -37,7 +37,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBl
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedPackedFurBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedMattedFurBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
@@ -173,7 +173,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			try {
 				if(registeredBlocks.contains(block.getValue().get())) {continue;}
-				if(block.getValue().get() instanceof ExtendedPackedFurBlock) {
+				if(block.getValue().get() instanceof ExtendedMattedFurBlock) {
 					genMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), true);
 					continue;
 				}

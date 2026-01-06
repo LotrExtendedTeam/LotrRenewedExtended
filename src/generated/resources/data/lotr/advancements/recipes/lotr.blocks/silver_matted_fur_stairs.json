@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:silver_matted_fur_stairs"
+    ]
+  },
+  "criteria": {
+    "has_silver_matted_fur_stairs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:silver_fur"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:silver_matted_fur_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_silver_matted_fur_stairs",
+      "has_the_recipe"
+    ]
+  ]
+}

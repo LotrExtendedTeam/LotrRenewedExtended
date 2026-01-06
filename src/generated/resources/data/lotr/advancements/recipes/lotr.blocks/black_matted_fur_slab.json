@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:black_matted_fur_slab"
+    ]
+  },
+  "criteria": {
+    "has_black_matted_fur_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:black_fur"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:black_matted_fur_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_black_matted_fur_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

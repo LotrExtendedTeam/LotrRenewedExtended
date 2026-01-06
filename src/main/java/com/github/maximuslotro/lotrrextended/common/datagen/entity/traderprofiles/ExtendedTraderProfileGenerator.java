@@ -355,11 +355,6 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.SILVER_FUR, 3)
 		.addSBuy(ExtendedItems.WHITE_FUR, 25)
 		.addSBuy(Items.RABBIT_HIDE, 1)
-		.addSBuy(ExtendedItems.BROWN_PACKED_FUR, 18)
-		.addSBuy(ExtendedItems.BLACK_PACKED_FUR, 18)
-		.addSBuy(ExtendedItems.GRAY_PACKED_FUR, 18)
-		.addSBuy(ExtendedItems.SILVER_PACKED_FUR, 27)
-		.addSBuy(ExtendedItems.WHITE_PACKED_FUR, 200)
 		.addSBuy(Items.SHEARS, 5)
 		.addMSell(2, Items.WHITE_CARPET,Items.BLACK_CARPET,
 			Items.BLUE_CARPET, Items.BROWN_CARPET,
@@ -1322,11 +1317,6 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.SILVER_FUR, 3)
 		.addSBuy(ExtendedItems.WHITE_FUR, 25)
 		.addSBuy(Items.RABBIT_HIDE, 1)
-		.addSBuy(ExtendedItems.BROWN_PACKED_FUR, 18)
-		.addSBuy(ExtendedItems.BLACK_PACKED_FUR, 18)
-		.addSBuy(ExtendedItems.GRAY_PACKED_FUR, 18)
-		.addSBuy(ExtendedItems.SILVER_PACKED_FUR, 27)
-		.addSBuy(ExtendedItems.WHITE_PACKED_FUR, 200)
 		.addSBuy(Items.SHEARS, 5)
 		.addMSell(2, Items.WHITE_CARPET, Items.BLACK_CARPET,
 			Items.BLUE_CARPET, Items.BROWN_CARPET,

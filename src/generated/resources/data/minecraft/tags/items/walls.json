@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "lotr:black_packed_fur_wall",
+    "lotr:black_matted_fur_wall",
     "lotr:bone_block_wall",
     "lotr:cracked_dol_guldur_brick_wall",
     "lotr:cracked_mud_brick_wall",
@@ -14,7 +14,8 @@
     "lotr:goblin_brick_wall",
     "lotr:gold_trimmed_rhunic_brick_wall",
     "lotr:golden_taurethrim_brick_wall",
-    "lotr:gray_packed_fur_wall",
+    "lotr:gray_matted_fur_wall",
+    "lotr:matted_fur_wall",
     "lotr:mossy_dol_guldur_brick_wall",
     "lotr:mossy_drystone_wall",
     "lotr:mossy_mud_brick_wall",
@@ -24,14 +25,13 @@
     "lotr:mud_brick_wall",
     "lotr:obsidian_dwarven_brick_wall",
     "lotr:obsidian_taurethrim_brick_wall",
-    "lotr:packed_fur_wall",
     "lotr:red_rhunic_brick_wall",
     "lotr:rhunic_brick_wall",
     "lotr:scorched_brick_wall",
     "lotr:scorched_cobblestone_wall",
     "lotr:scorched_stone_wall",
-    "lotr:silver_packed_fur_wall",
+    "lotr:silver_matted_fur_wall",
     "lotr:taurethrim_brick_wall",
-    "lotr:white_packed_fur_wall"
+    "lotr:white_matted_fur_wall"
   ]
 }

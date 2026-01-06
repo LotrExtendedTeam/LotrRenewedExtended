@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:black_matted_fur_stairs"
+    }
+  ],
+  "result": {
+    "item": "lotr:black_fur"
+  }
+}

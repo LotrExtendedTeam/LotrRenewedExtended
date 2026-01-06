@@ -17,6 +17,7 @@ import lotr.common.init.LOTRTags;
 import lotr.common.item.DaggerItem;
 import lotr.common.item.HammerItem;
 import lotr.common.item.LOTRAxeItem;
+import lotr.common.item.LOTRBoatItem;
 import lotr.common.item.LOTRHoeItem;
 import lotr.common.item.LOTRPickaxeItem;
 import lotr.common.item.LOTRShovelItem;
@@ -24,6 +25,7 @@ import lotr.common.item.LOTRSwordItem;
 import lotr.common.item.SpearItem;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.BoatItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.tags.BlockTags;
@@ -214,8 +216,6 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 
 		tag(ExtendedTags.Items.FURS).add(ExtendedItems.BLACK_FUR.get(),ExtendedItems.GRAY_FUR.get(),ExtendedItems.SILVER_FUR.get(),ExtendedItems.WHITE_FUR.get());
 
-		tag(ItemTags.BOATS).add(ExtendedItems.CHESTNUT_BOAT.get()).add(ExtendedItems.BANANA_BOAT.get()).add(ExtendedItems.PLUM_BOAT.get());
-
 		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_HALF_SCALING).add(Items.AIR);
 		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_EXCLUDE).add(Items.AIR).add(Items.BARRIER).add(Items.STRUCTURE_VOID).add(Items.DEBUG_STICK).add(Items.COMMAND_BLOCK);
 
@@ -290,41 +290,45 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 //			}
 //		}
 
-		TreeMap<String, Item> additems = new TreeMap<>();
+		TreeMap<String, Item> weaponrackItems = new TreeMap<>();
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
 			if((item.getValue().get() instanceof SpearItem) || (item.getValue().get() instanceof DaggerItem)
 					|| (item.getValue().get() instanceof ExtendedSwordItem)
 					|| (item.getValue().get() instanceof HammerItem)
 					|| (item.getValue().get() instanceof LOTRPickaxeItem)) {
-				additems.put(item.getKey(), item.getValue().get());
+				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRShovelItem) {
-				additems.put(item.getKey(), item.getValue().get());
+				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRAxeItem) {
-				additems.put(item.getKey(), item.getValue().get());
+				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
-			if(item.getValue().get() instanceof LOTRHoeItem ) {
-				additems.put(item.getKey(), item.getValue().get());
+			if(item.getValue().get() instanceof LOTRHoeItem) {
+				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedChiselItem ) {
-				additems.put(item.getKey(), item.getValue().get());
+			if(item.getValue().get() instanceof ExtendedChiselItem) {
+				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
 			if(item.getValue().get() instanceof ExtendedCommandHornItem) {
-				additems.put(item.getKey(), item.getValue().get());
+				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
 			if(item.getValue().get() instanceof ExtendedBrandingIronItem) {
-				additems.put(item.getKey(), item.getValue().get());
+				weaponrackItems.put(item.getKey(), item.getValue().get());
+				continue;
+			}
+			if(item.getValue().get() instanceof LOTRBoatItem) {
+				tag(ItemTags.BOATS).add(item.getValue().get());
 				continue;
 			}
 		}
-		for(Entry<String, Item> ent : additems.entrySet()) {
+		for(Entry<String, Item> ent : weaponrackItems.entrySet()) {
 			tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(ent.getValue());
 		}
 	}

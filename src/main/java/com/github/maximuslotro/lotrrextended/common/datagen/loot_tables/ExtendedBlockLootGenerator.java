@@ -33,7 +33,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBl
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedPackedFurBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedMattedFurBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
@@ -380,7 +380,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropPottedContents(block.getValue().get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedPackedFurBlock) {
+			if(block.getValue().get() instanceof ExtendedMattedFurBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}

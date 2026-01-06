@@ -633,9 +633,9 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.FUR_BUNDLE.get()).setWeight(70).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(ExtendedItems.GRAY_FUR_BUNDLE.get()).setWeight(70).setRange(1, 3))
 						.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_FUR_BUNDLE.get()).setWeight(50).setRange(1, 3))
-						.add(EItemLootEntry.lootItem(ExtendedItems.BROWN_PACKED_FUR.get()).setWeight(60).setRange(2, 4))
-						.add(EItemLootEntry.lootItem(ExtendedItems.GRAY_PACKED_FUR.get()).setWeight(60).setRange(2, 4))
-						.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_PACKED_FUR.get()).setWeight(40).setRange(2, 4))
+						.add(EItemLootEntry.lootItem(ExtendedItems.BROWN_MATTED_FUR.get()).setWeight(20).setRange(1, 2))
+						.add(EItemLootEntry.lootItem(ExtendedItems.GRAY_MATTED_FUR.get()).setWeight(20).setRange(1, 2))
+						.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_MATTED_FUR.get()).setWeight(20).setRange(1, 2))
 						.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(5).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setExactly(1))));
 

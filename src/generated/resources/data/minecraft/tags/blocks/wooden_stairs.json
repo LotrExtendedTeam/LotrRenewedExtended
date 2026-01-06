@@ -2,21 +2,8 @@
   "replace": false,
   "values": [
     "lotr:banana_stairs",
-    "lotr:banana_wood_stairs",
-    "lotr:black_packed_fur_stairs",
     "lotr:chestnut_stairs",
-    "lotr:chestnut_wood_stairs",
-    "lotr:gray_packed_fur_stairs",
-    "lotr:packed_fur_stairs",
     "lotr:plum_stairs",
-    "lotr:plum_wood_stairs",
-    "lotr:silver_packed_fur_stairs",
-    "lotr:stripped_banana_wood_stairs",
-    "lotr:stripped_chestnut_wood_stairs",
-    "lotr:stripped_plum_wood_stairs",
-    "lotr:stripped_willow_wood_stairs",
-    "lotr:white_packed_fur_stairs",
-    "lotr:willow_stairs",
-    "lotr:willow_wood_stairs"
+    "lotr:willow_stairs"
   ]
 }

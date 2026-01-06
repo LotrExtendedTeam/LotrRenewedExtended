@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:matted_fur_wall"
+    ]
+  },
+  "criteria": {
+    "has_matted_fur_wall": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:fur"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:matted_fur_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_matted_fur_wall",
+      "has_the_recipe"
+    ]
+  ]
+}

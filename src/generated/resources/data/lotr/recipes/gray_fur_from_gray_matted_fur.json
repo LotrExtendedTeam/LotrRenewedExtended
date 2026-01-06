@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:gray_matted_fur"
+    }
+  ],
+  "result": {
+    "item": "lotr:gray_fur",
+    "count": 2
+  }
+}
