@@ -91,7 +91,77 @@ public class InvasionBiomeList {
         invasions.put("lotr:emyn_en_ernil", genMap(ExtendedInvasions.MORDOR, InvasionChance.RARE));
         invasions.put("lotr:dor_en_ernil", genMap(ExtendedInvasions.MORDOR, InvasionChance.RARE));
 
+        // Older elven regions
+        invasions.put("lotr:lindon", genMap(ExtendedInvasions.GUNDABAD, InvasionChance.RARE));
+        invasions.put("lotr:lindon_woodlands", genMap(ExtendedInvasions.GUNDABAD, InvasionChance.RARE));
+        invasions.put("lotr:eregion", genMap(
+                ExtendedInvasions.DUNEDAIN, InvasionChance.UNCOMMON,
+                ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
+        ));
+
+        // TODO: Add Dol-Guldur when they are added
+        invasions.put("lotr:lothlorien_eaves", genMap(
+                ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.RARE
+        ));
+        invasions.put("lotr:lothlorien", new HashMap<>()); // no invasions in Lothlorien proper
+
+        invasions.put("lotr:gladden_fields", genMap(
+                ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
+        ));
+
+        // Bree-land
+        invasions.put("lotr:breeland", genMap(
+                ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.RARE
+        ));
+        invasions.put("lotr:chetwood", genMap(
+                ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.RARE
+        ));
+
+        // Rohan
+        // TODO: Add Isengard and Dunlending invasions when the factions are added
+        invasions.put("lotr:rohan", new HashMap<>());
+        invasions.put("lotr:wold", new HashMap<>());
+
+        invasions.put("lotr:fangorn", new HashMap<>()); // no invasions in Fangorn
+        invasions.put("lotr:mouths_of_entwash", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
+        invasions.put("lotr:enedwaith", genMap(
+                ExtendedInvasions.DUNEDAIN, InvasionChance.RARE,
+                ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
+                // TODO: Add Dunlendings here when they are added
+        ));
+
+        invasions.put("lotr:northern_dale", genMap(
+                ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON,
+                ExtendedInvasions.MORDOR, InvasionChance.RARE
+                // TODO: Add Dunland when they are added
+                // TODO: Add Rhun when they are added
+        ));
+        invasions.put("lotr:dale", genMap(
+                ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON,
+                ExtendedInvasions.MORDOR, InvasionChance.RARE
+                // TODO: Add Dunland when they are added
+                // TODO: Add Rhun when they are added
+        ));
+
+        invasions.put("lotr:iron_hills", genMap(
+                ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
+        ));
+        invasions.put("lotr:dorwinion", genMap(
+                // TODO: Add Dol-Guldur when it's added
+                ExtendedInvasions.MORDOR, InvasionChance.RARE
+        ));
+
         // TODO: Add more factions here when others are ready
+        // Anduin
         invasions.put("lotr:vales_of_anduin", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.LOTHLORIEN, InvasionChance.UNCOMMON
