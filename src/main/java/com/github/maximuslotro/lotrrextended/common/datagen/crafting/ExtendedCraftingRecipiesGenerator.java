@@ -1386,6 +1386,14 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('S', Ingredient.of(Tags.Items.STRING))
 		.unlockedBy("has_"+Items.HAY_BLOCK.getRegistryName().getPath(), has(Items.HAY_BLOCK))
 		.save(consumer, mcLoc(Items.TARGET.getRegistryName().getPath()+"_using_string"));
+		ExtendedShapedRecipeBuilder.shaped(Items.ANVIL)
+		.pattern("III")
+		.pattern(" B ")
+		.pattern("III")
+		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
+		.define('B', Ingredient.of(Tags.Items.STORAGE_BLOCKS_IRON))
+		.unlockedBy("has_"+Items.IRON_BLOCK.getRegistryName().getPath(), has(Items.IRON_BLOCK))
+		.save(consumer, mcLoc(Items.ANVIL.getRegistryName().getPath()));
 	}
 
 	private void buildSmithingRecipes(Consumer<IFinishedRecipe> consumer) {
