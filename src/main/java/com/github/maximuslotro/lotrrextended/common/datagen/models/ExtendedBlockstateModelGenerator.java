@@ -11,7 +11,6 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRu
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedBookshelfBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBundleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
@@ -31,7 +30,6 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHoistBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
@@ -45,12 +43,14 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPilla
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWasteBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBarrelBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBookshelfBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedReedBasketBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSingleChestBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;

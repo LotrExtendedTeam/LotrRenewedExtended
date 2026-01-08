@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.block;
+package com.github.maximuslotro.lotrrextended.common.block.containers;
 
 import javax.annotation.Nullable;
 

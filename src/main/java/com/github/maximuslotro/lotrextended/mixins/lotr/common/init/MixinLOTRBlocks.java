@@ -24,9 +24,12 @@ import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedOrcBedBlo
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedSilverFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedStrawBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedWhiteFurBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBookshelfBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedOrcBarrelBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedReedBasketBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedStoneChestBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.trees.BananaTree;

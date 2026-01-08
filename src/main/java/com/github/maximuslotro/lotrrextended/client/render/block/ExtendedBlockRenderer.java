@@ -10,7 +10,6 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
@@ -18,6 +17,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullModelBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedReedBasketBlock;
 
 import lotr.common.init.ExtendedBlocks;
