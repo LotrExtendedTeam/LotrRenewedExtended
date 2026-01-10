@@ -1,7 +1,9 @@
 package lotr.common.world.spawning;
 
 import lotr.common.world.ExtendedInvasions;
+import net.minecraft.world.World;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -187,5 +189,58 @@ public class InvasionBiomeList {
             map.put(key, value);
         }
         return map;
+    }
+
+    /**
+     * This method given a biome name from World#getBiomeName() will attempt to check if it is a valid LOTR Mod biome
+     * and if it is pick an invasion from its list and return the ExtendedInvasions Enum. If no invasions
+     * spawn in that biome it returns null. If it is not a valid biome it throws an IllegalArgumentException
+     *
+     * @param world the {@link World} to check
+     * @param biomeName the name of the biome to query
+     * @return The {@link String} name of the trader to spawn, null if no traders can spawn
+     * @throws IllegalArgumentException if the given biome is not a LOTR biome
+     */
+    public static ExtendedInvasions pickInvasionFromBiomeName(World world, String biomeName) throws IllegalArgumentException {
+        // determine the LOTR biome
+        String lotrBiome;
+        int index = biomeName.indexOf("lotr");
+        if (index != -1) {
+            lotrBiome = biomeName.substring(index);
+            lotrBiome = lotrBiome.replace("]", "");
+        } else {
+            throw new IllegalArgumentException(biomeName + " is not a LOTR Mod biome");
+        }
+
+        if (invasions.containsKey(lotrBiome)) {
+            Map<ExtendedInvasions, InvasionChance> rates = invasions.get(lotrBiome);
+
+            if (rates.isEmpty()) {
+                return null;
+            } else {
+                return getInvasionFromHashmap(rates, world);
+            }
+        } else {
+            return null;
+        }
+    }
+
+    private static ExtendedInvasions getInvasionFromHashmap(Map<ExtendedInvasions, InvasionChance> rates, World world) {
+        // generate minimums
+        Map<Integer, ExtendedInvasions> minimums = new HashMap<>();
+        int minimum = 1;
+        for (ExtendedInvasions key : rates.keySet()) {
+            minimums.put(minimum, key);
+            minimum += rates.get(key).getChance();
+        }
+
+        int random = world.random.nextInt(100) + 1;
+        Object[] minimumsSorted = minimums.keySet().toArray();
+        Arrays.sort(minimumsSorted);
+        for (int i = minimumsSorted.length - 1; i > -1; i--) {
+            if (random >= (Integer) minimumsSorted[i]) return minimums.get(minimumsSorted[i]);
+        }
+
+        return null;
     }
 }

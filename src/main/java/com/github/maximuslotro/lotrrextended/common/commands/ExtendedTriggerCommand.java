@@ -8,6 +8,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import lotr.common.entity.npc.ExtendedTolkienEntity;
 import lotr.common.world.spawning.BanditsSpawner;
+import lotr.common.world.spawning.InvasionBiomeList;
 import lotr.common.world.spawning.InvasionSpawner;
 import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.command.CommandSource;
@@ -58,7 +59,12 @@ public class ExtendedTriggerCommand {
 
 	public static int triggerInvasionTest(CommandSource source) throws CommandSyntaxException {
 		ServerPlayerEntity player = source.getPlayerOrException();
-		InvasionSpawner.spawn(player.getLevel(), player);
+		boolean result = InvasionSpawner.requireInvasionSpawn(player.getLevel(), player);
+		if (result) {
+			source.sendSuccess(new StringTextComponent("An invasion was successfully spawned."), true);
+		} else {
+			source.sendFailure(new StringTextComponent("Could not find an invasion to spawn here."));
+		}
 		return Command.SINGLE_SUCCESS;
 	}
 
