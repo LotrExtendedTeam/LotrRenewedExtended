@@ -30,7 +30,7 @@ public class ExtendedTriggerCommand {
 				.executes(context -> triggerBanditSpawn(context.getSource())))
 			.then(Commands.literal("banditSpawn")
 				.executes(context -> triggerGuaranteedBanditSpawn(context.getSource())))
-			.then(Commands.literal("invasionTest")
+			.then(Commands.literal("invasion")
 				.executes(context -> triggerInvasionTest(context.getSource()))));
 	}
 
