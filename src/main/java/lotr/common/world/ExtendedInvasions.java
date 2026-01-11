@@ -18,7 +18,8 @@ public enum ExtendedInvasions {
     DUNEDAIN("lotr:dunedain_north", new ItemStack(ExtendedItems.DUNEDAIN_BOW.get(), 1)),
     MORDOR("lotr:mordor", new ItemStack(LOTRItems.MORDOR_SCIMITAR.get(), 1)),
     GONDOR("lotr:gondor", new ItemStack(LOTRItems.GONDOR_SWORD.get(), 1)),
-    LOTHLORIEN("lotr:lothlorien", new ItemStack(LOTRItems.GALADHRIM_SWORD.get(), 1)),;
+    LOTHLORIEN("lotr:lothlorien", new ItemStack(LOTRItems.GALADHRIM_SWORD.get(), 1)),
+    WOODLAND_REALM("lotr:woodland_realm", new ItemStack(LOTRItems.WOOD_ELVEN_SWORD.get(), 1));
 
     private final String key;
     private final ItemStack stack;
