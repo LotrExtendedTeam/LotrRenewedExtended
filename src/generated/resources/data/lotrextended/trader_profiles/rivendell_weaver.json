@@ -219,41 +219,6 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:packed_fur",
-        "averageCost": 18
-      }
-    },
-    {
-      "weight": 50,
-      "stack": {
-        "item": "lotr:black_packed_fur",
-        "averageCost": 18
-      }
-    },
-    {
-      "weight": 50,
-      "stack": {
-        "item": "lotr:gray_packed_fur",
-        "averageCost": 18
-      }
-    },
-    {
-      "weight": 50,
-      "stack": {
-        "item": "lotr:silver_packed_fur",
-        "averageCost": 27
-      }
-    },
-    {
-      "weight": 50,
-      "stack": {
-        "item": "lotr:white_packed_fur",
-        "averageCost": 200
-      }
-    },
-    {
-      "weight": 50,
-      "stack": {
         "item": "minecraft:shears",
         "averageCost": 5,
         "nbt": "{Damage:0}"

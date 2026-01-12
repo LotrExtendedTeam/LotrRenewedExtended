@@ -4,6 +4,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedReflectionHelper;
 
@@ -88,6 +89,7 @@ public class MixinCPacketCreateCustomWaypoint {
 						LOTRUtil.sendMessage(player, new TranslationTextComponent("chat.lotr.cwp.create", waypointName, ftData.getNumCustomWaypoints(), ftData.getMaxCustomWaypoints()));
 						RedBookItem.playCompleteWaypointActionSound(world, waypointPos);
 						player.awardStat(LOTRStats.CREATE_CUSTOM_WAYPOINT);
+						ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(player, "waypointCreated");
 					}
 				}
 			}

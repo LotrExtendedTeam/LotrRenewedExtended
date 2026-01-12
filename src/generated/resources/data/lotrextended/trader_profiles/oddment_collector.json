@@ -88,6 +88,34 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotr:black_fur",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:gray_fur",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:silver_fur",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:white_fur",
+        "averageCost": 25
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "minecraft:string",
         "averageCost": 1,
         "count": 3

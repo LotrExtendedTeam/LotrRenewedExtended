@@ -1,0 +1,33 @@
+{
+  "parent": "lotrextended:general/blacksmith",
+  "display": {
+    "icon": {
+      "item": "lotr:chisel",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.general.engraver.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.engraver.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_string_trigger_engraved": {
+      "trigger": "lotrextended:string_trigger",
+      "conditions": {
+        "triggerName": "engraved"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_string_trigger_engraved"
+    ]
+  ]
+}

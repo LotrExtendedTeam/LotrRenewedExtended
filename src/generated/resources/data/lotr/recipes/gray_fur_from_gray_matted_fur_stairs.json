@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:gray_matted_fur_stairs"
+    }
+  ],
+  "result": {
+    "item": "lotr:gray_fur"
+  }
+}

@@ -296,36 +296,23 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.GILDED_IRON_INGOT, ExtendedBlocks.GILDED_IRON_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.MORGUL_STEEL_INGOT, ExtendedBlocks.MORGUL_STEEL_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.OBSIDIAN_SHARD, ()->Blocks.OBSIDIAN, null);
-		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.BLACK_FUR, ExtendedBlocks.BLACK_PACKED_FUR, null);
 		makeNuggetToIngotAndBackRecipe(consumer, LOTRItems.ORC_STEEL_INGOT, ExtendedItems.ORC_STEEL_NUGGET, null);
 		makeStairSlabWallRecipe(consumer, ExtendedBlocks.BONE_BLOCK_STAIRS,
 			ExtendedBlocks.BONE_BLOCK_SLAB,
 			ExtendedBlocks.BONE_BLOCK_WALL,
                 Blocks.BONE_BLOCK::asItem, null);
-		makeStairSlabWallRecipe(consumer, ExtendedBlocks.BLACK_PACKED_FUR_STAIRS,
-			ExtendedBlocks.BLACK_PACKED_FUR_SLAB,
-			ExtendedBlocks.BLACK_PACKED_FUR_WALL,
-			()->ExtendedBlocks.BLACK_PACKED_FUR.get().asItem(), null);
-		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.GRAY_FUR, ExtendedBlocks.GRAY_PACKED_FUR, null);
-		makeStairSlabWallRecipe(consumer, ExtendedBlocks.GRAY_PACKED_FUR_STAIRS,
-			ExtendedBlocks.GRAY_PACKED_FUR_SLAB,
-			ExtendedBlocks.GRAY_PACKED_FUR_WALL,
-			()->ExtendedBlocks.GRAY_PACKED_FUR.get().asItem(), null);
-		makeStorageBlock3x3ToItemAndBackRecipe(consumer, LOTRItems.FUR, ExtendedBlocks.BROWN_PACKED_FUR, null);
-		makeStairSlabWallRecipe(consumer, ExtendedBlocks.BROWN_PACKED_FUR_STAIRS,
-			ExtendedBlocks.BROWN_PACKED_FUR_SLAB,
-			ExtendedBlocks.BROWN_PACKED_FUR_WALL,
-			()->ExtendedBlocks.BROWN_PACKED_FUR.get().asItem(), null);
-		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.SILVER_FUR, ExtendedBlocks.SILVER_PACKED_FUR, null);
-		makeStairSlabWallRecipe(consumer, ExtendedBlocks.SILVER_PACKED_FUR_STAIRS,
-			ExtendedBlocks.SILVER_PACKED_FUR_SLAB,
-			ExtendedBlocks.SILVER_PACKED_FUR_WALL,
-			()->ExtendedBlocks.SILVER_PACKED_FUR.get().asItem(), null);
-		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.WHITE_FUR, ExtendedBlocks.WHITE_PACKED_FUR, null);
-		makeStairSlabWallRecipe(consumer, ExtendedBlocks.WHITE_PACKED_FUR_STAIRS,
-			ExtendedBlocks.WHITE_PACKED_FUR_SLAB,
-			ExtendedBlocks.WHITE_PACKED_FUR_WALL,
-			()->ExtendedBlocks.WHITE_PACKED_FUR.get().asItem(), null);
+		
+		makeTarpItemAndBackRecipe(consumer, ExtendedItems.BLACK_FUR, ExtendedBlocks.BLACK_MATTED_FUR, 
+				ExtendedBlocks.BLACK_MATTED_FUR_SLAB, ExtendedBlocks.BLACK_MATTED_FUR_WALL, ExtendedBlocks.BLACK_MATTED_FUR_STAIRS, null);
+		makeTarpItemAndBackRecipe(consumer, ExtendedItems.GRAY_FUR, ExtendedBlocks.GRAY_MATTED_FUR, 
+				ExtendedBlocks.GRAY_MATTED_FUR_SLAB, ExtendedBlocks.GRAY_MATTED_FUR_WALL, ExtendedBlocks.GRAY_MATTED_FUR_STAIRS, null);
+		makeTarpItemAndBackRecipe(consumer, LOTRItems.FUR, ExtendedBlocks.BROWN_MATTED_FUR, 
+				ExtendedBlocks.BROWN_MATTED_FUR_SLAB, ExtendedBlocks.BROWN_MATTED_FUR_WALL, ExtendedBlocks.BROWN_MATTED_FUR_STAIRS, null);
+		makeTarpItemAndBackRecipe(consumer, ExtendedItems.SILVER_FUR, ExtendedBlocks.SILVER_MATTED_FUR, 
+				ExtendedBlocks.SILVER_MATTED_FUR_SLAB, ExtendedBlocks.SILVER_MATTED_FUR_WALL, ExtendedBlocks.SILVER_MATTED_FUR_STAIRS, null);
+		makeTarpItemAndBackRecipe(consumer, ExtendedItems.WHITE_FUR, ExtendedBlocks.WHITE_MATTED_FUR, 
+				ExtendedBlocks.WHITE_MATTED_FUR_SLAB, ExtendedBlocks.WHITE_MATTED_FUR_WALL, ExtendedBlocks.WHITE_MATTED_FUR_STAIRS, null);
+		
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.BLACK_FUR, ExtendedBlocks.BLACK_FUR_BUNDLE, null);
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.GRAY_FUR, ExtendedBlocks.GRAY_FUR_BUNDLE, null);
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.SILVER_FUR, ExtendedBlocks.SILVER_FUR_BUNDLE, null);
@@ -1399,6 +1386,14 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('S', Ingredient.of(Tags.Items.STRING))
 		.unlockedBy("has_"+Items.HAY_BLOCK.getRegistryName().getPath(), has(Items.HAY_BLOCK))
 		.save(consumer, mcLoc(Items.TARGET.getRegistryName().getPath()+"_using_string"));
+		ExtendedShapedRecipeBuilder.shaped(Items.ANVIL)
+		.pattern("III")
+		.pattern(" B ")
+		.pattern("III")
+		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
+		.define('B', Ingredient.of(Tags.Items.STORAGE_BLOCKS_IRON))
+		.unlockedBy("has_"+Items.IRON_BLOCK.getRegistryName().getPath(), has(Items.IRON_BLOCK))
+		.save(consumer, mcLoc(Items.ANVIL.getRegistryName().getPath()));
 	}
 
 	private void buildSmithingRecipes(Consumer<IFinishedRecipe> consumer) {

@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.render.tileentity;
 
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;

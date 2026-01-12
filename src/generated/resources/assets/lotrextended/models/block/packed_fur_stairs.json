@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "side": "lotrextended:block/packed_fur",
-    "bottom": "lotrextended:block/packed_fur",
-    "top": "lotrextended:block/packed_fur"
-  }
-}

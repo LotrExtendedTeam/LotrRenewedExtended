@@ -5,13 +5,14 @@
       "item": "lotr:rum"
     },
     "title": {
+      "color": "gold",
       "translate": "advancements.lotrextended.general.seasoned_drinker.title"
     },
     "description": {
-      "color": "green",
+      "color": "aqua",
       "translate": "advancements.lotrextended.general.seasoned_drinker.description"
     },
-    "frame": "task",
+    "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false

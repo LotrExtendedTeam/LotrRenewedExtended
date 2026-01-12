@@ -145,6 +145,41 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotr:fur",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:black_fur",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:gray_fur",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:silver_fur",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:white_fur",
+        "averageCost": 25
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "lotr:man_flesh",
         "averageCost": 3
       }
@@ -219,6 +254,27 @@
       "stack": {
         "item": "lotr:fur",
         "averageCost": 4
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:black_fur",
+        "averageCost": 4
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:gray_fur",
+        "averageCost": 4
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:silver_fur",
+        "averageCost": 6
       }
     },
     {

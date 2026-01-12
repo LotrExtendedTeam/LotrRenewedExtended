@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:silver_matted_fur_wall"
+    }
+  ],
+  "result": {
+    "item": "lotr:silver_fur",
+    "count": 2
+  }
+}

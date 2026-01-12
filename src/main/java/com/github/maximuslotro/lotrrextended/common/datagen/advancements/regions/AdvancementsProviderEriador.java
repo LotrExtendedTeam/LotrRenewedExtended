@@ -202,7 +202,7 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 			.setTitle("Dúnedain Crafter").setDescription("Craft an item on the Ranger Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.RANGER_CRAFTING_TABLE.get()).parent(eriadorBase));
 		Advancement gundabad_crafter = build(true, data(ExtendedItems.NORTHERN_ORC_CRAFTING_TABLE.get(), "gundabad_crafter", FrameType.TASK)
-			.setTitle("Crude Worker").setDescription("Craft an item on the Gundabad crafting Ttable."),
+			.setTitle("Crude Worker").setDescription("Craft an item on the Gundabad Crafting Table."),
 			addCraftingTrigger(make(), ExtendedBlocks.NORTHERN_ORC_CRAFTING_TABLE.get()).parent(eriadorBase));
 		Advancement rivendell_crafter = build(true, data(LOTRItems.RIVENDELL_CRAFTING_TABLE.get(), "rivendell_crafter", FrameType.TASK)
 			.setTitle("Rivendell Crafter").setDescription("Craft an item on the Rivendell Crafting Table."),

@@ -1802,7 +1802,142 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		}
 	}
 
+	protected void makeTarpItemAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> resource, 
+			Supplier<? extends Block> blockToBeCrafted, 
+			Supplier<? extends Block> slabToBeCrafted, 
+			Supplier<? extends Block> stairToBeCrafted, 
+			Supplier<? extends Block> wallToBeCrafted, 
+			@Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		makeTarpBlockItemAndBackRecipe(consumer, resource, blockToBeCrafted, table);
+		makeTarpSlabItemAndBackRecipe(consumer, resource, slabToBeCrafted, table);
+		makeTarpStairItemAndBackRecipe(consumer, resource, stairToBeCrafted, table);
+		makeTarpWallItemAndBackRecipe(consumer, resource, wallToBeCrafted, table);
 
+	}
+	protected void makeTarpBlockItemAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> resource, Supplier<? extends Block> blockToBeCrafted, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String resourceName = resource.get().getRegistryName().getPath();
+		String output = blockToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(output);
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get())
+			.pattern("SF")
+			.pattern("FS")
+			.define('S', Ingredient.of(STICKS))
+			.define('F', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+resourceName, has(resource.get()))
+			.save(consumer, lotrLoc(output));
+			ShapelessRecipeBuilder.shapeless(resource.get(), 2)
+			.requires(blockToBeCrafted.get())
+			.unlockedBy("has_"+output, has(blockToBeCrafted.get()))
+			.save(consumer, lotrLoc(resourceName+"_from_"+output));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(blockToBeCrafted.get(), table)
+			.pattern("SF")
+			.pattern("FS")
+			.define('S', Ingredient.of(STICKS))
+			.define('F', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+resourceName, has(resource.get()))
+			.save(consumer, lotrLoc(output));
+			ExtendedFactionShapelessRecipeBuilder.shapeless(resource.get(), 2, table)
+			.requires(blockToBeCrafted.get())
+			.unlockedBy("has_"+output, has(blockToBeCrafted.get()))
+			.save(consumer, lotrLoc(resourceName+"_from_"+output));
+		}
+	}
+	protected void makeTarpSlabItemAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> resource, Supplier<? extends Block> blockToBeCrafted, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String resourceName = resource.get().getRegistryName().getPath();
+		String output = blockToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(output);
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get())
+			.pattern("SFS")
+			.define('S', Ingredient.of(STICKS))
+			.define('F', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+output, has(resource.get()))
+			.save(consumer, lotrLoc(output));
+			ShapelessRecipeBuilder.shapeless(resource.get())
+			.requires(blockToBeCrafted.get())
+			.unlockedBy("has_"+output, has(blockToBeCrafted.get()))
+			.save(consumer, lotrLoc(resourceName+"_from_"+output));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(blockToBeCrafted.get(), table)
+			.pattern("SFS")
+			.define('S', Ingredient.of(STICKS))
+			.define('F', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+output, has(resource.get()))
+			.save(consumer, lotrLoc(output));
+			ExtendedFactionShapelessRecipeBuilder.shapeless(resource.get(), table)
+			.requires(blockToBeCrafted.get())
+			.unlockedBy("has_"+output, has(blockToBeCrafted.get()))
+			.save(consumer, lotrLoc(resourceName+"_from_"+output));
+		}
+	}
+	protected void makeTarpWallItemAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> resource, Supplier<? extends Block> blockToBeCrafted, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String resourceName = resource.get().getRegistryName().getPath();
+		String output = blockToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(output);
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get())
+			.pattern("S")
+			.pattern("F")
+			.pattern("S")
+			.define('S', Ingredient.of(STICKS))
+			.define('F', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+output, has(resource.get()))
+			.save(consumer, lotrLoc(output));
+			ShapelessRecipeBuilder.shapeless(resource.get())
+			.requires(blockToBeCrafted.get())
+			.unlockedBy("has_"+output, has(blockToBeCrafted.get()))
+			.save(consumer, lotrLoc(resourceName+"_from_"+output));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(blockToBeCrafted.get(), table)
+			.pattern("S")
+			.pattern("F")
+			.pattern("S")
+			.define('S', Ingredient.of(STICKS))
+			.define('F', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+output, has(resource.get()))
+			.save(consumer, lotrLoc(output));
+			ExtendedFactionShapelessRecipeBuilder.shapeless(resource.get(), table)
+			.requires(blockToBeCrafted.get())
+			.unlockedBy("has_"+output, has(blockToBeCrafted.get()))
+			.save(consumer, lotrLoc(resourceName+"_from_"+output));
+		}
+	}
+	protected void makeTarpStairItemAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> resource, Supplier<? extends Block> blockToBeCrafted, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String resourceName = resource.get().getRegistryName().getPath();
+		String output = blockToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(output);
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get())
+			.pattern(" F")
+			.pattern("FS")
+			.define('S', Ingredient.of(STICKS))
+			.define('F', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+output, has(resource.get()))
+			.save(consumer, lotrLoc(output));
+			ShapelessRecipeBuilder.shapeless(resource.get(), 2)
+			.requires(blockToBeCrafted.get())
+			.unlockedBy("has_"+output, has(blockToBeCrafted.get()))
+			.save(consumer, lotrLoc(resourceName+"_from_"+output));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(blockToBeCrafted.get(), table)
+			.pattern(" F")
+			.pattern("FS")
+			.define('S', Ingredient.of(STICKS))
+			.define('F', Ingredient.of(resource.get()))
+			.unlockedBy("has_"+output, has(resource.get()))
+			.save(consumer, lotrLoc(output));
+			ExtendedFactionShapelessRecipeBuilder.shapeless(resource.get(), 2, table)
+			.requires(blockToBeCrafted.get())
+			.unlockedBy("has_"+output, has(blockToBeCrafted.get()))
+			.save(consumer, lotrLoc(resourceName+"_from_"+output));
+		}
+	}
 	protected void makeStoneCutterRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> ing, Supplier<? extends Block> output) {
 		makeStoneCutterRecipe(consumer, ing, output, 1);
 	}

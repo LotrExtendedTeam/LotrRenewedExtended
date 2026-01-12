@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:gray_fur_from_gray_matted_fur_slab"
+    ]
+  },
+  "criteria": {
+    "has_gray_matted_fur_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gray_matted_fur_slab"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:gray_fur_from_gray_matted_fur_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gray_matted_fur_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -83,8 +83,8 @@ public class ExtendedMissingMappings {
 	private static void createMappings() {
 		hasMappingsBeenCreated = true;
 		//Alpha 1.1 Changed Tan Fur -> Grey Fur and Brown Packed Fur -> Packed Fur?
-		addRemapBlockWithItem("tan_packed_fur", "lotr", ExtendedBlocks.GRAY_PACKED_FUR, ExtendedItems.GRAY_PACKED_FUR);
-		addRemapBlockWithItem("brown_packed_fur", "lotr", ExtendedBlocks.BROWN_PACKED_FUR, ExtendedItems.BROWN_PACKED_FUR);
+		addRemapBlockWithItem("tan_packed_fur", "lotr", ExtendedBlocks.GRAY_MATTED_FUR, ExtendedItems.GRAY_MATTED_FUR);
+		addRemapBlockWithItem("brown_packed_fur", "lotr", ExtendedBlocks.BROWN_MATTED_FUR, ExtendedItems.BROWN_MATTED_FUR);
 
 		//Beta 1.1-1.2 Between Which added Berry Plants and Renamed them
 		addRemapBlockWithItem("blackberry_bush_plant", "lotr", ExtendedBlocks.BLACKBERRY_BUSH, ExtendedItems.BLACKBERRY);
@@ -106,10 +106,10 @@ public class ExtendedMissingMappings {
 		//Beta 1.4.0 Changed Grey->Gray
 		addRemapItem("grey_fur", "lotr", ExtendedItems.GRAY_FUR);
 		addRemapBlockWithItem("grey_fur_bundle", "lotr", ExtendedBlocks.GRAY_FUR_BUNDLE, ExtendedItems.GRAY_FUR_BUNDLE);
-		addRemapBlockWithItem("grey_packed_fur", "lotr", ExtendedBlocks.GRAY_PACKED_FUR, ExtendedItems.GRAY_PACKED_FUR);
-		addRemapBlockWithItem("grey_packed_fur_slab", "lotr", ExtendedBlocks.GRAY_PACKED_FUR_SLAB, ExtendedItems.GRAY_PACKED_FUR_SLAB);
-		addRemapBlockWithItem("grey_packed_fur_stairs", "lotr", ExtendedBlocks.GRAY_PACKED_FUR_STAIRS, ExtendedItems.GRAY_PACKED_FUR_STAIRS);
-		addRemapBlockWithItem("grey_packed_fur_wall", "lotr", ExtendedBlocks.GRAY_PACKED_FUR_WALL, ExtendedItems.GRAY_PACKED_FUR_WALL);
+		addRemapBlockWithItem("grey_packed_fur", "lotr", ExtendedBlocks.GRAY_MATTED_FUR, ExtendedItems.GRAY_MATTED_FUR);
+		addRemapBlockWithItem("grey_packed_fur_slab", "lotr", ExtendedBlocks.GRAY_MATTED_FUR_SLAB, ExtendedItems.GRAY_MATTED_FUR_SLAB);
+		addRemapBlockWithItem("grey_packed_fur_stairs", "lotr", ExtendedBlocks.GRAY_MATTED_FUR_STAIRS, ExtendedItems.GRAY_MATTED_FUR_STAIRS);
+		addRemapBlockWithItem("grey_packed_fur_wall", "lotr", ExtendedBlocks.GRAY_MATTED_FUR_WALL, ExtendedItems.GRAY_MATTED_FUR_WALL);
 
 		//Beta 1.5.1 Merged Flowery Chestnut Leaves with Chestnut Leaves
 		addRemapBlockWithItem("chestnut_leaves_flowers", "lotr", ExtendedBlocks.CHESTNUT_LEAVES, ExtendedItems.CHESTNUT_LEAVES);
@@ -117,7 +117,7 @@ public class ExtendedMissingMappings {
 		//Beta 1.6.2-alpha-1 Renamed Millstone to Stone Grinder
 		addRemapBlockWithItem("millstone", "lotr", ExtendedBlocks.STONE_GRINDER, ExtendedItems.STONE_GRINDER);
 
-		//Beta 1.7.0-alpha-2 Cleanup stuff
+		//Beta 1.7.0-alpha-2 Remove morgul dagger and spear, merge taurethrim tables
 		addRemapItem("morgul_spear", "lotr", ExtendedItems.ANGMAR_SPEAR);
 		addRemapItem("morgul_dagger", "lotr", ExtendedItems.ANGMAR_DAGGER);
 		addRemapBlockWithItem("stone_taurethrim_crafting_table", "lotr", ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, ExtendedItems.TAURETHRIM_CRAFTING_TABLE);
@@ -139,6 +139,28 @@ public class ExtendedMissingMappings {
 
 		//Beta 1.9.0 Renamed Morgul Lantern to Morgul Brazier
 		addRemapBlockWithItem("morgul_lantern", "lotr", ExtendedBlocks.MORGUL_BRAZIER, ExtendedItems.MORGUL_BRAZIER);
+
+		//Beta 1.9.2 Renamed Packed Fur to Matted Fur
+		addRemapBlockWithItem("white_packed_fur", "lotr", ExtendedBlocks.WHITE_MATTED_FUR, ExtendedItems.WHITE_MATTED_FUR);
+		addRemapBlockWithItem("white_packed_fur_slab", "lotr", ExtendedBlocks.WHITE_MATTED_FUR_SLAB, ExtendedItems.WHITE_MATTED_FUR_SLAB);
+		addRemapBlockWithItem("white_packed_fur_stairs", "lotr", ExtendedBlocks.WHITE_MATTED_FUR_STAIRS, ExtendedItems.WHITE_MATTED_FUR_STAIRS);
+		addRemapBlockWithItem("white_packed_fur_wall", "lotr", ExtendedBlocks.WHITE_MATTED_FUR_WALL, ExtendedItems.WHITE_MATTED_FUR_WALL);
+		addRemapBlockWithItem("silver_packed_fur", "lotr", ExtendedBlocks.SILVER_MATTED_FUR, ExtendedItems.SILVER_MATTED_FUR);
+		addRemapBlockWithItem("silver_packed_fur_slab", "lotr", ExtendedBlocks.SILVER_MATTED_FUR_SLAB, ExtendedItems.SILVER_MATTED_FUR_SLAB);
+		addRemapBlockWithItem("silver_packed_fur_stairs", "lotr", ExtendedBlocks.SILVER_MATTED_FUR_STAIRS, ExtendedItems.SILVER_MATTED_FUR_STAIRS);
+		addRemapBlockWithItem("silver_packed_fur_wall", "lotr", ExtendedBlocks.SILVER_MATTED_FUR_WALL, ExtendedItems.SILVER_MATTED_FUR_WALL);
+		addRemapBlockWithItem("gray_packed_fur", "lotr", ExtendedBlocks.GRAY_MATTED_FUR, ExtendedItems.GRAY_MATTED_FUR);
+		addRemapBlockWithItem("gray_packed_fur_slab", "lotr", ExtendedBlocks.GRAY_MATTED_FUR_SLAB, ExtendedItems.GRAY_MATTED_FUR_SLAB);
+		addRemapBlockWithItem("gray_packed_fur_stairs", "lotr", ExtendedBlocks.GRAY_MATTED_FUR_STAIRS, ExtendedItems.GRAY_MATTED_FUR_STAIRS);
+		addRemapBlockWithItem("gray_packed_fur_wall", "lotr", ExtendedBlocks.GRAY_MATTED_FUR_WALL, ExtendedItems.GRAY_MATTED_FUR_WALL);
+		addRemapBlockWithItem("black_packed_fur", "lotr", ExtendedBlocks.BLACK_MATTED_FUR, ExtendedItems.BLACK_MATTED_FUR);
+		addRemapBlockWithItem("black_packed_fur_slab", "lotr", ExtendedBlocks.BLACK_MATTED_FUR_SLAB, ExtendedItems.BLACK_MATTED_FUR_SLAB);
+		addRemapBlockWithItem("black_packed_fur_stairs", "lotr", ExtendedBlocks.BLACK_MATTED_FUR_STAIRS, ExtendedItems.BLACK_MATTED_FUR_STAIRS);
+		addRemapBlockWithItem("black_packed_fur_wall", "lotr", ExtendedBlocks.BLACK_MATTED_FUR_WALL, ExtendedItems.BLACK_MATTED_FUR_WALL);
+		addRemapBlockWithItem("packed_fur", "lotr", ExtendedBlocks.BROWN_MATTED_FUR, ExtendedItems.BROWN_MATTED_FUR);
+		addRemapBlockWithItem("packed_fur_slab", "lotr", ExtendedBlocks.BROWN_MATTED_FUR_SLAB, ExtendedItems.BROWN_MATTED_FUR_SLAB);
+		addRemapBlockWithItem("packed_fur_stairs", "lotr", ExtendedBlocks.BROWN_MATTED_FUR_STAIRS, ExtendedItems.BROWN_MATTED_FUR_STAIRS);
+		addRemapBlockWithItem("packed_fur_wall", "lotr", ExtendedBlocks.BROWN_MATTED_FUR_WALL, ExtendedItems.BROWN_MATTED_FUR_WALL);
 	}
 
 	private static void addRemapBlock(String previousMapping, String previousNamespace, Supplier<? extends Block> remapBlock) {

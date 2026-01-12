@@ -5,8 +5,10 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 
+import lotr.common.init.LOTRMaterial;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
 
@@ -83,11 +85,22 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	/**
 	 * Determines if this modifier can be applied to the given item.
 	 *
-	 * @param item the item to check compatibility against
+	 *
+	 * Hacky logic is used to check for compatibility for modifiers
+	 * 
+	 * @param stack the item to check compatibility against
 	 * @return {@code true} if the modifier can be applied to the item, {@code false} otherwise
 	 */
-	public boolean canApplyToItem(ItemStack item) {
-		return modifierType.isItemApplicable(item);
+	public boolean canApplyToItem(ItemStack stack) {
+		if(!modifierType.isItemApplicable(stack)) {
+			return false;
+		}
+		if(stack.getItem() instanceof ArmorItem) {
+			if(modifierType==ExtendedModifierType.PROTECTION) {
+				return ((ArmorItem)stack.getItem()).getDefense() + effect <= LOTRMaterial.MITHRIL.asArmor().getDefenseForSlot(((ArmorItem)stack.getItem()).getSlot());
+			}
+		}
+		return true;
 	}
 	/**
 	 * Determines if this modifier can be applied alongside another modifier
@@ -95,7 +108,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	 * @param pModifierType the item to check compatibility against
 	 * @return {@code true} if the modifier can be applied to the item, {@code false} otherwise
 	 */
-	public boolean canApplyToModifier(ExtendedModifierType pModifierType) {
+	public boolean isCompatableModifier(ExtendedModifierType pModifierType) {
 		return modifierType.isModifierApplicable(pModifierType);
 	}
 	/** 

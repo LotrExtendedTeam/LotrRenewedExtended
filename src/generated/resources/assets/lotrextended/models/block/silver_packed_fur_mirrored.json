@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_mirrored_all",
-  "textures": {
-    "all": "lotrextended:block/silver_packed_fur"
-  }
-}

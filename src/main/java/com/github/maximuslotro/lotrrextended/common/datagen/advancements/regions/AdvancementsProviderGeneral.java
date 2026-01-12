@@ -53,6 +53,10 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 				.setTitle("Kingsfoil").setDescription("Find the Athelas herb."),
 				addBreakBlockTrigger(make(), LOTRBlocks.ATHELAS.get()).parent(base));
 
+		Advancement life_to_the_dying = build(true, data(LOTRItems.ATHELAS_BREW.get(), "life_to_the_dying", FrameType.TASK)
+				.setTitle("Life to the Dying").setDescription("Drink a mug of Athelas Brew."),
+				addDrinkItemTrigger(make(), LOTRItems.ATHELAS_BREW.get()).parent(athelas));
+
 		Advancement trade = build(false, data(ExtendedItems.SILVER_COIN_ONE.get(), "trade", FrameType.TASK)
 			.setTitle("Middle Earth Marketplace").setDescription("Trade with a Middle Earth trader."),
 			addTradeNoEntityTrigger(make(), "any_trader", 0).parent(base));
@@ -68,11 +72,11 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 		Advancement frighteningly_rich = build(false, data(Items.GOLD_INGOT, "frighteningly_rich", FrameType.CHALLENGE)
 			.setTitle("Frighteningly Rich").setDescription("Earn 5000 coins from a single trade."),
 			addTradeNoEntityTrigger(make(), "any_trader", false, 5000).parent(ludicrously_rich));
-		// Obtainable with the current 200 max item limit, at 50c per item for 64 stackable item, only white packed fur currently works for this
+		// Obtainable with the current 200 max item limit, at 50c per item for 64 stackable item, only white matted fur currently works for this
 		Advancement unfathomably_rich = build(false, data(LOTRItems.MITHRIL_INGOT.get(), "unfathomably_rich", FrameType.CHALLENGE)
 			.setTitle("Unfathomably Rich").setDescription("Earn 10,000 coins from a single trade."),
 			addTradeNoEntityTrigger(make(), "any_trader", false, 10000).parent(frighteningly_rich));
-		// Obtainable with the current 200 max item limit, at 100c per item for 64 stackable items, only white packed fur currently works for this
+		// Obtainable with the current 200 max item limit, at 100c per item for 64 stackable items, only white matted fur currently works for this
 		Advancement god_rich = build(false, data(LOTRItems.MITHRIL_BLOCK.get(), "god_rich", FrameType.CHALLENGE).setHidden()
 			.setTitle("Reality-Bendingly Rich").setDescription("Earn 20,000 coins from a single trade."),
 			addTradeNoEntityTrigger(make(), "any_trader", false, 20000).parent(unfathomably_rich));
@@ -202,6 +206,14 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 			.setTitle("True Fealty").setDescription("Reach +10000.0 alignment with any faction."),
 			addAlignmentTrigger(make(), "any", 10000).parent(alignment));
 
+		Advancement fasttravel = build(false, data(Items.LEATHER_BOOTS, "fasttravel", FrameType.TASK)
+				.setTitle("Light Speed Traveler").setDescription("Fast travel to anywhere in Middle Earth."),
+				addStringTrigger(make(), "fastTraveled").parent(base));
+
+		Advancement waypointcreate = build(false, data(Items.IRON_BOOTS, "waypointcreate", FrameType.TASK)
+				.setTitle("New Destinations").setDescription("Create a custom waypoint."),
+				addStringTrigger(make(), "waypointCreated").parent(fasttravel));
+
 		Advancement conqueror = build(true, data(ExtendedItems.GONDOR_BANNER.get(), "conqueror", FrameType.TASK)
 			.setTitle("The Conqueror").setDescription("Lay claim to some land by protecting it with a banner."),
 			addStringTrigger(make(), "bannerPlaced").parent(base));
@@ -222,6 +234,14 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 				.setTitle("Drunkard").setDescription("Suffer the effects of an alcoholic drink."),
 				addDrinkDurationTrigger(make(), 0).parent(base));
 
+		Advancement brewing = build(true, data(LOTRItems.ALE.get(), "brewing", FrameType.TASK)
+				.setTitle("Time to Drink!").setDescription("Start brewing a drink in a barrel."),
+				addStringTrigger(make(), "brewDrink").parent(drunkard));
+
+		Advancement burning_sensation = build(true, data(LOTRItems.ORC_DRAUGHT.get(), "burning_sensation", FrameType.TASK)
+				.setTitle("Burning Sensation").setDescription("Drink an Orc Draught."),
+				addDrinkItemTrigger(make(), LOTRItems.ORC_DRAUGHT.get()).parent(drunkard));
+
 		Advancement hooligan = build(true, data(LOTRItems.ALE.get(), "hooligan", FrameType.TASK)
 				.setTitle("Hooligan").setDescription("Kill a foe while drunk."),
 				addKillEntityPlayerEffectTrigger(make(), Effects.CONFUSION).parent(drunkard));
@@ -230,13 +250,21 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 				.setTitle("Tipsy").setDescription("Drink a very strong drink."),
 				addDrinkDurationTrigger(make(), 120).parent(drunkard));
 
-		Advancement seasoned_drinker = build(false, data(LOTRItems.RUM.get(), "seasoned_drinker", FrameType.TASK)
+		Advancement seasoned_drinker = build(false, data(LOTRItems.RUM.get(), "seasoned_drinker", FrameType.GOAL)
 				.setTitle("Seasoned Drinker").setDescription("Start to build an alcohol tolerance."),
 				addDrinkToleranceTrigger(make(), 100).parent(tipsy));
 
-		Advancement alcoholism = build(true, data(LOTRItems.VODKA.get(), "alcoholism", FrameType.TASK)
+		Advancement alcoholism = build(true, data(LOTRItems.VODKA.get(), "alcoholism", FrameType.CHALLENGE)
 				.setTitle("Alcoholism").setDescription("Achieve a fearsome level of alcohol tolerance."),
 				addDrinkToleranceTrigger(make(), 500).parent(seasoned_drinker));//guessing the legacy value though trial and error
+
+		Advancement blacksmith = build(true, data(LOTRItems.BLACKSMITH_HAMMER.get(), "blacksmith", FrameType.TASK)
+				.setTitle("Blacksmith").setDescription("Reforge an item at an anvil."),
+				addStringTrigger(make(), "reforged").parent(base));
+
+		Advancement engraver = build(false, data(ExtendedItems.CHISEL.get(), "engraver", FrameType.TASK)
+				.setTitle("Autographed!").setDescription("Engrave your name on an item at an anvil."),
+				addStringTrigger(make(), "engraved").parent(blacksmith));
 	}
 
 	@Override
