@@ -242,20 +242,63 @@ public class InvasionBiomeList {
                 ExtendedInvasions.LOTHLORIEN, InvasionChance.UNCOMMON
         ));
 
+        invasions.put("lotr:andrast", new HashMap<>());
+        invasions.put("lotr:angmar", genMap(
+                ExtendedInvasions.DUNEDAIN, InvasionChance.RARE,
+                ExtendedInvasions.LINDON, InvasionChance.RARE,
+                ExtendedInvasions.RIVENDELL, InvasionChance.RARE
+        ));
+        invasions.put("lotr:angmar_mountains", genMap(
+                ExtendedInvasions.DUNEDAIN, InvasionChance.RARE,
+                ExtendedInvasions.LINDON, InvasionChance.RARE,
+                ExtendedInvasions.RIVENDELL, InvasionChance.RARE
+        ));
+
+        invasions.put("lotr:brown_lands", genMap(
+                ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON
+                // TODO: Add Mordor Wargs and Mordor Black Uruks when they are added
+        ));
+
+        invasions.put("lotr:coldfells", genMap(
+                ExtendedInvasions.DUNEDAIN, InvasionChance.UNCOMMON,
+                ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
+                // TODO: Add these when they are ready
+                //this.invasionSpawns.addInvasion(LOTRInvasions.ANGMAR, LOTREventSpawner.EventChance.UNCOMMON);
+                //this.invasionSpawns.addInvasion(LOTRInvasions.ANGMAR_HILLMEN, LOTREventSpawner.EventChance.UNCOMMON);
+                //this.invasionSpawns.addInvasion(LOTRInvasions.ANGMAR_WARG, LOTREventSpawner.EventChance.UNCOMMON);
+        ));
+
+        invasions.put("lotr:dagorlad", genMap(
+                ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON
+                // TODO: Add Mordor Wargs and Mordor Black Uruks when they are added
+        ));
+
+        invasions.put("lotr:dead_marshes", genMap(
+                ExtendedInvasions.MORDOR, InvasionChance.RARE
+        ));
+
+        invasions.put("lotr:dense_snowy_northlands_forest", new HashMap<>()); // no invasions here
+        invasions.put("lotr:dense_northlands_forest", new HashMap<>()); // no invasions here
+        invasions.put("lotr:druwaith_iaur", new HashMap<>()); // no invasions here
+
+        // one does not simply invade Mordor
+        invasions.put("lotr:mordor", new HashMap<>());
+        invasions.put("lotr:mordor_mountains", new HashMap<>());
+        invasions.put("lotr:eastern_desolation", new HashMap<>());
+
+        invasions.put("lotr:ettenmoors", genMap(
+                ExtendedInvasions.DUNEDAIN, InvasionChance.UNCOMMON,
+                ExtendedInvasions.GUNDABAD, InvasionChance.COMMON,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.COMMON
+                // TODO: Add these when they are ready
+                //this.invasionSpawns.addInvasion(LOTRInvasions.ANGMAR, LOTREventSpawner.EventChance.UNCOMMON);
+                //this.invasionSpawns.addInvasion(LOTRInvasions.ANGMAR_HILLMEN, LOTREventSpawner.EventChance.UNCOMMON);
+                //this.invasionSpawns.addInvasion(LOTRInvasions.ANGMAR_WARG, LOTREventSpawner.EventChance.UNCOMMON);
+        ));
+
         // TODO: Check these remaining biomes based on the list from WanderingTraders
         /*
-        traders.put("lotr:andrast", new HashMap<>());
-        traders.put("lotr:angmar", new HashMap<>());
-        traders.put("lotr:angmar_mountains", new HashMap<>());
-        traders.put("lotr:brown_lands", new HashMap<>());
-        traders.put("lotr:coldfells", new HashMap<>());
-        traders.put("lotr:dagorlad", new HashMap<>());
-        traders.put("lotr:dead_marshes", new HashMap<>());
-        traders.put("lotr:dense_snowy_northlands_forest", new HashMap<>());
-        traders.put("lotr:dense_northlands_forest", new HashMap<>());
-        traders.put("lotr:druwaith_iaur", new HashMap<>());
-        traders.put("lotr:eastern_desolation", new HashMap<>());
-        traders.put("lotr:ettenmoors", new HashMap<>());
         traders.put("lotr:forochel", new HashMap<>());
         traders.put("lotr:forodwaith", new HashMap<>());
         traders.put("lotr:forodwaith_mountains", new HashMap<>());
@@ -272,8 +315,6 @@ public class InvasionBiomeList {
         traders.put("lotr:mirkwood_mountains", new HashMap<>());
         traders.put("lotr:misty_mountains", new HashMap<>());
         traders.put("lotr:misty_mountains_foothills", new HashMap<>());
-        traders.put("lotr:mordor", new HashMap<>());
-        traders.put("lotr:mordor_mountains", new HashMap<>());
         traders.put("lotr:morgul_vale", new HashMap<>());
         traders.put("lotr:nan_curunir", new HashMap<>());
         traders.put("lotr:nindalf", new HashMap<>());
