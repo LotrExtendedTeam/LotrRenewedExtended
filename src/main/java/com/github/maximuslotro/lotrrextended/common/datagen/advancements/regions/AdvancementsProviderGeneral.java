@@ -179,7 +179,7 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 		
 		Advancement master_adventurer = build(false, data(Items.SADDLE, "master_adventurer", FrameType.CHALLENGE)
 			.setTitle("Master Adventurer").setDescription("Visit every biome in Middle Earth"),
-			addBiomeANDTriggers(make(), BIOMES_ALL).parent(saddle));
+			addBiomeANDTriggers(make(), BIOMES_MAJOR).parent(saddle));
 		
 		Advancement apple_crumble = build(true, data(LOTRItems.APPLE_CRUMBLE.get(), "traditional_dish", FrameType.TASK)
 				.setTitle("Traditional Dish").setDescription("Acquire an Apple Crumble."),

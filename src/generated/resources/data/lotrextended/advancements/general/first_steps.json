@@ -1006,6 +1006,30 @@
           "biome": "lotr:rivendell_river"
         }
       }
+    },
+    "enter_mordor_river": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:mordor_river"
+        }
+      }
+    },
+    "enter_gorgoroth_river": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:gorgoroth_river"
+        }
+      }
+    },
+    "enter_morgul_vale_river": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:morgul_vale_river"
+        }
+      }
     }
   },
   "requirements": [
@@ -1133,7 +1157,10 @@
       "enter_barrow_downs_river",
       "enter_rivendell_cliffs",
       "enter_rivendell_valley",
-      "enter_rivendell_river"
+      "enter_rivendell_river",
+      "enter_mordor_river",
+      "enter_gorgoroth_river",
+      "enter_morgul_vale_river"
     ]
   ]
 }

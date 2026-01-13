@@ -14,6 +14,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 
 import lotr.common.biome.BarrowDownsBiome;
+import lotr.common.biome.ExtendedGorgorothRiverBiome;
+import lotr.common.biome.ExtendedMordorRiverBiome;
+import lotr.common.biome.ExtendedMorgulValeRiverBiome;
 import lotr.common.biome.ExtendedRivendellBiome;
 import lotr.common.init.ExtendedBiomes;
 import lotr.common.init.LOTRBiomes;
@@ -77,5 +80,10 @@ public class MixinLOTRBiomes {
 		ExtendedBiomes.RIVENDELL_CLIFFS = prepareD("rivendell_cliffs", () -> new ExtendedRivendellBiome.ExtendedRivendellCliffsBiome());
 		ExtendedBiomes.RIVENDELL_VALLEY = prepareD("rivendell_valley", () -> new ExtendedRivendellBiome.ExtendedRivendellValleyBiome());
 		ExtendedBiomes.RIVENDELL_RIVER = prepareD("rivendell_river", () -> new ExtendedRivendellBiome.ExtendedRivendellRiverBiome());
+
+		ExtendedBiomes.MORDOR_RIVER = prepareD("mordor_river", () -> new ExtendedMordorRiverBiome());
+		ExtendedBiomes.GORGOROTH_RIVER = prepareD("gorgoroth_river", () -> new ExtendedGorgorothRiverBiome());
+		ExtendedBiomes.MORGUL_VALE_RIVER = prepareD("morgul_vale_river", () -> new ExtendedMorgulValeRiverBiome());
+
 	}
 }

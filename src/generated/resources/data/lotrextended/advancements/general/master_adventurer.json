@@ -58,22 +58,6 @@
         }
       }
     },
-    "enter_shire_woodlands": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:shire_woodlands"
-        }
-      }
-    },
-    "enter_river": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:river"
-        }
-      }
-    },
     "enter_trollshaws": {
       "trigger": "minecraft:location",
       "conditions": {
@@ -434,54 +418,6 @@
         }
       }
     },
-    "enter_sea": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:sea"
-        }
-      }
-    },
-    "enter_island": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:island"
-        }
-      }
-    },
-    "enter_beach": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:beach"
-        }
-      }
-    },
-    "enter_tolfalas": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:tolfalas"
-        }
-      }
-    },
-    "enter_lake": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:lake"
-        }
-      }
-    },
-    "enter_nurnen": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:nurnen"
-        }
-      }
-    },
     "enter_dor_en_ernil": {
       "trigger": "minecraft:location",
       "conditions": {
@@ -495,14 +431,6 @@
       "conditions": {
         "location": {
           "biome": "lotr:emyn_en_ernil"
-        }
-      }
-    },
-    "enter_western_isles": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:western_isles"
         }
       }
     },
@@ -535,14 +463,6 @@
       "conditions": {
         "location": {
           "biome": "lotr:dagorlad"
-        }
-      }
-    },
-    "enter_white_beach": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:white_beach"
         }
       }
     },
@@ -882,14 +802,6 @@
         }
       }
     },
-    "enter_dense_northlands_forest": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:dense_northlands_forest"
-        }
-      }
-    },
     "enter_snowy_northlands": {
       "trigger": "minecraft:location",
       "conditions": {
@@ -903,14 +815,6 @@
       "conditions": {
         "location": {
           "biome": "lotr:snowy_northlands_forest"
-        }
-      }
-    },
-    "enter_dense_snowy_northlands_forest": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:dense_snowy_northlands_forest"
         }
       }
     },
@@ -969,38 +873,6 @@
           "biome": "lotr:barrow_downs"
         }
       }
-    },
-    "enter_barrow_downs_river": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:barrow_downs_river"
-        }
-      }
-    },
-    "enter_rivendell_cliffs": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:rivendell_cliffs"
-        }
-      }
-    },
-    "enter_rivendell_valley": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:rivendell_valley"
-        }
-      }
-    },
-    "enter_rivendell_river": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "biome": "lotr:rivendell_river"
-        }
-      }
     }
   },
   "requirements": [
@@ -1018,12 +890,6 @@
     ],
     [
       "enter_misty_mountains"
-    ],
-    [
-      "enter_shire_woodlands"
-    ],
-    [
-      "enter_river"
     ],
     [
       "enter_trollshaws"
@@ -1161,31 +1027,10 @@
       "enter_northlands_forest"
     ],
     [
-      "enter_sea"
-    ],
-    [
-      "enter_island"
-    ],
-    [
-      "enter_beach"
-    ],
-    [
-      "enter_tolfalas"
-    ],
-    [
-      "enter_lake"
-    ],
-    [
-      "enter_nurnen"
-    ],
-    [
       "enter_dor_en_ernil"
     ],
     [
       "enter_emyn_en_ernil"
-    ],
-    [
-      "enter_western_isles"
     ],
     [
       "enter_coldfells"
@@ -1198,9 +1043,6 @@
     ],
     [
       "enter_dagorlad"
-    ],
-    [
-      "enter_white_beach"
     ],
     [
       "enter_dorwinion"
@@ -1329,16 +1171,10 @@
       "enter_morgul_vale"
     ],
     [
-      "enter_dense_northlands_forest"
-    ],
-    [
       "enter_snowy_northlands"
     ],
     [
       "enter_snowy_northlands_forest"
-    ],
-    [
-      "enter_dense_snowy_northlands_forest"
     ],
     [
       "enter_tower_hills"
@@ -1360,18 +1196,6 @@
     ],
     [
       "enter_barrow_downs"
-    ],
-    [
-      "enter_barrow_downs_river"
-    ],
-    [
-      "enter_rivendell_cliffs"
-    ],
-    [
-      "enter_rivendell_valley"
-    ],
-    [
-      "enter_rivendell_river"
     ]
   ]
 }
