@@ -12,7 +12,6 @@ import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckE
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
-import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils;
 
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
@@ -40,10 +39,8 @@ import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Util;
@@ -51,11 +48,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
@@ -296,32 +291,6 @@ public class WorldEventHandlers {
 			event.setCanceled(true);
 			return;
 		}
-	}
-
-	@SubscribeEvent
-	public static void handleEntityUpdate$Extended(LivingUpdateEvent pEvent) {
-		if(pEvent.getEntity() instanceof ServerPlayerEntity && pEvent.getEntity().tickCount%20 ==0) {
-			ServerPlayerEntity player = (ServerPlayerEntity)pEvent.getEntity();
-			PlayerInventory inventory = player.inventory;
-			for(int slotIndex=0; slotIndex < inventory.getContainerSize(); slotIndex++) {
-				ItemStack stack = inventory.getItem(slotIndex);
-				if(stack.isDamageableItem()) { 
-					if(!ExtendedModifierUtils.hasRandomModifiers(stack)) {
-						ExtendedModifierUtils.generateItemModifiersTagged(player.random, stack, false, false);
-					}
-				}
-			}
-			ItemStack carried = inventory.getCarried();
-			if(carried.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(carried)) {
-				ExtendedModifierUtils.generateItemModifiersTagged(player.random, carried, false, false);
-				player.broadcastCarriedItem();
-			}
-		}
-	}
-
-	@SubscribeEvent
-	public static void handleItemAttributeChanges(ItemAttributeModifierEvent pEvent) {
-		ExtendedModifierUtils.processItemAttributes(pEvent);
 	}
 
 	@SubscribeEvent
