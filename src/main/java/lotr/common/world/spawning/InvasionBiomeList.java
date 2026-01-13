@@ -167,8 +167,8 @@ public class InvasionBiomeList {
         ));
 
         invasions.put("lotr:dunland", genMap(
-                // TODO: Add Rohan when they are added
                 ExtendedInvasions.DUNEDAIN, InvasionChance.RARE,
+                ExtendedInvasions.ROHAN, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.RARE
         ));
@@ -224,6 +224,9 @@ public class InvasionBiomeList {
                 ExtendedInvasions.WOODLAND_REALM, InvasionChance.UNCOMMON
         ));
         invasions.put("lotr:mirkwood", genMap(
+                ExtendedInvasions.WOODLAND_REALM, InvasionChance.UNCOMMON
+        ));
+        invasions.put("lotr:mirkwood_mountains", genMap(
                 ExtendedInvasions.WOODLAND_REALM, InvasionChance.UNCOMMON
         ));
 
@@ -286,6 +289,11 @@ public class InvasionBiomeList {
         invasions.put("lotr:mordor", new HashMap<>());
         invasions.put("lotr:mordor_mountains", new HashMap<>());
         invasions.put("lotr:eastern_desolation", new HashMap<>());
+        invasions.put("lotr:gorgoroth", new HashMap<>());
+        invasions.put("lotr:morgul_vale", new HashMap<>());
+        invasions.put("lotr:nurn", new HashMap<>());
+        invasions.put("lotr:nurn_marshes", new HashMap<>());
+        invasions.put("lotr:nurnen", new HashMap<>());
 
         invasions.put("lotr:ettenmoors", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.UNCOMMON,
@@ -297,46 +305,91 @@ public class InvasionBiomeList {
                 //this.invasionSpawns.addInvasion(LOTRInvasions.ANGMAR_WARG, LOTREventSpawner.EventChance.UNCOMMON);
         ));
 
-        // TODO: Check these remaining biomes based on the list from WanderingTraders
-        /*
-        traders.put("lotr:forochel", new HashMap<>());
-        traders.put("lotr:forodwaith", new HashMap<>());
-        traders.put("lotr:forodwaith_mountains", new HashMap<>());
-        traders.put("lotr:gorgoroth", new HashMap<>());
-        traders.put("lotr:grey_mountains", new HashMap<>());
-        traders.put("lotr:grey_mountains_foothills", new HashMap<>());
-        traders.put("lotr:harad_desert", new HashMap<>());
-        traders.put("lotr:harad_desert_hills", new HashMap<>());
-        traders.put("lotr:harad_half_desert", new HashMap<>());
-        traders.put("lotr:long_marshes", new HashMap<>());
-        traders.put("lotr:lostladen", new HashMap<>());
-        traders.put("lotr:trollshaws", new HashMap<>());
-        traders.put("lotr:midgewater", new HashMap<>());
-        traders.put("lotr:mirkwood_mountains", new HashMap<>());
-        traders.put("lotr:misty_mountains", new HashMap<>());
-        traders.put("lotr:misty_mountains_foothills", new HashMap<>());
-        traders.put("lotr:morgul_vale", new HashMap<>());
-        traders.put("lotr:nan_curunir", new HashMap<>());
-        traders.put("lotr:nindalf", new HashMap<>());
-        traders.put("lotr:northlands", new HashMap<>());
-        traders.put("lotr:northlands_forest", new HashMap<>());
-        traders.put("lotr:nurn", new HashMap<>());
-        traders.put("lotr:nurn_marshes", new HashMap<>());
-        traders.put("lotr:nurnen", new HashMap<>()); // nurnen is a sea no traders spawn here
-        traders.put("lotr:old_forest", new HashMap<>());
-        traders.put("lotr:snowy_northlands", new HashMap<>());
-        traders.put("lotr:snowy_northlands_forest", new HashMap<>());
-        traders.put("lotr:southron_coasts", new HashMap<>());
-        traders.put("lotr:southron_coasts_forest", new HashMap<>());
-        traders.put("lotr:tolfalas", new HashMap<>());
-        traders.put("lotr:western_isles", new HashMap<>());
-        traders.put("lotr:white_beach", new HashMap<>());
-        traders.put("lotr:white_mountains", new HashMap<>());
-        traders.put("lotr:white_mountains_foothills", new HashMap<>());
-        // TODO: since this is close to Harad it seems like from the wiki it should only have Harad traders
-        //  which means there is nothing that can go here yet
-        traders.put("lotr:wilderland", new HashMap<>());
-         */
+        // forochel and forodwaith have no invasions
+        invasions.put("lotr:forochel", new HashMap<>());
+        invasions.put("lotr:forodwaith", new HashMap<>());
+        invasions.put("lotr:forodwaith_mountains", new HashMap<>());
+
+        invasions.put("lotr:grey_mountains", genMap(
+                ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
+               // TODO: Add the Iron Hills Dwarves when they are added
+        ));
+        invasions.put("lotr:grey_mountains_foothills", genMap(
+                ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
+                // TODO: Add the Iron Hills Dwarves when they are added
+        ));
+
+        // TODO: Not sure what should be in these biomes or when we'll have factions that make sense here
+        invasions.put("lotr:harad_desert", new HashMap<>());
+        invasions.put("lotr:harad_desert_hills", new HashMap<>());
+        invasions.put("lotr:harad_half_desert", new HashMap<>());
+        invasions.put("lotr:lostladen", new HashMap<>());
+
+        invasions.put("lotr:long_marshes", new HashMap<>()); // none here
+
+        invasions.put("lotr:trollshaws", genMap(
+                ExtendedInvasions.DUNEDAIN, InvasionChance.UNCOMMON,
+                ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
+                // TODO: Add these when they are ready
+                //this.invasionSpawns.addInvasion(LOTRInvasions.ANGMAR, LOTREventSpawner.EventChance.UNCOMMON);
+                //this.invasionSpawns.addInvasion(LOTRInvasions.ANGMAR_HILLMEN, LOTREventSpawner.EventChance.UNCOMMON);
+                //this.invasionSpawns.addInvasion(LOTRInvasions.ANGMAR_WARG, LOTREventSpawner.EventChance.UNCOMMON);
+        ));
+
+        invasions.put("lotr:midgewater", genMap(
+                ExtendedInvasions.DUNEDAIN, InvasionChance.RARE,
+                ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.RARE
+        ));
+
+        // Misty Mountains has no invasions
+        invasions.put("lotr:misty_mountains", new HashMap<>());
+        invasions.put("lotr:misty_mountains_foothills", new HashMap<>());
+
+        invasions.put("lotr:nindalf", genMap(
+                ExtendedInvasions.MORDOR, InvasionChance.RARE
+        ));
+
+        invasions.put("lotr:nan_curunir", genMap(
+                ExtendedInvasions.ROHAN, InvasionChance.RARE
+        ));
+
+        // no invasions in Northlands
+        invasions.put("lotr:northlands", new HashMap<>());
+        invasions.put("lotr:northlands_forest", new HashMap<>());
+        invasions.put("lotr:snowy_northlands", new HashMap<>());
+        invasions.put("lotr:snowy_northlands_forest", new HashMap<>());
+
+        invasions.put("lotr:old_forest", new HashMap<>()); // no invasions in Old Forest
+
+        // TODO: Not sure what invasions we should eventually go here
+        invasions.put("lotr:southron_coasts", new HashMap<>());
+        invasions.put("lotr:southron_coasts_forest", new HashMap<>());
+
+        invasions.put("lotr:tolfalas", new HashMap<>()); // none
+
+        // none
+        invasions.put("lotr:white_beach", new HashMap<>());
+        invasions.put("lotr:western_isles", new HashMap<>());
+
+        invasions.put("lotr:wilderland", genMap(
+                ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON
+                // TODO: Add the rest of these add they are added
+                /*LOTRInvasions.MORDOR_WARG, LOTREventSpawner.EventChance.RARE,
+                LOTRInvasions.DALE, LOTREventSpawner.EventChance.RARE
+                LOTRInvasions.DORWINION, LOTREventSpawner.EventChance.RARE
+                LOTRInvasions.RHUN, LOTREventSpawner.EventChance.UNCOMMON */
+        ));
+
+        invasions.put("lotr:white_mountains", genMap(
+               ExtendedInvasions.MORDOR, InvasionChance.RARE
+        ));
+        invasions.put("lotr:white_mountains_foothills", genMap(
+                ExtendedInvasions.MORDOR, InvasionChance.RARE
+        ));
     }
 
     public static Map<ExtendedInvasions, InvasionChance> genMap(Object... entries) {
