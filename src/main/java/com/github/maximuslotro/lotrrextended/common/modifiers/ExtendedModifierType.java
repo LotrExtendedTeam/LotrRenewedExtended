@@ -11,6 +11,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BowItem;
+import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -59,27 +60,27 @@ public enum ExtendedModifierType {
 
 	/** Increases ranged attack speed or draw speed. */
 	RANGED_SPEED("enchant.lotrextended.ranged_speed.disc", "x", 
-			item -> item instanceof BowItem),
+			item -> item instanceof BowItem || item instanceof CrossbowItem),
 
 	/** Enhances knockback effect of ranged attacks. */
 	RANGED_KNOCKBACK("enchant.lotrextended.ranged_knockback.disc", "+", 
-			item -> item instanceof BowItem),
+			item -> item instanceof BowItem || item instanceof CrossbowItem),
 
 	/** Grants bonus damage against specific enemy types (e.g., "Bane of..."). */
 	BANE("enchant.lotrextended.bane.desc", "+", 
-			item -> item instanceof SwordItem || item instanceof BowItem || item instanceof ExtendedThrowableAxeItem),
+			item -> item instanceof SwordItem || item instanceof BowItem || item instanceof CrossbowItem || item instanceof ExtendedThrowableAxeItem),
 
 	/** Applies chilling or slowing effects to enemies. */
 	CHILLING("enchant.lotrextended.chilling.disc", "", 
-			item -> item instanceof SwordItem || item instanceof BowItem || item instanceof ExtendedThrowableAxeItem),
+			item -> item instanceof SwordItem || item instanceof BowItem || item instanceof CrossbowItem || item instanceof ExtendedThrowableAxeItem),
 
 	/** Inflicts fire or burn effects on enemies. */
 	INFERNAL("enchant.lotrextended.infernal.disc", "", 
-			item -> item instanceof SwordItem || item instanceof BowItem || item instanceof ExtendedThrowableAxeItem),
+			item -> item instanceof SwordItem || item instanceof BowItem  || item instanceof CrossbowItem|| item instanceof ExtendedThrowableAxeItem),
 
 	/** Drops enemy heads on death. */
 	HEADHUNTING("enchant.lotrextended.headhunting.disc", "", 
-			item -> item instanceof SwordItem || item instanceof BowItem || item instanceof AxeItem),
+			item -> item instanceof SwordItem || item instanceof BowItem || item instanceof CrossbowItem || item instanceof AxeItem),
 
 	/** Increases efficiency and mining speed for tools. */
 	TOOL_SPEED("enchant.lotrextended.tool_speed.disc", "x", 

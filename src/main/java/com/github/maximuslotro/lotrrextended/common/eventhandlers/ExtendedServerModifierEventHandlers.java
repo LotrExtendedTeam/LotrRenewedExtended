@@ -63,6 +63,7 @@ public class ExtendedServerModifierEventHandlers {
 			if (source instanceof PlayerEntity) {
 				ExtendedModifierUtils.incrementBaneProgress(weapon, event.getEntity(), (PlayerEntity) source);
 			} else {
+				// Allow non-player entities to also obtain banes
 				ExtendedModifierUtils.incrementBaneProgress(weapon, event.getEntity(), null);
 			}
 		}else if (event.getEntityLiving() instanceof PlayerEntity && !event.getEntityLiving().level.isClientSide()) {

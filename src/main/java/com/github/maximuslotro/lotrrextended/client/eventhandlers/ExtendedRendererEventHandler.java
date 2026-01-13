@@ -23,6 +23,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BowItem;
+import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
@@ -139,6 +140,17 @@ public class ExtendedRendererEventHandler {
 			}
 			event.getToolTip().add(new StringTextComponent(""));
 			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.speed", (int)((1.0f/(drawSpeed/20.0F)) * 100)+"%").withStyle(TextFormatting.DARK_GREEN));
+			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.damage", String.format("%.0f%%", damage * 100)).withStyle(TextFormatting.DARK_GREEN));
+			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.range", String.format("%.0f%%", damage * 100)).withStyle(TextFormatting.DARK_GREEN));
+		}
+		if(stack.getItem() instanceof CrossbowItem) {
+			int drawSpeed = 25;
+			float damage = 1.0f;
+			if(!ExtendedModifierUtils.getModifierByTypeSafe(stack, ExtendedModifierType.RANGED_SPEED).isUnknown()) {
+				damage = damage * ExtendedModifierUtils.getModifierByTypeSafe(stack, ExtendedModifierType.RANGED_SPEED).getModifierEffect();
+			}
+			event.getToolTip().add(new StringTextComponent(""));
+			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.speed", (int)((1.0f/(drawSpeed/25.0F)) * 100)+"%").withStyle(TextFormatting.DARK_GREEN));
 			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.damage", String.format("%.0f%%", damage * 100)).withStyle(TextFormatting.DARK_GREEN));
 			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.range", String.format("%.0f%%", damage * 100)).withStyle(TextFormatting.DARK_GREEN));
 		}
