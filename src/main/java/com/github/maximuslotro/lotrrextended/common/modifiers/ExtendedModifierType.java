@@ -154,8 +154,6 @@ public enum ExtendedModifierType {
 		PROTECTION_BLAST.predicateCompatible = m -> (m != PROTECTION_FIRE && m != PROTECTION_RANGED && m != PROTECTION_MITHRIL );
 		PROTECTION_FALLING.predicateCompatible = m -> (m != UNDERWATER_MOVEMENT);
 		UNDERWATER_MOVEMENT.predicateCompatible = m -> (m != PROTECTION_FALLING);
-		FISHING_SPEED.predicateCompatible = m -> (m != FISHING_LUCK);
-		FISHING_LUCK.predicateCompatible = m -> (m != FISHING_SPEED);
 		TOUGHNESS.predicateCompatible = m -> (m != PROTECTION);
 		PROTECTION.predicateCompatible = m -> (m != TOUGHNESS);
 	}
