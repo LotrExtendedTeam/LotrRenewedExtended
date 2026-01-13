@@ -15,7 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
  * <p>
  * This goal overrides the target validation logic to ensure that NPC units in "active duty"
  * will not attack other NPCs under the same player's ownership, unless explicitly allowed
- * by the player's configuration via {@link ExtendedLOTRPlayerData#canHiredUnitAttackOtherHiredUnit()}.
+ * by the player's configuration via {@link ExtendedLOTRPlayerData#getExtendedMiscData()}.
  * <p>
  * Additionally, the goal bypasses the default home restriction check to allow attacks
  * even outside the NPC's home area.
