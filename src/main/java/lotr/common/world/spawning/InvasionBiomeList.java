@@ -12,15 +12,6 @@ public class InvasionBiomeList {
     protected static Map<String, Map<ExtendedInvasions, InvasionChance>> invasions = new HashMap<>();
 
     static {
-        /*
-        // NOTE: Only factions that are supported in the spawner entity at the moment
-        "lotr:high_elves,rivendell"
-        "lotr:high_elves,lindon"
-        "lotr:northern_orcs"
-        "lotr:northern_orcs,wargs"
-        "lotr:dunedain_north"
-         */
-
         // Shire is free from invasions
         invasions.put("lotr:shire", new HashMap<>());
         invasions.put("lotr:shire_moors", new HashMap<>());

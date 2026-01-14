@@ -55,10 +55,7 @@ public class BanditsSpawner {
         if (!ignoreProtection) {
             BlockPos pos = new BlockPos(player.position());
             if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ExtendedBannerProtectionManager.SingleProtectionInstance.AnyProtection(), false, "checkSpawnRules").isNotAllowed()) {
-                ExtendedLog.info("In Banner Area");
                 return false;
-            } else {
-                ExtendedLog.info("Not In Banner Area");
             }
         }
 

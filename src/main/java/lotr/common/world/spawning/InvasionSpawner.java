@@ -39,11 +39,7 @@ public class InvasionSpawner {
             // check for protection
             BlockPos pos = new BlockPos(player.position());
             if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ExtendedBannerProtectionManager.SingleProtectionInstance.AnyProtection(), false, "checkSpawnRules").isNotAllowed()) {
-                // TODO: Remove this logging
-                ExtendedLog.info("In Banner Area");
                 continue;
-            } else {
-                ExtendedLog.info("Not In Banner Area"); // TODO: Remove this logging
             }
 
             // determine possible invasions
