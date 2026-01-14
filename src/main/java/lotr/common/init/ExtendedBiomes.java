@@ -9,4 +9,5 @@ public class ExtendedBiomes {
 	public static PreRegisteredLOTRBiome MORDOR_RIVER;
 	public static PreRegisteredLOTRBiome GORGOROTH_RIVER;
 	public static PreRegisteredLOTRBiome MORGUL_VALE_RIVER;
+	public static PreRegisteredLOTRBiome NURN_RIVER;
 }

@@ -1030,6 +1030,14 @@
           "biome": "lotr:morgul_vale_river"
         }
       }
+    },
+    "enter_nurn_river": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:nurn_river"
+        }
+      }
     }
   },
   "requirements": [
@@ -1160,7 +1168,8 @@
       "enter_rivendell_river",
       "enter_mordor_river",
       "enter_gorgoroth_river",
-      "enter_morgul_vale_river"
+      "enter_morgul_vale_river",
+      "enter_nurn_river"
     ]
   ]
 }

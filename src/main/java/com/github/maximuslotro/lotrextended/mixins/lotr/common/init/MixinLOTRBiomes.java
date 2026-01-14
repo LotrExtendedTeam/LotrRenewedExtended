@@ -17,6 +17,7 @@ import lotr.common.biome.BarrowDownsBiome;
 import lotr.common.biome.ExtendedGorgorothRiverBiome;
 import lotr.common.biome.ExtendedMordorRiverBiome;
 import lotr.common.biome.ExtendedMorgulValeRiverBiome;
+import lotr.common.biome.ExtendedNurnRiverBiome;
 import lotr.common.biome.ExtendedRivendellBiome;
 import lotr.common.init.ExtendedBiomes;
 import lotr.common.init.LOTRBiomes;
@@ -84,6 +85,7 @@ public class MixinLOTRBiomes {
 		ExtendedBiomes.MORDOR_RIVER = prepareD("mordor_river", () -> new ExtendedMordorRiverBiome());
 		ExtendedBiomes.GORGOROTH_RIVER = prepareD("gorgoroth_river", () -> new ExtendedGorgorothRiverBiome());
 		ExtendedBiomes.MORGUL_VALE_RIVER = prepareD("morgul_vale_river", () -> new ExtendedMorgulValeRiverBiome());
+		ExtendedBiomes.NURN_RIVER = prepareD("nurn_river", () -> new ExtendedNurnRiverBiome());
 
 	}
 }
