@@ -84,14 +84,23 @@ public enum ExtendedInvasions {
 
         ExtendedInvasions.DUNEDAIN.addInvasionMob(new InvasionSpawnEntry(ExtendedEntities.DUNEDAIN_RANGER.get(), 15));
 
-        // TODO: Following invasions need their mobs defined
-        /* MORDOR
-           GONDOR
-           LOTHLORIEN
-           WOODLAND_REALM
-           ROHAN
-         */
+        ExtendedInvasions.MORDOR.addInvasionMob(new InvasionSpawnEntry(LOTREntities.MORDOR_ORC.get(), 10));
+        ExtendedInvasions.MORDOR.addInvasionMob(new InvasionSpawnEntry(LOTREntities.MORDOR_ORC_ARCHER.get(), 5));
+        ExtendedInvasions.MORDOR.addInvasionMob(new InvasionSpawnEntry(LOTREntities.MORDOR_WARG.get(), 10));
+        // TODO: Add Bombardiers when they are added
+        // TODO: Add Black Uruks when they are added
+        // TODO: Add Olog-hai when they are added
 
+        ExtendedInvasions.GONDOR.addInvasionMob(new InvasionSpawnEntry(LOTREntities.GONDOR_SOLDIER.get(), 10));
+        ExtendedInvasions.GONDOR.addInvasionMob(new InvasionSpawnEntry(LOTREntities.GONDOR_ARCHER.get(), 5));
+        // TODO: Add Gondor Levyman when they are added
+
+        ExtendedInvasions.LOTHLORIEN.addInvasionMob(new InvasionSpawnEntry(LOTREntities.GALADHRIM_WARRIOR.get(), 10));
+
+        ExtendedInvasions.WOODLAND_REALM.addInvasionMob(new InvasionSpawnEntry(LOTREntities.WOOD_ELF_WARRIOR.get(), 10));
+
+        ExtendedInvasions.ROHAN.addInvasionMob(new InvasionSpawnEntry(LOTREntities.ROHIRRIM_WARRIOR.get(), 10));
+        ExtendedInvasions.ROHAN.addInvasionMob(new InvasionSpawnEntry(LOTREntities.ROHIRRIM_WARRIOR.get(), 5));
     }
 
 

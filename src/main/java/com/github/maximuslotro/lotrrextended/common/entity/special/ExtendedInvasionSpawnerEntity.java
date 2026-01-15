@@ -24,17 +24,14 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public class ExtendedInvasionSpawnerEntity extends Entity {
 
     private static final DataParameter<String> DATA_FACTION_KEY = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, DataSerializers.STRING);
+    private static final DataParameter<Integer> DATA_ENEMIES_LEFT = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, DataSerializers.INT);
+    private static final DataParameter<Integer> DATA_INVASION_SIZE = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, DataSerializers.INT);
 
     private static final float ROTATION_SPEED = 1.0F;
 
     public ExtendedInvasionSpawnerEntity(EntityType<? extends ExtendedInvasionSpawnerEntity> pType, World pLevel) {
         super(pType, pLevel);
     }
-
-    // TODO: Make sure to support "lotr:northern_orcs,wargs" in spawn logic
-    // TODO: Make sure to support "lotr:mordor" in spawn logic
-    // TODO: Make sure to support "lotr:gondor" in spawn logic
-    // TODO: Make sure to support "lotr:lothlorien" in spawn logic
 
     public ExtendedInvasionSpawnerEntity(World pLevel) {
         this(ExtendedEntities.INVASION_SPAWNER.get(), pLevel);
@@ -43,12 +40,20 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     @Override
     protected void defineSynchedData() {
         this.getEntityData().define(DATA_FACTION_KEY, "empty");
+        this.getEntityData().define(DATA_ENEMIES_LEFT, 0);
+        this.getEntityData().define(DATA_INVASION_SIZE, 0);
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundNBT compoundNBT) {
         if(compoundNBT.contains("faction_key")) {
             this.getEntityData().set(DATA_FACTION_KEY, compoundNBT.getString("faction_key"));
+        }
+        if(compoundNBT.contains("enemies_left")) {
+            this.getEntityData().set(DATA_ENEMIES_LEFT, compoundNBT.getInt("enemies_left"));
+        }
+        if(compoundNBT.contains("invasion_size")) {
+            this.getEntityData().set(DATA_INVASION_SIZE, compoundNBT.getInt("invasion_size"));
         }
     }
 
@@ -70,6 +75,8 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     @Override
     protected void addAdditionalSaveData(CompoundNBT compoundNBT) {
         compoundNBT.putString("faction_key", getFactionKey());
+        compoundNBT.putInt("invasion_size", getInvasionSize());
+        compoundNBT.putInt("enemies_left", getEnemiesLeft());
     }
 
     public void setFaction(String factionKey) {
@@ -78,6 +85,14 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
     public String getFactionKey() {
         return this.getEntityData().get(DATA_FACTION_KEY);
+    }
+
+    public int getEnemiesLeft() {
+        return this.getEntityData().get(DATA_ENEMIES_LEFT);
+    }
+
+    public int getInvasionSize() {
+        return this.getEntityData().get(DATA_INVASION_SIZE);
     }
 
     @Override
