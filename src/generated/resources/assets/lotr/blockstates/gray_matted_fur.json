@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "lotrextended:block/gray_matted_fur"
+      },
+      {
+        "model": "lotrextended:block/gray_matted_fur",
+        "y": 180
+      },
+      {
+        "model": "lotrextended:block/gray_matted_fur_mirrored"
+      },
+      {
+        "model": "lotrextended:block/gray_matted_fur_mirrored",
+        "y": 180
+      }
+    ]
+  }
+}

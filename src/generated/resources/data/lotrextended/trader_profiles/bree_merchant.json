@@ -10,76 +10,76 @@
   "buyFromPlayer": [
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
         "item": "lotr:drystone",
+        "averageCost": 4,
         "count": 16
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
         "item": "lotr:maple_log",
+        "averageCost": 4,
         "count": 16
       }
     },
     {
       "weight": 50,
-      "averageCost": 30,
       "stack": {
-        "item": "lotr:hobbit_oven"
+        "item": "lotr:hobbit_oven",
+        "averageCost": 30
       }
     },
     {
       "weight": 50,
-      "averageCost": 6,
       "stack": {
-        "item": "lotr:cherry_pie"
+        "item": "lotr:cherry_pie",
+        "averageCost": 6
       }
     },
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
-        "item": "lotr:apple_crumble"
+        "item": "lotr:apple_crumble",
+        "averageCost": 10
       }
     },
     {
       "weight": 50,
-      "averageCost": 8,
       "stack": {
-        "item": "lotr:hobbit_pancake"
+        "item": "lotr:hobbit_pancake",
+        "averageCost": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
         "item": "lotr:smoking_pipe",
+        "averageCost": 10,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
-        "item": "lotr:pipeweed_leaf"
+        "item": "lotr:pipeweed_leaf",
+        "averageCost": 1
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
         "item": "lotr:pipeweed",
+        "averageCost": 2,
         "count": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 2,
       "stack": {
         "item": "lotr:pipeweed_seeds",
+        "averageCost": 2,
         "count": 6
       }
     }
@@ -87,147 +87,142 @@
   "sellToPlayer": [
     {
       "weight": 50,
-      "averageCost": 100,
       "stack": {
-        "item": "lotr:bree_crafting_table"
+        "item": "lotr:bree_crafting_table",
+        "averageCost": 100
       }
     },
     {
       "weight": 50,
-      "averageCost": 50,
       "stack": {
-        "item": "lotr:bree_banner"
+        "item": "lotr:bree_banner",
+        "averageCost": 50
       }
     },
     {
       "weight": 50,
-      "averageCost": 25,
       "stack": {
-        "item": "lotr:bree_banner_pattern"
+        "item": "lotr:bree_banner_pattern",
+        "averageCost": 25
       }
     },
     {
       "weight": 50,
-      "averageCost": 50,
       "stack": {
         "item": "lotr:bree_shield",
+        "averageCost": 50,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 12,
       "stack": {
         "item": "minecraft:iron_sword",
+        "averageCost": 12,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
         "item": "lotr:bronze_sword",
+        "averageCost": 10,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 15,
       "stack": {
         "item": "lotr:iron_spear",
+        "averageCost": 15,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 13,
       "stack": {
         "item": "lotr:bronze_spear",
+        "averageCost": 13,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 6,
       "stack": {
-        "item": "lotr:maple_syrup"
+        "item": "lotr:maple_syrup",
+        "averageCost": 6
       }
     },
     {
       "weight": 50,
-      "averageCost": 8,
       "stack": {
-        "item": "lotr:maple_sapling"
+        "item": "lotr:maple_sapling",
+        "averageCost": 8
       }
     },
     {
       "weight": 50,
-      "averageCost": 9,
-      "stack": {
-        "item": "lotr:mead",
-        "nbt": "{vessel:{potency:\"light\"}}"
-      }
+      "stacks": [
+        {
+          "item": "lotr:mead",
+          "averageCost": 9,
+          "nbt": "{vessel:{potency:\"light\"}}"
+        },
+        {
+          "item": "lotr:mead",
+          "averageCost": 12,
+          "nbt": "{vessel:{potency:\"moderate\"}}"
+        },
+        {
+          "item": "lotr:mead",
+          "averageCost": 15,
+          "nbt": "{vessel:{potency:\"strong\"}}"
+        }
+      ]
     },
     {
       "weight": 50,
-      "averageCost": 12,
-      "stack": {
-        "item": "lotr:mead",
-        "nbt": "{vessel:{potency:\"moderate\"}}"
-      }
-    },
-    {
-      "weight": 50,
-      "averageCost": 15,
-      "stack": {
-        "item": "lotr:mead",
-        "nbt": "{vessel:{potency:\"strong\"}}"
-      }
-    },
-    {
-      "weight": 50,
-      "averageCost": 8,
-      "stack": {
-        "item": "lotr:maple_beer",
-        "nbt": "{vessel:{potency:\"light\"}}"
-      }
-    },
-    {
-      "weight": 50,
-      "averageCost": 10,
-      "stack": {
-        "item": "lotr:maple_beer",
-        "nbt": "{vessel:{potency:\"moderate\"}}"
-      }
-    },
-    {
-      "weight": 50,
-      "averageCost": 12,
-      "stack": {
-        "item": "lotr:maple_beer",
-        "nbt": "{vessel:{potency:\"strong\"}}"
-      }
+      "stacks": [
+        {
+          "item": "lotr:maple_beer",
+          "averageCost": 8,
+          "nbt": "{vessel:{potency:\"light\"}}"
+        },
+        {
+          "item": "lotr:maple_beer",
+          "averageCost": 10,
+          "nbt": "{vessel:{potency:\"moderate\"}}"
+        },
+        {
+          "item": "lotr:maple_beer",
+          "averageCost": 12,
+          "nbt": "{vessel:{potency:\"strong\"}}"
+        }
+      ]
     },
     {
       "weight": 10,
-      "averageCost": 100,
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
       "stacks": [
         {
           "item": "lotr:modifier_scroll",
+          "averageCost": 100,
           "nbt": "{REScrollMod:\"toughness1\"}"
         },
         {
           "item": "lotr:modifier_scroll",
+          "averageCost": 100,
           "nbt": "{REScrollMod:\"strong1\"}"
         },
         {
           "item": "lotr:modifier_scroll",
+          "averageCost": 100,
           "nbt": "{REScrollMod:\"meleeSpeed1\"}"
         },
         {
           "item": "lotr:modifier_scroll",
+          "averageCost": 100,
           "nbt": "{REScrollMod:\"meleeReach1\"}"
         }
       ]

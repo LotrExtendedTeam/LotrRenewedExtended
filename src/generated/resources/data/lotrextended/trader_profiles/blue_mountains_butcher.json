@@ -9,127 +9,127 @@
   "buyFromPlayer": [
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:wheat",
+        "averageCost": 1,
         "count": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 10,
       "stack": {
-        "item": "lotr:salt"
+        "item": "lotr:salt",
+        "averageCost": 10
       }
     },
     {
       "weight": 50,
-      "averageCost": 1,
       "stack": {
         "item": "minecraft:string",
+        "averageCost": 1,
         "count": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
         "item": "lotr:bronze_dagger",
+        "averageCost": 3,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
         "item": "lotr:iron_dagger",
+        "averageCost": 3,
         "nbt": "{Damage:0}"
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
-        "item": "minecraft:lead"
+        "item": "minecraft:lead",
+        "averageCost": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:iron_ingot"
+        "item": "minecraft:iron_ingot",
+        "averageCost": 3
       }
     }
   ],
   "sellToPlayer": [
     {
       "weight": 50,
-      "averageCost": 6,
       "stack": {
-        "item": "lotr:gammon"
+        "item": "lotr:gammon",
+        "averageCost": 6
       }
     },
     {
       "weight": 50,
-      "averageCost": 5,
       "stack": {
-        "item": "minecraft:beef"
+        "item": "minecraft:beef",
+        "averageCost": 5
       }
     },
     {
       "weight": 50,
-      "averageCost": 5,
       "stack": {
-        "item": "minecraft:mutton"
+        "item": "minecraft:mutton",
+        "averageCost": 5
       }
     },
     {
       "weight": 50,
-      "averageCost": 5,
       "stack": {
-        "item": "minecraft:porkchop"
+        "item": "minecraft:porkchop",
+        "averageCost": 5
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
-        "item": "minecraft:chicken"
+        "item": "minecraft:chicken",
+        "averageCost": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
-        "item": "lotr:raw_duck"
+        "item": "lotr:raw_duck",
+        "averageCost": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 4,
       "stack": {
-        "item": "minecraft:rabbit"
+        "item": "minecraft:rabbit",
+        "averageCost": 4
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:leather"
+        "item": "minecraft:leather",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 3,
       "stack": {
-        "item": "minecraft:feather"
+        "item": "minecraft:feather",
+        "averageCost": 3
       }
     },
     {
       "weight": 50,
-      "averageCost": 6,
       "stack": {
-        "item": "lotr:horn"
+        "item": "lotr:horn",
+        "averageCost": 6
       }
     }
   ]

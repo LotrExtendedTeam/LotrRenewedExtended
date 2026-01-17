@@ -507,11 +507,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 10.0,
-                "type": "minecraft:uniform"
-              }
+              "count": 1
             }
           ],
           "name": "lotr:book_of_true_silver"

@@ -287,6 +287,8 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_SHOVEL.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_PICKAXE.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_HOE.get()), 1)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.RIVENDELL_BOW.get()), 5)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.RIVENDELL_ELF);
 
@@ -298,8 +300,8 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_SWORD.get()), 7)
 		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_SPEAR.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_AXE.get()), 1)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.RIVENDELL_BOW.get()), 5)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
-		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.RIVENDELL_SHIELD.get()), 1)
 		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.RIVENDELL_WARRIOR);
 	}

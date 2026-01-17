@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_bone_hoe": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:bone_hoe"
-          }
-        ]
-      }
-    },
     "has_bone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_bone_hoe",
       "has_bone",
       "has_the_recipe"
     ]

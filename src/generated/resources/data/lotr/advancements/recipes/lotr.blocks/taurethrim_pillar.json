@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_taurethrim_pillar": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:taurethrim_pillar"
-          }
-        ]
-      }
-    },
     "has_stone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_taurethrim_pillar",
       "has_stone",
       "has_the_recipe"
     ]

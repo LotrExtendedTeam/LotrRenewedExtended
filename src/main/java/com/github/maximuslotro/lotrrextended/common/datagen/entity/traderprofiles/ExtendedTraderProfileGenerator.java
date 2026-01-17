@@ -355,11 +355,6 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.SILVER_FUR, 3)
 		.addSBuy(ExtendedItems.WHITE_FUR, 25)
 		.addSBuy(Items.RABBIT_HIDE, 1)
-		.addSBuy(ExtendedItems.BROWN_PACKED_FUR, 18)
-		.addSBuy(ExtendedItems.BLACK_PACKED_FUR, 18)
-		.addSBuy(ExtendedItems.GRAY_PACKED_FUR, 18)
-		.addSBuy(ExtendedItems.SILVER_PACKED_FUR, 27)
-		.addSBuy(ExtendedItems.WHITE_PACKED_FUR, 200)
 		.addSBuy(Items.SHEARS, 5)
 		.addMSell(2, Items.WHITE_CARPET,Items.BLACK_CARPET,
 			Items.BLUE_CARPET, Items.BROWN_CARPET,
@@ -529,7 +524,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.MAPLE_SAPLING, 8)
 		.addDrinkSell(LOTRItems.MEAD, 9, 12, 15)
 		.addDrinkSell(LOTRItems.MAPLE_BEER, 8, 10, 12)
-		.addMSell( Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH),
+		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SHARP),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SWIFT),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.LONG)
@@ -651,7 +646,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.IRON_SPEAR, 15)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 16)
 		.addSSell(ExtendedItems.BRANDING_IRON, 25)
-		.addMSell( Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH),
+		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SHARP),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SWIFT),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.LONG)
@@ -728,6 +723,11 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(LOTRItems.DWARF_BONE.get(), 1)
 		.addSBuy(LOTRItems.HOBBIT_BONE.get(), 1)
 		.addSBuy(Items.BONE, 1)
+		.addSBuy(LOTRItems.FUR, 2)
+		.addSBuy(ExtendedItems.BLACK_FUR, 2)
+		.addSBuy(ExtendedItems.GRAY_FUR, 2)
+		.addSBuy(ExtendedItems.SILVER_FUR, 3)
+		.addSBuy(ExtendedItems.WHITE_FUR, 25)
 		.addSBuy(LOTRItems.MAN_FLESH.get(), 3)
 		// TODO add bronze daggers
 		.addSSell(ExtendedItems.NORTHERN_ORC_CRAFTING_TABLE, 100)
@@ -739,6 +739,9 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.BRONZE_SPEAR, 15)
 		.addSSell(LOTRItems.BRONZE_DAGGER, 9)
 		.addSSell(LOTRItems.FUR, 4)
+		.addSSell(ExtendedItems.BLACK_FUR, 4)
+		.addSSell(ExtendedItems.GRAY_FUR, 4)
+		.addSSell(ExtendedItems.SILVER_FUR, 6)
 		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addSSell(LOTRItems.BRONZE_PICKAXE, 10)
 		.addSSell(LOTRItems.BRONZE_AXE, 10)
@@ -904,6 +907,10 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.LEATHER, 2)
 		.addSBuy(Items.ROTTEN_FLESH, 2)
 		.addSBuy(LOTRItems.FUR, 2)
+		.addSBuy(ExtendedItems.BLACK_FUR, 2)
+		.addSBuy(ExtendedItems.GRAY_FUR, 2)
+		.addSBuy(ExtendedItems.SILVER_FUR, 3)
+		.addSBuy(ExtendedItems.WHITE_FUR, 25)
 		.addSBuy(new ItemStack(Items.STRING, 3), 1)
 		.addSBuy(new ItemStack(Items.WHEAT_SEEDS, 2), 1)
 		.addSBuy(new ItemStack(Items.STICK, 8), 1)
@@ -1051,15 +1058,13 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.GOLD_TRIMMED_DWARVEN_LEGGINGS, 75)
 		.addSSell(LOTRItems.GOLD_TRIMMED_DWARVEN_BOOTS, 70)
 		.addSSell(ExtendedItems.DWARVEN_BOAR_ARMOR, 25)
-		.addMSell(
-				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
+		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SILKEN)
 				),
 				5, 350, 1, false)
-		.addMSell(
-				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.DEFLECTING),
+		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.DEFLECTING),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MIGHTY),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.HASTY)
 				),
@@ -1116,15 +1121,13 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.BLUE_DWARVEN_LEGGINGS, 30)
 		.addSSell(LOTRItems.BLUE_DWARVEN_BOOTS, 22)
 		.addSSell(ExtendedItems.BLUE_DWARVEN_BOAR_ARMOR, 25)
-		.addMSell(
-				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
+		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MASTERFUL),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SILKEN)
 				),
 				5, 350, 1, false)
-		.addMSell(
-				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.DEFLECTING),
+		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.DEFLECTING),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MIGHTY),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.HASTY)
 				),
@@ -1272,15 +1275,13 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_LEGGINGS, 10, 440, 1, false)
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_BOOTS, 10, 320, 1, false)
 		.addSSell(new ItemStack(Items.ARROW, 4), 3)
-		.addMSell(
-				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
+		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.NIMBLE),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SILKEN)
 				),
 				5, 350, 1, false)
-		.addMSell(
-				Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.DEFLECTING),
+		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.DEFLECTING),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MIGHTY),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.HASTY)
 				),
@@ -1316,11 +1317,6 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.SILVER_FUR, 3)
 		.addSBuy(ExtendedItems.WHITE_FUR, 25)
 		.addSBuy(Items.RABBIT_HIDE, 1)
-		.addSBuy(ExtendedItems.BROWN_PACKED_FUR, 18)
-		.addSBuy(ExtendedItems.BLACK_PACKED_FUR, 18)
-		.addSBuy(ExtendedItems.GRAY_PACKED_FUR, 18)
-		.addSBuy(ExtendedItems.SILVER_PACKED_FUR, 27)
-		.addSBuy(ExtendedItems.WHITE_PACKED_FUR, 200)
 		.addSBuy(Items.SHEARS, 5)
 		.addMSell(2, Items.WHITE_CARPET, Items.BLACK_CARPET,
 			Items.BLUE_CARPET, Items.BROWN_CARPET,

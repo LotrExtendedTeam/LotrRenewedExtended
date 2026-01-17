@@ -1,0 +1,32 @@
+{
+  "parent": "lotrextended:general/drunkard",
+  "display": {
+    "icon": {
+      "item": "lotr:ale"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.general.brewing.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.brewing.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_string_trigger_brewdrink": {
+      "trigger": "lotrextended:string_trigger",
+      "conditions": {
+        "triggerName": "brewDrink"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_string_trigger_brewdrink"
+    ]
+  ]
+}

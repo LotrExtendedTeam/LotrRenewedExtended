@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_dirt": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:dirt"
-          }
-        ]
-      }
-    },
     "has_barren_dirt": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_dirt",
       "has_barren_dirt",
       "has_the_recipe"
     ]

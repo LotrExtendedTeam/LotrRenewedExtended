@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_golden_taurethrim_pillar_slab": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:golden_taurethrim_pillar_slab"
-          }
-        ]
-      }
-    },
     "has_golden_taurethrim_pillar": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_golden_taurethrim_pillar_slab",
       "has_golden_taurethrim_pillar",
       "has_the_recipe"
     ]

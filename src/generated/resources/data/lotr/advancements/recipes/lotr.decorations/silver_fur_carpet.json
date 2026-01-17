@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_silver_fur_carpet": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:silver_fur_carpet"
-          }
-        ]
-      }
-    },
     "has_silver_fur": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_silver_fur_carpet",
       "has_silver_fur",
       "has_the_recipe"
     ]

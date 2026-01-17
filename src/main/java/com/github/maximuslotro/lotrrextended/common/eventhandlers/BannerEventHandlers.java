@@ -4,10 +4,10 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedBookshelfBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedWeaponRackBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBookshelfBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
 
 import lotr.common.block.FactionCraftingTableBlock;
@@ -171,6 +171,7 @@ public class BannerEventHandlers {
 		}
 	}
 
+	//TODO allow owner to blow up their own land
 	@SubscribeEvent(priority=EventPriority.HIGH)
 	public static void handleBannerDetonateEvent(ExplosionEvent.Detonate event) {
 		Explosion explosion = event.getExplosion();

@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_bronze_throwing_axe": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:bronze_throwing_axe"
-          }
-        ]
-      }
-    },
     "has_bronze": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_bronze_throwing_axe",
       "has_bronze",
       "has_the_recipe"
     ]

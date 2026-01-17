@@ -13,6 +13,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> BLACK_URUK_STEEL_BLOCK;
 	public static RegistryObject<Block> GILDED_IRON_BLOCK;
 	public static RegistryObject<Block> MORGUL_STEEL_BLOCK;
+	public static RegistryObject<Block> METEORITE_ORE;
 
 	public static RegistryObject<Block> TOPAZ_ORE;
 	public static RegistryObject<Block> AMETHYST_ORE;
@@ -361,26 +362,26 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> ELDERBERRY_BUSH;
 	public static RegistryObject<Block> WILDBERRY_BUSH;
 
-	public static RegistryObject<Block> WHITE_PACKED_FUR;
-	public static RegistryObject<Block> WHITE_PACKED_FUR_SLAB;
-	public static RegistryObject<Block> WHITE_PACKED_FUR_STAIRS;
-	public static RegistryObject<Block> WHITE_PACKED_FUR_WALL;
-	public static RegistryObject<Block> SILVER_PACKED_FUR;
-	public static RegistryObject<Block> SILVER_PACKED_FUR_SLAB;
-	public static RegistryObject<Block> SILVER_PACKED_FUR_STAIRS;
-	public static RegistryObject<Block> SILVER_PACKED_FUR_WALL;
-	public static RegistryObject<Block> GRAY_PACKED_FUR;
-	public static RegistryObject<Block> GRAY_PACKED_FUR_SLAB;
-	public static RegistryObject<Block> GRAY_PACKED_FUR_STAIRS;
-	public static RegistryObject<Block> GRAY_PACKED_FUR_WALL;
-	public static RegistryObject<Block> BROWN_PACKED_FUR;
-	public static RegistryObject<Block> BROWN_PACKED_FUR_SLAB;
-	public static RegistryObject<Block> BROWN_PACKED_FUR_STAIRS;
-	public static RegistryObject<Block> BROWN_PACKED_FUR_WALL;
-	public static RegistryObject<Block> BLACK_PACKED_FUR;
-	public static RegistryObject<Block> BLACK_PACKED_FUR_SLAB;
-	public static RegistryObject<Block> BLACK_PACKED_FUR_STAIRS;
-	public static RegistryObject<Block> BLACK_PACKED_FUR_WALL;
+	public static RegistryObject<Block> WHITE_MATTED_FUR;
+	public static RegistryObject<Block> WHITE_MATTED_FUR_SLAB;
+	public static RegistryObject<Block> WHITE_MATTED_FUR_STAIRS;
+	public static RegistryObject<Block> WHITE_MATTED_FUR_WALL;
+	public static RegistryObject<Block> SILVER_MATTED_FUR;
+	public static RegistryObject<Block> SILVER_MATTED_FUR_SLAB;
+	public static RegistryObject<Block> SILVER_MATTED_FUR_STAIRS;
+	public static RegistryObject<Block> SILVER_MATTED_FUR_WALL;
+	public static RegistryObject<Block> GRAY_MATTED_FUR;
+	public static RegistryObject<Block> GRAY_MATTED_FUR_SLAB;
+	public static RegistryObject<Block> GRAY_MATTED_FUR_STAIRS;
+	public static RegistryObject<Block> GRAY_MATTED_FUR_WALL;
+	public static RegistryObject<Block> BROWN_MATTED_FUR;
+	public static RegistryObject<Block> BROWN_MATTED_FUR_SLAB;
+	public static RegistryObject<Block> BROWN_MATTED_FUR_STAIRS;
+	public static RegistryObject<Block> BROWN_MATTED_FUR_WALL;
+	public static RegistryObject<Block> BLACK_MATTED_FUR;
+	public static RegistryObject<Block> BLACK_MATTED_FUR_SLAB;
+	public static RegistryObject<Block> BLACK_MATTED_FUR_STAIRS;
+	public static RegistryObject<Block> BLACK_MATTED_FUR_WALL;
 
 	public static RegistryObject<Block> WHITE_FUR_BUNDLE;
 	public static RegistryObject<Block> SILVER_FUR_BUNDLE;

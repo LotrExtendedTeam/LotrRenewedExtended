@@ -24,9 +24,12 @@ import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedOrcBedBlo
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedSilverFurBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedStrawBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedWhiteFurBedBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBookshelfBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedOrcBarrelBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedReedBasketBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedStoneChestBlock;
+import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.trees.BananaTree;
@@ -548,30 +551,30 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.WILLOW_VINES = registerB("willow_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 
 		//Packed Fur
-		ExtendedBlocks.WHITE_PACKED_FUR = registerB("white_packed_fur", () -> new ExtendedPackedFurBlock(ExtendedWargFurType.WHITE));
-		ExtendedBlocks.WHITE_PACKED_FUR_SLAB = registerB("white_packed_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.WHITE_PACKED_FUR));
-		ExtendedBlocks.WHITE_PACKED_FUR_STAIRS = registerB("white_packed_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.WHITE_PACKED_FUR));
-		ExtendedBlocks.WHITE_PACKED_FUR_WALL = registerB("white_packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.WHITE_PACKED_FUR));
+		ExtendedBlocks.WHITE_MATTED_FUR = registerB("white_matted_fur", () -> new ExtendedMattedFurBlock(ExtendedWargFurType.WHITE));
+		ExtendedBlocks.WHITE_MATTED_FUR_SLAB = registerB("white_matted_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.WHITE_MATTED_FUR));
+		ExtendedBlocks.WHITE_MATTED_FUR_STAIRS = registerB("white_matted_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.WHITE_MATTED_FUR));
+		ExtendedBlocks.WHITE_MATTED_FUR_WALL = registerB("white_matted_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.WHITE_MATTED_FUR));
 
-		ExtendedBlocks.SILVER_PACKED_FUR = registerB("silver_packed_fur", () -> new ExtendedPackedFurBlock(ExtendedWargFurType.SILVER));
-		ExtendedBlocks.SILVER_PACKED_FUR_SLAB = registerB("silver_packed_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.SILVER_PACKED_FUR));
-		ExtendedBlocks.SILVER_PACKED_FUR_STAIRS = registerB("silver_packed_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.SILVER_PACKED_FUR));
-		ExtendedBlocks.SILVER_PACKED_FUR_WALL = registerB("silver_packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.SILVER_PACKED_FUR));
+		ExtendedBlocks.SILVER_MATTED_FUR = registerB("silver_matted_fur", () -> new ExtendedMattedFurBlock(ExtendedWargFurType.SILVER));
+		ExtendedBlocks.SILVER_MATTED_FUR_SLAB = registerB("silver_matted_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.SILVER_MATTED_FUR));
+		ExtendedBlocks.SILVER_MATTED_FUR_STAIRS = registerB("silver_matted_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.SILVER_MATTED_FUR));
+		ExtendedBlocks.SILVER_MATTED_FUR_WALL = registerB("silver_matted_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.SILVER_MATTED_FUR));
 
-		ExtendedBlocks.GRAY_PACKED_FUR = registerB("gray_packed_fur", () -> new ExtendedPackedFurBlock(ExtendedWargFurType.GRAY));
-		ExtendedBlocks.GRAY_PACKED_FUR_SLAB = registerB("gray_packed_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.GRAY_PACKED_FUR));
-		ExtendedBlocks.GRAY_PACKED_FUR_STAIRS = registerB("gray_packed_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.GRAY_PACKED_FUR));
-		ExtendedBlocks.GRAY_PACKED_FUR_WALL = registerB("gray_packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.GRAY_PACKED_FUR));
+		ExtendedBlocks.GRAY_MATTED_FUR = registerB("gray_matted_fur", () -> new ExtendedMattedFurBlock(ExtendedWargFurType.GRAY));
+		ExtendedBlocks.GRAY_MATTED_FUR_SLAB = registerB("gray_matted_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.GRAY_MATTED_FUR));
+		ExtendedBlocks.GRAY_MATTED_FUR_STAIRS = registerB("gray_matted_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.GRAY_MATTED_FUR));
+		ExtendedBlocks.GRAY_MATTED_FUR_WALL = registerB("gray_matted_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.GRAY_MATTED_FUR));
 
-		ExtendedBlocks.BROWN_PACKED_FUR = registerB("packed_fur", () -> new ExtendedPackedFurBlock(ExtendedWargFurType.BROWN));
-		ExtendedBlocks.BROWN_PACKED_FUR_SLAB = registerB("packed_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.BROWN_PACKED_FUR));
-		ExtendedBlocks.BROWN_PACKED_FUR_STAIRS = registerB("packed_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.BROWN_PACKED_FUR));
-		ExtendedBlocks.BROWN_PACKED_FUR_WALL = registerB("packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.BROWN_PACKED_FUR));
+		ExtendedBlocks.BROWN_MATTED_FUR = registerB("matted_fur", () -> new ExtendedMattedFurBlock(ExtendedWargFurType.BROWN));
+		ExtendedBlocks.BROWN_MATTED_FUR_SLAB = registerB("matted_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.BROWN_MATTED_FUR));
+		ExtendedBlocks.BROWN_MATTED_FUR_STAIRS = registerB("matted_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.BROWN_MATTED_FUR));
+		ExtendedBlocks.BROWN_MATTED_FUR_WALL = registerB("matted_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.BROWN_MATTED_FUR));
 
-		ExtendedBlocks.BLACK_PACKED_FUR = registerB("black_packed_fur", () -> new ExtendedPackedFurBlock(ExtendedWargFurType.BLACK));
-		ExtendedBlocks.BLACK_PACKED_FUR_SLAB = registerB("black_packed_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.BLACK_PACKED_FUR));
-		ExtendedBlocks.BLACK_PACKED_FUR_STAIRS = registerB("black_packed_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.BLACK_PACKED_FUR));
-		ExtendedBlocks.BLACK_PACKED_FUR_WALL = registerB("black_packed_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.BLACK_PACKED_FUR));
+		ExtendedBlocks.BLACK_MATTED_FUR = registerB("black_matted_fur", () -> new ExtendedMattedFurBlock(ExtendedWargFurType.BLACK));
+		ExtendedBlocks.BLACK_MATTED_FUR_SLAB = registerB("black_matted_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(ExtendedBlocks.BLACK_MATTED_FUR));
+		ExtendedBlocks.BLACK_MATTED_FUR_STAIRS = registerB("black_matted_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(ExtendedBlocks.BLACK_MATTED_FUR));
+		ExtendedBlocks.BLACK_MATTED_FUR_WALL = registerB("black_matted_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(ExtendedBlocks.BLACK_MATTED_FUR));
 
 		//Bundled Fur
 		ExtendedBlocks.WHITE_FUR_BUNDLE = registerB("white_fur_bundle", () -> new ExtendedBundleBlock(MaterialColor.WOOL));
@@ -599,6 +602,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.PEARL_BLOCK = registerB("pearl_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.WOOL).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
 
 		//GEM ORES
+		ExtendedBlocks.METEORITE_ORE = registerB("meteorite", () -> new MineralBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(3).requiresCorrectToolForDrops().strength(50.0F, 1200.0F), 1));
 		ExtendedBlocks.AMBER_ORE = registerB("amber_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
 		ExtendedBlocks.TOPAZ_ORE = registerB("topaz_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
 		ExtendedBlocks.AMETHYST_ORE = registerB("amethyst_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));

@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:general/drunkard",
+  "display": {
+    "icon": {
+      "item": "lotr:orc_draught"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.general.burning_sensation.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.burning_sensation.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "drink_any": {
+      "trigger": "lotrextended:drinking",
+      "conditions": {
+        "drink_item": {
+          "item": "lotr:orc_draught"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "drink_any"
+    ]
+  ]
+}

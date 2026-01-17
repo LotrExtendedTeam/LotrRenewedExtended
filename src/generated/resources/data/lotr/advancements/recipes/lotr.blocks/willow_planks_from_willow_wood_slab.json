@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_willow_planks": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:willow_planks"
-          }
-        ]
-      }
-    },
     "has_willow_wood_slab": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -45,7 +35,6 @@
   },
   "requirements": [
     [
-      "has_willow_planks",
       "has_willow_wood_slab",
       "has_stripped_willow_wood_slab",
       "has_the_recipe"

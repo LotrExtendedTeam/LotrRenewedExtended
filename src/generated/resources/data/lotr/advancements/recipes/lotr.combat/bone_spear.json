@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_bone_spear": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:bone_spear"
-          }
-        ]
-      }
-    },
     "has_bone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_bone_spear",
       "has_bone",
       "has_the_recipe"
     ]

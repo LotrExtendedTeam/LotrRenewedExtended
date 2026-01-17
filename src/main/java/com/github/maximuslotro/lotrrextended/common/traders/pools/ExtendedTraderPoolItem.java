@@ -12,30 +12,19 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.WeightedRandom;
 
 public class ExtendedTraderPoolItem extends WeightedRandom.Item {
-	private final int averageCost;
 	private final int maxTransferQuantity;
 	private final ExtendedTradeItemSupplier itemSupplier;
 	private final boolean shouldTradePersist;
 
-	public ExtendedTraderPoolItem(ExtendedTradeItemSupplier itemSupplier, int weight, int averageCost, int maxTransferQuantity, boolean shouldTradePersist) {
+	public ExtendedTraderPoolItem(ExtendedTradeItemSupplier itemSupplier, int weight, int maxTransferQuantity, boolean shouldTradePersist) {
 		super(weight);
-		this.averageCost = averageCost;
 		this.maxTransferQuantity = maxTransferQuantity;
 		this.itemSupplier = itemSupplier;
 		this.shouldTradePersist = shouldTradePersist;
-	}
-
-	/**
-	 * Gets the average cost of the item
-	 * @return The average cost of the item
-	 * */
-	public int getAverageCost(){
-		return averageCost;
 	}
 
 	/**
@@ -55,16 +44,16 @@ public class ExtendedTraderPoolItem extends WeightedRandom.Item {
 	 * @param rand A passed Random instance to pick from multi pools
 	 * @return A chosen ItemStack instance
 	 * */
-	public ItemStack getStack(Random rand){
-		return itemSupplier.chooseItem(rand);
+	public ItemStackAndPrice getStackAndPrice(Random rand){
+		return itemSupplier.chooseItemStackAndPrice(rand);
 	}
 
 	/**
-	 * Gets all contained ItemStack
-	 * @return All available ItemStack instances
+	 * Gets all contained ItemStack and prices
+	 * @return All available ItemStackAndPrice instances
 	 * */
-	public List<ItemStack> getAllStacks(){
-		return itemSupplier.returnAllPossableItems();
+	public List<ItemStackAndPrice> getAllStacksAndPrices(){
+		return itemSupplier.returnAllPossableItemsAndPrices();
 	}
 
 	public static class Serializer implements JsonDeserializer<ExtendedTraderPoolItem>, JsonSerializer<ExtendedTraderPoolItem> {
@@ -72,14 +61,13 @@ public class ExtendedTraderPoolItem extends WeightedRandom.Item {
 		public ExtendedTraderPoolItem deserialize(JsonElement json, Type p_deserialize_2_, JsonDeserializationContext context) throws JsonParseException {
 			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedBaseTraderPoolItem");
 			int weight = JSONUtils.getAsInt(jsonobject, "weight", 1);
-			int averageCost = jsonobject.get("averageCost").getAsInt();
 			int maxSellQuantity = JSONUtils.getAsInt(jsonobject, "maxTransferQuantity", 200);
 			boolean shouldTradePersist = JSONUtils.getAsBoolean(jsonobject, "shouldTradePersist", true);
 			if(jsonobject.has("stack")) {
-				return new ExtendedTraderPoolItem(ExtendedTradeItemSupplierSingle.deserializeJson(jsonobject), weight, averageCost, maxSellQuantity, shouldTradePersist);
+				return new ExtendedTraderPoolItem(ExtendedTradeItemSupplierSingle.deserializeJson(jsonobject), weight, maxSellQuantity, shouldTradePersist);
 			}
 			if(jsonobject.has("stacks")) {
-				return new ExtendedTraderPoolItem(ExtendedTradeItemSupplierMulti.deserializeJson(jsonobject), weight, averageCost, maxSellQuantity, shouldTradePersist);
+				return new ExtendedTraderPoolItem(ExtendedTradeItemSupplierMulti.deserializeJson(jsonobject), weight, maxSellQuantity, shouldTradePersist);
 			}
 			throw new JsonParseException("Failed finding valid ExtendedTraderPoolItem type: " + json.toString());
 		}
@@ -90,7 +78,6 @@ public class ExtendedTraderPoolItem extends WeightedRandom.Item {
 			if(traderPool.weight!=1) {
 				jsonobject.addProperty("weight", traderPool.weight);
 			}
-			jsonobject.addProperty("averageCost", traderPool.averageCost);
 			if(traderPool.getMaxTransferQuantity()!=200) {
 				jsonobject.addProperty("maxTransferQuantity", traderPool.getMaxTransferQuantity());
 			}

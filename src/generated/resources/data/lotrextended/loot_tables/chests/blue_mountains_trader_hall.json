@@ -1093,6 +1093,17 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:book_of_true_silver"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 10,
           "functions": [
             {

@@ -5,14 +5,13 @@
       "item": "lotr:four_leaf_clover"
     },
     "title": {
-      "color": "gold",
       "translate": "advancements.lotrextended.shire.feeling_lucky.title"
     },
     "description": {
-      "color": "aqua",
+      "color": "green",
       "translate": "advancements.lotrextended.shire.feeling_lucky.description"
     },
-    "frame": "goal",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false

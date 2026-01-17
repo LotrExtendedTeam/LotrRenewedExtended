@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_iron_throwing_axe": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:iron_throwing_axe"
-          }
-        ]
-      }
-    },
     "has_iron": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_iron_throwing_axe",
       "has_iron",
       "has_the_recipe"
     ]

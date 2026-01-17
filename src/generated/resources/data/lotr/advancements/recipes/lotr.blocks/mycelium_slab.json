@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_mycelium_slab": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:mycelium_slab"
-          }
-        ]
-      }
-    },
     "has_mycelium": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_mycelium_slab",
       "has_mycelium",
       "has_the_recipe"
     ]

@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_cheese_wheel": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:cheese_wheel"
-          }
-        ]
-      }
-    },
     "has_cheese_curds": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_cheese_wheel",
       "has_cheese_curds",
       "has_the_recipe"
     ]

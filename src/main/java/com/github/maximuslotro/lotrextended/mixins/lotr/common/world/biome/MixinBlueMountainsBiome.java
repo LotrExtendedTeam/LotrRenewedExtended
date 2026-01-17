@@ -95,4 +95,20 @@ public abstract class MixinBlueMountainsBiome extends LOTRBiomeBase{
 			config.setMountainTerrain(MountainTerrainProvider.createMountainTerrain(MountainTerrainProvider.MountainLayer.layerBuilder().above(110).state(Blocks.SNOW_BLOCK).topOnly(), MountainTerrainProvider.MountainLayer.layerBuilder().above(90).state(LOTRBlocks.BLUE_ROCK).excludeStone()));
 		}
 	}
+
+	/**
+	 * @author maximuslotro
+	 * @reason To lazy to inject
+	 * */
+	@Override
+	@Overwrite(remap = false)
+	protected void addOres(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
+		super.addOres(builder);
+		LOTRBiomeFeatures.addExtraCoal(builder, 8, 10, 128);
+		LOTRBiomeFeatures.addExtraIron(builder, 4, 10, 96);
+		LOTRBiomeFeatures.addGlowstoneOre(builder);
+		// Extended Start
+		LOTRBiomeFeatures.addLapisOre(builder);
+		// Extended End
+	}
 }

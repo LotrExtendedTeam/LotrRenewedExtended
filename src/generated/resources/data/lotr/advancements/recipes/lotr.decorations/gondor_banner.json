@@ -16,16 +16,6 @@
         ]
       }
     },
-    "has_gondor_banner": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:gondor_banner"
-          }
-        ]
-      }
-    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -36,7 +26,6 @@
   "requirements": [
     [
       "has_wool",
-      "has_gondor_banner",
       "has_the_recipe"
     ]
   ]

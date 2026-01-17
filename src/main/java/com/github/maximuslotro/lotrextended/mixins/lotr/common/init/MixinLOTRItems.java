@@ -34,7 +34,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedDuckEggItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDyeableBoarArmorItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEdhelvirItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedColoringItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGuldurilItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleItem;
@@ -371,8 +371,8 @@ public class MixinLOTRItems {
 	}
 
 	@Unique
-	private static RegistryObject<Item> regGemstoneItemB(String name, TextFormatting color)  {
-		RegistryObject<Item> item = regItem(name, () -> new ExtendedGemstoneItem(new Properties().tab(LOTRItemGroups.MATERIALS), color));
+	private static RegistryObject<Item> regColoredMaterialItemB(String name, TextFormatting color)  {
+		RegistryObject<Item> item = regItem(name, () -> new ExtendedColoringItem(new Properties().tab(LOTRItemGroups.MATERIALS), color));
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedItems.REGISTEREDITEMS.put(name, item);
 		}
@@ -568,6 +568,7 @@ public class MixinLOTRItems {
 		ExtendedItems.CORAL_BLOCK = regBlockItemB(ExtendedBlocks.CORAL_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.WASTE_BLOCK = regBlockItemB(ExtendedBlocks.WASTE_BLOCK, LOTRItemGroups.BLOCKS);
 		//ORE
+		ExtendedItems.METEORITE_ORE = regBlockItemB(ExtendedBlocks.METEORITE_ORE, LOTRItemGroups.BLOCKS);
 		ExtendedItems.TOPAZ_ORE = regBlockItemB(ExtendedBlocks.TOPAZ_ORE, LOTRItemGroups.BLOCKS);
 		ExtendedItems.AMETHYST_ORE = regBlockItemB(ExtendedBlocks.AMETHYST_ORE, LOTRItemGroups.BLOCKS);
 		ExtendedItems.SAPPHIRE_ORE = regBlockItemB(ExtendedBlocks.SAPPHIRE_ORE, LOTRItemGroups.BLOCKS);
@@ -706,26 +707,26 @@ public class MixinLOTRItems {
 
 		ExtendedItems.DEAD_MOSS_VINES = regBlockItemB(ExtendedBlocks.DEAD_MOSS_VINES, LOTRItemGroups.DECO);
 
-		ExtendedItems.WHITE_PACKED_FUR = regBlockItemProps(ExtendedBlocks.WHITE_PACKED_FUR, LOTRItemGroups.BLOCKS, (props) -> props.rarity(Rarity.UNCOMMON));
-		ExtendedItems.WHITE_PACKED_FUR_SLAB = regBlockItemProps(ExtendedBlocks.WHITE_PACKED_FUR_SLAB, LOTRItemGroups.BLOCKS, (props) -> props.rarity(Rarity.UNCOMMON));
-		ExtendedItems.WHITE_PACKED_FUR_STAIRS = regBlockItemProps(ExtendedBlocks.WHITE_PACKED_FUR_STAIRS, LOTRItemGroups.BLOCKS, (props) -> props.rarity(Rarity.UNCOMMON));
-		ExtendedItems.WHITE_PACKED_FUR_WALL = regBlockItemProps(ExtendedBlocks.WHITE_PACKED_FUR_WALL, LOTRItemGroups.BLOCKS, (props) -> props.rarity(Rarity.UNCOMMON));
-		ExtendedItems.SILVER_PACKED_FUR = regBlockItemB(ExtendedBlocks.SILVER_PACKED_FUR, LOTRItemGroups.BLOCKS);
-		ExtendedItems.SILVER_PACKED_FUR_SLAB = regBlockItemB(ExtendedBlocks.SILVER_PACKED_FUR_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.SILVER_PACKED_FUR_STAIRS = regBlockItemB(ExtendedBlocks.SILVER_PACKED_FUR_STAIRS, LOTRItemGroups.BLOCKS);
-		ExtendedItems.SILVER_PACKED_FUR_WALL = regBlockItemB(ExtendedBlocks.SILVER_PACKED_FUR_WALL, LOTRItemGroups.BLOCKS);
-		ExtendedItems.GRAY_PACKED_FUR = regBlockItemB(ExtendedBlocks.GRAY_PACKED_FUR, LOTRItemGroups.BLOCKS);
-		ExtendedItems.GRAY_PACKED_FUR_SLAB = regBlockItemB(ExtendedBlocks.GRAY_PACKED_FUR_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.GRAY_PACKED_FUR_STAIRS = regBlockItemB(ExtendedBlocks.GRAY_PACKED_FUR_STAIRS, LOTRItemGroups.BLOCKS);
-		ExtendedItems.GRAY_PACKED_FUR_WALL = regBlockItemB(ExtendedBlocks.GRAY_PACKED_FUR_WALL, LOTRItemGroups.BLOCKS);
-		ExtendedItems.BROWN_PACKED_FUR = regBlockItemB(ExtendedBlocks.BROWN_PACKED_FUR, LOTRItemGroups.BLOCKS);
-		ExtendedItems.BROWN_PACKED_FUR_SLAB = regBlockItemB(ExtendedBlocks.BROWN_PACKED_FUR_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.BROWN_PACKED_FUR_STAIRS = regBlockItemB(ExtendedBlocks.BROWN_PACKED_FUR_STAIRS, LOTRItemGroups.BLOCKS);
-		ExtendedItems.BROWN_PACKED_FUR_WALL = regBlockItemB(ExtendedBlocks.BROWN_PACKED_FUR_WALL, LOTRItemGroups.BLOCKS);
-		ExtendedItems.BLACK_PACKED_FUR = regBlockItemB(ExtendedBlocks.BLACK_PACKED_FUR, LOTRItemGroups.BLOCKS);
-		ExtendedItems.BLACK_PACKED_FUR_SLAB = regBlockItemB(ExtendedBlocks.BLACK_PACKED_FUR_SLAB, LOTRItemGroups.BLOCKS);
-		ExtendedItems.BLACK_PACKED_FUR_STAIRS = regBlockItemB(ExtendedBlocks.BLACK_PACKED_FUR_STAIRS, LOTRItemGroups.BLOCKS);
-		ExtendedItems.BLACK_PACKED_FUR_WALL = regBlockItemB(ExtendedBlocks.BLACK_PACKED_FUR_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.WHITE_MATTED_FUR = regBlockItemProps(ExtendedBlocks.WHITE_MATTED_FUR, LOTRItemGroups.BLOCKS, (props) -> props.rarity(Rarity.UNCOMMON));
+		ExtendedItems.WHITE_MATTED_FUR_SLAB = regBlockItemProps(ExtendedBlocks.WHITE_MATTED_FUR_SLAB, LOTRItemGroups.BLOCKS, (props) -> props.rarity(Rarity.UNCOMMON));
+		ExtendedItems.WHITE_MATTED_FUR_STAIRS = regBlockItemProps(ExtendedBlocks.WHITE_MATTED_FUR_STAIRS, LOTRItemGroups.BLOCKS, (props) -> props.rarity(Rarity.UNCOMMON));
+		ExtendedItems.WHITE_MATTED_FUR_WALL = regBlockItemProps(ExtendedBlocks.WHITE_MATTED_FUR_WALL, LOTRItemGroups.BLOCKS, (props) -> props.rarity(Rarity.UNCOMMON));
+		ExtendedItems.SILVER_MATTED_FUR = regBlockItemB(ExtendedBlocks.SILVER_MATTED_FUR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SILVER_MATTED_FUR_SLAB = regBlockItemB(ExtendedBlocks.SILVER_MATTED_FUR_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SILVER_MATTED_FUR_STAIRS = regBlockItemB(ExtendedBlocks.SILVER_MATTED_FUR_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SILVER_MATTED_FUR_WALL = regBlockItemB(ExtendedBlocks.SILVER_MATTED_FUR_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.GRAY_MATTED_FUR = regBlockItemB(ExtendedBlocks.GRAY_MATTED_FUR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.GRAY_MATTED_FUR_SLAB = regBlockItemB(ExtendedBlocks.GRAY_MATTED_FUR_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.GRAY_MATTED_FUR_STAIRS = regBlockItemB(ExtendedBlocks.GRAY_MATTED_FUR_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.GRAY_MATTED_FUR_WALL = regBlockItemB(ExtendedBlocks.GRAY_MATTED_FUR_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BROWN_MATTED_FUR = regBlockItemB(ExtendedBlocks.BROWN_MATTED_FUR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BROWN_MATTED_FUR_SLAB = regBlockItemB(ExtendedBlocks.BROWN_MATTED_FUR_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BROWN_MATTED_FUR_STAIRS = regBlockItemB(ExtendedBlocks.BROWN_MATTED_FUR_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BROWN_MATTED_FUR_WALL = regBlockItemB(ExtendedBlocks.BROWN_MATTED_FUR_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BLACK_MATTED_FUR = regBlockItemB(ExtendedBlocks.BLACK_MATTED_FUR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BLACK_MATTED_FUR_SLAB = regBlockItemB(ExtendedBlocks.BLACK_MATTED_FUR_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BLACK_MATTED_FUR_STAIRS = regBlockItemB(ExtendedBlocks.BLACK_MATTED_FUR_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BLACK_MATTED_FUR_WALL = regBlockItemB(ExtendedBlocks.BLACK_MATTED_FUR_WALL, LOTRItemGroups.BLOCKS);
 
 		ExtendedItems.WHITE_FUR_BUNDLE = regBlockItemProps(ExtendedBlocks.WHITE_FUR_BUNDLE, LOTRItemGroups.DECO, (props) -> props.rarity(Rarity.UNCOMMON));
 		ExtendedItems.SILVER_FUR_BUNDLE = regBlockItemB(ExtendedBlocks.SILVER_FUR_BUNDLE, LOTRItemGroups.DECO);
@@ -939,21 +940,22 @@ public class MixinLOTRItems {
 		ExtendedItems.BLACK_FUR = regMaterialItemB("black_fur");
 
 		//Ingots
+		ExtendedItems.SKY_IRON = regColoredMaterialItemB("sky_iron", TextFormatting.DARK_GRAY);
 		ExtendedItems.GALVORN_INGOT = regMaterialItemB("galvorn_ingot");
 		ExtendedItems.BLACK_URUK_STEEL_INGOT = regMaterialItemB("black_uruk_steel_ingot");
 		ExtendedItems.GILDED_IRON_INGOT = regMaterialItemB("gilded_iron_ingot");
 		ExtendedItems.MORGUL_STEEL_INGOT = regMaterialItemB("morgul_steel_ingot");
 		ExtendedItems.ORC_STEEL_NUGGET = regMaterialItemB("orc_steel_nugget");
 		//Gems
-		ExtendedItems.TOPAZ = regGemstoneItemB("topaz", TextFormatting.GOLD);
-		ExtendedItems.AMETHYST = regGemstoneItemB("amethyst", TextFormatting.LIGHT_PURPLE);
-		ExtendedItems.SAPPHIRE = regGemstoneItemB("sapphire", TextFormatting.BLUE);
-		ExtendedItems.RUBY = regGemstoneItemB("ruby", TextFormatting.RED);
-		ExtendedItems.AMBER = regGemstoneItemB("amber", TextFormatting.YELLOW);
-		ExtendedItems.DIAMOND = regGemstoneItemB("diamond", TextFormatting.GRAY);
-		ExtendedItems.OPAL = regGemstoneItemB("opal", TextFormatting.AQUA);
-		ExtendedItems.EMERALD = regGemstoneItemB("emerald", TextFormatting.GREEN);
-		ExtendedItems.PEARL = regGemstoneItemB("pearl", TextFormatting.WHITE);
+		ExtendedItems.TOPAZ = regColoredMaterialItemB("topaz", TextFormatting.GOLD);
+		ExtendedItems.AMETHYST = regColoredMaterialItemB("amethyst", TextFormatting.LIGHT_PURPLE);
+		ExtendedItems.SAPPHIRE = regColoredMaterialItemB("sapphire", TextFormatting.BLUE);
+		ExtendedItems.RUBY = regColoredMaterialItemB("ruby", TextFormatting.RED);
+		ExtendedItems.AMBER = regColoredMaterialItemB("amber", TextFormatting.YELLOW);
+		ExtendedItems.DIAMOND = regColoredMaterialItemB("diamond", TextFormatting.GRAY);
+		ExtendedItems.OPAL = regColoredMaterialItemB("opal", TextFormatting.AQUA);
+		ExtendedItems.EMERALD = regColoredMaterialItemB("emerald", TextFormatting.GREEN);
+		ExtendedItems.PEARL = regColoredMaterialItemB("pearl", TextFormatting.WHITE);
 		ExtendedItems.CORAL = regMaterialItemB("coral");
 
 		//#########################################################################TOOLS#####################################################

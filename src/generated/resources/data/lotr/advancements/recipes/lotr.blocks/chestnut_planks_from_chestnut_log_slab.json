@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_chestnut_planks": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:chestnut_planks"
-          }
-        ]
-      }
-    },
     "has_chestnut_log_slab": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -45,7 +35,6 @@
   },
   "requirements": [
     [
-      "has_chestnut_planks",
       "has_chestnut_log_slab",
       "has_stripped_chestnut_log_slab",
       "has_the_recipe"

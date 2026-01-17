@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_drystone_slab": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:drystone_slab"
-          }
-        ]
-      }
-    },
     "has_drystone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_drystone_slab",
       "has_drystone",
       "has_the_recipe"
     ]

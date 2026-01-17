@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.ExtendedVanillaProtectionHandlers;
+import com.github.maximuslotro.lotrextended.api.events.world.ExtendedFastTravelWaypointEvent;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBlock;
@@ -13,7 +14,6 @@ import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckE
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
-import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils;
 
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
@@ -41,10 +41,8 @@ import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Util;
@@ -60,7 +58,6 @@ import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -330,29 +327,8 @@ public class WorldEventHandlers {
 	}
 
 	@SubscribeEvent
-	public static void handleEntityUpdate$Extended(LivingUpdateEvent pEvent) {
-		if(pEvent.getEntity() instanceof ServerPlayerEntity && pEvent.getEntity().tickCount%20 ==0) {
-			ServerPlayerEntity player = (ServerPlayerEntity)pEvent.getEntity();
-			PlayerInventory inventory = player.inventory;
-			for(int slotIndex=0; slotIndex < inventory.getContainerSize(); slotIndex++) {
-				ItemStack stack = inventory.getItem(slotIndex);
-				if(stack.isDamageableItem()) { 
-					if(!ExtendedModifierUtils.hasRandomModifiers(stack)) {
-						ExtendedModifierUtils.generateItemModifiersTagged(player.random, stack, false, false);
-					}
-				}
-			}
-			ItemStack carried = inventory.getCarried();
-			if(carried.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(carried)) {
-				ExtendedModifierUtils.generateItemModifiersTagged(player.random, carried, false, false);
-				player.broadcastCarriedItem();
-			}
-		}
-	}
-
-	@SubscribeEvent
-	public static void handleItemAttributeChanges$Extended(ItemAttributeModifierEvent pEvent) {
-		ExtendedModifierUtils.processItemAttributes(pEvent);
+	public static void handleExtendedFastTravelWaypointEventPost(ExtendedFastTravelWaypointEvent.Post pEvent) {
+		ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(pEvent.getPlayer(), "fastTraveled");
 	}
 
 	@SubscribeEvent

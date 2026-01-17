@@ -1,50 +1,41 @@
 package com.github.maximuslotro.lotrrextended.common.traders.pools;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JSONUtils;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedTradeItemSupplierSingle implements ExtendedTradeItemSupplier {
-	private final ItemStack stack;
+	private final ItemStackAndPrice stackAndPrice;
 
-	public ExtendedTradeItemSupplierSingle(ItemStack stack) {
-		this.stack = stack;
+	public ExtendedTradeItemSupplierSingle(ItemStackAndPrice pStackAndPrice) {
+		this.stackAndPrice = pStackAndPrice;
+	}
+
+	public ExtendedTradeItemSupplierSingle(ItemStack pStack, int pPrice) {
+		this.stackAndPrice = new ItemStackAndPrice(pStack, pPrice);
 	}
 
 	@Override
-	public ItemStack chooseItem(Random rand) {
-		return stack;
+	public ItemStackAndPrice chooseItemStackAndPrice(Random pRand) {
+		return stackAndPrice;
 	}
 
 	@Override
 	public JsonElement serializeJson() {
-		JsonObject itemJson = new JsonObject();
-		itemJson.addProperty("item", ForgeRegistries.ITEMS.getKey(stack.getItem()).toString());
-		if(stack.getCount()>1) {
-			itemJson.addProperty("count", stack.getCount());
-		}
-		if (stack.hasTag()) {
-			itemJson.addProperty("nbt", stack.getTag().toString());
-		}
-
-		return itemJson;
+		return ExtendedTradeItemSupplier.serializeStack(stackAndPrice);
 	}
 
 	public static ExtendedTradeItemSupplier deserializeJson(JsonObject element) {
-		ItemStack stack = ExtendedTradeItemSupplier.getStack(JSONUtils.getAsJsonObject(element, "stack"));
+		ItemStackAndPrice stack = ExtendedTradeItemSupplier.deserializeStack(JSONUtils.getAsJsonObject(element, "stack"));
 		return new ExtendedTradeItemSupplierSingle(stack);
 	}
 
 	@Override
-	public List<ItemStack> returnAllPossableItems() {
-		return new ArrayList<>(Arrays.asList(stack));
+	public List<ItemStackAndPrice> returnAllPossableItemsAndPrices() {
+		return new ArrayList<>(Collections.singletonList(stackAndPrice));
 	}
 }

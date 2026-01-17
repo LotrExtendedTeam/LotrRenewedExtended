@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedSingleItemDataHolderIInventory;
 
@@ -155,6 +156,11 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	@Shadow(remap = false)
 	@Final
 	private IIntArray kegData;
+
+	@Inject(method = "handleBrewButtonPress(Lnet/minecraft/entity/player/ServerPlayerEntity;)V", at = @At("TAIL"), remap = false)
+	public void handleBrewButtonPress(ServerPlayerEntity player, CallbackInfo ci) {
+		ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(player, "brewDrink");
+	}
 
 	/**
 	 * Overwrites the original recipe update method to null-guard level access

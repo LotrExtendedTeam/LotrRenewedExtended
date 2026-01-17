@@ -4,6 +4,6 @@
     "item": "lotr:topaz_ore"
   },
   "result": "lotr:topaz",
-  "experience": 1.0,
+  "experience": 0.5,
   "cookingtime": 200
 }

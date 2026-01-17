@@ -100,48 +100,48 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 60,
+          "weight": 20,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 2.0,
-                "max": 4.0,
+                "min": 1.0,
+                "max": 2.0,
                 "type": "minecraft:uniform"
               }
             }
           ],
-          "name": "lotr:packed_fur"
+          "name": "lotr:matted_fur"
         },
         {
           "type": "minecraft:item",
-          "weight": 60,
+          "weight": 20,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 2.0,
-                "max": 4.0,
+                "min": 1.0,
+                "max": 2.0,
                 "type": "minecraft:uniform"
               }
             }
           ],
-          "name": "lotr:gray_packed_fur"
+          "name": "lotr:gray_matted_fur"
         },
         {
           "type": "minecraft:item",
-          "weight": 40,
+          "weight": 20,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 2.0,
-                "max": 4.0,
+                "min": 1.0,
+                "max": 2.0,
                 "type": "minecraft:uniform"
               }
             }
           ],
-          "name": "lotr:silver_packed_fur"
+          "name": "lotr:silver_matted_fur"
         },
         {
           "type": "minecraft:item",

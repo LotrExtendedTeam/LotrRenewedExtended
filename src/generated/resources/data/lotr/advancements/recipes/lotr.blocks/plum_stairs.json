@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_plum_stairs": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:plum_stairs"
-          }
-        ]
-      }
-    },
     "has_plum_planks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_plum_stairs",
       "has_plum_planks",
       "has_the_recipe"
     ]

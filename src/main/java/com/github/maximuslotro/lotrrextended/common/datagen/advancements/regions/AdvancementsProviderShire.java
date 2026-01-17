@@ -45,7 +45,7 @@ public class AdvancementsProviderShire extends ExtendedBaseAdvancementType{
 				.setTitle("Hobbit Slayer").setDescription("Kill a Hobbit."),
 				addKillEntityTrigger(make(), LOTREntities.HOBBIT.get()).parent(shire));
 
-		Advancement clover = build(true, data(LOTRItems.FOUR_LEAF_CLOVER.get(), "feeling_lucky", FrameType.GOAL)
+		Advancement clover = build(true, data(LOTRItems.FOUR_LEAF_CLOVER.get(), "feeling_lucky", FrameType.TASK)
 				.setTitle("Feeling Lucky?").setDescription("Find a rare Four-Leaf Clover."),
 				addItemTrigger(make(), LOTRItems.FOUR_LEAF_CLOVER.get()).parent(shire));
 

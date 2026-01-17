@@ -26,16 +26,6 @@
         ]
       }
     },
-    "has_orc_barrel": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:orc_barrel"
-          }
-        ]
-      }
-    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -47,7 +37,6 @@
     [
       "has_leather",
       "has_planks",
-      "has_orc_barrel",
       "has_the_recipe"
     ]
   ]

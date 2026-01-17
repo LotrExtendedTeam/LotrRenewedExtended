@@ -6,16 +6,6 @@
     ]
   },
   "criteria": {
-    "has_barren_dirt_slab": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "lotr:barren_dirt_slab"
-          }
-        ]
-      }
-    },
     "has_barren_dirt": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +25,6 @@
   },
   "requirements": [
     [
-      "has_barren_dirt_slab",
       "has_barren_dirt",
       "has_the_recipe"
     ]
