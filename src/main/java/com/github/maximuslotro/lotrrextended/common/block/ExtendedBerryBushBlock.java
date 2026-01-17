@@ -70,7 +70,7 @@ public class ExtendedBerryBushBlock extends SweetBerryBushBlock {
 		if (i < 3 && pLevel.getRawBrightness(pPos.above(), 0) >= 9 && ForgeHooks.onCropsGrowPre(pLevel, pPos, pState,pRandom.nextInt(5) == 0)) {
 			pLevel.setBlock(pPos, pState.setValue(AGE, Integer.valueOf(i + 1)), 2);
 			ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
-		}else if (i == 3 && pLevel.getRawBrightness(pPos.above(), 0) >= 9 && pRandom.nextInt(200) == 0) {
+		}else if (i == 3 && pLevel.getRawBrightness(pPos.above(), 0) >= 9 && pRandom.nextInt(1000) == 0) {
 			pLevel.setBlock(pPos, berryHedgeBlock.get().defaultBlockState().setValue(ExtendedBerryHedgeBlock.AGE, 3), 2);
 			ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
 		}
