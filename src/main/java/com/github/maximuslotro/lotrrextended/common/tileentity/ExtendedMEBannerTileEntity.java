@@ -339,12 +339,12 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 
 	public ExtendedSBannerOpenChangedScreenPacket verifyInfo(boolean shouldReturn, ServerPlayerEntity serverPlayer) {
 		boolean fixedBroken = false;
-		if(alignmentLevel<=0) {
-			alignmentLevel = 0.1f;
+		if(alignmentLevel<0) {
+			alignmentLevel = 0f;
 			fixedBroken = true;
 		}
-		if(alignmentLevel>1000) {
-			alignmentLevel = 1000;
+		if(alignmentLevel>10000) {
+			alignmentLevel = 10000;
 			fixedBroken = true;
 		}
 		List<ProtectionEntry> toRemove = new ArrayList<>();
