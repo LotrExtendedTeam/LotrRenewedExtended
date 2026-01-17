@@ -27,6 +27,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IWorld;
 import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class ExtendedBannerProtectionManager {
 	public enum ExtendedProtReturn{
@@ -126,7 +127,17 @@ public class ExtendedBannerProtectionManager {
 
 			@Override
 			public boolean isProtected(ExtendedMEBannerTileEntity bannerInstance) {
-				if(offendingPlayer==null || offendingPlayer.abilities.instabuild) {
+				if(offendingPlayer==null) {
+					return false;
+				}
+				if(bannerInstance.isServerProtecting()) {
+					if(!ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(offendingPlayer.getGameProfile())) {
+						tellPlayerYSNP(new StringTextComponent("The Server"));
+						return true;
+					}
+					return false;
+				}
+				if(offendingPlayer.abilities.instabuild) {
 					return false;
 				}
 				if(bannerInstance.isFactionProtecting()) {
@@ -160,6 +171,7 @@ public class ExtendedBannerProtectionManager {
 						if(entry!=null&&entry.getProfile().isPlayerContained(offendingPlayer)) {
 							if(entry.hasPermission(queryingPermission)) {
 								isWhitelisted = true;
+								break;
 							}
 						}
 					}
@@ -168,6 +180,7 @@ public class ExtendedBannerProtectionManager {
 						return true;
 					}
 				}
+				// Since banner must at this point be under NONE protection, return false
 				return false;
 			}
 

@@ -22,16 +22,52 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
+/**
+ * Client -> Server packet used to save and apply banner configuration data.
+ *
+ * <p>This packet sends updated protection settings, permissions, whitelist entries,
+ * and ownership type for a banner tile entity at a specific block position.</p>
+ */
 public class ExtendedCBannerSaveInfoPacket {
+	/**
+     * Default permissions applied to all users under the current protection mode.
+     */
 	public List<ExtendedBannerPermissions> defaultPerms;
+	/**
+     * Alignment level used for faction-based protection logic.
+     */
 	public float alignmentLevel;
+	/**
+     * Whitelist entries defining special access rules for specific players or factions.
+     */
 	public List<ProtectionEntry> whitelist;
+	/**
+     * Whether the banner should protect itself from unauthorized destruction.
+     */
 	public boolean canSelfProtect;
+	/**
+     * Numeric ID of the banner protection owner type.
+     * See {@link ExtendedBannerProtectionOwners#getByID(int)}.
+     */
 	public int protectionType;
+	/**
+     * Position of the banner tile entity being configured.
+     */
 	private BlockPos configurePos;
-
+	/**
+     * Empty constructor used for decoding.
+     */
 	public ExtendedCBannerSaveInfoPacket() {}
-
+	/**
+     * Creates a new packet containing banner configuration data.
+     *
+     * @param defaultPerms     default permissions for users
+     * @param alignmentLevel  faction alignment level
+     * @param whitelist       whitelist entries
+     * @param canSelfProtect  whether the banner protects itself
+     * @param protectionType  owner type ID
+     * @param configurePos    banner tile entity position
+     */
 	public ExtendedCBannerSaveInfoPacket(List<ExtendedBannerPermissions> defaultPerms, float alignmentLevel, List<ProtectionEntry> whitelist, boolean canSelfProtect, int protectionType, BlockPos configurePos) {
 		this.defaultPerms = defaultPerms;
 		this.alignmentLevel = alignmentLevel;
@@ -40,7 +76,12 @@ public class ExtendedCBannerSaveInfoPacket {
 		this.configurePos = configurePos;
 		this.protectionType = protectionType;
 	}
-
+	/**
+     * Encodes this packet into a {@link PacketBuffer} for network transmission.
+     *
+     * @param packet the packet instance to encode
+     * @param buf    the buffer to write to
+     */
 	public static void encode(ExtendedCBannerSaveInfoPacket packet, PacketBuffer buf) {
 		buf.writeInt(packet.defaultPerms.size());
 		for(ExtendedBannerPermissions perm : packet.defaultPerms) {
@@ -60,7 +101,12 @@ public class ExtendedCBannerSaveInfoPacket {
 		buf.writeInt(packet.protectionType);
 		buf.writeBlockPos(packet.configurePos);
 	}
-
+	/**
+     * Decodes a packet from the network buffer.
+     *
+     * @param buf the buffer to read from
+     * @return the decoded {@link ExtendedCBannerSaveInfoPacket}
+     */
 	public static ExtendedCBannerSaveInfoPacket decode(PacketBuffer buf) {
 		ExtendedCBannerSaveInfoPacket packet = new ExtendedCBannerSaveInfoPacket();
 		int defaultPermsSize = buf.readInt();
@@ -94,7 +140,15 @@ public class ExtendedCBannerSaveInfoPacket {
 		packet.configurePos = buf.readBlockPos();
 		return packet;
 	}
-
+	 /**
+     * Handles this packet on the server thread.
+     *
+     * <p>Validates protection permissions and applies the configuration
+     * to the target {@link ExtendedMEBannerTileEntity} if allowed.</p>
+     *
+     * @param pPacket the received packet
+     * @param context network context supplier
+     */
 	public static void handle(ExtendedCBannerSaveInfoPacket pPacket, Supplier<Context> context) {
 		ServerPlayerEntity player = context.get().getSender();
 		TileEntity tileEntity = player.level.getBlockEntity(pPacket.configurePos);
@@ -106,7 +160,7 @@ public class ExtendedCBannerSaveInfoPacket {
 	    		bannerTE.setProtectionWhitelist(pPacket.whitelist);
 	    		bannerTE.setCanProtectSelf(pPacket.canSelfProtect);
 	    		bannerTE.setProtectionType(ExtendedBannerProtectionOwners.getByID(pPacket.protectionType));
-	    		ExtendedSBannerOpenChangedScreenPacket returnPacket = bannerTE.verifyInfo(true, player);
+	    		ExtendedSBannerOpenChangedScreenPacket returnPacket = bannerTE.verifyInfo(player);
 	    		if(returnPacket!=null) {
 	    			ExtendedPacketHandler.sendToClient(returnPacket, player);
 	    		}

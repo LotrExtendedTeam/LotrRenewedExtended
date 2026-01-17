@@ -305,6 +305,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.banner_configuration.whitelist.delete.disc", "Remove this whitelist entry");
 		addD("gui.lotrextended.banner_configuration.type_whitelist", "Protection Type: Whitelist");
 		addD("gui.lotrextended.banner_configuration.type_faction", "Protection Type: Faction");
+		addD("gui.lotrextended.banner_configuration.type_server", "Protection Type: Server");
 		addD("gui.lotrextended.banner_configuration.permission_type.full", "Full Permissions");
 		addD("gui.lotrextended.banner_configuration.permission_type.limited", "Limited Permissions");
 		addD("gui.lotrextended.banner_configuration.send_update", "Sync Banner Now");

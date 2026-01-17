@@ -21,17 +21,17 @@ public class ExtendedTextFieldWidget extends TextFieldWidget{
 		this.id = id;
 	}
 
-	public void isVisable(boolean isVisable) {
-		this.visible = isVisable;
-		permShowButton.visible = isVisable;
-		deleteButton.visible = isVisable;
+	public void isVisible(boolean isVisible) {
+		this.visible = isVisible;
+		permShowButton.visible = isVisible;
+		deleteButton.visible = isVisible;
 	}
-	public void isPermVisable(boolean isVisable) {
-		permButtons.forEach((button) -> button.visible = isVisable);
+	public void isPermVisible(boolean isVisible) {
+		permButtons.forEach((button) -> button.visible = isVisible);
 	}
 
 	public void togglePermVis() {
 		showPerms = !showPerms;
-		isPermVisable(showPerms);
+		isPermVisible(showPerms);
 	}
 }
