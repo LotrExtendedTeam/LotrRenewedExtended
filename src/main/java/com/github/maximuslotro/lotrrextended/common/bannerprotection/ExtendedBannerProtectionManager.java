@@ -200,6 +200,7 @@ public class ExtendedBannerProtectionManager {
 					if(bannerInstance.getFactionProtcting().resolveFaction(bannerInstance.getLevel()).get().isBadRelation(NPCEntitySettingsManager.getEntityTypeFaction(offendingEntity))) {
 						return true;
 					}
+					return false;
 				}else {
 					ExtendedLog.error("Banner tried resolving a faction that does not exist! "+bannerInstance.getFactionProtcting().getNameString());
 				}

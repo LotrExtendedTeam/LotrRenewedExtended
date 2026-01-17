@@ -91,7 +91,7 @@ public class BanditsSpawner {
             if (bandit != null) {
                 // check protection
                 if (!ignoreProtection) {
-                    if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ExtendedBannerProtectionManager.SingleProtectionInstance.EntityProtection(bandit), false, "checkSpawnRules").isNotAllowed()) {
+                    if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ExtendedBannerProtectionManager.SingleProtectionInstance.AnyProtection()).isNotAllowed()) {
                         ExtendedLog.debug("Bandit could not be spawned at " + pos + " because it was inside protection banner.");
                         continue;
                     }
