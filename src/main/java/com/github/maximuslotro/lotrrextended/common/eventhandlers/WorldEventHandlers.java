@@ -32,7 +32,6 @@ import net.minecraft.block.BellBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ChainBlock;
-import net.minecraft.block.EnchantingTableBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.MobEntity;
@@ -264,21 +263,12 @@ public class WorldEventHandlers {
 	}
 
 	@SubscribeEvent
-	public static void handleBlockLeftInteract$Extended(PlayerInteractEvent.LeftClickBlock event) {
-		if(LOTRDimensions.isModDimension(event.getWorld())) {
-			if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof EnchantingTableBlock) {
-				if(!ExtendedServerConfig.enableVanillaEnchanting.get()) {
-					event.setCanceled(true);
-				}
-			}
-		}
-	}
-
-	@SubscribeEvent
 	public static void handleBlockLeftInteract$Extended(PlayerInteractEvent.RightClickBlock event) {
+		World level = event.getWorld();
+		BlockState clickedState = level.getBlockState(event.getPos());
 		if(event.getPlayer().getMainHandItem().getItem().is(ExtendedTags.Items.PLACEABLE_BOOKS)) {
 			ExtendedPlaceableBookTypes type = ExtendedPlaceableBookTypes.getByItem(event.getPlayer().getMainHandItem().getItem());
-			if(type.notEmpty() && !(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof ExtendedPlacedBooksBlock)) {
+			if(type.notEmpty() && !(clickedState.getBlock() instanceof ExtendedPlacedBooksBlock)) {
 				BlockItemUseContext blockusecontext = new BlockItemUseContext(new ItemUseContext(event.getPlayer(), event.getHand(), event.getHitVec()));
 				if(ExtendedPlacementUtils.place(ExtendedBlocks.PLACED_BOOKS.get(), new BlockItemUseContext(blockusecontext))) {
 					event.getPlayer().swing(event.getHand(), true);
@@ -287,8 +277,6 @@ public class WorldEventHandlers {
 				}
 			}
 		}
-		World level = event.getPlayer().level;
-		BlockState clickedState = level.getBlockState(event.getPos());
 		if (clickedState.is(LOTRBlocks.WICKER_FENCE.get())) {
 			BlockPos checkPos = event.getPos().above();
 			BlockState state = level.getBlockState(checkPos);
@@ -322,6 +310,12 @@ public class WorldEventHandlers {
 			}
 			event.setCanceled(true);
 			return;
+		}
+		if(clickedState.is(Blocks.ENCHANTING_TABLE)) {
+			if(!ExtendedServerConfig.enableVanillaEnchanting.get()) {
+				event.setCanceled(true);
+				return;
+			}
 		}
 	}
 
