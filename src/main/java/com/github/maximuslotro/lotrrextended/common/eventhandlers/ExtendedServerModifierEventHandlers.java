@@ -73,7 +73,7 @@ public class ExtendedServerModifierEventHandlers {
 	}
 
 	@SubscribeEvent
-	public void onBreakSpeed(BreakSpeed event) {
+	public static void onBreakSpeed(BreakSpeed event) {
 		float currentOtherModModifiableSpeed = event.getNewSpeed();
 		float f = event.getPlayer().inventory.getDestroySpeed(event.getState());
 		if (f > 1.0f) {
