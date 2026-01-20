@@ -763,14 +763,4 @@ public class ExtendedModifierUtils {
 			return finalLevel;
 		}
 	}
-	/**
-	 * Convenience method to get the effective block efficiency for a living entity,
-	 * based on the BLOCK_EFFICIENCY enchantment and extended modifiers.
-	 *
-	 * @param pEntity the entity to check
-	 * @return the effective block-breaking efficiency as a float
-	 */
-	public static float getBlockEfficiencyFloat(LivingEntity pEntity) {
-		return getEnchantmentLevelFloat(Enchantments.BLOCK_EFFICIENCY, pEntity);
-	}
 }
