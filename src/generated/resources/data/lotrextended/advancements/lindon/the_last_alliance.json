@@ -1,0 +1,33 @@
+{
+  "parent": "lotrextended:lindon/the_last_fair_realm",
+  "display": {
+    "icon": {
+      "item": "minecraft:iron_sword",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.lindon.the_last_alliance.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.lindon.the_last_alliance.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "hire_units_from_lindon_lord": {
+      "trigger": "lotrextended:unit_hired",
+      "conditions": {
+        "captain_type": "lotr:lindon_lord"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "hire_units_from_lindon_lord"
+    ]
+  ]
+}

@@ -203,6 +203,14 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 			.build(), 2, 5, false, 15, 8).setBoundaries(20, -10, 32, 10, -2, 8).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.RIVENDELL_GUARD);
 		single(ExtendedEntities.ELROND.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.RIVENDELL_ELROND);
 		single(ExtendedEntities.RIVENDELL_WEAVER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.RIVENDELL_WEAVER);
+		//LINDON
+		single(LOTREntities.LINDON_ELF.get(), 1, 2, 0).setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.LINDON_HOUSE);
+		single(ExtendedEntities.LINDON_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.LINDON_SMITH);
+		single(ExtendedEntities.LINDON_LORD.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.LINDON_CAPTAIN);
+		persisted(MultiSpawnType.Builder.multi()
+				.addPool(LOTREntities.LINDON_ELF.get(), 1).addPool(LOTREntities.LINDON_WARRIOR.get(), 1)
+				.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 10, -2, 8).setPersistenceRequired(false).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.LINDON_AREA);
+		single(ExtendedEntities.LINDON_WEAVER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.LINDON_WEAVER);
 
 	}
 }

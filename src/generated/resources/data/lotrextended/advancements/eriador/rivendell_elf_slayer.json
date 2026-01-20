@@ -58,13 +58,73 @@
           }
         ]
       }
+    },
+    "kill_rivendell_captain": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:rivendell_captain"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_rivendell_smith": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:rivendell_smith"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_rivendell_weaver": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:rivendell_weaver"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_elrond": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:elrond"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
       "kill_rivendell_elf",
       "kill_rivendell_warrior",
-      "kill_rivendell_wanderer"
+      "kill_rivendell_wanderer",
+      "kill_rivendell_captain",
+      "kill_rivendell_smith",
+      "kill_rivendell_weaver",
+      "kill_elrond"
     ]
   ]
 }

@@ -1,0 +1,41 @@
+{
+  "parent": "lotrextended:lindon/the_last_fair_realm",
+  "display": {
+    "icon": {
+      "item": "lotr:silver_coin_one"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.lindon.elder_craftsmanship.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.lindon.elder_craftsmanship.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_lindon_smith_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:lindon_smith",
+        "istraderselling": "false"
+      }
+    },
+    "trade_lindon_smith_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:lindon_smith",
+        "istraderselling": "true"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_lindon_smith_buy",
+      "trade_lindon_smith_sell"
+    ]
+  ]
+}

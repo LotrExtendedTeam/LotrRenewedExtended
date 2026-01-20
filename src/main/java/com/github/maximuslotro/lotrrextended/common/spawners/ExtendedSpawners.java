@@ -129,6 +129,13 @@ public class ExtendedSpawners {
 	public static final ResourceLocation RIVENDELL_ELROND = register("rivendell_elrond_spawner");
 	public static final ResourceLocation RIVENDELL_WEAVER = register("rivendell_weaver_spawner");
 
+	// RIVENDELL
+	public static final ResourceLocation LINDON_HOUSE = register("lindon_house_spawner");
+	public static final ResourceLocation LINDON_SMITH = register("lindon_smith_spawner");
+	public static final ResourceLocation LINDON_CAPTAIN = register("lindon_lord_spawner");
+	public static final ResourceLocation LINDON_AREA = register("lindon_area_spawner");
+	public static final ResourceLocation LINDON_WEAVER = register("lindon_weaver_spawner");
+
 	private static ResourceLocation register(String pId) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, pId), true);
 	}
