@@ -816,6 +816,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_string", has(Tags.Items.STRING))
 		.save(consumer, lotrLoc(ExtendedItems.BOWSTRING.get().getRegistryName().getPath()));
 		makeBowRecipe(consumer, ExtendedItems.RIVENDELL_BOW, ExtendedItems.BOWSTRING, STICKS, "sticks", LOTRRecipes.RIVENDELL_CRAFTING);
+		makeBowRecipe(consumer, ExtendedItems.LINDON_BOW, ExtendedItems.BOWSTRING, STICKS, "sticks", LOTRRecipes.LINDON_CRAFTING);
 
 		GENERATEDRECIPES.add(ExtendedItems.CHISEL.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CHISEL.get())

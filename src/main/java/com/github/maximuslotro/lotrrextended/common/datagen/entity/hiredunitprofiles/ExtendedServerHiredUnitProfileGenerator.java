@@ -316,7 +316,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_SHOVEL.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_PICKAXE.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_HOE.get()), 1)
-		//.addRangedPoolItem(new ItemStack(ExtendedItems.LINDON_BOW.get()), 5)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.LINDON_BOW.get()), 5)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.LINDON_ELF);
@@ -329,7 +329,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_SWORD.get()), 7)
 		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_SPEAR.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_AXE.get()), 1)
-		//.addRangedPoolItem(new ItemStack(ExtendedItems.LINDON_BOW.get()), 5)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.LINDON_BOW.get()), 5)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		//.addShieldItem(new ItemStack(ExtendedItems.LINDON_SHIELD.get()), 1)
 		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.LINDON_WARRIOR);

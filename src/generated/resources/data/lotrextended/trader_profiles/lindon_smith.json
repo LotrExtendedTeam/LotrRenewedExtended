@@ -257,6 +257,14 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotr:lindon_bow",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "minecraft:arrow",
         "averageCost": 3,
         "count": 4

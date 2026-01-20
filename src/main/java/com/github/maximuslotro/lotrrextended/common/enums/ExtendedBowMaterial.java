@@ -12,7 +12,8 @@ public enum ExtendedBowMaterial {
 	GUNDABAD_URUK("gundabad_uruk", 750, 30, 1.2F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	RANGER_NORTH("ranger", 525, 20, 1.05F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	DUNEDAIN_NORTH("dunedain_north", 600, 20, 1.15F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
-	RIVENDELL("rivendell", 1050, 16, 1.25F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get()));
+	RIVENDELL("rivendell", 1050, 16, 1.25F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
+	LINDON("lindon", 1050, 16, 1.25F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get()));
 
 	private final String bowMaterialName;
 	//private final int bowLevel;

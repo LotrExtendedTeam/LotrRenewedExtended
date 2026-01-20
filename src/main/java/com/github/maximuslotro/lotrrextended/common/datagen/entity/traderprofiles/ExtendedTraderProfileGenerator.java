@@ -1370,7 +1370,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(new ItemStack(Items.STICK, 8), 1)
 		.addSBuy(new ItemStack(Items.STRING, 3), 1)
 		.addSBuy(LOTRItems.MITHRIL_NUGGET, 40)
-		// TODO add Lindon (BattleStaff, Longspear, bow, horse armor)
+		// TODO add Lindon (BattleStaff, Longspear, horse armor)
 		.addSSell(LOTRItems.LINDON_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
 		.addSSell(LOTRItems.LINDON_SWORD, 20)
@@ -1383,7 +1383,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.LINDON_CHESTPLATE, 25)
 		.addSSell(LOTRItems.LINDON_LEGGINGS, 22)
 		.addSSell(LOTRItems.LINDON_BOOTS, 16)
-		//.addSSell(ExtendedItems.LINDON_BOW, 20)
+		.addSSell(ExtendedItems.LINDON_BOW, 20)
 		// Sell at a x20 price increase compared to regular LINDON armor
 		//.addSSell(ExtendedItems.GALAVORN_HELMET, 1, 360, 1, false)
 		//.addSSell(ExtendedItems.GALAVORN_HELMET_CHESTPLATE, 1, 500, 1, false)
