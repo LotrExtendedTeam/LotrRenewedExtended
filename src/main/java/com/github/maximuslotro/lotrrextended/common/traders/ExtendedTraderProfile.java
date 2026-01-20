@@ -643,7 +643,6 @@ public class ExtendedTraderProfile {
 		 * 
 		 * @param stacksAndPrices The item stacks and prices to include
 		 * @param weight The relative weight of this trade entry in the pool
-		 * @param averageCost The average cost of the trade
 		 * @param maxTransferQuantity The maximum quantity of items transferred in one trade
 		 * @param shouldTradePersist Should the trade tick back down
 		 * @return The instance of this builder

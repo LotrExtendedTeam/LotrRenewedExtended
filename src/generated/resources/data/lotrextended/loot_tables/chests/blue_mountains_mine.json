@@ -216,17 +216,6 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 12,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:mithril_ore"
-        },
-        {
-          "type": "minecraft:item",
           "weight": 100,
           "functions": [
             {

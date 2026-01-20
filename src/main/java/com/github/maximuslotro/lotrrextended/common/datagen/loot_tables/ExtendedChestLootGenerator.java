@@ -1825,7 +1825,6 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(Items.IRON_ORE).setWeight(75).setRange(1, 3))
 				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_INGOT.get()).setWeight(8).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_NUGGET.get()).setWeight(15).setRange(1, 9))
-				.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_ORE.get()).setWeight(12).setExactly(1))
 				.add(EItemLootEntry.lootItem(Items.COAL).setWeight(100).setRange(3, 8))
 				.add(EItemLootEntry.lootItem(Items.GLOWSTONE_DUST).setWeight(70).setRange(2, 7))
 				.add(EItemLootEntry.lootItem(LOTRItems.GLOWSTONE_CRYSTAL.get()).setWeight(60).setRange(1, 3))

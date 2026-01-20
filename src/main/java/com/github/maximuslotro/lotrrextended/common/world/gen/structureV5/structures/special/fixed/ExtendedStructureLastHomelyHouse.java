@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.struct
 
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.biome.Biome;
@@ -34,7 +35,7 @@ public class ExtendedStructureLastHomelyHouse extends SinglePoolStructure {
 
 	@Override
 	protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, SinglePoolConfig featureConfig) {
-		return chunkX == 2988 && chunkZ == -76 && ExtendedServerConfig.canSpawnStructure(ExtendedServerConfig.enableFixedStructureImladris);
+		return chunkX == 2987 && chunkZ == -76 && ExtendedServerConfig.canSpawnStructure(ExtendedServerConfig.enableFixedStructureImladris);
 	}
 
 	public static class Start extends SinglePoolStructure.Start {
@@ -55,6 +56,11 @@ public class ExtendedStructureLastHomelyHouse extends SinglePoolStructure {
 		@Override
 		public Rotation setRotation() {
 			return Rotation.CLOCKWISE_90;
+		}
+
+		@Override
+		public BlockPos setoffset() {
+			return new BlockPos(13, 0, 0);
 		}
 	}
 }

@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 

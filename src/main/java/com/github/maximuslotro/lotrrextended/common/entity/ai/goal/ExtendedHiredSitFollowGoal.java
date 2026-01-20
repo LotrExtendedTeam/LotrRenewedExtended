@@ -10,6 +10,8 @@ import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -266,18 +268,40 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 	private static boolean canTeleportTo(Entity entity, BlockPos teleportToPos) {
 		BlockState belowTeleportState = entity.level.getBlockState(teleportToPos.below());
 		boolean full = Block.isFaceFull(belowTeleportState.getCollisionShape(entity.level, teleportToPos, ISelectionContext.empty()), Direction.UP);
+		if(belowTeleportState.getBlock() instanceof StairsBlock || belowTeleportState.getBlock() instanceof SlabBlock) {
+			full = true;
+		}
 		boolean isSolid = belowTeleportState.getMaterial().isSolid();
 
 		PathNodeType pathnodetype = WalkNodeProcessor.getBlockPathTypeStatic(entity.level, teleportToPos.mutable());
-		if (pathnodetype != PathNodeType.WALKABLE || !(isSolid && full)) {
+		//ExtendedLog.info("full:"+full+", isSolid:"+isSolid+", pathnodetype:"+pathnodetype.name());
+		if ((pathnodetype != PathNodeType.WALKABLE && pathnodetype != PathNodeType.OPEN) || !isSolid || !full) {
 			return false;
 		} else {
-			BlockState blockstate = entity.level.getBlockState(teleportToPos.below());
-			if (blockstate.getBlock() instanceof LeavesBlock) {
+			if(pathnodetype == PathNodeType.OPEN && !isSolid && !full) {
+				BlockState belowTeleportStateAbove = entity.level.getBlockState(teleportToPos);
+				// Check above eg, lower type slabs
+				boolean fullAbove = Block.isFaceFull(belowTeleportStateAbove.getCollisionShape(entity.level, teleportToPos, ISelectionContext.empty()), Direction.UP);
+				if(belowTeleportStateAbove.getBlock() instanceof StairsBlock || belowTeleportStateAbove.getBlock() instanceof SlabBlock) {
+					fullAbove = true;
+				}
+				boolean isSolidAbove = belowTeleportStateAbove.getMaterial().isSolid();
+				//ExtendedLog.info("fullAbove:"+fullAbove+", isSolidAbove:"+isSolidAbove+", pathnodetype:"+pathnodetype.name());
+
+				if(!fullAbove || !isSolidAbove) {
+					return false;
+				}
+				if (belowTeleportStateAbove.getBlock() instanceof LeavesBlock) {
+					return false;
+				} else {
+					BlockPos blockpos = teleportToPos.subtract(entity.blockPosition());
+					return entity.level.noCollision(entity, entity.getBoundingBox().move(blockpos).move(0, 1, 0));
+				}
+			}
+			if (belowTeleportState.getBlock() instanceof LeavesBlock) {
 				return false;
 			} else {
 				BlockPos blockpos = teleportToPos.subtract(entity.blockPosition());
-				//ExtendedLog.info("Checking "+teleportState.toString()+":"+teleportToPos.toString()+":full="+full+":isSolid="+isSolid+":coll="+can+":path="+pathnodetype.name());
 				return entity.level.noCollision(entity, entity.getBoundingBox().move(blockpos));
 			}
 		}

@@ -73,6 +73,14 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 		return null;
 	}
 	/**
+     * Allows for setting a fixed block offset for a structure
+     * 
+     * @return A fixed block pffset for the structure
+     */
+	public BlockPos setoffset() {
+		return BlockPos.ZERO;
+	}
+	/**
      * Generates the pieces for this structure using {@link ExtendedJigsawManager}.
      * <p>
      * Automatically computes the correct chunk coordinates, selects the Jigsaw pool using {@link #getLocation},
@@ -98,7 +106,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
         }
         ExtendedJigsawManager.addPieces(dynamicRegistryManager,
         	new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), 7), AbstractVillagePiece::new,
-        	chunkGenerator, templateManagerIn, chunkPos, this.pieces, this.random, false, true, setRotation());
+        	chunkGenerator, templateManagerIn, chunkPos, this.pieces, this.random, false, true, setRotation(), setoffset());
 
 //        Vector3i structureCenter = this.pieces.get(0).getBoundingBox().getCenter();
 //        int xOffset = blockpos.getX() - structureCenter.getX();

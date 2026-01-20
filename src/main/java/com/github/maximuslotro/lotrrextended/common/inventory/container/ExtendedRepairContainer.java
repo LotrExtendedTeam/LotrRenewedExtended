@@ -718,7 +718,7 @@ public class ExtendedRepairContainer extends Container {
 		boolean regularRapair = inputItem.getItem().isValidRepairItem(inputItem, repairMaterial);
 		if(!regularRapair) {
 			if(inputItem.getItem() instanceof BowItem) {
-				return repairMaterial.getItem() == ExtendedItems.BOWSTRING.get();
+				return repairMaterial.getItem() == Items.STRING;
 			}
 			if(inputItem.getItem() instanceof FishingRodItem) {
 				return repairMaterial.getItem() == Items.STRING;

@@ -1,7 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import java.util.List;
+import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.ExtendedVanillaProtectionHandlers;
 import com.github.maximuslotro.lotrextended.api.events.world.ExtendedFastTravelWaypointEvent;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
@@ -12,7 +14,6 @@ import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckE
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
-import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils;
 
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
@@ -31,7 +32,6 @@ import net.minecraft.block.BellBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ChainBlock;
-import net.minecraft.block.EnchantingTableBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.MobEntity;
@@ -40,23 +40,24 @@ import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.event.ItemAttributeModifierEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -71,6 +72,31 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
  * death handling, and custom entity size adjustments.</p>
  */
 public class WorldEventHandlers {
+
+	@SubscribeEvent
+	public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+		ExtendedVanillaProtectionHandlers.extendedWarnedPlayers.remove(event.getPlayer().getUUID());
+		ExtendedVanillaProtectionHandlers.wasInProtection.remove(event.getPlayer().getUUID());
+	}
+
+	@SubscribeEvent
+	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+		if (event.phase == TickEvent.Phase.END && event.player instanceof ServerPlayerEntity && ExtendedServerConfig.enableExtendedSpawnProtection.get()) {
+			ServerPlayerEntity player = (ServerPlayerEntity) event.player;
+
+			boolean isProtected = ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(player.getLevel(), player.blockPosition(), player, false, true);
+			UUID id = player.getUUID();
+			boolean wasProtected = ExtendedVanillaProtectionHandlers.wasInProtection.getOrDefault(id, false);
+
+			if (!wasProtected && isProtected) {
+				player.sendMessage(new StringTextComponent("Entered spawn protection").withStyle(TextFormatting.RED), Util.NIL_UUID);
+			} else if (wasProtected && !isProtected) {
+				player.sendMessage(new StringTextComponent("Left spawn protection").withStyle(TextFormatting.GREEN), Util.NIL_UUID);
+			}
+
+			ExtendedVanillaProtectionHandlers.wasInProtection.put(id, isProtected);
+		}
+	}
 	/**
 	 * Prevents cloaked {@link ExtendedDunedainRangerEntity} from being targeted by NPCs.
 	 *
@@ -132,29 +158,29 @@ public class WorldEventHandlers {
 	@SubscribeEvent
 	public static void handleCaptainTraderDeath$Extended(LivingDeathEvent event) {
 		Entity sourceEntity = event.getSource().getEntity();
-        if (sourceEntity instanceof NPCEntity && ((ExtendedNPCEntity)sourceEntity).getUnitInfo().isNpcActiveDuty()) {
-            // base amount of xp off kill alignment bonus
-            float xpPoints = 0;
-            if (event.getEntity() instanceof NPCEntity) {
-                NPCEntitySettings settings = NPCEntitySettingsManager.getEntityTypeSettings(event.getEntity());
-                if (settings != null && settings.getKillAlignmentBonus() > 0) {
-                    xpPoints = (int) settings.getKillAlignmentBonus();
-                } else {
-                    xpPoints = 1;
-                }
-            } else {
-               if (event.getEntity() instanceof PigEntity ||
-                       event.getEntity() instanceof ChickenEntity ||
-                       event.getEntity() instanceof CowEntity ||
-                       event.getEntity() instanceof ExtendedDuckEntity) {
-                    xpPoints = 0.25f;
-               }
-            }
+		if (sourceEntity instanceof NPCEntity && ((ExtendedNPCEntity)sourceEntity).getUnitInfo().isNpcActiveDuty()) {
+			// base amount of xp off kill alignment bonus
+			float xpPoints = 0;
+			if (event.getEntity() instanceof NPCEntity) {
+				NPCEntitySettings settings = NPCEntitySettingsManager.getEntityTypeSettings(event.getEntity());
+				if (settings != null && settings.getKillAlignmentBonus() > 0) {
+					xpPoints = (int) settings.getKillAlignmentBonus();
+				} else {
+					xpPoints = 1;
+				}
+			} else {
+				if (event.getEntity() instanceof PigEntity ||
+						event.getEntity() instanceof ChickenEntity ||
+						event.getEntity() instanceof CowEntity ||
+						event.getEntity() instanceof ExtendedDuckEntity) {
+					xpPoints = 0.25f;
+				}
+			}
 
-            ((ExtendedNPCEntity)sourceEntity).getUnitInfo().giveExperiencePoints(xpPoints);
-            ((ExtendedNPCEntity)sourceEntity).getUnitInfo().setMobKills(((ExtendedNPCEntity)sourceEntity).getUnitInfo().getMobKills() + 1);
-            ((ExtendedNPCEntity)sourceEntity).getUnitInfo().markDirty();
-        }
+			((ExtendedNPCEntity)sourceEntity).getUnitInfo().giveExperiencePoints(xpPoints);
+			((ExtendedNPCEntity)sourceEntity).getUnitInfo().setMobKills(((ExtendedNPCEntity)sourceEntity).getUnitInfo().getMobKills() + 1);
+			((ExtendedNPCEntity)sourceEntity).getUnitInfo().markDirty();
+		}
 		// If an NPC is a wandering trader, no respawns, even it is a captain
 		if(event.getEntity() instanceof ExtendedTraderEntity && ((ExtendedNPCEntity) event.getEntity()).getTraderInfo().isTraderCurrentlyWandering()) {
 			ExtendedWanderingTraderEntity trader = (ExtendedWanderingTraderEntity) event.getEntity();
@@ -237,21 +263,12 @@ public class WorldEventHandlers {
 	}
 
 	@SubscribeEvent
-	public static void handleBlockLeftInteract$Extended(PlayerInteractEvent.LeftClickBlock event) {
-		if(LOTRDimensions.isModDimension(event.getWorld())) {
-			if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof EnchantingTableBlock) {
-				if(!ExtendedServerConfig.enableVanillaEnchanting.get()) {
-					event.setCanceled(true);
-				}
-			}
-		}
-	}
-
-	@SubscribeEvent
 	public static void handleBlockLeftInteract$Extended(PlayerInteractEvent.RightClickBlock event) {
+		World level = event.getWorld();
+		BlockState clickedState = level.getBlockState(event.getPos());
 		if(event.getPlayer().getMainHandItem().getItem().is(ExtendedTags.Items.PLACEABLE_BOOKS)) {
 			ExtendedPlaceableBookTypes type = ExtendedPlaceableBookTypes.getByItem(event.getPlayer().getMainHandItem().getItem());
-			if(type.notEmpty() && !(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof ExtendedPlacedBooksBlock)) {
+			if(type.notEmpty() && !(clickedState.getBlock() instanceof ExtendedPlacedBooksBlock)) {
 				BlockItemUseContext blockusecontext = new BlockItemUseContext(new ItemUseContext(event.getPlayer(), event.getHand(), event.getHitVec()));
 				if(ExtendedPlacementUtils.place(ExtendedBlocks.PLACED_BOOKS.get(), new BlockItemUseContext(blockusecontext))) {
 					event.getPlayer().swing(event.getHand(), true);
@@ -260,8 +277,6 @@ public class WorldEventHandlers {
 				}
 			}
 		}
-		World level = event.getPlayer().level;
-		BlockState clickedState = level.getBlockState(event.getPos());
 		if (clickedState.is(LOTRBlocks.WICKER_FENCE.get())) {
 			BlockPos checkPos = event.getPos().above();
 			BlockState state = level.getBlockState(checkPos);
@@ -296,36 +311,26 @@ public class WorldEventHandlers {
 			event.setCanceled(true);
 			return;
 		}
-	}
-
-	@SubscribeEvent
-	public static void handleEntityUpdate$Extended(LivingUpdateEvent pEvent) {
-		if(pEvent.getEntity() instanceof ServerPlayerEntity && pEvent.getEntity().tickCount%20 ==0) {
-			ServerPlayerEntity player = (ServerPlayerEntity)pEvent.getEntity();
-			PlayerInventory inventory = player.inventory;
-			for(int slotIndex=0; slotIndex < inventory.getContainerSize(); slotIndex++) {
-				ItemStack stack = inventory.getItem(slotIndex);
-				if(stack.isDamageableItem()) { 
-					if(!ExtendedModifierUtils.hasRandomModifiers(stack)) {
-						ExtendedModifierUtils.generateItemModifiersTagged(player.random, stack, false, false);
-					}
-				}
-			}
-			ItemStack carried = inventory.getCarried();
-			if(carried.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(carried)) {
-				ExtendedModifierUtils.generateItemModifiersTagged(player.random, carried, false, false);
-				player.broadcastCarriedItem();
+		if(clickedState.is(Blocks.ENCHANTING_TABLE)) {
+			if(!ExtendedServerConfig.enableVanillaEnchanting.get()) {
+				event.setCanceled(true);
+				return;
 			}
 		}
 	}
 
 	@SubscribeEvent
-	public static void handleItemAttributeChanges(ItemAttributeModifierEvent pEvent) {
-		ExtendedModifierUtils.processItemAttributes(pEvent);
+	public static void handleExtendedFastTravelWaypointEventPost(ExtendedFastTravelWaypointEvent.Post pEvent) {
+		ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(pEvent.getPlayer(), "fastTraveled");
 	}
 
 	@SubscribeEvent
-	public static void handleExtendedFastTravelWaypointEventPost(ExtendedFastTravelWaypointEvent.Post pEvent) {
-		ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(pEvent.getPlayer(), "fastTraveled");
+	public static void onLivingAttacked$Extended(LivingAttackEvent event) {
+		if(ExtendedServerConfig.enableStaffServer.get() && event.getSource().getEntity() instanceof ServerPlayerEntity && event.getEntityLiving() instanceof ServerPlayerEntity) {
+			if(ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(((ServerPlayerEntity) event.getEntityLiving()).getLevel(), 
+					event.getEntityLiving().blockPosition(), ((ServerPlayerEntity)event.getSource().getEntity()), true, true)) {
+				event.setCanceled(true);
+			}
+		}
 	}
 }

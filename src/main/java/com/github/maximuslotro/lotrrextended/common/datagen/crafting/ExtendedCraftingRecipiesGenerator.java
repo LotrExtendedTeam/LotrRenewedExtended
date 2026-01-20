@@ -90,7 +90,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeWoodenDoorRecipe(consumer, ExtendedItems.CHESTNUT_DOOR, ExtendedItems.CHESTNUT_PLANKS, null);
 		makeWoodenFenceAndFenceGateRecipe(consumer, ExtendedBlocks.CHESTNUT_FENCE, ExtendedBlocks.CHESTNUT_FENCE_GATE,
 			ExtendedItems.CHESTNUT_PLANKS, null);
-		makeSlabRecipe(consumer, ExtendedBlocks.CHESTNUT_LOG_SLAB, ExtendedItems.CHESTNUT_LOG, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.CHESTNUT_LOG_SLAB, ExtendedItems.CHESTNUT_LOG, null, "");
 		makeWoodenPressurePlateRecipe(consumer, ExtendedBlocks.CHESTNUT_PRESSURE_PLATE, ExtendedItems.CHESTNUT_PLANKS, null);
 		makeStairSlabRecipe(consumer, ExtendedBlocks.CHESTNUT_STAIRS, ExtendedBlocks.CHESTNUT_SLAB, ExtendedItems.CHESTNUT_PLANKS, null);
 		makeWoodenTrapdoorRecipe(consumer, ExtendedBlocks.CHESTNUT_TRAPDOOR, ExtendedItems.CHESTNUT_PLANKS, null);
@@ -104,7 +104,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedItems.CHESTNUT_WOOD_SLAB, ExtendedItems.STRIPPED_CHESTNUT_WOOD_SLAB,
 			ExtendedItems.CHESTNUT_WOOD_STAIRS, ExtendedItems.STRIPPED_CHESTNUT_WOOD_STAIRS, null);
 		makeBranchRecipe(consumer, ExtendedBlocks.STRIPPED_CHESTNUT_BRANCH, ExtendedItems.STRIPPED_CHESTNUT_WOOD, null);
-		makeSlabRecipe(consumer, ExtendedBlocks.STRIPPED_CHESTNUT_LOG_SLAB, ExtendedItems.STRIPPED_CHESTNUT_LOG, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.STRIPPED_CHESTNUT_LOG_SLAB, ExtendedItems.STRIPPED_CHESTNUT_LOG, null, "");
 		makeStairSlabRecipe(consumer, ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_STAIRS, ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB,
 			ExtendedItems.STRIPPED_CHESTNUT_WOOD, null);
 		makeWoodRecipe(consumer, ExtendedBlocks.STRIPPED_CHESTNUT_WOOD, ExtendedItems.STRIPPED_CHESTNUT_LOG, null);
@@ -118,7 +118,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeWoodenDoorRecipe(consumer, ExtendedItems.BANANA_DOOR, ExtendedItems.BANANA_PLANKS, null);
 		makeWoodenFenceAndFenceGateRecipe(consumer, ExtendedBlocks.BANANA_FENCE, ExtendedBlocks.BANANA_FENCE_GATE,
 			ExtendedItems.BANANA_PLANKS, null);
-		makeSlabRecipe(consumer, ExtendedBlocks.BANANA_LOG_SLAB, ExtendedItems.BANANA_LOG, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.BANANA_LOG_SLAB, ExtendedItems.BANANA_LOG, null, "");
 		makeWoodenPressurePlateRecipe(consumer, ExtendedBlocks.BANANA_PRESSURE_PLATE, ExtendedItems.BANANA_PLANKS, null);
 		makeStairSlabRecipe(consumer, ExtendedBlocks.BANANA_STAIRS, ExtendedBlocks.BANANA_SLAB, ExtendedItems.BANANA_PLANKS, null);
 		makeWoodenTrapdoorRecipe(consumer, ExtendedBlocks.BANANA_TRAPDOOR, ExtendedItems.BANANA_PLANKS, null);
@@ -132,7 +132,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedItems.BANANA_WOOD_SLAB, ExtendedItems.STRIPPED_BANANA_WOOD_SLAB,
 			ExtendedItems.BANANA_WOOD_STAIRS, ExtendedItems.STRIPPED_BANANA_WOOD_STAIRS, null);
 		makeBranchRecipe(consumer, ExtendedBlocks.STRIPPED_BANANA_BRANCH, ExtendedItems.STRIPPED_BANANA_WOOD, null);
-		makeSlabRecipe(consumer, ExtendedBlocks.STRIPPED_BANANA_LOG_SLAB, ExtendedItems.STRIPPED_BANANA_LOG, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.STRIPPED_BANANA_LOG_SLAB, ExtendedItems.STRIPPED_BANANA_LOG, null, "");
 		makeStairSlabRecipe(consumer, ExtendedBlocks.STRIPPED_BANANA_WOOD_STAIRS, ExtendedBlocks.STRIPPED_BANANA_WOOD_SLAB,
 			ExtendedItems.STRIPPED_BANANA_WOOD, null);
 		makeWoodRecipe(consumer, ExtendedBlocks.STRIPPED_BANANA_WOOD, ExtendedItems.STRIPPED_BANANA_LOG, null);
@@ -146,7 +146,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeWoodenDoorRecipe(consumer, ExtendedItems.PLUM_DOOR, ExtendedItems.PLUM_PLANKS, null);
 		makeWoodenFenceAndFenceGateRecipe(consumer, ExtendedBlocks.PLUM_FENCE, ExtendedBlocks.PLUM_FENCE_GATE,
 			ExtendedItems.PLUM_PLANKS, null);
-		makeSlabRecipe(consumer, ExtendedBlocks.PLUM_LOG_SLAB, ExtendedItems.PLUM_LOG, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.PLUM_LOG_SLAB, ExtendedItems.PLUM_LOG, null, "");
 		makeWoodenPressurePlateRecipe(consumer, ExtendedBlocks.PLUM_PRESSURE_PLATE, ExtendedItems.PLUM_PLANKS, null);
 		makeStairSlabRecipe(consumer, ExtendedBlocks.PLUM_STAIRS, ExtendedBlocks.PLUM_SLAB, ExtendedItems.PLUM_PLANKS, null);
 		makeWoodenTrapdoorRecipe(consumer, ExtendedBlocks.PLUM_TRAPDOOR, ExtendedItems.PLUM_PLANKS, null);
@@ -160,7 +160,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedItems.PLUM_WOOD_SLAB, ExtendedItems.STRIPPED_PLUM_WOOD_SLAB,
 			ExtendedItems.PLUM_WOOD_STAIRS, ExtendedItems.STRIPPED_PLUM_WOOD_STAIRS, null);
 		makeBranchRecipe(consumer, ExtendedBlocks.STRIPPED_PLUM_BRANCH, ExtendedItems.STRIPPED_PLUM_WOOD, null);
-		makeSlabRecipe(consumer, ExtendedBlocks.STRIPPED_PLUM_LOG_SLAB, ExtendedItems.STRIPPED_PLUM_LOG, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.STRIPPED_PLUM_LOG_SLAB, ExtendedItems.STRIPPED_PLUM_LOG, null, "");
 		makeStairSlabRecipe(consumer, ExtendedBlocks.STRIPPED_PLUM_WOOD_STAIRS, ExtendedBlocks.STRIPPED_PLUM_WOOD_SLAB,
 			ExtendedItems.STRIPPED_PLUM_WOOD, null);
 		makeWoodRecipe(consumer, ExtendedBlocks.STRIPPED_PLUM_WOOD, ExtendedItems.STRIPPED_PLUM_LOG, null);
@@ -174,7 +174,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeWoodenDoorRecipe(consumer, ExtendedItems.WILLOW_DOOR, ExtendedItems.WILLOW_PLANKS, null);
 		makeWoodenFenceAndFenceGateRecipe(consumer, ExtendedBlocks.WILLOW_FENCE, ExtendedBlocks.WILLOW_FENCE_GATE,
 			ExtendedItems.WILLOW_PLANKS, null);
-		makeSlabRecipe(consumer, ExtendedBlocks.WILLOW_LOG_SLAB, ExtendedItems.WILLOW_LOG, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.WILLOW_LOG_SLAB, ExtendedItems.WILLOW_LOG, null, "");
 		makeWoodenPressurePlateRecipe(consumer, ExtendedBlocks.WILLOW_PRESSURE_PLATE, ExtendedItems.WILLOW_PLANKS, null);
 		makeStairSlabRecipe(consumer, ExtendedBlocks.WILLOW_STAIRS, ExtendedBlocks.WILLOW_SLAB, ExtendedItems.WILLOW_PLANKS, null);
 		makeWoodenTrapdoorRecipe(consumer, ExtendedBlocks.WILLOW_TRAPDOOR, ExtendedItems.WILLOW_PLANKS, null);
@@ -188,7 +188,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedItems.WILLOW_WOOD_SLAB, ExtendedItems.STRIPPED_WILLOW_WOOD_SLAB,
 			ExtendedItems.WILLOW_WOOD_STAIRS, ExtendedItems.STRIPPED_WILLOW_WOOD_STAIRS, null);
 		makeBranchRecipe(consumer, ExtendedBlocks.STRIPPED_WILLOW_BRANCH, ExtendedItems.STRIPPED_WILLOW_WOOD, null);
-		makeSlabRecipe(consumer, ExtendedBlocks.STRIPPED_WILLOW_LOG_SLAB, ExtendedItems.STRIPPED_WILLOW_LOG, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.STRIPPED_WILLOW_LOG_SLAB, ExtendedItems.STRIPPED_WILLOW_LOG, null, "");
 		makeStairSlabRecipe(consumer, ExtendedBlocks.STRIPPED_WILLOW_WOOD_STAIRS, ExtendedBlocks.STRIPPED_WILLOW_WOOD_SLAB,
 			ExtendedItems.STRIPPED_WILLOW_WOOD, null);
 		makeWoodRecipe(consumer, ExtendedBlocks.STRIPPED_WILLOW_WOOD, ExtendedItems.STRIPPED_WILLOW_LOG, null);
@@ -420,7 +420,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.DOL_GULDUR_BRICK_STAIRS,
 			ExtendedBlocks.DOL_GULDUR_BRICK_SLAB,
 			ExtendedBlocks.DOL_GULDUR_BRICK_WALL,
-                Blocks.STONE::asItem, ExtendedRecipes.DOL_GULDUR_CRAFTING);
+                Blocks.STONE::asItem, ExtendedRecipes.DOL_GULDUR_CRAFTING,"");
 		makePillarSlabRecipe(consumer, ExtendedBlocks.DOL_GULDUR_PILLAR,
 			ExtendedBlocks.DOL_GULDUR_PILLAR_SLAB,
                 Blocks.STONE::asItem, ExtendedRecipes.DOL_GULDUR_CRAFTING);
@@ -544,7 +544,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.GOBLIN_BRICK_STAIRS,
 			ExtendedBlocks.GOBLIN_BRICK_SLAB,
 			ExtendedBlocks.GOBLIN_BRICK_WALL,
-                Blocks.STONE::asItem, ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+                Blocks.STONE::asItem, ExtendedRecipes.NORTHERN_ORC_CRAFTING,"");
 		makePillarSlabRecipe(consumer, ExtendedBlocks.GOBLIN_PILLAR,
 			ExtendedBlocks.GOBLIN_PILLAR_SLAB,
                 Blocks.STONE::asItem, ExtendedRecipes.NORTHERN_ORC_CRAFTING);
@@ -583,7 +583,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.TAURETHRIM_BRICK_STAIRS,
 			ExtendedBlocks.TAURETHRIM_BRICK_SLAB,
 			ExtendedBlocks.TAURETHRIM_BRICK_WALL,
-                Blocks.STONE::asItem, ExtendedRecipes.TAURETHRIM_CRAFTING);
+                Blocks.STONE::asItem, ExtendedRecipes.TAURETHRIM_CRAFTING,"");
 		makePillarSlabRecipe(consumer, ExtendedBlocks.TAURETHRIM_PILLAR,
 			ExtendedBlocks.TAURETHRIM_PILLAR_SLAB,
                 Blocks.STONE::asItem, ExtendedRecipes.TAURETHRIM_CRAFTING);
@@ -603,7 +603,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_STAIRS,
 			ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_SLAB,
 			ExtendedBlocks.GOLDEN_TAURETHRIM_BRICK_WALL,
-			()->Items.GOLD_INGOT, ExtendedRecipes.TAURETHRIM_CRAFTING);
+			()->Items.GOLD_INGOT, ExtendedRecipes.TAURETHRIM_CRAFTING,"");
 		makePillarSlabRecipe(consumer, ExtendedBlocks.GOLDEN_TAURETHRIM_PILLAR,
 			ExtendedBlocks.GOLDEN_TAURETHRIM_PILLAR_SLAB,
 			()->Items.GOLD_INGOT, ExtendedRecipes.TAURETHRIM_CRAFTING);
@@ -611,7 +611,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_STAIRS,
 			ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_SLAB,
 			ExtendedBlocks.OBSIDIAN_TAURETHRIM_BRICK_WALL,
-			()->ExtendedItems.OBSIDIAN_SHARD.get(), ExtendedRecipes.TAURETHRIM_CRAFTING);
+			()->ExtendedItems.OBSIDIAN_SHARD.get(), ExtendedRecipes.TAURETHRIM_CRAFTING,"");
 		makePillarSlabRecipe(consumer, ExtendedBlocks.OBSIDIAN_TAURETHRIM_PILLAR,
 			ExtendedBlocks.OBSIDIAN_TAURETHRIM_PILLAR_SLAB,
 			()->ExtendedItems.OBSIDIAN_SHARD.get(), ExtendedRecipes.TAURETHRIM_CRAFTING);
@@ -651,7 +651,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+Blocks.SANDSTONE.getRegistryName().getPath(), has(Blocks.SANDSTONE.asItem()))
 		.save(consumer, lotrLoc(ExtendedBlocks.RHUNIC_PILLAR.get().getRegistryName().getPath()+"_2"));
 		makeSlabRecipe(consumer, ExtendedBlocks.RHUNIC_PILLAR_SLAB,
-			()->ExtendedBlocks.RHUNIC_PILLAR.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
+			()->ExtendedBlocks.RHUNIC_PILLAR.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING, "");
 		makeCrackedBlockRecipe(consumer, ExtendedBlocks.CRACKED_RHUNIC_BRICK,
 			()->ExtendedBlocks.RHUNIC_BRICK.get().asItem());
 		makeStairSlabWallRecipe(consumer, ExtendedBlocks.CRACKED_RHUNIC_BRICK_STAIRS,
@@ -678,7 +678,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.RED_RHUNIC_BRICK_STAIRS,
 			ExtendedBlocks.RED_RHUNIC_BRICK_SLAB,
 			ExtendedBlocks.RED_RHUNIC_BRICK_WALL,
-			()->LOTRBlocks.RED_ROCK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
+			()->LOTRBlocks.RED_ROCK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING,"");
 		makeCarvedBlockRecipe(consumer, ExtendedBlocks.CARVED_RED_RHUNIC_BRICK,
 			ExtendedBlocks.RED_RHUNIC_BRICK, ExtendedBlocks.RED_RHUNIC_BRICK_SLAB, ExtendedRecipes.RHUNIC_CRAFTING);
 		makePillarSlabRecipe(consumer, ExtendedBlocks.RED_RHUNIC_PILLAR,
@@ -714,7 +714,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			()->ExtendedBlocks.GOLD_TRIMMED_RHUNIC_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
 		//GONDOR
 		makeStairRecipe(consumer, ExtendedBlocks.SMOOTH_GONDOR_ROCK_STAIRS,
-			()->LOTRBlocks.SMOOTH_GONDOR_ROCK.get().asItem(), LOTRRecipes.GONDOR_CRAFTING);
+			()->LOTRBlocks.SMOOTH_GONDOR_ROCK.get().asItem(), LOTRRecipes.GONDOR_CRAFTING, "");
 		makeCarvedBlockRecipe(consumer, ExtendedBlocks.CARVED_BLACK_GONDOR_BRICK,
 			LOTRBlocks.NUMENOREAN_BRICK, LOTRBlocks.NUMENOREAN_BRICK_SLAB, LOTRRecipes.GONDOR_CRAFTING);
 		makeCarvedBlockRecipe(consumer, ExtendedBlocks.CARVED_BLACK_UMBAR_BRICK,
@@ -723,12 +723,16 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			LOTRBlocks.UMBAR_BRICK, LOTRBlocks.UMBAR_BRICK_SLAB, LOTRRecipes.UMBAR_CRAFTING);
 		makeThrowableAxeRecipe(consumer, ExtendedItems.LOSSARNACH_THROWABLE_AXE, Tags.Items.INGOTS_IRON, "iron", LOTRRecipes.GONDOR_CRAFTING);
 		//DWARVEN
-		make2x2BlockRecipe(consumer, ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK,
-			ExtendedItems.OBSIDIAN_SHARD, LOTRRecipes.DWARVEN_CRAFTING);
-		makeStairSlabWallRecipe(consumer, ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_STAIRS,
+		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK,
+			ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_STAIRS,
 			ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_SLAB,
 			ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_WALL,
-			()->ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK.get().asItem(), LOTRRecipes.DWARVEN_CRAFTING);
+			ExtendedItems.OBSIDIAN_SHARD, LOTRRecipes.DWARVEN_CRAFTING, "_on_dwarven");
+		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK,
+				ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_STAIRS,
+				ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_SLAB,
+				ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_WALL,
+				ExtendedItems.OBSIDIAN_SHARD, LOTRRecipes.BLUE_MOUNTAINS_CRAFTING, "_on_blue_dwarven");
 		makeThrowableAxeRecipe(consumer, ExtendedItems.DWARVEN_THROWABLE_AXE, LOTRItems.DWARVEN_STEEL_INGOT, LOTRRecipes.DWARVEN_CRAFTING);
 		// BLUE MOUNTAIN DWARVEN
 		makeThrowableAxeRecipe(consumer, ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE, LOTRItems.DWARVEN_STEEL_INGOT, LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
@@ -1079,13 +1083,13 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.requires(Ingredient.of(Tags.Items.SEEDS))
 		.unlockedBy("has_"+ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath(), has(ExtendedBlocks.BARREN_DIRT.get()))
 		.save(consumer, lotrLoc(Blocks.DIRT.getRegistryName().getPath()+"_from_"+ExtendedBlocks.BARREN_DIRT.get().getRegistryName().getPath()));
-		makeSlabRecipe(consumer, ExtendedBlocks.BARREN_DIRT_SLAB, ExtendedItems.BARREN_DIRT, null);
-		makeSlabRecipe(consumer, ExtendedBlocks.COARSE_DIRT_SLAB, () -> Items.COARSE_DIRT, null);
-		makeSlabRecipe(consumer, ExtendedBlocks.DIRT_SLAB, () -> Items.DIRT, null);
-		makeSlabRecipe(consumer, ExtendedBlocks.GRASS_BLOCK_SLAB, () -> Items.GRASS_BLOCK, null);
-		makeSlabRecipe(consumer, ExtendedBlocks.GRASS_PATH_SLAB, () -> Items.GRASS_PATH, null);
-		makeSlabRecipe(consumer, ExtendedBlocks.MYCELIUM_SLAB, () -> Items.MYCELIUM, null);
-		makeSlabRecipe(consumer, ExtendedBlocks.PODZOL_SLAB, () -> Items.PODZOL, null);
+		makeSlabRecipe(consumer, ExtendedBlocks.BARREN_DIRT_SLAB, ExtendedItems.BARREN_DIRT, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.COARSE_DIRT_SLAB, () -> Items.COARSE_DIRT, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.DIRT_SLAB, () -> Items.DIRT, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.GRASS_BLOCK_SLAB, () -> Items.GRASS_BLOCK, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.GRASS_PATH_SLAB, () -> Items.GRASS_PATH, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.MYCELIUM_SLAB, () -> Items.MYCELIUM, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.PODZOL_SLAB, () -> Items.PODZOL, null, "");
 		//Scorched blocks
 		GENERATEDRECIPES.add(ExtendedBlocks.SCORCHED_COBBLESTONE.get().getRegistryName().getPath());
 		CookingRecipeBuilder.blasting(Ingredient.of(Blocks.COBBLESTONE.asItem()), ExtendedBlocks.SCORCHED_COBBLESTONE.get(), 0.1F, 100)
@@ -1105,21 +1109,21 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.SCORCHED_BRICK_STAIRS,
 			ExtendedBlocks.SCORCHED_BRICK_SLAB,
 			ExtendedBlocks.SCORCHED_BRICK_WALL,
-			()->ExtendedItems.SCORCHED_STONE.get(), null);
+			()->ExtendedItems.SCORCHED_STONE.get(), null,"");
 		CookingRecipeBuilder.blasting(Ingredient.of(Blocks.STONE_BRICKS.asItem()), ExtendedBlocks.SCORCHED_BRICK.get(), 0.1F, 100)
 		.unlockedBy("has_"+Blocks.STONE_BRICKS.getRegistryName().getPath(), has(Blocks.STONE_BRICKS))
 		.save(consumer, ExtendedBlocks.SCORCHED_BRICK.get().getRegistryName().getPath()+"_from_blasting");
 		//Missing smooth stair recipes
 		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_MORDOR_ROCK_STAIRS.get(),
-			()->LOTRBlocks.SMOOTH_MORDOR_ROCK.get().asItem(), LOTRRecipes.MORDOR_CRAFTING);
+			()->LOTRBlocks.SMOOTH_MORDOR_ROCK.get().asItem(), LOTRRecipes.MORDOR_CRAFTING, "");
 		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_ROHAN_ROCK_STAIRS.get(),
-			()->LOTRBlocks.SMOOTH_ROHAN_ROCK.get().asItem(), LOTRRecipes.ROHAN_CRAFTING);
+			()->LOTRBlocks.SMOOTH_ROHAN_ROCK.get().asItem(), LOTRRecipes.ROHAN_CRAFTING, "");
 		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_RED_ROCK_STAIRS.get(),
-			()->LOTRBlocks.SMOOTH_RED_ROCK.get().asItem(), null);
+			()->LOTRBlocks.SMOOTH_RED_ROCK.get().asItem(), null, "");
 		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_BLUE_ROCK_STAIRS.get(),
-			()->LOTRBlocks.SMOOTH_BLUE_ROCK.get().asItem(), null);
+			()->LOTRBlocks.SMOOTH_BLUE_ROCK.get().asItem(), null, "");
 		makeStairRecipe(consumer, ()->ExtendedBlocks.SMOOTH_STONE_STAIRS.get(),
-                Blocks.SMOOTH_STONE::asItem, null);
+                Blocks.SMOOTH_STONE::asItem, null, "");
 		//drystone
 		ShapelessRecipeBuilder.shapeless(LOTRBlocks.DRYSTONE.get())
 		.requires(ExtendedBlocks.COBBLED_DRYSTONE.get())
@@ -1130,7 +1134,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedBlocks.CUT_DRYSTONE.get().getRegistryName().getPath(), has(ExtendedBlocks.CUT_DRYSTONE.get()))
 		.save(consumer, lotrLoc(LOTRBlocks.DRYSTONE.get().getRegistryName().getPath()+"_from_"+ExtendedBlocks.CUT_DRYSTONE.get().getRegistryName().getPath()));
 		make2x2BlockRecipe(consumer, ExtendedBlocks.CUT_DRYSTONE,
-			()->LOTRBlocks.DRYSTONE.get().asItem(), null);
+			()->LOTRBlocks.DRYSTONE.get().asItem(), null,"");
 		make3x3BlockRecipe(consumer, ExtendedBlocks.COBBLED_DRYSTONE,
 			()->LOTRBlocks.DRYSTONE.get().asItem(), null);
 		makeStairSlabWallRecipe(consumer, ExtendedBlocks.DRYSTONE_STAIRS,
@@ -1156,18 +1160,18 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc(ExtendedItems.CROSSED_WATTLE_AND_DAUB.get().getRegistryName().getPath()));
 		//Mud
 		makeSlabRecipe(consumer, ()->ExtendedBlocks.MUD_SLAB.get(),
-			()->ExtendedBlocks.MUD.get().asItem(), null);
+			()->ExtendedBlocks.MUD.get().asItem(), null, "");
 		makeStairRecipe(consumer, ()->ExtendedBlocks.MUD_STAIRS.get(),
-			()->ExtendedBlocks.MUD.get().asItem(), null);
+			()->ExtendedBlocks.MUD.get().asItem(), null, "");
 		makeSlabRecipe(consumer, ()->ExtendedBlocks.MUD_PATH_SLAB.get(),
-			()->ExtendedBlocks.MUD_PATH.get().asItem(), null);
+			()->ExtendedBlocks.MUD_PATH.get().asItem(), null, "");
 		makeStairRecipe(consumer, ()->ExtendedBlocks.MUD_PATH_STAIRS.get(),
-			()->ExtendedBlocks.MUD_PATH.get().asItem(), null);
+			()->ExtendedBlocks.MUD_PATH.get().asItem(), null, "");
 		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.MUD_BRICK,
 			ExtendedBlocks.MUD_BRICK_STAIRS,
 			ExtendedBlocks.MUD_BRICK_SLAB,
 			ExtendedBlocks.MUD_BRICK_WALL,
-			()->ExtendedBlocks.MUD.get().asItem(), null);
+			()->ExtendedBlocks.MUD.get().asItem(), null,"");
 		makeMossyBlockRecipe(consumer, ExtendedBlocks.MOSSY_MUD_BRICK,
 			()->ExtendedBlocks.MUD_BRICK.get().asItem(), null);
 		makeStairSlabWallRecipe(consumer, ExtendedBlocks.MOSSY_MUD_BRICK_STAIRS,

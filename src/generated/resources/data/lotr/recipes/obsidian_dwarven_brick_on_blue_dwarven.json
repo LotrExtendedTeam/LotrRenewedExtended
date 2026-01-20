@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:blue_mountains",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:obsidian_shard"
+    }
+  },
+  "result": {
+    "item": "lotr:obsidian_dwarven_brick",
+    "count": 4
+  }
+}

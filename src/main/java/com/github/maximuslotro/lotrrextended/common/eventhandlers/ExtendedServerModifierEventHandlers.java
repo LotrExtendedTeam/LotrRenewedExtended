@@ -4,13 +4,17 @@ import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.Hand;
+import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -59,6 +63,7 @@ public class ExtendedServerModifierEventHandlers {
 			if (source instanceof PlayerEntity) {
 				ExtendedModifierUtils.incrementBaneProgress(weapon, event.getEntity(), (PlayerEntity) source);
 			} else {
+				// Allow non-player entities to also obtain banes
 				ExtendedModifierUtils.incrementBaneProgress(weapon, event.getEntity(), null);
 			}
 		}else if (event.getEntityLiving() instanceof PlayerEntity && !event.getEntityLiving().level.isClientSide()) {
@@ -73,12 +78,38 @@ public class ExtendedServerModifierEventHandlers {
 	}
 
 	@SubscribeEvent
-	public void onBreakSpeed(BreakSpeed event) {
+	public static void onBreakSpeed(BreakSpeed event) {
 		float currentOtherModModifiableSpeed = event.getNewSpeed();
 		float f = event.getPlayer().inventory.getDestroySpeed(event.getState());
 		if (f > 1.0f) {
 			currentOtherModModifiableSpeed *= ExtendedModifierUtils.getBlockEfficiencyFloat(event.getPlayer());
 		}
 		event.setNewSpeed(currentOtherModModifiableSpeed);
+	}
+
+	@SubscribeEvent
+	public static void handleEntityUpdate$Extended(LivingUpdateEvent pEvent) {
+		if(pEvent.getEntity() instanceof ServerPlayerEntity && pEvent.getEntity().tickCount%20 ==0) {
+			ServerPlayerEntity player = (ServerPlayerEntity)pEvent.getEntity();
+			PlayerInventory inventory = player.inventory;
+			for(int slotIndex=0; slotIndex < inventory.getContainerSize(); slotIndex++) {
+				ItemStack stack = inventory.getItem(slotIndex);
+				if(stack.isDamageableItem()) { 
+					if(!ExtendedModifierUtils.hasRandomModifiers(stack)) {
+						ExtendedModifierUtils.generateItemModifiersTagged(player.random, stack, false, false);
+					}
+				}
+			}
+			ItemStack carried = inventory.getCarried();
+			if(carried.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(carried)) {
+				ExtendedModifierUtils.generateItemModifiersTagged(player.random, carried, false, false);
+				player.broadcastCarriedItem();
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void handleItemAttributeChanges(ItemAttributeModifierEvent pEvent) {
+		ExtendedModifierUtils.processItemAttributes(pEvent);
 	}
 }

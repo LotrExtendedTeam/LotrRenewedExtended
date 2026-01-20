@@ -55,6 +55,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class ExtendedMEBannerBlock extends Block implements IWaterLoggable{
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -263,8 +264,9 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable{
 					ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
 					return ActionResultType.sidedSuccess(world.isClientSide);
 				}
-				if(ExtendedBannerProtectionManager.getProtectionStatus(world, blockPos, new SingleProtectionInstance.PlayerProtection(player, ExtendedBannerPermissions.BANNER), true, "bannerBlocknteract").isAllowed()) {
-					ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket((ExtendedMEBannerTileEntity)tileentity);
+				if(ExtendedBannerProtectionManager.getProtectionStatus(world, blockPosBottom, new SingleProtectionInstance.PlayerProtection(player, ExtendedBannerPermissions.BANNER)).isAllowed()) {
+					boolean clientOP = ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(player.getGameProfile());
+					ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket((ExtendedMEBannerTileEntity)tileentity, clientOP);
 					ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
 					return ActionResultType.sidedSuccess(world.isClientSide);
 				}

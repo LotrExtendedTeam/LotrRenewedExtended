@@ -54,8 +54,11 @@ public class BanditsSpawner {
         // from getting ambushed outside the wall of their base by a bunch bandits that were spawned while they were in their base
         if (!ignoreProtection) {
             BlockPos pos = new BlockPos(player.position());
-            if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ExtendedBannerProtectionManager.SingleProtectionInstance.AnyProtection(), false, "checkSpawnRules").isNotAllowed()) {
+            if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ExtendedBannerProtectionManager.SingleProtectionInstance.AnyProtection()).isNotAllowed()) {
+                ExtendedLog.info("In Banner Area");
                 return false;
+            } else {
+                ExtendedLog.info("Not In Banner Area");
             }
         }
 
@@ -88,7 +91,7 @@ public class BanditsSpawner {
             if (bandit != null) {
                 // check protection
                 if (!ignoreProtection) {
-                    if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ExtendedBannerProtectionManager.SingleProtectionInstance.EntityProtection(bandit), false, "checkSpawnRules").isNotAllowed()) {
+                    if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ExtendedBannerProtectionManager.SingleProtectionInstance.AnyProtection()).isNotAllowed()) {
                         ExtendedLog.debug("Bandit could not be spawned at " + pos + " because it was inside protection banner.");
                         continue;
                     }
