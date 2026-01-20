@@ -255,6 +255,14 @@
       }
     },
     {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:rivendell_bow",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
       "weight": 10,
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,

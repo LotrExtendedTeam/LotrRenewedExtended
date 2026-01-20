@@ -57,6 +57,12 @@ public class ExtendedDrinkLootGenerator extends ChestLootTables  {
 			.add(addEntry(LOTRItems.MIRUVOR.get(), 2))
 			.add(addEntry(LOTRItems.APPLE_JUICE.get(), 1))
 			.add(addEntry(LOTRItems.SWEET_BERRY_JUICE.get(), 1)));
+
+		// TODO add remaining berry juices
+		make(consumer, ExtendedLootTables.LINDON_VESSELS, ExtendedLootTables.LINDON_KEGS, makePool()
+			.add(addEntry(LOTRItems.MIRUVOR.get(), 2))
+			.add(addEntry(LOTRItems.APPLE_JUICE.get(), 1))
+			.add(addEntry(LOTRItems.SWEET_BERRY_JUICE.get(), 1)));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight){

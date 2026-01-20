@@ -234,6 +234,23 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 			.add(addEntry(ExtendedItems.ELDERBERRY.get(), 1, 3))
 			.add(addEntry(ExtendedItems.RASPBERRY.get(), 1, 3))
 			.add(addEntry(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 4)));
+
+		make(consumer, ExtendedLootTables.LINDON_PLATE, makePool()
+			.add(addEntry(Items.BREAD, 1, 1))
+			.add(addEntry(Items.APPLE, 2, 3))
+			.add(addEntry(Items.CARROT, 1, 3))
+			.add(addEntry(Items.CHICKEN, 1, 2))
+			.add(addEntry(LOTRItems.GREEN_APPLE.get(), 1, 2))
+			.add(addEntry(LOTRItems.PEAR.get(), 1, 2))
+			.add(addEntry(LOTRItems.LETTUCE.get(), 1, 5))
+			.add(addEntry(LOTRItems.LEMBAS.get(), 1, 2))
+			.add(addEntry(ExtendedItems.PLUM.get(), 1, 2))
+			.add(addEntry(ExtendedItems.BLACKBERRY.get(), 1, 3))
+			.add(addEntry(ExtendedItems.BLUEBERRY.get(), 1, 3))
+			.add(addEntry(ExtendedItems.CRANBERRY.get(), 1, 3))
+			.add(addEntry(ExtendedItems.ELDERBERRY.get(), 1, 3))
+			.add(addEntry(ExtendedItems.RASPBERRY.get(), 1, 3))
+			.add(addEntry(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 4)));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item){

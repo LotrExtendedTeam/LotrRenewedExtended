@@ -6,7 +6,6 @@ import java.util.UUID;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 
 import lotr.common.entity.npc.ai.goal.*;
-import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.util.ExtendedInteractableHelper;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.EntityType;
@@ -139,11 +138,6 @@ public abstract class ExtendedRivendellTraderEntity extends RivendellElfEntity  
 		}
 
 		ExtendedTraderHelper.tickTrader(this, this);
-	}
-
-	@Override
-	protected NPCGenderProvider getGenderProvider() {
-		return NPCGenderProvider.MALE;
 	}
 
 	@Override

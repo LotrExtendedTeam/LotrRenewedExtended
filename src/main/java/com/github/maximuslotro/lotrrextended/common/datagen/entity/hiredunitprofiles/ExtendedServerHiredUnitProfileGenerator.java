@@ -304,5 +304,34 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
 		.addShieldItem(new ItemStack(ExtendedItems.RIVENDELL_SHIELD.get()), 1)
 		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.RIVENDELL_WARRIOR);
+
+		// Lindon units
+		make(LOTREntities.LINDON_ELF.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(45, false, 300)
+		.addHelmetPoolItem(ItemStack.EMPTY, 1)
+		.addChestplatePoolItem(ItemStack.EMPTY, 1)
+		.addLeggingPoolItem(ItemStack.EMPTY, 1)
+		.addBootsPoolItem(ItemStack.EMPTY, 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_DAGGER.get()), 6)
+		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_AXE.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_SHOVEL.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_PICKAXE.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_HOE.get()), 1)
+		//.addRangedPoolItem(new ItemStack(ExtendedItems.LINDON_BOW.get()), 5)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.LINDON_ELF);
+
+		make(LOTREntities.LINDON_WARRIOR.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(75, false, 400)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.LINDON_HELMET.get()), 1)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.LINDON_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.LINDON_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.LINDON_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_SWORD.get()), 7)
+		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_SPEAR.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_AXE.get()), 1)
+		//.addRangedPoolItem(new ItemStack(ExtendedItems.LINDON_BOW.get()), 5)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
+		//.addShieldItem(new ItemStack(ExtendedItems.LINDON_SHIELD.get()), 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.LINDON_WARRIOR);
 	}
 }
