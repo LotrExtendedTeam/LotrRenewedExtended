@@ -157,13 +157,13 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		addButton(hud.addButton("gui.lotrextended.settings.renderalignmentbareverywhere.setting", button -> toggleLotrConfigValue(LOTRConfig.CLIENT.showAlignmentEverywhere), (button, pd) -> LOTRConfig.CLIENT.showAlignmentEverywhere.get(), 
 			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		alignmentX = addButton(hud.addSlider("gui.lotrextended.settings.alignmentoffsetx.prefix", "gui.lotrextended.settings.alignmentoffset.suffix", 
-			-32767, 32767, LOTRConfig.CLIENT.alignmentXOffset.get(), false, true , button -> {}, slider -> {
+			-3000, 3000, LOTRConfig.CLIENT.alignmentXOffset.get(), false, true , button -> {}, slider -> {
 				if(!slider.dragging) {
 					LOTRConfig.CLIENT.alignmentXOffset.setAndSave(slider.getValueInt());
 				}
 			}));
 		alignmentY = addButton(hud.addSlider("gui.lotrextended.settings.alignmentoffsety.prefix", "gui.lotrextended.settings.alignmentoffset.suffix", 
-			-32767, 32767, LOTRConfig.CLIENT.alignmentYOffset.get(), false, true , button -> {}, slider -> {
+			0, 3000, LOTRConfig.CLIENT.alignmentYOffset.get(), false, true , button -> {}, slider -> {
 				if(!slider.dragging) {
 					LOTRConfig.CLIENT.alignmentYOffset.setAndSave(slider.getValueInt());
 				}
