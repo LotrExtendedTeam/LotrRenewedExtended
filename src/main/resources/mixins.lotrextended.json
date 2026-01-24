@@ -62,6 +62,7 @@
 		"lotr.common.item.MixinVesselOperations",
 		"lotr.common.item.MixinVesselType",
 		"lotr.common.network.MixinCPacketCreateCustomWaypoint",
+		"lotr.common.network.MixinCPacketMapTp",
 		"lotr.common.tileentity.MixinKegTileEntity",
 		"lotr.common.tileentity.MixinPlateTileEntity",
 		"lotr.common.tileentity.MixinVesselDrinkTileEntity",
