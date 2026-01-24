@@ -95,7 +95,9 @@ public class ExtendedLootTables {
 	public static final ResourceLocation LINDON_LORD_CHEST = registerChest("lindon_lord");
 	public static final ResourceLocation LINDON_WEAVER_CHEST = registerChest("lindon_weaver");
 	public static final ResourceLocation LINDON_TREASURE_CHEST = registerChest("lindon_treasure");
-	//public static final ResourceLocation LINDON_WEAPONS_CHEST = registerChest("lindon_weapons");
+	public static final ResourceLocation LINDON_ARCHIVES_CHEST = registerChest("lindon_archives");
+	public static final ResourceLocation LINDON_FOOD_CHEST = registerChest("lindon_food");
+	public static final ResourceLocation LINDON_EQUIPMENT_CHEST = registerChest("lindon_equipment");
 
 	// KEGS
 	public static final ResourceLocation HOBBIT_KEGS = registerKeg("hobbit");

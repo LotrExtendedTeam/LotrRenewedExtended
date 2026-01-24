@@ -1705,6 +1705,7 @@
   "config.lotrextended.enableExtendedSpawnProtection": "Enable extended spawn protection for servers",
   "config.lotrextended.enableFellowshipCreation": "Enable fellowship creation (if disabled admins can still create via command)",
   "config.lotrextended.enableFixedStructureImladris": "Enable Imladris lore structure",
+  "config.lotrextended.enableFixedStructureTowerHills": "Enable Tower Hills lore structure",
   "config.lotrextended.enableFixedStructures": "Enable fixed structures to generate, OVERRIDES ALL OTHER STRUCTURE SETTINGS!",
   "config.lotrextended.enableHungerDecrease": "Decrease hunger meter exhaustion",
   "config.lotrextended.enableLegacyCaptainPassiveBehavior": "Make captains passive until attacked, like in legacy",

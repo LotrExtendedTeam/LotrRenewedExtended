@@ -2475,7 +2475,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_GOBLET.get()).setWeight(10).setRange(1, 3))
 				.add(EItemLootEntry.lootItem(Items.GLASS_BOTTLE).setWeight(10).setRange(1, 3))
 				.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(50).setRange(2, 6))
-				//.add(EItemLootEntry.lootItem(ExtendedItems.LINDON_BOW.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.LINDON_BOW.get()).setWeight(10).setExactly(1).standardDamageRange())
 				.add(EItemLootEntry.lootItem(LOTRItems.LINDON_SWORD.get()).setWeight(10).setExactly(1).standardDamageRange())
 				.add(EItemLootEntry.lootItem(LOTRItems.LINDON_SPEAR.get()).setWeight(10).setExactly(1).standardDamageRange())
 				.add(EItemLootEntry.lootItem(LOTRItems.LINDON_DAGGER.get()).setWeight(10).setExactly(1).standardDamageRange())
@@ -2498,6 +2498,27 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
 				.apply(ExtendedModifierScrollAdder.chanceDefault())));
+		// TODO add Miruvor, leeks, turnips, wine glass
+		make(consumer, ExtendedLootTables.LINDON_FOOD_CHEST, makeTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(4, 6))
+				.add(EItemLootEntry.lootItem(Items.BOOK).setWeight(50).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.WOODEN_MUG.get()).setWeight(10).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.GOLDEN_GOBLET.get()).setWeight(10).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_GOBLET.get()).setWeight(10).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.GLASS_BOTTLE).setWeight(10).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.APPLE).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.BREAD).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.CARROT).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.GREEN_APPLE.get()).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.PEAR.get()).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.LETTUCE.get()).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.LEMBAS.get()).setWeight(10).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.PLUM.get()).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(ExtendedItems.ROASTED_CHESTNUT.get()).setWeight(25).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(1).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(2).setRange(1, 10))
+				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(1).setExactly(1))));
 		// TODO add Miruvor, lindon (polearm, longspear), leeks, turnips, wine glass
 		make(consumer, ExtendedLootTables.LINDON_LORD_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -2581,6 +2602,25 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 				.add(EItemLootEntry.lootItem(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
 				.apply(ExtendedModifierScrollAdder.chanceSmith())));
+		make(consumer, ExtendedLootTables.LINDON_EQUIPMENT_CHEST, makeTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(1, 3))
+				.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(100).setRange(2, 6))
+				.add(EItemLootEntry.lootItem(ExtendedItems.LINDON_BOW.get()).setWeight(70).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.LINDON_SWORD.get()).setWeight(60).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.LINDON_SPEAR.get()).setWeight(60).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.LINDON_DAGGER.get()).setWeight(50).setExactly(1).standardDamageRange())
+				//.add(EItemLootEntry.lootItem(ExtendedItems.LINDON_SHIELD.get()).setWeight(10).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.LINDON_HELMET.get()).setWeight(30).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.LINDON_CHESTPLATE.get()).setWeight(30).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.LINDON_LEGGINGS.get()).setWeight(30).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(LOTRItems.LINDON_BOOTS.get()).setWeight(30).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.LINDON_BANNER.get()).setWeight(40).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.SILVER_RING.get()).setWeight(5).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.GOLD_RING.get()).setWeight(1).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(5).setExactly(1))
+				.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceSmith())));
 		make(consumer, ExtendedLootTables.LINDON_WEAVER_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
 				.setRolls(RandomValueRange.between(2, 4))
@@ -2617,6 +2657,19 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				//.add(EItemLootEntry.lootItem(ExtendedItems.IMLADRIS_GUARD_BOOTS.get()).setWeight(1).setExactly(1).standardDamageRange()
 				//	.when(RandomChance.randomChance(0.5f)))
 				.apply(ExtendedModifierScrollAdder.chanceCustom(10).setSkillful())));
+
+		make(consumer, ExtendedLootTables.LINDON_ARCHIVES_CHEST, makeTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(2, 3))
+				.add(EItemLootEntry.lootItem(Items.WRITABLE_BOOK).setWeight(5).setRange(1, 2))
+				.add(EItemLootEntry.lootItem(Items.BOOK).setWeight(10).setRange(1, 4))
+				.add(EItemLootEntry.lootItem(Items.INK_SAC).setWeight(5).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.BOOKSHELF).setWeight(1).setRange(1, 2))
+				.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(3).setRange(1, 2))
+				.add(EItemLootEntry.lootItem(Items.PAPER).setWeight(5).setRange(1, 6))
+				.add(EItemLootEntry.lootItem(LOTRItems.BOOK_OF_TRUE_SILVER.get()).setWeight(1).setExactly(1))
+				.add(EItemLootEntry.lootItem(ExtendedItems.LINDON_BANNER_PATTERN.get()).setWeight(2).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceDefault())));
 	}
 
 	public LootTable.Builder makeTable(){

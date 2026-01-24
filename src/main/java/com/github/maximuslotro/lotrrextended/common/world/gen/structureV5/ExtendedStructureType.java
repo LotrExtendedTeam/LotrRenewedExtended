@@ -24,8 +24,12 @@ public enum ExtendedStructureType {
 	BLUE_MOUNTAINS,
 	/** Structures that are lore builds. */
 	LORE,
-	/** Structures themed around the Rivendell. */
+	/** Structures themed around Rivendell. */
 	RIVENDELL,
-	/** Structures themed around the Eregion. */
-	EREGION_RUIN;
+	/** Structures themed around Eregion. */
+	EREGION_RUIN,
+	/** Structures themed around Lindon. */
+	LINDON,
+	/** Structures themed around the Tower Hills. */
+	TOWER_HILLS;
 }

@@ -1,0 +1,31 @@
+{
+  "id": "lotrextended:lindon_tower_hills_tower_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 70,
+    "lowerYvalue": -8,
+    "horizontal_bounds": 15
+  },
+  "spawn_area": {
+    "topYvalue": 60,
+    "lowerYvalue": -3,
+    "horizontal_bounds": 4
+  },
+  "setHomeOnSpawn": true,
+  "setHomeRandomly": true,
+  "homeRadius": 15,
+  "persistenceRequired": false,
+  "spawnCap": 8,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 2,
+      "maxSpawnCount": 5,
+      "entity_types": [
+        {
+          "entity_type": "lotr:lindon_warrior"
+        }
+      ]
+    }
+  ]
+}
