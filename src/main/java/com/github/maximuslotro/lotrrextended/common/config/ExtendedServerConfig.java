@@ -19,6 +19,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableCustomWaypointTeleportation;
 	public static ForgeConfigSpec.BooleanValue enableLegacyFeastMode;
 	public static ForgeConfigSpec.BooleanValue enableHungerDecrease;
+	public static ForgeConfigSpec.ConfigValue<String> alternateMapTeleportCommand;
 
 	// Entity Settings
 	public static ForgeConfigSpec.IntValue barrowWightChestFirstSpawnChance;
@@ -59,6 +60,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	// World Generation
 	public static ForgeConfigSpec.BooleanValue enableFixedStructures;
 	public static ForgeConfigSpec.BooleanValue enableFixedStructureImladris;
+	public static ForgeConfigSpec.BooleanValue enableFixedStructureTowerHills;
 
 	public static void register() {
 		ModLoadingContext.get().registerConfig(Type.SERVER, SERVER_SPEC);
@@ -75,6 +77,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		enableCustomWaypointTeleportation = createBooleanValue(builder, "enableCustomWaypointTeleportation", true, false, "Enable Teleportation To Custom Waypoints");
 		enableLegacyFeastMode = createBooleanValue(builder, "enableLegacyFeastMode", true, true, "Enable the eating of food even if player is not hungry, like in legacy");
 		enableHungerDecrease = createBooleanValue(builder, "enableHungerDecrease", true, false, "Decrease hunger meter exhaustion");
+		alternateMapTeleportCommand = createStringValue(builder, "alternateMapTeleportCommand", "/tp %d %d %d", false, "Map menu instant tp command");
 		builder.pop();
 
 		builder.push("Entity settings");
@@ -122,6 +125,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		builder.push("World Generation");
 		enableFixedStructures = createBooleanValue(builder,"enableFixedStructures", true, true, "Enable fixed structures to generate, OVERRIDES ALL OTHER STRUCTURE SETTINGS!");
 		enableFixedStructureImladris = createBooleanValue(builder,"enableFixedStructureImladris", true, true, "Enable Imladris lore structure");
+		enableFixedStructureTowerHills = createBooleanValue(builder,"enableFixedStructureTowerHills", true, true, "Enable Tower Hills lore structure");
 		builder.pop();
 		return builder;
 	}

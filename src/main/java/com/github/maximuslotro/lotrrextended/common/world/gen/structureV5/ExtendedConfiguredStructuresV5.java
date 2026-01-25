@@ -70,6 +70,9 @@ public class ExtendedConfiguredStructuresV5 {
 
 	public static StructureFeature<?, ?> CONFIGURED_STONE_OF_HAPLESS = register(ExtendedStructuresV5.STONE_OF_HAPLESS.get().configured(new SinglePoolConfig("lore/stone_of_hapless")));
 	public static StructureFeature<?, ?> CONFIGURED_THE_LAST_HOMELY_HOUSE = register(ExtendedStructuresV5.THE_LAST_HOMELY_HOUSE.get().configured(new SinglePoolConfig("lore/last_homely_house_start")));
+	public static StructureFeature<?, ?> CONFIGURED_TOWER_HILLS_SOUTH_TOWER = register(ExtendedStructuresV5.TOWER_HILLS_SOUTH_TOWER.get().configured(new SinglePoolConfig("lore/tower_hills_tower_south")));
+	public static StructureFeature<?, ?> CONFIGURED_TOWER_HILLS_MIDDLE_TOWER = register(ExtendedStructuresV5.TOWER_HILLS_MIDDLE_TOWER.get().configured(new SinglePoolConfig("lore/tower_hills_tower_middle")));
+	public static StructureFeature<?, ?> CONFIGURED_TOWER_HILLS_NORTH_TOWER = register(ExtendedStructuresV5.TOWER_HILLS_NORTH_TOWER.get().configured(new SinglePoolConfig("lore/tower_hills_tower_north")));
 
 	public static StructureFeature<?, ?> CONFIGURED_RIVENDELL_STRUCTURES = register(ExtendedStructuresV5.RIVENDELL_STRUCTURE.get().configured(new SinglePoolConfig("rivendell/rivendell_structures")));
 

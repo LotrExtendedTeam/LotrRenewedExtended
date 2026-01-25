@@ -1,0 +1,340 @@
+{
+  "id": "lotrextended:lindon_smith",
+  "tradingAlignmentRequired": 100,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:iron_ore",
+        "averageCost": 5
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:gold_ore",
+        "averageCost": 15
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:copper_ore",
+        "averageCost": 5
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:tin_ore",
+        "averageCost": 5
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:iron_ingot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:elven_steel_ingot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:coal",
+        "averageCost": 1,
+        "count": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:gold_ingot",
+        "averageCost": 15
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:copper_ingot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:tin_ingot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:bronze_ingot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:galvorn_ingot",
+        "averageCost": 4
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:emerald",
+        "averageCost": 15
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:sapphire",
+        "averageCost": 12
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:opal",
+        "averageCost": 10
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:amethyst",
+        "averageCost": 8
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:pearl",
+        "averageCost": 25
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:lava_bucket",
+        "averageCost": 16
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:stick",
+        "averageCost": 1,
+        "count": 8
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:string",
+        "averageCost": 1,
+        "count": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:mithril_nugget",
+        "averageCost": 40
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lindon_crafting_table",
+        "averageCost": 100
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:blacksmith_hammer",
+        "averageCost": 18,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lindon_sword",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lindon_spear",
+        "averageCost": 18,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lindon_dagger",
+        "averageCost": 14,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lindon_axe",
+        "averageCost": 15,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lindon_pickaxe",
+        "averageCost": 15,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lindon_shovel",
+        "averageCost": 12,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lindon_helmet",
+        "averageCost": 18,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lindon_chestplate",
+        "averageCost": 25,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lindon_leggings",
+        "averageCost": 22,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lindon_boots",
+        "averageCost": 16,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lindon_bow",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:arrow",
+        "averageCost": 3,
+        "count": 4
+      }
+    },
+    {
+      "weight": 5,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stacks": [
+        {
+          "item": "lotr:modifier_scroll",
+          "averageCost": 350,
+          "nbt": "{REScrollMod:\"rangedKnockback2\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "averageCost": 350,
+          "nbt": "{REScrollMod:\"rangedStrong3\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "averageCost": 350,
+          "nbt": "{REScrollMod:\"toolSpeed2\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "averageCost": 350,
+          "nbt": "{REScrollMod:\"toolSilk\"}"
+        }
+      ]
+    },
+    {
+      "weight": 10,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stacks": [
+        {
+          "item": "lotr:modifier_scroll",
+          "averageCost": 350,
+          "nbt": "{REScrollMod:\"protectRanged2\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "averageCost": 350,
+          "nbt": "{REScrollMod:\"strong3\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "averageCost": 350,
+          "nbt": "{REScrollMod:\"toolSpeed3\"}"
+        }
+      ]
+    },
+    {
+      "weight": 20,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:modifier_scroll",
+        "averageCost": 150,
+        "nbt": "{REScrollMod:\"toughness1\"}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lindon_banner_pattern",
+        "averageCost": 25
+      }
+    }
+  ]
+}

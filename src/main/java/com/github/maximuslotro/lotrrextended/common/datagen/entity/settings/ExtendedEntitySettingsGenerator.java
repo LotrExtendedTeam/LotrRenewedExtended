@@ -74,5 +74,8 @@ public class ExtendedEntitySettingsGenerator extends ExtendedEntitySettingsProvi
 		make(ExtendedEntities.IMLADRIS_GUARD.get(), FactionPointers.HIGH_ELVES).setBonus(2).setBank("high_elves/rivendell/warrior").save(pConsumer);
 		make(ExtendedEntities.ELROND.get(), FactionPointers.HIGH_ELVES).setBonus(0).setBankE("lore_character/elrond").save(pConsumer);
 		make(ExtendedEntities.RIVENDELL_WEAVER.get(), FactionPointers.HIGH_ELVES).setBonus(2).setBank("high_elves/rivendell/elf").save(pConsumer);
+		make(ExtendedEntities.LINDON_LORD.get(), FactionPointers.HIGH_ELVES).setBonus(2).setBank("high_elves/lindon/warrior").save(pConsumer);
+		make(ExtendedEntities.LINDON_SMITH.get(), FactionPointers.HIGH_ELVES).setBonus(2).setBank("high_elves/lindon/elf").save(pConsumer);
+		make(ExtendedEntities.LINDON_WEAVER.get(), FactionPointers.HIGH_ELVES).setBonus(2).setBank("high_elves/lindon/elf").save(pConsumer);
 	}
 }

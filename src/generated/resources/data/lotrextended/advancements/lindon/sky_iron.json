@@ -1,0 +1,32 @@
+{
+  "parent": "lotrextended:lindon/the_last_fair_realm",
+  "display": {
+    "icon": {
+      "item": "lotr:meteorite"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.lindon.sky_iron.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.lindon.sky_iron.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "broke_meteorite": {
+      "trigger": "extended:break_block",
+      "conditions": {
+        "block": "lotr:meteorite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "broke_meteorite"
+    ]
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "id": "lotrextended:lindon_warrior",
+  "entity_type": "lotr:lindon_warrior",
+  "language": {
+    "translateStrings": true,
+    "entity_title": "entity.lotrextended.hiredunits.entity_title",
+    "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
+    "entity_unit_type": "entity.lotr.lindon_warrior",
+    "attack_type": "ranged"
+  },
+  "hiring": {
+    "hiringCost": 75,
+    "hiringRequiresPledge": false,
+    "hiringAlignmentRequired": 400
+  },
+  "equipmentPools": {
+    "helmets": [
+      {
+        "weight": 1000,
+        "equipmentItem": {
+          "item": "lotr:lindon_helmet",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:galvorn_helmet",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "chestplates": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:lindon_chestplate",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "leggings": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:lindon_leggings",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "boots": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:lindon_boots",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "setIdleFromMelee": true,
+    "melee": [
+      {
+        "weight": 7,
+        "equipmentItem": {
+          "item": "lotr:lindon_sword",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:lindon_spear",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:lindon_axe",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "ranged": [
+      {
+        "weight": 5,
+        "equipmentItem": {
+          "item": "lotr:lindon_bow",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:longbow",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ]
+  }
+}

@@ -566,7 +566,11 @@ public class ExtendedItems {
 	public static RegistryObject<Item> EREGION_CHESTPLATE;
 	public static RegistryObject<Item> EREGION_LEGGINGS;
 	public static RegistryObject<Item> EREGION_BOOTS;
-	
+	public static RegistryObject<Item> GALVORN_HELMET;
+	public static RegistryObject<Item> GALVORN_CHESTPLATE;
+	public static RegistryObject<Item> GALVORN_LEGGINGS;
+	public static RegistryObject<Item> GALVORN_BOOTS;
+
 	public static RegistryObject<Item> MORGUL_BRAZIER;
 	public static RegistryObject<Item> HIGH_ELVEN_LANTERN;
 	public static RegistryObject<Item> MORGUL_CHANDELIER;
@@ -643,6 +647,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> LONGBOW;
 	public static RegistryObject<Item> ORC_BOW;
 	public static RegistryObject<Item> RIVENDELL_BOW;
+	public static RegistryObject<Item> LINDON_BOW;
 
 	public static RegistryObject<Item> BARROW_BLADE;
 	public static RegistryObject<Item> ANDURIL;

@@ -46,6 +46,9 @@ public class ExtendedTraderTypes {
 	public static final ResourceLocation RIVENDELL_WANDERER = make("rivendell_wanderer");
 	public static final ResourceLocation RIVENDELL_SMITH = make("rivendell_smith");
 	public static final ResourceLocation RIVENDELL_WEAVER = make("rivendell_weaver");
+	// Lindon
+	public static final ResourceLocation LINDON_SMITH = make("lindon_smith");
+	public static final ResourceLocation LINDON_WEAVER = make("lindon_weaver");
 	// Galadhrim
 	public static final ResourceLocation GALADHRIM_WANDERER = make("galadhrim_wanderer");
 	// Misc

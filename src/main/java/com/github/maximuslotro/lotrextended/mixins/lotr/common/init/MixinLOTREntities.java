@@ -373,6 +373,11 @@ public class MixinLOTREntities {
 		ExtendedEntities.IMLADRIS_GUARD = regNPCD("imladris_guard", ExtendedRivendellGuardEntity::new, ExtendedRivendellGuardEntity::createAttributes, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(16761223, 15721387));
 		ExtendedEntities.ELROND = regNPCD("elrond", ExtendedElrondEntity::new, ExtendedElrondEntity::createAttributes, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(16761223, 15721387));
 
+		// Lindon
+		ExtendedEntities.LINDON_LORD = regNPCD("lindon_lord", ExtendedLindonLordEntity::new, ExtendedLindonLordEntity::createAttributes, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(14935016, 7040410));
+		ExtendedEntities.LINDON_SMITH = regNPCD("lindon_smith", ExtendedLindonSmithEntity::new, ExtendedLindonSmithEntity::createAttributes, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(16761223, 15721387));
+		ExtendedEntities.LINDON_WEAVER = regNPCD("lindon_weaver", ExtendedLindonWeaverEntity::new, ExtendedLindonWeaverEntity::createAttributes, EntitySizeHolder.elfSize(), SpawnEggInfo.SpawnEggColors.egg(16761223, 15721387));
+
 		// Special
 		ExtendedEntities.TOLKIEN = regNPCD("tolkien", ExtendedTolkienEntity::new, ExtendedTolkienEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(8160159, 5439358));
 

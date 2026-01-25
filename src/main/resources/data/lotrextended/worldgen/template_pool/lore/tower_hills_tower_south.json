@@ -1,0 +1,20 @@
+{
+	"name": "lotrextended:lore/tower_hills_tower_south",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:lore/tower_hills_tower/tower_hill_lore_tower_3_bottom",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"max_place_distance" : 120,
+				"foundation_block": {
+					"Name": "lotr:chalk_brick"
+				}
+			}
+		}
+	]
+}

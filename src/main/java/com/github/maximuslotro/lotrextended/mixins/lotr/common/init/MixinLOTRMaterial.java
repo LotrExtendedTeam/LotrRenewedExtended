@@ -130,7 +130,9 @@ public class MixinLOTRMaterial {
 	@Unique
 	private static final LOTRMaterial EREGION = lE$addVariant("EREGION", "eregion", 0, 950, 0, 0, 10, 0.7F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
 			() -> Ingredient.of(LOTRItems.ELVEN_STEEL_INGOT.get()));
-
+	@Unique
+	private static final LOTRMaterial GALVORN = lE$addVariant("GALVORN", "galvorn", 2, 600, 7.0f, 3.0f, 15, 0.6F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
+			() -> Ingredient.of(ExtendedItems.GALVORN_INGOT.get()));
 	
 
 	/**

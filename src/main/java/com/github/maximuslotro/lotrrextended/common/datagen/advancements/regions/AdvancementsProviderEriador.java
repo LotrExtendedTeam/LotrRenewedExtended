@@ -95,7 +95,8 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 		Advancement riv_elf_slayer = build(true, data(LOTRItems.ELF_BONE.get(), "rivendell_elf_slayer", FrameType.TASK)
 				.setTitle("Rivendell Elf Slayer").setDescription("Kill a Rivendell Elf."),
 				addKillEntityTriggers(make(), LOTREntities.RIVENDELL_ELF.get(), LOTREntities.RIVENDELL_WARRIOR.get(), 
-					ExtendedEntities.RIVENDELL_WANDERER.get()).parent(rivendell));
+					ExtendedEntities.RIVENDELL_WANDERER.get(), ExtendedEntities.RIVENDELL_CAPTAIN.get(), 
+					ExtendedEntities.RIVENDELL_SMITH.get(), ExtendedEntities.RIVENDELL_WEAVER.get(), ExtendedEntities.ELROND.get()).parent(rivendell));
 		Advancement rivendell_smith = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "rivendell_smith", FrameType.TASK)
 			.setTitle("Armament of Imladris").setDescription("Trade with a Rivendell Smith"),
 			addTradeEntityTrigger(make(), ExtendedEntities.RIVENDELL_SMITH.get()).parent(rivendell));

@@ -86,6 +86,90 @@
           }
         ]
       }
+    },
+    "kill_blue_mountains_axe_thrower": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:blue_mountains_axe_thrower"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_blue_mountains_bartender": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:blue_mountains_bartender"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_blue_mountains_commander": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:blue_mountains_commander"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_blue_mountains_butcher": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:blue_mountains_butcher"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_blue_mountains_smith": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:blue_mountains_smith"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_blue_mountains_stonemason": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:blue_mountains_stonemason"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -94,7 +178,13 @@
       "kill_blue_mountains_dwarf",
       "kill_blue_mountains_warrior",
       "kill_blue_mountains_miner",
-      "kill_blue_mountains_merchant"
+      "kill_blue_mountains_merchant",
+      "kill_blue_mountains_axe_thrower",
+      "kill_blue_mountains_bartender",
+      "kill_blue_mountains_commander",
+      "kill_blue_mountains_butcher",
+      "kill_blue_mountains_smith",
+      "kill_blue_mountains_stonemason"
     ]
   ]
 }
