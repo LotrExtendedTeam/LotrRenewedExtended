@@ -322,7 +322,8 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.disableIdleWeaponUsingOtherPools().save(pConsumer, ExtendedHiredUnitTypes.LINDON_ELF);
 
 		make(LOTREntities.LINDON_WARRIOR.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(75, false, 400)
-		.addHelmetPoolItem(new ItemStack(LOTRItems.LINDON_HELMET.get()), 1)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.LINDON_HELMET.get()), 1000)
+		.addHelmetPoolItem(new ItemStack(ExtendedItems.GALVORN_HELMET.get()), 1)
 		.addChestplatePoolItem(new ItemStack(LOTRItems.LINDON_CHESTPLATE.get()), 1)
 		.addLeggingPoolItem(new ItemStack(LOTRItems.LINDON_LEGGINGS.get()), 1)
 		.addBootsPoolItem(new ItemStack(LOTRItems.LINDON_BOOTS.get()), 1)

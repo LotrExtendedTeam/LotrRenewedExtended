@@ -1,0 +1,47 @@
+{
+  "parent": "lotrextended:lindon/secrets_of_eol",
+  "display": {
+    "icon": {
+      "item": "lotr:galvorn_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.lindon.dark_elf.title"
+    },
+    "description": {
+      "color": "light_purple",
+      "translate": "advancements.lotrextended.lindon.dark_elf.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "galvorn_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:galvorn_helmet"
+          },
+          {
+            "item": "lotr:galvorn_chestplate"
+          },
+          {
+            "item": "lotr:galvorn_leggings"
+          },
+          {
+            "item": "lotr:galvorn_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "galvorn_armor"
+    ]
+  ]
+}

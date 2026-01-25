@@ -28,6 +28,7 @@ import lotr.common.entity.npc.data.NPCEntitySettingsManager;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRDimensions;
+import lotr.common.init.LOTRMaterial;
 import net.minecraft.block.BellBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -41,9 +42,14 @@ import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.entity.projectile.FireworkRocketEntity;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -330,6 +336,30 @@ public class WorldEventHandlers {
 			if(ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(((ServerPlayerEntity) event.getEntityLiving()).getLevel(), 
 					event.getEntityLiving().blockPosition(), ((ServerPlayerEntity)event.getSource().getEntity()), true, true)) {
 				event.setCanceled(true);
+				return;
+			}
+		}
+		if(event.getSource().isProjectile() && event.getSource() instanceof IndirectEntityDamageSource) {
+			if(event.getSource().getDirectEntity() instanceof AbstractArrowEntity || event.getSource().getDirectEntity() instanceof FireworkRocketEntity) {
+				boolean shouldNegateArrowDamage = true;
+				for(ItemStack stack : event.getEntityLiving().getArmorSlots()) {
+					if(!(stack.getItem() instanceof ArmorItem) || ((ArmorItem) stack.getItem()).getMaterial()!=LOTRMaterial.valueOf("GALVORN").asArmor()) {
+						shouldNegateArrowDamage = false;
+						break;
+					}
+				}
+				// In lore arrows couldn't hurt them, only barrow blades?
+				if(event.getEntityLiving() instanceof ExtendedBarrowWightEntity) {
+					shouldNegateArrowDamage = true;
+				}
+				if(shouldNegateArrowDamage) {
+					event.setCanceled(true);
+					// Ensure armor is still damaged
+					if(event.getEntityLiving() instanceof PlayerEntity && !event.getEntityLiving().level.isClientSide()) {
+						((PlayerEntity)event.getEntityLiving()).inventory.hurtArmor(event.getSource(), event.getAmount());
+					}
+					return;
+				}
 			}
 		}
 	}

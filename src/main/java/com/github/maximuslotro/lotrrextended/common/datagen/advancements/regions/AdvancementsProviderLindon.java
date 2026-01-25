@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.advancements.Extende
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
+import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
@@ -51,9 +52,13 @@ public class AdvancementsProviderLindon extends ExtendedBaseAdvancementType{
 		addArmorTrigger(make(), "lindon", LOTRItems.LINDON_HELMET.get(), LOTRItems.LINDON_CHESTPLATE.get(),
 				LOTRItems.LINDON_LEGGINGS.get(), LOTRItems.LINDON_BOOTS.get()).parent(elven_ingot));
 
+		Advancement sky_iron = build(false, data(ExtendedItems.METEORITE_ORE.get(), "sky_iron", FrameType.TASK)
+			.setTitle("Sky Iron").setDescription("Discover a fallen meteorite in Middle Earth."),
+			addBreakBlockTrigger(make(), ExtendedBlocks.METEORITE_ORE.get()).parent(lindon));
+
 		Advancement galvorn_ingot = build(false, data(ExtendedItems.GALVORN_INGOT.get(), "secrets_of_eol", FrameType.GOAL)
 				.setTitle("Secrets of Eöl").setDescription("Find the secret recipe for the coveted Galvorn of the legendary smith Eöl."),
-				addCraftingTrigger(make(), LOTRBlocks.DWARVEN_FORGE.get(), ExtendedItems.GALVORN_INGOT.get()).parent(elven_ingot));
+				addCraftingTrigger(make(), LOTRBlocks.DWARVEN_FORGE.get(), ExtendedItems.GALVORN_INGOT.get()).parent(sky_iron));
 
 		Advancement elder_craftsmanship = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "elder_craftsmanship", FrameType.TASK)
 				.setTitle("Elder Craftsmanship").setDescription("Buy an item from a Lindon Smith."),
@@ -63,10 +68,10 @@ public class AdvancementsProviderLindon extends ExtendedBaseAdvancementType{
 				.setTitle("The Last Alliance").setDescription("Hire a unit from a Lindon Lord."),
 				addUnitHireTrigger(make(), ExtendedEntities.LINDON_LORD.get()).parent(lindon));
 
-//		Advancement galvorn_armor = build(data(ExtendedItems.GALVORN_CHESTPLATE.get(), "dark_elf", FrameType.CHALLENGE)
-//				.setTitle("Dark Elf").setDescription("Acquire a full set of Galvorn armor."),
-//				addArmorTrigger(make(), "galvorn", ExtendedItems.GALVORN_HELMET.get(), ExtendedItems.GALVORN_CHESTPLATE.get(),
-//						ExtendedItems.GALVORN_LEGGINGS.get(), ExtendedItems.GALVORN_BOOTS.get()).parent(galvorn_ingot));
+		Advancement galvorn_armor = build(true, data(ExtendedItems.GALVORN_CHESTPLATE.get(), "dark_elf", FrameType.CHALLENGE)
+				.setTitle("Dark Elf").setDescription("Acquire a full set of Galvorn armor."),
+				addArmorTrigger(make(), "galvorn", ExtendedItems.GALVORN_HELMET.get(), ExtendedItems.GALVORN_CHESTPLATE.get(),
+						ExtendedItems.GALVORN_LEGGINGS.get(), ExtendedItems.GALVORN_BOOTS.get()).parent(galvorn_ingot));
 
 //		Advancement rein_elven_ingot = build(data(LOTRItems.ELVEN_STEEL_INGOT.get(), "elven_smith", FrameType.GOAL)
 //				.setTitle("Master Elven Smith").setDescription("Acquire a Reinforced Elven Steel Ingot."),

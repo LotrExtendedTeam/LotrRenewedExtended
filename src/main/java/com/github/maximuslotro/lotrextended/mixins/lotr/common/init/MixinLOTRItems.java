@@ -1141,7 +1141,10 @@ public class MixinLOTRItems {
 		ExtendedItems.EREGION_LEGGINGS = regItemB("eregion_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("EREGION"), EquipmentSlotType.LEGS));
 		ExtendedItems.EREGION_BOOTS = regItemB("eregion_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("EREGION"), EquipmentSlotType.FEET));
 		ExtendedItems.LINDON_BOW = regItemB("lindon_bow", () -> new ExtendedBowItem(ExtendedBowMaterial.LINDON));
-
+		ExtendedItems.GALVORN_HELMET = regItemB("galvorn_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("GALVORN"), EquipmentSlotType.HEAD, "helmet"));
+		ExtendedItems.GALVORN_CHESTPLATE = regItemB("galvorn_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GALVORN"), EquipmentSlotType.CHEST));
+		ExtendedItems.GALVORN_LEGGINGS = regItemB("galvorn_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GALVORN"), EquipmentSlotType.LEGS));
+		ExtendedItems.GALVORN_BOOTS = regItemB("galvorn_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GALVORN"), EquipmentSlotType.FEET));
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", ExtendedLeatherHatItem::new);
 		ExtendedItems.BARROW_BLADE = regItemB("barrow_blade", ExtendedBarrowBlade::new);

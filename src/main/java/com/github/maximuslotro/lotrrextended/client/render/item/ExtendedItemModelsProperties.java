@@ -42,6 +42,8 @@ public class ExtendedItemModelsProperties {
 		registerBowItemModelProperties(ExtendedItems.RANGER_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.RIVENDELL_BOW.get());
 		ItemModelsProperties.register(ExtendedItems.MODIFIER_SCROLL.get(), scroll_type, (itemStack, clientWorld, LivingEntity) -> ExtendedModifierScrollItem.getModifier(itemStack).getScroll().getId());
+		registerBowItemModelProperties(ExtendedItems.LINDON_BOW.get());
+
 	}
 
 	public static void registerBowItemModelProperties(Item item) {

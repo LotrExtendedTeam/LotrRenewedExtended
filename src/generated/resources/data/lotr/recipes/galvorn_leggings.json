@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_elven",
+  "pattern": [
+    "###",
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:galvorn_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:galvorn_leggings"
+  }
+}

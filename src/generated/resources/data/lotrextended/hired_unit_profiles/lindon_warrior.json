@@ -16,9 +16,16 @@
   "equipmentPools": {
     "helmets": [
       {
-        "weight": 1,
+        "weight": 1000,
         "equipmentItem": {
           "item": "lotr:lindon_helmet",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:galvorn_helmet",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
         }
       }

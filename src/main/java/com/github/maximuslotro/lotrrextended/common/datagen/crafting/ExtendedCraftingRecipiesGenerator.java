@@ -755,6 +755,11 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		//HIGH ELVEN
 		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.HIGH_ELVEN_TORCH, LOTRItems.EDHELVIR, 4, LOTRRecipes.ANY_HIGH_ELVEN);
 		makeTorchConversionRecipe(consumer, LOTRItems.HIGH_ELVEN_TORCH, ()->Items.TORCH, null);
+		makeArmorRecipe(consumer, ExtendedItems.GALVORN_HELMET,
+			ExtendedItems.GALVORN_CHESTPLATE,
+			ExtendedItems.GALVORN_LEGGINGS,
+			ExtendedItems.GALVORN_BOOTS,
+			ExtendedItems.GALVORN_INGOT, LOTRRecipes.ANY_ELVEN);
 		//BLUBBER
 		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.BLUBBER_TORCH, LOTRItems.BLUBBER, 4, LOTRRecipes.LOSSOTH_CRAFTING);
 		makeTorchConversionRecipe(consumer, LOTRItems.BLUBBER_TORCH, ()->Items.TORCH, null);

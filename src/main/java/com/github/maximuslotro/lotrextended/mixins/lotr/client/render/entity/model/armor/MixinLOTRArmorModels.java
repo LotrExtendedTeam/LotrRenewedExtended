@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.client.render.entity.model.armor.ExtendedArnorHelmetModel;
+import lotr.client.render.entity.model.armor.ExtendedModelGalvornHelmet;
 import lotr.client.render.entity.model.armor.ExtendedModelGoldenTaurethrimHelmet;
 import lotr.client.render.entity.model.armor.ExtendedModelGundabadUrukHelmet;
 import lotr.client.render.entity.model.armor.ExtendedModelLeatherHat;
@@ -62,5 +63,6 @@ public class MixinLOTRArmorModels {
 		addSpecialArmorModel(ExtendedItems.GUNDABAD_URUK_HELMET, ExtendedModelGundabadUrukHelmet::new);
 		addSpecialArmorModel(ExtendedItems.IMLADRIS_GUARD_HELMET, HighElvenHelmetModel::new);
 		addSpecialArmorModel(ExtendedItems.EREGION_HELMET, HighElvenHelmetModel::new);
+		addSpecialArmorModel(ExtendedItems.GALVORN_HELMET, ExtendedModelGalvornHelmet::new);
 	}
 }
