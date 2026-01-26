@@ -151,7 +151,10 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 						if(world.hasChunkAt(blockpos) && !world.isEmptyBlock(blockpos) && !world.isWaterAt(blockpos) && foundationNeedingPiece.getBoundingBox().isInside(blockpos)) {
 							for(int yColumnValue = baseYvalue - 1; yColumnValue > 1; --yColumnValue) {
 								BlockPos blockpos1 = new BlockPos(xValue, yColumnValue, zValue);
-								if(world.isEmptyBlock(blockpos1) || world.getBlockState(blockpos1).getMaterial().isLiquid() || world.getBlockState(blockpos1).getMaterial().getPushReaction()==PushReaction.DESTROY) {
+								if(world.isEmptyBlock(blockpos1) || //Fill empty blocks
+									world.getBlockState(blockpos1).getMaterial().isLiquid() || //build down into the water
+									world.getBlockState(blockpos1).getMaterial().getPushReaction()==PushReaction.DESTROY || //replace weak blocks
+									!world.getBlockState(blockpos1).getMaterial().blocksMotion()) { //replace non-colliding blocks, probably plants in out case
 									world.setBlock(blockpos1, ((ExtendedSingleJigsawPiece)foundationNeedingPiece.getElement()).getFoundationBlock(), 2);
 								}else {
 									break;
