@@ -96,6 +96,8 @@ public class ExtendedStructuresV5 {
 
 	public static final RegistryObject<Structure<SinglePoolConfig>> TOWER_HILLS_TOWER = STRUCTURE_REGISTRY.register("tower_hills_tower", () -> new SinglePoolStructure(ExtendedStructureType.TOWER_HILLS));
 
+	public static final RegistryObject<Structure<SinglePoolConfig>> LINDON_VILLAGE = STRUCTURE_REGISTRY.register("lindon_village", () -> new SinglePoolStructure(ExtendedStructureType.LINDON));
+
 	/**
 	 * Initializes and registers all custom structures with their generation parameters.
 	 * <p>
@@ -143,6 +145,7 @@ public class ExtendedStructuresV5 {
 		register(TOWER_HILLS_MIDDLE_TOWER.get(), false,1,  0,  0);
 		register(TOWER_HILLS_NORTH_TOWER.get(), false, 1,  0,  0);
 		register(TOWER_HILLS_TOWER.get(), false,       30, 20, 467385464);
+		register(LINDON_VILLAGE.get(), true,           40, 30, 584474884);
 	}
 
 	/**

@@ -281,6 +281,8 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_THE_LAST_HOMELY_HOUSE);
 			}else if(biomeName.equals(LOTRBiomes.EREGION.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_EREGION_RUINS_STRUCTURES);
+			}else if(biomeName.equals(LOTRBiomes.LINDON.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_LINDON_VILLAGE);
 			}
 		}
 	}

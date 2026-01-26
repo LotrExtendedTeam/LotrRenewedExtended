@@ -1,0 +1,105 @@
+{
+	"name": "lotrextended:lindon/lindon_village_roads",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lindon/village/roads/lindon_road1_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lindon/village/roads/lindon_road2_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lindon/village/roads/lindon_road2_3",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lindon/village/roads/lindon_road3_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lindon/village/roads/lindon_road3_3",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lindon/village/roads/lindon_road3_4",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lindon/village/roads/lindon_road3_5",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lindon/village/roads/lindon_road3_6",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lindon/village/roads/lindon_road3_7",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lindon/village/roads/lindon_road3_8",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lindon/village/roads/lindon_road3_9",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}

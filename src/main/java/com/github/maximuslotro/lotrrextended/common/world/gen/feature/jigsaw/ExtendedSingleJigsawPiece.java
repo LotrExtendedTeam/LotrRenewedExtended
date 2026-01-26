@@ -308,7 +308,7 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		return !blacklistName.equals("NOTSET");
 	}
 	/**
-	 * @return The number of blocks the structure is relative to the ground
+	 * @return The vertical offset relative to ground level, positive is into the ground
 	 */
 	@Override
 	public int getGroundLevelDelta() {

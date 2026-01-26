@@ -1,0 +1,24 @@
+{
+  "id": "lotrextended:lindon_market_spawner",
+  "spawner_type": "single_use_spawner",
+  "setHomeOnSpawn": true,
+  "homeRadius": 8,
+  "persistenceRequired": true,
+  "shouldRespawnOnDeath": true,
+  "randomDiscardChance": 30,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 1,
+      "entity_types": [
+        {
+          "entity_type": "lotr:lindon_weaver"
+        },
+        {
+          "entity_type": "lotr:lindon_smith"
+        }
+      ]
+    }
+  ]
+}
