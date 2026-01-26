@@ -19,6 +19,16 @@ public class InvasionBiomeList {
         invasions.put("lotr:shire_woodlands", new HashMap<>());
         invasions.put("lotr:white_downs", new HashMap<>());
 
+        // Blue Mountains
+        invasions.put("lotr:blue_mountains", genMap(
+                ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
+        ));
+        invasions.put("lotr:blue_mountains_foothills", genMap(
+                ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
+        ));
+
         // Eriador
         // TODO: Add the following to Eriador when they are added: Rhudaur Hillmen [Uncommon], Angmar [Rare], Angmar Wargs [Rare]
         invasions.put("lotr:eriador", genMap(
