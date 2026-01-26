@@ -590,6 +590,11 @@ public class MixinLOTRItems {
 		ExtendedItems.GRASS_PATH_SLAB = regBlockItemB(ExtendedBlocks.GRASS_PATH_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PODZOL_SLAB = regBlockItemB(ExtendedBlocks.PODZOL_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MYCELIUM_SLAB = regBlockItemB(ExtendedBlocks.MYCELIUM_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MORDOR_DIRT_SLAB = regBlockItemB(ExtendedBlocks.MORDOR_DIRT_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MORDOR_DIRT_PATH_SLAB = regBlockItemB(ExtendedBlocks.MORDOR_DIRT_PATH_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHALK_PATH_SLAB = regBlockItemB(ExtendedBlocks.CHALK_PATH_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SNOW_SLAB = regBlockItemB(ExtendedBlocks.SNOW_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SNOW_PATH_SLAB = regBlockItemB(ExtendedBlocks.SNOW_PATH_SLAB, LOTRItemGroups.BLOCKS);
 
 		ExtendedItems.BONE_BLOCK_SLAB = regBlockItemB(ExtendedBlocks.BONE_BLOCK_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BONE_BLOCK_STAIRS = regBlockItemB(ExtendedBlocks.BONE_BLOCK_STAIRS, LOTRItemGroups.BLOCKS);

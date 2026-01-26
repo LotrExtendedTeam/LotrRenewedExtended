@@ -54,6 +54,7 @@ import lotr.common.world.biome.ExtendedBiomeFeatures;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SandBlock;
 import net.minecraft.block.SoundType;
@@ -366,6 +367,10 @@ public class MixinLOTRBlocks {
             	// Fixes wool stairs not burning
             	returnBlock = BLOCKS.register(name, () -> new ExtendedBurnableLOTRStairsBlock(Blocks.BLACK_WOOL));
             	break;
+            case "chalk_slab":
+            	// Allows chalk slabs to be turned into chalk path slabs
+            	returnBlock = BLOCKS.register(name, () -> new ExtendedAxialSlabDirtBlock(LOTRBlocks.CHALK.get(), ExtendedBlocks.CHALK_PATH_SLAB));
+            	break;
         }
 		if(returnBlock==null) {
 			returnBlock = BLOCKS.register(name, sup);
@@ -619,13 +624,24 @@ public class MixinLOTRBlocks {
 
 		///////////////////////////////BRICKS
 		ExtendedBlocks.BARREN_DIRT = registerB("barren_dirt", () -> new ExtendedBarrenDirt(Properties.copy(Blocks.DIRT).harvestTool(ToolType.SHOVEL)));
-		ExtendedBlocks.BARREN_DIRT_SLAB = registerB("barren_dirt_slab", () -> new ExtendedStemableAxialSlabBlock(ExtendedBlocks.BARREN_DIRT));
-		ExtendedBlocks.COARSE_DIRT_SLAB = registerB("coarse_dirt_slab", () -> new ExtendedPlantableAxialSlabBlock(Blocks.COARSE_DIRT));
-		ExtendedBlocks.DIRT_SLAB = registerB("dirt_slab", () -> new ExtendedDirtSlabBlock(Blocks.DIRT));
-		ExtendedBlocks.GRASS_BLOCK_SLAB = registerB("grass_block_slab", () -> new ExtendedPlantableSpreadableGrowableAxialSlabBlock(Blocks.GRASS_BLOCK, ExtendedBlocks.DIRT_SLAB, () -> Blocks.DIRT, () -> Blocks.GRASS_BLOCK));
-		ExtendedBlocks.GRASS_PATH_SLAB = registerB("grass_path_slab", () -> new ExtendedSwappablePathSlabBlock(Blocks.GRASS_PATH));
-		ExtendedBlocks.PODZOL_SLAB = registerB("podzol_slab", () -> new ExtendedPlantableAxialSlabBlock(Blocks.PODZOL));
-		ExtendedBlocks.MYCELIUM_SLAB = registerB("mycelium_slab", () -> new ExtendedPlantableSpreadableAxialSlabBlock(Blocks.MYCELIUM, ExtendedBlocks.DIRT_SLAB, () -> Blocks.DIRT, () -> Blocks.MYCELIUM));
+		ExtendedBlocks.BARREN_DIRT_SLAB = registerB("barren_dirt_slab", () -> new ExtendedAxialSlabStemableBlock(ExtendedBlocks.BARREN_DIRT));
+		ExtendedBlocks.COARSE_DIRT_SLAB = registerB("coarse_dirt_slab", () -> new ExtendedAxialSlabPlantableBlock(Blocks.COARSE_DIRT));
+		ExtendedBlocks.DIRT_SLAB = registerB("dirt_slab", () -> new ExtendedAxialSlabDirtBlock(Blocks.DIRT, ExtendedBlocks.GRASS_PATH_SLAB));
+		ExtendedBlocks.GRASS_BLOCK_SLAB = registerB("grass_block_slab", () -> new ExtendedAxialSlabPlantableSpreadableGrowableBlock(Blocks.GRASS_BLOCK, ExtendedBlocks.DIRT_SLAB, () -> Blocks.DIRT, () -> Blocks.GRASS_BLOCK));
+		ExtendedBlocks.GRASS_PATH_SLAB = registerB("grass_path_slab", () -> new ExtendedAxialSlabPathBlock(Blocks.GRASS_PATH));
+		ExtendedBlocks.PODZOL_SLAB = registerB("podzol_slab", () -> new ExtendedAxialSlabPlantableBlock(Blocks.PODZOL));
+		ExtendedBlocks.MYCELIUM_SLAB = registerB("mycelium_slab", () -> new ExtendedAxialSlabPlantableSpreadableBlock(Blocks.MYCELIUM, ExtendedBlocks.DIRT_SLAB, () -> Blocks.DIRT, () -> Blocks.MYCELIUM));
+		ExtendedBlocks.MORDOR_DIRT_SLAB = registerB("mordor_dirt_slab", () -> new ExtendedAxialSlabDirtBlock(LOTRBlocks.MORDOR_DIRT.get(), ExtendedBlocks.MORDOR_DIRT_PATH_SLAB));
+		ExtendedBlocks.MORDOR_DIRT_PATH_SLAB = registerB("mordor_dirt_path_slab", () -> new ExtendedAxialSlabPathBlock(LOTRBlocks.MORDOR_DIRT_PATH.get()));
+		ExtendedBlocks.SNOW_SLAB = registerB("snow_slab", () -> new ExtendedAxialSlabDirtBlock(Blocks.SNOW, ExtendedBlocks.SNOW_PATH_SLAB));
+		ExtendedBlocks.SNOW_PATH_SLAB = registerB("snow_path_slab", () -> new ExtendedAxialSlabPathBlock(LOTRBlocks.SNOW_PATH.get()));
+		ExtendedBlocks.CHALK_PATH_SLAB = registerB("chalk_path_slab", () -> new ExtendedAxialSlabPathBlock(LOTRBlocks.CHALK_PATH.get()) {
+			@Override
+			public net.minecraftforge.common.ToolType getHarvestTool(BlockState state) {
+				return ToolType.PICKAXE;
+			}
+		});
+
 		//Bone Block
 		ExtendedBlocks.BONE_BLOCK_SLAB = registerB("bone_block_slab", () -> new AxialSlabBlock(Blocks.BONE_BLOCK));
 		ExtendedBlocks.BONE_BLOCK_STAIRS = registerB("bone_block_stairs", () -> new LOTRStairsBlock(Blocks.BONE_BLOCK));
@@ -702,10 +718,10 @@ public class MixinLOTRBlocks {
 
 		//Mud
 		ExtendedBlocks.MUD = registerB("mud", () -> new ExtendedGroundDirtBlock(MaterialColor.DIRT, SoundType.GRAVEL, ExtendedBlocks.MUD_PATH, ExtendedBlocks.MUD_FARMLAND));
-		ExtendedBlocks.MUD_SLAB = registerB("mud_slab", () -> new AxialSlabBlock(ExtendedBlocks.MUD));
+		ExtendedBlocks.MUD_SLAB = registerB("mud_slab", () -> new ExtendedAxialSlabDirtBlock(ExtendedBlocks.MUD.get(), ExtendedBlocks.MUD_PATH_SLAB));
 		ExtendedBlocks.MUD_STAIRS = registerB("mud_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MUD));
 		ExtendedBlocks.MUD_PATH = registerB("mud_path", () -> new ExtendedGroundPathBlock(MaterialColor.DIRT, SoundType.GRASS, ExtendedBlocks.MUD));
-		ExtendedBlocks.MUD_PATH_SLAB = registerB("mud_path_slab", () -> new AxialSlabBlock(ExtendedBlocks.MUD_PATH));
+		ExtendedBlocks.MUD_PATH_SLAB = registerB("mud_path_slab", () -> new ExtendedAxialSlabPathBlock(ExtendedBlocks.MUD_PATH.get()));
 		ExtendedBlocks.MUD_PATH_STAIRS = registerB("mud_path_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MUD_PATH));
 		ExtendedBlocks.MUD_GRASS = registerB("mud_grass", () -> new ExtendedGroundGrassBlock(MaterialColor.DIRT, SoundType.GRASS, ExtendedBlocks.MUD, ExtendedBlocks.MUD_PATH, ExtendedBlocks.MUD_FARMLAND));
 		ExtendedBlocks.MUD_FARMLAND = registerB("mud_farmland", () -> new ExtendedGroundFarmlandBlock(MaterialColor.DIRT, SoundType.GRAVEL, ExtendedBlocks.MUD));

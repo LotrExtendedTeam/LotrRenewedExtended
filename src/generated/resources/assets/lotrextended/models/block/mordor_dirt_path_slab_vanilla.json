@@ -1,0 +1,9 @@
+{
+  "parent": "lotrextended:block/template_vanilla_path_slab",
+  "textures": {
+    "particle": "lotr:block/mordor_dirt",
+    "side": "lotr:block/mordor_dirt_path_side",
+    "bottom": "lotr:block/mordor_dirt",
+    "top": "lotr:block/mordor_dirt_path_top"
+  }
+}

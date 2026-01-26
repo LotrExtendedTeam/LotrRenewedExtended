@@ -1097,6 +1097,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeSlabRecipe(consumer, ExtendedBlocks.GRASS_PATH_SLAB, () -> Items.GRASS_PATH, null, "");
 		makeSlabRecipe(consumer, ExtendedBlocks.MYCELIUM_SLAB, () -> Items.MYCELIUM, null, "");
 		makeSlabRecipe(consumer, ExtendedBlocks.PODZOL_SLAB, () -> Items.PODZOL, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.SNOW_SLAB, () -> Items.SNOW, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.SNOW_PATH_SLAB, LOTRItems.SNOW_PATH, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.CHALK_PATH_SLAB, LOTRItems.CHALK_PATH, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.MORDOR_DIRT_SLAB, LOTRItems.MORDOR_DIRT, LOTRRecipes.MORDOR_CRAFTING, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.MORDOR_DIRT_PATH_SLAB, LOTRItems.MORDOR_DIRT_PATH, LOTRRecipes.MORDOR_CRAFTING, "");
+
 		//Scorched blocks
 		GENERATEDRECIPES.add(ExtendedBlocks.SCORCHED_COBBLESTONE.get().getRegistryName().getPath());
 		CookingRecipeBuilder.blasting(Ingredient.of(Blocks.COBBLESTONE.asItem()), ExtendedBlocks.SCORCHED_COBBLESTONE.get(), 0.1F, 100)
