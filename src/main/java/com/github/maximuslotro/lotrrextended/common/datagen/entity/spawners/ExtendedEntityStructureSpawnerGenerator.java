@@ -215,7 +215,8 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 			.build(), 1, 3, true, 15, 6).setBoundaries(40, -8, 8, 32, -4, 2).setPersistenceRequired(false).save(pConsumer, ExtendedSpawners.LINDON_TOWER_HILLS);
 		single(ExtendedEntities.LINDON_WEAVER.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.LINDON_WEAVER);
 		single(MultiSpawnType.Builder.multi()
-			.addPool(ExtendedEntities.LINDON_WEAVER.get(), 1).addPool(ExtendedEntities.LINDON_SMITH.get(), 1)
-			.build()).setRespawnOnDeath().setRandomDiscardChance(30).setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.LINDON_MARKET);
+			.addPool(ExtendedEntities.LINDON_WEAVER.get(), 2).addPool(ExtendedEntities.LINDON_SMITH.get(), 1)
+			.addPool(ExtendedEntities.LINDON_FLORIST.get(), 2)
+			.build()).setRespawnOnDeath().setRandomDiscardChance(40).setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.LINDON_MARKET);
 	}
 }

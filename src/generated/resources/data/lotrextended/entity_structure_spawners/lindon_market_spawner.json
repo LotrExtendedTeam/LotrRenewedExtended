@@ -5,7 +5,7 @@
   "homeRadius": 8,
   "persistenceRequired": true,
   "shouldRespawnOnDeath": true,
-  "randomDiscardChance": 30,
+  "randomDiscardChance": 40,
   "pools": [
     {
       "weight": 100,
@@ -13,10 +13,15 @@
       "maxSpawnCount": 1,
       "entity_types": [
         {
+          "weight": 2,
           "entity_type": "lotr:lindon_weaver"
         },
         {
           "entity_type": "lotr:lindon_smith"
+        },
+        {
+          "weight": 2,
+          "entity_type": "lotr:lindon_florist"
         }
       ]
     }
