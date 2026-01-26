@@ -1,0 +1,53 @@
+{
+  "parent": "lotrextended:lindon/emyn_beraid",
+  "display": {
+    "icon": {
+      "item": "lotr:chalk_brick_stairs"
+    },
+    "title": {
+      "color": "gold",
+      "translate": "advancements.lotrextended.lindon.the_white_towers.title"
+    },
+    "description": {
+      "color": "aqua",
+      "translate": "advancements.lotrextended.lindon.the_white_towers.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_anarostirion": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "lotrextended:anarostirion"
+        }
+      }
+    },
+    "enter_elostirion": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "lotrextended:elostirion"
+        }
+      }
+    },
+    "enter_isilostirion": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "lotrextended:isilostirion"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_anarostirion",
+      "enter_elostirion",
+      "enter_isilostirion"
+    ]
+  ]
+}

@@ -2,11 +2,11 @@ package lotr.common.entity.npc;
 
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
-import lotr.common.entity.npc.ai.goal.ExtendedRangerMeleeAttackGoal;
 import lotr.common.entity.npc.ai.goal.ExtendedRangerRangedAttackGoal;
 import lotr.common.entity.npc.ai.goal.FriendlyNPCConversationGoal;
 import lotr.common.entity.npc.ai.goal.NPCDrinkGoal;
 import lotr.common.entity.npc.ai.goal.NPCEatGoal;
+import lotr.common.entity.npc.ai.goal.NPCMeleeAttackGoal;
 import lotr.common.entity.npc.ai.goal.StargazingGoal;
 import lotr.common.entity.npc.ai.goal.TalkToCurrentGoal;
 import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
@@ -268,7 +268,7 @@ public class ExtendedDunedainRangerEntity extends ManEntity implements ExtendedN
     }
 
     protected Goal createRangerMeleeAttackGoal() {
-        return new ExtendedRangerMeleeAttackGoal(this, 1.4);
+        return new NPCMeleeAttackGoal(this, 1.4);
     }
 
     @Override

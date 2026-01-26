@@ -54,6 +54,8 @@ public class ExtendedBlueMountainsCommanderEntity extends BlueDwarfEntity  imple
 		setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.BLUE_DWARVEN_BOOTS.get()));
 		setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.BLUE_DWARVEN_LEGGINGS.get()));
 		setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.BLUE_DWARVEN_CHESTPLATE.get()));
+		setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+		setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 		return spawnData;
 	}
 

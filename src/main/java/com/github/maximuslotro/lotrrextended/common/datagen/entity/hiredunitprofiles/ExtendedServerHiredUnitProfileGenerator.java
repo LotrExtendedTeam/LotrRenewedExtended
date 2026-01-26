@@ -332,7 +332,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_AXE.get()), 1)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LINDON_BOW.get()), 5)
 		.addRangedPoolItem(new ItemStack(ExtendedItems.LONGBOW.get()), 1)
-		//.addShieldItem(new ItemStack(ExtendedItems.LINDON_SHIELD.get()), 1)
+		.addShieldItem(new ItemStack(ExtendedItems.LINDON_SHIELD.get()), 1)
 		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.LINDON_WARRIOR);
 	}
 }
