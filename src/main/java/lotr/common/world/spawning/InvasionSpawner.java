@@ -56,6 +56,7 @@ public class InvasionSpawner {
                 spawner.setFaction(invasion.getKey());
                 spawner.setPos(x, y, z);
                 world.addFreshEntity(spawner);
+                spawner.startInvasion();
                 spawnedInvasion = true;
                 break;
             }

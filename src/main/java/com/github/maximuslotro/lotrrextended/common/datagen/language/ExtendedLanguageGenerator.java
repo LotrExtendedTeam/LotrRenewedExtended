@@ -7,10 +7,12 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedBannerPatterns;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTRItems;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.BannerPattern;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -608,6 +610,18 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		//Damage types
 		addD("death.attack.lotrextended.thrownaxe", "%1$s was precision-axed by %2$s");
 		addD("death.attack.lotrextended.thrownaxe.item", "%1$s was precision-axed by %2$s using %3$s");
+
+		// Invasions
+		addD("chat.invasion.started", "%s have launched an invasion nearby!");
+		addD("lotrextended.invasion.rivendell", "Rivendell");
+		addD("lotrextended.invasion.lindon", "Lindon");
+		addD("lotrextended.invasion.gundabad", "Gundabad");
+		addD("lotrextended.invasion.gundabad_wargs", "Gundabad Wargs");
+		addD("lotrextended.invasion.dunedain", "Rangers of the North");
+		addD("lotrextended.invasion.mordor", "Mordor");
+		addD("lotrextended.invasion.gondor", "Gondor");
+		addD("lotrextended.invasion.lothlorien", "Lothlorien");
+		addD("lotrextended.invasion.woodland_realm", "Woodland Realm");
 	}
 
 	@Override

@@ -7,26 +7,29 @@ import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public enum ExtendedInvasions {
 
-    RIVENDELL("lotr:high_elves,rivendell", new ItemStack(LOTRItems.RIVENDELL_SWORD.get(), 1)),
-    LINDON("lotr:high_elves,lindon", new ItemStack(LOTRItems.LINDON_SWORD.get(), 1)),
-    GUNDABAD("lotr:northern_orcs", new ItemStack(ExtendedItems.GUNDABAD_URUK_CLEAVER.get(), 1)),
-    GUNDABAD_WARGS("lotr:northern_orcs,wargs", new ItemStack(LOTRItems.WARG_BONE.get(), 1)),
-    DUNEDAIN("lotr:dunedain_north", new ItemStack(ExtendedItems.DUNEDAIN_BOW.get(), 1)),
-    MORDOR("lotr:mordor", new ItemStack(LOTRItems.MORDOR_SCIMITAR.get(), 1)),
-    GONDOR("lotr:gondor", new ItemStack(LOTRItems.GONDOR_SWORD.get(), 1)),
-    LOTHLORIEN("lotr:lothlorien", new ItemStack(LOTRItems.GALADHRIM_SWORD.get(), 1)),
-    WOODLAND_REALM("lotr:woodland_realm", new ItemStack(LOTRItems.WOOD_ELVEN_SWORD.get(), 1)),
-    ROHAN("lotr:rohan", new ItemStack(LOTRItems.ROHAN_SWORD.get(), 1));
+    RIVENDELL("lotr:high_elves,rivendell", "lotr:high_elves", new ItemStack(LOTRItems.RIVENDELL_SWORD.get(), 1)),
+    LINDON("lotr:high_elves,lindon", "lotr:high_elves", new ItemStack(LOTRItems.LINDON_SWORD.get(), 1)),
+    GUNDABAD("lotr:northern_orcs", "lotr:northern_orcs", new ItemStack(ExtendedItems.GUNDABAD_URUK_CLEAVER.get(), 1)),
+    GUNDABAD_WARGS("lotr:northern_orcs,wargs", "lotr:northern_orcs", new ItemStack(LOTRItems.WARG_BONE.get(), 1)),
+    DUNEDAIN("lotr:dunedain_north", "lotr:dunedain_north", new ItemStack(ExtendedItems.DUNEDAIN_BOW.get(), 1)),
+    MORDOR("lotr:mordor", "lotr:mordor", new ItemStack(LOTRItems.MORDOR_SCIMITAR.get(), 1)),
+    GONDOR("lotr:gondor", "lotr:gondor", new ItemStack(LOTRItems.GONDOR_SWORD.get(), 1)),
+    LOTHLORIEN("lotr:lothlorien", "lotr:lothlorien", new ItemStack(LOTRItems.GALADHRIM_SWORD.get(), 1)),
+    WOODLAND_REALM("lotr:woodland_realm", "lotr:woodland_realm", new ItemStack(LOTRItems.WOOD_ELVEN_SWORD.get(), 1)),
+    ROHAN("lotr:rohan", "lotr:rohan", new ItemStack(LOTRItems.ROHAN_SWORD.get(), 1));
 
     private final String key;
     private final ItemStack stack;
     private List<InvasionSpawnEntry> spawnEntries = new ArrayList<>();
+    private final String baseFactionKey;
 
     private static final Map<String, ExtendedInvasions> BY_KEY =
             Arrays.stream(values())
@@ -35,13 +38,18 @@ public enum ExtendedInvasions {
                             e -> e
                     ));
 
-    ExtendedInvasions(String key, ItemStack stack) {
+    ExtendedInvasions(String key, String baseFactionKey, ItemStack stack) {
         this.key = key;
         this.stack = stack;
+        this.baseFactionKey = baseFactionKey;
     }
 
     public String getKey() {
         return key;
+    }
+
+    public String getBaseFactionKey() {
+        return baseFactionKey;
     }
 
     public ItemStack getStack() {
@@ -50,6 +58,10 @@ public enum ExtendedInvasions {
 
     public static Optional<ExtendedInvasions> fromKey(String key) {
         return Optional.ofNullable(BY_KEY.get(key));
+    }
+
+    public ITextComponent getTranslatableName() {
+        return new TranslationTextComponent("lotrextended.invasion." + this.name().toLowerCase());
     }
 
     private void addInvasionMob(InvasionSpawnEntry entry) {
