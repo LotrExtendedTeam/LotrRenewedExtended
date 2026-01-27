@@ -130,9 +130,13 @@ public class ExtendedBannerProtectionManager {
 				if(offendingPlayer==null) {
 					return false;
 				}
-				if(bannerInstance.isServerProtecting()) {
+				if(bannerInstance.isCustomProtecting()) {
 					if(!ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(offendingPlayer.getGameProfile())) {
-						tellPlayerYSNP(new StringTextComponent("The Server"));
+						if(bannerInstance.getProtectionOverrideMessage().isEmpty()) {
+							tellPlayerYSNP(new StringTextComponent("The Server"));
+						} else {
+							tellPlayerYSNP(new StringTextComponent(bannerInstance.getProtectionOverrideMessage()));
+						}
 						return true;
 					}
 					return false;

@@ -1,17 +1,32 @@
 {
   "variants": {
-    "facing=north": {
+    "facing=north,waterlogged=false": {
       "model": "lotrextended:block/blue_mountains_wall_banner"
     },
-    "facing=south": {
+    "facing=south,waterlogged=false": {
       "model": "lotrextended:block/blue_mountains_wall_banner",
       "y": 180
     },
-    "facing=west": {
+    "facing=west,waterlogged=false": {
       "model": "lotrextended:block/blue_mountains_wall_banner",
       "y": 270
     },
-    "facing=east": {
+    "facing=east,waterlogged=false": {
+      "model": "lotrextended:block/blue_mountains_wall_banner",
+      "y": 90
+    },
+    "facing=north,waterlogged=true": {
+      "model": "lotrextended:block/blue_mountains_wall_banner"
+    },
+    "facing=south,waterlogged=true": {
+      "model": "lotrextended:block/blue_mountains_wall_banner",
+      "y": 180
+    },
+    "facing=west,waterlogged=true": {
+      "model": "lotrextended:block/blue_mountains_wall_banner",
+      "y": 270
+    },
+    "facing=east,waterlogged=true": {
       "model": "lotrextended:block/blue_mountains_wall_banner",
       "y": 90
     }

@@ -15,7 +15,7 @@ public enum ExtendedBannerProtectionOwners {
     /** The banner has no owner. */
     NONE,
     /** The banner is owned by the server/system. */
-    SERVER;
+    CUSTOM;
 	/**
      * Cached array of enum values for fast lookup by ID.
      */

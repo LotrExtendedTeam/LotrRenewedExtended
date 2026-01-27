@@ -54,6 +54,7 @@ public class ExtendedCBannerSaveInfoPacket {
      * Position of the banner tile entity being configured.
      */
 	private BlockPos configurePos;
+	public String protMessage;
 	/**
      * Empty constructor used for decoding.
      */
@@ -67,14 +68,20 @@ public class ExtendedCBannerSaveInfoPacket {
      * @param canSelfProtect  whether the banner protects itself
      * @param protectionType  owner type ID
      * @param configurePos    banner tile entity position
+	 * @param pProtectionMessage custom protection message
      */
-	public ExtendedCBannerSaveInfoPacket(List<ExtendedBannerPermissions> defaultPerms, float alignmentLevel, List<ProtectionEntry> whitelist, boolean canSelfProtect, int protectionType, BlockPos configurePos) {
+	public ExtendedCBannerSaveInfoPacket(List<ExtendedBannerPermissions> defaultPerms, float alignmentLevel, List<ProtectionEntry> whitelist, 
+		boolean canSelfProtect, int protectionType, BlockPos configurePos, String pProtectionMessage) {
 		this.defaultPerms = defaultPerms;
 		this.alignmentLevel = alignmentLevel;
 		this.whitelist = whitelist;
 		this.canSelfProtect = canSelfProtect;
 		this.configurePos = configurePos;
 		this.protectionType = protectionType;
+		if(pProtectionMessage=="The Server") {
+			pProtectionMessage="";
+		}
+		this.protMessage = pProtectionMessage;
 	}
 	/**
      * Encodes this packet into a {@link PacketBuffer} for network transmission.
@@ -100,6 +107,7 @@ public class ExtendedCBannerSaveInfoPacket {
 		buf.writeBoolean(packet.canSelfProtect);
 		buf.writeInt(packet.protectionType);
 		buf.writeBlockPos(packet.configurePos);
+		buf.writeUtf(packet.protMessage);
 	}
 	/**
      * Decodes a packet from the network buffer.
@@ -138,6 +146,7 @@ public class ExtendedCBannerSaveInfoPacket {
 		packet.canSelfProtect = buf.readBoolean();
 		packet.protectionType = buf.readInt();
 		packet.configurePos = buf.readBlockPos();
+		packet.protMessage = buf.readUtf();
 		return packet;
 	}
 	 /**
@@ -160,6 +169,7 @@ public class ExtendedCBannerSaveInfoPacket {
 	    		bannerTE.setProtectionWhitelist(pPacket.whitelist);
 	    		bannerTE.setCanProtectSelf(pPacket.canSelfProtect);
 	    		bannerTE.setProtectionType(ExtendedBannerProtectionOwners.getByID(pPacket.protectionType));
+	    		bannerTE.setProtectionOverrideMessage(pPacket.protMessage);
 	    		ExtendedSBannerOpenChangedScreenPacket returnPacket = bannerTE.verifyInfo(player);
 	    		if(returnPacket!=null) {
 	    			ExtendedPacketHandler.sendToClient(returnPacket, player);
