@@ -107,6 +107,10 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
      */
 	private boolean firstTick = false;
 	/**
+     * Name of the player who placed this banner.
+     */
+	private String protectionOverrideMessage = "";
+	/**
      * Constructs a new {@code ExtendedMEBannerTileEntity} and registers it
      * with the standing banner tile entity type.
      */
@@ -260,11 +264,11 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		return protectionType==ExtendedBannerProtectionOwners.PLAYER;
 	}
 	/**
-	 * Checks if this banner is protecting by server
+	 * Checks if this banner is protecting by the server
 	 * @return boolean
 	 * */
-	public boolean isServerProtecting() {
-		return protectionType==ExtendedBannerProtectionOwners.SERVER;
+	public boolean isCustomProtecting() {
+		return protectionType==ExtendedBannerProtectionOwners.CUSTOM;
 	}
 	/**
 	 * Checks if this banner is protecting by faction
@@ -341,6 +345,18 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	public void setPlacedPlayerNameAndID(UUID placedPlayer, String placedPlayerName) {
 		setPlacedPlayerUUID(placedPlayer);
 		setPlacedPlayerName(placedPlayerName);
+	}
+
+	/**
+	 * Gets a custom protection message if it exists
+	 * @return String
+	 * */
+	public String getProtectionOverrideMessage() {
+		return protectionOverrideMessage;
+	}
+
+	public void setProtectionOverrideMessage(String pPotectionMessage) {
+		this.protectionOverrideMessage = pPotectionMessage;
 	}
 
 	public void setDefaultPerms(List<ExtendedBannerPermissions> perms) {
@@ -457,8 +473,13 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		if(!protectionWhitelist.isEmpty()) {
 			ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(serverPlayer, "bannerOthers");
 		}
-		if(protectionType==ExtendedBannerProtectionOwners.SERVER && !ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(serverPlayer.getGameProfile())) {
+		if(protectionType!=ExtendedBannerProtectionOwners.CUSTOM && !protectionOverrideMessage.isEmpty()) {
+			protectionOverrideMessage = "";
+			fixedBroken = true;
+		}
+		if(protectionType==ExtendedBannerProtectionOwners.CUSTOM && !ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(serverPlayer.getGameProfile())) {
 			protectionType = ExtendedBannerProtectionOwners.FACTION;
+			protectionOverrideMessage = "";
 			fixedBroken = true;
 		}
 		if(fixedBroken) {
@@ -521,6 +542,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			if(pCompound.contains("used")) {
 				used = pCompound.getBoolean("used");
 			}
+			if(pCompound.contains("customMessage")) {
+				protectionOverrideMessage = pCompound.getString("customMessage");
+			}
 		}
 	}
 
@@ -570,6 +594,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			}
 			if(!canProtectSelf) {
 				pCompound.putBoolean("protectionSelf", canProtectSelf);
+			}
+			if(!protectionOverrideMessage.isEmpty()) {
+				pCompound.putString("customMessage", protectionOverrideMessage);
 			}
 			returnCompound.put("ProtectionData", pCompound);
 		}

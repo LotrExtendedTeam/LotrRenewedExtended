@@ -206,6 +206,7 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_TOWER_HILLS_SOUTH_TOWER);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_TOWER_HILLS_MIDDLE_TOWER);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_TOWER_HILLS_NORTH_TOWER);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_TOWER_HILLS_TOWER);
 			}else if(biomeName.equals(LOTRBiomes.SWANFLEET.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_CAMP);
 				//event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_RANGER_ENCAMPMENT);
@@ -280,6 +281,8 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_THE_LAST_HOMELY_HOUSE);
 			}else if(biomeName.equals(LOTRBiomes.EREGION.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_EREGION_RUINS_STRUCTURES);
+			}else if(biomeName.equals(LOTRBiomes.LINDON.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_LINDON_VILLAGE);
 			}
 		}
 	}

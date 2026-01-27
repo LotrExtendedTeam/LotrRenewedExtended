@@ -18,19 +18,19 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.lighting.LightEngine;
 import net.minecraft.world.server.ServerWorld;
 
-public class ExtendedPlantableSpreadableAxialSlabBlock extends ExtendedPlantableAxialSlabBlock{
+public class ExtendedAxialSlabPlantableSpreadableBlock extends ExtendedAxialSlabPlantableBlock{
 	private final Supplier<Block> slabBase;
 	private final Supplier<Block> blockBase;
 	private final Supplier<Block> blockGrowable;
 
-	public ExtendedPlantableSpreadableAxialSlabBlock(Block block, Supplier<Block> slabBase, Supplier<Block> blockBase, Supplier<Block> blockGrowable) {
+	public ExtendedAxialSlabPlantableSpreadableBlock(Block block, Supplier<Block> slabBase, Supplier<Block> blockBase, Supplier<Block> blockGrowable) {
 		super(block);
 		this.slabBase = slabBase;
 		this.blockBase = blockBase;
 		this.blockGrowable = blockGrowable;
 	}
 
-	public ExtendedPlantableSpreadableAxialSlabBlock(Supplier<Block> block, Supplier<Block> slabBase, Supplier<Block> blockBase, Supplier<Block> blockGrowable) {
+	public ExtendedAxialSlabPlantableSpreadableBlock(Supplier<Block> block, Supplier<Block> slabBase, Supplier<Block> blockBase, Supplier<Block> blockGrowable) {
 		this(block.get(), slabBase, blockBase, blockGrowable);
 	}
 

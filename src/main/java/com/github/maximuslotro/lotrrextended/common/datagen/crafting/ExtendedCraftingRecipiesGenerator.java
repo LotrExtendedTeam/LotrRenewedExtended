@@ -985,6 +985,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeShieldRecipe(consumer, ExtendedItems.BREE_SHIELD, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.BREE_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.BLUE_DWARVEN_SHIELD, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.RIVENDELL_SHIELD, ExtendedTags.Items.ELVEN_STEEL_INGOT, "elven_steel", LOTRRecipes.RIVENDELL_CRAFTING);
+		makeShieldRecipe(consumer, ExtendedItems.LINDON_SHIELD, ExtendedTags.Items.ELVEN_STEEL_INGOT, "elven_steel", LOTRRecipes.LINDON_CRAFTING);
 		//Banners and patterns
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.DUNEDAIN_BANNER, ExtendedItems.DUNEDAIN_BANNER_PATTERN, LOTRRecipes.RANGER_CRAFTING);
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.HOBBIT_BANNER, ExtendedItems.HOBBIT_BANNER_PATTERN, LOTRRecipes.HOBBIT_CRAFTING);
@@ -1096,6 +1097,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeSlabRecipe(consumer, ExtendedBlocks.GRASS_PATH_SLAB, () -> Items.GRASS_PATH, null, "");
 		makeSlabRecipe(consumer, ExtendedBlocks.MYCELIUM_SLAB, () -> Items.MYCELIUM, null, "");
 		makeSlabRecipe(consumer, ExtendedBlocks.PODZOL_SLAB, () -> Items.PODZOL, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.SNOW_SLAB, () -> Items.SNOW, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.SNOW_PATH_SLAB, LOTRItems.SNOW_PATH, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.CHALK_PATH_SLAB, LOTRItems.CHALK_PATH, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.MORDOR_DIRT_SLAB, LOTRItems.MORDOR_DIRT, LOTRRecipes.MORDOR_CRAFTING, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.MORDOR_DIRT_PATH_SLAB, LOTRItems.MORDOR_DIRT_PATH, LOTRRecipes.MORDOR_CRAFTING, "");
+
 		//Scorched blocks
 		GENERATEDRECIPES.add(ExtendedBlocks.SCORCHED_COBBLESTONE.get().getRegistryName().getPath());
 		CookingRecipeBuilder.blasting(Ingredient.of(Blocks.COBBLESTONE.asItem()), ExtendedBlocks.SCORCHED_COBBLESTONE.get(), 0.1F, 100)

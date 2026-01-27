@@ -107,6 +107,12 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		}
 		return builder.requirements(IRequirementsStrategy.AND);
 	}
+	public static Advancement.Builder addStructureTriggers(Advancement.Builder builder, String... structures) {
+		for(String structure : structures) {
+			builder.addCriterion("enter_"+structure, inStructure(new ResourceLocation(LotrExtendedMod.MODID, structure)));
+		}
+		return builder.requirements(IRequirementsStrategy.OR);
+	}
 	public static Advancement.Builder addStructureTrigger(Advancement.Builder builder, String structure) {
 		builder.addCriterion("enter_"+structure, inStructure(new ResourceLocation(LotrExtendedMod.MODID, structure)));
 		return builder;

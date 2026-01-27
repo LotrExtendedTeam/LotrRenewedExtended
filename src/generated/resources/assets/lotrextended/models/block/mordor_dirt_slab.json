@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "lotr:block/mordor_dirt",
+    "bottom": "lotr:block/mordor_dirt",
+    "top": "lotr:block/mordor_dirt"
+  }
+}

@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarrenDirt;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundFarmlandBlock;
 
-import lotr.common.block.ExtendedPlantableAxialSlabBlock;
-import lotr.common.block.ExtendedStemableAxialSlabBlock;
+import lotr.common.block.ExtendedAxialSlabPlantableBlock;
+import lotr.common.block.ExtendedAxialSlabStemableBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SlabBlock;
@@ -34,7 +34,7 @@ public class MixinBlock {
 			}else if(plantable instanceof StemBlock) {
 				if(state.getBlock() instanceof ExtendedBarrenDirt) {
 					ci.setReturnValue(true);
-				}else if(state.getBlock() instanceof ExtendedStemableAxialSlabBlock && state.getValue(SlabBlock.TYPE)!=SlabType.BOTTOM) {
+				}else if(state.getBlock() instanceof ExtendedAxialSlabStemableBlock && state.getValue(SlabBlock.TYPE)!=SlabType.BOTTOM) {
 					if(state.getValue(BlockStateProperties.AXIS)==Axis.Y) {
 						ci.setReturnValue(true);
 					}else if(state.getValue(BlockStateProperties.AXIS)==Axis.X && state.getValue(SlabBlock.TYPE)==SlabType.DOUBLE) {
@@ -45,7 +45,7 @@ public class MixinBlock {
 				}
 			}
 		}else if (PlantType.PLAINS.equals(type)) {
-			if(state.getBlock() instanceof ExtendedPlantableAxialSlabBlock && state.getValue(SlabBlock.TYPE)!=SlabType.BOTTOM) {
+			if(state.getBlock() instanceof ExtendedAxialSlabPlantableBlock && state.getValue(SlabBlock.TYPE)!=SlabType.BOTTOM) {
 				if(state.getValue(BlockStateProperties.AXIS)==Axis.Y) {
 					ci.setReturnValue(true);
 				}else if(state.getValue(BlockStateProperties.AXIS)==Axis.X && state.getValue(SlabBlock.TYPE)==SlabType.DOUBLE) {

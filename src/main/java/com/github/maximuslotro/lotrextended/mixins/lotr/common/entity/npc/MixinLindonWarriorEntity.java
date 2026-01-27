@@ -11,6 +11,7 @@ import lotr.common.init.ExtendedItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.DifficultyInstance;
@@ -61,7 +62,7 @@ public class MixinLindonWarriorEntity extends LindonElfEntity{
 	@Inject(method = "finalizeSpawn(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/ILivingEntityData;Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/entity/ILivingEntityData;",
 			at = @At("TAIL"))
 	public void finalizeSpawn$Extended(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag, CallbackInfoReturnable<ILivingEntityData> cir) {
-		//setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.RIVENDELL_SHIELD.get()));
+		setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.LINDON_SHIELD.get()));
 		this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.RIVENDELL_BOW.get()));
 	}
 }

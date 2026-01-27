@@ -307,7 +307,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.banner_configuration.whitelist.delete.disc", "Remove this whitelist entry");
 		addD("gui.lotrextended.banner_configuration.type_whitelist", "Protection Type: Whitelist");
 		addD("gui.lotrextended.banner_configuration.type_faction", "Protection Type: Faction");
-		addD("gui.lotrextended.banner_configuration.type_server", "Protection Type: Server");
+		addD("gui.lotrextended.banner_configuration.type_custom", "Protection Type: Custom");
 		addD("gui.lotrextended.banner_configuration.permission_type.full", "Full Permissions");
 		addD("gui.lotrextended.banner_configuration.permission_type.limited", "Limited Permissions");
 		addD("gui.lotrextended.banner_configuration.send_update", "Sync Banner Now");
@@ -317,6 +317,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.banner_configuration.self_protection.off", "Self Protection: Off");
 		addD("gui.lotrextended.banner_configuration.faction.requires", "Required Alignment:");
 		addD("gui.lotrextended.banner_configuration.faction.textBox", "Alignment");
+		addD("gui.lotrextended.banner_configuration.custom.description", "Protection Message:");
+		addD("gui.lotrextended.banner_configuration.custom.textBox", "Message");
 		addD("gui.lotrextended.banner_configuration.perms", "Show Permissions");
 		addD("gui.lotrextended.banner_configuration.perms.disc", "Show Additional Permissions");
 		addD("gui.lotrextended.banner_configuration.perms.everything", "Full Permission");

@@ -49,6 +49,7 @@ public class ExtendedTraderTypes {
 	// Lindon
 	public static final ResourceLocation LINDON_SMITH = make("lindon_smith");
 	public static final ResourceLocation LINDON_WEAVER = make("lindon_weaver");
+	public static final ResourceLocation LINDON_FLORIST = make("lindon_florist");
 	// Galadhrim
 	public static final ResourceLocation GALADHRIM_WANDERER = make("galadhrim_wanderer");
 	// Misc

@@ -85,6 +85,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.LINDON_LORD.get(), ExtendedHighElfTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.LINDON_SMITH.get(), ExtendedHighElfTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.LINDON_WEAVER.get(), ExtendedHighElfTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.LINDON_FLORIST.get(), ExtendedHighElfTraderRenderer::new);
 		// Special
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TOLKIEN.get(), ExtendedTolkienRenderer::new);
 		// Bandit

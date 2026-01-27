@@ -15,9 +15,9 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
-public class ExtendedSwappablePathSlabBlock extends ExtendedStemableAxialSlabBlock implements IExtendedSwappableTexture {
+public class ExtendedAxialSlabPathBlock extends ExtendedAxialSlabStemableBlock implements IExtendedSwappableTexture {
 
-	public ExtendedSwappablePathSlabBlock(Block block) {
+	public ExtendedAxialSlabPathBlock(Block block) {
 		super(block);
 		this.registerDefaultState(this.stateDefinition.any().setValue(USELOTRTEXTURE, true)); // Set default value to lotr textures not vanilla to preserve already placed slabs
 	}

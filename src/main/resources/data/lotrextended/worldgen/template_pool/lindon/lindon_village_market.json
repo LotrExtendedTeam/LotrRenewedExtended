@@ -1,0 +1,42 @@
+{
+	"name": "lotrextended:lindon/lindon_village_market",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:lindon/village/market/lindon_market_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:lindon/village/market/lindon_market_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:lindon/village/market/lindon_market_3",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:lindon/village/market/lindon_market_4",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}

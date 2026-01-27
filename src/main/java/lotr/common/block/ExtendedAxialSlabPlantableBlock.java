@@ -14,13 +14,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.PlantType;
 
-public class ExtendedPlantableAxialSlabBlock extends ExtendedStemableAxialSlabBlock {
+public class ExtendedAxialSlabPlantableBlock extends ExtendedAxialSlabStemableBlock {
 
-	public ExtendedPlantableAxialSlabBlock(Supplier<Block> block) {
+	public ExtendedAxialSlabPlantableBlock(Supplier<Block> block) {
 		super(block);
 	}
 
-	public ExtendedPlantableAxialSlabBlock(Block block) {
+	public ExtendedAxialSlabPlantableBlock(Block block) {
 		super(block);
 	}
 

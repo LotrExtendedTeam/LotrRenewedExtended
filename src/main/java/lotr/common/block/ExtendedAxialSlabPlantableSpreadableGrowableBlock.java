@@ -23,14 +23,14 @@ import net.minecraft.world.gen.feature.FlowersFeature;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ToolType;
 
-public class ExtendedPlantableSpreadableGrowableAxialSlabBlock extends ExtendedPlantableSpreadableAxialSlabBlock implements IGrowable, IExtendedSwappableTexture  {
+public class ExtendedAxialSlabPlantableSpreadableGrowableBlock extends ExtendedAxialSlabPlantableSpreadableBlock implements IGrowable, IExtendedSwappableTexture  {
 
-	public ExtendedPlantableSpreadableGrowableAxialSlabBlock(Supplier<Block> block, Supplier<Block> slabBase, Supplier<Block> blockBase, Supplier<Block> blockGrowable) {
+	public ExtendedAxialSlabPlantableSpreadableGrowableBlock(Supplier<Block> block, Supplier<Block> slabBase, Supplier<Block> blockBase, Supplier<Block> blockGrowable) {
 		super(block, slabBase, blockBase, blockGrowable);
 		this.registerDefaultState(this.stateDefinition.any().setValue(USELOTRTEXTURE, true)); // Set default value to lotr textures not vanilla to preserve already placed slabs
 	}
 
-	public ExtendedPlantableSpreadableGrowableAxialSlabBlock(Block block, Supplier<Block> slabBase, Supplier<Block> blockBase, Supplier<Block> blockGrowable) {
+	public ExtendedAxialSlabPlantableSpreadableGrowableBlock(Block block, Supplier<Block> slabBase, Supplier<Block> blockBase, Supplier<Block> blockGrowable) {
 		super(block, slabBase, blockBase, blockGrowable);
 		this.registerDefaultState(this.stateDefinition.any().setValue(USELOTRTEXTURE, true)); // Set default value to lotr textures not vanilla to preserve already placed slabs
 	}

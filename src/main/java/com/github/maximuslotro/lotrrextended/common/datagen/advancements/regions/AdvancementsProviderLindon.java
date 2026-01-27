@@ -38,10 +38,15 @@ public class AdvancementsProviderLindon extends ExtendedBaseAdvancementType{
 				.setTitle("Emyn Beraid").setDescription("Enter the Tower Hills."),
 				addBiomeTrigger(make(), LOTRBiomes.TOWER_HILLS).parent(lindon));
 
+		Advancement the_white_towers = build(false, data(LOTRItems.CHALK_BRICK_STAIRS.get(), "the_white_towers", FrameType.GOAL)
+			.setTitle("The White Towers").setDescription("Discover the tower of Elostirion, Anarostirion, or Isilostirion."),
+			addStructureTriggers(make(), "anarostirion", "elostirion", "isilostirion").parent(tower_hills));
+
 		Advancement lindon_elf_slayer = build(true, data(LOTRItems.ELF_BONE.get(), "lindon_elf_slayer", FrameType.TASK)
 				.setTitle("Lindon Elf Slayer").setDescription("Kill a Lindon Elf."),
 				addKillEntityTriggers(make(), LOTREntities.LINDON_WARRIOR.get(), LOTREntities.LINDON_ELF.get(),
-						ExtendedEntities.LINDON_LORD.get(), ExtendedEntities.LINDON_SMITH.get(), ExtendedEntities.LINDON_WEAVER.get()).parent(lindon));
+						ExtendedEntities.LINDON_LORD.get(), ExtendedEntities.LINDON_SMITH.get(), ExtendedEntities.LINDON_WEAVER.get(),
+						ExtendedEntities.LINDON_FLORIST.get()).parent(lindon));
 
 		Advancement elven_ingot = build(true, data(LOTRItems.ELVEN_STEEL_INGOT.get(), "elven_smith", FrameType.TASK)
 				.setTitle("Elven Smith").setDescription("Smelt an ingot of Elven Steel in the Elven Forge."),

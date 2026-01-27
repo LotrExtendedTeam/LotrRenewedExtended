@@ -6,13 +6,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraftforge.common.ToolType;
 
-public class ExtendedStemableAxialSlabBlock extends AxialSlabBlock {
+public class ExtendedAxialSlabStemableBlock extends AxialSlabBlock {
 
-	public ExtendedStemableAxialSlabBlock(Supplier<Block> block) {
+	public ExtendedAxialSlabStemableBlock(Supplier<Block> block) {
 		super(block);
 	}
 
-	public ExtendedStemableAxialSlabBlock(Block block) {
+	public ExtendedAxialSlabStemableBlock(Block block) {
 		super(block);
 	}
 

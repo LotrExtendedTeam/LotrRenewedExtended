@@ -13,6 +13,7 @@ import com.mojang.serialization.JsonOps;
 import net.minecraft.advancements.criterion.BlockPredicate;
 import net.minecraft.advancements.criterion.FluidPredicate;
 import net.minecraft.advancements.criterion.LightPredicate;
+import net.minecraft.advancements.criterion.LocationPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.RegistryKey;
@@ -22,6 +23,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 
+/**
+ * Allows dataGeneration for structure predicates
+ * {@link LocationPredicate}
+ * */
 public class ExtendedFakeLocationPredicate {
 	private static final Logger LOGGER = LogManager.getLogger();
 	public static final ExtendedFakeLocationPredicate ANY = new ExtendedFakeLocationPredicate(MinMaxBounds.FloatBound.ANY, MinMaxBounds.FloatBound.ANY, MinMaxBounds.FloatBound.ANY, (RegistryKey<Biome>)null, (ResourceLocation)null, (RegistryKey<World>)null, (Boolean)null, LightPredicate.ANY, BlockPredicate.ANY, FluidPredicate.ANY);

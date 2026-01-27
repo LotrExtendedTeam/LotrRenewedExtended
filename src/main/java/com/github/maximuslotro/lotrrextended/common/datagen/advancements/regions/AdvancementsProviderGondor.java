@@ -117,7 +117,7 @@ public class AdvancementsProviderGondor extends ExtendedBaseAdvancementType{
 					LOTRItems.DOL_AMROTH_LEGGINGS.get(), LOTRItems.DOL_AMROTH_BOOTS.get()).parent(land_of_the_prince));
 
 		Advancement gondor_armor = build(true, data(LOTRItems.GONDOR_CHESTPLATE.get(), "gondor_armor", FrameType.TASK)
-			.setTitle("For Gondor!").setDescription("Acquire a full set of Dol Amroth armor."),
+			.setTitle("For Gondor!").setDescription("Equip a full suit of Gondorian armour."),
 			addArmorTrigger(make(), "gondow", LOTRItems.GONDOR_HELMET.get(), LOTRItems.GONDOR_CHESTPLATE.get(),
 					LOTRItems.GONDOR_LEGGINGS.get(), LOTRItems.GONDOR_BOOTS.get()).parent(kingdom_of_men));
 

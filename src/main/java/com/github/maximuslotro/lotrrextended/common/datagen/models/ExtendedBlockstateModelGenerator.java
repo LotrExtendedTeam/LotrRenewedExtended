@@ -61,6 +61,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedRopeType;
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
 import lotr.common.block.ChandelierBlock;
+import lotr.common.block.ExtendedAxialSlabPathBlock;
 import lotr.common.block.ExtendedDwarvenGateBlock;
 import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedLOTRTorchBlock;
@@ -322,7 +323,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedGroundPathBlock) {
-					genGrassPathBlockItem((ExtendedGroundPathBlock) block.getValue().get(), "block/"+block.getKey());
+					genPathBlockItem((ExtendedGroundPathBlock) block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
 				if(block.getValue().get() instanceof StrippableLogBlock) {
@@ -581,12 +582,62 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), S, TB, TB, S);
 							continue;
 						}
-						if(block.getKey().equals("mud_path_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/mud_path"),
+						if(block.getValue().get() instanceof ExtendedAxialSlabPathBlock) {
+							if(block.getKey().equals("mud_path_slab")) {
+								genSwappablePathSlabBlock(
+									(SlabBlock) block.getValue().get(),
+									lotrExtendedLoc("block/mud"),
+									lotrExtendedLoc("block/mud"),
 									lotrExtendedLoc("block/mud_path"),
-									lotrExtendedLoc("block/mud_path"),
-									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/mud_path")), false, true);
-							continue;
+									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/mud_path")),
+									lotrExtendedLoc("block/mud_path")
+									);
+								continue;
+							}
+							if(block.getKey().equals("grass_path_slab")) {
+								genSwappablePathSlabBlock(
+										(SlabBlock) block.getValue().get(),
+										mcLoc("block/grass_path_side"),
+										mcLoc("block/dirt"),
+										mcLoc("block/grass_path_top"),
+										models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top")),
+										mcLoc("block/grass_path")
+										);
+								continue;
+							}
+							if(block.getKey().equals("mordor_dirt_path_slab")) {
+								genSwappablePathSlabBlock(
+									(SlabBlock) block.getValue().get(),
+									lotrLoc("block/mordor_dirt_path_side"),
+									lotrLoc("block/mordor_dirt"),
+									lotrLoc("block/mordor_dirt_path_top"),
+									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrLoc("block/mordor_dirt_path_top")),
+									lotrLoc("block/mordor_dirt_path")
+									);
+								continue;
+							}
+							if(block.getKey().equals("snow_path_slab")) {
+								genSwappablePathSlabBlock(
+									(SlabBlock) block.getValue().get(),
+									lotrLoc("block/snow_path_side"),
+									mcLoc("block/snow"),
+									lotrLoc("block/snow_path_top"),
+									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrLoc("block/snow_path_top")),
+									lotrLoc("block/snow_path")
+									);
+								continue;
+							}
+							if(block.getKey().equals("chalk_path_slab")) {
+								genSwappablePathSlabBlock(
+									(SlabBlock) block.getValue().get(),
+									lotrLoc("block/chalk_path_side"),
+									lotrLoc("block/chalk"),
+									lotrLoc("block/chalk_path_top"),
+									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrLoc("block/chalk_path_top")),
+									lotrLoc("block/chalk_path")
+									);
+								continue;
+							}
 						}
 						if(block.getKey().contains("wood_slab")) {
 							genSlabBlockItemWOOD((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 10)+"_log"),
@@ -627,22 +678,23 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/dirt"));
 							continue;
 						}
+						if(block.getKey().equals("snow_slab")) {
+							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/snow"), mcLoc("block/snow"), mcLoc("block/snow"), mcLoc("block/snow_block"));
+							continue;
+						}
+						if(block.getKey().equals("mordor_dirt_slab")) {
+							genSlabBlockItem((SlabBlock) block.getValue().get(), 
+								lotrLoc("block/mordor_dirt"),
+								lotrLoc("block/mordor_dirt"),
+								lotrLoc("block/mordor_dirt"),
+						models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrLoc("block/mordor_dirt")), false, true);
+							continue;
+						}
 						if(block.getKey().equals("bone_block_slab")) {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/bone_block_side"),
 									mcLoc("block/bone_block_top"),
 									mcLoc("block/bone_block_top"),
 							models().withExistingParent("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/bone_block")), false, true);
-							continue;
-						}
-						if(block.getKey().equals("grass_path_slab")) {
-							genSwappablePathSlabBlock(
-									(SlabBlock) block.getValue().get(),
-									mcLoc("block/grass_path_side"),
-									mcLoc("block/dirt"),
-									mcLoc("block/grass_path_top"),
-									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top")),
-									mcLoc("block/grass_path")
-									);
 							continue;
 						}
 						if(block.getKey().equals("podzol_slab")) {
@@ -1258,25 +1310,25 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:" + extendedGroundFarmlandBlock.getRegistryName().getPath()).parent(dry);
 	}
 
-	private void genGrassBlockItem(ExtendedGroundGrassBlock extendedGroundFarmlandBlock, String name) {
-		registeredBlocks.add(extendedGroundFarmlandBlock);
+	private void genGrassBlockItem(ExtendedGroundGrassBlock grassBlock, String name) {
+		registeredBlocks.add(grassBlock);
 		ResourceLocation top = lotrExtendedLoc(name+"_top");
 		ResourceLocation side = lotrExtendedLoc(name+"_side");
-		ResourceLocation dirt = lotrExtendedLoc("block/"+extendedGroundFarmlandBlock.getBase().get().getRegistryName().getPath());
+		ResourceLocation dirt = lotrExtendedLoc("block/"+grassBlock.getBase().get().getRegistryName().getPath());
 		ResourceLocation parent = mcLoc("block/cube_bottom_top");
-		ModelFile grass = models().withExistingParent("lotrextended:"+extendedGroundFarmlandBlock.getRegistryName().getPath(), parent)
+		ModelFile grass = models().withExistingParent("lotrextended:"+grassBlock.getRegistryName().getPath(), parent)
                 .texture("particle", dirt)
                 .texture("bottom", dirt)
                 .texture("top", top)
                 .texture("side", side);
 		ResourceLocation top1 = lotrExtendedLoc(name+"_snow_top");
 		ResourceLocation side1 = lotrExtendedLoc(name+"_snow_side");
-		ModelFile snow = models().withExistingParent("lotrextended:"+extendedGroundFarmlandBlock.getRegistryName().getPath()+"_snow", parent)
+		ModelFile snow = models().withExistingParent("lotrextended:"+grassBlock.getRegistryName().getPath()+"_snow", parent)
                 .texture("particle", dirt)
                 .texture("bottom", dirt)
                 .texture("top", top1)
                 .texture("side", side1);
-		getVariantBuilder(extendedGroundFarmlandBlock)
+		getVariantBuilder(grassBlock)
 		.forAllStatesExcept(state -> {
 			Boolean snowTrue = state.getValue(SnowyDirtBlock.SNOWY);
 			if(snowTrue) {
@@ -1286,20 +1338,20 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				return ConfiguredModel.allYRotations(grass, 0, false);
 			}
         });
-		itemModels().getBuilder("lotr:" + extendedGroundFarmlandBlock.getRegistryName().getPath()).parent(grass);
+		itemModels().getBuilder("lotr:" + grassBlock.getRegistryName().getPath()).parent(grass);
 	}
 
-	private void genGrassPathBlockItem(ExtendedGroundPathBlock extendedGroundFarmlandBlock, String name) {
-		registeredBlocks.add(extendedGroundFarmlandBlock);
-		ResourceLocation base = lotrExtendedLoc("block/"+extendedGroundFarmlandBlock.getBase().get().getRegistryName().getPath());
+	private void genPathBlockItem(ExtendedGroundPathBlock pathBlock, String name) {
+		registeredBlocks.add(pathBlock);
+		ResourceLocation base = lotrExtendedLoc("block/"+pathBlock.getBase().get().getRegistryName().getPath());
 		ResourceLocation parent = mcLoc("block/grass_path");
-		ModelFile grass = models().withExistingParent("lotrextended:"+extendedGroundFarmlandBlock.getRegistryName().getPath(), parent)
+		ModelFile grass = models().withExistingParent("lotrextended:"+pathBlock.getRegistryName().getPath(), parent)
                 .texture("particle", base)
                 .texture("bottom", base)
                 .texture("top", lotrExtendedLoc(name))
                 .texture("side", base);
-		simpleBlock(extendedGroundFarmlandBlock, grass);
-		itemModels().getBuilder("lotr:" + extendedGroundFarmlandBlock.getRegistryName().getPath()).parent(grass);
+		simpleBlock(pathBlock, grass);
+		itemModels().getBuilder("lotr:" + pathBlock.getRegistryName().getPath()).parent(grass);
 	}
 
 	private void genTwoTextureTableBlockItem(ExtendedTwoTypeCraftingTableBlock table, String name) {

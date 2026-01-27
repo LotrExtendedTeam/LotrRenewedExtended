@@ -501,9 +501,6 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.RIVENDELL_SMITH, elfRivendell);
 		makeEntity(ExtendedEntities.RIVENDELL_WEAVER, elfRivendell);
 		makeEntity(ExtendedEntities.IMLADRIS_GUARD, elfRivendell);
-		makeEntity(ExtendedEntities.LINDON_LORD, elfLindon);
-		makeEntity(ExtendedEntities.LINDON_SMITH, elfLindon);
-		makeEntity(ExtendedEntities.LINDON_WEAVER, elfLindon);
 		add(ExtendedEntities.ELROND.get(), LootTable.lootTable()
 				.withPool(addPoolRefrence(elfRivendell))
 				.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
@@ -514,9 +511,12 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 						.add(EItemLootEntry.lootItem(ExtendedItems.SAPPHIRE.get())
 								.when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.05F, 0.016F))
 								.apply(SetCount.setCount(ConstantRange.exactly(1))))));
+		makeEntity(ExtendedEntities.LINDON_LORD, elfLindon);
+		makeEntity(ExtendedEntities.LINDON_SMITH, elfLindon);
+		makeEntity(ExtendedEntities.LINDON_WEAVER, elfLindon);
+		makeEntity(ExtendedEntities.LINDON_FLORIST, elfLindon);
 	}
 
-	
 	public ResourceLocation makeLootCommon(String name, LootTable.Builder builder) {
 		ResourceLocation loc = new ResourceLocation(LotrExtendedMod.MODID, "entities/common/" + name);
 		add(loc, builder);

@@ -14,14 +14,19 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
@@ -35,7 +40,8 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
-public class ExtendedMEBannerWallBlock extends Block {
+public class ExtendedMEBannerWallBlock extends Block implements IWaterLoggable {
+	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.box(0.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D), Direction.SOUTH, Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 2.0D), Direction.WEST, Block.box(14.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Direction.EAST, Block.box(0.0D, 0.0D, 0.0D, 2.0D, 16.0D, 16.0D)));
 	private final ExtendedBannerTypes type;
@@ -43,7 +49,7 @@ public class ExtendedMEBannerWallBlock extends Block {
 	public ExtendedMEBannerWallBlock(ExtendedBannerTypes banner, AbstractBlock.Properties p_i48453_2_) {
 		super(p_i48453_2_);
 		this.type = banner;
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+		this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(FACING, Direction.NORTH));
 	}
 
 	public ExtendedMEBannerWallBlock(ExtendedBannerTypes banner) {
@@ -98,8 +104,11 @@ public class ExtendedMEBannerWallBlock extends Block {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public BlockState updateShape(BlockState p_196271_1_, Direction p_196271_2_, BlockState p_196271_3_, IWorld p_196271_4_, BlockPos p_196271_5_, BlockPos p_196271_6_) {
-		return p_196271_2_ == p_196271_1_.getValue(FACING).getOpposite() && !p_196271_1_.canSurvive(p_196271_4_, p_196271_5_) ? Blocks.AIR.defaultBlockState() : super.updateShape(p_196271_1_, p_196271_2_, p_196271_3_, p_196271_4_, p_196271_5_, p_196271_6_);
+	public BlockState updateShape(BlockState thisState, Direction p_196271_2_, BlockState p_196271_3_, IWorld pLevel, BlockPos pCurrentPos, BlockPos p_196271_6_) {
+		if (thisState.getValue(WATERLOGGED)) {
+			pLevel.getLiquidTicks().scheduleTick(pCurrentPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
+		}
+		return p_196271_2_ == thisState.getValue(FACING).getOpposite() && !thisState.canSurvive(pLevel, pCurrentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(thisState, p_196271_2_, p_196271_3_, pLevel, pCurrentPos, p_196271_6_);
 	}
 
 	@Override
@@ -108,11 +117,12 @@ public class ExtendedMEBannerWallBlock extends Block {
 	}
 
 	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
+	public BlockState getStateForPlacement(BlockItemUseContext pContext) {
 		BlockState blockstate = this.defaultBlockState();
-		IWorldReader iworldreader = p_196258_1_.getLevel();
-		BlockPos blockpos = p_196258_1_.getClickedPos();
-		Direction[] adirection = p_196258_1_.getNearestLookingDirections();
+		IWorldReader iworldreader = pContext.getLevel();
+		BlockPos blockpos = pContext.getClickedPos();
+		blockstate = blockstate.setValue(WATERLOGGED, iworldreader.getFluidState(pContext.getClickedPos()).getType() == Fluids.WATER);
+		Direction[] adirection = pContext.getNearestLookingDirections();
 		for (Direction direction : adirection) {
 			if (direction.getAxis().isHorizontal()) {
 				Direction direction1 = direction.getOpposite();
@@ -132,13 +142,19 @@ public class ExtendedMEBannerWallBlock extends Block {
 
 	@SuppressWarnings("deprecation")
 	@Override
+	public FluidState getFluidState(BlockState pState) {
+		return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
 	public BlockState mirror(BlockState p_185471_1_, Mirror p_185471_2_) {
 		return p_185471_1_.rotate(p_185471_2_.getRotation(p_185471_1_.getValue(FACING)));
 	}
 
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
-		p_206840_1_.add(FACING);
+		p_206840_1_.add(FACING).add(WATERLOGGED);
 	}
 
 	public ExtendedBannerTypes getBanner() {

@@ -18,13 +18,21 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class ExtendedSBannerOpenChangedScreenPacket {
+	/** Default permissions applied under the current protection mode. */
 	public List<ExtendedBannerPermissions> defaultPerms;
+	/** Alignment level used for faction-based protection logic. */
 	public float alignmentLevel;
+	/** Whitelist entries defining special access rules for players/factions. */
 	public List<ProtectionEntry> whitelist;
+	/** Whether the banner protects itself from unauthorized destruction. */
 	public boolean canSelfProtect;
+	/** Numeric ID of the banner protection owner type. */
 	public int protectionType;
+	/** Position of the banner tile entity being configured. */
 	public BlockPos configurePos;
+	/** Whether banner protection is enabled for this banner. */
 	public boolean enabled;
+	public String protMessage;
 
 	public ExtendedSBannerOpenChangedScreenPacket() {}
 
@@ -36,6 +44,7 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		this.protectionType = 0;
 		this.configurePos = new BlockPos(0,0,0);
 		this.enabled = enabled;
+		this.protMessage = "";
 	}
 
 	public ExtendedSBannerOpenChangedScreenPacket(ExtendedMEBannerTileEntity bannerEntity) {
@@ -46,6 +55,7 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		this.protectionType = bannerEntity.getProtectionType().getId();
 		this.configurePos = bannerEntity.getBlockPos();
 		this.enabled = true;
+		this.protMessage = bannerEntity.getProtectionOverrideMessage();
 	}
 
 	public static void encode(ExtendedSBannerOpenChangedScreenPacket packet, PacketBuffer buf) {
@@ -67,6 +77,7 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		buf.writeInt(packet.protectionType);
 		buf.writeBlockPos(packet.configurePos);
 		buf.writeBoolean(packet.enabled);
+		buf.writeUtf(packet.protMessage);
 	}
 
 	public static ExtendedSBannerOpenChangedScreenPacket decode(PacketBuffer buf) {
@@ -101,6 +112,7 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		packet.protectionType = buf.readInt();
 		packet.configurePos = buf.readBlockPos();
 		packet.enabled = buf.readBoolean();
+		packet.protMessage = buf.readUtf();
 		return packet;
 	}
 

@@ -1,0 +1,40 @@
+{
+	"name": "lotrextended:lindon/lindon_village_roads_start",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lindon/village/roads/lindon_road1_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lindon/village/roads/lindon_road2_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lindon/village/roads/lindon_road3_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:empty_pool_element",
+				"projection": "terrain_matching"
+			}
+		}
+	]
+}

@@ -3,11 +3,14 @@ package lotr.common.entity.npc;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
+import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
+import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -38,15 +41,21 @@ public class ExtendedLindonLordEntity extends LindonWarriorEntity  implements Ex
 	}
 
 	@Override
+	protected Goal createElfMeleeAttackGoal() {
+		return new ExtendedShieldSwapMeleeAttackGoal(this, 1.5D, new ItemStack(ExtendedItems.LINDON_SHIELD.get()), ItemStack.EMPTY);
+	}
+
+	@Override
 	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
 		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
 		this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.LINDON_SWORD.get()));
-		//this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.LINDON_BOW.get()));
+		this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.LINDON_BOW.get()));
 		this.npcItemsInv.setIdleItemsFromMeleeWeapons();
 		setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.LINDON_BOOTS.get()));
 		setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.LINDON_LEGGINGS.get()));
 		setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.LINDON_CHESTPLATE.get()));
 		setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+		setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 		return spawnData;
 	}
 
