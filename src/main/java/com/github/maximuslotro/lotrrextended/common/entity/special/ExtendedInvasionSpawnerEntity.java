@@ -4,9 +4,12 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import lotr.common.LOTRLog;
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
+import lotr.common.entity.npc.GondorManEntity;
+import lotr.common.entity.npc.NPCEntity;
 import lotr.common.fac.Faction;
 import lotr.common.fac.FactionSettingsManager;
 import lotr.common.init.ExtendedEntities;
+import lotr.common.init.LOTREntities;
 import lotr.common.world.ExtendedInvasions;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.Entity;
@@ -23,8 +26,11 @@ import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ExtendedInvasionSpawnerEntity extends Entity {
 
@@ -34,6 +40,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
     private static final float ROTATION_SPEED = 1.0F;
     private static final double INVASION_FOLLOW_RANGE = 40.0;
+    private int tickCounter = 0;
 
     public ExtendedInvasionSpawnerEntity(EntityType<? extends ExtendedInvasionSpawnerEntity> pType, World pLevel) {
         super(pType, pLevel);
@@ -76,6 +83,61 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 this.yRot -= 360.0F;
             }
         }
+
+        if (!this.level.isClientSide) {
+            tickCounter++;
+
+            // only attempt to spawn a mob every second
+            if (tickCounter >= 20) {
+                tickCounter = 0;
+
+                int totalInvasionMobsInArea = getInvasionTypeMobsInRange();
+                if (totalInvasionMobsInArea > -1 && totalInvasionMobsInArea < 16
+                        && getEnemiesLeft() > 0) {
+                    if (attemptMobSpawn()) {
+                       setEnemiesLeft(getEnemiesLeft() - 1);
+                    }
+                }
+            }
+        }
+    }
+
+    private void setEnemiesLeft(int enemiesLeft) {
+        this.getEntityData().set(DATA_ENEMIES_LEFT, enemiesLeft);
+    }
+
+    /***
+     * Calculates how many mobs are in the INVASION_FOLLOW_RANGE * 2 that
+     * match the type of the invasion. A helper method to prevent the invasion
+     * from flooding the area with mobs.
+     *
+     * @return the number of mobs or -1 if invasion is not set correctly
+     */
+    private int getInvasionTypeMobsInRange() {
+        Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromKey(getFactionKey());
+        if (!invasion.isPresent()) {
+            return -1;
+        }
+
+        AxisAlignedBB bb = new AxisAlignedBB(
+                blockPosition().getX(), blockPosition().getY(), blockPosition().getZ(),
+                blockPosition().getX() + 1, blockPosition().getY() + 1, blockPosition().getZ() + 1
+        );
+        List<NPCEntity> surroundingMobs = level.getEntitiesOfClass(NPCEntity.class, bb.inflate(INVASION_FOLLOW_RANGE * 2));
+
+        // pre-create the set
+        Set<EntityType<?>> spawnableTypes = invasion.get().getSpawnEntries().stream()
+                .map(ExtendedInvasions.InvasionSpawnEntry::getEntityType)
+                .collect(Collectors.toSet());
+
+        return (int) surroundingMobs.stream()
+                .filter(npc -> spawnableTypes.contains(npc.getType()))
+                .count();
+    }
+
+    private boolean attemptMobSpawn() {
+       // TODO: Finish this method
+       return false;
     }
 
     @Override

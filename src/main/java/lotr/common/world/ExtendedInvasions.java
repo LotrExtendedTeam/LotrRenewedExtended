@@ -56,6 +56,10 @@ public enum ExtendedInvasions {
         return stack;
     }
 
+    public List<InvasionSpawnEntry> getSpawnEntries() {
+        return spawnEntries;
+    }
+
     public static Optional<ExtendedInvasions> fromKey(String key) {
         return Optional.ofNullable(BY_KEY.get(key));
     }
@@ -112,7 +116,7 @@ public enum ExtendedInvasions {
         ExtendedInvasions.WOODLAND_REALM.addInvasionMob(new InvasionSpawnEntry(LOTREntities.WOOD_ELF_WARRIOR.get(), 10));
 
         ExtendedInvasions.ROHAN.addInvasionMob(new InvasionSpawnEntry(LOTREntities.ROHIRRIM_WARRIOR.get(), 10));
-        ExtendedInvasions.ROHAN.addInvasionMob(new InvasionSpawnEntry(LOTREntities.ROHIRRIM_WARRIOR.get(), 5));
+        ExtendedInvasions.ROHAN.addInvasionMob(new InvasionSpawnEntry(LOTREntities.ROHIRRIM_BOWMAN.get(), 5));
     }
 
 
