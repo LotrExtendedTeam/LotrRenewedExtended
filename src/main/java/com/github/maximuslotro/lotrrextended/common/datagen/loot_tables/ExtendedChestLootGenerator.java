@@ -571,7 +571,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(EItemLootEntry.lootItem(ExtendedItems.EREGION_HELMET.get()).setWeight(1).standardDamageRange().setExactly(1))
 					.add(EItemLootEntry.lootItem(ExtendedItems.EREGION_CHESTPLATE.get()).setWeight(1).standardDamageRange().setExactly(1))
 					.add(EItemLootEntry.lootItem(ExtendedItems.EREGION_LEGGINGS.get()).setWeight(1).standardDamageRange().setExactly(1))
-					.add(EItemLootEntry.lootItem(ExtendedItems.EREGION_BOOTS.get()).setWeight(1).standardDamageRange().setExactly(1))));
+					.add(EItemLootEntry.lootItem(ExtendedItems.EREGION_BOOTS.get()).setWeight(1).standardDamageRange().setExactly(1))
+					.add(EItemLootEntry.lootItem(ExtendedItems.EREGION_SHIELD.get()).setWeight(1).standardDamageRange().setExactly(1))));
 
 		make(consumer, ExtendedLootTables.GUNDABAD_CAMP_SMITHY_CHEST, makeTable()
 				.withPool(LootPool.lootPool()
