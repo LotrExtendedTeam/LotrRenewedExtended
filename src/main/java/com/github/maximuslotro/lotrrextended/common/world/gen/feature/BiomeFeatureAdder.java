@@ -16,6 +16,7 @@ public class BiomeFeatureAdder {
 			if (event.getName().equals(LOTRBiomes.DEAD_MARSHES.getRegistryName())) {
 				ExtendedBiomeFeatures.addRemains(event.getGeneration());
 			}
+			ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 2);
 		}
 	}
 }

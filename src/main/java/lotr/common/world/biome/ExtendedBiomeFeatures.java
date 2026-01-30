@@ -280,6 +280,10 @@ public class ExtendedBiomeFeatures {
 		builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ExtendedConfiguredFeatures.MOSS_PATCH.decorated(placeHeightmapDoubleFreq(freq)));
 	}
 
+	public static void addMeteorites(BiomeGenerationSettings.Builder builder, int freq) {
+		builder.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ExtendedConfiguredFeatures.METEORITE_IMPACT.decorated(placeHeightmapDoubleFreq(freq)));
+	}
+
 	public static void addOres(BiomeGenerationSettings.Builder builder) {
 		addUndergroundOreWeighted(builder, AMETHYST_ORE, 6, 64, 2F);
 		addUndergroundOreWeighted(builder, TOPAZ_ORE, 6, 64, 2F);

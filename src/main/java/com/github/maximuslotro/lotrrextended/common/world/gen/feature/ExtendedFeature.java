@@ -31,6 +31,9 @@ public class ExtendedFeature {
 	public static final ExtendedBlobFeature BLOB_PRE = new ExtendedBlobFeature(ExtendedBlobFeatureConfig.CODEC);
 	public static final RegistryObject<ExtendedBlobFeature> BLOB = regFeature("blob", BLOB_PRE);
 
+	public static final ExtendedMeteoriteFeature METEORITE_PRE = new ExtendedMeteoriteFeature(ExtendedMeteoriteFeatureConfig.CODEC);
+	public static final RegistryObject<ExtendedMeteoriteFeature> METEORITE = regFeature("meteorite", METEORITE_PRE);
+
 	private static <FC extends IFeatureConfig, F extends Feature<FC>> RegistryObject<F> regFeature(String name, F feature) {
 		return FEATURES.register(name, () -> feature);
 	}

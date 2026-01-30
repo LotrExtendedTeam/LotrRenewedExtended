@@ -12,6 +12,7 @@ import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.FeatureSpread;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
@@ -22,6 +23,8 @@ public class ExtendedConfiguredFeatures {
 
 	public static final ConfiguredFeature<NoFeatureConfig, ?> WILLOW_TREE_FEATURE = register("willow_tree_feature", ExtendedFeature.WILLOW_TREE_FEATURE_PRE.configured(NoFeatureConfig.INSTANCE));
 	public static final ConfiguredFeature<NoFeatureConfig, ?> WILLOW_TREE_WATER_FEATURE = register("willow_tree_water_feature", ExtendedFeature.WILLOW_TREE_WATER_FEATURE_PRE.configured(NoFeatureConfig.INSTANCE));
+
+	public static final ConfiguredFeature<ExtendedMeteoriteFeatureConfig, ?> METEORITE_IMPACT = register("meteorite_impact", ExtendedFeature.METEORITE_PRE.configured(new ExtendedMeteoriteFeatureConfig(FeatureSpread.fixed(3), FeatureSpread.of(8, 3), 0.5f)));
 
 	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String configuredFeatureName, ConfiguredFeature<FC, ?> pConfiguredFeature) {
 		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(LotrExtendedMod.MODID, configuredFeatureName), pConfiguredFeature);
