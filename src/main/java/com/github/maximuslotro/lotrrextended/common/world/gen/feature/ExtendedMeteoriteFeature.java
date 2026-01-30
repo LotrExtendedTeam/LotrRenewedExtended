@@ -4,14 +4,21 @@ import java.util.Random;
 
 import com.mojang.serialization.Codec;
 
+import lotr.common.block.AxialSlabBlock;
+import lotr.common.block.IExtendedSwappableTexture;
+import lotr.common.block.LOTRBlockStates;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.state.properties.SlabType;
+import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraftforge.common.Tags;
 
 public class ExtendedMeteoriteFeature extends Feature<ExtendedMeteoriteFeatureConfig> {
 	public ExtendedMeteoriteFeature(Codec<ExtendedMeteoriteFeatureConfig> pCodec) {
@@ -39,32 +46,34 @@ public class ExtendedMeteoriteFeature extends Feature<ExtendedMeteoriteFeatureCo
 				pos$Mutable.set(center.getX() + dx, 0, center.getZ() + dz);
 				BlockPos surface = level.getHeightmapPos(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos$Mutable);
 
-				double depth = dist <= innerR ? 5 : 5 * (1 - (dist - innerR) / (outerR - innerR));
+				double maxDepth = 3;
+				double depth = dist <= innerR ? maxDepth : maxDepth * (1 - Math.pow(Math.min(Math.max((dist - innerR) / (outerR - innerR), 0), 1), 1.5));
 
 				for (int i = 0; i < depth; i++) {
 					level.setBlock(surface.below(i), Blocks.AIR.defaultBlockState(), 2);
 				}
-
-				placeCraterGround(level, rand, surface.below((int)depth - 1), dist, innerR, outerR);
+				BlockPos surface1 = level.getHeightmapPos(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos$Mutable);
+				placeCraterGround(level, rand, surface1, dist, innerR, outerR);
 			}
 		}
+		BlockPos NewCenter = level.getHeightmapPos(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, origin);
 		// Meteor sphere
-		placeMeteorSphere(level, center.below(1), innerR);
+		placeMeteorSphere(level, rand, NewCenter.below(), innerR);
 		// Debris
-		scatterDebris(level, rand, center, outerR + 4, config.debrisChance);
+		scatterDebris(level, rand, center, outerR, config.debrisChance);
 
 		return true;
 	}
 
-	private void placeMeteorSphere(ISeedReader level, BlockPos center, int radius) {
+	private void placeMeteorSphere(ISeedReader level, Random rand, BlockPos center, int radius) {
 		BlockPos.Mutable pos$Mutable = new BlockPos.Mutable();
 		for (int x = -radius; x <= radius; x++) {
 			for (int y = -radius; y <= radius; y++) {
 				for (int z = -radius; z <= radius; z++) {
-					double dist = Math.sqrt(x*x + y*y + z*z);
-					if (dist <= radius) {
+					double r2 = radius * radius;
+					if (x*x + y*y + z*z <= r2 - 0.5) {
 						pos$Mutable.set(center.getX() + x, center.getY() + y, center.getZ() + z);
-						level.setBlock(pos$Mutable, ExtendedBlocks.METEORITE_ORE.get().defaultBlockState(), 2);
+						level.setBlock(pos$Mutable, getMeteoriteBlock(rand, true), 2);
 					}
 				}
 			}
@@ -81,21 +90,24 @@ public class ExtendedMeteoriteFeature extends Feature<ExtendedMeteoriteFeatureCo
 			int dz = rand.nextInt(outerR * 2) - outerR;
 			pos.set(center.getX() + dx, 0, center.getZ() + dz);
 			BlockPos top = level.getHeightmapPos(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos);
-			BlockState debris = rand.nextBoolean() ? ExtendedBlocks.METEORITE_ORE.get().defaultBlockState() : Blocks.COBBLESTONE.defaultBlockState();
 			if (level.isEmptyBlock(top)) {
-				level.setBlock(top, debris, 2);
+				if(level.getBlockState(top).getBlock() instanceof SlabBlock) {
+					top = top.below();
+				}
+				level.setBlock(top.below(), getMeteoriteBlock(rand, false), 2);
 			}
 		}
 	}
 
 	private void placeCraterGround(ISeedReader level, Random rand, BlockPos surface, double dist, int innerR, int outerR) {
-		BlockState grass = Blocks.GRASS_BLOCK.defaultBlockState();
-		BlockState cobble = Blocks.COBBLESTONE.defaultBlockState();
-		BlockState slab = ExtendedBlocks.GRASS_BLOCK_SLAB.get().defaultBlockState();
+		BlockState grass = Blocks.STONE.defaultBlockState();
+		BlockState cobble = Blocks.STONE.defaultBlockState();
+		BlockState slab = ExtendedBlocks.GRASS_BLOCK_SLAB.get().defaultBlockState().setValue(IExtendedSwappableTexture.USELOTRTEXTURE, false)
+			.setValue(AxialSlabBlock.TYPE, SlabType.BOTTOM).setValue(LOTRBlockStates.SLAB_AXIS, Axis.Y).setValue(SlabBlock.WATERLOGGED, false);
 		if (dist < innerR) {
-			level.setBlock(surface, rand.nextFloat() < 0.4F ? cobble : grass, 2);
+			level.setBlock(surface, rand.nextFloat() < 0.3F ? cobble : grass, 2);
 		} 
-		else if (dist < outerR - 1) {
+		else if (dist < outerR - 1 && level.getBlockState(surface.below()).is(Tags.Blocks.DIRT) && rand.nextFloat()>0.6f) {
 			level.setBlock(surface, slab, 2);
 		}
 	}
@@ -114,5 +126,17 @@ public class ExtendedMeteoriteFeature extends Feature<ExtendedMeteoriteFeatureCo
 			}
 		}
 		return (maxY - minY) <= maxDelta;
+	}
+
+	private BlockState getMeteoriteBlock(Random rand, boolean placeOre) {
+		float choice = rand.nextFloat();
+		if(choice>0.7f && placeOre) {
+			return ExtendedBlocks.METEORITE_ORE.get().defaultBlockState();
+		} else if(choice>0.4f) {
+			return rand.nextFloat()>0.6f ? ExtendedBlocks.SCORCHED_COBBLESTONE.get().defaultBlockState() : ExtendedBlocks.SCORCHED_STONE.get().defaultBlockState();
+		}else {
+			return Blocks.COBBLESTONE.defaultBlockState();
+		}
+
 	}
 }
