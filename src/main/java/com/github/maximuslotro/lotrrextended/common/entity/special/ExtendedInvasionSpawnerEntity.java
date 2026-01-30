@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.entity.special;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import lotr.common.LOTRLog;
 import lotr.common.data.ExtendedLOTRPlayerData;
@@ -12,8 +14,7 @@ import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTREntities;
 import lotr.common.world.ExtendedInvasions;
 import net.minecraft.block.material.PushReaction;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
@@ -22,8 +23,12 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.Arrays;
@@ -94,7 +99,10 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 int totalInvasionMobsInArea = getInvasionTypeMobsInRange();
                 if (totalInvasionMobsInArea > -1 && totalInvasionMobsInArea < 16
                         && getEnemiesLeft() > 0) {
-                    if (attemptMobSpawn()) {
+                    Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromKey(getFactionKey());
+                    ExtendedInvasions.InvasionSpawnEntry result = WeightedRandom.getRandomItem(this.random, invasion.get().getSpawnEntries());
+
+                    if (attemptMobSpawn(result.getEntityType())) {
                        setEnemiesLeft(getEnemiesLeft() - 1);
                     }
                 }
@@ -135,9 +143,46 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 .count();
     }
 
-    private boolean attemptMobSpawn() {
-       // TODO: Finish this method
-       return false;
+    /**
+     * Note: This method should only be run on the server
+     *
+     * @param type
+     * @return
+     */
+    private boolean attemptMobSpawn(EntityType<? extends MobEntity> type) {
+        boolean couldSpawnMob = false;
+
+        for (int attempts = 0; attempts < 40; attempts++) {
+            int x = (int) (this.getX() + MathHelper.nextInt(this.random, -6, 6));
+            int z = (int) (this.getZ() + MathHelper.nextInt(this.random, -6, 6));
+            int y = this.level.getHeight(Heightmap.Type.WORLD_SURFACE, x, z);
+            BlockPos pos = new BlockPos(x, y, z);
+
+            // all possible conditions that should make us quit and pick a new location
+            BlockPos plusOneY = new BlockPos(x, y + 1, z);
+            if (y < 62 || level.getBlockState(pos).isSuffocating(level, pos)
+                    || level.getBlockState(plusOneY).isSuffocating(level, plusOneY)) {
+                continue;
+            }
+
+            MobEntity entity = type.create((ServerWorld) this.level, null, null, null, pos, SpawnReason.SPAWNER, true, false);
+            if (entity != null) {
+                // check protection
+                if (ExtendedBannerProtectionManager.getProtectionStatus(level, pos, new ExtendedBannerProtectionManager.SingleProtectionInstance.AnyProtection()).isNotAllowed()) {
+                    ExtendedLog.debug("Invasion mob could not be spawned at " + pos + " because it was inside protection banner.");
+                    continue;
+                }
+
+                float yaw = level.random.nextFloat() * 360.0F; // set look angle
+                entity.setYBodyRot(yaw);
+                entity.setYHeadRot(yaw);
+                entity.setPersistenceRequired();
+                level.addFreshEntity(entity);
+                // TODO: This needs to be tested
+            }
+        }
+
+        return couldSpawnMob;
     }
 
     @Override

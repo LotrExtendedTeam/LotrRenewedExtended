@@ -5,6 +5,7 @@ import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.text.ITextComponent;
@@ -74,14 +75,14 @@ public enum ExtendedInvasions {
 
     public static class InvasionSpawnEntry extends WeightedRandom.Item {
 
-        private EntityType<?> entityType;
+        private EntityType<? extends MobEntity> entityType;
 
-        public InvasionSpawnEntry(EntityType<?> type, int chance) {
+        public InvasionSpawnEntry(EntityType<? extends MobEntity> type, int chance) {
             super(chance);
             this.entityType = type;
         }
 
-        public EntityType<?> getEntityType() {
+        public EntityType<? extends MobEntity> getEntityType() {
             return entityType;
         }
     }
