@@ -12,7 +12,7 @@
 				"snap_to_water_height" : true,
 				"apply_waterlogging" : false,
 				"foundation_block": {
-					"Name": "lotr:chalk"
+					"Name": "minecraft:stone"
 				}
 			}
 		},
@@ -26,7 +26,7 @@
 				"snap_to_water_height" : true,
 				"apply_waterlogging" : false,
 				"foundation_block": {
-					"Name": "lotr:chalk"
+					"Name": "minecraft:stone"
 				}
 			}
 		},
@@ -40,7 +40,7 @@
 				"snap_to_water_height" : true,
 				"apply_waterlogging" : false,
 				"foundation_block": {
-					"Name": "lotr:chalk"
+					"Name": "minecraft:stone"
 				}
 			}
 		}
