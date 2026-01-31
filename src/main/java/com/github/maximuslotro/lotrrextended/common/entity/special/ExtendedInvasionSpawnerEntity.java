@@ -19,6 +19,7 @@ import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -101,6 +102,14 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
                     if (attemptMobSpawn(result.getEntityType())) {
                        setEnemiesLeft(getEnemiesLeft() - 1);
+
+                        if (!level.isClientSide()) {
+                            // send flames to client
+                            ServerWorld world = (ServerWorld) level;
+                            world.sendParticles(ParticleTypes.FLAME,
+                                    getX(), getY() + 2.75, getZ(),
+                                    5, 0.25, .75F, 0.25, 0.02);
+                        }
                     }
                 }
             }
