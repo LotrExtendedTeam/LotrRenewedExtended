@@ -6,12 +6,10 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import lotr.common.LOTRLog;
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
-import lotr.common.entity.npc.GondorManEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.fac.Faction;
 import lotr.common.fac.FactionSettingsManager;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.LOTREntities;
 import lotr.common.world.ExtendedInvasions;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.*;
@@ -31,7 +29,6 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -178,7 +175,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 entity.setYHeadRot(yaw);
                 entity.setPersistenceRequired();
                 level.addFreshEntity(entity);
-                // TODO: This needs to be tested
+                return true;
             }
         }
 
@@ -279,7 +276,12 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         return PushReaction.IGNORE;
     }
 
+
     public boolean startInvasion() {
+        return startInvasion(MathHelper.nextInt(this.random, 55, 80));
+    }
+
+    public boolean startInvasion(int invasionSize) {
         Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromKey(getFactionKey());
         if (!invasion.isPresent()) {
             LOTRLog.error("Could not start invasion from entity " + this + " because factionKey: " + getFactionKey() + " was not valid.");
@@ -316,11 +318,20 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         }
 
         playHorn();
+
+        // set initial size
+        setInvasionSize(invasionSize);
+        setEnemiesLeft(invasionSize);
+
         return true;
     }
 
     private void playHorn() {
         this.level.playSound(null, this.blockPosition(), ExtendedSounds.HORN_BLOW.get(), SoundCategory.PLAYERS, 4.0F, 1.0F);
+    }
+
+    public void setInvasionSize(int invasionSize) {
+        this.getEntityData().set(DATA_INVASION_SIZE, invasionSize);
     }
 
 }
