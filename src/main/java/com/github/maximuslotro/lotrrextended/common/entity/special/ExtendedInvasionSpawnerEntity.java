@@ -134,7 +134,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     }
 
     /***
-     * Calculates how many mobs are in the INVASION_FOLLOW_RANGE * 2 that
+     * Calculates how many mobs are in the INVASION_FOLLOW_RANGE that
      * match the type of the invasion. A helper method to prevent the invasion
      * from flooding the area with mobs.
      *
@@ -150,7 +150,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 blockPosition().getX(), blockPosition().getY(), blockPosition().getZ(),
                 blockPosition().getX() + 1, blockPosition().getY() + 1, blockPosition().getZ() + 1
         );
-        List<NPCEntity> surroundingMobs = level.getEntitiesOfClass(NPCEntity.class, bb.inflate(INVASION_FOLLOW_RANGE * 2));
+        List<NPCEntity> surroundingMobs = level.getEntitiesOfClass(NPCEntity.class, bb.inflate(INVASION_FOLLOW_RANGE));
 
         // pre-create the set
         Set<EntityType<?>> spawnableTypes = invasion.get().getSpawnEntries().stream()
