@@ -31,7 +31,10 @@ public class AdvancementsProviderBlueMountains extends ExtendedBaseAdvancementTy
 				.setTitle("Blue Dwarf Slayer").setDescription("Kill a Blue Mountains Dwarf."),
 				addKillEntityTriggers(make(), LOTREntities.BLUE_MOUNTAINS_ARCHER.get(), LOTREntities.BLUE_MOUNTAINS_DWARF.get(),
 						LOTREntities.BLUE_MOUNTAINS_WARRIOR.get(), ExtendedEntities.BLUE_DWARVEN_MINER.get(), 
-						ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get()).parent(blue_mountains));
+						ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get(), ExtendedEntities.BLUE_DWARVEN_AXE_THROWER.get(), 
+						ExtendedEntities.BLUE_DWARVEN_BARTENDER.get(),ExtendedEntities.BLUE_DWARVEN_COMMANDER.get(),
+						ExtendedEntities.BLUE_DWARVEN_BUTCHER.get(), ExtendedEntities.BLUE_DWARVEN_SMITH.get(),
+						ExtendedEntities.BLUE_DWARVEN_STONEMASON.get()).parent(blue_mountains));
 
 		Advancement blue_mountain_crafter = build(true, data(LOTRItems.BLUE_MOUNTAINS_CRAFTING_TABLE.get(), "blue_mountain_crafter", FrameType.TASK)
 			.setTitle("Blue Dwarven Crafter").setDescription("Craft an item on the Blue Mountains Crafting Table."),

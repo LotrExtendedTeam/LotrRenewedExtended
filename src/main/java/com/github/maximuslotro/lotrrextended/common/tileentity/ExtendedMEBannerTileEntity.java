@@ -46,25 +46,74 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.common.UsernameCache;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
+/**
+ * Tile entity for the Extended ME Banner.
+ *
+ * <p>This tile entity handles banner ownership, protection logic, permissions,
+ * and alignment-based behavior. It also tracks placement metadata and lifecycle state.</p>
+ */
 public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableTileEntity {
+	/**
+     * Whether this banner is the "active half" of a the two-block high banner instance.
+     */
 	private boolean isActiveHalf = false;
-	//Use for user whitelist
+	/**
+     * Whitelist of players/entities allowed to interact with this banner
+     * regardless of other protection rules.
+     */
 	private final List<ProtectionEntry> protectionWhitelist = new ArrayList<>();
-	//Use for faction alignment level
+	/**
+     * Alignment level used for faction-based protection logic.
+     * Default value is {@code 1}.
+     */
 	private float alignmentLevel = 1;
+	/**
+     * Defines who owns this banner for protection purposes.
+     * Defaults to {@link ExtendedBannerProtectionOwners#FACTION}.
+     */
 	private ExtendedBannerProtectionOwners protectionType = ExtendedBannerProtectionOwners.FACTION;
-	//Default perms for everyone in faction mode
+	/**
+     * Default permissions granted when in faction-based protection mode.
+     */
 	private final List<ExtendedBannerPermissions> defaultPerms = new ArrayList<>();
-	//Should protect myself from destruction besides faction member or player placed
+	/**
+     * Determines whether the banner should protect itself from being destroyed
+     * by unauthorized players/entities.
+     */
 	private boolean canProtectSelf = true;
-	//Should add NBT to dropped items?
+	/**
+     * Whether this banner has already been used and should attach NBT
+     * data to dropped items.
+     */
 	private boolean used = false;
+	/**
+     * UUID of the player who placed this banner.
+     */
 	private UUID placedPlayerUUID;
+	/**
+     * Name of the player who placed this banner.
+     */
 	private String placedPlayerName;
+	/**
+     * UUID of an entity currently connected or linked to this banner.
+     */
 	private UUID connectedEntity;
+	/**
+     * Current protection level applied to this banner.
+     */
 	private ExtendedBannerProtectionLevels protectionLevel = ExtendedBannerProtectionLevels.NONE;
+	/**
+     * Tracks whether this is the first tick since the tile entity was loaded.
+     */
 	private boolean firstTick = false;
-
+	/**
+     * Name of the player who placed this banner.
+     */
+	private String protectionOverrideMessage = "";
+	/**
+     * Constructs a new {@code ExtendedMEBannerTileEntity} and registers it
+     * with the standing banner tile entity type.
+     */
 	public ExtendedMEBannerTileEntity() {
 		super(ExtendedTileEntities.BANNER_STANDING.get());
 	}
@@ -214,7 +263,13 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	public boolean isWhitelistProtecting() {
 		return protectionType==ExtendedBannerProtectionOwners.PLAYER;
 	}
-
+	/**
+	 * Checks if this banner is protecting by the server
+	 * @return boolean
+	 * */
+	public boolean isCustomProtecting() {
+		return protectionType==ExtendedBannerProtectionOwners.CUSTOM;
+	}
 	/**
 	 * Checks if this banner is protecting by faction
 	 * @return boolean
@@ -270,6 +325,10 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				return placedPlayerName;
 			}
             placedPlayerName = UsernameCache.getLastKnownUsername(placedPlayerUUID);
+			if(placedPlayerName==null) {
+				placedPlayerName="UNKNOWN";
+				return placedPlayerName;
+			}
 			ExtendedLog.warn("Fixed missing banner player username!");
 		}
 		return placedPlayerName;
@@ -286,6 +345,18 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	public void setPlacedPlayerNameAndID(UUID placedPlayer, String placedPlayerName) {
 		setPlacedPlayerUUID(placedPlayer);
 		setPlacedPlayerName(placedPlayerName);
+	}
+
+	/**
+	 * Gets a custom protection message if it exists
+	 * @return String
+	 * */
+	public String getProtectionOverrideMessage() {
+		return protectionOverrideMessage;
+	}
+
+	public void setProtectionOverrideMessage(String pPotectionMessage) {
+		this.protectionOverrideMessage = pPotectionMessage;
 	}
 
 	public void setDefaultPerms(List<ExtendedBannerPermissions> perms) {
@@ -337,14 +408,14 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		this.canProtectSelf = canProtectSelf;
 	}
 
-	public ExtendedSBannerOpenChangedScreenPacket verifyInfo(boolean shouldReturn, ServerPlayerEntity serverPlayer) {
+	public ExtendedSBannerOpenChangedScreenPacket verifyInfo(ServerPlayerEntity serverPlayer) {
 		boolean fixedBroken = false;
-		if(alignmentLevel<=0) {
-			alignmentLevel = 0.1f;
+		if(alignmentLevel<0) {
+			alignmentLevel = 0f;
 			fixedBroken = true;
 		}
-		if(alignmentLevel>1000) {
-			alignmentLevel = 1000;
+		if(alignmentLevel>10000) {
+			alignmentLevel = 10000;
 			fixedBroken = true;
 		}
 		List<ProtectionEntry> toRemove = new ArrayList<>();
@@ -402,7 +473,16 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		if(!protectionWhitelist.isEmpty()) {
 			ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(serverPlayer, "bannerOthers");
 		}
-		if(shouldReturn) {
+		if(protectionType!=ExtendedBannerProtectionOwners.CUSTOM && !protectionOverrideMessage.isEmpty()) {
+			protectionOverrideMessage = "";
+			fixedBroken = true;
+		}
+		if(protectionType==ExtendedBannerProtectionOwners.CUSTOM && !ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(serverPlayer.getGameProfile())) {
+			protectionType = ExtendedBannerProtectionOwners.FACTION;
+			protectionOverrideMessage = "";
+			fixedBroken = true;
+		}
+		if(fixedBroken) {
 			return new ExtendedSBannerOpenChangedScreenPacket(this);
 		}
 		return null;
@@ -462,17 +542,18 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			if(pCompound.contains("used")) {
 				used = pCompound.getBoolean("used");
 			}
+			if(pCompound.contains("customMessage")) {
+				protectionOverrideMessage = pCompound.getString("customMessage");
+			}
 		}
 	}
 
 	@Override
 	public CompoundNBT save(CompoundNBT pCompound) {
 		super.save(pCompound);
-		CompoundNBT pUniqueCompound = new CompoundNBT();
 		if(connectedEntity!=null) {
+			CompoundNBT pUniqueCompound = new CompoundNBT();
 			pUniqueCompound.putUUID("connectedEntity", connectedEntity);
-		}
-		if(!pUniqueCompound.isEmpty()) {
 			pCompound.put("ProtectionDataUnique", pUniqueCompound);
 		}
 		saveProtectionData(pCompound);
@@ -513,6 +594,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			}
 			if(!canProtectSelf) {
 				pCompound.putBoolean("protectionSelf", canProtectSelf);
+			}
+			if(!protectionOverrideMessage.isEmpty()) {
+				pCompound.putString("customMessage", protectionOverrideMessage);
 			}
 			returnCompound.put("ProtectionData", pCompound);
 		}

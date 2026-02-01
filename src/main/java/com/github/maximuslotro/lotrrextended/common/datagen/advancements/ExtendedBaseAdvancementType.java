@@ -3,7 +3,6 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements;
 import java.util.List;
 import java.util.function.Consumer;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAbstractStringTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAlignmentLevelTrigger;
@@ -62,7 +61,7 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		con= t;
 		ExtendedAdvancementProvider.advancementsLegacyNumTotal+=getLegacyCount();
 		generateAdvancements();
-		ExtendedLog.info("Made "+(legacyMade/(float)getLegacyCount())*100+"% of "+getFolder()+" advancements");
+		//ExtendedLog.info("Made "+(legacyMade/(float)getLegacyCount())*100+"% of "+getFolder()+" advancements");
 		ExtendedAdvancementProvider.advancementsLegacyNum += legacyMade;
 	}
 
@@ -107,6 +106,12 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 			builder.addCriterion("enter_"+lotrBiomeObject.getPath(), inBiome(lotrBiomeObject));
 		}
 		return builder.requirements(IRequirementsStrategy.AND);
+	}
+	public static Advancement.Builder addStructureTriggers(Advancement.Builder builder, String... structures) {
+		for(String structure : structures) {
+			builder.addCriterion("enter_"+structure, inStructure(new ResourceLocation(LotrExtendedMod.MODID, structure)));
+		}
+		return builder.requirements(IRequirementsStrategy.OR);
 	}
 	public static Advancement.Builder addStructureTrigger(Advancement.Builder builder, String structure) {
 		builder.addCriterion("enter_"+structure, inStructure(new ResourceLocation(LotrExtendedMod.MODID, structure)));

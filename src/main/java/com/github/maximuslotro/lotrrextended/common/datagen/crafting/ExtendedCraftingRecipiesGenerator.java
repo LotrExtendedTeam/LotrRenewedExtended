@@ -755,6 +755,11 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		//HIGH ELVEN
 		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.HIGH_ELVEN_TORCH, LOTRItems.EDHELVIR, 4, LOTRRecipes.ANY_HIGH_ELVEN);
 		makeTorchConversionRecipe(consumer, LOTRItems.HIGH_ELVEN_TORCH, ()->Items.TORCH, null);
+		makeArmorRecipe(consumer, ExtendedItems.GALVORN_HELMET,
+			ExtendedItems.GALVORN_CHESTPLATE,
+			ExtendedItems.GALVORN_LEGGINGS,
+			ExtendedItems.GALVORN_BOOTS,
+			ExtendedItems.GALVORN_INGOT, LOTRRecipes.ANY_ELVEN);
 		//BLUBBER
 		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.BLUBBER_TORCH, LOTRItems.BLUBBER, 4, LOTRRecipes.LOSSOTH_CRAFTING);
 		makeTorchConversionRecipe(consumer, LOTRItems.BLUBBER_TORCH, ()->Items.TORCH, null);
@@ -816,6 +821,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_string", has(Tags.Items.STRING))
 		.save(consumer, lotrLoc(ExtendedItems.BOWSTRING.get().getRegistryName().getPath()));
 		makeBowRecipe(consumer, ExtendedItems.RIVENDELL_BOW, ExtendedItems.BOWSTRING, STICKS, "sticks", LOTRRecipes.RIVENDELL_CRAFTING);
+		makeBowRecipe(consumer, ExtendedItems.LINDON_BOW, ExtendedItems.BOWSTRING, STICKS, "sticks", LOTRRecipes.LINDON_CRAFTING);
 
 		GENERATEDRECIPES.add(ExtendedItems.CHISEL.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CHISEL.get())
@@ -979,6 +985,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeShieldRecipe(consumer, ExtendedItems.BREE_SHIELD, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.BREE_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.BLUE_DWARVEN_SHIELD, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel", LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.RIVENDELL_SHIELD, ExtendedTags.Items.ELVEN_STEEL_INGOT, "elven_steel", LOTRRecipes.RIVENDELL_CRAFTING);
+		makeShieldRecipe(consumer, ExtendedItems.LINDON_SHIELD, ExtendedTags.Items.ELVEN_STEEL_INGOT, "elven_steel", LOTRRecipes.LINDON_CRAFTING);
 		//Banners and patterns
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.DUNEDAIN_BANNER, ExtendedItems.DUNEDAIN_BANNER_PATTERN, LOTRRecipes.RANGER_CRAFTING);
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.HOBBIT_BANNER, ExtendedItems.HOBBIT_BANNER_PATTERN, LOTRRecipes.HOBBIT_CRAFTING);
@@ -1090,6 +1097,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeSlabRecipe(consumer, ExtendedBlocks.GRASS_PATH_SLAB, () -> Items.GRASS_PATH, null, "");
 		makeSlabRecipe(consumer, ExtendedBlocks.MYCELIUM_SLAB, () -> Items.MYCELIUM, null, "");
 		makeSlabRecipe(consumer, ExtendedBlocks.PODZOL_SLAB, () -> Items.PODZOL, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.SNOW_SLAB, () -> Items.SNOW, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.SNOW_PATH_SLAB, LOTRItems.SNOW_PATH, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.CHALK_PATH_SLAB, LOTRItems.CHALK_PATH, null, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.MORDOR_DIRT_SLAB, LOTRItems.MORDOR_DIRT, LOTRRecipes.MORDOR_CRAFTING, "");
+		makeSlabRecipe(consumer, ExtendedBlocks.MORDOR_DIRT_PATH_SLAB, LOTRItems.MORDOR_DIRT_PATH, LOTRRecipes.MORDOR_CRAFTING, "");
+
 		//Scorched blocks
 		GENERATEDRECIPES.add(ExtendedBlocks.SCORCHED_COBBLESTONE.get().getRegistryName().getPath());
 		CookingRecipeBuilder.blasting(Ingredient.of(Blocks.COBBLESTONE.asItem()), ExtendedBlocks.SCORCHED_COBBLESTONE.get(), 0.1F, 100)
@@ -1398,6 +1411,14 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('B', Ingredient.of(Tags.Items.STORAGE_BLOCKS_IRON))
 		.unlockedBy("has_"+Items.IRON_BLOCK.getRegistryName().getPath(), has(Items.IRON_BLOCK))
 		.save(consumer, mcLoc(Items.ANVIL.getRegistryName().getPath()));
+		ExtendedShapedRecipeBuilder.shaped(Items.LODESTONE)
+		.pattern("SSS")
+		.pattern("S#S")
+		.pattern("SSS")
+		.define('S', Ingredient.of(Items.CHISELED_STONE_BRICKS))
+		.define('#', Ingredient.of(Tags.Items.INGOTS_IRON))
+		.unlockedBy("has_"+Items.IRON_INGOT.getRegistryName().getPath(), has(Items.IRON_INGOT))
+		.save(consumer, mcLoc(Items.LODESTONE.getRegistryName().getPath()));
 	}
 
 	private void buildSmithingRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -2216,6 +2237,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.EREGION_LEGGINGS.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.EREGION_CHESTPLATE.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.EREGION_HELMET.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.EREGION_SHIELD.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.EXTENDED_BOOKSHELF.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.METEORITE_ORE.get().getRegistryName().getPath());
 	}

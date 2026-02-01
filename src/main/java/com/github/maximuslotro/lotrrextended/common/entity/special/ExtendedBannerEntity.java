@@ -124,14 +124,15 @@ public class ExtendedBannerEntity extends Entity {
 		this.getEntityData().set(SPAWNER_BOUNDS, range);
 	}
 
+	/**
+	 * @return Owner UUID or else Util#NIL_UUID
+	 * */
 	public UUID getProtectionOwner() {
 		return this.getEntityData().get(OWNER).orElse(Util.NIL_UUID);
 	}
 
 	public void setProtectionOwner(UUID owner) {
-		if(owner!=null) {
-			this.getEntityData().set(OWNER, Optional.of(owner));
-		}
+		this.getEntityData().set(OWNER, Optional.ofNullable(owner));
 	}
 
 	@Override

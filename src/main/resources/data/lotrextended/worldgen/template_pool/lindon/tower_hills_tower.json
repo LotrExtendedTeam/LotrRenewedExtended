@@ -1,0 +1,36 @@
+{
+	"name": "lotrextended:lindon/tower_hills_tower",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:tower_hills/tower_hill_tower_1_top",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:tower_hills/tower_hill_tower_2_top",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:tower_hills/tower_hill_tower_3_top",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false
+			}
+		}
+	]
+}

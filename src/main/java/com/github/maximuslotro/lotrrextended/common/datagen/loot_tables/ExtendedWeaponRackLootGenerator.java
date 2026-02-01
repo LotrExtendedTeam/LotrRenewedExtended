@@ -211,6 +211,13 @@ public class ExtendedWeaponRackLootGenerator extends ChestLootTables  {
 			.add(addEntry(LOTRItems.RIVENDELL_DAGGER.get(), 1, 0.3f, 0.75f))
 			.add(addEntry(LOTRItems.RIVENDELL_SPEAR.get(), 2, 0.3f, 0.75f))
 			.add(addEntry(LOTRItems.RIVENDELL_SWORD.get(), 2, 0.3f, 0.75f)));
+
+		make(consumer, ExtendedLootTables.LINDON_WEAPONRACKS, makePool()
+			.add(addEntry(LOTRItems.LINDON_AXE.get(), 1, 0.1f, 0.65f))
+			.add(addEntry(LOTRItems.LINDON_HOE.get(), 1, 0.1f, 0.65f))
+			.add(addEntry(LOTRItems.LINDON_PICKAXE.get(), 1, 0.1f, 0.65f))
+			.add(addEntry(LOTRItems.LINDON_SHOVEL.get(), 1, 0.1f, 0.65f))
+			.add(addEntry(LOTRItems.LINDON_DAGGER.get(), 1, 0.3f, 0.75f)));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight, float minDamagePercent, float maxDamagePercent){

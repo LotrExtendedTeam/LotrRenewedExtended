@@ -1,0 +1,94 @@
+{
+  "variants": {
+    "axis=x,lotrtexture=false,type=top": {
+      "model": "lotrextended:block/chalk_path_slab_top",
+      "x": 90,
+      "y": 90,
+      "uvlock": true
+    },
+    "axis=y,lotrtexture=false,type=top": {
+      "model": "lotrextended:block/chalk_path_slab_top_vanilla",
+      "uvlock": true
+    },
+    "axis=z,lotrtexture=false,type=top": {
+      "model": "lotrextended:block/chalk_path_slab_top",
+      "x": 270,
+      "uvlock": true
+    },
+    "axis=x,lotrtexture=true,type=top": {
+      "model": "lotrextended:block/chalk_path_slab_top",
+      "x": 90,
+      "y": 90,
+      "uvlock": true
+    },
+    "axis=y,lotrtexture=true,type=top": {
+      "model": "lotrextended:block/chalk_path_slab_top",
+      "uvlock": true
+    },
+    "axis=z,lotrtexture=true,type=top": {
+      "model": "lotrextended:block/chalk_path_slab_top",
+      "x": 270,
+      "uvlock": true
+    },
+    "axis=x,lotrtexture=false,type=bottom": {
+      "model": "lotrextended:block/chalk_path_slab",
+      "x": 90,
+      "y": 90,
+      "uvlock": true
+    },
+    "axis=y,lotrtexture=false,type=bottom": {
+      "model": "lotrextended:block/chalk_path_slab_vanilla",
+      "uvlock": true
+    },
+    "axis=z,lotrtexture=false,type=bottom": {
+      "model": "lotrextended:block/chalk_path_slab",
+      "x": 270,
+      "uvlock": true
+    },
+    "axis=x,lotrtexture=true,type=bottom": {
+      "model": "lotrextended:block/chalk_path_slab",
+      "x": 90,
+      "y": 90,
+      "uvlock": true
+    },
+    "axis=y,lotrtexture=true,type=bottom": {
+      "model": "lotrextended:block/chalk_path_slab",
+      "uvlock": true
+    },
+    "axis=z,lotrtexture=true,type=bottom": {
+      "model": "lotrextended:block/chalk_path_slab",
+      "x": 270,
+      "uvlock": true
+    },
+    "axis=x,lotrtexture=false,type=double": {
+      "model": "lotrextended:block/chalk_path_slab_double",
+      "x": 90,
+      "y": 90,
+      "uvlock": true
+    },
+    "axis=y,lotrtexture=false,type=double": {
+      "model": "lotr:block/chalk_path",
+      "uvlock": true
+    },
+    "axis=z,lotrtexture=false,type=double": {
+      "model": "lotrextended:block/chalk_path_slab_double",
+      "x": 270,
+      "uvlock": true
+    },
+    "axis=x,lotrtexture=true,type=double": {
+      "model": "lotrextended:block/chalk_path_slab_double",
+      "x": 90,
+      "y": 90,
+      "uvlock": true
+    },
+    "axis=y,lotrtexture=true,type=double": {
+      "model": "lotrextended:block/chalk_path_slab_double",
+      "uvlock": true
+    },
+    "axis=z,lotrtexture=true,type=double": {
+      "model": "lotrextended:block/chalk_path_slab_double",
+      "x": 270,
+      "uvlock": true
+    }
+  }
+}

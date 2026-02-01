@@ -55,8 +55,9 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
-public class ExtendedMEBannerBlock extends Block implements IWaterLoggable{
+public class ExtendedMEBannerBlock extends Block implements IWaterLoggable {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	public static final BooleanProperty SMALL = BlockStateProperties.SHORT;
@@ -104,9 +105,9 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable{
 
 	@Override
 	public void setPlacedBy(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-		world.setBlock(pos.above(), defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER)
-			.setValue(SMALL, state.getValue(SMALL))
-			.setValue(FACING, state.getValue(FACING)), 3);
+		world.setBlock(pos.above(), defaultBlockState()
+			.setValue(HALF, DoubleBlockHalf.UPPER).setValue(SMALL, state.getValue(SMALL))
+			.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)), 3);
 		TileEntity tileentity = world.getBlockEntity(pos);
 		if (tileentity instanceof ExtendedMEBannerTileEntity && stack.getItem() instanceof ExtendedMCBannerItem) {
 			if(placer instanceof PlayerEntity) {
@@ -129,20 +130,18 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable{
 	}
 
 	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext context) {
+	public BlockState getStateForPlacement(BlockItemUseContext pContext) {
 		BlockState blockstate = this.defaultBlockState();
-		World iworldreader = context.getLevel();
-		BlockPos blockpos = context.getClickedPos();
-		FluidState fluidstate = iworldreader.getFluidState(context.getClickedPos());
-		boolean flag = fluidstate.getType() == Fluids.WATER;
-		blockstate.setValue(WATERLOGGED, flag);
-		Direction[] adirection = context.getNearestLookingDirections();
+		World iworldreader = pContext.getLevel();
+		BlockPos blockpos = pContext.getClickedPos();
+		blockstate = blockstate.setValue(WATERLOGGED, iworldreader.getFluidState(pContext.getClickedPos()).getType() == Fluids.WATER);
+		Direction[] adirection = pContext.getNearestLookingDirections();
 		for (Direction direction : adirection) {
 			if (direction.getAxis().isHorizontal()) {
 				Direction direction1 = direction.getOpposite();
 				blockstate = blockstate.setValue(FACING, direction1);
 				if (blockstate.canSurvive(iworldreader, blockpos)) {
-					if(blockpos.getY() < context.getLevel().dimensionType().logicalHeight() - 1 && context.getLevel().getBlockState(blockpos.above()).canBeReplaced(context)) {
+					if(blockpos.getY() < pContext.getLevel().dimensionType().logicalHeight() - 1 && pContext.getLevel().getBlockState(blockpos.above()).canBeReplaced(pContext)) {
 						return blockstate;
 					}
 				}
@@ -263,8 +262,9 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable{
 					ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
 					return ActionResultType.sidedSuccess(world.isClientSide);
 				}
-				if(ExtendedBannerProtectionManager.getProtectionStatus(world, blockPos, new SingleProtectionInstance.PlayerProtection(player, ExtendedBannerPermissions.BANNER)).isAllowed()) {
-					ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket((ExtendedMEBannerTileEntity)tileentity);
+				if(ExtendedBannerProtectionManager.getProtectionStatus(world, blockPosBottom, new SingleProtectionInstance.PlayerProtection(player, ExtendedBannerPermissions.BANNER)).isAllowed()) {
+					boolean clientOP = ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(player.getGameProfile());
+					ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket((ExtendedMEBannerTileEntity)tileentity, clientOP);
 					ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
 					return ActionResultType.sidedSuccess(world.isClientSide);
 				}

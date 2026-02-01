@@ -194,6 +194,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> REMAINS_ELF;
 	public static RegistryObject<Item> REMAINS_MAN;
 	public static RegistryObject<Item> REMAINS_DWARF;
+	// Dirt slabs
 	public static RegistryObject<Item> BARREN_DIRT;
 	public static RegistryObject<Item> BARREN_DIRT_SLAB;
 	public static RegistryObject<Item> COARSE_DIRT_SLAB;
@@ -202,8 +203,13 @@ public class ExtendedItems {
 	public static RegistryObject<Item> GRASS_BLOCK_SLAB;
 	public static RegistryObject<Item> PODZOL_SLAB;
 	public static RegistryObject<Item> MYCELIUM_SLAB;
-	public static RegistryObject<Item> WASTE_BLOCK;
+	public static RegistryObject<Item> MORDOR_DIRT_SLAB;
+	public static RegistryObject<Item> MORDOR_DIRT_PATH_SLAB;
+	public static RegistryObject<Item> CHALK_PATH_SLAB;
+	public static RegistryObject<Item> SNOW_SLAB;
+	public static RegistryObject<Item> SNOW_PATH_SLAB;
 	//Scorched stuff
+	public static RegistryObject<Item> WASTE_BLOCK;
 	public static RegistryObject<Item> SCORCHED_COBBLESTONE;
 	public static RegistryObject<Item> SCORCHED_COBBLESTONE_SLAB;
 	public static RegistryObject<Item> SCORCHED_COBBLESTONE_STAIRS;
@@ -566,7 +572,11 @@ public class ExtendedItems {
 	public static RegistryObject<Item> EREGION_CHESTPLATE;
 	public static RegistryObject<Item> EREGION_LEGGINGS;
 	public static RegistryObject<Item> EREGION_BOOTS;
-	
+	public static RegistryObject<Item> GALVORN_HELMET;
+	public static RegistryObject<Item> GALVORN_CHESTPLATE;
+	public static RegistryObject<Item> GALVORN_LEGGINGS;
+	public static RegistryObject<Item> GALVORN_BOOTS;
+
 	public static RegistryObject<Item> MORGUL_BRAZIER;
 	public static RegistryObject<Item> HIGH_ELVEN_LANTERN;
 	public static RegistryObject<Item> MORGUL_CHANDELIER;
@@ -635,6 +645,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BLUE_DWARVEN_SHIELD;
 	public static RegistryObject<Item> RIVENDELL_SHIELD;
 	public static RegistryObject<Item> IMLADRIS_GUARD_SHIELD;
+	public static RegistryObject<Item> LINDON_SHIELD;
+	public static RegistryObject<Item> EREGION_SHIELD;
 
 	public static RegistryObject<Item> BOWSTRING;
 	public static RegistryObject<Item> GUNDABAD_URUK_BOW;
@@ -643,6 +655,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> LONGBOW;
 	public static RegistryObject<Item> ORC_BOW;
 	public static RegistryObject<Item> RIVENDELL_BOW;
+	public static RegistryObject<Item> LINDON_BOW;
 
 	public static RegistryObject<Item> BARROW_BLADE;
 	public static RegistryObject<Item> ANDURIL;

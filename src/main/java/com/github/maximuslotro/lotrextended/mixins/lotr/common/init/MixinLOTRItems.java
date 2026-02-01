@@ -590,6 +590,11 @@ public class MixinLOTRItems {
 		ExtendedItems.GRASS_PATH_SLAB = regBlockItemB(ExtendedBlocks.GRASS_PATH_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PODZOL_SLAB = regBlockItemB(ExtendedBlocks.PODZOL_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.MYCELIUM_SLAB = regBlockItemB(ExtendedBlocks.MYCELIUM_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MORDOR_DIRT_SLAB = regBlockItemB(ExtendedBlocks.MORDOR_DIRT_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MORDOR_DIRT_PATH_SLAB = regBlockItemB(ExtendedBlocks.MORDOR_DIRT_PATH_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHALK_PATH_SLAB = regBlockItemB(ExtendedBlocks.CHALK_PATH_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SNOW_SLAB = regBlockItemB(ExtendedBlocks.SNOW_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SNOW_PATH_SLAB = regBlockItemB(ExtendedBlocks.SNOW_PATH_SLAB, LOTRItemGroups.BLOCKS);
 
 		ExtendedItems.BONE_BLOCK_SLAB = regBlockItemB(ExtendedBlocks.BONE_BLOCK_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BONE_BLOCK_STAIRS = regBlockItemB(ExtendedBlocks.BONE_BLOCK_STAIRS, LOTRItemGroups.BLOCKS);
@@ -1140,6 +1145,13 @@ public class MixinLOTRItems {
 		ExtendedItems.EREGION_CHESTPLATE = regItemB("eregion_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("EREGION"), EquipmentSlotType.CHEST));
 		ExtendedItems.EREGION_LEGGINGS = regItemB("eregion_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("EREGION"), EquipmentSlotType.LEGS));
 		ExtendedItems.EREGION_BOOTS = regItemB("eregion_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("EREGION"), EquipmentSlotType.FEET));
+		ExtendedItems.EREGION_SHIELD = regItemB("eregion_shield", () -> new LOTRShieldItem(LOTRMaterial.valueOf("EREGION")));
+		ExtendedItems.LINDON_SHIELD = regItemB("lindon_shield", () -> new LOTRShieldItem(LOTRMaterial.LINDON));
+		ExtendedItems.LINDON_BOW = regItemB("lindon_bow", () -> new ExtendedBowItem(ExtendedBowMaterial.LINDON));
+		ExtendedItems.GALVORN_HELMET = regItemB("galvorn_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("GALVORN"), EquipmentSlotType.HEAD, "helmet"));
+		ExtendedItems.GALVORN_CHESTPLATE = regItemB("galvorn_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GALVORN"), EquipmentSlotType.CHEST));
+		ExtendedItems.GALVORN_LEGGINGS = regItemB("galvorn_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GALVORN"), EquipmentSlotType.LEGS));
+		ExtendedItems.GALVORN_BOOTS = regItemB("galvorn_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("GALVORN"), EquipmentSlotType.FEET));
 		// misc equipment
 		ExtendedItems.LEATHER_HAT = regItemB("leather_hat", ExtendedLeatherHatItem::new);
 		ExtendedItems.BARROW_BLADE = regItemB("barrow_blade", ExtendedBarrowBlade::new);

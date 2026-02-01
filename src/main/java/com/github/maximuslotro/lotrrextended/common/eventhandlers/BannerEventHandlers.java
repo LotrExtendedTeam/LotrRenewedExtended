@@ -91,8 +91,8 @@ public class BannerEventHandlers {
 			event.setCanceled(true);
 		}
     }
-
-	@SubscribeEvent(priority=EventPriority.HIGH)
+	// Already handled by NPC checkSpawnRules for NPCs, regular creatures should always spawn
+	//@SubscribeEvent(priority=EventPriority.HIGH)
 	public static void handleBannerEntitySpawn(LivingSpawnEvent.CheckSpawn event) {
 		IWorld world = event.getWorld();
 		LivingEntity entity = event.getEntityLiving();

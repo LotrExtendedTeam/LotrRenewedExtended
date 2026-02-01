@@ -1256,7 +1256,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(new ItemStack(Items.STICK, 8), 1)
 		.addSBuy(new ItemStack(Items.STRING, 3), 1)
 		.addSBuy(LOTRItems.MITHRIL_NUGGET, 40)
-		// TODO add Rivendell(BattleStaff, Longspear, rivendell bow)
+		// TODO add Rivendell(BattleStaff, Longspear, horse armor)
 		.addSSell(LOTRItems.RIVENDELL_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
 		.addSSell(LOTRItems.RIVENDELL_SWORD, 20)
@@ -1269,6 +1269,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.RIVENDELL_CHESTPLATE, 25)
 		.addSSell(LOTRItems.RIVENDELL_LEGGINGS, 22)
 		.addSSell(LOTRItems.RIVENDELL_BOOTS, 16)
+		.addSSell(ExtendedItems.RIVENDELL_BOW, 20)
 		// Sell at a x20 price increase compared to regular Rivendell armor
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_HELMET, 10, 360, 1, false)
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE, 10, 500, 1, false)
@@ -1346,5 +1347,150 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.TAPESTRY, 1, 300, 1, false)
 		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 4)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_WEAVER);
+
+		make(100)
+		.addSBuy(Items.IRON_ORE, 5)
+		.addSBuy(Items.GOLD_ORE, 15)
+		.addSBuy(LOTRItems.COPPER_ORE, 5)
+		.addSBuy(LOTRItems.TIN_ORE, 5)
+		.addSBuy(Items.IRON_INGOT, 3)
+		.addSBuy(LOTRItems.ELVEN_STEEL_INGOT, 3)
+		.addSBuy(new ItemStack(Items.COAL, 2), 1)
+		.addSBuy(Items.GOLD_INGOT, 15)
+		.addSBuy(LOTRItems.COPPER_INGOT, 3)
+		.addSBuy(LOTRItems.TIN_INGOT, 3)
+		.addSBuy(LOTRItems.BRONZE_INGOT, 3)
+		.addSBuy(ExtendedItems.GALVORN_INGOT, 4)
+		.addSBuy(ExtendedItems.EMERALD, 15)
+		.addSBuy(ExtendedItems.SAPPHIRE, 12)
+		.addSBuy(ExtendedItems.OPAL, 10)
+		.addSBuy(ExtendedItems.AMETHYST, 8)
+		.addSBuy(ExtendedItems.PEARL, 25)
+		.addSBuy(Items.LAVA_BUCKET, 16)
+		.addSBuy(new ItemStack(Items.STICK, 8), 1)
+		.addSBuy(new ItemStack(Items.STRING, 3), 1)
+		.addSBuy(LOTRItems.MITHRIL_NUGGET, 40)
+		// TODO add Lindon (BattleStaff, Longspear, horse armor)
+		.addSSell(LOTRItems.LINDON_CRAFTING_TABLE, 100)
+		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
+		.addSSell(LOTRItems.LINDON_SWORD, 20)
+		.addSSell(LOTRItems.LINDON_SPEAR, 18)
+		.addSSell(LOTRItems.LINDON_DAGGER, 14)
+		.addSSell(LOTRItems.LINDON_AXE, 15)
+		.addSSell(LOTRItems.LINDON_PICKAXE, 15)
+		.addSSell(LOTRItems.LINDON_SHOVEL, 12)
+		.addSSell(LOTRItems.LINDON_HELMET, 18)
+		.addSSell(LOTRItems.LINDON_CHESTPLATE, 25)
+		.addSSell(LOTRItems.LINDON_LEGGINGS, 22)
+		.addSSell(LOTRItems.LINDON_BOOTS, 16)
+		.addSSell(ExtendedItems.LINDON_BOW, 20)
+		// Sell at a x20 price increase compared to regular LINDON armor
+		//.addSSell(ExtendedItems.GALAVORN_HELMET, 1, 360, 1, false)
+		//.addSSell(ExtendedItems.GALAVORN_HELMET_CHESTPLATE, 1, 500, 1, false)
+		//.addSSell(ExtendedItems.GALAVORN_HELMET_LEGGINGS, 1, 440, 1, false)
+		//.addSSell(ExtendedItems.GALAVORN_HELMET_BOOTS, 1, 320, 1, false)
+		.addSSell(new ItemStack(Items.ARROW, 4), 3)
+		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.NIMBLE),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SILKEN)
+				), 5, 350, 1, false)
+		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.DEFLECTING),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.MIGHTY),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.HASTY)
+				), 10, 350, 1, false)
+		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 20, 150, 1, false)
+		.addSSell(ExtendedItems.LINDON_BANNER_PATTERN, 25)
+		.save(pConsumer, ExtendedTraderTypes.LINDON_SMITH);
+
+		make(50)
+		.addMBuy(1, Items.WHITE_DYE, Items.BLACK_DYE,
+			Items.BLUE_DYE, Items.BROWN_DYE,
+			Items.CYAN_DYE, Items.GRAY_DYE,
+			Items.GREEN_DYE, Items.LIGHT_BLUE_DYE,
+			Items.LIGHT_GRAY_DYE, Items.LIME_DYE,
+			Items.MAGENTA_DYE, Items.ORANGE_DYE,
+			Items.PINK_DYE, Items.PURPLE_DYE,
+			Items.RED_DYE, Items.YELLOW_DYE)
+		.addMBuy(1, Items.WHITE_WOOL, Items.BLACK_WOOL,
+			Items.BLUE_WOOL, Items.BROWN_WOOL,
+			Items.CYAN_WOOL, Items.GRAY_WOOL,
+			Items.GREEN_WOOL, Items.LIGHT_BLUE_WOOL,
+			Items.LIGHT_GRAY_WOOL, Items.LIME_WOOL,
+			Items.MAGENTA_WOOL, Items.ORANGE_WOOL,
+			Items.PINK_WOOL, Items.PURPLE_WOOL,
+			Items.RED_WOOL, Items.YELLOW_WOOL)
+		.addSBuy(new ItemStack(Items.STRING, 3), 1)
+		.addSBuy(Items.LEATHER, 2)
+		.addSBuy(LOTRItems.FUR, 2)
+		.addSBuy(LOTRItems.FLAX, 1)
+		.addSBuy(LOTRItems.FLAX_SEEDS, 1)
+		.addSBuy(ExtendedItems.BLACK_FUR, 2)
+		.addSBuy(ExtendedItems.GRAY_FUR, 2)
+		.addSBuy(ExtendedItems.SILVER_FUR, 3)
+		.addSBuy(ExtendedItems.WHITE_FUR, 25)
+		.addSBuy(Items.RABBIT_HIDE, 1)
+		.addSBuy(Items.SHEARS, 5)
+		.addMSell(2, Items.WHITE_CARPET, Items.BLACK_CARPET,
+			Items.BLUE_CARPET, Items.BROWN_CARPET,
+			Items.CYAN_CARPET, Items.GRAY_CARPET,
+			Items.GREEN_CARPET, Items.LIGHT_BLUE_CARPET,
+			Items.LIGHT_GRAY_CARPET, Items.LIME_CARPET,
+			Items.MAGENTA_CARPET, Items.ORANGE_CARPET,
+			Items.PINK_CARPET, Items.PURPLE_CARPET,
+			Items.RED_CARPET, Items.YELLOW_CARPET)
+		.addMSell(4, Items.WHITE_WOOL, Items.BLACK_WOOL,
+			Items.BLUE_WOOL, Items.BROWN_WOOL,
+			Items.CYAN_WOOL, Items.GRAY_WOOL,
+			Items.GREEN_WOOL, Items.LIGHT_BLUE_WOOL,
+			Items.LIGHT_GRAY_WOOL, Items.LIME_WOOL,
+			Items.MAGENTA_WOOL, Items.ORANGE_WOOL,
+			Items.PINK_WOOL, Items.PURPLE_WOOL,
+			Items.RED_WOOL, Items.YELLOW_WOOL)
+		// TODO make hat and armor dyed
+		.addSSell(ExtendedItems.LEATHER_HAT, 10)
+		.addSSell(Items.LEATHER_HELMET, 7)
+		.addSSell(Items.LEATHER_CHESTPLATE, 12)
+		.addSSell(Items.LEATHER_LEGGINGS, 11)
+		.addSSell(Items.LEATHER_BOOTS, 6)
+		.addSSell(Items.PAINTING, 6)
+		.addSSell(Items.LEATHER_HORSE_ARMOR, 15)
+		.addSSell(ExtendedItems.LINDON_BANNER, 4)
+		.addSSell(ExtendedItems.LINDON_BANNER_PATTERN, 4)
+		.save(pConsumer, ExtendedTraderTypes.LINDON_WEAVER);
+
+		make(50)
+		.addSBuy(new ItemStack(Items.BONE_MEAL, 15), 1)
+		.addSBuy(Items.BUCKET, 3)
+		.addSBuy(Items.WATER_BUCKET, 4)
+		.addSBuy(Items.STONE_HOE, 1)
+		.addSBuy(Items.WOODEN_HOE, 1)
+		.addSBuy(LOTRItems.BRONZE_HOE, 6)
+		.addSBuy(Items.IRON_HOE, 8)
+		.addSBuy(Items.STONE_SHOVEL, 1)
+		.addSBuy(Items.WOODEN_SHOVEL, 1)
+		.addSBuy(LOTRItems.BRONZE_SHOVEL, 5)
+		.addSBuy(Items.IRON_SHOVEL, 7)
+		.addSSell(Items.POPPY, 3)
+		.addSSell(Items.BLUE_ORCHID, 8)
+		.addSSell(Items.ALLIUM, 6)
+		.addSSell(Items.AZURE_BLUET, 3)
+		.addSSell(Items.RED_TULIP, 3)
+		.addSSell(Items.ORANGE_TULIP, 3)
+		.addSSell(Items.WHITE_TULIP, 3)
+		.addSSell(Items.PINK_TULIP, 3)
+		.addSSell(Items.OXEYE_DAISY, 3)
+		.addSSell(Items.DANDELION, 3)
+		.addSSell(Items.SUNFLOWER, 10)
+		.addSSell(Items.LILAC, 8)
+		.addSSell(Items.ROSE_BUSH, 8)
+		.addSSell(Items.PEONY, 8)
+		.addSSell(Items.CORNFLOWER, 4)
+		.addSSell(Items.LILY_OF_THE_VALLEY, 5)
+		.addSSell(LOTRItems.MARIGOLD, 3)
+		.addSSell(LOTRItems.BLUEBELL, 3)
+		.addSSell(LOTRItems.LAVENDER, 3)
+		.addSSell(LOTRItems.YELLOW_IRIS, 10)
+		.save(pConsumer, ExtendedTraderTypes.LINDON_FLORIST);
 	}
 }

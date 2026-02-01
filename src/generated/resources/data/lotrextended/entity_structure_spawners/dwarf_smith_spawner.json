@@ -2,7 +2,7 @@
   "id": "lotrextended:dwarf_smith_spawner",
   "spawner_type": "single_use_spawner",
   "setHomeOnSpawn": true,
-  "homeRadius": 12,
+  "homeRadius": 8,
   "persistenceRequired": true,
   "shouldRespawnOnDeath": true,
   "pools": [

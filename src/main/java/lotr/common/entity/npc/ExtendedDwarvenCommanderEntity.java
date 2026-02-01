@@ -3,15 +3,12 @@ package lotr.common.entity.npc;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
-import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.NPCGenderProvider;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -40,11 +37,11 @@ public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity  implements 
 			this.addAggressiveTargetingGoals();
 		}
 	}
-
-	@Override
-    protected Goal createDwarfAttackGoal() {
-        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.3, new ItemStack(ExtendedItems.BLUE_DWARVEN_SHIELD.get()), ItemStack.EMPTY);
-    }
+//
+//	@Override
+//    protected Goal createDwarfAttackGoal() {
+//        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.3, new ItemStack(ExtendedItems.DWARVEN_SHIELD.get()), ItemStack.EMPTY);
+//    }
 
 	@Override
 	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
@@ -54,6 +51,8 @@ public class ExtendedDwarvenCommanderEntity extends BlueDwarfEntity  implements 
 		setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.GOLD_TRIMMED_DWARVEN_BOOTS.get()));
 		setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.GOLD_TRIMMED_DWARVEN_LEGGINGS.get()));
 		setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.GOLD_TRIMMED_DWARVEN_CHESTPLATE.get()));
+		setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+		setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 		return spawnData;
 	}
 

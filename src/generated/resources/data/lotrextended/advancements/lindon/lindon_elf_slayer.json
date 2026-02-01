@@ -44,12 +44,72 @@
           }
         ]
       }
+    },
+    "kill_lindon_lord": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:lindon_lord"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_lindon_smith": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:lindon_smith"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_lindon_weaver": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:lindon_weaver"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_lindon_florist": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:lindon_florist"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
       "kill_lindon_warrior",
-      "kill_lindon_elf"
+      "kill_lindon_elf",
+      "kill_lindon_lord",
+      "kill_lindon_smith",
+      "kill_lindon_weaver",
+      "kill_lindon_florist"
     ]
   ]
 }

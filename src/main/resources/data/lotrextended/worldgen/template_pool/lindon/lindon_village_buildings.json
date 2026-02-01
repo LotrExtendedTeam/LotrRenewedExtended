@@ -1,0 +1,53 @@
+{
+	"name": "lotrextended:lindon/lindon_village_buildings",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:lindon/village/buildings/lindon_house_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:lindon/village/buildings/lindon_house_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:lindon/village/buildings/lindon_house_3",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:lindon/village/buildings/lindon_smith_1",
+				"processors": "minecraft:empty",
+				"blacklist_name" : "SMITH"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:lindon/village/buildings/lindon_weaver_1",
+				"processors": "minecraft:empty",
+				"blacklist_name" : "WEAVER"
+			}
+		}
+	]
+}

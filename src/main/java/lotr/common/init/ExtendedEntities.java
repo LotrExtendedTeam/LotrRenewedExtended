@@ -86,4 +86,8 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedElrondEntity>> ELROND;
 	public static RegistryObject<EntityType<ExtendedBanditEntity>> BANDIT;
 	public static RegistryObject<EntityType<ExtendedTapestryEntity>> TAPESTRY;
+	public static RegistryObject<EntityType<ExtendedLindonLordEntity>> LINDON_LORD;
+	public static RegistryObject<EntityType<ExtendedLindonSmithEntity>> LINDON_SMITH;
+	public static RegistryObject<EntityType<ExtendedLindonWeaverEntity>> LINDON_WEAVER;
+	public static RegistryObject<EntityType<ExtendedLindonFloristEntity>> LINDON_FLORIST;
 }

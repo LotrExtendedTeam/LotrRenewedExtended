@@ -295,6 +295,11 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 		return false;
 	}
 
+	/** 
+	 * Warning! Only returns first match, not necessarily the correct one if in multiple fellowships with the same name
+	 * @param fsName The fellowship name to search for
+	 * @return The first matching fellowship by name
+	 */
 	public ExtendedFellowship getFellowshipByName(String fsName) {
 		for (UUID fsID : fellowshipIDs) {
 			ExtendedFellowship fs = ExtendedFellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID);

@@ -70,10 +70,18 @@ public class ExtendedConfiguredStructuresV5 {
 
 	public static StructureFeature<?, ?> CONFIGURED_STONE_OF_HAPLESS = register(ExtendedStructuresV5.STONE_OF_HAPLESS.get().configured(new SinglePoolConfig("lore/stone_of_hapless")));
 	public static StructureFeature<?, ?> CONFIGURED_THE_LAST_HOMELY_HOUSE = register(ExtendedStructuresV5.THE_LAST_HOMELY_HOUSE.get().configured(new SinglePoolConfig("lore/last_homely_house_start")));
+	public static StructureFeature<?, ?> CONFIGURED_TOWER_HILLS_SOUTH_TOWER = register(ExtendedStructuresV5.TOWER_HILLS_SOUTH_TOWER.get().configured(new SinglePoolConfig("lore/tower_hills_tower_south")));
+	public static StructureFeature<?, ?> CONFIGURED_TOWER_HILLS_MIDDLE_TOWER = register(ExtendedStructuresV5.TOWER_HILLS_MIDDLE_TOWER.get().configured(new SinglePoolConfig("lore/tower_hills_tower_middle")));
+	public static StructureFeature<?, ?> CONFIGURED_TOWER_HILLS_NORTH_TOWER = register(ExtendedStructuresV5.TOWER_HILLS_NORTH_TOWER.get().configured(new SinglePoolConfig("lore/tower_hills_tower_north")));
 
 	public static StructureFeature<?, ?> CONFIGURED_RIVENDELL_STRUCTURES = register(ExtendedStructuresV5.RIVENDELL_STRUCTURE.get().configured(new SinglePoolConfig("rivendell/rivendell_structures")));
 
 	public static StructureFeature<?, ?> CONFIGURED_EREGION_RUINS_STRUCTURES = register(ExtendedStructuresV5.EREGION_RUINS_STRUCTURE.get().configured(new SinglePoolConfig("ruins/eregion_ruins_pool")));
+
+	public static StructureFeature<?, ?> CONFIGURED_TOWER_HILLS_TOWER = register(ExtendedStructuresV5.TOWER_HILLS_TOWER.get().configured(new SinglePoolConfig("lindon/tower_hills_tower_start")));
+
+	public static StructureFeature<?, ?> CONFIGURED_LINDON_VILLAGE = register(ExtendedStructuresV5.LINDON_VILLAGE.get().configured(new SinglePoolConfig("lindon/lindon_village_start")));
+	public static StructureFeature<?, ?> CONFIGURED_LINDON_TOWER = register(ExtendedStructuresV5.LINDON_TOWER.get().configured(new SinglePoolConfig("lindon/lindon_tower")));
 
 	/**
      * Empty method intended to be called to ensure static initialization of this class
