@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import lotr.common.entity.npc.NPCEntity;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -81,8 +82,9 @@ public class ExtendedServerModifierEventHandlers {
 	public static void onBreakSpeed(BreakSpeed event) {
 		float currentOtherModModifiableSpeed = event.getNewSpeed();
 		float f = event.getPlayer().inventory.getDestroySpeed(event.getState());
-		if (f > 1.0f) {
-			currentOtherModModifiableSpeed *= ExtendedModifierUtils.getBlockEfficiencyFloat(event.getPlayer());
+		float modifierSpeed = ExtendedModifierUtils.getEnchantmentLevelFloat(Enchantments.BLOCK_EFFICIENCY, event.getPlayer());
+		if (f > 1.0f && modifierSpeed!=0) {
+			currentOtherModModifiableSpeed *= modifierSpeed;
 		}
 		event.setNewSpeed(currentOtherModModifiableSpeed);
 	}

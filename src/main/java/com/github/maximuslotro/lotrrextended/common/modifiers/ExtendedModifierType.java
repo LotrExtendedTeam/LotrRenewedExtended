@@ -92,7 +92,7 @@ public enum ExtendedModifierType {
 
 	/** General protection modifier, reducing overall damage. */
 	PROTECTION("enchant.lotrextended.armor_protect.disc", "+", 
-			item -> item instanceof ArmorItem),
+			item -> item instanceof ArmorItem && ((LOTRArmorItem) item).getMaterial()!=LOTRMaterial.valueOf("GALVORN").asArmor()),
 
 	/** Reduces fire or lava damage. */
 	PROTECTION_FIRE("enchant.lotrextended.armor_protect_fire.disc", "+", 
@@ -100,7 +100,7 @@ public enum ExtendedModifierType {
 
 	/** Reduces damage from ranged attacks (arrows, projectiles). */
 	PROTECTION_RANGED("enchant.lotrextended.armor_protect_ranged.disc", "+", 
-			item -> item instanceof ArmorItem),
+			item -> item instanceof ArmorItem && ((LOTRArmorItem) item).getMaterial()!=LOTRMaterial.valueOf("GALVORN").asArmor()),
 
 	/** Reduces fall damage. */
 	PROTECTION_FALLING("enchant.lotrextended.armor_protect_fall.disc", "+", 
