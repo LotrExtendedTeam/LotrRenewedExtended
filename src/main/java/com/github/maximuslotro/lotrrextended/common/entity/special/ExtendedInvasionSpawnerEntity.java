@@ -5,6 +5,7 @@ import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBan
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import lotr.common.LOTRLog;
 import lotr.common.data.ExtendedLOTRPlayerData;
+import lotr.common.data.ExtendedLevelData;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.fac.Faction;
@@ -38,8 +39,8 @@ import java.util.stream.Collectors;
 public class ExtendedInvasionSpawnerEntity extends Entity {
 
     private static final DataParameter<String> DATA_FACTION_KEY = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, DataSerializers.STRING);
-    private static final DataParameter<Integer> DATA_ENEMIES_LEFT = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, DataSerializers.INT);
     private static final DataParameter<Integer> DATA_INVASION_SIZE = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, DataSerializers.INT);
+    private static final DataParameter<Boolean> DATA_INVASION_STARTED = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, DataSerializers.BOOLEAN);
 
     private static final float ROTATION_SPEED = 1.0F;
     private static final double INVASION_FOLLOW_RANGE = 40.0;
@@ -56,8 +57,8 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     @Override
     protected void defineSynchedData() {
         this.getEntityData().define(DATA_FACTION_KEY, "empty");
-        this.getEntityData().define(DATA_ENEMIES_LEFT, 0);
         this.getEntityData().define(DATA_INVASION_SIZE, 0);
+        this.getEntityData().define(DATA_INVASION_STARTED, false);
     }
 
     @Override
@@ -65,11 +66,11 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         if(compoundNBT.contains("faction_key")) {
             this.getEntityData().set(DATA_FACTION_KEY, compoundNBT.getString("faction_key"));
         }
-        if(compoundNBT.contains("enemies_left")) {
-            this.getEntityData().set(DATA_ENEMIES_LEFT, compoundNBT.getInt("enemies_left"));
-        }
         if(compoundNBT.contains("invasion_size")) {
             this.getEntityData().set(DATA_INVASION_SIZE, compoundNBT.getInt("invasion_size"));
+        }
+        if(compoundNBT.contains("invasion_started")) {
+            this.getEntityData().set(DATA_INVASION_STARTED, compoundNBT.getBoolean("invasion_started"));
         }
     }
 
@@ -78,6 +79,8 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         super.tick();
         this.noPhysics = false;
         this.setNoGravity(true);
+
+        // TODO: Check if game is set to peaceful and if so call endInvaison(false)
 
         if(!this.level.isClientSide()) {
             this.yRot += ROTATION_SPEED;
@@ -93,15 +96,19 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
             // only attempt to spawn a mob every second
             if (tickCounter >= 20) {
                 tickCounter = 0;
+                LOTRLog.info("INVASION + " + getUUID() +": Time to spawn an enemy");
 
                 int totalInvasionMobsInArea = getInvasionTypeMobsInRange();
+                LOTRLog.info("INVASION + " + getUUID() +": totalInvasionMobsInArea: " + totalInvasionMobsInArea);
+                int enemiesLeft = ExtendedLevelData.serverInstance().getEnemiesLeft(getUUID());
+                LOTRLog.info("INVASION + " + getUUID() +": enemiesLeft: " + enemiesLeft);
                 if (totalInvasionMobsInArea > -1 && totalInvasionMobsInArea < 16
-                        && getEnemiesLeft() > 0) {
+                        && enemiesLeft > 0) {
                     Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromKey(getFactionKey());
                     ExtendedInvasions.InvasionSpawnEntry result = WeightedRandom.getRandomItem(this.random, invasion.get().getSpawnEntries());
 
+                    LOTRLog.info("INVASION + " + getUUID() +": Attempting mob spawn");
                     if (attemptMobSpawn(result.getEntityType())) {
-                       setEnemiesLeft(getEnemiesLeft() - 1);
 
                         if (!level.isClientSide()) {
                             // send flames to client
@@ -113,11 +120,17 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                     }
                 }
             }
+
+            int enemiesLeft = ExtendedLevelData.serverInstance().getEnemiesLeft(getUUID());
+            if (getInvasionStarted() && enemiesLeft == 0) {
+                endInvasion(true);
+            }
         }
+
     }
 
-    private void setEnemiesLeft(int enemiesLeft) {
-        this.getEntityData().set(DATA_ENEMIES_LEFT, enemiesLeft);
+    private boolean getInvasionStarted() {
+        return getEntityData().get(DATA_INVASION_STARTED);
     }
 
     /***
@@ -147,6 +160,25 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         return (int) surroundingMobs.stream()
                 .filter(npc -> spawnableTypes.contains(npc.getType()))
                 .count();
+    }
+
+    public void endInvasion(boolean completed) {
+        if (completed) {
+            // TODO: Give players rewards / spawn loot
+        }
+
+        // TODO: Create explosion
+
+        // unregister invasion from server data
+        if (!level.isClientSide) {
+            ExtendedLevelData.serverInstance().unregisterInvasion(getUUID());
+        }
+
+        this.remove();
+    }
+
+    private void setInvasionStarted(boolean invasionStarted) {
+        this.getEntityData().set(DATA_INVASION_STARTED, invasionStarted);
     }
 
     /**
@@ -183,6 +215,10 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 entity.setYBodyRot(yaw);
                 entity.setYHeadRot(yaw);
                 entity.setPersistenceRequired();
+
+                // set NBT data for invasion
+                entity.getPersistentData().putUUID("lotr:invasion_id", this.getUUID());
+
                 level.addFreshEntity(entity);
                 return true;
             }
@@ -195,7 +231,6 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     protected void addAdditionalSaveData(CompoundNBT compoundNBT) {
         compoundNBT.putString("faction_key", getFactionKey());
         compoundNBT.putInt("invasion_size", getInvasionSize());
-        compoundNBT.putInt("enemies_left", getEnemiesLeft());
     }
 
     public void setFaction(String factionKey) {
@@ -204,10 +239,6 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
     public String getFactionKey() {
         return this.getEntityData().get(DATA_FACTION_KEY);
-    }
-
-    public int getEnemiesLeft() {
-        return this.getEntityData().get(DATA_ENEMIES_LEFT);
     }
 
     public int getInvasionSize() {
@@ -330,7 +361,9 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
         // set initial size
         setInvasionSize(invasionSize);
-        setEnemiesLeft(invasionSize);
+        ExtendedLevelData.serverInstance().registerInvasion(getUUID(), invasionSize);
+
+        setInvasionStarted(true);
 
         return true;
     }

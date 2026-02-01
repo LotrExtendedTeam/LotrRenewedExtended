@@ -16,6 +16,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookT
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils;
 
+import lotr.common.data.ExtendedLevelData;
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
@@ -151,6 +152,31 @@ public class WorldEventHandlers {
 			ExtendedCriteriaTriggers.PLAYER_BREAK_BLOCK_TRIGGER.trigger(player, event.getPos(), player.getItemInHand(player.getUsedItemHand()));
 		}
 	}
+
+	@SubscribeEvent
+	public static void handleMobDeathForInvasion$Extended(LivingDeathEvent event) {
+		Entity sourceEntity = event.getSource().getEntity();
+		UUID invasionId = null;
+
+		if (event.getEntityLiving().getPersistentData().contains("lotr:invasion_id")) {
+			invasionId = event.getEntityLiving().getPersistentData().getUUID("lotr:invasion_id");
+		} else {
+			return;
+		}
+
+		int enemiesLeft = ExtendedLevelData.serverInstance().getEnemiesLeft(invasionId);
+		if (enemiesLeft > 0) {
+			ExtendedLevelData.serverInstance().decrementEnemiesLeft(invasionId);
+		}
+
+		if (sourceEntity instanceof ServerPlayerEntity) {
+			// TODO: Add player to tracking for invasion entity
+
+			ServerPlayerEntity player = (ServerPlayerEntity)sourceEntity;
+			player.sendMessage(new StringTextComponent("Invasion has " + (enemiesLeft - 1) + " enemies left"), Util.NIL_UUID);
+		}
+	}
+
 	/**
 	 * Handles special logic when {@link ExtendedTraderEntity} or {@link ExtendedCaptainEntity} dies.
 	 * <ul>

@@ -58,6 +58,8 @@ public class ExtendedLevelData {
 	private Map<UUID, Integer> playerTraderSpawnCooldowns = new HashMap<>();
 	private Map<UUID, Integer> playerBanditSpawnCooldowns = new HashMap<>();
 
+	private Map<UUID, Integer> invasionEnemiesLeft = new HashMap<>();
+
 	/** -1 if the player is marked to be cursed
 	 *  -2 if the player was cursed
 	 *  -3 if the player left the barrow downs after having entered the first time
@@ -86,6 +88,7 @@ public class ExtendedLevelData {
 				savePlayerBanditCooldowns(levelData);
 				saveSecondsInBarrows(levelData);
 				saveTolkienTalkedTo(levelData);
+				saveInvasionEnemiesLeft(levelData);
 
 				SaveUtil.saveNBTToFile(lotrDataFile, levelData);
 				this.needsSave = false;
@@ -107,6 +110,7 @@ public class ExtendedLevelData {
 			loadPlayerBanditCooldowns(levelData);
 			loadSecondsInBarrows(levelData);
 			loadTolkienTalkedTo(levelData);
+			loadInvasionEnemiesLeft(levelData);
 
 			this.needsLoad = false;
 			this.needsSave = true;
@@ -249,6 +253,20 @@ public class ExtendedLevelData {
 		}
 	}
 
+	private void loadInvasionEnemiesLeft(CompoundNBT tag) {
+		ListNBT listnbt = tag.getList("invasionEnemiesLeft", 10);
+		if (listnbt.isEmpty()) {
+			invasionEnemiesLeft = new HashMap<>();
+		}
+
+		for (int i = 0; i < listnbt.size(); ++i) {
+			CompoundNBT compoundnbt = listnbt.getCompound(i);
+			UUID invasionUUID = compoundnbt.getUUID("invasion");
+			int enemiesLeft = compoundnbt.getInt("enemies_left");
+			invasionEnemiesLeft.put(invasionUUID, enemiesLeft);
+		}
+	}
+
 	private void loadTolkienTalkedTo(CompoundNBT tag) {
 		int tolkienVersion = tag.getInt("tolkienVersion");
 		if(tolkienVersion!=tolkienTalkedToVersion) {
@@ -287,6 +305,17 @@ public class ExtendedLevelData {
 			list.add(entry);
 		}
 		tag.put("banditCooldowns", list);
+	}
+
+	private void saveInvasionEnemiesLeft(CompoundNBT tag) {
+		ListNBT list = new ListNBT();
+		for (UUID uuid : invasionEnemiesLeft.keySet()) {
+			CompoundNBT entry = new CompoundNBT();
+			entry.putUUID("invasion", uuid);
+			entry.putInt("enemies_left", invasionEnemiesLeft.get(uuid));
+			list.add(entry);
+		}
+		tag.put("invasionEnemiesLeft", list);
 	}
 
 	private void saveSecondsInBarrows(CompoundNBT tag) {
@@ -424,6 +453,32 @@ public class ExtendedLevelData {
 	private static File getLOTRDataFile(ServerWorld world) {
 		String filename = "extended".toUpperCase();
 		return new File(SaveUtil.getOrCreateLOTRDir(world), filename + ".dat");
+	}
+
+	public void registerInvasion(UUID invasionId, int initialEnemies) {
+		invasionEnemiesLeft.put(invasionId, initialEnemies);
+		this.needsSave = true;
+	}
+
+	public void unregisterInvasion(UUID invasionId) {
+		invasionEnemiesLeft.remove(invasionId);
+		this.needsSave = true;
+	}
+
+	/**
+	 * Returns how many enemies are left for the invasion or -1 if it's not a valid invasion
+	 * @param invasionId
+	 * @return
+	 */
+	public int getEnemiesLeft(UUID invasionId) {
+        return invasionEnemiesLeft.getOrDefault(invasionId, -1);
+	}
+
+	public void decrementEnemiesLeft(UUID invasionId) {
+		int newEnemiesLeft = getEnemiesLeft(invasionId);
+		if (newEnemiesLeft > 0) newEnemiesLeft -= 1;
+		invasionEnemiesLeft.put(invasionId, newEnemiesLeft);
+		this.needsSave = true;
 	}
 
 	public boolean doesNeedSaving() {
