@@ -58,7 +58,7 @@ public class ExtendedMeteoriteFeature extends Feature<ExtendedMeteoriteFeatureCo
 		}
 		BlockPos NewCenter = level.getHeightmapPos(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, origin);
 		// Meteor sphere
-		placeMeteorSphere(level, rand, NewCenter.below(), innerR);
+		placeMeteorSphere(level, rand, NewCenter.below(rand.nextBoolean()? 2 : 1), innerR);
 		// Debris
 		scatterDebris(level, rand, center, outerR, config.debrisChance);
 
@@ -74,6 +74,9 @@ public class ExtendedMeteoriteFeature extends Feature<ExtendedMeteoriteFeatureCo
 					if (x*x + y*y + z*z <= r2 - 0.5) {
 						pos$Mutable.set(center.getX() + x, center.getY() + y, center.getZ() + z);
 						level.setBlock(pos$Mutable, getMeteoriteBlock(rand, true), 2);
+						if(y>=radius && level.getBlockState(pos$Mutable.above()).isAir(level, pos$Mutable.above()) && rand.nextFloat()>0.6f) {
+							level.setBlock(pos$Mutable.above(), ExtendedBlocks.MOSS_CARPET.get().defaultBlockState(), 2);
+						}
 					}
 				}
 			}
@@ -100,15 +103,18 @@ public class ExtendedMeteoriteFeature extends Feature<ExtendedMeteoriteFeatureCo
 	}
 
 	private void placeCraterGround(ISeedReader level, Random rand, BlockPos surface, double dist, int innerR, int outerR) {
-		BlockState grass = Blocks.STONE.defaultBlockState();
-		BlockState cobble = Blocks.STONE.defaultBlockState();
+		BlockState grass = Blocks.GRASS_BLOCK.defaultBlockState();
 		BlockState slab = ExtendedBlocks.GRASS_BLOCK_SLAB.get().defaultBlockState().setValue(IExtendedSwappableTexture.USELOTRTEXTURE, false)
 			.setValue(AxialSlabBlock.TYPE, SlabType.BOTTOM).setValue(LOTRBlockStates.SLAB_AXIS, Axis.Y).setValue(SlabBlock.WATERLOGGED, false);
-		if (dist < innerR) {
-			level.setBlock(surface, rand.nextFloat() < 0.3F ? cobble : grass, 2);
-		} 
-		else if (dist < outerR - 1 && level.getBlockState(surface.below()).is(Tags.Blocks.DIRT) && rand.nextFloat()>0.6f) {
-			level.setBlock(surface, slab, 2);
+		if (dist < outerR - 1 && level.getBlockState(surface.below()).is(Tags.Blocks.DIRT)) {
+			if(rand.nextFloat()>0.6f) {
+				level.setBlock(surface, slab, 2);
+			}else {
+				level.setBlock(surface.below(), grass, 2);
+				if(rand.nextFloat()>0.6) {
+					level.setBlock(surface, ExtendedBlocks.MOSS_CARPET.get().defaultBlockState(), 2);
+				}
+			}
 		}
 	}
 
@@ -132,7 +138,7 @@ public class ExtendedMeteoriteFeature extends Feature<ExtendedMeteoriteFeatureCo
 		float choice = rand.nextFloat();
 		if(choice>0.7f && placeOre) {
 			return ExtendedBlocks.METEORITE_ORE.get().defaultBlockState();
-		} else if(choice>0.4f) {
+		} else if(choice>0.3f) {
 			return rand.nextFloat()>0.6f ? ExtendedBlocks.SCORCHED_COBBLESTONE.get().defaultBlockState() : ExtendedBlocks.SCORCHED_STONE.get().defaultBlockState();
 		}else {
 			return Blocks.COBBLESTONE.defaultBlockState();

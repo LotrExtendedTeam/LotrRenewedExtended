@@ -16,7 +16,12 @@ public class BiomeFeatureAdder {
 			if (event.getName().equals(LOTRBiomes.DEAD_MARSHES.getRegistryName())) {
 				ExtendedBiomeFeatures.addRemains(event.getGeneration());
 			}
-			ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 2);
+			if(!event.getName().equals(LOTRBiomes.SEA.getRegistryName())) {
+				ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 3000);
+				if(event.getName().equals(LOTRBiomes.FORODWAITH.getRegistryName()) || event.getName().equals(LOTRBiomes.LINDON.getRegistryName())) {
+					ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 1000);
+				}
+			}
 		}
 	}
 }

@@ -38,7 +38,6 @@ import net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
-import net.minecraft.world.gen.placement.ConfiguredPlacement;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.treedecorator.LeaveVineTreeDecorator;
@@ -273,15 +272,16 @@ public class ExtendedBiomeFeatures {
 	}
 
 	public static void addBushes(BiomeGenerationSettings.Builder builder, int chance) {
-		builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configured(BUSH_PATCH_CONFIG).decorated(placeHeightmapDoubleChance(chance)));
+		builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configured(BUSH_PATCH_CONFIG).decorated(Placement.HEIGHTMAP_SPREAD_DOUBLE.configured(IPlacementConfig.NONE).squared().chance(chance)));
 	}
 
 	public static void addMoss(BiomeGenerationSettings.Builder builder, int freq) {
-		builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ExtendedConfiguredFeatures.MOSS_PATCH.decorated(placeHeightmapDoubleFreq(freq)));
+		builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ExtendedConfiguredFeatures.MOSS_PATCH.decorated(Placement.HEIGHTMAP_SPREAD_DOUBLE.configured(IPlacementConfig.NONE).squared().count(freq)));
 	}
 
-	public static void addMeteorites(BiomeGenerationSettings.Builder builder, int freq) {
-		builder.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ExtendedConfiguredFeatures.METEORITE_IMPACT.decorated(placeHeightmapDoubleFreq(freq)));
+	public static void addMeteorites(BiomeGenerationSettings.Builder builder, int chance) {
+		builder.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ExtendedConfiguredFeatures.METEORITE_IMPACT.decorated(
+			Placement.HEIGHTMAP_SPREAD_DOUBLE.configured(IPlacementConfig.NONE).squared().chance(chance)));
 	}
 
 	public static void addOres(BiomeGenerationSettings.Builder builder) {
@@ -437,13 +437,5 @@ public class ExtendedBiomeFeatures {
 
 	private static BaseTreeFeatureConfig buildPartyTree(BlockState log, BlockState wood, BlockState branch, BlockStateProvider leavesPool, int baseHeight, int heightRandA, FoliagePlacer foliage, List<TreeDecorator> decorators) {
 		return new Builder(new SimpleBlockStateProvider(log), leavesPool, foliage, new PartyTrunkPlacer(baseHeight, heightRandA, 0, wood, branch), new TwoLayerFeature(1, 1, 2)).ignoreVines().decorators(ImmutableList.copyOf(decorators)).build();
-	}
-
-	private static ConfiguredPlacement<?> placeHeightmapDoubleChance(int chance) {
-		return Placement.HEIGHTMAP_SPREAD_DOUBLE.configured(IPlacementConfig.NONE).squared().chance(chance);
-	}
-
-	private static ConfiguredPlacement<?> placeHeightmapDoubleFreq(int freq) {
-		return Placement.HEIGHTMAP_SPREAD_DOUBLE.configured(IPlacementConfig.NONE).squared().count(freq);
 	}
 }
