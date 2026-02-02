@@ -12,14 +12,16 @@ public class BiomeFeatureAdder {
 				||event.getName().equals(LOTRBiomes.MORGUL_VALE.getRegistryName()))) {
 				ExtendedBiomeFeatures.addBushes(event.getGeneration(), 4);
 			}
-
 			if (event.getName().equals(LOTRBiomes.DEAD_MARSHES.getRegistryName())) {
 				ExtendedBiomeFeatures.addRemains(event.getGeneration());
 			}
-			if(!event.getName().equals(LOTRBiomes.SEA.getRegistryName())) {
-				ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 3000);
-				if(event.getName().equals(LOTRBiomes.FORODWAITH.getRegistryName()) || event.getName().equals(LOTRBiomes.LINDON.getRegistryName())) {
-					ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 1000);
+			if(!event.getName().equals(LOTRBiomes.SEA.getRegistryName()) || !event.getName().equals(LOTRBiomes.RIVER.getRegistryName())) {
+				ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 6000);
+				if(event.getName().equals(LOTRBiomes.FORODWAITH.getRegistryName())) {
+					ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 2000);
+				}
+				if(event.getName().equals(LOTRBiomes.LINDON.getRegistryName())) {
+					ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 1500);
 				}
 			}
 		}
