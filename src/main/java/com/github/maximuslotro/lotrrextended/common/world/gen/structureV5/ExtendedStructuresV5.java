@@ -146,8 +146,8 @@ public class ExtendedStructuresV5 {
 		register(TOWER_HILLS_MIDDLE_TOWER.get(), false,1,  0,  0);
 		register(TOWER_HILLS_NORTH_TOWER.get(), false, 1,  0,  0);
 		register(TOWER_HILLS_TOWER.get(), false,       30, 20, 467385464);
-		register(LINDON_VILLAGE.get(), true,           40, 25, 584474884);
-		register(LINDON_TOWER.get(), true,             60, 45, 848856948);
+		register(LINDON_VILLAGE.get(), true,           70, 55, 584474884);
+		register(LINDON_TOWER.get(), true,             75, 50, 848856948);
 	}
 
 	/**
