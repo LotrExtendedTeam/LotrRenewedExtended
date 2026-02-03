@@ -142,14 +142,28 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 			return false;
 		}
 
-		if(structureType==ExtendedStructureType.RANGER) {
+		if(structureType==ExtendedStructureType.RANGER || structureType==ExtendedStructureType.RANGER_OPTIONAL_TOWER_HILLS) {
+			if(structureType==ExtendedStructureType.RANGER_OPTIONAL_TOWER_HILLS) {
+				// Anarostirion
+				if(calculateChunkDistance(chunkX, chunkZ, -742, 6)<5) {
+					return false;
+				}
+				// Elostirion
+				if(calculateChunkDistance(chunkX, chunkZ, -796, 102)<5) {
+					return false;
+				}
+				// Isilostirion
+				if(calculateChunkDistance(chunkX, chunkZ, -686, 260)<5) {
+					return false;
+				}
+			}
 			int i = chunkX >> 4;
-		int j = chunkZ >> 4;
-		chunkRandom.setSeed((long)(i ^ j << 4) ^ seed);
-		chunkRandom.nextInt();
-		if(isNearStructure(ExtendedStructuresV5.GUNDABAD_CAMP.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10) || isNearStructure(ExtendedStructuresV5.GUNDABAD_ENCAMPMENT.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10)) {
-			return false;
-		}
+			int j = chunkZ >> 4;
+			chunkRandom.setSeed((long)(i ^ j << 4) ^ seed);
+			chunkRandom.nextInt();
+			if(isNearStructure(ExtendedStructuresV5.GUNDABAD_CAMP.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10) || isNearStructure(ExtendedStructuresV5.GUNDABAD_ENCAMPMENT.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10)) {
+				return false;
+			}
 		}
 		if(structureType==ExtendedStructureType.BREE_HAMLET) {
 			// Bree Town
@@ -197,6 +211,20 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 		if(structureType==ExtendedStructureType.RIVENDELL) {
 			// Rivendell waypoint
 			if(calculateChunkDistance(chunkX, chunkZ, 2988, -76)<10) {
+				return false;
+			}
+		}
+		if(structureType==ExtendedStructureType.TOWER_HILLS) {
+			// Anarostirion
+			if(calculateChunkDistance(chunkX, chunkZ, -742, 6)<5) {
+				return false;
+			}
+			// Elostirion
+			if(calculateChunkDistance(chunkX, chunkZ, -796, 102)<5) {
+				return false;
+			}
+			// Isilostirion
+			if(calculateChunkDistance(chunkX, chunkZ, -686, 260)<5) {
 				return false;
 			}
 		}

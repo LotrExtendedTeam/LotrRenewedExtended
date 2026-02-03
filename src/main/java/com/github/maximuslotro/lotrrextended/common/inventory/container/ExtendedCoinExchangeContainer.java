@@ -162,7 +162,6 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 		if(leftOutputSlot.getItem().isEmpty()) {
 			if(virtual) {
 				leftVisualOutputSlot.set(new ItemStack(toItem, newLowerCoins));
-				this.broadcastChanges();
 				return false;
 			}else {
 				rightVisualOutputSlot.set(ItemStack.EMPTY);
