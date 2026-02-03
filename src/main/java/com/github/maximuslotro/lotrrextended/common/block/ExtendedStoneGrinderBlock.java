@@ -141,7 +141,7 @@ public class ExtendedStoneGrinderBlock extends ContainerBlock {
 
 	@Override
 	public BlockRenderType getRenderShape(BlockState pState) {
-		return BlockRenderType.MODEL;
+		return BlockRenderType.ENTITYBLOCK_ANIMATED;
 	}
 
 	@Override

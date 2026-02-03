@@ -99,7 +99,7 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 	}
 
 	public ExtendedStoneGrinderTileEntity() {
-		this(ExtendedTileEntities.MILLSTONE.get());
+		this(ExtendedTileEntities.STONE_GRINDER.get());
 	}
 
 	private boolean isPowered() {
