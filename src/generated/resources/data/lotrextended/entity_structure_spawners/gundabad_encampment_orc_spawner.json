@@ -11,11 +11,11 @@
     "lowerYvalue": -4,
     "horizontal_bounds": 20
   },
-  "inside_spawning": true,
-  "inside_spawning_chance": 70,
+  "fixed_spawning": true,
+  "fixed_spawning_chance": 70,
   "setHomeOnSpawn": true,
   "homeRadius": 26,
-  "persistenceRequired": false,
+  "persistenceRequired": true,
   "spawnCap": 20,
   "pools": [
     {

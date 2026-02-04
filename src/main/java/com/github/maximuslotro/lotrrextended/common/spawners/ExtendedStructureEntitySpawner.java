@@ -47,12 +47,12 @@ public class ExtendedStructureEntitySpawner {
 	 * A constant representing an empty/default spawner with no entries and unknown type.
 	 */
 	public static final ExtendedStructureEntitySpawner EMPTY = new ExtendedStructureEntitySpawner(LotrExtendedMod.EMPTY, new ArrayList<>(), SpawnerType.UNKNOWN, ExtendedSpawnerBoundsEntry.DEFAULT, ExtendedSpawnerBoundsEntry.DEFAULT);
-	/** Default tick rate (in game ticks) for spawning entities (6000 ticks). */
-	private static final int defaultEntitySpawnTickRate = 6000;
-	/** Default minimum player distance to trigger spawns (15 blocks). */
-	private static final int defaultPlayerMinSpawnDistance = 15;
-	/** Default maximum player distance to allow spawns (64 blocks). */
-	private static final int defaultPlayerMaxSpawnDistance = 64;
+	/** Default tick rate (in game ticks) for spawning entities (3000 ticks) (2.5 minutes, down form original 5 minutes). */
+	private static final int defaultEntitySpawnTickRate = 3000;
+	/** Default minimum player distance to trigger spawns (20 blocks). */
+	private static final int defaultPlayerMinSpawnDistance = 20;
+	/** Default maximum player distance to allow spawns (256 blocks). */
+	private static final int defaultPlayerMaxSpawnDistance = 256;
 	/** Default home radius around spawn home position (16 blocks). */
 	private static final int defultHomeRadius = 16;
 	/** Default local spawn cap for entities spawned by this spawner (4). */
@@ -89,10 +89,10 @@ public class ExtendedStructureEntitySpawner {
 	private boolean shouldDisableFutureSpawn = false;
 	/** Chance (percentage) to randomly discard a spawn attempt. */
 	private int randomDiscardChance = 0;
-	/** Enables spawning inside structures or defined inside areas. */
-	private boolean enableInsideSpawning = false;
-	/** Chance (percentage) that inside spawning occurs when enabled. */
-	private int enableInsideSpawningChance = 100;
+	/** Enables spawning entities at the spawner's location. */
+	private boolean enableSpawningAtSpawner = false;
+	/** Chance (percentage) that spawning entities at the spawner. */
+	private int enableSpawningAtSpawnerChance = 100;
 	/** Whether persistence is required for spawned entities. */
 	private boolean isPersistenceRequired = true;
 	/** Whether entities should respawn upon death. */
@@ -157,8 +157,8 @@ public class ExtendedStructureEntitySpawner {
 		this.localSpawnCap = localSpawnCap;
 		this.shouldDisableFutureSpawn = shouldDisableFutureSpawn;
 		this.randomDiscardChance = randomDiscardChance;
-		this.enableInsideSpawning = enableInsideSpawning;
-		this.enableInsideSpawningChance = enableInsideSpawningChance;
+		this.enableSpawningAtSpawner = enableInsideSpawning;
+		this.enableSpawningAtSpawnerChance = enableInsideSpawningChance;
 		this.isPersistenceRequired = isPersistenceRequired;
 		this.shouldRespawnOnDeath = shouldRespawnOnDeath;
 		this.bbInflateFactor = bbInflateFactor;
@@ -419,57 +419,57 @@ public class ExtendedStructureEntitySpawner {
 	 *
 	 * @return true if random discard chance is not zero; false otherwise.
 	 */
-	public boolean shouldCheckRandomDiscardChance() {
+	public boolean hasRandomDiscardChance() {
 		return randomDiscardChance != 0;
 	}
 
 	/**
-	 * Returns whether inside spawning (spawning inside certain bounds) is enabled.
+	 * Returns whether spawning at the spawner is enabled.
 	 *
 	 * @return true if inside spawning is enabled.
 	 */
-	public boolean insideSpawning() {
-		return enableInsideSpawning;
+	public boolean shouldSpawnAtSpawner() {
+		return enableSpawningAtSpawner;
 	}
 	/**
-	 * Enables or disables inside spawning.
+	 * Enables or disables spawning at the spawner.
 	 * Marks the spawner as custom.
 	 *
-	 * @param enableInsideSpawning true to enable inside spawning.
+	 * @param enableSpawningAtSpawner true to enable.
 	 */
-	public void setInsideSpawn(boolean enableInsideSpawning) {
+	public void setSpawnAtSpawner(boolean enableSpawningAtSpawner) {
 		isCustom = true;
-		this.enableInsideSpawning = enableInsideSpawning;
+		this.enableSpawningAtSpawner = enableSpawningAtSpawner;
 	}
 	/**
-	 * Enables or disables inside spawning and sets its chance.
+	 * Enables or disables spawning at the spawner.
 	 * Marks the spawner as custom.
 	 *
-	 * @param enableInsideSpawning whether to enable inside spawning.
-	 * @param chance the chance percentage (0-100) for inside spawning attempts.
+	 * @param enableSpawningAtSpawner whether to spawner based spawning.
+	 * @param chance the chance percentage (0-100) for spawner based spawning attempts.
 	 */
-	public void setInsideSpawn(boolean enableInsideSpawning, int chance) {
+	public void setSpawnAtSpawner(boolean enableSpawningAtSpawner, int chance) {
 		isCustom = true;
-		this.enableInsideSpawning = enableInsideSpawning;
-		this.enableInsideSpawningChance = chance;
+		this.enableSpawningAtSpawner = enableSpawningAtSpawner;
+		this.enableSpawningAtSpawnerChance = chance;
 	}
 	/**
-	 * Returns the chance (0-100) for inside spawning attempts.
+	 * Returns the chance (0-100) for spawner based spawning.
 	 *
 	 * @return chance as integer percentage.
 	 */
-	public int getinsideSpawningChance() {
-		return enableInsideSpawningChance;
+	public int getSpawnerBasedSpawningChance() {
+		return enableSpawningAtSpawnerChance;
 	}
 	/**
-	 * Sets the chance (0-100) that inside spawning attempts will occur.
+	 * Sets the chance (0-100) that spawner based spawning attempts will occur.
 	 * Marks the spawner as custom.
 	 *
-	 * @param chance the chance percentage for inside spawning.
+	 * @param chance the chance percentage for spawner based spawning.
 	 */
-	public void setInsideSpawnChance(int chance) {
+	public void setSpawnerBasedSpawningChance(int chance) {
 		isCustom = true;
-		this.enableInsideSpawningChance = chance;
+		this.enableSpawningAtSpawnerChance = chance;
 	}
 	/**
 	 * Returns whether persistence is required for spawned entities.
@@ -792,15 +792,15 @@ public class ExtendedStructureEntitySpawner {
 			if(jsonobject.has("disable_for_use_in_future")) {
 				spawner.setShouldDisableFutureSpawn(jsonobject.get("disable_for_use_in_future").getAsBoolean());
 			}
-			if(jsonobject.has("inside_spawning")) {
-				spawner.setInsideSpawn(jsonobject.get("inside_spawning").getAsBoolean());
-				if(!spawner.insideSpawning()) {
-					ExtendedLog.warn("Loaded Structure Spawner with weird inside_spawning configuration, value is false by default, no need to force this! - %s", id);
+			if(jsonobject.has("fixed_spawning")) {
+				spawner.setSpawnAtSpawner(jsonobject.get("fixed_spawning").getAsBoolean());
+				if(!spawner.shouldSpawnAtSpawner()) {
+					ExtendedLog.warn("Loaded Structure Spawner with weird fixed_spawning configuration, value is false by default, no need to force this! - %s", id);
 				}
-				if(jsonobject.has("inside_spawning_chance")) {
-					spawner.setInsideSpawnChance(jsonobject.get("inside_spawning_chance").getAsInt());
-					if(spawner.getinsideSpawningChance()==100) {
-						ExtendedLog.warn("Loaded Structure Spawner with weird inside_spawning_chance configuration, value is 100 by default, no need to force this! - %s", id);
+				if(jsonobject.has("fixed_spawning_chance")) {
+					spawner.setSpawnerBasedSpawningChance(jsonobject.get("fixed_spawning_chance").getAsInt());
+					if(spawner.getSpawnerBasedSpawningChance()==100) {
+						ExtendedLog.warn("Loaded Structure Spawner with weird fixed_spawning_chance configuration, value is 100 by default, no need to force this! - %s", id);
 					}
 				}
 			}
@@ -847,10 +847,10 @@ public class ExtendedStructureEntitySpawner {
 			if(entitySpawner.getSpawnBoundaries() != ExtendedSpawnerBoundsEntry.DEFAULT) {
 				jsonobject.add("spawn_area", context.serialize(entitySpawner.spawnRegion));
 			}
-			if(entitySpawner.insideSpawning()) {
-				jsonobject.addProperty("inside_spawning", entitySpawner.insideSpawning());
-				if(entitySpawner.getinsideSpawningChance()!=100) {
-					jsonobject.addProperty("inside_spawning_chance", entitySpawner.getinsideSpawningChance());
+			if(entitySpawner.shouldSpawnAtSpawner()) {
+				jsonobject.addProperty("fixed_spawning", entitySpawner.shouldSpawnAtSpawner());
+				if(entitySpawner.getSpawnerBasedSpawningChance()!=100) {
+					jsonobject.addProperty("fixed_spawning_chance", entitySpawner.getSpawnerBasedSpawningChance());
 				}
 			}
 			if(entitySpawner.isSetHomePositionOnSpawn()) {
@@ -882,7 +882,7 @@ public class ExtendedStructureEntitySpawner {
 			if(entitySpawner.isCustom()) {
 				jsonobject.addProperty("customLoad", true);
 			}
-			if(entitySpawner.shouldCheckRandomDiscardChance()) {
+			if(entitySpawner.hasRandomDiscardChance()) {
 				jsonobject.addProperty("randomDiscardChance", entitySpawner.getRandomDiscardChance());
 			}
 			// Don't save spawnCap if single spawn type
@@ -963,11 +963,11 @@ public class ExtendedStructureEntitySpawner {
 		/**
 		 * If true, forces spawning directly at the spawner's location.
 		 */
-		private boolean enableInsideSpawning = false;
+		private boolean enableSpawningAtSpawner = false;
 		/**
 		 * Chance (0–100%) for a spawn to occur at the exact spawner position.
 		 */
-		private int enableInsideSpawningChance = 100;
+		private int enableSpawningAtSpawnerChance = 100;
 		/**
 		 * If true, entities spawned are marked as persistent and won't despawn.
 		 */
@@ -1023,8 +1023,8 @@ public class ExtendedStructureEntitySpawner {
 			this.localSpawnCap = localSpawnCap;
 			this.shouldDisableFutureSpawn = shouldDisableFutureSpawn;
 			this.randomDiscardChance = randomDiscardChance;
-			this.enableInsideSpawning = enableInsideSpawning;
-			this.enableInsideSpawningChance = enableInsideSpawningChance;
+			this.enableSpawningAtSpawner = enableInsideSpawning;
+			this.enableSpawningAtSpawnerChance = enableInsideSpawningChance;
 			this.isPersistenceRequired = isPersistenceRequired;
 			this.shouldRespawnOnDeath = shouldRespawnOnDeath;
 			this.bbInflateFactor = bbInflateFactor;
@@ -1088,7 +1088,7 @@ public class ExtendedStructureEntitySpawner {
 		 * @param ticks Delay between spawn attempts in ticks.
 		 * @return This builder instance.
 		 */
-		public ExtendedStructureEntitySpawner.Builder setEntitySpawnTickRate(int ticks) {
+		public ExtendedStructureEntitySpawner.Builder setEntitySpawnRateTick(int ticks) {
 			this.entitySpawnTickRate = ticks;
 			return this;
 		}
@@ -1099,7 +1099,7 @@ public class ExtendedStructureEntitySpawner {
 		 * @param seconds Delay between spawn attempts in seconds.
 		 * @return This builder instance.
 		 */
-		public ExtendedStructureEntitySpawner.Builder setEntitySpawnSeconds(int seconds) {
+		public ExtendedStructureEntitySpawner.Builder setEntitySpawnRateSeconds(int seconds) {
 			this.entitySpawnTickRate = seconds * 20;
 			return this;
 		}
@@ -1110,7 +1110,7 @@ public class ExtendedStructureEntitySpawner {
 		 * @param minutes Delay between spawn attempts in minutes.
 		 * @return This builder instance.
 		 */
-		public ExtendedStructureEntitySpawner.Builder setEntitySpawnMinutes(int minutes) {
+		public ExtendedStructureEntitySpawner.Builder setEntitySpawnRateMinutes(int minutes) {
 			this.entitySpawnTickRate = minutes * 60 * 20;
 			return this;
 		}
@@ -1163,9 +1163,9 @@ public class ExtendedStructureEntitySpawner {
 		 *
 		 * @return This builder instance.
 		 */
-		public ExtendedStructureEntitySpawner.Builder enableNonRandomSpawning() {
-			this.enableInsideSpawning = true;
-			this.enableInsideSpawningChance = 100;
+		public ExtendedStructureEntitySpawner.Builder enableSpawningAtSpawner() {
+			this.enableSpawningAtSpawner = true;
+			this.enableSpawningAtSpawnerChance = 100;
 			return this;
 		}
 
@@ -1175,9 +1175,9 @@ public class ExtendedStructureEntitySpawner {
 		 * @param chance Chance from 0 to 100.
 		 * @return This builder instance.
 		 */
-		public ExtendedStructureEntitySpawner.Builder enableNonRandomSpawning(int chance) {
-			this.enableInsideSpawning = true;
-			this.enableInsideSpawningChance = chance;
+		public ExtendedStructureEntitySpawner.Builder enableSpawningAtSpawner(int chance) {
+			this.enableSpawningAtSpawner = true;
+			this.enableSpawningAtSpawnerChance = chance;
 			return this;
 		}
 
@@ -1230,7 +1230,7 @@ public class ExtendedStructureEntitySpawner {
 		public ExtendedStructureEntitySpawner build(ResourceLocation id, boolean isCustom) {
 			ExtendedStructureEntitySpawner spawner = new ExtendedStructureEntitySpawner(id, entries, spawnType, setHomePositionOnSpawn, setHomeRandom, homeRadius,
 				entitySpawnTickRate, playerMinSpawnDistance, playerMaxSpawnDistance, checkBoundaries, spawnRegion, poolRolls, localSpawnCap, shouldDisableFutureSpawn,
-				randomDiscardChance, enableInsideSpawning, enableInsideSpawningChance, isPersistenceRequired, shouldRespawnOnDeath, bbInflateFactor);
+				randomDiscardChance, enableSpawningAtSpawner, enableSpawningAtSpawnerChance, isPersistenceRequired, shouldRespawnOnDeath, bbInflateFactor);
 			spawner.isCustom = isCustom;
 			return spawner;
 		}

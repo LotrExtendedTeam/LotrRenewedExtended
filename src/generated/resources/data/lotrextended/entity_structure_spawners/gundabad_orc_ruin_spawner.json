@@ -1,10 +1,10 @@
 {
   "id": "lotrextended:gundabad_orc_ruin_spawner",
   "spawner_type": "persisted_use_spawner",
-  "inside_spawning": true,
+  "fixed_spawning": true,
   "setHomeOnSpawn": true,
   "homeRadius": 10,
-  "persistenceRequired": false,
+  "persistenceRequired": true,
   "entitySpawnTickRate": 24000,
   "spawnCap": 4,
   "pools": [
