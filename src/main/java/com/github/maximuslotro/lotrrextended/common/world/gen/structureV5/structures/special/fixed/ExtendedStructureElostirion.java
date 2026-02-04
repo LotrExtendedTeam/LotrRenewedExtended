@@ -5,11 +5,14 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.Extend
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.SinglePoolConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.SinglePoolStructure;
 
+import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.feature.structure.Structure;
 
 /**
  * {@link ExtendedStructureElostirion} is a custom single-pool structure that generates the tower of Elostirion in a certain location
@@ -25,7 +28,34 @@ public class ExtendedStructureElostirion extends SinglePoolStructure {
 	}
 
 	@Override
+	public IStartFactory<SinglePoolConfig> getStructureStartFactory() {
+		return ExtendedStructureElostirion.Start::new;
+	}
+
+	@Override
 	protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, SinglePoolConfig featureConfig) {
-		return chunkX == -716 && chunkZ == 138 && ExtendedServerConfig.canSpawnStructure(ExtendedServerConfig.enableFixedStructureTowerHills);
+		return chunkX == -796 && chunkZ == 102 && ExtendedServerConfig.canSpawnStructure(ExtendedServerConfig.enableFixedStructureTowerHills);
+	}
+
+	public static class Start extends SinglePoolStructure.Start {
+		/**
+         * Constructs a new {@link Start} instance for {@link SinglePoolStructure}.
+         *
+         * @param structureIn      The structure instance.
+         * @param chunkX           The chunk X coordinate.
+         * @param chunkZ           The chunk Z coordinate.
+         * @param mutableBoundingBox The mutable bounding box for structure placement.
+         * @param referenceIn      The structure reference.
+         * @param seedIn           The world seed used for placement.
+         */
+		public Start(Structure<SinglePoolConfig> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
+			super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
+		}
+		
+		@Override
+		public Rotation setRotation() {
+			return Rotation.CLOCKWISE_180;
+		}
+
 	}
 }

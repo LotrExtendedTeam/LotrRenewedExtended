@@ -48,8 +48,8 @@ public class ExtendedStructureEntitySpawnerEntry extends WeightedRandom.Item {
 		return spawns;
 	}
 
-	public List<String> getAllEntities(){
-		return entityProvider.getAllPossableEntities().stream().map(EntityType::getRegistryName).map(ResourceLocation::toString).collect(Collectors.toList());
+	public List<ResourceLocation> getAllEntities(){
+		return entityProvider.getAllPossableEntities().stream().map(EntityType::getRegistryName).collect(Collectors.toList());
 	}
 
 	public ExtendedStructureEntityTypeInterface getSpawnerForTypeArguments() {

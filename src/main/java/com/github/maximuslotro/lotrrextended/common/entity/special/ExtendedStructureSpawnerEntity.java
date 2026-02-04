@@ -56,7 +56,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.Heightmap.Type;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -127,16 +126,16 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 
 	@SuppressWarnings("deprecation")
 	private boolean trySpawningEntities(ServerWorld world) {
-		// Check if spawner bounds exist
+		// Check if spawner bounds exist (fixes crashes we encountered early on ..oops)
 		if(!world.hasChunksAt((int)getCMinBlockPos().x(), (int)getCMinBlockPos().y(), (int)getCMinBlockPos().z(), 
 			(int)getCMaxBlockPos().x(), (int)getCMaxBlockPos().y(), (int)getCMaxBlockPos().z())) {
 			return false;
 		}
 		// Check if player has a proper distance from the spawner if not a single use spawner
-		if(world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMinSpawnDistance()) && !spawnerInstance.getSpawnType().isSingleSpawnType()) {
+		if(world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMinSpawnDistance()) && !spawnerInstance.getSpawnType().isSingleSpawnType() && !firstTick) {
 			//world.players().forEach(player -> player.sendMessage(new StringTextComponent("Player to close"), Util.NIL_UUID));
 			return false;
-		} else if (!world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMaxSpawnDistance())) {
+		} else if (!world.hasNearbyAlivePlayer(getX(), getY(), getZ(), spawnerInstance.getPlayerMaxSpawnDistance()) && !firstTick) {
 			//world.players().forEach(player -> player.sendMessage(new StringTextComponent("Player to far away"), Util.NIL_UUID));
 			return false;
 		}
@@ -144,15 +143,14 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		int nearbyEntitySpawnCount = 0;
 		if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
 			//System.out.println("Running Area Checks");
-			AxisAlignedBB checkBox = new AxisAlignedBB(getCMinBlockPos().x(), getCMinBlockPos().y(), getCMinBlockPos().z(), 
-				getCMaxBlockPos().x(), getCMaxBlockPos().y(), getCMaxBlockPos().z());
+			AxisAlignedBB checkBox = new AxisAlignedBB(getCMinBlockPos().x(), getCMinBlockPos().y(), getCMinBlockPos().z(), getCMaxBlockPos().x(), getCMaxBlockPos().y(), getCMaxBlockPos().z());
 			Predicate<LivingEntity> pred = (entity) -> ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())
-				.contains(entity.getType().getRegistryName().toString());
+				.contains(entity.getType().getRegistryName());
 			nearbyEntitySpawnCount = world.getEntitiesOfClass(LivingEntity.class, checkBox, pred).size();
 		}
 		//System.out.println("Successfully Ran Area Checks: "+nearbyEntitySpawnCount);
 		for(int roll = 0; roll < spawnerInstance.getPoolRolls(); roll++) {
-			if(spawnerInstance.shouldCheckRandomDiscardChance() && random.nextInt(100)+1 <= spawnerInstance.getRandomDiscardChance()) {
+			if(spawnerInstance.hasRandomDiscardChance() && random.nextInt(100)+1 <= spawnerInstance.getRandomDiscardChance()) {
 				continue;
 			}
 			// Try spawning with 16 re-roles in invalid spawn found
@@ -164,14 +162,16 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 					double y;
 					double z;
 					// Set spawn cords based upon spawner type
-					if(spawnerInstance.getSpawnType().isShouldCheckBoundries() && !shouldSpawnInside()) {
+					if(spawnerInstance.getSpawnType().isShouldCheckBoundries() && !shouldSpawnAtSpawner()) {
 						x = getX() + MathHelper.nextInt(random, -spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().horizontalBounds);
 						z = getZ() + MathHelper.nextInt(random, -spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().horizontalBounds);
-						y = world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, (int)x, (int)z);
-						if(!spawnerInstance.getSpawnBoundaries().isInYRange(y, getY())) {
-							//System.out.println("Failed Y bounds check");
-							continue; // Try spawning again
-						}
+						y = getY() + MathHelper.nextInt(random, spawnerInstance.getSpawnBoundaries().lowerYvalue, spawnerInstance.getSpawnBoundaries().topYvalue);
+						// Replaced with above random check, for when spawning needs to happen but can't because inside
+						//y = world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, (int)x, (int)z);
+						//if(!spawnerInstance.getSpawnBoundaries().isInYRange(y, getY())) {
+						//	//System.out.println("Failed Y bounds check");
+						//	continue; // Try spawning again
+						//}
 					}else {
 						x = getX();
 						y = getY();
@@ -182,7 +182,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 					// Check if spawn position is valid for boundary check spawns, or when inside spawning instead of bound spawning
 					if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
 						// Add check for inside spawning in a bounds check spawn type
-						if(spawnerInstance.insideSpawning()) {
+						if(spawnerInstance.shouldSpawnAtSpawner()) {
 							BlockState potentialFloorBlock1 = world.getBlockState(footPos);
 							if(!Block.isFaceFull(potentialFloorBlock1.getCollisionShape(world, footPos, ISelectionContext.empty()), Direction.UP) || !potentialFloorBlock1.getMaterial().isSolid()) {
 								BlockState potentialFloorBlock2 = world.getBlockState(footPos.below());
@@ -214,8 +214,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							}
 						} else {
 							BlockState floorBlock = world.getBlockState(new BlockPos(x, y -1, z));
-							if(!Block.isFaceFull(floorBlock.getCollisionShape(world, new BlockPos(x, y -1, z), ISelectionContext.empty()), Direction.UP)
-								|| !floorBlock.getMaterial().isSolid()) {
+							if(!Block.isFaceFull(floorBlock.getCollisionShape(world, new BlockPos(x, y -1, z), ISelectionContext.empty()), Direction.UP) || !floorBlock.getMaterial().isSolid()) {
 								//System.out.println("Failed spawn check fullface+solid");
 								continue; // Try spawning again
 							}
@@ -235,7 +234,8 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							Entity entityMale = generatedSpawn.create(world);
 							Entity entityFemale = generatedSpawn.create(world);
 							if(!(entityMale instanceof NPCEntity)||!(entityFemale instanceof NPCEntity)) {
-
+								ExtendedLog.error("Critical spawning error! Spawn family pool %s contains non NPCEntity", spawnerInstance.getId().toString());
+								return false;
 							}
 							NPCEntity entityMaleNpc = (NPCEntity) entityMale;
 							NPCEntity entityFemaleNpc = (NPCEntity) entityFemale;
@@ -354,8 +354,8 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		return true;
 	}
 
-	private boolean shouldSpawnInside() {
-		return spawnerInstance.insideSpawning() && (this.random.nextInt(100)+1)<=spawnerInstance.getinsideSpawningChance();
+	private boolean shouldSpawnAtSpawner() {
+		return spawnerInstance.shouldSpawnAtSpawner() && (this.random.nextInt(100)+1)<=spawnerInstance.getSpawnerBasedSpawningChance();
 	}
 
 	private void setSpawnerFromResourceLocation() {
@@ -408,10 +408,10 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	public ActionResultType interact(PlayerEntity pPlayer, Hand pHand) {
 		if(!pPlayer.level.isClientSide() && pPlayer.isCreative()) {
 			if(pPlayer.isShiftKeyDown() && pPlayer.getDirection().getAxis()!=Axis.Y) {
-				 this.moveTo(this.position().x+ (pPlayer.getDirection().getNormal().getX()*0.5f),
-					 this.position().y+ (pPlayer.getDirection().getNormal().getY()*0.5f),
-					 this.position().z+ (pPlayer.getDirection().getNormal().getZ()*0.5f));
-				 reCalculateBounds();
+				this.moveTo(this.position().x+ (pPlayer.getDirection().getNormal().getX()*0.5f),
+					this.position().y+ (pPlayer.getDirection().getNormal().getY()*0.5f),
+					this.position().z+ (pPlayer.getDirection().getNormal().getZ()*0.5f));
+				reCalculateBounds();
 			}else {
 				pPlayer.sendMessage(new StringTextComponent("Spawner Raw Type: ").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(spawnerType!=null ? spawnerType.getPath() : "Unset").withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
@@ -426,15 +426,15 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 					.append(new StringTextComponent(", Spawn TickRate: ").withStyle(TextFormatting.GREEN))
 					.append(new StringTextComponent(Integer.toString(spawnerInstance.getEntitySpawnTickRate())).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
 				pPlayer.sendMessage(new StringTextComponent("Inside Spawning: ").withStyle(TextFormatting.GREEN)
-					.append(new StringTextComponent(Boolean.toString(spawnerInstance.insideSpawning())).withStyle(TextFormatting.WHITE))
+					.append(new StringTextComponent(Boolean.toString(spawnerInstance.shouldSpawnAtSpawner())).withStyle(TextFormatting.WHITE))
 					.append(new StringTextComponent(", Inside Chance: ").withStyle(TextFormatting.GREEN))
-					.append(new StringTextComponent(Integer.toString(spawnerInstance.getinsideSpawningChance())).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
+					.append(new StringTextComponent(Integer.toString(spawnerInstance.getSpawnerBasedSpawningChance())).withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
 				String str = "";
-				for(String entity : ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())) {
+				for(ResourceLocation entity : ExtendedStructureEntitySpawnManager.INSTANCE.getEntities(spawnerInstance.getId().toString(), spawnerInstance.getEntries())) {
 					if(str.isEmpty()) {
-						str = entity;
+						str = entity.toString();
 					}else {
-						str = str+ ", "+entity;
+						str = str+ ", "+entity.toString();
 					}
 				}
 				pPlayer.sendMessage(new StringTextComponent("Pool Entities: ").withStyle(TextFormatting.GREEN)

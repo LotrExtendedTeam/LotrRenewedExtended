@@ -7,7 +7,9 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5;
  */
 public enum ExtendedStructureType {
 	/** Ranger-themed structures. */
-	RANGER, 
+	RANGER,
+	/** Ranger-themed structures. */
+	RANGER_OPTIONAL_TOWER_HILLS,
 	/** Structures associated with Gundabad Orcs. */
 	GUNDABAD_ORC, 
 	/** Hobbit-themed structures. */

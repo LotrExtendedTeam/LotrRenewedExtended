@@ -1,7 +1,7 @@
 {
   "id": "lotrextended:blue_mountains_elf_trader_spawner",
   "spawner_type": "persisted_use_spawner",
-  "inside_spawning": true,
+  "fixed_spawning": true,
   "setHomeOnSpawn": true,
   "homeRadius": 5,
   "persistenceRequired": false,

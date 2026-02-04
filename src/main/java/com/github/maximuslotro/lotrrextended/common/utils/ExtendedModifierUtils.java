@@ -16,6 +16,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListNBT;
@@ -659,14 +660,20 @@ public class ExtendedModifierUtils {
 	 *
 	 * @param enchantment the vanilla enchantment to map
 	 * @param shouldFloat if true, allows returning float-based modifiers for tools
+	 * @param testCase Used to validate combined enchantments
 	 * @return the corresponding {@link ExtendedModifierType}, or UNKNOWN if unmapped
 	 */
-	public static ExtendedModifierType vanillaEnchantToModifier(Enchantment enchantment, boolean shouldFloat) {
+	public static ExtendedModifierType vanillaEnchantToModifier(Enchantment enchantment, boolean shouldFloat, ItemStack testCase) {
 		if (enchantment == Enchantments.MOB_LOOTING || enchantment == Enchantments.BLOCK_FORTUNE) {
 			return ExtendedModifierType.LOOTING;
 		} else if (enchantment == Enchantments.KNOCKBACK) {
 			return ExtendedModifierType.MEELE_KNOCKBACK;
-		} else if (enchantment == Enchantments.FIRE_ASPECT || enchantment == Enchantments.FLAMING_ARROWS) {
+		} else if (enchantment == Enchantments.FLAMING_ARROWS) {
+			return ExtendedModifierType.INFERNAL;
+		} else if (enchantment == Enchantments.FIRE_ASPECT) {
+			if(!testCase.isEmpty() && !(testCase.getItem() instanceof SwordItem)) {
+				return ExtendedModifierType.UNKNOWN;
+			}
 			return ExtendedModifierType.INFERNAL;
 		} else if (enchantment == Enchantments.SILK_TOUCH) {
 			return ExtendedModifierType.TOOL_SILK;
@@ -728,7 +735,7 @@ public class ExtendedModifierUtils {
 					break;
 				}
 			}
-			ExtendedModifier modifier = ExtendedModifierUtils.getModifierByTypeSafe(pStack, ExtendedModifierUtils.vanillaEnchantToModifier(pEnchantment, true));
+			ExtendedModifier modifier = ExtendedModifierUtils.getModifierByTypeSafe(pStack, ExtendedModifierUtils.vanillaEnchantToModifier(pEnchantment, true, pStack));
 			if(!modifier.isUnknown()) {
 				output += modifier.getModifierEffect();
 			}

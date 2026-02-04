@@ -61,11 +61,11 @@ public class ExtendedStructuresV5 {
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_TAVERN_LARGE = STRUCTURE_REGISTRY.register("hobbit_tavern_large", () -> new ExtendedStructureCheckAreaChunk(ExtendedStructureType.HOBBIT));
 	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_WINDMILL = STRUCTURE_REGISTRY.register("hobbit_windmill", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_CAMP = STRUCTURE_REGISTRY.register("ranger_camp", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
+	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_CAMP = STRUCTURE_REGISTRY.register("ranger_camp", () -> new SinglePoolStructure(ExtendedStructureType.RANGER_OPTIONAL_TOWER_HILLS));
 	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_ENCAMPMENT = STRUCTURE_REGISTRY.register("ranger_encampment", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
 	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_FORT = STRUCTURE_REGISTRY.register("ranger_fort", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
 	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_hideout", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
-	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
+	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new SinglePoolStructure(ExtendedStructureType.RANGER_OPTIONAL_TOWER_HILLS));
 	public static final RegistryObject<Structure<WeightedStructureConfig>> RANGER_HOUSE_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_house_hideout", () -> new WeightedPoolStructure(ExtendedStructureType.RANGER));
 	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_HOUSE_RUIN = STRUCTURE_REGISTRY.register("ranger_house_ruin", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
 	public static final RegistryObject<Structure<WeightedStructureConfig>> ARNOR_RUINS = STRUCTURE_REGISTRY.register("arnor_ruins", () -> new WeightedPoolStructure(ExtendedStructureType.RUIN));
@@ -146,8 +146,8 @@ public class ExtendedStructuresV5 {
 		register(TOWER_HILLS_MIDDLE_TOWER.get(), false,1,  0,  0);
 		register(TOWER_HILLS_NORTH_TOWER.get(), false, 1,  0,  0);
 		register(TOWER_HILLS_TOWER.get(), false,       30, 20, 467385464);
-		register(LINDON_VILLAGE.get(), true,           40, 25, 584474884);
-		register(LINDON_TOWER.get(), true,             60, 45, 848856948);
+		register(LINDON_VILLAGE.get(), true,           70, 55, 584474884);
+		register(LINDON_TOWER.get(), true,             75, 50, 848856948);
 	}
 
 	/**
