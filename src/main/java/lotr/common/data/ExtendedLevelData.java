@@ -1,12 +1,7 @@
 package lotr.common.data;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
@@ -60,6 +55,13 @@ public class ExtendedLevelData {
 
 	private Map<UUID, Integer> invasionEnemiesLeft = new HashMap<>();
 
+	/**
+	 * This variable stores a map of invasion UUIDs to players who have contributed to the invasion's UUIDs along with
+	 * a timer in ticks of how much longer their entry will stay. This timer defaults to 6000 ticks (5m) meaning when
+	 * an invasion is defeated only players who have contributed in the past 5 minutes get the achievement
+	 */
+	private Map<UUID, Map<UUID, Integer>> recentPlayersByInvasion = new HashMap<>();
+
 	/** -1 if the player is marked to be cursed
 	 *  -2 if the player was cursed
 	 *  -3 if the player left the barrow downs after having entered the first time
@@ -89,6 +91,7 @@ public class ExtendedLevelData {
 				saveSecondsInBarrows(levelData);
 				saveTolkienTalkedTo(levelData);
 				saveInvasionEnemiesLeft(levelData);
+				saveRecentInvasionPlayersToNBT(levelData);
 
 				SaveUtil.saveNBTToFile(lotrDataFile, levelData);
 				this.needsSave = false;
@@ -111,6 +114,7 @@ public class ExtendedLevelData {
 			loadSecondsInBarrows(levelData);
 			loadTolkienTalkedTo(levelData);
 			loadInvasionEnemiesLeft(levelData);
+			loadRecentInvasionPlayersToNBT(levelData);
 
 			this.needsLoad = false;
 			this.needsSave = true;
@@ -208,6 +212,62 @@ public class ExtendedLevelData {
 				if (secondsInBarrows.get(playerUUID) == -2)
 					secondsInBarrows.put(playerUUID, -3);
 			}
+		}
+	}
+
+	private void saveRecentInvasionPlayersToNBT(CompoundNBT root) {
+		CompoundNBT nbt = new CompoundNBT();
+
+		for (Map.Entry<UUID, Map<UUID, Integer>> invasionEntry : recentPlayersByInvasion.entrySet()) {
+			UUID invasionId = invasionEntry.getKey();
+			Map<UUID, Integer> players = invasionEntry.getValue();
+
+			CompoundNBT playersTag = new CompoundNBT();
+
+			for (Map.Entry<UUID, Integer> playerEntry : players.entrySet()) {
+				UUID playerId = playerEntry.getKey();
+				int ticksRemaining = playerEntry.getValue();
+
+				playersTag.putInt(playerId.toString(), ticksRemaining);
+			}
+
+			nbt.put(invasionId.toString(), playersTag);
+		}
+
+		root.put("invasion_players", nbt);
+	}
+
+	private void loadRecentInvasionPlayersToNBT(CompoundNBT root) {
+		if (root.contains("invasion_players")) {
+			CompoundNBT nbt = root.getCompound("invasion_players");
+
+			for (String invasionKey : nbt.getAllKeys()) {
+				UUID invasionId;
+
+				try {
+					invasionId = UUID.fromString(invasionKey);
+				} catch (IllegalArgumentException e) {
+					// skip and log any invalid UUIDs
+					LOTRLog.warn("invasion_players tag in EXTENDED.DAT contained invalid UUID: " + invasionKey);
+					continue;
+				}
+
+				CompoundNBT playersTag = nbt.getCompound(invasionKey);
+				Map<UUID, Integer> players = new HashMap<>();
+
+				for (String playerKey : playersTag.getAllKeys()) {
+					try {
+						UUID playerId = UUID.fromString(playerKey);
+						int ticksRemaining = playersTag.getInt(playerKey);
+						players.put(playerId, ticksRemaining);
+					} catch (IllegalArgumentException ignored) {
+						LOTRLog.error("Invalid UUID: ", ignored);
+					}
+				}
+
+				recentPlayersByInvasion.put(invasionId, players);
+			}
+
 		}
 	}
 
@@ -474,11 +534,27 @@ public class ExtendedLevelData {
         return invasionEnemiesLeft.getOrDefault(invasionId, -1);
 	}
 
+	/**
+	 * Never allow the enemies left to go below 0 to help prevent it from being an issue where -1 is used
+	 * @param invasionId
+	 */
 	public void decrementEnemiesLeft(UUID invasionId) {
-		int newEnemiesLeft = getEnemiesLeft(invasionId);
-		if (newEnemiesLeft > 0) newEnemiesLeft -= 1;
-		invasionEnemiesLeft.put(invasionId, newEnemiesLeft);
-		this.needsSave = true;
+		int current = getEnemiesLeft(invasionId);
+		invasionEnemiesLeft.put(invasionId, Math.max(0, current - 1));
+		needsSave = true;
+	}
+
+	public void trackRecentPlayerKill(UUID invasionId, UUID playerId) {
+		if (recentPlayersByInvasion.containsKey(invasionId)) {
+			Map<UUID, Integer> timeLeftByPlayer = recentPlayersByInvasion.get(invasionId);
+			timeLeftByPlayer.put(playerId, 5000);
+			recentPlayersByInvasion.put(invasionId, timeLeftByPlayer);
+		} else {
+			Map<UUID, Integer> timeLeftByPlayer = new HashMap<>();
+			timeLeftByPlayer.put(playerId, 5000);
+			recentPlayersByInvasion.put(invasionId, timeLeftByPlayer);
+		}
+		needsSave = true;
 	}
 
 	public boolean doesNeedSaving() {

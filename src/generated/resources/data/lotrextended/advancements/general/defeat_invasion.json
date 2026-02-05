@@ -1,0 +1,34 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "icon": {
+      "item": "minecraft:iron_sword",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.general.defeat_invasion.title"
+    },
+    "description": {
+      "color": "light_purple",
+      "translate": "advancements.lotrextended.general.defeat_invasion.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_string_trigger_defeatedinvasion": {
+      "trigger": "lotrextended:string_trigger",
+      "conditions": {
+        "triggerName": "defeatedInvasion"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_string_trigger_defeatedinvasion"
+    ]
+  ]
+}

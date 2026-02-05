@@ -167,6 +167,8 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
             // TODO: Give players rewards / spawn loot
         }
 
+        // TODO: Grant players the advancement criterion has_string_trigger_defeatedinvasion
+
         // TODO: Create explosion
 
         // unregister invasion from server data
