@@ -217,7 +217,20 @@ public class ExtendedWeaponRackLootGenerator extends ChestLootTables  {
 			.add(addEntry(LOTRItems.LINDON_HOE.get(), 1, 0.1f, 0.65f))
 			.add(addEntry(LOTRItems.LINDON_PICKAXE.get(), 1, 0.1f, 0.65f))
 			.add(addEntry(LOTRItems.LINDON_SHOVEL.get(), 1, 0.1f, 0.65f))
+			.add(addEntry(LOTRItems.LINDON_SPEAR.get(), 1, 0.1f, 0.65f))
+			.add(addEntry(LOTRItems.LINDON_SWORD.get(), 1, 0.1f, 0.65f))
 			.add(addEntry(LOTRItems.LINDON_DAGGER.get(), 1, 0.3f, 0.75f)));
+
+		make(consumer, ExtendedLootTables.LINDON_EQUIPMENT_WEAPONRACKS, makePool()
+			.add(addEntry(LOTRItems.LINDON_SPEAR.get(), 1, 0.1f, 0.65f))
+			.add(addEntry(LOTRItems.LINDON_SWORD.get(), 2, 0.1f, 0.65f))
+			.add(addEntry(ExtendedItems.LINDON_BOW.get(), 2, 0.1f, 0.65f))
+			.add(addEntry(LOTRItems.LINDON_DAGGER.get(), 1, 0.3f, 0.75f)));
+
+
+		make(consumer, ExtendedLootTables.LINDON_BOW_WEAPONRACKS, makePool()
+			.add(addEntry(ExtendedItems.LINDON_BOW.get(), 2, 0.1f, 0.65f)));
+
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight, float minDamagePercent, float maxDamagePercent){

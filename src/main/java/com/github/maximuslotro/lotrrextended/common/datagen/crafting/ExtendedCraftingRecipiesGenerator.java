@@ -1437,12 +1437,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeOreFurnaceRecipe(consumer, ExtendedItems.RUBY_ORE.get(), ExtendedItems.RUBY.get(), 0.5f);
 		makeOreFurnaceRecipe(consumer, ExtendedItems.SAPPHIRE_ORE.get(), ExtendedItems.SAPPHIRE.get(), 0.5f);
 		makeOreFurnaceRecipe(consumer, ExtendedItems.TOPAZ_ORE.get(), ExtendedItems.TOPAZ.get(), 0.5f);
-		makeBlastingRecipe(consumer, ExtendedItems.METEORITE_ORE.get(), ExtendedItems.SKY_IRON.get(), 1.0f);
+		makeBlastingRecipe(consumer, ExtendedItems.METEORITE_ORE.get(), ExtendedItems.SKY_IRON.get(), 1.0f, 2400);
 	}
 
 	private static void makeOreFurnaceRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp) {
 		makeSmeltingRecipe(pFinishedRecipeConsumer, ore, result, xp);
-		makeBlastingRecipe(pFinishedRecipeConsumer, ore, result, xp);
+		makeBlastingRecipe(pFinishedRecipeConsumer, ore, result, xp, 100);
 	}
 
 	private static void makeSmeltingRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp) {
@@ -1452,9 +1452,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(pFinishedRecipeConsumer, result.getRegistryName().getPath()+"_from_smelting");
 	}
 
-	private static void makeBlastingRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp) {
+	private static void makeBlastingRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp, int ticks) {
 		GENERATEDRECIPES.add(result.getRegistryName().getPath());
-		CookingRecipeBuilder.blasting(Ingredient.of(ore), result, xp, 100)
+		CookingRecipeBuilder.blasting(Ingredient.of(ore), result, xp, ticks)
 		.unlockedBy("has_"+ore.getRegistryName().getPath(), has(ore))
 		.save(pFinishedRecipeConsumer, result.getRegistryName().getPath()+"_from_blasting");
 	}

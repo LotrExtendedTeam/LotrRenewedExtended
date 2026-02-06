@@ -218,5 +218,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 			.addPool(ExtendedEntities.LINDON_WEAVER.get(), 2).addPool(ExtendedEntities.LINDON_SMITH.get(), 1)
 			.addPool(ExtendedEntities.LINDON_FLORIST.get(), 2)
 			.build()).setRespawnOnDeath().setRandomDiscardChance(40).setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.LINDON_MARKET);
+		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.LINDON_ELF.get(), 1).addPool(LOTREntities.LINDON_WARRIOR.get(), 4)
+			.build(), 1, 4, false, 15, 15).setBoundaries(10, -10, 15, 0, 0, 0).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.LINDON_CASTLE);
 	}
 }
