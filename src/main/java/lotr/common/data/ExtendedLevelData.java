@@ -421,6 +421,26 @@ public class ExtendedLevelData {
 		}
 	}
 
+	/**
+	 * This method should be called once a second (20 ticks) to update player invasion
+	 * times.
+	 */
+	public void reducePlayerInteractedWithInvasionTimes() {
+		for (Map<UUID, Integer> playerTimes : recentPlayersByInvasion.values()) {
+			Iterator<Map.Entry<UUID, Integer>> iterator = playerTimes.entrySet().iterator();
+			while (iterator.hasNext()) {
+				Map.Entry<UUID, Integer> entry = iterator.next();
+				int newTime = entry.getValue() - 20;
+				if (newTime > 0) {
+					entry.setValue(newTime);
+				} else {
+					iterator.remove();
+				}
+			}
+
+		}
+	}
+
 	public void checkForBanditSpawns(ServerWorld world) {
 		if(!ExtendedServerConfig.enableBanditEncounters.get()) {
 			return;

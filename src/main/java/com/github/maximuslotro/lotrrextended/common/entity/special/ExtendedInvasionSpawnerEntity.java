@@ -320,7 +320,9 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
 
     public boolean startInvasion() {
-        return startInvasion(MathHelper.nextInt(this.random, 55, 80));
+        // TODO: Restore this logic when testing is done
+        //return startInvasion(MathHelper.nextInt(this.random, 55, 80));
+        return startInvasion(2);
     }
 
     public boolean startInvasion(int invasionSize) {
