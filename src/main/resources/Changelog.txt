@@ -37,6 +37,7 @@
 * GUI
   * Fixed the banner configuration screen whitelist entries breaking when resizing the minecraft window
   * Fixed the client settings menu alignment bar slider having unreasonable bounds
+  * Potentially fixed the rare coin convert container crash
 * Hired Units
   * Added a smaller, more compact, unit health bar
   * Fixed Rivendell units not holding Rivendell bows
@@ -46,6 +47,7 @@
   * Added Eregion Shield
   * Added Lindon Shield
   * Added Sky-iron
+  * Buffed Galvorn protection (to dwarven levels, since it’s much harder to obtain now)
   * Ported Galvorn Armor
   * Ported Lindon Bows
 * Loot Tables
@@ -67,6 +69,7 @@
   * Fixed armor protection modifies being applicable to armors it it makes the protection better than mithril
   * Fixed bowstring instead of string being used for vanilla bows on anvils
   * Fixed dig speed modifiers not working
+  * Fixed infernal bows setting targets alight when damaged via melee combat
   * Ranged Knockback and Launch speed modifiers can now be applied to vanilla crossbows
 * Structures
   * Added Lindon Villages
@@ -77,6 +80,11 @@
   * Ported Generic Tower Hills Towers
   * Ported Lindon Towers
   * Removed white fur tents from Gundabad Camps
+  * Fixed entity spawners not spawning entities randomly inside structures
+  * All spawned entities are persistent now unless we purposely want them to despawn
+  * Increased the minimum spawn from player value to prevent entities appearing right next to the player
+  * Increased the maximum spawn from player value to fix entities not spawning because the player is too far away, but then finds an empty structure when getting to the structure before the next spawn time
+  * Entity spawners now force spawns on their first tick, so a structure is populated, even if a player teleports inside it, loading the spawner for the first time
 * Textures
   * Added an all new epic model for Galvorn Armor
   * Updated Dunedain banner texture to be more vibrant
