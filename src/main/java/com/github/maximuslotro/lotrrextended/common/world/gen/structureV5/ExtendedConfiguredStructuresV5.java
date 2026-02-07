@@ -82,6 +82,7 @@ public class ExtendedConfiguredStructuresV5 {
 
 	public static StructureFeature<?, ?> CONFIGURED_LINDON_VILLAGE = register(ExtendedStructuresV5.LINDON_VILLAGE.get().configured(new SinglePoolConfig("lindon/lindon_village_start")));
 	public static StructureFeature<?, ?> CONFIGURED_LINDON_TOWER = register(ExtendedStructuresV5.LINDON_TOWER.get().configured(new SinglePoolConfig("lindon/lindon_tower")));
+	public static StructureFeature<?, ?> CONFIGURED_LINDON_HALL = register(ExtendedStructuresV5.LINDON_HALL.get().configured(new SinglePoolConfig("lindon/lindon_hall")));
 
 	/**
      * Empty method intended to be called to ensure static initialization of this class
