@@ -98,6 +98,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation LINDON_ARCHIVES_CHEST = registerChest("lindon_archives");
 	public static final ResourceLocation LINDON_FOOD_CHEST = registerChest("lindon_food");
 	public static final ResourceLocation LINDON_EQUIPMENT_CHEST = registerChest("lindon_equipment");
+	public static final ResourceLocation LINDON_ARROWS_CHEST = registerChest("lindon_arrows");
 
 	// KEGS
 	public static final ResourceLocation HOBBIT_KEGS = registerKeg("hobbit");
@@ -146,6 +147,8 @@ public class ExtendedLootTables {
 	public static final ResourceLocation RIVENDELL_SMITHY_WEAPONRACKS = registerWeaponRack("rivendell_smithy");
 	
 	public static final ResourceLocation LINDON_WEAPONRACKS = registerWeaponRack("lindon");
+	public static final ResourceLocation LINDON_EQUIPMENT_WEAPONRACKS = registerWeaponRack("lindon_equipment");
+	public static final ResourceLocation LINDON_BOW_WEAPONRACKS = registerWeaponRack("lindon_bow");
 	// POTS
 	public static final ResourceLocation BLUE_MOUNTAINS_TRADER_HALL_POT = registerPot("blue_mountains_trader_hall");
 	public static final ResourceLocation RIVENDELL_POT = registerPot("rivendell");

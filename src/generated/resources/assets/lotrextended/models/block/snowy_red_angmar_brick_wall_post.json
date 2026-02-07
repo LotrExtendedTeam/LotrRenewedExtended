@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_post",
+  "textures": {
+    "wall": "lotrextended:block/snowy_red_angmar_brick_1"
+  }
+}

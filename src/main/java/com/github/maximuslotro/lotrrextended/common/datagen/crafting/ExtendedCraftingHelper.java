@@ -911,6 +911,25 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.save(consumer, lotrLoc(name+altName+"_using_moss_carpet"));
 		}
 	}
+
+	protected void makeSnowyBlockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = blockToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ShapelessRecipeBuilder.shapeless(blockToBeCrafted.get())
+			.requires(Ingredient.of(resource.get()))
+			.requires((Ingredient.of(Items.SNOWBALL)))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapelessRecipeBuilder.shapeless(blockToBeCrafted.get(), table)
+			.requires(Ingredient.of(resource.get()))
+			.requires((Ingredient.of(Items.SNOWBALL)))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+	}
 	protected void makeBeamRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		this.makePillarRecipe(consumer, blockToBeCrafted, resource, table, "lotr:beam");
 	}

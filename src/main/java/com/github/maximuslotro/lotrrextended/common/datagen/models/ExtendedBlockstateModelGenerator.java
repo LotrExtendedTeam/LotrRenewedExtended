@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -125,12 +126,16 @@ import net.minecraft.block.StairsBlock;
 import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.block.VineBlock;
 import net.minecraft.block.WallBlock;
+import net.minecraft.block.WallHeight;
 import net.minecraft.block.WallTorchBlock;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.state.Property;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.BedPart;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.state.properties.Half;
 import net.minecraft.state.properties.SlabType;
+import net.minecraft.state.properties.StairsShape;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.ResourceLocation;
@@ -467,11 +472,15 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						numberTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 3);
 						continue;
 					}
-					if(block.getKey().equals("gneiss")) {
-						genCubeTopBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrExtendedLoc("block/"+block.getKey()+"_top"));
+					if(block.getKey().contains("snowy")) {
+						numberTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 5);
 						continue;
 					}
-					if(block.getKey().equals("polished_limestone")) {
+					if(block.getKey().equals("carved_red_angmar_brick")) {
+						genCubeColumnBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrExtendedLoc("block/"+block.getKey()+"_top"));
+						continue;
+					}
+					if(block.getKey().equals("gneiss") || block.getKey().equals("polished_limestone")) {
 						genCubeTopBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrExtendedLoc("block/"+block.getKey()+"_top"));
 						continue;
 					}
@@ -724,6 +733,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/dirt"));
 							continue;
 						}
+						if(block.getKey().contains("snowy")) {
+							numberTexturedRandomSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)), 5);
+							continue;
+						}
 						if(block.getKey().equals("scorched_brick_slab")) {
 							genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/scorched_brick_1"));
 							continue;
@@ -782,6 +795,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						if(didGen) {
 							continue;
 						}
+						if(block.getKey().contains("snowy")) {
+							numberTexturedRandomStairsBlockItem((StairsBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)), 5);
+							continue;
+						}
 						genStairsBlockItem((StairsBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)));
 						continue;
 					}
@@ -802,6 +819,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						}
 						if(block.getKey().contains("bone_block_wall")) {
 							genWallBlockItem((WallBlock) block.getValue().get(), mcLoc("block/bone_block_side"));
+							continue;
+						}
+						if(block.getKey().contains("snowy")) {
+							numberTexturedRandomWallBlockItem((WallBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)), 5);
 							continue;
 						}
 						genWallBlockItem((WallBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
@@ -1932,7 +1953,9 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genWallBlockItem(WallBlock wall, ResourceLocation texture) {
 		registeredBlocks.add(wall);
-		wallBlock(wall, "lotrextended:"+wall.getRegistryName().getPath(), texture);
+		wallBlock(wall, models().wallPost("lotrextended:"+wall.getRegistryName().getPath() + "_post", texture), 
+			models().wallSide("lotrextended:"+wall.getRegistryName().getPath() + "_side", texture), 
+			models().wallSideTall("lotrextended:"+wall.getRegistryName().getPath() + "_side_tall", texture));
 		itemModels().wallInventory("lotr:" + wall.getRegistryName().getPath(), texture);
 	}
 
@@ -2151,6 +2174,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
 	}
 
+	private void genCubeColumnBlockItem(Block block, ResourceLocation side, ResourceLocation end) {
+		registeredBlocks.add(block);
+		ModelFile cubeModel = models().cubeColumn("lotrextended:"+block.getRegistryName().getPath(), side, end);
+		simpleBlock(block, cubeModel);
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(cubeModel);
+	}
+
 	private void genEndSideNonRotatableBlockItem(Block block, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
 		registeredBlocks.add(block);
 		ModelFile cubeModel = models().cubeBottomTop("lotrextended:"+block.getRegistryName().getPath(), side, bottom, top);
@@ -2253,24 +2283,135 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void numberTexturedRandomBlockItem(Block block, String location, int numVariants) {
 		registeredBlocks.add(block);
-		if(numVariants==4) {
-			ConfiguredModel variant1 = new ConfiguredModel(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_1", lotrExtendedLoc(location+"_1")));
-			ConfiguredModel variant2 = new ConfiguredModel(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_2", lotrExtendedLoc(location+"_2")));
-			ConfiguredModel variant3 = new ConfiguredModel(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_3", lotrExtendedLoc(location+"_3")));
-			ConfiguredModel variant4 = new ConfiguredModel(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_4", lotrExtendedLoc(location+"_4")));
-			getVariantBuilder(block).partialState().addModels(variant1).addModels(variant2).addModels(variant3).addModels(variant4);
-			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_1", lotrExtendedLoc(location+"_1")));
-			return;
-		}else if(numVariants==3) {
-			ConfiguredModel variant1 = new ConfiguredModel(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_1", lotrExtendedLoc(location+"_1")));
-			ConfiguredModel variant2 = new ConfiguredModel(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_2", lotrExtendedLoc(location+"_2")));
-			ConfiguredModel variant3 = new ConfiguredModel(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_3", lotrExtendedLoc(location+"_3")));
-			getVariantBuilder(block).partialState().addModels(variant1).addModels(variant2).addModels(variant3);
-			itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_1", lotrExtendedLoc(location+"_1")));
-			return;
-		}
+		ConfiguredModel[] variants = new ConfiguredModel[numVariants];
+		for (int i = 1; i <= numVariants; i++) {
+	        variants[i - 1] = new ConfiguredModel(models().cubeAll("lotrextended:" + block.getRegistryName().getPath() + "_" + i, lotrExtendedLoc(location + "_" + i)));
+	    }
+		getVariantBuilder(block).partialState().addModels(variants);
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(models().cubeAll("lotrextended:"+block.getRegistryName().getPath()+"_1", lotrExtendedLoc(location+"_1")));
 	}
 
+	private void numberTexturedRandomStairsBlockItem(StairsBlock stairs, ResourceLocation location, int numVariants) {
+		registeredBlocks.add(stairs);
+		getVariantBuilder(stairs)
+		.forAllStatesExcept(state -> {
+			Direction facing = state.getValue(StairsBlock.FACING);
+	           Half half = state.getValue(StairsBlock.HALF);
+	           StairsShape shape = state.getValue(StairsBlock.SHAPE);
+	           int yRot = (int) facing.getClockWise().toYRot(); // Stairs model is rotated 90 degrees clockwise for some reason
+	           if (shape == StairsShape.INNER_LEFT || shape == StairsShape.OUTER_LEFT) {
+	               yRot += 270; // Left facing stairs are rotated 90 degrees clockwise
+	           }
+	           if (shape != StairsShape.STRAIGHT && half == Half.TOP) {
+	               yRot += 90; // Top stairs are rotated 90 degrees clockwise
+	           }
+	           yRot %= 360;
+	           boolean uvlock = yRot != 0 || half == Half.TOP; // Don't set uvlock for states that have no rotation
+			List<ConfiguredModel> list = new ArrayList<>();
+			for (int i = 1; i <= numVariants; i++) {
+				ModelFile stairsModel = models().stairs("lotrextended:" + stairs.getRegistryName().getPath()+"_"+ i, lotrExtendedLoc(location.getPath() + "_" + i), lotrExtendedLoc(location.getPath() + "_" + i), lotrExtendedLoc(location.getPath() + "_" + i));
+				ModelFile stairsModelInner = models().stairsInner("lotrextended:" + stairs.getRegistryName().getPath()+"_inner_"+ i, lotrExtendedLoc(location.getPath() + "_" + i), lotrExtendedLoc(location.getPath() + "_" + i), lotrExtendedLoc(location.getPath() + "_" + i));
+				ModelFile stairsModelOuter = models().stairsOuter("lotrextended:" + stairs.getRegistryName().getPath()+"_outer_"+ i, lotrExtendedLoc(location.getPath() + "_" + i), lotrExtendedLoc(location.getPath() + "_" + i), lotrExtendedLoc(location.getPath() + "_" + i));
+				Collections.addAll(list, ConfiguredModel.builder()
+	                   .modelFile(shape == StairsShape.STRAIGHT ? stairsModel : shape == StairsShape.INNER_LEFT || shape == StairsShape.INNER_RIGHT ? stairsModelInner : stairsModelOuter)
+	                   .rotationX(half == Half.BOTTOM ? 0 : 180)
+	                   .rotationY(yRot)
+	                   .uvLock(uvlock)
+	                   .build());
+			}
+			return list.toArray(new ConfiguredModel[0]);
+		}, SlabBlock.WATERLOGGED);
+		itemModels().getBuilder("lotr:" + stairs.getRegistryName().getPath()).parent(models().stairs("lotrextended:" + stairs.getRegistryName().getPath()+"_1", lotrExtendedLoc(location.getPath() + "_1"), lotrExtendedLoc(location.getPath() + "_1"), lotrExtendedLoc(location.getPath() + "_1")));
+	}
+
+	private void numberTexturedRandomSlabBlockItem(SlabBlock slab, ResourceLocation location, int numVariants) {
+		registeredBlocks.add(slab);
+		getVariantBuilder(slab)
+		.forAllStatesExcept(state -> {
+			Axis axis = state.getValue(LOTRBlockStates.SLAB_AXIS);
+			SlabType type = state.getValue(SlabBlock.TYPE);
+			boolean uvlock = axis != Axis.Y;
+			List<ConfiguredModel> list = new ArrayList<>();
+			for (int i = 1; i <= numVariants; i++) {
+				ModelFile slabModel = models().slab("lotrextended:" + slab.getRegistryName().getPath()+"_"+ i, lotrExtendedLoc(location.getPath() + "_" + i), lotrExtendedLoc(location.getPath() + "_" + i), lotrExtendedLoc(location.getPath() + "_" + i));
+				ModelFile slabModelTop = models().slabTop("lotrextended:" + slab.getRegistryName().getPath()+"_top_"+ i, lotrExtendedLoc(location.getPath() + "_" + i), lotrExtendedLoc(location.getPath() + "_" + i), lotrExtendedLoc(location.getPath() + "_" + i));
+				ModelFile doubleModel = models().getExistingFile(lotrExtendedLoc(location.getPath() + "_" + i));
+				Collections.addAll(list, ConfiguredModel.builder()
+					.modelFile(type == SlabType.DOUBLE ? doubleModel : (type == SlabType.BOTTOM ? slabModel : slabModelTop))
+					.rotationX(axis == Axis.Z ? 270 : (axis == Axis.X ? 90 : 0))
+					.rotationY(axis == Axis.X ? 90 : 0)
+					.uvLock(uvlock)
+					.build());
+			}
+			return list.toArray(new ConfiguredModel[0]);
+		}, SlabBlock.WATERLOGGED);
+		itemModels().getBuilder("lotr:" + slab.getRegistryName().getPath()).parent(models().slab("lotrextended:" + slab.getRegistryName().getPath()+"_1", lotrExtendedLoc(location.getPath() + "_1"), lotrExtendedLoc(location.getPath() + "_1"), lotrExtendedLoc(location.getPath() + "_1")));
+	}
+
+	private void numberTexturedRandomWallBlockItem(WallBlock wall, ResourceLocation location, int numVariants) {
+	    registeredBlocks.add(wall);
+	    //ConfiguredModelList posts = new ConfiguredModelList(new ConfiguredModel(models().wallPost("lotrextended:" + wall.getRegistryName().getPath() + "_post_1", lotrExtendedLoc(location.getPath() + "_1"))));
+	    //ModelFile[] sides = new ModelFile[numVariants];
+	    //ModelFile[] tallSides = new ModelFile[numVariants];
+	    //for (int i = 1; i <= numVariants; i++) {
+	    //    ResourceLocation tex = lotrExtendedLoc(location.getPath() + "_" + i);
+	    //    if(numVariants!=1) {
+	    //    	posts.append(new ConfiguredModel(models().wallPost("lotrextended:" + wall.getRegistryName().getPath() + "_post_"+i, lotrExtendedLoc(location.getPath() + "_"+i))));
+	    //    }
+	    //    sides[i - 1]     = models().wallSide("lotrextended:" + wall.getRegistryName().getPath() + "_side_"+i, tex);
+	    //    tallSides[i - 1] = models().wallSideTall("lotrextended:" + wall.getRegistryName().getPath() + "_side_tall_"+i, tex);
+	    //}
+	    //MultiPartBlockStateBuilder builder = getMultipartBuilder(wall);
+	    //PartBuilder part = (builder.new PartBuilder(posts)).condition(WallBlock.UP, true);
+	    //builder.addPart(part);
+	    MultiPartBlockStateBuilder builder = getMultipartBuilder(wall)
+            .part().modelFile(models().wallPost("lotrextended:" + wall.getRegistryName().getPath() + "_post", lotrExtendedLoc(location.getPath() + "_1"))).addModel()
+                .condition(WallBlock.UP, true).end();
+	    WALL_PROPS.entrySet().stream()
+	        .filter(e -> e.getKey().getAxis().isHorizontal())
+	        .forEach(e -> {
+	            Direction dir = e.getKey();
+	            Property<WallHeight> prop = e.getValue();
+	            int rot = (((int) dir.toYRot()) + 180) % 360;
+	    	    //ConfiguredModelList sidesC = new ConfiguredModelList(new ConfiguredModel(models().wallPost("lotrextended:" + wall.getRegistryName().getPath() + "_side_1", lotrExtendedLoc(location.getPath() + "_1"))));
+	    	    //ConfiguredModelList tallSidesC = new ConfiguredModelList(new ConfiguredModel(models().wallPost("lotrextended:" + wall.getRegistryName().getPath() + "_side_tall_1", lotrExtendedLoc(location.getPath() + "_1"))));
+	    	    //for (int i = 1; i <= numVariants; i++) {
+	    	    //    ResourceLocation tex = lotrExtendedLoc(location.getPath() + "_" + i);
+	    	    //    if(numVariants!=1) {
+	    	    //    	sidesC.append(new ConfiguredModel(models().wallPost("lotrextended:" + wall.getRegistryName().getPath() + "_side_"+i, lotrExtendedLoc(location.getPath() + "_"+i)), 0, rot, true));
+	    	    //    	tallSidesC.append(new ConfiguredModel(models().wallPost("lotrextended:" + wall.getRegistryName().getPath() + "_side_tall_"+i, lotrExtendedLoc(location.getPath() + "_"+i)), 0, rot, true));
+	    	    //    }
+	    	    //}
+	    	    wallSidePart1(builder, models().wallSide("lotrextended:" + wall.getRegistryName().getPath() + "_side", lotrExtendedLoc(location.getPath() + "_1")), e, WallHeight.LOW);
+        		wallSidePart1(builder, models().wallSideTall("lotrextended:" + wall.getRegistryName().getPath() + "_side_tall", lotrExtendedLoc(location.getPath() + "_1")), e, WallHeight.TALL);
+	    	    //builder.part()
+	        	//.modelFile(model)
+	        	//	.rotationY((((int) entry.getKey().toYRot()) + 180) % 360)
+	        	//	.uvLock(true)
+	        	//	.addModel()
+	    		//.condition(entry.getValue(), height);
+	            //builder.addPart(builder.new PartBuilder(sidesC).condition(prop, WallHeight.LOW));
+	            //builder.addPart(builder.new PartBuilder(tallSidesC).condition(prop, WallHeight.TALL));
+
+	            //for (ModelFile side : sides) {
+	            //    builder.part().modelFile(side).rotationY(rot).uvLock(true).addModel().condition(prop, WallHeight.LOW);
+	            //}
+	            //for (ModelFile tall : tallSides) {
+	            //    builder.part().modelFile(tall) .rotationY(rot).uvLock(true).addModel() .condition(prop, WallHeight.TALL);
+	            //}
+	        });
+	    itemModels().wallInventory("lotr:" + wall.getRegistryName().getPath(), lotrExtendedLoc(location.getPath() + "_1"));
+	}
+
+    
+    private void wallSidePart1(MultiPartBlockStateBuilder builder, ModelFile model, Map.Entry<Direction, Property<WallHeight>> entry, WallHeight height) {
+        builder.part()
+        	.modelFile(model)
+        		.rotationY((((int) entry.getKey().toYRot()) + 180) % 360)
+        		.uvLock(true)
+        		.addModel()
+    		.condition(entry.getValue(), height);
+    }
 	private void numberTexturedBlockItem(Block block, int[] ints) {
 		registeredBlocks.add(block);
 		String name = block.getRegistryName().getPath();
