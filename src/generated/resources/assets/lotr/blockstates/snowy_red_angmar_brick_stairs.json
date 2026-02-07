@@ -1,0 +1,1109 @@
+{
+  "variants": {
+    "facing=north,half=top,shape=straight": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_1",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_2",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_3",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_4",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_5",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      }
+    ],
+    "facing=south,half=top,shape=straight": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_1",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_2",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_3",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_4",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_5",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      }
+    ],
+    "facing=west,half=top,shape=straight": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_1",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_2",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_3",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_4",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_5",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      }
+    ],
+    "facing=east,half=top,shape=straight": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_1",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_2",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_3",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_4",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_5",
+        "x": 180,
+        "uvlock": true
+      }
+    ],
+    "facing=north,half=bottom,shape=straight": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_1",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_2",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_3",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_4",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_5",
+        "y": 270,
+        "uvlock": true
+      }
+    ],
+    "facing=south,half=bottom,shape=straight": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_1",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_2",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_3",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_4",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_5",
+        "y": 90,
+        "uvlock": true
+      }
+    ],
+    "facing=west,half=bottom,shape=straight": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_1",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_2",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_3",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_4",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_5",
+        "y": 180,
+        "uvlock": true
+      }
+    ],
+    "facing=east,half=bottom,shape=straight": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_1"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_2"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_3"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_4"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_5"
+      }
+    ],
+    "facing=north,half=top,shape=inner_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      }
+    ],
+    "facing=south,half=top,shape=inner_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      }
+    ],
+    "facing=west,half=top,shape=inner_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      }
+    ],
+    "facing=east,half=top,shape=inner_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5",
+        "x": 180,
+        "uvlock": true
+      }
+    ],
+    "facing=north,half=bottom,shape=inner_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5",
+        "y": 180,
+        "uvlock": true
+      }
+    ],
+    "facing=south,half=bottom,shape=inner_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5"
+      }
+    ],
+    "facing=west,half=bottom,shape=inner_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5",
+        "y": 90,
+        "uvlock": true
+      }
+    ],
+    "facing=east,half=bottom,shape=inner_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5",
+        "y": 270,
+        "uvlock": true
+      }
+    ],
+    "facing=north,half=top,shape=inner_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5",
+        "x": 180,
+        "uvlock": true
+      }
+    ],
+    "facing=south,half=top,shape=inner_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      }
+    ],
+    "facing=west,half=top,shape=inner_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      }
+    ],
+    "facing=east,half=top,shape=inner_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      }
+    ],
+    "facing=north,half=bottom,shape=inner_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5",
+        "y": 270,
+        "uvlock": true
+      }
+    ],
+    "facing=south,half=bottom,shape=inner_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5",
+        "y": 90,
+        "uvlock": true
+      }
+    ],
+    "facing=west,half=bottom,shape=inner_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5",
+        "y": 180,
+        "uvlock": true
+      }
+    ],
+    "facing=east,half=bottom,shape=inner_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_1"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_2"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_3"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_4"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_inner_5"
+      }
+    ],
+    "facing=north,half=top,shape=outer_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      }
+    ],
+    "facing=south,half=top,shape=outer_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      }
+    ],
+    "facing=west,half=top,shape=outer_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      }
+    ],
+    "facing=east,half=top,shape=outer_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5",
+        "x": 180,
+        "uvlock": true
+      }
+    ],
+    "facing=north,half=bottom,shape=outer_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5",
+        "y": 180,
+        "uvlock": true
+      }
+    ],
+    "facing=south,half=bottom,shape=outer_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5"
+      }
+    ],
+    "facing=west,half=bottom,shape=outer_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5",
+        "y": 90,
+        "uvlock": true
+      }
+    ],
+    "facing=east,half=bottom,shape=outer_left": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5",
+        "y": 270,
+        "uvlock": true
+      }
+    ],
+    "facing=north,half=top,shape=outer_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4",
+        "x": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5",
+        "x": 180,
+        "uvlock": true
+      }
+    ],
+    "facing=south,half=top,shape=outer_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5",
+        "x": 180,
+        "y": 180,
+        "uvlock": true
+      }
+    ],
+    "facing=west,half=top,shape=outer_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5",
+        "x": 180,
+        "y": 270,
+        "uvlock": true
+      }
+    ],
+    "facing=east,half=top,shape=outer_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5",
+        "x": 180,
+        "y": 90,
+        "uvlock": true
+      }
+    ],
+    "facing=north,half=bottom,shape=outer_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4",
+        "y": 270,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5",
+        "y": 270,
+        "uvlock": true
+      }
+    ],
+    "facing=south,half=bottom,shape=outer_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4",
+        "y": 90,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5",
+        "y": 90,
+        "uvlock": true
+      }
+    ],
+    "facing=west,half=bottom,shape=outer_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4",
+        "y": 180,
+        "uvlock": true
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5",
+        "y": 180,
+        "uvlock": true
+      }
+    ],
+    "facing=east,half=bottom,shape=outer_right": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_1"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_2"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_3"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_4"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_stairs_outer_5"
+      }
+    ]
+  }
+}

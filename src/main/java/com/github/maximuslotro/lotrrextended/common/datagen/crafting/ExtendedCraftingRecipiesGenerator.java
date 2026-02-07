@@ -684,7 +684,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makePillarSlabRecipe(consumer, ExtendedBlocks.RED_RHUNIC_PILLAR,
 			ExtendedBlocks.RED_RHUNIC_PILLAR_SLAB,
 			()->LOTRBlocks.RED_ROCK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
-
 		makeCrackedBlockRecipe(consumer, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK,
 			()->ExtendedBlocks.RED_RHUNIC_BRICK.get().asItem());
 		makeStairSlabWallRecipe(consumer, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK_STAIRS,
@@ -712,6 +711,35 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.GOLD_TRIMMED_RHUNIC_BRICK_SLAB,
 			ExtendedBlocks.GOLD_TRIMMED_RHUNIC_BRICK_WALL,
 			()->ExtendedBlocks.GOLD_TRIMMED_RHUNIC_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
+		// ANGMAR
+		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.RED_ANGMAR_BRICK,
+			ExtendedBlocks.RED_ANGMAR_BRICK_STAIRS,
+			ExtendedBlocks.RED_ANGMAR_BRICK_SLAB,
+			ExtendedBlocks.RED_ANGMAR_BRICK_WALL,
+			()->Blocks.GRANITE.asItem(), LOTRRecipes.ANGMAR_CRAFTING,"");
+		makeCarvedBlockRecipe(consumer, ExtendedBlocks.CARVED_RED_ANGMAR_BRICK,
+			ExtendedBlocks.RED_ANGMAR_BRICK, ExtendedBlocks.RED_ANGMAR_BRICK_SLAB, LOTRRecipes.ANGMAR_CRAFTING);
+		makePillarSlabRecipe(consumer, ExtendedBlocks.RED_ANGMAR_PILLAR,
+			ExtendedBlocks.RED_ANGMAR_PILLAR_SLAB,
+			()->Blocks.GRANITE.asItem(), LOTRRecipes.ANGMAR_CRAFTING);
+		makeCrackedBlockRecipe(consumer, ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK,
+			()->ExtendedBlocks.RED_ANGMAR_BRICK.get().asItem());
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK_STAIRS,
+			ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK_SLAB,
+			ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK_WALL,
+			()->ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK.get().asItem(), LOTRRecipes.ANGMAR_CRAFTING);
+		makeMossyBlockRecipe(consumer, ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK,
+			()->ExtendedBlocks.RED_ANGMAR_BRICK.get().asItem(), LOTRRecipes.ANGMAR_CRAFTING);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK_STAIRS,
+			ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK_SLAB,
+			ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK_WALL,
+			()->ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
+		makeSnowyBlockRecipe(consumer, ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK,
+			()->ExtendedBlocks.RED_ANGMAR_BRICK.get().asItem(), LOTRRecipes.ANGMAR_CRAFTING);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK_STAIRS,
+			ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK_SLAB,
+			ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK_WALL,
+			()->ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
 		//GONDOR
 		makeStairRecipe(consumer, ExtendedBlocks.SMOOTH_GONDOR_ROCK_STAIRS,
 			()->LOTRBlocks.SMOOTH_GONDOR_ROCK.get().asItem(), LOTRRecipes.GONDOR_CRAFTING, "");
@@ -2032,6 +2060,21 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK_SLAB, 2);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK_STAIRS);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK, ExtendedBlocks.CRACKED_RED_RHUNIC_BRICK_WALL);
+
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.RED_ANGMAR_BRICK, ExtendedBlocks.RED_ANGMAR_BRICK_SLAB, 2);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.RED_ANGMAR_BRICK, ExtendedBlocks.RED_ANGMAR_BRICK_STAIRS);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.RED_ANGMAR_BRICK, ExtendedBlocks.RED_ANGMAR_BRICK_WALL);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.RED_ANGMAR_PILLAR, ExtendedBlocks.RED_ANGMAR_PILLAR_SLAB);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.RED_ANGMAR_BRICK, ExtendedBlocks.CARVED_RED_ANGMAR_BRICK);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK, ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK_SLAB, 2);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK, ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK_STAIRS);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK, ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK_WALL);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK, ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK_SLAB, 2);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK, ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK_STAIRS);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK, ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK_WALL);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK, ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK_SLAB, 2);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK, ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK_STAIRS);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK, ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK_WALL);
 
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_ARNOR_PILLAR, ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.MOSSY_ARNOR_PILLAR, ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB);
