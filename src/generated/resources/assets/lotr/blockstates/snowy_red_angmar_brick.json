@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_1"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_2"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_3"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_4"
+      },
+      {
+        "model": "lotrextended:block/snowy_red_angmar_brick_5"
+      }
+    ]
+  }
+}

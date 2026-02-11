@@ -6,7 +6,6 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeIte
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import lotr.common.init.LOTRMaterial;
-import lotr.common.item.LOTRArmorItem;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
@@ -92,7 +91,7 @@ public enum ExtendedModifierType {
 
 	/** General protection modifier, reducing overall damage. */
 	PROTECTION("enchant.lotrextended.armor_protect.disc", "+", 
-			item -> item instanceof ArmorItem && ((LOTRArmorItem) item).getMaterial()!=LOTRMaterial.valueOf("GALVORN").asArmor()),
+			item -> item instanceof ArmorItem && ((ArmorItem) item).getMaterial()!=LOTRMaterial.valueOf("GALVORN").asArmor()),
 
 	/** Reduces fire or lava damage. */
 	PROTECTION_FIRE("enchant.lotrextended.armor_protect_fire.disc", "+", 
@@ -100,7 +99,7 @@ public enum ExtendedModifierType {
 
 	/** Reduces damage from ranged attacks (arrows, projectiles). */
 	PROTECTION_RANGED("enchant.lotrextended.armor_protect_ranged.disc", "+", 
-			item -> item instanceof ArmorItem && ((LOTRArmorItem) item).getMaterial()!=LOTRMaterial.valueOf("GALVORN").asArmor()),
+			item -> item instanceof ArmorItem && ((ArmorItem) item).getMaterial()!=LOTRMaterial.valueOf("GALVORN").asArmor()),
 
 	/** Reduces fall damage. */
 	PROTECTION_FALLING("enchant.lotrextended.armor_protect_fall.disc", "+", 
@@ -108,7 +107,7 @@ public enum ExtendedModifierType {
 
 	/** Provides special protection for mithril armor. */
 	PROTECTION_MITHRIL("enchant.lotrextended.armor_protect_mithril.disc", "+", 
-			item -> item instanceof LOTRArmorItem && ((LOTRArmorItem) item).getMaterial()==LOTRMaterial.MITHRIL.asArmor()),
+			item -> item instanceof ArmorItem && ((ArmorItem) item).getMaterial()==LOTRMaterial.MITHRIL.asArmor()),
 
 	/** Reduces explosion or blast damage. */
 	PROTECTION_BLAST("enchant.lotrextended.armor_protect_blast.disc", "+", 

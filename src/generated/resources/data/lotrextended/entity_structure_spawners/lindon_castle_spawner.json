@@ -1,0 +1,35 @@
+{
+  "id": "lotrextended:lindon_castle_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 10,
+    "lowerYvalue": -10,
+    "horizontal_bounds": 15
+  },
+  "spawn_area": {
+    "topYvalue": 0,
+    "lowerYvalue": 0,
+    "horizontal_bounds": 0
+  },
+  "fixed_spawning": true,
+  "setHomeOnSpawn": true,
+  "homeRadius": 15,
+  "persistenceRequired": true,
+  "spawnCap": 15,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 4,
+      "entity_types": [
+        {
+          "entity_type": "lotr:lindon_elf"
+        },
+        {
+          "weight": 4,
+          "entity_type": "lotr:lindon_warrior"
+        }
+      ]
+    }
+  ]
+}

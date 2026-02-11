@@ -248,7 +248,26 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ORNATE_ROHAN_BEAM;
 	public static RegistryObject<Item> GOLDEN_ROHAN_BEAM;
 	public static RegistryObject<Item> ORNATE_GOLDEN_ROHAN_BEAM;
-
+	
+	public static RegistryObject<Item> RED_ANGMAR_BRICK;
+	public static RegistryObject<Item> RED_ANGMAR_BRICK_SLAB;
+	public static RegistryObject<Item> RED_ANGMAR_BRICK_STAIRS;
+	public static RegistryObject<Item> RED_ANGMAR_BRICK_WALL;
+	public static RegistryObject<Item> CRACKED_RED_ANGMAR_BRICK;
+	public static RegistryObject<Item> CRACKED_RED_ANGMAR_BRICK_SLAB;
+	public static RegistryObject<Item> CRACKED_RED_ANGMAR_BRICK_STAIRS;
+	public static RegistryObject<Item> CRACKED_RED_ANGMAR_BRICK_WALL;
+	public static RegistryObject<Item> MOSSY_RED_ANGMAR_BRICK;
+	public static RegistryObject<Item> MOSSY_RED_ANGMAR_BRICK_SLAB;
+	public static RegistryObject<Item> MOSSY_RED_ANGMAR_BRICK_STAIRS;
+	public static RegistryObject<Item> MOSSY_RED_ANGMAR_BRICK_WALL;
+	public static RegistryObject<Item> SNOWY_RED_ANGMAR_BRICK;
+	public static RegistryObject<Item> SNOWY_RED_ANGMAR_BRICK_SLAB;
+	public static RegistryObject<Item> SNOWY_RED_ANGMAR_BRICK_STAIRS;
+	public static RegistryObject<Item> SNOWY_RED_ANGMAR_BRICK_WALL;
+	public static RegistryObject<Item> RED_ANGMAR_PILLAR;
+	public static RegistryObject<Item> RED_ANGMAR_PILLAR_SLAB;
+	public static RegistryObject<Item> CARVED_RED_ANGMAR_BRICK;
 	// New Blocks
 //	public static RegistryObject<Item> GNEISS_ROCK;
 //	public static RegistryObject<Item> GNEISS_ROCK_SLAB;

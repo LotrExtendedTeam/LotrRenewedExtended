@@ -1,3 +1,21 @@
+(Beta 1.9.3)
+* Blocks
+  * Added Carved Red Angmar Brick
+  * Added Cracked Red Angmar Brick (slab, stairs wall)
+  * Added Mossy Red Angmar Brick (slab, stairs wall)
+  * Added Red Angmar Brick (slab, stairs wall)
+  * Added Red Angmar Pillar (pillar, slab)
+  * Added Snowy Red Angmar Brick (slab, stairs wall)
+* Modifiers
+  * Fixed interacting with armor causing the game to crash
+* Structures
+  * Added a Lindon Castle variant of Lindon Towers
+  * Fixed fur in gundabad camps disappearing
+  * Ported Lindon Halls
+* Textures
+  * Fixed Snowy Angmar Brick texture using a different color pallet than Angmar Brick
+  * Remastered High Elven (Lindon) Gate textures (Renewed Pack)
+
 (Beta 1.9.2)
 * Biomes
   * Added Gorgoroth River biome

@@ -623,6 +623,26 @@ public class MixinLOTRItems {
 		ExtendedItems.CRACKED_STONE_PILLAR = regBlockItemB(ExtendedBlocks.CRACKED_STONE_PILLAR, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CRACKED_STONE_PILLAR_SLAB = regBlockItemB(ExtendedBlocks.CRACKED_STONE_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
 
+		ExtendedItems.RED_ANGMAR_BRICK = regBlockItemB(ExtendedBlocks.RED_ANGMAR_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RED_ANGMAR_BRICK_SLAB = regBlockItemB(ExtendedBlocks.RED_ANGMAR_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RED_ANGMAR_BRICK_STAIRS = regBlockItemB(ExtendedBlocks.RED_ANGMAR_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RED_ANGMAR_BRICK_WALL = regBlockItemB(ExtendedBlocks.RED_ANGMAR_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_RED_ANGMAR_BRICK = regBlockItemB(ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_RED_ANGMAR_BRICK_SLAB = regBlockItemB(ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_RED_ANGMAR_BRICK_STAIRS = regBlockItemB(ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CRACKED_RED_ANGMAR_BRICK_WALL = regBlockItemB(ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_RED_ANGMAR_BRICK = regBlockItemB(ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_RED_ANGMAR_BRICK_SLAB = regBlockItemB(ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_RED_ANGMAR_BRICK_STAIRS = regBlockItemB(ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MOSSY_RED_ANGMAR_BRICK_WALL = regBlockItemB(ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SNOWY_RED_ANGMAR_BRICK = regBlockItemB(ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SNOWY_RED_ANGMAR_BRICK_SLAB = regBlockItemB(ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SNOWY_RED_ANGMAR_BRICK_STAIRS = regBlockItemB(ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SNOWY_RED_ANGMAR_BRICK_WALL = regBlockItemB(ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RED_ANGMAR_PILLAR = regBlockItemB(ExtendedBlocks.RED_ANGMAR_PILLAR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.RED_ANGMAR_PILLAR_SLAB = regBlockItemB(ExtendedBlocks.RED_ANGMAR_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CARVED_RED_ANGMAR_BRICK = regBlockItemB(ExtendedBlocks.CARVED_RED_ANGMAR_BRICK, LOTRItemGroups.BLOCKS);
+
 //		ExtendedItems.GNEISS_ROCK = regBlockItemB(ExtendedBlocks.GNEISS_ROCK, LOTRItemGroups.BLOCKS);
 //		ExtendedItems.GNEISS_ROCK_SLAB = regBlockItemB(ExtendedBlocks.GNEISS_ROCK_SLAB, LOTRItemGroups.BLOCKS);
 //		ExtendedItems.GNEISS_ROCK_STAIRS = regBlockItemB(ExtendedBlocks.GNEISS_ROCK_STAIRS, LOTRItemGroups.BLOCKS);

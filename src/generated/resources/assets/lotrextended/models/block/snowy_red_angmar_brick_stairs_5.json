@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "side": "lotrextended:block/snowy_red_angmar_brick_5",
+    "bottom": "lotrextended:block/snowy_red_angmar_brick_5",
+    "top": "lotrextended:block/snowy_red_angmar_brick_5"
+  }
+}

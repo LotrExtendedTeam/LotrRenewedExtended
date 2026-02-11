@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:angmar",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:granite"
+    }
+  },
+  "result": {
+    "item": "lotr:red_angmar_pillar",
+    "count": 3
+  }
+}

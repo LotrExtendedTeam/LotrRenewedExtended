@@ -26,14 +26,18 @@ public class ExtendedMissingMappings {
 
 	private static boolean hasMappingsBeenCreated = false;
 
+	public static void ensureMappingsCreated() {
+	    if (!hasMappingsBeenCreated) {
+	        createMappings();
+	    }
+	}
+
 	public static void fixBlockMappings(MissingMappings<Block> event) {
 		for(Mapping<Block> mapping : event.getAllMappings()) {
 			ResourceLocation entryLocation = mapping.key;
 			//Handle Out Mod's Stuff, or handle Stuff That We Have Registered under "lotr" or Handle stuff we messed with
 			if (entryLocation.getNamespace().equals("lotrextended") || entryLocation.getNamespace().equals("lotr")) {
-				if (!hasMappingsBeenCreated) {
-					createMappings();
-				}
+				ensureMappingsCreated();
 				if (BLOCKS.containsKey(entryLocation)) {
 					Block block = BLOCKS.get(entryLocation);
 					mapping.remap(block);
@@ -49,9 +53,7 @@ public class ExtendedMissingMappings {
 			ResourceLocation entryLocation = mapping.key;
 			//Handle Out Mod's Stuff, or handle Stuff That We Have Registered under "lotr" or Handle stuff we messed with
 			if (entryLocation.getNamespace().equals("lotrextended") || entryLocation.getNamespace().equals("lotr")) {
-				if (!hasMappingsBeenCreated) {
-					createMappings();
-				}
+				ensureMappingsCreated();
 				if (ITEMS.containsKey(entryLocation)) {
 					Item item = ITEMS.get(entryLocation);
 					mapping.remap(item);
@@ -67,9 +69,7 @@ public class ExtendedMissingMappings {
 			ResourceLocation entryLocation = mapping.key;
 			//Handle Out Mod's Stuff, or handle Stuff That We Have Registered under "lotr" or Handle stuff we messed with
 			if (entryLocation.getNamespace().equals("lotrextended") || entryLocation.getNamespace().equals("lotr")) {
-				if (!hasMappingsBeenCreated) {
-					createMappings();
-				}
+				ensureMappingsCreated();
 				if (ENTITIES.containsKey(entryLocation)) {
 					EntityType<?> entity = ENTITIES.get(entryLocation);
 					mapping.remap(entity);

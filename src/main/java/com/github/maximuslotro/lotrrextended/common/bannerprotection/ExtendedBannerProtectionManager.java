@@ -131,15 +131,15 @@ public class ExtendedBannerProtectionManager {
 					return false;
 				}
 				if(bannerInstance.isCustomProtecting()) {
-					if(!ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(offendingPlayer.getGameProfile())) {
-						if(bannerInstance.getProtectionOverrideMessage().isEmpty()) {
-							tellPlayerYSNP(new StringTextComponent("The Server"));
-						} else {
-							tellPlayerYSNP(new StringTextComponent(bannerInstance.getProtectionOverrideMessage()));
-						}
-						return true;
+					if(ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(offendingPlayer.getGameProfile()) || bannerInstance.hasDefaultPerm(queryingPermission)) {
+						return false;
 					}
-					return false;
+					if(bannerInstance.getProtectionOverrideMessage().isEmpty()) {
+						tellPlayerYSNP(new StringTextComponent("The Server"));
+					} else {
+						tellPlayerYSNP(new StringTextComponent(bannerInstance.getProtectionOverrideMessage()));
+					}
+					return true;
 				}
 				if(offendingPlayer.abilities.instabuild) {
 					return false;

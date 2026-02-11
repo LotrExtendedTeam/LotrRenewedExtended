@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedSpecialConfig;
@@ -42,18 +41,22 @@ public class MixinServerLoginNetHandler {
 	@Shadow
 	public void disconnect(ITextComponent pReason) {}
 
-	@Inject(method = "handleAcceptedLogin", at = @At(value = "INVOKE_ASSIGN",
-					target = "Lnet/minecraft/server/management/PlayerList;canPlayerLogin(Ljava/net/SocketAddress;Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/util/text/ITextComponent;"),
-			locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
-	public void handleAcceptedLogin$Extended(CallbackInfo ci, ITextComponent itextcomponent) {
-		if (itextcomponent != null || !ExtendedServerConfig.enableStaffServer.get()) return;
+	@Shadow
+	protected GameProfile createFakeProfile(GameProfile pOriginal) {return null;}
 
+	@Inject(method = "handleAcceptedLogin", at = @At(value = "HEAD"), cancellable = true)
+	public void handleAcceptedLogin$Extended(CallbackInfo ci) {
+		if (!ExtendedServerConfig.enableStaffServer.get()) {
+			return;
+		}
+		if (!this.gameProfile.isComplete()) {
+			this.gameProfile = this.createFakeProfile(this.gameProfile);
+		}
 		FMLConnectionData data = NetworkHooks.getConnectionData(this.connection);
 		if (data != null) {
 			List<String> disallowedMods = new ArrayList<>();
 			for (String mod : data.getModList()) {
 				String modId = mod.toLowerCase(Locale.ROOT);
-
 				if (ExtendedSpecialConfig.isAutoBan(modId)) {
 					String msg = ExtendedSpecialConfig.getAutoBanMessage(modId);
 					server.getPlayerList().getBans().add(new ProfileBanEntry(gameProfile, null, "AntiCheat", null, msg));
@@ -61,18 +64,17 @@ public class MixinServerLoginNetHandler {
 					ci.cancel();
 					return;
 				}
-
 				// Collect disallowed mods instead of kicking immediately
-		        if (!ExtendedSpecialConfig.isAllowed(modId)) {
-		            disallowedMods.add(modId);
-		        }
+				if (!ExtendedSpecialConfig.isAllowed(modId)) {
+					disallowedMods.add(modId);
+				}
 			}
 			// Kick once, listing all disallowed mods
-		    if (!disallowedMods.isEmpty()) {
-		        String msg = ExtendedSpecialConfig.getKickMessage(disallowedMods);
-		        disconnect(new StringTextComponent(msg));
-		        ci.cancel();
-		    }
+			if (!disallowedMods.isEmpty()) {
+				String msg = ExtendedSpecialConfig.getKickMessage(disallowedMods);
+				disconnect(new StringTextComponent(msg));
+				ci.cancel();
+			}
 		}
 	}
 }

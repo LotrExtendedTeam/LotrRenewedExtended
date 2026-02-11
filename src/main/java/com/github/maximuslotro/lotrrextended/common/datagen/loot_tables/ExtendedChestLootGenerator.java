@@ -2663,6 +2663,13 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(LOTRItems.BOOK_OF_TRUE_SILVER.get()).setWeight(1).setExactly(1))
 				.add(EItemLootEntry.lootItem(ExtendedItems.LINDON_BANNER_PATTERN.get()).setWeight(2).setExactly(1))
 				.apply(ExtendedModifierScrollAdder.chanceDefault())));
+
+		make(consumer, ExtendedLootTables.LINDON_ARROWS_CHEST, makeTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(1, 3))
+				.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(100).setRange(1, 8))
+				.add(EItemLootEntry.lootItem(ExtendedItems.LONGBOW.get()).setWeight(50).setExactly(1).standardDamageRange())
+				.add(EItemLootEntry.lootItem(ExtendedItems.LINDON_BOW.get()).setWeight(10).setExactly(1).standardDamageRange())));
 	}
 
 	public LootTable.Builder makeTable(){

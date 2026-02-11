@@ -773,6 +773,26 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_SLAB = registerB("obsidian_dwarven_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK));
 		ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_STAIRS = registerB("obsidian_dwarven_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK));
 		ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_WALL = registerB("obsidian_dwarven_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK));
+		// ANGMAR
+		ExtendedBlocks.RED_ANGMAR_BRICK = registerB("red_angmar_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_RED));
+		ExtendedBlocks.RED_ANGMAR_BRICK_SLAB = registerB("red_angmar_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.RED_ANGMAR_BRICK));
+		ExtendedBlocks.RED_ANGMAR_BRICK_STAIRS = registerB("red_angmar_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.RED_ANGMAR_BRICK));
+		ExtendedBlocks.RED_ANGMAR_BRICK_WALL = registerB("red_angmar_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.RED_ANGMAR_BRICK));
+		ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK = registerB("cracked_red_angmar_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_RED));
+		ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK_SLAB = registerB("cracked_red_angmar_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK));
+		ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK_STAIRS = registerB("cracked_red_angmar_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK));
+		ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK_WALL = registerB("cracked_red_angmar_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.CRACKED_RED_ANGMAR_BRICK));
+		ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK = registerB("mossy_red_angmar_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_RED));
+		ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK_SLAB = registerB("mossy_red_angmar_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK));
+		ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK_STAIRS = registerB("mossy_red_angmar_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK));
+		ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK_WALL = registerB("mossy_red_angmar_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.MOSSY_RED_ANGMAR_BRICK));
+		ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK = registerB("snowy_red_angmar_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_RED));
+		ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK_SLAB = registerB("snowy_red_angmar_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK));
+		ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK_STAIRS = registerB("snowy_red_angmar_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK));
+		ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK_WALL = registerB("snowy_red_angmar_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK));
+		ExtendedBlocks.RED_ANGMAR_PILLAR = registerB("red_angmar_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_RED));
+		ExtendedBlocks.RED_ANGMAR_PILLAR_SLAB = registerB("red_angmar_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.RED_ANGMAR_PILLAR));
+		ExtendedBlocks.CARVED_RED_ANGMAR_BRICK = registerB("carved_red_angmar_brick", () -> new ExtendedStoneBlock(ExtendedBlocks.RED_ANGMAR_BRICK));
 
 		//Dol Guldur
 		ExtendedBlocks.DOL_GULDUR_BRICK = registerB("dol_guldur_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_BLACK));

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:snowy_red_angmar_brick_slab"
+    ]
+  },
+  "criteria": {
+    "has_snowy_red_angmar_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:snowy_red_angmar_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:snowy_red_angmar_brick_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_snowy_red_angmar_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

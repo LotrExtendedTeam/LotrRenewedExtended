@@ -134,6 +134,7 @@ public class ExtendedSpawners {
 	public static final ResourceLocation LINDON_SMITH = register("lindon_smith_spawner");
 	public static final ResourceLocation LINDON_CAPTAIN = register("lindon_lord_spawner");
 	public static final ResourceLocation LINDON_AREA = register("lindon_area_spawner");
+	public static final ResourceLocation LINDON_CASTLE = register("lindon_castle_spawner");
 	public static final ResourceLocation LINDON_WEAVER = register("lindon_weaver_spawner");
 	public static final ResourceLocation LINDON_TOWER_HILLS_TOWER = register("lindon_tower_hills_tower_spawner");
 	public static final ResourceLocation LINDON_TOWER_HILLS = register("lindon_tower_hills_spawner");
