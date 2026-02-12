@@ -55,6 +55,7 @@ public class ExtendedTickHandlerServer {
 						levelData.incrementPlayerTimeInBarrows(world);
 						levelData.decrementPlayerBanditCooldowns(world);
 						levelData.reducePlayerInteractedWithInvasionTimes();
+						//levelData.logPlayerInvasionTimes();
 					}
 
 					// run tolkien spawns every five minutes

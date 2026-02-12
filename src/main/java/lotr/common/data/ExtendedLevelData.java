@@ -125,6 +125,16 @@ public class ExtendedLevelData {
 		}
 	}
 
+	public void logPlayerInvasionTimes() {
+		for (Map.Entry<UUID, Map<UUID, Integer>> entry : recentPlayersByInvasion.entrySet()) {
+			LOTRLog.info("INVASION UUID: " + entry.getKey());
+			for (Map.Entry<UUID, Integer> playerEntry : entry.getValue().entrySet()) {
+				LOTRLog.info("	" + playerEntry.getKey() + ": " + playerEntry.getValue());
+			}
+
+		}
+	}
+
 	public int getTimeUntilTrader() {
 		return timeUntilTrader;
 	}
@@ -426,7 +436,9 @@ public class ExtendedLevelData {
 	 * times.
 	 */
 	public void reducePlayerInteractedWithInvasionTimes() {
-		for (Map<UUID, Integer> playerTimes : recentPlayersByInvasion.values()) {
+		Iterator<Map<UUID, Integer>> playerTimesIterator = recentPlayersByInvasion.values().iterator();
+		while (playerTimesIterator.hasNext()) {
+			Map<UUID, Integer> playerTimes = playerTimesIterator.next();
 			Iterator<Map.Entry<UUID, Integer>> iterator = playerTimes.entrySet().iterator();
 			while (iterator.hasNext()) {
 				Map.Entry<UUID, Integer> entry = iterator.next();
@@ -435,9 +447,9 @@ public class ExtendedLevelData {
 					entry.setValue(newTime);
 				} else {
 					iterator.remove();
+					if (playerTimes.isEmpty()) playerTimesIterator.remove();
 				}
 			}
-
 		}
 	}
 
