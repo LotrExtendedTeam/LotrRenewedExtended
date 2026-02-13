@@ -1,12 +1,14 @@
 package com.github.maximuslotro.lotrrextended.common.entity.special;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import lotr.common.LOTRLog;
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.ExtendedLevelData;
 import lotr.common.data.LOTRLevelData;
+import lotr.common.data.LOTRPlayerData;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.fac.Faction;
 import lotr.common.fac.FactionSettingsManager;
@@ -15,6 +17,7 @@ import lotr.common.world.ExtendedInvasions;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
@@ -31,9 +34,7 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ExtendedInvasionSpawnerEntity extends Entity {
@@ -163,11 +164,29 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     }
 
     public void endInvasion(boolean completed) {
+
         if (completed) {
-            // TODO: Give players rewards / spawn loot
+            Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromKey(getFactionKey());
+            Faction invasionFaction = null;
+            if (invasion.isPresent()) {
+                ResourceLocation resLoc = ResourceLocation.of(invasion.get().getBaseFactionKey(), ':');
+                invasionFaction = FactionSettingsManager.serverInstance().getCurrentLoadedFactions().getFactionByName(resLoc);
+            }
+
+            if (!level.isClientSide && invasionFaction != null) {
+                Set<UUID> playersWhoFought = ExtendedLevelData.serverInstance().getPlayersWhoFoughtInvasion(getUUID());
+                for (UUID uuid : playersWhoFought) {
+                    PlayerEntity playerEntity = level.getPlayerByUUID(uuid);
+                    if (playerEntity == null) continue;
+
+                    LOTRPlayerData playerData = LOTRLevelData.getSidedData(playerEntity);
+                    if (playerData.getAlignmentData().getAlignment(invasionFaction) < 0.0F) {
+                        ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger((ServerPlayerEntity) playerEntity, "defeatedInvasion");
+                    }
+                }
+            }
         }
 
-        // TODO: Grant players the advancement criterion has_string_trigger_defeatedinvasion
 
         // TODO: Create explosion
 

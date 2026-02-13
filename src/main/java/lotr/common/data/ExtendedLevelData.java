@@ -2,6 +2,7 @@ package lotr.common.data;
 
 import java.io.File;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
@@ -451,6 +452,21 @@ public class ExtendedLevelData {
 				}
 			}
 		}
+	}
+
+	public Set<UUID> getPlayersWhoFoughtInvasion(UUID invasionUUID) {
+		Set<UUID> returnSet = new HashSet<>();
+
+		if (recentPlayersByInvasion.containsKey(invasionUUID)) {
+			Map<UUID, Integer> playerTimes = recentPlayersByInvasion.get(invasionUUID);
+			returnSet = playerTimes.entrySet()
+					.stream()
+					.filter(entry -> entry.getValue() > 0)
+					.map(Map.Entry::getKey)
+					.collect(Collectors.toSet());
+		}
+
+		return returnSet;
 	}
 
 	public void checkForBanditSpawns(ServerWorld world) {
