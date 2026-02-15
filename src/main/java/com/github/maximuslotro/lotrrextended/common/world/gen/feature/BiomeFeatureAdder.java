@@ -14,6 +14,8 @@ public class BiomeFeatureAdder {
 			}
 			if (event.getName().equals(LOTRBiomes.DEAD_MARSHES.getRegistryName())) {
 				ExtendedBiomeFeatures.addRemains(event.getGeneration());
+			}if (event.getName().equals(LOTRBiomes.NAN_CURUNIR.getRegistryName())) {
+				ExtendedBiomeFeatures.addOrthancWalls(event.getGeneration());
 			}
 			if(!event.getName().equals(LOTRBiomes.SEA.getRegistryName()) || !event.getName().equals(LOTRBiomes.RIVER.getRegistryName())) {
 				ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 6000);
