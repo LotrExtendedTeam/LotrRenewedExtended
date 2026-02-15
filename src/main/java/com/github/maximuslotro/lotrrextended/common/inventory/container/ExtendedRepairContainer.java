@@ -544,6 +544,7 @@ public class ExtendedRepairContainer extends Container {
 				} else {
 					this.inputSlots.setItem(2, ItemStack.EMPTY);
 				}
+				inputItem.setRepairCost(0);
 				this.inputSlots.setItem(0, inputItem);
 				this.reforgeCost.set(0);
 				this.broadcastChanges();
