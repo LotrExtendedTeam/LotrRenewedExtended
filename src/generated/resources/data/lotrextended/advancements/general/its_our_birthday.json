@@ -18,14 +18,6 @@
     "hidden": false
   },
   "criteria": {
-    "fishedsilver_ring": {
-      "trigger": "minecraft:fishing_rod_hooked",
-      "conditions": {
-        "item": {
-          "item": "lotr:silver_ring"
-        }
-      }
-    },
     "fishedgold_ring": {
       "trigger": "minecraft:fishing_rod_hooked",
       "conditions": {
@@ -45,7 +37,6 @@
   },
   "requirements": [
     [
-      "fishedsilver_ring",
       "fishedgold_ring",
       "fishedmithril_ring"
     ]

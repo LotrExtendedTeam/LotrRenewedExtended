@@ -187,7 +187,7 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 
 		Advancement fish_ring = build(true, data(Items.FISHING_ROD, "its_our_birthday", FrameType.TASK)
 				.setTitle("It's Our Birthday").setDescription("Catch a ring with a fishing rod."),
-				addFishTrigger(addFishTrigger(addFishTrigger(make(), LOTRItems.SILVER_RING.get()), LOTRItems.GOLD_RING.get()),
+				addFishTrigger(addFishTrigger(make(), LOTRItems.GOLD_RING.get()),
 						LOTRItems.MITHRIL_RING.get()).requirements(IRequirementsStrategy.OR).parent(base));
 
 		Advancement exp_fish_ring = build(false, data(Items.FISHING_ROD, "swag_catch", FrameType.CHALLENGE)
