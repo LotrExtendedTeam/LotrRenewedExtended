@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rhunic",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:snowy_red_angmar_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:snowy_red_angmar_brick_slab",
+    "count": 6
+  }
+}

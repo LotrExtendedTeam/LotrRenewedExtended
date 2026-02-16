@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "lotrextended:block/carved_red_angmar_brick",
+    "end": "lotrextended:block/carved_red_angmar_brick_top"
+  }
+}

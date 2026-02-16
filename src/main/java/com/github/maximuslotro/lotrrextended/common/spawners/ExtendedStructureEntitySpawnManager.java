@@ -35,7 +35,10 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 	private static final int PATH_SUFFIX_LENGTH = ".json".length();
 	private final String directory = "entity_structure_spawners";
 	private Map<ResourceLocation, ExtendedStructureEntitySpawner> spawners = ImmutableMap.of();
-	private HashMap<String, List<String>> cachedSpawnLists = new HashMap<>();
+	/**
+	 * A Map of spawn ids and connected lists of entity ids for each spawn id
+	 * */
+	private HashMap<String, List<ResourceLocation>> cachedSpawnLists = new HashMap<>();
 
 	// Don't allow more than one instance than {@see ExtendedStructureEntitySpawnManager#INSTANCE }
 	private ExtendedStructureEntitySpawnManager() {}
@@ -44,11 +47,11 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 		return this.spawners.getOrDefault(p_186521_1_, ExtendedStructureEntitySpawner.EMPTY);
 	}
 
-	public List<String> getEntities(String location, List<ExtendedStructureEntitySpawnerEntry> defaultEntrys){
+	public List<ResourceLocation> getEntities(String location, List<ExtendedStructureEntitySpawnerEntry> defaultEntrys){
 		if(cachedSpawnLists.containsKey(location)) {
 			return cachedSpawnLists.get(location);
 		}
-		List<String> returnList = new ArrayList<>();
+		List<ResourceLocation> returnList = new ArrayList<>();
 		for(ExtendedStructureEntitySpawnerEntry entry : defaultEntrys) {
 			entry.getAllEntities().forEach(stringEntity -> {
 				if(!returnList.contains(stringEntity)) {

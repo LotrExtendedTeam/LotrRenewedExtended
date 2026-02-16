@@ -136,7 +136,7 @@ public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> exte
 		}
 
 		// Check if structure intersects a road
-		boolean roadExistsInRange = (MapSettingsManager.serverInstance().getCurrentLoadedMap().getRoadPointCache().getRoadCentreCloseness(minX+7, minZ+7, 16) >= 0.0F);
+		boolean roadExistsInRange = (MapSettingsManager.serverInstance().getCurrentLoadedMap().getRoadPointCache().getRoadCentreCloseness(minX+7, minZ+7, 64) >= 0.0F);
 
 		if(!canSpawnNearRoad() && roadExistsInRange) {
 			return false;

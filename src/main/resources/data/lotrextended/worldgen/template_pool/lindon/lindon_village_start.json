@@ -8,7 +8,8 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:lindon/village/lindon_start_1",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -18,7 +19,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:lindon/village/lindon_start_2",
 				"processors": "minecraft:empty",
-				"ground_level_delta" : 4
+				"ground_level_delta" : 4,
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -27,7 +29,8 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:lindon/village/lindon_start_3",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -36,7 +39,8 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:lindon/village/lindon_start_4",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -46,7 +50,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:lindon/village/lindon_start_5",
 				"processors": "minecraft:empty",
-				"ground_level_delta" : 4
+				"ground_level_delta" : 4,
+				"snap_to_water_height" : true
 			}
 		}
 	]

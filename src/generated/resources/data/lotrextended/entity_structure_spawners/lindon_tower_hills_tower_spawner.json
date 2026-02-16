@@ -14,7 +14,7 @@
   "setHomeOnSpawn": true,
   "setHomeRandomly": true,
   "homeRadius": 15,
-  "persistenceRequired": false,
+  "persistenceRequired": true,
   "spawnCap": 8,
   "pools": [
     {

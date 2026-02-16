@@ -11,7 +11,7 @@
     "lowerYvalue": -2,
     "horizontal_bounds": 8
   },
-  "inside_spawning": true,
+  "fixed_spawning": true,
   "setHomeOnSpawn": true,
   "homeRadius": 15,
   "persistenceRequired": true,

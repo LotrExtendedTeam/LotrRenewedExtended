@@ -526,7 +526,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				}
 			}
 			if (pCompound.contains("defaultPerms", 7)) {  // 7 corresponds to a byte array in NBT
-				byte[] ordinalValues = pCompound.getByteArray("perms");
+				byte[] ordinalValues = pCompound.getByteArray("defaultPerms");
 				// Convert each ordinal value back to a BannerPermission enum
 				defaultPerms.clear();
 				for (byte ordinal : ordinalValues) {
@@ -589,7 +589,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 					// Get the ordinal of the current BannerPermission enum and cast it to byte
 					ordinalValues[i] = (byte) defaultPerms.get(i).ordinal();
 				}
-				// Store the byte array in the CompoundNBT with the key "perms"
+				// Store the byte array in the CompoundNBT with the key "defaultPerms"
 				pCompound.putByteArray("defaultPerms", ordinalValues);
 			}
 			if(!canProtectSelf) {

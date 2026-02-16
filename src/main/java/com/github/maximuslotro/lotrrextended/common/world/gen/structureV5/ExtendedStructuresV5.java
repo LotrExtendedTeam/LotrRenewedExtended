@@ -98,6 +98,7 @@ public class ExtendedStructuresV5 {
 
 	public static final RegistryObject<Structure<SinglePoolConfig>> LINDON_VILLAGE = STRUCTURE_REGISTRY.register("lindon_village", () -> new SinglePoolStructure(ExtendedStructureType.LINDON));
 	public static final RegistryObject<Structure<SinglePoolConfig>> LINDON_TOWER = STRUCTURE_REGISTRY.register("lindon_tower", () -> new ExtendedStructureCheckAreaChunk(ExtendedStructureType.LINDON));
+	public static final RegistryObject<Structure<SinglePoolConfig>> LINDON_HALL = STRUCTURE_REGISTRY.register("lindon_hall", () -> new SinglePoolStructure(ExtendedStructureType.LINDON));
 
 	/**
 	 * Initializes and registers all custom structures with their generation parameters.
@@ -148,6 +149,7 @@ public class ExtendedStructuresV5 {
 		register(TOWER_HILLS_TOWER.get(), false,       30, 20, 467385464);
 		register(LINDON_VILLAGE.get(), true,           70, 55, 584474884);
 		register(LINDON_TOWER.get(), true,             75, 50, 848856948);
+		register(LINDON_HALL.get(), true,              80, 65, 356254478);
 	}
 
 	/**

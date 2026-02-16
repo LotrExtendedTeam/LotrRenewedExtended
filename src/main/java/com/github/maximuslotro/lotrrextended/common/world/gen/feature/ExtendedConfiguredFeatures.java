@@ -2,9 +2,11 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.feature;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedWallsFeature.EdgeType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.placement.ExtendedCaveSurface;
 
 import lotr.common.init.ExtendedBlocks;
+import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -25,6 +27,11 @@ public class ExtendedConfiguredFeatures {
 	public static final ConfiguredFeature<NoFeatureConfig, ?> WILLOW_TREE_WATER_FEATURE = register("willow_tree_water_feature", ExtendedFeature.WILLOW_TREE_WATER_FEATURE_PRE.configured(NoFeatureConfig.INSTANCE));
 
 	public static final ConfiguredFeature<ExtendedMeteoriteFeatureConfig, ?> METEORITE_IMPACT = register("meteorite_impact", ExtendedFeature.METEORITE_PRE.configured(new ExtendedMeteoriteFeatureConfig(FeatureSpread.fixed(2), FeatureSpread.of(6, 2), 0.2f)));
+
+	public static final ConfiguredFeature<ExtendedWallsFeatureConfig, ?> RING_OF_ISENGARD = register("ring_of_isengard", ExtendedFeature.WALLS_PRE.configured(
+		new ExtendedWallsFeatureConfig(37440, 42049, 400, 100, 90, 12.0f, LOTRBlocks.NUMENOREAN_BRICK.get().defaultBlockState(),
+			LOTRBlocks.NUMENOREAN_BRICK.get().defaultBlockState(), 2, LOTRBlocks.NUMENOREAN_BRICK_WALL.get().defaultBlockState(), 1, EdgeType.OUTER
+			)));
 
 	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String configuredFeatureName, ConfiguredFeature<FC, ?> pConfiguredFeature) {
 		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(LotrExtendedMod.MODID, configuredFeatureName), pConfiguredFeature);

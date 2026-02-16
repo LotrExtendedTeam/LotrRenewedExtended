@@ -284,6 +284,7 @@ public class BiomeStructureAdder {
 			}else if(biomeName.equals(LOTRBiomes.LINDON.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_LINDON_VILLAGE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_LINDON_TOWER);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_LINDON_HALL);
 			}
 		}
 	}

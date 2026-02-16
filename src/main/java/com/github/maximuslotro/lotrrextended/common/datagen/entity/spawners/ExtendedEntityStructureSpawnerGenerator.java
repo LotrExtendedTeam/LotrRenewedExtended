@@ -56,20 +56,20 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		couple(LOTREntities.HOBBIT.get(), 12).save(pConsumer, ExtendedSpawners.HOBBIT_FAMILY_HOUSE);
 		single(ExtendedEntities.HOBBIT_BARTENDER.get()).setRespawnOnDeath().setHomeInfo(false, 16).save(pConsumer, ExtendedSpawners.HOBBIT_BARTENDER_SMALL);
 		single(ExtendedEntities.HOBBIT_BARTENDER.get()).setRespawnOnDeath().setHomeInfo(false, 32).save(pConsumer, ExtendedSpawners.HOBBIT_BARTENDER_LARGE);
-		persisted(LOTREntities.HOBBIT.get(), 2, 4, false, 10, 8).setBoundaries(4, -4, 12, 6, -2, 8).setPersistenceRequired(false).save(pConsumer, ExtendedSpawners.HOBBIT_PICNIC_TABLE);
-		persisted(LOTREntities.HOBBIT.get(), 1, 3, false, 10, 8).setBoundaries(8, -8, 12, 6, -3, 8).setPersistenceRequired(false).save(pConsumer, ExtendedSpawners.HOBBIT_PICNIC_BLANKET);
-		persisted(LOTREntities.HOBBIT.get(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 6, -2, 8).setPersistenceRequired(false).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.HOBBIT_TAVERN_SMALL);
-		persisted(LOTREntities.HOBBIT.get(), 4, 7, false, 18, 15).setBoundaries(12, -9, 20, 4, -4, 12).setPersistenceRequired(false).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.HOBBIT_TAVERN_LARGE);
+		persisted(LOTREntities.HOBBIT.get(), 2, 4, false, 10, 8).setBoundaries(4, -4, 12, 6, -2, 8).save(pConsumer, ExtendedSpawners.HOBBIT_PICNIC_TABLE);
+		persisted(LOTREntities.HOBBIT.get(), 1, 3, false, 10, 8).setBoundaries(8, -8, 12, 6, -3, 8).save(pConsumer, ExtendedSpawners.HOBBIT_PICNIC_BLANKET);
+		persisted(LOTREntities.HOBBIT.get(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 6, -2, 8).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.HOBBIT_TAVERN_SMALL);
+		persisted(LOTREntities.HOBBIT.get(), 4, 7, false, 18, 15).setBoundaries(12, -9, 20, 4, -4, 12).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.HOBBIT_TAVERN_LARGE);
 		// un-disable when sheriff hobbit is added
-		single(LOTREntities.HOBBIT.get(), 1, 1, false, 12, 1).setBoundaries(12, -9, 20, 1, -1, 2).disableForFutureSpawning().enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.HOBBIT_TAVERN_LARGE_SHERIFF);
+		single(LOTREntities.HOBBIT.get(), 1, 1, false, 12, 1).setBoundaries(12, -9, 20, 1, -1, 2).disableForFutureSpawning().enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.HOBBIT_TAVERN_LARGE_SHERIFF);
 		single(LOTREntities.HOBBIT.get()).disableForFutureSpawning().setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.HOBBIT_BILBO);
 		// RANGERS
 		single(ExtendedEntities.DUNEDAIN_RANGER.get()).setHomeInfo(false, 3).setRandomDiscardChance(60).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_SINGLE_CHANCE);
-		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 16, 4).setBoundaries(20, -12, 20, 4, -4, 8).setPersistenceRequired(false).enableNonRandomSpawning(60).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_WATCHTOWER);
-		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 18, 5).setBoundaries(12, -12, 24, 4, -4, 8).setPersistenceRequired(false).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP);
-		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 3, false, 12, 4).setBoundaries(12, -12, 16, 4, -4, 8).setPersistenceRequired(false).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_ENCAMPMENT);
+		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 16, 4).setBoundaries(20, -12, 20, 4, -4, 8).enableSpawningAtSpawner(60).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_WATCHTOWER);
+		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 4, false, 18, 5).setBoundaries(12, -12, 24, 4, -4, 8).enableSpawningAtSpawner(20).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP);
+		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 3, false, 12, 4).setBoundaries(12, -12, 16, 4, -4, 8).enableSpawningAtSpawner(20).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_ENCAMPMENT);
 		single(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_ENCAMPMENT_CAPTAIN);
-		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 1, false, 18, 2).setBoundaries(12, -12, 10, 4, -4, 6).setPersistenceRequired(false).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_HOUSE_CAMP);
+		persisted(ExtendedEntities.DUNEDAIN_RANGER.get(), 1, 1, false, 18, 2).setBoundaries(12, -12, 10, 4, -4, 6).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_HOUSE_CAMP);
 		single(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).setHomeInfo(false, 10).setRandomDiscardChance(80).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_CAPTAIN);
 		single(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.DUNEDAIN_RANGER_CAMP_CAPTAIN_PERMANENT);
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
@@ -77,10 +77,10 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		//Gundabad
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.GUNDABAD_ORC.get(), 100).addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 80)
-			.build(), 1, 4, false, 18, 5).setBoundaries(12, -12, 24, 4, -4, 8).setPersistenceRequired(false).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_ORC);
+			.build(), 1, 4, false, 18, 5).setBoundaries(12, -12, 24, 4, -4, 8).enableSpawningAtSpawner(20).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_ORC);
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.GUNDABAD_ORC.get(), 100).addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 80)
-			.build(), 1, 4, false, 10, 4).enableNonRandomSpawning().setPersistenceRequired(false).setEntitySpawnTickRate(24000).save(pConsumer, ExtendedSpawners.GUNDABAD_ORC_RUIN);
+			.build(), 1, 4, false, 10, 4).enableSpawningAtSpawner().setEntitySpawnRateMinutes(20).save(pConsumer, ExtendedSpawners.GUNDABAD_ORC_RUIN);
 		single(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get()).setHomeInfo(false, 10).setRandomDiscardChance(80).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_CAPTAIN);
 		single(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_CAPTAIN_PERMANENT);
 		single(MultiSpawnType.Builder.multi()
@@ -91,7 +91,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 			.addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 5).build()).setRandomDiscardChance(40).save(pConsumer, ExtendedSpawners.GUNDABAD_CAMP_PRISONERS);
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.GUNDABAD_ORC.get(), 100).addPool(LOTREntities.GUNDABAD_ORC_ARCHER.get(), 80)
-			.build(), 5, 7, false, 26, 20).setPersistenceRequired(false).setBoundaries(12, -12, 24, 4, -4, 20).enableNonRandomSpawning(70).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_ORC);
+			.build(), 5, 7, false, 26, 20).setBoundaries(12, -12, 24, 4, -4, 20).enableSpawningAtSpawner(70).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_ORC);
 		single(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_CAPTAIN);
 		single(ExtendedEntities.GUNDABAD_CAMP_TRADER.get()).setRespawnOnDeath().setHomeInfo(false, 5).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_TRADER);
 		single(MultiSpawnType.Builder.multi()
@@ -103,18 +103,18 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
 		.addSinglePool(EntityType.CHICKEN, 90, 1, 5).setPoolRolls(2).save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_ANIMAL);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.GUNDABAD_WARG.get(), 100).build(), 2, 3, true, 26, 8)
-		.setBoundaries(12, -12, 24, 4, -4, 20).setPersistenceRequired(false).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_WARG);
+		.setBoundaries(12, -12, 24, 4, -4, 20).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.GUNDABAD_ENCAMPMENT_WARG);
 		// Bree Hamlets
 		couple(LOTREntities.BREE_MAN.get(), 10).save(pConsumer, ExtendedSpawners.BREE_HAMLET_FAMILY);
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
 		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.BREE_HAMLET_ANIMALS);
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.BREE_GUARD.get(), 10).addPool(LOTREntities.BREE_MAN.get(), 100)
-			.build(), 1, 4, false, 25, 5).setPersistenceRequired(false).setBoundaries(12, -12, 24, 8, -4, 14).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.BREE_HAMLET_AREA);
+			.build(), 1, 4, false, 25, 5).setBoundaries(12, -12, 24, 8, -4, 14).enableSpawningAtSpawner(20).save(pConsumer, ExtendedSpawners.BREE_HAMLET_AREA);
 		single(ExtendedEntities.BREE_SHERIFF.get()).setRespawnOnDeath().setHomeInfo(false, 12).setRandomDiscardChance(20).save(pConsumer, ExtendedSpawners.BREE_HAMLET_GUARD_HOUSE_SHERIFF);
 		single(ExtendedEntities.BREE_POTTER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_HAMLET_POTTER);
 		single(ExtendedEntities.BREE_FARMER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_HAMLET_FARMER);
-		persisted(LOTREntities.BREE_GUARD.get(), 1, 4, false, 24, 5).setBoundaries(12, -12, 32, 4, -4, 16).setPersistenceRequired(false).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.BREE_HAMLET_GUARD_HOUSE);
+		persisted(LOTREntities.BREE_GUARD.get(), 1, 4, false, 24, 5).setBoundaries(12, -12, 32, 4, -4, 16).enableSpawningAtSpawner(20).save(pConsumer, ExtendedSpawners.BREE_HAMLET_GUARD_HOUSE);
 		single(LOTREntities.BREE_MAN.get()).setRespawnOnDeath().setHomeInfo(false, 8).disableForFutureSpawning().save(pConsumer, ExtendedSpawners.BREE_HAMLET_MILLER);
 		// Bree Villages
 		couple(LOTREntities.BREE_MAN.get(), 10).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_FAMILY_SPAWNER);
@@ -122,13 +122,13 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.BREE_VILLAGE_ANIMALS);
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.BREE_GUARD.get(), 20).addPool(LOTREntities.BREE_MAN.get(), 100).addPool(LOTREntities.BREE_HOBBIT.get(), 20)
-			.build(), 1, 4, false, 25, 5).setBoundaries(12, -12, 32, 8, -4, 18).setPersistenceRequired(false).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_AREA_SPAWNER);
+			.build(), 1, 4, false, 25, 5).setBoundaries(12, -12, 32, 8, -4, 18).enableSpawningAtSpawner(20).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_AREA_SPAWNER);
 		single(ExtendedEntities.BREE_SHERIFF.get()).setRespawnOnDeath().setHomeInfo(false, 12).setRandomDiscardChance(20).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_GUARD_HOUSE_SHERIFF);
 		single(MultiSpawnType.Builder.multi()
 			.addPool(ExtendedEntities.BREE_POTTER.get(), 1).addPool(ExtendedEntities.BREE_HOBBIT_POTTER.get(), 1)
 			.build()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_POTTER);
 		single(ExtendedEntities.BREE_FARMER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_FARMER);
-		persisted(LOTREntities.BREE_GUARD.get(), 1, 4, false, 24, 5).setBoundaries(12, -12, 32, 4, -4, 16).setPersistenceRequired(false).enableNonRandomSpawning(20).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_GUARD_HOUSE);
+		persisted(LOTREntities.BREE_GUARD.get(), 1, 4, false, 24, 5).setBoundaries(12, -12, 32, 4, -4, 16).enableSpawningAtSpawner(20).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_GUARD_HOUSE);
 		single(ExtendedEntities.BREE_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_SMITH);
 		single(MultiSpawnType.Builder.multi()
 			.addPool(ExtendedEntities.BREE_BAKER.get(), 1).addPool(ExtendedEntities.BREE_HOBBIT_BAKER.get(), 1)
@@ -161,7 +161,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 			.build()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_STALL);
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.BREE_MAN.get(), 1).addPool(LOTREntities.BREE_HOBBIT.get(), 1)
-			.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 10, -2, 8).setPersistenceRequired(false).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.BREE_VILLAGE_INN);
+			.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 10, -2, 8).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.BREE_VILLAGE_INN);
 		single(ExtendedEntities.BREE_STABLEMASTER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_STABLEMASTER);
 		single(LOTREntities.BREE_MAN.get()).setRespawnOnDeath().disableForFutureSpawning().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_MANOR_LORD);
 		single(ExtendedEntities.BREE_SHERIFF.get()).setRespawnOnDeath().setHomeInfo(false, 6).setRandomDiscardChance(50).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_MANOR_SHERIFF);
@@ -170,25 +170,25 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		single(ExtendedEntities.BLUE_DWARVEN_COMMANDER.get()).setRespawnOnDeath().setHomeInfo(false, 4).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_COMMANDER);
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.BLUE_MOUNTAINS_WARRIOR.get(), 2).addPool(LOTREntities.BLUE_MOUNTAINS_ARCHER.get(), 1)
-			.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 4, -2, 5).setPersistenceRequired(false).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_STRONGHOLD);
+			.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 4, -2, 5).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_STRONGHOLD);
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.BLUE_MOUNTAINS_WARRIOR.get(), 2).addPool(LOTREntities.BLUE_MOUNTAINS_ARCHER.get(), 1)
-			.build(), 2, 5, false, 30, 8).setBoundaries(10, -8, 15, 4, -2, 5).setPersistenceRequired(false).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_STRONGHOLD_ALT);
+			.build(), 2, 5, false, 30, 8).setBoundaries(10, -8, 15, 4, -2, 5).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_STRONGHOLD_ALT);
 		single(ExtendedEntities.BLUE_DWARVEN_BARTENDER.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_BARTENDER);
 		couple(LOTREntities.BLUE_MOUNTAINS_DWARF.get(), 12).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_FAMILY);
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.BLUE_MOUNTAINS_DWARF.get(), 1)
-			.build(), 5, 7, false, 26, 20).setBoundaries(12, -12, 24, 4, -4, 16).setPersistenceRequired(false).enableNonRandomSpawning(30).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_AREA);
+			.build(), 5, 7, false, 26, 20).setBoundaries(12, -12, 24, 4, -4, 16).enableSpawningAtSpawner(30).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_AREA);
 		single(ExtendedEntities.BLUE_DWARVEN_STONEMASON.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_STONEMASON);
 		single(ExtendedEntities.BLUE_DWARVEN_BUTCHER.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.BLUE_MOUNTIAN_BUTCHER);
 		persistedSingle(MultiSpawnType.Builder.multi()
 			.addPool(ExtendedEntities.RIVENDELL_WANDERER.get(), 5)
 			.addPool(ExtendedEntities.GALADHRIM_WANDERER.get(), 1)
-			.build(), false, 5).setPersistenceRequired(false).setEntitySpawnMinutes(15).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.BLUE_MOUNTAINS_TEMP_ELF_TRADER);
+			.build(), false, 5).setPersistenceRequired(false).setEntitySpawnRateMinutes(15).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.BLUE_MOUNTAINS_TEMP_ELF_TRADER);
 		persistedSingle(MultiSpawnType.Builder.multi()
 			.addPool(ExtendedEntities.ODDMENT_COLLECTOR.get(), 5)
 			.addPool(ExtendedEntities.BREE_MERCHANT.get(), 1)
-			.build(), false, 5).setPersistenceRequired(false).setEntitySpawnMinutes(15).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.BLUE_MOUNTAINS_TEMP_MAN_TRADER);
+			.build(), false, 5).setPersistenceRequired(false).setEntitySpawnRateMinutes(15).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.BLUE_MOUNTAINS_TEMP_MAN_TRADER);
 		// DWARVEN
 		single(ExtendedEntities.DWARVEN_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.DWARVEN_SMITH);
 		//RIVENDELL
@@ -197,10 +197,10 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		single(ExtendedEntities.RIVENDELL_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.RIVENDELL_CAPTAIN);
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.RIVENDELL_ELF.get(), 1).addPool(LOTREntities.RIVENDELL_WARRIOR.get(), 1)
-			.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 10, -2, 8).setPersistenceRequired(false).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.RIVENDELL_AREA);
+			.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 10, -2, 8).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.RIVENDELL_AREA);
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(ExtendedEntities.IMLADRIS_GUARD.get(), 7).addPool(LOTREntities.RIVENDELL_WARRIOR.get(), 1)
-			.build(), 2, 5, false, 15, 8).setBoundaries(20, -10, 32, 10, -2, 8).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.RIVENDELL_GUARD);
+			.build(), 2, 5, false, 15, 8).setBoundaries(20, -10, 32, 10, -2, 8).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.RIVENDELL_GUARD);
 		single(ExtendedEntities.ELROND.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.RIVENDELL_ELROND);
 		single(ExtendedEntities.RIVENDELL_WEAVER.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.RIVENDELL_WEAVER);
 		//LINDON
@@ -208,15 +208,17 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		single(ExtendedEntities.LINDON_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.LINDON_SMITH);
 		single(ExtendedEntities.LINDON_LORD.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.LINDON_CAPTAIN);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.LINDON_ELF.get(), 1).addPool(LOTREntities.LINDON_WARRIOR.get(), 1)
-				.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 10, -2, 8).setPersistenceRequired(false).enableNonRandomSpawning().save(pConsumer, ExtendedSpawners.LINDON_AREA);
+				.build(), 2, 5, false, 15, 8).setBoundaries(10, -8, 15, 10, -2, 8).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.LINDON_AREA);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.LINDON_WARRIOR.get(), 1)
-			.build(), 2, 5, true, 15, 8).setBoundaries(70, -8, 15, 60, -3, 4).setPersistenceRequired(false).save(pConsumer, ExtendedSpawners.LINDON_TOWER_HILLS_TOWER);
+			.build(), 2, 5, true, 15, 8).setBoundaries(70, -8, 15, 60, -3, 4).save(pConsumer, ExtendedSpawners.LINDON_TOWER_HILLS_TOWER);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.LINDON_ELF.get(), 1).addPool(LOTREntities.LINDON_WARRIOR.get(), 1)
-			.build(), 1, 3, true, 15, 6).setBoundaries(40, -8, 8, 32, -4, 2).setPersistenceRequired(false).save(pConsumer, ExtendedSpawners.LINDON_TOWER_HILLS);
+			.build(), 1, 3, true, 15, 6).setBoundaries(40, -8, 8, 32, -4, 2).save(pConsumer, ExtendedSpawners.LINDON_TOWER_HILLS);
 		single(ExtendedEntities.LINDON_WEAVER.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.LINDON_WEAVER);
 		single(MultiSpawnType.Builder.multi()
 			.addPool(ExtendedEntities.LINDON_WEAVER.get(), 2).addPool(ExtendedEntities.LINDON_SMITH.get(), 1)
 			.addPool(ExtendedEntities.LINDON_FLORIST.get(), 2)
 			.build()).setRespawnOnDeath().setRandomDiscardChance(40).setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.LINDON_MARKET);
+		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.LINDON_ELF.get(), 1).addPool(LOTREntities.LINDON_WARRIOR.get(), 4)
+			.build(), 1, 4, false, 15, 15).setBoundaries(10, -10, 15, 0, 0, 0).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.LINDON_CASTLE);
 	}
 }

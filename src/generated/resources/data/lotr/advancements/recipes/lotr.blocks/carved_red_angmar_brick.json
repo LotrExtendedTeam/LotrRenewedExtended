@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:carved_red_angmar_brick"
+    ]
+  },
+  "criteria": {
+    "has_red_angmar_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:red_angmar_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:carved_red_angmar_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_red_angmar_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

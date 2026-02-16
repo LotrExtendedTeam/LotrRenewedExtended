@@ -299,6 +299,25 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> BONE_BLOCK_STAIRS;
 	public static RegistryObject<Block> BONE_BLOCK_WALL;
 
+	public static RegistryObject<Block> RED_ANGMAR_BRICK;
+	public static RegistryObject<Block> RED_ANGMAR_BRICK_SLAB;
+	public static RegistryObject<Block> RED_ANGMAR_BRICK_STAIRS;
+	public static RegistryObject<Block> RED_ANGMAR_BRICK_WALL;
+	public static RegistryObject<Block> CRACKED_RED_ANGMAR_BRICK;
+	public static RegistryObject<Block> CRACKED_RED_ANGMAR_BRICK_SLAB;
+	public static RegistryObject<Block> CRACKED_RED_ANGMAR_BRICK_STAIRS;
+	public static RegistryObject<Block> CRACKED_RED_ANGMAR_BRICK_WALL;
+	public static RegistryObject<Block> MOSSY_RED_ANGMAR_BRICK;
+	public static RegistryObject<Block> MOSSY_RED_ANGMAR_BRICK_SLAB;
+	public static RegistryObject<Block> MOSSY_RED_ANGMAR_BRICK_STAIRS;
+	public static RegistryObject<Block> MOSSY_RED_ANGMAR_BRICK_WALL;
+	public static RegistryObject<Block> SNOWY_RED_ANGMAR_BRICK;
+	public static RegistryObject<Block> SNOWY_RED_ANGMAR_BRICK_SLAB;
+	public static RegistryObject<Block> SNOWY_RED_ANGMAR_BRICK_STAIRS;
+	public static RegistryObject<Block> SNOWY_RED_ANGMAR_BRICK_WALL;
+	public static RegistryObject<Block> RED_ANGMAR_PILLAR;
+	public static RegistryObject<Block> RED_ANGMAR_PILLAR_SLAB;
+	public static RegistryObject<Block> CARVED_RED_ANGMAR_BRICK;
 	// New Blocks
 //	public static RegistryObject<Block> GNEISS_ROCK;
 //	public static RegistryObject<Block> GNEISS_ROCK_SLAB;
@@ -579,4 +598,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> PLACED_BOOKS;
 
 	public static RegistryObject<Block> EXTENDED_BOOKSHELF;
+
+	
 }

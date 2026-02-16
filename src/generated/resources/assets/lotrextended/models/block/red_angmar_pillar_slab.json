@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "lotrextended:block/red_angmar_pillar",
+    "bottom": "lotrextended:block/red_angmar_pillar_face",
+    "top": "lotrextended:block/red_angmar_pillar_face"
+  }
+}
