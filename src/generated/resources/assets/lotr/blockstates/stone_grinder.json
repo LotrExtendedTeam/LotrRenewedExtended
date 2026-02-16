@@ -1,10 +1,7 @@
 {
   "variants": {
-    "powered=false": {
+    "": {
       "model": "lotrextended:block/stone_grinder"
-    },
-    "powered=true": {
-      "model": "lotrextended:block/stone_grinder_powered"
     }
   }
 }

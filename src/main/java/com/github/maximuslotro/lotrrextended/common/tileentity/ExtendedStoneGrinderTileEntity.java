@@ -93,6 +93,8 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 	};
 	private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
 	LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
+	public double spin = 0;
+	public double spinO = 0;
 
 	private ExtendedStoneGrinderTileEntity(TileEntityType<?> tileEntityType) {
 		super(tileEntityType);
@@ -157,6 +159,14 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 				}
 			} else if (!this.isPowered() && this.grindingProgress > 0) {
 				this.grindingProgress = MathHelper.clamp(this.grindingProgress - 2, 0, this.grindingTotalTime);
+			}
+		}
+		if(this.level.isClientSide()) {
+			if(this.getLevel()!=null && this.getLevel().getBlockState(this.getBlockPos()).getValue(ExtendedStoneGrinderBlock.POWERED)) {
+				this.spinO = this.spin;
+				this.spin = (this.spin + 0.01) % 360.0D;
+			}else {
+				this.spinO = this.spin = 0;
 			}
 		}
 	}

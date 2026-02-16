@@ -63,7 +63,6 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable {
 	public static final BooleanProperty SMALL = BlockStateProperties.SHORT;
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	private final ExtendedBannerTypes type;
-	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 	private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(
 		Direction.NORTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D),
 		Direction.SOUTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D),
