@@ -12,6 +12,10 @@ import com.mojang.brigadier.suggestion.SuggestionProvider;
 import lotr.common.command.LOTRBaseCommand;
 import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.data.ExtendedLOTRPlayerData;
+import lotr.common.data.LOTRPlayerData;
+import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
+import lotr.common.fac.Faction;
+import lotr.common.fac.FactionPointers;
 import lotr.common.fellowship.ExtendedFellowship;
 import lotr.common.util.UsernameHelper;
 import net.minecraft.command.CommandSource;
@@ -19,11 +23,9 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.*;
 
 public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
@@ -206,15 +208,30 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 
 	private static int createFellowship(CommandSource source, PlayerEntity player, String fellowshipname, boolean adminOverride) {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
+        ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
+        Faction faction = getAlignData(serverPlayer).getPledgeFaction();
         if (fellowship == null) {
         	if(fellowshipData.createFellowship(fellowshipname, adminOverride)) {
     			player.awardStat(ExtendedStats.FELLOWSHIP_CREATE);
+                ExtendedFellowship createdFellowship = fellowshipData.getFellowshipByName(fellowshipname);
+
+                if (faction != null && !FactionPointers.UNALIGNED.matches(faction)) {
+                    Style style = Style.EMPTY.withColor(Color.fromRgb(faction.getColor()));
+                    fellowshipData.setFellowshipColor(createdFellowship, style);
+                } else {
+                    fellowshipData.setFellowshipColor(
+                            createdFellowship,
+                            Style.EMPTY.withColor(TextFormatting.YELLOW)
+                    );
+                }
+
         	}
-        	return 0;
+            return 0;
         }
-		source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error.exists", fellowshipname).withStyle(TextFormatting.RED), true);
-		return 0;
+
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error.exists", fellowshipname).withStyle(TextFormatting.RED), true);
+        return 0;
 	}
 	private static int renameFellowship(CommandSource source, PlayerEntity player, String fellowshipname, String fellowshipNewName) {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);

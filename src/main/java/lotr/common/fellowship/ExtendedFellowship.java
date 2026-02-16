@@ -12,10 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.Util;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.*;
 
 public class ExtendedFellowship {
 	private final UUID fellowshipId;
@@ -27,6 +24,7 @@ public class ExtendedFellowship {
 	private boolean preventPVP = true;
 	private boolean showMap = true;
 	private boolean needsSaving = false;
+    private Style fellowshipColor = Style.EMPTY.withColor(TextFormatting.YELLOW);
 	private boolean disbanded;
 	private ItemStack icon = ItemStack.EMPTY;
 
@@ -77,6 +75,10 @@ public class ExtendedFellowship {
 			fellowshipName = pCompound.getString("Name");
 		if (pCompound.contains("preventPVP"))
 			preventPVP = pCompound.getBoolean("preventPVP");
+        if (pCompound.contains("fellowshipColor")) {
+            int rgb = pCompound.getInt("fellowshipColor");
+            fellowshipColor = Style.EMPTY.withColor(Color.fromRgb(rgb));
+        }
 		if (pCompound.contains("preventHiredFF"))
 			preventHiredFF = pCompound.getBoolean("preventHiredFF");
 		if (pCompound.contains("showMap"))
@@ -104,7 +106,10 @@ public class ExtendedFellowship {
 	    if (fellowshipName != null)
 	    	pCompound.putString("Name", fellowshipName);
 	    pCompound.putBoolean("preventPVP", preventPVP);
-	    pCompound.putBoolean("preventHiredFF", preventHiredFF);
+        if (fellowshipColor != null && fellowshipColor.getColor() != null) {
+            pCompound.putInt("fellowshipColor", fellowshipColor.getColor().getValue());
+        }
+        pCompound.putBoolean("preventHiredFF", preventHiredFF);
 	    pCompound.putBoolean("showMap", showMap);
 	    needsSaving = false;
 	}
@@ -275,4 +280,12 @@ public class ExtendedFellowship {
 			reciever.sendMessage(pComponent, Util.NIL_UUID);
 		}
 	}
+
+    public Style getFellowshipColor() {
+        return fellowshipColor;
+    }
+
+    public void setFellowshipColor(Style fellowshipColor) {
+        this.fellowshipColor = fellowshipColor;
+    }
 }

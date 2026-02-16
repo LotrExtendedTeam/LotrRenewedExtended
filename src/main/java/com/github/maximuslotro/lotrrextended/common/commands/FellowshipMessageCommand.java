@@ -48,7 +48,7 @@ public class FellowshipMessageCommand extends LOTRBaseCommand {
         ITextComponent component =
                 new StringTextComponent("[").withStyle()
                         .append(new StringTextComponent(fellowshipname)
-                                .withStyle(TextFormatting.YELLOW))
+                                .withStyle(getFellowshipData(player).getFellowshipByName(fellowshipname).getFellowshipColor()))
                         .append(new StringTextComponent("] "))
                         .append(sender.getName())
                         .append(new StringTextComponent(": "))
