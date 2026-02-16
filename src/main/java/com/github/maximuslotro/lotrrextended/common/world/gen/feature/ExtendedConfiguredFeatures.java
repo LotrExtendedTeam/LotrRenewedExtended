@@ -28,7 +28,7 @@ public class ExtendedConfiguredFeatures {
 	public static final ConfiguredFeature<ExtendedMeteoriteFeatureConfig, ?> METEORITE_IMPACT = register("meteorite_impact", ExtendedFeature.METEORITE_PRE.configured(new ExtendedMeteoriteFeatureConfig(FeatureSpread.fixed(2), FeatureSpread.of(6, 2), 0.2f)));
 
 	public static final ConfiguredFeature<ExtendedWallsFeatureConfig, ?> ORTHANC_WALLS = register("orthanc_walls", ExtendedFeature.WALLS_PRE.configured(
-		new ExtendedWallsFeatureConfig(37440, 42049, 400, 100, 80, 12.0f, LOTRBlocks.NUMENOREAN_BRICK.get().defaultBlockState())));
+		new ExtendedWallsFeatureConfig(37440, 42049, 400, 100, 90, 12.0f, LOTRBlocks.NUMENOREAN_BRICK.get().defaultBlockState())));
 
 	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String configuredFeatureName, ConfiguredFeature<FC, ?> pConfiguredFeature) {
 		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(LotrExtendedMod.MODID, configuredFeatureName), pConfiguredFeature);

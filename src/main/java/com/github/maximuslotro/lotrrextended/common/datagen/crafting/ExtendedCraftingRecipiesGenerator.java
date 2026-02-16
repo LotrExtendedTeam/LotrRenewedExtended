@@ -267,8 +267,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("CCC")
 		.define('C', Ingredient.of(Tags.Items.COBBLESTONE))
 		.define('S', Ingredient.of(STICKS))
-		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
-		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
+		.define('I', Ingredient.of(ExtendedTags.Items.ANVIL_IRON_INGOT))
+		.unlockedBy("has_iron_ingots", has(ExtendedTags.Items.ANVIL_IRON_INGOT))
 		.save(consumer, lotrLoc(ExtendedItems.STONE_GRINDER.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.CRUCIBLE.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CRUCIBLE.get())
@@ -277,8 +277,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("CCC")
 		.define('C', Ingredient.of(Tags.Items.COBBLESTONE))
 		.define('S', Ingredient.of(STICKS))
-		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
-		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
+		.define('I', Ingredient.of(ExtendedTags.Items.ANVIL_IRON_INGOT))
+		.unlockedBy("has_iron_ingots", has(ExtendedTags.Items.ANVIL_IRON_INGOT))
 		.save(consumer, lotrLoc(ExtendedItems.CRUCIBLE.get().getRegistryName().getPath()));
 		//STORAGE BLOCKS AND ITEMS
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.AMBER, ExtendedBlocks.AMBER_BLOCK, null);
@@ -855,17 +855,17 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CHISEL.get())
 		.pattern("SI")
 		.define('S', Ingredient.of(STICKS))
-		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
-		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
+		.define('I', Ingredient.of(ExtendedTags.Items.ANVIL_IRON_INGOT))
+		.unlockedBy("has_iron_ingots", has(ExtendedTags.Items.ANVIL_IRON_INGOT))
 		.save(consumer, lotrLoc(ExtendedItems.CHISEL.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.BRANDING_IRON.get())
 		.pattern("  #")
 		.pattern(" X ")
 		.pattern("#  ")
-		.define('#', Ingredient.of(Tags.Items.INGOTS_IRON))
+		.define('#', Ingredient.of(ExtendedTags.Items.ANVIL_IRON_INGOT))
 		.define('X', Ingredient.of(Tags.Items.LEATHER))
-		.unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
+		.unlockedBy("has_iron_ingots", has(ExtendedTags.Items.ANVIL_IRON_INGOT))
 		.save(consumer, lotrLoc(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath()));
 		// Extended cheese
 		GENERATEDRECIPES.add(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath());
@@ -1435,9 +1435,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("III")
 		.pattern(" B ")
 		.pattern("III")
-		.define('I', Ingredient.of(Tags.Items.INGOTS_IRON))
-		.define('B', Ingredient.of(Tags.Items.STORAGE_BLOCKS_IRON))
-		.unlockedBy("has_"+Items.IRON_BLOCK.getRegistryName().getPath(), has(Items.IRON_BLOCK))
+		.define('I', Ingredient.of(ExtendedTags.Items.ANVIL_IRON_INGOT))
+		.define('B', Ingredient.of(ExtendedTags.Items.ANVIL_IRON_BLOCK))
+		.unlockedBy("has_iron_blocks", has(ExtendedTags.Items.ANVIL_IRON_BLOCK))
 		.save(consumer, mcLoc(Items.ANVIL.getRegistryName().getPath()));
 		ExtendedShapedRecipeBuilder.shaped(Items.LODESTONE)
 		.pattern("SSS")
