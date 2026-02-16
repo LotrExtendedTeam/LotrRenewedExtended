@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.world.gen.feature;
 
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedWallsFeature.EdgeType;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
@@ -17,27 +18,60 @@ public class ExtendedWallsFeatureConfig implements IFeatureConfig {
 			Codec.FLOAT.fieldOf("wall_t").forGetter(c -> c.wallThickness),
 			BlockState.CODEC.fieldOf("wall_state").forGetter((p_161322_) -> {
 				return p_161322_.wallState;
-			})
+			}),
+			BlockState.CODEC.fieldOf("spike_state").forGetter((p_161322_) -> {
+				return p_161322_.spikeState;
+			}),
+			Codec.INT.fieldOf("spike_h").forGetter(c -> c.spikeHeight),
+			BlockState.CODEC.fieldOf("spike_gap_state").forGetter((p_161322_) -> {
+				return p_161322_.spikeGapState;
+			}),
+			Codec.INT.fieldOf("spike_gap_h").forGetter(c -> c.spikeGapHeight),
+			Codec.INT.fieldOf("edge_type").forGetter(c -> c.edgeType.edgeType)
 			).apply(instance, ExtendedWallsFeatureConfig::new));
 
 	public final int wallsCenterX;
 	public final int wallsCenterZ;
 	public final int wallsRadius;
-	public final int wallsRadiusSquare;
 	public final int wallHeight;
 	public final int wallPortHeight;
 	public final float wallThickness;
 	public final BlockState wallState;
-	
+	public final BlockState spikeState;
+	public final int spikeHeight;
+	public final BlockState spikeGapState;
+	public final int spikeGapHeight;
+	public final EdgeType edgeType;
 
-	public ExtendedWallsFeatureConfig(int pWallsCenterX, int pWallsCenterZ, int pWallsRadius, int pWallHeight, int pWallPortHeight, float pWallThickness, BlockState pWallState) {
+	public ExtendedWallsFeatureConfig(int pWallsCenterX, int pWallsCenterZ, int pWallsRadius, int pWallHeight, int pWallPortHeight, 
+		float pWallThickness, BlockState pWallState, BlockState pSpikeState, int pSpikeHeight, BlockState pSpikeGapState, int pSpikeGapHeight, int pEdgeType) {
 		wallsCenterX = pWallsCenterX;
 		wallsCenterZ = pWallsCenterZ;
 		wallsRadius= pWallsRadius;
-		wallsRadiusSquare = pWallsRadius * pWallsRadius;
 		wallHeight = pWallHeight;
 		wallPortHeight = pWallPortHeight;
 		wallThickness = pWallThickness;
 		wallState = pWallState;
+		spikeState = pSpikeState;
+		spikeHeight = pSpikeHeight;
+		spikeGapState = pSpikeGapState;
+		spikeGapHeight = pSpikeGapHeight;
+		edgeType = EdgeType.fromInt(pEdgeType);
+	}
+
+	public ExtendedWallsFeatureConfig(int pWallsCenterX, int pWallsCenterZ, int pWallsRadius, int pWallHeight, int pWallPortHeight, 
+		float pWallThickness, BlockState pWallState, BlockState pSpikeState, int pSpikeHeight, BlockState pSpikeGapState, int pSpikeGapHeight, EdgeType pEdgeType) {
+		wallsCenterX = pWallsCenterX;
+		wallsCenterZ = pWallsCenterZ;
+		wallsRadius= pWallsRadius;
+		wallHeight = pWallHeight;
+		wallPortHeight = pWallPortHeight;
+		wallThickness = pWallThickness;
+		wallState = pWallState;
+		spikeState = pSpikeState;
+		spikeHeight = pSpikeHeight;
+		spikeGapState = pSpikeGapState;
+		spikeGapHeight = pSpikeGapHeight;
+		edgeType = pEdgeType;
 	}
 }

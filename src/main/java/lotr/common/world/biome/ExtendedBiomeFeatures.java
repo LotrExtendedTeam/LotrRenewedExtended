@@ -284,7 +284,7 @@ public class ExtendedBiomeFeatures {
 			Placement.HEIGHTMAP_SPREAD_DOUBLE.configured(IPlacementConfig.NONE).squared().chance(chance)));
 	}
 	public static void addOrthancWalls(BiomeGenerationSettings.Builder builder) {
-		builder.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ExtendedConfiguredFeatures.ORTHANC_WALLS.decorated(
+		builder.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ExtendedConfiguredFeatures.RING_OF_ISENGARD.decorated(
 			Placement.HEIGHTMAP_SPREAD_DOUBLE.configured(IPlacementConfig.NONE).chance(1)));
 	}
 	public static void addOres(BiomeGenerationSettings.Builder builder) {
