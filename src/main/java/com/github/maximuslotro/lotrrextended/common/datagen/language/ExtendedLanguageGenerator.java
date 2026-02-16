@@ -78,6 +78,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addD("entity.lotr." + entity);
 		}
 
+		addD("entity.lotr.boat", "Boat");
+
 		// Generate Container Titles
 		for (Entry<String, String> entity : DataGenValueHolder.containerTitlesHolders.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
