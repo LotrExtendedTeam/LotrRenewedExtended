@@ -7,12 +7,14 @@ import com.mojang.brigadier.suggestion.SuggestionProvider;
 import lotr.common.command.LOTRBaseCommand;
 import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.data.ExtendedLOTRPlayerData;
+import lotr.common.data.LOTRLevelData;
 import lotr.common.fellowship.ExtendedFellowship;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.Util;
 import net.minecraft.util.text.*;
 
 import java.util.UUID;
@@ -44,15 +46,33 @@ public class FellowshipMessageCommand extends LOTRBaseCommand {
 
     private static int sendMessageToFellowship(CommandSource source, PlayerEntity player, String fellowshipname, String message) {
         ServerPlayerEntity sender = (ServerPlayerEntity) player;
+        ITextComponent component;
 
-        ITextComponent component =
-                new StringTextComponent("[").withStyle()
-                        .append(new StringTextComponent(fellowshipname)
-                                .withStyle(getFellowshipData(player).getFellowshipByName(fellowshipname).getFellowshipColor()))
-                        .append(new StringTextComponent("] "))
-                        .append(sender.getName())
-                        .append(new StringTextComponent(": "))
-                        .append(new StringTextComponent(message));
+        if (((ExtendedLOTRPlayerData) LOTRLevelData.serverInstance()
+                .getData(player))
+                .getExtendedMiscData()
+                .doHighContrastMessages()) {
+
+            component = new StringTextComponent("[")
+                    .append(new StringTextComponent(fellowshipname)
+                            .withStyle(getFellowshipData(player)
+                                    .getFellowshipByName(fellowshipname)
+                                    .getFellowshipColor()))
+                    .append(new StringTextComponent("] "))
+                    .append(sender.getName())
+                    .append(new StringTextComponent(": "))
+                    .append(new StringTextComponent(message));
+
+        } else {
+
+            component = new StringTextComponent("[")
+                    .append(new StringTextComponent(fellowshipname)
+                            .withStyle(TextFormatting.YELLOW))
+                    .append(new StringTextComponent("] "))
+                    .append(sender.getName())
+                    .append(new StringTextComponent(": "))
+                    .append(new StringTextComponent(message));
+        }
 
         ExtendedFellowshipDataModule data = getFellowshipData(player);
         if (data == null) return 0;
