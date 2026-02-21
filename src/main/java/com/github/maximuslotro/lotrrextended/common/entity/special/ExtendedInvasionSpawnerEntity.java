@@ -165,6 +165,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                         blockPosition().getX(), blockPosition().getY(), blockPosition().getZ(),
                         blockPosition().getX() + 1, blockPosition().getY() + 1, blockPosition().getZ() + 1
                 );
+
                 List<PlayerEntity> surroundingPlayers = level.getEntitiesOfClass(PlayerEntity.class, bb.inflate(INVASION_FOLLOW_RANGE));
                 for (PlayerEntity player : surroundingPlayers) {
                     if (bossBar != null) bossBar.addPlayer((ServerPlayerEntity) player);
@@ -172,9 +173,11 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 }
 
                 // remove any players who may have stepped out
-                Set<UUID> playersToRemove = surroundingPlayers.stream()
+                Set<UUID> surroundingUUIDs = surroundingPlayers.stream()
                         .map(PlayerEntity::getUUID)
-                        .filter(uuid -> !playersInBossBar.contains(uuid))
+                        .collect(Collectors.toSet());
+                Set<UUID> playersToRemove = playersInBossBar.stream()
+                        .filter(uuid -> !surroundingUUIDs.contains(uuid))
                         .collect(Collectors.toSet());
 
                 for (UUID uuid : playersToRemove) {
@@ -182,7 +185,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                     PlayerEntity player = level.getPlayerByUUID(uuid);
                     if (player != null) {
                         playersInBossBar.remove(uuid);
-                        bossBar.removePlayer((ServerPlayerEntity) player);
+                        if (bossBar != null) bossBar.removePlayer((ServerPlayerEntity) player);
                     }
                 }
 
@@ -344,6 +347,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     protected void addAdditionalSaveData(CompoundNBT compoundNBT) {
         compoundNBT.putString("faction_key", getFactionKey());
         compoundNBT.putInt("invasion_size", getInvasionSize());
+        compoundNBT.putBoolean("invasion_started", getInvasionStarted());
     }
 
     public void setFaction(String factionKey) {

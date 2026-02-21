@@ -172,7 +172,6 @@ public class WorldEventHandlers {
 		if (sourceEntity instanceof ServerPlayerEntity) {
 			ServerPlayerEntity player = (ServerPlayerEntity)sourceEntity;
 			ExtendedLevelData.serverInstance().trackRecentPlayerKill(invasionId, player.getUUID());
-			player.sendMessage(new StringTextComponent("Invasion has " + (enemiesLeft - 1) + " enemies left"), Util.NIL_UUID);
 		}
 	}
 
