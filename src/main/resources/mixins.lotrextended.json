@@ -37,6 +37,7 @@
 		"lotr.common.entity.npc.MixinRivendellElfEntity",
 		"lotr.common.entity.npc.MixinRivendellWarriorEntity",
 		"lotr.common.entity.npc.MixinUrukArcherEntity",
+		"lotr.common.entity.npc.MixinWargEntity",
 		"lotr.common.entity.npc.ai.goal.MixinNPCEatGoal",
 		"lotr.common.entity.npc.ai.goal.MixinNPCNearestAttackableTargetGoal",
 		"lotr.common.entity.projectile.MixinThrownPlateEntity",
