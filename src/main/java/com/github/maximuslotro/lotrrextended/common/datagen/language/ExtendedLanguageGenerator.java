@@ -360,6 +360,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("item."+ExtendedItems.COMMANDHORN.getId().getNamespace()+"."+ExtendedItems.COMMANDHORN.getId().getPath()+".summon", "Horn of Command - Summon Units");
 		addOverride("item."+ExtendedItems.MODIFIER_SCROLL.getId().getNamespace()+"."+ExtendedItems.MODIFIER_SCROLL.getId().getPath(), "Modifier Scroll");
 		addOverride("item."+ExtendedItems.MODIFIER_SCROLL.getId().getNamespace()+"."+ExtendedItems.MODIFIER_SCROLL.getId().getPath()+".named", "%s Modifier Scroll");
+		addD("item.lotrextended.orc_bomb.fire_message", "Ignites the surrounding area");
+		addD("item.lotrextended.orc_bomb.strength_0", "Single Strength");
+		addD("item.lotrextended.orc_bomb.strength_1", "Double Strength");
+		addD("item.lotrextended.orc_bomb.strength_2", "Triple Strength");
 
 		//Bow values
 		addD("gui.lotrextended.bow.speed", "Draw Speed: %s");

@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/template_orc_bomb",
+  "textures": {
+    "particle": "lotrextended:block/orc_bomb",
+    "bomb": "lotrextended:block/orc_bomb"
+  }
+}

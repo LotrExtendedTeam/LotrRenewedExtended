@@ -548,6 +548,20 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makePillarSlabRecipe(consumer, ExtendedBlocks.GOBLIN_PILLAR,
 			ExtendedBlocks.GOBLIN_PILLAR_SLAB,
                 Blocks.STONE::asItem, ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+		// ORC
+		makeOrcBombRecipe(consumer, ExtendedItems.ORC_BOMB, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel_ingot", LOTRRecipes.ANY_MORGUL);
+		makeOrcBombRecipe(consumer, ExtendedItems.ORC_BOMB, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel_ingot", LOTRRecipes.URUK_CRAFTING);
+		makeOrcBombFireRecipe(consumer, ExtendedItems.ORC_BOMB_FIRE, ExtendedItems.ORC_BOMB, LOTRRecipes.ANY_ORC);
+		makeOrcBombFireRecipe(consumer, ExtendedItems.ORC_BOMB_FIRE_DOUBLE, ExtendedItems.ORC_BOMB_DOUBLE, LOTRRecipes.ANY_ORC);
+		makeOrcBombFireRecipe(consumer, ExtendedItems.ORC_BOMB_FIRE_TRIPLE, ExtendedItems.ORC_BOMB_TRIPLE, LOTRRecipes.ANY_ORC);
+		makeOrcBombUpgradeRecipe(consumer, ExtendedItems.ORC_BOMB_DOUBLE, ExtendedItems.ORC_BOMB, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel_ingot", LOTRRecipes.ANY_MORGUL);
+		makeOrcBombUpgradeRecipe(consumer, ExtendedItems.ORC_BOMB_FIRE_DOUBLE, ExtendedItems.ORC_BOMB_FIRE, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel_ingot", LOTRRecipes.ANY_MORGUL);
+		makeOrcBombUpgradeRecipe(consumer, ExtendedItems.ORC_BOMB_TRIPLE, ExtendedItems.ORC_BOMB_DOUBLE, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel_ingot", LOTRRecipes.ANY_MORGUL);
+		makeOrcBombUpgradeRecipe(consumer, ExtendedItems.ORC_BOMB_FIRE_TRIPLE, ExtendedItems.ORC_BOMB_FIRE_DOUBLE, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel_ingot", LOTRRecipes.ANY_MORGUL);
+		makeOrcBombUpgradeRecipe(consumer, ExtendedItems.ORC_BOMB_DOUBLE, ExtendedItems.ORC_BOMB, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel_ingot", LOTRRecipes.URUK_CRAFTING);
+		makeOrcBombUpgradeRecipe(consumer, ExtendedItems.ORC_BOMB_FIRE_DOUBLE, ExtendedItems.ORC_BOMB_FIRE, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel_ingot", LOTRRecipes.URUK_CRAFTING);
+		makeOrcBombUpgradeRecipe(consumer, ExtendedItems.ORC_BOMB_TRIPLE, ExtendedItems.ORC_BOMB_DOUBLE, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel_ingot", LOTRRecipes.URUK_CRAFTING);
+		makeOrcBombUpgradeRecipe(consumer, ExtendedItems.ORC_BOMB_FIRE_TRIPLE, ExtendedItems.ORC_BOMB_FIRE_DOUBLE, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel_ingot", LOTRRecipes.URUK_CRAFTING);
 		//TAURETHRIM
 		makeArmorRecipe(consumer, ExtendedItems.TAURETHRIM_HELMET,
 			ExtendedItems.TAURETHRIM_CHESTPLATE,

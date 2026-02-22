@@ -769,4 +769,11 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MODIFIER_SCROLL;
 
 	public static RegistryObject<Item> TAPESTRY;
+
+	public static RegistryObject<Item> ORC_BOMB;
+	public static RegistryObject<Item> ORC_BOMB_DOUBLE;
+	public static RegistryObject<Item> ORC_BOMB_TRIPLE;
+	public static RegistryObject<Item> ORC_BOMB_FIRE;
+	public static RegistryObject<Item> ORC_BOMB_FIRE_DOUBLE;
+	public static RegistryObject<Item> ORC_BOMB_FIRE_TRIPLE;
 }

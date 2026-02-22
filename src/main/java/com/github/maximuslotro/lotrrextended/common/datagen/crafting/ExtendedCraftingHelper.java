@@ -1660,6 +1660,73 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		}
 	}
 
+	protected void makeOrcBombRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, ITag<Item> resource, String resourceName, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get(), 4)
+			.pattern("PIP")
+			.pattern("IPI")
+			.pattern("PIP")
+			.define('I', Ingredient.of(resource))
+			.define('P', Ingredient.of(Items.GUNPOWDER))
+			.unlockedBy("has_"+resourceName, has(resource))
+			.save(consumer, lotrLoc(name+"_from_"+resourceName));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(itemToBeCrafted.get(), 4, table)
+			.pattern("PIP")
+			.pattern("IPI")
+			.pattern("PIP")
+			.define('I', Ingredient.of(resource))
+			.define('P', Ingredient.of(Items.GUNPOWDER))
+			.unlockedBy("has_"+resourceName, has(resource))
+			.save(consumer, lotrLoc(name+"_from_"+resourceName));
+		}
+	}
+	protected void makeOrcBombFireRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> itemToBeUpgraded, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			.pattern("LB")
+			.define('B', Ingredient.of(itemToBeUpgraded.get()))
+			.define('L', Ingredient.of(Items.LAVA_BUCKET))
+			.unlockedBy("has_"+Items.LAVA_BUCKET.getRegistryName().getPath(), has(Items.LAVA_BUCKET))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(itemToBeCrafted.get(), table)
+			.pattern("LB")
+			.define('B', Ingredient.of(itemToBeUpgraded.get()))
+			.define('L', Ingredient.of(Items.LAVA_BUCKET))
+			.unlockedBy("has_"+Items.LAVA_BUCKET.getRegistryName().getPath(), has(Items.LAVA_BUCKET))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+	protected void makeOrcBombUpgradeRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> itemToBeUpgraded, ITag<Item> resource, String resourceName, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			.pattern("PBI")
+			.define('B', Ingredient.of(itemToBeUpgraded.get()))
+			.define('I', Ingredient.of(resource))
+			.define('P', Ingredient.of(Items.GUNPOWDER))
+			.unlockedBy("has_"+resourceName, has(resource))
+			.save(consumer, lotrLoc(name+"_from_"+resourceName));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(itemToBeCrafted.get(), table)
+			.pattern("PBI")
+			.define('B', Ingredient.of(itemToBeUpgraded.get()))
+			.define('I', Ingredient.of(resource))
+			.define('P', Ingredient.of(Items.GUNPOWDER))
+			.unlockedBy("has_"+resourceName, has(resource))
+			.save(consumer, lotrLoc(name+"_from_"+resourceName));
+		}
+	}
+
 	protected void makeTorchConversionRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> fromItem, Supplier<? extends Item> toItem, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name1 = fromItem.get().getRegistryName().getPath();
 		String name2 = toItem.get().getRegistryName().getPath();
