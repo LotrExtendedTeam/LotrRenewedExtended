@@ -15,6 +15,7 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
+import lotr.common.LOTRLog;
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.LOTRDimensions;
@@ -36,6 +37,7 @@ import net.minecraftforge.client.event.RenderNameplateEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 public class ExtendedRendererEventHandler {
+
 	public static void renderHpBar(RenderNameplateEvent event) {
 		if (event.getEntity() instanceof NPCEntity && ((ExtendedNPCEntity)event.getEntity()).getUnitInfo().isNpcActiveDuty()) {
 			if (ExtendedClientProxy.usersUUID.equals(null) || !ExtendedClientProxy.usersUUID.equals(((ExtendedNPCEntity)event.getEntity()).getUnitInfo().getOwnerUUID())) {
@@ -71,6 +73,7 @@ public class ExtendedRendererEventHandler {
 			}
 		}
 	}
+
 	public static void onPreRenderGameOverlay(final RenderGameOverlayEvent.Pre event) {
 		Minecraft mc = Minecraft.getInstance();
 		if(LOTRDimensions.isModDimension(mc.level)) {
@@ -80,6 +83,18 @@ public class ExtendedRendererEventHandler {
 			}
 		}
 	}
+
+	public static void onPostRenderGameOverlay(final RenderGameOverlayEvent.Post event) {
+		LOTRLog.info("PostRenderGameOverlay Event Run");
+		Minecraft mc = Minecraft.getInstance();
+		if(LOTRDimensions.isModDimension(mc.level)) {
+			if (event.getType() == RenderGameOverlayEvent.ElementType.BOSSINFO) {
+				ExtendedClientProxy.INSTANCE.lastTimeBossBarRendered = System.currentTimeMillis();
+				LOTRLog.info("ExtendedClientProxy.INSTANCE.lastTimeBossBarRendered = " + ExtendedClientProxy.INSTANCE.lastTimeBossBarRendered);
+			}
+		}
+	}
+
 	public static void addTooltipsForModifiers(ItemTooltipEvent event) {
 		ItemStack stack = event.getItemStack();
 		if(ExtendedModifierUtils.hasModifiers(stack)) {

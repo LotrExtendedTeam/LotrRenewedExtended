@@ -190,20 +190,15 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 }
 
                 tickCounter = 0;
-                LOTRLog.info("INVASION + " + getUUID() +": Time to spawn an enemy");
 
                 int totalInvasionMobsInArea = getInvasionTypeMobsInRange();
-                LOTRLog.info("INVASION + " + getUUID() +": totalInvasionMobsInArea: " + totalInvasionMobsInArea);
                 int enemiesLeft = ExtendedLevelData.serverInstance().getEnemiesLeft(getUUID());
-                LOTRLog.info("INVASION + " + getUUID() +": enemiesLeft: " + enemiesLeft);
                 if (totalInvasionMobsInArea > -1 && totalInvasionMobsInArea < 16
                         && enemiesLeft > 0) {
                     Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromKey(getFactionKey());
                     ExtendedInvasions.InvasionSpawnEntry result = WeightedRandom.getRandomItem(this.random, invasion.get().getSpawnEntries());
 
-                    LOTRLog.info("INVASION + " + getUUID() +": Attempting mob spawn");
                     if (attemptMobSpawn(result.getEntityType())) {
-
                         if (!level.isClientSide()) {
                             // send flames to client
                             ServerWorld world = (ServerWorld) level;
