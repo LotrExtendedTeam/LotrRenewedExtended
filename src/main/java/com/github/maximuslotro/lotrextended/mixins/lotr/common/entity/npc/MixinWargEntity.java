@@ -184,6 +184,16 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 			.add(Attributes.MOVEMENT_SPEED, 0.22D).add(Attributes.KNOCKBACK_RESISTANCE, 0.5D).add(ExtendedAttributes.WARG_JUMP_STRENGTH.get());
 	}
 
+	/**
+	 * Need to set Warg health after base health is set, otherwise Wargs will only stay at 20 health
+	 * @param ci Callback info
+	 * @Inject (method = "applyRandomisedWargAttributes()V", at = @At("TAIL"), remap=false)
+	 * */
+	@Inject(method = "applyRandomisedWargAttributes()V", at = @At("TAIL"), remap=false)
+	private void applyRandomisedWargAttributes(CallbackInfo ci) {
+		this.setHealth((float) getAttribute(Attributes.MAX_HEALTH).getBaseValue());
+	}
+
 	@Unique
 	private boolean getFlag(int pFlagId) {
 		return (this.entityData.get(DATA_ID_FLAGS) & pFlagId) != 0;
