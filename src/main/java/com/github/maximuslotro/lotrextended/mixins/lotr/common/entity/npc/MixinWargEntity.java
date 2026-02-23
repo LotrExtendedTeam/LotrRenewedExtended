@@ -20,6 +20,7 @@ import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInvent
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
 
+import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.ai.goal.PanicIfBurningGoal;
 import lotr.common.entity.ai.goal.RandomWalkingEvenWhenRiddenGoal;
 import lotr.common.entity.npc.ExtendedRidableWargEntity;
@@ -47,7 +48,6 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -69,7 +69,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -81,8 +81,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * */
 @Mixin(WargEntity.class)
 public abstract class MixinWargEntity extends NPCEntity implements IInventoryChangedListener, IJumpingMount, IEquipable, ExtendedRidableWargEntity {
-	@Unique
-	private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT, Items.SUGAR, Items.HAY_BLOCK, Items.APPLE, Items.GOLDEN_CARROT, Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE);
 	@Unique
 	private static final DataParameter<Byte> DATA_ID_FLAGS = EntityDataManager.defineId(WargEntity.class, DataSerializers.BYTE);
 	@Unique
@@ -271,11 +269,9 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	@Override
 	public ActionResultType mobInteract(PlayerEntity pPlayer, Hand pHand) {
 		ItemStack itemstack = pPlayer.getItemInHand(pHand);
-		if(!pPlayer.level.isClientSide) {
-			pPlayer.sendMessage(new StringTextComponent("Is Tamed:"+isTamed()+", isSecondaryUseActive"+pPlayer.isSecondaryUseActive()+", isFood:"+isFood(itemstack)), Util.NIL_UUID);
-		}
+		boolean hasAlignment = LOTRLevelData.getSidedData(pPlayer).getAlignmentData().getAlignment(getFaction())>=50;
 		if (!this.isBaby()) {
-			if (this.isTamed() && pPlayer.isSecondaryUseActive()) {
+			if (this.isTamed() && pPlayer.isSecondaryUseActive() && hasAlignment) {
 				this.openInventory(pPlayer);
 				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
@@ -284,7 +280,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 			}
 		}
 		if (!itemstack.isEmpty()) {
-			if (this.isFood(itemstack)) {
+			if (this.isFood(itemstack) && hasAlignment) {
 				return this.fedFood(pPlayer, itemstack);
 			}
 
@@ -293,21 +289,25 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 				return actionresulttype;
 			}
 
-			if (!this.isTamed()) {
+			if (!this.isTamed() && hasAlignment) {
 				this.playSound(getAmbientSound(), this.getSoundVolume(), this.getVoicePitch());
 				this.level.broadcastEntityEvent(this, (byte)6);
 				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
 
 			boolean flag = !this.isBaby() && !this.isSaddled() && itemstack.getItem() == Items.SADDLE;
-			pPlayer.sendMessage(new StringTextComponent(!this.isBaby() +":"+ !this.isSaddled() +":"+ (itemstack.getItem() == Items.SADDLE)), Util.NIL_UUID);
-			if (this.isArmor(itemstack) || flag) {
+			if ((this.isArmor(itemstack) || flag) && hasAlignment) {
 				this.openInventory(pPlayer);
 				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
 		}
-		this.doPlayerRide(pPlayer);
-		return ActionResultType.sidedSuccess(this.level.isClientSide);
+		if(hasAlignment) {
+			this.doPlayerRide(pPlayer);
+			return ActionResultType.sidedSuccess(this.level.isClientSide);
+		}else {
+			pPlayer.sendMessage(new TranslationTextComponent("chat.lotrextended.action_requires_alignment", "+"+50), Util.NIL_UUID);
+			return ActionResultType.sidedSuccess(this.level.isClientSide);
+		}
 	}
 
 	@Override
@@ -318,7 +318,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	@Override
 	public boolean causeFallDamage(float pFallDistance, float pDamageMultiplier) {
 		if (pFallDistance > 1.0F) {
-			this.playSound(SoundEvents.HORSE_LAND, 0.4F, 1.0F);
+			this.playSound(SoundEvents.GENERIC_BIG_FALL, 0.4F, 1.0F);
 		}
 
 		int i = this.calculateFallDamage(pFallDistance, pDamageMultiplier);
@@ -400,8 +400,8 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		return 100;
 	}
 
-	@Unique
-	private void openInventory(PlayerEntity pPlayer) {
+	@Override
+	public void openInventory(PlayerEntity pPlayer) {
 		if (!this.level.isClientSide && (!this.isVehicle() || this.hasPassenger(pPlayer)) && this.isTamed()) {
 			if(pPlayer instanceof ServerPlayerEntity) {
 				openWargInventory((ServerPlayerEntity)pPlayer, (WargEntity)(Object)this, this.inventory);
@@ -438,30 +438,18 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	@Unique
 	private boolean handleEating(PlayerEntity pPlayer, ItemStack pStack) {
-		boolean flag = false;
-		float f = 0.0F;
-		int i = 0;
-		int j = 0;
-		Item item = pStack.getItem();
-		if (item == Items.WHEAT) {
-			f = 2.0F;
-			i = 20;
-			j = 3;
+		boolean hatEaten = false;
+		if (this.getHealth() < this.getMaxHealth()) {
+			this.heal(2);
+			hatEaten = true;
 		}
-
-		if (this.getHealth() < this.getMaxHealth() && f > 0.0F) {
-			this.heal(f);
-			flag = true;
-		}
-
-
-		if (j > 0 && (flag || !this.isTamed()) && this.getTemper() < this.getMaxTemper()) {
-			flag = true;
+		if ((hatEaten || !this.isTamed()) && this.getTemper() < this.getMaxTemper()) {
+			hatEaten = true;
 			if (!this.level.isClientSide) {
-				this.modifyTemper(j);
+				this.modifyTemper(3);
 			}
 		}
-		return flag;
+		return hatEaten;
 	}
 
 	@Unique
@@ -480,7 +468,8 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	@Unique
 	private boolean isFood(ItemStack pStack) {
-		return FOOD_ITEMS.test(pStack);
+		Item item = pStack.getItem();
+		return item.isEdible() && item.getFoodProperties().isMeat();
 	}
 
 	@Override
@@ -666,26 +655,26 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	}
 
+	@Override
+	public double getPassengersRidingOffset() {
+		return (double)this.getBbHeight() * 0.75D;
+	}
 
 	@Override
 	public void positionRider(Entity pPassenger) {
-		super.positionRider(pPassenger);
-		if (pPassenger instanceof PlayerEntity) {
-			PlayerEntity playerEntity = (PlayerEntity)pPassenger;
-			this.yBodyRot = playerEntity.yBodyRot;
+		if (this.hasPassenger(pPassenger) && pPassenger instanceof LivingEntity) {
+			double d0 = this.getY() + this.getPassengersRidingOffset() + pPassenger.getMyRidingOffset();
+			LivingEntity rider = (LivingEntity)pPassenger;
+			this.yRot = rider.yHeadRot;
+			this.yBodyRot = this.yRot;
+
+			double offsetBack = -0.3; // negative = behind mount, positive = forward
+
+			Vector3d vector3d = (new Vector3d(offsetBack, 0.0D, 0.0D)).yRot(-this.yRot * ((float)Math.PI / 180F) - ((float)Math.PI / 2F));
+			pPassenger.setPos(this.getX() + vector3d.x, d0, this.getZ() + vector3d.z);
+
+			rider.yBodyRot = this.yRot;
 		}
-		/*
-		if (this.standAnimO > 0.0F) {
-			float f3 = MathHelper.sin(this.yBodyRot * ((float)Math.PI / 180F));
-			float f = MathHelper.cos(this.yBodyRot * ((float)Math.PI / 180F));
-			float f1 = 0.7F * this.standAnimO;
-			float f2 = 0.15F * this.standAnimO;
-			pPassenger.setPos(this.getX() + (double)(f1 * f3), this.getY() + this.getPassengersRidingOffset() + pPassenger.getMyRidingOffset() + (double)f2, this.getZ() - (double)(f1 * f));
-			if (pPassenger instanceof LivingEntity) {
-				((LivingEntity)pPassenger).yBodyRot = this.yBodyRot;
-			}
-		}
-		 */
 	}
 
 	/**

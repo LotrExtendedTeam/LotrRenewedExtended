@@ -1652,6 +1652,7 @@
   "block.minecraft.banner.lotrextended_woodland_realm.red": "Red Woodland Realm",
   "block.minecraft.banner.lotrextended_woodland_realm.white": "White Woodland Realm",
   "block.minecraft.banner.lotrextended_woodland_realm.yellow": "Yellow Woodland Realm",
+  "chat.lotrextended.action_requires_alignment": "This action reauires %1$s alignment!",
   "chat.lotrextended.bandit.stolen": "A bandit stole some items from your inventory!",
   "chat.lotrextended.hired_companion_levelup": "Your hired companion %1$s has reached level %2$s!",
   "chat.lotrextended.hired_companion_prefix": "Your hired companion %1$s",
