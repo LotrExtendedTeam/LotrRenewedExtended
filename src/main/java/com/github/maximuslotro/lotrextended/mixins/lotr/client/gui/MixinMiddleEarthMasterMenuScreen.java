@@ -11,6 +11,7 @@ import lotr.client.gui.BasicIngameScreen;
 import lotr.client.gui.MiddleEarthFactionsScreen;
 import lotr.client.gui.MiddleEarthMasterMenuScreen;
 import lotr.client.gui.map.MiddleEarthMapScreen;
+import lotr.client.gui.menu.ExtendedAdvancementsScreen;
 import lotr.client.gui.menu.ExtendedFellowshipScreen;
 import lotr.client.gui.menu.ExtendedOptionsScreen;
 import lotr.client.gui.widget.button.MiddleEarthMenuButton;
@@ -56,7 +57,7 @@ public class MixinMiddleEarthMasterMenuScreen extends BasicIngameScreen {
 		int buttonGap = 10;
 		int buttonSize = 32;
 
-		addButton(new MiddleEarthMenuButton(0, 0, null, new TranslationTextComponent("gui.lotrextended.menu.achievements"), 2, 65));
+		addButton(new MiddleEarthMenuButton(0, 0, ExtendedAdvancementsScreen.class, new TranslationTextComponent("gui.lotrextended.menu.achievements"), 2, 65));
 		addButton(new MiddleEarthMenuButton(0, 0, MiddleEarthMapScreen.class, new TranslationTextComponent("gui.lotr.menu.map"), 3, 77));
 		addButton(new MiddleEarthMenuButton(0, 0, MiddleEarthFactionsScreen.class, new TranslationTextComponent("gui.lotr.menu.factions"), 4, 70));
 		addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("?"), 0, -1));
