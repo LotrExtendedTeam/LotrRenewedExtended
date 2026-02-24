@@ -20,4 +20,19 @@ public enum InvasionChance {
     public int getChance() {
         return chance;
     }
+
+    public double getChancePerSecond() {
+        double prob = (double) chance / 100;
+        int trials = 3600;
+
+        if (prob == 0.0D) {
+            return 0.0D;
+        }
+
+        double d = prob;
+        d = 1.0D - d;
+        d = Math.pow(d, 1.0D / trials);
+        d = 1.0D - d;
+        return d;
+    }
 }

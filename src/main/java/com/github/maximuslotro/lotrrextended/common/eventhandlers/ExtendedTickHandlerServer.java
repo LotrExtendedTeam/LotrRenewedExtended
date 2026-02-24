@@ -58,6 +58,11 @@ public class ExtendedTickHandlerServer {
 						//levelData.logPlayerInvasionTimes();
 					}
 
+					// attempt to spawn invasions
+					if (world.getGameTime() % 20L == 0L) {
+						levelData.attemptToSpawnInvasions(world);
+					}
+
 					// run tolkien spawns every five minutes
 					if (world.getGameTime() % 6000L == 0L) {
 						levelData.checkForTolkienSpawns(world);

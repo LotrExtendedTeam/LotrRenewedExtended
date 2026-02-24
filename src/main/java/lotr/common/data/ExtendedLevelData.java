@@ -10,6 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import lotr.common.LOTRLog;
 import lotr.common.entity.npc.ExtendedTolkienEntity;
 import lotr.common.world.spawning.BanditsSpawner;
+import lotr.common.world.spawning.InvasionSpawner;
 import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -497,6 +498,15 @@ public class ExtendedLevelData {
 					playerBanditSpawnCooldowns.put(player.getUUID(), newCooldown);
 				}
 			}
+		}
+	}
+
+	public void attemptToSpawnInvasions(ServerWorld world) {
+		for (ServerPlayerEntity player : world.players()) {
+			// skip creative mode players and spectators
+			if (player.isCreative() || player.isSpectator()) continue;
+
+			InvasionSpawner.attemptInvasionSpawns(world, player);
 		}
 	}
 

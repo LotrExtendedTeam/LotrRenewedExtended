@@ -85,12 +85,11 @@ public class ExtendedRendererEventHandler {
 	}
 
 	public static void onPostRenderGameOverlay(final RenderGameOverlayEvent.Post event) {
-		LOTRLog.info("PostRenderGameOverlay Event Run");
 		Minecraft mc = Minecraft.getInstance();
-		if(LOTRDimensions.isModDimension(mc.level)) {
+        assert mc.level != null;
+        if(LOTRDimensions.isModDimension(mc.level)) {
 			if (event.getType() == RenderGameOverlayEvent.ElementType.BOSSINFO) {
 				ExtendedClientProxy.INSTANCE.lastTimeBossBarRendered = System.currentTimeMillis();
-				LOTRLog.info("ExtendedClientProxy.INSTANCE.lastTimeBossBarRendered = " + ExtendedClientProxy.INSTANCE.lastTimeBossBarRendered);
 			}
 		}
 	}

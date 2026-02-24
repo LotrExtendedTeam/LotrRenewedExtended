@@ -1,5 +1,6 @@
 package lotr.common.world.spawning;
 
+import lotr.common.LOTRLog;
 import lotr.common.world.ExtendedInvasions;
 import net.minecraft.world.World;
 
@@ -457,5 +458,18 @@ public class InvasionBiomeList {
         }
 
         return null;
+    }
+
+    public static Map<ExtendedInvasions, InvasionChance> getInvasionsPerBiome(String biomeName) {
+        String lotrBiome;
+        int index = biomeName.indexOf("lotr");
+        if (index != -1) {
+            lotrBiome = biomeName.substring(index);
+            lotrBiome = lotrBiome.replace("]", "");
+        } else {
+            LOTRLog.info("Attempted to determine invasion on \"" +  biomeName + "\" that is not a LOTR Mod biome");
+            return null;
+        }
+        return invasions.get(lotrBiome);
     }
 }
