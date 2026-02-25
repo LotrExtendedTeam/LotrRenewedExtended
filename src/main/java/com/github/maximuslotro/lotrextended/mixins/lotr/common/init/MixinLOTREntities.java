@@ -273,7 +273,7 @@ public class MixinLOTREntities {
 		// Technical
 		ExtendedEntities.STRUCTURE_ENTITY_SPAWNER = regEntityB("structure_spawner", ExtendedStructureSpawnerEntity::new, EntityClassification.MISC, 0.5F, 1.0F, 4, 3);
 		ExtendedEntities.RESPAWNER_ENTITY = regEntityB("trader_respawner", ExtendedRespawnerEntity::new, EntityClassification.MISC, 0.5F, 0.5F, 4, 3);
-		ExtendedEntities.INVASION_SPAWNER = regEntityExpanded("invasion_spawner", ExtendedInvasionSpawnerEntity::new, EntityClassification.MISC, 1.0F, 2.0F);
+		ExtendedEntities.INVASION_SPAWNER = regEntityB("invasion_spawner", ExtendedInvasionSpawnerEntity::new, EntityClassification.MISC, 1.0F, 2.0F, 4, 20);
 		ExtendedEntities.BANNER_HOLDER = regEntityB("banner_dataholder", ExtendedBannerEntity::new, EntityClassification.MISC, 0.125F, 1.0F, 4, 10);
 		ExtendedEntities.CHAIR = regEntityB("chair", ExtendedChairEntity::new, EntityClassification.MISC, 0.0001F, 0.0001F, 32, 2, (builder) -> {
 			builder.canSpawnFarFromPlayer();
