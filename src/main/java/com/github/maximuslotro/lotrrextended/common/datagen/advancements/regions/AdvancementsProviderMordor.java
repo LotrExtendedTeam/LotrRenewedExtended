@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
 
 import lotr.common.fac.FactionPointers;
+import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
@@ -56,6 +57,12 @@ public class AdvancementsProviderMordor extends ExtendedBaseAdvancementType{
 		Advancement morgul_crafter = build(true, data(LOTRItems.MORDOR_CRAFTING_TABLE.get(), "morgul_crafter", FrameType.TASK)
 			.setTitle("Morgul Crafter").setDescription("Craft an item on the Morgul Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.MORDOR_CRAFTING_TABLE.get()).parent(enter_mordor));
+
+		Advancement the_bombardier = build(true, data(ExtendedItems.ORC_BOMB.get(), "the_bombardier", FrameType.TASK)
+			.setTitle("The Bombardier").setDescription("Craft an Orc Bomb."),
+			addCraftingTrigger(make(), LOTRBlocks.MORDOR_CRAFTING_TABLE.get(), ExtendedItems.ORC_BOMB.get(),
+				LOTRBlocks.ANGMAR_CRAFTING_TABLE.get(), LOTRBlocks.URUK_CRAFTING_TABLE.get(), 
+				ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE.get()).parent(morgul_crafter));
 
 		Advancement orc_smithey = build(true, data(LOTRItems.ORC_STEEL_INGOT.get(), "orc_smithey", FrameType.TASK)
 			.setTitle("Orc Smith").setDescription("Smelt an ingot of Orc Steel in the Orc Forge."),

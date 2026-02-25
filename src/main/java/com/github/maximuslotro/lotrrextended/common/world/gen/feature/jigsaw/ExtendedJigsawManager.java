@@ -141,6 +141,7 @@ public class ExtendedJigsawManager {
 			if (structureStartHeight < 62 && jigsawpiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)jigsawpiece).shouldSnapToWaterHeight()) {
 				structureStartHeight = 62;
 			}
+			// Extended End
 		} else {
 			structureStartHeight = blockpos.getY();
 		}

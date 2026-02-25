@@ -1057,6 +1057,12 @@ public class MixinLOTRItems {
 
 		//Generic Orc Equipment
 		ExtendedItems.ORC_BOW = regItemB("orc_bow", () -> new ExtendedBowItem(ExtendedBowMaterial.ORC));
+		ExtendedItems.ORC_BOMB = regExtendedBlockItemD(ExtendedBlocks.ORC_BOMB, block -> new ExtendedOrcBombItem(block, new Properties().tab(LOTRItemGroups.COMBAT)));
+		ExtendedItems.ORC_BOMB_DOUBLE = regExtendedBlockItemD(ExtendedBlocks.ORC_BOMB_DOUBLE, block -> new ExtendedOrcBombItem(block, new Properties().tab(LOTRItemGroups.COMBAT)));
+		ExtendedItems.ORC_BOMB_TRIPLE = regExtendedBlockItemD(ExtendedBlocks.ORC_BOMB_TRIPLE, block -> new ExtendedOrcBombItem(block, new Properties().tab(LOTRItemGroups.COMBAT)));
+		ExtendedItems.ORC_BOMB_FIRE = regExtendedBlockItemD(ExtendedBlocks.ORC_BOMB_FIRE, block -> new ExtendedOrcBombItem(block, new Properties().tab(LOTRItemGroups.COMBAT)));
+		ExtendedItems.ORC_BOMB_FIRE_DOUBLE = regExtendedBlockItemD(ExtendedBlocks.ORC_BOMB_FIRE_DOUBLE, block -> new ExtendedOrcBombItem(block, new Properties().tab(LOTRItemGroups.COMBAT)));
+		ExtendedItems.ORC_BOMB_FIRE_TRIPLE = regExtendedBlockItemD(ExtendedBlocks.ORC_BOMB_FIRE_TRIPLE, block -> new ExtendedOrcBombItem(block, new Properties().tab(LOTRItemGroups.COMBAT)));
 
 		//Morgul Equipment
 		ExtendedItems.MORGUL_HELMET = regItemB("morgul_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.HEAD, "helmet"));

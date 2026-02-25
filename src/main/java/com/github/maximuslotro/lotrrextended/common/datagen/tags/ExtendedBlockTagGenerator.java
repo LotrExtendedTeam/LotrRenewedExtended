@@ -247,6 +247,7 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		}
 
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN).add(ExtendedBlocks.GALVORN_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_ORC_STEEL).add(LOTRBlocks.ORC_STEEL_BLOCK.get());
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL).add(ExtendedBlocks.BLACK_URUK_STEEL_BLOCK.get());
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_GILDED_IRON).add(ExtendedBlocks.GILDED_IRON_BLOCK.get());
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_MORGUL_STEEL).add(ExtendedBlocks.MORGUL_STEEL_BLOCK.get());

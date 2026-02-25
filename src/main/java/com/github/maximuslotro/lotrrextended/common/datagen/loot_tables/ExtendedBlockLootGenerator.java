@@ -31,6 +31,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBl
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedOrcBombBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMattedFurBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
@@ -438,6 +439,11 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			}
 			if(block.getValue().get() instanceof ExtendedStoneGrinderBlock) {
 				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
+			}
+			if(block.getValue().get() instanceof ExtendedOrcBombBlock) {
+				add(block.getValue().get(), LootTable.lootTable().withPool(applyExplosionCondition(block.getValue().get(), LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+					.add(ItemLootEntry.lootTableItem(block.getValue().get()).when(BlockStateProperty.hasBlockStateProperties(block.getValue().get())
+						.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedOrcBombBlock.UNSTABLE, false)))))));
 			}
 			if(block.getValue().get() instanceof ExtendedBerryHedgeBlock) {
 				ExtendedBerryHedgeBlock thingy = (ExtendedBerryHedgeBlock)block.getValue().get();

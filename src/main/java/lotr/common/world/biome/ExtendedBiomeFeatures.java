@@ -283,7 +283,10 @@ public class ExtendedBiomeFeatures {
 		builder.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ExtendedConfiguredFeatures.METEORITE_IMPACT.decorated(
 			Placement.HEIGHTMAP_SPREAD_DOUBLE.configured(IPlacementConfig.NONE).squared().chance(chance)));
 	}
-
+	public static void addOrthancWalls(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ExtendedConfiguredFeatures.RING_OF_ISENGARD.decorated(
+			Placement.HEIGHTMAP_SPREAD_DOUBLE.configured(IPlacementConfig.NONE).chance(1)));
+	}
 	public static void addOres(BiomeGenerationSettings.Builder builder) {
 		addUndergroundOreWeighted(builder, AMETHYST_ORE, 6, 64, 2F);
 		addUndergroundOreWeighted(builder, TOPAZ_ORE, 6, 64, 2F);

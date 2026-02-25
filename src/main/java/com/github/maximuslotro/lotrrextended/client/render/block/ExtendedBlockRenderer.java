@@ -13,6 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPot
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedOrcBombBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
@@ -129,6 +130,9 @@ public class ExtendedBlockRenderer {
 			}
 			if(block instanceof ExtendedBerryHedgeBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
+			}
+			if(block instanceof ExtendedOrcBombBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 			if(block instanceof ExtendedCrystalChandelierBlock) {
 				if(ModList.get().isLoaded("optfine")){

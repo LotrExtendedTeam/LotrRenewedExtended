@@ -1,0 +1,73 @@
+{
+  "parent": "lotrextended:mordor/morgul_crafter",
+  "display": {
+    "icon": {
+      "item": "lotr:orc_bomb"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.mordor.the_bombardier.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.mordor.the_bombardier.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "item_orc_bomb_made_on_mordor_crafting_table": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotr:orc_bomb"
+        },
+        "crafting_block": {
+          "block": "lotr:mordor_crafting_table"
+        }
+      }
+    },
+    "item_orc_bomb_made_on_angmar_crafting_table": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotr:orc_bomb"
+        },
+        "crafting_block": {
+          "block": "lotr:angmar_crafting_table"
+        }
+      }
+    },
+    "item_orc_bomb_made_on_uruk_crafting_table": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotr:orc_bomb"
+        },
+        "crafting_block": {
+          "block": "lotr:uruk_crafting_table"
+        }
+      }
+    },
+    "item_orc_bomb_made_on_dol_guldur_crafting_table": {
+      "trigger": "lotrextended:crafting_with_block",
+      "conditions": {
+        "item": {
+          "item": "lotr:orc_bomb"
+        },
+        "crafting_block": {
+          "block": "lotr:dol_guldur_crafting_table"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item_orc_bomb_made_on_mordor_crafting_table",
+      "item_orc_bomb_made_on_angmar_crafting_table",
+      "item_orc_bomb_made_on_uruk_crafting_table",
+      "item_orc_bomb_made_on_dol_guldur_crafting_table"
+    ]
+  ]
+}

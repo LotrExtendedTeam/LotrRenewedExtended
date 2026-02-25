@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedOrcBombEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedTapestryEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHedgehogEntity;
@@ -165,7 +166,7 @@ public class MixinLOTREntities {
 	 * @param <T> the type of module extending Entity
 	 * @param key A String name of the entity
 	 * @param factory A builder function for the entitie's EntityType
-	 * @param classif An AttributeModifierMap for the registered entity
+	 * @param classification An AttributeModifierMap for the registered entity
 	 * @param width The entity's hitbox's width
 	 * @param height The entity's hitbox's height
 	 * @param trackRange Value to set the entitie's tracking range to
@@ -173,7 +174,7 @@ public class MixinLOTREntities {
 	 * @return A RegistryObject instance for the supplied EntityType
 	 * */
 	@Shadow(remap=false)
-	private static <T extends Entity> RegistryObject<EntityType<T>> regEntity(String key, EntityType.IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq) {
+	private static <T extends Entity> RegistryObject<EntityType<T>> regEntity(String key, EntityType.IFactory<T> factory, EntityClassification classification, float width, float height, int trackRange, int updateFreq) {
 		return null;
 	}
 	/**
@@ -182,7 +183,7 @@ public class MixinLOTREntities {
 	 * @param <T> the type of module extending Entity
 	 * @param key A String name of the entity
 	 * @param factory A builder function for the entitie's EntityType
-	 * @param classif An AttributeModifierMap for the registered entity
+	 * @param classification An AttributeModifierMap for the registered entity
 	 * @param width The entity's hitbox's width
 	 * @param height The entity's hitbox's height
 	 * @param trackRange Value to set the entitie's tracking range to
@@ -191,7 +192,7 @@ public class MixinLOTREntities {
 	 * @return A RegistryObject instance for the supplied EntityType
 	 * */
 	@Shadow(remap=false)
-	private static <T extends Entity> RegistryObject<EntityType<T>> regEntity(String key, EntityType.IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq, Consumer<Builder<T>> extraProps) {
+	private static <T extends Entity> RegistryObject<EntityType<T>> regEntity(String key, EntityType.IFactory<T> factory, EntityClassification classification, float width, float height, int trackRange, int updateFreq, Consumer<Builder<T>> extraProps) {
 		return null;
 	}
 	/**
@@ -200,7 +201,7 @@ public class MixinLOTREntities {
 	 * @param <T> the type of module extending Entity
 	 * @param key A String name of the entity
 	 * @param factory A builder function for the entitie's EntityType
-	 * @param classif An AttributeModifierMap for the registered entity
+	 * @param classification An AttributeModifierMap for the registered entity
 	 * @param width The entity's hitbox's width
 	 * @param height The entity's hitbox's height
 	 * @param extraProps Extra EntityType properties builder
@@ -208,7 +209,7 @@ public class MixinLOTREntities {
 	 * @return A RegistryObject instance for the supplied EntityType
 	 * */
 	@Shadow(remap = false)
-	private static <T extends Entity> RegistryObject<EntityType<T>> regEntity(String key, EntityType.IFactory<T> factory, EntityClassification classif, float width, float height, Consumer<EntityType.Builder<T>> extraProps, Consumer<EntityType<T>> builtTypeConsumer) {
+	private static <T extends Entity> RegistryObject<EntityType<T>> regEntity(String key, EntityType.IFactory<T> factory, EntityClassification classification, float width, float height, Consumer<EntityType.Builder<T>> extraProps, Consumer<EntityType<T>> builtTypeConsumer) {
 		return null;
 	}
 	/**
@@ -216,7 +217,7 @@ public class MixinLOTREntities {
 	 * @param key A String name of the entity
 	 * @param <T> the type of module extending Entity
 	 * @param factory A builder function for the entity EntityType
-	 * @param classif An AttributeModifierMap for the registered entity
+	 * @param classification An AttributeModifierMap for the registered entity
 	 * @param width The entity's hitbox's width
 	 * @param height The entity's hitbox's height
 	 * @param trackRange Value to set the entitie's tracking range to
@@ -224,53 +225,19 @@ public class MixinLOTREntities {
 	 * @return A RegistryObject instance for the supplied EntityType
 	 * */
 	@Unique
-	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityNOND(String key, EntityType.IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq) {
-		RegistryObject<EntityType<T>> entity = regEntity(key, factory, classif, width, height, trackRange, updateFreq);
+	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityB(String key, EntityType.IFactory<T> factory, EntityClassification classification, float width, float height, int trackRange, int updateFreq) {
+		RegistryObject<EntityType<T>> entity = regEntity(key, factory, classification, width, height, trackRange, updateFreq);
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedEntities.REGISTEREDNONMOBENTITIES.add(key);
 		}
 		return entity;
 	}
 	/**
-	 * Extended's static entity register method, setting default tracking and update range
-	 * @param <T> the type of module extending Entity
-	 * @param key A String name of the entity
-	 * @param factory A builder function for the entity EntityType
-	 * @param classif An AttributeModifierMap for the registered entity
-	 * @param width The entity's hitbox's width
-	 * @param height The entity's hitbox's height
-	 * @return A RegistryObject instance for the supplied EntityType
-	 * */
-	@Unique
-	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityExpanded(String key, EntityType.IFactory<T> factory, EntityClassification classif, float width, float height) {
-        return regEntityExpanded(key, factory, classif, width, height, 5, 3);
-	}
-	/**
-	 * Extended's static entity register method, setting entity settings, with option for different tracking/update ranges
-	 * @param <T> the type of module extending Entity
-	 * @param key A String name of the entity
-	 * @param factory A builder function for the entity EntityType
-	 * @param classif An AttributeModifierMap for the registered entity
-	 * @param width The entity's hitbox's width
-	 * @param height The entity's hitbox's height
-	 * @param trackRange Value to set the entitie's tracking range to
-	 * @param updateFreq Value to set the entitie's update frequency to
-	 * @return A RegistryObject instance for the supplied EntityType
-	 * */
-	@Unique
-	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityExpanded(String key, EntityType.IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq) {
-        return regEntityExpanded(key, factory, classif, width, height, trackRange, updateFreq, (builder) -> {
-            builder.canSpawnFarFromPlayer();
-            builder.fireImmune();
-            builder.noSummon();
-        });
-	}
-	/**
 	 * Extended's base register method, handling dataGen, and allowing for custom entity properties
 	 * @param <T> the type of module extending Entity
 	 * @param key A String name of the entity
 	 * @param factory A builder function for the entity EntityType
-	 * @param classif An AttributeModifierMap for the registered entity
+	 * @param classification An AttributeModifierMap for the registered entity
 	 * @param width The entity's hitbox's width
 	 * @param height The entity's hitbox's height
 	 * @param trackRange Value to set the entitie's tracking range to
@@ -279,8 +246,8 @@ public class MixinLOTREntities {
 	 * @return A RegistryObject instance for the supplied EntityType
 	 * */
 	@Unique
-	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityExpanded(String key, EntityType.IFactory<T> factory, EntityClassification classif, float width, float height, int trackRange, int updateFreq, Consumer<Builder<T>> extraProps) {
-		RegistryObject<EntityType<T>> entity = regEntity(key, factory, classif, width, height, trackRange, updateFreq, extraProps);
+	private static <T extends Entity> RegistryObject<EntityType<T>> regEntityB(String key, EntityType.IFactory<T> factory, EntityClassification classification, float width, float height, int trackRange, int updateFreq, Consumer<Builder<T>> extraProps) {
+		RegistryObject<EntityType<T>> entity = regEntity(key, factory, classification, width, height, trackRange, updateFreq, extraProps);
 		if(DatagenModLoader.isRunningDataGen()) {
 			ExtendedEntities.REGISTEREDNONMOBENTITIES.add(key);
 		}
@@ -299,27 +266,29 @@ public class MixinLOTREntities {
 		ExtendedEntities.HEDGEHOG = regAnimalD("hedgehog", ExtendedHedgehogEntity::new, ExtendedHedgehogEntity::createHedgehogAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.4F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2167050, 14010033));
 		// Hostile
 		ExtendedEntities.BARROW_WIGHT = regNPCD("barrow_wight", ExtendedBarrowWightEntity::new, ExtendedBarrowWightEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.8F, 1.9f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(529926, 3111505));
-		// Projectile
-		ExtendedEntities.THROWN_CONKER = regEntityNOND("thrown_conker", ExtendedConkerEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
-		ExtendedEntities.THROWN_AXE = regEntityExpanded("thrown_axe", ExtendedThrowableAxeEntity::new, EntityClassification.MISC, 0.5F, 0.5F, 4, 20);
-		ExtendedEntities.DUCK_EGG_ENTITY = regEntityNOND("duck_egg", ExtendedDuckEggEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
-
-		// Wandering
-		ExtendedEntities.GALADHRIM_WANDERER = regNPCD("galadhrim_wanderer", ExtendedGaladhrimWandererEntity::new, ExtendedGaladhrimWandererEntity::createAttributes, LOTREntities.EntitySizeHolder.elfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2047778, 16762150));
-		ExtendedEntities.ODDMENT_COLLECTOR = regNPCD("oddment_collector", ExtendedOddmentCollectorEntity::new, ExtendedOddmentCollectorEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16225652, 5323553));
-		ExtendedEntities.RIVENDELL_WANDERER = regNPCD("rivendell_wanderer", ExtendedRivendellWandererEntity::new, ExtendedRivendellWandererEntity::createAttributes, LOTREntities.EntitySizeHolder.elfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(869480, 15003391));
+		// Projectiles
+		ExtendedEntities.THROWN_CONKER = regEntityB("thrown_conker", ExtendedConkerEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
+		ExtendedEntities.THROWN_AXE = regEntityB("thrown_axe", ExtendedThrowableAxeEntity::new, EntityClassification.MISC, 0.5F, 0.5F, 4, 20);
+		ExtendedEntities.DUCK_EGG_ENTITY = regEntityB("duck_egg", ExtendedDuckEggEntity::new, EntityClassification.MISC, 0.25F, 0.25F, 4, 10);
 		// Technical
-		ExtendedEntities.STRUCTURE_ENTITY_SPAWNER = regEntityExpanded("structure_spawner", ExtendedStructureSpawnerEntity::new, EntityClassification.MISC, 0.5F, 1.0F);
-		ExtendedEntities.RESPAWNER_ENTITY = regEntityExpanded("trader_respawner", ExtendedRespawnerEntity::new, EntityClassification.MISC, 0.5F, 0.5F);
+		ExtendedEntities.STRUCTURE_ENTITY_SPAWNER = regEntityB("structure_spawner", ExtendedStructureSpawnerEntity::new, EntityClassification.MISC, 0.5F, 1.0F, 4, 3);
+		ExtendedEntities.RESPAWNER_ENTITY = regEntityB("trader_respawner", ExtendedRespawnerEntity::new, EntityClassification.MISC, 0.5F, 0.5F, 4, 3);
 		ExtendedEntities.INVASION_SPAWNER = regEntityExpanded("invasion_spawner", ExtendedInvasionSpawnerEntity::new, EntityClassification.MISC, 1.0F, 2.0F);
-		ExtendedEntities.BANNER_HOLDER = regEntityExpanded("banner_dataholder", ExtendedBannerEntity::new, EntityClassification.MISC, 0.125F, 1.0F);
-		ExtendedEntities.CHAIR = regEntityExpanded("chair", ExtendedChairEntity::new, EntityClassification.MISC, 0.0001F, 0.0001F, 64, 20, (builder) -> {
+		ExtendedEntities.BANNER_HOLDER = regEntityB("banner_dataholder", ExtendedBannerEntity::new, EntityClassification.MISC, 0.125F, 1.0F, 4, 10);
+		ExtendedEntities.CHAIR = regEntityB("chair", ExtendedChairEntity::new, EntityClassification.MISC, 0.0001F, 0.0001F, 32, 2, (builder) -> {
 			builder.canSpawnFarFromPlayer();
 			builder.fireImmune();
 			builder.noSummon();
 			//builder.noSave();
 		});
-		ExtendedEntities.TAPESTRY = regEntityExpanded("tapestry", ExtendedTapestryEntity::new, EntityClassification.MISC, 0.5F, 0.5F, 10, Integer.MAX_VALUE);
+		ExtendedEntities.TAPESTRY = regEntityB("tapestry", ExtendedTapestryEntity::new, EntityClassification.MISC, 0.5F, 0.5F, 10, Integer.MAX_VALUE);
+		ExtendedEntities.ORC_BOMB = regEntityB("orc_bomb", ExtendedOrcBombEntity::new, EntityClassification.MISC, 0.98F, 0.98F, 10, 10, (builder) -> {
+			builder.fireImmune();
+		});
+		// Wandering
+		ExtendedEntities.GALADHRIM_WANDERER = regNPCD("galadhrim_wanderer", ExtendedGaladhrimWandererEntity::new, ExtendedGaladhrimWandererEntity::createAttributes, LOTREntities.EntitySizeHolder.elfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2047778, 16762150));
+		ExtendedEntities.ODDMENT_COLLECTOR = regNPCD("oddment_collector", ExtendedOddmentCollectorEntity::new, ExtendedOddmentCollectorEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16225652, 5323553));
+		ExtendedEntities.RIVENDELL_WANDERER = regNPCD("rivendell_wanderer", ExtendedRivendellWandererEntity::new, ExtendedRivendellWandererEntity::createAttributes, LOTREntities.EntitySizeHolder.elfSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(869480, 15003391));
 		// Rangers of the North
 		ExtendedEntities.DUNEDAIN_RANGER = regNPCD("dunedain_ranger", ExtendedDunedainRangerEntity::new, ExtendedDunedainRangerEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.6F, 1.93f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(4473912, 2302748));
 		ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN = regNPCD("dunedain_ranger_captain", ExtendedDunedainRangerCaptainEntity::new, ExtendedDunedainRangerCaptainEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.6F, 1.93f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(4473912, 2302748));

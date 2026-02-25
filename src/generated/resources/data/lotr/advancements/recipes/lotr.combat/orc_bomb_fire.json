@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:orc_bomb_fire"
+    ]
+  },
+  "criteria": {
+    "has_lava_bucket": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:lava_bucket"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:orc_bomb_fire"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_lava_bucket",
+      "has_the_recipe"
+    ]
+  ]
+}
