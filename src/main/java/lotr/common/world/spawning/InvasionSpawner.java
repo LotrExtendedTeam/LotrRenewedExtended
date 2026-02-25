@@ -3,13 +3,10 @@ package lotr.common.world.spawning;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedInvasionSpawnerEntity;
-import lotr.common.LOTRLog;
 import lotr.common.world.ExtendedInvasions;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
 
@@ -99,19 +96,15 @@ public class InvasionSpawner {
                     int z = MathHelper.floor(player.getZ()) + MathHelper.floor((MathHelper.cos(angle) * (24 + world.random.nextInt(20))));
                     int y = world.getHeight(Heightmap.Type.WORLD_SURFACE, x, z) + 3;
 
-                    LOTRLog.debug("INVASION: Checking Protection");
                     // check for protection
                     BlockPos cPos = new BlockPos(player.position());
                     if (ExtendedBannerProtectionManager.getProtectionStatus(world, cPos, new ExtendedBannerProtectionManager.SingleProtectionInstance.AnyProtection(), false, "checkSpawnRules").isNotAllowed()) {
                         continue;
                     }
-                    LOTRLog.debug("INVASION: No Protection");
 
-                    LOTRLog.debug("INVASION: Checking list");
                     if (!Objects.requireNonNull(InvasionBiomeList.getInvasionsPerBiome(
                             world.getBiomeName(cPos).toString())).containsKey(entry.getKey()
                     )) continue;
-                    LOTRLog.debug("INVASION: Biome list contains invasion");
 
                     ExtendedInvasionSpawnerEntity spawner = new ExtendedInvasionSpawnerEntity(world);
                     spawner.setFaction(entry.getKey().getKey());

@@ -31,6 +31,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.*;
 import net.minecraft.world.BossInfo;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
@@ -138,9 +139,10 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         this.noPhysics = false;
         this.setNoGravity(true);
 
-        // TODO: Check if game is set to peaceful and if so call endInvaison(false)
 
         if(!this.level.isClientSide()) {
+            if (level.getDifficulty() == Difficulty.PEACEFUL) endInvasion(false);
+
             this.yRot += ROTATION_SPEED;
 
             if (this.yRot >= 360.0F) {
@@ -429,9 +431,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     }
 
     public boolean startInvasion() {
-        // TODO: Restore this logic when testing is done
-        //return startInvasion(MathHelper.nextInt(this.random, 55, 80));
-        return startInvasion(10);
+        return startInvasion(MathHelper.nextInt(this.random, 30, 70));
     }
 
     public boolean startInvasion(int invasionSize) {
