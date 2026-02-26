@@ -131,7 +131,7 @@ public class MixinLOTRTileEntities {
     	ExtendedTileEntities.WEAPON_RACK = register("weapon_rack_tileentity", () -> Builder.of(ExtendedWeaponRackTileEntity::new, ExtendedBlocks.WEAPON_RACK.get()));
     	ExtendedTileEntities.REED_BASKET = register("reed_basket_tileentity", () -> Builder.of(ExtendedReedBasketTileEntity::new, ExtendedBlocks.REED_BASKET.get()));
     	ExtendedTileEntities.ORC_BARREL = register("orc_barrel_tileentity", () -> Builder.of(ExtendedOrcBarrelTileEntity::new, ExtendedBlocks.ORC_BARREL.get()));
-    	ExtendedTileEntities.MILLSTONE = register("stone_grinder_tileentity", () -> Builder.of(ExtendedStoneGrinderTileEntity::new, ExtendedBlocks.STONE_GRINDER.get()));
+    	ExtendedTileEntities.STONE_GRINDER = register("stone_grinder_tileentity", () -> Builder.of(ExtendedStoneGrinderTileEntity::new, ExtendedBlocks.STONE_GRINDER.get()));
     	ExtendedTileEntities.BANNER_STANDING = register("banner_s_tileentity", () -> Builder.of(ExtendedMEBannerTileEntity::new, ExtendedBannerTypes.getContainedStandingBlocks()));
     	ExtendedTileEntities.BANNER_HANGING = register("banner_h_tileentity", () -> Builder.of(ExtendedMEHangingBannerTileEntity::new, ExtendedBannerTypes.getContainedHangingBlocks()));
     	ExtendedTileEntities.GRASS_VOID = register("grass_void_tileentity", () -> Builder.of(ExtendedGrassVoidTileEntity::new, ExtendedBlocks.GRASS_VOID.get()));
