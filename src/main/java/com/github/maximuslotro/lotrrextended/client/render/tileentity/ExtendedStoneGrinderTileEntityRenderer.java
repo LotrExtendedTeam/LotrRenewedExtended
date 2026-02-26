@@ -23,7 +23,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ExtendedStoneGrinderTileEntityRenderer extends TileEntityRenderer<ExtendedStoneGrinderTileEntity> {
-	private static final ResourceLocation GRINDER_TEXTURE = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/grinder/base.png");
+	private static final ResourceLocation GRINDER_CLOSED_TEXTURE = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/grinder/closed.png");
+	private static final ResourceLocation GRINDER_OPEN_TEXTURE = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/grinder/open.png");
 	private static boolean aprilFools = CalendarUtil.isAprilFools();
 	ExtendedStoneGrinderModel model;
 	
@@ -53,7 +54,7 @@ public class ExtendedStoneGrinderTileEntityRenderer extends TileEntityRenderer<E
 			float f = blockstate.getValue(ExtendedStoneGrinderBlock.FACING).toYRot();
 			pMatrixStack.mulPose(Vector3f.YP.rotationDegrees(f));
 			// Render
-			IVertexBuilder builder = pBuffer.getBuffer(model.renderType(GRINDER_TEXTURE));
+			IVertexBuilder builder = pBuffer.getBuffer(model.renderType(/*pBlockEntity.isOpen>0 && */!powered ? GRINDER_OPEN_TEXTURE : GRINDER_CLOSED_TEXTURE));
 			model.renderToBuffer(pMatrixStack, builder, pCombinedLight, pCombinedOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
 			pMatrixStack.popPose();
 		}

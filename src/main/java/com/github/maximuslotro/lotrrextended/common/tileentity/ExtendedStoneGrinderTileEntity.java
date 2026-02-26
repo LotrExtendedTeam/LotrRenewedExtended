@@ -16,6 +16,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import lotr.common.init.ExtendedTileEntities;
 import lotr.common.item.VesselDrinkItem;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -95,6 +96,7 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 	LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 	public double spin = 0;
 	public double spinO = 0;
+	public int isOpen;
 
 	private ExtendedStoneGrinderTileEntity(TileEntityType<?> tileEntityType) {
 		super(tileEntityType);
@@ -168,6 +170,45 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 			}else {
 				this.spinO = this.spin = 0;
 			}
+		}
+	}
+
+	@Override
+	public boolean triggerEvent(int pId, int pType) {
+		if (pId == 1) {
+			this.isOpen = pType;
+			return true;
+		} else {
+			return super.triggerEvent(pId, pType);
+		}
+	}
+
+	@Override
+	public void startOpen(PlayerEntity pPlayer) {
+		if (!pPlayer.isSpectator()) {
+			if (this.isOpen < 0) {
+				this.isOpen = 0;
+			}
+			// TODO fix opening not syncing
+			++this.isOpen;
+			this.signalOpenCount();
+		}
+
+	}
+
+	@Override
+	public void stopOpen(PlayerEntity pPlayer) {
+		if (!pPlayer.isSpectator()) {
+			--this.isOpen;
+			this.signalOpenCount();
+		}
+
+	}
+	protected void signalOpenCount() {
+		Block block = this.getBlockState().getBlock();
+		if (block instanceof ExtendedStoneGrinderBlock) {
+			this.level.blockEvent(this.worldPosition, block, 1, this.isOpen);
+			this.level.updateNeighborsAt(this.worldPosition, block);
 		}
 	}
 
