@@ -413,6 +413,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.fellowship.data.owner", "Owner: ");
 		addD("command.lotrextended.fellowship.data.admins", "Admins: ");
 		addD("command.lotrextended.fellowship.data.members", "Members: ");
+        addD("command.lotrextended.fellowship.changecolor", "Faction color updated!");
 
 		//Config Command Values
 		addD("command.lotrextended.config.cant", "can only be edited in server config while server is off!");

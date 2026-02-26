@@ -75,12 +75,9 @@ public class FellowshipMessageCommand extends LOTRBaseCommand {
         }
 
         ExtendedFellowshipDataModule data = getFellowshipData(player);
-        if (data == null) return 0;
-
-
         ExtendedFellowship fellowship = data.getFellowshipByName(fellowshipname);
         if (fellowship == null) {
-            source.sendFailure(new StringTextComponent("Fellowship does not exist."));
+            source.sendFailure(new TranslationTextComponent("command.lotrextended.fellowship.error.noexists"));
             return 0;
         }
 

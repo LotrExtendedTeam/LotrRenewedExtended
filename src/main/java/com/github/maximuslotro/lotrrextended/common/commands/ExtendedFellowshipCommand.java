@@ -400,7 +400,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         Style style = Style.EMPTY.withColor(Color.fromRgb(faction.getColor()));
         if (fellowship != null && fellowship.hasEditPowers(source.getPlayerOrException().getUUID())) {
             fellowshipData.setFellowshipColor(fellowship, style);
-            source.sendSuccess(new StringTextComponent("Command worked UwU"), true);
+            source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.changecolor"), true);
 
             return 0;
         }
