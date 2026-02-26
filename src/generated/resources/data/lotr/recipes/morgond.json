@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SG",
+    "RC"
+  ],
+  "key": {
+    "S": {
+      "item": "lotr:obsidian_shard"
+    },
+    "G": {
+      "item": "minecraft:gravel"
+    },
+    "R": {
+      "tag": "lotrextended:morgond_rocks"
+    },
+    "C": {
+      "item": "minecraft:clay"
+    }
+  },
+  "result": {
+    "item": "lotr:morgond"
+  }
+}

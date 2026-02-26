@@ -480,7 +480,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						numberTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 5);
 						continue;
 					}
-					if(block.getKey().equals("carved_red_angmar_brick")) {
+					if(block.getKey().equals("carved_red_angmar_brick") || block.getKey().equals("carved_morgond")) {
 						genCubeColumnBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrExtendedLoc("block/"+block.getKey()+"_top"));
 						continue;
 					}

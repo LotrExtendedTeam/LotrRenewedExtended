@@ -764,6 +764,29 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCarvedBlockRecipe(consumer, ExtendedBlocks.CARVED_UMBAR_BRICK,
 			LOTRBlocks.UMBAR_BRICK, LOTRBlocks.UMBAR_BRICK_SLAB, LOTRRecipes.UMBAR_CRAFTING);
 		makeThrowableAxeRecipe(consumer, ExtendedItems.LOSSARNACH_THROWABLE_AXE, Tags.Items.INGOTS_IRON, "iron", LOTRRecipes.GONDOR_CRAFTING);
+		GENERATEDRECIPES.add(ExtendedItems.MORGOND.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.MORGOND.get())
+		.pattern("SG")
+		.pattern("RC")
+		.define('S', Ingredient.of(ExtendedItems.OBSIDIAN_SHARD.get()))
+		.define('G', Ingredient.of(Items.GRAVEL))
+		.define('R', Ingredient.of(ExtendedTags.Items.MORGOND_ROCKS))
+		.define('C', Ingredient.of(Items.CLAY))
+		.unlockedBy("has_"+ExtendedItems.OBSIDIAN_SHARD.get().getRegistryName().getPath(), has(ExtendedItems.OBSIDIAN_SHARD.get()))
+		.save(consumer, lotrLoc(ExtendedItems.MORGOND.get().getRegistryName().getPath()));
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.MORGOND_STAIRS,
+			ExtendedBlocks.MORGOND_SLAB,
+			ExtendedBlocks.MORGOND_WALL,
+			ExtendedItems.MORGOND, LOTRRecipes.GONDOR_CRAFTING);
+		makeCarvedBlockRecipe(consumer, ExtendedBlocks.CARVED_MORGOND,
+			ExtendedBlocks.MORGOND, ExtendedBlocks.MORGOND_SLAB, LOTRRecipes.GONDOR_CRAFTING);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.CARVED_MORGOND_STAIRS,
+			ExtendedBlocks.CARVED_MORGOND_SLAB,
+			ExtendedBlocks.CARVED_MORGOND_WALL,
+			ExtendedItems.CARVED_MORGOND, LOTRRecipes.GONDOR_CRAFTING);
+		makePillarSlabRecipe(consumer, ExtendedBlocks.MORGOND_PILLAR,
+			ExtendedBlocks.MORGOND_PILLAR_SLAB,
+			ExtendedItems.MORGOND, LOTRRecipes.GONDOR_CRAFTING);
 		//DWARVEN
 		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK,
 			ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_STAIRS,

@@ -776,4 +776,15 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ORC_BOMB_FIRE;
 	public static RegistryObject<Item> ORC_BOMB_FIRE_DOUBLE;
 	public static RegistryObject<Item> ORC_BOMB_FIRE_TRIPLE;
+
+	public static RegistryObject<Item> MORGOND;
+	public static RegistryObject<Item> MORGOND_SLAB;
+	public static RegistryObject<Item> MORGOND_STAIRS;
+	public static RegistryObject<Item> MORGOND_WALL;
+	public static RegistryObject<Item> MORGOND_PILLAR;
+	public static RegistryObject<Item> MORGOND_PILLAR_SLAB;
+	public static RegistryObject<Item> CARVED_MORGOND;
+	public static RegistryObject<Item> CARVED_MORGOND_SLAB;
+	public static RegistryObject<Item> CARVED_MORGOND_STAIRS;
+	public static RegistryObject<Item> CARVED_MORGOND_WALL;
 }

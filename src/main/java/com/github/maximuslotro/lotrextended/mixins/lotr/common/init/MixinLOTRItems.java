@@ -945,6 +945,17 @@ public class MixinLOTRItems {
 		ExtendedItems.CARVED_BLACK_UMBAR_BRICK = regBlockItemB(ExtendedBlocks.CARVED_BLACK_UMBAR_BRICK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CARVED_UMBAR_BRICK = regBlockItemB(ExtendedBlocks.CARVED_UMBAR_BRICK, LOTRItemGroups.BLOCKS);
 
+		ExtendedItems.MORGOND = regBlockItemB(ExtendedBlocks.MORGOND, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MORGOND_SLAB = regBlockItemB(ExtendedBlocks.MORGOND_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MORGOND_STAIRS = regBlockItemB(ExtendedBlocks.MORGOND_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MORGOND_WALL = regBlockItemB(ExtendedBlocks.MORGOND_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MORGOND_PILLAR = regBlockItemB(ExtendedBlocks.MORGOND_PILLAR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MORGOND_PILLAR_SLAB = regBlockItemB(ExtendedBlocks.MORGOND_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CARVED_MORGOND = regBlockItemB(ExtendedBlocks.CARVED_MORGOND, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CARVED_MORGOND_SLAB = regBlockItemB(ExtendedBlocks.CARVED_MORGOND_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CARVED_MORGOND_STAIRS = regBlockItemB(ExtendedBlocks.CARVED_MORGOND_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CARVED_MORGOND_WALL = regBlockItemB(ExtendedBlocks.CARVED_MORGOND_WALL, LOTRItemGroups.BLOCKS);
+
 		ExtendedItems.ORC_STEEL_DOOR = regTallBlockItemB(ExtendedBlocks.ORC_STEEL_DOOR, LOTRItemGroups.UTIL);
 		ExtendedItems.ORC_STEEL_TRAPDOOR = regBlockItemB(ExtendedBlocks.ORC_STEEL_TRAPDOOR, LOTRItemGroups.UTIL);
 
