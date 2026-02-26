@@ -1134,6 +1134,13 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.PLACED_BOOKS = registerB("placed_books", () -> new ExtendedPlacedBooksBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noOcclusion()));
 		ExtendedBlocks.EXTENDED_BOOKSHELF = registerB("bookshelf", () -> new ExtendedBookshelfBlock(AbstractBlock.Properties.of(Material.WOOD).strength(1.5F).sound(SoundType.WOOD)));
+
+		ExtendedBlocks.ORC_BOMB = registerB("orc_bomb", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 0, false));
+		ExtendedBlocks.ORC_BOMB_DOUBLE = registerB("orc_bomb_double", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 1, false));
+		ExtendedBlocks.ORC_BOMB_TRIPLE = registerB("orc_bomb_triple", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 2, false));
+		ExtendedBlocks.ORC_BOMB_FIRE = registerB("orc_bomb_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 0, true));
+		ExtendedBlocks.ORC_BOMB_FIRE_DOUBLE = registerB("orc_bomb_double_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 1, true));
+		ExtendedBlocks.ORC_BOMB_FIRE_TRIPLE = registerB("orc_bomb_triple_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 2, true));
 	}
 
 	/**

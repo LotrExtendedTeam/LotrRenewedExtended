@@ -36,6 +36,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBl
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedOrcBombBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMattedFurBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
@@ -320,6 +321,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedGroundGrassBlock) {
 					genGrassBlockItem((ExtendedGroundGrassBlock) block.getValue().get(), "block/"+block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedOrcBombBlock) {
+					genOrcBombBlockItem((ExtendedOrcBombBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedChimneyPotBlock) {
@@ -1611,6 +1616,18 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			return variant3;
 		});
+	}
+
+	private void genOrcBombBlockItem(ExtendedOrcBombBlock orcBomb, ResourceLocation texture) {
+		registeredBlocks.add(orcBomb);
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+orcBomb.getRegistryName().getPath(), lotrExtendedLoc("block/template_orc_bomb"))
+				.texture("particle", texture).texture("bomb", texture);
+		getVariantBuilder(orcBomb).forAllStatesExcept(state -> {
+			return ConfiguredModel.builder()
+                    .modelFile(modelFile)
+                    .build();
+		},ExtendedOrcBombBlock.UNSTABLE);
+		itemModels().getBuilder("lotr:"+orcBomb.getRegistryName().getPath()).parent(modelFile);
 	}
 
 	private void genBannerBlock(ExtendedMEBannerBlock extendedMEBannerBlock, ResourceLocation texture) {

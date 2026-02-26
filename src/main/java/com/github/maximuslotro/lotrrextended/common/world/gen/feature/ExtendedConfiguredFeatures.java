@@ -30,8 +30,8 @@ public class ExtendedConfiguredFeatures {
 
 	public static final ConfiguredFeature<ExtendedWallsFeatureConfig, ?> RING_OF_ISENGARD = register("ring_of_isengard", ExtendedFeature.WALLS_PRE.configured(
 		new ExtendedWallsFeatureConfig(37440, 42049, 400, 100, 90, 12.0f, LOTRBlocks.NUMENOREAN_BRICK.get().defaultBlockState(),
-			LOTRBlocks.NUMENOREAN_BRICK.get().defaultBlockState(), 2, LOTRBlocks.NUMENOREAN_BRICK_WALL.get().defaultBlockState(), 1, EdgeType.OUTER
-			)));
+			LOTRBlocks.NUMENOREAN_BRICK.get().defaultBlockState(), 2, LOTRBlocks.NUMENOREAN_BRICK_WALL.get().defaultBlockState(), 1, 
+			EdgeType.OUTER, new ExtendedWallsButtressFeatureConfig(12, 0.08D, 8))));
 
 	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String configuredFeatureName, ConfiguredFeature<FC, ?> pConfiguredFeature) {
 		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(LotrExtendedMod.MODID, configuredFeatureName), pConfiguredFeature);

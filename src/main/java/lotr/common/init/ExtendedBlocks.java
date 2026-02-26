@@ -599,5 +599,10 @@ public class ExtendedBlocks {
 
 	public static RegistryObject<Block> EXTENDED_BOOKSHELF;
 
-	
+	public static RegistryObject<Block> ORC_BOMB;
+	public static RegistryObject<Block> ORC_BOMB_DOUBLE;
+	public static RegistryObject<Block> ORC_BOMB_TRIPLE;
+	public static RegistryObject<Block> ORC_BOMB_FIRE;
+	public static RegistryObject<Block> ORC_BOMB_FIRE_DOUBLE;
+	public static RegistryObject<Block> ORC_BOMB_FIRE_TRIPLE;
 }

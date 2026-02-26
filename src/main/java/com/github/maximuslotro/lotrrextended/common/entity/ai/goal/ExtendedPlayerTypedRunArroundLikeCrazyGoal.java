@@ -32,7 +32,7 @@ public class ExtendedPlayerTypedRunArroundLikeCrazyGoal extends Goal {
 	    */
 	   @Override
 	public boolean canUse() {
-	      if (!((ExtendedRidableWargEntity)this.warg).isTamed() && this.warg.isVehicle() && this.warg.canBeControlledByRider()) {
+	      if (!((ExtendedRidableWargEntity)this.warg).isTamed() && this.warg.isVehicle()) {
 	         Vector3d vector3d = RandomPositionGenerator.getPos(this.warg, 5, 4);
 	         if (vector3d == null) {
 	            return false;
@@ -60,7 +60,7 @@ public class ExtendedPlayerTypedRunArroundLikeCrazyGoal extends Goal {
 	    */
 	   @Override
 	public boolean canContinueToUse() {
-	      return !((ExtendedRidableWargEntity)this.warg).isTamed() && !this.warg.getNavigation().isDone() && this.warg.isVehicle() && this.warg.canBeControlledByRider();
+	      return !((ExtendedRidableWargEntity)this.warg).isTamed() && !this.warg.getNavigation().isDone() && this.warg.isVehicle();
 	   }
 
 	   /**
@@ -79,6 +79,7 @@ public class ExtendedPlayerTypedRunArroundLikeCrazyGoal extends Goal {
 	            int j = ((ExtendedRidableWargEntity)this.warg).getMaxTemper();
 	            if (j > 0 && this.warg.getRandom().nextInt(j) < i) {
 	            	((ExtendedRidableWargEntity)this.warg).tameWithName((PlayerEntity)entity);
+	            	warg.setPersistenceRequired();
 	               return;
 	            }
 

@@ -27,7 +27,8 @@ public class ExtendedWallsFeatureConfig implements IFeatureConfig {
 				return p_161322_.spikeGapState;
 			}),
 			Codec.INT.fieldOf("spike_gap_h").forGetter(c -> c.spikeGapHeight),
-			Codec.INT.fieldOf("edge_type").forGetter(c -> c.edgeType.edgeType)
+			Codec.INT.fieldOf("edge_type").forGetter(c -> c.edgeType.edgeType),
+			ExtendedWallsButtressFeatureConfig.CODEC.fieldOf("buttress").forGetter(c -> c.buttressConfig)
 			).apply(instance, ExtendedWallsFeatureConfig::new));
 
 	public final int wallsCenterX;
@@ -42,9 +43,11 @@ public class ExtendedWallsFeatureConfig implements IFeatureConfig {
 	public final BlockState spikeGapState;
 	public final int spikeGapHeight;
 	public final EdgeType edgeType;
-
+	public final ExtendedWallsButtressFeatureConfig buttressConfig;
+	
 	public ExtendedWallsFeatureConfig(int pWallsCenterX, int pWallsCenterZ, int pWallsRadius, int pWallHeight, int pWallPortHeight, 
-		float pWallThickness, BlockState pWallState, BlockState pSpikeState, int pSpikeHeight, BlockState pSpikeGapState, int pSpikeGapHeight, int pEdgeType) {
+		float pWallThickness, BlockState pWallState, BlockState pSpikeState, int pSpikeHeight, BlockState pSpikeGapState, 
+		int pSpikeGapHeight, int pEdgeType, ExtendedWallsButtressFeatureConfig pButtressConfig) {
 		wallsCenterX = pWallsCenterX;
 		wallsCenterZ = pWallsCenterZ;
 		wallsRadius= pWallsRadius;
@@ -57,10 +60,12 @@ public class ExtendedWallsFeatureConfig implements IFeatureConfig {
 		spikeGapState = pSpikeGapState;
 		spikeGapHeight = pSpikeGapHeight;
 		edgeType = EdgeType.fromInt(pEdgeType);
+		buttressConfig = pButtressConfig;
 	}
 
 	public ExtendedWallsFeatureConfig(int pWallsCenterX, int pWallsCenterZ, int pWallsRadius, int pWallHeight, int pWallPortHeight, 
-		float pWallThickness, BlockState pWallState, BlockState pSpikeState, int pSpikeHeight, BlockState pSpikeGapState, int pSpikeGapHeight, EdgeType pEdgeType) {
+		float pWallThickness, BlockState pWallState, BlockState pSpikeState, int pSpikeHeight, BlockState pSpikeGapState,
+		int pSpikeGapHeight, EdgeType pEdgeType, ExtendedWallsButtressFeatureConfig pButtressConfig) {
 		wallsCenterX = pWallsCenterX;
 		wallsCenterZ = pWallsCenterZ;
 		wallsRadius= pWallsRadius;
@@ -73,5 +78,6 @@ public class ExtendedWallsFeatureConfig implements IFeatureConfig {
 		spikeGapState = pSpikeGapState;
 		spikeGapHeight = pSpikeGapHeight;
 		edgeType = pEdgeType;
+		buttressConfig = pButtressConfig;
 	}
 }

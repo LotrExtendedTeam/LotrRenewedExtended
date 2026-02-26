@@ -115,10 +115,13 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addD(entity.getKey(), entity.getValue());
 		}
 
-		// Fast Travel 
+		// chat notifications
+		addD("chat.lotrextended.hired_companion_prefix", "Your hired companion %1$s");
+		addD("chat.lotrextended.hired_companion_levelup", "Your hired companion %1$s has reached level %2$s!");
 		addD("chat.lotrextended.no_custom", "Custom waypoint fast travel has been disabled on this server.");
 		addD("chat.lotrextended.no_default", "Default waypoint fast travel has been disabled on this server.");
-		
+		addD("chat.lotrextended.action_requires_alignment", "This action requires %1$s alignment!");
+
 		// Add Menu strings
 		addD("gui.lotrextended.menu.fellowships", "Fellowships");
 		addD("gui.lotrextended.menu.settings", "Options");
@@ -360,6 +363,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("item."+ExtendedItems.COMMANDHORN.getId().getNamespace()+"."+ExtendedItems.COMMANDHORN.getId().getPath()+".summon", "Horn of Command - Summon Units");
 		addOverride("item."+ExtendedItems.MODIFIER_SCROLL.getId().getNamespace()+"."+ExtendedItems.MODIFIER_SCROLL.getId().getPath(), "Modifier Scroll");
 		addOverride("item."+ExtendedItems.MODIFIER_SCROLL.getId().getNamespace()+"."+ExtendedItems.MODIFIER_SCROLL.getId().getPath()+".named", "%s Modifier Scroll");
+		addD("item.lotrextended.orc_bomb.fire_message", "Ignites the surrounding area");
+		addD("item.lotrextended.orc_bomb.strength_0", "Single Strength");
+		addD("item.lotrextended.orc_bomb.strength_1", "Double Strength");
+		addD("item.lotrextended.orc_bomb.strength_2", "Triple Strength");
 
 		//Bow values
 		addD("gui.lotrextended.bow.speed", "Draw Speed: %s");
@@ -479,9 +486,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("item.lotrextended.base_gear.weapon_idle", "Base Idle Weapon");
 		addD("item.lotrextended.base_gear.weapon_idle_mounted", "Base Idle Mounted Weapon");
 		addD("item.lotrextended.base_gear.shield", "Base Shield");
-		// chat notifications
-		addD("chat.lotrextended.hired_companion_prefix", "Your hired companion %1$s");
-		addD("chat.lotrextended.hired_companion_levelup", "Your hired companion %1$s has reached level %2$s!");
+
 		// hired unit tooltips in unit GUI
 		addD("gui.lotrextended.hired_unit_tooltip.title.companion", "Companion:");
 		addD("gui.lotrextended.hired_unit_tooltip.title.health", "Health");

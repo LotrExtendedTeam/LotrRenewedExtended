@@ -46,6 +46,6 @@ public class ExtendedWargEyesLayer<T extends WargEntity> extends AbstractEyesLay
 	// Not used as overridden
 	@Override
 	public RenderType renderType() {
-		return BLACK_EYES;
+		return null;
 	}
 }
