@@ -205,7 +205,7 @@ public class ExtendedModifierUtils {
 			return;
 		}
 		// Filter for items banes can be applied to
-		if (ExtendedModifierType.BANE.isItemApplicable(stack)) {
+		if (!ExtendedModifierType.BANE.isItemApplicable(stack)) {
 			return;
 		}
 		// exit the method if there is applicable bane for that entity
