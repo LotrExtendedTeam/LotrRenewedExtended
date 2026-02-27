@@ -883,6 +883,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORGOND_SLAB = registerB("morgond_slab", () -> new AxialSlabBlock(ExtendedBlocks.MORGOND));
 		ExtendedBlocks.MORGOND_STAIRS = registerB("morgond_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MORGOND));
 		ExtendedBlocks.MORGOND_WALL = registerB("morgond_wall", () -> new LOTRWallBlock(ExtendedBlocks.MORGOND));
+		ExtendedBlocks.MORGOND_DRIPSTONE = registerB("morgond_dripstone", () -> new DripstoneBlock(ExtendedBlocks.MORGOND));
 		ExtendedBlocks.MORGOND_PILLAR = registerB("morgond_pillar", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(1000.0F, 1200.0F)));
 		ExtendedBlocks.MORGOND_PILLAR_SLAB = registerB("morgond_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.MORGOND_PILLAR));
 		ExtendedBlocks.CARVED_MORGOND = registerB("carved_morgond", () -> new ExtendedStoneBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(1000.0F, 1200.0F)));

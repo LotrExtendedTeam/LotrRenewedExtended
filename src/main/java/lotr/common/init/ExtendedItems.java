@@ -781,6 +781,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MORGOND_SLAB;
 	public static RegistryObject<Item> MORGOND_STAIRS;
 	public static RegistryObject<Item> MORGOND_WALL;
+	public static RegistryObject<Item> MORGOND_DRIPSTONE;
 	public static RegistryObject<Item> MORGOND_PILLAR;
 	public static RegistryObject<Item> MORGOND_PILLAR_SLAB;
 	public static RegistryObject<Item> CARVED_MORGOND;

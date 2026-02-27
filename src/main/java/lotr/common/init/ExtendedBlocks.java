@@ -610,6 +610,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MORGOND_SLAB;
 	public static RegistryObject<Block> MORGOND_STAIRS;
 	public static RegistryObject<Block> MORGOND_WALL;
+	public static RegistryObject<Block> MORGOND_DRIPSTONE;
 	public static RegistryObject<Block> MORGOND_PILLAR;
 	public static RegistryObject<Block> MORGOND_PILLAR_SLAB;
 	public static RegistryObject<Block> CARVED_MORGOND;

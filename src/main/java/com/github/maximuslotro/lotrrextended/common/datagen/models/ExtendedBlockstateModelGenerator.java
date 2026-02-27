@@ -63,6 +63,8 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedRopeType;
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
 import lotr.common.block.ChandelierBlock;
+import lotr.common.block.DripstoneBlock;
+import lotr.common.block.DripstoneBlock.Type;
 import lotr.common.block.ExtendedAxialSlabPathBlock;
 import lotr.common.block.ExtendedDwarvenGateBlock;
 import lotr.common.block.ExtendedHearthBlock;
@@ -385,6 +387,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedMossCarpetBlock) {
 					genMossCarpetBlockItem((ExtendedMossCarpetBlock)block.getValue().get());
+					continue;
+				}
+				if(block.getValue().get() instanceof DripstoneBlock) {
+					if(block.getKey().contains("morgond")) {
+						genDripstoneBlockItem((DripstoneBlock)block.getValue().get(), lotrExtendedLoc("block/morgond"));
+					}
 					continue;
 				}
 				if(block.getValue().get() instanceof LOTRTrapdoorBlock) {
@@ -2110,6 +2118,33 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .build();
 		});
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(modelFile);
+	}
+
+	private void genDripstoneBlockItem(DripstoneBlock block, ResourceLocation resourceLocation) {
+		registeredBlocks.add(block);
+		ModelFile stalactite = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_stalactite", "lotr:block/stalactite_template")
+			.texture("top", resourceLocation).texture("bottom", resourceLocation).texture("side", resourceLocation);
+		ModelFile stalactite_double_base = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_stalactite_double_base", "lotr:block/stalactite_double_base_template")
+			.texture("top", resourceLocation).texture("bottom", resourceLocation).texture("side", resourceLocation);
+		ModelFile stalactite_double_point = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_stalactite_double_point", "lotr:block/stalactite_double_point_template")
+			.texture("top", resourceLocation).texture("bottom", resourceLocation).texture("side", resourceLocation);
+		ModelFile stalagmite = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_stalagmite", "lotr:block/stalagmite_template")
+			.texture("top", resourceLocation).texture("bottom", resourceLocation).texture("side", resourceLocation);
+		ModelFile stalagmite_double_base = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_stalagmite_double_base", "lotr:block/stalagmite_double_base_template")
+			.texture("top", resourceLocation).texture("bottom", resourceLocation).texture("side", resourceLocation);
+		ModelFile stalagmite_double_point = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_stalagmite_double_point", "lotr:block/stalagmite_double_point_template")
+			.texture("top", resourceLocation).texture("bottom", resourceLocation).texture("side", resourceLocation);
+		getVariantBuilder(block).forAllStatesExcept(state -> {
+			Type axis = state.getValue(DripstoneBlock.DRIPSTONE_TYPE);
+			return ConfiguredModel.builder()
+                    .modelFile(axis==Type.STALACTITE ? stalactite :
+                    	axis==Type.STALACTITE_DOUBLE_BASE ? stalactite_double_base :
+                    		axis==Type.STALACTITE_DOUBLE_POINT ? stalactite_double_point :
+                    			axis==Type.STALAGMITE ? stalagmite :
+                    				axis==Type.STALAGMITE_DOUBLE_BASE ? stalagmite_double_base : stalagmite_double_point)
+                    .build();
+		}, DripstoneBlock.WATERLOGGED);
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(stalagmite);
 	}
 
 	private void genSkullGobletBlock(VesselDrinkBlock block) {

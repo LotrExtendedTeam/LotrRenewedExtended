@@ -786,7 +786,9 @@ public class MixinLOTRItems {
 		ExtendedItems.EDHELVIR_CRYSTAL_CHANDELIER = regBlockItemB(ExtendedBlocks.EDHELVIR_CRYSTAL_CHANDELIER, LOTRItemGroups.DECO);
 		ExtendedItems.GLOWSTONE_CRYSTAL_CHANDELIER = regBlockItemB(ExtendedBlocks.GLOWSTONE_CRYSTAL_CHANDELIER, LOTRItemGroups.DECO);
 		ExtendedItems.GULDURIL_CRYSTAL_CHANDELIER = regBlockItemB(ExtendedBlocks.GULDURIL_CRYSTAL_CHANDELIER, LOTRItemGroups.DECO);
-		
+
+		ExtendedItems.MORGOND_DRIPSTONE = regBlockItemB(ExtendedBlocks.MORGOND_DRIPSTONE, LOTRItemGroups.DECO);
+
 		ExtendedItems.MUD_PATH = regBlockItemB(ExtendedBlocks.MUD_PATH, LOTRItemGroups.DECO);
 		ExtendedItems.MUD_PATH_SLAB = regBlockItemB(ExtendedBlocks.MUD_PATH_SLAB, LOTRItemGroups.DECO);
 		ExtendedItems.MUD_PATH_STAIRS = regBlockItemB(ExtendedBlocks.MUD_PATH_STAIRS, LOTRItemGroups.DECO);

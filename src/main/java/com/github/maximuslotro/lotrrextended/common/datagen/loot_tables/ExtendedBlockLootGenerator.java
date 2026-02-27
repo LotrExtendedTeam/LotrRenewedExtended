@@ -53,6 +53,7 @@ import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawn
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
 import lotr.common.block.ChandelierBlock;
+import lotr.common.block.DripstoneBlock;
 import lotr.common.block.ExtendedDwarvenGateBlock;
 import lotr.common.block.ExtendedAxialSlabPlantableSpreadableBlock;
 import lotr.common.block.ExtendedHearthBlock;
@@ -176,6 +177,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedBrazierBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof DripstoneBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}
