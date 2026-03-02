@@ -324,6 +324,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.banner_configuration.custom.description", "Protection Message:");
 		addD("gui.lotrextended.banner_configuration.custom.textBox", "Message");
 		addD("gui.lotrextended.banner_configuration.perms", "Show Permissions");
+		addD("gui.lotrextended.banner_configuration.perms.global", "Global Override Permissions");
+		addD("gui.lotrextended.banner_configuration.perms.global.disc", "These permissions take priority over all whitelist and faction permissions and apply to \"ALL\" players!");
 		addD("gui.lotrextended.banner_configuration.perms.disc", "Show Additional Permissions");
 		addD("gui.lotrextended.banner_configuration.perms.everything", "Full Permission");
 		addD("gui.lotrextended.banner_configuration.perms.everything.disc", "This allows \"Everything\" Including Block Breaking/Placing. This is gives the user/group the same permissions as you, with the exception of banner editing.");

@@ -2008,6 +2008,8 @@
   "gui.lotrextended.banner_configuration.perms.everything.disc": "This allows \"Everything\" Including Block Breaking/Placing. This is gives the user/group the same permissions as you, with the exception of banner editing.",
   "gui.lotrextended.banner_configuration.perms.flickables": "Flickable Permissions",
   "gui.lotrextended.banner_configuration.perms.flickables.disc": "Allows redstone component toggling",
+  "gui.lotrextended.banner_configuration.perms.global": "Global Override Permissions",
+  "gui.lotrextended.banner_configuration.perms.global.disc": "These permissions take priority over all whitelist and faction permissions and apply to \"ALL\" players!",
   "gui.lotrextended.banner_configuration.perms.knowledge": "Learning Block Permissions",
   "gui.lotrextended.banner_configuration.perms.knowledge.disc": "Allows accessing lecterns and bookshelves",
   "gui.lotrextended.banner_configuration.self_protection": "Self Protection",
