@@ -4075,6 +4075,7 @@ fb3d924dd312267226fa3d7594800d710675aef9 data/lotr/recipes/banana_slab.json
 684eb03b1c7a4f515c279b856e0a2d2aded59b90 data/lotr/recipes/banana_wood.json
 fa7115c432d437150409f25bde2c5c84066414c6 data/lotr/recipes/banana_wood_slab.json
 50e9a15141fe3f6b63fdd11fa456c7de0a389fc5 data/lotr/recipes/banana_wood_stairs.json
+8812f9dc3312b7a27a41e2abf3b7505c82aef596 data/lotr/recipes/banner_protection_removal.json
 788bc5119626fae407611c4fb685de80a27adf14 data/lotr/recipes/barren_dirt.json
 105937f4312abf31b1093daf8b62853d27985eb5 data/lotr/recipes/barren_dirt_slab.json
 2fcb40ae2f673e715ca9b3ea043614c9827c04e8 data/lotr/recipes/bedroll.json

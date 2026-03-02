@@ -6,6 +6,8 @@ import java.util.Map.Entry;
 import java.util.UUID;
 import java.util.function.Predicate;
 
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileBase;
@@ -38,6 +40,8 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -93,15 +97,15 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	/**
      * UUID of the player who placed this banner.
      */
-	private UUID placedPlayerUUID;
+	private UUID placedPlayerUUID = null;
 	/**
      * Name of the player who placed this banner.
      */
-	private String placedPlayerName;
+	private String placedPlayerName = null;
 	/**
      * UUID of an entity currently connected or linked to this banner.
      */
-	private UUID connectedEntity;
+	private UUID connectedEntity = null;
 	/**
      * Current protection level applied to this banner.
      */
@@ -142,6 +146,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 						}
 					}
 					firstTick = true;
+					markAndUpdate();
 				}
 				if(connectedEntity==null) {
 					createAndSetBannerEntity();
@@ -326,13 +331,16 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		if(placedPlayerName==null) {
 			if(placedPlayerUUID==null) {
 				placedPlayerName="UNKNOWN";
+				markAndUpdate();
 				return placedPlayerName;
 			}
             placedPlayerName = UsernameCache.getLastKnownUsername(placedPlayerUUID);
 			if(placedPlayerName==null) {
 				placedPlayerName="UNKNOWN";
+				markAndUpdate();
 				return placedPlayerName;
 			}
+			markAndUpdate();
 			ExtendedLog.warn("Fixed missing banner player username!");
 		}
 		return placedPlayerName;
@@ -351,6 +359,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		setPlacedPlayerName(placedPlayerName);
 		factionPerms.clear();
 		factionPerms.add(ExtendedBannerPermissions.EVERYTHING);
+		markAndUpdate();
 	}
 
 	/**
@@ -509,16 +518,50 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			protectionOverrideMessage = "";
 			fixedBroken = true;
 		}
+		markAndUpdate();
 		if(fixedBroken) {
 			return new ExtendedSBannerOpenChangedScreenPacket(this);
 		}
 		return null;
+	}
+	@Override
+	@Nullable
+	public SUpdateTileEntityPacket getUpdatePacket() {
+		return new SUpdateTileEntityPacket(this.worldPosition, -1, this.getUpdateTag());
+	}
+
+	@Override
+	public CompoundNBT getUpdateTag() {
+		return this.save(new CompoundNBT());
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+		super.onDataPacket(net, pkt);
+		this.load(level.getBlockState(pkt.getPos()), pkt.getTag());
+	}
+
+	@Override
+	public void handleUpdateTag(BlockState state, CompoundNBT tag) {
+		super.handleUpdateTag(state, tag);
 	}
 
 	@Override
 	public void load(BlockState blockState, CompoundNBT pCompound) {
 		super.load(blockState, pCompound);
 		loadProtectionData(pCompound);
+	}
+
+	@Override
+	public void setChanged() {
+		super.setChanged();
+	}
+
+	public void markAndUpdate() {
+		this.setChanged();
+		if (this.hasLevel()) {
+			this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
+		}
 	}
 
 	public void loadProtectionData(CompoundNBT loadableData) {
@@ -662,7 +705,10 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * */
 	public ItemStack getItem(ExtendedBannerTypes bannerType) {
 		ItemStack itemstack = new ItemStack(bannerType.getBannerItem().get());
-		saveProtectionData(itemstack.getOrCreateTag());
+		CompoundNBT data = saveProtectionData(new CompoundNBT());
+		if(!data.isEmpty()) {
+			itemstack.setTag(data);
+		}
 		return itemstack;
 	}
 
