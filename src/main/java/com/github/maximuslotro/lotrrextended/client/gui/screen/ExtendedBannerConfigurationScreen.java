@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.client.gui.screen;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedTextFieldWidget;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileClient;
@@ -11,15 +12,19 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedCBannerSaveI
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity.ProtectionEntry;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
+import lotr.common.fac.Faction;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -50,7 +55,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	private List<Button> globalPermButtons = new ArrayList<>();
 	private List<Button> factionPermButtons = new ArrayList<>();
 	private BlockPos configurePos;
-	int shownWhiteListButtonCount = 0;
+	private int shownWhiteListButtonCount = 0;
 	private List<ExtendedTextFieldWidget> whitelistFields = new ArrayList<>();
 	private int whiteListOffset = 0;
 	private Button createFellowship;
@@ -61,7 +66,9 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	private boolean isEnabled;
 	private boolean isClientOP;
 	private String protMessage;
-	
+	private ResourceLocation flagLoc = null;
+	private TranslationTextComponent factionMessage = null;
+
 	public ExtendedBannerConfigurationScreen(ExtendedSBannerOpenScreenPacket serverData) {
 		super(new StringTextComponent("BANNERCONFIGURATION"), 200, 192);
 		this.globalPerms = serverData.globalPerms;
@@ -120,8 +127,8 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		}));
 		protectionTypeButton.setMessage(
 			protectionType==0 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_faction"):
-			protectionType==1 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_whitelist"): 
-				new TranslationTextComponent("gui.lotrextended.banner_configuration.type_custom"));
+				protectionType==1 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_whitelist"): 
+					new TranslationTextComponent("gui.lotrextended.banner_configuration.type_custom"));
 		this.addButton(update = new SimpleButton(this.leftPos +this.imageWidth -115, this.topPos + this.imageHeight-25, 110, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.send_update"), button -> {
 			needsUpdate = false;
 			whitelistFields.forEach((textButton) -> textButton.setFocus(false));
@@ -135,19 +142,19 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			}
 		});
 		update.active = false;
-//		this.addButton(new TextureOffsetButton(this.leftPos +this.imageWidth -140, this.topPos + this.imageHeight-25, 80, 192, 20, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.self_protection"), button -> {
-//			canSelfProtect = !canSelfProtect;
-//			needsUpdate = true;
-//		}){
-//			@Override
-//			public boolean shouldOffset() {
-//				return !ExtendedBannerConfigurationScreen.this.canSelfProtect;
-//			}
-//			@Override
-//			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
-//				ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.self_protection"+(ExtendedBannerConfigurationScreen.this.canSelfProtect ? ".on" : ".off")), 200), pMouseX, pMouseY);
-//			}
-//		});
+		//		this.addButton(new TextureOffsetButton(this.leftPos +this.imageWidth -140, this.topPos + this.imageHeight-25, 80, 192, 20, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.self_protection"), button -> {
+		//			canSelfProtect = !canSelfProtect;
+		//			needsUpdate = true;
+		//		}){
+		//			@Override
+		//			public boolean shouldOffset() {
+		//				return !ExtendedBannerConfigurationScreen.this.canSelfProtect;
+		//			}
+		//			@Override
+		//			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
+		//				ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.self_protection"+(ExtendedBannerConfigurationScreen.this.canSelfProtect ? ".on" : ".off")), 200), pMouseX, pMouseY);
+		//			}
+		//		});
 		this.addButton(new TextureOffsetButton(this.leftPos + 7, this.topPos + this.imageHeight-25, 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms"), button -> showDefaultPerms = !showDefaultPerms){
 			@Override
 			public boolean shouldOffset() {
@@ -433,6 +440,37 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		}
 	}
 
+	private ResourceLocation getFlagLoc() {
+		if(flagLoc==null) {
+			if(this.minecraft==null || this.minecraft.level==null || this.minecraft.level.getBlockEntity(configurePos)==null) {
+				return null;
+			}else {
+				TileEntity blockEntity = this.minecraft.level.getBlockEntity(configurePos);
+				Block state = blockEntity.getBlockState().getBlock();
+				// TODO make namespace dynamic (change when we move our banner blocks to our namespace)
+				flagLoc = new ResourceLocation("lotrextended", "textures/block/banner/"+state.getRegistryName().getPath()+".png");
+			}
+		}
+		return flagLoc;
+	}
+
+	private TranslationTextComponent getFactionMessage() {
+		if(factionMessage==null) {
+			if(this.minecraft==null || this.minecraft.level==null) {
+				return null;
+			}else {
+				TileEntity blockEntity = this.minecraft.level.getBlockEntity(configurePos);
+				if(blockEntity instanceof ExtendedMEBannerTileEntity) {
+					Optional<Faction> resolvedFaction = ((ExtendedMEBannerTileEntity)blockEntity).getFactionProtcting().resolveFaction(this.minecraft.level);
+					if(resolvedFaction.isPresent()) {
+						factionMessage = new TranslationTextComponent("gui.lotrextended.banner_configuration.faction.aligned", resolvedFaction.get().getColoredDisplayName());
+					}
+				}
+			}
+		}
+		return factionMessage;
+	}
+
 	@Override
 	public void render(MatrixStack matStack, int mouseX, int mouseY, float tick) {
 		renderBackground(matStack);
@@ -461,6 +499,13 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			createFellowship.visible = false;
 			whitelistFields.forEach((textField -> {textField.isVisible(false); textField.isPermVisible(false);}));
 			this.font.draw(matStack, new TranslationTextComponent("gui.lotrextended.banner_configuration.faction.requires"), leftPos + 61, topPos + 64, 4210752);
+			if(this.getFactionMessage()!=null) {
+				this.font.draw(matStack, this.getFactionMessage(), leftPos + (this.imageWidth/2) - (this.font.width(this.getFactionMessage())/2), topPos + 45, 4210752);
+			}
+			if(this.getFlagLoc()!=null) {
+				this.minecraft.getTextureManager().bind(this.getFlagLoc());
+				blit(matStack, this.leftPos-90, this.topPos + (this.imageHeight/2) - 74, 0, 0, 80, 148);
+			}
 			this.minecraft.getTextureManager().bind(guiTexture);
 			blit(matStack, this.leftPos+60, this.topPos+76, 0, 192, 80, 17);
 			// Permissions box
@@ -546,8 +591,8 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		messageField.tick();
 		protectionTypeButton.setMessage(
 			protectionType==0 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_faction"):
-			protectionType==1 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_whitelist"): 
-				new TranslationTextComponent("gui.lotrextended.banner_configuration.type_custom"));
+				protectionType==1 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_whitelist"): 
+					new TranslationTextComponent("gui.lotrextended.banner_configuration.type_custom"));
 		update.active = needsUpdate;
 		whitelistFields.forEach(TextFieldWidget::tick);
 		shownWhiteListButtonCount = calcWhiteListSize();

@@ -319,6 +319,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.banner_configuration.self_protection.on", "Self Protection: On");
 		addD("gui.lotrextended.banner_configuration.self_protection.off", "Self Protection: Off");
 		addD("gui.lotrextended.banner_configuration.faction.requires", "Required Alignment:");
+		addD("gui.lotrextended.banner_configuration.faction.aligned", "Protected by: %s");
 		addD("gui.lotrextended.banner_configuration.faction.textBox", "Alignment");
 		addD("gui.lotrextended.banner_configuration.custom.description", "Protection Message:");
 		addD("gui.lotrextended.banner_configuration.custom.textBox", "Message");

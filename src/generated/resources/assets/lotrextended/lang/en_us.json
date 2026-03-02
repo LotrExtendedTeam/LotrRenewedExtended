@@ -1985,6 +1985,7 @@
   "gui.lotrextended.banner_configuration.custom.description": "Protection Message:",
   "gui.lotrextended.banner_configuration.custom.textBox": "Message",
   "gui.lotrextended.banner_configuration.disabled": "Banner Protection Is Disabled",
+  "gui.lotrextended.banner_configuration.faction.aligned": "Protected by: %s",
   "gui.lotrextended.banner_configuration.faction.requires": "Required Alignment:",
   "gui.lotrextended.banner_configuration.faction.textBox": "Alignment",
   "gui.lotrextended.banner_configuration.permission_type.full": "Full Permissions",

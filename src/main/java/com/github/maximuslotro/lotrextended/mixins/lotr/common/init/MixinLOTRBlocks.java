@@ -879,14 +879,14 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.CARVED_UMBAR_BRICK = registerB("carved_umbar_brick", () -> new ExtendedStoneBlock(LOTRBlocks.UMBAR_BRICK));
 		ExtendedBlocks.SMOOTH_GONDOR_ROCK_STAIRS = registerB("smooth_gondor_rock_stairs", () -> new LOTRStairsBlock(LOTRBlocks.SMOOTH_GONDOR_ROCK));
 
-		ExtendedBlocks.MORGOND = registerB("morgond", () -> new ExtendedStoneBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(1000.0F, 1200.0F)));
+		ExtendedBlocks.MORGOND = registerB("morgond", () -> new ExtendedStoneBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(500.0F, 1200.0F)));
 		ExtendedBlocks.MORGOND_SLAB = registerB("morgond_slab", () -> new AxialSlabBlock(ExtendedBlocks.MORGOND));
 		ExtendedBlocks.MORGOND_STAIRS = registerB("morgond_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MORGOND));
 		ExtendedBlocks.MORGOND_WALL = registerB("morgond_wall", () -> new LOTRWallBlock(ExtendedBlocks.MORGOND));
 		ExtendedBlocks.MORGOND_DRIPSTONE = registerB("morgond_dripstone", () -> new DripstoneBlock(ExtendedBlocks.MORGOND));
-		ExtendedBlocks.MORGOND_PILLAR = registerB("morgond_pillar", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(1000.0F, 1200.0F)));
+		ExtendedBlocks.MORGOND_PILLAR = registerB("morgond_pillar", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(500.0F, 1200.0F)));
 		ExtendedBlocks.MORGOND_PILLAR_SLAB = registerB("morgond_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.MORGOND_PILLAR));
-		ExtendedBlocks.CARVED_MORGOND = registerB("carved_morgond", () -> new ExtendedStoneBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(1000.0F, 1200.0F)));
+		ExtendedBlocks.CARVED_MORGOND = registerB("carved_morgond", () -> new ExtendedStoneBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(500.0F, 1200.0F)));
 		ExtendedBlocks.CARVED_MORGOND_SLAB = registerB("carved_morgond_slab", () -> new AxialSlabBlock(ExtendedBlocks.CARVED_MORGOND));
 		ExtendedBlocks.CARVED_MORGOND_STAIRS = registerB("carved_morgond_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CARVED_MORGOND));
 		ExtendedBlocks.CARVED_MORGOND_WALL = registerB("carved_morgond_wall", () -> new LOTRWallBlock(ExtendedBlocks.CARVED_MORGOND));
