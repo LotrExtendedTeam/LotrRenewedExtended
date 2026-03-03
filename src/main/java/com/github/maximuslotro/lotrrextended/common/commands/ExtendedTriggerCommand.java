@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.commands;
 
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedInvasionSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
@@ -8,7 +7,6 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import lotr.common.entity.npc.ExtendedTolkienEntity;
 import lotr.common.world.spawning.BanditsSpawner;
-import lotr.common.world.spawning.InvasionBiomeList;
 import lotr.common.world.spawning.InvasionSpawner;
 import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.command.CommandSource;

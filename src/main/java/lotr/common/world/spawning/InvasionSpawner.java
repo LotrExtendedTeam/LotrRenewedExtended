@@ -11,21 +11,26 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.Map;
-import java.util.Objects;
 
 public class InvasionSpawner {
 
-    /**
-     * This is for when the invasion event is directly run as a command. It should spawn an
-     * invasion if it is possible for one to form in that biome. If no invasion can be spawned
-     * in that biome the method returns false. This method will attempt to spawn an invasion up
-     * to 32 times depending on if there is a protection in the points it picks. If 32 times are
-     * exceeded the method will also return false.
-     *
-     * @param world
-     * @param player
-     * @return boolean if an invasion was spawned
-     */
+	/**
+	 * Attempts to forcibly spawn an invasion near the given player.
+	 *
+	 * <p>This is primarily used by commands. The method will:</p>
+	 * <ul>
+	 *   <li>Try up to 32 nearby positions</li>
+	 *   <li>Respect banner protection rules</li>
+	 *   <li>Use biome-based weighted selection</li>
+	 * </ul>
+	 *
+	 * <p>If no valid spawn location is found within 32 attempts,
+	 * the method returns {@code false}.</p>
+	 *
+	 * @param world the world to spawn the invasion in
+	 * @param player the player near whom the invasion should spawn
+	 * @return {@code true} if an invasion was successfully spawned
+	 */
     public static boolean requireInvasionSpawn(ServerWorld world, PlayerEntity player) {
         boolean spawnedInvasion = false;
 
@@ -43,23 +48,20 @@ public class InvasionSpawner {
                 continue;
             }
 
-            // determine possible invasions
-            String biomeName = world.getBiomeName(pos).toString();
-            ExtendedInvasions invasion = null;
             try {
-                invasion = InvasionBiomeList.pickInvasionFromBiomeName(world, biomeName);
+                ExtendedInvasions invasion = InvasionBiomeList.pickInvasionFromBiomeName(world, world.getBiomeName(pos));
+                if (invasion != null) {
+                    ExtendedInvasionSpawnerEntity spawner = new ExtendedInvasionSpawnerEntity(world);
+                    spawner.setFaction(invasion.getKey());
+                    spawner.setPos(x, y, z);
+                    world.addFreshEntity(spawner);
+                    spawner.startInvasion();
+                    spawnedInvasion = true;
+                    break;
+                }
             } catch (IllegalArgumentException ex) {
-                ExtendedLog.error("Issue while determining LOTR when spawning an invasion.", ex);
-            }
-
-            if (invasion != null) {
-                ExtendedInvasionSpawnerEntity spawner = new ExtendedInvasionSpawnerEntity(world);
-                spawner.setFaction(invasion.getKey());
-                spawner.setPos(x, y, z);
-                world.addFreshEntity(spawner);
-                spawner.startInvasion();
-                spawnedInvasion = true;
-                break;
+                ExtendedLog.error("Issue while determining LOTR when spawning an invasion.");
+                ex.printStackTrace();
             }
         }
 
@@ -67,21 +69,29 @@ public class InvasionSpawner {
     }
 
     /**
-     * This should pick a point near the player and attempt an invasion for all invasions that could
-     * spawn in biomes at that point.
+     * Performs natural invasion spawn checks near the player.
      *
-     * @param world
-     * @param player
-     * @return
+     * <p>This method is intended for periodic/random spawning. It:</p>
+     * <ul>
+     *   <li>Gets all invasions valid for the player's current biome</li>
+     *   <li>Rolls each invasion using {@link InvasionChance#getChancePerSecond()}</li>
+     *   <li>Attempts up to 8 placement checks per successful roll</li>
+     * </ul>
+     *
+     * <p>Banner protection and biome validation are enforced before spawning.</p>
+     *
+     * @param world the world to spawn the invasion in
+     * @param player the player near whom invasions may spawn
+     * @return {@code true} if any invasion was successfully spawned
      */
     public static boolean attemptInvasionSpawns(ServerWorld world, PlayerEntity player) {
         boolean spawnedInvasion = false;
 
         // get all possible invasions that could spawn where the player is standing
-        BlockPos pos = new BlockPos(player.position());
-        String biomeName = world.getBiomeName(new BlockPos(player.position())).toString();
-        Map<ExtendedInvasions, InvasionChance> invasions = InvasionBiomeList.getInvasionsPerBiome(biomeName);
-        if (invasions == null) return spawnedInvasion;
+        Map<ExtendedInvasions, InvasionChance> invasions = InvasionBiomeList.getInvasionsPerBiome(world.getBiomeName(new BlockPos(player.position())));
+        if (invasions.isEmpty()) {
+        	return false;
+        }
 
         for (Map.Entry<ExtendedInvasions, InvasionChance> entry : invasions.entrySet()) {
             double pickedNum = world.random.nextDouble();
@@ -102,9 +112,9 @@ public class InvasionSpawner {
                         continue;
                     }
 
-                    if (!Objects.requireNonNull(InvasionBiomeList.getInvasionsPerBiome(
-                            world.getBiomeName(cPos).toString())).containsKey(entry.getKey()
-                    )) continue;
+                    if (!InvasionBiomeList.getInvasionsPerBiome(world.getBiomeName(cPos)).containsKey(entry.getKey())) {
+                    	continue;
+                    }
 
                     ExtendedInvasionSpawnerEntity spawner = new ExtendedInvasionSpawnerEntity(world);
                     spawner.setFaction(entry.getKey().getKey());
@@ -116,7 +126,6 @@ public class InvasionSpawner {
                 }
             }
         }
-
         return spawnedInvasion;
     }
 }

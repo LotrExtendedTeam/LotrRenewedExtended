@@ -585,8 +585,8 @@ public class ExtendedLevelData {
 
 	/**
 	 * Returns how many enemies are left for the invasion or -1 if it's not a valid invasion
-	 * @param invasionId
-	 * @return
+	 * @param invasionId The unique id of the invasion
+	 * @return How many enemies are left
 	 */
 	public int getEnemiesLeft(UUID invasionId) {
         return invasionEnemiesLeft.getOrDefault(invasionId, -1);
@@ -594,7 +594,7 @@ public class ExtendedLevelData {
 
 	/**
 	 * Never allow the enemies left to go below 0 to help prevent it from being an issue where -1 is used
-	 * @param invasionId
+	 * @param invasionId The unique id of the invasion
 	 */
 	public void decrementEnemiesLeft(UUID invasionId) {
 		int current = getEnemiesLeft(invasionId);

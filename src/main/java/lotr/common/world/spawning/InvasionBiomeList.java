@@ -2,71 +2,101 @@ package lotr.common.world.spawning;
 
 import lotr.common.LOTRLog;
 import lotr.common.world.ExtendedInvasions;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
+import javax.annotation.Nonnull;
+
+/**
+ * Central registry mapping LOTR biomes to the invasions that may spawn within them.
+ *
+ * <p>This class serves two primary use cases:</p>
+ * <ul>
+ *   <li><b>Forced spawns</b> — uses weighted selection via
+ *       {@link #pickInvasionFromBiomeName(World, ResourceLocation)}</li>
+ *   <li><b>Random spawns</b> — retrieves all possible invasions via
+ *       {@link #getInvasionsPerBiome(ResourceLocation)}</li>
+ * </ul>
+ *
+ * <p>Each biome maps to a set of {@link ExtendedInvasions} with their associated
+ * {@link InvasionChance} values.</p>
+ */
 public class InvasionBiomeList {
-
-    protected static Map<String, Map<ExtendedInvasions, InvasionChance>> invasions = new HashMap<>();
+	/**
+     * Internal registry of biome → invasion chance mappings.
+     *
+     * <p>Key: LOTR biome {@link ResourceLocation}</p>
+     * <p>Value: Map of possible {@link ExtendedInvasions} and their
+     * associated {@link InvasionChance}</p>
+     *
+     * <p>This map is populated during mod initialization via the private
+     * {@code register(...)} helpers.</p>
+     */
+    protected static final Map<ResourceLocation, Map<ExtendedInvasions, InvasionChance>> invasions = new HashMap<>();
 
     static {
         // Shire is free from invasions
-        invasions.put("lotr:shire", new HashMap<>());
-        invasions.put("lotr:shire_moors", new HashMap<>());
-        invasions.put("lotr:shire_marshes", new HashMap<>());
-        invasions.put("lotr:shire_woodlands", new HashMap<>());
-        invasions.put("lotr:white_downs", new HashMap<>());
+        register("lotr:shire", new HashMap<>());
+        register("lotr:shire_moors", new HashMap<>());
+        register("lotr:shire_marshes", new HashMap<>());
+        register("lotr:shire_woodlands", new HashMap<>());
+        register("lotr:white_downs", new HashMap<>());
 
         // Blue Mountains
-        invasions.put("lotr:blue_mountains", genMap(
+        register("lotr:blue_mountains", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
         ));
-        invasions.put("lotr:blue_mountains_foothills", genMap(
+        register("lotr:blue_mountains_foothills", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
         ));
 
         // Eriador
         // TODO: Add the following to Eriador when they are added: Rhudaur Hillmen [Uncommon], Angmar [Rare], Angmar Wargs [Rare]
-        invasions.put("lotr:eriador", genMap(
+        register("lotr:eriador", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON)
         );
-        invasions.put("lotr:eryn_vorn", genMap(
+        register("lotr:eryn_vorn", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON)
         );
-        invasions.put("lotr:hills_of_evendim", genMap(
+        register("lotr:hills_of_evendim", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
         ));
-        invasions.put("lotr:eriador_downs", genMap(
+        register("lotr:eriador_downs", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON)
         );
-        invasions.put("lotr:tower_hills", genMap(ExtendedInvasions.GUNDABAD, InvasionChance.RARE));
-        invasions.put("lotr:minhiriath", genMap(
+        register("lotr:tower_hills", genMap(ExtendedInvasions.GUNDABAD, InvasionChance.RARE));
+        register("lotr:minhiriath", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON)
         );
-        invasions.put("lotr:swanfleet", genMap(
+        register("lotr:swanfleet", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.RARE)
         );
 
         // only Rivendell Hills have invasions
-        invasions.put("lotr:rivendell", new HashMap<>());
-        invasions.put("lotr:rivendell_valley", new HashMap<>());
-        invasions.put("lotr:rivendell_hills", genMap(
+        register("lotr:rivendell", new HashMap<>());
+        register("lotr:rivendell_valley", new HashMap<>());
+        register("lotr:rivendell_hills", genMap(
                 ExtendedInvasions.RIVENDELL, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.RARE
@@ -75,79 +105,79 @@ public class InvasionBiomeList {
         // Gondor
         // TODO: These are missing a ton of factions because the NPCs are missing
         //       Add Factions like Black Uruks later
-        invasions.put("lotr:gondor", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
+        register("lotr:gondor", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
         // TODO: For now there is no Harad factions so no invasions here
-        invasions.put("lotr:further_gondor", new HashMap<>());
-        invasions.put("lotr:field_of_cormallen", new HashMap<>()); // None here either?
-        invasions.put("lotr:anorien", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        invasions.put("lotr:blackroot_vale", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        invasions.put("lotr:lamedon", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        invasions.put("lotr:lamedon_hills", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        invasions.put("lotr:pelargir", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        invasions.put("lotr:anfalas", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        invasions.put("lotr:lossarnach", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        invasions.put("lotr:pinnath_gelin", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        invasions.put("lotr:ithilien", genMap(
+        register("lotr:further_gondor", new HashMap<>());
+        register("lotr:field_of_cormallen", new HashMap<>()); // None here either?
+        register("lotr:anorien", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
+        register("lotr:blackroot_vale", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
+        register("lotr:lamedon", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
+        register("lotr:lamedon_hills", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
+        register("lotr:pelargir", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
+        register("lotr:anfalas", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
+        register("lotr:lossarnach", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
+        register("lotr:pinnath_gelin", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
+        register("lotr:ithilien", genMap(
                 ExtendedInvasions.MORDOR, InvasionChance.COMMON,
                 ExtendedInvasions.GONDOR, InvasionChance.UNCOMMON
         ));
-        invasions.put("lotr:lebennin", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        invasions.put("lotr:emyn_en_ernil", genMap(ExtendedInvasions.MORDOR, InvasionChance.RARE));
-        invasions.put("lotr:dor_en_ernil", genMap(ExtendedInvasions.MORDOR, InvasionChance.RARE));
+        register("lotr:lebennin", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
+        register("lotr:emyn_en_ernil", genMap(ExtendedInvasions.MORDOR, InvasionChance.RARE));
+        register("lotr:dor_en_ernil", genMap(ExtendedInvasions.MORDOR, InvasionChance.RARE));
 
         // Older elven regions
-        invasions.put("lotr:lindon", genMap(ExtendedInvasions.GUNDABAD, InvasionChance.RARE));
-        invasions.put("lotr:lindon_woodlands", genMap(ExtendedInvasions.GUNDABAD, InvasionChance.RARE));
-        invasions.put("lotr:eregion", genMap(
+        register("lotr:lindon", genMap(ExtendedInvasions.GUNDABAD, InvasionChance.RARE));
+        register("lotr:lindon_woodlands", genMap(ExtendedInvasions.GUNDABAD, InvasionChance.RARE));
+        register("lotr:eregion", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
         ));
 
         // TODO: Add Dol-Guldur when they are added
-        invasions.put("lotr:lothlorien_eaves", genMap(
+        register("lotr:lothlorien_eaves", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.RARE
         ));
-        invasions.put("lotr:lothlorien", new HashMap<>()); // no invasions in Lothlorien proper
+        register("lotr:lothlorien", new HashMap<>()); // no invasions in Lothlorien proper
 
-        invasions.put("lotr:gladden_fields", genMap(
+        register("lotr:gladden_fields", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
         ));
 
         // Bree-land
-        invasions.put("lotr:breeland", genMap(
+        register("lotr:breeland", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.RARE
         ));
-        invasions.put("lotr:chetwood", genMap(
+        register("lotr:chetwood", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.RARE
         ));
 
         // Rohan
         // TODO: Add Isengard and Dunlending invasions when the factions are added
-        invasions.put("lotr:rohan", new HashMap<>());
-        invasions.put("lotr:wold", new HashMap<>());
+        register("lotr:rohan", new HashMap<>());
+        register("lotr:wold", new HashMap<>());
 
-        invasions.put("lotr:fangorn", new HashMap<>()); // no invasions in Fangorn
-        invasions.put("lotr:mouths_of_entwash", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        invasions.put("lotr:enedwaith", genMap(
+        register("lotr:fangorn", new HashMap<>()); // no invasions in Fangorn
+        register("lotr:mouths_of_entwash", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
+        register("lotr:enedwaith", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
                 // TODO: Add Dunlendings here when they are added
         ));
 
-        invasions.put("lotr:northern_dale", genMap(
+        register("lotr:northern_dale", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON,
                 ExtendedInvasions.MORDOR, InvasionChance.RARE
                 // TODO: Add Dunland when they are added
                 // TODO: Add Rhun when they are added
         ));
-        invasions.put("lotr:dale", genMap(
+        register("lotr:dale", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON,
                 ExtendedInvasions.MORDOR, InvasionChance.RARE
@@ -155,20 +185,20 @@ public class InvasionBiomeList {
                 // TODO: Add Rhun when they are added
         ));
 
-        invasions.put("lotr:iron_hills", genMap(
+        register("lotr:iron_hills", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
         ));
-        invasions.put("lotr:dorwinion", genMap(
+        register("lotr:dorwinion", genMap(
                 // TODO: Add Dol-Guldur when it's added
                 ExtendedInvasions.MORDOR, InvasionChance.RARE
         ));
 
-        invasions.put("lotr:emyn_winion", genMap(
+        register("lotr:emyn_winion", genMap(
             ExtendedInvasions.MORDOR, InvasionChance.RARE
         ));
 
-        invasions.put("lotr:dunland", genMap(
+        register("lotr:dunland", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.RARE,
                 ExtendedInvasions.ROHAN, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
@@ -176,14 +206,14 @@ public class InvasionBiomeList {
         ));
 
         // Umbar has no invasions
-        invasions.put("lotr:umbar", new HashMap<>());
-        invasions.put("lotr:umbar_hills", new HashMap<>());
-        invasions.put("lotr:umbar_forest", new HashMap<>());
+        register("lotr:umbar", new HashMap<>());
+        register("lotr:umbar_hills", new HashMap<>());
+        register("lotr:umbar_forest", new HashMap<>());
 
         // Northern Wilderland has no invasions?
-        invasions.put("lotr:northern_wilderland", new  HashMap<>());
+        register("lotr:northern_wilderland", new  HashMap<>());
 
-        invasions.put("lotr:harondor", genMap(
+        register("lotr:harondor", genMap(
                 ExtendedInvasions.GONDOR, InvasionChance.UNCOMMON,
                 ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON
                 // TODO: Add the following when they are added
@@ -196,13 +226,13 @@ public class InvasionBiomeList {
                 //LOTRInvasions.NEAR_HARAD_CORSAIR, LOTREventSpawner.EventChance.UNCOMMON);
                 //LOTRInvasions.NEAR_HARAD_GULF, LOTREventSpawner.EventChance.RARE);
         ));
-        invasions.put("lotr:harnennor", genMap(
+        register("lotr:harnennor", genMap(
                 ExtendedInvasions.GONDOR, InvasionChance.UNCOMMON,
                 ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON
         ));
 
         // Lone-lands
-        invasions.put("lotr:lone_lands", genMap(
+        register("lotr:lone_lands", genMap(
                ExtendedInvasions.DUNEDAIN, InvasionChance.COMMON,
                ExtendedInvasions.GUNDABAD, InvasionChance.COMMON,
                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.COMMON,
@@ -210,7 +240,7 @@ public class InvasionBiomeList {
                // TODO: Add Angmar here when they are added
                // TODO: Add Rhudaur Hillmen here when they are added
         ));
-        invasions.put("lotr:lone_lands_hills", genMap(
+        register("lotr:lone_lands_hills", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.COMMON,
                 ExtendedInvasions.GUNDABAD, InvasionChance.COMMON,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.COMMON,
@@ -220,51 +250,51 @@ public class InvasionBiomeList {
         ));
 
         // Mirkwood
-        invasions.put("lotr:woodland_realm", new HashMap<>()); // TODO: Add Dol-Guldur when they are added
-        invasions.put("lotr:northern_mirkwood", genMap(
+        register("lotr:woodland_realm", new HashMap<>()); // TODO: Add Dol-Guldur when they are added
+        register("lotr:northern_mirkwood", genMap(
                 // TODO: Add Dol-Guldur when they are added
                 ExtendedInvasions.WOODLAND_REALM, InvasionChance.UNCOMMON
         ));
-        invasions.put("lotr:mirkwood", genMap(
+        register("lotr:mirkwood", genMap(
                 ExtendedInvasions.WOODLAND_REALM, InvasionChance.UNCOMMON
         ));
-        invasions.put("lotr:mirkwood_mountains", genMap(
+        register("lotr:mirkwood_mountains", genMap(
                 ExtendedInvasions.WOODLAND_REALM, InvasionChance.UNCOMMON
         ));
 
         // TODO: Add more factions here when others are ready
         // Anduin
-        invasions.put("lotr:vales_of_anduin", genMap(
+        register("lotr:vales_of_anduin", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.LOTHLORIEN, InvasionChance.UNCOMMON
         ));
-        invasions.put("lotr:anduin_hills", genMap(
+        register("lotr:anduin_hills", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.LOTHLORIEN, InvasionChance.UNCOMMON
         ));
-        invasions.put("lotr:ethir_anduin", genMap(
+        register("lotr:ethir_anduin", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.LOTHLORIEN, InvasionChance.UNCOMMON
         ));
 
-        invasions.put("lotr:andrast", new HashMap<>());
-        invasions.put("lotr:angmar", genMap(
+        register("lotr:andrast", new HashMap<>());
+        register("lotr:angmar", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.RARE,
                 ExtendedInvasions.LINDON, InvasionChance.RARE,
                 ExtendedInvasions.RIVENDELL, InvasionChance.RARE
         ));
-        invasions.put("lotr:angmar_mountains", genMap(
+        register("lotr:angmar_mountains", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.RARE,
                 ExtendedInvasions.LINDON, InvasionChance.RARE,
                 ExtendedInvasions.RIVENDELL, InvasionChance.RARE
         ));
 
-        invasions.put("lotr:brown_lands", genMap(
+        register("lotr:brown_lands", genMap(
                 ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON
                 // TODO: Add Mordor Wargs and Mordor Black Uruks when they are added
         ));
 
-        invasions.put("lotr:coldfells", genMap(
+        register("lotr:coldfells", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
@@ -274,30 +304,30 @@ public class InvasionBiomeList {
                 //this.invasionSpawns.addInvasion(LOTRInvasions.ANGMAR_WARG, LOTREventSpawner.EventChance.UNCOMMON);
         ));
 
-        invasions.put("lotr:dagorlad", genMap(
+        register("lotr:dagorlad", genMap(
                 ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON
                 // TODO: Add Mordor Wargs and Mordor Black Uruks when they are added
         ));
 
-        invasions.put("lotr:dead_marshes", genMap(
+        register("lotr:dead_marshes", genMap(
                 ExtendedInvasions.MORDOR, InvasionChance.RARE
         ));
 
-        invasions.put("lotr:dense_snowy_northlands_forest", new HashMap<>()); // no invasions here
-        invasions.put("lotr:dense_northlands_forest", new HashMap<>()); // no invasions here
-        invasions.put("lotr:druwaith_iaur", new HashMap<>()); // no invasions here
+        register("lotr:dense_snowy_northlands_forest", new HashMap<>()); // no invasions here
+        register("lotr:dense_northlands_forest", new HashMap<>()); // no invasions here
+        register("lotr:druwaith_iaur", new HashMap<>()); // no invasions here
 
         // one does not simply invade Mordor
-        invasions.put("lotr:mordor", new HashMap<>());
-        invasions.put("lotr:mordor_mountains", new HashMap<>());
-        invasions.put("lotr:eastern_desolation", new HashMap<>());
-        invasions.put("lotr:gorgoroth", new HashMap<>());
-        invasions.put("lotr:morgul_vale", new HashMap<>());
-        invasions.put("lotr:nurn", new HashMap<>());
-        invasions.put("lotr:nurn_marshes", new HashMap<>());
-        invasions.put("lotr:nurnen", new HashMap<>());
+        register("lotr:mordor", new HashMap<>());
+        register("lotr:mordor_mountains", new HashMap<>());
+        register("lotr:eastern_desolation", new HashMap<>());
+        register("lotr:gorgoroth", new HashMap<>());
+        register("lotr:morgul_vale", new HashMap<>());
+        register("lotr:nurn", new HashMap<>());
+        register("lotr:nurn_marshes", new HashMap<>());
+        register("lotr:nurnen", new HashMap<>());
 
-        invasions.put("lotr:ettenmoors", genMap(
+        register("lotr:ettenmoors", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD, InvasionChance.COMMON,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.COMMON
@@ -308,30 +338,30 @@ public class InvasionBiomeList {
         ));
 
         // forochel and forodwaith have no invasions
-        invasions.put("lotr:forochel", new HashMap<>());
-        invasions.put("lotr:forodwaith", new HashMap<>());
-        invasions.put("lotr:forodwaith_mountains", new HashMap<>());
+        register("lotr:forochel", new HashMap<>());
+        register("lotr:forodwaith", new HashMap<>());
+        register("lotr:forodwaith_mountains", new HashMap<>());
 
-        invasions.put("lotr:grey_mountains", genMap(
+        register("lotr:grey_mountains", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
                // TODO: Add the Iron Hills Dwarves when they are added
         ));
-        invasions.put("lotr:grey_mountains_foothills", genMap(
+        register("lotr:grey_mountains_foothills", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
                 // TODO: Add the Iron Hills Dwarves when they are added
         ));
 
         // TODO: Not sure what should be in these biomes or when we'll have factions that make sense here
-        invasions.put("lotr:harad_desert", new HashMap<>());
-        invasions.put("lotr:harad_desert_hills", new HashMap<>());
-        invasions.put("lotr:harad_half_desert", new HashMap<>());
-        invasions.put("lotr:lostladen", new HashMap<>());
+        register("lotr:harad_desert", new HashMap<>());
+        register("lotr:harad_desert_hills", new HashMap<>());
+        register("lotr:harad_half_desert", new HashMap<>());
+        register("lotr:lostladen", new HashMap<>());
 
-        invasions.put("lotr:long_marshes", new HashMap<>()); // none here
+        register("lotr:long_marshes", new HashMap<>()); // none here
 
-        invasions.put("lotr:trollshaws", genMap(
+        register("lotr:trollshaws", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
@@ -341,43 +371,43 @@ public class InvasionBiomeList {
                 //this.invasionSpawns.addInvasion(LOTRInvasions.ANGMAR_WARG, LOTREventSpawner.EventChance.UNCOMMON);
         ));
 
-        invasions.put("lotr:midgewater", genMap(
+        register("lotr:midgewater", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.RARE
         ));
 
         // Misty Mountains has no invasions
-        invasions.put("lotr:misty_mountains", new HashMap<>());
-        invasions.put("lotr:misty_mountains_foothills", new HashMap<>());
+        register("lotr:misty_mountains", new HashMap<>());
+        register("lotr:misty_mountains_foothills", new HashMap<>());
 
-        invasions.put("lotr:nindalf", genMap(
+        register("lotr:nindalf", genMap(
                 ExtendedInvasions.MORDOR, InvasionChance.RARE
         ));
 
-        invasions.put("lotr:nan_curunir", genMap(
+        register("lotr:nan_curunir", genMap(
                 ExtendedInvasions.ROHAN, InvasionChance.RARE
         ));
 
         // no invasions in Northlands
-        invasions.put("lotr:northlands", new HashMap<>());
-        invasions.put("lotr:northlands_forest", new HashMap<>());
-        invasions.put("lotr:snowy_northlands", new HashMap<>());
-        invasions.put("lotr:snowy_northlands_forest", new HashMap<>());
+        register("lotr:northlands", new HashMap<>());
+        register("lotr:northlands_forest", new HashMap<>());
+        register("lotr:snowy_northlands", new HashMap<>());
+        register("lotr:snowy_northlands_forest", new HashMap<>());
 
-        invasions.put("lotr:old_forest", new HashMap<>()); // no invasions in Old Forest
+        register("lotr:old_forest", new HashMap<>()); // no invasions in Old Forest
 
         // TODO: Not sure what invasions we should eventually go here
-        invasions.put("lotr:southron_coasts", new HashMap<>());
-        invasions.put("lotr:southron_coasts_forest", new HashMap<>());
+        register("lotr:southron_coasts", new HashMap<>());
+        register("lotr:southron_coasts_forest", new HashMap<>());
 
-        invasions.put("lotr:tolfalas", new HashMap<>()); // none
+        register("lotr:tolfalas", new HashMap<>()); // none
 
         // none
-        invasions.put("lotr:white_beach", new HashMap<>());
-        invasions.put("lotr:western_isles", new HashMap<>());
+        register("lotr:white_beach", new HashMap<>());
+        register("lotr:western_isles", new HashMap<>());
 
-        invasions.put("lotr:wilderland", genMap(
+        register("lotr:wilderland", genMap(
                 ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON
                 // TODO: Add the rest of these add they are added
                 /*LOTRInvasions.MORDOR_WARG, LOTREventSpawner.EventChance.RARE,
@@ -386,15 +416,54 @@ public class InvasionBiomeList {
                 LOTRInvasions.RHUN, LOTREventSpawner.EventChance.UNCOMMON */
         ));
 
-        invasions.put("lotr:white_mountains", genMap(
+        register("lotr:white_mountains", genMap(
                ExtendedInvasions.MORDOR, InvasionChance.RARE
         ));
-        invasions.put("lotr:white_mountains_foothills", genMap(
+        register("lotr:white_mountains_foothills", genMap(
                 ExtendedInvasions.MORDOR, InvasionChance.RARE
         ));
     }
 
-    public static Map<ExtendedInvasions, InvasionChance> genMap(Object... entries) {
+    /**
+     * Registers invasion spawn rates for a biome using a string biome name.
+     *
+     * <p>The biome name will be converted into a {@link ResourceLocation} and
+     * associated with the provided invasion chance map.</p>
+     *
+     * @param biomeName the biome identifier string (e.g., "lotr:shire")
+     * @param invasionMap mapping of {@link ExtendedInvasions} to their spawn chances
+     */
+    private static void register(String biomeName, Map<ExtendedInvasions, InvasionChance> invasionMap) {
+    	invasions.put(new ResourceLocation(biomeName), invasionMap);
+    }
+
+    /**
+     * Registers invasion spawn rates for a biome.
+     *
+     * @param biomeName the biome {@link ResourceLocation}
+     * @param invasionMap mapping of {@link ExtendedInvasions} to their spawn chances
+     */
+    private static void register(ResourceLocation biomeName, Map<ExtendedInvasions, InvasionChance> invasionMap) {
+    	invasions.put(biomeName, invasionMap);
+    }
+
+    /**
+     * Utility method for constructing an invasion chance map using
+     * alternating key/value pairs.
+     *
+     * <p>Arguments must be provided in the form:</p>
+     * <pre>
+     * genMap(INVASION_A, CHANCE_A,
+     *        INVASION_B, CHANCE_B)
+     * </pre>
+     *
+     * @param entries alternating {@link ExtendedInvasions} and {@link InvasionChance}
+     * @return a populated {@link Map} of invasions to their chances
+     *
+     * @throws IllegalArgumentException if the number of arguments is not even
+     * @throws ClassCastException if any entry is of the wrong type
+     */
+	public static Map<ExtendedInvasions, InvasionChance> genMap(Object... entries) {
         if (entries.length % 2 != 0) {
             throw new IllegalArgumentException("Invalid number of arguments. Must be even (key-value pairs).");
         }
@@ -406,41 +475,73 @@ public class InvasionBiomeList {
         }
         return map;
     }
-
-    /**
-     * This method given a biome name from World#getBiomeName() will attempt to check if it is a valid LOTR Mod biome
-     * and if it is pick an invasion from its list and return the ExtendedInvasions Enum. If no invasions
-     * spawn in that biome it returns null. If it is not a valid biome it throws an IllegalArgumentException
-     *
-     * @param world the {@link World} to check
-     * @param biomeName the name of the biome to query
-     * @return The {@link String} name of the trader to spawn, null if no traders can spawn
-     * @throws IllegalArgumentException if the given biome is not a LOTR biome
-     */
-    public static ExtendedInvasions pickInvasionFromBiomeName(World world, String biomeName) throws IllegalArgumentException {
-        // determine the LOTR biome
-        String lotrBiome;
-        int index = biomeName.indexOf("lotr");
-        if (index != -1) {
-            lotrBiome = biomeName.substring(index);
-            lotrBiome = lotrBiome.replace("]", "");
-        } else {
-            throw new IllegalArgumentException(biomeName + " is not a LOTR Mod biome");
+	/**
+	 * Convenience overload that selects an invasion using an optional biome key.
+	 *
+	 * <p>If the optional is empty, this method returns {@code null}. Otherwise,
+	 * the biome registry name is extracted and delegated to
+	 * {@link #pickInvasionFromBiomeName(World, ResourceLocation)}.</p>
+	 *
+	 * <p>This is primarily used in forced-spawn paths where biome lookup may fail
+	 * but should not be treated as an error.</p>
+	 *
+	 * @param world the world used for randomness
+	 * @param biomeKey optional biome registry key from the world
+	 * @return the selected {@link ExtendedInvasions}, or {@code null} if the biome is absent or has no valid invasions
+	 *
+	 * @throws IllegalArgumentException if the resolved biome is not part of the LOTR namespace
+	 */
+	public static ExtendedInvasions pickInvasionFromBiomeName(World world, Optional<RegistryKey<Biome>> biomeKey) throws IllegalArgumentException {
+		if(!biomeKey.isPresent()) {
+			throw new IllegalArgumentException("Unable to determine biome for location");
+        }
+    	return pickInvasionFromBiomeName(world, biomeKey.get().location());
+	}
+	/**
+	 * Selects a random invasion for the given LOTR biome.
+	 *
+	 * <p>This method is primarily used for <b>forced invasion spawns</b> (e.g., commands).
+	 * It validates that the biome belongs to the LOTR namespace and then performs a
+	 * weighted random selection using the registered invasion chances.</p>
+	 *
+	 * <p>Behavior:</p>
+	 * <ul>
+	 *   <li>If the biome is not an LOTR biome → throws {@link IllegalArgumentException}</li>
+	 *   <li>If the biome has no registered invasions → returns {@code null}</li>
+	 *   <li>If the biome has entries → returns a weighted random invasion</li>
+	 * </ul>
+	 *
+	 * @param world the world used for randomness
+	 * @param biomeName the biome registry name to query
+	 * @return the selected {@link ExtendedInvasions}, or {@code null} if none can spawn
+	 *
+	 * @throws IllegalArgumentException if the biome is not part of the LOTR namespace
+	 */
+    public static ExtendedInvasions pickInvasionFromBiomeName(World world, ResourceLocation biomeName) throws IllegalArgumentException {
+        if (!biomeName.getNamespace().contains("lotr")) {
+        	throw new IllegalArgumentException(biomeName + " is not a LOTR Mod biome");
         }
 
-        if (invasions.containsKey(lotrBiome)) {
-            Map<ExtendedInvasions, InvasionChance> rates = invasions.get(lotrBiome);
-
-            if (rates.isEmpty()) {
+        if (invasions.containsKey(biomeName)) {
+            Map<ExtendedInvasions, InvasionChance> rates = invasions.get(biomeName);
+            if (rates == null || rates.isEmpty()) {
                 return null;
-            } else {
-                return getInvasionFromHashmap(rates, world);
             }
+            return getInvasionFromHashmap(rates, world);
         } else {
             return null;
         }
     }
-
+    /**
+     * Performs a weighted random selection from the provided invasion map.
+     *
+     * <p>Each {@link InvasionChance#getChance()} value contributes to the total
+     * weight out of 100. The world's random instance is used for selection.</p>
+     *
+     * @param rates map of invasions to their weighted chances
+     * @param world the world providing the random source
+     * @return the selected {@link ExtendedInvasions}, or {@code null} if none matched
+     */
     private static ExtendedInvasions getInvasionFromHashmap(Map<ExtendedInvasions, InvasionChance> rates, World world) {
         // generate minimums
         Map<Integer, ExtendedInvasions> minimums = new HashMap<>();
@@ -459,17 +560,45 @@ public class InvasionBiomeList {
 
         return null;
     }
-
-    public static Map<ExtendedInvasions, InvasionChance> getInvasionsPerBiome(String biomeName) {
-        String lotrBiome;
-        int index = biomeName.indexOf("lotr");
-        if (index != -1) {
-            lotrBiome = biomeName.substring(index);
-            lotrBiome = lotrBiome.replace("]", "");
-        } else {
-            LOTRLog.info("Attempted to determine invasion on \"" +  biomeName + "\" that is not a LOTR Mod biome");
-            return null;
+    /**
+     * Convenience overload that resolves invasions from an optional biome key.
+     *
+     * <p>If the optional is empty, this method returns an empty map. Otherwise,
+     * the biome's {@link ResourceLocation} is extracted and delegated to
+     * {@link #getInvasionsPerBiome(ResourceLocation)}.</p>
+     *
+     * <p>This is primarily used in random spawning paths where the biome lookup
+     * may legitimately fail.</p>
+     *
+     * @param biomeKey optional biome registry key from the world
+     * @return a map of possible invasions and their chances, or an empty map if the biome is absent or has no registered invasions
+     */
+    public static Map<ExtendedInvasions, InvasionChance> getInvasionsPerBiome(Optional<RegistryKey<Biome>> biomeKey) {
+    	if(!biomeKey.isPresent()) {
+    		LOTRLog.info("Unable to determine biome for location");
+        	return Collections.emptyMap();
         }
-        return invasions.get(lotrBiome);
+    	return getInvasionsPerBiome(biomeKey.get().location());
+    }
+    /**
+     * Retrieves all invasions that are allowed to spawn in the given biome.
+     *
+     * <p>This method is primarily used during <b>random per-tick spawning</b>.
+     * Unlike {@link #pickInvasionFromBiomeName(World, ResourceLocation)},
+     * this method does not perform any random selection.</p>
+     *
+     * <p>If the biome is not part of the LOTR namespace, an empty map is returned
+     * and a log entry is written.</p>
+     *
+     * @param biomeName the biome registry name
+     * @return a map of possible invasions and their chances, or an empty map if none apply
+     */
+    @Nonnull
+    public static Map<ExtendedInvasions, InvasionChance> getInvasionsPerBiome(ResourceLocation biomeName) {
+    	if (!biomeName.getNamespace().contains("lotr")) {
+    		LOTRLog.info("Attempted to determine invasion on \"" +  biomeName + "\" that is not a LOTR Mod biome");
+            return Collections.emptyMap();
+        }
+    	return invasions.getOrDefault(biomeName, Collections.emptyMap());
     }
 }

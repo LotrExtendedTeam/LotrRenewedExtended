@@ -7,12 +7,10 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedBannerPatterns;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
-import lotr.common.init.LOTRItems;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.BannerPattern;
 import net.minecraftforge.fml.RegistryObject;
 

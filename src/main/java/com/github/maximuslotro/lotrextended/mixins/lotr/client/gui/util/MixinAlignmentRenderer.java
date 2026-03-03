@@ -25,21 +25,33 @@ public class MixinAlignmentRenderer {
     @Shadow
     private int alignmentYPrev;
 
+    /**
+     * @author richardb122
+     * @reason Bump down alignment bar when a bossbar is active
+     * @return True if there is an active bossbar
+     * */
     @Overwrite
     private boolean isBossActive() {
         return ExtendedClientProxy.INSTANCE.lastTimeBossBarRendered > System.currentTimeMillis() - 100;
     }
 
+    /**
+     * @author richardb122
+     * @reason Bump down alignment bar when a bossbar is active
+     * @param minecraft A Minecraft instance
+     * @param player A client player instance
+     * */
     @Overwrite
-    private void updateBarCurrentPosition(Minecraft mc, PlayerEntity player) {
+    private void updateBarCurrentPosition(Minecraft minecraft, PlayerEntity player) {
         this.alignmentXPrev = this.alignmentXCurrent;
         this.alignmentYPrev = this.alignmentYCurrent;
         this.alignmentXCurrent = this.alignmentXBase;
         int yMove = (int)((float)(this.alignmentYBase - -20) / 3.0F);
-        boolean alignmentOnscreen = (mc.screen == null || mc.screen instanceof PlayerMessageScreen)
-                && !mc.options.keyPlayerList.isDown()
-                && !mc.options.renderDebug
+        boolean alignmentOnscreen = (minecraft.screen == null || minecraft.screen instanceof PlayerMessageScreen)
+                && !minecraft.options.keyPlayerList.isDown() && !minecraft.options.renderDebug 
+                // Extended Start
                 && !this.isBossActive();
+        // Extended End
         if (alignmentOnscreen) {
             this.alignmentYCurrent = Math.min(this.alignmentYCurrent + yMove, this.alignmentYBase);
         } else {

@@ -48,9 +48,11 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     private static final DataParameter<Integer> DATA_INVASION_SIZE = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, DataSerializers.INT);
     private static final DataParameter<Boolean> DATA_INVASION_STARTED = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, DataSerializers.BOOLEAN);
 
-    private static final float ROTATION_SPEED = 1.0F;
+    private static final float ROTATION_SPEED = 0.5F;
     private static final double INVASION_FOLLOW_RANGE = 40.0;
     private int tickCounter = 0;
+	public double spin = 0;
+	public double spinO = 0;
 
     private ServerBossInfo bossBar = null;
     private Set<UUID> playersInBossBar = new HashSet<>();
@@ -133,24 +135,24 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         }
     }
 
-    public void tick() {
+    @Override
+	public void tick() {
         this.noPhysics = true;
         super.tick();
         this.noPhysics = false;
         this.setNoGravity(true);
 
+        if(this.level.isClientSide()) {
+			this.spinO = this.spin;
+			this.spin = (this.spin + ROTATION_SPEED) % 360.0D;
+		}
 
-        if(!this.level.isClientSide()) {
-            if (level.getDifficulty() == Difficulty.PEACEFUL) endInvasion(false);
-
-            this.yRot += ROTATION_SPEED;
-
-            if (this.yRot >= 360.0F) {
-                this.yRot -= 360.0F;
+        if (!this.level.isClientSide()) {
+            if(level.getDifficulty() == Difficulty.PEACEFUL) {
+            	endInvasion(false);
+            	return;
             }
-        }
-
-        if (!this.level.isClientSide) {
+            
             if (bossBar == null && getInvasionStarted()) {
                 boolean result = initializeBossBar();
                 if (result) updateBossBar();
@@ -297,8 +299,8 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     /**
      * Note: This method should only be run on the server
      *
-     * @param type
-     * @return
+     * @param type Entity type to spawn
+     * @return True if m ob spawned
      */
     private boolean attemptMobSpawn(EntityType<? extends MobEntity> type) {
         boolean couldSpawnMob = false;
