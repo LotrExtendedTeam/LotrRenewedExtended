@@ -155,7 +155,6 @@ public class WorldEventHandlers {
 
 	@SubscribeEvent
 	public static void handleMobDeathForInvasion$Extended(LivingDeathEvent event) {
-		Entity sourceEntity = event.getSource().getEntity();
 		UUID invasionId = null;
 
 		if (event.getEntityLiving().getPersistentData().contains("lotr:invasion_id")) {
@@ -168,7 +167,7 @@ public class WorldEventHandlers {
 		if (enemiesLeft > 0) {
 			ExtendedLevelData.serverInstance().decrementEnemiesLeft(invasionId);
 		}
-
+		Entity sourceEntity = event.getSource().getEntity();
 		if (sourceEntity instanceof ServerPlayerEntity) {
 			ServerPlayerEntity player = (ServerPlayerEntity)sourceEntity;
 			ExtendedLevelData.serverInstance().trackRecentPlayerKill(invasionId, player.getUUID());

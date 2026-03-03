@@ -53,7 +53,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     private int tickCounter = 0;
 	public double spin = 0;
 	public double spinO = 0;
-
+	private Set<EntityType<?>> spawnableTypes=null;
     private ServerBossInfo bossBar = null;
     private Set<UUID> playersInBossBar = new HashSet<>();
 
@@ -167,8 +167,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 // attempt to add nearby players to BossBar
                 AxisAlignedBB bb = new AxisAlignedBB(
                         blockPosition().getX(), blockPosition().getY(), blockPosition().getZ(),
-                        blockPosition().getX() + 1, blockPosition().getY() + 1, blockPosition().getZ() + 1
-                );
+                        blockPosition().getX() + 1, blockPosition().getY() + 1, blockPosition().getZ() + 1);
 
                 List<PlayerEntity> surroundingPlayers = level.getEntitiesOfClass(PlayerEntity.class, bb.inflate(INVASION_FOLLOW_RANGE));
                 for (PlayerEntity player : surroundingPlayers) {
@@ -226,6 +225,13 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         return getEntityData().get(DATA_INVASION_STARTED);
     }
 
+    private Set<EntityType<?>> getSpawnableEntities(Optional<ExtendedInvasions> invasion){
+    	if(spawnableTypes==null) {
+    		spawnableTypes = invasion.get().getSpawnEntries().stream()
+                    .map(ExtendedInvasions.InvasionSpawnEntry::getEntityType).collect(Collectors.toSet());
+    	}
+    	return spawnableTypes;
+    }
     /***
      * Calculates how many mobs are in the INVASION_FOLLOW_RANGE that
      * match the type of the invasion. A helper method to prevent the invasion
@@ -239,20 +245,14 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
             return -1;
         }
 
+        Set<EntityType<?>> spawnableTypes = getSpawnableEntities(invasion);
+
         AxisAlignedBB bb = new AxisAlignedBB(
                 blockPosition().getX(), blockPosition().getY(), blockPosition().getZ(),
-                blockPosition().getX() + 1, blockPosition().getY() + 1, blockPosition().getZ() + 1
-        );
-        List<NPCEntity> surroundingMobs = level.getEntitiesOfClass(NPCEntity.class, bb.inflate(INVASION_FOLLOW_RANGE));
-
-        // pre-create the set
-        Set<EntityType<?>> spawnableTypes = invasion.get().getSpawnEntries().stream()
-                .map(ExtendedInvasions.InvasionSpawnEntry::getEntityType)
-                .collect(Collectors.toSet());
-
-        return (int) surroundingMobs.stream()
-                .filter(npc -> spawnableTypes.contains(npc.getType()))
-                .count();
+                blockPosition().getX() + 1, blockPosition().getY() + 1, blockPosition().getZ() + 1);
+        List<NPCEntity> surroundingMobs = level.getLoadedEntitiesOfClass(NPCEntity.class, bb.inflate(INVASION_FOLLOW_RANGE),
+        		(npc) -> spawnableTypes.contains(npc.getType()));
+        return surroundingMobs.size();
     }
 
     public void endInvasion(boolean completed) {
@@ -457,18 +457,17 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         double announceRange = INVASION_FOLLOW_RANGE * 2;
         AxisAlignedBB bb = new AxisAlignedBB(
                 blockPosition().getX(), blockPosition().getY(), blockPosition().getZ(),
-                blockPosition().getX() + 1, blockPosition().getY() + 1, blockPosition().getZ() + 1
-        );
+                blockPosition().getX() + 1, blockPosition().getY() + 1, blockPosition().getZ() + 1);
         List<PlayerEntity> surroundingPlayers = level.getEntitiesOfClass(PlayerEntity.class, bb.inflate(announceRange));
 
         // announce to all surrounding players
         for (PlayerEntity player : surroundingPlayers) {
             if(((ExtendedLOTRPlayerData) LOTRLevelData.serverInstance().getData(player)).getExtendedMiscData().doHighContrastMessages()) {
                 IFormattableTextComponent text = invasion.get().getTranslatableName().copy().withStyle(npcNameStyle);
-                player.sendMessage(new TranslationTextComponent("chat.invasion.started", text), Util.NIL_UUID);
+                player.sendMessage(new TranslationTextComponent("chat.lotrextended.invasion.started", text), Util.NIL_UUID);
             }else {
                 IFormattableTextComponent text = invasion.get().getTranslatableName().copy().withStyle(TextFormatting.YELLOW);
-                player.sendMessage(new TranslationTextComponent("chat.invasion.started", invasion.get().getTranslatableName().copy().withStyle(TextFormatting.YELLOW)), Util.NIL_UUID);
+                player.sendMessage(new TranslationTextComponent("chat.lotrextended.invasion.started", invasion.get().getTranslatableName().copy().withStyle(TextFormatting.YELLOW)), Util.NIL_UUID);
             }
         }
 
@@ -484,7 +483,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     }
 
     private void playHorn() {
-        this.level.playSound(null, this.blockPosition(), ExtendedSounds.HORN_BLOW.get(), SoundCategory.PLAYERS, 4.0F, 1.0F);
+        this.level.playSound(null, this.blockPosition(), ExtendedSounds.HORN_BLOW.get(), SoundCategory.PLAYERS, 3.0F, 1.0F);
     }
 
     public void setInvasionSize(int invasionSize) {

@@ -619,7 +619,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("death.attack.lotrextended.thrownaxe.item", "%1$s was precision-axed by %2$s using %3$s");
 
 		// Invasions
-		addD("chat.invasion.started", "%s have launched an invasion nearby!");
+		addD("chat.lotrextended.invasion.started", "%s have launched an invasion nearby!");
 		addD("lotrextended.invasion.rivendell", "Rivendell");
 		addD("lotrextended.invasion.lindon", "Lindon");
 		addD("lotrextended.invasion.gundabad", "Gundabad");

@@ -1,6 +1,5 @@
 package lotr.common.world.spawning;
 
-import lotr.common.LOTRLog;
 import lotr.common.world.ExtendedInvasions;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
@@ -14,6 +13,8 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
+
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 /**
  * Central registry mapping LOTR biomes to the invasions that may spawn within them.
@@ -575,7 +576,7 @@ public class InvasionBiomeList {
      */
     public static Map<ExtendedInvasions, InvasionChance> getInvasionsPerBiome(Optional<RegistryKey<Biome>> biomeKey) {
     	if(!biomeKey.isPresent()) {
-    		LOTRLog.info("Unable to determine biome for location");
+    		ExtendedLog.info("Unable to determine biome for location");
         	return Collections.emptyMap();
         }
     	return getInvasionsPerBiome(biomeKey.get().location());
@@ -596,7 +597,7 @@ public class InvasionBiomeList {
     @Nonnull
     public static Map<ExtendedInvasions, InvasionChance> getInvasionsPerBiome(ResourceLocation biomeName) {
     	if (!biomeName.getNamespace().contains("lotr")) {
-    		LOTRLog.info("Attempted to determine invasion on \"" +  biomeName + "\" that is not a LOTR Mod biome");
+    		ExtendedLog.info("Attempted to determine invasion for {" +  biomeName.toString() + "}, but it is not a LOTR Mod biome!");
             return Collections.emptyMap();
         }
     	return invasions.getOrDefault(biomeName, Collections.emptyMap());
