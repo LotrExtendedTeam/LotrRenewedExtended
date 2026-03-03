@@ -235,6 +235,13 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.fellowships.use_command", "Please use the command for now!");
 
 		// Add Settings Menu strings
+		addD("gui.lotrextended.serversettings.title", "Middle-earth Server Options");
+		addD("gui.lotrextended.serversettings.gameplay", "Gameplay Settings");
+		addD("gui.lotrextended.serversettings.entity", "Entity Settings");
+		addD("gui.lotrextended.serversettings.block", "Block Settings");
+		addD("gui.lotrextended.serversettings.chair", "Chair Settings");
+		addD("gui.lotrextended.serversettings.modifiers", "Modifier Settings");
+		addD("gui.lotrextended.serversettings.protection", "Spawn Protection");
 		addD("gui.lotrextended.settings.title", "Middle-earth Options");
 		addD("gui.lotrextended.settings.worldsettings", "World Settings");
 		addD("gui.lotrextended.settings.usersettings", "User Settings");

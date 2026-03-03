@@ -75,7 +75,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		npcGlobalSpawnDampingCoefficient = createDoubleValue(builder, "npcGlobalSpawnDampingCoefficient", 1.0D, 0.0D, 1.0D, false, "Reduce the global npc spawning rate, the lower the value, the less spawns. This is a linear setting, (1.0 is the default renewed spawn rate)");
 		enableDefaultWaypointTeleportation = createBooleanValue(builder, "enableDefaultWaypointTeleportation", true, false, "Enable Teleportation To Default Waypoints");
 		enableCustomWaypointTeleportation = createBooleanValue(builder, "enableCustomWaypointTeleportation", true, false, "Enable Teleportation To Custom Waypoints");
-		enableLegacyFeastMode = createBooleanValue(builder, "enableLegacyFeastMode", true, true, "Enable the eating of food even if player is not hungry, like in legacy");
+		enableLegacyFeastMode = createBooleanValue(builder, "enableLegacyFeastMode", true, false, "Enable the eating of food even if player is not hungry, like in legacy");
 		enableHungerDecrease = createBooleanValue(builder, "enableHungerDecrease", true, false, "Decrease hunger meter exhaustion");
 		alternateMapTeleportCommand = createStringValue(builder, "alternateMapTeleportCommand", "/tp %d %d %d", false, "Map menu instant tp command");
 		builder.pop();
