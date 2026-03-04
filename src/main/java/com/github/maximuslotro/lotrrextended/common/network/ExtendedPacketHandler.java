@@ -50,6 +50,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedCUpdateHoistPacket.class, ExtendedCUpdateHoistPacket::encode, ExtendedCUpdateHoistPacket::decode, ExtendedCUpdateHoistPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCRenameItemPacket.class, ExtendedCRenameItemPacket::encode, ExtendedCRenameItemPacket::decode, ExtendedCRenameItemPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCAnvilButtonPacket.class, ExtendedCAnvilButtonPacket::encode, ExtendedCAnvilButtonPacket::decode, ExtendedCAnvilButtonPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCServerSettingsPacket.class, ExtendedCServerSettingsPacket::encode, ExtendedCServerSettingsPacket::decode, ExtendedCServerSettingsPacket::handle);
 
 		if (id >= 255) {
 			// Since IndexedMessageCodec.MessageHandler -> indicies.put((short)(index & 0xff), this);

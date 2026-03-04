@@ -3,7 +3,6 @@ package com.github.maximuslotro.lotrrextended.client.gui.widget.button;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import lotr.common.data.LOTRPlayerData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.widget.button.Button;
@@ -11,14 +10,14 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedTogglableTitleButton extends Button {
+public class ExtendedTogglableTitleButton<T> extends Button {
 	private final TextComponent baseMessage;
 	private final String enabled;
 	private final String disabled;
 	private boolean settingState = false;
-	protected final IOnTick onTick;
+	protected final IOnTick<T> onTick;
 
-	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, TextComponent pMessage, IPressable pOnPress, ITooltip pOnTooltip, IOnTick pOnTick, String enabled, String disabled) {
+	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, TextComponent pMessage, IPressable pOnPress, ITooltip pOnTooltip, IOnTick<T> pOnTick, String enabled, String disabled) {
 		super(pX, pY, pWidth, pHeight, pMessage, pOnPress, pOnTooltip);
 		this.baseMessage = pMessage;
 		this.enabled = enabled;
@@ -26,7 +25,7 @@ public class ExtendedTogglableTitleButton extends Button {
 		this.onTick = pOnTick;
 	}
 
-	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, TextComponent pMessage, IPressable pOnPress, IOnTick pOnTick, String enabled, String disabled) {
+	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, TextComponent pMessage, IPressable pOnPress, IOnTick<T> pOnTick, String enabled, String disabled) {
 		super(pX, pY, pWidth, pHeight, pMessage, pOnPress);
 		this.baseMessage = pMessage;
 		this.enabled = enabled;
@@ -34,8 +33,8 @@ public class ExtendedTogglableTitleButton extends Button {
 		this.onTick = pOnTick;
 	}
 
-	public void onTick(LOTRPlayerData pd) {
-		tickTitle(onTick.onTick(this, pd));
+	public void onTick(T tickData) {
+		tickTitle(onTick.onTick(this, tickData));
 	}
 
 	public void tickTitle(Boolean toggle) {
@@ -71,7 +70,7 @@ public class ExtendedTogglableTitleButton extends Button {
 	}
 
 
-	public interface IOnTick {
-		Boolean onTick(ExtendedTogglableTitleButton button, LOTRPlayerData playerData);
+	public interface IOnTick<T> {
+		Boolean onTick(ExtendedTogglableTitleButton<T> button, T tickData);
 	}
 }

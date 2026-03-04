@@ -7,7 +7,10 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedColorChangingButton;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTogglableTitleButton;
-import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTogglableTitleButton.IOnTick;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCServerSettingsPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCServerSettingsPacket.ExtendedSettingToggles;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.gui.MiddleEarthMenuScreen;
@@ -16,6 +19,7 @@ import net.minecraft.client.gui.widget.button.Button.IPressable;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.client.gui.widget.Slider;
 import net.minecraftforge.fml.client.gui.widget.Slider.ISlider;
 
@@ -45,12 +49,19 @@ public class ExtendedServerOptionsScreen extends MiddleEarthMenuScreen {
 		catagories.clear();
 
 		SettingsCatagory gameplay = new SettingsCatagory(this, 0, x, y, xTabs);
-		addButton(gameplay.addCatagoryButton("gui.lotrextended.serversettings.gameplay"));
+		addButton(gameplay.addCatagoryButton("gui.lotrextended.serversettings.category.gameplay"));
+		addButton(gameplay.addButton("gui.lotrextended.serversettings.bannerprotection.setting", ExtendedServerConfig.enableBannerProtection, ExtendedSettingToggles.BANNER_PROTECTION, 
+			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		catagories.add(gameplay);
 
 		for(SettingsCatagory catagory : catagories) {
 			catagory.checkVisability();
 		}
+	}
+
+	private static void toggleValue(ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type) {
+		//configSpec.next(); TODO be able to access BuilderContext for localKey and range context
+		ExtendedPacketHandler.sendToServer(new ExtendedCServerSettingsPacket(type, !configSpec.get()));
 	}
 
 	@Override
@@ -75,6 +86,7 @@ public class ExtendedServerOptionsScreen extends MiddleEarthMenuScreen {
 		private final int placementYOffset;
 		private final int catagoryXOffset;
 		private int offsetAmount=0;
+		private final List<ExtendedTogglableTitleButton<ExtendedServerConfig>> bottons = new ArrayList<>();
 		private final List<Widget> widgets = new ArrayList<>();
 		private Widget catagoryButton;
 
@@ -101,10 +113,10 @@ public class ExtendedServerOptionsScreen extends MiddleEarthMenuScreen {
 			};
 			return catagoryButton;
 		}
-		public Widget addButton(String pMessage, IPressable pOnPress, IOnTick pOnTick, String enabled, String disabled) {
-			ExtendedTogglableTitleButton button = new ExtendedTogglableTitleButton(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(pMessage), 
-				pOnPress, pOnTick, enabled, disabled);
-			widgets.add(button);
+		public Widget addButton(String pMessage, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled) {
+			ExtendedTogglableTitleButton<ExtendedServerConfig> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(pMessage), 
+				wdget -> toggleValue(configSpec, type), (wdget, pd) -> configSpec.get(), enabled, disabled);
+			bottons.add(button);
 			offsetAmount+=1;
 			return button;
 		}
@@ -120,23 +132,29 @@ public class ExtendedServerOptionsScreen extends MiddleEarthMenuScreen {
 		public void clean() {
 			screen=null;
 			catagoryButton=null;
+			bottons.clear();
 			widgets.clear();
 		}
 
 		public void handleUpdates() {
 			if(screen.option==index) {
+				for(ExtendedTogglableTitleButton<ExtendedServerConfig> widget : bottons) {
+					widget.onTick(null);
+					widget.visible = true;
+				}
 				for(Widget widget : widgets) {
-					if(widget instanceof ExtendedTogglableTitleButton) {
-						((ExtendedTogglableTitleButton)widget).onTick(null);
-					}
 					widget.visible = true;
 				}
 			}
 		}
 		public void checkVisability(){
+			for(Widget widget : bottons) {
+				widget.visible = screen.option==index; // Hide/Show widget if this category is selected
+			}
 			for(Widget widget : widgets) {
 				widget.visible = screen.option==index; // Hide/Show widget if this category is selected
 			}
 		}
+
 	}
 }

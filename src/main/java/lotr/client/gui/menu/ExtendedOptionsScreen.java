@@ -345,6 +345,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		private final int placementYOffset;
 		private final int catagoryXOffset;
 		private int offsetAmount=0;
+		private final List<ExtendedTogglableTitleButton<LOTRPlayerData>> bottons = new ArrayList<>();
 		private final List<Widget> widgets = new ArrayList<>();
 		private Widget catagoryButton;
 
@@ -388,10 +389,10 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 			};
 			return catagoryButton;
 		}
-		public Widget addButton(String pMessage, IPressable pOnPress, IOnTick pOnTick, String enabled, String disabled) {
-			ExtendedTogglableTitleButton button = new ExtendedTogglableTitleButton(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(pMessage), 
+		public Widget addButton(String pMessage, IPressable pOnPress, IOnTick<LOTRPlayerData> pOnTick, String enabled, String disabled) {
+			ExtendedTogglableTitleButton<LOTRPlayerData> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(pMessage), 
 				pOnPress, pOnTick, enabled, disabled);
-			widgets.add(button);
+			bottons.add(button);
 			offsetAmount+=1;
 			return button;
 		}
@@ -407,16 +408,18 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		public void clean() {
 			screen=null;
 			catagoryButton=null;
+			bottons.clear();
 			widgets.clear();
 		}
 
 		public void handleUpdates() {
 			if(screen.option==index) {
 				LOTRPlayerData pd = getPlayerData();
+				for(ExtendedTogglableTitleButton<LOTRPlayerData> widget : bottons) {
+					widget.onTick(pd);
+					widget.visible = true;
+				}
 				for(Widget widget : widgets) {
-					if(widget instanceof ExtendedTogglableTitleButton) {
-						((ExtendedTogglableTitleButton)widget).onTick(pd);
-					}
 					widget.visible = true;
 				}
 			}
@@ -432,6 +435,9 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 					}
 					catagoryButton.visible = false;
 				}
+			}
+			for(Widget widget : bottons) {
+				widget.visible = screen.option==index; // Hide/Show widget if this category is selected
 			}
 			for(Widget widget : widgets) {
 				widget.visible = screen.option==index; // Hide/Show widget if this category is selected
