@@ -7,7 +7,6 @@ import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
-import net.minecraft.entity.player.PlayerEntity;
 
 /**
  * A customized {@link HurtByTargetGoal} for NPC units that introduces extended logic
@@ -58,7 +57,7 @@ public class ExtendedHiredHurtByTargetGoal extends HurtByTargetGoal {
 				&& pPotentialTarget instanceof ExtendedNPCEntity
 				&& ((ExtendedNPCEntity)pPotentialTarget).getUnitInfo().isNpcActiveDuty()
 				&& ((ExtendedNPCEntity)pPotentialTarget).getUnitInfo().getOwnerUUID().equals(extendedEntity.getUnitInfo().getOwnerUUID())
-				&& !((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) extendedEntity.getUnitInfo().getUnitOwner())).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit()) {
+				&& !((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(this.mob.level, extendedEntity.getUnitInfo().getOwnerUUID())).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit()) {
 			return false;
 		} else {
 			if (this.mustReach) {
