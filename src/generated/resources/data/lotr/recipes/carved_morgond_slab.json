@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:gondor",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:carved_morgond"
+    }
+  },
+  "result": {
+    "item": "lotr:carved_morgond_slab",
+    "count": 6
+  }
+}

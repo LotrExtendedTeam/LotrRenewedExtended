@@ -17,5 +17,6 @@ public class ExtendedTileEntityRenderers {
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.WEAPON_RACK.get(), ExtendedWeaponRackItemRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.STONE_SIGN.get(), ExtendedStoneTextSignTileEntityRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.HIGH_ELVEN_BED.get(), ExtendedBedTileEntityRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(ExtendedTileEntities.STONE_GRINDER.get(), ExtendedStoneGrinderTileEntityRenderer::new);
 	}
 }

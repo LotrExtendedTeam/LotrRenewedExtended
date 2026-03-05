@@ -1,0 +1,8 @@
+{
+  "parent": "lotr:block/stalactite_template",
+  "textures": {
+    "top": "lotrextended:block/morgond",
+    "bottom": "lotrextended:block/morgond",
+    "side": "lotrextended:block/morgond"
+  }
+}

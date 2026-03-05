@@ -6,6 +6,8 @@ import java.util.Map.Entry;
 import java.util.UUID;
 import java.util.function.Predicate;
 
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileBase;
@@ -38,6 +40,8 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -73,9 +77,13 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
      */
 	private ExtendedBannerProtectionOwners protectionType = ExtendedBannerProtectionOwners.FACTION;
 	/**
-     * Default permissions granted when in faction-based protection mode.
+     * Override permissions superseding any other set permission
      */
-	private final List<ExtendedBannerPermissions> defaultPerms = new ArrayList<>();
+	private final List<ExtendedBannerPermissions> globalPermsOverrides = new ArrayList<>();
+	/**
+     * Faction mode permissions
+     */
+	private final List<ExtendedBannerPermissions> factionPerms = new ArrayList<>();
 	/**
      * Determines whether the banner should protect itself from being destroyed
      * by unauthorized players/entities.
@@ -89,15 +97,15 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	/**
      * UUID of the player who placed this banner.
      */
-	private UUID placedPlayerUUID;
+	private UUID placedPlayerUUID = null;
 	/**
      * Name of the player who placed this banner.
      */
-	private String placedPlayerName;
+	private String placedPlayerName = null;
 	/**
      * UUID of an entity currently connected or linked to this banner.
      */
-	private UUID connectedEntity;
+	private UUID connectedEntity = null;
 	/**
      * Current protection level applied to this banner.
      */
@@ -138,6 +146,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 						}
 					}
 					firstTick = true;
+					markAndUpdate();
 				}
 				if(connectedEntity==null) {
 					createAndSetBannerEntity();
@@ -322,13 +331,16 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		if(placedPlayerName==null) {
 			if(placedPlayerUUID==null) {
 				placedPlayerName="UNKNOWN";
+				markAndUpdate();
 				return placedPlayerName;
 			}
             placedPlayerName = UsernameCache.getLastKnownUsername(placedPlayerUUID);
 			if(placedPlayerName==null) {
 				placedPlayerName="UNKNOWN";
+				markAndUpdate();
 				return placedPlayerName;
 			}
+			markAndUpdate();
 			ExtendedLog.warn("Fixed missing banner player username!");
 		}
 		return placedPlayerName;
@@ -345,6 +357,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	public void setPlacedPlayerNameAndID(UUID placedPlayer, String placedPlayerName) {
 		setPlacedPlayerUUID(placedPlayer);
 		setPlacedPlayerName(placedPlayerName);
+		factionPerms.clear();
+		factionPerms.add(ExtendedBannerPermissions.EVERYTHING);
+		markAndUpdate();
 	}
 
 	/**
@@ -359,20 +374,37 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		this.protectionOverrideMessage = pPotectionMessage;
 	}
 
-	public void setDefaultPerms(List<ExtendedBannerPermissions> perms) {
-		defaultPerms.clear();
-		defaultPerms.addAll(perms);
+	public void setGlobalPerms(List<ExtendedBannerPermissions> perms) {
+		globalPermsOverrides.clear();
+		globalPermsOverrides.addAll(perms);
 	}
 
-	public List<ExtendedBannerPermissions> getDefaultPerms() {
-		return defaultPerms;
+	public List<ExtendedBannerPermissions> getGlobalPerms() {
+		return globalPermsOverrides;
 	}
 
-	public boolean hasDefaultPerm(ExtendedBannerPermissions perm) {
+	public boolean hasGlobalPerm(ExtendedBannerPermissions perm) {
 		if(perm==ExtendedBannerPermissions.BANNER) {
-			return defaultPerms.contains(perm);
+			return globalPermsOverrides.contains(perm);
 		}
-		return defaultPerms.contains(ExtendedBannerPermissions.EVERYTHING)|| defaultPerms.contains(perm);
+		return globalPermsOverrides.contains(ExtendedBannerPermissions.EVERYTHING) || globalPermsOverrides.contains(perm);
+	}
+
+	public void setFactionPerms(List<ExtendedBannerPermissions> perms) {
+		factionPerms.clear();
+		factionPerms.addAll(perms);
+	}
+
+	public List<ExtendedBannerPermissions> getFactionPerms() {
+		return factionPerms;
+	}
+
+	public boolean hasFactionPerm(ExtendedBannerPermissions perm) {
+		// Faction mode only allows placed player to edit
+		if(perm==ExtendedBannerPermissions.BANNER) {
+			return false;
+		}
+		return factionPerms.contains(ExtendedBannerPermissions.EVERYTHING) || factionPerms.contains(perm);
 	}
 
 	public void setProtectionWhitelist(List<ProtectionEntry> whitelist) {
@@ -473,6 +505,10 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		if(!protectionWhitelist.isEmpty()) {
 			ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(serverPlayer, "bannerOthers");
 		}
+		if(protectionType==ExtendedBannerProtectionOwners.FACTION && factionPerms.contains(ExtendedBannerPermissions.BANNER)) {
+			factionPerms.remove(ExtendedBannerPermissions.BANNER);
+			fixedBroken = true;
+		}
 		if(protectionType!=ExtendedBannerProtectionOwners.CUSTOM && !protectionOverrideMessage.isEmpty()) {
 			protectionOverrideMessage = "";
 			fixedBroken = true;
@@ -482,16 +518,50 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			protectionOverrideMessage = "";
 			fixedBroken = true;
 		}
+		markAndUpdate();
 		if(fixedBroken) {
 			return new ExtendedSBannerOpenChangedScreenPacket(this);
 		}
 		return null;
+	}
+	@Override
+	@Nullable
+	public SUpdateTileEntityPacket getUpdatePacket() {
+		return new SUpdateTileEntityPacket(this.worldPosition, -1, this.getUpdateTag());
+	}
+
+	@Override
+	public CompoundNBT getUpdateTag() {
+		return this.save(new CompoundNBT());
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+		super.onDataPacket(net, pkt);
+		this.load(level.getBlockState(pkt.getPos()), pkt.getTag());
+	}
+
+	@Override
+	public void handleUpdateTag(BlockState state, CompoundNBT tag) {
+		super.handleUpdateTag(state, tag);
 	}
 
 	@Override
 	public void load(BlockState blockState, CompoundNBT pCompound) {
 		super.load(blockState, pCompound);
 		loadProtectionData(pCompound);
+	}
+
+	@Override
+	public void setChanged() {
+		super.setChanged();
+	}
+
+	public void markAndUpdate() {
+		this.setChanged();
+		if (this.hasLevel()) {
+			this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
+		}
 	}
 
 	public void loadProtectionData(CompoundNBT loadableData) {
@@ -528,13 +598,27 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			if (pCompound.contains("defaultPerms", 7)) {  // 7 corresponds to a byte array in NBT
 				byte[] ordinalValues = pCompound.getByteArray("defaultPerms");
 				// Convert each ordinal value back to a BannerPermission enum
-				defaultPerms.clear();
+				globalPermsOverrides.clear();
 				for (byte ordinal : ordinalValues) {
-					defaultPerms.add(ExtendedBannerPermissions.values[ordinal]);
+					globalPermsOverrides.add(ExtendedBannerPermissions.values[ordinal]);
 				}
-				if(defaultPerms.contains(ExtendedBannerPermissions.EVERYTHING)) {
-					defaultPerms.removeIf(permission -> permission !=ExtendedBannerPermissions.BANNER && permission !=ExtendedBannerPermissions.EVERYTHING);
+				if(globalPermsOverrides.contains(ExtendedBannerPermissions.EVERYTHING)) {
+					globalPermsOverrides.removeIf(permission -> permission !=ExtendedBannerPermissions.BANNER && permission !=ExtendedBannerPermissions.EVERYTHING);
 				}
+			}
+			if (pCompound.contains("factionPerms", 7)) {  // 7 corresponds to a byte array in NBT
+				byte[] ordinalValues = pCompound.getByteArray("factionPerms");
+				// Convert each ordinal value back to a BannerPermission enum
+				factionPerms.clear();
+				for (byte ordinal : ordinalValues) {
+					factionPerms.add(ExtendedBannerPermissions.values[ordinal]);
+				}
+				if(factionPerms.contains(ExtendedBannerPermissions.EVERYTHING)) {
+					factionPerms.removeIf(permission -> permission !=ExtendedBannerPermissions.EVERYTHING);
+				}
+			}else {
+				factionPerms.clear();
+				factionPerms.add(ExtendedBannerPermissions.EVERYTHING);
 			}
 			if(pCompound.contains("protectionSelf")) {
 				canProtectSelf = pCompound.getBoolean("protectionSelf");
@@ -581,16 +665,27 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				}
 				pCompound.put("whitelistEntrys", whitelist);
 			}
-			if (!defaultPerms.isEmpty()) {
+			if (!globalPermsOverrides.isEmpty()) {
 				// Initialize a byte array to store the ordinal values of BannerPermission
-				byte[] ordinalValues = new byte[defaultPerms.size()];
+				byte[] ordinalValues = new byte[globalPermsOverrides.size()];
 				// Iterate over the entryPerms list to populate the byte array
-				for (int i = 0; i < defaultPerms.size(); i++) {
+				for (int i = 0; i < globalPermsOverrides.size(); i++) {
 					// Get the ordinal of the current BannerPermission enum and cast it to byte
-					ordinalValues[i] = (byte) defaultPerms.get(i).ordinal();
+					ordinalValues[i] = (byte) globalPermsOverrides.get(i).ordinal();
 				}
 				// Store the byte array in the CompoundNBT with the key "defaultPerms"
 				pCompound.putByteArray("defaultPerms", ordinalValues);
+			}
+			if (!factionPerms.isEmpty()) {
+				// Initialize a byte array to store the ordinal values of BannerPermission
+				byte[] ordinalValues = new byte[factionPerms.size()];
+				// Iterate over the entryPerms list to populate the byte array
+				for (int i = 0; i < factionPerms.size(); i++) {
+					// Get the ordinal of the current BannerPermission enum and cast it to byte
+					ordinalValues[i] = (byte) factionPerms.get(i).ordinal();
+				}
+				// Store the byte array in the CompoundNBT with the key "factionPerms"
+				pCompound.putByteArray("factionPerms", ordinalValues);
 			}
 			if(!canProtectSelf) {
 				pCompound.putBoolean("protectionSelf", canProtectSelf);
@@ -610,8 +705,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * */
 	public ItemStack getItem(ExtendedBannerTypes bannerType) {
 		ItemStack itemstack = new ItemStack(bannerType.getBannerItem().get());
-		if (used) {
-			saveProtectionData(itemstack.getOrCreateTag());
+		CompoundNBT data = saveProtectionData(new CompoundNBT());
+		if(!data.isEmpty()) {
+			itemstack.setTag(data);
 		}
 		return itemstack;
 	}

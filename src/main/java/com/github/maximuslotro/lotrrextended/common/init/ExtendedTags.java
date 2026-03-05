@@ -204,6 +204,7 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> PLACEABLE_BOOKS = ItemTags.bind("lotrextended:placeable_books");
 
 		public static final ITag.INamedTag<Item> FLESH = ItemTags.bind("lotrextended:flesh");
+		public static final ITag.INamedTag<Item> MORGOND_ROCKS = ItemTags.bind("lotrextended:morgond_rocks");
 
 	}
 }

@@ -91,7 +91,7 @@ public class WorldEventHandlers {
 		if (event.phase == TickEvent.Phase.END && event.player instanceof ServerPlayerEntity && ExtendedServerConfig.enableExtendedSpawnProtection.get()) {
 			ServerPlayerEntity player = (ServerPlayerEntity) event.player;
 
-			boolean isProtected = ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(player.getLevel(), player.blockPosition(), player, false, true);
+			boolean isProtected = ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(player.getLevel(), player.blockPosition(), player, false, true, false);
 			UUID id = player.getUUID();
 			boolean wasProtected = ExtendedVanillaProtectionHandlers.wasInProtection.getOrDefault(id, false);
 
@@ -150,6 +150,13 @@ public class WorldEventHandlers {
 		if(event.getPlayer() instanceof ServerPlayerEntity) {
 			ServerPlayerEntity player = (ServerPlayerEntity)event.getPlayer();
 			ExtendedCriteriaTriggers.PLAYER_BREAK_BLOCK_TRIGGER.trigger(player, event.getPos(), player.getItemInHand(player.getUsedItemHand()));
+		}
+		if(ExtendedServerConfig.enableStaffServer.get() && event.getPlayer() instanceof ServerPlayerEntity) {
+			if(ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(((ServerPlayerEntity) event.getPlayer()).getLevel(), 
+				event.getPos(), event.getPlayer(), true, false, false)) {
+				event.setCanceled(true);
+				return;
+			}
 		}
 	}
 
@@ -357,7 +364,7 @@ public class WorldEventHandlers {
 	public static void onLivingAttacked$Extended(LivingAttackEvent event) {
 		if(ExtendedServerConfig.enableStaffServer.get() && event.getSource().getEntity() instanceof ServerPlayerEntity && event.getEntityLiving() instanceof ServerPlayerEntity) {
 			if(ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(((ServerPlayerEntity) event.getEntityLiving()).getLevel(), 
-					event.getEntityLiving().blockPosition(), ((ServerPlayerEntity)event.getSource().getEntity()), true, true)) {
+					event.getEntityLiving().blockPosition(), ((ServerPlayerEntity)event.getSource().getEntity()), true, true, false)) {
 				event.setCanceled(true);
 				return;
 			}

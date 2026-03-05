@@ -20,7 +20,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.network.NetworkEvent.Context;
+import net.minecraftforge.fml.network.NetworkEvent;
 
 /**
  * Client -> Server packet used to save and apply banner configuration data.
@@ -29,10 +29,14 @@ import net.minecraftforge.fml.network.NetworkEvent.Context;
  * and ownership type for a banner tile entity at a specific block position.</p>
  */
 public class ExtendedCBannerSaveInfoPacket {
-	/**
-     * Default permissions applied to all users under the current protection mode.
-     */
-	public List<ExtendedBannerPermissions> defaultPerms;
+	/** 
+	 * Default permissions applied under all protection modes. 
+	 */
+	public List<ExtendedBannerPermissions> globalPerms;
+	/** 
+	 * Faction permissions applied under faction protection mode. 
+	 */
+	public List<ExtendedBannerPermissions> factionPerms;
 	/**
      * Alignment level used for faction-based protection logic.
      */
@@ -62,7 +66,8 @@ public class ExtendedCBannerSaveInfoPacket {
 	/**
      * Creates a new packet containing banner configuration data.
      *
-     * @param defaultPerms     default permissions for users
+     * @param globalPerms     global permissions for users
+     * @param factionPerms    permissions for facion mode users
      * @param alignmentLevel  faction alignment level
      * @param whitelist       whitelist entries
      * @param canSelfProtect  whether the banner protects itself
@@ -70,9 +75,10 @@ public class ExtendedCBannerSaveInfoPacket {
      * @param configurePos    banner tile entity position
 	 * @param pProtectionMessage custom protection message
      */
-	public ExtendedCBannerSaveInfoPacket(List<ExtendedBannerPermissions> defaultPerms, float alignmentLevel, List<ProtectionEntry> whitelist, 
-		boolean canSelfProtect, int protectionType, BlockPos configurePos, String pProtectionMessage) {
-		this.defaultPerms = defaultPerms;
+	public ExtendedCBannerSaveInfoPacket(List<ExtendedBannerPermissions> globalPerms, List<ExtendedBannerPermissions> factionPerms, float alignmentLevel, 
+		List<ProtectionEntry> whitelist, boolean canSelfProtect, int protectionType, BlockPos configurePos, String pProtectionMessage) {
+		this.globalPerms = globalPerms;
+		this.factionPerms = factionPerms;
 		this.alignmentLevel = alignmentLevel;
 		this.whitelist = whitelist;
 		this.canSelfProtect = canSelfProtect;
@@ -90,8 +96,12 @@ public class ExtendedCBannerSaveInfoPacket {
      * @param buf    the buffer to write to
      */
 	public static void encode(ExtendedCBannerSaveInfoPacket packet, PacketBuffer buf) {
-		buf.writeInt(packet.defaultPerms.size());
-		for(ExtendedBannerPermissions perm : packet.defaultPerms) {
+		buf.writeInt(packet.globalPerms.size());
+		for(ExtendedBannerPermissions perm : packet.globalPerms) {
+			buf.writeByte((byte) perm.ordinal());
+		}
+		buf.writeInt(packet.factionPerms.size());
+		for(ExtendedBannerPermissions perm : packet.factionPerms) {
 			buf.writeByte((byte) perm.ordinal());
 		}
 		buf.writeFloat(packet.alignmentLevel);
@@ -117,10 +127,15 @@ public class ExtendedCBannerSaveInfoPacket {
      */
 	public static ExtendedCBannerSaveInfoPacket decode(PacketBuffer buf) {
 		ExtendedCBannerSaveInfoPacket packet = new ExtendedCBannerSaveInfoPacket();
-		int defaultPermsSize = buf.readInt();
-		packet.defaultPerms = new ArrayList<>();
-		for(int i = 0; i<defaultPermsSize; i++) {
-			packet.defaultPerms.add(ExtendedBannerPermissions.values[buf.readByte()]);
+		int globalPermsSize = buf.readInt();
+		packet.globalPerms = new ArrayList<>();
+		for(int i = 0; i<globalPermsSize; i++) {
+			packet.globalPerms.add(ExtendedBannerPermissions.values[buf.readByte()]);
+		}
+		int factionPermsSize = buf.readInt();
+		packet.factionPerms = new ArrayList<>();
+		for(int i = 0; i<factionPermsSize; i++) {
+			packet.factionPerms.add(ExtendedBannerPermissions.values[buf.readByte()]);
 		}
 		packet.alignmentLevel = buf.readFloat();
 		packet.whitelist = new ArrayList<>();
@@ -158,13 +173,14 @@ public class ExtendedCBannerSaveInfoPacket {
      * @param pPacket the received packet
      * @param context network context supplier
      */
-	public static void handle(ExtendedCBannerSaveInfoPacket pPacket, Supplier<Context> context) {
+	public static void handle(ExtendedCBannerSaveInfoPacket pPacket, Supplier<NetworkEvent.Context> context) {
 		ServerPlayerEntity player = context.get().getSender();
 		TileEntity tileEntity = player.level.getBlockEntity(pPacket.configurePos);
 	    if (tileEntity instanceof ExtendedMEBannerTileEntity && ExtendedServerConfig.enableBannerProtection.get()) {
 	    	ExtendedMEBannerTileEntity bannerTE = (ExtendedMEBannerTileEntity)tileEntity;
 	    	if(ExtendedBannerProtectionManager.getProtectionStatus(player.level, pPacket.configurePos, new SingleProtectionInstance.PlayerProtection(player, ExtendedBannerPermissions.BANNER)).isAllowed()) {
-	    		bannerTE.setDefaultPerms(pPacket.defaultPerms);
+	    		bannerTE.setGlobalPerms(pPacket.globalPerms);
+	    		bannerTE.setFactionPerms(pPacket.factionPerms);
 	    		bannerTE.setAlignmentLevel(pPacket.alignmentLevel);
 	    		bannerTE.setProtectionWhitelist(pPacket.whitelist);
 	    		bannerTE.setCanProtectSelf(pPacket.canSelfProtect);

@@ -259,6 +259,8 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 
 		tag(ExtendedTags.Items.PLACEABLE_BOOKS).add(LOTRItems.BOOK_OF_TRUE_SILVER.get()).add(Items.BOOK).add(LOTRItems.RED_BOOK.get()).add(Items.WRITTEN_BOOK);
 
+		tag(ExtendedTags.Items.MORGOND_ROCKS).add(LOTRItems.GONDOR_ROCK.get()).add(LOTRItems.MORDOR_ROCK.get());
+
 		TreeMap<String, Item> fullitems = new TreeMap<>();
 		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {
 			if(item.get() instanceof SpearItem) {

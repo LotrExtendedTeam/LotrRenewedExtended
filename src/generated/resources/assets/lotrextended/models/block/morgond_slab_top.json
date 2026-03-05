@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "lotrextended:block/morgond",
+    "bottom": "lotrextended:block/morgond",
+    "top": "lotrextended:block/morgond"
+  }
+}

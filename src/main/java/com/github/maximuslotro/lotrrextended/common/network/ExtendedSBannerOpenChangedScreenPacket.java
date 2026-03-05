@@ -18,8 +18,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class ExtendedSBannerOpenChangedScreenPacket {
-	/** Default permissions applied under the current protection mode. */
-	public List<ExtendedBannerPermissions> defaultPerms;
+	/** Default permissions applied under all protection modes. */
+	public List<ExtendedBannerPermissions> globalPerms;
+	/** Faction permissions applied under faction protection mode. */
+	public List<ExtendedBannerPermissions> factionPerms;
 	/** Alignment level used for faction-based protection logic. */
 	public float alignmentLevel;
 	/** Whitelist entries defining special access rules for players/factions. */
@@ -37,7 +39,8 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 	public ExtendedSBannerOpenChangedScreenPacket() {}
 
 	public ExtendedSBannerOpenChangedScreenPacket(boolean enabled) {
-		this.defaultPerms = new ArrayList<>();
+		this.globalPerms = new ArrayList<>();
+		this.factionPerms = new ArrayList<>();
 		this.alignmentLevel = 0;
 		this.whitelist = new ArrayList<>();
 		this.canSelfProtect = false;
@@ -48,7 +51,8 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 	}
 
 	public ExtendedSBannerOpenChangedScreenPacket(ExtendedMEBannerTileEntity bannerEntity) {
-		this.defaultPerms = bannerEntity.getDefaultPerms();
+		this.globalPerms = bannerEntity.getGlobalPerms();
+		this.factionPerms = bannerEntity.getFactionPerms();
 		this.alignmentLevel = bannerEntity.getAlignmentLevel();
 		this.whitelist = bannerEntity.getProtectionWhitelist();
 		this.canSelfProtect = bannerEntity.isCanProtectSelf();
@@ -59,8 +63,12 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 	}
 
 	public static void encode(ExtendedSBannerOpenChangedScreenPacket packet, PacketBuffer buf) {
-		buf.writeInt(packet.defaultPerms.size());
-		for(ExtendedBannerPermissions perm : packet.defaultPerms) {
+		buf.writeInt(packet.globalPerms.size());
+		for(ExtendedBannerPermissions perm : packet.globalPerms) {
+			buf.writeByte((byte) perm.ordinal());
+		}
+		buf.writeInt(packet.factionPerms.size());
+		for(ExtendedBannerPermissions perm : packet.factionPerms) {
 			buf.writeByte((byte) perm.ordinal());
 		}
 		buf.writeFloat(packet.alignmentLevel);
@@ -82,10 +90,15 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 
 	public static ExtendedSBannerOpenChangedScreenPacket decode(PacketBuffer buf) {
 		ExtendedSBannerOpenChangedScreenPacket packet = new ExtendedSBannerOpenChangedScreenPacket();
-		int defaultPermsSize = buf.readInt();
-		packet.defaultPerms = new ArrayList<>();
-		for(int i = 0; i<defaultPermsSize; i++) {
-			packet.defaultPerms.add(ExtendedBannerPermissions.values[buf.readByte()]);
+		int globalPermsSize = buf.readInt();
+		packet.globalPerms = new ArrayList<>();
+		for(int i = 0; i<globalPermsSize; i++) {
+			packet.globalPerms.add(ExtendedBannerPermissions.values[buf.readByte()]);
+		}
+		int factionPermsSize = buf.readInt();
+		packet.factionPerms = new ArrayList<>();
+		for(int i = 0; i<factionPermsSize; i++) {
+			packet.factionPerms.add(ExtendedBannerPermissions.values[buf.readByte()]);
 		}
 		packet.alignmentLevel = buf.readFloat();
 		packet.whitelist = new ArrayList<>();

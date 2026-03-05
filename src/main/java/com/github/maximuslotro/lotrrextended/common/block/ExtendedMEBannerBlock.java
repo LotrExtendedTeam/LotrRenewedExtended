@@ -63,7 +63,6 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable {
 	public static final BooleanProperty SMALL = BlockStateProperties.SHORT;
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	private final ExtendedBannerTypes type;
-	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 	private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(
 		Direction.NORTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D),
 		Direction.SOUTH, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D),
@@ -111,7 +110,7 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable {
 		TileEntity tileentity = world.getBlockEntity(pos);
 		if (tileentity instanceof ExtendedMEBannerTileEntity && stack.getItem() instanceof ExtendedMCBannerItem) {
 			if(placer instanceof PlayerEntity) {
-				if (stack.getTag()!=null && stack.getTag().contains("ProtectionData", 10)) {
+				if (stack.hasTag() && stack.getTag().contains("ProtectionData", 10)) {
 					((ExtendedMEBannerTileEntity) tileentity).loadProtectionData(stack.getTag());
 				}else {
 					((ExtendedMEBannerTileEntity) tileentity).setPlacedPlayerNameAndID(placer.getUUID(), ((PlayerEntity)placer).getGameProfile().getName());

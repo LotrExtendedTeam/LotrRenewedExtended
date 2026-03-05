@@ -605,4 +605,16 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> ORC_BOMB_FIRE;
 	public static RegistryObject<Block> ORC_BOMB_FIRE_DOUBLE;
 	public static RegistryObject<Block> ORC_BOMB_FIRE_TRIPLE;
+
+	public static RegistryObject<Block> MORGOND;
+	public static RegistryObject<Block> MORGOND_SLAB;
+	public static RegistryObject<Block> MORGOND_STAIRS;
+	public static RegistryObject<Block> MORGOND_WALL;
+	public static RegistryObject<Block> MORGOND_DRIPSTONE;
+	public static RegistryObject<Block> MORGOND_PILLAR;
+	public static RegistryObject<Block> MORGOND_PILLAR_SLAB;
+	public static RegistryObject<Block> CARVED_MORGOND;
+	public static RegistryObject<Block> CARVED_MORGOND_SLAB;
+	public static RegistryObject<Block> CARVED_MORGOND_STAIRS;
+	public static RegistryObject<Block> CARVED_MORGOND_WALL;
 }

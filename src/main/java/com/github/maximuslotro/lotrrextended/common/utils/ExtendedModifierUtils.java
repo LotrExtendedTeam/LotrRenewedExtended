@@ -123,10 +123,7 @@ public class ExtendedModifierUtils {
 		}
 		listnbt.removeAll(entriesToRemove);
 		if(listnbt.isEmpty()) {
-			stack.getTag().remove(NBTMODIFIER);
-			if(stack.getTag().isEmpty()) {
-				stack.setTag(null);
-			}
+			stack.removeTagKey(NBTMODIFIER);
 		}
 	}
 	/**
@@ -178,11 +175,7 @@ public class ExtendedModifierUtils {
 		if (!hasModifiers(stack)) {
 			return false;
 		}
-		CompoundNBT tag = stack.getTag(); //Null tag already validated by getModifierList
-		tag.remove(NBTMODIFIER);
-		if(tag.isEmpty()) {
-			stack.setTag(null);
-		}
+		stack.removeTagKey(NBTMODIFIER);
 		return true;
 	}
 	/**
@@ -205,7 +198,7 @@ public class ExtendedModifierUtils {
 			return;
 		}
 		// Filter for items banes can be applied to
-		if (ExtendedModifierType.BANE.isItemApplicable(stack)) {
+		if (!ExtendedModifierType.BANE.isItemApplicable(stack)) {
 			return;
 		}
 		// exit the method if there is applicable bane for that entity
@@ -251,10 +244,7 @@ public class ExtendedModifierUtils {
 			}
 
 			ExtendedModifierUtils.addModifier(stack, modifier);
-			tag.remove("LOTRBaneProgress");
-			if(tag.isEmpty()) {
-				stack.setTag(null);
-			}
+			stack.removeTagKey("LOTRBaneProgress");
 		}
 	}
 	/**
