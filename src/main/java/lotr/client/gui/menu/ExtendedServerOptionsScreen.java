@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedColorChangingButton;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTogglableTitleButton;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
@@ -15,6 +16,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.gui.MiddleEarthMenuScreen;
 import net.minecraft.client.gui.widget.Widget;
+import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.gui.widget.button.Button.IPressable;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
@@ -39,6 +41,22 @@ public class ExtendedServerOptionsScreen extends MiddleEarthMenuScreen {
 	@Override
 	public void init() {
 		super.init();
+		this.addButton(new Button(Math.max(0, this.guiLeft - 140), this.guiTop + 20 + (this.ySize + 20) / 4, 100, 20, 
+				new TranslationTextComponent("gui.lotrextended.settings.button"), 
+				button -> {
+					this.minecraft.setScreen(new ExtendedOptionsScreen());
+				}) {
+		});
+		this.addButton(new ExtendedColorChangingButton(Math.max(0, this.guiLeft - 140), this.guiTop + 40 + (this.ySize + 20) / 4, 100, 20, 
+				new TranslationTextComponent("gui.lotrextended.serversettings.button"), 
+				button -> {
+					this.minecraft.setScreen(new ExtendedServerOptionsScreen());
+				}, 0.13f, 0.92f, 0.71f) {
+			@Override
+			public boolean setColor(){
+				return true;
+			}
+		});
 		int x=guiLeft+90;
 		int xTabs=guiLeft-35;
 		int y=guiTop+40;
@@ -50,8 +68,9 @@ public class ExtendedServerOptionsScreen extends MiddleEarthMenuScreen {
 
 		SettingsCatagory gameplay = new SettingsCatagory(this, 0, x, y, xTabs);
 		addButton(gameplay.addCatagoryButton("gui.lotrextended.serversettings.category.gameplay"));
-		addButton(gameplay.addButton("gui.lotrextended.serversettings.bannerprotection.setting", ExtendedServerConfig.enableBannerProtection, ExtendedSettingToggles.BANNER_PROTECTION, 
-			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
+		addButton(gameplay.addButton("gui.lotrextended.serversettings.bannerprotection.setting", 
+				ExtendedServerConfig.enableBannerProtection, ExtendedSettingToggles.BANNER_PROTECTION, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableBannerProtection"));
 		catagories.add(gameplay);
 
 		for(SettingsCatagory catagory : catagories) {
@@ -69,12 +88,17 @@ public class ExtendedServerOptionsScreen extends MiddleEarthMenuScreen {
 		renderBackground(matStack);
 		// Render titles
 		TextComponent title = new TranslationTextComponent("gui.lotrextended.serversettings.title");
-		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop - 10), 16777215);
+		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop+10), 16777215);
 		for(SettingsCatagory catagories : catagories) {
 			catagories.checkVisability();
 		}
 		for(SettingsCatagory catagories : catagories) {
 			catagories.handleUpdates();
+		}
+		for(Widget button : this.buttons) {
+			if(button.isHovered() && button.visible) {
+				button.renderToolTip(matStack, mouseX, mouseY);
+			}
 		}
 		super.render(matStack, mouseX, mouseY, tick);
 	}
@@ -103,9 +127,9 @@ public class ExtendedServerOptionsScreen extends MiddleEarthMenuScreen {
 				throw new IllegalStateException("Can't register more than one category button for index: "+index);
 			}
 			catagoryButton = new ExtendedColorChangingButton(catagoryXOffset, placementYOffset + 24 * index, 120, 20, new TranslationTextComponent(pMessage), 
-				button -> {
-					screen.option=index;
-				}, 0.13f, 0.92f, 0.71f) {
+					button -> {
+						screen.option=index;
+					}, 0.13f, 0.92f, 0.71f) {
 				@Override
 				public boolean setColor(){
 					return screen.option==index;
@@ -113,9 +137,11 @@ public class ExtendedServerOptionsScreen extends MiddleEarthMenuScreen {
 			};
 			return catagoryButton;
 		}
-		public Widget addButton(String pMessage, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled) {
+		public Widget addButton(String pMessage, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
 			ExtendedTogglableTitleButton<ExtendedServerConfig> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(pMessage), 
-				wdget -> toggleValue(configSpec, type), (wdget, pd) -> configSpec.get(), enabled, disabled);
+					wdget -> toggleValue(configSpec, type), (wdget, matrixStack, pMouseX1, pMouseY1) -> {
+						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX1, pMouseY1);
+					}, (wdget, tickData) -> configSpec.get(), enabled, disabled);
 			bottons.add(button);
 			offsetAmount+=1;
 			return button;
@@ -123,7 +149,7 @@ public class ExtendedServerOptionsScreen extends MiddleEarthMenuScreen {
 
 		public Slider addSlider(String prefix, String suffix, double minVal, double maxVal, double currentVal, boolean showDec, boolean drawStr, IPressable handler, @Nullable ISlider par) {
 			Slider slider = new Slider(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(prefix), new TranslationTextComponent(suffix), 
-				minVal, maxVal, currentVal, showDec, drawStr , handler, par);
+					minVal, maxVal, currentVal, showDec, drawStr , handler, par);
 			widgets.add(slider);
 			offsetAmount+=1;
 			return slider;

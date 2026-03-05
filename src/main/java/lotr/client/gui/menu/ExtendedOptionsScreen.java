@@ -65,6 +65,41 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 	@Override
 	public void init() {
 		super.init();
+		this.addButton(new ExtendedColorChangingButton(Math.max(0, this.guiLeft - 140), this.guiTop + 20 + (this.ySize + 20) / 4, 100, 20, 
+				new TranslationTextComponent("gui.lotrextended.settings.button"), 
+				button -> {
+					this.minecraft.setScreen(new ExtendedOptionsScreen());
+				}, 0.13f, 0.92f, 0.71f)  {
+			@Override
+			public boolean setColor(){
+				return true;
+			}
+		});
+		if(this.minecraft.hasSingleplayerServer() || this.minecraft.player.hasPermissions(2)) {
+			this.addButton(new ExtendedColorChangingButton(Math.max(0, this.guiLeft - 140), this.guiTop + 40 + (this.ySize + 20) / 4, 100, 20, 
+					new TranslationTextComponent("gui.lotrextended.serversettings.button"), 
+					button -> {
+						this.minecraft.setScreen(new ExtendedServerOptionsScreen());
+					}, 0.88f, 0.33f, 0.33f) {
+				@Override
+				public boolean setColor(){
+					return false;
+				}
+			});
+		}else {
+			this.addButton(new ExtendedColorChangingButton(Math.max(0, this.guiLeft - 140), this.guiTop + 40 + (this.ySize + 20) / 4, 100, 20, 
+					new TranslationTextComponent("gui.lotrextended.serversettings.button"), 
+					button -> {}, 0.88f, 0.33f, 0.33f) {
+				@Override
+				public boolean setColor(){
+					return true;
+				}
+				@Override
+				public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
+					ExtendedOptionsScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.serversettings.no_perm"), 200), pMouseX, pMouseY);
+				}
+			});
+		}
 		int x=guiLeft+90;
 		int xTabs=guiLeft-35;
 		int y=guiTop+40;
@@ -267,12 +302,17 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		renderBackground(matStack);
 		// Render titles
 		TextComponent title = new TranslationTextComponent("gui.lotrextended.settings.title");
-		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop - 10), 16777215);
+		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop+10), 16777215);
 		for(SettingsCatagory catagories : catagories) {
 			catagories.checkVisability();
 		}
 		for(SettingsCatagory catagories : catagories) {
 			catagories.handleUpdates();
+		}
+		for(Widget button : this.buttons) {
+			if(button.isHovered() && button.visible) {
+				button.renderToolTip(matStack, mouseX, mouseY);
+			}
 		}
 		super.render(matStack, mouseX, mouseY, tick);
 	}

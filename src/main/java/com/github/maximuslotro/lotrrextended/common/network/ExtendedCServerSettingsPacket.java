@@ -70,8 +70,9 @@ public class ExtendedCServerSettingsPacket {
     public static void handle(ExtendedCServerSettingsPacket packet, Supplier<NetworkEvent.Context> context) {
         context.get().setPacketHandled(true);
 		ServerPlayerEntity player = context.get().getSender();
-		if(!ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(player.getGameProfile())) {
-			ExtendedLog.warn("{} tried editing server settings while not OP!", player.getName().getString());
+		if(ServerLifecycleHooks.getCurrentServer().isDedicatedServer() &&
+				!ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(player.getGameProfile())) {
+			ExtendedLog.warn("{} tried editing server settings while not OP in multiplayer!", player.getName().getString());
 			return;
 		}
         try {

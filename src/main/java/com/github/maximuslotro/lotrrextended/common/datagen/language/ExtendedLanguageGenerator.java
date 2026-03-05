@@ -236,6 +236,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 		// Add Settings Menu strings
 		addD("gui.lotrextended.serversettings.title", "Middle-earth Server Options");
+		addD("gui.lotrextended.serversettings.button", "Server Options");
 		addD("gui.lotrextended.serversettings.category.gameplay", "Gameplay Settings");
 		addD("gui.lotrextended.serversettings.category.entity", "Entity Settings");
 		addD("gui.lotrextended.serversettings.category.block", "Block Settings");
@@ -243,7 +244,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.serversettings.category.modifiers", "Modifier Settings");
 		addD("gui.lotrextended.serversettings.category.protection", "Spawn Protection");
 		addD("gui.lotrextended.serversettings.bannerprotection.setting", "Banner Protection: ");
+		addD("gui.lotrextended.serversettings.no_perm", "Must be an Operator or in SinglePlayer to access.");
 		addD("gui.lotrextended.settings.title", "Middle-earth Options");
+		addD("gui.lotrextended.settings.button", "Client Options");
 		addD("gui.lotrextended.settings.worldsettings", "World Settings");
 		addD("gui.lotrextended.settings.usersettings", "User Settings");
 		addD("gui.lotrextended.settings.environmentsettings", "Environment Settings");
