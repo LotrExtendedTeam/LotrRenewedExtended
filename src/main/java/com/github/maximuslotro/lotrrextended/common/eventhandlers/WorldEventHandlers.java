@@ -11,6 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBl
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.entity.npc.ExtendedLoreEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedInvasionSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
@@ -61,6 +62,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityLeaveWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -170,10 +172,7 @@ public class WorldEventHandlers {
 			return;
 		}
 
-		int enemiesLeft = ExtendedLevelData.serverInstance().getEnemiesLeft(invasionId);
-		if (enemiesLeft > 0) {
-			ExtendedLevelData.serverInstance().decrementEnemiesLeft(invasionId);
-		}
+		ExtendedLevelData.serverInstance().decrementEnemiesLeft(invasionId);
 		Entity sourceEntity = event.getSource().getEntity();
 		if (sourceEntity instanceof ServerPlayerEntity) {
 			ServerPlayerEntity player = (ServerPlayerEntity)sourceEntity;
@@ -296,6 +295,15 @@ public class WorldEventHandlers {
 				return;
 			}
 		}
+	}
+
+	@SubscribeEvent
+	public static void onEntityLeave(EntityLeaveWorldEvent event) {
+	    if (!event.getWorld().isClientSide() && event.getEntity() instanceof ExtendedInvasionSpawnerEntity 
+	    	&& ExtendedLevelData.serverInstance().hasInvasion(event.getEntity().getUUID())) {
+	    	// Un-register invasion when spawner is unloaded or deleted.
+			ExtendedLevelData.serverInstance().unregisterInvasion(event.getEntity().getUUID());
+	    }
 	}
 
 	@SubscribeEvent

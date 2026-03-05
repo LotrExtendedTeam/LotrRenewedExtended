@@ -56,6 +56,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 	private Set<EntityType<?>> spawnableTypes=null;
     private ServerBossInfo bossBar = null;
     private Set<UUID> playersInBossBar = new HashSet<>();
+    private int invasionEnemiesLeft = 0;
 
     public ExtendedInvasionSpawnerEntity(EntityType<? extends ExtendedInvasionSpawnerEntity> pType, World pLevel) {
         super(pType, pLevel);
@@ -78,7 +79,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromKey(getFactionKey());
         if (!invasion.isPresent()) return initialized;
 
-        if (ExtendedLevelData.serverInstance().getEnemiesLeft(getUUID()) > 0 && getInvasionStarted()) {
+        if (getEnemiesLeft() > 0 && getInvasionStarted()) {
             Faction faction = attemptToGetFactionFromKey(invasion.get().getBaseFactionKey());
             Style nameStyle;
             if (faction != null) {
@@ -87,11 +88,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 nameStyle = Style.EMPTY;
             }
             IFormattableTextComponent text = invasion.get().getTranslatableName().copy().withStyle(nameStyle);
-            bossBar = new ServerBossInfo(
-                text,
-                BossInfo.Color.WHITE,
-                BossInfo.Overlay.PROGRESS
-            );
+            bossBar = new ServerBossInfo(text, BossInfo.Color.WHITE, BossInfo.Overlay.PROGRESS);
         }
 
         initialized = true;
@@ -103,10 +100,9 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
         if (getInvasionSize() <= 0) return;
 
-        int enemiesLeft = ExtendedLevelData.serverInstance().getEnemiesLeft(getUUID());
-        if (enemiesLeft <= 0) return;
+        if (getEnemiesLeft() <= 0) return;
 
-        float percent = (float) enemiesLeft / getInvasionSize();
+        float percent = (float) getEnemiesLeft() / getInvasionSize();
 
         bossBar.setVisible(true);
         bossBar.setPercent(percent);
@@ -123,6 +119,14 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     }
 
     @Override
+    protected void addAdditionalSaveData(CompoundNBT compoundNBT) {
+        compoundNBT.putString("faction_key", getFactionKey());
+        compoundNBT.putInt("invasion_size", getInvasionSize());
+        compoundNBT.putBoolean("invasion_started", getInvasionStarted());
+        compoundNBT.putInt("enemies_left", getEnemiesLeft());
+    }
+
+    @Override
     protected void readAdditionalSaveData(CompoundNBT compoundNBT) {
         if(compoundNBT.contains("faction_key")) {
             this.getEntityData().set(DATA_FACTION_KEY, compoundNBT.getString("faction_key"));
@@ -133,6 +137,8 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         if(compoundNBT.contains("invasion_started")) {
             this.getEntityData().set(DATA_INVASION_STARTED, compoundNBT.getBoolean("invasion_started"));
         }
+        invasionEnemiesLeft = compoundNBT.getInt("enemies_left");
+        ExtendedLevelData.serverInstance().registerInvasion(getUUID(), invasionEnemiesLeft);
     }
 
     @Override
@@ -152,7 +158,15 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
             	endInvasion(false);
             	return;
             }
-            
+            // Sanity check to ensure the invasion is registered (should never be called in practice)
+            if(!ExtendedLevelData.serverInstance().hasInvasion(getUUID()) && invasionEnemiesLeft>0) {
+            	ExtendedLog.warn("Had to sanity check register invasion! This should not happen.");
+            	ExtendedLevelData.serverInstance().registerInvasion(uuid, invasionEnemiesLeft);
+            }
+            // Gets how many enemies are left as tracked by the server
+            // Will can return -1 if invalid or >=0 otherwise
+            setEnemiesLeft(ExtendedLevelData.serverInstance().getEnemiesLeft(getUUID()));
+            // If invasion has no enemies left, bossbar will not be created
             if (bossBar == null && getInvasionStarted()) {
                 boolean result = initializeBossBar();
                 if (result) updateBossBar();
@@ -160,9 +174,8 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 updateBossBar();
             }
 
-            tickCounter++;
-
             // only attempt to spawn a mob every second
+            tickCounter++;
             if (tickCounter >= 20) {
                 // attempt to add nearby players to BossBar
                 AxisAlignedBB bb = new AxisAlignedBB(
@@ -195,9 +208,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 tickCounter = 0;
 
                 int totalInvasionMobsInArea = getInvasionTypeMobsInRange();
-                int enemiesLeft = ExtendedLevelData.serverInstance().getEnemiesLeft(getUUID());
-                if (totalInvasionMobsInArea > -1 && totalInvasionMobsInArea < 16
-                        && enemiesLeft > 0) {
+                if (totalInvasionMobsInArea > -1 && totalInvasionMobsInArea < 16 && getEnemiesLeft() > 0) {
                     Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromKey(getFactionKey());
                     ExtendedInvasions.InvasionSpawnEntry result = WeightedRandom.getRandomItem(this.random, invasion.get().getSpawnEntries());
 
@@ -205,24 +216,19 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                         if (!level.isClientSide()) {
                             // send flames to client
                             ServerWorld world = (ServerWorld) level;
-                            world.sendParticles(ParticleTypes.FLAME,
-                                    getX(), getY() + 2.75, getZ(),
-                                    5, 0.25, .75F, 0.25, 0.02);
+                            world.sendParticles(ParticleTypes.FLAME, getX(), getY() + 2.75, getZ(), 5, 0.25, .75F, 0.25, 0.02);
                         }
                     }
                 }
             }
 
-            int enemiesLeft = ExtendedLevelData.serverInstance().getEnemiesLeft(getUUID());
-            if (getInvasionStarted() && enemiesLeft == 0) {
+            // Remove invasion if all enemies have been killed, or the invasion is invalid if it was started
+            // Should only be -1 here if invasionEnemiesLeft sanity check above is less than 0, so remove anyways
+            if (getInvasionStarted() && getEnemiesLeft() <= 0) {
                 endInvasion(true);
             }
         }
 
-    }
-
-    private boolean getInvasionStarted() {
-        return getEntityData().get(DATA_INVASION_STARTED);
     }
 
     private Set<EntityType<?>> getSpawnableEntities(Optional<ExtendedInvasions> invasion){
@@ -292,10 +298,6 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         this.remove();
     }
 
-    private void setInvasionStarted(boolean invasionStarted) {
-        this.getEntityData().set(DATA_INVASION_STARTED, invasionStarted);
-    }
-
     /**
      * Note: This method should only be run on the server
      *
@@ -342,11 +344,12 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         return couldSpawnMob;
     }
 
-    @Override
-    protected void addAdditionalSaveData(CompoundNBT compoundNBT) {
-        compoundNBT.putString("faction_key", getFactionKey());
-        compoundNBT.putInt("invasion_size", getInvasionSize());
-        compoundNBT.putBoolean("invasion_started", getInvasionStarted());
+    private void setInvasionStarted(boolean invasionStarted) {
+        this.getEntityData().set(DATA_INVASION_STARTED, invasionStarted);
+    }
+
+    private boolean getInvasionStarted() {
+        return getEntityData().get(DATA_INVASION_STARTED);
     }
 
     public void setFaction(String factionKey) {
@@ -357,8 +360,19 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         return this.getEntityData().get(DATA_FACTION_KEY);
     }
 
+    public void setInvasionSize(int invasionSize) {
+        this.getEntityData().set(DATA_INVASION_SIZE, invasionSize);
+    }
+   
     public int getInvasionSize() {
         return this.getEntityData().get(DATA_INVASION_SIZE);
+    }
+
+    public void setEnemiesLeft(int invasionSize) {
+    	invasionEnemiesLeft = invasionSize;
+    }
+    public int getEnemiesLeft() {
+        return invasionEnemiesLeft;
     }
 
     @Override
@@ -475,6 +489,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
         // set initial size
         setInvasionSize(invasionSize);
+        setEnemiesLeft(invasionSize);
         ExtendedLevelData.serverInstance().registerInvasion(getUUID(), invasionSize);
 
         setInvasionStarted(true);
@@ -484,10 +499,6 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
     private void playHorn() {
         this.level.playSound(null, this.blockPosition(), ExtendedSounds.HORN_BLOW.get(), SoundCategory.PLAYERS, 3.0F, 1.0F);
-    }
-
-    public void setInvasionSize(int invasionSize) {
-        this.getEntityData().set(DATA_INVASION_SIZE, invasionSize);
     }
 
 }
