@@ -314,7 +314,7 @@ public class ExtendedRepairContainer extends Container {
 						}
 					}
 					boolean hasInCompatibleModifier = false;
-					int currentModifierCount = (int) inputModifiers.stream().filter(m -> m.getRarity().isLimited()).count();
+					int currentModifierCount = (int) inputModifiers.stream().filter(m -> m.getRarity().countsTowardsLimit()).count();
 					int newModifierCount=0;
 					//boolean notAllModifiersAtMax = false;
 					for(ExtendedModifier mergingModifier : mergableModifiers) {
@@ -364,7 +364,7 @@ public class ExtendedRepairContainer extends Container {
 						}
 						//notAllModifiersAtMax=true;
 						boolean maximumModifiersReached = false;
-						if (mergingModifier.getRarity().isLimited() && currentModifierCount+newModifierCount>=3 && existingModifier.isUnknown()) {
+						if (mergingModifier.getRarity().countsTowardsLimit() && currentModifierCount+newModifierCount>=3 && existingModifier.isUnknown()) {
 							maximumModifiersReached = true;
 						}
 						if(maximumModifiersReached){
@@ -429,7 +429,7 @@ public class ExtendedRepairContainer extends Container {
 							if (inputItem.getCount() > 1) {
 								repairCost = 40; // Max cost if stack > 1
 							}
-							if (mergingModifier.getRarity().isLimited()) {
+							if (mergingModifier.getRarity().countsTowardsLimit()) {
 								newModifierCount++;
 							}
 						}
