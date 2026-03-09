@@ -447,7 +447,8 @@ public class ExtendedRepairContainer extends Container {
 				}
 			}else if (resultItem.isDamageableItem() && isValidRepairMaterial(inputItem, resourceItem)) {
 				int repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
-				if(player.getDisplayName()!=ItemOwnership.getCurrentOwner(inputItem)) {
+				String ownerName = ItemOwnership.getCurrentOwner(inputItem) != null ? ItemOwnership.getCurrentOwner(inputItem).getString() : null;
+				if(ownerName==null||!player.getDisplayName().getString().equals(ownerName)) {
 					this.engraveCost.set(2);
 				}else {
 					this.engraveCost.set(0);
