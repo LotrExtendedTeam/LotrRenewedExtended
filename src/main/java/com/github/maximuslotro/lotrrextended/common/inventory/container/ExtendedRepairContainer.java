@@ -447,7 +447,11 @@ public class ExtendedRepairContainer extends Container {
 				}
 			}else if (resultItem.isDamageableItem() && isValidRepairMaterial(inputItem, resourceItem)) {
 				int repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
-				this.engraveCost.set(2);
+				if(player.getDisplayName()!=ItemOwnership.getCurrentOwner(inputItem)) {
+					this.engraveCost.set(2);
+				}else {
+					this.engraveCost.set(0);
+				}
 				this.reforgeCost.set(2);
 				if(inputItem.getItem() instanceof ArmorItem) {
 					this.reforgeCost.set(3);
