@@ -26,8 +26,8 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		// Bree Units
 		make(LOTREntities.BREE_MAN.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(20, false, 75)
 		.addHelmetPoolItem(ItemStack.EMPTY, 1)
-		.addChestplatePoolItem(ItemStack.EMPTY, 2)
-		.addLeggingPoolItem(ItemStack.EMPTY, 2)
+		.addChestplatePoolItem(ItemStack.EMPTY, 1)
+		.addLeggingPoolItem(ItemStack.EMPTY, 1)
 		.addBootsPoolItem(ItemStack.EMPTY, 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.BRONZE_DAGGER.get()), 3)
 		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_DAGGER.get()), 4)
@@ -38,8 +38,8 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 
 		make(LOTREntities.BREE_HOBBIT.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(20, false, 75)
 		.addHelmetPoolItem(ItemStack.EMPTY, 1)
-		.addChestplatePoolItem(ItemStack.EMPTY, 2)
-		.addLeggingPoolItem(ItemStack.EMPTY, 2)
+		.addChestplatePoolItem(ItemStack.EMPTY, 1)
+		.addLeggingPoolItem(ItemStack.EMPTY, 1)
 		.addBootsPoolItem(ItemStack.EMPTY, 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.BRONZE_DAGGER.get()), 3)
 		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_DAGGER.get()), 4)

@@ -486,7 +486,7 @@ public class ExtendedTraderProfile {
 
 		/**
 		 * Adds a single-item sale using a {@link RegistryObject}.
-		 * Uses default weight and max transfer quantity.
+		 * Uses default  transfer quantity.
 		 *
 		 * @param item The registry object representing the item
 		 * @param averageCost The average cost to the player
@@ -494,6 +494,30 @@ public class ExtendedTraderProfile {
 		 */
 		public Builder addSSell(RegistryObject<Item> item, int averageCost) {
 			return addSSell(new ItemStack(item.get()), DEFAULT_WEIGHT, averageCost, 200, true);
+		}
+		/**
+		 * Adds a single-item sale to the trader's sell-to-player pool.
+		 * Uses default max transfer quantity.
+		 *
+		 * @param item The item to be sold
+		 * @param weight The relative weight of the offer
+		 * @param averageCost The average cost to the player
+		 * @return The instance of this builder
+		 */
+		public Builder addSSell(Item item, int weight, int averageCost) {
+			return addSSell(new ItemStack(item), weight, averageCost, 200, true);
+		}
+		/**
+		 * Adds a single-item sale using a {@link RegistryObject}.
+		 * Uses default max transfer quantity.
+		 *
+		 * @param item The registry object representing the item
+		 * @param weight The relative weight of the offer
+		 * @param averageCost The average cost to the player
+		 * @return The instance of this builder
+		 */
+		public Builder addSSell(RegistryObject<Item> item, int weight, int averageCost) {
+			return addSSell(new ItemStack(item.get()), weight, averageCost, 200, true);
 		}
 		/**
 		 * Adds a single-item sale with full configuration.

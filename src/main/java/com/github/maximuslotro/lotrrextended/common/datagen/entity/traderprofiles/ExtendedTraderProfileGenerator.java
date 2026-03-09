@@ -194,6 +194,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(Items.RABBIT, 4)
 		.addSSell(Items.LEATHER, 3)
 		.addSSell(Items.FEATHER, 3)
+		.addSSell(LOTRItems.SWAN_FEATHER, 25, 10)
 		.addSSell(LOTRItems.HORN, 6)
 		.save(pConsumer, ExtendedTraderTypes.BREE_BUTCHER);
 

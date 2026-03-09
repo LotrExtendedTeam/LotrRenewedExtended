@@ -24,7 +24,7 @@
     ],
     "chestplates": [
       {
-        "weight": 2,
+        "weight": 1,
         "equipmentItem": {
           "item": "minecraft:air"
         }
@@ -32,7 +32,7 @@
     ],
     "leggings": [
       {
-        "weight": 2,
+        "weight": 1,
         "equipmentItem": {
           "item": "minecraft:air"
         }
