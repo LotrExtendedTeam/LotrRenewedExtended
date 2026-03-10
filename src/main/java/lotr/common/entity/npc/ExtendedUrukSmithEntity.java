@@ -52,7 +52,7 @@ public class ExtendedUrukSmithEntity extends ExtendedUrukTraderEntity{
 
 	@Override
 	public ResourceLocation getTraderProfileId() {
-		return ExtendedTraderTypes.ISENGARD_URUK_SUPPLIER;
+		return ExtendedTraderTypes.ISENGARD_URUK_SMITH;
 	}
 
 }
