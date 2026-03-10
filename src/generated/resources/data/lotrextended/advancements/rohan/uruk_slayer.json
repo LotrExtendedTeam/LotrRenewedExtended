@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:rohan/vale_of_the_wizard",
+  "parent": "lotrextended:rohan/snaga_slayer",
   "display": {
     "icon": {
       "item": "lotr:orc_bone"
@@ -44,12 +44,72 @@
           }
         ]
       }
+    },
+    "kill_uruk_captain": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:uruk_captain"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_uruk_smith": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:uruk_smith"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_uruk_supplier": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:uruk_supplier"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "kill_uruk_berserker": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:uruk_berserker"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
       "kill_uruk",
-      "kill_uruk_archer"
+      "kill_uruk_archer",
+      "kill_uruk_captain",
+      "kill_uruk_smith",
+      "kill_uruk_supplier",
+      "kill_uruk_berserker"
     ]
   ]
 }

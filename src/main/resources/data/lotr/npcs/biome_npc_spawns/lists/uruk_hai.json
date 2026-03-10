@@ -1,0 +1,14 @@
+{
+  "entries": [
+    {
+      "mixed_entity_types": [
+        { "entity_type": "lotr:uruk", "weight": 20 },
+        { "entity_type": "lotr:uruk_archer", "weight": 10 },
+        { "entity_type": "lotr:uruk_berserker", "weight": 5 }
+      ],
+	  "weight": 20,
+	  "min_count": 4,
+	  "max_count": 6
+	}
+  ]
+}

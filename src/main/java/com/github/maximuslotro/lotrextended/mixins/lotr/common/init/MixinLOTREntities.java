@@ -353,5 +353,12 @@ public class MixinLOTREntities {
 
 		// Bandits
 		ExtendedEntities.BANDIT = regNPCD("bandit", ExtendedBanditEntity::new, ExtendedBanditEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2563350, 6382678));
+		
+		// Isengard
+		ExtendedEntities.URUK_BERSERKER = regNPCD("uruk_berserker", ExtendedUrukBerserkerEntity::new, ExtendedUrukBerserkerEntity::createAttributes, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2369050, 14408662));
+		ExtendedEntities.URUK_CAPTAIN = regNPCD("uruk_captain", ExtendedUrukCaptainEntity::new, ExtendedUrukCaptainEntity::createAttributes, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2369050, 5790015));
+		ExtendedEntities.URUK_SMITH = regNPCD("uruk_smith", ExtendedUrukSmithEntity::new, ExtendedUrukSmithEntity::createAttributes, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2369050, 13421772));
+		ExtendedEntities.URUK_SUPPLIER = regNPCD("uruk_supplier", ExtendedUrukSupplierEntity::new, ExtendedUrukSupplierEntity::createAttributes, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2369050, 13421772));
+
 	}
 }

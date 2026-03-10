@@ -1,0 +1,33 @@
+{
+  "parent": "lotrextended:rohan/vale_of_the_wizard",
+  "display": {
+    "icon": {
+      "item": "lotr:uruk_cleaver",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.rohan.pillaging_time.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.rohan.pillaging_time.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "hire_units_from_uruk_captain": {
+      "trigger": "lotrextended:unit_hired",
+      "conditions": {
+        "captain_type": "lotr:uruk_captain"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "hire_units_from_uruk_captain"
+    ]
+  ]
+}

@@ -90,5 +90,9 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedLindonWeaverEntity>> LINDON_WEAVER;
 	public static RegistryObject<EntityType<ExtendedLindonFloristEntity>> LINDON_FLORIST;
 	public static RegistryObject<EntityType<ExtendedOrcBombEntity>> ORC_BOMB;
+	public static RegistryObject<EntityType<ExtendedUrukSupplierEntity>> URUK_SUPPLIER;
+	public static RegistryObject<EntityType<ExtendedUrukSmithEntity>> URUK_SMITH;
+	public static RegistryObject<EntityType<ExtendedUrukCaptainEntity>> URUK_CAPTAIN;
+	public static RegistryObject<EntityType<ExtendedUrukBerserkerEntity>> URUK_BERSERKER;
 
 }

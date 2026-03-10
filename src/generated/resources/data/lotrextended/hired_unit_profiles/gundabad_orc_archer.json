@@ -9,7 +9,7 @@
     "attack_type": "ranged"
   },
   "hiring": {
-    "hiringCost": 50,
+    "hiringCost": 35,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 150
   },

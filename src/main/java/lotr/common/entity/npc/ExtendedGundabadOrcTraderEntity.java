@@ -82,7 +82,7 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implemen
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
         this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.MORDOR_DAGGER.get()));
         this.npcItemsInv.clearRangedWeapon(); // orc traders do not have ranged weapons
-        this.npcItemsInv.clearIdleItem();
+        this.npcItemsInv.setIdleItemsFromMeleeWeapons();
         ItemStack headItem;
         ItemStack chestItem;
         ItemStack legaItem;

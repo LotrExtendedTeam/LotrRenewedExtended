@@ -91,5 +91,11 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TOLKIEN.get(), ExtendedTolkienRenderer::new);
 		// Bandit
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BANDIT.get(), ExtendedBanditRenderer::new);
+		// Isengard
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_SUPPLIER.get(), ExtendedUrukTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_SMITH.get(), ExtendedUrukTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_CAPTAIN.get(), ExtendedUrukTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_BERSERKER.get(), UrukRenderer::new);
+
 	}
 }

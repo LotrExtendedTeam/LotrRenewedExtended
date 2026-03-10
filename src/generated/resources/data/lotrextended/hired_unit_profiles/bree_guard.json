@@ -9,9 +9,9 @@
     "attack_type": "melee"
   },
   "hiring": {
-    "hiringCost": 30,
+    "hiringCost": 40,
     "hiringRequiresPledge": false,
-    "hiringAlignmentRequired": 100
+    "hiringAlignmentRequired": 250
   },
   "equipmentPools": {
     "helmets": [

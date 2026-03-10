@@ -11,7 +11,7 @@
   "hiring": {
     "hiringCost": 20,
     "hiringRequiresPledge": false,
-    "hiringAlignmentRequired": 75
+    "hiringAlignmentRequired": 100
   },
   "equipmentPools": {
     "helmets": [

@@ -1,0 +1,307 @@
+{
+  "id": "lotrextended:isengard_uruk_smith",
+  "tradingAlignmentRequired": 100,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_steel_ingot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:orc_steel_ingot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:iron_ingot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:iron_ore",
+        "averageCost": 5
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:copper_ingot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:copper_ore",
+        "averageCost": 5
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:tin_ingot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:tin_ore",
+        "averageCost": 5
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:coal",
+        "averageCost": 1,
+        "count": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:diamond",
+        "averageCost": 25
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:ruby",
+        "averageCost": 12
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:elf_bone",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:dwarf_bone",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:hobbit_bone",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:bone",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:lava_bucket",
+        "averageCost": 16
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:stick",
+        "averageCost": 1,
+        "count": 8
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:string",
+        "averageCost": 1,
+        "count": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:wheat",
+        "averageCost": 1,
+        "count": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:feather",
+        "averageCost": 2
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_crafting_table",
+        "averageCost": 100
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_helmet",
+        "averageCost": 24,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_chestplate",
+        "averageCost": 36,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_leggings",
+        "averageCost": 30,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_boots",
+        "averageCost": 22,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_cleaver",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_spear",
+        "averageCost": 18,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_dagger",
+        "averageCost": 9,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:fur",
+        "averageCost": 4
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:black_fur",
+        "averageCost": 4
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:gray_fur",
+        "averageCost": 4
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:silver_fur",
+        "averageCost": 6
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:orc_bomb",
+        "averageCost": 30
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:orc_bomb_fire",
+        "averageCost": 40
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_pickaxe",
+        "averageCost": 16,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_axe",
+        "averageCost": 16,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_shovel",
+        "averageCost": 10,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:maggoty_bread",
+        "averageCost": 4
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:isengard_banner_pattern",
+        "averageCost": 25
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:isengard_banner",
+        "averageCost": 50
+      }
+    }
+  ]
+}
