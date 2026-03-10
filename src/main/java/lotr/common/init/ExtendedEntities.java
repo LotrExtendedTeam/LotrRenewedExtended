@@ -11,10 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorse
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedThrowableAxeEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChairEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.special.*;
 
 import lotr.common.entity.npc.*;
 import net.minecraft.entity.EntityType;
@@ -87,6 +84,7 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedElrondEntity>> ELROND;
 	public static RegistryObject<EntityType<ExtendedBanditEntity>> BANDIT;
 	public static RegistryObject<EntityType<ExtendedTapestryEntity>> TAPESTRY;
+	public static RegistryObject<EntityType<ExtendedInvasionSpawnerEntity>> INVASION_SPAWNER;
 	public static RegistryObject<EntityType<ExtendedLindonLordEntity>> LINDON_LORD;
 	public static RegistryObject<EntityType<ExtendedLindonSmithEntity>> LINDON_SMITH;
 	public static RegistryObject<EntityType<ExtendedLindonWeaverEntity>> LINDON_WEAVER;

@@ -57,6 +57,8 @@ public class ExtendedClientProxy {
 
 	public static UUID usersUUID = null;
 
+	public long lastTimeBossBarRendered = -1;
+
 	public LotrExtendedMod getParentInstance() {
 		return LotrExtendedMod.INSTANCE;
 	}
@@ -70,6 +72,7 @@ public class ExtendedClientProxy {
 		forgeBus.addListener(ExtendedRendererEventHandler::renderHpBar);
 		forgeBus.addListener(ExtendedRendererEventHandler::onPreRenderGameOverlay);
 		forgeBus.addListener(ExtendedRendererEventHandler::addTooltipsForModifiers);
+		forgeBus.addListener(ExtendedRendererEventHandler::onPostRenderGameOverlay);
 		modBus.addListener(this::onParticleRegistry);
 		modBus.addListener(this::clientStartupEvent);
 		modBus.addListener(ExtendedBlockRenderer::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);

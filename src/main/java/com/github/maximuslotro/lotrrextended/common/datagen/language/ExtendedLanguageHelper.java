@@ -219,6 +219,9 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 			if (entry.getKey().contains("gui.lotrextended")) {
 				continue;
 			}
+			if (entry.getKey().contains("chat.lotrextended")) {
+				continue;
+			}
 			if (entry.getKey().contains("block.minecraft.banner")) {
 				continue;
 			}

@@ -115,6 +115,7 @@ public class BanditBiomeList {
         bandits.put("lotr:northern_mirkwood", BanditChance.NONE);
         bandits.put("lotr:mirkwood", BanditChance.NONE);
 
+        // Anduin
         bandits.put("lotr:vales_of_anduin", BanditChance.UNCOMMON);
         bandits.put("lotr:anduin_hills", BanditChance.UNCOMMON);
         bandits.put("lotr:ethir_anduin", BanditChance.UNCOMMON);

@@ -1,12 +1,8 @@
 package lotr.common.data;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
@@ -14,6 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import lotr.common.LOTRLog;
 import lotr.common.entity.npc.ExtendedTolkienEntity;
 import lotr.common.world.spawning.BanditsSpawner;
+import lotr.common.world.spawning.InvasionSpawner;
 import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -58,6 +55,17 @@ public class ExtendedLevelData {
 	private Map<UUID, Integer> playerTraderSpawnCooldowns = new HashMap<>();
 	private Map<UUID, Integer> playerBanditSpawnCooldowns = new HashMap<>();
 
+	private Map<UUID, Integer> invasionEnemiesLeft = new HashMap<>();
+
+	/**
+	 * This variable stores a map of invasion UUIDs to players who have contributed to the invasion's UUIDs along with
+	 * a timer in ticks of how much longer their entry will stay. This timer defaults to 6000 ticks (5m) meaning when
+	 * an invasion is defeated only players who have contributed in the past 5 minutes get the achievement
+	 * <p>
+	 * Does not need to be saved on server restart, as even if restart takes less than 5 minutes, we should not need to save the data here anyway
+	 */
+	private Map<UUID, Map<UUID, Integer>> recentPlayersByInvasion = new HashMap<>();
+
 	/** -1 if the player is marked to be cursed
 	 *  -2 if the player was cursed
 	 *  -3 if the player left the barrow downs after having entered the first time
@@ -86,6 +94,7 @@ public class ExtendedLevelData {
 				savePlayerBanditCooldowns(levelData);
 				saveSecondsInBarrows(levelData);
 				saveTolkienTalkedTo(levelData);
+				//saveRecentInvasionPlayersToNBT(levelData);
 
 				SaveUtil.saveNBTToFile(lotrDataFile, levelData);
 				this.needsSave = false;
@@ -107,6 +116,7 @@ public class ExtendedLevelData {
 			loadPlayerBanditCooldowns(levelData);
 			loadSecondsInBarrows(levelData);
 			loadTolkienTalkedTo(levelData);
+			//loadRecentInvasionPlayersToNBT(levelData);
 
 			this.needsLoad = false;
 			this.needsSave = true;
@@ -114,6 +124,16 @@ public class ExtendedLevelData {
 		} catch (Exception e) {
 			LOTRLog.error("Error loading Extended mod data!");
 			e.printStackTrace();
+		}
+	}
+
+	public void logPlayerInvasionTimes() {
+		for (Map.Entry<UUID, Map<UUID, Integer>> entry : recentPlayersByInvasion.entrySet()) {
+			LOTRLog.info("INVASION UUID: " + entry.getKey());
+			for (Map.Entry<UUID, Integer> playerEntry : entry.getValue().entrySet()) {
+				LOTRLog.info("	" + playerEntry.getKey() + ": " + playerEntry.getValue());
+			}
+
 		}
 	}
 
@@ -206,6 +226,62 @@ public class ExtendedLevelData {
 			}
 		}
 	}
+
+//	private void saveRecentInvasionPlayersToNBT(CompoundNBT root) {
+//		CompoundNBT nbt = new CompoundNBT();
+//
+//		for (Map.Entry<UUID, Map<UUID, Integer>> invasionEntry : recentPlayersByInvasion.entrySet()) {
+//			UUID invasionId = invasionEntry.getKey();
+//			Map<UUID, Integer> players = invasionEntry.getValue();
+//
+//			CompoundNBT playersTag = new CompoundNBT();
+//
+//			for (Map.Entry<UUID, Integer> playerEntry : players.entrySet()) {
+//				UUID playerId = playerEntry.getKey();
+//				int ticksRemaining = playerEntry.getValue();
+//
+//				playersTag.putInt(playerId.toString(), ticksRemaining);
+//			}
+//
+//			nbt.put(invasionId.toString(), playersTag);
+//		}
+//
+//		root.put("invasion_players", nbt);
+//	}
+//
+//	private void loadRecentInvasionPlayersToNBT(CompoundNBT root) {
+//		if (root.contains("invasion_players")) {
+//			CompoundNBT nbt = root.getCompound("invasion_players");
+//
+//			for (String invasionKey : nbt.getAllKeys()) {
+//				UUID invasionId;
+//
+//				try {
+//					invasionId = UUID.fromString(invasionKey);
+//				} catch (IllegalArgumentException e) {
+//					// skip and log any invalid UUIDs
+//					LOTRLog.warn("invasion_players tag in EXTENDED.DAT contained invalid UUID: " + invasionKey);
+//					continue;
+//				}
+//
+//				CompoundNBT playersTag = nbt.getCompound(invasionKey);
+//				Map<UUID, Integer> players = new HashMap<>();
+//
+//				for (String playerKey : playersTag.getAllKeys()) {
+//					try {
+//						UUID playerId = UUID.fromString(playerKey);
+//						int ticksRemaining = playersTag.getInt(playerKey);
+//						players.put(playerId, ticksRemaining);
+//					} catch (IllegalArgumentException ignored) {
+//						LOTRLog.error("Invalid UUID: ", ignored);
+//					}
+//				}
+//
+//				recentPlayersByInvasion.put(invasionId, players);
+//			}
+//
+//		}
+//	}
 
 	private void loadPlayerTraderCooldownTimes(CompoundNBT tag) {
 		ListNBT listnbt = tag.getList("playerCooldowns", 10);
@@ -332,6 +408,43 @@ public class ExtendedLevelData {
 		}
 	}
 
+	/**
+	 * This method should be called once a second (20 ticks) to update player invasion
+	 * times.
+	 */
+	public void reducePlayerInteractedWithInvasionTimes() {
+		Iterator<Map<UUID, Integer>> playerTimesIterator = recentPlayersByInvasion.values().iterator();
+		while (playerTimesIterator.hasNext()) {
+			Map<UUID, Integer> playerTimes = playerTimesIterator.next();
+			Iterator<Map.Entry<UUID, Integer>> iterator = playerTimes.entrySet().iterator();
+			while (iterator.hasNext()) {
+				Map.Entry<UUID, Integer> entry = iterator.next();
+				int newTime = entry.getValue() - 20;
+				if (newTime > 0) {
+					entry.setValue(newTime);
+				} else {
+					iterator.remove();
+					if (playerTimes.isEmpty()) playerTimesIterator.remove();
+				}
+			}
+		}
+	}
+
+	public Set<UUID> getPlayersWhoFoughtInvasion(UUID invasionUUID) {
+		Set<UUID> returnSet = new HashSet<>();
+
+		if (recentPlayersByInvasion.containsKey(invasionUUID)) {
+			Map<UUID, Integer> playerTimes = recentPlayersByInvasion.get(invasionUUID);
+			returnSet = playerTimes.entrySet()
+					.stream()
+					.filter(entry -> entry.getValue() > 0)
+					.map(Map.Entry::getKey)
+					.collect(Collectors.toSet());
+		}
+
+		return returnSet;
+	}
+
 	public void checkForBanditSpawns(ServerWorld world) {
 		if(!ExtendedServerConfig.enableBanditEncounters.get()) {
 			return;
@@ -360,6 +473,15 @@ public class ExtendedLevelData {
 					playerBanditSpawnCooldowns.put(player.getUUID(), newCooldown);
 				}
 			}
+		}
+	}
+
+	public void attemptToSpawnInvasions(ServerWorld world) {
+		for (ServerPlayerEntity player : world.players()) {
+			// skip creative mode players and spectators
+			if (player.isCreative() || player.isSpectator()) continue;
+
+			InvasionSpawner.attemptInvasionSpawns(world, player);
 		}
 	}
 
@@ -424,6 +546,65 @@ public class ExtendedLevelData {
 	private static File getLOTRDataFile(ServerWorld world) {
 		String filename = "extended".toUpperCase();
 		return new File(SaveUtil.getOrCreateLOTRDir(world), filename + ".dat");
+	}
+
+	/**
+	 * Registers an invasion to be tracked by the server, overwrites existing entries that should not exist
+	 * @param invasionId The unique id of the invasion
+	 * @param initialEnemies How many enemies are left
+	 */
+	public void registerInvasion(UUID invasionId, int initialEnemies) {
+		invasionEnemiesLeft.put(invasionId, initialEnemies);
+	}
+
+	/**
+	 * Removes an invasion from being tracked by the server
+	 * @param invasionId The unique id of the invasion
+	 */
+	public void unregisterInvasion(UUID invasionId) {
+		invasionEnemiesLeft.remove(invasionId);
+	}
+
+	/**
+	 * Returns how many enemies are left for the invasion or -1 if it's not a valid invasion
+	 * @param invasionId The unique id of the invasion
+	 * @return How many enemies are left
+	 */
+	public int getEnemiesLeft(UUID invasionId) {
+        return invasionEnemiesLeft.getOrDefault(invasionId, -1);
+	}
+	/**
+	 * Checks if an invasion is being tracked by the server
+	 * @param invasionId The unique id of the invasion
+	 * @return True if server knows of the invasion
+	 */
+	public boolean hasInvasion(UUID invasionId) {
+        return invasionEnemiesLeft.containsKey(invasionId);
+	}
+
+	/**
+	 * Never allow the enemies left to go below 0 to help prevent it from being an issue where -1 is used
+	 * <p>
+	 * Also ensures no modifications to invasionEnemiesLeft unless the invasion is valid
+	 * @param invasionId The unique id of the invasion
+	 */
+	public void decrementEnemiesLeft(UUID invasionId) {
+		if(hasInvasion(invasionId) && getEnemiesLeft(invasionId) > 0) {
+			invasionEnemiesLeft.put(invasionId, Math.max(0, getEnemiesLeft(invasionId) - 1));
+		}
+	}
+
+	public void trackRecentPlayerKill(UUID invasionId, UUID playerId) {
+		if (recentPlayersByInvasion.containsKey(invasionId)) {
+			Map<UUID, Integer> timeLeftByPlayer = recentPlayersByInvasion.get(invasionId);
+			timeLeftByPlayer.put(playerId, 5000);
+			recentPlayersByInvasion.put(invasionId, timeLeftByPlayer);
+		} else {
+			Map<UUID, Integer> timeLeftByPlayer = new HashMap<>();
+			timeLeftByPlayer.put(playerId, 5000);
+			recentPlayersByInvasion.put(invasionId, timeLeftByPlayer);
+		}
+		needsSave = true;
 	}
 
 	public boolean doesNeedSaving() {
