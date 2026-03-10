@@ -71,6 +71,27 @@ public class ExtendedServerOptionsScreen extends MiddleEarthMenuScreen {
 		addButton(gameplay.addButton("gui.lotrextended.serversettings.bannerprotection.setting", 
 				ExtendedServerConfig.enableBannerProtection, ExtendedSettingToggles.BANNER_PROTECTION, 
 				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableBannerProtection"));
+		addButton(gameplay.addButton("gui.lotrextended.serversettings.fellowshipcreation.setting", 
+				ExtendedServerConfig.enableFellowshipCreation, ExtendedSettingToggles.FELLOWSHIP_CREATION, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableFellowshipCreation"));
+		addButton(gameplay.addButton("gui.lotrextended.serversettings.renewedwaypointcreate.setting", 
+				ExtendedServerConfig.enableRenewedWaypointCreation, ExtendedSettingToggles.RENEWED_WAYPOINT_CREATE, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableRenewedWaypointCreation"));
+		addButton(gameplay.addButtonDisabled("gui.lotrextended.serversettings.legacywaypointcreate.setting", 
+				ExtendedServerConfig.enableLegacyWaypointCreation, ExtendedSettingToggles.LEGACY_WAYPOINT_CREATE, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableLegacyWaypointCreation"));
+		addButton(gameplay.addButton("gui.lotrextended.serversettings.defaultwaypointteleportation.setting", 
+				ExtendedServerConfig.enableDefaultWaypointTeleportation, ExtendedSettingToggles.DEFAULT_WAYPOINT_TELEPORT, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableDefaultWaypointTeleportation"));
+		addButton(gameplay.addButton("gui.lotrextended.serversettings.customwaypointteleportation.setting", 
+				ExtendedServerConfig.enableCustomWaypointTeleportation, ExtendedSettingToggles.CUSTOM_WAYPOINT_TELEPORT, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableCustomWaypointTeleportation"));
+		addButton(gameplay.addButton("gui.lotrextended.serversettings.feastmode.setting", 
+				ExtendedServerConfig.enableLegacyFeastMode, ExtendedSettingToggles.FEAST_MODE, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableLegacyFeastMode"));
+		addButton(gameplay.addButton("gui.lotrextended.serversettings.decreasedhunger.setting", 
+				ExtendedServerConfig.enableHungerDecrease, ExtendedSettingToggles.DECREASED_HUNGER, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableHungerDecrease"));
 		catagories.add(gameplay);
 
 		for(SettingsCatagory catagory : catagories) {
@@ -137,8 +158,8 @@ public class ExtendedServerOptionsScreen extends MiddleEarthMenuScreen {
 			};
 			return catagoryButton;
 		}
-		public Widget addButton(String pMessage, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
-			ExtendedTogglableTitleButton<ExtendedServerConfig> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(pMessage), 
+		public ExtendedTogglableTitleButton<ExtendedServerConfig> addButton(String pMessage, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
+			ExtendedTogglableTitleButton<ExtendedServerConfig> button = new ExtendedTogglableTitleButton<ExtendedServerConfig>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(pMessage), 
 					wdget -> toggleValue(configSpec, type), (wdget, matrixStack, pMouseX1, pMouseY1) -> {
 						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX1, pMouseY1);
 					}, (wdget, tickData) -> configSpec.get(), enabled, disabled);
@@ -146,7 +167,15 @@ public class ExtendedServerOptionsScreen extends MiddleEarthMenuScreen {
 			offsetAmount+=1;
 			return button;
 		}
-
+		public ExtendedTogglableTitleButton<ExtendedServerConfig> addButtonDisabled(String pMessage, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
+			ExtendedTogglableTitleButton<ExtendedServerConfig> button = new ExtendedTogglableTitleButton<ExtendedServerConfig>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(pMessage), 
+					wdget -> {}, (wdget, matrixStack, pMouseX1, pMouseY1) -> {
+						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX1, pMouseY1);
+					}, (wdget, tickData) -> configSpec.get(), enabled, disabled).forceDisableButton();
+			bottons.add(button);
+			offsetAmount+=1;
+			return button;
+		}
 		public Slider addSlider(String prefix, String suffix, double minVal, double maxVal, double currentVal, boolean showDec, boolean drawStr, IPressable handler, @Nullable ISlider par) {
 			Slider slider = new Slider(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(prefix), new TranslationTextComponent(suffix), 
 					minVal, maxVal, currentVal, showDec, drawStr , handler, par);

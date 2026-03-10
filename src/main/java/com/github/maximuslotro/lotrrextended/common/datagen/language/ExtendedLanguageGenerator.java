@@ -244,6 +244,13 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.serversettings.category.modifiers", "Modifier Settings");
 		addD("gui.lotrextended.serversettings.category.protection", "Spawn Protection");
 		addD("gui.lotrextended.serversettings.bannerprotection.setting", "Banner Protection: ");
+		addD("gui.lotrextended.serversettings.fellowshipcreation.setting", "Fellowship Creation: ");
+		addD("gui.lotrextended.serversettings.renewedwaypointcreate.setting", "Renewed Custom WP: ");
+		addD("gui.lotrextended.serversettings.legacywaypointcreate.setting", "Legacy Custom WP: ");
+		addD("gui.lotrextended.serversettings.defaultwaypointteleportation.setting", "Default WP Teleport: ");
+		addD("gui.lotrextended.serversettings.customwaypointteleportation.setting", "Custom WP Teleport: ");
+		addD("gui.lotrextended.serversettings.feastmode.setting", "Feast Mode: ");
+		addD("gui.lotrextended.serversettings.decreasedhunger.setting", "Decreased Hunger: ");
 		addD("gui.lotrextended.serversettings.no_perm", "Must be an Operator or in SinglePlayer to access.");
 		addD("gui.lotrextended.settings.title", "Middle-earth Options");
 		addD("gui.lotrextended.settings.button", "Client Options");

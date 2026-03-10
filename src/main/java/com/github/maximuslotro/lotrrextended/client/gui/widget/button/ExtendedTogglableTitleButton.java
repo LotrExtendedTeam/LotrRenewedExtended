@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.gui.widget.button;
 
+import javax.annotation.Nullable;
+
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -14,8 +16,10 @@ public class ExtendedTogglableTitleButton<T> extends Button {
 	private final TextComponent baseMessage;
 	private final String enabled;
 	private final String disabled;
-	private boolean settingState = false;
+	private boolean renderGreen = false;
 	protected final IOnTick<T> onTick;
+	private boolean buttonForceDisabled = false;
+	private boolean buttonForceEnabled = false;
 
 	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, TextComponent pMessage, IPressable pOnPress, ITooltip pOnTooltip, IOnTick<T> pOnTick, String enabled, String disabled) {
 		super(pX, pY, pWidth, pHeight, pMessage, pOnPress, pOnTooltip);
@@ -33,16 +37,34 @@ public class ExtendedTogglableTitleButton<T> extends Button {
 		this.onTick = pOnTick;
 	}
 
-	public void onTick(T tickData) {
+	public ExtendedTogglableTitleButton<T> forceDisableButton() {
+		buttonForceEnabled = false;
+		buttonForceDisabled = true;
+		return this;
+	}
+
+	public ExtendedTogglableTitleButton<T> forceEnableButton() {
+		buttonForceEnabled = true;
+		buttonForceDisabled = false;
+		return this;
+	}
+
+	public void onTick(@Nullable T tickData) {
 		tickTitle(onTick.onTick(this, tickData));
 	}
 
-	public void tickTitle(Boolean toggle) {
-		if(toggle!=null) {
+	public void tickTitle(@Nullable Boolean toggle) {
+		if(buttonForceEnabled) {
+			setMessage(baseMessage.copy().append(new TranslationTextComponent(enabled)));
+			renderGreen = true;
+		}else if(buttonForceDisabled) {
+			setMessage(baseMessage.copy().append(new TranslationTextComponent(disabled)));
+			renderGreen = false;
+		}else if(toggle!=null) {
 			setMessage(baseMessage.copy().append(new TranslationTextComponent(toggle ? enabled : disabled)));
-			settingState = toggle;
+			renderGreen = toggle;
 		}else {
-			settingState=true; // Handle forced dev mode bypassing title setting for forced mode
+			renderGreen=true; // Handle forced dev mode bypassing title setting for forced mode
 		}
 	}
 
@@ -51,12 +73,11 @@ public class ExtendedTogglableTitleButton<T> extends Button {
 		Minecraft minecraft = Minecraft.getInstance();
 		FontRenderer fontrenderer = minecraft.font;
 		minecraft.getTextureManager().bind(WIDGETS_LOCATION);
-		if(settingState) {
+		if(renderGreen) {
 			RenderSystem.color4f(0.13f, 0.77f, 0.42f, this.alpha);
 
 		}else {
 			RenderSystem.color4f(0.88f, 0.33f, 0.33f, this.alpha);
-
 		}
 		int i = this.getYImage(this.isHovered());
 		RenderSystem.enableBlend();
@@ -71,6 +92,6 @@ public class ExtendedTogglableTitleButton<T> extends Button {
 
 
 	public interface IOnTick<T> {
-		Boolean onTick(ExtendedTogglableTitleButton<T> button, T tickData);
+		Boolean onTick(ExtendedTogglableTitleButton<T> button, @Nullable T tickData);
 	}
 }
