@@ -256,7 +256,7 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 
 		Advancement alcoholism = build(true, data(LOTRItems.VODKA.get(), "alcoholism", FrameType.CHALLENGE)
 				.setTitle("Alcoholism").setDescription("Achieve a fearsome level of alcohol tolerance."),
-				addDrinkToleranceTrigger(make(), 500).parent(seasoned_drinker));//guessing the legacy value though trial and error
+				addDrinkToleranceTrigger(make(), 250).parent(seasoned_drinker));//guessing the legacy value though trial and error
 
 		Advancement blacksmith = build(true, data(LOTRItems.BLACKSMITH_HAMMER.get(), "blacksmith", FrameType.TASK)
 				.setTitle("Blacksmith").setDescription("Reforge an item at an anvil."),
