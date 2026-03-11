@@ -265,6 +265,10 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 		Advancement engraver = build(false, data(ExtendedItems.CHISEL.get(), "engraver", FrameType.TASK)
 				.setTitle("Autographed!").setDescription("Engrave your name on an item at an anvil."),
 				addStringTrigger(make(), "engraved").parent(blacksmith));
+
+		Advancement defeatInvasion = build(true, data(Items.IRON_SWORD, "defeat_invasion", FrameType.CHALLENGE)
+				.setTitle("Hail the Victorious").setDescription("Defeat an invasion"),
+				addStringTrigger(make(), "defeatedInvasion").parent(base));
 	}
 
 	@Override

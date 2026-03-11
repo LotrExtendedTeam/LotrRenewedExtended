@@ -46,7 +46,7 @@ public enum ExtendedModifierRarity {
 		this.isLimited = pIsLimited;
 	}
 
-	public boolean isLimited() {
+	public boolean countsTowardsLimit() {
 		return isLimited;
 	} 
 }

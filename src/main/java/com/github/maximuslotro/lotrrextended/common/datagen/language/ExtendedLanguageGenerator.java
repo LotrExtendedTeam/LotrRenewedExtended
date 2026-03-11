@@ -661,6 +661,18 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		//Damage types
 		addD("death.attack.lotrextended.thrownaxe", "%1$s was precision-axed by %2$s");
 		addD("death.attack.lotrextended.thrownaxe.item", "%1$s was precision-axed by %2$s using %3$s");
+
+		// Invasions
+		addD("chat.lotrextended.invasion.started", "%s have launched an invasion nearby!");
+		addD("lotrextended.invasion.rivendell", "Rivendell");
+		addD("lotrextended.invasion.lindon", "Lindon");
+		addD("lotrextended.invasion.gundabad", "Gundabad");
+		addD("lotrextended.invasion.gundabad_wargs", "Gundabad Wargs");
+		addD("lotrextended.invasion.dunedain", "Rangers of the North");
+		addD("lotrextended.invasion.mordor", "Mordor");
+		addD("lotrextended.invasion.gondor", "Gondor");
+		addD("lotrextended.invasion.lothlorien", "Lothlorien");
+		addD("lotrextended.invasion.woodland_realm", "Woodland Realm");
 	}
 
 	@Override

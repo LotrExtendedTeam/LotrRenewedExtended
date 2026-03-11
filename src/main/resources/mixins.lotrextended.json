@@ -168,6 +168,7 @@
 		"lotr.client.event.MixinLOTRTickHandlerClient",
 		"lotr.client.event.MixinLOTRTickHandlerClientJavaPatch",
 		"lotr.client.gui.MixinMiddleEarthFactionsScreen",
+		"lotr.client.gui.util.MixinAlignmentRenderer",
 		"lotr.client.gui.MixinMiddleEarthMasterMenuScreen",
 		"lotr.client.gui.inv.MixinAlloyForgeScreen",
 		"lotr.client.gui.inv.MixinContainerScreenHelper",

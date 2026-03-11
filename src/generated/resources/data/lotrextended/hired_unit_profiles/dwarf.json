@@ -9,7 +9,7 @@
     "attack_type": "melee"
   },
   "hiring": {
-    "hiringCost": 30,
+    "hiringCost": 20,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 200
   },

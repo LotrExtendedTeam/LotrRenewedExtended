@@ -515,6 +515,11 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.LINDON_SMITH, elfLindon);
 		makeEntity(ExtendedEntities.LINDON_WEAVER, elfLindon);
 		makeEntity(ExtendedEntities.LINDON_FLORIST, elfLindon);
+		makeEntity(ExtendedEntities.URUK_BERSERKER, orcUruk);
+		makeEntity(ExtendedEntities.URUK_CAPTAIN, orcUruk);
+		makeEntity(ExtendedEntities.URUK_SMITH, orcUruk);
+		makeEntity(ExtendedEntities.URUK_SUPPLIER, orcUruk);
+
 	}
 
 	public ResourceLocation makeLootCommon(String name, LootTable.Builder builder) {

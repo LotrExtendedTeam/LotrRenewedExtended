@@ -27,6 +27,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.CHAIR.get(), ExtendedNullEntityRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.STRUCTURE_ENTITY_SPAWNER.get(), ExtendedStructureSpawnerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RESPAWNER_ENTITY.get(), ExtendedRespawnerRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.INVASION_SPAWNER.get(), ExtendedInvasionSpawnerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TAPESTRY.get(), ExtendedTapestryRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.ORC_BOMB.get(), ExtendedOrcBombRenderer::new);
 		// Hobbit
@@ -90,5 +91,11 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TOLKIEN.get(), ExtendedTolkienRenderer::new);
 		// Bandit
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BANDIT.get(), ExtendedBanditRenderer::new);
+		// Isengard
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_SUPPLIER.get(), ExtendedUrukTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_SMITH.get(), ExtendedUrukTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_CAPTAIN.get(), ExtendedUrukTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_BERSERKER.get(), UrukRenderer::new);
+
 	}
 }

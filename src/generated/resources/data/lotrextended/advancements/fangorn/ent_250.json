@@ -17,13 +17,13 @@
     "hidden": false
   },
   "criteria": {
-    "has_fangorn_level_250": {
+    "has_fangorn_level_200": {
       "trigger": "lotrextended:alignment_changed",
       "conditions": {
         "alignment": {
           "faction": "lotr:fangorn",
           "level": {
-            "min": 250.0
+            "min": 200.0
           }
         }
       }
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "has_fangorn_level_250"
+      "has_fangorn_level_200"
     ]
   ]
 }

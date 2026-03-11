@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.common.entity.special.*;
 import lotr.common.entity.npc.*;
 
 import org.spongepowered.asm.mixin.Final;
@@ -22,10 +23,6 @@ import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorse
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedThrowableAxeEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChairEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTREntities;
@@ -276,6 +273,7 @@ public class MixinLOTREntities {
 		// Technical
 		ExtendedEntities.STRUCTURE_ENTITY_SPAWNER = regEntityB("structure_spawner", ExtendedStructureSpawnerEntity::new, EntityClassification.MISC, 0.5F, 1.0F, 4, 3);
 		ExtendedEntities.RESPAWNER_ENTITY = regEntityB("trader_respawner", ExtendedRespawnerEntity::new, EntityClassification.MISC, 0.5F, 0.5F, 4, 3);
+		ExtendedEntities.INVASION_SPAWNER = regEntityB("invasion_spawner", ExtendedInvasionSpawnerEntity::new, EntityClassification.MISC, 1.0F, 2.0F, 4, 20);
 		ExtendedEntities.BANNER_HOLDER = regEntityB("banner_dataholder", ExtendedBannerEntity::new, EntityClassification.MISC, 0.125F, 1.0F, 4, 10);
 		ExtendedEntities.CHAIR = regEntityB("chair", ExtendedChairEntity::new, EntityClassification.MISC, 0.0001F, 0.0001F, 32, 2, (builder) -> {
 			builder.canSpawnFarFromPlayer();
@@ -355,5 +353,12 @@ public class MixinLOTREntities {
 
 		// Bandits
 		ExtendedEntities.BANDIT = regNPCD("bandit", ExtendedBanditEntity::new, ExtendedBanditEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2563350, 6382678));
+		
+		// Isengard
+		ExtendedEntities.URUK_BERSERKER = regNPCD("uruk_berserker", ExtendedUrukBerserkerEntity::new, ExtendedUrukBerserkerEntity::createAttributes, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2369050, 14408662));
+		ExtendedEntities.URUK_CAPTAIN = regNPCD("uruk_captain", ExtendedUrukCaptainEntity::new, ExtendedUrukCaptainEntity::createAttributes, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2369050, 5790015));
+		ExtendedEntities.URUK_SMITH = regNPCD("uruk_smith", ExtendedUrukSmithEntity::new, ExtendedUrukSmithEntity::createAttributes, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2369050, 13421772));
+		ExtendedEntities.URUK_SUPPLIER = regNPCD("uruk_supplier", ExtendedUrukSupplierEntity::new, ExtendedUrukSupplierEntity::createAttributes, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2369050, 13421772));
+
 	}
 }

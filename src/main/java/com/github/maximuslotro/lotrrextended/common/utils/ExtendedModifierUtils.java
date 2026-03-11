@@ -531,7 +531,7 @@ public class ExtendedModifierUtils {
 	public static ItemStack generateItemModifiers(Random pRandom, ItemStack pStack, boolean reforging, boolean noNegatives) {
 		List<ExtendedModifier> list = selectModifiers(pRandom, pStack, reforging, noNegatives);
 		if(reforging) {
-			List<ExtendedModifier> existingNonRemovable = getModifierList(pStack).stream().filter(m -> m.getRarity().isLimited()).collect(Collectors.toList());
+			List<ExtendedModifier> existingNonRemovable = getModifierList(pStack).stream().filter(m -> !m.getRarity().countsTowardsLimit()).collect(Collectors.toList());
 			list.addAll(existingNonRemovable);
 		}
 		if(pStack.getItem() instanceof ExtendedBarrowBlade && !list.contains(ExtendedModifiers.WIGHT_BANE)) {

@@ -1,0 +1,41 @@
+{
+  "parent": "lotrextended:rohan/vale_of_the_wizard",
+  "display": {
+    "icon": {
+      "item": "lotr:silver_coin_one"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.rohan.shady_deal.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.rohan.shady_deal.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_uruk_supplier_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:uruk_supplier",
+        "istraderselling": "false"
+      }
+    },
+    "trade_uruk_supplier_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:uruk_supplier",
+        "istraderselling": "true"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_uruk_supplier_buy",
+      "trade_uruk_supplier_sell"
+    ]
+  ]
+}
