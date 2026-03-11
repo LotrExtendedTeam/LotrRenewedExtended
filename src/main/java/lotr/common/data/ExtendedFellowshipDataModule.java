@@ -123,22 +123,22 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 	}
 
 	public void setFellowshipIcon(ExtendedFellowship fs, ItemStack itemstack) {
-		if (fs.hasEditPowers(getPlayerUUID()) || fs.isFellowshipAdmin(getPlayerUUID()))
+		if (fs.hasEditPowers(getPlayerUUID()))
 			fs.setIcon(itemstack);
 	}
 
 	public void setFellowshipPreventPVP(ExtendedFellowship fs, boolean prevent) {
-		if (fs.hasEditPowers(getPlayerUUID()) || fs.isFellowshipAdmin(getPlayerUUID()))
+		if (fs.hasEditPowers(getPlayerUUID()))
 			fs.setPreventPVP(prevent);
 	}
 
     public void setFellowshipColor(ExtendedFellowship fs, Style color) {
-        if (fs.hasEditPowers(getPlayerUUID()) || fs.isFellowshipAdmin(getPlayerUUID()))
+        if (fs.hasEditPowers(getPlayerUUID()))
             fs.setFellowshipColor(color);
     }
 
 	public void setFellowshipPreventHiredFF(ExtendedFellowship fs, boolean prevent) {
-		if (fs.hasEditPowers(getPlayerUUID()) || fs.isFellowshipAdmin(getPlayerUUID()))
+		if (fs.hasEditPowers(getPlayerUUID()))
 			fs.setPreventHiredFF(prevent);
 	}
 

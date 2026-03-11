@@ -169,7 +169,7 @@ public class ExtendedFellowship {
 	 * @return True if the player has powers to edit the fellowship
 	 */
 	public boolean hasEditPowers(UUID player) {
-		return (isFellowshipMember(player) && fellowshipAdmins.contains(player)) || fellowshipOwner.equals(player);
+		return isFellowshipAdmin(player) || isFellowshipOwner(player);
 	}
 	public void setOwnerUUID(UUID ownerUUID) {
 		UUID prevOwner = fellowshipOwner;

@@ -441,7 +441,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		if (fellowship != null) {
 			//Send Name
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.data.name").withStyle(TextFormatting.GREEN)
-					.append(new StringTextComponent(fellowship.getFellowshipName()).withStyle(TextFormatting.GOLD)), true);
+					.append(new StringTextComponent(fellowship.getFellowshipName()).withStyle(fellowship.getFellowshipColor())), true);
 			//Send PVP and HYPVP data
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.data.pvp").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(String.valueOf(!fellowship.isPreventPVP())).withStyle(TextFormatting.GOLD))
