@@ -199,7 +199,12 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
 
-	public static Advancement.Builder addTradeTrigger(Advancement.Builder builder, EntityType<?> entityType, boolean isPlayerBuyingItem, Item... items) {
+	public static Advancement.Builder addTradeEntityTrigger(Advancement.Builder builder, EntityType<?> entityType, boolean isPlayerBuyingItem) {
+		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+(isPlayerBuyingItem ? "_sell" : "_buy"), ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(EntityTypePredicate.of(entityType), isPlayerBuyingItem));
+		return builder.requirements(IRequirementsStrategy.OR);
+	}
+
+	public static Advancement.Builder addTradeEntityTrigger(Advancement.Builder builder, EntityType<?> entityType, boolean isPlayerBuyingItem, Item... items) {
 		int amount=0;
 		for(Item item: items){
 			amount+=1;
@@ -216,6 +221,11 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
 
+	public static Advancement.Builder addTradeEntityTrigger(Advancement.Builder builder, EntityType<?> entityType, boolean isPlayerBuyingItem, Item item, int threshold) {
+		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+(isPlayerBuyingItem ? "_sell" : "_buy"), ExtendedTraderTradedTrigger.Instance.tradedWithAndItem(EntityTypePredicate.of(entityType), isPlayerBuyingItem, item, MinMaxBounds.IntBound.atLeast(threshold)));
+		return builder.requirements(IRequirementsStrategy.OR);
+	}
+
 	public static Advancement.Builder addTradeNoEntityTrigger(Advancement.Builder builder, String identifier, boolean isPlayerBuyingItem, int threshold) {
 		builder.addCriterion("trade_"+identifier+(isPlayerBuyingItem ? "_sell" : "_buy"), ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(EntityTypePredicate.ANY, isPlayerBuyingItem, MinMaxBounds.IntBound.atLeast(threshold)));
 		return builder.requirements(IRequirementsStrategy.OR);
@@ -224,11 +234,6 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 	public static Advancement.Builder addTradeNoEntityTrigger(Advancement.Builder builder, String identifier, int threshold) {
 		builder.addCriterion("trade_"+identifier+"_sell", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(EntityTypePredicate.ANY, true, MinMaxBounds.IntBound.atLeast(threshold)));
 		builder.addCriterion("trade_"+identifier+"_buy", ExtendedTraderTradedTrigger.Instance.tradedWithALLItem(EntityTypePredicate.ANY, false, MinMaxBounds.IntBound.atLeast(threshold)));
-		return builder.requirements(IRequirementsStrategy.OR);
-	}
-
-	public static Advancement.Builder addTradeTrigger(Advancement.Builder builder, EntityType<?> entityType, boolean isPlayerBuyingItem, Item item, int threshold) {
-		builder.addCriterion("trade_"+entityType.getRegistryName().getPath()+(isPlayerBuyingItem ? "_sell" : "_buy"), ExtendedTraderTradedTrigger.Instance.tradedWithAndItem(EntityTypePredicate.of(entityType), isPlayerBuyingItem, item, MinMaxBounds.IntBound.atLeast(threshold)));
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
 

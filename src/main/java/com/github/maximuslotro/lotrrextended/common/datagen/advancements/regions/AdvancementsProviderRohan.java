@@ -3,6 +3,8 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
 
 import lotr.common.fac.FactionPointers;
+import lotr.common.init.ExtendedEntities;
+import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
@@ -90,14 +92,28 @@ public class AdvancementsProviderRohan extends ExtendedBaseAdvancementType{
 				.setTitle("Captain of the Hand").setDescription("Reach +3000.0 alignment with Isengard."),
 				addAlignmentTrigger(make(), FactionPointers.ISENGARD, 3000).parent(isengard_2000));
 
-		Advancement uruk_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "uruk_slayer", FrameType.TASK)
-				.setTitle("Uruk Slayer").setDescription("Kill an Uruk."),
-				addKillEntityTriggers(make(), LOTREntities.URUK.get(), LOTREntities.URUK_ARCHER.get()).parent(vale_of_the_wizard));
-
 		Advancement snaga_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "snaga_slayer", FrameType.TASK)
 				.setTitle("Snaga Slayer").setDescription("Kill an Isengard Snaga."),
 				addKillEntityTriggers(make(), LOTREntities.ISENGARD_SNAGA.get(), LOTREntities.ISENGARD_SNAGA_ARCHER.get())
 				.parent(vale_of_the_wizard));
+
+		Advancement uruk_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "uruk_slayer", FrameType.TASK)
+				.setTitle("Uruk Slayer").setDescription("Kill an Uruk."),
+				addKillEntityTriggers(make(), LOTREntities.URUK.get(), LOTREntities.URUK_ARCHER.get(),
+						ExtendedEntities.URUK_CAPTAIN.get(), ExtendedEntities.URUK_SMITH.get(),
+						ExtendedEntities.URUK_SUPPLIER.get(), ExtendedEntities.URUK_BERSERKER.get()).parent(snaga_slayer));
+
+		Advancement pillaging_time = build(true, data(LOTRItems.URUK_CLEAVER.get(), "pillaging_time", FrameType.TASK)
+				.setTitle("Pillaging Time").setDescription("Hire a unit from an Uruk Captain."),
+				addUnitHireTrigger(make(), ExtendedEntities.URUK_CAPTAIN.get()).parent(vale_of_the_wizard));
+
+		Advancement shady_deal = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "shady_deal", FrameType.TASK)
+				.setTitle("Shady Deal").setDescription("Trade with an Uruk Supplier."),
+				addTradeEntityTriggers(make(), ExtendedEntities.URUK_SUPPLIER.get()).parent(vale_of_the_wizard));
+
+		Advancement war_forge_deal = build(false, data(ExtendedItems.SILVER_COIN_ONE.get(), "war_forge_deal", FrameType.TASK)
+				.setTitle("War-Forge Deal").setDescription("Trade with an Uruk Blacksmith."),
+				addTradeEntityTriggers(make(), ExtendedEntities.URUK_SMITH.get()).parent(vale_of_the_wizard));
 
 		Advancement uruk_armor = build(true, data(LOTRItems.URUK_CHESTPLATE.get(), "uruk_armor", FrameType.TASK)
 				.setTitle("The Feared").setDescription("Equip a full suit of Uruk armor."),

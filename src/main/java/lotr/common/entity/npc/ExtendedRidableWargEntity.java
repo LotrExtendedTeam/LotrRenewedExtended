@@ -25,6 +25,8 @@ public interface ExtendedRidableWargEntity {
 
 	public void makeMad();
 
-	// Misc Methods
+	// Inventory methods
 	public int getInventorySize();
+
+	public void openInventory(PlayerEntity pPlayer);
 }

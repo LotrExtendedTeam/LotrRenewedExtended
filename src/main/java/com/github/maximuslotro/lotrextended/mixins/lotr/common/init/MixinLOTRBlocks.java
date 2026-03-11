@@ -879,6 +879,18 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.CARVED_UMBAR_BRICK = registerB("carved_umbar_brick", () -> new ExtendedStoneBlock(LOTRBlocks.UMBAR_BRICK));
 		ExtendedBlocks.SMOOTH_GONDOR_ROCK_STAIRS = registerB("smooth_gondor_rock_stairs", () -> new LOTRStairsBlock(LOTRBlocks.SMOOTH_GONDOR_ROCK));
 
+		ExtendedBlocks.MORGOND = registerB("morgond", () -> new ExtendedStoneBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(500.0F, 1200.0F)));
+		ExtendedBlocks.MORGOND_SLAB = registerB("morgond_slab", () -> new AxialSlabBlock(ExtendedBlocks.MORGOND));
+		ExtendedBlocks.MORGOND_STAIRS = registerB("morgond_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MORGOND));
+		ExtendedBlocks.MORGOND_WALL = registerB("morgond_wall", () -> new LOTRWallBlock(ExtendedBlocks.MORGOND));
+		ExtendedBlocks.MORGOND_DRIPSTONE = registerB("morgond_dripstone", () -> new DripstoneBlock(ExtendedBlocks.MORGOND));
+		ExtendedBlocks.MORGOND_PILLAR = registerB("morgond_pillar", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(500.0F, 1200.0F)));
+		ExtendedBlocks.MORGOND_PILLAR_SLAB = registerB("morgond_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.MORGOND_PILLAR));
+		ExtendedBlocks.CARVED_MORGOND = registerB("carved_morgond", () -> new ExtendedStoneBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(500.0F, 1200.0F)));
+		ExtendedBlocks.CARVED_MORGOND_SLAB = registerB("carved_morgond_slab", () -> new AxialSlabBlock(ExtendedBlocks.CARVED_MORGOND));
+		ExtendedBlocks.CARVED_MORGOND_STAIRS = registerB("carved_morgond_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CARVED_MORGOND));
+		ExtendedBlocks.CARVED_MORGOND_WALL = registerB("carved_morgond_wall", () -> new LOTRWallBlock(ExtendedBlocks.CARVED_MORGOND));
+
 		//Rohan
 		ExtendedBlocks.SMOOTH_ROHAN_ROCK_STAIRS = registerB("smooth_rohan_rock_stairs", () -> new LOTRStairsBlock(LOTRBlocks.SMOOTH_ROHAN_ROCK));
 
@@ -1134,6 +1146,13 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.PLACED_BOOKS = registerB("placed_books", () -> new ExtendedPlacedBooksBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noOcclusion()));
 		ExtendedBlocks.EXTENDED_BOOKSHELF = registerB("bookshelf", () -> new ExtendedBookshelfBlock(AbstractBlock.Properties.of(Material.WOOD).strength(1.5F).sound(SoundType.WOOD)));
+
+		ExtendedBlocks.ORC_BOMB = registerB("orc_bomb", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 0, false));
+		ExtendedBlocks.ORC_BOMB_DOUBLE = registerB("orc_bomb_double", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 1, false));
+		ExtendedBlocks.ORC_BOMB_TRIPLE = registerB("orc_bomb_triple", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 2, false));
+		ExtendedBlocks.ORC_BOMB_FIRE = registerB("orc_bomb_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 0, true));
+		ExtendedBlocks.ORC_BOMB_FIRE_DOUBLE = registerB("orc_bomb_double_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 1, true));
+		ExtendedBlocks.ORC_BOMB_FIRE_TRIPLE = registerB("orc_bomb_triple_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 2, true));
 	}
 
 	/**

@@ -99,6 +99,7 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		this.copy(ExtendedTags.Blocks.WILLOW_LOGS, ExtendedTags.Items.WILLOW_LOGS);
 		
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN, ExtendedTags.Items.STORAGE_BLOCKS_GALVORN);
+		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_ORC_STEEL, ExtendedTags.Items.STORAGE_BLOCKS_ORC_STEEL);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL, ExtendedTags.Items.STORAGE_BLOCKS_BLACK_URUK_STEEL);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_GILDED_IRON, ExtendedTags.Items.STORAGE_BLOCKS_GILDED_IRON);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_MORGUL_STEEL, ExtendedTags.Items.STORAGE_BLOCKS_MORGUL_STEEL);
@@ -152,7 +153,8 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_DIAMOND).addTag(ExtendedTags.Items.STORAGE_BLOCKS_OPAL)
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_EMERALD).addTag(ExtendedTags.Items.STORAGE_BLOCKS_PEARL)
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_CORAL).addTag(ExtendedTags.Items.STORAGE_BLOCKS_DURNOR)
-	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_EDHELVIR).addTag(ExtendedTags.Items.STORAGE_BLOCKS_GULDURIL);
+	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_EDHELVIR).addTag(ExtendedTags.Items.STORAGE_BLOCKS_GULDURIL)
+	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_ORC_STEEL);
 
 		tag(ExtendedTags.Items.MORGUL_STEEL_INGOT).add(ExtendedItems.MORGUL_STEEL_INGOT.get());
 		tag(ExtendedTags.Items.ORC_STEEL_INGOT).add(LOTRItems.ORC_STEEL_INGOT.get());
@@ -174,6 +176,9 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		.addTag(ExtendedTags.Items.URUK_STEEL_INGOT).addTag(ExtendedTags.Items.MITHRIL_INGOT);
 
 		tag(Tags.Items.NUGGETS).addTag(ExtendedTags.Items.ORC_STEEL_NUGGET);
+
+		tag(ExtendedTags.Items.ANVIL_IRON_INGOT).addTag(ExtendedTags.Items.ORC_STEEL_INGOT).addTag(Tags.Items.INGOTS_IRON);
+		tag(ExtendedTags.Items.ANVIL_IRON_BLOCK).addTag(ExtendedTags.Items.STORAGE_BLOCKS_ORC_STEEL).addTag(Tags.Items.STORAGE_BLOCKS_IRON);
 
 		tag(ExtendedTags.Items.TOPAZ_GEMS).add(ExtendedItems.TOPAZ.get());
 		tag(ExtendedTags.Items.AMETHYST_GEMS).add(ExtendedItems.AMETHYST.get());
@@ -253,6 +258,8 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		tag(ExtendedTags.Items.TORCH_LIGHTING).add(LOTRItems.POCKET_MATCH.get()).add(Items.FLINT_AND_STEEL);
 
 		tag(ExtendedTags.Items.PLACEABLE_BOOKS).add(LOTRItems.BOOK_OF_TRUE_SILVER.get()).add(Items.BOOK).add(LOTRItems.RED_BOOK.get()).add(Items.WRITTEN_BOOK);
+
+		tag(ExtendedTags.Items.MORGOND_ROCKS).add(LOTRItems.GONDOR_ROCK.get()).add(LOTRItems.MORDOR_ROCK.get());
 
 		TreeMap<String, Item> fullitems = new TreeMap<>();
 		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {

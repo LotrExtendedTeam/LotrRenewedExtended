@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_iron_block": {
+    "has_iron_blocks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:iron_block"
+            "tag": "lotrextended:anvil_iron_block"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_iron_block",
+      "has_iron_blocks",
       "has_the_recipe"
     ]
   ]

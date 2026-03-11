@@ -15,6 +15,7 @@ public class ExtendedTags {
 	public static class Blocks {
 		public static void init() {}
 		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_GALVORN = BlockTags.bind("forge:storage_blocks/galvorn");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_ORC_STEEL = BlockTags.bind("forge:storage_blocks/orc_steel");
 		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_BLACK_URUK_STEEL = BlockTags.bind("forge:storage_blocks/black_uruk_steel");
 		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_GILDED_IRON = BlockTags.bind("forge:storage_blocks/gilded_iron");
 		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MORGUL_STEEL = BlockTags.bind("forge:storage_blocks/morgul_steel");
@@ -121,6 +122,7 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> STORAGE_BLOCKS_GALVORN = ItemTags.bind("forge:storage_blocks/galvorn");
 		public static final ITag.INamedTag<Item> STORAGE_BLOCKS_BLACK_URUK_STEEL = ItemTags.bind("forge:storage_blocks/black_uruk_steel");
 		public static final ITag.INamedTag<Item> STORAGE_BLOCKS_GILDED_IRON = ItemTags.bind("forge:storage_blocks/gilded_iron");
+		public static final ITag.INamedTag<Item> STORAGE_BLOCKS_ORC_STEEL = ItemTags.bind("forge:storage_blocks/orc_steel");
 		public static final ITag.INamedTag<Item> STORAGE_BLOCKS_MORGUL_STEEL = ItemTags.bind("forge:storage_blocks/morgul_steel");
 		public static final ITag.INamedTag<Item> STORAGE_BLOCKS_DWARVEN_STEEL = ItemTags.bind("forge:storage_blocks/dwarven_steel");
 		public static final ITag.INamedTag<Item> STORAGE_BLOCKS_ELVEN_STEEL = ItemTags.bind("forge:storage_blocks/elven_steel");
@@ -162,6 +164,9 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> EDHELVIR_ORE = ItemTags.bind("forge:ores/edhelvir");
 		public static final ITag.INamedTag<Item> GULDURIL_ORE = ItemTags.bind("forge:ores/gulduril");
 
+		public static final ITag.INamedTag<Item> ANVIL_IRON_BLOCK = ItemTags.bind("lotrextended:anvil_iron_block");
+		public static final ITag.INamedTag<Item> ANVIL_IRON_INGOT = ItemTags.bind("lotrextended:anvil_iron_ingot");
+
 		public static final ITag.INamedTag<Item> FURS = ItemTags.bind("forge:furs");
 
 		public static final ITag.INamedTag<Item> CHESTNUT_LOGS = ItemTags.bind("lotrextended:chestnut_logs");
@@ -199,6 +204,7 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> PLACEABLE_BOOKS = ItemTags.bind("lotrextended:placeable_books");
 
 		public static final ITag.INamedTag<Item> FLESH = ItemTags.bind("lotrextended:flesh");
+		public static final ITag.INamedTag<Item> MORGOND_ROCKS = ItemTags.bind("lotrextended:morgond_rocks");
 
 	}
 }

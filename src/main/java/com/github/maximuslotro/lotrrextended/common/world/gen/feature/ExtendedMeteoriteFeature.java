@@ -12,6 +12,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.state.properties.SlabType;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
@@ -127,6 +128,10 @@ public class ExtendedMeteoriteFeature extends Feature<ExtendedMeteoriteFeatureCo
 				pos$Mutable.set(center.getX() + dx, 0, center.getZ() + dz);
 				BlockPos surface = level.getHeightmapPos(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos$Mutable);
 				int y = surface.getY();
+				// Check for water at the surface
+				if (level.getFluidState(surface).is(FluidTags.WATER)) {
+					return false; // immediately fail if water is present
+				}
 				minY = Math.min(minY, y);
 				maxY = Math.max(maxY, y);
 			}

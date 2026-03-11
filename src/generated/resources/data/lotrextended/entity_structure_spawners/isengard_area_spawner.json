@@ -1,0 +1,52 @@
+{
+  "id": "lotrextended:isengard_area_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 15,
+    "lowerYvalue": -8,
+    "horizontal_bounds": 30
+  },
+  "spawn_area": {
+    "topYvalue": 10,
+    "lowerYvalue": -2,
+    "horizontal_bounds": 12
+  },
+  "fixed_spawning": true,
+  "fixed_spawning_chance": 20,
+  "setHomeOnSpawn": true,
+  "homeRadius": 30,
+  "persistenceRequired": true,
+  "spawnCap": 15,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 2,
+      "maxSpawnCount": 6,
+      "entity_types": [
+        {
+          "weight": 5,
+          "entity_type": "lotr:isengard_snaga"
+        },
+        {
+          "weight": 5,
+          "entity_type": "lotr:isengard_snaga_archer"
+        },
+        {
+          "weight": 5,
+          "entity_type": "lotr:uruk"
+        },
+        {
+          "weight": 3,
+          "entity_type": "lotr:uruk_archer"
+        },
+        {
+          "weight": 3,
+          "entity_type": "lotr:isengard_warg"
+        },
+        {
+          "entity_type": "lotr:uruk_berserker"
+        }
+      ]
+    }
+  ]
+}

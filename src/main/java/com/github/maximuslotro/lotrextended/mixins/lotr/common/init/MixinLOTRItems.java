@@ -786,7 +786,9 @@ public class MixinLOTRItems {
 		ExtendedItems.EDHELVIR_CRYSTAL_CHANDELIER = regBlockItemB(ExtendedBlocks.EDHELVIR_CRYSTAL_CHANDELIER, LOTRItemGroups.DECO);
 		ExtendedItems.GLOWSTONE_CRYSTAL_CHANDELIER = regBlockItemB(ExtendedBlocks.GLOWSTONE_CRYSTAL_CHANDELIER, LOTRItemGroups.DECO);
 		ExtendedItems.GULDURIL_CRYSTAL_CHANDELIER = regBlockItemB(ExtendedBlocks.GULDURIL_CRYSTAL_CHANDELIER, LOTRItemGroups.DECO);
-		
+
+		ExtendedItems.MORGOND_DRIPSTONE = regBlockItemB(ExtendedBlocks.MORGOND_DRIPSTONE, LOTRItemGroups.DECO);
+
 		ExtendedItems.MUD_PATH = regBlockItemB(ExtendedBlocks.MUD_PATH, LOTRItemGroups.DECO);
 		ExtendedItems.MUD_PATH_SLAB = regBlockItemB(ExtendedBlocks.MUD_PATH_SLAB, LOTRItemGroups.DECO);
 		ExtendedItems.MUD_PATH_STAIRS = regBlockItemB(ExtendedBlocks.MUD_PATH_STAIRS, LOTRItemGroups.DECO);
@@ -945,6 +947,17 @@ public class MixinLOTRItems {
 		ExtendedItems.CARVED_BLACK_UMBAR_BRICK = regBlockItemB(ExtendedBlocks.CARVED_BLACK_UMBAR_BRICK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CARVED_UMBAR_BRICK = regBlockItemB(ExtendedBlocks.CARVED_UMBAR_BRICK, LOTRItemGroups.BLOCKS);
 
+		ExtendedItems.MORGOND = regBlockItemB(ExtendedBlocks.MORGOND, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MORGOND_SLAB = regBlockItemB(ExtendedBlocks.MORGOND_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MORGOND_STAIRS = regBlockItemB(ExtendedBlocks.MORGOND_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MORGOND_WALL = regBlockItemB(ExtendedBlocks.MORGOND_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MORGOND_PILLAR = regBlockItemB(ExtendedBlocks.MORGOND_PILLAR, LOTRItemGroups.BLOCKS);
+		ExtendedItems.MORGOND_PILLAR_SLAB = regBlockItemB(ExtendedBlocks.MORGOND_PILLAR_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CARVED_MORGOND = regBlockItemB(ExtendedBlocks.CARVED_MORGOND, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CARVED_MORGOND_SLAB = regBlockItemB(ExtendedBlocks.CARVED_MORGOND_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CARVED_MORGOND_STAIRS = regBlockItemB(ExtendedBlocks.CARVED_MORGOND_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CARVED_MORGOND_WALL = regBlockItemB(ExtendedBlocks.CARVED_MORGOND_WALL, LOTRItemGroups.BLOCKS);
+
 		ExtendedItems.ORC_STEEL_DOOR = regTallBlockItemB(ExtendedBlocks.ORC_STEEL_DOOR, LOTRItemGroups.UTIL);
 		ExtendedItems.ORC_STEEL_TRAPDOOR = regBlockItemB(ExtendedBlocks.ORC_STEEL_TRAPDOOR, LOTRItemGroups.UTIL);
 
@@ -1057,6 +1070,12 @@ public class MixinLOTRItems {
 
 		//Generic Orc Equipment
 		ExtendedItems.ORC_BOW = regItemB("orc_bow", () -> new ExtendedBowItem(ExtendedBowMaterial.ORC));
+		ExtendedItems.ORC_BOMB = regExtendedBlockItemD(ExtendedBlocks.ORC_BOMB, block -> new ExtendedOrcBombItem(block, new Properties().tab(LOTRItemGroups.COMBAT)));
+		ExtendedItems.ORC_BOMB_DOUBLE = regExtendedBlockItemD(ExtendedBlocks.ORC_BOMB_DOUBLE, block -> new ExtendedOrcBombItem(block, new Properties().tab(LOTRItemGroups.COMBAT)));
+		ExtendedItems.ORC_BOMB_TRIPLE = regExtendedBlockItemD(ExtendedBlocks.ORC_BOMB_TRIPLE, block -> new ExtendedOrcBombItem(block, new Properties().tab(LOTRItemGroups.COMBAT)));
+		ExtendedItems.ORC_BOMB_FIRE = regExtendedBlockItemD(ExtendedBlocks.ORC_BOMB_FIRE, block -> new ExtendedOrcBombItem(block, new Properties().tab(LOTRItemGroups.COMBAT)));
+		ExtendedItems.ORC_BOMB_FIRE_DOUBLE = regExtendedBlockItemD(ExtendedBlocks.ORC_BOMB_FIRE_DOUBLE, block -> new ExtendedOrcBombItem(block, new Properties().tab(LOTRItemGroups.COMBAT)));
+		ExtendedItems.ORC_BOMB_FIRE_TRIPLE = regExtendedBlockItemD(ExtendedBlocks.ORC_BOMB_FIRE_TRIPLE, block -> new ExtendedOrcBombItem(block, new Properties().tab(LOTRItemGroups.COMBAT)));
 
 		//Morgul Equipment
 		ExtendedItems.MORGUL_HELMET = regItemB("morgul_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.HEAD, "helmet"));

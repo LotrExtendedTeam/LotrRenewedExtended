@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_orc",
+  "pattern": [
+    "LB"
+  ],
+  "key": {
+    "B": {
+      "item": "lotr:orc_bomb_double"
+    },
+    "L": {
+      "item": "minecraft:lava_bucket"
+    }
+  },
+  "result": {
+    "item": "lotr:orc_bomb_double_fire"
+  }
+}

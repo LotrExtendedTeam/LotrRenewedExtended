@@ -110,16 +110,12 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 	}
 
 	/**
-	 * Conversion factor between internal units and blocks/sec is roughly 43.17, in legacy wild boars were known to 9.9 (average), 12.5 (max) speeds
-	 * This equals a average of 0.229, which when calculated only using the default horse speed at 0.5D random gives 0.225.
-	 * So setting the additive value to 0.465 results in a average speed of 0.22875, but then again, using max speed on wiki results in a different value
-	 * As such, all I can conclude is that legacy used a different means of calculating random speeds, and all I can do is adapt the horse random speed generator
-	 * to be as close as a can get.
+	 * Conversion factor between internal units and blocks/sec is roughly 43.17, in legacy wild boars were known to be: 9.9 (average), 12.5 (max) speeds
 	 * @return randomized movement speed
 	 */
 	@Override
 	protected double generateRandomSpeed() {
-		return ((double)0.32F + this.random.nextDouble() * 0.3D + this.random.nextDouble() * 0.3D + this.random.nextDouble() * 0.3D) * 0.25D;
+		return 0.1547D + this.random.nextDouble() * 0.0368D + this.random.nextDouble() * 0.0368D + this.random.nextDouble() * 0.0368D;
 	}
 
 	private void setTypeVariant(ExtendedBoarColors pVariant) {

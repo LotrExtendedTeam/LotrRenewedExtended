@@ -19,6 +19,7 @@ public class ExtendedRecipeSerializers {
 	public static final RegistryObject<SpecialRecipeSerializer<ExtendedCoinSmithingHundredRecipe>> EXTENDED_SMITHING_COIN_HUNDRED = RECIPE_SERIALIZERS.register("crafting_special_smithing_coin_hundred", () -> new SpecialRecipeSerializer<>(ExtendedCoinSmithingHundredRecipe::new));
 	public static final RegistryObject<ExtendedTableDyeableRecipe.Serializer> EXTENDED_TABLE_ARMOR_DYE = RECIPE_SERIALIZERS.register("crafting_special_tablearmordye", ExtendedTableDyeableRecipe.Serializer::new);
 	public static final RegistryObject<SpecialRecipeSerializer<ExtendedTippedArrowRecipe>> EXTENDED_TIPPED_ARROW = RECIPE_SERIALIZERS.register("crafting_special_tippedarrow", ()-> new SpecialRecipeSerializer<>(ExtendedTippedArrowRecipe::new));
+	public static final RegistryObject<SpecialRecipeSerializer<ExtendedBannerProtectionRemovalRecipe>> EXTENDED_BANNER_PROT_REMOVAL = RECIPE_SERIALIZERS.register("crafting_special_banner_prot_removal", ()-> new SpecialRecipeSerializer<>(ExtendedBannerProtectionRemovalRecipe::new));
 
 	public static void register(IEventBus modBus) {
 		RECIPE_SERIALIZERS.register(modBus);

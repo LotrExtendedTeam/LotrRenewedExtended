@@ -22,6 +22,6 @@ public class MixinDedicatedServer {
 
 	@Inject(method = "isUnderSpawnProtection(Lnet/minecraft/world/server/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/player/PlayerEntity;)Z", at = @At(value = "HEAD"), cancellable = true)
 	private void isUnderSpawnProtection$Extended(ServerWorld pLevel, BlockPos pPos, PlayerEntity pPlayer, CallbackInfoReturnable<Boolean> cir) {
-		cir.setReturnValue(ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(pLevel, pPos, pPlayer, this.getPlayerList(), true, false));
+		cir.setReturnValue(ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(pLevel, pPos, pPlayer, this.getPlayerList(), true, false, true));
 	}
 }

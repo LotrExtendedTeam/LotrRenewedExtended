@@ -1,0 +1,323 @@
+{
+  "id": "lotrextended:isengard_uruk_supplier",
+  "tradingAlignmentRequired": 100,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:orc_steel_ingot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:coal",
+        "averageCost": 1,
+        "count": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:elf_bone",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:dwarf_bone",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:hobbit_bone",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:bone",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:pipeweed",
+        "averageCost": 1,
+        "count": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:man_flesh",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:lava_bucket",
+        "averageCost": 16
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:stick",
+        "averageCost": 1,
+        "count": 8
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:string",
+        "averageCost": 1,
+        "count": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:wheat",
+        "averageCost": 1,
+        "count": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:feather",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:fur",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:black_fur",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:gray_fur",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:silver_fur",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:white_fur",
+        "averageCost": 25
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_crafting_table",
+        "averageCost": 100
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:bone_sword",
+        "averageCost": 5,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_cleaver",
+        "averageCost": 25,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:bone_spear",
+        "averageCost": 4,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_spear",
+        "averageCost": 23,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:bone_dagger",
+        "averageCost": 3,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_dagger",
+        "averageCost": 14,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:orc_draught",
+        "averageCost": 9,
+        "nbt": "{vessel:{potency:\"light\"}}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:orc_bomb",
+        "averageCost": 30
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_pickaxe",
+        "averageCost": 16,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_axe",
+        "averageCost": 16,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_shovel",
+        "averageCost": 10,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:maggoty_bread",
+        "averageCost": 4
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:warg_fur_boots",
+        "averageCost": 12,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:warg_fur_leggings",
+        "averageCost": 16,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:warg_fur_chestplate",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:warg_fur_helmet",
+        "averageCost": 15,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:black_warg_fur_boots",
+        "averageCost": 12,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:black_warg_fur_leggings",
+        "averageCost": 16,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:black_warg_fur_chestplate",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:black_warg_fur_helmet",
+        "averageCost": 15,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:isengard_banner_pattern",
+        "averageCost": 25
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:isengard_banner",
+        "averageCost": 50
+      }
+    }
+  ]
+}

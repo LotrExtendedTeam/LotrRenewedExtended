@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "type=stalactite": {
+      "model": "lotrextended:block/morgond_dripstone_stalactite"
+    },
+    "type=stalagmite": {
+      "model": "lotrextended:block/morgond_dripstone_stalagmite"
+    },
+    "type=stalactite_double_base": {
+      "model": "lotrextended:block/morgond_dripstone_stalactite_double_base"
+    },
+    "type=stalactite_double_point": {
+      "model": "lotrextended:block/morgond_dripstone_stalactite_double_point"
+    },
+    "type=stalagmite_double_base": {
+      "model": "lotrextended:block/morgond_dripstone_stalagmite_double_base"
+    },
+    "type=stalagmite_double_point": {
+      "model": "lotrextended:block/morgond_dripstone_stalagmite_double_point"
+    }
+  }
+}

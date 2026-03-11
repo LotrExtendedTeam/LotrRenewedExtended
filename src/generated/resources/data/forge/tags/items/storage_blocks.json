@@ -17,6 +17,7 @@
     "#forge:storage_blocks/lotr_ruby",
     "#forge:storage_blocks/lotr_sapphire",
     "#forge:storage_blocks/lotr_topaz",
-    "#forge:storage_blocks/morgul_steel"
+    "#forge:storage_blocks/morgul_steel",
+    "#forge:storage_blocks/orc_steel"
   ]
 }

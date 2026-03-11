@@ -36,6 +36,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBl
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedOrcBombBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMattedFurBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
@@ -62,6 +63,8 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedRopeType;
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
 import lotr.common.block.ChandelierBlock;
+import lotr.common.block.DripstoneBlock;
+import lotr.common.block.DripstoneBlock.Type;
 import lotr.common.block.ExtendedAxialSlabPathBlock;
 import lotr.common.block.ExtendedDwarvenGateBlock;
 import lotr.common.block.ExtendedHearthBlock;
@@ -276,6 +279,9 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				if(block.getValue().get() instanceof ExtendedReedBasketBlock) {
 					genReedBarrelBlockItem((ExtendedReedBasketBlock) block.getValue().get(), block.getKey());
 					continue;
+				}if(block.getValue().get() instanceof ExtendedStoneGrinderBlock) {
+					genStoneGrinderBlockItem((ExtendedStoneGrinderBlock) block.getValue().get());
+					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedBarrelBlock) {
 					genBarrelBlockItem((ExtendedBarrelBlock) block.getValue().get(), block.getKey());
@@ -287,10 +293,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedRopeBlock) {
 					genRopeBlock((ExtendedRopeBlock) block.getValue().get());
-					continue;
-				}
-				if(block.getValue().get() instanceof ExtendedStoneGrinderBlock) {
-					genMillstoneBlock((ExtendedStoneGrinderBlock) block.getValue().get());
 					continue;
 				}
 				if(block.getValue().get() instanceof BranchBlock) {
@@ -321,6 +323,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedGroundGrassBlock) {
 					genGrassBlockItem((ExtendedGroundGrassBlock) block.getValue().get(), "block/"+block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedOrcBombBlock) {
+					genOrcBombBlockItem((ExtendedOrcBombBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedChimneyPotBlock) {
@@ -381,6 +387,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedMossCarpetBlock) {
 					genMossCarpetBlockItem((ExtendedMossCarpetBlock)block.getValue().get());
+					continue;
+				}
+				if(block.getValue().get() instanceof DripstoneBlock) {
+					if(block.getKey().contains("morgond")) {
+						genDripstoneBlockItem((DripstoneBlock)block.getValue().get(), lotrExtendedLoc("block/morgond"));
+					}
 					continue;
 				}
 				if(block.getValue().get() instanceof LOTRTrapdoorBlock) {
@@ -476,7 +488,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						numberTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 5);
 						continue;
 					}
-					if(block.getKey().equals("carved_red_angmar_brick")) {
+					if(block.getKey().equals("carved_red_angmar_brick") || block.getKey().equals("carved_morgond")) {
 						genCubeColumnBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrExtendedLoc("block/"+block.getKey()+"_top"));
 						continue;
 					}
@@ -536,6 +548,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedElvenLanternBlock) {
 					genElvenHangingLanternBlockItem((ExtendedElvenLanternBlock) block.getValue().get(), "block/"+block.getKey());
+					continue;
+				}
+				if((block.getValue().get() instanceof ExtendedSpawnerBlock) || (block.getValue().get() instanceof ExtendedGroupSpawnerBlock)) {
+					registeredBlocks.add(block.getValue().get());
+					ModelFile cubeModel = models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath(), lotrExtendedLoc("block/spawner_block"));
+					simpleBlock(block.getValue().get(), cubeModel);
 					continue;
 				}
 				if((block.getValue().get() instanceof ExtendedSpawnerBlock) || (block.getValue().get() instanceof ExtendedGroupSpawnerBlock)) {
@@ -1288,27 +1306,6 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
         }, ExtendedRopeBlock.WATERLOGGED);
 	}
 
-	private void genMillstoneBlock(ExtendedStoneGrinderBlock stone_grinder) {
-		registeredBlocks.add(stone_grinder);
-		ModelFile model = models().withExistingParent("lotrextended:"+stone_grinder.getRegistryName().getPath(), lotrExtendedLoc("block/template_millstone"))
-                .texture("toptexture", lotrExtendedLoc("block/"+stone_grinder.getRegistryName().getPath()+"_top"))
-                .texture("basetexture", lotrExtendedLoc("block/"+stone_grinder.getRegistryName().getPath()+"_base"))
-                .texture("particle", lotrExtendedLoc("block/"+stone_grinder.getRegistryName().getPath()+"_base"));
-		ModelFile modelPowered = models().withExistingParent("lotrextended:"+stone_grinder.getRegistryName().getPath()+"_powered", lotrExtendedLoc("block/template_millstone"))
-                .texture("toptexture", lotrExtendedLoc("block/"+stone_grinder.getRegistryName().getPath()+"_top_animated"))
-                .texture("basetexture", lotrExtendedLoc("block/"+stone_grinder.getRegistryName().getPath()+"_base"))
-                .texture("particle", lotrExtendedLoc("block/"+stone_grinder.getRegistryName().getPath()+"_base"));
-
-		getVariantBuilder(stone_grinder)
-		.forAllStatesExcept(state -> {
-			boolean powered = state.getValue(ExtendedStoneGrinderBlock.POWERED);
-            return ConfiguredModel.builder()
-                    .modelFile(powered ? modelPowered : model)
-                    .build();
-        }, ExtendedStoneGrinderBlock.FACING);
-		itemModels().getBuilder("lotr:" + stone_grinder.getRegistryName().getPath()).parent(model);
-	}
-
 	private void genFarmlandBlockItem(ExtendedGroundFarmlandBlock extendedGroundFarmlandBlock, String name) {
 		registeredBlocks.add(extendedGroundFarmlandBlock);
 		ResourceLocation farmland = lotrExtendedLoc(name);
@@ -1585,6 +1582,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+carpet.getRegistryName().getPath()).parent(modelFileDisplay);
 	}
 
+	private void genStoneGrinderBlockItem(ExtendedStoneGrinderBlock stoneGrinder) {
+		registeredBlocks.add(stoneGrinder);
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+stoneGrinder.getRegistryName().getPath(), lotrExtendedLoc("block/template_stone_grinder"));
+		simpleBlock(stoneGrinder, modelFile);
+		itemModels().getBuilder("lotr:"+stoneGrinder.getRegistryName().getPath()).parent(modelFile);
+	}
+
 	private void genHangingBlock(ExtendedHangingBlock bed, ResourceLocation texture) {
 		registeredBlocks.add(bed);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+bed.getRegistryName().getPath(), lotrExtendedLoc("block/template_hanging_block_crossed"))
@@ -1620,6 +1624,18 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 			return variant3;
 		});
+	}
+
+	private void genOrcBombBlockItem(ExtendedOrcBombBlock orcBomb, ResourceLocation texture) {
+		registeredBlocks.add(orcBomb);
+		ModelFile modelFile = models().withExistingParent("lotrextended:"+orcBomb.getRegistryName().getPath(), lotrExtendedLoc("block/template_orc_bomb"))
+				.texture("particle", texture).texture("bomb", texture);
+		getVariantBuilder(orcBomb).forAllStatesExcept(state -> {
+			return ConfiguredModel.builder()
+                    .modelFile(modelFile)
+                    .build();
+		},ExtendedOrcBombBlock.UNSTABLE);
+		itemModels().getBuilder("lotr:"+orcBomb.getRegistryName().getPath()).parent(modelFile);
 	}
 
 	private void genBannerBlock(ExtendedMEBannerBlock extendedMEBannerBlock, ResourceLocation texture) {
@@ -2102,6 +2118,33 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                     .build();
 		});
 		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(modelFile);
+	}
+
+	private void genDripstoneBlockItem(DripstoneBlock block, ResourceLocation resourceLocation) {
+		registeredBlocks.add(block);
+		ModelFile stalactite = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_stalactite", "lotr:block/stalactite_template")
+			.texture("top", resourceLocation).texture("bottom", resourceLocation).texture("side", resourceLocation);
+		ModelFile stalactite_double_base = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_stalactite_double_base", "lotr:block/stalactite_double_base_template")
+			.texture("top", resourceLocation).texture("bottom", resourceLocation).texture("side", resourceLocation);
+		ModelFile stalactite_double_point = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_stalactite_double_point", "lotr:block/stalactite_double_point_template")
+			.texture("top", resourceLocation).texture("bottom", resourceLocation).texture("side", resourceLocation);
+		ModelFile stalagmite = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_stalagmite", "lotr:block/stalagmite_template")
+			.texture("top", resourceLocation).texture("bottom", resourceLocation).texture("side", resourceLocation);
+		ModelFile stalagmite_double_base = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_stalagmite_double_base", "lotr:block/stalagmite_double_base_template")
+			.texture("top", resourceLocation).texture("bottom", resourceLocation).texture("side", resourceLocation);
+		ModelFile stalagmite_double_point = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath()+"_stalagmite_double_point", "lotr:block/stalagmite_double_point_template")
+			.texture("top", resourceLocation).texture("bottom", resourceLocation).texture("side", resourceLocation);
+		getVariantBuilder(block).forAllStatesExcept(state -> {
+			Type axis = state.getValue(DripstoneBlock.DRIPSTONE_TYPE);
+			return ConfiguredModel.builder()
+                    .modelFile(axis==Type.STALACTITE ? stalactite :
+                    	axis==Type.STALACTITE_DOUBLE_BASE ? stalactite_double_base :
+                    		axis==Type.STALACTITE_DOUBLE_POINT ? stalactite_double_point :
+                    			axis==Type.STALAGMITE ? stalagmite :
+                    				axis==Type.STALAGMITE_DOUBLE_BASE ? stalagmite_double_base : stalagmite_double_point)
+                    .build();
+		}, DripstoneBlock.WATERLOGGED);
+		itemModels().getBuilder("lotr:"+block.getRegistryName().getPath()).parent(stalagmite);
 	}
 
 	private void genSkullGobletBlock(VesselDrinkBlock block) {

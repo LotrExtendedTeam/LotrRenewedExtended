@@ -67,7 +67,7 @@ public class AdvancementsProviderLindon extends ExtendedBaseAdvancementType{
 
 		Advancement elder_craftsmanship = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "elder_craftsmanship", FrameType.TASK)
 				.setTitle("Elder Craftsmanship").setDescription("Buy an item from a Lindon Smith."),
-				addTradeEntityTriggers(make(), ExtendedEntities.LINDON_SMITH.get()).parent(lindon));
+				addTradeEntityTrigger(make(), ExtendedEntities.LINDON_SMITH.get(), true).parent(lindon));
 
 		Advancement the_last_alliance = build(true, data(Items.IRON_SWORD, "the_last_alliance", FrameType.TASK)
 				.setTitle("The Last Alliance").setDescription("Hire a unit from a Lindon Lord."),

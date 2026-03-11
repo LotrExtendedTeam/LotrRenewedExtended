@@ -92,7 +92,7 @@ public class AdvancementsProviderBree extends ExtendedBaseAdvancementType{
 
 		Advancement one_for_bill_ferny = build(true, data(Items.APPLE, "one_for_bill_ferny", FrameType.TASK)
 			.setTitle("One for Bill Ferny").setDescription("Buy an apple from a Bree-land Farmer."),
-			addTradeTrigger(make(), ExtendedEntities.BREE_FARMER.get(), true, Items.APPLE, LOTRItems.GREEN_APPLE.get()).parent(insider_bargings));
+			addTradeEntityTrigger(make(), ExtendedEntities.BREE_FARMER.get(), true, Items.APPLE, LOTRItems.GREEN_APPLE.get()).parent(insider_bargings));
 
 		Advancement barlimans_best = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "barlimans_best", FrameType.TASK)
 			.setTitle("Barliman's Best").setDescription("Trade with a Bree-land Innkeeper."),
