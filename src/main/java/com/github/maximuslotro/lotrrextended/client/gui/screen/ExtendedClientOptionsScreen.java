@@ -1,10 +1,10 @@
-package lotr.client.gui.menu;
+package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.github.maximuslotro.lotrextended.mixinhelpers.MixinConstants;
-import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedServerOptionsScreen;
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedSlider;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedSlider.IGetValue;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedSlider.ISetValue;
@@ -15,7 +15,9 @@ import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import lotr.client.gui.MiddleEarthMenuScreen;
+import lotr.client.gui.MiddleEarthMasterMenuScreen;
+import lotr.client.gui.menu.ExtendedAbstractOptionsScreen;
+import lotr.client.gui.widget.button.LeftRightButton;
 import lotr.common.config.LOTRConfig;
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
@@ -29,13 +31,13 @@ import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.ForgeConfigSpec;
 
-public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
-	public int option = 0;
+public class ExtendedClientOptionsScreen extends ExtendedBasicAbstractScreen {
+	public static int option = 0;
 	public List<SettingsCatagory> catagories = new ArrayList<>();
 	private int unlockClientDevCount=0;
 
-	public ExtendedOptionsScreen() {
-		super(new StringTextComponent("Client Options"));
+	public ExtendedClientOptionsScreen() {
+		super(new StringTextComponent("Client Options"), 200, 256);
 	}
 
 	@Override
@@ -47,10 +49,15 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 	@Override
 	public void init() {
 		super.init();
-		this.addButton(new ExtendedColorChangingButton(Math.max(0, this.guiLeft - 140), this.guiTop + 20 + (this.ySize + 20) / 4, 100, 20, 
+		ExtendedAbstractOptionsScreen.lastSettingScreen=this.getClass();
+		this.addButton(new LeftRightButton(Math.max(0, this.leftPos - 140), this.topPos + (this.imageHeight + 20) / 4, 100, 20, 
+				true, new TranslationTextComponent("gui.lotr.menu.return"), (b) -> {
+					this.minecraft.setScreen(new MiddleEarthMasterMenuScreen());
+				}));
+		this.addButton(new ExtendedColorChangingButton(Math.max(0, this.leftPos - 140), this.topPos + 20 + (this.imageHeight + 20) / 4, 100, 20, 
 				new TranslationTextComponent("gui.lotrextended.settings.button"), 
 				button -> {
-					this.minecraft.setScreen(new ExtendedOptionsScreen());
+					this.minecraft.setScreen(new ExtendedClientOptionsScreen());
 				}, 0.13f, 0.92f, 0.71f)  {
 			@Override
 			public boolean setColor(){
@@ -58,7 +65,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 			}
 		});
 		if(this.minecraft.hasSingleplayerServer() || this.minecraft.player.hasPermissions(2)) {
-			this.addButton(new ExtendedColorChangingButton(Math.max(0, this.guiLeft - 140), this.guiTop + 40 + (this.ySize + 20) / 4, 100, 20, 
+			this.addButton(new ExtendedColorChangingButton(Math.max(0, this.leftPos - 140), this.topPos + 40 + (this.imageHeight + 20) / 4, 100, 20, 
 					new TranslationTextComponent("gui.lotrextended.serversettings.button"), 
 					button -> {
 						this.minecraft.setScreen(new ExtendedServerOptionsScreen());
@@ -69,7 +76,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 				}
 			});
 		}else {
-			this.addButton(new ExtendedColorChangingButton(Math.max(0, this.guiLeft - 140), this.guiTop + 40 + (this.ySize + 20) / 4, 100, 20, 
+			this.addButton(new ExtendedColorChangingButton(Math.max(0, this.leftPos - 140), this.topPos + 40 + (this.imageHeight + 20) / 4, 100, 20, 
 					new TranslationTextComponent("gui.lotrextended.serversettings.button"), 
 					button -> {}, 0.88f, 0.33f, 0.33f) {
 				@Override
@@ -78,13 +85,13 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 				}
 				@Override
 				public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
-					ExtendedOptionsScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.serversettings.no_perm"), 200), pMouseX, pMouseY);
+					ExtendedClientOptionsScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.serversettings.no_perm"), 200), pMouseX, pMouseY);
 				}
 			});
 		}
-		int x=guiLeft+90;
-		int xTabs=guiLeft-35;
-		int y=guiTop+40;
+		int x=leftPos+90;
+		int xTabs=leftPos-35;
+		int y=topPos+40;
 
 		for(SettingsCatagory catagories : catagories) {
 			catagories.clean();
@@ -136,8 +143,8 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		addButton(environment.addButton("gui.lotrextended.settings.northernlights.setting", button -> toggleLotrConfigValue(LOTRConfig.CLIENT.northernLights), (button, pd) -> LOTRConfig.CLIENT.northernLights.get(), 
 				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
-		addButton(environment.addButton("gui.lotrextended.settings.pipeweedparticles.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.enablePlantParticles), (button, pd) -> ExtendedClientConfig.enablePlantParticles.get(), 
-				"gui.lotrextended.base.shown", "gui.lotrextended.base.hidden"));
+		addButton(environment.addButtonNew("gui.lotrextended.settings.plantparticles.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.enablePlantParticles), (button, pd) -> ExtendedClientConfig.enablePlantParticles.get(), 
+				"gui.lotrextended.base.shown", "gui.lotrextended.base.hidden", "enablePlantParticles"));
 		addButton(environment.addButton("gui.lotrextended.settings.newraingroundparticles.setting", button -> toggleLotrConfigValue(LOTRConfig.CLIENT.newRainGroundParticles), (button, pd) -> LOTRConfig.CLIENT.newRainGroundParticles.get(), 
 				"gui.lotrextended.base.shown", "gui.lotrextended.base.hidden"));
 		catagories.add(environment);
@@ -158,7 +165,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		addButton(gui.addButton("gui.lotrextended.settings.worldhelp.setting", button -> toggleLotrConfigValue(LOTRConfig.CLIENT.showWorldTypeHelp), (button, pd) -> LOTRConfig.CLIENT.showWorldTypeHelp.get(), 
 				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		addButton(gui.addButton("gui.lotrextended.settings.show_hired_unit_hp_numbers.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.enableLargeHiredUnitHealthbars), (button, pd) -> ExtendedClientConfig.enableLargeHiredUnitHealthbars.get(),
-				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableShowHiredUnitHPNumbers"));
 		catagories.add(gui);
 
 
@@ -216,7 +223,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 					LOTRConfig.CLIENT.dolAmrothChestplateWings.setAndSave((int)sliderValue);
 				}));
 		addButton(model.addButton("gui.lotrextended.settings.earlyduckmodel.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.enableQuerkyDuckMode), (button, pd) -> ExtendedClientConfig.enableQuerkyDuckMode.get(), 
-				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableQuerkyDuckMode"));
 		catagories.add(model);
 
 
@@ -233,9 +240,9 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		SettingsCatagory misc = new SettingsCatagory(this, 7, x, y, xTabs);
 		addButton(misc.addCatagoryButton("gui.lotrextended.settings.miscellaneoussettings"));
 		addButton(misc.addButton("gui.lotrextended.settings.lotrextendedversioncheck.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.enableClientVersionCheck), (button, pd) -> ExtendedClientConfig.enableClientVersionCheck.get(), 
-				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableClientVersionCheck"));
 		addButton(misc.addButton("gui.lotrextended.settings.jeilotrversioncheck.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.disableJEILOTRversionCheck), (button, pd) -> ExtendedClientConfig.disableJEILOTRversionCheck.get(), 
-				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "disableJEILOTRversionCheck"));
 		catagories.add(misc);
 
 		SettingsCatagory dev = new SettingsCatagory(this, 8, x, y, xTabs) {
@@ -258,9 +265,9 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 			}else {
 				return ExtendedClientConfig.enableClientDevMode.get();
 			}
-		}, "gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
+		}, "gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableDevModeClient"));
 		addButton(dev.addButton("gui.lotrextended.settings.fsbr.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.forceStructureBlockAirViewing), (button, pd) -> ExtendedClientConfig.forceStructureBlockAirViewing.get(), 
-				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "forceStructureBlockAirViewing"));
 
 		addButton(dev.addSlider("gui.lotrextended.settings.structureblockoutlineviewdistance.setting", 32.0D, MixinConstants.StructureLimit, 1F, 
 				() -> {
@@ -283,7 +290,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		renderBackground(matStack);
 		// Render titles
 		TextComponent title = new TranslationTextComponent("gui.lotrextended.settings.title");
-		this.font.draw(matStack, title, guiLeft+(100-(this.font.width(title)/2)), (guiTop+10), 16777215);
+		this.font.draw(matStack, title, leftPos+(100-(this.font.width(title)/2)), (topPos+10), 16777215);
 		for(SettingsCatagory catagories : catagories) {
 			catagories.checkVisability();
 			catagories.handleUpdates();
@@ -353,7 +360,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 	}
 
 	public static class SettingsCatagory {
-		private ExtendedOptionsScreen screen;
+		private ExtendedClientOptionsScreen screen;
 		private final int index;
 		private final int placementXOffset;
 		private final int placementYOffset;
@@ -363,7 +370,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		private final List<ExtendedSlider> sliders = new ArrayList<>();
 		private Widget catagoryButton;
 
-		public SettingsCatagory(ExtendedOptionsScreen pScreen, int pIndex, int xStart, int yStart, int pCatagoryXOffset) {
+		public SettingsCatagory(ExtendedClientOptionsScreen pScreen, int pIndex, int xStart, int yStart, int pCatagoryXOffset) {
 			this.screen = pScreen;
 			this.index = pIndex;
 			this.placementXOffset = xStart;
@@ -377,7 +384,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 			}
 			catagoryButton = new ExtendedColorChangingButton(catagoryXOffset, placementYOffset + 24 * index, 120, 20, new TranslationTextComponent(pMessage), 
 					button -> {
-						screen.option=index;
+						ExtendedClientOptionsScreen.option=index;
 						if(screen.unlockClientDevCount==0&&index==0) {
 							screen.unlockClientDevCount=1;
 						}else if(screen.unlockClientDevCount==1&&index==2) {
@@ -398,11 +405,37 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 					}, 0.13f, 0.92f, 0.71f) {
 				@Override
 				public boolean setColor(){
-					return screen.option==index;
+					return ExtendedClientOptionsScreen.option==index;
 				}
 			};
 			return catagoryButton;
 		}
+		public Widget addButtonNew(String stringMessageKey, IPressable pOnPress, IOnTick<LOTRPlayerData> pOnTick, String enabled, String disabled, String configKey) {
+			ExtendedTogglableTitleButton<LOTRPlayerData> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, pOnPress, 
+					(wdget, matrixStack, pMouseX, pMouseY) -> {
+						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX, pMouseY);
+					}, pOnTick, enabled, disabled);
+			bottons.add(button);
+			offsetAmount+=1;
+			return button;
+		}
+		public Widget addButtonNew(String stringMessageKey, IPressable pOnPress, IOnTick<LOTRPlayerData> pOnTick, String enabled, String disabled) {
+			ExtendedTogglableTitleButton<LOTRPlayerData> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, pOnPress, pOnTick, enabled, disabled);
+			bottons.add(button);
+			offsetAmount+=1;
+			return button;
+		}
+		@Deprecated
+		public Widget addButton(String pMessage, IPressable pOnPress, IOnTick<LOTRPlayerData> pOnTick, String enabled, String disabled, String configKey) {
+			ExtendedTogglableTitleButton<LOTRPlayerData> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(pMessage), pOnPress, 
+					(wdget, matrixStack, pMouseX, pMouseY) -> {
+						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX, pMouseY);
+					}, pOnTick, enabled, disabled);
+			bottons.add(button);
+			offsetAmount+=1;
+			return button;
+		}
+		@Deprecated
 		public Widget addButton(String pMessage, IPressable pOnPress, IOnTick<LOTRPlayerData> pOnTick, String enabled, String disabled) {
 			ExtendedTogglableTitleButton<LOTRPlayerData> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(pMessage), pOnPress, pOnTick, enabled, disabled);
 			bottons.add(button);
@@ -424,7 +457,7 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 		}
 
 		public void handleUpdates() {
-			if(screen.option==index) {
+			if(ExtendedClientOptionsScreen.option==index) {
 				LOTRPlayerData pd = getPlayerData();
 				for(ExtendedTogglableTitleButton<LOTRPlayerData> widget : bottons) {
 					widget.onTick(pd);
@@ -437,17 +470,17 @@ public class ExtendedOptionsScreen extends MiddleEarthMenuScreen {
 					catagoryButton.visible = true;
 				}else {
 					// Enable setting one up on disable
-					if(catagoryButton.visible && screen.option == index) {
-						screen.option = index-1;
+					if(catagoryButton.visible && ExtendedClientOptionsScreen.option == index) {
+						ExtendedClientOptionsScreen.option = index-1;
 					}
 					catagoryButton.visible = false;
 				}
 			}
 			for(Widget widget : bottons) {
-				widget.visible = screen.option==index; // Hide/Show widget if this category is selected
+				widget.visible = ExtendedClientOptionsScreen.option==index; // Hide/Show widget if this category is selected
 			}
 			for(Widget widget : sliders) {
-				widget.visible = screen.option==index; // Hide/Show widget if this category is selected
+				widget.visible = ExtendedClientOptionsScreen.option==index; // Hide/Show widget if this category is selected
 			}
 		}
 

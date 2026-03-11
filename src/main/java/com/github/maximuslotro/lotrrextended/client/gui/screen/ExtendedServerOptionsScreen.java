@@ -14,7 +14,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.gui.MiddleEarthMasterMenuScreen;
-import lotr.client.gui.menu.ExtendedOptionsScreen;
+import lotr.client.gui.menu.ExtendedAbstractOptionsScreen;
 import lotr.client.gui.widget.button.LeftRightButton;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
@@ -24,7 +24,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
-	public int option = 0;
+	public static int option = 0;
 	public List<SettingsCatagory> catagories = new ArrayList<>();
 
 	public ExtendedServerOptionsScreen() {
@@ -39,6 +39,7 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 	@Override
 	public void init() {
 		super.init();
+		ExtendedAbstractOptionsScreen.lastSettingScreen=this.getClass();
 		this.addButton(new LeftRightButton(Math.max(0, this.leftPos - 140), this.topPos + (this.imageHeight + 20) / 4, 100, 20, 
 				true, new TranslationTextComponent("gui.lotr.menu.return"), (b) -> {
 					this.minecraft.setScreen(new MiddleEarthMasterMenuScreen());
@@ -46,7 +47,7 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 		this.addButton(new Button(Math.max(0, this.leftPos - 140), this.topPos + 20 + (this.imageHeight + 20) / 4, 100, 20, 
 				new TranslationTextComponent("gui.lotrextended.settings.button"), 
 				button -> {
-					this.minecraft.setScreen(new ExtendedOptionsScreen());
+					this.minecraft.setScreen(new ExtendedClientOptionsScreen());
 				}) {
 		});
 		this.addButton(new ExtendedColorChangingButton(Math.max(0, this.leftPos - 140), this.topPos + 40 + (this.imageHeight + 20) / 4, 100, 20, 
@@ -96,15 +97,44 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableHungerDecrease"));
 		catagories.add(gameplay);
 
-
 		SettingsCatagory entity = new SettingsCatagory(this, 1, x, y, xTabs);
 		addButton(entity.addCatagoryButton("gui.lotrextended.serversettings.category.entity"));
+		addButton(entity.addButton("gui.lotrextended.serversettings.banditspawning.setting", 
+				ExtendedServerConfig.enableBanditEncounters, ExtendedSettingToggles.BANDIT_ENCOUNTERS, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableBanditEncounters"));
+		addButton(entity.addButton("gui.lotrextended.serversettings.tolkienspawning.setting", 
+				ExtendedServerConfig.enableTolkienSpawning, ExtendedSettingToggles.TOLKIEN_ENCOUNTER, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableTolkienSpawning"));
+		addButton(entity.addButton("gui.lotrextended.serversettings.wanderingtraderspawning.setting", 
+				ExtendedServerConfig.enableWanderingTraderSpawns, ExtendedSettingToggles.WANDERING_TRADERS, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableWanderingTraderSpawns"));
 		addButton(entity.addSliderD("gui.lotrextended.serversettings.globalspawndamping.setting", "npcGlobalSpawnDampingCoefficient", 0D, 1D, 0.05F, 
 				ExtendedServerConfig.npcGlobalSpawnDampingCoefficient, ExtendedSettingToggles.GOBAL_NPC_SPAWN_DAMPING));
+		addButton(entity.addSliderI("gui.lotrextended.serversettings.barrowwightspawnchance.setting", "barrowWightChestFirstSpawnChance", 0, 100, 1, 
+				ExtendedServerConfig.barrowWightChestFirstSpawnChance, ExtendedSettingToggles.BARROW_WIGHT_SPAWN_CHANCE));
+		addButton(entity.addButton("gui.lotrextended.serversettings.passivecaptains.setting", 
+				ExtendedServerConfig.enableLegacyCaptainPassiveBehavior, ExtendedSettingToggles.AGGRESSIVE_CAPTAINS, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableLegacyCaptainPassiveBehavior"));
+		addButton(entity.addButton("gui.lotrextended.serversettings.passivetraders.setting", 
+				ExtendedServerConfig.enableLegacyTraderPassiveBehavior, ExtendedSettingToggles.AGGRESSIVE_TRADERS, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableLegacyTraderPassiveBehavior"));
 		catagories.add(entity);
 		
 		SettingsCatagory block = new SettingsCatagory(this, 2, x, y, xTabs);
 		addButton(block.addCatagoryButton("gui.lotrextended.serversettings.category.block"));
+		addButton(block.addButton("gui.lotrextended.serversettings.barsconnecttobranches.setting", 
+				ExtendedServerConfig.barsConnectToBranches, ExtendedSettingToggles.BARS_CONNECT_TO_BRANCHES, 
+				"gui.lotrextended.base.true", "gui.lotrextended.base.false", "barsConnectToBranches"));
+		addButton(block.addButton("gui.lotrextended.serversettings.barsconnecttoslabs.setting", 
+				ExtendedServerConfig.barsConnectToSlabSides, ExtendedSettingToggles.BARS_CONNECT_TO_SLAB_SIDES, 
+				"gui.lotrextended.base.true", "gui.lotrextended.base.false", "barsConnectToSlabSides"));
+		addButton(block.addButton("gui.lotrextended.serversettings.metaldoorsrequirepower.setting", 
+				ExtendedServerConfig.makeMetalDoorsRequirePower, ExtendedSettingToggles.METAL_DOORS_REQUIRE_POWER, 
+				"gui.lotrextended.base.true", "gui.lotrextended.base.false", "makeMetalDoorsRequirePower"));
+		addButton(block.addSliderD("gui.lotrextended.serversettings.dripstonehurtheight.setting", "dripstoneMinimumDamageHeight", 0D, 5D, 0.1F, 
+				ExtendedServerConfig.dripstoneMinimumDamageHeight, ExtendedSettingToggles.DRIPSTONE_HURT_HEIGHT));
+		addButton(block.addSliderI("gui.lotrextended.serversettings.bellchainlength.setting", "bellRingChainMaxLength", 0, 50, 1, 
+				ExtendedServerConfig.bellRingChainMaxLength, ExtendedSettingToggles.BELL_RING_CHAIN_LENGTH));
 		catagories.add(block);
 
 		SettingsCatagory chair = new SettingsCatagory(this, 3, x, y, xTabs);
@@ -119,6 +149,7 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 				ExtendedServerConfig.enableChairProtectionOverride, ExtendedSettingToggles.CHAIR_PROTECTION_OVERRIDE, 
 				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableChairProtectionOverride"));
 		catagories.add(chair);
+
 		SettingsCatagory modifiers = new SettingsCatagory(this, 4, x, y, xTabs);
 		addButton(modifiers.addCatagoryButton("gui.lotrextended.serversettings.category.modifiers"));
 		addButton(modifiers.addButton("gui.lotrextended.serversettings.extendedmodifiers.setting", 
@@ -134,6 +165,13 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 
 		SettingsCatagory protection = new SettingsCatagory(this, 5, x, y, xTabs);
 		addButton(protection.addCatagoryButton("gui.lotrextended.serversettings.category.protection"));
+		addButton(protection.addButton("gui.lotrextended.serversettings.extendedspawnprotection.setting", 
+				ExtendedServerConfig.enableExtendedSpawnProtection, ExtendedSettingToggles.EXTENDED_SPAWN_PROTECTION, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableExtendedSpawnProtection"));
+		addButton(protection.addSliderI("gui.lotrextended.serversettings.overworldspawnradius.setting", "overworldSpawnProtectionRadius", 0, 500, 1, 
+				ExtendedServerConfig.overworldSpawnProtectionRadius, ExtendedSettingToggles.OVERWORLD_SPAWN_RADIUS));
+		addButton(protection.addSliderI("gui.lotrextended.serversettings.middleearthspawnradius.setting", "middleEarthSpawnProtectionRadius", 0, 500, 1, 
+				ExtendedServerConfig.middleEarthSpawnProtectionRadius, ExtendedSettingToggles.MIDDLE_EARTH_SPAWN_RADIUS));
 		catagories.add(protection);
 
 		SettingsCatagory worldgen = new SettingsCatagory(this, 6, x, y, xTabs);
@@ -209,11 +247,11 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 			}
 			catagoryButton = new ExtendedColorChangingButton(catagoryXOffset, placementYOffset + 24 * index, 120, 20, new TranslationTextComponent(pMessage), 
 					button -> {
-						screen.option=index;
+						ExtendedServerOptionsScreen.option=index;
 					}, 0.13f, 0.92f, 0.71f) {
 				@Override
 				public boolean setColor(){
-					return screen.option==index;
+					return ExtendedServerOptionsScreen.option==index;
 				}
 			};
 			return catagoryButton;
@@ -224,19 +262,19 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 			}
 			catagoryButton = new ExtendedColorChangingButton(catagoryXOffset, placementYOffset + 24 * index, 120, 20, new TranslationTextComponent(pMessage), 
 					button -> {
-						screen.option=index;
+						ExtendedServerOptionsScreen.option=index;
 					}, (wdget, matrixStack, pMouseX, pMouseY) -> {
 						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(toolTip), 200), pMouseX, pMouseY);
 					}, 0.13f, 0.92f, 0.71f) {
 				@Override
 				public boolean setColor(){
-					return screen.option==index;
+					return ExtendedServerOptionsScreen.option==index;
 				}
 			};
 			return catagoryButton;
 		}
-		public ExtendedTogglableTitleButton<ExtendedServerConfig> addButton(String pMessage, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
-			ExtendedTogglableTitleButton<ExtendedServerConfig> button = new ExtendedTogglableTitleButton<ExtendedServerConfig>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(pMessage), 
+		public ExtendedTogglableTitleButton<ExtendedServerConfig> addButton(String stringMessageKey, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
+			ExtendedTogglableTitleButton<ExtendedServerConfig> button = new ExtendedTogglableTitleButton<ExtendedServerConfig>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, 
 					wdget -> toggleValue(configSpec, type), (wdget, matrixStack, pMouseX, pMouseY) -> {
 						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX, pMouseY);
 					}, (wdget, tickData) -> configSpec.get(), enabled, disabled);
@@ -244,8 +282,8 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 			offsetAmount+=1;
 			return button;
 		}
-		public ExtendedTogglableTitleButton<ExtendedServerConfig> addButtonDisabled(String pMessage, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
-			ExtendedTogglableTitleButton<ExtendedServerConfig> button = new ExtendedTogglableTitleButton<ExtendedServerConfig>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(pMessage), 
+		public ExtendedTogglableTitleButton<ExtendedServerConfig> addButtonDisabled(String stringMessageKey, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
+			ExtendedTogglableTitleButton<ExtendedServerConfig> button = new ExtendedTogglableTitleButton<ExtendedServerConfig>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, 
 					wdget -> {}, (wdget, matrixStack, pMouseX, pMouseY) -> {
 						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX, pMouseY);
 					}, (wdget, tickData) -> configSpec.get(), enabled, disabled).forceDisableButton();
@@ -268,7 +306,7 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 		}
 		public ExtendedSlider addSliderI(String localKey, String configKey, int minVal, int maxVal, int steps, ForgeConfigSpec.IntValue configSpec, ExtendedSettingToggles type) {
 			ExtendedSlider slider = new ExtendedSlider(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, localKey, minVal, maxVal, steps, () -> {
-				return configSpec.get();
+				return (double)configSpec.get();
 			}, sliderValue -> {
 				setValue(configSpec, type, (int)sliderValue);
 			});
@@ -287,7 +325,7 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 		}
 
 		public void handleUpdates() {
-			if(screen.option==index) {
+			if(ExtendedServerOptionsScreen.option==index) {
 				for(ExtendedTogglableTitleButton<ExtendedServerConfig> widget : bottons) {
 					widget.onTick(null);
 				}
@@ -295,10 +333,10 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 		}
 		public void checkVisability(){
 			for(Widget widget : bottons) {
-				widget.visible = screen.option==index; // Hide/Show widget if this category is selected
+				widget.visible = ExtendedServerOptionsScreen.option==index; // Hide/Show widget if this category is selected
 			}
 			for(Widget widget : sliders) {
-				widget.visible = screen.option==index; // Hide/Show widget if this category is selected
+				widget.visible = ExtendedServerOptionsScreen.option==index; // Hide/Show widget if this category is selected
 			}
 		}
 

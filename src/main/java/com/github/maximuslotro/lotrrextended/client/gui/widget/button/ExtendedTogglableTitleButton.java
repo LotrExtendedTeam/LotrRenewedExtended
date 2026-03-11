@@ -9,32 +9,56 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedTogglableTitleButton<T> extends Button {
+	// Use translatable keys with %s parameters instead
+	@Deprecated
 	private final TextComponent baseMessage;
-	private final String enabled;
-	private final String disabled;
+	private final String stringMessageKey;
+	private final String enabledKey;
+	private final String disabledKey;
 	private boolean renderGreen = false;
 	protected final IOnTick<T> onTick;
 	private boolean buttonForceDisabled = false;
 	private boolean buttonForceEnabled = false;
-
-	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, TextComponent pMessage, IPressable pOnPress, ITooltip pOnTooltip, IOnTick<T> pOnTick, String enabled, String disabled) {
+	@Deprecated
+	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, TextComponent pMessage, IPressable pOnPress, ITooltip pOnTooltip, IOnTick<T> pOnTick, String enabledKey, String disabledKey) {
 		super(pX, pY, pWidth, pHeight, pMessage, pOnPress, pOnTooltip);
 		this.baseMessage = pMessage;
-		this.enabled = enabled;
-		this.disabled = disabled;
+		this.enabledKey = enabledKey;
+		this.disabledKey = disabledKey;
 		this.onTick = pOnTick;
+		this.stringMessageKey = null;
 	}
-
-	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, TextComponent pMessage, IPressable pOnPress, IOnTick<T> pOnTick, String enabled, String disabled) {
+	@Deprecated
+	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, TextComponent pMessage, IPressable pOnPress, IOnTick<T> pOnTick, String enabledKey, String disabledKey) {
 		super(pX, pY, pWidth, pHeight, pMessage, pOnPress);
 		this.baseMessage = pMessage;
-		this.enabled = enabled;
-		this.disabled = disabled;
+		this.enabledKey = enabledKey;
+		this.disabledKey = disabledKey;
 		this.onTick = pOnTick;
+		this.stringMessageKey = null;
+	}
+
+	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, String stringMessageKey, IPressable pOnPress, ITooltip pOnTooltip, IOnTick<T> pOnTick, String enabledKey, String disabledKey) {
+		super(pX, pY, pWidth, pHeight, StringTextComponent.EMPTY, pOnPress, pOnTooltip);
+		this.baseMessage = null;
+		this.enabledKey = enabledKey;
+		this.disabledKey = disabledKey;
+		this.onTick = pOnTick;
+		this.stringMessageKey = stringMessageKey;
+	}
+
+	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, String stringMessageKey, IPressable pOnPress, IOnTick<T> pOnTick, String enabledKey, String disabledKey) {
+		super(pX, pY, pWidth, pHeight, StringTextComponent.EMPTY, pOnPress);
+		this.baseMessage = null;
+		this.enabledKey = enabledKey;
+		this.disabledKey = disabledKey;
+		this.onTick = pOnTick;
+		this.stringMessageKey = stringMessageKey;
 	}
 
 	public ExtendedTogglableTitleButton<T> forceDisableButton() {
@@ -54,17 +78,22 @@ public class ExtendedTogglableTitleButton<T> extends Button {
 	}
 
 	public void tickTitle(@Nullable Boolean toggle) {
-		if(buttonForceEnabled) {
-			setMessage(baseMessage.copy().append(new TranslationTextComponent(enabled)));
-			renderGreen = true;
-		}else if(buttonForceDisabled) {
-			setMessage(baseMessage.copy().append(new TranslationTextComponent(disabled)));
-			renderGreen = false;
-		}else if(toggle!=null) {
-			setMessage(baseMessage.copy().append(new TranslationTextComponent(toggle ? enabled : disabled)));
-			renderGreen = toggle;
-		}else {
-			renderGreen=true; // Handle forced dev mode bypassing title setting for forced mode
+		Boolean state = null;
+		if (buttonForceEnabled) {
+			state = true;
+		} else if (buttonForceDisabled) {
+			state = false;
+		} else if (toggle != null) {
+			state = toggle;
+		} else  {
+			renderGreen = true; // Handle forced dev mode bypassing title setting for forced mode
+			return;
+		}
+		renderGreen = state;
+		if (stringMessageKey == null) {
+			setMessage(baseMessage.copy().append(new TranslationTextComponent(state ? enabledKey : disabledKey)));
+		} else {
+			setMessage(new TranslationTextComponent(stringMessageKey, new TranslationTextComponent(state ? enabledKey : disabledKey)));
 		}
 	}
 
