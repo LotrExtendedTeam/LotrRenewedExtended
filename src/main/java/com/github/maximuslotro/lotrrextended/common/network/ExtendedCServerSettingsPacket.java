@@ -105,8 +105,77 @@ public class ExtendedCServerSettingsPacket {
 				case GOBAL_NPC_SPAWN_DAMPING:
 					setDouble(ExtendedServerConfig.npcGlobalSpawnDampingCoefficient, packet.getDouble());
 					break;
+				case BARROW_WIGHT_SPAWN_CHANCE:
+					setInteger(ExtendedServerConfig.barrowWightChestFirstSpawnChance, packet.getInteger());
+					break;
+				case AGGRESSIVE_CAPTAINS:
+					setBoolean(ExtendedServerConfig.enableLegacyCaptainPassiveBehavior, packet.getBoolean());
+					break;
+				case AGGRESSIVE_TRADERS:
+					setBoolean(ExtendedServerConfig.enableLegacyTraderPassiveBehavior, packet.getBoolean());
+					break;
+				case WANDERING_TRADERS:
+					setBoolean(ExtendedServerConfig.enableWanderingTraderSpawns, packet.getBoolean());
+					break;
+				case BANDIT_ENCOUNTERS:
+					setBoolean(ExtendedServerConfig.enableBanditEncounters, packet.getBoolean());
+					break;
+				case TOLKIEN_ENCOUNTER:
+					setBoolean(ExtendedServerConfig.enableTolkienSpawning, packet.getBoolean());
+					break;
+				case BARS_CONNECT_TO_BRANCHES:
+					setBoolean(ExtendedServerConfig.barsConnectToBranches, packet.getBoolean());
+					break;
+				case BARS_CONNECT_TO_SLAB_SIDES:
+					setBoolean(ExtendedServerConfig.barsConnectToSlabSides, packet.getBoolean());
+					break;
+				case METAL_DOORS_REQUIRE_POWER:
+					setBoolean(ExtendedServerConfig.makeMetalDoorsRequirePower, packet.getBoolean());
+					break;
+				case DRIPSTONE_HURT_HEIGHT:
+					setDouble(ExtendedServerConfig.dripstoneMinimumDamageHeight, packet.getDouble());
+					break;
+				case BELL_RING_CHAIN_LENGTH:
+					setInteger(ExtendedServerConfig.bellRingChainMaxLength, packet.getInteger());
+					break;
+				case CHAIR_SITTING:
+					setBoolean(ExtendedServerConfig.enableChairSlabSitting, packet.getBoolean());
+					break;
+				case CHAIR_SWAPPING:
+					setBoolean(ExtendedServerConfig.enableChairSwapping, packet.getBoolean());
+					break;
+				case CHAIR_PROTECTION_OVERRIDE:
+					setBoolean(ExtendedServerConfig.enableChairProtectionOverride, packet.getBoolean());
+					break;
+				case VANILLA_ENCHANTING:
+					setBoolean(ExtendedServerConfig.enableVanillaEnchanting, packet.getBoolean());
+					break;
+				case VANILLA_XP:
+					setBoolean(ExtendedServerConfig.enableVanillaXp, packet.getBoolean());
+					break;
+				case EXTENDED_MODIFIERS:
+					setBoolean(ExtendedServerConfig.enableExtendedModifiers, packet.getBoolean());
+					break;
+				case EXTENDED_SPAWN_PROTECTION:
+					setBoolean(ExtendedServerConfig.enableExtendedSpawnProtection, packet.getBoolean());
+					break;
+				case OVERWORLD_SPAWN_RADIUS:
+					setInteger(ExtendedServerConfig.overworldSpawnProtectionRadius, packet.getInteger());
+					break;
+				case MIDDLE_EARTH_SPAWN_RADIUS:
+					setInteger(ExtendedServerConfig.middleEarthSpawnProtectionRadius, packet.getInteger());
+					break;
+				case FIXED_STRUCTURES:
+					setBoolean(ExtendedServerConfig.enableFixedStructures, packet.getBoolean());
+					break;
+				case FIXED_STRUCTURE_IMLADRIS:
+					setBoolean(ExtendedServerConfig.enableFixedStructureImladris, packet.getBoolean());
+					break;
+				case FIXED_STRUCTURE_TOWER_HILLS:
+					setBoolean(ExtendedServerConfig.enableFixedStructureTowerHills, packet.getBoolean());
+					break;
 				default:
-					ExtendedLog.info("Forgot to make handler for setting: "+packet.getType());
+					ExtendedLog.warn("Forgot to make handler for setting: "+packet.getType());
 					break;
 			}
 		} catch (IllegalStateException e) {
@@ -126,7 +195,7 @@ public class ExtendedCServerSettingsPacket {
 		}
 	}
 
-	public int getInt() {
+	public int getInteger() {
 		if (valueType != ValueType.INT) throw new IllegalStateException();
 		return (Integer) value;
 	}
@@ -176,8 +245,35 @@ public class ExtendedCServerSettingsPacket {
 		FEAST_MODE(ValueType.BOOLEAN),
 		DECREASED_HUNGER(ValueType.BOOLEAN),
 		GOBAL_NPC_SPAWN_DAMPING(ValueType.DOUBLE),
-
-		SOME_DOUBLE_SETTING(ValueType.DOUBLE);
+		// Entity
+		BANDIT_ENCOUNTERS(ValueType.BOOLEAN),
+		TOLKIEN_ENCOUNTER(ValueType.BOOLEAN),
+		WANDERING_TRADERS(ValueType.BOOLEAN),
+		BARROW_WIGHT_SPAWN_CHANCE(ValueType.INT),
+		AGGRESSIVE_CAPTAINS(ValueType.BOOLEAN),
+		AGGRESSIVE_TRADERS(ValueType.BOOLEAN),
+		// Block
+		BARS_CONNECT_TO_BRANCHES(ValueType.BOOLEAN),
+		BARS_CONNECT_TO_SLAB_SIDES(ValueType.BOOLEAN),
+		METAL_DOORS_REQUIRE_POWER(ValueType.BOOLEAN),
+		BELL_RING_CHAIN_LENGTH(ValueType.INT),
+		DRIPSTONE_HURT_HEIGHT(ValueType.DOUBLE),
+		// Chair
+		CHAIR_SITTING(ValueType.BOOLEAN),
+		CHAIR_SWAPPING(ValueType.BOOLEAN),
+		CHAIR_PROTECTION_OVERRIDE(ValueType.BOOLEAN),
+		// Modifiers
+		VANILLA_ENCHANTING(ValueType.BOOLEAN),
+		VANILLA_XP(ValueType.BOOLEAN),
+		EXTENDED_MODIFIERS(ValueType.BOOLEAN),
+		// Protection
+		EXTENDED_SPAWN_PROTECTION(ValueType.BOOLEAN),
+		OVERWORLD_SPAWN_RADIUS(ValueType.INT),
+		MIDDLE_EARTH_SPAWN_RADIUS(ValueType.INT),
+		// World Generation
+		FIXED_STRUCTURES(ValueType.BOOLEAN),
+		FIXED_STRUCTURE_IMLADRIS(ValueType.BOOLEAN),
+		FIXED_STRUCTURE_TOWER_HILLS(ValueType.BOOLEAN);
 
 		private final ValueType valueType;
 

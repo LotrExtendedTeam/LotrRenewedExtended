@@ -13,10 +13,6 @@ public abstract class ExtendedBasicAbstractScreen extends Screen {
 	/** Starting Y position for the Gui. Inconsistent use for Gui backgrounds. */
 	protected int topPos;
 
-	public ExtendedBasicAbstractScreen(ITextComponent pTitle) {
-		this(pTitle, 176, 166);
-	}
-
 	public ExtendedBasicAbstractScreen(ITextComponent pTitle, int imageWidth, int imageHeight) {
 		super(pTitle);
 		this.imageWidth = imageWidth;
