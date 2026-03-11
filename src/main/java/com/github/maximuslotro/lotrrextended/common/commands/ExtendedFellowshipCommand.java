@@ -14,8 +14,6 @@ import lotr.common.command.LOTRBaseCommand;
 import lotr.common.command.arguments.FactionArgument;
 import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.data.ExtendedLOTRPlayerData;
-import lotr.common.data.LOTRPlayerData;
-import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.fac.Faction;
 import lotr.common.fac.FactionPointers;
 import lotr.common.fellowship.ExtendedFellowship;
@@ -73,7 +71,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 										)
                                 .then(Commands.literal("changeColor")
                                         .then(Commands.argument("factionColor", FactionArgument.faction())
-                                                .executes(context -> changeColor(context.getSource(), FactionArgument.getFaction(context, "factionColor"), StringArgumentType.getString(context, "fellowship")))
+                                                .executes(context -> changeColor(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), FactionArgument.getFaction(context, "factionColor")))
                                                 )
                                         )
 								.then(Commands.literal("removePlayer")
@@ -394,20 +392,20 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
-    private static int changeColor(CommandSource source, Faction faction, String fellowshipname) throws CommandSyntaxException {
-        ExtendedFellowshipDataModule fellowshipData = getFellowshipData(source.getPlayerOrException());
-        ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
-        Style style = Style.EMPTY.withColor(Color.fromRgb(faction.getColor()));
-        if (fellowship != null && fellowship.hasEditPowers(source.getPlayerOrException().getUUID())) {
-            fellowshipData.setFellowshipColor(fellowship, style);
-            source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.changecolor"), true);
+	private static int changeColor(CommandSource source, PlayerEntity player, String fellowshipname, Faction faction) throws CommandSyntaxException {
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
+		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
+		Style style = Style.EMPTY.withColor(Color.fromRgb(faction.getColor()));
+		if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
+			fellowshipData.setFellowshipColor(fellowship, style);
+			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.changecolor"), true);
 
-            return 0;
-        }
+			return 0;
+		}
 
-        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
-        return 0;
-    }
+		source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
+		return 0;
+	}
     private static int disband(CommandSource source, PlayerEntity player, String fellowshipname) {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
