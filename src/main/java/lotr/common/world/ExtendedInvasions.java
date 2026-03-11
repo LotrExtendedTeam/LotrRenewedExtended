@@ -25,7 +25,8 @@ public enum ExtendedInvasions {
     GONDOR("lotr:gondor", "lotr:gondor", new ItemStack(LOTRItems.GONDOR_SWORD.get(), 1)),
     LOTHLORIEN("lotr:lothlorien", "lotr:lothlorien", new ItemStack(LOTRItems.GALADHRIM_SWORD.get(), 1)),
     WOODLAND_REALM("lotr:woodland_realm", "lotr:woodland_realm", new ItemStack(LOTRItems.WOOD_ELVEN_SWORD.get(), 1)),
-    ROHAN("lotr:rohan", "lotr:rohan", new ItemStack(LOTRItems.ROHAN_SWORD.get(), 1));
+    ROHAN("lotr:rohan", "lotr:rohan", new ItemStack(LOTRItems.ROHAN_SWORD.get(), 1)),
+    ISENGARD("lotr:isengard", "lotr:isengard", new ItemStack(LOTRItems.URUK_CLEAVER.get(), 1));
 
     private final String key;
     private final ItemStack stack;
@@ -118,6 +119,13 @@ public enum ExtendedInvasions {
 
         ExtendedInvasions.ROHAN.addInvasionMob(new InvasionSpawnEntry(LOTREntities.ROHIRRIM_WARRIOR.get(), 10));
         ExtendedInvasions.ROHAN.addInvasionMob(new InvasionSpawnEntry(LOTREntities.ROHIRRIM_BOWMAN.get(), 5));
+
+        ExtendedInvasions.ISENGARD.addInvasionMob(new InvasionSpawnEntry(LOTREntities.ISENGARD_SNAGA.get(), 5));
+        ExtendedInvasions.ISENGARD.addInvasionMob(new InvasionSpawnEntry(LOTREntities.ISENGARD_SNAGA_ARCHER.get(), 5));
+        ExtendedInvasions.ISENGARD.addInvasionMob(new InvasionSpawnEntry(LOTREntities.URUK.get(), 10));
+        ExtendedInvasions.ISENGARD.addInvasionMob(new InvasionSpawnEntry(LOTREntities.URUK_ARCHER.get(), 5));
+        ExtendedInvasions.ISENGARD.addInvasionMob(new InvasionSpawnEntry(ExtendedEntities.URUK_BERSERKER.get(), 5));
+        ExtendedInvasions.ISENGARD.addInvasionMob(new InvasionSpawnEntry(LOTREntities.ISENGARD_WARG.get(), 10));
     }
 
 

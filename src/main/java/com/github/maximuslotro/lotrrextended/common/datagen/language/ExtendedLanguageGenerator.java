@@ -632,6 +632,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("lotrextended.invasion.gondor", "Gondor");
 		addD("lotrextended.invasion.lothlorien", "Lothlorien");
 		addD("lotrextended.invasion.woodland_realm", "Woodland Realm");
+		addD("lotrextended.invasion.rohan", "Rohan");
+		addD("lotrextended.invasion.isengard", "Uruk-hai");
 	}
 
 	@Override
