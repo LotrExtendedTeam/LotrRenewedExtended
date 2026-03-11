@@ -56,6 +56,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityEvent;
@@ -69,6 +70,7 @@ import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 
 /**
  * Handles various world-related events for custom entities and gameplay mechanics.
@@ -78,6 +80,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
  * death handling, and custom entity size adjustments.</p>
  */
 public class WorldEventHandlers {
+
+	@SubscribeEvent
+	public static void onServerStopping(FMLServerStoppingEvent event) {
+		for (ServerPlayerEntity player : event.getServer().getPlayerList().getPlayers()) {
+			player.connection.disconnect(new TranslationTextComponent("multiplayer.disconnect.server_shutdown"));
+		}
+	}
 
 	@SubscribeEvent
 	public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
