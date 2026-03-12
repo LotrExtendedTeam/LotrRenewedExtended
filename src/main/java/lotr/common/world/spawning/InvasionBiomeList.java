@@ -536,7 +536,7 @@ public class InvasionBiomeList {
     /**
      * Performs a weighted random selection from the provided invasion map.
      *
-     * <p>Each {@link InvasionChance#getChance()} value contributes to the total
+     * <p>Each {@link InvasionChance#getChanceInt()} value contributes to the total
      * weight out of 100. The world's random instance is used for selection.</p>
      *
      * @param rates map of invasions to their weighted chances
@@ -549,7 +549,7 @@ public class InvasionBiomeList {
         int minimum = 1;
         for (ExtendedInvasions key : rates.keySet()) {
             minimums.put(minimum, key);
-            minimum += rates.get(key).getChance();
+            minimum += rates.get(key).getChanceInt();
         }
 
         int random = world.random.nextInt(100) + 1;
