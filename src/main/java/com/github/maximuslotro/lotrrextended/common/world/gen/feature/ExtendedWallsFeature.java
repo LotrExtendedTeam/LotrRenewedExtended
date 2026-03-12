@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.world.gen.feature;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import com.mojang.serialization.Codec;
@@ -8,6 +10,7 @@ import lotr.common.world.map.MapSettingsManager;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
@@ -21,7 +24,8 @@ public class ExtendedWallsFeature extends Feature<ExtendedWallsFeatureConfig> {
 	public boolean place(ISeedReader level, ChunkGenerator generator, Random rand, BlockPos origin, ExtendedWallsFeatureConfig config) {
 		BlockPos.Mutable pos$Mutable = new BlockPos.Mutable().set(origin.getX(), config.wallHeight, origin.getZ());
 		// Check if wall is even in check, don't add additional generation time to chunks without walls
-		if(isWallInChunk(config, pos$Mutable)) {
+		// Convert corner position to chunk position, also sanity check idk
+		if(isWallChunkCached(config, origin.getX() >> 4, origin.getZ() >> 4)) {
 			// Illiterate through all z-x blocks in chunk
 			int startX = origin.getX();
 			int startZ = origin.getZ();
@@ -66,30 +70,56 @@ public class ExtendedWallsFeature extends Feature<ExtendedWallsFeatureConfig> {
 		return true;
 	}
 
-	private boolean isWallBlock(ExtendedWallsFeatureConfig config, int x, int z, boolean roadExistsInRange) {
+	private static final Map<Long, Boolean> WALL_CACHE = new HashMap<>();
+	public static boolean isWallChunkCached(ExtendedWallsFeatureConfig config, int chunkX, int chunkZ) {
+		long key = ChunkPos.asLong(chunkX, chunkZ);
+		Boolean cached = WALL_CACHE.get(key);
+		if (cached != null) return cached;
+		// Convert chunk position back to minimum world cords
+		BlockPos chunkOrigin = new BlockPos(chunkX << 4, 0, chunkZ << 4);
+		boolean isWall = isWallInChunk(config, chunkOrigin);
+		WALL_CACHE.put(key, isWall);
+		return isWall;
+	}
+
+	private static boolean isWallInChunk(ExtendedWallsFeatureConfig config, BlockPos chunkOrigin) {
+		int minX = chunkOrigin.getX();
+		int maxX = minX + 15;
+		int minZ = chunkOrigin.getZ();
+		int maxZ = minZ + 15;
+		int midX = minX + 8;
+		int midZ = minZ + 8;
+		return isWallBlock(config, minX, minZ, false) 
+				|| isWallBlock(config, minX, maxZ, false) 
+				|| isWallBlock(config, maxX, minZ, false) 
+				|| isWallBlock(config, maxX, maxZ, false) 
+				|| isWallBlock(config, midX, midZ, false);
+	}
+
+	public static boolean isWallBlock(ExtendedWallsFeatureConfig config, int x, int z, boolean roadExistsInRange) {
 		double dx = x - config.wallsCenterX;
 		double dz = z - config.wallsCenterZ;
 		double distSq = dx * dx + dz * dz;
 		double halfT = config.wallThickness / 2.0;
-		 // compute taper for buttress
-	    double extra = 0;
-	    if (!roadExistsInRange && config.buttressConfig.count > 0 && config.buttressConfig.widthRad > 0) {
-	        double angle = getAngleRad(config, x, z);
-	        if (angle < 0) angle += Math.PI * 2;
+		// compute taper for buttress
+		double extra = 0;
+		if (!roadExistsInRange && config.buttressConfig.count > 0 && config.buttressConfig.widthRad > 0) {
+			double angle = getAngleRad(config, x, z);
+			if (angle < 0) angle += Math.PI * 2;
 
-	        double step = (Math.PI*2) / config.buttressConfig.count;
-	        double nearest = Math.round(angle / step) * step;
+			double step = (Math.PI*2) / config.buttressConfig.count;
+			double nearest = Math.round(angle / step) * step;
 
-	        double distFromCenter = Math.abs(angle - nearest);
-	        if (distFromCenter > Math.PI) {
-	        	distFromCenter = Math.PI*2 - distFromCenter;
-	        }
+			double distFromCenter = Math.abs(angle - nearest);
+			if (distFromCenter > Math.PI) {
+				distFromCenter = Math.PI*2 - distFromCenter;
+			}
 
-	        // cosine taper for rounded edges
-	        // Also causes extra small buttresses between buttresses, keeping as feature not bug
-	        extra = config.buttressConfig.maxExtra * Math.cos(distFromCenter / config.buttressConfig.widthRad * Math.PI/2);
-	        if (extra < 0) extra = 0; // safety clamp
-	    }
+			// cosine taper for rounded edges
+			// Also causes extra small buttresses between buttresses, keeping as feature not bug
+			extra = config.buttressConfig.maxExtra * Math.cos(distFromCenter / config.buttressConfig.widthRad * Math.PI/2);
+			if (extra < 0) extra = 0; // safety clamp
+		}
 		double minRadius = config.wallsRadius - halfT;
 		double maxRadius = config.wallsRadius + halfT + extra;;
 		double minRadiusSq = minRadius * minRadius;
@@ -97,47 +127,47 @@ public class ExtendedWallsFeature extends Feature<ExtendedWallsFeatureConfig> {
 		return distSq >= minRadiusSq && distSq <= maxRadiusSq;
 	}
 
-	private double getAngleRad(ExtendedWallsFeatureConfig config, int x, int z) {
+	private static double getAngleRad(ExtendedWallsFeatureConfig config, int x, int z) {
 		return Math.atan2(z - config.wallsCenterZ, x - config.wallsCenterX);
 	}
 
 	private EdgeType isEdgeBlock(ExtendedWallsFeatureConfig config, int x, int z, boolean roadExistsInRange) {
-	    if (!isWallBlock(config, x, z, roadExistsInRange)) {
-	        return EdgeType.NONE;
-	    }
+		if (!isWallBlock(config, x, z, roadExistsInRange)) {
+			return EdgeType.NONE;
+		}
 
-	    boolean insideNeighbor = false;
-	    boolean outsideNeighbor = false;
+		boolean insideNeighbor = false;
+		boolean outsideNeighbor = false;
 
-	    int[] dxArr = {1, -1, 0, 0};
-	    int[] dzArr = {0, 0, 1, -1};
+		int[] dxArr = {1, -1, 0, 0};
+		int[] dzArr = {0, 0, 1, -1};
 
-	    for (int i = 0; i < 4; i++) {
-	        boolean neighborWall = isWallBlock(config, x + dxArr[i], z + dzArr[i], roadExistsInRange);
+		for (int i = 0; i < 4; i++) {
+			boolean neighborWall = isWallBlock(config, x + dxArr[i], z + dzArr[i], roadExistsInRange);
 
-	        if (neighborWall) {
-	            insideNeighbor = true;
-	        } else {
-	            outsideNeighbor = true;
-	        }
-	    }
+			if (neighborWall) {
+				insideNeighbor = true;
+			} else {
+				outsideNeighbor = true;
+			}
+		}
 
-	    if (insideNeighbor && outsideNeighbor) {
-	        // thin band edge — treat as outer by default
-	        return EdgeType.OUTER;
-	    }
+		if (insideNeighbor && outsideNeighbor) {
+			// thin band edge — treat as outer by default
+			return EdgeType.OUTER;
+		}
 
-	    if (outsideNeighbor) {
-	        // need to determine inner vs outer
-	        double dx = x - config.wallsCenterX;
-	        double dz = z - config.wallsCenterZ;
-	        double distSq = dx * dx + dz * dz;
-	        double radiusSq = config.wallsRadius * config.wallsRadius;
+		if (outsideNeighbor) {
+			// need to determine inner vs outer
+			double dx = x - config.wallsCenterX;
+			double dz = z - config.wallsCenterZ;
+			double distSq = dx * dx + dz * dz;
+			double radiusSq = config.wallsRadius * config.wallsRadius;
 
-	        return distSq > radiusSq ? EdgeType.OUTER : EdgeType.INNER;
-	    }
+			return distSq > radiusSq ? EdgeType.OUTER : EdgeType.INNER;
+		}
 
-	    return EdgeType.NONE;
+		return EdgeType.NONE;
 	}
 
 	public enum EdgeType {
@@ -157,19 +187,5 @@ public class ExtendedWallsFeature extends Feature<ExtendedWallsFeatureConfig> {
 			}
 			throw new IllegalArgumentException("Invalid EdgeType value: " + value);
 		}
-	}
-
-	private boolean isWallInChunk(ExtendedWallsFeatureConfig config, BlockPos chunkOrigin) {
-		int minX = chunkOrigin.getX();
-		int maxX = minX + 15;
-		int minZ = chunkOrigin.getZ();
-		int maxZ = minZ + 15;
-		int midX = minX + 8;
-		int midZ = minZ + 8;
-		return isWallBlock(config, minX, minZ, false) 
-			|| isWallBlock(config, minX, maxZ, false) 
-			|| isWallBlock(config, maxX, minZ, false) 
-			|| isWallBlock(config, maxX, maxZ, false) 
-			|| isWallBlock(config, midX, midZ, false);
 	}
 }

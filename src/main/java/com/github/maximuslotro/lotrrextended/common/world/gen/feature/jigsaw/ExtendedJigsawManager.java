@@ -329,7 +329,35 @@ public class ExtendedJigsawManager {
 									List<Template.BlockInfo> childPieceConnectors = childTemplate.getShuffledJigsawBlocks(this.structureManager, BlockPos.ZERO, childRotationAttempt, this.random);
 									MutableBoundingBox childBoundingBoxAtRotation = childTemplate.getBoundingBox(this.structureManager, BlockPos.ZERO, childRotationAttempt);
 									int childExpansionHackValue;
-									// Run vanilla villages black magic spawning
+									/**
+									 * Controls the "expansion hack" in Jigsaw structure generation.
+									 *
+									 * <p>When true, this flag tells the generator to temporarily expand the bounding box
+									 * of small structure pieces (typically ≤16 blocks tall) to account for the maximum
+									 * potential height of child pieces that may attach later.</p>
+									 *
+									 * <p>This is used for vanilla-style villages and other Jigsaw-based structures,
+									 * because small connector pieces (roads, paths, bridges) often link to taller buildings
+									 * such as houses, libraries, or temples. Without this predictive bounding box inflation,
+									 * the generator may reject valid child pieces due to collision checks, leading to:
+									 * <ul>
+									 *     <li>Missing buildings</li>
+									 *     <li>Long chains of roads without houses</li>
+									 *     <li>Intersecting or clipped structures</li>
+									 * </ul>
+									 * Essentially, it prevents village layouts from breaking when small pieces attach to
+									 * potentially large structures.</p>
+									 *
+									 * <p>The hack works by:
+									 * <ol>
+									 *     <li>Scanning all jigsaw blocks in the current piece.</li>
+									 *     <li>Checking the pools of structures that could attach.</li>
+									 *     <li>Calculating the maximum height of any potential child piece.</li>
+									 *     <li>Expanding the current piece's collision box to include that height.</li>
+									 * </ol>
+									 * </p>
+									 *
+									 */
 									if (doExpansionHack && childBoundingBoxAtRotation.getYSpan() <= 16) {
 										childExpansionHackValue = childPieceConnectors.stream().mapToInt((blockInfo) -> {
 											if (!childBoundingBoxAtRotation.isInside(blockInfo.pos.relative(JigsawBlock.getFrontFacing(blockInfo.state)))) {
@@ -405,6 +433,31 @@ public class ExtendedJigsawManager {
 												int expandedChildHeight = Math.max(childExpansionHackValue + 1, childBoundingBoxInWorld.y1 - childBoundingBoxInWorld.y0);
 												childBoundingBoxInWorld.y1 = childBoundingBoxInWorld.y0 + expandedChildHeight;
 											}
+											// Extended Start
+											// Only reject if the piece reaches above Y 60
+											if (childBoundingBoxInWorld.y1 >= 60) {
+
+											    int minChunkX = childBoundingBoxInWorld.x0 >> 4;
+											    int maxChunkX = childBoundingBoxInWorld.x1 >> 4;
+											    int minChunkZ = childBoundingBoxInWorld.z0 >> 4;
+											    int maxChunkZ = childBoundingBoxInWorld.z1 >> 4;
+
+											    boolean wallFound = false;
+
+											    for (int cx = minChunkX; cx <= maxChunkX && !wallFound; cx++) {
+											        for (int cz = minChunkZ; cz <= maxChunkZ && !wallFound; cz++) {
+
+											            if (ExtendedWallsFeature.isWallChunkCached(ExtendedConfiguredFeatures.ISENGARD_WALLS_CONFIG, cx, cz)) {
+											                wallFound = true;
+											            }
+											        }
+											    }
+
+											    if (wallFound) {
+											        continue; // reject this candidate piece
+											    }
+											}
+											// Extended End
 											// Extended Start
 											boolean ignoreBoundingBoxConflicts = false; 
 											if(parentPieceTemplate instanceof ExtendedSingleJigsawPiece) {
