@@ -705,7 +705,8 @@ public class ExtendedRepairContainer extends Container {
 	public void hurtOrDamageAnvilSound() {
 		this.access.execute((world, pos) -> {
 			BlockState blockstate = world.getBlockState(pos);
-			if (!player.abilities.instabuild && blockstate.is(BlockTags.ANVIL) && player.getRandom().nextFloat() < 0.06f) { // breakChance set to default value
+			//  Chance is 1/16 that of vanilla
+			if (!player.abilities.instabuild && blockstate.is(BlockTags.ANVIL) && player.getRandom().nextFloat() < 0.0075f) { // 0.12 is default vanilla value
 				BlockState blockstate1 = AnvilBlock.damage(blockstate);
 				if (blockstate1 == null) {
 					world.removeBlock(pos, false);
