@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
@@ -83,13 +84,14 @@ public class ExtendedRepairContainerNew extends Container {
 	protected final IWorldPosCallable access;
 	protected final PlayerEntity player;
 	private String itemName;
+	// All are recalculated on slot changes IntReferenceHolder
+	// Sync calculated costs
 	private final IntReferenceHolder cost = IntReferenceHolder.standalone();
-	private final IntReferenceHolder incompatable = IntReferenceHolder.standalone();
 	private final IntReferenceHolder reforgeCost = IntReferenceHolder.standalone();
 	private final IntReferenceHolder engraveCost = IntReferenceHolder.standalone();
-	private final IntReferenceHolder gemprocessing = IntReferenceHolder.standalone();
-	private boolean isGemColoring = false;
-	private boolean isRenaming = false;
+	// Sync error types, 0 no error, 1+ differing errors
+	private final IntReferenceHolder incompatable = IntReferenceHolder.standalone();
+
 
 	public ExtendedRepairContainerNew(int pContainerId, PlayerInventory pPlayerInventory) {
 		this(pContainerId, pPlayerInventory, IWorldPosCallable.NULL);
@@ -109,7 +111,6 @@ public class ExtendedRepairContainerNew extends Container {
 		this.player = pPlayerInventory.player;
 		this.addDataSlot(this.cost);
 		this.addDataSlot(this.incompatable);
-		this.addDataSlot(this.gemprocessing);
 		this.addDataSlot(this.reforgeCost);
 		this.addDataSlot(this.engraveCost);
 		this.addSlot(new Slot(this.inputSlots, 0, 27, 58));
@@ -165,10 +166,12 @@ public class ExtendedRepairContainerNew extends Container {
 				return true;
 			}
 		}
-		return pPlayer.abilities.instabuild;
+		return false;
 	}
 
 	protected ItemStack onTake(PlayerEntity pPlayer, ItemStack pInputItem) {
+		// Cache the cost here because as soon as setItem is called, the cost will be reset
+		int localCost = this.cost.get();
 		this.inputSlots.setItem(0, ItemStack.EMPTY);
 		ItemStack merged = this.inputSlots.getItem(1);
 		if (!merged.isEmpty()) {
@@ -177,10 +180,10 @@ public class ExtendedRepairContainerNew extends Container {
 		} else {
 			this.inputSlots.setItem(1, ItemStack.EMPTY);
 		}
-		if (this.cost.get() > 0) {
+		if (localCost > 0) {
 			ItemStack material = this.inputSlots.getItem(2);
 			if (!material.isEmpty()) {
-				material.shrink(this.cost.get());
+				material.shrink(localCost);
 				if (!material.isEmpty()) {
 					this.inputSlots.setItem(2, material);
 				} else {
@@ -192,7 +195,6 @@ public class ExtendedRepairContainerNew extends Container {
 		} else {
 			this.inputSlots.setItem(1, ItemStack.EMPTY);
 		}
-
 		this.cost.set(0);
 		hurtOrDamageAnvilSound();
 		return pInputItem;
@@ -226,8 +228,8 @@ public class ExtendedRepairContainerNew extends Container {
 	 */
 	@Override
 	public boolean stillValid(PlayerEntity pPlayer) {
-		return this.access.evaluate((p_234646_2_, p_234646_3_) -> {
-			return !this.isValidBlock(p_234646_2_.getBlockState(p_234646_3_)) ? false : pPlayer.distanceToSqr((double)p_234646_3_.getX() + 0.5D, (double)p_234646_3_.getY() + 0.5D, (double)p_234646_3_.getZ() + 0.5D) <= 64.0D;
+		return this.access.evaluate((world, blockPos) -> {
+			return !this.isValidBlock(world.getBlockState(blockPos)) ? false : pPlayer.distanceToSqr(blockPos.getX() + 0.5D, blockPos.getY() + 0.5D, blockPos.getZ() + 0.5D) <= 64.0D;
 		}, true);
 	}
 
@@ -235,7 +237,6 @@ public class ExtendedRepairContainerNew extends Container {
 		// Setup parameters
 		ItemStack inputItem = this.inputSlots.getItem(0);
 		this.incompatable.set(0);
-		this.gemprocessing.set(0);
 		this.engraveCost.set(0);
 		this.reforgeCost.set(0);
 		this.cost.set(1);
@@ -243,10 +244,9 @@ public class ExtendedRepairContainerNew extends Container {
 		int baseCost = 0;
 		int renameCost = 0;
 		int mergingCost = 0;
-		isGemColoring = false;
-		isRenaming = false;
 		// Cancel if no input item
 		if (inputItem.isEmpty() || inputItem.getCount()>1) {
+			info("P1: Input item empty");
 			this.resultSlots.setItem(0, ItemStack.EMPTY);
 			this.cost.set(0);
 			return;
@@ -262,8 +262,10 @@ public class ExtendedRepairContainerNew extends Container {
 		boolean isEnchantingItem = false;
 		boolean isModifierItem = false;
 		boolean isScrollOrBook = false;
+		boolean canCombineItemModifiers = false;
 		// Logic if there is a item in merge slot
 		if (!mergableItem.isEmpty()) {
+			info("P2: Has mergable item");
 			//if (!net.minecraftforge.common.ForgeHooks.onAnvilChange(this, inputItem, mergableItem, resultSlots, itemName, baseCost, this.player)) return;
 			isEnchantingItem = mergableItem.getItem() == Items.ENCHANTED_BOOK && !EnchantedBookItem.getEnchantments(mergableItem).isEmpty();
 			isModifierItem = (mergableItem.getItem() == ExtendedItems.MODIFIER_SCROLL.get() && !ExtendedModifierScrollItem.getModifier(mergableItem).isUnknown()) || mergableItem.getItem() == LOTRItems.BOOK_OF_TRUE_SILVER.get();
@@ -277,192 +279,246 @@ public class ExtendedRepairContainerNew extends Container {
 				if (newDurability < 0) {
 					newDurability = 0;
 				}
-
 				if (newDurability < resultItem.getDamageValue()) {
 					resultItem.setDamageValue(newDurability);
 					mergingCost += 2; // TODO add more dynamic cost
 				}
-			}}
+			}
+			if (isScrollOrBook || (resultItem.getItem() == mergableItem.getItem() && resultItem.isDamageableItem())) {
+				canCombineItemModifiers= true;
+			}
+		}
 		if(isEnchantingItem && !ExtendedServerConfig.enableVanillaEnchanting.get()) {
 			this.resultSlots.setItem(0, ItemStack.EMPTY);
 			this.cost.set(0);
 			return;
 		}
-		if(!mergableItem.isEmpty() && ExtendedServerConfig.enableVanillaEnchanting.get()) {
-			Map<Enchantment, Integer> mergableEnchants = EnchantmentHelper.getEnchantments(mergableItem);
-			boolean enchantApplied = false;
-			boolean enchantInvalid = false;
-			for(Enchantment mergableEnchant : mergableEnchants.keySet()) {
-				if (mergableEnchant != null) {
-					int slot0Level = inputEnchants.getOrDefault(mergableEnchant, 0);
-					int slot1Level = mergableEnchants.get(mergableEnchant);
-					slot1Level = slot0Level == slot1Level ? slot1Level + 1 : Math.max(slot1Level, slot0Level);
-					boolean isApplicable = mergableEnchant.canEnchant(inputItem);
-					if (this.player.abilities.instabuild || inputItem.getItem() == Items.ENCHANTED_BOOK) {
-						isApplicable = true;
-					}
-					for(Enchantment inputEnchant : inputEnchants.keySet()) {
-						if (inputEnchant != mergableEnchant && !mergableEnchant.isCompatibleWith(inputEnchant)) {
-							isApplicable = false;
-							++mergingCost;
+		if(ExtendedServerConfig.enableVanillaEnchanting.get()) {
+			if(!mergableItem.isEmpty() && canCombineItemModifiers) {
+				Map<Enchantment, Integer> mergableEnchants = EnchantmentHelper.getEnchantments(mergableItem);
+				boolean enchantApplied = false;
+				boolean enchantInvalid = false;
+				for(Enchantment mergableEnchant : mergableEnchants.keySet()) {
+					if (mergableEnchant != null) {
+						int slot0Level = inputEnchants.getOrDefault(mergableEnchant, 0);
+						int slot1Level = mergableEnchants.get(mergableEnchant);
+						slot1Level = slot0Level == slot1Level ? slot1Level + 1 : Math.max(slot1Level, slot0Level);
+						boolean isApplicable = mergableEnchant.canEnchant(inputItem);
+						if (this.player.abilities.instabuild || inputItem.getItem() == Items.ENCHANTED_BOOK) {
+							isApplicable = true;
 						}
-					}
-					if (!isApplicable) {
-						enchantInvalid = true;
-					} else {
-						enchantApplied = true;
-						if (slot1Level > mergableEnchant.getMaxLevel()) {
-							slot1Level = mergableEnchant.getMaxLevel();
+						for(Enchantment inputEnchant : inputEnchants.keySet()) {
+							if (inputEnchant != mergableEnchant && !mergableEnchant.isCompatibleWith(inputEnchant)) {
+								isApplicable = false;
+								++mergingCost;
+							}
 						}
-						inputEnchants.put(mergableEnchant, slot1Level);
-						int rairityCost = 0;
-						switch(mergableEnchant.getRarity()) {
-							case COMMON:
-								rairityCost = 1;
-								break;
-							case UNCOMMON:
-								rairityCost = 2;
-								break;
-							case RARE:
-								rairityCost = 4;
-								break;
-							case VERY_RARE:
-								rairityCost = 8;
+						if (!isApplicable) {
+							enchantInvalid = true;
+						} else {
+							enchantApplied = true;
+							if (slot1Level > mergableEnchant.getMaxLevel()) {
+								slot1Level = mergableEnchant.getMaxLevel();
+							}
+							inputEnchants.put(mergableEnchant, slot1Level);
+							int rairityCost = 0;
+							switch(mergableEnchant.getRarity()) {
+								case COMMON:
+									rairityCost = 1;
+									break;
+								case UNCOMMON:
+									rairityCost = 2;
+									break;
+								case RARE:
+									rairityCost = 4;
+									break;
+								case VERY_RARE:
+									rairityCost = 8;
+							}
+							if (isEnchantingItem) {
+								rairityCost = Math.max(1, rairityCost / 2);
+							}
+							mergingCost += rairityCost * slot1Level;
 						}
-						if (isEnchantingItem) {
-							rairityCost = Math.max(1, rairityCost / 2);
-						}
-						mergingCost += rairityCost * slot1Level;
 					}
 				}
+				if (enchantInvalid && !enchantApplied) {
+					this.resultSlots.setItem(0, ItemStack.EMPTY);
+					this.cost.set(0);
+					return;
+				}
 			}
-			if (enchantInvalid && !enchantApplied) {
-				this.resultSlots.setItem(0, ItemStack.EMPTY);
-				this.cost.set(0);
-				return;
-			}
+		}else {
+			inputEnchants.clear();
 		}
-		if(!mergableItem.isEmpty() && ExtendedServerConfig.enableExtendedModifiers.get()) {
-			// Returns a safe built list, not based on nbt
-			List<ExtendedModifier> mergableModifiers = ExtendedModifierUtils.getModifierList(mergableItem);
-			if(isModifierItem) {
-				if(mergableItem.getItem() == LOTRItems.BOOK_OF_TRUE_SILVER.get()) {
-					mergableModifiers.add(ExtendedModifiers.TRUE);
-				}else {
-					mergableModifiers.add(ExtendedModifierScrollItem.getModifier(mergableItem));
+		if(ExtendedServerConfig.enableExtendedModifiers.get()) {
+			info("P4: Modifiers");
+			if(!mergableItem.isEmpty() && canCombineItemModifiers) {
+				info("P4.1: Modifiers and valid item");
+				// Returns a safe built list, not based on nbt
+				List<ExtendedModifier> mergableModifiers = ExtendedModifierUtils.getModifierList(mergableItem);
+				if(isModifierItem) {
+					if(mergableItem.getItem() == LOTRItems.BOOK_OF_TRUE_SILVER.get()) {
+						mergableModifiers.add(ExtendedModifiers.TRUE);
+					}else {
+						mergableModifiers.add(ExtendedModifierScrollItem.getModifier(mergableItem));
+					}
 				}
-			}
-			boolean hasIncompatibleModifier = false;
-			boolean maxedLevelForBook = false;
-			boolean maximumModifiersReached = false;
-			int currentModifierCount = (int) inputModifiers.stream().filter(m -> m.getRarity().countsTowardsLimit()).count();
-			for(ExtendedModifier mergingModifier : mergableModifiers) {
-				/*************CHECK_ITEM*******************/
-				// Skip modifier it it can't apply to the item
-				if (!mergingModifier.canApplyToItem(inputItem)) {
-					// Scrolls should not skip modifiers, reject recipe
-					if(isModifierItem) {
+				boolean hasIncompatibleModifier = false;
+				boolean maxedLevelForBook = false;
+				boolean maximumModifiersReached = false;
+				int currentModifierCount = (int) inputModifiers.stream().filter(m -> m.getRarity().countsTowardsLimit()).count();
+				boolean didMerge=false;
+				for(ExtendedModifier mergingModifier : mergableModifiers) {
+					/*************CHECK_ITEM*******************/
+					// Skip modifier it it can't apply to the item
+					if (!mergingModifier.canApplyToItem(inputItem)) {
+						// Scrolls should not skip modifiers, reject recipe
+						if(isModifierItem) {
+							hasIncompatibleModifier = true;
+							info("P4.2: Discarding invalid modifer for scroll, rejecting");
+							break; // atomic merge rule
+						}
+						info("P4.2.1: Skipping modifier invalid for item: "+mergingModifier.getLocalKey());
+						continue;
+					}
+					/*************CHECK_TIER*******************/
+					// Use the lowest tier value if the modifier does not exist on the original item, so that the new item can override this lowest possible value.
+					ExtendedModifier existingModifier = inputModifiers.stream()
+							.filter(m -> m.getModifierType() == mergingModifier.getModifierType())
+							.findFirst().orElse(ExtendedModifiers.UNKNOWN);// UNKNOWN's tier is 0 
+					int outputSlotLevel = 0;
+					// Split logic so a tier one modifier + unknown that defaults to lowest tier does trigger (slot1Level + 1)
+					if(!existingModifier.isUnknown()) {
+						int slot0Level = existingModifier.getModifierTeir();
+						int slot1Level = mergingModifier.getModifierTeir();
+						// Stop low tier books still applying to items with higher tier modifiers
+						if(slot1Level < slot0Level && isModifierItem) {
+							// Scrolls should not apply when below existing modifier tiers, reject recipe
+							hasIncompatibleModifier = true;
+							info("P4.3: Discarding invalid scroll tier modifier, rejecting");
+							break; // atomic merge rule
+						}
+						// If same then increase level, otherwise get the max of the two levels
+						outputSlotLevel = (slot0Level == slot1Level) ? slot1Level + 1 : Math.max(slot1Level, slot0Level);
+					}else {
+						outputSlotLevel = mergingModifier.getModifierTeir();
+					}
+					/*************CHECK_MAX_TIER***************/
+					// If applied modifier pushes past max tier, skip it or reject if is applied from scroll
+					if (outputSlotLevel > mergingModifier.getMaxLevel()) {
+						// Scrolls should not apply there is no higher tier, reject recipe
+						if (isModifierItem) {
+							maxedLevelForBook = true;
+							info("P4.4: Discarding invalid maxed modifer scroll, rejecting");
+							break; // atomic merge rule
+						}
+						info("P4.4.1: Skipping modifier maxed exists: "+mergingModifier.getLocalKey());
+						continue;
+					}
+					/*************CHECK_COMPATIBILITY**********/
+					// Check if modifier can apply alongside other modifiers
+					boolean incompatibleWithExisting = false;
+					// Break if incompatible modifiers exist, don't want to just delete them
+					for(ExtendedModifier existing : inputModifiers) {
+						// Only check against modifiers of different types
+						if (mergingModifier.getModifierType()!=existing.getModifierType() && !mergingModifier.isCompatableModifier(existing.getModifierType())) {
+							incompatibleWithExisting = true;
+							break;
+						}
+					}
+					if(incompatibleWithExisting) {
+						// Reject recipe if there are modifier conflicts, don't want to discard modifiers, reject recipe
+						hasIncompatibleModifier = true;
+						info("P4.5: Rejecting incompatable modifier, rejecting");
+						break; // atomic merge rule
+					}
+					/*************CHECK_MODIFIER_CAP***********/
+					// If modifier does not exist yet, and we are at max count, reject recipe
+					if (existingModifier.isUnknown() && mergingModifier.getRarity().countsTowardsLimit() && currentModifierCount >= 3) {
+						maximumModifiersReached = true;
+						info("P4.6: Rejecting to many modifers, rejecting");
+						break; // atomic merge rule
+					}
+					/*************GET_NEW_TIER*****************/
+					// Get the list of modifiers for this type
+					List<ExtendedModifier> list = ExtendedModifiers.MODIFIERS_BY_TYPE.get(mergingModifier.getModifierType());
+					// Find the modifier with the desired level
+					final int outputSlotLevelEffectiveFinal = outputSlotLevel;
+					ExtendedModifier result = list.stream().filter(m -> m.getModifierTeir() == outputSlotLevelEffectiveFinal).findFirst()
+							.orElse(ExtendedModifiers.UNKNOWN); // fallback if no exact match
+					if(result.isUnknown()) {
+						info("P4.7: Found unknown modifer, rejecting");
+						// Should never happen because we checked tiers above, sanity check
 						hasIncompatibleModifier = true;
 						break; // atomic merge rule
 					}
-					continue;
-				}
-				/*************CHECK_TIER*******************/
-				// Use the lowest tier value if the modifier does not exist on the original item, so that the new item can override this lowest possible value.
-				ExtendedModifier existingModifier = inputModifiers.stream()
-						.filter(m -> m.getModifierType() == mergingModifier.getModifierType())
-						.findFirst().orElse(ExtendedModifiers.UNKNOWN);// UNKNOWN's tier is 0 
-				int outputSlotLevel = 0;
-				// Split logic so a tier one modifier + unknown that defaults to lowest tier does trigger (slot1Level + 1)
-				if(!existingModifier.isUnknown()) {
-					int slot0Level = existingModifier.getModifierTeir();
-					int slot1Level = mergingModifier.getModifierTeir();
-					// Stop low tier books still applying to items with higher tier modifiers
-					if(slot1Level < slot0Level && isModifierItem) {
-						// Scrolls should not apply when below existing modifier tiers, reject recipe
-						hasIncompatibleModifier = true;
-						break; // atomic merge rule
+					/*************UPDATE_LISTS*****************/
+					// Remove old modifier of the same type
+					inputModifiers.removeIf(m -> m.getModifierType() == mergingModifier.getModifierType());
+					// only add merge cost if is positive modifier
+					if(outputSlotLevel>0) {
+						info("P4.8: Adding merger cost");
+						mergingCost += Math.max(1, result.getModifierValue());
 					}
-					// If same then increase level, otherwise get the max of the two levels
-					outputSlotLevel = (slot0Level == slot1Level) ? slot1Level + 1 : Math.max(slot1Level, slot0Level);
-				}else {
-					outputSlotLevel = mergingModifier.getModifierTeir();
-				}
-				/*************CHECK_MAX_TIER***************/
-				// If applied modifier pushes past max tier, skip it or reject if is applied from scroll
-				if (outputSlotLevel > mergingModifier.getMaxLevel()) {
-					// Scrolls should not apply there is no higher tier, reject recipe
-					if (isModifierItem) {
-						maxedLevelForBook = true;
-						break; // atomic merge rule
+					didMerge=true;
+					inputModifiers.add(result);
+					// Update modifier count if modifier was previously unknown to the list
+					if(existingModifier.isUnknown() && result.getRarity().countsTowardsLimit()) {
+						currentModifierCount++;
+						info("P4.9: Increasing modifier count");
 					}
-					continue;
+					info("P4.10: End modifier loop");
 				}
-				/*************CHECK_COMPATIBILITY**********/
-				// Check if modifier can apply alongside other modifiers
-				boolean incompatibleWithExisting = false;
-				// Break if incompatible modifiers exist, don't want to just delete them
-				for(ExtendedModifier existing : inputModifiers) {
-					// Only check against modifiers of different types
-					if (mergingModifier.getModifierType()!=existing.getModifierType() && !mergingModifier.isCompatableModifier(existing.getModifierType())) {
-						incompatibleWithExisting = true;
-						break;
+				if (maxedLevelForBook || maximumModifiersReached || hasIncompatibleModifier) {
+					info("P4.11: Rejecting invalid combination");
+					resultItem = ItemStack.EMPTY;
+					this.cost.set(0);
+					if (maxedLevelForBook) {
+						this.incompatable.set(1);
+					} else if (maximumModifiersReached) {
+						this.incompatable.set(2);
+					} else if (hasIncompatibleModifier) {
+						this.incompatable.set(3);
 					}
-				}
-				if(incompatibleWithExisting) {
-					// Reject recipe if there are modifier conflicts, don't want to discard modifiers, reject recipe
-					hasIncompatibleModifier = true;
-					break; // atomic merge rule
-				}
-				/*************CHECK_MODIFIER_CAP***********/
-				// If modifier does not exist yet, and we are at max count, reject recipe
-				if (existingModifier.isUnknown() && mergingModifier.getRarity().countsTowardsLimit() && currentModifierCount >= 3) {
-					maximumModifiersReached = true;
-					break; // atomic merge rule
-				}
-				/*************GET_NEW_TIER*****************/
-				// Get the list of modifiers for this type
-				List<ExtendedModifier> list = ExtendedModifiers.MODIFIERS_BY_TYPE.get(mergingModifier.getModifierType());
-				// Find the modifier with the desired level
-				final int outputSlotLevelFix = outputSlotLevel;
-				ExtendedModifier result = list.stream().filter(m -> m.getModifierTeir() == outputSlotLevelFix).findFirst()
-						.orElse(ExtendedModifiers.UNKNOWN); // fallback if no exact match
-				if(result.isUnknown()) {
-					// Should never happen because we checked tiers above, sanity check
-					hasIncompatibleModifier = true;
-					break; // atomic merge rule
-				}
-				/*************UPDATE_LISTS*****************/
-				// Remove old modifier of the same type
-				inputModifiers.removeIf(m -> m.getModifierType() == mergingModifier.getModifierType());
-				// only add merge cost if is positive modifier
-				if(outputSlotLevel>0) {
-					mergingCost += Math.max(1, result.getModifierValue());
-				}
-				inputModifiers.add(result);
-				// Update modifier count if modifier was previously unknown to the lsit
-				if(existingModifier.isUnknown() && result.getRarity().countsTowardsLimit()) {
-					currentModifierCount++;
-				}
 
-			}
-			if (maxedLevelForBook || maximumModifiersReached || hasIncompatibleModifier) {
-				resultItem = ItemStack.EMPTY;
-				this.cost.set(0);
-				if (maxedLevelForBook) {
-					this.incompatable.set(1);
-				} else if (maximumModifiersReached) {
-					this.incompatable.set(2);
-				} else if (hasIncompatibleModifier) {
-					this.incompatable.set(3);
+					return;
 				}
-
-				return;
+				// Handle merging negative tier items
+				if(didMerge && mergingCost==0) {
+					info("P4.12: Negitive tier item merge");
+					mergingCost +=1;
+				}
 			}
 		}else {
 			inputModifiers.clear();
 		}
+		// The repair cost should always include the value of present modifiers and enchants
+		// Since the increase cost is +2 instead of *2+1 this balances things out
+		for(Enchantment modifier : inputEnchants.keySet()) {
+			int rairityCost = 0;
+			switch(modifier.getRarity()) {
+				case COMMON:
+					rairityCost = 1;
+					break;
+				case UNCOMMON:
+					rairityCost = 2;
+					break;
+				case RARE:
+					rairityCost = 4;
+					break;
+				case VERY_RARE:
+					rairityCost = 8;
+			}
+			baseCost+= Math.max(1, rairityCost);
+		}
+		for(ExtendedModifier modifier : inputModifiers) {
+			baseCost+= Math.max(1, modifier.getModifierValue());
+		}
 		if (resultItem.isDamageableItem() && isValidRepairMaterial(inputItem, resourceItem)) {
+			info("P5: Valid repair item");
+			info("slots changed");
+
 			String ownerName = ItemOwnership.getCurrentOwner(inputItem) != null ? ItemOwnership.getCurrentOwner(inputItem).getString() : null;
 			if(ownerName==null||!player.getDisplayName().getString().equals(ownerName)) {
 				this.engraveCost.set(2);
@@ -473,6 +529,7 @@ public class ExtendedRepairContainerNew extends Container {
 			if(inputItem.getItem() instanceof ArmorItem) {
 				this.reforgeCost.set(3);
 			}
+			info("P5.1: Finding repair cost");
 			int repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
 			for(int materialsUsed = 0; repairAmount > 0 && materialsUsed < mergableItem.getCount(); ++materialsUsed) {
 				int newDamage = resultItem.getDamageValue() - repairAmount;
@@ -481,29 +538,33 @@ public class ExtendedRepairContainerNew extends Container {
 				repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
 			}
 		}
-		isGemColoring = false;
+		boolean isGemColoring = false;
 		if(!mergableItem.isEmpty() && mergableItem.getItem() instanceof ExtendedGemstoneColoringItem) {
+			info("P6: Valid gem item");
 			if(!this.canApplyColor(resultItem, ((ExtendedGemstoneColoringItem)mergableItem.getItem()).getExtendedGemstoneColor())) {
 				this.resultSlots.setItem(0, ItemStack.EMPTY);
-				this.gemprocessing.set(1);
+				this.incompatable.set(4);
 				this.cost.set(0);
 				return;
 			}
+			info("P6.1: Valid gem coloring");
 			applyColor(resultItem, ((ExtendedGemstoneColoringItem)mergableItem.getItem()).getExtendedGemstoneColor());
 			isGemColoring = true;
 		}
 		if (StringUtils.isBlank(this.itemName)) {
+			info("P7: Item Renaming");
 			if (inputItem.hasCustomHoverName()) {
 				renameCost = 1;
 				resultItem.resetHoverName();
-				isRenaming = true;
+				info("P7.1: Reset name");
 			}
 		} else if (!this.itemName.equals(inputItem.getHoverName().getString())) {
 			renameCost = 1;
 			resultItem.setHoverName(new StringTextComponent(this.itemName));
-			isRenaming = true;
+			info("P7.2: Set name");
 		}
 		if (isEnchantingItem && !resultItem.isBookEnchantable(mergableItem)) {
+			info("P8: Rejecting invalid book");
 			resultItem = ItemStack.EMPTY;
 			this.cost.set(0);
 			return;
@@ -513,25 +574,31 @@ public class ExtendedRepairContainerNew extends Container {
 		// If nothing has been done, clear output
 		if (repairCost <= 0 && renameCost<=0 && mergingCost<=0 && !isGemColoring) {
 			resultItem = ItemStack.EMPTY;
+			info("P9: Set empty because no costs or coloring");
 		}
 		// If not modifying item, make rename cheap
-		if (repairCost==0 && mergingCost==0 && isRenaming) {
+		if (repairCost==0 && mergingCost==0 && renameCost>0) {
+			info("P10: Set rename cost to 1");
 			this.cost.set(renameCost);//always 1
 			// Allow items to be renamed if they don't have a repair material
 			if (!shouldHardcodedForceRenameCosts(resultItem.getItem())) {
 				this.cost.set(0);
+				info("P10.1: Set override rename cost to 0");
 			}
 		}
 		// Can't repair/combine and gem color at same time, so remove gem cost if not renaming
-		if(repairCost==0 && mergingCost==0 && isGemColoring && !isRenaming) {
-			//ExtendedLog.info("isGemColoring && !isRenaming");
+		if(repairCost==0 && mergingCost==0 && isGemColoring && renameCost==0) {
+			//info("isGemColoring && !isRenaming");
 			this.cost.set(0);
+			info("P11: Only gem coloring, set cost to zero");
 		}
 		// Allow creative bypass for expensive items
-		if (this.cost.get() >= 63 && !this.player.abilities.instabuild) {
+		if (this.cost.get() > 63 && !this.player.abilities.instabuild) {
 			resultItem = ItemStack.EMPTY;
+			info("P12: Reject max cost if not creative");
 		}
 		if (!resultItem.isEmpty()) {
+			info("P13: Setting new repair cost");
 			int newRepairCost = resultItem.getBaseRepairCost();
 			if (!mergableItem.isEmpty() && newRepairCost < mergableItem.getBaseRepairCost()) {
 				newRepairCost = mergableItem.getBaseRepairCost();
@@ -539,11 +606,13 @@ public class ExtendedRepairContainerNew extends Container {
 			if (repairCost>0 || mergingCost>0) {
 				newRepairCost += 2;
 			}
+			info("P13.1: OLD: "+resultItem.getBaseRepairCost()+", NEW: "+newRepairCost);
+
 			resultItem.setRepairCost(newRepairCost);
 			ExtendedModifierUtils.setModifiers(resultItem, inputModifiers);
 			EnchantmentHelper.setEnchantments(inputEnchants, resultItem);
 		}
-
+		info("P14: Done");
 		this.resultSlots.setItem(0, resultItem);
 		this.broadcastChanges();
 	}
@@ -568,7 +637,6 @@ public class ExtendedRepairContainerNew extends Container {
 				if (!this.moveItemStackTo(stackToMove, 4, 40, true)) {
 					return ItemStack.EMPTY;
 				}
-
 				slot.onQuickCraft(stackToMove, itemstack);
 			} else if (pIndex != 0 && pIndex != 1 && pIndex != 2) {
 				if (pIndex >= 4 && pIndex < 40) {
@@ -580,17 +648,14 @@ public class ExtendedRepairContainerNew extends Container {
 			} else if (!this.moveItemStackTo(stackToMove, 4, 40, false)) {
 				return ItemStack.EMPTY;
 			}
-
 			if (stackToMove.isEmpty()) {
 				slot.set(ItemStack.EMPTY);
 			} else {
 				slot.setChanged();
 			}
-
 			if (stackToMove.getCount() == itemstack.getCount()) {
 				return ItemStack.EMPTY;
 			}
-
 			slot.onTake(pPlayer, stackToMove);
 		}
 
@@ -694,10 +759,6 @@ public class ExtendedRepairContainerNew extends Container {
 		return this.cost.get();
 	}
 
-	public boolean getGemIncompatable() {
-		return this.gemprocessing.get()==1? true : false;
-	}
-
 	public boolean getMaxedLevelForBook() {
 		return this.incompatable.get()==1;
 	}
@@ -708,6 +769,10 @@ public class ExtendedRepairContainerNew extends Container {
 
 	public boolean getIncompatable() {
 		return this.incompatable.get()==3;
+	}
+
+	public boolean getGemIncompatable() {
+		return this.incompatable.get()==4;
 	}
 
 	public int getReforgeCost() {
@@ -765,5 +830,9 @@ public class ExtendedRepairContainerNew extends Container {
 				item instanceof BowItem || item instanceof FishingRodItem || item instanceof ShearsItem || 
 				item instanceof SmokingPipeItem || item instanceof CrossbowItem || item instanceof ShieldItem|| 
 				item instanceof ExtendedBrandingIronItem || item instanceof ExtendedChiselItem || item instanceof ExtendedThrowableAxeItem;
+	}
+
+	private static void info(String message) {
+		ExtendedLog.info(message, ExtendedServerConfig.enableSpecialLogging);
 	}
 }

@@ -206,7 +206,7 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 					}
 				}
 			}else if(cost > 0) {
-				if (cost >= 63 && !this.minecraft.player.abilities.instabuild) {
+				if (cost > 63 && !this.minecraft.player.abilities.instabuild) {
 					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.expensive");
 					textColor = ERRORTEXTCOLOR;
 				} else if (!this.menu.getSlot(3).hasItem()) {

@@ -25,10 +25,12 @@ public class ExtendedCAnvilButtonPacket {
 
 	public static void handle(ExtendedCAnvilButtonPacket pPacket, Supplier<Context> context) {
 		ServerPlayerEntity player = context.get().getSender();
-		if(player.containerMenu instanceof ExtendedRepairContainerNew && pPacket.buttonType==0) {
-			((ExtendedRepairContainerNew)player.containerMenu).reforgeItem();
-		}else if(player.containerMenu instanceof ExtendedRepairContainerNew && pPacket.buttonType==1) {
-			((ExtendedRepairContainerNew)player.containerMenu).engraveItem();
+		if(player.containerMenu instanceof ExtendedRepairContainerNew) {
+			if(pPacket.buttonType==0) {
+				((ExtendedRepairContainerNew)player.containerMenu).reforgeItem();
+			}else if(pPacket.buttonType==1) {
+				((ExtendedRepairContainerNew)player.containerMenu).engraveItem();
+			}
 		}
 		context.get().setPacketHandled(true);
 	}
