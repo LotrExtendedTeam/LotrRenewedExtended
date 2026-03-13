@@ -124,7 +124,7 @@ public enum ExtendedInvasions {
         ExtendedInvasions.ISENGARD.addInvasionMob(new InvasionSpawnEntry(LOTREntities.ISENGARD_SNAGA_ARCHER.get(), 5));
         ExtendedInvasions.ISENGARD.addInvasionMob(new InvasionSpawnEntry(LOTREntities.URUK.get(), 10));
         ExtendedInvasions.ISENGARD.addInvasionMob(new InvasionSpawnEntry(LOTREntities.URUK_ARCHER.get(), 5));
-        ExtendedInvasions.ISENGARD.addInvasionMob(new InvasionSpawnEntry(ExtendedEntities.URUK_BERSERKER.get(), 5));
+        ExtendedInvasions.ISENGARD.addInvasionMob(new InvasionSpawnEntry(ExtendedEntities.URUK_BERSERKER.get(), 2));
         ExtendedInvasions.ISENGARD.addInvasionMob(new InvasionSpawnEntry(LOTREntities.ISENGARD_WARG.get(), 10));
     }
 
