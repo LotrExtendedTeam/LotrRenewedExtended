@@ -19,7 +19,7 @@ import net.minecraft.util.WeightedRandom;
  *     <li>{@link #keyNbt} – The NBT save name used for persistence.</li>
  *     <li>{@link #keyLocal} – The localization key used for translations.</li>
  *     <li>{@link #modifierType} – The functional category of the modifier.</li>
- *     <li>{@link #teir} – The tier or strength level of the modifier.</li>
+ *     <li>{@link #tier} – The tier or strength level of the modifier.</li>
  *     <li>{@link #effect} – The numeric effect applied by this modifier.</li>
  *     <li>{@link #rarity} – How the modifier is obtained (crafting, reforging, applied, earned, etc.).</li>
  *     <li>{@link #slots} – The valid slots this modifier can be applied from.</li>
@@ -38,7 +38,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	private final ExtendedModifierType modifierType;
 
 	/** Tier or strength level of the modifier. */
-	private final int teir;
+	private final int tier;
 
 	/** The numeric effect magnitude applied by this modifier. */
 	private final float effect;
@@ -61,7 +61,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 		this.keyNbt = pNbtKey;
 		this.keyLocal = pLocalKey;
 		this.modifierType = pModifierType;
-		this.teir = pLevel;
+		this.tier = pLevel;
 		this.effect = pModifierEffect;
 		this.rarity = pModifierRarity;
 		this.scroll = pScroll;
@@ -119,7 +119,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	 * @return the tier or strength level of this modifier. 
 	 */
 	public int getModifierTeir() {
-		return teir;
+		return tier;
 	}
 	/**
 	 * Returns the value of this modifier.
@@ -141,7 +141,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	 * @return the tier value representing this modifier's cost or strength
 	 */
 	public int getModifierValue() {
-		return teir;
+		return tier;
 	}
 	/** 
 	 * @return the numeric effect value applied by this modifier. 
@@ -197,7 +197,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	public int getMaxLevel() {
 		List<ExtendedModifier> list = ExtendedModifiers.MODIFIERS_BY_TYPE.get(modifierType);
 		if (list == null || list.isEmpty()) {
-			return this.teir; // fallback, should not normally happen
+			return this.tier; // fallback, should not normally happen
 		}
 		return list.get(list.size() - 1).getModifierTeir();
 	}
@@ -208,7 +208,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	public int getMinLevel() {
 		List<ExtendedModifier> list = ExtendedModifiers.MODIFIERS_BY_TYPE.get(modifierType);
 		if (list == null || list.isEmpty()) {
-			return this.teir; // fallback, should not normally happen
+			return this.tier; // fallback, should not normally happen
 		}
 		return list.get(0).getModifierTeir();
 	}

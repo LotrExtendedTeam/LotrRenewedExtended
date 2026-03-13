@@ -66,7 +66,7 @@ import net.minecraftforge.common.Tags;
  * Based off of {@link RepairContainer}
  * */
 public class ExtendedRepairContainerNew extends Container {
-    public static final ResourceLocation EMPTY_SLOT_INGOT = new ResourceLocation(LotrExtendedMod.MODID, "item/empty_slot_ingot");
+	public static final ResourceLocation EMPTY_SLOT_INGOT = new ResourceLocation(LotrExtendedMod.MODID, "item/empty_slot_ingot");
 	public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotrextended.repair");
 	protected final CraftResultInventory resultSlots = new CraftResultInventory();
 	protected final IInventory inputSlots = new Inventory(3) {
@@ -264,9 +264,10 @@ public class ExtendedRepairContainerNew extends Container {
 		boolean isScrollOrBook = false;
 		// Logic if there is a item in merge slot
 		if (!mergableItem.isEmpty()) {
+			//if (!net.minecraftforge.common.ForgeHooks.onAnvilChange(this, inputItem, mergableItem, resultSlots, itemName, baseCost, this.player)) return;
 			isEnchantingItem = mergableItem.getItem() == Items.ENCHANTED_BOOK && !EnchantedBookItem.getEnchantments(mergableItem).isEmpty();
 			isModifierItem = (mergableItem.getItem() == ExtendedItems.MODIFIER_SCROLL.get() && !ExtendedModifierScrollItem.getModifier(mergableItem).isUnknown()) || mergableItem.getItem() == LOTRItems.BOOK_OF_TRUE_SILVER.get();
-			isScrollOrBook = isEnchantingItem || isScrollOrBook;
+			isScrollOrBook = isEnchantingItem || isModifierItem;
 			if (!isScrollOrBook && resultItem.getItem() == mergableItem.getItem() && resultItem.isDamageableItem()) {
 				int durabilityLeftBase = inputItem.getMaxDamage() - inputItem.getDamageValue();
 				int durabilityLeftMaterial = mergableItem.getMaxDamage() - mergableItem.getDamageValue();
@@ -342,6 +343,7 @@ public class ExtendedRepairContainerNew extends Container {
 			}
 		}
 		if(!mergableItem.isEmpty() && ExtendedServerConfig.enableExtendedModifiers.get()) {
+			// Returns a safe built list, not based on nbt
 			List<ExtendedModifier> mergableModifiers = ExtendedModifierUtils.getModifierList(mergableItem);
 			if(isModifierItem) {
 				if(mergableItem.getItem() == LOTRItems.BOOK_OF_TRUE_SILVER.get()) {
@@ -355,65 +357,94 @@ public class ExtendedRepairContainerNew extends Container {
 			boolean maximumModifiersReached = false;
 			int currentModifierCount = (int) inputModifiers.stream().filter(m -> m.getRarity().countsTowardsLimit()).count();
 			for(ExtendedModifier mergingModifier : mergableModifiers) {
+				/*************CHECK_ITEM*******************/
 				// Skip modifier it it can't apply to the item
 				if (!mergingModifier.canApplyToItem(inputItem)) {
+					// Scrolls should not skip modifiers, reject recipe
 					if(isModifierItem) {
 						hasIncompatibleModifier = true;
+						break; // atomic merge rule
 					}
 					continue;
 				}
+				/*************CHECK_TIER*******************/
 				// Use the lowest tier value if the modifier does not exist on the original item, so that the new item can override this lowest possible value.
 				ExtendedModifier existingModifier = inputModifiers.stream()
 						.filter(m -> m.getModifierType() == mergingModifier.getModifierType())
-						.findFirst().orElse(ExtendedModifiers.UNKNOWN);
-				if(existingModifier.isUnknown()) {
-					continue;
-				}
-				int slot0Level = existingModifier.getModifierTeir();
-				int slot1Level = mergingModifier.getModifierTeir();
-				if(slot1Level<slot0Level) {
-					// Don't recalculate costs for discarded modifiers
-					continue;
-				}
-				// If same then increase level, otherwise get the max of the two levels
-				int outputSlotLevel = (slot0Level == slot1Level) ? slot1Level + 1 : Math.max(slot1Level, slot0Level);
-				// Check if modifier can apply alongside other modifiers
-				for(ExtendedModifier existing : inputModifiers) {
-					if (!mergingModifier.isCompatableModifier(existing.getModifierType())) {
+						.findFirst().orElse(ExtendedModifiers.UNKNOWN);// UNKNOWN's tier is 0 
+				int outputSlotLevel = 0;
+				// Split logic so a tier one modifier + unknown that defaults to lowest tier does trigger (slot1Level + 1)
+				if(!existingModifier.isUnknown()) {
+					int slot0Level = existingModifier.getModifierTeir();
+					int slot1Level = mergingModifier.getModifierTeir();
+					// Stop low tier books still applying to items with higher tier modifiers
+					if(slot1Level < slot0Level && isModifierItem) {
+						// Scrolls should not apply when below existing modifier tiers, reject recipe
 						hasIncompatibleModifier = true;
+						break; // atomic merge rule
+					}
+					// If same then increase level, otherwise get the max of the two levels
+					outputSlotLevel = (slot0Level == slot1Level) ? slot1Level + 1 : Math.max(slot1Level, slot0Level);
+				}else {
+					outputSlotLevel = mergingModifier.getModifierTeir();
+				}
+				/*************CHECK_MAX_TIER***************/
+				// If applied modifier pushes past max tier, skip it or reject if is applied from scroll
+				if (outputSlotLevel > mergingModifier.getMaxLevel()) {
+					// Scrolls should not apply there is no higher tier, reject recipe
+					if (isModifierItem) {
+						maxedLevelForBook = true;
+						break; // atomic merge rule
+					}
+					continue;
+				}
+				/*************CHECK_COMPATIBILITY**********/
+				// Check if modifier can apply alongside other modifiers
+				boolean incompatibleWithExisting = false;
+				// Break if incompatible modifiers exist, don't want to just delete them
+				for(ExtendedModifier existing : inputModifiers) {
+					// Only check against modifiers of different types
+					if (mergingModifier.getModifierType()!=existing.getModifierType() && !mergingModifier.isCompatableModifier(existing.getModifierType())) {
+						incompatibleWithExisting = true;
 						break;
 					}
 				}
-				if(hasIncompatibleModifier) {
-					continue;
-				}
-				// If applied modifier pushes past max tier, skip it and reject if is applied from scroll
-				if (outputSlotLevel > mergingModifier.getMaxLevel()) {
-					if (isModifierItem) {
-						maxedLevelForBook = true;
-					}
+				if(incompatibleWithExisting) {
+					// Reject recipe if there are modifier conflicts, don't want to discard modifiers, reject recipe
 					hasIncompatibleModifier = true;
-					continue;
+					break; // atomic merge rule
 				}
-				if (mergingModifier.getRarity().countsTowardsLimit() && currentModifierCount>=3) {
+				/*************CHECK_MODIFIER_CAP***********/
+				// If modifier does not exist yet, and we are at max count, reject recipe
+				if (existingModifier.isUnknown() && mergingModifier.getRarity().countsTowardsLimit() && currentModifierCount >= 3) {
 					maximumModifiersReached = true;
-					continue;
+					break; // atomic merge rule
 				}
-				// Remove old modifier of the same type
-				inputModifiers.removeIf(m -> m.getModifierType() == mergingModifier.getModifierType());
+				/*************GET_NEW_TIER*****************/
 				// Get the list of modifiers for this type
 				List<ExtendedModifier> list = ExtendedModifiers.MODIFIERS_BY_TYPE.get(mergingModifier.getModifierType());
 				// Find the modifier with the desired level
-				ExtendedModifier result = list.stream().filter(m -> m.getModifierTeir() == outputSlotLevel).findFirst().orElse(ExtendedModifiers.UNKNOWN); // fallback if no exact match
+				final int outputSlotLevelFix = outputSlotLevel;
+				ExtendedModifier result = list.stream().filter(m -> m.getModifierTeir() == outputSlotLevelFix).findFirst()
+						.orElse(ExtendedModifiers.UNKNOWN); // fallback if no exact match
 				if(result.isUnknown()) {
-					// Should never happen, but you never know
-					continue;
+					// Should never happen because we checked tiers above, sanity check
+					hasIncompatibleModifier = true;
+					break; // atomic merge rule
 				}
+				/*************UPDATE_LISTS*****************/
+				// Remove old modifier of the same type
+				inputModifiers.removeIf(m -> m.getModifierType() == mergingModifier.getModifierType());
+				// only add merge cost if is positive modifier
 				if(outputSlotLevel>0) {
 					mergingCost += Math.max(1, result.getModifierValue());
 				}
 				inputModifiers.add(result);
-				currentModifierCount = (int) inputModifiers.stream().filter(m -> m.getRarity().countsTowardsLimit()).count();
+				// Update modifier count if modifier was previously unknown to the lsit
+				if(existingModifier.isUnknown() && result.getRarity().countsTowardsLimit()) {
+					currentModifierCount++;
+				}
+
 			}
 			if (maxedLevelForBook || maximumModifiersReached || hasIncompatibleModifier) {
 				resultItem = ItemStack.EMPTY;
