@@ -1698,6 +1698,7 @@
   "command.lotrextended.fellowship.acceptinvite.error": "Invalid invite!",
   "command.lotrextended.fellowship.admin.added": "Added fellowship admin: %s",
   "command.lotrextended.fellowship.admin.removed": "Removed fellowship admin: %s",
+  "command.lotrextended.fellowship.changecolor": "Faction color updated!",
   "command.lotrextended.fellowship.client.admin.added": "You been promoted to fellowship admin in %s",
   "command.lotrextended.fellowship.client.admin.removed": "You been demoted from fellowship admin in %s",
   "command.lotrextended.fellowship.client.created": "Fellowship created!",
