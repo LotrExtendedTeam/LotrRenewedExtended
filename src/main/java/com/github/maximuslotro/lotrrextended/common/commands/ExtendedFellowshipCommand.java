@@ -7,11 +7,15 @@ import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 
 import lotr.common.command.LOTRBaseCommand;
+import lotr.common.command.arguments.FactionArgument;
 import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.data.ExtendedLOTRPlayerData;
+import lotr.common.fac.Faction;
+import lotr.common.fac.FactionPointers;
 import lotr.common.fellowship.ExtendedFellowship;
 import lotr.common.util.UsernameHelper;
 import net.minecraft.command.CommandSource;
@@ -19,11 +23,9 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.*;
 
 public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
@@ -67,6 +69,11 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 												.executes(context -> invite(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), EntityArgument.getPlayer(context, "playerToAdd")))
 												)
 										)
+                                .then(Commands.literal("changeColor")
+                                        .then(Commands.argument("factionColor", FactionArgument.faction())
+                                                .executes(context -> changeColor(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), FactionArgument.getFaction(context, "factionColor")))
+                                                )
+                                        )
 								.then(Commands.literal("removePlayer")
 										.then(Commands.argument("playerToRemove", EntityArgument.player())
 												.executes(context -> removePlayer(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), EntityArgument.getPlayer(context, "playerToRemove")))
@@ -206,15 +213,30 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 
 	private static int createFellowship(CommandSource source, PlayerEntity player, String fellowshipname, boolean adminOverride) {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
+        ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
+        Faction faction = getAlignData(serverPlayer).getPledgeFaction();
         if (fellowship == null) {
         	if(fellowshipData.createFellowship(fellowshipname, adminOverride)) {
     			player.awardStat(ExtendedStats.FELLOWSHIP_CREATE);
+                ExtendedFellowship createdFellowship = fellowshipData.getFellowshipByName(fellowshipname);
+
+                if (faction != null && !FactionPointers.UNALIGNED.matches(faction)) {
+                    Style style = Style.EMPTY.withColor(Color.fromRgb(faction.getColor()));
+                    fellowshipData.setFellowshipColor(createdFellowship, style);
+                } else {
+                    fellowshipData.setFellowshipColor(
+                            createdFellowship,
+                            Style.EMPTY.withColor(TextFormatting.YELLOW)
+                    );
+                }
+
         	}
-        	return 0;
+            return 0;
         }
-		source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error.exists", fellowshipname).withStyle(TextFormatting.RED), true);
-		return 0;
+
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error.exists", fellowshipname).withStyle(TextFormatting.RED), true);
+        return 0;
 	}
 	private static int renameFellowship(CommandSource source, PlayerEntity player, String fellowshipname, String fellowshipNewName) {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
@@ -370,7 +392,21 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
 	}
-	private static int disband(CommandSource source, PlayerEntity player, String fellowshipname) {
+	private static int changeColor(CommandSource source, PlayerEntity player, String fellowshipname, Faction faction) throws CommandSyntaxException {
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
+		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
+		Style style = Style.EMPTY.withColor(Color.fromRgb(faction.getColor()));
+		if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
+			fellowshipData.setFellowshipColor(fellowship, style);
+			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.changecolor"), true);
+
+			return 0;
+		}
+
+		source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
+		return 0;
+	}
+    private static int disband(CommandSource source, PlayerEntity player, String fellowshipname) {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
@@ -405,7 +441,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		if (fellowship != null) {
 			//Send Name
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.data.name").withStyle(TextFormatting.GREEN)
-					.append(new StringTextComponent(fellowship.getFellowshipName()).withStyle(TextFormatting.GOLD)), true);
+					.append(new StringTextComponent(fellowship.getFellowshipName()).withStyle(fellowship.getFellowshipColor())), true);
 			//Send PVP and HYPVP data
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.data.pvp").withStyle(TextFormatting.GREEN)
 					.append(new StringTextComponent(String.valueOf(!fellowship.isPreventPVP())).withStyle(TextFormatting.GOLD))

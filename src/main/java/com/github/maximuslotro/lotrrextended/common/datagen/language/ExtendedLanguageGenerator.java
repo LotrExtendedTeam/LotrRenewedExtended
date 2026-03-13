@@ -425,6 +425,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.fellowship.data.owner", "Owner: ");
 		addD("command.lotrextended.fellowship.data.admins", "Admins: ");
 		addD("command.lotrextended.fellowship.data.members", "Members: ");
+        addD("command.lotrextended.fellowship.changecolor", "Faction color updated!");
 
 		//Config Command Values
 		addD("command.lotrextended.config.cant", "can only be edited in server config while server is off!");
@@ -632,6 +633,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("lotrextended.invasion.gondor", "Gondor");
 		addD("lotrextended.invasion.lothlorien", "Lothlorien");
 		addD("lotrextended.invasion.woodland_realm", "Woodland Realm");
+		addD("lotrextended.invasion.rohan", "Rohan");
+		addD("lotrextended.invasion.isengard", "Uruk-hai");
 	}
 
 	@Override

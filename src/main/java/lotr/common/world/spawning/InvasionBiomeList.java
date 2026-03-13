@@ -158,9 +158,13 @@ public class InvasionBiomeList {
         ));
 
         // Rohan
-        // TODO: Add Isengard and Dunlending invasions when the factions are added
-        register("lotr:rohan", new HashMap<>());
-        register("lotr:wold", new HashMap<>());
+        // TODO: Add Dunlending invasions when the faction is added
+        register("lotr:rohan", genMap(
+                ExtendedInvasions.ISENGARD, InvasionChance.UNCOMMON
+        ));
+        register("lotr:wold", genMap(
+                ExtendedInvasions.ISENGARD, InvasionChance.UNCOMMON
+        ));
 
         register("lotr:fangorn", new HashMap<>()); // no invasions in Fangorn
         register("lotr:mouths_of_entwash", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
