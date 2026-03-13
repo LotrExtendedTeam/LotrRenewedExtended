@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.ActionResultType;
@@ -47,5 +48,10 @@ public class ExtendedCrucibleBlock extends HorizontalBlock {
 	public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pHit) {
 		pPlayer.sendMessage(new StringTextComponent("Crucible/Unsmeltary Coming soon TM"), Util.NIL_UUID);
 		return ActionResultType.sidedSuccess(pLevel.isClientSide);
+	}
+
+	@Override
+	public boolean isPathfindable(BlockState pState, IBlockReader pLevel, BlockPos pPos, PathType pType) {
+		return false;
 	}
 }

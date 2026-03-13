@@ -24,6 +24,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -189,5 +190,10 @@ public class ExtendedStoneGrinderBlock extends ContainerBlock {
 			}
 			pLevel.addParticle(ParticleTypes.SMOKE, dX , dY + 0.6D, dZ , 0.0D, 0.0D, 0.0D);
 		}
+	}
+
+	@Override
+	public boolean isPathfindable(BlockState pState, IBlockReader pLevel, BlockPos pPos, PathType pType) {
+		return false;
 	}
 }
