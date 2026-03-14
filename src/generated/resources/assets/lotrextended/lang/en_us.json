@@ -2126,7 +2126,7 @@
   "gui.lotrextended.serversettings.legacywaypointcreate.setting": "Legacy Custom WP: %s",
   "gui.lotrextended.serversettings.metaldoorsrequirepower.setting": "Metal Doors Require Power: %s",
   "gui.lotrextended.serversettings.middleearthspawnradius.setting": "ME Spawn Radius: %s blocks",
-  "gui.lotrextended.serversettings.no_perm": "Must be an Operator or in SinglePlayer to access.",
+  "gui.lotrextended.serversettings.no_perm": "Requires singleplayer cheats or server operator permissions.",
   "gui.lotrextended.serversettings.overworldspawnradius.setting": "Overworld Spawn Radius: %s blocks",
   "gui.lotrextended.serversettings.passivecaptains.setting": "Passive Captains: %s",
   "gui.lotrextended.serversettings.passivetraders.setting": "Passive Traders: %s",

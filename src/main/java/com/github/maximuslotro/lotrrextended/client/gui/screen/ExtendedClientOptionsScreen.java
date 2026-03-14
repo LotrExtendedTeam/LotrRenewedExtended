@@ -64,7 +64,9 @@ public class ExtendedClientOptionsScreen extends ExtendedBasicAbstractScreen {
 				return true;
 			}
 		});
-		if(this.minecraft.hasSingleplayerServer() || this.minecraft.player.hasPermissions(2)) {
+		boolean showAdmin=false;
+		if ((this.minecraft.hasSingleplayerServer() && this.minecraft.getSingleplayerServer().getPlayerList().isAllowCheatsForAllPlayers())
+				|| this.minecraft.player.hasPermissions(2)) {
 			this.addButton(new ExtendedColorChangingButton(Math.max(0, this.leftPos - 140), this.topPos + 40 + (this.imageHeight + 20) / 4, 100, 20, 
 					new TranslationTextComponent("gui.lotrextended.serversettings.button"), 
 					button -> {
@@ -85,7 +87,7 @@ public class ExtendedClientOptionsScreen extends ExtendedBasicAbstractScreen {
 				}
 				@Override
 				public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
-					ExtendedClientOptionsScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.serversettings.no_perm"), 200), pMouseX, pMouseY);
+					ExtendedClientOptionsScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.serversettings.no_perm"), 150), pMouseX, pMouseY);
 				}
 			});
 		}

@@ -279,7 +279,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.serversettings.extendedspawnprotection.setting", "Extended Spawn Protection: %s");
 		addD("gui.lotrextended.serversettings.overworldspawnradius.setting", "Overworld Spawn Radius: %s blocks");
 		addD("gui.lotrextended.serversettings.middleearthspawnradius.setting", "ME Spawn Radius: %s blocks");
-		addD("gui.lotrextended.serversettings.no_perm", "Must be an Operator or in SinglePlayer to access.");
+		addD("gui.lotrextended.serversettings.no_perm", "Requires singleplayer cheats or server operator permissions.");
 		addD("gui.lotrextended.settings.title", "Middle-earth Options");
 		addD("gui.lotrextended.settings.button", "Client Options");
 		addD("gui.lotrextended.settings.worldsettings", "World Settings");

@@ -76,6 +76,11 @@ public class ExtendedCServerSettingsPacket {
 			ExtendedLog.warn("{} tried editing server settings while not OP in multiplayer!", player.getName().getString());
 			return;
 		}
+		if(!ServerLifecycleHooks.getCurrentServer().isDedicatedServer() &&
+				!ServerLifecycleHooks.getCurrentServer().getPlayerList().isAllowCheatsForAllPlayers()) {
+			ExtendedLog.warn("{} tried editing server settings while in singleplayer cheat are not enabled!", player.getName().getString());
+			return;
+		}
 		try {
 			switch (packet.getType()) {
 				case BANNER_PROTECTION:
