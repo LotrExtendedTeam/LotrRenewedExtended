@@ -21,23 +21,21 @@ import net.minecraft.world.World;
 @Mixin(BlueDwarfEntity.class)
 public abstract class MixinBlueDwarfEntity extends DwarfEntity {
 	/**
-     * Required constructor for Mixins extending classes.
-     * This constructor will be stripped at runtime during Mixin transformation.
-     *
-     * @param type The {@link EntityType} of this DwarfEntity.
-     * @param w The {@link World} in which this entity exists.
-     */
+	 * Required constructor for Mixins extending classes.
+	 * This constructor will be stripped at runtime during Mixin transformation.
+	 *
+	 * @param type The {@link EntityType} of this DwarfEntity.
+	 * @param w The {@link World} in which this entity exists.
+	 */
 	public MixinBlueDwarfEntity(EntityType<? extends DwarfEntity> type, World w) {
 		super(type, w);
 	}
 
 	/**
-     * Provides the name generator used for Blue Dwarves.
-     * Overrides the base DwarfEntity's name generator to use the {@link ExtendedNPCNameGenerators#BLUE_DWARF}
-     * name list for Blue Dwarf NPCs.
-     *
-     * @return The {@link NPCNameGenerator} specific to Blue Dwarves.
-     */
+	 * Provides the new name generator used for Blue Dwarves mixing different banks.
+	 *
+	 * @return The {@link NPCNameGenerator} specific to Blue Dwarves.
+	 */
 	@Override
 	protected NPCNameGenerator getNameGenerator() {
 		return ExtendedNPCNameGenerators.BLUE_DWARF;

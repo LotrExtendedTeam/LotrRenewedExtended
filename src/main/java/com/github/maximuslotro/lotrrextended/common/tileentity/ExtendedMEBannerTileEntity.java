@@ -47,6 +47,8 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.UsernameCache;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
@@ -130,7 +132,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	public void tick() {
 		isActiveHalf = this.getBlockState().getValue(ExtendedMEBannerBlock.HALF) == DoubleBlockHalf.LOWER;
 		if(isActiveHalf) {
-			setProtectionLevelFromBelowBlock();
+			setProtectionLevel(getProtectionLevelFromBelowBlock(this.level, this.getBlockPos().below()));
 			if(isProtecting()) {
 				if(!firstTick && this.level!=null && !this.level.isClientSide()) {
 					ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(placedPlayerUUID);
@@ -167,18 +169,18 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		}
 	}
 
-	private void setProtectionLevelFromBelowBlock() {
-		BlockState belowBlockstate = level.getBlockState(this.getBlockPos().below());
+	public static ExtendedBannerProtectionLevels getProtectionLevelFromBelowBlock(World level, BlockPos pos) {
+		BlockState belowBlockstate = level.getBlockState(pos);
 		if(belowBlockstate.is(Blocks.GOLD_BLOCK)) {
-			setProtectionLevel(ExtendedBannerProtectionLevels.GOLD);
+			return ExtendedBannerProtectionLevels.GOLD;
 		}else if(belowBlockstate.is(LOTRBlocks.SILVER_BLOCK.get())) {
-			setProtectionLevel(ExtendedBannerProtectionLevels.SILVER);
+			return ExtendedBannerProtectionLevels.SILVER;
 		}else if(belowBlockstate.is(LOTRBlocks.BRONZE_BLOCK.get())) {
-			setProtectionLevel(ExtendedBannerProtectionLevels.BRONZE);
+			return ExtendedBannerProtectionLevels.BRONZE;
 		}else if(belowBlockstate.is(LOTRBlocks.COPPER_BLOCK.get())) {
-			setProtectionLevel(ExtendedBannerProtectionLevels.COPPER);
+			return ExtendedBannerProtectionLevels.COPPER;
 		}else {
-			setProtectionLevel(ExtendedBannerProtectionLevels.NONE);
+			return ExtendedBannerProtectionLevels.NONE;
 		}
 	}
 
