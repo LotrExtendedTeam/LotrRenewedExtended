@@ -34,13 +34,10 @@ import net.minecraft.block.JukeboxBlock;
 import net.minecraft.block.LecternBlock;
 import net.minecraft.block.LeverBlock;
 import net.minecraft.block.TrapDoorBlock;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.item.TNTEntity;
-import net.minecraft.entity.item.minecart.TNTMinecartEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.math.BlockPos;
@@ -171,39 +168,25 @@ public class BannerEventHandlers {
 		}
 	}
 
-	//TODO allow owner to blow up their own land
 	@SubscribeEvent(priority=EventPriority.HIGH)
 	public static void handleBannerDetonateEvent(ExplosionEvent.Detonate event) {
 		Explosion explosion = event.getExplosion();
 		World world = event.getWorld();
-		Entity exploder = event.getExplosion().getSourceMob();
-		if (!world.isClientSide && exploder != null) {
-			SingleProtectionInstance protectionInstance = null;
+		LivingEntity exploder = event.getExplosion().getSourceMob();
+		SingleProtectionInstance protectionInstance = null;
+		if (!world.isClientSide) {
 			if(exploder instanceof NPCEntity || exploder instanceof MobEntity) {
 				protectionInstance = new SingleProtectionInstance.AnyProtection();
-			}else if(exploder instanceof ProjectileEntity) {
-				protectionInstance = new SingleProtectionInstance.LaunchedProtection((ProjectileEntity)exploder);
-			}else if(exploder instanceof TNTEntity) {
-				if(((TNTEntity)exploder).getOwner()!=null) {
-					LivingEntity owner = ((TNTEntity)exploder).getOwner();
-					if(owner instanceof NPCEntity || owner instanceof MobEntity) {
-						protectionInstance = new SingleProtectionInstance.AnyProtection();
-					}else if(owner instanceof PlayerEntity) {
-						protectionInstance = new SingleProtectionInstance.PlayerProtection((PlayerEntity) owner);
-					}else {
-						protectionInstance = new SingleProtectionInstance.AnyProtection();
-					}
-				}else {
-					protectionInstance = new SingleProtectionInstance.TNTProtection((TNTEntity)exploder);
-				}
-			}else if(exploder instanceof TNTMinecartEntity) {
-				protectionInstance = new SingleProtectionInstance.AnyProtection();
+			}else if(exploder instanceof PlayerEntity) {
+				protectionInstance = new SingleProtectionInstance.PlayerProtection((PlayerEntity) exploder);
+			}else if(explosion.getExploder() instanceof TNTEntity) {
+				protectionInstance = new SingleProtectionInstance.TNTProtection((TNTEntity) explosion.getExploder());
 			}
-			if(protectionInstance==null) {
-				protectionInstance = new SingleProtectionInstance.AnyProtection();
-			}
-			saveBlocks(world, explosion.getToBlow(), protectionInstance);
 		}
+		if(protectionInstance==null) {
+			protectionInstance = new SingleProtectionInstance.AnyProtection();
+		}
+		saveBlocks(world, explosion.getToBlow(), protectionInstance);
 	}
 
 	private static void saveBlocks(World world, List<BlockPos> blocksToBlow, SingleProtectionInstance instance) {
