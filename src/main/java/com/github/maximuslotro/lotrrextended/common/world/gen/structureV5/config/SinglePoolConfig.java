@@ -1,9 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config;
 
+import java.util.Random;
+
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-
-import net.minecraft.world.gen.feature.IFeatureConfig;
 
 /**
  * Configuration object for a single pool structure, used in structure feature placement.
@@ -11,7 +11,7 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
  * This configuration specifies which pool identifier to use during generation,
  * allowing modular structure generation from a named pool within the system.
  */
-public class SinglePoolConfig implements IFeatureConfig {
+public class SinglePoolConfig implements ExtendedPoolFeatureConfig {
 	/**
      * Codec for serializing and deserializing {@link SinglePoolConfig} from JSON or NBT
      * during data pack loading or network synchronization.
@@ -37,7 +37,8 @@ public class SinglePoolConfig implements IFeatureConfig {
      *
      * @return The structure pool identifier as a string.
      */
-	public String getPool() {
+	@Override
+	public String getRandomPool(Random rand) {
 		return pool;
 	}
 }

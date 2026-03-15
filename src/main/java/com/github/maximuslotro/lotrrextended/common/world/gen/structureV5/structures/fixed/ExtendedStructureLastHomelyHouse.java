@@ -1,8 +1,9 @@
-package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.fixed;
+package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructureType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.SinglePoolConfig;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.starts.ExtendedStructureStartV5;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.SinglePoolStructure;
 
 import net.minecraft.util.Rotation;
@@ -38,7 +39,7 @@ public class ExtendedStructureLastHomelyHouse extends SinglePoolStructure {
 		return chunkX == 2987 && chunkZ == -76 && ExtendedServerConfig.canSpawnStructure(ExtendedServerConfig.enableFixedStructureImladris);
 	}
 
-	public static class Start extends SinglePoolStructure.Start {
+	public static class Start extends ExtendedStructureStartV5<SinglePoolConfig> {
 		/**
          * Constructs a new {@link Start} instance for {@link SinglePoolStructure}.
          *

@@ -8,8 +8,6 @@ import java.util.Map.Entry;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import net.minecraft.world.gen.feature.IFeatureConfig;
-
 /**
  * Configuration object for weighted structure pool selection during structure feature generation.
  * <p>
@@ -19,7 +17,7 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
  * Used in procedural generation systems where certain pools should appear more frequently
  * while maintaining variety across different generation passes.
  */
-public class WeightedStructureConfig implements IFeatureConfig {
+public class WeightedStructureConfig implements ExtendedPoolFeatureConfig {
 	/**
      * Codec for serializing and deserializing {@link WeightedStructureConfig} from JSON or NBT
      * during data pack loading or network synchronization.
@@ -68,9 +66,10 @@ public class WeightedStructureConfig implements IFeatureConfig {
      * @return The selected structure pool name, or {@code null} if no pools are configured.
      * @throws RuntimeException if selection fails due to an internal inconsistency.
      */
-	public String getRandomLocation(Random rand) {
+	@Override
+	public String getRandomPool(Random rand) {
 		if(weightedPools.isEmpty()) {
-        	return null;
+        	return "empty";
 		}
 		double completeWeight = 0.0;
 		for (Entry<String, Integer> item : weightedPools.entrySet())

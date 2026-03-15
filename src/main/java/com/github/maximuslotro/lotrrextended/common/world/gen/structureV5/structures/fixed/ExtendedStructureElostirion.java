@@ -1,8 +1,9 @@
-package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.special.fixed;
+package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructureType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.SinglePoolConfig;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.starts.ExtendedStructureStartV5;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.SinglePoolStructure;
 
 import net.minecraft.util.Rotation;
@@ -37,7 +38,7 @@ public class ExtendedStructureElostirion extends SinglePoolStructure {
 		return chunkX == -796 && chunkZ == 102 && ExtendedServerConfig.canSpawnStructure(ExtendedServerConfig.enableFixedStructureTowerHills);
 	}
 
-	public static class Start extends SinglePoolStructure.Start {
+	public static class Start extends ExtendedStructureStartV5<SinglePoolConfig> {
 		/**
          * Constructs a new {@link Start} instance for {@link SinglePoolStructure}.
          *

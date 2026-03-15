@@ -1,12 +1,15 @@
-package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses;
+package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.starts;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedJigsawManager;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedSingleJigsawPiece;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedPoolFeatureConfig;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.SinglePoolConfig;
 
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.util.ResourceLocation;
@@ -19,7 +22,6 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureManager;
@@ -40,7 +42,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
  * 
  * @param <C> The feature configuration type for this structure.
  */
-public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends StructureStart<C>{
+public class ExtendedStructureStartV5<C extends ExtendedPoolFeatureConfig> extends StructureStart<C>{
 	/**
      * Constructs a new ExtendedStructureStartV5.
      *
@@ -56,14 +58,31 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 	}
 
 	/**
-     * Returns the {@link ResourceLocation} of the Jigsaw pool to generate for this structure,
-     * depending on the provided configuration and random.
+     * Resolves the {@link ResourceLocation} of the structure pool to use for generation
+     * based on the provided {@link SinglePoolConfig}.
+     * <p>
+     * If the pool name is "empty", logs an error and returns {@code null}.
+     * If the pool contains a namespace (colon), it uses the provided namespace.
+     * Otherwise, it uses the mod's namespace as a fallback.
      *
-     * @param config The feature configuration.
-     * @param rand   The random instance for selection.
-     * @return The location of the Jigsaw pool to use for this structure.
+     * @param config The structure configuration specifying the pool.
+     * @param rand   The random generator used during structure placement.
+     * @return The {@link ResourceLocation} of the structure pool, or {@code null} if "empty".
      */
-	public abstract ResourceLocation getLocation(C config, Random rand);
+	public ResourceLocation getLocation(C config, Random rand) {
+		String pool = config.getRandomPool(rand);
+		if ("empty".equals(pool)) {
+			ExtendedLog.error("Tried generating a single pool structure using an empty pool!");
+			return null;
+		}
+		ResourceLocation location;
+		if(pool.contains(":")) {
+			location = new ResourceLocation(pool);
+		} else {
+			location = new ResourceLocation(LotrExtendedMod.MODID, pool);
+		}
+		return location;
+	}
 	/**
      * Allows for setting a fixed rotation for a structure
      * 
