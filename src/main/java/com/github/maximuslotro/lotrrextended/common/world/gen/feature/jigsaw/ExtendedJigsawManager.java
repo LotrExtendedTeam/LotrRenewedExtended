@@ -11,8 +11,6 @@ import org.apache.commons.lang3.mutable.MutableObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedConfiguredFeatures;
-import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedWallsFeature;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPaletteProcessor;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
