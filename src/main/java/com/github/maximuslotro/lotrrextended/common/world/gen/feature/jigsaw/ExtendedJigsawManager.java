@@ -11,9 +11,9 @@ import org.apache.commons.lang3.mutable.MutableObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedConfiguredFeatures;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedWallsFeature;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPaletteProcessor;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedStructureSettings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
 
@@ -78,6 +78,7 @@ public class ExtendedJigsawManager {
 	 * @param projectStartToHeightmap if true, adjusts vertical placement to surface height from the heightmap
 	 * @param pRotation               Set a fixed rotation for the structure
 	 * @param offset                  A x, y, z based offset for spawning
+	 * @param settings                Additional hardcoded structure settings
 	 *
 	 * @see ExtendedSingleJigsawPiece
 	 * @see WoodPaletteProcessor
@@ -86,7 +87,7 @@ public class ExtendedJigsawManager {
 	 */
 	public static void addPieces(DynamicRegistries registry, VillageConfig structureConfig, ExtendedJigsawManager.IPieceFactory villagePieceBuilder, 
 			ChunkGenerator chunkGenerator, TemplateManager templateManager, ChunkPos chunkPos, List<? super AbstractVillagePiece> pieces, Random random, 
-			boolean doExpansionHack, boolean projectStartToHeightmap, Rotation pRotation, BlockPos offset) {
+			boolean doExpansionHack, boolean projectStartToHeightmap, Rotation pRotation, BlockPos offset, ExtendedStructureSettings settings) {
 		Structure.bootstrap();
 		MutableRegistry<JigsawPattern> mutableregistry = registry.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY);
 		// Extended start
@@ -164,7 +165,7 @@ public class ExtendedJigsawManager {
 			}
 			// Extended End
 			AxisAlignedBB maxStructureSizeBB = new AxisAlignedBB(structureBBAverageX - maxPlaceDistance, structureStartHeight - maxPlaceDistance, structureBBAverageZ - maxPlaceDistance, structureBBAverageX + maxPlaceDistance + 1, structureStartHeight + maxPlaceDistance + 1, structureBBAverageZ + maxPlaceDistance + 1);
-			ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, maxDepth, villagePieceBuilder, chunkGenerator, templateManager, pieces, random, carryOverProcessor);
+			ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, maxDepth, villagePieceBuilder, chunkGenerator, templateManager, pieces, random, carryOverProcessor, settings);
 			jigsawmanager$assembler.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, new MutableObject<>(VoxelShapes.join(VoxelShapes.create(maxStructureSizeBB), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox)), IBooleanFunction.ONLY_FIRST)), structureStartHeight + 80, 0));
 
 			while(!jigsawmanager$assembler.placing.isEmpty()) {
@@ -193,7 +194,7 @@ public class ExtendedJigsawManager {
 	 */
 	public static void addPieces(DynamicRegistries registry, AbstractVillagePiece preBuiltAbstractVillagePiece, int buildLevels, ExtendedJigsawManager.IPieceFactory villagePieceBuilder, ChunkGenerator chunkGenerator, TemplateManager templateManager, List<? super AbstractVillagePiece> listBuildablePieces, Random random) {
 		MutableRegistry<JigsawPattern> mutableregistry = registry.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY);
-		ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, buildLevels, villagePieceBuilder, chunkGenerator, templateManager, listBuildablePieces, random, Optional.empty());
+		ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, buildLevels, villagePieceBuilder, chunkGenerator, templateManager, listBuildablePieces, random, Optional.empty(), ExtendedStructureSettings.EMPTY);
 		jigsawmanager$assembler.placing.addLast(new ExtendedJigsawManager.Entry(preBuiltAbstractVillagePiece, new MutableObject<>(VoxelShapes.INFINITY), 0, 0));
 
 		while(!jigsawmanager$assembler.placing.isEmpty()) {
@@ -212,7 +213,7 @@ public class ExtendedJigsawManager {
 	 * It also optionally handles a {@link WoodPaletteProcessor} to carry over wood palette information
 	 * across pieces.</p>
 	 */
-	static final class Assembler {
+	private static final class Assembler {
 		private final Registry<JigsawPattern> pools;
 		private final int maxDepth;
 		private final ExtendedJigsawManager.IPieceFactory factory;
@@ -224,6 +225,7 @@ public class ExtendedJigsawManager {
 		// Extended add optional carry over processors
 		private final Optional<WoodPaletteProcessor> carryOverProcessor;
 		private final List<String> blacklisted_structures = new ArrayList<>();
+		private final ExtendedStructureSettings settings;
 
 		/**
 		 * Constructs an assembler for generating village structures.
@@ -236,8 +238,9 @@ public class ExtendedJigsawManager {
 		 * @param pPieces            collection where generated pieces will be added
 		 * @param pRandom            random source for randomized choices
 		 * @param pCarryOverProcessor optional processor to carry over wood palette data between pieces
+		 * @param pSettings          Additional hardcoded structure settings
 		 */
-		private Assembler(Registry<JigsawPattern> pPools, int pMaxDepth, ExtendedJigsawManager.IPieceFactory pFactory, ChunkGenerator pChunkGenerator, TemplateManager pStructureManager, List<? super AbstractVillagePiece> pPieces, Random pRandom, Optional<WoodPaletteProcessor> pCarryOverProcessor) {
+		private Assembler(Registry<JigsawPattern> pPools, int pMaxDepth, ExtendedJigsawManager.IPieceFactory pFactory, ChunkGenerator pChunkGenerator, TemplateManager pStructureManager, List<? super AbstractVillagePiece> pPieces, Random pRandom, Optional<WoodPaletteProcessor> pCarryOverProcessor, ExtendedStructureSettings pSettings) {
 			this.pools = pPools;
 			this.maxDepth = pMaxDepth;
 			this.factory = pFactory;
@@ -246,6 +249,7 @@ public class ExtendedJigsawManager {
 			this.pieces = pPieces;
 			this.random = pRandom;
 			this.carryOverProcessor = pCarryOverProcessor;
+			this.settings = pSettings;
 		}
 		/**
 		 * Attempts to place child pieces connected to a given parent piece within the village structure.
@@ -254,11 +258,12 @@ public class ExtendedJigsawManager {
 		 * selects possible child pieces from those pools, and attempts to place them respecting spatial constraints
 		 * and maximum depth. It uses voxel shape checks to avoid overlapping structures.</p>
 		 *
-		 * @param villagePiece      the parent village piece to place children for
-		 * @param freeVoxelShapes   voxel shapes representing free space available for placing children
-		 * @param boundsTop         the upper boundary Y coordinate limiting placement
-		 * @param depth             current recursion depth in the piece placement process
-		 * @param doExpansionHack   whether to apply additional placement logic (specific to implementation)
+		 * @param villagePiece      The parent village piece to place children for
+		 * @param freeVoxelShapes   Voxel shapes representing free space available for placing children
+		 * @param boundsTop         The upper boundary Y coordinate limiting placement
+		 * @param depth             Current recursion depth in the piece placement process
+		 * @param doExpansionHack   Whether to apply additional placement logic (specific to implementation)
+
 		 */
 		private void tryPlacingChildren(AbstractVillagePiece villagePiece, MutableObject<VoxelShape> freeVoxelShapes, int boundsTop, int depth, boolean doExpansionHack) {
 			JigsawPiece parentPieceTemplate = villagePiece.getElement();
@@ -435,7 +440,7 @@ public class ExtendedJigsawManager {
 											}
 											// Extended Start
 											// Only reject if the piece reaches above Y 60
-											if (childBoundingBoxInWorld.y1 >= 60) {
+											if (settings.getWallsConfig()!=null && childBoundingBoxInWorld.y1 >= 60) {
 
 											    int minChunkX = childBoundingBoxInWorld.x0 >> 4;
 											    int maxChunkX = childBoundingBoxInWorld.x1 >> 4;
@@ -447,7 +452,7 @@ public class ExtendedJigsawManager {
 											    for (int cx = minChunkX; cx <= maxChunkX && !wallFound; cx++) {
 											        for (int cz = minChunkZ; cz <= maxChunkZ && !wallFound; cz++) {
 
-											            if (ExtendedWallsFeature.isWallChunkCached(ExtendedConfiguredFeatures.ISENGARD_WALLS_CONFIG, cx, cz)) {
+											            if (ExtendedWallsFeature.isWallChunkCached(settings.getWallsConfig(), cx, cz)) {
 											                wallFound = true;
 											            }
 											        }

@@ -1,8 +1,8 @@
-package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.checks;
+package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.overrides;
 
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructureType;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.SinglePoolConfig;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.SinglePoolStructure;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedSinglePoolConfig;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.ExtendedSinglePoolStructure;
 
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.ChunkPos;
@@ -11,18 +11,18 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 
 /**
- * {@link ExtendedStructureCheckAreaChunkFlat} is a custom single-pool structure representing a building.
+ * {@link ExtendedCheckAreaChunkFlatStructure} is a custom single-pool structure representing a building.
  * <p>
  * It overrides the terrain suitability check to ensure the structure only generates
  * on relatively flat terrain by sampling surface heights within the chunk.
  */
-public class ExtendedStructureCheckAreaChunkFlat extends SinglePoolStructure {
+public class ExtendedCheckAreaChunkFlatStructure extends ExtendedSinglePoolStructure {
 	/**
      * Constructs an ExtendedStructureAreaCheckChunk structure with the specified structure type.
      *
      * @param type The type of the structure.
      */
-	public ExtendedStructureCheckAreaChunkFlat(ExtendedStructureType type) {
+	public ExtendedCheckAreaChunkFlatStructure(ExtendedStructureType type) {
 		super(type);
 	}
 	/**
@@ -45,7 +45,7 @@ public class ExtendedStructureCheckAreaChunkFlat extends SinglePoolStructure {
 	 * @return True if the terrain is flat enough (height difference ≤ 4), false otherwise.
 	 */
 	@Override
-	public boolean additionalCheck(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, SinglePoolConfig featureConfig) {
+	public boolean additionalCheck(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, ExtendedSinglePoolConfig featureConfig) {
 		int minY = Integer.MAX_VALUE;
 		int maxY = Integer.MIN_VALUE;
 		for (int dx = 0; dx < 16; dx += 4) {

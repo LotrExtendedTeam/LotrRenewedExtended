@@ -5,18 +5,18 @@ import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedSingleJigsawPiece;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.SinglePoolConfig;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.WeightedStructureConfig;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.SinglePoolStructure;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.WeightedPoolStructure;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.checks.ExtendedStructureCheckAreaChunk;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.checks.ExtendedStructureCheckAreaChunkFlat;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.checks.ExtendedStructureCheckAreaCross;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedSinglePoolConfig;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedWeightedStructureConfig;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.ExtendedSinglePoolStructure;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.ExtendedWeightedPoolStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureAnarostirion;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureElostirion;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureIsilostirion;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureLastHomelyHouse;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureStoneOfHapless;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.overrides.ExtendedCheckAreaChunkStructure;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.overrides.ExtendedCheckAreaChunkFlatStructure;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.overrides.ExtendedCheckAreaCrossStructure;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
@@ -51,54 +51,54 @@ public class ExtendedStructuresV5 {
 	 */
 	public static final DeferredRegister<Structure<?>> STRUCTURE_REGISTRY = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, LotrExtendedMod.MODID);
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_BARN = STRUCTURE_REGISTRY.register("hobbit_barn", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOLE_SMALL = STRUCTURE_REGISTRY.register("hobbit_hole_small", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOLE_LARGE = STRUCTURE_REGISTRY.register("hobbit_hole_large", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_HOUSE = STRUCTURE_REGISTRY.register("hobbit_house", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_PICNIC_BLANKET = STRUCTURE_REGISTRY.register("hobbit_picnic_blanket", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_PICNIC_TABLE = STRUCTURE_REGISTRY.register("hobbit_picnic_table", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_TAVERN_SMALL = STRUCTURE_REGISTRY.register("hobbit_tavern_small", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_TAVERN_LARGE = STRUCTURE_REGISTRY.register("hobbit_tavern_large", () -> new ExtendedStructureCheckAreaChunk(ExtendedStructureType.HOBBIT));
-	public static final RegistryObject<Structure<SinglePoolConfig>> HOBBIT_WINDMILL = STRUCTURE_REGISTRY.register("hobbit_windmill", () -> new SinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> HOBBIT_BARN = STRUCTURE_REGISTRY.register("hobbit_barn", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> HOBBIT_HOLE_SMALL = STRUCTURE_REGISTRY.register("hobbit_hole_small", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> HOBBIT_HOLE_LARGE = STRUCTURE_REGISTRY.register("hobbit_hole_large", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> HOBBIT_HOUSE = STRUCTURE_REGISTRY.register("hobbit_house", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> HOBBIT_PICNIC_BLANKET = STRUCTURE_REGISTRY.register("hobbit_picnic_blanket", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> HOBBIT_PICNIC_TABLE = STRUCTURE_REGISTRY.register("hobbit_picnic_table", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> HOBBIT_TAVERN_SMALL = STRUCTURE_REGISTRY.register("hobbit_tavern_small", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> HOBBIT_TAVERN_LARGE = STRUCTURE_REGISTRY.register("hobbit_tavern_large", () -> new ExtendedCheckAreaChunkStructure(ExtendedStructureType.HOBBIT));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> HOBBIT_WINDMILL = STRUCTURE_REGISTRY.register("hobbit_windmill", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.HOBBIT));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_CAMP = STRUCTURE_REGISTRY.register("ranger_camp", () -> new SinglePoolStructure(ExtendedStructureType.RANGER_OPTIONAL_TOWER_HILLS));
-	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_ENCAMPMENT = STRUCTURE_REGISTRY.register("ranger_encampment", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
-	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_FORT = STRUCTURE_REGISTRY.register("ranger_fort", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
-	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_hideout", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
-	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new SinglePoolStructure(ExtendedStructureType.RANGER_OPTIONAL_TOWER_HILLS));
-	public static final RegistryObject<Structure<WeightedStructureConfig>> RANGER_HOUSE_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_house_hideout", () -> new WeightedPoolStructure(ExtendedStructureType.RANGER));
-	public static final RegistryObject<Structure<SinglePoolConfig>> RANGER_HOUSE_RUIN = STRUCTURE_REGISTRY.register("ranger_house_ruin", () -> new SinglePoolStructure(ExtendedStructureType.RANGER));
-	public static final RegistryObject<Structure<WeightedStructureConfig>> ARNOR_RUINS = STRUCTURE_REGISTRY.register("arnor_ruins", () -> new WeightedPoolStructure(ExtendedStructureType.RUIN));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> RANGER_CAMP = STRUCTURE_REGISTRY.register("ranger_camp", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.RANGER_OPTIONAL_TOWER_HILLS));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> RANGER_ENCAMPMENT = STRUCTURE_REGISTRY.register("ranger_encampment", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.RANGER));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> RANGER_FORT = STRUCTURE_REGISTRY.register("ranger_fort", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.RANGER));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> RANGER_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_hideout", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.RANGER));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> RANGER_WATCHTOWER = STRUCTURE_REGISTRY.register("ranger_watchtower", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.RANGER_OPTIONAL_TOWER_HILLS));
+	public static final RegistryObject<Structure<ExtendedWeightedStructureConfig>> RANGER_HOUSE_HIDEOUT = STRUCTURE_REGISTRY.register("ranger_house_hideout", () -> new ExtendedWeightedPoolStructure(ExtendedStructureType.RANGER));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> RANGER_HOUSE_RUIN = STRUCTURE_REGISTRY.register("ranger_house_ruin", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.RANGER));
+	public static final RegistryObject<Structure<ExtendedWeightedStructureConfig>> ARNOR_RUINS = STRUCTURE_REGISTRY.register("arnor_ruins", () -> new ExtendedWeightedPoolStructure(ExtendedStructureType.RUIN));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> GUNDABAD_CAMP = STRUCTURE_REGISTRY.register("gundabad_camp", () -> new SinglePoolStructure(ExtendedStructureType.GUNDABAD_ORC));
-	public static final RegistryObject<Structure<SinglePoolConfig>> GUNDABAD_ENCAMPMENT = STRUCTURE_REGISTRY.register("gundabad_encampment", () -> new SinglePoolStructure(ExtendedStructureType.GUNDABAD_ORC));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> GUNDABAD_CAMP = STRUCTURE_REGISTRY.register("gundabad_camp", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.GUNDABAD_ORC));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> GUNDABAD_ENCAMPMENT = STRUCTURE_REGISTRY.register("gundabad_encampment", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.GUNDABAD_ORC));
 
-	public static final RegistryObject<Structure<WeightedStructureConfig>> BARROW_DOWN_RUINS = STRUCTURE_REGISTRY.register("barrow_down_ruins", () -> new WeightedPoolStructure(ExtendedStructureType.RUIN));
-	public static final RegistryObject<Structure<WeightedStructureConfig>> BARROW_DOWN_BARROWS = STRUCTURE_REGISTRY.register("barrow_down_barrows", () -> new WeightedPoolStructure(ExtendedStructureType.BARROW));
+	public static final RegistryObject<Structure<ExtendedWeightedStructureConfig>> BARROW_DOWN_RUINS = STRUCTURE_REGISTRY.register("barrow_down_ruins", () -> new ExtendedWeightedPoolStructure(ExtendedStructureType.RUIN));
+	public static final RegistryObject<Structure<ExtendedWeightedStructureConfig>> BARROW_DOWN_BARROWS = STRUCTURE_REGISTRY.register("barrow_down_barrows", () -> new ExtendedWeightedPoolStructure(ExtendedStructureType.BARROW));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_HAMLET = STRUCTURE_REGISTRY.register("bree_hamlet", () -> new SinglePoolStructure(ExtendedStructureType.BREE_HAMLET));
-	public static final RegistryObject<Structure<SinglePoolConfig>> BREE_VILLAGE = STRUCTURE_REGISTRY.register("bree_village", () -> new SinglePoolStructure(ExtendedStructureType.BREE_VILLAGE));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> BREE_HAMLET = STRUCTURE_REGISTRY.register("bree_hamlet", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.BREE_HAMLET));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> BREE_VILLAGE = STRUCTURE_REGISTRY.register("bree_village", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.BREE_VILLAGE));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_SMITHY = STRUCTURE_REGISTRY.register("blue_mountain_smithy", () -> new ExtendedStructureCheckAreaChunk(ExtendedStructureType.BLUE_MOUNTAINS));
-	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_STRONGHOLD = STRUCTURE_REGISTRY.register("blue_mountain_stronghold", () -> new ExtendedStructureCheckAreaCross(ExtendedStructureType.BLUE_MOUNTAINS));
-	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_MINE = STRUCTURE_REGISTRY.register("blue_mountain_mine", () -> new ExtendedStructureCheckAreaChunk(ExtendedStructureType.BLUE_MOUNTAINS));
-	public static final RegistryObject<Structure<SinglePoolConfig>> BLUE_MOUNTAIN_SETTLEMENT = STRUCTURE_REGISTRY.register("blue_mountain_settlement", () -> new ExtendedStructureCheckAreaCross(ExtendedStructureType.BLUE_MOUNTAINS));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> BLUE_MOUNTAIN_SMITHY = STRUCTURE_REGISTRY.register("blue_mountain_smithy", () -> new ExtendedCheckAreaChunkStructure(ExtendedStructureType.BLUE_MOUNTAINS));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> BLUE_MOUNTAIN_STRONGHOLD = STRUCTURE_REGISTRY.register("blue_mountain_stronghold", () -> new ExtendedCheckAreaCrossStructure(ExtendedStructureType.BLUE_MOUNTAINS));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> BLUE_MOUNTAIN_MINE = STRUCTURE_REGISTRY.register("blue_mountain_mine", () -> new ExtendedCheckAreaChunkStructure(ExtendedStructureType.BLUE_MOUNTAINS));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> BLUE_MOUNTAIN_SETTLEMENT = STRUCTURE_REGISTRY.register("blue_mountain_settlement", () -> new ExtendedCheckAreaCrossStructure(ExtendedStructureType.BLUE_MOUNTAINS));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> STONE_OF_HAPLESS = STRUCTURE_REGISTRY.register("stone_of_hapless", () -> new ExtendedStructureStoneOfHapless(ExtendedStructureType.LORE));
-	public static final RegistryObject<Structure<SinglePoolConfig>> THE_LAST_HOMELY_HOUSE = STRUCTURE_REGISTRY.register("last_homely_house", () -> new ExtendedStructureLastHomelyHouse(ExtendedStructureType.LORE));
-	public static final RegistryObject<Structure<SinglePoolConfig>> TOWER_HILLS_SOUTH_TOWER = STRUCTURE_REGISTRY.register("isilostirion", () -> new ExtendedStructureIsilostirion(ExtendedStructureType.LORE));
-	public static final RegistryObject<Structure<SinglePoolConfig>> TOWER_HILLS_MIDDLE_TOWER = STRUCTURE_REGISTRY.register("elostirion", () -> new ExtendedStructureElostirion(ExtendedStructureType.LORE));
-	public static final RegistryObject<Structure<SinglePoolConfig>> TOWER_HILLS_NORTH_TOWER = STRUCTURE_REGISTRY.register("anarostirion", () -> new ExtendedStructureAnarostirion(ExtendedStructureType.LORE));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> STONE_OF_HAPLESS = STRUCTURE_REGISTRY.register("stone_of_hapless", () -> new ExtendedStructureStoneOfHapless(ExtendedStructureType.LORE));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> THE_LAST_HOMELY_HOUSE = STRUCTURE_REGISTRY.register("last_homely_house", () -> new ExtendedStructureLastHomelyHouse(ExtendedStructureType.LORE));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> TOWER_HILLS_SOUTH_TOWER = STRUCTURE_REGISTRY.register("isilostirion", () -> new ExtendedStructureIsilostirion(ExtendedStructureType.LORE));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> TOWER_HILLS_MIDDLE_TOWER = STRUCTURE_REGISTRY.register("elostirion", () -> new ExtendedStructureElostirion(ExtendedStructureType.LORE));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> TOWER_HILLS_NORTH_TOWER = STRUCTURE_REGISTRY.register("anarostirion", () -> new ExtendedStructureAnarostirion(ExtendedStructureType.LORE));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> RIVENDELL_STRUCTURE = STRUCTURE_REGISTRY.register("rivendell_structures", () -> new ExtendedStructureCheckAreaChunkFlat(ExtendedStructureType.RIVENDELL));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> RIVENDELL_STRUCTURE = STRUCTURE_REGISTRY.register("rivendell_structures", () -> new ExtendedCheckAreaChunkFlatStructure(ExtendedStructureType.RIVENDELL));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> EREGION_RUINS_STRUCTURE = STRUCTURE_REGISTRY.register("eregion_ruins", () -> new ExtendedStructureCheckAreaChunkFlat(ExtendedStructureType.EREGION_RUIN));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> EREGION_RUINS_STRUCTURE = STRUCTURE_REGISTRY.register("eregion_ruins", () -> new ExtendedCheckAreaChunkFlatStructure(ExtendedStructureType.EREGION_RUIN));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> TOWER_HILLS_TOWER = STRUCTURE_REGISTRY.register("tower_hills_tower", () -> new SinglePoolStructure(ExtendedStructureType.TOWER_HILLS));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> TOWER_HILLS_TOWER = STRUCTURE_REGISTRY.register("tower_hills_tower", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.TOWER_HILLS));
 
-	public static final RegistryObject<Structure<SinglePoolConfig>> LINDON_VILLAGE = STRUCTURE_REGISTRY.register("lindon_village", () -> new SinglePoolStructure(ExtendedStructureType.LINDON));
-	public static final RegistryObject<Structure<SinglePoolConfig>> LINDON_TOWER = STRUCTURE_REGISTRY.register("lindon_tower", () -> new ExtendedStructureCheckAreaChunk(ExtendedStructureType.LINDON));
-	public static final RegistryObject<Structure<SinglePoolConfig>> LINDON_HALL = STRUCTURE_REGISTRY.register("lindon_hall", () -> new SinglePoolStructure(ExtendedStructureType.LINDON));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> LINDON_VILLAGE = STRUCTURE_REGISTRY.register("lindon_village", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.LINDON));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> LINDON_TOWER = STRUCTURE_REGISTRY.register("lindon_tower", () -> new ExtendedCheckAreaChunkStructure(ExtendedStructureType.LINDON));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> LINDON_HALL = STRUCTURE_REGISTRY.register("lindon_hall", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.LINDON));
 
 	/**
 	 * Initializes and registers all custom structures with their generation parameters.

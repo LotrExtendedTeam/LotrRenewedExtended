@@ -33,5 +33,7 @@ public enum ExtendedStructureType {
 	/** Structures themed around Lindon. */
 	LINDON,
 	/** Structures themed around the Tower Hills. */
-	TOWER_HILLS;
+	TOWER_HILLS,
+	/** Structures themed around Isengard. */
+	ISENGARD;
 }

@@ -9,7 +9,8 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedJigsawManager;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedSingleJigsawPiece;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedPoolFeatureConfig;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.SinglePoolConfig;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedStructureSettings;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedSinglePoolConfig;
 
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.util.ResourceLocation;
@@ -59,7 +60,7 @@ public class ExtendedStructureStartV5<C extends ExtendedPoolFeatureConfig> exten
 
 	/**
      * Resolves the {@link ResourceLocation} of the structure pool to use for generation
-     * based on the provided {@link SinglePoolConfig}.
+     * based on the provided {@link ExtendedSinglePoolConfig}.
      * <p>
      * If the pool name is "empty", logs an error and returns {@code null}.
      * If the pool contains a namespace (colon), it uses the provided namespace.
@@ -100,6 +101,14 @@ public class ExtendedStructureStartV5<C extends ExtendedPoolFeatureConfig> exten
 		return BlockPos.ZERO;
 	}
 	/**
+     * Additional hardcoded structure settings
+     * 
+     * @return A set of additional settings to define structure generation
+     */
+	public ExtendedStructureSettings getHardcodedSettings() {
+		return ExtendedStructureSettings.EMPTY;
+	}
+	/**
      * Generates the pieces for this structure using {@link ExtendedJigsawManager}.
      * <p>
      * Automatically computes the correct chunk coordinates, selects the Jigsaw pool using {@link #getLocation},
@@ -125,7 +134,7 @@ public class ExtendedStructureStartV5<C extends ExtendedPoolFeatureConfig> exten
         }
         ExtendedJigsawManager.addPieces(dynamicRegistryManager,
         	new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), 7), AbstractVillagePiece::new,
-        	chunkGenerator, templateManagerIn, chunkPos, this.pieces, this.random, false, true, setRotation(), setoffset());
+        	chunkGenerator, templateManagerIn, chunkPos, this.pieces, this.random, false, true, setRotation(), setoffset(), getHardcodedSettings());
 
 //        Vector3i structureCenter = this.pieces.get(0).getBoundingBox().getCenter();
 //        int xOffset = blockpos.getX() - structureCenter.getX();

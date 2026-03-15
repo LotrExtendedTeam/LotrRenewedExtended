@@ -2,9 +2,9 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.struc
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructureType;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.SinglePoolConfig;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedSinglePoolConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.starts.ExtendedStructureStartV5;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.SinglePoolStructure;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.ExtendedSinglePoolStructure;
 
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
@@ -19,7 +19,7 @@ import net.minecraft.world.gen.feature.structure.Structure;
 /**
  * {@link ExtendedStructureLastHomelyHouse} is a custom single-pool structure that generates the main Rivendell build in a certain location
  */
-public class ExtendedStructureLastHomelyHouse extends SinglePoolStructure {
+public class ExtendedStructureLastHomelyHouse extends ExtendedSinglePoolStructure {
 	/**
      * Constructs an ExtendedStructureAreaCheckChunk structure with the specified structure type.
      *
@@ -30,18 +30,18 @@ public class ExtendedStructureLastHomelyHouse extends SinglePoolStructure {
 	}
 
 	@Override
-	public IStartFactory<SinglePoolConfig> getStructureStartFactory() {
+	public IStartFactory<ExtendedSinglePoolConfig> getStructureStartFactory() {
 		return ExtendedStructureLastHomelyHouse.Start::new;
 	}
 
 	@Override
-	protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, SinglePoolConfig featureConfig) {
+	protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, ExtendedSinglePoolConfig featureConfig) {
 		return chunkX == 2987 && chunkZ == -76 && ExtendedServerConfig.canSpawnStructure(ExtendedServerConfig.enableFixedStructureImladris);
 	}
 
-	public static class Start extends ExtendedStructureStartV5<SinglePoolConfig> {
+	public static class Start extends ExtendedStructureStartV5<ExtendedSinglePoolConfig> {
 		/**
-         * Constructs a new {@link Start} instance for {@link SinglePoolStructure}.
+         * Constructs a new {@link Start} instance for {@link ExtendedSinglePoolStructure}.
          *
          * @param structureIn      The structure instance.
          * @param chunkX           The chunk X coordinate.
@@ -50,7 +50,7 @@ public class ExtendedStructureLastHomelyHouse extends SinglePoolStructure {
          * @param referenceIn      The structure reference.
          * @param seedIn           The world seed used for placement.
          */
-		public Start(Structure<SinglePoolConfig> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
+		public Start(Structure<ExtendedSinglePoolConfig> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
 			super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
 		}
 		

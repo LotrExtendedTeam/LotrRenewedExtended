@@ -11,25 +11,25 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
  * This configuration specifies which pool identifier to use during generation,
  * allowing modular structure generation from a named pool within the system.
  */
-public class SinglePoolConfig implements ExtendedPoolFeatureConfig {
+public class ExtendedSinglePoolConfig implements ExtendedPoolFeatureConfig {
 	/**
-     * Codec for serializing and deserializing {@link SinglePoolConfig} from JSON or NBT
+     * Codec for serializing and deserializing {@link ExtendedSinglePoolConfig} from JSON or NBT
      * during data pack loading or network synchronization.
      * <p>
      * It serializes the {@code pool} field as a string, defaulting to "empty" if unspecified.
      */
-	public static final Codec<SinglePoolConfig> CODEC = RecordCodecBuilder.create((p_236650_0_) -> p_236650_0_.group(Codec.STRING.fieldOf("pool").orElseGet(() -> "empty")
-            .forGetter(config -> config.pool)).apply(p_236650_0_, SinglePoolConfig::new));
+	public static final Codec<ExtendedSinglePoolConfig> CODEC = RecordCodecBuilder.create((p_236650_0_) -> p_236650_0_.group(Codec.STRING.fieldOf("pool").orElseGet(() -> "empty")
+            .forGetter(config -> config.pool)).apply(p_236650_0_, ExtendedSinglePoolConfig::new));
 	/**
      * The name of the pool from which structures will be drawn for generation.
      */
 	private final String pool;
 	/**
-     * Constructs a new {@link SinglePoolConfig} with the specified pool name.
+     * Constructs a new {@link ExtendedSinglePoolConfig} with the specified pool name.
      *
      * @param pool The identifier of the structure pool to use, or "empty" if none.
      */
-	public SinglePoolConfig(String pool) {
+	public ExtendedSinglePoolConfig(String pool) {
 		this.pool = pool;
 	}
 	/**
