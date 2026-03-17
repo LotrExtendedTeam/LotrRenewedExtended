@@ -90,7 +90,7 @@ public class ExtendedRepairContainerNew extends Container {
 	private final IntReferenceHolder reforgeCost = IntReferenceHolder.standalone();
 	private final IntReferenceHolder engraveCost = IntReferenceHolder.standalone();
 	// Sync error types, 0 no error, 1+ differing errors
-	private final IntReferenceHolder incompatable = IntReferenceHolder.standalone();
+	private final IntReferenceHolder incompatible = IntReferenceHolder.standalone();
 
 
 	public ExtendedRepairContainerNew(int pContainerId, PlayerInventory pPlayerInventory) {
@@ -110,7 +110,7 @@ public class ExtendedRepairContainerNew extends Container {
 		this.access = pAccess;
 		this.player = pPlayerInventory.player;
 		this.addDataSlot(this.cost);
-		this.addDataSlot(this.incompatable);
+		this.addDataSlot(this.incompatible);
 		this.addDataSlot(this.reforgeCost);
 		this.addDataSlot(this.engraveCost);
 		this.addSlot(new Slot(this.inputSlots, 0, 27, 58));
@@ -236,7 +236,7 @@ public class ExtendedRepairContainerNew extends Container {
 	public void createResult() {
 		// Setup parameters
 		ItemStack inputItem = this.inputSlots.getItem(0);
-		this.incompatable.set(0);
+		this.incompatible.set(0);
 		this.engraveCost.set(0);
 		this.reforgeCost.set(0);
 		this.cost.set(1);
@@ -263,7 +263,7 @@ public class ExtendedRepairContainerNew extends Container {
 		boolean isModifierItem = false;
 		boolean isScrollOrBook = false;
 		boolean canCombineItemModifiers = false;
-		// Logic if there is a item in merge slot
+		// Logic if there is an item in merge slot
 		if (!mergableItem.isEmpty()) {
 			info("P2: Has mergable item");
 			//if (!net.minecraftforge.common.ForgeHooks.onAnvilChange(this, inputItem, mergableItem, resultSlots, itemName, baseCost, this.player)) return;
@@ -371,12 +371,12 @@ public class ExtendedRepairContainerNew extends Container {
 				boolean didMerge=false;
 				for(ExtendedModifier mergingModifier : mergableModifiers) {
 					/*************CHECK_ITEM*******************/
-					// Skip modifier it it can't apply to the item
+					// Skip modifier if it can't be applied to the item
 					if (!mergingModifier.canApplyToItem(inputItem)) {
 						// Scrolls should not skip modifiers, reject recipe
 						if(isModifierItem) {
 							hasIncompatibleModifier = true;
-							info("P4.2: Discarding invalid modifer for scroll, rejecting");
+							info("P4.2: Discarding invalid modifier for scroll, rejecting");
 							break; // atomic merge rule
 						}
 						info("P4.2.1: Skipping modifier invalid for item: "+mergingModifier.getLocalKey());
@@ -475,11 +475,11 @@ public class ExtendedRepairContainerNew extends Container {
 					resultItem = ItemStack.EMPTY;
 					this.cost.set(0);
 					if (maxedLevelForBook) {
-						this.incompatable.set(1);
+						this.incompatible.set(1);
 					} else if (maximumModifiersReached) {
-						this.incompatable.set(2);
+						this.incompatible.set(2);
 					} else if (hasIncompatibleModifier) {
-						this.incompatable.set(3);
+						this.incompatible.set(3);
 					}
 
 					return;
@@ -543,7 +543,7 @@ public class ExtendedRepairContainerNew extends Container {
 			info("P6: Valid gem item");
 			if(!this.canApplyColor(resultItem, ((ExtendedGemstoneColoringItem)mergableItem.getItem()).getExtendedGemstoneColor())) {
 				this.resultSlots.setItem(0, ItemStack.EMPTY);
-				this.incompatable.set(4);
+				this.incompatible.set(4);
 				this.cost.set(0);
 				return;
 			}
@@ -760,19 +760,19 @@ public class ExtendedRepairContainerNew extends Container {
 	}
 
 	public boolean getMaxedLevelForBook() {
-		return this.incompatable.get()==1;
+		return this.incompatible.get()==1;
 	}
 
 	public boolean getMaximumModifiersReached() {
-		return this.incompatable.get()==2;
+		return this.incompatible.get()==2;
 	}
 
-	public boolean getIncompatable() {
-		return this.incompatable.get()==3;
+	public boolean getIncompatible() {
+		return this.incompatible.get()==3;
 	}
 
-	public boolean getGemIncompatable() {
-		return this.incompatable.get()==4;
+	public boolean getGemIncompatible() {
+		return this.incompatible.get()==4;
 	}
 
 	public int getReforgeCost() {

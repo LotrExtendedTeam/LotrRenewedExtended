@@ -210,10 +210,10 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.expensive");
 					textColor = ERRORTEXTCOLOR;
 				} else if (!this.menu.getSlot(3).hasItem()) {
-					if (this.menu.getIncompatable()) {
+					if (this.menu.getIncompatible()) {
 						itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.invalid_combination");
 						textColor = ERRORTEXTCOLOR;
-					}else if (this.menu.getGemIncompatable()) {
+					}else if (this.menu.getGemIncompatible()) {
 						itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.gem_used");
 						textColor = ERRORTEXTCOLOR;
 					}else if (this.menu.getMaximumModifiersReached()) {
@@ -232,10 +232,10 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 
 			}else {
 				if (!this.menu.getSlot(3).hasItem()) {
-					if (this.menu.getIncompatable()) {
+					if (this.menu.getIncompatible()) {
 						itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.invalid_combination");
 						textColor = ERRORTEXTCOLOR;
-					}else if (this.menu.getGemIncompatable()) {
+					}else if (this.menu.getGemIncompatible()) {
 						itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.gem_used");
 						textColor = ERRORTEXTCOLOR;
 					}else if (this.menu.getMaximumModifiersReached()) {
