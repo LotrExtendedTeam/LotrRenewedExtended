@@ -1,10 +1,16 @@
 package com.github.maximuslotro.lotrrextended.common.network;
 
+import java.util.List;
+
+import org.apache.commons.lang3.tuple.Pair;
+
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.config.ConfigTracker;
+import net.minecraftforge.fml.network.FMLHandshakeMessages;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
@@ -29,7 +35,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedCTradeSellItemsPacket.class, ExtendedCTradeSellItemsPacket::encode, ExtendedCTradeSellItemsPacket::decode, ExtendedCTradeSellItemsPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSUpdateTradeQuantitiesPacket.class, ExtendedSUpdateTradeQuantitiesPacket::encode, ExtendedSUpdateTradeQuantitiesPacket::decode, ExtendedSUpdateTradeQuantitiesPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSNpcMarriageInfoPacket.class, ExtendedSNpcMarriageInfoPacket::encode, ExtendedSNpcMarriageInfoPacket::decode, ExtendedSNpcMarriageInfoPacket::handle);
-		CHANNEL.registerMessage(id++, ExtendedSSendServerSettingsPacket.class, ExtendedSSendServerSettingsPacket::encode, ExtendedSSendServerSettingsPacket::decode, ExtendedSSendServerSettingsPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedSSyncServerSettingsPacket.class, ExtendedSSyncServerSettingsPacket::encode, ExtendedSSyncServerSettingsPacket::decode, ExtendedSSyncServerSettingsPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCStopInteractingWithInteractablePacket.class, ExtendedCStopInteractingWithInteractablePacket::encode, ExtendedCStopInteractingWithInteractablePacket::decode, ExtendedCStopInteractingWithInteractablePacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSOpenWargWindowPacket.class, ExtendedSOpenWargWindowPacket::encode, ExtendedSOpenWargWindowPacket::decode, ExtendedSOpenWargWindowPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSBannerOpenScreenPacket.class, ExtendedSBannerOpenScreenPacket::encode, ExtendedSBannerOpenScreenPacket::decode, ExtendedSBannerOpenScreenPacket::handle);
@@ -50,6 +56,8 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedCUpdateHoistPacket.class, ExtendedCUpdateHoistPacket::encode, ExtendedCUpdateHoistPacket::decode, ExtendedCUpdateHoistPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCRenameItemPacket.class, ExtendedCRenameItemPacket::encode, ExtendedCRenameItemPacket::decode, ExtendedCRenameItemPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCAnvilButtonPacket.class, ExtendedCAnvilButtonPacket::encode, ExtendedCAnvilButtonPacket::decode, ExtendedCAnvilButtonPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCServerSettingsPacket.class, ExtendedCServerSettingsPacket::encode, ExtendedCServerSettingsPacket::decode, ExtendedCServerSettingsPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedSSyncServerSettingsPacket.class, ExtendedSSyncServerSettingsPacket::encode, ExtendedSSyncServerSettingsPacket::decode, ExtendedSSyncServerSettingsPacket::handle);
 
 		if (id >= 255) {
 			// Since IndexedMessageCodec.MessageHandler -> indicies.put((short)(index & 0xff), this);
@@ -72,5 +80,14 @@ public class ExtendedPacketHandler {
 
 	public static void sendToAllTrackingEntity(Object msg, Entity entity) {
 		CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), msg);
+	}
+
+	public static void syncServerConfigWithAllClients() {
+		List<Pair<String, FMLHandshakeMessages.S2CConfigData>> packets =  ConfigTracker.INSTANCE.syncConfigs(false);
+		for(Pair<String, FMLHandshakeMessages.S2CConfigData> packet : packets) {
+			ExtendedLog.debug("Syncing server config with clients: "+ packet.getLeft());
+			ExtendedSSyncServerSettingsPacket extendedSync = new ExtendedSSyncServerSettingsPacket(packet.getRight().getFileName(), packet.getRight().getBytes());
+			sendToAllClients(extendedSync);
+		}
 	}
 }

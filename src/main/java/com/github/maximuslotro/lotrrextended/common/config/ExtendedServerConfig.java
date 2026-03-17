@@ -75,7 +75,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		npcGlobalSpawnDampingCoefficient = createDoubleValue(builder, "npcGlobalSpawnDampingCoefficient", 1.0D, 0.0D, 1.0D, false, "Reduce the global npc spawning rate, the lower the value, the less spawns. This is a linear setting, (1.0 is the default renewed spawn rate)");
 		enableDefaultWaypointTeleportation = createBooleanValue(builder, "enableDefaultWaypointTeleportation", true, false, "Enable Teleportation To Default Waypoints");
 		enableCustomWaypointTeleportation = createBooleanValue(builder, "enableCustomWaypointTeleportation", true, false, "Enable Teleportation To Custom Waypoints");
-		enableLegacyFeastMode = createBooleanValue(builder, "enableLegacyFeastMode", true, true, "Enable the eating of food even if player is not hungry, like in legacy");
+		enableLegacyFeastMode = createBooleanValue(builder, "enableLegacyFeastMode", true, false, "Enable the eating of food even if player is not hungry, like in legacy");
 		enableHungerDecrease = createBooleanValue(builder, "enableHungerDecrease", true, false, "Decrease hunger meter exhaustion");
 		alternateMapTeleportCommand = createStringValue(builder, "alternateMapTeleportCommand", "/tp %d %d %d", false, "Map menu instant tp command");
 		builder.pop();
@@ -90,10 +90,10 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		builder.pop();
 
 		builder.push("Block settings");
-		barsConnectToBranches = createBooleanValue(builder, "barsConnectToBranches", true, true, "Make bars and panes connect to branch blocks");
-		barsConnectToSlabSides = createBooleanValue(builder, "barsConnectToSlabSides", true, true, "Make bars and panes connect to half sides of vertical slabs");
+		barsConnectToBranches = createBooleanValue(builder, "barsConnectToBranches", true, false, "Make bars and panes connect to branch blocks");
+		barsConnectToSlabSides = createBooleanValue(builder, "barsConnectToSlabSides", true, false, "Make bars and panes connect to half sides of vertical slabs");
 		makeMetalDoorsRequirePower = createBooleanValue(builder, "makeMetalDoorsRequirePower", false, true, "Make Extended's metal doors and trapdoors require power to open");
-		dripstoneMinimumDamageHeight = createDoubleValue(builder, "dripstoneMinimumDamageHeight", 1.0D, 0.0D, 5.0D, false, "Set the height at which dripstone hurts entities when interacting, (0.0 is the default value in renewed)");
+		dripstoneMinimumDamageHeight = createDoubleValue(builder, "dripstoneMinimumDamageHeight", 1.0D, 0.0D, 5.0D, false, "Set the fall height at which dripstone hurts entities when interacting, (0.0 is the default value in renewed)");
 		bellRingChainMaxLength = createIntegerValue(builder, "bellRingChainMaxLength", 10, 1, 50, false, "Max chain length a bell ring will attempt");
 		builder.pop();
 
@@ -103,10 +103,10 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		enableChairProtectionOverride = createBooleanValue(builder, "enableChairProtectionOverride", true, false, "Allow players sit on seats in banner-protected areas (global setting overriding banner spicific settings)");
 		builder.pop();
 
-		builder.push("Gameplay");
-		enableVanillaEnchanting = createBooleanValue(builder, "enableVanillaEnchanting", false, true, "Enables vanilla enchanting system in Middle Earth");
-		enableVanillaXp = createBooleanValue(builder, "enableVanillaXp", false, true, "Enables Xp orbs and bar in Middle Earth");
-		enableExtendedModifiers = createBooleanValue(builder, "enableExtendedModifiers", true, true, "Enables Extended modifier system");
+		builder.push("Modifiers");
+		enableVanillaEnchanting = createBooleanValue(builder, "enableVanillaEnchanting", false, false, "Enables Vanilla's enchanting system");
+		enableVanillaXp = createBooleanValue(builder, "enableVanillaXp", false, false, "Enables Xp orbs and bar in Middle Earth");
+		enableExtendedModifiers = createBooleanValue(builder, "enableExtendedModifiers", true, false, "Enables Extended's modifier system");
 		builder.pop();
 
 		builder.push("Special settings");
@@ -123,9 +123,9 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		builder.pop();
 
 		builder.push("World Generation");
-		enableFixedStructures = createBooleanValue(builder,"enableFixedStructures", true, true, "Enable fixed structures to generate, OVERRIDES ALL OTHER STRUCTURE SETTINGS!");
-		enableFixedStructureImladris = createBooleanValue(builder,"enableFixedStructureImladris", true, true, "Enable Imladris lore structure");
-		enableFixedStructureTowerHills = createBooleanValue(builder,"enableFixedStructureTowerHills", true, true, "Enable Tower Hills lore structure");
+		enableFixedStructures = createBooleanValue(builder,"enableFixedStructures", true, false, "Enable fixed structures to generate, OVERRIDES ALL OTHER STRUCTURE SETTINGS!");
+		enableFixedStructureImladris = createBooleanValue(builder,"enableFixedStructureImladris", true, false, "Enable Imladris lore structure");
+		enableFixedStructureTowerHills = createBooleanValue(builder,"enableFixedStructureTowerHills", true, false, "Enable Tower Hills lore structures");
 		builder.pop();
 		return builder;
 	}

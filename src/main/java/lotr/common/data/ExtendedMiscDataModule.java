@@ -1,7 +1,7 @@
 package lotr.common.data;
 
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedNetworkToggles;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedDualTogglePacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedDualTogglePacket.ExtendedNetworkToggles;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedNBTUtils;
 
 import net.minecraft.nbt.CompoundNBT;

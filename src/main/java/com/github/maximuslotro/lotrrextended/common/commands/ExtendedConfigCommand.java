@@ -37,9 +37,9 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableBanditEncounters", ExtendedServerConfig.enableBanditEncounters));
 		command.then(buildBoolean("enableTolkienSpawning", ExtendedServerConfig.enableTolkienSpawning));
 		// Blocks
-		command.then(buildBoolean("makeMetalDoorsRequirePower", ExtendedServerConfig.makeMetalDoorsRequirePower, true));
-		command.then(buildBoolean("barsConnectToBranches", ExtendedServerConfig.barsConnectToBranches, true));
-		command.then(buildBoolean("barsConnectToSlabSides", ExtendedServerConfig.barsConnectToSlabSides, true));
+		command.then(buildBoolean("makeMetalDoorsRequirePower", ExtendedServerConfig.makeMetalDoorsRequirePower));
+		command.then(buildBoolean("barsConnectToBranches", ExtendedServerConfig.barsConnectToBranches));
+		command.then(buildBoolean("barsConnectToSlabSides", ExtendedServerConfig.barsConnectToSlabSides));
 		command.then(buildDouble("dripstoneMinimumDamageHeight", ExtendedServerConfig.dripstoneMinimumDamageHeight, 0.0D, 5.0D));
 		command.then(buildInteger("bellRingChainMaxLength", ExtendedServerConfig.bellRingChainMaxLength, 1, 50));
 
@@ -48,14 +48,15 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableChairSwapping", ExtendedServerConfig.enableChairSwapping));
 		command.then(buildBoolean("enableChairProtectionOverride", ExtendedServerConfig.enableChairProtectionOverride));
 		// Gameplay
-		command.then(buildBoolean("enableVanillaEnchanting", ExtendedServerConfig.enableVanillaEnchanting, true));
-		command.then(buildBoolean("enableVanillaXp", ExtendedServerConfig.enableVanillaXp, true));
-		command.then(buildBoolean("enableExtendedModifiers", ExtendedServerConfig.enableExtendedModifiers, true));
+		command.then(buildBoolean("enableVanillaEnchanting", ExtendedServerConfig.enableVanillaEnchanting));
+		command.then(buildBoolean("enableVanillaXp", ExtendedServerConfig.enableVanillaXp));
+		command.then(buildBoolean("enableExtendedModifiers", ExtendedServerConfig.enableExtendedModifiers));
 		// Server Enhancements
 		command.then(buildBoolean("enableExtendedLogging", ExtendedServerConfig.enableExtendedLogging));
 		// World Generation
-		command.then(buildBoolean("enableFixedStructures", ExtendedServerConfig.enableFixedStructures, true));
-		command.then(buildBoolean("enableFixedStructureImladris", ExtendedServerConfig.enableFixedStructureImladris, true));
+		command.then(buildBoolean("enableFixedStructures", ExtendedServerConfig.enableFixedStructures));
+		command.then(buildBoolean("enableFixedStructureImladris", ExtendedServerConfig.enableFixedStructureImladris));
+		command.then(buildBoolean("enableFixedStructureTowerHills", ExtendedServerConfig.enableFixedStructureTowerHills));
 		// Register
 		dispatcher.register(command);
 	}

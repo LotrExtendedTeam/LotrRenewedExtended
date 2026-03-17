@@ -59,12 +59,12 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 		this.reforgeButton = this.addButton(new ExtendedAnvilButton(i+26, j+77, 17, 17, 204, 0, 17, ANVIL_LOCATION, 256, 256, (press)->{
 			ExtendedPacketHandler.sendToServer(new ExtendedCAnvilButtonPacket(0));
 		}, (button, matrixStack, x, y) -> {
-			this.renderTooltip(matrixStack, REFORGE_TEXT, x, y);
+			this.renderTooltip(matrixStack, this.font.split(REFORGE_TEXT, 200), x, y);
 		}, StringTextComponent.EMPTY));
 		this.engraveButton = this.addButton(new ExtendedAnvilButton(i+45, j+78, 15, 15, 221, 0, 15, ANVIL_LOCATION, 256, 256, (press)->{
 			ExtendedPacketHandler.sendToServer(new ExtendedCAnvilButtonPacket(1));
 		}, (button, matrixStack, x, y) -> {
-			this.renderTooltip(matrixStack, ENGRAVE_TEXT, x, y);
+			this.renderTooltip(matrixStack, this.font.split(ENGRAVE_TEXT, 200), x, y);
 		}, StringTextComponent.EMPTY));
 		this.name.setCanLoseFocus(false);
 		this.name.setTextColor(-1);

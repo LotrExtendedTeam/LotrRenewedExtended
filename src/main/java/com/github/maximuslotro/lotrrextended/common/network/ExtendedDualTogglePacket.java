@@ -2,8 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedNetworkToggles;
-
 import lotr.common.LOTRMod;
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
@@ -48,4 +46,18 @@ public class ExtendedDualTogglePacket {
 	public ExtendedNetworkToggles getType() {
 		return this.type;
 	}
+
+	public enum ExtendedNetworkToggles {
+		FRIENDLY_FIRE, UNITS_FRIENDLY_FIRE, MAP_LOCATION, MAP_MARKERS, UNIT_DEATH_MESSAGES, HIGH_CONTRAST_MESSAGES, UNIT_V_UNIT;
+		
+		private static final ExtendedNetworkToggles[] BY_ID = values();
+
+		public static ExtendedNetworkToggles byId(int index) {
+			if (index < 0 || index >= BY_ID.length) {
+				index = 0;
+			}
+			return BY_ID[index];
+		}
+	}
+
 }

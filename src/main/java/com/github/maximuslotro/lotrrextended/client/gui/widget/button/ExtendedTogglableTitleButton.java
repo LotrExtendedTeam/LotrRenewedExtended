@@ -1,49 +1,99 @@
 package com.github.maximuslotro.lotrrextended.client.gui.widget.button;
 
+import javax.annotation.Nullable;
+
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import lotr.common.data.LOTRPlayerData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedTogglableTitleButton extends Button {
+public class ExtendedTogglableTitleButton<T> extends Button {
+	// Use translatable keys with %s parameters instead
+	@Deprecated
 	private final TextComponent baseMessage;
-	private final String enabled;
-	private final String disabled;
-	private boolean settingState = false;
-	protected final IOnTick onTick;
-
-	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, TextComponent pMessage, IPressable pOnPress, ITooltip pOnTooltip, IOnTick pOnTick, String enabled, String disabled) {
+	private final String stringMessageKey;
+	private final String enabledKey;
+	private final String disabledKey;
+	private boolean renderGreen = false;
+	protected final IOnTick<T> onTick;
+	private boolean buttonForceDisabled = false;
+	private boolean buttonForceEnabled = false;
+	@Deprecated
+	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, TextComponent pMessage, IPressable pOnPress, ITooltip pOnTooltip, IOnTick<T> pOnTick, String enabledKey, String disabledKey) {
 		super(pX, pY, pWidth, pHeight, pMessage, pOnPress, pOnTooltip);
 		this.baseMessage = pMessage;
-		this.enabled = enabled;
-		this.disabled = disabled;
+		this.enabledKey = enabledKey;
+		this.disabledKey = disabledKey;
 		this.onTick = pOnTick;
+		this.stringMessageKey = null;
 	}
-
-	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, TextComponent pMessage, IPressable pOnPress, IOnTick pOnTick, String enabled, String disabled) {
+	@Deprecated
+	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, TextComponent pMessage, IPressable pOnPress, IOnTick<T> pOnTick, String enabledKey, String disabledKey) {
 		super(pX, pY, pWidth, pHeight, pMessage, pOnPress);
 		this.baseMessage = pMessage;
-		this.enabled = enabled;
-		this.disabled = disabled;
+		this.enabledKey = enabledKey;
+		this.disabledKey = disabledKey;
 		this.onTick = pOnTick;
+		this.stringMessageKey = null;
 	}
 
-	public void onTick(LOTRPlayerData pd) {
-		tickTitle(onTick.onTick(this, pd));
+	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, String stringMessageKey, IPressable pOnPress, ITooltip pOnTooltip, IOnTick<T> pOnTick, String enabledKey, String disabledKey) {
+		super(pX, pY, pWidth, pHeight, StringTextComponent.EMPTY, pOnPress, pOnTooltip);
+		this.baseMessage = null;
+		this.enabledKey = enabledKey;
+		this.disabledKey = disabledKey;
+		this.onTick = pOnTick;
+		this.stringMessageKey = stringMessageKey;
 	}
 
-	public void tickTitle(Boolean toggle) {
-		if(toggle!=null) {
-			setMessage(baseMessage.copy().append(new TranslationTextComponent(toggle ? enabled : disabled)));
-			settingState = toggle;
-		}else {
-			settingState=true; // Handle forced dev mode bypassing title setting for forced mode
+	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, String stringMessageKey, IPressable pOnPress, IOnTick<T> pOnTick, String enabledKey, String disabledKey) {
+		super(pX, pY, pWidth, pHeight, StringTextComponent.EMPTY, pOnPress);
+		this.baseMessage = null;
+		this.enabledKey = enabledKey;
+		this.disabledKey = disabledKey;
+		this.onTick = pOnTick;
+		this.stringMessageKey = stringMessageKey;
+	}
+
+	public ExtendedTogglableTitleButton<T> forceDisableButton() {
+		buttonForceEnabled = false;
+		buttonForceDisabled = true;
+		return this;
+	}
+
+	public ExtendedTogglableTitleButton<T> forceEnableButton() {
+		buttonForceEnabled = true;
+		buttonForceDisabled = false;
+		return this;
+	}
+
+	public void onTick(@Nullable T tickData) {
+		tickTitle(onTick.onTick(this, tickData));
+	}
+
+	public void tickTitle(@Nullable Boolean toggle) {
+		Boolean state = null;
+		if (buttonForceEnabled) {
+			state = true;
+		} else if (buttonForceDisabled) {
+			state = false;
+		} else if (toggle != null) {
+			state = toggle;
+		} else  {
+			renderGreen = true; // Handle forced dev mode bypassing title setting for forced mode
+			return;
+		}
+		renderGreen = state;
+		if (stringMessageKey == null) {
+			setMessage(baseMessage.copy().append(new TranslationTextComponent(state ? enabledKey : disabledKey)));
+		} else {
+			setMessage(new TranslationTextComponent(stringMessageKey, new TranslationTextComponent(state ? enabledKey : disabledKey)));
 		}
 	}
 
@@ -52,12 +102,11 @@ public class ExtendedTogglableTitleButton extends Button {
 		Minecraft minecraft = Minecraft.getInstance();
 		FontRenderer fontrenderer = minecraft.font;
 		minecraft.getTextureManager().bind(WIDGETS_LOCATION);
-		if(settingState) {
+		if(renderGreen) {
 			RenderSystem.color4f(0.13f, 0.77f, 0.42f, this.alpha);
 
 		}else {
 			RenderSystem.color4f(0.88f, 0.33f, 0.33f, this.alpha);
-
 		}
 		int i = this.getYImage(this.isHovered());
 		RenderSystem.enableBlend();
@@ -71,7 +120,7 @@ public class ExtendedTogglableTitleButton extends Button {
 	}
 
 
-	public interface IOnTick {
-		Boolean onTick(ExtendedTogglableTitleButton button, LOTRPlayerData playerData);
+	public interface IOnTick<T> {
+		Boolean onTick(ExtendedTogglableTitleButton<T> button, @Nullable T tickData);
 	}
 }

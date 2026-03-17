@@ -20,7 +20,7 @@ public class ExtendedHoistOptionsScreen extends ExtendedBasicAbstractScreen {
 	private Button verticalHeightButton;
 
 	public ExtendedHoistOptionsScreen(ExtendedHoistTileEntity hoistTileEntity) {
-		super(new StringTextComponent("HOIST"));
+		super(new StringTextComponent("HOIST"), 176, 166);
 		horizontalOffset = hoistTileEntity.getHorizontalOffset();
 		verticalOffset = hoistTileEntity.getVerticalOffset();
 		verticalHeight = hoistTileEntity.getVerticalHeight();
