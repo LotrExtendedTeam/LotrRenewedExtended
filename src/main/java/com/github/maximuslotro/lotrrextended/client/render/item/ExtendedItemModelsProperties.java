@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.render.item;
 
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainerNew;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
@@ -26,6 +27,7 @@ public class ExtendedItemModelsProperties {
 		if (event.getMap().location().equals(PlayerContainer.BLOCK_ATLAS)) {
 			event.addSprite(ExtendedHiredUnitEquipmentContainer.EMPTY_ARMOR_SLOT_BOW);
 			event.addSprite(ExtendedHiredUnitEquipmentContainer.EMPTY_ARMOR_SLOT_SWORD);
+			event.addSprite(ExtendedRepairContainerNew.EMPTY_SLOT_INGOT);
 		}
 	}
 

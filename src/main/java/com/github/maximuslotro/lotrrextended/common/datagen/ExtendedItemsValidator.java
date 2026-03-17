@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.datagen;
 
-import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainerNew;
 
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
@@ -19,7 +19,7 @@ public class ExtendedItemsValidator implements IDataProvider {
 				boolean foundRepairMaterial=false;
 				for(Item itemMaterial : ForgeRegistries.ITEMS.getValues()) {
 					try {
-						if(itemToRepair !=itemMaterial && ExtendedRepairContainer.isValidRepairMaterial(new ItemStack(itemToRepair), new ItemStack(itemMaterial))) {
+						if(itemToRepair !=itemMaterial && ExtendedRepairContainerNew.isValidRepairMaterial(new ItemStack(itemToRepair), new ItemStack(itemMaterial))) {
 							foundRepairMaterial=true;
 							break;
 						}

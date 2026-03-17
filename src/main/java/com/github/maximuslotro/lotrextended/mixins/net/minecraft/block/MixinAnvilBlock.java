@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainerNew;
 
 import lotr.common.init.LOTRDimensions;
 import net.minecraft.block.AnvilBlock;
@@ -48,12 +48,10 @@ public class MixinAnvilBlock {
 	 * @Inject(method = "getMenuProvider(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/inventory/container/INamedContainerProvider;", at = @At("TAIL"), cancellable = true)
 	 */
 	@Inject(method = "getMenuProvider(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/inventory/container/INamedContainerProvider;", 
-		at = @At("TAIL"), cancellable = true)
+			at = @At("TAIL"), cancellable = true)
 	public void getMenuProvider$Extended(BlockState pState, World pLevel, BlockPos pPos, CallbackInfoReturnable<INamedContainerProvider> cir) {
-		if(LOTRDimensions.isModDimension(pLevel)) {
-			cir.setReturnValue(new SimpleNamedContainerProvider((p_220272_2_, p_220272_3_, p_220272_4_) -> {
-				return new ExtendedRepairContainer(p_220272_2_, p_220272_3_, IWorldPosCallable.create(pLevel, pPos));
-			}, ExtendedRepairContainer.CONTAINER_TITLE));
-		}
+		cir.setReturnValue(new SimpleNamedContainerProvider((p_220272_2_, p_220272_3_, p_220272_4_) -> {
+			return new ExtendedRepairContainerNew(p_220272_2_, p_220272_3_, IWorldPosCallable.create(pLevel, pPos));
+		}, ExtendedRepairContainerNew.CONTAINER_TITLE));
 	}
 }

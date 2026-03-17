@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainerNew;
 
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.SharedConstants;
@@ -57,8 +57,8 @@ public class ExtendedCRenameItemPacket {
 	 * @param context The network context supplier containing sender and handling state.
 	 */
 	public static void handle(ExtendedCRenameItemPacket packet, Supplier<Context> context) {
-		if (context.get().getSender().containerMenu instanceof ExtendedRepairContainer) {
-			ExtendedRepairContainer repaircontainer = (ExtendedRepairContainer)context.get().getSender().containerMenu;
+		if (context.get().getSender().containerMenu instanceof ExtendedRepairContainerNew) {
+			ExtendedRepairContainerNew repaircontainer = (ExtendedRepairContainerNew)context.get().getSender().containerMenu;
 			String s = SharedConstants.filterText(packet.getName());
 			if (s.length() <= 35) {
 				repaircontainer.setItemName(s);

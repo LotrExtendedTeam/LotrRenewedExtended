@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
@@ -60,14 +59,14 @@ import net.minecraftforge.common.Tags;
  * Based off of {@link RepairContainer}
  * Something is broken with the class in regards to saving old data using {@code lastCost} and {@code lastGemColoring} to try rectifying this
  * */
-public class ExtendedRepairContainer extends Container {
+public class ExtendedRepairContainerOld extends Container {
 
 	protected final CraftResultInventory resultSlots = new CraftResultInventory();
 	protected final IInventory inputSlots = new Inventory(3) {
 		@Override
 		public void setChanged() {
 			super.setChanged();
-			ExtendedRepairContainer.this.slotsChanged(this);
+			ExtendedRepairContainerOld.this.slotsChanged(this);
 		}
 	};
 	protected final IWorldPosCallable access;
@@ -85,20 +84,20 @@ public class ExtendedRepairContainer extends Container {
 	private boolean lastGemColoring = false;
 	private boolean isRenaming = false;
 
-	public ExtendedRepairContainer(int pContainerId, PlayerInventory pPlayerInventory) {
+	public ExtendedRepairContainerOld(int pContainerId, PlayerInventory pPlayerInventory) {
 		this(pContainerId, pPlayerInventory, IWorldPosCallable.NULL, new PacketBuffer(Unpooled.buffer()));
 	}
 
-	public ExtendedRepairContainer(int pContainerId, PlayerInventory pPlayerInventory, PacketBuffer extraData) {
+	public ExtendedRepairContainerOld(int pContainerId, PlayerInventory pPlayerInventory, PacketBuffer extraData) {
 		this(pContainerId, pPlayerInventory, IWorldPosCallable.NULL, extraData);
 	}
 
-	public ExtendedRepairContainer(int pContainerId, PlayerInventory pPlayerInventory, IWorldPosCallable pAccess) {
+	public ExtendedRepairContainerOld(int pContainerId, PlayerInventory pPlayerInventory, IWorldPosCallable pAccess) {
 		this(pContainerId, pPlayerInventory, pAccess, new PacketBuffer(Unpooled.buffer()));
 	}
 
-	public ExtendedRepairContainer(int pContainerId, PlayerInventory pPlayerInventory, IWorldPosCallable pAccess, PacketBuffer extraData) {
-		super(ExtendedContainerTypes.EXTENDED_ANVIL.get(), pContainerId);
+	public ExtendedRepairContainerOld(int pContainerId, PlayerInventory pPlayerInventory, IWorldPosCallable pAccess, PacketBuffer extraData) {
+		super(null, pContainerId);
 		this.access = pAccess;
 		this.player = pPlayerInventory.player;
 		this.addDataSlot(this.cost);
@@ -129,15 +128,15 @@ public class ExtendedRepairContainer extends Container {
 				//if(pPlayer.abilities.instabuild && (ExtendedRepairContainer.this.cost.get() > 0 || isGemColoring)) {
 				//	return true;
 				//}
-				if(isValidRepairMaterial(ExtendedRepairContainer.this.inputSlots.getItem(0), ExtendedRepairContainer.this.inputSlots.getItem(2))) {
-					if(ExtendedRepairContainer.this.cost.get() > 0 && ExtendedRepairContainer.this.inputSlots.getItem(2).getCount() >= ExtendedRepairContainer.this.cost.get()){
+				if(isValidRepairMaterial(ExtendedRepairContainerOld.this.inputSlots.getItem(0), ExtendedRepairContainerOld.this.inputSlots.getItem(2))) {
+					if(ExtendedRepairContainerOld.this.cost.get() > 0 && ExtendedRepairContainerOld.this.inputSlots.getItem(2).getCount() >= ExtendedRepairContainerOld.this.cost.get()){
 						return true;
 					}
 				}
-				if(ExtendedRepairContainer.this.cost.get()==0 && isGemColoring && ExtendedRepairContainer.this.inputSlots.getItem(1).getCount()>=1) {
+				if(ExtendedRepairContainerOld.this.cost.get()==0 && isGemColoring && ExtendedRepairContainerOld.this.inputSlots.getItem(1).getCount()>=1) {
 					return true;
 				}
-				if(ExtendedRepairContainer.this.cost.get()==0 && isRenaming) {
+				if(ExtendedRepairContainerOld.this.cost.get()==0 && isRenaming) {
 					return true;
 				}
 				return false;
@@ -145,7 +144,7 @@ public class ExtendedRepairContainer extends Container {
 
 			@Override
 			public ItemStack onTake(PlayerEntity pPlayer, ItemStack pStack) {
-				ExtendedRepairContainer.this.onTake(pPlayer, pStack);
+				ExtendedRepairContainerOld.this.onTake(pPlayer, pStack);
 				return super.onTake(pPlayer, pStack);
 			}
 		});
@@ -346,7 +345,7 @@ public class ExtendedRepairContainer extends Container {
 						}
 						// Check if modifier can apply alongside other modifiers
 						for(ExtendedModifier existing : inputModifiers) {
-							if (mergingModifier.getModifierType()!=existing.getModifierType() && !mergingModifier.isCompatableModifier(existing.getModifierType())) {
+							if (!mergingModifier.isCompatableModifier(existing.getModifierType())) {
 								hasInCompatibleModifier = true;
 							}
 						}
@@ -705,7 +704,8 @@ public class ExtendedRepairContainer extends Container {
 	public void hurtOrDamageAnvilSound() {
 		this.access.execute((world, pos) -> {
 			BlockState blockstate = world.getBlockState(pos);
-			if (!player.abilities.instabuild && blockstate.is(BlockTags.ANVIL) && player.getRandom().nextFloat() < 0.06f) { // breakChance set to default value
+			//  Chance is 1/16 that of vanilla
+			if (!player.abilities.instabuild && blockstate.is(BlockTags.ANVIL) && player.getRandom().nextFloat() < 0.0075f) { // 0.12 is default vanilla value
 				BlockState blockstate1 = AnvilBlock.damage(blockstate);
 				if (blockstate1 == null) {
 					world.removeBlock(pos, false);
