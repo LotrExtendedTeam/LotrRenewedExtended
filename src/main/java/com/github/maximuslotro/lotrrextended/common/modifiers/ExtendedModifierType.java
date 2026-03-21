@@ -39,7 +39,7 @@ public enum ExtendedModifierType {
 
 	/** Enhances loot drops from enemies or blocks. */
 	LOOTING("enchant.lotrextended.looting.disc", "+", 
-			item -> item instanceof SwordItem || item instanceof ToolItem),
+			item -> item instanceof SwordItem || item instanceof ToolItem || item instanceof ShearsItem),
 
 	/** Boosts melee attack damage. */
 	MELEE_DAMAGE("enchant.lotrextended.melee_damage.disc", "+", 
