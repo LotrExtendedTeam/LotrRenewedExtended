@@ -12,7 +12,7 @@ import net.minecraftforge.fml.network.NetworkEvent.Context;
  * Network packet used for sending item rename requests from the client to the server.
  * <p>
  * This packet is responsible for transmitting the new item name entered by a player 
- * within an {@link ExtendedRepairContainer}. The server validates and applies the name 
+ * within an {@link ExtendedRepairContainerNew}. The server validates and applies the name 
  * change to the item being repaired.
  * </p>
  */
@@ -48,7 +48,7 @@ public class ExtendedCRenameItemPacket {
 	/**
 	 * Handles the received rename packet on the server side.
 	 * <p>
-	 * Ensures that the sender's current container is an {@link ExtendedRepairContainer}, 
+	 * Ensures that the sender's current container is an {@link ExtendedRepairContainerNew}, 
 	 * validates the proposed name (via {@link SharedConstants#filterText(String)}), 
 	 * and applies it if it does not exceed the 35-character limit.
 	 * </p>

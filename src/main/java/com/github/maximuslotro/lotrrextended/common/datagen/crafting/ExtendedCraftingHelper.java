@@ -24,10 +24,7 @@ import lotr.common.block.LOTRWallBlock;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.item.LOTRArmorItem;
-import lotr.common.item.LOTRAxeItem;
 import lotr.common.item.LOTRHoeItem;
-import lotr.common.item.LOTRPickaxeItem;
-import lotr.common.item.LOTRShovelItem;
 import lotr.common.recipe.FactionBasedRecipeType;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -37,8 +34,11 @@ import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.data.SingleItemRecipeBuilder;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ShovelItem;
 import net.minecraft.item.crafting.ICraftingRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
@@ -1610,27 +1610,27 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		}
 	}
 
-	protected void makeThrowableAxeRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void makeMattockRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, ITag<Item> resource, String resourceName, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if(table==null) {
 			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
-			.pattern(" # ")
-			.pattern(" X#")
-			.pattern("X  ")
+			.pattern("###")
+			.pattern("#X ")
+			.pattern(" X ")
 			.define('X', STICKS)
-			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.define('#', Ingredient.of(resource))
+			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
 		else {
 			ExtendedFactionShapedRecipeBuilder.shaped(itemToBeCrafted.get(), table)
-			.pattern(" # ")
-			.pattern(" X#")
-			.pattern("X  ")
+			.pattern("###")
+			.pattern("#X ")
+			.pattern(" X ")
 			.define('X', STICKS)
-			.define('#', Ingredient.of(resource.get()))
-			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.define('#', Ingredient.of(resource))
+			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
 	}
@@ -2098,22 +2098,22 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 					System.out.println("MISSING SWORD RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 				}
 			}
-			if(item.getValue().get() instanceof LOTRPickaxeItem) {
+			if(item.getValue().get() instanceof PickaxeItem) {
 				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
 					System.out.println("MISSING PICKAXE RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 				}
 			}
-			if(item.getValue().get() instanceof LOTRShovelItem) {
+			if(item.getValue().get() instanceof ShovelItem) {
 				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
 					System.out.println("MISSING SHOVEL RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 				}
 			}
-			if(item.getValue().get() instanceof LOTRAxeItem) {
+			if(item.getValue().get() instanceof AxeItem) {
 				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
 					System.out.println("MISSING AXE RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 				}
 			}
-			if(item.getValue().get() instanceof LOTRHoeItem ) {
+			if(item.getValue().get() instanceof LOTRHoeItem) {
 				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
 					System.out.println("MISSING HOE RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
 				}

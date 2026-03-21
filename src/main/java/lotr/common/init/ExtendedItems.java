@@ -368,6 +368,10 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BONE_SPEAR;
 	public static RegistryObject<Item> BONE_DAGGER;
 
+	public static RegistryObject<Item> DWARVEN_MATTOCK;
+	public static RegistryObject<Item> BLUE_DWARVEN_MATTOCK;
+	public static RegistryObject<Item> MITHRIL_MATTOCK;
+
 	public static RegistryObject<Item> IRON_THROWABLE_AXE;
 	public static RegistryObject<Item> BRONZE_THROWABLE_AXE;
 	public static RegistryObject<Item> LOSSARNACH_THROWABLE_AXE;

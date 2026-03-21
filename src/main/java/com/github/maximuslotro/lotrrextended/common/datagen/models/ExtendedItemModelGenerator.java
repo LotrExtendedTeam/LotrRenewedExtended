@@ -19,6 +19,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedLeatherHatItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMattockItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSwordItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
@@ -35,18 +36,18 @@ import lotr.common.item.DaggerItem;
 import lotr.common.item.FallenLeavesItem;
 import lotr.common.item.HammerItem;
 import lotr.common.item.LOTRArmorItem;
-import lotr.common.item.LOTRAxeItem;
 import lotr.common.item.LOTRHoeItem;
-import lotr.common.item.LOTRPickaxeItem;
 import lotr.common.item.LOTRShieldItem;
-import lotr.common.item.LOTRShovelItem;
 import lotr.common.item.SpearItem;
 import lotr.common.item.VesselDrinkItem;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ShovelItem;
 import net.minecraft.resources.ResourcePackType;
 import net.minecraft.tileentity.BannerPattern;
 import net.minecraft.util.ResourceLocation;
@@ -213,9 +214,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				continue;
 			}
 
-			if((item.getValue().get() instanceof LOTRPickaxeItem) || (item.getValue().get() instanceof LOTRShovelItem)
-					|| (item.getValue().get() instanceof LOTRAxeItem)
+			if((item.getValue().get() instanceof PickaxeItem) || (item.getValue().get() instanceof ShovelItem)
+					|| (item.getValue().get() instanceof AxeItem)
 					|| (item.getValue().get() instanceof LOTRHoeItem)
+					|| (item.getValue().get() instanceof ExtendedMattockItem)
 					|| (item.getValue().get() instanceof ExtendedThrowableAxeItem)) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;

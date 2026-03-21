@@ -16,17 +16,17 @@ import lotr.common.init.LOTRItems;
 import lotr.common.init.LOTRTags;
 import lotr.common.item.DaggerItem;
 import lotr.common.item.HammerItem;
-import lotr.common.item.LOTRAxeItem;
 import lotr.common.item.LOTRBoatItem;
 import lotr.common.item.LOTRHoeItem;
-import lotr.common.item.LOTRPickaxeItem;
-import lotr.common.item.LOTRShovelItem;
 import lotr.common.item.LOTRSwordItem;
 import lotr.common.item.SpearItem;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ShovelItem;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
@@ -301,15 +301,15 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 			if((item.getValue().get() instanceof SpearItem) || (item.getValue().get() instanceof DaggerItem)
 					|| (item.getValue().get() instanceof ExtendedSwordItem)
 					|| (item.getValue().get() instanceof HammerItem)
-					|| (item.getValue().get() instanceof LOTRPickaxeItem)) {
+					|| (item.getValue().get() instanceof PickaxeItem)) {
 				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
-			if(item.getValue().get() instanceof LOTRShovelItem) {
+			if(item.getValue().get() instanceof ShovelItem) {
 				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
-			if(item.getValue().get() instanceof LOTRAxeItem) {
+			if(item.getValue().get() instanceof AxeItem) {
 				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}

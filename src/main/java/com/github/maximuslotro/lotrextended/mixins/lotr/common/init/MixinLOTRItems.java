@@ -64,13 +64,16 @@ import lotr.common.init.LOTRMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemTier;
+import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.Rarity;
+import net.minecraft.item.ShovelItem;
 import net.minecraft.tileentity.BannerPattern;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
@@ -998,31 +1001,35 @@ public class MixinLOTRItems {
 
 		//#########################################################################TOOLS#####################################################
 		//Taurethrim Tools
-		ExtendedItems.TAURETHRIM_SHOVEL = regItemB("taurethrim_shovel", () -> new LOTRShovelItem(LOTRMaterial.valueOf("TAURETHRIM")));
-		ExtendedItems.TAURETHRIM_PICKAXE = regItemB("taurethrim_pickaxe", () -> new LOTRPickaxeItem(LOTRMaterial.valueOf("TAURETHRIM")));
-		ExtendedItems.TAURETHRIM_AXE = regItemB("taurethrim_axe", () -> new LOTRAxeItem(LOTRMaterial.valueOf("TAURETHRIM")));
+		ExtendedItems.TAURETHRIM_SHOVEL = regItemB("taurethrim_shovel", () -> new ShovelItem(LOTRMaterial.valueOf("TAURETHRIM").asTool(), 1.5F, -3.0F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.TAURETHRIM_PICKAXE = regItemB("taurethrim_pickaxe", () -> new PickaxeItem(LOTRMaterial.valueOf("TAURETHRIM").asTool(), 1, -2.8F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.TAURETHRIM_AXE = regItemB("taurethrim_axe", () -> new AxeItem(LOTRMaterial.valueOf("TAURETHRIM").asTool(), 6.0F, -3.1F, new Properties().tab(LOTRItemGroups.TOOLS)));
 		ExtendedItems.TAURETHRIM_HOE = regItemB("taurethrim_hoe", () -> new LOTRHoeItem(LOTRMaterial.valueOf("TAURETHRIM")));
 
 		//Angmar Tools
-		ExtendedItems.ANGMAR_SHOVEL = regItemB("angmar_shovel", () -> new LOTRShovelItem(LOTRMaterial.valueOf("ANGMAR")));
-		ExtendedItems.ANGMAR_PICKAXE = regItemB("angmar_pickaxe", () -> new LOTRPickaxeItem(LOTRMaterial.valueOf("ANGMAR")));
-		ExtendedItems.ANGMAR_AXE = regItemB("angmar_axe", () -> new LOTRAxeItem(LOTRMaterial.valueOf("ANGMAR")));
+		ExtendedItems.ANGMAR_SHOVEL = regItemB("angmar_shovel", () -> new ShovelItem(LOTRMaterial.valueOf("ANGMAR").asTool(), 1.5F, -3.0F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.ANGMAR_PICKAXE = regItemB("angmar_pickaxe", () -> new PickaxeItem(LOTRMaterial.valueOf("ANGMAR").asTool(), 1, -2.8F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.ANGMAR_AXE = regItemB("angmar_axe", () -> new AxeItem(LOTRMaterial.valueOf("ANGMAR").asTool(), 6.0F, -3.1F, new Properties().tab(LOTRItemGroups.TOOLS)));
 		ExtendedItems.ANGMAR_HOE = regItemB("angmar_hoe", () -> new LOTRHoeItem(LOTRMaterial.valueOf("ANGMAR")));
 
 		//Bone Tools
-		ExtendedItems.BONE_SHOVEL = regItemB("bone_shovel", () -> new LOTRShovelItem(LOTRMaterial.valueOf("EXT_BONE")));
-		ExtendedItems.BONE_PICKAXE = regItemB("bone_pickaxe", () -> new LOTRPickaxeItem(LOTRMaterial.valueOf("EXT_BONE")));
-		ExtendedItems.BONE_AXE = regItemB("bone_axe", () -> new LOTRAxeItem(LOTRMaterial.valueOf("EXT_BONE")));
+		ExtendedItems.BONE_SHOVEL = regItemB("bone_shovel", () -> new ShovelItem(LOTRMaterial.valueOf("EXT_BONE").asTool(), 1.5F, -3.0F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.BONE_PICKAXE = regItemB("bone_pickaxe", () -> new PickaxeItem(LOTRMaterial.valueOf("EXT_BONE").asTool(), 1, -2.8F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.BONE_AXE = regItemB("bone_axe", () -> new AxeItem(LOTRMaterial.valueOf("EXT_BONE").asTool(), 6.0F, -3.1F, new Properties().tab(LOTRItemGroups.TOOLS)));
 		ExtendedItems.BONE_HOE = regItemB("bone_hoe", () -> new LOTRHoeItem(LOTRMaterial.valueOf("EXT_BONE")));
 
 		//Dol Guldur Tools
-		ExtendedItems.DOL_GULDUR_SHOVEL = regItemB("dol_guldur_shovel", () -> new LOTRShovelItem(LOTRMaterial.valueOf("DOL_GULDUR")));
-		ExtendedItems.DOL_GULDUR_PICKAXE = regItemB("dol_guldur_pickaxe", () -> new LOTRPickaxeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
-		ExtendedItems.DOL_GULDUR_AXE = regItemB("dol_guldur_axe", () -> new LOTRAxeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
+		ExtendedItems.DOL_GULDUR_SHOVEL = regItemB("dol_guldur_shovel", () -> new ShovelItem(LOTRMaterial.valueOf("DOL_GULDUR").asTool(), 1.5F, -3.0F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.DOL_GULDUR_PICKAXE = regItemB("dol_guldur_pickaxe", () -> new PickaxeItem(LOTRMaterial.valueOf("DOL_GULDUR").asTool(), 1, -2.8F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.DOL_GULDUR_AXE = regItemB("dol_guldur_axe", () -> new AxeItem(LOTRMaterial.valueOf("DOL_GULDUR").asTool(), 6.0F, -3.1F, new Properties().tab(LOTRItemGroups.TOOLS)));
 		ExtendedItems.DOL_GULDUR_HOE = regItemB("dol_guldur_hoe", () -> new LOTRHoeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 
 		ExtendedItems.BRANDING_IRON = regItemB("branding_iron", ExtendedBrandingIronItem::new);
 		ExtendedItems.CHISEL = regItemB("chisel", () -> new ExtendedChiselItem(ExtendedBlocks.STONE_SIGN.get(), new Properties().tab(LOTRItemGroups.TOOLS).defaultDurability(100)));
+
+		ExtendedItems.DWARVEN_MATTOCK = regItemB("dwarven_mattock", () -> new ExtendedMattockItem(LOTRMaterial.DWARVEN.asTool(), new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.BLUE_DWARVEN_MATTOCK = regItemB("blue_dwarven_mattock", () -> new ExtendedMattockItem(LOTRMaterial.BLUE_DWARVEN.asTool(), new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.MITHRIL_MATTOCK = regItemB("mithril_mattock", () -> new ExtendedMattockItem(LOTRMaterial.MITHRIL.asTool(), new Properties().tab(LOTRItemGroups.TOOLS)));
 
 		ExtendedItems.IRON_THROWABLE_AXE = regItemB("iron_throwing_axe", () -> new ExtendedThrowableAxeItem(ItemTier.IRON));
 		ExtendedItems.BRONZE_THROWABLE_AXE = regItemB("bronze_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BRONZE));

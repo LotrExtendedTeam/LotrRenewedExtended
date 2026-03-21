@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.config;
 
 import com.github.maximuslotro.lotrextended.mixinhelpers.MixinConstants;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedClientOptionsScreen;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
@@ -20,7 +21,7 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableQuerkyDuckMode;
 
 	/**
-	 * Do not set this value itself, set {@link lotr.client.gui.menu.ExtendedClientOptionsScreen}
+	 * Do not set this value itself, set {@link ExtendedClientOptionsScreen}
 	 * to ensure {@link com.github.maximuslotro.lotrextended.mixins.net.minecraft.tileentity.MixinStructureBlockTileEntity} is updated with the non config crashable value, since sliders can change values very quickly.
 	 * */
 	public static ForgeConfigSpec.IntValue structureBlockOutlineViewDistance;

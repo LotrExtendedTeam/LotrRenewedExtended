@@ -33,7 +33,7 @@ public class MixinAnvilBlock {
 	 * <p>
 	 * If the world dimension is a mod-defined dimension (checked via 
 	 * {@link LOTRDimensions#isModDimension(World)}), the anvil opens an 
-	 * {@link ExtendedRepairContainer} instead of the vanilla repair container.
+	 * {@link ExtendedRepairContainerNew} instead of the vanilla repair container.
 	 * </p>
 	 *
 	 * @param pState The current block state of the anvil being interacted with.
@@ -44,7 +44,7 @@ public class MixinAnvilBlock {
 	 *               supply the custom container if conditions are met.
 	 *
 	 * @see AnvilBlock#getMenuProvider(BlockState, World, BlockPos)
-	 * @see ExtendedRepairContainer
+	 * @see ExtendedRepairContainerNew
 	 * @Inject(method = "getMenuProvider(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/inventory/container/INamedContainerProvider;", at = @At("TAIL"), cancellable = true)
 	 */
 	@Inject(method = "getMenuProvider(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/inventory/container/INamedContainerProvider;", 

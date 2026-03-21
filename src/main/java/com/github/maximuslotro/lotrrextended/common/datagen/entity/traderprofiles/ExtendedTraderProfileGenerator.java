@@ -781,7 +781,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.COOKED_PORKCHOP, 3)
 		.addSBuy(Items.COOKED_RABBIT, 3)
 		.addSBuy(LOTRItems.GAMMON, 3)
-		// TODO add blue( battleaxe, mattock, pike, warhammer), kegs
+		// TODO add blue( battleaxe, pike, warhammer), kegs
 		.addSSell(LOTRItems.BLUE_DWARVEN_HELMET, 25)
 		.addSSell(LOTRItems.BLUE_DWARVEN_CHESTPLATE, 26)
 		.addSSell(LOTRItems.BLUE_DWARVEN_LEGGINGS, 31)
@@ -814,6 +814,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				1, 350, 1, false)
 		.addDrinkSell(LOTRItems.DWARVEN_ALE, 6, 9, 11)
 		.addDrinkSell(LOTRItems.DWARVEN_TONIC, 10, 14, 18)
+		.addSSell(ExtendedItems.BLUE_DWARVEN_MATTOCK, 18)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_MERCHANT);
 
 		make(100).setTypicallyWandering()
@@ -1036,7 +1037,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.BREAD, 2)
 		.addSBuy(Items.LAVA_BUCKET, 16)
 		.addSBuy(new ItemStack(Items.STRING, 3), 1)
-		// TODO add Dwarven(BattleAxe, Warhammer, pike, mattock)
+		// TODO add Dwarven(BattleAxe, Warhammer, pike)
 		.addSSell(LOTRItems.DWARVEN_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
 		.addSSell(ExtendedItems.DWARF_MARRIAGE_RING, 20)
@@ -1074,6 +1075,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				10, 350, 1, false)
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 40, 150, 1, false)
 		.addSSell(new ItemStack(LOTRItems.DWARVEN_BARS.get(), 8), 25)
+		.addSSell(ExtendedItems.DWARVEN_MATTOCK, 18)
 		.save(pConsumer, ExtendedTraderTypes.DWARVEN_SMITH);
 
 		make(100)
@@ -1107,7 +1109,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.BREAD, 2)
 		.addSBuy(Items.LAVA_BUCKET, 16)
 		.addSBuy(new ItemStack(Items.STRING, 3), 1)
-		// TODO add Blue Dwarven(BattleAxe, Warhammer, pike, mattock)
+		// TODO add Blue Dwarven(BattleAxe, Warhammer, pike)
 		.addSSell(LOTRItems.BLUE_MOUNTAINS_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
 		.addSSell(ExtendedItems.DWARF_MARRIAGE_RING, 20)
@@ -1137,6 +1139,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				10, 350, 1, false)
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 40, 150, 1, false)
 		.addSSell(new ItemStack(LOTRItems.BLUE_DWARVEN_BARS.get(), 8), 25)
+		.addSSell(ExtendedItems.BLUE_DWARVEN_MATTOCK, 18)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_SMITH);
 
 		make(10)
