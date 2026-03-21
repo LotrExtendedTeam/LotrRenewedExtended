@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.modifiers;
 
 import java.util.function.Predicate;
 
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMattockItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
@@ -51,7 +52,7 @@ public enum ExtendedModifierType {
 
 	/** Increases melee attack speed. */
 	MELEE_SPEED("enchant.lotrextended.melee_speed.disc", "x", 
-			item -> item instanceof SwordItem || item instanceof AxeItem),
+			item -> item instanceof SwordItem || item instanceof ToolItem),
 
 	/** Enhances knockback effect in melee combat. */
 	MEELE_KNOCKBACK("enchant.lotrextended.melee_knockback.disc", "+", 
@@ -79,7 +80,7 @@ public enum ExtendedModifierType {
 
 	/** Drops enemy heads on death. */
 	HEADHUNTING("enchant.lotrextended.headhunting.disc", "", 
-			item -> item instanceof SwordItem || item instanceof BowItem || item instanceof CrossbowItem || item instanceof AxeItem),
+			item -> item instanceof SwordItem || item instanceof BowItem || item instanceof CrossbowItem || item instanceof AxeItem || item instanceof ExtendedMattockItem),
 
 	/** Increases efficiency and mining speed for tools. */
 	TOOL_SPEED("enchant.lotrextended.tool_speed.disc", "x", 
