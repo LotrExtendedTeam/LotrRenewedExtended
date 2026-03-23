@@ -1,7 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.staffserver;
 
-
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSDataRequestPacket;
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.command.CommandSource;
@@ -15,14 +16,16 @@ public class ExtendedStaffEvents {
 	@SubscribeEvent
 	public static void playerLoggedInEvent(PlayerEvent.PlayerLoggedInEvent event) {
 		if (event.getPlayer() instanceof ServerPlayerEntity && ExtendedServerConfig.enableStaffServer.get()) {
-			ExtendedPlayerInfo.login(event.getPlayer().getGameProfile().getId());
+			ExtendedPlayerInfo.login(event.getPlayer().getUUID());
+			ExtendedPacketHandler.sendToClient(ExtendedSDataRequestPacket.requestModListPacket(), (ServerPlayerEntity) event.getPlayer());
 		}
 	}
 
 	@SubscribeEvent
 	public static void playerLoggedOutEvent(PlayerEvent.PlayerLoggedOutEvent event) {
 		if (event.getPlayer() instanceof ServerPlayerEntity && ExtendedServerConfig.enableStaffServer.get()) {
-			ExtendedPlayerInfo.logout(event.getPlayer().getGameProfile().getId());
+			ExtendedPlayerInfo.logout(event.getPlayer().getUUID());
+			ExtendedSpecialConfig.onPlayerLoggout(event.getPlayer().getUUID());
 		}
 	}
 

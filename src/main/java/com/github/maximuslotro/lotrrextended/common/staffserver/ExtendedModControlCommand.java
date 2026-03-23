@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.staffserver;
 import java.util.Map;
 import java.util.Set;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -29,6 +30,10 @@ public class ExtendedModControlCommand {
 										.executes(ctx -> removeMod(ctx.getSource(), StringArgumentType.getString(ctx, "modid"), ExtendedSpecialConfig.allowList))))))
 						.then((Commands.literal("list")
 								.executes(ctx -> listMods(ctx.getSource(), ExtendedSpecialConfig.allowList))))
+						.then((Commands.literal("enable")
+							.executes(ctx -> setWhitelistEnforceStatus(ctx.getSource(), true))))
+						.then((Commands.literal("disable")
+							.executes(ctx -> setWhitelistEnforceStatus(ctx.getSource(), false))))
 						)
 				.then(Commands.literal("banlist")
 						.then((Commands.literal("add")
@@ -119,6 +124,16 @@ public class ExtendedModControlCommand {
 
 			source.sendSuccess(new StringTextComponent(TextFormatting.GREEN + "Current mods: " + TextFormatting.YELLOW + sb.toString()), false);
 		}
+		return Command.SINGLE_SUCCESS;
+	}
+
+	private static int setWhitelistEnforceStatus(CommandSource source, boolean enable) {
+		if (enable) {
+			source.sendSuccess(new StringTextComponent(TextFormatting.GREEN + "Mod whitelist enabled"), true);
+		} else {
+			source.sendFailure(new StringTextComponent(TextFormatting.RED + "Mod whitelist disabled"));
+		}
+		ExtendedServerConfig.enableModWhiteList.set(enable);
 		return Command.SINGLE_SUCCESS;
 	}
 }

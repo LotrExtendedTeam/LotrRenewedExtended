@@ -51,6 +51,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableExtendedLogging;
 	public static ForgeConfigSpec.BooleanValue enableSpecialLogging;
 	public static ForgeConfigSpec.BooleanValue enableStaffServer;
+	public static ForgeConfigSpec.BooleanValue enableModWhiteList;
 
 	// Server Enhancements
 	public static ForgeConfigSpec.BooleanValue enableExtendedSpawnProtection;
@@ -113,7 +114,8 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		enableDevMode = createBooleanValue(builder,"enableDevMode", false, true, "Never enable this unless you are on the Extended Dev Team or developing the mod!");
 		enableExtendedLogging = createBooleanValue(builder,"enableExtendedLogging", false, true, "Toggle to show additional log information if stuff is not working properly");
 		enableSpecialLogging = createBooleanValue(builder,"enableSpecialLogging", false, true, "Toggles additional logged information, changes by update, special things");
-		enableStaffServer = createBooleanValue(builder,"enableStaffServer", false, true, "");
+		enableStaffServer = createBooleanValue(builder,"enableStaffServer", false, true, "Enables the use of additional server administrative features");
+		enableModWhiteList = createBooleanValue(builder,"enableModWhiteList", true, false, "Enables mod whitelisting for servers when enableStaffServer option is enabled");
 		builder.pop();
 
 		builder.push("Server Enhancements");
