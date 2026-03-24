@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:orc_forge_mordor"
+    ]
+  },
+  "criteria": {
+    "has_durnor_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:durnor_block"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:orc_forge_mordor"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_durnor_block",
+      "has_the_recipe"
+    ]
+  ]
+}

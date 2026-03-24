@@ -236,20 +236,28 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+ExtendedItems.ORNATE_ROHAN_BEAM.get().getRegistryName().getPath(), has(ExtendedItems.ORNATE_ROHAN_BEAM.get()))
 		.save(consumer, lotrLoc(ExtendedItems.ORNATE_GOLDEN_ROHAN_BEAM.get().getRegistryName().getPath()+"_from_ornate"));
 		//CRAFTING TABLES
-		makeCraftingTableRecipe(consumer, ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE,
-			()->ExtendedBlocks.TAURETHRIM_BRICK.get().asItem(), "_with_bricks", ExtendedRecipes.TAURETHRIM_CRAFTING);
-		makeCraftingTableRecipe(consumer, ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE,
-			()->ExtendedBlocks.MUD_BRICK.get().asItem(), ExtendedRecipes.TAURETHRIM_CRAFTING);
-		makeCraftingTableRecipe(consumer, ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE,
-			()->ExtendedBlocks.DOL_GULDUR_BRICK.get().asItem(), ExtendedRecipes.DOL_GULDUR_CRAFTING);
-		makeCraftingTableRecipe(consumer, ExtendedBlocks.RHUNIC_CRAFTING_TABLE,
-			()->ExtendedBlocks.RHUNIC_BRICK.get().asItem(), ExtendedRecipes.RHUNIC_CRAFTING);
-		makeCraftingTableRecipe(consumer, ExtendedBlocks.HALF_TROLL_CRAFTING_TABLE,
-                Blocks.COBBLESTONE::asItem, ExtendedRecipes.HALF_TROLL_CRAFTING);
-		makeCraftingTableRecipe(consumer, ExtendedBlocks.NORTHERN_ORC_CRAFTING_TABLE,
-                Blocks.COBBLESTONE::asItem, ExtendedRecipes.NORTHERN_ORC_CRAFTING);
-		makeCraftingTableRecipe(consumer, ExtendedBlocks.MORWAITH_CRAFTING_TABLE,
-                Blocks.CLAY::asItem, ExtendedRecipes.MORWAITH_CRAFTING);
+		makeCraftingTableRecipe(consumer, ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, ExtendedItems.TAURETHRIM_BRICK, "_with_bricks", ExtendedRecipes.TAURETHRIM_CRAFTING);
+		makeCraftingTableRecipe(consumer, ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, ExtendedItems.MUD_BRICK, ExtendedRecipes.TAURETHRIM_CRAFTING);
+		makeCraftingTableRecipe(consumer, ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE, ExtendedItems.DOL_GULDUR_BRICK, ExtendedRecipes.DOL_GULDUR_CRAFTING);
+		makeCraftingTableRecipe(consumer, ExtendedBlocks.RHUNIC_CRAFTING_TABLE, ExtendedItems.RHUNIC_BRICK, ExtendedRecipes.RHUNIC_CRAFTING);
+		makeCraftingTableRecipe(consumer, ExtendedBlocks.HALF_TROLL_CRAFTING_TABLE, Items.COBBLESTONE::asItem, ExtendedRecipes.HALF_TROLL_CRAFTING);
+		makeCraftingTableRecipe(consumer, ExtendedBlocks.NORTHERN_ORC_CRAFTING_TABLE, Items.COBBLESTONE::asItem, ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+		makeCraftingTableRecipe(consumer, ExtendedBlocks.MORWAITH_CRAFTING_TABLE, Items.CLAY::asItem, ExtendedRecipes.MORWAITH_CRAFTING);
+		// Furnaces +Overrides
+		makeForgeRecipe(consumer, LOTRBlocks.ALLOY_FORGE, Items.STONE_BRICKS::asItem, Items.COAL_BLOCK::asItem, "", null);
+		makeForgeRecipe(consumer, LOTRBlocks.DWARVEN_FORGE, LOTRItems.DWARVEN_BRICK, Items.COAL_BLOCK::asItem, "", LOTRRecipes.ANY_DWARVEN);
+		makeForgeRecipe(consumer, LOTRBlocks.DWARVEN_FORGE, LOTRItems.BLUE_BRICK, Items.COAL_BLOCK::asItem, "_blue", LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
+		makeForgeRecipe(consumer, LOTRBlocks.ELVEN_FORGE, LOTRItems.GALADHRIM_BRICK, Items.COAL_BLOCK::asItem, "_galadhrim", LOTRRecipes.GALADHRIM_CRAFTING);
+		makeForgeRecipe(consumer, LOTRBlocks.ELVEN_FORGE, LOTRItems.HIGH_ELVEN_BRICK, Items.COAL_BLOCK::asItem, "_high_elven", LOTRRecipes.ANY_HIGH_ELVEN);
+		makeForgeRecipe(consumer, LOTRBlocks.ELVEN_FORGE, LOTRItems.WOOD_ELVEN_BRICK, Items.COAL_BLOCK::asItem, "_wood_elven", LOTRRecipes.WOOD_ELVEN_CRAFTING);
+		makeForgeRecipe(consumer, LOTRBlocks.HOBBIT_OVEN, Items.BRICKS::asItem, Items.COAL_BLOCK::asItem, "", LOTRRecipes.ANY_HOBBIT);
+		makeForgeRecipe(consumer, LOTRBlocks.ORC_FORGE, ExtendedItems.GOBLIN_BRICK, Items.COAL_BLOCK::asItem, "_northern_orc", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+		makeForgeRecipe(consumer, LOTRBlocks.ORC_FORGE, LOTRItems.ANGMAR_BRICK, LOTRItems.GULDURIL_BLOCK, "_angmar", LOTRRecipes.ANGMAR_CRAFTING);
+		makeForgeRecipe(consumer, LOTRBlocks.ORC_FORGE, ExtendedItems.RED_ANGMAR_BRICK, LOTRItems.GULDURIL_BLOCK, "_angmar_red", LOTRRecipes.ANGMAR_CRAFTING);
+		makeForgeRecipe(consumer, LOTRBlocks.ORC_FORGE, ExtendedItems.DOL_GULDUR_BRICK, LOTRItems.MIRK_SHROOM, "_dol_guldur", ExtendedRecipes.DOL_GULDUR_CRAFTING);
+		makeForgeRecipe(consumer, LOTRBlocks.ORC_FORGE, LOTRItems.MORDOR_BRICK, LOTRItems.DURNOR_BLOCK, "_mordor", LOTRRecipes.MORDOR_CRAFTING);
+		makeForgeRecipe(consumer, LOTRBlocks.ORC_FORGE, LOTRItems.URUK_BRICK, Items.COAL_BLOCK::asItem, "_uruk", LOTRRecipes.URUK_CRAFTING);
+		// Other Containers
 		GENERATEDRECIPES.add(ExtendedItems.CONQUEST_TABLE.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CONQUEST_TABLE.get())
 		.pattern("XXX")

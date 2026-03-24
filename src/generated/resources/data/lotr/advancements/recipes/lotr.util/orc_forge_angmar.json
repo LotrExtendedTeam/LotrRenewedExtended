@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:orc_forge_angmar"
+    ]
+  },
+  "criteria": {
+    "has_gulduril_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gulduril_block"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:orc_forge_angmar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gulduril_block",
+      "has_the_recipe"
+    ]
+  ]
+}

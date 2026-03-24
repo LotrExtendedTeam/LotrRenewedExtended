@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:angmar",
+  "pattern": [
+    "BBB",
+    "BRB",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "lotr:red_angmar_brick"
+    },
+    "R": {
+      "item": "lotr:gulduril_block"
+    }
+  },
+  "result": {
+    "item": "lotr:orc_forge"
+  }
+}
