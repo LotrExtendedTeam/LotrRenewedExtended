@@ -58,7 +58,7 @@ public class ExtendedHiredHurtByTargetGoal extends HurtByTargetGoal {
 				&& pPotentialTarget instanceof ExtendedNPCEntity
 				&& ((ExtendedNPCEntity)pPotentialTarget).getUnitInfo().isNpcActiveDuty()
 				&& ((ExtendedNPCEntity)pPotentialTarget).getUnitInfo().getOwnerUUID().equals(extendedEntity.getUnitInfo().getOwnerUUID())
-				&& !((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) extendedEntity.getUnitInfo().getUnitOwner())).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit()) {
+				&& !((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(this.mob.level, extendedEntity.getUnitInfo().getOwnerUUID())).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit()) {
 			return false;
 		} else {
 			if (this.mustReach) {

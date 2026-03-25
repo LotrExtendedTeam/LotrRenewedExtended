@@ -79,6 +79,7 @@ minecraft {
     }
 }
 repositories {
+	mavenCentral()
 	maven {
         url "https://cursemaven.com"
         content {
