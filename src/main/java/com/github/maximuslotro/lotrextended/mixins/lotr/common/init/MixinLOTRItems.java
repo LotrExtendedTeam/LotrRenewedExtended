@@ -554,6 +554,35 @@ public class MixinLOTRItems {
 		ExtendedItems.WILLOW_BEAM_SLAB = regBlockItemB(ExtendedBlocks.WILLOW_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FALLEN_WILLOW_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_WILLOW_LEAVES, LOTRItemGroups.DECO);
 
+		ExtendedItems.EBONY_LOG = regBlockItemB(ExtendedBlocks.EBONY_LOG, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_WOOD = regBlockItemB(ExtendedBlocks.EBONY_WOOD, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_PLANKS = regBlockItemB(ExtendedBlocks.EBONY_PLANKS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_LEAVES = regBlockItemB(ExtendedBlocks.EBONY_LEAVES, LOTRItemGroups.DECO);
+		ExtendedItems.EBONY_SAPLING = regBlockItemB(ExtendedBlocks.EBONY_SAPLING, LOTRItemGroups.DECO);
+		ExtendedItems.EBONY_SLAB = regBlockItemB(ExtendedBlocks.EBONY_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_STAIRS = regBlockItemB(ExtendedBlocks.EBONY_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_FENCE = regBlockItemB(ExtendedBlocks.EBONY_FENCE, LOTRItemGroups.DECO);
+		ExtendedItems.EBONY_FENCE_GATE = regBlockItemB(ExtendedBlocks.EBONY_FENCE_GATE, LOTRItemGroups.UTIL);
+		ExtendedItems.EBONY_DOOR = regTallBlockItemB(ExtendedBlocks.EBONY_DOOR, LOTRItemGroups.UTIL);
+		ExtendedItems.EBONY_TRAPDOOR = regBlockItemB(ExtendedBlocks.EBONY_TRAPDOOR, LOTRItemGroups.UTIL);
+		ExtendedItems.EBONY_PRESSURE_PLATE = regBlockItemB(ExtendedBlocks.EBONY_PRESSURE_PLATE, LOTRItemGroups.UTIL);
+		ExtendedItems.EBONY_BUTTON = regBlockItemB(ExtendedBlocks.EBONY_BUTTON, LOTRItemGroups.UTIL);
+		ExtendedItems.STRIPPED_EBONY_LOG = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_LOG, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_EBONY_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_WOOD, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_BEAM = regBlockItemB(ExtendedBlocks.EBONY_BEAM, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_SIGN = regSignBlockItemB(ExtendedBlocks.EBONY_SIGN, ExtendedBlocks.EBONY_WALL_SIGN);
+		ExtendedItems.EBONY_BOAT = regItemB("ebony_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("EBONY")));
+		ExtendedItems.EBONY_LOG_SLAB = regBlockItemB(ExtendedBlocks.EBONY_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_WOOD_SLAB = regBlockItemB(ExtendedBlocks.EBONY_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.EBONY_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_BRANCH = regBlockItemB(ExtendedBlocks.EBONY_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_EBONY_LOG_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_EBONY_WOOD_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_EBONY_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_EBONY_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_BEAM_SLAB = regBlockItemB(ExtendedBlocks.EBONY_BEAM_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.FALLEN_EBONY_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_EBONY_LEAVES, LOTRItemGroups.DECO);
+
 		//ORE/GEM STORAGE
 		ExtendedItems.GALVORN_BLOCK = regBlockItemB(ExtendedBlocks.GALVORN_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BLACK_URUK_STEEL_BLOCK = regBlockItemB(ExtendedBlocks.BLACK_URUK_STEEL_BLOCK, LOTRItemGroups.BLOCKS);

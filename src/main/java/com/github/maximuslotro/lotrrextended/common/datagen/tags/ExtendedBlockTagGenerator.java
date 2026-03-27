@@ -234,7 +234,7 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.add(ExtendedBlocks.BARREN_DIRT.get()).addTag(ExtendedTags.Blocks.REMAINS_ORE).add(ExtendedBlocks.WASTE_BLOCK.get());
 
 		tag(BlockTags.LOGS_THAT_BURN).addTag(ExtendedTags.Blocks.CHESTNUT_LOGS).addTag(ExtendedTags.Blocks.BANANA_LOGS).addTag(ExtendedTags.Blocks.PLUM_LOGS)
-		.addTag(ExtendedTags.Blocks.WILLOW_LOGS);
+		.addTag(ExtendedTags.Blocks.WILLOW_LOGS).addTag(ExtendedTags.Blocks.EBONY_LOGS);
 
 		tag(BlockTags.ENDERMAN_HOLDABLE).add(ExtendedBlocks.BARREN_DIRT.get()).add(ExtendedBlocks.MOSS_BLOCK.get()).add(ExtendedBlocks.MUD.get())
 		.add(ExtendedBlocks.MUD_GRASS.get()).add(ExtendedBlocks.WASTE_BLOCK.get());
@@ -349,6 +349,8 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.add(ExtendedBlocks.PLUM_WOOD.get()).add(ExtendedBlocks.STRIPPED_PLUM_WOOD.get());
 		tag(ExtendedTags.Blocks.WILLOW_LOGS).add(ExtendedBlocks.WILLOW_LOG.get()).add(ExtendedBlocks.STRIPPED_WILLOW_LOG.get())
 		.add(ExtendedBlocks.WILLOW_WOOD.get()).add(ExtendedBlocks.STRIPPED_WILLOW_WOOD.get());
+		tag(ExtendedTags.Blocks.EBONY_LOGS).add(ExtendedBlocks.EBONY_LOG.get()).add(ExtendedBlocks.STRIPPED_EBONY_LOG.get())
+		.add(ExtendedBlocks.EBONY_WOOD.get()).add(ExtendedBlocks.STRIPPED_EBONY_WOOD.get());
 		
 		tag(ExtendedTags.Blocks.WOOL_BLOCKS).add(Blocks.BLACK_WOOL).add(Blocks.BLUE_WOOL).add(Blocks.BROWN_WOOL).add(Blocks.CYAN_WOOL).add(Blocks.GRAY_WOOL)
 		.add(Blocks.GREEN_WOOL).add(Blocks.LIGHT_BLUE_WOOL).add(Blocks.LIGHT_GRAY_WOOL).add(Blocks.LIME_WOOL).add(Blocks.MAGENTA_WOOL).add(Blocks.ORANGE_WOOL)

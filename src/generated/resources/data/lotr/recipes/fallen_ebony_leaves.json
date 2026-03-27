@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:ebony_leaves"
+    }
+  },
+  "result": {
+    "item": "lotr:fallen_ebony_leaves",
+    "count": 16
+  }
+}

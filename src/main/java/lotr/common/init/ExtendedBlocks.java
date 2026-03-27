@@ -160,6 +160,36 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> FALLEN_WILLOW_LEAVES;
 	public static RegistryObject<Block> WILLOW_VINES;
 
+	public static RegistryObject<Block> EBONY_LOG;
+	public static RegistryObject<Block> EBONY_WOOD;
+	public static RegistryObject<Block> EBONY_PLANKS;
+	public static RegistryObject<Block> EBONY_LEAVES;
+	public static RegistryObject<Block> EBONY_SAPLING;
+	public static RegistryObject<Block> POTTED_EBONY_SAPLING;
+	public static RegistryObject<Block> EBONY_SLAB;
+	public static RegistryObject<Block> EBONY_STAIRS;
+	public static RegistryObject<Block> EBONY_FENCE;
+	public static RegistryObject<Block> EBONY_FENCE_GATE;
+	public static RegistryObject<Block> EBONY_DOOR;
+	public static RegistryObject<Block> EBONY_TRAPDOOR;
+	public static RegistryObject<Block> EBONY_PRESSURE_PLATE;
+	public static RegistryObject<Block> EBONY_BUTTON;
+	public static RegistryObject<Block> STRIPPED_EBONY_LOG;
+	public static RegistryObject<Block> STRIPPED_EBONY_WOOD;
+	public static RegistryObject<Block> EBONY_BEAM;
+	public static RegistryObject<Block> EBONY_SIGN;
+	public static RegistryObject<Block> EBONY_WALL_SIGN;
+	public static RegistryObject<Block> EBONY_LOG_SLAB;
+	public static RegistryObject<Block> EBONY_WOOD_SLAB;
+	public static RegistryObject<Block> EBONY_WOOD_STAIRS;
+	public static RegistryObject<Block> EBONY_BRANCH;
+	public static RegistryObject<Block> STRIPPED_EBONY_LOG_SLAB;
+	public static RegistryObject<Block> STRIPPED_EBONY_WOOD_SLAB;
+	public static RegistryObject<Block> STRIPPED_EBONY_WOOD_STAIRS;
+	public static RegistryObject<Block> STRIPPED_EBONY_BRANCH;
+	public static RegistryObject<Block> EBONY_BEAM_SLAB;
+	public static RegistryObject<Block> FALLEN_EBONY_LEAVES;
+
 	public static RegistryObject<Block> TAURETHRIM_CRAFTING_TABLE;
 	public static RegistryObject<Block> DOL_GULDUR_CRAFTING_TABLE;
 	public static RegistryObject<Block> RHUNIC_CRAFTING_TABLE;

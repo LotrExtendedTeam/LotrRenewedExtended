@@ -66,6 +66,10 @@ public class ExtendedBiomeFeatures {
 	private static BlockState PLUM_LEAVES;
 	private static BlockState PLUM_LEAVES_FRUIT;
 
+	private static BlockState EBONY_LOG;
+	private static BlockState EBONY_BRANCH;
+	private static BlockState EBONY_LEAVES;
+
 	// Stones
 	private static BlockState BLUE_ROCK;
 	private static BlockState BLUE_ROCK_SLAB;
@@ -123,11 +127,17 @@ public class ExtendedBiomeFeatures {
 	private static BaseTreeFeatureConfig PLUM_TREE_FANCY_BEES;
 	private static BaseTreeFeatureConfig PLUM_PARTY;
 
+	private static BlockStateProvider EBONY_LEAVES_POOL;
+	private static BaseTreeFeatureConfig EBONY_TREE;
+	private static BaseTreeFeatureConfig EBONY_TREE_FANCY;
+	private static BaseTreeFeatureConfig EBONY_TREE_BEES;
+	private static BaseTreeFeatureConfig EBONY_TREE_FANCY_BEES;
+
 	//Chestnut
 	//TODO add to Celebrant, Pukel, Rhun, Adornland when biomes are added
 	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> chestnut() {
 		return Feature.TREE.configured(CHESTNUT_TREE);
-	}
+	}                         
 
 	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> chestnutFancy() {
 		return Feature.TREE.configured(CHESTNUT_TREE_FANCY);
@@ -182,6 +192,21 @@ public class ExtendedBiomeFeatures {
 		return Feature.TREE.configured(PLUM_PARTY);
 	}
 
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> ebony() {
+		return Feature.TREE.configured(EBONY_TREE);
+	}
+
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> ebonyFancy() {
+		return Feature.TREE.configured(EBONY_TREE_FANCY);
+	}
+
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> ebonyBees() {
+		return Feature.TREE.configured(EBONY_TREE_BEES);
+	}
+
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> ebonyFancyBees() {
+		return Feature.TREE.configured(EBONY_TREE_FANCY_BEES);
+	}
 
 	public static void setup(RegistryEvent.Register<Block> event) {
 		// tree block states
@@ -200,6 +225,10 @@ public class ExtendedBiomeFeatures {
 		PLUM_BRANCH = ExtendedBlocks.PLUM_BRANCH.get().defaultBlockState();
 		PLUM_LEAVES = ExtendedBlocks.PLUM_LEAVES.get().defaultBlockState();
 		PLUM_LEAVES_FRUIT = ExtendedBlocks.PLUM_LEAVES_FRUIT.get().defaultBlockState();
+
+		EBONY_LOG = ExtendedBlocks.EBONY_LOG.get().defaultBlockState();
+		EBONY_BRANCH = ExtendedBlocks.EBONY_BRANCH.get().defaultBlockState();
+		EBONY_LEAVES = ExtendedBlocks.EBONY_LEAVES.get().defaultBlockState();
 
 		// stone block states
 		BLUE_ROCK = LOTRBlocks.BLUE_ROCK.get().defaultBlockState();
@@ -259,6 +288,11 @@ public class ExtendedBiomeFeatures {
 		PLUM_TREE_FANCY_BEES = buildFancyTreeWithBees(PLUM_LOG, PLUM_LEAVES_POOL);
 		PLUM_PARTY = buildNormalPartyTree(PLUM_LOG, PLUM_WOOD, PLUM_BRANCH, PLUM_LEAVES_POOL);
 
+		EBONY_LEAVES_POOL = new SimpleBlockStateProvider(EBONY_LEAVES);
+		EBONY_TREE = buildClassicTree(EBONY_LOG, EBONY_LEAVES_POOL, 4, 3);
+		EBONY_TREE_BEES = buildClassicTreeWithBees(EBONY_LOG, EBONY_LEAVES_POOL, 4, 3);
+		EBONY_TREE_FANCY = buildFancyTree(EBONY_LOG, EBONY_LEAVES_POOL);
+		EBONY_TREE_FANCY_BEES = buildFancyTreeWithBees(EBONY_LOG, EBONY_LEAVES_POOL);		
 
 		BLACKBERRYBUSH = ExtendedBlocks.BLACKBERRY_BUSH.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);
 		BLUEBERRYBUSH = ExtendedBlocks.BLUEBERRY_BUSH.get().defaultBlockState().setValue(ExtendedBerryBushBlock.AGE, 3);

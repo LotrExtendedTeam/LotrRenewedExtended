@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/template_large_flower_pot_crossed",
+  "textures": {
+    "pot": "lotrextended:block/large_flower_pot",
+    "particle": "lotrextended:block/large_flower_pot"
+  }
+}

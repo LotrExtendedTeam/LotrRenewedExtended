@@ -34,6 +34,7 @@ import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroup
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.trees.BananaTree;
 import com.github.maximuslotro.lotrrextended.common.block.trees.ChestnutTree;
+import com.github.maximuslotro.lotrrextended.common.block.trees.EbonyTree;
 import com.github.maximuslotro.lotrrextended.common.block.trees.PlumTree;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
@@ -523,7 +524,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.PLUM_BEAM_SLAB = registerB("plum_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.PLUM_BEAM));
 		ExtendedBlocks.FALLEN_PLUM_LEAVES = registerB("fallen_plum_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.PLUM_LEAVES));
 
-		ExtendedBlocks.WILLOW_LOG = registerB("willow_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.COLOR_PURPLE, () -> ExtendedBlocks.STRIPPED_WILLOW_LOG.get()));
+		ExtendedBlocks.WILLOW_LOG = registerB("willow_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.SAND, () -> ExtendedBlocks.STRIPPED_WILLOW_LOG.get()));
 		ExtendedBlocks.WILLOW_WOOD = registerB("willow_wood", () -> new StrippableWoodBlock(ExtendedBlocks.WILLOW_LOG, () -> ExtendedBlocks.STRIPPED_WILLOW_WOOD.get()));
 		ExtendedBlocks.WILLOW_PLANKS = registerB("willow_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
 		ExtendedBlocks.WILLOW_LEAVES = registerB("willow_leaves", LOTRLeavesBlock::new);
@@ -554,6 +555,37 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.WILLOW_BEAM_SLAB = registerB("willow_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.WILLOW_BEAM));
 		ExtendedBlocks.FALLEN_WILLOW_LEAVES = registerB("fallen_willow_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.WILLOW_LEAVES));
 		ExtendedBlocks.WILLOW_VINES = registerB("willow_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
+
+		ExtendedBlocks.EBONY_LOG = registerB("ebony_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.COLOR_BLACK, () -> ExtendedBlocks.STRIPPED_EBONY_LOG.get()));
+		ExtendedBlocks.EBONY_WOOD = registerB("ebony_wood", () -> new StrippableWoodBlock(ExtendedBlocks.EBONY_LOG, () -> ExtendedBlocks.STRIPPED_EBONY_WOOD.get()));
+		ExtendedBlocks.EBONY_PLANKS = registerB("ebony_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
+		ExtendedBlocks.EBONY_LEAVES = registerB("ebony_leaves", LOTRLeavesBlock::new);
+		ExtendedBlocks.EBONY_SAPLING = registerB("ebony_sapling", () -> new LOTRSaplingBlock(new EbonyTree()));
+		ExtendedBlocks.POTTED_EBONY_SAPLING = registerB("potted_ebony_sapling", () -> new LOTRPottedPlantBlock(ExtendedBlocks.EBONY_SAPLING));
+		registerPOT("large_pot_ebony_sapling", () -> new ExtendedLargeFlowerPotBlock(ExtendedBlocks.EBONY_SAPLING));
+		ExtendedBlocks.EBONY_SLAB = registerB("ebony_slab", () -> new AxialSlabBlock(ExtendedBlocks.EBONY_PLANKS));
+		ExtendedBlocks.EBONY_STAIRS = registerB("ebony_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.EBONY_PLANKS));
+		ExtendedBlocks.EBONY_FENCE = registerB("ebony_fence", () -> new LOTRFenceBlock(ExtendedBlocks.EBONY_PLANKS));
+		ExtendedBlocks.EBONY_FENCE_GATE = registerB("ebony_fence_gate", () -> new LOTRFenceGateBlock(ExtendedBlocks.EBONY_PLANKS));
+		ExtendedBlocks.EBONY_DOOR = registerB("ebony_door", () -> new LOTRDoorBlock(ExtendedBlocks.EBONY_PLANKS));
+		ExtendedBlocks.EBONY_TRAPDOOR = registerB("ebony_trapdoor", () -> new LOTRTrapdoorBlock(ExtendedBlocks.EBONY_PLANKS));
+		ExtendedBlocks.EBONY_PRESSURE_PLATE = registerB("ebony_pressure_plate", () -> new LOTRWoodPressurePlateBlock(ExtendedBlocks.EBONY_PLANKS));
+		ExtendedBlocks.EBONY_BUTTON = registerB("ebony_button", LOTRWoodButtonBlock::new);
+		ExtendedBlocks.STRIPPED_EBONY_LOG = registerB("stripped_ebony_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.EBONY_LOG));
+		ExtendedBlocks.STRIPPED_EBONY_WOOD = registerB("stripped_ebony_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_EBONY_LOG));
+		ExtendedBlocks.EBONY_BEAM = registerB("ebony_beam", () -> new WoodBeamBlock(ExtendedBlocks.EBONY_LOG));
+		ExtendedBlocks.EBONY_SIGN = registerB("ebony_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.EBONY_PLANKS, ExtendedSignTypes.EBONY));
+		ExtendedBlocks.EBONY_WALL_SIGN = registerB("ebony_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.EBONY_SIGN));
+		ExtendedBlocks.EBONY_LOG_SLAB = registerB("ebony_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.EBONY_LOG, () -> ExtendedBlocks.STRIPPED_EBONY_LOG_SLAB.get()));
+		ExtendedBlocks.EBONY_WOOD_SLAB = registerB("ebony_wood_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.EBONY_WOOD, () -> ExtendedBlocks.STRIPPED_EBONY_WOOD_SLAB.get()));
+		ExtendedBlocks.EBONY_WOOD_STAIRS = registerB("ebony_wood_stairs", () -> new StrippableLogStairsBlock(ExtendedBlocks.EBONY_WOOD, () -> ExtendedBlocks.STRIPPED_EBONY_WOOD_STAIRS.get()));
+		ExtendedBlocks.EBONY_BRANCH = registerB("ebony_branch", () -> new StrippableBranchBlock(ExtendedBlocks.EBONY_WOOD, () -> ExtendedBlocks.STRIPPED_EBONY_BRANCH.get()));
+		ExtendedBlocks.STRIPPED_EBONY_LOG_SLAB = registerB("stripped_ebony_log_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_EBONY_LOG));
+		ExtendedBlocks.STRIPPED_EBONY_WOOD_SLAB = registerB("stripped_ebony_wood_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_EBONY_WOOD));
+		ExtendedBlocks.STRIPPED_EBONY_WOOD_STAIRS = registerB("stripped_ebony_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_EBONY_WOOD));
+		ExtendedBlocks.STRIPPED_EBONY_BRANCH = registerB("stripped_ebony_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_EBONY_WOOD));
+		ExtendedBlocks.EBONY_BEAM_SLAB = registerB("ebony_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.EBONY_BEAM));
+		ExtendedBlocks.FALLEN_EBONY_LEAVES = registerB("fallen_ebony_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.EBONY_LEAVES));
 
 		//Packed Fur
 		ExtendedBlocks.WHITE_MATTED_FUR = registerB("white_matted_fur", () -> new ExtendedMattedFurBlock(ExtendedWargFurType.WHITE));

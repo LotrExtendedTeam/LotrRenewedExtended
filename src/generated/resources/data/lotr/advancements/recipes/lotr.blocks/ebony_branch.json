@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:ebony_branch"
+    ]
+  },
+  "criteria": {
+    "has_ebony_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:ebony_wood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:ebony_branch"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ebony_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

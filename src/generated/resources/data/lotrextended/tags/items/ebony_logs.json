@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:ebony_log",
+    "lotr:ebony_wood",
+    "lotr:stripped_ebony_log",
+    "lotr:stripped_ebony_wood"
+  ]
+}

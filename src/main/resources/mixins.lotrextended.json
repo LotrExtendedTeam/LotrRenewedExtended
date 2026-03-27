@@ -122,6 +122,7 @@
 		"lotr.common.world.biome.MixinShireBiome",
 		"lotr.common.world.biome.MixinShireMoors",
 		"lotr.common.world.biome.MixinShireWoodlandsBiome",
+		"lotr.common.world.biome.MixinSouthronCoastsBiome",
 		"lotr.common.world.biome.MixinTrollshawsBiome",
 		"lotr.common.world.biome.MixinUmbarBiome",
 		"lotr.common.world.biome.MixinWesternIsles",

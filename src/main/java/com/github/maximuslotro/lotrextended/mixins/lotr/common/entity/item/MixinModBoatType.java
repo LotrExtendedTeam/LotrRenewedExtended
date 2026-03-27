@@ -56,6 +56,11 @@ public class MixinModBoatType {
 	 * */
 	@Unique
 	private static final ModBoatType WILLOW = lotrModBoatType$addVariant("WILLOW", ExtendedBlocks.WILLOW_PLANKS, ExtendedItems.WILLOW_BOAT, "willow");
+	/**
+	 * Local Extended ModBoatType instance
+	 * */
+	@Unique
+	private static final ModBoatType EBONY = lotrModBoatType$addVariant("EBONY", ExtendedBlocks.EBONY_PLANKS, ExtendedItems.EBONY_BOAT, "ebony");
 
 	/**
 	 * Accessing the Enum creation method, DO NOT CALL THIS METHOD DIRECTLY, CALL THE HELPER METHODS
