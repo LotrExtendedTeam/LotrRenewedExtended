@@ -77,7 +77,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		for (String entity : ExtendedEntities.REGISTEREDNONMOBENTITIES) {
 			addD("entity.lotr." + entity);
 		}
-
+		for (String entity : ExtendedEntities.REGISTEREDNONMOBENTITIESEXTENDED) {
+			addD("entity.lotrextended." + entity);
+		}
 		addD("entity.lotr.boat", "Boat");
 
 		// Generate Container Titles

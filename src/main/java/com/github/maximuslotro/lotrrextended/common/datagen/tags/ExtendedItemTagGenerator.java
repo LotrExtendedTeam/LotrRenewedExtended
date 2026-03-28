@@ -6,6 +6,7 @@ import java.util.TreeMap;
 import java.util.function.Function;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoatItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
@@ -16,7 +17,6 @@ import lotr.common.init.LOTRItems;
 import lotr.common.init.LOTRTags;
 import lotr.common.item.DaggerItem;
 import lotr.common.item.HammerItem;
-import lotr.common.item.LOTRBoatItem;
 import lotr.common.item.LOTRHoeItem;
 import lotr.common.item.LOTRSwordItem;
 import lotr.common.item.SpearItem;
@@ -330,7 +330,7 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
-			if(item.getValue().get() instanceof LOTRBoatItem) {
+			if(item.getValue().get() instanceof ExtendedBoatItem) {
 				tag(ItemTags.BOATS).add(item.getValue().get());
 				continue;
 			}

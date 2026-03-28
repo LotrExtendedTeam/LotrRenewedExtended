@@ -2025,6 +2025,7 @@
   "entity.lotr.uruk_smith": "Uruk Smith",
   "entity.lotr.uruk_supplier": "Uruk Supplier",
   "entity.lotr.wild_boar": "Wild Boar",
+  "entity.lotrextended.boat": "Boat",
   "entity.lotrextended.hiredunits.entity_shortname": "%1$s",
   "entity.lotrextended.hiredunits.entity_title": "%1$s the %2$s",
   "gui.lotrextended.banner_configuration.custom.description": "Protection Message:",

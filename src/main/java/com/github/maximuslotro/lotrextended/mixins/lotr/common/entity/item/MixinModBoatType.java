@@ -17,9 +17,11 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.DatagenModLoader;
 
 /**
- * Used to register new boat types, via Renewed's existing registration system
+ * Used to register boat types previously register in renewed so that they do not simply disappear
+ * However going forward with Ebony, register boats purely with Extended's system.
  * @Mixin (ModBoatType.class)
  * */
+@Deprecated
 @Mixin(ModBoatType.class)
 public class MixinModBoatType {
 	@SuppressWarnings("target")
@@ -56,11 +58,6 @@ public class MixinModBoatType {
 	 * */
 	@Unique
 	private static final ModBoatType WILLOW = lotrModBoatType$addVariant("WILLOW", ExtendedBlocks.WILLOW_PLANKS, ExtendedItems.WILLOW_BOAT, "willow");
-	/**
-	 * Local Extended ModBoatType instance
-	 * */
-	@Unique
-	private static final ModBoatType EBONY = lotrModBoatType$addVariant("EBONY", ExtendedBlocks.EBONY_PLANKS, ExtendedItems.EBONY_BOAT, "ebony");
 
 	/**
 	 * Accessing the Enum creation method, DO NOT CALL THIS METHOD DIRECTLY, CALL THE HELPER METHODS

@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemRenderHelper;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedBoatEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCoinType;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
@@ -55,7 +56,6 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStra
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhiteFurBedTileEntity;
 import com.google.common.base.Function;
 
-import lotr.common.entity.item.LOTRBoatEntity;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItemGroups;
@@ -112,7 +112,7 @@ public class MixinLOTRItems {
 	}
 	/**
 	 * Extended's method for registering banner pattern items, handling their unique dataGen needs
-	 * @param name A String name of the entity
+	 * @param name A String name of the item
 	 * @param bannerPattern The BannerPattern instance for this item
 	 * @param sup A supplier for the item
 	 * @return A RegistryObject instance for the item
@@ -122,6 +122,21 @@ public class MixinLOTRItems {
 		RegistryObject<Item> item = regItemB(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {
 			DataGenValueHolder.bannerPatternItemNameHolders.put(name, bannerPattern.getFilename());
+		}
+		return item;
+	}
+	/**
+	 * Extended's method for registering boat items, handles dataGen
+	 * @param name A String name of the item
+	 * @param pType The boat type to associate with the item
+	 * @param group The ItemGroup for this item to be placed in
+	 * @return A RegistryObject instance for the fallen leaves block item
+	 * */
+	@Unique
+	private static RegistryObject<Item> regBoatItem(String name, ExtendedBoatEntity.Type pType, ItemGroup group) {
+		RegistryObject<Item> item = regItemB(name, () -> new ExtendedBoatItem(pType, new Properties().stacksTo(1).tab(group)));
+		if(DatagenModLoader.isRunningDataGen()) {
+			DataGenValueHolder.newWoodTypesHolder.add(pType.getName());
 		}
 		return item;
 	}
@@ -438,6 +453,7 @@ public class MixinLOTRItems {
 		ExtendedItems.CHESTNUT_LOG = regBlockItemB(ExtendedBlocks.CHESTNUT_LOG, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_WOOD = regBlockItemB(ExtendedBlocks.CHESTNUT_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_PLANKS = regBlockItemB(ExtendedBlocks.CHESTNUT_PLANKS, LOTRItemGroups.BLOCKS);
+		System.out.println("P1");
 		ExtendedItems.CHESTNUT_LEAVES = regBlockItemB(ExtendedBlocks.CHESTNUT_LEAVES, LOTRItemGroups.DECO);
 		ExtendedItems.CHESTNUT_LEAVES_FRUIT = regBlockItemB(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT, LOTRItemGroups.DECO);
 		ExtendedItems.CHESTNUT_SAPLING = regBlockItemB(ExtendedBlocks.CHESTNUT_SAPLING, LOTRItemGroups.DECO);
@@ -453,7 +469,7 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_CHESTNUT_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_BEAM = regBlockItemB(ExtendedBlocks.CHESTNUT_BEAM, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_SIGN = regSignBlockItemB(ExtendedBlocks.CHESTNUT_SIGN, ExtendedBlocks.CHESTNUT_WALL_SIGN);
-		ExtendedItems.CHESTNUT_BOAT = regItemB("chestnut_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("CHESTNUT")));
+		ExtendedItems.CHESTNUT_BOAT = regBoatItem("chestnut_boat", ExtendedBoatEntity.Type.CHESTNUT, LOTRItemGroups.MISC);
 		ExtendedItems.CHESTNUT_LOG_SLAB = regBlockItemB(ExtendedBlocks.CHESTNUT_LOG_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_WOOD_SLAB = regBlockItemB(ExtendedBlocks.CHESTNUT_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.CHESTNUT_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
@@ -482,7 +498,7 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_BANANA_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_BANANA_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BANANA_BEAM = regBlockItemB(ExtendedBlocks.BANANA_BEAM, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BANANA_SIGN = regSignBlockItemB(ExtendedBlocks.BANANA_SIGN, ExtendedBlocks.BANANA_WALL_SIGN);
-		ExtendedItems.BANANA_BOAT = regItemB("banana_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("BANANA")));
+		ExtendedItems.BANANA_BOAT = regBoatItem("banana_boat", ExtendedBoatEntity.Type.BANANA, LOTRItemGroups.MISC);
 		ExtendedItems.BANANA_LOG_SLAB = regBlockItemB(ExtendedBlocks.BANANA_LOG_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BANANA_WOOD_SLAB = regBlockItemB(ExtendedBlocks.BANANA_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BANANA_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.BANANA_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
@@ -512,7 +528,7 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_PLUM_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PLUM_BEAM = regBlockItemB(ExtendedBlocks.PLUM_BEAM, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PLUM_SIGN = regSignBlockItemB(ExtendedBlocks.PLUM_SIGN, ExtendedBlocks.PLUM_WALL_SIGN);
-		ExtendedItems.PLUM_BOAT = regItemB("plum_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("PLUM")));
+		ExtendedItems.PLUM_BOAT = regBoatItem("plum_boat", ExtendedBoatEntity.Type.PLUM, LOTRItemGroups.MISC);
 		ExtendedItems.PLUM_LOG_SLAB = regBlockItemB(ExtendedBlocks.PLUM_LOG_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PLUM_WOOD_SLAB = regBlockItemB(ExtendedBlocks.PLUM_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PLUM_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.PLUM_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
@@ -542,7 +558,7 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_WILLOW_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.WILLOW_BEAM = regBlockItemB(ExtendedBlocks.WILLOW_BEAM, LOTRItemGroups.BLOCKS);
 		ExtendedItems.WILLOW_SIGN = regSignBlockItemB(ExtendedBlocks.WILLOW_SIGN, ExtendedBlocks.WILLOW_WALL_SIGN);
-		ExtendedItems.WILLOW_BOAT = regItemB("willow_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("WILLOW")));
+		ExtendedItems.WILLOW_BOAT = regBoatItem("willow_boat", ExtendedBoatEntity.Type.WILLOW, LOTRItemGroups.MISC);
 		ExtendedItems.WILLOW_LOG_SLAB = regBlockItemB(ExtendedBlocks.WILLOW_LOG_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.WILLOW_WOOD_SLAB = regBlockItemB(ExtendedBlocks.WILLOW_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.WILLOW_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.WILLOW_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
@@ -571,7 +587,7 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_EBONY_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.EBONY_BEAM = regBlockItemB(ExtendedBlocks.EBONY_BEAM, LOTRItemGroups.BLOCKS);
 		ExtendedItems.EBONY_SIGN = regSignBlockItemB(ExtendedBlocks.EBONY_SIGN, ExtendedBlocks.EBONY_WALL_SIGN);
-		ExtendedItems.EBONY_BOAT = regItemB("ebony_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("EBONY")));
+		ExtendedItems.EBONY_BOAT = regBoatItem("ebony_boat", ExtendedBoatEntity.Type.EBONY, LOTRItemGroups.MISC);
 		ExtendedItems.EBONY_LOG_SLAB = regBlockItemB(ExtendedBlocks.EBONY_LOG_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.EBONY_WOOD_SLAB = regBlockItemB(ExtendedBlocks.EBONY_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.EBONY_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.EBONY_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
