@@ -35,6 +35,11 @@ public class AdvancementsProviderAngmar extends ExtendedBaseAdvancementType{
 				addArmorTrigger(make(), "ranger_north", ExtendedItems.ANGMAR_HELMET.get(), ExtendedItems.ANGMAR_CHESTPLATE.get(),
 						ExtendedItems.ANGMAR_LEGGINGS.get(), ExtendedItems.ANGMAR_BOOTS.get()).parent(angmar));
 
+		Advancement morgul_vassal_armor = build(true, data(ExtendedItems.MORGUL_VASSAL_CHESTPLATE.get(), "morgul_vassal_armor", FrameType.TASK)
+			.setTitle("Lord of the Fallen Realm").setDescription("Equip a full suit of Morgul Vassal Armor."),
+			addArmorTrigger(make(), "morgul_vassal", ExtendedItems.MORGUL_VASSAL_HELMET.get(), ExtendedItems.MORGUL_VASSAL_CHESTPLATE.get(),
+				ExtendedItems.MORGUL_VASSAL_LEGGINGS.get(), ExtendedItems.MORGUL_VASSAL_BOOTS.get()).parent(angmar_armor));
+
 		Advancement orc_10 = build(true, data(LOTRItems.GOLD_RING.get(), "angmar_thrall", FrameType.TASK)
 				.setTitle("Angmar Thrall").setDescription("Reach +10.0 alignment with Angmar."),
 				addAlignmentTrigger(make(), FactionPointers.ANGMAR, 10).parent(angmar));
@@ -66,6 +71,7 @@ public class AdvancementsProviderAngmar extends ExtendedBaseAdvancementType{
 		Advancement angmar_crafter = build(true, data(LOTRItems.ANGMAR_CRAFTING_TABLE.get(), "angmar_crafter", FrameType.TASK)
 			.setTitle("Angmarin Crafter").setDescription("Craft an item on the Angmar Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.ANGMAR_CRAFTING_TABLE.get()).parent(angmar));
+
 	}
 
 	@Override

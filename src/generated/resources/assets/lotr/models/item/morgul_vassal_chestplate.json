@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lotrextended:item/morgul_chestplate"
+    "layer0": "lotrextended:item/morgul_vassal_chestplate"
   }
 }

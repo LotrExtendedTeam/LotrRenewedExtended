@@ -1,9 +1,8 @@
 {
   "type": "lotr:faction_shaped",
-  "table": "lotr:any_morgul",
+  "table": "lotr:angmar",
   "pattern": [
     "###",
-    "# #",
     "# #"
   ],
   "key": {
@@ -12,6 +11,6 @@
     }
   },
   "result": {
-    "item": "lotr:morgul_leggings"
+    "item": "lotr:morgul_vassal_helmet"
   }
 }

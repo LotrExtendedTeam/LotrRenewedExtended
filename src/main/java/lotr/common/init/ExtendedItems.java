@@ -176,10 +176,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> FALLEN_EBONY_LEAVES;
 
 	public static RegistryObject<Item> MORGUL_BLADE;
-	public static RegistryObject<Item> MORGUL_HELMET;
-	public static RegistryObject<Item> MORGUL_CHESTPLATE;
-	public static RegistryObject<Item> MORGUL_LEGGINGS;
-	public static RegistryObject<Item> MORGUL_BOOTS;
+	//public static RegistryObject<Item> MORGUL_HELMET;
 
 	public static RegistryObject<Item> GUNDABAD_URUK_CLEAVER;
 	public static RegistryObject<Item> GUNDABAD_URUK_SPEAR;

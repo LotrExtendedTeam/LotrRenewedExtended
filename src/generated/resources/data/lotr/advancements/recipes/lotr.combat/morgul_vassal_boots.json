@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:morgul_leggings"
+      "lotr:morgul_vassal_boots"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:morgul_leggings"
+        "recipe": "lotr:morgul_vassal_boots"
       }
     }
   },

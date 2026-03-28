@@ -90,10 +90,10 @@ public class AdvancementsProviderMordor extends ExtendedBaseAdvancementType{
 			addArmorTrigger(make(), "mordor", LOTRItems.MORDOR_HELMET.get(), LOTRItems.MORDOR_CHESTPLATE.get(),
 					LOTRItems.MORDOR_LEGGINGS.get(), LOTRItems.MORDOR_BOOTS.get()).parent(enter_mordor));
 
-		Advancement morgul_armor = build(true, data(ExtendedItems.MORGUL_CHESTPLATE.get(), "morgul_armor", FrameType.TASK)
-			.setTitle("Witch-king").setDescription("Equip a full suit of Morgul armor."),
-			addArmorTrigger(make(), "morgul", ExtendedItems.MORGUL_HELMET.get(), ExtendedItems.MORGUL_CHESTPLATE.get(),
-				ExtendedItems.MORGUL_LEGGINGS.get(), ExtendedItems.MORGUL_BOOTS.get()).parent(mordor_armor));
+		//Advancement morgul_armor = build(true, data(ExtendedItems.MORGUL_CHESTPLATE.get(), "morgul_armor", FrameType.TASK)
+		//	.setTitle("Knight of Dushgoi").setDescription("Equip a full suit of Morgul Knight Armor."),
+		//	addArmorTrigger(make(), "morgul", ExtendedItems.MORGUL_HELMET.get(), ExtendedItems.MORGUL_CHESTPLATE.get(),
+		//		ExtendedItems.MORGUL_LEGGINGS.get(), ExtendedItems.MORGUL_BOOTS.get()).parent(mordor_armor));
 
 		Advancement mordor_orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "mordor_orc_slayer", FrameType.TASK)
 			.setTitle("Mordor Orc Slayer").setDescription("Kill a Mordor Orc."),

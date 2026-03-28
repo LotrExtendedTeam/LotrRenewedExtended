@@ -398,11 +398,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get().getRegistryName().getPath()));
 
 		//MORGUL
-		makeArmorRecipe(consumer, ExtendedItems.MORGUL_HELMET,
-			ExtendedItems.MORGUL_CHESTPLATE,
 			ExtendedItems.MORGUL_LEGGINGS,
 			ExtendedItems.MORGUL_BOOTS,
 			ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_MORGUL);
+		//	ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.MORDOR_CRAFTING);
 		makeSwordRecipe(consumer, ExtendedItems.MORGUL_BLADE, ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_MORGUL);
 		GENERATEDRECIPES.add(ExtendedItems.MORGUL_BRAZIER.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.MORGUL_BRAZIER.get(), LOTRRecipes.ANY_MORGUL)

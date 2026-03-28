@@ -1130,10 +1130,6 @@ public class MixinLOTRItems {
 		ExtendedItems.ORC_BOMB_FIRE_TRIPLE = regExtendedBlockItemD(ExtendedBlocks.ORC_BOMB_FIRE_TRIPLE, block -> new ExtendedOrcBombItem(block, new Properties().tab(LOTRItemGroups.COMBAT)));
 
 		//Morgul Equipment
-		ExtendedItems.MORGUL_HELMET = regItemB("morgul_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.HEAD, "helmet"));
-		ExtendedItems.MORGUL_CHESTPLATE = regItemB("morgul_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.CHEST));
-		ExtendedItems.MORGUL_LEGGINGS = regItemB("morgul_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.LEGS));
-		ExtendedItems.MORGUL_BOOTS = regItemB("morgul_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.FEET));
 		ExtendedItems.MORGUL_BLADE = regItemB("morgul_blade",() -> new ExtendedSwordItem(LOTRMaterial.valueOf("MORGUL").asTool(), LOTRItemGroups.COMBAT));
 
 		//Taurethrim Equipment

@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:morgul_helmet"
+      "lotr:morgul_vassal_helmet"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:morgul_helmet"
+        "recipe": "lotr:morgul_vassal_helmet"
       }
     }
   },
