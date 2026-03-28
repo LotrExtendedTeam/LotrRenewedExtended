@@ -668,7 +668,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 			this.yRot = rider.yHeadRot;
 			this.yBodyRot = this.yRot;
 
-			double offsetBack = -0.3; // negative = behind mount, positive = forward
+			double offsetBack = -0.2; // negative = behind mount, positive = forward
 
 			Vector3d vector3d = (new Vector3d(offsetBack, 0.0D, 0.0D)).yRot(-this.yRot * ((float)Math.PI / 180F) - ((float)Math.PI / 2F));
 			pPassenger.setPos(this.getX() + vector3d.x, d0, this.getZ() + vector3d.z);

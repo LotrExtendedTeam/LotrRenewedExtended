@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.client.render.entity.WargRenderer;
 import lotr.client.render.entity.layers.ExtendedWargEyesLayer;
+import lotr.client.render.entity.layers.ExtendedWargSaddleLayer;
 import lotr.client.render.entity.model.WargModel;
 import lotr.common.entity.npc.WargEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -22,5 +23,6 @@ public abstract class MixinWargRenderer extends MobRenderer<WargEntity, WargMode
 	@Inject(method = "<init>(Lnet/minecraft/client/renderer/entity/EntityRendererManager;)V", at = @At("TAIL"), remap=false)
 	public <M extends WargRenderer> void constructor(EntityRendererManager mgr, CallbackInfo info) {
 		this.addLayer(new ExtendedWargEyesLayer<>((WargRenderer)(Object)this));
+		this.addLayer(new ExtendedWargSaddleLayer((WargRenderer)(Object)this));
 	}
 }
