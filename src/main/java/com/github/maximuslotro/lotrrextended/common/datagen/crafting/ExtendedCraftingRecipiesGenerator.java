@@ -398,9 +398,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER.get().getRegistryName().getPath()));
 
 		//MORGUL
-			ExtendedItems.MORGUL_LEGGINGS,
-			ExtendedItems.MORGUL_BOOTS,
-			ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_MORGUL);
+		//makeArmorRecipe(consumer, ExtendedItems.MORGUL_HELMET,
+		//	ExtendedItems.MORGUL_CHESTPLATE,
+		//	ExtendedItems.MORGUL_LEGGINGS,
+		//	ExtendedItems.MORGUL_BOOTS,
 		//	ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.MORDOR_CRAFTING);
 		makeSwordRecipe(consumer, ExtendedItems.MORGUL_BLADE, ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANY_MORGUL);
 		GENERATEDRECIPES.add(ExtendedItems.MORGUL_BRAZIER.get().getRegistryName().getPath());
@@ -474,6 +475,11 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK_WALL,
 			()->ExtendedBlocks.CRACKED_DOL_GULDUR_BRICK.get().asItem(), ExtendedRecipes.DOL_GULDUR_CRAFTING);
 		//ANGMAR
+		makeArmorRecipe(consumer, ExtendedItems.MORGUL_VASSAL_HELMET,
+			ExtendedItems.MORGUL_VASSAL_CHESTPLATE,
+			ExtendedItems.MORGUL_VASSAL_LEGGINGS,
+			ExtendedItems.MORGUL_VASSAL_BOOTS,
+			ExtendedItems.MORGUL_STEEL_INGOT, LOTRRecipes.ANGMAR_CRAFTING);
 		makeArmorRecipe(consumer, ExtendedItems.ANGMAR_HELMET,
 			ExtendedItems.ANGMAR_CHESTPLATE,
 			ExtendedItems.ANGMAR_LEGGINGS,
@@ -822,6 +828,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makePillarSlabRecipe(consumer, ExtendedBlocks.MORGOND_PILLAR,
 			ExtendedBlocks.MORGOND_PILLAR_SLAB,
 			ExtendedItems.MORGOND, LOTRRecipes.GONDOR_CRAFTING);
+		makeStairSlabWallRecipe(consumer, ExtendedBlocks.SMOOTH_MORGOND_STAIRS,
+			ExtendedBlocks.SMOOTH_MORGOND_SLAB,
+			ExtendedBlocks.SMOOTH_MORGOND_WALL,
+			ExtendedItems.SMOOTH_MORGOND, LOTRRecipes.GONDOR_CRAFTING);
 		//DWARVEN
 		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK,
 			ExtendedBlocks.OBSIDIAN_DWARVEN_BRICK_STAIRS,
@@ -1543,16 +1553,17 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeOreFurnaceRecipe(consumer, ExtendedItems.SAPPHIRE_ORE.get(), ExtendedItems.SAPPHIRE.get(), 0.5f);
 		makeOreFurnaceRecipe(consumer, ExtendedItems.TOPAZ_ORE.get(), ExtendedItems.TOPAZ.get(), 0.5f);
 		makeBlastingRecipe(consumer, ExtendedItems.METEORITE_ORE.get(), ExtendedItems.SKY_IRON.get(), 1.0f, 2400);
+		makeSmeltingRecipe(consumer, ExtendedItems.MORGOND.get(), ExtendedItems.SMOOTH_MORGOND.get(), 1.0f, 2400);
 	}
 
 	private static void makeOreFurnaceRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp) {
-		makeSmeltingRecipe(pFinishedRecipeConsumer, ore, result, xp);
+		makeSmeltingRecipe(pFinishedRecipeConsumer, ore, result, xp, 200);
 		makeBlastingRecipe(pFinishedRecipeConsumer, ore, result, xp, 100);
 	}
 
-	private static void makeSmeltingRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp) {
+	private static void makeSmeltingRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp, int ticks) {
 		GENERATEDRECIPES.add(result.getRegistryName().getPath());
-		CookingRecipeBuilder.smelting(Ingredient.of(ore), result, xp, 200)
+		CookingRecipeBuilder.smelting(Ingredient.of(ore), result, xp, ticks)
 		.unlockedBy("has_"+ore.getRegistryName().getPath(), has(ore))
 		.save(pFinishedRecipeConsumer, result.getRegistryName().getPath()+"_from_smelting");
 	}
@@ -2153,6 +2164,20 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK, ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK_STAIRS);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK, ExtendedBlocks.SNOWY_RED_ANGMAR_BRICK_WALL);
 
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.MORGOND, ExtendedBlocks.MORGOND_SLAB, 2);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.MORGOND, ExtendedBlocks.MORGOND_STAIRS);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.MORGOND, ExtendedBlocks.MORGOND_WALL);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.MORGOND_PILLAR, ExtendedBlocks.MORGOND_PILLAR_SLAB);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.MORGOND, ExtendedBlocks.CARVED_MORGOND);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.MORGOND, ExtendedBlocks.MORGOND_DRIPSTONE);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.CARVED_MORGOND, ExtendedBlocks.CARVED_MORGOND_SLAB, 2);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.CARVED_MORGOND, ExtendedBlocks.CARVED_MORGOND_STAIRS);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.CARVED_MORGOND, ExtendedBlocks.CARVED_MORGOND_WALL);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.SMOOTH_MORGOND, ExtendedBlocks.SMOOTH_MORGOND_SLAB, 2);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.SMOOTH_MORGOND, ExtendedBlocks.SMOOTH_MORGOND_STAIRS);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.SMOOTH_MORGOND, ExtendedBlocks.SMOOTH_MORGOND_WALL);
+		makeStoneCutterRecipe(consumer, ExtendedBlocks.SMOOTH_MORGOND, ExtendedBlocks.SMOOTH_MORGOND_DRIPSTONE);
+
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_ARNOR_PILLAR, ExtendedBlocks.CRACKED_ARNOR_PILLAR_SLAB);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.MOSSY_ARNOR_PILLAR, ExtendedBlocks.MOSSY_ARNOR_PILLAR_SLAB);
 		makeStoneCutterRecipe(consumer, ExtendedBlocks.CRACKED_STONE_PILLAR, ExtendedBlocks.CRACKED_STONE_PILLAR_SLAB);
@@ -2360,7 +2385,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.EREGION_SHIELD.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.EXTENDED_BOOKSHELF.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.METEORITE_ORE.get().getRegistryName().getPath());
-		GENERATEDRECIPES.add(ExtendedBlocks.MORGOND_DRIPSTONE.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.EBONY_LOG.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.STRIPPED_EBONY_LOG.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.POTTED_EBONY_SAPLING.get().getRegistryName().getPath());

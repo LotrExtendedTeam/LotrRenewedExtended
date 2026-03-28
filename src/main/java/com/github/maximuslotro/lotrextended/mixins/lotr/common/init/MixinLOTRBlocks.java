@@ -922,6 +922,11 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.CARVED_MORGOND_SLAB = registerB("carved_morgond_slab", () -> new AxialSlabBlock(ExtendedBlocks.CARVED_MORGOND));
 		ExtendedBlocks.CARVED_MORGOND_STAIRS = registerB("carved_morgond_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CARVED_MORGOND));
 		ExtendedBlocks.CARVED_MORGOND_WALL = registerB("carved_morgond_wall", () -> new LOTRWallBlock(ExtendedBlocks.CARVED_MORGOND));
+		ExtendedBlocks.SMOOTH_MORGOND = registerB("smooth_morgond", () -> new ExtendedStoneBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestLevel(2).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(500.0F, 1200.0F)));
+		ExtendedBlocks.SMOOTH_MORGOND_SLAB = registerB("smooth_morgond_slab", () -> new AxialSlabBlock(ExtendedBlocks.SMOOTH_MORGOND));
+		ExtendedBlocks.SMOOTH_MORGOND_STAIRS = registerB("smooth_morgond_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SMOOTH_MORGOND));
+		ExtendedBlocks.SMOOTH_MORGOND_WALL = registerB("smooth_morgond_wall", () -> new LOTRWallBlock(ExtendedBlocks.SMOOTH_MORGOND));
+		ExtendedBlocks.SMOOTH_MORGOND_DRIPSTONE = registerB("smooth_morgond_dripstone", () -> new DripstoneBlock(ExtendedBlocks.SMOOTH_MORGOND));
 
 		//Rohan
 		ExtendedBlocks.SMOOTH_ROHAN_ROCK_STAIRS = registerB("smooth_rohan_rock_stairs", () -> new LOTRStairsBlock(LOTRBlocks.SMOOTH_ROHAN_ROCK));

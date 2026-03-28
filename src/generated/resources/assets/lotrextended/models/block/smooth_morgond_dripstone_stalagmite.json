@@ -1,0 +1,8 @@
+{
+  "parent": "lotr:block/stalagmite_template",
+  "textures": {
+    "top": "lotrextended:block/smooth_morgond",
+    "bottom": "lotrextended:block/smooth_morgond",
+    "side": "lotrextended:block/smooth_morgond"
+  }
+}

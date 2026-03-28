@@ -177,6 +177,14 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> MORGUL_BLADE;
 	//public static RegistryObject<Item> MORGUL_HELMET;
+	//public static RegistryObject<Item> MORGUL_CHESTPLATE;
+	//public static RegistryObject<Item> MORGUL_LEGGINGS;
+	//public static RegistryObject<Item> MORGUL_BOOTS;
+
+	public static RegistryObject<Item> MORGUL_VASSAL_HELMET;
+	public static RegistryObject<Item> MORGUL_VASSAL_CHESTPLATE;
+	public static RegistryObject<Item> MORGUL_VASSAL_LEGGINGS;
+	public static RegistryObject<Item> MORGUL_VASSAL_BOOTS;
 
 	public static RegistryObject<Item> GUNDABAD_URUK_CLEAVER;
 	public static RegistryObject<Item> GUNDABAD_URUK_SPEAR;
@@ -818,4 +826,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> CARVED_MORGOND_SLAB;
 	public static RegistryObject<Item> CARVED_MORGOND_STAIRS;
 	public static RegistryObject<Item> CARVED_MORGOND_WALL;
+	public static RegistryObject<Item> SMOOTH_MORGOND;
+	public static RegistryObject<Item> SMOOTH_MORGOND_SLAB;
+	public static RegistryObject<Item> SMOOTH_MORGOND_STAIRS;
+	public static RegistryObject<Item> SMOOTH_MORGOND_WALL;
+	public static RegistryObject<Item> SMOOTH_MORGOND_DRIPSTONE;
 }

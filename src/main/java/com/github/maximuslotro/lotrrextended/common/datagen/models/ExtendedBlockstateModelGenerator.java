@@ -390,9 +390,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof DripstoneBlock) {
-					if(block.getKey().contains("morgond")) {
-						genDripstoneBlockItem((DripstoneBlock)block.getValue().get(), lotrExtendedLoc("block/morgond"));
-					}
+					genDripstoneBlockItem((DripstoneBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 10)));
 					continue;
 				}
 				if(block.getValue().get() instanceof LOTRTrapdoorBlock) {
