@@ -263,7 +263,10 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     }
 
     public void endInvasion(boolean completed) {
-        if (!level.isClientSide && bossBar != null) bossBar.removeAllPlayers();
+        if (!level.isClientSide && bossBar != null) {
+        	bossBar.removeAllPlayers();
+        	bossBar=null;
+        }
 
         if (completed) {
             Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromKey(getFactionKey());
@@ -432,6 +435,10 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     	if (!level.isClientSide) {
             level.explode(this, this.getX(), this.getY(), this.getZ(), 2F, Explosion.Mode.NONE);
             ExtendedLevelData.serverInstance().unregisterInvasion(getUUID());
+            // Sanity check remove bossbar in the instance a creative player breaks the invasion with their hand
+            if (bossBar != null) {
+            	bossBar.removeAllPlayers();
+            	bossBar=null;
             }
         }
 		super.remove();
