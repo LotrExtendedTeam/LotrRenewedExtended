@@ -26,7 +26,7 @@ public class ExtendedFellowshipClient {
 	private Map<UUID, String> usernameMap = new HashMap<>();
 
 	public ExtendedFellowshipClient(UUID id, String name, boolean owned,
-			boolean admin, GameProfile owner, List<GameProfile> members) {
+		boolean admin, GameProfile owner, List<GameProfile> members) {
 		this.FellowshipId = id;
 		this.FellowshipName = name;
 		this.isOwned = owned;

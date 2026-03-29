@@ -26,6 +26,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.*;
+import net.minecraft.world.server.ServerWorld;
 
 public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
@@ -216,8 +217,8 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
         Faction faction = getAlignData(serverPlayer).getPledgeFaction();
-        if (fellowship == null) {
-        	if(fellowshipData.createFellowship(fellowshipname, adminOverride)) {
+        if (fellowship == null && player.level instanceof ServerWorld) {
+        	if(fellowshipData.createFellowship((ServerWorld) player.level, fellowshipname, adminOverride)) {
     			player.awardStat(ExtendedStats.FELLOWSHIP_CREATE);
                 ExtendedFellowship createdFellowship = fellowshipData.getFellowshipByName(fellowshipname);
 
@@ -263,7 +264,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	}
 	private static int list(CommandSource source, PlayerEntity player) {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
-		List<ExtendedFellowship> fellowships = fellowshipData.getFellowships();
+		List<ExtendedFellowship> fellowships = fellowshipData.getFellowships((ServerWorld) player.level);
 		String fellowshipList = "";
 		for(ExtendedFellowship fellowship : fellowships) {
 			if(!fellowshipList.isEmpty()) {
@@ -301,8 +302,8 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	private static int removePlayer(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity playerToRemove) {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
-        if (fellowship != null && fellowship.hasEditPowers(player.getUUID())) {
-        	fellowshipData.removePlayer(fellowship, playerToRemove.getUUID());
+        if (fellowship != null && fellowship.hasEditPowers(player.getUUID()) && player.level instanceof ServerWorld) {
+        	fellowshipData.removePlayer((ServerWorld) player.level, fellowship, playerToRemove.getUUID());
         	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.player.removed", playerToRemove.getDisplayName().getString()), true);
         	return 0;
         }
@@ -312,8 +313,8 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	private static int setOwner(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newOwner) {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
-        if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
-        	fellowshipData.setOwner(fellowship, newOwner.getUUID());
+        if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID()) && player.level instanceof ServerWorld) {
+        	fellowshipData.setOwner((ServerWorld) player.level, fellowship, newOwner.getUUID());
         	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.player.setowner", newOwner.getDisplayName().getString()), true);
         	return 0;
         }
@@ -335,8 +336,8 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	private static int add(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newMember) {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
-        if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
-        	fellowshipData.addPlayer(fellowship, newMember.getUUID());
+        if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID()) && player.level instanceof ServerWorld) {
+        	fellowshipData.addPlayer((ServerWorld) player.level, fellowship, newMember.getUUID());
         	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.player.added", newMember.getDisplayName().getString()), true);
         	return 0;
         }
@@ -362,13 +363,13 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	private static int leave(CommandSource source, PlayerEntity player, String fellowshipname) {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
-		if (fellowship != null) {
+		if (fellowship != null && player.level instanceof ServerWorld) {
 			if (fellowship.isFellowshipOwner(player.getUUID())) {
 				source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error.ownercant").withStyle(TextFormatting.RED), true);
 				return 0;
 			}
 			if (fellowship.isFellowshipMember(player.getUUID())) {
-				fellowshipData.leaveFellowship(fellowship);
+				fellowshipData.leaveFellowship((ServerWorld) player.level, fellowship);
 				source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.left", fellowshipname), true);
 				return 0;
 			}
@@ -409,8 +410,8 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
     private static int disband(CommandSource source, PlayerEntity player, String fellowshipname) {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
-        if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID())) {
-        	if(fellowshipData.disbandFellowship(fellowship)) {
+        if (fellowship != null && fellowship.isFellowshipOwner(player.getUUID()) && player.level instanceof ServerWorld) {
+        	if(fellowshipData.disbandFellowship((ServerWorld) player.level, fellowship)) {
         		player.awardStat(ExtendedStats.FELLOWSHIP_DISBAND);
             	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.disband"), true);
             	return 0;
@@ -424,9 +425,9 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	private static int processInvite(CommandSource source, PlayerEntity player, String fellowshipname, boolean accept) {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
 		ExtendedFellowship fellowship = fellowshipData.getFellowshipByInviteName(fellowshipname);
-		if (fellowship != null) {
+		if (fellowship != null && player.level instanceof ServerWorld) {
 			if(accept) {
-				fellowshipData.acceptInvitePlayer(fellowship);
+				fellowshipData.acceptInvitePlayer((ServerWorld) player.level, fellowship);
 	        	return 0;
 			}
 			fellowshipData.removeInvitePlayer(fellowship, true);
