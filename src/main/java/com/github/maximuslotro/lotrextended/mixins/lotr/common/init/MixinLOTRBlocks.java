@@ -447,6 +447,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_CHESTNUT_LOG = registerB("stripped_chestnut_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.CHESTNUT_LOG));
 		ExtendedBlocks.STRIPPED_CHESTNUT_WOOD = registerB("stripped_chestnut_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_CHESTNUT_LOG));
 		ExtendedBlocks.CHESTNUT_BEAM = registerB("chestnut_beam", () -> new WoodBeamBlock(ExtendedBlocks.CHESTNUT_LOG));
+		ExtendedBlocks.CHESTNUT_BEAM_SLAB = registerB("chestnut_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.CHESTNUT_BEAM));
 		ExtendedBlocks.CHESTNUT_SIGN = registerB("chestnut_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.CHESTNUT_PLANKS, ExtendedSignTypes.CHESTNUT));
 		ExtendedBlocks.CHESTNUT_WALL_SIGN = registerB("chestnut_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.CHESTNUT_SIGN));
 		ExtendedBlocks.CHESTNUT_LOG_SLAB = registerB("chestnut_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.CHESTNUT_LOG, () -> ExtendedBlocks.STRIPPED_CHESTNUT_LOG_SLAB.get()));
@@ -457,7 +458,6 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB = registerB("stripped_chestnut_wood_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD));
 		ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_STAIRS = registerB("stripped_chestnut_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD));
 		ExtendedBlocks.STRIPPED_CHESTNUT_BRANCH = registerB("stripped_chestnut_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD));
-		ExtendedBlocks.CHESTNUT_BEAM_SLAB = registerB("chestnut_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.CHESTNUT_BEAM));
 		ExtendedBlocks.FALLEN_CHESTNUT_LEAVES = registerB("fallen_chestnut_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.CHESTNUT_LEAVES));
 
 		ExtendedBlocks.BANANA_LOG = registerB("banana_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.COLOR_YELLOW, () -> ExtendedBlocks.STRIPPED_BANANA_LOG.get()));
@@ -478,6 +478,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_BANANA_LOG = registerB("stripped_banana_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.BANANA_LOG));
 		ExtendedBlocks.STRIPPED_BANANA_WOOD = registerB("stripped_banana_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_BANANA_LOG));
 		ExtendedBlocks.BANANA_BEAM = registerB("banana_beam", () -> new WoodBeamBlock(ExtendedBlocks.BANANA_LOG));
+		ExtendedBlocks.BANANA_BEAM_SLAB = registerB("banana_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.BANANA_BEAM));
 		ExtendedBlocks.BANANA_SIGN = registerB("banana_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.BANANA_PLANKS, ExtendedSignTypes.BANANA));
 		ExtendedBlocks.BANANA_WALL_SIGN = registerB("banana_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.BANANA_SIGN));
 		ExtendedBlocks.BANANA_LOG_SLAB = registerB("banana_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.BANANA_LOG, () -> ExtendedBlocks.STRIPPED_BANANA_LOG_SLAB.get()));
@@ -488,7 +489,6 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_BANANA_WOOD_SLAB = registerB("stripped_banana_wood_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_BANANA_WOOD));
 		ExtendedBlocks.STRIPPED_BANANA_WOOD_STAIRS = registerB("stripped_banana_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_BANANA_WOOD));
 		ExtendedBlocks.STRIPPED_BANANA_BRANCH = registerB("stripped_banana_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_BANANA_WOOD));
-		ExtendedBlocks.BANANA_BEAM_SLAB = registerB("banana_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.BANANA_BEAM));
 		ExtendedBlocks.FALLEN_BANANA_LEAVES = registerB("fallen_banana_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.BANANA_LEAVES));
 		ExtendedBlocks.HANGING_BANANA = registerB("hanging_banana", ExtendedHangingBlock::new);
 
@@ -511,6 +511,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_PLUM_LOG = registerB("stripped_plum_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.PLUM_LOG));
 		ExtendedBlocks.STRIPPED_PLUM_WOOD = registerB("stripped_plum_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_PLUM_LOG));
 		ExtendedBlocks.PLUM_BEAM = registerB("plum_beam", () -> new WoodBeamBlock(ExtendedBlocks.PLUM_LOG));
+		ExtendedBlocks.PLUM_BEAM_SLAB = registerB("plum_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.PLUM_BEAM));
 		ExtendedBlocks.PLUM_SIGN = registerB("plum_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.PLUM_PLANKS, ExtendedSignTypes.PLUM));
 		ExtendedBlocks.PLUM_WALL_SIGN = registerB("plum_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.PLUM_SIGN));
 		ExtendedBlocks.PLUM_LOG_SLAB = registerB("plum_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.PLUM_LOG, () -> ExtendedBlocks.STRIPPED_PLUM_LOG_SLAB.get()));
@@ -521,7 +522,6 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_PLUM_WOOD_SLAB = registerB("stripped_plum_wood_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_PLUM_WOOD));
 		ExtendedBlocks.STRIPPED_PLUM_WOOD_STAIRS = registerB("stripped_plum_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_PLUM_WOOD));
 		ExtendedBlocks.STRIPPED_PLUM_BRANCH = registerB("stripped_plum_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_PLUM_WOOD));
-		ExtendedBlocks.PLUM_BEAM_SLAB = registerB("plum_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.PLUM_BEAM));
 		ExtendedBlocks.FALLEN_PLUM_LEAVES = registerB("fallen_plum_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.PLUM_LEAVES));
 
 		ExtendedBlocks.WILLOW_LOG = registerB("willow_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.SAND, () -> ExtendedBlocks.STRIPPED_WILLOW_LOG.get()));
@@ -574,6 +574,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_EBONY_LOG = registerB("stripped_ebony_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.EBONY_LOG));
 		ExtendedBlocks.STRIPPED_EBONY_WOOD = registerB("stripped_ebony_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_EBONY_LOG));
 		ExtendedBlocks.EBONY_BEAM = registerB("ebony_beam", () -> new WoodBeamBlock(ExtendedBlocks.EBONY_LOG));
+		ExtendedBlocks.EBONY_BEAM_SLAB = registerB("ebony_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.EBONY_BEAM));
 		ExtendedBlocks.EBONY_SIGN = registerB("ebony_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.EBONY_PLANKS, ExtendedSignTypes.EBONY));
 		ExtendedBlocks.EBONY_WALL_SIGN = registerB("ebony_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.EBONY_SIGN));
 		ExtendedBlocks.EBONY_LOG_SLAB = registerB("ebony_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.EBONY_LOG, () -> ExtendedBlocks.STRIPPED_EBONY_LOG_SLAB.get()));
@@ -584,7 +585,6 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_EBONY_WOOD_SLAB = registerB("stripped_ebony_wood_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_EBONY_WOOD));
 		ExtendedBlocks.STRIPPED_EBONY_WOOD_STAIRS = registerB("stripped_ebony_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_EBONY_WOOD));
 		ExtendedBlocks.STRIPPED_EBONY_BRANCH = registerB("stripped_ebony_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_EBONY_WOOD));
-		ExtendedBlocks.EBONY_BEAM_SLAB = registerB("ebony_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.EBONY_BEAM));
 		ExtendedBlocks.FALLEN_EBONY_LEAVES = registerB("fallen_ebony_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.EBONY_LEAVES));
 
 		//Packed Fur

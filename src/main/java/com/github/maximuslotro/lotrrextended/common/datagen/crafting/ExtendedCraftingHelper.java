@@ -435,6 +435,46 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 		}
 	}
 
+	protected void makeWargArmorRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> armor, ITag<Item> reasource, String type, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		GENERATEDRECIPES.add(armor.get().getRegistryName().getPath());
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(armor.get())
+			.pattern("  M")
+			.pattern("MLM")
+			.pattern("MMM")
+			.define('M', Ingredient.of(reasource))
+			.define('L', Ingredient.of(Tags.Items.LEATHER))
+			.unlockedBy("has_"+type, has(reasource))
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_1"));
+			ExtendedShapedRecipeBuilder.shaped(armor.get())
+			.pattern("M  ")
+			.pattern("MLM")
+			.pattern("MMM")
+			.define('M', Ingredient.of(reasource))
+			.define('L', Ingredient.of(Tags.Items.LEATHER))
+			.unlockedBy("has_"+type, has(reasource))
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_2"));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(armor.get(), table)
+			.pattern("  M")
+			.pattern("MLM")
+			.pattern("MMM")
+			.define('M', Ingredient.of(reasource))
+			.define('L', Ingredient.of(Tags.Items.LEATHER))
+			.unlockedBy("has_"+type, has(reasource))
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_1"));
+			ExtendedFactionShapedRecipeBuilder.shaped(armor.get(), table)
+			.pattern("  M")
+			.pattern("MLM")
+			.pattern("MMM")
+			.define('M', Ingredient.of(reasource))
+			.define('L', Ingredient.of(Tags.Items.LEATHER))
+			.unlockedBy("has_"+type, has(reasource))
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_2"));
+		}
+	}
+
 	protected void makeBannerAndPatternRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> banner, Supplier<? extends Item> pattern, FactionBasedRecipeType<ICraftingRecipe> table) {
 		GENERATEDRECIPES.add(banner.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(banner.get(), table)

@@ -302,6 +302,20 @@
         "item": "lotr:isengard_banner",
         "averageCost": 50
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:mail_warg_armor",
+        "averageCost": 20
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:isengard_warg_armor",
+        "averageCost": 25
+      }
     }
   ]
 }

@@ -469,6 +469,7 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_CHESTNUT_LOG = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_LOG, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_CHESTNUT_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_BEAM = regBlockItemB(ExtendedBlocks.CHESTNUT_BEAM, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_BEAM_SLAB = regBlockItemB(ExtendedBlocks.CHESTNUT_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_SIGN = regSignBlockItemB(ExtendedBlocks.CHESTNUT_SIGN, ExtendedBlocks.CHESTNUT_WALL_SIGN);
 		ExtendedItems.CHESTNUT_BOAT = regBoatItem("chestnut_boat", ExtendedBoatEntity.Type.CHESTNUT, LOTRItemGroups.MISC);
 		ExtendedItems.CHESTNUT_LOG_SLAB = regBlockItemB(ExtendedBlocks.CHESTNUT_LOG_SLAB, LOTRItemGroups.BLOCKS);
@@ -479,7 +480,6 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_CHESTNUT_WOOD_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_CHESTNUT_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_CHESTNUT_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_BRANCH, LOTRItemGroups.BLOCKS);
-		ExtendedItems.CHESTNUT_BEAM_SLAB = regBlockItemB(ExtendedBlocks.CHESTNUT_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FALLEN_CHESTNUT_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_CHESTNUT_LEAVES, LOTRItemGroups.DECO);
 
 		ExtendedItems.BANANA_LOG = regBlockItemB(ExtendedBlocks.BANANA_LOG, LOTRItemGroups.BLOCKS);
@@ -498,6 +498,7 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_BANANA_LOG = regBlockItemB(ExtendedBlocks.STRIPPED_BANANA_LOG, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_BANANA_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_BANANA_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BANANA_BEAM = regBlockItemB(ExtendedBlocks.BANANA_BEAM, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BANANA_BEAM_SLAB = regBlockItemB(ExtendedBlocks.BANANA_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BANANA_SIGN = regSignBlockItemB(ExtendedBlocks.BANANA_SIGN, ExtendedBlocks.BANANA_WALL_SIGN);
 		ExtendedItems.BANANA_BOAT = regBoatItem("banana_boat", ExtendedBoatEntity.Type.BANANA, LOTRItemGroups.MISC);
 		ExtendedItems.BANANA_LOG_SLAB = regBlockItemB(ExtendedBlocks.BANANA_LOG_SLAB, LOTRItemGroups.BLOCKS);
@@ -508,7 +509,6 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_BANANA_WOOD_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_BANANA_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_BANANA_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.STRIPPED_BANANA_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_BANANA_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_BANANA_BRANCH, LOTRItemGroups.BLOCKS);
-		ExtendedItems.BANANA_BEAM_SLAB = regBlockItemB(ExtendedBlocks.BANANA_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FALLEN_BANANA_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_BANANA_LEAVES, LOTRItemGroups.DECO);
 
 		ExtendedItems.PLUM_LOG = regBlockItemB(ExtendedBlocks.PLUM_LOG, LOTRItemGroups.BLOCKS);
@@ -528,6 +528,7 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_PLUM_LOG = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_LOG, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_PLUM_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PLUM_BEAM = regBlockItemB(ExtendedBlocks.PLUM_BEAM, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_BEAM_SLAB = regBlockItemB(ExtendedBlocks.PLUM_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PLUM_SIGN = regSignBlockItemB(ExtendedBlocks.PLUM_SIGN, ExtendedBlocks.PLUM_WALL_SIGN);
 		ExtendedItems.PLUM_BOAT = regBoatItem("plum_boat", ExtendedBoatEntity.Type.PLUM, LOTRItemGroups.MISC);
 		ExtendedItems.PLUM_LOG_SLAB = regBlockItemB(ExtendedBlocks.PLUM_LOG_SLAB, LOTRItemGroups.BLOCKS);
@@ -538,7 +539,6 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_PLUM_WOOD_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_PLUM_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_PLUM_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_BRANCH, LOTRItemGroups.BLOCKS);
-		ExtendedItems.PLUM_BEAM_SLAB = regBlockItemB(ExtendedBlocks.PLUM_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FALLEN_PLUM_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_PLUM_LEAVES, LOTRItemGroups.DECO);
 		
 		ExtendedItems.WILLOW_LOG = regBlockItemB(ExtendedBlocks.WILLOW_LOG, LOTRItemGroups.BLOCKS);
@@ -558,6 +558,7 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_WILLOW_LOG = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_LOG, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_WILLOW_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.WILLOW_BEAM = regBlockItemB(ExtendedBlocks.WILLOW_BEAM, LOTRItemGroups.BLOCKS);
+		ExtendedItems.WILLOW_BEAM_SLAB = regBlockItemB(ExtendedBlocks.WILLOW_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.WILLOW_SIGN = regSignBlockItemB(ExtendedBlocks.WILLOW_SIGN, ExtendedBlocks.WILLOW_WALL_SIGN);
 		ExtendedItems.WILLOW_BOAT = regBoatItem("willow_boat", ExtendedBoatEntity.Type.WILLOW, LOTRItemGroups.MISC);
 		ExtendedItems.WILLOW_LOG_SLAB = regBlockItemB(ExtendedBlocks.WILLOW_LOG_SLAB, LOTRItemGroups.BLOCKS);
@@ -568,7 +569,6 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_WILLOW_WOOD_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_WILLOW_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_WILLOW_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_BRANCH, LOTRItemGroups.BLOCKS);
-		ExtendedItems.WILLOW_BEAM_SLAB = regBlockItemB(ExtendedBlocks.WILLOW_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FALLEN_WILLOW_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_WILLOW_LEAVES, LOTRItemGroups.DECO);
 
 		ExtendedItems.EBONY_LOG = regBlockItemB(ExtendedBlocks.EBONY_LOG, LOTRItemGroups.BLOCKS);
@@ -587,6 +587,7 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_EBONY_LOG = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_LOG, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_EBONY_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.EBONY_BEAM = regBlockItemB(ExtendedBlocks.EBONY_BEAM, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_BEAM_SLAB = regBlockItemB(ExtendedBlocks.EBONY_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.EBONY_SIGN = regSignBlockItemB(ExtendedBlocks.EBONY_SIGN, ExtendedBlocks.EBONY_WALL_SIGN);
 		ExtendedItems.EBONY_BOAT = regBoatItem("ebony_boat", ExtendedBoatEntity.Type.EBONY, LOTRItemGroups.MISC);
 		ExtendedItems.EBONY_LOG_SLAB = regBlockItemB(ExtendedBlocks.EBONY_LOG_SLAB, LOTRItemGroups.BLOCKS);
@@ -597,7 +598,6 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_EBONY_WOOD_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_EBONY_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_EBONY_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_BRANCH, LOTRItemGroups.BLOCKS);
-		ExtendedItems.EBONY_BEAM_SLAB = regBlockItemB(ExtendedBlocks.EBONY_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FALLEN_EBONY_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_EBONY_LEAVES, LOTRItemGroups.DECO);
 
 		//ORE/GEM STORAGE

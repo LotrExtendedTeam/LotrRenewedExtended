@@ -44,6 +44,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_CHESTNUT_LOG;
 	public static RegistryObject<Item> STRIPPED_CHESTNUT_WOOD;
 	public static RegistryObject<Item> CHESTNUT_BEAM;
+	public static RegistryObject<Item> CHESTNUT_BEAM_SLAB;
 	public static RegistryObject<Item> CHESTNUT_SIGN;
 	public static RegistryObject<Item> CHESTNUT_BOAT;
 	public static RegistryObject<Item> CHESTNUT_LOG_SLAB;
@@ -54,7 +55,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_CHESTNUT_WOOD_SLAB;
 	public static RegistryObject<Item> STRIPPED_CHESTNUT_WOOD_STAIRS;
 	public static RegistryObject<Item> STRIPPED_CHESTNUT_BRANCH;
-	public static RegistryObject<Item> CHESTNUT_BEAM_SLAB;
 	public static RegistryObject<Item> FALLEN_CHESTNUT_LEAVES;
 
 	public static RegistryObject<Item> BANANA_LOG;
@@ -73,6 +73,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_BANANA_LOG;
 	public static RegistryObject<Item> STRIPPED_BANANA_WOOD;
 	public static RegistryObject<Item> BANANA_BEAM;
+	public static RegistryObject<Item> BANANA_BEAM_SLAB;
 	public static RegistryObject<Item> BANANA_SIGN;
 	public static RegistryObject<Item> BANANA_BOAT;
 	public static RegistryObject<Item> BANANA_LOG_SLAB;
@@ -83,7 +84,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_BANANA_WOOD_SLAB;
 	public static RegistryObject<Item> STRIPPED_BANANA_WOOD_STAIRS;
 	public static RegistryObject<Item> STRIPPED_BANANA_BRANCH;
-	public static RegistryObject<Item> BANANA_BEAM_SLAB;
 	public static RegistryObject<Item> FALLEN_BANANA_LEAVES;
 
 	public static RegistryObject<Item> PLUM_LOG;
@@ -103,6 +103,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_PLUM_LOG;
 	public static RegistryObject<Item> STRIPPED_PLUM_WOOD;
 	public static RegistryObject<Item> PLUM_BEAM;
+	public static RegistryObject<Item> PLUM_BEAM_SLAB;
 	public static RegistryObject<Item> PLUM_SIGN;
 	public static RegistryObject<Item> PLUM_BOAT;
 	public static RegistryObject<Item> PLUM_LOG_SLAB;
@@ -113,7 +114,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_PLUM_WOOD_SLAB;
 	public static RegistryObject<Item> STRIPPED_PLUM_WOOD_STAIRS;
 	public static RegistryObject<Item> STRIPPED_PLUM_BRANCH;
-	public static RegistryObject<Item> PLUM_BEAM_SLAB;
 	public static RegistryObject<Item> FALLEN_PLUM_LEAVES;
 
 	public static RegistryObject<Item> WILLOW_LOG;
@@ -132,6 +132,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_WILLOW_LOG;
 	public static RegistryObject<Item> STRIPPED_WILLOW_WOOD;
 	public static RegistryObject<Item> WILLOW_BEAM;
+	public static RegistryObject<Item> WILLOW_BEAM_SLAB;
 	public static RegistryObject<Item> WILLOW_SIGN;
 	public static RegistryObject<Item> WILLOW_BOAT;
 	public static RegistryObject<Item> WILLOW_LOG_SLAB;
@@ -142,7 +143,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_WILLOW_WOOD_SLAB;
 	public static RegistryObject<Item> STRIPPED_WILLOW_WOOD_STAIRS;
 	public static RegistryObject<Item> STRIPPED_WILLOW_BRANCH;
-	public static RegistryObject<Item> WILLOW_BEAM_SLAB;
 	public static RegistryObject<Item> FALLEN_WILLOW_LEAVES;
 	public static RegistryObject<Item> WILLOW_VINES;
 
@@ -162,6 +162,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_EBONY_LOG;
 	public static RegistryObject<Item> STRIPPED_EBONY_WOOD;
 	public static RegistryObject<Item> EBONY_BEAM;
+	public static RegistryObject<Item> EBONY_BEAM_SLAB;
 	public static RegistryObject<Item> EBONY_SIGN;
 	public static RegistryObject<Item> EBONY_BOAT;
 	public static RegistryObject<Item> EBONY_LOG_SLAB;
@@ -172,7 +173,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_EBONY_WOOD_SLAB;
 	public static RegistryObject<Item> STRIPPED_EBONY_WOOD_STAIRS;
 	public static RegistryObject<Item> STRIPPED_EBONY_BRANCH;
-	public static RegistryObject<Item> EBONY_BEAM_SLAB;
 	public static RegistryObject<Item> FALLEN_EBONY_LEAVES;
 
 	public static RegistryObject<Item> MORGUL_BLADE;

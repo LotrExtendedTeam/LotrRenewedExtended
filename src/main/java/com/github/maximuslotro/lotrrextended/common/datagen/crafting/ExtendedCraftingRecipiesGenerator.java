@@ -580,6 +580,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeArmorRecipe(consumer, ExtendedItems.WHITE_WARG_CHESTPLATE,
 			ExtendedItems.WHITE_WARG_LEGGINGS, ExtendedItems.WHITE_WARG_BOOTS,
 			ExtendedItems.WHITE_FUR, LOTRRecipes.ANY_ORC);
+		makeWargArmorRecipe(consumer, ExtendedItems.LEATHER_WARG_ARMOR, Tags.Items.LEATHER, "leather", LOTRRecipes.ANY_ORC);
+		makeWargArmorRecipe(consumer, ExtendedItems.MAIL_WARG_ARMOR, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.ANY_ORC);
+		makeWargArmorRecipe(consumer, ExtendedItems.ANGMAR_WARG_ARMOR, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel_ingot", LOTRRecipes.ANGMAR_CRAFTING);
+		makeWargArmorRecipe(consumer, ExtendedItems.ISENGARD_WARG_ARMOR, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel_ingot", LOTRRecipes.URUK_CRAFTING);
+		makeWargArmorRecipe(consumer, ExtendedItems.MORDOR_WARG_ARMOR, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel_ingot", LOTRRecipes.MORDOR_CRAFTING);
+
 		// GOBLIN/URUK
 		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.GOBLIN_BRICK,
 			ExtendedBlocks.GOBLIN_BRICK_STAIRS,
@@ -804,7 +810,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			LOTRBlocks.NUMENOREAN_BRICK, LOTRBlocks.NUMENOREAN_BRICK_SLAB, LOTRRecipes.UMBAR_CRAFTING);
 		makeCarvedBlockRecipe(consumer, ExtendedBlocks.CARVED_UMBAR_BRICK,
 			LOTRBlocks.UMBAR_BRICK, LOTRBlocks.UMBAR_BRICK_SLAB, LOTRRecipes.UMBAR_CRAFTING);
-		makeThrowableAxeRecipe(consumer, ExtendedItems.LOSSARNACH_THROWABLE_AXE, Tags.Items.INGOTS_IRON, "iron", LOTRRecipes.GONDOR_CRAFTING);
+		makeThrowableAxeRecipe(consumer, ExtendedItems.LOSSARNACH_THROWABLE_AXE, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.GONDOR_CRAFTING);
 		GENERATEDRECIPES.add(ExtendedItems.MORGOND.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.MORGOND.get())
 		.pattern("GWS")
@@ -855,7 +861,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeThrowableAxeRecipe(consumer, ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel_ingot", LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
 		makeMattockRecipe(consumer, ExtendedItems.BLUE_DWARVEN_MATTOCK, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel_ingot", LOTRRecipes.DWARVEN_CRAFTING);
 		// IRON 
-		makeThrowableAxeRecipe(consumer, ExtendedItems.IRON_THROWABLE_AXE, Tags.Items.INGOTS_IRON, "iron", null);
+		makeThrowableAxeRecipe(consumer, ExtendedItems.IRON_THROWABLE_AXE, Tags.Items.INGOTS_IRON, "iron_ingot", null);
 		// BRONZE
 		makeThrowableAxeRecipe(consumer, ExtendedItems.BRONZE_THROWABLE_AXE, LOTRTags.Items.INGOTS_BRONZE, "bronze", null);
 		// MITHRIL
@@ -1538,7 +1544,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("SSS")
 		.define('S', Ingredient.of(Items.CHISELED_STONE_BRICKS))
 		.define('#', Ingredient.of(Tags.Items.INGOTS_IRON))
-		.unlockedBy("has_"+Items.IRON_INGOT.getRegistryName().getPath(), has(Items.IRON_INGOT))
+		.unlockedBy("iron_ingot", has(Tags.Items.INGOTS_IRON))
 		.save(consumer, mcLoc(Items.LODESTONE.getRegistryName().getPath()));
 	}
 

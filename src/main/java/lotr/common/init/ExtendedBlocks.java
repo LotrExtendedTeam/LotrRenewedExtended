@@ -54,6 +54,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_CHESTNUT_LOG;
 	public static RegistryObject<Block> STRIPPED_CHESTNUT_WOOD;
 	public static RegistryObject<Block> CHESTNUT_BEAM;
+	public static RegistryObject<Block> CHESTNUT_BEAM_SLAB;
 	public static RegistryObject<Block> CHESTNUT_SIGN;
 	public static RegistryObject<Block> CHESTNUT_WALL_SIGN;
 	public static RegistryObject<Block> CHESTNUT_LOG_SLAB;
@@ -64,7 +65,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_CHESTNUT_WOOD_SLAB;
 	public static RegistryObject<Block> STRIPPED_CHESTNUT_WOOD_STAIRS;
 	public static RegistryObject<Block> STRIPPED_CHESTNUT_BRANCH;
-	public static RegistryObject<Block> CHESTNUT_BEAM_SLAB;
 	public static RegistryObject<Block> FALLEN_CHESTNUT_LEAVES;
 
 	public static RegistryObject<Block> BANANA_LOG;
@@ -84,6 +84,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_BANANA_LOG;
 	public static RegistryObject<Block> STRIPPED_BANANA_WOOD;
 	public static RegistryObject<Block> BANANA_BEAM;
+	public static RegistryObject<Block> BANANA_BEAM_SLAB;
 	public static RegistryObject<Block> BANANA_SIGN;
 	public static RegistryObject<Block> BANANA_WALL_SIGN;
 	public static RegistryObject<Block> BANANA_LOG_SLAB;
@@ -94,7 +95,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_BANANA_WOOD_SLAB;
 	public static RegistryObject<Block> STRIPPED_BANANA_WOOD_STAIRS;
 	public static RegistryObject<Block> STRIPPED_BANANA_BRANCH;
-	public static RegistryObject<Block> BANANA_BEAM_SLAB;
 	public static RegistryObject<Block> FALLEN_BANANA_LEAVES;
 	public static RegistryObject<Block> HANGING_BANANA;
 
@@ -116,6 +116,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_PLUM_LOG;
 	public static RegistryObject<Block> STRIPPED_PLUM_WOOD;
 	public static RegistryObject<Block> PLUM_BEAM;
+	public static RegistryObject<Block> PLUM_BEAM_SLAB;
 	public static RegistryObject<Block> PLUM_SIGN;
 	public static RegistryObject<Block> PLUM_WALL_SIGN;
 	public static RegistryObject<Block> PLUM_LOG_SLAB;
@@ -126,7 +127,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_PLUM_WOOD_SLAB;
 	public static RegistryObject<Block> STRIPPED_PLUM_WOOD_STAIRS;
 	public static RegistryObject<Block> STRIPPED_PLUM_BRANCH;
-	public static RegistryObject<Block> PLUM_BEAM_SLAB;
 	public static RegistryObject<Block> FALLEN_PLUM_LEAVES;
 
 	public static RegistryObject<Block> WILLOW_LOG;
@@ -146,6 +146,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_WILLOW_LOG;
 	public static RegistryObject<Block> STRIPPED_WILLOW_WOOD;
 	public static RegistryObject<Block> WILLOW_BEAM;
+	public static RegistryObject<Block> WILLOW_BEAM_SLAB;
 	public static RegistryObject<Block> WILLOW_SIGN;
 	public static RegistryObject<Block> WILLOW_WALL_SIGN;
 	public static RegistryObject<Block> WILLOW_LOG_SLAB;
@@ -156,7 +157,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_WILLOW_WOOD_SLAB;
 	public static RegistryObject<Block> STRIPPED_WILLOW_WOOD_STAIRS;
 	public static RegistryObject<Block> STRIPPED_WILLOW_BRANCH;
-	public static RegistryObject<Block> WILLOW_BEAM_SLAB;
 	public static RegistryObject<Block> FALLEN_WILLOW_LEAVES;
 	public static RegistryObject<Block> WILLOW_VINES;
 
@@ -177,6 +177,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_EBONY_LOG;
 	public static RegistryObject<Block> STRIPPED_EBONY_WOOD;
 	public static RegistryObject<Block> EBONY_BEAM;
+	public static RegistryObject<Block> EBONY_BEAM_SLAB;
 	public static RegistryObject<Block> EBONY_SIGN;
 	public static RegistryObject<Block> EBONY_WALL_SIGN;
 	public static RegistryObject<Block> EBONY_LOG_SLAB;
@@ -187,7 +188,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_EBONY_WOOD_SLAB;
 	public static RegistryObject<Block> STRIPPED_EBONY_WOOD_STAIRS;
 	public static RegistryObject<Block> STRIPPED_EBONY_BRANCH;
-	public static RegistryObject<Block> EBONY_BEAM_SLAB;
 	public static RegistryObject<Block> FALLEN_EBONY_LEAVES;
 
 	public static RegistryObject<Block> TAURETHRIM_CRAFTING_TABLE;
