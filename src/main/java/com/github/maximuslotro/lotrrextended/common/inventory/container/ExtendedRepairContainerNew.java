@@ -22,8 +22,10 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import io.netty.buffer.Unpooled;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
+import lotr.common.item.DaggerItem;
 import lotr.common.item.ItemOwnership;
 import lotr.common.item.SmokingPipeItem;
+import lotr.common.item.SpearItem;
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
@@ -43,11 +45,13 @@ import net.minecraft.item.BowItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.FishingRodItem;
+import net.minecraft.item.FlintAndSteelItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShearsItem;
 import net.minecraft.item.ShieldItem;
+import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolItem;
 import net.minecraft.network.PacketBuffer;
@@ -528,6 +532,8 @@ public class ExtendedRepairContainerNew extends Container {
 			this.reforgeCost.set(2);
 			if(inputItem.getItem() instanceof ArmorItem) {
 				this.reforgeCost.set(3);
+			}else if(shouldCheapReforge(inputItem.getItem())) {
+				this.reforgeCost.set(1);
 			}
 			info("P5.1: Finding repair cost");
 			int repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
@@ -820,16 +826,24 @@ public class ExtendedRepairContainerNew extends Container {
 			if(inputItem.getItem() instanceof CrossbowItem) {
 				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
 			}
+			if(inputItem.getItem() instanceof FlintAndSteelItem) {
+				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
+			}
 		}
 		return regularRapair;
 	}
 
 	// TODO hook this up with data tag lists so additional items can be blacklisted from free renames
 	public static boolean shouldHardcodedForceRenameCosts(Item item) {
-		return item instanceof SwordItem || item instanceof ArmorItem || item instanceof ToolItem || 
+		return item instanceof SwordItem || item instanceof ArmorItem || item instanceof ToolItem || item instanceof FlintAndSteelItem ||
 				item instanceof BowItem || item instanceof FishingRodItem || item instanceof ShearsItem || 
 				item instanceof SmokingPipeItem || item instanceof CrossbowItem || item instanceof ShieldItem|| 
 				item instanceof ExtendedBrandingIronItem || item instanceof ExtendedChiselItem || item instanceof ExtendedThrowableAxeItem;
+	}
+
+	public static boolean shouldCheapReforge(Item item) {
+		return item instanceof ShovelItem || item instanceof SpearItem || item instanceof DaggerItem || item instanceof CrossbowItem
+			 || item instanceof ExtendedChiselItem || item instanceof ExtendedBrandingIronItem || item instanceof FlintAndSteelItem;
 	}
 
 	private static void info(String message) {
