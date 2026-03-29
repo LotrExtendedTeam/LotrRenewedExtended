@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrextended.mixins.net.minecraft.item;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -11,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
@@ -22,6 +24,8 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 /**
  * A Mixin targeting {@link ItemStack} to extend and customize item durability behavior.
@@ -93,7 +97,7 @@ public class MixinItemStack {
 	 * @Inject (method="hurt(ILjava/util/Random;Lnet/minecraft/entity/player/ServerPlayerEntity;)Z", at = @At("HEAD"), cancellable=true)
 	 */
 	@Inject(method="hurt(ILjava/util/Random;Lnet/minecraft/entity/player/ServerPlayerEntity;)Z", 
-			at = @At("HEAD"), cancellable=true)
+		at = @At("HEAD"), cancellable=true)
 	private void hurt$Extended(int pAmount, Random pRandom, @Nullable ServerPlayerEntity pUser, CallbackInfoReturnable<Boolean> cir) {
 		if (!isDamageableItem() || ExtendedModifierUtils.getModifierByTypeSafe((ItemStack)(Object)this, ExtendedModifierType.DURABILITY).isUnknown()) {
 			return;
@@ -166,6 +170,25 @@ public class MixinItemStack {
 		} else {
 			//Keeps parity with the durability scale present in vanilla
 			return pRand.nextFloat() > (1.0f/(pLevel+1));
+		}
+	}
+
+	@Inject(method = "getHoverName", at = @At("TAIL"), cancellable = true)
+	private void injectModifiersIntoName(CallbackInfoReturnable<ITextComponent> cir) {
+		ItemStack stack = (ItemStack)(Object)this;
+
+		if (!stack.hasCustomHoverName()) {
+			List<ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierList(stack);
+			if (!modifiers.isEmpty()) {
+				ITextComponent baseName = stack.getItem().getName(stack);
+				for (ExtendedModifier modifier : modifiers) {
+					ITextComponent newName = new TranslationTextComponent("enchant.lotrextended." + modifier.getLocalKey())
+						.append(" ").withStyle(style -> style.withItalic(false)).append(baseName.copy().withStyle(style -> style.withItalic(false)));
+					baseName = newName;
+				}
+
+				cir.setReturnValue(baseName);
+			}
 		}
 	}
 }

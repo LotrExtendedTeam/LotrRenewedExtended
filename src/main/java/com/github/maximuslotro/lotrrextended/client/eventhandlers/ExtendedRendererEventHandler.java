@@ -75,7 +75,7 @@ public class ExtendedRendererEventHandler {
 
 	public static void onPreRenderGameOverlay(final RenderGameOverlayEvent.Pre event) {
 		Minecraft mc = Minecraft.getInstance();
-		if(LOTRDimensions.isModDimension(mc.level)) {
+		if(mc.level != null && LOTRDimensions.isModDimension(mc.level)) {
 			if (event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE && !ExtendedServerConfig.enableVanillaXp.get()) {
 				event.setCanceled(true);
 				return;
@@ -85,8 +85,7 @@ public class ExtendedRendererEventHandler {
 
 	public static void onPostRenderGameOverlay(final RenderGameOverlayEvent.Post event) {
 		Minecraft mc = Minecraft.getInstance();
-        assert mc.level != null;
-        if(LOTRDimensions.isModDimension(mc.level)) {
+		if(mc.level != null && LOTRDimensions.isModDimension(mc.level)) {
 			if (event.getType() == RenderGameOverlayEvent.ElementType.BOSSINFO) {
 				ExtendedClientProxy.INSTANCE.lastTimeBossBarRendered = System.currentTimeMillis();
 			}
