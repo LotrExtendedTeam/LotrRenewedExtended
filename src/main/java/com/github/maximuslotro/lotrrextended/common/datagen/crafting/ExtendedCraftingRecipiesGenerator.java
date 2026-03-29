@@ -807,12 +807,18 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeThrowableAxeRecipe(consumer, ExtendedItems.LOSSARNACH_THROWABLE_AXE, Tags.Items.INGOTS_IRON, "iron", LOTRRecipes.GONDOR_CRAFTING);
 		GENERATEDRECIPES.add(ExtendedItems.MORGOND.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.MORGOND.get())
-		.pattern("SG")
-		.pattern("RC")
-		.define('S', Ingredient.of(ExtendedItems.OBSIDIAN_SHARD.get()))
+		.pattern("GWS")
+		.pattern("MOC")
+		.pattern("BLR")
 		.define('G', Ingredient.of(Items.GRAVEL))
+		.define('W', Ingredient.of(Items.WATER_BUCKET))
+		.define('S', Ingredient.of(Tags.Items.SAND))
+		.define('M', Ingredient.of(Items.CLAY))
+		.define('O', Ingredient.of(ExtendedItems.OBSIDIAN_SHARD.get()))
+		.define('C', Ingredient.of(Items.COAL_BLOCK))
+		.define('B', Ingredient.of(Items.BASALT))
+		.define('L', Ingredient.of(Items.LAVA_BUCKET))
 		.define('R', Ingredient.of(ExtendedTags.Items.MORGOND_ROCKS))
-		.define('C', Ingredient.of(Items.CLAY))
 		.unlockedBy("has_"+ExtendedItems.OBSIDIAN_SHARD.get().getRegistryName().getPath(), has(ExtendedItems.OBSIDIAN_SHARD.get()))
 		.save(consumer, lotrLoc(ExtendedItems.MORGOND.get().getRegistryName().getPath()));
 		makeStairSlabWallRecipe(consumer, ExtendedBlocks.MORGOND_STAIRS,
