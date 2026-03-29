@@ -2,9 +2,12 @@ package lotr.common.fellowship;
 
 import java.util.UUID;
 
+import javax.annotation.Nullable;
+
 // TODO add fellowship name data move with invites
 public class ExtendedFellowshipInvite {
 	public final UUID fellowshipID;
+	@Nullable
 	public final UUID Invitor;
 	//public final String Fname;
 	public ExtendedFellowshipInvite(UUID fellowshipUUID, UUID invitor) {

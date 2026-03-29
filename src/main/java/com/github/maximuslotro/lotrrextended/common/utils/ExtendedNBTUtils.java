@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.utils;
 
+import java.util.UUID;
+
 import net.minecraft.nbt.CompoundNBT;
 
 public class ExtendedNBTUtils {
@@ -15,6 +17,14 @@ public class ExtendedNBTUtils {
 			return defaultValue;
 		}else {
 			return nbt.getInt(key);
+		}
+	}
+
+	public static UUID getUUID(CompoundNBT nbt, String key, UUID defaultValue) {
+		if(!nbt.contains(key)) {
+			return defaultValue;
+		}else {
+			return nbt.getUUID(key);
 		}
 	}
 }
