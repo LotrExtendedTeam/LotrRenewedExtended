@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrextended.mixins.lotr.client.render.entity;
 
+import com.github.maximuslotro.lotrrextended.client.render.entity.layers.ExtendedWargArmorLayer;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,5 +26,6 @@ public abstract class MixinWargRenderer extends MobRenderer<WargEntity, WargMode
 	public <M extends WargRenderer> void constructor(EntityRendererManager mgr, CallbackInfo info) {
 		this.addLayer(new ExtendedWargEyesLayer<>((WargRenderer)(Object)this));
 		this.addLayer(new ExtendedWargSaddleLayer((WargRenderer)(Object)this));
+		this.addLayer(new ExtendedWargArmorLayer((WargRenderer)(Object)this));
 	}
 }

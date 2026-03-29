@@ -831,4 +831,10 @@ public class ExtendedItems {
 	public static RegistryObject<Item> SMOOTH_MORGOND_STAIRS;
 	public static RegistryObject<Item> SMOOTH_MORGOND_WALL;
 	public static RegistryObject<Item> SMOOTH_MORGOND_DRIPSTONE;
+
+	public static RegistryObject<Item> LEATHER_WARG_ARMOR;
+	public static RegistryObject<Item> MAIL_WARG_ARMOR;
+	public static RegistryObject<Item> ANGMAR_WARG_ARMOR;
+	public static RegistryObject<Item> ISENGARD_WARG_ARMOR;
+	public static RegistryObject<Item> MORDOR_WARG_ARMOR;
 }

@@ -17,13 +17,15 @@ import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteri
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedPlayerTypedRunArroundLikeCrazyGoal;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedAttributes;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInventoryContainer;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem.MountType;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
 
 import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.ai.goal.PanicIfBurningGoal;
 import lotr.common.entity.ai.goal.RandomWalkingEvenWhenRiddenGoal;
-import lotr.common.entity.npc.ExtendedRidableWargEntity;
+import lotr.common.entity.npc.ExtendedRidableEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.WargEntity;
 import lotr.common.entity.npc.ai.goal.WargLeapAndDisableShieldGoal;
@@ -35,6 +37,7 @@ import net.minecraft.entity.IJumpingMount;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Pose;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -80,7 +83,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * This class is not documented on purpose as it is unused and subject to re-write or deletion
  * */
 @Mixin(WargEntity.class)
-public abstract class MixinWargEntity extends NPCEntity implements IInventoryChangedListener, IJumpingMount, IEquipable, ExtendedRidableWargEntity {
+public abstract class MixinWargEntity extends NPCEntity implements IInventoryChangedListener, IJumpingMount, IEquipable, ExtendedRidableEntity {
+	@Unique
+	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("90833995-95a9-4586-b044-08e411e7d60c");
 	@Unique
 	private static final DataParameter<Byte> DATA_ID_FLAGS = EntityDataManager.defineId(WargEntity.class, DataSerializers.BYTE);
 	@Unique
@@ -374,10 +379,32 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		this.itemHandler = net.minecraftforge.common.util.LazyOptional.of(() -> new net.minecraftforge.items.wrapper.InvWrapper(this.inventory));
 	}
 
+
+	@Override
+	public ItemStack getArmor() {
+		return this.getItemBySlot(EquipmentSlotType.CHEST);
+	}
+
 	@Unique
 	private void updateContainerEquipment() {
 		if (!this.level.isClientSide) {
+			this.setArmorEquipment(this.inventory.getItem(1));
 			this.setFlag(4, !this.inventory.getItem(0).isEmpty());
+		}
+	}
+
+	@Override
+	public void setArmorEquipment(ItemStack pStack) {
+		this.setItemSlot(EquipmentSlotType.CHEST, pStack);
+		this.setDropChance(EquipmentSlotType.CHEST, 0.0F);
+		if (!this.level.isClientSide) {
+			this.getAttribute(Attributes.ARMOR).removeModifier(ARMOR_MODIFIER_UUID);
+			if (this.isArmor(pStack)) {
+				int i = ((ExtendedMountedArmorItem)pStack.getItem()).getProtection();
+				if (i != 0) {
+					this.getAttribute(Attributes.ARMOR).addTransientModifier(new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus", (double)i, AttributeModifier.Operation.ADDITION));
+				}
+			}
 		}
 	}
 
@@ -390,10 +417,6 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		}
 
 	}
-
-	//public static AttributeModifierMap.MutableAttribute createBaseHorseAttributes() {
-	//	return MobEntity.createMobAttributes().add(Attributes.JUMP_STRENGTH).add(Attributes.MAX_HEALTH, 53.0D).add(Attributes.MOVEMENT_SPEED, (double)0.225F);
-	//}
 
 	@Override
 	public int getMaxTemper() {
@@ -688,7 +711,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	@Override
 	public boolean canWearArmor() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -698,7 +721,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	@Override
 	public boolean isArmor(ItemStack pStack) {
-		return false;
+		return pStack.getItem() instanceof ExtendedMountedArmorItem && ((ExtendedMountedArmorItem)pStack.getItem()).getMountType()==MountType.WARG;
 	}
 
 	@Override

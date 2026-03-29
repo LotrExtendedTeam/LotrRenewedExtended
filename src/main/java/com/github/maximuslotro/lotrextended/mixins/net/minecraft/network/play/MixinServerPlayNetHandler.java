@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import lotr.common.entity.npc.ExtendedRidableWargEntity;
+import lotr.common.entity.npc.ExtendedRidableEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.play.ServerPlayNetHandler;
 import net.minecraft.network.play.client.CEntityActionPacket;
@@ -31,8 +31,8 @@ public class MixinServerPlayNetHandler {
 			return;
 		}
 
-		if (this.player.getVehicle() instanceof ExtendedRidableWargEntity) {
-			((ExtendedRidableWargEntity)this.player.getVehicle()).openInventory(this.player);
+		if (this.player.getVehicle() instanceof ExtendedRidableEntity) {
+			((ExtendedRidableEntity)this.player.getVehicle()).openInventory(this.player);
 		      this.player.resetLastActionTime();
 		      ci.cancel();
 		}

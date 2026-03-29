@@ -3,13 +3,17 @@ package lotr.common.entity.npc;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
-public interface ExtendedRidableWargEntity {
+public interface ExtendedRidableEntity {
 	// Armor Methods
 	public boolean canWearArmor();
 
 	public boolean isWearingArmor();
 
 	public boolean isArmor(ItemStack pStack);
+
+	public ItemStack getArmor();
+
+	public void setArmorEquipment(ItemStack pStack);
 
 	// Tame Methods
 	public boolean isTamed();

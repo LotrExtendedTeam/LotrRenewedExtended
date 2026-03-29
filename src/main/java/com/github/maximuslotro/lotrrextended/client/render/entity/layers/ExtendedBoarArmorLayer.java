@@ -2,8 +2,8 @@ package com.github.maximuslotro.lotrrextended.client.render.entity.layers;
 
 import com.github.maximuslotro.lotrrextended.client.render.entity.model.ExtendedHorseBoarModel;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoarArmorItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedDyeableBoarArmorItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedDyeableArmorItem;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
@@ -29,16 +29,16 @@ public class ExtendedBoarArmorLayer extends LayerRenderer<ExtendedHorseBoarEntit
 	@Override
 	public void render(MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pPackedLight, ExtendedHorseBoarEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
 		ItemStack itemstack = pLivingEntity.getArmor();
-		if (itemstack.getItem() instanceof ExtendedBoarArmorItem) {
-			ExtendedBoarArmorItem horsearmoritem = (ExtendedBoarArmorItem)itemstack.getItem();
+		if (itemstack.getItem() instanceof ExtendedMountedArmorItem) {
+			ExtendedMountedArmorItem horsearmoritem = (ExtendedMountedArmorItem)itemstack.getItem();
 			this.getParentModel().copyPropertiesTo(this.model);
 			this.model.prepareMobModel(pLivingEntity, pLimbSwing, pLimbSwingAmount, pPartialTicks);
 			this.model.setupAnim(pLivingEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
 			float r;
 			float g;
 			float b;
-			if (horsearmoritem instanceof ExtendedDyeableBoarArmorItem) {
-				int i = ((ExtendedDyeableBoarArmorItem)horsearmoritem).getColor(itemstack);
+			if (horsearmoritem instanceof ExtendedMountedDyeableArmorItem) {
+				int i = ((ExtendedMountedDyeableArmorItem)horsearmoritem).getColor(itemstack);
 				r = (float)(i >> 16 & 255) / 255.0F;
 				g = (float)(i >> 8 & 255) / 255.0F;
 				b = (float)(i & 255) / 255.0F;

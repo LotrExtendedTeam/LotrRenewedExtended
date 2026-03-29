@@ -9,7 +9,8 @@ import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedTamin
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBoarColors;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoarArmorItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem.MountType;
 
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.BlockState;
@@ -179,7 +180,7 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 		if (!this.level.isClientSide) {
 			this.getAttribute(Attributes.ARMOR).removeModifier(ARMOR_MODIFIER_UUID);
 			if (this.isArmor(pStack)) {
-				int i = ((ExtendedBoarArmorItem)pStack.getItem()).getProtection();
+				int i = ((ExtendedMountedArmorItem)pStack.getItem()).getProtection();
 				if (i != 0) {
 					this.getAttribute(Attributes.ARMOR).addTransientModifier(new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus", (double)i, AttributeModifier.Operation.ADDITION));
 				}
@@ -328,7 +329,7 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 
 	@Override
 	public boolean isArmor(ItemStack pStack) {
-		return pStack.getItem() instanceof ExtendedBoarArmorItem;
+		return pStack.getItem() instanceof ExtendedMountedArmorItem && ((ExtendedMountedArmorItem)pStack.getItem()).getMountType()==MountType.BOAR;
 	}
 
 	@Override
