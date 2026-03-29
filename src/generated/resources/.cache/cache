@@ -641,6 +641,7 @@ e39c6759d7568cc4ae0cbf9a24e6763ef1531aaa assets/lotr/models/item/angmar_spear.js
 75b9fef2dc8c68976849ed1dd0a8e274d138d50a assets/lotr/models/item/angmar_spear_handheld_pulling.json
 54347bfdf9e7a2beb46b03bf412fe65db4e0282d assets/lotr/models/item/angmar_sword.json
 cd74603cb024110f95dc5dbc7fff2d822750bd67 assets/lotr/models/item/angmar_sword_handheld.json
+b8844c998501ce7e6f4e4659e7fbd092d66be113 assets/lotr/models/item/angmar_warg_armor.json
 64c5ca3521f5a3ed7afdf12bb7f7bf9b09e8bfe2 assets/lotr/models/item/banana.json
 ad9cff9884de3de29b43e843d0c63e8ea4bbc7ea assets/lotr/models/item/banana_beam.json
 079844e398f8256acf90d00f0af4816bf2736e74 assets/lotr/models/item/banana_beam_slab.json
@@ -1033,11 +1034,13 @@ b4d8f608495a3997e5c33db24aeaebb07676cbcd assets/lotr/models/item/imladris_guard_
 db1920f61e229f1c6889c65f4e4c4d3e04302e06 assets/lotr/models/item/iron_throwing_axe.json
 c6a16b54bc18e6d61e34621d80689d8fe2ee58fd assets/lotr/models/item/isengard_banner.json
 16f356aeda70319e19925a868f5bf2af7031b4b5 assets/lotr/models/item/isengard_banner_pattern.json
+c5b2045652769bd5177272324086663770c5a4cd assets/lotr/models/item/isengard_warg_armor.json
 60720ef08286e5ad6a2101a79b184626abdc27fc assets/lotr/models/item/ithildin.json
 2bf803c892d28b857884e8e96e45a63eb1dbd6b3 assets/lotr/models/item/large_flower_pot.json
 43a5a3180c644cbf11f88b3b88188781a837759d assets/lotr/models/item/large_pot.json
 265a9e6b93ac7975d5738bc3a0b58ba5baa91e10 assets/lotr/models/item/leather_boar_armor.json
 e382ffa9e37169c07f5a351174670a7fe578ae77 assets/lotr/models/item/leather_hat.json
+02fa02901cb113e000b2b20198def03231ba7a01 assets/lotr/models/item/leather_warg_armor.json
 c835adc56a3b74a09161596a765bdb4f00a1fe74 assets/lotr/models/item/lindon_banner.json
 16f356aeda70319e19925a868f5bf2af7031b4b5 assets/lotr/models/item/lindon_banner_pattern.json
 122d89c1d2fb6624ee1bc3397b3f9840db1f20f2 assets/lotr/models/item/lindon_bow.json
@@ -1057,6 +1060,7 @@ c7bb60131d54117ea98b1a3f145538bc187165ae assets/lotr/models/item/longbow_handhel
 29f70b42305c9237a9a2c17935a86033ad1d6b2e assets/lotr/models/item/lossarnach_throwing_axe.json
 1ad82f2423230199fb265f9ba7de6bf3431f5cba assets/lotr/models/item/lothlorien_banner.json
 16f356aeda70319e19925a868f5bf2af7031b4b5 assets/lotr/models/item/lothlorien_banner_pattern.json
+c550f2f93c5c1dbe8da9bfe89146d1118312ddf1 assets/lotr/models/item/mail_warg_armor.json
 29b59acd7810ff7011de38a34e0c1f12d5f31294 assets/lotr/models/item/matted_fur.json
 d70e0b2af1a529bd91e807180cf5ef9c840e0e13 assets/lotr/models/item/matted_fur_slab.json
 258c7cf8e2d9d39b2407a666d10d8d6a49a22894 assets/lotr/models/item/matted_fur_stairs.json
@@ -1074,6 +1078,7 @@ c12902b704b33ceb2835a76b8c2523c3d5251de7 assets/lotr/models/item/modifier_scroll
 16f356aeda70319e19925a868f5bf2af7031b4b5 assets/lotr/models/item/mordor_banner_pattern.json
 2ca39c17d866901fafdede43eb16ea94640d5120 assets/lotr/models/item/mordor_dirt_path_slab.json
 e9c2231264f29e853037963f7341ae99d5b24446 assets/lotr/models/item/mordor_dirt_slab.json
+32234bf6613d8fac50fd4b4b2dcd0079eefc840e assets/lotr/models/item/mordor_warg_armor.json
 49aea974dd148a947b1e61539e5df89cdaf64ce9 assets/lotr/models/item/morgond.json
 08b34e279c5415be59886789dfbc221bec045df6 assets/lotr/models/item/morgond_dripstone.json
 2aaae16530460473fd045297b92044d40a811930 assets/lotr/models/item/morgond_pillar.json
@@ -1417,7 +1422,7 @@ b66208f52b71740229ce72fc311fca8285eeb69b assets/lotr/models/item/willow_wood_sta
 7414885b7f1bd5611a25313574f1a0869028ba2b assets/lotr/models/item/wooden_birdcage.json
 0b682447ce6d7a7b87d3fe4da20643a1b4f47674 assets/lotr/models/item/woodland_realm_banner.json
 16f356aeda70319e19925a868f5bf2af7031b4b5 assets/lotr/models/item/woodland_realm_banner_pattern.json
-ce3f13788b3847893aa89d7e5dcd90654a66e29c assets/lotrextended/lang/en_us.json
+1b1900a7cfe36a9a49a6fefd857a221efb9eb04c assets/lotrextended/lang/en_us.json
 f92a839c3ca2d718c24620379a6dfe7f6b1da56a assets/lotrextended/models/block/aged_cheese_wheel.json
 49726eaeacec21ddcdca269035e7d714a71afee2 assets/lotrextended/models/block/aged_cheese_wheel1.json
 b247a199d6c842a60642d920e78ba3135e032bf2 assets/lotrextended/models/block/aged_cheese_wheel2.json

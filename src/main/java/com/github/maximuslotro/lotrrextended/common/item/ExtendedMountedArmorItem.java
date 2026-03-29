@@ -1,9 +1,22 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 /**
  * Represents a custom mount armor item that can be equipped on specific mount types
@@ -32,7 +45,7 @@ public class ExtendedMountedArmorItem extends Item {
 	 */
 	public ExtendedMountedArmorItem(int pProtection, String pIdentifier, MountType pType, Item.Properties pProperties) {
 		this(pProtection, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/" + pType.relativePath + "/armor/" + pIdentifier + ".png"), pType, pProperties
-		);
+			);
 	}
 
 	/**
@@ -77,6 +90,14 @@ public class ExtendedMountedArmorItem extends Item {
 		return mountType;
 	}
 
+	@Override
+	@OnlyIn(Dist.CLIENT)
+	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		pTooltip.add(StringTextComponent.EMPTY);
+		pTooltip.add((new TranslationTextComponent("item.lotrextended.modifiers." + mountType.langKey)).withStyle(TextFormatting.GRAY));
+		pTooltip.add((new TranslationTextComponent("attribute.modifier.plus.0", protection, new TranslationTextComponent("attribute.name.generic.armor"))).withStyle(TextFormatting.BLUE));
+	}
+
 	/**
 	 * Defines the types of mounts that can use this armor, along with their
 	 * corresponding texture directory paths.
@@ -84,21 +105,25 @@ public class ExtendedMountedArmorItem extends Item {
 	public enum MountType {
 
 		/** Boar mount type. */
-		BOAR("animals/boar"),
+		BOAR("animals/boar", "boar"),
 
 		/** Warg mount type. */
-		WARG("warg");
+		WARG("warg", "warg");
 
 		/** Relative texture path used for this mount type. */
 		public final String relativePath;
+		/** Localization key used for this mount type. */
+		public final String langKey;
 
 		/**
 		 * Constructs a mount type with its associated texture path.
 		 *
-		 * @param pPath the relative texture directory path
+		 * @param pPath The relative texture directory path
+		 * @param pKey The lang key for this type
 		 */
-		private MountType(final String pPath) {
+		private MountType(String pPath, String pKey) {
 			this.relativePath = pPath;
+			this.langKey = pKey;
 		}
 	}
 }

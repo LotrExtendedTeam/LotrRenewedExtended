@@ -146,22 +146,22 @@ public class MixinTemplate {
 						if(newLine.hasLines()) {
 							ExtendedMessageEntryBasic fullLine = newLine.getLine(pRandom);
 							messages[0] = new StringTextComponent(fullLine.getLine0());
-							messages[1] = new StringTextComponent("");
+							messages[1] = StringTextComponent.EMPTY;
 							messages[2] = new StringTextComponent(fullLine.getLine1());
-							messages[3] = new StringTextComponent("");
+							messages[3] = StringTextComponent.EMPTY;
 							messages[4] = new StringTextComponent(fullLine.getLine2());
-							messages[5] = new StringTextComponent("");
+							messages[5] = StringTextComponent.EMPTY;
 							messages[6] = new StringTextComponent(fullLine.getLine3());
-							messages[7] = new StringTextComponent("");
+							messages[7] = StringTextComponent.EMPTY;
 						}else {
 							messages[0] = new StringTextComponent(newLine.getLine0(pRandom));
-							messages[1] = new StringTextComponent("");
+							messages[1] = StringTextComponent.EMPTY;
 							messages[2] = new StringTextComponent(newLine.getLine1(pRandom));
-							messages[3] = new StringTextComponent("");
+							messages[3] = StringTextComponent.EMPTY;
 							messages[4] = new StringTextComponent(newLine.getLine2(pRandom));
-							messages[5] = new StringTextComponent("");
+							messages[5] = StringTextComponent.EMPTY;
 							messages[6] = new StringTextComponent(newLine.getLine3(pRandom));
-							messages[7] = new StringTextComponent("");
+							messages[7] = StringTextComponent.EMPTY;
 						}
 						((ExtendedStoneTextSignTileEntity)tileentity1).setMessages(messages);
 					}

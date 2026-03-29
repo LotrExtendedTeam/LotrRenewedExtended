@@ -413,6 +413,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("item.lotrextended.orc_bomb.strength_0", "Single Strength");
 		addD("item.lotrextended.orc_bomb.strength_1", "Double Strength");
 		addD("item.lotrextended.orc_bomb.strength_2", "Triple Strength");
+		addD("item.lotrextended.modifiers.warg", "When on Warg:");
+		addD("item.lotrextended.modifiers.boar", "When on Boar:");
+		addD("item.lotrextended.modifiers.horse", "When on Horse:");
 
 		//Bow values
 		addD("gui.lotrextended.bow.speed", "Draw Speed: %s");
