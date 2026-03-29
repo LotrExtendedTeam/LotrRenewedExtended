@@ -601,10 +601,11 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 		if (this.isInvulnerableTo(pSource)) {
 			return false;
 		} else {
-			Entity entity = pSource.getEntity();
-			if(entity !=null && entity instanceof PlayerEntity && ((PlayerEntity)entity).abilities.instabuild) {
-				if(entity.isCrouching()) {
-					this.remove();
+			if(pSource.getEntity()!=null) {
+				if(pSource.isCreativePlayer()) {
+					if(pSource.getEntity().isCrouching()) {
+						this.remove();
+					}
 				}
 			}else {
 				this.remove();

@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.entity.special;
 import java.util.Locale;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnerEntry;
 
 import lotr.common.entity.npc.ExtendedCaptainEntity;
@@ -287,9 +288,8 @@ public class ExtendedRespawnerEntity extends Entity{
 		if (this.isInvulnerableTo(pSource)) {
 			return false;
 		} else {
-			Entity entity = pSource.getEntity();
-			if(entity !=null && entity instanceof PlayerEntity && ((PlayerEntity)entity).abilities.instabuild) {
-				if(entity.isCrouching()) {
+			if(pSource.getEntity()!=null) {
+				if(pSource.isCreativePlayer()) {
 					this.remove();
 				}
 			}else {
@@ -304,7 +304,11 @@ public class ExtendedRespawnerEntity extends Entity{
 	 */
 	@Override
 	public boolean isPickable() {
-		return true;
+		if (!this.level.isClientSide()) {
+			return false;
+		}
+		PlayerEntity entityplayer = ExtendedClientProxy.INSTANCE.getClientPlayerEntity();
+		return (entityplayer != null && entityplayer.isCreative());
 	}
 
 	/**

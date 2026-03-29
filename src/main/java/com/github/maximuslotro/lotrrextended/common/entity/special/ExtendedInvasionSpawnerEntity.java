@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.entity.special;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
@@ -285,16 +286,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 }
             }
         }
-
-        if (!level.isClientSide) {
-            level.explode(this, this.getX(), this.getY(), this.getZ(), 2F, Explosion.Mode.NONE);
-        }
-
-        // unregister invasion from server data
-        if (!level.isClientSide) {
-            ExtendedLevelData.serverInstance().unregisterInvasion(getUUID());
-        }
-
+        // Handles explosion and unregistering
         this.remove();
     }
 
@@ -385,28 +377,66 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
+	@Override
+	public boolean canChangeDimensions() {
+		return false;
+	}
+
+	@Override
+	public boolean isIgnoringBlockTriggers() {
+		return true;
+	}
+
+	@Override
+	public boolean ignoreExplosion() {
+		return true;
+	}
+
+	@Override
+	public boolean fireImmune() {
+		return true;
+	}
+
     @Override
     public boolean isOnFire() {
         return false;
     }
 
     @Override
-    public boolean hurt(DamageSource pSource, float pAmount) {
-        if (this.isInvulnerableTo(pSource)) {
-            return false;
-        } else {
-            Entity entity = pSource.getEntity();
-            if(entity !=null && entity instanceof PlayerEntity && ((PlayerEntity)entity).abilities.instabuild) {
-                if(entity.isCrouching()) {
-                    this.remove();
-                }
-            }else {
-                this.remove();
-            }
-            return false;
-        }
-    }
+	public boolean hurt(DamageSource pSource, float pAmount) {
+		if (this.isInvulnerableTo(pSource)) {
+			return false;
+		} else {
+			if(pSource.getEntity()!=null) {
+				if(pSource.isCreativePlayer()) {
+					this.remove();
+				}
+			}else {
+				this.remove();
+			}
+			return false;
+		}
+	}
 
+	@Override
+	public boolean isPickable() {
+		if (!this.level.isClientSide()) {
+			return false;
+		}
+		PlayerEntity entityplayer = ExtendedClientProxy.INSTANCE.getClientPlayerEntity();
+		return (entityplayer != null && entityplayer.isCreative());
+	}
+
+    @Override
+	public void remove() {
+    	if (!level.isClientSide) {
+            level.explode(this, this.getX(), this.getY(), this.getZ(), 2F, Explosion.Mode.NONE);
+            ExtendedLevelData.serverInstance().unregisterInvasion(getUUID());
+            }
+        }
+		super.remove();
+	}
+   
     @Override
     public ActionResultType interact(PlayerEntity pPlayer, Hand pHand) {
         if(!pPlayer.level.isClientSide() && pPlayer.isCreative()) {
