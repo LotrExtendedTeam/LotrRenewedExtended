@@ -652,4 +652,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> SMOOTH_MORGOND_STAIRS;
 	public static RegistryObject<Block> SMOOTH_MORGOND_WALL;
 	public static RegistryObject<Block> SMOOTH_MORGOND_DRIPSTONE;
+
+	public static RegistryObject<Block> NUMENOREAN_BARS;
+	public static RegistryObject<Block> NUMENOREAN_LANTERN;
+
 }

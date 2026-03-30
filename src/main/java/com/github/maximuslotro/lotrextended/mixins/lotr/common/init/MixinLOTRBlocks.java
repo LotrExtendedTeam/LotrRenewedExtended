@@ -986,7 +986,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.URUK_CHANDELIER = registerB("uruk_chandelier", ChandelierBlock::new);
 		ExtendedBlocks.DWARVEN_CHANDELIER = registerB("dwarven_chandelier", ChandelierBlock::new);
 		ExtendedBlocks.BLUE_DWARVEN_CHANDELIER = registerB("blue_dwarven_chandelier", ChandelierBlock::new);
-		ExtendedBlocks.HIGH_ELVEN_LANTERN = registerB("high_elven_lantern", () -> new ExtendedElvenLanternBlock(12));
+		ExtendedBlocks.HIGH_ELVEN_LANTERN = registerB("high_elven_lantern", () -> new ExtendedLanternElvenBlock(Properties.of(Material.DECORATION).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(3.5F).sound(SoundType.LANTERN).lightLevel(ExtendedBlockParms.litBlockEmission(12)).noOcclusion()));
+		ExtendedBlocks.NUMENOREAN_LANTERN = registerB("numenorean_lantern", () -> new ExtendedLanternNumenoreanBlock(Properties.of(Material.DECORATION).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(3.5F).sound(SoundType.LANTERN).lightLevel(ExtendedBlockParms.litBlockEmission(12)).noOcclusion()));
 
 		ExtendedBlocks.ORC_STEEL_DOOR = registerB("orc_steel_door", () -> new ExtendedDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
 		ExtendedBlocks.ORC_STEEL_TRAPDOOR = registerB("orc_steel_trapdoor", () -> new ExtendedTrapDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
@@ -1190,6 +1191,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.ORC_BOMB_FIRE = registerB("orc_bomb_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 0, true));
 		ExtendedBlocks.ORC_BOMB_FIRE_DOUBLE = registerB("orc_bomb_double_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 1, true));
 		ExtendedBlocks.ORC_BOMB_FIRE_TRIPLE = registerB("orc_bomb_triple_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 2, true));
+
+		ExtendedBlocks.NUMENOREAN_BARS = registerB("numenorean_bars", () -> new ExtendedBarsBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
 	}
 
 	/**

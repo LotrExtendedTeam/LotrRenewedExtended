@@ -424,6 +424,16 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_"+LOTRBlocks.HIGH_ELVEN_TORCH.get().getRegistryName().getPath(), has(LOTRBlocks.HIGH_ELVEN_TORCH.get()))
 		.unlockedBy("has_silver_nugget", has(ExtendedTags.Items.SILVER_NUGGET))
 		.save(consumer, lotrLoc(ExtendedItems.HIGH_ELVEN_LANTERN.get().getRegistryName().getPath()));
+		GENERATEDRECIPES.add(ExtendedItems.NUMENOREAN_LANTERN.get().getRegistryName().getPath());
+		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.NUMENOREAN_LANTERN.get(), LOTRRecipes.GONDOR_CRAFTING)
+		.pattern("YYY")
+		.pattern("Y#Y")
+		.pattern("YMY")
+		.define('#', Ingredient.of(Items.TORCH))
+		.define('Y', Ingredient.of(Tags.Items.NUGGETS_IRON))
+		.define('M', Ingredient.of(ExtendedItems.MORGOND.get()))
+		.unlockedBy("has_"+ExtendedItems.MORGOND.get().getRegistryName().getPath(), has(ExtendedItems.MORGOND.get()))
+		.save(consumer, lotrLoc(ExtendedItems.NUMENOREAN_LANTERN.get().getRegistryName().getPath()));
 		GENERATEDRECIPES.add(ExtendedItems.MORGUL_CHANDELIER.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.MORGUL_CHANDELIER.get(), LOTRRecipes.ANY_MORGUL)
 		.pattern(" N ")
@@ -1193,6 +1203,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeBirdcageRecipe(consumer, ExtendedBlocks.SILVER_BIRDCAGE, LOTRItems.SILVER_BARS, LOTRTags.Items.INGOTS_SILVER, null);
 		makeBirdcageRecipe(consumer, ExtendedBlocks.GOLDEN_BIRDCAGE, LOTRItems.GOLD_BARS, Tags.Items.INGOTS_GOLD, null);
 		makeBirdcageRecipe(consumer, ExtendedBlocks.MITHRIL_BIRDCAGE, LOTRItems.MITHRIL_BARS, ExtendedTags.Items.MITHRIL_INGOT, null);
+		makeBarsRecipe(consumer, ExtendedBlocks.NUMENOREAN_BARS, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.GONDOR_CRAFTING);
 		//Dirts
 		GENERATEDRECIPES.add(ExtendedBlocks.WASTE_BLOCK.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedBlocks.WASTE_BLOCK.get(), 4)

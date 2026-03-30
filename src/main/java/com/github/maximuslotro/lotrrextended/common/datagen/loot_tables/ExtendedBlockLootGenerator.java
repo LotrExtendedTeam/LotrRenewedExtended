@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRuneBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarsBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
@@ -16,7 +17,8 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedChimneyPotBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedElvenLanternBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternElvenBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternNumenoreanBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneTextSignBlock;
@@ -184,7 +186,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.getValue().get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedElvenLanternBlock) {
+			if(block.getValue().get() instanceof ExtendedLanternElvenBlock || block.getValue().get() instanceof ExtendedLanternNumenoreanBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}
@@ -211,6 +213,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedBirdcageBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedBarsBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}

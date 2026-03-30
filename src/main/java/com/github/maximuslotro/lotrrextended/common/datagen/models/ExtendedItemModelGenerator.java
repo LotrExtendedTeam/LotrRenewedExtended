@@ -5,10 +5,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarsBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedElvenLanternBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternElvenBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
@@ -118,12 +119,16 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedElvenLanternBlock) {
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedLanternElvenBlock) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedChainBlock) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				continue;
+			}
+			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedBarsBlock) {
+				genGenerated(item.getKey(), lotrExtendedLoc("block/"+item.getKey()));
 				continue;
 			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedNarsilShardsBlock) {

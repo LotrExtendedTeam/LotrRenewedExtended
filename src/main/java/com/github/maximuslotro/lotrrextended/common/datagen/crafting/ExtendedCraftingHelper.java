@@ -52,8 +52,8 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 	public static List<String> GENERATEDRECIPES = new ArrayList<>();
 
     public static final ITag.INamedTag<Item> LOGS = ItemTags.LOGS;
-    public static final ITag.INamedTag<Item> STICKS = ItemTags.bind("forge:rods/wooden");
-    public static final ITag.INamedTag<Item> PLANKS = ItemTags.bind("minecraft:planks");
+    public static final ITag.INamedTag<Item> STICKS = Tags.Items.RODS_WOODEN;
+    public static final ITag.INamedTag<Item> PLANKS = ItemTags.PLANKS;
     public static final ITag.INamedTag<Item> HORNS = ItemTags.bind("forge:horns");
 
 	public ExtendedCraftingHelper(DataGenerator gen) {
@@ -1025,6 +1025,27 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.define('X', Ingredient.of(resource.get()))
 			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
 			.save(consumer, lotrLoc(name+altName));
+		}
+	}
+
+	protected void makeBarsRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Block> blockToBeCrafted, ITag<Item> base, String resourceName, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = blockToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if(table==null) {
+			ExtendedShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 16)
+			.pattern("XXX")
+			.pattern("XXX")
+			.define('X', Ingredient.of(base))
+			.unlockedBy("has_"+resourceName, has(base))
+			.save(consumer, lotrLoc(name));
+		}
+		else {
+			ExtendedFactionShapedRecipeBuilder.shaped(blockToBeCrafted.get(), 16, table)
+			.pattern("XXX")
+			.pattern("XXX")
+			.define('X', Ingredient.of(base))
+			.unlockedBy("has_"+resourceName, has(base))
+			.save(consumer, lotrLoc(name));
 		}
 	}
 

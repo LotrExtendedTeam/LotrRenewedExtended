@@ -837,4 +837,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ANGMAR_WARG_ARMOR;
 	public static RegistryObject<Item> ISENGARD_WARG_ARMOR;
 	public static RegistryObject<Item> MORDOR_WARG_ARMOR;
+
+	public static RegistryObject<Item> NUMENOREAN_BARS;
+	public static RegistryObject<Item> NUMENOREAN_LANTERN;
+
 }
