@@ -1,6 +1,7 @@
 package lotr.common.data;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,6 +22,7 @@ import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
@@ -109,10 +111,13 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 		return fellowshipIDs;
 	}
 
-	public List<ExtendedFellowship> getFellowships(ServerWorld level) {
+	public List<ExtendedFellowship> getFellowships(World level) {
+		if(!(level instanceof ServerWorld)) {
+			return Collections.emptyList();
+		}
 		List<ExtendedFellowship> ships = new ArrayList<>();
 		for (UUID ids : fellowshipIDs) {
-			ExtendedFellowship fellowship = ExtendedFellowshipHolderServer.getFellowship(level, ids);
+			ExtendedFellowship fellowship = ExtendedFellowshipHolderServer.getFellowship((ServerWorld) level, ids);
 			if (fellowship != null) {
 				ships.add(fellowship);
 			}

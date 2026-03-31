@@ -24,10 +24,9 @@ import lotr.common.fellowship.ExtendedFellowship;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 /**
- * Add fellowship and hired unit pve logic to Renewed's entity damage checker
+ * Add fellowship and hired unit PVE logic to Renewed's entity damage checker
  * @Mixin (EntityFactionHelper.class)
  * */
 @Mixin(EntityFactionHelper.class)
@@ -87,7 +86,7 @@ public class MixinEntityFactionHelper {
 		if (target instanceof PlayerEntity && target != attacker) {
 			// Extended Start
 			ExtendedFellowshipDataModule fellowshipModule = ((ExtendedLOTRPlayerData)playerData).getFellowshipData();
-			List<ExtendedFellowship> fellowships = fellowshipModule.getFellowships(ServerLifecycleHooks.getCurrentServer().overworld());
+			List<ExtendedFellowship> fellowships = fellowshipModule.getFellowships(attacker.level);
 			for (ExtendedFellowship fs : fellowships) {
 				if (fs.isPreventPVP() && fs.isInFellowship(target.getUUID())) {
 					return false;
@@ -114,7 +113,7 @@ public class MixinEntityFactionHelper {
 				else {
 					// Check if unit is owned by fellowship member and friendly fire is being protected
 					ExtendedFellowshipDataModule fellowshipModule = ((ExtendedLOTRPlayerData)playerData).getFellowshipData();
-					List<ExtendedFellowship> fellowships = fellowshipModule.getFellowships(ServerLifecycleHooks.getCurrentServer().overworld());
+					List<ExtendedFellowship> fellowships = fellowshipModule.getFellowships(attacker.level);
 					for (ExtendedFellowship fs : fellowships) {
 						if (fs.isPreventHiredFF() && fs.isInFellowship(hiredUnitOwnerUUID)) {
 							return false;

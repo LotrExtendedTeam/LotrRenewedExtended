@@ -264,7 +264,7 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	}
 	private static int list(CommandSource source, PlayerEntity player) {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
-		List<ExtendedFellowship> fellowships = fellowshipData.getFellowships((ServerWorld) player.level);
+		List<ExtendedFellowship> fellowships = fellowshipData.getFellowships(player.level);
 		String fellowshipList = "";
 		for(ExtendedFellowship fellowship : fellowships) {
 			if(!fellowshipList.isEmpty()) {
