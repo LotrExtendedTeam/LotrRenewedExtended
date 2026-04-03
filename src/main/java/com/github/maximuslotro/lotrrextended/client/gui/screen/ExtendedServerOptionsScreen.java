@@ -135,6 +135,8 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 				ExtendedServerConfig.dripstoneMinimumDamageHeight, ExtendedSettingToggles.DRIPSTONE_HURT_HEIGHT));
 		addButton(block.addSliderI("gui.lotrextended.serversettings.bellchainlength.setting", "bellRingChainMaxLength", 0, 50, 1, 
 				ExtendedServerConfig.bellRingChainMaxLength, ExtendedSettingToggles.BELL_RING_CHAIN_LENGTH));
+		addButton(block.addSliderI("gui.lotrextended.serversettings.gatetogglelength.setting", "gateToggleLength", 4, 32, 1, 
+				ExtendedServerConfig.gateToggleLength, ExtendedSettingToggles.GATE_TOGGLE_LENGTH));
 		catagories.add(block);
 
 		SettingsCatagory chair = new SettingsCatagory(this, 3, x, y, xTabs);

@@ -273,7 +273,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.serversettings.wanderingtraderspawning.setting", "Wandering Traders: %s");
 		addD("gui.lotrextended.serversettings.tolkienspawning.setting", "J.R.R. Tolkien: %s");
 		addD("gui.lotrextended.serversettings.barrowwightspawnchance.setting", "Barrow Wight Chance: %s%%");
-		addD("gui.lotrextended.serversettings.bellchainlength.setting", "Maximum Chain length: %s blocks");
+		addD("gui.lotrextended.serversettings.bellchainlength.setting", "Maximum Chain Length: %s blocks");
+		addD("gui.lotrextended.serversettings.gatetogglelength.setting", "Gate Toggle Radius: %s blocks");
 		addD("gui.lotrextended.serversettings.dripstonehurtheight.setting", "Dripstone Hurt Height: %s blocks");
 		addD("gui.lotrextended.serversettings.barsconnecttobranches.setting", "Bars Attach To Branches: %s");
 		addD("gui.lotrextended.serversettings.barsconnecttoslabs.setting", "Bars Attach To Slab Sides: %s");

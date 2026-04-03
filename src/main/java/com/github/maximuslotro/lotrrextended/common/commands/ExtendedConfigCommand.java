@@ -43,6 +43,7 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("barsConnectToSlabSides", ExtendedServerConfig.barsConnectToSlabSides));
 		command.then(buildDouble("dripstoneMinimumDamageHeight", ExtendedServerConfig.dripstoneMinimumDamageHeight, 0.0D, 5.0D));
 		command.then(buildInteger("bellRingChainMaxLength", ExtendedServerConfig.bellRingChainMaxLength, 1, 50));
+		command.then(buildInteger("gateToggleLength", ExtendedServerConfig.gateToggleLength, 4, 32));
 		// Chair
 		command.then(buildBoolean("enableChairSlabSitting", ExtendedServerConfig.enableChairSlabSitting));
 		command.then(buildBoolean("enableChairSwapping", ExtendedServerConfig.enableChairSwapping));

@@ -143,6 +143,9 @@ public class ExtendedCServerSettingsPacket {
 				case BELL_RING_CHAIN_LENGTH:
 					setInteger(ExtendedServerConfig.bellRingChainMaxLength, packet.getInteger());
 					break;
+				case GATE_TOGGLE_LENGTH:
+					setInteger(ExtendedServerConfig.gateToggleLength, packet.getInteger());
+					break;
 				case CHAIR_SITTING:
 					setBoolean(ExtendedServerConfig.enableChairSlabSitting, packet.getBoolean());
 					break;
@@ -263,6 +266,7 @@ public class ExtendedCServerSettingsPacket {
 		METAL_DOORS_REQUIRE_POWER(ValueType.BOOLEAN),
 		BELL_RING_CHAIN_LENGTH(ValueType.INT),
 		DRIPSTONE_HURT_HEIGHT(ValueType.DOUBLE),
+		GATE_TOGGLE_LENGTH(ValueType.INT),
 		// Chair
 		CHAIR_SITTING(ValueType.BOOLEAN),
 		CHAIR_SWAPPING(ValueType.BOOLEAN),

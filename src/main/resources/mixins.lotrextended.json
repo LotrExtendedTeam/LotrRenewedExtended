@@ -10,6 +10,7 @@
 		"lotr.common.MixinLOTRServerProxy",
 		"lotr.common.block.MixinBranchBlock",
 		"lotr.common.block.MixinDripstoneBlock",
+		"lotr.common.block.MixinGateBlock",
 		"lotr.common.block.MixinRottenLogBlock",
 		"lotr.common.block.MixinSignSetupHelperJavaPatch",
 		"lotr.common.data.MixinAlignmentDataModule",
