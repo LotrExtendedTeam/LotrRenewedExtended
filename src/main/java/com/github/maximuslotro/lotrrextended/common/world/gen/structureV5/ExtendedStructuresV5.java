@@ -11,6 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.struct
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.ExtendedWeightedPoolStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureAnarostirion;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureElostirion;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureIsengardGatehouse;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureIsilostirion;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureLastHomelyHouse;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureStoneOfHapless;
@@ -100,6 +101,8 @@ public class ExtendedStructuresV5 {
 	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> LINDON_TOWER = STRUCTURE_REGISTRY.register("lindon_tower", () -> new ExtendedCheckAreaChunkStructure(ExtendedStructureType.LINDON));
 	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> LINDON_HALL = STRUCTURE_REGISTRY.register("lindon_hall", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.LINDON));
 
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> ISENGARD_GATEHOUSE = STRUCTURE_REGISTRY.register("isengard_gatehouse", () -> new ExtendedStructureIsengardGatehouse(ExtendedStructureType.ISENGARD));
+
 	/**
 	 * Initializes and registers all custom structures with their generation parameters.
 	 * <p>
@@ -150,6 +153,7 @@ public class ExtendedStructuresV5 {
 		register(LINDON_VILLAGE.get(), true,           70, 55, 584474884);
 		register(LINDON_TOWER.get(), true,             75, 50, 848856948);
 		register(LINDON_HALL.get(), true,              80, 65, 356254478);
+		register(ISENGARD_GATEHOUSE.get(), false,      1,  0,  0);
 	}
 
 	/**

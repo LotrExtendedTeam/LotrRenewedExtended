@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedStructureSettings;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedSinglePoolConfig;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -101,6 +102,17 @@ public class ExtendedStructureStartV5<C extends ExtendedPoolFeatureConfig> exten
 		return BlockPos.ZERO;
 	}
 	/**
+     * Should the structure start be projected onto the heightmap
+     * 
+     * @return TRUE if structure should be projected onto the heightmap
+     */
+	public boolean shouldProjectStartToHeightmap() {
+		return true;
+	}
+	public boolean useAboveBlockForFoundation() {
+		return false;
+	}
+	/**
      * Additional hardcoded structure settings
      * 
      * @return A set of additional settings to define structure generation
@@ -134,7 +146,7 @@ public class ExtendedStructureStartV5<C extends ExtendedPoolFeatureConfig> exten
         }
         ExtendedJigsawManager.addPieces(dynamicRegistryManager,
         	new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), 7), AbstractVillagePiece::new,
-        	chunkGenerator, templateManagerIn, chunkPos, this.pieces, this.random, false, true, setRotation(), setoffset(), getHardcodedSettings());
+        	chunkGenerator, templateManagerIn, chunkPos, this.pieces, this.random, false, shouldProjectStartToHeightmap(), setRotation(), setoffset(), getHardcodedSettings());
 
 //        Vector3i structureCenter = this.pieces.get(0).getBoundingBox().getCenter();
 //        int xOffset = blockpos.getX() - structureCenter.getX();
@@ -175,15 +187,21 @@ public class ExtendedStructureStartV5<C extends ExtendedPoolFeatureConfig> exten
 				int baseYvalue = foundationNeedingPiece.getBoundingBox().y0;
 				for(int xValue = foundationNeedingPiece.getBoundingBox().x0; xValue <= foundationNeedingPiece.getBoundingBox().x1; ++xValue) {
 					for(int zValue = foundationNeedingPiece.getBoundingBox().z0; zValue <= foundationNeedingPiece.getBoundingBox().z1; ++zValue) {
-						BlockPos blockpos = new BlockPos(xValue, baseYvalue, zValue);
-						if(world.hasChunkAt(blockpos) && !world.isEmptyBlock(blockpos) && !world.isWaterAt(blockpos) && foundationNeedingPiece.getBoundingBox().isInside(blockpos)) {
+						BlockPos blockposBase = new BlockPos(xValue, baseYvalue, zValue);
+						if(world.hasChunkAt(blockposBase) && !world.isEmptyBlock(blockposBase) && !world.isWaterAt(blockposBase) && foundationNeedingPiece.getBoundingBox().isInside(blockposBase)) {
+							BlockState toPlaceState;
+							if(useAboveBlockForFoundation()) {
+								toPlaceState = world.getBlockState(blockposBase);
+							}else {
+								toPlaceState = ((ExtendedSingleJigsawPiece)foundationNeedingPiece.getElement()).getFoundationBlock();
+							}
 							for(int yColumnValue = baseYvalue - 1; yColumnValue > 1; --yColumnValue) {
-								BlockPos blockpos1 = new BlockPos(xValue, yColumnValue, zValue);
-								if(world.isEmptyBlock(blockpos1) || //Fill empty blocks
-									world.getBlockState(blockpos1).getMaterial().isLiquid() || //build down into the water
-									world.getBlockState(blockpos1).getMaterial().getPushReaction()==PushReaction.DESTROY || //replace weak blocks
-									!world.getBlockState(blockpos1).getMaterial().blocksMotion()) { //replace non-colliding blocks, probably plants in our case
-									world.setBlock(blockpos1, ((ExtendedSingleJigsawPiece)foundationNeedingPiece.getElement()).getFoundationBlock(), 2);
+								BlockPos blockposRelativeBelow = new BlockPos(xValue, yColumnValue, zValue);
+								if(world.isEmptyBlock(blockposRelativeBelow) || //Fill empty blocks
+									world.getBlockState(blockposRelativeBelow).getMaterial().isLiquid() || //build down into the water
+									world.getBlockState(blockposRelativeBelow).getMaterial().getPushReaction()==PushReaction.DESTROY || //replace weak blocks
+									!world.getBlockState(blockposRelativeBelow).getMaterial().blocksMotion()) { //replace non-colliding blocks, probably plants in our case
+									world.setBlock(blockposRelativeBelow, toPlaceState, 2);
 								}else {
 									break;
 								}
@@ -193,32 +211,6 @@ public class ExtendedStructureStartV5<C extends ExtendedPoolFeatureConfig> exten
 				}
 			}
 			cachedRootPostProcessedPieces.clear();
-			/*
-			int baseYvalue = this.boundingBox.y0 + foundationUpwardsOffsetBasementSpecial();
-			for (int xValue = boundingBox.x0; xValue <= boundingBox.x1; ++xValue) {
-				for (int zValue = boundingBox.z0; zValue <= boundingBox.z1; ++zValue) {
-					BlockPos blockpos = new BlockPos(xValue, baseYvalue, zValue);
-					if (!world.isEmptyBlock(blockpos) && this.boundingBox.isInside(blockpos)) {
-						boolean hasPieceAtLowestYValue = false;
-						for (StructurePiece structurepiece : this.pieces) {
-							if (structurepiece.getBoundingBox().isInside(blockpos)) {
-								hasPieceAtLowestYValue = true;
-								break;
-							}
-						}
-						if (hasPieceAtLowestYValue) {
-							for (int yColumnValue = baseYvalue - 1; yColumnValue > 1; --yColumnValue) {
-								BlockPos blockpos1 = new BlockPos(xValue, yColumnValue, zValue);
-								if (!world.isEmptyBlock(blockpos1) && !world.getBlockState(blockpos1).getMaterial().isLiquid()) {
-									break;
-								}
-								world.setBlock(blockpos1, cachedRootPostProcessedPiece.getFoundationBlock(), 2);
-							}
-						}
-					}
-				}
-			}
-			*/
 		}
 	}
 }

@@ -84,6 +84,8 @@ public class ExtendedConfiguredStructuresV5 {
 	public static StructureFeature<?, ?> CONFIGURED_LINDON_TOWER = register(ExtendedStructuresV5.LINDON_TOWER.get().configured(new ExtendedSinglePoolConfig("lindon/lindon_tower")));
 	public static StructureFeature<?, ?> CONFIGURED_LINDON_HALL = register(ExtendedStructuresV5.LINDON_HALL.get().configured(new ExtendedSinglePoolConfig("lindon/lindon_hall")));
 
+	public static StructureFeature<?, ?> CONFIGURED_ISENGARD_GATEHOUSE = register(ExtendedStructuresV5.ISENGARD_GATEHOUSE.get().configured(new ExtendedSinglePoolConfig("lore/isengard/isengard_gatehouse")));
+
 	/**
      * Empty method intended to be called to ensure static initialization of this class
      * and the registration of configured structures.
