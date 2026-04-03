@@ -1,7 +1,7 @@
 package lotr.common.data;
 
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedNetworkToggles;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedDualTogglePacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedDualTogglePacket.ExtendedNetworkToggles;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedNBTUtils;
 
 import net.minecraft.nbt.CompoundNBT;
@@ -9,29 +9,39 @@ import net.minecraft.network.PacketBuffer;
 
 public class ExtendedMiscDataModule extends ExtendedPlayerDataModule {
 
-	private boolean hiredUnitFriendlyFire;
-	private boolean hiredUnitDeathMessages;
-	private boolean highContrastMessages;
-	private boolean hiredUnitInnerCombat;
+	private boolean hiredUnitFriendlyFire = false;
+	private boolean hiredUnitDeathMessages = true;
+	private boolean highContrastMessages = false;
+	private boolean hiredUnitInnerCombat = false;
 
 	public ExtendedMiscDataModule(LOTRPlayerData pd) {
 		super(pd);
 	}
 
 	@Override
-	public void save(CompoundNBT nbt) {
-		nbt.putBoolean("HiredUnitFriendlyFire", hiredUnitFriendlyFire);
-		nbt.putBoolean("HiredUnitDeathMessages", hiredUnitDeathMessages);
-		nbt.putBoolean("HighContrastMessages", highContrastMessages);
-		nbt.putBoolean("HiredUnitInnerCombat", hiredUnitInnerCombat);
+	public void save(CompoundNBT playerNBT) {
+		CompoundNBT micsData = new CompoundNBT();
+		micsData.putBoolean("HiredUnitFriendlyFire", hiredUnitFriendlyFire);
+		micsData.putBoolean("HiredUnitDeathMessages", hiredUnitDeathMessages);
+		micsData.putBoolean("HighContrastMessages", highContrastMessages);
+		micsData.putBoolean("HiredUnitInnerCombat", hiredUnitInnerCombat);
+		playerNBT.put("MiscData", micsData);
 	}
 
 	@Override
-	public void load(CompoundNBT nbt) {
-		hiredUnitFriendlyFire = ExtendedNBTUtils.getBoolean(nbt, "HiredUnitFriendlyFire", false);
-		hiredUnitDeathMessages = ExtendedNBTUtils.getBoolean(nbt, "HiredUnitDeathMessages", true);
-		highContrastMessages = ExtendedNBTUtils.getBoolean(nbt, "HighContrastMessages", false);
-		hiredUnitInnerCombat = ExtendedNBTUtils.getBoolean(nbt, "HiredUnitInnerCombat", false);
+	public void load(CompoundNBT playerNBT) {
+		if(playerNBT.contains("MiscData")) {
+			CompoundNBT micsData = playerNBT.getCompound("MiscData");
+			hiredUnitFriendlyFire = ExtendedNBTUtils.getBoolean(micsData, "HiredUnitFriendlyFire", false);
+			hiredUnitDeathMessages = ExtendedNBTUtils.getBoolean(micsData, "HiredUnitDeathMessages", true);
+			highContrastMessages = ExtendedNBTUtils.getBoolean(micsData, "HighContrastMessages", false);
+			hiredUnitInnerCombat = ExtendedNBTUtils.getBoolean(micsData, "HiredUnitInnerCombat", false);
+		}else {
+			hiredUnitFriendlyFire = ExtendedNBTUtils.getBoolean(playerNBT, "HiredUnitFriendlyFire", false);
+			hiredUnitDeathMessages = ExtendedNBTUtils.getBoolean(playerNBT, "HiredUnitDeathMessages", true);
+			highContrastMessages = ExtendedNBTUtils.getBoolean(playerNBT, "HighContrastMessages", false);
+			hiredUnitInnerCombat = ExtendedNBTUtils.getBoolean(playerNBT, "HiredUnitInnerCombat", false);
+		}
 	}
 
 	@Override

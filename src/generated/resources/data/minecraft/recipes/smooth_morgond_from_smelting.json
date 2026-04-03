@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "lotr:morgond"
+  },
+  "result": "lotr:smooth_morgond",
+  "experience": 1.0,
+  "cookingtime": 2400
+}

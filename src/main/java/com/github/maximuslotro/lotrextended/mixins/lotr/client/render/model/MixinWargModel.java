@@ -86,26 +86,26 @@ public abstract class MixinWargModel<E extends WargEntity> extends SegmentedMode
 	private List<ModelRenderer> topLevelParts;
 
 	@Inject(method = "<init>(F)V", at = @At("RETURN"), remap=false)
-    private void onConstructorReturn(float f, CallbackInfo ci) {
-        // Replace model renderers, cubes, children.
+	private void onConstructorReturn(float f, CallbackInfo ci) {
+		// Replace model renderers, cubes, children.
 		frontBody = new ModelRenderer(this);
-    	frontBody.setPos(0.0F, 24.0F, 0.0F);
-		frontBody.texOffs(0, 38).addBox(-6.0F, -22.0F, -14.0F, 12.0F, 11.0F, 15.0F, f, false);
+		frontBody.setPos(0.0F, 7.5F, 1.0F);
+		frontBody.texOffs(0, 38).addBox(-6.0F, -5.5F, -15.0F, 12.0F, 11.0F, 15.0F, f, false);
 
 		backHairR = new ModelRenderer(this);
-		backHairR.setPos(-1.0F, -22.0F, -7.0F);
+		backHairR.setPos(-1.0F, -5.5F, -8.0F);
 		frontBody.addChild(backHairR);
 		setRotationAngle(backHairR, 0.0F, 0.0F, -0.3927F);
 		backHairR.texOffs(36, 13).addBox(0.0F, -4.0F, -7.0F, 0.0F, 4.0F, 14.0F, 0.0F, true);
 
 		backHairL = new ModelRenderer(this);
-		backHairL.setPos(1.0F, -22.0F, -7.0F);
+		backHairL.setPos(1.0F, -5.5F, -8.0F);
 		frontBody.addChild(backHairL);
 		setRotationAngle(backHairL, 0.0F, 0.0F, 0.3927F);
 		backHairL.texOffs(36, 13).addBox(0.0F, -4.0F, -7.0F, 0.0F, 4.0F, 14.0F, 0.0F, true);
 
 		head = new ModelRenderer(this);
-		head.setPos(0.0F, -13.0F, -14.0F);
+		head.setPos(0.0F, 3.5F, -15.0F);
 		frontBody.addChild(head);
 		head.texOffs(0, 0).addBox(-5.0F, -8.0F, -8.0F, 10.0F, 8.0F, 8.0F, f, false);
 		head.texOffs(0, 16).addBox(-3.0F, -5.0F, -14.0F, 6.0F, 5.0F, 6.0F, f, false);
@@ -141,42 +141,42 @@ public abstract class MixinWargModel<E extends WargEntity> extends SegmentedMode
 		earL.texOffs(36, 4).addBox(-1.0F, -2.5F, -2.0F, 2.0F, 5.0F, 4.0F, f, false);
 
 		frontLegR = new ModelRenderer(this);
-		frontLegR.setPos(-5.0F, -18.5F, -8.5F);
+		frontLegR.setPos(-5.0F, -2.0F, -9.5F);
 		frontBody.addChild(frontLegR);
 		frontLegR.texOffs(66, 0).addBox(-2.0F, -4.5F, -4.5F, 4.0F, 11.0F, 8.0F, f, false);
 		frontLegR.texOffs(70, 19).addBox(-2.0F, 6.5F, -1.5F, 4.0F, 12.0F, 4.0F, f, false);
 
 		frontLegL = new ModelRenderer(this);
-		frontLegL.setPos(5.0F, -18.5F, -8.5F);
+		frontLegL.setPos(5.0F, -2.0F, -9.5F);
 		frontBody.addChild(frontLegL);
 		frontLegL.texOffs(66, 0).addBox(-2.0F, -4.5F, -4.5F, 4.0F, 11.0F, 8.0F, f, true);
 		frontLegL.texOffs(70, 19).addBox(-2.0F, 6.5F, -1.5F, 4.0F, 12.0F, 4.0F, f, true);
 
 		backBody = new ModelRenderer(this);
-		backBody.setPos(0.0F, 24.0F, 0.0F);
-		backBody.texOffs(54, 39).addBox(-5.0F, -21.3F, 1.0F, 10.0F, 10.0F, 15.0F, f, false);
+		backBody.setPos(0.0F, 7.5F, 1.0F);
+		backBody.texOffs(54, 39).addBox(-5.0F, -4.8F, -2.0F, 10.0F, 10.0F, 15.0F, f, false);
 
 		tail = new ModelRenderer(this);
-		tail.setPos(0.0F, -19.8F, 15.75F);
+		tail.setPos(0.0F, -3.3F, 12.75F);
 		backBody.addChild(tail);
 		setRotationAngle(tail, -0.7854F, 0.0F, 0.0F);
 		tail.texOffs(92, 33).addBox(-2.5F, -0.5F, -0.25F, 5.0F, 5.0F, 13.0F, f, false);
 
 		backLegR = new ModelRenderer(this);
-		backLegR.setPos(-4.0F, -15.0F, 11.0F);
+		backLegR.setPos(-4.0F, 1.5F, 8.0F);
 		backBody.addChild(backLegR);
 		backLegR.texOffs(102, 16).addBox(-2.0F, 5.0F, 0.0F, 4.0F, 10.0F, 4.0F, f, false);
 		backLegR.texOffs(99, 0).addBox(-2.0F, -4.0F, -3.0F, 4.0F, 9.0F, 7.0F, f, false);
 
 		backLegL = new ModelRenderer(this);
-		backLegL.setPos(4.0F, -15.0F, 11.0F);
+		backLegL.setPos(4.0F, 1.5F, 8.0F);
 		backBody.addChild(backLegL);
 		backLegL.texOffs(102, 16).addBox(-2.0F, 5.0F, 0.0F, 4.0F, 10.0F, 4.0F, f, true);
 		backLegL.texOffs(99, 0).addBox(-2.0F, -4.0F, -3.0F, 4.0F, 9.0F, 7.0F, f, true);
 		topLevelParts = ImmutableList.of(backBody, frontBody);
-    }
-   
-    @Unique
+	}
+
+	@Unique
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
 		modelRenderer.xRot = x;
 		modelRenderer.yRot = y;

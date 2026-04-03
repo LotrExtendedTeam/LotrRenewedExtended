@@ -19,6 +19,8 @@ public class MixinHarondorBiome {
 	protected void addVegetation(net.minecraft.world.biome.BiomeGenerationSettings.Builder builder) {
 		Object[] weightedTrees = { LOTRBiomeFeatures.oakDesert(), 10000, LOTRBiomeFeatures.oakDesertBees(), 10,
 				LOTRBiomeFeatures.cedar(), 2500,
+				// Extended Start
+				ExtendedBiomeFeatures.ebonyFancy(), 100, ExtendedBiomeFeatures.ebony(), 1,
 				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1  };
 		LOTRBiomeFeatures.addTrees((HarondorBiome)(Object)this, builder, 0, 0.1F, weightedTrees);
 		LOTRBiomeFeatures.addTreesIncrease((HarondorBiome)(Object)this, builder, 0, 0.0625F, 3, weightedTrees);

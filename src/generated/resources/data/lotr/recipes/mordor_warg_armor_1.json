@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:mordor",
+  "pattern": [
+    "  M",
+    "MLM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "tag": "forge:ingots/orc_steel"
+    },
+    "L": {
+      "tag": "forge:leather"
+    }
+  },
+  "result": {
+    "item": "lotr:mordor_warg_armor"
+  }
+}

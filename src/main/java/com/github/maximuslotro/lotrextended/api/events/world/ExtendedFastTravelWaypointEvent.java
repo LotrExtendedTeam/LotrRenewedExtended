@@ -11,7 +11,7 @@ import net.minecraftforge.fml.event.lifecycle.IModBusEvent;
  * the world, the original position, and the target travel position.
  * This event is extended by Pre and Post subclasses to represent stages before and after the travel.
  */
-public class ExtendedFastTravelWaypointEvent extends Event implements IModBusEvent{
+public class ExtendedFastTravelWaypointEvent extends Event implements IModBusEvent {
 	/**
      * The player initiating the fast travel.
      */

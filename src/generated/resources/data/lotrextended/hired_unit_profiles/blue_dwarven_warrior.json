@@ -72,6 +72,13 @@
           "item": "lotr:blue_dwarven_axe",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:blue_dwarven_mattock",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
       }
     ],
     "offhand": [

@@ -182,7 +182,7 @@ public class ExtendedStructureStartV5<C extends ExtendedPoolFeatureConfig> exten
 								if(world.isEmptyBlock(blockpos1) || //Fill empty blocks
 									world.getBlockState(blockpos1).getMaterial().isLiquid() || //build down into the water
 									world.getBlockState(blockpos1).getMaterial().getPushReaction()==PushReaction.DESTROY || //replace weak blocks
-									!world.getBlockState(blockpos1).getMaterial().blocksMotion()) { //replace non-colliding blocks, probably plants in out case
+									!world.getBlockState(blockpos1).getMaterial().blocksMotion()) { //replace non-colliding blocks, probably plants in our case
 									world.setBlock(blockpos1, ((ExtendedSingleJigsawPiece)foundationNeedingPiece.getElement()).getFoundationBlock(), 2);
 								}else {
 									break;

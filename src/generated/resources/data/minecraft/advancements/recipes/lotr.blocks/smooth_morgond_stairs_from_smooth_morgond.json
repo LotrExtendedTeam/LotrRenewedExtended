@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:smooth_morgond_stairs_from_smooth_morgond"
+    ]
+  },
+  "criteria": {
+    "has_smooth_morgond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:smooth_morgond"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:smooth_morgond_stairs_from_smooth_morgond"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_smooth_morgond",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:carved_morgond_slab_from_carved_morgond"
+    ]
+  },
+  "criteria": {
+    "has_carved_morgond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:carved_morgond"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:carved_morgond_slab_from_carved_morgond"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_carved_morgond",
+      "has_the_recipe"
+    ]
+  ]
+}

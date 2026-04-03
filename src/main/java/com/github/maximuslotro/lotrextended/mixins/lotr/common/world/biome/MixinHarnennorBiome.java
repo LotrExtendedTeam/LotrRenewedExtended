@@ -22,6 +22,8 @@ public class MixinHarnennorBiome {
 		LOTRBiomeFeatures.addTreesWithClusters((HarnennorBiome)(Object)this, builder, 0, 0.1F, TreeCluster.of(3, 30),
 				LOTRBiomeFeatures.oakDesert(), 10000, LOTRBiomeFeatures.oakDesertBees(), 100,
 				LOTRBiomeFeatures.cedar(), 2500,
+				// Extended Start
+				ExtendedBiomeFeatures.ebonyFancy(), 100, ExtendedBiomeFeatures.ebony(), 1,
 				ExtendedBiomeFeatures.plum(), 50, ExtendedBiomeFeatures.plumBees(), 1);
 		LOTRBiomeFeatures.addGrass((HarnennorBiome)(Object)this, builder, 8, GrassBlends.WITH_ARID);
 		LOTRBiomeFeatures.addDoubleGrass(builder, 1, GrassBlends.DOUBLE_WITH_ARID);

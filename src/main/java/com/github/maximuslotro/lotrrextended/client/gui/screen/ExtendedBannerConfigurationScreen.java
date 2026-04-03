@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
-import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedTextFieldWidget;
+import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedTextFieldPermissionWidget;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileClient;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCBannerSaveInfoPacket;
@@ -57,7 +57,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	private List<Button> factionPermButtons = new ArrayList<>();
 	private BlockPos configurePos;
 	private int shownWhiteListButtonCount = 0;
-	private List<ExtendedTextFieldWidget> whitelistFields = new ArrayList<>();
+	private List<ExtendedTextFieldPermissionWidget> whitelistFields = new ArrayList<>();
 	private int whiteListOffset = 0;
 	private Button createFellowship;
 	private Button createPlayer;
@@ -316,7 +316,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		// Whitelist
 		whitelistFields.clear();
 		for(int i=0; i<4; i++) {
-			ExtendedTextFieldWidget textField =  new ExtendedTextFieldWidget(this.font, this.leftPos+32, this.topPos+51 + (i*30), 97, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.textBox"), i) {
+			ExtendedTextFieldPermissionWidget textField =  new ExtendedTextFieldPermissionWidget(this.font, this.leftPos+32, this.topPos+51 + (i*30), 97, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.textBox"), i) {
 				@Override
 				public void setFocus(boolean pIsFocused) {
 					super.setFocus(pIsFocused);
@@ -530,7 +530,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			for(int i=0;i<shownWhiteListButtonCount; i++) {
 				blit(matStack, this.leftPos+29, this.topPos+46 + (i*30), 0, 192, 80, 17);
 				blit(matStack, this.leftPos+55, this.topPos+46 + (i*30), 1, 192, 79, 17);
-				ExtendedTextFieldWidget textField = whitelistFields.get(i);
+				ExtendedTextFieldPermissionWidget textField = whitelistFields.get(i);
 				textField.setTextColor(whitelist.get(convertWhitelistOffset(i)).getProfile() instanceof ExtendedBannerProfileClient ? 14737632 : 65313);
 				textField.isVisible(true);
 				//textField.render(matStack, mouseX, mouseY, tick);

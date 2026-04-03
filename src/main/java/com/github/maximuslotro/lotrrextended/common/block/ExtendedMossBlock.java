@@ -8,6 +8,7 @@ import lotr.common.event.CompostingHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IGrowable;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -33,5 +34,15 @@ public class ExtendedMossBlock extends Block implements IGrowable {
 	@Override
 	public void performBonemeal(ServerWorld pLevel, Random pRand, BlockPos pPos, BlockState pState) {
 		ExtendedConfiguredFeatures.MOSS_PATCH_BONEMEAL.place(pLevel, pLevel.getChunkSource().getGenerator(), pRand, pPos.above());
+	}
+
+	@Override
+	public int getFireSpreadSpeed(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+		return 30;
+	}
+
+	@Override
+	public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+		return 60;
 	}
 }

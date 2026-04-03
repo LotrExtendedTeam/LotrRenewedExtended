@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:northern_orc",
+  "pattern": [
+    "BBB",
+    "BRB",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "lotr:goblin_brick"
+    },
+    "R": {
+      "item": "minecraft:coal_block"
+    }
+  },
+  "result": {
+    "item": "lotr:orc_forge"
+  }
+}

@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemRenderHelper;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedBoatEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCoinType;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
@@ -23,7 +24,8 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCompostableItem
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBannerPatterns;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBedItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBerries;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoarArmorItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem.MountType;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBucketOfCheeseCurds;
@@ -31,7 +33,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCopperIngotItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDuckEggItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedDyeableBoarArmorItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedDyeableArmorItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEdhelvirItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedColoringItem;
@@ -55,7 +57,6 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStra
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhiteFurBedTileEntity;
 import com.google.common.base.Function;
 
-import lotr.common.entity.item.LOTRBoatEntity;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItemGroups;
@@ -64,13 +65,16 @@ import lotr.common.init.LOTRMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemTier;
+import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.Rarity;
+import net.minecraft.item.ShovelItem;
 import net.minecraft.tileentity.BannerPattern;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
@@ -109,7 +113,7 @@ public class MixinLOTRItems {
 	}
 	/**
 	 * Extended's method for registering banner pattern items, handling their unique dataGen needs
-	 * @param name A String name of the entity
+	 * @param name A String name of the item
 	 * @param bannerPattern The BannerPattern instance for this item
 	 * @param sup A supplier for the item
 	 * @return A RegistryObject instance for the item
@@ -119,6 +123,21 @@ public class MixinLOTRItems {
 		RegistryObject<Item> item = regItemB(name, sup);
 		if(DatagenModLoader.isRunningDataGen()) {
 			DataGenValueHolder.bannerPatternItemNameHolders.put(name, bannerPattern.getFilename());
+		}
+		return item;
+	}
+	/**
+	 * Extended's method for registering boat items, handles dataGen
+	 * @param name A String name of the item
+	 * @param pType The boat type to associate with the item
+	 * @param group The ItemGroup for this item to be placed in
+	 * @return A RegistryObject instance for the fallen leaves block item
+	 * */
+	@Unique
+	private static RegistryObject<Item> regBoatItem(String name, ExtendedBoatEntity.Type pType, ItemGroup group) {
+		RegistryObject<Item> item = regItemB(name, () -> new ExtendedBoatItem(pType, new Properties().stacksTo(1).tab(group)));
+		if(DatagenModLoader.isRunningDataGen()) {
+			DataGenValueHolder.newWoodTypesHolder.add(pType.getName());
 		}
 		return item;
 	}
@@ -435,6 +454,7 @@ public class MixinLOTRItems {
 		ExtendedItems.CHESTNUT_LOG = regBlockItemB(ExtendedBlocks.CHESTNUT_LOG, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_WOOD = regBlockItemB(ExtendedBlocks.CHESTNUT_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_PLANKS = regBlockItemB(ExtendedBlocks.CHESTNUT_PLANKS, LOTRItemGroups.BLOCKS);
+		System.out.println("P1");
 		ExtendedItems.CHESTNUT_LEAVES = regBlockItemB(ExtendedBlocks.CHESTNUT_LEAVES, LOTRItemGroups.DECO);
 		ExtendedItems.CHESTNUT_LEAVES_FRUIT = regBlockItemB(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT, LOTRItemGroups.DECO);
 		ExtendedItems.CHESTNUT_SAPLING = regBlockItemB(ExtendedBlocks.CHESTNUT_SAPLING, LOTRItemGroups.DECO);
@@ -449,8 +469,9 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_CHESTNUT_LOG = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_LOG, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_CHESTNUT_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_BEAM = regBlockItemB(ExtendedBlocks.CHESTNUT_BEAM, LOTRItemGroups.BLOCKS);
+		ExtendedItems.CHESTNUT_BEAM_SLAB = regBlockItemB(ExtendedBlocks.CHESTNUT_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_SIGN = regSignBlockItemB(ExtendedBlocks.CHESTNUT_SIGN, ExtendedBlocks.CHESTNUT_WALL_SIGN);
-		ExtendedItems.CHESTNUT_BOAT = regItemB("chestnut_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("CHESTNUT")));
+		ExtendedItems.CHESTNUT_BOAT = regBoatItem("chestnut_boat", ExtendedBoatEntity.Type.CHESTNUT, LOTRItemGroups.MISC);
 		ExtendedItems.CHESTNUT_LOG_SLAB = regBlockItemB(ExtendedBlocks.CHESTNUT_LOG_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_WOOD_SLAB = regBlockItemB(ExtendedBlocks.CHESTNUT_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.CHESTNUT_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
@@ -459,7 +480,6 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_CHESTNUT_WOOD_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_CHESTNUT_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_CHESTNUT_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_CHESTNUT_BRANCH, LOTRItemGroups.BLOCKS);
-		ExtendedItems.CHESTNUT_BEAM_SLAB = regBlockItemB(ExtendedBlocks.CHESTNUT_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FALLEN_CHESTNUT_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_CHESTNUT_LEAVES, LOTRItemGroups.DECO);
 
 		ExtendedItems.BANANA_LOG = regBlockItemB(ExtendedBlocks.BANANA_LOG, LOTRItemGroups.BLOCKS);
@@ -478,8 +498,9 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_BANANA_LOG = regBlockItemB(ExtendedBlocks.STRIPPED_BANANA_LOG, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_BANANA_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_BANANA_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BANANA_BEAM = regBlockItemB(ExtendedBlocks.BANANA_BEAM, LOTRItemGroups.BLOCKS);
+		ExtendedItems.BANANA_BEAM_SLAB = regBlockItemB(ExtendedBlocks.BANANA_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BANANA_SIGN = regSignBlockItemB(ExtendedBlocks.BANANA_SIGN, ExtendedBlocks.BANANA_WALL_SIGN);
-		ExtendedItems.BANANA_BOAT = regItemB("banana_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("BANANA")));
+		ExtendedItems.BANANA_BOAT = regBoatItem("banana_boat", ExtendedBoatEntity.Type.BANANA, LOTRItemGroups.MISC);
 		ExtendedItems.BANANA_LOG_SLAB = regBlockItemB(ExtendedBlocks.BANANA_LOG_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BANANA_WOOD_SLAB = regBlockItemB(ExtendedBlocks.BANANA_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BANANA_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.BANANA_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
@@ -488,7 +509,6 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_BANANA_WOOD_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_BANANA_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_BANANA_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.STRIPPED_BANANA_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_BANANA_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_BANANA_BRANCH, LOTRItemGroups.BLOCKS);
-		ExtendedItems.BANANA_BEAM_SLAB = regBlockItemB(ExtendedBlocks.BANANA_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FALLEN_BANANA_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_BANANA_LEAVES, LOTRItemGroups.DECO);
 
 		ExtendedItems.PLUM_LOG = regBlockItemB(ExtendedBlocks.PLUM_LOG, LOTRItemGroups.BLOCKS);
@@ -508,8 +528,9 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_PLUM_LOG = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_LOG, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_PLUM_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PLUM_BEAM = regBlockItemB(ExtendedBlocks.PLUM_BEAM, LOTRItemGroups.BLOCKS);
+		ExtendedItems.PLUM_BEAM_SLAB = regBlockItemB(ExtendedBlocks.PLUM_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PLUM_SIGN = regSignBlockItemB(ExtendedBlocks.PLUM_SIGN, ExtendedBlocks.PLUM_WALL_SIGN);
-		ExtendedItems.PLUM_BOAT = regItemB("plum_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("PLUM")));
+		ExtendedItems.PLUM_BOAT = regBoatItem("plum_boat", ExtendedBoatEntity.Type.PLUM, LOTRItemGroups.MISC);
 		ExtendedItems.PLUM_LOG_SLAB = regBlockItemB(ExtendedBlocks.PLUM_LOG_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PLUM_WOOD_SLAB = regBlockItemB(ExtendedBlocks.PLUM_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PLUM_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.PLUM_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
@@ -518,7 +539,6 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_PLUM_WOOD_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_PLUM_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_PLUM_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_PLUM_BRANCH, LOTRItemGroups.BLOCKS);
-		ExtendedItems.PLUM_BEAM_SLAB = regBlockItemB(ExtendedBlocks.PLUM_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FALLEN_PLUM_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_PLUM_LEAVES, LOTRItemGroups.DECO);
 		
 		ExtendedItems.WILLOW_LOG = regBlockItemB(ExtendedBlocks.WILLOW_LOG, LOTRItemGroups.BLOCKS);
@@ -538,8 +558,9 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_WILLOW_LOG = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_LOG, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_WILLOW_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.WILLOW_BEAM = regBlockItemB(ExtendedBlocks.WILLOW_BEAM, LOTRItemGroups.BLOCKS);
+		ExtendedItems.WILLOW_BEAM_SLAB = regBlockItemB(ExtendedBlocks.WILLOW_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.WILLOW_SIGN = regSignBlockItemB(ExtendedBlocks.WILLOW_SIGN, ExtendedBlocks.WILLOW_WALL_SIGN);
-		ExtendedItems.WILLOW_BOAT = regItemB("willow_boat", () -> new LOTRBoatItem(LOTRBoatEntity.ModBoatType.valueOf("WILLOW")));
+		ExtendedItems.WILLOW_BOAT = regBoatItem("willow_boat", ExtendedBoatEntity.Type.WILLOW, LOTRItemGroups.MISC);
 		ExtendedItems.WILLOW_LOG_SLAB = regBlockItemB(ExtendedBlocks.WILLOW_LOG_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.WILLOW_WOOD_SLAB = regBlockItemB(ExtendedBlocks.WILLOW_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.WILLOW_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.WILLOW_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
@@ -548,8 +569,36 @@ public class MixinLOTRItems {
 		ExtendedItems.STRIPPED_WILLOW_WOOD_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_WOOD_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_WILLOW_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.STRIPPED_WILLOW_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_WILLOW_BRANCH, LOTRItemGroups.BLOCKS);
-		ExtendedItems.WILLOW_BEAM_SLAB = regBlockItemB(ExtendedBlocks.WILLOW_BEAM_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.FALLEN_WILLOW_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_WILLOW_LEAVES, LOTRItemGroups.DECO);
+
+		ExtendedItems.EBONY_LOG = regBlockItemB(ExtendedBlocks.EBONY_LOG, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_WOOD = regBlockItemB(ExtendedBlocks.EBONY_WOOD, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_PLANKS = regBlockItemB(ExtendedBlocks.EBONY_PLANKS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_LEAVES = regBlockItemB(ExtendedBlocks.EBONY_LEAVES, LOTRItemGroups.DECO);
+		ExtendedItems.EBONY_SAPLING = regBlockItemB(ExtendedBlocks.EBONY_SAPLING, LOTRItemGroups.DECO);
+		ExtendedItems.EBONY_SLAB = regBlockItemB(ExtendedBlocks.EBONY_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_STAIRS = regBlockItemB(ExtendedBlocks.EBONY_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_FENCE = regBlockItemB(ExtendedBlocks.EBONY_FENCE, LOTRItemGroups.DECO);
+		ExtendedItems.EBONY_FENCE_GATE = regBlockItemB(ExtendedBlocks.EBONY_FENCE_GATE, LOTRItemGroups.UTIL);
+		ExtendedItems.EBONY_DOOR = regTallBlockItemB(ExtendedBlocks.EBONY_DOOR, LOTRItemGroups.UTIL);
+		ExtendedItems.EBONY_TRAPDOOR = regBlockItemB(ExtendedBlocks.EBONY_TRAPDOOR, LOTRItemGroups.UTIL);
+		ExtendedItems.EBONY_PRESSURE_PLATE = regBlockItemB(ExtendedBlocks.EBONY_PRESSURE_PLATE, LOTRItemGroups.UTIL);
+		ExtendedItems.EBONY_BUTTON = regBlockItemB(ExtendedBlocks.EBONY_BUTTON, LOTRItemGroups.UTIL);
+		ExtendedItems.STRIPPED_EBONY_LOG = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_LOG, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_EBONY_WOOD = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_WOOD, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_BEAM = regBlockItemB(ExtendedBlocks.EBONY_BEAM, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_BEAM_SLAB = regBlockItemB(ExtendedBlocks.EBONY_BEAM_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_SIGN = regSignBlockItemB(ExtendedBlocks.EBONY_SIGN, ExtendedBlocks.EBONY_WALL_SIGN);
+		ExtendedItems.EBONY_BOAT = regBoatItem("ebony_boat", ExtendedBoatEntity.Type.EBONY, LOTRItemGroups.MISC);
+		ExtendedItems.EBONY_LOG_SLAB = regBlockItemB(ExtendedBlocks.EBONY_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_WOOD_SLAB = regBlockItemB(ExtendedBlocks.EBONY_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.EBONY_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.EBONY_BRANCH = regBlockItemB(ExtendedBlocks.EBONY_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_EBONY_LOG_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_LOG_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_EBONY_WOOD_SLAB = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_WOOD_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_EBONY_WOOD_STAIRS = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_WOOD_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.STRIPPED_EBONY_BRANCH = regBlockItemB(ExtendedBlocks.STRIPPED_EBONY_BRANCH, LOTRItemGroups.BLOCKS);
+		ExtendedItems.FALLEN_EBONY_LEAVES = regFallenLeavesBlockItemD(ExtendedBlocks.FALLEN_EBONY_LEAVES, LOTRItemGroups.DECO);
 
 		//ORE/GEM STORAGE
 		ExtendedItems.GALVORN_BLOCK = regBlockItemB(ExtendedBlocks.GALVORN_BLOCK, LOTRItemGroups.BLOCKS);
@@ -782,12 +831,15 @@ public class MixinLOTRItems {
 		ExtendedItems.URUK_CHANDELIER = regBlockItemB(ExtendedBlocks.URUK_CHANDELIER, LOTRItemGroups.DECO);
 		ExtendedItems.DWARVEN_CHANDELIER = regBlockItemB(ExtendedBlocks.DWARVEN_CHANDELIER, LOTRItemGroups.DECO);
 		ExtendedItems.BLUE_DWARVEN_CHANDELIER = regBlockItemB(ExtendedBlocks.BLUE_DWARVEN_CHANDELIER, LOTRItemGroups.DECO);
-
+		ExtendedItems.NUMENOREAN_LANTERN = regBlockItemB(ExtendedBlocks.NUMENOREAN_LANTERN, LOTRItemGroups.DECO);
 		ExtendedItems.EDHELVIR_CRYSTAL_CHANDELIER = regBlockItemB(ExtendedBlocks.EDHELVIR_CRYSTAL_CHANDELIER, LOTRItemGroups.DECO);
 		ExtendedItems.GLOWSTONE_CRYSTAL_CHANDELIER = regBlockItemB(ExtendedBlocks.GLOWSTONE_CRYSTAL_CHANDELIER, LOTRItemGroups.DECO);
 		ExtendedItems.GULDURIL_CRYSTAL_CHANDELIER = regBlockItemB(ExtendedBlocks.GULDURIL_CRYSTAL_CHANDELIER, LOTRItemGroups.DECO);
 
 		ExtendedItems.MORGOND_DRIPSTONE = regBlockItemB(ExtendedBlocks.MORGOND_DRIPSTONE, LOTRItemGroups.DECO);
+		ExtendedItems.SMOOTH_MORGOND_DRIPSTONE = regBlockItemB(ExtendedBlocks.SMOOTH_MORGOND_DRIPSTONE, LOTRItemGroups.DECO);
+
+		ExtendedItems.NUMENOREAN_BARS = regBlockItemB(ExtendedBlocks.NUMENOREAN_BARS, LOTRItemGroups.DECO);
 
 		ExtendedItems.MUD_PATH = regBlockItemB(ExtendedBlocks.MUD_PATH, LOTRItemGroups.DECO);
 		ExtendedItems.MUD_PATH_SLAB = regBlockItemB(ExtendedBlocks.MUD_PATH_SLAB, LOTRItemGroups.DECO);
@@ -957,6 +1009,10 @@ public class MixinLOTRItems {
 		ExtendedItems.CARVED_MORGOND_SLAB = regBlockItemB(ExtendedBlocks.CARVED_MORGOND_SLAB, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CARVED_MORGOND_STAIRS = regBlockItemB(ExtendedBlocks.CARVED_MORGOND_STAIRS, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CARVED_MORGOND_WALL = regBlockItemB(ExtendedBlocks.CARVED_MORGOND_WALL, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SMOOTH_MORGOND = regBlockItemB(ExtendedBlocks.SMOOTH_MORGOND, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SMOOTH_MORGOND_SLAB = regBlockItemB(ExtendedBlocks.SMOOTH_MORGOND_SLAB, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SMOOTH_MORGOND_STAIRS = regBlockItemB(ExtendedBlocks.SMOOTH_MORGOND_STAIRS, LOTRItemGroups.BLOCKS);
+		ExtendedItems.SMOOTH_MORGOND_WALL = regBlockItemB(ExtendedBlocks.SMOOTH_MORGOND_WALL, LOTRItemGroups.BLOCKS);
 
 		ExtendedItems.ORC_STEEL_DOOR = regTallBlockItemB(ExtendedBlocks.ORC_STEEL_DOOR, LOTRItemGroups.UTIL);
 		ExtendedItems.ORC_STEEL_TRAPDOOR = regBlockItemB(ExtendedBlocks.ORC_STEEL_TRAPDOOR, LOTRItemGroups.UTIL);
@@ -998,31 +1054,35 @@ public class MixinLOTRItems {
 
 		//#########################################################################TOOLS#####################################################
 		//Taurethrim Tools
-		ExtendedItems.TAURETHRIM_SHOVEL = regItemB("taurethrim_shovel", () -> new LOTRShovelItem(LOTRMaterial.valueOf("TAURETHRIM")));
-		ExtendedItems.TAURETHRIM_PICKAXE = regItemB("taurethrim_pickaxe", () -> new LOTRPickaxeItem(LOTRMaterial.valueOf("TAURETHRIM")));
-		ExtendedItems.TAURETHRIM_AXE = regItemB("taurethrim_axe", () -> new LOTRAxeItem(LOTRMaterial.valueOf("TAURETHRIM")));
+		ExtendedItems.TAURETHRIM_SHOVEL = regItemB("taurethrim_shovel", () -> new ShovelItem(LOTRMaterial.valueOf("TAURETHRIM").asTool(), 1.5F, -3.0F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.TAURETHRIM_PICKAXE = regItemB("taurethrim_pickaxe", () -> new PickaxeItem(LOTRMaterial.valueOf("TAURETHRIM").asTool(), 1, -2.8F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.TAURETHRIM_AXE = regItemB("taurethrim_axe", () -> new AxeItem(LOTRMaterial.valueOf("TAURETHRIM").asTool(), 6.0F, -3.1F, new Properties().tab(LOTRItemGroups.TOOLS)));
 		ExtendedItems.TAURETHRIM_HOE = regItemB("taurethrim_hoe", () -> new LOTRHoeItem(LOTRMaterial.valueOf("TAURETHRIM")));
 
 		//Angmar Tools
-		ExtendedItems.ANGMAR_SHOVEL = regItemB("angmar_shovel", () -> new LOTRShovelItem(LOTRMaterial.valueOf("ANGMAR")));
-		ExtendedItems.ANGMAR_PICKAXE = regItemB("angmar_pickaxe", () -> new LOTRPickaxeItem(LOTRMaterial.valueOf("ANGMAR")));
-		ExtendedItems.ANGMAR_AXE = regItemB("angmar_axe", () -> new LOTRAxeItem(LOTRMaterial.valueOf("ANGMAR")));
+		ExtendedItems.ANGMAR_SHOVEL = regItemB("angmar_shovel", () -> new ShovelItem(LOTRMaterial.valueOf("ANGMAR").asTool(), 1.5F, -3.0F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.ANGMAR_PICKAXE = regItemB("angmar_pickaxe", () -> new PickaxeItem(LOTRMaterial.valueOf("ANGMAR").asTool(), 1, -2.8F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.ANGMAR_AXE = regItemB("angmar_axe", () -> new AxeItem(LOTRMaterial.valueOf("ANGMAR").asTool(), 6.0F, -3.1F, new Properties().tab(LOTRItemGroups.TOOLS)));
 		ExtendedItems.ANGMAR_HOE = regItemB("angmar_hoe", () -> new LOTRHoeItem(LOTRMaterial.valueOf("ANGMAR")));
 
 		//Bone Tools
-		ExtendedItems.BONE_SHOVEL = regItemB("bone_shovel", () -> new LOTRShovelItem(LOTRMaterial.valueOf("EXT_BONE")));
-		ExtendedItems.BONE_PICKAXE = regItemB("bone_pickaxe", () -> new LOTRPickaxeItem(LOTRMaterial.valueOf("EXT_BONE")));
-		ExtendedItems.BONE_AXE = regItemB("bone_axe", () -> new LOTRAxeItem(LOTRMaterial.valueOf("EXT_BONE")));
+		ExtendedItems.BONE_SHOVEL = regItemB("bone_shovel", () -> new ShovelItem(LOTRMaterial.valueOf("EXT_BONE").asTool(), 1.5F, -3.0F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.BONE_PICKAXE = regItemB("bone_pickaxe", () -> new PickaxeItem(LOTRMaterial.valueOf("EXT_BONE").asTool(), 1, -2.8F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.BONE_AXE = regItemB("bone_axe", () -> new AxeItem(LOTRMaterial.valueOf("EXT_BONE").asTool(), 6.0F, -3.1F, new Properties().tab(LOTRItemGroups.TOOLS)));
 		ExtendedItems.BONE_HOE = regItemB("bone_hoe", () -> new LOTRHoeItem(LOTRMaterial.valueOf("EXT_BONE")));
 
 		//Dol Guldur Tools
-		ExtendedItems.DOL_GULDUR_SHOVEL = regItemB("dol_guldur_shovel", () -> new LOTRShovelItem(LOTRMaterial.valueOf("DOL_GULDUR")));
-		ExtendedItems.DOL_GULDUR_PICKAXE = regItemB("dol_guldur_pickaxe", () -> new LOTRPickaxeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
-		ExtendedItems.DOL_GULDUR_AXE = regItemB("dol_guldur_axe", () -> new LOTRAxeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
+		ExtendedItems.DOL_GULDUR_SHOVEL = regItemB("dol_guldur_shovel", () -> new ShovelItem(LOTRMaterial.valueOf("DOL_GULDUR").asTool(), 1.5F, -3.0F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.DOL_GULDUR_PICKAXE = regItemB("dol_guldur_pickaxe", () -> new PickaxeItem(LOTRMaterial.valueOf("DOL_GULDUR").asTool(), 1, -2.8F, new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.DOL_GULDUR_AXE = regItemB("dol_guldur_axe", () -> new AxeItem(LOTRMaterial.valueOf("DOL_GULDUR").asTool(), 6.0F, -3.1F, new Properties().tab(LOTRItemGroups.TOOLS)));
 		ExtendedItems.DOL_GULDUR_HOE = regItemB("dol_guldur_hoe", () -> new LOTRHoeItem(LOTRMaterial.valueOf("DOL_GULDUR")));
 
 		ExtendedItems.BRANDING_IRON = regItemB("branding_iron", ExtendedBrandingIronItem::new);
 		ExtendedItems.CHISEL = regItemB("chisel", () -> new ExtendedChiselItem(ExtendedBlocks.STONE_SIGN.get(), new Properties().tab(LOTRItemGroups.TOOLS).defaultDurability(100)));
+
+		ExtendedItems.DWARVEN_MATTOCK = regItemB("dwarven_mattock", () -> new ExtendedMattockItem(LOTRMaterial.DWARVEN.asTool(), new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.BLUE_DWARVEN_MATTOCK = regItemB("blue_dwarven_mattock", () -> new ExtendedMattockItem(LOTRMaterial.BLUE_DWARVEN.asTool(), new Properties().tab(LOTRItemGroups.TOOLS)));
+		ExtendedItems.MITHRIL_MATTOCK = regItemB("mithril_mattock", () -> new ExtendedMattockItem(LOTRMaterial.MITHRIL.asTool(), new Properties().tab(LOTRItemGroups.TOOLS)));
 
 		ExtendedItems.IRON_THROWABLE_AXE = regItemB("iron_throwing_axe", () -> new ExtendedThrowableAxeItem(ItemTier.IRON));
 		ExtendedItems.BRONZE_THROWABLE_AXE = regItemB("bronze_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BRONZE));
@@ -1067,6 +1127,8 @@ public class MixinLOTRItems {
 		ExtendedItems.BANANA_BEER = regItemB("banana_beer", () -> VesselDrinkItem.newAlcohol(0.5F, 4, 0.6F));
 		ExtendedItems.PLUM_KVASS = regItemB("plum_kvass", () -> VesselDrinkItem.newAlcohol(0.2F, 4, 0.4F));
 		//#######################################################################EQUIPMENT##################################################
+		ExtendedItems.LEATHER_WARG_ARMOR = regItemB("leather_warg_armor", () -> new ExtendedMountedDyeableArmorItem(8, "leather", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.MAIL_WARG_ARMOR = regItemB("mail_warg_armor", () -> new ExtendedMountedArmorItem(10, "mail", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
 
 		//Generic Orc Equipment
 		ExtendedItems.ORC_BOW = regItemB("orc_bow", () -> new ExtendedBowItem(ExtendedBowMaterial.ORC));
@@ -1078,10 +1140,10 @@ public class MixinLOTRItems {
 		ExtendedItems.ORC_BOMB_FIRE_TRIPLE = regExtendedBlockItemD(ExtendedBlocks.ORC_BOMB_FIRE_TRIPLE, block -> new ExtendedOrcBombItem(block, new Properties().tab(LOTRItemGroups.COMBAT)));
 
 		//Morgul Equipment
-		ExtendedItems.MORGUL_HELMET = regItemB("morgul_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.HEAD, "helmet"));
-		ExtendedItems.MORGUL_CHESTPLATE = regItemB("morgul_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.CHEST));
-		ExtendedItems.MORGUL_LEGGINGS = regItemB("morgul_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.LEGS));
-		ExtendedItems.MORGUL_BOOTS = regItemB("morgul_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.FEET));
+		//ExtendedItems.MORGUL_HELMET = regItemB("morgul_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.HEAD, "helmet"));
+		//ExtendedItems.MORGUL_CHESTPLATE = regItemB("morgul_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.CHEST));
+		//ExtendedItems.MORGUL_LEGGINGS = regItemB("morgul_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.LEGS));
+		//ExtendedItems.MORGUL_BOOTS = regItemB("morgul_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL"), EquipmentSlotType.FEET));
 		ExtendedItems.MORGUL_BLADE = regItemB("morgul_blade",() -> new ExtendedSwordItem(LOTRMaterial.valueOf("MORGUL").asTool(), LOTRItemGroups.COMBAT));
 
 		//Taurethrim Equipment
@@ -1107,6 +1169,11 @@ public class MixinLOTRItems {
 		ExtendedItems.ANGMAR_SWORD = regItemB("angmar_sword",() -> new ExtendedSwordItem(LOTRMaterial.valueOf("ANGMAR").asTool(), LOTRItemGroups.COMBAT));
 		ExtendedItems.ANGMAR_SPEAR = regItemB("angmar_spear",() -> new SpearItem(LOTRMaterial.valueOf("ANGMAR")));
 		ExtendedItems.ANGMAR_DAGGER = regItemB("angmar_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("ANGMAR")));
+		ExtendedItems.MORGUL_VASSAL_HELMET = regItemB("morgul_vassal_helmet", () -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL_VASSAL"), EquipmentSlotType.HEAD, "helmet"));
+		ExtendedItems.MORGUL_VASSAL_CHESTPLATE = regItemB("morgul_vassal_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL_VASSAL"), EquipmentSlotType.CHEST, "chestplate"));
+		ExtendedItems.MORGUL_VASSAL_LEGGINGS = regItemB("morgul_vassal_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL_VASSAL"), EquipmentSlotType.LEGS, "leggings"));
+		ExtendedItems.MORGUL_VASSAL_BOOTS = regItemB("morgul_vassal_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL_VASSAL"), EquipmentSlotType.FEET));
+		ExtendedItems.ANGMAR_WARG_ARMOR = regItemB("angmar_warg_armor", () -> new ExtendedMountedArmorItem(11, "angmar", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
 
 		//Bone Equipment
 		ExtendedItems.BONE_SWORD = regItemB("bone_sword",() -> new ExtendedSwordItem(LOTRMaterial.valueOf("EXT_BONE").asTool(), LOTRItemGroups.COMBAT));
@@ -1155,6 +1222,12 @@ public class MixinLOTRItems {
 		ExtendedItems.GUNDABAD_URUK_DAGGER = regItemB("gundabad_uruk_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("GUNDABAD_URUK")));
 		ExtendedItems.GUNDABAD_URUK_BOW = regItemB("gundabad_uruk_bow",() -> new ExtendedBowItem(ExtendedBowMaterial.GUNDABAD_URUK));
 
+		//Isengard
+		ExtendedItems.ISENGARD_WARG_ARMOR = regItemB("isengard_warg_armor", () -> new ExtendedMountedArmorItem(13, "isengard", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
+
+		//Isengard
+		ExtendedItems.MORDOR_WARG_ARMOR = regItemB("mordor_warg_armor", () -> new ExtendedMountedArmorItem(11, "mordor", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
+
 		ExtendedItems.LONGBOW = regItemB("longbow", () -> new ExtendedBowItem(ExtendedBowMaterial.GENERIC));
 		
 		//Ranger of the North equipment
@@ -1168,9 +1241,9 @@ public class MixinLOTRItems {
 		//Blue Mountains equipment
 		ExtendedItems.BLUE_DWARVEN_SHIELD = regItemB("blue_dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.BLUE_DWARVEN));
 
-		ExtendedItems.LEATHER_BOAR_ARMOR = regItemB("leather_boar_armor", () -> new ExtendedDyeableBoarArmorItem(3, "leather", new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
-		ExtendedItems.DWARVEN_BOAR_ARMOR = regItemB("dwarven_boar_armor", () -> new ExtendedBoarArmorItem(10, "dwarven", new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
-		ExtendedItems.BLUE_DWARVEN_BOAR_ARMOR = regItemB("blue_dwarven_boar_armor", () -> new ExtendedBoarArmorItem(10, "blue_dwarven", new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.LEATHER_BOAR_ARMOR = regItemB("leather_boar_armor", () -> new ExtendedMountedDyeableArmorItem(8, "leather", MountType.BOAR, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.DWARVEN_BOAR_ARMOR = regItemB("dwarven_boar_armor", () -> new ExtendedMountedArmorItem(13, "dwarven", MountType.BOAR, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.BLUE_DWARVEN_BOAR_ARMOR = regItemB("blue_dwarven_boar_armor", () -> new ExtendedMountedArmorItem(13, "blue_dwarven", MountType.BOAR, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
 
 		// High Elven Equipment
 		ExtendedItems.RIVENDELL_SHIELD = regItemB("rivendell_shield", () -> new LOTRShieldItem(LOTRMaterial.RIVENDELL));

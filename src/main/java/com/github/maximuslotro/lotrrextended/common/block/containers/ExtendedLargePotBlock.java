@@ -17,6 +17,7 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -158,5 +159,10 @@ public class ExtendedLargePotBlock extends HorizontalBlock implements IWaterLogg
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
 		return new ExtendedLargePotTileEntity();
+	}
+
+	@Override
+	public boolean isPathfindable(BlockState pState, IBlockReader pLevel, BlockPos pPos, PathType pType) {
+		return false;
 	}
 }

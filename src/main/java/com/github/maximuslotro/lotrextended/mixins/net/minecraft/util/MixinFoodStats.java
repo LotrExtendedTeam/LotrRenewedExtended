@@ -18,7 +18,7 @@ public class MixinFoodStats {
 	@Inject(method="addExhaustion(F)V", at = @At(value="HEAD"), cancellable = true)
 	public void addExhaustionExtended(float pExhaustion, CallbackInfo ci) {
 		if(ExtendedServerConfig.enableHungerDecrease.get()) {
-			this.exhaustionLevel = Math.min(this.exhaustionLevel + (pExhaustion * 0.3f), 40.0F);
+			this.exhaustionLevel = Math.min(this.exhaustionLevel + (pExhaustion /*Extended Start*/* 0.3f/*Extended End*/), 40.0F);
 			ci.cancel();
 		}
 	}

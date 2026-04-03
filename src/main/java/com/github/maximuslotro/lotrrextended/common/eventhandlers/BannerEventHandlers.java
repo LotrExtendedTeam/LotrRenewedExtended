@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBookshelfBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoatItem;
 
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.GateBlock;
@@ -16,6 +17,7 @@ import lotr.common.block.KegBlock;
 import lotr.common.block.PlateBlock;
 import lotr.common.block.VesselDrinkBlock;
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.item.LOTRBoatItem;
 import net.minecraft.block.AbstractButtonBlock;
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.BedBlock;
@@ -24,27 +26,35 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CakeBlock;
 import net.minecraft.block.CampfireBlock;
+import net.minecraft.block.CartographyTableBlock;
 import net.minecraft.block.CraftingTableBlock;
 import net.minecraft.block.DaylightDetectorBlock;
 import net.minecraft.block.DoorBlock;
+import net.minecraft.block.EnchantingTableBlock;
 import net.minecraft.block.EnderChestBlock;
 import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.FireBlock;
+import net.minecraft.block.GrindstoneBlock;
 import net.minecraft.block.JukeboxBlock;
 import net.minecraft.block.LecternBlock;
 import net.minecraft.block.LeverBlock;
+import net.minecraft.block.LoomBlock;
+import net.minecraft.block.StonecutterBlock;
 import net.minecraft.block.TrapDoorBlock;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.item.TNTEntity;
-import net.minecraft.entity.item.minecart.TNTMinecartEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.BoatItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.LilyPadItem;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IWorld;
@@ -62,8 +72,10 @@ public class BannerEventHandlers {
 	@SubscribeEvent(priority=EventPriority.HIGH)
 	public static void handleBannerBlockBreak(BlockEvent.BreakEvent event) {
 		//ExtendedLog.info("BreakEvent");
-		if (!event.getWorld().isClientSide() && ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer())).isNotAllowed()) {
-			event.setCanceled(true);
+		if (!event.getWorld().isClientSide()) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer())).isNotAllowed()) {
+				event.setCanceled(true);
+			}
 		}
 	}
 
@@ -77,20 +89,21 @@ public class BannerEventHandlers {
 				event.setCanceled(true);
 				BlockState state = world.getBlockState(pos);
 				world.sendBlockUpdated(pos, state, state, 2);
-				event.getPlayer().inventory.setChanged();
-				event.getPlayer().containerMenu.broadcastChanges();
+				if (event.getPlayer() instanceof ServerPlayerEntity) {
+					((ServerPlayerEntity)event.getPlayer()).refreshContainer(event.getPlayer().inventoryMenu);
+				}
 			}
 		}
 	}
 
 	@SubscribeEvent(priority=EventPriority.HIGH)
-    public static void fallOnBlockEvent(BlockEvent.FarmlandTrampleEvent event){
-        if (event.getFallDistance() < 0.5) // Permission checks only for at least 1-block high fall events
-            return;
+	public static void fallOnBlockEvent(BlockEvent.FarmlandTrampleEvent event){
+		if (event.getFallDistance() < 0.5) // Permission checks only for at least 1-block high fall events
+			return;
 		if (!event.getWorld().isClientSide() && ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new SingleProtectionInstance.EntityProtection(event.getEntity())).isNotAllowed()) {
 			event.setCanceled(true);
 		}
-    }
+	}
 	// Already handled by NPC checkSpawnRules for NPCs, regular creatures should always spawn
 	//@SubscribeEvent(priority=EventPriority.HIGH)
 	public static void handleBannerEntitySpawn(LivingSpawnEvent.CheckSpawn event) {
@@ -116,6 +129,30 @@ public class BannerEventHandlers {
 			}
 		}
 	}
+	@SubscribeEvent(priority=EventPriority.HIGH)
+	public static void handleBannerBlockRightClick(PlayerInteractEvent.RightClickItem event) {
+		World world = event.getWorld();
+		if(!world.isClientSide()) {
+			ItemStack itemstack = event.getPlayer().getItemInHand(event.getHand());
+			if(!itemstack.isEmpty() && (itemstack.getItem() instanceof BoatItem 
+				|| itemstack.getItem() instanceof ExtendedBoatItem 
+				|| itemstack.getItem() instanceof LOTRBoatItem
+				|| itemstack.getItem() instanceof LilyPadItem)){
+				if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer(), ExtendedBannerPermissions.EVERYTHING), true, "handleBannerBlockRightClick").isNotAllowed()) {
+					event.setCanceled(true);
+					if(itemstack.getItem() instanceof LilyPadItem) {
+						BlockRayTraceResult blockraytraceresult = Item.getPlayerPOVHitResult(world, event.getPlayer(), RayTraceContext.FluidMode.SOURCE_ONLY);
+						BlockPos lilyPos = blockraytraceresult.getBlockPos().above();
+						BlockState state = world.getBlockState(lilyPos);
+						world.sendBlockUpdated(lilyPos, state, state, 2);
+					}
+					if (event.getPlayer() instanceof ServerPlayerEntity) {
+						((ServerPlayerEntity)event.getPlayer()).refreshContainer(event.getPlayer().inventoryMenu);
+					}
+				}
+			}
+		}
+	}
 
 	@SubscribeEvent(priority=EventPriority.HIGH)
 	public static void handleBannerBlockRightInteract(PlayerInteractEvent.RightClickBlock event) {
@@ -124,12 +161,14 @@ public class BannerEventHandlers {
 			BlockState bState = world.getBlockState(event.getPos());
 			Block block = bState.getBlock();
 			ExtendedBannerPermissions perm = ExtendedBannerPermissions.EVERYTHING;
-			if(!(event.getPlayer().isShiftKeyDown() && !event.getPlayer().getItemInHand(event.getHand()).isEmpty())) {
+			if(!event.getPlayer().isShiftKeyDown() || event.getPlayer().getItemInHand(event.getHand()).isEmpty()) {
 				if (block == Blocks.BOOKSHELF || block instanceof ExtendedBookshelfBlock || block instanceof LecternBlock) {
 					perm = ExtendedBannerPermissions.KNOWLEDGE;
 				} else if (block instanceof DoorBlock || block instanceof TrapDoorBlock || block instanceof FenceGateBlock || block instanceof GateBlock) {
 					perm = ExtendedBannerPermissions.DOORS;
-				} else if (block instanceof CraftingTableBlock || block instanceof FactionCraftingTableBlock || block instanceof AnvilBlock || block instanceof ExtendedConquestTableBlock) {
+				} else if (block instanceof CraftingTableBlock || block instanceof FactionCraftingTableBlock || block instanceof AnvilBlock 
+					|| block instanceof ExtendedConquestTableBlock || block instanceof GrindstoneBlock || block instanceof CartographyTableBlock
+					|| block instanceof EnchantingTableBlock || block instanceof LoomBlock || block instanceof StonecutterBlock) {
 					perm = ExtendedBannerPermissions.CRAFTING;
 				} else if (world.getBlockEntity(event.getPos()) instanceof IInventory) {
 					if (block instanceof KegBlock || block instanceof CampfireBlock) {
@@ -166,44 +205,36 @@ public class BannerEventHandlers {
 						world.setBlockAndUpdate(event.getPos(), bState);
 					}
 				}
+				BlockState state = world.getBlockState(event.getPos());
+				world.sendBlockUpdated(event.getPos(), state, state, 2);
+				if (event.getPlayer() instanceof ServerPlayerEntity) {
+					((ServerPlayerEntity)event.getPlayer()).refreshContainer(event.getPlayer().inventoryMenu);
+				}
 				return;
 			}
 		}
 	}
 
-	//TODO allow owner to blow up their own land
 	@SubscribeEvent(priority=EventPriority.HIGH)
 	public static void handleBannerDetonateEvent(ExplosionEvent.Detonate event) {
 		Explosion explosion = event.getExplosion();
 		World world = event.getWorld();
-		Entity exploder = event.getExplosion().getSourceMob();
-		if (!world.isClientSide && exploder != null) {
-			SingleProtectionInstance protectionInstance = null;
+		LivingEntity exploder = event.getExplosion().getSourceMob();
+		SingleProtectionInstance protectionInstance = null;
+		if (!world.isClientSide) {
 			if(exploder instanceof NPCEntity || exploder instanceof MobEntity) {
 				protectionInstance = new SingleProtectionInstance.AnyProtection();
-			}else if(exploder instanceof ProjectileEntity) {
-				protectionInstance = new SingleProtectionInstance.LaunchedProtection((ProjectileEntity)exploder);
-			}else if(exploder instanceof TNTEntity) {
-				if(((TNTEntity)exploder).getOwner()!=null) {
-					LivingEntity owner = ((TNTEntity)exploder).getOwner();
-					if(owner instanceof NPCEntity || owner instanceof MobEntity) {
-						protectionInstance = new SingleProtectionInstance.AnyProtection();
-					}else if(owner instanceof PlayerEntity) {
-						protectionInstance = new SingleProtectionInstance.PlayerProtection((PlayerEntity) owner);
-					}else {
-						protectionInstance = new SingleProtectionInstance.AnyProtection();
-					}
-				}else {
-					protectionInstance = new SingleProtectionInstance.TNTProtection((TNTEntity)exploder);
-				}
-			}else if(exploder instanceof TNTMinecartEntity) {
-				protectionInstance = new SingleProtectionInstance.AnyProtection();
+			}else if(exploder instanceof PlayerEntity) {
+				protectionInstance = new SingleProtectionInstance.PlayerProtection((PlayerEntity) exploder);
+			}else if(explosion.getExploder() instanceof TNTEntity) {
+				protectionInstance = new SingleProtectionInstance.TNTProtection((TNTEntity) explosion.getExploder());
 			}
-			if(protectionInstance==null) {
-				protectionInstance = new SingleProtectionInstance.AnyProtection();
-			}
-			saveBlocks(world, explosion.getToBlow(), protectionInstance);
 		}
+		if(protectionInstance==null) {
+			protectionInstance = new SingleProtectionInstance.AnyProtection();
+		}
+		saveBlocks(world, explosion.getToBlow(), protectionInstance);
+
 	}
 
 	private static void saveBlocks(World world, List<BlockPos> blocksToBlow, SingleProtectionInstance instance) {

@@ -7,19 +7,18 @@ import java.util.function.Supplier;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
-import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
-
 import lotr.common.entity.item.LOTRBoatEntity.ModBoatType;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.DatagenModLoader;
 
 /**
- * Used to register new boat types, via Renewed's existing registration system
+ * Used to register boat types previously register in renewed so that they do not simply disappear
+ * However going forward with Ebony, register boats purely with Extended's system.
  * @Mixin (ModBoatType.class)
  * */
+@Deprecated
 @Mixin(ModBoatType.class)
 public class MixinModBoatType {
 	@SuppressWarnings("target")
@@ -86,9 +85,6 @@ public class MixinModBoatType {
 		ModBoatType instrument = lotrModBoatType$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, plank, boat, name);
 		variants.add(instrument);
 		MixinModBoatType.$VALUES = variants.toArray(new ModBoatType[0]);
-		if(DatagenModLoader.isRunningDataGen()) {
-			DataGenValueHolder.newWoodTypesHolder.add(name);
-		}
 		return instrument;
 	}
 }

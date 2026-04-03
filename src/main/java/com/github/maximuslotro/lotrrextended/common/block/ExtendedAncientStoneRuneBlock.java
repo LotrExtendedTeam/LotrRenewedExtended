@@ -1,12 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
-
 import lotr.common.init.ExtendedItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
@@ -21,8 +17,8 @@ public class ExtendedAncientStoneRuneBlock extends Block {
 	private static final int maxTypes = 2;
 	public static final IntegerProperty TYPE = IntegerProperty.create("rune_type", 1, maxTypes);
 
-	public ExtendedAncientStoneRuneBlock() {
-		super(Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().sound(SoundType.STONE).strength(1.5F, 6.0F));
+	public ExtendedAncientStoneRuneBlock(Properties pProps) {
+		super(pProps);
 		this.registerDefaultState(this.stateDefinition.any().setValue(TYPE, 1));
 	}
 

@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.render.entity;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedEntitiesNew;
+
 import lotr.client.render.entity.*;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.client.Minecraft;
@@ -30,6 +32,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.INVASION_SPAWNER.get(), ExtendedInvasionSpawnerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TAPESTRY.get(), ExtendedTapestryRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.ORC_BOMB.get(), ExtendedOrcBombRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntitiesNew.BOAT.get(), ExtendedBoatRenderer::new);
 		// Hobbit
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_BARTENDER.get(), ExtendedHobbitBartenderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_FARMER.get(), ExtendedHobbitFarmerRenderer::new);

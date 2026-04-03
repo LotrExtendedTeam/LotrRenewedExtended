@@ -732,7 +732,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.SILVER_FUR, 3)
 		.addSBuy(ExtendedItems.WHITE_FUR, 25)
 		.addSBuy(LOTRItems.MAN_FLESH.get(), 3)
-		// TODO add bronze daggers
+		// TODO add bronze (dagger poisoned, battleaxe), iron (dagger poisoned, battleaxe), orc drought
 		.addSSell(ExtendedItems.NORTHERN_ORC_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.BRONZE_HELMET, 12)
 		.addSSell(LOTRItems.BRONZE_CHESTPLATE, 16)
@@ -750,6 +750,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.BRONZE_AXE, 10)
 		.addSSell(Items.IRON_PICKAXE, 15)
 		.addSSell(Items.IRON_AXE, 15)
+		.addSSell(Items.IRON_SWORD, 14)
+		.addSSell(LOTRItems.IRON_SPEAR.get(), 15)
 		.addSSell(LOTRItems.MAGGOTY_BREAD, 4)
 		.addSSell(LOTRItems.FUR_HELMET, 15)
 		.addSSell(LOTRItems.FUR_CHESTPLATE, 20)
@@ -757,6 +759,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.FUR_BOOTS, 12)
 		.addSSell(ExtendedItems.ORC_BOW, 12)
 		.addSSell(ExtendedItems.GUNDABAD_URUK_BOW, 20)
+		.addSSell(ExtendedItems.LEATHER_WARG_ARMOR, 20)
+		.addSSell(ExtendedItems.MAIL_WARG_ARMOR, 25)
 		.save(pConsumer, ExtendedTraderTypes.GUNDABAD_TRADER);
 
 		make(5).setTypicallyWandering()
@@ -781,7 +785,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.COOKED_PORKCHOP, 3)
 		.addSBuy(Items.COOKED_RABBIT, 3)
 		.addSBuy(LOTRItems.GAMMON, 3)
-		// TODO add blue( battleaxe, mattock, pike, warhammer), kegs
+		// TODO add blue( battleaxe, pike, warhammer), kegs
 		.addSSell(LOTRItems.BLUE_DWARVEN_HELMET, 25)
 		.addSSell(LOTRItems.BLUE_DWARVEN_CHESTPLATE, 26)
 		.addSSell(LOTRItems.BLUE_DWARVEN_LEGGINGS, 31)
@@ -814,6 +818,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				1, 350, 1, false)
 		.addDrinkSell(LOTRItems.DWARVEN_ALE, 6, 9, 11)
 		.addDrinkSell(LOTRItems.DWARVEN_TONIC, 10, 14, 18)
+		.addSSell(ExtendedItems.BLUE_DWARVEN_MATTOCK, 18)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_MERCHANT);
 
 		make(100).setTypicallyWandering()
@@ -1036,7 +1041,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.BREAD, 2)
 		.addSBuy(Items.LAVA_BUCKET, 16)
 		.addSBuy(new ItemStack(Items.STRING, 3), 1)
-		// TODO add Dwarven(BattleAxe, Warhammer, pike, mattock)
+		// TODO add Dwarven(BattleAxe, Warhammer, pike)
 		.addSSell(LOTRItems.DWARVEN_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
 		.addSSell(ExtendedItems.DWARF_MARRIAGE_RING, 20)
@@ -1074,6 +1079,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				10, 350, 1, false)
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 40, 150, 1, false)
 		.addSSell(new ItemStack(LOTRItems.DWARVEN_BARS.get(), 8), 25)
+		.addSSell(ExtendedItems.DWARVEN_MATTOCK, 18)
 		.save(pConsumer, ExtendedTraderTypes.DWARVEN_SMITH);
 
 		make(100)
@@ -1107,7 +1113,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.BREAD, 2)
 		.addSBuy(Items.LAVA_BUCKET, 16)
 		.addSBuy(new ItemStack(Items.STRING, 3), 1)
-		// TODO add Blue Dwarven(BattleAxe, Warhammer, pike, mattock)
+		// TODO add Blue Dwarven(BattleAxe, Warhammer, pike)
 		.addSSell(LOTRItems.BLUE_MOUNTAINS_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 18)
 		.addSSell(ExtendedItems.DWARF_MARRIAGE_RING, 20)
@@ -1137,6 +1143,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				10, 350, 1, false)
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 40, 150, 1, false)
 		.addSSell(new ItemStack(LOTRItems.BLUE_DWARVEN_BARS.get(), 8), 25)
+		.addSSell(ExtendedItems.BLUE_DWARVEN_MATTOCK, 18)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_SMITH);
 
 		make(10)
@@ -1539,6 +1546,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.BLACK_WARG_HELMET, 15)
 		.addSSell(ExtendedItems.ISENGARD_BANNER_PATTERN, 25)
 		.addSSell(ExtendedItems.ISENGARD_BANNER, 50)
+		.addSSell(ExtendedItems.LEATHER_WARG_ARMOR, 15)
+		.addSSell(ExtendedItems.MAIL_WARG_ARMOR, 20)
 		.save(pConsumer, ExtendedTraderTypes.ISENGARD_URUK_SUPPLIER);
 
 		make(100)
@@ -1562,7 +1571,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(new ItemStack(Items.STRING, 3), 1)
 		.addSBuy(new ItemStack(Items.WHEAT, 3), 1)
 		.addSBuy(Items.FEATHER, 2)
-		// TODO add Uruk(poisoned dagger, battleaxe, hammer, pike, warg armor, crossbow, bolt)
+		// TODO add Uruk(poisoned dagger, battleaxe, hammer, pike, crossbow, bolt)
 		.addSSell(LOTRItems.URUK_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.URUK_HELMET, 24)
 		.addSSell(LOTRItems.URUK_CHESTPLATE, 36)
@@ -1583,6 +1592,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.MAGGOTY_BREAD, 4)
 		.addSSell(ExtendedItems.ISENGARD_BANNER_PATTERN, 25)
 		.addSSell(ExtendedItems.ISENGARD_BANNER, 50)
+		.addSSell(ExtendedItems.MAIL_WARG_ARMOR, 20)
+		.addSSell(ExtendedItems.ISENGARD_WARG_ARMOR, 25)
 		.save(pConsumer, ExtendedTraderTypes.ISENGARD_URUK_SMITH);
 	}
 }

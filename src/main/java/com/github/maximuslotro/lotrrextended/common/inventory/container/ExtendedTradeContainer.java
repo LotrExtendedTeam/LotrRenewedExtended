@@ -69,7 +69,6 @@ public class ExtendedTradeContainer extends Container {
 
         this.level = inventory.player.level;
         this.player = inventory.player;
-        assert nbt != null;
         this.traderNPC = (NPCEntity) this.level.getEntity(nbt.getInt("entityId"));
         this.trader = (ExtendedTraderEntity) traderNPC;
 

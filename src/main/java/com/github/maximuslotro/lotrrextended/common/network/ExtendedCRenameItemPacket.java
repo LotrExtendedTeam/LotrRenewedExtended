@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainerNew;
 
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.SharedConstants;
@@ -12,7 +12,7 @@ import net.minecraftforge.fml.network.NetworkEvent.Context;
  * Network packet used for sending item rename requests from the client to the server.
  * <p>
  * This packet is responsible for transmitting the new item name entered by a player 
- * within an {@link ExtendedRepairContainer}. The server validates and applies the name 
+ * within an {@link ExtendedRepairContainerNew}. The server validates and applies the name 
  * change to the item being repaired.
  * </p>
  */
@@ -48,7 +48,7 @@ public class ExtendedCRenameItemPacket {
 	/**
 	 * Handles the received rename packet on the server side.
 	 * <p>
-	 * Ensures that the sender's current container is an {@link ExtendedRepairContainer}, 
+	 * Ensures that the sender's current container is an {@link ExtendedRepairContainerNew}, 
 	 * validates the proposed name (via {@link SharedConstants#filterText(String)}), 
 	 * and applies it if it does not exceed the 35-character limit.
 	 * </p>
@@ -57,8 +57,8 @@ public class ExtendedCRenameItemPacket {
 	 * @param context The network context supplier containing sender and handling state.
 	 */
 	public static void handle(ExtendedCRenameItemPacket packet, Supplier<Context> context) {
-		if (context.get().getSender().containerMenu instanceof ExtendedRepairContainer) {
-			ExtendedRepairContainer repaircontainer = (ExtendedRepairContainer)context.get().getSender().containerMenu;
+		if (context.get().getSender().containerMenu instanceof ExtendedRepairContainerNew) {
+			ExtendedRepairContainerNew repaircontainer = (ExtendedRepairContainerNew)context.get().getSender().containerMenu;
 			String s = SharedConstants.filterText(packet.getName());
 			if (s.length() <= 35) {
 				repaircontainer.setItemName(s);

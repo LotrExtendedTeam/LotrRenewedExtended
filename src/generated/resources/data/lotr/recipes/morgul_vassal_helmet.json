@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:angmar",
+  "pattern": [
+    "###",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:morgul_steel_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:morgul_vassal_helmet"
+  }
+}

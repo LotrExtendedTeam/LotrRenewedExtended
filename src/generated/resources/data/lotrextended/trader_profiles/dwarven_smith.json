@@ -461,6 +461,14 @@
         "averageCost": 25,
         "count": 8
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:dwarven_mattock",
+        "averageCost": 18,
+        "nbt": "{Damage:0}"
+      }
     }
   ]
 }

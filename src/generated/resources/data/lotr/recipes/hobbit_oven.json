@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_hobbit",
+  "pattern": [
+    "BBB",
+    "BRB",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:bricks"
+    },
+    "R": {
+      "item": "minecraft:coal_block"
+    }
+  },
+  "result": {
+    "item": "lotr:hobbit_oven"
+  }
+}

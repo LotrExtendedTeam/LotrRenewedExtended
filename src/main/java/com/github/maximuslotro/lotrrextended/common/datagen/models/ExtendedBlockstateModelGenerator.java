@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRuneBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarsBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
@@ -19,7 +20,8 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedChimneyPotBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedElvenLanternBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternElvenBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternNumenoreanBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrassVoidBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
@@ -283,6 +285,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genStoneGrinderBlockItem((ExtendedStoneGrinderBlock) block.getValue().get());
 					continue;
 				}
+				if(block.getValue().get() instanceof ExtendedBarsBlock) {
+					genBarsBlock((ExtendedBarsBlock) block.getValue().get(), block.getKey());
+					continue;
+				}
 				if(block.getValue().get() instanceof ExtendedBarrelBlock) {
 					genBarrelBlockItem((ExtendedBarrelBlock) block.getValue().get(), block.getKey());
 					continue;
@@ -390,9 +396,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof DripstoneBlock) {
-					if(block.getKey().contains("morgond")) {
-						genDripstoneBlockItem((DripstoneBlock)block.getValue().get(), lotrExtendedLoc("block/morgond"));
-					}
+					genDripstoneBlockItem((DripstoneBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 10)));
 					continue;
 				}
 				if(block.getValue().get() instanceof LOTRTrapdoorBlock) {
@@ -546,8 +550,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genHangingBrazierBlockItem((ExtendedBrazierBlock) block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedElvenLanternBlock) {
-					genElvenHangingLanternBlockItem((ExtendedElvenLanternBlock) block.getValue().get(), "block/"+block.getKey());
+				if(block.getValue().get() instanceof ExtendedLanternElvenBlock) {
+					genElvenHangingLanternBlockItem((ExtendedLanternElvenBlock) block.getValue().get(), "block/"+block.getKey());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedLanternNumenoreanBlock) {
+					genNumenoreanHangingLanternBlockItem((ExtendedLanternNumenoreanBlock) block.getValue().get(), "block/"+block.getKey());
 					continue;
 				}
 				if((block.getValue().get() instanceof ExtendedSpawnerBlock) || (block.getValue().get() instanceof ExtendedGroupSpawnerBlock)) {
@@ -1421,7 +1429,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
         }, ExtendedBrazierBlock.LIT);
 	}
 
-	private void genElvenHangingLanternBlockItem(ExtendedElvenLanternBlock lantern, String name) {
+	private void genElvenHangingLanternBlockItem(ExtendedLanternElvenBlock lantern, String name) {
 		registeredBlocks.add(lantern);
 		ResourceLocation lanternText = lotrExtendedLoc(name);
 		ResourceLocation lanternTextGround = lotrExtendedLoc(name+"_ground");
@@ -1435,11 +1443,32 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
                 .texture("particle", lanternText);
 		getVariantBuilder(lantern)
 		.forAllStatesExcept(state -> {
-			boolean hanging = state.getValue(ExtendedElvenLanternBlock.HANGING);
+			boolean hanging = state.getValue(ExtendedLanternElvenBlock.HANGING);
             return ConfiguredModel.builder()
                     .modelFile(hanging ? hangingModel : lanternModel)
                     .build();
-        }, ExtendedElvenLanternBlock.WATERLOGGED, ExtendedElvenLanternBlock.LIT);
+        }, ExtendedLanternElvenBlock.WATERLOGGED, ExtendedLanternElvenBlock.LIT);
+	}
+
+	private void genNumenoreanHangingLanternBlockItem(ExtendedLanternNumenoreanBlock lantern, String name) {
+		registeredBlocks.add(lantern);
+		ResourceLocation parent = lotrExtendedLoc("block/template_numenorean_lantern");
+		ResourceLocation parentHanging = lotrExtendedLoc("block/template_numenorean_lantern_ceiling");
+		ModelFile lanternModel = models().withExistingParent("lotrextended:"+lantern.getRegistryName().getPath(), parent)
+                .texture("lantern", lotrExtendedLoc(name))
+                .texture("particle", lotrExtendedLoc("block/morgond"));
+		ModelFile hangingModel = models().withExistingParent("lotrextended:"+lantern.getRegistryName().getPath()+"_hanging", parentHanging)
+                .texture("lantern", lotrExtendedLoc(name))
+                .texture("particle", lotrExtendedLoc("block/morgond"));
+		getVariantBuilder(lantern)
+		.forAllStatesExcept(state -> {
+			boolean hanging = state.getValue(ExtendedLanternNumenoreanBlock.HANGING);
+            return ConfiguredModel.builder()
+                    .modelFile(hanging ? hangingModel : lanternModel)
+                    .build();
+        }, ExtendedLanternElvenBlock.WATERLOGGED, ExtendedLanternElvenBlock.LIT);
+		itemModels().getBuilder("lotr:"+lantern.getRegistryName().getPath()).parent(lanternModel);
+
 	}
 
 	private void genVineBlock(ExtendedVineBlock vine, String name, boolean mossVines) {
@@ -1513,6 +1542,27 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, true).with(VineBlock.UP, false).with(VineBlock.WEST, true).modelForState().modelFile(m_4).addModel()
 		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, true).with(VineBlock.UP, true).with(VineBlock.WEST, false).modelForState().modelFile(m_3u).addModel()
 		.partialState().with(VineBlock.EAST, true).with(VineBlock.NORTH, true).with(VineBlock.SOUTH, true).with(VineBlock.UP, true).with(VineBlock.WEST, true).modelForState().modelFile(m_4u).addModel();
+	}
+
+	private void genBarsBlock(ExtendedBarsBlock bars, String name) {
+		registeredBlocks.add(bars);
+		ModelFile postEndsModel = models().withExistingParent("lotrextended:"+name+"_post_end", lotrLoc("block/uruk_bars_post_ends")).texture("edge", lotrExtendedLoc("block/"+name+"_edge")).texture("particle", lotrExtendedLoc("block/"+name));
+		ModelFile postModel = models().withExistingParent("lotrextended:"+name+"_post", lotrLoc("block/uruk_bars_post")).texture("spike", lotrExtendedLoc("block/"+name+"_spike")).texture("bars", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+		ModelFile capNEModel = models().withExistingParent("lotrextended:"+name+"_cap", lotrLoc("block/uruk_bars_cap")).texture("spike", lotrExtendedLoc("block/"+name+"_spike")).texture("bars", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+		ModelFile capSWModel = models().withExistingParent("lotrextended:"+name+"_cap_alt", lotrLoc("block/uruk_bars_cap_alt")).texture("spike", lotrExtendedLoc("block/"+name+"_spike")).texture("bars", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+		ModelFile sideNEModel = models().withExistingParent("lotrextended:"+name+"_side", lotrLoc("block/uruk_bars_side")).texture("spike", lotrExtendedLoc("block/"+name+"_spike")).texture("bars", lotrExtendedLoc("block/"+name)).texture("edge", lotrExtendedLoc("block/"+name+"_edge")).texture("particle", lotrExtendedLoc("block/"+name));
+		ModelFile sideSWModel = models().withExistingParent("lotrextended:"+name+"_side_alt", lotrLoc("block/uruk_bars_side_alt")).texture("spike", lotrExtendedLoc("block/"+name+"_spike")).texture("bars", lotrExtendedLoc("block/"+name)).texture("edge", lotrExtendedLoc("block/"+name+"_edge")).texture("particle", lotrExtendedLoc("block/"+name));
+
+		MultiPartBlockStateBuilder builder = getMultipartBuilder(bars).part().modelFile(postEndsModel).addModel().end();
+		builder.part().modelFile(postModel).addModel().condition(ExtendedBarsBlock.NORTH, false).condition(ExtendedBarsBlock.EAST, false).condition(ExtendedBarsBlock.SOUTH, false).condition(ExtendedBarsBlock.WEST, false).end();
+		builder.part().modelFile(capNEModel).addModel().condition(ExtendedBarsBlock.NORTH, true).condition(ExtendedBarsBlock.EAST, false).condition(ExtendedBarsBlock.SOUTH, false).condition(ExtendedBarsBlock.WEST, false).end();
+		builder.part().modelFile(capNEModel).rotationY(90).addModel().condition(ExtendedBarsBlock.NORTH, false).condition(ExtendedBarsBlock.EAST, true).condition(ExtendedBarsBlock.SOUTH, false).condition(ExtendedBarsBlock.WEST, false).end();
+		builder.part().modelFile(capSWModel).addModel().condition(ExtendedBarsBlock.NORTH, false).condition(ExtendedBarsBlock.EAST, false).condition(ExtendedBarsBlock.SOUTH, true).condition(ExtendedBarsBlock.WEST, false).end();
+		builder.part().modelFile(capSWModel).rotationY(90).addModel().condition(ExtendedBarsBlock.NORTH, false).condition(ExtendedBarsBlock.EAST, false).condition(ExtendedBarsBlock.SOUTH, false).condition(ExtendedBarsBlock.WEST, true).end();
+		builder.part().modelFile(sideNEModel).addModel().condition(ExtendedBarsBlock.NORTH, true).end();
+		builder.part().modelFile(sideNEModel).rotationY(90).addModel().condition(ExtendedBarsBlock.EAST, true).end();
+		builder.part().modelFile(sideSWModel).addModel().condition(ExtendedBarsBlock.SOUTH, true).end();
+		builder.part().modelFile(sideSWModel).rotationY(90).addModel().condition(ExtendedBarsBlock.WEST, true).end();
 	}
 
 	private void genBedBlockItem(ExtendedBedBlock bed, String name) {

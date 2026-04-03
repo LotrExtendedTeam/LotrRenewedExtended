@@ -1,10 +1,12 @@
 package lotr.common.data;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedNBTUtils;
 
 import lotr.common.LOTRMod;
 import lotr.common.fellowship.ExtendedFellowship;
@@ -16,9 +18,12 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Util;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
@@ -33,50 +38,71 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 
 	@Override
 	public void save(CompoundNBT playerNBT) {
+		CompoundNBT fellowshipData = new CompoundNBT();
 		ListNBT fellowships = new ListNBT();
 		for (UUID fsID : fellowshipIDs) {
 			CompoundNBT nbt = new CompoundNBT();
-			nbt.putString("ID", fsID.toString());
+			nbt.putUUID("ID", fsID);
 			fellowships.add(nbt);
 		}
-		playerNBT.put("Fellowships", fellowships);
+		fellowshipData.put("Fellowships", fellowships);
 		ListNBT fellowshipInvites = new ListNBT();
 		for (ExtendedFellowshipInvite invite : invites) {
 			CompoundNBT nbt = new CompoundNBT();
-			nbt.putString("ID", invite.fellowshipID.toString());
-			if (invite.Invitor != null)
-				nbt.putString("InviterID", invite.Invitor.toString());
-//			if (invite.Fname != null)
-//				nbt.putString("FellowshipName", invite.Fname);
+			nbt.putUUID("ID", invite.fellowshipID);
+			if (invite.Invitor != null) {
+				nbt.putUUID("InviterID", invite.Invitor);
+			}
 			fellowshipInvites.add(nbt);
 		}
-		playerNBT.put("FellowshipInvites", fellowshipInvites);
-
+		fellowshipData.put("FellowshipInvites", fellowshipInvites);
+		fellowshipData.putInt("datVer", 1);
+		playerNBT.put("FellowshipData", fellowshipData);
 	}
 
 	@Override
 	public void load(CompoundNBT playerNBT) {
-		fellowshipIDs.clear();
-		ListNBT fellowships = playerNBT.getList("Fellowships", 10);
-		for (int i = 0; i < fellowships.size(); i++) {
-			CompoundNBT nbt = fellowships.getCompound(i);
-			UUID fsID = UUID.fromString(nbt.getString("ID"));
-			if (fsID != null)
-				fellowshipIDs.add(fsID);
-		}
-		invites.clear();
-		ListNBT fellowshipInvite = playerNBT.getList("FellowshipInvites", 10);
-		for (int i = 0; i < fellowshipInvite.size(); i++) {
-			CompoundNBT nbt = fellowshipInvite.getCompound(i);
-			UUID fsID = UUID.fromString(nbt.getString("ID"));
-			if (fsID != null) {
-				UUID inviterID = null;
-				if (nbt.contains("InviterID"))
-					inviterID = UUID.fromString(nbt.getString("InviterID"));
-//				String fname = null;
-//				if (nbt.contains("FellowshipName"))
-//					fname = nbt.getString("FellowshipName");
-				invites.add(new ExtendedFellowshipInvite(fsID, inviterID));
+		if(playerNBT.contains("FellowshipData")) {
+			CompoundNBT fellowshipData = playerNBT.getCompound("FellowshipData");
+			int dataVersion = ExtendedNBTUtils.getInt(fellowshipData, "datVer", 0);
+			fellowshipIDs.clear();
+			invites.clear();
+			ListNBT fellowships = fellowshipData.getList("Fellowships", 10);
+			for (int i = 0; i < fellowships.size(); i++) {
+				CompoundNBT nbt = fellowships.getCompound(i);
+				UUID fsID = ExtendedNBTUtils.getUUID(nbt, "ID", null);
+				if (fsID != null) {
+					fellowshipIDs.add(nbt.getUUID("ID"));
+				}
+			}
+			ListNBT fellowshipInvite = fellowshipData.getList("FellowshipInvites", 10);
+			for (int i = 0; i < fellowshipInvite.size(); i++) {
+				CompoundNBT nbt = fellowshipInvite.getCompound(i);
+				UUID fsID = ExtendedNBTUtils.getUUID(nbt, "ID", null);
+				if (fsID != null) {
+					UUID inviterID = ExtendedNBTUtils.getUUID(nbt, "InviterID", null);
+					invites.add(new ExtendedFellowshipInvite(fsID, inviterID));
+				}
+			}
+		}else {
+			// Handle pre-1.10.0 fellowships
+			fellowshipIDs.clear();
+			invites.clear();
+			ListNBT fellowships = playerNBT.getList("Fellowships", 10);
+			for (int i = 0; i < fellowships.size(); i++) {
+				CompoundNBT nbt = fellowships.getCompound(i);
+				// Perform load uuid from string
+				UUID fsID = UUID.fromString(nbt.getString("ID"));
+				if (fsID != null)
+					fellowshipIDs.add(fsID);
+			}
+			// Handle 1.0->1.9.3 fellowships having broken data
+			List<UUID> fellowshipIDTemp = new ArrayList<>(fellowshipIDs);
+			for (UUID id : fellowshipIDTemp) {
+				ExtendedFellowship fellowship = ExtendedFellowshipHolderServer.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), id);
+				if (fellowship == null || !fellowship.isInFellowship(getPlayerUUID())) {
+					fellowshipIDs.remove(id);
+				}
 			}
 		}
 	}
@@ -85,13 +111,16 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 		return fellowshipIDs;
 	}
 
-	public List<ExtendedFellowship> getFellowships() {
+	public List<ExtendedFellowship> getFellowships(World level) {
+		if(!(level instanceof ServerWorld)) {
+			return Collections.emptyList();
+		}
 		List<ExtendedFellowship> ships = new ArrayList<>();
 		for (UUID ids : fellowshipIDs) {
-			ExtendedFellowship fellowship = ExtendedFellowshipHolderServer
-					.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), ids);
-			if (fellowship != null)
+			ExtendedFellowship fellowship = ExtendedFellowshipHolderServer.getFellowship((ServerWorld) level, ids);
+			if (fellowship != null) {
 				ships.add(fellowship);
+			}
 		}
 		return ships;
 	}
@@ -122,17 +151,22 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 	}
 
 	public void setFellowshipIcon(ExtendedFellowship fs, ItemStack itemstack) {
-		if (fs.hasEditPowers(getPlayerUUID()) || fs.isFellowshipAdmin(getPlayerUUID()))
+		if (fs.hasEditPowers(getPlayerUUID()))
 			fs.setIcon(itemstack);
 	}
 
 	public void setFellowshipPreventPVP(ExtendedFellowship fs, boolean prevent) {
-		if (fs.hasEditPowers(getPlayerUUID()) || fs.isFellowshipAdmin(getPlayerUUID()))
+		if (fs.hasEditPowers(getPlayerUUID()))
 			fs.setPreventPVP(prevent);
 	}
 
+	public void setFellowshipColor(ExtendedFellowship fs, Style color) {
+		if (fs.hasEditPowers(getPlayerUUID()))
+			fs.setFellowshipColor(color);
+	}
+
 	public void setFellowshipPreventHiredFF(ExtendedFellowship fs, boolean prevent) {
-		if (fs.hasEditPowers(getPlayerUUID()) || fs.isFellowshipAdmin(getPlayerUUID()))
+		if (fs.hasEditPowers(getPlayerUUID()))
 			fs.setPreventHiredFF(prevent);
 	}
 
@@ -157,9 +191,9 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 		}
 	}
 
-	public void addPlayer(ExtendedFellowship fs, UUID player) {
+	public void addPlayer(ServerWorld level, ExtendedFellowship fs, UUID player) {
 		if (fs.hasEditPowers(getPlayerUUID()))
-			fs.addFellowshipMember(player);
+			fs.addFellowshipMember(level, player);
 	}
 
 	public void addInvitePlayer(ExtendedFellowship fs, UUID playerSendingInvite) {
@@ -199,7 +233,7 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 		}
 	}
 
-	public void acceptInvitePlayer(ExtendedFellowship fs) {
+	public void acceptInvitePlayer(ServerWorld level, ExtendedFellowship fs) {
 		ExtendedFellowshipInvite existingInvite = null;
 		for (ExtendedFellowshipInvite invite : invites) {
 			if (invite.fellowshipID.equals(fs.getFellowshipId())) {
@@ -212,7 +246,7 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 				removeInvitePlayer(fs, false);
 				return;
 			}
-			fs.addFellowshipMember(getPlayerUUID());
+			fs.addFellowshipMember(level, getPlayerUUID());
 			if (!fellowshipIDs.contains(fs.getFellowshipId())) {
 				fellowshipIDs.add(fs.getFellowshipId());
 			}
@@ -228,23 +262,23 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 			fs.setIcon(stack);
 	}
 
-	public void removePlayer(ExtendedFellowship fs, UUID player) {
+	public void removePlayer(ServerWorld level, ExtendedFellowship fs, UUID player) {
 		if (fs.hasEditPowers(getPlayerUUID())) {
-			fs.removeFellowshipMember(player);
+			fs.removeFellowshipMember(level, player);
 			PlayerEntity owner = getPlayerFromUUID(player);
 			fs.createNotification("command.lotrextended.fellowship.client.removed", owner, fs.getFellowshipName());
 		}
 	}
 
-	public void setOwner(ExtendedFellowship fs, UUID player) {
+	public void setOwner(ServerWorld level, ExtendedFellowship fs, UUID player) {
 		if (fs.isFellowshipOwner(getPlayerUUID())) {
-			fs.setOwnerUUID(player);
+			fs.setOwnerUUID(level, player);
 			PlayerEntity owner = getPlayerFromUUID(player);
 			fs.createNotification("command.lotrextended.fellowship.client.transfered", owner, fs.getFellowshipName());
 		}
 	}
 
-	public boolean createFellowship(String name, boolean adminOverride) {
+	public boolean createFellowship(ServerWorld level, String name, boolean adminOverride) {
 		if (!ExtendedServerConfig.enableFellowshipCreation.get() && !adminOverride) {
 			TextComponent comp = new TranslationTextComponent("gui.lotrextended.fellowships.creation.disabled");
 			comp.withStyle(TextFormatting.YELLOW);
@@ -255,7 +289,7 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 
 		if (!anyMatchingFellowshipNames(name)) {
 			ExtendedFellowship fellowship = new ExtendedFellowship(name, getPlayerUUID());
-			fellowship.createAndRegister();
+			fellowship.createAndRegister(level);
 			PlayerEntity owner = getPlayerFromUUID(getPlayerUUID());
 			fellowship.createNotification("command.lotrextended.fellowship.client.created", owner);
 			return true;
@@ -263,9 +297,9 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 		return false;
 	}
 
-	public void leaveFellowship(ExtendedFellowship fs) {
+	public void leaveFellowship(ServerWorld level, ExtendedFellowship fs) {
 		if (!fs.isFellowshipOwner(getPlayerUUID())) {
-			fs.removeFellowshipMember(getPlayerUUID());
+			fs.removeFellowshipMember(level, getPlayerUUID());
 			if (fellowshipIDs.contains(fs.getFellowshipId()))
 				removeFellowship(fs);
 			PlayerEntity owner = getPlayerFromUUID(getPlayerUUID());
@@ -273,7 +307,7 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 		}
 	}
 
-	public boolean disbandFellowship(ExtendedFellowship fs) {
+	public boolean disbandFellowship(ServerWorld level, ExtendedFellowship fs) {
 		if (fs.isFellowshipOwner(getPlayerUUID())) {
 			for(UUID user : fs.getFellowshipMembers()) {
 				PlayerEntity player = getPlayerFromUUID(user);
@@ -281,7 +315,7 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 					fs.createNotification("command.lotrextended.fellowship.client.disbanded", player, fs.getFellowshipName());
 				}
 			}
-			fs.disband();
+			fs.disband(level);
 			removeFellowship(fs);
 			return true;
 		}

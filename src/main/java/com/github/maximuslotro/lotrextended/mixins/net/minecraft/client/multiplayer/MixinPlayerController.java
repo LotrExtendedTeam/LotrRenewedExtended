@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import lotr.common.entity.npc.ExtendedRidableWargEntity;
+import lotr.common.entity.npc.ExtendedRidableEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerController;
 
@@ -20,7 +20,7 @@ public class MixinPlayerController {
 	
 	@Inject(method = "isServerControlledInventory()Z", at = @At("HEAD"), remap=true, cancellable = true)
 	public void isServerControlledInventory$Extended(CallbackInfoReturnable<Boolean> cir) {
-		if(this.minecraft.player.isPassenger() && this.minecraft.player.getVehicle() instanceof ExtendedRidableWargEntity) {
+		if(this.minecraft.player.isPassenger() && this.minecraft.player.getVehicle() instanceof ExtendedRidableEntity) {
 			cir.setReturnValue(true);
 		}
 	}

@@ -8,6 +8,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredSitFollowGoal;
 
 import lotr.common.entity.npc.NPCEntity;
+import lotr.common.entity.npc.data.name.ExtendedNPCNameGenerators;
+import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.DwarfEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.World;
@@ -23,27 +25,37 @@ import net.minecraft.world.World;
 @Mixin(DwarfEntity.class)
 public abstract class MixinDwarfEntity extends NPCEntity {
 	/**
-     * Required constructor for Mixins extending other classes.
-     * <p>
-     * Although required for compilation, this constructor will be stripped at runtime and is not executed.
-     *
-     * @param type  A placeholder {@link EntityType} for {@link DwarfEntity}, required for superclass initialization.
-     * @param world A placeholder {@link World} instance, required for superclass initialization.
-     */
+	 * Required constructor for Mixins extending other classes.
+	 * <p>
+	 * Although required for compilation, this constructor will be stripped at runtime and is not executed.
+	 *
+	 * @param type  A placeholder {@link EntityType} for {@link DwarfEntity}, required for superclass initialization.
+	 * @param world A placeholder {@link World} instance, required for superclass initialization.
+	 */
 	public MixinDwarfEntity(EntityType<? extends DwarfEntity> type, World world) {
 		super(type, world);
 	}
 	/**
-     * Injects a custom AI goal at the end of the {@code addNPCAI} method execution.
-     * <p>
-     * This method adds an {@link ExtendedHiredSitFollowGoal} to the NPC's goal selector,
-     * enabling it to follow and sit with enhanced behavior parameters.
-     *
-     * @Inject (method = "addNPCAI()V", at = @At("TAIL"), remap = false)
-     * @param ci The {@link CallbackInfo} provided by the Mixin injector.
-     */
+	 * Injects a custom AI goal at the end of the {@code addNPCAI} method execution.
+	 * <p>
+	 * This method adds an {@link ExtendedHiredSitFollowGoal} to the NPC's goal selector,
+	 * enabling it to follow and sit with enhanced behavior parameters.
+	 *
+	 * @Inject (method = "addNPCAI()V", at = @At("TAIL"), remap = false)
+	 * @param ci The {@link CallbackInfo} provided by the Mixin injector.
+	 */
 	@Inject(method = "addNPCAI()V", at = @At("TAIL"), remap = false)
 	protected void addNPCAIExtended(CallbackInfo ci) {
 		this.goalSelector.addGoal(1, new ExtendedHiredSitFollowGoal((NPCEntity)(Object)this, 1.3D, 8.0F, 6.0F, false));
+	}
+
+	/**
+	 * Provides the new name generator used for Durin's Dwarves mixing different banks.
+	 *
+	 * @return The {@link NPCNameGenerator} specific to Blue Dwarves.
+	 */
+	@Override
+	protected NPCNameGenerator getNameGenerator() {
+		return ExtendedNPCNameGenerators.DURIN_DWARF;
 	}
 }

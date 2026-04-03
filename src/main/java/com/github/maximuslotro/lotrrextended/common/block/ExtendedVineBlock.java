@@ -50,7 +50,6 @@ public class ExtendedVineBlock extends VineBlock {
 		return !pState.getValue(CLIPPED);
 	}
 
-
 	@Override
 	public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity pPlayer, Hand hand, BlockRayTraceResult p_225533_6_) {
 		if(pPlayer.getItemInHand(hand).getItem().is(Tags.Items.SHEARS) && !blockState.getValue(CLIPPED)) {

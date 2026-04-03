@@ -242,9 +242,6 @@ public class ExtendedBannerProtectionManager {
 				if(offender instanceof PlayerEntity) {
 					return new SingleProtectionInstance.PlayerProtection((PlayerEntity)offender).isProtected(bannerInstance);
 				}
-				if(offender instanceof LivingEntity) {
-					return new SingleProtectionInstance.EntityProtection(offender).isProtected(bannerInstance);
-				}
 				return true;
 			}
 
@@ -267,9 +264,6 @@ public class ExtendedBannerProtectionManager {
 				if(offender instanceof PlayerEntity) {
 					return new SingleProtectionInstance.PlayerProtection((PlayerEntity)offender).isProtected(bannerInstance);
 				}
-				if(offender instanceof LivingEntity) {
-					return new SingleProtectionInstance.EntityProtection(offender).isProtected(bannerInstance);
-				}
 				return true;
 			}
 
@@ -291,9 +285,6 @@ public class ExtendedBannerProtectionManager {
 				Entity offender = source.getEntity();
 				if(offender instanceof PlayerEntity) {
 					return new SingleProtectionInstance.PlayerProtection((PlayerEntity)offender).isProtected(bannerInstance);
-				}
-				if(offender instanceof LivingEntity) {
-					return new SingleProtectionInstance.EntityProtection(offender).isProtected(bannerInstance);
 				}
 				if(offender instanceof ProjectileEntity) {
 					return new SingleProtectionInstance.LaunchedProtection((ProjectileEntity) offender).isProtected(bannerInstance);
