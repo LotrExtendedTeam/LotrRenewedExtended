@@ -15,11 +15,7 @@ import net.minecraft.world.gen.ChunkGenerator;
  * {@link ExtendedStructureIsilostirion} is a custom single-pool structure that generates the tower of Isilostirion in a certain location
  */
 public class ExtendedStructureIsilostirion extends ExtendedSinglePoolStructure {
-	/**
-     * Constructs an ExtendedStructureAreaCheckChunk structure with the specified structure type.
-     *
-     * @param type The type of the structure.
-     */
+
 	public ExtendedStructureIsilostirion(ExtendedStructureType type) {
 		super(type);
 	}

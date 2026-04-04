@@ -16,15 +16,8 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.structure.Structure;
 
-/**
- * {@link ExtendedStructureIsengardGatehouse} is a custom single-pool structure that generates the tower of Isilostirion in a certain location
- */
 public class ExtendedStructureIsengardGatehouse extends ExtendedSinglePoolStructure {
-	/**
-     * Constructs an ExtendedStructureAreaCheckChunk structure with the specified structure type.
-     *
-     * @param type The type of the structure.
-     */
+
 	public ExtendedStructureIsengardGatehouse(ExtendedStructureType type) {
 		super(type);
 	}

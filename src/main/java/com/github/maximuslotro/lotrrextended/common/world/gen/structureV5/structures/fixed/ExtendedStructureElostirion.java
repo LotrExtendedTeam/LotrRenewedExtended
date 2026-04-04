@@ -19,11 +19,7 @@ import net.minecraft.world.gen.feature.structure.Structure;
  * {@link ExtendedStructureElostirion} is a custom single-pool structure that generates the tower of Elostirion in a certain location
  */
 public class ExtendedStructureElostirion extends ExtendedSinglePoolStructure {
-	/**
-     * Constructs an ExtendedStructureAreaCheckChunk structure with the specified structure type.
-     *
-     * @param type The type of the structure.
-     */
+
 	public ExtendedStructureElostirion(ExtendedStructureType type) {
 		super(type);
 	}

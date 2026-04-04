@@ -9,15 +9,8 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedWeightedStructureConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.ExtendedSinglePoolStructure;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.ExtendedWeightedPoolStructure;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureAnarostirion;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureElostirion;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureIsengardGatehouse;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureIsilostirion;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureLastHomelyHouse;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.ExtendedStructureStoneOfHapless;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.overrides.ExtendedCheckAreaChunkStructure;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.overrides.ExtendedCheckAreaChunkFlatStructure;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.overrides.ExtendedCheckAreaCrossStructure;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.fixed.*;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures.overrides.*;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
@@ -102,6 +95,7 @@ public class ExtendedStructuresV5 {
 	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> LINDON_HALL = STRUCTURE_REGISTRY.register("lindon_hall", () -> new ExtendedSinglePoolStructure(ExtendedStructureType.LINDON));
 
 	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> ISENGARD_GATEHOUSE = STRUCTURE_REGISTRY.register("isengard_gatehouse", () -> new ExtendedStructureIsengardGatehouse(ExtendedStructureType.ISENGARD));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> ORTHANC = STRUCTURE_REGISTRY.register("orthanc", () -> new ExtendedStructureOrthanc(ExtendedStructureType.ISENGARD));
 
 	/**
 	 * Initializes and registers all custom structures with their generation parameters.
@@ -154,6 +148,7 @@ public class ExtendedStructuresV5 {
 		register(LINDON_TOWER.get(), true,             75, 50, 848856948);
 		register(LINDON_HALL.get(), true,              80, 65, 356254478);
 		register(ISENGARD_GATEHOUSE.get(), false,      1,  0,  0);
+		register(ORTHANC.get(), false,                 1,  0,  0);
 	}
 
 	/**

@@ -15,11 +15,7 @@ import net.minecraft.world.gen.ChunkGenerator;
  * {@link ExtendedStructureAnarostirion} is a custom single-pool structure that generates the tower of Anarostirion in a certain location
  */
 public class ExtendedStructureAnarostirion extends ExtendedSinglePoolStructure {
-	/**
-     * Constructs an ExtendedStructureAreaCheckChunk structure with the specified structure type.
-     *
-     * @param type The type of the structure.
-     */
+
 	public ExtendedStructureAnarostirion(ExtendedStructureType type) {
 		super(type);
 	}

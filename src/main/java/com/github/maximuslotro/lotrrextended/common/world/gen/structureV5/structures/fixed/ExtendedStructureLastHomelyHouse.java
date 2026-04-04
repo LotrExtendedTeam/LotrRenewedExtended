@@ -20,11 +20,7 @@ import net.minecraft.world.gen.feature.structure.Structure;
  * {@link ExtendedStructureLastHomelyHouse} is a custom single-pool structure that generates the main Rivendell build in a certain location
  */
 public class ExtendedStructureLastHomelyHouse extends ExtendedSinglePoolStructure {
-	/**
-     * Constructs an ExtendedStructureAreaCheckChunk structure with the specified structure type.
-     *
-     * @param type The type of the structure.
-     */
+
 	public ExtendedStructureLastHomelyHouse(ExtendedStructureType type) {
 		super(type);
 	}
