@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:white_clay_tiling"
+    }
+  },
+  "result": {
+    "item": "lotr:white_clay_tiling_wall",
+    "count": 6
+  }
+}

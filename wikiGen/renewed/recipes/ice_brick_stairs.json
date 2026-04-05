@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:lossoth",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:ice_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:ice_brick_stairs",
+    "count": 4
+  }
+}

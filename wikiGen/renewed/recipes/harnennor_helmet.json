@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:harad",
+  "pattern": [
+    "XXX",
+    "Y Y"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:ingots/bronze"
+    },
+    "Y": {
+      "tag": "forge:leather"
+    }
+  },
+  "result": {
+    "item": "lotr:harnennor_helmet"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:any_numenorean",
+  "ingredients": [
+    {
+      "item": "lotr:numenorean_brick"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_numenorean_brick"
+  }
+}

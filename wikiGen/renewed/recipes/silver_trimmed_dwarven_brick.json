@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_dwarven",
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:nuggets/silver"
+    },
+    "X": {
+      "item": "lotr:dwarven_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:silver_trimmed_dwarven_brick"
+  }
+}

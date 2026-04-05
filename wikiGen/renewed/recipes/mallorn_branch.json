@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "group": "lotr:branch",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mallorn_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:mallorn_branch",
+    "count": 6
+  }
+}

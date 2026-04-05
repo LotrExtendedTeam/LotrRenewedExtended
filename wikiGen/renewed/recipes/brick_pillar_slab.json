@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:brick_pillar"
+    }
+  },
+  "result": {
+    "item": "lotr:brick_pillar_slab",
+    "count": 6
+  }
+}

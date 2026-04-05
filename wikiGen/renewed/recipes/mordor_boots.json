@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:mordor",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "lotr:orc_steel_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:mordor_boots"
+  }
+}

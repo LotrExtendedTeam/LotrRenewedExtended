@@ -1,0 +1,24 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rohan",
+  "pattern": [
+    " X ",
+    "Y#Y",
+    " X "
+  ],
+  "key": {
+    "#": {
+      "type": "lotr:undamaged_ingredient",
+      "item": "lotr:rohan_chestplate"
+    },
+    "X": {
+      "tag": "forge:nuggets/gold"
+    },
+    "Y": {
+      "tag": "forge:leather"
+    }
+  },
+  "result": {
+    "item": "lotr:rohan_marshal_chestplate"
+  }
+}

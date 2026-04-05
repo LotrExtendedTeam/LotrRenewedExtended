@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mallorn_beam"
+    }
+  },
+  "result": {
+    "item": "lotr:mallorn_beam_slab",
+    "count": 6
+  }
+}

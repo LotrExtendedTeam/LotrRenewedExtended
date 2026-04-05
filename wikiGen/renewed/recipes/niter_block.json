@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:niter"
+    }
+  },
+  "result": {
+    "item": "lotr:niter_block"
+  }
+}

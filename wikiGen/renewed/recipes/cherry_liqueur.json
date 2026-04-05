@@ -1,0 +1,26 @@
+{
+  "type": "lotr:brewing",
+  "ingredients": [
+    {
+      "item": "lotr:cherry"
+    },
+    {
+      "item": "lotr:cherry"
+    },
+    {
+      "item": "lotr:cherry"
+    },
+    {
+      "item": "lotr:cherry"
+    },
+    {
+      "item": "lotr:cherry"
+    },
+    {
+      "item": "lotr:cherry"
+    }
+  ],
+  "result": "lotr:cherry_liqueur",
+  "experience": 1.0,
+  "brewtime": 12000
+}

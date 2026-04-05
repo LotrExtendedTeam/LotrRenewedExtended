@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotr:aspen_branch"
+      },
+      {
+        "item": "lotr:stripped_aspen_branch"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotr:aspen_planks",
+    "count": 2
+  }
+}

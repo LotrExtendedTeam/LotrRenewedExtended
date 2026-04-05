@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:lebethron_log",
+    "lotr:lebethron_wood",
+    "lotr:stripped_lebethron_log",
+    "lotr:stripped_lebethron_wood"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotr:cypress_wood_slab"
+      },
+      {
+        "item": "lotr:stripped_cypress_wood_slab"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotr:cypress_planks",
+    "count": 2
+  }
+}

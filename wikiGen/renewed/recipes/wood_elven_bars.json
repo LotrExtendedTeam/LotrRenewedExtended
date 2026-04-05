@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:wood_elven",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:elven_steel_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:wood_elven_bars",
+    "count": 16
+  }
+}

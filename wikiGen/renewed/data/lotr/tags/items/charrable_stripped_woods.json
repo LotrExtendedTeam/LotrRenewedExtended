@@ -1,0 +1,30 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:stripped_oak_wood",
+    "minecraft:stripped_spruce_wood",
+    "minecraft:stripped_birch_wood",
+    "minecraft:stripped_jungle_wood",
+    "minecraft:stripped_acacia_wood",
+    "minecraft:stripped_dark_oak_wood",
+    "lotr:stripped_pine_wood",
+    "lotr:stripped_mallorn_wood",
+    "lotr:stripped_mirk_oak_wood",
+    "lotr:stripped_apple_wood",
+    "lotr:stripped_pear_wood",
+    "lotr:stripped_cherry_wood",
+    "lotr:stripped_lebethron_wood",
+    "lotr:stripped_beech_wood",
+    "lotr:stripped_maple_wood",
+    "lotr:stripped_aspen_wood",
+    "lotr:stripped_lairelosse_wood",
+    "lotr:stripped_cedar_wood",
+    "lotr:stripped_fir_wood",
+    "lotr:stripped_larch_wood",
+    "lotr:stripped_holly_wood",
+    "lotr:stripped_green_oak_wood",
+    "lotr:stripped_cypress_wood",
+    "lotr:stripped_rotten_wood",
+    "lotr:stripped_culumalda_wood"
+  ]
+}

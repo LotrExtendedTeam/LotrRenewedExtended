@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rohan",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:rohan_rock"
+    }
+  },
+  "result": {
+    "item": "lotr:rohan_rock_pressure_plate"
+  }
+}

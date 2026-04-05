@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mallorn_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:mallorn_boat"
+  }
+}

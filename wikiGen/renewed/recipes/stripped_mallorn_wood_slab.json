@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:stripped_mallorn_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:stripped_mallorn_wood_slab",
+    "count": 6
+  }
+}

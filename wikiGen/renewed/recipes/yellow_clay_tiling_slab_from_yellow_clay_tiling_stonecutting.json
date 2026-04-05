@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:yellow_clay_tiling"
+  },
+  "result": "lotr:yellow_clay_tiling_slab",
+  "count": 2
+}

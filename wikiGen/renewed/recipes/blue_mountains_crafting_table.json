@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:blue_mountains",
+  "pattern": [
+    "XX",
+    "YY"
+  ],
+  "key": {
+    "X": {
+      "tag": "minecraft:planks"
+    },
+    "Y": {
+      "item": "lotr:blue_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:blue_mountains_crafting_table"
+  }
+}

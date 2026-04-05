@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "pattern": [
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "lotr:mallorn_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:galadhrim_crafting_table"
+  }
+}

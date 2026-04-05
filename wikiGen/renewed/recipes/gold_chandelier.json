@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "TXT"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:ingots/gold"
+    },
+    "#": {
+      "tag": "forge:nuggets/iron"
+    },
+    "T": {
+      "item": "lotr:candle"
+    }
+  },
+  "result": {
+    "item": "lotr:gold_chandelier",
+    "count": 2
+  }
+}

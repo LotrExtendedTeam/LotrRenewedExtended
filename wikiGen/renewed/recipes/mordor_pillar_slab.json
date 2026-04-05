@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:mordor",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mordor_pillar"
+    }
+  },
+  "result": {
+    "item": "lotr:mordor_pillar_slab",
+    "count": 6
+  }
+}

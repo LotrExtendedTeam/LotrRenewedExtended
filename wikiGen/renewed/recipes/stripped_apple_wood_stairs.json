@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:stripped_apple_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:stripped_apple_wood_stairs",
+    "count": 4
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:pine_door",
+    "lotr:mallorn_door",
+    "lotr:mirk_oak_door",
+    "lotr:charred_door",
+    "lotr:apple_door",
+    "lotr:pear_door",
+    "lotr:cherry_door",
+    "lotr:lebethron_door",
+    "lotr:beech_door",
+    "lotr:maple_door",
+    "lotr:aspen_door",
+    "lotr:lairelosse_door",
+    "lotr:cedar_door",
+    "lotr:shire_pine_door",
+    "lotr:fir_door",
+    "lotr:larch_door",
+    "lotr:holly_door",
+    "lotr:green_oak_door",
+    "lotr:cypress_door",
+    "lotr:rotten_door",
+    "lotr:culumalda_door"
+  ]
+}

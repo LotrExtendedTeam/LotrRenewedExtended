@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:dried_reeds"
+    }
+  },
+  "result": {
+    "item": "lotr:reed_thatch",
+    "count": 4
+  }
+}

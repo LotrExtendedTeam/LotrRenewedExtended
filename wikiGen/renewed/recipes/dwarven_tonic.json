@@ -1,0 +1,26 @@
+{
+  "type": "lotr:brewing",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "lotr:dwarfwort"
+    },
+    {
+      "item": "lotr:dwarfwort"
+    },
+    {
+      "item": "lotr:mithril_nugget"
+    }
+  ],
+  "result": "lotr:dwarven_tonic",
+  "experience": 2.0,
+  "brewtime": 12000
+}

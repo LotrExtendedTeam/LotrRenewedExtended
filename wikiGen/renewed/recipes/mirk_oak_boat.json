@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mirk_oak_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:mirk_oak_boat"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:branch",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:stripped_lebethron_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:stripped_lebethron_branch",
+    "count": 6
+  }
+}

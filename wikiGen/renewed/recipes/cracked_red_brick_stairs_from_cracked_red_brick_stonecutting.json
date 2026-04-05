@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:cracked_red_brick"
+  },
+  "result": "lotr:cracked_red_brick_stairs",
+  "count": 1
+}

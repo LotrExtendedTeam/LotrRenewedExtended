@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:cyan_clay_tiling",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:clay_tiling"
+    },
+    "X": {
+      "tag": "forge:dyes/cyan"
+    }
+  },
+  "result": {
+    "item": "lotr:cyan_clay_tiling",
+    "count": 8
+  }
+}

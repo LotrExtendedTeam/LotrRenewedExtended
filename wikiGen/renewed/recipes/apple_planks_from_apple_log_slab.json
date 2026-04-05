@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotr:apple_log_slab"
+      },
+      {
+        "item": "lotr:stripped_apple_log_slab"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotr:apple_planks",
+    "count": 2
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:uruk_steel_ingot",
+  "ingredients": [
+    {
+      "item": "lotr:uruk_steel_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:uruk_steel_ingot",
+    "count": 9
+  }
+}

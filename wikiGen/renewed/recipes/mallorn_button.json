@@ -1,0 +1,13 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:galadhrim",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "lotr:mallorn_planks"
+    }
+  ],
+  "result": {
+    "item": "lotr:mallorn_button"
+  }
+}

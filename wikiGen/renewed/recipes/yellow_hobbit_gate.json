@@ -1,0 +1,24 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:hobbit",
+  "pattern": [
+    "XXX",
+    "#O#",
+    "XXX"
+  ],
+  "key": {
+    "O": {
+      "item": "lotr:gate_gear"
+    },
+    "X": {
+      "tag": "minecraft:planks"
+    },
+    "#": {
+      "tag": "forge:dyes/yellow"
+    }
+  },
+  "result": {
+    "item": "lotr:yellow_hobbit_gate",
+    "count": 4
+  }
+}

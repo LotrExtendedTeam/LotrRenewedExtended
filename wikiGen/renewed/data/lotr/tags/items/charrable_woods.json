@@ -1,0 +1,30 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:oak_wood",
+    "minecraft:spruce_wood",
+    "minecraft:birch_wood",
+    "minecraft:jungle_wood",
+    "minecraft:acacia_wood",
+    "minecraft:dark_oak_wood",
+    "lotr:pine_wood",
+    "lotr:mallorn_wood",
+    "lotr:mirk_oak_wood",
+    "lotr:apple_wood",
+    "lotr:pear_wood",
+    "lotr:cherry_wood",
+    "lotr:lebethron_wood",
+    "lotr:beech_wood",
+    "lotr:maple_wood",
+    "lotr:aspen_wood",
+    "lotr:lairelosse_wood",
+    "lotr:cedar_wood",
+    "lotr:fir_wood",
+    "lotr:larch_wood",
+    "lotr:holly_wood",
+    "lotr:green_oak_wood",
+    "lotr:cypress_wood",
+    "lotr:rotten_wood",
+    "lotr:culumalda_wood"
+  ]
+}

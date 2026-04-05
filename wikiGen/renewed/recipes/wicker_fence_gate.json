@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#W#",
+    "#W#"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:rods/wooden"
+    },
+    "W": {
+      "item": "lotr:reed_thatch"
+    }
+  },
+  "result": {
+    "item": "lotr:wicker_fence_gate"
+  }
+}

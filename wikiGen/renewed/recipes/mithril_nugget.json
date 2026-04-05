@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:mithril_nugget",
+  "ingredients": [
+    {
+      "item": "lotr:mithril_ingot"
+    }
+  ],
+  "result": {
+    "item": "lotr:mithril_nugget",
+    "count": 9
+  }
+}

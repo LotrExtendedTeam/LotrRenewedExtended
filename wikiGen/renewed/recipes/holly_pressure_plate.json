@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_pressure_plate",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:holly_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:holly_pressure_plate"
+  }
+}

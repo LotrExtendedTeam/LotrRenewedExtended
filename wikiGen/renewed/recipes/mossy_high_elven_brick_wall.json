@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_high_elven",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mossy_high_elven_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:mossy_high_elven_brick_wall",
+    "count": 6
+  }
+}

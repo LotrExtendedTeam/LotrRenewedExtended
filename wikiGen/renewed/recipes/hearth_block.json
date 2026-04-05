@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "BBB"
+  ],
+  "key": {
+    "C": {
+      "tag": "minecraft:coals"
+    },
+    "B": {
+      "tag": "forge:ingots/brick"
+    }
+  },
+  "result": {
+    "item": "lotr:hearth_block",
+    "count": 1
+  }
+}

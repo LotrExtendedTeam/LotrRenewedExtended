@@ -1,0 +1,22 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:uruk",
+  "pattern": [
+    "#W#",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "item": "lotr:uruk_helmet"
+    },
+    "#": {
+      "item": "lotr:uruk_steel_ingot"
+    },
+    "W": {
+      "tag": "forge:dyes/white"
+    }
+  },
+  "result": {
+    "item": "lotr:uruk_berserker_helmet"
+  }
+}

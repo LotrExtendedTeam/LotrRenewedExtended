@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:lairelosse_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:lairelosse_boat"
+  }
+}

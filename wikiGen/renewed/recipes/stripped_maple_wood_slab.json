@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:stripped_maple_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:stripped_maple_wood_slab",
+    "count": 6
+  }
+}

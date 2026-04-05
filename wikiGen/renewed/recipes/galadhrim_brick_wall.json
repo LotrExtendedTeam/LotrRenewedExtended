@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:galadhrim_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:galadhrim_brick_wall",
+    "count": 6
+  }
+}

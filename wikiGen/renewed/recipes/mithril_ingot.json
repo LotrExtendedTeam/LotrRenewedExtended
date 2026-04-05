@@ -1,0 +1,9 @@
+{
+  "type": "lotr:dwarven_forge",
+  "ingredient": {
+    "item": "lotr:mithril_ore"
+  },
+  "result": "lotr:mithril_ingot",
+  "experience": 1.0,
+  "cookingtime": 200
+}

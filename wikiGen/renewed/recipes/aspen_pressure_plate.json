@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_pressure_plate",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:aspen_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:aspen_pressure_plate"
+  }
+}

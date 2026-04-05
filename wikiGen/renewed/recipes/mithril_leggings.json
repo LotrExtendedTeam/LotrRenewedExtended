@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "lotr:mithril_mail"
+    }
+  },
+  "result": {
+    "item": "lotr:mithril_leggings"
+  }
+}

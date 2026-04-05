@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:black_clay_tiling"
+    }
+  },
+  "result": {
+    "item": "lotr:black_clay_tiling_slab",
+    "count": 6
+  }
+}

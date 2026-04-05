@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dale",
+  "pattern": [
+    "WoW",
+    "WWW",
+    " W "
+  ],
+  "key": {
+    "W": {
+      "tag": "minecraft:planks"
+    },
+    "o": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "result": {
+    "item": "lotr:dale_shield"
+  }
+}

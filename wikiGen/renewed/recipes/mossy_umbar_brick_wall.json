@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:umbar",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mossy_umbar_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:mossy_umbar_brick_wall",
+    "count": 6
+  }
+}

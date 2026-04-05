@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_high_elven",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:high_elven_brick"
+    },
+    "X": {
+      "item": "minecraft:coal_block"
+    }
+  },
+  "result": {
+    "item": "lotr:elven_forge"
+  }
+}

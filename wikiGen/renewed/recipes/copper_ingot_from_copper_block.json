@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:copper_ingot",
+  "ingredients": [
+    {
+      "item": "lotr:copper_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:copper_ingot",
+    "count": 9
+  }
+}

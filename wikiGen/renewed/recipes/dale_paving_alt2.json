@@ -1,0 +1,27 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dale",
+  "group": "lotr:dale_paving",
+  "pattern": [
+    "AB",
+    "DC"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:stone"
+    },
+    "B": {
+      "item": "minecraft:granite"
+    },
+    "C": {
+      "item": "lotr:blue_rock"
+    },
+    "D": {
+      "item": "minecraft:sandstone"
+    }
+  },
+  "result": {
+    "item": "lotr:dale_paving",
+    "count": 4
+  }
+}

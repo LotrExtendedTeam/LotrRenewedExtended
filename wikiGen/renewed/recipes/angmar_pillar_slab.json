@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:angmar",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:angmar_pillar"
+    }
+  },
+  "result": {
+    "item": "lotr:angmar_pillar_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:gulduril",
+  "ingredients": [
+    {
+      "item": "lotr:gulduril_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:gulduril",
+    "count": 9
+  }
+}

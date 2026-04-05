@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dale",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:dale_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:carved_dale_brick",
+    "count": 1
+  }
+}

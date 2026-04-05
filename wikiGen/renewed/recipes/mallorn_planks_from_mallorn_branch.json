@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:galadhrim",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotr:mallorn_branch"
+      },
+      {
+        "item": "lotr:stripped_mallorn_branch"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotr:mallorn_planks",
+    "count": 2
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:lossoth",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:snow_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:snow_brick_slab",
+    "count": 6
+  }
+}

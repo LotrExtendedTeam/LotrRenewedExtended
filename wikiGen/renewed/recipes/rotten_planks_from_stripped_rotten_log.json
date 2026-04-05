@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "lotr:stripped_rotten_log"
+    }
+  ],
+  "result": {
+    "item": "lotr:rotten_planks",
+    "count": 1
+  }
+}

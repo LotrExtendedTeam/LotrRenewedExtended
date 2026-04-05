@@ -1,0 +1,24 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_harad",
+  "pattern": [
+    "#X#",
+    "XOX",
+    "#X#"
+  ],
+  "key": {
+    "O": {
+      "item": "lotr:gate_gear"
+    },
+    "X": {
+      "tag": "minecraft:planks"
+    },
+    "#": {
+      "tag": "forge:ingots/bronze"
+    }
+  },
+  "result": {
+    "item": "lotr:harad_gate",
+    "count": 4
+  }
+}

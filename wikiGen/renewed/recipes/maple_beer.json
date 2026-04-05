@@ -1,0 +1,26 @@
+{
+  "type": "lotr:brewing",
+  "ingredients": [
+    {
+      "item": "lotr:maple_syrup"
+    },
+    {
+      "item": "lotr:maple_syrup"
+    },
+    {
+      "item": "lotr:maple_syrup"
+    },
+    {
+      "item": "lotr:maple_syrup"
+    },
+    {
+      "item": "lotr:maple_syrup"
+    },
+    {
+      "item": "lotr:maple_syrup"
+    }
+  ],
+  "result": "lotr:maple_beer",
+  "experience": 1.0,
+  "brewtime": 12000
+}

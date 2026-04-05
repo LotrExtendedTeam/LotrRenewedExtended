@@ -1,0 +1,26 @@
+{
+  "type": "lotr:brewing",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "lotr:dwarfwort"
+    },
+    {
+      "item": "lotr:dwarfwort"
+    }
+  ],
+  "result": "lotr:dwarven_ale",
+  "experience": 1.0,
+  "brewtime": 12000
+}

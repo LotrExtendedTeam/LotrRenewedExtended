@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_high_elven",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:high_elven_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:carved_high_elven_brick",
+    "count": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:fallen_leaves",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:lebethron_leaves"
+    }
+  },
+  "result": {
+    "item": "lotr:fallen_lebethron_leaves",
+    "count": 16
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:copper_ingot",
+  "ingredients": [
+    {
+      "item": "lotr:copper_treasure_pile"
+    },
+    {
+      "item": "lotr:copper_treasure_pile"
+    },
+    {
+      "item": "lotr:copper_treasure_pile"
+    },
+    {
+      "item": "lotr:copper_treasure_pile"
+    },
+    {
+      "item": "lotr:copper_treasure_pile"
+    },
+    {
+      "item": "lotr:copper_treasure_pile"
+    },
+    {
+      "item": "lotr:copper_treasure_pile"
+    },
+    {
+      "item": "lotr:copper_treasure_pile"
+    }
+  ],
+  "result": {
+    "item": "lotr:copper_ingot",
+    "count": 4
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:ranger",
+  "ingredients": [
+    {
+      "item": "lotr:arnor_brick"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_arnor_brick"
+  }
+}

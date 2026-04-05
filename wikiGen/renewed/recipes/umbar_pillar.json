@@ -1,0 +1,23 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:umbar",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": [
+      {
+        "item": "minecraft:stone"
+      },
+      {
+        "item": "minecraft:sandstone"
+      }
+    ]
+  },
+  "result": {
+    "item": "lotr:umbar_pillar",
+    "count": 3
+  }
+}

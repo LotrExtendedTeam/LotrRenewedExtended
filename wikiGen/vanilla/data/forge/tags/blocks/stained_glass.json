@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:white_fine_glass",
+    "lotr:orange_fine_glass",
+    "lotr:magenta_fine_glass",
+    "lotr:light_blue_fine_glass",
+    "lotr:yellow_fine_glass",
+    "lotr:lime_fine_glass",
+    "lotr:pink_fine_glass",
+    "lotr:gray_fine_glass",
+    "lotr:light_gray_fine_glass",
+    "lotr:cyan_fine_glass",
+    "lotr:purple_fine_glass",
+    "lotr:blue_fine_glass",
+    "lotr:brown_fine_glass",
+    "lotr:green_fine_glass",
+    "lotr:red_fine_glass",
+    "lotr:black_fine_glass"
+  ]
+}

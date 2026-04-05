@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:gondor",
+  "pattern": [
+    "X#X"
+  ],
+  "key": {
+    "#": {
+      "type": "lotr:undamaged_ingredient",
+      "item": "lotr:gondor_helmet"
+    },
+    "X": {
+      "tag": "forge:feathers"
+    }
+  },
+  "result": {
+    "item": "lotr:winged_gondor_helmet"
+  }
+}

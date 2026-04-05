@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:stripped_green_oak_log"
+    }
+  },
+  "result": {
+    "item": "lotr:stripped_green_oak_wood",
+    "count": 3
+  }
+}

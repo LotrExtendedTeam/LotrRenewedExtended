@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:orc_steel_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:orc_steel_block"
+  }
+}

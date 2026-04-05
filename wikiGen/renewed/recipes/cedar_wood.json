@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:cedar_log"
+    }
+  },
+  "result": {
+    "item": "lotr:cedar_wood",
+    "count": 3
+  }
+}

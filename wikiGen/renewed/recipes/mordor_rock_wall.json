@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:mordor",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mordor_rock"
+    }
+  },
+  "result": {
+    "item": "lotr:mordor_rock_wall",
+    "count": 6
+  }
+}

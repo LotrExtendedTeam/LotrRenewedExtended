@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:branch",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stripped_jungle_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:stripped_jungle_branch",
+    "count": 6
+  }
+}

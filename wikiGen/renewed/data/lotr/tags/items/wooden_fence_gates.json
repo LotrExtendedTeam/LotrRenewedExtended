@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:pine_fence_gate",
+    "lotr:mallorn_fence_gate",
+    "lotr:mirk_oak_fence_gate",
+    "lotr:charred_fence_gate",
+    "lotr:apple_fence_gate",
+    "lotr:pear_fence_gate",
+    "lotr:cherry_fence_gate",
+    "lotr:lebethron_fence_gate",
+    "lotr:beech_fence_gate",
+    "lotr:maple_fence_gate",
+    "lotr:aspen_fence_gate",
+    "lotr:lairelosse_fence_gate",
+    "lotr:cedar_fence_gate",
+    "lotr:fir_fence_gate",
+    "lotr:larch_fence_gate",
+    "lotr:holly_fence_gate",
+    "lotr:green_oak_fence_gate",
+    "lotr:cypress_fence_gate",
+    "lotr:rotten_fence_gate",
+    "lotr:culumalda_fence_gate"
+  ]
+}

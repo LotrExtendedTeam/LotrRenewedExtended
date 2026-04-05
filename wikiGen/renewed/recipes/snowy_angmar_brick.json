@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:angmar",
+  "ingredients": [
+    {
+      "item": "lotr:angmar_brick"
+    },
+    {
+      "item": "minecraft:snowball"
+    }
+  ],
+  "result": {
+    "item": "lotr:snowy_angmar_brick"
+  }
+}

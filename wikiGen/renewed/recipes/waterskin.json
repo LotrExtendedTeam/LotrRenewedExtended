@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "# #",
+    " # "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:string"
+    },
+    "#": [
+      {
+        "tag": "forge:leather"
+      },
+      {
+        "tag": "forge:furs"
+      }
+    ]
+  },
+  "result": {
+    "item": "lotr:waterskin",
+    "count": 2
+  }
+}

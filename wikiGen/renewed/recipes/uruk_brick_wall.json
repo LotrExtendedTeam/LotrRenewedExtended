@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:uruk",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:uruk_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:uruk_brick_wall",
+    "count": 6
+  }
+}

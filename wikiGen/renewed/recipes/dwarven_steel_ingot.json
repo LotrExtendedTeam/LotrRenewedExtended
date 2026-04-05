@@ -1,0 +1,23 @@
+{
+  "type": "lotr:dwarven_forge_alloy",
+  "ingredient": [
+    {
+      "tag": "forge:ores/iron"
+    },
+    {
+      "tag": "forge:ingots/iron"
+    }
+  ],
+  "alloy": [
+    {
+      "tag": "minecraft:coals"
+    }
+  ],
+  "swappable": "false",
+  "result": {
+    "item": "lotr:dwarven_steel_ingot",
+    "count": 1
+  },
+  "experience": 0.7,
+  "cookingtime": 200
+}

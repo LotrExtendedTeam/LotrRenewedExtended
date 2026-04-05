@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:salt",
+  "ingredients": [
+    {
+      "item": "lotr:salt_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:salt",
+    "count": 9
+  }
+}

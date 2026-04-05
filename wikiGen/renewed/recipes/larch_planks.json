@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "lotr:larch_logs"
+    }
+  ],
+  "result": {
+    "item": "lotr:larch_planks",
+    "count": 4
+  }
+}

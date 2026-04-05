@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:aspen_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:aspen_stairs",
+    "count": 4
+  }
+}

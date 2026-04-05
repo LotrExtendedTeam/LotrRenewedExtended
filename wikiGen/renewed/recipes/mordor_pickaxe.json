@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:mordor",
+  "pattern": [
+    "XXX",
+    " # ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:rods/wooden"
+    },
+    "X": {
+      "item": "lotr:orc_steel_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:mordor_pickaxe"
+  }
+}

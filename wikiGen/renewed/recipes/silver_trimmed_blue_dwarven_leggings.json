@@ -1,0 +1,21 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:blue_mountains",
+  "pattern": [
+    "XXX",
+    "X#X",
+    "XXX"
+  ],
+  "key": {
+    "#": {
+      "type": "lotr:undamaged_ingredient",
+      "item": "lotr:blue_dwarven_leggings"
+    },
+    "X": {
+      "tag": "forge:nuggets/silver"
+    }
+  },
+  "result": {
+    "item": "lotr:silver_trimmed_blue_dwarven_leggings"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stone_bricks"
+    },
+    "X": {
+      "item": "minecraft:coal_block"
+    }
+  },
+  "result": {
+    "item": "lotr:alloy_forge"
+  }
+}

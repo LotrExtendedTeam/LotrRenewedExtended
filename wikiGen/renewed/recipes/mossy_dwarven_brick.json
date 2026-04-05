@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:any_dwarven",
+  "ingredients": [
+    {
+      "item": "lotr:dwarven_brick"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_dwarven_brick"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:pine_trapdoor",
+    "lotr:mallorn_trapdoor",
+    "lotr:mirk_oak_trapdoor",
+    "lotr:charred_trapdoor",
+    "lotr:apple_trapdoor",
+    "lotr:pear_trapdoor",
+    "lotr:cherry_trapdoor",
+    "lotr:lebethron_trapdoor",
+    "lotr:beech_trapdoor",
+    "lotr:maple_trapdoor",
+    "lotr:aspen_trapdoor",
+    "lotr:lairelosse_trapdoor",
+    "lotr:cedar_trapdoor",
+    "lotr:shire_pine_trapdoor",
+    "lotr:fir_trapdoor",
+    "lotr:larch_trapdoor",
+    "lotr:holly_trapdoor",
+    "lotr:green_oak_trapdoor",
+    "lotr:cypress_trapdoor",
+    "lotr:rotten_trapdoor",
+    "lotr:culumalda_trapdoor"
+  ]
+}

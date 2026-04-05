@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "lotr:cedar_logs"
+    }
+  ],
+  "result": {
+    "item": "lotr:cedar_planks",
+    "count": 4
+  }
+}

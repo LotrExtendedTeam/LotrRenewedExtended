@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:wood_elven",
+  "ingredients": [
+    {
+      "item": "lotr:wood_elven_brick"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_wood_elven_brick"
+  }
+}

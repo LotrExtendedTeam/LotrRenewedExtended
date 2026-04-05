@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "lotr:umbar_brick"
+  },
+  "result": "lotr:cracked_umbar_brick",
+  "experience": 0.1,
+  "cookingtime": 200
+}

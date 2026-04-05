@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:pine_beam"
+    }
+  },
+  "result": {
+    "item": "lotr:pine_beam_slab",
+    "count": 6
+  }
+}

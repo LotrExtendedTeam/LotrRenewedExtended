@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "lotr:clay_mug"
+  },
+  "result": "lotr:ceramic_mug",
+  "experience": 0.3,
+  "cookingtime": 200
+}

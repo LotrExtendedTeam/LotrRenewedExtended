@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:stripped_mallorn_log"
+    }
+  },
+  "result": {
+    "item": "lotr:stripped_mallorn_wood",
+    "count": 3
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "type": "lotr:orc_forge_alloy",
+  "ingredient": [
+    {
+      "tag": "forge:ores/copper"
+    },
+    {
+      "tag": "forge:ingots/copper"
+    }
+  ],
+  "alloy": [
+    {
+      "tag": "forge:ores/sulfur"
+    },
+    {
+      "item": "lotr:sulfur"
+    }
+  ],
+  "swappable": "false",
+  "result": {
+    "item": "lotr:blue_vitriol",
+    "count": 1
+  },
+  "experience": 1.0,
+  "cookingtime": 200
+}

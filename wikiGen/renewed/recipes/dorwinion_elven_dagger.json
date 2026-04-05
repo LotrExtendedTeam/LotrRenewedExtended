@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dorwinion",
+  "pattern": [
+    "X",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:rods/wooden"
+    },
+    "X": {
+      "item": "lotr:elven_steel_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:dorwinion_elven_dagger"
+  }
+}

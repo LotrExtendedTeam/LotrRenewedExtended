@@ -1,0 +1,24 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:gondor",
+  "pattern": [
+    "#X#",
+    "XOX",
+    "#X#"
+  ],
+  "key": {
+    "O": {
+      "item": "lotr:gate_gear"
+    },
+    "X": {
+      "tag": "minecraft:planks"
+    },
+    "#": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "result": {
+    "item": "lotr:gondor_gate",
+    "count": 4
+  }
+}

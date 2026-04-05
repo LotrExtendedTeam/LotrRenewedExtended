@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rohan",
+  "pattern": [
+    "XXX",
+    "Y Y"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:ingots/iron"
+    },
+    "Y": {
+      "tag": "forge:leather"
+    }
+  },
+  "result": {
+    "item": "lotr:rohan_helmet"
+  }
+}

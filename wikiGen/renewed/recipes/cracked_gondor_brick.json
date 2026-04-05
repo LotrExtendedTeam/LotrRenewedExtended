@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "lotr:gondor_brick"
+  },
+  "result": "lotr:cracked_gondor_brick",
+  "experience": 0.1,
+  "cookingtime": 200
+}

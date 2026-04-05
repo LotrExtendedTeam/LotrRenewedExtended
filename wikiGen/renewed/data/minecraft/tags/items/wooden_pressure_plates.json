@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:pine_pressure_plate",
+    "lotr:mallorn_pressure_plate",
+    "lotr:mirk_oak_pressure_plate",
+    "lotr:charred_pressure_plate",
+    "lotr:apple_pressure_plate",
+    "lotr:pear_pressure_plate",
+    "lotr:cherry_pressure_plate",
+    "lotr:lebethron_pressure_plate",
+    "lotr:beech_pressure_plate",
+    "lotr:maple_pressure_plate",
+    "lotr:aspen_pressure_plate",
+    "lotr:lairelosse_pressure_plate",
+    "lotr:cedar_pressure_plate",
+    "lotr:fir_pressure_plate",
+    "lotr:larch_pressure_plate",
+    "lotr:holly_pressure_plate",
+    "lotr:green_oak_pressure_plate",
+    "lotr:cypress_pressure_plate",
+    "lotr:rotten_pressure_plate",
+    "lotr:culumalda_pressure_plate"
+  ]
+}

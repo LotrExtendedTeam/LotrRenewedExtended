@@ -1,0 +1,32 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:hobbit",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:cod"
+      },
+      {
+        "item": "minecraft:salmon"
+      }
+    ],
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "lotr:ale"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "lotr:salt"
+    }
+  ],
+  "result": {
+    "item": "lotr:fish_and_chips"
+  }
+}

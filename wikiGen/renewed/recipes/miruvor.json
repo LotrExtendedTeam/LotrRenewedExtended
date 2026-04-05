@@ -1,0 +1,26 @@
+{
+  "type": "lotr:brewing",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "lotr:elanor"
+    },
+    {
+      "item": "lotr:niphredil"
+    },
+    {
+      "item": "lotr:mallorn_nut"
+    },
+    {
+      "item": "lotr:mallorn_nut"
+    },
+    {
+      "item": "lotr:mallorn_nut"
+    }
+  ],
+  "result": "lotr:miruvor",
+  "experience": 2.0,
+  "brewtime": 12000
+}

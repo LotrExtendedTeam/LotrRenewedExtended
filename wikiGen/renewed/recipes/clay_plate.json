@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "tag": "lotr:clay_balls"
+    }
+  },
+  "result": {
+    "item": "lotr:clay_plate",
+    "count": 2
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dorwinion",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:red_dorwinion_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:red_dorwinion_brick_wall",
+    "count": 6
+  }
+}

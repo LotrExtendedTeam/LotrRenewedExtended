@@ -1,0 +1,24 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "pattern": [
+    "C",
+    "X",
+    "#"
+  ],
+  "key": {
+    "C": {
+      "tag": "lotr:silver_mallorn_colorants"
+    },
+    "X": {
+      "tag": "minecraft:coals"
+    },
+    "#": {
+      "item": "lotr:mallorn_stick"
+    }
+  },
+  "result": {
+    "item": "lotr:silver_mallorn_torch",
+    "count": 4
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:rohan",
+  "ingredients": [
+    {
+      "item": "lotr:rohan_rock"
+    }
+  ],
+  "result": {
+    "item": "lotr:rohan_rock_button"
+  }
+}

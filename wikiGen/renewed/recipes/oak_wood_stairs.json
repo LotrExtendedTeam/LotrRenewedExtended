@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:oak_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:oak_wood_stairs",
+    "count": 4
+  }
+}

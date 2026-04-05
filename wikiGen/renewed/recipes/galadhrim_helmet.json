@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "lotr:elven_steel_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:galadhrim_helmet"
+  }
+}

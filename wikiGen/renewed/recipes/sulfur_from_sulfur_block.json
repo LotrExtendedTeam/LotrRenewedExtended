@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:sulfur",
+  "ingredients": [
+    {
+      "item": "lotr:sulfur_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:sulfur",
+    "count": 9
+  }
+}

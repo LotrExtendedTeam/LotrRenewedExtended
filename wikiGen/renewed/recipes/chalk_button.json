@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:chalk"
+    }
+  ],
+  "result": {
+    "item": "lotr:chalk_button"
+  }
+}

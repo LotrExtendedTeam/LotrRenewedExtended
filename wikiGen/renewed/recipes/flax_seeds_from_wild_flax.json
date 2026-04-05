@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:wild_flax"
+    }
+  ],
+  "result": {
+    "item": "lotr:flax_seeds",
+    "count": 2
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "lotr:salt_ore"
+  },
+  "result": "lotr:salt",
+  "experience": 0.2,
+  "cookingtime": 100
+}

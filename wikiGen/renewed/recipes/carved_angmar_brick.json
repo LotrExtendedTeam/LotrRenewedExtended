@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:angmar",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:angmar_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:carved_angmar_brick",
+    "count": 1
+  }
+}

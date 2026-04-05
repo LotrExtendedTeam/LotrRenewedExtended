@@ -1,0 +1,12 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:mordor",
+  "ingredients": [
+    {
+      "item": "lotr:mordor_rock"
+    }
+  ],
+  "result": {
+    "item": "lotr:mordor_rock_button"
+  }
+}

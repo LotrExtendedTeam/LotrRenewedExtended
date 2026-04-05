@@ -1,0 +1,30 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:stripped_oak_log",
+    "minecraft:stripped_spruce_log",
+    "minecraft:stripped_birch_log",
+    "minecraft:stripped_jungle_log",
+    "minecraft:stripped_acacia_log",
+    "minecraft:stripped_dark_oak_log",
+    "lotr:stripped_pine_log",
+    "lotr:stripped_mallorn_log",
+    "lotr:stripped_mirk_oak_log",
+    "lotr:stripped_apple_log",
+    "lotr:stripped_pear_log",
+    "lotr:stripped_cherry_log",
+    "lotr:stripped_lebethron_log",
+    "lotr:stripped_beech_log",
+    "lotr:stripped_maple_log",
+    "lotr:stripped_aspen_log",
+    "lotr:stripped_lairelosse_log",
+    "lotr:stripped_cedar_log",
+    "lotr:stripped_fir_log",
+    "lotr:stripped_larch_log",
+    "lotr:stripped_holly_log",
+    "lotr:stripped_green_oak_log",
+    "lotr:stripped_cypress_log",
+    "lotr:stripped_rotten_log",
+    "lotr:stripped_culumalda_log"
+  ]
+}

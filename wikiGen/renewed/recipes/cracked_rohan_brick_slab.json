@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rohan",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:cracked_rohan_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:cracked_rohan_brick_slab",
+    "count": 6
+  }
+}

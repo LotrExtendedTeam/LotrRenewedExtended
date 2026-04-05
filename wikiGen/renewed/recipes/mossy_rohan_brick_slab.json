@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rohan",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mossy_rohan_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:mossy_rohan_brick_slab",
+    "count": 6
+  }
+}

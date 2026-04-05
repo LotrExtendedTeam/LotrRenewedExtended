@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "red_dye",
+  "ingredients": [
+    {
+      "item": "lotr:flame_of_harad"
+    }
+  ],
+  "result": {
+    "item": "minecraft:red_dye",
+    "count": 2
+  }
+}

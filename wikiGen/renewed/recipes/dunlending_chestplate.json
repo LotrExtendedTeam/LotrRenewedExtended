@@ -1,0 +1,25 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dunlending",
+  "pattern": [
+    "X X",
+    "YYY",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:ingots/iron"
+    },
+    "Y": [
+      {
+        "tag": "forge:leather"
+      },
+      {
+        "tag": "forge:furs"
+      }
+    ]
+  },
+  "result": {
+    "item": "lotr:dunlending_chestplate"
+  }
+}

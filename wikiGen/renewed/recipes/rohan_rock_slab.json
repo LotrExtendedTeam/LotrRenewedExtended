@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rohan",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:rohan_rock"
+    }
+  },
+  "result": {
+    "item": "lotr:rohan_rock_slab",
+    "count": 6
+  }
+}

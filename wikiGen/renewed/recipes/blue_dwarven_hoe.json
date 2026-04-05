@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:blue_mountains",
+  "pattern": [
+    "XX",
+    " #",
+    " #"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:rods/wooden"
+    },
+    "X": {
+      "item": "lotr:dwarven_steel_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:blue_dwarven_hoe"
+  }
+}

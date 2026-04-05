@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:lime_clay_tiling",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:clay_tiling"
+    },
+    "X": {
+      "tag": "forge:dyes/lime"
+    }
+  },
+  "result": {
+    "item": "lotr:lime_clay_tiling",
+    "count": 8
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "###",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:ingots/iron"
+    },
+    "#": {
+      "tag": "forge:nuggets/iron"
+    }
+  },
+  "result": {
+    "item": "minecraft:chainmail_chestplate"
+  }
+}

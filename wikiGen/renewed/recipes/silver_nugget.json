@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:silver_nugget",
+  "ingredients": [
+    {
+      "item": "lotr:silver_ingot"
+    }
+  ],
+  "result": {
+    "item": "lotr:silver_nugget",
+    "count": 9
+  }
+}

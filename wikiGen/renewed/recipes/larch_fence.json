@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_fence",
+  "pattern": [
+    "W#W",
+    "W#W"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:rods/wooden"
+    },
+    "W": {
+      "item": "lotr:larch_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:larch_fence",
+    "count": 3
+  }
+}

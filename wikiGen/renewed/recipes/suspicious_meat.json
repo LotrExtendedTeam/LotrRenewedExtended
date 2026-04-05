@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "item": "lotr:salt"
+    }
+  ],
+  "result": {
+    "item": "lotr:suspicious_meat"
+  }
+}

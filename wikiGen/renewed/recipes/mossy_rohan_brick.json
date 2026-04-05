@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:rohan",
+  "ingredients": [
+    {
+      "item": "lotr:rohan_brick"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_rohan_brick"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:white_terracotta"
+  },
+  "result": "lotr:white_clay_tiling_wall",
+  "count": 1
+}

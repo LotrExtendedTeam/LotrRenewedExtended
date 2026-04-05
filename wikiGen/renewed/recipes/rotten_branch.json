@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:branch",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:rotten_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:rotten_branch",
+    "count": 6
+  }
+}

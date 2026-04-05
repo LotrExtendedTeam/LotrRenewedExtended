@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotr:pine_log_slab"
+      },
+      {
+        "item": "lotr:stripped_pine_log_slab"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotr:pine_planks",
+    "count": 2
+  }
+}

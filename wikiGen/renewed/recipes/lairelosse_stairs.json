@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:lairelosse_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:lairelosse_stairs",
+    "count": 4
+  }
+}

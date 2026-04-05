@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stripped_birch_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:stripped_birch_wood_stairs",
+    "count": 4
+  }
+}

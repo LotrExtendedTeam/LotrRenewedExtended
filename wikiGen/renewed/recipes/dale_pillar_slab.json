@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dale",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:dale_pillar"
+    }
+  },
+  "result": {
+    "item": "lotr:dale_pillar_slab",
+    "count": 6
+  }
+}

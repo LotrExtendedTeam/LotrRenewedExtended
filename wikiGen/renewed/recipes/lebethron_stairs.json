@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:lebethron_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:lebethron_stairs",
+    "count": 4
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:niter",
+  "ingredients": [
+    {
+      "item": "lotr:niter_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:niter",
+    "count": 9
+  }
+}

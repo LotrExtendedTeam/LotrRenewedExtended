@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:stripped_holly_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:stripped_holly_wood_stairs",
+    "count": 4
+  }
+}

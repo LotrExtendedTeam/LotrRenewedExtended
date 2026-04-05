@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_numenorean",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mordor_rock"
+    }
+  },
+  "result": {
+    "item": "lotr:numenorean_brick",
+    "count": 4
+  }
+}

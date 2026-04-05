@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:pipeweed_seeds",
+  "ingredients": [
+    {
+      "item": "lotr:wild_pipeweed"
+    }
+  ],
+  "result": {
+    "item": "lotr:pipeweed_seeds",
+    "count": 2
+  }
+}

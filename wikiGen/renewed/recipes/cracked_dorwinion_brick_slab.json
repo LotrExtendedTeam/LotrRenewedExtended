@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dorwinion",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:cracked_dorwinion_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:cracked_dorwinion_brick_slab",
+    "count": 6
+  }
+}

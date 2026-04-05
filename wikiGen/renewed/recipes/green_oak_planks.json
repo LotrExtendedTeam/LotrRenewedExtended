@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "lotr:green_oak_logs"
+    }
+  ],
+  "result": {
+    "item": "lotr:green_oak_planks",
+    "count": 4
+  }
+}

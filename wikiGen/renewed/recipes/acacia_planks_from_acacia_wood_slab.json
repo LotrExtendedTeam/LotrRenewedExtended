@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotr:acacia_wood_slab"
+      },
+      {
+        "item": "lotr:stripped_acacia_wood_slab"
+      }
+    ]
+  ],
+  "result": {
+    "item": "minecraft:acacia_planks",
+    "count": 2
+  }
+}

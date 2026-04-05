@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:dwarven_pillar",
+    "lotr:stone_pillar",
+    "lotr:gondor_pillar",
+    "lotr:mordor_pillar",
+    "lotr:rohan_pillar",
+    "lotr:blue_pillar",
+    "lotr:red_pillar",
+    "lotr:high_elven_pillar",
+    "lotr:galadhrim_pillar",
+    "lotr:wood_elven_pillar",
+    "lotr:harad_pillar",
+    "lotr:red_harad_pillar",
+    "lotr:umbar_pillar",
+    "lotr:numenorean_pillar",
+    "lotr:uruk_pillar",
+    "lotr:brick_pillar",
+    "lotr:wattle_and_daub_pillar",
+    "lotr:arnor_pillar",
+    "lotr:angmar_pillar",
+    "lotr:chalk_pillar",
+    "lotr:dorwinion_pillar",
+    "lotr:dale_pillar"
+  ]
+}

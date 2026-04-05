@@ -1,0 +1,21 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:uruk",
+  "pattern": [
+    "###",
+    "#O#",
+    "###"
+  ],
+  "key": {
+    "O": {
+      "item": "lotr:gate_gear"
+    },
+    "#": {
+      "item": "lotr:uruk_steel_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:uruk_gate",
+    "count": 4
+  }
+}

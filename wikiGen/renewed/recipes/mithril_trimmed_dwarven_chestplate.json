@@ -1,0 +1,21 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dwarven",
+  "pattern": [
+    "XXX",
+    "X#X",
+    "XXX"
+  ],
+  "key": {
+    "#": {
+      "type": "lotr:undamaged_ingredient",
+      "item": "lotr:dwarven_chestplate"
+    },
+    "X": {
+      "item": "lotr:mithril_nugget"
+    }
+  },
+  "result": {
+    "item": "lotr:mithril_trimmed_dwarven_chestplate"
+  }
+}

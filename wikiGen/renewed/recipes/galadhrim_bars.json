@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:elven_steel_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:galadhrim_bars",
+    "count": 16
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_dwarven",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mossy_dwarven_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:mossy_dwarven_brick_slab",
+    "count": 6
+  }
+}

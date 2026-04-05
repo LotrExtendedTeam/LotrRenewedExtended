@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:wooden_mug",
+    "lotr:ceramic_mug",
+    "lotr:golden_goblet",
+    "lotr:silver_goblet",
+    "lotr:copper_goblet",
+    "lotr:wooden_cup",
+    "lotr:waterskin",
+    "lotr:ale_horn",
+    "lotr:golden_ale_horn"
+  ]
+}

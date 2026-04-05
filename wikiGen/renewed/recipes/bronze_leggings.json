@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "lotr:bronze_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:bronze_leggings"
+  }
+}

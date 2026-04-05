@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:red_rock"
+    }
+  ],
+  "result": {
+    "item": "lotr:red_rock_button"
+  }
+}

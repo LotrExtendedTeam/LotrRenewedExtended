@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:white_sandstone"
+  },
+  "result": "lotr:chiseled_white_sandstone",
+  "count": 1
+}

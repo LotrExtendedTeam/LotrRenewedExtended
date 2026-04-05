@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotr:beech_log_slab"
+      },
+      {
+        "item": "lotr:stripped_beech_log_slab"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotr:beech_planks",
+    "count": 2
+  }
+}

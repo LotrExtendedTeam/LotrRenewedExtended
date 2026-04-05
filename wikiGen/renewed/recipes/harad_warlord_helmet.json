@@ -1,0 +1,22 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:harad",
+  "pattern": [
+    "SLS",
+    " H "
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "L": {
+      "tag": "forge:leather"
+    },
+    "H": {
+      "item": "lotr:harad_helmet"
+    }
+  },
+  "result": {
+    "item": "lotr:harad_warlord_helmet"
+  }
+}

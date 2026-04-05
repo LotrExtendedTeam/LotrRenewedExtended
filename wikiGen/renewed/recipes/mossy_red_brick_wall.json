@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mossy_red_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:mossy_red_brick_wall",
+    "count": 6
+  }
+}

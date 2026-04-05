@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:cherry_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:cherry_stairs",
+    "count": 4
+  }
+}

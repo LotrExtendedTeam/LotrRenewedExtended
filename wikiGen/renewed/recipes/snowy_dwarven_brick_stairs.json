@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_dwarven",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:snowy_dwarven_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:snowy_dwarven_brick_stairs",
+    "count": 4
+  }
+}

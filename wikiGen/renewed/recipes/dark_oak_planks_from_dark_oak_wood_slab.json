@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotr:dark_oak_wood_slab"
+      },
+      {
+        "item": "lotr:stripped_dark_oak_wood_slab"
+      }
+    ]
+  ],
+  "result": {
+    "item": "minecraft:dark_oak_planks",
+    "count": 2
+  }
+}

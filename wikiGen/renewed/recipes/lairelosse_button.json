@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "lotr:lairelosse_planks"
+    }
+  ],
+  "result": {
+    "item": "lotr:lairelosse_button"
+  }
+}

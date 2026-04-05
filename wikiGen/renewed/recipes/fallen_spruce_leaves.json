@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:fallen_leaves",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:spruce_leaves"
+    }
+  },
+  "result": {
+    "item": "lotr:fallen_spruce_leaves",
+    "count": 16
+  }
+}

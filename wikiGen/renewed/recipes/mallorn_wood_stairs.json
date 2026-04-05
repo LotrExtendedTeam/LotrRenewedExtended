@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mallorn_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:mallorn_wood_stairs",
+    "count": 4
+  }
+}

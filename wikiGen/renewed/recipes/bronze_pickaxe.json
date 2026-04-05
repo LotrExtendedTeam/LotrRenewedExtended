@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    " # ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:rods/wooden"
+    },
+    "X": {
+      "item": "lotr:bronze_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:bronze_pickaxe"
+  }
+}

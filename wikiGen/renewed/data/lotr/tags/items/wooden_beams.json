@@ -1,0 +1,31 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:pine_beam",
+    "lotr:mallorn_beam",
+    "lotr:mirk_oak_beam",
+    "lotr:charred_beam",
+    "lotr:apple_beam",
+    "lotr:pear_beam",
+    "lotr:cherry_beam",
+    "lotr:lebethron_beam",
+    "lotr:beech_beam",
+    "lotr:oak_beam",
+    "lotr:spruce_beam",
+    "lotr:birch_beam",
+    "lotr:jungle_beam",
+    "lotr:acacia_beam",
+    "lotr:dark_oak_beam",
+    "lotr:maple_beam",
+    "lotr:aspen_beam",
+    "lotr:lairelosse_beam",
+    "lotr:cedar_beam",
+    "lotr:fir_beam",
+    "lotr:larch_beam",
+    "lotr:holly_beam",
+    "lotr:green_oak_beam",
+    "lotr:cypress_beam",
+    "lotr:rotten_beam",
+    "lotr:culumalda_beam"
+  ]
+}

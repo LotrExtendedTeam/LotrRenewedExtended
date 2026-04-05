@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:beam",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:charred_log"
+    }
+  },
+  "result": {
+    "item": "lotr:charred_beam",
+    "count": 3
+  }
+}

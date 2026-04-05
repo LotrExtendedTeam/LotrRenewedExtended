@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:hobbit",
+  "group": "wooden_door",
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:pine_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:shire_pine_door",
+    "count": 3
+  }
+}

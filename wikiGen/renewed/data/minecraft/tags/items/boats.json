@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:pine_boat",
+    "lotr:mallorn_boat",
+    "lotr:mirk_oak_boat",
+    "lotr:charred_boat",
+    "lotr:apple_boat",
+    "lotr:pear_boat",
+    "lotr:cherry_boat",
+    "lotr:lebethron_boat",
+    "lotr:beech_boat",
+    "lotr:maple_boat",
+    "lotr:aspen_boat",
+    "lotr:lairelosse_boat",
+    "lotr:cedar_boat",
+    "lotr:fir_boat",
+    "lotr:larch_boat",
+    "lotr:holly_boat",
+    "lotr:green_oak_boat",
+    "lotr:cypress_boat",
+    "lotr:rotten_boat",
+    "lotr:culumalda_boat"
+  ]
+}

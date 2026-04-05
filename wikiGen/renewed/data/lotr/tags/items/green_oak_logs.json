@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:green_oak_log",
+    "lotr:green_oak_wood",
+    "lotr:stripped_green_oak_log",
+    "lotr:stripped_green_oak_wood"
+  ]
+}

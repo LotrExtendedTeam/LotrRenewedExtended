@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dorwinion",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "lotr:elven_steel_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:dorwinion_elven_chestplate"
+  }
+}

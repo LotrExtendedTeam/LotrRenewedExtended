@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:light_blue_clay_tiling",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:clay_tiling"
+    },
+    "X": {
+      "tag": "forge:dyes/light_blue"
+    }
+  },
+  "result": {
+    "item": "lotr:light_blue_clay_tiling",
+    "count": 8
+  }
+}

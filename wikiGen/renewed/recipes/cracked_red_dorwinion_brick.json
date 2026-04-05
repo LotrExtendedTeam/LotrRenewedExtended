@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "lotr:red_dorwinion_brick"
+  },
+  "result": "lotr:cracked_red_dorwinion_brick",
+  "experience": 0.1,
+  "cookingtime": 200
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:lebethron_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:lebethron_boat"
+  }
+}

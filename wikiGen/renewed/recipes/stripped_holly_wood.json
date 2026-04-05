@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:stripped_holly_log"
+    }
+  },
+  "result": {
+    "item": "lotr:stripped_holly_wood",
+    "count": 3
+  }
+}

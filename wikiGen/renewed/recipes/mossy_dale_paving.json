@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:dale",
+  "ingredients": [
+    {
+      "item": "lotr:dale_paving"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_dale_paving"
+  }
+}

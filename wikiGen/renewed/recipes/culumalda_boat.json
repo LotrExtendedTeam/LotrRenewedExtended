@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:culumalda_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:culumalda_boat"
+  }
+}

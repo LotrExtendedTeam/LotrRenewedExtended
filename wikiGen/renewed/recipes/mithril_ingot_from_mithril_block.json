@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:mithril_ingot",
+  "ingredients": [
+    {
+      "item": "lotr:mithril_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:mithril_ingot",
+    "count": 9
+  }
+}

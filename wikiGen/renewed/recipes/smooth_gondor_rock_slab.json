@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:gondor",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:smooth_gondor_rock"
+    }
+  },
+  "result": {
+    "item": "lotr:smooth_gondor_rock_slab",
+    "count": 6
+  }
+}

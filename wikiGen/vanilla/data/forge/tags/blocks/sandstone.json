@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:white_sandstone",
+    "lotr:cut_white_sandstone",
+    "lotr:chiseled_white_sandstone",
+    "lotr:smooth_white_sandstone"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:oak_log",
+    "minecraft:spruce_log",
+    "minecraft:birch_log",
+    "minecraft:jungle_log",
+    "minecraft:acacia_log",
+    "minecraft:dark_oak_log",
+    "lotr:pine_log",
+    "lotr:mallorn_log",
+    "lotr:mirk_oak_log",
+    "lotr:apple_log",
+    "lotr:pear_log",
+    "lotr:cherry_log",
+    "lotr:lebethron_log",
+    "lotr:beech_log",
+    "lotr:maple_log",
+    "lotr:aspen_log",
+    "lotr:lairelosse_log",
+    "lotr:cedar_log",
+    "lotr:fir_log",
+    "lotr:larch_log",
+    "lotr:holly_log",
+    "lotr:green_oak_log",
+    "lotr:cypress_log",
+    "lotr:rotten_log",
+    "lotr:culumalda_log"
+  ]
+}

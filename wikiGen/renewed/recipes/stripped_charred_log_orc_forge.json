@@ -1,0 +1,9 @@
+{
+  "type": "lotr:orc_forge",
+  "ingredient": {
+    "tag": "lotr:charrable_stripped_logs"
+  },
+  "result": "lotr:stripped_charred_log",
+  "experience": 0.15,
+  "cookingtime": 200
+}

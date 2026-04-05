@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:lairelosse_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:lairelosse_wood_stairs",
+    "count": 4
+  }
+}

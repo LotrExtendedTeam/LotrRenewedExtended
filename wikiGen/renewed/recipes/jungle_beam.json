@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:beam",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "jungle_log"
+    }
+  },
+  "result": {
+    "item": "lotr:jungle_beam",
+    "count": 3
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:durnor",
+  "ingredients": [
+    {
+      "item": "lotr:durnor_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:durnor",
+    "count": 9
+  }
+}

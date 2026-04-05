@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:pine_stairs",
+    "lotr:mallorn_stairs",
+    "lotr:mirk_oak_stairs",
+    "lotr:charred_stairs",
+    "lotr:apple_stairs",
+    "lotr:pear_stairs",
+    "lotr:cherry_stairs",
+    "lotr:lebethron_stairs",
+    "lotr:beech_stairs",
+    "lotr:maple_stairs",
+    "lotr:aspen_stairs",
+    "lotr:lairelosse_stairs",
+    "lotr:cedar_stairs",
+    "lotr:fir_stairs",
+    "lotr:larch_stairs",
+    "lotr:holly_stairs",
+    "lotr:green_oak_stairs",
+    "lotr:cypress_stairs",
+    "lotr:rotten_stairs",
+    "lotr:culumalda_stairs"
+  ]
+}

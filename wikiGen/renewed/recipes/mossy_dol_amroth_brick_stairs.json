@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dol_amroth",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mossy_dol_amroth_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:mossy_dol_amroth_brick_stairs",
+    "count": 4
+  }
+}

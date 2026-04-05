@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_harad",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:harad_pillar"
+    }
+  },
+  "result": {
+    "item": "lotr:harad_pillar_slab",
+    "count": 6
+  }
+}

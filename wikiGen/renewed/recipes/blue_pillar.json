@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:blue_rock"
+    }
+  },
+  "result": {
+    "item": "lotr:blue_pillar",
+    "count": 3
+  }
+}

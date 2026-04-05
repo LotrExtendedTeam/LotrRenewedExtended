@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:mordor",
+  "ingredients": [
+    {
+      "item": "lotr:mordor_brick"
+    },
+    {
+      "item": "lotr:mordor_moss"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_mordor_brick"
+  }
+}

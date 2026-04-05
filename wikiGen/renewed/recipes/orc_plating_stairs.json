@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_orc",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:orc_plating"
+    }
+  },
+  "result": {
+    "item": "lotr:orc_plating_stairs",
+    "count": 4
+  }
+}

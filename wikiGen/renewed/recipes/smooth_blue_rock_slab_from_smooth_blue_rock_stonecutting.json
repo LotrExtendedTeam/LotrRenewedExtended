@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:smooth_blue_rock"
+  },
+  "result": "lotr:smooth_blue_rock_slab",
+  "count": 2
+}

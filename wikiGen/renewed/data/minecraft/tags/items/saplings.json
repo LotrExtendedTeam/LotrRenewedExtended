@@ -1,0 +1,24 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:pine_sapling",
+    "lotr:mallorn_sapling",
+    "lotr:mirk_oak_sapling",
+    "lotr:apple_sapling",
+    "lotr:pear_sapling",
+    "lotr:cherry_sapling",
+    "lotr:lebethron_sapling",
+    "lotr:beech_sapling",
+    "lotr:maple_sapling",
+    "lotr:aspen_sapling",
+    "lotr:lairelosse_sapling",
+    "lotr:cedar_sapling",
+    "lotr:fir_sapling",
+    "lotr:larch_sapling",
+    "lotr:holly_sapling",
+    "lotr:green_oak_sapling",
+    "lotr:red_oak_sapling",
+    "lotr:cypress_sapling",
+    "lotr:culumalda_sapling"
+  ]
+}

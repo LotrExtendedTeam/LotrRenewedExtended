@@ -1,0 +1,12 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:gondor",
+  "ingredients": [
+    {
+      "item": "lotr:gondor_rock"
+    }
+  ],
+  "result": {
+    "item": "lotr:gondor_rock_button"
+  }
+}

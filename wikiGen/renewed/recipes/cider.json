@@ -1,0 +1,26 @@
+{
+  "type": "lotr:brewing",
+  "ingredients": [
+    {
+      "tag": "forge:apples"
+    },
+    {
+      "tag": "forge:apples"
+    },
+    {
+      "tag": "forge:apples"
+    },
+    {
+      "tag": "forge:apples"
+    },
+    {
+      "tag": "forge:apples"
+    },
+    {
+      "tag": "forge:apples"
+    }
+  ],
+  "result": "lotr:cider",
+  "experience": 1.0,
+  "brewtime": 12000
+}

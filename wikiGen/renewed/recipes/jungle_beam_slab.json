@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:jungle_beam"
+    }
+  },
+  "result": {
+    "item": "lotr:jungle_beam_slab",
+    "count": 6
+  }
+}

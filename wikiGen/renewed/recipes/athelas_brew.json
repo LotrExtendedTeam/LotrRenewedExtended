@@ -1,0 +1,26 @@
+{
+  "type": "lotr:brewing",
+  "ingredients": [
+    {
+      "item": "lotr:athelas"
+    },
+    {
+      "item": "lotr:athelas"
+    },
+    {
+      "item": "lotr:athelas"
+    },
+    {
+      "item": "lotr:athelas"
+    },
+    {
+      "item": "lotr:athelas"
+    },
+    {
+      "item": "lotr:athelas"
+    }
+  ],
+  "result": "lotr:athelas_brew",
+  "experience": 2.0,
+  "brewtime": 12000
+}

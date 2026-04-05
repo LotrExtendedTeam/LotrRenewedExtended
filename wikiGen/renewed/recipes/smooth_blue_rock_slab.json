@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:smooth_blue_rock"
+    }
+  },
+  "result": {
+    "item": "lotr:smooth_blue_rock_slab",
+    "count": 6
+  }
+}

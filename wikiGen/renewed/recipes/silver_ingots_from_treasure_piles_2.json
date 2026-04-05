@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:silver_ingot",
+  "ingredients": [
+    {
+      "item": "lotr:silver_treasure_pile"
+    },
+    {
+      "item": "lotr:silver_treasure_pile"
+    }
+  ],
+  "result": {
+    "item": "lotr:silver_ingot",
+    "count": 1
+  }
+}

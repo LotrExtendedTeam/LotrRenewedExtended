@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotr:aspen_log_slab"
+      },
+      {
+        "item": "lotr:stripped_aspen_log_slab"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotr:aspen_planks",
+    "count": 2
+  }
+}

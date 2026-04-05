@@ -1,0 +1,13 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:lossoth",
+  "ingredients": [
+    {
+      "item": "lotr:leather_bundle"
+    }
+  ],
+  "result": {
+    "item": "minecraft:leather",
+    "count": 4
+  }
+}

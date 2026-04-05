@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotr:lebethron_wood_stairs"
+      },
+      {
+        "item": "lotr:stripped_lebethron_wood_stairs"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotr:lebethron_planks",
+    "count": 3
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:any_dwarven",
+  "ingredients": [
+    {
+      "item": "lotr:dwarven_brick"
+    },
+    {
+      "item": "minecraft:snowball"
+    }
+  ],
+  "result": {
+    "item": "lotr:snowy_dwarven_brick"
+  }
+}

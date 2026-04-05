@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:charred_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:charred_wood_slab",
+    "count": 6
+  }
+}

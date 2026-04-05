@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:branch",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:dark_oak_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:dark_oak_branch",
+    "count": 6
+  }
+}

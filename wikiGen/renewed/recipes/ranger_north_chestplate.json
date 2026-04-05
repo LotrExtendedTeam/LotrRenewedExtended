@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:ranger",
+  "pattern": [
+    "X X",
+    "###",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:leather"
+    },
+    "#": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "result": {
+    "item": "lotr:ranger_north_chestplate"
+  }
+}

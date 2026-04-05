@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "lotr:reeds"
+  },
+  "result": "lotr:dried_reeds",
+  "experience": 0.1,
+  "cookingtime": 100
+}

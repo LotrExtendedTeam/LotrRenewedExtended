@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:apple_log",
+    "lotr:apple_wood",
+    "lotr:stripped_apple_log",
+    "lotr:stripped_apple_wood"
+  ]
+}

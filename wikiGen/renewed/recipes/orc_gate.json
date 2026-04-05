@@ -1,0 +1,21 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_orc",
+  "pattern": [
+    "###",
+    "#O#",
+    "###"
+  ],
+  "key": {
+    "O": {
+      "item": "lotr:gate_gear"
+    },
+    "#": {
+      "item": "lotr:orc_steel_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:orc_gate",
+    "count": 4
+  }
+}

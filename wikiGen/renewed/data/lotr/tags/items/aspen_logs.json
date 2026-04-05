@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:aspen_log",
+    "lotr:aspen_wood",
+    "lotr:stripped_aspen_log",
+    "lotr:stripped_aspen_wood"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:branch",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:cherry_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:cherry_branch",
+    "count": 6
+  }
+}

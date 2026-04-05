@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_numenorean",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:numenorean_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:numenorean_brick_stairs",
+    "count": 4
+  }
+}

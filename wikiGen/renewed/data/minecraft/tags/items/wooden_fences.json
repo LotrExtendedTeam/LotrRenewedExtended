@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#lotr:wooden_fences",
+    "lotr:wicker_fence",
+    "#lotr:branches"
+  ]
+}

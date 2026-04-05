@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:blue_mountains",
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "lotr:dwarven_steel_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:blue_dwarven_leggings"
+  }
+}

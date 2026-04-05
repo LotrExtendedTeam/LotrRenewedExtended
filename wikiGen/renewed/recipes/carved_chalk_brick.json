@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:chalk_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:carved_chalk_brick",
+    "count": 1
+  }
+}

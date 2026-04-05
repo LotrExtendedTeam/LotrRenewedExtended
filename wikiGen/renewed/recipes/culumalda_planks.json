@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "lotr:culumalda_logs"
+    }
+  ],
+  "result": {
+    "item": "lotr:culumalda_planks",
+    "count": 4
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:pine_planks",
+    "lotr:mallorn_planks",
+    "lotr:mirk_oak_planks",
+    "lotr:charred_planks",
+    "lotr:apple_planks",
+    "lotr:pear_planks",
+    "lotr:cherry_planks",
+    "lotr:lebethron_planks",
+    "lotr:beech_planks",
+    "lotr:maple_planks",
+    "lotr:aspen_planks",
+    "lotr:lairelosse_planks",
+    "lotr:cedar_planks",
+    "lotr:fir_planks",
+    "lotr:larch_planks",
+    "lotr:holly_planks",
+    "lotr:green_oak_planks",
+    "lotr:cypress_planks",
+    "lotr:rotten_planks",
+    "lotr:culumalda_planks"
+  ]
+}

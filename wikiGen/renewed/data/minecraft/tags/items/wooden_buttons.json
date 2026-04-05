@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:pine_button",
+    "lotr:mallorn_button",
+    "lotr:mirk_oak_button",
+    "lotr:charred_button",
+    "lotr:apple_button",
+    "lotr:pear_button",
+    "lotr:cherry_button",
+    "lotr:lebethron_button",
+    "lotr:beech_button",
+    "lotr:maple_button",
+    "lotr:aspen_button",
+    "lotr:lairelosse_button",
+    "lotr:cedar_button",
+    "lotr:fir_button",
+    "lotr:larch_button",
+    "lotr:holly_button",
+    "lotr:green_oak_button",
+    "lotr:cypress_button",
+    "lotr:rotten_button",
+    "lotr:culumalda_button"
+  ]
+}

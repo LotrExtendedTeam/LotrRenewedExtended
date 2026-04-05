@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:dwarven_steel_ingot",
+  "ingredients": [
+    {
+      "item": "lotr:dwarven_steel_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:dwarven_steel_ingot",
+    "count": 9
+  }
+}

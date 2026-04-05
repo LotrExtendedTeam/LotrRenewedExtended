@@ -1,0 +1,26 @@
+{
+  "type": "lotr:brewing",
+  "ingredients": [
+    {
+      "tag": "forge:bones"
+    },
+    {
+      "tag": "forge:bones"
+    },
+    {
+      "tag": "forge:bones"
+    },
+    {
+      "item": "lotr:morgul_flower"
+    },
+    {
+      "item": "lotr:morgul_flower"
+    },
+    {
+      "item": "lotr:morgul_flower"
+    }
+  ],
+  "result": "lotr:morgul_draught",
+  "experience": 2.0,
+  "brewtime": 12000
+}

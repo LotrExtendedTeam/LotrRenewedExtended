@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:uruk",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:uruk_pillar"
+    }
+  },
+  "result": {
+    "item": "lotr:uruk_pillar_slab",
+    "count": 6
+  }
+}

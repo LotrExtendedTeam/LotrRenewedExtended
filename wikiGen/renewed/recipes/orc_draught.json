@@ -1,0 +1,26 @@
+{
+  "type": "lotr:brewing",
+  "ingredients": [
+    {
+      "tag": "forge:bones"
+    },
+    {
+      "tag": "forge:bones"
+    },
+    {
+      "tag": "forge:bones"
+    },
+    {
+      "tag": "lotr:orc_draught_mushrooms"
+    },
+    {
+      "tag": "lotr:orc_draught_mushrooms"
+    },
+    {
+      "tag": "lotr:orc_draught_mushrooms"
+    }
+  ],
+  "result": "lotr:orc_draught",
+  "experience": 2.0,
+  "brewtime": 12000
+}

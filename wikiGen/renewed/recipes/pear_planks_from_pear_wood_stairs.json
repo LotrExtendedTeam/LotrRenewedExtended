@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotr:pear_wood_stairs"
+      },
+      {
+        "item": "lotr:stripped_pear_wood_stairs"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotr:pear_planks",
+    "count": 3
+  }
+}

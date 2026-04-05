@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:rotten_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:rotten_boat"
+  }
+}

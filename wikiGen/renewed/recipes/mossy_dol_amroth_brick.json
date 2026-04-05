@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:dol_amroth",
+  "ingredients": [
+    {
+      "item": "lotr:dol_amroth_brick"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_dol_amroth_brick"
+  }
+}

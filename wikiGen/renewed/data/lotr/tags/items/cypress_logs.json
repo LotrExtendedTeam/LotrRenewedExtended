@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:cypress_log",
+    "lotr:cypress_wood",
+    "lotr:stripped_cypress_log",
+    "lotr:stripped_cypress_wood"
+  ]
+}

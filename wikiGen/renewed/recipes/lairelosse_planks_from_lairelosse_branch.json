@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotr:lairelosse_branch"
+      },
+      {
+        "item": "lotr:stripped_lairelosse_branch"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotr:lairelosse_planks",
+    "count": 2
+  }
+}

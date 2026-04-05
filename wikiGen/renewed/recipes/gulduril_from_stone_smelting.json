@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "lotr:gulduril_ore_stone"
+  },
+  "result": "lotr:gulduril",
+  "experience": 0.3,
+  "cookingtime": 200
+}

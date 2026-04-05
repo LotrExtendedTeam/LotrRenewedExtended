@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotr:holly_wood_slab"
+      },
+      {
+        "item": "lotr:stripped_holly_wood_slab"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotr:holly_planks",
+    "count": 2
+  }
+}

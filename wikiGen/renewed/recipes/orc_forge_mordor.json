@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:mordor",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mordor_brick"
+    },
+    "X": {
+      "item": "lotr:durnor_block"
+    }
+  },
+  "result": {
+    "item": "lotr:orc_forge"
+  }
+}

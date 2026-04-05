@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "#"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:string"
+    },
+    "#": {
+      "item": "lotr:beeswax"
+    }
+  },
+  "result": {
+    "item": "lotr:candle",
+    "count": 4
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:yellow_fine_glass",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:yellow_stained_glass"
+    }
+  },
+  "result": {
+    "item": "lotr:yellow_fine_glass",
+    "count": 4
+  }
+}

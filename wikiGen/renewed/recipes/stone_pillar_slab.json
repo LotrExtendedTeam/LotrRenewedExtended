@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:stone_pillar"
+    }
+  },
+  "result": {
+    "item": "lotr:stone_pillar_slab",
+    "count": 6
+  }
+}

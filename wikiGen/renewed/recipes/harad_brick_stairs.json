@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_harad",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:harad_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:harad_brick_stairs",
+    "count": 4
+  }
+}

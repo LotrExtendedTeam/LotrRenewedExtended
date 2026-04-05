@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:beam",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:pine_log"
+    }
+  },
+  "result": {
+    "item": "lotr:pine_beam",
+    "count": 3
+  }
+}

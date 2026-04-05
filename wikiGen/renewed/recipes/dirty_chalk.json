@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "X"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:dirt"
+    },
+    "X": {
+      "item": "lotr:chalk"
+    }
+  },
+  "result": {
+    "item": "lotr:dirty_chalk",
+    "count": 2
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:wood_elven",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:cracked_wood_elven_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:cracked_wood_elven_brick_wall",
+    "count": 6
+  }
+}

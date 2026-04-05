@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "TXT"
+  ],
+  "key": {
+    "X": {
+      "item": "lotr:mithril_ingot"
+    },
+    "#": {
+      "tag": "forge:nuggets/iron"
+    },
+    "T": {
+      "item": "lotr:candle"
+    }
+  },
+  "result": {
+    "item": "lotr:mithril_chandelier",
+    "count": 2
+  }
+}

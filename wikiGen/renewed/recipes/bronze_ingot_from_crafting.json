@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:bronze_ingot",
+  "ingredients": [
+    {
+      "item": "lotr:copper_ingot"
+    },
+    {
+      "item": "lotr:tin_ingot"
+    }
+  ],
+  "result": {
+    "item": "lotr:bronze_ingot",
+    "count": 1
+  }
+}

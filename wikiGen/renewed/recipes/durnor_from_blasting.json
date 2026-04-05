@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "lotr:durnor_ore"
+  },
+  "result": "lotr:durnor",
+  "experience": 0.1,
+  "cookingtime": 100
+}

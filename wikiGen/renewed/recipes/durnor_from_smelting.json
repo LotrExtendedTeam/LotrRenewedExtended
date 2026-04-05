@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "lotr:durnor_ore"
+  },
+  "result": "lotr:durnor",
+  "experience": 0.1,
+  "cookingtime": 200
+}

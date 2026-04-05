@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:edhelvir",
+  "ingredients": [
+    {
+      "item": "lotr:edhelvir_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:edhelvir",
+    "count": 9
+  }
+}

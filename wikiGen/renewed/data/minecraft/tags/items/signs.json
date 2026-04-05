@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:pine_sign",
+    "lotr:mallorn_sign",
+    "lotr:mirk_oak_sign",
+    "lotr:charred_sign",
+    "lotr:apple_sign",
+    "lotr:pear_sign",
+    "lotr:cherry_sign",
+    "lotr:lebethron_sign",
+    "lotr:beech_sign",
+    "lotr:maple_sign",
+    "lotr:aspen_sign",
+    "lotr:lairelosse_sign",
+    "lotr:cedar_sign",
+    "lotr:fir_sign",
+    "lotr:larch_sign",
+    "lotr:holly_sign",
+    "lotr:green_oak_sign",
+    "lotr:cypress_sign",
+    "lotr:rotten_sign",
+    "lotr:culumalda_sign"
+  ]
+}

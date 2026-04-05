@@ -1,0 +1,10 @@
+{
+  "type": "lotr:orc_forge",
+  "ingredient": {
+    "type": "lotr:dynamic_ingredient",
+    "dynamic_type": "meats_except_rotten_flesh"
+  },
+  "result": "minecraft:rotten_flesh",
+  "experience": 0.3,
+  "cookingtime": 200
+}

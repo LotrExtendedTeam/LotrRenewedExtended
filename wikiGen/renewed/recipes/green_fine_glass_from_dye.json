@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:green_fine_glass",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:fine_glass"
+    },
+    "X": {
+      "tag": "forge:dyes/green"
+    }
+  },
+  "result": {
+    "item": "lotr:green_fine_glass",
+    "count": 8
+  }
+}

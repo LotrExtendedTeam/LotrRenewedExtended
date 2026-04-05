@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "group": "lotr:beam",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mallorn_log"
+    }
+  },
+  "result": {
+    "item": "lotr:mallorn_beam",
+    "count": 3
+  }
+}

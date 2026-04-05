@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:red_rock"
+  },
+  "result": "lotr:red_pillar",
+  "count": 1
+}

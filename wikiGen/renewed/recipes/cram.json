@@ -1,0 +1,19 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dale",
+  "pattern": [
+    "#X#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:wheat"
+    },
+    "X": {
+      "item": "lotr:salt"
+    }
+  },
+  "result": {
+    "item": "lotr:cram",
+    "count": 1
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:culumalda_log",
+    "lotr:culumalda_wood",
+    "lotr:stripped_culumalda_log",
+    "lotr:stripped_culumalda_wood"
+  ]
+}

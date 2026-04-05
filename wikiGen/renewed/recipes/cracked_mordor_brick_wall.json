@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:mordor",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:cracked_mordor_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:cracked_mordor_brick_wall",
+    "count": 6
+  }
+}

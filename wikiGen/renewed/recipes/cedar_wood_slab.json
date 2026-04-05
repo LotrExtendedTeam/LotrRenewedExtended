@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:cedar_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:cedar_wood_slab",
+    "count": 6
+  }
+}

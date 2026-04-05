@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_numenorean",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mossy_numenorean_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:mossy_numenorean_brick_slab",
+    "count": 6
+  }
+}

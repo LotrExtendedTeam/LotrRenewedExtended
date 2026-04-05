@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "lotr:sulfur_ore"
+  },
+  "result": "lotr:sulfur",
+  "experience": 0.2,
+  "cookingtime": 200
+}

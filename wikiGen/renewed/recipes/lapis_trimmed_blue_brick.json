@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "X": {
+      "item": "lotr:blue_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:lapis_trimmed_blue_brick"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:gondor",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:cracked_gondor_cobblebrick"
+    }
+  },
+  "result": {
+    "item": "lotr:cracked_gondor_cobblebrick_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mossy_galadhrim_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:mossy_galadhrim_brick_stairs",
+    "count": 4
+  }
+}

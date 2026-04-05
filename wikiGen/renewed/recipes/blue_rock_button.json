@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:blue_rock"
+    }
+  ],
+  "result": {
+    "item": "lotr:blue_rock_button"
+  }
+}

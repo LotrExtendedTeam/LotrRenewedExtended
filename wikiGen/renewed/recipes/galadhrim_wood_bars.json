@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:galadhrim",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mallorn_stick"
+    }
+  },
+  "result": {
+    "item": "lotr:galadhrim_wood_bars",
+    "count": 8
+  }
+}

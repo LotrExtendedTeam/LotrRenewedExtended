@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:dark_oak_beam"
+    }
+  },
+  "result": {
+    "item": "lotr:dark_oak_beam_slab",
+    "count": 6
+  }
+}

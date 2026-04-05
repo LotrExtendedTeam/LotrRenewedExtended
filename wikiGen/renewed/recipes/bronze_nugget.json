@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lotr:bronze_nugget",
+  "ingredients": [
+    {
+      "item": "lotr:bronze_ingot"
+    }
+  ],
+  "result": {
+    "item": "lotr:bronze_nugget",
+    "count": 9
+  }
+}

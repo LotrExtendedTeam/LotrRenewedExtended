@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "lotr:glowstone_ore"
+  },
+  "result": "minecraft:glowstone_dust",
+  "experience": 0.3,
+  "cookingtime": 100
+}

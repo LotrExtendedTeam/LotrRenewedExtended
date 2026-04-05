@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:chalk"
+  },
+  "result": "lotr:chalk_wall",
+  "count": 1
+}

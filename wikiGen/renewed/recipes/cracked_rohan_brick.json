@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "lotr:rohan_brick"
+  },
+  "result": "lotr:cracked_rohan_brick",
+  "experience": 0.1,
+  "cookingtime": 200
+}

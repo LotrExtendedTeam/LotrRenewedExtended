@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:any_high_elven",
+  "ingredients": [
+    {
+      "item": "lotr:high_elven_brick"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_high_elven_brick"
+  }
+}

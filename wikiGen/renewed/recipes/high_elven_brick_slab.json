@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_high_elven",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:high_elven_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:high_elven_brick_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:branch",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:stripped_charred_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:stripped_charred_branch",
+    "count": 6
+  }
+}

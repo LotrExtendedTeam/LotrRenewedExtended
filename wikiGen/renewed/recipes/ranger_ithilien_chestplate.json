@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:gondor",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:leather"
+    }
+  },
+  "result": {
+    "item": "lotr:ranger_ithilien_chestplate"
+  }
+}

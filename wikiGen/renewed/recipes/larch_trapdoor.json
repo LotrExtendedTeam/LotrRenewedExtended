@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_trapdoor",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:larch_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:larch_trapdoor",
+    "count": 2
+  }
+}

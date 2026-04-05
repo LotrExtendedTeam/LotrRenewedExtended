@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_harad",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:red_harad_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:red_harad_brick_wall",
+    "count": 6
+  }
+}

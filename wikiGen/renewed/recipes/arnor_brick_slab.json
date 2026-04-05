@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:ranger",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:arnor_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:arnor_brick_slab",
+    "count": 6
+  }
+}

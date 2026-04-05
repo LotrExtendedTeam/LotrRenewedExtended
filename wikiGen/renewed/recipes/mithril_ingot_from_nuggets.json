@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:mithril_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mithril_nugget"
+    }
+  },
+  "result": {
+    "item": "lotr:mithril_ingot"
+  }
+}

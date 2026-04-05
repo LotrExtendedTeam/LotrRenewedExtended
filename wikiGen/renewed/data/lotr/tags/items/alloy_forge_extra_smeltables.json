@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:logs",
+    "minecraft:clay_ball",
+    "lotr:clay_plate",
+    "lotr:stoneware_plate",
+    "lotr:clay_mug"
+  ],
+  "__comment": "For input items which can be smelted in the alloy forges, in addition to stone/sand/clay-material blocks"
+}

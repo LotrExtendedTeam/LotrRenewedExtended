@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#O#",
+    "###"
+  ],
+  "key": {
+    "O": {
+      "item": "lotr:gate_gear"
+    },
+    "#": {
+      "item": "lotr:mithril_ingot"
+    }
+  },
+  "result": {
+    "item": "lotr:mithril_gate",
+    "count": 4
+  }
+}

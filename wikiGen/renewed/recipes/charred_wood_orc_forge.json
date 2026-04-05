@@ -1,0 +1,9 @@
+{
+  "type": "lotr:orc_forge",
+  "ingredient": {
+    "tag": "lotr:charrable_woods"
+  },
+  "result": "lotr:charred_wood",
+  "experience": 0.15,
+  "cookingtime": 200
+}

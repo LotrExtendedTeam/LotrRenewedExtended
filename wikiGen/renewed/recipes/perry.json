@@ -1,0 +1,26 @@
+{
+  "type": "lotr:brewing",
+  "ingredients": [
+    {
+      "item": "lotr:pear"
+    },
+    {
+      "item": "lotr:pear"
+    },
+    {
+      "item": "lotr:pear"
+    },
+    {
+      "item": "lotr:pear"
+    },
+    {
+      "item": "lotr:pear"
+    },
+    {
+      "item": "lotr:pear"
+    }
+  ],
+  "result": "lotr:perry",
+  "experience": 1.0,
+  "brewtime": 12000
+}

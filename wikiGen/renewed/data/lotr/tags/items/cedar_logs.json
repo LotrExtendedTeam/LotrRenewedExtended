@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:cedar_log",
+    "lotr:cedar_wood",
+    "lotr:stripped_cedar_log",
+    "lotr:stripped_cedar_wood"
+  ]
+}

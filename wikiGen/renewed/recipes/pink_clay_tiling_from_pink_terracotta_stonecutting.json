@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:pink_terracotta"
+  },
+  "result": "lotr:pink_clay_tiling",
+  "count": 1
+}

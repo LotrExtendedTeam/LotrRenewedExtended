@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_dwarven",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:dwarven_pillar"
+    }
+  },
+  "result": {
+    "item": "lotr:dwarven_pillar_slab",
+    "count": 6
+  }
+}

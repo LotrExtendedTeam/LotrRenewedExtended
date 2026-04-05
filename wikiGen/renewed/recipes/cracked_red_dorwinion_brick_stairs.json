@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dorwinion",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:cracked_red_dorwinion_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:cracked_red_dorwinion_brick_stairs",
+    "count": 4
+  }
+}

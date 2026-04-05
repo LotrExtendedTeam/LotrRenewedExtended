@@ -1,0 +1,31 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:oak_beam_slab",
+    "lotr:spruce_beam_slab",
+    "lotr:birch_beam_slab",
+    "lotr:jungle_beam_slab",
+    "lotr:acacia_beam_slab",
+    "lotr:dark_oak_beam_slab",
+    "lotr:pine_beam_slab",
+    "lotr:mallorn_beam_slab",
+    "lotr:mirk_oak_beam_slab",
+    "lotr:charred_beam_slab",
+    "lotr:apple_beam_slab",
+    "lotr:pear_beam_slab",
+    "lotr:cherry_beam_slab",
+    "lotr:lebethron_beam_slab",
+    "lotr:beech_beam_slab",
+    "lotr:maple_beam_slab",
+    "lotr:aspen_beam_slab",
+    "lotr:lairelosse_beam_slab",
+    "lotr:cedar_beam_slab",
+    "lotr:fir_beam_slab",
+    "lotr:larch_beam_slab",
+    "lotr:holly_beam_slab",
+    "lotr:green_oak_beam_slab",
+    "lotr:cypress_beam_slab",
+    "lotr:rotten_beam_slab",
+    "lotr:culumalda_beam_slab"
+  ]
+}

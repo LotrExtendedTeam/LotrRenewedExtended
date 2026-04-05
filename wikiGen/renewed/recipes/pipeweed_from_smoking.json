@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "lotr:pipeweed_leaf"
+  },
+  "result": "lotr:pipeweed",
+  "experience": 0.25,
+  "cookingtime": 100
+}

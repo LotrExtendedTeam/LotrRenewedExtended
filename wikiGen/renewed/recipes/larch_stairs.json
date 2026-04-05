@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:larch_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:larch_stairs",
+    "count": 4
+  }
+}

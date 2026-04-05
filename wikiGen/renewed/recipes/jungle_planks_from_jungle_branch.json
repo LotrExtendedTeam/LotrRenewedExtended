@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotr:jungle_branch"
+      },
+      {
+        "item": "lotr:stripped_jungle_branch"
+      }
+    ]
+  ],
+  "result": {
+    "item": "minecraft:jungle_planks",
+    "count": 2
+  }
+}

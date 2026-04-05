@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:gondor",
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:leather"
+    }
+  },
+  "result": {
+    "item": "lotr:ranger_ithilien_leggings"
+  }
+}

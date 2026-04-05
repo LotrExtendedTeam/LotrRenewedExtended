@@ -1,0 +1,26 @@
+{
+  "type": "lotr:alloy_forge",
+  "ingredient": [
+    {
+      "tag": "forge:ores/copper"
+    },
+    {
+      "tag": "forge:ingots/copper"
+    }
+  ],
+  "alloy": [
+    {
+      "tag": "forge:ores/tin"
+    },
+    {
+      "tag": "forge:ingots/tin"
+    }
+  ],
+  "swappable": "true",
+  "result": {
+    "item": "lotr:bronze_ingot",
+    "count": 2
+  },
+  "experience": 0.7,
+  "cookingtime": 200
+}

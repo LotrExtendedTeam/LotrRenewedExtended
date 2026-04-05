@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:pipeweed_leaf"
+  ],
+  "__comment": "For items which can be cooked in the hobbit oven, in addition to food cooking recipes"
+}

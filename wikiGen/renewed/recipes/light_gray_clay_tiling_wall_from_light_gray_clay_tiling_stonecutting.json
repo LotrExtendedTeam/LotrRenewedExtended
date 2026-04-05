@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:light_gray_clay_tiling"
+  },
+  "result": "lotr:light_gray_clay_tiling_wall",
+  "count": 1
+}

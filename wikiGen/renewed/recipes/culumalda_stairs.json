@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:culumalda_planks"
+    }
+  },
+  "result": {
+    "item": "lotr:culumalda_stairs",
+    "count": 4
+  }
+}

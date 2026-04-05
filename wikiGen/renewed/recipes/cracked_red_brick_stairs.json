@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:cracked_red_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:cracked_red_brick_stairs",
+    "count": 4
+  }
+}

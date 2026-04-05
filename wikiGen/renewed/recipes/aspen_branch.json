@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:branch",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:aspen_wood"
+    }
+  },
+  "result": {
+    "item": "lotr:aspen_branch",
+    "count": 6
+  }
+}

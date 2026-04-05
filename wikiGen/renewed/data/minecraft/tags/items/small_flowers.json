@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:simbelmyne",
+    "lotr:shire_heather",
+    "lotr:elanor",
+    "lotr:niphredil",
+    "lotr:bluebell",
+    "lotr:marigold",
+    "lotr:asphodel",
+    "lotr:lavender",
+    "lotr:wild_flax",
+    "lotr:red_sand_gem",
+    "lotr:yellow_sand_gem",
+    "lotr:harad_daisy",
+    "lotr:southbell",
+    "lotr:white_chrysanthemum",
+    "lotr:yellow_chrysanthemum",
+    "lotr:pink_chrysanthemum",
+    "lotr:red_chrysanthemum",
+    "lotr:orange_chrysanthemum",
+    "lotr:mallos",
+    "lotr:morgul_flower"
+  ]
+}

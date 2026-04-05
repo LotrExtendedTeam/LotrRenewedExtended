@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dol_amroth",
+  "pattern": [
+    "YXY",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:ingots/iron"
+    },
+    "Y": {
+      "item": "lotr:swan_feather"
+    }
+  },
+  "result": {
+    "item": "lotr:dol_amroth_chestplate"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "lotr:hobbit_oven_alloy",
+  "ingredient": [
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "item": "minecraft:cooked_porkchop"
+    }
+  ],
+  "alloy": [
+    {
+      "item": "lotr:salt"
+    }
+  ],
+  "swappable": "false",
+  "result": {
+    "item": "lotr:gammon"
+  },
+  "experience": 0.35,
+  "cookingtime": 200
+}

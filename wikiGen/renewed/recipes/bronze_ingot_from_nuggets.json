@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:bronze_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:bronze_nugget"
+    }
+  },
+  "result": {
+    "item": "lotr:bronze_ingot"
+  }
+}

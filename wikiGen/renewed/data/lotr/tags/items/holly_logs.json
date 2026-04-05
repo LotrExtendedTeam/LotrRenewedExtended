@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:holly_log",
+    "lotr:holly_wood",
+    "lotr:stripped_holly_log",
+    "lotr:stripped_holly_wood"
+  ]
+}

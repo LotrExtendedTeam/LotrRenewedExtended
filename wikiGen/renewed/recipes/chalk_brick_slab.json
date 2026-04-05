@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:chalk_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:chalk_brick_slab",
+    "count": 6
+  }
+}

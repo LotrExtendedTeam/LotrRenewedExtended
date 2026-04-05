@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:gondor",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:mossy_gondor_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:mossy_gondor_brick_slab",
+    "count": 6
+  }
+}

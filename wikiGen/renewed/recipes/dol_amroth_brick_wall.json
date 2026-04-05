@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dol_amroth",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:dol_amroth_brick"
+    }
+  },
+  "result": {
+    "item": "lotr:dol_amroth_brick_wall",
+    "count": 6
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_orc",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:rusted_orc_plating"
+    }
+  },
+  "result": {
+    "item": "lotr:rusted_orc_plating_slab",
+    "count": 6
+  }
+}

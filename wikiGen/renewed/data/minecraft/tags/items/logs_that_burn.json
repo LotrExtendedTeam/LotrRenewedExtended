@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "#lotr:pine_logs",
+    "#lotr:mallorn_logs",
+    "#lotr:mirk_oak_logs",
+    "#lotr:charred_logs",
+    "#lotr:apple_logs",
+    "#lotr:pear_logs",
+    "#lotr:cherry_logs",
+    "#lotr:lebethron_logs",
+    "#lotr:beech_logs",
+    "#lotr:maple_logs",
+    "#lotr:aspen_logs",
+    "#lotr:lairelosse_logs",
+    "#lotr:cedar_logs",
+    "#lotr:fir_logs",
+    "#lotr:larch_logs",
+    "#lotr:holly_logs",
+    "#lotr:green_oak_logs",
+    "#lotr:cypress_logs",
+    "#lotr:rotten_logs",
+    "#lotr:culumalda_logs"
+  ]
+}

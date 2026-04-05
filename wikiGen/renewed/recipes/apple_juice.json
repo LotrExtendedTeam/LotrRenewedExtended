@@ -1,0 +1,17 @@
+{
+  "type": "lotr:vessel_drink_shapeless",
+  "ingredients": [
+    {
+      "tag": "lotr:drink_vessels"
+    },
+    {
+      "tag": "forge:apples"
+    },
+    {
+      "tag": "forge:apples"
+    }
+  ],
+  "result": {
+    "item": "lotr:apple_juice"
+  }
+}

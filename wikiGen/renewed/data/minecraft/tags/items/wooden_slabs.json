@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:pine_slab",
+    "lotr:mallorn_slab",
+    "lotr:mirk_oak_slab",
+    "lotr:charred_slab",
+    "lotr:apple_slab",
+    "lotr:pear_slab",
+    "lotr:cherry_slab",
+    "lotr:lebethron_slab",
+    "lotr:beech_slab",
+    "lotr:maple_slab",
+    "lotr:aspen_slab",
+    "lotr:lairelosse_slab",
+    "lotr:cedar_slab",
+    "lotr:fir_slab",
+    "lotr:larch_slab",
+    "lotr:holly_slab",
+    "lotr:green_oak_slab",
+    "lotr:cypress_slab",
+    "lotr:rotten_slab",
+    "lotr:culumalda_slab"
+  ]
+}

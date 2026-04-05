@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#O#",
+    "###"
+  ],
+  "key": {
+    "O": {
+      "item": "lotr:gate_gear"
+    },
+    "#": {
+      "tag": "forge:ingots/bronze"
+    }
+  },
+  "result": {
+    "item": "lotr:bronze_portcullis",
+    "count": 4
+  }
+}

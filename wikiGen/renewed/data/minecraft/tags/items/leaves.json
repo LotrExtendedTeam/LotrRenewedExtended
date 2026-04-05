@@ -1,0 +1,28 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:pine_leaves",
+    "lotr:mallorn_leaves",
+    "lotr:mirk_oak_leaves",
+    "lotr:apple_leaves",
+    "lotr:apple_leaves_red",
+    "lotr:apple_leaves_green",
+    "lotr:pear_leaves",
+    "lotr:pear_leaves_fruit",
+    "lotr:cherry_leaves",
+    "lotr:cherry_leaves_fruit",
+    "lotr:lebethron_leaves",
+    "lotr:beech_leaves",
+    "lotr:maple_leaves",
+    "lotr:aspen_leaves",
+    "lotr:lairelosse_leaves",
+    "lotr:cedar_leaves",
+    "lotr:fir_leaves",
+    "lotr:larch_leaves",
+    "lotr:holly_leaves",
+    "lotr:green_oak_leaves",
+    "lotr:red_oak_leaves",
+    "lotr:cypress_leaves",
+    "lotr:culumalda_leaves"
+  ]
+}

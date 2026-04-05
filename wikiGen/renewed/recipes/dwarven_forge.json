@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_dwarven",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:dwarven_brick"
+    },
+    "X": {
+      "item": "minecraft:coal_block"
+    }
+  },
+  "result": {
+    "item": "lotr:dwarven_forge"
+  }
+}

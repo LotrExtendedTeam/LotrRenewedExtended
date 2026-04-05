@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:gondor_rock_button",
+    "lotr:mordor_rock_button",
+    "lotr:rohan_rock_button",
+    "lotr:blue_rock_button",
+    "lotr:red_rock_button",
+    "lotr:chalk_button"
+  ]
+}

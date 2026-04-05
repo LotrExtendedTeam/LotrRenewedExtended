@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:blue_brick"
+  },
+  "result": "lotr:carved_blue_brick",
+  "count": 1
+}
