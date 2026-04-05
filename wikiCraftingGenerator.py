@@ -24,6 +24,7 @@ TAG_FOLDERS = [
 OUTPUT_FOLDER = "wikiGen/output"
 OUTPUT_RECIPES_FILE = OUTPUT_FOLDER+"/recipes.json"
 OUTPUT_TAGS_FILE = OUTPUT_FOLDER+"/tags.json"
+OUTPUT_ITEMS_FILE = OUTPUT_FOLDER+"/items.json"
 
 # --- MANUAL TAG OVERRIDES ---
 # e.g. {"planks": "oak_plank"} will replace #planks with oak_plank
@@ -31,23 +32,23 @@ OUTPUT_TAGS_FILE = OUTPUT_FOLDER+"/tags.json"
 TAG_REPLACEMENTS = {
     # "tag_name": "item_id"
     # example: "planks": "oak_plank"
-	"forge:nuggets/iron": "minecraft:iron_nugget",
-	"forge:nuggets/silver": "lotr:silver_nugget",
-	"forge:nuggets/gold": "minecraft:gold_nugget",
-	"forge:nuggets/orc_steel": "lotr:orc_steel_nugget",
-	"forge:ingots/bronze": "bronze_ingot",
-	"forge:ingots/uruk_steel": "lotr:uruk_steel_ingot",
-	"forge:ingots/orc_steel": "lotr:orc_steel_ingot",
-	"forge:ingots/dwarven_steel": "lotr:dwarven_steel_ingot",
-	"forge:ingots/elven_steel": "lotr:elven_steel_ingot",
-	"forge:ingots/morgul_steel": "lotr:morgul_steel_ingot",
-	"forge:ingots/iron": "minecraft:iron_ingot",
-	"forge:dyes/yellow": "minecraft:yellow_dye",
-	"forge:dyes/green": "minecraft:green_dye",
-	"forge:dyes/red": "minecraft:yellow_dye",
-	"forge:dyes/white": "minecraft:white_dye",
-	"forge:dyes/blue": "minecraft:blue_dye",
-	"forge:string": "minecraft:string",
+    "forge:nuggets/iron": "minecraft:iron_nugget",
+    "forge:nuggets/silver": "lotr:silver_nugget",
+    "forge:nuggets/gold": "minecraft:gold_nugget",
+    "forge:nuggets/orc_steel": "lotr:orc_steel_nugget",
+    "forge:ingots/bronze": "lotr:bronze_ingot",
+    "forge:ingots/uruk_steel": "lotr:uruk_steel_ingot",
+    "forge:ingots/orc_steel": "lotr:orc_steel_ingot",
+    "forge:ingots/dwarven_steel": "lotr:dwarven_steel_ingot",
+    "forge:ingots/elven_steel": "lotr:elven_steel_ingot",
+    "forge:ingots/morgul_steel": "lotr:morgul_steel_ingot",
+    "forge:ingots/iron": "minecraft:iron_ingot",
+    "forge:dyes/yellow": "minecraft:yellow_dye",
+    "forge:dyes/green": "minecraft:green_dye",
+    "forge:dyes/red": "minecraft:yellow_dye",
+    "forge:dyes/white": "minecraft:white_dye",
+    "forge:dyes/blue": "minecraft:blue_dye",
+    "forge:string": "minecraft:string",
 }
 
 # --- UTILITIES ---
@@ -158,7 +159,7 @@ def flatten_tags(all_tags):
         else:
             log.warning(f"Tag '{tag_name}' has no resolved items and will be skipped")
     return flat_tags
-	
+    
 def validate_ingredient(ingredient, all_items, tags):
     if ingredient is None:
         return True
@@ -269,6 +270,27 @@ def get_recipe_title(rtype, table, output_item):
     else:
         return "Crafting"
 
+def format_item_name(item_id):
+    # Remove namespace and convert snake_case to Title Case
+    name = item_id.split(":")[-1].replace("_", " ").title()
+    return name
+
+def format_item_url(item_id):
+    namespace, name = item_id.split(":")
+    if namespace == "minecraft":
+        return f"https://minecraft.wiki/w/{name}"
+    elif namespace == "lotr":
+        # LOTR wiki uses underscores instead of spaces
+        formatted_name = name.replace(" ", "_").replace("-", "_")
+        return f"https://lotrextendedteam.github.io/Extended-Wiki/wiki/{formatted_name}/"
+    else:
+        # fallback for other namespaces
+        return f"#"
+
+def format_image_path(item_id):
+    name = item_id.split(":")[-1]
+    return f"assets/images/items/{name}.png"
+
 def process_file(path):
     with open(path) as f:
         data = json.load(f)
@@ -325,6 +347,15 @@ def main():
         out = r["output"]
         all_items.add(out["item"])
 
+    items_data = {}
+    for item in sorted(all_items):
+        items_data[item] = {
+            "name": format_item_name(item),
+            "tooltip": format_item_name(item),
+            "url": format_item_url(item),
+            "image": format_image_path(item)
+        }
+
     # Validate recipes
     valid_recipes = {k: v for k, v in recipes.items() if validate_recipe(v, all_items, flat_tags, k)}
 
@@ -340,8 +371,9 @@ def main():
         json.dump(sorted_recipes, f, indent=2)
     with open(OUTPUT_TAGS_FILE, "w") as f:
         json.dump(sorted_tags, f, indent=2)
-
-    print(f"Generated {len(valid_recipes)} recipes with {len(resolved_tags)} tags.")
+    with open(OUTPUT_ITEMS_FILE, "w") as f:
+        json.dump(items_data, f, indent=2)
+    print(f"Generated {len(items_data)} items, {len(valid_recipes)} recipes, and {len(resolved_tags)} tags.")
 
 if __name__ == "__main__":
     main()

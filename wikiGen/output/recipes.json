@@ -10458,14 +10458,14 @@
         null
       ],
       [
-        "bronze_ingot",
+        "lotr:bronze_ingot",
         null,
-        "bronze_ingot"
+        "lotr:bronze_ingot"
       ],
       [
-        "bronze_ingot",
+        "lotr:bronze_ingot",
         null,
-        "bronze_ingot"
+        "lotr:bronze_ingot"
       ]
     ],
     "output": {
@@ -10578,19 +10578,19 @@
     "title": "Harad Crafting",
     "grid": [
       [
-        "bronze_ingot",
+        "lotr:bronze_ingot",
         null,
-        "bronze_ingot"
+        "lotr:bronze_ingot"
       ],
       [
-        "bronze_ingot",
-        "bronze_ingot",
-        "bronze_ingot"
+        "lotr:bronze_ingot",
+        "lotr:bronze_ingot",
+        "lotr:bronze_ingot"
       ],
       [
-        "bronze_ingot",
-        "bronze_ingot",
-        "bronze_ingot"
+        "lotr:bronze_ingot",
+        "lotr:bronze_ingot",
+        "lotr:bronze_ingot"
       ]
     ],
     "output": {
@@ -10635,7 +10635,7 @@
       [
         null,
         null,
-        "bronze_ingot"
+        "lotr:bronze_ingot"
       ],
       [
         null,
@@ -10653,9 +10653,9 @@
     "title": "Any Harad Crafting",
     "grid": [
       [
-        "bronze_ingot",
+        "lotr:bronze_ingot",
         "#minecraft:planks",
-        "bronze_ingot"
+        "lotr:bronze_ingot"
       ],
       [
         "#minecraft:planks",
@@ -10663,9 +10663,9 @@
         "#minecraft:planks"
       ],
       [
-        "bronze_ingot",
+        "lotr:bronze_ingot",
         "#minecraft:planks",
-        "bronze_ingot"
+        "lotr:bronze_ingot"
       ]
     ],
     "output": {
@@ -10683,14 +10683,14 @@
         null
       ],
       [
-        "bronze_ingot",
-        "bronze_ingot",
-        "bronze_ingot"
+        "lotr:bronze_ingot",
+        "lotr:bronze_ingot",
+        "lotr:bronze_ingot"
       ],
       [
-        "bronze_ingot",
+        "lotr:bronze_ingot",
         null,
-        "bronze_ingot"
+        "lotr:bronze_ingot"
       ]
     ],
     "output": {
@@ -10703,19 +10703,19 @@
     "title": "Harad Crafting",
     "grid": [
       [
-        "bronze_ingot",
-        "bronze_ingot",
-        "bronze_ingot"
+        "lotr:bronze_ingot",
+        "lotr:bronze_ingot",
+        "lotr:bronze_ingot"
       ],
       [
-        "bronze_ingot",
+        "lotr:bronze_ingot",
         null,
-        "bronze_ingot"
+        "lotr:bronze_ingot"
       ],
       [
-        "bronze_ingot",
+        "lotr:bronze_ingot",
         null,
-        "bronze_ingot"
+        "lotr:bronze_ingot"
       ]
     ],
     "output": {
@@ -10780,7 +10780,7 @@
       [
         null,
         null,
-        "bronze_ingot"
+        "lotr:bronze_ingot"
       ],
       [
         null,
@@ -10805,12 +10805,12 @@
       [
         null,
         null,
-        "bronze_ingot"
+        "lotr:bronze_ingot"
       ],
       [
         null,
         null,
-        "bronze_ingot"
+        "lotr:bronze_ingot"
       ],
       [
         null,
@@ -10863,9 +10863,9 @@
         "#forge:leather"
       ],
       [
-        "bronze_ingot",
+        "lotr:bronze_ingot",
         null,
-        "bronze_ingot"
+        "lotr:bronze_ingot"
       ]
     ],
     "output": {
@@ -10878,9 +10878,9 @@
     "title": "Harad Crafting",
     "grid": [
       [
-        "bronze_ingot",
+        "lotr:bronze_ingot",
         null,
-        "bronze_ingot"
+        "lotr:bronze_ingot"
       ],
       [
         "#forge:leather",
@@ -10888,9 +10888,9 @@
         "#forge:leather"
       ],
       [
-        "bronze_ingot",
-        "bronze_ingot",
-        "bronze_ingot"
+        "lotr:bronze_ingot",
+        "lotr:bronze_ingot",
+        "lotr:bronze_ingot"
       ]
     ],
     "output": {
@@ -10908,9 +10908,9 @@
         null
       ],
       [
-        "bronze_ingot",
-        "bronze_ingot",
-        "bronze_ingot"
+        "lotr:bronze_ingot",
+        "lotr:bronze_ingot",
+        "lotr:bronze_ingot"
       ],
       [
         "#forge:leather",
@@ -10928,9 +10928,9 @@
     "title": "Harad Crafting",
     "grid": [
       [
-        "bronze_ingot",
-        "bronze_ingot",
-        "bronze_ingot"
+        "lotr:bronze_ingot",
+        "lotr:bronze_ingot",
+        "lotr:bronze_ingot"
       ],
       [
         "#forge:leather",
@@ -10938,9 +10938,9 @@
         "#forge:leather"
       ],
       [
-        "bronze_ingot",
+        "lotr:bronze_ingot",
         null,
-        "bronze_ingot"
+        "lotr:bronze_ingot"
       ]
     ],
     "output": {
@@ -10954,7 +10954,7 @@
     "grid": [
       [
         "#minecraft:planks",
-        "bronze_ingot",
+        "lotr:bronze_ingot",
         "#minecraft:planks"
       ],
       [
