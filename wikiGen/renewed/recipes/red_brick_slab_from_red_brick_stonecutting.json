@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:red_brick"
-  },
-  "result": "lotr:red_brick_slab",
-  "count": 2
-}

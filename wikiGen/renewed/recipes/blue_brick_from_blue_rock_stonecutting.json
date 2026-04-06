@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:blue_rock"
-  },
-  "result": "lotr:blue_brick",
-  "count": 1
-}

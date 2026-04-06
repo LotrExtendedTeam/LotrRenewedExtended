@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "lotr:mallorn_log",
-    "lotr:mallorn_wood",
-    "lotr:stripped_mallorn_log",
-    "lotr:stripped_mallorn_wood"
-  ]
-}

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "lotr:pipeweed_leaf"
-  },
-  "result": "lotr:pipeweed",
-  "experience": 0.25,
-  "cookingtime": 200
-}

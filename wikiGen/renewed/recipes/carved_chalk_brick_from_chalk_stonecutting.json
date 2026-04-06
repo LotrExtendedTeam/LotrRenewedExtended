@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:chalk"
-  },
-  "result": "lotr:carved_chalk_brick",
-  "count": 1
-}

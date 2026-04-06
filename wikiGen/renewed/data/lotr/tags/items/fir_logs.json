@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "lotr:fir_log",
-    "lotr:fir_wood",
-    "lotr:stripped_fir_log",
-    "lotr:stripped_fir_wood"
-  ]
-}

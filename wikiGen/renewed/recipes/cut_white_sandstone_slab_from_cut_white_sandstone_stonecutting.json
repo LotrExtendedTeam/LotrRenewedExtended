@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:cut_white_sandstone"
-  },
-  "result": "lotr:cut_white_sandstone_slab",
-  "count": 2
-}

@@ -46,6 +46,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		buildRecipes(consumer);
 		addMissingRenewedRecipes(consumer);
 		addMissingVanillaRecipes(consumer);
+		buildRenewedRecipeOverrides(consumer);
 		buildVanillaRecipeOverrides(consumer);
 		buildCookingRecipes(consumer);
 		makeDrinkRecipes(consumer);
@@ -1557,6 +1558,15 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('#', Ingredient.of(Tags.Items.INGOTS_IRON))
 		.unlockedBy("iron_ingot", has(Tags.Items.INGOTS_IRON))
 		.save(consumer, mcLoc(Items.LODESTONE.getRegistryName().getPath()));
+	}
+	private void buildRenewedRecipeOverrides(Consumer<IFinishedRecipe> consumer) {
+		ExtendedFactionShapedRecipeBuilder.shaped(LOTRItems.ORC_PLATING.get(), 8, LOTRRecipes.ANY_ORC)
+		.pattern(" # ")
+		.pattern("# #")
+		.pattern(" # ")
+		.define('#', Ingredient.of(LOTRItems.ORC_STEEL_INGOT.get()))
+		.unlockedBy("has_"+LOTRItems.ORC_STEEL_INGOT.get().getRegistryName().getPath(), has(LOTRItems.ORC_STEEL_INGOT.get()))
+		.save(consumer, lotrLoc(LOTRItems.ORC_PLATING.get().getRegistryName().getPath()));
 	}
 
 	private void buildSmithingRecipes(Consumer<IFinishedRecipe> consumer) {

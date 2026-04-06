@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:red_clay_tiling"
-  },
-  "result": "lotr:red_clay_tiling_wall",
-  "count": 1
-}
