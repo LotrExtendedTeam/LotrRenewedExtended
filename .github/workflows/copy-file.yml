@@ -1,0 +1,127 @@
+name: Sync en_us.json to Public Repo
+
+on:
+  workflow_dispatch:
+
+env:
+  TARGET_REPO: LotrExtendedTeam/Extended-Localization
+  TARGET_BRANCH: main
+  TARGET_FILE_PATH: langs/en_us.json
+  SOURCE_FILE_PATH: src/generated/resources/assets/lotrextended/lang/en_us.json
+  UPDATE_BRANCH: update-from-private-lang
+
+jobs:
+  sync-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout PRIVATE repo (this repo)
+      - name: Checkout private repository
+        uses: actions/checkout@v3
+
+      - name: Set up Git identity
+        run: |
+          git config --global user.email "lotrextendedbot@users.noreply.github.com"
+          git config --global user.name "LotR Extended Bot"
+
+      # Verify file exists in private repo
+      - name: Verify source file exists
+        run: |
+          if [ ! -f "$SOURCE_FILE_PATH" ]; then
+            echo "Source file not found: $SOURCE_FILE_PATH"
+            exit 1
+          fi
+
+      # Get commit hash for the file
+      - name: Get latest commit hash for source file
+        id: get-commit
+        run: |
+          COMMIT_HASH=$(git log -n 1 --pretty=format:%H -- $SOURCE_FILE_PATH)
+          echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_OUTPUT
+
+      # Compare with stored variable
+      - name: Check if commit hash changed
+        id: check-commit
+        run: |
+          PREVIOUS_COMMIT_HASH=${{ vars.LASTENUSCOMMENT }}
+          CURRENT_COMMIT_HASH=${{ steps.get-commit.outputs.COMMIT_HASH }}
+
+          if [ "$PREVIOUS_COMMIT_HASH" != "$CURRENT_COMMIT_HASH" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      # Clone PUBLIC repo
+      - name: Clone public repository
+        if: steps.check-commit.outputs.changed == 'true'
+        env:
+          PAT: ${{ secrets.PUBLIC_REPO_PAT }}
+        run: |
+          git clone https://x-access-token:${PAT}@github.com/${TARGET_REPO}.git public-repo
+          cd public-repo
+          git checkout $TARGET_BRANCH
+
+      # Copy file
+      - name: Copy file to public repo
+        if: steps.check-commit.outputs.changed == 'true'
+        run: |
+          mkdir -p public-repo/$(dirname $TARGET_FILE_PATH)
+          cp $SOURCE_FILE_PATH public-repo/$TARGET_FILE_PATH
+
+      # Create/update branch and push
+      - name: Commit and push changes
+        if: steps.check-commit.outputs.changed == 'true'
+        env:
+          PAT: ${{ secrets.PUBLIC_REPO_PAT }}
+          COMMIT_HASH: ${{ steps.get-commit.outputs.COMMIT_HASH }}
+        run: |
+          cd public-repo
+
+          git fetch origin
+
+          if git show-ref --verify --quiet refs/heads/$UPDATE_BRANCH; then
+            git checkout $UPDATE_BRANCH
+            git pull origin $UPDATE_BRANCH
+          else
+            git checkout -b $UPDATE_BRANCH
+          fi
+
+          git add $TARGET_FILE_PATH
+          git commit -m "Update en_us.json from private repo ($COMMIT_HASH)" || echo "No changes"
+
+          git remote set-url origin https://x-access-token:${PAT}@github.com/${TARGET_REPO}.git
+          git push -u origin $UPDATE_BRANCH --force-with-lease
+
+      # Create or update PR
+      - name: Create or update PR
+        if: steps.check-commit.outputs.changed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_PAT }}
+          COMMIT_HASH: ${{ steps.get-commit.outputs.COMMIT_HASH }}
+        run: |
+          cd public-repo
+
+          PR_ID=$(gh pr list --repo $TARGET_REPO --head $UPDATE_BRANCH --json number --jq '.[0].number')
+
+          if [ -z "$PR_ID" ] || [ "$PR_ID" = "null" ]; then
+            gh pr create \
+              --repo $TARGET_REPO \
+              --title "Update en_us.json" \
+              --body "Synced from private repo. Commit: $COMMIT_HASH" \
+              --head $UPDATE_BRANCH \
+              --base $TARGET_BRANCH
+          else
+            gh pr edit "$PR_ID" \
+              --repo $TARGET_REPO \
+              --body "Synced from private repo. Commit: $COMMIT_HASH"
+          fi
+
+      # Update stored commit hash
+      - name: Update last commit hash variable
+        if: steps.check-commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GH_VAR_PAT }}
+          COMMIT_HASH: ${{ steps.get-commit.outputs.COMMIT_HASH }}
+        run: |
+          gh variable set LASTENUSCOMMENT --body "$COMMIT_HASH"
