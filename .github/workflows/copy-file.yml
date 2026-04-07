@@ -111,10 +111,12 @@ jobs:
               --body "Synced from private repo. Commit: $COMMIT_HASH" \
               --head $UPDATE_BRANCH \
               --base $TARGET_BRANCH
+              --label "Lang-Sync"
           else
             gh pr edit "$PR_ID" \
               --repo $TARGET_REPO \
               --body "Synced from private repo. Commit: $COMMIT_HASH"
+              --add-label "Lang-Sync"
           fi
 
       # Update stored commit hash
