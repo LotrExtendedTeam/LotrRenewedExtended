@@ -157,6 +157,30 @@ public class ExtendedPotLootGenerator extends ChestLootTables  {
 				.add(EItemLootEntry.lootItem(ExtendedItems.SILVER_COIN_ONE.get()).setWeight(10).setRange(1, 10))
 				.apply(ExtendedModifierScrollAdder.chanceVeryRare()))
 			);
+		make(consumer, ExtendedLootTables.ISENGARD_POT, makeTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(ConstantRange.exactly(1))
+				.when(RandomChance.randomChance(0.25f)) // 25% chance
+				.add(EItemLootEntry.lootItem(LOTRItems.MAN_FLESH.get()).setWeight(100).setRange(3, 6))
+				.add(EItemLootEntry.lootItem(Items.BREAD).setWeight(70).setRange(3, 5))
+				.add(EItemLootEntry.lootItem(LOTRItems.MAGGOTY_BREAD.get()).setWeight(65).setRange(3, 6))
+				.add(EItemLootEntry.lootItem(Items.ROTTEN_FLESH).setWeight(100).setRange(3, 6))
+				.add(EItemLootEntry.lootItem(Items.ARROW).setWeight(40).setRange(4, 8))
+				.add(EItemLootEntry.lootItem(Items.IRON_INGOT).setWeight(30).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(Items.IRON_NUGGET).setWeight(40).setRange(2, 5))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_INGOT.get()).setWeight(35).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.BRONZE_NUGGET.get()).setWeight(40).setRange(2, 5))
+				.add(EItemLootEntry.lootItem(LOTRItems.ORC_STEEL_INGOT.get()).setWeight(35).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(LOTRItems.URUK_STEEL_INGOT.get()).setWeight(35).setRange(1, 3))
+				.add(EItemLootEntry.lootItem(ExtendedItems.ORC_STEEL_NUGGET.get()).setWeight(40).setRange(2, 5))
+				.add(EItemLootEntry.lootItem(Items.COAL).setWeight(100).setRange(4, 7))
+				.add(EItemLootEntry.lootItem(Items.STICK).setWeight(100).setRange(3, 6))
+				.add(EItemLootEntry.lootItem(Items.FLINT).setWeight(60).setRange(2, 5))
+				.add(EItemLootEntry.lootItem(Items.FLINT_AND_STEEL).setWeight(50).setDamageRange(0.10F, 0.65F).setExactly(1))
+				.add(EItemLootEntry.lootItem(Items.STRING).setWeight(60).setRange(3, 6))
+				.add(EItemLootEntry.lootItem(Items.LEATHER).setWeight(40).setRange(2, 4))
+				.add(EItemLootEntry.lootItem(Items.BONE).setWeight(100).setRange(1, 3))
+				.apply(ExtendedModifierScrollAdder.chanceVeryRare())));
 	}
 
 	public LootTable.Builder makeTable(){
