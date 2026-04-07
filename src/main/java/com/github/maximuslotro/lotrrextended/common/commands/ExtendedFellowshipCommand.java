@@ -1,7 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.commands;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.mojang.brigadier.CommandDispatcher;
@@ -25,8 +27,10 @@ import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.*;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.UsernameCache;
 
 public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
@@ -76,8 +80,9 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
                                                 )
                                         )
 								.then(Commands.literal("removePlayer")
-										.then(Commands.argument("playerToRemove", EntityArgument.player())
-												.executes(context -> removePlayer(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), EntityArgument.getPlayer(context, "playerToRemove")))
+										.then(Commands.argument("playerToRemove", StringArgumentType.string())
+											.suggests(SUGGEST_FELLOWSHIP_USERS)
+												.executes(context -> removePlayer(context.getSource(), (PlayerEntity) context.getSource().getEntity(), StringArgumentType.getString(context, "fellowship"), StringArgumentType.getString(context, "playerToRemove")))
 												)
 										)
 								.then(Commands.literal("transferOwnership")
@@ -202,14 +207,24 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
 		return ISuggestionProvider.suggest(fellowshipData.listAllFellowshipNames(), builder);
 	};
 
+	public static final SuggestionProvider<CommandSource> SUGGEST_FELLOWSHIP_USERS = (ctx, builder) -> {
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData((PlayerEntity) ctx.getSource().getEntity());
+		return ISuggestionProvider.suggest(fellowshipData.listAllFellowshipNames(), builder);
+	};
+
 	public static final SuggestionProvider<CommandSource> SUGGEST_INVITES_USER = (ctx, builder) -> {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData((PlayerEntity) ctx.getSource().getEntity());
 		return ISuggestionProvider.suggest(fellowshipData.listAllInviteNames(), builder);
 	};
 
 	public static final SuggestionProvider<CommandSource> SUGGEST_FELLOWSHIP_PLAYER = (ctx, builder) -> {
-		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(EntityArgument.getPlayer(ctx, "player"));
-		return ISuggestionProvider.suggest(fellowshipData.listAllFellowshipNames(), builder);
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData((PlayerEntity) ctx.getSource().getEntity());
+		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(StringArgumentType.getString(ctx, "fellowship"));
+		List<String> members = new ArrayList<>();
+		for(UUID member :fellowship.getAllFellowshipMembers()) {
+			members.add(UsernameHelper.getLastKnownUsernameOrFallback(member));
+		}
+		return ISuggestionProvider.suggest(members, builder);
 	};
 
 	private static int createFellowship(CommandSource source, PlayerEntity player, String fellowshipname, boolean adminOverride) {
@@ -309,6 +324,49 @@ public class ExtendedFellowshipCommand extends LOTRBaseCommand {
         }
         source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
 		return 0;
+	}
+	public static UUID getPlayerUUIDFromUsername(String username) {
+		UUID id = null;
+		for(Entry<UUID, String> profile : UsernameCache.getMap().entrySet()) {
+			if(profile.getValue().equals(username)) {
+				id = profile.getKey();
+				break;
+			}
+		}
+		return id;
+	}
+	private static int removePlayer(CommandSource source, PlayerEntity player, String fellowshipname, String playerToRemove) {
+		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
+		ExtendedFellowship fellowship = fellowshipData.getFellowshipByName(fellowshipname);
+        if (fellowship == null || !fellowship.hasEditPowers(player.getUUID()) || !(player.level instanceof ServerWorld)) {
+        	source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.error").withStyle(TextFormatting.RED), true);
+        	return 0;
+        }
+        ServerWorld serverWorld = (ServerWorld) player.level;
+        MinecraftServer server = serverWorld.getServer();
+        UUID playerUUID = null;
+        String playerName = playerToRemove;
+
+        // Try parse as UUID first
+        try {
+            playerUUID = UUID.fromString(playerToRemove);
+        } catch (IllegalArgumentException e) {
+            // Not a UUID, try to look up by player name
+            ServerPlayerEntity targetPlayer = server.getPlayerList().getPlayerByName(playerToRemove);
+            if (targetPlayer != null) {
+                playerUUID = targetPlayer.getUUID();
+                playerName = targetPlayer.getName().getString();
+            }else {
+            	playerUUID = getPlayerUUIDFromUsername(playerToRemove);
+            }
+        }
+        if (playerUUID == null) {
+            source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.player.notfound", playerToRemove).withStyle(TextFormatting.RED), true);
+            return 0;
+        }
+        fellowshipData.removePlayer(serverWorld, fellowship, playerUUID);
+        source.sendSuccess(new TranslationTextComponent("command.lotrextended.fellowship.player.removed", playerName), true);
+        return 0;
 	}
 	private static int setOwner(CommandSource source, PlayerEntity player, String fellowshipname, PlayerEntity newOwner) {
 		ExtendedFellowshipDataModule fellowshipData = getFellowshipData(player);
