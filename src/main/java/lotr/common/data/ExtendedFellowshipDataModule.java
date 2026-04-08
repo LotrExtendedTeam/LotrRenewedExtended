@@ -18,7 +18,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Util;
-import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -160,7 +159,7 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 			fs.setPreventPVP(prevent);
 	}
 
-	public void setFellowshipColor(ExtendedFellowship fs, Style color) {
+	public void setFellowshipColor(ExtendedFellowship fs, int color) {
 		if (fs.hasEditPowers(getPlayerUUID()))
 			fs.setFellowshipColor(color);
 	}

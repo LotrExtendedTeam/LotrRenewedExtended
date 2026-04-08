@@ -43,7 +43,7 @@ public class FellowshipMessageCommand extends LOTRBaseCommand {
 
 		if (((ExtendedLOTRPlayerData) LOTRLevelData.serverInstance().getData(player)).getExtendedMiscData().doHighContrastMessages()) {
 			component = new StringTextComponent("[")
-					.append(new StringTextComponent(fellowshipname).withStyle(getFellowshipData(player).getFellowshipByName(fellowshipname).getFellowshipColor()))
+					.append(new StringTextComponent(fellowshipname).withStyle(Style.EMPTY.withColor(Color.fromRgb(getFellowshipData(player).getFellowshipByName(fellowshipname).getFellowshipColor()))))
 					.append(new StringTextComponent("] "))
 					.append(player.getName())
 					.append(new StringTextComponent(": "))

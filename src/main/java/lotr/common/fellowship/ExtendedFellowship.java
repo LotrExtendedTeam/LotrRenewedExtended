@@ -25,7 +25,7 @@ public class ExtendedFellowship {
 	private boolean preventPVP = true;
 	private boolean showMap = true;
 	private boolean needsSaving = false;
-	private Style fellowshipColor = Style.EMPTY.withColor(TextFormatting.YELLOW);
+	private int fellowshipColor = TextFormatting.YELLOW.getColor();
 	private boolean disbanded;
 	private ItemStack icon = ItemStack.EMPTY;
 
@@ -78,7 +78,7 @@ public class ExtendedFellowship {
 			preventPVP = pCompound.getBoolean("preventPVP");
 		if (pCompound.contains("fellowshipColor")) {
 			int rgb = pCompound.getInt("fellowshipColor");
-			fellowshipColor = Style.EMPTY.withColor(Color.fromRgb(rgb));
+			fellowshipColor = rgb;
 		}
 		if (pCompound.contains("preventHiredFF"))
 			preventHiredFF = pCompound.getBoolean("preventHiredFF");
@@ -107,8 +107,8 @@ public class ExtendedFellowship {
 		if (fellowshipName != null)
 			pCompound.putString("Name", fellowshipName);
 		pCompound.putBoolean("preventPVP", preventPVP);
-		if (fellowshipColor != null && fellowshipColor.getColor() != null) {
-			pCompound.putInt("fellowshipColor", fellowshipColor.getColor().getValue());
+		if (fellowshipColor != 0) {
+			pCompound.putInt("fellowshipColor", fellowshipColor);
 		}
 		pCompound.putBoolean("preventHiredFF", preventHiredFF);
 		pCompound.putBoolean("showMap", showMap);
@@ -282,11 +282,11 @@ public class ExtendedFellowship {
 		}
 	}
 
-	public Style getFellowshipColor() {
+	public int getFellowshipColor() {
 		return fellowshipColor;
 	}
 
-	public void setFellowshipColor(Style fellowshipColor) {
+	public void setFellowshipColor(int fellowshipColor) {
 		this.fellowshipColor = fellowshipColor;
 	}
 }
