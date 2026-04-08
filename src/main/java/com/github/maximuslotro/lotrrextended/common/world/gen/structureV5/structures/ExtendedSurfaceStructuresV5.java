@@ -1,6 +1,7 @@
-package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses;
+package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.structures;
 
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructuresV5;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedPoolFeatureConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.ExtendedStructureType;
 import com.mojang.serialization.Codec;
 
@@ -14,7 +15,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 
@@ -26,7 +26,7 @@ import net.minecraft.world.gen.settings.StructureSeparationSettings;
  *
  * @param <C> The feature config type used for the structure.
  */
-public abstract class ExtendedSurfaceStructuresV5<C extends IFeatureConfig> extends Structure<C>{
+public abstract class ExtendedSurfaceStructuresV5<C extends ExtendedPoolFeatureConfig> extends Structure<C>{
 	/**
 	 * The type of structure used for conditional checks during generation.
 	 */

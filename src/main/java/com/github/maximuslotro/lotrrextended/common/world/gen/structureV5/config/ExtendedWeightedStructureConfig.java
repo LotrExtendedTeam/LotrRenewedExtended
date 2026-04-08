@@ -8,8 +8,6 @@ import java.util.Map.Entry;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import net.minecraft.world.gen.feature.IFeatureConfig;
-
 /**
  * Configuration object for weighted structure pool selection during structure feature generation.
  * <p>
@@ -19,16 +17,16 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
  * Used in procedural generation systems where certain pools should appear more frequently
  * while maintaining variety across different generation passes.
  */
-public class WeightedStructureConfig implements IFeatureConfig {
+public class ExtendedWeightedStructureConfig implements ExtendedPoolFeatureConfig {
 	/**
-     * Codec for serializing and deserializing {@link WeightedStructureConfig} from JSON or NBT
+     * Codec for serializing and deserializing {@link ExtendedWeightedStructureConfig} from JSON or NBT
      * during data pack loading or network synchronization.
      * <p>
      * It serializes {@code weightedPools} as a map from pool names to integer weights,
      * defaulting to an empty map if unspecified.
      */
-	public static final Codec<WeightedStructureConfig> CODEC = RecordCodecBuilder.create((p_236650_0_) -> p_236650_0_.group(Codec.unboundedMap(Codec.STRING, Codec.INT).fieldOf("weighted_pools").orElseGet(HashMap::new)
-            .forGetter(config -> config.weightedPools)).apply(p_236650_0_, WeightedStructureConfig::new));
+	public static final Codec<ExtendedWeightedStructureConfig> CODEC = RecordCodecBuilder.create((p_236650_0_) -> p_236650_0_.group(Codec.unboundedMap(Codec.STRING, Codec.INT).fieldOf("weighted_pools").orElseGet(HashMap::new)
+            .forGetter(config -> config.weightedPools)).apply(p_236650_0_, ExtendedWeightedStructureConfig::new));
 	/**
      * A map containing structure pool names as keys and their associated integer weights as values.
      * <p>
@@ -36,18 +34,18 @@ public class WeightedStructureConfig implements IFeatureConfig {
      */
 	public final Map<String, Integer> weightedPools;
 	/**
-     * Constructs a {@link WeightedStructureConfig} with a specified weighted pool map.
+     * Constructs a {@link ExtendedWeightedStructureConfig} with a specified weighted pool map.
      *
      * @param weightedPools Map of structure pool names to their weights.
      */
-	public WeightedStructureConfig(Map<String, Integer> weightedPools) {
+	public ExtendedWeightedStructureConfig(Map<String, Integer> weightedPools) {
 		this.weightedPools = weightedPools;
 	}
 	/**
-     * Constructs a {@link WeightedStructureConfig} with an empty pool map.
+     * Constructs a {@link ExtendedWeightedStructureConfig} with an empty pool map.
      * Use {@link #addStructureToPool(String, int)} to populate after construction.
      */
-	public WeightedStructureConfig() {
+	public ExtendedWeightedStructureConfig() {
 		this.weightedPools = new HashMap<>();
 	}
 	 /**
@@ -55,9 +53,9 @@ public class WeightedStructureConfig implements IFeatureConfig {
      *
      * @param pool   The name of the structure pool.
      * @param weight The weight associated with the pool, determining its selection probability.
-     * @return This {@link WeightedStructureConfig} for chaining.
+     * @return This {@link ExtendedWeightedStructureConfig} for chaining.
      */
-	public WeightedStructureConfig addStructureToPool(String pool, int weight) {
+	public ExtendedWeightedStructureConfig addStructureToPool(String pool, int weight) {
 		weightedPools.put(pool, weight);
 		return this;
 	}
@@ -68,9 +66,10 @@ public class WeightedStructureConfig implements IFeatureConfig {
      * @return The selected structure pool name, or {@code null} if no pools are configured.
      * @throws RuntimeException if selection fails due to an internal inconsistency.
      */
-	public String getRandomLocation(Random rand) {
+	@Override
+	public String getRandomPool(Random rand) {
 		if(weightedPools.isEmpty()) {
-        	return null;
+        	return "empty";
 		}
 		double completeWeight = 0.0;
 		for (Entry<String, Integer> item : weightedPools.entrySet())

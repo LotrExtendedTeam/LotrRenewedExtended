@@ -1,13 +1,18 @@
-package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.extendedclasses;
+package com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.starts;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedJigsawManager;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.jigsaw.ExtendedSingleJigsawPiece;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedPoolFeatureConfig;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedStructureSettings;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedSinglePoolConfig;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -19,7 +24,6 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureManager;
@@ -40,7 +44,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
  * 
  * @param <C> The feature configuration type for this structure.
  */
-public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends StructureStart<C>{
+public class ExtendedStructureStartV5<C extends ExtendedPoolFeatureConfig> extends StructureStart<C>{
 	/**
      * Constructs a new ExtendedStructureStartV5.
      *
@@ -56,14 +60,31 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 	}
 
 	/**
-     * Returns the {@link ResourceLocation} of the Jigsaw pool to generate for this structure,
-     * depending on the provided configuration and random.
+     * Resolves the {@link ResourceLocation} of the structure pool to use for generation
+     * based on the provided {@link ExtendedSinglePoolConfig}.
+     * <p>
+     * If the pool name is "empty", logs an error and returns {@code null}.
+     * If the pool contains a namespace (colon), it uses the provided namespace.
+     * Otherwise, it uses the mod's namespace as a fallback.
      *
-     * @param config The feature configuration.
-     * @param rand   The random instance for selection.
-     * @return The location of the Jigsaw pool to use for this structure.
+     * @param config The structure configuration specifying the pool.
+     * @param rand   The random generator used during structure placement.
+     * @return The {@link ResourceLocation} of the structure pool, or {@code null} if "empty".
      */
-	public abstract ResourceLocation getLocation(C config, Random rand);
+	public ResourceLocation getLocation(C config, Random rand) {
+		String pool = config.getRandomPool(rand);
+		if ("empty".equals(pool)) {
+			ExtendedLog.error("Tried generating a single pool structure using an empty pool!");
+			return null;
+		}
+		ResourceLocation location;
+		if(pool.contains(":")) {
+			location = new ResourceLocation(pool);
+		} else {
+			location = new ResourceLocation(LotrExtendedMod.MODID, pool);
+		}
+		return location;
+	}
 	/**
      * Allows for setting a fixed rotation for a structure
      * 
@@ -79,6 +100,25 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
      */
 	public BlockPos setoffset() {
 		return BlockPos.ZERO;
+	}
+	/**
+     * Should the structure start be projected onto the heightmap
+     * 
+     * @return TRUE if structure should be projected onto the heightmap
+     */
+	public boolean shouldProjectStartToHeightmap() {
+		return true;
+	}
+	public boolean useAboveBlockForFoundation() {
+		return false;
+	}
+	/**
+     * Additional hardcoded structure settings
+     * 
+     * @return A set of additional settings to define structure generation
+     */
+	public ExtendedStructureSettings getHardcodedSettings() {
+		return ExtendedStructureSettings.EMPTY;
 	}
 	/**
      * Generates the pieces for this structure using {@link ExtendedJigsawManager}.
@@ -106,7 +146,7 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
         }
         ExtendedJigsawManager.addPieces(dynamicRegistryManager,
         	new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(location), 7), AbstractVillagePiece::new,
-        	chunkGenerator, templateManagerIn, chunkPos, this.pieces, this.random, false, true, setRotation(), setoffset());
+        	chunkGenerator, templateManagerIn, chunkPos, this.pieces, this.random, false, shouldProjectStartToHeightmap(), setRotation(), setoffset(), getHardcodedSettings());
 
 //        Vector3i structureCenter = this.pieces.get(0).getBoundingBox().getCenter();
 //        int xOffset = blockpos.getX() - structureCenter.getX();
@@ -147,15 +187,21 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 				int baseYvalue = foundationNeedingPiece.getBoundingBox().y0;
 				for(int xValue = foundationNeedingPiece.getBoundingBox().x0; xValue <= foundationNeedingPiece.getBoundingBox().x1; ++xValue) {
 					for(int zValue = foundationNeedingPiece.getBoundingBox().z0; zValue <= foundationNeedingPiece.getBoundingBox().z1; ++zValue) {
-						BlockPos blockpos = new BlockPos(xValue, baseYvalue, zValue);
-						if(world.hasChunkAt(blockpos) && !world.isEmptyBlock(blockpos) && !world.isWaterAt(blockpos) && foundationNeedingPiece.getBoundingBox().isInside(blockpos)) {
+						BlockPos blockposBase = new BlockPos(xValue, baseYvalue, zValue);
+						if(world.hasChunkAt(blockposBase) && !world.isEmptyBlock(blockposBase) && !world.isWaterAt(blockposBase) && foundationNeedingPiece.getBoundingBox().isInside(blockposBase)) {
+							BlockState toPlaceState;
+							if(useAboveBlockForFoundation()) {
+								toPlaceState = world.getBlockState(blockposBase);
+							}else {
+								toPlaceState = ((ExtendedSingleJigsawPiece)foundationNeedingPiece.getElement()).getFoundationBlock();
+							}
 							for(int yColumnValue = baseYvalue - 1; yColumnValue > 1; --yColumnValue) {
-								BlockPos blockpos1 = new BlockPos(xValue, yColumnValue, zValue);
-								if(world.isEmptyBlock(blockpos1) || //Fill empty blocks
-									world.getBlockState(blockpos1).getMaterial().isLiquid() || //build down into the water
-									world.getBlockState(blockpos1).getMaterial().getPushReaction()==PushReaction.DESTROY || //replace weak blocks
-									!world.getBlockState(blockpos1).getMaterial().blocksMotion()) { //replace non-colliding blocks, probably plants in our case
-									world.setBlock(blockpos1, ((ExtendedSingleJigsawPiece)foundationNeedingPiece.getElement()).getFoundationBlock(), 2);
+								BlockPos blockposRelativeBelow = new BlockPos(xValue, yColumnValue, zValue);
+								if(world.isEmptyBlock(blockposRelativeBelow) || //Fill empty blocks
+									world.getBlockState(blockposRelativeBelow).getMaterial().isLiquid() || //build down into the water
+									world.getBlockState(blockposRelativeBelow).getMaterial().getPushReaction()==PushReaction.DESTROY || //replace weak blocks
+									!world.getBlockState(blockposRelativeBelow).getMaterial().blocksMotion()) { //replace non-colliding blocks, probably plants in our case
+									world.setBlock(blockposRelativeBelow, toPlaceState, 2);
 								}else {
 									break;
 								}
@@ -165,32 +211,6 @@ public abstract class ExtendedStructureStartV5<C extends IFeatureConfig> extends
 				}
 			}
 			cachedRootPostProcessedPieces.clear();
-			/*
-			int baseYvalue = this.boundingBox.y0 + foundationUpwardsOffsetBasementSpecial();
-			for (int xValue = boundingBox.x0; xValue <= boundingBox.x1; ++xValue) {
-				for (int zValue = boundingBox.z0; zValue <= boundingBox.z1; ++zValue) {
-					BlockPos blockpos = new BlockPos(xValue, baseYvalue, zValue);
-					if (!world.isEmptyBlock(blockpos) && this.boundingBox.isInside(blockpos)) {
-						boolean hasPieceAtLowestYValue = false;
-						for (StructurePiece structurepiece : this.pieces) {
-							if (structurepiece.getBoundingBox().isInside(blockpos)) {
-								hasPieceAtLowestYValue = true;
-								break;
-							}
-						}
-						if (hasPieceAtLowestYValue) {
-							for (int yColumnValue = baseYvalue - 1; yColumnValue > 1; --yColumnValue) {
-								BlockPos blockpos1 = new BlockPos(xValue, yColumnValue, zValue);
-								if (!world.isEmptyBlock(blockpos1) && !world.getBlockState(blockpos1).getMaterial().isLiquid()) {
-									break;
-								}
-								world.setBlock(blockpos1, cachedRootPostProcessedPiece.getFoundationBlock(), 2);
-							}
-						}
-					}
-				}
-			}
-			*/
 		}
 	}
 }
