@@ -30,7 +30,6 @@ import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -140,15 +139,6 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 	}
 
 	public void add(ItemStack key, String name) {
-		addD(key.getDescriptionId(), name);
-	}
-
-	public void addEnchantment(Supplier<? extends Enchantment> key,
-			String name) {
-		add(key.get(), name);
-	}
-
-	public void add(Enchantment key, String name) {
 		addD(key.getDescriptionId(), name);
 	}
 
