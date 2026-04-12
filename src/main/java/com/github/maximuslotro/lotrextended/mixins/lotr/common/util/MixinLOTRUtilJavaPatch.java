@@ -27,7 +27,7 @@ public class MixinLOTRUtilJavaPatch {
 	@Overwrite(remap = false)
 	public static void unlockConstructor(Constructor<?> constr) {
 		ExtendedLog.error("unlockConstructor called while Java 9+ compatability patch! This should not happen, someone is touching things they should not and are creating compatibality issues!");
-		throw new RuntimeException();
+		throw new RuntimeException("unlockConstructor called while Java 9+ compatability patch!");
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class MixinLOTRUtilJavaPatch {
 	@Overwrite(remap = false)
 	public static void unlockFinalField(Field f) {
 		ExtendedLog.error("unlockFinalField called while Java 9+ compatability patch! This should not happen, someone is touching things they should not and are creating compatibality issues!");
-		throw new RuntimeException();
+		throw new RuntimeException("unlockFinalField called while Java 9+ compatability patch!");
 	}
 
 	/**
@@ -51,6 +51,6 @@ public class MixinLOTRUtilJavaPatch {
 	@Overwrite(remap = false)
 	public static void unlockMethod(Method m) {
 		ExtendedLog.error("unlockMethod called while Java 9+ compatability patch! This should not happen, someone is touching things they should not and are creating compatibality issues!");
-		throw new RuntimeException();
+		throw new RuntimeException("unlockMethod called while Java 9+ compatability patch!");
 	}
 }

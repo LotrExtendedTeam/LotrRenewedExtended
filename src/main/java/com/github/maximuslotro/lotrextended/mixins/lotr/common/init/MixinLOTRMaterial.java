@@ -231,6 +231,7 @@ public class MixinLOTRMaterial {
 		ArrayList<LOTRMaterial> variants = new ArrayList<>(Arrays.asList(MixinLOTRMaterial.$VALUES));
 		LOTRMaterial instrument = lotrmaterialExpansion$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, name, toolTier, uses, efficiency, atk, ench, pr, sound, tough, repair, armorRepair, specs);
 		variants.add(instrument);
+		((MixinLOTRMaterialAccessor)(Object) instrument).setMaterialName("lotrextended:"+name);
 		MixinLOTRMaterial.$VALUES = variants.toArray(new LOTRMaterial[0]);
 		return instrument;
 	}
