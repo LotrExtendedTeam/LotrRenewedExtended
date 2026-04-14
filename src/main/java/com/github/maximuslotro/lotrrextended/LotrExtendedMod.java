@@ -30,7 +30,7 @@ import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeTypes;
 import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSerializers;
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextProcessorManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
-import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedSpecialConfig;
+import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedServerData;
 import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedStaffEvents;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
@@ -177,7 +177,7 @@ public class LotrExtendedMod{
 
 	public void extendedServerStarting(FMLServerStartingEvent event) {
 		if(ExtendedServerConfig.enableStaffServer.get()) {
-			ExtendedSpecialConfig.loadAll();
+			ExtendedServerData.loadAll();
 			MinecraftForge.EVENT_BUS.register(ExtendedStaffEvents.class);
 		}
 	}

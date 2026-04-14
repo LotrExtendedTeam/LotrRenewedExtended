@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedSpecialConfig;
+import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedModTracker;
 
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.text.ITextComponent;
@@ -51,7 +51,7 @@ public class ExtendedCModListPacket {
 		}
 		FMLConnectionData data = NetworkHooks.getConnectionData(context.get().getNetworkManager());
 		if (data != null) {
-			ITextComponent disconnectReason = ExtendedSpecialConfig.handleModsList(context.get().getNetworkManager(), context.get().getSender().server, context.get().getSender().getGameProfile(), packet.getMods(), true);
+			ITextComponent disconnectReason = ExtendedModTracker.handleModsList(context.get().getNetworkManager(), context.get().getSender().server, context.get().getSender().getGameProfile(), packet.getMods(), true);
 			if(disconnectReason!=null) {
 				context.get().getNetworkManager().disconnect(disconnectReason);
 				return;

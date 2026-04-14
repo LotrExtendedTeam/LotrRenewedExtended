@@ -22,6 +22,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -29,7 +30,8 @@ import net.minecraft.world.server.TicketType;
 
 public class ExtendedSpawnCommand {
 	private static final SimpleCommandExceptionType INVALID_POSITION = new SimpleCommandExceptionType(new TranslationTextComponent("commands.teleport.invalidPosition"));
-    private static final SimpleCommandExceptionType NO_VECHICLES = new SimpleCommandExceptionType(new StringTextComponent("Must not be riding!"));
+	private static final SimpleCommandExceptionType NO_VECHICLES = new SimpleCommandExceptionType(new StringTextComponent("Must not be riding!"));
+	private static final SimpleCommandExceptionType IN_COMBAT = new SimpleCommandExceptionType(new StringTextComponent("You cannot teleport while in combat!").withStyle(TextFormatting.RED));
 
 	public static void register(CommandDispatcher<CommandSource> pDispatcher) {
 		pDispatcher.register(Commands.literal("spawnShire").executes((commandSource) -> {
@@ -43,6 +45,9 @@ public class ExtendedSpawnCommand {
 	private static int tp(CommandSource pSource, BlockPos pos, int pYaw, int pPitch, String dimension) throws CommandSyntaxException {
 		if(!canEntityTeleport(pSource.getPlayerOrException())) {
 			throw NO_VECHICLES.create();
+		}
+		if (ExtendedCombatTracker.isInCombat(pSource.getEntity().getUUID())) {
+			throw IN_COMBAT.create();
 		}
 		RegistryKey<World> registrykey = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(dimension));
 		ServerWorld serverworld = pSource.getServer().getLevel(registrykey);

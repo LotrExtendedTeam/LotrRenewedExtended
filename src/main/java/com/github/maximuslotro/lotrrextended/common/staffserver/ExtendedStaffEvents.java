@@ -6,17 +6,35 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedSDataRequest
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.command.CommandSource;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class ExtendedStaffEvents {
+	@SubscribeEvent
+	public static void playerDeathEvent(LivingDeathEvent event) {
+		if(event.getEntityLiving() instanceof PlayerEntity) {
+			ExtendedCombatTracker.playerDeathEvent((PlayerEntity) event.getEntityLiving());
+		}
+	}
+
+	@SubscribeEvent
+	public static void playerDamagedEvent(LivingAttackEvent event) {
+		if(event.getEntityLiving() instanceof ServerPlayerEntity && event.getSource().getEntity() instanceof ServerPlayerEntity) {
+			ExtendedCombatTracker.playerDamagedEvent((ServerPlayerEntity)event.getEntityLiving(), (ServerPlayerEntity)event.getSource().getEntity());
+		}
+	}
 
 	@SubscribeEvent
 	public static void playerLoggedInEvent(PlayerEvent.PlayerLoggedInEvent event) {
 		if (event.getPlayer() instanceof ServerPlayerEntity && ExtendedServerConfig.enableStaffServer.get()) {
+			// Handle first to ensure data is loaded
 			ExtendedPlayerInfo.login(event.getPlayer().getUUID());
+			ExtendedCombatTracker.playerLoggedInEvent((ServerPlayerEntity) event.getPlayer());
 			ExtendedPacketHandler.sendToClient(ExtendedSDataRequestPacket.requestModListPacket(), (ServerPlayerEntity) event.getPlayer());
 		}
 	}
@@ -24,8 +42,10 @@ public class ExtendedStaffEvents {
 	@SubscribeEvent
 	public static void playerLoggedOutEvent(PlayerEvent.PlayerLoggedOutEvent event) {
 		if (event.getPlayer() instanceof ServerPlayerEntity && ExtendedServerConfig.enableStaffServer.get()) {
+			ExtendedCombatTracker.playerLoggedOutEvent((ServerPlayerEntity) event.getPlayer());
+			ExtendedModTracker.onPlayerLoggout(event.getPlayer().getUUID());
+			// Handle last to ensure data isn't lost
 			ExtendedPlayerInfo.logout(event.getPlayer().getUUID());
-			ExtendedSpecialConfig.onPlayerLoggout(event.getPlayer().getUUID());
 		}
 	}
 

@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedSpecialConfig;
+import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedModTracker;
 import com.mojang.authlib.GameProfile;
 
 import net.minecraft.network.NetworkManager;
@@ -48,7 +48,7 @@ public class MixinServerLoginNetHandler {
 		}
 		FMLConnectionData data = NetworkHooks.getConnectionData(this.connection);
 		if (data != null) {
-			ITextComponent disconnectReason = ExtendedSpecialConfig.handleModsList(connection, server, gameProfile, data.getModList(), false);
+			ITextComponent disconnectReason = ExtendedModTracker.handleModsList(connection, server, gameProfile, data.getModList(), false);
 			if(disconnectReason!=null) {
 				disconnect(disconnectReason);
 				ci.cancel();
