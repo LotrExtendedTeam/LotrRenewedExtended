@@ -36,9 +36,8 @@ public abstract class MixinCreativeScreen extends DisplayEffectsScreen<CreativeS
     	Minecraft mc = Minecraft.getInstance();
         if (mc.screen instanceof CreativeScreen) {
             CreativeScreen screen = (CreativeScreen) mc.screen;
-            assert mc.player != null;
 
-            if (screen.getSelectedTab() == 11) {
+            if (mc.player != null && screen.getSelectedTab() == 11) {
                 int amount = CoinUtils.totalValueInPlayerInventory(mc.player.inventory);
                 if (amount == 0) return;
 

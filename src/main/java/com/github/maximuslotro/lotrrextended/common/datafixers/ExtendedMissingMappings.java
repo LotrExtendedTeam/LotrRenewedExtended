@@ -161,6 +161,12 @@ public class ExtendedMissingMappings {
 		addRemapBlockWithItem("packed_fur_slab", "lotr", ExtendedBlocks.BROWN_MATTED_FUR_SLAB, ExtendedItems.BROWN_MATTED_FUR_SLAB);
 		addRemapBlockWithItem("packed_fur_stairs", "lotr", ExtendedBlocks.BROWN_MATTED_FUR_STAIRS, ExtendedItems.BROWN_MATTED_FUR_STAIRS);
 		addRemapBlockWithItem("packed_fur_wall", "lotr", ExtendedBlocks.BROWN_MATTED_FUR_WALL, ExtendedItems.BROWN_MATTED_FUR_WALL);
+
+		//Beta 1.10.0-alpha-2 Renamed Morgul Armor to Morgul Vassal Armor
+		addRemapItem("morgul_helmet", "lotr", ExtendedItems.MORGUL_VASSAL_HELMET);
+		addRemapItem("morgul_chestplate", "lotr", ExtendedItems.MORGUL_VASSAL_CHESTPLATE);
+		addRemapItem("morgul_leggings", "lotr", ExtendedItems.MORGUL_VASSAL_LEGGINGS);
+		addRemapItem("morgul_boots", "lotr", ExtendedItems.MORGUL_VASSAL_BOOTS);
 	}
 
 	private static void addRemapBlock(String previousMapping, String previousNamespace, Supplier<? extends Block> remapBlock) {

@@ -77,6 +77,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		for (String entity : ExtendedEntities.REGISTEREDNONMOBENTITIES) {
 			addD("entity.lotr." + entity);
 		}
+		for (String entity : ExtendedEntities.REGISTEREDNONMOBENTITIESEXTENDED) {
+			addD("entity.lotrextended." + entity);
+		}
+		addD("entity.lotr.boat", "Boat");
 
 		// Generate Container Titles
 		for (Entry<String, String> entity : DataGenValueHolder.containerTitlesHolders.entrySet()) {
@@ -113,10 +117,13 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addD(entity.getKey(), entity.getValue());
 		}
 
-		// Fast Travel 
+		// chat notifications
+		addD("chat.lotrextended.hired_companion_prefix", "Your hired companion %1$s");
+		addD("chat.lotrextended.hired_companion_levelup", "Your hired companion %1$s has reached level %2$s!");
 		addD("chat.lotrextended.no_custom", "Custom waypoint fast travel has been disabled on this server.");
 		addD("chat.lotrextended.no_default", "Default waypoint fast travel has been disabled on this server.");
-		
+		addD("chat.lotrextended.action_requires_alignment", "This action requires %1$s alignment!");
+
 		// Add Menu strings
 		addD("gui.lotrextended.menu.fellowships", "Fellowships");
 		addD("gui.lotrextended.menu.settings", "Options");
@@ -133,6 +140,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.base.show", "Show");
 		addD("gui.lotrextended.base.hide", "Hide");
 		addD("gui.lotrextended.base.set", "Set");
+		addD("gui.lotrextended.base.true", "True");
+		addD("gui.lotrextended.base.false", "False");
 
 		// trade system
 		addD("gui.lotrextended.trading.trade_button", "Trade");
@@ -230,7 +239,52 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.fellowships.use_command", "Please use the command for now!");
 
 		// Add Settings Menu strings
+		addD("gui.lotrextended.serversettings.title", "Middle-earth Server Options");
+		addD("gui.lotrextended.serversettings.button", "Server Options");
+		addD("gui.lotrextended.serversettings.category.gameplay", "Gameplay Settings");
+		addD("gui.lotrextended.serversettings.category.entity", "Entity Settings");
+		addD("gui.lotrextended.serversettings.category.block", "Block Settings");
+		addD("gui.lotrextended.serversettings.category.chair", "Chair Settings");
+		addD("gui.lotrextended.serversettings.category.modifiers", "Modifier Settings");
+		addD("gui.lotrextended.serversettings.category.protection", "Spawn Protection");
+		addD("gui.lotrextended.serversettings.category.worldgen", "World Generation");
+		addD("gui.lotrextended.serversettings.category.worldgen.tooltip", "Note: World generation settings do not apply to previously generated chunks.");
+		addD("gui.lotrextended.serversettings.bannerprotection.setting", "Banner Protection: %s");
+		addD("gui.lotrextended.serversettings.fellowshipcreation.setting", "Fellowship Creation: %s");
+		addD("gui.lotrextended.serversettings.renewedwaypointcreate.setting", "Renewed Custom WP: %s");
+		addD("gui.lotrextended.serversettings.legacywaypointcreate.setting", "Legacy Custom WP: %s");
+		addD("gui.lotrextended.serversettings.defaultwaypointteleportation.setting", "Default WP Teleport: %s");
+		addD("gui.lotrextended.serversettings.customwaypointteleportation.setting", "Custom WP Teleport: %s");
+		addD("gui.lotrextended.serversettings.feastmode.setting", "Feast Mode: %s");
+		addD("gui.lotrextended.serversettings.decreasedhunger.setting", "Decreased Hunger: %s");
+		addD("gui.lotrextended.serversettings.chairsitting.setting", "Slab/Stair Sitting: %s");
+		addD("gui.lotrextended.serversettings.chairswapping.setting", "Chair Swapping: %s");
+		addD("gui.lotrextended.serversettings.chairprotectionoverride.setting", "Chair Prot Override: %s");
+		addD("gui.lotrextended.serversettings.fixedstructures.setting", "Fixed Structures: %s");
+		addD("gui.lotrextended.serversettings.fixedstructureimladris.setting", "Imladris: %s");
+		addD("gui.lotrextended.serversettings.fixedstructuretowerhills.setting", "Tower Hills Towers: %s");
+		addD("gui.lotrextended.serversettings.extendedmodifiers.setting", "Extended Modifiers: %s");
+		addD("gui.lotrextended.serversettings.vanillaenchanting.setting", "Vanilla Enchanting: %s");
+		addD("gui.lotrextended.serversettings.vanillaxp.setting", "Vanilla XP: %s");
+		addD("gui.lotrextended.serversettings.globalspawndamping.setting", "Spawn Rate: %s");
+		addD("gui.lotrextended.serversettings.passivetraders.setting", "Passive Traders: %s");
+		addD("gui.lotrextended.serversettings.passivecaptains.setting", "Passive Captains: %s");
+		addD("gui.lotrextended.serversettings.banditspawning.setting", "Bandit Encounters: %s");
+		addD("gui.lotrextended.serversettings.wanderingtraderspawning.setting", "Wandering Traders: %s");
+		addD("gui.lotrextended.serversettings.tolkienspawning.setting", "J.R.R. Tolkien: %s");
+		addD("gui.lotrextended.serversettings.barrowwightspawnchance.setting", "Barrow Wight Chance: %s%%");
+		addD("gui.lotrextended.serversettings.bellchainlength.setting", "Maximum Chain Length: %s blocks");
+		addD("gui.lotrextended.serversettings.gatetogglelength.setting", "Gate Toggle Radius: %s blocks");
+		addD("gui.lotrextended.serversettings.dripstonehurtheight.setting", "Dripstone Hurt Height: %s blocks");
+		addD("gui.lotrextended.serversettings.barsconnecttobranches.setting", "Bars Attach To Branches: %s");
+		addD("gui.lotrextended.serversettings.barsconnecttoslabs.setting", "Bars Attach To Slab Sides: %s");
+		addD("gui.lotrextended.serversettings.metaldoorsrequirepower.setting", "Metal Doors Require Power: %s");
+		addD("gui.lotrextended.serversettings.extendedspawnprotection.setting", "Extended Spawn Protection: %s");
+		addD("gui.lotrextended.serversettings.overworldspawnradius.setting", "Overworld Spawn Radius: %s blocks");
+		addD("gui.lotrextended.serversettings.middleearthspawnradius.setting", "ME Spawn Radius: %s blocks");
+		addD("gui.lotrextended.serversettings.no_perm", "Requires singleplayer cheats or server operator permissions.");
 		addD("gui.lotrextended.settings.title", "Middle-earth Options");
+		addD("gui.lotrextended.settings.button", "Client Options");
 		addD("gui.lotrextended.settings.worldsettings", "World Settings");
 		addD("gui.lotrextended.settings.usersettings", "User Settings");
 		addD("gui.lotrextended.settings.environmentsettings", "Environment Settings");
@@ -250,15 +304,13 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.devtoggle.setting", "Client Dev Mode: ");
 		addD("gui.lotrextended.settings.devtoggle.setting.forced", "Client Dev Mode: Server Forced");
 		addD("gui.lotrextended.settings.fsbr.setting", "Force StrBlock Air Rendering: ");
-		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.prefix", "StrBlock Outline Dist: ");
-		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.suffix", " Blocks");
+		addD("gui.lotrextended.settings.structureblockoutlineviewdistance.setting", "StrBlock Outline Dist: %s blocks");
 		addD("gui.lotrextended.settings.dwarfwomen.setting", "Dwarf Women use Alex Model: ");
 		addD("gui.lotrextended.settings.elfwomen.setting", "Elf Women use Alex Model: ");
 		addD("gui.lotrextended.settings.hobbitwomen.setting", "Hobbit Women use Alex Model: ");
 		addD("gui.lotrextended.settings.manishwomen.setting", "Manish Women use Alex Model: ");
 		addD("gui.lotrextended.settings.orcwomen.setting", "Orc Women use Alex Model: ");
-		addD("gui.lotrextended.settings.dolchestplatewings.prefix", "Dol Amroth Chestplate: ");
-		addD("gui.lotrextended.settings.dolchestplatewings.suffix", " Wings");
+		addD("gui.lotrextended.settings.dolchestplatewings.setting", "Dol Amroth Chestplate: %s wings");
 		addD("gui.lotrextended.settings.earlyduckmodel.setting", "Use Old Duck Model: ");
 		addD("gui.lotrextended.settings.newrainsounds.setting", "New Rain Sounds: ");
 		addD("gui.lotrextended.settings.newthundersounds.setting", "New Thunder Sounds: ");
@@ -269,7 +321,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.modmainmenu.setting", "Middle Earth Main Menu: ");
 		addD("gui.lotrextended.settings.sepiamap.setting", "Sepia Map: ");
 		addD("gui.lotrextended.settings.worldhelp.setting", "World Generation Help: ");
-		addD("gui.lotrextended.settings.pipeweedparticles.setting", "Pipeweed Particles: ");
+		addD("gui.lotrextended.settings.plantparticles.setting", "Plant Particles: %s");
 		addD("gui.lotrextended.settings.rainmist.setting", "Misty Rain: ");
 		addD("gui.lotrextended.settings.newweather.setting", "Middle Earth Weather: ");
 		addD("gui.lotrextended.settings.mistymountainsmist.setting", "Misty Mountains Mist: ");
@@ -278,22 +330,19 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.modclouds.setting", "Middle Earth Cloud Renderer: ");
 		addD("gui.lotrextended.settings.newraingroundparticles.setting", "New Rain Ground Splashes: ");
 		addD("gui.lotrextended.settings.northernlights.setting", "Northern Lights/Aurora: ");
-		addD("gui.lotrextended.settings.cloudrange.prefix", "Cloud Range: ");
-		addD("gui.lotrextended.settings.cloudrange.suffix", " Chunks");
+		addD("gui.lotrextended.settings.cloudrange.setting", "Cloud Range: %s chunks");
 		addD("gui.lotrextended.settings.compassinfo.setting", "Show Extra Compass Info: ");
 		addD("gui.lotrextended.settings.compass.setting", "Middle Earth Compass: ");
 		addD("gui.lotrextended.settings.alignmentrender.setting", "Render Player Alignment Bars: ");
 		addD("gui.lotrextended.settings.renderalignmentbareverywhere.setting", "Alignment Bars In Other Dims: ");
 		addD("gui.lotrextended.settings.immersivespeech.setting", "Immersive Speech Bubbles: ");
 		addD("gui.lotrextended.settings.immersivespeechchat.setting", "NPC Chat Override: ");
-		addD("gui.lotrextended.settings.alignmentoffsetx.prefix", "Alignment Meter X-Offset: ");
-		addD("gui.lotrextended.settings.alignmentoffsety.prefix", "Alignment Meter Y-Offset: ");
-		addD("gui.lotrextended.settings.alignmentoffset.suffix", " Pixels");
-		addD("gui.lotrextended.settings.immersivespeechduration.prefix", "Speech Bubble Duration: ");
-		addD("gui.lotrextended.settings.immersivespeechduration.suffix", " Seconds");
+		addD("gui.lotrextended.settings.alignmentoffsetx.setting", "Alignment Meter X-Offset: %spx");
+		addD("gui.lotrextended.settings.alignmentoffsety.setting", "Alignment Meter Y-Offset: %spx");
+		addD("gui.lotrextended.settings.immersivespeechduration.setting", "Speech Bubble Duration: %s seconds");
 		addD("gui.lotrextended.settings.jeilotrversioncheck.setting", "Patch broken JEI-lotr VC: ");
 		addD("gui.lotrextended.settings.lotrextendedversioncheck.setting", "Extended Version Check: ");
-		addD("gui.lotrextended.settings.show_hired_unit_hp_numbers.setting", "Large hired HP bars with values: ");
+		addD("gui.lotrextended.settings.show_hired_unit_hp_numbers.setting", "Large Hired Unit HP Bars: ");
 
 		// Banner Menu strings
 		addD("gui.lotrextended.banner_configuration.title", "Banner Protection");
@@ -314,10 +363,13 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.banner_configuration.self_protection.on", "Self Protection: On");
 		addD("gui.lotrextended.banner_configuration.self_protection.off", "Self Protection: Off");
 		addD("gui.lotrextended.banner_configuration.faction.requires", "Required Alignment:");
+		addD("gui.lotrextended.banner_configuration.faction.aligned", "Protected by: %s");
 		addD("gui.lotrextended.banner_configuration.faction.textBox", "Alignment");
 		addD("gui.lotrextended.banner_configuration.custom.description", "Protection Message:");
 		addD("gui.lotrextended.banner_configuration.custom.textBox", "Message");
 		addD("gui.lotrextended.banner_configuration.perms", "Show Permissions");
+		addD("gui.lotrextended.banner_configuration.perms.global", "Global Override Permissions");
+		addD("gui.lotrextended.banner_configuration.perms.global.disc", "These permissions take priority over all whitelist and faction permissions and apply to \"ALL\" players!");
 		addD("gui.lotrextended.banner_configuration.perms.disc", "Show Additional Permissions");
 		addD("gui.lotrextended.banner_configuration.perms.everything", "Full Permission");
 		addD("gui.lotrextended.banner_configuration.perms.everything.disc", "This allows \"Everything\" Including Block Breaking/Placing. This is gives the user/group the same permissions as you, with the exception of banner editing.");
@@ -358,6 +410,13 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("item."+ExtendedItems.COMMANDHORN.getId().getNamespace()+"."+ExtendedItems.COMMANDHORN.getId().getPath()+".summon", "Horn of Command - Summon Units");
 		addOverride("item."+ExtendedItems.MODIFIER_SCROLL.getId().getNamespace()+"."+ExtendedItems.MODIFIER_SCROLL.getId().getPath(), "Modifier Scroll");
 		addOverride("item."+ExtendedItems.MODIFIER_SCROLL.getId().getNamespace()+"."+ExtendedItems.MODIFIER_SCROLL.getId().getPath()+".named", "%s Modifier Scroll");
+		addD("item.lotrextended.orc_bomb.fire_message", "Ignites the surrounding area");
+		addD("item.lotrextended.orc_bomb.strength_0", "Single Strength");
+		addD("item.lotrextended.orc_bomb.strength_1", "Double Strength");
+		addD("item.lotrextended.orc_bomb.strength_2", "Triple Strength");
+		addD("item.lotrextended.modifiers.warg", "When on Warg:");
+		addD("item.lotrextended.modifiers.boar", "When on Boar:");
+		addD("item.lotrextended.modifiers.horse", "When on Horse:");
 
 		//Bow values
 		addD("gui.lotrextended.bow.speed", "Draw Speed: %s");
@@ -413,6 +472,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.fellowship.data.owner", "Owner: ");
 		addD("command.lotrextended.fellowship.data.admins", "Admins: ");
 		addD("command.lotrextended.fellowship.data.members", "Members: ");
+        addD("command.lotrextended.fellowship.changecolor", "Faction color updated!");
 
 		//Config Command Values
 		addD("command.lotrextended.config.cant", "can only be edited in server config while server is off!");
@@ -477,9 +537,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("item.lotrextended.base_gear.weapon_idle", "Base Idle Weapon");
 		addD("item.lotrextended.base_gear.weapon_idle_mounted", "Base Idle Mounted Weapon");
 		addD("item.lotrextended.base_gear.shield", "Base Shield");
-		// chat notifications
-		addD("chat.lotrextended.hired_companion_prefix", "Your hired companion %1$s");
-		addD("chat.lotrextended.hired_companion_levelup", "Your hired companion %1$s has reached level %2$s!");
+
 		// hired unit tooltips in unit GUI
 		addD("gui.lotrextended.hired_unit_tooltip.title.companion", "Companion:");
 		addD("gui.lotrextended.hired_unit_tooltip.title.health", "Health");
@@ -610,6 +668,20 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		//Damage types
 		addD("death.attack.lotrextended.thrownaxe", "%1$s was precision-axed by %2$s");
 		addD("death.attack.lotrextended.thrownaxe.item", "%1$s was precision-axed by %2$s using %3$s");
+
+		// Invasions
+		addD("chat.lotrextended.invasion.started", "%s have launched an invasion nearby!");
+		addD("lotrextended.invasion.rivendell", "Rivendell");
+		addD("lotrextended.invasion.lindon", "Lindon");
+		addD("lotrextended.invasion.gundabad", "Gundabad");
+		addD("lotrextended.invasion.gundabad_wargs", "Gundabad Wargs");
+		addD("lotrextended.invasion.dunedain", "Rangers of the North");
+		addD("lotrextended.invasion.mordor", "Mordor");
+		addD("lotrextended.invasion.gondor", "Gondor");
+		addD("lotrextended.invasion.lothlorien", "Lothlorien");
+		addD("lotrextended.invasion.woodland_realm", "Woodland Realm");
+		addD("lotrextended.invasion.rohan", "Rohan");
+		addD("lotrextended.invasion.isengard", "Uruk-hai");
 	}
 
 	@Override

@@ -51,9 +51,6 @@ public class ExtendedServerModifierEventHandlers {
 	@SubscribeEvent
 	public static void onLivingDeath(LivingDeathEvent event) {
 		if (event.getEntityLiving() instanceof NPCEntity && !event.getEntityLiving().level.isClientSide()) {
-			if (event.getEntityLiving().level.isClientSide()) {
-				return;
-			}
 			// Check for invalid and null death sources (null instanceof LivingEntity)==false
 			if (!(event.getSource().getEntity() instanceof LivingEntity)) { // Reworked logic to catch NPE
 				return;

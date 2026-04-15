@@ -1,0 +1,7 @@
+{
+  "parent": "lotr:block/uruk_bars_post_ends",
+  "textures": {
+    "edge": "lotrextended:block/numenorean_bars_edge",
+    "particle": "lotrextended:block/numenorean_bars"
+  }
+}

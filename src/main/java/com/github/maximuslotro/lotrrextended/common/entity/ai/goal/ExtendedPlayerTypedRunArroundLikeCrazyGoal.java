@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 
 import java.util.EnumSet;
 
-import lotr.common.entity.npc.ExtendedRidableWargEntity;
+import lotr.common.entity.npc.ExtendedRidableEntity;
 import lotr.common.entity.npc.WargEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.RandomPositionGenerator;
@@ -32,7 +32,7 @@ public class ExtendedPlayerTypedRunArroundLikeCrazyGoal extends Goal {
 	    */
 	   @Override
 	public boolean canUse() {
-	      if (!((ExtendedRidableWargEntity)this.warg).isTamed() && this.warg.isVehicle() && this.warg.canBeControlledByRider()) {
+	      if (!((ExtendedRidableEntity)this.warg).isTamed() && this.warg.isVehicle()) {
 	         Vector3d vector3d = RandomPositionGenerator.getPos(this.warg, 5, 4);
 	         if (vector3d == null) {
 	            return false;
@@ -60,7 +60,7 @@ public class ExtendedPlayerTypedRunArroundLikeCrazyGoal extends Goal {
 	    */
 	   @Override
 	public boolean canContinueToUse() {
-	      return !((ExtendedRidableWargEntity)this.warg).isTamed() && !this.warg.getNavigation().isDone() && this.warg.isVehicle() && this.warg.canBeControlledByRider();
+	      return !((ExtendedRidableEntity)this.warg).isTamed() && !this.warg.getNavigation().isDone() && this.warg.isVehicle();
 	   }
 
 	   /**
@@ -68,25 +68,26 @@ public class ExtendedPlayerTypedRunArroundLikeCrazyGoal extends Goal {
 	    */
 	   @Override
 	public void tick() {
-	      if (!((ExtendedRidableWargEntity)this.warg).isTamed() && this.warg.getRandom().nextInt(50) == 0) {
+	      if (!((ExtendedRidableEntity)this.warg).isTamed() && this.warg.getRandom().nextInt(50) == 0) {
 	         Entity entity = this.warg.getPassengers().get(0);
 	         if (entity == null) {
 	            return;
 	         }
 
 	         if (entity instanceof PlayerEntity) {
-	            int i = ((ExtendedRidableWargEntity)this.warg).getTemper();
-	            int j = ((ExtendedRidableWargEntity)this.warg).getMaxTemper();
+	            int i = ((ExtendedRidableEntity)this.warg).getTemper();
+	            int j = ((ExtendedRidableEntity)this.warg).getMaxTemper();
 	            if (j > 0 && this.warg.getRandom().nextInt(j) < i) {
-	            	((ExtendedRidableWargEntity)this.warg).tameWithName((PlayerEntity)entity);
+	            	((ExtendedRidableEntity)this.warg).tameWithName((PlayerEntity)entity);
+	            	warg.setPersistenceRequired();
 	               return;
 	            }
 
-	            ((ExtendedRidableWargEntity)this.warg).modifyTemper(5);
+	            ((ExtendedRidableEntity)this.warg).modifyTemper(5);
 	         }
 
 	         this.warg.ejectPassengers();
-	         ((ExtendedRidableWargEntity)this.warg).makeMad();
+	         ((ExtendedRidableEntity)this.warg).makeMad();
 	         this.warg.level.broadcastEntityEvent(this.warg, (byte)6);
 	      }
 

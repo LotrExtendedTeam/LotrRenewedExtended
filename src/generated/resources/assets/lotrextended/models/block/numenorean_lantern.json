@@ -1,0 +1,7 @@
+{
+  "parent": "lotrextended:block/template_numenorean_lantern",
+  "textures": {
+    "lantern": "lotrextended:block/numenorean_lantern",
+    "particle": "lotrextended:block/morgond"
+  }
+}

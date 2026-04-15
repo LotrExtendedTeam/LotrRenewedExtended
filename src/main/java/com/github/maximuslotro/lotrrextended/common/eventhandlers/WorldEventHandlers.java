@@ -11,11 +11,13 @@ import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedrollBl
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.entity.npc.ExtendedLoreEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedInvasionSpawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils;
 
+import lotr.common.data.ExtendedLevelData;
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
@@ -56,10 +58,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityLeaveWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -69,6 +73,7 @@ import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 
 /**
  * Handles various world-related events for custom entities and gameplay mechanics.
@@ -78,6 +83,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
  * death handling, and custom entity size adjustments.</p>
  */
 public class WorldEventHandlers {
+
+	@SubscribeEvent
+	public static void onServerStopping(FMLServerStoppingEvent event) {
+		for (ServerPlayerEntity player : event.getServer().getPlayerList().getPlayers()) {
+			player.connection.disconnect(new TranslationTextComponent("multiplayer.disconnect.server_shutdown"));
+		}
+	}
 
 	@SubscribeEvent
 	public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
@@ -90,7 +102,7 @@ public class WorldEventHandlers {
 		if (event.phase == TickEvent.Phase.END && event.player instanceof ServerPlayerEntity && ExtendedServerConfig.enableExtendedSpawnProtection.get()) {
 			ServerPlayerEntity player = (ServerPlayerEntity) event.player;
 
-			boolean isProtected = ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(player.getLevel(), player.blockPosition(), player, false, true);
+			boolean isProtected = ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(player.getLevel(), player.blockPosition(), player, false, true, false);
 			UUID id = player.getUUID();
 			boolean wasProtected = ExtendedVanillaProtectionHandlers.wasInProtection.getOrDefault(id, false);
 
@@ -150,7 +162,33 @@ public class WorldEventHandlers {
 			ServerPlayerEntity player = (ServerPlayerEntity)event.getPlayer();
 			ExtendedCriteriaTriggers.PLAYER_BREAK_BLOCK_TRIGGER.trigger(player, event.getPos(), player.getItemInHand(player.getUsedItemHand()));
 		}
+		if(ExtendedServerConfig.enableStaffServer.get() && event.getPlayer() instanceof ServerPlayerEntity) {
+			if(ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(((ServerPlayerEntity) event.getPlayer()).getLevel(), 
+				event.getPos(), event.getPlayer(), true, false, false)) {
+				event.setCanceled(true);
+				return;
+			}
+		}
 	}
+
+	@SubscribeEvent
+	public static void handleMobDeathForInvasion$Extended(LivingDeathEvent event) {
+		UUID invasionId = null;
+
+		if (event.getEntityLiving().getPersistentData().contains("lotr:invasion_id")) {
+			invasionId = event.getEntityLiving().getPersistentData().getUUID("lotr:invasion_id");
+		} else {
+			return;
+		}
+
+		ExtendedLevelData.serverInstance().decrementEnemiesLeft(invasionId);
+		Entity sourceEntity = event.getSource().getEntity();
+		if (sourceEntity instanceof ServerPlayerEntity) {
+			ServerPlayerEntity player = (ServerPlayerEntity)sourceEntity;
+			ExtendedLevelData.serverInstance().trackRecentPlayerKill(invasionId, player.getUUID());
+		}
+	}
+
 	/**
 	 * Handles special logic when {@link ExtendedTraderEntity} or {@link ExtendedCaptainEntity} dies.
 	 * <ul>
@@ -269,6 +307,15 @@ public class WorldEventHandlers {
 	}
 
 	@SubscribeEvent
+	public static void onEntityLeave(EntityLeaveWorldEvent event) {
+	    if (!event.getWorld().isClientSide() && event.getEntity() instanceof ExtendedInvasionSpawnerEntity 
+	    	&& ExtendedLevelData.serverInstance().hasInvasion(event.getEntity().getUUID())) {
+	    	// Un-register invasion when spawner is unloaded or deleted.
+			ExtendedLevelData.serverInstance().unregisterInvasion(event.getEntity().getUUID());
+	    }
+	}
+
+	@SubscribeEvent
 	public static void handleBlockLeftInteract$Extended(PlayerInteractEvent.RightClickBlock event) {
 		World level = event.getWorld();
 		BlockState clickedState = level.getBlockState(event.getPos());
@@ -334,7 +381,7 @@ public class WorldEventHandlers {
 	public static void onLivingAttacked$Extended(LivingAttackEvent event) {
 		if(ExtendedServerConfig.enableStaffServer.get() && event.getSource().getEntity() instanceof ServerPlayerEntity && event.getEntityLiving() instanceof ServerPlayerEntity) {
 			if(ExtendedVanillaProtectionHandlers.isUnderSpawnProtection(((ServerPlayerEntity) event.getEntityLiving()).getLevel(), 
-					event.getEntityLiving().blockPosition(), ((ServerPlayerEntity)event.getSource().getEntity()), true, true)) {
+					event.getEntityLiving().blockPosition(), ((ServerPlayerEntity)event.getSource().getEntity()), true, true, false)) {
 				event.setCanceled(true);
 				return;
 			}

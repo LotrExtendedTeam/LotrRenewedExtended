@@ -9,9 +9,9 @@
     "attack_type": "ranged"
   },
   "hiring": {
-    "hiringCost": 40,
+    "hiringCost": 50,
     "hiringRequiresPledge": false,
-    "hiringAlignmentRequired": 100
+    "hiringAlignmentRequired": 350
   },
   "equipmentPools": {
     "helmets": [

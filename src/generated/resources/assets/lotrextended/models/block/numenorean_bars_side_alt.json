@@ -1,0 +1,9 @@
+{
+  "parent": "lotr:block/uruk_bars_side_alt",
+  "textures": {
+    "spike": "lotrextended:block/numenorean_bars_spike",
+    "bars": "lotrextended:block/numenorean_bars",
+    "edge": "lotrextended:block/numenorean_bars_edge",
+    "particle": "lotrextended:block/numenorean_bars"
+  }
+}

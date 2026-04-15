@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "lotrextended:ebony_logs"
+    }
+  ],
+  "result": {
+    "item": "lotr:ebony_planks",
+    "count": 4
+  }
+}

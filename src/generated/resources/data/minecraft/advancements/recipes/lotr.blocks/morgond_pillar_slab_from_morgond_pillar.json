@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:morgond_pillar_slab_from_morgond_pillar"
+    ]
+  },
+  "criteria": {
+    "has_morgond_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:morgond_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:morgond_pillar_slab_from_morgond_pillar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_morgond_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}

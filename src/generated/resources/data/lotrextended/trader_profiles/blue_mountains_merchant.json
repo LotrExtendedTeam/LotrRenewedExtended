@@ -390,6 +390,14 @@
           "nbt": "{vessel:{potency:\"strong\"}}"
         }
       ]
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:blue_dwarven_mattock",
+        "averageCost": 18,
+        "nbt": "{Damage:0}"
+      }
     }
   ]
 }

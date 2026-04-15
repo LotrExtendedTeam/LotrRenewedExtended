@@ -47,7 +47,7 @@ public class ExtendedInfoCommand
 
             String baneData = ExtendedModifierUtils.getBaneData(item);
             if (!baneData.isEmpty()) {
-                source.sendSuccess(new StringTextComponent(""), false);
+                source.sendSuccess(StringTextComponent.EMPTY, false);
                 source.sendSuccess(new TranslationTextComponent("command.lotrextended.info.bane_progress"), false);
                 source.sendSuccess(new StringTextComponent(baneData), false);
             }

@@ -85,8 +85,17 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.BLUE_MOUNTAIN_MINE.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.STONE_OF_HAPLESS.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.RIVENDELL_STRUCTURE.get());
-		addStructureToMap(tempMap, ExtendedStructuresV5.EREGION_RUINS_STRUCTURE.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.THE_LAST_HOMELY_HOUSE.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.EREGION_RUINS_STRUCTURE.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.TOWER_HILLS_TOWER.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.TOWER_HILLS_SOUTH_TOWER.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.TOWER_HILLS_MIDDLE_TOWER.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.TOWER_HILLS_NORTH_TOWER.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.LINDON_HALL.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.LINDON_TOWER.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.LINDON_VILLAGE.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.ISENGARD_GATEHOUSE.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.ORTHANC.get());
 		provider.generator.getSettings().structureConfig = tempMap;
 	}
 
@@ -285,6 +294,9 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_LINDON_VILLAGE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_LINDON_TOWER);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_LINDON_HALL);
+			}else if(biomeName.equals(LOTRBiomes.NAN_CURUNIR.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ISENGARD_GATEHOUSE);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ORTHANC);
 			}
 		}
 	}

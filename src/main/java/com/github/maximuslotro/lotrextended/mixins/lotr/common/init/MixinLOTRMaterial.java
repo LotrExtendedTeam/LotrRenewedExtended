@@ -47,6 +47,12 @@ public class MixinLOTRMaterial {
 	 * Local Extended LOTRMaterial instance
 	 * */
 	@Unique
+	private static final LOTRMaterial MORGUL_VASSAL = lE$addVariant("MORGUL_VASSAL", "morgul_vassal", 2, 450, 5.5F, 2.5F, 8, 0.7F, SoundEvents.ARMOR_EQUIP_IRON, 0,
+									() -> Ingredient.of(ExtendedItems.MORGUL_STEEL_INGOT.get()), new LOTRMaterial.Specials[]{LOTRMaterial.Specials.MAN_FLESH});
+	/**
+	 * Local Extended LOTRMaterial instance
+	 * */
+	@Unique
 	private static final LOTRMaterial TAURETHRIM = lE$addVariant("TAURETHRIM", "taurethrim", 2, 300, 5.5F, 2.5F, 10, 0.5F, SoundEvents.ARMOR_EQUIP_IRON, 0,
 									() -> Ingredient.of(ExtendedItems.OBSIDIAN_SHARD.get()),() -> Ingredient.of(LOTRItems.BRONZE_INGOT.get()), new LOTRMaterial.Specials[0]);
 	/**
@@ -225,6 +231,7 @@ public class MixinLOTRMaterial {
 		ArrayList<LOTRMaterial> variants = new ArrayList<>(Arrays.asList(MixinLOTRMaterial.$VALUES));
 		LOTRMaterial instrument = lotrmaterialExpansion$invokeInit(internalName, variants.get(variants.size() - 1).ordinal() + 1, name, toolTier, uses, efficiency, atk, ench, pr, sound, tough, repair, armorRepair, specs);
 		variants.add(instrument);
+		((MixinLOTRMaterialAccessor)(Object) instrument).setMaterialName("lotrextended:"+name);
 		MixinLOTRMaterial.$VALUES = variants.toArray(new LOTRMaterial[0]);
 		return instrument;
 	}

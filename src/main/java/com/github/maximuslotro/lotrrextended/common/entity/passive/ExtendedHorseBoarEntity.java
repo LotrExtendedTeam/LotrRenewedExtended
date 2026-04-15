@@ -9,7 +9,8 @@ import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedTamin
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBoarColors;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoarArmorItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem.MountType;
 
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.BlockState;
@@ -110,16 +111,12 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 	}
 
 	/**
-	 * Conversion factor between internal units and blocks/sec is roughly 43.17, in legacy wild boars were known to 9.9 (average), 12.5 (max) speeds
-	 * This equals a average of 0.229, which when calculated only using the default horse speed at 0.5D random gives 0.225.
-	 * So setting the additive value to 0.465 results in a average speed of 0.22875, but then again, using max speed on wiki results in a different value
-	 * As such, all I can conclude is that legacy used a different means of calculating random speeds, and all I can do is adapt the horse random speed generator
-	 * to be as close as a can get.
+	 * Conversion factor between internal units and blocks/sec is roughly 43.17, in legacy wild boars were known to be: 9.9 (average), 12.5 (max) speeds
 	 * @return randomized movement speed
 	 */
 	@Override
 	protected double generateRandomSpeed() {
-		return ((double)0.32F + this.random.nextDouble() * 0.3D + this.random.nextDouble() * 0.3D + this.random.nextDouble() * 0.3D) * 0.25D;
+		return 0.1547D + this.random.nextDouble() * 0.0368D + this.random.nextDouble() * 0.0368D + this.random.nextDouble() * 0.0368D;
 	}
 
 	private void setTypeVariant(ExtendedBoarColors pVariant) {
@@ -183,7 +180,7 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 		if (!this.level.isClientSide) {
 			this.getAttribute(Attributes.ARMOR).removeModifier(ARMOR_MODIFIER_UUID);
 			if (this.isArmor(pStack)) {
-				int i = ((ExtendedBoarArmorItem)pStack.getItem()).getProtection();
+				int i = ((ExtendedMountedArmorItem)pStack.getItem()).getProtection();
 				if (i != 0) {
 					this.getAttribute(Attributes.ARMOR).addTransientModifier(new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus", (double)i, AttributeModifier.Operation.ADDITION));
 				}
@@ -332,7 +329,7 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 
 	@Override
 	public boolean isArmor(ItemStack pStack) {
-		return pStack.getItem() instanceof ExtendedBoarArmorItem;
+		return pStack.getItem() instanceof ExtendedMountedArmorItem && ((ExtendedMountedArmorItem)pStack.getItem()).getMountType()==MountType.BOAR;
 	}
 
 	@Override

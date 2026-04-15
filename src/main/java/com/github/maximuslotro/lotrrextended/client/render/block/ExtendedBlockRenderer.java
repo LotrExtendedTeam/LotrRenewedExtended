@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.render.block;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarsBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
@@ -9,10 +10,12 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandel
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternNumenoreanBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedOrcBombBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
@@ -130,6 +133,9 @@ public class ExtendedBlockRenderer {
 			if(block instanceof ExtendedBerryHedgeBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
 			}
+			if(block instanceof ExtendedOrcBombBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}
 			if(block instanceof ExtendedCrystalChandelierBlock) {
 				if(ModList.get().isLoaded("optfine")){
 					RenderTypeLookup.setRenderLayer(block, RenderType.translucent());
@@ -138,8 +144,15 @@ public class ExtendedBlockRenderer {
 				}
 			}
 			if (block instanceof ExtendedLanternBlock) {
+				if (block instanceof ExtendedLanternNumenoreanBlock) {
+					RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
+					continue;
+				}
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 				continue;
+			}
+			if(block instanceof ExtendedBarsBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
 			}
 		}
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.BLACKBERRY_BUSH.get(), RenderType.cutout());

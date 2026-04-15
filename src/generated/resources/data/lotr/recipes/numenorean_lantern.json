@@ -1,0 +1,23 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:gondor",
+  "pattern": [
+    "YYY",
+    "Y#Y",
+    "YMY"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:torch"
+    },
+    "Y": {
+      "tag": "forge:nuggets/iron"
+    },
+    "M": {
+      "item": "lotr:morgond"
+    }
+  },
+  "result": {
+    "item": "lotr:numenorean_lantern"
+  }
+}

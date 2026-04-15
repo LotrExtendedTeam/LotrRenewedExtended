@@ -44,6 +44,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_CHESTNUT_LOG;
 	public static RegistryObject<Item> STRIPPED_CHESTNUT_WOOD;
 	public static RegistryObject<Item> CHESTNUT_BEAM;
+	public static RegistryObject<Item> CHESTNUT_BEAM_SLAB;
 	public static RegistryObject<Item> CHESTNUT_SIGN;
 	public static RegistryObject<Item> CHESTNUT_BOAT;
 	public static RegistryObject<Item> CHESTNUT_LOG_SLAB;
@@ -54,7 +55,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_CHESTNUT_WOOD_SLAB;
 	public static RegistryObject<Item> STRIPPED_CHESTNUT_WOOD_STAIRS;
 	public static RegistryObject<Item> STRIPPED_CHESTNUT_BRANCH;
-	public static RegistryObject<Item> CHESTNUT_BEAM_SLAB;
 	public static RegistryObject<Item> FALLEN_CHESTNUT_LEAVES;
 
 	public static RegistryObject<Item> BANANA_LOG;
@@ -73,6 +73,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_BANANA_LOG;
 	public static RegistryObject<Item> STRIPPED_BANANA_WOOD;
 	public static RegistryObject<Item> BANANA_BEAM;
+	public static RegistryObject<Item> BANANA_BEAM_SLAB;
 	public static RegistryObject<Item> BANANA_SIGN;
 	public static RegistryObject<Item> BANANA_BOAT;
 	public static RegistryObject<Item> BANANA_LOG_SLAB;
@@ -83,7 +84,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_BANANA_WOOD_SLAB;
 	public static RegistryObject<Item> STRIPPED_BANANA_WOOD_STAIRS;
 	public static RegistryObject<Item> STRIPPED_BANANA_BRANCH;
-	public static RegistryObject<Item> BANANA_BEAM_SLAB;
 	public static RegistryObject<Item> FALLEN_BANANA_LEAVES;
 
 	public static RegistryObject<Item> PLUM_LOG;
@@ -103,6 +103,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_PLUM_LOG;
 	public static RegistryObject<Item> STRIPPED_PLUM_WOOD;
 	public static RegistryObject<Item> PLUM_BEAM;
+	public static RegistryObject<Item> PLUM_BEAM_SLAB;
 	public static RegistryObject<Item> PLUM_SIGN;
 	public static RegistryObject<Item> PLUM_BOAT;
 	public static RegistryObject<Item> PLUM_LOG_SLAB;
@@ -113,7 +114,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_PLUM_WOOD_SLAB;
 	public static RegistryObject<Item> STRIPPED_PLUM_WOOD_STAIRS;
 	public static RegistryObject<Item> STRIPPED_PLUM_BRANCH;
-	public static RegistryObject<Item> PLUM_BEAM_SLAB;
 	public static RegistryObject<Item> FALLEN_PLUM_LEAVES;
 
 	public static RegistryObject<Item> WILLOW_LOG;
@@ -132,6 +132,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_WILLOW_LOG;
 	public static RegistryObject<Item> STRIPPED_WILLOW_WOOD;
 	public static RegistryObject<Item> WILLOW_BEAM;
+	public static RegistryObject<Item> WILLOW_BEAM_SLAB;
 	public static RegistryObject<Item> WILLOW_SIGN;
 	public static RegistryObject<Item> WILLOW_BOAT;
 	public static RegistryObject<Item> WILLOW_LOG_SLAB;
@@ -142,15 +143,48 @@ public class ExtendedItems {
 	public static RegistryObject<Item> STRIPPED_WILLOW_WOOD_SLAB;
 	public static RegistryObject<Item> STRIPPED_WILLOW_WOOD_STAIRS;
 	public static RegistryObject<Item> STRIPPED_WILLOW_BRANCH;
-	public static RegistryObject<Item> WILLOW_BEAM_SLAB;
 	public static RegistryObject<Item> FALLEN_WILLOW_LEAVES;
 	public static RegistryObject<Item> WILLOW_VINES;
 
+	public static RegistryObject<Item> EBONY_LOG;
+	public static RegistryObject<Item> EBONY_WOOD;
+	public static RegistryObject<Item> EBONY_PLANKS;
+	public static RegistryObject<Item> EBONY_LEAVES;
+	public static RegistryObject<Item> EBONY_SAPLING;
+	public static RegistryObject<Item> EBONY_SLAB;
+	public static RegistryObject<Item> EBONY_STAIRS;
+	public static RegistryObject<Item> EBONY_FENCE;
+	public static RegistryObject<Item> EBONY_FENCE_GATE;
+	public static RegistryObject<Item> EBONY_DOOR;
+	public static RegistryObject<Item> EBONY_TRAPDOOR;
+	public static RegistryObject<Item> EBONY_PRESSURE_PLATE;
+	public static RegistryObject<Item> EBONY_BUTTON;
+	public static RegistryObject<Item> STRIPPED_EBONY_LOG;
+	public static RegistryObject<Item> STRIPPED_EBONY_WOOD;
+	public static RegistryObject<Item> EBONY_BEAM;
+	public static RegistryObject<Item> EBONY_BEAM_SLAB;
+	public static RegistryObject<Item> EBONY_SIGN;
+	public static RegistryObject<Item> EBONY_BOAT;
+	public static RegistryObject<Item> EBONY_LOG_SLAB;
+	public static RegistryObject<Item> EBONY_WOOD_SLAB;
+	public static RegistryObject<Item> EBONY_WOOD_STAIRS;
+	public static RegistryObject<Item> EBONY_BRANCH;
+	public static RegistryObject<Item> STRIPPED_EBONY_LOG_SLAB;
+	public static RegistryObject<Item> STRIPPED_EBONY_WOOD_SLAB;
+	public static RegistryObject<Item> STRIPPED_EBONY_WOOD_STAIRS;
+	public static RegistryObject<Item> STRIPPED_EBONY_BRANCH;
+	public static RegistryObject<Item> FALLEN_EBONY_LEAVES;
+
 	public static RegistryObject<Item> MORGUL_BLADE;
-	public static RegistryObject<Item> MORGUL_HELMET;
-	public static RegistryObject<Item> MORGUL_CHESTPLATE;
-	public static RegistryObject<Item> MORGUL_LEGGINGS;
-	public static RegistryObject<Item> MORGUL_BOOTS;
+	//public static RegistryObject<Item> MORGUL_HELMET;
+	//public static RegistryObject<Item> MORGUL_CHESTPLATE;
+	//public static RegistryObject<Item> MORGUL_LEGGINGS;
+	//public static RegistryObject<Item> MORGUL_BOOTS;
+
+	public static RegistryObject<Item> MORGUL_VASSAL_HELMET;
+	public static RegistryObject<Item> MORGUL_VASSAL_CHESTPLATE;
+	public static RegistryObject<Item> MORGUL_VASSAL_LEGGINGS;
+	public static RegistryObject<Item> MORGUL_VASSAL_BOOTS;
 
 	public static RegistryObject<Item> GUNDABAD_URUK_CLEAVER;
 	public static RegistryObject<Item> GUNDABAD_URUK_SPEAR;
@@ -367,6 +401,10 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BONE_HOE;
 	public static RegistryObject<Item> BONE_SPEAR;
 	public static RegistryObject<Item> BONE_DAGGER;
+
+	public static RegistryObject<Item> DWARVEN_MATTOCK;
+	public static RegistryObject<Item> BLUE_DWARVEN_MATTOCK;
+	public static RegistryObject<Item> MITHRIL_MATTOCK;
 
 	public static RegistryObject<Item> IRON_THROWABLE_AXE;
 	public static RegistryObject<Item> BRONZE_THROWABLE_AXE;
@@ -769,4 +807,38 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MODIFIER_SCROLL;
 
 	public static RegistryObject<Item> TAPESTRY;
+
+	public static RegistryObject<Item> ORC_BOMB;
+	public static RegistryObject<Item> ORC_BOMB_DOUBLE;
+	public static RegistryObject<Item> ORC_BOMB_TRIPLE;
+	public static RegistryObject<Item> ORC_BOMB_FIRE;
+	public static RegistryObject<Item> ORC_BOMB_FIRE_DOUBLE;
+	public static RegistryObject<Item> ORC_BOMB_FIRE_TRIPLE;
+
+	public static RegistryObject<Item> MORGOND;
+	public static RegistryObject<Item> MORGOND_SLAB;
+	public static RegistryObject<Item> MORGOND_STAIRS;
+	public static RegistryObject<Item> MORGOND_WALL;
+	public static RegistryObject<Item> MORGOND_DRIPSTONE;
+	public static RegistryObject<Item> MORGOND_PILLAR;
+	public static RegistryObject<Item> MORGOND_PILLAR_SLAB;
+	public static RegistryObject<Item> CARVED_MORGOND;
+	public static RegistryObject<Item> CARVED_MORGOND_SLAB;
+	public static RegistryObject<Item> CARVED_MORGOND_STAIRS;
+	public static RegistryObject<Item> CARVED_MORGOND_WALL;
+	public static RegistryObject<Item> SMOOTH_MORGOND;
+	public static RegistryObject<Item> SMOOTH_MORGOND_SLAB;
+	public static RegistryObject<Item> SMOOTH_MORGOND_STAIRS;
+	public static RegistryObject<Item> SMOOTH_MORGOND_WALL;
+	public static RegistryObject<Item> SMOOTH_MORGOND_DRIPSTONE;
+
+	public static RegistryObject<Item> LEATHER_WARG_ARMOR;
+	public static RegistryObject<Item> MAIL_WARG_ARMOR;
+	public static RegistryObject<Item> ANGMAR_WARG_ARMOR;
+	public static RegistryObject<Item> ISENGARD_WARG_ARMOR;
+	public static RegistryObject<Item> MORDOR_WARG_ARMOR;
+
+	public static RegistryObject<Item> NUMENOREAN_BARS;
+	public static RegistryObject<Item> NUMENOREAN_LANTERN;
+
 }

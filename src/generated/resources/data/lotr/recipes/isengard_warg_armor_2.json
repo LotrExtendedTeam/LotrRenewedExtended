@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:uruk",
+  "pattern": [
+    "  M",
+    "MLM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "tag": "forge:ingots/uruk_steel"
+    },
+    "L": {
+      "tag": "forge:leather"
+    }
+  },
+  "result": {
+    "item": "lotr:isengard_warg_armor"
+  }
+}

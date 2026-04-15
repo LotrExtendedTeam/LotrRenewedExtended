@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GWS",
+    "MOC",
+    "BLR"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gravel"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    },
+    "S": {
+      "tag": "forge:sand"
+    },
+    "M": {
+      "item": "minecraft:clay"
+    },
+    "O": {
+      "item": "lotr:obsidian_shard"
+    },
+    "C": {
+      "item": "minecraft:coal_block"
+    },
+    "B": {
+      "item": "minecraft:basalt"
+    },
+    "L": {
+      "item": "minecraft:lava_bucket"
+    },
+    "R": {
+      "tag": "lotrextended:morgond_rocks"
+    }
+  },
+  "result": {
+    "item": "lotr:morgond"
+  }
+}

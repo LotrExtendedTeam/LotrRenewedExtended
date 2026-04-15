@@ -126,6 +126,13 @@
       }
     },
     {
+      "weight": 25,
+      "stack": {
+        "item": "lotr:swan_feather",
+        "averageCost": 10
+      }
+    },
+    {
       "weight": 50,
       "stack": {
         "item": "lotr:horn",

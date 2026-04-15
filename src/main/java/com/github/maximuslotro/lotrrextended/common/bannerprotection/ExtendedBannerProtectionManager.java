@@ -131,7 +131,7 @@ public class ExtendedBannerProtectionManager {
 					return false;
 				}
 				if(bannerInstance.isCustomProtecting()) {
-					if(ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(offendingPlayer.getGameProfile()) || bannerInstance.hasDefaultPerm(queryingPermission)) {
+					if(ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(offendingPlayer.getGameProfile()) || bannerInstance.hasGlobalPerm(queryingPermission)) {
 						return false;
 					}
 					if(bannerInstance.getProtectionOverrideMessage().isEmpty()) {
@@ -145,12 +145,11 @@ public class ExtendedBannerProtectionManager {
 					return false;
 				}
 				if(bannerInstance.isFactionProtecting()) {
-					if(offendingPlayer.getUUID().equals(bannerInstance.getPlacedPlayerUUID()) || bannerInstance.hasDefaultPerm(queryingPermission)) {
+					if(offendingPlayer.getUUID().equals(bannerInstance.getPlacedPlayerUUID()) || bannerInstance.hasGlobalPerm(queryingPermission)) {
 						return false;
 					}
 					float alignment = LOTRLevelData.serverInstance().getData(offendingPlayer).getAlignmentData().getAlignment(bannerInstance.getFactionProtcting());
-					// Ensure players can't open banners even if they have alignment
-					if(alignment<bannerInstance.getAlignmentLevel() || queryingPermission==ExtendedBannerPermissions.BANNER) {
+					if(alignment<bannerInstance.getAlignmentLevel() || !bannerInstance.hasFactionPerm(queryingPermission)) {
 						if(bannerInstance.getFactionProtcting().resolveFaction(bannerInstance.getLevel()).isPresent()) {
 							tellPlayerYSNP(bannerInstance.getFactionProtcting().resolveFaction(bannerInstance.getLevel()).get().getColoredDisplayName());
 						}else {
@@ -158,9 +157,10 @@ public class ExtendedBannerProtectionManager {
 						}
 						return true;
 					}
+					return false;
 				}
 				if(bannerInstance.isWhitelistProtecting()) {
-					if(offendingPlayer.getUUID().equals(bannerInstance.getPlacedPlayerUUID()) || bannerInstance.hasDefaultPerm(queryingPermission)) {
+					if(offendingPlayer.getUUID().equals(bannerInstance.getPlacedPlayerUUID()) || bannerInstance.hasGlobalPerm(queryingPermission)) {
 						return false;
 					}
 					boolean isWhitelisted=false;
@@ -242,9 +242,6 @@ public class ExtendedBannerProtectionManager {
 				if(offender instanceof PlayerEntity) {
 					return new SingleProtectionInstance.PlayerProtection((PlayerEntity)offender).isProtected(bannerInstance);
 				}
-				if(offender instanceof LivingEntity) {
-					return new SingleProtectionInstance.EntityProtection(offender).isProtected(bannerInstance);
-				}
 				return true;
 			}
 
@@ -267,9 +264,6 @@ public class ExtendedBannerProtectionManager {
 				if(offender instanceof PlayerEntity) {
 					return new SingleProtectionInstance.PlayerProtection((PlayerEntity)offender).isProtected(bannerInstance);
 				}
-				if(offender instanceof LivingEntity) {
-					return new SingleProtectionInstance.EntityProtection(offender).isProtected(bannerInstance);
-				}
 				return true;
 			}
 
@@ -291,9 +285,6 @@ public class ExtendedBannerProtectionManager {
 				Entity offender = source.getEntity();
 				if(offender instanceof PlayerEntity) {
 					return new SingleProtectionInstance.PlayerProtection((PlayerEntity)offender).isProtected(bannerInstance);
-				}
-				if(offender instanceof LivingEntity) {
-					return new SingleProtectionInstance.EntityProtection(offender).isProtected(bannerInstance);
 				}
 				if(offender instanceof ProjectileEntity) {
 					return new SingleProtectionInstance.LaunchedProtection((ProjectileEntity) offender).isProtected(bannerInstance);

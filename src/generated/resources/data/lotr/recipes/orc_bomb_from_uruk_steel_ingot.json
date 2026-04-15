@@ -1,0 +1,21 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:uruk",
+  "pattern": [
+    "PIP",
+    "IPI",
+    "PIP"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/uruk_steel"
+    },
+    "P": {
+      "item": "minecraft:gunpowder"
+    }
+  },
+  "result": {
+    "item": "lotr:orc_bomb",
+    "count": 4
+  }
+}

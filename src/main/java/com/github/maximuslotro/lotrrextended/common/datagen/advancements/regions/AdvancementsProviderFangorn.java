@@ -39,7 +39,7 @@ public class AdvancementsProviderFangorn extends ExtendedBaseAdvancementType{
 				addAlignmentTrigger(make(), FactionPointers.FANGORN, 100).parent(ent_50));
 		Advancement ent_250 = build(true, data(LOTRItems.GOLD_RING.get(), "ent_250", FrameType.TASK)
 				.setTitle("Fangorn Master").setDescription("Reach +200.0 alignment with the Ents."),
-				addAlignmentTrigger(make(), FactionPointers.FANGORN, 250).parent(ent_100));
+				addAlignmentTrigger(make(), FactionPointers.FANGORN, 200).parent(ent_100));
 		Advancement ent_500 = build(true, data(LOTRItems.GOLD_RING.get(), "ent_500", FrameType.GOAL)
 				.setTitle("Fangorn Elder").setDescription("Reach +500.0 alignment with the Ents."),
 				addAlignmentTrigger(make(), FactionPointers.FANGORN, 500).parent(ent_250));

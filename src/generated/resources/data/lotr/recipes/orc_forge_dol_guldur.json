@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dol_guldur",
+  "pattern": [
+    "BBB",
+    "BRB",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "lotr:dol_guldur_brick"
+    },
+    "R": {
+      "item": "lotr:mirk_shroom"
+    }
+  },
+  "result": {
+    "item": "lotr:orc_forge"
+  }
+}

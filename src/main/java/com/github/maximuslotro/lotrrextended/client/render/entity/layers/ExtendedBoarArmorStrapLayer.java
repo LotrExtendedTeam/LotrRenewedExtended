@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.client.render.entity.layers;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.entity.model.ExtendedHorseBoarModel;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoarArmorItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
@@ -22,7 +22,7 @@ import net.minecraft.util.ResourceLocation;
  */
 public class ExtendedBoarArmorStrapLayer extends LayerRenderer<ExtendedHorseBoarEntity, ExtendedHorseBoarModel<ExtendedHorseBoarEntity>> {
 	private final ExtendedHorseBoarModel<ExtendedHorseBoarEntity> model = new ExtendedHorseBoarModel<>(0.1F);
-	private final ResourceLocation strap = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/armor/boar_armor_strap.png");
+	private final ResourceLocation strap = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/animals/boar/armor/strap.png");
 
 	public ExtendedBoarArmorStrapLayer(IEntityRenderer<ExtendedHorseBoarEntity, ExtendedHorseBoarModel<ExtendedHorseBoarEntity>> p_i50937_1_) {
 		super(p_i50937_1_);
@@ -31,7 +31,7 @@ public class ExtendedBoarArmorStrapLayer extends LayerRenderer<ExtendedHorseBoar
 	@Override
 	public void render(MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pPackedLight, ExtendedHorseBoarEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
 		ItemStack itemstack = pLivingEntity.getArmor();
-		if (itemstack.getItem() instanceof ExtendedBoarArmorItem) {
+		if (itemstack.getItem() instanceof ExtendedMountedArmorItem) {
 			this.getParentModel().copyPropertiesTo(this.model);
 			this.model.prepareMobModel(pLivingEntity, pLimbSwing, pLimbSwingAmount, pPartialTicks);
 			this.model.setupAnim(pLivingEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);

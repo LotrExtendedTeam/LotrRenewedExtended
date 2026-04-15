@@ -17,13 +17,6 @@
     "hidden": false
   },
   "criteria": {
-    "trade_lindon_smith_buy": {
-      "trigger": "lotrextended:trader_traded_with",
-      "conditions": {
-        "entity": "lotr:lindon_smith",
-        "istraderselling": "false"
-      }
-    },
     "trade_lindon_smith_sell": {
       "trigger": "lotrextended:trader_traded_with",
       "conditions": {
@@ -34,7 +27,6 @@
   },
   "requirements": [
     [
-      "trade_lindon_smith_buy",
       "trade_lindon_smith_sell"
     ]
   ]

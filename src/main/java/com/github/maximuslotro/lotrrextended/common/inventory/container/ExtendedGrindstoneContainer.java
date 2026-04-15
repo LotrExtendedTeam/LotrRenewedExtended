@@ -97,9 +97,9 @@ public class ExtendedGrindstoneContainer extends Container {
 				pAccess.execute((p_216944_1_, p_216944_2_) -> {
 					int xpAmount = this.getExperienceAmount(p_216944_1_);
 					while(xpAmount > 0) {
-						int teiredAmount = ExperienceOrbEntity.getExperienceValue(xpAmount);
-						xpAmount -= teiredAmount;
-						p_216944_1_.addFreshEntity(new ExperienceOrbEntity(p_216944_1_, p_216944_2_.getX(), p_216944_2_.getY() + 0.5D, p_216944_2_.getZ() + 0.5D, teiredAmount));
+						int tieredAmount = ExperienceOrbEntity.getExperienceValue(xpAmount);
+						xpAmount -= tieredAmount;
+						p_216944_1_.addFreshEntity(new ExperienceOrbEntity(p_216944_1_, p_216944_2_.getX(), p_216944_2_.getY() + 0.5D, p_216944_2_.getZ() + 0.5D, tieredAmount));
 					}
 
 					p_216944_1_.levelEvent(1042, p_216944_2_, 0);

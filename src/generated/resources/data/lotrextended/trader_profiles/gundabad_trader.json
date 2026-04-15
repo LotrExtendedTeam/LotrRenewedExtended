@@ -320,6 +320,22 @@
     {
       "weight": 50,
       "stack": {
+        "item": "minecraft:iron_sword",
+        "averageCost": 14,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:iron_spear",
+        "averageCost": 15,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "lotr:maggoty_bread",
         "averageCost": 4
       }
@@ -370,6 +386,20 @@
         "item": "lotr:gundabad_uruk_bow",
         "averageCost": 20,
         "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:leather_warg_armor",
+        "averageCost": 20
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:mail_warg_armor",
+        "averageCost": 25
       }
     }
   ]

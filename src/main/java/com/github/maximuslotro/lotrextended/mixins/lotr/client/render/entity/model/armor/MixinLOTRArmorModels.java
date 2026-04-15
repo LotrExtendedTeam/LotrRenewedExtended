@@ -13,7 +13,9 @@ import lotr.client.render.entity.model.armor.ExtendedModelGalvornHelmet;
 import lotr.client.render.entity.model.armor.ExtendedModelGoldenTaurethrimHelmet;
 import lotr.client.render.entity.model.armor.ExtendedModelGundabadUrukHelmet;
 import lotr.client.render.entity.model.armor.ExtendedModelLeatherHat;
-import lotr.client.render.entity.model.armor.ExtendedModelMorgulHelmet;
+import lotr.client.render.entity.model.armor.ExtendedModelMorgulVassalChestplate;
+import lotr.client.render.entity.model.armor.ExtendedModelMorgulVassalHelmet;
+import lotr.client.render.entity.model.armor.ExtendedModelMorgulVassalLeggings;
 import lotr.client.render.entity.model.armor.ExtendedModelTaurethrimChieftanHelmet;
 import lotr.client.render.entity.model.armor.ExtendedModelWargHat;
 import lotr.client.render.entity.model.armor.HighElvenHelmetModel;
@@ -51,7 +53,7 @@ public class MixinLOTRArmorModels {
 		addSpecialArmorModel(LOTRItems.ARNOR_HELMET, ExtendedArnorHelmetModel::new);
 
 		// Add Extended armor models
-		addSpecialArmorModel(ExtendedItems.MORGUL_HELMET, ExtendedModelMorgulHelmet::new);
+		//addSpecialArmorModel(ExtendedItems.MORGUL_HELMET, ExtendedModelMorgulHelmet::new);
 		addSpecialArmorModel(ExtendedItems.TAURETHRIM_CHIEFTAIN_HELMET, ExtendedModelTaurethrimChieftanHelmet::new);
 		addSpecialArmorModel(ExtendedItems.GOLDEN_TAURETHRIM_HELMET, ExtendedModelGoldenTaurethrimHelmet::new);
 		addSpecialArmorModel(ExtendedItems.LEATHER_HAT, ExtendedModelLeatherHat::new);
@@ -64,5 +66,8 @@ public class MixinLOTRArmorModels {
 		addSpecialArmorModel(ExtendedItems.IMLADRIS_GUARD_HELMET, HighElvenHelmetModel::new);
 		addSpecialArmorModel(ExtendedItems.EREGION_HELMET, HighElvenHelmetModel::new);
 		addSpecialArmorModel(ExtendedItems.GALVORN_HELMET, ExtendedModelGalvornHelmet::new);
+		addSpecialArmorModel(ExtendedItems.MORGUL_VASSAL_HELMET, ExtendedModelMorgulVassalHelmet::new);
+		addSpecialArmorModel(ExtendedItems.MORGUL_VASSAL_CHESTPLATE, ExtendedModelMorgulVassalChestplate::new);
+		addSpecialArmorModel(ExtendedItems.MORGUL_VASSAL_LEGGINGS, ExtendedModelMorgulVassalLeggings::new);
 	}
 }

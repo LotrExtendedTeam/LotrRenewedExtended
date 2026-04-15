@@ -11,7 +11,7 @@
       "tag": "forge:rods/wooden"
     },
     "#": {
-      "item": "lotr:dwarven_steel_ingot"
+      "tag": "forge:ingots/dwarven_steel"
     }
   },
   "result": {

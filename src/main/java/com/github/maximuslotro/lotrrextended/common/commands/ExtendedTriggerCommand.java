@@ -7,6 +7,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import lotr.common.entity.npc.ExtendedTolkienEntity;
 import lotr.common.world.spawning.BanditsSpawner;
+import lotr.common.world.spawning.InvasionSpawner;
 import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
@@ -26,7 +27,9 @@ public class ExtendedTriggerCommand {
 			.then(Commands.literal("attemptBanditSpawn")
 				.executes(context -> triggerBanditSpawn(context.getSource())))
 			.then(Commands.literal("banditSpawn")
-				.executes(context -> triggerGuaranteedBanditSpawn(context.getSource()))));
+				.executes(context -> triggerGuaranteedBanditSpawn(context.getSource())))
+			.then(Commands.literal("invasion")
+				.executes(context -> triggerInvasionTest(context.getSource()))));
 	}
 
 	public static int triggerTrader(CommandSource source) throws CommandSyntaxException {
@@ -48,6 +51,17 @@ public class ExtendedTriggerCommand {
 			source.sendSuccess(new StringTextComponent("Attempt to spawn bandit was successful."), true);
 		} else {
 			source.sendSuccess(new StringTextComponent("Attempt to spawn bandit was unsuccessful."), true);
+		}
+		return Command.SINGLE_SUCCESS;
+	}
+
+	public static int triggerInvasionTest(CommandSource source) throws CommandSyntaxException {
+		ServerPlayerEntity player = source.getPlayerOrException();
+		boolean result = InvasionSpawner.requireInvasionSpawn(player.getLevel(), player);
+		if (result) {
+			source.sendSuccess(new StringTextComponent("An invasion was successfully spawned."), true);
+		} else {
+			source.sendFailure(new StringTextComponent("Could not find an invasion to spawn here."));
 		}
 		return Command.SINGLE_SUCCESS;
 	}

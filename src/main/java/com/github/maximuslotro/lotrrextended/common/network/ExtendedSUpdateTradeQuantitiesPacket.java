@@ -40,8 +40,7 @@ public class ExtendedSUpdateTradeQuantitiesPacket {
 	public static void handle(ExtendedSUpdateTradeQuantitiesPacket packet, Supplier<Context> context) {
 		Minecraft mc = Minecraft.getInstance();
 		ClientPlayerEntity player = mc.player;
-		assert player != null;
-		if (player.containerMenu instanceof ExtendedTradeContainer) {
+		if (player != null && player.containerMenu instanceof ExtendedTradeContainer) {
 			ExtendedTradeContainer container = (ExtendedTradeContainer) player.containerMenu;
 			container.setSoldQuantities(packet.soldQuantities);
 			container.setBoughtQuantities(packet.boughtQuantities);

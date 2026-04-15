@@ -13,6 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedAttributes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlockStateProviderTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedEffects;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedEntitiesNew;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
@@ -105,6 +106,7 @@ public class LotrExtendedMod{
 		ExtendedTapestryType.register(modBus);
 		ExtendedBlockStateProviderTypes.register(modBus);
 		ExtendedAttributes.register(modBus);
+		ExtendedEntitiesNew.register(modBus);
 		ExtendedCriteriaTriggers.generate();
 		ExtendedRecipeTypes.register();
 		ExtendedRecipeSerializers.register(modBus);

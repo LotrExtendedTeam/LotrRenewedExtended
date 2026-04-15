@@ -12,10 +12,10 @@ public class MIXINConfig implements IMixinConfigPlugin {
 
 	protected static TreeSet<String> injectedPatches = new TreeSet<>();
 	protected static boolean isBrokenJavaFutureVersions = false;
+	protected static int rejectedAOEMixins = 0;
 
 	@Override
-	public void onLoad(String mixinPackage)
-	{
+	public void onLoad(String mixinPackage) {
 		ExtendedMixinLog.make();
 		ExtendedMixinLog.info("Running Java "+getJavaVersion());
 		if(getJavaVersion()>=9) {
@@ -25,14 +25,12 @@ public class MIXINConfig implements IMixinConfigPlugin {
 	}
 
 	@Override
-	public String getRefMapperConfig()
-	{
+	public String getRefMapperConfig() {
 		return null;
 	}
 
 	@Override
-	public List<String> getMixins()
-	{
+	public List<String> getMixins() {
 		if(isBrokenJavaFutureVersions) {
 			ExtendedMixinLog.info("Added Java 9+ Patches to Renewed");
 //			List<String> mixins = new ArrayList<>();
@@ -49,14 +47,20 @@ public class MIXINConfig implements IMixinConfigPlugin {
 	}
 
 	@Override
-	public void acceptTargets(Set<String> myTargets, Set<String> otherTargets)
-	{
-		/* do nothing */
+	public void acceptTargets(Set<String> myTargets, Set<String> otherTargets) {
+	    ExtendedMixinLog.debug("=== MY TARGETS ===");
+	    for (String target : myTargets) {
+	        ExtendedMixinLog.debug(target);
+	    }
+
+	    ExtendedMixinLog.debug("=== OTHER TARGETS ===");
+	    for (String target : otherTargets) {
+	        ExtendedMixinLog.debug(target);
+	    }
 	}
 
 	@Override
-	public boolean shouldApplyMixin(String targetClassName, String mixinClassName)
-	{
+	public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
 //		if(targetClassName.equals("craftedMods.jeiLotr.JEIPlugin")){
 //			if(!classExists("craftedMods.jeiLotr.JEIPlugin")) {
 //				System.out.println("NOT ADDING MIXIN: "+targetClassName+", "+mixinClassName);

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "lotrextended:block/stripped_ebony_log",
+    "end": "lotrextended:block/stripped_ebony_log_top"
+  }
+}

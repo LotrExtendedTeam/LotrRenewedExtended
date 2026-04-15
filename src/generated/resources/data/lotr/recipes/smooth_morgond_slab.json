@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:gondor",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:smooth_morgond"
+    }
+  },
+  "result": {
+    "item": "lotr:smooth_morgond_slab",
+    "count": 6
+  }
+}

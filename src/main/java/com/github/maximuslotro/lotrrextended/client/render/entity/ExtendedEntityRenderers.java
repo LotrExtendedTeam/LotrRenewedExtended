@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.render.entity;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedEntitiesNew;
+
 import lotr.client.render.entity.*;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.client.Minecraft;
@@ -27,7 +29,10 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.CHAIR.get(), ExtendedNullEntityRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.STRUCTURE_ENTITY_SPAWNER.get(), ExtendedStructureSpawnerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.RESPAWNER_ENTITY.get(), ExtendedRespawnerRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.INVASION_SPAWNER.get(), ExtendedInvasionSpawnerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TAPESTRY.get(), ExtendedTapestryRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.ORC_BOMB.get(), ExtendedOrcBombRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntitiesNew.BOAT.get(), ExtendedBoatRenderer::new);
 		// Hobbit
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_BARTENDER.get(), ExtendedHobbitBartenderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_FARMER.get(), ExtendedHobbitFarmerRenderer::new);
@@ -89,5 +94,11 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.TOLKIEN.get(), ExtendedTolkienRenderer::new);
 		// Bandit
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BANDIT.get(), ExtendedBanditRenderer::new);
+		// Isengard
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_SUPPLIER.get(), ExtendedUrukTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_SMITH.get(), ExtendedUrukTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_CAPTAIN.get(), ExtendedUrukTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_BERSERKER.get(), UrukRenderer::new);
+
 	}
 }

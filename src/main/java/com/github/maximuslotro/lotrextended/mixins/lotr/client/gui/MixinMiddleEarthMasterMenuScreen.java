@@ -11,8 +11,9 @@ import lotr.client.gui.BasicIngameScreen;
 import lotr.client.gui.MiddleEarthFactionsScreen;
 import lotr.client.gui.MiddleEarthMasterMenuScreen;
 import lotr.client.gui.map.MiddleEarthMapScreen;
+import lotr.client.gui.menu.ExtendedAdvancementsScreen;
 import lotr.client.gui.menu.ExtendedFellowshipScreen;
-import lotr.client.gui.menu.ExtendedOptionsScreen;
+import lotr.client.gui.menu.ExtendedAbstractOptionsScreen;
 import lotr.client.gui.widget.button.MiddleEarthMenuButton;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.util.text.ITextComponent;
@@ -56,7 +57,7 @@ public class MixinMiddleEarthMasterMenuScreen extends BasicIngameScreen {
 		int buttonGap = 10;
 		int buttonSize = 32;
 
-		addButton(new MiddleEarthMenuButton(0, 0, null, new TranslationTextComponent("gui.lotrextended.menu.achievements"), 2, 65));
+		addButton(new MiddleEarthMenuButton(0, 0, ExtendedAdvancementsScreen.class, new TranslationTextComponent("gui.lotrextended.menu.achievements"), 2, 65));
 		addButton(new MiddleEarthMenuButton(0, 0, MiddleEarthMapScreen.class, new TranslationTextComponent("gui.lotr.menu.map"), 3, 77));
 		addButton(new MiddleEarthMenuButton(0, 0, MiddleEarthFactionsScreen.class, new TranslationTextComponent("gui.lotr.menu.factions"), 4, 70));
 		addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("?"), 0, -1));
@@ -65,7 +66,7 @@ public class MixinMiddleEarthMasterMenuScreen extends BasicIngameScreen {
 		//addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("Shields"), 5, 83));
 		addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("?/Titles"), 0, 84));
 		addButton(new MiddleEarthMenuButton(0, 0, null, new StringTextComponent("?"), 0, 83));
-		addButton(new MiddleEarthMenuButton(0, 0, ExtendedOptionsScreen.class, new TranslationTextComponent("gui.lotrextended.menu.settings"), 1, 79));
+		addButton(new MiddleEarthMenuButton(0, 0, ExtendedAbstractOptionsScreen.class, new TranslationTextComponent("gui.lotrextended.menu.settings"), 1, 79));
 
 		List<MiddleEarthMenuButton> menuButtonsToArrange = new ArrayList<>();
 

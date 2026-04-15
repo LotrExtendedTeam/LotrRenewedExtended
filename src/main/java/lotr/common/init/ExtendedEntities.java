@@ -3,6 +3,7 @@ package lotr.common.init;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedOrcBombEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedTapestryEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHedgehogEntity;
@@ -10,10 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorse
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedDuckEggEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedThrowableAxeEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedChairEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
-import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.special.*;
 
 import lotr.common.entity.npc.*;
 import net.minecraft.entity.EntityType;
@@ -24,6 +22,7 @@ public class ExtendedEntities {
 	public static List<String> REGISTEREDNPCENTITIES = new ArrayList<>();
 	public static List<String> REGISTEREDANIMALENTITIES = new ArrayList<>();
 	public static List<String> REGISTEREDNONMOBENTITIES = new ArrayList<>();
+	public static List<String> REGISTEREDNONMOBENTITIESEXTENDED = new ArrayList<>();
 	public static RegistryObject<EntityType<ExtendedDunedainRangerEntity>> DUNEDAIN_RANGER;
 	public static RegistryObject<EntityType<ExtendedGaladhrimWandererEntity>> GALADHRIM_WANDERER;
 	public static RegistryObject<EntityType<ExtendedHobbitBartenderEntity>> HOBBIT_BARTENDER;
@@ -86,8 +85,15 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedElrondEntity>> ELROND;
 	public static RegistryObject<EntityType<ExtendedBanditEntity>> BANDIT;
 	public static RegistryObject<EntityType<ExtendedTapestryEntity>> TAPESTRY;
+	public static RegistryObject<EntityType<ExtendedInvasionSpawnerEntity>> INVASION_SPAWNER;
 	public static RegistryObject<EntityType<ExtendedLindonLordEntity>> LINDON_LORD;
 	public static RegistryObject<EntityType<ExtendedLindonSmithEntity>> LINDON_SMITH;
 	public static RegistryObject<EntityType<ExtendedLindonWeaverEntity>> LINDON_WEAVER;
 	public static RegistryObject<EntityType<ExtendedLindonFloristEntity>> LINDON_FLORIST;
+	public static RegistryObject<EntityType<ExtendedOrcBombEntity>> ORC_BOMB;
+	public static RegistryObject<EntityType<ExtendedUrukSupplierEntity>> URUK_SUPPLIER;
+	public static RegistryObject<EntityType<ExtendedUrukSmithEntity>> URUK_SMITH;
+	public static RegistryObject<EntityType<ExtendedUrukCaptainEntity>> URUK_CAPTAIN;
+	public static RegistryObject<EntityType<ExtendedUrukBerserkerEntity>> URUK_BERSERKER;
+
 }

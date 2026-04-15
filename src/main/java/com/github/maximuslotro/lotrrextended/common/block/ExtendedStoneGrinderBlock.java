@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
+import java.util.Map;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -7,6 +8,8 @@ import javax.annotation.Nullable;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneGrinderTileEntity;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -21,6 +24,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -46,7 +50,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ExtendedStoneGrinderBlock extends ContainerBlock {
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D);
+	private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(
+		Direction.NORTH, Block.box(0.0D, 0.0D, 3.0D, 16.0D, 13.0D, 13.0D),
+		Direction.SOUTH, Block.box(0.0D, 0.0D, 3.0D, 16.0D, 13.0D, 13.0D),
+		Direction.WEST, Block.box(3.0D, 0.0D, 0.0D, 13.0D, 13.0D, 16.0D),
+		Direction.EAST, Block.box(3.0D, 0.0D, 0.0D, 13.0D, 13.0D, 16.0D)));
 
 	public ExtendedStoneGrinderBlock(AbstractBlock.Properties p_i50000_1_) {
 		super(p_i50000_1_);
@@ -54,8 +62,8 @@ public class ExtendedStoneGrinderBlock extends ContainerBlock {
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
-		return SHAPE;
+	public VoxelShape getShape(BlockState pState, IBlockReader world, BlockPos pos, ISelectionContext context) {
+		return SHAPES.get(pState.getValue(FACING));
 	}
 
 	@Override
@@ -141,7 +149,7 @@ public class ExtendedStoneGrinderBlock extends ContainerBlock {
 
 	@Override
 	public BlockRenderType getRenderShape(BlockState pState) {
-		return BlockRenderType.MODEL;
+		return BlockRenderType.ENTITYBLOCK_ANIMATED;
 	}
 
 	@Override
@@ -182,5 +190,10 @@ public class ExtendedStoneGrinderBlock extends ContainerBlock {
 			}
 			pLevel.addParticle(ParticleTypes.SMOKE, dX , dY + 0.6D, dZ , 0.0D, 0.0D, 0.0D);
 		}
+	}
+
+	@Override
+	public boolean isPathfindable(BlockState pState, IBlockReader pLevel, BlockPos pPos, PathType pType) {
+		return false;
 	}
 }

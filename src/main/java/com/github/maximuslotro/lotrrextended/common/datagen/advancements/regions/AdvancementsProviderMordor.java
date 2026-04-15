@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
 
 import lotr.common.fac.FactionPointers;
+import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
@@ -29,33 +30,39 @@ public class AdvancementsProviderMordor extends ExtendedBaseAdvancementType{
 			addBiomeTriggers(make(), LOTRBiomes.MORGUL_VALE).parent(enter_mordor));
 
 		Advancement mordor_10 = build(true, data(LOTRItems.GOLD_RING.get(), "mordor_10", FrameType.TASK)
-				.setTitle("Mordor Guest").setDescription("Reach +10.0 alignment with Mordor."),
+				.setTitle("Mordor Thrall").setDescription("Reach +10.0 alignment with Mordor."),
 				addAlignmentTrigger(make(), FactionPointers.MORDOR, 10).parent(enter_mordor));
 		Advancement mordor_50 = build(true, data(LOTRItems.GOLD_RING.get(), "mordor_50", FrameType.TASK)
-				.setTitle("Mordor Friend").setDescription("Reach +50.0 alignment with Mordor."),
+				.setTitle("Mordor Snaga").setDescription("Reach +50.0 alignment with Mordor."),
 				addAlignmentTrigger(make(), FactionPointers.MORDOR, 50).parent(mordor_10));
 		Advancement mordor_100 = build(true, data(LOTRItems.GOLD_RING.get(), "mordor_100", FrameType.TASK)
-				.setTitle("Mordorian-at-Arms").setDescription("Reach +100.0 alignment with Mordor."),
+				.setTitle("Mordor Brigand").setDescription("Reach +100.0 alignment with Mordor."),
 				addAlignmentTrigger(make(), FactionPointers.MORDOR, 100).parent(mordor_50));
 		Advancement mordor_200 = build(true, data(LOTRItems.GOLD_RING.get(), "mordor_200", FrameType.TASK)
-				.setTitle("Mordor Soldier").setDescription("Reach +200.0 alignment with Mordor."),
+				.setTitle("Mordor Slave-driver").setDescription("Reach +200.0 alignment with Mordor."),
 				addAlignmentTrigger(make(), FactionPointers.MORDOR, 200).parent(mordor_100));
 		Advancement mordor_500 = build(true, data(LOTRItems.GOLD_RING.get(), "mordor_500", FrameType.TASK)
-				.setTitle("Mordor Knight").setDescription("Reach +500.0 alignment with Mordor."),
+				.setTitle("Mordor Despoiler").setDescription("Reach +500.0 alignment with Mordor."),
 				addAlignmentTrigger(make(), FactionPointers.MORDOR, 500).parent(mordor_200));
 		Advancement mordor_1000 = build(true, data(LOTRItems.GOLD_RING.get(), "mordor_1000", FrameType.TASK)
-				.setTitle("Mordor Champion").setDescription("Reach +1000.0 alignment with Mordor."),
+				.setTitle("Mordor Captain").setDescription("Reach +1000.0 alignment with Mordor."),
 				addAlignmentTrigger(make(), FactionPointers.MORDOR, 1000).parent(mordor_500));
 		Advancement mordor_1500 = build(true, data(LOTRItems.GOLD_RING.get(), "mordor_1500", FrameType.GOAL)
-				.setTitle("Mordor Captain").setDescription("Reach +1500.0 alignment with Mordor."),
+				.setTitle("Lieutnant of Morgul").setDescription("Reach +1500.0 alignment with Mordor."),
 				addAlignmentTrigger(make(), FactionPointers.MORDOR, 1500).parent(mordor_1000));
 		Advancement mordor_3000 = build(true, data(LOTRItems.GOLD_RING.get(), "mordor_3000", FrameType.CHALLENGE)
-				.setTitle("Mordorian Lord/Lady").setDescription("Reach +3000.0 alignment with Mordor."),
+				.setTitle("Commander of Lugbúrz").setDescription("Reach +3000.0 alignment with Mordor."),
 				addAlignmentTrigger(make(), FactionPointers.MORDOR, 3000).parent(mordor_1500));
 
 		Advancement morgul_crafter = build(true, data(LOTRItems.MORDOR_CRAFTING_TABLE.get(), "morgul_crafter", FrameType.TASK)
 			.setTitle("Morgul Crafter").setDescription("Craft an item on the Morgul Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.MORDOR_CRAFTING_TABLE.get()).parent(enter_mordor));
+
+		Advancement the_bombardier = build(true, data(ExtendedItems.ORC_BOMB.get(), "the_bombardier", FrameType.TASK)
+			.setTitle("The Bombardier").setDescription("Craft an Orc Bomb."),
+			addCraftingTrigger(make(), LOTRBlocks.MORDOR_CRAFTING_TABLE.get(), ExtendedItems.ORC_BOMB.get(),
+				LOTRBlocks.ANGMAR_CRAFTING_TABLE.get(), LOTRBlocks.URUK_CRAFTING_TABLE.get(), 
+				ExtendedBlocks.DOL_GULDUR_CRAFTING_TABLE.get()).parent(morgul_crafter));
 
 		Advancement orc_smithey = build(true, data(LOTRItems.ORC_STEEL_INGOT.get(), "orc_smithey", FrameType.TASK)
 			.setTitle("Orc Smith").setDescription("Smelt an ingot of Orc Steel in the Orc Forge."),
@@ -83,10 +90,10 @@ public class AdvancementsProviderMordor extends ExtendedBaseAdvancementType{
 			addArmorTrigger(make(), "mordor", LOTRItems.MORDOR_HELMET.get(), LOTRItems.MORDOR_CHESTPLATE.get(),
 					LOTRItems.MORDOR_LEGGINGS.get(), LOTRItems.MORDOR_BOOTS.get()).parent(enter_mordor));
 
-		Advancement morgul_armor = build(true, data(ExtendedItems.MORGUL_CHESTPLATE.get(), "morgul_armor", FrameType.TASK)
-			.setTitle("Witch-king").setDescription("Equip a full suit of Morgul armor."),
-			addArmorTrigger(make(), "morgul", ExtendedItems.MORGUL_HELMET.get(), ExtendedItems.MORGUL_CHESTPLATE.get(),
-				ExtendedItems.MORGUL_LEGGINGS.get(), ExtendedItems.MORGUL_BOOTS.get()).parent(mordor_armor));
+		//Advancement morgul_armor = build(true, data(ExtendedItems.MORGUL_CHESTPLATE.get(), "morgul_armor", FrameType.TASK)
+		//	.setTitle("Knight of Dushgoi").setDescription("Equip a full suit of Morgul Knight Armor."),
+		//	addArmorTrigger(make(), "morgul", ExtendedItems.MORGUL_HELMET.get(), ExtendedItems.MORGUL_CHESTPLATE.get(),
+		//		ExtendedItems.MORGUL_LEGGINGS.get(), ExtendedItems.MORGUL_BOOTS.get()).parent(mordor_armor));
 
 		Advancement mordor_orc_slayer = build(true, data(LOTRItems.ORC_BONE.get(), "mordor_orc_slayer", FrameType.TASK)
 			.setTitle("Mordor Orc Slayer").setDescription("Kill a Mordor Orc."),

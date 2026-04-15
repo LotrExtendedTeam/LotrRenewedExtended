@@ -34,6 +34,7 @@ import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroup
 import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.trees.BananaTree;
 import com.github.maximuslotro.lotrrextended.common.block.trees.ChestnutTree;
+import com.github.maximuslotro.lotrrextended.common.block.trees.EbonyTree;
 import com.github.maximuslotro.lotrrextended.common.block.trees.PlumTree;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
@@ -446,6 +447,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_CHESTNUT_LOG = registerB("stripped_chestnut_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.CHESTNUT_LOG));
 		ExtendedBlocks.STRIPPED_CHESTNUT_WOOD = registerB("stripped_chestnut_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_CHESTNUT_LOG));
 		ExtendedBlocks.CHESTNUT_BEAM = registerB("chestnut_beam", () -> new WoodBeamBlock(ExtendedBlocks.CHESTNUT_LOG));
+		ExtendedBlocks.CHESTNUT_BEAM_SLAB = registerB("chestnut_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.CHESTNUT_BEAM));
 		ExtendedBlocks.CHESTNUT_SIGN = registerB("chestnut_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.CHESTNUT_PLANKS, ExtendedSignTypes.CHESTNUT));
 		ExtendedBlocks.CHESTNUT_WALL_SIGN = registerB("chestnut_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.CHESTNUT_SIGN));
 		ExtendedBlocks.CHESTNUT_LOG_SLAB = registerB("chestnut_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.CHESTNUT_LOG, () -> ExtendedBlocks.STRIPPED_CHESTNUT_LOG_SLAB.get()));
@@ -456,7 +458,6 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB = registerB("stripped_chestnut_wood_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD));
 		ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_STAIRS = registerB("stripped_chestnut_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD));
 		ExtendedBlocks.STRIPPED_CHESTNUT_BRANCH = registerB("stripped_chestnut_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_CHESTNUT_WOOD));
-		ExtendedBlocks.CHESTNUT_BEAM_SLAB = registerB("chestnut_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.CHESTNUT_BEAM));
 		ExtendedBlocks.FALLEN_CHESTNUT_LEAVES = registerB("fallen_chestnut_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.CHESTNUT_LEAVES));
 
 		ExtendedBlocks.BANANA_LOG = registerB("banana_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.COLOR_YELLOW, () -> ExtendedBlocks.STRIPPED_BANANA_LOG.get()));
@@ -477,6 +478,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_BANANA_LOG = registerB("stripped_banana_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.BANANA_LOG));
 		ExtendedBlocks.STRIPPED_BANANA_WOOD = registerB("stripped_banana_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_BANANA_LOG));
 		ExtendedBlocks.BANANA_BEAM = registerB("banana_beam", () -> new WoodBeamBlock(ExtendedBlocks.BANANA_LOG));
+		ExtendedBlocks.BANANA_BEAM_SLAB = registerB("banana_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.BANANA_BEAM));
 		ExtendedBlocks.BANANA_SIGN = registerB("banana_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.BANANA_PLANKS, ExtendedSignTypes.BANANA));
 		ExtendedBlocks.BANANA_WALL_SIGN = registerB("banana_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.BANANA_SIGN));
 		ExtendedBlocks.BANANA_LOG_SLAB = registerB("banana_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.BANANA_LOG, () -> ExtendedBlocks.STRIPPED_BANANA_LOG_SLAB.get()));
@@ -487,7 +489,6 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_BANANA_WOOD_SLAB = registerB("stripped_banana_wood_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_BANANA_WOOD));
 		ExtendedBlocks.STRIPPED_BANANA_WOOD_STAIRS = registerB("stripped_banana_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_BANANA_WOOD));
 		ExtendedBlocks.STRIPPED_BANANA_BRANCH = registerB("stripped_banana_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_BANANA_WOOD));
-		ExtendedBlocks.BANANA_BEAM_SLAB = registerB("banana_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.BANANA_BEAM));
 		ExtendedBlocks.FALLEN_BANANA_LEAVES = registerB("fallen_banana_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.BANANA_LEAVES));
 		ExtendedBlocks.HANGING_BANANA = registerB("hanging_banana", ExtendedHangingBlock::new);
 
@@ -510,6 +511,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_PLUM_LOG = registerB("stripped_plum_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.PLUM_LOG));
 		ExtendedBlocks.STRIPPED_PLUM_WOOD = registerB("stripped_plum_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_PLUM_LOG));
 		ExtendedBlocks.PLUM_BEAM = registerB("plum_beam", () -> new WoodBeamBlock(ExtendedBlocks.PLUM_LOG));
+		ExtendedBlocks.PLUM_BEAM_SLAB = registerB("plum_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.PLUM_BEAM));
 		ExtendedBlocks.PLUM_SIGN = registerB("plum_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.PLUM_PLANKS, ExtendedSignTypes.PLUM));
 		ExtendedBlocks.PLUM_WALL_SIGN = registerB("plum_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.PLUM_SIGN));
 		ExtendedBlocks.PLUM_LOG_SLAB = registerB("plum_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.PLUM_LOG, () -> ExtendedBlocks.STRIPPED_PLUM_LOG_SLAB.get()));
@@ -520,10 +522,9 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STRIPPED_PLUM_WOOD_SLAB = registerB("stripped_plum_wood_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_PLUM_WOOD));
 		ExtendedBlocks.STRIPPED_PLUM_WOOD_STAIRS = registerB("stripped_plum_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_PLUM_WOOD));
 		ExtendedBlocks.STRIPPED_PLUM_BRANCH = registerB("stripped_plum_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_PLUM_WOOD));
-		ExtendedBlocks.PLUM_BEAM_SLAB = registerB("plum_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.PLUM_BEAM));
 		ExtendedBlocks.FALLEN_PLUM_LEAVES = registerB("fallen_plum_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.PLUM_LEAVES));
 
-		ExtendedBlocks.WILLOW_LOG = registerB("willow_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.COLOR_PURPLE, () -> ExtendedBlocks.STRIPPED_WILLOW_LOG.get()));
+		ExtendedBlocks.WILLOW_LOG = registerB("willow_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.SAND, () -> ExtendedBlocks.STRIPPED_WILLOW_LOG.get()));
 		ExtendedBlocks.WILLOW_WOOD = registerB("willow_wood", () -> new StrippableWoodBlock(ExtendedBlocks.WILLOW_LOG, () -> ExtendedBlocks.STRIPPED_WILLOW_WOOD.get()));
 		ExtendedBlocks.WILLOW_PLANKS = registerB("willow_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
 		ExtendedBlocks.WILLOW_LEAVES = registerB("willow_leaves", LOTRLeavesBlock::new);
@@ -554,6 +555,37 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.WILLOW_BEAM_SLAB = registerB("willow_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.WILLOW_BEAM));
 		ExtendedBlocks.FALLEN_WILLOW_LEAVES = registerB("fallen_willow_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.WILLOW_LEAVES));
 		ExtendedBlocks.WILLOW_VINES = registerB("willow_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
+
+		ExtendedBlocks.EBONY_LOG = registerB("ebony_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.COLOR_BLACK, () -> ExtendedBlocks.STRIPPED_EBONY_LOG.get()));
+		ExtendedBlocks.EBONY_WOOD = registerB("ebony_wood", () -> new StrippableWoodBlock(ExtendedBlocks.EBONY_LOG, () -> ExtendedBlocks.STRIPPED_EBONY_WOOD.get()));
+		ExtendedBlocks.EBONY_PLANKS = registerB("ebony_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
+		ExtendedBlocks.EBONY_LEAVES = registerB("ebony_leaves", LOTRLeavesBlock::new);
+		ExtendedBlocks.EBONY_SAPLING = registerB("ebony_sapling", () -> new LOTRSaplingBlock(new EbonyTree()));
+		ExtendedBlocks.POTTED_EBONY_SAPLING = registerB("potted_ebony_sapling", () -> new LOTRPottedPlantBlock(ExtendedBlocks.EBONY_SAPLING));
+		registerPOT("large_pot_ebony_sapling", () -> new ExtendedLargeFlowerPotBlock(ExtendedBlocks.EBONY_SAPLING));
+		ExtendedBlocks.EBONY_SLAB = registerB("ebony_slab", () -> new AxialSlabBlock(ExtendedBlocks.EBONY_PLANKS));
+		ExtendedBlocks.EBONY_STAIRS = registerB("ebony_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.EBONY_PLANKS));
+		ExtendedBlocks.EBONY_FENCE = registerB("ebony_fence", () -> new LOTRFenceBlock(ExtendedBlocks.EBONY_PLANKS));
+		ExtendedBlocks.EBONY_FENCE_GATE = registerB("ebony_fence_gate", () -> new LOTRFenceGateBlock(ExtendedBlocks.EBONY_PLANKS));
+		ExtendedBlocks.EBONY_DOOR = registerB("ebony_door", () -> new LOTRDoorBlock(ExtendedBlocks.EBONY_PLANKS));
+		ExtendedBlocks.EBONY_TRAPDOOR = registerB("ebony_trapdoor", () -> new LOTRTrapdoorBlock(ExtendedBlocks.EBONY_PLANKS));
+		ExtendedBlocks.EBONY_PRESSURE_PLATE = registerB("ebony_pressure_plate", () -> new LOTRWoodPressurePlateBlock(ExtendedBlocks.EBONY_PLANKS));
+		ExtendedBlocks.EBONY_BUTTON = registerB("ebony_button", LOTRWoodButtonBlock::new);
+		ExtendedBlocks.STRIPPED_EBONY_LOG = registerB("stripped_ebony_log", () -> new LOTRStrippedLogBlock(ExtendedBlocks.EBONY_LOG));
+		ExtendedBlocks.STRIPPED_EBONY_WOOD = registerB("stripped_ebony_wood", () -> new LOTRStrippedWoodBlock(ExtendedBlocks.STRIPPED_EBONY_LOG));
+		ExtendedBlocks.EBONY_BEAM = registerB("ebony_beam", () -> new WoodBeamBlock(ExtendedBlocks.EBONY_LOG));
+		ExtendedBlocks.EBONY_BEAM_SLAB = registerB("ebony_beam_slab", () -> new LogSlabBlock(ExtendedBlocks.EBONY_BEAM));
+		ExtendedBlocks.EBONY_SIGN = registerB("ebony_sign", () -> new LOTRStandingSignBlock(ExtendedBlocks.EBONY_PLANKS, ExtendedSignTypes.EBONY));
+		ExtendedBlocks.EBONY_WALL_SIGN = registerB("ebony_wall_sign", () -> new LOTRWallSignBlock(ExtendedBlocks.EBONY_SIGN));
+		ExtendedBlocks.EBONY_LOG_SLAB = registerB("ebony_log_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.EBONY_LOG, () -> ExtendedBlocks.STRIPPED_EBONY_LOG_SLAB.get()));
+		ExtendedBlocks.EBONY_WOOD_SLAB = registerB("ebony_wood_slab", () -> new StrippableLogSlabBlock(ExtendedBlocks.EBONY_WOOD, () -> ExtendedBlocks.STRIPPED_EBONY_WOOD_SLAB.get()));
+		ExtendedBlocks.EBONY_WOOD_STAIRS = registerB("ebony_wood_stairs", () -> new StrippableLogStairsBlock(ExtendedBlocks.EBONY_WOOD, () -> ExtendedBlocks.STRIPPED_EBONY_WOOD_STAIRS.get()));
+		ExtendedBlocks.EBONY_BRANCH = registerB("ebony_branch", () -> new StrippableBranchBlock(ExtendedBlocks.EBONY_WOOD, () -> ExtendedBlocks.STRIPPED_EBONY_BRANCH.get()));
+		ExtendedBlocks.STRIPPED_EBONY_LOG_SLAB = registerB("stripped_ebony_log_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_EBONY_LOG));
+		ExtendedBlocks.STRIPPED_EBONY_WOOD_SLAB = registerB("stripped_ebony_wood_slab", () -> new LogSlabBlock(ExtendedBlocks.STRIPPED_EBONY_WOOD));
+		ExtendedBlocks.STRIPPED_EBONY_WOOD_STAIRS = registerB("stripped_ebony_wood_stairs", () -> new LogStairsBlock(ExtendedBlocks.STRIPPED_EBONY_WOOD));
+		ExtendedBlocks.STRIPPED_EBONY_BRANCH = registerB("stripped_ebony_branch", () -> new BranchBlock(ExtendedBlocks.STRIPPED_EBONY_WOOD));
+		ExtendedBlocks.FALLEN_EBONY_LEAVES = registerB("fallen_ebony_leaves", () -> new FallenLeavesBlock(ExtendedBlocks.EBONY_LEAVES));
 
 		//Packed Fur
 		ExtendedBlocks.WHITE_MATTED_FUR = registerB("white_matted_fur", () -> new ExtendedMattedFurBlock(ExtendedWargFurType.WHITE));
@@ -607,15 +639,15 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.PEARL_BLOCK = registerB("pearl_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.WOOL).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
 
 		//GEM ORES
-		ExtendedBlocks.METEORITE_ORE = registerB("meteorite", () -> new MineralBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(3).requiresCorrectToolForDrops().strength(50.0F, 1200.0F), 3));
-		ExtendedBlocks.AMBER_ORE = registerB("amber_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
-		ExtendedBlocks.TOPAZ_ORE = registerB("topaz_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
-		ExtendedBlocks.AMETHYST_ORE = registerB("amethyst_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
-		ExtendedBlocks.SAPPHIRE_ORE = registerB("sapphire_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
-		ExtendedBlocks.RUBY_ORE = registerB("ruby_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
-		ExtendedBlocks.DIAMOND_ORE = registerB("diamond_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
-		ExtendedBlocks.OPAL_ORE = registerB("opal_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
-		ExtendedBlocks.EMERALD_ORE = registerB("emerald_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F)).setOreLevel(2));
+		ExtendedBlocks.METEORITE_ORE = registerB("meteorite", () -> new MineralBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestLevel(3).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(50.0F, 1200.0F), 3));
+		ExtendedBlocks.AMBER_ORE = registerB("amber_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
+		ExtendedBlocks.TOPAZ_ORE = registerB("topaz_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
+		ExtendedBlocks.AMETHYST_ORE = registerB("amethyst_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
+		ExtendedBlocks.SAPPHIRE_ORE = registerB("sapphire_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
+		ExtendedBlocks.RUBY_ORE = registerB("ruby_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
+		ExtendedBlocks.DIAMOND_ORE = registerB("diamond_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
+		ExtendedBlocks.OPAL_ORE = registerB("opal_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
+		ExtendedBlocks.EMERALD_ORE = registerB("emerald_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
 		//Remains ores
 		ExtendedBlocks.REMAINS_ORC = registerB("remains_ore_orc", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
 		ExtendedBlocks.REMAINS_ELF = registerB("remains_ore_elf", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
@@ -714,7 +746,7 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.MOSS_BLOCK = registerB("moss_block", () -> new ExtendedMossBlock(Properties.of(ExtendedMaterials.MOSS, MaterialColor.COLOR_GREEN).harvestTool(ToolType.HOE).strength(0.1f).sound(ExtendedSoundTypes.MOSS)));
 		ExtendedBlocks.MOSS_CARPET = registerB("moss_carpet", () -> new ExtendedMossCarpetBlock(Properties.of(Material.PLANT, MaterialColor.COLOR_GREEN).strength(0.1f).sound(ExtendedSoundTypes.MOSS)));
-		ExtendedBlocks.ANCIENT_RUNE_BLOCK = registerB("ancient_rune_stone", ExtendedAncientStoneRuneBlock::new);
+		ExtendedBlocks.ANCIENT_RUNE_BLOCK = registerB("ancient_rune_stone", () -> new ExtendedAncientStoneRuneBlock(Properties.of(Material.STONE, MaterialColor.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().sound(SoundType.STONE).strength(1.5F, 6.0F)));
 
 		//Mud
 		ExtendedBlocks.MUD = registerB("mud", () -> new ExtendedGroundDirtBlock(MaterialColor.DIRT, SoundType.GRAVEL, ExtendedBlocks.MUD_PATH, ExtendedBlocks.MUD_FARMLAND));
@@ -879,6 +911,23 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.CARVED_UMBAR_BRICK = registerB("carved_umbar_brick", () -> new ExtendedStoneBlock(LOTRBlocks.UMBAR_BRICK));
 		ExtendedBlocks.SMOOTH_GONDOR_ROCK_STAIRS = registerB("smooth_gondor_rock_stairs", () -> new LOTRStairsBlock(LOTRBlocks.SMOOTH_GONDOR_ROCK));
 
+		ExtendedBlocks.MORGOND = registerB("morgond", () -> new ExtendedStoneBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestLevel(2).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(500.0F, 1200.0F)));
+		ExtendedBlocks.MORGOND_SLAB = registerB("morgond_slab", () -> new AxialSlabBlock(ExtendedBlocks.MORGOND));
+		ExtendedBlocks.MORGOND_STAIRS = registerB("morgond_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.MORGOND));
+		ExtendedBlocks.MORGOND_WALL = registerB("morgond_wall", () -> new LOTRWallBlock(ExtendedBlocks.MORGOND));
+		ExtendedBlocks.MORGOND_DRIPSTONE = registerB("morgond_dripstone", () -> new DripstoneBlock(ExtendedBlocks.MORGOND));
+		ExtendedBlocks.MORGOND_PILLAR = registerB("morgond_pillar", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestLevel(2).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(500.0F, 1200.0F)));
+		ExtendedBlocks.MORGOND_PILLAR_SLAB = registerB("morgond_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.MORGOND_PILLAR));
+		ExtendedBlocks.CARVED_MORGOND = registerB("carved_morgond", () -> new ExtendedStoneBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestLevel(2).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(500.0F, 1200.0F)));
+		ExtendedBlocks.CARVED_MORGOND_SLAB = registerB("carved_morgond_slab", () -> new AxialSlabBlock(ExtendedBlocks.CARVED_MORGOND));
+		ExtendedBlocks.CARVED_MORGOND_STAIRS = registerB("carved_morgond_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.CARVED_MORGOND));
+		ExtendedBlocks.CARVED_MORGOND_WALL = registerB("carved_morgond_wall", () -> new LOTRWallBlock(ExtendedBlocks.CARVED_MORGOND));
+		ExtendedBlocks.SMOOTH_MORGOND = registerB("smooth_morgond", () -> new ExtendedStoneBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestLevel(2).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(500.0F, 1200.0F)));
+		ExtendedBlocks.SMOOTH_MORGOND_SLAB = registerB("smooth_morgond_slab", () -> new AxialSlabBlock(ExtendedBlocks.SMOOTH_MORGOND));
+		ExtendedBlocks.SMOOTH_MORGOND_STAIRS = registerB("smooth_morgond_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SMOOTH_MORGOND));
+		ExtendedBlocks.SMOOTH_MORGOND_WALL = registerB("smooth_morgond_wall", () -> new LOTRWallBlock(ExtendedBlocks.SMOOTH_MORGOND));
+		ExtendedBlocks.SMOOTH_MORGOND_DRIPSTONE = registerB("smooth_morgond_dripstone", () -> new DripstoneBlock(ExtendedBlocks.SMOOTH_MORGOND));
+
 		//Rohan
 		ExtendedBlocks.SMOOTH_ROHAN_ROCK_STAIRS = registerB("smooth_rohan_rock_stairs", () -> new LOTRStairsBlock(LOTRBlocks.SMOOTH_ROHAN_ROCK));
 
@@ -928,8 +977,8 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.MORWAITH_CRAFTING_TABLE = registerB("morwaith_crafting_table", () -> new ExtendedFactionCraftingTableBlock.Morwaith(()-> Blocks.TERRACOTTA));
 
 		ExtendedBlocks.CONQUEST_TABLE = registerB("conquest_table", () -> new ExtendedConquestTableBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.5F)));
-		ExtendedBlocks.STONE_GRINDER = registerB("stone_grinder", () -> new ExtendedStoneGrinderBlock(Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(4.0f)));
-		ExtendedBlocks.CRUCIBLE = registerB("crucible", () -> new ExtendedCrucibleBlock(Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(4.0F, 6.0F)));
+		ExtendedBlocks.STONE_GRINDER = registerB("stone_grinder", () -> new ExtendedStoneGrinderBlock(Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(4.0f)));
+		ExtendedBlocks.CRUCIBLE = registerB("crucible", () -> new ExtendedCrucibleBlock(Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(4.0F, 6.0F)));
 
 		ExtendedBlocks.MORGUL_BRAZIER = registerB("morgul_brazier", () -> new ExtendedBrazierBlock(12));
 		ExtendedBlocks.MORGUL_CHANDELIER = registerB("morgul_chandelier", () -> new ExtendedChandelierBlock(ExtendedParticles.MORGUL_FLAME));
@@ -937,11 +986,12 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.URUK_CHANDELIER = registerB("uruk_chandelier", ChandelierBlock::new);
 		ExtendedBlocks.DWARVEN_CHANDELIER = registerB("dwarven_chandelier", ChandelierBlock::new);
 		ExtendedBlocks.BLUE_DWARVEN_CHANDELIER = registerB("blue_dwarven_chandelier", ChandelierBlock::new);
-		ExtendedBlocks.HIGH_ELVEN_LANTERN = registerB("high_elven_lantern", () -> new ExtendedElvenLanternBlock(12));
+		ExtendedBlocks.HIGH_ELVEN_LANTERN = registerB("high_elven_lantern", () -> new ExtendedLanternElvenBlock(Properties.of(Material.DECORATION).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(3.5F).sound(SoundType.LANTERN).lightLevel(ExtendedBlockParms.litBlockEmission(12)).noOcclusion()));
+		ExtendedBlocks.NUMENOREAN_LANTERN = registerB("numenorean_lantern", () -> new ExtendedLanternNumenoreanBlock(Properties.of(Material.DECORATION).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(3.5F).sound(SoundType.LANTERN).lightLevel(ExtendedBlockParms.litBlockEmission(12)).noOcclusion()));
 
 		ExtendedBlocks.ORC_STEEL_DOOR = registerB("orc_steel_door", () -> new ExtendedDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
 		ExtendedBlocks.ORC_STEEL_TRAPDOOR = registerB("orc_steel_trapdoor", () -> new ExtendedTrapDoorBlock(Properties.of(Material.METAL).strength(3.0F).sound(SoundType.METAL).noOcclusion()));
-		ExtendedBlocks.ORC_CHAIN = registerB("orc_chain", () -> new ExtendedChainBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion()));
+		ExtendedBlocks.ORC_CHAIN = registerB("orc_chain", () -> new ExtendedChainBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion()));
 
 		ExtendedBlocks.MORGUL_TORCH = registerB("morgul_torch", () -> new ExtendedLOTRTorchBlock(12).setParticles(ExtendedParticles.MORGUL_FLAME, () -> ParticleTypes.SMOKE));
 		ExtendedBlocks.MORGUL_WALL_TORCH = registerB("morgul_torch_wall", () -> new ExtendedLOTRWallTorchBlock(ExtendedBlocks.MORGUL_TORCH));
@@ -1110,11 +1160,11 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.DEAD_MOSS_VINES = registerB("dead_moss_vines", () -> new ExtendedVineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 		// Birdcages
 		ExtendedBlocks.WOODEN_BIRDCAGE = registerB("wooden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).strength(0.5F)));
-		ExtendedBlocks.BRONZE_BIRDCAGE = registerB("bronze_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(1.0F)));
-		ExtendedBlocks.IRON_BIRDCAGE = registerB("iron_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(2.0F)));
-		ExtendedBlocks.SILVER_BIRDCAGE = registerB("silver_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(3.0F)));
-		ExtendedBlocks.GOLDEN_BIRDCAGE = registerB("golden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(4.0F)));
-		ExtendedBlocks.MITHRIL_BIRDCAGE = registerB("mithril_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(5.0f)));
+		ExtendedBlocks.BRONZE_BIRDCAGE = registerB("bronze_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(1.0F)));
+		ExtendedBlocks.IRON_BIRDCAGE = registerB("iron_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(2.0F)));
+		ExtendedBlocks.SILVER_BIRDCAGE = registerB("silver_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(3.0F)));
+		ExtendedBlocks.GOLDEN_BIRDCAGE = registerB("golden_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(4.0F)));
+		ExtendedBlocks.MITHRIL_BIRDCAGE = registerB("mithril_birdcage", () -> new ExtendedBirdcageBlock(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).strength(5.0f)));
 
 		ExtendedBlocks.GRASS_VOID = registerB("grass_void", () -> new ExtendedGrassVoidBlock(AbstractBlock.Properties.of(Material.STRUCTURAL_AIR).noCollission().noDrops().isValidSpawn(ExtendedBlockParms::always)));
 
@@ -1129,11 +1179,20 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.STONE_SIGN = registerB("stone_engraving", () -> new ExtendedStoneTextSignBlock(AbstractBlock.Properties.of(Material.DECORATION, MaterialColor.NONE).noCollission().strength(0.5F).sound(SoundType.STONE)));
 		ExtendedBlocks.HOIST = registerB("mine_placeholder", () -> new ExtendedHoistBlock(AbstractBlock.Properties.of(Material.STONE).strength(4.0F, 10.0F).sound(SoundType.STONE)));
 
-		ExtendedBlocks.HIGH_ELVEN_CHAIN = registerB("high_elven_chain", () -> new ExtendedChainBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion()));
+		ExtendedBlocks.HIGH_ELVEN_CHAIN = registerB("high_elven_chain", () -> new ExtendedChainBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).sound(SoundType.CHAIN).noOcclusion()));
 		ExtendedBlocks.SHARDS_OF_NARSIL = registerB("shards_of_narsil", () -> new ExtendedNarsilShardsBlock(Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.5F).noOcclusion()));
 
 		ExtendedBlocks.PLACED_BOOKS = registerB("placed_books", () -> new ExtendedPlacedBooksBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.5F).noOcclusion()));
 		ExtendedBlocks.EXTENDED_BOOKSHELF = registerB("bookshelf", () -> new ExtendedBookshelfBlock(AbstractBlock.Properties.of(Material.WOOD).strength(1.5F).sound(SoundType.WOOD)));
+
+		ExtendedBlocks.ORC_BOMB = registerB("orc_bomb", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 0, false));
+		ExtendedBlocks.ORC_BOMB_DOUBLE = registerB("orc_bomb_double", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 1, false));
+		ExtendedBlocks.ORC_BOMB_TRIPLE = registerB("orc_bomb_triple", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 2, false));
+		ExtendedBlocks.ORC_BOMB_FIRE = registerB("orc_bomb_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 0, true));
+		ExtendedBlocks.ORC_BOMB_FIRE_DOUBLE = registerB("orc_bomb_double_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 1, true));
+		ExtendedBlocks.ORC_BOMB_FIRE_TRIPLE = registerB("orc_bomb_triple_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 2, true));
+
+		ExtendedBlocks.NUMENOREAN_BARS = registerB("numenorean_bars", () -> new ExtendedBarsBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
 	}
 
 	/**

@@ -1,0 +1,21 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:uruk",
+  "pattern": [
+    "PBI"
+  ],
+  "key": {
+    "B": {
+      "item": "lotr:orc_bomb_double_fire"
+    },
+    "I": {
+      "tag": "forge:ingots/uruk_steel"
+    },
+    "P": {
+      "item": "minecraft:gunpowder"
+    }
+  },
+  "result": {
+    "item": "lotr:orc_bomb_triple_fire"
+  }
+}

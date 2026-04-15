@@ -24,6 +24,7 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.CrossbowItem;
+import net.minecraft.item.HorseArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
@@ -36,6 +37,7 @@ import net.minecraftforge.client.event.RenderNameplateEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 public class ExtendedRendererEventHandler {
+
 	public static void renderHpBar(RenderNameplateEvent event) {
 		if (event.getEntity() instanceof NPCEntity && ((ExtendedNPCEntity)event.getEntity()).getUnitInfo().isNpcActiveDuty()) {
 			if (ExtendedClientProxy.usersUUID.equals(null) || !ExtendedClientProxy.usersUUID.equals(((ExtendedNPCEntity)event.getEntity()).getUnitInfo().getOwnerUUID())) {
@@ -71,15 +73,26 @@ public class ExtendedRendererEventHandler {
 			}
 		}
 	}
+
 	public static void onPreRenderGameOverlay(final RenderGameOverlayEvent.Pre event) {
 		Minecraft mc = Minecraft.getInstance();
-		if(LOTRDimensions.isModDimension(mc.level)) {
+		if(mc.level != null && LOTRDimensions.isModDimension(mc.level)) {
 			if (event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE && !ExtendedServerConfig.enableVanillaXp.get()) {
 				event.setCanceled(true);
 				return;
 			}
 		}
 	}
+
+	public static void onPostRenderGameOverlay(final RenderGameOverlayEvent.Post event) {
+		Minecraft mc = Minecraft.getInstance();
+		if(mc.level != null && LOTRDimensions.isModDimension(mc.level)) {
+			if (event.getType() == RenderGameOverlayEvent.ElementType.BOSSINFO) {
+				ExtendedClientProxy.INSTANCE.lastTimeBossBarRendered = System.currentTimeMillis();
+			}
+		}
+	}
+
 	public static void addTooltipsForModifiers(ItemTooltipEvent event) {
 		ItemStack stack = event.getItemStack();
 		if(ExtendedModifierUtils.hasModifiers(stack)) {
@@ -138,7 +151,7 @@ public class ExtendedRendererEventHandler {
 			if(!ExtendedModifierUtils.getModifierByTypeSafe(stack, ExtendedModifierType.RANGED_SPEED).isUnknown()) {
 				damage = damage * ExtendedModifierUtils.getModifierByTypeSafe(stack, ExtendedModifierType.RANGED_SPEED).getModifierEffect();
 			}
-			event.getToolTip().add(new StringTextComponent(""));
+			event.getToolTip().add(StringTextComponent.EMPTY);
 			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.speed", (int)((1.0f/(drawSpeed/20.0F)) * 100)+"%").withStyle(TextFormatting.DARK_GREEN));
 			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.damage", String.format("%.0f%%", damage * 100)).withStyle(TextFormatting.DARK_GREEN));
 			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.range", String.format("%.0f%%", damage * 100)).withStyle(TextFormatting.DARK_GREEN));
@@ -149,10 +162,15 @@ public class ExtendedRendererEventHandler {
 			if(!ExtendedModifierUtils.getModifierByTypeSafe(stack, ExtendedModifierType.RANGED_SPEED).isUnknown()) {
 				damage = damage * ExtendedModifierUtils.getModifierByTypeSafe(stack, ExtendedModifierType.RANGED_SPEED).getModifierEffect();
 			}
-			event.getToolTip().add(new StringTextComponent(""));
+			event.getToolTip().add(StringTextComponent.EMPTY);
 			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.speed", (int)((1.0f/(drawSpeed/25.0F)) * 100)+"%").withStyle(TextFormatting.DARK_GREEN));
 			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.damage", String.format("%.0f%%", damage * 100)).withStyle(TextFormatting.DARK_GREEN));
 			event.getToolTip().add(new TranslationTextComponent("gui.lotrextended.bow.range", String.format("%.0f%%", damage * 100)).withStyle(TextFormatting.DARK_GREEN));
+		}
+		if(stack.getItem() instanceof HorseArmorItem) {
+			event.getToolTip().add(StringTextComponent.EMPTY);
+			event.getToolTip().add((new TranslationTextComponent("item.lotrextended.modifiers.horse")).withStyle(TextFormatting.GRAY));
+			event.getToolTip().add((new TranslationTextComponent("attribute.modifier.plus.0", ((HorseArmorItem)stack.getItem()).getProtection(), new TranslationTextComponent("attribute.name.generic.armor"))).withStyle(TextFormatting.BLUE));
 		}
 	}
 }

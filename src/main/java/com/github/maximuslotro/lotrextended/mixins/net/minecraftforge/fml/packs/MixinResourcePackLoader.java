@@ -46,8 +46,8 @@ public class MixinResourcePackLoader {
 	 */
 	@Inject(method = "loadResourcePacks(Lnet/minecraft/resources/ResourcePackList;Ljava/util/function/BiFunction;)V", at = @At("TAIL"), remap = false)
 	private static void loadExtendedResourcePacks(ResourcePackList resourcePacks, BiFunction<Map<ModFile, ? extends ModFileResourcePack>, BiConsumer<? super ModFileResourcePack, ResourcePackInfo>, IPackInfoFinder> packFinder, CallbackInfo ci) {
-		ExtendedClientProxy.createAdditionalPack(resourcePacks, "extended_textures", "extended", "Forced Extended Textures", true);
-		ExtendedClientProxy.createAdditionalPack(resourcePacks, "renewed_textures", "renewed", "Redone Renewed Textures", false);
-		ExtendedClientProxy.createAdditionalPack(resourcePacks, "vanilla_textures", "vanilla", "Redone Vanilla Textures", false);
+		ExtendedClientProxy.createAdditionalPack(resourcePacks, "extended_textures", "resourcepacks/extended", "Forced Extended Textures", true);
+		ExtendedClientProxy.createAdditionalPack(resourcePacks, "renewed_textures", "resourcepacks/renewed", "Redone Renewed Textures", false);
+		ExtendedClientProxy.createAdditionalPack(resourcePacks, "vanilla_textures", "resourcepacks/vanilla", "Redone Vanilla Textures", false);
 	}
 }

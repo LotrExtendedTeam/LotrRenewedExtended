@@ -7,10 +7,10 @@
   ],
   "key": {
     "I": {
-      "tag": "forge:ingots/iron"
+      "tag": "lotrextended:anvil_iron_ingot"
     },
     "B": {
-      "tag": "forge:storage_blocks/iron"
+      "tag": "lotrextended:anvil_iron_block"
     }
   },
   "result": {

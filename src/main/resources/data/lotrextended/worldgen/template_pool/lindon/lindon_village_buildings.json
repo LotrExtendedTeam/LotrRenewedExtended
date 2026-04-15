@@ -8,7 +8,8 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:lindon/village/buildings/lindon_house_1",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -17,7 +18,8 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:lindon/village/buildings/lindon_house_2",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -26,7 +28,18 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:lindon/village/buildings/lindon_house_3",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:lindon/village/buildings/lindon_house_4",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -36,7 +49,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:lindon/village/buildings/lindon_smith_1",
 				"processors": "minecraft:empty",
-				"blacklist_name" : "SMITH"
+				"blacklist_name" : "SMITH",
+				"snap_to_water_height" : true
 			}
 		},
 		{
@@ -46,7 +60,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:lindon/village/buildings/lindon_weaver_1",
 				"processors": "minecraft:empty",
-				"blacklist_name" : "WEAVER"
+				"blacklist_name" : "WEAVER",
+				"snap_to_water_height" : true
 			}
 		}
 	]

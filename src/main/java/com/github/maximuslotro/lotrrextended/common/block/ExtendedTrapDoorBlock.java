@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
-import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientServerValues;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 
 import net.minecraft.block.BlockState;
@@ -22,7 +21,8 @@ public class ExtendedTrapDoorBlock extends TrapDoorBlock {
 
 	@Override
 	public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity player, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
-		if (this.material == Material.METAL && (world.isClientSide ? ExtendedClientServerValues.INSTANCE.forcePoweredMetalDoors : ExtendedServerConfig.makeMetalDoorsRequirePower.get())) {
+		// Server Config synced to client on login
+		if (this.material == Material.METAL && ExtendedServerConfig.makeMetalDoorsRequirePower.get()) {
 			return ActionResultType.PASS;
 		} else {
 			blockState = blockState.cycle(OPEN);

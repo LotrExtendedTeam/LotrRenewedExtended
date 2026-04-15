@@ -3,6 +3,7 @@
   "values": [
     "lotr:black_matted_fur_wall",
     "lotr:bone_block_wall",
+    "lotr:carved_morgond_wall",
     "lotr:cracked_dol_guldur_brick_wall",
     "lotr:cracked_mud_brick_wall",
     "lotr:cracked_red_angmar_brick_wall",
@@ -17,6 +18,7 @@
     "lotr:golden_taurethrim_brick_wall",
     "lotr:gray_matted_fur_wall",
     "lotr:matted_fur_wall",
+    "lotr:morgond_wall",
     "lotr:mossy_dol_guldur_brick_wall",
     "lotr:mossy_drystone_wall",
     "lotr:mossy_mud_brick_wall",
@@ -34,6 +36,7 @@
     "lotr:scorched_cobblestone_wall",
     "lotr:scorched_stone_wall",
     "lotr:silver_matted_fur_wall",
+    "lotr:smooth_morgond_wall",
     "lotr:snowy_red_angmar_brick_wall",
     "lotr:taurethrim_brick_wall",
     "lotr:white_matted_fur_wall"

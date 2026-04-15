@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    " I "
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:ebony_planks"
+    },
+    "I": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "lotr:ebony_sign",
+    "count": 3
+  }
+}

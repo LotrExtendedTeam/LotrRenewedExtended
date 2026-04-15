@@ -5,7 +5,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedAvoidNonLivingEntityGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredSitFollowGoal;
+import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedOrcBombEntity;
 
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.OrcEntity;
@@ -45,5 +47,6 @@ public abstract class MixinOrcEntity extends NPCEntity {
 	@Inject(method = "addNPCAI()V", at = @At("TAIL"), remap = false)
 	protected void addNPCAIExtended(CallbackInfo ci) {
 		this.goalSelector.addGoal(1, new ExtendedHiredSitFollowGoal((NPCEntity)(Object)this, 1.3D, 8.0F, 6.0F, false));
+		this.goalSelector.addGoal(2, new ExtendedAvoidNonLivingEntityGoal<>((NPCEntity)(Object)this, ExtendedOrcBombEntity.class, 15.0f, 1.5, 2.0));
 	}
 }

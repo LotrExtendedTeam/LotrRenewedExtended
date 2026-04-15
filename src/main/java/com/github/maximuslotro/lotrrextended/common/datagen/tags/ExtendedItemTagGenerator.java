@@ -6,6 +6,7 @@ import java.util.TreeMap;
 import java.util.function.Function;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoatItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
@@ -16,17 +17,16 @@ import lotr.common.init.LOTRItems;
 import lotr.common.init.LOTRTags;
 import lotr.common.item.DaggerItem;
 import lotr.common.item.HammerItem;
-import lotr.common.item.LOTRAxeItem;
-import lotr.common.item.LOTRBoatItem;
 import lotr.common.item.LOTRHoeItem;
-import lotr.common.item.LOTRPickaxeItem;
-import lotr.common.item.LOTRShovelItem;
 import lotr.common.item.LOTRSwordItem;
 import lotr.common.item.SpearItem;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ShovelItem;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
@@ -97,8 +97,10 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		this.copy(ExtendedTags.Blocks.BANANA_LOGS, ExtendedTags.Items.BANANA_LOGS);
 		this.copy(ExtendedTags.Blocks.PLUM_LOGS, ExtendedTags.Items.PLUM_LOGS);
 		this.copy(ExtendedTags.Blocks.WILLOW_LOGS, ExtendedTags.Items.WILLOW_LOGS);
+		this.copy(ExtendedTags.Blocks.EBONY_LOGS, ExtendedTags.Items.EBONY_LOGS);
 		
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN, ExtendedTags.Items.STORAGE_BLOCKS_GALVORN);
+		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_ORC_STEEL, ExtendedTags.Items.STORAGE_BLOCKS_ORC_STEEL);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL, ExtendedTags.Items.STORAGE_BLOCKS_BLACK_URUK_STEEL);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_GILDED_IRON, ExtendedTags.Items.STORAGE_BLOCKS_GILDED_IRON);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_MORGUL_STEEL, ExtendedTags.Items.STORAGE_BLOCKS_MORGUL_STEEL);
@@ -152,7 +154,8 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_DIAMOND).addTag(ExtendedTags.Items.STORAGE_BLOCKS_OPAL)
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_EMERALD).addTag(ExtendedTags.Items.STORAGE_BLOCKS_PEARL)
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_CORAL).addTag(ExtendedTags.Items.STORAGE_BLOCKS_DURNOR)
-	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_EDHELVIR).addTag(ExtendedTags.Items.STORAGE_BLOCKS_GULDURIL);
+	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_EDHELVIR).addTag(ExtendedTags.Items.STORAGE_BLOCKS_GULDURIL)
+	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_ORC_STEEL);
 
 		tag(ExtendedTags.Items.MORGUL_STEEL_INGOT).add(ExtendedItems.MORGUL_STEEL_INGOT.get());
 		tag(ExtendedTags.Items.ORC_STEEL_INGOT).add(LOTRItems.ORC_STEEL_INGOT.get());
@@ -174,6 +177,9 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		.addTag(ExtendedTags.Items.URUK_STEEL_INGOT).addTag(ExtendedTags.Items.MITHRIL_INGOT);
 
 		tag(Tags.Items.NUGGETS).addTag(ExtendedTags.Items.ORC_STEEL_NUGGET);
+
+		tag(ExtendedTags.Items.ANVIL_IRON_INGOT).addTag(ExtendedTags.Items.ORC_STEEL_INGOT).addTag(Tags.Items.INGOTS_IRON);
+		tag(ExtendedTags.Items.ANVIL_IRON_BLOCK).addTag(ExtendedTags.Items.STORAGE_BLOCKS_ORC_STEEL).addTag(Tags.Items.STORAGE_BLOCKS_IRON);
 
 		tag(ExtendedTags.Items.TOPAZ_GEMS).add(ExtendedItems.TOPAZ.get());
 		tag(ExtendedTags.Items.AMETHYST_GEMS).add(ExtendedItems.AMETHYST.get());
@@ -254,6 +260,8 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 
 		tag(ExtendedTags.Items.PLACEABLE_BOOKS).add(LOTRItems.BOOK_OF_TRUE_SILVER.get()).add(Items.BOOK).add(LOTRItems.RED_BOOK.get()).add(Items.WRITTEN_BOOK);
 
+		tag(ExtendedTags.Items.MORGOND_ROCKS).add(LOTRItems.GONDOR_ROCK.get()).add(LOTRItems.MORDOR_ROCK.get());
+
 		TreeMap<String, Item> fullitems = new TreeMap<>();
 		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {
 			if(item.get() instanceof SpearItem) {
@@ -294,15 +302,15 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 			if((item.getValue().get() instanceof SpearItem) || (item.getValue().get() instanceof DaggerItem)
 					|| (item.getValue().get() instanceof ExtendedSwordItem)
 					|| (item.getValue().get() instanceof HammerItem)
-					|| (item.getValue().get() instanceof LOTRPickaxeItem)) {
+					|| (item.getValue().get() instanceof PickaxeItem)) {
 				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
-			if(item.getValue().get() instanceof LOTRShovelItem) {
+			if(item.getValue().get() instanceof ShovelItem) {
 				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
-			if(item.getValue().get() instanceof LOTRAxeItem) {
+			if(item.getValue().get() instanceof AxeItem) {
 				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
@@ -322,7 +330,7 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
-			if(item.getValue().get() instanceof LOTRBoatItem) {
+			if(item.getValue().get() instanceof ExtendedBoatItem) {
 				tag(ItemTags.BOATS).add(item.getValue().get());
 				continue;
 			}

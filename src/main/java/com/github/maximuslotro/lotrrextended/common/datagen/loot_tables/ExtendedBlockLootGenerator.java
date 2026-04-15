@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRuneBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarsBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryHedgeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
@@ -16,7 +17,8 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedChimneyPotBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
-import com.github.maximuslotro.lotrrextended.common.block.ExtendedElvenLanternBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternElvenBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternNumenoreanBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneTextSignBlock;
@@ -31,6 +33,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBl
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedOrcBombBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMattedFurBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
@@ -52,6 +55,7 @@ import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawn
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
 import lotr.common.block.ChandelierBlock;
+import lotr.common.block.DripstoneBlock;
 import lotr.common.block.ExtendedDwarvenGateBlock;
 import lotr.common.block.ExtendedAxialSlabPlantableSpreadableBlock;
 import lotr.common.block.ExtendedHearthBlock;
@@ -131,11 +135,11 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 	private static final float[] NORMAL_LEAVES_SAPLING_CHANCES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
 
 	@Override
-	protected void add(Block p_218507_1_, LootTable.Builder p_218507_2_) {
-		if(p_218507_1_.getLootTable().equals(new ResourceLocation("minecraft:empty"))) {
-			System.out.println("FOUND EMPTY: "+p_218507_1_.getRegistryName().toString());
+	protected void add(Block pBlock, LootTable.Builder pLootBuilder) {
+		if(pBlock.getLootTable().equals(new ResourceLocation("minecraft:empty"))) {
+			System.out.println("FOUND EMPTY: "+pBlock.getRegistryName().toString());
 		}
-		super.add(p_218507_1_, p_218507_2_);
+		super.add(pBlock, pLootBuilder);
 	}
 
 	@Override
@@ -178,7 +182,11 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.getValue().get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedElvenLanternBlock) {
+			if(block.getValue().get() instanceof DripstoneBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedLanternElvenBlock || block.getValue().get() instanceof ExtendedLanternNumenoreanBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}
@@ -205,6 +213,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedBirdcageBlock) {
+				dropSelf(block.getValue().get());
+				continue;
+			}
+			if(block.getValue().get() instanceof ExtendedBarsBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}
@@ -369,11 +381,11 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedBedBlock) {
-				add(block.getValue().get(), (p_218569_0_) -> createSinglePropConditionTable(p_218569_0_, BedBlock.PART, BedPart.HEAD));
+				add(block.getValue().get(), (blockLamda) -> createSinglePropConditionTable(blockLamda, BedBlock.PART, BedPart.HEAD));
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedFullModelBedBlock) {
-				add(block.getValue().get(), (p_218569_0_) -> createSinglePropConditionTable(p_218569_0_, BedBlock.PART, BedPart.HEAD));
+				add(block.getValue().get(), (blockLamda) -> createSinglePropConditionTable(blockLamda, BedBlock.PART, BedPart.HEAD));
 				continue;
 			}
 			if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
@@ -417,11 +429,11 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedGroundGrassBlock) {
-				add(block.getValue().get(), (p_241170_0_) -> createSingleItemTableWithSilkTouch(p_241170_0_, ((ExtendedGroundGrassBlock)block.getValue().get()).getBase().get()));
+				add(block.getValue().get(), (blockLamda) -> createSingleItemTableWithSilkTouch(blockLamda, ((ExtendedGroundGrassBlock)block.getValue().get()).getBase().get()));
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedGroundPathBlock) {
-				add(block.getValue().get(), (p_241170_0_) -> createSingleItemTableWithSilkTouch(p_241170_0_, ((ExtendedGroundPathBlock)block.getValue().get()).getBase().get()));
+				add(block.getValue().get(), (blockLamda) -> createSingleItemTableWithSilkTouch(blockLamda, ((ExtendedGroundPathBlock)block.getValue().get()).getBase().get()));
 				continue;
 			}
 			if(block.getValue().get() instanceof ExtendedMEBannerBlock) {
@@ -439,9 +451,14 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			if(block.getValue().get() instanceof ExtendedStoneGrinderBlock) {
 				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
 			}
+			if(block.getValue().get() instanceof ExtendedOrcBombBlock) {
+				add(block.getValue().get(), LootTable.lootTable().withPool(applyExplosionCondition(block.getValue().get(), LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+					.add(ItemLootEntry.lootTableItem(block.getValue().get()).when(BlockStateProperty.hasBlockStateProperties(block.getValue().get())
+						.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedOrcBombBlock.UNSTABLE, false)))))));
+			}
 			if(block.getValue().get() instanceof ExtendedBerryHedgeBlock) {
 				ExtendedBerryHedgeBlock thingy = (ExtendedBerryHedgeBlock)block.getValue().get();
-				add(thingy, (p_241171_0_) -> LootTable.lootTable()
+				add(thingy, (blockLamda) -> LootTable.lootTable()
 					.withPool(LootPool.lootPool()
 						.when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryHedgeBlock.AGE, 3)))
 						.add(ItemLootEntry.lootTableItem(thingy.getBerryItem())).apply(SetCount.setCount(RandomValueRange.between(1.0F, 7.0F)))
@@ -463,7 +480,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			}
 			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
 				ExtendedBerryBushBlock blok = (ExtendedBerryBushBlock)block.getValue().get();
-				add(blok, (p_241171_0_) -> LootTable.lootTable()
+				add(blok, (blockLamda) -> LootTable.lootTable()
 					.withPool(LootPool.lootPool()
 						.when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 3)))
 						.add(ItemLootEntry.lootTableItem(blok.getBerryItem())).apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F)))
@@ -483,22 +500,23 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		}
 
 		dropSelf(ExtendedBlocks.BARREN_DIRT.get());
-		add(ExtendedBlocks.CHESTNUT_LEAVES.get(), (p_241170_0_) -> createLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-		add(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT.get(), (p_241170_0_) -> createFruitLeavesDrops(p_241170_0_, ExtendedBlocks.CHESTNUT_SAPLING.get(), ExtendedItems.CONKER.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-		add(ExtendedBlocks.BANANA_LEAVES.get(), (p_241170_0_) -> createLeavesDrops(p_241170_0_, ExtendedBlocks.BANANA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+		add(ExtendedBlocks.CHESTNUT_LEAVES.get(), (blockLamda) -> createLeavesDrops(blockLamda, ExtendedBlocks.CHESTNUT_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+		add(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT.get(), (blockLamda) -> createFruitLeavesDrops(blockLamda, ExtendedBlocks.CHESTNUT_SAPLING.get(), ExtendedItems.CONKER.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+		add(ExtendedBlocks.BANANA_LEAVES.get(), (blockLamda) -> createLeavesDrops(blockLamda, ExtendedBlocks.BANANA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 		add(ExtendedBlocks.HANGING_BANANA.get(), (block) -> LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(ExtendedItems.BANANA.get())
 			.apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))));
-		add(ExtendedBlocks.PLUM_LEAVES.get(), (p_241170_0_) -> createLeavesDrops(p_241170_0_, ExtendedBlocks.PLUM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-		add(ExtendedBlocks.PLUM_LEAVES_FRUIT.get(), (p_241170_0_) -> createFruitLeavesDrops(p_241170_0_, ExtendedBlocks.PLUM_SAPLING.get(), ExtendedItems.PLUM.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-		add(ExtendedBlocks.WILLOW_LEAVES.get(), (p_241170_0_) -> createLeavesDrops(p_241170_0_, ExtendedBlocks.WILLOW_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-		add(ExtendedBlocks.AMBER_ORE.get(), (p_241170_0_) -> createOreDrop(p_241170_0_, ExtendedItems.AMBER.get()));
-		add(ExtendedBlocks.TOPAZ_ORE.get(), (p_241170_0_) -> createOreDrop(p_241170_0_, ExtendedItems.TOPAZ.get()));
-		add(ExtendedBlocks.AMETHYST_ORE.get(), (p_241170_0_) -> createOreDrop(p_241170_0_, ExtendedItems.AMETHYST.get()));
-		add(ExtendedBlocks.SAPPHIRE_ORE.get(), (p_241170_0_) -> createOreDrop(p_241170_0_, ExtendedItems.SAPPHIRE.get()));
-		add(ExtendedBlocks.RUBY_ORE.get(), (p_241170_0_) -> createOreDrop(p_241170_0_, ExtendedItems.RUBY.get()));
-		add(ExtendedBlocks.DIAMOND_ORE.get(), (p_241170_0_) -> createOreDrop(p_241170_0_, ExtendedItems.DIAMOND.get()));
-		add(ExtendedBlocks.OPAL_ORE.get(), (p_241170_0_) -> createOreDrop(p_241170_0_, ExtendedItems.OPAL.get()));
-		add(ExtendedBlocks.EMERALD_ORE.get(), (p_241170_0_) -> createOreDrop(p_241170_0_, ExtendedItems.EMERALD.get()));
+		add(ExtendedBlocks.PLUM_LEAVES.get(), (blockLamda) -> createLeavesDrops(blockLamda, ExtendedBlocks.PLUM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+		add(ExtendedBlocks.PLUM_LEAVES_FRUIT.get(), (blockLamda) -> createFruitLeavesDrops(blockLamda, ExtendedBlocks.PLUM_SAPLING.get(), ExtendedItems.PLUM.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+		add(ExtendedBlocks.WILLOW_LEAVES.get(), (blockLamda) -> createLeavesDrops(blockLamda, ExtendedBlocks.WILLOW_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+		add(ExtendedBlocks.EBONY_LEAVES.get(), (blockLamda) -> createLeavesDrops(blockLamda, ExtendedBlocks.EBONY_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+		add(ExtendedBlocks.AMBER_ORE.get(), (blockLamda) -> createOreDrop(blockLamda, ExtendedItems.AMBER.get()));
+		add(ExtendedBlocks.TOPAZ_ORE.get(), (blockLamda) -> createOreDrop(blockLamda, ExtendedItems.TOPAZ.get()));
+		add(ExtendedBlocks.AMETHYST_ORE.get(), (blockLamda) -> createOreDrop(blockLamda, ExtendedItems.AMETHYST.get()));
+		add(ExtendedBlocks.SAPPHIRE_ORE.get(), (blockLamda) -> createOreDrop(blockLamda, ExtendedItems.SAPPHIRE.get()));
+		add(ExtendedBlocks.RUBY_ORE.get(), (blockLamda) -> createOreDrop(blockLamda, ExtendedItems.RUBY.get()));
+		add(ExtendedBlocks.DIAMOND_ORE.get(), (blockLamda) -> createOreDrop(blockLamda, ExtendedItems.DIAMOND.get()));
+		add(ExtendedBlocks.OPAL_ORE.get(), (blockLamda) -> createOreDrop(blockLamda, ExtendedItems.OPAL.get()));
+		add(ExtendedBlocks.EMERALD_ORE.get(), (blockLamda) -> createOreDrop(blockLamda, ExtendedItems.EMERALD.get()));
 		dropSelf(ExtendedBlocks.REMAINS_ELF.get());
 		dropSelf(ExtendedBlocks.REMAINS_MAN.get());
 		dropSelf(ExtendedBlocks.REMAINS_ORC.get());
@@ -530,12 +548,12 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 					.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CakeBlock.BITES, 0)))))));
 	}
 
-	protected static LootTable.Builder createNameableBlockEntityTable(Block p_218481_0_) {
-		return LootTable.lootTable().withPool(applyExplosionCondition(p_218481_0_, LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(p_218481_0_).apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY)))));
+	protected static LootTable.Builder createNameableBlockEntityTable(Block pBlock) {
+		return LootTable.lootTable().withPool(applyExplosionCondition(pBlock, LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(pBlock).apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY)))));
 	}
 
-	protected static LootTable.Builder createDrinkVesselTable(Block p_218481_0_) {
-		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(p_218481_0_).apply(VesselDrink.vesselDrinkBuilder())));
+	protected static LootTable.Builder createDrinkVesselTable(Block pBlock) {
+		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(pBlock).apply(VesselDrink.vesselDrinkBuilder())));
 	}
 
 	protected static LootTable.Builder createBannerDrop(Block banner) {
@@ -554,9 +572,9 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				)));
 	}
 
-	protected static LootTable.Builder createFruitLeavesDrops(Block p_218526_0_, Block p_218526_1_, IItemProvider item, float... p_218526_2_) {
-		return createLeavesDrops(p_218526_0_, p_218526_1_, p_218526_2_).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
-			.when(HAS_NO_SHEARS_OR_SILK_TOUCH).add(applyExplosionCondition(p_218526_0_, ItemLootEntry.lootTableItem(item))
+	protected static LootTable.Builder createFruitLeavesDrops(Block pLeavesBlock, Block pBlockSappling, IItemProvider item, float... pChances) {
+		return createLeavesDrops(pLeavesBlock, pBlockSappling, pChances).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+			.when(HAS_NO_SHEARS_OR_SILK_TOUCH).add(applyExplosionCondition(pLeavesBlock, ItemLootEntry.lootTableItem(item))
 				.apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ExplosionDecay.explosionDecay())));
 	}
 
@@ -569,7 +587,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 	}
 
 	public void dropExtendedPottedContents(Block pFlowerPot) {
-		this.add(pFlowerPot, (p_241751_0_) -> createExtendedPotFlowerItemTable(((ExtendedLargeFlowerPotBlock)p_241751_0_).getContent()));
+		this.add(pFlowerPot, (blockLamda) -> createExtendedPotFlowerItemTable(((ExtendedLargeFlowerPotBlock)blockLamda).getContent()));
 	}
 	protected static LootTable.Builder createExtendedPotFlowerItemTable(IItemProvider pFlowerPotContent) {
 		return LootTable.lootTable().withPool(applyExplosionCondition(ExtendedBlocks.LARGE_FLOWER_POT.get(), LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(ExtendedBlocks.LARGE_FLOWER_POT.get())))).withPool(applyExplosionCondition(pFlowerPotContent, LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(pFlowerPotContent))));

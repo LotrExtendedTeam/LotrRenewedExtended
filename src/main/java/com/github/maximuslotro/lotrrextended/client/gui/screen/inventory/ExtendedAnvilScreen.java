@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.client.gui.screen.inventory;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedAnvilButton;
-import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainerNew;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCAnvilButtonPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCRenameItemPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
@@ -28,7 +28,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 /**
  * Based off of {@link AnvilScreen}
  * */
-public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer> implements IContainerListener  {
+public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainerNew> implements IContainerListener  {
 	private static final ResourceLocation ANVIL_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/gui/container/anvil.png");
 	private static final TranslationTextComponent REFORGE_TEXT = new TranslationTextComponent("container.lotrextended.repair.reforge");
 	private static final TranslationTextComponent ENGRAVE_TEXT = new TranslationTextComponent("container.lotrextended.repair.engrave");
@@ -36,7 +36,7 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 	private Button reforgeButton;
 	private Button engraveButton;
 	private static int ERRORTEXTCOLOR = 16736352;
-	public ExtendedAnvilScreen(ExtendedRepairContainer pAnvilMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
+	public ExtendedAnvilScreen(ExtendedRepairContainerNew pAnvilMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(pAnvilMenu, pPlayerInventory, pTitle);
 		this.titleLabelX = 60;
 		this.imageHeight = 198;
@@ -59,12 +59,12 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 		this.reforgeButton = this.addButton(new ExtendedAnvilButton(i+26, j+77, 17, 17, 204, 0, 17, ANVIL_LOCATION, 256, 256, (press)->{
 			ExtendedPacketHandler.sendToServer(new ExtendedCAnvilButtonPacket(0));
 		}, (button, matrixStack, x, y) -> {
-			this.renderTooltip(matrixStack, REFORGE_TEXT, x, y);
+			this.renderTooltip(matrixStack, this.font.split(REFORGE_TEXT, 200), x, y);
 		}, StringTextComponent.EMPTY));
 		this.engraveButton = this.addButton(new ExtendedAnvilButton(i+45, j+78, 15, 15, 221, 0, 15, ANVIL_LOCATION, 256, 256, (press)->{
 			ExtendedPacketHandler.sendToServer(new ExtendedCAnvilButtonPacket(1));
 		}, (button, matrixStack, x, y) -> {
-			this.renderTooltip(matrixStack, ENGRAVE_TEXT, x, y);
+			this.renderTooltip(matrixStack, this.font.split(ENGRAVE_TEXT, 200), x, y);
 		}, StringTextComponent.EMPTY));
 		this.name.setCanLoseFocus(false);
 		this.name.setTextColor(-1);
@@ -167,7 +167,7 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 	protected void renderLabels(MatrixStack pMatrixStack, int pX, int pY) {
 		RenderSystem.disableBlend();
 		super.renderLabels(pMatrixStack, pX, pY);
-		int repairCost = this.menu.getCost();
+		int cost = this.menu.getCost();
 		int textColor = 8453920;
 		ITextComponent itextcomponent = null;
 		if(this.menu.getSlot(0).hasItem()) {
@@ -178,7 +178,7 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 				}else {
 					ItemStack inputItem = this.menu.getSlot(0).getItem();
 					ItemStack resourceItem = this.menu.getSlot(2).getItem();
-					if(ExtendedRepairContainer.isValidRepairMaterial(inputItem, resourceItem)) {
+					if(ExtendedRepairContainerNew.isValidRepairMaterial(inputItem, resourceItem)) {
 						itextcomponent = new TranslationTextComponent("container.lotrextended.repair.reforge.cost", this.menu.getReforgeCost());
 						if(resourceItem.getCount()<this.menu.getReforgeCost()) {
 							textColor = ERRORTEXTCOLOR;
@@ -205,26 +205,26 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 						textColor = ERRORTEXTCOLOR;
 					}
 				}
-			}else if(repairCost > 0) {
-				if (repairCost >= 40 && !this.minecraft.player.abilities.instabuild) {
+			}else if(cost > 0) {
+				if (cost > 63 && !this.minecraft.player.abilities.instabuild) {
 					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.expensive");
 					textColor = ERRORTEXTCOLOR;
 				} else if (!this.menu.getSlot(3).hasItem()) {
-					if (this.menu.getIncompatable()) {
+					if (this.menu.getIncompatible()) {
 						itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.invalid_combination");
 						textColor = ERRORTEXTCOLOR;
-					}else if (this.menu.getGemIncompatable()) {
+					}else if (this.menu.getGemIncompatible()) {
 						itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.gem_used");
 						textColor = ERRORTEXTCOLOR;
-					}else if (this.menu.getToManyModifiers()==1) {
+					}else if (this.menu.getMaximumModifiersReached()) {
 						itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.too_many_modifiers");
 						textColor = ERRORTEXTCOLOR;
-					}else if (this.menu.getToManyModifiers()==2) {
+					}else if (this.menu.getMaxedLevelForBook()) {
 						itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.modifier_maxed");
 						textColor = ERRORTEXTCOLOR;
 					}
 				} else {
-					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.cost", repairCost);
+					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.cost", cost);
 					if (!this.menu.getSlot(3).mayPickup(this.inventory.player)) {
 						textColor = ERRORTEXTCOLOR;
 					}
@@ -232,16 +232,16 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 
 			}else {
 				if (!this.menu.getSlot(3).hasItem()) {
-					if (this.menu.getIncompatable()) {
+					if (this.menu.getIncompatible()) {
 						itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.invalid_combination");
 						textColor = ERRORTEXTCOLOR;
-					}else if (this.menu.getGemIncompatable()) {
+					}else if (this.menu.getGemIncompatible()) {
 						itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.gem_used");
 						textColor = ERRORTEXTCOLOR;
-					}else if (this.menu.getToManyModifiers()==1) {
+					}else if (this.menu.getMaximumModifiersReached()) {
 						itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.too_many_modifiers");
 						textColor = ERRORTEXTCOLOR;
-					}else if (this.menu.getToManyModifiers()==2) {
+					}else if (this.menu.getMaxedLevelForBook()) {
 						itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.modifier_maxed");
 						textColor = ERRORTEXTCOLOR;
 					}

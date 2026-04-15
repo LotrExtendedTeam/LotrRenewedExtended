@@ -11,7 +11,9 @@ import org.apache.commons.lang3.mutable.MutableObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedWallsFeature;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPaletteProcessor;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structureV5.config.ExtendedStructureSettings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
 
@@ -51,13 +53,13 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
  * Provides static methods to add and assemble structure pieces into villages
  * using extended logic, including custom processor handling and placement constraints.
  * Copied from {@link net.minecraft.world.gen.feature.jigsaw.JigsawManager} and modified to add needed functionality
- * @version 1.16.5
+ * @version From Minecraft 1.16.5
  */
 public class ExtendedJigsawManager {
 	private static final Logger LOGGER = LogManager.getLogger();
 
 	/**
-	 * Adds pieces to a village structure based on configuration, using extended logic for wood palette processing and placement constraints.
+	 * Adds pieces to a village structure based on configuration, using extended logic for wood palette processing and placement constraints among others.
 	 *
 	 * <p>This method bootstraps structure pools, picks a start template from the configured pool,
 	 * handles optional WoodPaletteProcessor logic if present,
@@ -76,6 +78,7 @@ public class ExtendedJigsawManager {
 	 * @param projectStartToHeightmap if true, adjusts vertical placement to surface height from the heightmap
 	 * @param pRotation               Set a fixed rotation for the structure
 	 * @param offset                  A x, y, z based offset for spawning
+	 * @param settings                Additional hardcoded structure settings
 	 *
 	 * @see ExtendedSingleJigsawPiece
 	 * @see WoodPaletteProcessor
@@ -84,7 +87,7 @@ public class ExtendedJigsawManager {
 	 */
 	public static void addPieces(DynamicRegistries registry, VillageConfig structureConfig, ExtendedJigsawManager.IPieceFactory villagePieceBuilder, 
 			ChunkGenerator chunkGenerator, TemplateManager templateManager, ChunkPos chunkPos, List<? super AbstractVillagePiece> pieces, Random random, 
-			boolean doExpansionHack, boolean projectStartToHeightmap, Rotation pRotation, BlockPos offset) {
+			boolean doExpansionHack, boolean projectStartToHeightmap, Rotation pRotation, BlockPos offset, ExtendedStructureSettings settings) {
 		Structure.bootstrap();
 		MutableRegistry<JigsawPattern> mutableregistry = registry.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY);
 		// Extended start
@@ -162,7 +165,7 @@ public class ExtendedJigsawManager {
 			}
 			// Extended End
 			AxisAlignedBB maxStructureSizeBB = new AxisAlignedBB(structureBBAverageX - maxPlaceDistance, structureStartHeight - maxPlaceDistance, structureBBAverageZ - maxPlaceDistance, structureBBAverageX + maxPlaceDistance + 1, structureStartHeight + maxPlaceDistance + 1, structureBBAverageZ + maxPlaceDistance + 1);
-			ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, maxDepth, villagePieceBuilder, chunkGenerator, templateManager, pieces, random, carryOverProcessor);
+			ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, maxDepth, villagePieceBuilder, chunkGenerator, templateManager, pieces, random, carryOverProcessor, settings);
 			jigsawmanager$assembler.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, new MutableObject<>(VoxelShapes.join(VoxelShapes.create(maxStructureSizeBB), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox)), IBooleanFunction.ONLY_FIRST)), structureStartHeight + 80, 0));
 
 			while(!jigsawmanager$assembler.placing.isEmpty()) {
@@ -191,7 +194,7 @@ public class ExtendedJigsawManager {
 	 */
 	public static void addPieces(DynamicRegistries registry, AbstractVillagePiece preBuiltAbstractVillagePiece, int buildLevels, ExtendedJigsawManager.IPieceFactory villagePieceBuilder, ChunkGenerator chunkGenerator, TemplateManager templateManager, List<? super AbstractVillagePiece> listBuildablePieces, Random random) {
 		MutableRegistry<JigsawPattern> mutableregistry = registry.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY);
-		ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, buildLevels, villagePieceBuilder, chunkGenerator, templateManager, listBuildablePieces, random, Optional.empty());
+		ExtendedJigsawManager.Assembler jigsawmanager$assembler = new ExtendedJigsawManager.Assembler(mutableregistry, buildLevels, villagePieceBuilder, chunkGenerator, templateManager, listBuildablePieces, random, Optional.empty(), ExtendedStructureSettings.EMPTY);
 		jigsawmanager$assembler.placing.addLast(new ExtendedJigsawManager.Entry(preBuiltAbstractVillagePiece, new MutableObject<>(VoxelShapes.INFINITY), 0, 0));
 
 		while(!jigsawmanager$assembler.placing.isEmpty()) {
@@ -210,7 +213,7 @@ public class ExtendedJigsawManager {
 	 * It also optionally handles a {@link WoodPaletteProcessor} to carry over wood palette information
 	 * across pieces.</p>
 	 */
-	static final class Assembler {
+	private static final class Assembler {
 		private final Registry<JigsawPattern> pools;
 		private final int maxDepth;
 		private final ExtendedJigsawManager.IPieceFactory factory;
@@ -222,6 +225,7 @@ public class ExtendedJigsawManager {
 		// Extended add optional carry over processors
 		private final Optional<WoodPaletteProcessor> carryOverProcessor;
 		private final List<String> blacklisted_structures = new ArrayList<>();
+		private final ExtendedStructureSettings settings;
 
 		/**
 		 * Constructs an assembler for generating village structures.
@@ -234,8 +238,9 @@ public class ExtendedJigsawManager {
 		 * @param pPieces            collection where generated pieces will be added
 		 * @param pRandom            random source for randomized choices
 		 * @param pCarryOverProcessor optional processor to carry over wood palette data between pieces
+		 * @param pSettings          Additional hardcoded structure settings
 		 */
-		private Assembler(Registry<JigsawPattern> pPools, int pMaxDepth, ExtendedJigsawManager.IPieceFactory pFactory, ChunkGenerator pChunkGenerator, TemplateManager pStructureManager, List<? super AbstractVillagePiece> pPieces, Random pRandom, Optional<WoodPaletteProcessor> pCarryOverProcessor) {
+		private Assembler(Registry<JigsawPattern> pPools, int pMaxDepth, ExtendedJigsawManager.IPieceFactory pFactory, ChunkGenerator pChunkGenerator, TemplateManager pStructureManager, List<? super AbstractVillagePiece> pPieces, Random pRandom, Optional<WoodPaletteProcessor> pCarryOverProcessor, ExtendedStructureSettings pSettings) {
 			this.pools = pPools;
 			this.maxDepth = pMaxDepth;
 			this.factory = pFactory;
@@ -244,6 +249,7 @@ public class ExtendedJigsawManager {
 			this.pieces = pPieces;
 			this.random = pRandom;
 			this.carryOverProcessor = pCarryOverProcessor;
+			this.settings = pSettings;
 		}
 		/**
 		 * Attempts to place child pieces connected to a given parent piece within the village structure.
@@ -252,214 +258,268 @@ public class ExtendedJigsawManager {
 		 * selects possible child pieces from those pools, and attempts to place them respecting spatial constraints
 		 * and maximum depth. It uses voxel shape checks to avoid overlapping structures.</p>
 		 *
-		 * @param villagePiece      the parent village piece to place children for
-		 * @param freeVoxelShapes   voxel shapes representing free space available for placing children
-		 * @param boundsTop         the upper boundary Y coordinate limiting placement
-		 * @param depth             current recursion depth in the piece placement process
-		 * @param doExpansionHack   whether to apply additional placement logic (specific to implementation)
+		 * @param villagePiece      The parent village piece to place children for
+		 * @param freeVoxelShapes   Voxel shapes representing free space available for placing children
+		 * @param boundsTop         The upper boundary Y coordinate limiting placement
+		 * @param depth             Current recursion depth in the piece placement process
+		 * @param doExpansionHack   Whether to apply additional placement logic (specific to implementation)
+
 		 */
 		private void tryPlacingChildren(AbstractVillagePiece villagePiece, MutableObject<VoxelShape> freeVoxelShapes, int boundsTop, int depth, boolean doExpansionHack) {
-			JigsawPiece jigsawpiece = villagePiece.getElement();
-			BlockPos blockpos = villagePiece.getPosition();
-			Rotation rotation = villagePiece.getRotation();
-			JigsawPattern.PlacementBehaviour jigsawPiecePlacementBehaviour = jigsawpiece.getProjection();
-			boolean isParentPlacementRidged = jigsawPiecePlacementBehaviour == JigsawPattern.PlacementBehaviour.RIGID;
-			MutableObject<VoxelShape> structureShapeInterpolated = new MutableObject<>();
-			MutableBoundingBox mutableboundingbox = villagePiece.getBoundingBox();
-			int jigsawPieceRelativeBottomYValue = mutableboundingbox.y0;
+			JigsawPiece parentPieceTemplate = villagePiece.getElement();
+			BlockPos parentPieceOrigin = villagePiece.getPosition();
+			Rotation parentPieceRotation = villagePiece.getRotation();
+			JigsawPattern.PlacementBehaviour parentPiecePlacementMode = parentPieceTemplate.getProjection();
+			boolean parentIsRigid = parentPiecePlacementMode == JigsawPattern.PlacementBehaviour.RIGID;
+			MutableObject<VoxelShape> insideStructureVoxelShape = new MutableObject<>();
+			MutableBoundingBox parentBoundingBox = villagePiece.getBoundingBox();
+			int parentBottomY = parentBoundingBox.y0;
 
 			mainStrLoop:
 				// Loop through each JigsawBlock present in this piece
-				for(Template.BlockInfo parentPieceJigsawBlockInfo : jigsawpiece.getShuffledJigsawBlocks(this.structureManager, blockpos, rotation, this.random)) {
-					Direction direction = JigsawBlock.getFrontFacing(parentPieceJigsawBlockInfo.state);
-					BlockPos blockpos1 = parentPieceJigsawBlockInfo.pos;
-					BlockPos blockpos2 = blockpos1.relative(direction);
-					int jigsawYRelativeToActualPieceBottom = blockpos1.getY() - jigsawPieceRelativeBottomYValue;
-					int chunkGeneratorUsableSpawnHeight = -1;
-					ResourceLocation jigsawPoolResourceLocation = new ResourceLocation(parentPieceJigsawBlockInfo.nbt.getString("pool"));
-					Optional<JigsawPattern> jigsawPool = this.pools.getOptional(jigsawPoolResourceLocation);
+				for(Template.BlockInfo parentJigsawConnector : parentPieceTemplate.getShuffledJigsawBlocks(this.structureManager, parentPieceOrigin, parentPieceRotation, this.random)) {
+					Direction direction = JigsawBlock.getFrontFacing(parentJigsawConnector.state);
+					BlockPos parentConnectorPos = parentJigsawConnector.pos;
+					BlockPos expectedChildAttachmentPos = parentConnectorPos.relative(direction);
+					int connectorYOffset = parentConnectorPos.getY() - parentBottomY;
+					int groundHeightOverride = -1;
+					ResourceLocation childPoolID = new ResourceLocation(parentJigsawConnector.nbt.getString("pool"));
+					Optional<JigsawPattern> childPool = this.pools.getOptional(childPoolID);
 					// Check if the selected JigsawBLock has a valid pool and the pool size is not empty or the pool is JigsawPatternRegistry.EMPTY
-					if (jigsawPool.isPresent() && (jigsawPool.get().size() != 0 || Objects.equals(jigsawPoolResourceLocation, JigsawPatternRegistry.EMPTY.location()))) {
-						ResourceLocation jigsawPoolFallbackResourceLocation = jigsawPool.get().getFallback();
-						Optional<JigsawPattern> jigsawFallbackPool = this.pools.getOptional(jigsawPoolFallbackResourceLocation);
+					if (childPool.isPresent() && (childPool.get().size() != 0 || Objects.equals(childPoolID, JigsawPatternRegistry.EMPTY.location()))) {
+						ResourceLocation childFallbackPoolID = childPool.get().getFallback();
+						Optional<JigsawPattern> childFallbackPool = this.pools.getOptional(childFallbackPoolID);
 						// Check if selected JigsawBLock fallback pool exists and the pool size is not empty or the pool is JigsawPatternRegistry.EMPTY
-						if (jigsawFallbackPool.isPresent() && (jigsawFallbackPool.get().size() != 0 || Objects.equals(jigsawPoolFallbackResourceLocation, JigsawPatternRegistry.EMPTY.location()))) {
-							boolean isConnectingJigsawInsideCurrentStructure = mutableboundingbox.isInside(blockpos2);
-							MutableObject<VoxelShape> childPieceStructureShapeInterpolated;
-							int parentPieceBoundsTop;
+						if (childFallbackPool.isPresent() && (childFallbackPool.get().size() != 0 || Objects.equals(childFallbackPoolID, JigsawPatternRegistry.EMPTY.location()))) {
+							boolean childWithinParentBounds = parentBoundingBox.isInside(expectedChildAttachmentPos);
+							MutableObject<VoxelShape> childVoxelShape;
+							int placementUpperBound;
 							// Handle structure bounds for the current piece, include inside, or change bounds size
-							if (isConnectingJigsawInsideCurrentStructure) {
-								childPieceStructureShapeInterpolated = structureShapeInterpolated;
-								parentPieceBoundsTop = jigsawPieceRelativeBottomYValue;
-								if (structureShapeInterpolated.getValue() == null) {
-									structureShapeInterpolated.setValue(VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox)));
+							if (childWithinParentBounds) {
+								childVoxelShape = insideStructureVoxelShape;
+								placementUpperBound = parentBottomY;
+								if (insideStructureVoxelShape.getValue() == null) {
+									insideStructureVoxelShape.setValue(VoxelShapes.create(AxisAlignedBB.of(parentBoundingBox)));
 								}
 							} else {
-								childPieceStructureShapeInterpolated = freeVoxelShapes;
-								parentPieceBoundsTop = boundsTop;
+								childVoxelShape = freeVoxelShapes;
+								placementUpperBound = boundsTop;
 							}
 							// Add all the pieces inside the selected Jigsaw pool
-							List<JigsawPiece> jigsawPiecesConnectingPool = Lists.newArrayList();
+							List<JigsawPiece> candidateChildPieces = Lists.newArrayList();
 							if (depth != this.maxDepth) {
-								jigsawPiecesConnectingPool.addAll(jigsawPool.get().getShuffledTemplates(this.random));
+								candidateChildPieces.addAll(childPool.get().getShuffledTemplates(this.random));
 							}
 
-							jigsawPiecesConnectingPool.addAll(jigsawFallbackPool.get().getShuffledTemplates(this.random));
+							candidateChildPieces.addAll(childFallbackPool.get().getShuffledTemplates(this.random));
 							// Loop through each piece until find one that can be spawned
-							for(JigsawPiece connectingPoolJigsawPiece : jigsawPiecesConnectingPool) {
-								if (connectingPoolJigsawPiece == EmptyJigsawPiece.INSTANCE) {
+							for(JigsawPiece childTemplate : candidateChildPieces) {
+								if (childTemplate == EmptyJigsawPiece.INSTANCE) {
 									break;
 								}
 								// Extended Start
-								if (connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).isBlacklistSet()) {
-									if (blacklisted_structures.contains(((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).getBlacklistName())) {
+								if (childTemplate instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)childTemplate).isBlacklistSet()) {
+									if (blacklisted_structures.contains(((ExtendedSingleJigsawPiece)childTemplate).getBlacklistName())) {
 										continue;
 									}
 								}
-								boolean shouldBreakRotation = false;
+								boolean stopRotationAttempt = false;
 								//Extended End
 								// Try spawning the piece in different directions until it works
-								for(Rotation rotation1 : Rotation.getShuffled(this.random)) {
-									if(shouldBreakRotation) {
+								for(Rotation childRotationAttempt : Rotation.getShuffled(this.random)) {
+									if(stopRotationAttempt) {
 										break;
 									}
 									//if(enableLogging) {ExtendedLog.info("Trying rotation: "+rotation1.toString());}
-									List<Template.BlockInfo> connectingPieceJigsawRandom = connectingPoolJigsawPiece.getShuffledJigsawBlocks(this.structureManager, BlockPos.ZERO, rotation1, this.random);
-									MutableBoundingBox rotatedBBforJigsawRandom = connectingPoolJigsawPiece.getBoundingBox(this.structureManager, BlockPos.ZERO, rotation1);
-									int expansionHackModifierValue;
-									// Run vanilla villages black magic spawning
-									if (doExpansionHack && rotatedBBforJigsawRandom.getYSpan() <= 16) {
-										expansionHackModifierValue = connectingPieceJigsawRandom.stream().mapToInt((blockInfo) -> {
-											if (!rotatedBBforJigsawRandom.isInside(blockInfo.pos.relative(JigsawBlock.getFrontFacing(blockInfo.state)))) {
+									List<Template.BlockInfo> childPieceConnectors = childTemplate.getShuffledJigsawBlocks(this.structureManager, BlockPos.ZERO, childRotationAttempt, this.random);
+									MutableBoundingBox childBoundingBoxAtRotation = childTemplate.getBoundingBox(this.structureManager, BlockPos.ZERO, childRotationAttempt);
+									int childExpansionHackValue;
+									/**
+									 * Controls the "expansion hack" in Jigsaw structure generation.
+									 *
+									 * <p>When true, this flag tells the generator to temporarily expand the bounding box
+									 * of small structure pieces (typically ≤16 blocks tall) to account for the maximum
+									 * potential height of child pieces that may attach later.</p>
+									 *
+									 * <p>This is used for vanilla-style villages and other Jigsaw-based structures,
+									 * because small connector pieces (roads, paths, bridges) often link to taller buildings
+									 * such as houses, libraries, or temples. Without this predictive bounding box inflation,
+									 * the generator may reject valid child pieces due to collision checks, leading to:
+									 * <ul>
+									 *     <li>Missing buildings</li>
+									 *     <li>Long chains of roads without houses</li>
+									 *     <li>Intersecting or clipped structures</li>
+									 * </ul>
+									 * Essentially, it prevents village layouts from breaking when small pieces attach to
+									 * potentially large structures.</p>
+									 *
+									 * <p>The hack works by:
+									 * <ol>
+									 *     <li>Scanning all jigsaw blocks in the current piece.</li>
+									 *     <li>Checking the pools of structures that could attach.</li>
+									 *     <li>Calculating the maximum height of any potential child piece.</li>
+									 *     <li>Expanding the current piece's collision box to include that height.</li>
+									 * </ol>
+									 * </p>
+									 *
+									 */
+									if (doExpansionHack && childBoundingBoxAtRotation.getYSpan() <= 16) {
+										childExpansionHackValue = childPieceConnectors.stream().mapToInt((blockInfo) -> {
+											if (!childBoundingBoxAtRotation.isInside(blockInfo.pos.relative(JigsawBlock.getFrontFacing(blockInfo.state)))) {
 												return 0;
 											} else {
-												ResourceLocation connectedPieceEXEesourceLocation = new ResourceLocation(blockInfo.nbt.getString("pool"));
-												Optional<JigsawPattern> connectedPieceEX = this.pools.getOptional(connectedPieceEXEesourceLocation);
-												Optional<JigsawPattern> connectedPieceFallbackEX = connectedPieceEX.flatMap((p_242843_1_) -> this.pools.getOptional(p_242843_1_.getFallback()));
-												int pieceMaxSize = connectedPieceEX.map((p_242842_1_) -> p_242842_1_.getMaxSize(this.structureManager)).orElse(0);
-												int pieceFallbackMaxSize = connectedPieceFallbackEX.map((p_242840_1_) -> p_242840_1_.getMaxSize(this.structureManager)).orElse(0);
-												return Math.max(pieceMaxSize, pieceFallbackMaxSize);
+												ResourceLocation connectorPiecePoolID = new ResourceLocation(blockInfo.nbt.getString("pool"));
+												Optional<JigsawPattern> connectorPiecePool = this.pools.getOptional(connectorPiecePoolID);
+												Optional<JigsawPattern> connectorFallbackPool = connectorPiecePool.flatMap((p_242843_1_) -> this.pools.getOptional(p_242843_1_.getFallback()));
+												int connectorPieceMaxSize = connectorPiecePool.map((p_242842_1_) -> p_242842_1_.getMaxSize(this.structureManager)).orElse(0);
+												int connectorFallbackPieceMaxSize = connectorFallbackPool.map((p_242840_1_) -> p_242840_1_.getMaxSize(this.structureManager)).orElse(0);
+												return Math.max(connectorPieceMaxSize, connectorFallbackPieceMaxSize);
 											}
 										}).max().orElse(0);
 									} else {
-										expansionHackModifierValue = 0;
+										childExpansionHackValue = 0;
 									}
 									// Extended Start
-									if(connectingPieceJigsawRandom.size()==0) {
-										LOGGER.warn("JigsawBlock tried to attach piece without jigsaw blocks: {}", connectingPoolJigsawPiece.toString());
+									if(childPieceConnectors.size()==0) {
+										LOGGER.warn("JigsawBlock tried to attach piece without jigsaw blocks: {}", childTemplate.toString());
 									}
 									// Extended End
 									// Try spawning the piece at a random connecting Jigsaw point
-									for(Template.BlockInfo connectingPieceJigsawBlockInfo : connectingPieceJigsawRandom) {
-										if (JigsawBlock.canAttach(parentPieceJigsawBlockInfo, connectingPieceJigsawBlockInfo)) {
-											BlockPos blockpos3 = connectingPieceJigsawBlockInfo.pos;
-											BlockPos blockpos4 = new BlockPos(blockpos2.getX() - blockpos3.getX(), blockpos2.getY() - blockpos3.getY(), blockpos2.getZ() - blockpos3.getZ());
-											MutableBoundingBox mutableboundingbox2 = connectingPoolJigsawPiece.getBoundingBox(this.structureManager, blockpos4, rotation1);
-											int connectingPoolJigsawPieceRelativeBottomYValue = mutableboundingbox2.y0;
-											JigsawPattern.PlacementBehaviour connectingPoolJigsawPiecePlacementBehaviour = connectingPoolJigsawPiece.getProjection();
-											boolean isAttachedPlacementRidged = connectingPoolJigsawPiecePlacementBehaviour == JigsawPattern.PlacementBehaviour.RIGID;
-											int connectingPoolJigsawPieceRelativeYValue = blockpos3.getY();
-											int relativeYconnectingPieceSpawnHeight = jigsawYRelativeToActualPieceBottom - connectingPoolJigsawPieceRelativeYValue + JigsawBlock.getFrontFacing(parentPieceJigsawBlockInfo.state).getStepY();
-											int correctedYconnectingPieceSpawnHeight;
+									for(Template.BlockInfo childTemplateJigsawConnector : childPieceConnectors) {
+										if (JigsawBlock.canAttach(parentJigsawConnector, childTemplateJigsawConnector)) {
+											BlockPos childConnectorPos = childTemplateJigsawConnector.pos;
+											BlockPos childOffsetFromParent = new BlockPos(expectedChildAttachmentPos.getX() - childConnectorPos.getX(), expectedChildAttachmentPos.getY() - childConnectorPos.getY(), expectedChildAttachmentPos.getZ() - childConnectorPos.getZ());
+											MutableBoundingBox mutableboundingbox2 = childTemplate.getBoundingBox(this.structureManager, childOffsetFromParent, childRotationAttempt);
+											int childBottomY = mutableboundingbox2.y0;
+											JigsawPattern.PlacementBehaviour childPlacementMode = childTemplate.getProjection();
+											boolean childIsRigid = childPlacementMode == JigsawPattern.PlacementBehaviour.RIGID;
+											int childConnectorYOffset = childConnectorPos.getY();
+											int childYPlacementOffsetFromParent = connectorYOffset - childConnectorYOffset + JigsawBlock.getFrontFacing(parentJigsawConnector.state).getStepY();
+											int childWorldY;
 											// Determine the correct spawn placement of the piece, ridged or terrain matching
-											if (isParentPlacementRidged && isAttachedPlacementRidged) {
+											if (parentIsRigid && childIsRigid) {
 												// Ridged placement
-												correctedYconnectingPieceSpawnHeight = jigsawPieceRelativeBottomYValue + relativeYconnectingPieceSpawnHeight;
+												childWorldY = parentBottomY + childYPlacementOffsetFromParent;
 											} else {
 												// Get the ground height for terrain matching
-												if (chunkGeneratorUsableSpawnHeight == -1) {
-													chunkGeneratorUsableSpawnHeight = this.chunkGenerator.getFirstFreeHeight(blockpos1.getX(), blockpos1.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
+												if (groundHeightOverride == -1) {
+													groundHeightOverride = this.chunkGenerator.getFirstFreeHeight(parentConnectorPos.getX(), parentConnectorPos.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
 												}
-												correctedYconnectingPieceSpawnHeight = chunkGeneratorUsableSpawnHeight - connectingPoolJigsawPieceRelativeYValue;
+												childWorldY = groundHeightOverride - childConnectorYOffset;
 												// Extended Start
-												if (correctedYconnectingPieceSpawnHeight < 62 && connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).shouldSnapToWaterHeight()) {
-													correctedYconnectingPieceSpawnHeight = 62;
+												if (childWorldY < 62 && childTemplate instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)childTemplate).shouldSnapToWaterHeight()) {
+													childWorldY = 62;
 												}
 												// Extended End
 											}
 											// Extended Start
-											if (connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).disableSpawnAboveGround()) {
+											if (childTemplate instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)childTemplate).disableSpawnAboveGround()) {
 												//if(61<mutableboundingbox2.y1) {
 												//	shouldBreakRotation = true;
 												//	break;
 												//}
 												Vector3i center = mutableboundingbox2.getCenter();
 												if(chunkGenerator.getFirstFreeHeight(center.getX(), center.getZ(), Heightmap.Type.WORLD_SURFACE_WG)<=mutableboundingbox2.y1 + 1) {
-													shouldBreakRotation = true;
+													stopRotationAttempt = true;
 													break;
 												}
 											}
-											if (connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).shouldProtectYLevel()) {
-												if(correctedYconnectingPieceSpawnHeight < ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).getProtectableYLevelHeight()){
+											if (childTemplate instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)childTemplate).shouldProtectYLevel()) {
+												if(childWorldY < ((ExtendedSingleJigsawPiece)childTemplate).getProtectableYLevelHeight()){
 													continue;
 												}
 											}
 											// Extended End
 											// Set the y-offset for the piece placement
-											int connectingPieceBBShiftYoffset = correctedYconnectingPieceSpawnHeight - connectingPoolJigsawPieceRelativeBottomYValue;
-											MutableBoundingBox mutableboundingbox3 = mutableboundingbox2.moved(0, connectingPieceBBShiftYoffset, 0);
-											BlockPos blockpos5 = blockpos4.offset(0, connectingPieceBBShiftYoffset, 0);
-											if (expansionHackModifierValue > 0) {
-												int expansionHackModifidYvalue = Math.max(expansionHackModifierValue + 1, mutableboundingbox3.y1 - mutableboundingbox3.y0);
-												mutableboundingbox3.y1 = mutableboundingbox3.y0 + expansionHackModifidYvalue;
+											int connectingPieceBBShiftYoffset = childWorldY - childBottomY;
+											MutableBoundingBox childBoundingBoxInWorld = mutableboundingbox2.moved(0, connectingPieceBBShiftYoffset, 0);
+											BlockPos childOriginPositionInWorld = childOffsetFromParent.offset(0, connectingPieceBBShiftYoffset, 0);
+											if (childExpansionHackValue > 0) {
+												int expandedChildHeight = Math.max(childExpansionHackValue + 1, childBoundingBoxInWorld.y1 - childBoundingBoxInWorld.y0);
+												childBoundingBoxInWorld.y1 = childBoundingBoxInWorld.y0 + expandedChildHeight;
 											}
 											// Extended Start
-											boolean doesIgnoreBB = false; 
-											if(jigsawpiece instanceof ExtendedSingleJigsawPiece) {
-												doesIgnoreBB = ((ExtendedSingleJigsawPiece)jigsawpiece).doesIngnoreBBconflicts();
+											// Only reject if the piece reaches above Y 60
+											if (settings.getWallsConfig()!=null && childBoundingBoxInWorld.y1 >= 60) {
+
+											    int minChunkX = childBoundingBoxInWorld.x0 >> 4;
+											    int maxChunkX = childBoundingBoxInWorld.x1 >> 4;
+											    int minChunkZ = childBoundingBoxInWorld.z0 >> 4;
+											    int maxChunkZ = childBoundingBoxInWorld.z1 >> 4;
+
+											    boolean wallFound = false;
+
+											    for (int cx = minChunkX; cx <= maxChunkX && !wallFound; cx++) {
+											        for (int cz = minChunkZ; cz <= maxChunkZ && !wallFound; cz++) {
+
+											            if (ExtendedWallsFeature.isWallChunkCached(settings.getWallsConfig(), cx, cz)) {
+											                wallFound = true;
+											            }
+											        }
+											    }
+
+											    if (wallFound) {
+											        continue; // reject this candidate piece
+											    }
+											}
+											// Extended End
+											// Extended Start
+											boolean ignoreBoundingBoxConflicts = false; 
+											if(parentPieceTemplate instanceof ExtendedSingleJigsawPiece) {
+												ignoreBoundingBoxConflicts = ((ExtendedSingleJigsawPiece)parentPieceTemplate).doesIngnoreBBconflicts();
 											}
 											// Extended End
 											// Check if bounding box for structure accepts the piece
-											if (!VoxelShapes.joinIsNotEmpty(childPieceStructureShapeInterpolated.getValue(), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox3).deflate(0.25D)), IBooleanFunction.ONLY_SECOND)) {
-												childPieceStructureShapeInterpolated.setValue(VoxelShapes.joinUnoptimized(childPieceStructureShapeInterpolated.getValue(), VoxelShapes.create(AxisAlignedBB.of(mutableboundingbox3)), IBooleanFunction.ONLY_FIRST));
-												int pieceGroundLevelData = villagePiece.getGroundLevelDelta();
-												int connectingPoolJigsawPieceGroundLevelData;
+											if (!VoxelShapes.joinIsNotEmpty(childVoxelShape.getValue(), VoxelShapes.create(AxisAlignedBB.of(childBoundingBoxInWorld).deflate(0.25D)), IBooleanFunction.ONLY_SECOND)) {
+												childVoxelShape.setValue(VoxelShapes.joinUnoptimized(childVoxelShape.getValue(), VoxelShapes.create(AxisAlignedBB.of(childBoundingBoxInWorld)), IBooleanFunction.ONLY_FIRST));
+												int parentGroundDelta = villagePiece.getGroundLevelDelta();
+												int childGroundDelta;
 												// Get the ground level for placement type
-												if (isAttachedPlacementRidged) {
-													connectingPoolJigsawPieceGroundLevelData = pieceGroundLevelData - relativeYconnectingPieceSpawnHeight;
+												if (childIsRigid) {
+													childGroundDelta = parentGroundDelta - childYPlacementOffsetFromParent;
 												} else {
-													connectingPoolJigsawPieceGroundLevelData = connectingPoolJigsawPiece.getGroundLevelDelta();
+													childGroundDelta = childTemplate.getGroundLevelDelta();
 												}
 												// Extended start
 												// Handle Wood palette processors
-												if(carryOverProcessor.isPresent() && connectingPoolJigsawPiece instanceof SingleJigsawPiece) {
-													List<StructureProcessor> processors = new ArrayList<>(((SingleJigsawPiece)connectingPoolJigsawPiece).processors.get().list());
+												if(carryOverProcessor.isPresent() && childTemplate instanceof SingleJigsawPiece) {
+													List<StructureProcessor> processors = new ArrayList<>(((SingleJigsawPiece)childTemplate).processors.get().list());
 													processors.removeIf(pro -> pro instanceof WoodPaletteProcessor);
 													processors.add(carryOverProcessor.get());
 													StructureProcessorList list = new StructureProcessorList(processors);
-													((SingleJigsawPiece)connectingPoolJigsawPiece).processors = () -> list;
+													((SingleJigsawPiece)childTemplate).processors = () -> list;
 													//ExtendedLog.info("Added wood processor to structure piece from parent: "+carryOverProcessor.get().getPickedPalletName());
 												}
 												// Add structure to blacklist since we are actually spawning it
-												if (connectingPoolJigsawPiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).isBlacklistSet()) {
-													blacklisted_structures.add(((ExtendedSingleJigsawPiece)connectingPoolJigsawPiece).getBlacklistName());
+												if (childTemplate instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)childTemplate).isBlacklistSet()) {
+													blacklisted_structures.add(((ExtendedSingleJigsawPiece)childTemplate).getBlacklistName());
 												}
 												// Extended end
 												// Make another AbstractVillagePiece for the children pieces for this one
-												AbstractVillagePiece abstractvillagepiece = this.factory.create(this.structureManager, connectingPoolJigsawPiece, blockpos5, connectingPoolJigsawPieceGroundLevelData, rotation1, mutableboundingbox3);
-												int connectingPoolJigsawPieceSpawnHeight;
-												if (isParentPlacementRidged) {
-													connectingPoolJigsawPieceSpawnHeight = jigsawPieceRelativeBottomYValue + jigsawYRelativeToActualPieceBottom;
-												} else if (isAttachedPlacementRidged) {
-													connectingPoolJigsawPieceSpawnHeight = correctedYconnectingPieceSpawnHeight + connectingPoolJigsawPieceRelativeYValue;
+												AbstractVillagePiece childVillagePiece = this.factory.create(this.structureManager, childTemplate, childOriginPositionInWorld, childGroundDelta, childRotationAttempt, childBoundingBoxInWorld);
+												int childPieceSpawnY;
+												if (parentIsRigid) {
+													childPieceSpawnY = parentBottomY + connectorYOffset;
+												} else if (childIsRigid) {
+													childPieceSpawnY = childWorldY + childConnectorYOffset;
 												} else {
-													if (chunkGeneratorUsableSpawnHeight == -1) {
-														chunkGeneratorUsableSpawnHeight = this.chunkGenerator.getFirstFreeHeight(blockpos1.getX(), blockpos1.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
+													if (groundHeightOverride == -1) {
+														groundHeightOverride = this.chunkGenerator.getFirstFreeHeight(parentConnectorPos.getX(), parentConnectorPos.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
 													}
-													connectingPoolJigsawPieceSpawnHeight = chunkGeneratorUsableSpawnHeight + relativeYconnectingPieceSpawnHeight / 2;
+													childPieceSpawnY = groundHeightOverride + childYPlacementOffsetFromParent / 2;
 
 												}
 												// Add junction information for this+children JigsawBlocks
-												villagePiece.addJunction(new JigsawJunction(blockpos2.getX(), connectingPoolJigsawPieceSpawnHeight - jigsawYRelativeToActualPieceBottom + pieceGroundLevelData, blockpos2.getZ(), relativeYconnectingPieceSpawnHeight, connectingPoolJigsawPiecePlacementBehaviour));
-												abstractvillagepiece.addJunction(new JigsawJunction(blockpos1.getX(), connectingPoolJigsawPieceSpawnHeight - connectingPoolJigsawPieceRelativeYValue + connectingPoolJigsawPieceGroundLevelData, blockpos1.getZ(), -relativeYconnectingPieceSpawnHeight, jigsawPiecePlacementBehaviour));
-												this.pieces.add(abstractvillagepiece);
+												villagePiece.addJunction(new JigsawJunction(expectedChildAttachmentPos.getX(), childPieceSpawnY - connectorYOffset + parentGroundDelta, expectedChildAttachmentPos.getZ(), childYPlacementOffsetFromParent, childPlacementMode));
+												childVillagePiece.addJunction(new JigsawJunction(parentConnectorPos.getX(), childPieceSpawnY - childConnectorYOffset + childGroundDelta, parentConnectorPos.getZ(), -childYPlacementOffsetFromParent, parentPiecePlacementMode));
+												this.pieces.add(childVillagePiece);
 												// Extended Start
-												if(jigsawpiece instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)jigsawpiece).shouldResetMaxDepth()) {
+												if(parentPieceTemplate instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)parentPieceTemplate).shouldResetMaxDepth()) {
 													depth = 0;
 												}
 												// Extended End
-												if (depth + 1 <= this.maxDepth /* Extended Start */&& !doesIgnoreBB /*Extended End*/) {
-													this.placing.addLast(new ExtendedJigsawManager.Entry(abstractvillagepiece, childPieceStructureShapeInterpolated, parentPieceBoundsTop, depth + 1));
+												if (depth + 1 <= this.maxDepth /* Extended Start */&& !ignoreBoundingBoxConflicts /*Extended End*/) {
+													this.placing.addLast(new ExtendedJigsawManager.Entry(childVillagePiece, childVoxelShape, placementUpperBound, depth + 1));
 												}
 												continue mainStrLoop;
 											}
@@ -468,10 +528,10 @@ public class ExtendedJigsawManager {
 								}
 							}
 						} else {
-							LOGGER.warn("Empty or none existent fallback pool: {}", jigsawPoolFallbackResourceLocation);
+							LOGGER.warn("Empty or none existent fallback pool: {}", childFallbackPoolID);
 						}
 					} else {
-						LOGGER.warn("Empty or none existent pool: {}", jigsawPoolResourceLocation);
+						LOGGER.warn("Empty or none existent pool: {}", childPoolID);
 					}
 				}
 

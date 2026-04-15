@@ -15,18 +15,20 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedPlayerTypedRunArroundLikeCrazyGoal;
-import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedPlayerTypedWaterAvoidingRandomWalkingGoal;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedAttributes;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInventoryContainer;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem.MountType;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
 
+import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.ai.goal.PanicIfBurningGoal;
-import lotr.common.entity.npc.ExtendedRidableWargEntity;
+import lotr.common.entity.ai.goal.RandomWalkingEvenWhenRiddenGoal;
+import lotr.common.entity.npc.ExtendedRidableEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.WargEntity;
 import lotr.common.entity.npc.ai.goal.WargLeapAndDisableShieldGoal;
-import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -35,6 +37,7 @@ import net.minecraft.entity.IJumpingMount;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Pose;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -48,7 +51,6 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -70,7 +72,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -81,15 +83,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * This class is not documented on purpose as it is unused and subject to re-write or deletion
  * */
 @Mixin(WargEntity.class)
-public abstract class MixinWargEntity extends NPCEntity implements IInventoryChangedListener, IJumpingMount, IEquipable, ExtendedRidableWargEntity {
+public abstract class MixinWargEntity extends NPCEntity implements IInventoryChangedListener, IJumpingMount, IEquipable, ExtendedRidableEntity {
 	@Unique
-	private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT, Items.SUGAR, Blocks.HAY_BLOCK.asItem(), Items.APPLE, Items.GOLDEN_CARROT, Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE);
+	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("90833995-95a9-4586-b044-08e411e7d60c");
 	@Unique
 	private static final DataParameter<Byte> DATA_ID_FLAGS = EntityDataManager.defineId(WargEntity.class, DataSerializers.BYTE);
 	@Unique
 	private static final DataParameter<Optional<UUID>> DATA_ID_OWNER_UUID = EntityDataManager.defineId(WargEntity.class, DataSerializers.OPTIONAL_UUID);
-	@Unique
-	private boolean isJumping;
 	@Unique
 	private Inventory inventory;
 	/** The higher this value, the more likely the horse is to be tamed next time a player rides it. */
@@ -102,16 +102,17 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		super(type, w);
 	}
 
+	@Inject(method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V", at = @At("TAIL"), remap=false)
+	public void constructor(EntityType<? extends WargEntity> type, World w, CallbackInfo ci) {
+		this.createInventory();
+		this.maxUpStep = 1.0F;
+	}
+
 	@Shadow(remap = false)
 	public boolean getIsLeaping() {return false;}
 
 	@Shadow(remap = false)
 	public void startLeaping() {}
-
-	@Inject(method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V", at = @At("TAIL"), remap=false)
-	public void constructor(EntityType<? extends WargEntity> type, World w, CallbackInfo ci) {
-		this.createInventory();
-	}
 
 	@Inject(method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
 	public void addAdditionalSaveDataExtended(CompoundNBT pCompound, CallbackInfo ci) {
@@ -165,10 +166,10 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		super.addNPCAI();
 		goalSelector.addGoal(0, new SwimGoal(this));
 		goalSelector.addGoal(1, new PanicIfBurningGoal(this, 1.6D));
-		goalSelector.addGoal(2, new ExtendedPlayerTypedRunArroundLikeCrazyGoal((WargEntity)(Object)this, 1.2D));
 		goalSelector.addGoal(3, new WargLeapAndDisableShieldGoal((WargEntity)(Object)this, 0.45F));
 		addAttackGoal(4);
-		goalSelector.addGoal(7, new ExtendedPlayerTypedWaterAvoidingRandomWalkingGoal(this, 1.0D));
+		goalSelector.addGoal(5, new ExtendedPlayerTypedRunArroundLikeCrazyGoal((WargEntity)(Object)this, 1.2D));
+		goalSelector.addGoal(7, new RandomWalkingEvenWhenRiddenGoal(this, 1.0D));
 		goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 12.0F, 0.02F));
 		goalSelector.addGoal(8, new LookAtGoal(this, NPCEntity.class, 8.0F, 0.02F));
 		goalSelector.addGoal(9, new LookAtGoal(this, LivingEntity.class, 12.0F, 0.02F));
@@ -183,7 +184,17 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	@Overwrite(remap = false)
 	public static MutableAttribute regAttrs() {
 		return NPCEntity.registerBaseNPCAttributes().add(Attributes.FOLLOW_RANGE, 32.0D)
-				.add(Attributes.MOVEMENT_SPEED, 0.22D).add(Attributes.KNOCKBACK_RESISTANCE, 0.5D).add(ExtendedAttributes.WARG_JUMP_STRENGTH.get());
+			.add(Attributes.MOVEMENT_SPEED, 0.22D).add(Attributes.KNOCKBACK_RESISTANCE, 0.5D).add(ExtendedAttributes.WARG_JUMP_STRENGTH.get());
+	}
+
+	/**
+	 * Need to set Warg health after base health is set, otherwise Wargs will only stay at 20 health
+	 * @param ci Callback info
+	 * @Inject (method = "applyRandomisedWargAttributes()V", at = @At("TAIL"), remap=false)
+	 * */
+	@Inject(method = "applyRandomisedWargAttributes()V", at = @At("TAIL"), remap=false)
+	private void applyRandomisedWargAttributes(CallbackInfo ci) {
+		this.setHealth((float) getAttribute(Attributes.MAX_HEALTH).getBaseValue());
 	}
 
 	@Unique
@@ -218,19 +229,10 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		this.entityData.set(DATA_ID_OWNER_UUID, Optional.ofNullable(pUuid));
 	}
 
-	@Unique
-	public boolean isJumping() {
-		return this.isJumping;
-	}
 
 	@Unique
 	private void setTamed(boolean pTamed) {
 		this.setFlag(2, pTamed);
-	}
-
-	@Unique
-	public void setIsJumping(boolean pJumping) {
-		this.isJumping = pJumping;
 	}
 
 	@Override
@@ -272,20 +274,18 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	@Override
 	public ActionResultType mobInteract(PlayerEntity pPlayer, Hand pHand) {
 		ItemStack itemstack = pPlayer.getItemInHand(pHand);
-		if(!pPlayer.level.isClientSide) {
-			pPlayer.sendMessage(new StringTextComponent("Is Tamed:"+isTamed()+", isSecondaryUseActive"+pPlayer.isSecondaryUseActive()+", isFood:"+isFood(itemstack)), Util.NIL_UUID);
-		}
+		boolean hasAlignment = LOTRLevelData.getSidedData(pPlayer).getAlignmentData().getAlignment(getFaction())>=50;
 		if (!this.isBaby()) {
-	         if (this.isTamed() && pPlayer.isSecondaryUseActive()) {
-	            this.openInventory(pPlayer);
-	            return ActionResultType.sidedSuccess(this.level.isClientSide);
-	         }
-	         if (this.isVehicle()) {
-	            return super.mobInteract(pPlayer, pHand);
-	         }
-	      }
+			if (this.isTamed() && pPlayer.isSecondaryUseActive() && hasAlignment) {
+				this.openInventory(pPlayer);
+				return ActionResultType.sidedSuccess(this.level.isClientSide);
+			}
+			if (this.isVehicle()) {
+				return super.mobInteract(pPlayer, pHand);
+			}
+		}
 		if (!itemstack.isEmpty()) {
-			if (this.isFood(itemstack)) {
+			if (this.isFood(itemstack) && hasAlignment) {
 				return this.fedFood(pPlayer, itemstack);
 			}
 
@@ -294,21 +294,25 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 				return actionresulttype;
 			}
 
-			if (!this.isTamed()) {
+			if (!this.isTamed() && hasAlignment) {
 				this.playSound(getAmbientSound(), this.getSoundVolume(), this.getVoicePitch());
 				this.level.broadcastEntityEvent(this, (byte)6);
 				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
 
 			boolean flag = !this.isBaby() && !this.isSaddled() && itemstack.getItem() == Items.SADDLE;
-			pPlayer.sendMessage(new StringTextComponent(!this.isBaby() +":"+ !this.isSaddled() +":"+ (itemstack.getItem() == Items.SADDLE)), Util.NIL_UUID);
-			if (this.isArmor(itemstack) || flag) {
+			if ((this.isArmor(itemstack) || flag) && hasAlignment) {
 				this.openInventory(pPlayer);
 				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
 		}
-		this.doPlayerRide(pPlayer);
-		return ActionResultType.sidedSuccess(this.level.isClientSide);
+		if(hasAlignment) {
+			this.doPlayerRide(pPlayer);
+			return ActionResultType.sidedSuccess(this.level.isClientSide);
+		}else {
+			pPlayer.sendMessage(new TranslationTextComponent("chat.lotrextended.action_requires_alignment", "+"+50), Util.NIL_UUID);
+			return ActionResultType.sidedSuccess(this.level.isClientSide);
+		}
 	}
 
 	@Override
@@ -319,7 +323,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	@Override
 	public boolean causeFallDamage(float pFallDistance, float pDamageMultiplier) {
 		if (pFallDistance > 1.0F) {
-			this.playSound(SoundEvents.HORSE_LAND, 0.4F, 1.0F);
+			this.playSound(SoundEvents.GENERIC_BIG_FALL, 0.4F, 1.0F);
 		}
 
 		int i = this.calculateFallDamage(pFallDistance, pDamageMultiplier);
@@ -375,10 +379,32 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		this.itemHandler = net.minecraftforge.common.util.LazyOptional.of(() -> new net.minecraftforge.items.wrapper.InvWrapper(this.inventory));
 	}
 
+
+	@Override
+	public ItemStack getArmor() {
+		return this.getItemBySlot(EquipmentSlotType.CHEST);
+	}
+
 	@Unique
 	private void updateContainerEquipment() {
 		if (!this.level.isClientSide) {
+			this.setArmorEquipment(this.inventory.getItem(1));
 			this.setFlag(4, !this.inventory.getItem(0).isEmpty());
+		}
+	}
+
+	@Override
+	public void setArmorEquipment(ItemStack pStack) {
+		this.setItemSlot(EquipmentSlotType.CHEST, pStack);
+		this.setDropChance(EquipmentSlotType.CHEST, 0.0F);
+		if (!this.level.isClientSide) {
+			this.getAttribute(Attributes.ARMOR).removeModifier(ARMOR_MODIFIER_UUID);
+			if (this.isArmor(pStack)) {
+				int i = ((ExtendedMountedArmorItem)pStack.getItem()).getProtection();
+				if (i != 0) {
+					this.getAttribute(Attributes.ARMOR).addTransientModifier(new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus", (double)i, AttributeModifier.Operation.ADDITION));
+				}
+			}
 		}
 	}
 
@@ -392,17 +418,13 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	}
 
-	//public static AttributeModifierMap.MutableAttribute createBaseHorseAttributes() {
-	//	return MobEntity.createMobAttributes().add(Attributes.JUMP_STRENGTH).add(Attributes.MAX_HEALTH, 53.0D).add(Attributes.MOVEMENT_SPEED, (double)0.225F);
-	//}
-
 	@Override
 	public int getMaxTemper() {
 		return 100;
 	}
 
-	@Unique
-	private void openInventory(PlayerEntity pPlayer) {
+	@Override
+	public void openInventory(PlayerEntity pPlayer) {
 		if (!this.level.isClientSide && (!this.isVehicle() || this.hasPassenger(pPlayer)) && this.isTamed()) {
 			if(pPlayer instanceof ServerPlayerEntity) {
 				openWargInventory((ServerPlayerEntity)pPlayer, (WargEntity)(Object)this, this.inventory);
@@ -439,30 +461,18 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	@Unique
 	private boolean handleEating(PlayerEntity pPlayer, ItemStack pStack) {
-		boolean flag = false;
-		float f = 0.0F;
-		int i = 0;
-		int j = 0;
-		Item item = pStack.getItem();
-		if (item == Items.WHEAT) {
-			f = 2.0F;
-			i = 20;
-			j = 3;
+		boolean hatEaten = false;
+		if (this.getHealth() < this.getMaxHealth()) {
+			this.heal(2);
+			hatEaten = true;
 		}
-
-		if (this.getHealth() < this.getMaxHealth() && f > 0.0F) {
-			this.heal(f);
-			flag = true;
-		}
-
-
-		if (j > 0 && (flag || !this.isTamed()) && this.getTemper() < this.getMaxTemper()) {
-			flag = true;
+		if ((hatEaten || !this.isTamed()) && this.getTemper() < this.getMaxTemper()) {
+			hatEaten = true;
 			if (!this.level.isClientSide) {
-				this.modifyTemper(j);
+				this.modifyTemper(3);
 			}
 		}
-		return flag;
+		return hatEaten;
 	}
 
 	@Unique
@@ -481,7 +491,8 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	@Unique
 	private boolean isFood(ItemStack pStack) {
-		return FOOD_ITEMS.test(pStack);
+		Item item = pStack.getItem();
+		return item.isEdible() && item.getFoodProperties().isMeat();
 	}
 
 	@Override
@@ -514,25 +525,25 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	public void travel(Vector3d pTravelVector) {
 		if (this.isAlive()) {
 			if (this.isVehicle() && this.canBeControlledByRider() && this.isSaddled()) {
-				LivingEntity livingentity = (LivingEntity)this.getControllingPassenger();
-				this.yRot = livingentity.yRot;
+				LivingEntity rider = (LivingEntity)this.getControllingPassenger();
+				this.yRot = rider.yRot;
 				this.yRotO = this.yRot;
-				this.xRot = livingentity.xRot * 0.5F;
+				this.xRot = rider.xRot * 0.5F;
 				this.setRot(this.yRot, this.xRot);
 				this.yBodyRot = this.yRot;
 				this.yHeadRot = this.yBodyRot;
-				float f = livingentity.xxa * 0.5F;
-				float f1 = livingentity.zza;
-				if (f1 <= 0.0F) {
-					f1 *= 0.25F;
+				float strafe = rider.xxa * 0.5F;
+				float forward = rider.zza;
+				if (forward <= 0.0F) {
+					forward *= 0.25F;
 				}
-
+				/*
 				if (this.onGround && this.playerJumpPendingScale == 0.0F) {
-					f = 0.0F;
-					f1 = 0.0F;
+					forward1 = 0.0F;
+					forward2 = 0.0F;
 				}
-
-				if (this.playerJumpPendingScale > 0.0F && !this.isJumping() && this.onGround) {
+				 */
+				if (this.playerJumpPendingScale > 0.0F && !this.getIsLeaping() && this.onGround) {
 					double d0 = this.getAttributeValue(ExtendedAttributes.WARG_JUMP_STRENGTH.get()) * (double)this.playerJumpPendingScale * (double)this.getBlockJumpFactor();
 					double d1;
 					if (this.hasEffect(Effects.JUMP)) {
@@ -543,10 +554,10 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 					Vector3d vector3d = this.getDeltaMovement();
 					this.setDeltaMovement(vector3d.x, d1, vector3d.z);
-					this.setIsJumping(true);
+					startLeaping();
 					this.hasImpulse = true;
 					net.minecraftforge.common.ForgeHooks.onLivingJump(this);
-					if (f1 > 0.0F) {
+					if (forward > 0.0F) {
 						float f2 = MathHelper.sin(this.yRot * ((float)Math.PI / 180F));
 						float f3 = MathHelper.cos(this.yRot * ((float)Math.PI / 180F));
 						this.setDeltaMovement(this.getDeltaMovement().add(-0.4F * f2 * this.playerJumpPendingScale, 0.0D, 0.4F * f3 * this.playerJumpPendingScale));
@@ -558,14 +569,14 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 				this.flyingSpeed = this.getSpeed() * 0.1F;
 				if (this.isControlledByLocalInstance()) {
 					this.setSpeed((float)this.getAttributeValue(Attributes.MOVEMENT_SPEED));
-					super.travel(new Vector3d(f, pTravelVector.y, f1));
-				} else if (livingentity instanceof PlayerEntity) {
+					super.travel(new Vector3d(strafe, pTravelVector.y, forward));
+				} else if (rider instanceof PlayerEntity) {
 					this.setDeltaMovement(Vector3d.ZERO);
 				}
 
 				if (this.onGround) {
 					this.playerJumpPendingScale = 0.0F;
-					this.setIsJumping(false);
+					//this.setIsLeaping(false);
 				}
 
 				this.calculateEntityAnimation(this, false);
@@ -587,7 +598,6 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	 */
 	@Override
 	public boolean canBeControlledByRider() {
-		System.out.println("canBeControlledByRider"+(getControllingPassenger() instanceof LivingEntity));
 		return this.getControllingPassenger() instanceof LivingEntity;
 	}
 
@@ -603,7 +613,6 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	@Override
 	public boolean isControlledByLocalInstance() {
-		System.out.println("isControlledByLocalInstance:"+ super.isControlledByLocalInstance());
 		return super.isControlledByLocalInstance();
 	}
 
@@ -669,26 +678,26 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	}
 
+	@Override
+	public double getPassengersRidingOffset() {
+		return (double)this.getBbHeight() * 0.75D;
+	}
 
 	@Override
 	public void positionRider(Entity pPassenger) {
-		super.positionRider(pPassenger);
-		if (pPassenger instanceof PlayerEntity) {
-			PlayerEntity playerEntity = (PlayerEntity)pPassenger;
-			this.yBodyRot = playerEntity.yBodyRot;
+		if (this.hasPassenger(pPassenger) && pPassenger instanceof LivingEntity) {
+			double d0 = this.getY() + this.getPassengersRidingOffset() + pPassenger.getMyRidingOffset();
+			LivingEntity rider = (LivingEntity)pPassenger;
+			this.yRot = rider.yHeadRot;
+			this.yBodyRot = this.yRot;
+
+			double offsetBack = -0.2; // negative = behind mount, positive = forward
+
+			Vector3d vector3d = (new Vector3d(offsetBack, 0.0D, 0.0D)).yRot(-this.yRot * ((float)Math.PI / 180F) - ((float)Math.PI / 2F));
+			pPassenger.setPos(this.getX() + vector3d.x, d0, this.getZ() + vector3d.z);
+
+			rider.yBodyRot = this.yRot;
 		}
-
-//		if (this.standAnimO > 0.0F) {
-//			float f3 = MathHelper.sin(this.yBodyRot * ((float)Math.PI / 180F));
-//			float f = MathHelper.cos(this.yBodyRot * ((float)Math.PI / 180F));
-//			float f1 = 0.7F * this.standAnimO;
-//			float f2 = 0.15F * this.standAnimO;
-//			pPassenger.setPos(this.getX() + (double)(f1 * f3), this.getY() + this.getPassengersRidingOffset() + pPassenger.getMyRidingOffset() + (double)f2, this.getZ() - (double)(f1 * f));
-//			if (pPassenger instanceof LivingEntity) {
-//				((LivingEntity)pPassenger).yBodyRot = this.yBodyRot;
-//			}
-//		}
-
 	}
 
 	/**
@@ -702,7 +711,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	@Override
 	public boolean canWearArmor() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -712,7 +721,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	@Override
 	public boolean isArmor(ItemStack pStack) {
-		return false;
+		return pStack.getItem() instanceof ExtendedMountedArmorItem && ((ExtendedMountedArmorItem)pStack.getItem()).getMountType()==MountType.WARG;
 	}
 
 	@Override

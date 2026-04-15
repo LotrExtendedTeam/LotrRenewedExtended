@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ExtendedRivendellCaptainEntity extends RivendellWarriorEntity  implements ExtendedNPCEntitySettings, ExtendedCaptainEntity {
+public class ExtendedRivendellCaptainEntity extends RivendellWarriorEntity implements ExtendedNPCEntitySettings, ExtendedCaptainEntity {
 
 	public ExtendedRivendellCaptainEntity(EntityType<? extends ExtendedRivendellCaptainEntity> type, World w) {
 		super(type, w);

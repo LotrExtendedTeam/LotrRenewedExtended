@@ -1,0 +1,17 @@
+{
+	"name": "lotrextended:lore/isengard/isengard_orthanc",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:lore/isengard/orthanc_start",
+				"processors": "minecraft:empty",
+				"chunk_corner_offset": 0,
+				"max_place_distance": 180
+			}
+		}
+	]
+}

@@ -19,7 +19,7 @@ import net.minecraft.util.WeightedRandom;
  *     <li>{@link #keyNbt} – The NBT save name used for persistence.</li>
  *     <li>{@link #keyLocal} – The localization key used for translations.</li>
  *     <li>{@link #modifierType} – The functional category of the modifier.</li>
- *     <li>{@link #teir} – The tier or strength level of the modifier.</li>
+ *     <li>{@link #tier} – The tier or strength level of the modifier.</li>
  *     <li>{@link #effect} – The numeric effect applied by this modifier.</li>
  *     <li>{@link #rarity} – How the modifier is obtained (crafting, reforging, applied, earned, etc.).</li>
  *     <li>{@link #slots} – The valid slots this modifier can be applied from.</li>
@@ -38,7 +38,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	private final ExtendedModifierType modifierType;
 
 	/** Tier or strength level of the modifier. */
-	private final int teir;
+	private final int tier;
 
 	/** The numeric effect magnitude applied by this modifier. */
 	private final float effect;
@@ -49,20 +49,24 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	/** The scroll texture to use for this modifier*/
 	private final ExtendedModifierScroll scroll;
 
-	/** The valid equipment slots for the enchantment. */
+	/** The valid equipment slots for the modifier. */
 	private final EquipmentSlotType[] slots;
 
+	/** Value modifier for the modifier. */
+	private final int value;
+
 	public ExtendedModifier(String pNbtKey, String pLocalKey, ExtendedModifierType pModifierType, int pLevel, 
-			float pModifierEffect, ExtendedModifierRarity pModifierRarity, ExtendedModifierScroll pScroll, int pWeight, EquipmentSlotType[] pApplicableSlots) {
+			float pModifierEffect, ExtendedModifierRarity pModifierRarity, ExtendedModifierScroll pScroll, int pWeight, int value, EquipmentSlotType[] pApplicableSlots) {
 		super(pWeight);
 		this.keyNbt = pNbtKey;
 		this.keyLocal = pLocalKey;
 		this.modifierType = pModifierType;
-		this.teir = pLevel;
+		this.tier = pLevel;
 		this.effect = pModifierEffect;
 		this.rarity = pModifierRarity;
 		this.scroll = pScroll;
 		this.slots = pApplicableSlots;
+		this.value = value;
 	}
 	/** 
 	 * @return the NBT save key for this modifier. 
@@ -115,7 +119,29 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	 * @return the tier or strength level of this modifier. 
 	 */
 	public int getModifierTeir() {
-		return teir;
+		return tier;
+	}
+	/**
+	 * Returns the value of this modifier.
+	 *
+	 * <p>The correct values for this modifier can be determined using the following process:
+	 * <ol>
+	 *   <li>Open the legacy environment.</li>
+	 *   <li>Obtain the desired item from the creative inventory.</li>
+	 *   <li>Run the command <code>/lotrEnchant &lt;playername&gt; clear</code> to reset the item and ensure it has no prior modifications.</li>
+	 *   <li>Acquire the smith scroll corresponding to the modifier being tested.</li>
+	 *   <li>Place both the item and the smith scroll in an anvil to observe the resulting modifier value as the material cost.</li>
+	 *   <li>However bows multiply the value by three since string is cheap, so divide by three for bows to get the proper value.</li>
+	 * </ol>
+	 *
+	 * <p>This method works because the item has no previous modifications. As a result,
+	 * there are no additional costs from prior repairs, renaming, or other anvil operations—
+	 * only the combining cost is applied.
+	 *
+	 * @return the tier value representing this modifier's cost or strength
+	 */
+	public int getModifierValue() {
+		return tier;
 	}
 	/** 
 	 * @return the numeric effect value applied by this modifier. 
@@ -171,7 +197,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	public int getMaxLevel() {
 		List<ExtendedModifier> list = ExtendedModifiers.MODIFIERS_BY_TYPE.get(modifierType);
 		if (list == null || list.isEmpty()) {
-			return this.teir; // fallback, should not normally happen
+			return this.tier; // fallback, should not normally happen
 		}
 		return list.get(list.size() - 1).getModifierTeir();
 	}
@@ -182,7 +208,7 @@ public class ExtendedModifier extends WeightedRandom.Item{
 	public int getMinLevel() {
 		List<ExtendedModifier> list = ExtendedModifiers.MODIFIERS_BY_TYPE.get(modifierType);
 		if (list == null || list.isEmpty()) {
-			return this.teir; // fallback, should not normally happen
+			return this.tier; // fallback, should not normally happen
 		}
 		return list.get(0).getModifierTeir();
 	}

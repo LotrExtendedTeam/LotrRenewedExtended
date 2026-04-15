@@ -57,6 +57,9 @@ public class ExtendedTraderTypes {
 	// Dwarven
 	public static final ResourceLocation DWARVEN_MINER = make("dwarven_miner");
 	public static final ResourceLocation DWARVEN_SMITH = make("dwarven_smith");
+	// Isengard
+	public static final ResourceLocation ISENGARD_URUK_SUPPLIER = make("isengard_uruk_supplier");
+	public static final ResourceLocation ISENGARD_URUK_SMITH = make("isengard_uruk_smith");
 
 	private static ResourceLocation make(String pId) {
 		return validate(new ResourceLocation(LotrExtendedMod.MODID, pId));

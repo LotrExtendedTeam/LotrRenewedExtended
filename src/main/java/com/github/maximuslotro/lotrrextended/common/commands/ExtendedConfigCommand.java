@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.commands;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
@@ -37,25 +38,32 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableBanditEncounters", ExtendedServerConfig.enableBanditEncounters));
 		command.then(buildBoolean("enableTolkienSpawning", ExtendedServerConfig.enableTolkienSpawning));
 		// Blocks
-		command.then(buildBoolean("makeMetalDoorsRequirePower", ExtendedServerConfig.makeMetalDoorsRequirePower, true));
-		command.then(buildBoolean("barsConnectToBranches", ExtendedServerConfig.barsConnectToBranches, true));
-		command.then(buildBoolean("barsConnectToSlabSides", ExtendedServerConfig.barsConnectToSlabSides, true));
+		command.then(buildBoolean("makeMetalDoorsRequirePower", ExtendedServerConfig.makeMetalDoorsRequirePower));
+		command.then(buildBoolean("barsConnectToBranches", ExtendedServerConfig.barsConnectToBranches));
+		command.then(buildBoolean("barsConnectToSlabSides", ExtendedServerConfig.barsConnectToSlabSides));
 		command.then(buildDouble("dripstoneMinimumDamageHeight", ExtendedServerConfig.dripstoneMinimumDamageHeight, 0.0D, 5.0D));
 		command.then(buildInteger("bellRingChainMaxLength", ExtendedServerConfig.bellRingChainMaxLength, 1, 50));
-
+		command.then(buildInteger("gateToggleLength", ExtendedServerConfig.gateToggleLength, 4, 32));
 		// Chair
 		command.then(buildBoolean("enableChairSlabSitting", ExtendedServerConfig.enableChairSlabSitting));
 		command.then(buildBoolean("enableChairSwapping", ExtendedServerConfig.enableChairSwapping));
 		command.then(buildBoolean("enableChairProtectionOverride", ExtendedServerConfig.enableChairProtectionOverride));
-		// Gameplay
-		command.then(buildBoolean("enableVanillaEnchanting", ExtendedServerConfig.enableVanillaEnchanting, true));
-		command.then(buildBoolean("enableVanillaXp", ExtendedServerConfig.enableVanillaXp, true));
-		command.then(buildBoolean("enableExtendedModifiers", ExtendedServerConfig.enableExtendedModifiers, true));
-		// Server Enhancements
+		// Modifiers
+		command.then(buildBoolean("enableVanillaEnchanting", ExtendedServerConfig.enableVanillaEnchanting));
+		command.then(buildBoolean("enableVanillaXp", ExtendedServerConfig.enableVanillaXp));
+		command.then(buildBoolean("enableExtendedModifiers", ExtendedServerConfig.enableExtendedModifiers));
+		// Special
 		command.then(buildBoolean("enableExtendedLogging", ExtendedServerConfig.enableExtendedLogging));
+		command.then(buildBoolean("enableStaffServer", ExtendedServerConfig.enableStaffServer, true));
+		command.then(buildBoolean("enableModWhiteList", ExtendedServerConfig.enableModWhiteList));
+		// Server Enhancements
+		command.then(buildBoolean("enableExtendedSpawnProtection", ExtendedServerConfig.enableExtendedSpawnProtection));
+		command.then(buildInteger("overworldSpawnProtectionRadius", ExtendedServerConfig.overworldSpawnProtectionRadius, 0, 500));
+		command.then(buildInteger("middleEarthSpawnProtectionRadius", ExtendedServerConfig.middleEarthSpawnProtectionRadius, 0, 500));
 		// World Generation
-		command.then(buildBoolean("enableFixedStructures", ExtendedServerConfig.enableFixedStructures, true));
-		command.then(buildBoolean("enableFixedStructureImladris", ExtendedServerConfig.enableFixedStructureImladris, true));
+		command.then(buildBoolean("enableFixedStructures", ExtendedServerConfig.enableFixedStructures));
+		command.then(buildBoolean("enableFixedStructureImladris", ExtendedServerConfig.enableFixedStructureImladris));
+		command.then(buildBoolean("enableFixedStructureTowerHills", ExtendedServerConfig.enableFixedStructureTowerHills));
 		// Register
 		dispatcher.register(command);
 	}
@@ -70,7 +78,11 @@ public class ExtendedConfigCommand {
 					if(cantSet) {
 						cantSetValue(context.getSource(), name);
 					}else {
+						boolean oldValue = configType.get();
 						configType.set(BoolArgumentType.getBool(context, "set"));
+						if(oldValue!=configType.get()) {
+							ExtendedPacketHandler.syncServerConfigWithAllClients();
+						}
 						setBooleanValue(context.getSource(), name, BoolArgumentType.getBool(context, "set"));
 					}
 					return Command.SINGLE_SUCCESS;})
@@ -82,8 +94,13 @@ public class ExtendedConfigCommand {
 		return Commands.literal(name)
 			.then(Commands.argument("set", DoubleArgumentType.doubleArg(min, max))
 				.executes(context -> {
+					double oldValue = configType.get();
 					configType.set(DoubleArgumentType.getDouble(context, "set"));
+					if(oldValue!=configType.get()) {
+						ExtendedPacketHandler.syncServerConfigWithAllClients();
+					}
 					setDoubleValue(context.getSource(), name, DoubleArgumentType.getDouble(context, "set"));
+					ExtendedPacketHandler.syncServerConfigWithAllClients();
 					return Command.SINGLE_SUCCESS;})
 				)
 			.executes(context -> retrieveDoubleValue(context.getSource(), name, configType.get()));
@@ -93,8 +110,13 @@ public class ExtendedConfigCommand {
 		return Commands.literal(name)
 			.then(Commands.argument("set", IntegerArgumentType.integer(min, max))
 				.executes(context -> {
+					int oldValue = configType.get();
 					configType.set(IntegerArgumentType.getInteger(context, "set"));
-					setDoubleValue(context.getSource(), name, IntegerArgumentType.getInteger(context, "set"));
+					if(oldValue!=configType.get()) {
+						ExtendedPacketHandler.syncServerConfigWithAllClients();
+					}
+					setIntValue(context.getSource(), name, IntegerArgumentType.getInteger(context, "set"));
+					ExtendedPacketHandler.syncServerConfigWithAllClients();
 					return Command.SINGLE_SUCCESS;})
 				)
 			.executes(context -> retrieveIntValue(context.getSource(), name, configType.get()));

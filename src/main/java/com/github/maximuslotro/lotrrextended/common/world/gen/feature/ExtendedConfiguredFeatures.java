@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.feature;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedWallsFeature.EdgeType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.placement.ExtendedCaveSurface;
 
 import lotr.common.init.ExtendedBlocks;
@@ -27,8 +28,10 @@ public class ExtendedConfiguredFeatures {
 
 	public static final ConfiguredFeature<ExtendedMeteoriteFeatureConfig, ?> METEORITE_IMPACT = register("meteorite_impact", ExtendedFeature.METEORITE_PRE.configured(new ExtendedMeteoriteFeatureConfig(FeatureSpread.fixed(2), FeatureSpread.of(6, 2), 0.2f)));
 
-	public static final ConfiguredFeature<ExtendedWallsFeatureConfig, ?> ORTHANC_WALLS = register("orthanc_walls", ExtendedFeature.WALLS_PRE.configured(
-		new ExtendedWallsFeatureConfig(37440, 42049, 400, 100, 80, 12.0f, LOTRBlocks.NUMENOREAN_BRICK.get().defaultBlockState())));
+	public static final ExtendedWallsFeatureConfig ISENGARD_WALLS_CONFIG = new ExtendedWallsFeatureConfig(37440, 42049, 400, 100, 90, 12.0f, LOTRBlocks.NUMENOREAN_BRICK.get().defaultBlockState(),
+			LOTRBlocks.NUMENOREAN_BRICK.get().defaultBlockState(), 2, LOTRBlocks.NUMENOREAN_BRICK_WALL.get().defaultBlockState(), 1, 
+			EdgeType.OUTER, new ExtendedWallsButtressFeatureConfig(12, 0.08D, 8));
+	public static final ConfiguredFeature<ExtendedWallsFeatureConfig, ?> RING_OF_ISENGARD = register("ring_of_isengard", ExtendedFeature.WALLS_PRE.configured(ISENGARD_WALLS_CONFIG));
 
 	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String configuredFeatureName, ConfiguredFeature<FC, ?> pConfiguredFeature) {
 		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(LotrExtendedMod.MODID, configuredFeatureName), pConfiguredFeature);
