@@ -243,6 +243,9 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.addTag(ExtendedTags.Blocks.REMAINS_ORE);
 
 		for(Entry<ResourceLocation, Supplier<? extends Block>> blo : ((FlowerPotBlock)Blocks.FLOWER_POT).getFullPotsView().entrySet()) {
+			if(blo.getKey().getNamespace().equals("lotrfa")) {
+				continue;
+			}
 			tag(ExtendedTags.Blocks.LARGE_FLOWER_POT_COMPATABLE).add(blo.getValue().get());
 		}
 

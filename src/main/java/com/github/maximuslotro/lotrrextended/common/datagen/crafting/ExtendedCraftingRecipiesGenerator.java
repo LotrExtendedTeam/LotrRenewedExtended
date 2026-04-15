@@ -1558,6 +1558,14 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('#', Ingredient.of(Tags.Items.INGOTS_IRON))
 		.unlockedBy("iron_ingot", has(Tags.Items.INGOTS_IRON))
 		.save(consumer, mcLoc(Items.LODESTONE.getRegistryName().getPath()));
+		ExtendedShapedRecipeBuilder.shaped(Items.JUKEBOX)
+		.pattern("PPP")
+		.pattern("PDP")
+		.pattern("PPP")
+		.define('D', Ingredient.of(ExtendedItems.DIAMOND.get()))
+		.define('P', Ingredient.of(PLANKS))
+		.unlockedBy("has_"+ExtendedItems.DIAMOND.get().getRegistryName().getPath(), has(ExtendedItems.DIAMOND.get()))
+		.save(consumer, mcLoc(Items.JUKEBOX.getRegistryName().getPath()));
 	}
 	private void buildRenewedRecipeOverrides(Consumer<IFinishedRecipe> consumer) {
 		ExtendedFactionShapedRecipeBuilder.shaped(LOTRItems.ORC_PLATING.get(), 8, LOTRRecipes.ANY_ORC)
