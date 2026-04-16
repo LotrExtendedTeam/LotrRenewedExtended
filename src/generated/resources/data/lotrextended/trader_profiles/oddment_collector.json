@@ -210,6 +210,21 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotr:coral",
+        "averageCost": 6
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:bamboo",
+        "averageCost": 16,
+        "count": 8
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "minecraft:coal",
         "averageCost": 1,
         "count": 2

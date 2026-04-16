@@ -93,6 +93,13 @@
         "item": "lotr:diamond",
         "averageCost": 25
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:coral",
+        "averageCost": 6
+      }
     }
   ],
   "sellToPlayer": [

@@ -822,7 +822,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_MERCHANT);
 
 		make(100).setTypicallyWandering()
-		// TODO add toll bones, coral
+		// TODO add toll bones
 		.addSBuy(Items.FEATHER, 2)
 		.addSBuy(Items.IRON_INGOT, 3)
 		.addSBuy(LOTRItems.MITHRIL_NUGGET, 40)
@@ -834,6 +834,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.EMERALD, 15)
 		.addSBuy(ExtendedItems.OPAL, 10)
 		.addSBuy(ExtendedItems.PEARL, 25)
+		.addSBuy(ExtendedItems.CORAL, 6)
 		// TODO add Rivendell bow, battlestaff, longspear
 		.addSSell(LOTRItems.RIVENDELL_HELMET, 25)
 		.addSSell(LOTRItems.RIVENDELL_CHESTPLATE, 36)
@@ -858,7 +859,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_WANDERER);
 
 		make(75).setTypicallyWandering()
-		// TODO add coral, troll bones
+		// TODO add troll bones
 		.addSBuy(Items.FEATHER, 2)
 		.addSBuy(Items.IRON_INGOT, 3)
 		.addSBuy(LOTRItems.MITHRIL_NUGGET, 40)
@@ -871,6 +872,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.OPAL, 10)
 		.addSBuy(ExtendedItems.PEARL, 25)
 		.addSBuy(ExtendedItems.DIAMOND, 25)
+		.addSBuy(ExtendedItems.CORAL, 6)
 		// TODO add mallorn box, galadhrim (bow, battlestaff, longspear), mallorn bow
 		.addSSell(LOTRItems.GALADHRIM_HELMET, 25)
 		.addSSell(LOTRItems.GALADHRIM_CHESTPLATE, 36)
@@ -903,7 +905,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.save(pConsumer, ExtendedTraderTypes.GALADHRIM_WANDERER);
 
 		make(0).setTypicallyWandering()
-		// TODO add party hats, blue dwarven ingot, coral
+		// TODO add party hats, blue dwarven ingot
 		.addSBuy(ExtendedItems.BLACK_URUK_STEEL_INGOT, 5)
 		.addSBuy(LOTRItems.BRONZE_INGOT, 3)
 		.addSBuy(LOTRItems.COPPER_INGOT, 3)
@@ -932,6 +934,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.AMETHYST, 8)
 		.addSBuy(ExtendedItems.TOPAZ, 8)
 		.addSBuy(ExtendedItems.PEARL, 25)
+		.addSBuy(ExtendedItems.CORAL, 6)
+		.addSBuy(new ItemStack(Items.BAMBOO, 8), 16)
 		.addSBuy(new ItemStack(Items.COAL, 2), 1)
 		.addSBuy(ExtendedItems.OBSIDIAN_SHARD, 2)
 		.addSBuy(Items.FEATHER, 2)
