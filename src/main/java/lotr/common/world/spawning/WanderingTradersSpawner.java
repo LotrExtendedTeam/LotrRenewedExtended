@@ -2,11 +2,14 @@ package lotr.common.world.spawning;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
+import lotr.common.block.LOTRLeavesBlock;
+import lotr.common.block.WaterloggableDoublePlantBlock;
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedEntities;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
@@ -15,6 +18,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -66,10 +70,13 @@ public class WanderingTradersSpawner {
 
 			BlockPos plusOneY = new BlockPos(x, y + 1, z);
 			if (y > 62 && !world.getBlockState(pos).isSuffocating(world, pos) && !world.getBlockState(plusOneY).isSuffocating(world, plusOneY)) {
-				// avoid spawning on slabs/stairs/leaves
-				if (world.getBlockState(pos).getBlock() instanceof StairsBlock ||
-					world.getBlockState(pos).getBlock() instanceof SlabBlock ||
-					world.getBlockState(pos).getBlock() instanceof LeavesBlock) {
+				BlockState state = world.getBlockState(pos);
+				// avoid spawning on slabs/stairs/leaves/in water
+				if (state.getBlock() instanceof StairsBlock ||
+					state.getBlock() instanceof SlabBlock ||
+					state.getBlock() instanceof LeavesBlock ||
+					world.getFluidState(pos).is(FluidTags.WATER) ||
+					world.getFluidState(pos).is(FluidTags.LAVA)) {
 					continue;
 				}
 
