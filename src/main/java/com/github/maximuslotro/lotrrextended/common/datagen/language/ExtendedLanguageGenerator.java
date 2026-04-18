@@ -574,8 +574,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("enchant.lotrextended.bane.desc", "damage vs. %s");
 		addD("enchant.lotrextended.bane.earn", "Your %s has claimed the lives of many %s, and it shall be their bane evermore!");
 		addD("enchant.lotrextended.bane.earn_name", "%s's %s has claimed the lives of many %s, and it shall be their bane evermore!");
-		addD("enchant.lotrextended.durability.one", "Lasting");
-		addD("enchant.lotrextended.durability.two", "Hardy");
+		addD("enchant.lotrextended.durability.one", "Hardy");
+		addD("enchant.lotrextended.durability.two", "Lasting");
 		addD("enchant.lotrextended.durability.three", "Enduring");
 		addD("enchant.lotrextended.durability.disc", "durability");
 		addD("enchant.lotrextended.looting.one", "Lucky");
