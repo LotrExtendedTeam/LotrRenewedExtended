@@ -1,7 +1,10 @@
 package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.ExtendedVanillaProtectionHandlers;
 import com.github.maximuslotro.lotrextended.api.events.world.ExtendedFastTravelWaypointEvent;
@@ -15,6 +18,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedInvas
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils;
 
 import lotr.common.data.ExtendedLevelData;
@@ -32,9 +36,12 @@ import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRDimensions;
 import lotr.common.init.LOTRMaterial;
 import net.minecraft.block.BellBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ChainBlock;
+import net.minecraft.block.FarmlandBlock;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.MobEntity;
@@ -50,8 +57,14 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.potion.Potions;
 import net.minecraft.util.IndirectEntityDamageSource;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -83,6 +96,17 @@ import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
  * death handling, and custom entity size adjustments.</p>
  */
 public class WorldEventHandlers {
+	private static final Map<ResourceLocation, Supplier<Block>> MUD_TRANSFORMS = new HashMap<>();
+
+	static {
+	    MUD_TRANSFORMS.put(Blocks.DIRT.getRegistryName(), ExtendedBlocks.MUD);
+	    MUD_TRANSFORMS.put(ExtendedBlocks.DIRT_SLAB.get().getRegistryName(), ExtendedBlocks.MUD_SLAB);
+	    MUD_TRANSFORMS.put(Blocks.GRASS_BLOCK.getRegistryName(), ExtendedBlocks.MUD_GRASS);
+	    //MUD_TRANSFORMS.put(ExtendedBlocks.GRASS_BLOCK_SLAB.get().getRegistryName(), ExtendedBlocks.MUD_GRASS_SLAB);
+	    MUD_TRANSFORMS.put(Blocks.GRASS_PATH.getRegistryName(), ExtendedBlocks.MUD_PATH);
+	    MUD_TRANSFORMS.put(ExtendedBlocks.GRASS_PATH_SLAB.get().getRegistryName(), ExtendedBlocks.MUD_PATH_SLAB);
+	    MUD_TRANSFORMS.put(Blocks.FARMLAND.getRegistryName(), ExtendedBlocks.MUD_FARMLAND);
+	}
 
 	@SubscribeEvent
 	public static void onServerStopping(FMLServerStoppingEvent event) {
@@ -319,16 +343,43 @@ public class WorldEventHandlers {
 	public static void handleBlockLeftInteract$Extended(PlayerInteractEvent.RightClickBlock event) {
 		World level = event.getWorld();
 		BlockState clickedState = level.getBlockState(event.getPos());
-		if(event.getPlayer().getMainHandItem().getItem().is(ExtendedTags.Items.PLACEABLE_BOOKS)) {
-			ExtendedPlaceableBookTypes type = ExtendedPlaceableBookTypes.getByItem(event.getPlayer().getMainHandItem().getItem());
+		PlayerEntity player = event.getPlayer();
+		if(event.getItemStack().getItem().is(ExtendedTags.Items.PLACEABLE_BOOKS)) {
+			ExtendedPlaceableBookTypes type = ExtendedPlaceableBookTypes.getByItem(event.getItemStack().getItem());
 			if(type.notEmpty() && !(clickedState.getBlock() instanceof ExtendedPlacedBooksBlock)) {
-				BlockItemUseContext blockusecontext = new BlockItemUseContext(new ItemUseContext(event.getPlayer(), event.getHand(), event.getHitVec()));
+				BlockItemUseContext blockusecontext = new BlockItemUseContext(new ItemUseContext(player, event.getHand(), event.getHitVec()));
 				if(ExtendedPlacementUtils.place(ExtendedBlocks.PLACED_BOOKS.get(), new BlockItemUseContext(blockusecontext))) {
-					event.getPlayer().swing(event.getHand(), true);
+					player.swing(event.getHand(), true);
 					event.setCanceled(true);
 					return;
 				}
 			}
+		}
+		Block clickedBlock = clickedState.getBlock();
+		if(PotionUtils.getPotion(event.getItemStack())==Potions.WATER && MUD_TRANSFORMS.containsKey(clickedBlock.getRegistryName())) {
+			Block newBlock = MUD_TRANSFORMS.get(clickedBlock.getRegistryName()).get();
+			BlockState newBlockState = newBlock.defaultBlockState();
+			if(newBlock instanceof FarmlandBlock) {
+				newBlockState.setValue(FarmlandBlock.MOISTURE, 7);
+			}
+			if(newBlock instanceof SlabBlock) {
+				newBlockState = BlockStateUtils.copyBlockStateToBlockStateOverwriteSlab(newBlockState, clickedState);
+			}
+		    level.setBlock(event.getPos(), newBlockState, 3);
+			player.swing(event.getHand(), true);
+			ItemStack stack = event.getItemStack();
+			if (!player.abilities.instabuild) {
+                ItemStack emptyBottle = new ItemStack(Items.GLASS_BOTTLE);
+                stack.shrink(1);
+                if (stack.isEmpty()) {
+                	player.setItemInHand(event.getHand(), emptyBottle);
+                } else if (!player.inventory.add(emptyBottle)) {
+                	player.drop(emptyBottle, false);
+                } else if (player instanceof ServerPlayerEntity) {
+                   ((ServerPlayerEntity)player).refreshContainer(player.inventoryMenu);
+                }
+             }
+			level.playSound((PlayerEntity)null, event.getPos(), SoundEvents.BOTTLE_EMPTY, SoundCategory.BLOCKS, 0.5F, 7.0F);
 		}
 		if (clickedState.is(LOTRBlocks.WICKER_FENCE.get())) {
 			BlockPos checkPos = event.getPos().above();
@@ -350,14 +401,13 @@ public class WorldEventHandlers {
 			if (state.getBlock() instanceof BellBlock) {
 				BellBlock bell = (BellBlock) state.getBlock();
 				bell.attemptToRing(level, checkPos, null);
-				event.getPlayer().swing(event.getHand(), true);
+				player.swing(event.getHand(), true);
 				event.setCanceled(true);
 				return;
 			}
 		}
 		if (clickedState.is(Blocks.BOOKSHELF)) {
 			if (!level.isClientSide) {
-				PlayerEntity player = event.getPlayer();
 				level.setBlock(event.getPos(), ExtendedBlocks.EXTENDED_BOOKSHELF.get().defaultBlockState(), 3);
 				player.swing(event.getHand(), true);
 			}
