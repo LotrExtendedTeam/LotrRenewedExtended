@@ -22,11 +22,11 @@ import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 
-public class DevEventHandlers {
+public class ExtendedDevServerEventHandlers {
 
 	public static void registerDevListender(IEventBus modBus, IEventBus forgeBus) {
-		forgeBus.addListener(DevEventHandlers::commandEvent);
-		forgeBus.addListener(DevEventHandlers::devSpawnerListener);
+		forgeBus.addListener(ExtendedDevServerEventHandlers::commandEvent);
+		forgeBus.addListener(ExtendedDevServerEventHandlers::devSpawnerListener);
 	}
 
 	public static void commandEvent(CommandEvent event) {

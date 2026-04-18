@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.eventhandlers;
+ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 
 import java.util.List;
 
@@ -68,7 +68,7 @@ import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class BannerEventHandlers {
+public class ExtendedBannerEventHandlers {
 	@SubscribeEvent(priority=EventPriority.HIGH)
 	public static void handleBannerBlockBreak(BlockEvent.BreakEvent event) {
 		//ExtendedLog.info("BreakEvent");

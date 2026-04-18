@@ -95,7 +95,7 @@ import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
  * entity behaviors, player spawn logic, block-breaking advancements, trader/captain
  * death handling, and custom entity size adjustments.</p>
  */
-public class WorldEventHandlers {
+public class ExtendedWorldEventHandlers {
 	private static final Map<ResourceLocation, Supplier<Block>> MUD_TRANSFORMS = new HashMap<>();
 
 	static {
@@ -456,6 +456,15 @@ public class WorldEventHandlers {
 						((PlayerEntity)event.getEntityLiving()).inventory.hurtArmor(event.getSource(), event.getAmount());
 					}
 					return;
+				}
+			}
+			// Players or NPCs riding
+			if(event.getEntityLiving().isVehicle() && event.getSource().getDirectEntity() instanceof AbstractArrowEntity) {
+				if(event.getSource().getEntity() instanceof PlayerEntity || event.getSource().getEntity() instanceof NPCEntity) {
+					if(event.getEntityLiving().hasPassenger(event.getSource().getEntity())) {
+						event.setCanceled(true);
+						return;
+					}
 				}
 			}
 		}

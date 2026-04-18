@@ -14,7 +14,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 /**
  * For {@link net.minecraftforge.eventbus.api.Event} that are fired on the MinecraftForge.EVENT_BUS
  * */
-public class ForgeInventoryEvents {
+@Deprecated
+public class ExtendedForgeInventoryEvents {
 
 	@SubscribeEvent
 	public static void coinExchangeClose(final PlayerContainerEvent.Close event) {

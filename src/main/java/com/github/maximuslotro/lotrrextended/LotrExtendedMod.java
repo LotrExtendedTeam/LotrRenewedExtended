@@ -98,11 +98,11 @@ public class LotrExtendedMod{
 		ExtendedDataSerializers.register(modBus);
 		ExtendedServerConfig.register();
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
-		forgeBus.register(BannerEventHandlers.class);
-		DevEventHandlers.registerDevListender(modBus, forgeBus);
+		forgeBus.register(ExtendedBannerEventHandlers.class);
+		ExtendedDevServerEventHandlers.registerDevListender(modBus, forgeBus);
 		forgeBus.register(ExtendedServerModifierEventHandlers.class);
-		forgeBus.register(ForgeInventoryEvents.class);
-		forgeBus.register(WorldEventHandlers.class);
+		forgeBus.register(ExtendedForgeInventoryEvents.class);
+		forgeBus.register(ExtendedWorldEventHandlers.class);
 		ExtendedTapestryType.register(modBus);
 		ExtendedBlockStateProviderTypes.register(modBus);
 		ExtendedAttributes.register(modBus);
