@@ -84,6 +84,7 @@ public class ExtendedModControlCommand {
 
 	private static int addMod(CommandSource source, String modid, String message, Map<String, String> modList) {
 		if (!modList.containsKey(modid) || modList.get(modid)!=message) {
+			modList.put(modid, message);
 			source.sendSuccess(new StringTextComponent(TextFormatting.GREEN + "Added mod: " + TextFormatting.YELLOW + modid), true);
 		} else {
 			source.sendFailure(new StringTextComponent(TextFormatting.RED + "Mod already exists: " + modid));

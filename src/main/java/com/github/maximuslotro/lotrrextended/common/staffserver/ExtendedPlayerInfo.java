@@ -38,6 +38,8 @@ public class ExtendedPlayerInfo {
 
 	private Instant lastLogout;
 
+	private boolean isInTrouble = false;
+
 	private ExtendedPlayerInfo(UUID uuid) {
 		this.id = uuid;
 	}
@@ -48,6 +50,14 @@ public class ExtendedPlayerInfo {
 
 	public Instant getLastLogout() {
 		return lastLogout;
+	}
+
+	public void setInTrouble(boolean trouble) {
+		isInTrouble = trouble;
+	}
+
+	public boolean isInTrouble() {
+		return isInTrouble;
 	}
 
 	public static boolean doesPlayerInfoExist(@Nullable UUID id) {
