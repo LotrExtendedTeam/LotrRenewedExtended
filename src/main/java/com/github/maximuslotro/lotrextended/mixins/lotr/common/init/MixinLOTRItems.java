@@ -40,7 +40,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedColoringItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGuldurilItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedPoisonBottleItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCoinItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableConkerItem;
@@ -1285,9 +1285,9 @@ public class MixinLOTRItems {
 
 		ExtendedItems.HOBBIT_MARRIAGE_RING =  regItemB("hobbit_marriage_ring", () -> new Item(new Properties().tab(LOTRItemGroups.MISC)));
 		ExtendedItems.DWARF_MARRIAGE_RING =  regItemB("dwarven_marriage_ring", () -> new Item(new Properties().tab(LOTRItemGroups.MISC)));
-		ExtendedItems.SILVER_COIN_ONE = regItemB("silver_coin_one", () -> new ExtendedSilverCoin(new Properties().tab(LOTRItemGroups.MISC), ExtendedCoinType.ONE));
-		ExtendedItems.SILVER_COIN_TEN = regItemB("silver_coin_ten", () -> new ExtendedSilverCoin(new Properties().tab(LOTRItemGroups.MISC), ExtendedCoinType.TEN));
-		ExtendedItems.SILVER_COIN_HUNDRED = regItemB("silver_coin_hundred", () -> new ExtendedSilverCoin(new Properties().tab(LOTRItemGroups.MISC), ExtendedCoinType.HUNDRED));
+		ExtendedItems.SILVER_COIN_ONE = regItemB("silver_coin_one", () -> new ExtendedCoinItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedCoinType.ONE));
+		ExtendedItems.SILVER_COIN_TEN = regItemB("silver_coin_ten", () -> new ExtendedCoinItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedCoinType.TEN));
+		ExtendedItems.SILVER_COIN_HUNDRED = regItemB("silver_coin_hundred", () -> new ExtendedCoinItem(new Properties().tab(LOTRItemGroups.MISC), ExtendedCoinType.HUNDRED));
 		ExtendedItems.BOWSTRING = regItemB("bowstring", () -> new Item(new Properties().tab(LOTRItemGroups.MISC)));
 		ExtendedItems.CONKER =  regItemB("conker", () -> new ExtendedThrowableConkerItem(new Properties().tab(LOTRItemGroups.MISC).stacksTo(16)));
 		ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN = regBannerPaternItem("blue_mountains_banner_pattern", ExtendedBannerPatterns.blue_mountains, () -> new BannerPatternItem(ExtendedBannerPatterns.blue_mountains, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));

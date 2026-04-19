@@ -21,7 +21,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerIt
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedLeatherHatItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMattockItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCoinItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSwordItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
@@ -243,7 +243,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/banner/"+item.getKey()));
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedSilverCoin) {
+			if(item.getValue().get() instanceof ExtendedCoinItem) {
 				ItemModelBuilder builder = withExistingParent("lotr:"+item.getKey(), "lotrextended:item/template_coin");
 				builder.texture("layer0", lotrExtendedLoc("item/"+item.getKey()));
 				continue;
