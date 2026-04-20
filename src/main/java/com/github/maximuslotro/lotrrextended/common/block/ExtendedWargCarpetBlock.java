@@ -19,7 +19,7 @@ public class ExtendedWargCarpetBlock extends CarpetBlock {
 	private final ExtendedWargFurType wargFurType;
 
 	public ExtendedWargCarpetBlock(ExtendedWargFurType wargFurType) {
-		super(wargFurType.getDyeColor(), AbstractBlock.Properties.of(Material.CLOTH_DECORATION, wargFurType.getDyeColor()).strength(0.1F).sound(SoundType.WOOL));
+		super(wargFurType.getDyeColor(), AbstractBlock.Properties.of(Material.CLOTH_DECORATION, wargFurType.getDyeColor()).strength(0.1F).sound(SoundType.WOOL).noOcclusion());
 		this.wargFurType = wargFurType;
 	}
 
@@ -40,5 +40,10 @@ public class ExtendedWargCarpetBlock extends CarpetBlock {
 	@Override
 	public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
 		return 20;
+	}
+
+	@Override
+	public float getShadeBrightness(BlockState state, IBlockReader worldIn, BlockPos pos) {
+	    return 1.0F;
 	}
 }

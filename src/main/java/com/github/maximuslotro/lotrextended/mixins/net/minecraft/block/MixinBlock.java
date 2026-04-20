@@ -22,6 +22,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.PlantType;
 
+/**
+ * Override canSustainPlant methods in injecting blocks instead of this mixin
+ * TODO Remove
+ * */
+@Deprecated
 @Mixin(Block.class)
 public class MixinBlock {
 	@Inject(method = "canSustainPlant(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/IBlockReader;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/Direction;Lnet/minecraftforge/common/IPlantable;)Z",

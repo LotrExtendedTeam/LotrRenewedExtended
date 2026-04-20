@@ -116,6 +116,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CactusBlock;
 import net.minecraft.block.CakeBlock;
+import net.minecraft.block.CarpetBlock;
 import net.minecraft.block.ChainBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FarmlandBlock;
@@ -263,7 +264,11 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedWargCarpetBlock) {
-					genCarpetBlockItem((ExtendedWargCarpetBlock) block.getValue().get(), block.getKey());
+					String particle = block.getKey().substring(0, block.getKey().length() - 11)+"_matted_fur";
+					if(particle.contains("brown")) {
+						particle = "matted_fur";
+					}
+					genCarpetBlockItem((CarpetBlock) block.getValue().get(), block.getKey(), particle);
 					continue;
 				}
 				if(block.getValue().get() instanceof FallenLeavesBlock) {
@@ -1572,10 +1577,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().getBuilder("lotr:"+bed.getRegistryName().getPath()).texture("particle", lotrExtendedLoc("entity/bed/"+name)).parent(models().getExistingFile(mcLoc("item/template_bed")));
 	}
 
-	private void genCarpetBlockItem(ExtendedWargCarpetBlock carpet, String name) {
+	private void genCarpetBlockItem(CarpetBlock carpet, String name, String particle) {
 		registeredBlocks.add(carpet);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+carpet.getRegistryName().getPath(), lotrExtendedLoc("block/template_fur_carpet"))
-									.texture("0", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+name));
+									.texture("0", lotrExtendedLoc("block/"+name)).texture("particle", lotrExtendedLoc("block/"+particle));
 		simpleBlock(carpet, modelFile);
 		itemModels().getBuilder("lotr:"+carpet.getRegistryName().getPath()).parent(modelFile);
 	}
