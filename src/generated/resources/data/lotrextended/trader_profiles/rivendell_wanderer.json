@@ -153,6 +153,54 @@
       }
     },
     {
+      "weight": 10,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_helmet",
+        "averageCost": 360,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_chestplate",
+        "averageCost": 500,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_leggings",
+        "averageCost": 440,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_boots",
+        "averageCost": 320,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:arrow",
+        "averageCost": 3,
+        "count": 4
+      }
+    },
+    {
       "weight": 50,
       "stack": {
         "item": "minecraft:arrow",

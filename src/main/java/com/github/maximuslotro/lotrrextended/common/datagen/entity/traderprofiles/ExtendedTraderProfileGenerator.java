@@ -843,6 +843,12 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.RIVENDELL_DAGGER, 14)
 		.addSSell(LOTRItems.RIVENDELL_SPEAR, 21)
 		.addSSell(LOTRItems.RIVENDELL_SWORD, 21)
+		// Sell at a x25 price increase compared to regular Rivendell armor
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_HELMET, 10, 360, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE, 10, 500, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_LEGGINGS, 10, 440, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_BOOTS, 10, 320, 1, false)
+		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addSSell(new ItemStack(LOTRItems.HIGH_ELVEN_TORCH.get(), 4), 8)
 		.addSSell(LOTRItems.LEMBAS, 16)
@@ -1284,11 +1290,11 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.RIVENDELL_LEGGINGS, 22)
 		.addSSell(LOTRItems.RIVENDELL_BOOTS, 16)
 		.addSSell(ExtendedItems.RIVENDELL_BOW, 20)
-		// Sell at a x20 price increase compared to regular Rivendell armor
-		.addSSell(ExtendedItems.IMLADRIS_GUARD_HELMET, 10, 360, 1, false)
-		.addSSell(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE, 10, 500, 1, false)
-		.addSSell(ExtendedItems.IMLADRIS_GUARD_LEGGINGS, 10, 440, 1, false)
-		.addSSell(ExtendedItems.IMLADRIS_GUARD_BOOTS, 10, 320, 1, false)
+		// Sell at a x15 price increase compared to regular Rivendell armor
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_HELMET, 10, 270, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE, 10, 375, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_LEGGINGS, 10, 330, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_BOOTS, 10, 240, 1, false)
 		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
