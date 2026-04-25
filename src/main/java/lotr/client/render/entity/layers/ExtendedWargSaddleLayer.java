@@ -19,7 +19,7 @@ import net.minecraft.util.ResourceLocation;
  * Based upon {@link HorseMarkingsLayer}
  */
 public class ExtendedWargSaddleLayer extends LayerRenderer<WargEntity, WargModel<WargEntity>> {
-	private final WargModel<WargEntity> model = new WargModel<>(0.05F);
+	private final WargModel<WargEntity> model = new WargModel<>(0.1F);
 	private final ResourceLocation saddle = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/warg/saddle.png");
 
 	public ExtendedWargSaddleLayer(IEntityRenderer<WargEntity, WargModel<WargEntity>> entityRenderer) {
