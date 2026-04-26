@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.client.gui.screen;
+package com.github.maximuslotro.lotrrextended.client.gui.screen.settings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,53 +13,24 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedCServerSetti
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import lotr.client.gui.MiddleEarthMasterMenuScreen;
 import lotr.client.gui.menu.ExtendedAbstractOptionsScreen;
-import lotr.client.gui.widget.button.LeftRightButton;
 import net.minecraft.client.gui.widget.Widget;
-import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.ForgeConfigSpec;
 
-public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
-	public static int option = 0;
+public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 	public List<SettingsCatagory> catagories = new ArrayList<>();
 
 	public ExtendedServerOptionsScreen() {
-		super(new StringTextComponent("Server Options"), 200, 256);
-	}
-
-	@Override
-	public void onClose() {
-		super.onClose();
+		super(new StringTextComponent("Server Options"), SettingsPage.SERVER);
 	}
 
 	@Override
 	public void init() {
 		super.init();
 		ExtendedAbstractOptionsScreen.lastSettingScreen=this.getClass();
-		this.addButton(new LeftRightButton(Math.max(0, this.leftPos - 140), this.topPos + (this.imageHeight + 20) / 4, 100, 20, 
-				true, new TranslationTextComponent("gui.lotr.menu.return"), (b) -> {
-					this.minecraft.setScreen(new MiddleEarthMasterMenuScreen());
-				}));
-		this.addButton(new Button(Math.max(0, this.leftPos - 140), this.topPos + 20 + (this.imageHeight + 20) / 4, 100, 20, 
-				new TranslationTextComponent("gui.lotrextended.settings.button"), 
-				button -> {
-					this.minecraft.setScreen(new ExtendedClientOptionsScreen());
-				}) {
-		});
-		this.addButton(new ExtendedColorChangingButton(Math.max(0, this.leftPos - 140), this.topPos + 40 + (this.imageHeight + 20) / 4, 100, 20, 
-				new TranslationTextComponent("gui.lotrextended.serversettings.button"), 
-				button -> {
-					this.minecraft.setScreen(new ExtendedServerOptionsScreen());
-				}, 0.13f, 0.92f, 0.71f) {
-			@Override
-			public boolean setColor(){
-				return true;
-			}
-		});
 		int x=leftPos+90;
 		int xTabs=leftPos-35;
 		int y=topPos+40;
@@ -231,7 +202,7 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 		private final int placementYOffset;
 		private final int catagoryXOffset;
 		private int offsetAmount=0;
-		private final List<ExtendedTogglableTitleButton<ExtendedServerConfig>> bottons = new ArrayList<>();
+		private final List<ExtendedTogglableTitleButton<Boolean>> bottons = new ArrayList<>();
 		private final List<ExtendedSlider> sliders = new ArrayList<>();
 		private Widget catagoryButton;
 
@@ -275,8 +246,8 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 			};
 			return catagoryButton;
 		}
-		public ExtendedTogglableTitleButton<ExtendedServerConfig> addButton(String stringMessageKey, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
-			ExtendedTogglableTitleButton<ExtendedServerConfig> button = new ExtendedTogglableTitleButton<ExtendedServerConfig>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, 
+		public ExtendedTogglableTitleButton<Boolean> addButton(String stringMessageKey, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
+			ExtendedTogglableTitleButton<Boolean> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, 
 					wdget -> toggleValue(configSpec, type), (wdget, matrixStack, pMouseX, pMouseY) -> {
 						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX, pMouseY);
 					}, (wdget, tickData) -> configSpec.get(), enabled, disabled);
@@ -284,8 +255,8 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 			offsetAmount+=1;
 			return button;
 		}
-		public ExtendedTogglableTitleButton<ExtendedServerConfig> addButtonDisabled(String stringMessageKey, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
-			ExtendedTogglableTitleButton<ExtendedServerConfig> button = new ExtendedTogglableTitleButton<ExtendedServerConfig>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, 
+		public ExtendedTogglableTitleButton<Boolean> addButtonDisabled(String stringMessageKey, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
+			ExtendedTogglableTitleButton<Boolean> button = new ExtendedTogglableTitleButton<Boolean>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, 
 					wdget -> {}, (wdget, matrixStack, pMouseX, pMouseY) -> {
 						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX, pMouseY);
 					}, (wdget, tickData) -> configSpec.get(), enabled, disabled).forceDisableButton();
@@ -328,8 +299,8 @@ public class ExtendedServerOptionsScreen extends ExtendedBasicAbstractScreen {
 
 		public void handleUpdates() {
 			if(ExtendedServerOptionsScreen.option==index) {
-				for(ExtendedTogglableTitleButton<ExtendedServerConfig> widget : bottons) {
-					widget.onTick(null);
+				for(ExtendedTogglableTitleButton<Boolean> widget : bottons) {
+					widget.onTick(true);
 				}
 			}
 		}

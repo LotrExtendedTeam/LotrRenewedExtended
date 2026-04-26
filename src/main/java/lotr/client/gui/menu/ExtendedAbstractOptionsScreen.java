@@ -3,8 +3,8 @@ package lotr.client.gui.menu;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBasicAbstractScreen;
-import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedClientOptionsScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.settings.AbstractExtendedOptionsScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.settings.ExtendedClientOptionsScreen;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.gui.MiddleEarthMasterMenuScreen;
@@ -12,7 +12,8 @@ import lotr.client.gui.MiddleEarthMenuScreen;
 import net.minecraft.util.text.StringTextComponent;
 
 public class ExtendedAbstractOptionsScreen extends MiddleEarthMenuScreen {
-	public static Class<? extends ExtendedBasicAbstractScreen> lastSettingScreen = null;
+	public static Class<? extends AbstractExtendedOptionsScreen> lastSettingScreen = null;
+
 	private String errorText = null;
 
 	public ExtendedAbstractOptionsScreen() {

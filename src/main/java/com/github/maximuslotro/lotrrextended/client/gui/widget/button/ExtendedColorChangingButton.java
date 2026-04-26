@@ -39,10 +39,8 @@ public class ExtendedColorChangingButton extends Button {
 		minecraft.getTextureManager().bind(WIDGETS_LOCATION);
 		if(setColor()) {
 			RenderSystem.color4f(selectedRed, selectedGreen, selectedBlue, this.alpha);
-
 		}else {
 			RenderSystem.color4f(1.0f, 1.0f, 1.0f, this.alpha);
-
 		}
 		int i = this.getYImage(this.isHovered());
 		RenderSystem.enableBlend();

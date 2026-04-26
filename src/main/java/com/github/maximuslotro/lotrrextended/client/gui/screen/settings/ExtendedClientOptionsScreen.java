@@ -1,11 +1,9 @@
-package com.github.maximuslotro.lotrrextended.client.gui.screen;
+package com.github.maximuslotro.lotrrextended.client.gui.screen.settings;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import com.github.maximuslotro.lotrextended.mixinhelpers.MixinConstants;
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedSlider;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedSlider.IGetValue;
@@ -13,14 +11,11 @@ import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedSlider.IS
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedColorChangingButton;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTogglableTitleButton;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTogglableTitleButton.IOnTick;
-import com.github.maximuslotro.lotrrextended.client.render.ExtendedBlockIconRenderer;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import lotr.client.gui.MiddleEarthMasterMenuScreen;
 import lotr.client.gui.menu.ExtendedAbstractOptionsScreen;
-import lotr.client.gui.widget.button.LeftRightButton;
 import lotr.common.config.LOTRConfig;
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
@@ -29,34 +24,22 @@ import lotr.common.fac.RankGender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button.IPressable;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.registries.ForgeRegistries;
 
-public class ExtendedClientOptionsScreen extends ExtendedBasicAbstractScreen {
-	public static int option = 0;
+public class ExtendedClientOptionsScreen extends AbstractExtendedOptionsScreen {
 	public List<SettingsCatagory> catagories = new ArrayList<>();
 	private int unlockClientDevCount=0;
 
 	public ExtendedClientOptionsScreen() {
-		super(new StringTextComponent("Client Options"), 200, 256);
+		super(new StringTextComponent("Client Options"), SettingsPage.CLIENT);
 	}
 
 	@Override
 	public void onClose() {
 		MixinConstants.changeableNonConfigCrashableStrBlockRenderDistance = ExtendedClientConfig.structureBlockOutlineViewDistance.get();
-		if (this.itemRenderer16 != null) {
-			this.itemRenderer16.close();
-		}
-		if (this.itemRenderer32 != null) {
-			this.itemRenderer32.close();
-		}
 		super.onClose();
 	}
 
@@ -64,47 +47,6 @@ public class ExtendedClientOptionsScreen extends ExtendedBasicAbstractScreen {
 	public void init() {
 		super.init();
 		ExtendedAbstractOptionsScreen.lastSettingScreen=this.getClass();
-		this.addButton(new LeftRightButton(Math.max(0, this.leftPos - 140), this.topPos + (this.imageHeight + 20) / 4, 100, 20, 
-			true, new TranslationTextComponent("gui.lotr.menu.return"), (b) -> {
-				this.minecraft.setScreen(new MiddleEarthMasterMenuScreen());
-			}));
-		this.addButton(new ExtendedColorChangingButton(Math.max(0, this.leftPos - 140), this.topPos + 20 + (this.imageHeight + 20) / 4, 100, 20, 
-			new TranslationTextComponent("gui.lotrextended.settings.button"), 
-			button -> {
-				this.minecraft.setScreen(new ExtendedClientOptionsScreen());
-			}, 0.13f, 0.92f, 0.71f)  {
-			@Override
-			public boolean setColor(){
-				return true;
-			}
-		});
-		boolean showAdmin=false;
-		if ((this.minecraft.hasSingleplayerServer() && this.minecraft.getSingleplayerServer().getPlayerList().isAllowCheatsForAllPlayers())
-			|| this.minecraft.player.hasPermissions(2)) {
-			this.addButton(new ExtendedColorChangingButton(Math.max(0, this.leftPos - 140), this.topPos + 40 + (this.imageHeight + 20) / 4, 100, 20, 
-				new TranslationTextComponent("gui.lotrextended.serversettings.button"), 
-				button -> {
-					this.minecraft.setScreen(new ExtendedServerOptionsScreen());
-				}, 0.88f, 0.33f, 0.33f) {
-				@Override
-				public boolean setColor(){
-					return false;
-				}
-			});
-		}else {
-			this.addButton(new ExtendedColorChangingButton(Math.max(0, this.leftPos - 140), this.topPos + 40 + (this.imageHeight + 20) / 4, 100, 20, 
-				new TranslationTextComponent("gui.lotrextended.serversettings.button"), 
-				button -> {}, 0.88f, 0.33f, 0.33f) {
-				@Override
-				public boolean setColor(){
-					return true;
-				}
-				@Override
-				public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
-					ExtendedClientOptionsScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.serversettings.no_perm"), 150), pMouseX, pMouseY);
-				}
-			});
-		}
 		int x=leftPos+90;
 		int xTabs=leftPos-35;
 		int y=topPos+40;
@@ -294,88 +236,10 @@ public class ExtendedClientOptionsScreen extends ExtendedBasicAbstractScreen {
 			}).setToolTip((wdget, matrixStack, pMouseX1, pMouseY1) -> {
 				renderTooltip(matrixStack, font.split(new TranslationTextComponent("config.lotrextended.structureBlockOutlineDistance"), 200), pMouseX1, pMouseY1);
 			}));
-		addButton(dev.addButtonNew("Generate Button Icons", button -> {
-			itemsToExport= new ArrayList<>();
-			for (Item item : ForgeRegistries.ITEMS) {
-				if (item != Items.AIR && item instanceof BlockItem) {
-					this.itemsToExport.add(item);
-				}
-			}
-			isExporting = true;
-			failedItemCount = 0;
-			if (itemRenderer16 != null) {
-				itemRenderer16.close();
-			}
-			if (itemRenderer32 != null) {
-				itemRenderer32.close();
-			}
-			itemRenderer16 = new ExtendedBlockIconRenderer(16);
-			itemRenderer32 = new ExtendedBlockIconRenderer(32);
-			currentItemIndex = 0;
-			completedItems.set(0);
-		}, (button, pd) -> {return true;}, "", "", "May Cause Crashes"));
 		catagories.add(dev);
 
 		for(SettingsCatagory catagory : catagories) {
 			catagory.checkVisability();
-		}
-	}
-	private boolean isExporting = false;
-	private ExtendedBlockIconRenderer itemRenderer16;
-	private ExtendedBlockIconRenderer itemRenderer32;
-	private List<Item> itemsToExport;
-	private int currentItemIndex = 0;
-	private final AtomicInteger completedItems = new AtomicInteger(0);
-	private int failedItemCount = 0;
-
-	/**
-	 * This method contains substantial portions of code derived from BlockExporter
-	 * (https://github.com/KazuOfficial/blockexporter), which is licensed under the MIT License.
-	 *
-	 * Original work by KazuOfficial.
-	 *
-	 * Modifications have been made to integrate the code into this project and adapt it
-	 * for extended functionality within a Minecraft 1.16.5 environment.
-	 *
-	 * The original MIT License terms apply to the reused portions of this code.
-	 */
-	@Override
-	public void tick() {
-		super.tick();
-		if (isExporting) {
-			if (currentItemIndex < itemsToExport.size()) {
-				List<ItemStack> batch = new ArrayList<>();
-				int batchEnd = Math.min(currentItemIndex + 16, itemsToExport.size());
-
-				for (int i = currentItemIndex; i < batchEnd; i++) {
-					batch.add(new ItemStack(itemsToExport.get(i)));
-				}
-
-				if (itemRenderer16 != null && !batch.isEmpty()) {
-					itemRenderer16.exportItemsBatch(batch, completedItems);
-				}
-				if (itemRenderer32 != null && !batch.isEmpty()) {
-					itemRenderer32.exportItemsBatch(batch, completedItems);
-				}
-				currentItemIndex = batchEnd;
-
-			} else if (completedItems.get() >= itemsToExport.size()) {
-				isExporting = false;
-				if (itemRenderer != null) {
-					List<ItemStack> currentFailedItems16 = itemRenderer16.getFailedExports();
-					List<ItemStack> currentFailedItems32 = itemRenderer32.getFailedExports();
-					if (!currentFailedItems16.isEmpty() || !currentFailedItems32.isEmpty()) {
-						//this.finishedWithErrors = true;
-						this.failedItemCount = currentFailedItems16.size() + currentFailedItems32.size();
-					}
-				}
-
-				if (failedItemCount<=0) {
-					ExtendedLog.info("Export completed! Exported {} items", itemsToExport.size());
-				} else {
-					ExtendedLog.warn("Export finished with {} failures.", this.failedItemCount);
-				}
-			}
 		}
 	}
 
