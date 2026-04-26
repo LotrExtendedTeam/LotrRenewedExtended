@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 public class ExtendedServerData {
 	private static final Logger LOGGER = LogManager.getLogger();
-	public static final Path EXTENDED_DIR = Paths.get("t/");
+	public static final Path EXTENDED_DIR = Paths.get("lotrextended/");
 
 	public static void loadAll() {
 		try {

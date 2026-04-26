@@ -165,14 +165,21 @@ public class MixinLOTRItems {
 		return item;
 	}
 	/**
-	 * Get Renewed's base method for registering block items from the parent class, DO NOT DIRECTLY CALL
+	 * Get Renewed's base method for registering block items from the parent class.
+	 * @author Maximuslotro
+	 * @reason Need to intercept some block item registrations
 	 * @Shadow (remap=false)
 	 * @param blockSup A block supplier for the block
 	 * @param group The ItemGroup for this item to be placed in
 	 * @return A RegistryObject instance for the block item
 	 * */
-	@Shadow(remap=false)
-	private static RegistryObject<Item> regBlockItem(RegistryObject<Block> blockSup, ItemGroup group) {return null;}
+	@Overwrite(remap=false)
+	private static RegistryObject<Item> regBlockItem(RegistryObject<Block> blockSup, ItemGroup group) {
+		if(blockSup.getId().getPath().equals("keg")) {
+			return regArbitraryBlockItemD(blockSup, (b) -> {return new ExtendedKegItem(b, new Properties().tab(group));});
+		}
+		return regBlockItem(blockSup, group, (props) -> {});
+	}
 	/**
 	 * Get Renewed's base method for registering block items from the parent class, DO NOT DIRECTLY CALL
 	 * @Shadow (remap=false)
