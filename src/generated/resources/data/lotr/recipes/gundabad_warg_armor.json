@@ -1,6 +1,6 @@
 {
   "type": "lotr:faction_shaped",
-  "table": "lotr:angmar",
+  "table": "lotr:northern_orc",
   "pattern": [
     "  M",
     "MLM",
@@ -15,6 +15,6 @@
     }
   },
   "result": {
-    "item": "lotr:angmar_warg_armor"
+    "item": "lotr:gundabad_warg_armor"
   }
 }

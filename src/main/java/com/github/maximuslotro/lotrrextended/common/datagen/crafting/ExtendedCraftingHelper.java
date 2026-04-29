@@ -445,15 +445,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.define('M', Ingredient.of(reasource))
 			.define('L', Ingredient.of(Tags.Items.LEATHER))
 			.unlockedBy("has_"+type, has(reasource))
-			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_1"));
-			ExtendedShapedRecipeBuilder.shaped(armor.get())
-			.pattern("M  ")
-			.pattern("MLM")
-			.pattern("MMM")
-			.define('M', Ingredient.of(reasource))
-			.define('L', Ingredient.of(Tags.Items.LEATHER))
-			.unlockedBy("has_"+type, has(reasource))
-			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_2"));
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()));
 		}
 		else {
 			ExtendedFactionShapedRecipeBuilder.shaped(armor.get(), table)
@@ -463,15 +455,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.define('M', Ingredient.of(reasource))
 			.define('L', Ingredient.of(Tags.Items.LEATHER))
 			.unlockedBy("has_"+type, has(reasource))
-			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_1"));
-			ExtendedFactionShapedRecipeBuilder.shaped(armor.get(), table)
-			.pattern("  M")
-			.pattern("MLM")
-			.pattern("MMM")
-			.define('M', Ingredient.of(reasource))
-			.define('L', Ingredient.of(Tags.Items.LEATHER))
-			.unlockedBy("has_"+type, has(reasource))
-			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_2"));
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()));
 		}
 	}
 

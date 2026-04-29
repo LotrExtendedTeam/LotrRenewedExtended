@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:isengard_warg_armor_1"
+      "lotr:mail_warg_armor"
     ]
   },
   "criteria": {
-    "has_uruk_steel_ingot": {
+    "has_iron_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/uruk_steel"
+            "tag": "forge:ingots/iron"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:isengard_warg_armor_1"
+        "recipe": "lotr:mail_warg_armor"
       }
     }
   },
   "requirements": [
     [
-      "has_uruk_steel_ingot",
+      "has_iron_ingot",
       "has_the_recipe"
     ]
   ]

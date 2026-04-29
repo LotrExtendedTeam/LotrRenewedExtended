@@ -761,6 +761,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.GUNDABAD_URUK_BOW, 20)
 		.addSSell(ExtendedItems.LEATHER_WARG_ARMOR, 20)
 		.addSSell(ExtendedItems.MAIL_WARG_ARMOR, 25)
+		.addSSell(ExtendedItems.GUNDABAD_WARG_ARMOR, 30)
 		.save(pConsumer, ExtendedTraderTypes.GUNDABAD_TRADER);
 
 		make(5).setTypicallyWandering()

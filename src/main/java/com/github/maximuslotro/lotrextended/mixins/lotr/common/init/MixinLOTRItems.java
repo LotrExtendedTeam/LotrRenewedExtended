@@ -1134,8 +1134,8 @@ public class MixinLOTRItems {
 		ExtendedItems.BANANA_BEER = regItemB("banana_beer", () -> VesselDrinkItem.newAlcohol(0.5F, 4, 0.6F));
 		ExtendedItems.PLUM_KVASS = regItemB("plum_kvass", () -> VesselDrinkItem.newAlcohol(0.2F, 4, 0.4F));
 		//#######################################################################EQUIPMENT##################################################
-		ExtendedItems.LEATHER_WARG_ARMOR = regItemB("leather_warg_armor", () -> new ExtendedMountedDyeableArmorItem(8, "leather", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
-		ExtendedItems.MAIL_WARG_ARMOR = regItemB("mail_warg_armor", () -> new ExtendedMountedArmorItem(10, "mail", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.LEATHER_WARG_ARMOR = regItemB("leather_warg_armor", () -> new ExtendedMountedDyeableArmorItem(8, "leather", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
+		ExtendedItems.MAIL_WARG_ARMOR = regItemB("mail_warg_armor", () -> new ExtendedMountedArmorItem(10, "mail", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 
 		//Generic Orc Equipment
 		ExtendedItems.ORC_BOW = regItemB("orc_bow", () -> new ExtendedBowItem(ExtendedBowMaterial.ORC));
@@ -1180,7 +1180,7 @@ public class MixinLOTRItems {
 		ExtendedItems.MORGUL_VASSAL_CHESTPLATE = regItemB("morgul_vassal_chestplate",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL_VASSAL"), EquipmentSlotType.CHEST, "chestplate"));
 		ExtendedItems.MORGUL_VASSAL_LEGGINGS = regItemB("morgul_vassal_leggings",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL_VASSAL"), EquipmentSlotType.LEGS, "leggings"));
 		ExtendedItems.MORGUL_VASSAL_BOOTS = regItemB("morgul_vassal_boots",() -> new LOTRArmorItem(LOTRMaterial.valueOf("MORGUL_VASSAL"), EquipmentSlotType.FEET));
-		ExtendedItems.ANGMAR_WARG_ARMOR = regItemB("angmar_warg_armor", () -> new ExtendedMountedArmorItem(11, "angmar", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.ANGMAR_WARG_ARMOR = regItemB("angmar_warg_armor", () -> new ExtendedMountedArmorItem(11, "angmar", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 
 		//Bone Equipment
 		ExtendedItems.BONE_SWORD = regItemB("bone_sword",() -> new ExtendedSwordItem(LOTRMaterial.valueOf("EXT_BONE").asTool(), LOTRItemGroups.COMBAT));
@@ -1228,12 +1228,13 @@ public class MixinLOTRItems {
 		ExtendedItems.GUNDABAD_URUK_SPEAR = regItemB("gundabad_uruk_spear",() -> new SpearItem(LOTRMaterial.valueOf("GUNDABAD_URUK")));
 		ExtendedItems.GUNDABAD_URUK_DAGGER = regItemB("gundabad_uruk_dagger",() -> new ExtendedDaggerItem(LOTRMaterial.valueOf("GUNDABAD_URUK")));
 		ExtendedItems.GUNDABAD_URUK_BOW = regItemB("gundabad_uruk_bow",() -> new ExtendedBowItem(ExtendedBowMaterial.GUNDABAD_URUK));
+		ExtendedItems.GUNDABAD_WARG_ARMOR = regItemB("gundabad_warg_armor", () -> new ExtendedMountedArmorItem(10, "gundabad", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 
 		//Isengard
-		ExtendedItems.ISENGARD_WARG_ARMOR = regItemB("isengard_warg_armor", () -> new ExtendedMountedArmorItem(13, "isengard", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.ISENGARD_WARG_ARMOR = regItemB("isengard_warg_armor", () -> new ExtendedMountedArmorItem(13, "isengard", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 
 		//Isengard
-		ExtendedItems.MORDOR_WARG_ARMOR = regItemB("mordor_warg_armor", () -> new ExtendedMountedArmorItem(11, "mordor", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.MORDOR_WARG_ARMOR = regItemB("mordor_warg_armor", () -> new ExtendedMountedArmorItem(11, "mordor", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 
 		ExtendedItems.LONGBOW = regItemB("longbow", () -> new ExtendedBowItem(ExtendedBowMaterial.GENERIC));
 		
@@ -1248,9 +1249,9 @@ public class MixinLOTRItems {
 		//Blue Mountains equipment
 		ExtendedItems.BLUE_DWARVEN_SHIELD = regItemB("blue_dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.BLUE_DWARVEN));
 
-		ExtendedItems.LEATHER_BOAR_ARMOR = regItemB("leather_boar_armor", () -> new ExtendedMountedDyeableArmorItem(8, "leather", MountType.BOAR, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
-		ExtendedItems.DWARVEN_BOAR_ARMOR = regItemB("dwarven_boar_armor", () -> new ExtendedMountedArmorItem(13, "dwarven", MountType.BOAR, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
-		ExtendedItems.BLUE_DWARVEN_BOAR_ARMOR = regItemB("blue_dwarven_boar_armor", () -> new ExtendedMountedArmorItem(13, "blue_dwarven", MountType.BOAR, new Properties().stacksTo(1).tab(LOTRItemGroups.MISC)));
+		ExtendedItems.LEATHER_BOAR_ARMOR = regItemB("leather_boar_armor", () -> new ExtendedMountedDyeableArmorItem(8, "leather", MountType.BOAR, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
+		ExtendedItems.DWARVEN_BOAR_ARMOR = regItemB("dwarven_boar_armor", () -> new ExtendedMountedArmorItem(13, "dwarven", MountType.BOAR, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
+		ExtendedItems.BLUE_DWARVEN_BOAR_ARMOR = regItemB("blue_dwarven_boar_armor", () -> new ExtendedMountedArmorItem(13, "blue_dwarven", MountType.BOAR, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 
 		// High Elven Equipment
 		ExtendedItems.RIVENDELL_SHIELD = regItemB("rivendell_shield", () -> new LOTRShieldItem(LOTRMaterial.RIVENDELL));

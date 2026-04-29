@@ -596,6 +596,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeWargArmorRecipe(consumer, ExtendedItems.ANGMAR_WARG_ARMOR, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel_ingot", LOTRRecipes.ANGMAR_CRAFTING);
 		makeWargArmorRecipe(consumer, ExtendedItems.ISENGARD_WARG_ARMOR, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel_ingot", LOTRRecipes.URUK_CRAFTING);
 		makeWargArmorRecipe(consumer, ExtendedItems.MORDOR_WARG_ARMOR, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel_ingot", LOTRRecipes.MORDOR_CRAFTING);
+		makeWargArmorRecipe(consumer, ExtendedItems.GUNDABAD_WARG_ARMOR, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel_ingot", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 
 		// GOBLIN/URUK
 		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.GOBLIN_BRICK,

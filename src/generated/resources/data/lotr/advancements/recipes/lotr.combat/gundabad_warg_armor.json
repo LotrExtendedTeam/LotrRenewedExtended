@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:leather_warg_armor_2"
+      "lotr:gundabad_warg_armor"
     ]
   },
   "criteria": {
-    "has_leather": {
+    "has_orc_steel_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:leather"
+            "tag": "forge:ingots/orc_steel"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:leather_warg_armor_2"
+        "recipe": "lotr:gundabad_warg_armor"
       }
     }
   },
   "requirements": [
     [
-      "has_leather",
+      "has_orc_steel_ingot",
       "has_the_recipe"
     ]
   ]

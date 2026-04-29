@@ -1,4 +1,4 @@
-package lotr.client.render.entity.layers;
+package com.github.maximuslotro.lotrrextended.client.render.entity.layers;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.mojang.blaze3d.matrix.MatrixStack;
