@@ -18,6 +18,7 @@ public class ExtendedServerData {
 			Files.createDirectories(EXTENDED_DIR);
 			ExtendedModTracker.load();
 			ExtendedCombatTracker.load();
+			ExtendedTravelTracker.load();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

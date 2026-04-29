@@ -39,7 +39,7 @@ public class ExtendedPlayerInfo {
 
 	private boolean combatLoggedLastSession = false;
 
-	private boolean isInTrouble = false;
+	private boolean jailed = false;
 
 	private ExtendedPlayerInfo(UUID uuid) {
 		this.id = uuid;
@@ -63,13 +63,14 @@ public class ExtendedPlayerInfo {
 
 	public void clearCombatLogFlag() {
 		this.combatLoggedLastSession = false;
-
-	public void setInTrouble(boolean trouble) {
-		isInTrouble = trouble;
 	}
 
-	public boolean isInTrouble() {
-		return isInTrouble;
+	public void sendToJail(boolean jail) {
+		jailed = jail;
+	}
+
+	public boolean isInJail() {
+		return jailed;
 	}
 
 	public static boolean doesPlayerInfoExist(@Nullable UUID id) {
