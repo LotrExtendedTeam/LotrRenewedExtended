@@ -10,7 +10,6 @@ import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.TargetGoal;
 import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.entity.player.PlayerEntity;
 
 /**
  * A custom targeting goal for {@link ExtendedNPCEntity} units that enables them to
@@ -76,8 +75,8 @@ public class ExtendedHiredPlayerHurtByEntityTargetGoal extends TargetGoal {
 					}
 					// prevent hired units of the same player from fighting each other
 					if (this.ownerLastHurtBy instanceof ExtendedNPCEntity && ((ExtendedNPCEntity)ownerLastHurtBy).getUnitInfo().isNpcActiveDuty()) {
-						if (unitOwner!=null && unitOwner.equals(((ExtendedNPCEntity)ownerLastHurtBy).getUnitInfo().getUnitOwner())) {
-							if (!((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unitOwner)).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit()) {
+						if (extendedNpcEntity.getUnitInfo().getOwnerUUID().equals(((ExtendedNPCEntity)ownerLastHurtBy).getUnitInfo().getOwnerUUID())) {
+							if (!((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(this.mob.level, extendedNpcEntity.getUnitInfo().getOwnerUUID())).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit()) {
 								ownerLastHurtBy = null;
 								return false;
 							}

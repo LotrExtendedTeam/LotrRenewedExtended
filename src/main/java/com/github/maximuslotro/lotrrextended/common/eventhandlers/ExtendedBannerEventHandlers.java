@@ -234,7 +234,6 @@ public class ExtendedBannerEventHandlers {
 			protectionInstance = new SingleProtectionInstance.AnyProtection();
 		}
 		saveBlocks(world, explosion.getToBlow(), protectionInstance);
-
 	}
 
 	private static void saveBlocks(World world, List<BlockPos> blocksToBlow, SingleProtectionInstance instance) {
