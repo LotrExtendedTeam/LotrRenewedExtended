@@ -9,6 +9,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.TickEvent;
@@ -57,6 +58,10 @@ public class ExtendedStaffEvents {
 
 	@SubscribeEvent
 	public static void playerLoggedInEvent(PlayerEvent.PlayerLoggedInEvent event) {
+		if (ExtendedPruneWorldCommand.ACTIVE_ENGINE != null && !ExtendedPruneWorldCommand.ACTIVE_ENGINE.isFinished()) {
+		    ((ServerPlayerEntity)event.getPlayer()).connection.disconnect(new StringTextComponent("Server pruning in progress"));
+		}
+		
 		if (event.getPlayer() instanceof ServerPlayerEntity && ExtendedServerConfig.enableStaffServer.get()) {
 			// Handle first to ensure data is loaded
 			ExtendedPlayerInfo.login(event.getPlayer().getUUID());
@@ -80,5 +85,6 @@ public class ExtendedStaffEvents {
 		ExtendedSpawnCommand.register(dispatcher);
 		ExtendedModControlCommand.register(dispatcher);
 		ExtendedFirstLastSeenCommand.register(dispatcher);
+		ExtendedPruneWorldCommand.register(dispatcher);
 	}
 }
