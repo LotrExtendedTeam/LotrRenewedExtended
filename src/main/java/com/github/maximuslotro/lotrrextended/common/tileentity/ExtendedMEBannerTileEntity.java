@@ -660,6 +660,9 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			if(placedPlayerName!=null) {
 				pCompound.putString("placedPlayerName", placedPlayerName);
 			}
+			if(protectionLevel.getProtectionRadius()>0) {
+				pCompound.putInt("radius", protectionLevel.getProtectionRadius());
+			}
 			if(!protectionWhitelist.isEmpty()) {
 				ListNBT whitelist = new ListNBT();
 				for(ProtectionEntry protectionWWhitelist : protectionWhitelist) {
