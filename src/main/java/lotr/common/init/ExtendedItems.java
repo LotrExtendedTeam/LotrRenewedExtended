@@ -717,6 +717,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BARROW_BLADE;
 	public static RegistryObject<Item> ANDURIL;
 	public static RegistryObject<Item> SHARDS_OF_NARSIL;
+	public static RegistryObject<Item> GLAMDRING;
+	public static RegistryObject<Item> STAFF_GANDALF_WHITE;
+	public static RegistryObject<Item> STAFF_GANDALF_GRAY;
 
 	public static RegistryObject<Item> GUNDABAD_ORC_BANNER_PATTERN;
 	public static RegistryObject<Item> GUNDABAD_ORC_BANNER;

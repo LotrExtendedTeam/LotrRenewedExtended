@@ -24,6 +24,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedMattockItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCoinItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSwordItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedStaffItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
 import lotr.common.block.ChandelierBlock;
@@ -193,6 +194,11 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genSpear(item.getKey());
 				continue;
 			}
+			if(item.getValue().get() instanceof ExtendedStaffItem) {
+				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				genStaff(item.getKey());
+				continue;
+			}
 			if(item.getValue().get() instanceof DaggerItem) {
 				genDaggerSneaking(item.getKey());
 				genDagger(item.getKey());
@@ -200,7 +206,9 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			if(item.getValue().get() instanceof ExtendedSwordItem || item.getValue().get() instanceof HammerItem) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
-				genSword(item.getKey());
+				if(!item.getKey().contains("glamdring")) {
+					genSword(item.getKey());
+				}
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRShieldItem) {
@@ -305,6 +313,11 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 	private ItemModelBuilder genSword(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld", "lotr:item/handheld_large");
+		return gen(builder, false, lotrExtendedLoc("item/"+name+"_large"));
+	}
+
+	private ItemModelBuilder genStaff(String name) {
+		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld", "lotr:item/handheld_spear");
 		return gen(builder, false, lotrExtendedLoc("item/"+name+"_large"));
 	}
 

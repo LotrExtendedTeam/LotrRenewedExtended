@@ -1326,6 +1326,9 @@ public class MixinLOTRItems {
 		//########################################################################LORE##########################################################
 		ExtendedItems.SHARDS_OF_NARSIL = regBlockItemProps(ExtendedBlocks.SHARDS_OF_NARSIL, LOTRItemGroups.STORY, (props) -> props.rarity(Rarity.RARE));
 		ExtendedItems.ANDURIL = regItemB("anduril",() -> new ExtendedSwordItem(LOTRMaterial.valueOf("ANDURIL").asTool(), new Properties().tab(LOTRItemGroups.STORY).rarity(Rarity.RARE)));
+		ExtendedItems.GLAMDRING = regItemB("glamdring",() -> new ExtendedSwordItem(LOTRMaterial.valueOf("GLAMDRING").asTool(), new Properties().tab(LOTRItemGroups.STORY).rarity(Rarity.RARE)));
+		ExtendedItems.STAFF_GANDALF_GRAY = regItemB("staff_gandalf_the_gray",() -> new ExtendedStaffGandalfGrey(LOTRMaterial.valueOf("GANDALF_GRAY").asTool(), new Properties().tab(LOTRItemGroups.STORY).rarity(Rarity.RARE)));
+		ExtendedItems.STAFF_GANDALF_WHITE = regItemB("staff_gandalf_the_white",() -> new ExtendedStaffGandalfWhite(LOTRMaterial.valueOf("GANDALF_WHITE").asTool(), new Properties().tab(LOTRItemGroups.STORY).rarity(Rarity.RARE)));
 
 		// HIDDEN
 		ExtendedItems.GRASS_VOID = regHiddenBlockItemB(ExtendedBlocks.GRASS_VOID);

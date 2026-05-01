@@ -2432,6 +2432,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.POTTED_EBONY_SAPLING.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.EBONY_LEAVES.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.EBONY_SAPLING.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.STAFF_GANDALF_GRAY.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.STAFF_GANDALF_WHITE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.GLAMDRING.get().getRegistryName().getPath());
 	}
 
 	@Override
