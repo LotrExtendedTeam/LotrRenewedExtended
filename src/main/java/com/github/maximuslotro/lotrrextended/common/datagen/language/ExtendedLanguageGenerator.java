@@ -142,6 +142,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.base.set", "Set");
 		addD("gui.lotrextended.base.true", "True");
 		addD("gui.lotrextended.base.false", "False");
+		addD("gui.lotrextended.base.start", "Start");
+		addD("gui.lotrextended.base.cancel", "Cancel");
+		addD("gui.lotrextended.base.on", "On");
+		addD("gui.lotrextended.base.off", "Off");
+		addD("gui.lotrextended.base.return", "Return");
 
 		// trade system
 		addD("gui.lotrextended.trading.trade_button", "Trade");
@@ -249,6 +254,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.serversettings.category.protection", "Spawn Protection");
 		addD("gui.lotrextended.serversettings.category.worldgen", "World Generation");
 		addD("gui.lotrextended.serversettings.category.worldgen.tooltip", "Note: World generation settings do not apply to previously generated chunks.");
+		addD("gui.lotrextended.serversettings.category.worldmaintenance", "World Maintenance");
+		addD("gui.lotrextended.serversettings.category.worldmaintenance.tooltip", "Note: These options can modify or regenerate parts of the world, including existing chunks. Changes may be permanent.");
 		addD("gui.lotrextended.serversettings.bannerprotection.setting", "Banner Protection: %s");
 		addD("gui.lotrextended.serversettings.fellowshipcreation.setting", "Fellowship Creation: %s");
 		addD("gui.lotrextended.serversettings.renewedwaypointcreate.setting", "Renewed Custom WP: %s");
@@ -344,6 +351,22 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.lotrextendedversioncheck.setting", "Extended Version Check: ");
 		addD("gui.lotrextended.settings.show_hired_unit_hp_numbers.setting", "Large Hired Unit HP Bars: ");
 
+		// World Prune stuff
+		addD("gui.lotrextended.worldprune.title", "World Prune Panel");
+		addD("gui.lotrextended.worldprune.open.message", "World Prune Panel");
+		addD("gui.lotrextended.worldprune.open.tooltip", "Opens the world pruning window.");
+		addD("gui.lotrextended.worldprune.dryrun.splitter", "%s: %s");
+		addD("gui.lotrextended.worldprune.runagain", "Run Again");
+		addD("gui.lotrextended.worldprune.returndisabled", "Cannot Exit While Running");
+		addD("gui.lotrextended.worldprune.mode", "Mode: %s");
+		addD("gui.lotrextended.worldprune.mode.safe", "Dry Run");
+		addD("gui.lotrextended.worldprune.mode.live", "Live Deletion");
+		addD("gui.lotrextended.worldprune.checking", "Checking chunks: %s%% (%s/%s)");
+		addD("gui.lotrextended.worldprune.scanning", "Scanning %s/%s region files (%s chunks discovered)");
+		addD("gui.lotrextended.worldprune.processing", "Processing regions: %s%% (%s/%s)");
+		addD("gui.lotrextended.worldprune.finished", "Pruning complete! Deleted %s regions, saving %s, and skipped %s");
+		addD("gui.lotrextended.worldprune.finished.dry", "[Dry Run] Would delete %s regions, saving %s");
+		addD("gui.lotrextended.worldprune.canceled", "Pruning canceled (%s/%s regions processed)");
 		// Banner Menu strings
 		addD("gui.lotrextended.banner_configuration.title", "Banner Protection");
 		addD("gui.lotrextended.banner_configuration.disabled", "Banner Protection Is Disabled");

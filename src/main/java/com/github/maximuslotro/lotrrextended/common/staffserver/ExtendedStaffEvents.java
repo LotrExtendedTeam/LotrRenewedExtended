@@ -4,6 +4,7 @@ package com.github.maximuslotro.lotrrextended.common.staffserver;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSDataRequestPacket;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedWorldRegenEngineWatcher;
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.command.CommandSource;
@@ -58,7 +59,7 @@ public class ExtendedStaffEvents {
 
 	@SubscribeEvent
 	public static void playerLoggedInEvent(PlayerEvent.PlayerLoggedInEvent event) {
-		if (ExtendedPruneWorldCommand.ACTIVE_ENGINE != null && !ExtendedPruneWorldCommand.ACTIVE_ENGINE.isFinished()) {
+		if (ExtendedWorldRegenEngineWatcher.ACTIVE_ENGINE != null && !ExtendedWorldRegenEngineWatcher.ACTIVE_ENGINE.isFinished()) {
 		    ((ServerPlayerEntity)event.getPlayer()).connection.disconnect(new StringTextComponent("Server pruning in progress"));
 		}
 		

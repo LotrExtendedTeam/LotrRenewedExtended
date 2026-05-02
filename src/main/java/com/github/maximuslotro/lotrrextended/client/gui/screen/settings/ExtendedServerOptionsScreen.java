@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedWorldPruneScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedSlider;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedColorChangingButton;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTogglableTitleButton;
@@ -14,7 +15,10 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.gui.menu.ExtendedAbstractOptionsScreen;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.Widget;
+import net.minecraft.client.gui.widget.button.Button;
+import net.minecraft.client.gui.widget.button.Button.IPressable;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -159,7 +163,10 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 				ExtendedServerConfig.enableFixedStructureTowerHills, ExtendedSettingToggles.FIXED_STRUCTURE_TOWER_HILLS, 
 				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableFixedStructureTowerHills"));
 		catagories.add(worldgen);
-
+		SettingsCatagory worldMaintenance = new SettingsCatagory(this, 7, x, y, xTabs);
+		addButton(worldMaintenance.addCatagoryButton("gui.lotrextended.serversettings.category.worldmaintenance", "gui.lotrextended.serversettings.category.worldmaintenance.tooltip"));
+		addButton(worldMaintenance.addButton("gui.lotrextended.worldprune.open.message", (buton) -> Minecraft.getInstance().setScreen(new ExtendedWorldPruneScreen()), "gui.lotrextended.worldprune.open.tooltip"));
+		catagories.add(worldMaintenance);
 		for(SettingsCatagory catagory : catagories) {
 			catagory.checkVisability();
 		}
@@ -202,7 +209,7 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 		private final int placementYOffset;
 		private final int catagoryXOffset;
 		private int offsetAmount=0;
-		private final List<ExtendedTogglableTitleButton<Boolean>> bottons = new ArrayList<>();
+		private final List<Widget> widgets = new ArrayList<>();
 		private final List<ExtendedSlider> sliders = new ArrayList<>();
 		private Widget catagoryButton;
 
@@ -246,12 +253,21 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 			};
 			return catagoryButton;
 		}
+		public Button addButton(String stringMessageKey, IPressable pOnPress, String tooltipKey) {
+			Button button = new Button(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(stringMessageKey), 
+				pOnPress, (wdget, matrixStack, pMouseX, pMouseY) -> {
+						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(tooltipKey), 200), pMouseX, pMouseY);
+					});
+			widgets.add(button);
+			offsetAmount+=1;
+			return button;
+		}
 		public ExtendedTogglableTitleButton<Boolean> addButton(String stringMessageKey, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
 			ExtendedTogglableTitleButton<Boolean> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, 
 					wdget -> toggleValue(configSpec, type), (wdget, matrixStack, pMouseX, pMouseY) -> {
 						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX, pMouseY);
 					}, (wdget, tickData) -> configSpec.get(), enabled, disabled);
-			bottons.add(button);
+			widgets.add(button);
 			offsetAmount+=1;
 			return button;
 		}
@@ -260,7 +276,7 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 					wdget -> {}, (wdget, matrixStack, pMouseX, pMouseY) -> {
 						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX, pMouseY);
 					}, (wdget, tickData) -> configSpec.get(), enabled, disabled).forceDisableButton();
-			bottons.add(button);
+			widgets.add(button);
 			offsetAmount+=1;
 			return button;
 		}
@@ -293,19 +309,22 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 		public void clean() {
 			screen=null;
 			catagoryButton=null;
-			bottons.clear();
+			widgets.clear();
 			sliders.clear();
 		}
 
+		@SuppressWarnings("unchecked")
 		public void handleUpdates() {
 			if(ExtendedServerOptionsScreen.option==index) {
-				for(ExtendedTogglableTitleButton<Boolean> widget : bottons) {
-					widget.onTick(true);
+				for(Widget widget : widgets) {
+					if(widget instanceof ExtendedTogglableTitleButton) {
+						((ExtendedTogglableTitleButton<Boolean>)widget).onTick(true);
+					}
 				}
 			}
 		}
 		public void checkVisability(){
-			for(Widget widget : bottons) {
+			for(Widget widget : widgets) {
 				widget.visible = ExtendedServerOptionsScreen.option==index; // Hide/Show widget if this category is selected
 			}
 			for(Widget widget : sliders) {

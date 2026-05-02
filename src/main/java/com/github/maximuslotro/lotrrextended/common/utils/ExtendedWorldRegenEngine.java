@@ -2,11 +2,12 @@ package com.github.maximuslotro.lotrrextended.common.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.ThreadFactory;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,6 +15,7 @@ import java.util.regex.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -45,23 +47,26 @@ public class ExtendedWorldRegenEngine {
 	private final Thread thread;
 	private final DataFixer dataFixer;
 	private volatile boolean running = true;
+	private volatile boolean canceled = false;
 	private volatile boolean finished;
 	private volatile int totalChunks;
 	private volatile int deletableChunks;
-	private volatile int protectedChunks;
+	private volatile int bannerProtectedChunks;
+	private volatile int waypointProtectedChunks;
+	private volatile int spawnProtectedChunks;
+	private volatile int skippedErrorChunks;
 	private static final Pattern REGEX = Pattern.compile("^r\\.(-?[0-9]+)\\.(-?[0-9]+)\\.mca$");
-	private final Set<Long> protectedRegionsIndex = new HashSet<>();
+	private final Map<RegistryKey<World>, Set<Long>> protectedRegionsIndex = new HashMap<>();
 	private final MinecraftServer server;
 	private volatile boolean dryRun = true;
 	private volatile Stage stage = Stage.SCANNING_CHUNKS;
 
 	private volatile int totalRegions;
+	private volatile int currentRegions;
 	private volatile int deletedRegions;
 	private volatile int protectedRegions;
 	private volatile int skippedLoadedRegions;
-
-	private static ExtendedWorldRegenEngine ACTIVE_ENGINE = null;
-	private static UUID ACTIVE_PLAYER = null;
+	private int errorProtectedChunks;
 
 	public ExtendedWorldRegenEngine(boolean shouldDryRun) {
 		this.levels = ImmutableSet.of(LOTRDimensions.MIDDLE_EARTH_WORLD_KEY);
@@ -79,15 +84,16 @@ public class ExtendedWorldRegenEngine {
 
 	public void cancel() {
 		this.running = false;
-
+		this.canceled = true;
 		try {
 			this.thread.join();
+			this.finished = true;
 		} catch (InterruptedException interruptedexception) {
 		}
-
+		this.finished = true;
 	}
 
-	private void markProtectedChunks(int blockX, int blockZ, int radius) {
+	private void markProtectedChunks(RegistryKey<World> worldKey, int blockX, int blockZ, int radius) {
 		int minX = blockX - radius;
 		int maxX = blockX + radius;
 		int minZ = blockZ - radius;
@@ -98,9 +104,11 @@ public class ExtendedWorldRegenEngine {
 		int minChunkZ = minZ >> 4;
 		int maxChunkZ = maxZ >> 4;
 
+		Set<Long> set = protectedRegionsIndex.get(worldKey);
+
 		for (int cx = minChunkX; cx <= maxChunkX; cx++) {
 			for (int cz = minChunkZ; cz <= maxChunkZ; cz++) {
-				protectedRegionsIndex.add(getRegionKey(cx, cz));
+				set.add(getRegionKey(cx, cz));
 			}
 		}
 	}
@@ -115,6 +123,7 @@ public class ExtendedWorldRegenEngine {
 		try {
 			this.totalChunks = 0;
 			this.totalRegions = 0;
+			this.currentRegions = 0;
 			Builder<RegistryKey<World>, ListIterator<ChunkPos>> worldChunkListBuilder = ImmutableMap.builder();
 
 			this.stage = Stage.SCANNING_CHUNKS;
@@ -123,6 +132,9 @@ public class ExtendedWorldRegenEngine {
 				worldChunkListBuilder.put(registrykey, list.listIterator());
 			}
 
+			for (RegistryKey<World> key : levels) {
+				protectedRegionsIndex.put(key, new HashSet<>());
+			}
 			if (this.totalChunks == 0) {
 				this.finished = true;
 			} else {
@@ -143,13 +155,16 @@ public class ExtendedWorldRegenEngine {
 						ListIterator<ChunkPos> chunkiterator = worldChunkList.get(worldKey);
 						ChunkLoader chunkloader = worldChunkLoaders.get(worldKey);
 						if (chunkiterator.hasNext()) {
+							if(canceled) {
+								break;
+							}
 							ChunkPos chunkpos = chunkiterator.next();
-							boolean shouldSave = false;
+							boolean protectedChunk = false;
 
 							try {
 								CompoundNBT nbt = chunkloader.read(chunkpos);
 								if (nbt == null) {
-									++this.protectedChunks;
+									++this.skippedErrorChunks;
 									shouldKeepRunning = true;
 									continue;
 								}
@@ -160,7 +175,7 @@ public class ExtendedWorldRegenEngine {
 									CompoundNBT te = tileEntities.getCompound(blockEntityIndex);
 
 									// Check it actually has your data
-									if (te.contains("ProtectionData", 10)) {
+									if (te.getString("id").equals("lotr:banner_s_tileentity") && te.contains("ProtectionData", 10)) {
 										CompoundNBT protection = te.getCompound("ProtectionData");
 										if (!protection.getBoolean("used")) {
 											continue;
@@ -174,28 +189,45 @@ public class ExtendedWorldRegenEngine {
 										}
 										int x = te.getInt("x");
 										int z = te.getInt("z");
-										
+
 										String playerName = "Unknown";
-									    if (protection.contains("placedPlayerName", 8)) { //string
-									        playerName = protection.getString("placedPlayerName");
-									    } else if (protection.contains("placedPlayer", 11)) { //UUID
-									        playerName = protection.getUUID("placedPlayer").toString();
-									    }
-									    LOGGER.info("Protection found by {} at {},{} (radius {})", playerName, x, z, radius);
-									   
-										markProtectedChunks(x, z, radius);
-										shouldSave=true;
+										if (protection.contains("placedPlayerName", 8)) { //string
+											playerName = protection.getString("placedPlayerName");
+										} else if (protection.contains("placedPlayer", 11)) { //UUID
+											playerName = protection.getUUID("placedPlayer").toString();
+										}
+										LOGGER.info("Protection found by {} at {},{} (radius {})", playerName, x, z, radius);
+
+										markProtectedChunks(worldKey, x, z, radius);
+										++this.bannerProtectedChunks;
+										protectedChunk=true;
+									}else if(te.getString("id").equals("lotr:custom_waypoint_marker")){
+										int x = te.getInt("x");
+										int z = te.getInt("z");
+										LOGGER.info("Waypoint found at {},{} (radius {})", x, z, 1);
+										markProtectedChunks(worldKey, x, z, 8);
+										++this.waypointProtectedChunks;
+										protectedChunk=true;
+									}else if(ExtendedServerConfig.enableExtendedSpawnProtection.get() && worldKey == LOTRDimensions.MIDDLE_EARTH_WORLD_KEY){
+										int x = te.getInt("x");
+										int z = te.getInt("z");
+										int k = Math.max(x, z);
+										if(k <= ExtendedServerConfig.middleEarthSpawnProtectionRadius.get()) {
+											LOGGER.info("Spawn found at {},{} (radius {})", x, z, 1);
+											markProtectedChunks(worldKey, x, z, 0);
+											++this.spawnProtectedChunks;
+											protectedChunk=true;
+										}
 									}
 								}
 							}catch(Exception e) {
 								LOGGER.error("Failed to read chunk {}, protecting region", chunkpos, e);
-								protectedRegionsIndex.add(getRegionKey(chunkpos.x, chunkpos.z));
-								shouldSave=true;
+								protectedRegionsIndex.get(worldKey).add(getRegionKey(chunkpos.x, chunkpos.z));
+								++this.skippedErrorChunks;
+								protectedChunk=true;
 							}
 
-							if (shouldSave) {
-								++this.protectedChunks;
-							} else {
+							if (!protectedChunk) {
 								++this.deletableChunks;
 							}
 
@@ -207,7 +239,6 @@ public class ExtendedWorldRegenEngine {
 						this.running = false;
 					}
 				}
-
 				for(ChunkLoader chunkloader1 : worldChunkLoaders.values()) {
 					try {
 						chunkloader1.close();
@@ -215,16 +246,28 @@ public class ExtendedWorldRegenEngine {
 						LOGGER.error("Error processing chunk", (Throwable)ioexception);
 					}
 				}
+				if(canceled) {
+					this.finished = true;
+					this.stage = Stage.CANCELED;
+					return;
+				}
 				this.stage = Stage.DELETING_REGIONS;
 				for (RegistryKey<World> worldKey : this.levels) {
-					deleteUnprotectedRegions(worldKey);
+					Set<Long> protectedSet = protectedRegionsIndex.get(worldKey);
+					deleteUnprotectedRegions(worldKey, protectedSet);
+					if(canceled) {
+						break;
+					}
 				}
 
 				currentMilisecond = Util.getMillis() - currentMilisecond;
 				LOGGER.info("World pruning finished after {} ms", (long)currentMilisecond);
 				LOGGER.info("Found {} total chunks", this.totalChunks);
 				LOGGER.info("Found {} deletable chunks", this.deletableChunks);
-				LOGGER.info("Found {} protected chunks", this.protectedChunks);
+				LOGGER.info("Found {} error protected chunks", this.skippedErrorChunks);
+				LOGGER.info("Found {} spawn protected chunks", this.spawnProtectedChunks);
+				LOGGER.info("Found {} banner protected chunks", this.bannerProtectedChunks);
+				LOGGER.info("Found {} waypoint protected chunks", this.waypointProtectedChunks);
 				LOGGER.info("Found {} total regions", this.totalRegions);
 				LOGGER.info("Found {} loaded regions", this.skippedLoadedRegions);
 				LOGGER.info("Found {} protected regions", this.protectedRegions);
@@ -241,12 +284,15 @@ public class ExtendedWorldRegenEngine {
 		this.stage = Stage.FINISHED;
 	}
 
-	private void deleteUnprotectedRegions(RegistryKey<World> worldKey) {
+	private void deleteUnprotectedRegions(RegistryKey<World> worldKey, Set<Long> protectedSet) {
 		File regionDir = new File(this.levelStorage.getDimensionPath(worldKey), "region");
 
 		File[] files = regionDir.listFiles((dir, name) -> name.endsWith(".mca"));
 		if (files == null) return;
 		for (File file : files) {
+			if(canceled) {
+				break;
+			}
 			Matcher matcher = REGEX.matcher(file.getName());
 			if (!matcher.matches()) continue;
 
@@ -255,7 +301,7 @@ public class ExtendedWorldRegenEngine {
 
 			long key = (((long)regionX) << 32) | (regionZ & 0xffffffffL);
 
-			if (!protectedRegionsIndex.contains(key)) {
+			if (!protectedSet.contains(key)) {
 				if (isRegionLoaded(server, worldKey, regionX, regionZ)) {
 					LOGGER.info("Skipping loaded region {}", file.getName());
 					this.skippedLoadedRegions++;
@@ -301,9 +347,9 @@ public class ExtendedWorldRegenEngine {
 			return ImmutableList.of();
 		} else {
 			List<ChunkPos> list = Lists.newArrayList();
-
+			this.totalRegions += afile.length;
 			for(File file3 : afile) {
-				this.totalRegions += 1;
+				this.currentRegions += 1;
 				Matcher matcher = REGEX.matcher(file3.getName());
 				if (matcher.matches()) {
 					int i = Integer.parseInt(matcher.group(1)) << 5;
@@ -337,32 +383,48 @@ public class ExtendedWorldRegenEngine {
 		return this.totalChunks;
 	}
 
-	public int getDeletable() {
+	public int getDeletableChunks() {
 		return this.deletableChunks;
 	}
 
-	public int getProtected() {
-		return this.protectedChunks;
+	public int getBannerProtected() {
+		return this.bannerProtectedChunks;
+	}
+
+	public int getWaypointProtected() {
+		return this.waypointProtectedChunks;
+	}
+
+	public int getSpawnProtected() {
+		return this.spawnProtectedChunks;
+	}
+
+	public int getErrorProtected() {
+		return this.errorProtectedChunks;
 	}
 
 	public int getTotalRegions() {
-	    return totalRegions;
+		return totalRegions;
+	}
+
+	public int getCurrentRegions() {
+		return currentRegions;
 	}
 
 	public int getProtectedRegions() {
-	    return protectedRegions;
+		return protectedRegions;
 	}
 
 	public int getSkippedLoadedRegions() {
-	    return skippedLoadedRegions;
+		return skippedLoadedRegions;
 	}
 
 	public int getDeletedRegions() {
-	    return deletedRegions;
+		return deletedRegions;
 	}
 
 	public Stage getStage() {
-	    return this.stage;
+		return this.stage;
 	}
 
 	public boolean isDryRun() {
@@ -373,6 +435,7 @@ public class ExtendedWorldRegenEngine {
 		SCANNING_CHUNKS,     // building chunk list
 		CHECKING_CHUNKS,     // reading NBT / finding protections
 		DELETING_REGIONS,    // removing region files
+		CANCELED,
 		FINISHED
 	}
 
