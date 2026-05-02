@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
-import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.ProtectionInstance;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredHurtByTargetGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerAttackedEntityTargetGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerHurtByEntityTargetGoal;
@@ -277,7 +277,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		if (super.checkSpawnRules(iworld, reason)) {
 			if (reason == SpawnReason.NATURAL) {
 				// Extended Start
-				if((this.spawnRequiresDarkness && !this.isValidLightLevelForDarkSpawn(iworld)) || ExtendedBannerProtectionManager.getProtectionStatus(level, this.blockPosition(), new SingleProtectionInstance.EntityProtection(this)).isNotAllowed()) {
+				if((this.spawnRequiresDarkness && !this.isValidLightLevelForDarkSpawn(iworld)) || ExtendedBannerProtectionManager.getProtectionStatus(level, this.blockPosition(), new ProtectionInstance.EntityProtection(this)).isNotAllowed()) {
 					return false;
 				}
 				// Extended End

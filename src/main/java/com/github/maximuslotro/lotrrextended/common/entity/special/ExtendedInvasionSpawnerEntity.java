@@ -318,8 +318,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
             MobEntity entity = type.create((ServerWorld) this.level, null, null, null, pos, SpawnReason.SPAWNER, true, false);
             if (entity != null) {
                 // check protection
-                if (ExtendedBannerProtectionManager.getProtectionStatus(level, pos, new ExtendedBannerProtectionManager.SingleProtectionInstance.AnyProtection()).isNotAllowed()) {
-                    ExtendedLog.debug("Invasion mob could not be spawned at " + pos + " because it was inside protection banner.");
+                if (ExtendedBannerProtectionManager.getProtectionStatus(level, pos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
                     continue;
                 }
 

@@ -8,6 +8,7 @@ import com.github.maximuslotro.lotrextended.mixins.lotr.common.entity.npc.MixinN
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSerializers;
@@ -226,6 +227,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							}
 						}
 					}
+		            if (!firstTick && ExtendedBannerProtectionManager.getProtectionStatus(world, footPos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
+		                continue;
+		            }
 					//System.out.println("Successfully ran Spawn checks");
 					List<EntityType<?>> generatedSpawns = spawnerInstance.getSpawns(random);
 					for(EntityType<?> generatedSpawn : generatedSpawns) {

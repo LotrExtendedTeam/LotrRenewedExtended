@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
-import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.ProtectionInstance;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -25,7 +25,7 @@ public abstract class MixinHangingEntity extends Entity {
 	@Inject(method = "hurt(Lnet/minecraft/util/DamageSource;F)Z", at = @At("HEAD"), cancellable = true)
 	public void interact$Extended(DamageSource pSource, float pAmount, CallbackInfoReturnable<Boolean> cir) {
 		if(!this.level.isClientSide && !this.isInvulnerableTo(pSource)) {
-			if (ExtendedBannerProtectionManager.getProtectionStatus(this.level, this.blockPosition(), new SingleProtectionInstance.DamageSourceProtection(pSource)).isNotAllowed()) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(this.level, this.blockPosition(), new ProtectionInstance.DamageSourceProtection(pSource)).isNotAllowed()) {
 				cir.setReturnValue(false);
 				return;
 			}

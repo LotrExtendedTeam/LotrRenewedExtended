@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
-import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.ProtectionInstance;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
@@ -261,7 +261,7 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable {
 					ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);
 					return ActionResultType.sidedSuccess(world.isClientSide);
 				}
-				if(ExtendedBannerProtectionManager.getProtectionStatus(world, blockPosBottom, new SingleProtectionInstance.PlayerProtection(player, ExtendedBannerPermissions.BANNER)).isAllowed()) {
+				if(ExtendedBannerProtectionManager.getProtectionStatus(world, blockPosBottom, new ProtectionInstance.PlayerProtection(player, ExtendedBannerPermissions.BANNER)).isAllowed()) {
 					boolean clientOP = ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(player.getGameProfile());
 					ExtendedSBannerOpenScreenPacket packet = new ExtendedSBannerOpenScreenPacket((ExtendedMEBannerTileEntity)tileentity, clientOP);
 					ExtendedPacketHandler.sendToClient(packet, (ServerPlayerEntity) player);

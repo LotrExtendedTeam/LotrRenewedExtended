@@ -3,7 +3,7 @@
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
-import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.ProtectionInstance;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedConquestTableBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBookshelfBlock;
@@ -73,7 +73,7 @@ public class ExtendedBannerEventHandlers {
 	public static void handleBannerBlockBreak(BlockEvent.BreakEvent event) {
 		//ExtendedLog.info("BreakEvent");
 		if (!event.getWorld().isClientSide()) {
-			if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer())).isNotAllowed()) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new ProtectionInstance.PlayerProtection(event.getPlayer())).isNotAllowed()) {
 				event.setCanceled(true);
 			}
 		}
@@ -85,7 +85,7 @@ public class ExtendedBannerEventHandlers {
 		if (!world.isClientSide() && event.getTarget().getType() == Type.BLOCK) {
 			//ExtendedLog.info("FillBucketEvent");
 			BlockPos pos = ((BlockRayTraceResult) event.getTarget()).getBlockPos();
-			if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new SingleProtectionInstance.PlayerProtection(event.getPlayer())).isNotAllowed()) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ProtectionInstance.PlayerProtection(event.getPlayer())).isNotAllowed()) {
 				event.setCanceled(true);
 				BlockState state = world.getBlockState(pos);
 				world.sendBlockUpdated(pos, state, state, 2);
@@ -100,7 +100,7 @@ public class ExtendedBannerEventHandlers {
 	public static void fallOnBlockEvent(BlockEvent.FarmlandTrampleEvent event){
 		if (event.getFallDistance() < 0.5) // Permission checks only for at least 1-block high fall events
 			return;
-		if (!event.getWorld().isClientSide() && ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new SingleProtectionInstance.EntityProtection(event.getEntity())).isNotAllowed()) {
+		if (!event.getWorld().isClientSide() && ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new ProtectionInstance.AnyProtection()).isNotAllowed()) {
 			event.setCanceled(true);
 		}
 	}
@@ -110,7 +110,7 @@ public class ExtendedBannerEventHandlers {
 		IWorld world = event.getWorld();
 		LivingEntity entity = event.getEntityLiving();
 		if (!world.isClientSide() && entity instanceof MobEntity) {
-			if (ExtendedBannerProtectionManager.getProtectionStatus(world, entity.blockPosition(), new SingleProtectionInstance.AnyProtection()).isNotAllowed()) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(world, entity.blockPosition(), new ProtectionInstance.AnyProtection()).isNotAllowed()) {
 				event.setResult(Result.DENY);
 				return;
 			}
@@ -122,7 +122,7 @@ public class ExtendedBannerEventHandlers {
 		World world = event.getWorld();
 		if (!world.isClientSide()) {
 			if (world.getBlockState(event.getPos()).getBlock() instanceof FireBlock) {
-				if (ExtendedBannerProtectionManager.getProtectionStatus(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer())).isNotAllowed()) {
+				if (ExtendedBannerProtectionManager.getProtectionStatus(world, event.getPos(), new ProtectionInstance.PlayerProtection(event.getPlayer())).isNotAllowed()) {
 					event.setCanceled(true);
 					return;
 				}
@@ -138,7 +138,7 @@ public class ExtendedBannerEventHandlers {
 				|| itemstack.getItem() instanceof ExtendedBoatItem 
 				|| itemstack.getItem() instanceof LOTRBoatItem
 				|| itemstack.getItem() instanceof LilyPadItem)){
-				if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer(), ExtendedBannerPermissions.EVERYTHING), true, "handleBannerBlockRightClick").isNotAllowed()) {
+				if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new ProtectionInstance.PlayerProtection(event.getPlayer(), ExtendedBannerPermissions.EVERYTHING), true, "handleBannerBlockRightClick").isNotAllowed()) {
 					event.setCanceled(true);
 					if(itemstack.getItem() instanceof LilyPadItem) {
 						BlockRayTraceResult blockraytraceresult = Item.getPlayerPOVHitResult(world, event.getPlayer(), RayTraceContext.FluidMode.SOURCE_ONLY);
@@ -188,7 +188,7 @@ public class ExtendedBannerEventHandlers {
 					perm = ExtendedBannerPermissions.BANNER;
 				}
 			}
-			if (ExtendedBannerProtectionManager.getProtectionStatus(world, event.getPos(), new SingleProtectionInstance.PlayerProtection(event.getPlayer(), perm), true, "handleBannerBlockRightInteract").isNotAllowed()) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(world, event.getPos(), new ProtectionInstance.PlayerProtection(event.getPlayer(), perm), true, "handleBannerBlockRightInteract").isNotAllowed()) {
 				event.setCanceled(true);
 				if (block instanceof DoorBlock) {
 					if(bState.getValue(DoorBlock.HALF)==DoubleBlockHalf.UPPER) {
@@ -220,23 +220,23 @@ public class ExtendedBannerEventHandlers {
 		Explosion explosion = event.getExplosion();
 		World world = event.getWorld();
 		LivingEntity exploder = event.getExplosion().getSourceMob();
-		SingleProtectionInstance protectionInstance = null;
+		ProtectionInstance protectionInstance = null;
 		if (!world.isClientSide) {
 			if(exploder instanceof NPCEntity || exploder instanceof MobEntity) {
-				protectionInstance = new SingleProtectionInstance.AnyProtection();
+				protectionInstance = new ProtectionInstance.AnyProtection();
 			}else if(exploder instanceof PlayerEntity) {
-				protectionInstance = new SingleProtectionInstance.PlayerProtection((PlayerEntity) exploder);
+				protectionInstance = new ProtectionInstance.PlayerProtection((PlayerEntity) exploder);
 			}else if(explosion.getExploder() instanceof TNTEntity) {
-				protectionInstance = new SingleProtectionInstance.TNTProtection((TNTEntity) explosion.getExploder());
+				protectionInstance = new ProtectionInstance.TNTProtection((TNTEntity) explosion.getExploder());
 			}
 		}
 		if(protectionInstance==null) {
-			protectionInstance = new SingleProtectionInstance.AnyProtection();
+			protectionInstance = new ProtectionInstance.AnyProtection();
 		}
 		saveBlocks(world, explosion.getToBlow(), protectionInstance);
 	}
 
-	private static void saveBlocks(World world, List<BlockPos> blocksToBlow, SingleProtectionInstance instance) {
+	private static void saveBlocks(World world, List<BlockPos> blocksToBlow, ProtectionInstance instance) {
 		blocksToBlow.removeIf(pos -> ExtendedBannerProtectionManager.getProtectionStatus(world, pos, instance).isNotAllowed());
 	}
 }

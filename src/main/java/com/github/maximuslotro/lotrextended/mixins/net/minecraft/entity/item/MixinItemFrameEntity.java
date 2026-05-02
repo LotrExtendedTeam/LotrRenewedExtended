@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
-import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.ProtectionInstance;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -37,7 +37,7 @@ public abstract class MixinItemFrameEntity extends Entity {
 			return;
 		}
 		if(!this.level.isClientSide && !fixed) {
-			if (ExtendedBannerProtectionManager.getProtectionStatus(this.level, this.blockPosition(), new SingleProtectionInstance.PlayerProtection(pPlayer)).isNotAllowed()) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(this.level, this.blockPosition(), new ProtectionInstance.PlayerProtection(pPlayer)).isNotAllowed()) {
 				cir.setReturnValue(ActionResultType.PASS);
 				return;
 			}
@@ -47,7 +47,7 @@ public abstract class MixinItemFrameEntity extends Entity {
 	@Inject(method = "hurt(Lnet/minecraft/util/DamageSource;F)Z", at = @At("HEAD"), cancellable = true)
 	public void interact$Extended(DamageSource pSource, float pAmount, CallbackInfoReturnable<Boolean>  cir) {
 		if(!this.level.isClientSide && !fixed && !this.isInvulnerableTo(pSource)) {
-			if (ExtendedBannerProtectionManager.getProtectionStatus(this.level, this.blockPosition(), new SingleProtectionInstance.DamageSourceProtection(pSource)).isNotAllowed()) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(this.level, this.blockPosition(), new ProtectionInstance.DamageSourceProtection(pSource)).isNotAllowed()) {
 				cir.setReturnValue(false);
 				return;
 			}

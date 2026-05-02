@@ -20,6 +20,10 @@ public class AxisAlignedBBUtils {
 		return new AxisAlignedBB(pX, pY, pZ, pX+1, pY+1, pZ+1);
 	}
 
+	public static AxisAlignedBB makeCroppedBB(BlockPos pos, int increase) {
+		return new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX()+1, pos.getY()+1, pos.getZ()+1);
+	}
+
 	public static AxisAlignedBB makeCroppedBB(double pX1, double pY1, double pZ1, double pX2, double pY2, double pZ2, double xOffset1, double zOffset1, double xOffset2, double zOffset2 ) {
 		return new AxisAlignedBB(pX1+xOffset1, pY1, pZ1+zOffset1, pX2+xOffset2, pY2, pZ2+zOffset2);
 	}
