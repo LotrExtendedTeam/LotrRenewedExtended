@@ -59,7 +59,8 @@ public class ExtendedStaffEvents {
 
 	@SubscribeEvent
 	public static void playerLoggedInEvent(PlayerEvent.PlayerLoggedInEvent event) {
-		if (ExtendedWorldRegenEngineWatcher.ACTIVE_ENGINE != null && !ExtendedWorldRegenEngineWatcher.ACTIVE_ENGINE.isFinished()) {
+		if (ExtendedWorldRegenEngineWatcher.ACTIVE_ENGINE != null && !ExtendedWorldRegenEngineWatcher.ACTIVE_ENGINE.isFinished() 
+			&& !event.getPlayer().getUUID().equals(ExtendedWorldRegenEngineWatcher.ACTIVE_PLAYER)) {
 		    ((ServerPlayerEntity)event.getPlayer()).connection.disconnect(new StringTextComponent("Server pruning in progress"));
 		}
 		

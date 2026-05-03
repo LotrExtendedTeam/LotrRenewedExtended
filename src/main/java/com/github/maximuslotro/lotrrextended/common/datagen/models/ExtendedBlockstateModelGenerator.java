@@ -1460,18 +1460,20 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		ResourceLocation parent = lotrExtendedLoc("block/template_numenorean_lantern");
 		ResourceLocation parentHanging = lotrExtendedLoc("block/template_numenorean_lantern_ceiling");
 		ModelFile lanternModel = models().withExistingParent("lotrextended:"+lantern.getRegistryName().getPath(), parent)
-                .texture("lantern", lotrExtendedLoc(name))
-                .texture("particle", lotrExtendedLoc("block/morgond"));
+			.texture("lantern", lotrExtendedLoc(name))
+			.texture("flame", lotrExtendedLoc(name+"_flame"))
+			.texture("particle", lotrExtendedLoc("block/morgond"));
 		ModelFile hangingModel = models().withExistingParent("lotrextended:"+lantern.getRegistryName().getPath()+"_hanging", parentHanging)
-                .texture("lantern", lotrExtendedLoc(name))
-                .texture("particle", lotrExtendedLoc("block/morgond"));
+			.texture("lantern", lotrExtendedLoc(name))
+			.texture("flame", lotrExtendedLoc(name+"_flame"))
+			.texture("particle", lotrExtendedLoc("block/morgond"));
 		getVariantBuilder(lantern)
 		.forAllStatesExcept(state -> {
 			boolean hanging = state.getValue(ExtendedLanternNumenoreanBlock.HANGING);
-            return ConfiguredModel.builder()
-                    .modelFile(hanging ? hangingModel : lanternModel)
-                    .build();
-        }, ExtendedLanternElvenBlock.WATERLOGGED, ExtendedLanternElvenBlock.LIT);
+			return ConfiguredModel.builder()
+				.modelFile(hanging ? hangingModel : lanternModel)
+				.build();
+		}, ExtendedLanternElvenBlock.WATERLOGGED, ExtendedLanternElvenBlock.LIT);
 		itemModels().getBuilder("lotr:"+lantern.getRegistryName().getPath()).parent(lanternModel);
 
 	}

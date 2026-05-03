@@ -163,8 +163,11 @@ public class ExtendedWorldPruneScreen extends ExtendedBasicAbstractScreen{
 	private void updateProgress() {
 		if (stage == ExtendedWorldRegenEngine.Stage.SCANNING_CHUNKS) {
 			statusText = new TranslationTextComponent("gui.lotrextended.worldprune.scanning", currentRegions, totalRegions, totalChunks);
-			progress = 0.001f;
-
+			if (currentRegions > 0 && totalRegions > 0) {
+				progress = (float) currentRegions / totalRegions;
+			} else {
+				progress = 0.001f;
+			}
 		} else if (stage == ExtendedWorldRegenEngine.Stage.FINISHED) {
 			progress = 1.0f;
 			if (dryRun) {
@@ -184,7 +187,6 @@ public class ExtendedWorldPruneScreen extends ExtendedBasicAbstractScreen{
 			}
 			int percent = (int)(progress * 100);
 			statusText = new TranslationTextComponent("gui.lotrextended.worldprune.processing", percent, done, totalRegions);
-
 		} else { // CHECKING_CHUNKS
 			int done = deletableChunks + bannerProtectedChunks + waypointProtectedChunks + spawnProtectedChunks + errorProtectedChunks;
 			if (totalChunks > 0) {

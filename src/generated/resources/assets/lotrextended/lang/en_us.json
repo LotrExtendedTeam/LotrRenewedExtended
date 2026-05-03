@@ -2265,7 +2265,7 @@
   "gui.lotrextended.worldprune.canceled": "Pruning canceled (%s/%s regions processed)",
   "gui.lotrextended.worldprune.checking": "Checking chunks: %s%% (%s/%s)",
   "gui.lotrextended.worldprune.dryrun.splitter": "%s: %s",
-  "gui.lotrextended.worldprune.finished": "Pruning complete! Deleted %s regions, protected %s, skipped %s loaded",
+  "gui.lotrextended.worldprune.finished": "Pruning complete! Deleted %s regions, saving %s, and skipped %s",
   "gui.lotrextended.worldprune.finished.dry": "[Dry Run] Would delete %s regions, saving %s",
   "gui.lotrextended.worldprune.mode": "Mode: %s",
   "gui.lotrextended.worldprune.mode.live": "Live Deletion",

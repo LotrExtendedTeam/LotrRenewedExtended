@@ -75,6 +75,7 @@ public class ExtendedWorldRegenEngine {
 		this.levelStorage = server.storageSource;
 		this.dryRun = shouldDryRun;
 		this.thread = THREAD_FACTORY.newThread(this::work);
+		this.thread.setName("ExtendedWorldRegenEngine");
 		this.thread.setUncaughtExceptionHandler((p_219956_1_, p_219956_2_) -> {
 			LOGGER.error("Error pruning world", p_219956_2_);
 			this.finished = true;
@@ -131,7 +132,11 @@ public class ExtendedWorldRegenEngine {
 				List<ChunkPos> list = this.getAllChunkPos(registrykey);
 				worldChunkListBuilder.put(registrykey, list.listIterator());
 			}
-
+			if(canceled) {
+				this.finished = true;
+				this.stage = Stage.CANCELED;
+				return;
+			}
 			for (RegistryKey<World> key : levels) {
 				protectedRegionsIndex.put(key, new HashSet<>());
 			}
@@ -349,6 +354,9 @@ public class ExtendedWorldRegenEngine {
 			List<ChunkPos> list = Lists.newArrayList();
 			this.totalRegions += afile.length;
 			for(File file3 : afile) {
+				if(canceled) {
+					break;
+				}
 				this.currentRegions += 1;
 				Matcher matcher = REGEX.matcher(file3.getName());
 				if (matcher.matches()) {

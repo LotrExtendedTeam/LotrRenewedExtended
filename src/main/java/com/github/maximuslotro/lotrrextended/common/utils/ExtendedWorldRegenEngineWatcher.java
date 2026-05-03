@@ -64,7 +64,7 @@ public class ExtendedWorldRegenEngineWatcher {
 				ServerPlayerEntity player = server.getPlayerList().getPlayer(ACTIVE_PLAYER);
 
 				if (player == null) {
-					break;
+					continue;
 				}
 
 				// Ensure player still has the bar
@@ -109,7 +109,7 @@ public class ExtendedWorldRegenEngineWatcher {
 					ACTIVE_BAR.setName(finalText);
 					ACTIVE_BAR.setPercent(finalProgress);
 				}
-				ExtendedPacketHandler.sendToClient(new ExtendedSWorldPruneProgress(ACTIVE_ENGINE), player);
+				sendPruneDataPacket(player);
 				try {
 					Thread.sleep(1000L);
 				} catch (InterruptedException ignored) {}
@@ -119,7 +119,7 @@ public class ExtendedWorldRegenEngineWatcher {
 				ACTIVE_BAR = null;
 			}
 			ServerPlayerEntity player = server.getPlayerList().getPlayer(ACTIVE_PLAYER);
-			ExtendedPacketHandler.sendToClient(new ExtendedSWorldPruneProgress(ACTIVE_ENGINE), player);
+			sendPruneDataPacket(player);
 			if (player != null) {
 				if(ACTIVE_ENGINE.isDryRun()) {
 					player.sendMessage(new StringTextComponent("[Dry Run Mode] Would have pruned ["+ACTIVE_ENGINE.getDeletedRegions()+"] region files"), Util.NIL_UUID);
@@ -134,5 +134,11 @@ public class ExtendedWorldRegenEngineWatcher {
 			ACTIVE_ENGINE = null;
 			ACTIVE_PLAYER = null;
 		}).start();
+	}
+
+	public static void sendPruneDataPacket(ServerPlayerEntity player) {
+		if(player!=null && !player.hasDisconnected()) {
+			ExtendedPacketHandler.sendToClient(new ExtendedSWorldPruneProgress(ACTIVE_ENGINE), player);
+		}
 	}
 }
