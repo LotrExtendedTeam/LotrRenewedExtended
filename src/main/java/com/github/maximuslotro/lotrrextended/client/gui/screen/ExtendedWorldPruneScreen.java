@@ -202,7 +202,6 @@ public class ExtendedWorldPruneScreen extends ExtendedBasicAbstractScreen{
 	public void applyProgressPacket(ExtendedSWorldPruneProgress packet) {
 		// CORE
 		this.stage = packet.getStage();
-		this.running = !packet.isFinished();
 		this.dryRun = packet.isDryRun();
 		if (stage == Stage.FINISHED || stage == Stage.CANCELED) {
 			running = false;
