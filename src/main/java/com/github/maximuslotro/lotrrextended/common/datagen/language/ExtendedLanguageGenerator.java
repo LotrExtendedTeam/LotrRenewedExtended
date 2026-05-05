@@ -129,6 +129,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.menu.settings", "Options");
 		addD("gui.lotrextended.menu.titles", "Titles");
 		addD("gui.lotrextended.menu.achievements", "Achievements");
+		addD("gui.lotrextended.menu.advancements", "Advancements");
 
 		//Default option strings
 		addD("gui.lotrextended.base.disabled", "Disabled");
