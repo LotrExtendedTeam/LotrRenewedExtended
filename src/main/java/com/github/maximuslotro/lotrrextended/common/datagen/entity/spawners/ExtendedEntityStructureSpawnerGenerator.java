@@ -228,5 +228,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 				.addPool(LOTREntities.URUK.get(), 5).addPool(LOTREntities.URUK_ARCHER.get(), 3)
 				.addPool(LOTREntities.ISENGARD_WARG.get(), 3).addPool(ExtendedEntities.URUK_BERSERKER.get(), 1)
 				.build(), 2, 6, false, 30, 15).setBoundaries(15, -8, 30, 10, -2, 12).enableSpawningAtSpawner(20).save(pConsumer, ExtendedSpawners.ISENGARD_AREA);
+		// DUNLENDING
+		single(ExtendedEntities.DUNLENDING_WARLORD.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.DUNLENDING_WARLORD);		
 	}
 }

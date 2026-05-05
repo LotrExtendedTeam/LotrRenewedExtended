@@ -95,5 +95,6 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedUrukSmithEntity>> URUK_SMITH;
 	public static RegistryObject<EntityType<ExtendedUrukCaptainEntity>> URUK_CAPTAIN;
 	public static RegistryObject<EntityType<ExtendedUrukBerserkerEntity>> URUK_BERSERKER;
+	public static RegistryObject<EntityType<ExtendedDunlendingWarlordEntity>> DUNLENDING_WARLORD;
 
 }

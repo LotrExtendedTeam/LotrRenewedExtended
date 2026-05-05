@@ -235,7 +235,7 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 				addDrinkDurationTrigger(make(), 0).parent(base));
 
 		Advancement brewing = build(true, data(LOTRItems.ALE.get(), "brewing", FrameType.TASK)
-				.setTitle("Time to Drink!").setDescription("Start brewing a drink in a barrel."),
+				.setTitle("Time to Drink!").setDescription("Start brewing a drink in a keg."),
 				addStringTrigger(make(), "brewDrink").parent(drunkard));
 
 		Advancement burning_sensation = build(true, data(LOTRItems.ORC_DRAUGHT.get(), "burning_sensation", FrameType.TASK)
