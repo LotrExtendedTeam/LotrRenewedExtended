@@ -134,7 +134,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedNarsilShardsBlock) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
-				genSword(item.getKey());
+				genSwordLarge(item.getKey());
 				continue;
 			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedVineBlock) {
@@ -206,9 +206,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			if(item.getValue().get() instanceof ExtendedSwordItem || item.getValue().get() instanceof HammerItem) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
-				if(!item.getKey().contains("glamdring")) {
-					genSword(item.getKey());
-				}
+				genSwordLarge(item.getKey());
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRShieldItem) {
@@ -311,7 +309,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		return builder;
 	}
 
-	private ItemModelBuilder genSword(String name) {
+	private ItemModelBuilder genSwordLarge(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld", "lotr:item/handheld_large");
 		return gen(builder, false, lotrExtendedLoc("item/"+name+"_large"));
 	}
