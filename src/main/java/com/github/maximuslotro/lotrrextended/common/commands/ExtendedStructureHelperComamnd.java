@@ -17,12 +17,14 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 
+import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.tileentity.PlateTileEntity;
 import lotr.common.tileentity.VesselDrinkTileEntity;
 import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
@@ -182,11 +184,22 @@ public class ExtendedStructureHelperComamnd {
 			source.sendSuccess(new StringTextComponent("Set Weapon Rack Location: "+resourceLocation.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}
-		if (tileentity instanceof ExtendedBookshelfTileEntity && resourceLocation.toString().contains("bookshelves")) {
-			((ExtendedBookshelfTileEntity)tileentity).clearContent();
-			((ExtendedBookshelfTileEntity)tileentity).setLootTable(resourceLocation, 0L);
-			source.sendSuccess(new StringTextComponent("Set Bookshelf Location: "+resourceLocation.toString()), false);
-			return Command.SINGLE_SUCCESS;
+		if (resourceLocation.toString().contains("bookshelves")) {
+			if (tileentity instanceof ExtendedBookshelfTileEntity) {
+				((ExtendedBookshelfTileEntity)tileentity).clearContent();
+				((ExtendedBookshelfTileEntity)tileentity).setLootTable(resourceLocation, 0L);
+				source.sendSuccess(new StringTextComponent("Set Bookshelf Location: "+resourceLocation.toString()), false);
+				return Command.SINGLE_SUCCESS;
+			}else if(source.getLevel().getBlockState(pos).getBlock()==Blocks.BOOKSHELF) {
+				source.getLevel().setBlock(pos, ExtendedBlocks.EXTENDED_BOOKSHELF.get().defaultBlockState(), 3);
+				tileentity = source.getLevel().getBlockEntity(pos);
+				if (tileentity instanceof ExtendedBookshelfTileEntity) {
+					((ExtendedBookshelfTileEntity)tileentity).clearContent();
+					((ExtendedBookshelfTileEntity)tileentity).setLootTable(resourceLocation, 0L);
+					source.sendSuccess(new StringTextComponent("Set Bookshelf Location: "+resourceLocation.toString()), false);
+					return Command.SINGLE_SUCCESS;
+				}
+			}
 		}
 		if (tileentity instanceof ExtendedLargePotTileEntity && resourceLocation.toString().contains("pots")) {
 			((ExtendedLargePotTileEntity)tileentity).setContainedItem(ItemStack.EMPTY);

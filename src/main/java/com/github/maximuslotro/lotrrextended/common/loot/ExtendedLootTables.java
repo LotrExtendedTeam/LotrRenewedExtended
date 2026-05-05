@@ -160,12 +160,17 @@ public class ExtendedLootTables {
 	public static final ResourceLocation LINDON_WEAPONRACKS = registerWeaponRack("lindon");
 	public static final ResourceLocation LINDON_EQUIPMENT_WEAPONRACKS = registerWeaponRack("lindon_equipment");
 	public static final ResourceLocation LINDON_BOW_WEAPONRACKS = registerWeaponRack("lindon_bow");
+
 	// POTS
 	public static final ResourceLocation BLUE_MOUNTAINS_TRADER_HALL_POT = registerPot("blue_mountains_trader_hall");
 	public static final ResourceLocation RIVENDELL_POT = registerPot("rivendell");
 	public static final ResourceLocation LINDON_POT = registerPot("lindon");
 	public static final ResourceLocation ISENGARD_POT = registerPot("isengard");
 	public static final ResourceLocation ISENGARD_ORTHANC_POT = registerPot("isengard_orthanc");
+
+	// BOOKSHELF
+	public static final ResourceLocation ISENGARD_ORTHANC_BOOKSHELF = registerBookshelf("isengard_orthanc");
+
 	// FISHING
 	public static final ResourceLocation MIDDLE_EARTH_FISHING = registerGameplay("fishing");
 	public static final ResourceLocation MIDDLE_EARTH_FISHING_FISH = registerGameplay("fishing/fish");
@@ -196,6 +201,10 @@ public class ExtendedLootTables {
 
 	private static ResourceLocation registerPot(String location) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, "pots/"+location));
+	}
+
+	private static ResourceLocation registerBookshelf(String location) {
+		return register(new ResourceLocation(LotrExtendedMod.MODID, "bookshelves/"+location));
 	}
 
 	private static ResourceLocation registerGameplay(String location) {
