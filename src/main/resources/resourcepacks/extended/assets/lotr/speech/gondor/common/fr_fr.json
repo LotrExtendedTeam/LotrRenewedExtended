@@ -1,0 +1,213 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Bonjour.",
+        "Bonjour, #p.",
+        "Ce sont des temps sombres pour le Gondor.",
+        "Ce sont des temps sombres pour le Gondor, #p.",
+        "Les Hommes murmurent au sujet de créatures maléfiques qui prolifèrent à l'Est, et content des récits d'une peur sans nom...",
+        "Si vous veniez à tomber sur une pousse sauvage d'herbe de l'Ouesternesse, vous seriez avisé de la cueillir et de l'emporter chez vous.",
+        "Je préférerais être à la taverne en ce moment.",
+        "On dit que l'ombre du Mordor grandit à l'Est.",
+        "Ce sont des temps sombres. Une grande puissance s'élève à l'Est.",
+        "Comment vous portez-vous ?",
+        "Avez-vous quelque chose à boire ?",
+        "Il est peu de choses aussi belles que la vue des premiers rayons du Soleil se posant sur les cimes enneigées des montagnes.",
+        "Bonjour, #p ! Mais est-ce à dire que le jour est bon, ou que c'est un jour pour être bon ?",
+        "Nous sommes des diseurs de vérité, nous autres Hommes du Gondor.",
+        "Le Gondor fut jadis l'un des plus grands royaumes des Hommes. Pourtant, aujourd'hui, ce n'est plus qu'une terre de briques croulantes et de coeurs faux...",
+        "Quelles nouvelles portez-vous ?",
+        "Dites-moi, #p. Quelles nouvelles des terres lointaines ?",
+        "Sont-ce là les derniers jours des Hommes ? Jadis, le Gondor était grand, mais chaque jour qui passe accroît mes craintes pour notre avenir.",
+        "Une froide obscurité descend sur les royaumes des Hommes.",
+        "De grands navires et de grands rois, trois fois trois. Qu'apportèrent-ils de la terre engloutie, par-delà la mer mouvante ? Sept étoiles, et sept pierres, et un arbre blanc.",
+        "On dit que ces Suderons portent des épées courbes au combat. Des épées courbes !",
+        "J'espère voir la gloire du Gondor restaurée un jour.",
+        "Le Gondor n'est plus aussi grand qu'il le fut.",
+        "Un mal s'élève de nouveau derrière les murs du Mordor. Je crains qu'il ne soit notre perte.",
+        "Avez-vous vu l'Argonath, #p ? C'est un spectacle à contempler !",
+        "Avez-vous vu l'Argonath, #p ? Lors de mon dernier voyage vers le nord, il avait disparu...",
+        "Les vallées de l'Anduin sont de belles contrées, rivalisant presque avec la beauté du Gondor lui-même.",
+        "L'Arbre Blanc a péri depuis longtemps, pourtant nos coeurs battent encore vrai.",
+        "On dit que les sommets des Montagnes Blanches peuvent être aperçus de n'importe quel endroit du Gondor.",
+        "J'aspire à voir les Chevaliers au Cygne de Dor-en-Ernil charger au combat.",
+        "Restez loin des pins de Tawar-in-Drúedain, #p. D'étranges Hommes y vivent qui vénèrent la pierre et la feuille.",
+        "Si les feux d'alarme de la Tour Blanche devaient être allumés, alors nous saurions enfin que notre heure est venue.",
+        "Les havres d'Umbar faisaient jadis partie de notre royaume, mais ils sont depuis longtemps tombés aux mains des Haradrim."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Cette contrée fut un grand royaume aux jours anciens, mais ces jours nous ont depuis longtemps dépassés...",
+        "Ah, la douce galenas ! Une si belle herbe odorante. On la trouve souvent dans ces terres, #p.",
+        "L'herbe de l'Ouesternesse de ces champs est une herbe merveilleuse et parfumée.",
+        "Les coeurs des Hommes peuvent devenir faux, #p, mais nos terres sont toujours aussi belles qu'avant.",
+        "Ce royaume est appelé Stoningland dans la langue du Rohan. Eh bien, on ne peut pas dire que la pierre nous manque, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Salutations, #p !",
+        "Quelles nouvelles, #p ?",
+        "L'ancien tertre funéraire d'Elendil est nommé Halifirien dans la langue du Rohan. Mais son cercueil fut envoyé à la Rue du Silence de la Cité de Pierre, il y a cinq cents ans.",
+        "Nous avons bâti un mur autour des champs du Pelennor pour repousser les raids d'Orques. Nous devrions faire de même au Poros, si vous voulez mon avis.",
+        "J'ai vu de mes propres yeux les ruines d'Osgiliath, où se trouvait jadis notre capitale. Mais depuis cinq cents ans, cette cité n'abrite plus que le deuil silencieux, un rappel du déclin assombrissant du Gondor.",
+        "Les érudits parlent de jours où le Gondor était un joyau étincelant parmi les royaumes des Hommes. Je crains que ces jours ne soient à jamais perdus, #p.",
+        "Avez-vous quelque bonne nouvelle, #p ?",
+        "Le Gondor n'a jamais depuis retrouvé la gloire qu'il avait du temps de la lignée d'Anárion."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Cette contrée est mon foyer, #p. Je crains pour nous tous en ces jours sombres.",
+        "Nombre d'Hommes d'Ithilien et des Terres du Sud ont cherché refuge ici, il y a cent ans. J'espère qu'un jour notre armée marchera vers l'est et reprendra ces terres natales hantées !",
+        "Salutations, #p. Quelles nouvelles apportez-vous au Gondor depuis les terres lointaines ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <champion"
+      },
+      "lines": [
+        "Ah, #p ! Je crois que nous nous sommes déjà rencontrés. Ou me trompé-je ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<friend"
+      },
+      "lines": [
+        "Nous ne souhaitons point d'étrangers dans le pays en ce temps, à moins qu'ils ne soient de puissants hommes d'armes en la foi et l'aide desquels nous pouvons avoir confiance.",
+        "Sachez, #p, que nous ne souhaitons point d'étrangers au Gondor en ce temps."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Bien rencontré, #p !",
+        "Bien rencontré.",
+        "N'ayez crainte, mon ami #p. Le Rohan viendra à notre aide. Ils viennent toujours à notre aide.",
+        "Ce sont des temps troublés pour notre peuple. Les ténèbres s'amassent au Mordor, et les seigneurs de la Cité Blanche gardent le silence.",
+        "En mon coeur, #p, je rêve encore d'un jour où les Rois reviendront sur le trône du Gondor.",
+        "J'aspire à revoir un Roi sur le trône du Gondor.",
+        "J'ai ouï des récits disant que les Rois pourraient un jour revenir et régner de nouveau sur le Gondor. Mais ce ne sont que des contes populaires ; ils ne peuvent être vrais...",
+        "Le Gondor. Ah, le Gondor. Le grand Royaume du Sud d'autrefois, jadis ! Mais aujourd'hui, #p, c'est notre long déclin. Le crépuscule de l'Ouest.",
+        "Des Hommes des terres extérieures viennent vers les terres du coeur, fuyant le conflit. Ils amènent des troubles, mais je pense que nous nous en sortirons.",
+        "Venez, #p, contez-moi une histoire pour réjouir mon coeur."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<atarms"
+      },
+      "lines": [
+        "Je dois vous prévenir, #p. Le Gondor n'est plus ce qu'il fut.",
+        "Vous n'avez guère l'air d'un Homme du Gondor, #p. Vous n'êtes pas du Sud, n'est-ce pas ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<atarms"
+      },
+      "lines": [
+        "Bienvenue au Gondor.",
+        "Bienvenue au Gondor, #p.",
+        "Le Gondor vous souhaite la bienvenue, #p.",
+        "Bienvenue, #p. Plût au ciel que vous fussiez venu au Gondor en des jours plus heureux.",
+        "Quel dommage que vous n'ayez pu venir au Gondor en des jours plus heureux, #p.",
+        "J'aurais aimé vous accueillir au Gondor en des temps plus heureux.",
+        "Bienvenue, #p. Quelle affaire vous amène au Gondor ?",
+        "Bonjour, #p ! Bienvenue en terre de Gondor.",
+        "Vous arrivez un beau jour, #p. Les Orques n'ont pas pillé nos terres depuis plus d'une semaine.",
+        "Vous avez peut-être voyagé loin pour voir le Gondor, #p. Pourtant, je pense que vous l'avez trouvé en des jours sombres."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<captain"
+      },
+      "lines": [
+        "Vous n'êtes pas de ces contrées, n'est-ce pas, #p ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Bonjour, monseigneur #p. Puis-je faire quelque chose pour vous ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Bonjour, madame #p. Puis-je faire quelque chose pour vous ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day",
+        "weather": "clear"
+      },
+      "lines": [
+        "Belle journée pour cela."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "weather": "rain"
+      },
+      "lines": [
+        "Les ténèbres s'amassent sur le Gondor. Et, #p, il semble que des nuages de pluie se rassemblent à l'horizon."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Tu ne commettras aucun méfait ici !",
+        "Tu n'es point ami du Gondor, #p.",
+        "Nous ne sommes guère tendres envers les criminels ici !",
+        "C'est une heure funeste pour le Gondor, en vérité !"
+      ]
+    }
+  ]
+}

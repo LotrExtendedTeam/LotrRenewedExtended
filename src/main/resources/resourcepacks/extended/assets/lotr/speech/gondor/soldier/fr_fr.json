@@ -1,0 +1,176 @@
+{
+  "parent": "lotr:gondor/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Je suis un soldat du Gondor.",
+        "Je me suis entraîné toute ma vie à tuer des Orques. Mais que les Valar me viennent en aide si un Troll vient frapper à ma porte !",
+        "Maudits soient les Suderons, et leurs épées courbes !",
+        "On dit que les Hommes du Harad sont presque tous sous l'emprise de l'Ennemi."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Sans les braves Hommes du Gondor, le monde aurait succombé à l'Ombre il y a bien longtemps.",
+        "Mes parents protègent ces terres."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Ne croyez pas le Gondor faible, #p. En coeur et en esprit, nous autres Hommes du Gondor resterons toujours forts.",
+        "Méfiez-vous de l'Orque visqueux, mais craignez davantage le Charretier sur son char. Bien que nous n'ayons ni combattu ni affronté ce peuple depuis bien des générations."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "biome": "lotr:anorien"
+      },
+      "lines": [
+        "Nous vivons dans la peur ici, #p. Si vous cherchez la sécurité, je vous conseillerais de voyager vers les terres du Prince."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Il y a eu des vents funestes ces derniers temps. Nous craignons que quelque chose ne se rassemble derrière les montagnes de cendre.",
+        "Il faudrait des milliers d'Orques pour abattre ne serait-ce qu'une douzaine de bons Gondoriens !",
+        "Si quelque créature maléfique devait marcher sur le Gondor, alors les Rohirrim chevaucheraient à notre aide. J'en suis certain.",
+        "Nos ennemis se rassemblent au-delà du Harnen.",
+        "Il y a de sinistres rumeurs venant du Harad. On dit que les Suderons massent toutes leurs forces dans les terres au-delà du Harnen."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Si l'Ennemi devait envoyer toute sa puissance contre nous, #p... eh bien, je doute que nous verrions une autre aurore !",
+        "Je plains les rôdeurs en Ithilien, #p. Ils seront les premiers à tomber.",
+        "Je doute fort que nos vieilles défenses puissent résister à la puissance du Mordor. Pourtant, je combattrai jusqu'à mon dernier souffle, pour la liberté des Hommes."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "hired": "own"
+          }
+        ]
+      },
+      "lines": [
+        "Pour le Gondor !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Fils du Gondor ! Tenez bon !",
+        "Tu es un ennemi du trône du Gondor, #p !",
+        "Par l'Arbre Blanc, je te verrai occis !",
+        "Je jure au Gondor que ta mort sera prompte !",
+        "Ta mort sera prompte, #p !",
+        "Aucune pitié pour les ennemis du Gondor !",
+        "Tu ne verras pas la fin de ce jour, serviteur de l'Ombre !",
+        "Je ne te laisserai pas faire de mal au peuple libre du Gondor, #p !",
+        "Veille à ne plus nous causer de tort ! Ou j'y veillerai moi-même !",
+        "Tu ne porteras plus la main sur notre peuple !",
+        "Au nom des Rois d'antan, je te détruirai !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Tu n'iras pas plus loin. Tu n'entreras pas au Gondor !",
+        "Tu ne peux entrer au Gondor, #p !",
+        "Des ennemis sont entrés au Gondor !",
+        "Aucun ennemi du Gondor ne peut passer librement sur nos terres !",
+        "Quitte cette terre, #p, pour n'y jamais revenir !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "Arrière, vile créature de l'Ombre !",
+        "Arrière, esclave de l'Ombre !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "Hors du Gondor, esclave de l'Ennemi !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "Retourne ramper vers ton maître au Pays de l'Ombre !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "Hors de nos terres, ignoble vermine du Mordor !",
+        "Hors de nos terres, esclave de Sauron !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Je combats pour le Gondor, #p.",
+        "Puissent nos hauts faits rendre au Gondor sa gloire d'antan !",
+        "Les ennemis du Gondor tomberont devant nous !",
+        "Nos ennemis ont raison de craindre la puissance du Gondor, #p !",
+        "Vous êtes un véritable ami du Gondor, #p.",
+        "Aujourd'hui, nous combattons ! Pour le Gondor !",
+        "Nous vous suivrons à travers la mort et la ruine !",
+        "Nous sommes fiers de combattre aux côtés d'un guerrier aussi grand que vous !",
+        "Pour le Gondor ! Pour tout ce qu'il y a de bon en ce monde !",
+        "La vermine du Mordor affrontera notre courroux !",
+        "Ruine sur tous les ennemis du Gondor !"
+      ]
+    }
+  ]
+}

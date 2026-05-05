@@ -1,0 +1,55 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Comme vous pouvez le voir, #p, j'ai les pieds en compote à cause de ce lourd chargement. Ça vous dit d'acheter quelque chose ?",
+        "Nous autres Nains ne commerçons pas d'ordinaire avec les Hommes, mais vous êtes une exception, #p.",
+        "Bière, armures, armes - vous le voulez, c'est à vous, mon ami ! Du moment que vous avez assez de pièces...",
+        "Je viens des puissantes forteresses des Montagnes Bleues, #p. Aucun autre Nain ne peut se vanter de richesses pareilles aux nôtres.",
+        "Je parcours ces terres en quête de fortune - peut-être faites-vous de même, #p ?",
+        "Donnez-moi quelques pièces, #p, et je serai un marchand fort heureux !",
+        "Salutations, #p ! Souhaitez-vous m'acheter quelques marchandises ?",
+        "J'apporte de grands trésors des Montagnes Bleues ! Ils peuvent être à vous... pour un certain prix !",
+        "Souhaitez-vous commercer avec moi, #p ? J'ai plusieurs articles qui pourraient vous intéresser.",
+        "Je vous vendrai n'importe quoi pour un prix équitable !",
+        "Voulez-vous commercer avec moi, #p ? Pour quelques douzaines de pièces d'argent, vous pourrez profiter de l'artisanat des Nains de l'Ered Luin !"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "N'espère pas avoir le dessus sur moi, p'tit voyou !",
+        "Tu ne fais pas le poids face aux fils des Montagnes Bleues !",
+        "Tu n'aurais pas dû venir ici, #p !",
+        "Je vais te fendre ton misérable crâne en deux !",
+        "Allez, mon gars ! Montre-moi ce que t'as dans le ventre !",
+        "Subis le courroux des Nains, #p !",
+        "T'es venu ici juste pour te faire écraser ?",
+        "Dehors, vermine de Morgul !",
+        "Prends ta dernière inspiration, #p !",
+        "Pas de bière naine pour toi !",
+        "Raaarrrgh !",
+        "J'vais t'écraser comme un caillou, mon gars !",
+        "Tu nous as sous-estimés, #p !",
+        "T'es une belle ordure, #p !",
+        "À quoi tu pensais en cherchant la bagarre avec moi ? Ha !",
+        "Malheur et ruine sur toi et les tiens, #p !",
+        "Khazâd ai-mênu !",
+        "Ishkhaqwi ai durugnul !",
+        "Puisses-tu périr dans le feu d'un dragon !",
+        "Comment oses-tu pénétrer nos terres ?",
+        "Dégage, raclure d'Orque !",
+        "Tu paieras pour avoir violé notre territoire, vermine de Morgul !"
+      ]
+    }
+  ]
+}

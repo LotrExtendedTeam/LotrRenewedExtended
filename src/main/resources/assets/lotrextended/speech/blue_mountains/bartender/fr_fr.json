@@ -1,0 +1,79 @@
+{
+    "parent": "lotrextended:durins_folk/common",
+    "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": ">=10"
+      },
+      "lines": [
+        "Des feux rugissants ! De la bière maltée ! De la bonne viande sur l'os !",
+        "La bière naine est la meilleure boisson de toute la Terre du Milieu !",
+        "On sert la bière la plus forte ! Rien à voir avec cette piquette elfique.",
+        "Bienvenue #p, puis-je vous servir une bière ou un hydromel ?",
+        "Entrez donc. Je viens d'attiser le feu. Prenez place et chassez le froid.",
+        "Bienvenue. Dites-moi si vous voulez quelque chose... j'dois avoir une chope propre quelque part.",
+        "Entrez donc. On a des plats chauds et des boissons chaudes !",
+        "L'hydromel que je brasse est le meilleur des Montagnes Bleues !",
+        "Puis-je vous servir une bière ?",
+        "Une boisson, ou p'têt un repas ?",
+        "Un peu de porc salé, ça vous dit ?",
+        "Bienvenue ! Qu'est-ce que j'vous sers ?",
+        "Je sers la meilleure bière !",
+        "À votre service !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=oathfriend"
+      },
+      "lines": [
+        "Bienvenue #p, j'ai une bière qui vous attend !",
+        "J'vous fais un prix si vous voulez une bière !",
+        "Prenez place #p, c'est toujours un plaisir de servir quelqu'un comme vous.",
+        "Bien rencontré #p, je suis à votre service !"
+      ]
+    },
+        {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain"
+      },
+      "lines": [
+        "Bienvenue #p ! Les récits de vos voyages se sont répandus au loin, discutons-en autour d'une bière !",
+        "Prenez place et offrez-vous une bière ! Ce serait un honneur de servir quelqu'un d'aussi aguerri.",
+        "Bienvenue dans mes halls #p ! Que ma taverne soit un lieu de repos pour vos voyages.",
+        "Servez-vous de tout ce que j'ai à offrir, vous méritez une remise pour tout ce que vous avez fait pour mon peuple."
+      ]
+    },
+        {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord"
+      },
+      "lines": [
+        "Par ma barbe ! #p dans ma taverne ! Servez-vous de tout ce que j'ai à offrir !",
+        "Barbe d'Aulë ! Quelle surprise de voir quelqu'un d'aussi renommé dans ma taverne !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": "<=50"
+      },
+      "lines": [
+        "Un Nain n'offre pas de commercer avec le premier étranger venu !",
+        "Si vous voulez une bière, #p, va falloir faire vos preuves !",
+        "Faudra vous forger une réputation avant que j'vous laisse manger ici.",
+        "Nous autres Nains, on commerce pas avec n'importe quel inconnu qui passe !",
+        "Vous voulez commercer avec moi ? Faudra d'abord prouver votre valeur auprès des miens !",
+        "Désolé, #p ! J'commerce pas avec les étrangers.",
+        "Je dois servir les miens avant de servir un étranger comme vous.",
+        "Mes boissons sont trop fortes pour vous, voyageur.",
+        "Ma bière vous tuerait, voyageur. Vous supporteriez pas mes breuvages.",
+        "Vous supporteriez pas mes bières les plus fortes ! Personne le peut ! Mes bières les plus fortes conviendraient à une bête, encore moins à un homme."
+      ]
+    }
+  ]
+}

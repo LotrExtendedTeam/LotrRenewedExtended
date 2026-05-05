@@ -1,0 +1,48 @@
+@ -0,0 +1,47 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Salutations de la terre de Lothlórien, #p !",
+        "Les fruits de la Lórien peuvent s'acheter contre des pièces d'argent.",
+        "Si vous désirez de l'artisanat elfique, je pourrais échanger quelque chose contre des pièces d'argent.",
+        "Souhaitez-vous commercer, #p ?",
+        "La mer m'appelle chez moi, mais j'apprécie les pièces d'argent autant que tout autre marchand.",
+        "Salutations, #p. Peut-être avez-vous quelque chose à échanger ?",
+        "Je suis un Elfe du Bois Doré.",
+        "Je quitterai bientôt ces rivages.",
+        "Je vous apporte l'artisanat des Elfes de Lothlórien !",
+        "Mae govannen, #p ! Souhaitez-vous commercer avec moi ?",
+        "J'ai voyagé au loin... et maintenant je viens à vous ! J'ai de nombreux trésors qui vous intéresseront, #p.",
+        "Je viens du Bois Doré, et j'apporte avec moi de nombreux dons et trésors !",
+        "Vous n'avez pas vu la beauté tant que vous n'avez pas contemplé le Bois Doré, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "Vous n'êtes pas le bienvenu parmi les Elfes, #p.",
+        "La Lothlórien ne vous accueille pas.",
+        "Ceux tels que moi ne tiennent pas ceux tels que vous en haute estime.",
+        "Vous n'êtes pas un ami des Galadhrim ; cela se voit clairement.",
+        "Si vous mettiez le pied en Lórien, je vous garantis que vous le regretteriez, #p.",
+        "Vous êtes au service de l'Ennemi !",
+        "Je ne partage ni argent ni artisanat des Elfes avec les gens de votre espèce.",
+        "Partez, serviteur du mal !",
+        "Je préférerais mourir que de vous donner quoi que ce soit de mes marchandises !",
+        "Nulle main malfaisante ne peut toucher les précieux objets que je transporte !",
+        "Mon peuple préférerait périr que de s'allier aux serviteurs du Sans-Nom !",
+        "Retournez dans l'ombre d'où vous êtes venu !"
+      ]
+    }
+  ]
+}

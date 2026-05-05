@@ -1,0 +1,44 @@
+{
+  "parent": "lotr:lothlorien/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Nous défendons les peuples libres de la Terre du Milieu.",
+        "Toujours plus forte croît l'emprise de l'Ennemi sur nos terres.",
+        "Le pouvoir des Elfes décline en ce monde, mais notre force n'est pas encore éteinte !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Je défends les Elfes de la Lothlórien."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Que la grâce des Valar vous protège.",
+        "Combien d'Orques avez-vous occis aujourd'hui, #p ?",
+        "Si vous combattez pour la liberté, alors je suis avec vous."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=warden"
+      },
+      "lines": [
+        "Il y a longtemps, une alliance existait entre mon peuple et le vôtre. Honorerez-vous cette alliance ?"
+      ]
+    }
+  ]
+}

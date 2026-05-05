@@ -1,0 +1,113 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Bonjour, #p ! Vous voulez acheter des récoltes ?",
+        "Vous cherchez de belles récoltes, #p ?",
+        "J'ai de bons ouvriers agricoles prêts à être engagés.",
+        "Vous voulez engager des ouvriers agricoles ? Apportez-moi juste quelques pièces d'argent.",
+        "La récolte est abondante en cette saison !",
+        "Et comment allez-vous aujourd'hui, #p ?",
+        "Vous avez de l'équipement agricole ? Je vous en offre un bon prix.",
+        "Bienvenue à la ferme, #p !",
+        "Vous êtes un peu grand pour un Hobbit, non ?",
+        "J'espère que vous avez pas volé de récoltes !",
+        "Vous cherchez de bonnes récoltes, #p ? Eh ben, vous êtes au bon endroit !",
+        "C'est la meilleure ferme de toute la Comté ici !",
+        "J'ai des récoltes fraîches qui vont vous plaire !",
+        "Je vous offre les meilleures récoltes de toute la Comté !",
+        "J'ai toujours besoin de nouveaux outils agricoles ! Trouvez-m'en et on peut commercer !",
+        "Mes ouvriers agricoles sont les plus travailleurs de tout le Quartier ! Apportez-moi des pièces d'argent et vous pourrez en engager !",
+        "Oubliez pas de pas marcher sur mes cultures !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "La Comté me manque tellement.",
+        "Ma taverne me manque tellement.",
+        "J'ai jamais été aussi loin de la Comté.",
+        "Si je fais encore un pas, j'serai plus loin de chez moi que j'ai jamais été.",
+        "C'est peut-être le moment de rentrer. La Comté me manque.",
+        "Les aventures ? Des choses désagréables, ça. Je crois qu'il est temps que je retourne à ma taverne.",
+        "La route se poursuit sans fin, sous les arbres et par-dessus les ruisseaux, et je dois suivre, à ce qu'il semble ! Mais je rentrerai bientôt chez moi.",
+        "C'est le pays de votre peuple, #p ? Un drôle d'endroit, ça c'est sûr !",
+        "On devrait trouver le chemin du retour maintenant, #p.",
+        "Les trous de Hobbit ! La chaleur, la bonne nourriture, et le confort. Le mien me manque...",
+        "J'en ai eu assez des terres étrangères pour l'instant, #p. On rentre bientôt ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+        "Quel endroit épouvantable ! Retournons à la Comté tout de suite !",
+        "Comment sommes-nous arrivés dans un endroit aussi épouvantable ?",
+        "Quel pays affreux, #p !",
+        "Quel pays effrayant ! Nous devons trouver le chemin du retour vers la Comté !",
+        "Ce pays suffit à remplir d'effroi les cœurs les plus vaillants !",
+        "Je déclare que j'en ai assez vu de cet endroit ! Rentrons à la Comté, et vite !",
+        "Eh bien, #p, c'est un sale endroit si j'en ai jamais vu un !",
+        "Je me sens tout mal à l'aise ici. Dites, #p, vous connaissez la route pour retourner à la Comté ?",
+        "J'sais pas comment on a fait pour se retrouver dans un endroit pareil, #p.",
+        "Même l'air ici est une horreur !",
+        "On m'avait toujours mis en garde contre suivre ces routes hors de la Comté !",
+        "J'aurais dû écouter mon vieux Père ! J'aurais jamais dû quitter la Comté, non non !",
+        "Si j'avais su que c'était ça au-delà des frontières de notre Comté, j'aurais jamais été vagabonder !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff"
+      },
+      "lines": [
+        "Ça vous dérange pas ? J'étais en pleine conversation là !",
+        "#p ! J'étais justement en pleine conversation.",
+        "C'est un peu malpoli d'interrompre, non ?",
+        "Y'a pas besoin d'interrompre, si ?",
+        "J'étais en train de parler ! Attendez votre tour !",
+        "Quel manque de politesse ! On avait une bonne discussion là, s'il vous plaît.",
+        "Mêlez-vous de vos affaires. Vous voyez pas qu'on parlait ?",
+        "Mêlez-vous de vos affaires, s'il vous plaît ! Maintenant laissez-nous tranquilles.",
+        "Je vois que vous avez aucun scrupule à interrompre une bonne conversation de Hobbit !",
+        "S'il vous plaît, #p, j'étais en pleine conversation.",
+        "...et je me suis tourné vers lui et j'ai dit - excusez-moi ? Ça vous dérange de nous interrompre, #p ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "On a vu des gens bizarres dans ces parages, et vous ressemblez à l'un d'eux.",
+        "J'ai entendu dire que vous causiez des ennuis par ici.",
+        "Vous avez l'air d'un fauteur de troubles !",
+        "Vous avez l'air d'un fauteur de troubles, #p.",
+        "Vous êtes pas un de ces gens bizarres dont j'ai entendu parler ?",
+        "Restez loin de la Comté, #p.",
+        "Restez hors de la Comté !",
+        "J'vous prêterai rien de mon herbe à pipe !",
+        "On n'aime pas les gens comme vous.",
+        "Vous êtes pas quelqu'un de bien, #p.",
+        "On parle de gens bizarres par ici. Vous en seriez pas un ?",
+        "Si vous me pardonnez l'expression, vous me mettez mal à l'aise.",
+        "Vous êtes bon pour les Mûlipans, #p !",
+        "Je savais que vous autres bizarres de Grandes Gens n'apportiez que des ennuis !",
+        "On n'apprécie pas les gens comme vous dans la Comté.",
+        "La Comté n'est pas un endroit pour les fauteurs de troubles comme vous !",
+        "Vous feriez mieux de quitter la Comté, #p, ou j'appelle les Frontaliers !",
+        "J'ai vu des gens bizarres rôder dans ces parages, et vous me rappelez l'un d'eux. Je vous fais pas confiance."
+      ]
+    }
+  ]
+}

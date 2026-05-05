@@ -1,0 +1,38 @@
+{
+  "parent": "lotrextended:bree/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Ah, #p ! Comment vont les choses là-dehors ?",
+        "Vous avez besoin d'aide, #p ?",
+        "Ces Gens du Sud causent des problèmes ?",
+        "Quoi qu'il se passe dans le Sud, j'espère que ça n'atteindra pas notre communauté.",
+        "Qu'y a-t-il ? Vous avez besoin que je sonne la cloche de la ville ?",
+        "C'est bientôt la saison des moissons, on pourrait utiliser quelques hommes de plus pour surveiller.",
+        "Pardonnez ma franchise, #p, mais je suis content que vous soyez pas un de ces Brigands.",
+        "Gardez l'œil ouvert pour ces Brigands si vous pouvez.",
+        "La rumeur court au sujet de ces Cavaliers Noirs, vous les avez vus ?",
+        "Des nouvelles inquiétantes à me rapporter, #p ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "On n'a pas de place pour les gens de votre espèce à Bree !",
+        "Fuyez dans les collines, rejoindre les vôtres !",
+        "On a déjà eu affaire à des Brigands comme vous, #p !",
+        "Partez, avant qu'on lâche les chiens après vous !",
+        "Je savais que ces Brigands qui remontaient la Route Verte préparaient un mauvais coup !",
+        "Venez pas apporter des ennuis dans notre paisible village, espèce de...",
+        "Y'a pas de place pour des malfrats comme vous à Bree !",
+        "J'ai même pas besoin de mes hommes pour vous régler votre compte.",
+        "Les moucherons sont plus menaçants que vous."
+      ]
+    }
+  ]
+}

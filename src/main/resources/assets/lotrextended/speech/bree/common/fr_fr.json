@@ -1,0 +1,621 @@
+{
+    "speech": [
+      {
+        "conditions": {
+          "relation": "friendly"
+        },
+        "lines": [
+            "Faites attention à ces Rôdeurs dans les terres sauvages, ils sont pas naturels.",
+            "Tant que ces Gens du Sud viennent pas chercher un endroit où loger à Bree, ça ira.",
+            "Parlez moins fort ! Ces Rôdeurs ont une ouïe pas naturelle, j'vous dis.",
+            "J'ai entendu dire qu'beaucoup de voleurs traînent vers les Fossés-aux-Morts ces derniers temps.",
+            "Y'a eu des gens bizarres qui remontaient la Route Verte.",
+            "Peu de gens le savent, mais c'est Bree qui a découvert l'herbe à pipe en premier.",
+            "On n'a plus beaucoup de voyageurs qui viennent de l'Ouest ces temps-ci.",
+            "Vous n'auriez pas un peu d'herbe à pipe du Quartier Sud sur vous, par hasard ?",
+            "J'suis originaire d'Archet, une p'tite communauté dans le Bois de Chet.",
+            "Combe c'est pas mal, mais j'préfère la Colline de Bree moi-même.",
+            "J'adore écouter les récits et les chansons des Étrangers.",
+            "Chaque fois que les Nains passent par ici, nos coffres se remplissent d'or et nos fûts se vident de bière.",
+            "J'vois jamais ces Rôdeurs faire quoi que ce soit d'utile, j'sais pas si ça veut dire qu'ils sont si bons que ça ou juste paresseux.",
+            "Des nouvelles sont arrivées comme quoi quelque chose remue à l'Est. J'espère que ça n'atteindra pas Bree.",
+            "Des nouvelles des Colons ?",
+            "Il a tellement plu l'an dernier que j'ai failli apprendre à nager !",
+            "J'aime pas le nombre d'Étrangers qui remontent la Route Verte ces jours-ci.",
+            "C'est étrange tous ces Gens du Sud qui arrivent à Bree. Comme on dit - un malheur n'arrive jamais seul...",
+            "Si vous allez vers le nord par la Route Verte, vous tomberez sur les Fossés-aux-Morts, c'était autrefois la capitale de l'ancien Royaume du Nord, mais y'a plus que des voleurs et des brigands là-bas maintenant.",
+            "Il est une auberge, une joyeuse vieille auberge - au pied d'une vieille colline grise ! Et là on brasse une bière si brune que l'Homme de la Lune lui-même est descendu une nuit pour s'en emplir !",
+            "Les Rôdeurs parlent d'Orques et de créatures malfaisantes dont le nombre croît dans les terres sauvages ! Mais nous autres Gens de Bree, on était là avant l'arrivée des Rôdeurs et on sera encore là quand ils seront partis !",
+            "J'ai entendu dire que les Hobbits de la Comté ont des tours de passe-passe époustouflants ! Y'en a un qui a disparu dans les airs au Poney Fringant !",
+            "La rumeur dit qu'une guerre se prépare dans le sud ! Heureusement que ces nouvelles sont loin de Bree, on a nos propres problèmes avec tous ces voleurs et ces Brigands qui traînent !",
+            "Quand les Nains passent par ici, c'est bon pour les affaires de tout le monde ! Presque trop bon, les auberges arrivent à peine à cuisiner assez pour les nourrir !",
+            "On a vu beaucoup d'Elfes partir vers l'ouest, j'me demande où ils vont ?",
+            "Si ces Rôdeurs sont vraiment des amis des Gens de Bree, alors pourquoi ils aiment tant rôder autour de nos frontières ?",
+            "J'suis pas très fan des Rôdeurs, mais ils valent mieux que les Brigands !",
+            "Vous avez entendu ? Les mêmes Cavaliers Noirs qui sont passés par Bree ont attaqué ces Rôdeurs au Gué de Sarn y'a quelque temps ! Ce sont vraiment des temps sombres."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "#home"
+        },
+        "lines": [
+          "On parle de gens bizarres dans les parages.",
+          "On a de plus en plus de Gens du Sud qui remontent la Route Verte ces derniers temps.",
+          "J'ai entendu dire qu'un vagabond gris est passé récemment, et reparti en vitesse aussi.",
+          "Si vous avez besoin de Feuille du Sud, vous devriez essayer les marchés.",
+          "Vous êtes déjà allé près de ces galgals à l'Ouest d'ici ? L'endroit me donne la chair de poule.",
+          "Si vous comptez aller plus à l'Est, évitez l'Auberge Abandonnée ! La rumeur dit qu'elle est déserte, mais j'jure avoir vu des gens suspects rôder par là-bas !",
+          "Faites bien attention à pas vous aventurer dans les Hauts des Galgals à l'Ouest d'ici. Ça porte malheur, j'vous dis.",
+          "On avait plus de Colons qui venaient avant, j'me demande ce qui les arrête ?",
+          "Faites attention près de ces galgals à l'ouest d'ici ! Y'a des histoires de gens de la ville qui disparaissent parce qu'ils se sont trop approchés !",
+          "Je quitterais jamais Bree. Même pas pour visiter la Comté.",
+          "Notre ville est la plus ancienne cité des Hommes à l'ouest des Monts Brumeux ! On était là même avant la fondation de l'ancien Royaume du Nord !",
+          "Si vous êtes là pour notre excellente herbe à pipe, on la cultive sur les pentes sud.",
+          "J'fais pas confiance à ces Gens du Sud, où est-ce qu'ils comptent aller ? J'espère pas ici."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "#home",
+          "rank": "<=friend"
+        },
+        "lines": [
+          "Quelle affaire vous amène ?",
+          "Qu'est-ce que vous faites à Bree ?",
+          "Bienvenue au pays de Bree, Étranger.",
+          "D'abord ces Cavaliers Noirs, maintenant vous. Quelle époque étrange.",
+          "Bienvenue Étranger ! Bree est un endroit agréable, faites juste attention à pas tomber dans la mauvaise foule.",
+          "C'est votre première fois à Bree ? Vous avez l'air nouveau.",
+          "Vous êtes pas un de ces Gens du Sud, si ?",
+          "Si vous cherchez un endroit où loger, y'a pas mieux que le Poney Fringant !",
+          "Un Étranger ? Diantre, d'où venez-vous donc ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge_relation": "none",
+          "biome": "#home",
+          "rank": "<=friend"
+        },
+        "lines": [
+          "J'suis pas sûr de vous, on a eu des gens bizarres dans les parages.",
+          "Qu'est-ce qu'un étranger comme vous fait à Bree, vous êtes pas en train de fouiner, hein ?",
+          "J'ai intérêt à pas vous voir traîner avec des personnages douteux, vous feriez mieux de rester loin de ces brigands et voleurs !",
+          "J'sais pas trop quoi penser de vous, #p. Y'a eu beaucoup de gens bizarres par ici récemment.",
+          "Vous êtes pas un de ces types qui rôdent dans le noir, si ?",
+          "Les gardes disent qu'ils ont vu quelqu'un comme vous se faufiler dans les maisons des gens. J'vous ai à l'œil.",
+          "Vous êtes pas un de ces sorciers, si ?",
+          "Vous êtes pas un de ces Rôdeurs, si ?",
+          "Vous avez intérêt à pas apporter d'ennuis à Bree !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Bonjour #p ! Comment allez-vous aujourd'hui ?",
+          "Des nouvelles de vos voyages, #p ?",
+          "Faites attention #p, y'a eu des voleurs aux abords de la ville !",
+          "#p ! Des nouvelles de vos voyages ?",
+          "J'ai entendu dire qu'une guerre gronde dans le sud ! Qu'est-ce que vous en savez, #p ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=townsman"
+        },
+        "lines": [
+          "Ça fait plaisir de voir un visage amical !",
+          "J'ai toujours su que vous aviez bon cœur, #p !",
+          "Vous êtes toujours le bienvenu à Bree, #p !",
+          "J'aurais jamais dû douter de vous, #p !",
+          "Vous avez fait un tour aux marchés dernièrement ? J'espérais avoir plus de Feuille du Sud.",
+          "Toujours un plaisir, #p !",
+          "Oh, c'est vous, #p ! J'vous avais pas reconnu au début, voyez-vous."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=trustee"
+        },
+        "lines": [
+          "Vous vous êtes fait un sacré nom parmi les Gens de Bree.",
+          "Vous êtes toujours le bienvenu chez moi, #p !",
+          "Bonjour, #p ! Faudrait que j'vous invite à déjeuner un de ces jours.",
+          "Bonjour, #p ! Faudrait que j'vous invite pour l'herbe à pipe un de ces jours.",
+          "Content de vous avoir parmi les Gens de Bree !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=champion"
+        },
+        "lines": [
+          "Tout va bien à Bree, grâce à vous !",
+          "Tout va bien à Bree, grâce à vous, #p !",
+          "Vos exploits ne seront pas oubliés, #p !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=captain"
+        },
+        "lines": [
+          "J'crois bien que j'vois moins de ces voleurs dans les parages - sans doute grâce à votre aide !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=trustee",
+          "day_or_night": "day"
+        },
+        "lines": [
+          "Eh bien, si c'est pas #p ! Comment allez-vous aujourd'hui ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=champion",
+          "day_or_night": "night"
+        },
+        "lines": [
+          "Eh bien, si c'est pas #p ! Comment allez-vous ce soir ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=champion",
+          "day_or_night": "day",
+          "player_gender_pref": "m"
+        },
+        "lines": [
+          "Bonne journée, monsieur !",
+          "Bonne journée, monsieur #p !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=champion",
+          "day_or_night": "day",
+          "player_gender_pref": "f"
+        },
+        "lines": [
+          "Bonne journée, mademoiselle !",
+          "Bonne journée, mademoiselle #p !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "morning",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Bonjour !",
+          "Bien le bonjour !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "morning",
+          "rank": ">=trustee"
+        },
+        "lines": [
+          "Bonjour, #p !",
+          "Bien le bonjour, #p !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "afternoon",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Bon après-midi !",
+          "Bon après-midi à vous !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "afternoon",
+          "rank": ">=trustee"
+        },
+        "lines": [
+          "Bon après-midi, #p !",
+          "Bon après-midi à vous, #p !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "evening",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Bonsoir !",
+          "Bonsoir à vous !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "evening",
+          "rank": ">=trustee"
+        },
+        "lines": [
+          "Bonsoir, #p !",
+          "Bonsoir à vous, #p !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "dawn | dusk",
+          "weather": "clear"
+        },
+        "lines": [
+          "Quel joli ciel là-haut !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "lunar_eclipse": "true"
+        },
+        "lines": [
+          "D'abord les Brigands arrivent à Bree, puis les Cavaliers Noirs, et maintenant la lune est rouge sang ! Ce sont vraiment des temps sombres..."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge_relation": "this"
+        },
+        "lines": [
+          "Content de vous avoir avec nous, #p !",
+          "Vous pouvez chasser les Brigands de Bree, #p ?",
+          "J'suis content de vous avoir de notre côté !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge": "lotr:dunedain_north"
+        },
+        "lines": [
+          "Si vous êtes vraiment un ami des Gens de Bree alors pourquoi vous rôdez autour de nos frontières ?",
+          "Vous voulez vraiment vous rendre utile ? Gardez ces voleurs loin de la Route Verte !",
+          "J'ai entendu dire que vous les Rôdeurs êtes les restes du Royaume du Nord déchu, j'trouve que c'est du gâchis de passer votre vie à garder de vieilles ruines et à rôder dans les terres sauvages.",
+          "Vous allez causer notre perte. Les guerres de votre peuple n'ont rien à faire à Bree.",
+          "C'est vous les Rôdeurs qui avez mené ces Cavaliers Noirs ici ?",
+          "Vous devriez rassembler vos amis Rôdeurs et chasser ces Brigands de Bree !",
+          "Qu'est-ce qu'il y a, Rôdeur ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge": "lotr:dunland | lotr:isengard"
+        },
+        "lines": [
+          "Vous feriez mieux de redescendre la Route Verte parce que les gens comme vous sont pas les bienvenus à Bree !",
+          "Qu'est-ce qu'il y a, Brigand ?",
+          "Vous devriez dire à vos semblables d'arrêter de venir à Bree !",
+          "Notre ville était un endroit agréable avant que des gens comme vous débarquent !",
+          "J'sais pas trop quoi penser de vous, #p. Vous ressemblez à un Brigand !",
+          "J'traite pas avec les gens de votre espèce.",
+          "On se fiche de vos guerres, Gens du Sud.",
+          "Arrêtez d'espionner notre peuple !",
+          "Vos semblables devraient quitter Bree !",
+          "Quelle affaire avez-vous avec les Gens de Bree, étranger ?",
+          "J'suis pas sûr de vous, on a eu des gens bizarres dans les parages.",
+          "Qu'est-ce qu'un étranger comme vous fait à Bree, vous êtes pas en train de fouiner, hein ?",
+          "J'ai intérêt à pas vous voir traîner avec des personnages douteux, vous feriez mieux de rester loin de ces brigands et voleurs !",
+          "Quelle affaire vous amène ?",
+          "J'sais pas trop quoi penser de vous, #p. Y'a eu beaucoup de gens bizarres par ici récemment.",
+          "Vous êtes pas un de ces types qui rôdent dans le noir, si ?",
+          "Qu'est-ce que vous faites à Bree ?",
+          "Les gardes disent qu'ils ont vu quelqu'un comme vous se faufiler dans les maisons des gens. J'vous ai à l'œil.",
+          "Vous êtes pas un de ces Brigands, si ?",
+          "D'abord ces Cavaliers Noirs, maintenant vous. Quelle époque étrange.",
+          "C'est votre première fois à Bree ? Vous avez l'air nouveau.",
+          "Vous êtes pas un de ces Gens du Sud, si ?",
+          "Vous avez intérêt à pas apporter d'ennuis à Bree !",
+          "Un Étranger ? Diantre, d'où venez-vous donc ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "#home",
+          "pledge": "lotr:blue_mountains | lotr:durins_folk"
+        },
+        "lines": [
+          "Vous apportez des richesses ou des marchandises des halls des Nains ?",
+          "J'ai entendu dire qu'y'a pas de femmes naines, mais comment vous avez des enfants ?",
+          "Vous avez dû faire un long voyage pour atteindre Bree, où allez-vous ensuite ?",
+          "Bienvenue ! Quelle affaire les Nains apportent-ils à Bree ?",
+          "Pourquoi les Nains vivent tous sous terre ?",
+          "Vous êtes là pour remplir nos coffres d'or ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "drunk": "true"
+        },
+        "lines": [
+            "Il est une auberge, une joyeuse vieille auberge... au pied d'une vieille colline grise...",
+            "La route se poursuit sans fin...",
+            "Touche pas à ma bière !",
+            "Ring ding diddle diddle I de oh ring di diddly I oh !",
+            "Roule roule roule roule, rou-rou-roulons dans le trou !",
+            "Ho hisse ! Plouf patatras ! En bas qu'ils vont, en bas badaboum !",
+            "Mais la seule boisson pour les braves et les vrais...",
+            "Ho hé ! À la bouteille je vais !",
+            "Je bois, donc je suis.",
+            "Tippiti tippiti tap ! Splish splash splich !",
+            "Peur ! Feu ! Ennemis !",
+            "Ma bière ! À moi !",
+            "Me faites pas tourner comme ça, #p. Mon estomac est pas stable.",
+            "Arrêtez de marcher sur le mur, #p ! Ho ! Ho !",
+            "Ici et là, de la bière y'en a !",
+            "J'pourrais pas vivre sans ma bière !",
+            "La bière est à moi !",
+            "En haut en bas à gauche à droite, je boirai jusqu'à la fin de la nuit !",
+            "Té to ti ti toum !",
+            "Les Trolls ont des couches !",
+            "Plus de bière dans mon seau !",
+            "Ils sont fous ces Orques !",
+            "Champignon ! Champignon ! Champignon !",
+            "Ne craignez jamais les querelles, mais cherchez les aventures périlleuses !",
+            "On peut le trouver dans le marais, sur la colline, sous l'arbre, et là où l'eau lèche la terre !",
+            "J'étais un aventurier, tout comme vous. Et puis j'ai découvert la bière !",
+            "*hic*",
+            "Au secours ! Tout est carré ! Depuis combien de temps j'suis là ? J'deviens fou ? Aidez-moi, #p !",
+            "Yo ho ho et une bouteille de votre meilleure bière !",
+            "Ils me voient ! Ils vous voient ! Ils voient tout !",
+            "Le printemps arrive, enfin j'crois ! Qu'est-ce que j'raconte ? Encore de la bière pour tout le monde !",
+            "Un bon seau de bière est mieux qu'un carreau de verre !",
+            "Une chanson ! Une chanson !",
+            "Chantez, #p ! Chantez !",
+            "Mon talent de chanteur éclipse même celui des Elfes !",
+            "Donnez-moi une raison de me battre et je boirai de la bière !",
+            "Colline. Arbre. Lac. Encore une colline. Jaune !",
+            "Gloire au Grand Lion !",
+            "Tous ceux qui errent ne sont pas perdus, #p !",
+            "Vous êtes un peu petit pour un Oliphant !",
+            "Eh bien, eh bien, vous en avez fait du chemin ! Ça fait des années que j'vous ai pas vu, #p !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "in_conversation": "other",
+          "rank": "<=friend"
+        },
+        "lines": [
+          "Quel manque de politesse d'interrompre quelqu'un en pleine conversation !",
+          "Pourquoi vous avez les oreilles qui traînent ? Vous êtes un Brigand ? Ou p'têt un Rôdeur ?",
+          "Vous devriez savoir - espionner la conversation des autres !",
+          "Vous voyez pas que j'suis occupé ?",
+          "Ça vous dérange pas ? J'étais en pleine conversation là !",
+          "#p ! J'étais justement en pleine conversation.",
+          "C'est un peu malpoli d'interrompre, non ?",
+          "Y'a pas besoin d'interrompre, si ?",
+          "J'étais en train de parler ! Attendez votre tour !",
+          "Mêlez-vous de vos affaires. Vous voyez pas qu'on parlait ?",
+          "Mêlez-vous de vos affaires, s'il vous plaît ! Maintenant laissez-nous tranquilles.",
+          "...et je me suis tourné vers lui et j'ai dit - excusez-moi ? Ça vous dérange de nous interrompre, #p ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "weather": "rain"
+        },
+        "lines": [
+          "Il pleut beaucoup ces derniers temps, vous avez remarqué ?",
+          "Pluie, pluie, pluie. Rien que de la pluie ici à Bree. Ce que je donnerais pas pour un peu de neige, plutôt.",
+          "Il a énormément plu par ici ces derniers temps...",
+          "Y'a un vieux dicton ici à Bree : quand la pluie arrive, les gens bizarres suivent.",
+          "On dit que quand il pleut, les meilleures histoires se racontent devant une chope de bière.",
+          "J'ai peur que la pluie rende la Route Verte trop difficile à traverser.",
+          "Un malheur n'arrive jamais seul !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "weather": "clear"
+        },
+        "lines": [
+          "J'suis content qu'il pleuve pas !",
+          "Le ciel a l'air dégagé maintenant, mais attendez un peu - avant que vous le sachiez, il pleuvra des cordes !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "sun_admiring": "true"
+        },
+        "lines": [
+          "Regarder le soleil se lever au-dessus de la Colline de Bree, c'est vraiment quelque chose !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "day_or_night": "night"
+        },
+        "lines": [
+          "Faites attention à vous balader la nuit, on parle de gens bizarres dans les parages.",
+          "Faites attention, on n'est jamais trop prudent.",
+          "Qu'est-ce que vous faites à vous balader aussi tard la nuit ?",
+          "Allez pas trop au sud près de ces galgals ! Les gens finissent par disparaître quand ils errent la nuit."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "day_or_night": "night",
+          "rank": "<=friend"
+        },
+        "lines": [
+          "Faites attention à vous balader la nuit, on parle de gens bizarres dans les parages.",
+          "Faites attention, on n'est jamais trop prudent.",
+          "Qu'est-ce que vous faites à vous balader aussi tard la nuit ?",
+          "Allez pas trop au sud près de ces galgals ! Les gens finissent par disparaître quand ils errent la nuit."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "day_or_night": "night",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Faites attention #p, on parle de gens bizarres dans les parages.",
+          "Méfiez-vous de ces Brigands #p !",
+          "Vous devriez vite trouver un endroit où loger #p ! Y'a eu des gens bizarres la nuit ces derniers temps.",
+          "Faites attention #p, on n'est jamais trop prudent.",
+          "Faites attention à vous balader la nuit #p, on parle de gens bizarres dans les parages."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "#home",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Bienvenue à Bree, #p !",
+          "J'me demande si c'est ces Brigands qui ont mené ces Cavaliers Noirs ici ?",
+          "Comment trouvez-vous notre ville, #p ?",
+          "Vous avez séjourné au Poney Fringant #p ? C'est la meilleure auberge de tout le Pays de Bree j'dirais !"
+        ]
+      },
+      {
+        "conditions": {
+          "biome": "#foreign"
+        },
+        "lines": [
+          "Bree me manque vraiment.",
+          "J'espère qu'on tombera pas sur des bandits.",
+          "Si je fais encore un pas, j'serai plus loin de chez moi que j'ai jamais été."
+        ]
+      },
+      {
+        "conditions": {
+          "biome": "lotr:rivendell | lotr:lothlorien"
+        },
+        "lines": [
+          "La beauté de cet endroit est vraiment sans égale ! C'est presque pas naturel !",
+          "Si les Elfes vivent dans un endroit aussi beau que ça, pourquoi voudraient-ils partir vers l'ouest ?",
+          "Bree me manque vraiment, mais j'crois que je pourrais rester ici un petit moment.",
+          "Quel étrange enchantement rend ces terres si époustouflantes ?",
+          "J'ai jamais vu autant d'Elfes !",
+          "Y'a vraiment plus de choses à voir que ce qui se trouve au-delà des frontières du Pays de Bree.",
+          "La nourriture, les chansons et la beauté de cet endroit sont vraiment envoûtantes."
+        ]
+      },
+      {
+        "conditions": {
+          "biome": "lotr:lone_lands | lotr:eriador | lotr:hills_of_evendim | lotr:eriador_downs | lotr:lone_lands_hills | lotr:minhiriath | lotr:enedwaith"
+        },
+        "lines": [
+          "On est en territoire des Rôdeurs.",
+          "J'espère pas croiser un Rôdeur dans les terres sauvages.",
+          "Des créatures malfaisantes rôdent la nuit.",
+          "J'ai entendu dire qu'on a vu des gobelins descendre des montagnes !",
+          "Faites attention dans ces parages...",
+          "J'espère qu'on tombera pas sur ces gens bizarres qui montent vers le nord jusqu'à Bree !",
+          "Ces terres faisaient autrefois partie de l'ancien Royaume du Nord !",
+          "Triste de voir toutes ces ruines autour, j'me demande s'il reste encore des trésors à l'intérieur ?",
+          "J'devrais rentrer à Bree avant qu'un voleur m'attrape.",
+          "J'aimerais bien que les routes soient aussi sûres qu'à Bree, j'sais pas comment les marchands arrivent à passer !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+        },
+        "lines": [
+          "Quel endroit épouvantable ! Retournons à Bree tout de suite !",
+          "Pourquoi sommes-nous venus dans un endroit aussi épouvantable ?",
+          "Quel pays affreux, #p !",
+          "Quel pays effrayant ! Nous devons trouver le chemin du retour vers Bree !",
+          "Je déclare que j'en ai assez vu de cet endroit ! Rentrons à Bree, et vite !",
+          "Eh bien, #p, c'est un sale endroit si j'en ai jamais vu un !",
+          "Je me sens tout mal à l'aise ici. Dites, #p, vous connaissez la route pour retourner à Bree ?",
+          "J'sais pas comment on a fait pour se retrouver dans un endroit pareil, #p.",
+          "Même l'air ici est vicié !",
+          "Si j'avais su que c'était ça qui se trouvait au-delà du Pays de Bree, j'aurais jamais quitté ma maison !",
+          "Y'a un froid malsain dans l'air.",
+          "On devrait quitter cet endroit, #p !",
+          "Pourquoi les nuages sont si sombres, et pourquoi l'air est si étouffant ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "hostile"
+        },
+        "lines": [
+          "Fuyez dans les collines, rejoindre les vôtres !",
+          "On a déjà eu affaire à des Brigands comme vous, #p !",
+          "Allez au diable !",
+          "Mêlez-vous de vos affaires, Brigand.",
+          "J'ai été dans des bagarres de bar plus intimidantes que vous !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "hostile",
+          "biome": "#foreign"
+        },
+        "lines": [
+          "Restez loin de Bree !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "hostile",
+          "biome": "#home"
+        },
+        "lines": [
+            "Venez pas apporter des ennuis dans notre paisible village, espèce de...",
+            "On n'a pas de place pour les gens de votre espèce à Bree !",
+            "Partez, avant qu'on lâche les chiens après vous !",
+            "Je savais que ces Brigands qui remontaient la Route Verte préparaient un mauvais coup !",
+            "Qu'est-ce qui vous prend, de vous comporter comme ça !",
+            "Y'a pas de place pour des malfrats comme vous à Bree !",
+            "J'me suis déjà battu avec des Nains, c'est rien ça !",
+            "Je sais ce que vous manigancez #p.",
+            "On vous a tapé sur la tête ou quoi ?",
+            "Un fauteur de troubles à ce que je vois ? Bree n'accueille pas les Brigands ! Partez !",
+            "Les gens de votre espèce sont pas les bienvenus ici.",
+            "Retournez de l'autre côté de la haie !",
+            "Retournez de l'autre côté de la haie, #p !",
+            "Bree n'est pas un endroit pour les fauteurs de troubles comme vous !"
+        ]
+      }
+    ]
+  }

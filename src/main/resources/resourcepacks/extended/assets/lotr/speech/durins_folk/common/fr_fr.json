@@ -1,0 +1,220 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Des feux rugissants ! De la bière de malt ! De la viande bien grasse à l'os !",
+        "La bière naine est le plus fin breuvage de toute la Terre du Milieu !",
+        "Les richesses des Nains ne sont surpassées par aucun autre peuple.",
+        "Quelles nouvelles apportez-vous du monde des Hommes, #p ?",
+        "Ma barbe fait l'envie de tout le Peuple de Durin.",
+        "L'art de la forge des Nains est sans égal !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "m"
+      },
+      "lines": [
+        "Nos femmes sont si semblables à nous par la voix et l'apparence qu'on les prend souvent pour des hommes."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "f"
+      },
+      "lines": [
+        "Nos hommes disent que nous, les femmes, leur ressemblons tant par la voix et l'apparence qu'on pourrait nous prendre pour des hommes ! Peut-être que s'ils levaient le nez de leur forge de temps en temps..."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:iron_hills"
+      },
+      "lines": [
+        "Bienvenue dans les Collines de Fer, #p ! Bien des richesses vous y attendent.",
+        "Ces collines regorgent de fer, et d'autres minerais en sus.",
+        "Nous avons de nombreuses mines dans ces collines."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Vous êtes un peu grand pour ces mines, #p ! Ha ! Ha !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Avez-vous des nouvelles de notre peuple dans l'Ouest ?",
+        "Bien rencontré !",
+        "Bien rencontré, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Buvons ensemble !",
+        "Trinquons-nous, #p ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend & <oathfriend"
+      },
+      "lines": [
+        "Vous n'êtes pas des Khazâd, #p, mais vous semblez assez amical."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=oathfriend"
+      },
+      "lines": [
+        "Vous n'êtes peut-être pas des Khazâd, #p, mais vous êtes toujours le bienvenu dans nos salles."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <axebearer",
+        "biome": "#home"
+      },
+      "lines": [
+        "Par ma barbe, je n'ai jamais vu un Homme de toute ma vie ! Bienvenue chez moi, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<axebearer"
+      },
+      "lines": [
+        "Vous avez peut-être la stature, mais point de belle barbe !",
+        "Il vous faut travailler cette barbe, #p.",
+        "Vous êtes peut-être de la race des Hommes, #p, mais j'ai ouï dire que même les Hommes peuvent faire pousser leur barbe s'ils s'y appliquent ! Alors, où est la vôtre ? Ha ! Ha !",
+        "Pas de barbe ? J'ai failli vous prendre pour un Elfe."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=axebearer & <commander"
+      },
+      "lines": [
+        "Je vois que vous avez travaillé cette barbe, #p !",
+        "Je vois que vous soignez votre barbe. Puisse-t-elle croître toujours plus longue !",
+        "Une belle barbe en devenir que voilà ! Ha ! Ha !",
+        "Vous avez peut-être la stature... et une barbe en route, semble-t-il, mais il vous reste encore à pousser !",
+        "Ne vous en faites pas, #p. Une barbe comme la mienne prend du temps à pousser !",
+        "Est-ce un début de barbe que je vois poindre à votre menton, #p ? Auriez-vous suivi mon conseil ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=commander"
+      },
+      "lines": [
+        "Vous avez la stature, et une belle barbe pour l'accompagner ! Bien poussé, #p !",
+        "Vous avez une barbe des plus respectables, #p. À peine plus courte que la mienne ! Ha ! Ha !",
+        "Je n'aurais jamais cru voir le jour où l'un de la race des Hommes ferait pousser une barbe rivalisant avec la mienne !",
+        "Mon cher ami #p, avec une barbe à pleine maturité ? Je vous ai à peine reconnu !",
+        "Une bien belle barbe en vérité, #p, et puisse-t-elle croître toujours plus longue !",
+        "Qui a dit que la race des Hommes ne pouvait faire pousser de barbe ! Vous avez fait du beau travail, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "alternatives": [
+          {
+            "biome": "#home"
+          },
+          {
+            "underground": "true"
+          }
+        ]
+      },
+      "lines": [
+        "Il y a là de bel ouvrage de pierre."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "N'espère pas avoir le dessus sur moi, petit querelleur !",
+        "Tu n'es pas de taille face aux parents de Durin !",
+        "Tu n'aurais pas dû venir ici, #p !",
+        "Je vais te fendre ton misérable crâne en deux !",
+        "Allons, petit ! Montre-moi ce que tu as dans le ventre !",
+        "Subis le courroux des Nains, #p !",
+        "Es-tu venu ici seulement pour être écrasé ?",
+        "Tire ton dernier souffle, #p !",
+        "Point de bière naine pour toi !",
+        "Raaarrrgh !",
+        "Je vais t'écraser comme un caillou, petit !",
+        "Tu nous as sous-estimés, #p !",
+        "Tu es une sale engeance, #p !",
+        "À quoi pensais-tu en cherchant querelle avec moi ? Ha !",
+        "Malheur et ruine sur toi et les tiens, #p !",
+        "Khazâd ai-mênu !",
+        "Puisses-tu rôtir dans le feu d'un dragon !",
+        "Si tu avais une barbe, je te l'arracherais du menton !",
+        "Est-ce là ce qui passe pour un guerrier chez les gens sans barbe ?",
+        "Viens par ici, misérable imberbe !",
+        "Tu serais incapable de faire pousser une barbe même en essayant !",
+        "Tu pues comme une horde de Rakhâs !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Comment oses-tu pénétrer sur nos terres ?",
+        "Tu vas payer pour cette intrusion !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:dol_guldur | lotr:northern_orcs | lotr:angmar"
+      },
+      "lines": [
+        "Hors d'ici, vermine du Morgul !",
+        "Déguerpis, raclure de Rukhs !",
+        "Retourne auprès des Rakhâs que tu sers !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:dol_guldur | lotr:northern_orcs | lotr:angmar",
+        "biome": "#home"
+      },
+      "lines": [
+        "Tu vas payer pour cette intrusion, vermine du Morgul !"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=snaga"
+      },
+      "lines": [
+        "Qu'est-ce que les pièces d'argent et la chair d'Homme ont en commun ? J'en ai jamais assez !",
+        "Tu veux des mercenaires, #p ? Moi je veux des pièces.",
+        "Venez chercher vos Orques de combat ici ! À partir de quelques pièces d'argent !",
+        "J'veux mettre mes sales pattes sur encore plus de pièces d'argent !",
+        "Les forces du mal sont prêtes à être engagées, vermine !",
+        "J'ai plein de beaux Orques puants pour que tu les commandes !",
+        "Tu veux commander mes gars ? Alors file-moi des pièces d'argent !",
+        "Mes gars te serviront bien, pour une douzaine de pièces d'argent, bien sûr !",
+        "Donne-moi des pièces et j'te donne des troupes.",
+        "Venez chercher vos Orques ici, vermine !",
+        "Mes beaux Orques peuvent être à toi pour quelques pièces d'argent !"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "T'as pas encore été chassé par nos armées, raclure ?",
+        "J'vais te saigner comme un porc !",
+        "Profite de ton dernier souffle, raclure !",
+        "T'es bien frais !",
+        "Tuez la raclure !",
+        "On dirait que la viande est de retour au menu, les gars !",
+        "Tu pues la peur !",
+        "Crève, raclure d'Homme !",
+        "Ton sang sent le frais !",
+        "J'vais t'embrocher comme un morceau de viande !",
+        "Tu ferais mieux de courir, vermine !",
+        "Approche encore et j'te transperce comme une belle tranche de viande !",
+        "On dîne de chair d'Homme ce soir !"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "friendly",
+            "rank": "<snaga"
+          }
+        ]
+      },
+      "lines": [
+        "Tu crois que j'vendrais des mercenaires à une raclure comme toi ? Ha !",
+        "Seuls les plus vils des Hommes peuvent commander des Orques, #p.",
+        "Fais un peu plus de mal, et alors peut-être que j'envisagerai de t'échanger des unités.",
+        "Reviens quand t'auras prouvé ta valeur, vermine.",
+        "J'te vends aucun Orque tant que t'as pas tué plus de sales ennemis !",
+        "Nous autres Orques on suivrait jamais un faible comme toi, #p !",
+        "Qu'est-ce que tu veux, sale vermine ?",
+        "T'auras aucune troupe de ma part, ver de terre !",
+        "Seuls les vrais serviteurs de l'Unique peuvent commander mes puissants Orques !",
+        "Reviens quand tu seras plus un misérable ver de terre !",
+        "J'te donne aucun de mes gars tant que t'as pas prouvé que t'es digne de nous !"
+      ]
+    }
+  ]
+}

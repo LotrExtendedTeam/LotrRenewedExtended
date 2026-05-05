@@ -1,0 +1,45 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Halte-là ! La bourse... ou la vie !",
+        "File-moi tes affaires, Person !",
+        "J'te conseille pas de résister si j'étais toi !",
+        "J'vais être plein aux as quand j'en aurai fini avec toi !",
+        "T'auras plus besoin de tout ça, pas vrai ?",
+        "Eh ben, r'garde-moi c'qu'on a là !",
+        "C'est l'heure de payer !",
+        "Où tu planques tes jolies p'tites pièces ?",
+        "Viens par ici ! J'ai un marché à te proposer...",
+        "Ton fric est à moi, vermine ! Aboule !",
+        "C'est quoi qui brille dans ta poche ? Une pièce ? Donne-la-moi !"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "Halte-là ! La bourse... ou la vie !",
+        "File-moi tes affaires, Person !",
+        "J'te conseille pas de résister si j'étais toi !",
+        "J'vais être plein aux as quand j'en aurai fini avec toi !",
+        "T'auras plus besoin de tout ça, pas vrai ?",
+        "Eh ben, r'garde-moi c'qu'on a là !",
+        "C'est l'heure de payer !",
+        "Où tu planques tes jolies p'tites pièces ?",
+        "Viens par ici ! J'ai un marché à te proposer...",
+        "Ton fric est à moi, vermine ! Aboule !",
+        "C'est quoi qui brille dans ta poche ? Une pièce ? Donne-la-moi !"
+
+      ]
+    }
+  ]
+}
