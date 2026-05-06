@@ -91,6 +91,9 @@ public class ExtendedCombatTracker implements ExtendedTracker {
 		if (data == null) {
 			return;
 		}
+		if (ExtendedModTracker.autoBanMap.containsKey("disable_combatlogger")) {
+			return;
+		}
 		// Notify attackers
 		StringBuilder attackersList = new StringBuilder();
 		for (UUID attackerId : data.opponents.keySet()) {

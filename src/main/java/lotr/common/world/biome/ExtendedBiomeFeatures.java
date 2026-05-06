@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.OptionalInt;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.world.gen.blockstateprovider.ExtendedListTypedBlockStateProvider;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeature;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedBlobFeatureConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedBlobFeatureConfig.ExtendedFillerBlockType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedConfiguredFeatures;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedHoleySphereConfig;
+import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedLandBlotFeatureConfig;
 import com.github.maximuslotro.lotrrextended.common.world.gen.tree.BananaFoliagePlacer;
 import com.github.maximuslotro.lotrrextended.common.world.gen.tree.ExtendedFoilagePlacers;
 import com.google.common.collect.ImmutableList;
@@ -19,6 +21,8 @@ import com.google.common.collect.ImmutableSet;
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
+import lotr.common.world.gen.feature.BoulderFeatureConfig;
+import lotr.common.world.gen.feature.LOTRFeatures;
 import lotr.common.world.gen.tree.ClusterFoliagePlacer;
 import lotr.common.world.gen.tree.PartyTrunkPlacer;
 import net.minecraft.block.Block;
@@ -26,6 +30,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.GenerationStage.Decoration;
 import net.minecraft.world.gen.Heightmap.Type;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
@@ -35,10 +40,15 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig.Builder;
 import net.minecraft.world.gen.feature.Features.Placements;
 import net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType;
+import net.minecraft.world.gen.feature.template.RuleTest;
+import net.minecraft.world.gen.feature.template.TagMatchRuleTest;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
+import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
+import net.minecraft.world.gen.placement.ConfiguredPlacement;
 import net.minecraft.world.gen.placement.IPlacementConfig;
+import net.minecraft.world.gen.placement.NoPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.treedecorator.LeaveVineTreeDecorator;
 import net.minecraft.world.gen.treedecorator.TreeDecorator;
@@ -49,6 +59,8 @@ import net.minecraftforge.event.RegistryEvent;
 
 public class ExtendedBiomeFeatures {
 	private static boolean created = false;
+	public static final RuleTest MIDDLE_EARTH_SURFACE = new TagMatchRuleTest(ExtendedTags.Blocks.MIDDLE_EARTH_PLACEABLE_SURFACE);
+
 	// Trees
 	private static BlockState CHESTNUT_LOG;
 	private static BlockState CHESTNUT_WOOD;
@@ -321,6 +333,12 @@ public class ExtendedBiomeFeatures {
 		builder.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ExtendedConfiguredFeatures.RING_OF_ISENGARD.decorated(
 			Placement.HEIGHTMAP_SPREAD_DOUBLE.configured(IPlacementConfig.NONE).chance(1)));
 	}
+
+	public static void addScorchedLand(BiomeGenerationSettings.Builder builder, ConfiguredFeature<ExtendedLandBlotFeatureConfig, ?> feature, int chance) {
+		builder.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, feature.decorated(
+			Placement.HEIGHTMAP_WORLD_SURFACE.configured(IPlacementConfig.NONE).squared().chance(chance)));
+	}
+
 	public static void addOres(BiomeGenerationSettings.Builder builder) {
 		addUndergroundOreWeighted(builder, AMETHYST_ORE, 6, 64, 2F);
 		addUndergroundOreWeighted(builder, TOPAZ_ORE, 6, 64, 2F);
@@ -411,6 +429,13 @@ public class ExtendedBiomeFeatures {
 		builder.addFeature(GenerationStage.Decoration.TOP_LAYER_MODIFICATION, ExtendedFeature.HOLEY_UNDERWATER_SPHERE.get()
 			.configured(new ExtendedHoleySphereConfig(Arrays.asList(REMAINS_ORC, REMAINS_ELF, REMAINS_MAN, REMAINS_DWARF), FeatureSpread.of(2, 3), 4, ImmutableList.of(Blocks.DIRT.defaultBlockState()), 20))
 			.decorated(Features.Placements.TOP_SOLID_HEIGHTMAP_SQUARE).weighted(5F).feature.get());
+	}
+
+	public static void addBoulders(BiomeGenerationSettings.Builder builder, BlockState block, int minWidth, int maxWidth, int chanceInChunk, int genAmount, int heightCheck) {
+		BoulderFeatureConfig config = new BoulderFeatureConfig(new SimpleBlockStateProvider(block), minWidth, maxWidth, heightCheck);
+		float increaseChance = 1.0F / chanceInChunk;
+		ConfiguredPlacement<?> placement = (Placement.HEIGHTMAP.configured(NoPlacementConfig.INSTANCE).squared()).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(0, increaseChance, genAmount)));
+		builder.addFeature(Decoration.LOCAL_MODIFICATIONS, LOTRFeatures.BOULDER.configured(config).decorated(placement));
 	}
 
 	//Classic Trees

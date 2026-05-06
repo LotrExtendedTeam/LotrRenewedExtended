@@ -16,6 +16,7 @@ public class BiomeFeatureAdder {
 				ExtendedBiomeFeatures.addRemains(event.getGeneration());
 			}if (event.getName().equals(LOTRBiomes.NAN_CURUNIR.getRegistryName())) {
 				ExtendedBiomeFeatures.addOrthancWalls(event.getGeneration());
+				ExtendedBiomeFeatures.addScorchedLand(event.getGeneration(), ExtendedConfiguredFeatures.ISENGARD_SCORCHED_LAND, 80);
 			}
 			if(!event.getName().equals(LOTRBiomes.SEA.getRegistryName()) || !event.getName().equals(LOTRBiomes.RIVER.getRegistryName())) {
 				ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 6000);

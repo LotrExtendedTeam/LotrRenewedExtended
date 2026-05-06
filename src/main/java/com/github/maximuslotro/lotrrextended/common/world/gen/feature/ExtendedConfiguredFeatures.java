@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.world.gen.placement.Extended
 
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
+import lotr.common.world.biome.ExtendedBiomeFeatures;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -32,6 +33,8 @@ public class ExtendedConfiguredFeatures {
 			LOTRBlocks.NUMENOREAN_BRICK.get().defaultBlockState(), 2, LOTRBlocks.NUMENOREAN_BRICK_WALL.get().defaultBlockState(), 1, 
 			EdgeType.OUTER, new ExtendedWallsButtressFeatureConfig(12, 0.08D, 8));
 	public static final ConfiguredFeature<ExtendedWallsFeatureConfig, ?> RING_OF_ISENGARD = register("ring_of_isengard", ExtendedFeature.WALLS_PRE.configured(ISENGARD_WALLS_CONFIG));
+
+	public static final ConfiguredFeature<ExtendedLandBlotFeatureConfig, ?> ISENGARD_SCORCHED_LAND = register("scorched_land_isengard", ExtendedFeature.LAND_BLOT_PRE.configured(new ExtendedLandBlotFeatureConfig(FeatureSpread.of(5, 7), ExtendedBiomeFeatures.MIDDLE_EARTH_SURFACE, 2.0f, ExtendedBlocks.WASTE_BLOCK.get().defaultBlockState(), true, 10, 1.5f, true, 30)));
 
 	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String configuredFeatureName, ConfiguredFeature<FC, ?> pConfiguredFeature) {
 		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(LotrExtendedMod.MODID, configuredFeatureName), pConfiguredFeature);
