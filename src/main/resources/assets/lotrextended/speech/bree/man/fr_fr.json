@@ -1,0 +1,49 @@
+{
+  "parent": "lotrextended:bree/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Laissez pas ces Gens de la Comté vous dire qu'ils ont inventé l'herbe à pipe. Les Gens de Bree le faisaient avant le Vieux Toby.",
+        "La Colline de Bree est notre foyer depuis que les premiers Hommes sont arrivés ici.",
+        "J'aime bien avoir les Petites Gens autour, ils s'occupent bien des cultures.",
+        "Les Petites Gens ont peut-être pas l'air de grand-chose, mais les Gens de Bree seraient plus pareils sans eux.",
+        "Le temps où les Petites Gens de la Comté venaient faire la fête me manque. C'était le bon temps.",
+        "On dit que les Hobbits ont un talent pas naturel pour lancer des trucs, mais je veux pas risquer de demander.",
+        "Bree a longtemps survécu grâce aux Nains et aux Hommes de passage, et bien sûr aux Petites Gens.",
+        "On vit ici depuis bien avant les Petites Gens.",
+        "Comment vont les colonies occidentales des Petites Gens ?",
+        "C'est la plus ancienne colonie permanente des Hommes dans toute la région !",
+        "La plupart des Petites Gens vivent à Staddle ou plus haut sur la Colline de Bree.",
+        "Je compte rendre visite à des parents à Combe bientôt."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Je veux pas d'ennuis, #p !",
+        "Allons, allons, on va pas avoir d'ennuis !",
+        "Je veux pas d'ennuis avec vous, #p.",
+        "J'me suis battu contre des Petites Gens plus coriaces que vous !",
+        "Vous vous battez comme une de ces Petites Gens."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+      "Comment vous avez fait pour passer le gardien de la porte ?",
+      "Vous feriez mieux de quitter Bree, #p, ou j'appelle les gardes !",
+      "Les gardes vont s'occuper de vous, #p !",
+      "Appelez les gardes, on est attaqués !"
+      ]
+    }
+  ]
+}

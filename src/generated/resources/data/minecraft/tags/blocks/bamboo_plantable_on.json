@@ -4,6 +4,7 @@
     "#lotrextended:remains_ores",
     "lotr:moss_block",
     "lotr:mud",
-    "lotr:mud_grass"
+    "lotr:mud_grass",
+    "lotr:waste_block"
   ]
 }

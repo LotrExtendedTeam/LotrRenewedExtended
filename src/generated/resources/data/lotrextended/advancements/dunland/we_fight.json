@@ -1,0 +1,33 @@
+{
+  "parent": "lotrextended:dunland/land_of_the_wild_men",
+  "display": {
+    "icon": {
+      "item": "lotr:dunlending_club",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.dunland.we_fight.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.dunland.we_fight.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "hire_units_from_blue_mountains_commander": {
+      "trigger": "lotrextended:unit_hired",
+      "conditions": {
+        "captain_type": "lotr:blue_mountains_commander"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "hire_units_from_blue_mountains_commander"
+    ]
+  ]
+}

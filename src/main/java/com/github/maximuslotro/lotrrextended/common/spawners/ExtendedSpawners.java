@@ -143,6 +143,9 @@ public class ExtendedSpawners {
 	public static final ResourceLocation ISENGARD_SUPPLIER = register("isengard_supplier");
 	public static final ResourceLocation ISENGARD_CAPTAIN = register("isengard_captain");
 	public static final ResourceLocation ISENGARD_AREA = register("isengard_area_spawner");
+	public static final ResourceLocation SARUMAN = register("isengard_saruman");
+	// DUNLENDING
+	public static final ResourceLocation DUNLENDING_WARLORD = register("dunlending_warlord");
 
 	private static ResourceLocation register(String pId) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, pId), true);

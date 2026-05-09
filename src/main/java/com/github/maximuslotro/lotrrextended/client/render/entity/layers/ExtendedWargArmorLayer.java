@@ -21,7 +21,7 @@ import net.minecraft.item.ItemStack;
  * 
  */
 public class ExtendedWargArmorLayer extends LayerRenderer<WargEntity, WargModel<WargEntity>> {
-	private final WargModel<WargEntity> model = new WargModel<>(0.1F);
+	private final WargModel<WargEntity> model = new WargModel<>(0.05F);
 
 	public ExtendedWargArmorLayer(IEntityRenderer<WargEntity, WargModel<WargEntity>> p_i50937_1_) {
 		super(p_i50937_1_);

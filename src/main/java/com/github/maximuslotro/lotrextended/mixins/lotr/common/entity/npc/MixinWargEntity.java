@@ -126,7 +126,9 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		if (!this.inventory.getItem(0).isEmpty()) {
 			pCompound.put("SaddleItem", this.inventory.getItem(0).save(new CompoundNBT()));
 		}
-
+		if (!this.inventory.getItem(1).isEmpty()) {
+			pCompound.put("ArmorItem", this.inventory.getItem(1).save(new CompoundNBT()));
+		}
 	}
 
 	@Inject(method = "readAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
@@ -150,6 +152,12 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 			ItemStack itemstack = ItemStack.of(pCompound.getCompound("SaddleItem"));
 			if (itemstack.getItem() == Items.SADDLE) {
 				this.inventory.setItem(0, itemstack);
+			}
+		}
+		if (pCompound.contains("ArmorItem", 10)) {
+			ItemStack itemstack = ItemStack.of(pCompound.getCompound("ArmorItem"));
+			if (!itemstack.isEmpty() && this.isArmor(itemstack)) {
+				this.inventory.setItem(1, itemstack);
 			}
 		}
 		this.updateContainerEquipment();
@@ -388,8 +396,9 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	@Unique
 	private void updateContainerEquipment() {
 		if (!this.level.isClientSide) {
-			this.setArmorEquipment(this.inventory.getItem(1));
 			this.setFlag(4, !this.inventory.getItem(0).isEmpty());
+			this.setArmorEquipment(this.inventory.getItem(1));
+			this.setDropChance(EquipmentSlotType.CHEST, 0.0F);
 		}
 	}
 

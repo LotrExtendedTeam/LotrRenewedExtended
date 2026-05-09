@@ -44,7 +44,7 @@ public class InvasionSpawner {
 
             // check for protection
             BlockPos pos = new BlockPos(player.position());
-            if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ExtendedBannerProtectionManager.SingleProtectionInstance.AnyProtection(), false, "checkSpawnRules").isNotAllowed()) {
+            if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
                 continue;
             }
 
@@ -107,7 +107,7 @@ public class InvasionSpawner {
 
                     // check for protection
                     BlockPos cPos = new BlockPos(player.position());
-                    if (ExtendedBannerProtectionManager.getProtectionStatus(world, cPos, new ExtendedBannerProtectionManager.SingleProtectionInstance.AnyProtection(), false, "checkSpawnRules").isNotAllowed()) {
+                    if (ExtendedBannerProtectionManager.getProtectionStatus(world, cPos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
                         continue;
                     }
 

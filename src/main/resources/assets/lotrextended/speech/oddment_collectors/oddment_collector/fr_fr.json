@@ -1,0 +1,107 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "#p. Je vois que vos poches débordent de rebuts indésirables ! Laissez-moi les remplacer par quelques pièces...",
+        "Apportez-moi votre bazar inutile en échange d'argent !",
+        "Vous avez l'air d'avoir quelques bouts et débris inutiles, #p !",
+        "J'offre les meilleurs prix du pays !",
+        "Le commerce est lent ces derniers temps. Peut-être pourriez-vous m'aider...",
+        "De l'argent pour votre ferraille. Sans poser de questions !",
+        "Pas de métaux rouillés acceptés.",
+        "Vous avez besoin de quelques jolies pièces, #p ?",
+        "Je pourrais garnir votre sac de pièces pour seulement quelques morceaux de ferraille...",
+        "Ces terres sauvages sont rongées par la peur. Mais ne craignez plus rien ! Ferraille contre argent est là !",
+        "Un jour j'espère posséder des halls d'or, admirés même par les Nains...",
+        "On dit que les Orques de Gundabad possèdent beaucoup de richesses. Peut-être que j'irai voyager vers eux ensuite.",
+        "Vous avez l'air d'un bon #p, #p. Feriez-vous une faveur à un vieux marchand et commerceriez avec moi ?",
+        "Fer, étain, cuivre et acier. Commercez avec moi pour financer votre prochain dîner !",
+        "Je suis sur les marchés depuis longtemps. Je reconnais un client quand j'en vois un. Bonjour, #p !",
+        "Certains me disent tordu. Je préfère le terme 'expérimenté'.",
+        "Les bricoles sont mon commerce, l'argent ma paye. Échangez votre ferraille pour une plus belle journée !",
+        "Nous autres marchands faisons de bons poètes ; parlez un peu plus longtemps et je pourrais vous offrir une rime.",
+        "J'ai commercé avec des rois, vous savez, #p.",
+        "Tout ce que je cherche c'est un peu de métal. Apportez épée, poêle, pot et gamelle !",
+        "Ah, #p. Ce serait un honneur d'échanger cette ferraille contre un peu de... pièces.",
+        "#p ! Vous venez avec une affaire ?",
+        "De mon propre aveu je suis un fin commerçant !",
+        "Je marche sur bien des routes et allume bien des feux. Mais du commerce de bricoles un homme ne se lasse jamais.",
+        "#p. Les affaires de ferraille sont mon péché mignon !",
+        "J'aime à me considérer comme un petit peu expert. Commercez avec moi et je vous montrerai pourquoi.",
+        "Mon métal préféré est... eh bien, c'est l'or ! Mais un peu de ferraille rouillée n'a jamais fait de mal...",
+        "Comme métaux, le plomb c'est pas terrible.",
+        "Je rêve de beaux vêtements, d'un foyer chaud et... de plus d'or.",
+        "Je sens la ferraille !",
+        "#pote, j'aime bien une petite bière. Vous aimez boire aussi ? Eh bien oui ! Je pourrais vous donner les pièces pour en acheter plus !",
+        "Vous savez où venir si jamais vous avez besoin de vous débarrasser de cette ferraille, #p.",
+        "Vous n'avez pas besoin de cette ferraille, #p. Je vous la prends et je vous donne de l'argent au-delà de vos rêves les plus fous.",
+        "J'accepte même une demi-épée si c'est tout ce que vous avez, #p.",
+        "Je peux reconnaître un métal au goût, n'importe quel métal !",
+        "Ma poésie est aussi fine que mes affaires.",
+        "Venez conclure une affaire avec moi, #p ! Un marchand peut pas gagner sa vie rien qu'en vendant de la terre aux Gobelins.",
+        "Apportez-moi ferraille, et bricoles rigolotes, et je remplirai vos mains de picaillons en ribambelles !",
+        "Quoi ? Non, bien sûr que j'ai aucun motif sinistre sous-jacent pour acheter toute cette ferraille. Haha !",
+        "Qu'est-ce que je fais de toute cette ferraille que j'achète ? Eh bien, ça vous regarde pas, mon ami !",
+        "Vous avez été visité par le rare marchand de ferraille de richesse et prospérité ! De grandes richesses et fortune vous arriveront, mais seulement si vous dites, 'Merci, monsieur le marchand de ferraille !'",
+        "Votre venue était prédite, #p. Et il était aussi prédit que vous me vendriez un peu de cette ferraille que vous avez !",
+        "Donnez-moi des pièces ou j'enlève votre fille quand vous serez en vacances en Harad !",
+        "Certains appellent ça de la camelote... moi, j'appelle ça des trésors.",
+        "De la ferraille pour le Dieu de la Ferraille !",
+        "Et avec cette ferraille que vous me vendez, mon plan maléfique sera enfin- oh, bonjour, #p !",
+        "Certains disent qu'il y a des esprits meurtriers des Jours Anciens qui peuvent prendre la forme de n'importe quelle créature vivante. Même un collecteur de bricoles.",
+        "Dites, #p, vous ressemblez à la dernière pauvre âme qui s'est aventurée dans mes trap... formidables bonnes affaires !",
+        "Le déchet d'un homme est le trésor d'un autre !",
+        "La ferraille c'est pas bon pour la santé. Mais donnez-la-moi, et je vous bénis de richesse !",
+        "Si vous me donnez pas votre ferraille, je maudis le soleil pour qu'il se lève pas demain ! Haha !",
+        "Nous autres collecteurs de ferraille parcourons les terres, cherchant de la ferraille à vous prendre des mains !",
+        "Tout se passe comme prévu.",
+        "Tout a un prix, même votre vie."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "Je n'aurai plus jamais affaire à vous !",
+        "Puisse votre métal rouiller, #p !",
+        "Partez, imbécile !",
+        "Mon commerce m'a mené dans bien des dangers. Je suis bien habitué aux brutes comme vous !",
+        "Vous êtes mauvais pour les affaires !",
+        "J'ai pas l'intention de finir mes jours de marchand de ferraille ici !",
+        "Une lame rouillée serait une faveur pour vous !",
+        "Je n'accepterai jamais votre ferraille !",
+        "Je vous maudis à une vie de peu de pièces !",
+        "Je ne négocierai pas avec des bandits !",
+        "En toutes mes années je n'ai jamais vu quelqu'un d'aussi affreux que vous, #p !",
+        "Je suis peut-être un humble commerçant, mais un lâche je ne suis pas !",
+        "Vous ne verrez pas une autre lune, #p !",
+        "Vous êtes un imbécile, #p !",
+        "J'ai honte de penser que j'aurais commercé avec vous, #p !",
+        "Ne m'approchez plus, #p !",
+        "Puisse votre arme rouiller à jamais !",
+        "Votre or est faux, #p !",
+        "Partez, #p !",
+        "J'espère ne plus jamais poser les yeux sur vous, #p !",
+        "Vous pourrirez, #p !",
+        "Les commerçants cracheront sur votre nom et votre tombe !",
+        "Pourquoi me défiez-vous, #p ?",
+        "Maudit soyez-vous, #p !",
+        "Maudit soyez-vous à la pauvreté !",
+        "Je maudis votre nom et vos biens, #p !",
+        "Vous n'êtes qu'un vulgaire gredin ! Partez, #p !",
+        "N'espérez pas commercer avec moi !",
+        "Partez, voyou !",
+        "Éloignez-vous de moi, voyou !",
+        "Vous ressemblez à un vulgaire bandit ! Du balai !"
+      ]
+    }
+  ]
+}

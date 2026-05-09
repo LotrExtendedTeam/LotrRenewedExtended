@@ -43,7 +43,7 @@ public class EItemLootEntry extends ItemLootEntry{
 	 * @param pItem the item provider to construct the loot entry for
 	 * @return a new {@link ExtendedBuilder} for chaining configuration
 	 */
-	public static StandaloneLootEntry.Builder<ExtendedBuilder> lootItem(IItemProvider pItem) {
+	public static EItemLootEntry.ExtendedBuilder lootItem(IItemProvider pItem) {
 		return new EItemLootEntry.ExtendedBuilder(
 			(p_216169_1_, p_216169_2_, p_216169_3_, p_216169_4_) -> new EItemLootEntry(pItem.asItem(), p_216169_1_, p_216169_2_, p_216169_3_, p_216169_4_), 
 			pItem.asItem().canBeDepleted()

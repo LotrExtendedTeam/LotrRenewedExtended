@@ -1,0 +1,78 @@
+{
+    "speech": [
+      {
+        "conditions": {
+        },
+        "lines": [
+            "Froides soient la main, le cœur et les os... et froid soit le sommeil sous la pierre...",
+            "Jamais plus s'éveiller sur le lit de roc... jamais... jusqu'à ce que le Soleil défaille et que la Lune soit morte...",
+            "Dans le vent noir les étoiles périront... et sur l'or ici qu'ils gisent encore...",
+            "Jusqu'à ce que le Seigneur Ténébreux lève sa main... sur la mer morte et la terre flétrie...",
+            "Viens avec moi...",
+            "Laisse-moi t'emmener dans mon tombeau...",
+            "Froids soient le cœur, la main et les os... froids soient les voyageurs loin de chez eux...",
+            "Ils ne voient pas ce qui les attend... quand le soleil a failli et que la lune est morte...",
+            "Quand l'hiver commence à mordre... et que les pierres craquent dans la nuit glaciale... quand les mares sont noires et les arbres nus...",
+            "Je t'attendais...",
+            "Je t'attendais #p...",
+            "Perdus et oubliés que nous sommes... plus sombres que les ténèbres...",
+            "Froids maintenant soient le cœur et les membres...",
+            "Vivant sans souffle... aussi froid que la mort...",
+            "Viens dans la brume...",
+            "#p... #p... suis-moi...",
+            "Viens ici #p...",
+            "Arghhh...",
+            "Ahhggg...",
+            "Neuf pour les Hommes Mortels destinés au trépas...",
+            "Un pour le Seigneur Ténébreux sur son sombre trône... au Pays de Mordor où s'étendent les Ombres...",
+            "Un Anneau pour les gouverner tous... un Anneau pour les trouver... un Anneau pour les amener tous... et dans les ténèbres les lier...",
+            "#p...",
+            "Approche... #p...",
+            "Meurs maintenant et maudis en vain...",
+            "Lointain encore est son destin... et ce n'est pas de la main d'un homme qu'il tombera...",
+            "Nous nous accrochons aux ténèbres...",
+            "Tu vas te flétrir...",
+            "Ahh... aghhhh...",
+            "Raghhh...",
+            "Tu te joindras à nous #p...",
+            "#p... ta fin est proche..."
+      },
+      {
+        "conditions": {
+          "in_combat": "false"
+        },
+        "lines": [
+            "Où es-tu...?",
+            "#p... Viens ici...",
+            "Viens à moi..."
+        ]
+      },
+      {
+        "conditions": {
+          "daytime": "dusk"
+        },
+        "lines": [
+          "Les ténèbres tombent..."
+        ]
+      },
+      {
+        "conditions": {
+          "biome": "#foreign"
+        },
+        "lines": [
+            "Laisse-moi te ramener dans mon tombeau...",
+            "Tu ne peux fuir #p...",
+            "Reviens..."
+        ]
+      },
+      {
+        "conditions": {
+          "biome": "#home"
+        },
+        "lines": [
+            "Qu'est-ce qui t'amène dans mon tombeau ?...",
+            "Tu ne peux te cacher..."
+        ]
+      }
+    ]
+  }

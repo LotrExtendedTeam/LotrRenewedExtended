@@ -1,3 +1,6 @@
 {
-  "parent": "minecraft:block/cross"
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "lotrextended:block/ebony_sapling"
+  }
 }

@@ -2,6 +2,7 @@
   "parent": "lotrextended:block/template_numenorean_lantern",
   "textures": {
     "lantern": "lotrextended:block/numenorean_lantern",
+    "flame": "lotrextended:block/numenorean_lantern_flame",
     "particle": "lotrextended:block/morgond"
   }
 }

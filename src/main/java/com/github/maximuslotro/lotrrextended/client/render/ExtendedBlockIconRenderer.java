@@ -73,7 +73,7 @@ public class ExtendedBlockIconRenderer implements AutoCloseable {
 	public ExtendedBlockIconRenderer(int textureSize) {
 		this.textureSize = textureSize;
 		this.client = Minecraft.getInstance();
-		this.exportDirectory = new File(client.gameDirectory, "item_exports");
+		this.exportDirectory = new File(client.gameDirectory, "lotrextended_item_images");
 		int coreCount = Runtime.getRuntime().availableProcessors();
 		this.fileWriteExecutor = Executors.newFixedThreadPool(Math.max(2, coreCount / 2));
 		this.failedExports = new ConcurrentLinkedQueue<>();

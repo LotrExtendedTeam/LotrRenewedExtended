@@ -401,6 +401,13 @@
         "item": "lotr:mail_warg_armor",
         "averageCost": 25
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:gundabad_warg_armor",
+        "averageCost": 30
+      }
     }
   ]
 }

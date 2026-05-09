@@ -268,7 +268,7 @@
       "shouldTradePersist": false,
       "stack": {
         "item": "lotr:imladris_guard_helmet",
-        "averageCost": 360,
+        "averageCost": 270,
         "nbt": "{Damage:0}"
       }
     },
@@ -278,7 +278,7 @@
       "shouldTradePersist": false,
       "stack": {
         "item": "lotr:imladris_guard_chestplate",
-        "averageCost": 500,
+        "averageCost": 375,
         "nbt": "{Damage:0}"
       }
     },
@@ -288,7 +288,7 @@
       "shouldTradePersist": false,
       "stack": {
         "item": "lotr:imladris_guard_leggings",
-        "averageCost": 440,
+        "averageCost": 330,
         "nbt": "{Damage:0}"
       }
     },
@@ -298,7 +298,7 @@
       "shouldTradePersist": false,
       "stack": {
         "item": "lotr:imladris_guard_boots",
-        "averageCost": 320,
+        "averageCost": 240,
         "nbt": "{Damage:0}"
       }
     },

@@ -104,7 +104,6 @@ public class ExtendedTogglableTitleButton<T> extends Button {
 		minecraft.getTextureManager().bind(WIDGETS_LOCATION);
 		if(renderGreen) {
 			RenderSystem.color4f(0.13f, 0.77f, 0.42f, this.alpha);
-
 		}else {
 			RenderSystem.color4f(0.88f, 0.33f, 0.33f, this.alpha);
 		}

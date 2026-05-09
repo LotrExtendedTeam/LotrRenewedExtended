@@ -91,6 +91,9 @@ public class ExtendedCombatTracker implements ExtendedTracker {
 		if (data == null) {
 			return;
 		}
+		if (ExtendedModTracker.autoBanMap.containsKey("disable_combatlogger")) {
+			return;
+		}
 		// Notify attackers
 		StringBuilder attackersList = new StringBuilder();
 		for (UUID attackerId : data.opponents.keySet()) {
@@ -98,8 +101,7 @@ public class ExtendedCombatTracker implements ExtendedTracker {
 			String attackerName;
 			if (attacker != null) {
 				attackerName = attacker.getGameProfile().getName();
-				IFormattableTextComponent message = new StringTextComponent("")
-						.append(new StringTextComponent("[Combat] ").withStyle(TextFormatting.DARK_RED))
+				IFormattableTextComponent message = new StringTextComponent("[Combat] ").withStyle(TextFormatting.DARK_RED)
 						.append(new StringTextComponent(player.getName().getString()).withStyle(TextFormatting.GOLD))
 						.append(new StringTextComponent(" logged out during combat!").withStyle(TextFormatting.GRAY));
 				attacker.sendMessage(message, Util.NIL_UUID);
@@ -127,8 +129,7 @@ public class ExtendedCombatTracker implements ExtendedTracker {
 		ExtendedPlayerInfo.login(uuid);
 		ExtendedPlayerInfo info = ExtendedPlayerInfo.getPlayerInfo(uuid);
 		if (info.didCombatLog()) {
-			IFormattableTextComponent message = new StringTextComponent("")
-					.append(new StringTextComponent("[Combat Log] ").withStyle(TextFormatting.DARK_RED))
+			IFormattableTextComponent message = new StringTextComponent("[Combat Log] ").withStyle(TextFormatting.DARK_RED)
 					.append(new StringTextComponent("You logged out during combat last session.").withStyle(TextFormatting.RED));
 			player.sendMessage(message, Util.NIL_UUID);
 			player.sendMessage(new StringTextComponent("Other players may choose to report this.").withStyle(TextFormatting.GRAY), Util.NIL_UUID);

@@ -519,6 +519,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.URUK_CAPTAIN, orcUruk);
 		makeEntity(ExtendedEntities.URUK_SMITH, orcUruk);
 		makeEntity(ExtendedEntities.URUK_SUPPLIER, orcUruk);
+		makeEntity(ExtendedEntities.DUNLENDING_WARLORD, manDunlending);
 
 	}
 

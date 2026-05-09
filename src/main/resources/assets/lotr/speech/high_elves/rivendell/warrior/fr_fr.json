@@ -1,0 +1,116 @@
+{
+  "parent": "lotr:high_elves/rivendell/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Le temps des Elfes s'efface, mais notre force n'est pas encore épuisée.",
+        "Je défends les Elfes d'Imladris.",
+        "Salutations, #p.",
+        "Nous défendons les peuples libres de la Terre du Milieu.",
+        "Il semble que vous soyez un ami des Elfes, #p.",
+        "Puisse la grâce des Valar vous protéger.",
+        "Combien d'Orques avez-vous occis aujourd'hui, #p ?",
+        "Le monde change, #p... Je le sens dans mon cœur.",
+        "Si vous combattez pour la liberté, alors je suis avec vous.",
+        "Il y a bien longtemps, une alliance existait entre mon peuple et le vôtre. Honorerez-vous cette alliance ?",
+        "Toujours plus forte grandit l'emprise de l'Ennemi sur nos terres.",
+        "Bienvenue, #p, en la terre d'Elrond Semi-elfe !",
+        "Vous ne trouverez nul mal à Fondcombe, #p ! Notre terre est sûre et belle.",
+        "J'ai protégé cette vallée pendant de nombreuses années.",
+        "Je protège les Hauts Elfes d'Imladris. Nul mal n'échappera à mon courroux.",
+        "Le pouvoir des Elfes décline en ce monde, mais notre force n'est pas encore épuisée !",
+        "A tiro nin, Fanuilos !",
+        "Gurth an Glamhoth !",
+        "Tôl acharn.",
+        "Rares sont ceux en Terre du Milieu qui peuvent résister aux Eldar de l'Ouest."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Vous êtes en sécurité ici à Imladris."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:lone_lands | lotr:eriador | lotr:hills_of_evendim | lotr:eriador_downs | lotr:lone_lands_hills | lotr:minhiriath | lotr:enedwaith"
+      },
+      "lines": [
+
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth"
+      },
+      "lines": [
+        "C'est ici que j'ai combattu, il y a 3000 ans lors de la Guerre de la Dernière Alliance.",
+        "Ici j'ai combattu aux côtés du Haut Roi Gil-galad contre les armées de Sauron il y a des millénaires."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:eregion"
+      },
+      "lines": [
+
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Par l'étoile d'Eärendil, je jure que je vous verrai occis !",
+        "Vous n'êtes pas le bienvenu à Imladris !",
+        "Vous n'êtes pas le bienvenu à Fondcombe, #p !",
+        "Vous ne pouvez fouler le sol de cette belle vallée !",
+        "Fuyez ces terres, #p !",
+        "Pour Imladris !",
+        "Péris, démon de Morgul !",
+        "Plus jamais vous n'obscurcirez ces terres, #p !",
+        "Je jure par les Valar, je mettrai fin à votre mal !",
+        "À Udûn avec vous !",
+        "Allez embrasser un Orque !",
+        "Mort aux ennemis des Elfes !",
+        "Qui nous apporte ce signe de malheur ?",
+        "Partez, vil serviteur de l'Ennemi !",
+        "Quittez cette terre, ou affrontez le tranchant de nos lames !",
+        "Je ne permettrai pas au mal de souiller le royaume d'Imladris. Vous rencontrerez bientôt votre fin, #p.",
+        "Par les Valar ! Comment osez-vous pénétrer cette terre, #p ?",
+        "Fuyez, vermine du Mordor, ou affrontez une pluie de flèches.",
+        "Comment osez-vous empoisonner ce beau royaume de vos pieds immondes ?",
+        "Le nallon sí dinguruthos !",
+        "A tiro nin, Fanuilos !",
+        "Gurth an Glamhoth !",
+        "Tôl acharn !"
+      ]
+    }
+  ]
+}

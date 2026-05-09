@@ -44,8 +44,7 @@ public class ExtendedMountedArmorItem extends Item {
 	 * @param pProperties the item properties
 	 */
 	public ExtendedMountedArmorItem(int pProtection, String pIdentifier, MountType pType, Item.Properties pProperties) {
-		this(pProtection, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/" + pType.relativePath + "/armor/" + pIdentifier + ".png"), pType, pProperties
-			);
+		this(pProtection, new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/" + pType.relativePath + "/armor/" + pIdentifier + ".png"), pType, pProperties);
 	}
 
 	/**

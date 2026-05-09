@@ -80,6 +80,8 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Block> CHAINS = BlockTags.bind("lotrextended:chains");
 		public static final ITag.INamedTag<Block> WOOL_BLOCKS = BlockTags.bind("lotrextended:wool_blocks");
 
+		public static final ITag.INamedTag<Block> MIDDLE_EARTH_PLACEABLE_SURFACE = BlockTags.bind("lotrextended:middle_earth_surface_placeable");
+
 		public static final ITag.INamedTag<Block> BASE_STONE_MIDDLE_EARTH = BlockTags.bind("lotrextended:base_stone_middle_earth");
 		public static final ITag.INamedTag<Block> BASE_STONE_SLAB_MIDDLE_EARTH = BlockTags.bind("lotrextended:base_stone_slab_middle_earth");
 		public static final ITag.INamedTag<Block> BASE_STONE_STAIRS_MIDDLE_EARTH = BlockTags.bind("lotrextended:base_stone_stair_middle_earth");

@@ -22,6 +22,7 @@ import lotr.common.item.VesselDrinkItem.Potency;
 import lotr.common.recipe.DrinkBrewingRecipe;
 import lotr.common.recipe.LOTRRecipes;
 import lotr.common.tileentity.KegTileEntity;
+import lotr.common.tileentity.KegTileEntity.KegMode;
 import lotr.common.util.DrinkUtils;
 import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -31,6 +32,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
@@ -39,6 +41,8 @@ import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.LootTable;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.LockableTileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
@@ -56,10 +60,21 @@ import net.minecraft.world.server.ServerWorld;
  * <p>This mixin fixes NPEs during structure generation by null-guarding level usage.
  * It also emulates loot table unpacking similar to vanilla chests and ensures
  * synced server-client keg inventory behavior.</p>
+ * 
+ * <p>Also fixed an infinite duplication glitch with un-brewed recipes.</p>
  *
  */
 @Mixin(KegTileEntity.class)
-public class MixinKegTileEntity implements ExtendedLootTableAccessor {
+public abstract class MixinKegTileEntity extends LockableTileEntity implements ExtendedLootTableAccessor {
+	/**
+	 * Virtual constructor that will be stripped on runtime
+	 * @param p_i48285_1_ entity type
+	 * */
+	protected MixinKegTileEntity(TileEntityType<?> p_i48285_1_) {
+		super(p_i48285_1_);
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * The loot table resource location assigned to this keg.
 	 * Used to populate inventory contents when unpacked.
@@ -156,6 +171,15 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	@Shadow(remap = false)
 	@Final
 	private IIntArray kegData;
+
+	/**
+	 * Gets the current size of the keg's inventory
+	 *
+	 * @return The size of the keg inventory
+	 */
+	@Override
+	@Shadow(remap = false)
+	public int getContainerSize() {return 0;}
 
 	@Inject(method = "handleBrewButtonPress(Lnet/minecraft/entity/player/ServerPlayerEntity;)V", at = @At("TAIL"), remap = false)
 	public void handleBrewButtonPress(ServerPlayerEntity player, CallbackInfo ci) {
@@ -278,6 +302,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	 * @return a new {@link KegContainer} instance
 	 * @Overwrite
 	 */
+	@Override
 	@Overwrite
 	protected Container createMenu(int id, PlayerInventory playerInventory) {
 		// Extended Start
@@ -295,6 +320,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	 * @return the item stack at the specified index
 	 * @Overwrite
 	 */
+	@Override
 	@Overwrite
 	public ItemStack getItem(int index) {
 		// Extended Start
@@ -313,6 +339,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	 * @return the removed {@link ItemStack}
 	 * @Overwrite
 	 */
+	@Override
 	@Overwrite
 	public ItemStack removeItem(int index, int count) {
 		// Extended Start
@@ -335,6 +362,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	 * @return the cleared {@link ItemStack}
 	 * @Overwrite
 	 */
+	@Override
 	@Overwrite
 	public ItemStack removeItemNoUpdate(int index) {
 		// Extended Start
@@ -356,6 +384,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	 * @author maximuslotro
 	 * @Overwrite
 	 */
+	@Override
 	@Overwrite
 	public boolean isEmpty() {
 		// Extended Start
@@ -378,6 +407,7 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	 * @param stack item stack to place in the slot
 	 * @Overwrite
 	 */
+	@Override
 	@Overwrite
 	public void setItem(int index, ItemStack stack) {
 		// Extended Start
@@ -454,5 +484,30 @@ public class MixinKegTileEntity implements ExtendedLootTableAccessor {
 	@Override
 	public ResourceLocation getLootTable() {
 		return lootTable;
+	}
+
+	/**
+	 * @author Maximuslotro
+	 * @reason Fix ub-brewed recipe duplication bug
+	 * */
+	@Overwrite(remap=false)
+	public void dropContentsExceptBrew() {
+		// Goes 0->9, with 9 being output slot
+		for (int i = 0; i < getContainerSize(); ++i) {
+			if (i != 9) {
+				InventoryHelper.dropItemStack(level, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), getItem(i));
+			}
+			// Extended Start
+			else {
+				// Check if the keg is should be empty on block break, and clear output slot to prevent duplication
+				if(kegMode==KegMode.EMPTY) {
+					this.currentBrewingRecipe = null;
+					this.setItem(9, ItemStack.EMPTY);
+					this.brewTimeTotal = 0;
+				}
+			}
+			// Extended End
+		}
+
 	}
 }

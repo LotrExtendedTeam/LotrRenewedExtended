@@ -1,0 +1,62 @@
+{
+  "parent": "lotr:durins_folk/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Je suis fier de combattre pour votre cause, #p !",
+        "Allons de l'avant et massacrons cette vermine de Rakhâs !",
+        "Ma barbe me démange pour la bataille.",
+        "Nos ennemis seront broyés comme un râtelier de côtelettes fraîches !",
+        "Les haches des Nains sont aiguisées pour la bataille, #p !",
+        "Peu en Terre du Milieu peuvent résister à la puissance du Peuple de Durin !",
+        "Tout cela est fort bien, mais où est donc passée toute la bière ?",
+        "Nous autres Nains sommes de vaillants guerriers ! Tous nos ennemis trembleront sous nos marteaux et nos haches !",
+        "Aucun Orque n'échappera au tranchant de ma hache !",
+        "C'est véritablement un honneur de combattre aux côtés d'un guerrier tel que vous, #p !",
+        "Vous avez ma hache, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "rank": "<commander"
+      },
+      "lines": [
+        "Vous êtes un puissant guerrier, #p, mais votre barbe n'égalera jamais la mienne ! Ha !",
+        "C'est un honneur de combattre à vos côtés, #p. Même avec cette modeste excuse de barbe !",
+        "Vous combattez bien, #p, mais votre barbe a encore bien du chemin à parcourir !",
+        "Veillez à laisser le temps à votre barbe de pousser avant que nous ne combattions !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "rank": ">=commander"
+      },
+      "lines": [
+        "Je suis fier de combattre aux côtés de la plus puissante barbe que la race des Hommes ait jamais produite !",
+        "Je considère comme un honneur de combattre avec quelqu'un d'aussi bien barbu que vous !",
+        "Avec cette barbe que vous avez là, #p, nous n'aurons aucun mal à fracasser quelques Orques !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "Je vendrais ma barbe pour une gorgée de bière naine.",
+        "Ah ! Les grandes salles de pierre des Collines de Fer me manquent. Mais un Nain ne fuit pas le combat !",
+        "Ah ! Les pentes couvertes de pins des Collines de Fer me manquent. Mais un Nain ne fuit pas le combat !",
+        "Par ma barbe, je courrais dix lieues rien que pour une pinte de bière naine bien fraîche !"
+      ]
+    }
+  ]
+}

@@ -21,9 +21,10 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerIt
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedLeatherHatItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMattockItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedSilverCoin;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCoinItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSwordItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedStaffItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
 import lotr.common.block.ChandelierBlock;
@@ -133,7 +134,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedNarsilShardsBlock) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
-				genSword(item.getKey());
+				genSwordLarge(item.getKey());
 				continue;
 			}
 			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedVineBlock) {
@@ -193,6 +194,11 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genSpear(item.getKey());
 				continue;
 			}
+			if(item.getValue().get() instanceof ExtendedStaffItem) {
+				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
+				genStaff(item.getKey());
+				continue;
+			}
 			if(item.getValue().get() instanceof DaggerItem) {
 				genDaggerSneaking(item.getKey());
 				genDagger(item.getKey());
@@ -200,7 +206,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 			if(item.getValue().get() instanceof ExtendedSwordItem || item.getValue().get() instanceof HammerItem) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
-				genSword(item.getKey());
+				genSwordLarge(item.getKey());
 				continue;
 			}
 			if(item.getValue().get() instanceof LOTRShieldItem) {
@@ -243,7 +249,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/banner/"+item.getKey()));
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedSilverCoin) {
+			if(item.getValue().get() instanceof ExtendedCoinItem) {
 				ItemModelBuilder builder = withExistingParent("lotr:"+item.getKey(), "lotrextended:item/template_coin");
 				builder.texture("layer0", lotrExtendedLoc("item/"+item.getKey()));
 				continue;
@@ -303,8 +309,13 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		return builder;
 	}
 
-	private ItemModelBuilder genSword(String name) {
+	private ItemModelBuilder genSwordLarge(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld", "lotr:item/handheld_large");
+		return gen(builder, false, lotrExtendedLoc("item/"+name+"_large"));
+	}
+
+	private ItemModelBuilder genStaff(String name) {
+		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld", "lotr:item/handheld_spear");
 		return gen(builder, false, lotrExtendedLoc("item/"+name+"_large"));
 	}
 
