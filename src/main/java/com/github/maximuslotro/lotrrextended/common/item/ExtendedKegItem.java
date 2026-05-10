@@ -106,6 +106,12 @@ public class ExtendedKegItem extends BlockItem {
 
 					tooltip.add(new TranslationTextComponent("item.lotr.drink.alcoholicity", alc).withStyle(color));
 				}
+				if (kegData.contains("RecipesUsed")) {
+					ListNBT recipesList = kegData.getList("RecipesUsed", 10);
+					if(!recipesList.isEmpty()) {
+						tooltip.add(new TranslationTextComponent("Contains unclaimed recipe data").withStyle(TextFormatting.GRAY));
+					}
+				}
 
 				if (((MixinVesselDrinkItemAccessor)drink).getDrinkDamage() > 0.0F) {
 					float dmg = ((MixinVesselDrinkItemAccessor)drink).invokeGetDrinkDamageForStrength(output);
