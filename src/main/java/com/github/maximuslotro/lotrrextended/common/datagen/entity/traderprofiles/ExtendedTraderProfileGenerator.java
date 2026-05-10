@@ -656,6 +656,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				),
 				10, 100, 1, false)
 		.addSSell(ExtendedItems.BREE_BANNER_PATTERN, 25)
+		.addSSell(ExtendedItems.BREE_SHIELD, 20)
 		.save(pConsumer, ExtendedTraderTypes.BREE_SMITH);
 
 		make(0)
@@ -762,6 +763,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.LEATHER_WARG_ARMOR, 20)
 		.addSSell(ExtendedItems.MAIL_WARG_ARMOR, 25)
 		.addSSell(ExtendedItems.GUNDABAD_WARG_ARMOR, 30)
+		.addSSell(ExtendedItems.GUNDABAD_SHIELD, 20)
 		.save(pConsumer, ExtendedTraderTypes.GUNDABAD_TRADER);
 
 		make(5).setTypicallyWandering()
@@ -820,6 +822,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addDrinkSell(LOTRItems.DWARVEN_ALE, 6, 9, 11)
 		.addDrinkSell(LOTRItems.DWARVEN_TONIC, 10, 14, 18)
 		.addSSell(ExtendedItems.BLUE_DWARVEN_MATTOCK, 18)
+		.addSSell(ExtendedItems.BLUE_DWARVEN_SHIELD, 30)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_MERCHANT);
 
 		make(100).setTypicallyWandering()
@@ -849,6 +852,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE, 10, 500, 1, false)
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_LEGGINGS, 10, 440, 1, false)
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_BOOTS, 10, 320, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_SHIELD, 10, 240, 1, false)
 		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addSSell(new ItemStack(LOTRItems.HIGH_ELVEN_TORCH.get(), 4), 8)
@@ -863,6 +867,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				1, 350, 1, false)
 		.addSSell(ExtendedItems.RIVENDELL_BANNER, 50)
 		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 25)
+		.addSSell(ExtendedItems.RIVENDELL_SHIELD, 40)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_WANDERER);
 
 		make(75).setTypicallyWandering()
@@ -880,7 +885,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.PEARL, 25)
 		.addSBuy(ExtendedItems.DIAMOND, 25)
 		.addSBuy(ExtendedItems.CORAL, 6)
-		// TODO add mallorn box, galadhrim (bow, battlestaff, longspear), mallorn bow
+		// TODO add mallorn box, galadhrim (bow, battlestaff, longspear, shield), mallorn bow
 		.addSSell(LOTRItems.GALADHRIM_HELMET, 25)
 		.addSSell(LOTRItems.GALADHRIM_CHESTPLATE, 36)
 		.addSSell(LOTRItems.GALADHRIM_LEGGINGS, 30)
@@ -1091,6 +1096,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 40, 150, 1, false)
 		.addSSell(new ItemStack(LOTRItems.DWARVEN_BARS.get(), 8), 25)
 		.addSSell(ExtendedItems.DWARVEN_MATTOCK, 18)
+		//.addSSell(ExtendedItems.DWARVEN_SHIELD, 20)
 		.save(pConsumer, ExtendedTraderTypes.DWARVEN_SMITH);
 
 		make(100)
@@ -1155,6 +1161,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 40, 150, 1, false)
 		.addSSell(new ItemStack(LOTRItems.BLUE_DWARVEN_BARS.get(), 8), 25)
 		.addSSell(ExtendedItems.BLUE_DWARVEN_MATTOCK, 18)
+		.addSSell(ExtendedItems.BLUE_DWARVEN_SHIELD, 20)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_SMITH);
 
 		make(10)
@@ -1296,6 +1303,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE, 10, 375, 1, false)
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_LEGGINGS, 10, 330, 1, false)
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_BOOTS, 10, 240, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_SHIELD, 10, 200, 1, false)
 		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
@@ -1310,6 +1318,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				10, 350, 1, false)
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 20, 150, 1, false)
 		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 25)
+		.addSSell(ExtendedItems.RIVENDELL_SHIELD, 20)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_SMITH);
 
 		make(50)
@@ -1422,6 +1431,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				), 10, 350, 1, false)
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 20, 150, 1, false)
 		.addSSell(ExtendedItems.LINDON_BANNER_PATTERN, 25)
+		.addSSell(ExtendedItems.LINDON_SHIELD, 20)
 		.save(pConsumer, ExtendedTraderTypes.LINDON_SMITH);
 
 		make(50)
@@ -1559,6 +1569,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.ISENGARD_BANNER, 50)
 		.addSSell(ExtendedItems.LEATHER_WARG_ARMOR, 15)
 		.addSSell(ExtendedItems.MAIL_WARG_ARMOR, 20)
+		.addSSell(ExtendedItems.URUK_SHIELD, 30)
 		.save(pConsumer, ExtendedTraderTypes.ISENGARD_URUK_SUPPLIER);
 
 		make(100)
@@ -1605,6 +1616,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.ISENGARD_BANNER, 50)
 		.addSSell(ExtendedItems.MAIL_WARG_ARMOR, 20)
 		.addSSell(ExtendedItems.ISENGARD_WARG_ARMOR, 25)
+		.addSSell(ExtendedItems.URUK_SHIELD, 20)
 		.save(pConsumer, ExtendedTraderTypes.ISENGARD_URUK_SMITH);
 	}
 }

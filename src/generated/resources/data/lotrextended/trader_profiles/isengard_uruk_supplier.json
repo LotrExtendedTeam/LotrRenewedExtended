@@ -332,6 +332,14 @@
         "item": "lotr:mail_warg_armor",
         "averageCost": 20
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_shield",
+        "averageCost": 30,
+        "nbt": "{Damage:0}"
+      }
     }
   ]
 }

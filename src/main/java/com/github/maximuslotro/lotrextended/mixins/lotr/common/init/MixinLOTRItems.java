@@ -1232,6 +1232,7 @@ public class MixinLOTRItems {
 
 		//Isengard
 		ExtendedItems.ISENGARD_WARG_ARMOR = regItemB("isengard_warg_armor", () -> new ExtendedMountedArmorItem(13, "isengard", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
+		ExtendedItems.URUK_SHIELD = regItemB("uruk_shield", () -> new LOTRShieldItem(LOTRMaterial.URUK));
 
 		//Isengard
 		ExtendedItems.MORDOR_WARG_ARMOR = regItemB("mordor_warg_armor", () -> new ExtendedMountedArmorItem(11, "mordor", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));

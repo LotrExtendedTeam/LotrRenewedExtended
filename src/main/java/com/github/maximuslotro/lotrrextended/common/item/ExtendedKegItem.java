@@ -2,9 +2,13 @@ package com.github.maximuslotro.lotrrextended.common.item;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import com.github.maximuslotro.lotrextended.mixins.lotr.common.item.MixinVesselDrinkItemAccessor;
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 import lotr.common.LOTRMod;
+import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselDrinkItem;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
@@ -24,6 +28,28 @@ public class ExtendedKegItem extends BlockItem {
 
 	public ExtendedKegItem(Block pBlock, Properties pProperties) {
 		super(pBlock, pProperties);
+	}
+
+	@Nonnull
+	public static ItemStack getOutputKegForVesselItem(@Nonnull ItemStack pStack) {
+		if(pStack.getItem() instanceof VesselDrinkItem) {
+			ItemStack output = pStack.copy();
+			output.setCount(16);
+			ItemStack kegStack = new ItemStack(LOTRItems.KEG.get());
+	        CompoundNBT itemNBT = new CompoundNBT();
+	        output.save(itemNBT);
+	        itemNBT.putByte("Slot", (byte) 9);
+	        ListNBT itemsList = new ListNBT();
+	        itemsList.add(itemNBT);
+	        CompoundNBT kegDroppableData = new CompoundNBT();
+	        kegDroppableData.put("Items", itemsList);
+	        CompoundNBT blockEntityTag = new CompoundNBT();
+	        blockEntityTag.put("KegDroppableData", kegDroppableData);
+	        kegStack.getOrCreateTag().put("BlockEntityTag", blockEntityTag);
+	        return kegStack;
+		}
+		ExtendedLog.info("Tried setting an invalid drink into a keg: "+pStack.getItem().getRegistryName().toString());
+		return ItemStack.EMPTY;
 	}
 
 	@Override

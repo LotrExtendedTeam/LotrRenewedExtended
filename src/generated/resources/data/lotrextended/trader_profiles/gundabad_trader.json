@@ -408,6 +408,14 @@
         "item": "lotr:gundabad_warg_armor",
         "averageCost": 30
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:gundabad_shield",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
     }
   ]
 }

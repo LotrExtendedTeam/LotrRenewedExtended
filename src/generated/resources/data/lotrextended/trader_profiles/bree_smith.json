@@ -368,6 +368,14 @@
         "item": "lotr:bree_banner_pattern",
         "averageCost": 25
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:bree_shield",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
     }
   ]
 }

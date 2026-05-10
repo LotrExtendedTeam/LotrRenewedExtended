@@ -335,6 +335,14 @@
         "item": "lotr:lindon_banner_pattern",
         "averageCost": 25
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lindon_shield",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
     }
   ]
 }

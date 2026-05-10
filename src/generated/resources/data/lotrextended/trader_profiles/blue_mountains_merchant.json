@@ -398,6 +398,14 @@
         "averageCost": 18,
         "nbt": "{Damage:0}"
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:blue_dwarven_shield",
+        "averageCost": 30,
+        "nbt": "{Damage:0}"
+      }
     }
   ]
 }
