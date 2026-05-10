@@ -108,6 +108,13 @@
         "item": "lotr:aged_cheese_wheel",
         "averageCost": 60
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:butter",
+        "averageCost": 5
+      }
     }
   ]
 }

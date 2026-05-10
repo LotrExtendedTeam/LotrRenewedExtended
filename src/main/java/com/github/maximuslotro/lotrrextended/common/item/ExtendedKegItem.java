@@ -33,11 +33,9 @@ public class ExtendedKegItem extends BlockItem {
 	@Nonnull
 	public static ItemStack getOutputKegForVesselItem(@Nonnull ItemStack pStack) {
 		if(pStack.getItem() instanceof VesselDrinkItem) {
-			ItemStack output = pStack.copy();
-			output.setCount(16);
 			ItemStack kegStack = new ItemStack(LOTRItems.KEG.get());
 	        CompoundNBT itemNBT = new CompoundNBT();
-	        output.save(itemNBT);
+	        pStack.copy().save(itemNBT);
 	        itemNBT.putByte("Slot", (byte) 9);
 	        ListNBT itemsList = new ListNBT();
 	        itemsList.add(itemNBT);
