@@ -41,6 +41,7 @@ public class ExtendedKegItem extends BlockItem {
 	        itemsList.add(itemNBT);
 	        CompoundNBT kegDroppableData = new CompoundNBT();
 	        kegDroppableData.put("Items", itemsList);
+	        kegDroppableData.putByte("KegMode", (byte) 2);
 	        CompoundNBT blockEntityTag = new CompoundNBT();
 	        blockEntityTag.put("KegDroppableData", kegDroppableData);
 	        kegStack.getOrCreateTag().put("BlockEntityTag", blockEntityTag);
