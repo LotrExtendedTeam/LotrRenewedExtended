@@ -8,6 +8,6 @@ import net.minecraft.item.IDyeableArmorItem;
 public class ExtendedLeatherHatItem extends LOTRArmorItem implements IDyeableArmorItem  {
 
     public ExtendedLeatherHatItem() {
-        super(LOTRMaterial.COSMETIC, EquipmentSlotType.HEAD, "leather_hat");
+        super(LOTRMaterial.valueOf("COSMETIC_HAT"), EquipmentSlotType.HEAD, "leather_hat");
     }
 }
