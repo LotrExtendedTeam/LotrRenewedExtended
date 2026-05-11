@@ -394,8 +394,32 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotr:keg",
+        "averageCost": 120,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:dwarven_ale\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:keg",
+        "averageCost": 160,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:dwarven_ale\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "lotr:blue_dwarven_mattock",
         "averageCost": 18,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:blue_dwarven_shield",
+        "averageCost": 30,
         "nbt": "{Damage:0}"
       }
     }

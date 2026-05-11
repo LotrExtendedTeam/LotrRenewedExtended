@@ -149,6 +149,9 @@ public class MixinLOTRMaterial {
 	@Unique
 	private static final LOTRMaterial STAFF_GANDALF_GRAY = lE$addVariant("GANDALF_GRAY", "gandalf_gray", 2, 1000, 0.0f, 0.0f, 15, 0.0F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
 			() -> Ingredient.of(ItemTags.PLANKS));
+	@Unique
+	private static final LOTRMaterial COSMETIC_HAT = lE$addVariant("COSMETIC_HAT", "cosmetic_hat", 0, 0, 0.0f, 0.0f, 0, 0.0F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
+			() -> Ingredient.EMPTY);
 	/**
 	 * Accessing the Enum creation method, DO NOT CALL THIS METHOD DIRECTLY, CALL THE HELPER METHODS
 	 * @Invoker ("&lt;init&gt;")

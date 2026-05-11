@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:uruk",
+  "pattern": [
+    "PIP",
+    "PPP",
+    " P "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/uruk_steel"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "lotr:uruk_shield"
+  }
+}

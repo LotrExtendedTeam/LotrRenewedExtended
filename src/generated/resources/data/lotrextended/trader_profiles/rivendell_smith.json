@@ -303,6 +303,16 @@
       }
     },
     {
+      "weight": 10,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_shield",
+        "averageCost": 200,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
       "weight": 50,
       "stack": {
         "item": "minecraft:arrow",
@@ -374,6 +384,14 @@
       "stack": {
         "item": "lotr:rivendell_banner_pattern",
         "averageCost": 25
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:rivendell_shield",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
       }
     }
   ]

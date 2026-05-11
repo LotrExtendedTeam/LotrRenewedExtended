@@ -58,11 +58,10 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(new ItemStack(Items.BAKED_POTATO, 2), 7)
 		.addSSell(Items.COOKED_COD, 6)
 		.addSSell(Items.COOKED_SALMON, 6)
-		.addSSell(LOTRItems.CHOCOLATE_DRINK, 4)
-		.addSSell(LOTRItems.APPLE_JUICE, 6)
 		.addSSell(LOTRItems.GAMMON, 7)
 		.addSSell(Items.RABBIT_STEW, 10)
 		.addSSell(Items.MUSHROOM_STEW, 10)
+		.addSSell(ExtendedItems.BUTTER, 10)
 		.addSSell(ExtendedItems.HOBBIT_PANCAKE, 10)
 		.addSSell(ExtendedItems.HOBBIT_PANCAKE_SYRUP, 13)
 		.addSSell(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER, 15)
@@ -71,6 +70,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.HOBBIT_MARRIAGE_RING, 14)
 		.addSSell(LOTRItems.HOBBIT_OVEN, 40)
 		.addSSell(LOTRItems.HOBBIT_CRAFTING_TABLE, 40)
+		.addSSell(LOTRItems.CHOCOLATE_DRINK, 4)
+		.addSSell(LOTRItems.APPLE_JUICE, 6)
 		.addDrinkSell(LOTRItems.ALE, 6, 8, 10)
 		.addDrinkSell(LOTRItems.CIDER, 6, 8, 10)
 		.addDrinkSell(LOTRItems.PERRY, 6, 8, 10)
@@ -102,7 +103,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 			Items.PINK_WOOL, Items.PURPLE_WOOL,
 			Items.RED_WOOL, Items.YELLOW_WOOL)
 		.addSSell(ExtendedItems.BRANDING_IRON, 25)
-		.addSSell(ExtendedItems.BUTTER, 10)
+		.addSSell(ExtendedItems.BUTTER, 5)
 		.save(pConsumer, ExtendedTraderTypes.HOBBIT_FARMER);
 
 		make(0)
@@ -126,6 +127,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.APPLE, 1)
 		.addSBuy(LOTRItems.SALT, 10)
 		.addSBuy(LOTRItems.CLAY_PLATE, 1)
+		.addSSell(ExtendedItems.BUTTER, 1)
 		// TODO add corn bread, mushroom pie, berry pie, lemon cake
 		.addSSell(Items.BREAD, 5)
 		.addSSell(Items.PUMPKIN_PIE, 8)
@@ -156,20 +158,35 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.PLUM, 1)
 		.addSBuy(Items.BUCKET, 3)
 		.addSBuy(Items.WATER_BUCKET, 4)
-		// TODO add kegs, add berry juices
+		// TODO add berry juices
 		.addSSell(LOTRItems.APPLE_JUICE, 6)
 		.addSSell(LOTRItems.SWEET_BERRY_JUICE, 5)
 		.addDrinkSell(LOTRItems.ALE, 8, 10, 12)
+		.addKegSell(LOTRItems.ALE, Potency.MODERATE, 120)
+		.addKegSell(LOTRItems.ALE, Potency.STRONG, 170)
 		.addDrinkSell(LOTRItems.CIDER, 8, 10, 12)
+		.addKegSell(LOTRItems.CIDER, Potency.MODERATE, 120)
+		.addKegSell(LOTRItems.CIDER, Potency.STRONG, 170)
 		.addDrinkSell(LOTRItems.PERRY, 8, 10, 12)
+		.addKegSell(LOTRItems.PERRY, Potency.MODERATE, 120)
+		.addKegSell(LOTRItems.PERRY, Potency.STRONG, 170)
 		.addDrinkSell(LOTRItems.MEAD, 9, 12, 15)
+		.addKegSell(LOTRItems.MEAD, Potency.MODERATE, 140)
+		.addKegSell(LOTRItems.MEAD, Potency.STRONG, 180)
 		.addDrinkSell(LOTRItems.MAPLE_BEER, 8, 10, 12)
+		.addKegSell(LOTRItems.MAPLE_BEER, Potency.MODERATE, 120)
+		.addKegSell(LOTRItems.MAPLE_BEER, Potency.STRONG, 170)
 		.addDrinkSell(ExtendedItems.PLUM_KVASS, 8, 10, 12)
+		.addKegSell(ExtendedItems.PLUM_KVASS, Potency.MODERATE, 120)
+		.addKegSell(ExtendedItems.PLUM_KVASS, Potency.STRONG, 170)
 		.addDrinkSell(LOTRItems.CHERRY_LIQUEUR, 9, 12, 15)
-		.addDrinkSell(LOTRItems.MELON_LIQUEUR, 6, 8, 10)
-		.addDrinkSell(LOTRItems.RUM, 9, 12, 15)
-		.addDrinkSell(LOTRItems.VODKA, 9, 12, 15)
-		.addDrinkSell(LOTRItems.CARROT_WINE, 8, 10, 12)
+		.addKegSell(LOTRItems.CHERRY_LIQUEUR, Potency.MODERATE, 140)
+		.addKegSell(LOTRItems.CHERRY_LIQUEUR, Potency.STRONG, 180)
+		// Make out of region drinks expensive (x2 price)
+		.addDrinkSell(LOTRItems.MELON_LIQUEUR, 18, 24, 30)
+		.addDrinkSell(LOTRItems.RUM, 18, 24, 30)
+		.addDrinkSell(LOTRItems.VODKA, 18, 24, 30)
+		.addDrinkSell(LOTRItems.CARROT_WINE, 26, 20, 24)
 		.addSSell(LOTRItems.WOODEN_MUG, 2)
 		.addSSell(LOTRItems.CERAMIC_MUG, 2)
 		.addSSell(LOTRItems.WOODEN_CUP, 2)
@@ -215,6 +232,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.CHEESE_WHEEL, 50)
 		.addSSell(ExtendedItems.AGED_CHEESE_SLICE, 12)
 		.addSSell(ExtendedItems.AGED_CHEESE_WHEEL, 60)
+		.addSSell(ExtendedItems.BUTTER, 5)
 		.save(pConsumer, ExtendedTraderTypes.BREE_CHEESEMONGER);
 
 		make(0)
@@ -246,7 +264,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 			Items.PINK_WOOL, Items.PURPLE_WOOL,
 			Items.RED_WOOL, Items.YELLOW_WOOL)
 		.addSSell(ExtendedItems.BRANDING_IRON, 25)
-		.addSSell(ExtendedItems.BUTTER, 10)
+		.addSSell(ExtendedItems.BUTTER, 5)
 		.save(pConsumer, ExtendedTraderTypes.BREE_FARMER);
 
 		make(0)
@@ -331,6 +349,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.APPLE_JUICE, 6)
 		.addSSell(new ItemStack(LOTRItems.PIPEWEED.get(), 4), 8)
 		.addSSell(LOTRItems.SMOKING_PIPE, 25)
+		.addSSell(ExtendedItems.BUTTER, 10)
 		.save(pConsumer, ExtendedTraderTypes.BREE_INNKEEPER);
 
 		make(0)
@@ -656,6 +675,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				),
 				10, 100, 1, false)
 		.addSSell(ExtendedItems.BREE_BANNER_PATTERN, 25)
+		.addSSell(ExtendedItems.BREE_SHIELD, 20)
 		.save(pConsumer, ExtendedTraderTypes.BREE_SMITH);
 
 		make(0)
@@ -762,6 +782,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.LEATHER_WARG_ARMOR, 20)
 		.addSSell(ExtendedItems.MAIL_WARG_ARMOR, 25)
 		.addSSell(ExtendedItems.GUNDABAD_WARG_ARMOR, 30)
+		.addSSell(ExtendedItems.GUNDABAD_SHIELD, 20)
 		.save(pConsumer, ExtendedTraderTypes.GUNDABAD_TRADER);
 
 		make(5).setTypicallyWandering()
@@ -786,7 +807,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(Items.COOKED_PORKCHOP, 3)
 		.addSBuy(Items.COOKED_RABBIT, 3)
 		.addSBuy(LOTRItems.GAMMON, 3)
-		// TODO add blue( battleaxe, pike, warhammer), kegs
+		// TODO add blue( battleaxe, pike, warhammer)
 		.addSSell(LOTRItems.BLUE_DWARVEN_HELMET, 25)
 		.addSSell(LOTRItems.BLUE_DWARVEN_CHESTPLATE, 26)
 		.addSSell(LOTRItems.BLUE_DWARVEN_LEGGINGS, 31)
@@ -819,7 +840,10 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				1, 350, 1, false)
 		.addDrinkSell(LOTRItems.DWARVEN_ALE, 6, 9, 11)
 		.addDrinkSell(LOTRItems.DWARVEN_TONIC, 10, 14, 18)
+		.addKegSell(LOTRItems.DWARVEN_ALE, Potency.MODERATE, 120)
+		.addKegSell(LOTRItems.DWARVEN_ALE, Potency.STRONG, 160)
 		.addSSell(ExtendedItems.BLUE_DWARVEN_MATTOCK, 18)
+		.addSSell(ExtendedItems.BLUE_DWARVEN_SHIELD, 30)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_MERCHANT);
 
 		make(100).setTypicallyWandering()
@@ -849,6 +873,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE, 10, 500, 1, false)
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_LEGGINGS, 10, 440, 1, false)
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_BOOTS, 10, 320, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_SHIELD, 10, 240, 1, false)
 		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addSSell(new ItemStack(LOTRItems.HIGH_ELVEN_TORCH.get(), 4), 8)
@@ -863,6 +888,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				1, 350, 1, false)
 		.addSSell(ExtendedItems.RIVENDELL_BANNER, 50)
 		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 25)
+		.addSSell(ExtendedItems.RIVENDELL_SHIELD, 40)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_WANDERER);
 
 		make(75).setTypicallyWandering()
@@ -880,7 +906,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.PEARL, 25)
 		.addSBuy(ExtendedItems.DIAMOND, 25)
 		.addSBuy(ExtendedItems.CORAL, 6)
-		// TODO add mallorn box, galadhrim (bow, battlestaff, longspear), mallorn bow
+		// TODO add mallorn box, galadhrim (bow, battlestaff, longspear, shield), mallorn bow
 		.addSSell(LOTRItems.GALADHRIM_HELMET, 25)
 		.addSSell(LOTRItems.GALADHRIM_CHESTPLATE, 36)
 		.addSSell(LOTRItems.GALADHRIM_LEGGINGS, 30)
@@ -1091,6 +1117,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 40, 150, 1, false)
 		.addSSell(new ItemStack(LOTRItems.DWARVEN_BARS.get(), 8), 25)
 		.addSSell(ExtendedItems.DWARVEN_MATTOCK, 18)
+		//.addSSell(ExtendedItems.DWARVEN_SHIELD, 20)
 		.save(pConsumer, ExtendedTraderTypes.DWARVEN_SMITH);
 
 		make(100)
@@ -1155,6 +1182,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 40, 150, 1, false)
 		.addSSell(new ItemStack(LOTRItems.BLUE_DWARVEN_BARS.get(), 8), 25)
 		.addSSell(ExtendedItems.BLUE_DWARVEN_MATTOCK, 18)
+		.addSSell(ExtendedItems.BLUE_DWARVEN_SHIELD, 20)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_SMITH);
 
 		make(10)
@@ -1199,6 +1227,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addDrinkSell(LOTRItems.DWARVEN_TONIC, 16, 18, 20)
 		.addSSell(new ItemStack(LOTRItems.PIPEWEED.get(), 4), 12)
 		.addSSell(LOTRItems.SMOKING_PIPE, 35)
+		.addSSell(ExtendedItems.BUTTER, 15)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_BARTENDER);
 
 		make(50)
@@ -1296,6 +1325,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE, 10, 375, 1, false)
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_LEGGINGS, 10, 330, 1, false)
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_BOOTS, 10, 240, 1, false)
+		.addSSell(ExtendedItems.IMLADRIS_GUARD_SHIELD, 10, 200, 1, false)
 		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.STRIKING),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.FIERCE),
@@ -1310,6 +1340,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				10, 350, 1, false)
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 20, 150, 1, false)
 		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 25)
+		.addSSell(ExtendedItems.RIVENDELL_SHIELD, 20)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_SMITH);
 
 		make(50)
@@ -1422,6 +1453,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				), 10, 350, 1, false)
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 20, 150, 1, false)
 		.addSSell(ExtendedItems.LINDON_BANNER_PATTERN, 25)
+		.addSSell(ExtendedItems.LINDON_SHIELD, 20)
 		.save(pConsumer, ExtendedTraderTypes.LINDON_SMITH);
 
 		make(50)
@@ -1559,6 +1591,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.ISENGARD_BANNER, 50)
 		.addSSell(ExtendedItems.LEATHER_WARG_ARMOR, 15)
 		.addSSell(ExtendedItems.MAIL_WARG_ARMOR, 20)
+		.addSSell(ExtendedItems.URUK_SHIELD, 30)
 		.save(pConsumer, ExtendedTraderTypes.ISENGARD_URUK_SUPPLIER);
 
 		make(100)
@@ -1605,6 +1638,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.ISENGARD_BANNER, 50)
 		.addSSell(ExtendedItems.MAIL_WARG_ARMOR, 20)
 		.addSSell(ExtendedItems.ISENGARD_WARG_ARMOR, 25)
+		.addSSell(ExtendedItems.URUK_SHIELD, 20)
 		.save(pConsumer, ExtendedTraderTypes.ISENGARD_URUK_SMITH);
 	}
 }

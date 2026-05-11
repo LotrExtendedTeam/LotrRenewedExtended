@@ -46,7 +46,7 @@ public class ExtendedUrukBerserkerEntity extends UrukEntity{
 		this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(ExtendedItems.BROWN_WARG_LEGGINGS.get()));
 		this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(ExtendedItems.BROWN_WARG_CHESTPLATE.get()));
 		this.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
-		this.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
+		this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.URUK_SHIELD.get()));
 		return spawnData;
 	}
 

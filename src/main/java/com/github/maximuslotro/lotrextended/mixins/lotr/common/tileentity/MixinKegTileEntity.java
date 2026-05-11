@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrextended.mixins.lotr.common.tileentity;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
@@ -58,8 +60,7 @@ import net.minecraft.world.server.ServerWorld;
  * and brewing recipe recalculation.</p>
  *
  * <p>This mixin fixes NPEs during structure generation by null-guarding level usage.
- * It also emulates loot table unpacking similar to vanilla chests and ensures
- * synced server-client keg inventory behavior.</p>
+ * It also emulates loot table unpacking similar to vanilla chests.</p>
  * 
  * <p>Also fixed an infinite duplication glitch with un-brewed recipes.</p>
  *
@@ -122,15 +123,54 @@ public abstract class MixinKegTileEntity extends LockableTileEntity implements E
 	private KegTileEntity.KegMode kegMode;
 
 	/** 
+	 * The current brewing time of the keg. 
+	 * 
+	 * @Shadow (remap = false)
+	 * */
+	@Shadow(remap = false)
+	private int brewTime;
+	/** 
+	 * Total brewing time required for the current recipe. 
+	 * 
+	 * @Shadow (remap = false)
+	 * */
+	@Shadow(remap = false)
+	private int brewTimeTotal;
+	/** 
+	 * Keg data array used for syncing UI progress (brew time, etc.). 
+	 * 
+	 * @Shadow (remap = false)
+	 * @Final
+	 * */
+	@Shadow(remap = false)
+	@Final
+	private IIntArray kegData;
+	/** 
 	 * The current brewing recipe ID being applied in the keg. 
 	 * 
 	 * @Shadow (remap = false)
 	 * */
 	@Shadow(remap = false)
 	private ResourceLocation currentBrewingRecipe;
+	/** 
+	 * An array of currently brewed recipes. 
+	 * 
+	 * @Shadow (remap = false)
+	 * @Final
+	 * */
+	@Shadow(remap = false)
+	@Final
+	private Map<ResourceLocation, Integer> usedRecipes;
+	/** 
+	 * An array of currently interracting players. 
+	 * 
+	 * @Shadow (remap = false)
+	 * */
+	@Shadow(remap = false)
+	private List<ServerPlayerEntity> usingPlayers;
 
 	/** 
-	 * Re-syncs keg inventory contents to nearby players. 
+	 * Re-sync keg inventory contents to nearby players. 
 	 * 
 	 * @Shadow (remap = false)
 	 * */
@@ -147,30 +187,12 @@ public abstract class MixinKegTileEntity extends LockableTileEntity implements E
 	private boolean isIngredientOrWaterSlot(int index) {return false;}
 
 	/** 
-	 * Total brewing time required for the current recipe. 
-	 * 
-	 * @Shadow (remap = false)
-	 * */
-	@Shadow(remap = false)
-	private int brewTimeTotal;
-
-	/** 
 	 * Internal inventory list for the keg tile entity. 
 	 * 
 	 * @Shadow (remap = false)
 	 * */
 	@Shadow(remap = false)
 	private NonNullList<ItemStack> inventory;
-
-	/** 
-	 * Keg data array used for syncing UI progress (brew time, etc.). 
-	 * 
-	 * @Shadow (remap = false)
-	 * @Final
-	 * */
-	@Shadow(remap = false)
-	@Final
-	private IIntArray kegData;
 
 	/**
 	 * Gets the current size of the keg's inventory
@@ -180,6 +202,20 @@ public abstract class MixinKegTileEntity extends LockableTileEntity implements E
 	@Override
 	@Shadow(remap = false)
 	public int getContainerSize() {return 0;}
+	/**
+	 * Adds a recipe to a list of used recipes
+	 *
+	 * @param rId Id of used recipe
+	 */
+	@Shadow(remap = false)
+	private void setRecipeUsed_id(ResourceLocation rId) {return;}
+	/**
+	 * Reward player with used recipe rewards
+	 *
+	 * @param player Player to award recipe rewards to
+	 */
+	@Shadow(remap = false)
+	private void completeCurrentRecipe(PlayerEntity player) {return;}
 
 	@Inject(method = "handleBrewButtonPress(Lnet/minecraft/entity/player/ServerPlayerEntity;)V", at = @At("TAIL"), remap = false)
 	public void handleBrewButtonPress(ServerPlayerEntity player, CallbackInfo ci) {
@@ -488,7 +524,7 @@ public abstract class MixinKegTileEntity extends LockableTileEntity implements E
 
 	/**
 	 * @author Maximuslotro
-	 * @reason Fix ub-brewed recipe duplication bug
+	 * @reason Fix un-brewed recipe duplication bug
 	 * */
 	@Overwrite(remap=false)
 	public void dropContentsExceptBrew() {
@@ -507,6 +543,67 @@ public abstract class MixinKegTileEntity extends LockableTileEntity implements E
 				}
 			}
 			// Extended End
+		}
+
+	}
+	/**
+	 * @author Maximuslotro
+	 * @reason Fix currentBrewingRecipe data save logic
+	 * */
+	@Overwrite
+	public void tick() {
+		boolean needUpdate = false;
+		if (!level.isClientSide) {
+			if (kegMode == KegTileEntity.KegMode.BREWING) {
+				ItemStack brewingItem = getItem(9);
+				if (!brewingItem.isEmpty()) {
+					++brewTime;
+					if (brewTime >= brewTimeTotal) {
+						brewTime = 0;
+						VesselDrinkItem.Potency potency = VesselDrinkItem.getPotency(brewingItem);
+						if (potency.isMax()) {
+							kegMode = KegTileEntity.KegMode.FULL;
+							brewTime = 0;
+							brewTimeTotal = 0;
+							// Extended Start
+							// Save current finished recipe, since currently if brewed from strong to potent, no recipe reward is given
+							setRecipeUsed_id(currentBrewingRecipe);
+							// Clear current recipe when done brewing because its saved to used recipe list anyways
+							currentBrewingRecipe=null;
+							// Extended End
+						} else {
+							VesselDrinkItem.setPotency(brewingItem, potency.getNext());
+							setRecipeUsed_id(currentBrewingRecipe);
+						}
+						needUpdate = true;
+					}
+				} else {
+					kegMode = KegTileEntity.KegMode.EMPTY;
+					brewTime = 0;
+					brewTimeTotal = 0;
+					currentBrewingRecipe = null;
+					needUpdate = true;
+				}
+			} else {
+				brewTime = 0;
+			}
+
+			if (kegMode == KegTileEntity.KegMode.FULL) {
+				// Replace currentBrewingRecipe check with usedRecipes since currentBrewingRecipe is cleared when recipe is finished
+				if (!usingPlayers.isEmpty() && /*Extended Start*/!usedRecipes.isEmpty()/*Extended End*/) {
+					PlayerEntity firstUser = usingPlayers.get(0);
+					completeCurrentRecipe(firstUser);
+				}
+
+				if (getItem(9).isEmpty()) {
+					kegMode = KegTileEntity.KegMode.EMPTY;
+					needUpdate = true;
+				}
+			}
+		}
+
+		if (needUpdate) {
+			setChanged();
 		}
 
 	}
