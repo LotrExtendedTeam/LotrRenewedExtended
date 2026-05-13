@@ -1926,6 +1926,25 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		}
 	}
 
+	protected void makeCoralRecipes(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> output, Supplier<? extends Item> inputCoral, Supplier<? extends Item> inputFan, Supplier<? extends Item> inputBlock) {
+		GENERATEDRECIPES.add(output.get().getRegistryName().getPath());
+		ShapelessRecipeBuilder.shapeless(output.get())
+		.group(output.get().getRegistryName().getPath())
+		.requires(inputFan.get())
+		.unlockedBy("has_"+inputFan.get().getRegistryName().getPath(), has(inputFan.get()))
+		.save(consumer, lotrLoc(output.get().getRegistryName().getPath()+"_from_"+inputFan.get().getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(output.get())
+		.group(output.get().getRegistryName().getPath())
+		.requires(inputCoral.get())
+		.unlockedBy("has_"+inputCoral.get().getRegistryName().getPath(), has(inputCoral.get()))
+		.save(consumer, lotrLoc(output.get().getRegistryName().getPath()+"_from_"+inputCoral.get().getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(output.get(), 4)
+		.group(output.get().getRegistryName().getPath())
+		.requires(inputBlock.get())
+		.unlockedBy("has_"+inputBlock.get().getRegistryName().getPath(), has(inputBlock.get()))
+		.save(consumer, lotrLoc(output.get().getRegistryName().getPath()+"_from_"+inputBlock.get().getRegistryName().getPath()));
+	}
+
 	protected void makeNuggetToIngotAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> ingot, Supplier<? extends Item> nugget, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name1 = ingot.get().getRegistryName().getPath();
 		String name2 = nugget.get().getRegistryName().getPath();

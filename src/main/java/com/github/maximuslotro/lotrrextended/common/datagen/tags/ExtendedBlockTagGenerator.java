@@ -272,6 +272,7 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD).add(ExtendedBlocks.EMERALD_BLOCK.get());
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL).add(ExtendedBlocks.PEARL_BLOCK.get());
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_CORAL).add(ExtendedBlocks.CORAL_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_DEAD_CORAL).add(ExtendedBlocks.DEAD_CORAL_BLOCK.get());
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_DURNOR).add(LOTRBlocks.DURNOR_BLOCK.get());
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_EDHELVIR).add(LOTRBlocks.EDHELVIR_BLOCK.get());
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_GULDURIL).add(LOTRBlocks.GULDURIL_BLOCK.get());
@@ -282,8 +283,7 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMETHYST).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_SAPPHIRE)
 		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_RUBY) .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMBER)
 		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_DIAMOND).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_OPAL)
-		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL)
-		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_CORAL);
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL);
 
 		tag(Tags.Blocks.STORAGE_BLOCKS)
 		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL)
@@ -296,7 +296,7 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_OPAL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD)
 		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_CORAL)
 		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_DURNOR).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_EDHELVIR)
-		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GULDURIL);
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GULDURIL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_DEAD_CORAL);
 
 		tag(BlockTags.FIRE).add(ExtendedBlocks.GREEN_FIRE_BLOCK.get());
 		tag(ExtendedTags.Blocks.GREEN_FIRE_BASE_BLOCKS).add(ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK.get());

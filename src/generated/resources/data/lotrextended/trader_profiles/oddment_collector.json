@@ -217,6 +217,13 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotr:dead_coral",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "minecraft:bamboo",
         "averageCost": 16,
         "count": 8

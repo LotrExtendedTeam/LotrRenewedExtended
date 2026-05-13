@@ -30,6 +30,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedHoistBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedMaterialBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
@@ -81,7 +82,6 @@ import lotr.common.block.LOTRWallBlock;
 import lotr.common.block.LOTRWallTorchBlock;
 import lotr.common.block.LOTRWoodButtonBlock;
 import lotr.common.block.LOTRWoodPressurePlateBlock;
-import lotr.common.block.MineralBlock;
 import lotr.common.block.StrippableBranchBlock;
 import lotr.common.block.StrippableLogBlock;
 import lotr.common.block.StrippableWoodBlock;
@@ -256,7 +256,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.getValue().get());
 				continue;
 			}
-			if(block.getValue().get() instanceof MineralBlock) {
+			if(block.getValue().get() instanceof ExtendedMaterialBlock) {
 				dropSelf(block.getValue().get());
 				continue;
 			}

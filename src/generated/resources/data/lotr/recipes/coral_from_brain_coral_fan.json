@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "group": "coral",
   "ingredients": [
     {
       "item": "minecraft:brain_coral_fan"

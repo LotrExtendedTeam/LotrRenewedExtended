@@ -118,6 +118,7 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD, ExtendedTags.Items.STORAGE_BLOCKS_EMERALD);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL, ExtendedTags.Items.STORAGE_BLOCKS_PEARL);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_CORAL, ExtendedTags.Items.STORAGE_BLOCKS_CORAL);
+		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_DEAD_CORAL, ExtendedTags.Items.STORAGE_BLOCKS_DEAD_CORAL);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_DURNOR, ExtendedTags.Items.STORAGE_BLOCKS_DURNOR);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_EDHELVIR, ExtendedTags.Items.STORAGE_BLOCKS_EDHELVIR);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_GULDURIL, ExtendedTags.Items.STORAGE_BLOCKS_GULDURIL);
@@ -155,7 +156,7 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_EMERALD).addTag(ExtendedTags.Items.STORAGE_BLOCKS_PEARL)
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_CORAL).addTag(ExtendedTags.Items.STORAGE_BLOCKS_DURNOR)
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_EDHELVIR).addTag(ExtendedTags.Items.STORAGE_BLOCKS_GULDURIL)
-	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_ORC_STEEL);
+	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_ORC_STEEL).addTag(ExtendedTags.Items.STORAGE_BLOCKS_DEAD_CORAL);
 
 		tag(ExtendedTags.Items.MORGUL_STEEL_INGOT).add(ExtendedItems.MORGUL_STEEL_INGOT.get());
 		tag(ExtendedTags.Items.ORC_STEEL_INGOT).add(LOTRItems.ORC_STEEL_INGOT.get());
@@ -191,6 +192,7 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		tag(ExtendedTags.Items.EMERALD_GEMS).add(ExtendedItems.EMERALD.get());
 		tag(ExtendedTags.Items.PEARL_GEMS).add(ExtendedItems.PEARL.get());
 		tag(ExtendedTags.Items.CORAL_GEMS).add(ExtendedItems.CORAL.get());
+		tag(ExtendedTags.Items.DEAD_CORAL_GEMS).add(ExtendedItems.DEAD_CORAL.get());
 		tag(ExtendedTags.Items.DURNOR_GEMS).add(LOTRItems.DURNOR.get());
 		tag(ExtendedTags.Items.EDHELVIR_GEMS).add(LOTRItems.EDHELVIR.get());
 		tag(ExtendedTags.Items.GULDURIL_GEMS).add(LOTRItems.GULDURIL.get());

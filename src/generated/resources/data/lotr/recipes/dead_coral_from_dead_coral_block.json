@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:dead_coral_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:dead_coral",
+    "count": 9
+  }
+}

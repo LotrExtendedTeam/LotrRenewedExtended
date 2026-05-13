@@ -622,6 +622,7 @@ public class MixinLOTRItems {
 		ExtendedItems.EMERALD_BLOCK = regBlockItemB(ExtendedBlocks.EMERALD_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PEARL_BLOCK = regBlockItemB(ExtendedBlocks.PEARL_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CORAL_BLOCK = regBlockItemB(ExtendedBlocks.CORAL_BLOCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.DEAD_CORAL_BLOCK = regBlockItemB(ExtendedBlocks.DEAD_CORAL_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.WASTE_BLOCK = regBlockItemB(ExtendedBlocks.WASTE_BLOCK, LOTRItemGroups.BLOCKS);
 		//ORE
 		ExtendedItems.METEORITE_ORE = regBlockItemB(ExtendedBlocks.METEORITE_ORE, LOTRItemGroups.BLOCKS);
@@ -1058,6 +1059,7 @@ public class MixinLOTRItems {
 		ExtendedItems.EMERALD = regColoredMaterialItemB("emerald", TextFormatting.GREEN);
 		ExtendedItems.PEARL = regColoredMaterialItemB("pearl", TextFormatting.WHITE);
 		ExtendedItems.CORAL = regMaterialItemB("coral");
+		ExtendedItems.DEAD_CORAL = regColoredMaterialItemB("dead_coral", TextFormatting.GRAY);
 
 		//#########################################################################TOOLS#####################################################
 		//Taurethrim Tools
