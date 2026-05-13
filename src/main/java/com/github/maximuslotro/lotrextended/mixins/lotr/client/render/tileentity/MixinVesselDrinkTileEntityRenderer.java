@@ -75,7 +75,8 @@ public abstract class MixinVesselDrinkTileEntityRenderer<T extends VesselDrinkTi
 	@Inject(
 		    method = "render(Llotr/common/tileentity/VesselDrinkTileEntity;FLcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;II)V",
 		    at = @At("HEAD"),
-		    cancellable = true
+		    cancellable = true,
+		    remap = false
 		)
 	private void onRender(T vessel, float partialTicks, MatrixStack matStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay, CallbackInfo ci) {
 		if (!vessel.isEmpty()) {
