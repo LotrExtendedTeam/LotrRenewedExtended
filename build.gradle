@@ -55,10 +55,14 @@ minecraft {
 
         client {
             // this block needs to be here for runClient to exist
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
         }
 
         server {
             args '--nogui'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
         }
 
         data {
@@ -70,10 +74,9 @@ minecraft {
 }
 repositories {
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
-    // If you have mod jar dependencies in ./libs, you can declare them as a repository like so:
-    // flatDir {
-    //     dir 'libs'
-    // }
+    flatDir {
+        dirs 'libs'
+    }
 	maven {
         url "https://cursemaven.com"
         content {
@@ -89,12 +92,9 @@ dependencies {
     implementation fg.deobf("curse.maven:the-lord-of-the-rings-mod-renewed-406893:3661524")
     
     // LOTR First/Second Age mod dep
-    // Use deobfuscated for the IDE for code compilation
-    compileOnly fg.deobf("curse.maven:renewed-eras-of-arda-addon-622647:4215457")
-    // Use the original obfuscated jar for the Client/Server run
-    // Forge will remap this correctly in-memory when the game starts
-    runtimeOnly 'curse.maven:renewed-eras-of-arda-addon-622647:4215457'
-    
+    //implementation fg.deobf('curse.maven:renewed-eras-of-arda-addon-622647:4215457')
+    implementation fg.deobf('eoa:eoa:2.0.0-ALPHA')
+
     // JEI LOTR
     implementation fg.deobf("curse.maven:jei-238222:5846870")
     implementation fg.deobf("curse.maven:jei-lotr-380404:3779945")
