@@ -461,7 +461,6 @@ public class MixinLOTRItems {
 		ExtendedItems.CHESTNUT_LOG = regBlockItemB(ExtendedBlocks.CHESTNUT_LOG, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_WOOD = regBlockItemB(ExtendedBlocks.CHESTNUT_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_PLANKS = regBlockItemB(ExtendedBlocks.CHESTNUT_PLANKS, LOTRItemGroups.BLOCKS);
-		System.out.println("P1");
 		ExtendedItems.CHESTNUT_LEAVES = regBlockItemB(ExtendedBlocks.CHESTNUT_LEAVES, LOTRItemGroups.DECO);
 		ExtendedItems.CHESTNUT_LEAVES_FRUIT = regBlockItemB(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT, LOTRItemGroups.DECO);
 		ExtendedItems.CHESTNUT_SAPLING = regBlockItemB(ExtendedBlocks.CHESTNUT_SAPLING, LOTRItemGroups.DECO);
