@@ -355,7 +355,67 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.SILVER_FUR, ExtendedBlocks.SILVER_FUR_BUNDLE, null);
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.WHITE_FUR, ExtendedBlocks.WHITE_FUR_BUNDLE, null);
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, LOTRItems.FUR, LOTRBlocks.FUR_BUNDLE, null);
-
+		GENERATEDRECIPES.add(ExtendedItems.CORAL.get().getRegistryName().getPath());
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.CORAL.get())
+		.requires(Items.BRAIN_CORAL_FAN)
+		.unlockedBy("has_"+Items.BRAIN_CORAL_FAN.getRegistryName().getPath(), has(Items.BRAIN_CORAL_FAN))
+		.save(consumer, lotrLoc(ExtendedItems.CORAL.get().getRegistryName().getPath()+"_from_"+Items.BRAIN_CORAL_FAN.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.CORAL.get())
+		.requires(Items.BUBBLE_CORAL_FAN)
+		.unlockedBy("has_"+Items.BUBBLE_CORAL_FAN.getRegistryName().getPath(), has(Items.BUBBLE_CORAL_FAN))
+		.save(consumer, lotrLoc(ExtendedItems.CORAL.get().getRegistryName().getPath()+"_from_"+Items.BUBBLE_CORAL_FAN.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.CORAL.get())
+		.requires(Items.FIRE_CORAL_FAN)
+		.unlockedBy("has_"+Items.FIRE_CORAL_FAN.getRegistryName().getPath(), has(Items.FIRE_CORAL_FAN))
+		.save(consumer, lotrLoc(ExtendedItems.CORAL.get().getRegistryName().getPath()+"_from_"+Items.FIRE_CORAL_FAN.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.CORAL.get())
+		.requires(Items.HORN_CORAL_FAN)
+		.unlockedBy("has_"+Items.HORN_CORAL_FAN.getRegistryName().getPath(), has(Items.HORN_CORAL_FAN))
+		.save(consumer, lotrLoc(ExtendedItems.CORAL.get().getRegistryName().getPath()+"_from_"+Items.HORN_CORAL_FAN.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.CORAL.get())
+		.requires(Items.TUBE_CORAL_FAN)
+		.unlockedBy("has_"+Items.TUBE_CORAL_FAN.getRegistryName().getPath(), has(Items.TUBE_CORAL_FAN))
+		.save(consumer, lotrLoc(ExtendedItems.CORAL.get().getRegistryName().getPath()+"_from_"+Items.TUBE_CORAL_FAN.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.CORAL.get())
+		.requires(Items.BRAIN_CORAL)
+		.unlockedBy("has_"+Items.BRAIN_CORAL.getRegistryName().getPath(), has(Items.BRAIN_CORAL))
+		.save(consumer, lotrLoc(ExtendedItems.CORAL.get().getRegistryName().getPath()+"_from_"+Items.BRAIN_CORAL.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.CORAL.get())
+		.requires(Items.BUBBLE_CORAL)
+		.unlockedBy("has_"+Items.BUBBLE_CORAL.getRegistryName().getPath(), has(Items.BUBBLE_CORAL))
+		.save(consumer, lotrLoc(ExtendedItems.CORAL.get().getRegistryName().getPath()+"_from_"+Items.BUBBLE_CORAL.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.CORAL.get())
+		.requires(Items.FIRE_CORAL)
+		.unlockedBy("has_"+Items.FIRE_CORAL.getRegistryName().getPath(), has(Items.FIRE_CORAL))
+		.save(consumer, lotrLoc(ExtendedItems.CORAL.get().getRegistryName().getPath()+"_from_"+Items.FIRE_CORAL.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.CORAL.get())
+		.requires(Items.HORN_CORAL)
+		.unlockedBy("has_"+Items.HORN_CORAL.getRegistryName().getPath(), has(Items.HORN_CORAL))
+		.save(consumer, lotrLoc(ExtendedItems.CORAL.get().getRegistryName().getPath()+"_from_"+Items.HORN_CORAL.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.CORAL.get())
+		.requires(Items.TUBE_CORAL)
+		.unlockedBy("has_"+Items.TUBE_CORAL.getRegistryName().getPath(), has(Items.TUBE_CORAL))
+		.save(consumer, lotrLoc(ExtendedItems.CORAL.get().getRegistryName().getPath()+"_from_"+Items.TUBE_CORAL.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.CORAL.get(), 4)
+		.requires(Items.BRAIN_CORAL_BLOCK)
+		.unlockedBy("has_"+Items.BRAIN_CORAL_BLOCK.getRegistryName().getPath(), has(Items.BRAIN_CORAL_BLOCK))
+		.save(consumer, lotrLoc(ExtendedItems.CORAL.get().getRegistryName().getPath()+"_from_"+Items.BRAIN_CORAL_BLOCK.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.CORAL.get(), 4)
+		.requires(Items.BUBBLE_CORAL_BLOCK)
+		.unlockedBy("has_"+Items.BUBBLE_CORAL_BLOCK.getRegistryName().getPath(), has(Items.BUBBLE_CORAL_BLOCK))
+		.save(consumer, lotrLoc(ExtendedItems.CORAL.get().getRegistryName().getPath()+"_from_"+Items.BUBBLE_CORAL_BLOCK.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.CORAL.get(), 4)
+		.requires(Items.FIRE_CORAL_BLOCK)
+		.unlockedBy("has_"+Items.FIRE_CORAL_BLOCK.getRegistryName().getPath(), has(Items.FIRE_CORAL_BLOCK))
+		.save(consumer, lotrLoc(ExtendedItems.CORAL.get().getRegistryName().getPath()+"_from_"+Items.FIRE_CORAL_BLOCK.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.CORAL.get(), 4)
+		.requires(Items.HORN_CORAL_BLOCK)
+		.unlockedBy("has_"+Items.HORN_CORAL_BLOCK.getRegistryName().getPath(), has(Items.HORN_CORAL_BLOCK))
+		.save(consumer, lotrLoc(ExtendedItems.CORAL.get().getRegistryName().getPath()+"_from_"+Items.HORN_CORAL_BLOCK.getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.CORAL.get(), 4)
+		.requires(Items.TUBE_CORAL_BLOCK)
+		.unlockedBy("has_"+Items.TUBE_CORAL_BLOCK.getRegistryName().getPath(), has(Items.TUBE_CORAL_BLOCK))
+		.save(consumer, lotrLoc(ExtendedItems.CORAL.get().getRegistryName().getPath()+"_from_"+Items.TUBE_CORAL_BLOCK.getRegistryName().getPath()));
 		// Hobbit pancakes
 		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HOBBIT_PANCAKE.get(), 1, LOTRRecipes.HOBBIT_CRAFTING)
@@ -2322,7 +2382,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		for(RegistryObject<Block> block :ExtendedBlocks.ENTITYGROUPSPAWNERBLOCKS.values()) {
 			GENERATEDRECIPES.add(block.get().getRegistryName().getPath());
 		}
-		GENERATEDRECIPES.add(ExtendedItems.CORAL.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.PEARL.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.BLACK_FUR.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.GRAY_FUR.get().getRegistryName().getPath());
