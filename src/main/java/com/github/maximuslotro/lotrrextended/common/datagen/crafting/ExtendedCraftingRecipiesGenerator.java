@@ -327,8 +327,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.OPAL, ExtendedBlocks.OPAL_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.EMERALD, ExtendedBlocks.EMERALD_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.PEARL, ExtendedBlocks.PEARL_BLOCK, null);
-		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.CORAL, ExtendedBlocks.CORAL_BLOCK, null);
-		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.DEAD_CORAL, ExtendedBlocks.DEAD_CORAL_BLOCK, null);
+		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.CORAL, ExtendedBlocks.CORAL_BLOCK, null, ExtendedItems.CORAL.get().getRegistryName().getPath(), null);
+		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.DEAD_CORAL, ExtendedBlocks.DEAD_CORAL_BLOCK, null, ExtendedItems.DEAD_CORAL.get().getRegistryName().getPath(), null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.GALVORN_INGOT, ExtendedBlocks.GALVORN_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.BLACK_URUK_STEEL_INGOT, ExtendedBlocks.BLACK_URUK_STEEL_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.GILDED_IRON_INGOT, ExtendedBlocks.GILDED_IRON_BLOCK, null);
@@ -895,33 +895,33 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		//ITEMS
 		// TORCH CONVERSIONS
 		// DWARVEN
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.DWARVEN_TORCH, LOTRRecipes.ANY_DWARVEN);
-		makeTorchConversionRecipe(consumer, LOTRItems.DWARVEN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeDirect(consumer, ()->Items.TORCH, LOTRItems.DWARVEN_TORCH, LOTRRecipes.ANY_DWARVEN);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.DWARVEN_TORCH, ()->Items.TORCH, null);
 		//MORGUL
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, ExtendedItems.MORGUL_TORCH, LOTRItems.GULDURIL, 4, LOTRRecipes.ANY_MORGUL);
-		makeTorchConversionRecipe(consumer, ExtendedItems.MORGUL_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeItem(consumer, ()->Items.TORCH, ExtendedItems.MORGUL_TORCH, LOTRItems.GULDURIL, 4, LOTRRecipes.ANY_MORGUL);
+		makeTorchConversionRecipeDirect(consumer, ExtendedItems.MORGUL_TORCH, ()->Items.TORCH, null);
 		//HIGH ELVEN
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.HIGH_ELVEN_TORCH, LOTRItems.EDHELVIR, 4, LOTRRecipes.ANY_HIGH_ELVEN);
-		makeTorchConversionRecipe(consumer, LOTRItems.HIGH_ELVEN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeItem(consumer, ()->Items.TORCH, LOTRItems.HIGH_ELVEN_TORCH, LOTRItems.EDHELVIR, 4, LOTRRecipes.ANY_HIGH_ELVEN);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.HIGH_ELVEN_TORCH, ()->Items.TORCH, null);
 		makeArmorRecipe(consumer, ExtendedItems.GALVORN_HELMET,
 			ExtendedItems.GALVORN_CHESTPLATE,
 			ExtendedItems.GALVORN_LEGGINGS,
 			ExtendedItems.GALVORN_BOOTS,
 			ExtendedItems.GALVORN_INGOT, LOTRRecipes.ANY_ELVEN);
 		//BLUBBER
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.BLUBBER_TORCH, LOTRItems.BLUBBER, 4, LOTRRecipes.LOSSOTH_CRAFTING);
-		makeTorchConversionRecipe(consumer, LOTRItems.BLUBBER_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeItem(consumer, ()->Items.TORCH, LOTRItems.BLUBBER_TORCH, LOTRItems.BLUBBER, 4, LOTRRecipes.LOSSOTH_CRAFTING);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.BLUBBER_TORCH, ()->Items.TORCH, null);
 		//MALLORN
-		makeTorchConversionRecipe(consumer, LOTRItems.BLUE_MALLORN_TORCH, ()->Items.TORCH, null);
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.BLUE_MALLORN_TORCH, LOTRTags.Items.BLUE_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
-		makeTorchConversionRecipe(consumer, LOTRItems.GOLD_MALLORN_TORCH, ()->Items.TORCH, null);
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.GOLD_MALLORN_TORCH, LOTRTags.Items.GOLD_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
-		makeTorchConversionRecipe(consumer, LOTRItems.GREEN_MALLORN_TORCH, ()->Items.TORCH, null);
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.GREEN_MALLORN_TORCH, LOTRTags.Items.GREEN_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
-		makeTorchConversionRecipe(consumer, LOTRItems.SILVER_MALLORN_TORCH, ()->Items.TORCH, null);
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.SILVER_MALLORN_TORCH, LOTRTags.Items.SILVER_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.BLUE_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeTag(consumer, ()->Items.TORCH, LOTRItems.BLUE_MALLORN_TORCH, LOTRTags.Items.BLUE_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.GOLD_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeTag(consumer, ()->Items.TORCH, LOTRItems.GOLD_MALLORN_TORCH, LOTRTags.Items.GOLD_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.GREEN_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeTag(consumer, ()->Items.TORCH, LOTRItems.GREEN_MALLORN_TORCH, LOTRTags.Items.GREEN_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.SILVER_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeTag(consumer, ()->Items.TORCH, LOTRItems.SILVER_MALLORN_TORCH, LOTRTags.Items.SILVER_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
 		//ORC
-		makeTorchConversionRecipe(consumer, LOTRItems.ORC_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.ORC_TORCH, ()->Items.TORCH, null);
 		ExtendedFactionShapedRecipeBuilder.shaped(LOTRItems.ORC_TORCH.get(), 1, LOTRRecipes.ANY_ORC)
 		.pattern("T")
 		.pattern("S")

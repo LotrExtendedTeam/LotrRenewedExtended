@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:blue_dwarven_boar_armor_1"
+      "lotr:dwarven_boar_armor"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:blue_dwarven_boar_armor_1"
+        "recipe": "lotr:dwarven_boar_armor"
       }
     }
   },

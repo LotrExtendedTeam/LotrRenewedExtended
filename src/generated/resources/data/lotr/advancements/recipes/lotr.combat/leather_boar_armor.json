@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "lotr:blue_dwarven_boar_armor_2"
+      "lotr:leather_boar_armor"
     ]
   },
   "criteria": {
-    "has_dwarven_steel_ingot": {
+    "has_leather": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/dwarven_steel"
+            "tag": "forge:leather"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "lotr:blue_dwarven_boar_armor_2"
+        "recipe": "lotr:leather_boar_armor"
       }
     }
   },
   "requirements": [
     [
-      "has_dwarven_steel_ingot",
+      "has_leather",
       "has_the_recipe"
     ]
   ]
