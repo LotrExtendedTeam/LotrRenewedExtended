@@ -86,7 +86,7 @@ public class ExtendedStoneChestBlock extends ExtendedSingleChestBlock {
 	         if (tileentity instanceof ExtendedStoneChestTileEntity ) {
 	        	 ExtendedStoneChestTileEntity te = ((ExtendedStoneChestTileEntity)tileentity);
 	        	 // Since we haven't spawned a wight, and we are not empty assume player is trying to break chest
-	        	 if(!te.hasSpawnedWight() && !te.isEmpty()) {
+	        	 if(!te.hasSpawnedWight() && !te.isEmpty() && pLevel.getBiome(pPos).getRegistryName().toString().equals("lotr:barrow_downs")) {
 	        		 te.setHasSpawnedWight(spawnWightCursed(pLevel, pPos, null, true));
 	        	 }
 	         }
