@@ -230,7 +230,7 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 			.setTitle("Shared Dominion").setDescription("Grant land rights to trusted companions."),
 			addStringTrigger(make(), "bannerOthers").parent(conqueror));
 
-		Advancement refreshing = build(true, data(LOTRItems.WATER_DRINK.get(), "refreshing", FrameType.TASK)
+		Advancement refreshing = build(false, data(LOTRItems.WATER_DRINK.get(), "refreshing", FrameType.TASK)
 				.setTitle("Refreshing").setDescription("Drink any beverage."),
 				addDrinkTrigger(make()).parent(base));
 
