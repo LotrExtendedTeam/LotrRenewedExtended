@@ -48,6 +48,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+@Deprecated
 public class ExtendedBoarEntityOld extends ExtendedAbstractGenderedAnimalEntity<ExtendedBoarEntityOld> implements IRideable, IEquipable {
 	private static final DataParameter<Boolean> DATA_SADDLE_ID = EntityDataManager.defineId(ExtendedBoarEntityOld.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Integer> DATA_BOOST_TIME = EntityDataManager.defineId(ExtendedBoarEntityOld.class, DataSerializers.INT);
