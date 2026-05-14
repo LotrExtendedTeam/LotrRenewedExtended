@@ -230,17 +230,21 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 			.setTitle("Shared Dominion").setDescription("Grant land rights to trusted companions."),
 			addStringTrigger(make(), "bannerOthers").parent(conqueror));
 
-		Advancement drunkard = build(true, data(LOTRItems.ALE.get(), "drunkard", FrameType.TASK)
-				.setTitle("Drunkard").setDescription("Suffer the effects of an alcoholic drink."),
-				addDrinkDurationTrigger(make(), 0).parent(base));
+		Advancement refreshing = build(true, data(LOTRItems.WATER_DRINK.get(), "refreshing", FrameType.TASK)
+				.setTitle("Refreshing").setDescription("Drink any beverage."),
+				addDrinkTrigger(make()).parent(base));
 
 		Advancement brewing = build(true, data(LOTRItems.ALE.get(), "brewing", FrameType.TASK)
 				.setTitle("Time to Drink!").setDescription("Start brewing a drink in a keg."),
-				addStringTrigger(make(), "brewDrink").parent(drunkard));
+				addStringTrigger(make(), "brewDrink").parent(refreshing));
 
 		Advancement burning_sensation = build(true, data(LOTRItems.ORC_DRAUGHT.get(), "burning_sensation", FrameType.TASK)
 				.setTitle("Burning Sensation").setDescription("Drink an Orc Draught."),
-				addDrinkItemTrigger(make(), LOTRItems.ORC_DRAUGHT.get()).parent(drunkard));
+				addDrinkItemTrigger(make(), LOTRItems.ORC_DRAUGHT.get()).parent(refreshing));
+
+		Advancement drunkard = build(true, data(LOTRItems.ALE.get(), "drunkard", FrameType.TASK)
+				.setTitle("Drunkard").setDescription("Suffer the effects of an alcoholic drink."),
+				addDrinkDurationTrigger(make(), 1).parent(refreshing));
 
 		Advancement hooligan = build(true, data(LOTRItems.ALE.get(), "hooligan", FrameType.TASK)
 				.setTitle("Hooligan").setDescription("Kill a foe while drunk."),

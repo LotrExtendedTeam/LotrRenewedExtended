@@ -248,17 +248,22 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 	}
 
 	public static Advancement.Builder addDrinkDurationTrigger(Advancement.Builder builder, int duration) {
-		builder.addCriterion("drink_any", ExtendedDrinkingTrigger.Instance.drinkStrengeth(duration));
+		builder.addCriterion("drink_strength", ExtendedDrinkingTrigger.Instance.drinkStrengeth(duration));
 		return builder;
 	}
 
 	public static Advancement.Builder addDrinkToleranceTrigger(Advancement.Builder builder, int tolerance) {
-		builder.addCriterion("drink_any", ExtendedDrinkingTrigger.Instance.tolerance(tolerance));
+		builder.addCriterion("drink_tolerance", ExtendedDrinkingTrigger.Instance.tolerance(tolerance));
 		return builder;
 	}
 
 	public static Advancement.Builder addDrinkItemTrigger(Advancement.Builder builder, Item item) {
-		builder.addCriterion("drink_any", ExtendedDrinkingTrigger.Instance.item(item));
+		builder.addCriterion("drink_item", ExtendedDrinkingTrigger.Instance.item(item));
+		return builder;
+	}
+
+	public static Advancement.Builder addDrinkTrigger(Advancement.Builder builder) {
+		builder.addCriterion("drink_any", ExtendedDrinkingTrigger.Instance.any());
 		return builder;
 	}
 

@@ -1,0 +1,30 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "icon": {
+      "item": "lotr:water_drink"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.general.refreshing.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.refreshing.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "drink_any": {
+      "trigger": "lotrextended:drinking",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "drink_any"
+    ]
+  ]
+}

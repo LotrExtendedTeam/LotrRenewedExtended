@@ -38,7 +38,7 @@ import net.minecraft.world.World;
 
 @Mixin(VesselDrinkItem.class)
 public class MixinVesselDrinkItem {
-	
+
 	@Inject(method = "useOn", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
 	public void useOn$Extended(ItemUseContext context, CallbackInfoReturnable<ActionResultType> ci, ItemStack drinkItem, VesselType vessel) {
 		if(vessel.getCodeName().equals("glass_bottle")) {
@@ -114,9 +114,18 @@ public class MixinVesselDrinkItem {
 		return false;
 	}
 
+	@Inject(method = "finishUsingItem", at = @At(value = "INVOKE_ASSIGN", target = "Ljava/lang/Math;round(F)I", ordinal = 0, shift = Shift.AFTER), 
+			locals = LocalCapture.CAPTURE_FAILEXCEPTION)
+	public void finishUsingItem$ExtendedAll(ItemStack stack, World world, LivingEntity entity, CallbackInfoReturnable<ItemStack> cir, 
+			PlayerEntity asPlayer, VesselType vessel, ItemStack emptyVessel, float benefitEffectiveness, float healF, float sat, int heal) {
+		if (asPlayer instanceof ServerPlayerEntity) {
+			ExtendedCriteriaTriggers.PLAYER_DRINK_TRIGGER.trigger((ServerPlayerEntity) asPlayer, stack, 0, 0);
+		}
+	}
+
 	@Inject(method = "finishUsingItem", at = @At(value = "INVOKE_ASSIGN", target = "Ljava/lang/Math;round(F)I", ordinal = 1, shift = Shift.AFTER), 
 			locals = LocalCapture.CAPTURE_FAILEXCEPTION)
-	public void finishUsingItem$Extended(ItemStack stack, World world, LivingEntity entity, CallbackInfoReturnable<ItemStack> cir, 
+	public void finishUsingItem$ExtendedTolerance(ItemStack stack, World world, LivingEntity entity, CallbackInfoReturnable<ItemStack> cir, 
 			PlayerEntity asPlayer, VesselType vessel, ItemStack emptyVessel, float benefitEffectiveness, float healF, float sat, int heal, 
 			float alcStrength, Optional<MiscDataModule> playerMiscData, int tolerance, int duration, int durationTicks, int toleranceAdd) {
 		if (asPlayer instanceof ServerPlayerEntity) {

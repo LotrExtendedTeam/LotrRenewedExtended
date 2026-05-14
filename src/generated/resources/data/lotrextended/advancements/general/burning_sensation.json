@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:general/drunkard",
+  "parent": "lotrextended:general/refreshing",
   "display": {
     "icon": {
       "item": "lotr:orc_draught"
@@ -17,7 +17,7 @@
     "hidden": false
   },
   "criteria": {
-    "drink_any": {
+    "drink_item": {
       "trigger": "lotrextended:drinking",
       "conditions": {
         "drink_item": {
@@ -28,7 +28,7 @@
   },
   "requirements": [
     [
-      "drink_any"
+      "drink_item"
     ]
   ]
 }
