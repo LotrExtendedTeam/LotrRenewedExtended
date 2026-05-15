@@ -54,6 +54,7 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableExtendedModifiers", ExtendedServerConfig.enableExtendedModifiers));
 		// Special
 		command.then(buildBoolean("enableExtendedLogging", ExtendedServerConfig.enableExtendedLogging));
+		command.then(buildBoolean("enableSpecialLogging", ExtendedServerConfig.enableSpecialLogging));
 		command.then(buildBoolean("enableStaffServer", ExtendedServerConfig.enableStaffServer, true));
 		command.then(buildBoolean("enableModWhiteList", ExtendedServerConfig.enableModWhiteList));
 		// Server Enhancements
