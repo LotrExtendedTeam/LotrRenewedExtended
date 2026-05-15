@@ -7,6 +7,7 @@ import java.util.function.Function;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoatItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
@@ -223,7 +224,6 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 
 		tag(ExtendedTags.Items.FURS).add(ExtendedItems.BLACK_FUR.get(),ExtendedItems.GRAY_FUR.get(),ExtendedItems.SILVER_FUR.get(),ExtendedItems.WHITE_FUR.get());
 
-		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_HALF_SCALING).add(Items.AIR);
 		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_EXCLUDE).add(Items.AIR).add(Items.BARRIER).add(Items.STRUCTURE_VOID).add(Items.DEBUG_STICK).add(Items.COMMAND_BLOCK);
 
 		tag(ExtendedTags.Items.DUCK_FOOD).add(Items.BEETROOT_SEEDS).add(Items.MELON_SEEDS)
@@ -279,6 +279,10 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 			if(item.get() instanceof DaggerItem) {
 				continue;
 			}
+			if(item.get() instanceof ExtendedBowItem) {
+				fullitems.put(item.get().getRegistryName().getPath(), item.get());
+				continue;
+			}
 			if(item.get() instanceof ExtendedSwordItem || item.get() instanceof LOTRSwordItem) {
 				if(addTagWithFilter(item.get())) {
 					fullitems.put(item.get().getRegistryName().getPath(), item.get());
@@ -286,6 +290,8 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 				continue;
 			}
 		}
+		fullitems.put(LOTRItems.LINDON_AXE.get().getRegistryName().getPath(), LOTRItems.LINDON_AXE.get());
+		fullitems.put(LOTRItems.GALADHRIM_AXE.get().getRegistryName().getPath(), LOTRItems.GALADHRIM_AXE.get());
 		for(Entry<String, Item> ent : fullitems.entrySet()) {
 			tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE).add(ent.getValue());
 		}
@@ -337,6 +343,7 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 				continue;
 			}
 		}
+		tag(ExtendedTags.Items.WEAPONRACK_ITEMS).addTag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE);
 		for(Entry<String, Item> ent : weaponrackItems.entrySet()) {
 			tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(ent.getValue());
 		}

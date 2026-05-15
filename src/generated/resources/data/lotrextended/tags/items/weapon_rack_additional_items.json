@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#lotrextended:weapon_rack_items_full_scale",
     "lotr:anduril",
     "lotr:angmar_axe",
     "lotr:angmar_dagger",
