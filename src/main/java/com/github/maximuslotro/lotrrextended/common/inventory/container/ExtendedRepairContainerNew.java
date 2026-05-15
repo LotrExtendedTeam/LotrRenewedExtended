@@ -457,6 +457,16 @@ public class ExtendedRepairContainerNew extends Container {
 						hasIncompatibleModifier = true;
 						break; // atomic merge rule
 					}
+					if (!result.canApplyToItem(inputItem)) {
+						// Scrolls should not skip modifiers, reject recipe
+						if(isModifierItem) {
+							hasIncompatibleModifier = true;
+							info("P4.7.1: Discarding invalid upgraded modifier for scroll, rejecting");
+							break; // atomic merge rule
+						}
+						info("P4.7.2: Skipping modifier invalid for item: "+result.getLocalKey());
+						continue;
+					}
 					/*************UPDATE_LISTS*****************/
 					// Remove old modifier of the same type
 					inputModifiers.removeIf(m -> m.getModifierType() == mergingModifier.getModifierType());
@@ -482,10 +492,9 @@ public class ExtendedRepairContainerNew extends Container {
 						this.incompatible.set(1);
 					} else if (maximumModifiersReached) {
 						this.incompatible.set(2);
-					} else if (hasIncompatibleModifier) {
+					}else{
 						this.incompatible.set(3);
 					}
-
 					return;
 				}
 				// Handle merging negative tier items
