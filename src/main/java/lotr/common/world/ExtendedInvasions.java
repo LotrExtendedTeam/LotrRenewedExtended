@@ -8,7 +8,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.*;
@@ -66,7 +66,7 @@ public enum ExtendedInvasions {
         return Optional.ofNullable(BY_KEY.get(key));
     }
 
-    public ITextComponent getTranslatableName() {
+    public IFormattableTextComponent getTranslatableName() {
         return new TranslationTextComponent("lotrextended.invasion." + this.name().toLowerCase());
     }
 
