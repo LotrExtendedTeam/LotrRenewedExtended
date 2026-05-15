@@ -105,6 +105,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation ISENGARD_CAMP_WOOD_CHEST = registerChest("isengard_camp_wood");
 	public static final ResourceLocation ISENGARD_FOOD_CHEST = registerChest("isengard_food");
 	public static final ResourceLocation ISENGARD_ORTHANC_FOOD_CHEST = registerChest("isengard_orthanc_food");
+	public static final ResourceLocation ISENGARD_ORTHANC_BIRD_CHEST = registerChest("isengard_orthanc_bird");
 
 	// KEGS
 	public static final ResourceLocation HOBBIT_KEGS = registerKeg("hobbit");
