@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -105,8 +106,10 @@ public class MixinBlockTransformExtent {
 	 *
 	 * @param face the WorldEdit direction to adapt
 	 * @return the corresponding internal {@link Direction}
+	 * @Unique
 	 */
-	public static Direction adapt(com.sk89q.worldedit.util.Direction face) {
+	@Unique
+	private static Direction adapt(com.sk89q.worldedit.util.Direction face) {
 		switch (face) {
 			case NORTH :
 				return Direction.NORTH;
@@ -133,10 +136,11 @@ public class MixinBlockTransformExtent {
 	 * </p>
 	 *
 	 * @param face the internal direction to adapt, or {@code null}
-	 * @return the corresponding WorldEdit direction, or {@code null} if the input
-	 *         was {@code null}
+	 * @return the corresponding WorldEdit direction, or {@code null} if the input was {@code null}
+	 * @Unique
 	 */
-	public static com.sk89q.worldedit.util.Direction adaptEnumFacing(@Nullable Direction face) {
+	@Unique
+	private static com.sk89q.worldedit.util.Direction adaptEnumFacing(@Nullable Direction face) {
 		if (face == null) {
 			return null;
 		} else {
