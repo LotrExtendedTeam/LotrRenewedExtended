@@ -1354,10 +1354,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('X', Ingredient.of(ExtendedItems.MOSS_BLOCK.get()))
 		.unlockedBy("has_"+ExtendedItems.MOSS_BLOCK.get().getRegistryName().getPath(), has(ExtendedItems.MOSS_BLOCK.get()))
 		.save(consumer, lotrLoc(ExtendedItems.MOSS_CARPET.get().getRegistryName().getPath()));
-		makeMossyBlockRecipe(consumer, ()->Blocks.MOSSY_COBBLESTONE,
-			Blocks.COBBLESTONE::asItem, null, "", false);
-		makeMossyBlockRecipe(consumer, ()->Blocks.MOSSY_STONE_BRICKS,
-			Blocks.STONE_BRICKS::asItem, null, "", false);
 		//Natural Stones
 		//		makeStairSlabWallRecipe(consumer, ExtendedBlocks.GNEISS_ROCK_STAIRS,
 		//			ExtendedBlocks.GNEISS_ROCK_SLAB,
@@ -1475,6 +1471,44 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			LOTRBlocks.ROHAN_BRICK_SLAB, LOTRRecipes.ROHAN_CRAFTING);
 		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_WOOD_ELVEN_BRICK,
 			LOTRBlocks.WOOD_ELVEN_BRICK_SLAB, LOTRRecipes.WOOD_ELVEN_CRAFTING);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_ANGMAR_BRICK,
+			LOTRBlocks.ANGMAR_BRICK.get()::asItem, LOTRRecipes.ANGMAR_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_ARNOR_BRICK,
+			LOTRBlocks.ARNOR_BRICK.get()::asItem, LOTRRecipes.RANGER_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_BLUE_BRICK,
+			LOTRBlocks.BLUE_BRICK.get()::asItem, LOTRRecipes.BLUE_MOUNTAINS_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_DALE_BRICK,
+			LOTRBlocks.DALE_BRICK.get()::asItem, LOTRRecipes.DALE_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_DALE_PAVING,
+				LOTRBlocks.DALE_PAVING.get()::asItem, LOTRRecipes.DALE_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_DOL_AMROTH_BRICK,
+				LOTRBlocks.DOL_AMROTH_BRICK.get()::asItem, LOTRRecipes.DOL_AMROTH_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_DORWINION_BRICK,
+				LOTRBlocks.DORWINION_BRICK.get()::asItem, LOTRRecipes.DORWINION_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_DWARVEN_BRICK,
+				LOTRBlocks.DWARVEN_BRICK.get()::asItem, LOTRRecipes.DWARVEN_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_GALADHRIM_BRICK,
+				LOTRBlocks.GALADHRIM_BRICK.get()::asItem, LOTRRecipes.GALADHRIM_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_GONDOR_BRICK,
+				LOTRBlocks.GONDOR_BRICK.get()::asItem, LOTRRecipes.GONDOR_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_GONDOR_COBBLEBRICK,
+				LOTRBlocks.GONDOR_COBBLEBRICK.get()::asItem, LOTRRecipes.GONDOR_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_HIGH_ELVEN_BRICK,
+				LOTRBlocks.HIGH_ELVEN_BRICK.get()::asItem, LOTRRecipes.ANY_HIGH_ELVEN, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_MORDOR_BRICK,
+				LOTRBlocks.MORDOR_BRICK.get()::asItem, LOTRRecipes.MORDOR_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_NUMENOREAN_BRICK,
+				LOTRBlocks.NUMENOREAN_BRICK.get()::asItem, LOTRRecipes.ANY_NUMENOREAN, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_RED_BRICK,
+				LOTRBlocks.RED_BRICK.get()::asItem, null, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_RED_DORWINION_BRICK,
+				LOTRBlocks.RED_DORWINION_BRICK.get()::asItem, LOTRRecipes.DORWINION_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_ROHAN_BRICK,
+				LOTRBlocks.ROHAN_BRICK.get()::asItem, LOTRRecipes.ROHAN_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_UMBAR_BRICK,
+				LOTRBlocks.UMBAR_BRICK.get()::asItem, LOTRRecipes.UMBAR_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_WOOD_ELVEN_BRICK,
+				LOTRBlocks.WOOD_ELVEN_BRICK.get()::asItem, LOTRRecipes.WOOD_ELVEN_CRAFTING, "", false);
 	}
 
 	private void addMissingVanillaRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -1492,6 +1526,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			Blocks.STONE_BRICKS, Blocks.STONE_BRICK_SLAB);
 		makeCarvedBlockRecipeVanilla(consumer, Blocks.INFESTED_CHISELED_STONE_BRICKS,
 			Blocks.INFESTED_STONE_BRICKS, null);
+		makeMossyBlockRecipe(consumer, ()->Blocks.MOSSY_COBBLESTONE,
+				Blocks.COBBLESTONE::asItem, null, "", false);
+		makeMossyBlockRecipe(consumer, ()->Blocks.MOSSY_STONE_BRICKS,
+				Blocks.STONE_BRICKS::asItem, null, "", false);
 	}
 
 	private void buildVanillaRecipeOverrides(Consumer<IFinishedRecipe> consumer) {
