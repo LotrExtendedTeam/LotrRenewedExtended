@@ -746,6 +746,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(LOTRItems.DWARF_BONE.get(), 1)
 		.addSBuy(LOTRItems.HOBBIT_BONE.get(), 1)
 		.addSBuy(Items.BONE, 1)
+		.addSBuy(Items.LEATHER, 2)
 		.addSBuy(LOTRItems.FUR, 2)
 		.addSBuy(ExtendedItems.BLACK_FUR, 2)
 		.addSBuy(ExtendedItems.GRAY_FUR, 2)

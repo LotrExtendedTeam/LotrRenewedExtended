@@ -145,6 +145,13 @@
     {
       "weight": 50,
       "stack": {
+        "item": "minecraft:leather",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "lotr:fur",
         "averageCost": 2
       }
