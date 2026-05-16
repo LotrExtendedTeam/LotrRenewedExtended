@@ -1,18 +1,33 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "lotrextended:block/crucible",
+    "facing=north,lit=false": {
+      "model": "lotrextended:block/crucible_unlit",
       "y": 90
     },
-    "facing=south": {
-      "model": "lotrextended:block/crucible",
+    "facing=south,lit=false": {
+      "model": "lotrextended:block/crucible_unlit",
       "y": 270
     },
-    "facing=west": {
-      "model": "lotrextended:block/crucible"
+    "facing=west,lit=false": {
+      "model": "lotrextended:block/crucible_unlit"
     },
-    "facing=east": {
-      "model": "lotrextended:block/crucible",
+    "facing=east,lit=false": {
+      "model": "lotrextended:block/crucible_unlit",
+      "y": 180
+    },
+    "facing=north,lit=true": {
+      "model": "lotrextended:block/crucible_lit",
+      "y": 90
+    },
+    "facing=south,lit=true": {
+      "model": "lotrextended:block/crucible_lit",
+      "y": 270
+    },
+    "facing=west,lit=true": {
+      "model": "lotrextended:block/crucible_lit"
+    },
+    "facing=east,lit=true": {
+      "model": "lotrextended:block/crucible_lit",
       "y": 180
     }
   }

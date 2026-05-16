@@ -1,10 +1,6 @@
 {
 	"format_version": "1.9.0",
 	"texture_size": [64, 64],
-	"textures": {
-		"particle": "lotrextended:block/crucible",
-		"crucible": "lotrextended:block/crucible"
-	},
 	"elements": [
 		{
 			"name": "Base",

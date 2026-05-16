@@ -1589,15 +1589,19 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 
 	private void genCrucibleBlockItem(ExtendedCrucibleBlock crucible) {
 		registeredBlocks.add(crucible);
-		ModelFile modelFile = models().getExistingFile(lotrExtendedLoc("block/crucible"));
+		ModelFile unlitModel = models().withExistingParent("lotrextended:"+crucible.getRegistryName().getPath()+"_unlit", lotrExtendedLoc("block/template_crucible"))
+				.texture("crucible", lotrExtendedLoc("block/crucible")).texture("particle", mcLoc("block/cobblestone"));
+		ModelFile litModel = models().withExistingParent("lotrextended:"+crucible.getRegistryName().getPath()+"_lit", lotrExtendedLoc("block/template_crucible"))
+				.texture("crucible", lotrExtendedLoc("block/crucible_lit")).texture("particle", mcLoc("block/cobblestone"));
 		getVariantBuilder(crucible).forAllStates(state -> {
 			Direction facing = state.getValue(ExtendedCrucibleBlock.FACING);
+			boolean lit = state.getValue(ExtendedCrucibleBlock.LIT);
 			return ConfiguredModel.builder()
-                    .modelFile(modelFile)
+                    .modelFile(lit ? litModel : unlitModel)
                     .rotationY(facing==Direction.EAST ? 180 : facing==Direction.SOUTH ? 270 : facing==Direction.WEST ? 0 : 90)
                     .build();
 		});
-		itemModels().getBuilder("lotr:"+crucible.getRegistryName().getPath()).parent(modelFile);
+		itemModels().getBuilder("lotr:"+crucible.getRegistryName().getPath()).parent(unlitModel);
 	}
 
 	private void genNarsilShardsBlock(ExtendedNarsilShardsBlock shards) {
