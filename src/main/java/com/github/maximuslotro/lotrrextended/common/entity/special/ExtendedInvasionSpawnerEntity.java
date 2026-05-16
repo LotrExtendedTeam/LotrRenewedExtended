@@ -157,11 +157,8 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 ExtendedInvasions.InvasionSpawnEntry result = WeightedRandom.getRandomItem(this.random, invasion.get().getSpawnEntries());
 
                 if (attemptMobSpawn(result.getEntityType())) {
-                    if (!level.isClientSide()) {
-                        // send flames to client
-                        ServerWorld world = (ServerWorld) level;
-                        world.sendParticles(ParticleTypes.FLAME, getX(), getY() + 2.75, getZ(), 5, 0.25, .75F, 0.25, 0.02);
-                    }
+                	// send flames to client
+                	((ServerWorld) level).sendParticles(ParticleTypes.FLAME, getX(), getY() + 2.75, getZ(), 5, 0.25, .75F, 0.25, 0.02);
                 }
             }
         }
@@ -246,7 +243,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         for (int attempts = 0; attempts < 40; attempts++) {
             int x = (int) (this.getX() + MathHelper.nextInt(this.random, -6, 6));
             int z = (int) (this.getZ() + MathHelper.nextInt(this.random, -6, 6));
-            int y = this.level.getHeight(Heightmap.Type.WORLD_SURFACE, x, z);
+            int y = level.getHeight(Heightmap.Type.WORLD_SURFACE, x, z);
             BlockPos pos = new BlockPos(x, y, z);
 
             // all possible conditions that should make us quit and pick a new location
@@ -255,22 +252,18 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                     || level.getBlockState(plusOneY).isSuffocating(level, plusOneY)) {
                 continue;
             }
-
-            MobEntity entity = type.create((ServerWorld) this.level, null, null, null, pos, SpawnReason.SPAWNER, true, false);
+            ServerWorld world = (ServerWorld) level;
+            MobEntity entity = type.create(world, null, null, null, pos, SpawnReason.SPAWNER, true, false);
             if (entity != null) {
                 // check protection
                 if (ExtendedBannerProtectionManager.getProtectionStatus(level, pos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
                     continue;
                 }
-
-                float yaw = level.random.nextFloat() * 360.0F; // set look angle
-                entity.setYBodyRot(yaw);
-                entity.setYHeadRot(yaw);
                 entity.setPersistenceRequired();
                 // set NBT data for invasion
                 entity.getPersistentData().putUUID("lotr:invasion_id", this.getUUID());
 
-                level.addFreshEntity(entity);
+                world.addFreshEntityWithPassengers(entity);
                 return true;
             }
         }

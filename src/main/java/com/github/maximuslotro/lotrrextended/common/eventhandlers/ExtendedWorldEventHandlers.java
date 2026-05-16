@@ -73,6 +73,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -300,7 +301,11 @@ public class ExtendedWorldEventHandlers {
 				if(mob.hasRestriction()){
 					respawnerEntity.setHomeInfo(mob.getRestrictCenter(), (int)mob.getRestrictRadius());
 				}
-				mob.level.addFreshEntity(respawnerEntity);
+				if(mob.level instanceof ServerWorld) {
+					((ServerWorld)mob.level).addFreshEntityWithPassengers(respawnerEntity);
+				}else {
+					mob.level.addFreshEntity(respawnerEntity);
+				}
 			}
 		}
 	}
