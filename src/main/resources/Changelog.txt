@@ -31,6 +31,7 @@
   * Fixed item repair logic on anvil being broken
   * Fixed invalid modifier upgrades being allowed on anvils
   * Fixed material items being renamed on anvils in addition to the output item
+  * Fixed melee speed and reach modifiers applying incorrect stats
 * Structures
   * Fixed several Lindon Hall and Castle issues
   * Nerfed some op easter egg loot in Orthanc
