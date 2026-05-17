@@ -27,7 +27,6 @@ import net.minecraft.data.CustomRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapelessRecipeBuilder;
-import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.CookingRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -1645,25 +1644,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeOreFurnaceRecipe(consumer, ExtendedItems.TOPAZ_ORE.get(), ExtendedItems.TOPAZ.get(), 0.5f);
 		makeBlastingRecipe(consumer, ExtendedItems.METEORITE_ORE.get(), ExtendedItems.SKY_IRON.get(), 1.0f, 2400);
 		makeSmeltingRecipe(consumer, ExtendedItems.MORGOND.get(), ExtendedItems.SMOOTH_MORGOND.get(), 1.0f, 2400);
-	}
-
-	private static void makeOreFurnaceRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp) {
-		makeSmeltingRecipe(pFinishedRecipeConsumer, ore, result, xp, 200);
-		makeBlastingRecipe(pFinishedRecipeConsumer, ore, result, xp, 100);
-	}
-
-	private static void makeSmeltingRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp, int ticks) {
-		GENERATEDRECIPES.add(result.getRegistryName().getPath());
-		CookingRecipeBuilder.smelting(Ingredient.of(ore), result, xp, ticks)
-		.unlockedBy("has_"+ore.getRegistryName().getPath(), has(ore))
-		.save(pFinishedRecipeConsumer, result.getRegistryName().getPath()+"_from_smelting");
-	}
-
-	private static void makeBlastingRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp, int ticks) {
-		GENERATEDRECIPES.add(result.getRegistryName().getPath());
-		CookingRecipeBuilder.blasting(Ingredient.of(ore), result, xp, ticks)
-		.unlockedBy("has_"+ore.getRegistryName().getPath(), has(ore))
-		.save(pFinishedRecipeConsumer, result.getRegistryName().getPath()+"_from_blasting");
 	}
 
 	private void buildCookingRecipes(Consumer<IFinishedRecipe> consumer) {

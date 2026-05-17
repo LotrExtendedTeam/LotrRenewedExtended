@@ -201,7 +201,7 @@ public class ExtendedCrucibleTileEntity extends LockableTileEntity implements IS
 
 	protected boolean canMelt(@Nullable ExtendedCrucibleRecipe pRecipe) {
 		if (!this.items.get(0).isEmpty() && pRecipe != null) {
-			ItemStack resultFull = pRecipe.assemble(this);
+			ItemStack resultFull = pRecipe.assemble1(this);
 			ItemStack resultFraction = pRecipe.assemble2(this);
 			if (resultFull.isEmpty() && resultFraction.isEmpty()) {
 				// No result valid
@@ -254,7 +254,7 @@ public class ExtendedCrucibleTileEntity extends LockableTileEntity implements IS
 			ItemStack inputStack = this.items.get(0);
 			ItemStack outputStack1 = this.items.get(2);
 			ItemStack outputStack2 = this.items.get(3);
-			ItemStack resultStack1 = pRecipe.assemble(this);
+			ItemStack resultStack1 = pRecipe.assemble1(this);
 			ItemStack resultStack2 = pRecipe.assemble2(this);
 			if(!resultStack1.isEmpty()) {
 				if (outputStack1.isEmpty()) {
