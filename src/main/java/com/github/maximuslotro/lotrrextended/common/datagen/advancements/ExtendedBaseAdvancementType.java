@@ -19,6 +19,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import lotr.common.fac.FactionPointer;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.IRequirementsStrategy;
@@ -184,7 +185,7 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		return builder.requirements(IRequirementsStrategy.OR);
 	}
 	public static Advancement.Builder addKillEntityPlayerEffectTrigger(Advancement.Builder builder, Effect effect) {
-		return builder.addCriterion("kill_entity", new KilledTrigger.Instance(new ResourceLocation("player_killed_entity"), EntityPredicate.AndPredicate.ANY, EntityPredicate.AndPredicate.ANY, new DamageSourcePredicate(null, null, null, null, null, null, null, null, EntityPredicate.ANY, EntityPredicate.Builder.entity().effects(MobEffectsPredicate.effects().and(effect)).build())));
+		return builder.addCriterion("kill_entity", new KilledTrigger.Instance(CriteriaTriggers.PLAYER_KILLED_ENTITY.getId(), EntityPredicate.AndPredicate.ANY, EntityPredicate.AndPredicate.ANY, new DamageSourcePredicate(null, null, null, null, null, null, null, null, EntityPredicate.ANY, EntityPredicate.Builder.entity().effects(MobEffectsPredicate.effects().and(effect)).build())));
 	}
 
 	public static Advancement.Builder addTradeEntityTrigger(Advancement.Builder builder, EntityType<?> entityType) {
@@ -248,17 +249,22 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 	}
 
 	public static Advancement.Builder addDrinkDurationTrigger(Advancement.Builder builder, int duration) {
-		builder.addCriterion("drink_any", ExtendedDrinkingTrigger.Instance.drinkStrengeth(duration));
+		builder.addCriterion("drink_strength", ExtendedDrinkingTrigger.Instance.drinkStrengeth(duration));
 		return builder;
 	}
 
 	public static Advancement.Builder addDrinkToleranceTrigger(Advancement.Builder builder, int tolerance) {
-		builder.addCriterion("drink_any", ExtendedDrinkingTrigger.Instance.tolerance(tolerance));
+		builder.addCriterion("drink_tolerance", ExtendedDrinkingTrigger.Instance.tolerance(tolerance));
 		return builder;
 	}
 
 	public static Advancement.Builder addDrinkItemTrigger(Advancement.Builder builder, Item item) {
-		builder.addCriterion("drink_any", ExtendedDrinkingTrigger.Instance.item(item));
+		builder.addCriterion("drink_item", ExtendedDrinkingTrigger.Instance.item(item));
+		return builder;
+	}
+
+	public static Advancement.Builder addDrinkTrigger(Advancement.Builder builder) {
+		builder.addCriterion("drink_any", ExtendedDrinkingTrigger.Instance.any());
 		return builder;
 	}
 

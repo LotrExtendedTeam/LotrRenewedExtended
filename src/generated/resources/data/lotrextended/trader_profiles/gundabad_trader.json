@@ -145,6 +145,13 @@
     {
       "weight": 50,
       "stack": {
+        "item": "minecraft:leather",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "lotr:fur",
         "averageCost": 2
       }
@@ -343,16 +350,8 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:fur_helmet",
-        "averageCost": 15,
-        "nbt": "{Damage:0}"
-      }
-    },
-    {
-      "weight": 50,
-      "stack": {
-        "item": "lotr:fur_chestplate",
-        "averageCost": 20,
+        "item": "lotr:fur_boots",
+        "averageCost": 12,
         "nbt": "{Damage:0}"
       }
     },
@@ -367,8 +366,186 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:fur_boots",
-        "averageCost": 12,
+        "item": "lotr:fur_chestplate",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:fur_helmet",
+        "averageCost": 15,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:warg_fur_boots",
+        "averageCost": 16,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:warg_fur_leggings",
+        "averageCost": 28,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:warg_fur_chestplate",
+        "averageCost": 32,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:gray_warg_fur_boots",
+        "averageCost": 16,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:gray_warg_fur_leggings",
+        "averageCost": 28,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:gray_warg_fur_chestplate",
+        "averageCost": 32,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:black_warg_fur_boots",
+        "averageCost": 16,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:black_warg_fur_leggings",
+        "averageCost": 28,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:black_warg_fur_chestplate",
+        "averageCost": 32,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:silver_warg_fur_boots",
+        "averageCost": 24,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:silver_warg_fur_leggings",
+        "averageCost": 42,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:silver_warg_fur_chestplate",
+        "averageCost": 48,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:white_warg_fur_boots",
+        "averageCost": 200,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:white_warg_fur_leggings",
+        "averageCost": 350,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:white_warg_fur_chestplate",
+        "averageCost": 400,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 5,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:gray_warg_fur_helmet",
+        "averageCost": 100,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 3,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:warg_fur_helmet",
+        "averageCost": 250,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:silver_warg_fur_helmet",
+        "averageCost": 500,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:black_warg_fur_helmet",
+        "averageCost": 1200,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:white_warg_fur_helmet",
+        "averageCost": 25000,
         "nbt": "{Damage:0}"
       }
     },

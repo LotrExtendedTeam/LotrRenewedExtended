@@ -18,16 +18,16 @@
     "hidden": false
   },
   "criteria": {
-    "hire_units_from_blue_mountains_commander": {
+    "hire_units_from_dunlending_warlord": {
       "trigger": "lotrextended:unit_hired",
       "conditions": {
-        "captain_type": "lotr:blue_mountains_commander"
+        "captain_type": "lotr:dunlending_warlord"
       }
     }
   },
   "requirements": [
     [
-      "hire_units_from_blue_mountains_commander"
+      "hire_units_from_dunlending_warlord"
     ]
   ]
 }

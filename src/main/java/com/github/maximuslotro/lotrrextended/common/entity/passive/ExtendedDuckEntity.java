@@ -258,17 +258,17 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 	public ExtendedDuckEntity getBreedingOffspring(ServerWorld pServerLevel, AgeableEntity pMate) {
 		ExtendedDuckEntity baby = ExtendedEntities.DUCK.get().create(pServerLevel);
 		// Set gender
-		baby.setGenderRandomly(true, pServerLevel);
+		baby.setGenderRandomly(true);
 		// Set domesticated status
 		if(this.getGender()==ExtendedEntityGender.GENDERLESS && ((ExtendedDuckEntity)pMate).getGender()==ExtendedEntityGender.GENDERLESS && this.random.nextFloat()<0.9f) {
 			baby.setGender(ExtendedEntityGender.GENDERLESS);
-			baby.setGenderRandomly(false, pServerLevel);
+			baby.setGenderRandomly(false);
 		}else if((this.getGender()==ExtendedEntityGender.GENDERLESS || ((ExtendedDuckEntity)pMate).getGender()==ExtendedEntityGender.GENDERLESS) && this.random.nextFloat()<0.7f) {
 			baby.setGender(ExtendedEntityGender.GENDERLESS);
-			baby.setGenderRandomly(false, pServerLevel);
+			baby.setGenderRandomly(false);
 		}else if(this.random.nextFloat()>0.6f) {
 			baby.setGender(ExtendedEntityGender.GENDERLESS);
-			baby.setGenderRandomly(false, pServerLevel);
+			baby.setGenderRandomly(false);
 		}
 		// Set bob status
 		if(baby.getGender()==ExtendedEntityGender.MALE) {

@@ -461,7 +461,6 @@ public class MixinLOTRItems {
 		ExtendedItems.CHESTNUT_LOG = regBlockItemB(ExtendedBlocks.CHESTNUT_LOG, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_WOOD = regBlockItemB(ExtendedBlocks.CHESTNUT_WOOD, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CHESTNUT_PLANKS = regBlockItemB(ExtendedBlocks.CHESTNUT_PLANKS, LOTRItemGroups.BLOCKS);
-		System.out.println("P1");
 		ExtendedItems.CHESTNUT_LEAVES = regBlockItemB(ExtendedBlocks.CHESTNUT_LEAVES, LOTRItemGroups.DECO);
 		ExtendedItems.CHESTNUT_LEAVES_FRUIT = regBlockItemB(ExtendedBlocks.CHESTNUT_LEAVES_FRUIT, LOTRItemGroups.DECO);
 		ExtendedItems.CHESTNUT_SAPLING = regBlockItemB(ExtendedBlocks.CHESTNUT_SAPLING, LOTRItemGroups.DECO);
@@ -622,6 +621,7 @@ public class MixinLOTRItems {
 		ExtendedItems.EMERALD_BLOCK = regBlockItemB(ExtendedBlocks.EMERALD_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.PEARL_BLOCK = regBlockItemB(ExtendedBlocks.PEARL_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.CORAL_BLOCK = regBlockItemB(ExtendedBlocks.CORAL_BLOCK, LOTRItemGroups.BLOCKS);
+		ExtendedItems.DEAD_CORAL_BLOCK = regBlockItemB(ExtendedBlocks.DEAD_CORAL_BLOCK, LOTRItemGroups.BLOCKS);
 		ExtendedItems.WASTE_BLOCK = regBlockItemB(ExtendedBlocks.WASTE_BLOCK, LOTRItemGroups.BLOCKS);
 		//ORE
 		ExtendedItems.METEORITE_ORE = regBlockItemB(ExtendedBlocks.METEORITE_ORE, LOTRItemGroups.BLOCKS);
@@ -1058,6 +1058,7 @@ public class MixinLOTRItems {
 		ExtendedItems.EMERALD = regColoredMaterialItemB("emerald", TextFormatting.GREEN);
 		ExtendedItems.PEARL = regColoredMaterialItemB("pearl", TextFormatting.WHITE);
 		ExtendedItems.CORAL = regMaterialItemB("coral");
+		ExtendedItems.DEAD_CORAL = regColoredMaterialItemB("dead_coral", TextFormatting.GRAY);
 
 		//#########################################################################TOOLS#####################################################
 		//Taurethrim Tools

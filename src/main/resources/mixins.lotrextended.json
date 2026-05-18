@@ -66,6 +66,7 @@
 		"lotr.common.inv.MixinPouchContainer",
 		"lotr.common.item.MixinDurnorItem",
 		"lotr.common.item.MixinRedBookItem",
+		"lotr.common.item.MixinSaltItem",
 		"lotr.common.item.MixinVesselDrinkItem",
 		"lotr.common.item.MixinVesselDrinkItemAccessor",
 		"lotr.common.item.MixinVesselOperations",

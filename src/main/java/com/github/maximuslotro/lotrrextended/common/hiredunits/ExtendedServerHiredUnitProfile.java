@@ -18,6 +18,8 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.JSONUtils;
@@ -288,6 +290,10 @@ public class ExtendedServerHiredUnitProfile {
 		 * @return This builder instance for chaining
 		 */
 		public ExtendedServerHiredUnitProfile.Builder addHelmetPoolItem(ItemStack stack, int weight) {
+			if(stack.getItem() instanceof ArmorItem && ((ArmorItem)stack.getItem()).getSlot()!=EquipmentSlotType.HEAD){
+				System.out.println("Tried setting invalid helmet for hired units: "+stack.toString());
+				throw new IllegalArgumentException("Invalid Helmet");
+			}
 			equipmentPools.addHelmetStack(setBaseItem(stack, "item.lotrextended.base_gear.helmet"), weight);
 			return this;
 		}
@@ -299,6 +305,10 @@ public class ExtendedServerHiredUnitProfile {
 		 * @return This builder instance for chaining
 		 */
 		public ExtendedServerHiredUnitProfile.Builder addChestplatePoolItem(ItemStack stack, int weight) {
+			if(stack.getItem() instanceof ArmorItem && ((ArmorItem)stack.getItem()).getSlot()!=EquipmentSlotType.CHEST){
+				System.out.println("Tried setting invalid chestplate for hired units: "+stack.toString());
+				throw new IllegalArgumentException("Invalid Chestplate");
+			}
 			equipmentPools.addChestplateStack(setBaseItem(stack, "item.lotrextended.base_gear.chestplate"), weight);
 			return this;
 		}
@@ -310,6 +320,10 @@ public class ExtendedServerHiredUnitProfile {
 		 * @return This builder instance for chaining
 		 */
 		public ExtendedServerHiredUnitProfile.Builder addLeggingPoolItem(ItemStack stack, int weight) {
+			if(stack.getItem() instanceof ArmorItem && ((ArmorItem)stack.getItem()).getSlot()!=EquipmentSlotType.LEGS){
+				System.out.println("Tried setting invalid legging for hired units: "+stack.toString());
+				throw new IllegalArgumentException("Invalid Leggings");
+			}
 			equipmentPools.addLeggingStack(setBaseItem(stack, "item.lotrextended.base_gear.leggings"), weight);
 			return this;
 		}
@@ -321,6 +335,10 @@ public class ExtendedServerHiredUnitProfile {
 		 * @return This builder instance for chaining
 		 */
 		public ExtendedServerHiredUnitProfile.Builder addBootsPoolItem(ItemStack stack, int weight) {
+			if(stack.getItem() instanceof ArmorItem && ((ArmorItem)stack.getItem()).getSlot()!=EquipmentSlotType.FEET){
+				System.out.println("Tried setting invalid boots for hired units: "+stack.toString());
+				throw new IllegalArgumentException("Invalid Boots");
+			}
 			equipmentPools.addBootsStack(setBaseItem(stack, "item.lotrextended.base_gear.boots"), weight);
 			return this;
 		}

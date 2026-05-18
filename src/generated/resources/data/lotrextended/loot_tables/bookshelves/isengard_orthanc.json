@@ -11,19 +11,25 @@
               "function": "minecraft:set_count",
               "count": {
                 "min": 1.0,
-                "max": 8.0,
+                "max": 2.0,
                 "type": "minecraft:uniform"
               }
             }
           ],
           "name": "minecraft:book"
         }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.25
+        }
       ]
     },
     {
       "rolls": {
         "min": 0.0,
-        "max": 3.0,
+        "max": 2.0,
         "type": "minecraft:uniform"
       },
       "entries": [
@@ -106,7 +112,7 @@
       "conditions": [
         {
           "condition": "minecraft:random_chance",
-          "chance": 0.5
+          "chance": 0.125
         }
       ],
       "functions": [
@@ -117,11 +123,7 @@
       ]
     },
     {
-      "rolls": {
-        "min": 0.0,
-        "max": 1.0,
-        "type": "minecraft:uniform"
-      },
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
@@ -352,7 +354,7 @@
       "conditions": [
         {
           "condition": "minecraft:random_chance",
-          "chance": 0.25
+          "chance": 0.0625
         }
       ]
     }

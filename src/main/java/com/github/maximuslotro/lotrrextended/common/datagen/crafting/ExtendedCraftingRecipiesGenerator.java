@@ -327,7 +327,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.OPAL, ExtendedBlocks.OPAL_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.EMERALD, ExtendedBlocks.EMERALD_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.PEARL, ExtendedBlocks.PEARL_BLOCK, null);
-		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.CORAL, ExtendedBlocks.CORAL_BLOCK, null);
+		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.CORAL, ExtendedBlocks.CORAL_BLOCK, null, ExtendedItems.CORAL.get().getRegistryName().getPath(), null);
+		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.DEAD_CORAL, ExtendedBlocks.DEAD_CORAL_BLOCK, null, ExtendedItems.DEAD_CORAL.get().getRegistryName().getPath(), null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.GALVORN_INGOT, ExtendedBlocks.GALVORN_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.BLACK_URUK_STEEL_INGOT, ExtendedBlocks.BLACK_URUK_STEEL_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.GILDED_IRON_INGOT, ExtendedBlocks.GILDED_IRON_BLOCK, null);
@@ -355,7 +356,16 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.SILVER_FUR, ExtendedBlocks.SILVER_FUR_BUNDLE, null);
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.WHITE_FUR, ExtendedBlocks.WHITE_FUR_BUNDLE, null);
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, LOTRItems.FUR, LOTRBlocks.FUR_BUNDLE, null);
-
+		makeCoralRecipes(consumer, ExtendedItems.CORAL, ()->Items.BRAIN_CORAL, ()->Items.BRAIN_CORAL_FAN, ()->Items.BRAIN_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.CORAL, ()->Items.BUBBLE_CORAL, ()->Items.BUBBLE_CORAL_FAN, ()->Items.BUBBLE_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.CORAL, ()->Items.FIRE_CORAL, ()->Items.FIRE_CORAL_FAN, ()->Items.FIRE_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.CORAL, ()->Items.HORN_CORAL, ()->Items.HORN_CORAL_FAN, ()->Items.HORN_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.CORAL, ()->Items.TUBE_CORAL, ()->Items.TUBE_CORAL_FAN, ()->Items.TUBE_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.DEAD_CORAL, ()->Items.DEAD_BRAIN_CORAL, ()->Items.DEAD_BRAIN_CORAL_FAN, ()->Items.DEAD_BRAIN_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.DEAD_CORAL, ()->Items.DEAD_BUBBLE_CORAL, ()->Items.DEAD_BUBBLE_CORAL_FAN, ()->Items.DEAD_BUBBLE_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.DEAD_CORAL, ()->Items.DEAD_FIRE_CORAL, ()->Items.DEAD_FIRE_CORAL_FAN, ()->Items.DEAD_FIRE_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.DEAD_CORAL, ()->Items.DEAD_HORN_CORAL, ()->Items.DEAD_HORN_CORAL_FAN, ()->Items.DEAD_HORN_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.DEAD_CORAL, ()->Items.DEAD_TUBE_CORAL, ()->Items.DEAD_TUBE_CORAL_FAN, ()->Items.DEAD_TUBE_CORAL_BLOCK);
 		// Hobbit pancakes
 		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HOBBIT_PANCAKE.get(), 1, LOTRRecipes.HOBBIT_CRAFTING)
@@ -885,33 +895,33 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		//ITEMS
 		// TORCH CONVERSIONS
 		// DWARVEN
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.DWARVEN_TORCH, LOTRRecipes.ANY_DWARVEN);
-		makeTorchConversionRecipe(consumer, LOTRItems.DWARVEN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeDirect(consumer, ()->Items.TORCH, LOTRItems.DWARVEN_TORCH, LOTRRecipes.ANY_DWARVEN);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.DWARVEN_TORCH, ()->Items.TORCH, null);
 		//MORGUL
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, ExtendedItems.MORGUL_TORCH, LOTRItems.GULDURIL, 4, LOTRRecipes.ANY_MORGUL);
-		makeTorchConversionRecipe(consumer, ExtendedItems.MORGUL_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeItem(consumer, ()->Items.TORCH, ExtendedItems.MORGUL_TORCH, LOTRItems.GULDURIL, 4, LOTRRecipes.ANY_MORGUL);
+		makeTorchConversionRecipeDirect(consumer, ExtendedItems.MORGUL_TORCH, ()->Items.TORCH, null);
 		//HIGH ELVEN
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.HIGH_ELVEN_TORCH, LOTRItems.EDHELVIR, 4, LOTRRecipes.ANY_HIGH_ELVEN);
-		makeTorchConversionRecipe(consumer, LOTRItems.HIGH_ELVEN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeItem(consumer, ()->Items.TORCH, LOTRItems.HIGH_ELVEN_TORCH, LOTRItems.EDHELVIR, 4, LOTRRecipes.ANY_HIGH_ELVEN);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.HIGH_ELVEN_TORCH, ()->Items.TORCH, null);
 		makeArmorRecipe(consumer, ExtendedItems.GALVORN_HELMET,
 			ExtendedItems.GALVORN_CHESTPLATE,
 			ExtendedItems.GALVORN_LEGGINGS,
 			ExtendedItems.GALVORN_BOOTS,
 			ExtendedItems.GALVORN_INGOT, LOTRRecipes.ANY_ELVEN);
 		//BLUBBER
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.BLUBBER_TORCH, LOTRItems.BLUBBER, 4, LOTRRecipes.LOSSOTH_CRAFTING);
-		makeTorchConversionRecipe(consumer, LOTRItems.BLUBBER_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeItem(consumer, ()->Items.TORCH, LOTRItems.BLUBBER_TORCH, LOTRItems.BLUBBER, 4, LOTRRecipes.LOSSOTH_CRAFTING);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.BLUBBER_TORCH, ()->Items.TORCH, null);
 		//MALLORN
-		makeTorchConversionRecipe(consumer, LOTRItems.BLUE_MALLORN_TORCH, ()->Items.TORCH, null);
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.BLUE_MALLORN_TORCH, LOTRTags.Items.BLUE_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
-		makeTorchConversionRecipe(consumer, LOTRItems.GOLD_MALLORN_TORCH, ()->Items.TORCH, null);
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.GOLD_MALLORN_TORCH, LOTRTags.Items.GOLD_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
-		makeTorchConversionRecipe(consumer, LOTRItems.GREEN_MALLORN_TORCH, ()->Items.TORCH, null);
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.GREEN_MALLORN_TORCH, LOTRTags.Items.GREEN_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
-		makeTorchConversionRecipe(consumer, LOTRItems.SILVER_MALLORN_TORCH, ()->Items.TORCH, null);
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.SILVER_MALLORN_TORCH, LOTRTags.Items.SILVER_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.BLUE_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeTag(consumer, ()->Items.TORCH, LOTRItems.BLUE_MALLORN_TORCH, LOTRTags.Items.BLUE_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.GOLD_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeTag(consumer, ()->Items.TORCH, LOTRItems.GOLD_MALLORN_TORCH, LOTRTags.Items.GOLD_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.GREEN_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeTag(consumer, ()->Items.TORCH, LOTRItems.GREEN_MALLORN_TORCH, LOTRTags.Items.GREEN_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.SILVER_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeTag(consumer, ()->Items.TORCH, LOTRItems.SILVER_MALLORN_TORCH, LOTRTags.Items.SILVER_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
 		//ORC
-		makeTorchConversionRecipe(consumer, LOTRItems.ORC_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.ORC_TORCH, ()->Items.TORCH, null);
 		ExtendedFactionShapedRecipeBuilder.shaped(LOTRItems.ORC_TORCH.get(), 1, LOTRRecipes.ANY_ORC)
 		.pattern("T")
 		.pattern("S")
@@ -1344,10 +1354,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('X', Ingredient.of(ExtendedItems.MOSS_BLOCK.get()))
 		.unlockedBy("has_"+ExtendedItems.MOSS_BLOCK.get().getRegistryName().getPath(), has(ExtendedItems.MOSS_BLOCK.get()))
 		.save(consumer, lotrLoc(ExtendedItems.MOSS_CARPET.get().getRegistryName().getPath()));
-		makeMossyBlockRecipe(consumer, ()->Blocks.MOSSY_COBBLESTONE,
-			Blocks.COBBLESTONE::asItem, null, "", false);
-		makeMossyBlockRecipe(consumer, ()->Blocks.MOSSY_STONE_BRICKS,
-			Blocks.STONE_BRICKS::asItem, null, "", false);
 		//Natural Stones
 		//		makeStairSlabWallRecipe(consumer, ExtendedBlocks.GNEISS_ROCK_STAIRS,
 		//			ExtendedBlocks.GNEISS_ROCK_SLAB,
@@ -1465,6 +1471,44 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			LOTRBlocks.ROHAN_BRICK_SLAB, LOTRRecipes.ROHAN_CRAFTING);
 		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_WOOD_ELVEN_BRICK,
 			LOTRBlocks.WOOD_ELVEN_BRICK_SLAB, LOTRRecipes.WOOD_ELVEN_CRAFTING);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_ANGMAR_BRICK,
+			LOTRBlocks.ANGMAR_BRICK.get()::asItem, LOTRRecipes.ANGMAR_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_ARNOR_BRICK,
+			LOTRBlocks.ARNOR_BRICK.get()::asItem, LOTRRecipes.RANGER_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_BLUE_BRICK,
+			LOTRBlocks.BLUE_BRICK.get()::asItem, LOTRRecipes.BLUE_MOUNTAINS_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_DALE_BRICK,
+			LOTRBlocks.DALE_BRICK.get()::asItem, LOTRRecipes.DALE_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_DALE_PAVING,
+				LOTRBlocks.DALE_PAVING.get()::asItem, LOTRRecipes.DALE_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_DOL_AMROTH_BRICK,
+				LOTRBlocks.DOL_AMROTH_BRICK.get()::asItem, LOTRRecipes.DOL_AMROTH_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_DORWINION_BRICK,
+				LOTRBlocks.DORWINION_BRICK.get()::asItem, LOTRRecipes.DORWINION_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_DWARVEN_BRICK,
+				LOTRBlocks.DWARVEN_BRICK.get()::asItem, LOTRRecipes.DWARVEN_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_GALADHRIM_BRICK,
+				LOTRBlocks.GALADHRIM_BRICK.get()::asItem, LOTRRecipes.GALADHRIM_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_GONDOR_BRICK,
+				LOTRBlocks.GONDOR_BRICK.get()::asItem, LOTRRecipes.GONDOR_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_GONDOR_COBBLEBRICK,
+				LOTRBlocks.GONDOR_COBBLEBRICK.get()::asItem, LOTRRecipes.GONDOR_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_HIGH_ELVEN_BRICK,
+				LOTRBlocks.HIGH_ELVEN_BRICK.get()::asItem, LOTRRecipes.ANY_HIGH_ELVEN, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_MORDOR_BRICK,
+				LOTRBlocks.MORDOR_BRICK.get()::asItem, LOTRRecipes.MORDOR_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_NUMENOREAN_BRICK,
+				LOTRBlocks.NUMENOREAN_BRICK.get()::asItem, LOTRRecipes.ANY_NUMENOREAN, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_RED_BRICK,
+				LOTRBlocks.RED_BRICK.get()::asItem, null, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_RED_DORWINION_BRICK,
+				LOTRBlocks.RED_DORWINION_BRICK.get()::asItem, LOTRRecipes.DORWINION_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_ROHAN_BRICK,
+				LOTRBlocks.ROHAN_BRICK.get()::asItem, LOTRRecipes.ROHAN_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_UMBAR_BRICK,
+				LOTRBlocks.UMBAR_BRICK.get()::asItem, LOTRRecipes.UMBAR_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_WOOD_ELVEN_BRICK,
+				LOTRBlocks.WOOD_ELVEN_BRICK.get()::asItem, LOTRRecipes.WOOD_ELVEN_CRAFTING, "", false);
 	}
 
 	private void addMissingVanillaRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -1482,6 +1526,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			Blocks.STONE_BRICKS, Blocks.STONE_BRICK_SLAB);
 		makeCarvedBlockRecipeVanilla(consumer, Blocks.INFESTED_CHISELED_STONE_BRICKS,
 			Blocks.INFESTED_STONE_BRICKS, null);
+		makeMossyBlockRecipe(consumer, ()->Blocks.MOSSY_COBBLESTONE,
+				Blocks.COBBLESTONE::asItem, null, "", false);
+		makeMossyBlockRecipe(consumer, ()->Blocks.MOSSY_STONE_BRICKS,
+				Blocks.STONE_BRICKS::asItem, null, "", false);
 	}
 
 	private void buildVanillaRecipeOverrides(Consumer<IFinishedRecipe> consumer) {
@@ -2322,7 +2370,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		for(RegistryObject<Block> block :ExtendedBlocks.ENTITYGROUPSPAWNERBLOCKS.values()) {
 			GENERATEDRECIPES.add(block.get().getRegistryName().getPath());
 		}
-		GENERATEDRECIPES.add(ExtendedItems.CORAL.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.PEARL.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.BLACK_FUR.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.GRAY_FUR.get().getRegistryName().getPath());

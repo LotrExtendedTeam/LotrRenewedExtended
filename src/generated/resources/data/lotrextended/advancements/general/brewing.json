@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:general/drunkard",
+  "parent": "lotrextended:general/refreshing",
   "display": {
     "icon": {
       "item": "lotr:ale"

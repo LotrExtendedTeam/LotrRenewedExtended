@@ -2,12 +2,12 @@
 # Note: maintain this file using LF for newlines, not CRLF
 
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="${loader_version_range}"
 license="All Rights Reserved, except for the names, characters, races, locations, or any other item that is owned by J.R.R. Tolkien and his estate"
 
 [[mods]]
 modId="lotrextended"
-version="${version}"
+version="${mod_version}"
 displayName="LOTR Renewed Extended"
 logoFile="logo.png"
 updateJSONURL="https://raw.githubusercontent.com/maximuslotro/ModUpdateChecker/main/RenewedExtendedVersions.json"
@@ -21,13 +21,13 @@ Extending Lotr Renewed's functionality to include all* 1.7.10 features
 [[dependencies.lotrextended]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.16.5]"
+versionRange="${minecraft_version_range}"
 ordering="NONE"
 side="BOTH"
 [[dependencies.lotrextended]]
 modId="forge"
 mandatory=true
-versionRange="[36.2.20,)"
+versionRange="${forge_version_range}"
 ordering="NONE"
 side="BOTH"
 

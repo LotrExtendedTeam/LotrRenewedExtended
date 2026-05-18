@@ -43,7 +43,7 @@ public abstract class ExtendedAbstractGenderedHorseEntity extends AbstractHorseE
 	@Override
 	@Nullable
 	public ILivingEntityData finalizeSpawn(IServerWorld pLevel, DifficultyInstance pDifficulty, SpawnReason pReason, @Nullable ILivingEntityData pSpawnData, @Nullable CompoundNBT pDataTag) {
-		this.setGenderRandomly(isGendered(), pLevel.getLevel());
+		this.setGenderRandomly(isGendered());
 		return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
 	}
 
@@ -250,12 +250,12 @@ public abstract class ExtendedAbstractGenderedHorseEntity extends AbstractHorseE
      * @param gendered Whether this entity uses gender mechanics.
      * @param serverWorld The world instance to use for randomization.
      */
-	public void setGenderRandomly(boolean gendered, ServerWorld serverWorld) {
+	public void setGenderRandomly(boolean gendered) {
 		if(!gendered) {
 			this.setGender(ExtendedEntityGender.GENDERLESS);
 			return;
 		}
-		this.setGender(serverWorld.random.nextBoolean() ? ExtendedEntityGender.MALE : ExtendedEntityGender.FEMALE);
+		this.setGender(this.random.nextBoolean() ? ExtendedEntityGender.MALE : ExtendedEntityGender.FEMALE);
 	}
 
 	@Override

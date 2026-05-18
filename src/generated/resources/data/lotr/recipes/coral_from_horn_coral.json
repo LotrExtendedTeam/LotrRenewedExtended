@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "coral",
+  "ingredients": [
+    {
+      "item": "minecraft:horn_coral"
+    }
+  ],
+  "result": {
+    "item": "lotr:coral"
+  }
+}

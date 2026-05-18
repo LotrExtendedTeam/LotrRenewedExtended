@@ -71,7 +71,7 @@ public class AdvancementsProviderDunland extends ExtendedBaseAdvancementType{
 
 		Advancement we_fight = build(true, data(LOTRItems.DUNLENDING_CLUB.get(), "we_fight", FrameType.TASK)
 				.setTitle("We Fight for You!").setDescription("Hire a unit from a Dunlending Warlord."),
-				addUnitHireTrigger(make(), ExtendedEntities.BLUE_DWARVEN_COMMANDER.get()).parent(dunland));
+				addUnitHireTrigger(make(), ExtendedEntities.DUNLENDING_WARLORD.get()).parent(dunland));
 	}
 
 	@Override

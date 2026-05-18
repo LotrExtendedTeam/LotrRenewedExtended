@@ -44,6 +44,10 @@ public class ExtendedDrinkingTrigger extends AbstractCriterionTrigger<ExtendedDr
 			this.tolerance = tolerance;
 		}
 
+		public static ExtendedDrinkingTrigger.Instance any() {
+			return new ExtendedDrinkingTrigger.Instance(EntityPredicate.AndPredicate.ANY, ItemPredicate.ANY, MinMaxBounds.IntBound.ANY, MinMaxBounds.IntBound.ANY);
+		}
+
 		public static ExtendedDrinkingTrigger.Instance item(Item drinkDuration) {
 			return new ExtendedDrinkingTrigger.Instance(EntityPredicate.AndPredicate.ANY, ItemPredicate.Builder.item().of(drinkDuration).build(), MinMaxBounds.IntBound.ANY, MinMaxBounds.IntBound.ANY);
 		}

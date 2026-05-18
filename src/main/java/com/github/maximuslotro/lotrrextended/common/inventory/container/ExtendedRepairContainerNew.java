@@ -457,6 +457,16 @@ public class ExtendedRepairContainerNew extends Container {
 						hasIncompatibleModifier = true;
 						break; // atomic merge rule
 					}
+					if (!result.canApplyToItem(inputItem)) {
+						// Scrolls should not skip modifiers, reject recipe
+						if(isModifierItem) {
+							hasIncompatibleModifier = true;
+							info("P4.7.1: Discarding invalid upgraded modifier for scroll, rejecting");
+							break; // atomic merge rule
+						}
+						info("P4.7.2: Skipping modifier invalid for item: "+result.getLocalKey());
+						continue;
+					}
 					/*************UPDATE_LISTS*****************/
 					// Remove old modifier of the same type
 					inputModifiers.removeIf(m -> m.getModifierType() == mergingModifier.getModifierType());
@@ -482,10 +492,9 @@ public class ExtendedRepairContainerNew extends Container {
 						this.incompatible.set(1);
 					} else if (maximumModifiersReached) {
 						this.incompatible.set(2);
-					} else if (hasIncompatibleModifier) {
+					}else{
 						this.incompatible.set(3);
 					}
-
 					return;
 				}
 				// Handle merging negative tier items
@@ -519,9 +528,20 @@ public class ExtendedRepairContainerNew extends Container {
 		for(ExtendedModifier modifier : inputModifiers) {
 			baseCost+= Math.max(1, modifier.getModifierValue());
 		}
+		if (StringUtils.isBlank(this.itemName)) {
+			info("P5: Item Renaming");
+			if (inputItem.hasCustomHoverName()) {
+				renameCost = 1;
+				resultItem.resetHoverName();
+				info("P5.1: Reset name");
+			}
+		} else if (!this.itemName.equals(inputItem.getHoverName().getString())) {
+			renameCost = 1;
+			resultItem.setHoverName(new StringTextComponent(this.itemName));
+			info("P5.2: Set name");
+		}
 		if (resultItem.isDamageableItem() && isValidRepairMaterial(inputItem, resourceItem)) {
-			info("P5: Valid repair item");
-			info("slots changed");
+			info("P6: Valid repair item");
 
 			String ownerName = ItemOwnership.getCurrentOwner(inputItem) != null ? ItemOwnership.getCurrentOwner(inputItem).getString() : null;
 			if(ownerName==null||!player.getDisplayName().getString().equals(ownerName)) {
@@ -535,39 +555,41 @@ public class ExtendedRepairContainerNew extends Container {
 			}else if(shouldCheapReforge(inputItem.getItem())) {
 				this.reforgeCost.set(1);
 			}
-			info("P5.1: Finding repair cost");
+			info("P6.1: Finding repair cost");
 			int repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
-			for(int materialsUsed = 0; repairAmount > 0 && materialsUsed < mergableItem.getCount(); ++materialsUsed) {
-				int newDamage = resultItem.getDamageValue() - repairAmount;
-				resultItem.setDamageValue(newDamage);
-				++repairCost;
-				repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
+			// Handle relative resource count since without this, the price increased as material is added, not correct!
+			int resourceCountExcludingBase = resourceItem.getCount() - mergingCost - renameCost; // don't try to repair if rename or merge cost is <= available cost
+			if(resourceCountExcludingBase>0 && repairAmount>0) {
+				int resourceCount = resourceCountExcludingBase - baseCost;// Calculate for resources over base cost
+				if(resourceCount>0) { // Repair using amount left
+					for(int materialsUsed = 0; repairAmount > 0 && materialsUsed < resourceCount; ++materialsUsed) {
+						info("P6.2: Repair Amount: "+repairAmount+", currentDamage: "+resultItem.getDamageValue()+", material used: "+materialsUsed);
+						int newDamage = resultItem.getDamageValue() - repairAmount;
+						resultItem.setDamageValue(newDamage);
+						++repairCost;
+						repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
+						info("P6.3: Repair Amount: "+repairAmount+", newDamage: "+newDamage+", newRepairCost: "+repairCost);
+					}
+				}else { // Repair only once since repair material is present but does not have enough material
+					repairCost=1;
+					int newDamage = resultItem.getDamageValue() - repairAmount;
+					resultItem.setDamageValue(newDamage);
+					info("P6.4: Repair Amount: "+repairAmount+", currentDamage: "+resultItem.getDamageValue()+", material used: "+repairCost);
+				}
 			}
 		}
 		boolean isGemColoring = false;
 		if(!mergableItem.isEmpty() && mergableItem.getItem() instanceof ExtendedGemstoneColoringItem) {
-			info("P6: Valid gem item");
+			info("P7: Valid gem item");
 			if(!this.canApplyColor(resultItem, ((ExtendedGemstoneColoringItem)mergableItem.getItem()).getExtendedGemstoneColor())) {
 				this.resultSlots.setItem(0, ItemStack.EMPTY);
 				this.incompatible.set(4);
 				this.cost.set(0);
 				return;
 			}
-			info("P6.1: Valid gem coloring");
+			info("P7.1: Valid gem coloring");
 			applyColor(resultItem, ((ExtendedGemstoneColoringItem)mergableItem.getItem()).getExtendedGemstoneColor());
 			isGemColoring = true;
-		}
-		if (StringUtils.isBlank(this.itemName)) {
-			info("P7: Item Renaming");
-			if (inputItem.hasCustomHoverName()) {
-				renameCost = 1;
-				resultItem.resetHoverName();
-				info("P7.1: Reset name");
-			}
-		} else if (!this.itemName.equals(inputItem.getHoverName().getString())) {
-			renameCost = 1;
-			resultItem.setHoverName(new StringTextComponent(this.itemName));
-			info("P7.2: Set name");
 		}
 		if (isEnchantingItem && !resultItem.isBookEnchantable(mergableItem)) {
 			info("P8: Rejecting invalid book");
@@ -576,6 +598,7 @@ public class ExtendedRepairContainerNew extends Container {
 			return;
 		}
 		// Set pending final cost
+		info("CostBase: "+baseCost+", repair: " + repairCost +", merge: "+ mergingCost+", rename: " + renameCost);
 		this.cost.set(baseCost + repairCost + mergingCost + renameCost);
 		// If nothing has been done, clear output
 		if (repairCost <= 0 && renameCost<=0 && mergingCost<=0 && !isGemColoring) {
@@ -728,14 +751,15 @@ public class ExtendedRepairContainerNew extends Container {
 
 	public void setItemName(String pNewName) {
 		this.itemName = pNewName;
-		if (this.getSlot(2).hasItem()) {
-			ItemStack itemstack = this.getSlot(2).getItem();
+		/*
+		if (this.getSlot(3).hasItem()) {
+			ItemStack itemstack = this.getSlot(3).getItem();
 			if (StringUtils.isBlank(pNewName)) {
 				itemstack.resetHoverName();
 			} else {
 				itemstack.setHoverName(new StringTextComponent(this.itemName));
 			}
-		}
+		}*/
 
 		this.createResult();
 	}
@@ -847,6 +871,8 @@ public class ExtendedRepairContainerNew extends Container {
 	}
 
 	private static void info(String message) {
-		ExtendedLog.info(message, ExtendedServerConfig.enableSpecialLogging);
+		if(ExtendedServerConfig.enableSpecialLogging.get()) {
+			ExtendedLog.info(message);
+		}
 	}
 }
