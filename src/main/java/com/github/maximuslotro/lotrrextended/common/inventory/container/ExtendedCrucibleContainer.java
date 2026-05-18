@@ -37,10 +37,10 @@ public class ExtendedCrucibleContainer extends Container {
 		this.container = pContainer;
 		this.data = pData;
 		this.level = pPlayerInventory.player.level;
-		this.addSlot(new Slot(pContainer, 0, 80, 16));
-		this.addSlot(new ExtendedCrucibleFuelSlot(this, pContainer, 1, 56, 53));
-		this.addSlot(new ExtendedCrucibleResultSlot(pPlayerInventory.player, pContainer, 2, 80, 40));
-		this.addSlot(new ExtendedCrucibleResultSlot(pPlayerInventory.player, pContainer, 3, 80, 60));
+		this.addSlot(new Slot(pContainer, 0, 45, 15));
+		this.addSlot(new ExtendedCrucibleFuelSlot(this, pContainer, 1, 45, 55));
+		this.addSlot(new ExtendedCrucibleResultSlot(pPlayerInventory.player, pContainer, 2, 90, 28));
+		this.addSlot(new ExtendedCrucibleResultSlot(pPlayerInventory.player, pContainer, 3, 117, 49));
 
 		for(int i = 0; i < 3; ++i) {
 			for(int j = 0; j < 9; ++j) {
@@ -124,7 +124,7 @@ public class ExtendedCrucibleContainer extends Container {
 	public int getMeltingProgress() {
 		int meltingProgress = this.data.get(2);
 		int meltingTotalTime = this.data.get(3);
-		return (meltingTotalTime != 0 && meltingProgress != 0) ? meltingProgress * 24 / meltingTotalTime : 0;
+		return (meltingTotalTime != 0 && meltingProgress != 0) ? meltingProgress * 28 / meltingTotalTime : 0;
 	}
 
 	@OnlyIn(Dist.CLIENT)

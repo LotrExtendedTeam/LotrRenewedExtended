@@ -60,7 +60,7 @@ public class ExtendedCrucibleSpecificRecipe extends ExtendedCrucibleRecipe {
 			if (ingredient.isEmpty()) {
 				throw new JsonParseException("No ingredients for stone grinding recipe");
 			}
-			if (!json.has("result")) {
+			if (!json.has("result1")) {
 				throw new JsonSyntaxException("Missing result, expected to find a string or object");
 			}
 			ItemStack result1 = ExtendedJsonSerializers.deserializeStack(JSONUtils.getAsJsonObject(json, "result1"));
@@ -69,7 +69,7 @@ public class ExtendedCrucibleSpecificRecipe extends ExtendedCrucibleRecipe {
 			    result2 = ExtendedJsonSerializers.deserializeStack(JSONUtils.getAsJsonObject(json, "result2"));
 			}
 			float experience = JSONUtils.getAsFloat(json, "experience", 0.0F);
-			int meltingTime = JSONUtils.getAsInt(json, "melting_time", 200);
+			int meltingTime = JSONUtils.getAsInt(json, "melt_time", 400);
 			return new ExtendedCrucibleSpecificRecipe(recipeId, group, ingredient, result1, result2, experience, meltingTime);
 		}
 

@@ -99,12 +99,10 @@ public class ExtendedCrucibleRecipeBuilder {
 
 			json.add("result1", ExtendedJsonSerializers.serializeStack(result1));
 			if (!this.result2.isEmpty()) {
-				json.add("result1", ExtendedJsonSerializers.serializeStack(result2));
+				json.add("result2", ExtendedJsonSerializers.serializeStack(result2));
 			}
 
-			if(meltingTime!=400) {
-				json.addProperty("grindingtime", this.meltingTime);
-			}
+			json.addProperty("melt_time", this.meltingTime);
 			json.addProperty("experience", this.experience);
 		}
 

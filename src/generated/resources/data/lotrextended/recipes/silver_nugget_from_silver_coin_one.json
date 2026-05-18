@@ -6,5 +6,6 @@
   "result1": {
     "item": "lotr:silver_nugget"
   },
+  "melt_time": 400,
   "experience": 1.0
 }

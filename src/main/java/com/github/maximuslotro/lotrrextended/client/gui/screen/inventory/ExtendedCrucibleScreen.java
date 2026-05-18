@@ -39,10 +39,10 @@ public class ExtendedCrucibleScreen extends ContainerScreen<ExtendedCrucibleCont
 		this.blit(pMatrixStack, i, j, 0, 0, this.imageWidth, this.imageHeight);
 		if (this.menu.isLit()) {
 			int k = this.menu.getLitProgress();
-			this.blit(pMatrixStack, i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
+			this.blit(pMatrixStack, i + 46, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
 		}
 
 		int l = this.menu.getMeltingProgress();
-		this.blit(pMatrixStack, i + 79, j + 34, 176, 14, l + 1, 16);
+		this.blit(pMatrixStack, i + 71, j + 22, 176, 15, 9, l);
 	}
 }

@@ -6,5 +6,6 @@
   "result1": {
     "item": "lotr:tin_ingot"
   },
+  "melt_time": 400,
   "experience": 1.0
 }
