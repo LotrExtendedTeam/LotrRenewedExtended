@@ -1590,9 +1590,9 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	private void genCrucibleBlockItem(ExtendedCrucibleBlock crucible) {
 		registeredBlocks.add(crucible);
 		ModelFile unlitModel = models().withExistingParent("lotrextended:"+crucible.getRegistryName().getPath()+"_unlit", lotrExtendedLoc("block/template_crucible"))
-				.texture("crucible", lotrExtendedLoc("block/crucible")).texture("particle", mcLoc("block/cobblestone"));
+				.texture("crucible", lotrExtendedLoc("block/crucible")).texture("crucible_top", lotrExtendedLoc("block/crucible_top")).texture("particle", mcLoc("block/cobblestone"));
 		ModelFile litModel = models().withExistingParent("lotrextended:"+crucible.getRegistryName().getPath()+"_lit", lotrExtendedLoc("block/template_crucible"))
-				.texture("crucible", lotrExtendedLoc("block/crucible_lit")).texture("particle", mcLoc("block/cobblestone"));
+				.texture("crucible", lotrExtendedLoc("block/crucible_lit")).texture("crucible_top", lotrExtendedLoc("block/crucible_top_lit")).texture("particle", mcLoc("block/cobblestone"));
 		getVariantBuilder(crucible).forAllStates(state -> {
 			Direction facing = state.getValue(ExtendedCrucibleBlock.FACING);
 			boolean lit = state.getValue(ExtendedCrucibleBlock.LIT);

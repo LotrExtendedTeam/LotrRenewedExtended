@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
+import java.util.Random;
+
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedCrucibleTileEntity;
 
@@ -14,6 +16,7 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
@@ -32,6 +35,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ExtendedCrucibleBlock extends ContainerBlock {
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
@@ -58,7 +63,11 @@ public class ExtendedCrucibleBlock extends ContainerBlock {
 		if (pLevel.isClientSide) {
 			return ActionResultType.SUCCESS;
 		} else {
-			this.openContainer(pLevel, pPos, pPlayer);
+			TileEntity tileentity = pLevel.getBlockEntity(pPos);
+			if (tileentity instanceof ExtendedCrucibleTileEntity) {
+				pPlayer.openMenu((ExtendedCrucibleTileEntity)tileentity);
+				pPlayer.awardStat(ExtendedStats.INTERACT_WITH_CRUCIBLE);
+			}
 			return ActionResultType.CONSUME;
 		}
 	}
@@ -128,11 +137,43 @@ public class ExtendedCrucibleBlock extends ContainerBlock {
 		return new ExtendedCrucibleTileEntity();
 	}
 
-	protected void openContainer(World pLevel, BlockPos pPos, PlayerEntity pPlayer) {
-		TileEntity tileentity = pLevel.getBlockEntity(pPos);
-		if (tileentity instanceof ExtendedCrucibleTileEntity) {
-			pPlayer.openMenu((ExtendedCrucibleTileEntity)tileentity);
-			pPlayer.awardStat(ExtendedStats.INTERACT_WITH_CRUCIBLE);
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void animateTick(BlockState pState, World pLevel, BlockPos pPos, Random pRand) {
+		if (!pState.getValue(LIT)) {
+			return;
+		}
+		double x = pPos.getX();
+		double y = pPos.getY();
+		double z = pPos.getZ();
+		double particleY = y + 0.8125D;
+
+		if (pRand.nextInt(5) == 0) {
+			double flameX = x + 0.375D + (pRand.nextDouble() * 0.25D);
+			double flameZ = z + 0.375D + (pRand.nextDouble() * 0.25D);
+			pLevel.addParticle(ParticleTypes.FLAME, flameX, particleY+0.03, flameZ, 0.0D, 0.0D, 0.0D);
+		}
+
+		if (pRand.nextInt(32) == 0) {
+			double lavaX = x + 0.125D + (pRand.nextDouble() * 0.75D);
+			double lavaZ = z + 0.125D + (pRand.nextDouble() * 0.75D);
+			double relativeX = lavaX - x;
+			double relativeZ = lavaZ - z;
+			if (relativeX > 0.3125D && relativeX < 0.6875D && relativeZ > 0.3125D && relativeZ < 0.6875D) {
+				// Push to the outer edge based on side
+				if (pRand.nextBoolean()) {
+					lavaX = (relativeX < 0.5D) ? x + 0.2D : x + 0.8D; 
+				} else {
+					lavaZ = (relativeZ < 0.5D) ? z + 0.2D : z + 0.8D;
+				}
+			}
+			pLevel.addParticle(ParticleTypes.LAVA, lavaX, particleY, lavaZ, pRand.nextFloat() / 2.0F, 0.005D, pRand.nextFloat() / 2.0F);
+		}
+
+		if (pRand.nextInt(3) == 0) {
+			double smokeX = x + 0.125D + (pRand.nextDouble() * 0.75D);
+			double smokeZ = z + 0.125D + (pRand.nextDouble() * 0.75D);
+			pLevel.addParticle(ParticleTypes.SMOKE, smokeX, particleY+0.03, smokeZ, 0.0D, 0.0D, 0.0D);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 {
 	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"elements": [
 		{
@@ -11,7 +12,7 @@
 				"east": {"uv": [8, 7.25, 12, 10.5], "texture": "#crucible"},
 				"south": {"uv": [8, 7.25, 12, 10.5], "texture": "#crucible"},
 				"west": {"uv": [8, 10.5, 12, 13.75], "texture": "#crucible"},
-				"up": {"uv": [4, 11.25, 0, 7.25], "texture": "#crucible"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#crucible_top"},
 				"down": {"uv": [8, 7.25, 4, 11.25], "texture": "#crucible"}
 			}
 		},

@@ -25,6 +25,7 @@ public class ExtendedCrucibleContainer extends Container {
 	private final IInventory container;
 	private final IIntArray data;
 	protected final World level;
+	private ExtendedCrucibleResultSlot secondaryResultSlot;
 
 	public ExtendedCrucibleContainer(int pContainerId, PlayerInventory pPlayerInventory, PacketBuffer extraData) {
 		this(pContainerId, pPlayerInventory, new Inventory(4), new IntArray(4), extraData);
@@ -39,8 +40,14 @@ public class ExtendedCrucibleContainer extends Container {
 		this.level = pPlayerInventory.player.level;
 		this.addSlot(new Slot(pContainer, 0, 45, 15));
 		this.addSlot(new ExtendedCrucibleFuelSlot(this, pContainer, 1, 45, 55));
-		this.addSlot(new ExtendedCrucibleResultSlot(pPlayerInventory.player, pContainer, 2, 90, 28));
-		this.addSlot(new ExtendedCrucibleResultSlot(pPlayerInventory.player, pContainer, 3, 117, 49));
+		this.addSlot(new ExtendedCrucibleResultSlot(pPlayerInventory.player, pContainer, 2, 90, 35));
+		this.addSlot(secondaryResultSlot = new ExtendedCrucibleResultSlot(pPlayerInventory.player, pContainer, 3, 117, 56) {
+			@Override
+			public boolean isActive() {
+				return hasItem();
+				
+			}
+		});
 
 		for(int i = 0; i < 3; ++i) {
 			for(int j = 0; j < 9; ++j) {
@@ -55,6 +62,9 @@ public class ExtendedCrucibleContainer extends Container {
 		this.addDataSlots(pData);
 	}
 
+	public boolean showExpandedMenu() {
+		return secondaryResultSlot.hasItem();
+	}
 	/**
 	 * Determines whether supplied player can use this container
 	 */

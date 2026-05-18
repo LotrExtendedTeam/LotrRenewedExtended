@@ -37,6 +37,9 @@ public class ExtendedCrucibleScreen extends ContainerScreen<ExtendedCrucibleCont
 		int i = this.leftPos;
 		int j = this.topPos;
 		this.blit(pMatrixStack, i, j, 0, 0, this.imageWidth, this.imageHeight);
+		if(!this.getMenu().showExpandedMenu()) {
+			this.blit(pMatrixStack, i + 96, j + 51, 176, 89, 42, 26);
+		}
 		if (this.menu.isLit()) {
 			int k = this.menu.getLitProgress();
 			this.blit(pMatrixStack, i + 46, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
