@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:gundabad_uruk_leggings"
+  },
+  "result1": {
+    "item": "lotr:uruk_steel_ingot",
+    "count": 7
+  },
+  "experience": 1.0
+}

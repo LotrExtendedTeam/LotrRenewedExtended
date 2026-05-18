@@ -5,6 +5,7 @@ import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedAdvancementProvider;
 import com.github.maximuslotro.lotrrextended.common.datagen.aggregation.ExtendedBiomeInfoGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.ExtendedCraftingRecipiesGenerator;
+import com.github.maximuslotro.lotrrextended.common.datagen.crafting.ExtendedCrucibleRecipiesGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.entity.ExtendedEntityRelatedGenerators;
 import com.github.maximuslotro.lotrrextended.common.datagen.language.ExtendedLanguageGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.loot_tables.ExtendedLootTableGenerator;
@@ -27,6 +28,7 @@ public class DataGeneratorExtended {
 			ExtendedTagRelatedGenerators.gatherData(generator, existingFileHelper, LotrExtendedMod.MODID);
 			generator.addProvider(new ExtendedLootTableGenerator(generator));
 			generator.addProvider(new ExtendedCraftingRecipiesGenerator(generator));
+			generator.addProvider(new ExtendedCrucibleRecipiesGenerator(generator));
 			generator.addProvider(new ExtendedGlobalLootModifierGenerator(generator, LotrExtendedMod.MODID));
 			generator.addProvider(new ExtendedAdvancementProvider(generator, existingFileHelper));
 			ExtendedEntityRelatedGenerators.gatherData(generator, existingFileHelper, LotrExtendedMod.MODID);

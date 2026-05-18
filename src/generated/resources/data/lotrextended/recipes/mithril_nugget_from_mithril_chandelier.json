@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:mithril_chandelier"
+  },
+  "result1": {
+    "item": "lotr:mithril_nugget",
+    "count": 4
+  },
+  "experience": 1.0
+}

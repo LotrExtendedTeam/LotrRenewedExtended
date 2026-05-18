@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:mithril_birdcage"
+  },
+  "result1": {
+    "item": "lotr:mithril_nugget",
+    "count": 6
+  },
+  "experience": 1.0
+}

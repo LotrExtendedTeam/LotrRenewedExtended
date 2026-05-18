@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:silver_coin_one"
+  },
+  "result1": {
+    "item": "lotr:silver_nugget"
+  },
+  "experience": 1.0
+}

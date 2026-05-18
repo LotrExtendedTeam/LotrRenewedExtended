@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:wood_elven_hoe"
+  },
+  "result1": {
+    "item": "lotr:elven_steel_ingot",
+    "count": 2
+  },
+  "experience": 1.0
+}

@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:ranger_north_boots"
+  },
+  "result1": {
+    "item": "minecraft:leather",
+    "count": 4
+  },
+  "experience": 1.0
+}

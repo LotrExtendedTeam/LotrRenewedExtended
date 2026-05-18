@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "minecraft:chainmail_leggings"
+  },
+  "result1": {
+    "item": "minecraft:iron_nugget",
+    "count": 2
+  },
+  "experience": 1.0
+}

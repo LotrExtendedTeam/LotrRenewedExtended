@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:dale_dagger"
+  },
+  "result1": {
+    "item": "minecraft:iron_ingot"
+  },
+  "experience": 1.0
+}

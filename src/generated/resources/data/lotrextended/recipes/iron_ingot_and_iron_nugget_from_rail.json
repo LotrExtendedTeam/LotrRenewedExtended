@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "minecraft:rail"
+  },
+  "result1": {
+    "item": "minecraft:iron_nugget",
+    "count": 4
+  },
+  "experience": 1.0
+}

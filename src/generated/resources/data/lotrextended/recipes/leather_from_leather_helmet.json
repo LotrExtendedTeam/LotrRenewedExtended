@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "minecraft:leather_helmet"
+  },
+  "result1": {
+    "item": "minecraft:leather",
+    "count": 5
+  },
+  "experience": 1.0
+}

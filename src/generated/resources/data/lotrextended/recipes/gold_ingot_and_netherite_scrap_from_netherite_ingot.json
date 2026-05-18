@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "minecraft:netherite_ingot"
+  },
+  "result1": {
+    "item": "minecraft:netherite_scrap",
+    "count": 4
+  },
+  "experience": 1.0
+}

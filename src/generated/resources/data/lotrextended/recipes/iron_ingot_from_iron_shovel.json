@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "minecraft:iron_shovel"
+  },
+  "result1": {
+    "item": "minecraft:iron_ingot"
+  },
+  "experience": 1.0
+}

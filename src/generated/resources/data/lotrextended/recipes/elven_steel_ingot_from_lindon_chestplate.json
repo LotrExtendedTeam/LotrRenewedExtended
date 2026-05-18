@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:lindon_chestplate"
+  },
+  "result1": {
+    "item": "lotr:elven_steel_ingot",
+    "count": 8
+  },
+  "experience": 1.0
+}

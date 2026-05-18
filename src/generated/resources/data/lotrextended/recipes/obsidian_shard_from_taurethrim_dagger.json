@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:taurethrim_dagger"
+  },
+  "result1": {
+    "item": "lotr:obsidian_shard"
+  },
+  "experience": 1.0
+}

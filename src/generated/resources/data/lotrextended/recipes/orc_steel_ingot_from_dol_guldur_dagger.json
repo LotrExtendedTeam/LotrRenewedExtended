@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:dol_guldur_dagger"
+  },
+  "result1": {
+    "item": "lotr:orc_steel_ingot"
+  },
+  "experience": 1.0
+}

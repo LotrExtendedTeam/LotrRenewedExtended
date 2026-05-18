@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:arnor_chestplate"
+  },
+  "result1": {
+    "item": "minecraft:iron_ingot",
+    "count": 8
+  },
+  "experience": 1.0
+}

@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:dol_guldur_boots"
+  },
+  "result1": {
+    "item": "lotr:orc_steel_ingot",
+    "count": 4
+  },
+  "experience": 1.0
+}

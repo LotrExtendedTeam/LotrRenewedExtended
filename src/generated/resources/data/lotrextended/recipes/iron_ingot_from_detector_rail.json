@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "minecraft:detector_rail"
+  },
+  "result1": {
+    "item": "minecraft:iron_ingot"
+  },
+  "experience": 1.0
+}

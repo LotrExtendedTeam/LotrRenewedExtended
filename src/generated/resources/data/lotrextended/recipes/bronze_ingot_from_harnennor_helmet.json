@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:harnennor_helmet"
+  },
+  "result1": {
+    "item": "lotr:bronze_ingot",
+    "count": 3
+  },
+  "experience": 1.0
+}

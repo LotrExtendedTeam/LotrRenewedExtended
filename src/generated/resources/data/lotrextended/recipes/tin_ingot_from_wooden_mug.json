@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:wooden_mug"
+  },
+  "result1": {
+    "item": "lotr:tin_ingot"
+  },
+  "experience": 1.0
+}

@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:bronze_spear"
+  },
+  "result1": {
+    "item": "lotr:bronze_ingot"
+  },
+  "experience": 1.0
+}

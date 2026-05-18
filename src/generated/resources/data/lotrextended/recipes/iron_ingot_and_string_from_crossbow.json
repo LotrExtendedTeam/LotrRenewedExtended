@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "minecraft:crossbow"
+  },
+  "result1": {
+    "item": "minecraft:string",
+    "count": 2
+  },
+  "experience": 1.0
+}

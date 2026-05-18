@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:ranger_ithilien_chestplate"
+  },
+  "result1": {
+    "item": "minecraft:leather",
+    "count": 8
+  },
+  "experience": 1.0
+}

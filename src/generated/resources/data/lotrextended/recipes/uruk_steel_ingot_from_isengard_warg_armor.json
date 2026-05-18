@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:isengard_warg_armor"
+  },
+  "result1": {
+    "item": "lotr:uruk_steel_ingot",
+    "count": 6
+  },
+  "experience": 1.0
+}

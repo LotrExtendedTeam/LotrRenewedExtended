@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:morgul_vassal_helmet"
+  },
+  "result1": {
+    "item": "lotr:morgul_steel_ingot",
+    "count": 5
+  },
+  "experience": 1.0
+}

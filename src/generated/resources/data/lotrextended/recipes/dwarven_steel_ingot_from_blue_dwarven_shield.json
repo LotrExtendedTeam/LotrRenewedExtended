@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:blue_dwarven_shield"
+  },
+  "result1": {
+    "item": "lotr:dwarven_steel_ingot"
+  },
+  "experience": 1.0
+}

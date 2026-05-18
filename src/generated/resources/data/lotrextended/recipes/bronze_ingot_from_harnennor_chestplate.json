@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:harnennor_chestplate"
+  },
+  "result1": {
+    "item": "lotr:bronze_ingot",
+    "count": 5
+  },
+  "experience": 1.0
+}

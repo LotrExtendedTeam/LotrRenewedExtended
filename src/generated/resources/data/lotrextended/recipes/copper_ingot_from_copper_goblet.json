@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:copper_goblet"
+  },
+  "result1": {
+    "item": "lotr:copper_ingot",
+    "count": 2
+  },
+  "experience": 1.0
+}

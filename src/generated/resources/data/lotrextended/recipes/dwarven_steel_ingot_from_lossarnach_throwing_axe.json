@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:lossarnach_throwing_axe"
+  },
+  "result1": {
+    "item": "lotr:dwarven_steel_ingot",
+    "count": 2
+  },
+  "experience": 1.0
+}

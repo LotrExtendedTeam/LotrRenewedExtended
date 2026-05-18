@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:bronze_lantern"
+  },
+  "result1": {
+    "item": "lotr:bronze_nugget",
+    "count": 8
+  },
+  "experience": 1.0
+}

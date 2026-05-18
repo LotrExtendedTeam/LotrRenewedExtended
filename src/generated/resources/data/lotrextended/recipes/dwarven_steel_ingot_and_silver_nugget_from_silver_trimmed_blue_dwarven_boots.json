@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:silver_trimmed_blue_dwarven_boots"
+  },
+  "result1": {
+    "item": "lotr:silver_nugget",
+    "count": 8
+  },
+  "experience": 1.0
+}

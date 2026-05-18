@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:dol_amroth_helmet"
+  },
+  "result1": {
+    "item": "minecraft:iron_ingot",
+    "count": 5
+  },
+  "experience": 1.0
+}

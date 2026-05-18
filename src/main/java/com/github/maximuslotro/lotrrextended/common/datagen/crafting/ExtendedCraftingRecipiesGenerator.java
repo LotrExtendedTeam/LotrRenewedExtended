@@ -355,6 +355,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.SILVER_FUR, ExtendedBlocks.SILVER_FUR_BUNDLE, null);
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.WHITE_FUR, ExtendedBlocks.WHITE_FUR_BUNDLE, null);
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, LOTRItems.FUR, LOTRBlocks.FUR_BUNDLE, null);
+		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ()->Items.LEATHER, LOTRBlocks.LEATHER_BUNDLE, null);
 		makeCoralRecipes(consumer, ExtendedItems.CORAL, ()->Items.BRAIN_CORAL, ()->Items.BRAIN_CORAL_FAN, ()->Items.BRAIN_CORAL_BLOCK);
 		makeCoralRecipes(consumer, ExtendedItems.CORAL, ()->Items.BUBBLE_CORAL, ()->Items.BUBBLE_CORAL_FAN, ()->Items.BUBBLE_CORAL_BLOCK);
 		makeCoralRecipes(consumer, ExtendedItems.CORAL, ()->Items.FIRE_CORAL, ()->Items.FIRE_CORAL_FAN, ()->Items.FIRE_CORAL_BLOCK);

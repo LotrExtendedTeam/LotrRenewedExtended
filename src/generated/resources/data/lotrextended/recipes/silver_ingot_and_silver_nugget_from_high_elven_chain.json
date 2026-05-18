@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:high_elven_chain"
+  },
+  "result1": {
+    "item": "lotr:silver_nugget",
+    "count": 2
+  },
+  "experience": 1.0
+}

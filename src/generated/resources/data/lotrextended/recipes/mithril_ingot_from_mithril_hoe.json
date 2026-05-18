@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:mithril_hoe"
+  },
+  "result1": {
+    "item": "lotr:mithril_ingot",
+    "count": 2
+  },
+  "experience": 1.0
+}

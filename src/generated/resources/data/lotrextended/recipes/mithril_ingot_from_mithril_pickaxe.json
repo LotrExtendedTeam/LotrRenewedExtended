@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:mithril_pickaxe"
+  },
+  "result1": {
+    "item": "lotr:mithril_ingot",
+    "count": 3
+  },
+  "experience": 1.0
+}

@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:dwarven_axe"
+  },
+  "result1": {
+    "item": "lotr:dwarven_steel_ingot",
+    "count": 3
+  },
+  "experience": 1.0
+}

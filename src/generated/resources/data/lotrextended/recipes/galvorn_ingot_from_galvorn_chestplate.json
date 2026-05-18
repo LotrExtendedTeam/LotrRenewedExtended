@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:galvorn_chestplate"
+  },
+  "result1": {
+    "item": "lotr:galvorn_ingot",
+    "count": 8
+  },
+  "experience": 1.0
+}

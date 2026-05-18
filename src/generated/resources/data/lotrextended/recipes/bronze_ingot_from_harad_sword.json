@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:harad_sword"
+  },
+  "result1": {
+    "item": "lotr:bronze_ingot",
+    "count": 2
+  },
+  "experience": 1.0
+}

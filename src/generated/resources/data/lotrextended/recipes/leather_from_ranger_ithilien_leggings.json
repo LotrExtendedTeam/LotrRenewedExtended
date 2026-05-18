@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:ranger_ithilien_leggings"
+  },
+  "result1": {
+    "item": "minecraft:leather",
+    "count": 7
+  },
+  "experience": 1.0
+}

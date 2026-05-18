@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:dol_amroth_sword"
+  },
+  "result1": {
+    "item": "minecraft:iron_ingot",
+    "count": 2
+  },
+  "experience": 1.0
+}

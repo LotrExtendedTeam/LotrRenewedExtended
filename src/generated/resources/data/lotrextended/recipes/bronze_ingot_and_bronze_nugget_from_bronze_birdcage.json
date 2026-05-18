@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:bronze_birdcage"
+  },
+  "result1": {
+    "item": "lotr:bronze_nugget",
+    "count": 6
+  },
+  "experience": 1.0
+}

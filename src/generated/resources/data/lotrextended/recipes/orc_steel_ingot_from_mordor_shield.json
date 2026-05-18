@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:mordor_shield"
+  },
+  "result1": {
+    "item": "lotr:orc_steel_ingot"
+  },
+  "experience": 1.0
+}

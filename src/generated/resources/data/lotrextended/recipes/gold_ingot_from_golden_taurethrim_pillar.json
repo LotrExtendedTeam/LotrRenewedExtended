@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:golden_taurethrim_pillar"
+  },
+  "result1": {
+    "item": "minecraft:gold_ingot"
+  },
+  "experience": 1.0
+}

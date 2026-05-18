@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:galadhrim_helmet"
+  },
+  "result1": {
+    "item": "lotr:elven_steel_ingot",
+    "count": 5
+  },
+  "experience": 1.0
+}

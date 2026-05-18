@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:iron_chandelier"
+  },
+  "result1": {
+    "item": "minecraft:iron_nugget",
+    "count": 5
+  },
+  "experience": 1.0
+}

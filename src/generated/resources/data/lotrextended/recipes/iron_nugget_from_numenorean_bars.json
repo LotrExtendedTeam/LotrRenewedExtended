@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:numenorean_bars"
+  },
+  "result1": {
+    "item": "minecraft:iron_nugget",
+    "count": 3
+  },
+  "experience": 1.0
+}

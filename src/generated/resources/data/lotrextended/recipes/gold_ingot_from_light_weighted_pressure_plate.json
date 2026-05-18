@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "minecraft:light_weighted_pressure_plate"
+  },
+  "result1": {
+    "item": "minecraft:gold_ingot",
+    "count": 2
+  },
+  "experience": 1.0
+}

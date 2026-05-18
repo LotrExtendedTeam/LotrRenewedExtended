@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:mithril_shovel"
+  },
+  "result1": {
+    "item": "lotr:mithril_ingot"
+  },
+  "experience": 1.0
+}

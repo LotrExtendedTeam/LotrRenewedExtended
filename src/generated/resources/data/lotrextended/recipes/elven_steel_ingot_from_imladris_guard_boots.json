@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:imladris_guard_boots"
+  },
+  "result1": {
+    "item": "lotr:elven_steel_ingot",
+    "count": 4
+  },
+  "experience": 1.0
+}

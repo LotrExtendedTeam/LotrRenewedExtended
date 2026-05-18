@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:taurethrim_axe"
+  },
+  "result1": {
+    "item": "lotr:obsidian_shard",
+    "count": 3
+  },
+  "experience": 1.0
+}

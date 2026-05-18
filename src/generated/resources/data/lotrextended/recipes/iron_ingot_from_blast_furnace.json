@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "minecraft:blast_furnace"
+  },
+  "result1": {
+    "item": "minecraft:iron_ingot",
+    "count": 5
+  },
+  "experience": 1.0
+}

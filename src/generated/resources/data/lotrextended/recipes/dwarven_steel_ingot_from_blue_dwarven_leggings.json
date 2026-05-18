@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:blue_dwarven_leggings"
+  },
+  "result1": {
+    "item": "lotr:dwarven_steel_ingot",
+    "count": 7
+  },
+  "experience": 1.0
+}

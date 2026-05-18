@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:rohan_chestplate"
+  },
+  "result1": {
+    "item": "minecraft:iron_ingot",
+    "count": 5
+  },
+  "experience": 1.0
+}

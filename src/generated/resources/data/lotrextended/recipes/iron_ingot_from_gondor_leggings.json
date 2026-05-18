@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:gondor_leggings"
+  },
+  "result1": {
+    "item": "minecraft:iron_ingot",
+    "count": 7
+  },
+  "experience": 1.0
+}

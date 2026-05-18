@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:mordor_scimitar"
+  },
+  "result1": {
+    "item": "lotr:orc_steel_ingot",
+    "count": 2
+  },
+  "experience": 1.0
+}

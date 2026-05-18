@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:taurethrim_hoe"
+  },
+  "result1": {
+    "item": "lotr:obsidian_shard",
+    "count": 2
+  },
+  "experience": 1.0
+}
