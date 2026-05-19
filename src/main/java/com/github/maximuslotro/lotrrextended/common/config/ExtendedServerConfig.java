@@ -97,7 +97,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		makeMetalDoorsRequirePower = createBooleanValue(builder, "makeMetalDoorsRequirePower", false, true, "Make Extended's metal doors and trapdoors require power to open");
 		dripstoneMinimumDamageHeight = createDoubleValue(builder, "dripstoneMinimumDamageHeight", 1.0D, 0.0D, 5.0D, false, "Set the fall height at which dripstone hurts entities when interacting, (0.0 is the default value in renewed)");
 		bellRingChainMaxLength = createIntegerValue(builder, "bellRingChainMaxLength", 10, 1, 50, false, "Max chain length a bell ring will attempt");
-		gateToggleLength = createIntegerValue(builder, "gateToggleLength", 16, 4, 32, false, "Max distance that gate toggles will affect");
+		gateToggleLength = createIntegerValue(builder, "gateToggleLength", 24, 4, 32, false, "Max distance that gate toggles will affect");
 		builder.pop();
 
 		builder.push("Chair settings");
