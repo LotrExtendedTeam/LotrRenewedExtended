@@ -572,8 +572,8 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				)));
 	}
 
-	protected static LootTable.Builder createFruitLeavesDrops(Block pLeavesBlock, Block pBlockSappling, IItemProvider item, float... pChances) {
-		return createLeavesDrops(pLeavesBlock, pBlockSappling, pChances).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+	protected static LootTable.Builder createFruitLeavesDrops(Block pLeavesBlock, Block pBlockSapling, IItemProvider item, float... pChances) {
+		return createLeavesDrops(pLeavesBlock, pBlockSapling, pChances).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
 			.when(HAS_NO_SHEARS_OR_SILK_TOUCH).add(applyExplosionCondition(pLeavesBlock, ItemLootEntry.lootTableItem(item))
 				.apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ExplosionDecay.explosionDecay())));
 	}

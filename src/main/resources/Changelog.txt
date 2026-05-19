@@ -125,7 +125,7 @@
   * Reworked the rarity of shields for several unit types
 * Items
   * Added Ebony Boat
-  * Added Ebony Sappling
+  * Added Ebony Sapling
   * Added Gundabad warg armor
   * Added Leather warg armor
   * Added Uruk Shields
