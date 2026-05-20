@@ -113,6 +113,13 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotr:horn",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "lotr:black_fur",
         "averageCost": 2
       }
@@ -239,6 +246,13 @@
       "stack": {
         "item": "lotr:maggoty_bread",
         "averageCost": 4
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 6
       }
     },
     {

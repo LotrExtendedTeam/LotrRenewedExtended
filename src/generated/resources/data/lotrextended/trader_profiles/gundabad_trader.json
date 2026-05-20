@@ -190,6 +190,13 @@
         "item": "lotr:man_flesh",
         "averageCost": 3
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 3
+      }
     }
   ],
   "sellToPlayer": [
@@ -377,6 +384,13 @@
         "item": "lotr:fur_helmet",
         "averageCost": 15,
         "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 6
       }
     },
     {

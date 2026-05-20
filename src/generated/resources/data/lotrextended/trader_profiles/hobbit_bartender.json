@@ -127,6 +127,13 @@
         "item": "lotr:four_leaf_clover",
         "averageCost": 40
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 3
+      }
     }
   ],
   "sellToPlayer": [
@@ -177,6 +184,13 @@
       "stack": {
         "item": "minecraft:bread",
         "averageCost": 5
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 6
       }
     },
     {
