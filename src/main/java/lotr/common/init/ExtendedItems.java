@@ -848,4 +848,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> NUMENOREAN_BARS;
 	public static RegistryObject<Item> NUMENOREAN_LANTERN;
 
+	public static RegistryObject<Item> BRONZE_CROSSBOW;
+	public static RegistryObject<Item> IRON_CROSSBOW;
+	public static RegistryObject<Item> URUK_CROSSBOW;
 }

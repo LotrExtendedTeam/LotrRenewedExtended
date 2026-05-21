@@ -1,0 +1,23 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:uruk",
+  "pattern": [
+    "XXS",
+    "#SX",
+    "S#X"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:bowstring"
+    },
+    "X": {
+      "tag": "forge:ingots/uruk_steel"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "lotr:uruk_crossbow"
+  }
+}

@@ -645,8 +645,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.SAPPHIRE, 12)
 		.addSBuy(ExtendedItems.TOPAZ, 8)
 		.addSBuy(LOTRItems.HORN, 3)
-		// TODO add iron battleaxe and pike, bronze battleaxe, 
-		// iron and bronze crossbow and crossbow bolts
+		// TODO add iron battleaxe and pike, bronze battleaxe, crossbow bolts
 		.addSSell(LOTRItems.HORN, 6)
 		.addSSell(LOTRItems.BRONZE_HELMET, 10)
 		.addSSell(LOTRItems.BRONZE_CHESTPLATE, 14)
@@ -672,6 +671,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.IRON_SPEAR, 15)
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 16)
 		.addSSell(ExtendedItems.BRANDING_IRON, 25)
+		.addSSell(ExtendedItems.BRONZE_CROSSBOW, 12)
+		.addSSell(ExtendedItems.BRONZE_CROSSBOW, 15)
 		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SHARP),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SWIFT),
@@ -1607,7 +1608,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.GRAY_FUR, 2)
 		.addSBuy(ExtendedItems.SILVER_FUR, 5)
 		.addSBuy(ExtendedItems.WHITE_FUR, 25)
-		// TODO add Uruk(crossbow, bolt)
+		// TODO add crossbow bolts
+		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addSSell(LOTRItems.URUK_CRAFTING_TABLE, 100)
 		.addSSell(ExtendedItems.BONE_SWORD, 5)
 		.addSSell(LOTRItems.URUK_CLEAVER, 25)
@@ -1615,6 +1617,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.URUK_SPEAR, 23)
 		.addSSell(ExtendedItems.BONE_DAGGER, 3)
 		.addSSell(LOTRItems.URUK_DAGGER, 14)
+		.addSSell(ExtendedItems.URUK_CROSSBOW, 18)
 		.addSSell(DrinkUtils.drinkOfPotency(LOTRItems.ORC_DRAUGHT.get(), Potency.LIGHT), 9)
 		.addSSell(ExtendedItems.ORC_BOMB, 30)
 		.addSSell(LOTRItems.URUK_PICKAXE, 16)
@@ -1664,7 +1667,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(new ItemStack(Items.WHEAT, 3), 1)
 		.addSBuy(Items.FEATHER, 2)
 		.addSBuy(LOTRItems.HORN, 3)
-		// TODO add Uruk(poisoned dagger, battleaxe, hammer, pike, crossbow, bolt)
+		// TODO add Uruk(poisoned dagger, battleaxe, hammer, pike, bolt)
+		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addSSell(LOTRItems.HORN, 6)
 		.addSSell(LOTRItems.URUK_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.URUK_HELMET, 24)
@@ -1680,6 +1684,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.SILVER_FUR, 6)
 		.addSSell(ExtendedItems.ORC_BOMB, 30)
 		.addSSell(ExtendedItems.ORC_BOMB_FIRE, 40)
+		.addSSell(ExtendedItems.URUK_CROSSBOW, 18)
 		.addSSell(LOTRItems.URUK_PICKAXE, 16)
 		.addSSell(LOTRItems.URUK_AXE, 16)
 		.addSSell(LOTRItems.URUK_SHOVEL, 10)

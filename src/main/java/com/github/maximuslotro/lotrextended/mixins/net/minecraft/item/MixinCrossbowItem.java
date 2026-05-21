@@ -7,10 +7,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCrossbowItem;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ArrowItem;
@@ -30,16 +33,28 @@ public class MixinCrossbowItem {
 		ExtendedModifier modifier = ExtendedModifierUtils.getModifierByTypeSafe(pCrossbowStack, ExtendedModifierType.RANGED_SPEED);
 		if(!modifier.isUnknown()) {
 			float defaultSeed = pCrossbowStack.getItem() == Items.CROSSBOW && containsChargedProjectile(pCrossbowStack, Items.FIREWORK_ROCKET) ? 1.6F : 3.15F;
+			if(ExtendedCrossbowItem.getAdditionalLaunchSpeed(pCrossbowStack)>0) {
+				defaultSeed = defaultSeed * ExtendedCrossbowItem.getAdditionalLaunchSpeed(pCrossbowStack);
+			}
 			cir.setReturnValue(defaultSeed * modifier.getModifierEffect());
 		}
 	}
 
 	@Inject(method = "getArrow", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD)
-	private static void getArrow(World pLevel, LivingEntity pLivingEntity, ItemStack pCrossbowStack, ItemStack pAmmoStack, 
+	private static void getArrow$Extended(World pLevel, LivingEntity pLivingEntity, ItemStack pCrossbowStack, ItemStack pAmmoStack, 
 			CallbackInfoReturnable<AbstractArrowEntity> cir, ArrowItem arrowitem, AbstractArrowEntity abstractarrowentity) {
 		ExtendedModifier modifier = ExtendedModifierUtils.getModifierByTypeSafe(pCrossbowStack, ExtendedModifierType.RANGED_KNOCKBACK);
 		if(!modifier.isUnknown()) {
 			abstractarrowentity.setKnockback((int) modifier.getModifierEffect());
+		}
+	}
+
+	@Inject(method = "getChargeDuration", at = @At("HEAD"), cancellable = true)
+	private static void getChargeDuration$Extended(ItemStack pCrossbowStack, CallbackInfoReturnable<Integer> cir) {
+		if(pCrossbowStack.getItem() instanceof ExtendedCrossbowItem) {
+			int drawSpeed = ExtendedCrossbowItem.getDrawSpeedTicks(pCrossbowStack);
+			int i = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.QUICK_CHARGE, pCrossbowStack);
+			cir.setReturnValue(i == 0 ? drawSpeed : drawSpeed - 5 * i);
 		}
 	}
 }

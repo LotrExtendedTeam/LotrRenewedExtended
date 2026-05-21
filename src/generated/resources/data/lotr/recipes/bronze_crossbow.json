@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXS",
+    "#SX",
+    "S#X"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:bowstring"
+    },
+    "X": {
+      "tag": "forge:ingots/bronze"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "lotr:bronze_crossbow"
+  }
+}

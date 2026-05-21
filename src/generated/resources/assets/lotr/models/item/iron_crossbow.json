@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:item/crossbow",
+  "textures": {
+    "layer0": "lotrextended:item/iron_crossbow_standby"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "minecraft:pulling": 1.0
+      },
+      "model": "lotrextended:item/iron_crossbow_0"
+    },
+    {
+      "predicate": {
+        "minecraft:pulling": 1.0,
+        "minecraft:pull": 0.58
+      },
+      "model": "lotrextended:item/iron_crossbow_1"
+    },
+    {
+      "predicate": {
+        "minecraft:pulling": 1.0,
+        "minecraft:pull": 1.0
+      },
+      "model": "lotrextended:item/iron_crossbow_2"
+    },
+    {
+      "predicate": {
+        "minecraft:charged": 1.0
+      },
+      "model": "lotrextended:item/iron_crossbow_arrow"
+    },
+    {
+      "predicate": {
+        "minecraft:charged": 1.0,
+        "minecraft:firework": 1.0
+      },
+      "model": "lotrextended:item/iron_crossbow_firework"
+    }
+  ]
+}

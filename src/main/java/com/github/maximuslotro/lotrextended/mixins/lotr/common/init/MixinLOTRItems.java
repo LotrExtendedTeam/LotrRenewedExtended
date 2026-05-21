@@ -18,6 +18,7 @@ import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemRend
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedBoatEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCoinType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCrossbowMaterial;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCompostableItem;
@@ -1234,12 +1235,15 @@ public class MixinLOTRItems {
 		//Isengard
 		ExtendedItems.ISENGARD_WARG_ARMOR = regItemB("isengard_warg_armor", () -> new ExtendedMountedArmorItem(13, "isengard", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 		ExtendedItems.URUK_SHIELD = regItemB("uruk_shield", () -> new LOTRShieldItem(LOTRMaterial.URUK));
+		ExtendedItems.URUK_CROSSBOW = regItemB("uruk_crossbow", () -> new ExtendedCrossbowItem(ExtendedCrossbowMaterial.URUK));
 
-		//Isengard
+		//Mordor
 		ExtendedItems.MORDOR_WARG_ARMOR = regItemB("mordor_warg_armor", () -> new ExtendedMountedArmorItem(11, "mordor", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 
 		ExtendedItems.LONGBOW = regItemB("longbow", () -> new ExtendedBowItem(ExtendedBowMaterial.GENERIC));
-		
+		ExtendedItems.BRONZE_CROSSBOW = regItemB("bronze_crossbow", () -> new ExtendedCrossbowItem(ExtendedCrossbowMaterial.BRONZE));
+		ExtendedItems.IRON_CROSSBOW = regItemB("iron_crossbow", () -> new ExtendedCrossbowItem(ExtendedCrossbowMaterial.IRON));
+
 		//Ranger of the North equipment
 		ExtendedItems.DUNEDAIN_SHIELD = regItemB("dunedain_shield", () -> new LOTRShieldItem(LOTRMaterial.RANGER_NORTH));
 		ExtendedItems.RANGER_BOW = regItemB("ranger_bow",() -> new ExtendedBowItem(ExtendedBowMaterial.RANGER_NORTH));

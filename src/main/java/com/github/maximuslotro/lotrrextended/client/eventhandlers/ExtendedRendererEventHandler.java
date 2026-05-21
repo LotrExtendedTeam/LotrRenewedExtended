@@ -7,7 +7,9 @@ import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedHiredUnitHpBar;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCrossbowMaterial;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCrossbowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
@@ -159,6 +161,11 @@ public class ExtendedRendererEventHandler {
 		if(stack.getItem() instanceof CrossbowItem) {
 			int drawSpeed = 25;
 			float damage = 1.0f;
+			if(stack.getItem() instanceof ExtendedCrossbowItem) {
+				ExtendedCrossbowMaterial material = ((ExtendedCrossbowItem)stack.getItem()).getMaterial();
+				drawSpeed = material.getDrawSpeedTicks();
+				damage = material.getLaunchSpeedFactor();
+			}
 			if(!ExtendedModifierUtils.getModifierByTypeSafe(stack, ExtendedModifierType.RANGED_SPEED).isUnknown()) {
 				damage = damage * ExtendedModifierUtils.getModifierByTypeSafe(stack, ExtendedModifierType.RANGED_SPEED).getModifierEffect();
 			}

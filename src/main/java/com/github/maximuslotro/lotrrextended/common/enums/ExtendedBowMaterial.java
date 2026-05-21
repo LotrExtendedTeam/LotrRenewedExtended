@@ -7,16 +7,14 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
 
 public enum ExtendedBowMaterial {
-	GENERIC("generic", 400, 20, 1.08F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
-	ORC("orc", 600, 20, 1.125F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
-	GUNDABAD_URUK("gundabad_uruk", 750, 30, 1.2F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
-	RANGER_NORTH("ranger", 525, 20, 1.05F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
-	DUNEDAIN_NORTH("dunedain_north", 600, 20, 1.15F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
-	RIVENDELL("rivendell", 1050, 16, 1.25F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
-	LINDON("lindon", 1050, 16, 1.25F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get()));
+	GENERIC(400, 20, 1.08F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
+	ORC(600, 20, 1.125F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
+	GUNDABAD_URUK(750, 30, 1.2F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
+	RANGER_NORTH(525, 20, 1.05F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
+	DUNEDAIN_NORTH(600, 20, 1.15F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
+	RIVENDELL(1050, 16, 1.25F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
+	LINDON(1050, 16, 1.25F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get()));
 
-	private final String bowMaterialName;
-	//private final int bowLevel;
 	private final int bowDurability;
 	// Number of ticks needed to draw bow to full power, default is 20 ticks (1 second)
 	private final int drawSpeed;
@@ -24,9 +22,7 @@ public enum ExtendedBowMaterial {
 	private final int enchantability;
 	private final LazyValue<Ingredient> repairIngredient;
 
-	private ExtendedBowMaterial(String materialName, int bowDurability, int drawSpeed, float bowDamage, int ench, Supplier<Ingredient> repairIngredient) {
-		this.bowMaterialName = materialName;
-		//this.bowLevel = bowLevel;
+	private ExtendedBowMaterial(int bowDurability, int drawSpeed, float bowDamage, int ench, Supplier<Ingredient> repairIngredient) {
 		this.bowDurability = bowDurability;
 		this.drawSpeed = drawSpeed;
 		this.bowDamage = bowDamage;

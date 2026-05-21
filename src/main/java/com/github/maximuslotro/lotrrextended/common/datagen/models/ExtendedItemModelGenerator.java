@@ -17,6 +17,7 @@ import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedLar
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCrossbowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedLeatherHatItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
@@ -245,6 +246,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genModifierScroll(item.getKey(), "item/"+item.getKey());
 				continue;
 			}
+			if(item.getValue().get() instanceof ExtendedCrossbowItem) {
+				genCrossbow(item.getKey(), "item/"+item.getKey());
+				continue;
+			}
 			if(item.getValue().get() instanceof ExtendedMCBannerItem) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/banner/"+item.getKey()));
 				continue;
@@ -378,6 +383,21 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		builder.override().model(builder_silver).predicate(ExtendedItemModelsProperties.scroll_type, 2);
 		builder.override().model(builder_golden).predicate(ExtendedItemModelsProperties.scroll_type, 3);
 		return builder_wooden;
+	}
+
+	private ItemModelBuilder genCrossbow(String name, String location) {
+		ItemModelBuilder builder = gen(withExistingParent("lotr:"+name, mcLoc("item/crossbow")), false, lotrExtendedLoc(location+"_standby"));
+		ItemModelBuilder builder_0 = gen(withExistingParent(name+"_0", builder.getLocation()), false, lotrExtendedLoc(location+"_pulling_0"));
+		ItemModelBuilder builder_1 = gen(withExistingParent(name+"_1", builder.getLocation()), false, lotrExtendedLoc(location+"_pulling_1"));
+		ItemModelBuilder builder_2 = gen(withExistingParent(name+"_2", builder.getLocation()), false, lotrExtendedLoc(location+"_pulling_2"));
+		ItemModelBuilder builder_arrow = gen(withExistingParent(name+"_arrow", builder.getLocation()), false, lotrExtendedLoc(location+"_arrow"));
+		ItemModelBuilder builder_firework = gen(withExistingParent(name+"_firework", builder.getLocation()), false, lotrExtendedLoc(location+"_firework"));
+		builder.override().model(builder_0).predicate(new ResourceLocation("pulling"), 1);
+		builder.override().model(builder_1).predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.58F);
+		builder.override().model(builder_2).predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 1.0F);
+		builder.override().model(builder_arrow).predicate(new ResourceLocation("charged"), 1);
+		builder.override().model(builder_firework).predicate(new ResourceLocation("charged"), 1).predicate(new ResourceLocation("firework"), 1);
+		return builder;
 	}
 
 	private ItemModelBuilder genBrandingIron(String name, String location) {

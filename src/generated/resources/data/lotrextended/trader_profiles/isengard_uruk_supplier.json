@@ -150,6 +150,14 @@
     {
       "weight": 50,
       "stack": {
+        "item": "minecraft:arrow",
+        "averageCost": 3,
+        "count": 4
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "lotr:uruk_crafting_table",
         "averageCost": 100
       }
@@ -199,6 +207,14 @@
       "stack": {
         "item": "lotr:uruk_dagger",
         "averageCost": 14,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_crossbow",
+        "averageCost": 18,
         "nbt": "{Damage:0}"
       }
     },
