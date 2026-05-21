@@ -1457,21 +1457,23 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		if (table == null) {
 			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
 			.pattern("XXS")
-			.pattern("#SX")
+			.pattern("#TX")
 			.pattern("S#X")
 			.define('#', Ingredient.of(ExtendedItems.BOWSTRING.get()))
 			.define('X', Ingredient.of(resource))
 			.define('S', Ingredient.of(STICKS))
+			.define('T', Ingredient.of(Items.TRIPWIRE_HOOK))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		} else {
 			ExtendedFactionShapedRecipeBuilder.shaped(itemToBeCrafted.get(), table)
 			.pattern("XXS")
-			.pattern("#SX")
+			.pattern("#TX")
 			.pattern("S#X")
 			.define('#', Ingredient.of(ExtendedItems.BOWSTRING.get()))
 			.define('X', Ingredient.of(resource))
 			.define('S', Ingredient.of(STICKS))
+			.define('T', Ingredient.of(Items.TRIPWIRE_HOOK))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}

@@ -3,7 +3,7 @@
   "table": "lotr:uruk",
   "pattern": [
     "XXS",
-    "#SX",
+    "#TX",
     "S#X"
   ],
   "key": {
@@ -15,6 +15,9 @@
     },
     "S": {
       "tag": "forge:rods/wooden"
+    },
+    "T": {
+      "item": "minecraft:tripwire_hook"
     }
   },
   "result": {
