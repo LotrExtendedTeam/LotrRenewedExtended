@@ -62,6 +62,11 @@ public class ExtendedModifiers {
 	// === Melee Knockback Modifiers ===
 	public static final ExtendedModifier HULKING = registerInt("knockback2", "melee_knockback.two", ExtendedModifierType.MEELE_KNOCKBACK, 2, 2, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 2, 2, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier HEFTY = registerInt("knockback1", "melee_knockback.one", ExtendedModifierType.MEELE_KNOCKBACK, 1, 1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.SILVER, 5, 1, EquipmentSlotType.MAINHAND);
+	// === Crossbow Modifiers ===
+	public static final ExtendedModifier BREAKNECK = registerInt("drawSpeed3", "draw_speed.three", ExtendedModifierType.CHARGE_SPEED, 3, 3, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 1, 3, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier BRISK = registerInt("drawSpeed2", "draw_speed.two", ExtendedModifierType.CHARGE_SPEED, 2, 2, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.SILVER, 2, 2, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier LIGHT = registerInt("drawSpeed1", "draw_speed.one", ExtendedModifierType.CHARGE_SPEED, 1, 1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.BRONZE, 10, 1, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier HEAVY = registerInt("drawSlow1", "draw_speed.slow_one", ExtendedModifierType.CHARGE_SPEED, 0, -1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.NOSCROLL, 10, 0, EquipmentSlotType.MAINHAND);
 	// === Bane-type Modifiers (mutually exclusive) ===
 	public static final ExtendedModifier ORC_BANE = registerInt("baneOrc", "baneorc", ExtendedModifierType.BANE, 1, 4, ExtendedModifierRarity.EARNED, ExtendedModifierScroll.NOSCROLL, 0, 3, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier DWARF_BANE = registerInt("baneDwarf", "banedwarf", ExtendedModifierType.BANE, 1, 4, ExtendedModifierRarity.EARNED, ExtendedModifierScroll.NOSCROLL, 0, 3, EquipmentSlotType.MAINHAND);

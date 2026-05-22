@@ -54,7 +54,8 @@ public class MixinCrossbowItem {
 		if(pCrossbowStack.getItem() instanceof ExtendedCrossbowItem) {
 			int drawSpeed = ExtendedCrossbowItem.getDrawSpeedTicks(pCrossbowStack);
 			int i = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.QUICK_CHARGE, pCrossbowStack);
-			cir.setReturnValue(i == 0 ? drawSpeed : drawSpeed - 5 * i);
+			// Also fix minecraft negative draw speed
+			cir.setReturnValue(i == 0 ? drawSpeed : Math.max(1, drawSpeed - 5 * i));
 		}
 	}
 }

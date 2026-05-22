@@ -698,6 +698,8 @@ public class ExtendedModifierUtils {
 			return ExtendedModifierType.UNDERWATER_BREATHING;
 		} else if (enchantment == Enchantments.RESPIRATION) {
 			return ExtendedModifierType.UNDERWATER_BREATHING;
+		} else if (enchantment == Enchantments.QUICK_CHARGE) {
+			return ExtendedModifierType.CHARGE_SPEED;
 		} else {
 			// Not mapped or blocked → return UNKNOWN
 			return ExtendedModifierType.UNKNOWN;
