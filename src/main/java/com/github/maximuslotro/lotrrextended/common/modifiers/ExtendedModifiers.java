@@ -62,6 +62,11 @@ public class ExtendedModifiers {
 	// === Melee Knockback Modifiers ===
 	public static final ExtendedModifier HULKING = registerInt("knockback2", "melee_knockback.two", ExtendedModifierType.MEELE_KNOCKBACK, 2, 2, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 2, 2, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier HEFTY = registerInt("knockback1", "melee_knockback.one", ExtendedModifierType.MEELE_KNOCKBACK, 1, 1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.SILVER, 5, 1, EquipmentSlotType.MAINHAND);
+	// === Crossbow Modifiers ===
+	public static final ExtendedModifier BREAKNECK = registerInt("drawSpeed3", "draw_speed.three", ExtendedModifierType.CHARGE_SPEED, 3, 3, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 1, 3, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier BRISK = registerInt("drawSpeed2", "draw_speed.two", ExtendedModifierType.CHARGE_SPEED, 2, 2, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.SILVER, 2, 2, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier LIGHT = registerInt("drawSpeed1", "draw_speed.one", ExtendedModifierType.CHARGE_SPEED, 1, 1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.BRONZE, 10, 1, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier HEAVY = registerInt("drawSlow1", "draw_speed.slow_one", ExtendedModifierType.CHARGE_SPEED, 0, -1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.NOSCROLL, 10, 0, EquipmentSlotType.MAINHAND);
 	// === Bane-type Modifiers (mutually exclusive) ===
 	public static final ExtendedModifier ORC_BANE = registerInt("baneOrc", "baneorc", ExtendedModifierType.BANE, 1, 4, ExtendedModifierRarity.EARNED, ExtendedModifierScroll.NOSCROLL, 0, 3, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier DWARF_BANE = registerInt("baneDwarf", "banedwarf", ExtendedModifierType.BANE, 1, 4, ExtendedModifierRarity.EARNED, ExtendedModifierScroll.NOSCROLL, 0, 3, EquipmentSlotType.MAINHAND);
@@ -69,26 +74,26 @@ public class ExtendedModifiers {
 	public static final ExtendedModifier WARG_BANE = registerInt("baneWarg", "banewarg", ExtendedModifierType.BANE, 1, 4, ExtendedModifierRarity.EARNED, ExtendedModifierScroll.NOSCROLL, 0, 3, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier WIGHT_BANE = registerInt("baneWight", "banewight", ExtendedModifierType.BANE, 1, 4, ExtendedModifierRarity.UNIQUE, ExtendedModifierScroll.NOSCROLL, 0, 3, EquipmentSlotType.MAINHAND);
 	// === Looting Modifiers ===
-	public static final ExtendedModifier BLESSED = registerInt("looting3", "looting.three", ExtendedModifierType.LOOTING, 3, 3, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 5, 4, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier BLESSED = registerInt("looting3", "looting.three", ExtendedModifierType.LOOTING, 3, 3, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 1, 4, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier FORTUNATE = registerInt("looting2", "looting.two", ExtendedModifierType.LOOTING, 2, 2, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.SILVER, 2, 3, EquipmentSlotType.MAINHAND);
-	public static final ExtendedModifier LUCKY = registerInt("looting1", "looting.one", ExtendedModifierType.LOOTING, 1, 1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.BRONZE, 1, 2, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier LUCKY = registerInt("looting1", "looting.one", ExtendedModifierType.LOOTING, 1, 1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.BRONZE, 5, 2, EquipmentSlotType.MAINHAND);
 	// === Tool Speed Modifiers ===
-	public static final ExtendedModifier MASTERFUL = registerFloat("toolSpeed4", "tool_speed.four", ExtendedModifierType.TOOL_SPEED, 4, 4.0f, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 20, 4, EquipmentSlotType.MAINHAND);
-	public static final ExtendedModifier HASTY = registerFloat("toolSpeed3", "tool_speed.three", ExtendedModifierType.TOOL_SPEED, 3, 3.0f, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.SILVER, 10, 3, EquipmentSlotType.MAINHAND);
-	public static final ExtendedModifier NIMBLE = registerFloat("toolSpeed2", "tool_speed.two", ExtendedModifierType.TOOL_SPEED, 2, 2.0f, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.BRONZE, 5, 2, EquipmentSlotType.MAINHAND);
-	public static final ExtendedModifier HANDY = registerFloat("toolSpeed1", "tool_speed.one", ExtendedModifierType.TOOL_SPEED, 1, 1.5f, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.WOODEN, 2, 1, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier MASTERFUL = registerFloat("toolSpeed4", "tool_speed.four", ExtendedModifierType.TOOL_SPEED, 4, 4.0f, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 2, 4, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier HASTY = registerFloat("toolSpeed3", "tool_speed.three", ExtendedModifierType.TOOL_SPEED, 3, 3.0f, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.SILVER, 5, 3, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier NIMBLE = registerFloat("toolSpeed2", "tool_speed.two", ExtendedModifierType.TOOL_SPEED, 2, 2.0f, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.BRONZE, 10, 2, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier HANDY = registerFloat("toolSpeed1", "tool_speed.one", ExtendedModifierType.TOOL_SPEED, 1, 1.5f, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.WOODEN, 20, 1, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier SLUGGISH = registerFloat("toolSlow1", "tool_speed.slow_one", ExtendedModifierType.TOOL_SPEED, 0, 0.75f, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.NOSCROLL, 10, 0, EquipmentSlotType.MAINHAND);
 	// === Tool Special Modifier ===
 	public static final ExtendedModifier SILKEN = registerInt("toolSilk", "tool_silk", ExtendedModifierType.TOOL_SILK, 1, 1, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 10, 3, EquipmentSlotType.MAINHAND);
 	// === Ranged Damage/Reach Modifiers ===
-	public static final ExtendedModifier FIERCE = registerFloat("rangedStrong3", "ranged_speed.three", ExtendedModifierType.RANGED_SPEED, 3, 1.3f, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 10, 2, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier FIERCE = registerFloat("rangedStrong3", "ranged_speed.three", ExtendedModifierType.RANGED_SPEED, 3, 1.3f, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 1, 2, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier POWERFUL = registerFloat("rangedStrong2", "ranged_speed.two", ExtendedModifierType.RANGED_SPEED, 2, 1.2f, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.SILVER, 3, 2, EquipmentSlotType.MAINHAND);
-	public static final ExtendedModifier STRONG = registerFloat("rangedStrong1", "ranged_speed.one", ExtendedModifierType.RANGED_SPEED, 1, 1.1f, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.BRONZE, 1, 2, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier STRONG = registerFloat("rangedStrong1", "ranged_speed.one", ExtendedModifierType.RANGED_SPEED, 1, 1.1f, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.BRONZE, 10, 2, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier WEAK = registerFloat("rangedWeak1", "ranged_speed.weak_one", ExtendedModifierType.RANGED_SPEED, 0, 0.9f, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.NOSCROLL, 3, 0, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier FEEBLE = registerFloat("rangedWeak2", "ranged_speed.weak_two", ExtendedModifierType.RANGED_SPEED, -1, 0.75f, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.NOSCROLL, 10, 0, EquipmentSlotType.MAINHAND);
 	// === Ranged Knockback Modifiers ===
-	public static final ExtendedModifier STRIKING = registerInt("rangedKnockback2", "ranged_knockback.two", ExtendedModifierType.RANGED_KNOCKBACK, 2, 2, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 5, 2, EquipmentSlotType.MAINHAND);
-	public static final ExtendedModifier PUNCHING = registerInt("rangedKnockback1", "ranged_knockback.one", ExtendedModifierType.RANGED_KNOCKBACK, 1, 1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.SILVER, 2, 1, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier STRIKING = registerInt("rangedKnockback2", "ranged_knockback.two", ExtendedModifierType.RANGED_KNOCKBACK, 2, 2, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 2, 2, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier PUNCHING = registerInt("rangedKnockback1", "ranged_knockback.one", ExtendedModifierType.RANGED_KNOCKBACK, 1, 1, ExtendedModifierRarity.BASIC, ExtendedModifierScroll.SILVER, 5, 1, EquipmentSlotType.MAINHAND);
 	// === Applied / Special Modifiers ===
 	public static final ExtendedModifier INFERNAL = registerInt("fire", "infernal", ExtendedModifierType.INFERNAL, 1, 1, ExtendedModifierRarity.APPLIED, ExtendedModifierScroll.NOSCROLL, 0, 3, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier CHILLING = registerInt("chill", "chilling", ExtendedModifierType.CHILLING, 1, 1, ExtendedModifierRarity.APPLIED, ExtendedModifierScroll.NOSCROLL, 0, 3, EquipmentSlotType.MAINHAND);

@@ -881,7 +881,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeMattockRecipe(consumer, ExtendedItems.DWARVEN_MATTOCK, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel_ingot", LOTRRecipes.DWARVEN_CRAFTING);
 		// BLUE MOUNTAIN DWARVEN
 		makeThrowableAxeRecipe(consumer, ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel_ingot", LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
-		makeMattockRecipe(consumer, ExtendedItems.BLUE_DWARVEN_MATTOCK, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel_ingot", LOTRRecipes.DWARVEN_CRAFTING);
+		makeMattockRecipe(consumer, ExtendedItems.BLUE_DWARVEN_MATTOCK, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel_ingot", LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
 		// IRON 
 		makeThrowableAxeRecipe(consumer, ExtendedItems.IRON_THROWABLE_AXE, Tags.Items.INGOTS_IRON, "iron_ingot", null);
 		// BRONZE
@@ -948,9 +948,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_string", has(Tags.Items.STRING))
 		.save(consumer, lotrLoc(ExtendedItems.ROPE.get().getRegistryName().getPath()));
 		// BOWS
-		makeBowRecipe(consumer, ExtendedItems.GUNDABAD_URUK_BOW, ExtendedItems.BOWSTRING, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
-		makeBowRecipe(consumer, ExtendedItems.ORC_BOW, ExtendedItems.BOWSTRING, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel", LOTRRecipes.ANY_ORC);
-		makeBowRecipe(consumer, ExtendedItems.RANGER_BOW, ExtendedItems.BOWSTRING, STICKS, "sticks", LOTRRecipes.RANGER_CRAFTING);
+		makeBowRecipe(consumer, ExtendedItems.GUNDABAD_URUK_BOW, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+		makeBowRecipe(consumer, ExtendedItems.ORC_BOW, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel", LOTRRecipes.ANY_ORC);
+		makeBowRecipe(consumer, ExtendedItems.RANGER_BOW, STICKS, "sticks", LOTRRecipes.RANGER_CRAFTING);
 		GENERATEDRECIPES.add(ExtendedItems.LONGBOW.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.LONGBOW.get())
 		.pattern("XXX")
@@ -968,8 +968,11 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.requires(Tags.Items.STRING)
 		.unlockedBy("has_string", has(Tags.Items.STRING))
 		.save(consumer, lotrLoc(ExtendedItems.BOWSTRING.get().getRegistryName().getPath()));
-		makeBowRecipe(consumer, ExtendedItems.RIVENDELL_BOW, ExtendedItems.BOWSTRING, STICKS, "sticks", LOTRRecipes.RIVENDELL_CRAFTING);
-		makeBowRecipe(consumer, ExtendedItems.LINDON_BOW, ExtendedItems.BOWSTRING, STICKS, "sticks", LOTRRecipes.LINDON_CRAFTING);
+		makeBowRecipe(consumer, ExtendedItems.RIVENDELL_BOW, STICKS, "sticks", LOTRRecipes.RIVENDELL_CRAFTING);
+		makeBowRecipe(consumer, ExtendedItems.LINDON_BOW, STICKS, "sticks", LOTRRecipes.LINDON_CRAFTING);
+		makeCrossbowRecipe(consumer, ExtendedItems.BRONZE_CROSSBOW, ExtendedTags.Items.BRONZE_INGOT, "bronze_ingot", null);
+		makeCrossbowRecipe(consumer, ExtendedItems.IRON_CROSSBOW, Tags.Items.INGOTS_IRON, "iron_ingot", null);
+		makeCrossbowRecipe(consumer, ExtendedItems.URUK_CROSSBOW, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", LOTRRecipes.URUK_CRAFTING);
 
 		GENERATEDRECIPES.add(ExtendedItems.CHISEL.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CHISEL.get())

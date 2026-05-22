@@ -689,6 +689,12 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("enchant.lotrextended.toughness.three", "Unwavering");
 		addD("enchant.lotrextended.toughness.disc", "toughness");
 
+		addD("enchant.lotrextended.draw_speed.slow_one", "Heavy");
+		addD("enchant.lotrextended.draw_speed.one", "Light");
+		addD("enchant.lotrextended.draw_speed.two", "Brisk");
+		addD("enchant.lotrextended.draw_speed.three", "Breakneck");
+		addD("enchant.lotrextended.draw_speed.disc", "nominal draw time");
+
 		//Damage types
 		addD("death.attack.lotrextended.thrownaxe", "%1$s was precision-axed by %2$s");
 		addD("death.attack.lotrextended.thrownaxe.item", "%1$s was precision-axed by %2$s using %3$s");

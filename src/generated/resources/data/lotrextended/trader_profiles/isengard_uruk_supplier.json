@@ -113,6 +113,13 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotr:horn",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "lotr:black_fur",
         "averageCost": 2
       }
@@ -140,6 +147,14 @@
     }
   ],
   "sellToPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:arrow",
+        "averageCost": 3,
+        "count": 4
+      }
+    },
     {
       "weight": 50,
       "stack": {
@@ -198,6 +213,14 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotr:uruk_crossbow",
+        "averageCost": 18,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "lotr:orc_draught",
         "averageCost": 9,
         "nbt": "{vessel:{potency:\"light\"}}"
@@ -239,6 +262,13 @@
       "stack": {
         "item": "lotr:maggoty_bread",
         "averageCost": 4
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 6
       }
     },
     {
