@@ -200,6 +200,13 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotr:horn",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "minecraft:string",
         "averageCost": 1,
         "count": 3
@@ -207,6 +214,13 @@
     }
   ],
   "sellToPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 6
+      }
+    },
     {
       "weight": 50,
       "stack": {

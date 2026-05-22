@@ -41,6 +41,7 @@ public class ExtendedStaffEvents {
 		}
 		tickCounter = 0;
 		ExtendedTravelTracker.handleServerTravelTick();
+		ExtendedCombatTracker.handleServerTick();
 	}
 
 	@SubscribeEvent

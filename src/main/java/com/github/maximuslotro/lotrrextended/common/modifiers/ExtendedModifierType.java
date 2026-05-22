@@ -62,6 +62,10 @@ public enum ExtendedModifierType {
 	RANGED_SPEED("enchant.lotrextended.ranged_speed.disc", "x", 
 			item -> item instanceof BowItem || item instanceof CrossbowItem),
 
+	/** Increases draw speed. */
+	CHARGE_SPEED("enchant.lotrextended.draw_speed.disc", "+", 
+			item -> item instanceof CrossbowItem),
+
 	/** Enhances knockback effect of ranged attacks. */
 	RANGED_KNOCKBACK("enchant.lotrextended.ranged_knockback.disc", "+", 
 			item -> item instanceof BowItem || item instanceof CrossbowItem),

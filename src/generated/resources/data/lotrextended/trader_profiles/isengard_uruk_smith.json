@@ -150,9 +150,31 @@
         "item": "minecraft:feather",
         "averageCost": 2
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 3
+      }
     }
   ],
   "sellToPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:arrow",
+        "averageCost": 3,
+        "count": 4
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 6
+      }
+    },
     {
       "weight": 50,
       "stack": {
@@ -256,6 +278,14 @@
       "stack": {
         "item": "lotr:orc_bomb_fire",
         "averageCost": 40
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:uruk_crossbow",
+        "averageCost": 18,
+        "nbt": "{Damage:0}"
       }
     },
     {

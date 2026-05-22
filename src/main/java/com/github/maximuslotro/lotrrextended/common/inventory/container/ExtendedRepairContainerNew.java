@@ -10,8 +10,10 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCrossbowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
@@ -835,7 +837,7 @@ public class ExtendedRepairContainerNew extends Container {
 	public static boolean isValidRepairMaterial(ItemStack inputItem, ItemStack repairMaterial) {
 		boolean regularRapair = inputItem.getItem().isValidRepairItem(inputItem, repairMaterial);
 		if(!regularRapair) {
-			if(inputItem.getItem() instanceof BowItem) {
+			if(!(inputItem.getItem() instanceof ExtendedBowItem) && inputItem.getItem() instanceof BowItem) {
 				return repairMaterial.getItem() == Items.STRING;
 			}
 			if(inputItem.getItem() instanceof FishingRodItem) {
@@ -847,7 +849,7 @@ public class ExtendedRepairContainerNew extends Container {
 			if(inputItem.getItem() instanceof SmokingPipeItem) {
 				return Tags.Items.LEATHER.contains(repairMaterial.getItem());
 			}
-			if(inputItem.getItem() instanceof CrossbowItem) {
+			if(!(inputItem.getItem() instanceof ExtendedCrossbowItem) && inputItem.getItem() instanceof CrossbowItem) {
 				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
 			}
 			if(inputItem.getItem() instanceof FlintAndSteelItem) {

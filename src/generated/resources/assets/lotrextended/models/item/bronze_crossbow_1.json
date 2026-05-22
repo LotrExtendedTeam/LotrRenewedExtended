@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:item/bronze_crossbow",
+  "textures": {
+    "layer0": "lotrextended:item/bronze_crossbow_pulling_1"
+  }
+}

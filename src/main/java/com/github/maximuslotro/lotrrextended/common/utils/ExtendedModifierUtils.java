@@ -473,10 +473,10 @@ public class ExtendedModifierUtils {
 		if(pEvent.getSlotType()==EquipmentSlotType.MAINHAND) {
 			Map<ExtendedModifierType, ExtendedModifier> modifiers = getModifierListByTypeSafe(pEvent.getItemStack());
 			if(modifiers.containsKey(ExtendedModifierType.MELEE_REACH)) {
-				pEvent.addModifier(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", modifiers.get(ExtendedModifierType.MELEE_REACH).getModifierTeir()>0 ? 0.5D : -0.5D, Operation.ADDITION));
+				pEvent.addModifier(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", modifiers.get(ExtendedModifierType.MELEE_REACH).getModifierTeir()>0 ? 0.25F : -0.25F, Operation.MULTIPLY_BASE));
 			}
 			if(modifiers.containsKey(ExtendedModifierType.MELEE_SPEED)) {
-				pEvent.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", modifiers.get(ExtendedModifierType.MELEE_SPEED).getModifierTeir()>0 ? 0.5D : -0.5D, Operation.ADDITION));
+				pEvent.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", modifiers.get(ExtendedModifierType.MELEE_SPEED).getModifierTeir()>0 ? 0.25F : -0.25F, Operation.MULTIPLY_BASE));
 			}
 		}
 		if (pEvent.getItemStack().getItem() instanceof ArmorItem && ((ArmorItem) pEvent.getItemStack().getItem()).getSlot()==pEvent.getSlotType()) {
@@ -698,6 +698,8 @@ public class ExtendedModifierUtils {
 			return ExtendedModifierType.UNDERWATER_BREATHING;
 		} else if (enchantment == Enchantments.RESPIRATION) {
 			return ExtendedModifierType.UNDERWATER_BREATHING;
+		} else if (enchantment == Enchantments.QUICK_CHARGE) {
+			return ExtendedModifierType.CHARGE_SPEED;
 		} else {
 			// Not mapped or blocked → return UNKNOWN
 			return ExtendedModifierType.UNKNOWN;

@@ -413,7 +413,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof LOTRSaplingBlock) {
-					genSapplingBlock((LOTRSaplingBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey()));
+					genSaplingBlock((LOTRSaplingBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey()));
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedHangingBlock) {
@@ -431,7 +431,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					continue;
 				}
 				if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
-					genPottedSapplingBlock((LOTRPottedPlantBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey().substring(7)));
+					genPottedSaplingBlock((LOTRPottedPlantBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey().substring(7)));
 					continue;
 				}
 				if(block.getValue().get() instanceof LOTRWoodPressurePlateBlock) {
@@ -2036,13 +2036,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().wallInventory("lotr:" + wall.getRegistryName().getPath(), texture);
 	}
 
-	private void genSapplingBlock(LOTRSaplingBlock sapling, ResourceLocation texture) {
+	private void genSaplingBlock(LOTRSaplingBlock sapling, ResourceLocation texture) {
 		registeredBlocks.add(sapling);
 		ModelFile model = models().cross("lotrextended:"+sapling.getRegistryName().getPath(), texture);
 		simpleBlock(sapling, model);
 	}
 
-	private void genPottedSapplingBlock(LOTRPottedPlantBlock sapling, ResourceLocation texture) {
+	private void genPottedSaplingBlock(LOTRPottedPlantBlock sapling, ResourceLocation texture) {
 		registeredBlocks.add(sapling);
 		ResourceLocation parent = mcLoc("block/flower_pot_cross");
 		ModelFile model = models().withExistingParent("lotrextended:"+sapling.getRegistryName().getPath(), parent).texture("plant", texture);

@@ -1,3 +1,45 @@
+(Beta 1.10.1)
+* Blocks
+  * Fixed breaking generated stone chests outside the barrow downs causing wights to spawn
+  * Fixed large handheld items rendering tiny on weapon racks (bows, spears, long swords, staffs, and some axes)
+* Entities
+  * Fixed Uruk berserkers not wearing helmets
+  * Fixed Ducks missing a texture when spawned from egg
+* Compatibility
+  * Fixed worldedit //paste command causing crashes
+* Features
+  * Fixed Invasion bossbars failing to disappear in numerous cases
+  * Fixed Invasions spawning glitched/ghost Orcs riding wargs causing NPCs to attack thin air
+* Hired Units
+  * Fixed blue dwarven axe thrower units using the wrong axe when re-equipped
+  * Fixed Isengard units wearing bone helmets in the chestplate slot
+* Items
+  * Fixed barren dirt not spawning when salting the ground
+* Loot-Tables
+  * Added melon seeds to several chest loot-tables
+  * Added several missing loot-tables to Orthanc’s chests
+  * Added loot-tables to Orthanc’s bookshelves
+* Misc
+  * Added 1 new advancements in Extended (51 currently)
+  * Added 1 advancements from Legacy (54.7% currently ported)
+  * Fixed all mossy renewed bricks not being craftable with moss
+  * Fixed Dunland hiring advancement
+  * Fixed duplicate boar armors in JEI
+  * Fixed non-alcoholic drink advancements not triggering
+  * Moved coral block recipe into coral recipebook group
+* Modifiers
+  * Fixed item repair logic on anvil being broken
+  * Fixed invalid modifier upgrades being allowed on anvils
+  * Fixed material items being renamed on anvils in addition to the output item
+  * Fixed melee speed and reach modifiers applying incorrect stats
+* Structures
+  * Fixed several Lindon Hall and Castle issues
+  * Nerfed some op easter egg loot in Orthanc
+* Textures
+  * Reworked the Glamdring texture to be more polished
+* Trading
+  * Added warg fur helmets and armor to orc trader pools
+
 (Beta 1.10.0)
 * Banner Protection
   * Added dedicated permissions to banner's Faction Mode
@@ -83,7 +125,7 @@
   * Reworked the rarity of shields for several unit types
 * Items
   * Added Ebony Boat
-  * Added Ebony Sappling
+  * Added Ebony Sapling
   * Added Gundabad warg armor
   * Added Leather warg armor
   * Added Uruk Shields
@@ -165,7 +207,7 @@
   * Added missing items to orc trader trade pools
   * Added shields to trader trade pools
 * WorldGen
- * Added buttresses, embrasures, and merlons to wall generation
+  * Added buttresses, embrasures, and merlons to wall generation
   * Disabled meteorites from spawning in water
   * Ported the Ring of Isengard
   * Ported waste block pits in Nan Curunír (not piles)

@@ -1429,7 +1429,7 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		}
 	}
 
-	protected void makeBowRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> bandItem, ITag<Item> resource, String resourceName, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void makeBowRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, ITag<Item> resource, String resourceName, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if (table == null) {
@@ -1437,7 +1437,7 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X#")
 			.pattern("X #")
 			.pattern(" X#")
-			.define('#', Ingredient.of(bandItem.get()))
+			.define('#', Ingredient.of(ExtendedItems.BOWSTRING.get()))
 			.define('X', Ingredient.of(resource))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
@@ -1446,8 +1446,36 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X#")
 			.pattern("X #")
 			.pattern(" X#")
-			.define('#', Ingredient.of(bandItem.get()))
+			.define('#', Ingredient.of(ExtendedItems.BOWSTRING.get()))
 			.define('X', Ingredient.of(resource))
+			.unlockedBy("has_"+resourceName, has(resource))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+
+	protected void makeCrossbowRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, ITag<Item> resource, String resourceName, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if (table == null) {
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			.pattern("XXS")
+			.pattern("#TX")
+			.pattern("S#X")
+			.define('#', Ingredient.of(ExtendedItems.BOWSTRING.get()))
+			.define('X', Ingredient.of(resource))
+			.define('S', Ingredient.of(STICKS))
+			.define('T', Ingredient.of(Items.TRIPWIRE_HOOK))
+			.unlockedBy("has_"+resourceName, has(resource))
+			.save(consumer, lotrLoc(name));
+		} else {
+			ExtendedFactionShapedRecipeBuilder.shaped(itemToBeCrafted.get(), table)
+			.pattern("XXS")
+			.pattern("#TX")
+			.pattern("S#X")
+			.define('#', Ingredient.of(ExtendedItems.BOWSTRING.get()))
+			.define('X', Ingredient.of(resource))
+			.define('S', Ingredient.of(STICKS))
+			.define('T', Ingredient.of(Items.TRIPWIRE_HOOK))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}

@@ -41,10 +41,8 @@ public class MixinSmithingTableBlock {
 	@Inject(method = "getMenuProvider(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/inventory/container/INamedContainerProvider;", 
 		at = @At("TAIL"), cancellable = true)
 	public void getMenuProvider$Extended(BlockState pState, World pLevel, BlockPos pPos, CallbackInfoReturnable<INamedContainerProvider> cir) {
-		if(LOTRDimensions.isModDimension(pLevel)) {
-			cir.setReturnValue(new SimpleNamedContainerProvider((p_220272_2_, p_220272_3_, p_220272_4_) -> {
-				return new ExtendedSmithingTableContainer(p_220272_2_, p_220272_3_, IWorldPosCallable.create(pLevel, pPos));
-			}, ExtendedSmithingTableContainer.CONTAINER_TITLE));
-		}
+		cir.setReturnValue(new SimpleNamedContainerProvider((p_220272_2_, p_220272_3_, p_220272_4_) -> {
+			return new ExtendedSmithingTableContainer(p_220272_2_, p_220272_3_, IWorldPosCallable.create(pLevel, pPos));
+		}, ExtendedSmithingTableContainer.CONTAINER_TITLE));
 	}
 }
