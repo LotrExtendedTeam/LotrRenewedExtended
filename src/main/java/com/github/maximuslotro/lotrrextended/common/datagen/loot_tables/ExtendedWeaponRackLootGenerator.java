@@ -232,6 +232,16 @@ public class ExtendedWeaponRackLootGenerator extends ChestLootTables  {
 		make(consumer, ExtendedLootTables.LINDON_BOW_WEAPONRACKS, makePool()
 			.add(addEntry(ExtendedItems.LINDON_BOW.get(), 2)));
 
+		make(consumer, ExtendedLootTables.ISENGARD_WEAPONRACKS, makePool()
+				.add(addEntry(LOTRItems.URUK_SPEAR.get(), 50))
+				.add(addEntry(LOTRItems.URUK_CLEAVER.get(), 100))
+				.add(addEntry(LOTRItems.URUK_BERSERKER_CLEAVER.get(), 25))
+				.add(addEntry(LOTRItems.URUK_DAGGER.get(), 75))
+				.add(addEntry(LOTRItems.URUK_AXE.get(), 50))
+				.add(addEntry(LOTRItems.URUK_PICKAXE.get(), 50))
+				.add(addEntry(LOTRItems.URUK_SHOVEL.get(), 50))
+				.add(addEntry(ExtendedItems.URUK_CROSSBOW.get(), 70))
+				.add(addEntry(ExtendedItems.ORC_BOW.get(), 60)));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight){

@@ -4,7 +4,7 @@
     {
       "rolls": {
         "min": 1.0,
-        "max": 3.0,
+        "max": 2.0,
         "type": "minecraft:uniform"
       },
       "entries": [
@@ -85,7 +85,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 30,
+          "weight": 10,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -100,7 +100,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 40,
+          "weight": 20,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -115,7 +115,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 35,
+          "weight": 25,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -160,7 +160,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 35,
+          "weight": 55,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -346,10 +346,40 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
             }
           ],
           "name": "lotr:skull_goblet"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:waterskin"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:orc_draught"
         },
         {
           "type": "minecraft:item",

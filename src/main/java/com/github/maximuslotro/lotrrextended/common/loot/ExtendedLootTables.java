@@ -162,6 +162,8 @@ public class ExtendedLootTables {
 	public static final ResourceLocation LINDON_EQUIPMENT_WEAPONRACKS = registerWeaponRack("lindon_equipment");
 	public static final ResourceLocation LINDON_BOW_WEAPONRACKS = registerWeaponRack("lindon_bow");
 
+	public static final ResourceLocation ISENGARD_WEAPONRACKS = registerWeaponRack("isengard");
+
 	// POTS
 	public static final ResourceLocation BLUE_MOUNTAINS_TRADER_HALL_POT = registerPot("blue_mountains_trader_hall");
 	public static final ResourceLocation RIVENDELL_POT = registerPot("rivendell");
