@@ -113,7 +113,7 @@ public class ExtendedStoneGrinderContainer extends Container {
 	}
 
 	protected boolean canMill(ItemStack pStack) {
-		return this.level.getRecipeManager().getRecipeFor(ExtendedRecipeTypes.MILLSTONE, new Inventory(pStack), this.level).isPresent();
+		return this.level.getRecipeManager().getRecipeFor(ExtendedRecipeTypes.STONE_GRINDER, new Inventory(pStack), this.level).isPresent();
 	}
 
 	protected boolean isLubrication(ItemStack pStack) {

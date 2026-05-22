@@ -103,6 +103,7 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 				}
 			}
 		}
+		//printPriceRanges();
 	}
 
 	private static void populateCheckingList(List<ExtendedTraderPoolItem> pool, Map<ItemStack, List<Integer>> list) {
@@ -150,5 +151,26 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 
 	public ExtendedTraderProfile.Builder make(int pTradingAlignmentRequired) {
 		return new ExtendedTraderProfile.Builder(pTradingAlignmentRequired);
+	}
+
+	private void printPriceRanges() {
+		Map<String, Integer> maxSellMap = new HashMap<>();
+		Map<String, Integer> maxBuyMap = new HashMap<>();
+		// Collect max sell prices
+		for (Entry<ItemStack, List<Integer>> entry : soldItems.entrySet()) {
+			String key = entry.getKey().getItem().getRegistryName().toString();
+			int max = entry.getValue().stream().mapToInt(Integer::intValue).max().orElse(0);
+			maxSellMap.merge(key, max, Math::max);
+		}
+		// Collect max buy prices
+		for (Entry<ItemStack, List<Integer>> entry : boughtItems.entrySet()) {
+			String key = entry.getKey().getItem().getRegistryName().toString();
+			int max = entry.getValue().stream().mapToInt(Integer::intValue).max().orElse(0);
+			maxBuyMap.merge(key, max, Math::max);
+		}
+		LOGGER.info("=== MAX SELL PRICES ===");
+		maxSellMap.entrySet().stream().sorted((a, b) -> Integer.compare(b.getValue(), a.getValue())).forEach(entry -> LOGGER.info("{} -> {}", entry.getKey(), entry.getValue()));
+		LOGGER.info("=== MAX BUY PRICES ===");
+		maxBuyMap.entrySet().stream().sorted((a, b) -> Integer.compare(b.getValue(), a.getValue())).forEach(entry -> LOGGER.info("{} -> {}", entry.getKey(), entry.getValue()));
 	}
 }

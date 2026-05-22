@@ -146,7 +146,7 @@ public class ExtendedStoneChestBlock extends ExtendedSingleChestBlock {
 			// Disable chest opening if wight was spawned
 			if (!spawned && inamedcontainerprovider != null) {
 				pPlayerEntity.openMenu(inamedcontainerprovider);
-				pPlayerEntity.awardStat(ExtendedStats.INTERACT_WITH_STONE_CHEST);
+				pPlayerEntity.awardStat(ExtendedStats.OPENED_STONE_CHEST);
 				PiglinTasks.angerNearbyPiglins(pPlayerEntity, true);
 			}
 			return ActionResultType.CONSUME;

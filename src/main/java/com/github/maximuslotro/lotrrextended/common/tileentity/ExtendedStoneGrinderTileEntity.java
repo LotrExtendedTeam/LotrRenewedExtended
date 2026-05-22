@@ -148,7 +148,7 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 				usingLubrication=false;
 			}
 			if (this.isPowered() && !this.items.get(0).isEmpty()) {
-				ExtendeStoneGrinderRecipe irecipe = this.level.getRecipeManager().getRecipeFor(ExtendedRecipeTypes.MILLSTONE, this, this.level).orElse(null);
+				ExtendeStoneGrinderRecipe irecipe = this.level.getRecipeManager().getRecipeFor(ExtendedRecipeTypes.STONE_GRINDER, this, this.level).orElse(null);
 				if (this.isPowered() && this.canGrind(irecipe)) {
 					++this.grindingProgress;
 					if (this.grindingProgress == this.grindingTotalTime) {
@@ -290,7 +290,7 @@ public class ExtendedStoneGrinderTileEntity extends LockableTileEntity implement
 	}
 
 	protected int getTotalMillingTime() {
-		return this.level.getRecipeManager().getRecipeFor(ExtendedRecipeTypes.MILLSTONE, this, this.level).map(ExtendeStoneGrinderRecipe::getMillingTime).orElse(200);
+		return this.level.getRecipeManager().getRecipeFor(ExtendedRecipeTypes.STONE_GRINDER, this, this.level).map(ExtendeStoneGrinderRecipe::getMillingTime).orElse(200);
 	}
 
 	@Override

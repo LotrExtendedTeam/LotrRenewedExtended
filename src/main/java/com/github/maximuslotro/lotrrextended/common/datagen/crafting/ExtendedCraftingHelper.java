@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedCrucibleRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedMillingRecipeBuilder;
@@ -36,6 +37,7 @@ import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.data.SingleItemRecipeBuilder;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
@@ -49,7 +51,7 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedCraftingHelper extends RecipeProvider {
 
-	public static List<String> GENERATEDRECIPES = new ArrayList<>();
+	public List<String> GENERATEDRECIPES = new ArrayList<>();
 
     public static final ITag.INamedTag<Item> LOGS = ItemTags.LOGS;
     public static final ITag.INamedTag<Item> STICKS = Tags.Items.RODS_WOODEN;
@@ -2164,6 +2166,42 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		String name2 = input.get().getRegistryName().getNamespace()+"_"+input.get().getRegistryName().getPath();
 		ExtendedMillingRecipeBuilder.grinding(output.get(), countMin, countMax, Ingredient.of(input.get()), breakChance, ExtendedRecipeSerializers.STONE_GRINDING_SERIALIZER.get())
 		.save(consumer, extendedLoc(name1+"_grinded_from_"+name2));
+	}
+
+	protected void makeOreFurnaceRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp) {
+		makeSmeltingRecipe(pFinishedRecipeConsumer, ore, result, xp, 200);
+		makeBlastingRecipe(pFinishedRecipeConsumer, ore, result, xp, 100);
+	}
+
+	protected void makeSmeltingRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp, int ticks) {
+		GENERATEDRECIPES.add(result.getRegistryName().getPath());
+		CookingRecipeBuilder.smelting(Ingredient.of(ore), result, xp, ticks)
+		.unlockedBy("has_"+ore.getRegistryName().getPath(), has(ore))
+		.save(pFinishedRecipeConsumer, result.getRegistryName().getPath()+"_from_smelting");
+	}
+
+	protected void makeBlastingRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp, int ticks) {
+		GENERATEDRECIPES.add(result.getRegistryName().getPath());
+		CookingRecipeBuilder.blasting(Ingredient.of(ore), result, xp, ticks)
+		.unlockedBy("has_"+ore.getRegistryName().getPath(), has(ore))
+		.save(pFinishedRecipeConsumer, result.getRegistryName().getPath()+"_from_blasting");
+	}
+
+	protected void makeCrucibleRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Supplier<? extends Item> input, Supplier<? extends Item> result) {
+		makeCrucibleRecipe(pFinishedRecipeConsumer, input, result, 1);
+	}
+	protected void makeCrucibleRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Supplier<? extends Item> input, Supplier<? extends Item> result, int count) {
+		GENERATEDRECIPES.add(input.get().getRegistryName().getPath());
+		ExtendedCrucibleRecipeBuilder.specific(Ingredient.of(input.get()), new ItemStack(result.get(), count), ExtendedRecipeSerializers.CRUCIBLE_SPECIFIC_SERIALIZER.get())
+		.save(pFinishedRecipeConsumer);
+	}
+	protected void makeCrucibleRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Supplier<? extends Item> input, Supplier<? extends Item> result1, Supplier<? extends Item> result2) {
+		makeCrucibleRecipe(pFinishedRecipeConsumer, input, result1, 1, result2, 1);
+	}
+	protected void makeCrucibleRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Supplier<? extends Item> input, Supplier<? extends Item> result1, int count1, Supplier<? extends Item> result2, int count2) {
+		GENERATEDRECIPES.add(input.get().getRegistryName().getPath());
+		ExtendedCrucibleRecipeBuilder.specific(Ingredient.of(input.get()), new ItemStack(result1.get(), count1), new ItemStack(result2.get(), count2), ExtendedRecipeSerializers.CRUCIBLE_SPECIFIC_SERIALIZER.get())
+		.save(pFinishedRecipeConsumer);
 	}
 
 	public void checkForMissingRecipes() {

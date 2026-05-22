@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:harnennor_shield"
+  },
+  "result1": {
+    "item": "lotr:bronze_ingot"
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

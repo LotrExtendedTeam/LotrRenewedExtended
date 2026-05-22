@@ -1,0 +1,16 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "minecraft:chainmail_chestplate"
+  },
+  "result1": {
+    "item": "minecraft:iron_ingot",
+    "count": 5
+  },
+  "result2": {
+    "item": "minecraft:iron_nugget",
+    "count": 3
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}
