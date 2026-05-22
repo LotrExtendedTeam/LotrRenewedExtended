@@ -1,0 +1,12 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "minecraft:turtle_helmet"
+  },
+  "result1": {
+    "item": "minecraft:scute",
+    "count": 5
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

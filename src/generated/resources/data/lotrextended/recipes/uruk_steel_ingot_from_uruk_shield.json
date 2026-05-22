@@ -4,7 +4,8 @@
     "item": "lotr:uruk_shield"
   },
   "result1": {
-    "item": "lotr:uruk_steel_ingot"
+    "item": "lotr:uruk_steel_ingot",
+    "count": 2
   },
   "melt_time": 400,
   "experience": 1.0

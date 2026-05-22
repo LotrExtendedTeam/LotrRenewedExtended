@@ -6,7 +6,6 @@ import java.util.function.Consumer;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
 import lotr.common.init.ExtendedItems;
-import lotr.common.init.LOTRItemGroups;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.LOTRArmorItem;
 import net.minecraft.data.DataGenerator;
@@ -86,7 +85,25 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, ()->Items.IRON_HORSE_ARMOR, ()->Items.IRON_INGOT, 6);
 		makeCrucibleRecipe(consumer, ()->Items.LEATHER_HORSE_ARMOR, ()->Items.LEATHER, 7);
 		makeCrucibleRecipe(consumer, ()->Items.SHIELD, ()->Items.IRON_INGOT);
-
+		makeCrucibleRecipe(consumer, ()->Items.BOW, ()->Items.STRING, 3);
+		makeCrucibleRecipe(consumer, ()->Items.DIAMOND_SWORD, ()->Items.DIAMOND, 2);
+		makeCrucibleRecipe(consumer, ()->Items.DIAMOND_SHOVEL, ()->Items.DIAMOND);
+		makeCrucibleRecipe(consumer, ()->Items.DIAMOND_PICKAXE, ()->Items.DIAMOND, 3);
+		makeCrucibleRecipe(consumer, ()->Items.DIAMOND_AXE, ()->Items.DIAMOND, 3);
+		makeCrucibleRecipe(consumer, ()->Items.DIAMOND_HOE, ()->Items.DIAMOND, 2);
+		makeCrucibleRecipe(consumer, ()->Items.DIAMOND_HELMET, ()->Items.DIAMOND, 5);
+		makeCrucibleRecipe(consumer, ()->Items.DIAMOND_CHESTPLATE, ()->Items.DIAMOND, 8);
+		makeCrucibleRecipe(consumer, ()->Items.DIAMOND_LEGGINGS, ()->Items.DIAMOND, 7);
+		makeCrucibleRecipe(consumer, ()->Items.DIAMOND_BOOTS, ()->Items.DIAMOND, 4);
+		makeCrucibleRecipe(consumer, ()->Items.FISHING_ROD, ()->Items.STRING, 2);
+		makeCrucibleRecipe(consumer, ()->Items.CARROT_ON_A_STICK, ()->Items.STRING, 2);
+		makeCrucibleRecipe(consumer, ()->Items.WARPED_FUNGUS_ON_A_STICK, ()->Items.STRING, 2);
+		makeCrucibleRecipe(consumer, ()->Items.TURTLE_HELMET, ()->Items.SCUTE, 5);
+		makeCrucibleRecipe(consumer, ()->Items.STONE_SWORD, ()->Items.STONE, 2);
+		makeCrucibleRecipe(consumer, ()->Items.STONE_SHOVEL, ()->Items.STONE);
+		makeCrucibleRecipe(consumer, ()->Items.STONE_PICKAXE, ()->Items.STONE, 3);
+		makeCrucibleRecipe(consumer, ()->Items.STONE_AXE, ()->Items.STONE, 3);
+		makeCrucibleRecipe(consumer, ()->Items.STONE_HOE, ()->Items.STONE, 2);
 	}
 
 	private void buildRenewedRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -204,7 +221,7 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, LOTRItems.MITHRIL_TRIMMED_DWARVEN_CHESTPLATE, LOTRItems.DWARVEN_STEEL_INGOT, 8, LOTRItems.MITHRIL_NUGGET, 8);
 		makeCrucibleRecipe(consumer, LOTRItems.MITHRIL_TRIMMED_DWARVEN_LEGGINGS, LOTRItems.DWARVEN_STEEL_INGOT, 7, LOTRItems.MITHRIL_NUGGET, 8);
 		makeCrucibleRecipe(consumer, LOTRItems.MITHRIL_TRIMMED_DWARVEN_BOOTS, LOTRItems.DWARVEN_STEEL_INGOT, 4, LOTRItems.MITHRIL_NUGGET, 8);
-		
+
 		makeCrucibleRecipe(consumer, LOTRItems.MITHRIL_SWORD, LOTRItems.MITHRIL_INGOT, 2);
 		makeCrucibleRecipe(consumer, LOTRItems.MITHRIL_SHOVEL, LOTRItems.MITHRIL_INGOT);
 		makeCrucibleRecipe(consumer, LOTRItems.MITHRIL_PICKAXE, LOTRItems.MITHRIL_INGOT, 3);
@@ -383,6 +400,18 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, LOTRItems.URUK_SPEAR, LOTRItems.URUK_STEEL_INGOT);
 		makeCrucibleRecipe(consumer, LOTRItems.URUK_DAGGER, LOTRItems.URUK_STEEL_INGOT);
 
+		makeCrucibleRecipe(consumer, LOTRItems.BONE_HELMET, ()->Items.BONE, 5);
+		makeCrucibleRecipe(consumer, LOTRItems.BONE_CHESTPLATE, ()->Items.BONE, 8);
+		makeCrucibleRecipe(consumer, LOTRItems.BONE_LEGGINGS, ()->Items.BONE, 7);
+		makeCrucibleRecipe(consumer, LOTRItems.BONE_BOOTS, ()->Items.BONE, 2);
+
+		makeCrucibleRecipe(consumer, LOTRItems.FUR_HELMET, LOTRItems.FUR, 5);
+		makeCrucibleRecipe(consumer, LOTRItems.FUR_CHESTPLATE, LOTRItems.FUR, 8);
+		makeCrucibleRecipe(consumer, LOTRItems.FUR_LEGGINGS, LOTRItems.FUR, 7);
+		makeCrucibleRecipe(consumer, LOTRItems.FUR_BOOTS, LOTRItems.FUR, 4);
+
+		makeCrucibleRecipe(consumer, LOTRItems.STONE_SPEAR, ()->Items.STONE);
+		makeCrucibleRecipe(consumer, LOTRItems.STONE_DAGGER, ()->Items.STONE);
 	}
 
 	private void buildExtendedRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -464,6 +493,11 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 
 		makeCrucibleRecipe(consumer, ExtendedItems.ORC_BOW, LOTRItems.ORC_STEEL_INGOT, 3);
 		makeCrucibleRecipe(consumer, ExtendedItems.GUNDABAD_URUK_BOW, LOTRItems.URUK_STEEL_INGOT, 3);
+		makeCrucibleRecipe(consumer, ExtendedItems.DUNEDAIN_BOW, ExtendedItems.BOWSTRING, 3);
+		makeCrucibleRecipe(consumer, ExtendedItems.LINDON_BOW, ExtendedItems.BOWSTRING, 3);
+		makeCrucibleRecipe(consumer, ExtendedItems.LONGBOW, ExtendedItems.BOWSTRING, 3);
+		makeCrucibleRecipe(consumer, ExtendedItems.RANGER_BOW, ExtendedItems.BOWSTRING, 3);
+		makeCrucibleRecipe(consumer, ExtendedItems.RIVENDELL_BOW, ExtendedItems.BOWSTRING, 3);
 
 		makeCrucibleRecipe(consumer, ExtendedItems.BLUE_DWARVEN_SHIELD, LOTRItems.DWARVEN_STEEL_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.BREE_SHIELD, ()->Items.IRON_INGOT);
@@ -471,6 +505,7 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, ExtendedItems.GUNDABAD_SHIELD, LOTRItems.URUK_STEEL_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.IMLADRIS_GUARD_SHIELD, LOTRItems.ELVEN_STEEL_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.LINDON_SHIELD, LOTRItems.ELVEN_STEEL_INGOT);
+		makeCrucibleRecipe(consumer, ExtendedItems.EREGION_SHIELD, LOTRItems.ELVEN_STEEL_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.RIVENDELL_SHIELD, LOTRItems.ELVEN_STEEL_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.URUK_SHIELD, LOTRItems.URUK_STEEL_INGOT);
 
@@ -514,6 +549,43 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, ExtendedItems.MORGUL_VASSAL_CHESTPLATE, ExtendedItems.MORGUL_STEEL_INGOT, 8);
 		makeCrucibleRecipe(consumer, ExtendedItems.MORGUL_VASSAL_LEGGINGS, ExtendedItems.MORGUL_STEEL_INGOT, 7);
 		makeCrucibleRecipe(consumer, ExtendedItems.MORGUL_VASSAL_BOOTS, ExtendedItems.MORGUL_STEEL_INGOT, 4);
+
+		makeCrucibleRecipe(consumer, ExtendedItems.BRONZE_CROSSBOW, LOTRItems.BRONZE_INGOT, 4);
+		makeCrucibleRecipe(consumer, ExtendedItems.IRON_CROSSBOW, ()->Items.IRON_INGOT, 4);
+		makeCrucibleRecipe(consumer, ExtendedItems.URUK_CROSSBOW, LOTRItems.URUK_STEEL_INGOT, 4);
+
+		makeCrucibleRecipe(consumer, ExtendedItems.BLACK_WARG_HELMET, ExtendedItems.BLACK_FUR, 5);
+		makeCrucibleRecipe(consumer, ExtendedItems.BLACK_WARG_CHESTPLATE, ExtendedItems.BLACK_FUR, 8);
+		makeCrucibleRecipe(consumer, ExtendedItems.BLACK_WARG_LEGGINGS, ExtendedItems.BLACK_FUR, 7);
+		makeCrucibleRecipe(consumer, ExtendedItems.BLACK_WARG_BOOTS, ExtendedItems.BLACK_FUR, 4);
+
+		makeCrucibleRecipe(consumer, ExtendedItems.BROWN_WARG_HELMET, LOTRItems.FUR, 5);
+		makeCrucibleRecipe(consumer, ExtendedItems.BROWN_WARG_CHESTPLATE, LOTRItems.FUR, 8);
+		makeCrucibleRecipe(consumer, ExtendedItems.BROWN_WARG_LEGGINGS, LOTRItems.FUR, 7);
+		makeCrucibleRecipe(consumer, ExtendedItems.BROWN_WARG_BOOTS, LOTRItems.FUR, 4);
+
+		makeCrucibleRecipe(consumer, ExtendedItems.GRAY_WARG_HELMET, ExtendedItems.GRAY_FUR, 5);
+		makeCrucibleRecipe(consumer, ExtendedItems.GRAY_WARG_CHESTPLATE, ExtendedItems.GRAY_FUR, 8);
+		makeCrucibleRecipe(consumer, ExtendedItems.GRAY_WARG_LEGGINGS, ExtendedItems.GRAY_FUR, 7);
+		makeCrucibleRecipe(consumer, ExtendedItems.GRAY_WARG_BOOTS, ExtendedItems.GRAY_FUR, 4);
+
+		makeCrucibleRecipe(consumer, ExtendedItems.SILVER_WARG_HELMET, ExtendedItems.SILVER_FUR, 5);
+		makeCrucibleRecipe(consumer, ExtendedItems.SILVER_WARG_CHESTPLATE, ExtendedItems.SILVER_FUR, 8);
+		makeCrucibleRecipe(consumer, ExtendedItems.SILVER_WARG_LEGGINGS, ExtendedItems.SILVER_FUR, 7);
+		makeCrucibleRecipe(consumer, ExtendedItems.SILVER_WARG_BOOTS, ExtendedItems.SILVER_FUR, 4);
+
+		makeCrucibleRecipe(consumer, ExtendedItems.WHITE_WARG_HELMET, ExtendedItems.WHITE_FUR, 5);
+		makeCrucibleRecipe(consumer, ExtendedItems.WHITE_WARG_CHESTPLATE, ExtendedItems.WHITE_FUR, 8);
+		makeCrucibleRecipe(consumer, ExtendedItems.WHITE_WARG_LEGGINGS, ExtendedItems.WHITE_FUR, 7);
+		makeCrucibleRecipe(consumer, ExtendedItems.WHITE_WARG_BOOTS, ExtendedItems.WHITE_FUR, 4);
+
+		makeCrucibleRecipe(consumer, ExtendedItems.BONE_SWORD, ()->Items.BONE, 2);
+		makeCrucibleRecipe(consumer, ExtendedItems.BONE_SHOVEL, ()->Items.BONE);
+		makeCrucibleRecipe(consumer, ExtendedItems.BONE_PICKAXE, ()->Items.BONE, 3);
+		makeCrucibleRecipe(consumer, ExtendedItems.BONE_AXE, ()->Items.BONE, 3);
+		makeCrucibleRecipe(consumer, ExtendedItems.BONE_HOE, ()->Items.BONE, 2);
+		makeCrucibleRecipe(consumer, ExtendedItems.BONE_SPEAR, ()->Items.BONE);
+		makeCrucibleRecipe(consumer, ExtendedItems.BONE_DAGGER, ()->Items.BONE);
 	}
 
 	private void buildOtherModsRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -526,29 +598,39 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 
 	@Override
 	public void checkForMissingRecipes() {
+		// Can't melt special uncraftables
+		GENERATEDRECIPES.add(Items.ELYTRA.getRegistryName().getPath());
+		GENERATEDRECIPES.add(Items.TRIDENT.getRegistryName().getPath());
+		GENERATEDRECIPES.add(LOTRItems.SMOKING_PIPE.get().getRegistryName().getPath());
+		// Can't melt wooden/burnable items
+		GENERATEDRECIPES.add(Items.WOODEN_AXE.getRegistryName().getPath());
+		GENERATEDRECIPES.add(Items.WOODEN_PICKAXE.getRegistryName().getPath());
+		GENERATEDRECIPES.add(Items.WOODEN_HOE.getRegistryName().getPath());
+		GENERATEDRECIPES.add(Items.WOODEN_SWORD.getRegistryName().getPath());
+		GENERATEDRECIPES.add(Items.WOODEN_SHOVEL.getRegistryName().getPath());
+		GENERATEDRECIPES.add(LOTRItems.WOODEN_DAGGER.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(LOTRItems.MALLORN_AXE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(LOTRItems.MALLORN_PICKAXE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(LOTRItems.MALLORN_HOE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(LOTRItems.MALLORN_SHOVEL.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(LOTRItems.MALLORN_SWORD.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(LOTRItems.DUNLENDING_CLUB.get().getRegistryName().getPath());
+		// Can't melt plates (clay based) (or wooden)
+		GENERATEDRECIPES.add(LOTRItems.WOODEN_PLATE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(LOTRItems.FINE_PLATE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(LOTRItems.STONEWARE_PLATE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(LOTRItems.CLAY_PLATE.get().getRegistryName().getPath());
+		// Can't melt story items
+		GENERATEDRECIPES.add(ExtendedItems.ANDURIL.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.GLAMDRING.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.STAFF_GANDALF_GRAY.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.STAFF_GANDALF_WHITE.get().getRegistryName().getPath());
+
 		for(Entry<RegistryKey<Item>, Item> entry : ForgeRegistries.ITEMS.getEntries()) {
 			if(entry.getValue().getRegistryName().getNamespace().equals("lotrfa")) {
 				continue;
 			}
-			if(entry.getValue().getRegistryName().getPath().contains("fur")) {
-				continue;
-			}
-			if(entry.getValue().getRegistryName().getPath().contains("bone")) {
-				continue;
-			}
-			if(entry.getValue().getRegistryName().getPath().contains("mallorn")) {
-				continue;
-			}
-			if(entry.getValue().getRegistryName().getPath().contains("stone")) {
-				continue;
-			}
-			if(entry.getValue().getRegistryName().getPath().contains("wooden")) {
-				continue;
-			}
-			if(entry.getValue().getRegistryName().getPath().contains("shield")) {
-				continue;
-			}
-			if(entry.getValue().getCreativeTabs().contains(LOTRItemGroups.STORY)) {
+			if(entry.getValue().getRegistryName().getPath().contains("netherite")) {
 				continue;
 			}
 			if(entry.getValue() instanceof LOTRArmorItem) {
