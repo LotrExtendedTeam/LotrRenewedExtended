@@ -887,7 +887,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		// BRONZE
 		makeThrowableAxeRecipe(consumer, ExtendedItems.BRONZE_THROWABLE_AXE, LOTRTags.Items.INGOTS_BRONZE, "bronze", null);
 		// MITHRIL
-		makeThrowableAxeRecipe(consumer, ExtendedItems.MITHRIL_MATTOCK, ExtendedTags.Items.MITHRIL_INGOT, "mithril_ingot", null);
+		makeMattockRecipe(consumer, ExtendedItems.MITHRIL_MATTOCK, ExtendedTags.Items.MITHRIL_INGOT, "mithril_ingot", null);
 		// Crystal Chandeliers
 		makeCrystalChandelierRecipe(consumer, ExtendedBlocks.EDHELVIR_CRYSTAL_CHANDELIER, LOTRItems.EDHELVIR_CRYSTAL, LOTRRecipes.ANY_HIGH_ELVEN);
 		makeCrystalChandelierRecipe(consumer, ExtendedBlocks.GLOWSTONE_CRYSTAL_CHANDELIER, LOTRItems.GLOWSTONE_CRYSTAL, null);

@@ -21,7 +21,6 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 	public ExtendedCrucibleRecipiesGenerator(DataGenerator gen) {
 		super(gen);
 	}
-	// Finished, copper, tin, bronze, gilded iron, iron, silver, mithril, orc steel, dwarven steel, elven, uruk, galvorn
 	@Override
 	protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
 		buildVanillaRecipes(consumer);
@@ -74,7 +73,7 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, ()->Items.FLINT_AND_STEEL, ()->Items.IRON_INGOT);
 		makeCrucibleRecipe(consumer, ()->Items.CAULDRON, ()->Items.IRON_INGOT, 7);
 		makeCrucibleRecipe(consumer, ()->Items.MINECART, ()->Items.IRON_INGOT, 5);
-		makeCrucibleRecipe(consumer, ()->Items.CROSSBOW, ()->Items.IRON_INGOT, 1, ()->Items.STRING, 2);
+		makeCrucibleRecipe(consumer, ()->Items.CROSSBOW, ()->Items.IRON_INGOT);
 		makeCrucibleRecipe(consumer, ()->Items.SMITHING_TABLE, ()->Items.IRON_INGOT, 2);
 		makeCrucibleRecipe(consumer, ()->Items.BLAST_FURNACE, ()->Items.IRON_INGOT, 5);
 		makeCrucibleRecipe(consumer, ()->Items.SADDLE, ()->Items.IRON_INGOT, 2);

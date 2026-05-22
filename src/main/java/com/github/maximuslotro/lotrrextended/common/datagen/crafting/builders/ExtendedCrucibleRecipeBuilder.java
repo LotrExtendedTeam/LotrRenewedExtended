@@ -1,20 +1,41 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedJsonSerializers;
 import com.google.gson.JsonObject;
 
+import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTRItems;
 import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedCrucibleRecipeBuilder {
+	/**
+	 * output1 -> valid output2
+	 */
+	private static final Map<Item, Item> VALID_SUB_OUTPUTS = new HashMap<>();
+
+	static {
+		VALID_SUB_OUTPUTS.put(Items.IRON_INGOT, Items.IRON_NUGGET);
+		VALID_SUB_OUTPUTS.put(Items.GOLD_INGOT, Items.GOLD_NUGGET);
+		VALID_SUB_OUTPUTS.put(LOTRItems.BRONZE_INGOT.get(), LOTRItems.BRONZE_NUGGET.get());
+		VALID_SUB_OUTPUTS.put(LOTRItems.SILVER_INGOT.get(), LOTRItems.SILVER_NUGGET.get());
+		VALID_SUB_OUTPUTS.put(LOTRItems.MITHRIL_INGOT.get(), LOTRItems.MITHRIL_NUGGET.get());
+		VALID_SUB_OUTPUTS.put(LOTRItems.ORC_STEEL_INGOT.get(), ExtendedItems.ORC_STEEL_NUGGET.get());
+	}
+
 	private final String group = "";
 	private final Ingredient ingredient;
 	private final ItemStack result1;
@@ -67,6 +88,14 @@ public class ExtendedCrucibleRecipeBuilder {
 		if (this.ingredient.isEmpty() || (this.result1.isEmpty() && this.result2.isEmpty())) {
 			throw new IllegalStateException("Invalid Crucible recipe! " + outputLocation);
 		}
+		// Validate output pair
+	    if (ingredient.getItems()[0].isDamageableItem() && !this.result2.isEmpty()) {
+	        Item output1 = this.result1.getItem();
+	        Item output2 = this.result2.getItem();
+	        if (VALID_SUB_OUTPUTS.containsKey(output1) && VALID_SUB_OUTPUTS.get(output1) != output2) {
+	        	ExtendedLog.info("Recipe "+outputLocation+" contains a second result that can be overwritten depending on durability");
+	        }
+	    }
 	}
 
 	public static class Result implements IFinishedRecipe {
