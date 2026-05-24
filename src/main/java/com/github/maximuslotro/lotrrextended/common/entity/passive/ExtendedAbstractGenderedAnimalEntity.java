@@ -218,7 +218,6 @@ public abstract class ExtendedAbstractGenderedAnimalEntity<T extends ExtendedAbs
      * otherwise sets it to genderless.
      *
      * @param gendered Whether this entity uses gender mechanics.
-     * @param serverWorld The world instance to use for randomization.
      */
 	public void setGenderRandomly(boolean gendered) {
 		if(!gendered) {

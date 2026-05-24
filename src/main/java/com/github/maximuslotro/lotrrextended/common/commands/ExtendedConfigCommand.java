@@ -65,6 +65,7 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableFixedStructures", ExtendedServerConfig.enableFixedStructures));
 		command.then(buildBoolean("enableFixedStructureImladris", ExtendedServerConfig.enableFixedStructureImladris));
 		command.then(buildBoolean("enableFixedStructureTowerHills", ExtendedServerConfig.enableFixedStructureTowerHills));
+		command.then(buildBoolean("enableFixedStructureOrthanc", ExtendedServerConfig.enableFixedStructureOrthanc));
 		// Register
 		dispatcher.register(command);
 	}

@@ -282,7 +282,8 @@ public class ExtendedCServerSettingsPacket {
 		// World Generation
 		FIXED_STRUCTURES(ValueType.BOOLEAN),
 		FIXED_STRUCTURE_IMLADRIS(ValueType.BOOLEAN),
-		FIXED_STRUCTURE_TOWER_HILLS(ValueType.BOOLEAN);
+		FIXED_STRUCTURE_TOWER_HILLS(ValueType.BOOLEAN),
+		FIXED_STRUCTURE_ORTHANC(ValueType.BOOLEAN);
 
 		private final ValueType valueType;
 

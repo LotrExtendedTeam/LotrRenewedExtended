@@ -162,6 +162,9 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 		addButton(worldgen.addButton("gui.lotrextended.serversettings.fixedstructuretowerhills.setting", 
 				ExtendedServerConfig.enableFixedStructureTowerHills, ExtendedSettingToggles.FIXED_STRUCTURE_TOWER_HILLS, 
 				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableFixedStructureTowerHills"));
+		addButton(worldgen.addButton("gui.lotrextended.serversettings.fixedstructureorthanc.setting", 
+			ExtendedServerConfig.enableFixedStructureOrthanc, ExtendedSettingToggles.FIXED_STRUCTURE_ORTHANC, 
+			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableFixedStructureOrthanc"));
 		catagories.add(worldgen);
 		SettingsCatagory worldMaintenance = new SettingsCatagory(this, 7, x, y, xTabs);
 		addButton(worldMaintenance.addCatagoryButton("gui.lotrextended.serversettings.category.worldmaintenance", "gui.lotrextended.serversettings.category.worldmaintenance.tooltip"));

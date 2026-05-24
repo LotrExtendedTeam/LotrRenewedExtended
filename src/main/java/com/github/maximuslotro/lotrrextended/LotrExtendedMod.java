@@ -180,6 +180,7 @@ public class LotrExtendedMod{
 			ExtendedServerData.loadAll();
 			MinecraftForge.EVENT_BUS.register(ExtendedStaffEvents.class);
 		}
+		startVersionChecks();
 	}
 
 	public void extendedServerStarted(FMLServerStartedEvent event) {
@@ -190,5 +191,19 @@ public class LotrExtendedMod{
 
 	public void extendedServerStopping(FMLServerStoppingEvent event) {
 		hackyChairManager.handleServerStopping();
+	}
+
+	public void startVersionChecks() {
+		String lastVersion = ExtendedServerConfig.lastWorldBootVersion.get();
+		String currentVersion = ModList.get().getModContainerById(LotrExtendedMod.MODID).get().getModInfo().getVersion().toString();
+		if(!lastVersion.equals(currentVersion)) {
+			ExtendedServerConfig.lastWorldBootVersion.set(currentVersion);
+			//Handle config updates for version changes
+			ExtendedLog.info("Updating Extended values for "+currentVersion);
+			// Update for 1.10.2
+			if(lastVersion.equals("null")) {
+				ExtendedServerConfig.gateToggleLength.set(24);
+			}
+		}
 	}
 }
