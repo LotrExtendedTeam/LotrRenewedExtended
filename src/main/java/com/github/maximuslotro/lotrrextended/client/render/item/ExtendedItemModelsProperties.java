@@ -50,6 +50,7 @@ public class ExtendedItemModelsProperties {
 		registerCrossbowItemModelProperties(ExtendedItems.BRONZE_CROSSBOW.get());
 		registerCrossbowItemModelProperties(ExtendedItems.IRON_CROSSBOW.get());
 		registerCrossbowItemModelProperties(ExtendedItems.URUK_CROSSBOW.get());
+		registerCrossbowItemModelProperties(ExtendedItems.MITHRIL_CROSSBOW.get());
 	}
 
 	public static void registerBowItemModelProperties(Item item) {

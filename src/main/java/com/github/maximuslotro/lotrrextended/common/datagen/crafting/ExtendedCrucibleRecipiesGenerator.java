@@ -552,6 +552,7 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, ExtendedItems.BRONZE_CROSSBOW, LOTRItems.BRONZE_INGOT, 4);
 		makeCrucibleRecipe(consumer, ExtendedItems.IRON_CROSSBOW, ()->Items.IRON_INGOT, 4);
 		makeCrucibleRecipe(consumer, ExtendedItems.URUK_CROSSBOW, LOTRItems.URUK_STEEL_INGOT, 4);
+		makeCrucibleRecipe(consumer, ExtendedItems.MITHRIL_CROSSBOW, LOTRItems.MITHRIL_INGOT, 4);
 
 		makeCrucibleRecipe(consumer, ExtendedItems.BLACK_WARG_HELMET, ExtendedItems.BLACK_FUR, 5);
 		makeCrucibleRecipe(consumer, ExtendedItems.BLACK_WARG_CHESTPLATE, ExtendedItems.BLACK_FUR, 8);

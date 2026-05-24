@@ -851,4 +851,5 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BRONZE_CROSSBOW;
 	public static RegistryObject<Item> IRON_CROSSBOW;
 	public static RegistryObject<Item> URUK_CROSSBOW;
+	public static RegistryObject<Item> MITHRIL_CROSSBOW;
 }

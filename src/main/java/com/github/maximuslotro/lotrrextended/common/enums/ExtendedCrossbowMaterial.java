@@ -13,7 +13,6 @@ public enum ExtendedCrossbowMaterial {
 	BRONZE(288, 25, 1.05F, 3, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	IRON(313, 30, 1.1F, 3, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	URUK(688, 50, 1.15F, 2, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
-	// For reference to legacy mithril, not actually used
 	MITHRIL(3001, 100, 1.3F, 2, () -> Ingredient.of(ExtendedItems.BOWSTRING.get()));
 
 	private final int durability;

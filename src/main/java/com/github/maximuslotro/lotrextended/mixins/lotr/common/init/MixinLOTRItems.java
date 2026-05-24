@@ -1243,6 +1243,7 @@ public class MixinLOTRItems {
 		ExtendedItems.LONGBOW = regItemB("longbow", () -> new ExtendedBowItem(ExtendedBowMaterial.GENERIC));
 		ExtendedItems.BRONZE_CROSSBOW = regItemB("bronze_crossbow", () -> new ExtendedCrossbowItem(ExtendedCrossbowMaterial.BRONZE));
 		ExtendedItems.IRON_CROSSBOW = regItemB("iron_crossbow", () -> new ExtendedCrossbowItem(ExtendedCrossbowMaterial.IRON));
+		ExtendedItems.MITHRIL_CROSSBOW = regItemB("mithril_crossbow", () -> new ExtendedCrossbowItem(ExtendedCrossbowMaterial.MITHRIL));
 
 		//Ranger of the North equipment
 		ExtendedItems.DUNEDAIN_SHIELD = regItemB("dunedain_shield", () -> new LOTRShieldItem(LOTRMaterial.RANGER_NORTH));
