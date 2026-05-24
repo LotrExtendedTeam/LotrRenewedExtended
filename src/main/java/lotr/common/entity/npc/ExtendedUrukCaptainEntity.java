@@ -5,6 +5,7 @@ import java.util.List;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 
+import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
@@ -12,6 +13,7 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -37,6 +39,11 @@ public class ExtendedUrukCaptainEntity extends UrukEntity implements ExtendedNPC
 		}else {
 			this.addAggressiveTargetingGoals();
 		}
+	}
+
+	@Override
+	protected Goal createOrcAttackGoal() {
+		return new ExtendedShieldSwapMeleeAttackGoal(this, 1.4D, new ItemStack(ExtendedItems.URUK_SHIELD.get()), ItemStack.EMPTY);
 	}
 
 	@Override
