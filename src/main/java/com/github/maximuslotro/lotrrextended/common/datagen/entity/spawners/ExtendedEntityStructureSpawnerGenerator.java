@@ -229,6 +229,15 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 				.addPool(LOTREntities.ISENGARD_WARG.get(), 3).addPool(ExtendedEntities.URUK_BERSERKER.get(), 1)
 				.build(), 2, 6, false, 30, 15).setBoundaries(15, -8, 30, 10, -2, 12).enableSpawningAtSpawner(20).save(pConsumer, ExtendedSpawners.ISENGARD_AREA);
 		single(ExtendedEntities.URUK_SMITH.get()).setRespawnOnDeath().disableForFutureSpawning().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.SARUMAN);
+		single(MultiSpawnType.Builder.multi()
+			.addPool(LOTREntities.HOBBIT.get(), 10).addPool(LOTREntities.BREE_HOBBIT.get(), 10)
+			.addPool(LOTREntities.BREE_MAN.get(), 20).addPool(ExtendedEntities.DUNEDAIN_RANGER.get(), 40)
+			.addPool(LOTREntities.BLUE_MOUNTAINS_DWARF.get(), 10).addPool(LOTREntities.LINDON_ELF.get(), 10)
+			.addPool(LOTREntities.RIVENDELL_ELF.get(), 20).addPool(LOTREntities.ROHAN_MAN.get(), 80)
+			.addPool(LOTREntities.GONDOR_MAN.get(), 60).build()).setRandomDiscardChance(30).save(pConsumer, ExtendedSpawners.ISENGARD_PRISONER);
+		persisted(LOTREntities.URUK_ARCHER.get(), 1, 4, false, 8, 4).setBoundaries(20, -12, 20, 4, -4, 8).enableSpawningAtSpawner(60).save(pConsumer, ExtendedSpawners.ISENGARD_ARCHER);
+		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.ISENGARD_WARG.get(), 100).build(), 2, 3, false, 26, 8)
+		.setBoundaries(12, -8, 24, 4, -4, 10).enableSpawningAtSpawner(50).save(pConsumer, ExtendedSpawners.ISENGARD_WARG_PIT);
 		// DUNLENDING
 		single(ExtendedEntities.DUNLENDING_WARLORD.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.DUNLENDING_WARLORD);		
 	}

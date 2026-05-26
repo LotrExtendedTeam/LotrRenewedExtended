@@ -2760,16 +2760,36 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 			.add(EItemLootEntry.lootItem(Items.STONE_AXE).setWeight(40).setDamageRange(0.15F, 0.7F).setExactly(1))
 			.add(EItemLootEntry.lootItem(Items.WOODEN_AXE).setWeight(40).setDamageRange(0.15F, 0.7F).setExactly(1))
 			.add(EItemLootEntry.lootItem(Items.IRON_AXE).setWeight(20).setExactly(1))
-			.add(EItemLootEntry.lootItem(Items.CHARCOAL).setWeight(30).setRange(5, 7))
-			.add(EItemLootEntry.lootItem(LOTRItems.SMALL_POUCH.get()).setWeight(5).setExactly(1))
-			.add(EItemLootEntry.lootItem(LOTRItems.MEDIUM_POUCH.get()).setWeight(1).setExactly(1))));
+			.add(EItemLootEntry.lootItem(Items.CHARCOAL).setWeight(30).setRange(5, 7))));
+
+	make(consumer, ExtendedLootTables.ISENGARD_WARG_PIT_CHEST, makeTable()
+		.withPool(LootPool.lootPool()
+			.setRolls(RandomValueRange.between(1, 2))
+			.add(EItemLootEntry.lootItem(ExtendedItems.MAIL_WARG_ARMOR.get()).setWeight(25).setExactly(1))
+			.add(EItemLootEntry.lootItem(ExtendedItems.ISENGARD_WARG_ARMOR.get()).setWeight(50).setExactly(1))
+			.add(EItemLootEntry.lootItem(Items.SADDLE).setWeight(80).setRange(1, 3))
+			.add(EItemLootEntry.lootItem(Items.ROTTEN_FLESH).setWeight(40).setRange(2, 4))
+			.add(EItemLootEntry.lootItem(Items.BEEF).setWeight(60).setRange(2, 4))
+			.add(EItemLootEntry.lootItem(Items.PORKCHOP).setWeight(80).setRange(2, 4))
+			.add(EItemLootEntry.lootItem(Items.CHICKEN).setWeight(80).setRange(2, 4))));
+
+	make(consumer, ExtendedLootTables.ISENGARD_MINE_CHEST, makeTable()
+		.withPool(LootPool.lootPool()
+			.setRolls(RandomValueRange.between(1, 2))
+			.add(EItemLootEntry.lootItem(Items.STONE).setWeight(60).setRange(2, 5))
+			.add(EItemLootEntry.lootItem(Items.COBBLESTONE).setWeight(80).setRange(2, 7))
+			.add(EItemLootEntry.lootItem(Items.COAL_ORE).setWeight(70).setRange(1, 4))
+			.add(EItemLootEntry.lootItem(Items.IRON_ORE).setWeight(50).setRange(1, 3))
+			.add(EItemLootEntry.lootItem(LOTRItems.COPPER_ORE.get()).setWeight(80).setRange(1, 3))
+			.add(EItemLootEntry.lootItem(LOTRItems.URUK_PICKAXE.get()).setWeight(60).setExactly(1))
+			.add(EItemLootEntry.lootItem(LOTRItems.URUK_SHOVEL.get()).setWeight(40).setExactly(1))));
 
 	make(consumer, ExtendedLootTables.ISENGARD_FOOD_CHEST, makeTable()
 		.withPool(LootPool.lootPool()
 			.setRolls(RandomValueRange.between(1, 3))
 			.add(EItemLootEntry.lootItem(LOTRItems.MAN_FLESH.get()).setWeight(100).setRange(2, 4))
 			.add(EItemLootEntry.lootItem(LOTRItems.MAGGOTY_BREAD.get()).setWeight(75).setRange(2, 4))
-			.add(EItemLootEntry.lootItem(Items.ROTTEN_FLESH).setWeight(800).setRange(2, 4))
+			.add(EItemLootEntry.lootItem(Items.ROTTEN_FLESH).setWeight(80).setRange(2, 4))
 			.add(EItemLootEntry.lootItem(Items.BONE).setWeight(70).setRange(1, 3))
 			.add(EItemLootEntry.lootItem(ExtendedItems.SKULL_GOBLET.get()).setWeight(50).setRange(1, 2))
 			.add(EItemLootEntry.lootItem(LOTRItems.WATERSKIN.get()).setWeight(50).setRange(1, 2))

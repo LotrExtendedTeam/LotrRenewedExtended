@@ -144,27 +144,6 @@
             }
           ],
           "name": "minecraft:charcoal"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 5,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:small_pouch"
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
-          "name": "lotr:medium_pouch"
         }
       ]
     }

@@ -1,0 +1,28 @@
+{
+  "id": "lotrextended:isengard_archer_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 20,
+    "lowerYvalue": -12,
+    "horizontal_bounds": 20
+  },
+  "spawn_area": {
+    "topYvalue": 4,
+    "lowerYvalue": -4,
+    "horizontal_bounds": 8
+  },
+  "fixed_spawning": true,
+  "fixed_spawning_chance": 60,
+  "setHomeOnSpawn": true,
+  "homeRadius": 8,
+  "persistenceRequired": true,
+  "spawnCap": 4,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 4,
+      "entity_type": "lotr:uruk_archer"
+    }
+  ]
+}

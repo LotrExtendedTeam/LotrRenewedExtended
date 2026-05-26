@@ -273,6 +273,12 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 			.add(addEntry(Items.COOKED_MUTTON, 1, 4))
 			.add(addEntry(Items.COOKED_RABBIT, 1, 4))
 			.add(addEntry(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 4)));
+
+		make(consumer, ExtendedLootTables.ISENGARD_PLATE, makePool()
+			.add(addEntry(Items.ROTTEN_FLESH))
+			.add(addEntry(LOTRItems.MAGGOTY_BREAD.get()))
+			.add(addEntry(LOTRItems.MAN_FLESH.get())));
+
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item){
