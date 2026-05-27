@@ -467,6 +467,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.ISENGARD_URUK_BERSERKER);
 
+		// Dunland Units
 		make(LOTREntities.DUNLENDING.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(15, false, 100)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.FUR_HELMET.get()), 1)
 		.addHelmetPoolItem(ItemStack.EMPTY, 3)
