@@ -1237,6 +1237,9 @@ public class MixinLOTRItems {
 		ExtendedItems.URUK_SHIELD = regItemB("uruk_shield", () -> new LOTRShieldItem(LOTRMaterial.URUK));
 		ExtendedItems.URUK_CROSSBOW = regItemB("uruk_crossbow", () -> new ExtendedCrossbowItem(ExtendedCrossbowMaterial.URUK));
 
+		// Dunland
+		ExtendedItems.DUNLANDING_SHIELD = regItemB("dunlanding_shield", () -> new LOTRShieldItem(LOTRMaterial.DUNLENDING));
+
 		//Mordor
 		ExtendedItems.MORDOR_WARG_ARMOR = regItemB("mordor_warg_armor", () -> new ExtendedMountedArmorItem(11, "mordor", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 

@@ -8,6 +8,7 @@ import java.util.List;
 
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
 import lotr.common.entity.npc.data.NPCGenderProvider;
+import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -17,7 +18,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
@@ -45,7 +45,7 @@ public class ExtendedDunlendingWarlordEntity extends DunlendingWarriorEntity imp
 
     @Override
     protected Goal createAttackGoal() {
-        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.6, new ItemStack(Items.SHIELD), ItemStack.EMPTY);
+        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.6, new ItemStack(ExtendedItems.DUNLANDING_SHIELD.get()), ItemStack.EMPTY);
     }
 
     @Override

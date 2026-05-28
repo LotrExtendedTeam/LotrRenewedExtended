@@ -23,6 +23,7 @@
 		"lotr.common.entity.npc.MixinBlueDwarfEntity",
 		"lotr.common.entity.npc.MixinBlueDwarfWarriorEntity",
 		"lotr.common.entity.npc.MixinBreeGuardEntity",
+		"lotr.common.entity.npc.MixinDunlendingWarriorEntity",
 		"lotr.common.entity.npc.MixinDwarfEntity",
 		"lotr.common.entity.npc.MixinElfEntity",
 		"lotr.common.entity.npc.MixinGundabadOrcArcherEntity",
