@@ -257,14 +257,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.35,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:wooden_hoe"
@@ -278,14 +278,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.3,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:stone_hoe"
@@ -299,14 +299,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:bronze_hoe"
@@ -320,14 +320,14 @@
               "count": 1
             },
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.2,
-                "max": 0.9
+                "max": 0.85
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:iron_hoe"
@@ -341,14 +341,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.35,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:wooden_shovel"
@@ -362,14 +362,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.3,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:stone_shovel"
@@ -383,14 +383,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:bronze_shovel"
@@ -404,14 +404,14 @@
               "count": 1
             },
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.2,
-                "max": 0.9
+                "max": 0.85
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:iron_shovel"

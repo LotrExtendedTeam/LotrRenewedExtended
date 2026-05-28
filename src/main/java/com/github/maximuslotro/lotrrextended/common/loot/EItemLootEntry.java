@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.loot.ConstantRange;
 import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootEntry;
+import net.minecraft.loot.LootFunction;
 import net.minecraft.loot.RandomValueRange;
 import net.minecraft.loot.StandaloneLootEntry;
 import net.minecraft.loot.conditions.ILootCondition;
@@ -79,77 +80,95 @@ public class EItemLootEntry extends ItemLootEntry{
 		 */
 		private ExtendedModifierAdder.Builder modifierBuilder;
 		/**
+		 * Builder for applying damage ranges to an Item.
+		 */
+		private LootFunction.Builder<?> damageRangeBuilder;
+		/**
 		 * Creates a new extended builder.
 		 *
 		 * @param lootEntryConstructor a function that constructs the final loot entry
-		 * @param canDamage            whether the item is damageable
+		 * @param canDamage            {@code true} if the item is damageable; {@code false} otherwise
 		 */
 		public ExtendedBuilder(StandaloneLootEntry.ILootEntryBuilder lootEntryConstructor, boolean canDamage) {
 			this.constructor = lootEntryConstructor;
 			this.isDamagable = canDamage;
 			if(isDamagable) {
 				modifierBuilder = ExtendedModifierAdder.modifiers();
+				damageRangeBuilder = buildDamageRange(0.15f, 0.80f);
 			}
 		}
+		/**
+		 * Returns this builder instance to support the builder pattern chaining.
+		 *
+		 * @return this {@link ExtendedBuilder} instance
+		 */
 		@Override
 		protected EItemLootEntry.ExtendedBuilder getThis() {
 			return this;
 		}
 		/**
-		 * Builds the final {@link LootEntry} using the configured settings
-		 * from this builder.
+		 * Builds the final {@link LootEntry} using the configured settings from this builder.
 		 * <p>
-		 * If the item is damageable and a {@link com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedModifierAdder.Builder}
-		 * was initialized, it automatically applies the configured modifiers
-		 * before building the loot entry.
+		 * If the item is damageable, it automatically applies the configured modifiers and 
+		 * damage ranges before building the final entry.
 		 * </p>
 		 * <p>
 		 * The resulting {@link LootEntry} includes:
 		 * <ul>
-		 *     <li>Configured weight and quality</li>
-		 *     <li>All loot conditions added to this builder</li>
-		 *     <li>All loot functions added to this builder, including modifiers if applicable</li>
+		 * <li>Configured weight and quality</li>
+		 * <li>All loot conditions added to this builder</li>
+		 * <li>All loot functions added to this builder, including modifiers and damage ranges if applicable</li>
 		 * </ul>
 		 * </p>
 		 *
-		 * @return a fully constructed {@link LootEntry} representing this item
-		 *         with all specified configurations applied
+		 * @return a fully constructed {@link LootEntry} representing this item with all specified configurations applied
 		 */
 		@Override
 		public LootEntry build() {
 			if(modifierBuilder!=null && isDamagable) {
 				this.apply(modifierBuilder);
 			}
+			if(damageRangeBuilder!=null && isDamagable) {
+				this.apply(damageRangeBuilder);
+			}
 			return this.constructor.build(this.weight, this.quality, this.getConditions(), this.getFunctions());
 		}
 		/**
-		 * Sets a standard damage range for this item of 0% to 75% damaged.
-		 *
-		 * @return this builder instance for chaining
-		 */
-		public ExtendedBuilder standardDamageRange() {
-			return setDamageRange(0.0f, 0.75f);
-		}
-		/**
-		 * Sets a damage range for this item.
+		 * Sets a damage range for this item and applies it directly to the builder.
 		 *
 		 * @param minDamagePercent the minimum damage percent (e.g., 0.90 for at least 90% damaged)
 		 * @param maxDamagePercent the maximum damage percent (e.g., 0.95 for at most 95% damaged)
-		 * @return this builder instance for chaining
+		 * @return this builder instance for method chaining
 		 */
 		public ExtendedBuilder setDamageRange(float minDamagePercent, float maxDamagePercent) {
-			float modifiedMin = (100-(int)(maxDamagePercent*100)) / 100.0f;
-			float modifiedMax = (100-(int)(minDamagePercent*100)) / 100.0f;
+			damageRangeBuilder = buildDamageRange(minDamagePercent, maxDamagePercent);
+			return this.getThis();
+		}
+		/**
+		 * Constructs a {@link net.minecraft.loot.LootFunction.Builder} representing a random damage range.
+		 * <p>
+		 * <b>Note on Logic:</b> Because Minecraft durability functions typically treat {@code 1.0} as full health 
+		 * and {@code 0.0} as completely broken, this method internally inverts the incoming percentages to convert 
+		 * "percentage damaged" into the remaining durability percentages expected by {@link SetDamage}.
+		 * </p>
+		 * @param minDamagePercent the minimum damage percent (where 1.0 represents 100% damaged)
+		 * @param maxDamagePercent the maximum damage percent (where 1.0 represents 100% damaged)
+		 * @return a {@link net.minecraft.loot.LootFunction.Builder} configured with the translated durability range, 
+		 * or {@code null} if the item is not damageable or the bounds are invalid
+		 */
+		public LootFunction.Builder<?> buildDamageRange(float minDamagePercent, float maxDamagePercent) {
+			// Prevent endless floats such as 0.19999999
+			float modifiedMin = (float) Math.round((1.0f - maxDamagePercent) * 100) / 100.0f;
+			float modifiedMax = (float) Math.round((1.0f - minDamagePercent) * 100) / 100.0f;
 			if(!isDamagable) {
 				ExtendedLog.error("Tried Setting damage value range to a non-damageable item! "+minDamagePercent+":"+maxDamagePercent);
-				return this.getThis();
+				return null;
 			}
 			if(modifiedMin > modifiedMax) {
 				ExtendedLog.error("Tried Setting an inverted damage value range to an item! "+minDamagePercent+":"+maxDamagePercent);
-				return this.getThis();
+				return null;
 			}
-			this.apply(SetDamage.setDamage(RandomValueRange.between(modifiedMin, modifiedMax)));
-			return this.getThis();
+			return SetDamage.setDamage(RandomValueRange.between(modifiedMin, modifiedMax));
 		}
 		/**
 		 * Sets the maximum remaining durability of the item as a percent.

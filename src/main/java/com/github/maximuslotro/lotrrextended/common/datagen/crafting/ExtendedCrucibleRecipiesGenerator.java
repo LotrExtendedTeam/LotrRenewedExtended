@@ -508,6 +508,7 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, ExtendedItems.RIVENDELL_SHIELD, LOTRItems.ELVEN_STEEL_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.URUK_SHIELD, LOTRItems.URUK_STEEL_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.DUNLANDING_SHIELD, ()->Items.IRON_INGOT);
+		makeCrucibleRecipe(consumer, ExtendedItems.ARNOR_SHIELD, ()->Items.IRON_INGOT);
 
 		makeCrucibleRecipe(consumer, ExtendedItems.DOL_GULDUR_SWORD, LOTRItems.ORC_STEEL_INGOT, 2);
 		makeCrucibleRecipe(consumer, ExtendedItems.DOL_GULDUR_SHOVEL, LOTRItems.ORC_STEEL_INGOT);

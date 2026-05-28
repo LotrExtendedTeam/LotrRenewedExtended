@@ -708,6 +708,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> EREGION_SHIELD;
 	public static RegistryObject<Item> URUK_SHIELD;
 	public static RegistryObject<Item> DUNLANDING_SHIELD;
+	public static RegistryObject<Item> ARNOR_SHIELD;
 
 	public static RegistryObject<Item> BOWSTRING;
 	public static RegistryObject<Item> GUNDABAD_URUK_BOW;

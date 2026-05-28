@@ -1256,6 +1256,9 @@ public class MixinLOTRItems {
 		//Bree equipment
 		ExtendedItems.BREE_SHIELD = regItemB("bree_shield", () -> new LOTRShieldItem(LOTRMaterial.valueOf("BREE")));
 
+		//Arnorian equipment
+		ExtendedItems.ARNOR_SHIELD = regItemB("arnor_shield", () -> new LOTRShieldItem(LOTRMaterial.ARNOR));
+
 		//Blue Mountains equipment
 		ExtendedItems.BLUE_DWARVEN_SHIELD = regItemB("blue_dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.BLUE_DWARVEN));
 
