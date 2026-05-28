@@ -85,7 +85,7 @@ public class ExtendedCrucibleContainer extends Container {
 			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 			if (pIndex == 2 || pIndex == 3) {
-				if (!this.moveItemStackTo(itemstack1, 3, 39, true)) {
+				if (!this.moveItemStackTo(itemstack1, 4, 40, true)) {
 					return ItemStack.EMPTY;
 				}
 				slot.onQuickCraft(itemstack1, itemstack);
