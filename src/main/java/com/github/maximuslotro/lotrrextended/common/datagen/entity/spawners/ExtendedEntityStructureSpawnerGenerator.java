@@ -235,9 +235,9 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 			.addPool(LOTREntities.BLUE_MOUNTAINS_DWARF.get(), 10).addPool(LOTREntities.LINDON_ELF.get(), 10)
 			.addPool(LOTREntities.RIVENDELL_ELF.get(), 20).addPool(LOTREntities.ROHAN_MAN.get(), 80)
 			.addPool(LOTREntities.GONDOR_MAN.get(), 60).build()).setRandomDiscardChance(30).save(pConsumer, ExtendedSpawners.ISENGARD_PRISONER);
-		persisted(LOTREntities.URUK_ARCHER.get(), 1, 4, false, 8, 4).setBoundaries(20, -12, 20, 4, -4, 8).enableSpawningAtSpawner(60).save(pConsumer, ExtendedSpawners.ISENGARD_ARCHER);
+		persisted(LOTREntities.URUK_ARCHER.get(), 1, 4, false, 8, 4).setBoundaries(10, -10, 10, 2, -2, 4).enableSpawningAtSpawner(60).save(pConsumer, ExtendedSpawners.ISENGARD_ARCHER);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.ISENGARD_WARG.get(), 100).build(), 2, 3, false, 26, 8)
-		.setBoundaries(12, -8, 24, 4, -4, 10).enableSpawningAtSpawner(50).save(pConsumer, ExtendedSpawners.ISENGARD_WARG_PIT);
+		.setBoundaries(12, -8, 16, 4, -4, 6).enableSpawningAtSpawner(50).save(pConsumer, ExtendedSpawners.ISENGARD_WARG_PIT);
 		// DUNLENDING
 		single(ExtendedEntities.DUNLENDING_WARLORD.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.DUNLENDING_WARLORD);		
 	}

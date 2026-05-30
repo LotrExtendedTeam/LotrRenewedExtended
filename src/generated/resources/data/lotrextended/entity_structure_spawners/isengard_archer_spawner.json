@@ -2,14 +2,14 @@
   "id": "lotrextended:isengard_archer_spawner",
   "spawner_type": "persisted_use_spawner",
   "check_boundaries": {
-    "topYvalue": 20,
-    "lowerYvalue": -12,
-    "horizontal_bounds": 20
+    "topYvalue": 10,
+    "lowerYvalue": -10,
+    "horizontal_bounds": 10
   },
   "spawn_area": {
-    "topYvalue": 4,
-    "lowerYvalue": -4,
-    "horizontal_bounds": 8
+    "topYvalue": 2,
+    "lowerYvalue": -2,
+    "horizontal_bounds": 4
   },
   "fixed_spawning": true,
   "fixed_spawning_chance": 60,

@@ -4,12 +4,12 @@
   "check_boundaries": {
     "topYvalue": 12,
     "lowerYvalue": -8,
-    "horizontal_bounds": 24
+    "horizontal_bounds": 16
   },
   "spawn_area": {
     "topYvalue": 4,
     "lowerYvalue": -4,
-    "horizontal_bounds": 10
+    "horizontal_bounds": 6
   },
   "fixed_spawning": true,
   "fixed_spawning_chance": 50,

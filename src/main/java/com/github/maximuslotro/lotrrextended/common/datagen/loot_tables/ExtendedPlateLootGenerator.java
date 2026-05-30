@@ -16,6 +16,7 @@ import net.minecraft.loot.ConstantRange;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTable.Builder;
+import net.minecraft.loot.conditions.RandomChance;
 import net.minecraft.loot.StandaloneLootEntry;
 import net.minecraft.util.ResourceLocation;
 
@@ -217,7 +218,7 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 
 		// TODO add leeks and turnips
 		make(consumer, ExtendedLootTables.RIVENDELL_PLATE, makePool()
-			.add(addEntry(Items.BREAD, 1, 1))
+			.add(addEntry(Items.BREAD))
 			.add(addEntry(Items.APPLE, 2, 3))
 			.add(addEntry(Items.CARROT, 1, 3))
 			.add(addEntry(Items.CHICKEN, 1, 2))
@@ -234,7 +235,7 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 			.add(addEntry(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 4)));
 
 		make(consumer, ExtendedLootTables.LINDON_PLATE, makePool()
-			.add(addEntry(Items.BREAD, 1, 1))
+			.add(addEntry(Items.BREAD))
 			.add(addEntry(Items.APPLE, 2, 3))
 			.add(addEntry(Items.CARROT, 1, 3))
 			.add(addEntry(Items.CHICKEN, 1, 2))
@@ -251,7 +252,7 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 			.add(addEntry(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 4)));
 
 		make(consumer, ExtendedLootTables.ISENGARD_ORTHANC_PLATE, makePool()
-			.add(addEntry(Items.BREAD, 1, 1))
+			.add(addEntry(Items.BREAD))
 			.add(addEntry(Items.APPLE, 2, 3))
 			.add(addEntry(Items.CARROT, 1, 3))
 			.add(addEntry(Items.CHICKEN, 1, 2))
@@ -273,6 +274,7 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 			.add(addEntry(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 4)));
 
 		make(consumer, ExtendedLootTables.ISENGARD_PLATE, makePool()
+			.when(RandomChance.randomChance(0.5f))
 			.add(addEntry(Items.ROTTEN_FLESH))
 			.add(addEntry(LOTRItems.MAGGOTY_BREAD.get()))
 			.add(addEntry(LOTRItems.MAN_FLESH.get())));
