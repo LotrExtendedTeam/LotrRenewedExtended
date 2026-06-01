@@ -1237,12 +1237,16 @@ public class MixinLOTRItems {
 		ExtendedItems.URUK_SHIELD = regItemB("uruk_shield", () -> new LOTRShieldItem(LOTRMaterial.URUK));
 		ExtendedItems.URUK_CROSSBOW = regItemB("uruk_crossbow", () -> new ExtendedCrossbowItem(ExtendedCrossbowMaterial.URUK));
 
+		// Dunland
+		ExtendedItems.DUNLANDING_SHIELD = regItemB("dunlanding_shield", () -> new LOTRShieldItem(LOTRMaterial.DUNLENDING));
+
 		//Mordor
 		ExtendedItems.MORDOR_WARG_ARMOR = regItemB("mordor_warg_armor", () -> new ExtendedMountedArmorItem(11, "mordor", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 
 		ExtendedItems.LONGBOW = regItemB("longbow", () -> new ExtendedBowItem(ExtendedBowMaterial.GENERIC));
 		ExtendedItems.BRONZE_CROSSBOW = regItemB("bronze_crossbow", () -> new ExtendedCrossbowItem(ExtendedCrossbowMaterial.BRONZE));
 		ExtendedItems.IRON_CROSSBOW = regItemB("iron_crossbow", () -> new ExtendedCrossbowItem(ExtendedCrossbowMaterial.IRON));
+		ExtendedItems.MITHRIL_CROSSBOW = regItemB("mithril_crossbow", () -> new ExtendedCrossbowItem(ExtendedCrossbowMaterial.MITHRIL));
 
 		//Ranger of the North equipment
 		ExtendedItems.DUNEDAIN_SHIELD = regItemB("dunedain_shield", () -> new LOTRShieldItem(LOTRMaterial.RANGER_NORTH));
@@ -1251,6 +1255,9 @@ public class MixinLOTRItems {
 
 		//Bree equipment
 		ExtendedItems.BREE_SHIELD = regItemB("bree_shield", () -> new LOTRShieldItem(LOTRMaterial.valueOf("BREE")));
+
+		//Arnorian equipment
+		ExtendedItems.ARNOR_SHIELD = regItemB("arnor_shield", () -> new LOTRShieldItem(LOTRMaterial.ARNOR));
 
 		//Blue Mountains equipment
 		ExtendedItems.BLUE_DWARVEN_SHIELD = regItemB("blue_dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.BLUE_DWARVEN));

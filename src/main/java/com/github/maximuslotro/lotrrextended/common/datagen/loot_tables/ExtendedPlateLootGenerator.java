@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 
 import lotr.common.init.ExtendedItems;
@@ -12,13 +13,11 @@ import net.minecraft.data.loot.ChestLootTables;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.loot.ConstantRange;
-import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTable.Builder;
-import net.minecraft.loot.RandomValueRange;
+import net.minecraft.loot.conditions.RandomChance;
 import net.minecraft.loot.StandaloneLootEntry;
-import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedPlateLootGenerator extends ChestLootTables  {
@@ -219,7 +218,7 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 
 		// TODO add leeks and turnips
 		make(consumer, ExtendedLootTables.RIVENDELL_PLATE, makePool()
-			.add(addEntry(Items.BREAD, 1, 1))
+			.add(addEntry(Items.BREAD))
 			.add(addEntry(Items.APPLE, 2, 3))
 			.add(addEntry(Items.CARROT, 1, 3))
 			.add(addEntry(Items.CHICKEN, 1, 2))
@@ -236,7 +235,7 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 			.add(addEntry(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 4)));
 
 		make(consumer, ExtendedLootTables.LINDON_PLATE, makePool()
-			.add(addEntry(Items.BREAD, 1, 1))
+			.add(addEntry(Items.BREAD))
 			.add(addEntry(Items.APPLE, 2, 3))
 			.add(addEntry(Items.CARROT, 1, 3))
 			.add(addEntry(Items.CHICKEN, 1, 2))
@@ -253,7 +252,7 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 			.add(addEntry(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 4)));
 
 		make(consumer, ExtendedLootTables.ISENGARD_ORTHANC_PLATE, makePool()
-			.add(addEntry(Items.BREAD, 1, 1))
+			.add(addEntry(Items.BREAD))
 			.add(addEntry(Items.APPLE, 2, 3))
 			.add(addEntry(Items.CARROT, 1, 3))
 			.add(addEntry(Items.CHICKEN, 1, 2))
@@ -273,14 +272,21 @@ public class ExtendedPlateLootGenerator extends ChestLootTables  {
 			.add(addEntry(Items.COOKED_MUTTON, 1, 4))
 			.add(addEntry(Items.COOKED_RABBIT, 1, 4))
 			.add(addEntry(ExtendedItems.ROASTED_CHESTNUT.get(), 1, 4)));
+
+		make(consumer, ExtendedLootTables.ISENGARD_PLATE, makePool()
+			.when(RandomChance.randomChance(0.5f))
+			.add(addEntry(Items.ROTTEN_FLESH))
+			.add(addEntry(LOTRItems.MAGGOTY_BREAD.get()))
+			.add(addEntry(LOTRItems.MAN_FLESH.get())));
+
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item){
-		return ItemLootEntry.lootTableItem(item).apply(SetCount.setCount(ConstantRange.exactly(1)));
+		return EItemLootEntry.lootItem(item).setExactly(1);
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item, int min, int max){
-		return ItemLootEntry.lootTableItem(item).apply(SetCount.setCount(RandomValueRange.between(min, max)));
+		return EItemLootEntry.lootItem(item).setRange(min, max);
 	}
 
 	public LootPool.Builder makePool(){

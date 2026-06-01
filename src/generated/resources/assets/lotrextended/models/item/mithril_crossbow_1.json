@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:item/mithril_crossbow",
+  "textures": {
+    "layer0": "lotrextended:item/mithril_crossbow_pulling_1"
+  }
+}

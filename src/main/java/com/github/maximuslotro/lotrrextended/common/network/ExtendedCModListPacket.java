@@ -53,6 +53,7 @@ public class ExtendedCModListPacket {
 		if (data != null) {
 			ITextComponent disconnectReason = ExtendedModTracker.handleModsList(context.get().getNetworkManager(), context.get().getSender().server, context.get().getSender().getGameProfile(), packet.getMods(), true);
 			if(disconnectReason!=null) {
+				ExtendedModTracker.onPlayerLoggout(context.get().getSender().getGameProfile().getId());
 				context.get().getNetworkManager().disconnect(disconnectReason);
 				return;
 			}

@@ -1,0 +1,16 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "minecraft:rail"
+  },
+  "result1": {
+    "item": "minecraft:iron_ingot",
+    "count": 2
+  },
+  "result2": {
+    "item": "minecraft:iron_nugget",
+    "count": 4
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

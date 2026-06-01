@@ -5,8 +5,10 @@ import java.util.function.Supplier;
 import lotr.common.init.ExtendedItems;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
+import net.minecraftforge.common.Tags.Items;
 
 public enum ExtendedBowMaterial {
+	VANILLA(385, 20, 1F, 1, () -> Ingredient.of(Items.STRING)),
 	GENERIC(400, 20, 1.08F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	ORC(600, 20, 1.125F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	GUNDABAD_URUK(750, 30, 1.2F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),

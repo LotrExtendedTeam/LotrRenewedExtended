@@ -1,0 +1,12 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:uruk_berserker_cleaver"
+  },
+  "result1": {
+    "item": "lotr:uruk_steel_ingot",
+    "count": 4
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

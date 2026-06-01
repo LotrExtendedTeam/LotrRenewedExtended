@@ -418,7 +418,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 	}
 
 	/**
-	 * Removes the given player from the list of players tracking this entity. See {@link Entity#addTrackingPlayer} for
+	 * Removes the given player from the list of players tracking this entity. See {@link Entity#startSeenByPlayer} for
 	 * more information on tracking.
 	 */
 	@Override

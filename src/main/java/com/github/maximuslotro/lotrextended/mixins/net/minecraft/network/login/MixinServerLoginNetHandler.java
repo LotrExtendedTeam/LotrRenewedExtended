@@ -50,6 +50,7 @@ public class MixinServerLoginNetHandler {
 		if (data != null) {
 			ITextComponent disconnectReason = ExtendedModTracker.handleModsList(connection, server, gameProfile, data.getModList(), false);
 			if(disconnectReason!=null) {
+				ExtendedModTracker.onPlayerLoggout(gameProfile.getId());
 				disconnect(disconnectReason);
 				ci.cancel();
 				return;

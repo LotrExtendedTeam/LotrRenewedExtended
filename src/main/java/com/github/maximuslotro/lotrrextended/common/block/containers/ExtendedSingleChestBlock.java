@@ -76,7 +76,7 @@ public class ExtendedSingleChestBlock extends ChestBlock {
 			INamedContainerProvider inamedcontainerprovider = this.getMenuProvider(p_225533_1_, p_225533_2_, p_225533_3_);
 			if (inamedcontainerprovider != null) {
 				p_225533_4_.openMenu(inamedcontainerprovider);
-				p_225533_4_.awardStat(ExtendedStats.INTERACT_WITH_STONE_CHEST);
+				p_225533_4_.awardStat(ExtendedStats.OPENED_STONE_CHEST);
 				PiglinTasks.angerNearbyPiglins(p_225533_4_, true);
 			}
 

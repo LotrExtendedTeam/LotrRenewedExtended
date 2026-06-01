@@ -1,0 +1,12 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:mordor_axe"
+  },
+  "result1": {
+    "item": "lotr:orc_steel_ingot",
+    "count": 3
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

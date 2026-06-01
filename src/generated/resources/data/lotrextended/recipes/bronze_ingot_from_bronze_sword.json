@@ -1,0 +1,12 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:bronze_sword"
+  },
+  "result1": {
+    "item": "lotr:bronze_ingot",
+    "count": 2
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

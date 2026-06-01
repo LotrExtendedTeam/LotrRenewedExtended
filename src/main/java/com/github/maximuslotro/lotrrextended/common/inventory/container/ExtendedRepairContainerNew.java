@@ -551,13 +551,24 @@ public class ExtendedRepairContainerNew extends Container {
 			}else {
 				this.engraveCost.set(0);
 			}
-			this.reforgeCost.set(2);
-			if(inputItem.getItem() instanceof ArmorItem) {
-				this.reforgeCost.set(3);
-			}else if(shouldCheapReforge(inputItem.getItem())) {
-				this.reforgeCost.set(1);
+			info("P6.1: Finding reforge cost");
+			int reforgeMaterialCost = 0;
+			int reforgeCurrentDamage = resultItem.getDamageValue();
+			int repairStep = resultItem.getMaxDamage() / 4;
+			while (reforgeCurrentDamage > 0) {
+				int reforgeRepairAmount = Math.min(reforgeCurrentDamage, repairStep);
+				info("P6.1.1: Reforge Amount: " + reforgeRepairAmount + ", currentDamage: " + reforgeCurrentDamage + ", material used: " + reforgeMaterialCost);
+				reforgeCurrentDamage -= reforgeRepairAmount;
+				reforgeMaterialCost++;
+				info("P6.1.2: Repair Amount: " + reforgeRepairAmount + ", newDamage: " + reforgeCurrentDamage);
 			}
-			info("P6.1: Finding repair cost");
+			this.reforgeCost.set(reforgeMaterialCost+2);
+			if(inputItem.getItem() instanceof ArmorItem) {
+				this.reforgeCost.set(reforgeMaterialCost+3);
+			}else if(shouldCheapReforge(inputItem.getItem())) {
+				this.reforgeCost.set(reforgeMaterialCost+1);
+			}
+			info("P6.2: Finding repair cost");
 			int repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
 			// Handle relative resource count since without this, the price increased as material is added, not correct!
 			int resourceCountExcludingBase = resourceItem.getCount() - mergingCost - renameCost; // don't try to repair if rename or merge cost is <= available cost
@@ -565,18 +576,18 @@ public class ExtendedRepairContainerNew extends Container {
 				int resourceCount = resourceCountExcludingBase - baseCost;// Calculate for resources over base cost
 				if(resourceCount>0) { // Repair using amount left
 					for(int materialsUsed = 0; repairAmount > 0 && materialsUsed < resourceCount; ++materialsUsed) {
-						info("P6.2: Repair Amount: "+repairAmount+", currentDamage: "+resultItem.getDamageValue()+", material used: "+materialsUsed);
+						info("P6.2.1: Repair Amount: "+repairAmount+", currentDamage: "+resultItem.getDamageValue()+", material used: "+materialsUsed);
 						int newDamage = resultItem.getDamageValue() - repairAmount;
 						resultItem.setDamageValue(newDamage);
 						++repairCost;
 						repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
-						info("P6.3: Repair Amount: "+repairAmount+", newDamage: "+newDamage+", newRepairCost: "+repairCost);
+						info("P6.2.2: Repair Amount: "+repairAmount+", newDamage: "+newDamage+", newRepairCost: "+repairCost);
 					}
 				}else { // Repair only once since repair material is present but does not have enough material
 					repairCost=1;
 					int newDamage = resultItem.getDamageValue() - repairAmount;
 					resultItem.setDamageValue(newDamage);
-					info("P6.4: Repair Amount: "+repairAmount+", currentDamage: "+resultItem.getDamageValue()+", material used: "+repairCost);
+					info("P6.3: Repair Amount: "+repairAmount+", currentDamage: "+resultItem.getDamageValue()+", material used: "+repairCost);
 				}
 			}
 		}
@@ -869,7 +880,7 @@ public class ExtendedRepairContainerNew extends Container {
 
 	public static boolean shouldCheapReforge(Item item) {
 		return item instanceof ShovelItem || item instanceof SpearItem || item instanceof DaggerItem || item instanceof CrossbowItem
-			 || item instanceof ExtendedChiselItem || item instanceof ExtendedBrandingIronItem || item instanceof FlintAndSteelItem;
+			|| item instanceof ExtendedChiselItem || item instanceof ExtendedBrandingIronItem || item instanceof FlintAndSteelItem;
 	}
 
 	private static void info(String message) {

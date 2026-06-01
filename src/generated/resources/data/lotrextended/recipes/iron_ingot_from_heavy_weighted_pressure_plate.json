@@ -1,0 +1,12 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "minecraft:heavy_weighted_pressure_plate"
+  },
+  "result1": {
+    "item": "minecraft:iron_ingot",
+    "count": 2
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

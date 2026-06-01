@@ -70,17 +70,35 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class ExtendedBannerEventHandlers {
 	@SubscribeEvent(priority=EventPriority.HIGH)
-	public static void handleBannerBlockBreak(BlockEvent.BreakEvent event) {
+	public static void handleBlockBreak(BlockEvent.BreakEvent event) {
 		//ExtendedLog.info("BreakEvent");
 		if (!event.getWorld().isClientSide()) {
 			if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new ProtectionInstance.PlayerProtection(event.getPlayer())).isNotAllowed()) {
 				event.setCanceled(true);
 			}
+			//Prevent breaking top banner block breaking the entire banner unless having banner permission
+			else if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof ExtendedMEBannerBlock && event.getWorld().getBlockState(event.getPos()).getValue(ExtendedMEBannerBlock.HALF)==DoubleBlockHalf.UPPER) {
+				if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos().below(), new ProtectionInstance.PlayerProtection(event.getPlayer(), ExtendedBannerPermissions.BANNER)).isNotAllowed()) {
+					event.setCanceled(true);
+				}
+			}
+			//Prevent breaking main banner active half unless having banner permission
+			else if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof ExtendedMEBannerBlock && event.getWorld().getBlockState(event.getPos()).getValue(ExtendedMEBannerBlock.HALF)==DoubleBlockHalf.LOWER) {
+				if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new ProtectionInstance.PlayerProtection(event.getPlayer(), ExtendedBannerPermissions.BANNER)).isNotAllowed()) {
+					event.setCanceled(true);
+				}
+			}
+			//Prevent breaking blocks under banner unless having banner permission
+			else if(event.getWorld().getBlockState(event.getPos().above()).getBlock() instanceof ExtendedMEBannerBlock && event.getWorld().getBlockState(event.getPos().above()).getValue(ExtendedMEBannerBlock.HALF)==DoubleBlockHalf.LOWER) {
+				if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos().above(), new ProtectionInstance.PlayerProtection(event.getPlayer(), ExtendedBannerPermissions.BANNER)).isNotAllowed()) {
+					event.setCanceled(true);
+				}
+			}
 		}
 	}
 
 	@SubscribeEvent(priority=EventPriority.HIGH)
-	public static void handleBannerBlucketFill(FillBucketEvent event) {
+	public static void handleBlucketFill(FillBucketEvent event) {
 		World world = event.getWorld();
 		if (!world.isClientSide() && event.getTarget().getType() == Type.BLOCK) {
 			//ExtendedLog.info("FillBucketEvent");
@@ -106,7 +124,7 @@ public class ExtendedBannerEventHandlers {
 	}
 	// Already handled by NPC checkSpawnRules for NPCs, regular creatures should always spawn
 	//@SubscribeEvent(priority=EventPriority.HIGH)
-	public static void handleBannerEntitySpawn(LivingSpawnEvent.CheckSpawn event) {
+	public static void handleEntitySpawn(LivingSpawnEvent.CheckSpawn event) {
 		IWorld world = event.getWorld();
 		LivingEntity entity = event.getEntityLiving();
 		if (!world.isClientSide() && entity instanceof MobEntity) {
@@ -118,7 +136,7 @@ public class ExtendedBannerEventHandlers {
 	}
 
 	@SubscribeEvent(priority=EventPriority.HIGH)
-	public static void handleBannerBlockLeftInteract(PlayerInteractEvent.LeftClickBlock event) {
+	public static void handleBlockLeftInteract(PlayerInteractEvent.LeftClickBlock event) {
 		World world = event.getWorld();
 		if (!world.isClientSide()) {
 			if (world.getBlockState(event.getPos()).getBlock() instanceof FireBlock) {
@@ -130,7 +148,7 @@ public class ExtendedBannerEventHandlers {
 		}
 	}
 	@SubscribeEvent(priority=EventPriority.HIGH)
-	public static void handleBannerBlockRightClick(PlayerInteractEvent.RightClickItem event) {
+	public static void handleBlockRightClick(PlayerInteractEvent.RightClickItem event) {
 		World world = event.getWorld();
 		if(!world.isClientSide()) {
 			ItemStack itemstack = event.getPlayer().getItemInHand(event.getHand());
@@ -155,7 +173,7 @@ public class ExtendedBannerEventHandlers {
 	}
 
 	@SubscribeEvent(priority=EventPriority.HIGH)
-	public static void handleBannerBlockRightInteract(PlayerInteractEvent.RightClickBlock event) {
+	public static void handleBlockRightInteract(PlayerInteractEvent.RightClickBlock event) {
 		if(!event.getWorld().isClientSide()) {
 			World world = event.getWorld();
 			BlockState bState = world.getBlockState(event.getPos());
@@ -216,7 +234,7 @@ public class ExtendedBannerEventHandlers {
 	}
 
 	@SubscribeEvent(priority=EventPriority.HIGH)
-	public static void handleBannerDetonateEvent(ExplosionEvent.Detonate event) {
+	public static void handleDetonateEvent(ExplosionEvent.Detonate event) {
 		Explosion explosion = event.getExplosion();
 		World world = event.getWorld();
 		LivingEntity exploder = event.getExplosion().getSourceMob();

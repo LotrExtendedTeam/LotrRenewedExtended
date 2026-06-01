@@ -104,6 +104,8 @@ public class ExtendedLootTables {
 	public static final ResourceLocation ISENGARD_CAMP_SUPPLIES_CHEST = registerChest("isengard_camp_supplies");
 	public static final ResourceLocation ISENGARD_CAMP_WOOD_CHEST = registerChest("isengard_camp_wood");
 	public static final ResourceLocation ISENGARD_FOOD_CHEST = registerChest("isengard_food");
+	public static final ResourceLocation ISENGARD_WARG_PIT_CHEST = registerChest("isengard_warg_pit");
+	public static final ResourceLocation ISENGARD_MINE_CHEST = registerChest("isengard_mine");
 	public static final ResourceLocation ISENGARD_ORTHANC_FOOD_CHEST = registerChest("isengard_orthanc_food");
 	public static final ResourceLocation ISENGARD_ORTHANC_BIRD_CHEST = registerChest("isengard_orthanc_bird");
 
@@ -140,6 +142,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BLUE_MOUNTAINS_PLATE = registerPlate("blue_mountains");
 	public static final ResourceLocation RIVENDELL_PLATE = registerPlate("rivendell");
 	public static final ResourceLocation LINDON_PLATE = registerPlate("lindon");
+	public static final ResourceLocation ISENGARD_PLATE = registerPlate("isengard");
 	public static final ResourceLocation ISENGARD_ORTHANC_PLATE = registerPlate("isengard_orthanc");
 
 	// WEAPONRACKS
@@ -161,6 +164,8 @@ public class ExtendedLootTables {
 	public static final ResourceLocation LINDON_WEAPONRACKS = registerWeaponRack("lindon");
 	public static final ResourceLocation LINDON_EQUIPMENT_WEAPONRACKS = registerWeaponRack("lindon_equipment");
 	public static final ResourceLocation LINDON_BOW_WEAPONRACKS = registerWeaponRack("lindon_bow");
+
+	public static final ResourceLocation ISENGARD_WEAPONRACKS = registerWeaponRack("isengard");
 
 	// POTS
 	public static final ResourceLocation BLUE_MOUNTAINS_TRADER_HALL_POT = registerPot("blue_mountains_trader_hall");

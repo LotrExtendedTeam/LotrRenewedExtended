@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 
 import lotr.common.init.LOTRItems;
 import net.minecraft.data.loot.ChestLootTables;
 import net.minecraft.item.Item;
 import net.minecraft.loot.ConstantRange;
-import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTable.Builder;
 import net.minecraft.loot.StandaloneLootEntry;
-import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedDrinkLootGenerator extends ChestLootTables  {
@@ -75,11 +74,11 @@ public class ExtendedDrinkLootGenerator extends ChestLootTables  {
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight){
-		return ItemLootEntry.lootTableItem(item).setWeight(weight).apply(SetCount.setCount(ConstantRange.exactly(1)));
+		return EItemLootEntry.lootItem(item).setWeight(weight).setExactly(1);
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item){
-		return ItemLootEntry.lootTableItem(item).apply(SetCount.setCount(ConstantRange.exactly(1)));
+		return EItemLootEntry.lootItem(item).setExactly(1);
 	}
 
 	public LootPool.Builder makePool(){

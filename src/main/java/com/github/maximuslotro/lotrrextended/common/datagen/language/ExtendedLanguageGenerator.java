@@ -271,6 +271,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.serversettings.fixedstructures.setting", "Fixed Structures: %s");
 		addD("gui.lotrextended.serversettings.fixedstructureimladris.setting", "Imladris: %s");
 		addD("gui.lotrextended.serversettings.fixedstructuretowerhills.setting", "Tower Hills Towers: %s");
+		addD("gui.lotrextended.serversettings.fixedstructureorthanc.setting", "Orthanc: %s");
 		addD("gui.lotrextended.serversettings.extendedmodifiers.setting", "Extended Modifiers: %s");
 		addD("gui.lotrextended.serversettings.vanillaenchanting.setting", "Vanilla Enchanting: %s");
 		addD("gui.lotrextended.serversettings.vanillaxp.setting", "Vanilla XP: %s");

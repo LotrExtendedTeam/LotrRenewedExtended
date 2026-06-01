@@ -9,14 +9,14 @@
           "weight": 5,
           "functions": [
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
                 "max": 0.1
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:fishing_rod"
@@ -26,14 +26,14 @@
           "weight": 2,
           "functions": [
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
                 "max": 0.5
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_sword"
@@ -43,14 +43,14 @@
           "weight": 2,
           "functions": [
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
                 "max": 0.5
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_axe"
@@ -60,14 +60,14 @@
           "weight": 2,
           "functions": [
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
                 "max": 0.5
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_pickaxe"
@@ -77,14 +77,14 @@
           "weight": 2,
           "functions": [
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
                 "max": 0.5
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_shovel"
@@ -94,14 +94,14 @@
           "weight": 2,
           "functions": [
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
                 "max": 0.5
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:wooden_hoe"
@@ -116,14 +116,14 @@
           "weight": 5,
           "functions": [
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
                 "max": 0.5
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:leather_helmet"
@@ -133,14 +133,14 @@
           "weight": 5,
           "functions": [
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
                 "max": 0.5
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:leather_boots"
@@ -150,14 +150,14 @@
           "weight": 2,
           "functions": [
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
                 "max": 0.5
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bone_helmet"
@@ -167,14 +167,14 @@
           "weight": 2,
           "functions": [
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
                 "max": 0.5
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:bone_boots"
