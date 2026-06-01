@@ -202,7 +202,7 @@ public class InvasionBiomeList {
                 ExtendedInvasions.DUNEDAIN, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON,
-                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
+                ExtendedInvasions.DUNLAND, InvasionChance.UNCOMMON
         ));
 
         register("lotr:northern_dale", genMap(
