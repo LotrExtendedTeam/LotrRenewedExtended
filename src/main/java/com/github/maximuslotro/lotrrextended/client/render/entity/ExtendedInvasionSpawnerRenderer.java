@@ -29,7 +29,7 @@ public class ExtendedInvasionSpawnerRenderer extends EntityRenderer<ExtendedInva
         pMatrixStack.mulPose(Vector3f.YP.rotationDegrees((float)MathHelper.lerp(pPartialTicks, entity.spinO, entity.spin) * 10.0F));
         pMatrixStack.translate(0, 1.75F, 0);
         pMatrixStack.scale(3F, 3F, 3F);
-        Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromKey(entity.getFactionKey());
+        Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromDisplayKey(entity.getDisplayKey());
         if (invasion.isPresent()) {
             ItemStack item = invasion.get().getStack();
             Minecraft.getInstance().getItemRenderer().renderStatic(item, ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND, pPackedLight, OverlayTexture.NO_OVERLAY, pMatrixStack, pBuffer);

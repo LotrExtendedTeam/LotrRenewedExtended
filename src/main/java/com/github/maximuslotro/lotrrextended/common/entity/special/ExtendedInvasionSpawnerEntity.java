@@ -5,6 +5,8 @@ import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
+import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSerializers;
+
 import lotr.common.LOTRLog;
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.ExtendedLevelData;
@@ -12,6 +14,7 @@ import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.fac.Faction;
+import lotr.common.fac.FactionPointer;
 import lotr.common.fac.FactionSettings;
 import lotr.common.fac.FactionSettingsManager;
 import lotr.common.init.ExtendedEntities;
@@ -23,7 +26,6 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.*;
@@ -43,10 +45,10 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 
 public class ExtendedInvasionSpawnerEntity extends Entity {
-    private static final DataParameter<String> DATA_FACTION_KEY = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, DataSerializers.STRING);
+    private static final DataParameter<ResourceLocation> DATA_DISPLAY_KEY = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, ExtendedDataSerializers.RESOURCE_LOCATION);
 
     private static final float ROTATION_SPEED = 0.5F;
     private static final double INVASION_FOLLOW_RANGE = 40.0;
@@ -68,17 +70,17 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
     @Override
     protected void defineSynchedData() {
-        this.getEntityData().define(DATA_FACTION_KEY, "empty");
+        this.getEntityData().define(DATA_DISPLAY_KEY, new ResourceLocation("empty"));
     }
 
     private void setBossBarText() {
-    	Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromKey(getFactionKey());
+    	Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromDisplayKey(getDisplayKey());
     	if (!invasion.isPresent()) {
     		bossBar.setName(new StringTextComponent("Invalid").withStyle(TextFormatting.DARK_RED));
     		return;
     	}
-    	Faction faction = attemptToGetFactionFromKey(invasion.get().getBaseFactionKey());
-    	Style nameStyle = faction != null ? Style.EMPTY.withColor(Color.fromRgb(faction.getColor())) : Style.EMPTY;
+    	Optional<Faction> faction = attemptToGetFactionFromKey(invasion.get().getFactionPointer());
+    	Style nameStyle = faction.isPresent() ? Style.EMPTY.withColor(Color.fromRgb(faction.get().getColor())) : Style.EMPTY;
     	bossBar.setName(invasion.get().getTranslatableName().withStyle(nameStyle));
     }
 
@@ -89,20 +91,21 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         bossBar.setVisible(getEnemiesLeft()>0);
     }
 
-    private @Nullable Faction attemptToGetFactionFromKey(String factionKey) {
+    @Nonnull
+    private Optional<Faction> attemptToGetFactionFromKey(FactionPointer factionPointer) {
         if (FactionSettingsManager.serverInstance() == null) {
-        	return null;
+        	return Optional.empty();
         }
         FactionSettings settings = FactionSettingsManager.serverInstance().getCurrentLoadedFactions();
         if (settings == null) {
-        	return null;
+        	return Optional.empty();
         }
-        return settings.getFactionByName(ResourceLocation.of(factionKey, ':'));
+        return factionPointer.resolveFaction(FactionSettingsManager.serverInstance().getCurrentLoadedFactions());
     }
 
     @Override
     protected void addAdditionalSaveData(CompoundNBT compoundNBT) {
-        compoundNBT.putString("faction_key", getFactionKey());
+        compoundNBT.putString("faction_key", getDisplayKey().toString());
         compoundNBT.putInt("invasion_size", getInvasionSize());
         compoundNBT.putInt("enemies_left", getEnemiesLeft());
     }
@@ -110,7 +113,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     @Override
     protected void readAdditionalSaveData(CompoundNBT compoundNBT) {
         if(compoundNBT.contains("faction_key")) {
-            this.getEntityData().set(DATA_FACTION_KEY, compoundNBT.getString("faction_key"));
+            this.getEntityData().set(DATA_DISPLAY_KEY, new ResourceLocation(compoundNBT.getString("faction_key")));
         }
         setBossBarText();
         if(compoundNBT.contains("invasion_size")) {
@@ -153,7 +156,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
             tickCounter = 0;
             int totalInvasionMobsInArea = getInvasionTypeMobsInRange();
             if (totalInvasionMobsInArea > -1 && totalInvasionMobsInArea < 16 && getEnemiesLeft() > 0) {
-                Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromKey(getFactionKey());
+                Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromDisplayKey(getDisplayKey());
                 ExtendedInvasions.InvasionSpawnEntry result = WeightedRandom.getRandomItem(this.random, invasion.get().getSpawnEntries());
 
                 if (attemptMobSpawn(result.getEntityType())) {
@@ -186,7 +189,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
      * @return the number of mobs or -1 if invasion is not set correctly
      */
     private int getInvasionTypeMobsInRange() {
-        Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromKey(getFactionKey());
+        Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromDisplayKey(getDisplayKey());
         if (!invasion.isPresent()) {
             return -1;
         }
@@ -207,21 +210,17 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         }
 
         if (completed) {
-            Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromKey(getFactionKey());
-            Faction invasionFaction = null;
-            if (invasion.isPresent()) {
-                ResourceLocation resLoc = ResourceLocation.of(invasion.get().getBaseFactionKey(), ':');
-                invasionFaction = FactionSettingsManager.serverInstance().getCurrentLoadedFactions().getFactionByName(resLoc);
-            }
+            Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromDisplayKey(getDisplayKey());
+            Optional<Faction> invasionFaction = invasion.isPresent() ? attemptToGetFactionFromKey(invasion.get().getFactionPointer()) : Optional.empty();
 
-            if (!level.isClientSide && invasionFaction != null) {
+            if (!level.isClientSide && invasionFaction.isPresent()) {
                 Set<UUID> playersWhoFought = ExtendedLevelData.serverInstance().getPlayersWhoFoughtInvasion(getUUID());
                 for (UUID uuid : playersWhoFought) {
                     PlayerEntity playerEntity = level.getPlayerByUUID(uuid);
                     if (playerEntity == null) continue;
 
                     LOTRPlayerData playerData = LOTRLevelData.getSidedData(playerEntity);
-                    if (playerData.getAlignmentData().getAlignment(invasionFaction) < 0.0F) {
+                    if (playerData.getAlignmentData().getAlignment(invasionFaction.get()) < 0.0F) {
                         ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger((ServerPlayerEntity) playerEntity, "defeatedInvasion");
                     }
                 }
@@ -271,12 +270,12 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         return couldSpawnMob;
     }
 
-    public void setFaction(String factionKey) {
-        this.getEntityData().set(DATA_FACTION_KEY, factionKey);
+    public void setDisplayKey(ResourceLocation factionKey) {
+        this.getEntityData().set(DATA_DISPLAY_KEY, factionKey);
     }
 
-    public String getFactionKey() {
-        return this.getEntityData().get(DATA_FACTION_KEY);
+    public ResourceLocation getDisplayKey() {
+        return this.getEntityData().get(DATA_DISPLAY_KEY);
     }
 
     public void setInvasionSize(int pInvasionSize) {
@@ -296,7 +295,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
     @Override
     public ITextComponent getDisplayName() {
-        return new StringTextComponent("Invasion Spawner: " + getFactionKey());
+        return new StringTextComponent("Invasion Spawner: " + getDisplayKey());
     }
 
     @Override
@@ -372,7 +371,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     public ActionResultType interact(PlayerEntity pPlayer, Hand pHand) {
         if(!pPlayer.level.isClientSide() && pPlayer.isCreative()) {
             pPlayer.sendMessage(new StringTextComponent("Faction Key: ").withStyle(TextFormatting.GREEN)
-                    .append(new StringTextComponent(getFactionKey() !=null ? getFactionKey() : "Unset").withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
+                    .append(new StringTextComponent(getDisplayKey() !=null ? getDisplayKey().toString() : "Unset").withStyle(TextFormatting.WHITE)), Util.NIL_UUID);
             pPlayer.sendMessage(new StringTextComponent("UUID: ").withStyle(TextFormatting.GREEN)
                     .append(new StringTextComponent(getStringUUID())).withStyle(TextFormatting.WHITE), Util.NIL_UUID);
         }
@@ -432,21 +431,15 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     }
 
     public boolean startInvasion(int pInvasionSize) {
-        Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromKey(getFactionKey());
+        Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromDisplayKey(getDisplayKey());
         if (!invasion.isPresent()) {
-            LOTRLog.error("Could not start invasion from entity " + this + " because factionKey: " + getFactionKey() + " was not valid.");
+            LOTRLog.error("Could not start invasion from entity " + this + " because factionKey: " + getDisplayKey() + " was not valid.");
             return false;
         }
 
         // determine Faction object for faction color
-        ResourceLocation resLoc = ResourceLocation.of(invasion.get().getBaseFactionKey(), ':');
-        Faction faction = FactionSettingsManager.serverInstance().getCurrentLoadedFactions().getFactionByName(resLoc);
-        Style npcNameStyle;
-        if (faction != null) {
-            npcNameStyle = Style.EMPTY.withColor(Color.fromRgb(faction.getColor()));
-        } else {
-            npcNameStyle = Style.EMPTY.withColor(TextFormatting.YELLOW);
-        }
+        Optional<Faction> faction =attemptToGetFactionFromKey(invasion.get().getFactionPointer());
+        Style npcNameStyle = faction.isPresent() ? Style.EMPTY.withColor(Color.fromRgb(faction.get().getColor())) : Style.EMPTY.withColor(TextFormatting.YELLOW);
 
         // determine all nearby players
         double announceRange = INVASION_FOLLOW_RANGE * 2;

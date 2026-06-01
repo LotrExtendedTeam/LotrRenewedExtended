@@ -1,5 +1,7 @@
 package lotr.common.world;
 
+import lotr.common.fac.FactionPointer;
+import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
@@ -7,6 +9,8 @@ import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -16,42 +20,41 @@ import java.util.stream.Collectors;
 
 public enum ExtendedInvasions {
 
-    RIVENDELL("lotr:high_elves,rivendell", "lotr:high_elves", new ItemStack(LOTRItems.RIVENDELL_SWORD.get(), 1)),
-    LINDON("lotr:high_elves,lindon", "lotr:high_elves", new ItemStack(LOTRItems.LINDON_SWORD.get(), 1)),
-    GUNDABAD("lotr:northern_orcs", "lotr:northern_orcs", new ItemStack(ExtendedItems.GUNDABAD_URUK_CLEAVER.get(), 1)),
-    GUNDABAD_WARGS("lotr:northern_orcs,wargs", "lotr:northern_orcs", new ItemStack(LOTRItems.WARG_BONE.get(), 1)),
-    DUNEDAIN("lotr:dunedain_north", "lotr:dunedain_north", new ItemStack(ExtendedItems.DUNEDAIN_BOW.get(), 1)),
-    MORDOR("lotr:mordor", "lotr:mordor", new ItemStack(LOTRItems.MORDOR_SCIMITAR.get(), 1)),
-    GONDOR("lotr:gondor", "lotr:gondor", new ItemStack(LOTRItems.GONDOR_SWORD.get(), 1)),
-    LOTHLORIEN("lotr:lothlorien", "lotr:lothlorien", new ItemStack(LOTRItems.GALADHRIM_SWORD.get(), 1)),
-    WOODLAND_REALM("lotr:woodland_realm", "lotr:woodland_realm", new ItemStack(LOTRItems.WOOD_ELVEN_SWORD.get(), 1)),
-    ROHAN("lotr:rohan", "lotr:rohan", new ItemStack(LOTRItems.ROHAN_SWORD.get(), 1)),
-    ISENGARD("lotr:isengard", "lotr:isengard", new ItemStack(LOTRItems.URUK_CLEAVER.get(), 1));
+    RIVENDELL("lotr:high_elves,rivendell", FactionPointers.HIGH_ELVES, new ItemStack(LOTRItems.RIVENDELL_SWORD.get())),
+    LINDON("lotr:high_elves,lindon", FactionPointers.HIGH_ELVES, new ItemStack(LOTRItems.LINDON_SWORD.get())),
+    GUNDABAD("lotr:northern_orcs", FactionPointers.NORTHERN_ORCS, new ItemStack(ExtendedItems.GUNDABAD_URUK_CLEAVER.get())),
+    GUNDABAD_WARGS("lotr:northern_orcs,wargs", FactionPointers.NORTHERN_ORCS, new ItemStack(LOTRItems.WARG_BONE.get())),
+    DUNEDAIN("lotr:dunedain_north", FactionPointers.DUNEDAIN_NORTH, new ItemStack(ExtendedItems.DUNEDAIN_BOW.get())),
+    MORDOR("lotr:mordor", FactionPointers.MORDOR, new ItemStack(LOTRItems.MORDOR_SCIMITAR.get())),
+    GONDOR("lotr:gondor", FactionPointers.GONDOR, new ItemStack(LOTRItems.GONDOR_SWORD.get())),
+    LOTHLORIEN("lotr:lothlorien", FactionPointers.LOTHLORIEN, new ItemStack(LOTRItems.GALADHRIM_SWORD.get())),
+    WOODLAND_REALM("lotr:woodland_realm", FactionPointers.WOODLAND_REALM, new ItemStack(LOTRItems.WOOD_ELVEN_SWORD.get())),
+    ROHAN("lotr:rohan", FactionPointers.ROHAN, new ItemStack(LOTRItems.ROHAN_SWORD.get())),
+    ISENGARD("lotr:isengard", FactionPointers.ISENGARD, new ItemStack(LOTRItems.URUK_CLEAVER.get()));
 
-    private final String key;
+    private final ResourceLocation displayKey;
     private final ItemStack stack;
     private List<InvasionSpawnEntry> spawnEntries = new ArrayList<>();
-    private final String baseFactionKey;
+    private final FactionPointer factionPointer;
 
-    private static final Map<String, ExtendedInvasions> BY_KEY =
-            Arrays.stream(values())
-                    .collect(Collectors.toMap(
-                            ExtendedInvasions::getKey,
-                            e -> e
-                    ));
+    private static final Map<ResourceLocation, ExtendedInvasions> BY_KEY = Arrays.stream(values()).collect(Collectors.toMap(ExtendedInvasions::getDisplayKey, e -> e));
 
-    ExtendedInvasions(String key, String baseFactionKey, ItemStack stack) {
-        this.key = key;
-        this.stack = stack;
-        this.baseFactionKey = baseFactionKey;
+    private ExtendedInvasions(String pRenderDisplayKey, FactionPointer pFactionPointer, ItemStack pStack) {
+        this(new ResourceLocation(pRenderDisplayKey), pFactionPointer, pStack);
     }
 
-    public String getKey() {
-        return key;
+    private ExtendedInvasions(ResourceLocation pRenderDisplayKey, FactionPointer pFactionPointer, ItemStack pStack) {
+        this.displayKey = pRenderDisplayKey;
+        this.factionPointer = pFactionPointer;
+        this.stack = pStack;
     }
 
-    public String getBaseFactionKey() {
-        return baseFactionKey;
+    public ResourceLocation getDisplayKey() {
+        return displayKey;
+    }
+
+    public FactionPointer getFactionPointer() {
+        return factionPointer;
     }
 
     public ItemStack getStack() {
@@ -62,7 +65,7 @@ public enum ExtendedInvasions {
         return spawnEntries;
     }
 
-    public static Optional<ExtendedInvasions> fromKey(String key) {
+    public static Optional<ExtendedInvasions> fromDisplayKey(ResourceLocation key) {
         return Optional.ofNullable(BY_KEY.get(key));
     }
 
