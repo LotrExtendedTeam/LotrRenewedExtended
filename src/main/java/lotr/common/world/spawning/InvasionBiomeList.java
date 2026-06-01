@@ -103,7 +103,7 @@ public class InvasionBiomeList {
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.RARE
         ));
 
-        // Gondor main
+        // Gondor main biomes (renewed split lotr:gondor into three sub-biomes)
         register("lotr:anorien", genMap(
         	ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
             ExtendedInvasions.UMBAR, InvasionChance.RARE
@@ -116,9 +116,6 @@ public class InvasionBiomeList {
         	ExtendedInvasions.UMBAR, InvasionChance.RARE));
         // Gondor sub
         register("lotr:field_of_cormallen", new HashMap<>()); // None here either?
-        register("lotr:anorien", genMap(
-        	ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
-            ExtendedInvasions.UMBAR, InvasionChance.RARE));
         register("lotr:blackroot_vale", genMap(
         	ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
             ExtendedInvasions.UMBAR, InvasionChance.RARE));
@@ -143,8 +140,7 @@ public class InvasionBiomeList {
         register("lotr:ithilien", genMap(
                 ExtendedInvasions.MORDOR, InvasionChance.COMMON,
                 ExtendedInvasions.GONDOR, InvasionChance.UNCOMMON,
-                ExtendedInvasions.UMBAR, InvasionChance.RARE
-        ));
+                ExtendedInvasions.UMBAR, InvasionChance.RARE));
         register("lotr:lebennin", genMap(
         	ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
             ExtendedInvasions.UMBAR, InvasionChance.RARE));
