@@ -180,26 +180,27 @@ public class ExtendedRepairContainerNew extends Container {
 		int localCost = this.cost.get();
 		this.inputSlots.setItem(0, ItemStack.EMPTY);
 		ItemStack merged = this.inputSlots.getItem(1);
+		// If item exists in merging slot, always decrement since logic will 
+		//fail output if merging slot isn't valid
 		if (!merged.isEmpty()) {
+			// Only decrement by one, since never more than one item from merge slot is ever needed
 			merged.shrink(1);
 			this.inputSlots.setItem(1, merged);
 		} else {
 			this.inputSlots.setItem(1, ItemStack.EMPTY);
 		}
+		// Only decrement material slot if there is a recipe cost
 		if (localCost > 0) {
 			ItemStack material = this.inputSlots.getItem(2);
 			if (!material.isEmpty()) {
+				// Shrink material count by recipe cost
 				material.shrink(localCost);
 				if (!material.isEmpty()) {
 					this.inputSlots.setItem(2, material);
 				} else {
 					this.inputSlots.setItem(2, ItemStack.EMPTY);
 				}
-			} else {
-				this.inputSlots.setItem(1, ItemStack.EMPTY);
 			}
-		} else {
-			this.inputSlots.setItem(1, ItemStack.EMPTY);
 		}
 		this.cost.set(0);
 		hurtOrDamageAnvilSound();

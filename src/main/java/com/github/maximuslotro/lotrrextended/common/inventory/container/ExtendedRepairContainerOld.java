@@ -58,7 +58,10 @@ import net.minecraftforge.common.Tags;
 /**
  * Based off of {@link RepairContainer}
  * Something is broken with the class in regards to saving old data using {@code lastCost} and {@code lastGemColoring} to try rectifying this
+ * 
+ * Un-used but kept as reference to pre-1.10.0 repair container logic
  * */
+@Deprecated
 public class ExtendedRepairContainerOld extends Container {
 
 	protected final CraftResultInventory resultSlots = new CraftResultInventory();
