@@ -117,6 +117,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addD(entity.getKey(), entity.getValue());
 		}
 
+		for (String invasion : DataGenValueHolder.invasionNames) {
+			addD(invasion);
+		}
+
 		// chat notifications
 		addD("chat.lotrextended.hired_companion_prefix", "Your hired companion %1$s");
 		addD("chat.lotrextended.hired_companion_levelup", "Your hired companion %1$s has reached level %2$s!");
@@ -702,17 +706,6 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 		// Invasions
 		addD("chat.lotrextended.invasion.started", "%s have launched an invasion nearby!");
-		addD("lotrextended.invasion.rivendell", "Rivendell");
-		addD("lotrextended.invasion.lindon", "Lindon");
-		addD("lotrextended.invasion.gundabad", "Gundabad");
-		addD("lotrextended.invasion.gundabad_wargs", "Gundabad Wargs");
-		addD("lotrextended.invasion.dunedain", "Rangers of the North");
-		addD("lotrextended.invasion.mordor", "Mordor");
-		addD("lotrextended.invasion.gondor", "Gondor");
-		addD("lotrextended.invasion.lothlorien", "Lothlorien");
-		addD("lotrextended.invasion.woodland_realm", "Woodland Realm");
-		addD("lotrextended.invasion.rohan", "Rohan");
-		addD("lotrextended.invasion.isengard", "Uruk-hai");
 	}
 
 	@Override

@@ -48,7 +48,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 
 public class ExtendedInvasionSpawnerEntity extends Entity {
-    private static final DataParameter<ResourceLocation> DATA_DISPLAY_KEY = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, ExtendedDataSerializers.RESOURCE_LOCATION);
+    private static final DataParameter<ResourceLocation> DATA_TYPE_KEY = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, ExtendedDataSerializers.RESOURCE_LOCATION);
 
     private static final float ROTATION_SPEED = 0.5F;
     private static final double INVASION_FOLLOW_RANGE = 40.0;
@@ -70,11 +70,11 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
 
     @Override
     protected void defineSynchedData() {
-        this.getEntityData().define(DATA_DISPLAY_KEY, new ResourceLocation("empty"));
+        this.getEntityData().define(DATA_TYPE_KEY, new ResourceLocation("empty"));
     }
 
     private void setBossBarText() {
-    	Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromDisplayKey(getDisplayKey());
+    	Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromTypeKey(getDisplayKey());
     	if (!invasion.isPresent()) {
     		bossBar.setName(new StringTextComponent("Invalid").withStyle(TextFormatting.DARK_RED));
     		return;
@@ -113,7 +113,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     @Override
     protected void readAdditionalSaveData(CompoundNBT compoundNBT) {
         if(compoundNBT.contains("faction_key")) {
-            this.getEntityData().set(DATA_DISPLAY_KEY, new ResourceLocation(compoundNBT.getString("faction_key")));
+            this.getEntityData().set(DATA_TYPE_KEY, new ResourceLocation(compoundNBT.getString("faction_key")));
         }
         setBossBarText();
         if(compoundNBT.contains("invasion_size")) {
@@ -156,7 +156,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
             tickCounter = 0;
             int totalInvasionMobsInArea = getInvasionTypeMobsInRange();
             if (totalInvasionMobsInArea > -1 && totalInvasionMobsInArea < 16 && getEnemiesLeft() > 0) {
-                Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromDisplayKey(getDisplayKey());
+                Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromTypeKey(getDisplayKey());
                 ExtendedInvasions.InvasionSpawnEntry result = WeightedRandom.getRandomItem(this.random, invasion.get().getSpawnEntries());
 
                 if (attemptMobSpawn(result.getEntityType())) {
@@ -165,7 +165,6 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 }
             }
         }
-
         // Remove invasion if all enemies have been killed, or the invasion is invalid
         // Should only be -1 here if invasionEnemiesLeft sanity check above is less than 0, so remove anyways
         if (getEnemiesLeft() <= 0) {
@@ -189,7 +188,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
      * @return the number of mobs or -1 if invasion is not set correctly
      */
     private int getInvasionTypeMobsInRange() {
-        Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromDisplayKey(getDisplayKey());
+        Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromTypeKey(getDisplayKey());
         if (!invasion.isPresent()) {
             return -1;
         }
@@ -210,7 +209,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         }
 
         if (completed) {
-            Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromDisplayKey(getDisplayKey());
+            Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromTypeKey(getDisplayKey());
             Optional<Faction> invasionFaction = invasion.isPresent() ? attemptToGetFactionFromKey(invasion.get().getFactionPointer()) : Optional.empty();
 
             if (!level.isClientSide && invasionFaction.isPresent()) {
@@ -270,12 +269,12 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         return couldSpawnMob;
     }
 
-    public void setDisplayKey(ResourceLocation factionKey) {
-        this.getEntityData().set(DATA_DISPLAY_KEY, factionKey);
+    public void setTypeKey(ResourceLocation factionKey) {
+        this.getEntityData().set(DATA_TYPE_KEY, factionKey);
     }
 
     public ResourceLocation getDisplayKey() {
-        return this.getEntityData().get(DATA_DISPLAY_KEY);
+        return this.getEntityData().get(DATA_TYPE_KEY);
     }
 
     public void setInvasionSize(int pInvasionSize) {
@@ -431,7 +430,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
     }
 
     public boolean startInvasion(int pInvasionSize) {
-        Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromDisplayKey(getDisplayKey());
+        Optional<ExtendedInvasions> invasion = ExtendedInvasions.fromTypeKey(getDisplayKey());
         if (!invasion.isPresent()) {
             LOTRLog.error("Could not start invasion from entity " + this + " because factionKey: " + getDisplayKey() + " was not valid.");
             return false;

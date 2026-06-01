@@ -15,6 +15,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedItemM
 import com.github.maximuslotro.lotrrextended.common.datagen.tags.ExtendedTagRelatedGenerators;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 
+import lotr.common.world.ExtendedInvasions;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
@@ -41,6 +42,7 @@ public class DataGeneratorExtended {
 			generator.addProvider(new ExtendedItemModelGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedEntityTextureValidator(LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedSoundDefinitionsGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
+			ExtendedInvasions.DURINS_FOLK.getTypeKey();// Force populate invasion language keys
 			generator.addProvider(new ExtendedLanguageGenerator(generator, LotrExtendedMod.MODID,"en_us"));
 		}
 	}

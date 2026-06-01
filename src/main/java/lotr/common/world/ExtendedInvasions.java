@@ -14,14 +14,17 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.fml.DatagenModLoader;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+
 public enum ExtendedInvasions {
 
-	RIVENDELL("lotr:high_elves,rivendell", FactionPointers.HIGH_ELVES, new ItemStack(LOTRItems.RIVENDELL_SWORD.get())),
-	LINDON("lotr:high_elves,lindon", FactionPointers.HIGH_ELVES, new ItemStack(LOTRItems.LINDON_SWORD.get())),
+	RIVENDELL("lotr:high_elves_rivendell", FactionPointers.HIGH_ELVES, new ItemStack(LOTRItems.RIVENDELL_SWORD.get())),
+	LINDON("lotr:high_elves_lindon", FactionPointers.HIGH_ELVES, new ItemStack(LOTRItems.LINDON_SWORD.get())),
 	GUNDABAD("lotr:northern_orcs", FactionPointers.NORTHERN_ORCS, new ItemStack(ExtendedItems.GUNDABAD_URUK_CLEAVER.get())),
 	GUNDABAD_WARGS("lotr:northern_orcs_wargs", FactionPointers.NORTHERN_ORCS, new ItemStack(LOTRItems.WARG_BONE.get())),
 	DUNEDAIN("lotr:dunedain_north", FactionPointers.DUNEDAIN_NORTH, new ItemStack(ExtendedItems.DUNEDAIN_BOW.get())),
@@ -31,32 +34,36 @@ public enum ExtendedInvasions {
 	WOODLAND_REALM("lotr:woodland_realm", FactionPointers.WOODLAND_REALM, new ItemStack(LOTRItems.WOOD_ELVEN_SWORD.get())),
 	ROHAN("lotr:rohan", FactionPointers.ROHAN, new ItemStack(LOTRItems.ROHAN_SWORD.get())),
 	ISENGARD("lotr:isengard", FactionPointers.ISENGARD, new ItemStack(LOTRItems.URUK_CLEAVER.get())),
-	DUNLAND("lotr:isengard", FactionPointers.DUNLAND, new ItemStack(LOTRItems.DUNLENDING_CLUB.get())),
-	BREE("lotr:dunland", FactionPointers.BREE, new ItemStack(Items.IRON_SWORD)),
-	BLUE_MOUNTAINS("lotr:blue_mountains", FactionPointers.BLUE_MOUNTAINS, new ItemStack(LOTRItems.BLUE_DWARVEN_SWORD.get())),
-	DALE("lotr:dale", FactionPointers.DALE, new ItemStack(LOTRItems.DALE_SWORD.get())),
-	DURINS_FOLK("lotr:durins_folk", FactionPointers.DURINS_FOLK, new ItemStack(LOTRItems.DWARVEN_SWORD.get())),
-	UMBAR("lotr:near_harad_umbar", FactionPointers.NEAR_HARAD, new ItemStack(LOTRItems.UMBAR_SCIMITAR.get()));
+	DUNLAND("lotrextended:isengard", FactionPointers.DUNLAND, new ItemStack(LOTRItems.DUNLENDING_CLUB.get())),
+	BREE("lotrextended:dunland", FactionPointers.BREE, new ItemStack(Items.IRON_SWORD)),
+	BLUE_MOUNTAINS("lotrextended:blue_mountains", FactionPointers.BLUE_MOUNTAINS, new ItemStack(LOTRItems.BLUE_DWARVEN_SWORD.get())),
+	DALE("lotrextended:dale", FactionPointers.DALE, new ItemStack(LOTRItems.DALE_SWORD.get())),
+	DURINS_FOLK("lotrextended:durins_folk", FactionPointers.DURINS_FOLK, new ItemStack(LOTRItems.DWARVEN_SWORD.get())),
+	UMBAR("lotrextended:near_harad_umbar", FactionPointers.NEAR_HARAD, new ItemStack(LOTRItems.UMBAR_SCIMITAR.get()));
 
-	private final ResourceLocation displayKey;
+	private final ResourceLocation typeKey;
 	private final ItemStack stack;
 	private List<InvasionSpawnEntry> spawnEntries = new ArrayList<>();
 	private final FactionPointer factionPointer;
 
-	private static final Map<ResourceLocation, ExtendedInvasions> BY_KEY = Arrays.stream(values()).collect(Collectors.toMap(ExtendedInvasions::getDisplayKey, e -> e));
+	private static final Map<ResourceLocation, ExtendedInvasions> BY_KEY = Arrays.stream(values()).collect(Collectors.toMap(ExtendedInvasions::getTypeKey, e -> e));
 
-	private ExtendedInvasions(String pRenderDisplayKey, FactionPointer pFactionPointer, ItemStack pStack) {
-		this(new ResourceLocation(pRenderDisplayKey), pFactionPointer, pStack);
+	private ExtendedInvasions(String pTypeKey, FactionPointer pFactionPointer, ItemStack pStack) {
+		this(new ResourceLocation(pTypeKey), pFactionPointer, pStack);
 	}
 
-	private ExtendedInvasions(ResourceLocation pRenderDisplayKey, FactionPointer pFactionPointer, ItemStack pStack) {
-		this.displayKey = pRenderDisplayKey;
+	private ExtendedInvasions(ResourceLocation pTypeKey, FactionPointer pFactionPointer, ItemStack pStack) {
+		this.typeKey = pTypeKey;
 		this.factionPointer = pFactionPointer;
 		this.stack = pStack;
+		
+		if(DatagenModLoader.isRunningDataGen()) {
+			DataGenValueHolder.invasionNames.add("lotrextended.invasion." + this.name().toLowerCase());
+		}
 	}
 
-	public ResourceLocation getDisplayKey() {
-		return displayKey;
+	public ResourceLocation getTypeKey() {
+		return typeKey;
 	}
 
 	public FactionPointer getFactionPointer() {
@@ -71,7 +78,7 @@ public enum ExtendedInvasions {
 		return spawnEntries;
 	}
 
-	public static Optional<ExtendedInvasions> fromDisplayKey(ResourceLocation key) {
+	public static Optional<ExtendedInvasions> fromTypeKey(ResourceLocation key) {
 		return Optional.ofNullable(BY_KEY.get(key));
 	}
 

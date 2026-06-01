@@ -52,7 +52,7 @@ public class InvasionSpawner {
                 ExtendedInvasions invasion = InvasionBiomeList.pickInvasionFromBiomeName(world, world.getBiomeName(pos));
                 if (invasion != null) {
                     ExtendedInvasionSpawnerEntity spawner = new ExtendedInvasionSpawnerEntity(world);
-                    spawner.setDisplayKey(invasion.getDisplayKey());
+                    spawner.setTypeKey(invasion.getTypeKey());
                     spawner.setPos(x, y, z);
                     world.addFreshEntity(spawner);
                     spawner.startInvasion();
@@ -116,7 +116,7 @@ public class InvasionSpawner {
                     }
 
                     ExtendedInvasionSpawnerEntity spawner = new ExtendedInvasionSpawnerEntity(world);
-                    spawner.setDisplayKey(entry.getKey().getDisplayKey());
+                    spawner.setTypeKey(entry.getKey().getTypeKey());
                     spawner.setPos(x, y, z);
                     world.addFreshEntity(spawner);
                     spawner.startInvasion();
