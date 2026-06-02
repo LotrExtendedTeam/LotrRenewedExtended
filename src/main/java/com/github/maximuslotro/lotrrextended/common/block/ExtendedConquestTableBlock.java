@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
+import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -40,6 +41,9 @@ public class ExtendedConquestTableBlock extends HorizontalBlock {
 	@Override
 	public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pHit) {
 		pLevel.playSound(null, pHit.getBlockPos(), ExtendedSounds.CONQUEST_TABLE_OPEN.get(), SoundCategory.BLOCKS, 2.0F, 1.0F);
+		if (pLevel.isClientSide) {
+			ExtendedClientsideSeparatedScreenHandler.openConquestGUI();
+		}
 		return ActionResultType.sidedSuccess(pLevel.isClientSide);
 	}
 }

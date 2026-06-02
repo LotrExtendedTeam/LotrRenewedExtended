@@ -4,6 +4,7 @@ import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBannerCon
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedCaptainMainScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedExitStoneTextSignScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHoistOptionsScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedMapScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedTraderMainScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedTradeScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedWargInventoryScreen;
@@ -86,5 +87,10 @@ public class ExtendedClientsideSeparatedScreenHandler {
 	public static void openHoistGUI(ExtendedHoistTileEntity te) {
 		Minecraft mc = Minecraft.getInstance();
     	mc.setScreen(new ExtendedHoistOptionsScreen(te));
+	}
+
+	public static void openConquestGUI() {
+		Minecraft mc = Minecraft.getInstance();
+    	mc.setScreen(new ExtendedMapScreen());
 	}
 }
