@@ -1,0 +1,76 @@
+{
+	"name": "lotrextended:isengard/mining_tunnels_fallback",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/mine/isengard_mine_end_1",
+				"processors": "minecraft:empty",
+				"disable_spawn_above_ground": true
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/mine/isengard_mine_end_2",
+				"processors": "minecraft:empty",
+				"disable_spawn_above_ground": true
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/mine/isengard_mine_end_3",
+				"processors": "minecraft:empty",
+				"disable_spawn_above_ground": true
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/mine/isengard_mine_end_4",
+				"processors": "minecraft:empty",
+				"disable_spawn_above_ground": true
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/mine/isengard_mine_end_5",
+				"processors": "minecraft:empty",
+				"disable_spawn_above_ground": true
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/mine/isengard_mine_end_6",
+				"processors": "minecraft:empty",
+				"disable_spawn_above_ground": true
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/mine/isengard_mine_end_7",
+				"processors": "minecraft:empty",
+				"disable_spawn_above_ground": true
+			}
+		}
+	]
+}
