@@ -221,9 +221,9 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.LINDON_ELF.get(), 1).addPool(LOTREntities.LINDON_WARRIOR.get(), 4)
 			.build(), 1, 4, false, 15, 15).setBoundaries(10, -10, 15, 0, 0, 0).enableSpawningAtSpawner().save(pConsumer, ExtendedSpawners.LINDON_CASTLE);
 		// ISENGARD
-		single(ExtendedEntities.URUK_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.ISENGARD_SMITH);
-		single(ExtendedEntities.URUK_SUPPLIER.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.ISENGARD_SUPPLIER);
-		single(ExtendedEntities.URUK_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.ISENGARD_CAPTAIN);
+		single(ExtendedEntities.URUK_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.ISENGARD_SMITH);
+		single(ExtendedEntities.URUK_SUPPLIER.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.ISENGARD_SUPPLIER);
+		single(ExtendedEntities.URUK_CAPTAIN.get()).setRespawnOnDeath().setHomeInfo(false, 10).save(pConsumer, ExtendedSpawners.ISENGARD_CAPTAIN);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.ISENGARD_SNAGA.get(), 5).addPool(LOTREntities.ISENGARD_SNAGA_ARCHER.get(), 5)
 				.addPool(LOTREntities.URUK.get(), 5).addPool(LOTREntities.URUK_ARCHER.get(), 3)
 				.addPool(LOTREntities.ISENGARD_WARG.get(), 3).addPool(ExtendedEntities.URUK_BERSERKER.get(), 1)
@@ -239,6 +239,6 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.ISENGARD_WARG.get(), 100).build(), 2, 3, false, 26, 8)
 		.setBoundaries(12, -8, 16, 4, -4, 6).enableSpawningAtSpawner(50).save(pConsumer, ExtendedSpawners.ISENGARD_WARG_PIT);
 		// DUNLENDING
-		single(ExtendedEntities.DUNLENDING_WARLORD.get()).setRespawnOnDeath().setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.DUNLENDING_WARLORD);		
+		single(ExtendedEntities.DUNLENDING_WARLORD.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.DUNLENDING_WARLORD);		
 	}
 }

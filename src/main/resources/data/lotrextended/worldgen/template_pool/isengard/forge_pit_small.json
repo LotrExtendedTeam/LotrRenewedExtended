@@ -9,7 +9,6 @@
 				"projection": "rigid",
 				"location": "lotrextended:isengard/pit/isengard_forge_pit_1",
 				"processors": "minecraft:empty",
-				"snap_to_water_height" : true,
 				"ground_level_delta": 14
 			}
 		},
@@ -20,7 +19,6 @@
 				"projection": "rigid",
 				"location": "lotrextended:isengard/pit/isengard_forge_pit_2",
 				"processors": "minecraft:empty",
-				"snap_to_water_height" : true,
 				"ground_level_delta": 14
 			}
 		}

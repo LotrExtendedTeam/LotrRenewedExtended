@@ -9,8 +9,7 @@
 				"projection": "rigid",
 				"location": "lotrextended:isengard/pit/isengard_pit_2",
 				"processors": "minecraft:empty",
-				"snap_to_water_height" : true,
-				"ground_level_delta": 14
+				"ground_level_delta": 25
 			}
 		}
 	]

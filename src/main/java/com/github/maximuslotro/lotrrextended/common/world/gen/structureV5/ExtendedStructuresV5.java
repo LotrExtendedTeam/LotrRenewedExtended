@@ -150,7 +150,7 @@ public class ExtendedStructuresV5 {
 		register(LINDON_HALL.get(), true,              80, 65, 356254478);
 		register(ISENGARD_GATEHOUSE.get(), false,      1,  0,  0);
 		register(ORTHANC.get(), false,                 1,  0,  0);
-		register(ORTHANC.get(), false,                 15,  10,  848458030);
+		register(ISENGARD_CAMP.get(), true,            15,  10,  848458030);
 	}
 
 	/**
