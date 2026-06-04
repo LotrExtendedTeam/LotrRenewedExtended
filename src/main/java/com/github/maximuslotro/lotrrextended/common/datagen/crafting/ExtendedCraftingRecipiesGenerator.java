@@ -2470,6 +2470,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.STAFF_GANDALF_WHITE.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.GLAMDRING.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.ARNOR_SHIELD.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.COMBAT_TOME.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.TOOL_TOME.get().getRegistryName().getPath());
 	}
 
 	@Override

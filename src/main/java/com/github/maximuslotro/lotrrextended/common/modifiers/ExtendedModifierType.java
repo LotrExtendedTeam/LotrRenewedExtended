@@ -55,7 +55,7 @@ public enum ExtendedModifierType {
 			item -> item instanceof SwordItem || item instanceof ToolItem),
 
 	/** Enhances knockback effect in melee combat. */
-	MEELE_KNOCKBACK("enchant.lotrextended.melee_knockback.disc", "+", 
+	MELEE_KNOCKBACK("enchant.lotrextended.melee_knockback.disc", "+", 
 			item -> item instanceof SwordItem || item instanceof ToolItem || item instanceof ExtendedThrowableAxeItem),
 
 	/** Increases ranged attack speed or draw speed. */
