@@ -578,18 +578,20 @@ public class ExtendedModifierUtils {
 				return newModifiers;
 			}
 			int chance = pRandom.nextInt(100);
+			
 			if(chance < 60) {
+				// 45.45%
 				newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 				filterCompatibleModifiers(applicableModifiers, Util.lastOf(newModifiers));
 				if(chance < 15 && !applicableModifiers.isEmpty()) {
+					// 14.85%
 					newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 					filterCompatibleModifiers(applicableModifiers, Util.lastOf(newModifiers));
 					if(pRandom.nextInt(100) == 0 && !applicableModifiers.isEmpty()) {
+						// 0.15%
 						newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 					}
 				}
-			}else if(chance < 15) {
-				newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 			}
 		}
 		return newModifiers;
