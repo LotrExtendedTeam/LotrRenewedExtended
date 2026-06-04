@@ -256,18 +256,35 @@ public class ExtendedCrucibleTileEntity extends LockableTileEntity implements IS
 			ItemStack outputStack2 = this.items.get(3);
 			ItemStack resultStack1 = pRecipe.assemble1(this);
 			ItemStack resultStack2 = pRecipe.assemble2(this);
-			if(!resultStack1.isEmpty()) {
+			// calculated guessed offset for non-damaged items from legacy
+			// hard to calculate as legacy presumably rounds up at the end, and not many recipes have values that will
+			// be dropped lower than max when rounded up
+			float countPercent1 = resultStack1.getCount() * 0.75F;
+			float countPercent2 = resultStack2.getCount() * 0.75F;
+			// further reduce output size by condition of damageable items
+			if(inputStack.isDamageableItem()) {
+				countPercent1 *= ((float)(inputStack.getMaxDamage()-inputStack.getDamageValue()))/inputStack.getMaxDamage();
+				countPercent2 *= ((float)(inputStack.getMaxDamage()-inputStack.getDamageValue()))/inputStack.getMaxDamage();
+			}
+			// TODO instead of rounding, for applicable materials use nuggets instead of ingots as fraction percentage
+			int count1 = Math.round(countPercent1);
+			int count2 = Math.round(countPercent2);
+			if(!resultStack1.isEmpty() && count1>0) {
 				if (outputStack1.isEmpty()) {
-					this.items.set(2, resultStack1.copy());
+					ItemStack newStack1 = resultStack1.copy();
+					newStack1.setCount(count1);
+					this.items.set(2, newStack1);
 				} else if (outputStack1.getItem() == resultStack1.getItem()) {
-					outputStack1.grow(resultStack1.getCount());
+					outputStack1.grow(count1);
 				}
 			}
-			if(!resultStack2.isEmpty()) {
+			if(!resultStack2.isEmpty() && count2>0) {
 				if (outputStack2.isEmpty()) {
-					this.items.set(3, resultStack2.copy());
+					ItemStack newStack2 = resultStack2.copy();
+					newStack2.setCount(count2);
+					this.items.set(3, newStack2);
 				} else if (outputStack2.getItem() == resultStack2.getItem()) {
-					outputStack2.grow(resultStack2.getCount());
+					outputStack2.grow(count2);
 				}
 			}
 			if (!this.level.isClientSide) {
