@@ -52,7 +52,7 @@ public class InvasionSpawner {
                 ExtendedInvasions invasion = InvasionBiomeList.pickInvasionFromBiomeName(world, world.getBiomeName(pos));
                 if (invasion != null) {
                     ExtendedInvasionSpawnerEntity spawner = new ExtendedInvasionSpawnerEntity(world);
-                    spawner.setFaction(invasion.getKey());
+                    spawner.setTypeKey(invasion.getTypeKey());
                     spawner.setPos(x, y, z);
                     world.addFreshEntity(spawner);
                     spawner.startInvasion();
@@ -110,13 +110,13 @@ public class InvasionSpawner {
                     if (ExtendedBannerProtectionManager.getProtectionStatus(world, cPos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
                         continue;
                     }
-
+                    // Check again if position can have invasion, in the case of a border with a different biome
                     if (!InvasionBiomeList.getInvasionsPerBiome(world.getBiomeName(cPos)).containsKey(entry.getKey())) {
                     	continue;
                     }
 
                     ExtendedInvasionSpawnerEntity spawner = new ExtendedInvasionSpawnerEntity(world);
-                    spawner.setFaction(entry.getKey().getKey());
+                    spawner.setTypeKey(entry.getKey().getTypeKey());
                     spawner.setPos(x, y, z);
                     world.addFreshEntity(spawner);
                     spawner.startInvasion();

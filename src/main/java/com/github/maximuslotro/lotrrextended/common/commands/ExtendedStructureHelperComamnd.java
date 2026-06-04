@@ -108,6 +108,7 @@ public class ExtendedStructureHelperComamnd {
 
 	}
 
+	//TODO handle tile-entity remapping, and item remapping if needed
 	private static boolean remapUsingExtendedMappings(CompoundNBT root) {
 		boolean changed = false;
 		if (root.contains("palette", 9)) {

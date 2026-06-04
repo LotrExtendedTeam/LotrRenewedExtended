@@ -103,28 +103,53 @@ public class InvasionBiomeList {
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.RARE
         ));
 
-        // Gondor
-        // TODO: These are missing a ton of factions because the NPCs are missing
-        //       Add Factions like Black Uruks later
-        register("lotr:gondor", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        // TODO: For now there is no Harad factions so no invasions here
-        register("lotr:further_gondor", new HashMap<>());
+        // Gondor main biomes (renewed split lotr:gondor into three sub-biomes)
+        register("lotr:anorien", genMap(
+        	ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
+            ExtendedInvasions.UMBAR, InvasionChance.RARE
+        ));
+        register("lotr:anfalas", genMap(
+        	ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
+            ExtendedInvasions.UMBAR, InvasionChance.RARE
+        ));
+        register("lotr:further_gondor", genMap(
+        	ExtendedInvasions.UMBAR, InvasionChance.RARE));
+        // Gondor sub
         register("lotr:field_of_cormallen", new HashMap<>()); // None here either?
-        register("lotr:anorien", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        register("lotr:blackroot_vale", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        register("lotr:lamedon", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        register("lotr:lamedon_hills", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        register("lotr:pelargir", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        register("lotr:anfalas", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        register("lotr:lossarnach", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        register("lotr:pinnath_gelin", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
+        register("lotr:blackroot_vale", genMap(
+        	ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
+            ExtendedInvasions.UMBAR, InvasionChance.RARE));
+        register("lotr:lamedon", genMap(
+        	ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
+            ExtendedInvasions.UMBAR, InvasionChance.RARE));
+        register("lotr:lamedon_hills", genMap(
+        	ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
+            ExtendedInvasions.UMBAR, InvasionChance.RARE));
+        register("lotr:pelargir", genMap(
+        	ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
+            ExtendedInvasions.UMBAR, InvasionChance.RARE));
+        register("lotr:anfalas", genMap(
+        	ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
+            ExtendedInvasions.UMBAR, InvasionChance.RARE));
+        register("lotr:lossarnach", genMap(
+        	ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
+            ExtendedInvasions.UMBAR, InvasionChance.RARE));
+        register("lotr:pinnath_gelin", genMap(
+        	ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
+            ExtendedInvasions.UMBAR, InvasionChance.RARE));
         register("lotr:ithilien", genMap(
                 ExtendedInvasions.MORDOR, InvasionChance.COMMON,
-                ExtendedInvasions.GONDOR, InvasionChance.UNCOMMON
-        ));
-        register("lotr:lebennin", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
-        register("lotr:emyn_en_ernil", genMap(ExtendedInvasions.MORDOR, InvasionChance.RARE));
-        register("lotr:dor_en_ernil", genMap(ExtendedInvasions.MORDOR, InvasionChance.RARE));
+                ExtendedInvasions.GONDOR, InvasionChance.UNCOMMON,
+                ExtendedInvasions.UMBAR, InvasionChance.RARE));
+        register("lotr:lebennin", genMap(
+        	ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
+            ExtendedInvasions.UMBAR, InvasionChance.RARE));
+        register("lotr:emyn_en_ernil", genMap(
+        	ExtendedInvasions.MORDOR, InvasionChance.RARE,
+            ExtendedInvasions.UMBAR, InvasionChance.RARE));
+        register("lotr:dor_en_ernil", genMap(
+        	ExtendedInvasions.MORDOR, InvasionChance.RARE,
+            ExtendedInvasions.UMBAR, InvasionChance.RARE));
 
         // Older elven regions
         register("lotr:lindon", genMap(ExtendedInvasions.GUNDABAD, InvasionChance.RARE));
@@ -158,12 +183,13 @@ public class InvasionBiomeList {
         ));
 
         // Rohan
-        // TODO: Add Dunlending invasions when the faction is added
         register("lotr:rohan", genMap(
-                ExtendedInvasions.ISENGARD, InvasionChance.UNCOMMON
+                ExtendedInvasions.ISENGARD, InvasionChance.UNCOMMON,
+                ExtendedInvasions.DUNLAND, InvasionChance.UNCOMMON
         ));
         register("lotr:wold", genMap(
-                ExtendedInvasions.ISENGARD, InvasionChance.UNCOMMON
+                ExtendedInvasions.ISENGARD, InvasionChance.UNCOMMON,
+                ExtendedInvasions.DUNLAND, InvasionChance.UNCOMMON
         ));
 
         register("lotr:fangorn", new HashMap<>()); // no invasions in Fangorn
@@ -171,22 +197,20 @@ public class InvasionBiomeList {
         register("lotr:enedwaith", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
-                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
-                // TODO: Add Dunlendings here when they are added
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON,
+                ExtendedInvasions.DUNLAND, InvasionChance.UNCOMMON
         ));
 
         register("lotr:northern_dale", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON,
                 ExtendedInvasions.MORDOR, InvasionChance.RARE
-                // TODO: Add Dunland when they are added
                 // TODO: Add Rhun when they are added
         ));
         register("lotr:dale", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.UNCOMMON,
                 ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON,
                 ExtendedInvasions.MORDOR, InvasionChance.RARE
-                // TODO: Add Dunland when they are added
                 // TODO: Add Rhun when they are added
         ));
 
@@ -220,20 +244,21 @@ public class InvasionBiomeList {
 
         register("lotr:harondor", genMap(
                 ExtendedInvasions.GONDOR, InvasionChance.UNCOMMON,
-                ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON
+                ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
                 // TODO: Add the following when they are added
                 //ExtendedInvasions.GONDOR_ITHILIEN, LOTREventSpawner.EventChance.COMMON);
                 //LOTRInvasions.GONDOR_DOL_AMROTH, LOTREventSpawner.EventChance.RARE);
                 //LOTRInvasions.MORDOR_BLACK_URUK, LOTREventSpawner.EventChance.RARE);
                 //LOTRInvasions.NEAR_HARAD_HARNEDOR, LOTREventSpawner.EventChance.COMMON);
                 //LOTRInvasions.NEAR_HARAD_COAST, LOTREventSpawner.EventChance.UNCOMMON);
-                //LOTRInvasions.NEAR_HARAD_UMBAR, LOTREventSpawner.EventChance.RARE);
+                ExtendedInvasions.UMBAR, InvasionChance.RARE
                 //LOTRInvasions.NEAR_HARAD_CORSAIR, LOTREventSpawner.EventChance.UNCOMMON);
                 //LOTRInvasions.NEAR_HARAD_GULF, LOTREventSpawner.EventChance.RARE);
         ));
         register("lotr:harnennor", genMap(
                 ExtendedInvasions.GONDOR, InvasionChance.UNCOMMON,
-                ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON
+                ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON,
+                ExtendedInvasions.UMBAR, InvasionChance.RARE
         ));
 
         // Lone-lands
@@ -349,13 +374,13 @@ public class InvasionBiomeList {
 
         register("lotr:grey_mountains", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
-                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
-               // TODO: Add the Iron Hills Dwarves when they are added
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON,
+                ExtendedInvasions.DURINS_FOLK, InvasionChance.RARE
         ));
         register("lotr:grey_mountains_foothills", genMap(
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
-                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON
-                // TODO: Add the Iron Hills Dwarves when they are added
+                ExtendedInvasions.GUNDABAD_WARGS, InvasionChance.UNCOMMON,
+                ExtendedInvasions.DURINS_FOLK, InvasionChance.RARE
         ));
 
         // TODO: Not sure what should be in these biomes or when we'll have factions that make sense here
