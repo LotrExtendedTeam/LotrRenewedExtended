@@ -114,6 +114,7 @@ import net.minecraft.loot.RandomValueRange;
 import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.loot.conditions.MatchTool;
+import net.minecraft.loot.conditions.TableBonus;
 import net.minecraft.loot.functions.ApplyBonus;
 import net.minecraft.loot.functions.CopyName;
 import net.minecraft.loot.functions.CopyNbt;
@@ -522,6 +523,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		dropSelf(ExtendedBlocks.REMAINS_ORC.get());
 		dropSelf(ExtendedBlocks.REMAINS_DWARF.get());
 		add(ExtendedBlocks.PODZOL_SLAB.get(), createGrowableSlabItemTable((SlabBlock)ExtendedBlocks.PODZOL_SLAB.get(), ExtendedBlocks.DIRT_SLAB.get()));
+		 this.add(ExtendedBlocks.OBSIDIAN_GRAVEL.get(), (blockLamda) -> {
+	         return createSilkTouchDispatchTable(blockLamda, applyExplosionCondition(blockLamda, ItemLootEntry.lootTableItem(ExtendedItems.OBSIDIAN_SHARD.get())
+	        	 .when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.1F, 0.14285715F, 0.25F, 1.0F)).otherwise(ItemLootEntry.lootTableItem(blockLamda))));
+	      });
 	}
 
 	@Override

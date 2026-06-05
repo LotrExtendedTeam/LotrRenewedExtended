@@ -241,7 +241,7 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.addTag(ExtendedTags.Blocks.WILLOW_LOGS).addTag(ExtendedTags.Blocks.EBONY_LOGS);
 
 		tag(BlockTags.ENDERMAN_HOLDABLE).add(ExtendedBlocks.BARREN_DIRT.get()).add(ExtendedBlocks.MOSS_BLOCK.get()).add(ExtendedBlocks.MUD.get())
-		.add(ExtendedBlocks.MUD_GRASS.get()).add(ExtendedBlocks.WASTE_BLOCK.get());
+		.add(ExtendedBlocks.MUD_GRASS.get()).add(ExtendedBlocks.WASTE_BLOCK.get()).add(ExtendedBlocks.OBSIDIAN_GRAVEL.get());
 
 		tag(BlockTags.BAMBOO_PLANTABLE_ON).add(ExtendedBlocks.MOSS_BLOCK.get()).add(ExtendedBlocks.MUD.get()).add(ExtendedBlocks.MUD_GRASS.get())
 		.addTag(ExtendedTags.Blocks.REMAINS_ORE).add(ExtendedBlocks.WASTE_BLOCK.get());
@@ -364,6 +364,8 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.add(Blocks.PINK_WOOL).add(Blocks.PURPLE_WOOL).add(Blocks.RED_WOOL).add(Blocks.WHITE_WOOL).add(Blocks.YELLOW_WOOL);
 
 		tag(ExtendedTags.Blocks.FUR_BLOCKS).add(LOTRBlocks.FUR_BUNDLE.get());
+
+		tag(Tags.Blocks.GRAVEL).add(ExtendedBlocks.OBSIDIAN_GRAVEL.get());
 	}
 
 	@Override

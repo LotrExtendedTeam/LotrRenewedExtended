@@ -36,6 +36,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> CORAL_BLOCK;
 	public static RegistryObject<Block> DEAD_CORAL_BLOCK;
 	public static RegistryObject<Block> WASTE_BLOCK;
+	public static RegistryObject<Block> OBSIDIAN_GRAVEL;
 
 	public static RegistryObject<Block> CHESTNUT_LOG;
 	public static RegistryObject<Block> CHESTNUT_WOOD;

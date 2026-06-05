@@ -1,0 +1,9 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotr:obsidian_gravel"
+  },
+  "result": "lotr:obsidian_shard",
+  "breakchance": 0.25,
+  "experience": 1.0
+}

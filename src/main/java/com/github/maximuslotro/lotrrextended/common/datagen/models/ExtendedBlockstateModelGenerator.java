@@ -24,6 +24,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternElvenBl
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternNumenoreanBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedFireBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGrassVoidBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedGravelBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneGrinderBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneTextSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundDirtBlock;
@@ -199,6 +200,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.getValue().get() instanceof ExtendedCrucibleBlock) {
 					genCrucibleBlockItem((ExtendedCrucibleBlock) block.getValue().get());
+					continue;
+				}
+				if(block.getValue().get() instanceof ExtendedGravelBlock) {
+					genCubeBlockItem((ExtendedGravelBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
 					continue;
 				}
 				if(block.getValue().get() instanceof ExtendedNarsilShardsBlock) {

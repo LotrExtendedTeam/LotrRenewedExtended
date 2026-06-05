@@ -1711,7 +1711,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		// Gravel to items
 		makeStoneGrinderRecipe(consumer, LOTRBlocks.MORDOR_GRAVEL, ()->Items.GRAVEL, 0.75f);
 		makeStoneGrinderRecipe(consumer, ()->Blocks.GRAVEL, ()->Items.FLINT, 0.75f);
-		//makeMillingRecipe(consumer, ExtendedBlocks.OBSIDIAN_GRAVEL, ExtendedItems.OBSIDIAN_SHARD, 0.75f);
+		makeStoneGrinderRecipe(consumer, ExtendedBlocks.OBSIDIAN_GRAVEL, ExtendedItems.OBSIDIAN_SHARD, 0.25f);
 		makeStoneGrinderRecipe(consumer, LOTRBlocks.SALT_ORE, LOTRItems.SALT);
 		// Sandstones to sand
 		makeStoneGrinderRecipe(consumer, ()->Blocks.SANDSTONE, ()->Items.SAND, 2);
@@ -2470,6 +2470,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.STAFF_GANDALF_WHITE.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.GLAMDRING.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.ARNOR_SHIELD.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.OBSIDIAN_GRAVEL.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.OBSIDIAN_SHARD.get().getRegistryName().getPath());
 	}
 
 	@Override

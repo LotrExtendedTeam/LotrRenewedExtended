@@ -15,6 +15,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ITHILDIN;
 	public static RegistryObject<Item> HITHLAIN;
 	public static RegistryObject<Item> OBSIDIAN_SHARD;
+	public static RegistryObject<Item> OBSIDIAN_GRAVEL;
 	
 	public static RegistryObject<Item> METEORITE_ORE;
 	public static RegistryObject<Item> SKY_IRON;

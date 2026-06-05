@@ -638,6 +638,7 @@ public class MixinLOTRItems {
 		ExtendedItems.REMAINS_MAN = regBlockItemB(ExtendedBlocks.REMAINS_MAN, LOTRItemGroups.BLOCKS);
 		ExtendedItems.REMAINS_ORC = regBlockItemB(ExtendedBlocks.REMAINS_ORC, LOTRItemGroups.BLOCKS);
 		ExtendedItems.REMAINS_DWARF = regBlockItemB(ExtendedBlocks.REMAINS_DWARF, LOTRItemGroups.BLOCKS);
+		ExtendedItems.OBSIDIAN_GRAVEL = regBlockItemB(ExtendedBlocks.OBSIDIAN_GRAVEL, LOTRItemGroups.BLOCKS);
 
 		ExtendedItems.BARREN_DIRT = regBlockItemB(ExtendedBlocks.BARREN_DIRT, LOTRItemGroups.BLOCKS);
 		ExtendedItems.BARREN_DIRT_SLAB = regBlockItemB(ExtendedBlocks.BARREN_DIRT_SLAB, LOTRItemGroups.BLOCKS);

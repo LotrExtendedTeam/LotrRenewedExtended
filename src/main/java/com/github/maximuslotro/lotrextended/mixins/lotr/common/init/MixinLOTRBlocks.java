@@ -1194,6 +1194,7 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.ORC_BOMB_FIRE_TRIPLE = registerB("orc_bomb_triple_fire", () -> new ExtendedOrcBombBlock(Properties.of(Material.EXPLOSIVE).sound(SoundType.METAL).strength(3F, 0.0F), 2, true));
 
 		ExtendedBlocks.NUMENOREAN_BARS = registerB("numenorean_bars", () -> new ExtendedBarsBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
+		ExtendedBlocks.OBSIDIAN_GRAVEL = registerB("obsidian_gravel", () -> new ExtendedGravelBlock(Properties.of(Material.SAND, MaterialColor.COLOR_PURPLE).harvestTool(ToolType.SHOVEL).strength(0.6F).sound(SoundType.GRAVEL)));
 	}
 
 	/**
