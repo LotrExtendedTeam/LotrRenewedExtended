@@ -141,6 +141,28 @@
           "functions": [
             {
               "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:artisan_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:combat_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
               "count": {
                 "min": 1.0,
                 "max": 2.0,

@@ -23,6 +23,7 @@ public class ExtendedDrinkLootGenerator extends ChestLootTables  {
 
 	@Override
 	public void accept(BiConsumer<ResourceLocation, Builder> consumer) {
+		// TODO add remaining berry juices
 		make(consumer, ExtendedLootTables.HOBBIT_KEGS, ExtendedLootTables.HOBBIT_VESSELS, makePool()
 				.add(addEntry(LOTRItems.ALE.get(), 2))
 				.add(addEntry(LOTRItems.CIDER.get(), 1))

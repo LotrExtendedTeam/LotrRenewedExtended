@@ -1337,7 +1337,7 @@ public class MixinLOTRItems {
 		ExtendedItems.ROPE = regExtendedBlockItemD(ExtendedBlocks.ROPE, block -> new BlockItem(block, new Properties().stacksTo(64).tab(LOTRItemGroups.MISC)));
 		ExtendedItems.MODIFIER_SCROLL = regItemB("modifier_scroll", () -> new ExtendedModifierScrollItem(new Properties().tab(LOTRItemGroups.MISC).rarity(Rarity.UNCOMMON).stacksTo(1)));
 		ExtendedItems.COMBAT_TOME = regItemB("combat_tome", () -> new ExtendedModifierTomeItem(new Properties().tab(LOTRItemGroups.MISC).stacksTo(1), "combat", ExtendedModifierType.TOOL_SPEED, ExtendedModifierType.TOOL_SILK));
-		ExtendedItems.TOOL_TOME = regItemB("artisan_tome", () -> new ExtendedModifierTomeItem(new Properties().tab(LOTRItemGroups.MISC).stacksTo(1), "artisan", ExtendedModifierType.MELEE_KNOCKBACK, ExtendedModifierType.MELEE_DAMAGE, ExtendedModifierType.MELEE_REACH, ExtendedModifierType.MELEE_SPEED));
+		ExtendedItems.ARTISAN_TOME = regItemB("artisan_tome", () -> new ExtendedModifierTomeItem(new Properties().tab(LOTRItemGroups.MISC).stacksTo(1), "artisan", ExtendedModifierType.MELEE_KNOCKBACK, ExtendedModifierType.MELEE_DAMAGE, ExtendedModifierType.MELEE_REACH, ExtendedModifierType.MELEE_SPEED));
 
 		//########################################################################LORE##########################################################
 		ExtendedItems.SHARDS_OF_NARSIL = regBlockItemProps(ExtendedBlocks.SHARDS_OF_NARSIL, LOTRItemGroups.STORY, (props) -> props.rarity(Rarity.RARE));

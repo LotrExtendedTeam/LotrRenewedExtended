@@ -290,6 +290,11 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 10,
+          "name": "lotr:obsidian_shard"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:tripwire_hook"
         }
       ]
