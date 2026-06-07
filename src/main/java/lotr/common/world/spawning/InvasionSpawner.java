@@ -3,6 +3,9 @@ package lotr.common.world.spawning;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedInvasionSpawnerEntity;
+
+import lotr.common.data.LOTRLevelData;
+import lotr.common.fac.AlignmentPredicates;
 import lotr.common.world.ExtendedInvasions;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
@@ -95,7 +98,10 @@ public class InvasionSpawner {
         for (Map.Entry<ExtendedInvasions, InvasionChance> entry : invasions.entrySet()) {
             double pickedNum = world.random.nextDouble();
             if (pickedNum <= entry.getValue().getChancePerSecond()) {
-
+            	boolean isNegative = entry.getKey().getFactionPointer().resolveFaction(world).map(faction -> LOTRLevelData.getSidedData(player).getAlignmentData().hasAlignment(faction, AlignmentPredicates.NEGATIVE)).orElse(false);
+            	if (!isNegative) {
+                    continue;
+                }
                 // only make a max of 8 attempts to spawn the invasion checking protection boundaries
                 // while verifying that invasion is possible in that biome
                 for (int attempts = 0; attempts < 8; attempts++) {
