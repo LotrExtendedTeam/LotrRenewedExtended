@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lotrextended:item/tool_tome"
+    "layer0": "lotrextended:item/artisan_tome"
   }
 }

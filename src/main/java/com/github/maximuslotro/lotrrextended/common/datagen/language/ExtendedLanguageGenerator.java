@@ -448,7 +448,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("item.lotrextended.modifiers.horse", "When on Horse:");
 		addD("gui.lotrextended.reforge_books.description", "Guarantees %s modifiers on Reforge");
 		addD("gui.lotrextended.reforge_books.combat", "Combat");
-		addD("gui.lotrextended.reforge_books.tool", "Artisan");
+		addD("gui.lotrextended.reforge_books.artisan", "Artisan");
 
 		//Bow values
 		addD("gui.lotrextended.bow.speed", "Draw Speed: %s");

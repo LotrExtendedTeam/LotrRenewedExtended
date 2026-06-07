@@ -652,6 +652,7 @@ e39c6759d7568cc4ae0cbf9a24e6763ef1531aaa assets/lotr/models/item/angmar_spear.js
 54347bfdf9e7a2beb46b03bf412fe65db4e0282d assets/lotr/models/item/angmar_sword.json
 cd74603cb024110f95dc5dbc7fff2d822750bd67 assets/lotr/models/item/angmar_sword_handheld.json
 b8844c998501ce7e6f4e4659e7fbd092d66be113 assets/lotr/models/item/angmar_warg_armor.json
+0b3807b3dba0f03075528e9420eded7435918806 assets/lotr/models/item/artisan_tome.json
 64c5ca3521f5a3ed7afdf12bb7f7bf9b09e8bfe2 assets/lotr/models/item/banana.json
 ad9cff9884de3de29b43e843d0c63e8ea4bbc7ea assets/lotr/models/item/banana_beam.json
 079844e398f8256acf90d00f0af4816bf2736e74 assets/lotr/models/item/banana_beam_slab.json
@@ -1397,7 +1398,6 @@ acc49ea56dcac7c5345ae8af4f2dcdb8825af2cd assets/lotr/models/item/taurethrim_pick
 481b65fd99893910edb8f66bbba5f4ddab004b4b assets/lotr/models/item/taurethrim_sword.json
 60ed311209d875bd82de5a308325e72c52386765 assets/lotr/models/item/taurethrim_sword_handheld.json
 98167609bf3898587f7565736a6fc24a7966cacd assets/lotr/models/item/tolkien_spawn_egg.json
-8bee8d033ce1da7afed79b476ebeef767fea4a4d assets/lotr/models/item/tool_tome.json
 995844842e13462695b82174c8b3ca2be0f5561d assets/lotr/models/item/topaz.json
 8a24f503e2dc4206669d6b20087ffbf5550dc2d6 assets/lotr/models/item/topaz_block.json
 432cafd3e29694fb13b4f871f096521d2e0ec83d assets/lotr/models/item/topaz_ore.json
@@ -1453,7 +1453,7 @@ b66208f52b71740229ce72fc311fca8285eeb69b assets/lotr/models/item/willow_wood_sta
 7414885b7f1bd5611a25313574f1a0869028ba2b assets/lotr/models/item/wooden_birdcage.json
 0b682447ce6d7a7b87d3fe4da20643a1b4f47674 assets/lotr/models/item/woodland_realm_banner.json
 16f356aeda70319e19925a868f5bf2af7031b4b5 assets/lotr/models/item/woodland_realm_banner_pattern.json
-d3010b59c3776e3186bd4054fecaae7297a6dfed assets/lotrextended/lang/en_us.json
+eae1590428b1b0f5fab722e7e6fff1983a91c425 assets/lotrextended/lang/en_us.json
 f92a839c3ca2d718c24620379a6dfe7f6b1da56a assets/lotrextended/models/block/aged_cheese_wheel.json
 49726eaeacec21ddcdca269035e7d714a71afee2 assets/lotrextended/models/block/aged_cheese_wheel1.json
 b247a199d6c842a60642d920e78ba3135e032bf2 assets/lotrextended/models/block/aged_cheese_wheel2.json
