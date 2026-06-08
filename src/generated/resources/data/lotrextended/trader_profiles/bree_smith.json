@@ -406,6 +406,20 @@
         "averageCost": 20,
         "nbt": "{Damage:0}"
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:combat_tome",
+        "averageCost": 75
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:artisan_tome",
+        "averageCost": 50
+      }
     }
   ]
 }

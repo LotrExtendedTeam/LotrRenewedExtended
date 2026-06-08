@@ -681,6 +681,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 				10, 100, 1, false)
 		.addSSell(ExtendedItems.BREE_BANNER_PATTERN, 25)
 		.addSSell(ExtendedItems.BREE_SHIELD, 20)
+		.addSSell(ExtendedItems.COMBAT_TOME, 75)
+		.addSSell(ExtendedItems.ARTISAN_TOME, 50)
 		.save(pConsumer, ExtendedTraderTypes.BREE_SMITH);
 
 		make(0)
@@ -1152,6 +1154,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(new ItemStack(LOTRItems.DWARVEN_BARS.get(), 8), 25)
 		.addSSell(ExtendedItems.DWARVEN_MATTOCK, 18)
 		//.addSSell(ExtendedItems.DWARVEN_SHIELD, 20)
+		.addSSell(ExtendedItems.COMBAT_TOME, 50)
+		.addSSell(ExtendedItems.ARTISAN_TOME, 75)
 		.save(pConsumer, ExtendedTraderTypes.DWARVEN_SMITH);
 
 		make(100)
@@ -1219,6 +1223,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(new ItemStack(LOTRItems.BLUE_DWARVEN_BARS.get(), 8), 25)
 		.addSSell(ExtendedItems.BLUE_DWARVEN_MATTOCK, 18)
 		.addSSell(ExtendedItems.BLUE_DWARVEN_SHIELD, 20)
+		.addSSell(ExtendedItems.COMBAT_TOME, 50)
+		.addSSell(ExtendedItems.ARTISAN_TOME, 75)
 		.save(pConsumer, ExtendedTraderTypes.BLUE_MOUNTAINS_SMITH);
 
 		make(10)
@@ -1380,6 +1386,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 20, 150, 1, false)
 		.addSSell(ExtendedItems.RIVENDELL_BANNER_PATTERN, 25)
 		.addSSell(ExtendedItems.RIVENDELL_SHIELD, 20)
+		.addSSell(ExtendedItems.COMBAT_TOME, 50)
+		.addSSell(ExtendedItems.ARTISAN_TOME, 50)
 		.save(pConsumer, ExtendedTraderTypes.RIVENDELL_SMITH);
 
 		make(50)
@@ -1496,6 +1504,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH), 20, 150, 1, false)
 		.addSSell(ExtendedItems.LINDON_BANNER_PATTERN, 25)
 		.addSSell(ExtendedItems.LINDON_SHIELD, 20)
+		.addSSell(ExtendedItems.COMBAT_TOME, 50)
+		.addSSell(ExtendedItems.ARTISAN_TOME, 50)
 		.save(pConsumer, ExtendedTraderTypes.LINDON_SMITH);
 
 		make(50)
@@ -1694,6 +1704,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.MAIL_WARG_ARMOR, 20)
 		.addSSell(ExtendedItems.ISENGARD_WARG_ARMOR, 25)
 		.addSSell(ExtendedItems.URUK_SHIELD, 20)
+		.addSSell(ExtendedItems.COMBAT_TOME, 50)
+		.addSSell(ExtendedItems.ARTISAN_TOME, 75)
 		.save(pConsumer, ExtendedTraderTypes.ISENGARD_URUK_SMITH);
 	}
 }

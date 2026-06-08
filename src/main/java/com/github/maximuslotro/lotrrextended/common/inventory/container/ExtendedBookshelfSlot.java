@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierTomeItem;
 
 import lotr.common.item.CustomColoredNameItem;
 import lotr.common.item.RedBookItem;
@@ -26,9 +27,13 @@ public class ExtendedBookshelfSlot extends Slot {
 	}
 
 	public static boolean isItemValidForBookshelfSlot(ItemStack stack) {
-		return (stack.getItem() instanceof BookItem || stack.getItem() instanceof WritableBookItem || stack.getItem() instanceof WrittenBookItem
-				 || stack.getItem() instanceof EnchantedBookItem || stack.getItem() instanceof KnowledgeBookItem
-				 || stack.getItem() instanceof RedBookItem || stack.getItem() instanceof CustomColoredNameItem || stack.getItem() instanceof ExtendedModifierScrollItem
-				 || stack.getItem() == Items.PAPER || stack.getItem() == Items.MAP || stack.getItem() == Items.FILLED_MAP || stack.getItem() instanceof BannerPatternItem);
+		return (stack.getItem() instanceof BookItem || stack.getItem() instanceof WritableBookItem
+			|| stack.getItem() instanceof WrittenBookItem || stack.getItem() instanceof EnchantedBookItem
+			|| stack.getItem() instanceof KnowledgeBookItem || stack.getItem() instanceof RedBookItem
+			|| stack.getItem() instanceof CustomColoredNameItem
+			|| stack.getItem() instanceof ExtendedModifierScrollItem || stack.getItem() == Items.PAPER
+			|| stack.getItem() == Items.MAP || stack.getItem() == Items.FILLED_MAP
+			|| stack.getItem() instanceof BannerPatternItem
+			|| stack.getItem() instanceof ExtendedModifierTomeItem);
 	}
 }

@@ -707,6 +707,7 @@ public class ExtendedRepairContainerNew extends Container {
 
 	public void reforgeItem() {
 		ItemStack inputItem = this.inputSlots.getItem(0);
+		ItemStack modifierItem = this.inputSlots.getItem(1);
 		int reforgeCostCopy = this.reforgeCost.get();
 		if (!inputItem.isEmpty() && reforgeCostCopy > 0) {
 			ItemStack resourceItem = this.inputSlots.getItem(2);
@@ -714,7 +715,7 @@ public class ExtendedRepairContainerNew extends Container {
 				if(inputItem.isDamageableItem()) {
 					inputItem.setDamageValue(0);
 				}
-				ExtendedModifierUtils.generateItemModifiersTagged(this.player.random, inputItem, true, true);
+				ExtendedModifierUtils.generateItemModifiersTagged(this.player.random, inputItem, true, true, modifierItem);
 				hurtOrDamageAnvilSound();
 				if (resourceItem.getCount()>reforgeCostCopy) {
 					resourceItem.shrink(reforgeCostCopy);

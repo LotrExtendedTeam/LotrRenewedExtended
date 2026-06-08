@@ -813,6 +813,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> CRACKED_STONE_PILLAR_SLAB;
 	
 	public static RegistryObject<Item> MODIFIER_SCROLL;
+	public static RegistryObject<Item> COMBAT_TOME;
+	public static RegistryObject<Item> ARTISAN_TOME;
 
 	public static RegistryObject<Item> TAPESTRY;
 
