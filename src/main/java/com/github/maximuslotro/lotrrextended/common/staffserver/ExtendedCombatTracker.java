@@ -174,7 +174,7 @@ public class ExtendedCombatTracker implements ExtendedTracker {
         if (attackersList.length() == 0) {
             return;
         }
-		ExtendedTracker.logToFile(LOGGER, LOG_FILE, "[CombatLogger] " + player.getGameProfile().getName() + " (" + uuid + ") logged against: [" + attackersList.toString() + "]");		
+		ExtendedTracker.logToFile(LOGGER, LOG_FILE, player.getGameProfile().getName() + " (" + uuid + ") logged against: [" + attackersList.toString() + "]");		
 		// Save flag to player data
 		ExtendedPlayerInfo info = ExtendedPlayerInfo.getPlayerInfo(uuid);
 		info.setCombatLogged(true);
