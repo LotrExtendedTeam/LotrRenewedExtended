@@ -1,0 +1,87 @@
+{
+	"name": "lotrextended:isengard/roads1",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:isengard/roads/road1_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:isengard/roads/road1_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:isengard/roads/road1_3",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:isengard/roads/road1_4",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:isengard/roads/road1_5",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:isengard/roads/road1_6",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:isengard/roads/road1_7",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:isengard/roads/road1_8",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:isengard/roads/road1_9",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}

@@ -96,6 +96,7 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.LINDON_VILLAGE.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.ISENGARD_GATEHOUSE.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.ORTHANC.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.ISENGARD_CAMP.get());
 		provider.generator.getSettings().structureConfig = tempMap;
 	}
 
@@ -297,6 +298,7 @@ public class BiomeStructureAdder {
 			}else if(biomeName.equals(LOTRBiomes.NAN_CURUNIR.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ISENGARD_GATEHOUSE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ORTHANC);
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ISENGARD_CAMP);
 			}
 		}
 	}

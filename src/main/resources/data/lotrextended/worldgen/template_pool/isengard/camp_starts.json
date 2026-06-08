@@ -1,0 +1,41 @@
+{
+	"name": "lotrextended:isengard/camp_starts",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/start/isengard_start_1",
+				"processors": "minecraft:empty",
+				"snap_to_water_height": true,
+				"ground_level_delta": 2,
+				"max_depth": 6
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/start/isengard_start_2",
+				"processors": "minecraft:empty",
+				"snap_to_water_height": true,
+				"ground_level_delta": 2,
+				"max_depth": 6
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/start/isengard_start_3",
+				"processors": "minecraft:empty",
+				"snap_to_water_height": true,
+				"ground_level_delta": 4
+			}
+		}
+	]
+}

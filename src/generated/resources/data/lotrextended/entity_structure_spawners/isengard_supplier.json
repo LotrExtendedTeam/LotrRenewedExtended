@@ -2,7 +2,7 @@
   "id": "lotrextended:isengard_supplier",
   "spawner_type": "single_use_spawner",
   "setHomeOnSpawn": true,
-  "homeRadius": 8,
+  "homeRadius": 6,
   "persistenceRequired": true,
   "shouldRespawnOnDeath": true,
   "pools": [
