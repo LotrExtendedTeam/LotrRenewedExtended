@@ -1,0 +1,46 @@
+{
+	"name": "lotrextended:isengard/cavern_pit",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/pit/isengard_pit_4",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/pit/isengard_pit_4_1",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/pit/isengard_pit_4_2",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/pit/isengard_pit_4_3",
+				"processors": "minecraft:empty",
+				"apply_waterlogging" : false
+			}
+		}
+	]
+}
