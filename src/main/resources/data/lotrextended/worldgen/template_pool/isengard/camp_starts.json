@@ -36,6 +36,12 @@
 				"snap_to_water_height": true,
 				"ground_level_delta": 4
 			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:empty_pool_element"
+			}
 		}
 	]
 }
