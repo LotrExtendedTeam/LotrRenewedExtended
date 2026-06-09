@@ -177,6 +177,9 @@ public class ExtendedLootTables {
 	// BOOKSHELF
 	public static final ResourceLocation ISENGARD_ORTHANC_BOOKSHELF = registerBookshelf("isengard_orthanc");
 
+	// ARMOR STANDS
+	public static final ResourceLocation ISENGARD_ARMOR_STAND = registerArmorStand("isengard");
+
 	// FISHING
 	public static final ResourceLocation MIDDLE_EARTH_FISHING = registerGameplay("fishing");
 	public static final ResourceLocation MIDDLE_EARTH_FISHING_FISH = registerGameplay("fishing/fish");
@@ -211,6 +214,10 @@ public class ExtendedLootTables {
 
 	private static ResourceLocation registerBookshelf(String location) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, "bookshelves/"+location));
+	}
+
+	private static ResourceLocation registerArmorStand(String location) {
+		return register(new ResourceLocation(LotrExtendedMod.MODID, "armorstand/"+location));
 	}
 
 	private static ResourceLocation registerGameplay(String location) {

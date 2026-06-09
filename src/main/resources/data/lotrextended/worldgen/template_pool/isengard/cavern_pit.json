@@ -8,7 +8,7 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:isengard/pit/isengard_pit_4",
-				"processors": "minecraft:empty",
+				"processors": "lotrextended:basic_armor_stand_processor",
 				"apply_waterlogging" : false
 			}
 		},
@@ -18,7 +18,7 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:isengard/pit/isengard_pit_4_1",
-				"processors": "minecraft:empty",
+				"processors": "lotrextended:basic_armor_stand_processor",
 				"apply_waterlogging" : false
 			}
 		},
@@ -28,7 +28,7 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:isengard/pit/isengard_pit_4_2",
-				"processors": "minecraft:empty",
+				"processors": "lotrextended:basic_armor_stand_processor",
 				"apply_waterlogging" : false
 			}
 		},
@@ -38,7 +38,7 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:isengard/pit/isengard_pit_4_3",
-				"processors": "minecraft:empty",
+				"processors": "lotrextended:basic_armor_stand_processor",
 				"apply_waterlogging" : false
 			}
 		}

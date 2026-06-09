@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.github.maximuslotro.lotrrextended.ExtendedVanillaProtectionHandlers;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.ProtectionInstance;
+import com.github.maximuslotro.lotrrextended.common.eventhandlers.ExtendedDevServerEventHandlers;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -41,6 +42,10 @@ public abstract class MixinArmorStandEntity extends LivingEntity {
 				return;
 			}
 		}
+		if (!this.level.isClientSide && ExtendedDevServerEventHandlers.devArmorStandInterract((ArmorStandEntity)(Object)this, pPlayer)) {
+			cir.setReturnValue(ActionResultType.PASS);
+			return;
+		}
 	}
 
 	@Inject(method = "hurt(Lnet/minecraft/util/DamageSource;F)Z", at = @At("HEAD"), cancellable = true)
@@ -52,8 +57,10 @@ public abstract class MixinArmorStandEntity extends LivingEntity {
 			}else if (ExtendedVanillaProtectionHandlers.isUnderSpawnProtection((ServerWorld) this.level, this.blockPosition(), null, false, false, false)) {
 				cir.setReturnValue(false);
 				return;
-			}
-			if (ExtendedBannerProtectionManager.getProtectionStatus(this.level, this.blockPosition(), new ProtectionInstance.DamageSourceProtection(pSource)).isNotAllowed()) {
+			}else if (ExtendedBannerProtectionManager.getProtectionStatus(this.level, this.blockPosition(), new ProtectionInstance.DamageSourceProtection(pSource)).isNotAllowed()) {
+				cir.setReturnValue(false);
+				return;
+			}else if(pSource.getEntity() instanceof PlayerEntity && ExtendedDevServerEventHandlers.devArmorStandInterract((ArmorStandEntity)(Object)this, (PlayerEntity) pSource.getEntity())) {
 				cir.setReturnValue(false);
 				return;
 			}

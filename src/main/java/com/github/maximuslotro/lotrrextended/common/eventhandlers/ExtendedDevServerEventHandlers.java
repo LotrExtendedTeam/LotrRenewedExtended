@@ -11,7 +11,9 @@ import lotr.common.tileentity.PlateTileEntity;
 import lotr.common.tileentity.VesselDrinkTileEntity;
 import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.command.CommandSource;
+import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Util;
@@ -26,7 +28,7 @@ public class ExtendedDevServerEventHandlers {
 
 	public static void registerDevListender(IEventBus modBus, IEventBus forgeBus) {
 		forgeBus.addListener(ExtendedDevServerEventHandlers::commandEvent);
-		forgeBus.addListener(ExtendedDevServerEventHandlers::devSpawnerListener);
+		forgeBus.addListener(ExtendedDevServerEventHandlers::devBlockListener);
 	}
 
 	public static void commandEvent(CommandEvent event) {
@@ -85,7 +87,7 @@ public class ExtendedDevServerEventHandlers {
 		}
 	}
 
-	public static void devSpawnerListener(final PlayerInteractEvent event) {
+	public static void devBlockListener(final PlayerInteractEvent event) {
 		if(event.getPlayer().level.isClientSide || !ExtendedServerConfig.enableDevMode.get()) {
 			return;
 		}
@@ -163,5 +165,23 @@ public class ExtendedDevServerEventHandlers {
 			event.getPlayer().sendMessage(comp2, Util.NIL_UUID);
 			return;
 		}
+	}
+
+	public static boolean devArmorStandInterract(ArmorStandEntity armorStand, PlayerEntity pPlayer) {
+		if (!ExtendedServerConfig.enableDevMode.get()) {
+			return false;
+		}
+		CompoundNBT forgeData = armorStand.getPersistentData();
+		if (forgeData.contains("StandLootTable", 8) && !pPlayer.isCrouching()) {
+			ExtendedLog.info("Armor Stand table");
+			TextComponent comp = new StringTextComponent("Armor Stand interaction disabled because devworld loot-table is set!");
+			comp.withStyle(TextFormatting.YELLOW);
+			pPlayer.sendMessage(comp, Util.NIL_UUID);
+			TextComponent comp2 = new StringTextComponent("Location: " + forgeData.getString("StandLootTable"));
+			comp2.withStyle(TextFormatting.YELLOW);
+			pPlayer.sendMessage(comp2, Util.NIL_UUID);
+			return true;
+		}
+		return false;
 	}
 }

@@ -31,6 +31,8 @@ import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.command.arguments.BlockPosArgument;
 import net.minecraft.command.arguments.ResourceLocationArgument;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.item.ArmorStandEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.CompressedStreamTools;
@@ -40,6 +42,7 @@ import net.minecraft.resources.IResourceManager;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
@@ -214,7 +217,25 @@ public class ExtendedStructureHelperComamnd {
 			source.sendSuccess(new StringTextComponent("Set Chest/Barrel Location: "+resourceLocation.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}
-		source.sendFailure(new StringTextComponent("Destination is not instanceof supported tile entities or tried setting invalid loot-table for tile entity!"));
+		if (resourceLocation.toString().contains("armorstand")) {
+			AxisAlignedBB area = new AxisAlignedBB(pos);
+			List<ArmorStandEntity> armorStands = source.getLevel().getEntitiesOfClass(ArmorStandEntity.class, area);
+			if (!armorStands.isEmpty()) {
+		        ArmorStandEntity armorStand = armorStands.get(0);
+		        armorStand.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+		        armorStand.setItemSlot(EquipmentSlotType.CHEST, ItemStack.EMPTY);
+		        armorStand.setItemSlot(EquipmentSlotType.LEGS, ItemStack.EMPTY);
+		        armorStand.setItemSlot(EquipmentSlotType.FEET, ItemStack.EMPTY);
+		        CompoundNBT forgeData = armorStand.getPersistentData();
+		        forgeData.putString("StandLootTable", resourceLocation.toString());
+		        source.sendSuccess(new StringTextComponent("Set ArmorStand Location: " + resourceLocation.toString()), false);
+		        return Command.SINGLE_SUCCESS;
+		    } else {
+		        source.sendFailure(new StringTextComponent("No armor stand found at the specified block position!"));
+		        return Command.SINGLE_SUCCESS;
+		    }
+		}
+		source.sendFailure(new StringTextComponent("Destination is not instanceof supported objects or tried setting invalid loot-table for object!"));
 		return Command.SINGLE_SUCCESS;
 	}
 
