@@ -455,6 +455,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.bow.damage", "Ranged Damage: %s");
 		addD("gui.lotrextended.bow.range", "Range: %s");
 
+		//Dagger values
+		addD("gui.lotrextended.dagger.poisoned", "Inflicts poison");
+
 		// Generic command strings
 		addD("command.lotrextended.generic_error.only_player", "This command can only be run by a player");
 

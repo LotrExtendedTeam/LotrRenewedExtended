@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 
 import lotr.common.item.DaggerItem;
@@ -32,7 +33,7 @@ public class ExtendedCheeseWheelBlock extends ExtendedCakeBlock implements Exten
 	@Override
 	protected ActionResultType eat(IWorld world, BlockPos pos, BlockState state, PlayerEntity entity, Hand hand) {
 		ItemStack itemstack = entity.getItemInHand(hand);
-		if(itemstack.getItem() instanceof DaggerItem) {
+		if(itemstack.getItem() instanceof DaggerItem || itemstack.getItem() instanceof ExtendedDaggerItem) {
 			popResource(entity.level, pos, new ItemStack(sliceitem.get(), 1));
 			entity.awardStat(ExtendedStats.SLICE_CHEESE_SLICE);
 			world.playSound(null, pos, ExtendedSounds.CHEESE_SLICE.get(), SoundCategory.PLAYERS, 1.0F, 0.8F + entity.level.random.nextFloat() * 0.4F);

@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:item/handheld_dagger",
+  "textures": {
+    "layer0": "lotrextended:item/gundabad_uruk_dagger_poisoned"
+  }
+}

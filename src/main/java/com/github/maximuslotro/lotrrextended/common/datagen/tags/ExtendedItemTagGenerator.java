@@ -11,6 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSwordItem;
 
 import lotr.common.init.ExtendedItems;
@@ -276,7 +277,7 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 				}
 				continue;
 			}
-			if(item.get() instanceof DaggerItem) {
+			if(item.get() instanceof DaggerItem || item.get() instanceof ExtendedDaggerItem) {
 				continue;
 			}
 			if(item.get() instanceof ExtendedBowItem) {
@@ -307,10 +308,11 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 
 		TreeMap<String, Item> weaponrackItems = new TreeMap<>();
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
-			if((item.getValue().get() instanceof SpearItem) || (item.getValue().get() instanceof DaggerItem)
-					|| (item.getValue().get() instanceof ExtendedSwordItem)
-					|| (item.getValue().get() instanceof HammerItem)
-					|| (item.getValue().get() instanceof PickaxeItem)) {
+			if(item.getValue().get() instanceof SpearItem || item.getValue().get() instanceof DaggerItem
+				|| item.getValue().get() instanceof ExtendedDaggerItem
+				|| item.getValue().get() instanceof ExtendedSwordItem
+				|| item.getValue().get() instanceof HammerItem
+				|| item.getValue().get() instanceof PickaxeItem) {
 				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
