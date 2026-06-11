@@ -852,6 +852,14 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 							genWallBlockItem((WallBlock) block.getValue().get(), mcLoc("block/bone_block_side"));
 							continue;
 						}
+						if(block.getKey().contains("rusted_orc_plating_wall")) {
+							genWallBlockItem((WallBlock) block.getValue().get(), lotrLoc("block/rusted_orc_plating"));
+							continue;
+						}
+						if(block.getKey().contains("orc_plating_wall")) {
+							genWallBlockItem((WallBlock) block.getValue().get(), lotrLoc("block/orc_plating"));
+							continue;
+						}
 						if(block.getKey().contains("snowy")) {
 							numberTexturedRandomWallBlockItem((WallBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)), 5);
 							continue;

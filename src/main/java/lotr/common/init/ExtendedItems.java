@@ -856,4 +856,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> IRON_CROSSBOW;
 	public static RegistryObject<Item> URUK_CROSSBOW;
 	public static RegistryObject<Item> MITHRIL_CROSSBOW;
+
+	public static RegistryObject<Item> ORC_PLATING_WALL;
+	public static RegistryObject<Item> RUSTED_ORC_PLATING_WALL;
 }

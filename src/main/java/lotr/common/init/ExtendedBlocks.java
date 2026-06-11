@@ -657,4 +657,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> NUMENOREAN_BARS;
 	public static RegistryObject<Block> NUMENOREAN_LANTERN;
 
+	public static RegistryObject<Block> ORC_PLATING_WALL;
+	public static RegistryObject<Block> RUSTED_ORC_PLATING_WALL;
 }

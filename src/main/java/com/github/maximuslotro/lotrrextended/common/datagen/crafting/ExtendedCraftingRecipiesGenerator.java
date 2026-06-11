@@ -1630,6 +1630,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('#', Ingredient.of(LOTRItems.ORC_STEEL_INGOT.get()))
 		.unlockedBy("has_"+LOTRItems.ORC_STEEL_INGOT.get().getRegistryName().getPath(), has(LOTRItems.ORC_STEEL_INGOT.get()))
 		.save(consumer, lotrLoc(LOTRItems.ORC_PLATING.get().getRegistryName().getPath()));
+		makeWallRecipe(consumer, ExtendedBlocks.ORC_PLATING_WALL, LOTRItems.ORC_PLATING, LOTRRecipes.ANY_ORC);
+		makeWallRecipe(consumer, ExtendedBlocks.RUSTED_ORC_PLATING_WALL, LOTRItems.RUSTED_ORC_PLATING, LOTRRecipes.ANY_ORC);
 	}
 
 	private void buildSmithingRecipes(Consumer<IFinishedRecipe> consumer) {
