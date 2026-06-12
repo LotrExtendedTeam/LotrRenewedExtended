@@ -18,6 +18,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedInvas
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespawnerEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils;
 
@@ -39,6 +40,7 @@ import net.minecraft.block.BellBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.CauldronBlock;
 import net.minecraft.block.ChainBlock;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.block.SlabBlock;
@@ -423,6 +425,15 @@ public class ExtendedWorldEventHandlers {
 			if(!ExtendedServerConfig.enableVanillaEnchanting.get()) {
 				event.setCanceled(true);
 				return;
+			}
+		}
+		if(clickedState.is(Blocks.CAULDRON) && clickedState.getValue(CauldronBlock.LEVEL)>0) {
+			if(ExtendedDaggerItem.isPoisoned(event.getItemStack())) {
+				if (!level.isClientSide) {
+					((CauldronBlock) clickedState.getBlock()).setWaterLevel(level, event.getPos(), clickedState, clickedState.getValue(CauldronBlock.LEVEL) - 1);
+					player.swing(event.getHand(), true);
+				}
+				ExtendedDaggerItem.removePoison(event.getItemStack());
 			}
 		}
 	}

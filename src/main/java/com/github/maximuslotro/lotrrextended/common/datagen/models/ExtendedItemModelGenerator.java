@@ -36,7 +36,6 @@ import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.block.VesselDrinkBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
-import lotr.common.item.DaggerItem;
 import lotr.common.item.FallenLeavesItem;
 import lotr.common.item.HammerItem;
 import lotr.common.item.LOTRArmorItem;
