@@ -9,6 +9,19 @@
         "lotr:sneaking": 1.0
       },
       "model": "lotr:item/dol_guldur_dagger_sneaking"
+    },
+    {
+      "predicate": {
+        "lotrextended:poisoned": 1.0
+      },
+      "model": "lotr:item/dol_guldur_dagger_poisoned"
+    },
+    {
+      "predicate": {
+        "lotr:sneaking": 1.0,
+        "lotrextended:poisoned": 1.0
+      },
+      "model": "lotr:item/dol_guldur_dagger_sneaking_poisoned"
     }
   ]
 }

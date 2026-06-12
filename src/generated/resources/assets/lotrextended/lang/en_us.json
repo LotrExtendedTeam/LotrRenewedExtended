@@ -2120,6 +2120,7 @@
   "gui.lotrextended.bow.damage": "Ranged Damage: %s",
   "gui.lotrextended.bow.range": "Range: %s",
   "gui.lotrextended.bow.speed": "Draw Speed: %s",
+  "gui.lotrextended.dagger.poisoned": "Inflicts poison",
   "gui.lotrextended.fellowships.creation.disabled": "Fellowship creation is disabled!",
   "gui.lotrextended.fellowships.title": "Middle-earth Fellowships",
   "gui.lotrextended.fellowships.use_command": "Please use the command for now!",

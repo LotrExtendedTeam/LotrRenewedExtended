@@ -10,6 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCrossbowMaterial;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCrossbowItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
@@ -99,6 +100,7 @@ public class ExtendedRendererEventHandler {
 
 	public static void addTooltipsForModifiers(ItemTooltipEvent event) {
 		ItemStack stack = event.getItemStack();
+		List<ITextComponent> listedStartTooltips = new ArrayList<>();
 		if(ExtendedModifierUtils.hasModifiers(stack)) {
 			List<ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierList(stack);
 			if (!stack.hasCustomHoverName() && !modifiers.isEmpty()) {
@@ -128,7 +130,7 @@ public class ExtendedRendererEventHandler {
 						.withStyle(TextFormatting.GRAY));
 				}
 			}
-			event.getToolTip().addAll(1, entries);
+			listedStartTooltips.addAll(entries);
 		}else if(ExtendedModifierScrollItem.hasModifier(stack)) {
 			ExtendedModifier modifier = ExtendedModifierScrollItem.getModifier(stack);
 			List<ITextComponent> entries = new ArrayList<>();
@@ -142,8 +144,14 @@ public class ExtendedRendererEventHandler {
 					.append(new TranslationTextComponent(modifier.getModifierType().getKeyLocal()))
 					.withStyle(TextFormatting.GRAY));
 			}
-			event.getToolTip().addAll(1, entries);
+			listedStartTooltips.addAll(entries);
 		}
+		if(ExtendedDaggerItem.isPoisoned(stack)) {
+			listedStartTooltips.add((new TranslationTextComponent("gui.lotrextended.dagger.poisoned").withStyle(TextFormatting.DARK_GREEN)));
+		}
+		// Append on top
+		event.getToolTip().addAll(1, listedStartTooltips);
+		
 		if(stack.getItem() instanceof BowItem) {
 			float drawSpeed = 1;
 			float damage = 1.0f;

@@ -14,6 +14,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCrossbowItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
@@ -882,7 +883,8 @@ public class ExtendedRepairContainerNew extends Container {
 
 	public static boolean shouldCheapReforge(Item item) {
 		return item instanceof ShovelItem || item instanceof SpearItem || item instanceof DaggerItem || item instanceof CrossbowItem
-			|| item instanceof ExtendedChiselItem || item instanceof ExtendedBrandingIronItem || item instanceof FlintAndSteelItem;
+			|| item instanceof ExtendedChiselItem || item instanceof ExtendedBrandingIronItem || item instanceof FlintAndSteelItem
+			|| item instanceof ExtendedDaggerItem;
 	}
 
 	private static void info(String message) {

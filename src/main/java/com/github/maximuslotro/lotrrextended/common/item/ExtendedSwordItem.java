@@ -21,19 +21,20 @@ public class ExtendedSwordItem extends SwordItem {
 	// An extension of the defaultModifiers field 
 	private Multimap<Attribute, AttributeModifier> additionalDefaultModifiers;
 	protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("7b101572-d7a0-489c-b0f1-3cd7d78e8375");
-	private final float reachDistanceModifier;
+	private final float reachModifier;
 
-	public ExtendedSwordItem(IItemTier pItemTeir, int pAttackDamage, float pAttackSpeed, float pAttackReach, Properties pProperties) {
-		super(pItemTeir, pAttackDamage, pAttackSpeed, pProperties);
-		this.reachDistanceModifier = pAttackReach;
+	public ExtendedSwordItem(IItemTier pItemTeir, int pAttackDamageModifier, float pAttackSpeedModifier, float pAttackReachModifier, Properties pProperties) {
+		super(pItemTeir, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
+		this.reachModifier = pAttackReachModifier;
 	}
 
+	// Generic sword modifiers
 	public ExtendedSwordItem(IItemTier pItemTeir, Properties pProperties) {
-		this(pItemTeir, 3, -2.4F, 0.0f, pProperties);
+		this(pItemTeir, 3, -2.4F, 0.0F, pProperties);
 	}
-
+	// Generic sword modifiers
 	public ExtendedSwordItem(IItemTier pItemTeir, ItemGroup pCategory) {
-		this(pItemTeir, 3, -2.4F, 0.0f, new Properties().tab(pCategory));
+		this(pItemTeir, 3, -2.4F, 0.0F, new Properties().tab(pCategory));
 	}
 
 	//Defer forge reach distance additions until this step, as the registries are not built at item (learned this the hard way)
@@ -44,7 +45,7 @@ public class ExtendedSwordItem extends SwordItem {
 				Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 				Multimap<Attribute, AttributeModifier> defaultModifiers = super.getDefaultAttributeModifiers(EquipmentSlotType.MAINHAND);
 				builder.putAll(defaultModifiers);
-				builder.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", reachDistanceModifier, Operation.ADDITION));
+				builder.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(ATTACK_REACH_MODIFIER, "Weapon modifier", reachModifier, Operation.ADDITION));
 				additionalDefaultModifiers = builder.build();
 			}
 			return this.additionalDefaultModifiers;

@@ -5,6 +5,7 @@ import com.github.maximuslotro.lotrrextended.common.inventory.container.Extended
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 
 import lotr.common.init.ExtendedItems;
@@ -36,21 +37,27 @@ public class ExtendedItemModelsProperties {
 	public static void registerAlternativeHandheldTextures() {
 		ItemModelsProperties.register(ExtendedItems.COMMANDHORN.get(), hornType, (itemStack, clientWorld, LivingEntity) -> ExtendedCommandHornItem.getType(itemStack).isHalt() ? 1 : ExtendedCommandHornItem.getType(itemStack).isReady() ? 2 : ExtendedCommandHornItem.getType(itemStack).isSummon() ? 3 : 0);
 		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), heated, (itemStack, clientWorld, LivingEntity) -> ExtendedBrandingIronItem.isTempered(itemStack) ? 1 : 0);
-		//		ItemModelsProperties.register(ExtendedItems.BRANDING_IRON.get(), poisoned, (itemStack, clientWorld, LivingEntity) -> {
-		//			return ExtendedDaggerItem.isPoisoned(itemStack) ? 1.0F : 0.0F;
-		//		});
+		ItemModelsProperties.register(ExtendedItems.MODIFIER_SCROLL.get(), scroll_type, (itemStack, clientWorld, LivingEntity) -> ExtendedModifierScrollItem.getModifier(itemStack).getScroll().getId());
+		// BOWS
 		registerBowItemModelProperties(ExtendedItems.DUNEDAIN_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.LONGBOW.get());
 		registerBowItemModelProperties(ExtendedItems.ORC_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.GUNDABAD_URUK_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.RANGER_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.RIVENDELL_BOW.get());
-		ItemModelsProperties.register(ExtendedItems.MODIFIER_SCROLL.get(), scroll_type, (itemStack, clientWorld, LivingEntity) -> ExtendedModifierScrollItem.getModifier(itemStack).getScroll().getId());
 		registerBowItemModelProperties(ExtendedItems.LINDON_BOW.get());
+		// CROSSBOWS
 		registerCrossbowItemModelProperties(ExtendedItems.BRONZE_CROSSBOW.get());
 		registerCrossbowItemModelProperties(ExtendedItems.IRON_CROSSBOW.get());
 		registerCrossbowItemModelProperties(ExtendedItems.URUK_CROSSBOW.get());
 		registerCrossbowItemModelProperties(ExtendedItems.MITHRIL_CROSSBOW.get());
+		// DAGGERS
+		registerDaggerItemModelProperties(ExtendedItems.ANGMAR_DAGGER.get());
+		registerDaggerItemModelProperties(ExtendedItems.BONE_DAGGER.get());
+		registerDaggerItemModelProperties(ExtendedItems.DOL_GULDUR_DAGGER.get());
+		registerDaggerItemModelProperties(ExtendedItems.GUNDABAD_URUK_DAGGER.get());
+		registerDaggerItemModelProperties(ExtendedItems.TAURETHRIM_DAGGER.get());
+		registerDaggerItemModelProperties(ExtendedItems.BARROW_BLADE.get());
 	}
 
 	public static void registerBowItemModelProperties(Item item) {
@@ -96,6 +103,12 @@ public class ExtendedItemModelsProperties {
 		});
 		ItemModelsProperties.register(item, new ResourceLocation("firework"), (thisItem, clientWorld, thisLivingEntity) -> {
 			return thisLivingEntity != null && CrossbowItem.isCharged(thisItem) && CrossbowItem.containsChargedProjectile(thisItem, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
+		});
+	}
+
+	public static void registerDaggerItemModelProperties(Item item) {
+		ItemModelsProperties.register(item, poisoned, (thisItem, clientWorld, thisLivingEntity) -> {
+			return ExtendedDaggerItem.isPoisoned(thisItem) ? 1.0f : 0.0f;
 		});
 	}
 }

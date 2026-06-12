@@ -65,6 +65,7 @@
 		"lotr.common.inv.MixinFactionCraftingResultSlotAccessor",
 		"lotr.common.inv.MixinForgeResultSlot",
 		"lotr.common.inv.MixinPouchContainer",
+		"lotr.common.item.MixinDaggerItem",
 		"lotr.common.item.MixinDurnorItem",
 		"lotr.common.item.MixinRedBookItem",
 		"lotr.common.item.MixinSaltItem",
