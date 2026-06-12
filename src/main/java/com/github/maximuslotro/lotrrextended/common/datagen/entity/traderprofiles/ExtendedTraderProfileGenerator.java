@@ -1002,7 +1002,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.PEARL, 25)
 		.addSBuy(ExtendedItems.CORAL, 6)
 		.addSBuy(ExtendedItems.DEAD_CORAL, 2)
-		.addSBuy(new ItemStack(Items.BAMBOO, 8), 16)
+		.addSBuy(new ItemStack(Items.BAMBOO, 8), 1)
 		.addSBuy(new ItemStack(Items.COAL, 2), 1)
 		.addSBuy(ExtendedItems.OBSIDIAN_SHARD, 2)
 		.addSBuy(Items.FEATHER, 2)
@@ -1010,6 +1010,8 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.CONKER, 1)
 		.addSSell(LOTRItems.SHIRE_HEATHER, 8)
 		.addSSell(LOTRItems.SUSPICIOUS_MEAT, 7)
+		.addSSell(Items.SLIME_BALL, 67)
+		.addSSell(new ItemStack(Items.BAMBOO, 8), 16)
 		.save(pConsumer, ExtendedTraderTypes.ODDMENT_COLLECTOR);
 
 		make(100)

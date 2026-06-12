@@ -906,6 +906,10 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.GOBLIN_BRICK_WALL = registerB("goblin_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.GOBLIN_BRICK));
 		ExtendedBlocks.GOBLIN_PILLAR = registerB("goblin_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_GRAY));
 		ExtendedBlocks.GOBLIN_PILLAR_SLAB = registerB("goblin_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.GOBLIN_PILLAR));
+		
+		ExtendedBlocks.ORC_PLATING_WALL = registerB("orc_plating_wall", () -> new LOTRWallBlock(LOTRBlocks.ORC_PLATING));
+		ExtendedBlocks.RUSTED_ORC_PLATING_WALL = registerB("rusted_orc_plating_wall", () -> new LOTRWallBlock(LOTRBlocks.RUSTED_ORC_PLATING));
+
 		//Gondor
 		ExtendedBlocks.CARVED_BLACK_GONDOR_BRICK = registerB("black_carved_gondor_brick", () -> new ExtendedStoneBlock(LOTRBlocks.NUMENOREAN_BRICK));
 		ExtendedBlocks.CARVED_BLACK_UMBAR_BRICK = registerB("carved_black_umbar_brick", () -> new ExtendedStoneBlock(LOTRBlocks.NUMENOREAN_BRICK));
