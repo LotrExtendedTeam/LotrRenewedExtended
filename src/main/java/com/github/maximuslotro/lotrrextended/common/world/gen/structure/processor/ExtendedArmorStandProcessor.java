@@ -11,13 +11,11 @@ import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootTable;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.FloatNBT;
 import net.minecraft.nbt.ListNBT;
-import net.minecraft.util.Mirror;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.gen.feature.template.IStructureProcessorType;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
@@ -43,23 +41,46 @@ public class ExtendedArmorStandProcessor extends StructureProcessor {
 		if (!"minecraft:armor_stand".equals(entityId)) {
 			return entityInfo;
 		}
-
+		/*
 		Rotation rotation = placementSettings.getRotation();
-		Mirror mirror = placementSettings.getMirror();
-		if (nbt.contains("Rotation", 9)) {
-			ListNBT rotationList = nbt.getList("Rotation", 5);
-			float yaw = rotationList.getFloat(0);
-			int yawSteps = Math.floorMod(Math.round(yaw), 360);
-			yawSteps = mirror.mirror(yawSteps, 360);
-			yawSteps = rotation.rotate(yawSteps, 360);
-			rotationList.set(0, FloatNBT.valueOf(yawSteps));
-		}
-
+		if (rotation == Rotation.CLOCKWISE_90 || rotation == Rotation.COUNTERCLOCKWISE_90) {
+			if (nbt.contains("Rotation", 9)) {
+				ListNBT rotationList = nbt.getList("Rotation", 5);
+				float yaw = rotationList.getFloat(0);
+				boolean needsFlip = false;
+				// Initialize or fetch the ArmorItems list
+			    ListNBT armorItems = nbt.contains("ArmorItems", 9) ? nbt.getList("ArmorItems", 10) : new ListNBT();
+			    // Ensure the list has 4 elements so index 3 (head) is safe to modify
+			    while (armorItems.size() < 4) {
+			        armorItems.add(new CompoundNBT());
+			    }
+				if (rotation == Rotation.COUNTERCLOCKWISE_90) {
+					if (yaw < 0 && yaw >= -180.0F) {
+						needsFlip = true;
+						ItemStack debugItem = new ItemStack(Items.DIAMOND_HELMET);
+				        armorItems.set(3, debugItem.serializeNBT());
+					}
+				} else if (rotation == Rotation.CLOCKWISE_90) {
+					if (yaw > 0.0F && yaw < 180.0F) {
+						needsFlip = true;
+						ItemStack debugItem = new ItemStack(Items.GOLDEN_HELMET);
+				        armorItems.set(3, debugItem.serializeNBT());
+					}
+				}
+				// Only 90 degree rotation of pieces seem to cause invalid rotations
+				if (needsFlip) {
+					float correctedYaw = MathHelper.wrapDegrees(yaw + 180.0F);
+					rotationList.set(0, FloatNBT.valueOf(correctedYaw));
+					// Write the modified equipment back to the root NBT
+				    nbt.put("ArmorItems", armorItems);
+				    return entityInfo;
+				}
+			}
+		}*/
 		if (nbt.contains("ForgeData", 10)) {
 			CompoundNBT forgeData = nbt.getCompound("ForgeData");
-
-			if (forgeData.contains("StandLootTable", 8) && world instanceof ServerWorld) {
-				ServerWorld serverWorld = (ServerWorld) world;
+			if (forgeData.contains("StandLootTable", 8) && world instanceof IServerWorld) {
+				ServerWorld serverWorld = ((IServerWorld) world).getLevel();
 				String lootTableStr = forgeData.getString("StandLootTable");
 				ResourceLocation lootTableId = new ResourceLocation(forgeData.getString("StandLootTable"));
 				forgeData.remove("StandLootTable");

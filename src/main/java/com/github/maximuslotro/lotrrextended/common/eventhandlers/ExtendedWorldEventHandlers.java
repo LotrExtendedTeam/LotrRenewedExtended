@@ -113,7 +113,9 @@ public class ExtendedWorldEventHandlers {
 
 	@SubscribeEvent
 	public static void onServerStopping(FMLServerStoppingEvent event) {
-		for (ServerPlayerEntity player : event.getServer().getPlayerList().getPlayers()) {
+		// Cache player list to prevent ConcurrentModificationException
+		List<ServerPlayerEntity> mplayers = event.getServer().getPlayerList().getPlayers();
+		for (ServerPlayerEntity player : mplayers) {
 			player.connection.disconnect(new TranslationTextComponent("multiplayer.disconnect.server_shutdown"));
 		}
 	}
