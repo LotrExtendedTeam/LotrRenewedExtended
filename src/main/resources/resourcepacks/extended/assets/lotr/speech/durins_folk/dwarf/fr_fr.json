@@ -1,0 +1,13 @@
+{
+  "parent": "lotr:durins_folk/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Encore quelques lunes à la forge, et j'aurai l'armure qu'il me faut pour aller chasser ces Rakhâs !"
+      ]
+    }
+  ]
+}

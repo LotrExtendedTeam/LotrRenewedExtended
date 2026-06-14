@@ -1,0 +1,255 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Bienvenue dans ma taverne",
+        "Bienvenue dans ma taverne, #p !",
+        "Encore un client ! Comment allez-vous ?",
+        "Vous aimez la bière ? On en a plein ici.",
+        "Cette taverne est l'un des meilleurs endroits pour se soûler que vous ayez jamais vus.",
+        "Et ce sera quoi aujourd'hui, #p ?",
+        "Vous cherchez à boire ?",
+        "Vous cherchez à boire, #p ?",
+        "Vous n'avez pas de pièces d'argent ?",
+        "Des pièces d'argent pour votre dîner ?",
+        "Ici dans ce bel établissement, on commerce en pièces d'argent !",
+        "Si vous avez les pièces, j'ai les marchandises !",
+        "Bienvenue dans la plus belle taverne à l'ouest de Bree !",
+        "Qu'est-ce que je vous sers, #p ?",
+        "Vous trouverez la meilleure bière ici, #p !",
+        "Pour quelques pièces d'argent, je peux vous servir tout ce que votre estomac désire !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Bonne journée, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Bonjour !",
+        "Bien le bonjour !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Bonjour, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Bon après-midi !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Bon après-midi, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "Bonsoir !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Bonsoir, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder"
+      },
+      "lines": [
+        "Oh, c'est vous, #p ! J'vous avais pas reconnu au début, voyez-vous.",
+        "Vous voyez ? J'ai toujours dit qu'il y avait des bonnes Grandes Gens, comme vous, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Eh bien, si c'est pas #p ! Comment allez-vous aujourd'hui ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "Eh bien, si c'est pas #p ! Comment allez-vous ce soir ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Bonne journée, monsieur !",
+        "Bonne journée, monsieur #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Bonne journée, mademoiselle !",
+        "Bonne journée, mademoiselle #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff"
+      },
+      "lines": [
+        "C'est toujours agréable d'avoir des clients comme vous, #p, dans ma taverne !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "La Comté me manque tellement.",
+        "Ma taverne me manque tellement.",
+        "J'ai jamais été aussi loin de la Comté.",
+        "Si je fais encore un pas, j'serai plus loin de chez moi que j'ai jamais été.",
+        "C'est peut-être le moment de rentrer. La Comté me manque.",
+        "Les aventures ? Des choses désagréables, ça. Je crois qu'il est temps que je retourne à ma taverne.",
+        "La route se poursuit sans fin, sous les arbres et par-dessus les ruisseaux, et je dois suivre, à ce qu'il semble ! Mais je rentrerai bientôt chez moi.",
+        "C'est le pays de votre peuple, #p ? Un drôle d'endroit, ça c'est sûr !",
+        "On devrait trouver le chemin du retour maintenant, #p.",
+        "Les trous de Hobbit ! La chaleur, la bonne nourriture, et le confort. Le mien me manque...",
+        "J'en ai eu assez des terres étrangères pour l'instant, #p. On rentre bientôt ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+        "Quel endroit épouvantable ! Retournons à la Comté tout de suite !",
+        "Comment sommes-nous arrivés dans un endroit aussi épouvantable ?",
+        "Quel pays affreux, #p !",
+        "Quel pays effrayant ! Nous devons trouver le chemin du retour vers la Comté !",
+        "Ce pays suffit à remplir d'effroi les cœurs les plus vaillants !",
+        "Je déclare que j'en ai assez vu de cet endroit ! Rentrons à la Comté, et vite !",
+        "Eh bien, #p, c'est un sale endroit si j'en ai jamais vu un !",
+        "Je me sens tout mal à l'aise ici. Dites, #p, vous connaissez la route pour retourner à la Comté ?",
+        "J'sais pas comment on a fait pour se retrouver dans un endroit pareil, #p.",
+        "Même l'air ici est une horreur !",
+        "On m'avait toujours mis en garde contre suivre ces routes hors de la Comté !",
+        "J'aurais dû écouter mon vieux Père ! J'aurais jamais dû quitter la Comté, non non !",
+        "Si j'avais su que c'était ça au-delà des frontières de notre Comté, j'aurais jamais été vagabonder !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Et comment allez-vous aujourd'hui, #p ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff"
+      },
+      "lines": [
+        "Ça vous dérange pas ? J'étais en pleine conversation là !",
+        "#p ! J'étais justement en pleine conversation.",
+        "C'est un peu malpoli d'interrompre, non ?",
+        "Y'a pas besoin d'interrompre, si ?",
+        "J'étais en train de parler ! Attendez votre tour !",
+        "Quel manque de politesse ! On avait une bonne discussion là, s'il vous plaît.",
+        "Mêlez-vous de vos affaires. Vous voyez pas qu'on parlait ?",
+        "Mêlez-vous de vos affaires, s'il vous plaît ! Maintenant laissez-nous tranquilles.",
+        "Je vois que vous avez aucun scrupule à interrompre une bonne conversation de Hobbit !",
+        "S'il vous plaît, #p, j'étais en pleine conversation.",
+        "...et je me suis tourné vers lui et j'ai dit - excusez-moi ? Ça vous dérange de nous interrompre, #p ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "J'ai entendu dire que vous causiez des ennuis par ici.",
+        "Sortez !",
+        "J'veux pas que vous causiez des ennuis dans ma taverne, #p. Sortez !",
+        "Vous êtes pas le bienvenu dans ma taverne.",
+        "Pas de bière pour vous !",
+        "Pas de bière pour vous, #p.",
+        "On n'aime pas les gens comme vous par ici.",
+        "J'vous servirai rien !",
+        "Pas de fauteurs de troubles comme vous dans ma taverne.",
+        "Les gens désagréables comme vous sont pas les bienvenus dans ma taverne.",
+        "Hé, #p ! Sortez de ma taverne !",
+        "Sortez avant que j'appelle les Frontaliers !",
+        "Je sers pas les fauteurs de troubles dans ma taverne.",
+        "J'vous donnerai rien pour dîner ce soir, #p !",
+        "Vous aurez rien de ma part, #p !",
+        "Sortez d'ici, espèce de sale type !",
+        "J'veux pas d'ennuis ici, #p.",
+        "Allons, pas d'ennuis, hein.",
+        "J'crois pas que j'vais vous servir quoi que ce soit.",
+        "Non merci, #p !",
+        "Non merci ! On veut pas de gens de votre espèce ici."
+      ]
+    }
+  ]
+}

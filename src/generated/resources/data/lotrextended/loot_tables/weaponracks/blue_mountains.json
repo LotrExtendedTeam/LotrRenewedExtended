@@ -9,18 +9,18 @@
           "weight": 2,
           "functions": [
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.7
-              }
-            },
-            {
               "function": "minecraft:set_count",
               "count": 1
             },
             {
               "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.7
+              }
             }
           ],
           "name": "lotr:blue_dwarven_dagger"
@@ -29,18 +29,18 @@
           "type": "minecraft:item",
           "functions": [
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.7
-              }
-            },
-            {
               "function": "minecraft:set_count",
               "count": 1
             },
             {
               "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.7
+              }
             }
           ],
           "name": "lotr:blue_dwarven_axe"
@@ -50,18 +50,18 @@
           "weight": 2,
           "functions": [
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.7
-              }
-            },
-            {
               "function": "minecraft:set_count",
               "count": 1
             },
             {
               "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.7
+              }
             }
           ],
           "name": "lotr:blue_dwarven_pickaxe"
@@ -70,18 +70,18 @@
           "type": "minecraft:item",
           "functions": [
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.7
-              }
-            },
-            {
               "function": "minecraft:set_count",
               "count": 1
             },
             {
               "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.7
+              }
             }
           ],
           "name": "lotr:blue_dwarven_shovel"
@@ -90,18 +90,18 @@
           "type": "minecraft:item",
           "functions": [
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.7
-              }
-            },
-            {
               "function": "minecraft:set_count",
               "count": 1
             },
             {
               "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.7
+              }
             }
           ],
           "name": "lotr:blue_dwarven_hoe"
@@ -111,18 +111,18 @@
           "weight": 2,
           "functions": [
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.7
-              }
-            },
-            {
               "function": "minecraft:set_count",
               "count": 1
             },
             {
               "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.7
+              }
             }
           ],
           "name": "lotr:blue_dwarven_sword"
@@ -131,18 +131,18 @@
           "type": "minecraft:item",
           "functions": [
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.7
-              }
-            },
-            {
               "function": "minecraft:set_count",
               "count": 1
             },
             {
               "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.7
+              }
             }
           ],
           "name": "lotr:blue_dwarven_spear"
@@ -152,18 +152,18 @@
           "weight": 2,
           "functions": [
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.7
-              }
-            },
-            {
               "function": "minecraft:set_count",
               "count": 1
             },
             {
               "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.7
+              }
             }
           ],
           "name": "lotr:blue_dwarven_throwing_axe"
@@ -173,18 +173,18 @@
           "weight": 2,
           "functions": [
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.7
-              }
-            },
-            {
               "function": "minecraft:set_count",
               "count": 1
             },
             {
               "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.7
+              }
             }
           ],
           "name": "lotr:blue_dwarven_mattock"

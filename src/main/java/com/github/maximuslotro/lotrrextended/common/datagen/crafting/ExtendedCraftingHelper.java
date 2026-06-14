@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedCrucibleRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapedRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedFactionShapelessRecipeBuilder;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.builders.ExtendedMillingRecipeBuilder;
@@ -36,6 +37,7 @@ import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.data.SingleItemRecipeBuilder;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
@@ -49,7 +51,7 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedCraftingHelper extends RecipeProvider {
 
-	public static List<String> GENERATEDRECIPES = new ArrayList<>();
+	public List<String> GENERATEDRECIPES = new ArrayList<>();
 
     public static final ITag.INamedTag<Item> LOGS = ItemTags.LOGS;
     public static final ITag.INamedTag<Item> STICKS = Tags.Items.RODS_WOODEN;
@@ -405,15 +407,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.define('M', Ingredient.of(reasource))
 			.define('L', Ingredient.of(Tags.Items.LEATHER))
 			.unlockedBy("has_"+type, has(reasource))
-			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_1"));
-			ExtendedShapedRecipeBuilder.shaped(armor.get())
-			.pattern("M  ")
-			.pattern("MLM")
-			.pattern("M M")
-			.define('M', Ingredient.of(reasource))
-			.define('L', Ingredient.of(Tags.Items.LEATHER))
-			.unlockedBy("has_"+type, has(reasource))
-			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_2"));
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()));
 		}
 		else {
 			ExtendedFactionShapedRecipeBuilder.shaped(armor.get(), table)
@@ -423,15 +417,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.define('M', Ingredient.of(reasource))
 			.define('L', Ingredient.of(Tags.Items.LEATHER))
 			.unlockedBy("has_"+type, has(reasource))
-			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_1"));
-			ExtendedFactionShapedRecipeBuilder.shaped(armor.get(), table)
-			.pattern("  M")
-			.pattern("MLM")
-			.pattern("M M")
-			.define('M', Ingredient.of(reasource))
-			.define('L', Ingredient.of(Tags.Items.LEATHER))
-			.unlockedBy("has_"+type, has(reasource))
-			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_2"));
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()));
 		}
 	}
 
@@ -445,15 +431,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.define('M', Ingredient.of(reasource))
 			.define('L', Ingredient.of(Tags.Items.LEATHER))
 			.unlockedBy("has_"+type, has(reasource))
-			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_1"));
-			ExtendedShapedRecipeBuilder.shaped(armor.get())
-			.pattern("M  ")
-			.pattern("MLM")
-			.pattern("MMM")
-			.define('M', Ingredient.of(reasource))
-			.define('L', Ingredient.of(Tags.Items.LEATHER))
-			.unlockedBy("has_"+type, has(reasource))
-			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_2"));
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()));
 		}
 		else {
 			ExtendedFactionShapedRecipeBuilder.shaped(armor.get(), table)
@@ -463,15 +441,7 @@ public class ExtendedCraftingHelper extends RecipeProvider {
 			.define('M', Ingredient.of(reasource))
 			.define('L', Ingredient.of(Tags.Items.LEATHER))
 			.unlockedBy("has_"+type, has(reasource))
-			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_1"));
-			ExtendedFactionShapedRecipeBuilder.shaped(armor.get(), table)
-			.pattern("  M")
-			.pattern("MLM")
-			.pattern("MMM")
-			.define('M', Ingredient.of(reasource))
-			.define('L', Ingredient.of(Tags.Items.LEATHER))
-			.unlockedBy("has_"+type, has(reasource))
-			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()+"_2"));
+			.save(consumer, lotrLoc(armor.get().getRegistryName().getPath()));
 		}
 	}
 
@@ -1459,7 +1429,7 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		}
 	}
 
-	protected void makeBowRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> bandItem, ITag<Item> resource, String resourceName, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void makeBowRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, ITag<Item> resource, String resourceName, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name = itemToBeCrafted.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name);
 		if (table == null) {
@@ -1467,7 +1437,7 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X#")
 			.pattern("X #")
 			.pattern(" X#")
-			.define('#', Ingredient.of(bandItem.get()))
+			.define('#', Ingredient.of(ExtendedItems.BOWSTRING.get()))
 			.define('X', Ingredient.of(resource))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
@@ -1476,8 +1446,36 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.pattern(" X#")
 			.pattern("X #")
 			.pattern(" X#")
-			.define('#', Ingredient.of(bandItem.get()))
+			.define('#', Ingredient.of(ExtendedItems.BOWSTRING.get()))
 			.define('X', Ingredient.of(resource))
+			.unlockedBy("has_"+resourceName, has(resource))
+			.save(consumer, lotrLoc(name));
+		}
+	}
+
+	protected void makeCrossbowRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, ITag<Item> resource, String resourceName, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if (table == null) {
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			.pattern("XXS")
+			.pattern("#TX")
+			.pattern("S#X")
+			.define('#', Ingredient.of(ExtendedItems.BOWSTRING.get()))
+			.define('X', Ingredient.of(resource))
+			.define('S', Ingredient.of(STICKS))
+			.define('T', Ingredient.of(Items.TRIPWIRE_HOOK))
+			.unlockedBy("has_"+resourceName, has(resource))
+			.save(consumer, lotrLoc(name));
+		} else {
+			ExtendedFactionShapedRecipeBuilder.shaped(itemToBeCrafted.get(), table)
+			.pattern("XXS")
+			.pattern("#TX")
+			.pattern("S#X")
+			.define('#', Ingredient.of(ExtendedItems.BOWSTRING.get()))
+			.define('X', Ingredient.of(resource))
+			.define('S', Ingredient.of(STICKS))
+			.define('T', Ingredient.of(Items.TRIPWIRE_HOOK))
 			.unlockedBy("has_"+resourceName, has(resource))
 			.save(consumer, lotrLoc(name));
 		}
@@ -1813,7 +1811,7 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		}
 	}
 
-	protected void makeTorchConversionRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> fromItem, Supplier<? extends Item> toItem, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void makeTorchConversionRecipeDirect(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> fromItem, Supplier<? extends Item> toItem, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name1 = fromItem.get().getRegistryName().getPath();
 		String name2 = toItem.get().getRegistryName().getPath();
 		if(table==null) {
@@ -1830,7 +1828,7 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		}
 	}
 
-	protected void makeTorchConversionRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> fromItem, Supplier<? extends Item> toItem, Supplier<? extends Item> material, int conversionFactor, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void makeTorchConversionRecipeItem(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> fromItem, Supplier<? extends Item> toItem, Supplier<? extends Item> material, int conversionFactor, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name1 = fromItem.get().getRegistryName().getPath();
 		String name2 = toItem.get().getRegistryName().getPath();
 		if(table==null) {
@@ -1855,7 +1853,7 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		}
 	}
 
-	protected void makeTorchConversionRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> fromItem, Supplier<? extends Item> toItem, ITag<Item> resource, int conversionFactor, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void makeTorchConversionRecipeTag(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> fromItem, Supplier<? extends Item> toItem, ITag<Item> resource, int conversionFactor, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name1 = fromItem.get().getRegistryName().getPath();
 		String name2 = toItem.get().getRegistryName().getPath();
 		if(table==null) {
@@ -1879,17 +1877,23 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
 	}
-
-	protected void makeStorageBlock3x3ToItemAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> item, Supplier<? extends Block> block, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+	protected void makeStorageBlock3x3ToItemAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> item, Supplier<? extends Block> block, 
+			@Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		this.makeStorageBlock3x3ToItemAndBackRecipe(consumer, item, block, table, null, null);
+	}
+	protected void makeStorageBlock3x3ToItemAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> item, Supplier<? extends Block> block, 
+			@Nullable FactionBasedRecipeType<ICraftingRecipe> table, String itemRecipeGroup, String blockRecipeGroup) {
 		String name1 = item.get().getRegistryName().getPath();
 		String name2 = block.get().getRegistryName().getPath();
 		GENERATEDRECIPES.add(name2);
 		if(table==null) {
 			ShapelessRecipeBuilder.shapeless(item.get(), 9)
+			.group(itemRecipeGroup)
 			.requires(block.get())
 			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name1+"_from_"+name2));
 			ExtendedShapedRecipeBuilder.shaped(block.get())
+			.group(blockRecipeGroup)
 			.pattern("###")
 			.pattern("###")
 			.pattern("###")
@@ -1899,10 +1903,12 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		}
 		else {
 			ExtendedFactionShapelessRecipeBuilder.shapeless(item.get(), 9, table)
+			.group(itemRecipeGroup)
 			.requires(block.get())
 			.unlockedBy("has_"+name2, has(block.get()))
 			.save(consumer, lotrLoc(name1+"_from_"+name2));
 			ExtendedFactionShapedRecipeBuilder.shaped(block.get(), table)
+			.group(blockRecipeGroup)
 			.pattern("###")
 			.pattern("###")
 			.pattern("###")
@@ -1940,6 +1946,25 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.unlockedBy("has_"+name1, has(item.get()))
 			.save(consumer, lotrLoc(name2+"_from_"+name1));
 		}
+	}
+
+	protected void makeCoralRecipes(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> output, Supplier<? extends Item> inputCoral, Supplier<? extends Item> inputFan, Supplier<? extends Item> inputBlock) {
+		GENERATEDRECIPES.add(output.get().getRegistryName().getPath());
+		ShapelessRecipeBuilder.shapeless(output.get())
+		.group(output.get().getRegistryName().getPath())
+		.requires(inputFan.get())
+		.unlockedBy("has_"+inputFan.get().getRegistryName().getPath(), has(inputFan.get()))
+		.save(consumer, lotrLoc(output.get().getRegistryName().getPath()+"_from_"+inputFan.get().getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(output.get())
+		.group(output.get().getRegistryName().getPath())
+		.requires(inputCoral.get())
+		.unlockedBy("has_"+inputCoral.get().getRegistryName().getPath(), has(inputCoral.get()))
+		.save(consumer, lotrLoc(output.get().getRegistryName().getPath()+"_from_"+inputCoral.get().getRegistryName().getPath()));
+		ShapelessRecipeBuilder.shapeless(output.get(), 4)
+		.group(output.get().getRegistryName().getPath())
+		.requires(inputBlock.get())
+		.unlockedBy("has_"+inputBlock.get().getRegistryName().getPath(), has(inputBlock.get()))
+		.save(consumer, lotrLoc(output.get().getRegistryName().getPath()+"_from_"+inputBlock.get().getRegistryName().getPath()));
 	}
 
 	protected void makeNuggetToIngotAndBackRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> ingot, Supplier<? extends Item> nugget, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
@@ -2141,6 +2166,42 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 		String name2 = input.get().getRegistryName().getNamespace()+"_"+input.get().getRegistryName().getPath();
 		ExtendedMillingRecipeBuilder.grinding(output.get(), countMin, countMax, Ingredient.of(input.get()), breakChance, ExtendedRecipeSerializers.STONE_GRINDING_SERIALIZER.get())
 		.save(consumer, extendedLoc(name1+"_grinded_from_"+name2));
+	}
+
+	protected void makeOreFurnaceRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp) {
+		makeSmeltingRecipe(pFinishedRecipeConsumer, ore, result, xp, 200);
+		makeBlastingRecipe(pFinishedRecipeConsumer, ore, result, xp, 100);
+	}
+
+	protected void makeSmeltingRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp, int ticks) {
+		GENERATEDRECIPES.add(result.getRegistryName().getPath());
+		CookingRecipeBuilder.smelting(Ingredient.of(ore), result, xp, ticks)
+		.unlockedBy("has_"+ore.getRegistryName().getPath(), has(ore))
+		.save(pFinishedRecipeConsumer, result.getRegistryName().getPath()+"_from_smelting");
+	}
+
+	protected void makeBlastingRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp, int ticks) {
+		GENERATEDRECIPES.add(result.getRegistryName().getPath());
+		CookingRecipeBuilder.blasting(Ingredient.of(ore), result, xp, ticks)
+		.unlockedBy("has_"+ore.getRegistryName().getPath(), has(ore))
+		.save(pFinishedRecipeConsumer, result.getRegistryName().getPath()+"_from_blasting");
+	}
+
+	protected void makeCrucibleRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Supplier<? extends Item> input, Supplier<? extends Item> result) {
+		makeCrucibleRecipe(pFinishedRecipeConsumer, input, result, 1);
+	}
+	protected void makeCrucibleRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Supplier<? extends Item> input, Supplier<? extends Item> result, int count) {
+		GENERATEDRECIPES.add(input.get().getRegistryName().getPath());
+		ExtendedCrucibleRecipeBuilder.specific(Ingredient.of(input.get()), new ItemStack(result.get(), count), ExtendedRecipeSerializers.CRUCIBLE_SPECIFIC_SERIALIZER.get())
+		.save(pFinishedRecipeConsumer);
+	}
+	protected void makeCrucibleRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Supplier<? extends Item> input, Supplier<? extends Item> result1, Supplier<? extends Item> result2) {
+		makeCrucibleRecipe(pFinishedRecipeConsumer, input, result1, 1, result2, 1);
+	}
+	protected void makeCrucibleRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Supplier<? extends Item> input, Supplier<? extends Item> result1, int count1, Supplier<? extends Item> result2, int count2) {
+		GENERATEDRECIPES.add(input.get().getRegistryName().getPath());
+		ExtendedCrucibleRecipeBuilder.specific(Ingredient.of(input.get()), new ItemStack(result1.get(), count1), new ItemStack(result2.get(), count2), ExtendedRecipeSerializers.CRUCIBLE_SPECIFIC_SERIALIZER.get())
+		.save(pFinishedRecipeConsumer);
 	}
 
 	public void checkForMissingRecipes() {

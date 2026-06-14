@@ -193,14 +193,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:bronze_dagger"
@@ -214,14 +214,14 @@
               "count": 1
             },
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.2,
-                "max": 0.9
+                "max": 0.85
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:iron_dagger"
@@ -235,14 +235,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.4,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_dagger"
@@ -256,14 +256,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.35,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:bow"
@@ -297,6 +297,96 @@
             }
           ],
           "name": "lotr:blue_rock"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 7.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:wheat_seeds"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 4.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:flax_seeds"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:melon_seeds"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 4.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:pumpkin_seeds"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:beetroot_seeds"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotr:pipeweed_seeds"
         },
         {
           "type": "minecraft:item",
@@ -427,6 +517,13 @@
             },
             {
               "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:flint_and_steel"
@@ -529,14 +626,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:bronze_pickaxe"
@@ -550,14 +647,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_pickaxe"
@@ -717,14 +814,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_sword"
@@ -738,14 +835,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_spear"
@@ -759,14 +856,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_boots"
@@ -780,14 +877,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_throwing_axe"
@@ -801,14 +898,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_mattock"
@@ -822,14 +919,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_helmet"
@@ -843,14 +940,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_chestplate"
@@ -864,14 +961,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_leggings"
@@ -885,14 +982,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_boots"
@@ -906,14 +1003,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_shield"
@@ -1111,6 +1208,27 @@
             }
           ],
           "name": "minecraft:cooked_salmon"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:artisan_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:combat_tome"
         },
         {
           "type": "minecraft:item",

@@ -1,0 +1,23 @@
+{
+  "speech": [
+    {
+      "conditions": {},
+      "lines": [
+        "Tu ne peux entrer en Lórien, #p !",
+        "Ne touche pas aux arbres du Bois d'Or !",
+        "Tu n'es pas le bienvenu ici !",
+        "Nulle main maléfique n'abattra les arbres de la Lothlórien !",
+        "Les haches de l'Ennemi sont interdites ici !",
+        "Nos mallorns ne seront pas abattus !",
+        "Tu ne peux mettre le pied en Lothlórien, #p !",
+        "Nul mallorn ne tombera par main maléfique dans ces bois !",
+        "Ceux qui apportent la destruction en Lórien la rencontreront eux-mêmes !",
+        "Le mal n'est pas toléré en cette terre !",
+        "Comment oses-tu abattre les mellyrn du Bois d'Or ? En vérité, tu es un serviteur du mal !",
+        "Quel est ce mal ? Hors de nos terres, engeance de Morgoth.",
+        "Ignoble engeance de Morgoth ! Tu paieras pour avoir profané les arbres du Bois d'Or.",
+        "Tu répondras de tes crimes, #p !"
+      ]
+    }
+  ]
+}

@@ -17,7 +17,7 @@
     "hidden": false
   },
   "criteria": {
-    "drink_any": {
+    "drink_item": {
       "trigger": "lotrextended:drinking",
       "conditions": {
         "drink_item": {
@@ -28,7 +28,7 @@
   },
   "requirements": [
     [
-      "drink_any"
+      "drink_item"
     ]
   ]
 }

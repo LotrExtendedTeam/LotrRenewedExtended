@@ -16,8 +16,9 @@ public class BiomeFeatureAdder {
 				ExtendedBiomeFeatures.addRemains(event.getGeneration());
 			}if (event.getName().equals(LOTRBiomes.NAN_CURUNIR.getRegistryName())) {
 				ExtendedBiomeFeatures.addOrthancWalls(event.getGeneration());
+				ExtendedBiomeFeatures.addScorchedLand(event.getGeneration(), ExtendedConfiguredFeatures.ISENGARD_SCORCHED_LAND, 80);
 			}
-			if(!event.getName().equals(LOTRBiomes.SEA.getRegistryName()) || !event.getName().equals(LOTRBiomes.RIVER.getRegistryName())) {
+			if(!event.getName().equals(LOTRBiomes.SEA.getRegistryName()) || !event.getName().getPath().contains("river")) {
 				ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 6000);
 				if(event.getName().equals(LOTRBiomes.FORODWAITH.getRegistryName())) {
 					ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 2000);

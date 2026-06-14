@@ -117,6 +117,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addD(entity.getKey(), entity.getValue());
 		}
 
+		for (String invasion : DataGenValueHolder.invasionNames) {
+			addD(invasion);
+		}
+
 		// chat notifications
 		addD("chat.lotrextended.hired_companion_prefix", "Your hired companion %1$s");
 		addD("chat.lotrextended.hired_companion_levelup", "Your hired companion %1$s has reached level %2$s!");
@@ -129,6 +133,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.menu.settings", "Options");
 		addD("gui.lotrextended.menu.titles", "Titles");
 		addD("gui.lotrextended.menu.achievements", "Achievements");
+		addD("gui.lotrextended.menu.advancements", "Advancements");
 
 		//Default option strings
 		addD("gui.lotrextended.base.disabled", "Disabled");
@@ -142,6 +147,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.base.set", "Set");
 		addD("gui.lotrextended.base.true", "True");
 		addD("gui.lotrextended.base.false", "False");
+		addD("gui.lotrextended.base.start", "Start");
+		addD("gui.lotrextended.base.cancel", "Cancel");
+		addD("gui.lotrextended.base.on", "On");
+		addD("gui.lotrextended.base.off", "Off");
+		addD("gui.lotrextended.base.return", "Return");
 
 		// trade system
 		addD("gui.lotrextended.trading.trade_button", "Trade");
@@ -249,6 +259,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.serversettings.category.protection", "Spawn Protection");
 		addD("gui.lotrextended.serversettings.category.worldgen", "World Generation");
 		addD("gui.lotrextended.serversettings.category.worldgen.tooltip", "Note: World generation settings do not apply to previously generated chunks.");
+		addD("gui.lotrextended.serversettings.category.worldmaintenance", "World Maintenance");
+		addD("gui.lotrextended.serversettings.category.worldmaintenance.tooltip", "Note: These options can modify or regenerate parts of the world, including existing chunks. Changes may be permanent.");
 		addD("gui.lotrextended.serversettings.bannerprotection.setting", "Banner Protection: %s");
 		addD("gui.lotrextended.serversettings.fellowshipcreation.setting", "Fellowship Creation: %s");
 		addD("gui.lotrextended.serversettings.renewedwaypointcreate.setting", "Renewed Custom WP: %s");
@@ -263,6 +275,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.serversettings.fixedstructures.setting", "Fixed Structures: %s");
 		addD("gui.lotrextended.serversettings.fixedstructureimladris.setting", "Imladris: %s");
 		addD("gui.lotrextended.serversettings.fixedstructuretowerhills.setting", "Tower Hills Towers: %s");
+		addD("gui.lotrextended.serversettings.fixedstructureorthanc.setting", "Orthanc: %s");
 		addD("gui.lotrextended.serversettings.extendedmodifiers.setting", "Extended Modifiers: %s");
 		addD("gui.lotrextended.serversettings.vanillaenchanting.setting", "Vanilla Enchanting: %s");
 		addD("gui.lotrextended.serversettings.vanillaxp.setting", "Vanilla XP: %s");
@@ -344,6 +357,22 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.lotrextendedversioncheck.setting", "Extended Version Check: ");
 		addD("gui.lotrextended.settings.show_hired_unit_hp_numbers.setting", "Large Hired Unit HP Bars: ");
 
+		// World Prune stuff
+		addD("gui.lotrextended.worldprune.title", "World Prune Panel");
+		addD("gui.lotrextended.worldprune.open.message", "World Prune Panel");
+		addD("gui.lotrextended.worldprune.open.tooltip", "Opens the world pruning window.");
+		addD("gui.lotrextended.worldprune.dryrun.splitter", "%s: %s");
+		addD("gui.lotrextended.worldprune.runagain", "Run Again");
+		addD("gui.lotrextended.worldprune.returndisabled", "Cannot Exit While Running");
+		addD("gui.lotrextended.worldprune.mode", "Mode: %s");
+		addD("gui.lotrextended.worldprune.mode.safe", "Dry Run");
+		addD("gui.lotrextended.worldprune.mode.live", "Live Deletion");
+		addD("gui.lotrextended.worldprune.checking", "Checking chunks: %s%% (%s/%s)");
+		addD("gui.lotrextended.worldprune.scanning", "Scanning %s/%s region files (%s chunks discovered)");
+		addD("gui.lotrextended.worldprune.processing", "Processing regions: %s%% (%s/%s)");
+		addD("gui.lotrextended.worldprune.finished", "Pruning complete! Deleted %s regions, saving %s, and skipped %s");
+		addD("gui.lotrextended.worldprune.finished.dry", "[Dry Run] Would delete %s regions, saving %s");
+		addD("gui.lotrextended.worldprune.canceled", "Pruning canceled (%s/%s regions processed)");
 		// Banner Menu strings
 		addD("gui.lotrextended.banner_configuration.title", "Banner Protection");
 		addD("gui.lotrextended.banner_configuration.disabled", "Banner Protection Is Disabled");
@@ -417,11 +446,17 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("item.lotrextended.modifiers.warg", "When on Warg:");
 		addD("item.lotrextended.modifiers.boar", "When on Boar:");
 		addD("item.lotrextended.modifiers.horse", "When on Horse:");
+		addD("gui.lotrextended.reforge_books.description", "Guarantees %s modifiers on Reforge");
+		addD("gui.lotrextended.reforge_books.combat", "Combat");
+		addD("gui.lotrextended.reforge_books.artisan", "Artisan");
 
 		//Bow values
 		addD("gui.lotrextended.bow.speed", "Draw Speed: %s");
 		addD("gui.lotrextended.bow.damage", "Ranged Damage: %s");
 		addD("gui.lotrextended.bow.range", "Range: %s");
+
+		//Dagger values
+		addD("gui.lotrextended.dagger.poisoned", "Inflicts poison");
 
 		// Generic command strings
 		addD("command.lotrextended.generic_error.only_player", "This command can only be run by a player");
@@ -574,8 +609,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("enchant.lotrextended.bane.desc", "damage vs. %s");
 		addD("enchant.lotrextended.bane.earn", "Your %s has claimed the lives of many %s, and it shall be their bane evermore!");
 		addD("enchant.lotrextended.bane.earn_name", "%s's %s has claimed the lives of many %s, and it shall be their bane evermore!");
-		addD("enchant.lotrextended.durability.one", "Lasting");
-		addD("enchant.lotrextended.durability.two", "Hardy");
+		addD("enchant.lotrextended.durability.one", "Hardy");
+		addD("enchant.lotrextended.durability.two", "Lasting");
 		addD("enchant.lotrextended.durability.three", "Enduring");
 		addD("enchant.lotrextended.durability.disc", "durability");
 		addD("enchant.lotrextended.looting.one", "Lucky");
@@ -665,23 +700,18 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("enchant.lotrextended.toughness.three", "Unwavering");
 		addD("enchant.lotrextended.toughness.disc", "toughness");
 
+		addD("enchant.lotrextended.draw_speed.slow_one", "Heavy");
+		addD("enchant.lotrextended.draw_speed.one", "Light");
+		addD("enchant.lotrextended.draw_speed.two", "Brisk");
+		addD("enchant.lotrextended.draw_speed.three", "Breakneck");
+		addD("enchant.lotrextended.draw_speed.disc", "nominal draw time");
+
 		//Damage types
 		addD("death.attack.lotrextended.thrownaxe", "%1$s was precision-axed by %2$s");
 		addD("death.attack.lotrextended.thrownaxe.item", "%1$s was precision-axed by %2$s using %3$s");
 
 		// Invasions
 		addD("chat.lotrextended.invasion.started", "%s have launched an invasion nearby!");
-		addD("lotrextended.invasion.rivendell", "Rivendell");
-		addD("lotrextended.invasion.lindon", "Lindon");
-		addD("lotrextended.invasion.gundabad", "Gundabad");
-		addD("lotrextended.invasion.gundabad_wargs", "Gundabad Wargs");
-		addD("lotrextended.invasion.dunedain", "Rangers of the North");
-		addD("lotrextended.invasion.mordor", "Mordor");
-		addD("lotrextended.invasion.gondor", "Gondor");
-		addD("lotrextended.invasion.lothlorien", "Lothlorien");
-		addD("lotrextended.invasion.woodland_realm", "Woodland Realm");
-		addD("lotrextended.invasion.rohan", "Rohan");
-		addD("lotrextended.invasion.isengard", "Uruk-hai");
 	}
 
 	@Override

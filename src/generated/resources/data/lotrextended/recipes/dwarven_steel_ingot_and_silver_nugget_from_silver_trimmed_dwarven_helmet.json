@@ -1,0 +1,16 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:silver_trimmed_dwarven_helmet"
+  },
+  "result1": {
+    "item": "lotr:dwarven_steel_ingot",
+    "count": 5
+  },
+  "result2": {
+    "item": "lotr:silver_nugget",
+    "count": 8
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

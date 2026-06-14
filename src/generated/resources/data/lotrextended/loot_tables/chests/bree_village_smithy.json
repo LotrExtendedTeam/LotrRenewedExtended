@@ -137,6 +137,13 @@
             },
             {
               "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:flint_and_steel"
@@ -151,6 +158,13 @@
             },
             {
               "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:fishing_rod"
@@ -301,14 +315,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.35,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:wooden_axe"
@@ -322,14 +336,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.3,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:stone_axe"
@@ -343,14 +357,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:bronze_axe"
@@ -364,14 +378,14 @@
               "count": 1
             },
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.2,
-                "max": 0.9
+                "max": 0.85
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "minecraft:iron_axe"
@@ -385,14 +399,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.35,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:wooden_dagger"
@@ -406,14 +420,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.3,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:stone_dagger"
@@ -427,14 +441,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:bronze_dagger"
@@ -448,14 +462,14 @@
               "count": 1
             },
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.2,
-                "max": 0.9
+                "max": 0.85
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:iron_dagger"
@@ -469,14 +483,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.35,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:bow"
@@ -490,14 +504,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:longbow"
@@ -526,14 +540,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.35,
-                "max": 0.8
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:bronze_helmet"
@@ -547,14 +561,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.35,
-                "max": 0.8
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:bronze_chestplate"
@@ -568,14 +582,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.35,
-                "max": 0.8
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:bronze_leggings"
@@ -589,14 +603,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.35,
-                "max": 0.8
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:bronze_boots"
@@ -609,14 +623,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.1,
-                "max": 0.4
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:iron_helmet"
@@ -629,14 +643,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.1,
-                "max": 0.4
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:iron_chestplate"
@@ -649,14 +663,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.1,
-                "max": 0.4
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:iron_leggings"
@@ -669,14 +683,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.1,
-                "max": 0.4
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:iron_boots"
@@ -690,14 +704,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.6
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:chainmail_helmet"
@@ -711,14 +725,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.6
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:chainmail_chestplate"
@@ -732,14 +746,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.6
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:chainmail_leggings"
@@ -753,14 +767,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.6
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "minecraft:chainmail_boots"
@@ -796,6 +810,28 @@
             }
           ],
           "name": "lotr:large_pouch"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:artisan_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:combat_tome"
         }
       ],
       "functions": [

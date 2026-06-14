@@ -1,0 +1,255 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "歡迎到我的酒館",
+        "歡迎到我的酒館, #p!",
+        "又一個客人! 今天過得如何?",
+        "你喜歡麥酒嗎? 我們這有很多.",
+        "這家酒館是你所見過最適合爛醉的地方了.",
+        "那今天想要什麼, #p?",
+        "想來杯什麼飲料?",
+        "想來杯什麼飲料, #p?",
+        "你沒有任何銀幣嗎?",
+        "用幾枚硬幣來換取你一餐嗎?",
+        "在這間美麗的建築中, 我們用銀幣交易!",
+        "如果你有錢幣, 我就有商品!",
+        "歡迎來到布理西方最優質的酒店!",
+        "有什麼需要我服務的嗎, #p?",
+        "你能在這找到最精緻的麥酒, #p!",
+        "只要一些銀幣, 我能給你任何東西來滿足你的肚子!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "早上好, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "早安!",
+        "向你說早安!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "早安, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "午安!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "午安, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "晚安!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "晚安, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder"
+      },
+      "lines": [
+        "噢, 是你, #p! 我一開始沒有認出你, 你看.",
+        "你看? 我總是說有個人很好的大個, 像你, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "那麼, 如果不是 #p! 今早如何?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "那麼, 如果不是 #p! 今晚如何?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "早上好, 先生!",
+        "早上好, #p先生!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "早上好, 小姐!",
+        "早上好, #p小姐!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff"
+      },
+      "lines": [
+        "很開心總是有像你這樣的守護者, #p, 在我的的酒館!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "我非常想念夏爾.",
+        "我非常很想念我的酒館.",
+        "我還沒到離夏爾這麼遠的地方.",
+        "只要我再踏出一步,就會創下我離家裡有使以來最遠的一次.",
+        "或許我該回家了。我想念夏爾.",
+        "冒險?無聊的東西。我想是該回我的酒館的時候.",
+        "漫漫長路穿過樹林越過溪流,但我仍然繼續前行!可是我現在想回家.",
+        "這是你們住的地方嗎, #p?對我來說是個很陌生的地方!",
+        "我們應該要找到回去的路上, #p.",
+        "袋底洞!溫暖,美食,還很舒適。我好想家...",
+        "我已經體會異地的感覺是甚麼了, #p。我們可以趕快回去嗎?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+        "多麼死氣沉沉的地方!我想趕快回到夏爾!",
+        "我們怎麼會到這個死寂般的地方?",
+        "多麼糟糕的地方, #p!",
+        "多麼可怕的地方!我們應該要趕快找條路回到夏爾!",
+        "這個國家我受夠了就連那些強大心臟的人都會害怕!",
+        "我受夠這個地方!我們趕快回夏爾吧!",
+        "我覺得啊, #p,我從沒見過這麼惡劣的地方!",
+        "這地方讓我很不舒服。 對了, #p, 你知道怎麼回到夏爾嗎?",
+        "我們到底是怎麼來到這個鬼地方的, #p.",
+        "這裡的空氣充滿惡臭味!",
+        "他們總是警告我不要跟著離開夏爾的路!",
+        "我早該聽那個老頭子說的話!不應該離開夏爾, 真不該!",
+        "如果我早知道夏爾外是甚麼地方的話,我永遠不會走出來!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "你好嗎, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff"
+      },
+      "lines": [
+        "請別這樣? 我正再跟別人聊天!",
+        "#p! 我正再跟別人聊天.",
+        "不覺得打斷別人說話很無理嗎??",
+        "沒必要打斷別人說話吧?",
+        "我再講話! 等等再跟你說!",
+        "不覺得有點失禮嗎! 我們正聊的起勁.",
+        "管好你自己。沒看到我們在聊天嘛?",
+        "請管好你自己! 煩請你先離開.",
+        "你不會對打斷別人說話感到疑慮嗎!",
+        "不好意思, #p, 我正在跟別人說話",
+        "...然後我對他說 - 不好意思? 有什麼事嗎, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "聽說你在這邊惹了許多麻煩.",
+        "滾出去!",
+        "我不會讓你在我的酒館製造麻煩, #p. 滾出去!",
+        "我的酒館不歡迎你.",
+        "沒有麥酒給你!",
+        "沒有麥酒給你, #p.",
+        "我們不會包容對你這種人.",
+        "我不會為你做任何服務!",
+        "我的酒館不會有像你這樣的鬧事者.",
+        "我的酒館不歡迎像你這樣的垃圾人",
+        "喂, #p! 滾出我的酒館!",
+        "在我叫邊界守衛來之前給我滾出去!",
+        "我的酒館不會服務鬧事者",
+        "你今天的晚餐我什麼都不會給你, #p!",
+        "你別想從我這拿到任何東西, #p!",
+        "滾出這裡, 你這個骯髒的笨蛋!",
+        "我不想被你找麻煩, #p.",
+        "現在別想惹麻煩.",
+        "我不想跟你扯上關係.",
+        "不!謝謝, #p!",
+        "不!謝謝! 我們不想任何你這類的人在這."
+      ]
+    }
+  ]
+}

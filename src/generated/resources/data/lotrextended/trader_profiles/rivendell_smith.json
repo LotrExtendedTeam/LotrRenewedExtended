@@ -130,6 +130,13 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotr:dead_coral",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "minecraft:lava_bucket",
         "averageCost": 16
       }
@@ -156,9 +163,23 @@
         "item": "lotr:mithril_nugget",
         "averageCost": 40
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 3
+      }
     }
   ],
   "sellToPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 6
+      }
+    },
     {
       "weight": 50,
       "stack": {
@@ -268,7 +289,7 @@
       "shouldTradePersist": false,
       "stack": {
         "item": "lotr:imladris_guard_helmet",
-        "averageCost": 360,
+        "averageCost": 270,
         "nbt": "{Damage:0}"
       }
     },
@@ -278,7 +299,7 @@
       "shouldTradePersist": false,
       "stack": {
         "item": "lotr:imladris_guard_chestplate",
-        "averageCost": 500,
+        "averageCost": 375,
         "nbt": "{Damage:0}"
       }
     },
@@ -288,7 +309,7 @@
       "shouldTradePersist": false,
       "stack": {
         "item": "lotr:imladris_guard_leggings",
-        "averageCost": 440,
+        "averageCost": 330,
         "nbt": "{Damage:0}"
       }
     },
@@ -298,7 +319,17 @@
       "shouldTradePersist": false,
       "stack": {
         "item": "lotr:imladris_guard_boots",
-        "averageCost": 320,
+        "averageCost": 240,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_shield",
+        "averageCost": 200,
         "nbt": "{Damage:0}"
       }
     },
@@ -374,6 +405,28 @@
       "stack": {
         "item": "lotr:rivendell_banner_pattern",
         "averageCost": 25
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:rivendell_shield",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:combat_tome",
+        "averageCost": 50
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:artisan_tome",
+        "averageCost": 50
       }
     }
   ]

@@ -92,14 +92,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:lindon_bow"
@@ -113,14 +113,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:lindon_sword"
@@ -134,14 +134,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:lindon_spear"
@@ -155,14 +155,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:lindon_dagger"
@@ -176,14 +176,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:lindon_shield"
@@ -197,14 +197,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:lindon_helmet"
@@ -218,14 +218,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:lindon_chestplate"
@@ -239,14 +239,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:lindon_leggings"
@@ -260,14 +260,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:lindon_boots"
@@ -407,6 +407,28 @@
             }
           ],
           "name": "lotr:book_of_true_silver"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:artisan_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:combat_tome"
         },
         {
           "type": "minecraft:item",

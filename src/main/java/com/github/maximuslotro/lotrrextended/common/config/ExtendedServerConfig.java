@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.config;
 import javax.annotation.Nonnull;
 
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig.Type;
 
@@ -53,6 +54,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableSpecialLogging;
 	public static ForgeConfigSpec.BooleanValue enableStaffServer;
 	public static ForgeConfigSpec.BooleanValue enableModWhiteList;
+	public static ConfigValue<String> lastWorldBootVersion;
 
 	// Server Enhancements
 	public static ForgeConfigSpec.BooleanValue enableExtendedSpawnProtection;
@@ -63,6 +65,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 	public static ForgeConfigSpec.BooleanValue enableFixedStructures;
 	public static ForgeConfigSpec.BooleanValue enableFixedStructureImladris;
 	public static ForgeConfigSpec.BooleanValue enableFixedStructureTowerHills;
+	public static ForgeConfigSpec.BooleanValue enableFixedStructureOrthanc;
 
 	public static void register() {
 		ModLoadingContext.get().registerConfig(Type.SERVER, SERVER_SPEC);
@@ -97,7 +100,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		makeMetalDoorsRequirePower = createBooleanValue(builder, "makeMetalDoorsRequirePower", false, true, "Make Extended's metal doors and trapdoors require power to open");
 		dripstoneMinimumDamageHeight = createDoubleValue(builder, "dripstoneMinimumDamageHeight", 1.0D, 0.0D, 5.0D, false, "Set the fall height at which dripstone hurts entities when interacting, (0.0 is the default value in renewed)");
 		bellRingChainMaxLength = createIntegerValue(builder, "bellRingChainMaxLength", 10, 1, 50, false, "Max chain length a bell ring will attempt");
-		gateToggleLength = createIntegerValue(builder, "gateToggleLength", 16, 4, 32, false, "Max distance that gate toggles will affect");
+		gateToggleLength = createIntegerValue(builder, "gateToggleLength", 24, 4, 32, false, "Max distance that gate toggles will affect");
 		builder.pop();
 
 		builder.push("Chair settings");
@@ -118,6 +121,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		enableSpecialLogging = createBooleanValue(builder,"enableSpecialLogging", false, true, "Toggles additional logged information, changes by update, special things");
 		enableStaffServer = createBooleanValue(builder,"enableStaffServer", false, true, "Enables the use of additional server administrative features");
 		enableModWhiteList = createBooleanValue(builder,"enableModWhiteList", true, false, "Enables mod whitelisting for servers when enableStaffServer option is enabled");
+		lastWorldBootVersion = createStringValue(builder, "lastWorldBootVersion", "null", true, "Last version this was opened with. Value handled by extended, don't touch!.");
 		builder.pop();
 
 		builder.push("Server Enhancements");
@@ -130,6 +134,7 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 		enableFixedStructures = createBooleanValue(builder,"enableFixedStructures", true, false, "Enable fixed structures to generate, OVERRIDES ALL OTHER STRUCTURE SETTINGS!");
 		enableFixedStructureImladris = createBooleanValue(builder,"enableFixedStructureImladris", true, false, "Enable Imladris lore structure");
 		enableFixedStructureTowerHills = createBooleanValue(builder,"enableFixedStructureTowerHills", true, false, "Enable Tower Hills lore structures");
+		enableFixedStructureOrthanc = createBooleanValue(builder,"enableFixedStructureOrthanc", true, false, "Enable Orthanc lore structure");
 		builder.pop();
 		return builder;
 	}

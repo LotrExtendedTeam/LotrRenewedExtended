@@ -156,6 +156,22 @@
     },
     {
       "weight": 50,
+      "stack": {
+        "item": "lotr:keg",
+        "averageCost": 120,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:ale\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:keg",
+        "averageCost": 170,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:ale\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
+    },
+    {
+      "weight": 50,
       "stacks": [
         {
           "item": "lotr:cider",
@@ -173,6 +189,22 @@
           "nbt": "{vessel:{potency:\"strong\"}}"
         }
       ]
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:keg",
+        "averageCost": 120,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:cider\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:keg",
+        "averageCost": 170,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:cider\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
     },
     {
       "weight": 50,
@@ -196,6 +228,22 @@
     },
     {
       "weight": 50,
+      "stack": {
+        "item": "lotr:keg",
+        "averageCost": 120,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:perry\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:keg",
+        "averageCost": 170,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:perry\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
+    },
+    {
+      "weight": 50,
       "stacks": [
         {
           "item": "lotr:mead",
@@ -213,6 +261,22 @@
           "nbt": "{vessel:{potency:\"strong\"}}"
         }
       ]
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:keg",
+        "averageCost": 140,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:mead\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:keg",
+        "averageCost": 180,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:mead\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
     },
     {
       "weight": 50,
@@ -236,6 +300,22 @@
     },
     {
       "weight": 50,
+      "stack": {
+        "item": "lotr:keg",
+        "averageCost": 120,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:maple_beer\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:keg",
+        "averageCost": 170,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:maple_beer\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
+    },
+    {
+      "weight": 50,
       "stacks": [
         {
           "item": "lotr:plum_kvass",
@@ -253,6 +333,22 @@
           "nbt": "{vessel:{potency:\"strong\"}}"
         }
       ]
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:keg",
+        "averageCost": 120,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:plum_kvass\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:keg",
+        "averageCost": 170,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:plum_kvass\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
     },
     {
       "weight": 50,
@@ -276,20 +372,36 @@
     },
     {
       "weight": 50,
+      "stack": {
+        "item": "lotr:keg",
+        "averageCost": 140,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:cherry_liqueur\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:keg",
+        "averageCost": 180,
+        "nbt": "{BlockEntityTag:{KegDroppableData:{Items:[{Slot:9b,id:\"lotr:cherry_liqueur\",Count:16b,tag:{vessel:{potency:\"light\"}}}],KegMode:2b}}}"
+      }
+    },
+    {
+      "weight": 50,
       "stacks": [
         {
           "item": "lotr:melon_liqueur",
-          "averageCost": 6,
+          "averageCost": 18,
           "nbt": "{vessel:{potency:\"light\"}}"
         },
         {
           "item": "lotr:melon_liqueur",
-          "averageCost": 8,
+          "averageCost": 24,
           "nbt": "{vessel:{potency:\"moderate\"}}"
         },
         {
           "item": "lotr:melon_liqueur",
-          "averageCost": 10,
+          "averageCost": 30,
           "nbt": "{vessel:{potency:\"strong\"}}"
         }
       ]
@@ -299,17 +411,17 @@
       "stacks": [
         {
           "item": "lotr:rum",
-          "averageCost": 9,
+          "averageCost": 18,
           "nbt": "{vessel:{potency:\"light\"}}"
         },
         {
           "item": "lotr:rum",
-          "averageCost": 12,
+          "averageCost": 24,
           "nbt": "{vessel:{potency:\"moderate\"}}"
         },
         {
           "item": "lotr:rum",
-          "averageCost": 15,
+          "averageCost": 30,
           "nbt": "{vessel:{potency:\"strong\"}}"
         }
       ]
@@ -319,17 +431,17 @@
       "stacks": [
         {
           "item": "lotr:vodka",
-          "averageCost": 9,
+          "averageCost": 18,
           "nbt": "{vessel:{potency:\"light\"}}"
         },
         {
           "item": "lotr:vodka",
-          "averageCost": 12,
+          "averageCost": 24,
           "nbt": "{vessel:{potency:\"moderate\"}}"
         },
         {
           "item": "lotr:vodka",
-          "averageCost": 15,
+          "averageCost": 30,
           "nbt": "{vessel:{potency:\"strong\"}}"
         }
       ]
@@ -339,17 +451,17 @@
       "stacks": [
         {
           "item": "lotr:carrot_wine",
-          "averageCost": 8,
+          "averageCost": 26,
           "nbt": "{vessel:{potency:\"light\"}}"
         },
         {
           "item": "lotr:carrot_wine",
-          "averageCost": 10,
+          "averageCost": 20,
           "nbt": "{vessel:{potency:\"moderate\"}}"
         },
         {
           "item": "lotr:carrot_wine",
-          "averageCost": 12,
+          "averageCost": 24,
           "nbt": "{vessel:{potency:\"strong\"}}"
         }
       ]

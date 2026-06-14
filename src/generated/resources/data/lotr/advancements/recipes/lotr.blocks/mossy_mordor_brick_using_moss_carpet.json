@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:mossy_mordor_brick_using_moss_carpet"
+    ]
+  },
+  "criteria": {
+    "has_mordor_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mordor_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:mossy_mordor_brick_using_moss_carpet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mordor_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

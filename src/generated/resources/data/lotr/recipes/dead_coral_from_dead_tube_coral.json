@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "dead_coral",
+  "ingredients": [
+    {
+      "item": "minecraft:dead_tube_coral"
+    }
+  ],
+  "result": {
+    "item": "lotr:dead_coral"
+  }
+}

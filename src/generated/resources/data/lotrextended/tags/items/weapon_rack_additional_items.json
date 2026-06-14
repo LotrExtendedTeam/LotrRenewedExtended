@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#lotrextended:weapon_rack_items_full_scale",
     "lotr:anduril",
     "lotr:angmar_axe",
     "lotr:angmar_dagger",
@@ -26,11 +27,14 @@
     "lotr:dol_guldur_shovel",
     "lotr:dol_guldur_spear",
     "lotr:dol_guldur_sword",
+    "lotr:glamdring",
     "lotr:gundabad_uruk_dagger",
     "lotr:gundabad_uruk_spear",
     "lotr:gundabad_uruk_sword",
     "lotr:horn_of_command",
     "lotr:morgul_blade",
+    "lotr:staff_gandalf_the_gray",
+    "lotr:staff_gandalf_the_white",
     "lotr:taurethrim_axe",
     "lotr:taurethrim_dagger",
     "lotr:taurethrim_hoe",

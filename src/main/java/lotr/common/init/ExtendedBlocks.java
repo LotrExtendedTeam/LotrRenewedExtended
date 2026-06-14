@@ -34,6 +34,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> EMERALD_BLOCK;
 	public static RegistryObject<Block> PEARL_BLOCK;
 	public static RegistryObject<Block> CORAL_BLOCK;
+	public static RegistryObject<Block> DEAD_CORAL_BLOCK;
 	public static RegistryObject<Block> WASTE_BLOCK;
 
 	public static RegistryObject<Block> CHESTNUT_LOG;
@@ -656,4 +657,6 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> NUMENOREAN_BARS;
 	public static RegistryObject<Block> NUMENOREAN_LANTERN;
 
+	public static RegistryObject<Block> ORC_PLATING_WALL;
+	public static RegistryObject<Block> RUSTED_ORC_PLATING_WALL;
 }

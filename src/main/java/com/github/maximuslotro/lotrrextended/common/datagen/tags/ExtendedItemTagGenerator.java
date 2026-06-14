@@ -7,9 +7,11 @@ import java.util.function.Function;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoatItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSwordItem;
 
 import lotr.common.init.ExtendedItems;
@@ -118,6 +120,7 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD, ExtendedTags.Items.STORAGE_BLOCKS_EMERALD);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL, ExtendedTags.Items.STORAGE_BLOCKS_PEARL);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_CORAL, ExtendedTags.Items.STORAGE_BLOCKS_CORAL);
+		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_DEAD_CORAL, ExtendedTags.Items.STORAGE_BLOCKS_DEAD_CORAL);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_DURNOR, ExtendedTags.Items.STORAGE_BLOCKS_DURNOR);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_EDHELVIR, ExtendedTags.Items.STORAGE_BLOCKS_EDHELVIR);
 		this.copy(ExtendedTags.Blocks.STORAGE_BLOCKS_GULDURIL, ExtendedTags.Items.STORAGE_BLOCKS_GULDURIL);
@@ -155,7 +158,7 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_EMERALD).addTag(ExtendedTags.Items.STORAGE_BLOCKS_PEARL)
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_CORAL).addTag(ExtendedTags.Items.STORAGE_BLOCKS_DURNOR)
 	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_EDHELVIR).addTag(ExtendedTags.Items.STORAGE_BLOCKS_GULDURIL)
-	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_ORC_STEEL);
+	    .addTag(ExtendedTags.Items.STORAGE_BLOCKS_ORC_STEEL).addTag(ExtendedTags.Items.STORAGE_BLOCKS_DEAD_CORAL);
 
 		tag(ExtendedTags.Items.MORGUL_STEEL_INGOT).add(ExtendedItems.MORGUL_STEEL_INGOT.get());
 		tag(ExtendedTags.Items.ORC_STEEL_INGOT).add(LOTRItems.ORC_STEEL_INGOT.get());
@@ -191,6 +194,7 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 		tag(ExtendedTags.Items.EMERALD_GEMS).add(ExtendedItems.EMERALD.get());
 		tag(ExtendedTags.Items.PEARL_GEMS).add(ExtendedItems.PEARL.get());
 		tag(ExtendedTags.Items.CORAL_GEMS).add(ExtendedItems.CORAL.get());
+		tag(ExtendedTags.Items.DEAD_CORAL_GEMS).add(ExtendedItems.DEAD_CORAL.get());
 		tag(ExtendedTags.Items.DURNOR_GEMS).add(LOTRItems.DURNOR.get());
 		tag(ExtendedTags.Items.EDHELVIR_GEMS).add(LOTRItems.EDHELVIR.get());
 		tag(ExtendedTags.Items.GULDURIL_GEMS).add(LOTRItems.GULDURIL.get());
@@ -221,7 +225,6 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 
 		tag(ExtendedTags.Items.FURS).add(ExtendedItems.BLACK_FUR.get(),ExtendedItems.GRAY_FUR.get(),ExtendedItems.SILVER_FUR.get(),ExtendedItems.WHITE_FUR.get());
 
-		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_HALF_SCALING).add(Items.AIR);
 		tag(ExtendedTags.Items.WEAPONRACK_ITEMS_EXCLUDE).add(Items.AIR).add(Items.BARRIER).add(Items.STRUCTURE_VOID).add(Items.DEBUG_STICK).add(Items.COMMAND_BLOCK);
 
 		tag(ExtendedTags.Items.DUCK_FOOD).add(Items.BEETROOT_SEEDS).add(Items.MELON_SEEDS)
@@ -274,7 +277,11 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 				}
 				continue;
 			}
-			if(item.get() instanceof DaggerItem) {
+			if(item.get() instanceof DaggerItem || item.get() instanceof ExtendedDaggerItem) {
+				continue;
+			}
+			if(item.get() instanceof ExtendedBowItem) {
+				fullitems.put(item.get().getRegistryName().getPath(), item.get());
 				continue;
 			}
 			if(item.get() instanceof ExtendedSwordItem || item.get() instanceof LOTRSwordItem) {
@@ -284,6 +291,8 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 				continue;
 			}
 		}
+		fullitems.put(LOTRItems.LINDON_AXE.get().getRegistryName().getPath(), LOTRItems.LINDON_AXE.get());
+		fullitems.put(LOTRItems.GALADHRIM_AXE.get().getRegistryName().getPath(), LOTRItems.GALADHRIM_AXE.get());
 		for(Entry<String, Item> ent : fullitems.entrySet()) {
 			tag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE).add(ent.getValue());
 		}
@@ -299,10 +308,11 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 
 		TreeMap<String, Item> weaponrackItems = new TreeMap<>();
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
-			if((item.getValue().get() instanceof SpearItem) || (item.getValue().get() instanceof DaggerItem)
-					|| (item.getValue().get() instanceof ExtendedSwordItem)
-					|| (item.getValue().get() instanceof HammerItem)
-					|| (item.getValue().get() instanceof PickaxeItem)) {
+			if(item.getValue().get() instanceof SpearItem || item.getValue().get() instanceof DaggerItem
+				|| item.getValue().get() instanceof ExtendedDaggerItem
+				|| item.getValue().get() instanceof ExtendedSwordItem
+				|| item.getValue().get() instanceof HammerItem
+				|| item.getValue().get() instanceof PickaxeItem) {
 				weaponrackItems.put(item.getKey(), item.getValue().get());
 				continue;
 			}
@@ -335,6 +345,7 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 				continue;
 			}
 		}
+		tag(ExtendedTags.Items.WEAPONRACK_ITEMS).addTag(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE);
 		for(Entry<String, Item> ent : weaponrackItems.entrySet()) {
 			tag(ExtendedTags.Items.WEAPONRACK_ITEMS).add(ent.getValue());
 		}

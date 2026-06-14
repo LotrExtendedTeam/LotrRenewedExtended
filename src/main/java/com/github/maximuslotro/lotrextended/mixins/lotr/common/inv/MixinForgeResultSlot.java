@@ -57,7 +57,7 @@ public abstract class MixinForgeResultSlot extends Slot {
 	@Inject(method = "checkTakeAchievements", at = @At("HEAD"))
 	public void checkTakeAchievementsExtended(ItemStack stack, CallbackInfo ci) {
 		if (!player.level.isClientSide && container instanceof AbstractAlloyForgeTileEntity) {
-			ExtendedCriteriaTriggers.FACTION_CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, stack, ((AbstractAlloyForgeTileEntity) container).getBlockState().getBlock());
+			ExtendedCriteriaTriggers.CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, stack, ((AbstractAlloyForgeTileEntity) container).getBlockState().getBlock());
 		}
 	}
 }

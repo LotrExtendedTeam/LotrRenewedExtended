@@ -15,6 +15,7 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnGro
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedChimneyTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedCrucibleTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedGrassVoidTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedHoistTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedLargePotTileEntity;
@@ -141,5 +142,6 @@ public class MixinLOTRTileEntities {
     	ExtendedTileEntities.LARGE_POT = register("large_pot_tileentity", () -> Builder.of(ExtendedLargePotTileEntity::new, ExtendedBlocks.LARGE_POT.get()));
     	ExtendedTileEntities.CHIMNEY_POT = register("chimney_pot_tileentity", () -> Builder.of(ExtendedChimneyTileEntity::new, ExtendedBlocks.CHIMNEYPOT.get()));
     	ExtendedTileEntities.HIGH_ELVEN_BED = register("high_elven_bed_tileentity", () -> Builder.of(ExtendedHighElvenBedTileEntity::new, ExtendedBlocks.HIGH_ELVEN_BED.get()));
+    	ExtendedTileEntities.CRUCIBLE = register("crucible_tileentity", () -> Builder.of(ExtendedCrucibleTileEntity::new, ExtendedBlocks.CRUCIBLE.get()));
     }
 }

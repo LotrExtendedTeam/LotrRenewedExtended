@@ -1,0 +1,167 @@
+{
+    "parent": "lotrextended:bree/common",
+    "speech": [
+      {
+        "conditions": {
+          "relation": "friendly"
+        },
+        "lines": [
+            "Certains disent que les Rôdeurs sont les vrais défenseurs de Bree, mais pourquoi on les voit jamais nous défendre alors ?",
+            "J'ai entendu des rumeurs comme quoi un grand mal est revenu à l'Est. J'espère qu'il restera loin de Bree.",
+            "On reçoit de plus en plus de rapports sur des Orques dans les Terres Solitaires.",
+            "La semaine dernière j'étais de garde à la porte. J'espère que j'aurai plus jamais à refaire ça.",
+            "Mon frère est gardien de porte, mon père était un fier garde aussi. On est tous gardes dans ma famille.",
+            "J'pense pas qu'il y ait de ville aussi grande que Bree.",
+            "Vous comptez visiter les Colonies ? J'ai entendu dire qu'ils ont de la bonne nourriture là-bas.",
+            "Nos hommes sont forts et vaillants - mais si ces Cavaliers Noirs reviennent à Bree j'sais pas ce qu'on fera ! Ils sont venus avec un froid pas naturel qui a glacé le cœur des hommes les plus braves !",
+            "J'suis inquiet à cause de ces Brigands qui arrêtent pas de venir à Bree, si vous voulez mon avis, on devrait les chasser avant qu'ils prennent le dessus !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": "<=friend"
+        },
+        "lines": [
+          "Y'a rien à voir ici, continuez votre chemin.",
+          "Restez sur les routes. Des choses rôdent dans le noir."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Restez sur les routes, l'ami. Des choses rôdent dans le noir."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge_relation": "this"
+        },
+        "lines": [
+          "Ces Cavaliers Noirs y réfléchiront à deux fois avant de s'en prendre à nous maintenant que vous êtes là, #p !",
+          "Content de vous avoir parmi nous, #p !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "in_combat": "true"
+        },
+        "lines": [
+          "Vous voyez pas que j'suis occupé !",
+          "Crève ! Crève ! Crève !",
+          "Pour Bree !",
+          "Vous voulez pas me donner un coup de main ?",
+          "On se bat ! Pour Bree !",
+          "Ça faisait longtemps que j'avais pas eu une bonne bagarre !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge_relation": "neutral"
+        },
+        "lines": [
+          "On se fiche des étrangers tant que vous causez pas d'ennuis.",
+          "Que j'vous voie pas avec un de ces Brigands.",
+          "J'ai entendu dire qu'une guerre se prépare dans le sud, elle a intérêt à rester là-bas.",
+          "Vous êtes marchand ?",
+          "Vous avez des nouvelles des Cavaliers Noirs ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "pledge_relation": "good",
+          "biome": "#home"
+        },
+        "lines": [
+          "Bienvenue à Bree ! Vous êtes marchand ?",
+          "Quelle affaire vous amène à Bree ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "day_or_night": "night",
+          "rank": ">=friend"
+        },
+        "lines": [
+          "Rien ne passe sans que je le voie ou l'entende, #p. C'est juste pour que vous le sachiez.",
+          "Vous serez en sécurité à Bree, #p.",
+          "Des nouvelles de la Route Verte, #p ?",
+          "On vous gardera en sécurité, #p.",
+          "Restez loin de ces Brigands #p, pour nous deux."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "hired": "own"
+        },
+        "lines": [
+            "Content de vous avoir aux commandes, #p.",
+            "Ensemble, on peut faire en sorte que Bree reste comme il faut !",
+            "On n'a pas besoin des Rôdeurs pour nous protéger, pas vrai ? Non, on gère tout ça. Juste vous et moi.",
+            "J'suis content qu'on ait encore des gens bien comme vous pour mener les Gens de Bree, #p.",
+            "Qu'est-ce qu'il y a ? Des Brigands ? Des Rôdeurs ? Des Orques ?",
+            "Vous donnez l'ordre, #p, on s'occupe du reste.",
+            "Je garde l'œil ouvert pour tout comportement suspect. Vous aurez de mes nouvelles si je trouve quelque chose.",
+            "Si j'avais le choix entre vous suivre et la garde à la porte, eh ben, me voilà !",
+            "Fier d'être à votre service, chef !",
+            "Rien à signaler, ou c'est vous qui avez quelque chose à signaler, #p ?",
+            "Je suivrai vos ordres, #p !",
+            "On va encore se frotter à ces Brigands ?",
+            "Les choses vont mieux depuis que vous êtes aux commandes, chef.",
+            "Je me demandais, on est payés à l'arrestation, ou à l'heure ?",
+            "On devrait chasser les Brigands de Bree !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "hired": "own",
+          "biome": "#foreign"
+        },
+        "lines": [
+            "Je vous suivrai jusqu'au bout du monde, #p !",
+            "Quand est-ce qu'on rentre à Bree, #p ? Je savais pas qu'on serait partis si longtemps.",
+            "Je savais pas que ce boulot impliquait de quitter Bree.",
+            "Pourquoi on cherche pas d'où viennent ces Brigands ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "hired": "own",
+          "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+        },
+        "lines": [
+          "J'ai dit que je vous suivrais jusqu'au bout, mais j'crois qu'on approche de ce bout, #p.",
+          "Quand est-ce qu'on fait demi-tour, #p ?",
+          "On peut pas continuer à marcher là-dedans, l'air est étouffant !",
+          "Y'a des créatures malfaisantes derrière chaque coin.",
+          "On doit retourner à Bree !",
+          "C'est dur de garder espoir dans un endroit pareil."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "hostile"
+        },
+        "lines": [
+            "On a déjà eu affaire à des Brigands comme vous, #p !",
+            "L'occasion pour les Hommes de Bree de montrer notre valeur !",
+            "On est ici depuis bien plus longtemps que vous, et on y sera encore bien après qu'on vous aura oublié !",
+            "Je savais que ces Rôdeurs servaient à rien ! Peu importe, je vous arrêterai !",
+            "Pas besoin d'appeler les gardes, je suis le garde !",
+            "Vous feriez mieux de quitter ces terres paisibles, Brigand !",
+            "Les galgals verront bientôt une nouvelle tombe !"
+        ]
+      }
+    ]
+  }

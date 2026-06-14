@@ -1,3 +1,7 @@
 {
-  "parent": "minecraft:block/cube_column"
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "lotrextended:block/ebony_beam",
+    "end": "lotrextended:block/ebony_beam_top"
+  }
 }

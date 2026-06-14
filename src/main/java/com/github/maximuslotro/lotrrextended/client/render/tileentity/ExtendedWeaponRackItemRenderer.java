@@ -92,9 +92,7 @@ public class ExtendedWeaponRackItemRenderer extends TileEntityRenderer<ExtendedW
 //				stack.scale(0.625F, 0.625F, 0.625F);
 //			}
 			if(item.getItem().is(ExtendedTags.Items.WEAPONRACK_ITEMS_FULL_SCALE)) {
-				stack.scale(1.0F, 1.0F, 1.0F);
-			}else if(item.getItem().is(ExtendedTags.Items.WEAPONRACK_ITEMS_HALF_SCALING)) {
-				stack.scale(0.5F, 0.5F, 0.5F);
+				stack.scale(1.375F, 1.375F, 1.375F);
 			}else {
 				stack.scale(0.625F, 0.625F, 0.625F);
 			}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:mossy_umbar_brick_using_vines_willow"
+    ]
+  },
+  "criteria": {
+    "has_umbar_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:umbar_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:mossy_umbar_brick_using_vines_willow"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_umbar_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

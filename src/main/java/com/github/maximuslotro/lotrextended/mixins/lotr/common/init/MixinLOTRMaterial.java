@@ -11,6 +11,7 @@ import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.LOTRMaterial;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.common.Tags;
@@ -134,13 +135,23 @@ public class MixinLOTRMaterial {
 	private static final LOTRMaterial ANDURIL = lE$addVariant("ANDURIL", "anduril", 2, 1500, 0.0f, 5.0f, 14, 0.0F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
 			() -> Ingredient.of(Tags.Items.INGOTS_IRON));
 	@Unique
+	private static final LOTRMaterial GLAMDRING = lE$addVariant("GLAMDRING", "glamdring", 2, 1500, 0.0f, 5.0f, 14, 0.0F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
+			() -> Ingredient.of(LOTRItems.ELVEN_STEEL_INGOT.get()));
+	@Unique
 	private static final LOTRMaterial EREGION = lE$addVariant("EREGION", "eregion", 0, 950, 0, 0, 10, 0.7F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
 			() -> Ingredient.of(LOTRItems.ELVEN_STEEL_INGOT.get()));
 	@Unique
 	private static final LOTRMaterial GALVORN = lE$addVariant("GALVORN", "galvorn", 2, 600, 7.0f, 3.0f, 15, 0.7F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
 			() -> Ingredient.of(ExtendedItems.GALVORN_INGOT.get()));
-	
-
+	@Unique
+	private static final LOTRMaterial STAFF_GANDALF_WHITE = lE$addVariant("GANDALF_WHITE", "gandalf_white", 2, 1500, 0.0f, 8.0f, 15, 0.0F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
+			() -> Ingredient.of(LOTRItems.ELVEN_STEEL_INGOT.get()));
+	@Unique
+	private static final LOTRMaterial STAFF_GANDALF_GRAY = lE$addVariant("GANDALF_GRAY", "gandalf_gray", 2, 1000, 0.0f, 0.0f, 15, 0.0F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
+			() -> Ingredient.of(ItemTags.PLANKS));
+	@Unique
+	private static final LOTRMaterial COSMETIC_HAT = lE$addVariant("COSMETIC_HAT", "cosmetic_hat", 0, 0, 0.0f, 0.0f, 0, 0.0F, SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
+			() -> Ingredient.EMPTY);
 	/**
 	 * Accessing the Enum creation method, DO NOT CALL THIS METHOD DIRECTLY, CALL THE HELPER METHODS
 	 * @Invoker ("&lt;init&gt;")

@@ -77,6 +77,7 @@ public class ExtendedDuckEggEntity extends ProjectileItemEntity {
 					ExtendedDuckEntity duckentity = ExtendedEntities.DUCK.get().create(this.level);
 					duckentity.setAge(-24000);
 					duckentity.moveTo(this.getX(), this.getY(), this.getZ(), this.yRot, 0.0F);
+					duckentity.setGenderRandomly(true);
 					this.level.addFreshEntity(duckentity);
 				}
 			}

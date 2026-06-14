@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.advancements.Extende
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
+import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
@@ -29,7 +30,7 @@ public class AdvancementsProviderDunland extends ExtendedBaseAdvancementType{
 		Advancement dunlending_slayer = build(true, data(Items.BONE, "dunlending_slayer", FrameType.TASK)
 				.setTitle("Dunlending Slayer").setDescription("Kill a Dunlending."),
 				addKillEntityTriggers(make(), LOTREntities.DUNLENDING_BOWMAN.get(), LOTREntities.DUNLENDING.get(),
-						LOTREntities.DUNLENDING_WARRIOR.get()).parent(dunland));
+						LOTREntities.DUNLENDING_WARRIOR.get(), ExtendedEntities.DUNLENDING_WARLORD.get()).parent(dunland));
 
 		Advancement dunlending_armor = build(true, data(LOTRItems.DUNLENDING_CHESTPLATE.get(), "barbarian", FrameType.TASK)
 				.setTitle("Barbarian").setDescription("Acquire a full set of Dunlending armor."),
@@ -67,6 +68,10 @@ public class AdvancementsProviderDunland extends ExtendedBaseAdvancementType{
 		Advancement dunland_crafter = build(true, data(LOTRItems.DUNLENDING_CRAFTING_TABLE.get(), "dunland_crafter", FrameType.TASK)
 			.setTitle("Dunlending Crafter").setDescription("Craft an item on the Dunlending Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.DUNLENDING_CRAFTING_TABLE.get()).parent(dunland));
+
+		Advancement we_fight = build(true, data(LOTRItems.DUNLENDING_CLUB.get(), "we_fight", FrameType.TASK)
+				.setTitle("We Fight for You!").setDescription("Hire a unit from a Dunlending Warlord."),
+				addUnitHireTrigger(make(), ExtendedEntities.DUNLENDING_WARLORD.get()).parent(dunland));
 	}
 
 	@Override

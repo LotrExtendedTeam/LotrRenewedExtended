@@ -32,8 +32,13 @@ public class ExtendedLog {
 		}
 	}
 
+	@Deprecated
 	public static void info(String s, Object... params) {
 		LOGGER.info(String.format("LotrExtended: " + s, params));
+	}
+
+	public static void info2(String s, Object... params) {
+		LOGGER.info("LotrExtended: " + s, params);
 	}
 
 	public static void warn(String s) {

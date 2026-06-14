@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXS",
+    "#TX",
+    "S#X"
+  ],
+  "key": {
+    "#": {
+      "item": "lotr:bowstring"
+    },
+    "X": {
+      "tag": "forge:ingots/iron"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "T": {
+      "item": "minecraft:tripwire_hook"
+    }
+  },
+  "result": {
+    "item": "lotr:iron_crossbow"
+  }
+}

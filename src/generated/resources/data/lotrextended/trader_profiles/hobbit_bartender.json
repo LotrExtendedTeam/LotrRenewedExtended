@@ -127,6 +127,13 @@
         "item": "lotr:four_leaf_clover",
         "averageCost": 40
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 3
+      }
     }
   ],
   "sellToPlayer": [
@@ -177,6 +184,13 @@
       "stack": {
         "item": "minecraft:bread",
         "averageCost": 5
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 6
       }
     },
     {
@@ -234,20 +248,6 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:chocolate_drink",
-        "averageCost": 4
-      }
-    },
-    {
-      "weight": 50,
-      "stack": {
-        "item": "lotr:apple_juice",
-        "averageCost": 6
-      }
-    },
-    {
-      "weight": 50,
-      "stack": {
         "item": "lotr:gammon",
         "averageCost": 7
       }
@@ -263,6 +263,13 @@
       "weight": 50,
       "stack": {
         "item": "minecraft:mushroom_stew",
+        "averageCost": 10
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:butter",
         "averageCost": 10
       }
     },
@@ -320,6 +327,20 @@
       "stack": {
         "item": "lotr:hobbit_crafting_table",
         "averageCost": 40
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:chocolate_drink",
+        "averageCost": 4
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:apple_juice",
+        "averageCost": 6
       }
     },
     {

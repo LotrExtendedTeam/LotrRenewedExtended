@@ -12,7 +12,6 @@ import net.minecraft.entity.ai.goal.TargetGoal;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.entity.player.PlayerEntity;
 
 /**
  * A custom target goal that allows an {@link ExtendedNPCEntity} to target and attack
@@ -78,8 +77,8 @@ public class ExtendedHiredPlayerAttackedEntityTargetGoal extends TargetGoal {
 					}
 					// prevent hired units of the same player from fighting each other
 					else if (this.ownerLastAttacked instanceof ExtendedNPCEntity && ((ExtendedNPCEntity)ownerLastAttacked).getUnitInfo().isNpcActiveDuty()) {
-						if (unitOwner!=null && unitOwner.equals(((ExtendedNPCEntity)ownerLastAttacked).getUnitInfo().getUnitOwner())) {
-							if (!((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unitOwner)).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit()) {
+						if (extendedNpcEntity.getUnitInfo().getOwnerUUID().equals(((ExtendedNPCEntity)ownerLastAttacked).getUnitInfo().getOwnerUUID())) {
+							if (!((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(this.mob.level, extendedNpcEntity.getUnitInfo().getOwnerUUID())).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit()) {
 								ownerLastAttacked=null;
 								return false;
 							}

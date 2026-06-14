@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:lindon_dagger"
+  },
+  "result1": {
+    "item": "lotr:elven_steel_ingot"
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

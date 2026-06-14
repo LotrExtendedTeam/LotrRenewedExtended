@@ -3,6 +3,9 @@ package lotr.common.world.spawning;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedInvasionSpawnerEntity;
+
+import lotr.common.data.LOTRLevelData;
+import lotr.common.fac.AlignmentPredicates;
 import lotr.common.world.ExtendedInvasions;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
@@ -44,7 +47,7 @@ public class InvasionSpawner {
 
             // check for protection
             BlockPos pos = new BlockPos(player.position());
-            if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ExtendedBannerProtectionManager.SingleProtectionInstance.AnyProtection(), false, "checkSpawnRules").isNotAllowed()) {
+            if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
                 continue;
             }
 
@@ -52,7 +55,7 @@ public class InvasionSpawner {
                 ExtendedInvasions invasion = InvasionBiomeList.pickInvasionFromBiomeName(world, world.getBiomeName(pos));
                 if (invasion != null) {
                     ExtendedInvasionSpawnerEntity spawner = new ExtendedInvasionSpawnerEntity(world);
-                    spawner.setFaction(invasion.getKey());
+                    spawner.setTypeKey(invasion.getTypeKey());
                     spawner.setPos(x, y, z);
                     world.addFreshEntity(spawner);
                     spawner.startInvasion();
@@ -95,7 +98,10 @@ public class InvasionSpawner {
         for (Map.Entry<ExtendedInvasions, InvasionChance> entry : invasions.entrySet()) {
             double pickedNum = world.random.nextDouble();
             if (pickedNum <= entry.getValue().getChancePerSecond()) {
-
+            	boolean isNegative = entry.getKey().getFactionPointer().resolveFaction(world).map(faction -> LOTRLevelData.getSidedData(player).getAlignmentData().hasAlignment(faction, AlignmentPredicates.NEGATIVE)).orElse(false);
+            	if (!isNegative) {
+                    continue;
+                }
                 // only make a max of 8 attempts to spawn the invasion checking protection boundaries
                 // while verifying that invasion is possible in that biome
                 for (int attempts = 0; attempts < 8; attempts++) {
@@ -107,16 +113,16 @@ public class InvasionSpawner {
 
                     // check for protection
                     BlockPos cPos = new BlockPos(player.position());
-                    if (ExtendedBannerProtectionManager.getProtectionStatus(world, cPos, new ExtendedBannerProtectionManager.SingleProtectionInstance.AnyProtection(), false, "checkSpawnRules").isNotAllowed()) {
+                    if (ExtendedBannerProtectionManager.getProtectionStatus(world, cPos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
                         continue;
                     }
-
+                    // Check again if position can have invasion, in the case of a border with a different biome
                     if (!InvasionBiomeList.getInvasionsPerBiome(world.getBiomeName(cPos)).containsKey(entry.getKey())) {
                     	continue;
                     }
 
                     ExtendedInvasionSpawnerEntity spawner = new ExtendedInvasionSpawnerEntity(world);
-                    spawner.setFaction(entry.getKey().getKey());
+                    spawner.setTypeKey(entry.getKey().getTypeKey());
                     spawner.setPos(x, y, z);
                     world.addFreshEntity(spawner);
                     spawner.startInvasion();

@@ -1,8 +1,10 @@
 package com.github.maximuslotro.lotrextended.mixins.lotr.client.render.tileentity;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.github.maximuslotro.lotrrextended.client.render.utils.ExtendedAbstractPlaneRenderer;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -67,11 +69,16 @@ public abstract class MixinVesselDrinkTileEntityRenderer<T extends VesselDrinkTi
 	 * @param buffer The rendering buffer.
 	 * @param combinedLight The combined light value.
 	 * @param combinedOverlay The overlay texture value.
+	 * @param ci Callback for canceling
 	 * @Overwrite (remap=false)
 	 */
-	@Override
-	@Overwrite(remap=false)
-	public void render(T vessel, float partialTicks, MatrixStack matStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {
+	@Inject(
+		    method = "render(Llotr/common/tileentity/VesselDrinkTileEntity;FLcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;II)V",
+		    at = @At("HEAD"),
+		    cancellable = true,
+		    remap = false
+		)
+	private void onRender(T vessel, float partialTicks, MatrixStack matStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay, CallbackInfo ci) {
 		if (!vessel.isEmpty()) {
 			ItemStack vesselItem = vessel.getVesselItem();
 			VesselType vesselType = vessel.getVesselType();
@@ -105,6 +112,7 @@ public abstract class MixinVesselDrinkTileEntityRenderer<T extends VesselDrinkTi
 			RenderSystem.disableBlend();
 			RenderSystem.enableCull();
 			RenderSystem.disableRescaleNormal();
+			ci.cancel();
 		}
 
 	}

@@ -15,9 +15,10 @@ public class ExtendedStats {
 	public static ResourceLocation SLICE_CHEESE_SLICE = registerStat("sliced_cheese", "Cheese Slices Cut", IStatFormatter.DEFAULT);
 	public static ResourceLocation ANIMALS_BRANDED = registerStat("animals_branded", "Animals Branded", IStatFormatter.DEFAULT);
 	public static ResourceLocation TRADERS_TRADED = registerStat("traders_traded", "Times Traded With Traders", IStatFormatter.DEFAULT);
-	public static ResourceLocation INTERACT_WITH_STONE_CHEST = registerStat("interact_with_stone_chest", "Stone Chests Opened", IStatFormatter.DEFAULT);
-	public static ResourceLocation INTERACT_WITH_BOOKSHELF = registerStat("interact_with_bookshelf", "Bookshelves Opened", IStatFormatter.DEFAULT);
-	public static ResourceLocation INTERACT_WITH_MILLSTONE = registerStat("interact_with_ston_grinder", "Stone Grinders Opened", IStatFormatter.DEFAULT);
+	public static ResourceLocation OPENED_STONE_CHEST = registerStat("interact_with_stone_chest", "Stone Chests Opened", IStatFormatter.DEFAULT);
+	public static ResourceLocation OPENED_BOOKSHELF = registerStat("interact_with_bookshelf", "Bookshelves Opened", IStatFormatter.DEFAULT);
+	public static ResourceLocation INTERACT_WITH_MILLSTONE = registerStat("interact_with_ston_grinder", "Interactions with Stone Grinders", IStatFormatter.DEFAULT);
+	public static ResourceLocation INTERACT_WITH_CRUCIBLE = registerStat("interact_with_crucible", "Interactions with Crucible", IStatFormatter.DEFAULT);
 
 	public static void init() {}
 

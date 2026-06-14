@@ -1,0 +1,50 @@
+{
+  "parent": "lotrextended:durins_folk/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Quelle affaire vous amène en ces terres, voyageur ?",
+        "Si vous voulez de mes puissantes lames, faudra d'abord faire vos preuves !",
+        "Hein ? Quoi ? J'traite pas avec les étrangers !",
+        "Revenez quand vous aurez un nom en ces terres.",
+        "Vous voulez ces belles haches, hein ? Eh ben, faudra accomplir quelques exploits pour les mériter !",
+        "Je forge les plus puissants outils, armes et armures de ces halls bleus ! Mais pas pour vous... du moins pas encore.",
+        "Par ma barbe, le jour est venu où un étranger croit pouvoir simplement m'acheter quelque chose !",
+        "On ne commerce pas simplement avec un étranger.",
+        "J'commerce pas avec les gens bizarres dans votre genre.",
+        "Qui êtes-vous ?",
+        "Si vous souhaitez commercer avec moi, vous devez prouver votre valeur auprès du peuple de ces terres.",
+        "Je ne forge que pour les plus puissants des plus puissants.",
+        "Vous n'êtes pas digne de mes puissantes lames.",
+        "Vous n'avez pas l'étoffe pour porter des plaques naines.",
+        "Vous ne pourrez commercer avec moi que lorsque vous aurez prouvé votre valeur au Seigneur de ces terres."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": ">=100"
+      },
+      "lines": [
+        "Entrez, mon brave ! J'ai de l'artisanat nain de qualité prêt à la vente !",
+        "Vous ne trouverez pas de telles marchandises dans tout l'Eriador ! Ni au Lindon, d'ailleurs...",
+        "Que puis-je forger pour vous ? Une hache ? Un plastron ? Je peux tout faire !",
+        "L'art de la forge des Nains est inégalé !",
+        "Que puis-je vous servir ?",
+        "Un, deux, et trois ! Et voilà les lingots !",
+        "Mon marteau et mes mains sont peut-être vieux, mais le travail est fait !",
+        "Mon talent n'est égalé par aucun autre Nain !",
+        "Épées ? Haches ? Marteaux ? Vous êtes au bon endroit !",
+        "Payez-moi, et vous tiendrez en main le plus puissant ouvrage de forge de toute la Terre du Milieu !",
+        "Par ma barbe, quel genre d'armure portez-vous là ? Laissez-moi vous trouver des plaques convenables.",
+        "Entrez ! Entrez ! Je viens de finir de refroidir cette belle lame !",
+        "Vous voulez une belle lame ? Je peux vous en proposer une à bon prix !",
+        "Tout souhait que vous avez en tête, je peux le transformer en acier forgé !",
+        "Je forge les lames les plus puissantes et les armures les plus résistantes !"
+      ]
+    }
+  ]
+}

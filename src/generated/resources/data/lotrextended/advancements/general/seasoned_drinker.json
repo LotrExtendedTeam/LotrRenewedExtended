@@ -18,7 +18,7 @@
     "hidden": false
   },
   "criteria": {
-    "drink_any": {
+    "drink_tolerance": {
       "trigger": "lotrextended:drinking",
       "conditions": {
         "tolerance": {
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "drink_any"
+      "drink_tolerance"
     ]
   ]
 }

@@ -10,8 +10,11 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedCrossbowItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
@@ -178,26 +181,27 @@ public class ExtendedRepairContainerNew extends Container {
 		int localCost = this.cost.get();
 		this.inputSlots.setItem(0, ItemStack.EMPTY);
 		ItemStack merged = this.inputSlots.getItem(1);
+		// If item exists in merging slot, always decrement since logic will 
+		//fail output if merging slot isn't valid
 		if (!merged.isEmpty()) {
+			// Only decrement by one, since never more than one item from merge slot is ever needed
 			merged.shrink(1);
 			this.inputSlots.setItem(1, merged);
 		} else {
 			this.inputSlots.setItem(1, ItemStack.EMPTY);
 		}
+		// Only decrement material slot if there is a recipe cost
 		if (localCost > 0) {
 			ItemStack material = this.inputSlots.getItem(2);
 			if (!material.isEmpty()) {
+				// Shrink material count by recipe cost
 				material.shrink(localCost);
 				if (!material.isEmpty()) {
 					this.inputSlots.setItem(2, material);
 				} else {
 					this.inputSlots.setItem(2, ItemStack.EMPTY);
 				}
-			} else {
-				this.inputSlots.setItem(1, ItemStack.EMPTY);
 			}
-		} else {
-			this.inputSlots.setItem(1, ItemStack.EMPTY);
 		}
 		this.cost.set(0);
 		hurtOrDamageAnvilSound();
@@ -457,6 +461,16 @@ public class ExtendedRepairContainerNew extends Container {
 						hasIncompatibleModifier = true;
 						break; // atomic merge rule
 					}
+					if (!result.canApplyToItem(inputItem)) {
+						// Scrolls should not skip modifiers, reject recipe
+						if(isModifierItem) {
+							hasIncompatibleModifier = true;
+							info("P4.7.1: Discarding invalid upgraded modifier for scroll, rejecting");
+							break; // atomic merge rule
+						}
+						info("P4.7.2: Skipping modifier invalid for item: "+result.getLocalKey());
+						continue;
+					}
 					/*************UPDATE_LISTS*****************/
 					// Remove old modifier of the same type
 					inputModifiers.removeIf(m -> m.getModifierType() == mergingModifier.getModifierType());
@@ -482,10 +496,9 @@ public class ExtendedRepairContainerNew extends Container {
 						this.incompatible.set(1);
 					} else if (maximumModifiersReached) {
 						this.incompatible.set(2);
-					} else if (hasIncompatibleModifier) {
+					}else{
 						this.incompatible.set(3);
 					}
-
 					return;
 				}
 				// Handle merging negative tier items
@@ -519,9 +532,20 @@ public class ExtendedRepairContainerNew extends Container {
 		for(ExtendedModifier modifier : inputModifiers) {
 			baseCost+= Math.max(1, modifier.getModifierValue());
 		}
+		if (StringUtils.isBlank(this.itemName)) {
+			info("P5: Item Renaming");
+			if (inputItem.hasCustomHoverName()) {
+				renameCost = 1;
+				resultItem.resetHoverName();
+				info("P5.1: Reset name");
+			}
+		} else if (!this.itemName.equals(inputItem.getHoverName().getString())) {
+			renameCost = 1;
+			resultItem.setHoverName(new StringTextComponent(this.itemName));
+			info("P5.2: Set name");
+		}
 		if (resultItem.isDamageableItem() && isValidRepairMaterial(inputItem, resourceItem)) {
-			info("P5: Valid repair item");
-			info("slots changed");
+			info("P6: Valid repair item");
 
 			String ownerName = ItemOwnership.getCurrentOwner(inputItem) != null ? ItemOwnership.getCurrentOwner(inputItem).getString() : null;
 			if(ownerName==null||!player.getDisplayName().getString().equals(ownerName)) {
@@ -529,45 +553,58 @@ public class ExtendedRepairContainerNew extends Container {
 			}else {
 				this.engraveCost.set(0);
 			}
-			this.reforgeCost.set(2);
-			if(inputItem.getItem() instanceof ArmorItem) {
-				this.reforgeCost.set(3);
-			}else if(shouldCheapReforge(inputItem.getItem())) {
-				this.reforgeCost.set(1);
+			info("P6.1: Finding reforge cost");
+			int reforgeMaterialCost = 0;
+			int reforgeCurrentDamage = resultItem.getDamageValue();
+			int repairStep = resultItem.getMaxDamage() / 4;
+			while (reforgeCurrentDamage > 0) {
+				int reforgeRepairAmount = Math.min(reforgeCurrentDamage, repairStep);
+				info("P6.1.1: Reforge Amount: " + reforgeRepairAmount + ", currentDamage: " + reforgeCurrentDamage + ", material used: " + reforgeMaterialCost);
+				reforgeCurrentDamage -= reforgeRepairAmount;
+				reforgeMaterialCost++;
+				info("P6.1.2: Repair Amount: " + reforgeRepairAmount + ", newDamage: " + reforgeCurrentDamage);
 			}
-			info("P5.1: Finding repair cost");
+			this.reforgeCost.set(reforgeMaterialCost+2);
+			if(inputItem.getItem() instanceof ArmorItem) {
+				this.reforgeCost.set(reforgeMaterialCost+3);
+			}else if(shouldCheapReforge(inputItem.getItem())) {
+				this.reforgeCost.set(reforgeMaterialCost+1);
+			}
+			info("P6.2: Finding repair cost");
 			int repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
-			for(int materialsUsed = 0; repairAmount > 0 && materialsUsed < mergableItem.getCount(); ++materialsUsed) {
-				int newDamage = resultItem.getDamageValue() - repairAmount;
-				resultItem.setDamageValue(newDamage);
-				++repairCost;
-				repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
+			// Handle relative resource count since without this, the price increased as material is added, not correct!
+			int resourceCountExcludingBase = resourceItem.getCount() - mergingCost - renameCost; // don't try to repair if rename or merge cost is <= available cost
+			if(resourceCountExcludingBase>0 && repairAmount>0) {
+				int resourceCount = resourceCountExcludingBase - baseCost;// Calculate for resources over base cost
+				if(resourceCount>0) { // Repair using amount left
+					for(int materialsUsed = 0; repairAmount > 0 && materialsUsed < resourceCount; ++materialsUsed) {
+						info("P6.2.1: Repair Amount: "+repairAmount+", currentDamage: "+resultItem.getDamageValue()+", material used: "+materialsUsed);
+						int newDamage = resultItem.getDamageValue() - repairAmount;
+						resultItem.setDamageValue(newDamage);
+						++repairCost;
+						repairAmount = Math.min(resultItem.getDamageValue(), resultItem.getMaxDamage() / 4);
+						info("P6.2.2: Repair Amount: "+repairAmount+", newDamage: "+newDamage+", newRepairCost: "+repairCost);
+					}
+				}else { // Repair only once since repair material is present but does not have enough material
+					repairCost=1;
+					int newDamage = resultItem.getDamageValue() - repairAmount;
+					resultItem.setDamageValue(newDamage);
+					info("P6.3: Repair Amount: "+repairAmount+", currentDamage: "+resultItem.getDamageValue()+", material used: "+repairCost);
+				}
 			}
 		}
 		boolean isGemColoring = false;
 		if(!mergableItem.isEmpty() && mergableItem.getItem() instanceof ExtendedGemstoneColoringItem) {
-			info("P6: Valid gem item");
+			info("P7: Valid gem item");
 			if(!this.canApplyColor(resultItem, ((ExtendedGemstoneColoringItem)mergableItem.getItem()).getExtendedGemstoneColor())) {
 				this.resultSlots.setItem(0, ItemStack.EMPTY);
 				this.incompatible.set(4);
 				this.cost.set(0);
 				return;
 			}
-			info("P6.1: Valid gem coloring");
+			info("P7.1: Valid gem coloring");
 			applyColor(resultItem, ((ExtendedGemstoneColoringItem)mergableItem.getItem()).getExtendedGemstoneColor());
 			isGemColoring = true;
-		}
-		if (StringUtils.isBlank(this.itemName)) {
-			info("P7: Item Renaming");
-			if (inputItem.hasCustomHoverName()) {
-				renameCost = 1;
-				resultItem.resetHoverName();
-				info("P7.1: Reset name");
-			}
-		} else if (!this.itemName.equals(inputItem.getHoverName().getString())) {
-			renameCost = 1;
-			resultItem.setHoverName(new StringTextComponent(this.itemName));
-			info("P7.2: Set name");
 		}
 		if (isEnchantingItem && !resultItem.isBookEnchantable(mergableItem)) {
 			info("P8: Rejecting invalid book");
@@ -576,6 +613,7 @@ public class ExtendedRepairContainerNew extends Container {
 			return;
 		}
 		// Set pending final cost
+		info("CostBase: "+baseCost+", repair: " + repairCost +", merge: "+ mergingCost+", rename: " + renameCost);
 		this.cost.set(baseCost + repairCost + mergingCost + renameCost);
 		// If nothing has been done, clear output
 		if (repairCost <= 0 && renameCost<=0 && mergingCost<=0 && !isGemColoring) {
@@ -670,6 +708,7 @@ public class ExtendedRepairContainerNew extends Container {
 
 	public void reforgeItem() {
 		ItemStack inputItem = this.inputSlots.getItem(0);
+		ItemStack modifierItem = this.inputSlots.getItem(1);
 		int reforgeCostCopy = this.reforgeCost.get();
 		if (!inputItem.isEmpty() && reforgeCostCopy > 0) {
 			ItemStack resourceItem = this.inputSlots.getItem(2);
@@ -677,7 +716,7 @@ public class ExtendedRepairContainerNew extends Container {
 				if(inputItem.isDamageableItem()) {
 					inputItem.setDamageValue(0);
 				}
-				ExtendedModifierUtils.generateItemModifiersTagged(this.player.random, inputItem, true, true);
+				ExtendedModifierUtils.generateItemModifiersTagged(this.player.random, inputItem, true, true, modifierItem);
 				hurtOrDamageAnvilSound();
 				if (resourceItem.getCount()>reforgeCostCopy) {
 					resourceItem.shrink(reforgeCostCopy);
@@ -728,14 +767,15 @@ public class ExtendedRepairContainerNew extends Container {
 
 	public void setItemName(String pNewName) {
 		this.itemName = pNewName;
-		if (this.getSlot(2).hasItem()) {
-			ItemStack itemstack = this.getSlot(2).getItem();
+		/*
+		if (this.getSlot(3).hasItem()) {
+			ItemStack itemstack = this.getSlot(3).getItem();
 			if (StringUtils.isBlank(pNewName)) {
 				itemstack.resetHoverName();
 			} else {
 				itemstack.setHoverName(new StringTextComponent(this.itemName));
 			}
-		}
+		}*/
 
 		this.createResult();
 	}
@@ -811,7 +851,7 @@ public class ExtendedRepairContainerNew extends Container {
 	public static boolean isValidRepairMaterial(ItemStack inputItem, ItemStack repairMaterial) {
 		boolean regularRapair = inputItem.getItem().isValidRepairItem(inputItem, repairMaterial);
 		if(!regularRapair) {
-			if(inputItem.getItem() instanceof BowItem) {
+			if(!(inputItem.getItem() instanceof ExtendedBowItem) && inputItem.getItem() instanceof BowItem) {
 				return repairMaterial.getItem() == Items.STRING;
 			}
 			if(inputItem.getItem() instanceof FishingRodItem) {
@@ -823,7 +863,7 @@ public class ExtendedRepairContainerNew extends Container {
 			if(inputItem.getItem() instanceof SmokingPipeItem) {
 				return Tags.Items.LEATHER.contains(repairMaterial.getItem());
 			}
-			if(inputItem.getItem() instanceof CrossbowItem) {
+			if(!(inputItem.getItem() instanceof ExtendedCrossbowItem) && inputItem.getItem() instanceof CrossbowItem) {
 				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
 			}
 			if(inputItem.getItem() instanceof FlintAndSteelItem) {
@@ -843,10 +883,13 @@ public class ExtendedRepairContainerNew extends Container {
 
 	public static boolean shouldCheapReforge(Item item) {
 		return item instanceof ShovelItem || item instanceof SpearItem || item instanceof DaggerItem || item instanceof CrossbowItem
-			 || item instanceof ExtendedChiselItem || item instanceof ExtendedBrandingIronItem || item instanceof FlintAndSteelItem;
+			|| item instanceof ExtendedChiselItem || item instanceof ExtendedBrandingIronItem || item instanceof FlintAndSteelItem
+			|| item instanceof ExtendedDaggerItem;
 	}
 
 	private static void info(String message) {
-		ExtendedLog.info(message, ExtendedServerConfig.enableSpecialLogging);
+		if(ExtendedServerConfig.enableSpecialLogging.get()) {
+			ExtendedLog.info(message);
+		}
 	}
 }

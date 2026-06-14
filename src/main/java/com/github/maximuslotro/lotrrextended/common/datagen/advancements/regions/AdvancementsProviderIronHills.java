@@ -72,12 +72,16 @@ public class AdvancementsProviderIronHills extends ExtendedBaseAdvancementType{
 			addCraftingTrigger(make(), LOTRBlocks.DWARVEN_CRAFTING_TABLE.get(), LOTRItems.MITHRIL_TRIMMED_DWARVEN_BRICK.get()).parent(dwarven_crafter));
 
 		Advancement delving_deep = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "delving_deep", FrameType.TASK)
-			.setTitle("Delving Deep").setDescription("Trade with a Dwarf Miner"),
+			.setTitle("Delving Deep").setDescription("Trade with a Dwarf Miner."),
 			addTradeEntityTrigger(make(), ExtendedEntities.DWARVEN_MINER.get()).parent(iron_hills));
 
 		Advancement dwarf_smith = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "dwarf_smith", FrameType.TASK)
-			.setTitle("At Durin's Anvil").setDescription("Trade with a Dwarven Smith"),
+			.setTitle("At Durin's Anvil").setDescription("Trade with a Dwarven Smith."),
 			addTradeEntityTrigger(make(), ExtendedEntities.DWARVEN_SMITH.get()).parent(iron_hills));
+
+		Advancement dwarven_tonic = build(true, data(LOTRItems.DWARVEN_TONIC.get(), "dwarven_tonic", FrameType.TASK)
+				.setTitle("Eyes of the Dwarves").setDescription("Drink a mug of Dwarven Tonic."),
+				addDrinkItemTrigger(make(), LOTRItems.DWARVEN_TONIC.get()).parent(iron_hills));
 	}
 
 	@Override

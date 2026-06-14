@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.advancements.regions;
 
-
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
@@ -16,7 +15,6 @@ import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
-
 
 public class AdvancementsProviderBlueMountains extends ExtendedBaseAdvancementType{
 	private static final List<PreRegisteredLOTRBiome> BLUEMTS_BIOMES = ImmutableList.of(LOTRBiomes.BLUE_MOUNTAINS, LOTRBiomes.BLUE_MOUNTAINS_FOOTHILLS);
@@ -88,6 +86,10 @@ public class AdvancementsProviderBlueMountains extends ExtendedBaseAdvancementTy
 		Advancement blue_smith = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "blue_smith", FrameType.TASK)
 			.setTitle("Fires of the Mountains").setDescription("Trade with a Blue Mountains Smith"),
 			addTradeEntityTrigger(make(), ExtendedEntities.BLUE_DWARVEN_SMITH.get()).parent(blue_mountains));
+
+		Advancement mountains_might = build(true, data(LOTRItems.BLUE_DWARVEN_SWORD.get(), "mountains_might", FrameType.TASK)
+				.setTitle("The Mountains' Might").setDescription("Hire a unit from a Blue Mountains Commander."),
+				addUnitHireTrigger(make(), ExtendedEntities.BLUE_DWARVEN_COMMANDER.get()).parent(blue_mountains));
 	}
 
 	@Override

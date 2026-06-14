@@ -23,6 +23,7 @@
 		"lotr.common.entity.npc.MixinBlueDwarfEntity",
 		"lotr.common.entity.npc.MixinBlueDwarfWarriorEntity",
 		"lotr.common.entity.npc.MixinBreeGuardEntity",
+		"lotr.common.entity.npc.MixinDunlendingWarriorEntity",
 		"lotr.common.entity.npc.MixinDwarfEntity",
 		"lotr.common.entity.npc.MixinElfEntity",
 		"lotr.common.entity.npc.MixinGundabadOrcArcherEntity",
@@ -41,6 +42,7 @@
 		"lotr.common.entity.npc.MixinRivendellElfEntity",
 		"lotr.common.entity.npc.MixinRivendellWarriorEntity",
 		"lotr.common.entity.npc.MixinUrukArcherEntity",
+		"lotr.common.entity.npc.MixinUrukEntity",
 		"lotr.common.entity.npc.MixinWargEntity",
 		"lotr.common.entity.npc.ai.goal.MixinNPCEatGoal",
 		"lotr.common.entity.npc.ai.goal.MixinNPCNearestAttackableTargetGoal",
@@ -63,9 +65,12 @@
 		"lotr.common.inv.MixinFactionCraftingResultSlotAccessor",
 		"lotr.common.inv.MixinForgeResultSlot",
 		"lotr.common.inv.MixinPouchContainer",
+		"lotr.common.item.MixinDaggerItem",
 		"lotr.common.item.MixinDurnorItem",
 		"lotr.common.item.MixinRedBookItem",
+		"lotr.common.item.MixinSaltItem",
 		"lotr.common.item.MixinVesselDrinkItem",
+		"lotr.common.item.MixinVesselDrinkItemAccessor",
 		"lotr.common.item.MixinVesselOperations",
 		"lotr.common.item.MixinVesselType",
 		"lotr.common.network.MixinCPacketCreateCustomWaypoint",
@@ -164,7 +169,8 @@
 		"net.minecraft.server.dedicated.MixinDedicatedServer",
 		"net.minecraft.tileentity.MixinSignTileEntityAccessor",
 		"net.minecraft.util.MixinFoodStats",
-		"net.minecraft.world.gen.feature.template.MixinTemplate"
+		"net.minecraft.world.gen.feature.template.MixinTemplate",
+		"net.minecraft.world.gen.feature.jigsaw.MixinJigsawManager"
 	],
 	"client": [
 		"craftedMods.jeiLotr.MixinJEILotr",

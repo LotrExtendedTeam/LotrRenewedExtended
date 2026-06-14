@@ -1,5 +1,5 @@
 {
-  "parent": "lotrextended:general/first_steps",
+  "parent": "lotrextended:general/refreshing",
   "display": {
     "icon": {
       "item": "lotr:ale"
@@ -17,18 +17,18 @@
     "hidden": false
   },
   "criteria": {
-    "drink_any": {
+    "drink_strength": {
       "trigger": "lotrextended:drinking",
       "conditions": {
         "drink_duration": {
-          "min": 0
+          "min": 1
         }
       }
     }
   },
   "requirements": [
     [
-      "drink_any"
+      "drink_strength"
     ]
   ]
 }

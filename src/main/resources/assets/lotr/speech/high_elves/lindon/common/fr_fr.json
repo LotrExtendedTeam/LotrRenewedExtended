@@ -1,0 +1,135 @@
+{
+  "parent": "lotr:high_elves/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Nul mal n'entrera en terre de Lindon.",
+        "Notre Roi Gil-galad mourut au combat contre le Seigneur Ténébreux lui-même.",
+        "Certains disent que notre seigneur Círdan est l'elfe le plus ancien de toute la Terre du Milieu.",
+        "Notre seigneur Círdan n'eut point de parentage, car il est le plus ancien de tous les Elfes, et fut parmi les premiers Elfes à s'éveiller près des mers de l'Est."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Quelles nouvelles apportez-vous en terre de Lindon ?",
+        "Bienvenue dans le dernier beau royaume de toute la Terre du Milieu, #p.",
+        "Bienvenue en la terre de Círdan le Charpentier des Navires !",
+        "Ces terres étaient jadis gouvernées par Gil-galad, Haut Roi des Noldor. Mais il fut perdu, il y a bien longtemps, lors du siège de la Tour Sombre.",
+        "Cette terre est belle depuis les Jours Anciens.",
+        "Aux Jours Anciens cette terre était connue sous le nom d'Ossiriand, où elle était le foyer des premiers de notre peuple.",
+        "Le havre de Mithlond est l'endroit d'où les Navires Blancs font voile vers Aman.",
+        "Seuls les Elfes connaissent le chemin de la Route Droite.",
+        "La plupart des Noldor vivent dans le fief septentrional de Forlindon.",
+        "Le fief méridional de Harlindon abrite les Elfes Sylvains, qui étaient les résidents originels de cette terre aux Jours Anciens.",
+        "Avez-vous vu les Îles Occidentales ? C'étaient autrefois de grandes collines avant la destruction du Beleriand.",
+        "En cette terre, le dernier beau royaume, la mémoire des Jours Anciens persiste encore."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=noble"
+      },
+      "lines": [
+        "Aï ! Mae govannen, arben na Lindon !",
+        "Mae govannen, arben nín"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north",
+        "biome": "#home"
+      },
+      "lines": [
+        "Bienvenue au Lindon, Rôdeur.",
+        "Aï ! Mae govannen Dúnadan ! Bienvenue au Lindon !",
+        "Les Dúnedain du Nord ont toujours été les bienvenus en notre beau royaume."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north"
+      },
+      "lines": [
+        "Les Eldar de Lindon sont depuis longtemps amis des Dúnedain.",
+        "Les Elfes de Lindon étaient alliés au Royaume d'Arnor il y a des siècles avant sa chute.",
+        "Le Haut Roi des Noldor, Gil-galad combattit aux côtés des Dúnedain lors de la Bataille de la Dernière Alliance, et fut tué par Sauron alors qu'il combattait aux côtés d'Elendil."
+      ]
+    },
+    {
+      "conditions": {
+        "hired": "own"
+      },
+      "lines": [
+        "Pour Lindon !",
+        "Na Lindon !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Nul mal ne peut fouler le sol du Dernier Beau Royaume !",
+        "Vous ne pouvez entrer au Lindon.",
+        "#p, vous ne pouvez fouler le sol de Lindon !",
+        "L'Ennemi n'a aucune emprise sur Lindon !",
+        "Vos ténèbres n'empoisonneront pas le Dernier Beau Royaume à l'est de la Mer !",
+        "Na Lindon !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "L'Ennemi n'a aucune emprise sur Lindon !",
+        "Nous ne souffrons aucun mal au Lindon !",
+        "Vous ne pouvez apporter le mal ici, #p !",
+        "Votre ombre n'empoisonnera pas notre beau royaume !",
+        "Qui nous apporte ce signe de malheur ?",
+        "Nous ne permettrons pas au mal d'entrer dans notre royaume. Partez maintenant ou affrontez notre courroux !",
+        "Vous apportez un grand mal ici, #p. Vous ne pouvez aller plus loin.",
+        "Partez, #p, ou affrontez la puissance de nos flèches !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home"
+      },
+      "lines": [
+        "Vous n'êtes plus le bienvenu en notre terre !",
+        "Je désespère que nous vous ayons jamais abrité au Lindon !",
+        "Amèrement maintenant je regrette de vous avoir accueilli au Lindon !"
+      ]
+    }
+  ]
+}

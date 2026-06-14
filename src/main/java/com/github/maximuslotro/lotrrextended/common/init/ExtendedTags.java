@@ -33,6 +33,7 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_EMERALD = BlockTags.bind("forge:storage_blocks/lotr_emerald");
 		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_PEARL = BlockTags.bind("forge:storage_blocks/lotr_pearl");
 		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CORAL = BlockTags.bind("forge:storage_blocks/lotr_coral");
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_DEAD_CORAL = BlockTags.bind("forge:storage_blocks/lotr_dead_coral");
 		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_DURNOR = BlockTags.bind("forge:storage_blocks/durnor");
 		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_EDHELVIR = BlockTags.bind("forge:storage_blocks/edhelvir");
 		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_GULDURIL = BlockTags.bind("forge:storage_blocks/gulduril");
@@ -80,6 +81,8 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Block> CHAINS = BlockTags.bind("lotrextended:chains");
 		public static final ITag.INamedTag<Block> WOOL_BLOCKS = BlockTags.bind("lotrextended:wool_blocks");
 
+		public static final ITag.INamedTag<Block> MIDDLE_EARTH_PLACEABLE_SURFACE = BlockTags.bind("lotrextended:middle_earth_surface_placeable");
+
 		public static final ITag.INamedTag<Block> BASE_STONE_MIDDLE_EARTH = BlockTags.bind("lotrextended:base_stone_middle_earth");
 		public static final ITag.INamedTag<Block> BASE_STONE_SLAB_MIDDLE_EARTH = BlockTags.bind("lotrextended:base_stone_slab_middle_earth");
 		public static final ITag.INamedTag<Block> BASE_STONE_STAIRS_MIDDLE_EARTH = BlockTags.bind("lotrextended:base_stone_stair_middle_earth");
@@ -116,6 +119,7 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> EMERALD_GEMS = ItemTags.bind("forge:gems/lotr_emerald");
 		public static final ITag.INamedTag<Item> PEARL_GEMS = ItemTags.bind("forge:gems/lotr_pearl");
 		public static final ITag.INamedTag<Item> CORAL_GEMS = ItemTags.bind("forge:gems/lotr_coral");
+		public static final ITag.INamedTag<Item> DEAD_CORAL_GEMS = ItemTags.bind("forge:gems/lotr_dead_coral");
 		public static final ITag.INamedTag<Item> DURNOR_GEMS = ItemTags.bind("forge:gems/lotr_durnor");
 		public static final ITag.INamedTag<Item> EDHELVIR_GEMS = ItemTags.bind("forge:gems/lotr_edhelvir");
 		public static final ITag.INamedTag<Item> GULDURIL_GEMS = ItemTags.bind("forge:gems/lotr_gulduril");
@@ -139,6 +143,7 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> STORAGE_BLOCKS_EMERALD = ItemTags.bind("forge:storage_blocks/lotr_emerald");
 		public static final ITag.INamedTag<Item> STORAGE_BLOCKS_PEARL = ItemTags.bind("forge:storage_blocks/lotr_pearl");
 		public static final ITag.INamedTag<Item> STORAGE_BLOCKS_CORAL = ItemTags.bind("forge:storage_blocks/lotr_coral");
+		public static final ITag.INamedTag<Item> STORAGE_BLOCKS_DEAD_CORAL = ItemTags.bind("forge:storage_blocks/lotr_dead_coral");
 		public static final ITag.INamedTag<Item> STORAGE_BLOCKS_DURNOR = ItemTags.bind("forge:storage_blocks/lotr_durnor");
 		public static final ITag.INamedTag<Item> STORAGE_BLOCKS_EDHELVIR = ItemTags.bind("forge:storage_blocks/lotr_edhelvir");
 		public static final ITag.INamedTag<Item> STORAGE_BLOCKS_GULDURIL = ItemTags.bind("forge:storage_blocks/lotr_gulduril");
@@ -179,7 +184,6 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> WEAPONRACK_ITEMS = ItemTags.bind("lotrextended:weapon_rack_additional_items");
 		public static final ITag.INamedTag<Item> WEAPONRACK_ITEMS_EXCLUDE = ItemTags.bind("lotrextended:weapon_rack_excluded_items");
 		public static final ITag.INamedTag<Item> WEAPONRACK_ITEMS_FULL_SCALE = ItemTags.bind("lotrextended:weapon_rack_items_full_scale");
-		public static final ITag.INamedTag<Item> WEAPONRACK_ITEMS_HALF_SCALING = ItemTags.bind("lotrextended:weapon_rack_items_half_scaling");
 
 		public static final ITag.INamedTag<Item> DUCK_FOOD = ItemTags.bind("lotrextended:foods/duck_feedables");
 		public static final ITag.INamedTag<Item> BOAR_FOOD = ItemTags.bind("lotrextended:foods/boar_feedables");

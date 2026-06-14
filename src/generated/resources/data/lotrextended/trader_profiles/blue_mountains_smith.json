@@ -212,9 +212,23 @@
         "averageCost": 1,
         "count": 3
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 3
+      }
     }
   ],
   "sellToPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 6
+      }
+    },
     {
       "weight": 50,
       "stack": {
@@ -412,6 +426,28 @@
         "item": "lotr:blue_dwarven_mattock",
         "averageCost": 18,
         "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:blue_dwarven_shield",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:combat_tome",
+        "averageCost": 50
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:artisan_tome",
+        "averageCost": 75
       }
     }
   ]

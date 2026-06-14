@@ -1,0 +1,47 @@
+{
+    "parent": "lotrextended:durins_folk/common",
+    "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": ">=100"
+      },
+      "lines": [
+        "Auriez-vous quelques pièces d'argent, l'ami ?",
+        "Mes poches débordent de précieux minerais !",
+        "De la bonne viande sur l'os ! Je paierais une belle somme en argent pour ça...",
+        "Auriez-vous de la bière, #p ?",
+        "Êtes-vous disposé à commercer, #p ?",
+        "Je paierais cher pour un bon breuvage !",
+        "Par Belegost, je meurs de faim !",
+        "Souhaitez-vous commercer, #p ?",
+        "J'ai de nombreux minerais précieux à vous proposer.",
+        "Nous autres Nains, on aime une bonne tranche de viande bien juteuse !",
+        "Par ma barbe, on a faim ici-bas dans les mines !",
+        "Je donnerais tout mon or pour une bonne vieille pinte de bière naine là, tout de suite !",
+        "Vous êtes un peu grand pour ces mines, non, #p ?",
+        "Bonne journée, #p ! Ou est-ce la nuit ? J'sais plus. J'suis dans ces mines depuis une éternité ! Ha ! Ha !",
+        "Salutations, #p ! Souhaitez-vous commercer avec moi ? J'ai de nombreux types de métaux qui satisferont vos désirs.",
+        "Par ma barbe, c'est une sacrée mine profonde."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": "<=100"
+      },
+      "lines": [
+        "Un Nain n'offre pas de commercer ses richesses avec le premier étranger venu !",
+        "Si vous voulez commercer, #p, faudra faire un peu plus pour prouver votre valeur !",
+        "La richesse des Nains n'est surpassée par aucune autre race, #p !",
+        "Faudra vous forger une réputation avant qu'on puisse commercer, #p !",
+        "Ces montagnes regorgent de richesses.",
+        "Nous autres Nains, on commerce pas avec n'importe quel inconnu qui passe !",
+        "L'art de la forge de mes frères est inégalé !",
+        "Vous voulez commercer avec moi ? Faudra d'abord prouver votre valeur auprès des miens !",
+        "Désolé, #p ! J'commerce pas avec les étrangers.",
+        "Nous autres Nains sommes de grands mineurs ! Nos puits et nos galeries s'enfoncent jusqu'aux profondeurs de la Terre !"
+      ]
+    }
+  ]
+}

@@ -454,6 +454,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_SWORD.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_DAGGER.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_SPEAR.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+						.add(EItemLootEntry.lootItem(ExtendedItems.ARNOR_SHIELD.get()).setWeight(20).setDamageRange(0.35F, 0.8F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_CHESTPLATE.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_LEGGINGS.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_BOOTS.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
@@ -519,6 +520,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.URUK_CAPTAIN, orcUruk);
 		makeEntity(ExtendedEntities.URUK_SMITH, orcUruk);
 		makeEntity(ExtendedEntities.URUK_SUPPLIER, orcUruk);
+		makeEntity(ExtendedEntities.DUNLENDING_WARLORD, manDunlending);
 
 	}
 

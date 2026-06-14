@@ -116,6 +116,27 @@
               "count": 1
             }
           ],
+          "name": "lotr:artisan_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:combat_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
           "name": "lotr:lindon_banner_pattern"
         }
       ],

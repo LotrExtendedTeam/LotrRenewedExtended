@@ -112,7 +112,7 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 			}else if(currentProfile.getHiringAlignmentRequired()>alignData.getAlignment(fac)) {
 				player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_alignment", currentProfile.getHiringAlignmentRequired()), Util.NIL_UUID);
 				closeConnection();
-			}else if(currentProfile.getHiringCost()>CoinUtils.totalValueInInventory(player.inventory)) {
+			}else if(!player.isCreative() && currentProfile.getHiringCost()>CoinUtils.totalValueInInventory(player.inventory)) {
 				player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.not_enough_money", currentProfile.getHiringCost()), Util.NIL_UUID);
 				closeConnection();
 			}else {

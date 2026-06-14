@@ -1,0 +1,141 @@
+{
+  "parent": "lotrextended:durins_folk/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Des feux rugissants ! De la bière maltée ! De la bonne viande sur l'os !",
+        "La bière naine est la meilleure boisson de toute la Terre du Milieu !",
+        "La richesse des Nains n'est surpassée par aucune autre race.",
+        "Quelles nouvelles apportez-vous du monde des Hommes, #p ?",
+        "Ma barbe fait l'envie de tous les Nains.",
+        "L'art de la forge des Nains est inégalé !",
+        "Les halls de Belegost et Nogrod étaient autrefois bien plus grands qu'aujourd'hui.",
+        "J'aime les collines bleues ondoyantes et les pins dressés de notre foyer.",
+        "Les Nains de Belegost ont jadis forgé des armures assez solides pour résister au feu des dragons ! De tels secrets ont depuis été perdus.",
+        "Deux clans peuplent l'Ered Luin, les Longues-Barbes et les Barbes-de-Feu !",
+        "Notre peuple possédait jadis de nombreux grands halls à travers les Montagnes avant que le Beleriand ne sombre.",
+        "Nous avons eu une... histoire compliquée avec les Elfes, mais tout cela remonte à bien longtemps.",
+        "Notre ancienne langue est sacrée, créée par Mahal lui-même ! Il est interdit de la parler à quiconque hormis les Khazâd.",
+        "Nous commerçons beaucoup avec les Elfes qui attendent de partir pour l'Ouest.",
+        "On dit que les halls de Nogrod et Belegost sont les plus anciens halls nains à ne pas encore être tombés aux mains des Orques !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "m"
+      },
+      "lines": [
+        "Nos femmes sont si semblables en voix et en apparence qu'on les confond souvent avec nos hommes.",
+        "Il y a si peu de femmes naines que beaucoup de nos hommes restent célibataires.",
+        "À vrai dire, nous autres Nains nous préoccupons plus de nos mines que des femmes."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "gender": "f"
+      },
+      "lines": [
+        "Nos hommes disent que nous autres femmes sommes si semblables en voix et en apparence qu'on nous prend pour des hommes ! Peut-être que s'ils levaient le nez de la forge de temps en temps..."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Vous êtes un peu trop grand pour ces mines, #p ! Ha ! Ha !",
+        "Bienvenue dans les Montagnes Bleues, #p ! Bien des richesses vous y attendent.",
+        "Bienvenue en Ered Luin, #! Bien des richesses vous y attendent !",
+        "Nous avons de nombreuses mines dans ces montagnes.",
+        "Nous vivons dans ces montagnes depuis l'aube de notre race.",
+        "Bienvenue en Ered Luin, #p.",
+        "Êtes-vous déjà allé à Belegost ? Certains halls ont été reconstruits depuis la Guerre de la Grande Colère.",
+        "Il y a encore de nombreux réfugiés du Peuple de Durin qui vivent parmi nous.",
+        "Nous avions jadis de nombreuses grandes cités à travers l'Ered Luin avant que le Beleriand ne sombre dans la mer."
+      ]
+    },
+        {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=oathfriend"
+
+      },
+      "lines": [
+        "Bienvenue à Ulbanabâd, mon ami !"
+      ]
+    },
+        {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "La vue des collines bleues depuis les flancs de mes montagnes natales me manque."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Avez-vous des nouvelles de notre peuple à l'Ouest ?",
+        "Bien rencontré !",
+        "Bien rencontré, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Buvons ensemble !",
+        "On boit un coup, #p ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=oathfriend"
+      },
+      "lines": [
+        "Vous n'êtes peut-être pas l'un des Khazâd, #p, mais vous êtes toujours le bienvenu dans nos halls.",
+        "Ulbanabâd"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <axebearer",
+        "biome": "#home"
+      },
+      "lines": [
+        "Par ma barbe, je n'ai jamais vu un Homme de toute ma vie ! Bienvenue chez moi, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "alternatives": [
+          {
+            "biome": "#home"
+          },
+          {
+            "underground": "true"
+          }
+        ]
+      },
+      "lines": [
+        "Voilà du bel ouvrage en pierre."
+      ]
+    }
+  ]
+}

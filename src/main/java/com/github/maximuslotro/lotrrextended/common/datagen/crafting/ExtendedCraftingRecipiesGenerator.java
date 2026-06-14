@@ -27,7 +27,6 @@ import net.minecraft.data.CustomRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapelessRecipeBuilder;
-import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.CookingRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -327,7 +326,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.OPAL, ExtendedBlocks.OPAL_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.EMERALD, ExtendedBlocks.EMERALD_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.PEARL, ExtendedBlocks.PEARL_BLOCK, null);
-		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.CORAL, ExtendedBlocks.CORAL_BLOCK, null);
+		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.CORAL, ExtendedBlocks.CORAL_BLOCK, null, ExtendedItems.CORAL.get().getRegistryName().getPath(), null);
+		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.DEAD_CORAL, ExtendedBlocks.DEAD_CORAL_BLOCK, null, ExtendedItems.DEAD_CORAL.get().getRegistryName().getPath(), null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.GALVORN_INGOT, ExtendedBlocks.GALVORN_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.BLACK_URUK_STEEL_INGOT, ExtendedBlocks.BLACK_URUK_STEEL_BLOCK, null);
 		makeStorageBlock3x3ToItemAndBackRecipe(consumer, ExtendedItems.GILDED_IRON_INGOT, ExtendedBlocks.GILDED_IRON_BLOCK, null);
@@ -355,7 +355,17 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.SILVER_FUR, ExtendedBlocks.SILVER_FUR_BUNDLE, null);
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ExtendedItems.WHITE_FUR, ExtendedBlocks.WHITE_FUR_BUNDLE, null);
 		makeStorageBlock2x2ToItemAndBackRecipe(consumer, LOTRItems.FUR, LOTRBlocks.FUR_BUNDLE, null);
-
+		makeStorageBlock2x2ToItemAndBackRecipe(consumer, ()->Items.LEATHER, LOTRBlocks.LEATHER_BUNDLE, null);
+		makeCoralRecipes(consumer, ExtendedItems.CORAL, ()->Items.BRAIN_CORAL, ()->Items.BRAIN_CORAL_FAN, ()->Items.BRAIN_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.CORAL, ()->Items.BUBBLE_CORAL, ()->Items.BUBBLE_CORAL_FAN, ()->Items.BUBBLE_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.CORAL, ()->Items.FIRE_CORAL, ()->Items.FIRE_CORAL_FAN, ()->Items.FIRE_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.CORAL, ()->Items.HORN_CORAL, ()->Items.HORN_CORAL_FAN, ()->Items.HORN_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.CORAL, ()->Items.TUBE_CORAL, ()->Items.TUBE_CORAL_FAN, ()->Items.TUBE_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.DEAD_CORAL, ()->Items.DEAD_BRAIN_CORAL, ()->Items.DEAD_BRAIN_CORAL_FAN, ()->Items.DEAD_BRAIN_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.DEAD_CORAL, ()->Items.DEAD_BUBBLE_CORAL, ()->Items.DEAD_BUBBLE_CORAL_FAN, ()->Items.DEAD_BUBBLE_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.DEAD_CORAL, ()->Items.DEAD_FIRE_CORAL, ()->Items.DEAD_FIRE_CORAL_FAN, ()->Items.DEAD_FIRE_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.DEAD_CORAL, ()->Items.DEAD_HORN_CORAL, ()->Items.DEAD_HORN_CORAL_FAN, ()->Items.DEAD_HORN_CORAL_BLOCK);
+		makeCoralRecipes(consumer, ExtendedItems.DEAD_CORAL, ()->Items.DEAD_TUBE_CORAL, ()->Items.DEAD_TUBE_CORAL_FAN, ()->Items.DEAD_TUBE_CORAL_BLOCK);
 		// Hobbit pancakes
 		GENERATEDRECIPES.add(ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().getPath());
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HOBBIT_PANCAKE.get(), 1, LOTRRecipes.HOBBIT_CRAFTING)
@@ -596,6 +606,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeWargArmorRecipe(consumer, ExtendedItems.ANGMAR_WARG_ARMOR, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel_ingot", LOTRRecipes.ANGMAR_CRAFTING);
 		makeWargArmorRecipe(consumer, ExtendedItems.ISENGARD_WARG_ARMOR, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel_ingot", LOTRRecipes.URUK_CRAFTING);
 		makeWargArmorRecipe(consumer, ExtendedItems.MORDOR_WARG_ARMOR, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel_ingot", LOTRRecipes.MORDOR_CRAFTING);
+		makeWargArmorRecipe(consumer, ExtendedItems.GUNDABAD_WARG_ARMOR, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel_ingot", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
 
 		// GOBLIN/URUK
 		make4x4BlockandDepandentsStairSlabWallRecipe(consumer, ExtendedBlocks.GOBLIN_BRICK,
@@ -870,13 +881,13 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeMattockRecipe(consumer, ExtendedItems.DWARVEN_MATTOCK, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel_ingot", LOTRRecipes.DWARVEN_CRAFTING);
 		// BLUE MOUNTAIN DWARVEN
 		makeThrowableAxeRecipe(consumer, ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel_ingot", LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
-		makeMattockRecipe(consumer, ExtendedItems.BLUE_DWARVEN_MATTOCK, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel_ingot", LOTRRecipes.DWARVEN_CRAFTING);
+		makeMattockRecipe(consumer, ExtendedItems.BLUE_DWARVEN_MATTOCK, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel_ingot", LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
 		// IRON 
 		makeThrowableAxeRecipe(consumer, ExtendedItems.IRON_THROWABLE_AXE, Tags.Items.INGOTS_IRON, "iron_ingot", null);
 		// BRONZE
 		makeThrowableAxeRecipe(consumer, ExtendedItems.BRONZE_THROWABLE_AXE, LOTRTags.Items.INGOTS_BRONZE, "bronze", null);
 		// MITHRIL
-		makeThrowableAxeRecipe(consumer, ExtendedItems.MITHRIL_MATTOCK, ExtendedTags.Items.MITHRIL_INGOT, "mithril_ingot", null);
+		makeMattockRecipe(consumer, ExtendedItems.MITHRIL_MATTOCK, ExtendedTags.Items.MITHRIL_INGOT, "mithril_ingot", null);
 		// Crystal Chandeliers
 		makeCrystalChandelierRecipe(consumer, ExtendedBlocks.EDHELVIR_CRYSTAL_CHANDELIER, LOTRItems.EDHELVIR_CRYSTAL, LOTRRecipes.ANY_HIGH_ELVEN);
 		makeCrystalChandelierRecipe(consumer, ExtendedBlocks.GLOWSTONE_CRYSTAL_CHANDELIER, LOTRItems.GLOWSTONE_CRYSTAL, null);
@@ -884,33 +895,33 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		//ITEMS
 		// TORCH CONVERSIONS
 		// DWARVEN
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.DWARVEN_TORCH, LOTRRecipes.ANY_DWARVEN);
-		makeTorchConversionRecipe(consumer, LOTRItems.DWARVEN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeDirect(consumer, ()->Items.TORCH, LOTRItems.DWARVEN_TORCH, LOTRRecipes.ANY_DWARVEN);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.DWARVEN_TORCH, ()->Items.TORCH, null);
 		//MORGUL
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, ExtendedItems.MORGUL_TORCH, LOTRItems.GULDURIL, 4, LOTRRecipes.ANY_MORGUL);
-		makeTorchConversionRecipe(consumer, ExtendedItems.MORGUL_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeItem(consumer, ()->Items.TORCH, ExtendedItems.MORGUL_TORCH, LOTRItems.GULDURIL, 4, LOTRRecipes.ANY_MORGUL);
+		makeTorchConversionRecipeDirect(consumer, ExtendedItems.MORGUL_TORCH, ()->Items.TORCH, null);
 		//HIGH ELVEN
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.HIGH_ELVEN_TORCH, LOTRItems.EDHELVIR, 4, LOTRRecipes.ANY_HIGH_ELVEN);
-		makeTorchConversionRecipe(consumer, LOTRItems.HIGH_ELVEN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeItem(consumer, ()->Items.TORCH, LOTRItems.HIGH_ELVEN_TORCH, LOTRItems.EDHELVIR, 4, LOTRRecipes.ANY_HIGH_ELVEN);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.HIGH_ELVEN_TORCH, ()->Items.TORCH, null);
 		makeArmorRecipe(consumer, ExtendedItems.GALVORN_HELMET,
 			ExtendedItems.GALVORN_CHESTPLATE,
 			ExtendedItems.GALVORN_LEGGINGS,
 			ExtendedItems.GALVORN_BOOTS,
 			ExtendedItems.GALVORN_INGOT, LOTRRecipes.ANY_ELVEN);
 		//BLUBBER
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.BLUBBER_TORCH, LOTRItems.BLUBBER, 4, LOTRRecipes.LOSSOTH_CRAFTING);
-		makeTorchConversionRecipe(consumer, LOTRItems.BLUBBER_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeItem(consumer, ()->Items.TORCH, LOTRItems.BLUBBER_TORCH, LOTRItems.BLUBBER, 4, LOTRRecipes.LOSSOTH_CRAFTING);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.BLUBBER_TORCH, ()->Items.TORCH, null);
 		//MALLORN
-		makeTorchConversionRecipe(consumer, LOTRItems.BLUE_MALLORN_TORCH, ()->Items.TORCH, null);
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.BLUE_MALLORN_TORCH, LOTRTags.Items.BLUE_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
-		makeTorchConversionRecipe(consumer, LOTRItems.GOLD_MALLORN_TORCH, ()->Items.TORCH, null);
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.GOLD_MALLORN_TORCH, LOTRTags.Items.GOLD_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
-		makeTorchConversionRecipe(consumer, LOTRItems.GREEN_MALLORN_TORCH, ()->Items.TORCH, null);
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.GREEN_MALLORN_TORCH, LOTRTags.Items.GREEN_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
-		makeTorchConversionRecipe(consumer, LOTRItems.SILVER_MALLORN_TORCH, ()->Items.TORCH, null);
-		makeTorchConversionRecipe(consumer, ()->Items.TORCH, LOTRItems.SILVER_MALLORN_TORCH, LOTRTags.Items.SILVER_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.BLUE_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeTag(consumer, ()->Items.TORCH, LOTRItems.BLUE_MALLORN_TORCH, LOTRTags.Items.BLUE_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.GOLD_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeTag(consumer, ()->Items.TORCH, LOTRItems.GOLD_MALLORN_TORCH, LOTRTags.Items.GOLD_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.GREEN_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeTag(consumer, ()->Items.TORCH, LOTRItems.GREEN_MALLORN_TORCH, LOTRTags.Items.GREEN_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.SILVER_MALLORN_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeTag(consumer, ()->Items.TORCH, LOTRItems.SILVER_MALLORN_TORCH, LOTRTags.Items.SILVER_MALLORN_COLORANTS, 4, LOTRRecipes.GALADHRIM_CRAFTING);
 		//ORC
-		makeTorchConversionRecipe(consumer, LOTRItems.ORC_TORCH, ()->Items.TORCH, null);
+		makeTorchConversionRecipeDirect(consumer, LOTRItems.ORC_TORCH, ()->Items.TORCH, null);
 		ExtendedFactionShapedRecipeBuilder.shaped(LOTRItems.ORC_TORCH.get(), 1, LOTRRecipes.ANY_ORC)
 		.pattern("T")
 		.pattern("S")
@@ -937,9 +948,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.unlockedBy("has_string", has(Tags.Items.STRING))
 		.save(consumer, lotrLoc(ExtendedItems.ROPE.get().getRegistryName().getPath()));
 		// BOWS
-		makeBowRecipe(consumer, ExtendedItems.GUNDABAD_URUK_BOW, ExtendedItems.BOWSTRING, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
-		makeBowRecipe(consumer, ExtendedItems.ORC_BOW, ExtendedItems.BOWSTRING, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel", LOTRRecipes.ANY_ORC);
-		makeBowRecipe(consumer, ExtendedItems.RANGER_BOW, ExtendedItems.BOWSTRING, STICKS, "sticks", LOTRRecipes.RANGER_CRAFTING);
+		makeBowRecipe(consumer, ExtendedItems.GUNDABAD_URUK_BOW, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", ExtendedRecipes.NORTHERN_ORC_CRAFTING);
+		makeBowRecipe(consumer, ExtendedItems.ORC_BOW, ExtendedTags.Items.ORC_STEEL_INGOT, "orc_steel", LOTRRecipes.ANY_ORC);
+		makeBowRecipe(consumer, ExtendedItems.RANGER_BOW, STICKS, "sticks", LOTRRecipes.RANGER_CRAFTING);
 		GENERATEDRECIPES.add(ExtendedItems.LONGBOW.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.LONGBOW.get())
 		.pattern("XXX")
@@ -957,8 +968,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.requires(Tags.Items.STRING)
 		.unlockedBy("has_string", has(Tags.Items.STRING))
 		.save(consumer, lotrLoc(ExtendedItems.BOWSTRING.get().getRegistryName().getPath()));
-		makeBowRecipe(consumer, ExtendedItems.RIVENDELL_BOW, ExtendedItems.BOWSTRING, STICKS, "sticks", LOTRRecipes.RIVENDELL_CRAFTING);
-		makeBowRecipe(consumer, ExtendedItems.LINDON_BOW, ExtendedItems.BOWSTRING, STICKS, "sticks", LOTRRecipes.LINDON_CRAFTING);
+		makeBowRecipe(consumer, ExtendedItems.RIVENDELL_BOW, STICKS, "sticks", LOTRRecipes.RIVENDELL_CRAFTING);
+		makeBowRecipe(consumer, ExtendedItems.LINDON_BOW, STICKS, "sticks", LOTRRecipes.LINDON_CRAFTING);
+		makeCrossbowRecipe(consumer, ExtendedItems.BRONZE_CROSSBOW, ExtendedTags.Items.BRONZE_INGOT, "bronze_ingot", null);
+		makeCrossbowRecipe(consumer, ExtendedItems.IRON_CROSSBOW, Tags.Items.INGOTS_IRON, "iron_ingot", null);
+		makeCrossbowRecipe(consumer, ExtendedItems.URUK_CROSSBOW, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", LOTRRecipes.URUK_CRAFTING);
+		makeCrossbowRecipe(consumer, ExtendedItems.MITHRIL_CROSSBOW, ExtendedTags.Items.MITHRIL_INGOT, "mithril_ingot", null);
 
 		GENERATEDRECIPES.add(ExtendedItems.CHISEL.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CHISEL.get())
@@ -1051,6 +1066,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.save(consumer, lotrLoc(ExtendedItems.COMMANDHORN.get().getRegistryName().getPath()));
 		ExtendedCustomRecipeBuilder.special(ExtendedRecipeSerializers.EXTENDED_BANNER_PROT_REMOVAL.get()).save(consumer, lotrLoc("banner_protection_removal"));
 		ExtendedCustomRecipeBuilder.special(ExtendedRecipeSerializers.EXTENDED_TIPPED_ARROW.get()).save(consumer, lotrLoc("tipped_arrow_poison"));
+		ExtendedCustomRecipeBuilder.special(ExtendedRecipeSerializers.EXTENDED_DAGGER_POISONING.get()).save(consumer, lotrLoc("dagger_poisoning"));
 		GENERATEDRECIPES.add(ExtendedItems.BLACK_URUK_STEEL_INGOT.get().getRegistryName().getPath());
 		ExtendedAlloyCookingRecipeBuilder.cooking(ExtendedItems.BLACK_URUK_STEEL_INGOT.get(), LOTRRecipes.ORC_FORGE_ALLOY_SERIALIZER.get())
 		.requires(ExtendedTags.Items.ORC_STEEL_INGOT)
@@ -1124,6 +1140,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeShieldRecipe(consumer, ExtendedItems.BLUE_DWARVEN_SHIELD, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel_ingot", LOTRRecipes.BLUE_MOUNTAINS_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.RIVENDELL_SHIELD, ExtendedTags.Items.ELVEN_STEEL_INGOT, "elven_steel", LOTRRecipes.RIVENDELL_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.LINDON_SHIELD, ExtendedTags.Items.ELVEN_STEEL_INGOT, "elven_steel", LOTRRecipes.LINDON_CRAFTING);
+		makeShieldRecipe(consumer, ExtendedItems.URUK_SHIELD, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", LOTRRecipes.URUK_CRAFTING);
+		makeShieldRecipe(consumer, ExtendedItems.DUNLANDING_SHIELD, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.DUNLENDING_CRAFTING);
 		//Banners and patterns
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.DUNEDAIN_BANNER, ExtendedItems.DUNEDAIN_BANNER_PATTERN, LOTRRecipes.RANGER_CRAFTING);
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.HOBBIT_BANNER, ExtendedItems.HOBBIT_BANNER_PATTERN, LOTRRecipes.HOBBIT_CRAFTING);
@@ -1342,10 +1360,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('X', Ingredient.of(ExtendedItems.MOSS_BLOCK.get()))
 		.unlockedBy("has_"+ExtendedItems.MOSS_BLOCK.get().getRegistryName().getPath(), has(ExtendedItems.MOSS_BLOCK.get()))
 		.save(consumer, lotrLoc(ExtendedItems.MOSS_CARPET.get().getRegistryName().getPath()));
-		makeMossyBlockRecipe(consumer, ()->Blocks.MOSSY_COBBLESTONE,
-			Blocks.COBBLESTONE::asItem, null, "", false);
-		makeMossyBlockRecipe(consumer, ()->Blocks.MOSSY_STONE_BRICKS,
-			Blocks.STONE_BRICKS::asItem, null, "", false);
 		//Natural Stones
 		//		makeStairSlabWallRecipe(consumer, ExtendedBlocks.GNEISS_ROCK_STAIRS,
 		//			ExtendedBlocks.GNEISS_ROCK_SLAB,
@@ -1463,6 +1477,44 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			LOTRBlocks.ROHAN_BRICK_SLAB, LOTRRecipes.ROHAN_CRAFTING);
 		makeCarvedBlockRecipeOnlySlabs(consumer, LOTRBlocks.CARVED_WOOD_ELVEN_BRICK,
 			LOTRBlocks.WOOD_ELVEN_BRICK_SLAB, LOTRRecipes.WOOD_ELVEN_CRAFTING);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_ANGMAR_BRICK,
+			LOTRBlocks.ANGMAR_BRICK.get()::asItem, LOTRRecipes.ANGMAR_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_ARNOR_BRICK,
+			LOTRBlocks.ARNOR_BRICK.get()::asItem, LOTRRecipes.RANGER_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_BLUE_BRICK,
+			LOTRBlocks.BLUE_BRICK.get()::asItem, LOTRRecipes.BLUE_MOUNTAINS_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_DALE_BRICK,
+			LOTRBlocks.DALE_BRICK.get()::asItem, LOTRRecipes.DALE_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_DALE_PAVING,
+				LOTRBlocks.DALE_PAVING.get()::asItem, LOTRRecipes.DALE_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_DOL_AMROTH_BRICK,
+				LOTRBlocks.DOL_AMROTH_BRICK.get()::asItem, LOTRRecipes.DOL_AMROTH_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_DORWINION_BRICK,
+				LOTRBlocks.DORWINION_BRICK.get()::asItem, LOTRRecipes.DORWINION_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_DWARVEN_BRICK,
+				LOTRBlocks.DWARVEN_BRICK.get()::asItem, LOTRRecipes.DWARVEN_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_GALADHRIM_BRICK,
+				LOTRBlocks.GALADHRIM_BRICK.get()::asItem, LOTRRecipes.GALADHRIM_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_GONDOR_BRICK,
+				LOTRBlocks.GONDOR_BRICK.get()::asItem, LOTRRecipes.GONDOR_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_GONDOR_COBBLEBRICK,
+				LOTRBlocks.GONDOR_COBBLEBRICK.get()::asItem, LOTRRecipes.GONDOR_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_HIGH_ELVEN_BRICK,
+				LOTRBlocks.HIGH_ELVEN_BRICK.get()::asItem, LOTRRecipes.ANY_HIGH_ELVEN, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_MORDOR_BRICK,
+				LOTRBlocks.MORDOR_BRICK.get()::asItem, LOTRRecipes.MORDOR_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_NUMENOREAN_BRICK,
+				LOTRBlocks.NUMENOREAN_BRICK.get()::asItem, LOTRRecipes.ANY_NUMENOREAN, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_RED_BRICK,
+				LOTRBlocks.RED_BRICK.get()::asItem, null, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_RED_DORWINION_BRICK,
+				LOTRBlocks.RED_DORWINION_BRICK.get()::asItem, LOTRRecipes.DORWINION_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_ROHAN_BRICK,
+				LOTRBlocks.ROHAN_BRICK.get()::asItem, LOTRRecipes.ROHAN_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_UMBAR_BRICK,
+				LOTRBlocks.UMBAR_BRICK.get()::asItem, LOTRRecipes.UMBAR_CRAFTING, "", false);
+		makeMossyBlockRecipe(consumer, LOTRBlocks.MOSSY_WOOD_ELVEN_BRICK,
+				LOTRBlocks.WOOD_ELVEN_BRICK.get()::asItem, LOTRRecipes.WOOD_ELVEN_CRAFTING, "", false);
 	}
 
 	private void addMissingVanillaRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -1480,6 +1532,10 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 			Blocks.STONE_BRICKS, Blocks.STONE_BRICK_SLAB);
 		makeCarvedBlockRecipeVanilla(consumer, Blocks.INFESTED_CHISELED_STONE_BRICKS,
 			Blocks.INFESTED_STONE_BRICKS, null);
+		makeMossyBlockRecipe(consumer, ()->Blocks.MOSSY_COBBLESTONE,
+				Blocks.COBBLESTONE::asItem, null, "", false);
+		makeMossyBlockRecipe(consumer, ()->Blocks.MOSSY_STONE_BRICKS,
+				Blocks.STONE_BRICKS::asItem, null, "", false);
 	}
 
 	private void buildVanillaRecipeOverrides(Consumer<IFinishedRecipe> consumer) {
@@ -1558,6 +1614,14 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('#', Ingredient.of(Tags.Items.INGOTS_IRON))
 		.unlockedBy("iron_ingot", has(Tags.Items.INGOTS_IRON))
 		.save(consumer, mcLoc(Items.LODESTONE.getRegistryName().getPath()));
+		ExtendedShapedRecipeBuilder.shaped(Items.JUKEBOX)
+		.pattern("PPP")
+		.pattern("PDP")
+		.pattern("PPP")
+		.define('D', Ingredient.of(ExtendedItems.DIAMOND.get()))
+		.define('P', Ingredient.of(PLANKS))
+		.unlockedBy("has_"+ExtendedItems.DIAMOND.get().getRegistryName().getPath(), has(ExtendedItems.DIAMOND.get()))
+		.save(consumer, mcLoc(Items.JUKEBOX.getRegistryName().getPath()));
 	}
 	private void buildRenewedRecipeOverrides(Consumer<IFinishedRecipe> consumer) {
 		ExtendedFactionShapedRecipeBuilder.shaped(LOTRItems.ORC_PLATING.get(), 8, LOTRRecipes.ANY_ORC)
@@ -1567,6 +1631,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('#', Ingredient.of(LOTRItems.ORC_STEEL_INGOT.get()))
 		.unlockedBy("has_"+LOTRItems.ORC_STEEL_INGOT.get().getRegistryName().getPath(), has(LOTRItems.ORC_STEEL_INGOT.get()))
 		.save(consumer, lotrLoc(LOTRItems.ORC_PLATING.get().getRegistryName().getPath()));
+		makeWallRecipe(consumer, ExtendedBlocks.ORC_PLATING_WALL, LOTRItems.ORC_PLATING, LOTRRecipes.ANY_ORC);
+		makeWallRecipe(consumer, ExtendedBlocks.RUSTED_ORC_PLATING_WALL, LOTRItems.RUSTED_ORC_PLATING, LOTRRecipes.ANY_ORC);
 	}
 
 	private void buildSmithingRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -1587,25 +1653,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeOreFurnaceRecipe(consumer, ExtendedItems.TOPAZ_ORE.get(), ExtendedItems.TOPAZ.get(), 0.5f);
 		makeBlastingRecipe(consumer, ExtendedItems.METEORITE_ORE.get(), ExtendedItems.SKY_IRON.get(), 1.0f, 2400);
 		makeSmeltingRecipe(consumer, ExtendedItems.MORGOND.get(), ExtendedItems.SMOOTH_MORGOND.get(), 1.0f, 2400);
-	}
-
-	private static void makeOreFurnaceRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp) {
-		makeSmeltingRecipe(pFinishedRecipeConsumer, ore, result, xp, 200);
-		makeBlastingRecipe(pFinishedRecipeConsumer, ore, result, xp, 100);
-	}
-
-	private static void makeSmeltingRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp, int ticks) {
-		GENERATEDRECIPES.add(result.getRegistryName().getPath());
-		CookingRecipeBuilder.smelting(Ingredient.of(ore), result, xp, ticks)
-		.unlockedBy("has_"+ore.getRegistryName().getPath(), has(ore))
-		.save(pFinishedRecipeConsumer, result.getRegistryName().getPath()+"_from_smelting");
-	}
-
-	private static void makeBlastingRecipe(Consumer<IFinishedRecipe> pFinishedRecipeConsumer, Item ore, Item result, float xp, int ticks) {
-		GENERATEDRECIPES.add(result.getRegistryName().getPath());
-		CookingRecipeBuilder.blasting(Ingredient.of(ore), result, xp, ticks)
-		.unlockedBy("has_"+ore.getRegistryName().getPath(), has(ore))
-		.save(pFinishedRecipeConsumer, result.getRegistryName().getPath()+"_from_blasting");
 	}
 
 	private void buildCookingRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -2312,7 +2359,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		for(RegistryObject<Block> block :ExtendedBlocks.ENTITYGROUPSPAWNERBLOCKS.values()) {
 			GENERATEDRECIPES.add(block.get().getRegistryName().getPath());
 		}
-		GENERATEDRECIPES.add(ExtendedItems.CORAL.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.PEARL.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.BLACK_FUR.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.GRAY_FUR.get().getRegistryName().getPath());
@@ -2423,6 +2469,12 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedBlocks.POTTED_EBONY_SAPLING.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.EBONY_LEAVES.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedBlocks.EBONY_SAPLING.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.STAFF_GANDALF_GRAY.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.STAFF_GANDALF_WHITE.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.GLAMDRING.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.ARNOR_SHIELD.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.COMBAT_TOME.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.ARTISAN_TOME.get().getRegistryName().getPath());
 	}
 
 	@Override

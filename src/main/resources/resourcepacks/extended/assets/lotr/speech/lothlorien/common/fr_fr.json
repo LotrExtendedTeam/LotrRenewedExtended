@@ -1,0 +1,246 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Le monde est en vérité plein de périls.",
+        "Quelles nouvelles apportez-vous, #p ?",
+        "Vers la mer, vers la mer !",
+        "J'aspire à la mer, #p.",
+        "Nos jours s'achèvent et nos années déclinent.",
+        "Navire gris, navire gris, les entendez-vous appeler ?",
+        "Gilthoniel ! Ô Elbereth !",
+        "Miruvor ! Il restaure le corps et purifie l'esprit.",
+        "Les jours se font froids et les années s'effacent.",
+        "L'appel de la mer dans mon coeur se fait toujours plus fort.",
+        "Bientôt... bientôt, je quitterai ces terres, #p.",
+        "Rarement avons-nous parlé aux Hommes depuis le changement du monde.",
+        "Une obscurité s'amasse sur ces terres. Je le sens dans ma chair.",
+        "La force des Elfes s'amenuise ici.",
+        "J'ai vu des années du soleil au-delà du compte des Hommes mortels.",
+        "Combien de temps dois-je encore m'attarder ici, #p ?",
+        "Ae Aerendil, angalef in-elin !",
+        "Ai, #p !",
+        "Ne cherchez pas les ennuis, #p — ils viendront à vous.",
+        "Nover.",
+        "Le monde a changé. Je le sens dans l'eau... je le sens dans la terre... je le hume dans l'air.",
+        "Les jours de notre peuple sont presque révolus.",
+        "Nos coeurs désirent contempler la terre d'Aman.",
+        "Bientôt, nous quitterons cette Terre du Milieu.",
+        "Les mouettes blanches appellent...",
+        "Entendez-vous les mouettes blanches appeler ?",
+        "L'Innommé est revenu. Nous ne pouvons rester longtemps en ces terres.",
+        "Ce qui a si longtemps résisté aux ténèbres pourrait bientôt tomber.",
+        "Nous devons partir vers l'Ouest, ou nous réduire à un peuple rustique de val et de caverne, oubliant lentement et lentement oubliés.",
+        "Ce qui doit être sera.",
+        "Nous préférerions abandonner tout ce que nous aimons plutôt que de nous soumettre à la volonté du Seigneur Ténébreux.",
+        "La rumeur croît d'une ombre à l'Est. Nous craignons que l'Innommé ne soit revenu.",
+        "La Mer nous appelle vers notre foyer.",
+        "Le temps des Elfes s'achève.",
+        "Mon peuple quitte ces rivages.",
+        "Certaines choses qui n'auraient pas dû être oubliées sont perdues.",
+        "Longues sont les vagues sur le Dernier Rivage déferlant.",
+        "Ô Lórien !",
+        "Une ombre s'élève à l'Est.",
+        "Bientôt toutes les terres seront emplies de désespoir et de chagrin, mais l'espoir demeure encore — tant que nous restons fidèles.",
+        "Notre temps en ce monde s'achève, mais il n'est pas encore révolu.",
+        "Le mal s'amasse de nouveau dans la forteresse de Dol Guldur. On ne peut le laisser menacer nos terres.",
+        "Le monde change, #p... je le sens dans mon coeur."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Quelles nouvelles apportez-vous aux Elfes du Bois d'Or ?",
+        "Ô Lórien ! Trop longtemps ai-je demeuré sur ce Rivage de Deçà.",
+        "Les chemins de la Lothlórien sont beaux et reposants.",
+        "Il est aisé de se perdre parmi notre peuple.",
+        "Nul mal n'entrera en Lórien.",
+        "Ce n'est pas en vain que tombent les feuilles de la Lórien.",
+        "Dans nos bois, le souvenir des Jours Anciens s'attarde encore.",
+        "Des Hommes tels que vous pénétraient souvent dans nos royaumes sylvestres aux Jours Anciens.",
+        "Notre amour pour cette terre est plus profond que les profondeurs de la Mer.",
+        "Les souvenirs d'antan s'attardent encore ici."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening | dusk"
+      },
+      "lines": [
+        "Ouest, ouest au loin, le soleil rond décline."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk | night | dawn",
+        "weather": "clear"
+      },
+      "lines": [
+        "Une étoile s'élève hors des ténèbres.",
+        "Salut, Eärendil, la plus brillante des étoiles !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest"
+      },
+      "lines": [
+        "Êtes-vous un Ami des Elfes, #p ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Salutations, voyageur venu de loin ! Quelles nouvelles nous apportez-vous des terres des Hommes ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Salutations, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Bienvenue en ma demeure, #p.",
+        "N'ayez crainte, #p. Nul mal ne peut pénétrer dans le Bois d'Or. Un pouvoir secret nous protège.",
+        "Bienvenue dans le royaume du Seigneur Celeborn, et de Galadriel, Dame de Lumière !",
+        "Que votre coeur ne soit point troublé, #p. En Lórien, vous pouvez reposer sans crainte du danger.",
+        "Bienvenue, #p, dans la terre du Seigneur Celeborn et de la Dame Galadriel !",
+        "En Lothlórien, vous trouverez guérison et paix. Nul mal ne peut souiller notre terre."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Buvez un peu de miruvor, #p, et toutes les douleurs de vos os s'en iront !",
+        "Vous ne pouvez vous dire véritable Ami des Elfes tant que vous n'avez pas goûté au lembas, #p.",
+        "Que les étoiles d'Elbereth vous guident !",
+        "Que les vents de Manwë vous montrent le chemin !",
+        "Une étoile brille sur l'heure de notre rencontre, #p.",
+        "Que le vent gonfle vos voiles !",
+        "Que les feuilles de votre arbre de vie ne brunissent jamais, #p !",
+        "Salut, Ami des Elfes !",
+        "Ai, elvellon !",
+        "Il semble que vous soyez un ami des Elfes, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Tu respires si fort que j'aurais pu t'abattre dans le noir.",
+        "Tu n'es point un Ami des Elfes, #p !",
+        "Va-t'en en Udûn !",
+        "Va donc embrasser un Orque !",
+        "Arrière, ennemi des Elfes !",
+        "Arrière, serviteur du mal !",
+        "Retourne à l'ombre d'où tu es venu !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Nul mal ne peut mettre le pied dans le Bois d'Or !",
+        "Tu ne peux entrer en Lórien.",
+        "#p, tu ne peux mettre le pied en Lothlórien !",
+        "Tu n'es pas le bienvenu sur nos terres.",
+        "Ta présence n'est pas la bienvenue ici.",
+        "L'Ennemi n'a aucune emprise sur la Lórien !",
+        "Nous ne souffrons aucun mal en Lothlórien !",
+        "Tu ne peux apporter le mal ici, #p !",
+        "Ton ombre n'empoisonnera pas nos bois bénis !",
+        "Qui nous apporte ce signe de malheur ?",
+        "Nous ne laisserons pas le mal pénétrer notre royaume. Pars maintenant ou affronte notre courroux !",
+        "Tu apportes un grand mal ici, #p. Tu ne peux aller plus loin.",
+        "Pars, #p, ou affronte la puissance de nos flèches !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy"
+      },
+      "lines": [
+        "Je savais que tu n'étais point ami de notre peuple !",
+        "Je savais qu'on ne pouvait te faire confiance, #p !",
+        "Tu es un Orque dans les vêtements d'un ami !",
+        "Je t'ai percé à jour dès le début, espion du Morgul !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home"
+      },
+      "lines": [
+        "Tu n'es plus le bienvenu sur notre terre !",
+        "Je désespère que nous t'ayons jamais abrité en Lórien !",
+        "Amèrement je regrette maintenant de t'avoir accueilli en Lórien !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "Nous autres Elfes sommes parmi les plus fins guerriers de toute la Terre du Milieu.",
+        "Il y a bien longtemps que les races des Hommes et des Elfes n'ont combattu côte à côte, #p.",
+        "Peu peuvent égaler les prouesses d'un Elfe au combat.",
+        "La vermine du Morgul périra par l'arc et la lame !",
+        "Vous avez notre allégeance, #p.",
+        "Je cherche à défendre tout ce qui est bon en ce monde.",
+        "Pour la Lothlórien !",
+        "Que les Valar nous protègent au combat, #p.",
+        "Les pièces d'argent signifient peu pour un Elfe, #p, mais nous combattons pour une cause commune.",
+        "Mon arc chantera avec votre épée, #p !",
+        "Les os de nos ennemis luiront sous le Soleil, #p.",
+        "Purifions ce monde de l'ignoble engeance du Mordor !",
+        "Les jours s'assombrissent et se font froids, mais la lumière des Elfes n'est pas encore éteinte !",
+        "Je crains que l'Innommé ne soit revenu. L'Ombre doit être détruite avant qu'il ne soit trop tard.",
+        "Au nom de tout ce qui est bon, purifions ce monde du mal !",
+        "Nous ne devons pas laisser le mal du Mordor se répandre !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own",
+        "biome": "#home"
+      },
+      "lines": [
+        "Nul mal ne peut pénétrer en Lórien sous notre garde."
+      ]
+    }
+  ]
+}

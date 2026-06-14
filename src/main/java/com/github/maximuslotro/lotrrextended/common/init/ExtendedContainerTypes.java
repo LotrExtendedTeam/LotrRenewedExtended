@@ -6,6 +6,7 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedBookshelfContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeContainer;
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCrucibleContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedGrindstoneContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentContainer;
@@ -35,6 +36,7 @@ public class ExtendedContainerTypes {
 	public static RegistryObject<ContainerType<ExtendedRepairContainerNew>> EXTENDED_ANVIL = register("repair", null, () -> IForgeContainerType.create(ExtendedRepairContainerNew::new));
 	public static RegistryObject<ContainerType<ExtendedSmithingTableContainer>> EXTENDED_SMITHING = register("smithing", null, () -> IForgeContainerType.create(ExtendedSmithingTableContainer::new));
 	public static RegistryObject<ContainerType<ExtendedGrindstoneContainer>> EXTENDED_GRINDSTONE = register("grindstone", null, () -> IForgeContainerType.create(ExtendedGrindstoneContainer::new));
+	public static RegistryObject<ContainerType<ExtendedCrucibleContainer>> CRUCIBLE = register("crucible", "Crucible", () -> IForgeContainerType.create(ExtendedCrucibleContainer::new));
 
 	private static <T extends Container> RegistryObject<ContainerType<T>> register(String name, String defaultName, Supplier<ContainerType<T>> sup) {
 		if(DatagenModLoader.isRunningDataGen() && defaultName!=null) {

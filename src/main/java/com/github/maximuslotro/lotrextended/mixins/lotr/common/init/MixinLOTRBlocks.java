@@ -422,10 +422,10 @@ public class MixinLOTRBlocks {
 	@Inject(method = "register()V", at = @At("HEAD"), remap=false)
 	private static void bootstrapExtendedBlocks(CallbackInfo ci) {
 		//ORE STORAGE
-		ExtendedBlocks.GALVORN_BLOCK = registerB("galvorn_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(4.0F, 8.0F).sound(SoundType.METAL), 2));
-		ExtendedBlocks.BLACK_URUK_STEEL_BLOCK = registerB("black_uruk_steel_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_BLUE).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
-		ExtendedBlocks.GILDED_IRON_BLOCK = registerB("gilded_iron_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
-		ExtendedBlocks.MORGUL_STEEL_BLOCK = registerB("morgul_steel_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
+		ExtendedBlocks.GALVORN_BLOCK = registerB("galvorn_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(4.0F, 8.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(2)));
+		ExtendedBlocks.BLACK_URUK_STEEL_BLOCK = registerB("black_uruk_steel_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.COLOR_BLUE).strength(4.0F, 6.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1)));
+		ExtendedBlocks.GILDED_IRON_BLOCK = registerB("gilded_iron_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).strength(4.0F, 6.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1)));
+		ExtendedBlocks.MORGUL_STEEL_BLOCK = registerB("morgul_steel_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1)));
 
 		//Wood Types
 		ExtendedBlocks.CHESTNUT_LOG = registerB("chestnut_log", () -> new StrippableLogBlock(MaterialColor.WOOD, MaterialColor.PODZOL, () -> ExtendedBlocks.STRIPPED_CHESTNUT_LOG.get()));
@@ -627,19 +627,20 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.WHITE_FUR_CARPET = registerB("white_fur_carpet", () -> new ExtendedWargCarpetBlock(ExtendedWargFurType.SILVER));
 
 		//GEM STORAGE
-		ExtendedBlocks.TOPAZ_BLOCK = registerB("topaz_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_ORANGE).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
-		ExtendedBlocks.AMETHYST_BLOCK = registerB("amethyst_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_PURPLE).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
-		ExtendedBlocks.SAPPHIRE_BLOCK = registerB("sapphire_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_BLUE).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
-		ExtendedBlocks.RUBY_BLOCK = registerB("ruby_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_RED).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
-		ExtendedBlocks.AMBER_BLOCK = registerB("amber_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_ORANGE).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
-		ExtendedBlocks.DIAMOND_BLOCK = registerB("diamond_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_LIGHT_BLUE).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
-		ExtendedBlocks.OPAL_BLOCK = registerB("opal_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.WOOL).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
-		ExtendedBlocks.EMERALD_BLOCK = registerB("emerald_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
-		ExtendedBlocks.CORAL_BLOCK = registerB("coral_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
-		ExtendedBlocks.PEARL_BLOCK = registerB("pearl_block", () -> new MineralBlock(Properties.of(Material.METAL, MaterialColor.WOOL).strength(4.0F, 6.0F).sound(SoundType.METAL), 1));
+		ExtendedBlocks.TOPAZ_BLOCK = registerB("topaz_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.COLOR_ORANGE).strength(4.0F, 6.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).harvestLevel(1)));
+		ExtendedBlocks.AMETHYST_BLOCK = registerB("amethyst_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.COLOR_PURPLE).strength(4.0F, 6.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).harvestLevel(1)));
+		ExtendedBlocks.SAPPHIRE_BLOCK = registerB("sapphire_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.COLOR_BLUE).strength(4.0F, 6.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).harvestLevel(1)));
+		ExtendedBlocks.RUBY_BLOCK = registerB("ruby_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.COLOR_RED).strength(4.0F, 6.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).harvestLevel(1)));
+		ExtendedBlocks.AMBER_BLOCK = registerB("amber_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.COLOR_ORANGE).strength(4.0F, 6.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).harvestLevel(1)));
+		ExtendedBlocks.DIAMOND_BLOCK = registerB("diamond_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.COLOR_LIGHT_BLUE).strength(4.0F, 6.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).harvestLevel(2)));
+		ExtendedBlocks.OPAL_BLOCK = registerB("opal_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.WOOL).strength(4.0F, 6.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).harvestLevel(1)));
+		ExtendedBlocks.EMERALD_BLOCK = registerB("emerald_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).harvestLevel(1)));
+		ExtendedBlocks.CORAL_BLOCK = registerB("coral_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GREEN).strength(4.0F, 6.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).harvestLevel(1)));
+		ExtendedBlocks.DEAD_CORAL_BLOCK = registerB("dead_coral_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.COLOR_LIGHT_GRAY).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(4.0F, 6.0F).sound(SoundType.METAL).harvestLevel(1)));
+		ExtendedBlocks.PEARL_BLOCK = registerB("pearl_block", () -> new ExtendedMaterialBlock(Properties.of(Material.METAL, MaterialColor.WOOL).strength(4.0F, 6.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).harvestLevel(1)));
 
 		//GEM ORES
-		ExtendedBlocks.METEORITE_ORE = registerB("meteorite", () -> new MineralBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestLevel(3).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(50.0F, 1200.0F), 3));
+		ExtendedBlocks.METEORITE_ORE = registerB("meteorite", () -> new ExtendedMaterialBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestLevel(3).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(50.0F, 1200.0F)));
 		ExtendedBlocks.AMBER_ORE = registerB("amber_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
 		ExtendedBlocks.TOPAZ_ORE = registerB("topaz_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
 		ExtendedBlocks.AMETHYST_ORE = registerB("amethyst_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
@@ -905,6 +906,10 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.GOBLIN_BRICK_WALL = registerB("goblin_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.GOBLIN_BRICK));
 		ExtendedBlocks.GOBLIN_PILLAR = registerB("goblin_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_GRAY));
 		ExtendedBlocks.GOBLIN_PILLAR_SLAB = registerB("goblin_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.GOBLIN_PILLAR));
+		
+		ExtendedBlocks.ORC_PLATING_WALL = registerB("orc_plating_wall", () -> new LOTRWallBlock(LOTRBlocks.ORC_PLATING));
+		ExtendedBlocks.RUSTED_ORC_PLATING_WALL = registerB("rusted_orc_plating_wall", () -> new LOTRWallBlock(LOTRBlocks.RUSTED_ORC_PLATING));
+
 		//Gondor
 		ExtendedBlocks.CARVED_BLACK_GONDOR_BRICK = registerB("black_carved_gondor_brick", () -> new ExtendedStoneBlock(LOTRBlocks.NUMENOREAN_BRICK));
 		ExtendedBlocks.CARVED_BLACK_UMBAR_BRICK = registerB("carved_black_umbar_brick", () -> new ExtendedStoneBlock(LOTRBlocks.NUMENOREAN_BRICK));
@@ -978,7 +983,7 @@ public class MixinLOTRBlocks {
 
 		ExtendedBlocks.CONQUEST_TABLE = registerB("conquest_table", () -> new ExtendedConquestTableBlock(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.5F)));
 		ExtendedBlocks.STONE_GRINDER = registerB("stone_grinder", () -> new ExtendedStoneGrinderBlock(Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(4.0f)));
-		ExtendedBlocks.CRUCIBLE = registerB("crucible", () -> new ExtendedCrucibleBlock(Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(4.0F, 6.0F)));
+		ExtendedBlocks.CRUCIBLE = registerB("crucible", () -> new ExtendedCrucibleBlock(Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(4.0F, 6.0F).lightLevel(ExtendedBlockParms.litBlockEmission(10))));
 
 		ExtendedBlocks.MORGUL_BRAZIER = registerB("morgul_brazier", () -> new ExtendedBrazierBlock(12));
 		ExtendedBlocks.MORGUL_CHANDELIER = registerB("morgul_chandelier", () -> new ExtendedChandelierBlock(ExtendedParticles.MORGUL_FLAME));

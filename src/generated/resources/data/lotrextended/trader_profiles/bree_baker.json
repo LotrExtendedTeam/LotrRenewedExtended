@@ -149,6 +149,13 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotr:butter",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "minecraft:bread",
         "averageCost": 5
       }

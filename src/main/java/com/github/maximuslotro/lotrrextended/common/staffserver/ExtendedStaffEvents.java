@@ -1,12 +1,19 @@
 package com.github.maximuslotro.lotrrextended.common.staffserver;
 
+
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSDataRequestPacket;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedWorldRegenEngineWatcher;
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.command.CommandSource;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
@@ -14,9 +21,54 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 public class ExtendedStaffEvents {
 
 	@SubscribeEvent
+	public static void onDimensionChange(PlayerEvent.PlayerChangedDimensionEvent event) {
+		if (!(event.getPlayer() instanceof ServerPlayerEntity)) return;
+		if (!ExtendedServerConfig.enableStaffServer.get()) return;
+		ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
+		ExtendedTravelTracker.handlePlayerDimChange(player, event.getTo());
+	}
+
+	private static int tickCounter = 0;
+
+	@SubscribeEvent
+	public static void onServerTick(TickEvent.ServerTickEvent event) {
+		if (event.phase != TickEvent.Phase.END && !ExtendedServerConfig.enableStaffServer.get()) {
+			return;
+		}
+		tickCounter++;
+		if (tickCounter < 20) {
+			return;
+		}
+		tickCounter = 0;
+		ExtendedTravelTracker.handleServerTravelTick();
+		ExtendedCombatTracker.handleServerTick();
+	}
+
+	@SubscribeEvent
+	public static void playerDeathEvent(LivingDeathEvent event) {
+		if(event.getEntityLiving() instanceof PlayerEntity) {
+			ExtendedCombatTracker.playerDeathEvent((PlayerEntity) event.getEntityLiving());
+		}
+	}
+
+	@SubscribeEvent
+	public static void playerDamagedEvent(LivingAttackEvent event) {
+		if(event.getEntityLiving() instanceof ServerPlayerEntity && event.getSource().getEntity() instanceof ServerPlayerEntity) {
+			ExtendedCombatTracker.playerDamagedEvent((ServerPlayerEntity)event.getEntityLiving(), (ServerPlayerEntity)event.getSource().getEntity());
+		}
+	}
+
+	@SubscribeEvent
 	public static void playerLoggedInEvent(PlayerEvent.PlayerLoggedInEvent event) {
+		if (ExtendedWorldRegenEngineWatcher.ACTIVE_ENGINE != null && !ExtendedWorldRegenEngineWatcher.ACTIVE_ENGINE.isFinished() 
+			&& !event.getPlayer().getUUID().equals(ExtendedWorldRegenEngineWatcher.ACTIVE_PLAYER)) {
+		    ((ServerPlayerEntity)event.getPlayer()).connection.disconnect(new StringTextComponent("Server pruning in progress"));
+		}
+		
 		if (event.getPlayer() instanceof ServerPlayerEntity && ExtendedServerConfig.enableStaffServer.get()) {
+			// Handle first to ensure data is loaded
 			ExtendedPlayerInfo.login(event.getPlayer().getUUID());
+			ExtendedCombatTracker.playerLoggedInEvent((ServerPlayerEntity) event.getPlayer());
 			ExtendedPacketHandler.sendToClient(ExtendedSDataRequestPacket.requestModListPacket(), (ServerPlayerEntity) event.getPlayer());
 		}
 	}
@@ -24,8 +76,10 @@ public class ExtendedStaffEvents {
 	@SubscribeEvent
 	public static void playerLoggedOutEvent(PlayerEvent.PlayerLoggedOutEvent event) {
 		if (event.getPlayer() instanceof ServerPlayerEntity && ExtendedServerConfig.enableStaffServer.get()) {
+			ExtendedCombatTracker.playerLoggedOutEvent((ServerPlayerEntity) event.getPlayer());
+			ExtendedModTracker.onPlayerLoggout(event.getPlayer().getUUID());
+			// Handle last to ensure data isn't lost
 			ExtendedPlayerInfo.logout(event.getPlayer().getUUID());
-			ExtendedSpecialConfig.onPlayerLoggout(event.getPlayer().getUUID());
 		}
 	}
 
@@ -34,5 +88,6 @@ public class ExtendedStaffEvents {
 		ExtendedSpawnCommand.register(dispatcher);
 		ExtendedModControlCommand.register(dispatcher);
 		ExtendedFirstLastSeenCommand.register(dispatcher);
+		ExtendedPruneWorldCommand.register(dispatcher);
 	}
 }

@@ -86,7 +86,7 @@ public class ExtendedStoneChestBlock extends ExtendedSingleChestBlock {
 	         if (tileentity instanceof ExtendedStoneChestTileEntity ) {
 	        	 ExtendedStoneChestTileEntity te = ((ExtendedStoneChestTileEntity)tileentity);
 	        	 // Since we haven't spawned a wight, and we are not empty assume player is trying to break chest
-	        	 if(!te.hasSpawnedWight() && !te.isEmpty()) {
+	        	 if(!te.hasSpawnedWight() && !te.isEmpty() && pLevel.getBiome(pPos).getRegistryName().toString().equals("lotr:barrow_downs")) {
 	        		 te.setHasSpawnedWight(spawnWightCursed(pLevel, pPos, null, true));
 	        	 }
 	         }
@@ -146,7 +146,7 @@ public class ExtendedStoneChestBlock extends ExtendedSingleChestBlock {
 			// Disable chest opening if wight was spawned
 			if (!spawned && inamedcontainerprovider != null) {
 				pPlayerEntity.openMenu(inamedcontainerprovider);
-				pPlayerEntity.awardStat(ExtendedStats.INTERACT_WITH_STONE_CHEST);
+				pPlayerEntity.awardStat(ExtendedStats.OPENED_STONE_CHEST);
 				PiglinTasks.angerNearbyPiglins(pPlayerEntity, true);
 			}
 			return ActionResultType.CONSUME;

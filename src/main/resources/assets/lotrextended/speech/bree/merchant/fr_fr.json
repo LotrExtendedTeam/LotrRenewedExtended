@@ -1,0 +1,97 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Vous trouverez pas de meilleures marchandises des Hommes de ce côté des Montagnes !",
+        "Je serais prêt à vous acheter des marchandises pour un prix équitable.",
+        "Besoin de provisions pour la route ?",
+        "Je vends les plus belles marchandises de Bree !",
+        "Puis-je vous tenter avec la plus fine Feuille du Sud ?",
+        "Vous êtes déjà allé à Bree ? Je peux vous donner un aperçu de ce qu'on a à offrir si vous avez quelques pièces.",
+        "J'apporte les plus belles marchandises de la Colline !",
+        "J'ai de nombreuses belles marchandises à échanger !",
+        "J'apporte les salutations et les vœux des Hommes de Bree !",
+        "Vous êtes venu commercer, #p ?",
+        "J'ai beaucoup de marchandises à vendre. Venez, venez vite !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Bonjour #p ! Vous voulez jeter un œil à mes marchandises ?",
+        "Salutations, #p ! Je viens du Pays de Bree.",
+        "Qu'aimeriez-vous acheter aujourd'hui, #p ?",
+        "#p ! Besoin de provisions pour la route ?",
+        "Bonjour #p ! J'ai voyagé loin pour vous trouver, vous voulez des marchandises de Bree pour vos voyages ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest"
+      },
+      "lines": [
+        "Bonjour #p ! Vous voulez jeter un œil à mes marchandises ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:shire | lotr:shire_moors | lotr:shire_forest"
+      },
+      "lines": [
+        "Vous êtes pas un de ces Semi-Hommes ! Peut-être que vous ferez plus confiance à mes marchandises que ces Petites Gens.",
+        "Faites pas confiance à ce que ces Petites Gens disent sur mes marchandises ! Mes prix sont justes, c'est eux qui marchandent dur.",
+        "Les Petites Gens d'ici n'aiment pas trop mon herbe à pipe, peut-être que vous aimeriez essayer de la Feuille du Sud ?",
+        "Les Petites Gens des colonies se soucient guère de nous autres Gens de Bree."
+      ]
+    },
+    {
+
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:lone_lands | lotr:eriador | lotr:hills_of_evendim | lotr:eriador_downs | lotr:lone_lands_hills | lotr:minhiriath | lotr:enedwaith"
+      },
+      "lines": [
+        "Faites pas confiance à ces Brigands qui traversent ces terres, y'en a un qui m'a vendu de fausses marchandises !",
+        "Si vous comptez voyager dans des terres aussi sauvages que celles-ci, vous devriez m'acheter des provisions !",
+        "Vous avez pas l'air d'être un de ces Brigands, vous voulez commercer ?",
+        "Un voleur m'a dérobé des pièces en passant par la Route Verte ! Vous me rendriez service en m'achetant quelque chose ?",
+        "J'fais pas confiance à ces Rôdeurs, mais ils paient correctement.",
+        "Ces terres sont sauvages, vous devriez commercer avec moi tant que vous en avez l'occasion.",
+        "On a des gens bizarres qui remontent du Sud, j'essaie de pas commercer avec eux.",
+        "J'peux pas rester trop longtemps dans ces terres, j'veux pas que des voleurs ou des Gobelins m'attrapent."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "J'commerce pas avec les Brigands !",
+        "J'ai intérêt à plus revoir votre tête près de Bree !",
+        "J'commerce pas avec les voleurs, partez !",
+        "Vous m'achèterez rien !",
+        "Partez ! Voleur !",
+        "Passez votre chemin, #p !",
+        "Je vous vendrai rien.",
+        "Filez ! Sinon j'vous cogne avec ça !",
+        "Les gardes vont vous courir après, #p !",
+        "Je m'fiche de combien d'argent vous avez, #p, vous m'achèterez rien !",
+        "J'traite pas avec les Brigands, #p !",
+        "J'espère qu'un de ces Rôdeurs vous attrapera !",
+        "Vous êtes pas un ami de Bree, #p !"
+      ]
+    }
+  ]
+}

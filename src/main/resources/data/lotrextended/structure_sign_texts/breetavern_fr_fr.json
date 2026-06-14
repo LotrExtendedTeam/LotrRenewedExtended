@@ -1,0 +1,77 @@
+{
+  "line0": {
+    "string": [
+      "~~~~~~~~~~~~"
+    ]
+  },
+  "line1": {
+    "string": [
+      "Fringant",
+      "Rapide",
+      "Lent",
+      "Gros",
+      "Petit",
+      "Grand",
+      "Modeste",
+      "Soigné",
+      "Abandonné",
+      "Bondissant",
+      "Beau",
+      "Fin",
+      "Vert",
+      "Éméché",
+      "Accueillant",
+      "Vieux",
+      "Jeune",
+      "Bon",
+      "Assoiffé",
+      "Joyeux",
+      "Vif",
+      "Lustré",
+      "Chaleureux",
+      "Furieux",
+      "Ardent",
+      "Ivre",
+      "Jovial"
+    ]
+  },
+  "line2": {
+    "string": [
+      "Poney",
+      "Taupe",
+      "Ivrogne",
+      "Dragon",
+      "Vache",
+      "Oiseau",
+      "Voyageur",
+      "Cochon",
+      "Canard",
+      "Tortue",
+      "Homme",
+      "Orque",
+      "Hobbit",
+      "Semi-Homme",
+      "Nain",
+      "Poupon",
+      "Aigle",
+      "Rôdeur",
+      "Fermier",
+      "Chope",
+      "Magicien",
+      "Cavalier",
+      "Peau-Verte",
+      "Brigand",
+      "Hors-la-loi",
+      "Suderon",
+      "Bandit",
+      "Loge",
+      "Taverne",
+      "Auberge"
+    ]
+  },
+  "line3": {
+    "string": [
+      "~~~~~~~~~~~~"
+    ]
+  }
+}

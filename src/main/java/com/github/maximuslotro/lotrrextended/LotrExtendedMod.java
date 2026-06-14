@@ -30,7 +30,7 @@ import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeTypes;
 import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSerializers;
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextProcessorManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
-import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedSpecialConfig;
+import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedServerData;
 import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedStaffEvents;
 import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
@@ -98,11 +98,11 @@ public class LotrExtendedMod{
 		ExtendedDataSerializers.register(modBus);
 		ExtendedServerConfig.register();
 		ExtendedStructuresV5.STRUCTURE_REGISTRY.register(modBus);
-		forgeBus.register(BannerEventHandlers.class);
-		DevEventHandlers.registerDevListender(modBus, forgeBus);
+		forgeBus.register(ExtendedBannerEventHandlers.class);
+		ExtendedDevServerEventHandlers.registerDevListender(modBus, forgeBus);
 		forgeBus.register(ExtendedServerModifierEventHandlers.class);
-		forgeBus.register(ForgeInventoryEvents.class);
-		forgeBus.register(WorldEventHandlers.class);
+		forgeBus.register(ExtendedForgeInventoryEvents.class);
+		forgeBus.register(ExtendedWorldEventHandlers.class);
 		ExtendedTapestryType.register(modBus);
 		ExtendedBlockStateProviderTypes.register(modBus);
 		ExtendedAttributes.register(modBus);
@@ -177,9 +177,10 @@ public class LotrExtendedMod{
 
 	public void extendedServerStarting(FMLServerStartingEvent event) {
 		if(ExtendedServerConfig.enableStaffServer.get()) {
-			ExtendedSpecialConfig.loadAll();
+			ExtendedServerData.loadAll();
 			MinecraftForge.EVENT_BUS.register(ExtendedStaffEvents.class);
 		}
+		startVersionChecks();
 	}
 
 	public void extendedServerStarted(FMLServerStartedEvent event) {
@@ -190,5 +191,19 @@ public class LotrExtendedMod{
 
 	public void extendedServerStopping(FMLServerStoppingEvent event) {
 		hackyChairManager.handleServerStopping();
+	}
+
+	public void startVersionChecks() {
+		String lastVersion = ExtendedServerConfig.lastWorldBootVersion.get();
+		String currentVersion = ModList.get().getModContainerById(LotrExtendedMod.MODID).get().getModInfo().getVersion().toString();
+		if(!lastVersion.equals(currentVersion)) {
+			ExtendedServerConfig.lastWorldBootVersion.set(currentVersion);
+			//Handle config updates for version changes
+			ExtendedLog.info("Updating Extended values for "+currentVersion);
+			// Update for 1.10.2
+			if(lastVersion.equals("null")) {
+				ExtendedServerConfig.gateToggleLength.set(24);
+			}
+		}
 	}
 }

@@ -47,14 +47,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_sword"
@@ -68,14 +68,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_spear"
@@ -89,14 +89,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_dagger"
@@ -110,14 +110,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_boots"
@@ -131,14 +131,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_throwing_axe"
@@ -152,14 +152,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_mattock"
@@ -173,14 +173,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_helmet"
@@ -194,14 +194,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_chestplate"
@@ -215,14 +215,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_leggings"
@@ -236,14 +236,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_boots"
@@ -257,14 +257,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:blue_dwarven_shield"
@@ -323,6 +323,27 @@
             }
           ],
           "name": "lotr:dwarven_marriage_ring"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:artisan_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:combat_tome"
         },
         {
           "type": "minecraft:item",

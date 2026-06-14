@@ -1,0 +1,16 @@
+{
+  "id": "lotrextended:dunlending_warlord",
+  "spawner_type": "single_use_spawner",
+  "setHomeOnSpawn": true,
+  "homeRadius": 6,
+  "persistenceRequired": true,
+  "shouldRespawnOnDeath": true,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 1,
+      "entity_type": "lotr:dunlending_warlord"
+    }
+  ]
+}

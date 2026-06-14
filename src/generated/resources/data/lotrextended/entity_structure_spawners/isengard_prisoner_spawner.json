@@ -1,0 +1,51 @@
+{
+  "id": "lotrextended:isengard_prisoner_spawner",
+  "spawner_type": "single_use_spawner",
+  "persistenceRequired": true,
+  "randomDiscardChance": 30,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 1,
+      "entity_types": [
+        {
+          "weight": 10,
+          "entity_type": "lotr:hobbit"
+        },
+        {
+          "weight": 10,
+          "entity_type": "lotr:bree_hobbit"
+        },
+        {
+          "weight": 20,
+          "entity_type": "lotr:bree_man"
+        },
+        {
+          "weight": 40,
+          "entity_type": "lotr:dunedain_ranger"
+        },
+        {
+          "weight": 10,
+          "entity_type": "lotr:blue_mountains_dwarf"
+        },
+        {
+          "weight": 10,
+          "entity_type": "lotr:lindon_elf"
+        },
+        {
+          "weight": 20,
+          "entity_type": "lotr:rivendell_elf"
+        },
+        {
+          "weight": 80,
+          "entity_type": "lotr:rohan_man"
+        },
+        {
+          "weight": 60,
+          "entity_type": "lotr:gondor_man"
+        }
+      ]
+    }
+  ]
+}

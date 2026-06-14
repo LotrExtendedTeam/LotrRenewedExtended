@@ -1,0 +1,131 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "La mer m'appelle chez moi, mais j'apprécie les pièces d'argent autant que tout autre marchand.",
+        "Je suis un Haut Elfe du peuple du Seigneur Elrond.",
+        "Je quitterai bientôt ces rivages.",
+        "Je viens d'Imladris, et j'apporte avec moi de nombreux dons et trésors !",
+        "Vous n'avez pas vu la beauté tant que vous n'avez pas contemplé la vallée d'Imladris !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<warrior | >=friend"
+      },
+      "lines": [
+        "Vous avez beaucoup fait pour mon peuple #p, mais il reste encore du travail à accomplir avant d'avoir notre confiance.",
+        "Vous avez un cœur loyal #p, mais vous avez encore beaucoup à prouver aux Eldar avant de pouvoir commercer avec moi."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=warrior"
+      },
+      "lines": [
+        "Salutations de la terre d'Imladris !",
+        "Les trésors de Fondcombe peuvent s'acheter contre des pièces d'argent.",
+        "Si vous désirez de l'artisanat elfique, je pourrais échanger quelque chose contre des pièces d'argent.",
+        "Souhaitez-vous commercer ?",
+        "Salutations. Peut-être avez-vous quelque chose à échanger ?",
+        "Je vous apporte l'artisanat des Elfes de Fondcombe !",
+        "Mae govannen ! Souhaitez-vous commercer avec moi ?",
+        "J'ai voyagé au loin... et maintenant je viens à vous ! J'ai de nombreux trésors qui vous intéresseront."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=herald"
+      },
+      "lines": [
+        "Salutations, Ami des Elfes ! Puis-je vous intéresser à quelques marchandises et trésors ?",
+        "Mae govannen elendil ! Aimeriez-vous parcourir les plus fines marchandises elfiques ?",
+        "Mae govannen, mellyn nín ! Souhaitez-vous commercer avec moi ?",
+        "Salutations de la terre d'Imladris, #p !",
+        "Vous n'avez pas vu la beauté tant que vous n'avez pas contemplé la vallée d'Imladris, #p !",
+        "J'ai voyagé au loin... et maintenant je viens à vous ! J'ai de nombreux trésors qui vous intéresseront, #p.",
+        "Souhaitez-vous commercer, #p ?",
+        "Mae govannen, #p ! Souhaitez-vous commercer avec moi ?",
+        "Salutations, #p. Peut-être avez-vous quelque chose à échanger ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=noble"
+      },
+      "lines": [
+        "Mae govannen, i-mellyn nín ! Aimeriez-vous commercer ?",
+        "Mae govannen, i-arben nín !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Mae govannen, Hîril-in-Gelydh !",
+        "Aï ! Hîril-in-Gelydh !",
+        "Aï ! Suilad i-chîril nín !",
+        "Salutations, ma dame ! Quel beau jour de vous voir ici ! Aimeriez-vous commercer pour quelques fines marchandises elfiques ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Mae govannen, Hîr-in-Gelydh !",
+        "Aï ! Hîr-in-Gelydh !",
+        "Aï ! Suilad i-chîr nín !",
+        "Salutations, mon seigneur ! Quel beau jour de vous voir ici ! Aimeriez-vous commercer pour quelques fines marchandises elfiques ?"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "Vous n'êtes pas le bienvenu parmi les Elfes, #p.",
+        "Le Seigneur Elrond n'est pas de vos amis.",
+        "Ceux tels que moi ne tiennent pas ceux tels que vous en haute estime.",
+        "Vous n'êtes pas un ami des Eldar ; cela se voit clairement.",
+        "Si vous mettiez le pied à Imladris, je vous garantis que vous le regretteriez, #p.",
+        "Vous êtes au service de l'Ennemi !",
+        "Je ne partage ni argent ni artisanat des Elfes avec les gens de votre espèce.",
+        "Partez, serviteur du mal !",
+        "Je préférerais mourir que de vous donner quoi que ce soit de mes marchandises !",
+        "Nulle main malfaisante ne peut toucher les précieux objets que je transporte !",
+        "Mon peuple préférerait périr que de s'allier aux serviteurs du Sans-Nom !",
+        "Retournez dans l'ombre d'où vous êtes venu !",
+        "Vous n'êtes pas le bienvenu en nos terres.",
+        "Vous n'êtes pas un Ami des Elfes, #p !",
+        "À Udûn avec vous !",
+        "Allez embrasser un Orque !",
+        "Qui nous apporte ce signe de malheur ?",
+        "Partez, serviteur du mal !",
+        "Retournez dans l'ombre d'où vous êtes venu !",
+        "Nous ne permettrons pas au mal d'entrer dans notre royaume. Partez maintenant ou affrontez notre courroux !",
+        "Lacho calad ! Drego morn !",
+        "Naur an edraith ammen !",
+        "Aglar'ni in Ellath !",
+        "A tiro nin, Fanuilos !",
+        "Gurth an Glamhoth !"
+      ]
+    }
+  ]
+}

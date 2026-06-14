@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedChimneyTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedCrucibleTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedGrassVoidTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedHoistTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedLargePotTileEntity;
@@ -62,5 +63,6 @@ public class ExtendedTileEntities {
 	public static RegistryObject<TileEntityType<ExtendedLargePotTileEntity>> LARGE_POT;
 	public static RegistryObject<TileEntityType<ExtendedChimneyTileEntity>> CHIMNEY_POT;
 	public static RegistryObject<TileEntityType<ExtendedHighElvenBedTileEntity>> HIGH_ELVEN_BED;
+	public static RegistryObject<TileEntityType<ExtendedCrucibleTileEntity>> CRUCIBLE;
 }
 

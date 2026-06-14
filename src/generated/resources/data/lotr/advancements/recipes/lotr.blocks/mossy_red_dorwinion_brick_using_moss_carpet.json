@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:mossy_red_dorwinion_brick_using_moss_carpet"
+    ]
+  },
+  "criteria": {
+    "has_red_dorwinion_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:red_dorwinion_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:mossy_red_dorwinion_brick_using_moss_carpet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_red_dorwinion_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

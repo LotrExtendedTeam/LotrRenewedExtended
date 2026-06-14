@@ -338,6 +338,13 @@
         "averageCost": 35,
         "nbt": "{Damage:0}"
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:butter",
+        "averageCost": 15
+      }
     }
   ]
 }

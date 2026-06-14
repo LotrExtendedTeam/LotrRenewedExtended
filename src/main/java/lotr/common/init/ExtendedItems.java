@@ -213,6 +213,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> EMERALD_BLOCK;
 	public static RegistryObject<Item> PEARL_BLOCK;
 	public static RegistryObject<Item> CORAL_BLOCK;
+	public static RegistryObject<Item> DEAD_CORAL_BLOCK;
 	public static RegistryObject<Item> TOPAZ;
 	public static RegistryObject<Item> AMETHYST;
 	public static RegistryObject<Item> SAPPHIRE;
@@ -223,6 +224,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> EMERALD;
 	public static RegistryObject<Item> PEARL;
 	public static RegistryObject<Item> CORAL;
+	public static RegistryObject<Item> DEAD_CORAL;
 	public static RegistryObject<Item> ORC_STEEL_NUGGET;
 	public static RegistryObject<Item> REMAINS_ORC;
 	public static RegistryObject<Item> REMAINS_ELF;
@@ -704,6 +706,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> IMLADRIS_GUARD_SHIELD;
 	public static RegistryObject<Item> LINDON_SHIELD;
 	public static RegistryObject<Item> EREGION_SHIELD;
+	public static RegistryObject<Item> URUK_SHIELD;
+	public static RegistryObject<Item> DUNLANDING_SHIELD;
+	public static RegistryObject<Item> ARNOR_SHIELD;
 
 	public static RegistryObject<Item> BOWSTRING;
 	public static RegistryObject<Item> GUNDABAD_URUK_BOW;
@@ -717,6 +722,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BARROW_BLADE;
 	public static RegistryObject<Item> ANDURIL;
 	public static RegistryObject<Item> SHARDS_OF_NARSIL;
+	public static RegistryObject<Item> GLAMDRING;
+	public static RegistryObject<Item> STAFF_GANDALF_WHITE;
+	public static RegistryObject<Item> STAFF_GANDALF_GRAY;
 
 	public static RegistryObject<Item> GUNDABAD_ORC_BANNER_PATTERN;
 	public static RegistryObject<Item> GUNDABAD_ORC_BANNER;
@@ -805,6 +813,8 @@ public class ExtendedItems {
 	public static RegistryObject<Item> CRACKED_STONE_PILLAR_SLAB;
 	
 	public static RegistryObject<Item> MODIFIER_SCROLL;
+	public static RegistryObject<Item> COMBAT_TOME;
+	public static RegistryObject<Item> ARTISAN_TOME;
 
 	public static RegistryObject<Item> TAPESTRY;
 
@@ -837,8 +847,16 @@ public class ExtendedItems {
 	public static RegistryObject<Item> ANGMAR_WARG_ARMOR;
 	public static RegistryObject<Item> ISENGARD_WARG_ARMOR;
 	public static RegistryObject<Item> MORDOR_WARG_ARMOR;
+	public static RegistryObject<Item> GUNDABAD_WARG_ARMOR;
 
 	public static RegistryObject<Item> NUMENOREAN_BARS;
 	public static RegistryObject<Item> NUMENOREAN_LANTERN;
 
+	public static RegistryObject<Item> BRONZE_CROSSBOW;
+	public static RegistryObject<Item> IRON_CROSSBOW;
+	public static RegistryObject<Item> URUK_CROSSBOW;
+	public static RegistryObject<Item> MITHRIL_CROSSBOW;
+
+	public static RegistryObject<Item> ORC_PLATING_WALL;
+	public static RegistryObject<Item> RUSTED_ORC_PLATING_WALL;
 }

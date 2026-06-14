@@ -67,20 +67,6 @@ public class ExtendedMillingRecipeBuilder {
 		return new ExtendedMillingRecipeBuilder(result, countMin, countMax, ingredient, breakChance, xp, time, serializer);
 	}
 
-	public void save(Consumer<IFinishedRecipe> p_218630_1_) {
-		this.save(p_218630_1_, ForgeRegistries.ITEMS.getKey(this.result));
-	}
-
-	public void save(Consumer<IFinishedRecipe> p_218632_1_, String p_218632_2_) {
-		ResourceLocation resourcelocation = ForgeRegistries.ITEMS.getKey(this.result);
-		ResourceLocation resourcelocation1 = new ResourceLocation(p_218632_2_);
-		if (resourcelocation1.equals(resourcelocation)) {
-			throw new IllegalStateException("Recipe " + resourcelocation1 + " should remove its 'save' argument");
-		} else {
-			this.save(p_218632_1_, resourcelocation1);
-		}
-	}
-
 	public void save(Consumer<IFinishedRecipe> p_218635_1_, ResourceLocation outputLocation) {
 		this.ensureValid(outputLocation);
 		p_218635_1_.accept(new ExtendedMillingRecipeBuilder.Result(outputLocation, this.group == null ? "" : this.group, this.ingredient, this.result, this.countMin, this.countMax, this.breakChance, this.experience, this.grindingTime, this.serializer));

@@ -105,7 +105,7 @@ public class ExtendeStoneGrinderRecipe implements IRecipe<IInventory> {
 
 	@Override
 	public IRecipeType<?> getType() {
-		return ExtendedRecipeTypes.MILLSTONE;
+		return ExtendedRecipeTypes.STONE_GRINDER;
 	}
 
 	@Override

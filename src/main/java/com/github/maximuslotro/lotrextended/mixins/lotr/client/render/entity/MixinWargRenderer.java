@@ -1,6 +1,9 @@
 package com.github.maximuslotro.lotrextended.mixins.lotr.client.render.entity;
 
 import com.github.maximuslotro.lotrrextended.client.render.entity.layers.ExtendedWargArmorLayer;
+import com.github.maximuslotro.lotrrextended.client.render.entity.layers.ExtendedWargArmorStrapLayer;
+import com.github.maximuslotro.lotrrextended.client.render.entity.layers.ExtendedWargEyesLayer;
+import com.github.maximuslotro.lotrrextended.client.render.entity.layers.ExtendedWargSaddleLayer;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -8,8 +11,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import lotr.client.render.entity.WargRenderer;
-import lotr.client.render.entity.layers.ExtendedWargEyesLayer;
-import lotr.client.render.entity.layers.ExtendedWargSaddleLayer;
 import lotr.client.render.entity.model.WargModel;
 import lotr.common.entity.npc.WargEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -27,5 +28,6 @@ public abstract class MixinWargRenderer extends MobRenderer<WargEntity, WargMode
 		this.addLayer(new ExtendedWargEyesLayer<>((WargRenderer)(Object)this));
 		this.addLayer(new ExtendedWargSaddleLayer((WargRenderer)(Object)this));
 		this.addLayer(new ExtendedWargArmorLayer((WargRenderer)(Object)this));
+		this.addLayer(new ExtendedWargArmorStrapLayer((WargRenderer)(Object)this));
 	}
 }

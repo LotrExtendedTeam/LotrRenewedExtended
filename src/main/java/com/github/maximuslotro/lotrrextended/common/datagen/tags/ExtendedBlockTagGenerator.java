@@ -215,14 +215,15 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.add(Blocks.STONE_SLAB).add(Blocks.GRANITE_SLAB).add(Blocks.DIORITE_SLAB).add(Blocks.ANDESITE_SLAB)
 		.add(LOTRBlocks.BLUE_ROCK_SLAB.get()).add(LOTRBlocks.GONDOR_ROCK_SLAB.get()).add(LOTRBlocks.MORDOR_ROCK_SLAB.get())
 		.add(LOTRBlocks.RED_ROCK_SLAB.get()).add(LOTRBlocks.ROHAN_ROCK_SLAB.get())
-		.add(LOTRBlocks.STONE_VERTICAL_SLAB.get()).add(LOTRBlocks.GRANITE_VERTICAL_SLAB.get()).add(LOTRBlocks.DIORITE_VERTICAL_SLAB.get()).add(LOTRBlocks.ANDESITE_VERTICAL_SLAB.get());
+		.add(LOTRBlocks.STONE_VERTICAL_SLAB.get()).add(LOTRBlocks.GRANITE_VERTICAL_SLAB.get()).add(LOTRBlocks.DIORITE_VERTICAL_SLAB.get())
+		.add(LOTRBlocks.ANDESITE_VERTICAL_SLAB.get());
 
 		tag(ExtendedTags.Blocks.BASE_STONE_STAIRS_MIDDLE_EARTH)
 		.add(Blocks.STONE_STAIRS).add(Blocks.GRANITE_STAIRS).add(Blocks.DIORITE_STAIRS).add(Blocks.ANDESITE_STAIRS)
 		.add(LOTRBlocks.BLUE_ROCK_STAIRS.get()).add(LOTRBlocks.GONDOR_ROCK_STAIRS.get()).add(LOTRBlocks.MORDOR_ROCK_STAIRS.get())
 		.add(LOTRBlocks.RED_ROCK_STAIRS.get()).add(LOTRBlocks.ROHAN_ROCK_STAIRS.get());
 
-		tag(BlockTags.INFINIBURN_OVERWORLD).add(ExtendedBlocks.WASTE_BLOCK.get());
+		tag(BlockTags.INFINIBURN_OVERWORLD).add(ExtendedBlocks.WASTE_BLOCK.get()).add(ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK.get());
 
 		tag(BlockTags.SOUL_SPEED_BLOCKS).add(ExtendedBlocks.WASTE_BLOCK.get());
 
@@ -233,6 +234,9 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		tag(Tags.Blocks.DIRT).add(ExtendedBlocks.MOSS_BLOCK.get()).add(ExtendedBlocks.MUD.get()).add(ExtendedBlocks.MUD_GRASS.get())
 		.add(ExtendedBlocks.BARREN_DIRT.get()).addTag(ExtendedTags.Blocks.REMAINS_ORE).add(ExtendedBlocks.WASTE_BLOCK.get());
 
+		tag(ExtendedTags.Blocks.MIDDLE_EARTH_PLACEABLE_SURFACE).addTag(ExtendedTags.Blocks.BASE_STONE_MIDDLE_EARTH).add(Blocks.GRASS_BLOCK).add(Blocks.GRASS_PATH)
+		.add(ExtendedBlocks.MUD.get()).add(ExtendedBlocks.MUD_GRASS.get()).add(Blocks.DIRT).add(Blocks.COARSE_DIRT);
+
 		tag(BlockTags.LOGS_THAT_BURN).addTag(ExtendedTags.Blocks.CHESTNUT_LOGS).addTag(ExtendedTags.Blocks.BANANA_LOGS).addTag(ExtendedTags.Blocks.PLUM_LOGS)
 		.addTag(ExtendedTags.Blocks.WILLOW_LOGS).addTag(ExtendedTags.Blocks.EBONY_LOGS);
 
@@ -240,9 +244,12 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.add(ExtendedBlocks.MUD_GRASS.get()).add(ExtendedBlocks.WASTE_BLOCK.get());
 
 		tag(BlockTags.BAMBOO_PLANTABLE_ON).add(ExtendedBlocks.MOSS_BLOCK.get()).add(ExtendedBlocks.MUD.get()).add(ExtendedBlocks.MUD_GRASS.get())
-		.addTag(ExtendedTags.Blocks.REMAINS_ORE);
+		.addTag(ExtendedTags.Blocks.REMAINS_ORE).add(ExtendedBlocks.WASTE_BLOCK.get());
 
 		for(Entry<ResourceLocation, Supplier<? extends Block>> blo : ((FlowerPotBlock)Blocks.FLOWER_POT).getFullPotsView().entrySet()) {
+			if(blo.getKey().getNamespace().equals("lotrfa")) {
+				continue;
+			}
 			tag(ExtendedTags.Blocks.LARGE_FLOWER_POT_COMPATABLE).add(blo.getValue().get());
 		}
 
@@ -265,6 +272,7 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD).add(ExtendedBlocks.EMERALD_BLOCK.get());
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL).add(ExtendedBlocks.PEARL_BLOCK.get());
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_CORAL).add(ExtendedBlocks.CORAL_BLOCK.get());
+		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_DEAD_CORAL).add(ExtendedBlocks.DEAD_CORAL_BLOCK.get());
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_DURNOR).add(LOTRBlocks.DURNOR_BLOCK.get());
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_EDHELVIR).add(LOTRBlocks.EDHELVIR_BLOCK.get());
 		tag(ExtendedTags.Blocks.STORAGE_BLOCKS_GULDURIL).add(LOTRBlocks.GULDURIL_BLOCK.get());
@@ -275,8 +283,7 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMETHYST).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_SAPPHIRE)
 		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_RUBY) .addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_AMBER)
 		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_DIAMOND).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_OPAL)
-		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL)
-		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_CORAL);
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL);
 
 		tag(Tags.Blocks.STORAGE_BLOCKS)
 		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GALVORN).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_BLACK_URUK_STEEL)
@@ -289,7 +296,7 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_OPAL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_EMERALD)
 		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_PEARL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_CORAL)
 		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_DURNOR).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_EDHELVIR)
-		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GULDURIL);
+		.addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_GULDURIL).addTag(ExtendedTags.Blocks.STORAGE_BLOCKS_DEAD_CORAL);
 
 		tag(BlockTags.FIRE).add(ExtendedBlocks.GREEN_FIRE_BLOCK.get());
 		tag(ExtendedTags.Blocks.GREEN_FIRE_BASE_BLOCKS).add(ExtendedBlocks.GREEN_FLAME_HEARTH_BLOCK.get());

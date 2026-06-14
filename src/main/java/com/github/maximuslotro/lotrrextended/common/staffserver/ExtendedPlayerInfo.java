@@ -29,7 +29,6 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 public class ExtendedPlayerInfo {
 	private static final File profileFolder = new File(ServerLifecycleHooks.getCurrentServer().getServerDirectory(), "world/lotrextended/playerdata");
 	private static final Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(InstantTypeAdapter.class, new InstantTypeAdapter()).create();
-
 	private static HashMap<UUID, ExtendedPlayerInfo> cachedPlayerInfo = new HashMap<>();
 
 	private final UUID id;
@@ -37,6 +36,10 @@ public class ExtendedPlayerInfo {
 	private Instant firstLogin = Instant.now();
 
 	private Instant lastLogout;
+
+	private boolean combatLoggedLastSession = false;
+
+	private boolean jailed = false;
 
 	private ExtendedPlayerInfo(UUID uuid) {
 		this.id = uuid;
@@ -48,6 +51,26 @@ public class ExtendedPlayerInfo {
 
 	public Instant getLastLogout() {
 		return lastLogout;
+	}
+
+	public void setCombatLogged(boolean value) {
+		this.combatLoggedLastSession = value;
+	}
+
+	public boolean didCombatLog() {
+		return combatLoggedLastSession;
+	}
+
+	public void clearCombatLogFlag() {
+		this.combatLoggedLastSession = false;
+	}
+
+	public void sendToJail(boolean jail) {
+		jailed = jail;
+	}
+
+	public boolean isInJail() {
+		return jailed;
 	}
 
 	public static boolean doesPlayerInfoExist(@Nullable UUID id) {
@@ -77,8 +100,8 @@ public class ExtendedPlayerInfo {
 		}
 		// Catch gson also returning a null value
 		if (info == null) {
-	        info = new ExtendedPlayerInfo(id);
-	    }
+			info = new ExtendedPlayerInfo(id);
+		}
 		cachedPlayerInfo.put(id, info);
 		return info;
 	}
@@ -108,13 +131,10 @@ public class ExtendedPlayerInfo {
 	}
 
 	public static void logout(UUID uuid) {
-	    ExtendedPlayerInfo info = cachedPlayerInfo.get(uuid);
-	    if (info == null) {
-	        info = getPlayerInfo(uuid); // ensures non-null and caches it
-	    }
-	    cachedPlayerInfo.remove(uuid); // safe now
+		ExtendedPlayerInfo info = getPlayerInfo(uuid);
 		info.lastLogout = Instant.now();
 		info.savePlayerInfo();
+		cachedPlayerInfo.remove(uuid); // Remove from map for memory saving purposes
 	}
 
 	public static File getProfileFile(@Nonnull UUID id) {

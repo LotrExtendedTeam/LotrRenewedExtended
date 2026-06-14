@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:item/iron_crossbow",
+  "textures": {
+    "layer0": "lotrextended:item/iron_crossbow_arrow"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:blue_mountains",
+  "ingredients": [
+    {
+      "item": "lotr:blue_brick"
+    },
+    {
+      "item": "lotr:moss_carpet"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_blue_brick"
+  }
+}

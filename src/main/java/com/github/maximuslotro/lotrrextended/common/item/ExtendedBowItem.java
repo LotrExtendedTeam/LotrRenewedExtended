@@ -123,9 +123,6 @@ public class ExtendedBowItem extends BowItem {
 		return (int) Math.ceil(15 * bowMaterial.getAttackDamageBonusScale());
 	}
 
-	/**
-	 * Return the enchantability factor of the item, most of the time is based on material.
-	 */
 	 @Override
 	 public int getEnchantmentValue() {
 		return this.bowMaterial.getEnchantabilityValue();
