@@ -56,6 +56,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -356,6 +357,9 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 				this.openInventory(pPlayer);
 				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
+		}
+		if(pPlayer.getItemInHand(Hand.OFF_HAND).getItem().getUseAnimation(pPlayer.getItemInHand(pHand))==UseAction.BLOCK) {
+			return ActionResultType.PASS;
 		}
 		if(hasAlignment) {
 			this.doPlayerRide(pPlayer);
