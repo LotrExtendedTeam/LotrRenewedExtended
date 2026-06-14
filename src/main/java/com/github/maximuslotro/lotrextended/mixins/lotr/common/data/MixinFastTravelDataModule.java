@@ -2,10 +2,11 @@ package com.github.maximuslotro.lotrextended.mixins.lotr.common.data;
 
 import java.util.*;
 
-import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -161,9 +162,9 @@ public abstract class MixinFastTravelDataModule extends PlayerDataModule {
 		double spacing = 0.8;
 
 		for (MobEntity entity : entitiesToTransport) {
-			Entity mount = entity.getVehicle();
+			Entity entityMount = entity.getVehicle();
 			entity.stopRiding();
-
+			// Extended Start
 			int ring = (int) Math.floor(Math.sqrt(i));
 			int indexInRing = i - ring * ring;
 			int pointsInRing = ring * 6 + 1;
@@ -171,19 +172,33 @@ public abstract class MixinFastTravelDataModule extends PlayerDataModule {
 			double angle = (2 * Math.PI * indexInRing) / pointsInRing;
 			double radius = baseRadius + ring * spacing;
 
-			double x = travelPos.getX() + 0.5 + Math.cos(angle) * radius;
-			double z = travelPos.getZ() + 0.5 + Math.sin(angle) * radius;
+			double x = travelPos.getX() + 0.5D + Math.cos(angle) * radius;
+			double z = travelPos.getZ() + 0.5D + Math.sin(angle) * radius;
 
-			int y = world.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MathHelper.floor(x), MathHelper.floor(z));
-
+			// Zero mean no point found
+			int y = 0;
+			// Try finding safe 
+			BlockPos.Mutable pos = new BlockPos.Mutable(MathHelper.floor(x), travelPos.getY(), MathHelper.floor(z));
+			for (int dy = -1; dy <= 3; dy++) {
+				pos.setY(travelPos.getY() + dy);
+				if (isSafe(world, pos)) {
+					y = pos.getY();
+					break;
+				}
+			}
+			// Fallback to player position if no good location is found at chosen point
+			if(y==0) {
+				x = travelPos.getX() + 0.5D;
+				y = travelPos.getY();
+				z = travelPos.getZ() + 0.5D;
+			}
 			entity = fastTravelEntity(world, entity, x, y, z);
-
-			if (mount instanceof MobEntity) {
-				int my = world.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MathHelper.floor(x), MathHelper.floor(z));
-				mount = fastTravelEntity(world, (MobEntity) mount, x, my, z);
-				entity.startRiding(mount);
+			if (entityMount instanceof MobEntity) {
+				entityMount = fastTravelEntity(world, (MobEntity) entityMount, x, y, z);
+				entity.startRiding(entityMount);
 			}
 			i++;
+			// Extended End
 		}
 		sendFTScreenPacket(player, waypoint, startX, startZ);
 		setTimeSinceFTWithUpdate(0);
@@ -201,6 +216,10 @@ public abstract class MixinFastTravelDataModule extends PlayerDataModule {
 		// Extended End
 	}
 
+	@Unique
+	private boolean isSafe(World world, BlockPos pos) {
+		return world.isEmptyBlock(pos) && world.isEmptyBlock(pos.above()) && !world.getBlockState(pos.below()).isAir();
+	}
 	/**
 	 * @reason Need to add fast travel waypoint type rules
 	 * @author maximuslotro
