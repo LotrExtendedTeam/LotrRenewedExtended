@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.config;
 
 import com.github.maximuslotro.lotrextended.mixinhelpers.MixinConstants;
-import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedClientOptionsScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.settings.ExtendedClientOptionsScreen;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;

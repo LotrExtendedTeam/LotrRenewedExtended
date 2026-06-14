@@ -8,8 +8,8 @@ import com.github.maximuslotro.lotrextended.mixins.lotr.common.entity.npc.MixinN
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
-import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSerializers;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
@@ -71,6 +71,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	private static final DataParameter<Vector3d> DATA_SPAWNER_SBoundMax = EntityDataManager.defineId(ExtendedStructureSpawnerEntity.class, ExtendedDataSerializers.VECTOR3D_POS);
 
 	private ExtendedStructureEntitySpawner spawnerInstance = ExtendedStructureEntitySpawner.EMPTY;
+	// Should be the same as spawnerInstance.getId()
 	private ResourceLocation spawnerType;
 	private static boolean isInvisible = true; // Always true on Servers
 	private boolean queueToRemove = false;
@@ -109,7 +110,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 				this.remove();
 			}else {
 				if (spawnerInstance.isEmptySpawner()) {
-					if (spawnerType!=null && !spawnerType.equals(LotrExtendedMod.EMPTY) && !ExtendedServerConfig.enableDevMode.get()) {
+					if (spawnerType!=null && !spawnerType.equals(LotrExtendedMod.EMPTY)) {
 						setSpawnerFromResourceLocation();
 					}
 				}
@@ -226,6 +227,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							}
 						}
 					}
+		            if (!firstTick && ExtendedBannerProtectionManager.getProtectionStatus(world, footPos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
+		                continue;
+		            }
 					//System.out.println("Successfully ran Spawn checks");
 					List<EntityType<?>> generatedSpawns = spawnerInstance.getSpawns(random);
 					for(EntityType<?> generatedSpawn : generatedSpawns) {

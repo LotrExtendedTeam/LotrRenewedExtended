@@ -1,0 +1,73 @@
+{
+    "parent": "lotrextended:durins_folk/common",
+    "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": ">=100"
+      },
+      "lines": [
+        "Si vous cherchez de bons guerriers, vous êtes tombé sur le bon Nain !",
+        "Donnez-moi quelques pièces d'argent, et je vous donnerai des unités !",
+        "J'ai de nombreux Nains robustes à engager.",
+        "Mes Nains sont des guerriers forts et loyaux.",
+        "Mes Nains vous serviront... pour le juste prix ! Ha ! Ha !",
+        "Les guerriers nains, ça coûte pas rien ! Faudra payer le prix fort pour commander mes gars !",
+        "Vous souhaitez commander les puissantes armées des Nains ? Mes hommes vous suivront, mais pas gratuitement.",
+        "Nous autres Nains sommes de grands et vaillants guerriers. Avez-vous l'étoffe pour nous mener au combat ?"
+      ]
+    },
+        {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=oathfriend",
+        "pledge": "lotr:blue_mountains"
+      },
+      "lines": [
+        "Salutations, #p ! Vous cherchez à engager des guerriers ?",
+        "Je peux vous offrir de bons Nains combattants en échange de pièces d'argent, #p.",
+        "Bonne journée, #p ! J'ai quelques Nains assoiffés de bataille qui vous serviront vaillamment pour le juste prix."
+      ]
+    },
+        {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain",
+        "pledge": "lotr:blue_mountains"
+      },
+      "lines": [
+        "Bien rencontré #p ! Mes Nains seront fiers de servir un guerrier aussi honoré !",
+        "J'ai mes plus braves guerriers prêts pour vous, #p !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "pledge": "lotr:blue_mountains"
+      },
+      "lines": [
+        "Par ma barbe ! #p ! Je peux avoir une armée entière prête pour vous, à vos ordres !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": "<=100"
+      },
+      "lines": [
+        "Faudra prouver votre valeur si vous voulez engager des unités, #p.",
+        "Vous voulez engager mes Nains ? Allez d'abord tuer quelques Orques, ou quelque chose du genre.",
+        "Je devrai vous faire davantage confiance avant de vous laisser commander mes Nains.",
+        "Prouvez votre allégeance aux Montagnes Bleues, et ils vous suivront au combat !",
+        "Vous n'avez aucune chance de commander une armée naine sans quelques hauts faits à votre nom, mon gars !",
+        "Les Nains ne suivent au combat que ceux en qui ils ont confiance !",
+        "Je laisserai pas n'importe quel Homme commander mes gars. Prouvez votre valeur auprès des nôtres et revenez !",
+        "Vous voulez engager des Nains ? Vous devez d'abord prouver votre rang parmi notre peuple !",
+        "Combien d'Orques avez-vous tués ? Pas assez, j'dis. Revenez quand vous aurez fait plus d'exploits.",
+        "Mes gars suivront pas n'importe quel étranger au combat. Faites vos preuves !",
+        "Qui êtes-vous ? J'ai jamais entendu parler de vous. Tuez des Orques et donnez un sens à votre nom !"
+      ]
+    }
+  ]
+}

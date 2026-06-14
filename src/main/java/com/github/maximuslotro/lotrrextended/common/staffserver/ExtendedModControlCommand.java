@@ -23,13 +23,13 @@ public class ExtendedModControlCommand {
 				.then(Commands.literal("allowlist")
 						.then((Commands.literal("add")
 								.then((Commands.argument("modid", StringArgumentType.word())
-										.executes(ctx -> addMod(ctx.getSource(), StringArgumentType.getString(ctx, "modid"), ExtendedSpecialConfig.allowList))))))
+										.executes(ctx -> addMod(ctx.getSource(), StringArgumentType.getString(ctx, "modid"), ExtendedModTracker.allowList))))))
 						.then((Commands.literal("remove")
 								.then((Commands.argument("modid", StringArgumentType.word())
 										.suggests(SUGGEST_ALLOWLIST)
-										.executes(ctx -> removeMod(ctx.getSource(), StringArgumentType.getString(ctx, "modid"), ExtendedSpecialConfig.allowList))))))
+										.executes(ctx -> removeMod(ctx.getSource(), StringArgumentType.getString(ctx, "modid"), ExtendedModTracker.allowList))))))
 						.then((Commands.literal("list")
-								.executes(ctx -> listMods(ctx.getSource(), ExtendedSpecialConfig.allowList))))
+								.executes(ctx -> listMods(ctx.getSource(), ExtendedModTracker.allowList))))
 						.then((Commands.literal("enable")
 							.executes(ctx -> setWhitelistEnforceStatus(ctx.getSource(), true))))
 						.then((Commands.literal("disable")
@@ -39,23 +39,23 @@ public class ExtendedModControlCommand {
 						.then((Commands.literal("add")
 								.then((Commands.argument("modid", StringArgumentType.word())
 										.then((Commands.argument("message", StringArgumentType.word())
-												.executes(ctx -> addMod(ctx.getSource(), StringArgumentType.getString(ctx, "modid"), StringArgumentType.getString(ctx, "message"), ExtendedSpecialConfig.autoBanMap))))))))
+												.executes(ctx -> addMod(ctx.getSource(), StringArgumentType.getString(ctx, "modid"), StringArgumentType.getString(ctx, "message"), ExtendedModTracker.autoBanMap))))))))
 						.then((Commands.literal("remove")
 								.then((Commands.argument("modid", StringArgumentType.word())
 										.suggests(SUGGEST_BANLIST)
-										.executes(ctx -> removeMod(ctx.getSource(), StringArgumentType.getString(ctx, "modid"), ExtendedSpecialConfig.autoBanMap))))))
+										.executes(ctx -> removeMod(ctx.getSource(), StringArgumentType.getString(ctx, "modid"), ExtendedModTracker.autoBanMap))))))
 						.then((Commands.literal("list")
-								.executes(ctx -> listMods(ctx.getSource(), ExtendedSpecialConfig.autoBanMap))))
+								.executes(ctx -> listMods(ctx.getSource(), ExtendedModTracker.autoBanMap))))
 						)
 				);
 	}
 
 	public static final SuggestionProvider<CommandSource> SUGGEST_ALLOWLIST = (context, builder) -> {
-		return ISuggestionProvider.suggest(ExtendedSpecialConfig.allowList, builder);
+		return ISuggestionProvider.suggest(ExtendedModTracker.allowList, builder);
 	};
 
 	public static final SuggestionProvider<CommandSource> SUGGEST_BANLIST = (context, builder) -> {
-		return ISuggestionProvider.suggest(ExtendedSpecialConfig.autoBanMap.keySet(), builder);
+		return ISuggestionProvider.suggest(ExtendedModTracker.autoBanMap.keySet(), builder);
 	};
 
 	private static int addMod(CommandSource source, String modid, Set<String> modList) {
@@ -64,7 +64,7 @@ public class ExtendedModControlCommand {
 		} else {
 			source.sendFailure(new StringTextComponent(TextFormatting.RED + "Mod already exists: " + modid));
 		}
-		ExtendedSpecialConfig.saveAll();
+		ExtendedServerData.saveAll();
 		return Command.SINGLE_SUCCESS;
 	}
 
@@ -74,7 +74,7 @@ public class ExtendedModControlCommand {
 		} else {
 			source.sendFailure(new StringTextComponent(TextFormatting.RED + "Mod not found: " + modid));
 		}
-		ExtendedSpecialConfig.saveAll();
+		ExtendedServerData.saveAll();
 		return Command.SINGLE_SUCCESS;
 	}
 
@@ -89,11 +89,12 @@ public class ExtendedModControlCommand {
 
 	private static int addMod(CommandSource source, String modid, String message, Map<String, String> modList) {
 		if (!modList.containsKey(modid) || modList.get(modid)!=message) {
+			modList.put(modid, message);
 			source.sendSuccess(new StringTextComponent(TextFormatting.GREEN + "Added mod: " + TextFormatting.YELLOW + modid), true);
 		} else {
 			source.sendFailure(new StringTextComponent(TextFormatting.RED + "Mod already exists: " + modid));
 		}
-		ExtendedSpecialConfig.saveAll();
+		ExtendedServerData.saveAll();
 		return Command.SINGLE_SUCCESS;
 	}
 
@@ -104,7 +105,7 @@ public class ExtendedModControlCommand {
 		} else {
 			source.sendFailure(new StringTextComponent(TextFormatting.RED + "Mod not found: " + modid));
 		}
-		ExtendedSpecialConfig.saveAll();
+		ExtendedServerData.saveAll();
 		return Command.SINGLE_SUCCESS;
 	}
 

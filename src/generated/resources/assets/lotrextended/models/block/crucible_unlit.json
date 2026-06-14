@@ -1,0 +1,8 @@
+{
+  "parent": "lotrextended:block/template_crucible",
+  "textures": {
+    "crucible": "lotrextended:block/crucible",
+    "crucible_top": "lotrextended:block/crucible_top",
+    "particle": "minecraft:block/cobblestone"
+  }
+}

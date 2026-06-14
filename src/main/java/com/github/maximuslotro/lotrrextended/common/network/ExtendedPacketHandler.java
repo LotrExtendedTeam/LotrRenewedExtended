@@ -60,6 +60,8 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSSyncServerSettingsPacket.class, ExtendedSSyncServerSettingsPacket::encode, ExtendedSSyncServerSettingsPacket::decode, ExtendedSSyncServerSettingsPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCModListPacket.class, ExtendedCModListPacket::encode, ExtendedCModListPacket::decode, ExtendedCModListPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSDataRequestPacket.class, ExtendedSDataRequestPacket::encode, ExtendedSDataRequestPacket::decode, ExtendedSDataRequestPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCWorldPruneCommands.class, ExtendedCWorldPruneCommands::encode, ExtendedCWorldPruneCommands::decode, ExtendedCWorldPruneCommands::handle);
+		CHANNEL.registerMessage(id++, ExtendedSWorldPruneProgress.class, ExtendedSWorldPruneProgress::encode, ExtendedSWorldPruneProgress::decode, ExtendedSWorldPruneProgress::handle);
 
 		if (id >= 255) {
 			// Since IndexedMessageCodec.MessageHandler -> indicies.put((short)(index & 0xff), this);

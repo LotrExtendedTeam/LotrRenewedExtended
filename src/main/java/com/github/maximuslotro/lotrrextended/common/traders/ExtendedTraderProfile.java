@@ -12,6 +12,7 @@ import javax.annotation.Nullable;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedTradeType;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedKegItem;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTradeItemSupplierMulti;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTradeItemSupplierSingle;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
@@ -615,7 +616,25 @@ public class ExtendedTraderProfile {
 			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.STRONG), DEFAULT_WEIGHT, strongCost, 200, true);
 			return this;
 		}
-
+		/**
+		 * Adds a keg item to the sell-to-player pool with specified drink and potency.
+		 * NOTE: Each potency type can its own average cost and will be sold separately.
+		 *
+		 * @param item The registry object of a {@link VesselDrinkItem}
+		 * @param potency The strength of the contained drink
+		 * @param cost Cost of the keg
+		 * @return The instance of this builder
+		 */
+		public Builder addKegSell(RegistryObject<Item> item, Potency potency, int cost) {
+			if(!(item.get() instanceof VesselDrinkItem)) {
+				ExtendedLog.warn("Received invalid drink from args, SKIPPING!: "+item.get().getRegistryName().toString());
+				return this;
+			}
+			ItemStack drink = DrinkUtils.drinkOfPotency(item.get(), Potency.LIGHT);
+			drink.setCount(16);
+			addSSell(ExtendedKegItem.getOutputKegForVesselItem(drink), DEFAULT_WEIGHT, cost, 200, true);
+			return this;
+		}
 		/**
 		 * Adds a multi-item sale pool to the trader's sell-to-player pool using individual items.
 		 * Uses default weight and max transfer quantity.

@@ -1,0 +1,180 @@
+{
+  "parent": "lotr:high_elves/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Nul mal n'entrera dans le royaume d'Imladris."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Quelles nouvelles apportez-vous en terre d'Imladris ?",
+        "Bienvenue dans la dernière Maison Simple de la Terre du Milieu, #p.",
+        "Bienvenue dans la demeure du Seigneur Elrond, #p.",
+        "Bienvenue dans le royaume d'Elrond Semi-elfe !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend",
+        "biome": "#home"
+      },
+      "lines": [
+        "Après la destruction d'Eregion, notre peuple a fui vers le nord et s'est réfugié dans cette vallée, cachée des regards malfaisants.",
+        "Notre Seigneur Elrond veille sur cette vallée depuis de nombreux siècles.",
+        "Elrond Semi-elfe protège cette vallée avec le pouvoir de l'anneau elfique Vilya, mais si le Sans-Nom revient en pleine puissance, il ne pourrait plus utiliser l'anneau.",
+        "Imladris a combattu aux côtés du Royaume d'Arnor il y a bien longtemps. Maintenant le Royaume est en ruines et son peuple dispersé, mais beaucoup de leurs reliques sont conservées ici.",
+        "Vous êtes toujours le bienvenu à Imladris, #p.",
+        "Les ténèbres qui grandissent dans l'ombre ne se trouveront jamais ici, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Le Seigneur Elrond était présent il y a 3000 ans lors de la Bataille de la Dernière Alliance.",
+        "Nous conservons de nombreuses reliques de l'Ouest ici à Imladris.",
+        "Osgiliath a été prise, l'Isengard s'est tourné vers l'ennemi, le Royaume Sylvestre a été assailli, et les Nazgûl parcourent l'Eriador ! La Terre du Milieu a été enveloppée par la guerre, et notre espoir repose maintenant sur le fil d'un couteau."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord"
+      },
+      "lines": [
+        "Des émissaires de royaumes de toute la Terre du Milieu sont venus à Fondcombe, le Sans-Nom rassemble ses forces contre les peuples libres.",
+        "Les Nazgûl se sont déplacés à travers l'Eriador. Ils ont attaqué les Dúnedain au Gué de Sarn, la ville de Bree, et ont failli traverser le Bruinen jusqu'à nos terres ! Je crains qu'un mouvement aussi audacieux de l'ennemi ne puisse signifier qu'une chose. L'Anneau Unique a été trouvé.",
+        "Les Anneaux de Pouvoir maintiennent la splendeur de nos terres, mais au final ils ne font que prolonger notre fatigue du monde."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=noble"
+      },
+      "lines": [
+        "Aï ! Mae govannen, arben na Imladris !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "none",
+        "biome": "lotr:tower_hills"
+      },
+      "lines": [
+        "Nous avons voyagé de loin pour regarder à travers la Pierre d'Elendil.",
+        "D'Imladris je suis venu pour regarder à travers le Palantír d'Elostirion, mais l'appel de l'Ouest est toujours plus fort maintenant, je ne suis pas certain de retourner."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north",
+        "biome": "#home"
+      },
+      "lines": [
+        "Bienvenue à Fondcombe, Rôdeur.",
+        "Aï ! Mae govannen Dúnadan ! Bienvenue à Imladris !",
+        "Les Dúnedain du Nord ont toujours été les bienvenus dans notre demeure.",
+        "Nous conservons de nombreuses reliques des Dúnedain ici à Imladris.",
+        "Le Sceptre d'Annúminas n'est que l'une des reliques de l'Arnor encore conservées à Imladris."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunedain_north"
+      },
+      "lines": [
+        "Les Eldar d'Imladris sont depuis longtemps amis des Dúnedain.",
+        "Les Elfes d'Imladris étaient alliés au Royaume d'Arnor il y a des siècles avant sa chute."
+      ]
+    },
+    {
+      "conditions": {
+        "hired": "own"
+      },
+      "lines": [
+        "Pour Imladris !",
+        "Na Imladris !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Nul mal ne peut fouler le sol d'Imladris !",
+        "Vous ne pouvez entrer à Fondcombe.",
+        "#p, vous ne pouvez fouler le sol de Fondcombe !",
+        "L'Ennemi n'a aucune emprise sur Imladris !",
+        "Vos ténèbres n'empoisonneront pas la Dernière Maison Simple !",
+        "Na Imladris !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "L'Ennemi n'a aucune emprise sur Imladris !",
+        "Nous ne souffrons aucun mal à Imladris !",
+        "Vous ne pouvez apporter le mal ici, #p !",
+        "Votre ombre n'empoisonnera pas notre maison simple !",
+        "Qui nous apporte ce signe de malheur ?",
+        "Nous ne permettrons pas au mal d'entrer dans notre royaume. Partez maintenant ou affrontez notre courroux !",
+        "Vous apportez un grand mal ici, #p. Vous ne pouvez aller plus loin.",
+        "Partez, #p, ou affrontez la puissance de nos flèches !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">enemy",
+        "biome": "#home"
+      },
+      "lines": [
+        "Vous n'êtes plus le bienvenu en notre terre !",
+        "Je désespère que nous vous ayons jamais abrité à Imladris !",
+        "Amèrement maintenant je regrette de vous avoir accueilli à Imladris !"
+      ]
+    }
+  ]
+}

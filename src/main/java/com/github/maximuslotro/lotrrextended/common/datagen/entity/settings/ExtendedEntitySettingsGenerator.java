@@ -82,5 +82,6 @@ public class ExtendedEntitySettingsGenerator extends ExtendedEntitySettingsProvi
 		make(ExtendedEntities.URUK_CAPTAIN.get(), FactionPointers.ISENGARD).setBonus(5).setBank("isengard/uruk").save(pConsumer);
 		make(ExtendedEntities.URUK_SMITH.get(), FactionPointers.ISENGARD).setBonus(2).setBank("isengard/uruk").save(pConsumer);
 		make(ExtendedEntities.URUK_SUPPLIER.get(), FactionPointers.ISENGARD).setBonus(2).setBank("isengard/uruk").save(pConsumer);
+		make(ExtendedEntities.DUNLENDING_WARLORD.get(), FactionPointers.DUNLAND).setBonus(2).setBank("dunland/warlord").save(pConsumer);
 	}
 }

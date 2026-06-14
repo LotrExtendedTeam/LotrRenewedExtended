@@ -4,7 +4,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
-import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.ProtectionInstance;
 
 import lotr.common.entity.projectile.ThrownPlateEntity;
 import net.minecraft.block.Block;
@@ -57,7 +57,7 @@ public abstract class MixinThrownPlateEntity extends ProjectileItemEntity{
 		BlockState state = level.getBlockState(pos);
 		if (state.getMaterial() == Material.GLASS) {
 			// Extended Start
-			boolean bannerProtection = ExtendedBannerProtectionManager.getProtectionStatus(level, pos, new SingleProtectionInstance.LaunchedProtection(this)).isNotAllowed();
+			boolean bannerProtection = ExtendedBannerProtectionManager.getProtectionStatus(level, pos, new ProtectionInstance.LaunchedProtection(this)).isNotAllowed();
 			// Extended End
 			if (!bannerProtection) {
 				level.levelEvent(null, 2001, pos, Block.getId(state));

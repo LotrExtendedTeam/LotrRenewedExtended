@@ -1,0 +1,30 @@
+{
+  "line0": {
+    "string": [
+      "~~~~~~~~~~~~"
+    ]
+  },
+  "line1": {
+    "namebank": [
+      "lotr:npcs/names/bree_forename_male.txt"
+    ],
+    "shouldAddApostrophe": true
+  },
+  "line2": {
+    "string": [
+      "木場",
+      "木材堆置場",
+      "庭院",
+      "樹林",
+      "木樁",
+      "木匠",
+      "伐木運輸",
+      "伐木工人"
+    ]
+  },
+  "line3": {
+    "string": [
+      "~~~~~~~~~~~~"
+    ]
+  }
+}

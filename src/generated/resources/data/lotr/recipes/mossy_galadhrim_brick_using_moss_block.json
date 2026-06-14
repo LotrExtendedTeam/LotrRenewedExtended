@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:galadhrim",
+  "ingredients": [
+    {
+      "item": "lotr:galadhrim_brick"
+    },
+    {
+      "item": "lotr:moss_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_galadhrim_brick"
+  }
+}

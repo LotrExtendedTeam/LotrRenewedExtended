@@ -64,12 +64,12 @@ public abstract class MixinCraftingResultSlot extends Slot {
 			if((CraftingResultSlot)(Object)this instanceof FactionCraftingResultSlot) {
 				FactionCraftingContainer tableContainer = ((MixinFactionCraftingResultSlotAccessor)(Object)this).getTableContainer();
 				if(tableContainer.isStandardCraftingActive()) {
-					ExtendedCriteriaTriggers.FACTION_CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, stack, Blocks.CRAFTING_TABLE);
+					ExtendedCriteriaTriggers.CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, stack, Blocks.CRAFTING_TABLE);
 				}else {
-					ExtendedCriteriaTriggers.FACTION_CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, stack, ((MixinFactionCraftingContainerInvoker)tableContainer).invokeCraftingBlock());
+					ExtendedCriteriaTriggers.CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, stack, ((MixinFactionCraftingContainerInvoker)tableContainer).invokeCraftingBlock());
 				}
 			}else {
-				ExtendedCriteriaTriggers.FACTION_CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, stack, Blocks.CRAFTING_TABLE);
+				ExtendedCriteriaTriggers.CRAFTING_TRIGGER.trigger((ServerPlayerEntity) player, stack, Blocks.CRAFTING_TABLE);
 			}
 		}
 	}

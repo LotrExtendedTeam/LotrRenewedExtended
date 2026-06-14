@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "coral",
+  "ingredients": [
+    {
+      "item": "minecraft:fire_coral_block"
+    }
+  ],
+  "result": {
+    "item": "lotr:coral",
+    "count": 4
+  }
+}

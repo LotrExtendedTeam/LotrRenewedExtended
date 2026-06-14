@@ -86,6 +86,7 @@ public class ExtendedConfiguredStructuresV5 {
 
 	public static StructureFeature<?, ?> CONFIGURED_ISENGARD_GATEHOUSE = register(ExtendedStructuresV5.ISENGARD_GATEHOUSE.get().configured(new ExtendedSinglePoolConfig("lore/isengard/isengard_gatehouse")));
 	public static StructureFeature<?, ?> CONFIGURED_ORTHANC = register(ExtendedStructuresV5.ORTHANC.get().configured(new ExtendedSinglePoolConfig("lore/isengard/isengard_orthanc")));
+	public static StructureFeature<?, ?> CONFIGURED_ISENGARD_CAMP = register(ExtendedStructuresV5.ISENGARD_CAMP.get().configured(new ExtendedSinglePoolConfig("isengard/camp_starts")));
 
 	/**
      * Empty method intended to be called to ensure static initialization of this class

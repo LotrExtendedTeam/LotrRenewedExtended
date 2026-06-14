@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:item/handheld_spear",
+  "textures": {
+    "layer0": "lotrextended:item/staff_gandalf_the_white_large"
+  }
+}

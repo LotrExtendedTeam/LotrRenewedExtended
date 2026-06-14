@@ -58,13 +58,28 @@
           }
         ]
       }
+    },
+    "kill_dunlending_warlord": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:dunlending_warlord"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
       "kill_dunlending_bowman",
       "kill_dunlending",
-      "kill_dunlending_warrior"
+      "kill_dunlending_warrior",
+      "kill_dunlending_warlord"
     ]
   ]
 }

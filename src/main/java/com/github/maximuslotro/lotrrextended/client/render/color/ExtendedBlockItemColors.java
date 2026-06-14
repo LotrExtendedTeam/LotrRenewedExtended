@@ -42,5 +42,7 @@ public class ExtendedBlockItemColors {
 			return tintIndex > 0 ? -1 : ((IDyeableArmorItem)itemstack.getItem()).getColor(itemstack);
 		};
 		itemColors.register(dyedArmor, ExtendedItems.LEATHER_HAT.get());
+		itemColors.register(dyedArmor, ExtendedItems.LEATHER_BOAR_ARMOR.get());
+		itemColors.register(dyedArmor, ExtendedItems.LEATHER_WARG_ARMOR.get());
 	}
 }

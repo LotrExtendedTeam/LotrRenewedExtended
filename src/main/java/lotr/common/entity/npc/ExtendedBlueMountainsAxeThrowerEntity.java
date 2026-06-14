@@ -47,10 +47,11 @@ public class ExtendedBlueMountainsAxeThrowerEntity extends BlueDwarfWarriorEntit
 	}
 
 	@Override
+	// Disregard the charge for now as it is calculated for bow charge, not actual damage
 	public void performRangedAttack(LivingEntity target, float charge) {
-		// Disregard the charge for now as it is calculated for bow charge, not actual damage
 		ItemStack axe = this.getNPCItemsInv().getRangedWeapon();
-		if(axe.getItem() instanceof ExtendedThrowableAxeItem) {
+		// Force entity to use thrown axes for combat
+		if(axe.isEmpty() || !(axe.getItem() instanceof ExtendedThrowableAxeItem)) {
 			axe = new ItemStack(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE.get());
 		}
 		axe.setCount(1);

@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:arnor_spear"
+  },
+  "result1": {
+    "item": "minecraft:iron_ingot"
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

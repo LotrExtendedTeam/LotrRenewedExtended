@@ -37,6 +37,9 @@ public class ExtendedFeature {
 	public static final ExtendedWallsFeature WALLS_PRE = new ExtendedWallsFeature(ExtendedWallsFeatureConfig.CODEC);
 	public static final RegistryObject<ExtendedWallsFeature> WALLS = regFeature("walls", WALLS_PRE);
 
+	public static final ExtendedLandBlotFeature LAND_BLOT_PRE = new ExtendedLandBlotFeature(ExtendedLandBlotFeatureConfig.CODEC);
+	public static final RegistryObject<ExtendedLandBlotFeature> LAND_BLOT = regFeature("land_blot", LAND_BLOT_PRE);
+
 	private static <FC extends IFeatureConfig, F extends Feature<FC>> RegistryObject<F> regFeature(String name, F feature) {
 		return FEATURES.register(name, () -> feature);
 	}

@@ -1,0 +1,139 @@
+{
+    "parent": "lotrextended:bree/common",
+    "speech": [
+      {
+        "conditions": {
+          "relation": "friendly"
+        },
+        "lines": [
+            "Laissez pas ces Gens de la Comté vous dire qu'ils ont inventé l'herbe à pipe. Les Gens de Bree le faisaient avant le Vieux Toby.",
+            "La famille Sous-la-Colline a un comportement bizarre ces derniers temps.",
+            "Vous avez des nouvelles de la Comté ?",
+            "La plupart des Hobbits ici vivent soit à Staddle, soit plus haut sur la Colline de Bree.",
+            "Notre famille vit au Pays de Bree depuis avant la fondation de la Comté !",
+            "Nous autres Hobbits sommes arrivés à Bree avant que les colons fondent le Pays de Bouc et la Comté !",
+            "J'ai des colons dans ma famille éloignée, j'me demande comment ils vont !",
+            "Les Grandes Gens ont peut-être fondé cette ville, mais c'est aussi la plus ancienne colonie permanente des Hobbits ! On est ici depuis avant que les Hobbits s'installent dans la Comté !",
+            "La Comté c'est joli et tout, mais je préfère la vie en ville à la vie à la campagne.",
+            "Un groupe de Hobbits colons de Bree a obtenu des chartes pour fonder la Comté auprès du Roi du temps de l'ancien Royaume du Nord.",
+            "Le Vieux Toby c'est de la bonne herbe à pipe, mais notre Feuille du Sud est plus ancienne !",
+            "La plupart de nous autres Hobbits vivons à Staddle, j'ai beaucoup de parents là-bas !",
+            "J'aime bien Bree, on a bien plus d'affaires et de voyageurs que les Hobbits de la Comté !",
+            "Vous êtes déjà allé au Pays de Bouc ? J'ai entendu dire que c'est un bel endroit, mais j'ai pas beaucoup voyagé.",
+            "Nous autres Hobbits sommes arrivés à Bree comme réfugiés et nomades il y a longtemps, mais les Grandes Gens nous ont accueillis malgré nos différences !",
+            "Je compte rendre visite à des parents à Staddle bientôt."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "#home"
+        },
+        "lines": [
+            "C'est agréable d'avoir les Grandes Gens autour. Ils sont plus intimidants face aux Étrangers.",
+            "Les Grandes Gens ont peut-être pas l'air de grand-chose, mais Bree serait plus pareil sans eux."
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "day_or_night": "day"
+        },
+        "lines": [
+          "Bonne journée, #p.",
+          "Bonne journée.",
+          "Bonne journée !",
+          "Bonne journée à vous, #p ! Comment allez-vous ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "dawn | dusk",
+          "weather": "clear"
+        },
+        "lines": [
+          "Quel joli ciel là-haut !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "dawn",
+          "sun_admiring": "true",
+          "rank": ">=guest"
+        },
+        "lines": [
+          "N'est-ce pas un magnifique lever de soleil, #p ?",
+          "Oh, bonjour, #p. J'étais en train de regarder le soleil se lever. C'est pas joli ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "daytime": "dusk",
+          "sun_admiring": "true",
+          "rank": ">=guest"
+        },
+        "lines": [
+          "N'est-ce pas un magnifique coucher de soleil, #p ?",
+          "Oh, bonsoir, #p. J'étais en train de regarder le soleil se coucher. C'est pas joli ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "day_or_night": "night"
+        },
+        "lines": [
+          "Bon, j'ferais mieux d'aller me coucher !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "biome": "lotr:shire | lotr:shire_moors | lotr:shire_forest"
+        },
+        "lines": [
+          "Je suis ici pour visiter de la famille, mais je viens de Bree moi-même.",
+          "J'espère pouvoir avoir encore du Vieux Toby, la meilleure herbe à pipe de tout le pays !",
+          "Les Colonies sont plutôt jolies, mais j'ai hâte de rentrer à Bree !",
+          "C'est ma première fois dans la Comté !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "friendly",
+          "drunk": "true"
+        },
+        "lines": [
+            "Où est mon trou de Hobbit ?"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "hostile",
+          "biome": "#foreign"
+        },
+        "lines": [
+          "J'aurais jamais dû quitter Bree !"
+        ]
+      },
+      {
+        "conditions": {
+          "relation": "hostile"
+        },
+        "lines": [
+            "Comment vous avez fait pour passer le gardien de la porte ?",
+            "Appelez les gardes, on est attaqués !",
+            "Votre première erreur c'est de croire que j'me suis jamais battu contre des Grandes Gens !",
+            "Pour des Grandes Gens, vous frappez pas si fort que ça.",
+            "Vous feriez mieux de quitter Bree, #p, ou j'appelle les gardes !",
+            "Sortez de ma terre !",
+            "Sortez de ma terre, #p !",
+            "Restez loin de mes patates !",
+            "Les gardes vont s'occuper de vous, #p !"
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,110 @@
+{
+  "parent": "lotr:gondor/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Quand j'étais plus jeune, je rêvais de devenir un Chevalier au Cygne de Dol Amroth. Ces temps semblent bien loin maintenant.",
+        "J'espère que ma famille ne sera pas enrôlée dans les levées du Gondor.",
+        "En vérité, ces jours sont le déclin de la race des Hommes. Il semble que même mes récoltes périclitent."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Il y a des nouvelles inquiétantes qui circulent. Je peux vous dire au moins cela.",
+        "Nous faisons ce que nous pouvons pour survivre, #p. Mais si l'Ennemi vient, nous ne pourrons pas faire grand-chose.",
+        "Nos récoltes ont été mauvaises, #p. J'espère meilleure fortune l'an prochain."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Les héros du Gondor se lèveront pour nous protéger, #p.",
+        "Je dois retourner au travail, #p. Ces champs ne vont pas se labourer tout seuls.",
+        "Je ne vous ennuierai pas avec les vieux contes du village."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<atarms"
+      },
+      "lines": [
+        "De quel village venez-vous, #p ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Je suis votre ami fidèle, #p, tant que vous restez loyal envers le Gondor."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Êtes-vous l'un des héros du Gondor ? Êtes-vous venu nous protéger ?",
+        "Salut à vous, #p, venu de loin pour gagner la gloire du Gondor !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Tu n'es point mon ami, #p.",
+        "Tu es un scélérat !",
+        "Hors de ma vue, #p.",
+        "Tu es une sale engeance, #p.",
+        "Va-t'en !",
+        "Notre peuple n'a aucune affection pour les scélérats de ton espèce !",
+        "Les héros du Gondor t'abattront, #p.",
+        "Ta place est au pilori, #p !",
+        "Ne me regarde pas comme ça.",
+        "Que me veux-tu, gredin ?",
+        "Nous n'avons aucune affection pour les gens de ton espèce.",
+        "Tu es un vaurien, #p, ça c'est sûr."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "File ton chemin, #p, sinon j'appelle les gardes.",
+        "Tu ne recevras aucun accueil ici.",
+        "Tu ferais mieux de faire attention par ici. Ce n'est pas sûr pour les criminels comme toi.",
+        "Quitte le Gondor tant que tu le peux encore, #p.",
+        "Je te suggère de quitter cet endroit, #p.",
+        "Tu ferais mieux de partir, #p. Ou préfères-tu être chassé ?",
+        "Ouste, #p ! Nous n'accueillons pas les vauriens au Gondor."
+      ]
+    }
+  ]
+}

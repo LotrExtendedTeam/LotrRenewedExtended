@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.init;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.BrickWeathererProcessor;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.ExtendedArmorStandProcessor;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.GraniteWhiteWoolBeehiveThatchRemoverProcessor;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.ReplaceAirWithGrassVoidsProcessor;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPaletteProcessor;
@@ -40,6 +41,10 @@ public class ExtendedStructureProcessors {
      * Processor for protecting the air inside structures
      */
 	public static final IStructureProcessorType<ReplaceAirWithGrassVoidsProcessor> GRASS_VOID_AIR_PROCESSOR = register("air_replacer_grass_void_processor", ReplaceAirWithGrassVoidsProcessor.CODEC);
+	/**
+     * Processor for processing armor stand loot-tables
+     */
+	public static final IStructureProcessorType<ExtendedArmorStandProcessor> ARMOR_STAND_PROCESSOR = register("armor_stand_processor", ExtendedArmorStandProcessor.CODEC);
 
 	/**
      * Processor that removes thatch, polished granite, beehives, and white wool blocks

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:uruk_shield"
+    ]
+  },
+  "criteria": {
+    "has_uruk_steel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/uruk_steel"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:uruk_shield"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_uruk_steel",
+      "has_the_recipe"
+    ]
+  ]
+}

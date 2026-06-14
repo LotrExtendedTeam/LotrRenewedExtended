@@ -6,8 +6,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.github.maximuslotro.lotrrextended.ExtendedVanillaProtectionHandlers;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
-import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.SingleProtectionInstance;
+import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager.ProtectionInstance;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -17,6 +18,7 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 @Mixin(ItemFrameEntity.class)
 public abstract class MixinItemFrameEntity extends Entity {
@@ -37,7 +39,7 @@ public abstract class MixinItemFrameEntity extends Entity {
 			return;
 		}
 		if(!this.level.isClientSide && !fixed) {
-			if (ExtendedBannerProtectionManager.getProtectionStatus(this.level, this.blockPosition(), new SingleProtectionInstance.PlayerProtection(pPlayer)).isNotAllowed()) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(this.level, this.blockPosition(), new ProtectionInstance.PlayerProtection(pPlayer)).isNotAllowed()) {
 				cir.setReturnValue(ActionResultType.PASS);
 				return;
 			}
@@ -47,7 +49,14 @@ public abstract class MixinItemFrameEntity extends Entity {
 	@Inject(method = "hurt(Lnet/minecraft/util/DamageSource;F)Z", at = @At("HEAD"), cancellable = true)
 	public void interact$Extended(DamageSource pSource, float pAmount, CallbackInfoReturnable<Boolean>  cir) {
 		if(!this.level.isClientSide && !fixed && !this.isInvulnerableTo(pSource)) {
-			if (ExtendedBannerProtectionManager.getProtectionStatus(this.level, this.blockPosition(), new SingleProtectionInstance.DamageSourceProtection(pSource)).isNotAllowed()) {
+			if(pSource.getEntity() instanceof PlayerEntity && ExtendedVanillaProtectionHandlers.isUnderSpawnProtection((ServerWorld) this.level, this.blockPosition(), (PlayerEntity) pSource.getEntity(), true, true, false)) {
+				cir.setReturnValue(false);
+				return;
+			}else if (ExtendedVanillaProtectionHandlers.isUnderSpawnProtection((ServerWorld) this.level, this.blockPosition(), null, false, false, false)) {
+				cir.setReturnValue(false);
+				return;
+			}
+			if (ExtendedBannerProtectionManager.getProtectionStatus(this.level, this.blockPosition(), new ProtectionInstance.DamageSourceProtection(pSource)).isNotAllowed()) {
 				cir.setReturnValue(false);
 				return;
 			}

@@ -9,8 +9,9 @@ import net.minecraft.util.registry.Registry;
 
 public class ExtendedRecipeTypes {
 
-	public static IRecipeType<ExtendeStoneGrinderRecipe> MILLSTONE = register("stone_grinding");
+	public static IRecipeType<ExtendeStoneGrinderRecipe> STONE_GRINDER = register("stone_grinding");
 	public static IRecipeType<ExtendedISmithingRecipe> EXTENDED_SMITHING = register("smithing");
+	public static IRecipeType<ExtendedCrucibleRecipe> CRUCIBLE = register("crucible");
 
 	public static void register() {}
 

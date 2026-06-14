@@ -15,6 +15,7 @@ public class ExtendedTraderTypes {
 	public static final Set<ResourceLocation> TRADER_TYPES = Sets.newHashSet();
 
 	// Hobbit
+	//TODO add hobbit brewer, orcharder
 	public static final ResourceLocation HOBBIT_BARTENDER = make("hobbit_bartender");
 	public static final ResourceLocation HOBBIT_FARMER = make("hobbit_farmer");
 	// Bree

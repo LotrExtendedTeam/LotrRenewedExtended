@@ -1,0 +1,76 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=snaga"
+      },
+      "lines": [
+        "Les Orques aiment les pièces d'argent autant que n'importe quelle race, tu sais...",
+        "Apporte-moi des pièces si tu veux de l'équipement.",
+        "Alors t'as fait tes preuves, Person. Maintenant on peut commercer.",
+        "Une jolie petite somme puante de pièces d'argent, ça serait pas mal.",
+        "Si tu veux commercer, apporte des pièces, et fais pas de bruit.",
+        "Un Orque peut jamais avoir assez de pièces d'argent, vermine !",
+        "J'pourrais être intéressé par l'achat de quelques matériaux.",
+        "Certains matériaux peuvent rapporter un bon prix chez les marchands comme moi.",
+        "J'adore croquer un bon os d'Elfe !",
+        "Tu veux de l'équipement ? Trouve-moi des pièces d'abord, vermine !",
+        "Trouve-moi des pièces et j'te trouve des outils !",
+        "Si tu veux de mon bel équipement, alors apporte des pièces !",
+        "Je vends le meilleur équipement et les lames les plus tranchantes !",
+        "D'habitude j'commerce pas avec les sales Hommes, mais toi t'es assez bien."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          }
+        ]
+      },
+      "lines": [
+        "T'as pas encore été chassé par nos armées, raclure ?",
+        "J'vais te saigner comme un porc !",
+        "Profite de ton dernier souffle, raclure !",
+        "T'es bien frais !",
+        "Tuez la raclure !",
+        "On dirait que la viande est de retour au menu, les gars !",
+        "Tu pues la peur !",
+        "Crève, raclure d'Homme !",
+        "Ton sang sent le frais !",
+        "J'vais t'embrocher comme un morceau de viande !",
+        "Tu ferais mieux de courir, vermine !",
+        "Approche encore et j'te transperce comme une belle tranche de viande !",
+        "On dîne de chair d'Homme ce soir !"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "friendly",
+            "rank": "<snaga"
+          }
+        ]
+      },
+      "lines": [
+        "Reviens ramper quand t'auras prouvé ta valeur, faible.",
+        "La puanteur du mal sur toi est pas encore assez forte, #p.",
+        "Si tu veux commercer, tu dois prouver ta valeur parmi nos forces !",
+        "J'ai vu des Semi-Hommes plus menaçants que toi !",
+        "Tu veux commercer ? Reviens quand tu seras plus avancé sur le chemin des ténèbres, raclure.",
+        "Va massacrer quelques Elfes puants, et alors peut-être qu'on pourra commercer.",
+        "Si tu veux de l'équipement orque, faudra d'abord faire plus de mal.",
+        "Y'a aucune chance que j'commerce avec une vermine comme toi !",
+        "Tu crois que le Chef me laisse distribuer de l'équipement à n'importe qui, vermine ?",
+        "J'commerce pas avec les raclures comme toi !",
+        "Tue quelques-uns de ces sales Hommes et après on cause !",
+        "Prouve ta valeur, ordure !",
+        "T'auras aucun équipement de ma part, vermine !",
+        "J'fais pas confiance aux sales Hommes comme toi ! Dégage, raclure."
+      ]
+    }
+  ]
+}

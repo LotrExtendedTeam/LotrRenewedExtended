@@ -62,7 +62,7 @@
       {
         "weight": 5,
         "equipmentItem": {
-          "item": "lotr:bone_helmet",
+          "item": "lotr:bone_chestplate",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
         }
       },

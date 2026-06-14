@@ -86,6 +86,20 @@
         "item": "lotr:pearl",
         "averageCost": 25
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:coral",
+        "averageCost": 6
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:dead_coral",
+        "averageCost": 2
+      }
     }
   ],
   "sellToPlayer": [
@@ -143,6 +157,64 @@
         "item": "lotr:rivendell_sword",
         "averageCost": 21,
         "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_helmet",
+        "averageCost": 360,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_chestplate",
+        "averageCost": 500,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_leggings",
+        "averageCost": 440,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_boots",
+        "averageCost": 320,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stack": {
+        "item": "lotr:imladris_guard_shield",
+        "averageCost": 240,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:arrow",
+        "averageCost": 3,
+        "count": 4
       }
     },
     {
@@ -229,6 +301,14 @@
       "stack": {
         "item": "lotr:rivendell_banner_pattern",
         "averageCost": 25
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:rivendell_shield",
+        "averageCost": 40,
+        "nbt": "{Damage:0}"
       }
     }
   ]

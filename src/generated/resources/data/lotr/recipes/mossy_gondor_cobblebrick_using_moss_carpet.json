@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:gondor",
+  "ingredients": [
+    {
+      "item": "lotr:gondor_cobblebrick"
+    },
+    {
+      "item": "lotr:moss_carpet"
+    }
+  ],
+  "result": {
+    "item": "lotr:mossy_gondor_cobblebrick"
+  }
+}

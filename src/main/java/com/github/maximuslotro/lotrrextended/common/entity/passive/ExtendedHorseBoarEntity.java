@@ -364,7 +364,7 @@ public class ExtendedHorseBoarEntity extends ExtendedAbstractGenderedHorseEntity
 		} else {
 			coatcolors = ExtendedBoarColors.getRandom(this.random);
 		}
-		baby.setGenderRandomly(isGendered(), pServerLevel);
+		baby.setGenderRandomly(isGendered());
 		baby.setTypeVariant(coatcolors);
 		this.setOffspringAttributes(pMate, baby);
 		return baby;

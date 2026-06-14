@@ -54,6 +54,7 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableExtendedModifiers", ExtendedServerConfig.enableExtendedModifiers));
 		// Special
 		command.then(buildBoolean("enableExtendedLogging", ExtendedServerConfig.enableExtendedLogging));
+		command.then(buildBoolean("enableSpecialLogging", ExtendedServerConfig.enableSpecialLogging));
 		command.then(buildBoolean("enableStaffServer", ExtendedServerConfig.enableStaffServer, true));
 		command.then(buildBoolean("enableModWhiteList", ExtendedServerConfig.enableModWhiteList));
 		// Server Enhancements
@@ -64,6 +65,7 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableFixedStructures", ExtendedServerConfig.enableFixedStructures));
 		command.then(buildBoolean("enableFixedStructureImladris", ExtendedServerConfig.enableFixedStructureImladris));
 		command.then(buildBoolean("enableFixedStructureTowerHills", ExtendedServerConfig.enableFixedStructureTowerHills));
+		command.then(buildBoolean("enableFixedStructureOrthanc", ExtendedServerConfig.enableFixedStructureOrthanc));
 		// Register
 		dispatcher.register(command);
 	}

@@ -1,0 +1,259 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "Bonsoir !",
+        "Bien le bonsoir !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Bon après-midi !",
+        "Bien le bonjour !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Bonjour !",
+        "Bien le bonjour !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Belle journée, #p.",
+        "Belle journée.",
+        "Belle journée !",
+        "Belle journée à vous, #p ! Comment allez-vous ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Ce que je pourrais appeler ma hantise de l'Atlantide : cette légende, ce mythe ou ce souvenir diffus d'une histoire ancienne m'a toujours troublé. Dans mon sommeil, j'ai fait le terrible rêve de la Vague inéluctable, surgissant de la mer tranquille ou s'élevant au-dessus des terres verdoyantes. Il revient encore parfois, bien qu'exorcisé depuis que j'en ai écrit. Il se termine toujours par la capitulation, et je m'éveille, haletant, émergeant des eaux profondes.",
+        "Il ne nous appartient pas de choisir l'époque où nous naissons, mais de faire ce que nous pouvons pour la réparer ; cependant, l'esprit de malveillance dans les hautes sphères est désormais si puissant et si polymorphe dans ses incarnations qu'il ne semble plus rien rester à faire sinon refuser personnellement d'adorer l'une des têtes de l'hydre...",
+        "J'ai le sentiment (proche de la certitude) que Dieu, pour quelque raison ineffable qui peut nous sembler presque de l'humour, est curieusement prompt à exaucer les prières des moins dignes de ses suppliants – s'ils prient pour autrui.",
+        "Si Hobbitebourg et Fondcombe sont censés se trouver à peu près à la latitude d'Oxford, alors Minas Tirith, six cents miles plus au sud, se situe approximativement à la latitude de Florence. Les Bouches de l'Anduin et l'antique cité de Pelargir sont à peu près à la latitude de l'ancienne Troie.",
+        "Warg est un ancien mot désignant le loup, qui avait aussi le sens de hors-la-loi ou de criminel traqué. C'est son sens usuel dans les textes qui nous sont parvenus. J'ai adopté ce mot, dont la sonorité convenait au sens, comme nom pour cette race particulière de loups démoniaques dans mon récit.",
+        "Orque, je l'ai tiré du vieil anglais, un mot signifiant démon, généralement supposé dériver du latin Orcus – l'Enfer. Mais j'en doute, bien que la question soit trop complexe pour être exposée ici.",
+        "Il n'y a pas de « Dieux », à proprement parler, dans l'arrière-plan mythologique de mes histoires. Leur place est tenue par les personnes appelées les Valar (ou Puissances) : des êtres angéliques créés, préposés au gouvernement du monde.",
+        "C.S. Lewis était un homme très impressionnable, ce qu'amplifiaient sa grande générosité et sa capacité d'amitié. La dette impayable que j'ai envers lui n'était pas une « influence » au sens ordinaire, mais un pur encouragement. Il fut longtemps mon seul public. C'est de lui seul que me vint l'idée que mes « trucs » pouvaient être plus qu'un passe-temps privé. Sans son intérêt et son empressement incessant pour la suite, je n'aurais jamais mené Le Seigneur des Anneaux à son terme...",
+        "Númenor est mon altération personnelle du mythe et/ou de la tradition de l'Atlantide. De toutes les images mythiques ou « archétypales », c'est celle qui est la plus profondément ancrée dans mon imagination, et pendant de nombreuses années j'ai fait un rêve récurrent de l'Atlantide : la vague stupéfiante et inéluctable avançant depuis la Mer ou sur les terres, parfois sombre, parfois verte et baignée de soleil.",
+        "Une partie de l'attrait du Seigneur des Anneaux tient, je crois, aux aperçus d'une vaste histoire en arrière-plan : un attrait semblable à celui de contempler au loin une île inexplorée, ou de voir les tours d'une cité lointaine luire dans une brume ensoleillée.",
+        "Les « cirth » ou runes du Seigneur des Anneaux ont été inventées pour ce récit et, dans ce cadre, n'ont aucun lien historique supposé avec l'alphabet runique germanique, auquel les Anglais ont donné son développement le plus élaboré.",
+        "Je ne pense pas que les personnes de haute condition et de bonne éducation aient besoin de toutes ces petites escarmouches et approches en matière d'« amour ». Ce récit ne traite pas d'une période d'« Amour Courtois » et de ses prétentions ; mais d'une culture plus primitive (c'est-à-dire moins corrompue) et plus noble.",
+        "Je ne doute pas que dans la région envisagée par mon récit (qui est vaste), le « vêtement » des divers peuples, Hommes et autres, était très diversifié au Troisième Âge, selon le climat et les coutumes héritées. Comme l'était notre monde, même si l'on ne considère que l'Europe, la Méditerranée et le très proche « Orient » (ou Sud), avant la victoire de notre temps du style vestimentaire le moins gracieux (surtout pour les hommes et les « neutres ») que l'histoire ait enregistré – une victoire qui se poursuit encore, même parmi ceux qui haïssent le plus les terres d'où elle provient.",
+        "Les Númenóréens, avant que leur savoir ne s'amenuise, en savaient plus sur l'hérédité que les autres peuples. À cela, bien sûr, ils font référence par le symbole commun du sang. Ils reconnaissaient le fait qu'en dépit des mariages mixtes, certaines caractéristiques apparaîtraient sous forme pure dans les générations ultérieures.",
+        "Je n'aime pas donner de « faits » sur moi-même autres que les faits « secs » (qui sont d'ailleurs tout aussi pertinents pour mes livres que d'autres détails plus juteux). Non pas simplement pour des raisons personnelles ; mais aussi parce que je m'oppose à la tendance contemporaine de la critique, avec son intérêt excessif pour les détails de la vie des auteurs et des artistes. Ils ne font que détourner l'attention des œuvres d'un auteur (si celles-ci méritent attention), et finissent, comme on le voit souvent aujourd'hui, par devenir l'intérêt principal. Mais seul son ange gardien, ou plutôt Dieu Lui-même, pourrait démêler la véritable relation entre les faits personnels et les œuvres d'un auteur. Pas l'auteur lui-même (bien qu'il en sache plus que tout enquêteur), et certainement pas les soi-disant « psychologues ».",
+        "Si je devais « philosopher » sur ce mythe, ou du moins sur l'Anneau de Sauron, je dirais qu'il s'agit d'une manière mythique de représenter cette vérité : que la puissance (ou peut-être plutôt la potentialité), si elle doit être exercée et produire des résultats, doit être extériorisée et ainsi, pour ainsi dire, échapper plus ou moins à notre contrôle direct. Un homme qui souhaite exercer un « pouvoir » doit avoir des sujets, qui ne sont pas lui-même. Mais alors il dépend d'eux.",
+        "On ne peut pas trop solliciter l'Anneau Unique, car c'est bien sûr un élément mythique, même si le monde des récits est conçu en termes plus ou moins historiques. L'Anneau de Sauron n'est qu'un des divers traitements mythiques du fait de placer sa vie, ou son pouvoir, dans quelque objet extérieur, qui est ainsi exposé à la capture ou à la destruction avec des résultats désastreux pour soi-même.",
+        "Dans le livre, le lembas a deux fonctions. C'est une « machine » ou un dispositif permettant de rendre crédibles les longues marches avec peu de provisions, dans un monde où, comme je l'ai dit, « les miles sont des miles ». Mais cela est relativement secondaire. Il a aussi une signification bien plus large, de ce qu'on pourrait appeler avec hésitation un ordre « religieux ».",
+        "Le fait biographique principal pour moi est l'achèvement du Seigneur des Anneaux, qui m'étonne encore. Notoire commenceur d'entreprises et non-finisseur, en partie par manque de temps, en partie par manque de concentration exclusive, je me demande encore comment et pourquoi j'ai réussi à m'acharner sur cette chose année après année, souvent dans de réelles difficultés, et à la mener à son terme.",
+        "Je ne suis pas un « démocrate », uniquement parce que l'« humilité » et l'égalité sont des principes spirituels corrompus par la tentative de les mécaniser et de les formaliser, avec pour résultat que nous n'obtenons pas une petitesse et une humilité universelles, mais une grandeur et un orgueil universels, jusqu'à ce qu'un Orque mette la main sur un anneau de pouvoir – et alors nous obtenons et nous avons l'esclavage.",
+        "S'il y a une quelconque référence contemporaine dans mon histoire, c'est à ce qui me semble être l'hypothèse la plus répandue de notre époque : que si une chose peut être faite, elle doit être faite. Cela me semble entièrement faux. Les plus grands exemples de l'action de l'esprit et de la raison résident dans l'abnégation.",
+        "Le mien n'est pas un monde « imaginaire », mais un moment historique imaginaire sur la « Terre du Milieu » – qui est notre demeure.",
+        "Dans Le Seigneur des Anneaux, le conflit ne porte pas fondamentalement sur la « liberté », bien que celle-ci soit naturellement impliquée. Il porte sur Dieu, et sur Son droit exclusif à l'honneur divin.",
+        "Le théâtre de mon récit est cette terre, celle où nous vivons à présent, mais la période historique est imaginaire. Les éléments essentiels de cette demeure permanente sont tous présents, aussi se sent-elle naturellement familière, même si elle est un peu glorifiée par l'enchantement de la distance dans le temps.",
+        "J'ai l'esprit historique. La Terre du Milieu n'est pas un monde imaginaire. Le nom est la forme moderne de midden-erd > middel-erd, un ancien nom pour l'oikoumenē, la demeure permanente des Hommes, le monde objectivement réel, utilisé spécifiquement en opposition aux mondes imaginaires ou invisibles.",
+        "Je pense que le soi-disant « conte de fées » est l'une des plus hautes formes de littérature, et qu'il est tout à fait erronément associé aux enfants (en tant que tels).",
+        "« Terre du Milieu », soit dit en passant, n'est pas le nom d'un pays de nulle part sans rapport avec le monde où nous vivons. C'est simplement l'usage du moyen anglais middel-erde (ou erthe), altération du vieil anglais Middangeard : le nom des terres habitées des Hommes « entre les mers ».",
+        "Bien que je n'aie pas tenté de relier la forme des montagnes et des masses terrestres à ce que les géologues peuvent dire ou supposer du passé proche, imaginativement cette « histoire » est censée se dérouler durant une période de l'Ancien Monde réel de cette planète.",
+        "J'ai ce que certains pourraient appeler un complexe de l'Atlantide. Possiblement hérité, bien que mes parents soient morts trop jeunes pour que je le sache ; et transmis par moi (je suppose) à un seul de mes enfants. Je veux dire le terrible rêve récurrent (remontant aux premiers souvenirs) de la Grande Vague, s'élevant et déferlant inéluctablement sur les arbres et les champs verdoyants. (Je l'ai légué à Faramir.)",
+        "Par-delà les Monts Merlock, une longue route solitaire, à travers les ombres d'araignées et le marais de Tode...",
+        "Le Seigneur des Anneaux est bien sûr une œuvre fondamentalement religieuse et catholique ; inconsciemment au début, mais consciemment lors de la révision. C'est pourquoi je n'ai pas mis, ou j'ai supprimé, pratiquement toutes les références à quoi que ce soit ressemblant à une « religion », à des cultes ou des pratiques, dans le monde imaginaire. Car l'élément religieux est absorbé dans l'histoire et le symbolisme.",
+        "Je n'aime pas l'Allégorie – l'allégorie consciente et intentionnelle – pourtant toute tentative d'expliquer la portée d'un mythe ou d'un conte de fées doit recourir au langage allégorique.",
+        "En fait, je suis chrétien, et même catholique romain, de sorte que je ne m'attends pas à ce que l'« histoire » soit autre chose qu'une « longue défaite » – bien qu'elle contienne (et dans une légende puisse contenir plus clairement et de façon plus émouvante) quelques exemples ou aperçus de la victoire finale.",
+        "C'est l'aéroplane de guerre qui est le vrai méchant. Mes sentiments sont plus ou moins ceux qu'aurait Frodon s'il découvrait que des Hobbits apprennent à chevaucher des oiseaux-Nazgûl, « pour la libération de la Comté ».",
+        "« Capucines » est délibéré, et représente une victoire finale sur les imprimeurs autoritaires. Je le préfère parce que nasturtium est, pour ainsi dire, faussement botanique et mensongèrement savant.",
+        "On ne peut combattre l'Ennemi avec son propre Anneau sans devenir soi-même un Ennemi.",
+        "Les Deux Tours s'approche autant que possible d'un titre couvrant les Livres 3 et 4, si divergents ; et peut rester ambigu – il pourrait faire référence à Isengard et Barad-dûr, ou à Minas Tirith et Barad-dûr ; ou Isengard et Cirith Ungol.",
+        "Je trouve cet américano-cosmopolitisme très effrayant. En tant qu'esprit et âme, et négligeant les petites peurs de la chair timide qui ne veut pas être fusillée ou taillée en pièces par une soldatesque brutale et licencieuse (allemande ou autre), je ne suis pas vraiment sûr que sa victoire sera tellement meilleure pour le monde dans son ensemble et à long terme que la victoire de ——.",
+        "L'« heure du coucher » est généralement une indulgence parentale insensée, populaire bien sûr parce que tant de jeunes gens feront n'importe quoi pour repousser le moment fatal.",
+        "Je pense que cette attitude d'abaissement, d'aplatissement, de Bible-en-anglais-simplifié est responsable du fait que tant d'enfants plus âgés et de jeunes gens ont peu de respect et pas d'amour pour les mots, et des vocabulaires très limités – et hélas ! peu de désir restant (même quand ils avaient le don qui a été abêti) de les affiner ou de les enrichir.",
+        "Beaucoup m'ont demandé pourquoi la Communauté n'a pas volé sur les Aigles jusqu'au Mordor, et à ceux-là je dis, vous savez, euh... taisez-vous !",
+        "Tous ceux qui errent ne sont pas perdus.",
+        "Si davantage d'entre nous accordaient plus de valeur à la nourriture, à la gaieté et aux chansons qu'à l'or thésaurisé, le monde serait plus joyeux.",
+        "La Route se poursuit sans fin, descendant de la porte où elle commença...",
+        "Que Dieu vous bénisse.",
+        "Mon arrière-arrière-grand-père est venu en Angleterre au XVIIIᵉ siècle depuis l'Allemagne : la majeure partie de mon ascendance est donc purement anglaise.",
+        "Je pense que la plupart des chrétiens, sauf les plus simples et les moins instruits ou ceux protégés d'autres manières, ont été plutôt bousculés et pressés depuis quelques générations par les soi-disant scientifiques, et ils ont en quelque sorte relégué la Genèse dans un débarras de leur esprit comme un meuble peu à la mode, un peu honteux de l'avoir dans la maison, vous voyez, quand les jeunes gens brillants et intelligents passent.",
+        "Les Aigles sont une « machine » dangereuse. Je les ai utilisés avec parcimonie, et c'est la limite absolue de leur crédibilité ou de leur utilité.",
+        "Puisque les Valar n'avaient pas de langage propre, n'en ayant pas besoin, ils n'avaient pas de « vrais » noms, seulement des identités, et leurs noms leur furent conférés par les Elfes, étant à l'origine donc tous, pour ainsi dire, des « surnoms », faisant référence à quelque particularité, fonction ou acte frappant.",
+        "La Terre du Milieu n'est pas ma propre invention. C'est une modernisation ou altération d'un ancien mot pour le monde habité des Hommes, l'oikoumenē : milieu parce que vaguement conçu comme situé au milieu des Mers environnantes et entre la glace du Nord et le feu du Sud.",
+        "J'ai commencé une histoire située environ 100 ans après la Chute de Sauron, mais elle s'est avérée à la fois sinistre et déprimante. Puisque nous avons affaire à des HOMMES, il est inévitable que nous soyons concernés par le trait le plus regrettable de leur nature : leur rapide satiété du bien.",
+        "Je suis singulièrement fortuné d'avoir un ami tel que vous, #p. Je sens, si je puis me permettre, que nos relations sont comme celles du Rohan et du Gondor, et (comme vous le savez) pour ma part le serment d'Eorl ne sera jamais rompu, et je continuerai à compter sur et à être reconnaissant pour la sagesse et la courtoisie de Minas Tirith. Merci infiniment.",
+        "Quiconque sait jouer d'un instrument à cordes me semble un magicien digne d'un profond respect. J'aime la musique, mais n'ai aucune aptitude pour elle.",
+        "Je ne me sens pas obligé de faire correspondre mon histoire à la théologie chrétienne formalisée, bien que j'aie en fait voulu qu'elle soit en accord avec la pensée et la croyance chrétiennes.",
+        "L'un de mes ennuis est que j'étais sur le point d'envoyer à l'impression une révision de ma traduction de Gauvain ainsi qu'une de Perle quand un problème désespéré de copyright américain m'est tombé dessus, et je dois maintenant consacrer tout le temps dont je dispose à produire une révision du Seigneur des Anneaux et du Hobbit qui puisse être protégée par copyright et, espère-t-on, déjouer les pirates.",
+        "Rhûn est le mot elfique pour « est ». L'Asie, la Chine, le Japon, et toutes les choses que les gens de l'ouest considèrent comme lointaines."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:nan_curunir"
+      },
+      "lines": [
+        "La voix de Saroumane n'était pas hypnotique mais persuasive. Ceux qui l'écoutaient ne risquaient pas de tomber en transe, mais d'être d'accord avec ses arguments, tout en étant parfaitement éveillés. Il était toujours possible de rejeter, par libre arbitre et raison, à la fois sa voix pendant qu'il parlait et ses impressions résiduelles. Saroumane corrompait les facultés de raisonnement."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+        "J'ai représenté les Orques comme des êtres réels préexistants sur lesquels le Seigneur Ténébreux a exercé la plénitude de son pouvoir pour les remodeler et les corrompre, non pour les créer. Que Dieu « tolère » cela ne semble pas une pire théologie que la tolérance de la déshumanisation calculée des Hommes par les tyrans qui se poursuit aujourd'hui.",
+        "Les Orques ne sont nulle part clairement désignés comme ayant une origine particulière. Mais puisqu'ils sont serviteurs de la Puissance Ténébreuse, et plus tard de Sauron, ni l'un ni l'autre ne pouvant, ou ne voulant, produire des êtres vivants, ils doivent être des « corruptions ».",
+        "Le Noir Parler n'était utilisé qu'en Mordor, il n'apparaît que dans l'inscription de l'Anneau, et une phrase prononcée par les Orques de Barad-dûr et dans le mot Nazgûl. Il n'a jamais été utilisé volontairement par aucun autre peuple, et par conséquent même les noms de lieux du Mordor sont en anglais ou en elfique.",
+        "Les Orques sont fondamentalement une race de créatures « incarnées rationnelles », bien qu'horriblement corrompues, si ce n'est pas plus que bien des Hommes qu'on peut rencontrer aujourd'hui.",
+        "Demander si les Orques « sont » des Communistes me semble aussi sensé que de demander si les Communistes sont des Orques.",
+        "Les Orques sont expressément décrits comme des corruptions de la forme « humaine » que l'on voit chez les Elfes et les Hommes. Ils sont (ou étaient) trapus, larges, au nez plat, à la peau jaunâtre, avec de larges bouches et des yeux bridés : en fait des versions dégradées et repoussantes des types (pour les Européens) les moins gracieux des Mongols."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mirkwood"
+      },
+      "lines": [
+        "Mirkwood n'est pas une invention de ma part, mais un nom très ancien, chargé d'associations légendaires. C'était probablement le nom germanique primitif des grandes régions forestières montagneuses qui formaient jadis une barrière au sud des terres d'expansion germanique. Dans certaines traditions, il en vint à désigner spécialement la frontière entre les Goths et les Huns.",
+        "Les ombres et le mal de la Forêt Noire fournissent, dans un mode diminué de « conte de fées », l'une des parties majeures de l'aventure.",
+        "Legolas signifie « feuilles vertes », un nom sylvestre – forme dialectale du sindarin pur laegolas."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:rohan"
+      },
+      "lines": [
+        "Gripoil venait d'une race spéciale étant pour ainsi dire un équivalent elfique des chevaux ordinaires : son « sang » venait de « l'Ouest par-delà la Mer ».",
+        "Les Rohirrim n'étaient pas « médiévaux », au sens où nous l'entendons. Les styles de la Tapisserie de Bayeux leur conviennent assez bien, si l'on se souvient que l'espèce de filets de tennis que les soldats semblent porter ne sont qu'un signe conventionnel maladroit pour la cotte de mailles à petits anneaux.",
+        "Rohirrim est dérivé de roch signifiant cheval, et de la racine elfique kher- « posséder » ; d'où le sindarin Rochir « seigneur des chevaux », et Rochir-rim « l'armée des Seigneurs des Chevaux »."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:shire | lotr:shire_moors | lotr:shire_forest"
+      },
+      "lines": [
+        "La Comté est basée sur l'Angleterre rurale et sur aucun autre pays au monde – moins peut-être que sur aucun autre en Europe, sur la Hollande, qui est topographiquement totalement dissemblable.",
+        "La toponymie de la Comté, pour prendre la première liste, est une « parodie » de celle de l'Angleterre rurale, dans à peu près le même sens que le sont ses habitants : ils vont ensemble et sont censés le faire.",
+        "La carte de la Comté joue un très petit rôle dans le récit, et l'essentiel de son but est une construction descriptive.",
+        "Je suis en fait un Hobbit (en tout sauf la taille). J'aime les jardins, les arbres et les terres agricoles non mécanisées ; je fume la pipe, et j'aime la bonne nourriture simple (non réfrigérée), mais je déteste la cuisine française ; j'aime, et j'ose même porter en ces jours mornes, des gilets ornementaux.",
+        "Tous les Hobbits étaient lents à changer, mais les Forts remigrés retournaient à une vie plus sauvage et plus primitive de petites communautés déclinantes ; tandis que les gens de la Comté, durant les 1400 années de leur occupation, avaient développé une vie sociale plus établie et plus élaborée, dans laquelle l'importance de la parenté pour leurs sentiments et coutumes était assistée par des traditions détaillées, écrites et orales.",
+        "La langue des hobbits était remarquablement semblable à l'anglais, comme on pouvait s'y attendre : ils vivaient seulement aux frontières des Terres Sauvages, et n'en avaient pour la plupart pas conscience."
+
+      ]
+    },
+    {
+      "conditions": {
+        "_comment": "Add 'lotr:erebor' when it's added...",
+        "relation": "friendly",
+        "biome": "lotr:blue_mountains | lotr:iron_hills"
+      },
+      "lines": [
+        "Ces nains ne sont pas tout à fait les nains du folklore plus connu. On leur a donné des noms scandinaves, c'est vrai ; mais c'est une concession éditoriale.",
+        "Le khuzdul était à la fois compliqué et cacophonique. Même les premiers philologues elfes l'évitaient, et les nains étaient obligés d'utiliser d'autres langues, sauf pour des conversations entièrement privées.",
+        "Les Nains sont représentés comme gardant leur propre langue natale plus ou moins secrète, et utilisant pour tous les usages « extérieurs » la langue des peuples près desquels ils demeuraient ; ils ne révèlent jamais leurs propres « vrais » noms personnels dans leur propre langue."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:old_forest"
+      },
+      "lines": [
+        "La Vieille Forêt était hostile aux créatures bipèdes à cause du souvenir de nombreuses blessures."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:fangorn"
+      },
+      "lines": [
+        "Ce qu'il advient des Ents, je ne le sais pas encore.",
+        "La forêt de Fangorn était vieille et belle, mais à l'époque de l'histoire, tendue d'hostilité parce qu'elle était menacée par un ennemi amoureux des machines.",
+        "Je pense qu'en fait les Ent-femmes avaient disparu pour de bon, ayant été détruites avec leurs jardins lors de la Guerre de la Dernière Alliance, quand Sauron poursuivit une politique de terre brûlée et incendia leur terre contre l'avance des Alliés le long de l'Anduin."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:further_gondor | lotr:anorien | lotr:pinnath_gelin | lotr:anfalas | lotr:blackroot_vale | lotr:lamedon | lotr:pelargir | lotr:lossarnach | lotr:lebennin | lotr:emyn_en_ernil | lotr:dor_en_ernil"
+      },
+      "lines": [
+        "Denethor était corrompu par la simple politique : d'où son échec, et sa méfiance envers Faramir. Préserver la structure politique du Gondor, tel qu'il était, contre un autre potentat qui s'était rendu plus fort et devait être craint et combattu pour cette raison plutôt que parce qu'il était impitoyable et mauvais, était devenu pour lui un motif primordial.",
+        "Denethor méprisait les hommes de moindre envergure, et l'on peut être sûr qu'il ne distinguait pas entre les orques et les alliés du Mordor. S'il avait survécu en vainqueur, même sans usage de l'Anneau, il aurait fait un grand pas vers devenir lui-même un tyran, et les conditions et le traitement qu'il aurait accordés aux peuples abusés de l'est et du sud auraient été cruels et vengeurs.",
+        "Le quenya était connu des érudits du Gondor au moins aussi bien que le latin l'est encore en Europe occidentale. Son usage était honorifique, et il n'y avait aucune raison d'accommoder les noms quenya au sindarin.",
+        "Au Gondor, la langue généralement utilisée était le « westron », une langue à peu près aussi mélangée que l'anglais moderne, mais fondamentalement dérivée de la langue native des Númenóréens.",
+        "Au sud, le Gondor s'élève à un sommet de puissance, reflétant presque Númenor, puis décline lentement vers un Moyen Âge décadent, une sorte de Byzance fière, vénérable, mais de plus en plus impuissante.",
+        "Les Númenóréens du Gondor étaient fiers, singuliers et archaïques, et je pense qu'ils sont le mieux représentés en termes égyptiens. De bien des manières, ils ressemblaient aux « Égyptiens » – l'amour de, et le pouvoir de construire, le gigantesque et le massif. Et dans leur grand intérêt pour les ancêtres et les tombeaux.",
+        "Je pense que la couronne du Gondor était très haute, comme celle de l'Égypte, mais avec des ailes attachées, non pas placées droit vers l'arrière mais en angle."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:rivendel | lotr:lindon | lotr:lothlorien"
+      },
+      "lines": [
+        "Galadriel est aussi vieille, ou plus vieille que Arachne. Elle est la dernière survivante des Grands parmi les Hauts Elfes, et elle s'« éveilla » en Eldamar par-delà la Mer, bien avant qu'Ungoliant ne vienne en Terre du Milieu et n'y produise ses couvées.",
+        "Les Hauts Elfes étaient des exilés du Royaume Béni des Dieux, et ils n'avaient pas de « religion » car celle-ci avait été entre les mains des dieux, louant et adorant Eru « l'Unique », Ilúvatar le Père de Tous sur la Montagne d'Aman."
+      ]
+    },
+    {
+      "_comment": "Change biome to 'lotr:erebor' when it's added...",
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:northern_dale"
+      },
+      "lines": [
+        "Le dragon porte comme nom – un pseudonyme – le passé du verbe germanique primitif Smugan, se faufiler par un trou : une modeste plaisanterie philologique."
+      ]
+    },
+    {
+      "_comment": "Change biome to 'lotr:dale | lotr:northern_dale' when erebor is added ",
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:dale"
+      },
+      "lines": [
+        "La langue de Dale et du Long Lac serait, si elle apparaissait, représentée comme étant de caractère plus ou moins scandinave ; mais elle n'est représentée que par quelques noms, en particulier ceux des Nains qui venaient de cette région."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Vous n'êtes pas quelqu'un de bien, #p.",
+        "Sauf votre respect, vous me mettez mal à l'aise.",
+        "Laissez-moi en paix !",
+        "Laissez-moi en paix, #p !",
+        "Allons, allons, pas d'ennuis !",
+        "Ne me forcez pas à prendre mon râteau !"
+      ]
+    }
+  ]
+}

@@ -21,7 +21,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -49,26 +48,23 @@ public class ExtendedBannerProtectionManager {
 			return !isAllowed;
 		}
 	}
-	public static ExtendedProtReturn getProtectionStatus(IWorld iWorld, BlockPos pos, SingleProtectionInstance protInstance) {
-		return getProtectionStatus(iWorld, MathHelper.floor(pos.getX()), MathHelper.floor(pos.getY()), MathHelper.floor(pos.getZ()), protInstance, false, null);
-	}
-	public static ExtendedProtReturn getProtectionStatus(IWorld iWorld, BlockPos pos, SingleProtectionInstance protInstance, boolean doLog, String source) {
-		return getProtectionStatus(iWorld, MathHelper.floor(pos.getX()), MathHelper.floor(pos.getY()), MathHelper.floor(pos.getZ()), protInstance, doLog, source);
+	public static ExtendedProtReturn getProtectionStatus(IWorld iWorld, BlockPos position, ProtectionInstance protInstance) {
+		return getProtectionStatus(iWorld, position, protInstance, false, null);
 	}
 
-	public static ExtendedProtReturn getProtectionStatus(IWorld iWorld, int pX, int pY, int pZ, SingleProtectionInstance protInstance, boolean doLog, String source) {
+	public static ExtendedProtReturn getProtectionStatus(IWorld iWorld, BlockPos position, ProtectionInstance protInstance, boolean doLog, String source) {
 		if(!ExtendedServerConfig.enableBannerProtection.get()) {
 			return ExtendedProtReturn.ALLOWED;
 		}
-		ExtendedProtReturn isInteractionDenied = getActualProtectionStatus(iWorld, pX, pY, pZ, protInstance);
+		ExtendedProtReturn isInteractionDenied = getActualProtectionStatus(iWorld, position, protInstance);
 		if(doLog && isInteractionDenied!=ExtendedProtReturn.NOBANNER) {
-			ExtendedLog.infoHideable(ExtendedServerConfig.enableExtendedLogging.get(), "BannerInstance[x="+pX+",y="+pY+",z="+pZ+",PE=["+protInstance.toString()+"], rejected="+isInteractionDenied+", source:"+source+"]");
+			ExtendedLog.infoHideable(ExtendedServerConfig.enableExtendedLogging.get(), "BannerInstance["+position.toString()+",PE=["+protInstance.toString()+"], rejected="+isInteractionDenied+", source:"+source+"]");
 		}
 		return isInteractionDenied;
 	}
 
-	private static ExtendedProtReturn getActualProtectionStatus(IWorld iWorld, int pX, int pY, int pZ, SingleProtectionInstance protInstance) {
-		AxisAlignedBB bannerScan = AxisAlignedBBUtils.makeCroppedBB(pX, pY, pZ).inflate(64.0D);
+	private static ExtendedProtReturn getActualProtectionStatus(IWorld iWorld, BlockPos position, ProtectionInstance protInstance) {
+		AxisAlignedBB bannerScan = AxisAlignedBBUtils.makeCroppedBB(position).inflate(64.0D);
 		if(protInstance.extraScanArea>0) {
 			bannerScan = bannerScan.inflate(protInstance.extraScanArea);
 		}
@@ -76,7 +72,7 @@ public class ExtendedBannerProtectionManager {
 		if(bannersInArea.isEmpty()) {
 			return ExtendedProtReturn.NOBANNER;
 		}
-		AxisAlignedBB disputedArea = AxisAlignedBBUtils.makeCroppedBB(pX, pY, pZ);
+		AxisAlignedBB disputedArea = AxisAlignedBBUtils.makeCroppedBB(position);
 		if(protInstance.extraDisputedArea>0) {
 			disputedArea = disputedArea.inflate(protInstance.extraDisputedArea);
 		}
@@ -91,7 +87,7 @@ public class ExtendedBannerProtectionManager {
 		return ExtendedProtReturn.ALLOWED;
 	}
 
-	public abstract static class SingleProtectionInstance {
+	public abstract static class ProtectionInstance {
 		protected int extraScanArea = 0;
 		protected int extraDisputedArea = 0;
 
@@ -112,7 +108,7 @@ public class ExtendedBannerProtectionManager {
 
 		public abstract String getStringData();
 
-		public static class PlayerProtection extends SingleProtectionInstance {
+		public static class PlayerProtection extends ProtectionInstance {
 			private final PlayerEntity offendingPlayer;
 			private ExtendedBannerPermissions queryingPermission = ExtendedBannerPermissions.EVERYTHING;
 
@@ -167,11 +163,12 @@ public class ExtendedBannerProtectionManager {
 					List<ProtectionEntry> whitelist = bannerInstance.getProtectionWhitelist();
 					for(ProtectionEntry entry : whitelist) {
 						// Check which has better performance
-//						if(entry!=null&&entry.hasPermission(queryingPermission)) {
-//							if(entry.getProfile().isPlayerContained(offendingPlayer)) {
-//								isWhitelisted = true;
-//							}
-//						}
+						/*
+						if(entry!=null&&entry.hasPermission(queryingPermission)) {
+							if(entry.getProfile().isPlayerContained(offendingPlayer)) {
+								isWhitelisted = true;
+							}
+						}*/
 						if(entry!=null&&entry.getProfile().isPlayerContained(offendingPlayer)) {
 							if(entry.hasPermission(queryingPermission)) {
 								isWhitelisted = true;
@@ -202,7 +199,7 @@ public class ExtendedBannerProtectionManager {
 			}
 		}
 
-		public static class EntityProtection extends SingleProtectionInstance {
+		public static class EntityProtection extends ProtectionInstance {
 			final Entity offendingEntity;
 
 			public EntityProtection(Entity offendingEntity) {
@@ -211,7 +208,7 @@ public class ExtendedBannerProtectionManager {
 			@Override
 			public boolean isProtected(ExtendedMEBannerTileEntity bannerInstance) {
 				if(offendingEntity instanceof PlayerEntity) {
-					return new SingleProtectionInstance.PlayerProtection((PlayerEntity)offendingEntity).isProtected(bannerInstance);
+					return new ProtectionInstance.PlayerProtection((PlayerEntity)offendingEntity).isProtected(bannerInstance);
 				}
 				if(bannerInstance.getFactionProtcting().resolveFaction(bannerInstance.getLevel()).isPresent()) {
 					if(bannerInstance.getFactionProtcting().resolveFaction(bannerInstance.getLevel()).get().isBadRelation(NPCEntitySettingsManager.getEntityTypeFaction(offendingEntity))) {
@@ -229,7 +226,7 @@ public class ExtendedBannerProtectionManager {
 			}
 		}
 
-		public static class TNTProtection extends SingleProtectionInstance {
+		public static class TNTProtection extends ProtectionInstance {
 			final TNTEntity offendingEntity;
 
 			public TNTProtection(TNTEntity offendingEntity) {
@@ -240,7 +237,7 @@ public class ExtendedBannerProtectionManager {
 			public boolean isProtected(ExtendedMEBannerTileEntity bannerInstance) {
 				LivingEntity offender = offendingEntity.getOwner();
 				if(offender instanceof PlayerEntity) {
-					return new SingleProtectionInstance.PlayerProtection((PlayerEntity)offender).isProtected(bannerInstance);
+					return new ProtectionInstance.PlayerProtection((PlayerEntity)offender).isProtected(bannerInstance);
 				}
 				return true;
 			}
@@ -251,7 +248,7 @@ public class ExtendedBannerProtectionManager {
 			}
 		}
 
-		public static class LaunchedProtection extends SingleProtectionInstance{
+		public static class LaunchedProtection extends ProtectionInstance{
 			final ProjectileEntity offendingEntity;
 
 			public LaunchedProtection(ProjectileEntity offendingEntity) {
@@ -262,7 +259,7 @@ public class ExtendedBannerProtectionManager {
 			public boolean isProtected(ExtendedMEBannerTileEntity bannerInstance) {
 				Entity offender = offendingEntity.getOwner();
 				if(offender instanceof PlayerEntity) {
-					return new SingleProtectionInstance.PlayerProtection((PlayerEntity)offender).isProtected(bannerInstance);
+					return new ProtectionInstance.PlayerProtection((PlayerEntity)offender).isProtected(bannerInstance);
 				}
 				return true;
 			}
@@ -273,7 +270,7 @@ public class ExtendedBannerProtectionManager {
 			}
 		}
 
-		public static class DamageSourceProtection extends SingleProtectionInstance {
+		public static class DamageSourceProtection extends ProtectionInstance {
 			final DamageSource source;
 
 			public DamageSourceProtection(DamageSource source) {
@@ -284,10 +281,10 @@ public class ExtendedBannerProtectionManager {
 			public boolean isProtected(ExtendedMEBannerTileEntity bannerInstance) {
 				Entity offender = source.getEntity();
 				if(offender instanceof PlayerEntity) {
-					return new SingleProtectionInstance.PlayerProtection((PlayerEntity)offender).isProtected(bannerInstance);
+					return new ProtectionInstance.PlayerProtection((PlayerEntity)offender).isProtected(bannerInstance);
 				}
 				if(offender instanceof ProjectileEntity) {
-					return new SingleProtectionInstance.LaunchedProtection((ProjectileEntity) offender).isProtected(bannerInstance);
+					return new ProtectionInstance.LaunchedProtection((ProjectileEntity) offender).isProtected(bannerInstance);
 				}
 				return true;
 			}
@@ -298,7 +295,7 @@ public class ExtendedBannerProtectionManager {
 			}
 		}
 
-		public static class AnyProtection extends SingleProtectionInstance {
+		public static class AnyProtection extends ProtectionInstance {
 			@Override
 			public boolean isProtected(ExtendedMEBannerTileEntity bannerInstance) {
 				return true;

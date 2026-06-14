@@ -5,18 +5,22 @@ import java.util.List;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem;
 import com.google.common.collect.ImmutableList;
 
 import lotr.client.render.entity.model.WargModel;
+import lotr.common.entity.npc.ExtendedRidableEntity;
 import lotr.common.entity.npc.WargEntity;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.item.ItemStack;
 
 @Mixin(WargModel.class)
 public abstract class MixinWargModel<E extends WargEntity> extends SegmentedModel<E>{
@@ -183,4 +187,29 @@ public abstract class MixinWargModel<E extends WargEntity> extends SegmentedMode
 		modelRenderer.zRot = z;
 	}
 
+	/**
+	 * @author Maximuslotro
+	 * @param pEntity Entity to setup
+	 * @param pLimbSwing Limb swing tick
+	 * @param pLimbSwingAmount Limb swing tick
+	 * @param pPartialTick Partial tick count
+	 * @reason Allow injecting into this empty method
+	 * */
+	@Overwrite(remap=false)
+	public void setLivingAnimations(E pEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTick) {
+		ItemStack itemstack = ((ExtendedRidableEntity)pEntity).getArmor();
+		if (itemstack.getItem() instanceof ExtendedMountedArmorItem) {
+			backHairL.visible=false;
+			backHairR.visible=false;
+			maneTop.visible=false;
+			maneL.visible=false;
+			maneR.visible=false;
+		}else {
+			backHairL.visible=true;
+			backHairR.visible=true;
+			maneTop.visible=true;
+			maneL.visible=true;
+			maneR.visible=true;
+		}
+	}
 }

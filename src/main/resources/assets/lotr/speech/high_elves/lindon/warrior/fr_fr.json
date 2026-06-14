@@ -1,0 +1,92 @@
+{
+  "parent": "lotr:high_elves/lindon/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Le temps des Elfes s'efface, mais notre force n'est pas encore épuisée.",
+        "Je défends les Elfes de Lindon.",
+        "Salutations, #p.",
+        "Nous défendons les peuples libres de la Terre du Milieu.",
+        "Il semble que vous soyez un ami des Elfes, #p.",
+        "Puisse la grâce des Valar vous protéger.",
+        "Combien d'Orques avez-vous occis aujourd'hui, #p ?",
+        "Le monde change, #p... Je le sens dans mon cœur.",
+        "Si vous combattez pour la liberté, alors je suis avec vous.",
+        "Il y a bien longtemps, une alliance existait entre mon peuple et le vôtre. Honorerez-vous cette alliance ?",
+        "Toujours plus forte grandit l'emprise de l'Ennemi sur nos terres.",
+        "Bienvenue, #p, en la terre de Círdan le Charpentier des Navires !",
+        "Vous ne trouverez nul mal au Lindon, #p ! Notre terre est sûre et belle.",
+        "J'ai protégé ces rivages pendant de nombreuses années.",
+        "Je protège les Hauts Elfes de Lindon. Nul mal n'échappera à mon courroux.",
+        "Le pouvoir des Elfes décline en ce monde, mais notre force n'est pas encore épuisée !",
+        "A tiro nin, Fanuilos !",
+        "Gurth an Glamhoth !",
+        "Tôl acharn !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "hired": "own"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Par l'étoile d'Eärendil, je jure que je vous verrai occis !",
+        "Vous n'êtes pas le bienvenu au Lindon !",
+        "Vous n'êtes pas le bienvenu au Lindon, #p !",
+        "Vous ne pouvez fouler le sol de ce beau royaume !",
+        "Fuyez ces terres, #p !",
+        "Pour Lindon !",
+        "Péris, démon de Morgul !",
+        "Plus jamais vous n'obscurcirez ces terres, #p !",
+        "Je jure par les Valar, je mettrai fin à votre mal !",
+        "À Udûn avec vous !",
+        "Allez embrasser un Orque !",
+        "Mort aux ennemis des Elfes !",
+        "Qui nous apporte ce signe de malheur ?",
+        "Partez, vil serviteur de l'Ennemi !",
+        "Quittez cette terre, ou affrontez le tranchant de nos lames !",
+        "Je ne permettrai pas au mal de souiller la terre de Lindon. Vous rencontrerez bientôt votre fin, #p.",
+        "Par les Valar ! Comment osez-vous pénétrer cette terre, #p ?",
+        "Fuyez, vermine du Mordor, ou affrontez une pluie de flèches.",
+        "Comment osez-vous empoisonner ce beau royaume de vos pieds immondes ?",
+        "Le nallon sí dinguruthos !",
+        "A tiro nin, Fanuilos !",
+        "Gurth an Glamhoth !",
+        "Tôl acharn !"
+      ]
+    }
+  ]
+}

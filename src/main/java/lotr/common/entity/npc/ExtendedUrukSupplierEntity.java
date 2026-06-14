@@ -65,7 +65,7 @@ public class ExtendedUrukSupplierEntity extends ExtendedUrukTraderEntity{
 		this.setItemSlot(EquipmentSlotType.LEGS, legaItem);
 		this.setItemSlot(EquipmentSlotType.CHEST, chestItem);
 		this.setItemSlot(EquipmentSlotType.HEAD, headItem);
-		this.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
+		this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.URUK_SHIELD.get()));
 		return spawnData;
 	}
 

@@ -130,6 +130,13 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotr:dead_coral",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "minecraft:lava_bucket",
         "averageCost": 16
       }
@@ -156,9 +163,23 @@
         "item": "lotr:mithril_nugget",
         "averageCost": 40
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 3
+      }
     }
   ],
   "sellToPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 6
+      }
+    },
     {
       "weight": 50,
       "stack": {
@@ -334,6 +355,28 @@
       "stack": {
         "item": "lotr:lindon_banner_pattern",
         "averageCost": 25
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lindon_shield",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:combat_tome",
+        "averageCost": 50
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:artisan_tome",
+        "averageCost": 50
       }
     }
   ]

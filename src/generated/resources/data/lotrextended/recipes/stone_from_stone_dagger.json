@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotr:stone_dagger"
+  },
+  "result1": {
+    "item": "minecraft:stone"
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

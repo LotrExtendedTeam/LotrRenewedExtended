@@ -1,0 +1,33 @@
+{
+  "id": "lotrextended:isengard_warg_pit_spawner",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 12,
+    "lowerYvalue": -8,
+    "horizontal_bounds": 16
+  },
+  "spawn_area": {
+    "topYvalue": 4,
+    "lowerYvalue": -4,
+    "horizontal_bounds": 6
+  },
+  "fixed_spawning": true,
+  "fixed_spawning_chance": 50,
+  "setHomeOnSpawn": true,
+  "homeRadius": 26,
+  "persistenceRequired": true,
+  "spawnCap": 8,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 2,
+      "maxSpawnCount": 3,
+      "entity_types": [
+        {
+          "weight": 100,
+          "entity_type": "lotr:isengard_warg"
+        }
+      ]
+    }
+  ]
+}

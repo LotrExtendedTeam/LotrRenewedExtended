@@ -1,0 +1,121 @@
+{
+  "parent": "lotr:rohan/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Nous sommes les éleveurs et les fermiers de la Marche.",
+        "Si ces Orques de la Main Blanche viennent un jour par ici, je suis prêt à me battre.",
+        "J'aimerais pouvoir rejoindre les Cavaliers du Roi, et combattre pour ma famille.",
+        "Les Orques se multiplient dans les montagnes. Je crains pour ma famille, #p.",
+        "J'ai peur pour notre peuple.",
+        "On parle de pillards de la Terre Noire qui se faufilent la nuit et volent nos chevaux. Je ne supporte pas d'y penser, pour dire vrai.",
+        "On dit que le peuple cruel des Rivières du Sud se rassemble pour un assaut sur le Pays de Pierre.",
+        "Où est le cheval et le cavalier ? Nous avons besoin d'eux plus que jamais, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<=guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "Quelle est votre affaire ici, voyageur ?",
+        "Vous n'êtes pas un espion de magicien, n'est-ce pas, #p ?",
+        "Le Magicien Blanc a maints espions à son service. Vous n'êtes pas l'un d'entre eux, n'est-ce pas ?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Le Roi est malade, disent certains. Il n'est plus ce qu'il était.",
+        "Où est le Roi quand nous avons besoin de lui, #p ? Où sont ses cavaliers ?",
+        "Nos récoltes se flétrissent, nos chevaux sont volés, et on dit que la maladie du Roi empire de jour en jour."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Tu es un scélérat !",
+        "Hors de ma vue, #p.",
+        "Que me veux-tu, gredin ?",
+        "Rufian ! Retourne d'où tu viens !",
+        "Tu es pire que les Hommes sauvages !",
+        "Ne fais pas de mal à mes chevaux !",
+        "Ouste, scélérat !",
+        "Je ne traite pas avec les vauriens de ton espèce !",
+        "Qu'es-tu, #p, bandit, Homme-Gobelin, ou quelque diablerie d'Isengard ?",
+        "Reste loin de moi.",
+        "Je ne veux rien avoir à faire avec toi."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Je te suggère de quitter cet endroit, #p.",
+        "Je te suggère de quitter cet endroit. Les Cavaliers du Roi ne vont pas tarder.",
+        "Tu ne recevras aucun accueil ici.",
+        "Les héros du Rohan t'abattront, #p.",
+        "Les Cavaliers du Roi t'abattront, #p.",
+        "Gardes ! Gardes !",
+        "Hors d'ici, #p. Nous ne voulons pas du mal ici.",
+        "Les rufians comme toi ne sont pas les bienvenus ici.",
+        "Toi et les tiens n'êtes pas les bienvenus au Rohan.",
+        "Toi et les tiens n'êtes pas les bienvenus dans la Marche.",
+        "Les gredins comme toi ne sont pas les bienvenus en ces terres."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:isengard"
+      },
+      "lines": [
+        "Tu sers la Main Blanche !",
+        "Hors d'ici, esclave d'Isengard !",
+        "Tu es un démon au service du Magicien Blanc ! Déguerpis !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:dunland"
+      },
+      "lines": [
+        "Hors d'ici, Dunlandais !",
+        "Hors d'ici, esclave dunlandais !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor | lotr:near_harad | lotr:rhudel"
+      },
+      "lines": [
+        "Tu sers le Seigneur Ténébreux !",
+        "Hors d'ici, esclave du Mordor !"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "Tu sers l'Ennemi !",
+        "Hors d'ici, esclave de l'Ennemi !"
+      ]
+    }
+  ]
+}

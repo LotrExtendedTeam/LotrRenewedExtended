@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:mossy_gondor_cobblebrick_using_vines_willow"
+    ]
+  },
+  "criteria": {
+    "has_gondor_cobblebrick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gondor_cobblebrick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:mossy_gondor_cobblebrick_using_vines_willow"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gondor_cobblebrick",
+      "has_the_recipe"
+    ]
+  ]
+}

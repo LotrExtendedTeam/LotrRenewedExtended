@@ -134,7 +134,7 @@ public class ExtendedRespawnerEntity extends Entity{
 			if(spawnedEntity instanceof ExtendedCaptainEntity) {
 				// IDK maybe captains have data to save in the future
 			}
-			world.addFreshEntity(spawnedEntity);
+			world.addFreshEntityWithPassengers(spawnedEntity);
 			queueToRemove = true;
 		}else {
 			ExtendedLog.error("Entity Respawner tried spawning unknown entity! "+entityType +", with data: "+nbt.toString());

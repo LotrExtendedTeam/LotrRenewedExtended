@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:mossy_gondor_brick_using_moss_block"
+    ]
+  },
+  "criteria": {
+    "has_gondor_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:gondor_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:mossy_gondor_brick_using_moss_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gondor_brick",
+      "has_the_recipe"
+    ]
+  ]
+}
