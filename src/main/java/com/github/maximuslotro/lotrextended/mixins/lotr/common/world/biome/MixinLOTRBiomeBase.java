@@ -10,6 +10,7 @@ import lotr.common.biome.ExtendedBiomeSetter;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.world.biome.LOTRBiomeBase;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.biome.Biome.Builder;
@@ -32,8 +33,13 @@ public class MixinLOTRBiomeBase {
 		}
 	}
 
-	@Inject(method = "addAnimals(Lnet/minecraft/world/biome/MobSpawnInfo$Builder;)V", at = @At("TAIL"), remap = false)
-	protected void addAnimalsExtended(MobSpawnInfo.Builder builder, CallbackInfo ci) {
+	@Inject(method = "addAmbientCreatures(Lnet/minecraft/world/biome/MobSpawnInfo$Builder;)V", at = @At("TAIL"), remap = false)
+	protected void addAmbientCreaturesExtended(MobSpawnInfo.Builder builder, CallbackInfo ci) {
+		builder.addSpawn(EntityClassification.AMBIENT, new Spawners(EntityType.RABBIT, 8, 4, 4));
+	}
+
+	@Inject(method = "addLandCreatures(Lnet/minecraft/world/biome/MobSpawnInfo$Builder;)V", at = @At("TAIL"), remap = false)
+	protected void addLandCreaturesExtended(MobSpawnInfo.Builder builder, CallbackInfo ci) {
 		builder.addSpawn(EntityClassification.CREATURE, new Spawners(ExtendedEntities.DUCK.get(), 20, 4, 4));
 	}
 
