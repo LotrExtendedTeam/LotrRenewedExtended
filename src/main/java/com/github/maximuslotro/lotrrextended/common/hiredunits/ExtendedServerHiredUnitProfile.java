@@ -178,7 +178,13 @@ public class ExtendedServerHiredUnitProfile {
 			boolean hiringRequiresPledge = hiringObject.get("hiringRequiresPledge").getAsBoolean();
 			int hiringAlignmentRequired = hiringObject.get("hiringAlignmentRequired").getAsInt();
 			// Attack information
-			ExtendedUnitAttackType attackType = ExtendedUnitAttackType.byName(languageObject.get("attack_type").getAsString());
+			ExtendedUnitAttackType attackType;
+			if(jsonobject.has("attack_type")) {
+				attackType = ExtendedUnitAttackType.byName(jsonobject.get("attack_type").getAsString());
+			}else {
+				// Fallback for incorrect placement that occurred before 1.10.2
+				attackType = ExtendedUnitAttackType.byName(languageObject.get("attack_type").getAsString());
+			}
 			// Equipment
 			ExtendedHiredUnitEquipmentPool equipmentPools = JSONUtils.getAsObject(jsonobject, "equipmentPools", ExtendedHiredUnitEquipmentPool.EMPTY, context, ExtendedHiredUnitEquipmentPool.class);
 			return new ExtendedServerHiredUnitProfile(new ResourceLocation(id), translateStrings, entity_title, entity_shortname, entity_unit_type, equipmentPools, hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType, entityType);
@@ -203,7 +209,7 @@ public class ExtendedServerHiredUnitProfile {
 			hiringObject.addProperty("hiringAlignmentRequired", unitProfile.getHiringAlignmentRequired());
 			jsonobject.add("hiring", hiringObject);
 			// Attack information
-			languageObject.addProperty("attack_type", unitProfile.getAttackType().getAttackTypeName());
+			jsonobject.addProperty("attack_type", unitProfile.getAttackType().getAttackTypeName());
 			// Equipment
 			jsonobject.add("equipmentPools", context.serialize(unitProfile.equipmentPools));
 			return jsonobject;

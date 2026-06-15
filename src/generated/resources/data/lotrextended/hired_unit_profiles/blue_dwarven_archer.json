@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.blue_mountains_archer",
-    "attack_type": "ranged"
+    "entity_unit_type": "entity.lotr.blue_mountains_archer"
   },
   "hiring": {
     "hiringCost": 50,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 300
   },
+  "attack_type": "ranged",
   "equipmentPools": {
     "helmets": [
       {

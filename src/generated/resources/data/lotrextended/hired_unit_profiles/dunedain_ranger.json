@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.dunedain_ranger",
-    "attack_type": "ranged"
+    "entity_unit_type": "entity.lotr.dunedain_ranger"
   },
   "hiring": {
     "hiringCost": 50,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 350
   },
+  "attack_type": "ranged",
   "equipmentPools": {
     "helmets": [
       {

@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.isengard_snaga_archer",
-    "attack_type": "ranged"
+    "entity_unit_type": "entity.lotr.isengard_snaga_archer"
   },
   "hiring": {
     "hiringCost": 40,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 200
   },
+  "attack_type": "ranged",
   "equipmentPools": {
     "helmets": [
       {

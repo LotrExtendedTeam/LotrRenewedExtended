@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.gundabad_uruk",
-    "attack_type": "melee"
+    "entity_unit_type": "entity.lotr.gundabad_uruk"
   },
   "hiring": {
     "hiringCost": 40,
     "hiringRequiresPledge": true,
     "hiringAlignmentRequired": 350
   },
+  "attack_type": "melee",
   "equipmentPools": {
     "helmets": [
       {

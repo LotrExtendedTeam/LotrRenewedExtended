@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.blue_mountains_warrior",
-    "attack_type": "melee"
+    "entity_unit_type": "entity.lotr.blue_mountains_warrior"
   },
   "hiring": {
     "hiringCost": 30,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 250
   },
+  "attack_type": "melee",
   "equipmentPools": {
     "helmets": [
       {

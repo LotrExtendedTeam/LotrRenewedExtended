@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.gundabad_uruk_archer",
-    "attack_type": "ranged"
+    "entity_unit_type": "entity.lotr.gundabad_uruk_archer"
   },
   "hiring": {
     "hiringCost": 60,
     "hiringRequiresPledge": true,
     "hiringAlignmentRequired": 400
   },
+  "attack_type": "ranged",
   "equipmentPools": {
     "helmets": [
       {
