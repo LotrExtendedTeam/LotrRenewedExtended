@@ -9,10 +9,8 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 
-/**
- * Based off of {@link ExtendedWasteBlock}
- * */
 public class ExtendedWasteBlock extends Block {
 	protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
 
@@ -39,4 +37,7 @@ public class ExtendedWasteBlock extends Block {
 	public boolean isPathfindable(BlockState pState, IBlockReader pLevel, BlockPos pPos, PathType pType) {
 		return false;
 	}
+
+	@Override
+	public void onPlantGrow(BlockState state, IWorld world, BlockPos pos, BlockPos source) {}
 }

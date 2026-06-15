@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.world.gen.feature;
 
+import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -17,6 +18,7 @@ public class BiomeFeatureAdder {
 			}if (event.getName().equals(LOTRBiomes.NAN_CURUNIR.getRegistryName())) {
 				ExtendedBiomeFeatures.addOrthancWalls(event.getGeneration());
 				ExtendedBiomeFeatures.addScorchedLand(event.getGeneration(), ExtendedConfiguredFeatures.ISENGARD_SCORCHED_LAND, 80);
+				ExtendedBiomeFeatures.addBoulders(event.getGeneration(), ExtendedBlocks.WASTE_BLOCK.get().defaultBlockState(), 1, 3, 32, 3, 3);
 			}
 			if(!event.getName().equals(LOTRBiomes.SEA.getRegistryName()) || !event.getName().getPath().contains("river")) {
 				ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 6000);
