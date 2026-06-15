@@ -1,0 +1,8 @@
+{
+  "id": "lotrextended:dwarven_commander",
+  "unitProfileIDs": [
+    "lotrextended:dwarf",
+    "lotrextended:dwarven_warrior",
+    "lotrextended:dwarven_archer"
+  ]
+}

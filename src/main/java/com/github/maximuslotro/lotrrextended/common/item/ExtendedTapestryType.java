@@ -18,7 +18,7 @@ public class ExtendedTapestryType extends ForgeRegistryEntry<ExtendedTapestryTyp
 	private final int width;
 	private final int height;
 	
-	private static RegistryObject<ExtendedTapestryType> register(String pKey, int pWidth, int pHeight) {
+	public static RegistryObject<ExtendedTapestryType> register(String pKey, int pWidth, int pHeight) {
 		return TAPESTRIES.register(pKey, ()->new ExtendedTapestryType(pWidth, pHeight));
 	}
 

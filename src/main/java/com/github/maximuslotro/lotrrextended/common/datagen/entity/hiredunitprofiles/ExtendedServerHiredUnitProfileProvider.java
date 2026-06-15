@@ -39,7 +39,7 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 		this.modId = pModId;
 	}
 
-	public abstract void makeStructureSpawnPools(Consumer<ExtendedServerHiredUnitProfile> pConsumer);
+	public abstract void makeHiredUnitProfiles(Consumer<ExtendedServerHiredUnitProfile> pConsumer);
 
 	@Override
 	public void run(DirectoryCache pCache) throws IOException {
@@ -58,7 +58,7 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 
 	         }
 	      };
-		makeStructureSpawnPools(consumer);
+		makeHiredUnitProfiles(consumer);
 		ExtendedLog.info("Built "+dataHere.size()+" hired unit profiles.");
 		if(modId.equals(LotrExtendedMod.MODID)) {
 			for(ResourceLocation key : ExtendedHiredUnitTypes.UNIT_TYPES) {

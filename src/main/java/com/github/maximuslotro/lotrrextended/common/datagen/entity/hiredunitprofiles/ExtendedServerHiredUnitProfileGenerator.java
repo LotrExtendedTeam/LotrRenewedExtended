@@ -22,7 +22,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 	}
 
 	@Override
-	public void makeStructureSpawnPools(Consumer<ExtendedServerHiredUnitProfile> pConsumer) {
+	public void makeHiredUnitProfiles(Consumer<ExtendedServerHiredUnitProfile> pConsumer) {
 		// Bree Units
 		make(LOTREntities.BREE_MAN.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(20, false, 100)
 		.addHelmetPoolItem(ItemStack.EMPTY, 1)

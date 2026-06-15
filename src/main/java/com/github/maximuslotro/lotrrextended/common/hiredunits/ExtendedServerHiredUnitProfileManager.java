@@ -123,8 +123,4 @@ public class ExtendedServerHiredUnitProfileManager extends ReloadListener<Map<Re
 	public static <T> T deserialize(Gson gson, JsonElement data, Class<T> classToConvert) {
 		return gson.fromJson(data, classToConvert);
 	}
-
-	public static <T> T deserialize(Gson gson, String data, Class<T> classToConvert) {
-		return gson.fromJson(data, classToConvert);
-	}
 }

@@ -1,0 +1,10 @@
+{
+  "id": "lotrextended:lsengard_captain",
+  "unitProfileIDs": [
+    "lotrextended:lsengard_snaga",
+    "lotrextended:lsengard_snaga_archer",
+    "lotrextended:lsengard_uruk",
+    "lotrextended:lsengard_uruk_archer",
+    "lotrextended:lsengard_uruk_berserker"
+  ]
+}

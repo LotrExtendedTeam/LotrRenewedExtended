@@ -211,7 +211,6 @@ public class ExtendedServerHiredUnitProfile {
 	}
 
 	public static class Builder {
-		private ResourceLocation id;
 		private boolean translateStrings;
 		private String entity_title;
 		private String entity_shortname;

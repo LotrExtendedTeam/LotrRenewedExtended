@@ -1,9 +1,7 @@
 package lotr.common.entity.npc;
 
-import java.util.List;
-
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTypes;
 
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
 import lotr.common.init.ExtendedItems;
@@ -58,14 +56,13 @@ public class ExtendedUrukCaptainEntity extends UrukEntity implements ExtendedNPC
 	}
 
 	@Override
-	public List<ResourceLocation> getHireableProfiles() {
-		return java.util.Arrays.asList(ExtendedHiredUnitTypes.ISENGARD_SNAGA, ExtendedHiredUnitTypes.ISENGARD_SNAGA_ARCHER,
-				ExtendedHiredUnitTypes.ISENGARD_URUK, ExtendedHiredUnitTypes.ISENGARD_URUK_ARCHER, ExtendedHiredUnitTypes.ISENGARD_URUK_BERSERKER);
+	public boolean addExtendedGoals() {
+		return true;
 	}
 
 	@Override
-	public boolean addExtendedGoals() {
-		return true;
+	public ResourceLocation getCaptainProfile() {
+		return ExtendedCaptainTypes.ISENGARD_CAPTAIN;
 	}
 
 }

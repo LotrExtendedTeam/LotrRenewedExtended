@@ -1,0 +1,8 @@
+{
+  "id": "lotrextended:dunlending_warlord",
+  "unitProfileIDs": [
+    "lotrextended:dunlending",
+    "lotrextended:dunlending_warrior",
+    "lotrextended:dunlending_bowman"
+  ]
+}

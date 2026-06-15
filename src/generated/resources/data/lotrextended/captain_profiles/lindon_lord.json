@@ -1,0 +1,7 @@
+{
+  "id": "lotrextended:lindon_lord",
+  "unitProfileIDs": [
+    "lotrextended:lindon_elf",
+    "lotrextended:lindon_warrior"
+  ]
+}

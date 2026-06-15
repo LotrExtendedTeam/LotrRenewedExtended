@@ -1,7 +1,7 @@
 package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTypes;
 
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
 import lotr.common.init.ExtendedItems;
@@ -18,8 +18,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 public class ExtendedRivendellCaptainEntity extends RivendellWarriorEntity implements ExtendedNPCEntitySettings, ExtendedCaptainEntity {
 
@@ -60,12 +58,12 @@ public class ExtendedRivendellCaptainEntity extends RivendellWarriorEntity imple
 	}
 
 	@Override
-	public List<ResourceLocation> getHireableProfiles() {
-		return java.util.Arrays.asList(ExtendedHiredUnitTypes.RIVENDELL_ELF, ExtendedHiredUnitTypes.RIVENDELL_WARRIOR);
+	public boolean addExtendedGoals() {
+		return true;
 	}
 
 	@Override
-	public boolean addExtendedGoals() {
-		return true;
+	public ResourceLocation getCaptainProfile() {
+		return ExtendedCaptainTypes.RIVENDELL_CAPTAIN;
 	}
 }

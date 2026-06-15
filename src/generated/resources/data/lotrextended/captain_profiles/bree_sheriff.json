@@ -1,0 +1,8 @@
+{
+  "id": "lotrextended:bree_sheriff",
+  "unitProfileIDs": [
+    "lotrextended:bree_hobbit",
+    "lotrextended:bree_man",
+    "lotrextended:bree_guard"
+  ]
+}

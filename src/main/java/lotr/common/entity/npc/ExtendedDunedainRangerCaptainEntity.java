@@ -1,7 +1,7 @@
 package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTypes;
 
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
 import lotr.common.init.ExtendedItems;
@@ -20,8 +20,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 public class ExtendedDunedainRangerCaptainEntity extends ExtendedDunedainRangerEntity implements ExtendedCaptainEntity{
 
@@ -66,9 +64,7 @@ public class ExtendedDunedainRangerCaptainEntity extends ExtendedDunedainRangerE
 	}
 
 	@Override
-	public List<ResourceLocation> getHireableProfiles() {
-		return java.util.Arrays.asList(
-			ExtendedHiredUnitTypes.DUNEDAIN_RANGER
-		);
+	public ResourceLocation getCaptainProfile() {
+		return ExtendedCaptainTypes.DUNEDAIN_CAPTAIN;
 	}
 }

@@ -1,10 +1,7 @@
 package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
-
-import java.util.Arrays;
-import java.util.List;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTypes;
 
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
 import lotr.common.entity.npc.data.NPCGenderProvider;
@@ -66,14 +63,12 @@ public class ExtendedDunlendingWarlordEntity extends DunlendingWarriorEntity imp
     }
 
 	@Override
-	public List<ResourceLocation> getHireableProfiles() {
-		return Arrays.asList(ExtendedHiredUnitTypes.DUNLENDING, 
-			ExtendedHiredUnitTypes.DUNLENDING_WARRIOR, 
-			ExtendedHiredUnitTypes.DUNLENDING_BOWMAN);
+	public boolean addExtendedGoals() {
+		return true;
 	}
 
 	@Override
-	public boolean addExtendedGoals() {
-		return true;
+	public ResourceLocation getCaptainProfile() {
+		return ExtendedCaptainTypes.DUNLENDING_WARLORD;
 	}
 }

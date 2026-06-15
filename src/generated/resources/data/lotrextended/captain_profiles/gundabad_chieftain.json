@@ -1,0 +1,9 @@
+{
+  "id": "lotrextended:gundabad_chieftain",
+  "unitProfileIDs": [
+    "lotrextended:gundabad_orc",
+    "lotrextended:gundabad_orc_archer",
+    "lotrextended:gundabad_uruk",
+    "lotrextended:gundabad_uruk_archer"
+  ]
+}
