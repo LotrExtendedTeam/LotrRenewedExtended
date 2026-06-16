@@ -12,6 +12,7 @@ import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySize;
@@ -26,28 +27,37 @@ import net.minecraft.entity.ai.goal.BreedGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.entity.ai.goal.PanicGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.GroundPathNavigator;
+import net.minecraft.pathfinding.PathFinder;
+import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.pathfinding.PathType;
+import net.minecraft.pathfinding.WalkNodeProcessor;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
@@ -68,17 +78,19 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 
 	@Override
 	protected void registerGoals() {
-		this.goalSelector.addGoal(0, new SwimGoal(this));
+		//this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.4D));
 		this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
 		this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, Ingredient.of(ExtendedTags.Items.DUCK_FOOD)));
-		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
-	    this.goalSelector.addGoal(5, new ExtendedAvoidEntityGoal<>(this, PlayerEntity.class, 16.0F, 0.8D, 1.6D, (living) -> {
-	    	return !(((ExtendedDuckEntity) living).getGender()==ExtendedEntityGender.GENDERLESS);
-	    }));
-		this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-		this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+		this.goalSelector.addGoal(4, new ExtendedDuckEntity.MoveToWaterGoal(this, 1.5D));
+		this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.1D));
+		this.goalSelector.addGoal(6, new ExtendedAvoidEntityGoal<>(this, PlayerEntity.class, 16.0F, 0.8D, 1.6D, (living) -> {
+			return !(((ExtendedDuckEntity) living).getGender()==ExtendedEntityGender.GENDERLESS);
+		}));
+		this.goalSelector.addGoal(7, new RandomWalkingGoal(this, 1.0D, 60));
+		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(9, new LookAtGoal(this, ExtendedDuckEntity.class, 6.0F));
 	}
 
 	@Override
@@ -157,7 +169,7 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 		}
 
 		this.flap += this.flapping * 2.0F;
-		if (!this.level.isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && !this.getGender().isMale()) {
+		if (!this.level.isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && !this.getGender().isMale() && !this.isInWater()) {
 			this.playSound(ExtendedSounds.DUCK_EGG.get(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.spawnAtLocation(ExtendedItems.DUCK_EGG.get());
 			this.eggTime = getRandomEggTime();
@@ -167,6 +179,11 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 
 	private int getRandomEggTime() {
 		return this.random.nextInt(24000) + 12000;
+	}
+
+	@Override
+	public boolean canStandOnFluid(Fluid pFluid) {
+		return pFluid.is(FluidTags.WATER);
 	}
 
 	@Override
@@ -262,13 +279,10 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 		// Set domesticated status
 		if(this.getGender()==ExtendedEntityGender.GENDERLESS && ((ExtendedDuckEntity)pMate).getGender()==ExtendedEntityGender.GENDERLESS && this.random.nextFloat()<0.9f) {
 			baby.setGender(ExtendedEntityGender.GENDERLESS);
-			baby.setGenderRandomly(false);
 		}else if((this.getGender()==ExtendedEntityGender.GENDERLESS || ((ExtendedDuckEntity)pMate).getGender()==ExtendedEntityGender.GENDERLESS) && this.random.nextFloat()<0.7f) {
 			baby.setGender(ExtendedEntityGender.GENDERLESS);
-			baby.setGenderRandomly(false);
 		}else if(this.random.nextFloat()>0.6f) {
 			baby.setGender(ExtendedEntityGender.GENDERLESS);
-			baby.setGenderRandomly(false);
 		}
 		// Set bob status
 		if(baby.getGender()==ExtendedEntityGender.MALE) {
@@ -284,5 +298,102 @@ public class ExtendedDuckEntity extends ExtendedAbstractGenderedAnimalEntity<Ext
 	@Override
 	public boolean canFoodHealAnimal() {
 		return false;
+	}
+
+	@Override
+	public void tick() {
+		super.tick();
+		if (this.isBaby() && this.isInWater() && this.getFluidHeight(FluidTags.WATER) > this.getEyeHeight()) {
+			if (this.getDeltaMovement().y < 0.08D) {
+				this.setDeltaMovement(this.getDeltaMovement().add(0, 0.08D, 0));
+	        }
+		}
+		this.floatDuck();
+		this.checkInsideBlocks();
+	}
+
+	// Handles ducks underwater
+	private void floatDuck() {
+		if (this.isInWater()) {
+			ISelectionContext iselectioncontext = ISelectionContext.of(this);
+			if (iselectioncontext.isAbove(FlowingFluidBlock.STABLE_SHAPE, this.blockPosition(), true) && !this.level.getFluidState(this.blockPosition().above()).is(FluidTags.WATER)) {
+				this.onGround = true;
+			} else {
+				this.setDeltaMovement(this.getDeltaMovement().scale(0.5D).add(0.0D, 0.05D, 0.0D));
+			}
+		}
+	}
+
+	@Override
+	public float getWalkTargetValue(BlockPos pPos, IWorldReader pLevel) {
+		if (pLevel.getBlockState(pPos).getFluidState().is(FluidTags.WATER)) {
+			return 5.0F;
+		} else {
+			return super.getWalkTargetValue(pPos, pLevel);
+		}
+	}
+
+	@Override
+	protected PathNavigator createNavigation(World pLevel) {
+		return new ExtendedDuckEntity.WaterPathNavigator(this, pLevel);
+	}
+
+	private static class WaterPathNavigator extends GroundPathNavigator {
+		WaterPathNavigator(ExtendedDuckEntity pDuck, World pLevel) {
+			super(pDuck, pLevel);
+		}
+
+		@Override
+		protected PathFinder createPathFinder(int pMaxVisitedNodes) {
+			this.nodeEvaluator = new WalkNodeProcessor();
+			return new PathFinder(this.nodeEvaluator, pMaxVisitedNodes);
+		}
+
+		@Override
+		protected boolean hasValidPathType(PathNodeType pPathType) {
+			return pPathType != PathNodeType.WATER && pPathType != PathNodeType.WATER_BORDER ? super.hasValidPathType(pPathType) : true;
+		}
+
+		@Override
+		public boolean isStableDestination(BlockPos pPos) {
+			return this.level.getBlockState(pPos).is(Blocks.WATER) || super.isStableDestination(pPos);
+		}
+	}
+
+	private static class MoveToWaterGoal extends MoveToBlockGoal {
+		private final ExtendedDuckEntity duck;
+
+		private MoveToWaterGoal(ExtendedDuckEntity pDuck, double pSpeedModifier) {
+			super(pDuck, pSpeedModifier, 8, 2);
+			this.duck = pDuck;
+		}
+
+		@Override
+		public BlockPos getMoveToTarget() {
+			return this.blockPos;
+		}
+
+		@Override
+		public boolean canContinueToUse() {
+			return !this.duck.isInWater() && this.isValidTarget(this.duck.level, this.blockPos);
+		}
+
+		@Override
+		public boolean canUse() {
+			return !this.duck.isInLava() && this.duck.random.nextFloat() < 0.125 && super.canUse();
+		}
+
+		@Override
+		public boolean shouldRecalculatePath() {
+			return this.tryTicks % 20 == 0;
+		}
+
+		/**
+		 * Return true to set given position as destination
+		 */
+		@Override
+		protected boolean isValidTarget(IWorldReader pLevel, BlockPos pPos) {
+			return pLevel.getBlockState(pPos).is(Blocks.WATER) && pLevel.getBlockState(pPos.above()).isPathfindable(pLevel, pPos, PathType.LAND);
+		}
 	}
 }
