@@ -1,0 +1,376 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "We are the servants of Saruman the Wise, the White Hand.",
+        "We are the servants of Saruman the Wise, the White Hand: the Hand that gives us man-flesh to eat.",
+        "Rest while you can, fool!",
+        "I smell man-flesh!",
+        "The age of the orc has come.",
+        "The Horse-country will burn!",
+        "I've had nothing but maggoty bread for three stinking days!",
+        "The world will burn in the fires of industry!",
+        "The realms of men shall burn!",
+        "Where is the man-flesh?",
+        "What do you want?",
+        "Maggoty bread again? Give me some Man-flesh!",
+        "I can't wait to get my teeth into some Man-flesh!",
+        "Soon, soon we will be at war with the filthy sons of Men!",
+        "What are you after?",
+        "We shall break their bones and feast on their flesh!",
+        "Death to the kingdoms of Men! Death to the filthy Elves!",
+        "We shall swarm into the lands of the free peoples like a plague! Leave nothing alive!",
+        "The world of Men shall be broken and destroyed.",
+        "Ruin! Ruin to the free peoples!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<solder"
+      },
+      "lines": [
+        "I don’t trust you little swine, you’ve no guts outside your own sties.",
+        "If I had my way, you’d wish you were dead now.",
+        "I bet you'd give good sport!",
+        "You aren't one of them cursed horse-men are you?",
+        "Do you serve the White Hand?",
+        "Filthy maggot!",
+        "What about your legs? You don't need those! Oh, they look tasty!",
+        "I could gut you right where you stand!",
+        "What're you looking at?",
+        "Get your crooked nose out of my face!",
+        "You lost, maggot?",
+        "I smell your fear.",
+        "I could smell your stench a mile away!",
+        "You reek!",
+        "These rags stink!",
+        "Something smells disgusting here. It's you! Go away!",
+        "What are you after, maggot?",
+        "Follow your orders, scum!",
+        "Don't just stand there! Do something!",
+        "Whom do you serve?",
+        "Move along, scum!",
+        "Are you trying to start a fight?",
+        "You stink!",
+        "I don't trust you, maggot!",
+        "I don't trust filthy Men!",
+        "You one of them men from the hills?",
+        "Do you serve the White Hand, or those filthy Horse-men?",
+        "U bagronk sha pushdug Saruman-glob búbhosh skai!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">solder"
+      },
+      "lines": [
+        "You're a filthy maggot, #p!",
+        "Get your crooked nose out of my face, #p!",
+        "You lost, #p?",
+        "You reek #p!",
+        "You still don't look like a Goblin-man, #p!",
+        "Filthy maggot! Oh, it's you, #p...",
+        "Soon, #p! Soon we will be at war with the filthy sons of Men!",
+        "Soon, #p! Soon we will be at war with the filthy sons of Men!",
+        "You're not bad for a Man!",
+        "The Master is readying us for war. Soon the world of Men shall fall.",
+        "We shall swarm into the lands of the free peoples like a plague! Leave nothing alive!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<solder"
+      },
+      "lines": [
+        "Haven't seen you around here before.",
+        "Don't choke on the air, filth.",
+        "Get back to work maggot!",
+        "Shouldn't you be in the mines?",
+        "You ought to go back where you came from.",
+        "The air is foul here."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:rohan"
+      },
+      "lines": [
+        "Quiet! We can't let those cursed horse-boys get wind of us.",
+        "Death! Death to the horse-lords!",
+        "I smell fear in the air.",
+        "Have you seen any Halflings? They ought to be coming through these lands here soon.",
+        "I love horse-flesh almost as much as I love man-flesh!",
+        "The air is ripe with the stink of fear!",
+        "Burn every village!",
+        "Leave nothing alive!",
+        "Burn every village, leave none alive!",
+        "Death to the horse-men!",
+        "Burn every field, gut every horse!",
+        "Kill not just the men, but the women and children too!",
+        "Soon, this land will be ours!",
+        "Victory is at hand!",
+        "The Golden Hall will burn!",
+        "I love the stench of fear!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:fangorn"
+      },
+      "lines": [
+        "I'm tired of cutting these stinking trees!",
+        "We ought to just burn down this whole forest!",
+        "Did that tree just move?",
+        "Get to work, the White Hand needs more wood for the forges!",
+        "Every night more orc scum goes missing in the forest.",
+        "I hate this stinking forest.",
+        "Something's not right with this filthy wood."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:further_gondor | lotr:anorien | lotr:pinnath_gelin | lotr:anfalas | lotr:blackroot_vale | lotr:lamedon | lotr:pelargir | lotr:lossarnach | lotr:lebennin | lotr:emyn_en_ernil | lotr:dor_en_ernil"
+      },
+      "lines": [
+        "Quiet! We can't let those cursed tarks get wind of us.",
+        "Death! Death to those filthy tarks!",
+        "I smell fear in the air.",
+        "The air is ripe with the stink of fear!",
+        "Burn every village!",
+        "Leave nothing alive!",
+        "Burn every village, leave none alive!",
+        "Death to South-kingdom!",
+        "Burn every field, gut every horse!",
+        "Kill not just the men, but the women and children too!",
+        "Soon, this land will be ours!",
+        "Victory is at hand!",
+        "Gondor will burn!",
+        "The White City will fall!",
+        "The White Hand stretches far.",
+        "Curse those stinking tarks!",
+        "I love the stench of fear!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=corporal"
+      },
+      "lines": [
+        "What does the White Hand command of us?",
+        "You may be strong, but you still reek of man-flesh.",
+        "At your service, #p!",
+        "What orders from our lord, #p?",
+        "What does the White Hand command?",
+        "At your service, maggot! - I mean - #p!",
+        "I'll let the boys know it's time for an inspection!",
+        "Is it true the White Hand has spies in the Horse-king's court?",
+        "Why does the White Hand want to find a couple of stinking Halflings?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+        "Bring all rings you find to the White Hand.",
+        "Our master is looking for a couple halflings, you seen any?",
+        "We serve a common master, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "Go back to your tower, maggot!",
+        "We do not follow The Eye here you filthy maggot.",
+        "Have you come to leave the armies of The Eye and join the armies of the White Hand?",
+        "Go back to the black-lands you filth!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "I won't take orders from any Morgul rats! Skai!"        
+      ]
+    },
+    {
+      "conditions": {
+        "hired": "own"
+      },
+      "lines": [
+        "For the White Hand!",
+        "For Saruman!",
+        "Maybe we should find some halflings boss.",
+        "What are your orders, my lord?",
+        "You may be my commander, #p, but you're still a filthy maggot!",
+        "Lead us to war, #p!",
+        "To war!",
+        "The free peoples of the earth shall fall before our might!",
+        "Death! Death to all who oppose us!",
+        "Let us wreak havoc upon the world of Men!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "lunar_eclipse": "true"
+      },
+      "lines": [
+        "Ha! The moon is stained with the blood of our enemies!",
+        "The moon is painted with the blood of those Horse-boys!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "player_drunk": "true"
+      },
+      "lines": [
+        "Ha! Looks like someone can't hold their grog!",
+        "Stop dilly-dallying and get back to work!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<corporal"
+      },
+      "lines": [
+        "Mind your own business, scum!",
+        "No one asked you, maggot!",
+        "Don't bother me again filth!",
+        "I wasn't talking to you!",
+        "Leave us alone, maggot!",
+        "You trying to start a fight maggot?",
+        "No one asked you, did they?",
+        "Stop that eavesdropping you filthy rat!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_combat": "true"
+      },
+      "lines": [
+        "I'll gut you like a stuck pig!",
+        "You'll wish you were dead!",
+        "Oh you look tasty.",
+        "I'll put your head on a skewer!",
+        "Looks like meat's back on the menu, boys!",
+        "I'm going to make you wish you were dead!",
+        "When I'm through with you, they'll be nothing left!",
+        "Well this should be fun!",
+        "Stupid maggot!",
+        "I could smell your stench a mile away!",
+        "I'll bleed you like a stuck pig!",
+        "Enjoy your last breath, scum!",
+        "You're nice and fresh!",
+        "Kill the scum!",
+        "Your blood smells fresh!",
+        "I'll skewer you like a piece of meat!",
+        "You'd better start running, maggot!",
+        "Nobody touches me, you filthy maggot!",
+        "I'll have your guts for garters, scum!",
+        "What are you looking at me like that for, scum?",
+        "I'll have your head on a spike, maggot!",
+        "I'll make dinner out of you, maggot!",
+        "You think you can beat me, filth?",
+        "I'll squish you like the filthy little worm you are!",
+        "You'll be dinner once I'm done with you, maggot!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Get 'im, boys!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Get 'er, boys!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "For the White Hand!",
+        "For Saruman!",
+        "I'll gut you like a stuck pig!",
+        "You'll wish you were dead!",
+        "Oh you look tasty.",
+        "I'll put your head on a skewer!",
+        "The age of the orc has come.",
+        "Looks like meat's back on the menu, boys!",
+        "You're no match for the might of the White Hand.",
+        "I've killed men twice your size.",
+        "I'm going to make you wish you were dead!",
+        "When I'm through with you, they'll be nothing left!",
+        "Well this should be fun!",
+        "The realms of men shall burn!",
+        "Stupid maggot!",
+        "I could smell your stench a mile away!",
+        "I'll bleed you like a stuck pig!",
+        "Enjoy your last breath, scum!",
+        "You're nice and fresh!",
+        "Kill the scum!",
+        "You stink of fear!",
+        "Die, Man-scum!",
+        "Your blood smells fresh!",
+        "I'll skewer you like a piece of meat!",
+        "You'd better start running, maggot!",
+        "Come any closer and I'll stick you like a fresh cut of meat!",
+        "We dine on Man-flesh tonight!",
+        "I'll skewer you like a piece of meat!",
+        "You'd better start running, maggot!",
+        "Nobody touches me, you filthy maggot!",
+        "I'll have your guts for garters, scum!",
+        "What are you looking at me like that for, scum?",
+        "I'll have your head on a spike, maggot!",
+        "I'll make dinner out of you, maggot!",
+        "You think you can beat me, filth?",
+        "I'll squish you like the filthy little worm you are!",
+        "You'll be dinner once I'm done with you, maggot!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "I'll make you sorry you came!",
+        "Only servants of the White Hand are welcome in these lands.",
+        "I'll throw you down into the mines!",
+        "Have you not been driven out by our armies yet, scum?"
+      ]
+    }
+  ]
+}

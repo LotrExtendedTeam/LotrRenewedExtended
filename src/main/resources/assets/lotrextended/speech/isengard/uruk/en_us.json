@@ -1,0 +1,94 @@
+{
+  "parent": "lotrextended:isengard/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "We are the fighting Uruk-hai!",
+        "That orc scum is weak and pathetic.",
+        "The White Hand bred me for war!",
+        "The world will run in fear from the fighting Uruk-hai!",
+        "Men are no match for us Uruk-hai.",
+        "I won't take orders from any Snaga rats!",
+        "I'm bigger, stronger, and smarter than even the best mountain-orc scum.",
+        "The Uruk-hai are stronger than all the men in Middle-earth!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": "<200"
+      },
+      "lines": [
+        "I'll be dead before I see the Uruk-hai answer to the likes of you!",
+        "Men like you are filthy and weak."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "weather": "rain | snow | ash | sandstorm"
+      },
+      "lines": [
+        "Curse this nasty weather.",
+        "You can hardly see through all this filth.",
+        "May the White Hand clear this storm!",
+        "Pathetic orcs can't even run without this accursed weather."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=solder"
+      },
+      "lines": [
+        "No matter how many maggots you kill, the Uruk-hai are still stronger."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+        "I won't listen to the likes of you.",
+        "You'll always be a filthy maggot to me #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "Them Uruks of Mordor pale in comparison to the might of Uruk-hai!",
+        "What do you want, Morgul rat?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge": "lotr:dunland"      
+      },
+      "lines": [
+        "We might serve the same master, but you're still just stinking man-scum.",
+        "Not even a hundred of your hill-men could defeat a single Uruk of the White Hand!",
+        "I don't understand why Saruman the Wise deals with petty man-scum like you.",
+        "Your warriors are weak and pathetic.",
+        "Is every man of Dunland born half-trained like you?",
+        "Your chieftains promised warriors. They sent us shepherds."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "You fight the Uruk-hai!",
+        "You can kill an orc, but you're no match for an Uruk!"
+      ]
+    }
+  ]
+}

@@ -78,10 +78,14 @@ public class ExtendedEntitySettingsGenerator extends ExtendedEntitySettingsProvi
 		make(ExtendedEntities.LINDON_SMITH.get(), FactionPointers.HIGH_ELVES).setBonus(2).setBank("high_elves/lindon/elf").save(pConsumer);
 		make(ExtendedEntities.LINDON_WEAVER.get(), FactionPointers.HIGH_ELVES).setBonus(2).setBank("high_elves/lindon/elf").save(pConsumer);
 		make(ExtendedEntities.LINDON_FLORIST.get(), FactionPointers.HIGH_ELVES).setBonus(2).setBank("high_elves/lindon/elf").save(pConsumer);
-		make(ExtendedEntities.URUK_BERSERKER.get(), FactionPointers.ISENGARD).setBonus(2).setBank("isengard/uruk").save(pConsumer);
-		make(ExtendedEntities.URUK_CAPTAIN.get(), FactionPointers.ISENGARD).setBonus(5).setBank("isengard/uruk").save(pConsumer);
-		make(ExtendedEntities.URUK_SMITH.get(), FactionPointers.ISENGARD).setBonus(2).setBank("isengard/uruk").save(pConsumer);
-		make(ExtendedEntities.URUK_SUPPLIER.get(), FactionPointers.ISENGARD).setBonus(2).setBank("isengard/uruk").save(pConsumer);
+		make(ExtendedEntities.URUK_BERSERKER.get(), FactionPointers.ISENGARD).setBonus(2).setBankE("isengard/uruk").save(pConsumer);
+		make(ExtendedEntities.URUK_CAPTAIN.get(), FactionPointers.ISENGARD).setBonus(5).setBankE("isengard/captain").save(pConsumer);
+		make(ExtendedEntities.URUK_SMITH.get(), FactionPointers.ISENGARD).setBonus(2).setBankE("isengard/smith").save(pConsumer);
+		make(ExtendedEntities.URUK_SUPPLIER.get(), FactionPointers.ISENGARD).setBonus(2).setBankE("isengard/supplier").save(pConsumer);
+		make(LOTREntities.ISENGARD_SNAGA.get(), FactionPointers.ISENGARD).setBonus(1).setBankE("isengard/orc").save(pConsumer);
+		make(LOTREntities.ISENGARD_SNAGA_ARCHER.get(), FactionPointers.ISENGARD).setBonus(1).setBankE("isengard/orc").save(pConsumer);
+		make(LOTREntities.URUK.get(), FactionPointers.ISENGARD).setBonus(2).setBankE("isengard/uruk").save(pConsumer);
+		make(LOTREntities.URUK_ARCHER.get(), FactionPointers.ISENGARD).setBonus(2).setBankE("isengard/uruk").save(pConsumer);
 		make(ExtendedEntities.DUNLENDING_WARLORD.get(), FactionPointers.DUNLAND).setBonus(2).setBank("dunland/warlord").save(pConsumer);
 	}
 }
