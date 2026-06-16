@@ -20,13 +20,16 @@ public class BiomeFeatureAdder {
 				ExtendedBiomeFeatures.addScorchedLand(event.getGeneration(), ExtendedConfiguredFeatures.ISENGARD_SCORCHED_LAND, 80);
 				ExtendedBiomeFeatures.addBoulders(event.getGeneration(), ExtendedBlocks.WASTE_BLOCK.get().defaultBlockState(), 1, 3, 32, 3, 3);
 			}
-			if(!event.getName().equals(LOTRBiomes.SEA.getRegistryName()) || !event.getName().getPath().contains("river")) {
-				ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 6000);
-				if(event.getName().equals(LOTRBiomes.FORODWAITH.getRegistryName())) {
-					ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 2000);
+			if(!event.getName().equals(LOTRBiomes.SEA.getRegistryName()) && !event.getName().getPath().contains("river")) {
+				ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 10000);
+				if(event.getName().equals(LOTRBiomes.FORODWAITH.getRegistryName()) || event.getName().equals(LOTRBiomes.FORODWAITH_MOUNTAINS.getRegistryName())) {
+					ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 3000);
 				}
 				if(event.getName().equals(LOTRBiomes.LINDON.getRegistryName())) {
-					ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 1500);
+					ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 4000);
+				}
+				if(event.getName().equals(LOTRBiomes.LINDON_WOODLANDS.getRegistryName())) {
+					ExtendedBiomeFeatures.addMeteorites(event.getGeneration(), 3000);
 				}
 			}
 		}
