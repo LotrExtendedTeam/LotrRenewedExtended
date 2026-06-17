@@ -9,7 +9,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:isengard/mine/isengard_mine_cor_long_1",
 				"processors": "minecraft:empty",
-				"reset_max_depth": true
+				"reset_max_depth": true,
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -19,7 +20,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:isengard/mine/isengard_mine_cor_short_1",
 				"processors": "minecraft:empty",
-				"reset_max_depth": true
+				"reset_max_depth": true,
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -29,7 +31,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:isengard/mine/isengard_mine_cor_short_2",
 				"processors": "minecraft:empty",
-				"reset_max_depth": true
+				"reset_max_depth": true,
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -39,7 +42,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:isengard/mine/isengard_mine_cor_long_colap_1",
 				"processors": "minecraft:empty",
-				"reset_max_depth": true
+				"reset_max_depth": true,
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -49,7 +53,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:isengard/mine/isengard_mine_cor_short_colap_1",
 				"processors": "minecraft:empty",
-				"reset_max_depth": true
+				"reset_max_depth": true,
+				"disable_spawn_above_ground": true
 			}
 		},
 		{
@@ -58,7 +63,8 @@
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
 				"location": "lotrextended:isengard/mine/isengard_mine_slope",
-				"processors": "minecraft:empty"
+				"processors": "minecraft:empty",
+				"disable_spawn_above_ground": true
 			}
 		}
 	]

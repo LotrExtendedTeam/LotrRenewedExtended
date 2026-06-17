@@ -136,6 +136,7 @@
 		"lotr.common.world.biome.MixinWesternIsles",
 		"lotr.common.world.biome.MixinWilderlandBiome",
 		"lotr.common.world.biome.MixinWoodlandRealmBiome",
+		"lotr.common.world.gen.MixinMiddleEarthChunkGenerator",
 		"lotr.common.world.gen.tree.MixinLOTRTrunkPlacersJavaPatch",
 		"lotr.common.world.spawning.MixinRenewedNPCSpawner",
 		"net.minecraft.advancements.criterion.MixinItemPredicate",

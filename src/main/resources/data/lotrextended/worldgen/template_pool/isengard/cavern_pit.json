@@ -39,7 +39,8 @@
 				"projection": "rigid",
 				"location": "lotrextended:isengard/pit/isengard_pit_4_3",
 				"processors": "lotrextended:basic_armor_stand_processor",
-				"apply_waterlogging" : false
+				"apply_waterlogging" : false,
+				"disable_spawn_above_ground": true
 			}
 		}
 	]

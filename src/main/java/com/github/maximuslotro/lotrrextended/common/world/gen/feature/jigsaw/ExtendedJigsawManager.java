@@ -413,7 +413,7 @@ public class ExtendedJigsawManager {
 												// Extended End
 											}
 											// Extended Start
-											if (childTemplate instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)childTemplate).disableSpawnAboveGround()) {
+											if (childTemplate instanceof ExtendedSingleJigsawPiece && ((ExtendedSingleJigsawPiece)childTemplate).isUndergroundPiece()) {
 												//if(61<mutableboundingbox2.y1) {
 												//	shouldBreakRotation = true;
 												//	break;
