@@ -154,10 +154,12 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 			.addPool(ExtendedEntities.BREE_BREWER.get(), 1).addPool(ExtendedEntities.BREE_HOBBIT_BREWER.get(), 1)
 			.addPool(ExtendedEntities.BREE_BUTCHER.get(), 1).addPool(ExtendedEntities.BREE_HOBBIT_BUTCHER.get(), 1)
 			.addPool(ExtendedEntities.BREE_FLORIST.get(), 1).addPool(ExtendedEntities.BREE_HOBBIT_FLORIST.get(), 1)
+			.addPool(ExtendedEntities.BREE_LEATHERWORKER.get(), 1)
 			.addPool(ExtendedEntities.BREE_STONEMASON.get(), 1)
 			.addPool(ExtendedEntities.BREE_LUMBERMAN.get(), 1)
 			.addPool(ExtendedEntities.BREE_SMITH.get(), 1)
 			.addPool(ExtendedEntities.BREE_FARMER.get(), 1)
+			.addPool(ExtendedEntities.BREE_POTTER.get(), 1).addPool(ExtendedEntities.BREE_HOBBIT_POTTER.get(), 1)
 			.build()).setRespawnOnDeath().setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.BREE_VILLAGE_STALL);
 		persisted(MultiSpawnType.Builder.multi()
 			.addPool(LOTREntities.BREE_MAN.get(), 1).addPool(LOTREntities.BREE_HOBBIT.get(), 1)

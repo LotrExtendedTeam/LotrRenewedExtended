@@ -38,7 +38,8 @@ public class AdvancementsProviderBree extends ExtendedBaseAdvancementType{
 					ExtendedEntities.BREE_CHEESEMONGER.get(), ExtendedEntities.BREE_FARMER.get(), ExtendedEntities.BREE_FLORIST.get(), 
 					ExtendedEntities.BREE_INNKEEPER.get(), ExtendedEntities.BREE_LEATHERWORKER.get(), ExtendedEntities.BREE_LUMBERMAN.get(), 
 					ExtendedEntities.BREE_POTTER.get(), ExtendedEntities.BREE_MERCHANT.get(), ExtendedEntities.BREE_SHERIFF.get(), 
-					ExtendedEntities.BREE_SMITH.get(), ExtendedEntities.BREE_STONEMASON.get(), LOTREntities.BREE_MAN.get()).parent(bree));
+					ExtendedEntities.BREE_SMITH.get(), ExtendedEntities.BREE_STONEMASON.get(), LOTREntities.BREE_MAN.get(),
+					ExtendedEntities.BREE_STABLEMASTER.get()).parent(bree));
 
 		Advancement bree_hobbit_slayer = build(true, data(LOTRItems.HOBBIT_BONE.get(), "bree_hobbit_slayer", FrameType.TASK)
 				.setTitle("Bree-Hobbit Slayer").setDescription("Kill a Bree-Hobbit."),
@@ -82,9 +83,11 @@ public class AdvancementsProviderBree extends ExtendedBaseAdvancementType{
 				ExtendedEntities.BREE_BUTCHER.get(), ExtendedEntities.BREE_HOBBIT_BUTCHER.get(),
 				ExtendedEntities.BREE_FLORIST.get(), ExtendedEntities.BREE_HOBBIT_FLORIST.get(),
 				ExtendedEntities.BREE_LEATHERWORKER.get(),
+				ExtendedEntities.BREE_STONEMASON.get(),
 				ExtendedEntities.BREE_LUMBERMAN.get(),
-				ExtendedEntities.BREE_POTTER.get(), ExtendedEntities.BREE_HOBBIT_POTTER.get(),
-				ExtendedEntities.BREE_STONEMASON.get()).parent(bree));
+				ExtendedEntities.BREE_SMITH.get(),
+				ExtendedEntities.BREE_FARMER.get(),
+				ExtendedEntities.BREE_POTTER.get(), ExtendedEntities.BREE_HOBBIT_POTTER.get()).parent(bree));
 
 		Advancement arms_for_the_road = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "arms_for_the_road", FrameType.TASK)
 			.setTitle("Arms for the Road").setDescription("Trade with a Bree-land Smithy."),

@@ -240,6 +240,20 @@
           }
         ]
       }
+    },
+    "kill_bree_stablemaster": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_stablemaster"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -259,7 +273,8 @@
       "kill_bree_sheriff",
       "kill_bree_smith",
       "kill_bree_stonemason",
-      "kill_bree_man"
+      "kill_bree_man",
+      "kill_bree_stablemaster"
     ]
   ]
 }
