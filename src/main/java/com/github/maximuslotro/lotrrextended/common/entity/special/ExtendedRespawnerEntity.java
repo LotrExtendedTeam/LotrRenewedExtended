@@ -48,11 +48,11 @@ public class ExtendedRespawnerEntity extends Entity{
 	private static final DataParameter<Integer> TICKPERCENTAGE = EntityDataManager.defineId(ExtendedRespawnerEntity.class, DataSerializers.INT);
 
 	private boolean queueToRemove = false;
-	private int setEntityTickBackRate = 24000;
+	private int setEntityTickBackRate = 600;
 	private int entityTickBacksRemaining = setEntityTickBackRate;
+	private int loadTicks = 0; // if loaded when entityTickBacksRemaining==0, prevent instant trader spawning if banner suppressed, 5 second delay 
 	public double spin = 0;
 	public double spinO = 0;
-	public boolean offTick = false;
 	// TRADER settings;
 	private CompoundNBT nbt = new CompoundNBT();
 	private String entityType;
@@ -97,7 +97,7 @@ public class ExtendedRespawnerEntity extends Entity{
 		if(this.level.isClientSide()) {
 			this.spinO = this.spin;
 			// Monster Spawner Logic
-			this.spin = (this.spin + 1000.0F / getTickpercentage()) % 360.0D;
+			this.spin = (this.spin + (isRespawnerTicking() ? 1000.0F / getTickpercentage() : 60)) % 360.0D;
 		}
 		this.setDeltaMovement(Vector3d.ZERO);
 		setInvulnerable(true);
@@ -108,14 +108,18 @@ public class ExtendedRespawnerEntity extends Entity{
 			if(queueToRemove) {
 				this.remove();
 			}else if(entityTickBacksRemaining==0) {
-				attemptEntityRespawn((ServerWorld) this.level);
+				loadTicks+=1;
+				if(loadTicks == 100){
+					queueToRemove = attemptEntityRespawn((ServerWorld) this.level);
+					loadTicks=0;
+				}
 			}else {
 				entityTickBacksRemaining -=1;
 			}
 		}
 	}
 
-	private void attemptEntityRespawn(ServerWorld world) {
+	private boolean attemptEntityRespawn(ServerWorld world) {
 		EntityType<?> traderEntityType =ExtendedStructureEntitySpawnerEntry.Serializer.getEntityTypeFromString(entityType);
 		if(traderEntityType!=null) {
 			Entity spawnedEntity = traderEntityType.create(world);
@@ -123,7 +127,7 @@ public class ExtendedRespawnerEntity extends Entity{
 			// check spawn rules (banner protection for SPAWNER types)
 			if (spawnedEntity instanceof MobEntity && !((MobEntity)spawnedEntity).checkSpawnRules(world, SpawnReason.SPAWNER)) {
 				// Disable respawn under opposing banner protection
-            	return;
+            	return false;
             }
 			if(spawnedEntity instanceof NPCEntity) {
 				NPCEntity npcEntity = (NPCEntity) spawnedEntity;
@@ -140,11 +144,11 @@ public class ExtendedRespawnerEntity extends Entity{
 				// IDK maybe captains have data to save in the future
 			}
 			world.addFreshEntityWithPassengers(spawnedEntity);
-			queueToRemove = true;
+			return true;
 		}else {
-			ExtendedLog.error("Entity Respawner tried spawning unknown entity! "+entityType +", with data: "+nbt.toString());
-			queueToRemove = false;
-			return;
+			ExtendedLog.error("Entity Respawner tried spawning unknown entity {}! ", entityType);
+			ExtendedLog.error("Dumping data for staff reconstruction: "+nbt.toString());
+			return true;
 		}
 	}
 
@@ -187,7 +191,9 @@ public class ExtendedRespawnerEntity extends Entity{
 		}
 		pCompound.putInt("ticksRemaining", entityTickBacksRemaining);
 		pCompound.putInt("ticksSet", setEntityTickBackRate);
-		pCompound.put("traderTrades", nbt);
+		if(!nbt.isEmpty()) {
+			pCompound.put("traderTrades", nbt);
+		}
 		if(homeRadius!= -1.0F) {
 			pCompound.putInt("homeRadius", homeRadius);
 			pCompound.put("homePos", NBTUtil.writeBlockPos(homePos));
@@ -351,5 +357,9 @@ public class ExtendedRespawnerEntity extends Entity{
 
 	public int getTickpercentage() {
 		return this.getEntityData().get(TICKPERCENTAGE);
+	}
+
+	public boolean isRespawnerTicking() {
+		return this.getEntityData().get(TICKPERCENTAGE)>0;
 	}
 }
