@@ -73,7 +73,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.TickEvent;
@@ -114,10 +113,11 @@ public class ExtendedWorldEventHandlers {
 	@SubscribeEvent
 	public static void onServerStopping(FMLServerStoppingEvent event) {
 		// Cache player list to prevent ConcurrentModificationException
-		List<ServerPlayerEntity> mplayers = event.getServer().getPlayerList().getPlayers();
-		for (ServerPlayerEntity player : mplayers) {
+		/* Still throws error, TODO rework code
+		List<ServerPlayerEntity> players = event.getServer().getPlayerList().getPlayers();
+		for (ServerPlayerEntity player : players) {
 			player.connection.disconnect(new TranslationTextComponent("multiplayer.disconnect.server_shutdown"));
-		}
+		}*/
 	}
 
 	@SubscribeEvent

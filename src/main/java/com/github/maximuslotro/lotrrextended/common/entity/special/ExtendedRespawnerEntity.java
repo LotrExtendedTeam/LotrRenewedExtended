@@ -13,6 +13,7 @@ import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -107,19 +108,23 @@ public class ExtendedRespawnerEntity extends Entity{
 			if(queueToRemove) {
 				this.remove();
 			}else if(entityTickBacksRemaining==0) {
-				spawnEntity((ServerWorld) this.level);
-			}else if(entityTickBacksRemaining==-1) {
+				attemptEntityRespawn((ServerWorld) this.level);
 			}else {
 				entityTickBacksRemaining -=1;
 			}
 		}
 	}
 
-	private void spawnEntity(ServerWorld world) {
+	private void attemptEntityRespawn(ServerWorld world) {
 		EntityType<?> traderEntityType =ExtendedStructureEntitySpawnerEntry.Serializer.getEntityTypeFromString(entityType);
 		if(traderEntityType!=null) {
 			Entity spawnedEntity = traderEntityType.create(world);
 			spawnedEntity.moveTo(getX(), getY(), getZ());
+			// check spawn rules (banner protection for SPAWNER types)
+			if (spawnedEntity instanceof MobEntity && !((MobEntity)spawnedEntity).checkSpawnRules(world, SpawnReason.SPAWNER)) {
+				// Disable respawn under opposing banner protection
+            	return;
+            }
 			if(spawnedEntity instanceof NPCEntity) {
 				NPCEntity npcEntity = (NPCEntity) spawnedEntity;
 				npcEntity.finalizeSpawn(world, world.getCurrentDifficultyAt(this.getOnPos()), SpawnReason.SPAWNER, null, null);

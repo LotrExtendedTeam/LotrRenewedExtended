@@ -43,7 +43,7 @@ public class InvasionSpawner {
             float angle = world.random.nextFloat() * 360.0F;
             int x = MathHelper.floor(player.getX()) + MathHelper.floor((MathHelper.sin(angle) * (24 + world.random.nextInt(20))));
             int z = MathHelper.floor(player.getZ()) + MathHelper.floor((MathHelper.cos(angle) * (24 + world.random.nextInt(20))));
-            int y = world.getHeight(Heightmap.Type.WORLD_SURFACE, x, z) + 3;
+            int y = world.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z) + 3;
 
             // check for protection
             BlockPos pos = new BlockPos(player.position());
@@ -109,15 +109,15 @@ public class InvasionSpawner {
                     float angle = world.random.nextFloat() * 360.0F;
                     int x = MathHelper.floor(player.getX()) + MathHelper.floor((MathHelper.sin(angle) * (24 + world.random.nextInt(20))));
                     int z = MathHelper.floor(player.getZ()) + MathHelper.floor((MathHelper.cos(angle) * (24 + world.random.nextInt(20))));
-                    int y = world.getHeight(Heightmap.Type.WORLD_SURFACE, x, z) + 3;
+                    int y = world.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z) + 3;
 
-                    // check for protection
-                    BlockPos cPos = new BlockPos(player.position());
-                    if (ExtendedBannerProtectionManager.getProtectionStatus(world, cPos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
+                    // check for protection here (rather than check spawn rules as the entity needs a faction, which invasion entities do not)
+                    BlockPos spawnPos = new BlockPos(x, y, z);
+                    if (ExtendedBannerProtectionManager.getProtectionStatus(world, spawnPos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
                         continue;
                     }
                     // Check again if position can have invasion, in the case of a border with a different biome
-                    if (!InvasionBiomeList.getInvasionsPerBiome(world.getBiomeName(cPos)).containsKey(entry.getKey())) {
+                    if (!InvasionBiomeList.getInvasionsPerBiome(world.getBiomeName(spawnPos)).containsKey(entry.getKey())) {
                     	continue;
                     }
 

@@ -8,7 +8,6 @@ import com.github.maximuslotro.lotrextended.mixins.lotr.common.entity.npc.MixinN
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
-import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSerializers;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
@@ -182,6 +181,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 					BlockPos footPos = new BlockPos(x, y, z);
 					// Check if spawn position is valid for boundary check spawns, or when inside spawning instead of bound spawning
 					if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
+						// TODO replace with cleaner checks
 						// Add check for inside spawning in a bounds check spawn type
 						if(spawnerInstance.shouldSpawnAtSpawner()) {
 							BlockState potentialFloorBlock1 = world.getBlockState(footPos);
@@ -227,9 +227,6 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							}
 						}
 					}
-		            if (!firstTick && ExtendedBannerProtectionManager.getProtectionStatus(world, footPos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
-		                continue;
-		            }
 					//System.out.println("Successfully ran Spawn checks");
 					List<EntityType<?>> generatedSpawns = spawnerInstance.getSpawns(random);
 					for(EntityType<?> generatedSpawn : generatedSpawns) {
@@ -287,22 +284,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							// Moved code from ExtendedStructureSpawnerTileEntity
 							Entity entity = generatedSpawn.create(world);
 							entity.moveTo(x, y, z, random.nextFloat() * 360.0F, 0.0F);
-							// Set entity info based upon the superclass
-							if(entity instanceof NPCEntity) {
-								((NPCEntity)entity).finalizeSpawn(world, world.getCurrentDifficultyAt(footPos), SpawnReason.SPAWNER, null, null);
-								if(spawnerInstance.isPersistenceRequired()) {
-									((NPCEntity)entity).setPersistenceRequired();
-								}
-								if(!spawnerInstance.isSetHomePositionOnSpawn()) {
-									((NPCEntity)entity).clearHomePos();
-								}else {
-									if(spawnerInstance.isSetHomeRandom()) {
-										((NPCEntity)entity).restrictTo(footPos, spawnerInstance.getHomeRadius());
-									}else {
-										((NPCEntity)entity).restrictTo(this.blockPosition(), spawnerInstance.getHomeRadius());
-									}
-								}
-							}else if(entity instanceof MobEntity) {
+							if(entity instanceof MobEntity) {
 								((MobEntity)entity).finalizeSpawn(world, world.getCurrentDifficultyAt(footPos), SpawnReason.SPAWNER, null, null);
 								if(spawnerInstance.isPersistenceRequired()) {
 									((MobEntity)entity).setPersistenceRequired();
@@ -316,6 +298,13 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 										((MobEntity)entity).restrictTo(this.blockPosition(), spawnerInstance.getHomeRadius());
 									}
 								}
+								// check spawn rules (banner protection for SPAWNER types)
+								// ensure entities are generated on structure spawn, even if prevented by other measures
+								if (!((MobEntity)entity).checkSpawnRules(world, SpawnReason.SPAWNER) && !firstTick) {
+									// Disable respawn under opposing banner protection
+									// Exit without breaking, preventing single spawn types from disappearing without spawning
+									return false;
+					            }
 							}else {
 								ExtendedLog.error("Failed spawning %s because it is not a supported Entity Class - %s", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
 								return false;

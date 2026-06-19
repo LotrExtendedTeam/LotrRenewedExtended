@@ -285,6 +285,12 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 					return false;
 				}
 			}
+			if (reason == SpawnReason.EVENT) {
+				return ExtendedBannerProtectionManager.getProtectionStatus(level, this.blockPosition(), new ProtectionInstance.EntityProtection(this)).isAllowed();
+			}
+			if (reason == SpawnReason.SPAWNER) {
+				return ExtendedBannerProtectionManager.getProtectionStatus(level, this.blockPosition(), new ProtectionInstance.EntityProtection(this)).isAllowed();
+			}
 			return true;
 		} else {
 			return false;

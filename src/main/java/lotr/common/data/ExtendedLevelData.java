@@ -16,6 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.util.EntityPredicates;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
@@ -142,7 +143,7 @@ public class ExtendedLevelData {
 	}
 
 	public int getPlayersTraderCooldown(UUID uuid) {
-        return playerTraderSpawnCooldowns.getOrDefault(uuid, -1);
+		return playerTraderSpawnCooldowns.getOrDefault(uuid, -1);
 	}
 
 	public int getPlayersBanditCooldown(UUID uuid) {
@@ -227,61 +228,62 @@ public class ExtendedLevelData {
 		}
 	}
 
-//	private void saveRecentInvasionPlayersToNBT(CompoundNBT root) {
-//		CompoundNBT nbt = new CompoundNBT();
-//
-//		for (Map.Entry<UUID, Map<UUID, Integer>> invasionEntry : recentPlayersByInvasion.entrySet()) {
-//			UUID invasionId = invasionEntry.getKey();
-//			Map<UUID, Integer> players = invasionEntry.getValue();
-//
-//			CompoundNBT playersTag = new CompoundNBT();
-//
-//			for (Map.Entry<UUID, Integer> playerEntry : players.entrySet()) {
-//				UUID playerId = playerEntry.getKey();
-//				int ticksRemaining = playerEntry.getValue();
-//
-//				playersTag.putInt(playerId.toString(), ticksRemaining);
-//			}
-//
-//			nbt.put(invasionId.toString(), playersTag);
-//		}
-//
-//		root.put("invasion_players", nbt);
-//	}
-//
-//	private void loadRecentInvasionPlayersToNBT(CompoundNBT root) {
-//		if (root.contains("invasion_players")) {
-//			CompoundNBT nbt = root.getCompound("invasion_players");
-//
-//			for (String invasionKey : nbt.getAllKeys()) {
-//				UUID invasionId;
-//
-//				try {
-//					invasionId = UUID.fromString(invasionKey);
-//				} catch (IllegalArgumentException e) {
-//					// skip and log any invalid UUIDs
-//					LOTRLog.warn("invasion_players tag in EXTENDED.DAT contained invalid UUID: " + invasionKey);
-//					continue;
-//				}
-//
-//				CompoundNBT playersTag = nbt.getCompound(invasionKey);
-//				Map<UUID, Integer> players = new HashMap<>();
-//
-//				for (String playerKey : playersTag.getAllKeys()) {
-//					try {
-//						UUID playerId = UUID.fromString(playerKey);
-//						int ticksRemaining = playersTag.getInt(playerKey);
-//						players.put(playerId, ticksRemaining);
-//					} catch (IllegalArgumentException ignored) {
-//						LOTRLog.error("Invalid UUID: ", ignored);
-//					}
-//				}
-//
-//				recentPlayersByInvasion.put(invasionId, players);
-//			}
-//
-//		}
-//	}
+	/*
+	private void saveRecentInvasionPlayersToNBT(CompoundNBT root) {
+		CompoundNBT nbt = new CompoundNBT();
+
+		for (Map.Entry<UUID, Map<UUID, Integer>> invasionEntry : recentPlayersByInvasion.entrySet()) {
+			UUID invasionId = invasionEntry.getKey();
+			Map<UUID, Integer> players = invasionEntry.getValue();
+
+			CompoundNBT playersTag = new CompoundNBT();
+
+			for (Map.Entry<UUID, Integer> playerEntry : players.entrySet()) {
+				UUID playerId = playerEntry.getKey();
+				int ticksRemaining = playerEntry.getValue();
+
+				playersTag.putInt(playerId.toString(), ticksRemaining);
+			}
+
+			nbt.put(invasionId.toString(), playersTag);
+		}
+
+		root.put("invasion_players", nbt);
+	}
+
+	private void loadRecentInvasionPlayersToNBT(CompoundNBT root) {
+		if (root.contains("invasion_players")) {
+			CompoundNBT nbt = root.getCompound("invasion_players");
+
+			for (String invasionKey : nbt.getAllKeys()) {
+				UUID invasionId;
+
+				try {
+					invasionId = UUID.fromString(invasionKey);
+				} catch (IllegalArgumentException e) {
+					// skip and log any invalid UUIDs
+					LOTRLog.warn("invasion_players tag in EXTENDED.DAT contained invalid UUID: " + invasionKey);
+					continue;
+				}
+
+				CompoundNBT playersTag = nbt.getCompound(invasionKey);
+				Map<UUID, Integer> players = new HashMap<>();
+
+				for (String playerKey : playersTag.getAllKeys()) {
+					try {
+						UUID playerId = UUID.fromString(playerKey);
+						int ticksRemaining = playersTag.getInt(playerKey);
+						players.put(playerId, ticksRemaining);
+					} catch (IllegalArgumentException ignored) {
+						LOTRLog.error("Invalid UUID: ", ignored);
+					}
+				}
+
+				recentPlayersByInvasion.put(invasionId, players);
+			}
+
+		}
+	}*/
 
 	private void loadPlayerTraderCooldownTimes(CompoundNBT tag) {
 		ListNBT listnbt = tag.getList("playerCooldowns", 10);
@@ -436,10 +438,10 @@ public class ExtendedLevelData {
 		if (recentPlayersByInvasion.containsKey(invasionUUID)) {
 			Map<UUID, Integer> playerTimes = recentPlayersByInvasion.get(invasionUUID);
 			returnSet = playerTimes.entrySet()
-					.stream()
-					.filter(entry -> entry.getValue() > 0)
-					.map(Map.Entry::getKey)
-					.collect(Collectors.toSet());
+				.stream()
+				.filter(entry -> entry.getValue() > 0)
+				.map(Map.Entry::getKey)
+				.collect(Collectors.toSet());
 		}
 
 		return returnSet;
@@ -462,7 +464,7 @@ public class ExtendedLevelData {
 
 			// attempt to spawn if it's at 0
 			if (cooldownLeft == 0) {
-				boolean success = BanditsSpawner.spawn(world, player, false, false);
+				boolean success = BanditsSpawner.attemptSpawn(world, player, false);
 				if (!success) {
 					// try again in between 1 and 13 minutes
 					int newCooldown = world.random.nextInt(12 * 60) + 60;
@@ -492,54 +494,46 @@ public class ExtendedLevelData {
 		if (timeUntilTrader > 0) {
 			timeUntilTrader--;
 		} else {
-			// if no players online try again in another minute
-			// 1/5th of the time we will actually attempt to spawn otherwise just wait another minute
-			if (world.players().isEmpty() || (world.random.nextInt(2) > 0)) {
+			// If no players online or the 1/2 chance fails, try again in 1 minute (1200 ticks)
+			if (world.players().isEmpty() || world.random.nextInt(2) > 0) {
 				timeUntilTrader = 1200;
 				return;
 			}
 
-			// pick a random player and spawn a trader near them
+			// Shuffle players to randomize target selection
 			List<PlayerEntity> shuffledPlayers = new ArrayList<>(world.players());
 			Collections.shuffle(shuffledPlayers);
 
-			boolean attemptedTraderSpawn = false;
-			for (PlayerEntity player : shuffledPlayers) {
-				int cooldownLeft = getPlayersTraderCooldown(player.getUUID());
+			// set them to 3 minutes if they just joined and look for another player
+			shuffledPlayers.stream()
+			.filter(player -> getPlayersTraderCooldown(player.getUUID()) == -1)
+			.forEach(player -> playerTraderSpawnCooldowns.put(player.getUUID(), 60 * 3));
 
-				// skip creative mode players and spectators
-				if (player.isCreative() || player.isSpectator()) continue;
+			// skip creative mode players and spectators
+			PlayerEntity targetPlayer = shuffledPlayers.stream()
+				.filter(EntityPredicates.NO_CREATIVE_OR_SPECTATOR::test)
+				.filter(player -> getPlayersTraderCooldown(player.getUUID()) == 0)
+				.findFirst()
+				.orElse(null);
 
-				// set them to 3 minutes if they just joined and look for another player
-				if (cooldownLeft == -1) {
-					playerTraderSpawnCooldowns.put(player.getUUID(), 60 * 3);
-					continue;
-				}
+			if (targetPlayer != null) {
+				UUID playerUUID = targetPlayer.getUUID();
 
-				if (cooldownLeft == 0) {
-					// this may not actually spawn if they are in a biome with no traders, but we'll still count it and reset their clock
-					WanderingTradersSpawner.spawn(world, player);
-					timeUntilTrader = 1200 * 5; // reset to 5 minute cooldown
-					attemptedTraderSpawn = true;
-					playerTraderSpawnCooldowns.put(player.getUUID(), 60 * 30); // reset player's cooldown 30 minutes
-					requireRandom = true;
-					break;
-				}
-			}
-
-			// if a trader could not be spawned we will no longer require random
-			if (!attemptedTraderSpawn) {
-				timeUntilTrader = 1200; // if no trader was spawned wait another minute before trying again
+				// Attempt spawn (may fail based on biome/conditions, but resets clock regardless)
+				WanderingTradersSpawner.attemptSpawn(world, targetPlayer, false, false);
+				timeUntilTrader = 1200 * 5; // Reset global timer to 5 minutes
+				playerTraderSpawnCooldowns.put(playerUUID, 60 * 30); // Reset player's cooldown to 30 minutes
+				requireRandom = true;
+			} else {
+				// No valid player was found to attempt a spawn on
+				timeUntilTrader = 1200; // Wait 1 minute before trying again
 				requireRandom = false;
 			}
 		}
 
 		// Only request saving file every 50 seconds to ensure the server does not lag from saving trader time every tick
-		if(timeUntilTrader % 1000L == 0L) {
-			//Handle when tick just hit 0, and on next tick traders will be spawned and save function will be called since 4000%1000=0
-			if(timeUntilTrader!=0) {
-				needsSave = true;
-			}
+		if (timeUntilTrader % 1000L == 0L && timeUntilTrader != 0) {
+			needsSave = true;
 		}
 	}
 
@@ -571,7 +565,7 @@ public class ExtendedLevelData {
 	 * @return How many enemies are left
 	 */
 	public int getEnemiesLeft(UUID invasionId) {
-        return invasionEnemiesLeft.getOrDefault(invasionId, -1);
+		return invasionEnemiesLeft.getOrDefault(invasionId, -1);
 	}
 	/**
 	 * Checks if an invasion is being tracked by the server
@@ -579,7 +573,7 @@ public class ExtendedLevelData {
 	 * @return True if server knows of the invasion
 	 */
 	public boolean hasInvasion(UUID invasionId) {
-        return invasionEnemiesLeft.containsKey(invasionId);
+		return invasionEnemiesLeft.containsKey(invasionId);
 	}
 
 	/**

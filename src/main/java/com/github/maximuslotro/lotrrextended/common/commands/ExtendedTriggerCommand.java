@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.commands;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import lotr.common.entity.npc.ExtendedTolkienEntity;
@@ -18,35 +19,50 @@ public class ExtendedTriggerCommand {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("lotrExtendedTrigger")
 			.requires(context -> context.hasPermission(2))
-			.then(Commands.literal("spawnWanderingTrader")
-				.executes(context -> triggerTrader(context.getSource())))
-			.then(Commands.literal("spawnTolkien")
-				.executes(context -> triggerTolkien(context.getSource())))
-			.then(Commands.literal("wightJumpscare")
-				.executes(context -> triggerJumpscare(context.getSource())))
+			.then(Commands.literal("attemptWanderingTraderSpawn")
+				.then(Commands.argument("disableBanner", BoolArgumentType.bool())
+					.then(Commands.argument("disableAlignment", BoolArgumentType.bool())
+						.executes(context -> triggerTraderSpawn(context.getSource(), BoolArgumentType.getBool(context, "disableBanner"), BoolArgumentType.getBool(context, "disableAlignment"))))))
+			.then(Commands.literal("wanderingTraderSpawn")
+				.executes(context -> triggerGuaranteedTraderSpawn(context.getSource())))
 			.then(Commands.literal("attemptBanditSpawn")
 				.executes(context -> triggerBanditSpawn(context.getSource())))
 			.then(Commands.literal("banditSpawn")
 				.executes(context -> triggerGuaranteedBanditSpawn(context.getSource())))
+			.then(Commands.literal("spawnTolkien")
+				.executes(context -> triggerTolkien(context.getSource())))
+			.then(Commands.literal("wightJumpscare")
+				.executes(context -> triggerJumpscare(context.getSource())))
 			.then(Commands.literal("invasion")
 				.executes(context -> triggerInvasionTest(context.getSource()))));
 	}
 
-	public static int triggerTrader(CommandSource source) throws CommandSyntaxException {
+	public static int triggerGuaranteedTraderSpawn(CommandSource source) throws CommandSyntaxException {
 		ServerPlayerEntity player = source.getPlayerOrException();
-		WanderingTradersSpawner.spawn(player.getLevel(), player);
+		WanderingTradersSpawner.attemptSpawn(player.getLevel(), player, false, false);
+		return Command.SINGLE_SUCCESS;
+	}
+
+	public static int triggerTraderSpawn(CommandSource source, boolean disableBanner, boolean disableAlignment) throws CommandSyntaxException {
+		ServerPlayerEntity player = source.getPlayerOrException();
+		boolean result = WanderingTradersSpawner.attemptSpawn(player.getLevel(), player, disableBanner, disableAlignment);
+		if (result) {
+			source.sendSuccess(new StringTextComponent("Attempt to spawn wandering trader was successful."), true);
+		} else {
+			source.sendSuccess(new StringTextComponent("Attempt to spawn wandering trader was unsuccessful."), true);
+		}
 		return Command.SINGLE_SUCCESS;
 	}
 
 	public static int triggerGuaranteedBanditSpawn(CommandSource source) throws CommandSyntaxException {
 		ServerPlayerEntity player = source.getPlayerOrException();
-		BanditsSpawner.spawn(player.getLevel(), player, true, true);
+		BanditsSpawner.attemptSpawn(player.getLevel(), player, true);
 		return Command.SINGLE_SUCCESS;
 	}
 
 	public static int triggerBanditSpawn(CommandSource source) throws CommandSyntaxException {
 		ServerPlayerEntity player = source.getPlayerOrException();
-		boolean result = BanditsSpawner.spawn(player.getLevel(), player, false, false);
+		boolean result = BanditsSpawner.attemptSpawn(player.getLevel(), player, false);
 		if (result) {
 			source.sendSuccess(new StringTextComponent("Attempt to spawn bandit was successful."), true);
 		} else {

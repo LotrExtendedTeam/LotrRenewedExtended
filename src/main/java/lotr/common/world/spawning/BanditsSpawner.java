@@ -1,7 +1,6 @@
 package lotr.common.world.spawning;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import lotr.common.entity.npc.ExtendedBanditEntity;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.entity.SpawnReason;
@@ -26,11 +25,10 @@ public class BanditsSpawner {
      * @param world            The {@link ServerWorld} instance where the bandit should be spawned.
      * @param player           The {@link PlayerEntity} for whom the bandit is being spawned. Used as the spawn center.
      * @param alwaysSpawn      Whether to force spawning regardless of biome restrictions or spawn chance.
-     * @param ignoreProtection Whether to bypass area protection checks (e.g., banner protection) when spawning.
      * @return {@code true} if a bandit was successfully spawned; {@code false} otherwise.
      */
-    public static boolean spawn(ServerWorld world, PlayerEntity player, boolean alwaysSpawn, boolean ignoreProtection) {
-        // get the biome the player is in and check if we should attempt to spawn a
+    public static boolean attemptSpawn(ServerWorld world, PlayerEntity player, boolean alwaysSpawn) {
+        // get the biome the player is in and check if we should attempt to spawn
         if (!alwaysSpawn) {
             BlockPos pos = new BlockPos(player.position());
             String biomeName = world.getBiomeName(pos).toString();
@@ -49,26 +47,13 @@ public class BanditsSpawner {
             }
         }
 
-        // check protection against where the player is standing - this prevent a bandit from being generated for the player
-        // at all if they are inside a protected area - can be reverted if we decided to but it might be nice to prevent them
-        // from getting ambushed outside the wall of their base by a bunch bandits that were spawned while they were in their base
-        if (!ignoreProtection) {
-            BlockPos pos = new BlockPos(player.position());
-            if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
-                ExtendedLog.info("In Banner Area");
-                return false;
-            } else {
-                ExtendedLog.info("Not In Banner Area");
-            }
-        }
-
         // if we have made it this point the roll succeeded - make 20 attempts to find a point to spawn them
         for (int attempts = 0; attempts < 20; attempts++) {
             // pick a random angle and distance from the player
             float angle = world.random.nextFloat() * 360.0F;
             int x = MathHelper.floor(player.getX()) + MathHelper.floor((MathHelper.sin(angle) * (24 + world.random.nextInt(20))));
             int z = MathHelper.floor(player.getZ()) + MathHelper.floor((MathHelper.cos(angle) * (24 + world.random.nextInt(20))));
-            int y = world.getHeight(Heightmap.Type.WORLD_SURFACE, x, z);
+            int y = world.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
             BlockPos pos = new BlockPos(x, y, z);
 
             // verify the position in within a biome that can have bandits in case they are at the border
@@ -87,14 +72,12 @@ public class BanditsSpawner {
                 continue;
             }
 
-            ExtendedBanditEntity bandit = ExtendedEntities.BANDIT.get().create(world, null, null, player, pos, SpawnReason.SPAWN_EGG, true, false);
+            ExtendedBanditEntity bandit = ExtendedEntities.BANDIT.get().create(world, null, null, player, pos, SpawnReason.EVENT, true, false);
             if (bandit != null) {
-                // check protection
-                if (!ignoreProtection) {
-                    if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
-                        ExtendedLog.debug("Bandit could not be spawned at " + pos + " because it was inside protection banner.");
-                        continue;
-                    }
+            	// check spawn rules (banner protection for EVENT types)
+                if (!alwaysSpawn && !bandit.checkSpawnRules(world, SpawnReason.EVENT)) {
+                	// Disable spawning under banner protection
+                	continue;
                 }
 
                 // actually attempt to spawn the bandit
@@ -122,7 +105,8 @@ public class BanditsSpawner {
                     }
 
                     for (int i = 0; i < additionalBandits; i++) {
-                        ExtendedBanditEntity additional = ExtendedEntities.BANDIT.get().create(world, null, null, player, pos, SpawnReason.SPAWN_EGG, true, false);
+                    	// TODO find a way to handle Harad bandits in the future
+                        ExtendedBanditEntity additional = ExtendedEntities.BANDIT.get().create(world, null, null, player, pos, SpawnReason.EVENT, true, false);
                         yaw = world.random.nextFloat() * 360.0F; // set look angle
                         bandit.setYBodyRot(yaw);
                         bandit.setYHeadRot(yaw);

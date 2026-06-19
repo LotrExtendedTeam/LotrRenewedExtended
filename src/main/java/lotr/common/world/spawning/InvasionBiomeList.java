@@ -554,10 +554,7 @@ public class InvasionBiomeList {
 
         if (invasions.containsKey(biomeName)) {
             Map<ExtendedInvasions, InvasionChance> rates = invasions.get(biomeName);
-            if (rates == null || rates.isEmpty()) {
-                return null;
-            }
-            return getInvasionFromHashmap(rates, world);
+            return rates == null || rates.isEmpty() ? null : getInvasionFromHashmap(rates, world);
         } else {
             return null;
         }

@@ -3,7 +3,6 @@ package com.github.maximuslotro.lotrrextended.common.entity.special;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
-import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSerializers;
 
@@ -236,26 +235,26 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
      * @return True if mob spawned
      */
     private boolean attemptMobSpawn(EntityType<? extends MobEntity> type) {
-        boolean couldSpawnMob = false;
 
         for (int attempts = 0; attempts < 40; attempts++) {
             int x = (int) (this.getX() + MathHelper.nextInt(this.random, -6, 6));
             int z = (int) (this.getZ() + MathHelper.nextInt(this.random, -6, 6));
-            int y = level.getHeight(Heightmap.Type.WORLD_SURFACE, x, z);
+            int y = level.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
             BlockPos pos = new BlockPos(x, y, z);
 
             // all possible conditions that should make us quit and pick a new location
             BlockPos plusOneY = new BlockPos(x, y + 1, z);
-            if (y < 62 || level.getBlockState(pos).isSuffocating(level, pos)
+            if (level.getBlockState(pos).isSuffocating(level, pos)
                     || level.getBlockState(plusOneY).isSuffocating(level, plusOneY)) {
                 continue;
             }
             ServerWorld world = (ServerWorld) level;
             MobEntity entity = type.create(world, null, null, null, pos, SpawnReason.SPAWNER, true, false);
             if (entity != null) {
-                // check protection
-                if (ExtendedBannerProtectionManager.getProtectionStatus(level, pos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
-                    continue;
+            	// check spawn rules (banner protection for EVENT types)
+				if (!entity.checkSpawnRules(world, SpawnReason.EVENT)) {
+					// Disable spawning under opposing banner protection
+                	continue;
                 }
                 entity.setPersistenceRequired();
                 // set NBT data for invasion
@@ -266,7 +265,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
             }
         }
 
-        return couldSpawnMob;
+        return false;
     }
 
     public void setTypeKey(ResourceLocation factionKey) {

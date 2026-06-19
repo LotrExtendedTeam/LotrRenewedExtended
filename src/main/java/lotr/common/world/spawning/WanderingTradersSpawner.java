@@ -1,14 +1,14 @@
 package lotr.common.world.spawning;
 
+import java.util.Optional;
+
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
-import lotr.common.block.LOTRLeavesBlock;
-import lotr.common.block.WaterloggableDoublePlantBlock;
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.init.ExtendedEntities;
+import lotr.common.world.spawning.WanderingTradersList.ExtendedWanderingTraderData;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.SlabBlock;
@@ -18,11 +18,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.text.Color;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
@@ -33,56 +31,45 @@ import net.minecraft.world.server.ServerWorld;
 
 public class WanderingTradersSpawner {
 
-	public static void spawn(ServerWorld world, PlayerEntity player) {
+	public static boolean attemptSpawn(ServerWorld world, PlayerEntity player, boolean disableBannerChecks, boolean disableAlignmentChecks) {
 		// only make a max of 16 attempts to spawn the traveling trader
 		for (int attempts = 0; attempts < 20; attempts++) {
 			// pick a random angle and distance from the player
 			float angle = world.random.nextFloat() * 360.0F;
 			int x = MathHelper.floor(player.getX()) + MathHelper.floor((MathHelper.sin(angle) * (24 + world.random.nextInt(20))));
 			int z = MathHelper.floor(player.getZ()) + MathHelper.floor((MathHelper.cos(angle) * (24 + world.random.nextInt(20))));
-			int y = world.getHeight(Heightmap.Type.WORLD_SURFACE, x, z);
-			BlockPos pos = new BlockPos(x, y, z);
+			int y = world.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
+			BlockPos position = new BlockPos(x, y, z);
 
 			// get the biome and pick a wandering trader for the location that was selected
-			String biomeName = world.getBiomeName(pos).toString();
-			String entityName = null;
-			try {
-				entityName = WanderingTradersList.pickTraderFromBiomeName(world, biomeName);
-			} catch (IllegalArgumentException ex) {
-				ExtendedLog.error("Issue while determining LOTR when spawning a wandering trader", ex);
+			Optional<ExtendedWanderingTraderData> entityData = WanderingTradersList.pickTraderFromBiomeId(world, world.getBiomeName(position));
+			// probably in a biome that just doesn't support wandering traders
+			if (!entityData.isPresent()) {
+				return false;
 			}
-
-			// if entity is null skip some attempts as they are probably in a biome that just doesn't
-			// support wandering traders, and we should not try all 16 attempts
-			if (entityName == null) {
-				//ExtendedLog.warn("Got null entity when determining if a wandering trader could spawn at " + pos + ". This biome likely doesn't support wandering traders.");
-				//attempts += 2;
-				// Disabled attempts += 2; due to the fact that the spawner could run endlessly if in a non-spawnable biome
+			// Disable spawning for players with opposing alignment
+			if (LOTRLevelData.serverInstance().getData(player).getAlignmentData().getAlignment(entityData.get().traderFaction)<0 && !disableAlignmentChecks) {
 				continue;
 			}
-
-			// if the type is invalid try again but add a few attempts
-			EntityType<?> type = getTraderFromName(entityName);
-			if (type == null) {
-				ExtendedLog.error("Got null EntityType when attempting to parse " + entityName);
-				break;
-			}
-
-			BlockPos plusOneY = new BlockPos(x, y + 1, z);
-			if (y > 62 && !world.getBlockState(pos).isSuffocating(world, pos) && !world.getBlockState(plusOneY).isSuffocating(world, plusOneY)) {
-				BlockState state = world.getBlockState(pos);
-				// avoid spawning on slabs/stairs/leaves/in water
-				if (state.getBlock() instanceof StairsBlock ||
+			EntityType<?> type = entityData.get().traderType;
+			BlockPos plusOneY = position.above();
+			if (y > 62 && !world.getBlockState(position).isSuffocating(world, position) && !world.getBlockState(plusOneY).isSuffocating(world, plusOneY)) {
+				BlockState state = world.getBlockState(position.below());
+				// avoid spawning on slabs/stairs/leaves
+				if (!world.getFluidState(position.below()).isEmpty() ||
+					state.getBlock() instanceof StairsBlock ||
 					state.getBlock() instanceof SlabBlock ||
-					state.getBlock() instanceof LeavesBlock ||
-					world.getFluidState(pos).is(FluidTags.WATER) ||
-					world.getFluidState(pos).is(FluidTags.LAVA)) {
+					state.getBlock() instanceof LeavesBlock) {
 					continue;
 				}
 
-				BlockPos spawnPos = pos.offset(new Vector3i(0.5D, 0, 0.5D));
-				Entity trader = type.create((ServerWorld) world, null, null, player, spawnPos, SpawnReason.SPAWN_EGG, true, false);
+				Entity trader = type.create((ServerWorld) world, null, null, player, position, SpawnReason.EVENT, true, false);
 				if (trader instanceof ExtendedWanderingTraderEntity && trader instanceof MobEntity) {
+					// check spawn rules (banner protection for EVENT types)
+					if (!((MobEntity)trader).checkSpawnRules(world, SpawnReason.EVENT) && !disableBannerChecks) {
+						// Disable spawning under opposing banner protection
+	                	continue;
+	                }
 					// set look angle
 					float yaw = world.random.nextFloat() * 360.0F;
 					trader.setYBodyRot(yaw);
@@ -90,7 +77,7 @@ public class WanderingTradersSpawner {
 
 					((ExtendedWanderingTraderEntity) trader).getTraderData().setWanderingTraderAliveTime(24000);
 					((ExtendedWanderingTraderEntity) trader).getTraderData().setWanderingTrader(true);
-					((MobEntity) trader).restrictTo(pos, 5); // restrict within 5 blocks of spawn point
+					((MobEntity) trader).restrictTo(position, 5); // restrict within 5 blocks of spawn point
 					((MobEntity)trader).setPersistenceRequired();
 					world.addFreshEntityWithPassengers(trader);
 
@@ -102,13 +89,12 @@ public class WanderingTradersSpawner {
 							BlockPos escortPos = new BlockPos(trader.getX(), trader.getY(), trader.getZ());
 							escort.finalizeSpawn((IServerWorld) world, world.getCurrentDifficultyAt(escortPos), SpawnReason.EVENT, null, null);
 							escort.setPos(trader.getX(), trader.getY(), trader.getZ());
-							world.addFreshEntity(escort);
+							world.addFreshEntityWithPassengers(escort);
 							escort.restrictTo(escortPos, 8);
 							((ExtendedWanderingTraderEntity) trader).addEscort(escort.getUUID());
 						}
 					}
 
-					// send message to the original player
 					Style npcNameStyle = Style.EMPTY.withColor(Color.fromRgb(((ExtendedWanderingTraderEntity) trader).getFactionColor()));
 					if(((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(player)).getExtendedMiscData().doHighContrastMessages()) {
 						player.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_you", trader.getName().copy().withStyle(npcNameStyle)), Util.NIL_UUID);
@@ -125,32 +111,17 @@ public class WanderingTradersSpawner {
 							otherPlayer.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_player", trader.getName().copy().withStyle(TextFormatting.YELLOW), player.getName()), Util.NIL_UUID);
 						}
 					}
+					return true;
 				} else if(trader==null) {
 					// Entity was denied spawning
 					//ExtendedLog.error("Error attempting to spawn unknown trader. Does " + type + " extend ExtendedTraderEntity?");
+					return false;
 				} else {
 					ExtendedLog.error("Error attempting to set trader options when spawning wandering trader. Does " + type + " extend ExtendedTraderEntity and MobEntity?");
+					return false;
 				}
-				break;
 			}
 		}
+		return false;
 	}
-
-	private static EntityType<?> getTraderFromName(String name) {
-		switch (name) {
-		case "lotr:galadhrim_wanderer":
-			return ExtendedEntities.GALADHRIM_WANDERER.get();
-		case "lotr:rivendell_wanderer":
-			return ExtendedEntities.RIVENDELL_WANDERER.get();
-		case "lotr:oddment_collector":
-			return ExtendedEntities.ODDMENT_COLLECTOR.get();
-		case "lotr:blue_mountains_merchant":
-			return ExtendedEntities.BLUE_MOUNTAINS_MERCHANT.get();
-		case "lotr:bree_merchant":
-			return ExtendedEntities.BREE_MERCHANT.get();
-		default:
-			return null;
-		}
-	}
-
 }
