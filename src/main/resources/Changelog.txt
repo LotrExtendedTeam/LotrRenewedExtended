@@ -1,3 +1,91 @@
+(Beta 1.10.2)
+* Banner Protection
+  * Fixed allied entities not being able to spawn in banner protection
+  * Fixed allied structure entities not being able to spawn in banner protection
+  * Fixed bandits not being able to spawn outside banner protection if player is inside banner protection
+  * Fixed being able to break banners with the everything permission by breaking bottom metal block or top banner block without the banner edit permission
+  * Fixed enemy traders being able to respawn in banner protection
+  * Fixed enemy wandering traders being able to spawn in banner protection
+  * Fixed hired units not spawning if hired under opposing banner protection
+  * Fixed invasions spawning inside banner protection if player is outside banner protection
+* Blocks
+  * Added Orc Plating Walls
+  * Added Rusted Orc Plating Walls
+  * Added unsmelting functionality to Crucibles
+  * Made moss carpets placeable on rotten wood and cauldrons
+* Config
+  * Added a server config setting to disable Orthanc structure
+  * Fixed longer gate length not being enabled by default
+* Entities
+  * Fixed NPC ridden wargs not having saddles
+  * Fixed NPC ridden wargs not moving
+  * Fixed NPCs and unsaddled players affecting Warg wandering movements
+  * Fixed NPCs floating above the saddle when riding wargs
+  * Fixed Tolkien being able to spawn on trees
+  * Fixed Uruk Captain not hiding shield when out of combat
+  * Fixed bandits being able to spawn on trees
+  * Fixed enemy wandering traders being able to spawn for players
+  * Fixed invasion reinforcements being able to spawn on trees
+  * Fixed raising shield in warg combat disabling the shield with alignment invalid message
+  * Fixed wandering traders spawning on trees and in water
+* Features
+  * Added invasions for factions: Dunland, Durin's Folk and Umbar
+  * Fixed invasions of allied factions spawning (only enemy factions will spawn now)
+  * Fixed invasions spawning below y=62 not spawning reinforcements
+* Hired Units
+  * Captain hiring lists are now datapack driven
+* Items
+  * Added Arnor Shield
+  * Added Dunlanding Shield
+  * Added Tome of the Artisan
+  * Added Tome of the Warrior
+  * Added poisoning support for Extended’s Daggers
+  * Ported Bronze Crossbow
+  * Ported Item Crossbow
+  * Ported Mithril Crossbow
+  * Ported Uruk Crossbow
+  * Ported ability for cauldrons to remove poison from daggers
+  * Ported poisoned Angmar/Bone/Dol Guldur/Gundabad Uruk/Taurethrim Daggers
+  * Ported poisoned Barrow Blades
+* Localization
+  * Added Isengard speechbanks
+  * Fixed some saplings using sappling
+* Loot-tables
+  * Added Armorstand loot-table support
+  * Standardized item damage values in all loot-tables
+* Misc
+  * Added crucible recipes for metal based blocks, not just damageable items
+  * Fixed Blue Mountains Mattocks not being craftable
+  * Fixed Extended's bows being repairable with string instead of only bowstring
+  * Fixed Mithril Mattock recipe using throwing axe recipe
+* Modifiers
+  * Added 4 new crossbow draw speed modifiers (Heavy, Light, Brisk, Breakneck)
+  * Added Reforge Tomes that force either combat or tool based reforges
+  * Fixed axes not getting banes
+  * Fixed gem coloring taking too many items
+  * Fixed ranged, efficiently and looting modifiers having flipped weights
+  * Fixed reforging not counting the repair cost to fix broken items
+  * Fixed smithing table and grindstone only working in ME
+  * Removed the ability to earn banes on bows and crossbows
+* Servers
+  * Fixed message for when entering and exiting combat while combatlogging is enabled
+  * Fixed mod tracker getting upset when kicking players for mods
+  * Fixed server logging not including timestamps
+* Structures
+  * Added/Ported Isengard Orc Camps (4 variants including caverns)
+  * Fixed underground pieces from triggering aboveground terrain modifications
+* Textures
+  * Added active animated texture and particles for Crucibles
+  * Fixed Numenorean lantern display properties (held, floating, item frame)
+* Trading
+  * Added horns trades to 11 traders
+  * Added slime and bamboo trades to Oddment Collectors
+  * Trader respawners now turn red when respawning is suppressed by banner protection
+* WorldGen
+  * Added Rabbits to middle earth
+  * Added waste boulders to isengard
+  * Stopped meteorites spawning in rivers
+
 (Beta 1.10.1)
 * Blocks
   * Fixed breaking generated stone chests outside the barrow downs causing wights to spawn
