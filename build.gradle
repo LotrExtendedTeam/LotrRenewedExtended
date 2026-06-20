@@ -163,3 +163,25 @@ tasks.named('jar', Jar).configure {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
+
+eclipse {
+    classpath {
+        file {
+            whenMerged { classpath ->
+                classpath.entries.sort { entry1, entry2 ->
+                    def path1 = entry1.path ?: ""
+                    def path2 = entry2.path ?: ""
+                    
+                    def getPriority = { path ->
+                        if (path.contains("src/main/java")) return 1
+                        if (path.contains("src/main/resources")) return 2
+                        if (path.contains("src/generated/resources")) return 3
+                        return 4 // Push libraries, JDK, and dependencies to priority 4
+                    }
+                    
+                    return getPriority(path1) <=> getPriority(path2)
+                }
+            }
+        }
+    }
+}
