@@ -101,7 +101,7 @@ public class ExtendedTradeContainer extends Container {
         soldOriginalQuantities = nbt.getIntArray("soq");
 
         // add buy slots, player buys items from trader here
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++) { //0->8
             addSlot(new Slot(displayInventory, i, 8 + (i * 18), 40) {
                 @Override
                 public boolean mayPickup(PlayerEntity player) {
@@ -116,8 +116,8 @@ public class ExtendedTradeContainer extends Container {
         }
 
         // add sell display slots, shows what player can sell to the trader
-        for (int i = 0; i < 9; i++)
-            addSlot(new Slot(displayInventory, i + 9, 8 + (i * 18), 92) {
+        for (int i = 0; i < 9; i++) { //9->17
+            addSlot(new Slot(displayInventory, 9 + i, 8 + (i * 18), 92) {
                 @Override
                 public boolean mayPickup(PlayerEntity player) {
                     return false;
@@ -128,17 +128,18 @@ public class ExtendedTradeContainer extends Container {
                     return false;
                 }
             });
-
+        }
         // add actual sell slots, player places items to sell here
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 9; i++) { // 18->26
             addSlot(new Slot(sellInventory, i, 8 + (i * 18), 141));
+        }
 
         // add inventory slots
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 9; j++) // 95
+            for (int j = 0; j < 9; j++) // 27->53
                 addSlot(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 188 + i * 18));
         }
-        for (int i = 0; i < 9; i++) { // 153
+        for (int i = 0; i < 9; i++) { // 54->62
             addSlot(new Slot(inventory, i, 8 + i * 18, 246));
         }
     }
@@ -266,7 +267,8 @@ public class ExtendedTradeContainer extends Container {
                 	trader.getTraderData().incrementTradeSoldToPlayerCount(price);
                 }
             }
-
+            player.inventory.setChanged();
+            slotsChanged(player.inventory);
             return player.inventory.getCarried();
         }
 
@@ -321,7 +323,7 @@ public class ExtendedTradeContainer extends Container {
                     }
                 }
             }
-
+            slotsChanged(player.inventory);
             this.broadcastChanges(); // Notify the container that changes have occurred
             return carriedItem;
         }
@@ -329,7 +331,7 @@ public class ExtendedTradeContainer extends Container {
         if (pClickType == ClickType.QUICK_CRAFT || pClickType == ClickType.SWAP || pClickType == ClickType.THROW) {
         	return ItemStack.EMPTY;
         }
-        // Allow clone as it only works in creative anyways
+        // Allow clone as it only works in creative anyways, and quick move as its handled below
         return super.clicked(index, pDragType, pClickType, pPlayer);
     }
 
@@ -346,98 +348,109 @@ public class ExtendedTradeContainer extends Container {
 
     }
     @Override
-    public ItemStack quickMoveStack(PlayerEntity player, int slotId) {
-    	Slot slot = this.slots.get(slotId);
-    	ItemStack item = slot.getItem();
-
+    public ItemStack quickMoveStack(PlayerEntity player, int pIndex) {
+    	ItemStack itemstack = ItemStack.EMPTY;
+    	Slot slot = this.slots.get(pIndex); 
+    	// Buying items in bulk
     	if (slot.container.equals(displayInventory)) {
     		if (slot.index < 9) {
     			if(trader.getTraderData().isTradesLocked()) {
     				return ItemStack.EMPTY;
-            	}
-            	// Fix "java.lang.ArithmeticException: / by zero" crash when shift-clicking sold-out slot
-            	if(displayInventory.getItem(slot.index).isEmpty() || displayInventory.getItem(slot.index).getCount()<=0) {
-            		return ItemStack.EMPTY;
-            	}
+    			}
+    			// Fix "java.lang.ArithmeticException: / by zero" crash when shift-clicking sold-out slot
+    			if(displayInventory.getItem(slot.index).isEmpty() || displayInventory.getItem(slot.index).getCount()<=0) {
+    				return ItemStack.EMPTY;
+    			}
 
-                ItemStack stack = displayInventory.getItem(slot.index).copy();
-                int baseStackCount = displayInventory.getItem(slot.index).getCount();
-                int stackCountMax = displayInventory.getItem(slot.index).getMaxStackSize();
-                
-                int totalCoinsTraded = 0;
-                while (player.inventory.getFreeSlot() > -1) {
-                    boolean lastTradeThatCanBePerformed = false;
+    			ItemStack stack = displayInventory.getItem(slot.index).copy();
+    			int baseStackCount = displayInventory.getItem(slot.index).getCount();
+    			int stackCountMax = displayInventory.getItem(slot.index).getMaxStackSize();
 
-                    int tradesToPerform = stackCountMax / baseStackCount;
-                    if (tradesToPerform > soldQuantities[slot.index]) {
-                        tradesToPerform = soldQuantities[slot.index];
-                        lastTradeThatCanBePerformed = true;
-                    }
+    			int totalCoinsTraded = 0;
+    			while (player.inventory.getFreeSlot() > -1) {
+    				boolean lastTradeThatCanBePerformed = false;
 
-                    int priceToSellAt = soldPrices[slot.index];
-                    if (tradesToPerform * priceToSellAt >= CoinUtils.totalValueInPlayerInventory(player.inventory)) {
-                        tradesToPerform = CoinUtils.totalValueInPlayerInventory(player.inventory) / priceToSellAt;
-                        lastTradeThatCanBePerformed = true;
-                    }
+    				int tradesToPerform = stackCountMax / baseStackCount;
+    				if (tradesToPerform > soldQuantities[slot.index]) {
+    					tradesToPerform = soldQuantities[slot.index];
+    					lastTradeThatCanBePerformed = true;
+    				}
 
-                    if (tradesToPerform == 0) {
-                    	return ItemStack.EMPTY;
-                    }
+    				int priceToSellAt = soldPrices[slot.index];
+    				if (tradesToPerform * priceToSellAt >= CoinUtils.totalValueInPlayerInventory(player.inventory)) {
+    					tradesToPerform = CoinUtils.totalValueInPlayerInventory(player.inventory) / priceToSellAt;
+    					lastTradeThatCanBePerformed = true;
+    				}
 
-                    if (!tradedYet) {
-                        player.awardStat(ExtendedStats.TRADERS_TRADED);
-                        tradedYet = true;
-                    }
+    				if (tradesToPerform == 0) {
+    					return ItemStack.EMPTY;
+    				}
 
-                    // actually perform buy
-                    stack.setCount(baseStackCount * tradesToPerform);
-                    int priceToRemove = tradesToPerform * priceToSellAt;
-                    
-                    CoinUtils.removeCoins(player, player.inventory, priceToRemove);
-                    if (!player.inventory.add(stack)) {
-                        level.addFreshEntity(new ItemEntity(level, player.getX(), player.getY(), player.getZ(), stack));
-                    }
-                    player.inventory.setChanged();
-                    soldQuantities[slot.index] = soldQuantities[slot.index] - tradesToPerform;
+    				if (!tradedYet) {
+    					player.awardStat(ExtendedStats.TRADERS_TRADED);
+    					tradedYet = true;
+    				}
 
-                    if (!level.isClientSide) {
-                        trader.getTraderData().getSells().get(slot.index).setQuantityLeft(trader.getTraderData().getSells().get(slot.index).getQuantityLeft() - tradesToPerform);
-                    	trader.getTraderData().incrementTradeSoldToPlayerCount(priceToRemove);
-                    }
+    				// actually perform buy
+    				stack.setCount(baseStackCount * tradesToPerform);
+    				int priceToRemove = tradesToPerform * priceToSellAt;
 
-                    totalCoinsTraded+=priceToRemove;
-                    if (lastTradeThatCanBePerformed) break;
-                }
-                if(!level.isClientSide && totalCoinsTraded>0) {
-                	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, stack, totalCoinsTraded);
-                }
-                return ItemStack.EMPTY;
-            }
-        }
+    				CoinUtils.removeCoins(player, player.inventory, priceToRemove);
+    				if (!player.inventory.add(stack)) {
+    					level.addFreshEntity(new ItemEntity(level, player.getX(), player.getY(), player.getZ(), stack));
+    				}
+    				player.inventory.setChanged();
+    				soldQuantities[slot.index] = soldQuantities[slot.index] - tradesToPerform;
 
-        if (slot.container.equals(sellInventory)) {
-            if (player.inventory.add(item)) {
+    				if (!level.isClientSide) {
+    					trader.getTraderData().getSells().get(slot.index).setQuantityLeft(trader.getTraderData().getSells().get(slot.index).getQuantityLeft() - tradesToPerform);
+    					trader.getTraderData().incrementTradeSoldToPlayerCount(priceToRemove);
+    				}
+
+    				totalCoinsTraded+=priceToRemove;
+    				if (lastTradeThatCanBePerformed) break;
+    			}
+    			if(!level.isClientSide && totalCoinsTraded>0) {
+    				ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, stack, totalCoinsTraded);
+    			}
+    			return ItemStack.EMPTY;
+    		}
+    	}
+    	if (slot != null && slot.hasItem()) {
+    		ItemStack slotItem = slot.getItem();
+    		itemstack = slotItem.copy();
+    		// Removing items from sell slots
+    		if (slot.container.equals(sellInventory)) {
+    			if (!this.moveItemStackTo(slotItem, 27, 63, false)) {
+    				return ItemStack.EMPTY;
+    			}
+    		// attempt to move items to sell slots
+    		}else if (!level.isClientSide && TradeUtils.isValidSellItem(slotItem, trader.getTraderData().getBuys()) && sellInventory.canAddItem(slotItem)) {
+    			ItemStack remaining = sellInventory.addItem(slotItem);
+    			sellInventory.setChanged();
+    			slot.set(remaining);
+    			slot.setChanged();
+    			broadcastChanges();
+    			if (player instanceof ServerPlayerEntity) {
+                    ((ServerPlayerEntity)player).refreshContainer(this);
+                 }
+    		}else if (pIndex >= 54 && pIndex < 63) {
+    			if (!this.moveItemStackTo(slotItem, 27, 54, false)) {
+    				return ItemStack.EMPTY;
+    			}
+    		} else if (pIndex >= 27 && pIndex < 54) {
+    			if (!this.moveItemStackTo(slotItem, 54, 63, false)) {
+    				return ItemStack.EMPTY;
+    			}
+    		}
+
+    		if (slotItem.isEmpty()) {
                 slot.set(ItemStack.EMPTY);
+             } else {
                 slot.setChanged();
-                slotsChanged(player.inventory);
-            }
-            return ItemStack.EMPTY;
-        }
-
-        // any other slot was shift-clicked so we should attempt to move it to sell
-        if (!level.isClientSide && TradeUtils.isValidSellItem(item, trader.getTraderData().getBuys())) {
-            if (sellInventory.canAddItem(item)) {
-                ItemStack remaining = sellInventory.addItem(item);
-                sellInventory.setChanged();
-
-                slot.set(remaining);
-                slot.setChanged();
-                slotsChanged(player.inventory);
-                player.inventory.setChanged();
-                this.broadcastChanges();
-            }
-        }
-        return ItemStack.EMPTY;
+             }
+    	}
+    	return itemstack;
     }
 
     /*
