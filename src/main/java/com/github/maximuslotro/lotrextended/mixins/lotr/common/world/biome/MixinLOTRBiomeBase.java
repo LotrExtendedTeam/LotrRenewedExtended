@@ -35,7 +35,7 @@ public class MixinLOTRBiomeBase {
 
 	@Inject(method = "addAmbientCreatures(Lnet/minecraft/world/biome/MobSpawnInfo$Builder;)V", at = @At("TAIL"), remap = false)
 	protected void addAmbientCreaturesExtended(MobSpawnInfo.Builder builder, CallbackInfo ci) {
-		builder.addSpawn(EntityClassification.AMBIENT, new Spawners(EntityType.RABBIT, 8, 4, 4));
+		builder.addSpawn(EntityClassification.CREATURE, new Spawners(EntityType.RABBIT, 8, 4, 4));
 	}
 
 	@Inject(method = "addLandCreatures(Lnet/minecraft/world/biome/MobSpawnInfo$Builder;)V", at = @At("TAIL"), remap = false)
