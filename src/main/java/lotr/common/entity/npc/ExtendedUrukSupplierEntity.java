@@ -3,12 +3,14 @@ package lotr.common.entity.npc;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 
+import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -34,6 +36,11 @@ public class ExtendedUrukSupplierEntity extends ExtendedUrukTraderEntity{
 		}else {
 			this.addAggressiveTargetingGoals();
 		}
+	}
+
+	@Override
+	protected Goal createOrcAttackGoal() {
+		return new ExtendedShieldSwapMeleeAttackGoal(this, 1.4D, new ItemStack(ExtendedItems.URUK_SHIELD.get()), ItemStack.EMPTY);
 	}
 
 	@Override
@@ -65,7 +72,7 @@ public class ExtendedUrukSupplierEntity extends ExtendedUrukTraderEntity{
 		this.setItemSlot(EquipmentSlotType.LEGS, legaItem);
 		this.setItemSlot(EquipmentSlotType.CHEST, chestItem);
 		this.setItemSlot(EquipmentSlotType.HEAD, headItem);
-		this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.URUK_SHIELD.get()));
+		this.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 		return spawnData;
 	}
 
