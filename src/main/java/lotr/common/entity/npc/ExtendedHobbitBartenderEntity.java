@@ -39,7 +39,6 @@ import net.minecraft.world.World;
  */
 public class ExtendedHobbitBartenderEntity extends HobbitEntity  implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
 
-    int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedHobbitBartenderEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -140,19 +139,7 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity  implements Exte
         } else {
             lastTickVerifiedPlayerTradingWithIsOnline++;
         }
-
-        ExtendedTraderHelper.tickTrader(this, this);
     }
-
-	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
 
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
@@ -173,10 +160,5 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity  implements Exte
 		}else {
 			this.addAggressiveTargetingGoals();
 		}
-	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
 	}
 }

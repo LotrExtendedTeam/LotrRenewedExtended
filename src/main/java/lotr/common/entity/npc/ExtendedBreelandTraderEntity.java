@@ -18,7 +18,6 @@ import net.minecraft.world.World;
 
 public abstract class ExtendedBreelandTraderEntity extends BreeManEntity  implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
 
-    int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedBreelandTraderEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -95,19 +94,7 @@ public abstract class ExtendedBreelandTraderEntity extends BreeManEntity  implem
         } else {
             lastTickVerifiedPlayerTradingWithIsOnline++;
         }
-
-        ExtendedTraderHelper.tickTrader(this, this);
     }
-
-	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
 	
 	@Override
 	protected void addNPCTargetingAI() {
@@ -116,10 +103,5 @@ public abstract class ExtendedBreelandTraderEntity extends BreeManEntity  implem
 		}else {
 			this.addAggressiveTargetingGoals();
 		}
-	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
 	}
 }

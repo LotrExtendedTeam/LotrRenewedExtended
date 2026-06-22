@@ -279,9 +279,4 @@ public class ExtendedDunedainRangerEntity extends ManEntity implements ExtendedN
     public ResourceLocation getCloakTextureLocation() {
         return new ResourceLocation("lotrextended", "textures/capes/ranger.png");
     }
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }

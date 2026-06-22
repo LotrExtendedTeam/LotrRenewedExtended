@@ -26,7 +26,6 @@ import net.minecraft.world.World;
 
 public abstract class ExtendedLindonTraderEntity extends LindonElfEntity  implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
 
-	int lastTickCooldownReduced = 0;
 	int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
 	private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedLindonTraderEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -137,27 +136,10 @@ public abstract class ExtendedLindonTraderEntity extends LindonElfEntity  implem
 		} else {
 			lastTickVerifiedPlayerTradingWithIsOnline++;
 		}
-
-		ExtendedTraderHelper.tickTrader(this, this);
 	}
 
 	@Override
 	protected NPCGenderProvider getGenderProvider() {
 		return NPCGenderProvider.MALE;
-	}
-
-	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
 	}
 }

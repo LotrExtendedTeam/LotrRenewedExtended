@@ -48,7 +48,6 @@ public class ExtendedOddmentCollectorEntity extends ManEntity  implements Extend
 
     private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(LOTRItems.IRON_DAGGER, LOTRItems.BRONZE_DAGGER);
 
-    int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedOddmentCollectorEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -193,8 +192,6 @@ public class ExtendedOddmentCollectorEntity extends ManEntity  implements Extend
         } else {
             lastTickVerifiedPlayerTradingWithIsOnline++;
         }
-
-        ExtendedTraderHelper.tickTrader(this, this);
     }
 
     @Override
@@ -234,16 +231,6 @@ public class ExtendedOddmentCollectorEntity extends ManEntity  implements Extend
     }
 
 	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
-
-	@Override
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.ODDMENT_COLLECTOR;
 	}
@@ -252,10 +239,5 @@ public class ExtendedOddmentCollectorEntity extends ManEntity  implements Extend
     public int getFactionColor() {
         return this.getFaction().getColor();
     }
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }
 

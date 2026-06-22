@@ -131,9 +131,4 @@ public class ExtendedTolkienEntity extends ManEntity implements ExtendedNPCEntit
 		}
 		return spawned;
 	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }

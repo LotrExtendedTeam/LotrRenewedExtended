@@ -27,7 +27,6 @@ import net.minecraft.world.World;
 
 public abstract class ExtendedBlueMountainsTraderEntity extends BlueDwarfEntity  implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
 
-	int lastTickCooldownReduced = 0;
 	int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
 	private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedBlueMountainsTraderEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -142,28 +141,10 @@ public abstract class ExtendedBlueMountainsTraderEntity extends BlueDwarfEntity 
 		} else {
 			lastTickVerifiedPlayerTradingWithIsOnline++;
 		}
-
-		ExtendedTraderHelper.tickTrader(this, this);
 	}
 
 	@Override
 	protected NPCGenderProvider getGenderProvider() {
 		return NPCGenderProvider.MALE;
-	}
-
-	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
-
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
 	}
 }

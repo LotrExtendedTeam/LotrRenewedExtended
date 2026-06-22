@@ -63,11 +63,6 @@ public class ExtendedDunlendingWarlordEntity extends DunlendingWarriorEntity imp
     }
 
 	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
-
-	@Override
 	public ResourceLocation getCaptainProfile() {
 		return ExtendedCaptainTypes.DUNLENDING_WARLORD;
 	}

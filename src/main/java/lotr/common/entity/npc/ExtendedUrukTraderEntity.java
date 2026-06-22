@@ -17,7 +17,6 @@ import net.minecraft.world.World;
 
 public abstract class ExtendedUrukTraderEntity extends UrukEntity implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
 
-	int lastTickCooldownReduced = 0;
 	int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
 	private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedUrukTraderEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -103,22 +102,5 @@ public abstract class ExtendedUrukTraderEntity extends UrukEntity implements Ext
 		} else {
 			lastTickVerifiedPlayerTradingWithIsOnline++;
 		}
-
-		ExtendedTraderHelper.tickTrader(this, this);
-	}
-
-	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
 	}
 }

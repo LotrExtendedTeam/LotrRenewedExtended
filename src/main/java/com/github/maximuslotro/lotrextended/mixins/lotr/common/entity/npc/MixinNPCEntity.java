@@ -57,7 +57,7 @@ import net.minecraft.world.World;
  * @Mixin (NPCEntity.class)
  * */
 @Mixin(NPCEntity.class)
-public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedNPCEntity, ExtendedNPCEntitySettings {
+public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedNPCEntity {
 	/**
 	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param type A placeholder variable instance of CreatureEntity
@@ -245,15 +245,6 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		return unitInfo;
 	}
 
-	/**
-	 * Determines if this entity should use extended targeting goals
-	 * @return TRUE if the targeting goals should use extended goals
-	 * */
-	@Override
-	public boolean addExtendedGoals() {
-		return false;
-	}
-
 	@Override
 	public ItemStack getValidOtherFood() {
 		if(unitInfo.isNpcActiveDuty()) {
@@ -419,7 +410,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 */
 	@Overwrite(remap = false)
 	protected final int addAggressiveTargetingGoals() {
-	    if (addExtendedGoals()) {
+	    if (this instanceof ExtendedNPCEntitySettings) {
 	        return this.addExtendedTargetingGoals(true);
 	    }
 	    return this.addTargetingGoals(true);
@@ -435,7 +426,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 */
 	@Overwrite(remap = false)
 	protected final int addNonAggressiveTargetingGoals() {
-	    if (addExtendedGoals()) {
+	    if (this instanceof ExtendedNPCEntitySettings) {
 	        return this.addExtendedTargetingGoals(false);
 	    }
 	    return this.addTargetingGoals(false);
@@ -464,16 +455,16 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	        throw new IllegalStateException("Mod development error - NPC addTargetingGoals can only be called once!");
 	    } else {
 	        this.addedTargetingGoals = true;
-	        this.targetSelector.addGoal(1, new ExtendedHiredPlayerHurtByEntityTargetGoal((NPCEntity)(Object)this));
-	        this.targetSelector.addGoal(2, new ExtendedHiredPlayerAttackedEntityTargetGoal((NPCEntity)(Object)this));
-	        this.targetSelector.addGoal(3, new ExtendedHiredHurtByTargetGoal((NPCEntity)(Object)this));
-	        if (seekTargets) {
-	            this.targetSelector.addGoal(4, new ExtendedNearestAttackableTargetNPCGoal<PlayerEntity>((NPCEntity)(Object)this, PlayerEntity.class, true, Predicates.alwaysTrue()));
-	            this.targetSelector.addGoal(5, new ExtendedNearestAttackableTargetNPCGoal<NPCEntity>((NPCEntity)(Object)this, NPCEntity.class, true, new NPCTargetSelector((NPCEntity)(Object)this)));
-	        }
-
 	        this.isTargetSeeker = seekTargets;
-	        return 5;
+	        int index =1;
+	        this.targetSelector.addGoal(index++, new ExtendedHiredPlayerHurtByEntityTargetGoal((NPCEntity)(Object)this));
+	        this.targetSelector.addGoal(index++, new ExtendedHiredPlayerAttackedEntityTargetGoal((NPCEntity)(Object)this));
+	        this.targetSelector.addGoal(index++, new ExtendedHiredHurtByTargetGoal((NPCEntity)(Object)this));
+	        if (seekTargets) {
+	            this.targetSelector.addGoal(index++, new ExtendedNearestAttackableTargetNPCGoal<PlayerEntity>((NPCEntity)(Object)this, PlayerEntity.class, true, Predicates.alwaysTrue()));
+	            this.targetSelector.addGoal(index++, new ExtendedNearestAttackableTargetNPCGoal<NPCEntity>((NPCEntity)(Object)this, NPCEntity.class, true, new NPCTargetSelector((NPCEntity)(Object)this)));
+	        }
+	        return index;
 	    }
 	}
 

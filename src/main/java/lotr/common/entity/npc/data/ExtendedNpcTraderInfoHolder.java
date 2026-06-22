@@ -55,9 +55,12 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	private int currentTraderLockTicksAmount = 0;
 	private int wanderingTraderAliveTime = 0;
 	private boolean isWanderingTrader = false;
-
 	private boolean resendData = false;
 	private boolean loadedData = false;
+	/**
+	 * Tick count used for item tick backs
+	 * */
+	private int lastTickCooldownReduced = 0;
 
 	public ExtendedNpcTraderInfoHolder(NPCEntity thisEntity) {
 		this.thisEntity = thisEntity;
@@ -239,6 +242,28 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 					currentTraderLockTicksAmount+=1;
 				}
 			}
+			// Handle trade pool ticks
+			// every 1 minute allow one more trade in both buys and sells to be done again
+	        // TODO: Add support for different trades to tick back at different rates - e.g. a rare powerful sword should take
+	        //  20-30 minutes to become available again whereas selling another individual pipe-weed might be just a few seconds
+	        if (lastTickCooldownReduced >= 1200) {
+	            for (ExtendedTrade trade : getSells()) {
+	            	if(trade.shouldTradePersist() && (trade.getQuantityLeft() < trade.getOriginalQuantity())) {
+	            		trade.incrementQuantityLeft();
+	            	}
+	            }
+
+	            for (ExtendedTrade trade : getBuys()) {
+	                if (trade.shouldTradePersist() && (trade.getQuantityLeft() < trade.getOriginalQuantity())) {
+	                	trade.incrementQuantityLeft();
+	                }
+	            }
+	            lastTickCooldownReduced = 0;
+	            markDirty();
+	        } else {
+	        	lastTickCooldownReduced+=1;
+	        }
+			// Re-send data if changed
 			if (resendData) {
 				sendDataToAllBeings();
 				resendData = false;
@@ -409,9 +434,9 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 
 	private void tickWanderingTrader(NPCEntity npc) {
 		if (isTraderCurrentlyWandering()) {
-			Style npcNameStyle = Style.EMPTY.withColor(Color.fromRgb(((ExtendedWanderingTraderEntity) npc).getFactionColor()));
 			if (wanderingTraderAliveTime < 1) {
 				// notify players the traveling trader has departed
+				Style npcNameStyle = Style.EMPTY.withColor(Color.fromRgb(((ExtendedWanderingTraderEntity) npc).getFactionColor()));
 				for (PlayerEntity player : npc.level.players()) {
 					if(((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(player)).getExtendedMiscData().doHighContrastMessages()) {
 						player.sendMessage(new TranslationTextComponent("chat.wandering_trader.left_the_area", npc.getName().copy().withStyle(npcNameStyle)), Util.NIL_UUID);
@@ -440,7 +465,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
                 if (wanderingTraderAliveTime == 2400) {
                     AxisAlignedBB initial = new AxisAlignedBB(npc.getX(), npc.getY(), npc.getZ(), npc.getX() + 1, npc.getY() + 1, npc.getZ() + 1);
                     List<PlayerEntity> playersInRange = npc.level.getEntitiesOfClass(PlayerEntity.class, initial.inflate(80));
-
+                    Style npcNameStyle = Style.EMPTY.withColor(Color.fromRgb(((ExtendedWanderingTraderEntity) npc).getFactionColor()));
                     for (PlayerEntity player : playersInRange) {
                     	if(((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(player)).getExtendedMiscData().doHighContrastMessages()) {
     						player.sendMessage(new TranslationTextComponent(((ExtendedWanderingTraderEntity)npc).getDepartureLine(), npc.getName().copy().withStyle(npcNameStyle), player.getName()), Util.NIL_UUID);

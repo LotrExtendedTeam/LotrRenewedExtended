@@ -68,11 +68,6 @@ public class ExtendedBreelandSheriffEntity extends BreeManEntity implements Exte
     }
 
 	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
-
-	@Override
 	public ResourceLocation getCaptainProfile() {
 		return ExtendedCaptainTypes.BREE_SHERIFF;
 	}

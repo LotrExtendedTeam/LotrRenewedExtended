@@ -58,11 +58,6 @@ public class ExtendedLindonLordEntity extends LindonWarriorEntity  implements Ex
 	}
 
 	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
-
-	@Override
 	public ResourceLocation getCaptainProfile() {
 		return ExtendedCaptainTypes.LINDON_LORD;
 	}

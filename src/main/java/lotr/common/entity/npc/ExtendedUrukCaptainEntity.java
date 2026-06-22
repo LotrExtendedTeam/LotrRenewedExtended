@@ -56,11 +56,6 @@ public class ExtendedUrukCaptainEntity extends UrukEntity implements ExtendedNPC
 	}
 
 	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
-
-	@Override
 	public ResourceLocation getCaptainProfile() {
 		return ExtendedCaptainTypes.ISENGARD_CAPTAIN;
 	}

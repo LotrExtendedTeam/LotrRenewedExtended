@@ -119,28 +119,6 @@ public class ExtendedTraderHelper {
         return boughtOriginalQuantity;
     }
 
-    public static void tickTrader(NPCEntity npc, ExtendedTraderEntity trader) {
-    	// every 1 minute allow one more trade in both buys and sells to be done again
-        // TODO: Add support for different trades to tick back at different rates - e.g. a rare powerful sword should take
-        //  20-30 minutes to become available again whereas selling another individual pipe-weed might be just a few seconds
-        if (trader.setLastTickCooldownReduced() >= 1200) {
-            for (ExtendedTrade trade : trader.getTraderData().getSells()) {
-            	if(trade.shouldTradePersist() && (trade.getQuantityLeft() < trade.getOriginalQuantity())) {
-            		trade.incrementQuantityLeft();
-            	}
-            }
-
-            for (ExtendedTrade trade : trader.getTraderData().getBuys()) {
-                if (trade.shouldTradePersist() && (trade.getQuantityLeft() < trade.getOriginalQuantity())) {
-                	trade.incrementQuantityLeft();
-                }
-            }
-            trader.getLastTickCooldownReduced(0);
-        } else {
-        	trader.getLastTickCooldownReduced(trader.setLastTickCooldownReduced()+1);
-        }
-    }
-
     public static void saveWanderingTraderEscortUUIDs(ExtendedWanderingTraderEntity trader, List<UUID> escorts, CompoundNBT tag) {
         ListNBT listnbt = new ListNBT();
         for (UUID escort : escorts) {

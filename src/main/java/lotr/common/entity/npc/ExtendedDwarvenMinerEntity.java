@@ -36,7 +36,6 @@ import net.minecraft.world.World;
 
 public class ExtendedDwarvenMinerEntity extends DwarfEntity implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
 
-	int lastTickCooldownReduced = 0;
 	int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
 	private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedDwarvenMinerEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -156,8 +155,6 @@ public class ExtendedDwarvenMinerEntity extends DwarfEntity implements ExtendedN
 		} else {
 			lastTickVerifiedPlayerTradingWithIsOnline++;
 		}
-
-		ExtendedTraderHelper.tickTrader(this, this);
 	}
 
 	@Override
@@ -174,23 +171,8 @@ public class ExtendedDwarvenMinerEntity extends DwarfEntity implements ExtendedN
 	}
 
 	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
-
-	@Override
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.DWARVEN_MINER;
-	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
 	}
 }
 
