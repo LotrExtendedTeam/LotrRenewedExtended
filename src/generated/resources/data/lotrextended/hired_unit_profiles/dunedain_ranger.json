@@ -90,7 +90,7 @@
     ],
     "ranged": [
       {
-        "weight": 1,
+        "weight": 4,
         "equipmentItem": {
           "item": "lotr:dunedain_bow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
@@ -107,13 +107,6 @@
         "weight": 1,
         "equipmentItem": {
           "item": "lotr:longbow",
-          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
-        }
-      },
-      {
-        "weight": 1,
-        "equipmentItem": {
-          "item": "minecraft:bow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       }

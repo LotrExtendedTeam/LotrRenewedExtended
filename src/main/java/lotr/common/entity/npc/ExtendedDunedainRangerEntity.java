@@ -46,7 +46,7 @@ import net.minecraft.world.World;
 public class ExtendedDunedainRangerEntity extends ManEntity implements ExtendedNPCEntitySettings {
 
     private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(LOTRItems.ARNOR_SWORD, LOTRItems.BRONZE_SWORD, Items.IRON_SWORD, LOTRItems.ARNOR_DAGGER, LOTRItems.BRONZE_DAGGER, LOTRItems.IRON_DAGGER);
-    private static final SpawnEquipmentTable BOWS = SpawnEquipmentTable.of(ExtendedItems.DUNEDAIN_BOW, ExtendedItems.RANGER_BOW, ExtendedItems.LONGBOW, Items.BOW);
+    private static final SpawnEquipmentTable BOWS = SpawnEquipmentTable.of(ExtendedItems.DUNEDAIN_BOW, ExtendedItems.DUNEDAIN_BOW, ExtendedItems.RANGER_BOW, ExtendedItems.LONGBOW);
 
     private static final DataParameter<Integer> CLOAK_COOLDOWN = EntityDataManager.defineId(ExtendedDunedainRangerEntity.class, DataSerializers.INT);
     private static final DataParameter<Integer> AUTO_DECLOAK_IN = EntityDataManager.defineId(ExtendedDunedainRangerEntity.class, DataSerializers.INT);
