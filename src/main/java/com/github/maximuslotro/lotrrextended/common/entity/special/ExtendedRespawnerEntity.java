@@ -48,7 +48,7 @@ public class ExtendedRespawnerEntity extends Entity{
 	private static final DataParameter<Integer> TICKPERCENTAGE = EntityDataManager.defineId(ExtendedRespawnerEntity.class, DataSerializers.INT);
 
 	private boolean queueToRemove = false;
-	private int setEntityTickBackRate = 600;
+	private int setEntityTickBackRate = 24000;
 	private int entityTickBacksRemaining = setEntityTickBackRate;
 	private int loadTicks = 0; // if loaded when entityTickBacksRemaining==0, prevent instant trader spawning if banner suppressed, 5 second delay 
 	public double spin = 0;
