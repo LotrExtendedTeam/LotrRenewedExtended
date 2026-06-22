@@ -1,6 +1,4 @@
-package lotr.common.item;
-
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
+package com.github.maximuslotro.lotrrextended.common.item;
 
 import lotr.common.init.LOTRMaterial;
 import net.minecraft.item.ItemGroup;
