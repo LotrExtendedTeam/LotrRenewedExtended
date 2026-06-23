@@ -22,6 +22,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMe
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.google.common.base.Predicates;
 
+import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.ExtendedNPCEntitySettings;
@@ -31,6 +32,8 @@ import lotr.common.entity.npc.ai.NPCTargetSelector;
 import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
+import lotr.common.fac.AlignmentPredicates;
+import lotr.common.fac.Faction;
 import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedHiredUnitHelper;
 import lotr.common.util.ExtendedTraderHelper;
@@ -166,6 +169,22 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Shadow(remap = false)
 	private int addTargetingGoals(boolean seekTargets) {return 0;}
+
+	/**
+	 * Checks combat and alignment of NPC against passed player
+	 * @Shadow (remap = false)
+	 * @param player Player to be checked
+	 * @return True if player is friendly
+	 * */
+	@Shadow(remap = false)
+	public boolean isFriendlyAndAligned(PlayerEntity player) {return false;}
+	/**
+	 * Gets the faction of the NPC
+	 * @Shadow (remap = false)
+	 * @return The Faction
+	 * */
+	@Shadow(remap = false)
+	public final Faction getFaction() {return null;}
 
 	/**
 	 * @reason Save additional entity data modules
@@ -522,5 +541,21 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 			locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
 	private void extended$fixTargetingGoalsOffset(boolean seekTargets, CallbackInfoReturnable<Integer> cir, int index) {
 		index = 4;
+	}
+
+	/**
+	 * Overrides the method to add non-aggressive targeting goals for NPCs,
+	 * injecting extended targeting logic at the head of the goal list.
+	 * 
+	 * @author maximuslotro
+	 * @reason to inject extended targeting goals at the head
+	 * @param player The player to check
+	 * @return True if player can trade with NPC
+	 */
+	@Overwrite
+	public boolean canTrade(PlayerEntity player) {
+		return isFriendlyAndAligned(player) 
+			&& this.getTraderInfo().shouldTick() 
+			&& LOTRLevelData.getSidedData(player).getAlignmentData().hasAlignment(getFaction(), AlignmentPredicates.greaterThanOrEqual(this.getTraderInfo().getProfile().getTradingAlignmentRequired()));
 	}
 }
