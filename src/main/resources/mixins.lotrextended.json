@@ -75,6 +75,7 @@
 		"lotr.common.item.MixinVesselType",
 		"lotr.common.network.MixinCPacketCreateCustomWaypoint",
 		"lotr.common.network.MixinCPacketMapTp",
+		"lotr.common.speech.MixinLOTRSpeechbankEngine",
 		"lotr.common.tileentity.MixinKegTileEntity",
 		"lotr.common.tileentity.MixinPlateTileEntity",
 		"lotr.common.tileentity.MixinVesselDrinkTileEntity",
@@ -218,5 +219,8 @@
 	"injectors": {
 		"defaultRequire": 1
 	},
-	"minVersion": "0.8"
+	"minVersion": "0.8",
+	"mixinextras": {
+		"minVersion": "0.5.4"
+	}
 }

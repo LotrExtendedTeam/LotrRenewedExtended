@@ -348,14 +348,14 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	}
 
 	/**
-	 * Only enable module loading if its attached to a trader
+	 * Load data is this is a trader
 	 * */
 	@Override
 	public boolean shouldLoad() {
-		return thisEntity instanceof ExtendedTraderEntity;
+		return shouldTick();
 	}
 	/**
-	 * Only enable module ticking if its attached to a trader
+	 * Check if this NPC is a trader
 	 * */
 	@Override
 	public boolean shouldTick() {

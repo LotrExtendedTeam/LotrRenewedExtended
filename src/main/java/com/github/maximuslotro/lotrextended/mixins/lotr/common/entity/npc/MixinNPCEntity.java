@@ -552,7 +552,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * @param player The player to check
 	 * @return True if player can trade with NPC
 	 */
-	@Overwrite
+	@Overwrite(remap=false)
 	public boolean canTrade(PlayerEntity player) {
 		return isFriendlyAndAligned(player) 
 			&& this.getTraderInfo().shouldTick() 
