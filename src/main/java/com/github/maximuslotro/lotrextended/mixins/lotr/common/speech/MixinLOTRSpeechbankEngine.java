@@ -9,6 +9,7 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import lotr.common.speech.LOTRSpeechbankEngine;
 import lotr.common.speech.NPCSpeechbankContext;
 import lotr.curuquesta.SpeechbankEngine;
+import lotr.curuquesta.condition.BooleanSpeechbankCondition;
 import lotr.curuquesta.replaceablevar.ReplaceableSpeechVariable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.LanguageMap;
@@ -18,6 +19,7 @@ public class MixinLOTRSpeechbankEngine {
 
 	@ModifyReturnValue(method = "createEngine()Llotr/curuquesta/SpeechbankEngine;", at = @At("RETURN"), remap=false)
 	private static SpeechbankEngine<NPCSpeechbankContext> exampleModifyReturnValue(SpeechbankEngine<NPCSpeechbankContext> engine) {
+		engine.registerCondition(new BooleanSpeechbankCondition<>("covered", context -> !context.getWorld().canSeeSky(context.getNPCPosition())));
 		engine.registerReplaceableVariable(new ReplaceableSpeechVariable<>("s", "self", context -> context.getNPC().getName().getString()));
 		engine.registerReplaceableVariable(new ReplaceableSpeechVariable<>("b", "biome", context -> generateBiomeString(context.getNPCBiome().getRegistryName())));
 		return engine;
@@ -32,6 +34,9 @@ public class MixinLOTRSpeechbankEngine {
 
 	@Unique
 	private static String generateBiomeString(ResourceLocation biome) {
+		if(biome == null) {
+			return "UNKNOWN BIOME";
+		}
 		LanguageMap languagemap = LanguageMap.getInstance();
 		return languagemap.getOrDefault(String.format("biome.%s.%s", biome.getNamespace(), biome.getPath()));
 	}
