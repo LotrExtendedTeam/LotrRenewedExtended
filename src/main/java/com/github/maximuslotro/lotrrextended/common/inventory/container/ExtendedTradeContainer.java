@@ -267,6 +267,9 @@ public class ExtendedTradeContainer extends Container {
                 	trader.getTraderData().incrementTradeSoldToPlayerCount(price);
                 }
             }
+            if (player instanceof ServerPlayerEntity) {
+                ((ServerPlayerEntity)player).refreshContainer(this);
+             }
             player.inventory.setChanged();
             slotsChanged(player.inventory);
             return player.inventory.getCarried();
@@ -413,6 +416,10 @@ public class ExtendedTradeContainer extends Container {
     			if(!level.isClientSide && totalCoinsTraded>0) {
     				ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, stack, totalCoinsTraded);
     			}
+    			trader.playTradeSound();
+    			if (player instanceof ServerPlayerEntity) {
+                    ((ServerPlayerEntity)player).refreshContainer(this);
+                 }
     			return ItemStack.EMPTY;
     		}
     	}
@@ -526,7 +533,7 @@ public class ExtendedTradeContainer extends Container {
             }
         }
         player.inventory.setChanged();
-
+        trader.playTradeSound();
         if (!player.level.isClientSide()) {
         	ExtendedPacketHandler.sendToClient(new ExtendedSUpdateTradeQuantitiesPacket(trader.getTraderData().getSoldQuantities(), trader.getTraderData().getBoughtQuantities()), (ServerPlayerEntity) player);
         }else {
