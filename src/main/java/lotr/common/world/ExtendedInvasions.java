@@ -153,7 +153,9 @@ public enum ExtendedInvasions {
 		ExtendedInvasions.DUNLAND.addInvasionMob(new InvasionSpawnEntry(LOTREntities.DUNLENDING.get(), 10));
 		ExtendedInvasions.DUNLAND.addInvasionMob(new InvasionSpawnEntry(LOTREntities.DUNLENDING_WARRIOR.get(), 5));
 		ExtendedInvasions.DUNLAND.addInvasionMob(new InvasionSpawnEntry(LOTREntities.DUNLENDING_BOWMAN.get(), 3));
-		// TODO: Add Axe Thrower, Beserker, Banner Bearers
+		ExtendedInvasions.DUNLAND.addInvasionMob(new InvasionSpawnEntry(ExtendedEntities.DUNLENDING_AXE_THROWER.get(), 3));
+		ExtendedInvasions.DUNLAND.addInvasionMob(new InvasionSpawnEntry(ExtendedEntities.DUNLENDING_BERSERKER.get(), 2));
+		// TODO: Add Banner Bearers
 
 		ExtendedInvasions.BREE.addInvasionMob(new InvasionSpawnEntry(LOTREntities.BREE_GUARD.get(), 15));
 		// TODO: Add Banner Bearers

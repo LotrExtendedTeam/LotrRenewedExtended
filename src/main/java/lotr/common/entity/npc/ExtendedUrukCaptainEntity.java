@@ -51,7 +51,7 @@ public class ExtendedUrukCaptainEntity extends UrukEntity implements ExtendedNPC
 		this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.URUK_LEGGINGS.get()));
 		this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.URUK_CHESTPLATE.get()));
 		setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
-		this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.URUK_SHIELD.get()));
+		this.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 		return spawnData;
 	}
 

@@ -308,6 +308,17 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addShieldItem(new ItemStack(ExtendedItems.RIVENDELL_SHIELD.get()), 1)
 		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.RIVENDELL_WARRIOR);
 
+		make(ExtendedEntities.IMLADRIS_GUARD.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(200, true, 500)
+		.addHelmetPoolItem(new ItemStack(ExtendedItems.IMLADRIS_GUARD_HELMET.get()), 1)
+		.addChestplatePoolItem(new ItemStack(ExtendedItems.IMLADRIS_GUARD_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(ExtendedItems.IMLADRIS_GUARD_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(ExtendedItems.IMLADRIS_GUARD_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_SWORD.get()), 7)
+		.addMeleePoolItem(new ItemStack(LOTRItems.RIVENDELL_SPEAR.get()), 1)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.RIVENDELL_BOW.get()), 1)
+		.addShieldItem(new ItemStack(ExtendedItems.IMLADRIS_GUARD_SHIELD.get()), 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.IMLADRIS_GUARD);
+
 		// Lindon units
 		make(LOTREntities.LINDON_ELF.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(30, false, 300)
 		.addHelmetPoolItem(ItemStack.EMPTY, 1)
@@ -327,9 +338,12 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		make(LOTREntities.LINDON_WARRIOR.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(45, false, 400)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.LINDON_HELMET.get()), 1000)
 		.addHelmetPoolItem(new ItemStack(ExtendedItems.GALVORN_HELMET.get()), 1)
-		.addChestplatePoolItem(new ItemStack(LOTRItems.LINDON_CHESTPLATE.get()), 1)
-		.addLeggingPoolItem(new ItemStack(LOTRItems.LINDON_LEGGINGS.get()), 1)
-		.addBootsPoolItem(new ItemStack(LOTRItems.LINDON_BOOTS.get()), 1)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.LINDON_CHESTPLATE.get()), 1000)
+		.addChestplatePoolItem(new ItemStack(ExtendedItems.GALVORN_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.LINDON_LEGGINGS.get()), 1000)
+		.addLeggingPoolItem(new ItemStack(ExtendedItems.GALVORN_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.LINDON_BOOTS.get()), 1000)
+		.addBootsPoolItem(new ItemStack(ExtendedItems.GALVORN_BOOTS.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_SWORD.get()), 7)
 		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_SPEAR.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.LINDON_AXE.get()), 1)
@@ -516,5 +530,28 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
 		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.DUNLENDING_BOWMAN);
+
+		make(ExtendedEntities.DUNLENDING_AXE_THROWER.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(50, false, 200)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.DUNLENDING_HELMET.get()), 1)
+		.addHelmetPoolItem(ItemStack.EMPTY, 9)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.DUNLENDING_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.DUNLENDING_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.DUNLENDING_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.BRONZE_DAGGER.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_DAGGER.get()), 1)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.BRONZE_THROWABLE_AXE.get()), 1)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.IRON_THROWABLE_AXE.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.DUNLENDING_AXE_THROWER);
+
+		make(ExtendedEntities.DUNLENDING_BERSERKER.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(50, true, 300)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.DUNLENDING_HELMET.get()), 1)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.FUR_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.FUR_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.FUR_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.BRONZE_AXE.get()), 1)
+		.addMeleePoolItem(new ItemStack(Items.IRON_AXE), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.DUNLENDING_BERSERKER);
 	}
 }

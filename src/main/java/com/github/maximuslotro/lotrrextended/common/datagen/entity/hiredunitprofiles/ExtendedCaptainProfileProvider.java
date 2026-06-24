@@ -43,20 +43,20 @@ public abstract class ExtendedCaptainProfileProvider implements IDataProvider {
 	public void run(DirectoryCache pCache) throws IOException {
 		Path path = this.dataGenerator.getOutputFolder();
 		Consumer<ExtendedCaptainProfile> consumer = (profile) -> {
-	         if (dataHere.put(profile.getId(), profile)!=null) {
-	            throw new IllegalStateException("Duplicate captain profile " + profile.getId().toString());
-	         } else {
-	            Path path1 = createPath(path, profile);
+			if (dataHere.put(profile.getId(), profile)!=null) {
+				throw new IllegalStateException("Duplicate captain profile " + profile.getId().toString());
+			} else {
+				Path path1 = createPath(path, profile);
 
-	            try {
-	               save(GSON_PRETTY_WRITER, pCache, profile, path1);
-	            } catch (IOException ioexception) {
-	               LOGGER.error("Couldn't save captain profile {}", path1, ioexception);
-	            }
+				try {
+					save(GSON_PRETTY_WRITER, pCache, profile, path1);
+				} catch (IOException ioexception) {
+					LOGGER.error("Couldn't save captain profile {}", path1, ioexception);
+				}
 
-	         }
-	      };
-	      makeCaptainProfiles(consumer);
+			}
+		};
+		makeCaptainProfiles(consumer);
 		ExtendedLog.info("Built "+dataHere.size()+" captain profiles.");
 		if(modId.equals(LotrExtendedMod.MODID)) {
 			for(ResourceLocation key : ExtendedCaptainTypes.CAPTAIN_TYPES) {

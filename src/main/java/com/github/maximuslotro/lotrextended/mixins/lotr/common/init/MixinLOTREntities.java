@@ -361,5 +361,7 @@ public class MixinLOTREntities {
 		ExtendedEntities.URUK_SUPPLIER = regNPCD("uruk_supplier", ExtendedUrukSupplierEntity::new, ExtendedUrukSupplierEntity::createAttributes, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2369050, 13421772));
 		// Dunlanding
 		ExtendedEntities.DUNLENDING_WARLORD = regNPCD("dunlending_warlord", ExtendedDunlendingWarlordEntity::new, ExtendedDunlendingWarlordEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(5192753, 9337975));
+		ExtendedEntities.DUNLENDING_AXE_THROWER = regNPCD("dunlending_axe_thrower", ExtendedDunlendingAxeThrowerEntity::new, ExtendedDunlendingAxeThrowerEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(5192753, 9337975));
+		ExtendedEntities.DUNLENDING_BERSERKER = regNPCD("dunlending_berserker", ExtendedDunlendingBerserkerEntity::new, ExtendedDunlendingBerserkerEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(5192753, 16050121));
 	}
 }

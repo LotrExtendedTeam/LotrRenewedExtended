@@ -3,6 +3,8 @@
   "unitProfileIDs": [
     "lotrextended:dunlending",
     "lotrextended:dunlending_warrior",
-    "lotrextended:dunlending_bowman"
+    "lotrextended:dunlending_bowman",
+    "lotrextended:dunlending_axe_thrower",
+    "lotrextended:dunlending_berserker"
   ]
 }

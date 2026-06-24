@@ -86,6 +86,8 @@ public class ExtendedEntitySettingsGenerator extends ExtendedEntitySettingsProvi
 		make(LOTREntities.ISENGARD_SNAGA_ARCHER.get(), FactionPointers.ISENGARD).setBonus(1).setBankE("isengard/orc").save(pConsumer);
 		make(LOTREntities.URUK.get(), FactionPointers.ISENGARD).setBonus(2).setBankE("isengard/uruk").save(pConsumer);
 		make(LOTREntities.URUK_ARCHER.get(), FactionPointers.ISENGARD).setBonus(2).setBankE("isengard/uruk").save(pConsumer);
-		make(ExtendedEntities.DUNLENDING_WARLORD.get(), FactionPointers.DUNLAND).setBonus(2).setBank("dunland/warlord").save(pConsumer);
+		make(ExtendedEntities.DUNLENDING_WARLORD.get(), FactionPointers.DUNLAND).setBonus(5).setBank("dunland/warlord").save(pConsumer);
+		make(ExtendedEntities.DUNLENDING_AXE_THROWER.get(), FactionPointers.DUNLAND).setBonus(2).setBank("dunland/warrior").save(pConsumer);
+		make(ExtendedEntities.DUNLENDING_BERSERKER.get(), FactionPointers.DUNLAND).setBonus(2).setBank("dunland/warrior").save(pConsumer);
 	}
 }

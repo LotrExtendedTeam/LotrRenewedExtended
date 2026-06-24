@@ -25,7 +25,8 @@ public class ExtendedCaptainProfileGenerator extends ExtendedCaptainProfileProvi
 		make(ExtendedCaptainTypes.DUNEDAIN_CAPTAIN).addProfile(ExtendedHiredUnitTypes.DUNEDAIN_RANGER).save(pConsumer);
 
 		make(ExtendedCaptainTypes.DUNLENDING_WARLORD).addProfile(ExtendedHiredUnitTypes.DUNLENDING)
-		.addProfile(ExtendedHiredUnitTypes.DUNLENDING_WARRIOR).addProfile(ExtendedHiredUnitTypes.DUNLENDING_BOWMAN).save(pConsumer);
+		.addProfile(ExtendedHiredUnitTypes.DUNLENDING_WARRIOR).addProfile(ExtendedHiredUnitTypes.DUNLENDING_BOWMAN)
+		.addProfile(ExtendedHiredUnitTypes.DUNLENDING_AXE_THROWER).addProfile(ExtendedHiredUnitTypes.DUNLENDING_BERSERKER).save(pConsumer);
 
 		make(ExtendedCaptainTypes.DWARF_COMMANDER).addProfile(ExtendedHiredUnitTypes.DWARF)
 		.addProfile(ExtendedHiredUnitTypes.DWARF_WARRIOR).addProfile(ExtendedHiredUnitTypes.DWARF_ARCHER)
@@ -39,7 +40,7 @@ public class ExtendedCaptainProfileGenerator extends ExtendedCaptainProfileProvi
 		.addProfile(ExtendedHiredUnitTypes.LINDON_WARRIOR).save(pConsumer);
 
 		make(ExtendedCaptainTypes.RIVENDELL_CAPTAIN).addProfile(ExtendedHiredUnitTypes.RIVENDELL_ELF)
-		.addProfile(ExtendedHiredUnitTypes.RIVENDELL_WARRIOR).save(pConsumer);
+		.addProfile(ExtendedHiredUnitTypes.RIVENDELL_WARRIOR).addProfile(ExtendedHiredUnitTypes.IMLADRIS_GUARD).save(pConsumer);
 
 		make(ExtendedCaptainTypes.ISENGARD_CAPTAIN).addProfile(ExtendedHiredUnitTypes.ISENGARD_SNAGA)
 		.addProfile(ExtendedHiredUnitTypes.ISENGARD_SNAGA_ARCHER).addProfile(ExtendedHiredUnitTypes.ISENGARD_URUK)
