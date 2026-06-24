@@ -23,44 +23,44 @@ import net.minecraft.world.World;
 
 public class ExtendedDunlendingWarlordEntity extends DunlendingWarriorEntity implements ExtendedNPCEntitySettings, ExtendedCaptainEntity {
 
-    public ExtendedDunlendingWarlordEntity(EntityType<? extends ExtendedDunlendingWarlordEntity> type, World w) {
-        super(type, w);
-    }
+	public ExtendedDunlendingWarlordEntity(EntityType<? extends ExtendedDunlendingWarlordEntity> type, World w) {
+		super(type, w);
+	}
 
-    @Override
-    protected void addNPCTargetingAI() {
-    	if(ExtendedServerConfig.enableLegacyCaptainPassiveBehavior.get()) {
-    		this.addNonAggressiveTargetingGoals();
-    	}else {
-    		this.addAggressiveTargetingGoals();
-    	}
-    }
+	@Override
+	protected void addNPCTargetingAI() {
+		if(ExtendedServerConfig.enableLegacyCaptainPassiveBehavior.get()) {
+			this.addNonAggressiveTargetingGoals();
+		}else {
+			this.addAggressiveTargetingGoals();
+		}
+	}
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return BreeManEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0D);
-    }
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return DunlendingWarriorEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0D);
+	}
 
-    @Override
-    protected Goal createAttackGoal() {
-        return new ExtendedShieldSwapMeleeAttackGoal(this, 1.6, new ItemStack(ExtendedItems.DUNLANDING_SHIELD.get()), ItemStack.EMPTY);
-    }
+	@Override
+	protected Goal createAttackGoal() {
+		return new ExtendedShieldSwapMeleeAttackGoal(this, 1.6, new ItemStack(ExtendedItems.DUNLANDING_SHIELD.get()), ItemStack.EMPTY);
+	}
 
-    @Override
-    public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
-        spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
-        this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.DUNLENDING_CLUB.get()));
-        this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.DUNLENDING_BOOTS.get()));
+	@Override
+	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
+		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
+		this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.DUNLENDING_CLUB.get()));
+		this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(LOTRItems.DUNLENDING_BOOTS.get()));
 		this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.DUNLENDING_LEGGINGS.get()));
 		this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.DUNLENDING_CHESTPLATE.get()));
 		this.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
-        this.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
-        return spawnData;
-    }
+		this.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
+		return spawnData;
+	}
 
-    @Override
+	@Override
 	protected NPCGenderProvider getGenderProvider() {
-        return NPCGenderProvider.MALE;
-    }
+		return NPCGenderProvider.MALE;
+	}
 
 	@Override
 	public boolean addExtendedGoals() {

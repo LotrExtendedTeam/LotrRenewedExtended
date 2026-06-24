@@ -521,6 +521,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.URUK_SMITH, orcUruk);
 		makeEntity(ExtendedEntities.URUK_SUPPLIER, orcUruk);
 		makeEntity(ExtendedEntities.DUNLENDING_WARLORD, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_AXE_THROWER, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_BERSERKER, manDunlending, arrows);
 
 	}
 

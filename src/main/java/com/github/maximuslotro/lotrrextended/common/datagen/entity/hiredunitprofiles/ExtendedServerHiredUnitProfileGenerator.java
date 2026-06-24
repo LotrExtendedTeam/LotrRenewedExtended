@@ -516,5 +516,28 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.addRangedPoolItem(new ItemStack(Items.BOW), 1)
 		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.DUNLENDING_BOWMAN);
+
+		make(ExtendedEntities.DUNLENDING_AXE_THROWER.get(), ExtendedUnitAttackType.RANGED).setPurchaseInfo(50, false, 200)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.DUNLENDING_HELMET.get()), 1)
+		.addHelmetPoolItem(ItemStack.EMPTY, 9)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.DUNLENDING_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.DUNLENDING_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.DUNLENDING_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.BRONZE_DAGGER.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_DAGGER.get()), 1)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.BRONZE_THROWABLE_AXE.get()), 1)
+		.addRangedPoolItem(new ItemStack(ExtendedItems.IRON_THROWABLE_AXE.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.setIdlePoolFromRangedPool().save(pConsumer, ExtendedHiredUnitTypes.DUNLENDING_AXE_THROWER);
+
+		make(ExtendedEntities.DUNLENDING_BERSERKER.get(), ExtendedUnitAttackType.MELEE).setPurchaseInfo(50, true, 300)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.DUNLENDING_HELMET.get()), 1)
+		.addChestplatePoolItem(new ItemStack(LOTRItems.FUR_CHESTPLATE.get()), 1)
+		.addLeggingPoolItem(new ItemStack(LOTRItems.FUR_LEGGINGS.get()), 1)
+		.addBootsPoolItem(new ItemStack(LOTRItems.FUR_BOOTS.get()), 1)
+		.addMeleePoolItem(new ItemStack(LOTRItems.BRONZE_AXE.get()), 1)
+		.addMeleePoolItem(new ItemStack(Items.IRON_AXE), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.DUNLENDING_BERSERKER);
 	}
 }
