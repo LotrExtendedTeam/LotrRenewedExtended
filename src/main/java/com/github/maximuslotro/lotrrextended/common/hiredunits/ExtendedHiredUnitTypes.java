@@ -36,6 +36,7 @@ public class ExtendedHiredUnitTypes {
 	// RIVENDELL
 	public static final ResourceLocation RIVENDELL_ELF = make("rivendell_elf");
 	public static final ResourceLocation RIVENDELL_WARRIOR = make("rivendell_warrior");
+	public static final ResourceLocation IMLADRIS_GUARD = make("rivendell_guard");
 	// LINDON
 	public static final ResourceLocation LINDON_ELF = make("lindon_elf");
 	public static final ResourceLocation LINDON_WARRIOR = make("lindon_warrior");

@@ -1,0 +1,89 @@
+{
+  "id": "lotrextended:rivendell_guard",
+  "entity_type": "lotr:imladris_guard",
+  "language": {
+    "translateStrings": true,
+    "entity_title": "entity.lotrextended.hiredunits.entity_title",
+    "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
+    "entity_unit_type": "entity.lotr.imladris_guard"
+  },
+  "hiring": {
+    "hiringCost": 200,
+    "hiringRequiresPledge": true,
+    "hiringAlignmentRequired": 500
+  },
+  "attack_type": "ranged",
+  "equipmentPools": {
+    "helmets": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:imladris_guard_helmet",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "chestplates": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:imladris_guard_chestplate",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "leggings": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:imladris_guard_leggings",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "boots": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:imladris_guard_boots",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "setIdleFromMelee": true,
+    "melee": [
+      {
+        "weight": 7,
+        "equipmentItem": {
+          "item": "lotr:rivendell_sword",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:rivendell_spear",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "ranged": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:rivendell_bow",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "offhand": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:imladris_guard_shield",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.shield\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ]
+  }
+}

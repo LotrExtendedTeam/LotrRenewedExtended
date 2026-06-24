@@ -2,6 +2,7 @@
   "id": "lotrextended:rivendell_captain",
   "unitProfileIDs": [
     "lotrextended:rivendell_elf",
-    "lotrextended:rivendell_warrior"
+    "lotrextended:rivendell_warrior",
+    "lotrextended:rivendell_guard"
   ]
 }

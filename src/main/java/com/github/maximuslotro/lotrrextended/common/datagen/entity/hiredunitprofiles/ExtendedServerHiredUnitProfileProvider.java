@@ -45,19 +45,19 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 	public void run(DirectoryCache pCache) throws IOException {
 		Path path = this.dataGenerator.getOutputFolder();
 		Consumer<ExtendedServerHiredUnitProfile> consumer = (spawner) -> {
-	         if (dataHere.put(spawner.getId(), spawner)!=null) {
-	            throw new IllegalStateException("Duplicate hired unit profile " + spawner.getId().toString());
-	         } else {
-	            Path path1 = createPath(path, spawner);
+			if (dataHere.put(spawner.getId(), spawner)!=null) {
+				throw new IllegalStateException("Duplicate hired unit profile " + spawner.getId().toString());
+			} else {
+				Path path1 = createPath(path, spawner);
 
-	            try {
-	               save(GSON_PRETTY_WRITER, pCache, spawner, path1);
-	            } catch (IOException ioexception) {
-	               LOGGER.error("Couldn't save hired unit profile {}", path1, ioexception);
-	            }
+				try {
+					save(GSON_PRETTY_WRITER, pCache, spawner, path1);
+				} catch (IOException ioexception) {
+					LOGGER.error("Couldn't save hired unit profile {}", path1, ioexception);
+				}
 
-	         }
-	      };
+			}
+		};
 		makeHiredUnitProfiles(consumer);
 		ExtendedLog.info("Built "+dataHere.size()+" hired unit profiles.");
 		if(modId.equals(LotrExtendedMod.MODID)) {
