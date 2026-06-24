@@ -48,9 +48,4 @@ public class ExtendedDunlendingBerserkerEntity extends DunlendingWarriorEntity i
 		this.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 		return spawnData;
 	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }
