@@ -153,9 +153,4 @@ public class ExtendedBanditEntity extends ManEntity implements ExtendedNPCEntity
     public static MutableAttribute createAttributes() {
         return AbstractMannishEntity.regAttrs().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.22D);
     }
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }

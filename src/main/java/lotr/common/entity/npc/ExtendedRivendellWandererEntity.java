@@ -41,7 +41,6 @@ import net.minecraft.world.World;
 
 public class ExtendedRivendellWandererEntity extends ExtendedAbstractCloakingElfEntity implements ExtendedWanderingTraderEntity {
 
-    int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedRivendellWandererEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -192,8 +191,6 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractCloakingElf
         } else {
             lastTickVerifiedPlayerTradingWithIsOnline++;
         }
-
-        ExtendedTraderHelper.tickTrader(this, this);
     }
 
     @Override
@@ -220,16 +217,6 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractCloakingElf
     public NPCEntity createEscort() {
         return LOTREntities.RIVENDELL_ELF.get().create(level);
     }
-
-	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
 
 	@Override
 	public ResourceLocation getTraderProfileId() {

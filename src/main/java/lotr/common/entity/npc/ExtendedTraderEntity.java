@@ -89,16 +89,4 @@ public interface ExtendedTraderEntity extends ExtendedInteractableEntity {
      * @param player The player to remove.
      */
     void removePlayerFromInteracting(PlayerEntity player);
-    /**
-     * Sets the last tick cooldown to a reduced value.
-     *
-     * @return The new cooldown value after reduction.
-     */
-    int setLastTickCooldownReduced();
-    /**
-     * Sets the last tick cooldown to the specified value.
-     *
-     * @param cooldown The cooldown value to set.
-     */
-    void getLastTickCooldownReduced(int cooldown);
 }

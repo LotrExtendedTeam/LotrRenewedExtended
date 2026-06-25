@@ -58,11 +58,6 @@ public class ExtendedRivendellCaptainEntity extends RivendellWarriorEntity imple
 	}
 
 	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
-
-	@Override
 	public ResourceLocation getCaptainProfile() {
 		return ExtendedCaptainTypes.RIVENDELL_CAPTAIN;
 	}

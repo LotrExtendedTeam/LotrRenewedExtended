@@ -36,9 +36,7 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
-    int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
-
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedGundabadOrcTraderEntity.class, DataSerializers.OPTIONAL_UUID);
 
@@ -140,8 +138,6 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implemen
 		} else {
 			lastTickVerifiedPlayerTradingWithIsOnline++;
 		}
-
-		ExtendedTraderHelper.tickTrader(this, this);
 	}
 
 	@Override
@@ -194,22 +190,7 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implemen
 	}
 
 	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
-
-	@Override
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.GUNDABAD_TRADER;
-	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
 	}
 }

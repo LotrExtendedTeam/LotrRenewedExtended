@@ -47,7 +47,6 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity  implements Ex
 
     private static final SpawnEquipmentTable WEAPONS;
 
-    int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedBreelandMerchantEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -194,8 +193,6 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity  implements Ex
         } else {
             lastTickVerifiedPlayerTradingWithIsOnline++;
         }
-
-        ExtendedTraderHelper.tickTrader(this, this);
     }
 
     @Override
@@ -238,16 +235,6 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity  implements Ex
     }
 
 	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
-
-	@Override
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.BREE_MERCHANT;
 	}
@@ -256,10 +243,5 @@ public class ExtendedBreelandMerchantEntity extends BreeManEntity  implements Ex
     public int getFactionColor() {
         return this.getFaction().getColor();
     }
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }
 

@@ -39,7 +39,6 @@ import net.minecraft.world.World;
 
 public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity  implements ExtendedNPCEntitySettings, ExtendedWanderingTraderEntity {
 
-    int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedBlueMountainsMerchantEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -170,8 +169,6 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity  implem
         } else {
             lastTickVerifiedPlayerTradingWithIsOnline++;
         }
-
-        ExtendedTraderHelper.tickTrader(this, this);
     }
 
     @Override
@@ -209,16 +206,6 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity  implem
     }
 
 	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
-
-	@Override
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.BLUE_MOUNTAINS_MERCHANT;
 	}
@@ -227,10 +214,5 @@ public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity  implem
     public int getFactionColor() {
         return this.getFaction().getColor();
     }
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }
 

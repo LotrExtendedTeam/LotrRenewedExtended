@@ -63,11 +63,6 @@ public class ExtendedDwarvenCommanderEntity extends DwarfEntity implements Exten
 	}
 
 	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
-
-	@Override
 	public ResourceLocation getCaptainProfile() {
 		return ExtendedCaptainTypes.DWARF_COMMANDER;
 	}

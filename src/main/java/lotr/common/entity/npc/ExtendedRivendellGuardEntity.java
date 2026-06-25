@@ -37,9 +37,4 @@ public class ExtendedRivendellGuardEntity extends RivendellWarriorEntity impleme
 		setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.IMLADRIS_GUARD_SHIELD.get()));
 		return spawnData;
 	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }

@@ -7,8 +7,11 @@ public interface ExtendedNPCEntitySettings {
 
     /**
      * Determines whether the NPC should have extended targeting goals injected.
+     * Defaults to true
      *
      * @return {@code true} if extended goals should be added, {@code false} otherwise
      */
-    boolean addExtendedGoals();
+    default boolean useExtendedGoals() {
+    	return true;
+    }
 }

@@ -63,11 +63,6 @@ public class ExtendedBlueMountainsCommanderEntity extends BlueDwarfEntity implem
 	}
 
 	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
-
-	@Override
 	public ResourceLocation getCaptainProfile() {
 		return ExtendedCaptainTypes.BLUE_DWARF_COMMANDER;
 	}

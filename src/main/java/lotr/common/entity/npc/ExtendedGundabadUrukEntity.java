@@ -54,9 +54,4 @@ public class ExtendedGundabadUrukEntity extends GundabadOrcEntity implements Ext
 	public static MutableAttribute createAttributes() {
 		return OrcEntity.regAttrs().add(Attributes.MAX_HEALTH, 25.0D).add(Attributes.MOVEMENT_SPEED, 0.22D);
 	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }

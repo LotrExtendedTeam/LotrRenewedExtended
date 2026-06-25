@@ -133,9 +133,4 @@ public class ExtendedBarrowWightEntity extends NPCEntity implements ExtendedNPCE
 	@Override
 	protected void playStepSound(BlockPos pPos, BlockState pBlock) {}
 
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }

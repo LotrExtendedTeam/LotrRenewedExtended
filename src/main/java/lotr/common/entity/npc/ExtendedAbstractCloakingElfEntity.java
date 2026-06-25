@@ -65,9 +65,4 @@ public abstract class ExtendedAbstractCloakingElfEntity extends ElfEntity implem
         this.zCloak += d2 * 0.25;
         this.yCloak += d1 * 0.25;
     }
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }

@@ -22,6 +22,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMe
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.google.common.base.Predicates;
 
+import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.ExtendedCaptainEntity;
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.ExtendedNPCEntitySettings;
@@ -31,6 +32,8 @@ import lotr.common.entity.npc.ai.NPCTargetSelector;
 import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
+import lotr.common.fac.AlignmentPredicates;
+import lotr.common.fac.Faction;
 import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedHiredUnitHelper;
 import lotr.common.util.ExtendedTraderHelper;
@@ -57,7 +60,7 @@ import net.minecraft.world.World;
  * @Mixin (NPCEntity.class)
  * */
 @Mixin(NPCEntity.class)
-public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedNPCEntity, ExtendedNPCEntitySettings {
+public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedNPCEntity {
 	/**
 	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param type A placeholder variable instance of CreatureEntity
@@ -168,6 +171,22 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	private int addTargetingGoals(boolean seekTargets) {return 0;}
 
 	/**
+	 * Checks combat and alignment of NPC against passed player
+	 * @Shadow (remap = false)
+	 * @param player Player to be checked
+	 * @return True if player is friendly
+	 * */
+	@Shadow(remap = false)
+	public boolean isFriendlyAndAligned(PlayerEntity player) {return false;}
+	/**
+	 * Gets the faction of the NPC
+	 * @Shadow (remap = false)
+	 * @return The Faction
+	 * */
+	@Shadow(remap = false)
+	public final Faction getFaction() {return null;}
+
+	/**
 	 * @reason Save additional entity data modules
 	 * @Inject (method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
 	 * @param nbt The CompoundNBT to be saved to
@@ -243,15 +262,6 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	@Override
 	public ExtendedNpcHiredUnitInfoHolder getUnitInfo() {
 		return unitInfo;
-	}
-
-	/**
-	 * Determines if this entity should use extended targeting goals
-	 * @return TRUE if the targeting goals should use extended goals
-	 * */
-	@Override
-	public boolean addExtendedGoals() {
-		return false;
 	}
 
 	@Override
@@ -419,7 +429,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 */
 	@Overwrite(remap = false)
 	protected final int addAggressiveTargetingGoals() {
-	    if (addExtendedGoals()) {
+	    if (this instanceof ExtendedNPCEntitySettings) {
 	        return this.addExtendedTargetingGoals(true);
 	    }
 	    return this.addTargetingGoals(true);
@@ -435,7 +445,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 */
 	@Overwrite(remap = false)
 	protected final int addNonAggressiveTargetingGoals() {
-	    if (addExtendedGoals()) {
+	    if (this instanceof ExtendedNPCEntitySettings) {
 	        return this.addExtendedTargetingGoals(false);
 	    }
 	    return this.addTargetingGoals(false);
@@ -464,16 +474,16 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	        throw new IllegalStateException("Mod development error - NPC addTargetingGoals can only be called once!");
 	    } else {
 	        this.addedTargetingGoals = true;
-	        this.targetSelector.addGoal(1, new ExtendedHiredPlayerHurtByEntityTargetGoal((NPCEntity)(Object)this));
-	        this.targetSelector.addGoal(2, new ExtendedHiredPlayerAttackedEntityTargetGoal((NPCEntity)(Object)this));
-	        this.targetSelector.addGoal(3, new ExtendedHiredHurtByTargetGoal((NPCEntity)(Object)this));
-	        if (seekTargets) {
-	            this.targetSelector.addGoal(4, new ExtendedNearestAttackableTargetNPCGoal<PlayerEntity>((NPCEntity)(Object)this, PlayerEntity.class, true, Predicates.alwaysTrue()));
-	            this.targetSelector.addGoal(5, new ExtendedNearestAttackableTargetNPCGoal<NPCEntity>((NPCEntity)(Object)this, NPCEntity.class, true, new NPCTargetSelector((NPCEntity)(Object)this)));
-	        }
-
 	        this.isTargetSeeker = seekTargets;
-	        return 5;
+	        int index =1;
+	        this.targetSelector.addGoal(index++, new ExtendedHiredPlayerHurtByEntityTargetGoal((NPCEntity)(Object)this));
+	        this.targetSelector.addGoal(index++, new ExtendedHiredPlayerAttackedEntityTargetGoal((NPCEntity)(Object)this));
+	        this.targetSelector.addGoal(index++, new ExtendedHiredHurtByTargetGoal((NPCEntity)(Object)this));
+	        if (seekTargets) {
+	            this.targetSelector.addGoal(index++, new ExtendedNearestAttackableTargetNPCGoal<PlayerEntity>((NPCEntity)(Object)this, PlayerEntity.class, true, Predicates.alwaysTrue()));
+	            this.targetSelector.addGoal(index++, new ExtendedNearestAttackableTargetNPCGoal<NPCEntity>((NPCEntity)(Object)this, NPCEntity.class, true, new NPCTargetSelector((NPCEntity)(Object)this)));
+	        }
+	        return index;
 	    }
 	}
 
@@ -531,5 +541,21 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 			locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
 	private void extended$fixTargetingGoalsOffset(boolean seekTargets, CallbackInfoReturnable<Integer> cir, int index) {
 		index = 4;
+	}
+
+	/**
+	 * Overrides the method to add non-aggressive targeting goals for NPCs,
+	 * injecting extended targeting logic at the head of the goal list.
+	 * 
+	 * @author maximuslotro
+	 * @reason to inject extended targeting goals at the head
+	 * @param player The player to check
+	 * @return True if player can trade with NPC
+	 */
+	@Overwrite(remap=false)
+	public boolean canTrade(PlayerEntity player) {
+		return isFriendlyAndAligned(player) 
+			&& this.getTraderInfo().shouldTick() 
+			&& LOTRLevelData.getSidedData(player).getAlignmentData().hasAlignment(getFaction(), AlignmentPredicates.greaterThanOrEqual(this.getTraderInfo().getProfile().getTradingAlignmentRequired()));
 	}
 }

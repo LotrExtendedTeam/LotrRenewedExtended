@@ -73,10 +73,4 @@ public class ExtendedBlueMountainsAxeThrowerEntity extends BlueDwarfWarriorEntit
 		playSound(SoundEvents.TRIDENT_THROW, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F));
 		level.addFreshEntity(axeEntity);
 	}
-
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }

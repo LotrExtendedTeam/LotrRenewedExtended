@@ -37,9 +37,8 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedHobbitFarmerEntity extends HobbitEntity  implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
+public class ExtendedHobbitFarmerEntity extends HobbitEntity implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
 
-    int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedHobbitFarmerEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -148,19 +147,7 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity  implements Extende
         } else {
             lastTickVerifiedPlayerTradingWithIsOnline++;
         }
-
-        ExtendedTraderHelper.tickTrader(this, this);
     }
-
-	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
 
 	@Override
 	public ResourceLocation getTraderProfileId() {
@@ -174,10 +161,5 @@ public class ExtendedHobbitFarmerEntity extends HobbitEntity  implements Extende
 		}else {
 			this.addAggressiveTargetingGoals();
 		}
-	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
 	}
 }

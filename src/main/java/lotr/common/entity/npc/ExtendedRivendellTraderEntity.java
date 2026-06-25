@@ -25,7 +25,6 @@ import net.minecraft.world.World;
 
 public abstract class ExtendedRivendellTraderEntity extends RivendellElfEntity implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
 
-	int lastTickCooldownReduced = 0;
 	int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
 	private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedRivendellTraderEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -136,22 +135,5 @@ public abstract class ExtendedRivendellTraderEntity extends RivendellElfEntity i
 		} else {
 			lastTickVerifiedPlayerTradingWithIsOnline++;
 		}
-
-		ExtendedTraderHelper.tickTrader(this, this);
-	}
-
-	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
 	}
 }
