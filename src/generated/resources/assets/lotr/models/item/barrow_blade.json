@@ -6,22 +6,24 @@
   "overrides": [
     {
       "predicate": {
-        "lotr:sneaking": 1.0
+        "lotr:sneaking": 0.0,
+        "lotrextended:poisoned": 1.0
       },
-      "model": "lotr:item/barrow_blade_sneaking"
+      "model": "lotrextended:item/barrow_blade_poisoned"
     },
     {
       "predicate": {
-        "lotrextended:poisoned": 1.0
+        "lotr:sneaking": 1.0,
+        "lotrextended:poisoned": 0.0
       },
-      "model": "lotr:item/barrow_blade_poisoned"
+      "model": "lotrextended:item/barrow_blade_sneaking"
     },
     {
       "predicate": {
         "lotr:sneaking": 1.0,
         "lotrextended:poisoned": 1.0
       },
-      "model": "lotr:item/barrow_blade_sneaking_poisoned"
+      "model": "lotrextended:item/barrow_blade_sneaking_poisoned"
     }
   ]
 }

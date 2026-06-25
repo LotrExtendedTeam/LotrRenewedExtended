@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:item/handheld_dagger_sneaking",
+  "textures": {
+    "layer0": "lotr:item/harad_dagger"
+  }
+}

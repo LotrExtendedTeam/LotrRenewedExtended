@@ -9,9 +9,11 @@ import lotr.common.item.LOTRSwordItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.NonNullList;
 
 @Mixin(DaggerItem.class)
 public abstract class MixinDaggerItem extends LOTRSwordItem {
@@ -29,5 +31,17 @@ public abstract class MixinDaggerItem extends LOTRSwordItem {
 			entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
 		});
 		return true;
+	}
+
+	@Override
+	public void fillItemCategory(ItemGroup pGroup, NonNullList<ItemStack> pItems) {
+		if (this.allowdedIn(pGroup)) {
+			pItems.add(new ItemStack(this));
+			if(pGroup == ItemGroup.TAB_SEARCH) {
+				ItemStack itemstack = new ItemStack(this);
+				ExtendedDaggerItem.setPoisoned(itemstack);
+				pItems.add(itemstack);
+			}
+		}
 	}
 }

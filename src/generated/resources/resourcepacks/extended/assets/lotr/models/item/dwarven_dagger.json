@@ -1,0 +1,29 @@
+{
+  "parent": "lotr:item/handheld_dagger",
+  "textures": {
+    "layer0": "lotr:item/dwarven_dagger"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "lotr:sneaking": 0.0,
+        "lotrextended:poisoned": 1.0
+      },
+      "model": "lotrextended:item/dwarven_dagger_poisoned"
+    },
+    {
+      "predicate": {
+        "lotr:sneaking": 1.0,
+        "lotrextended:poisoned": 0.0
+      },
+      "model": "lotrextended:item/dwarven_dagger_sneaking"
+    },
+    {
+      "predicate": {
+        "lotr:sneaking": 1.0,
+        "lotrextended:poisoned": 1.0
+      },
+      "model": "lotrextended:item/dwarven_dagger_sneaking_poisoned"
+    }
+  ]
+}

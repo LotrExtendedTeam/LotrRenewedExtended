@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.recipe;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 
 import lotr.common.init.ExtendedItems;
+import lotr.common.item.DaggerItem;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -24,7 +25,7 @@ public class ExtendedDaggerPoisoningRecipe extends SpecialRecipe {
 		for(int i = 0; i < craftInv.getContainerSize(); ++i) {
 			ItemStack slotStack = craftInv.getItem(i);
 			if (!slotStack.isEmpty()) {
-				if(slotStack.getItem() instanceof ExtendedDaggerItem) {
+				if(slotStack.getItem() instanceof ExtendedDaggerItem || slotStack.getItem() instanceof DaggerItem) {
 					if(foundDagger) {
 						return false;
 					}
@@ -48,7 +49,7 @@ public class ExtendedDaggerPoisoningRecipe extends SpecialRecipe {
 		for(int i = 0; i < craftInv.getContainerSize(); ++i) {
 			ItemStack slotStack = craftInv.getItem(i);
 			if (!slotStack.isEmpty()) {
-				if(slotStack.getItem() instanceof ExtendedDaggerItem) {
+				if(slotStack.getItem() instanceof ExtendedDaggerItem || slotStack.getItem() instanceof DaggerItem) {
 					daggerStack = slotStack.copy();
 				}
 			}

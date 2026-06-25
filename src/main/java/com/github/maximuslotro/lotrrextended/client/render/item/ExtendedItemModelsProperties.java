@@ -9,6 +9,8 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 
 import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTRItems;
+import lotr.common.item.DaggerItem;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
@@ -16,6 +18,7 @@ import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedItemModelsProperties {
 
@@ -52,12 +55,11 @@ public class ExtendedItemModelsProperties {
 		registerCrossbowItemModelProperties(ExtendedItems.URUK_CROSSBOW.get());
 		registerCrossbowItemModelProperties(ExtendedItems.MITHRIL_CROSSBOW.get());
 		// DAGGERS
-		registerDaggerItemModelProperties(ExtendedItems.ANGMAR_DAGGER.get());
-		registerDaggerItemModelProperties(ExtendedItems.BONE_DAGGER.get());
-		registerDaggerItemModelProperties(ExtendedItems.DOL_GULDUR_DAGGER.get());
-		registerDaggerItemModelProperties(ExtendedItems.GUNDABAD_URUK_DAGGER.get());
-		registerDaggerItemModelProperties(ExtendedItems.TAURETHRIM_DAGGER.get());
-		registerDaggerItemModelProperties(ExtendedItems.BARROW_BLADE.get());
+		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {
+			if(item.get() instanceof DaggerItem || item.get() instanceof ExtendedDaggerItem) {
+				registerDaggerItemModelProperties(item.get());
+			}
+		}
 	}
 
 	public static void registerBowItemModelProperties(Item item) {
