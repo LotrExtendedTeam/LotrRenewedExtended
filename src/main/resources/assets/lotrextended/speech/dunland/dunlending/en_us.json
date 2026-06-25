@@ -1,0 +1,783 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_combat": false,
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "none"
+          },
+      "lines": [
+        "Any enemy of Rohan is a friend of Dunland!",
+        "The Strawheads of Rohan took our lands from us.",
+        "We Dunlendings are a proud and fierce race.",
+        "Death on the Men of Rohan!",
+        "Our feud with the thieving Rohirrim is centuries old.",
+        "The land of Rohan should be ours by rights. Those filthy Strawheads of the River have no claim on it!",
+        "Those filthy Strawheads will pay for taking our lands from us!",
+        "The land will run red with the blood of Rohan yet!",
+        "The day will come, indeed, when the Men of Rohan will answer for what they've done!",
+        "Death! Death on the robbers of the North!",
+        "The Strawheads came down from the North and took our fathers' lands from them. They'll pay for it in blood, mark my words.",
+        "Ruled all of Middle-earth, our kin did, before the Go-hilleg came from across the sea.",
+        "Some folk still live out in the Enedwaith, but few and far between, they are.",
+        "I don't trust that wizard, but mayhap he'll lead us to victory over the accursed Strawheads.",
+        "Those Stawheads are murderers, they are.",
+        "Curse the Go-hilleg, and curse the Forgoil!",
+        "The Horsemen took our lands, they drove our people into the hills to scratch a living of rocks!",
+        "Rohan can't stand against the union of both Dunland and Isengard.",
+        "Soon, avenge our ancestors, we will.",
+        "It's a tidy alliance we have with Saruman, but I still don't trust him.",
+        "The great King Wulf in the days of old nearly defeated the men of Rohan.",
+        "We will avenge our ancestors!",
+        "Careful crossing south beyond the Isen, they say demons live in those woods.",
+        "They say all those who cross into the forests beyond the Isen are never heard from again.",
+        "An odd bunch of fishermen and hunters live near the coasts, I hear.",
+        "Those of us who swear loyalty to the White Hand are sent up north, I wonder why.",
+        "Don't trust the lies those scheming Horse-lords tell you, those lands were ours long before they came down from the north."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day",
+        "in_combat": "false",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "none",
+        "rank": ">=warrior"
+      },
+      "lines": [
+        "Good day.",
+        "Good day, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "morning",
+        "in_combat": "false",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "none",
+        "rank": ">=warrior"
+      },
+      "lines": [
+        "Good morning.",
+        "I love the fresh fog lingering in the morning.",
+        "Morning!",
+        "Good morning, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "afternoon",
+        "in_combat": "false",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "none",
+        "rank": ">=warrior"
+      },
+      "lines": [
+        "Good afternoon.",
+        "Good afternoon, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "evening",
+        "in_combat": "false",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "none",
+        "rank": ">=warrior"
+      },
+      "lines": [
+        "Good evening.",
+        "I wish a good evening on you.",
+        "Good evening, #p.",
+        "Evening!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "night",
+        "in_combat": "false",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "none",
+        "rank": ">=warrior"
+      },
+      "lines": [
+        "Have a good night.",
+        "Have a nice night, #p.",
+        "Sleep well, #p.",
+        "Have a nice night, be safe!",
+        "Careful wandering too far in the woods at night, #p. There are wolves about."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<warrior",
+        "in_combat": "false",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Shall you help us reclaim what is rightfully ours?",
+        "We've sworn vengeance on the people of Rohan. Will you stand with us?",
+        "Will you fight alongside us, then?",
+        "What is it you're wanting?",
+        "You're not with Strawheads, are you?",
+        "We've always had trouble with foreigners, I hope you're different.",
+        "Bringing trouble, are you?",
+        "I don't quite trust you.",
+        "Will you help us avenge our ancestors?",
+        "Will you help us take back our lands?",
+        "Where to have you come from?",
+        "Where's it you've come from, then?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=warrior",
+        "in_combat": "false",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Well met, friend!",
+        "Help us take back our lands.",
+        "Fight with us, #p.",
+        "Well met, #p. What news are you bringing from your travels, then?",
+        "Ah, well met to you, #p. And what tales have you from the road?",
+        "Well met, #p, my friend. What tidings have you gathered on your wandering?",
+        "Have you come to fight with us?",
+        "Together, we will take back the lands that were stolen from us.",
+        "You are a good friend, #p.",
+        "You have been of great help to us, #p.",
+        "I'm glad to see we share a common enemy."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=warlord",
+        "in_combat": "false",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "none"
+      },
+      "lines": [
+        "#p, is it true that the King of Rohan lies ill?",
+        "Some of my kin have been sent to the North by Saruman the Wise, do you know when they'll return?",
+        "You've slain many of our enemies, I hear, you have my thanks #p.",
+        "Do you bear any news from our chieftains?",
+        "You are a great warrior #p.",
+        "You should join us for a feast sometime, #p. You can tell us tales of your adventures.",
+        "You're always welcome in Dunland, #p.",
+        "You're always welcome into my home, #p.",
+        "Thank you for everything you have done for us, #p.",
+        "You've done so much for us, #p. Thank you.",
+        "They say war is brewing in the South, we may yet have victory over Rohan if their allies are distracted."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_combat": "false",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "none",
+        "rank": ">=chieftain"
+      },
+      "lines": [
+        "What are our orders, chief?",
+        "Have you heard from the other chieftains.",
+        "What are our orders, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "other",
+        "rank": "<warlord"
+      },
+      "lines": [
+        "Mind your own business.",
+        "By rights, you shouldn't be eavesdropping.",
+        "Eavesdropping now, are we?",
+        "I wasn't talking to you, was I?",
+        "Go bother me later, I'm busy.",
+        "Leave me be.",
+        "It's rude to interupt, #p.",
+        "Do you mind? I was in the middle of a conversation",
+        "#p! I was just in the middle of a conversation.",
+        "A bit rude to interrupt, isn't it?",
+        "There's no need to interrupt, is there?",
+        "...and I turned to him and said - excuse me? Do you mind interrupting us, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "other",
+        "rank": ">=warlord",
+        "biome": "#home"
+      },
+      "lines": [
+        "...he'll turn out to be a fine warrior, I'm sure - oh, hello there #p!",
+        "Oh - hello #p, we were just talking about the upcoming festival in Dunland.",
+        "...personally, I think Saruman will make Dunland great again - ah, hello #p!",
+        "...and they say after my grandfather crossed the Isen, he was never seen again - ah, how can I help you #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "other",
+        "rank": ">=warlord"
+      },
+      "lines": [
+        "Hello #p, we were just finishing up, what do you need from me?",
+        "How can I help you, #p?",
+        "Why, hello #p!",
+        "Oh, hey #p, I didn't see you there."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "other",
+        "rank": ">=chieftain",
+        "biome": "#home"
+      },
+      "lines": [
+        "I hear #p lead an entire legion of Dunlendings to their deaths - oh... well met #p..."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "pledge_relation": "this",
+        "in_combat": "false",
+        "in_conversation": "none"      
+      },
+      "lines": [
+        "You're an honorable warrior, #p.",
+        "Few outsiders have pledged their service to us, you're an honorable warrior, #p.",
+        "You may not be Dunlending by blood, but you are still one of us now."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "weather": "rain",
+        "in_combat": "false",
+        "in_conversation": "none",
+        "underground": "false"
+      },
+      "lines": [
+        "Didn't want to spend my day trudging through all this muck!",
+        "Well now all my clothes are wet!",
+        "Hope we don't get into a skirmish in this weather.",
+        "Let's hurry inside!",
+        "We should find some cover, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "weather": "rain",
+        "in_combat": "false",
+        "in_conversation": "none",
+        "underground": "true"
+      },
+      "lines": [
+        "Glad to have some shelter from this rain.",
+        "Sounds like theres a lot of rain out there.",
+        "Good time to be inside right now, with how wet it is today.",
+        "I hope the roof is good enough to keep us dry."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "weather": "rain",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "This weather today is dreadful, isn't it?",
+        "Tidy weather for ducks today.",
+        "Rain already? I haven't even patched the thatch up yet."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "lunar_eclipse": "true",
+        "in_conversation": "other"
+      },
+      "lines": [
+        "Ha! The moon is stained with the blood of our enemies!",
+        "The moon is stained with the blood of Rohan!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "same"
+      },
+      "lines": [
+        "Hey  now, don't be hasty!",
+        "Slow down #p, you're talking a bit too fast for me, you are.",
+        "It's rude to talk over someone!",
+        "Let me finish talking!",
+        "How rude!",
+        "Slow down!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "biome": "#home",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Our kin once spread far and wide, they did, but now all that's left of our people is here.",
+        "Used to host some of Durin's Folk here, we did. Father always said they were the finest smiths ever seen.",
+        "The Horsemen took our lands, they drove our people into these hills to scratch a living of rocks!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "rank": "<warrior",
+        "biome": "#home",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "If the horse-lords are your enemy, then you're welcome among us.",
+        "Stranger, what is it you're wanting in our lands?",
+        "Welcome to Dunland stranger, so long as you're an enemy of Rohan.",
+        "You're not bringing trouble here, are you?",
+        "Welcome to our lands stranger, at least whats left of them."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "rank": ">=warrior",
+        "biome": "#home",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Welcome to Dunland!",
+        "Welcome to Dunland, #p.",
+        "Welcome to our lands #p, at least whats left of them."
+      ]
+    },
+    {
+      "conditions": {
+        "hired": "own",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Let us reclaim our homeland of old!",
+        "For wrath! For ruin! For our forefathers!",
+        "We shall swarm into Rohan like a plague.",
+        "For Dunland!",
+        "Lead us to war, #p!",
+        "We go to victory!",
+        "We Dunlendings are bold and strong warriors! We shall not fail you in battle!",
+        "Come, #! Let us together avenge my people!",
+        "It is time for the filthy Rohirrim to pay for their crimes!",
+        "We fight for you!",
+        "The filthy Strawheads shall fear our name! Lead us to war and triumph, #p!",
+        "We shall make our forefathers proud!",
+        "The blood of Rohan will flow tonight!",
+        "Lead us to victory!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "player_drunk ": "true",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Well someone's a little tipsy aren't they?",
+        "Looks like you've spent too long at the tavern!",
+        "Ha! Looks like someone can't hold their ale!",
+        "You might want to hold off on the ale for a bit.",
+        "I'm suprised you can even stand!",
+        "Did you drink too much mead, aye?",
+        "Drunk too much, have you?",
+        "By rights, you shouldn't even be conscious after drinking so much!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "drunk ": "true",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "You looking for a fight?",
+        "Oh ho! To the bottle I go!",
+        "You're a beautiful girl, #p.",
+        "What did you just say about me?",
+        "Tonight, #p, we shall feast like kings!",
+        "Hands off my drink!",
+        "Splish splash splosh! Splish splash plump!",
+        "To and fro! To and fro! Up we come! Down we go!",
+        "Good day, #! Or is it morning? No, it's night! Ha! Ha!",
+        "Hey ho! To the bottle I go!",
+        "Ale! Ale! Sweet ale! Oh yes! Yes!",
+        "Death to Dunland... I mean Rohan!",
+        "The bottle is my saviour! To the bottle I must go!",
+        "This mug shall be the bane of all Rohirrim!",
+        "I only had three mugs... or four. Five at the most, mind.",
+        "You looking at me? Well, look somewhere else, then.",
+        "The chief knows my name, he does. Owes me money too.",
+        "Now where'd I leave my cup? Had it a moment ago, I did.",
+        "The road's moving again. Happens every time I stand up."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "drunk ": "true",
+        "in_combat": "true",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Hold still, would you? You're making the room wobble.",
+        "I've wrestled sheep tougher than you!",
+        "Who's singing? Stop it, I'm trying to fight!",
+        "Right then, I've forgotten why we're fighting, but we're finishing it!",
+        "I'll throw you out of this place, I will.",
+        "Rahhhhhh! To glorious battle!",
+        "Another ale! Wait, whose that charging at me!",
+        "I'll *hic* kill *hic* you!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "biome": "lotr:fangorn",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Somethings not right with this forest, I tell you!",
+        "Heard strange tales about this wood, I have.",
+        "I hear this wood is haunted by tree-spirits!",
+        "Watch your back in this forest, #p.",
+        "Did that tree just move?",
+        "By rights we shouldn't even be near this accursed wood!",
+        "This forest is cursed, it is."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "biome": "lotr:isengard",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "I don't quite trust this Saruman fellow.",
+        "The wizard has built a tidy army for himself, the horse-lords will surely fall now.",
+        "Hard to breathe here, it is.",
+        "Watch your step, #p, almost fell into one of their mines myself.",
+        "Our kin lived within these walls long ago, before it fell into the hands of the wizard.",
+        "I don't trust these filthy orcs.",
+        "Wish we didn't need all these orcs, they have no care for our people, see.",
+        "I don't like fighting alongside these orcs, but if it leads us to victory...",
+        "These orcs are demons, they are.",
+        "I'm fine fighting with these orcs, so long as I'm standing behind them.",
+        "Is fighting alongside these demons even worth it? Wulf never needed orcs when he waged war.",
+        "Why can't we call our allies in the South to fight with us like the great Wulf once did?"
+      ]
+    },
+    {
+      "conditions": {
+        "biome": "lotr:rohan",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Burn every village! Leave none alive!",
+        "Let's take back the lands they stole from us! Burn every village!",
+        "These lands are ours by rights!",
+        "We will take back the lands they stole from us.",
+        "Death on the Strawheads!",
+        "Death on the Men of Rohan!",
+        "These land will run red with the blood of Rohan!",
+        "Those filthy Strawheads will pay for taking our lands from us!",
+        "Death on the Forgoil! Death on the Strawheads!"
+      ]
+    },
+    {
+      "conditions": {
+        "biome": "lotr:further_gondor | lotr:anorien | lotr:pinnath_gelin | lotr:anfalas | lotr:blackroot_vale | lotr:lamedon | lotr:pelargir | lotr:lossarnach | lotr:lebennin | lotr:emyn_en_ernil | lotr:dor_en_ernil",
+        "in_conversation": "none",
+        "dunk": false,
+        "player_drunk": false
+      },
+      "lines": [
+        "Burn every village! Leave none alive!",
+        "Death! Death on the Go-hilleg!",
+        "Gondor will burn!",
+        "The White City will fall!",
+        "The Go-hilleg will pay for what they did to us!",
+        "By rights, the Go-hilleg should never have given our lands to the Strawheads!",
+        "The Men of the West will pay!",
+        "Death! Death on the Gondorian scum!",
+        "The White Tree will burn!",
+        "Death on the Go-hilleg and all their kin!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "pledge": "lotr:durins_folk",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "You're welcome in our lands so long as you don't trade with the Strawheads!",
+        "We've had many dealings with Durin's Folk in the past, they're a fair and honest people.",
+        "We've always welcomed trade with Durin's folk, we have.",
+        "You bring riches from the Lonely Mountain, do you?",
+        "Understand those who've lost their lands, we do, Durin's Folk are welcome among us."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "pledge": "lotr:harad",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "War is brewing in the South, I hear, may your people be victorious over that Gondorian scum.",
+        "Is it as hot as they say it is in your lands?",
+        "We share in our hatred for the Men of the West!",
+        "Together, the Men of the West will fail, and the White City will burn, see!",
+        "Brought goods from far away lands, did we?",
+        "Long ago, your people assisted our king Wulf in assailing the Horse-lords, we will never forget what you did for us.",
+        "My grandfather always spoke of bright fruits from the far South, do you happen to bring some?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "dunk": false,
+        "player_drunk": false,
+        "pledge": "lotr:isengard",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Is it true the Uruk-hai feast only on the flesh of men?",
+        "Together, Rohan will burn.",
+        "I don't quite trust those orcs of yours, but so long as they lead us to victory...",
+        "The White Hand will lead us to victory over the accursed Strawheads!",
+        "You only eat the flesh of the Strawheads, is it?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "dunk": false,
+        "player_drunk": false,
+        "pledge": "lotr:rohan",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Your end will be swift enough, Strawhead scum!",
+        "Begone, you Eorling scum!",
+        "This is your last stand, Strawhead scum, indeed!",
+        "Death on the Forgoil! Death on the Strawheads!",
+        "Death on the Strawheads and all their kin!",
+        "I'll paint Rohan in your blood!",
+        "Go back to your sick King!",
+        "Death on the Men of Rohan!",
+        "Death on the Strawheads!",
+        "Death on the Forgoil!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "dunk": false,
+        "player_drunk": false,
+        "pledge": "lotr:gondor",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Death on the Go-hilleg!",
+        "Death on the Men of the West!",
+        "Go back across the sea!",
+        "I'll paint Gondor in your blood!",
+        "Go back to your corrupt lords!",
+        "Death on the Go-hilleg and all their kin!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "dunk": false,
+        "player_drunk": false,
+        "pledge": "lotr:dunedain_north",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Death on the robbers from the North!",
+        "Death on the Go-hilleg!",
+        "Death on the Men of the West!",
+        "Go back across the sea!",
+        "Death on the Go-hilleg and all their kin!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "dunk": false,
+        "player_drunk": false,
+        "biome": "#home",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Your sort are not welcome here, see.",
+        "Stop there, #p. You're not welcome here!",
+        "What devilry from Rohan is this, then?",
+        "Run then, scum! Run back to those pitiful horse-lords!",
+        "We have no room for the likes of you in Bree!",
+        "You'll answer for your crimes, #p, mark me.",
+        "Get gone from our lands!",
+        "You shall trouble Dunland no longer!",
+        "You have no welcome here!"
+      ]
+    },
+    {
+      "conditions": {
+        "in_combat": "true",
+        "dunk": false,
+        "player_drunk": false,
+        "biome": "#home",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Your sort are not welcome here, see.",
+        "What devilry from Rohan is this, then?",
+        "Run then, scum! Run back to those pitiful horse-lords!",
+        "We have no room for the likes of you in Bree!",
+        "Get gone from our lands!",
+        "You shall trouble Dunland no longer!",
+        "You have no welcome here!"
+      ]
+    },
+    {
+      "conditions": {
+        "in_combat": "true",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Off with you, wretched friend of the horse-lords!",
+        "Death on you and all your kin!",
+        "I'll end you!",
+        "For Dunland!",
+        "It's time for you to pay for your crimes!",
+        "Have at you, then!",
+        "Face me, coward!",
+        "Your end is come!",
+        "You have stolen enough from us!",
+        "This day your reckoning comes!",
+        "The horse-lords cannot save you now!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "dunk": false,
+        "player_drunk": false,
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Curse you, #p, indeed!",
+        "Off with you, wretched friend of the horse-lords!",
+        "Down you go, #p, and good riddance!",
+        "Death on you and all your kin!",
+        "I'll end you!",
+        "For Dunland!",
+        "It's time for you to pay for your crimes!",
+        "May the crows feast on your bones, #p!",
+        "Your blood is forfeit, #p!",
+        "Have at you, then!",
+        "Face me, coward!",
+        "Stand and die, #p!",
+        "Your end is come!",
+        "You have stolen enough from us!",
+        "This day your reckoning comes!",
+        "The horse-lords cannot save you now!"
+      ]
+    }
+  ]
+}

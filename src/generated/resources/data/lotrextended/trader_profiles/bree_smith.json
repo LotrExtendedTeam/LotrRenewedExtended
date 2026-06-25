@@ -360,7 +360,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:bronze_crossbow",
+        "item": "lotr:iron_crossbow",
         "averageCost": 15,
         "nbt": "{Damage:0}"
       }

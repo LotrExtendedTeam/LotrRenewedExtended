@@ -1,7 +1,7 @@
 {
   "type": "lotrextended:crucible_specific",
   "ingredient": {
-    "item": "lotr:dunlanding_shield"
+    "item": "lotr:dunlending_shield"
   },
   "result1": {
     "item": "minecraft:iron_ingot"

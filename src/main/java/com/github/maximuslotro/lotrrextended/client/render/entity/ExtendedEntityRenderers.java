@@ -99,9 +99,11 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_SMITH.get(), ExtendedUrukTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_CAPTAIN.get(), ExtendedUrukTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_BERSERKER.get(), UrukRenderer::new);
-		// Dunlanding
+		// Dunlending
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_WARLORD.get(), ExtendedDunlendingTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_AXE_THROWER.get(), DunlendingRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_BERSERKER.get(), DunlendingRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_BARTENDER.get(), ExtendedDunlendingTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_SMITH.get(), ExtendedDunlendingTraderRenderer::new);
 	}
 }

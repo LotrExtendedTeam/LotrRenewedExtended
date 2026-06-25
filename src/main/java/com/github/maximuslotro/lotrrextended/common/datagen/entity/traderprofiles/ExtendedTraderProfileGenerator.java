@@ -16,14 +16,14 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
-public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvider{
+public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvider {
 
 	public ExtendedTraderProfileGenerator(DataGenerator pDataGenerator, String pModId) {
 		super(pDataGenerator, pModId);
 	}
 
 	@Override
-	public void makeStructureSpawnPools(Consumer<ExtendedTraderProfile> pConsumer) {
+	public void makeTraderProfiles(Consumer<ExtendedTraderProfile> pConsumer) {
 		make(0)
 		//TODO add venison
 		.addSBuy(Items.BEEF, 3)
@@ -71,7 +71,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.STONEWARE_PLATE, 2)
 		.addSSell(ExtendedItems.HOBBIT_MARRIAGE_RING, 14)
 		.addSSell(LOTRItems.HOBBIT_OVEN, 40)
-		.addSSell(LOTRItems.HOBBIT_CRAFTING_TABLE, 40)
+		.addSSell(LOTRItems.HOBBIT_CRAFTING_TABLE, 100)
 		.addSSell(LOTRItems.CHOCOLATE_DRINK, 4)
 		.addSSell(LOTRItems.APPLE_JUICE, 6)
 		.addDrinkSell(LOTRItems.ALE, 6, 8, 10)
@@ -141,7 +141,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.HOBBIT_PANCAKE_SYRUP_BUTTER, 12)
 		.addSSell(LOTRItems.FINE_PLATE, 4)
 		.addSSell(LOTRItems.STONEWARE_PLATE, 2)
-		.addSSell(LOTRItems.WOODEN_PLATE, 2)
+		.addSSell(LOTRItems.WOODEN_PLATE, 1)
 		.save(pConsumer, ExtendedTraderTypes.BREE_BAKER);
 
 		make(0)
@@ -672,7 +672,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 16)
 		.addSSell(ExtendedItems.BRANDING_IRON, 25)
 		.addSSell(ExtendedItems.BRONZE_CROSSBOW, 12)
-		.addSSell(ExtendedItems.BRONZE_CROSSBOW, 15)
+		.addSSell(ExtendedItems.IRON_CROSSBOW, 15)
 		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SHARP),
 						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SWIFT),
@@ -1709,5 +1709,109 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.COMBAT_TOME, 50)
 		.addSSell(ExtendedItems.ARTISAN_TOME, 75)
 		.save(pConsumer, ExtendedTraderTypes.ISENGARD_URUK_SMITH);
+
+		make(0)
+		//TODO add venison
+		.addSBuy(Items.BEEF, 3)
+		.addSBuy(Items.PORKCHOP, 3)
+		.addSBuy(Items.MUTTON, 3)
+		.addSBuy(Items.CHICKEN, 3)
+		.addSBuy(Items.RABBIT, 3)
+		.addSBuy(ExtendedItems.RAW_DUCK, 3)
+		.addSBuy(LOTRItems.CLAY_PLATE, 1)
+		.addSBuy(LOTRItems.CLAY_MUG, 1)
+		.addSBuy(new ItemStack(Items.POTATO, 2), 1)
+		.addSBuy(Items.COD, 2)
+		.addSBuy(Items.SALMON, 2)
+		.addSBuy(new ItemStack(Items.WHEAT, 2), 1)
+		.addSBuy(Items.WATER_BUCKET, 4)
+		.addSBuy(new ItemStack(Items.COAL, 2), 1)
+		.addSBuy(LOTRItems.SALT, 10)
+		.addSBuy(Items.BUCKET, 3)
+		.addSBuy(Items.LEATHER, 2)
+		.addSBuy(LOTRItems.HORN, 2)
+		// TODO add cooked venison
+		.addSSell(LOTRItems.DUNLENDING_CRAFTING_TABLE, 100)
+		.addSSell(LOTRItems.WOODEN_MUG, 2)
+		.addSSell(LOTRItems.CERAMIC_MUG, 2)
+		.addSSell(LOTRItems.WATERSKIN, 2)
+		.addSSell(LOTRItems.FINE_PLATE, 2)
+		.addSSell(LOTRItems.STONEWARE_PLATE, 2)
+		.addSSell(LOTRItems.WOODEN_PLATE, 1)
+		.addSSell(new ItemStack(Items.BAKED_POTATO, 2), 7)
+		.addSSell(Items.BREAD, 5)
+		.addSSell(Items.COOKED_CHICKEN, 6)
+		.addSSell(Items.COOKED_COD, 6)
+		.addSSell(Items.COOKED_SALMON, 6)
+		.addSSell(ExtendedItems.COOKED_DUCK, 6)
+		.addSSell(Items.COOKED_PORKCHOP, 7)
+		.addSSell(Items.COOKED_MUTTON, 7)
+		.addSSell(LOTRItems.GAMMON, 7)
+		.addSSell(Items.COOKED_RABBIT, 7)
+		.addSSell(Items.COOKED_BEEF, 7)
+		.addSSell(Items.RABBIT_STEW, 10)
+		.addSSell(Items.MUSHROOM_STEW, 10)
+		.addSSell(LOTRItems.HORN, 6)
+		.addDrinkSell(LOTRItems.ALE, 6, 8, 10)
+		.addDrinkSell(LOTRItems.CIDER, 6, 8, 10)
+		.addDrinkSell(LOTRItems.MEAD, 6, 8, 10)
+		.addDrinkSell(LOTRItems.RUM, 9, 12, 15)
+		.addSSell(LOTRItems.APPLE_JUICE, 6)
+		.save(pConsumer, ExtendedTraderTypes.DUNLENDING_BARTENDER);
+
+		make(0)
+		.addSBuy(LOTRItems.COPPER_INGOT, 3)
+		.addSBuy(LOTRItems.TIN_INGOT, 3)
+		.addSBuy(LOTRItems.BRONZE_INGOT, 3)
+		.addSBuy(Items.IRON_INGOT, 3)
+		.addSBuy(new ItemStack(Items.IRON_NUGGET, 9), 3)
+		.addSBuy(new ItemStack(Items.GOLD_NUGGET, 9), 15)
+		.addSBuy(new ItemStack(Items.STRING, 3), 1)
+		.addSBuy(Items.LEATHER, 2)
+		.addSBuy(LOTRItems.FUR, 2)
+		.addSBuy(ExtendedItems.BLACK_FUR, 2)
+		.addSBuy(ExtendedItems.GRAY_FUR, 2)
+		.addSBuy(ExtendedItems.SILVER_FUR, 3)
+		.addSBuy(ExtendedItems.WHITE_FUR, 25)
+		.addSBuy(Items.RABBIT_HIDE, 1)
+		.addSBuy(ExtendedItems.EMERALD, 15)
+		.addSBuy(ExtendedItems.SAPPHIRE, 12)
+		.addSBuy(ExtendedItems.PEARL.get(), 25)
+		.addSBuy(ExtendedItems.TOPAZ, 8)
+		.addSBuy(LOTRItems.HORN, 2)
+		// TODO add iron battleaxe and pike, bronze battleaxe, crossbow bolts
+		.addSSell(LOTRItems.HORN, 6)
+		.addSSell(LOTRItems.DUNLENDING_HELMET, 10)
+		.addSSell(LOTRItems.DUNLENDING_CHESTPLATE, 14)
+		.addSSell(LOTRItems.DUNLENDING_LEGGINGS, 12)
+		.addSSell(LOTRItems.DUNLENDING_BOOTS, 8)
+		.addSSell(LOTRItems.HORN, 6)
+		.addSSell(LOTRItems.FUR_HELMET, 10)
+		.addSSell(LOTRItems.FUR_CHESTPLATE, 14)
+		.addSSell(LOTRItems.FUR_LEGGINGS, 12)
+		.addSSell(LOTRItems.FUR_BOOTS, 8)
+		.addSSell(LOTRItems.BREE_CRAFTING_TABLE, 100)
+		.addSSell(new ItemStack(LOTRItems.BRONZE_BARS.get(), 8), 20)
+		.addSSell(LOTRItems.BRONZE_AXE, 10)
+		.addSSell(LOTRItems.BRONZE_DAGGER, 7)
+		.addSSell(LOTRItems.BRONZE_SWORD, 10)
+		.addSSell(LOTRItems.BRONZE_SPEAR, 13)
+		.addSSell(Items.IRON_AXE, 15)
+		.addSSell(LOTRItems.IRON_DAGGER, 9)
+		.addSSell(Items.IRON_SWORD, 12)
+		.addSSell(LOTRItems.IRON_SPEAR, 15)
+		.addSSell(LOTRItems.BLACKSMITH_HAMMER, 16)
+		.addSSell(ExtendedItems.BRANDING_IRON, 25)
+		.addMSell(Arrays.asList(ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.TOUGH),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SHARP),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.SWIFT),
+						ExtendedModifierScrollItem.createForModifier(ExtendedModifiers.LONG)
+				),
+				10, 100, 1, false)
+		.addSSell(ExtendedItems.DUNLAND_BANNER_PATTERN, 25)
+		.addSSell(ExtendedItems.DUNLENDING_SHIELD, 20)
+		.addSSell(ExtendedItems.COMBAT_TOME, 75)
+		.addSSell(ExtendedItems.ARTISAN_TOME, 50)
+		.save(pConsumer, ExtendedTraderTypes.DUNLENDING_SMITH);
 	}
 }

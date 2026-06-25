@@ -515,7 +515,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addMeleePoolItem(new ItemStack(Items.IRON_AXE), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_DAGGER.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.IRON_SPEAR.get()), 1)
-		.addShieldItem(new ItemStack(ExtendedItems.DUNLANDING_SHIELD.get()), 4)
+		.addShieldItem(new ItemStack(ExtendedItems.DUNLENDING_SHIELD.get()), 4)
 		.addShieldItem(ItemStack.EMPTY, 6)
 		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.DUNLENDING_WARRIOR);
 

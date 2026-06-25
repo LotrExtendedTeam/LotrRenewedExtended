@@ -242,5 +242,10 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		.setBoundaries(12, -8, 16, 4, -4, 6).enableSpawningAtSpawner(50).save(pConsumer, ExtendedSpawners.ISENGARD_WARG_PIT);
 		// DUNLENDING
 		single(ExtendedEntities.DUNLENDING_WARLORD.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.DUNLENDING_WARLORD);		
+		single(ExtendedEntities.DUNLENDING_BARTENDER.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.DUNLENDING_BARTENDER);		
+		single(ExtendedEntities.DUNLENDING_SMITH.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.DUNLENDING_SMITH);
+		single(LOTREntities.DUNLENDING.get()).setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.DUNLENDING_HOUSE);
+		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.DUNLENDING_WARRIOR.get(), 3).addPool(LOTREntities.DUNLENDING_BOWMAN.get(), 1)
+			.build(), 2, 6, false, 16, 12).setBoundaries(20, -8, 12, 6, -1, 4).enableSpawningAtSpawner(20).save(pConsumer, ExtendedSpawners.DUNLENDING_AREA);
 	}
 }

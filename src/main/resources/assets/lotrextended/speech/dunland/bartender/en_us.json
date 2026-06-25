@@ -1,0 +1,164 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "The stew's near ready. Won't be long now.",
+        "A cup of mead for you? Sweet as summer honey, that is.",
+        "What's your pleasure then? Ale, mead, or cider?",
+        "You'll find no better ale in all of Dunland!",
+        "Try our mead! It puts that filthy Rohan stuff to shame.",
+        "No trouble in my hall, mind. Eat, drink, and be welcome.",
+        "Welcome! Welcome to my roundhouse!",
+        "No Strawheads allowed in here!",
+        "I'll give you a good meal or a drink for just a few silver coins.",
+        "You looking for a drink?",
+        "This roundhouse may be filthy, but the grub's second to none!",
+        "Got any silver coins?",
+        "Our ale is the finest ale in all the lands!",
+        "Thirsty? Our ale will satisfy all your needs! Ha! Ha!",
+        "For a few silver coins you can get your hands on the finest drink in Middle-earth!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<warrior",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Haven't seen you around before, not trying to stir up any trouble, are you?",
+        "Not from these parts, are you? What can I get for you?",
+        "Welcome stranger! You come to the best tavern with the finest ale in all of Dunland!",
+        "You aren't a friend of Rohan, are you?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=warrior",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "What's your pleasure then, #p? Ale, mead, or cider?",
+        "You are among friends here, #p.",
+        "Welcome! Welcome to my roundhouse, #p!",
+        "Greetings, #p!",
+        "Welcome, #! What can I get for you today?",
+        "We Dunlendings like our drink, #p.",
+        "Welcome, #p! Enjoy your stay!",
+        "Want anything to eat or drink, #p? I just need some silver coins.",
+        "And here's #p! What can I do for you today?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Good day, what can I get for you?",
+        "Good day, what would you like today?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "morning",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Good morning, what can I get for you?",
+        "Morning, what can I get for you?",
+        "Morning, what would you like todays?",
+        "Good morning, need some breakfast?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "afternoon",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Good afternoon, what can I get for you?",
+        "Good afternoon, what would you like today?",
+        "We'll be getting ready for the afternoon feast here soon."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "evening",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Good evening, what can I get for you?",
+        "Evening! What can I get for you?",
+        "Evening! What would you like?",
+        "Good evening. What'll you be having, then?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "weather": "rain",
+        "in_combat": "false",
+        "in_conversation": "none",
+        "underground": "true"
+      },
+      "lines": [
+        "Come in, come in. No sense standing out in that weather.",
+        "It's quite the rainy day today, feel free to stay all you'd like.",
+        "Warm yourself by the fire while I draw your drink.",
+        "Come in out o' the rain, bach. There's room by the hearth."
+        ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "player_drunk ": "true",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Ha! Maybe you should hold off on the ale for a bit.",
+        "Be as drunk as you want, just don't brawl inside the tavern!",
+        "Does this trick, doesn't it?",
+        "Easy now, That ale's stronger than it tastes."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Get out of my tavern!",
+        "Friends of the Strawhats aren't welcome here!",
+        "You've taken enough of our land, you're not going to take my tavern!",
+        "No mead for you, scoundrel!",
+        "Get out of my hall!",
+        "Get out, you brigand!",
+        "I'll serve you nothing, I won't.",
+        "Leave now before I force you to!",
+        "What folly brought you here?",
+        "I'll not serve the likes of you, I won't!",
+        "No! No mead for you. Get out!",
+        "You will have nothing from me, servant of evil!",
+        "What madness drove you here?",
+        "You are not welcome here, #p!"
+      ]
+    }
+  ]
+}

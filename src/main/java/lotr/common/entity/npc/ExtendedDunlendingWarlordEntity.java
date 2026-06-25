@@ -42,7 +42,7 @@ public class ExtendedDunlendingWarlordEntity extends DunlendingWarriorEntity imp
 
 	@Override
 	protected Goal createAttackGoal() {
-		return new ExtendedShieldSwapMeleeAttackGoal(this, 1.6, new ItemStack(ExtendedItems.DUNLANDING_SHIELD.get()), ItemStack.EMPTY);
+		return new ExtendedShieldSwapMeleeAttackGoal(this, 1.6, new ItemStack(ExtendedItems.DUNLENDING_SHIELD.get()), ItemStack.EMPTY);
 	}
 
 	@Override

@@ -523,7 +523,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.DUNLENDING_WARLORD, manDunlending);
 		makeEntity(ExtendedEntities.DUNLENDING_AXE_THROWER, manDunlending);
 		makeEntity(ExtendedEntities.DUNLENDING_BERSERKER, manDunlending, arrows);
-
+		makeEntity(ExtendedEntities.DUNLENDING_BARTENDER, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_SMITH, manDunlending);
 	}
 
 	public ResourceLocation makeLootCommon(String name, LootTable.Builder builder) {

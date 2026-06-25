@@ -1,0 +1,131 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Death to the Strawheads!",
+        "All will flee from the might of Dunland!",
+        "Few can stand before the might of a mob of Dunlendings!",
+        "We Men of Dunland are proud and loyal warriors.",
+        "We Men of Dunland are strong and great warriors! We shall cleanse the lands of the filthy dogs of Rohan!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<warrior",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "Get some more deeds to your name, #p, and I might let you command my warriors!",
+        "I almost mistook you for one of those filthy Strawheads.",
+        "You'll have to earn some respect among our people if you want to lead us into battle.",
+        "And what do you want?",
+        "You are yet young among our people, #p. Great Men do not follow lesser Men.",
+        "You want to hire some Dunlendings? Prove your worth first, #p!",
+        "We would not let a simple and strange Man, such as yourself, command our mighty troops!",
+        "The great warriors of Dunland will not follow a stranger into battle.",
+        "We do not simply follow any mere Man to war. ",
+        "You want to command my troops? You need to prove yourself to our people first!",
+        "Only great heroes of our people are worthy of leading us into battle!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=warrior",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "The service of my warriors can be yours for just a few silver coins.",
+        "My Men will follow you into battle without fear.",
+        "You wish to bring death to the Strawheads? My Men shall fight for you!",
+        "Those filthy Rohirrim shall feel the edge of our swords!",
+        "Give me just a few silver coins, and I will give you my mighty warriors."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bearer",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "I have many strong warriors ready for hire, #!",
+        "Looking to hire an army, #p?",
+        "Have any silver coins, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=warlord",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day",
+        "rank": ">=warrior",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "morning",
+        "rank": ">=warrior",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "afternoon",
+        "rank": ">=warrior",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "player_drunk": "true",
+        "in_combat": "false",
+        "in_conversation": "none"
+      },
+      "lines": [
+        "A drunkard like you could never lead my men.",
+        "How will you lead men if you're as drunk as a donkey?",
+        "Lay off on that ale first, and then you can lead my warriors.",
+        "Who do you take us for? We dunlendings don't follow drunkards."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+      ]
+    }
+  ]
+}

@@ -167,6 +167,10 @@ public class ExtendedMissingMappings {
 		addRemapItem("morgul_chestplate", "lotr", ExtendedItems.MORGUL_VASSAL_CHESTPLATE);
 		addRemapItem("morgul_leggings", "lotr", ExtendedItems.MORGUL_VASSAL_LEGGINGS);
 		addRemapItem("morgul_boots", "lotr", ExtendedItems.MORGUL_VASSAL_BOOTS);
+		
+		//Beta 1.10.3 Renamed Dunlanding Shield to Dunlending Shield
+		addRemapItem("dunlanding_shield", "lotr", ExtendedItems.DUNLENDING_SHIELD);
+
 	}
 
 	private static void addRemapBlock(String previousMapping, String previousNamespace, Supplier<? extends Block> remapBlock) {

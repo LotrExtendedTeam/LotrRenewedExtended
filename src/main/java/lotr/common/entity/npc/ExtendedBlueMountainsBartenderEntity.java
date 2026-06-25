@@ -23,7 +23,7 @@ public class ExtendedBlueMountainsBartenderEntity extends ExtendedBlueMountainsT
 	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
 		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
 		this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.BLUE_DWARVEN_DAGGER.get()));
-		this.npcItemsInv.setIdleItem(new ItemStack(LOTRItems.WOODEN_MUG.get()));
+		this.npcItemsInv.setIdleItem(new ItemStack(LOTRItems.DWARVEN_ALE.get()));
 		return spawnData;
 	}
 

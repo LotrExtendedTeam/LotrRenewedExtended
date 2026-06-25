@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
+import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
@@ -72,6 +73,14 @@ public class AdvancementsProviderDunland extends ExtendedBaseAdvancementType{
 		Advancement we_fight = build(true, data(LOTRItems.DUNLENDING_CLUB.get(), "we_fight", FrameType.TASK)
 				.setTitle("We Fight for You!").setDescription("Hire a unit from a Dunlending Warlord."),
 				addUnitHireTrigger(make(), ExtendedEntities.DUNLENDING_WARLORD.get()).parent(dunland));
+
+		Advancement fine_dining = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "fine_dining", FrameType.TASK)
+			.setTitle("Fine Dining").setDescription("Trade with a Dunlending Bartender."),
+			addTradeEntityTrigger(make(), ExtendedEntities.DUNLENDING_BARTENDER.get()).parent(dunland));
+
+		Advancement mob_equiper = build(false, data(ExtendedItems.SILVER_COIN_ONE.get(), "mob_equiper", FrameType.TASK)
+			.setTitle("Equipper of the Mob").setDescription("Trade with a Dunlending Smith."),
+			addTradeEntityTrigger(make(), ExtendedEntities.DUNLENDING_SMITH.get()).parent(dunland));
 	}
 
 	@Override

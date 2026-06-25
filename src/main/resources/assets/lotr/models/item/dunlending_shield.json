@@ -1,10 +1,10 @@
 {
 	"parent": "lotr:item/template_shield",
 	"textures": {
-		"particle": "lotrextended:item/dunlanding_shield_front",
-		"front": "lotrextended:item/dunlanding_shield_front",
-		"straps": "lotrextended:item/dunlanding_shield_straps",
-		"back": "lotrextended:item/dunlanding_shield_back"
+		"particle": "lotrextended:item/dunlending_shield_front",
+		"front": "lotrextended:item/dunlending_shield_front",
+		"straps": "lotrextended:item/dunlending_shield_straps",
+		"back": "lotrextended:item/dunlending_shield_back"
 	},
 	"elements": [
 		{
@@ -191,7 +191,7 @@
 			"predicate": {
 				"blocking": 1
 			},
-			"model": "lotr:item/dunlanding_shield_blocking"
+			"model": "lotr:item/dunlending_shield_blocking"
 		}
 	],
 	"display": {

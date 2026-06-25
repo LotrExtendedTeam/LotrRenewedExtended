@@ -48,27 +48,27 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 		this.modId = pModId;
 	}
 
-	public abstract void makeStructureSpawnPools(Consumer<ExtendedTraderProfile> pConsumer);
+	public abstract void makeTraderProfiles(Consumer<ExtendedTraderProfile> pConsumer);
 
 	@Override
 	public void run(DirectoryCache pCache) throws IOException {
 		Path path = this.dataGenerator.getOutputFolder();
-		Consumer<ExtendedTraderProfile> consumer = (spawner) -> {
-			if (dataHere.put(spawner.getId(), spawner)!=null) {
-				throw new IllegalStateException("Duplicate trader profile " + spawner.getId().toString());
+		Consumer<ExtendedTraderProfile> consumer = (profile) -> {
+			if (dataHere.put(profile.getId(), profile)!=null) {
+				throw new IllegalStateException("Duplicate trader profile " + profile.getId().toString());
 			} else {
-				populateCheckingList(spawner.getTraderBoughtPool(), boughtItems);
-				populateCheckingList(spawner.getTraderSellPool(), soldItems);
-				Path path1 = createPath(path, spawner);
+				populateCheckingList(profile.getTraderBoughtPool(), boughtItems);
+				populateCheckingList(profile.getTraderSellPool(), soldItems);
+				Path path1 = createPath(path, profile);
 				try {
-					save(GSON_PRETTY_WRITER, pCache, spawner, path1);
+					save(GSON_PRETTY_WRITER, pCache, profile, path1);
 				} catch (IOException ioexception) {
 					LOGGER.error("Couldn't save trader profile {}", path1, ioexception);
 				}
 
 			}
 		};
-		makeStructureSpawnPools(consumer);
+		makeTraderProfiles(consumer);
 		ExtendedLog.info("Built "+dataHere.size()+" trader profiles.");
 		if(modId.equals(LotrExtendedMod.MODID)) {
 			for(ResourceLocation key : ExtendedTraderTypes.TRADER_TYPES) {
