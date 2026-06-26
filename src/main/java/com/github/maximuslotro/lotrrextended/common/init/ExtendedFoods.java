@@ -11,14 +11,14 @@ public class ExtendedFoods {//saturation gained = nutrition × saturationMod × 
 	public static final Food RASPBERRY = new Builder().nutrition(2).saturationMod(0.2F).build();
 	public static final Food CRANBERRY = new Builder().nutrition(2).saturationMod(0.2F).build();
 	public static final Food ELDERBERRY = new Builder().nutrition(2).saturationMod(0.2F).build();
-	public static final Food WILDBERRY = new Builder().nutrition(2).saturationMod(0.2F).effect(() -> new EffectInstance(Effects.POISON, 40, 1), 0.7F).build();
+	public static final Food WILDBERRY = new Builder().nutrition(2).saturationMod(0.2F).effect(() -> new EffectInstance(Effects.POISON, 5*20, 1), 0.7F).build();
 
 	public static final Food BLUEBERRY_PIE = new Builder().nutrition(2).saturationMod(0.1F).build();
 	public static final Food BLACKBERRY_PIE = new Builder().nutrition(2).saturationMod(0.1F).build();
 	public static final Food RASPBERRY_PIE = new Builder().nutrition(2).saturationMod(0.1F).build();
 	public static final Food CRANBERRY_PIE = new Builder().nutrition(2).saturationMod(0.1F).build();
 	public static final Food ELDERBERRY_PIE = new Builder().nutrition(2).saturationMod(0.1F).build();
-	public static final Food WILDBERRY_PIE = new Builder().nutrition(2).saturationMod(0.1F).effect(() -> new EffectInstance(Effects.POISON, 40, 1), 0.3F).build();
+	public static final Food WILDBERRY_PIE = new Builder().nutrition(2).saturationMod(0.1F).effect(() -> new EffectInstance(Effects.POISON, 4*20, 1), 0.3F).build();
 	public static final Food SWEET_BERRY_PIE = new Builder().nutrition(2).saturationMod(0.1F).build();
 
 	public static final Food CHEESE_CURDS = new Builder().nutrition(2).saturationMod(0.4F).build();
@@ -34,7 +34,7 @@ public class ExtendedFoods {//saturation gained = nutrition × saturationMod × 
 
 	public static final Food PLUM = new Builder().nutrition(4).saturationMod(0.3F).build();
 
-	public static final Food DUCK = new Food.Builder().nutrition(2).saturationMod(0.3F).effect(() -> new EffectInstance(Effects.HUNGER, 600, 0), 0.3F).meat().build();
+	public static final Food DUCK = new Food.Builder().nutrition(2).saturationMod(0.3F).effect(() -> new EffectInstance(Effects.HUNGER, 30*20, 0), 0.3F).meat().build();
 	public static final Food COOKED_DUCK = new Food.Builder().nutrition(6).saturationMod(0.6F).meat().build();
 
 	public static final Food HOBBIT_PANCAKE = new Food.Builder().nutrition(4).saturationMod(0.6F).build();
