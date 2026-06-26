@@ -488,6 +488,13 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> CHEESE_WHEEL;
 	public static RegistryObject<Block> AGED_CHEESE_WHEEL;
 	public static RegistryObject<Block> BANANA_CAKE;
+	public static RegistryObject<Block> BLUEBERRY_PIE;
+	public static RegistryObject<Block> BLACKBERRY_PIE;
+	public static RegistryObject<Block> RASPBERRY_PIE;
+	public static RegistryObject<Block> CRANBERRY_PIE;
+	public static RegistryObject<Block> ELDERBERRY_PIE;
+	public static RegistryObject<Block> WILDBERRY_PIE;
+	public static RegistryObject<Block> SWEET_BERRY_PIE;
 
 	public static RegistryObject<Block> REMAINS_ORC;
 	public static RegistryObject<Block> REMAINS_ELF;
