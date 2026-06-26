@@ -4,8 +4,8 @@ import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
-import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 
 import lotr.common.item.DaggerItem;
 import net.minecraft.block.BlockState;
@@ -24,8 +24,8 @@ import net.minecraftforge.fml.RegistryObject;
 public class ExtendedCheeseWheelBlock extends ExtendedCakeBlock implements ExtendedAgeingCheese {
 	private final RegistryObject<Item> sliceitem;
 	private final ExtendedCheeseState age;
-	public ExtendedCheeseWheelBlock(Properties p_i48434_1_, float compostValue, RegistryObject<Item> sliceitem, Food food, ExtendedCheeseState age) {
-		super(p_i48434_1_, compostValue, food, ExtendedStats.EAT_CHEESE_SLICE);
+	public ExtendedCheeseWheelBlock(Properties pProps, float pCompostValue, RegistryObject<Item> sliceitem, Food pFood, ExtendedCheeseState age) {
+		super(pProps, pCompostValue, pFood, ExtendedStats.EAT_CHEESE_SLICE);
 		this.sliceitem = sliceitem;
 		this.age = age;
 	}

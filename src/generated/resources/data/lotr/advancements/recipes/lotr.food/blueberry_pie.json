@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:blueberry_pie"
+    ]
+  },
+  "criteria": {
+    "has_blueberry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:blueberry"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:blueberry_pie"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blueberry",
+      "has_the_recipe"
+    ]
+  ]
+}

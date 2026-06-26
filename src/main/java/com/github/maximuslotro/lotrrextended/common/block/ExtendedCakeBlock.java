@@ -4,6 +4,7 @@ import com.mojang.datafixers.util.Pair;
 
 import lotr.common.event.CompostingHelper;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.CakeBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Food;
@@ -22,17 +23,21 @@ public class ExtendedCakeBlock extends CakeBlock {
 	protected final Food foodProperties;
 	protected final ResourceLocation eatStat;
 
-	public ExtendedCakeBlock(Properties p_i48434_1_, float compostValue, Food food, ResourceLocation pEatStat) {
-		super(p_i48434_1_);
-		this.foodProperties = food;
+	public ExtendedCakeBlock(Food pFood, ResourceLocation pEatStat) {
+		this(Properties.copy(Blocks.CAKE), 1.0F, pFood, pEatStat);
+	}
+
+	public ExtendedCakeBlock(Properties pProps, float pCompostValue, Food pFood, ResourceLocation pEatStat) {
+		super(pProps);
+		this.foodProperties = pFood;
 		this.eatStat = pEatStat;
-		if(compostValue>0) {
-			CompostingHelper.prepareCompostable(this, compostValue);
+		if(pCompostValue>0) {
+			CompostingHelper.prepareCompostable(this, pCompostValue);
 		}
 	}
 
 	@Override
-	public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult p_225533_6_) {
+	public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pRaytraceResult) {
 		if (pLevel.isClientSide) {
 			ItemStack itemstack = pPlayer.getItemInHand(pHand);
 			if (this.eat(pLevel, pPos, pState, pPlayer, pHand).consumesAction()) {

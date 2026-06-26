@@ -19,10 +19,10 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCoinType;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCrossbowMaterial;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.item.*;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem.MountType;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
-import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedBlackFurBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedDwarvenBedTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedFurBedTileEntity;
@@ -1086,6 +1086,14 @@ public class MixinLOTRItems {
 		ExtendedItems.ELDERBERRY = regItemB("elderberry", () -> new ExtendedBerries(ExtendedBlocks.ELDERBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ELDERBERRY)));
 		ExtendedItems.RASPBERRY = regItemB("raspberry", () -> new ExtendedBerries(ExtendedBlocks.RASPBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.RASPBERRY)));
 		ExtendedItems.WILDBERRY = regItemB("wildberry", ()-> new ExtendedBerries(ExtendedBlocks.WILDBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.WILDBERRY)));
+		ExtendedItems.BLACKBERRY_PIE  = regCakeBlockItemD(ExtendedBlocks.BLACKBERRY_PIE, LOTRItemGroups.FOOD);
+		ExtendedItems.BLUEBERRY_PIE  = regCakeBlockItemD(ExtendedBlocks.BLUEBERRY_PIE, LOTRItemGroups.FOOD);
+		ExtendedItems.CRANBERRY_PIE  = regCakeBlockItemD(ExtendedBlocks.CRANBERRY_PIE, LOTRItemGroups.FOOD);
+		ExtendedItems.ELDERBERRY_PIE  = regCakeBlockItemD(ExtendedBlocks.ELDERBERRY_PIE, LOTRItemGroups.FOOD);
+		ExtendedItems.RASPBERRY_PIE  = regCakeBlockItemD(ExtendedBlocks.RASPBERRY_PIE, LOTRItemGroups.FOOD);
+		ExtendedItems.WILDBERRY_PIE  = regCakeBlockItemD(ExtendedBlocks.WILDBERRY_PIE, LOTRItemGroups.FOOD);
+		ExtendedItems.SWEET_BERRY_PIE  = regCakeBlockItemD(ExtendedBlocks.SWEET_BERRY_PIE, LOTRItemGroups.FOOD);
+
 		ExtendedItems.BOTTLE_OF_POISON = regItemB("bottle_of_poison", () -> new ExtendedPoisonBottleItem(new Properties().stacksTo(16).tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CHEESE_CURDS)));
 		ExtendedItems.BUCKET_OF_CHEESE_CURDS = regItemB("bucket_of_cheese_curds", () -> new ExtendedBucketOfCheeseCurds(new Properties().stacksTo(32).tab(LOTRItemGroups.FOOD)));
 		ExtendedItems.CHEESE_CURDS = regItemB("cheese_curds", () -> new Item(new Properties().stacksTo(32).tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CHEESE_CURDS)));

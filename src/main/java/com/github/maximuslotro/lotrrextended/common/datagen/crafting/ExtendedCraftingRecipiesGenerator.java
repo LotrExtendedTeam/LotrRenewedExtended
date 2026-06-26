@@ -991,7 +991,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('X', Ingredient.of(Tags.Items.LEATHER))
 		.unlockedBy("has_iron_ingots", has(ExtendedTags.Items.ANVIL_IRON_INGOT))
 		.save(consumer, lotrLoc(ExtendedItems.BRANDING_IRON.get().getRegistryName().getPath()));
-		// Extended cheese
+		// Extended foods
 		GENERATEDRECIPES.add(ExtendedItems.CHEESE_WHEEL.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CHEESE_WHEEL.get())
 		.pattern("###")
@@ -1028,7 +1028,20 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('X', Ingredient.of(Items.WHEAT))
 		.unlockedBy("has_"+ExtendedItems.BANANA.get().getRegistryName().getPath(), has(ExtendedItems.BANANA.get()))
 		.save(consumer, lotrLoc(ExtendedItems.BANANA_BREAD.get().getRegistryName().getPath()));
-
+		makePieRecipe(consumer, ExtendedItems.BLACKBERRY_PIE, ExtendedItems.BLACKBERRY, null);
+		makePieRecipe(consumer, ExtendedItems.BLUEBERRY_PIE, ExtendedItems.BLUEBERRY, null);
+		makePieRecipe(consumer, ExtendedItems.CRANBERRY_PIE, ExtendedItems.CRANBERRY, null);
+		makePieRecipe(consumer, ExtendedItems.ELDERBERRY_PIE, ExtendedItems.ELDERBERRY, null);
+		makePieRecipe(consumer, ExtendedItems.RASPBERRY_PIE, ExtendedItems.RASPBERRY, null);
+		makePieRecipe(consumer, ExtendedItems.SWEET_BERRY_PIE, ()->Items.SWEET_BERRIES, null);
+		makePieRecipe(consumer, ExtendedItems.WILDBERRY_PIE, ExtendedItems.WILDBERRY, null);
+		GENERATEDRECIPES.add(ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath());
+		ShapelessRecipeBuilder.shapeless(ExtendedItems.BOTTLE_OF_POISON.get())
+		.requires(ExtendedItems.WILDBERRY.get())
+		.requires(Items.GLASS_BOTTLE)
+		.unlockedBy("has_"+ExtendedItems.WILDBERRY.get().getRegistryName().getPath(), has(ExtendedItems.WILDBERRY.get()))
+		.save(consumer, lotrLoc(ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath()));
+		// Misc Materials
 		GENERATEDRECIPES.add(ExtendedItems.SILVER_COIN_ONE.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.SILVER_COIN_ONE.get(), 4)
 		.pattern("##")
@@ -1042,12 +1055,6 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('#', Ingredient.of(Tags.Items.STRING))
 		.unlockedBy("has_string", has(Tags.Items.STRING))
 		.save(consumer, lotrLoc(ExtendedItems.HITHLAIN.get().getRegistryName().getPath()));
-		GENERATEDRECIPES.add(ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath());
-		ShapelessRecipeBuilder.shapeless(ExtendedItems.BOTTLE_OF_POISON.get())
-		.requires(ExtendedItems.WILDBERRY.get())
-		.requires(Items.GLASS_BOTTLE)
-		.unlockedBy("has_"+ExtendedItems.WILDBERRY.get().getRegistryName().getPath(), has(ExtendedItems.WILDBERRY.get()))
-		.save(consumer, lotrLoc(ExtendedItems.BOTTLE_OF_POISON.get().getRegistryName().getPath()));
 		//ExtendedDyeableRecipeBuilder.dyeing(ExtendedRecipeSerializers.EXTENDED_LEATHER_HAT.get(), IRecipeType.CRAFTING)
 		//.save(consumer, lotrLoc("leather_hat"));
 		ExtendedDyeableRecipeBuilder.dyeing(LOTRRecipes.ANY_FACTION, ExtendedItems.LEATHER_HAT.get()).save(consumer, lotrLoc("leather_hat_on_faction_table"));

@@ -443,6 +443,13 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BANANA_BREAD;
 	public static RegistryObject<Item> BANANA_BEER;
 	public static RegistryObject<Item> PLUM_KVASS;
+	public static RegistryObject<Item> BLUEBERRY_PIE;
+	public static RegistryObject<Item> BLACKBERRY_PIE;
+	public static RegistryObject<Item> RASPBERRY_PIE;
+	public static RegistryObject<Item> CRANBERRY_PIE;
+	public static RegistryObject<Item> ELDERBERRY_PIE;
+	public static RegistryObject<Item> WILDBERRY_PIE;
+	public static RegistryObject<Item> SWEET_BERRY_PIE;
 
 	public static RegistryObject<Item> HOBBIT_MARRIAGE_RING;
 	public static RegistryObject<Item> DWARF_MARRIAGE_RING;

@@ -18,6 +18,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedEntitiesNew;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProcessors;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedTapestryType;
@@ -33,7 +34,6 @@ import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignT
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedServerData;
 import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedStaffEvents;
-import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfileManager;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.BiomeFeatureAdder;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedFeature;

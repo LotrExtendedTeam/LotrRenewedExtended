@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/cake_slice3",
+  "textures": {
+    "particle": "lotrextended:block/cranberry_pie_side",
+    "bottom": "lotrextended:block/cranberry_pie_bottom",
+    "top": "lotrextended:block/cranberry_pie_top",
+    "side": "lotrextended:block/cranberry_pie_side",
+    "inside": "lotrextended:block/cranberry_pie_inner"
+  }
+}

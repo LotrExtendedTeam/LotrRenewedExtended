@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.Map.Entry;
 
-import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedStats;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;

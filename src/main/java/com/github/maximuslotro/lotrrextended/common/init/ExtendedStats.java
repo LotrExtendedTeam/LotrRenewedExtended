@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.stats;
+package com.github.maximuslotro.lotrrextended.common.init;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
 
@@ -19,6 +19,7 @@ public class ExtendedStats {
 	public static ResourceLocation OPENED_BOOKSHELF = registerStat("interact_with_bookshelf", "Bookshelves Opened", IStatFormatter.DEFAULT);
 	public static ResourceLocation INTERACT_WITH_MILLSTONE = registerStat("interact_with_ston_grinder", "Interactions with Stone Grinders", IStatFormatter.DEFAULT);
 	public static ResourceLocation INTERACT_WITH_CRUCIBLE = registerStat("interact_with_crucible", "Interactions with Crucible", IStatFormatter.DEFAULT);
+	public static ResourceLocation EAT_PIE_SLICE = registerStat("eat_pie_slice", "Pie Slices Eaten", IStatFormatter.DEFAULT);
 
 	public static void init() {}
 
