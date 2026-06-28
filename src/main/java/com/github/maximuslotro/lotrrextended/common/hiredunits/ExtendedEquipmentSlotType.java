@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.enums;
+package com.github.maximuslotro.lotrrextended.common.hiredunits;
 
 import net.minecraft.inventory.EquipmentSlotType;
 

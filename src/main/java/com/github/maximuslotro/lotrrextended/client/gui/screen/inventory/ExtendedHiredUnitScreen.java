@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedImageAddOffsetButton;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredEquipmentMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCSetHiredUnitOrdersPacket;

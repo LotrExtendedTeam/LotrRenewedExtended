@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.enums;
+package com.github.maximuslotro.lotrrextended.common.hiredunits;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
@@ -7,6 +7,7 @@ public enum ExtendedUnitOrders {
 	GAURD_PATROL(1, false, true),			// Guard a specific spot, but have a walkable radius (currently unused)
 	PATROL_PLAYER(2, true, true),			// Follow the player
 	DISMISSED(2, false, true),				// Dismissed, un-needed as units have wasHired field now (currently unused)
+	FARMING(3, false, true),				// Sets as farmhands
 	UNKNOWN(99, false, true);				// Unknown order type (currently unused)
 
 	private final int unchangingIndex;

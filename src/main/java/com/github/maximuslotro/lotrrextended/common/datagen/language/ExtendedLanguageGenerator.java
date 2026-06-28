@@ -572,6 +572,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("item.lotrextended.base_gear.weapon_idle", "Base Idle Weapon");
 		addD("item.lotrextended.base_gear.weapon_idle_mounted", "Base Idle Mounted Weapon");
 		addD("item.lotrextended.base_gear.shield", "Base Shield");
+		addD("item.lotrextended.base_gear.tool", "Base Tool");
 
 		// hired unit tooltips in unit GUI
 		addD("gui.lotrextended.hired_unit_tooltip.title.companion", "Companion:");

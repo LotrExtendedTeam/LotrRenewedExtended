@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedEquipmentSlotType;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
 import lotr.common.item.HammerItem;

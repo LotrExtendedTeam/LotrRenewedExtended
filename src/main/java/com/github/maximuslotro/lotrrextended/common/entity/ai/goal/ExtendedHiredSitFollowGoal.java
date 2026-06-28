@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 import java.util.EnumSet;
 import java.util.Random;
 
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 
 import lotr.common.entity.npc.ExtendedNPCEntity;
 import lotr.common.entity.npc.NPCEntity;

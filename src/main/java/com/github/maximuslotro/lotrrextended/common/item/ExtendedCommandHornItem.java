@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredSitFollowGoal;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitHornTypes;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.item.clientside.ExtendedCommandHornClientSide;
 

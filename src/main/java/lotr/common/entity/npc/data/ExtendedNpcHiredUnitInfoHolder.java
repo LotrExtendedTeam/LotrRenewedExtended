@@ -7,12 +7,12 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedEquipmentSlotType;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentPool;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.inventory.UnitInventory;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcUnitInfoPacket;

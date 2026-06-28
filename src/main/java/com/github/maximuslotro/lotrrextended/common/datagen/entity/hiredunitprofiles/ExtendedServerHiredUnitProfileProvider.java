@@ -14,10 +14,10 @@ import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOperationsType;
 import com.github.maximuslotro.lotrrextended.common.serialization.GsonSerializers;
 import com.google.gson.Gson;
 
@@ -96,7 +96,7 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 		return "Extended Hired Unit Profile Provider";
 	}
 
-	public ExtendedServerHiredUnitProfile.Builder make(EntityType<?> unitEntityType, ExtendedUnitAttackType pAttackType) {
+	public ExtendedServerHiredUnitProfile.Builder make(EntityType<?> unitEntityType, ExtendedUnitOperationsType pAttackType) {
 		return new ExtendedServerHiredUnitProfile.Builder(modId, unitEntityType, pAttackType);
 	}
 

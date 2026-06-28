@@ -21,7 +21,7 @@ import net.minecraft.world.GameRules;
 
 import java.util.Random;
 
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedEquipmentSlotType;
 
 public class ExtendedHiredUnitHelper {
     public static void die(ExtendedNpcHiredUnitInfoHolder unitInfo, DamageSource source) {

@@ -1,8 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 
 import lotr.common.entity.npc.ExtendedNPCEntity;
