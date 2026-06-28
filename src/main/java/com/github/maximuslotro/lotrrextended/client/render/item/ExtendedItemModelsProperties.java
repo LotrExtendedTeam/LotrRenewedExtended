@@ -33,6 +33,7 @@ public class ExtendedItemModelsProperties {
 		if (event.getMap().location().equals(PlayerContainer.BLOCK_ATLAS)) {
 			event.addSprite(ExtendedHiredUnitEquipmentContainer.EMPTY_ARMOR_SLOT_BOW);
 			event.addSprite(ExtendedHiredUnitEquipmentContainer.EMPTY_ARMOR_SLOT_SWORD);
+			event.addSprite(ExtendedHiredUnitEquipmentContainer.EMPTY_ARMOR_SLOT_HOE);
 			event.addSprite(ExtendedRepairContainerNew.EMPTY_SLOT_INGOT);
 		}
 	}

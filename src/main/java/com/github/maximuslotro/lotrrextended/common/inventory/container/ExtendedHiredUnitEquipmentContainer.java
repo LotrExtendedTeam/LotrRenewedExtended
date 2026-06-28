@@ -45,6 +45,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
 
     public static final ResourceLocation EMPTY_ARMOR_SLOT_BOW = new ResourceLocation(LotrExtendedMod.MODID, "item/empty_armor_slot_bow");
     public static final ResourceLocation EMPTY_ARMOR_SLOT_SWORD = new ResourceLocation(LotrExtendedMod.MODID, "item/empty_armor_slot_sword");
+    public static final ResourceLocation EMPTY_ARMOR_SLOT_HOE = new ResourceLocation(LotrExtendedMod.MODID, "item/empty_armor_slot_hoe");
 
     private NPCEntity companion;
 
