@@ -10,7 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedTradeContainer;
 
 import io.netty.buffer.Unpooled;
-import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.ExtendedMerchantEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
@@ -38,14 +38,18 @@ public class ExtendedCOpenTradeMenuPacket {
     }
 
     public static void handle(ExtendedCOpenTradeMenuPacket packet, Supplier<NetworkEvent.Context> context) {
+    	context.get().setPacketHandled(true);
     	Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.traderId);
-    	if (!(entity instanceof ExtendedTraderEntity)) {
-    		ExtendedLog.error("Recieved a trader eneity not of type ExtendedTraderEntity from %s", context.get().getSender().getName().getString());
-    		context.get().setPacketHandled(true);
+    	if (!(entity instanceof ExtendedMerchantEntity)) {
+    		ExtendedLog.error("Recieved a trader eneity not of type ExtendedMerchantEntity from %s", context.get().getSender().getName().getString());
     		return;
     	}
 
-    	ExtendedTraderEntity trader = (ExtendedTraderEntity) entity;
+    	ExtendedMerchantEntity trader = (ExtendedMerchantEntity) entity;
+    	if(trader.isInteractingWithPlayer() && trader.getPlayerInteractingWith().get()!=context.get().getSender().getUUID()) {
+    		context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_busy"), Util.NIL_UUID);
+    		return;
+    	}
 
     	// Ensure a modified client does not send trade request, bypassing client trade request check
     	if (!trader.canTradeWithPlayer(context.get().getSender())) {
@@ -54,7 +58,6 @@ public class ExtendedCOpenTradeMenuPacket {
     		}else{
         		context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_unfrendly"), Util.NIL_UUID);
     		}
-    		context.get().setPacketHandled(true);
     		return;
     	}
 
@@ -93,8 +96,6 @@ public class ExtendedCOpenTradeMenuPacket {
     	NetworkHooks.openGui(context.get().getSender(), new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedTradeContainer.CONTAINER_TITLE), 
     		buf -> ExtendedTradeContainer.writeContainerInitData(buf, packet.traderId, finalBoughtPrices, finalBoughtQuantities,
                 finalBoughtOriginalQuantities, finalSoldPrices, finalSoldQuantities, finalSoldOriginalQuantities, displayItems));
-
-    	context.get().setPacketHandled(true);
     }
 
 }

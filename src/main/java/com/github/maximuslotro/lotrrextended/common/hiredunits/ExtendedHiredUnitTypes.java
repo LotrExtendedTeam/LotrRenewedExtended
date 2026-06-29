@@ -13,6 +13,8 @@ import net.minecraftforge.fml.DatagenModLoader;
  */
 public class ExtendedHiredUnitTypes {
 	public static final Set<ResourceLocation> UNIT_TYPES = Sets.newHashSet();
+	// HOBBIT
+	public static final ResourceLocation HOBBIT_FARMHAND = make("hobbit_farmhand");
 	// BREE
 	public static final ResourceLocation BREE_MAN = make("bree_man");
 	public static final ResourceLocation BREE_HOBBIT = make("bree_hobbit");

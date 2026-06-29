@@ -12,7 +12,6 @@ import lotr.common.entity.npc.data.NPCFoodPools;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.util.ExtendedInteractableHelper;
-import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
@@ -35,7 +34,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
+public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implements ExtendedNPCEntitySettings, ExtendedMerchantEntity {
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedGundabadOrcTraderEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -141,11 +140,6 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implemen
 	}
 
 	@Override
-	public void playTradeSound() {
-		ExtendedTraderHelper.playTraderSound(level, getOnPos());
-	}
-
-	@Override
 	public boolean isInteractingWithPlayer() {
 		return ExtendedInteractableHelper.isInteractingWithPlayer(getPlayerInteractingWith());
 	}
@@ -163,21 +157,6 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implemen
 	@Override
 	public Optional<UUID> getPlayerInteractingWith() {
 		return this.entityData.get(PLAYER_TRADING_WITH);
-	}
-
-	@Override
-	public void openCoinExchange(PlayerEntity player) {
-		ExtendedTraderHelper.openCoinExchange(this, player, this);
-	}
-
-	@Override
-	public void openTradeMenu(PlayerEntity player) {
-		ExtendedTraderHelper.openTradeMenu(this, player, this);
-	}
-
-	@Override
-	public String getTraderName() {
-		return ExtendedTraderHelper.getTraderName(getDisplayName());
 	}
 
 	@Override

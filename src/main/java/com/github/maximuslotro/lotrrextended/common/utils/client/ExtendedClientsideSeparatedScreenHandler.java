@@ -17,7 +17,6 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedHoistTile
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedStoneTextSignTileEntity;
 
 import lotr.common.entity.npc.ExtendedCaptainEntity;
-import lotr.common.entity.npc.ExtendedTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.WargEntity;
 import net.minecraft.client.Minecraft;
@@ -30,7 +29,7 @@ import net.minecraft.tileentity.TileEntity;
 public class ExtendedClientsideSeparatedScreenHandler {
 
 	public static void openTraderMainMenuGui(NPCEntity entity, PlayerEntity player) {
-		Minecraft.getInstance().setScreen(new ExtendedTraderMainScreen(entity, (ExtendedTraderEntity) entity, player));
+		Minecraft.getInstance().setScreen(new ExtendedTraderMainScreen(entity, player));
 	}
 
 	public static void openCaptainGui(ExtendedSOpenCaptainPacket packet) {

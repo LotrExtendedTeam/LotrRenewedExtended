@@ -94,8 +94,8 @@ public abstract class ExtendedCaptainProfileProvider implements IDataProvider {
 		return "Extended Captain Profile Provider";
 	}
 
-	public ExtendedCaptainProfile.Builder make(ResourceLocation id) {
-		return new ExtendedCaptainProfile.Builder(id, modId);
+	public ExtendedCaptainProfile.Builder make(ResourceLocation id, int alignmentRequired) {
+		return new ExtendedCaptainProfile.Builder(id, modId, alignmentRequired);
 	}
 
 }

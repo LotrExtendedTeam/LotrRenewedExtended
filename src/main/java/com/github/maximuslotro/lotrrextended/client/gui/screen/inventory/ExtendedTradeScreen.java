@@ -12,6 +12,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import lotr.common.util.CoinUtils;
+import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -197,7 +198,7 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
 
     private void sellItems() {
         if (container.getSellValue() > 0) {
-            container.trader.playTradeSound();
+            ExtendedTraderHelper.playTraderSound(this.container.traderNPC);
             ExtendedPacketHandler.sendToServer(new ExtendedCTradeSellItemsPacket());
         }
     }

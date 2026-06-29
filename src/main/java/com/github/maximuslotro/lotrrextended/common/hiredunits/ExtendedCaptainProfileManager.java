@@ -61,7 +61,7 @@ public class ExtendedCaptainProfileManager extends ReloadListener<Map<ResourceLo
 				if (captainProfile != null) {
 					if(!captainProfile.getId().equals(spawnName)) {
 						ExtendedLog.warn("Loaded a Captain Profile that has a diffrent file id and file name, THEY SHOULD BE THE SAME!, CHANGING TO FILE NAME ID! %1", spawnName);
-						captainProfile = new ExtendedCaptainProfile(spawnName, captainProfile.getUnitProfileIDs());
+						captainProfile = new ExtendedCaptainProfile(spawnName, captainProfile.getUnitProfileIDs(), captainProfile.getInterractionAlignmentRequired());
 					}
 					builder.put(spawnName, captainProfile);
 				}

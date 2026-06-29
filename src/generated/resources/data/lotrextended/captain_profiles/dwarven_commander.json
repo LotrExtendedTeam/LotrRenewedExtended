@@ -1,5 +1,6 @@
 {
   "id": "lotrextended:dwarven_commander",
+  "alignmentRequired": 200,
   "unitProfileIDs": [
     "lotrextended:dwarf",
     "lotrextended:dwarven_warrior",

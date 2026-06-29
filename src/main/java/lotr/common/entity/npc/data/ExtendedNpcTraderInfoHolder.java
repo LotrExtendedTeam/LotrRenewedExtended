@@ -17,7 +17,7 @@ import com.github.maximuslotro.lotrrextended.common.traders.pools.ItemStackAndPr
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.ExtendedNPCEntity;
-import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.ExtendedMerchantEntity;
 import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.ExtendedTraderHelper;
@@ -119,7 +119,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 			return traderProfileHolder;
 		}
 		if(shouldLoad()) {
-			traderProfileHolder = ExtendedTraderProfileManager.INSTANCE.get(((ExtendedTraderEntity)thisEntity).getTraderProfileId());
+			traderProfileHolder = ExtendedTraderProfileManager.INSTANCE.get(((ExtendedMerchantEntity)thisEntity).getTraderProfileId());
 			return traderProfileHolder;
 		}
 		ExtendedLog.error("ERROR ERROR! TRIED GETTING A TRADER PROFILE FROM A NON TRADER NPC");
@@ -359,7 +359,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	 * */
 	@Override
 	public boolean shouldTick() {
-		return thisEntity instanceof ExtendedTraderEntity;
+		return thisEntity instanceof ExtendedMerchantEntity;
 	}
 
 	/**

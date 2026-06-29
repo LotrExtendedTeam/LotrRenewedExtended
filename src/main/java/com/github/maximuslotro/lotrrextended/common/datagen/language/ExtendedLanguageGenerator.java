@@ -175,6 +175,22 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("chat.wandering_trader.arrive_near_player", "%1$s has arrived nearby %2$s");
 		addD("chat.wandering_trader.left_the_area", "%1$s has left the area");
 
+		// hired unit messages and tooltips for captains
+		addD("gui.lotrextended.hiring.hire_button", "Hire");
+		addD("gui.lotrextended.hiring.hire_button.tooltip", "Enlist the service of NPCs");
+		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
+		addD("gui.lotrextended.hiring.captain_unfriendly", "Captain is unfriendly at the moment.");
+		
+		addD("gui.lotrextended.hiring.hire_unit", "Hire: %s");
+		addD("gui.lotrextended.hiring.hire_unit.amount", "Hire for %s coins");
+		addD("gui.lotrextended.hiring.hire_unit.not_pledged", "Insufficient pledge! Pledge required to hire this unit.");
+		addD("gui.lotrextended.hiring.hire_unit.not_enough_money", "Insufficient currency! %s coins required to hire this unit.");
+		addD("gui.lotrextended.hiring.hire_unit.not_alignment", "Insufficient alignment! %s alignment required to hire this unit.");
+		addD("gui.lotrextended.hiring.not_enough_money", "Not enough money. You need %s coins to hire that unit.");
+		addD("gui.lotrextended.hiring.not_pledged", "You need to be pledged to hire that unit.");
+		addD("gui.lotrextended.hiring.not_alignment", "Your alignment is too low. You need %s alignment to hire that unit.");
+		addD("gui.lotrextended.hiring.unit_has_been_hired", "The %1$s has been hired for %2$s coins.");
+
 		// wandering trader departure lines
 		// TODO: Eventually these should properly be moved to the speechbanks files but that is pretty complex to do
 		//  and in order to get 1.6 out quicker I have decided that it can wait until 1.7
@@ -548,15 +564,6 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("container.lotrextended.repair.info.modifier_maxed", "Modifier is maxed!");
 		addD("container.lotrextended.repair.info.invalid_material", "Invalid Material!");
 		addD("container.lotrextended.repair.info.missing_material", "Missing Materials!");
-
-		// hired unit messages and tooltips for captains
-		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
-		addD("gui.lotrextended.hiring.captain_unfriendly", "Your alignment is too low.");
-		addD("gui.lotrextended.hiring.hire", "Hire: ");
-		addD("gui.lotrextended.hiring.not_enough_money", "Not enough money. You need %s coins to hire that unit.");
-		addD("gui.lotrextended.hiring.not_pledged", "You need to be pledged to hire that unit.");
-		addD("gui.lotrextended.hiring.not_alignment", "Your alignment is too low. You need %s alignment to hire that unit.");
-		addD("gui.lotrextended.hiring.unit_has_been_hired", "The %1$s has been hired for %2$s coins.");
 
 		// hired unit menus
 		addD("gui.lotrextended.menu.equipment", "Equipment");

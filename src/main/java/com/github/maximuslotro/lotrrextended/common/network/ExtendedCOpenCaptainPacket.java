@@ -14,7 +14,6 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainPr
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 
 import lotr.common.entity.npc.ExtendedCaptainEntity;
-import lotr.common.entity.npc.NPCEntity;
 
 public class ExtendedCOpenCaptainPacket {
 
@@ -39,8 +38,9 @@ public class ExtendedCOpenCaptainPacket {
 			context.get().setPacketHandled(true);
 			return;
 		}
-		if (!((ExtendedCaptainEntity)entity).isFriendlyAndAlignedWithLevel(context.get().getSender(), (NPCEntity) entity, 0)) {
-			if(((ExtendedCaptainEntity)entity).isFriendly(context.get().getSender(), (NPCEntity) entity)) {
+		ExtendedCaptainEntity trader = (ExtendedCaptainEntity) entity;
+		if (!trader.canHireToPlayer(context.get().getSender())) {
+			if(trader.isFriendly(context.get().getSender())) {
 				context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);
 			}else{
 				context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_unfrendly"), Util.NIL_UUID);
@@ -49,7 +49,7 @@ public class ExtendedCOpenCaptainPacket {
 			return;
 		}
 
-		List<ExtendedServerHiredUnitProfile> serverProfiles = ExtendedCaptainProfileManager.INSTANCE.get(((ExtendedCaptainEntity)entity).getCaptainProfile()).getUnitProfiles();
+		List<ExtendedServerHiredUnitProfile> serverProfiles = ExtendedCaptainProfileManager.INSTANCE.get(trader.getCaptainProfile()).getUnitProfiles();
 
 		if(serverProfiles.isEmpty()) {
 			ExtendedLog.error("No valid unit profiles found for captain entity! " + entity.getClass().getName());

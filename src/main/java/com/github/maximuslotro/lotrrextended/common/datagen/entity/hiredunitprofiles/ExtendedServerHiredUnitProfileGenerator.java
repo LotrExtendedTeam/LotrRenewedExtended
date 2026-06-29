@@ -23,6 +23,15 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 
 	@Override
 	public void makeHiredUnitProfiles(Consumer<ExtendedServerHiredUnitProfile> pConsumer) {
+		make(LOTREntities.HOBBIT.get(), ExtendedUnitOperationsType.FARMHAND).setPurchaseInfo(40, false, 50)
+		.addHelmetPoolItem(ItemStack.EMPTY, 1)
+		.addChestplatePoolItem(ItemStack.EMPTY, 1)
+		.addLeggingPoolItem(ItemStack.EMPTY, 1)
+		.addBootsPoolItem(ItemStack.EMPTY, 1)
+		.addToolPoolItem(new ItemStack(Items.IRON_HOE), 5)
+		.addToolPoolItem(new ItemStack(LOTRItems.BRONZE_HOE.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.HOBBIT_FARMHAND);
 		// Bree Units
 		make(LOTREntities.BREE_MAN.get(), ExtendedUnitOperationsType.MELEE).setPurchaseInfo(20, false, 100)
 		.addHelmetPoolItem(ItemStack.EMPTY, 1)

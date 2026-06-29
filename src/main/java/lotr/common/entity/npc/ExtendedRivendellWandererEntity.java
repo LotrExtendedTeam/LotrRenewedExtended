@@ -143,11 +143,6 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractCloakingElf
     }
 
     @Override
-    public void playTradeSound() {
-        ExtendedTraderHelper.playTraderSound(level, getOnPos());
-    }
-
-    @Override
     public boolean isInteractingWithPlayer() {
         return ExtendedInteractableHelper.isInteractingWithPlayer(getPlayerInteractingWith());
     }
@@ -155,21 +150,6 @@ public class ExtendedRivendellWandererEntity extends ExtendedAbstractCloakingElf
     @Override
     public void removePlayerFromInteracting(PlayerEntity player) {
     	ExtendedInteractableHelper.removePlayerFromInteracting(player, entityData, PLAYER_TRADING_WITH);
-    }
-
-    @Override
-    public void openCoinExchange(PlayerEntity player) {
-        ExtendedTraderHelper.openCoinExchange(this, player, this);
-    }
-
-    @Override
-    public void openTradeMenu(PlayerEntity player) {
-        ExtendedTraderHelper.openTradeMenu(this, player, this);
-    }
-
-    @Override
-    public String getTraderName() {
-        return ExtendedTraderHelper.getTraderName(getDisplayName());
     }
 
     @Override

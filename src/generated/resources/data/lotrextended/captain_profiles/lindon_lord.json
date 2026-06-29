@@ -1,5 +1,6 @@
 {
   "id": "lotrextended:lindon_lord",
+  "alignmentRequired": 300,
   "unitProfileIDs": [
     "lotrextended:lindon_elf",
     "lotrextended:lindon_warrior"

@@ -1,5 +1,6 @@
 {
   "id": "lotrextended:dunlending_warlord",
+  "alignmentRequired": 100,
   "unitProfileIDs": [
     "lotrextended:dunlending",
     "lotrextended:dunlending_warrior",

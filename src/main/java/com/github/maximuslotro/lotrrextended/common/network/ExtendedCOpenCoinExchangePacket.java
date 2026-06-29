@@ -40,23 +40,22 @@ public class ExtendedCOpenCoinExchangePacket {
     }
 
     public static void handle(ExtendedCOpenCoinExchangePacket packet, Supplier<NetworkEvent.Context> context) {
+    	context.get().setPacketHandled(true);
     	Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.traderId);
     	if (!(entity instanceof ExtendedTraderEntity)) {
     		ExtendedLog.error("Recieved a trader eneity not of type ExtendedTraderEntity from %s", context.get().getSender().getName().getString());
-    		context.get().setPacketHandled(true);
     		return;
     	}
 
     	ExtendedTraderEntity trader = (ExtendedTraderEntity) entity;
 
     	// Ensure a modified client does not send trade request, bypassing client trade request check
-    	if (!trader.canTradeWithPlayer(context.get().getSender())) {
+    	if (!trader.canExchangeCoinsWithPlayer(context.get().getSender())) {
     		if(trader.isFriendly(context.get().getSender())) {
         		context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
     		}else{
         		context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_unfrendly"), Util.NIL_UUID);
     		}
-    		context.get().setPacketHandled(true);
     		return;
     	}
 
@@ -64,7 +63,5 @@ public class ExtendedCOpenCoinExchangePacket {
     	PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
     	ExtendedCoinExchangeContainer.writeContainerInitData(initData, packet.traderId);
     	NetworkHooks.openGui(context.get().getSender(), new SimpleNamedContainerProvider((i, inv, p) -> containerType.create(i, inv, initData), ExtendedCoinExchangeContainer.CONTAINER_TITLE), buf -> ExtendedCoinExchangeContainer.writeContainerInitData(buf, packet.traderId));
-    	context.get().setPacketHandled(true);
     }
-
 }

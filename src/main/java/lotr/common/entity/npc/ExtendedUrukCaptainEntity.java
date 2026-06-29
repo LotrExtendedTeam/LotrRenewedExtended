@@ -59,5 +59,4 @@ public class ExtendedUrukCaptainEntity extends UrukEntity implements ExtendedNPC
 	public ResourceLocation getCaptainProfile() {
 		return ExtendedCaptainTypes.ISENGARD_CAPTAIN;
 	}
-
 }
