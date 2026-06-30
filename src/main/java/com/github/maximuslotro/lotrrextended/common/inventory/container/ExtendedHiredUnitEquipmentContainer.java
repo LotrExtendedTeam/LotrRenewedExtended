@@ -9,7 +9,7 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedEquipmentSlotType;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOperationsType;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentSlot.ArmorSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentSlot.MeleeSlot;
@@ -108,7 +108,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
 
         // Setup hand slots
         meleeSlot = (MeleeSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.MeleeSlot(playerEquipment, 4, 62, 67, EMPTY_ARMOR_SLOT_SWORD));
-        if(profile.getAttackType()==ExtendedUnitOperationsType.RANGED) {
+        if(profile.getAttackType()==ExtendedUnitCombatTypes.RANGED) {
             rangedSlot = (RangedSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.RangedSlot(playerEquipment, 5, 62, 49,EMPTY_ARMOR_SLOT_BOW));
         }
         offhandSlot = (OffhandSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.OffhandSlot(playerEquipment, 9, 62, 85, PlayerContainer.EMPTY_ARMOR_SLOT_SHIELD));

@@ -2,7 +2,11 @@ package com.github.maximuslotro.lotrrextended.common.hiredunits;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
-public enum ExtendedUnitOperationsType {
+/*
+ * Primarily used to determine what GUI options should appear for units
+ * Also used during data generation to validate inputs 
+ * */
+public enum ExtendedUnitCombatTypes {
 	MELEE("melee", false, false, false), 
 	RANGED("ranged", true, false, false), 
 	MOUNTED_MELEE("mounted_melee", false, true, false), 
@@ -14,21 +18,21 @@ public enum ExtendedUnitOperationsType {
 	private final boolean mounted;
 	private final boolean farming;
 
-	private ExtendedUnitOperationsType(String pName, boolean ranged, boolean mounted, boolean farming) {
+	private ExtendedUnitCombatTypes(String pName, boolean ranged, boolean mounted, boolean farming) {
 		this.name = pName;
 		this.ranged = ranged;
 		this.mounted = mounted;
 		this.farming = farming;
 	}
 
-	public static ExtendedUnitOperationsType byName(String name) {
-		for(ExtendedUnitOperationsType type : values()) {
+	public static ExtendedUnitCombatTypes byName(String name) {
+		for(ExtendedUnitCombatTypes type : values()) {
 			if(type.getOperationTypeName().equals(name)) {
 				return type;
 			}
 		}
-		ExtendedLog.error("Tried to decode unknown unit attack type: "+name+", defaulted to "+ExtendedUnitOperationsType.MELEE+"!");
-		return ExtendedUnitOperationsType.MELEE;
+		ExtendedLog.error("Tried to decode unknown unit attack type: "+name+", defaulted to "+ExtendedUnitCombatTypes.MELEE+"!");
+		return ExtendedUnitCombatTypes.MELEE;
 	}
 
 	public String getOperationTypeName() {

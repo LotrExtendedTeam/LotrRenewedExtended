@@ -4,7 +4,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOperationsType;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
@@ -87,7 +87,7 @@ public class ExtendedHiredUnitEquipmentScreen extends ContainerScreen<ExtendedHi
 	@Override
 	protected void renderBg(MatrixStack p_98413_, float p_98414_, int p_98415_, int p_98416_) {
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-		if(menu.profile.getAttackType()==ExtendedUnitOperationsType.RANGED) {
+		if(menu.profile.getAttackType()==ExtendedUnitCombatTypes.RANGED) {
 			this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND);
 		}else {
 			this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND_MELEE);

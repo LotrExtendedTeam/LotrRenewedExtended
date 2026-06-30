@@ -17,7 +17,7 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOperationsType;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
 import com.github.maximuslotro.lotrrextended.common.serialization.GsonSerializers;
 import com.google.gson.Gson;
 
@@ -96,7 +96,7 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 		return "Extended Hired Unit Profile Provider";
 	}
 
-	public ExtendedServerHiredUnitProfile.Builder make(EntityType<?> unitEntityType, ExtendedUnitOperationsType pAttackType) {
+	public ExtendedServerHiredUnitProfile.Builder make(EntityType<?> unitEntityType, ExtendedUnitCombatTypes pAttackType) {
 		return new ExtendedServerHiredUnitProfile.Builder(modId, unitEntityType, pAttackType);
 	}
 

@@ -26,7 +26,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedServerHiredUnitProfile {
-	public static final ExtendedServerHiredUnitProfile EMPTY = new ExtendedServerHiredUnitProfile(LotrExtendedMod.EMPTY, false, "EMPTY", "EMPTY", "EMPTY", ExtendedHiredUnitEquipmentPool.EMPTY, 100000, false, 1000, ExtendedUnitOperationsType.MELEE, EntityType.PIG);
+	public static final ExtendedServerHiredUnitProfile EMPTY = new ExtendedServerHiredUnitProfile(LotrExtendedMod.EMPTY, false, "EMPTY", "EMPTY", "EMPTY", ExtendedHiredUnitEquipmentPool.EMPTY, 100000, false, 1000, ExtendedUnitCombatTypes.MELEE, EntityType.PIG);
 	private final ResourceLocation id;
 	private final boolean translateStrings;
 	private final String entity_title;
@@ -36,10 +36,10 @@ public class ExtendedServerHiredUnitProfile {
 	private final int hiringCost;
 	private final boolean hiringRequiresPledge;
 	private final int hiringAlignmentRequired;
-	private final ExtendedUnitOperationsType attackType;
+	private final ExtendedUnitCombatTypes attackType;
 	private final EntityType<?> unitEntityType;
 
-	public ExtendedServerHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, ExtendedHiredUnitEquipmentPool equipmentPools, int hiringCost, boolean hiringRequiresPledge, int hiringAlignmentRequired, ExtendedUnitOperationsType attackType, EntityType<?> unitEntityType) {
+	public ExtendedServerHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, ExtendedHiredUnitEquipmentPool equipmentPools, int hiringCost, boolean hiringRequiresPledge, int hiringAlignmentRequired, ExtendedUnitCombatTypes attackType, EntityType<?> unitEntityType) {
 		this.id = id;
 		this.translateStrings = translateStrings;
 		this.entity_title = entity_title;
@@ -132,10 +132,10 @@ public class ExtendedServerHiredUnitProfile {
 
 	/**
 	 * Gets the attack type enum for this profile
-	 * @see ExtendedUnitOperationsType
+	 * @see ExtendedUnitCombatTypes
 	 * @return The attack type enum instance
 	 * */
-	public ExtendedUnitOperationsType getAttackType() {
+	public ExtendedUnitCombatTypes getAttackType() {
 		return attackType;
 	}
 
@@ -177,12 +177,12 @@ public class ExtendedServerHiredUnitProfile {
 			boolean hiringRequiresPledge = hiringObject.get("hiringRequiresPledge").getAsBoolean();
 			int hiringAlignmentRequired = hiringObject.get("hiringAlignmentRequired").getAsInt();
 			// Attack information
-			ExtendedUnitOperationsType attackType;
+			ExtendedUnitCombatTypes attackType;
 			if(jsonobject.has("attack_type")) {
-				attackType = ExtendedUnitOperationsType.byName(jsonobject.get("attack_type").getAsString());
+				attackType = ExtendedUnitCombatTypes.byName(jsonobject.get("attack_type").getAsString());
 			}else {
 				// Fallback for incorrect placement that occurred before 1.10.2
-				attackType = ExtendedUnitOperationsType.byName(languageObject.get("attack_type").getAsString());
+				attackType = ExtendedUnitCombatTypes.byName(languageObject.get("attack_type").getAsString());
 			}
 			// Equipment
 			ExtendedHiredUnitEquipmentPool equipmentPools = JSONUtils.getAsObject(jsonobject, "equipmentPools", ExtendedHiredUnitEquipmentPool.EMPTY, context, ExtendedHiredUnitEquipmentPool.class);
@@ -224,11 +224,11 @@ public class ExtendedServerHiredUnitProfile {
 		private int hiringCost;
 		private boolean hiringRequiresPledge;
 		private int hiringAlignmentRequired;
-		private ExtendedUnitOperationsType attackType;
+		private ExtendedUnitCombatTypes attackType;
 		private final EntityType<?> unitEntityType;
 		private final String modId;
 
-		public Builder(String modId, EntityType<?> unitEntityType, ExtendedUnitOperationsType pAttackType) {
+		public Builder(String modId, EntityType<?> unitEntityType, ExtendedUnitCombatTypes pAttackType) {
 			this.attackType = pAttackType;
 			this.unitEntityType = unitEntityType;
 			this.modId = modId;

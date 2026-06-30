@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.hiredunits;
 
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOperationsType;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
@@ -14,9 +14,9 @@ public class ExtendedClientHiredUnitProfile {
 	private final int hiringCost;
 	private final boolean hiringRequiresPledge;
 	private final int hiringAlignmentRequired;
-	private final ExtendedUnitOperationsType attackType;
+	private final ExtendedUnitCombatTypes attackType;
 
-	public ExtendedClientHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_unit_type, int hiringCost, boolean hiringRequiresPledge, int hiringAlignmentRequired, ExtendedUnitOperationsType attackType) {
+	public ExtendedClientHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_unit_type, int hiringCost, boolean hiringRequiresPledge, int hiringAlignmentRequired, ExtendedUnitCombatTypes attackType) {
 		this.id = id;
 		this.translateStrings = translateStrings;
 		this.entity_unit_type = entity_unit_type;
@@ -74,10 +74,10 @@ public class ExtendedClientHiredUnitProfile {
 
 	/**
 	 * Gets the attack type enum for this profile
-	 * @see ExtendedUnitOperationsType
+	 * @see ExtendedUnitCombatTypes
 	 * @return The attack type enum instance
 	 * */
-	public ExtendedUnitOperationsType getAttackType() {
+	public ExtendedUnitCombatTypes getAttackType() {
 		return attackType;
 	}
 
@@ -88,7 +88,7 @@ public class ExtendedClientHiredUnitProfile {
 		int hiringCost = buf.readInt();
 		boolean hiringRequiresPledge = buf.readBoolean();
 		int hiringAlignmentRequired = buf.readInt();
-		ExtendedUnitOperationsType attackType = ExtendedUnitOperationsType.byName(buf.readUtf());
+		ExtendedUnitCombatTypes attackType = ExtendedUnitCombatTypes.byName(buf.readUtf());
 		return new ExtendedClientHiredUnitProfile(id, translateStrings, entity_unit_type, hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType);
 	}
 
@@ -109,7 +109,7 @@ public class ExtendedClientHiredUnitProfile {
 		int hiringCost = nbt.getInt("hiringCost");
 		boolean hiringRequiresPledge = nbt.getBoolean("hiringRequiresPledge");
 		int hiringAlignmentRequired = nbt.getInt("hiringAlignmentRequired");
-		ExtendedUnitOperationsType attackType = ExtendedUnitOperationsType.byName(nbt.getString("attack_type"));
+		ExtendedUnitCombatTypes attackType = ExtendedUnitCombatTypes.byName(nbt.getString("attack_type"));
 		return new ExtendedClientHiredUnitProfile(id, translateStrings, entity_unit_type, hiringCost, hiringRequiresPledge, hiringAlignmentRequired, attackType);
 	}
 

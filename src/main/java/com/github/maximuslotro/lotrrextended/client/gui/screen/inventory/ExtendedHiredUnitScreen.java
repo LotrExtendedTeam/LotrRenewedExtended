@@ -76,28 +76,28 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 		// TODO: At some point add a guard mode
 		this.patrolButton = addButton(new ExtendedImageAddOffsetButton(col1, row1, 16, 12, 0, 0, 13, ORDER_BUTTONS, 
 				btn -> {
-					if(orders != ExtendedUnitOrders.PATROL_PLAYER) {
-						orders = ExtendedUnitOrders.PATROL_PLAYER;
-						ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(menu.getCompanion().getId(), ExtendedUnitOrders.PATROL_PLAYER));
+					if(orders != ExtendedUnitOrders.FOLLOW_PLAYER) {
+						orders = ExtendedUnitOrders.FOLLOW_PLAYER;
+						ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(menu.getCompanion().getId(), ExtendedUnitOrders.FOLLOW_PLAYER));
 					}
 				}) {
 			@Override
 			public boolean shouldShowEnabled() {
-				return orders.equals(ExtendedUnitOrders.PATROL_PLAYER);
+				return orders.equals(ExtendedUnitOrders.FOLLOW_PLAYER);
 			}
 		}
 
 				);
 		this.stationaryButton = addButton(new ExtendedImageAddOffsetButton(col1, row1 + 14, 16, 12, 34, 0, 13, ORDER_BUTTONS,
 				btn -> {
-					if(orders != ExtendedUnitOrders.GUARD_STATIONARY) {
-						orders = ExtendedUnitOrders.GUARD_STATIONARY;
-						ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(menu.getCompanion().getId(), ExtendedUnitOrders.GUARD_STATIONARY));
+					if(orders != ExtendedUnitOrders.STATIONARY) {
+						orders = ExtendedUnitOrders.STATIONARY;
+						ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(menu.getCompanion().getId(), ExtendedUnitOrders.STATIONARY));
 					}
 				}) {
 			@Override
 			public boolean shouldShowEnabled() {
-				return orders.equals(ExtendedUnitOrders.GUARD_STATIONARY);
+				return orders.equals(ExtendedUnitOrders.STATIONARY);
 			}
 		}
 				);
@@ -141,7 +141,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 
 		if (this.patrolButton.isHovered()) {
 			List<ITextComponent> tooltips = new ArrayList<>();
-			if (orders==ExtendedUnitOrders.PATROL_PLAYER) {
+			if (orders==ExtendedUnitOrders.FOLLOW_PLAYER) {
 				tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.follows_on_title"));
 				tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.follows_on_description").withStyle(TextFormatting.GRAY).withStyle(TextFormatting.ITALIC));
 				this.renderComponentTooltip(stack, tooltips, x, y);
@@ -153,7 +153,7 @@ public class ExtendedHiredUnitScreen extends ContainerScreen<ExtendedHiredUnitCo
 		}
 		if (this.stationaryButton.isHovered()) {
 			List<ITextComponent> tooltips = new ArrayList<>();
-			if (orders==ExtendedUnitOrders.GUARD_STATIONARY) {
+			if (orders==ExtendedUnitOrders.STATIONARY) {
 				tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.stationary_on_title"));
 				tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.stationary_on_description").withStyle(TextFormatting.GRAY).withStyle(TextFormatting.ITALIC));
 			} else {

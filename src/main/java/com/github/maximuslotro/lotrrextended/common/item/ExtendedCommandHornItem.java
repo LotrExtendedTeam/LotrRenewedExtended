@@ -50,7 +50,7 @@ public class ExtendedCommandHornItem extends Item {
 		if(type.isSummon()) {
 			List<NPCEntity> teleportableUnits = world.getEntitiesOfClass(NPCEntity.class, new AxisAlignedBB(entityplayer.blockPosition()).inflate(64), (entity)->{
 				return ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedNPCEntity)entity).getUnitInfo().getOwnerUUID().equals(entityplayer.getUUID())
-					&& ((ExtendedNPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.PATROL_PLAYER;
+					&& ((ExtendedNPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.FOLLOW_PLAYER;
 			});
 			for(NPCEntity unit : teleportableUnits) {
 				ExtendedHiredSitFollowGoal.teleportToOwner(unit, entityplayer, true);
@@ -59,20 +59,20 @@ public class ExtendedCommandHornItem extends Item {
 		if(type.isHalt()) {
 			List<NPCEntity> followingUnits = world.getEntitiesOfClass(NPCEntity.class, new AxisAlignedBB(entityplayer.blockPosition()).inflate(64), (entity)->{
 				return ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedNPCEntity)entity).getUnitInfo().getOwnerUUID().equals(entityplayer.getUUID())
-					&& ((ExtendedNPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.PATROL_PLAYER;
+					&& ((ExtendedNPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.FOLLOW_PLAYER;
 			});
 			for(NPCEntity unit : followingUnits) {
-				((ExtendedNPCEntity)unit).getUnitInfo().setOrders(ExtendedUnitOrders.GUARD_STATIONARY);
+				((ExtendedNPCEntity)unit).getUnitInfo().setOrders(ExtendedUnitOrders.STATIONARY);
 			}
 			setType(itemstack, ExtendedUnitHornTypes.READY);
 		}
 		if(type.isReady()) {
 			List<NPCEntity> stationaryUnits = world.getEntitiesOfClass(NPCEntity.class, new AxisAlignedBB(entityplayer.blockPosition()).inflate(64), (entity)->{
 				return ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedNPCEntity)entity).getUnitInfo().getOwnerUUID().equals(entityplayer.getUUID())
-					&& ((ExtendedNPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.GUARD_STATIONARY;
+					&& ((ExtendedNPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.STATIONARY;
 			});
 			for(NPCEntity unit : stationaryUnits) {
-				((ExtendedNPCEntity)unit).getUnitInfo().setOrders(ExtendedUnitOrders.PATROL_PLAYER);
+				((ExtendedNPCEntity)unit).getUnitInfo().setOrders(ExtendedUnitOrders.FOLLOW_PLAYER);
 			}
 			setType(itemstack, ExtendedUnitHornTypes.HALT);
 		}

@@ -68,7 +68,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	private float max_xp = 1.0f;
 	private int kills = 0;
 	private int baseHealth = 20;
-	private ExtendedUnitOrders unitOrders = ExtendedUnitOrders.GUARD_STATIONARY;
+	private ExtendedUnitOrders unitOrders = ExtendedUnitOrders.STATIONARY;
 	private boolean isHired = false;
 	private boolean wasHired = false;
 	// Temporary data
@@ -164,7 +164,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 		isHired = true;
 		wasHired = true;
 		setupUnitEquipment();
-		setOrders(ExtendedUnitOrders.PATROL_PLAYER);
+		setOrders(ExtendedUnitOrders.FOLLOW_PLAYER);
 		markDirty();
 		return true;
 	}
@@ -270,9 +270,9 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 				}else {
 					// Ensure update compatibility from versions 1.7.1->1.7.2
 					if (nbt.contains("following")&&nbt.getBoolean("following")) {
-						unitOrders = ExtendedUnitOrders.PATROL_PLAYER;
+						unitOrders = ExtendedUnitOrders.FOLLOW_PLAYER;
 					}else {
-						unitOrders = ExtendedUnitOrders.GUARD_STATIONARY;
+						unitOrders = ExtendedUnitOrders.STATIONARY;
 					}
 				}
 				markDirty();
