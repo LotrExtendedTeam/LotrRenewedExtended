@@ -50,7 +50,7 @@ public class MixinIsengardSnagaEntity{
 			Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
 			Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
 			Items.LEATHER_HELMET, LOTRItems.BRONZE_HELMET, LOTRItems.BONE_HELMET,
-			ExtendedItems.BROWN_WARG_HELMET, ExtendedItems.GRAY_WARG_HELMET, ExtendedItems.BLACK_WARG_HELMET);
+			ExtendedItems.BROWN_WARG_HELMET, ExtendedItems.GRAY_WARG_HELMET, ExtendedItems.BLACK_WARG_HELMET, LOTRItems.FUR_HELMET);
 	/**
 	 * Need to add new equipment to the equipment pool
 	 * @Shadow (remap=false)
@@ -66,7 +66,7 @@ public class MixinIsengardSnagaEntity{
 			Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.URUK_CHESTPLATE,
 			Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.URUK_CHESTPLATE,
 			Items.LEATHER_CHESTPLATE, LOTRItems.BRONZE_CHESTPLATE, LOTRItems.BONE_CHESTPLATE, LOTRItems.URUK_CHESTPLATE,
-			ExtendedItems.BROWN_WARG_CHESTPLATE, ExtendedItems.GRAY_WARG_CHESTPLATE, ExtendedItems.BLACK_WARG_CHESTPLATE);
+			ExtendedItems.BROWN_WARG_CHESTPLATE, ExtendedItems.GRAY_WARG_CHESTPLATE, ExtendedItems.BLACK_WARG_CHESTPLATE, LOTRItems.FUR_CHESTPLATE);
 	/**
 	 * Need to add new equipment to the equipment pool
 	 * @Shadow (remap=false)
@@ -82,7 +82,7 @@ public class MixinIsengardSnagaEntity{
 			Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.URUK_LEGGINGS,
 			Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.URUK_LEGGINGS,
 			Items.LEATHER_LEGGINGS, LOTRItems.BRONZE_LEGGINGS, LOTRItems.BONE_LEGGINGS, LOTRItems.URUK_LEGGINGS,
-			ExtendedItems.BROWN_WARG_LEGGINGS, ExtendedItems.GRAY_WARG_LEGGINGS, ExtendedItems.BLACK_WARG_LEGGINGS);
+			ExtendedItems.BROWN_WARG_LEGGINGS, ExtendedItems.GRAY_WARG_LEGGINGS, ExtendedItems.BLACK_WARG_LEGGINGS, LOTRItems.FUR_LEGGINGS);
 	/**
 	 * Need to add new equipment to the equipment pool
 	 * @Shadow (remap=false)
@@ -98,7 +98,7 @@ public class MixinIsengardSnagaEntity{
 			Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.URUK_BOOTS,
 			Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.URUK_BOOTS,
 			Items.LEATHER_BOOTS, LOTRItems.BRONZE_BOOTS, LOTRItems.BONE_BOOTS, LOTRItems.URUK_BOOTS,
-			ExtendedItems.BROWN_WARG_BOOTS, ExtendedItems.GRAY_WARG_BOOTS, ExtendedItems.BLACK_WARG_BOOTS);
+			ExtendedItems.BROWN_WARG_BOOTS, ExtendedItems.GRAY_WARG_BOOTS, ExtendedItems.BLACK_WARG_BOOTS, LOTRItems.FUR_BOOTS);
 
 	@ModifyArg(method = "finalizeSpawn(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/ILivingEntityData;Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/entity/ILivingEntityData;",
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;<init>(Lnet/minecraft/util/IItemProvider;)V", ordinal = 0))
