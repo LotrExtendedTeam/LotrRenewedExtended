@@ -195,21 +195,21 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     }
 
     @Override
-    public void refreshContainer(Container p_71110_1_, NonNullList<ItemStack> p_71110_2_) {
+    public void refreshContainer(Container pContainerToSend, NonNullList<ItemStack> pItemsList) {
 
     }
 
     @Override
-    public void slotChanged(Container pContainer, int slotIndex, ItemStack itemStack) {
+    public void slotChanged(Container pContainerToSend, int pSlotInd, ItemStack pStack) {
     	for(Slot slot : slots) {
-    		if(slot instanceof ExtendedHiredUnitEquipmentSlot && slot.index==slotIndex) {
-    			ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ((ExtendedHiredUnitEquipmentSlot)slot).getEquipmentSlotType(), itemStack);
+    		if(slot instanceof ExtendedHiredUnitEquipmentSlot && slot.index==pSlotInd) {
+    			ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ((ExtendedHiredUnitEquipmentSlot)slot).getEquipmentSlotType(), pStack);
     		}
     	}
     }
 
     @Override
-    public void setContainerData(Container p_71112_1_, int p_71112_2_, int p_71112_3_) {
+    public void setContainerData(Container pContainer, int pVarToUpdate, int pNewValue) {
 
     }
 
