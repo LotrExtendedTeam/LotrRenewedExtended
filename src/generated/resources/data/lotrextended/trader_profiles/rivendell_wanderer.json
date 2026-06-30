@@ -220,14 +220,6 @@
     {
       "weight": 50,
       "stack": {
-        "item": "minecraft:arrow",
-        "averageCost": 3,
-        "count": 4
-      }
-    },
-    {
-      "weight": 50,
-      "stack": {
         "item": "lotr:high_elven_torch",
         "averageCost": 8,
         "count": 4

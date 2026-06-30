@@ -907,7 +907,6 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_BOOTS, 10, 320, 1, false)
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_SHIELD, 10, 240, 1, false)
 		.addSSell(new ItemStack(Items.ARROW, 4), 3)
-		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addSSell(new ItemStack(LOTRItems.HIGH_ELVEN_TORCH.get(), 4), 8)
 		.addSSell(LOTRItems.LEMBAS, 16)
 		.addSSell(new ItemStack(LOTRItems.BEECH_PLANKS.get(), 4), 4)
