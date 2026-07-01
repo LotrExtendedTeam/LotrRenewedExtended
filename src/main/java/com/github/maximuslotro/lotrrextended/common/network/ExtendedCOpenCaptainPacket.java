@@ -13,7 +13,7 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainProfileManager;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 
-import lotr.common.entity.npc.ExtendedCaptainEntity;
+import lotr.common.entity.npc.ExtendedICaptainEntity;
 
 public class ExtendedCOpenCaptainPacket {
 
@@ -33,12 +33,12 @@ public class ExtendedCOpenCaptainPacket {
 
 	public static void handle(ExtendedCOpenCaptainPacket packet, Supplier<NetworkEvent.Context> context) {
 		Entity entity = context.get().getSender().level.getEntity(packet.captainId);
-		if (!(entity instanceof ExtendedCaptainEntity)) {
+		if (!(entity instanceof ExtendedICaptainEntity)) {
 			ExtendedLog.error("Received a captain entity not of type ExtendedCaptainEntity from %s", context.get().getSender().getName().getString());
 			context.get().setPacketHandled(true);
 			return;
 		}
-		ExtendedCaptainEntity trader = (ExtendedCaptainEntity) entity;
+		ExtendedICaptainEntity trader = (ExtendedICaptainEntity) entity;
 		if (!trader.canHireToPlayer(context.get().getSender())) {
 			if(trader.isFriendly(context.get().getSender())) {
 				context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.captain_alignment_too_low"), Util.NIL_UUID);

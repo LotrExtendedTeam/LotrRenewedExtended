@@ -18,7 +18,7 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.LOTRDimensions;
 import net.minecraft.client.Minecraft;
@@ -44,8 +44,8 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 public class ExtendedRendererEventHandler {
 
 	public static void renderHpBar(RenderNameplateEvent event) {
-		if (event.getEntity() instanceof NPCEntity && ((ExtendedNPCEntity)event.getEntity()).getUnitInfo().isNpcActiveDuty()) {
-			if (ExtendedClientProxy.usersUUID.equals(null) || !ExtendedClientProxy.usersUUID.equals(((ExtendedNPCEntity)event.getEntity()).getUnitInfo().getOwnerUUID())) {
+		if (event.getEntity() instanceof NPCEntity && ((ExtendedINPCEntity)event.getEntity()).getUnitInfo().isNpcActiveDuty()) {
+			if (ExtendedClientProxy.usersUUID.equals(null) || !ExtendedClientProxy.usersUUID.equals(((ExtendedINPCEntity)event.getEntity()).getUnitInfo().getOwnerUUID())) {
 				return;
 			}
 

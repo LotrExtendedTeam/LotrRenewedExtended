@@ -34,7 +34,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implements ExtendedNPCEntitySettings, ExtendedMerchantEntity {
+public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implements ExtendedINPCEntitySettings, ExtendedIMerchantEntity {
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedGundabadOrcTraderEntity.class, DataSerializers.OPTIONAL_UUID);

@@ -19,7 +19,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedRivendellCaptainEntity extends RivendellWarriorEntity implements ExtendedNPCEntitySettings, ExtendedCaptainEntity {
+public class ExtendedRivendellCaptainEntity extends RivendellWarriorEntity implements ExtendedINPCEntitySettings, ExtendedICaptainEntity {
 
 	public ExtendedRivendellCaptainEntity(EntityType<? extends ExtendedRivendellCaptainEntity> type, World w) {
 		super(type, w);

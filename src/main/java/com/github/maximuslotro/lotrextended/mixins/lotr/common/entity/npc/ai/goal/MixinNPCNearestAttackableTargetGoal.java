@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.ExtendedBanditEntity;
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.ai.goal.NPCNearestAttackableTargetGoal;
 import lotr.common.fac.AlignmentPredicates;
@@ -59,7 +59,7 @@ public class MixinNPCNearestAttackableTargetGoal {
 			}
 			// Extended Start
 			if(entity instanceof ExtendedBanditEntity) {
-				return ((ExtendedNPCEntity)theNPC).getUnitInfo().isNpcActiveDuty() && ((ExtendedNPCEntity)theNPC).getUnitInfo().getOrders().doesOrderAllowsMovement();
+				return ((ExtendedINPCEntity)theNPC).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)theNPC).getUnitInfo().getOrders().doesOrderAllowsMovement();
 			}
 			// Extended End
 			return true;

@@ -12,8 +12,8 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenTradeMe
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
 
-import lotr.common.entity.npc.ExtendedMerchantEntity;
-import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
+import lotr.common.entity.npc.ExtendedIWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.representation.ExtendedTrade;
 import net.minecraft.entity.Entity;
@@ -41,7 +41,7 @@ public class ExtendedTraderHelper {
     }
     public static ActionResultType openTradeMenu(NPCEntity entity, PlayerEntity player) {
         ExtendedPacketHandler.sendToServer(new ExtendedCOpenTradeMenuPacket(entity.getId()));
-        ((ExtendedMerchantEntity)entity).updatePlayerInteractingWith(player.getUUID());
+        ((ExtendedIMerchantEntity)entity).updatePlayerInteractingWith(player.getUUID());
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }
     public static ActionResultType openCaptainMenu(NPCEntity entity, PlayerEntity player) {
@@ -112,7 +112,7 @@ public class ExtendedTraderHelper {
         return boughtOriginalQuantity;
     }
 
-    public static void saveWanderingTraderEscortUUIDs(ExtendedWanderingTraderEntity trader, List<UUID> escorts, CompoundNBT tag) {
+    public static void saveWanderingTraderEscortUUIDs(ExtendedIWanderingTraderEntity trader, List<UUID> escorts, CompoundNBT tag) {
         ListNBT listnbt = new ListNBT();
         for (UUID escort : escorts) {
             CompoundNBT compoundnbt = new CompoundNBT();

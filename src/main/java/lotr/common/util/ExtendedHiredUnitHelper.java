@@ -3,7 +3,7 @@ package lotr.common.util;
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 
 import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -49,8 +49,8 @@ public class ExtendedHiredUnitHelper {
 
         IFormattableTextComponent killerName = new StringTextComponent("");
         if (killerEntity != null) {
-        	if (killerEntity instanceof NPCEntity && ((ExtendedNPCEntity)killerEntity).getUnitInfo().isNpcActiveDuty()) {
-                killerName = ((ExtendedNPCEntity)killerEntity).getUnitInfo().getHiredUnitNameAndTitle();
+        	if (killerEntity instanceof NPCEntity && ((ExtendedINPCEntity)killerEntity).getUnitInfo().isNpcActiveDuty()) {
+                killerName = ((ExtendedINPCEntity)killerEntity).getUnitInfo().getHiredUnitNameAndTitle();
             }
         	else {
         		if(killerEntity.getDisplayName() instanceof IFormattableTextComponent) {
@@ -107,8 +107,8 @@ public class ExtendedHiredUnitHelper {
      * @param item The new ItemStack to be placed in the slot
      * */
     public static void updateEquipmentSlot(NPCEntity companion, ExtendedEquipmentSlotType slot, ItemStack item) {
-        if(!companion.level.isClientSide() && ((ExtendedNPCEntity)companion).getUnitInfo().isNpcActiveDuty()) {
-        	((ExtendedNPCEntity)companion).getUnitInfo().updateSlot(item, slot);
+        if(!companion.level.isClientSide() && ((ExtendedINPCEntity)companion).getUnitInfo().isNpcActiveDuty()) {
+        	((ExtendedINPCEntity)companion).getUnitInfo().updateSlot(item, slot);
         }
     }
 

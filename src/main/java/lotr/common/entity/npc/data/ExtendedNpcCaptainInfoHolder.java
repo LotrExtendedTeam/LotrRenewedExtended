@@ -4,8 +4,8 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainPr
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainProfileManager;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcCaptainInfoPacket;
-import lotr.common.entity.npc.ExtendedNPCEntity;
-import lotr.common.entity.npc.ExtendedCaptainEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
+import lotr.common.entity.npc.ExtendedICaptainEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -39,7 +39,7 @@ public class ExtendedNpcCaptainInfoHolder implements ExtendedNpcDataInterface {
 		if (!thisEntity.level.isClientSide) {
 			// Handle loading init data or fixing broken data
 			if(loadedData==false) {
-				ExtendedCaptainProfile profile = ExtendedCaptainProfileManager.INSTANCE.get(((ExtendedCaptainEntity)thisEntity).getCaptainProfile());
+				ExtendedCaptainProfile profile = ExtendedCaptainProfileManager.INSTANCE.get(((ExtendedICaptainEntity)thisEntity).getCaptainProfile());
 				hiringAlignmentRequired = profile.getInterractionAlignmentRequired();
 				loadedData = true;
 				markDirty();
@@ -75,7 +75,7 @@ public class ExtendedNpcCaptainInfoHolder implements ExtendedNpcDataInterface {
 	 * */
 	@Override
 	public boolean shouldTick() {
-		return thisEntity instanceof ExtendedCaptainEntity;
+		return thisEntity instanceof ExtendedICaptainEntity;
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class ExtendedNpcCaptainInfoHolder implements ExtendedNpcDataInterface {
 		Entity entity = world.getEntity(entityId);
 		if (entity instanceof NPCEntity) {
 			NPCEntity npc = (NPCEntity) entity;
-			ExtendedNpcCaptainInfoHolder traderInfo = ((ExtendedNPCEntity) npc).getCaptainInfo();
+			ExtendedNpcCaptainInfoHolder traderInfo = ((ExtendedINPCEntity) npc).getCaptainInfo();
 			if(traderInfo!=null) {
 				traderInfo.hiringAlignmentRequired = buf.readVarInt();
 			}

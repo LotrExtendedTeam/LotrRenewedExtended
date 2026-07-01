@@ -20,7 +20,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedUrukCaptainEntity extends UrukEntity implements ExtendedNPCEntitySettings, ExtendedCaptainEntity{
+public class ExtendedUrukCaptainEntity extends UrukEntity implements ExtendedINPCEntitySettings, ExtendedICaptainEntity{
 
 	public ExtendedUrukCaptainEntity(EntityType<? extends UrukEntity> type, World w) {
 		super(type, w);

@@ -8,7 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedEntityUtils;
 
 import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.ExtendedBanditEntity;
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.fac.AlignmentPredicates;
 import lotr.common.fac.Faction;
@@ -92,7 +92,7 @@ public class ExtendedNearestAttackableTargetNPCGoal<T extends LivingEntity> exte
      */
     public boolean addtionalCheck(LivingEntity entity) {
         if(entity instanceof ExtendedBanditEntity) {
-            return ((ExtendedNPCEntity)mob).getUnitInfo().isNpcActiveDuty() && ((ExtendedNPCEntity)mob).getUnitInfo().getOrders().doesOrderAllowsMovement();
+            return ((ExtendedINPCEntity)mob).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)mob).getUnitInfo().getOrders().doesOrderAllowsMovement();
         }
         if(entity instanceof PlayerEntity) {
             return additionalPlayeredCheck((PlayerEntity) entity);

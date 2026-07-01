@@ -44,7 +44,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedOddmentCollectorEntity extends ManEntity  implements ExtendedNPCEntitySettings, ExtendedWanderingTraderEntity {
+public class ExtendedOddmentCollectorEntity extends ManEntity  implements ExtendedINPCEntitySettings, ExtendedIWanderingTraderEntity {
 
     private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(LOTRItems.IRON_DAGGER, LOTRItems.BRONZE_DAGGER);
 

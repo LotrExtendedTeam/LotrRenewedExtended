@@ -24,11 +24,11 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils
 
 import lotr.common.data.ExtendedLevelData;
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
-import lotr.common.entity.npc.ExtendedCaptainEntity;
+import lotr.common.entity.npc.ExtendedICaptainEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
-import lotr.common.entity.npc.ExtendedNPCEntity;
-import lotr.common.entity.npc.ExtendedMerchantEntity;
-import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
+import lotr.common.entity.npc.ExtendedIWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.data.NPCEntitySettings;
 import lotr.common.entity.npc.data.NPCEntitySettingsManager;
@@ -219,7 +219,7 @@ public class ExtendedWorldEventHandlers {
 	}
 
 	/**
-	 * Handles special logic when {@link ExtendedMerchantEntity} or {@link ExtendedCaptainEntity} dies.
+	 * Handles special logic when {@link ExtendedIMerchantEntity} or {@link ExtendedICaptainEntity} dies.
 	 * <ul>
 	 *   <li>If the entity is a wandering trader, escorts are removed and players are notified.</li>
 	 *   <li>If the entity is persistent, it respawns via {@link ExtendedRespawnerEntity}.</li>
@@ -231,7 +231,7 @@ public class ExtendedWorldEventHandlers {
 	@SubscribeEvent
 	public static void handleCaptainTraderDeath$Extended(LivingDeathEvent event) {
 		Entity sourceEntity = event.getSource().getEntity();
-		if (sourceEntity instanceof NPCEntity && ((ExtendedNPCEntity)sourceEntity).getUnitInfo().isNpcActiveDuty()) {
+		if (sourceEntity instanceof NPCEntity && ((ExtendedINPCEntity)sourceEntity).getUnitInfo().isNpcActiveDuty()) {
 			// base amount of xp off kill alignment bonus
 			float xpPoints = 0;
 			if (event.getEntity() instanceof NPCEntity) {
@@ -250,13 +250,13 @@ public class ExtendedWorldEventHandlers {
 				}
 			}
 
-			((ExtendedNPCEntity)sourceEntity).getUnitInfo().giveExperiencePoints(xpPoints);
-			((ExtendedNPCEntity)sourceEntity).getUnitInfo().setMobKills(((ExtendedNPCEntity)sourceEntity).getUnitInfo().getMobKills() + 1);
-			((ExtendedNPCEntity)sourceEntity).getUnitInfo().markDirty();
+			((ExtendedINPCEntity)sourceEntity).getUnitInfo().giveExperiencePoints(xpPoints);
+			((ExtendedINPCEntity)sourceEntity).getUnitInfo().setMobKills(((ExtendedINPCEntity)sourceEntity).getUnitInfo().getMobKills() + 1);
+			((ExtendedINPCEntity)sourceEntity).getUnitInfo().markDirty();
 		}
 		// If an NPC is a wandering trader, no respawns, even it is a captain
-		if(event.getEntity() instanceof ExtendedMerchantEntity && ((ExtendedNPCEntity) event.getEntity()).getTraderInfo().isTraderCurrentlyWandering()) {
-			ExtendedWanderingTraderEntity trader = (ExtendedWanderingTraderEntity) event.getEntity();
+		if(event.getEntity() instanceof ExtendedIMerchantEntity && ((ExtendedINPCEntity) event.getEntity()).getTraderInfo().isTraderCurrentlyWandering()) {
+			ExtendedIWanderingTraderEntity trader = (ExtendedIWanderingTraderEntity) event.getEntity();
 			if (trader.getEscortUUIDs() == null || trader.getEscortUUIDs().isEmpty()) {
 				return;
 			}
@@ -280,7 +280,7 @@ public class ExtendedWorldEventHandlers {
 		}
 		if(event.getEntity() instanceof MobEntity) {
 			MobEntity mob = (MobEntity) event.getEntity();
-			if((mob.isPersistenceRequired() && (mob instanceof ExtendedMerchantEntity || mob instanceof ExtendedCaptainEntity || mob instanceof ExtendedLoreEntity))
+			if((mob.isPersistenceRequired() && (mob instanceof ExtendedIMerchantEntity || mob instanceof ExtendedICaptainEntity || mob instanceof ExtendedLoreEntity))
 					|| (mob.getPersistentData().contains("ExtendedRespawn") && mob.getPersistentData().getBoolean("ExtendedRespawn")) 
 					|| (mob.getPersistentData().contains("ExtendedRespawnOnDeath") && mob.getPersistentData().getBoolean("ExtendedRespawnOnDeath"))) {
 				// Make entity respawner
@@ -293,10 +293,10 @@ public class ExtendedWorldEventHandlers {
 
 				//Save trader trades
 				CompoundNBT compound =  new CompoundNBT();
-				if(mob instanceof ExtendedMerchantEntity) {
-					((ExtendedMerchantEntity) mob).getTraderData().writeToNbt(compound);
+				if(mob instanceof ExtendedIMerchantEntity) {
+					((ExtendedIMerchantEntity) mob).getTraderData().writeToNbt(compound);
 				}
-				if(mob instanceof ExtendedCaptainEntity) {
+				if(mob instanceof ExtendedICaptainEntity) {
 					// IDK maybe captains have data to save in the future
 				}
 				respawnerEntity.setEntityData(compound);

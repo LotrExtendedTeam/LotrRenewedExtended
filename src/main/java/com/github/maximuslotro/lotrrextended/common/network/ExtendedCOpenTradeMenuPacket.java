@@ -10,7 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedTradeContainer;
 
 import io.netty.buffer.Unpooled;
-import lotr.common.entity.npc.ExtendedMerchantEntity;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
@@ -40,12 +40,12 @@ public class ExtendedCOpenTradeMenuPacket {
     public static void handle(ExtendedCOpenTradeMenuPacket packet, Supplier<NetworkEvent.Context> context) {
     	context.get().setPacketHandled(true);
     	Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.traderId);
-    	if (!(entity instanceof ExtendedMerchantEntity)) {
+    	if (!(entity instanceof ExtendedIMerchantEntity)) {
     		ExtendedLog.error("Recieved a trader eneity not of type ExtendedMerchantEntity from %s", context.get().getSender().getName().getString());
     		return;
     	}
 
-    	ExtendedMerchantEntity trader = (ExtendedMerchantEntity) entity;
+    	ExtendedIMerchantEntity trader = (ExtendedIMerchantEntity) entity;
     	if(trader.isInteractingWithPlayer() && trader.getPlayerInteractingWith().get()!=context.get().getSender().getUUID()) {
     		context.get().getSender().sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_busy"), Util.NIL_UUID);
     		return;

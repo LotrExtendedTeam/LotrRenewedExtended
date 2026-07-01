@@ -5,9 +5,9 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.common.LOTRMod;
-import lotr.common.entity.npc.ExtendedCaptainEntity;
-import lotr.common.entity.npc.ExtendedMerchantEntity;
-import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.ExtendedICaptainEntity;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
+import lotr.common.entity.npc.ExtendedITraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
@@ -32,7 +32,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 	private boolean canTraderHire = false;
 	public ExtendedTraderMainScreen(NPCEntity entity, PlayerEntity player) {
 		super(new StringTextComponent("Trader Menu"), 176, 256);
-		if(!(entity instanceof ExtendedTraderEntity)) {
+		if(!(entity instanceof ExtendedITraderEntity)) {
 			throw new IllegalArgumentException("Recieved trader NPC that does not impliment ExtendedTraderEntity");
 		}
 		this.entity = entity;
@@ -50,7 +50,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 			}
 		});
 		// Trade Button
-		if(entity instanceof ExtendedMerchantEntity) {
+		if(entity instanceof ExtendedIMerchantEntity) {
 			talkButton.setWidth(57);
 			tradeButton = this.addButton(new Button(this.leftPos + ((this.imageWidth - 120) / 2) + 63, this.topPos + 115, 57, 20, new TranslationTextComponent("gui.lotrextended.trading.trade_button"), button -> tradeWithNPC()) {
 				@Override
@@ -82,7 +82,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 				}
 			}
 		});
-		if(entity instanceof ExtendedCaptainEntity) {
+		if(entity instanceof ExtendedICaptainEntity) {
 			hireButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 165, 120, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire_button"), button -> hireFromNPC()) {
 				@Override
 				public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
@@ -103,16 +103,16 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 	@Override
 	public void tick() {
 		super.tick();
-		canTraderExchange = ((ExtendedTraderEntity)entity).canExchangeCoinsWithPlayer(player);
+		canTraderExchange = ((ExtendedITraderEntity)entity).canExchangeCoinsWithPlayer(player);
 		coinButton.active = canTraderExchange;
-		if (entity instanceof ExtendedMerchantEntity) {
-			canTraderTrade = ((ExtendedMerchantEntity)entity).canTradeWithPlayer(player) 
-				&& (!((ExtendedMerchantEntity)entity).isInteractingWithPlayer() 
-					|| ((ExtendedMerchantEntity)entity).isInteractingWithPlayer() && ((ExtendedMerchantEntity)entity).getPlayerInteractingWith().get()==player.getUUID());
+		if (entity instanceof ExtendedIMerchantEntity) {
+			canTraderTrade = ((ExtendedIMerchantEntity)entity).canTradeWithPlayer(player) 
+				&& (!((ExtendedIMerchantEntity)entity).isInteractingWithPlayer() 
+					|| ((ExtendedIMerchantEntity)entity).isInteractingWithPlayer() && ((ExtendedIMerchantEntity)entity).getPlayerInteractingWith().get()==player.getUUID());
 			tradeButton.active = canTraderTrade;
 		}
-		if (entity instanceof ExtendedCaptainEntity) {
-			canTraderHire = ((ExtendedCaptainEntity)entity).canHireToPlayer(player);
+		if (entity instanceof ExtendedICaptainEntity) {
+			canTraderHire = ((ExtendedICaptainEntity)entity).canHireToPlayer(player);
 			hireButton.active = canTraderHire;
 		}
 	}
@@ -125,7 +125,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 	private void tradeWithNPC() {
 		// Ensure the client does not disturb the server when traders can't be traded with
 		if (canTraderTrade) {
-			((ExtendedMerchantEntity)entity).openTradeMenu(player);
+			((ExtendedIMerchantEntity)entity).openTradeMenu(player);
 		} else {
 			sendClientErrorMessage();
 		}
@@ -134,7 +134,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 	private void tradeCoinsWithNPC() {
 		// Ensure the client does not disturb the server when traders can't be traded with
 		if (canTraderExchange) {
-			((ExtendedTraderEntity)entity).openCoinExchange(player);
+			((ExtendedITraderEntity)entity).openCoinExchange(player);
 		} else {
 			sendClientErrorMessage();
 		}
@@ -143,7 +143,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 	private void hireFromNPC() {
 		// Ensure the client does not disturb the server when traders can't be traded with
 		if (canTraderHire) {
-			((ExtendedCaptainEntity)entity).openHireUnitMenu(player);
+			((ExtendedICaptainEntity)entity).openHireUnitMenu(player);
 		} else {
 			sendClientErrorMessage();
 		}

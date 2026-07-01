@@ -3,7 +3,7 @@ package lotr.common.entity.npc;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.player.PlayerEntity;
 
-public interface ExtendedTraderEntity extends ExtendedInteractableEntity {
+public interface ExtendedITraderEntity extends ExtendedIInteractableEntity {
 	/**
      * Opens the coin exchange interface for the given player.
      *

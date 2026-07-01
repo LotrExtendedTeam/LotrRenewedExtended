@@ -13,6 +13,7 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.ElytraItem;
+import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShieldItem;
@@ -30,7 +31,7 @@ public abstract class ExtendedHiredUnitEquipmentSlot extends Slot{
 		return equipmentSlotType;
 	}
 
-	public abstract boolean mayPlaceShifting(ItemStack itemStack);
+	public abstract boolean mayPlaceShifting(ItemStack pShiftingItem);
 
 	public static class ArmorSlot extends ExtendedHiredUnitEquipmentSlot{
 		public ArmorSlot(IInventory pContainer, int pIndex, int pX, int pY, ExtendedEquipmentSlotType equipmentSlotType, ResourceLocation empty_SLOT_LOCATION) {
@@ -61,8 +62,8 @@ public abstract class ExtendedHiredUnitEquipmentSlot extends Slot{
 		}
 
 		@Override
-		public boolean mayPlaceShifting(ItemStack itemStack) {
-			return mayPlace(itemStack);
+		public boolean mayPlaceShifting(ItemStack pShiftingItem) {
+			return mayPlace(pShiftingItem);
 		}
 	}
 
@@ -78,8 +79,8 @@ public abstract class ExtendedHiredUnitEquipmentSlot extends Slot{
 		}
 
 		@Override
-		public boolean mayPlaceShifting(ItemStack itemStack) {
-			return mayPlace(itemStack);
+		public boolean mayPlaceShifting(ItemStack pShiftingItem) {
+			return mayPlace(pShiftingItem);
 		}
 	}
 
@@ -95,8 +96,25 @@ public abstract class ExtendedHiredUnitEquipmentSlot extends Slot{
 		}
 
 		@Override
-		public boolean mayPlaceShifting(ItemStack shiftingItem) {
-			return shiftingItem.getItem() instanceof SwordItem || shiftingItem.getItem() instanceof HammerItem || shiftingItem.getItem() instanceof SpearItem;
+		public boolean mayPlaceShifting(ItemStack pShiftingItem) {
+			return pShiftingItem.getItem() instanceof SwordItem || pShiftingItem.getItem() instanceof HammerItem || pShiftingItem.getItem() instanceof SpearItem;
+		}
+	}
+
+	public static class FarmhandMeleeSlot extends ExtendedHiredUnitEquipmentSlot {
+		public FarmhandMeleeSlot(IInventory pContainer, int pIndex, int pX, int pY, ResourceLocation EMPTY_SLOT_LOCATION) {
+			super(pContainer, pIndex, pX, pY, ExtendedEquipmentSlotType.MELEE);
+			setBackground(PlayerContainer.BLOCK_ATLAS, EMPTY_SLOT_LOCATION);
+		}
+
+		@Override
+		public boolean mayPlace(ItemStack itemStack) {
+			return itemStack.getItem() instanceof HoeItem;
+		}
+
+		@Override
+		public boolean mayPlaceShifting(ItemStack pShiftingItem) {
+			return mayPlace(pShiftingItem);
 		}
 	}
 
@@ -107,8 +125,8 @@ public abstract class ExtendedHiredUnitEquipmentSlot extends Slot{
 		}
 
 		@Override
-		public boolean mayPlaceShifting(ItemStack shiftingItem) {
-			return shiftingItem.getItem() instanceof ShieldItem;
+		public boolean mayPlaceShifting(ItemStack pShiftingItem) {
+			return pShiftingItem.getItem() instanceof ShieldItem;
 		}
 	}
 }

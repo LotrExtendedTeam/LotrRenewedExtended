@@ -43,7 +43,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-public class ExtendedBreelandMerchantEntity extends BreeManEntity  implements ExtendedNPCEntitySettings, ExtendedWanderingTraderEntity {
+public class ExtendedBreelandMerchantEntity extends BreeManEntity  implements ExtendedINPCEntitySettings, ExtendedIWanderingTraderEntity {
 
     private static final SpawnEquipmentTable WEAPONS;
 

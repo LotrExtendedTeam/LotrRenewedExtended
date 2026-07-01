@@ -8,7 +8,7 @@ import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeContainer;
 
 import io.netty.buffer.Unpooled;
-import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.ExtendedITraderEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
@@ -42,12 +42,12 @@ public class ExtendedCOpenCoinExchangePacket {
     public static void handle(ExtendedCOpenCoinExchangePacket packet, Supplier<NetworkEvent.Context> context) {
     	context.get().setPacketHandled(true);
     	Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.traderId);
-    	if (!(entity instanceof ExtendedTraderEntity)) {
+    	if (!(entity instanceof ExtendedITraderEntity)) {
     		ExtendedLog.error("Recieved a trader eneity not of type ExtendedTraderEntity from %s", context.get().getSender().getName().getString());
     		return;
     	}
 
-    	ExtendedTraderEntity trader = (ExtendedTraderEntity) entity;
+    	ExtendedITraderEntity trader = (ExtendedITraderEntity) entity;
 
     	// Ensure a modified client does not send trade request, bypassing client trade request check
     	if (!trader.canExchangeCoinsWithPlayer(context.get().getSender())) {

@@ -134,6 +134,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.menu.titles", "Titles");
 		addD("gui.lotrextended.menu.achievements", "Achievements");
 		addD("gui.lotrextended.menu.advancements", "Advancements");
+		addD("gui.lotrextended.menu.back", "Back");
+		addD("gui.lotrextended.menu.overview", "Overview");
+		addD("gui.lotrextended.menu.equipment", "Equipment");
+		addD("gui.lotrextended.menu.farmhand", "Farmhand");
 
 		//Default option strings
 		addD("gui.lotrextended.base.disabled", "Disabled");
@@ -565,9 +569,6 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("container.lotrextended.repair.info.invalid_material", "Invalid Material!");
 		addD("container.lotrextended.repair.info.missing_material", "Missing Materials!");
 
-		// hired unit menus
-		addD("gui.lotrextended.menu.equipment", "Equipment");
-		addD("gui.lotrextended.menu.back", "Back");
 		// item names for base gear
 		addD("item.lotrextended.base_gear.chestplate", "Base Chestplate");
 		addD("item.lotrextended.base_gear.helmet", "Base Helmet");

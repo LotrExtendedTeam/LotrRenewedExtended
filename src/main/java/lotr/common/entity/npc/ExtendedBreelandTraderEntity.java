@@ -15,7 +15,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 
-public abstract class ExtendedBreelandTraderEntity extends BreeManEntity  implements ExtendedNPCEntitySettings, ExtendedMerchantEntity {
+public abstract class ExtendedBreelandTraderEntity extends BreeManEntity  implements ExtendedINPCEntitySettings, ExtendedIMerchantEntity {
 
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 

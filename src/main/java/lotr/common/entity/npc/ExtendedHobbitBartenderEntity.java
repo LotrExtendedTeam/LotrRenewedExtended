@@ -36,7 +36,7 @@ import net.minecraft.world.World;
 /**
  * @author RichardB122, maximuslotro
  */
-public class ExtendedHobbitBartenderEntity extends HobbitEntity  implements ExtendedNPCEntitySettings, ExtendedMerchantEntity {
+public class ExtendedHobbitBartenderEntity extends HobbitEntity  implements ExtendedINPCEntitySettings, ExtendedIMerchantEntity {
 
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 

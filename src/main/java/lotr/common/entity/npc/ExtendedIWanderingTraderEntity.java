@@ -3,7 +3,7 @@ package lotr.common.entity.npc;
 import java.util.List;
 import java.util.UUID;
 
-public interface ExtendedWanderingTraderEntity extends ExtendedMerchantEntity {
+public interface ExtendedIWanderingTraderEntity extends ExtendedIMerchantEntity {
 
 	String getDepartureLine();
 

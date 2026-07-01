@@ -6,7 +6,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
 import lotr.client.render.entity.model.WargModel;
-import lotr.common.entity.npc.ExtendedRidableEntity;
+import lotr.common.entity.npc.ExtendedIRidableEntity;
 import lotr.common.entity.npc.WargEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
@@ -26,7 +26,7 @@ public class ExtendedWargArmorStrapLayer extends LayerRenderer<WargEntity, WargM
 
 	@Override
 	public void render(MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pPackedLight, WargEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-		ItemStack itemstack = ((ExtendedRidableEntity)pLivingEntity).getArmor();
+		ItemStack itemstack = ((ExtendedIRidableEntity)pLivingEntity).getArmor();
 		if (itemstack.getItem() instanceof ExtendedMountedDyeableArmorItem) {
 			this.getParentModel().copyPropertiesTo(this.model);
 			this.model.prepareMobModel(pLivingEntity, pLimbSwing, pLimbSwingAmount, pPartialTicks);

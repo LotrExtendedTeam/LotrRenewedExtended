@@ -33,7 +33,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedDwarvenMinerEntity extends DwarfEntity implements ExtendedNPCEntitySettings, ExtendedMerchantEntity {
+public class ExtendedDwarvenMinerEntity extends DwarfEntity implements ExtendedINPCEntitySettings, ExtendedIMerchantEntity {
 
 	int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 

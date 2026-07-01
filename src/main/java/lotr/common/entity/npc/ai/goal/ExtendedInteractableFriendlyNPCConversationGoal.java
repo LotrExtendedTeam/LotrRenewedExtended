@@ -1,13 +1,13 @@
 package lotr.common.entity.npc.ai.goal;
 
-import lotr.common.entity.npc.ExtendedMerchantEntity;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import lotr.common.entity.npc.NPCEntity;
 
 public class ExtendedInteractableFriendlyNPCConversationGoal extends FriendlyNPCConversationGoal {
 
-	ExtendedMerchantEntity interactableEntity;
+	ExtendedIMerchantEntity interactableEntity;
 
-    public ExtendedInteractableFriendlyNPCConversationGoal(NPCEntity entity, ExtendedMerchantEntity interactableEntity, float chanceIn) {
+    public ExtendedInteractableFriendlyNPCConversationGoal(NPCEntity entity, ExtendedIMerchantEntity interactableEntity, float chanceIn) {
         super(entity, chanceIn);
 
         this.interactableEntity = interactableEntity;

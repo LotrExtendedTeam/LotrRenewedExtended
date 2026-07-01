@@ -4,7 +4,7 @@ import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInvent
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import lotr.common.entity.npc.ExtendedRidableEntity;
+import lotr.common.entity.npc.ExtendedIRidableEntity;
 import lotr.common.entity.npc.WargEntity;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.screen.inventory.InventoryScreen;
@@ -48,7 +48,7 @@ public class ExtendedWargInventoryScreen extends ContainerScreen<ExtendedWargInv
 			this.blit(pMatrixStack, i + 7, j + 35 - 18, 18, this.imageHeight + 54, 18, 18);
 		}
 
-		if (((ExtendedRidableEntity)warg).canWearArmor()) {
+		if (((ExtendedIRidableEntity)warg).canWearArmor()) {
 			this.blit(pMatrixStack, i + 7, j + 35, 0, this.imageHeight + 54, 18, 18);
 		}
 

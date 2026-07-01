@@ -5,7 +5,7 @@ import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -81,14 +81,14 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 	@Override
 	public boolean canContinueToUse() {
 		// Check if orders have changed
-		if(currentOrderType!=((ExtendedNPCEntity)entity).getUnitInfo().getOrders()) {
+		if(currentOrderType!=((ExtendedINPCEntity)entity).getUnitInfo().getOrders()) {
 			return false;
 		}
 		if(currentOrderType==ExtendedUnitOrders.FOLLOW_PLAYER) {
 			if (this.navigation.isDone()) {
 				return false;
 			} // Stop entity following player if entity has been activated for combat
-			else if ((entity.getLastHurtByMob() != null && entity.getLastHurtByMob() != ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner()) || entity.getTarget() != null) {
+			else if ((entity.getLastHurtByMob() != null && entity.getLastHurtByMob() != ((ExtendedINPCEntity)this.entity).getUnitInfo().getUnitOwner()) || entity.getTarget() != null) {
 				return false;
 			} else {
 				return this.entity.distanceToSqr(this.owner) > (stopDistance * stopDistance); // Continue following player if to far away squared
@@ -96,7 +96,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 		}
 		if(currentOrderType==ExtendedUnitOrders.STATIONARY) {
 			// Keep sitting unless attacked, or unit has been taken off ground or put underwater
-			return (entity.getLastHurtByMob() == null || entity.getLastHurtByMob() == ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner()) && entity.isOnGround();
+			return (entity.getLastHurtByMob() == null || entity.getLastHurtByMob() == ((ExtendedINPCEntity)this.entity).getUnitInfo().getUnitOwner()) && entity.isOnGround();
 		}
 		return false;
 	}
@@ -108,13 +108,13 @@ public class ExtendedHiredSitFollowGoal extends Goal {
      */
 	@Override
 	public boolean canUse() {
-		if (!((ExtendedNPCEntity)this.entity).getUnitInfo().isNpcActiveDuty() || ((ExtendedNPCEntity)this.entity).getUnitInfo().getOrders().isUnknown()) {
+		if (!((ExtendedINPCEntity)this.entity).getUnitInfo().isNpcActiveDuty() || ((ExtendedINPCEntity)this.entity).getUnitInfo().getOrders().isUnknown()) {
 			return false;
 		}
-		this.currentOrderType = ((ExtendedNPCEntity)entity).getUnitInfo().getOrders();
+		this.currentOrderType = ((ExtendedINPCEntity)entity).getUnitInfo().getOrders();
 		if(currentOrderType==ExtendedUnitOrders.FOLLOW_PLAYER) {
 			this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
-			LivingEntity livingOwner = ((ExtendedNPCEntity)entity).getUnitInfo().getUnitOwner();
+			LivingEntity livingOwner = ((ExtendedINPCEntity)entity).getUnitInfo().getUnitOwner();
 			if (livingOwner == null) { // Null owner means player is offline, so we should stay put // TODO implementing stay put (disable random walking)
 				return false;
 			} else if (livingOwner.isSpectator()) {
@@ -133,7 +133,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 			if (!this.entity.isOnGround()) {
 				return false;
 			} else {
-				LivingEntity livingOwner = ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner();
+				LivingEntity livingOwner = ((ExtendedINPCEntity)this.entity).getUnitInfo().getUnitOwner();
 				if (livingOwner == null) { // Null owner means player is offline, so we should stay put
 					return true; // Sit if owner if offline
 				} else { // Enable unit stationary "sitting" if player is close

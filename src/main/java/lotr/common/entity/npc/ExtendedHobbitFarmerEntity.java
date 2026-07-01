@@ -37,7 +37,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedHobbitFarmerEntity extends HobbitEntity implements ExtendedNPCEntitySettings, ExtendedMerchantEntity, ExtendedCaptainEntity {
+public class ExtendedHobbitFarmerEntity extends HobbitEntity implements ExtendedINPCEntitySettings, ExtendedIMerchantEntity, ExtendedICaptainEntity {
 
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 

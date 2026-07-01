@@ -8,7 +8,7 @@ import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 
-public interface ExtendedMerchantEntity extends ExtendedTraderEntity {
+public interface ExtendedIMerchantEntity extends ExtendedITraderEntity {
 	/**
      * Opens the trade menu for the given player.
      *
@@ -32,7 +32,7 @@ public interface ExtendedMerchantEntity extends ExtendedTraderEntity {
      * @return The trader's data holder.
      */
 	default ExtendedNpcTraderInfoHolder getTraderData() {
-		return ((ExtendedNPCEntity)this).getTraderInfo();
+		return ((ExtendedINPCEntity)this).getTraderInfo();
 	}
 	/**
      * Checks if the given player can trade with this trader, handles friendly and alignment checks.

@@ -7,7 +7,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.loot.ILootSerializer;
@@ -53,7 +53,7 @@ public class ExtendedRemoveFromUnitDrops implements ILootCondition {
 	 * <p>
 	 * This condition evaluates the current loot context entity:
 	 * <ul>
-	 *   <li>If the entity is an {@link NPCEntity} and an {@link ExtendedNPCEntity}
+	 *   <li>If the entity is an {@link NPCEntity} and an {@link ExtendedINPCEntity}
 	 *       whose unit info reports that it is <b>active duty</b>, the test fails
 	 *       (no unit coin drops).</li>
 	 *   <li>Otherwise, the condition passes.</li>
@@ -67,7 +67,7 @@ public class ExtendedRemoveFromUnitDrops implements ILootCondition {
 	@Override
 	public boolean test(LootContext context) {
 		Entity entity = context.getParamOrNull(LootParameters.THIS_ENTITY);
-		return !(entity instanceof NPCEntity && ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty());
+		return !(entity instanceof NPCEntity && ((ExtendedINPCEntity)entity).getUnitInfo().isNpcActiveDuty());
 	}
 	/**
 	 * Creates a new loot condition builder for this condition type.

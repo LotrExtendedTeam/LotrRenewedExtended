@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -50,8 +50,8 @@ public class ExtendedCSetHiredUnitOrdersPacket {
 			if (player != null && player.level instanceof ServerWorld) {
 				Entity entity = player.level.getEntity(packet.getEntityId());
 
-				if (entity instanceof NPCEntity && ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedNPCEntity)entity).getUnitInfo().getUnitOwner()==player) {
-					((ExtendedNPCEntity)entity).getUnitInfo().setOrders(ExtendedUnitOrders.getByUnchangingIndex(packet.getOrderIndex()));
+				if (entity instanceof NPCEntity && ((ExtendedINPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)entity).getUnitInfo().getUnitOwner()==player) {
+					((ExtendedINPCEntity)entity).getUnitInfo().setOrders(ExtendedUnitOrders.getByUnchangingIndex(packet.getOrderIndex()));
 				}
 			}
 		});

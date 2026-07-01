@@ -12,7 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSUpdateTradeQuantitiesPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
-import lotr.common.entity.npc.ExtendedMerchantEntity;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedItems;
 import lotr.common.util.CoinUtils;
@@ -49,7 +49,7 @@ public class ExtendedTradeContainer extends Container {
 
     public NPCEntity traderNPC;
 
-    public final ExtendedMerchantEntity trader;
+    public final ExtendedIMerchantEntity trader;
 
     private IInventory displayInventory = new Inventory(18);//First row of 9 are items players buy from the trade, and the second row of 9 is items sold to the trader
     public Inventory sellInventory = new Inventory(9);
@@ -71,7 +71,7 @@ public class ExtendedTradeContainer extends Container {
         this.level = inventory.player.level;
         this.player = inventory.player;
         this.traderNPC = (NPCEntity) this.level.getEntity(nbt.getInt("entityId"));
-        this.trader = (ExtendedMerchantEntity) traderNPC;
+        this.trader = (ExtendedIMerchantEntity) traderNPC;
 
         // read displayItems from NBT
         List<ItemStack> displayItems = new ArrayList<>();

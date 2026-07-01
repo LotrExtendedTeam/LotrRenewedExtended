@@ -32,7 +32,7 @@ import net.minecraft.item.ItemStack;
  * </ul>
  * </p>
  */
-public class UnitInventory extends Inventory {
+public class ExtendedUnitInventory extends Inventory {
     // --- Slot constants ---
 
 //    public static final int SLOT_FOOD_START = 0;
@@ -65,7 +65,7 @@ public class UnitInventory extends Inventory {
      *
      * @param pSize the size of the inventory
      */
-	public UnitInventory(int pSize) {
+	public ExtendedUnitInventory(int pSize) {
 		super(pSize);
 	}
 

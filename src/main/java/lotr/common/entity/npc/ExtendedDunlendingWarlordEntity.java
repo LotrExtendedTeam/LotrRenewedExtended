@@ -21,7 +21,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedDunlendingWarlordEntity extends DunlendingWarriorEntity implements ExtendedNPCEntitySettings, ExtendedCaptainEntity {
+public class ExtendedDunlendingWarlordEntity extends DunlendingWarriorEntity implements ExtendedINPCEntitySettings, ExtendedICaptainEntity {
 
 	public ExtendedDunlendingWarlordEntity(EntityType<? extends ExtendedDunlendingWarlordEntity> type, World w) {
 		super(type, w);

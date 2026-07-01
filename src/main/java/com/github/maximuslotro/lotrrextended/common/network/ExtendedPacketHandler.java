@@ -41,7 +41,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSBannerOpenScreenPacket.class, ExtendedSBannerOpenScreenPacket::encode, ExtendedSBannerOpenScreenPacket::decode, ExtendedSBannerOpenScreenPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCBannerSaveInfoPacket.class, ExtendedCBannerSaveInfoPacket::encode, ExtendedCBannerSaveInfoPacket::decode, ExtendedCBannerSaveInfoPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSBannerOpenChangedScreenPacket.class, ExtendedSBannerOpenChangedScreenPacket::encode, ExtendedSBannerOpenChangedScreenPacket::decode, ExtendedSBannerOpenChangedScreenPacket::handle);
-		CHANNEL.registerMessage(id++, ExtendedCOpenHiredMenuPacket.class, ExtendedCOpenHiredMenuPacket::encode, ExtendedCOpenHiredMenuPacket::decode, ExtendedCOpenHiredMenuPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCOpenHiredOverviewMenuPacket.class, ExtendedCOpenHiredOverviewMenuPacket::encode, ExtendedCOpenHiredOverviewMenuPacket::decode, ExtendedCOpenHiredOverviewMenuPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenHiredEquipmentMenuPacket.class, ExtendedCOpenHiredEquipmentMenuPacket::encode, ExtendedCOpenHiredEquipmentMenuPacket::decode, ExtendedCOpenHiredEquipmentMenuPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCSetHiredUnitOrdersPacket.class, ExtendedCSetHiredUnitOrdersPacket::encode, ExtendedCSetHiredUnitOrdersPacket::decode, ExtendedCSetHiredUnitOrdersPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCHireUnitPacket.class, ExtendedCHireUnitPacket::encode, ExtendedCHireUnitPacket::decode, ExtendedCHireUnitPacket::handle);
@@ -63,6 +63,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedCWorldPruneCommands.class, ExtendedCWorldPruneCommands::encode, ExtendedCWorldPruneCommands::decode, ExtendedCWorldPruneCommands::handle);
 		CHANNEL.registerMessage(id++, ExtendedSWorldPruneProgress.class, ExtendedSWorldPruneProgress::encode, ExtendedSWorldPruneProgress::decode, ExtendedSWorldPruneProgress::handle);
 		CHANNEL.registerMessage(id++, ExtendedSNpcCaptainInfoPacket.class, ExtendedSNpcCaptainInfoPacket::encode, ExtendedSNpcCaptainInfoPacket::decode, ExtendedSNpcCaptainInfoPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCOpenHiredFarmhandMenuPacket.class, ExtendedCOpenHiredFarmhandMenuPacket::encode, ExtendedCOpenHiredFarmhandMenuPacket::decode, ExtendedCOpenHiredFarmhandMenuPacket::handle);
 
 		if (id >= 255) {
 			// Since IndexedMessageCodec.MessageHandler -> indicies.put((short)(index & 0xff), this);

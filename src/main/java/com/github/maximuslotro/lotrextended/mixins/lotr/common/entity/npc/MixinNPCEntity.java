@@ -17,15 +17,15 @@ import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHired
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerAttackedEntityTargetGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerHurtByEntityTargetGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedNearestAttackableTargetNPCGoal;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredOverviewMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.google.common.base.Predicates;
 
-import lotr.common.entity.npc.ExtendedCaptainEntity;
-import lotr.common.entity.npc.ExtendedMerchantEntity;
-import lotr.common.entity.npc.ExtendedNPCEntity;
-import lotr.common.entity.npc.ExtendedNPCEntitySettings;
-import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.ExtendedICaptainEntity;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntitySettings;
+import lotr.common.entity.npc.ExtendedITraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.ai.NPCTargetSelector;
 import lotr.common.entity.npc.data.ExtendedNpcCaptainInfoHolder;
@@ -59,7 +59,7 @@ import net.minecraft.world.World;
  * @Mixin (NPCEntity.class)
  * */
 @Mixin(NPCEntity.class)
-public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedNPCEntity {
+public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedINPCEntity {
 	/**
 	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param type A placeholder variable instance of CreatureEntity
@@ -343,7 +343,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	public void mobInteract(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResultType> ci) {
 		if(player.getItemInHand(Hand.OFF_HAND).getItem().getUseAnimation(player.getItemInHand(hand))==UseAction.BLOCK) {
 			ci.setReturnValue(ActionResultType.PASS);
-		} else if(this instanceof ExtendedTraderEntity) {
+		} else if(this instanceof ExtendedITraderEntity) {
 			if (player.getItemInHand(hand).getItem() instanceof SpawnEggItem || player.getItemInHand(hand).getItem() instanceof LOTRSpawnEggItem) {
 				ci.setReturnValue(ActionResultType.PASS);
 			}else {
@@ -354,7 +354,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		if (hand == Hand.MAIN_HAND) {
 			if (unitInfo.isNpcActiveDuty() && player.getUUID().equals(unitInfo.getOwnerUUID())) {
 				if (this.level.isClientSide()) {
-					ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredMenuPacket(getId()));
+					ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredOverviewMenuPacket(getId()));
 				}
 				ci.setReturnValue(ActionResultType.sidedSuccess(this.level.isClientSide()));
 			}
@@ -442,7 +442,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 */
 	@Overwrite(remap = false)
 	protected final int addAggressiveTargetingGoals() {
-		if (this instanceof ExtendedNPCEntitySettings) {
+		if (this instanceof ExtendedINPCEntitySettings) {
 			return this.addExtendedTargetingGoals(true);
 		}
 		return this.addTargetingGoals(true);
@@ -458,7 +458,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 */
 	@Overwrite(remap = false)
 	protected final int addNonAggressiveTargetingGoals() {
-		if (this instanceof ExtendedNPCEntitySettings) {
+		if (this instanceof ExtendedINPCEntitySettings) {
 			return this.addExtendedTargetingGoals(false);
 		}
 		return this.addTargetingGoals(false);
@@ -566,9 +566,9 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	@Overwrite(remap=false)
 	public boolean canTrade(PlayerEntity player) {
 		if(isFriendlyAndAligned(player)) {
-			if(this instanceof ExtendedMerchantEntity && ((ExtendedMerchantEntity)this).canTradeWithPlayer(player)) {
+			if(this instanceof ExtendedIMerchantEntity && ((ExtendedIMerchantEntity)this).canTradeWithPlayer(player)) {
 				return true;
-			}else if(this instanceof ExtendedCaptainEntity && ((ExtendedCaptainEntity)this).canHireToPlayer(player)) {
+			}else if(this instanceof ExtendedICaptainEntity && ((ExtendedICaptainEntity)this).canHireToPlayer(player)) {
 				return true;
 			}
 		}

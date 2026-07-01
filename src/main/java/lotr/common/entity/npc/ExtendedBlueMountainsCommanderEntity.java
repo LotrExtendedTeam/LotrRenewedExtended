@@ -20,7 +20,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedBlueMountainsCommanderEntity extends BlueDwarfEntity implements ExtendedNPCEntitySettings, ExtendedCaptainEntity {
+public class ExtendedBlueMountainsCommanderEntity extends BlueDwarfEntity implements ExtendedINPCEntitySettings, ExtendedICaptainEntity {
 
 	public ExtendedBlueMountainsCommanderEntity(EntityType<? extends ExtendedBlueMountainsCommanderEntity> type, World w) {
 		super(type, w);

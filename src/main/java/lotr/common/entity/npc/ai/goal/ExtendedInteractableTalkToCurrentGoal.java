@@ -1,13 +1,13 @@
 package lotr.common.entity.npc.ai.goal;
 
-import lotr.common.entity.npc.ExtendedMerchantEntity;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import lotr.common.entity.npc.NPCEntity;
 
 public class ExtendedInteractableTalkToCurrentGoal extends TalkToCurrentGoal {
 
-	ExtendedMerchantEntity interactableEntity;
+	ExtendedIMerchantEntity interactableEntity;
 
-    public ExtendedInteractableTalkToCurrentGoal(NPCEntity entity, ExtendedMerchantEntity interactableEntity) {
+    public ExtendedInteractableTalkToCurrentGoal(NPCEntity entity, ExtendedIMerchantEntity interactableEntity) {
         super(entity);
         this.interactableEntity = interactableEntity;
     }

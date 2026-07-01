@@ -3,7 +3,7 @@ package lotr.common.entity.npc;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
-public interface ExtendedRidableEntity {
+public interface ExtendedIRidableEntity {
 	// Armor Methods
 	public boolean canWearArmor();
 

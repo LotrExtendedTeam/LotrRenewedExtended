@@ -6,8 +6,8 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnerEntry;
 
-import lotr.common.entity.npc.ExtendedCaptainEntity;
-import lotr.common.entity.npc.ExtendedMerchantEntity;
+import lotr.common.entity.npc.ExtendedICaptainEntity;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.material.PushReaction;
@@ -137,10 +137,10 @@ public class ExtendedRespawnerEntity extends Entity{
 					npcEntity.restrictTo(homePos, homeRadius);
 				}
 			}
-			if(spawnedEntity instanceof ExtendedMerchantEntity) {
-				((ExtendedMerchantEntity)spawnedEntity).getTraderData().loadFromNbt(nbt);
+			if(spawnedEntity instanceof ExtendedIMerchantEntity) {
+				((ExtendedIMerchantEntity)spawnedEntity).getTraderData().loadFromNbt(nbt);
 			}
-			if(spawnedEntity instanceof ExtendedCaptainEntity) {
+			if(spawnedEntity instanceof ExtendedICaptainEntity) {
 				// IDK maybe captains have data to save in the future
 			}
 			world.addFreshEntityWithPassengers(spawnedEntity);

@@ -14,7 +14,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 
-public abstract class ExtendedDunlendingTraderEntity extends DunlendingEntity implements ExtendedNPCEntitySettings, ExtendedMerchantEntity {
+public abstract class ExtendedDunlendingTraderEntity extends DunlendingEntity implements ExtendedINPCEntitySettings, ExtendedIMerchantEntity {
 
 	int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 

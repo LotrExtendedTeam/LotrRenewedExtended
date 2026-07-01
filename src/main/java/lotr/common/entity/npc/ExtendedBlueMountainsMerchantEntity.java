@@ -37,7 +37,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity  implements ExtendedNPCEntitySettings, ExtendedWanderingTraderEntity {
+public class ExtendedBlueMountainsMerchantEntity extends BlueDwarfEntity  implements ExtendedINPCEntitySettings, ExtendedIWanderingTraderEntity {
 
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 

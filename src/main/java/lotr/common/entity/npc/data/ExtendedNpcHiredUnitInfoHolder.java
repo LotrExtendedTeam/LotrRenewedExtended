@@ -13,14 +13,14 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnit
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
-import com.github.maximuslotro.lotrrextended.common.inventory.UnitInventory;
+import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedUnitInventory;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcUnitInfoPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import lotr.common.entity.npc.BreeGuardEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.GondorSoldierEntity;
 import lotr.common.entity.npc.GundabadOrcEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -77,7 +77,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	public boolean isInteracting = false;
 	private int currentHealth = -1;
 
-	private UnitInventory internalUnitInventory = makeUnitInventory();
+	private ExtendedUnitInventory internalUnitInventory = makeUnitInventory();
 
 	public ExtendedNpcHiredUnitInfoHolder(NPCEntity thisEntity) {
 		this.thisEntity = thisEntity;
@@ -383,7 +383,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 		Entity entity = world.getEntity(entityId);
 		boolean shouldRead = buf.readBoolean();
 		if (shouldRead && entity instanceof NPCEntity) {
-			ExtendedNpcHiredUnitInfoHolder unitInfo = ((ExtendedNPCEntity) entity).getUnitInfo();
+			ExtendedNpcHiredUnitInfoHolder unitInfo = ((ExtendedINPCEntity) entity).getUnitInfo();
 			if(unitInfo!=null) {
 				unitInfo.setOwnerUUID(buf.readUUID());
 				unitInfo.setHired(buf.readBoolean());
@@ -444,12 +444,12 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
         ExtendedHiredUnitHelper.giveExperiencePoints(this, points);
     }
 	// ######################################### Inventory Management
-	public UnitInventory makeUnitInventory() {
+	public ExtendedUnitInventory makeUnitInventory() {
 		// 9 inventory slots + 10 player equipment slots + 10 base equipment slots
-		return new UnitInventory(INVENTORY_SIZE);
+		return new ExtendedUnitInventory(INVENTORY_SIZE);
 	}
 
-	public UnitInventory getInternalUnitInventory() {
+	public ExtendedUnitInventory getInternalUnitInventory() {
 		return internalUnitInventory;
 	}
 	// ######################################### Experience Points

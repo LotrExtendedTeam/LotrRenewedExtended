@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 /**
  * Interface providing extended functionality and data access for NPC entities.
  */
-public interface ExtendedNPCEntity {
+public interface ExtendedINPCEntity {
 
 	/**
 	 * Retrieves the NPC's marriage information.

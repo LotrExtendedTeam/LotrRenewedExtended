@@ -39,7 +39,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedRivendellWandererEntity extends ExtendedAbstractCloakingElfEntity implements ExtendedWanderingTraderEntity {
+public class ExtendedRivendellWandererEntity extends ExtendedAbstractCloakingElfEntity implements ExtendedIWanderingTraderEntity {
 
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 

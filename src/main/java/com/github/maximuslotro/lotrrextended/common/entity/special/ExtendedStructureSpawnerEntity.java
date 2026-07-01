@@ -15,7 +15,7 @@ import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEn
 import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
 import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
 
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.NPCGenderProvider;
@@ -265,11 +265,11 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 								entityMaleNpc.restrictTo(this.blockPosition(), spawnerInstance.getHomeRadius());
 								entityFemaleNpc.restrictTo(this.blockPosition(), spawnerInstance.getHomeRadius());
 							}
-							ExtendedNpcMarriageHolder marriageInfoMale = ((ExtendedNPCEntity) entityMaleNpc).getMarriageInfo();
+							ExtendedNpcMarriageHolder marriageInfoMale = ((ExtendedINPCEntity) entityMaleNpc).getMarriageInfo();
 							marriageInfoMale.maleID=entityMaleNpc.getUUID();
 							marriageInfoMale.femaleID=entityFemaleNpc.getUUID();
 							marriageInfoMale.spouseID=entityFemaleNpc.getUUID();
-							ExtendedNpcMarriageHolder marriageInfoFemale = ((ExtendedNPCEntity) entityFemaleNpc).getMarriageInfo();
+							ExtendedNpcMarriageHolder marriageInfoFemale = ((ExtendedINPCEntity) entityFemaleNpc).getMarriageInfo();
 							marriageInfoFemale.maleID=entityMaleNpc.getUUID();
 							marriageInfoFemale.femaleID=entityFemaleNpc.getUUID();
 							marriageInfoFemale.spouseID=entityMaleNpc.getUUID();

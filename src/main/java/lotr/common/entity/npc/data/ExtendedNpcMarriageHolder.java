@@ -5,7 +5,7 @@ import java.util.UUID;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcMarriageInfoPacket;
 
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -158,7 +158,7 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 		Entity entity = world.getEntity(entityId);
 		if (entity instanceof NPCEntity) {
 			NPCEntity npc = (NPCEntity) entity;
-			ExtendedNpcMarriageHolder marriageInfo = ((ExtendedNPCEntity) npc).getMarriageInfo();
+			ExtendedNpcMarriageHolder marriageInfo = ((ExtendedINPCEntity) npc).getMarriageInfo();
 			if(marriageInfo!=null) {
 				marriageInfo.numberOfCurrentChildren = buf.readBoolean() ? buf.readInt() : 0;
 				marriageInfo.maxNumberOfCurrentChildren= buf.readBoolean() ? buf.readInt() : 0;

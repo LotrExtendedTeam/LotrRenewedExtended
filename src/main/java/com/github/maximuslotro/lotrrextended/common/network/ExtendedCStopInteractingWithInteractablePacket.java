@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.network;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import lotr.common.entity.npc.ExtendedMerchantEntity;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
@@ -38,11 +38,11 @@ public class ExtendedCStopInteractingWithInteractablePacket {
     	World level = Objects.requireNonNull(context.get().getSender()).level;
         if (level.getEntity(packet.interactableId) != null && level.getEntity(packet.interactableId) instanceof NPCEntity) {
             NPCEntity entity = (NPCEntity) level.getEntity(packet.interactableId);
-            if (!(entity instanceof ExtendedMerchantEntity)) {
+            if (!(entity instanceof ExtendedIMerchantEntity)) {
                 return;
             }
 
-            ExtendedMerchantEntity interactable = (ExtendedMerchantEntity) entity;
+            ExtendedIMerchantEntity interactable = (ExtendedIMerchantEntity) entity;
             interactable.removePlayerFromInteracting(context.get().getSender());
         }
         context.get().setPacketHandled(true);

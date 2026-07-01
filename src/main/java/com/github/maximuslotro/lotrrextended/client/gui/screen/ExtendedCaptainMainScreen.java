@@ -6,7 +6,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.common.data.AlignmentDataModule;
 import lotr.common.data.LOTRLevelData;
-import lotr.common.entity.npc.ExtendedCaptainEntity;
+import lotr.common.entity.npc.ExtendedICaptainEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.fac.Faction;
 import lotr.common.util.CoinUtils;
@@ -136,7 +136,7 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 		ExtendedClientHiredUnitProfile currentProfile = getCurrentProfile();
 		if (currentProfile == null) return;
 
-		if(npcEntity instanceof ExtendedCaptainEntity) {
+		if(npcEntity instanceof ExtendedICaptainEntity) {
 			Faction fac = npcEntity.getFaction();
 			AlignmentDataModule alignData = LOTRLevelData.sidedInstance(player.level).getData(player).getAlignmentData();
 			if(currentProfile.isHiringRequiresPledge() && !alignData.isPledgedTo(fac)) {

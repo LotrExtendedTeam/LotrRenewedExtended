@@ -5,7 +5,7 @@ import lotr.common.data.LOTRLevelData;
 import lotr.common.fac.AlignmentPredicates;
 import net.minecraft.entity.player.PlayerEntity;
 
-public interface ExtendedInteractableEntity{
+public interface ExtendedIInteractableEntity{
 	/**
 	 * Hacky getter for getting entity without requiring getters in all implementing
 	 * Replace with ExtendedNPCEntity implementation when migrating to new NPC class

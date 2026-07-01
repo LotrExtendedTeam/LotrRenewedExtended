@@ -5,7 +5,7 @@ import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 
-public interface ExtendedCaptainEntity extends ExtendedTraderEntity {
+public interface ExtendedICaptainEntity extends ExtendedITraderEntity {
 	/**
      * Opens the hire unit menu for the given player.
      *
@@ -23,7 +23,7 @@ public interface ExtendedCaptainEntity extends ExtendedTraderEntity {
      * @return The trader's data holder.
      */
 	default ExtendedNpcCaptainInfoHolder getCaptainData() {
-		return ((ExtendedNPCEntity)this).getCaptainInfo();
+		return ((ExtendedINPCEntity)this).getCaptainInfo();
 	}
 	/**
      * Checks if the given player can trade with this trader, handles friendly and alignment checks.

@@ -26,7 +26,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWin
 import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.ai.goal.PanicIfBurningGoal;
 import lotr.common.entity.ai.goal.RandomWalkingEvenWhenRiddenGoal;
-import lotr.common.entity.npc.ExtendedRidableEntity;
+import lotr.common.entity.npc.ExtendedIRidableEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.WargEntity;
 import lotr.common.entity.npc.ai.goal.WargLeapAndDisableShieldGoal;
@@ -91,7 +91,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * This class is not documented on purpose as it is unused and subject to re-write or deletion
  * */
 @Mixin(WargEntity.class)
-public abstract class MixinWargEntity extends NPCEntity implements IInventoryChangedListener, IJumpingMount, IEquipable, ExtendedRidableEntity {
+public abstract class MixinWargEntity extends NPCEntity implements IInventoryChangedListener, IJumpingMount, IEquipable, ExtendedIRidableEntity {
 	@Unique
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("90833995-95a9-4586-b044-08e411e7d60c");
 	@Unique
