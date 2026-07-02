@@ -22,6 +22,12 @@ public abstract class ExtendedHiredUnitScreen<T extends ExtendedHiredUnitContain
 
 	public ExtendedHiredUnitScreen(T pMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(pMenu, pPlayerInventory, pTitle);
+		this.passEvents = false;
+		this.imageWidth = 176;
+		this.imageHeight = 222;
+		this.titleLabelY = 4;
+		this.inventoryLabelY = 128;
+		this.titleLabelX = (imageWidth/2);
 	}
 
 	protected void openOverviewMenu(int companionID) {

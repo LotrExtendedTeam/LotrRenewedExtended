@@ -36,19 +36,19 @@ public class ExtendedHiredUnitOverviewContainer extends ExtendedHiredUnitContain
 
 		// add the 9 companion inventory slots
 		for (int k = 0; k < 9; ++k) {
-			this.addSlot(new Slot(companionInv, k, 8 + k * 18, 110));
+			this.addSlot(new Slot(companionInv, k, 8 + k * 18, 108));
 		}
 
 		// add the 3 rows of player inventory
 		for (int l = 0; l < 3; ++l) {
 			for (int j1 = 0; j1 < 9; ++j1) {
-				this.addSlot(new Slot(pPlayerInventory, j1 + l * 9 + 9, 8 + j1 * 18, 142 + l * 18));
+				this.addSlot(new Slot(pPlayerInventory, j1 + l * 9 + 9, 8 + j1 * 18, 140 + l * 18));
 			}
 		}
 
 		// add the player's hotbar
 		for (int i1 = 0; i1 < 9; ++i1) {
-			this.addSlot(new Slot(pPlayerInventory, i1, 8 + i1 * 18, 200));
+			this.addSlot(new Slot(pPlayerInventory, i1, 8 + i1 * 18, 198));
 		}
 	}
 

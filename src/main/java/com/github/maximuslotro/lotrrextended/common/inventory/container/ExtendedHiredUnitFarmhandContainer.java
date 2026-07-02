@@ -22,6 +22,7 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 	private Slot seedsSlot;
 	private Slot bonemealSlot;
 	private IInventory farmhandSupplies;
+	public int farmhandContainterSize = 3;
 
 	public ExtendedHiredUnitFarmhandContainer(int pContainerId, PlayerInventory pPlayerInventory, PacketBuffer extraData) {
 		super(ExtendedContainerTypes.HIRED_UNIT_FARMHAND.get(), pContainerId, pPlayerInventory, extraData);
@@ -31,22 +32,22 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 		companionInv.startOpen(pPlayerInventory.player);
 
 		// Inventory slots
-		seedsSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.SeedsSlot(farmhandSupplies, 0, 62, 85, EMPTY_SLOT_SEEDS));
-		bonemealSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.BoneMealSlot(farmhandSupplies, 1, 80, 85, EMPTY_SLOT_BONEMEAL));
-		for (int i1 = 0; i1 < 3; ++i1) {
-			this.addSlot(new ExtendedHiredUnitFarmhandSlot.CropsSlot(farmhandSupplies, 2+i1, 80 + i1 * 18, 100));
+		seedsSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.SeedsSlot(farmhandSupplies, 0, 80, 47, EMPTY_SLOT_SEEDS));
+		bonemealSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.BoneMealSlot(farmhandSupplies, 1, 46, 61, EMPTY_SLOT_BONEMEAL));
+		for (int i1 = 0; i1 < farmhandContainterSize-1; ++i1) {
+			this.addSlot(new ExtendedHiredUnitFarmhandSlot.CropsSlot(farmhandSupplies, 2+i1, 71 + i1 * 18, 75));
 		}
 
 		// add the 3 rows of player inventory
 		for (int l = 0; l < 3; ++l) {
 			for (int j1 = 0; j1 < 9; ++j1) {
-				this.addSlot(new Slot(pPlayerInventory, j1 + l * 9 + 9, 8 + j1 * 18, 142 + l * 18));
+				this.addSlot(new Slot(pPlayerInventory, j1 + l * 9 + 9, 8 + j1 * 18, 140 + l * 18));
 			}
 		}
 
 		// add the player's hotbar
 		for (int i1 = 0; i1 < 9; ++i1) {
-			this.addSlot(new Slot(pPlayerInventory, i1, 8 + i1 * 18, 200));
+			this.addSlot(new Slot(pPlayerInventory, i1, 8 + i1 * 18, 198));
 		}
 	}
 

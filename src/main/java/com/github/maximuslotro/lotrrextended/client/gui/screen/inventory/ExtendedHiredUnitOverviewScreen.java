@@ -42,10 +42,6 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 
 	public ExtendedHiredUnitOverviewScreen(ExtendedHiredUnitOverviewContainer unitInventoryContainer, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(unitInventoryContainer, pPlayerInventory, pTitle);
-		this.passEvents = false;
-		this.imageWidth = 176;
-		this.imageHeight = 222;
-		this.inventoryLabelY = 130;
 		df.setRoundingMode(RoundingMode.CEILING);
 		sidebarX = 80;
 		this.orders = unitInventoryContainer.initialOrders;
@@ -100,14 +96,14 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 	protected void renderBg(MatrixStack pMatrixStack, float pPartialTicks, int pMouseX, int pMouseY) {
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND);
-		this.blit(pMatrixStack, leftPos, topPos+2, 0, 0, this.imageWidth, this.imageHeight);
+		this.blit(pMatrixStack, leftPos, topPos, 0, 0, this.imageWidth, this.imageHeight);
 	}
 
 	@Override
 	protected void renderLabels(MatrixStack matrix, int pMouseX, int pMouseY) {
 		ExtendedNpcHiredUnitInfoHolder info =((ExtendedINPCEntity)menu.getCompanion()).getUnitInfo();
-		this.font.draw(matrix, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
-		this.font.draw(matrix, this.inventory.getDisplayName(), (float)this.inventoryLabelX, (float)this.inventoryLabelY, 4210752);
+		this.font.draw(matrix, title, titleLabelX - (font.width(title)/2), titleLabelY, 4210752);
+		this.font.draw(matrix, inventory.getDisplayName(), inventoryLabelX, inventoryLabelY, 4210752);
 
 		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.companion").withStyle(TextFormatting.UNDERLINE), sidebarX, this.titleLabelY + 12, 4210752);
 

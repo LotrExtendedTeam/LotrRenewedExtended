@@ -19,18 +19,12 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitScreen<ExtendedHiredUnitEquipmentContainer> {
-
-	private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/hired_unit_upgrade_equipment_menu.png");
-	private static final ResourceLocation CONTAINER_BACKGROUND_MELEE = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/hired_unit_upgrade_equipment_menu_melee.png");
+	private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/hired_unit_equipment_menu.png");
 
 	DecimalFormat df = new DecimalFormat("0.0");
 
 	public ExtendedHiredUnitEquipmentScreen(ExtendedHiredUnitEquipmentContainer unitEquipmentContainer, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(unitEquipmentContainer, pPlayerInventory, pTitle);
-		this.passEvents = false;
-		this.imageWidth = 176;
-		this.imageHeight = 222;
-		this.inventoryLabelY = 130;
 		df.setRoundingMode(RoundingMode.CEILING);
 		setIndex(1);
 	}
@@ -41,25 +35,25 @@ public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitScreen<Ex
 		super.render(pMatrixStack, pMouseX, pMouseY, pPartialTicks);
 		if (getMenu().getBaseInventory() != null) {
 			if(!getMenu().getBaseInventory().getItem(0).isEmpty()) {
-				renderBaseGearSlot(leftPos + 25, topPos + 31, getMenu().getBaseInventory().getItem(0));
+				renderBaseGearSlot(leftPos + 25, topPos + 29, getMenu().getBaseInventory().getItem(0));
 			}
 			if(!getMenu().getBaseInventory().getItem(1).isEmpty()) {
-				renderBaseGearSlot(leftPos + 25, topPos + 49, getMenu().getBaseInventory().getItem(1));
+				renderBaseGearSlot(leftPos + 25, topPos + 47, getMenu().getBaseInventory().getItem(1));
 			}
 			if(!getMenu().getBaseInventory().getItem(2).isEmpty()) {
-				renderBaseGearSlot(leftPos + 25, topPos + 67, getMenu().getBaseInventory().getItem(2));
+				renderBaseGearSlot(leftPos + 25, topPos + 65, getMenu().getBaseInventory().getItem(2));
 			}
 			if(!getMenu().getBaseInventory().getItem(3).isEmpty()) {
-				renderBaseGearSlot(leftPos + 25, topPos + 85, getMenu().getBaseInventory().getItem(3));
+				renderBaseGearSlot(leftPos + 25, topPos + 83, getMenu().getBaseInventory().getItem(3));
 			}
 			if(!getMenu().getBaseInventory().getItem(4).isEmpty()) {
-				renderBaseGearSlot(leftPos + 44, topPos + 67, getMenu().getBaseInventory().getItem(4));
+				renderBaseGearSlot(leftPos + 44, topPos + 65, getMenu().getBaseInventory().getItem(4));
 			}
 			if(!getMenu().getBaseInventory().getItem(5).isEmpty()) {
-				renderBaseGearSlot(leftPos + 44, topPos + 49, getMenu().getBaseInventory().getItem(5));
+				renderBaseGearSlot(leftPos + 44, topPos + 47, getMenu().getBaseInventory().getItem(5));
 			}
 			if(!getMenu().getBaseInventory().getItem(9).isEmpty()) {
-				renderBaseGearSlot(leftPos + 44, topPos + 85, getMenu().getBaseInventory().getItem(9));
+				renderBaseGearSlot(leftPos + 44, topPos + 83, getMenu().getBaseInventory().getItem(9));
 			}
 		}
 		this.renderTooltip(pMatrixStack, pMouseX, pMouseY);
@@ -68,18 +62,17 @@ public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitScreen<Ex
 	@Override
 	protected void renderBg(MatrixStack pMatrixStack, float pPartialTicks, int pMouseX, int pMouseY) {
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+		this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND);
+		this.blit(pMatrixStack, leftPos, topPos, 0, 0, imageWidth, imageHeight);
 		if(getMenu().profile.getAttackType()==ExtendedUnitCombatTypes.RANGED) {
-			this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND);
-		}else {
-			this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND_MELEE);
+			this.blit(pMatrixStack, leftPos+42, topPos+43, 176, 0, 42, 43);
 		}
-		this.blit(pMatrixStack, leftPos, topPos+2, 0, 0, imageWidth, imageHeight);
 	}
 
 	@Override
 	protected void renderLabels(MatrixStack matrix, int pMouseX, int pMouseY) {
-		this.font.draw(matrix, title, (48 - (font.width(title) / 2)), 6, 4210752);
-		this.font.draw(matrix, this.inventory.getDisplayName(), this.inventoryLabelX, this.inventoryLabelY, 4210752);
+		this.font.draw(matrix, title, titleLabelX - (font.width(title)/2), titleLabelY, 4210752);
+		this.font.draw(matrix, inventory.getDisplayName(), inventoryLabelX, inventoryLabelY, 4210752);
 		// show armor points
 		if (getMenu().getCompanion() != null) {
 			double armor = getMenu().getCompanion().getAttributeValue(Attributes.ARMOR);
@@ -87,9 +80,9 @@ public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitScreen<Ex
 			//double attackD = entity.getAttributeValue(Attributes.ATTACK_DAMAGE);
 			//double attackS = entity.getAttributeValue(Attributes.ATTACK_SPEED);
 			TextComponent armorTitle= new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor");
-			this.font.draw(matrix, armorTitle.withStyle(TextFormatting.BLUE).withStyle(TextFormatting.ITALIC), 90, 50, 4210752);
-			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor_points", df.format(armor)), 93, 60, 4210752);
-			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor_toughness", df.format(armorT)), 92, 68, 4210752);
+			this.font.draw(matrix, armorTitle.withStyle(TextFormatting.BLUE).withStyle(TextFormatting.ITALIC), 90, 48, 4210752);
+			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor_points", df.format(armor)), 93, 58, 4210752);
+			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor_toughness", df.format(armorT)), 92, 66, 4210752);
 			//this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.attack_damage", df.format(attackD)), 80, this.titleLabelY + 60, 4210752);
 			//this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.attack_speed", df.format(attackS)), 80, this.titleLabelY + 80, 4210752);
 		}

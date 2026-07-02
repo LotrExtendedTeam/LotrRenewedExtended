@@ -80,31 +80,31 @@ public class ExtendedHiredUnitEquipmentContainer extends ExtendedHiredUnitContai
         // add the 3 rows of player inventory
         for (int l = 0; l < 3; ++l) {
             for (int j1 = 0; j1 < 9; ++j1) {
-                this.addSlot(new Slot(pPlayerInventory, j1 + l * 9 + 9, 8 + j1 * 18, 142 + l * 18));
+                this.addSlot(new Slot(pPlayerInventory, j1 + l * 9 + 9, 8 + j1 * 18, 140 + l * 18));
             }
         }
 
         // add the player's hotbar
         for (int i1 = 0; i1 < 9; ++i1) {
-            this.addSlot(new Slot(pPlayerInventory, i1, 8 + i1 * 18, 200));
+            this.addSlot(new Slot(pPlayerInventory, i1, 8 + i1 * 18, 198));
         }
 
         // setup 4 custom armor slots
-        armorSlots[0]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 0, 8, 31, ExtendedEquipmentSlotType.HEAD, PlayerContainer.EMPTY_ARMOR_SLOT_HELMET));
-        armorSlots[1]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 1, 8, 49, ExtendedEquipmentSlotType.CHEST, PlayerContainer.EMPTY_ARMOR_SLOT_CHESTPLATE));
-        armorSlots[2]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 2, 8, 67, ExtendedEquipmentSlotType.LEGS, PlayerContainer.EMPTY_ARMOR_SLOT_LEGGINGS));
-        armorSlots[3]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 3, 8, 85, ExtendedEquipmentSlotType.FEET, PlayerContainer.EMPTY_ARMOR_SLOT_BOOTS));
+        armorSlots[0]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 0, 8, 29, ExtendedEquipmentSlotType.HEAD, PlayerContainer.EMPTY_ARMOR_SLOT_HELMET));
+        armorSlots[1]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 1, 8, 47, ExtendedEquipmentSlotType.CHEST, PlayerContainer.EMPTY_ARMOR_SLOT_CHESTPLATE));
+        armorSlots[2]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 2, 8, 65, ExtendedEquipmentSlotType.LEGS, PlayerContainer.EMPTY_ARMOR_SLOT_LEGGINGS));
+        armorSlots[3]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 3, 8, 83, ExtendedEquipmentSlotType.FEET, PlayerContainer.EMPTY_ARMOR_SLOT_BOOTS));
 
         // Setup hand slots
         if(profile.getAttackType().isFarming()) {
-        	meleeSlot = (ExtendedHiredUnitEquipmentSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.FarmhandMeleeSlot(playerEquipment, 4, 62, 67, EMPTY_SLOT_HOE));
+        	meleeSlot = (ExtendedHiredUnitEquipmentSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.FarmhandMeleeSlot(playerEquipment, 4, 62, 65, EMPTY_SLOT_HOE));
         }else {
-        	meleeSlot = (ExtendedHiredUnitEquipmentSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.MeleeSlot(playerEquipment, 4, 62, 67, EMPTY_SLOT_SWORD));
+        	meleeSlot = (ExtendedHiredUnitEquipmentSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.MeleeSlot(playerEquipment, 4, 62, 65, EMPTY_SLOT_SWORD));
         }
         if(profile.getAttackType().isRanged()) {
-            rangedSlot = (RangedSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.RangedSlot(playerEquipment, 5, 62, 49,EMPTY_SLOT_BOW));
+            rangedSlot = (RangedSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.RangedSlot(playerEquipment, 5, 62, 47, EMPTY_SLOT_BOW));
         }
-        offhandSlot = (OffhandSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.OffhandSlot(playerEquipment, 9, 62, 85, PlayerContainer.EMPTY_ARMOR_SLOT_SHIELD));
+        offhandSlot = (OffhandSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.OffhandSlot(playerEquipment, 9, 62, 83, PlayerContainer.EMPTY_ARMOR_SLOT_SHIELD));
         this.addSlotListener(this);
     }
 

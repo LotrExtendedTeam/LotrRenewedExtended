@@ -15,10 +15,6 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 
 	public ExtendedHiredUnitFarmhandScreen(ExtendedHiredUnitFarmhandContainer unitEquipmentContainer, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(unitEquipmentContainer, pPlayerInventory, pTitle);
-		this.passEvents = false;
-		this.imageWidth = 176;
-		this.imageHeight = 222;
-		this.inventoryLabelY = 130;
 		setIndex(2);
 	}
 
@@ -33,13 +29,22 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 	protected void renderBg(MatrixStack pMatrixStack, float pPartialTicks, int pMouseX, int pMouseY) {
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND);
-		this.blit(pMatrixStack, leftPos, topPos+2, 0, 0, imageWidth, imageHeight);
+		this.blit(pMatrixStack, leftPos, topPos, 0, 0, imageWidth, imageHeight);
+		int totalSlots = Math.min(getMenu().farmhandContainterSize-1, 12);
+		for(int i = 0; i<totalSlots; i++) {
+			int column = i % 4;
+		    int row = i / 4;
+		    if (column == 0) {
+			    this.blit(pMatrixStack, leftPos+70, topPos+74 + (row * 18), 176, 0, 72, 18);
+		    }
+		    this.blit(pMatrixStack, leftPos+70 + (column * 18), topPos+74 + (row * 18), 176, 18, 18, 18);
+		}
 	}
 
 	@Override
 	protected void renderLabels(MatrixStack matrix, int pMouseX, int pMouseY) {
-		this.font.draw(matrix, title, (48 - (font.width(title) / 2)), 6, 4210752);
-		this.font.draw(matrix, this.inventory.getDisplayName(), this.inventoryLabelX, this.inventoryLabelY, 4210752);
+		this.font.draw(matrix, title, titleLabelX - (font.width(title)/2), titleLabelY, 4210752);
+		this.font.draw(matrix, inventory.getDisplayName(), inventoryLabelX, inventoryLabelY, 4210752);
 	}
 
 	@Override
