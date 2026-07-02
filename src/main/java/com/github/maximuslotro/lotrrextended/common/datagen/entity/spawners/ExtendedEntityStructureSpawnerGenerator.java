@@ -45,7 +45,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 
 		// HOBBITS
 		single(ExtendedEntities.HOBBIT_FARMER.get()).setRespawnOnDeath().setHomeInfo(false, 16).save(pConsumer, ExtendedSpawners.HOBBIT_BARN_FARMER);
-		single(ExtendedEntities.HOBBIT_FARMHAND.get()).setHomeInfo(false, 4).save(pConsumer, ExtendedSpawners.HOBBIT_BARN_FARMHAND);
+		single(ExtendedEntities.HOBBIT_FARMHAND.get()).setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.HOBBIT_BARN_FARMHAND);
 		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
 		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.HOBBIT_BARN_ANIMALS);
 		// un-disable when windmill hobbit is added
