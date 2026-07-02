@@ -17,6 +17,7 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedSingleItemDataHolderIInventory;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedILootTableAccessor;
 
 import lotr.common.inv.KegContainer;
 import lotr.common.item.VesselDrinkItem;
@@ -26,7 +27,6 @@ import lotr.common.recipe.LOTRRecipes;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.tileentity.KegTileEntity.KegMode;
 import lotr.common.util.DrinkUtils;
-import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -66,7 +66,7 @@ import net.minecraft.world.server.ServerWorld;
  *
  */
 @Mixin(KegTileEntity.class)
-public abstract class MixinKegTileEntity extends LockableTileEntity implements ExtendedLootTableAccessor {
+public abstract class MixinKegTileEntity extends LockableTileEntity implements ExtendedILootTableAccessor {
 	/**
 	 * Virtual constructor that will be stripped on runtime
 	 * @param p_i48285_1_ entity type

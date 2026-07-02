@@ -36,6 +36,7 @@ public class ExtendedEntityRenderers {
 		// Hobbit
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_BARTENDER.get(), ExtendedHobbitBartenderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_FARMER.get(), ExtendedHobbitFarmerRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_FARMHAND.get(), HobbitRenderer::new);
 		// Gundabad
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_CAMP_TRADER.get(), ExtendedSmallOrcTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get(), ExtendedLargeOrcTraderRenderer::new);

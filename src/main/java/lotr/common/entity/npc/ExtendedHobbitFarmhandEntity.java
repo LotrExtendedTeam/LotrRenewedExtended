@@ -2,6 +2,7 @@ package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedNBTUtils;
 
+import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
@@ -28,7 +29,11 @@ public class ExtendedHobbitFarmhandEntity extends HobbitEntity implements Extend
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
-		npcItemsInv.setMeleeWeapon(new ItemStack(Items.IRON_HOE));
+		if(this.random.nextInt(5)==0) {
+	        npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.BRONZE_HOE.get()));
+		}else {
+	        npcItemsInv.setMeleeWeapon(new ItemStack(Items.IRON_HOE));
+		}
         npcItemsInv.setIdleItemsFromMeleeWeapons();
         return spawnData;
     }

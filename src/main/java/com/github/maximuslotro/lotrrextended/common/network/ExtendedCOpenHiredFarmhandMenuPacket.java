@@ -47,7 +47,7 @@ public class ExtendedCOpenHiredFarmhandMenuPacket {
 			ExtendedHiredUnitFarmhandContainer.writeContainerInitData(initData, msg.entityId);
 			NetworkHooks.openGui(pPlayer,
 				new SimpleNamedContainerProvider((windowId, playerInventory, player) -> 
-				ExtendedContainerTypes.HIRED_UNIT_OVERVIEW.get().create(windowId, playerInventory, initData), 
+				ExtendedContainerTypes.HIRED_UNIT_FARMHAND.get().create(windowId, playerInventory, initData), 
 				ExtendedHiredUnitFarmhandContainer.CONTAINER_TITLE),
 				buf -> ExtendedHiredUnitFarmhandContainer.writeContainerInitData(buf, msg.entityId)
 				);

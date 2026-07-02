@@ -16,9 +16,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedSingleItemDataHolderIInventory;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedILootTableAccessor;
 
 import lotr.common.tileentity.PlateTileEntity;
-import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,11 +36,11 @@ import net.minecraft.world.server.ServerWorld;
 
 /**
  * Mixin extension for {@link PlateTileEntity} to support loot table generation and NBT serialization.
- * Implements {@link ExtendedLootTableAccessor} for extended loot behavior and {@link ITickableTileEntity}
+ * Implements {@link ExtendedILootTableAccessor} for extended loot behavior and {@link ITickableTileEntity}
  * to manage lazy loot unpacking during ticks.
  */
 @Mixin(PlateTileEntity.class)
-public class MixinPlateTileEntity implements ExtendedLootTableAccessor, ITickableTileEntity {
+public class MixinPlateTileEntity implements ExtendedILootTableAccessor, ITickableTileEntity {
 	/** 
 	 * Loot table resource location to be unpacked lazily 
 	 * @Unique

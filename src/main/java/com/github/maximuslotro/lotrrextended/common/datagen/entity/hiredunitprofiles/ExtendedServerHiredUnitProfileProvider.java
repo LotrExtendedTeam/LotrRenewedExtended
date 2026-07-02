@@ -69,9 +69,9 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 		}
 	}
 
-	private static void save(Gson pGson, DirectoryCache pCache, ExtendedServerHiredUnitProfile spawner, Path pPath) throws IOException {
+	private static void save(Gson pGson, DirectoryCache pCache, ExtendedServerHiredUnitProfile profile, Path pPath) throws IOException {
 		try {
-			String s = ExtendedServerHiredUnitProfileManager.serialize(pGson, spawner);
+			String s = ExtendedServerHiredUnitProfileManager.serialize(pGson, profile);
 			String s1 = SHA1.hashUnencodedChars(s).toString();
 			if (!Objects.equals(pCache.getHash(pPath), s1) || !Files.exists(pPath)) {
 				Files.createDirectories(pPath.getParent());

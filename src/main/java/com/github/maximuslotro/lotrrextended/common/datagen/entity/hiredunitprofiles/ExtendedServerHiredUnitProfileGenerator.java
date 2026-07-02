@@ -23,7 +23,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 
 	@Override
 	public void makeHiredUnitProfiles(Consumer<ExtendedServerHiredUnitProfile> pConsumer) {
-		make(LOTREntities.HOBBIT.get(), ExtendedUnitCombatTypes.FARMHAND).setPurchaseInfo(40, false, 50)
+		make(ExtendedEntities.HOBBIT_FARMHAND.get(), ExtendedUnitCombatTypes.FARMHAND).setPurchaseInfo(40, false, 50)
 		.addHelmetPoolItem(ItemStack.EMPTY, 1)
 		.addChestplatePoolItem(ItemStack.EMPTY, 1)
 		.addLeggingPoolItem(ItemStack.EMPTY, 1)
