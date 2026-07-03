@@ -34,9 +34,7 @@ public class ExtendedWargInventoryScreen extends ContainerScreen<ExtendedWargInv
 	protected void renderBg(MatrixStack pMatrixStack, float pPartialTicks, int pX, int pY) {
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.minecraft.getTextureManager().bind(WARG_INVENTORY_LOCATION);
-		int i = (this.width - this.imageWidth) / 2;
-		int j = (this.height - this.imageHeight) / 2;
-		this.blit(pMatrixStack, i, j, 0, 0, this.imageWidth, this.imageHeight);
+		this.blit(pMatrixStack, leftPos, topPos, 0, 0, this.imageWidth, this.imageHeight);
 		//      if (this.horse instanceof AbstractChestedHorseEntity) {
 		//         AbstractChestedHorseEntity abstractchestedhorseentity = (AbstractChestedHorseEntity)this.horse;
 		//         if (abstractchestedhorseentity.hasChest()) {
@@ -45,14 +43,14 @@ public class ExtendedWargInventoryScreen extends ContainerScreen<ExtendedWargInv
 		//      }
 
 		if (((IEquipable)warg).isSaddleable()) {
-			this.blit(pMatrixStack, i + 7, j + 35 - 18, 18, this.imageHeight + 54, 18, 18);
+			this.blit(pMatrixStack, leftPos + 7, topPos + 35 - 18, 18, this.imageHeight + 54, 18, 18);
 		}
 
 		if (((ExtendedIRidableEntity)warg).canWearArmor()) {
-			this.blit(pMatrixStack, i + 7, j + 35, 0, this.imageHeight + 54, 18, 18);
+			this.blit(pMatrixStack, leftPos + 7, topPos + 35, 0, this.imageHeight + 54, 18, 18);
 		}
 
-		InventoryScreen.renderEntityInInventory(i + 51, j + 60, 17, (float)(i + 51) - this.xMouse, (float)(j + 75 - 50) - this.yMouse, this.warg);
+		InventoryScreen.renderEntityInInventory(leftPos + 51, topPos + 60, 17, leftPos + 51 - this.xMouse, topPos + 25 - this.yMouse, this.warg);
 	}
 
 	@Override

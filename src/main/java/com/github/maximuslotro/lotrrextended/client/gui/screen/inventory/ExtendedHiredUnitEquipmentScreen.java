@@ -9,19 +9,22 @@ import com.github.maximuslotro.lotrrextended.common.inventory.container.Extended
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
+import net.minecraft.client.gui.screen.inventory.InventoryScreen;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitScreen<ExtendedHiredUnitEquipmentContainer> {
 	private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/hired_unit_equipment_menu.png");
-
-	DecimalFormat df = new DecimalFormat("0.0");
+	/** The mouse x-position recorded during the last rendered frame. */
+	private float xMouse;
+	/** The mouse y-position recorded during the last renderered frame. */
+	private float yMouse;
+	DecimalFormat df = new DecimalFormat("0.#");
 
 	public ExtendedHiredUnitEquipmentScreen(ExtendedHiredUnitEquipmentContainer unitEquipmentContainer, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(unitEquipmentContainer, pPlayerInventory, pTitle);
@@ -32,28 +35,30 @@ public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitScreen<Ex
 	@Override
 	public void render(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
 		this.renderBackground(pMatrixStack);
+		this.xMouse = (float)pMouseX;
+		this.yMouse = (float)pMouseY;
 		super.render(pMatrixStack, pMouseX, pMouseY, pPartialTicks);
 		if (getMenu().getBaseInventory() != null) {
 			if(!getMenu().getBaseInventory().getItem(0).isEmpty()) {
-				renderBaseGearSlot(leftPos + 25, topPos + 29, getMenu().getBaseInventory().getItem(0));
+				renderBaseGearSlot(leftPos + 109, topPos + 43, getMenu().getBaseInventory().getItem(0));
 			}
 			if(!getMenu().getBaseInventory().getItem(1).isEmpty()) {
-				renderBaseGearSlot(leftPos + 25, topPos + 47, getMenu().getBaseInventory().getItem(1));
+				renderBaseGearSlot(leftPos + 109, topPos + 61, getMenu().getBaseInventory().getItem(1));
 			}
 			if(!getMenu().getBaseInventory().getItem(2).isEmpty()) {
-				renderBaseGearSlot(leftPos + 25, topPos + 65, getMenu().getBaseInventory().getItem(2));
+				renderBaseGearSlot(leftPos + 109, topPos + 79, getMenu().getBaseInventory().getItem(2));
 			}
 			if(!getMenu().getBaseInventory().getItem(3).isEmpty()) {
-				renderBaseGearSlot(leftPos + 25, topPos + 83, getMenu().getBaseInventory().getItem(3));
-			}
-			if(!getMenu().getBaseInventory().getItem(4).isEmpty()) {
-				renderBaseGearSlot(leftPos + 44, topPos + 65, getMenu().getBaseInventory().getItem(4));
+				renderBaseGearSlot(leftPos + 109, topPos + 97, getMenu().getBaseInventory().getItem(3));
 			}
 			if(!getMenu().getBaseInventory().getItem(5).isEmpty()) {
-				renderBaseGearSlot(leftPos + 44, topPos + 47, getMenu().getBaseInventory().getItem(5));
+				renderBaseGearSlot(leftPos + 127, topPos + 61, getMenu().getBaseInventory().getItem(5));
+			}
+			if(!getMenu().getBaseInventory().getItem(4).isEmpty()) {
+				renderBaseGearSlot(leftPos + 127, topPos + 79, getMenu().getBaseInventory().getItem(4));
 			}
 			if(!getMenu().getBaseInventory().getItem(9).isEmpty()) {
-				renderBaseGearSlot(leftPos + 44, topPos + 83, getMenu().getBaseInventory().getItem(9));
+				renderBaseGearSlot(leftPos + 127, topPos + 97, getMenu().getBaseInventory().getItem(9));
 			}
 		}
 		this.renderTooltip(pMatrixStack, pMouseX, pMouseY);
@@ -65,8 +70,9 @@ public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitScreen<Ex
 		this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND);
 		this.blit(pMatrixStack, leftPos, topPos, 0, 0, imageWidth, imageHeight);
 		if(getMenu().profile.getAttackType()==ExtendedUnitCombatTypes.RANGED) {
-			this.blit(pMatrixStack, leftPos+42, topPos+43, 176, 0, 42, 43);
+			this.blit(pMatrixStack, leftPos+127, topPos+53, 176, 0, 42, 43);
 		}
+		InventoryScreen.renderEntityInInventory(leftPos + 44, topPos + 110, 17, leftPos + 44 - this.xMouse, topPos + 110 - this.yMouse, getMenu().getCompanion());
 	}
 
 	@Override
@@ -79,10 +85,9 @@ public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitScreen<Ex
 			double armorT = getMenu().getCompanion().getAttributeValue(Attributes.ARMOR_TOUGHNESS);
 			//double attackD = entity.getAttributeValue(Attributes.ATTACK_DAMAGE);
 			//double attackS = entity.getAttributeValue(Attributes.ATTACK_SPEED);
-			TextComponent armorTitle= new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor");
-			this.font.draw(matrix, armorTitle.withStyle(TextFormatting.BLUE).withStyle(TextFormatting.ITALIC), 90, 48, 4210752);
-			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor_points", df.format(armor)), 93, 58, 4210752);
-			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor_toughness", df.format(armorT)), 92, 66, 4210752);
+			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor").withStyle(TextFormatting.ITALIC), 6, 23, 4210752);
+			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor_points", df.format(armor)), 6, 34, 15790320);
+			this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.armor_toughness", df.format(armorT)), 6, 46, 15790320);
 			//this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.attack_damage", df.format(attackD)), 80, this.titleLabelY + 60, 4210752);
 			//this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.attack_speed", df.format(attackS)), 80, this.titleLabelY + 80, 4210752);
 		}
@@ -92,25 +97,25 @@ public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitScreen<Ex
 	protected void renderTooltip(MatrixStack stack, int pMouseX, int pMouseY) {
 		super.renderTooltip(stack, pMouseX, pMouseY);
 		// render tooltips for base gear
-		if (isHovering(25, 31, pMouseX, pMouseY) && !getMenu().getBaseInventory().getItem(0).isEmpty()) {
+		if (isHovering(109, 43, pMouseX, pMouseY) && !getMenu().getBaseInventory().getItem(0).isEmpty()) {
 			this.renderTooltip(stack, getMenu().getBaseInventory().getItem(0), pMouseX, pMouseY);
 		}
-		if (isHovering(25, 49, pMouseX, pMouseY) && !getMenu().getBaseInventory().getItem(1).isEmpty()) {
+		if (isHovering(109, 61, pMouseX, pMouseY) && !getMenu().getBaseInventory().getItem(1).isEmpty()) {
 			this.renderTooltip(stack, getMenu().getBaseInventory().getItem(1), pMouseX, pMouseY);
 		}
-		if (isHovering(25, 67, pMouseX, pMouseY) && !getMenu().getBaseInventory().getItem(2).isEmpty()) {
+		if (isHovering(109, 79, pMouseX, pMouseY) && !getMenu().getBaseInventory().getItem(2).isEmpty()) {
 			this.renderTooltip(stack, getMenu().getBaseInventory().getItem(2), pMouseX, pMouseY);
 		}
-		if (isHovering(25, 85, pMouseX, pMouseY) && !getMenu().getBaseInventory().getItem(3).isEmpty()) {
+		if (isHovering(109, 97, pMouseX, pMouseY) && !getMenu().getBaseInventory().getItem(3).isEmpty()) {
 			this.renderTooltip(stack, getMenu().getBaseInventory().getItem(3), pMouseX, pMouseY);
 		}
-		if (isHovering(44, 67, pMouseX, pMouseY) && !getMenu().getBaseInventory().getItem(4).isEmpty()) {
-			this.renderTooltip(stack, getMenu().getBaseInventory().getItem(4), pMouseX, pMouseY);
-		}
-		if (getMenu().getRangedSlot()!=null && isHovering(44, 49, pMouseX, pMouseY) && !getMenu().getBaseInventory().getItem(5).isEmpty()) {
+		if (getMenu().getRangedSlot()!=null && isHovering(127, 61, pMouseX, pMouseY) && !getMenu().getBaseInventory().getItem(5).isEmpty()) {
 			this.renderTooltip(stack, getMenu().getBaseInventory().getItem(5), pMouseX, pMouseY);
 		}
-		if (isHovering(44, 85, pMouseX, pMouseY) && !getMenu().getBaseInventory().getItem(9).isEmpty()) {
+		if (isHovering(127, 79, pMouseX, pMouseY) && !getMenu().getBaseInventory().getItem(4).isEmpty()) {
+			this.renderTooltip(stack, getMenu().getBaseInventory().getItem(4), pMouseX, pMouseY);
+		}
+		if (isHovering(127, 97, pMouseX, pMouseY) && !getMenu().getBaseInventory().getItem(9).isEmpty()) {
 			this.renderTooltip(stack, getMenu().getBaseInventory().getItem(9), pMouseX, pMouseY);
 		}
 	}

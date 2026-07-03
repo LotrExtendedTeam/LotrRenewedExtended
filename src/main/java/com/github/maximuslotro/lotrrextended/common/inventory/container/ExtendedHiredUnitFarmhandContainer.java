@@ -74,8 +74,8 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 				slot.setChanged();
 			}
 			if (itemstack1.getCount() == itemstack.getCount()) {
-	            return ItemStack.EMPTY;
-	         }
+				return ItemStack.EMPTY;
+			}
 			slot.onTake(pPlayer, itemstack1);
 		}
 
@@ -83,11 +83,17 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 	}
 
 	@Override
-	public boolean stillValid(PlayerEntity p_75145_1_) {
-		return true;
+	public boolean stillValid(PlayerEntity pPlayer) {
+		return this.farmhandSupplies.stillValid(pPlayer) && this.getCompanion().isAlive();
 	}
 
 	public static void writeContainerInitData(PacketBuffer extraData, int entityId) {
 		ExtendedHiredUnitContainer.writeContainerInitData(extraData, entityId);
+	}
+
+	@Override
+	public void removed(PlayerEntity pPlayer) {
+		super.removed(pPlayer);
+		this.farmhandSupplies.stopOpen(pPlayer);
 	}
 }
