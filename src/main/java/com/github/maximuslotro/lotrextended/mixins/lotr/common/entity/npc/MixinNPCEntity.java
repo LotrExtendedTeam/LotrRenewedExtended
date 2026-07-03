@@ -29,6 +29,7 @@ import lotr.common.entity.npc.ExtendedITraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.ai.NPCTargetSelector;
 import lotr.common.entity.npc.data.ExtendedNpcCaptainInfoHolder;
+import lotr.common.entity.npc.data.ExtendedNpcFarmhandInfoHolder;
 import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
@@ -92,6 +93,12 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 	 * */
 	@Unique
 	private ExtendedNpcCaptainInfoHolder captainInfo = new ExtendedNpcCaptainInfoHolder((NPCEntity)(Object)this);
+
+	/**
+	 * A private data holder for the ExtendedNpcHiredUnitInfoHolder module
+	 * */
+	@Unique
+	private ExtendedNpcFarmhandInfoHolder farmhandInfo = new ExtendedNpcFarmhandInfoHolder((NPCEntity)(Object)this);
 
 	/**
 	 * Get if this NPC requires surface to spawn
@@ -203,6 +210,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 		tradeInfo.writeToNbtI(nbt);
 		unitInfo.writeToNbtI(nbt);
 		captainInfo.writeToNbtI(nbt);
+		farmhandInfo.writeToNbtI(nbt);
 	}
 
 	/**
@@ -217,6 +225,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 		tradeInfo.loadFromNbtI(nbt);
 		unitInfo.loadFromNbtI(nbt);
 		captainInfo.loadFromNbtI(nbt);
+		farmhandInfo.loadFromNbtI(nbt);
 	}
 
 	/**
@@ -231,6 +240,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 		tradeInfo.sendDataToPlayerI(player);
 		unitInfo.sendDataToPlayerI(player);
 		captainInfo.sendDataToPlayerI(player);
+		farmhandInfo.sendDataToPlayerI(player);
 	}
 
 	/**
@@ -244,6 +254,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 		tradeInfo.tickI();
 		unitInfo.tickI();
 		captainInfo.tickI();
+		farmhandInfo.tickI();
 	}
 
 	/**
@@ -280,6 +291,15 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 	@Override
 	public ExtendedNpcCaptainInfoHolder getCaptainInfo() {
 		return captainInfo;
+	}
+
+	/**
+	 * Gets the ExtendedNpcFarmhandInfoHolder from this class on runtime via ExtendedNPCEntity
+	 * @return The ExtendedNpcFarmhandInfoHolder of this NPCEntity instance
+	 * */
+	@Override
+	public ExtendedNpcFarmhandInfoHolder getFarmhandInfo() {
+		return farmhandInfo;
 	}
 
 	@Override

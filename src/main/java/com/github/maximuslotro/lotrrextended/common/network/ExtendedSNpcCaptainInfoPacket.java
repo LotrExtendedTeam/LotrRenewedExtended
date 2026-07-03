@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import lotr.common.LOTRMod;
 import lotr.common.entity.npc.data.ExtendedNpcCaptainInfoHolder;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class ExtendedSNpcCaptainInfoPacket {
@@ -29,8 +28,7 @@ public class ExtendedSNpcCaptainInfoPacket {
 	}
 
 	public static void handle(ExtendedSNpcCaptainInfoPacket packet, Supplier<NetworkEvent.Context> context) {
-		World world = LOTRMod.PROXY.getClientWorld();
-		ExtendedNpcCaptainInfoHolder.readDataPacketFromServer(packet.buffer, world);
+		ExtendedNpcCaptainInfoHolder.readDataPacketFromServer(packet.buffer, LOTRMod.PROXY.getClientWorld());
 		context.get().setPacketHandled(true);
 	}
 }

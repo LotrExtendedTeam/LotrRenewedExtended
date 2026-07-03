@@ -25,7 +25,7 @@ public abstract class ExtendedHiredUnitFarmhandSlot extends Slot{
 		public boolean mayPlace(ItemStack itemStack) {
 			if (itemStack.getItem() instanceof BlockItem && ((BlockItem)itemStack.getItem()).getBlock() instanceof IPlantable) {
 				try {
-					return ((IPlantable)((BlockItem)itemStack.getItem()).getBlock()).getPlantType(null, null) == PlantType.DESERT;
+					return ((IPlantable)((BlockItem)itemStack.getItem()).getBlock()).getPlantType(null, null) == PlantType.CROP;
 				}catch (NullPointerException e) {}
 			}
 			return false;

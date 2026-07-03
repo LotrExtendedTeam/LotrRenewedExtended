@@ -849,7 +849,11 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			attributeInstance.addTransientModifier(HEALTH_MODIFIER);
 		}
 	}
-
+	/**
+	 * Gets the parent NPC entity context linked to this data holder instance.
+	 *
+	 * @return The parent {@link NPCEntity}.
+	 */
 	public NPCEntity getThisEntity() {
 		return thisEntity;
 	}

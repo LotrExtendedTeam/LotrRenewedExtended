@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.inventory.container;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 
-import lotr.common.entity.npc.ExtendedIFarmhand;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -22,20 +22,21 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 	private Slot seedsSlot;
 	private Slot bonemealSlot;
 	private IInventory farmhandSupplies;
-	public int farmhandContainterSize = 3;
+	public int farmhandContainterSize;
 
 	public ExtendedHiredUnitFarmhandContainer(int pContainerId, PlayerInventory pPlayerInventory, PacketBuffer extraData) {
 		super(ExtendedContainerTypes.HIRED_UNIT_FARMHAND.get(), pContainerId, pPlayerInventory, extraData);
 
-		IInventory companionInv = ((ExtendedIFarmhand)getCompanion()).getFarmhandInventory();
-		this.farmhandSupplies = companionInv;
-		companionInv.startOpen(pPlayerInventory.player);
-
+		this.farmhandSupplies = ((ExtendedINPCEntity)getCompanion()).getFarmhandInfo().getFarmhandInventory();
+		farmhandSupplies.startOpen(pPlayerInventory.player);
+		farmhandContainterSize = Math.min(farmhandSupplies.getContainerSize()-2, 12);
 		// Inventory slots
 		seedsSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.SeedsSlot(farmhandSupplies, 0, 80, 47, EMPTY_SLOT_SEEDS));
 		bonemealSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.BoneMealSlot(farmhandSupplies, 1, 46, 61, EMPTY_SLOT_BONEMEAL));
-		for (int i1 = 0; i1 < farmhandContainterSize-1; ++i1) {
-			this.addSlot(new ExtendedHiredUnitFarmhandSlot.CropsSlot(farmhandSupplies, 2+i1, 71 + i1 * 18, 75));
+		for (int i = 0; i < farmhandContainterSize; ++i) {
+		    int column = i % 4;
+		    int row = i / 4;
+		    this.addSlot(new ExtendedHiredUnitFarmhandSlot.CropsSlot(farmhandSupplies, 2 + i, 71 + (column * 18), 75 + (row * 18)));
 		}
 
 		// add the 3 rows of player inventory

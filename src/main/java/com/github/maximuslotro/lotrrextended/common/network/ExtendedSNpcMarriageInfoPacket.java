@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import lotr.common.LOTRMod;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class ExtendedSNpcMarriageInfoPacket {
@@ -29,8 +28,7 @@ public class ExtendedSNpcMarriageInfoPacket {
 	}
 
 	public static void handle(ExtendedSNpcMarriageInfoPacket packet, Supplier<NetworkEvent.Context> context) {
-		World world = LOTRMod.PROXY.getClientWorld();
-		ExtendedNpcMarriageHolder.readDataPacketFromServer(packet.buffer, world);
+		ExtendedNpcMarriageHolder.readDataPacketFromServer(packet.buffer, LOTRMod.PROXY.getClientWorld());
 		context.get().setPacketHandled(true);
 	}
 }

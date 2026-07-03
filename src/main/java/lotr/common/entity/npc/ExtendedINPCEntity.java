@@ -1,6 +1,7 @@
 package lotr.common.entity.npc;
 
 import lotr.common.entity.npc.data.ExtendedNpcCaptainInfoHolder;
+import lotr.common.entity.npc.data.ExtendedNpcFarmhandInfoHolder;
 import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
@@ -31,6 +32,13 @@ public interface ExtendedINPCEntity {
 	 * @return an {@link ExtendedNpcHiredUnitInfoHolder} containing unit-related data
 	 */
 	ExtendedNpcHiredUnitInfoHolder getUnitInfo();
+
+	/**
+	 * Retrieves the NPC's farmhand information.
+	 *
+	 * @return an {@link ExtendedNpcFarmhandInfoHolder} containing farmhand data
+	 */
+	ExtendedNpcFarmhandInfoHolder getFarmhandInfo();
 
 	/**
 	 * Retrieves the NPC's captain information.

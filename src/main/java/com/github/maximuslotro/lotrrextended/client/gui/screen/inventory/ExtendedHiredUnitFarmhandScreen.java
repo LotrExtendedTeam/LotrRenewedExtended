@@ -30,8 +30,7 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND);
 		this.blit(pMatrixStack, leftPos, topPos, 0, 0, imageWidth, imageHeight);
-		int totalSlots = Math.min(getMenu().farmhandContainterSize-1, 12);
-		for(int i = 0; i<totalSlots; i++) {
+		for(int i = 0; i<getMenu().farmhandContainterSize; i++) {
 			int column = i % 4;
 		    int row = i / 4;
 		    if (column == 0) {
