@@ -160,8 +160,8 @@ public class ExtendedNpcMarriageHolder implements ExtendedNpcDataInterface {
 			NPCEntity npc = (NPCEntity) entity;
 			ExtendedNpcMarriageHolder marriageInfo = ((ExtendedINPCEntity) npc).getMarriageInfo();
 			if(marriageInfo!=null) {
-				marriageInfo.numberOfCurrentChildren = buf.readBoolean() ? buf.readInt() : 0;
-				marriageInfo.maxNumberOfCurrentChildren= buf.readBoolean() ? buf.readInt() : 0;
+				marriageInfo.numberOfCurrentChildren = buf.readBoolean() ? buf.readVarInt() : 0;
+				marriageInfo.maxNumberOfCurrentChildren= buf.readBoolean() ? buf.readVarInt() : 0;
 				marriageInfo.spouseID = buf.readBoolean() ? new UUID(buf.readLong(), buf.readLong()) : null;
 				marriageInfo.maleID = buf.readBoolean() ? new UUID(buf.readLong(), buf.readLong()) : null;
 				marriageInfo.femaleID = buf.readBoolean() ? new UUID(buf.readLong(), buf.readLong()) : null;

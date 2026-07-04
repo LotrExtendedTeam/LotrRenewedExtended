@@ -13,7 +13,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 
 import lotr.common.util.CoinUtils;
 import lotr.common.util.ExtendedTraderHelper;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -25,7 +24,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 /**
  * @author RichardB122
  */
-public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer> {
+public class ExtendedTradeScreen extends ExtendedContainerScreen<ExtendedTradeContainer> {
 
     private int guiLeft;
 

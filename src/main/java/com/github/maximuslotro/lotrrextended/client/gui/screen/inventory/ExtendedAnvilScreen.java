@@ -11,7 +11,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.AnvilScreen;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerInventory;
@@ -28,7 +27,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 /**
  * Based off of {@link AnvilScreen}
  * */
-public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainerNew> implements IContainerListener  {
+public class ExtendedAnvilScreen extends ExtendedContainerScreen<ExtendedRepairContainerNew> implements IContainerListener  {
 	private static final ResourceLocation ANVIL_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/gui/container/anvil.png");
 	private static final TranslationTextComponent REFORGE_TEXT = new TranslationTextComponent("container.lotrextended.repair.reforge");
 	private static final TranslationTextComponent ENGRAVE_TEXT = new TranslationTextComponent("container.lotrextended.repair.engrave");

@@ -1,5 +1,6 @@
 package lotr.common.entity.npc.data;
 
+import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitFarmhandContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcFarmhandInfoPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedNBTUtils;
@@ -13,6 +14,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 /**
  * Holds and manages extended data for NPC farmhands, including their farming level, 
@@ -42,10 +44,10 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	private int maxFarmXP = 40;
 	/** The total number of crops harvested by this farmhand. */
 	private int cropsHarvested = 0;
-	/** Additional inventory slots unlocked via leveling up. Bounds are capped between 0 and 12. */
+	/** Additional inventory slots unlocked via leveling up. Bounds are capped between 0 and 10. */
 	private int inventoryAdditionalSize = 0;
 	/** The current inventory instance allocated to this farmhand. */
-	private Inventory farmhandInventory = makeFarmhandInventory();
+	private Inventory farmhandInventory;
 	/** Flag indicating if updated farmhand data needs to be synchronized to tracking clients. */
 	private boolean resendData = false;
 	/**
@@ -63,6 +65,17 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	@Override
 	public void tick() {
 		if (!thisEntity.level.isClientSide) {
+			if(inventoryAdditionalSize != getFarmhandInventory().getContainerSize()-MINIMUM_STORAGE_SIZE) {
+				if(((ExtendedINPCEntity)thisEntity).getUnitInfo().isNpcActiveDuty()) {
+					ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(((ExtendedINPCEntity)thisEntity).getUnitInfo().getOwnerUUID());
+					if(player.containerMenu instanceof ExtendedHiredUnitFarmhandContainer) {
+						player.closeContainer();
+					}
+				}
+				Inventory newFarmhandInventory = makeFarmhandInventory();
+				ExtendedNBTUtils.transpherInventory(getFarmhandInventory(), newFarmhandInventory);
+				farmhandInventory = newFarmhandInventory;
+			}
 			if (resendData) {
 				sendDataToAllBeings();
 				resendData = false;
@@ -106,6 +119,7 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 			}
 			farmhandInventory = makeFarmhandInventory();
 			ExtendedNBTUtils.readInventoryFromNBT(nbt, farmhandInventory, FARMHANDITEMSLIST);
+			markDirty();
 		}
 	}
 	/**
@@ -122,7 +136,7 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 		holder.putInt("m_xp", getMaxFarmerXp());
 		holder.putInt("crops_h", getCropsHarvested());
 		holder.putInt("size_add", getInventoryAdditionalSize());
-		ExtendedNBTUtils.writeInventoryToNBT(nbt, farmhandInventory, FARMHANDITEMSLIST);
+		ExtendedNBTUtils.writeInventoryToNBT(nbt, getFarmhandInventory(), FARMHANDITEMSLIST);
 		nbt.put("FarmhandInfo", holder);
 	}
 	/**
@@ -173,11 +187,12 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 		if (entity instanceof NPCEntity) {
 			ExtendedNpcFarmhandInfoHolder farmhandInfo = ((ExtendedINPCEntity) entity).getFarmhandInfo();
 			if(farmhandInfo!=null) {
-				farmhandInfo.setFarmerLevel(buf.readInt());
-				farmhandInfo.setCurrentFarmerXp(buf.readInt());
-				farmhandInfo.setMaxFarmerXp(buf.readInt());
-				farmhandInfo.setCropsHarvested(buf.readInt());
-				farmhandInfo.setInventoryAdditionalSize(buf.readInt());
+				farmhandInfo.setFarmerLevel(buf.readVarInt());
+				farmhandInfo.setCurrentFarmerXp(buf.readVarInt());
+				farmhandInfo.setMaxFarmerXp(buf.readVarInt());
+				farmhandInfo.setCropsHarvested(buf.readVarInt());
+				farmhandInfo.setInventoryAdditionalSize(buf.readVarInt());
+				farmhandInfo.farmhandInventory = null; // Ensure inventory is remade on next client access
 			}
 		}
 	}
@@ -280,10 +295,11 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 			this.currentFarmXP -= this.maxFarmXP;
 			setFarmerLevel(this.farmerLevel + 1);
 			setMaxFarmerXp(calculateMaxXpForLevel(this.farmerLevel));
-			// Scales slots so the 12th slot unlocks EXACTLY at Level 100
-			int earnedSlots = (this.farmerLevel - 1) * 12 / 99;
+			// Scales slots so the 12th slot (10th additional slot) unlocks EXACTLY at Level 100
+			int earnedSlots = (this.farmerLevel - 1) * 10 / 99;
 			setInventoryAdditionalSize(earnedSlots);
 		}
+		markDirty();
 	}
 	/**
 	 * Calculates the dynamic max experience ceiling for a specified farming level.
@@ -314,12 +330,12 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	}
 	/**
 	 * Sets the additional inventory slots earned through level milestones. 
-	 * The inputs are strictly clamped between a range of 0 and 12 slots.
+	 * The inputs are strictly clamped between a range of 0 and 10 slots.
 	 *
 	 * @param newInventorySize The target addition amount.
 	 */
 	private void setInventoryAdditionalSize(int newInventorySize) {
-		this.inventoryAdditionalSize = Math.max(0, Math.min(12, newInventorySize));
+		this.inventoryAdditionalSize = Math.max(0, Math.min(10, newInventorySize));
 	}
 	/**
 	 * Gets the current amount of bonus slots allocated to this farmhand due to level progression.
@@ -340,10 +356,14 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	}
 	/**
 	 * Gets the active item storage inventory instance bound to this farmhand.
+	 * Also ensures that the inventory is made if not loaded (just created) and exists with the proper size on the client
 	 *
 	 * @return The current {@link Inventory}.
 	 */
 	public Inventory getFarmhandInventory() {
+		if(farmhandInventory==null) {
+			farmhandInventory = makeFarmhandInventory();
+		}
 		return farmhandInventory;
 	}
 }

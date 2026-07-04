@@ -5,12 +5,11 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.gui.IHasContainer;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-public class ExtendedBookshelfScreen extends ContainerScreen<ExtendedBookshelfContainer> implements IHasContainer<ExtendedBookshelfContainer> {
+public class ExtendedBookshelfScreen extends ExtendedContainerScreen<ExtendedBookshelfContainer> implements IHasContainer<ExtendedBookshelfContainer> {
 	/** The ResourceLocation containing the chest GUI texture. */
 	private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation("textures/gui/container/generic_54.png");
 	private final int containerRows;

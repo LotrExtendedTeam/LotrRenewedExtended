@@ -5,12 +5,11 @@ import com.github.maximuslotro.lotrrextended.common.inventory.container.Extended
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-public class ExtendedCrucibleScreen extends ContainerScreen<ExtendedCrucibleContainer> {
+public class ExtendedCrucibleScreen extends ExtendedContainerScreen<ExtendedCrucibleContainer> {
 	private static final ResourceLocation TEXTURE = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/container/crucible.png");
 
 	public ExtendedCrucibleScreen(ExtendedCrucibleContainer pAbstractFurnaceMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {

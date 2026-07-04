@@ -8,13 +8,12 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredOv
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 
 import lotr.common.entity.npc.ExtendedIFarmhand;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public abstract class ExtendedHiredUnitScreen<T extends ExtendedHiredUnitContainer> extends ContainerScreen<T>{
+public abstract class ExtendedHiredUnitScreen<T extends ExtendedHiredUnitContainer> extends ExtendedContainerScreen<T>{
 	protected Button statsbuton;
 	protected Button equipmentbuton;
 	protected Button farmhandbuton;

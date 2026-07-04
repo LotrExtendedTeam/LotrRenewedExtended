@@ -6,7 +6,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 
 import lotr.common.entity.npc.ExtendedIRidableEntity;
 import lotr.common.entity.npc.WargEntity;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.screen.inventory.InventoryScreen;
 import net.minecraft.entity.IEquipable;
 import net.minecraft.entity.player.PlayerInventory;
@@ -15,7 +14,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ExtendedWargInventoryScreen extends ContainerScreen<ExtendedWargInventoryContainer> {
+public class ExtendedWargInventoryScreen extends ExtendedContainerScreen<ExtendedWargInventoryContainer> {
 	private static final ResourceLocation WARG_INVENTORY_LOCATION = new ResourceLocation("textures/gui/container/horse.png");
 	/** The Warg whose inventory is currently being accessed. */
 	private final WargEntity warg;

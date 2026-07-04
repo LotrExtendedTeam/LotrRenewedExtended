@@ -4,6 +4,7 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 
 import lotr.common.entity.npc.ExtendedINPCEntity;
+import lotr.common.entity.npc.data.ExtendedNpcFarmhandInfoHolder;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -27,16 +28,25 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 	public ExtendedHiredUnitFarmhandContainer(int pContainerId, PlayerInventory pPlayerInventory, PacketBuffer extraData) {
 		super(ExtendedContainerTypes.HIRED_UNIT_FARMHAND.get(), pContainerId, pPlayerInventory, extraData);
 
-		this.farmhandSupplies = ((ExtendedINPCEntity)getCompanion()).getFarmhandInfo().getFarmhandInventory();
+		this.farmhandSupplies = getFarmhandInfo().getFarmhandInventory();
 		farmhandSupplies.startOpen(pPlayerInventory.player);
+		// Subtract 2 instead of 4 because we want size of output slots, not just additional output slots (minimum is 2 base)
 		farmhandContainterSize = Math.min(farmhandSupplies.getContainerSize()-2, 12);
 		// Inventory slots
-		seedsSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.SeedsSlot(farmhandSupplies, 0, 80, 47, EMPTY_SLOT_SEEDS));
-		bonemealSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.BoneMealSlot(farmhandSupplies, 1, 46, 61, EMPTY_SLOT_BONEMEAL));
+		seedsSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.SeedsSlot(farmhandSupplies, 0, 44, 61, EMPTY_SLOT_SEEDS));
+		bonemealSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.BoneMealSlot(farmhandSupplies, 1, 116, 61, EMPTY_SLOT_BONEMEAL));
+		int[] xCoordinates = {
+				71, 89,   // Center of top row (Slots 1, 2)
+				53, 107,  // Mid-outer top row (Slots 3, 4)
+				35, 125,  // Outer top row     (Slots 5, 6)
+				17, 143,  // Far edges top row (Slots 7, 8)
+				71, 89,   // Center bottom row (Slots 9, 10)
+				53, 107   // Edges bottom row  (Slots 11, 12)
+		};
 		for (int i = 0; i < farmhandContainterSize; ++i) {
-		    int column = i % 4;
-		    int row = i / 4;
-		    this.addSlot(new ExtendedHiredUnitFarmhandSlot.CropsSlot(farmhandSupplies, 2 + i, 71 + (column * 18), 75 + (row * 18)));
+			int xPos = xCoordinates[i];
+			int yPos = (i < 8) ? 93 : 111;
+			this.addSlot(new ExtendedHiredUnitFarmhandSlot.CropsSlot(farmhandSupplies, 2 + i, xPos, yPos));
 		}
 
 		// add the 3 rows of player inventory
@@ -52,6 +62,9 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 		}
 	}
 
+	public ExtendedNpcFarmhandInfoHolder getFarmhandInfo() {
+		return ((ExtendedINPCEntity)getCompanion()).getFarmhandInfo();
+	}
 	@Override
 	public ItemStack quickMoveStack(PlayerEntity pPlayer, int pIndex) {
 		ItemStack itemstack = ItemStack.EMPTY;
@@ -59,8 +72,8 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 		if (slot != null && slot.hasItem()) {
 			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
-			if (pIndex < 4) {
-				if (!this.moveItemStackTo(itemstack1, 5, 40, true)) {
+			if (pIndex < farmhandSupplies.getContainerSize()) {
+				if (!this.moveItemStackTo(itemstack1, farmhandSupplies.getContainerSize()+1, farmhandSupplies.getContainerSize()+34, true)) {
 					return ItemStack.EMPTY;
 				}
 			} else if (seedsSlot.mayPlace(itemstack1) && !this.moveItemStackTo(itemstack1, 0, 1, false)) {
@@ -79,12 +92,15 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 			}
 			slot.onTake(pPlayer, itemstack1);
 		}
-
 		return itemstack;
 	}
 
 	@Override
 	public boolean stillValid(PlayerEntity pPlayer) {
+		if(!pPlayer.level.isClientSide() && farmhandContainterSize != getFarmhandInfo().getInventoryAdditionalSize()+2) {
+			// Close UI upon farmer container size change
+			return false;
+		}
 		return this.farmhandSupplies.stillValid(pPlayer) && this.getCompanion().isAlive();
 	}
 

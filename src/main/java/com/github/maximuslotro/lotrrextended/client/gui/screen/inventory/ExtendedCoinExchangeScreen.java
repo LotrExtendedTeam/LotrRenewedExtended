@@ -10,7 +10,6 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import lotr.common.util.CoinUtils;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -21,7 +20,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 /**
  * @author RichardB122
  */
-public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExchangeContainer> {
+public class ExtendedCoinExchangeScreen extends ExtendedContainerScreen<ExtendedCoinExchangeContainer> {
 
 	public static final ResourceLocation GUI_TEXTURE = new ResourceLocation("lotr:gui/coin_exchange.png");
 

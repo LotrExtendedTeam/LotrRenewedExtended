@@ -397,11 +397,20 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	}
 
 	// ######################################### Entity Info
+	/**
+	 * Should only ever be null if not hired. When hired or dismissed should always be present!
+	 * @return {@link UUID} of the owner
+	 * */
 	@Nullable
 	public UUID getOwnerUUID() {
 		return ownerUUID;
 	}
 
+	/**
+	 * Only not null when owner is online, refrain form using.
+	 * 
+	 * @return {@link LivingEntity} of the owner
+	 * */
 	@Nullable
 	public LivingEntity getUnitOwner() {
 		try {

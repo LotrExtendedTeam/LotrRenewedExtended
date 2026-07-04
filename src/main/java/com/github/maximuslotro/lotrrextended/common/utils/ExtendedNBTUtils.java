@@ -2,6 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.utils;
 
 import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
+
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -62,6 +64,17 @@ public class ExtendedNBTUtils {
 			if (slot >= 0 && slot < containerSize) {
 				inventory.setItem(slot, ItemStack.of(compoundnbt));
 			}
+		}
+	}
+
+	public static void transpherInventory(Inventory inventoryOLD, Inventory inventoryNEW) {
+		if(inventoryNEW.getContainerSize()<inventoryOLD.getContainerSize()) {
+			ExtendedLog.info(inventoryOLD.toString());
+			throw new IllegalArgumentException("New inventory can't be smaller than old!");
+		}
+		inventoryNEW.clearContent();
+		for(int i = 0; i < inventoryOLD.getContainerSize(); ++i) {
+			inventoryNEW.setItem(i, inventoryOLD.getItem(i).copy());
 		}
 	}
 }
