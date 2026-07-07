@@ -72,6 +72,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 		if (!(entity.getNavigation() instanceof GroundPathNavigator) && !(entity.getNavigation() instanceof FlyingPathNavigator)) {
 			throw new IllegalArgumentException("Unsupported mob type for FollowOwnerGoal");
 		}
+		this.setFlags(EnumSet.of(Goal.Flag.MOVE));
 	}
 	/**
      * Determines whether this goal should continue executing.
