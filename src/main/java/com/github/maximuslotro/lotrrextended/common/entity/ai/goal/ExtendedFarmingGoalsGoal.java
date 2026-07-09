@@ -8,6 +8,8 @@ import net.minecraft.entity.ai.brain.task.BoneMealCropsTask;
 import net.minecraft.entity.ai.brain.task.FarmTask;
 import net.minecraft.entity.ai.brain.task.FarmerWorkTask;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.pathfinding.Path;
+import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.world.World;
 
 /**
@@ -17,11 +19,17 @@ public class ExtendedFarmingGoalsGoal extends Goal {
 	protected final NPCEntity farmhand;
 	protected final ExtendedINPCEntity farmhandData;
 	protected final World level;
+	private final double walkSpeedModifier;
+	protected Path path;
+	protected final PathNavigator pathNav;
+	protected ExtendedFarmingTaskType currentAction = ExtendedFarmingTaskType.IDLE;
 
-	public ExtendedFarmingGoalsGoal(NPCEntity farmhand) {
+	public ExtendedFarmingGoalsGoal(NPCEntity farmhand, double walkSpeedModifier) {
 		this.farmhand = farmhand;
 		this.level = farmhand.level;
 		this.farmhandData = (ExtendedINPCEntity) farmhand;
+		this.walkSpeedModifier = walkSpeedModifier;
+		this.pathNav = farmhand.getNavigation();
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
@@ -44,10 +52,26 @@ public class ExtendedFarmingGoalsGoal extends Goal {
 
 	@Override
 	public void stop() {
+		currentAction = ExtendedFarmingTaskType.IDLE;
+		pathNav.stop();
+		path=null;
 	}
 
 	@Override
 	public void tick() {
+
 	}
 
+	private enum ExtendedFarmingTaskType{
+		IDLE, 
+		NAVIGATING_TO_FARMLAND, 
+		PREPAIRING_FARMLAND,
+		PLANTING_FARMLAND,
+		HARVESTING_FARMLAND,
+		BONEMEALING_FARMLAND,
+		NAVIGATING_TO_COMPOSTER,
+		MAKING_BONEMEAL,
+		NAVIGATING_TO_CHEST,
+		INTERRACTING_WITH_CHEST
+	}
 }
