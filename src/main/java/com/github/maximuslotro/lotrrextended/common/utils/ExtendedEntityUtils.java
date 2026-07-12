@@ -10,6 +10,8 @@ import javax.annotation.Nullable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 
 /**
  * Utility methods for working with {@link Entity} instances.
@@ -45,5 +47,12 @@ public class ExtendedEntityUtils {
         List<T> targets = originEntity.level.getEntitiesOfClass(targetClass, bb, pFilter);
         Collections.sort(targets, sorter);
         return targets.isEmpty() ? null : targets.get(0);
+    }
+
+    public static BlockPos getRandomPosInBounds(BlockPos.Mutable position, Entity entity, int horizontalBounds, int minYBounds, int maxYBounds) {
+    	return position.set(
+    			entity.getX() + MathHelper.nextInt(entity.random, -horizontalBounds, horizontalBounds), 
+    			entity.getY() + MathHelper.nextInt(entity.random, minYBounds, maxYBounds),
+    			entity.getZ() + MathHelper.nextInt(entity.random, -horizontalBounds, horizontalBounds));
     }
 }

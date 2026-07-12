@@ -1,6 +1,8 @@
 package lotr.common.entity.npc;
 
 
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedFarmingGoalHolder;
+
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -21,6 +23,12 @@ public class ExtendedHobbitFarmhandEntity extends HobbitEntity implements Extend
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return HobbitEntity.regAttrs();
     }
+
+	@Override
+	protected void addNPCAI() {
+		super.addNPCAI();
+		this.goalSelector.addGoal(3, new ExtendedFarmingGoalHolder(this, 1.1D).standardOrder());
+	}
 
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {

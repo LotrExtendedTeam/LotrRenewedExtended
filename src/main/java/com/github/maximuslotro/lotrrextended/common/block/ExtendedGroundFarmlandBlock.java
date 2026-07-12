@@ -36,34 +36,34 @@ public class ExtendedGroundFarmlandBlock extends FarmlandBlock {
 	}
 
 	@Override
-	public void randomTick(BlockState p_225542_1_, ServerWorld p_225542_2_, BlockPos p_225542_3_, Random p_225542_4_) {
-		int i = p_225542_1_.getValue(MOISTURE);
-		if (!isNearWater(p_225542_2_, p_225542_3_) && !p_225542_2_.isRainingAt(p_225542_3_.above())) {
+	public void randomTick(BlockState pState, ServerWorld pLevel, BlockPos pPos, Random pRandom) {
+		int i = pState.getValue(MOISTURE);
+		if (!isNearWater(pLevel, pPos) && !pLevel.isRainingAt(pPos.above())) {
 			if (i > 0) {
-				p_225542_2_.setBlock(p_225542_3_, p_225542_1_.setValue(MOISTURE, i - 1), 2);
-			} else if (!isUnderCrops(p_225542_2_, p_225542_3_)) {
-				turnToBlock(p_225542_1_, p_225542_2_, p_225542_3_, base.get().defaultBlockState());
+				pLevel.setBlock(pPos, pState.setValue(MOISTURE, i - 1), 2);
+			} else if (!isUnderCrops(pLevel, pPos)) {
+				turnToBlock(pState, pLevel, pPos, base.get().defaultBlockState());
 			}
 		} else if (i < 7) {
-			p_225542_2_.setBlock(p_225542_3_, p_225542_1_.setValue(MOISTURE, 7), 2);
+			pLevel.setBlock(pPos, pState.setValue(MOISTURE, 7), 2);
 		}
 
 	}
 
 	@Override
 	public boolean canSurvive(BlockState p_196260_1_, IWorldReader p_196260_2_, BlockPos p_196260_3_) {
-	      BlockState blockstate = p_196260_2_.getBlockState(p_196260_3_.above());
-	      return blockstate.getBlock() instanceof ExtendedBerryHedgeBlock || super.canSurvive(p_196260_1_, p_196260_2_, p_196260_3_);
-	   }
+		BlockState blockstate = p_196260_2_.getBlockState(p_196260_3_.above());
+		return blockstate.getBlock() instanceof ExtendedBerryHedgeBlock || super.canSurvive(p_196260_1_, p_196260_2_, p_196260_3_);
+	}
 
 	@Override
-	   public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, net.minecraftforge.common.IPlantable plantable) {
-	      net.minecraftforge.common.PlantType type = plantable.getPlantType(world, pos.relative(facing));
-	      if ((plantable instanceof BushBlock) || net.minecraftforge.common.PlantType.CROP.equals(type)) {
-	         return true;
-	      }
-	      return false;
-	  }
+	public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, net.minecraftforge.common.IPlantable plantable) {
+		net.minecraftforge.common.PlantType type = plantable.getPlantType(world, pos.relative(facing));
+		if ((plantable instanceof BushBlock) || net.minecraftforge.common.PlantType.CROP.equals(type)) {
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public boolean isFertile(BlockState state, IBlockReader world, BlockPos pos) {
