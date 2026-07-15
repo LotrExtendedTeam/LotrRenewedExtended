@@ -19,17 +19,17 @@ import net.minecraft.world.server.ServerWorld;
  * Based on {@link FarmTask}, {@link FarmerWorkTask}, and {@link BoneMealCropsTask} villager tasks
  * */
 public class ExtendedFarmingGoalHolder extends Goal {
-	protected final NPCEntity farmhand;
+	private final NPCEntity farmhand;
 	protected final ExtendedINPCEntity farmhandData;
 	protected final ServerWorld level;
 	private final double walkSpeedModifier;
 	protected Path path;
 	protected final PathNavigator pathNav;
-	protected ExtendedFarmingTasks currentTask = null;
-	protected Set<ExtendedFarmingTasks> farmingTasks = new LinkedHashSet<>();
+	protected ExtendedFarmingAbstractTask currentTask = null;
+	protected Set<ExtendedFarmingAbstractTask> farmingTasks = new LinkedHashSet<>();
 	private BlockPos targetFarmBlock;
 	private static final int taskRetryCount = 16;//tweak how many tries this goal tries to find a valid task
-	private final SelectionMode mode = SelectionMode.BALANCED;
+	private final SelectionMode mode = SelectionMode.PRIORITY;
 	private boolean isActionCompleted = false; // Prevents ticking after completion
 
 	public ExtendedFarmingGoalHolder(NPCEntity farmhand, double walkSpeedModifier) {
@@ -42,7 +42,8 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	}
 
 	public ExtendedFarmingGoalHolder standardOrder() {
-		farmingTasks.add(new ExtendedFarmingTasks(this));
+		farmingTasks.add(new ExtendedFarmingTillTask(this));
+		farmingTasks.add(new ExtendedFarmingBonemealTask(this));
 		return this;
 	}
 
@@ -56,8 +57,8 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		}
 		BlockPos.Mutable taskPosition = new BlockPos.Mutable();
 		if (this.mode == SelectionMode.PRIORITY) {
-			for (ExtendedFarmingTasks task : farmingTasks) {
-				if (!task.isTaskValid(level)) {
+			for (ExtendedFarmingAbstractTask task : farmingTasks) {
+				if (!task.isTaskValidForNPC(level)) {
 					continue;
 				}
 				for (int i = 0; i < taskRetryCount; i++) {
@@ -68,8 +69,8 @@ public class ExtendedFarmingGoalHolder extends Goal {
 			}
 		} else {
 			for (int i = 0; i < taskRetryCount; i++) {
-				for (ExtendedFarmingTasks task : farmingTasks) {
-					if (!task.isTaskValid(level)) {
+				for (ExtendedFarmingAbstractTask task : farmingTasks) {
+					if (!task.isTaskValidForNPC(level)) {
 						continue;
 					}
 					if (tryAssignTask(task, taskPosition)) {
@@ -81,9 +82,9 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		return false;
 	}
 
-	private boolean tryAssignTask(ExtendedFarmingTasks task, BlockPos.Mutable taskPosition) {
+	private boolean tryAssignTask(ExtendedFarmingAbstractTask task, BlockPos.Mutable taskPosition) {
 		task.setRandomBlockByTask(taskPosition, level);
-		if (!task.validPosForTask(taskPosition, level)) {
+		if (!task.isValidPosForTask(taskPosition, level)) {
 			return false;
 		}
 		// Use an immutable position for path generation to ensure the pathfinder doesn't ingest mutations (ask me how I know)
@@ -104,20 +105,24 @@ public class ExtendedFarmingGoalHolder extends Goal {
 			return false;
 		}
 		// Allow for executing action, even when navigation has ended at destination
-		boolean headingOrArrived = pathNav.isInProgress() || currentTask.closeEnoughToExecuteAction(farmhand, targetFarmBlock);
-		return headingOrArrived && !pathNav.isStuck() && currentTask.isTaskValid(this.level) && currentTask.validPosForTask(targetFarmBlock, level);
+		boolean headingOrArrived = pathNav.isInProgress() || currentTask.closeEnoughToExecuteTask(farmhand, targetFarmBlock);
+		return headingOrArrived && !pathNav.isStuck() && currentTask.isTaskValidForNPC(this.level) && currentTask.isValidPosForTask(targetFarmBlock, level);
 	}
 
 	@Override
 	public void start() {
 		isActionCompleted = false;
+		currentTask.startTask();
 		this.pathNav.moveTo(this.path, this.walkSpeedModifier);
 	}
 
 	@Override
 	public void stop() {
 		pathNav.stop();
-		currentTask = null;
+		if(currentTask!=null) {
+			currentTask.stopTask();
+			currentTask = null;
+		}
 		path=null;
 		targetFarmBlock=null;
 		isActionCompleted = false;
@@ -125,12 +130,12 @@ public class ExtendedFarmingGoalHolder extends Goal {
 
 	@Override
 	public void tick() {
-		if (targetFarmBlock == null || currentTask == null) {
+		if (targetFarmBlock == null) {
 			return;
 		}
 		farmhand.getLookControl().setLookAt(targetFarmBlock.getX() + 0.5D, targetFarmBlock.getY() + 0.5D, targetFarmBlock.getZ() + 0.5D);
-		if(currentTask.closeEnoughToExecuteAction(farmhand, targetFarmBlock)) {
-			currentTask.executeAction(targetFarmBlock, level);
+		if(currentTask.closeEnoughToExecuteTask(farmhand, targetFarmBlock)) {
+			currentTask.executeTaskChecked(targetFarmBlock, level);
 			isActionCompleted = true; //Allow for task to be stopped even if there is pathfinding distance to target
 		}
 	}
@@ -138,5 +143,9 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	public enum SelectionMode {
 		BALANCED,    // Option B: Position -> Task (Performance-friendly)
 		PRIORITY     // Option A: Task -> Position (Task-focused)
+	}
+
+	public NPCEntity getEntity() {
+		return farmhand;
 	}
 }

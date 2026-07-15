@@ -1,0 +1,65 @@
+package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.CropsBlock;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.ai.brain.task.BoneMealCropsTask;
+import net.minecraft.item.BoneMealItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.server.ServerWorld;
+
+/**
+ * Based on {@link BoneMealCropsTask}
+ * */
+public class ExtendedFarmingBonemealTask extends ExtendedFarmingAbstractTask{
+	private ItemStack previousHeldItem;
+
+	public ExtendedFarmingBonemealTask(ExtendedFarmingGoalHolder goalHolder) {
+		super(goalHolder);
+	}
+
+	@Override
+	public boolean isTaskValidForNPC(ServerWorld pServerLevel) {
+		if(!goalHolder.farmhandData.getFarmhandInfo().getFarmhandInventory().getItem(1).isEmpty()) {
+			return goalHolder.farmhandData.getFarmhandInfo().getFarmhandInventory().getItem(1).getItem().equals(Items.BONE_MEAL);
+		}
+		return false;
+	}
+
+	@Override
+	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+		BlockState blockstate = pServerLevel.getBlockState(pAboveBlockPos);
+		Block block = blockstate.getBlock();
+		return block instanceof CropsBlock && !((CropsBlock)block).isMaxAge(blockstate);
+	}
+
+	@Override
+	public void executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+		ItemStack boneMeal = goalHolder.farmhandData.getFarmhandInfo().getFarmhandInventory().getItem(1);
+		if (!boneMeal.isEmpty() && BoneMealItem.growCrop(boneMeal, pServerLevel, pAboveBlockPos)) {
+			goalHolder.getEntity().swing(Hand.MAIN_HAND);
+			pServerLevel.levelEvent(2005, pAboveBlockPos, 0);
+			boneMeal.shrink(1);
+		}
+	}
+
+	@Override
+	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
+		return targetPos.closerThan(farmer.position(), 1);
+	}
+
+	@Override
+	public void startTask() {
+		previousHeldItem = goalHolder.getEntity().getMainHandItem();
+		goalHolder.getEntity().setItemInHand(Hand.MAIN_HAND, new ItemStack(Items.BONE_MEAL));
+	}
+
+	@Override
+	public void stopTask() {
+		goalHolder.getEntity().setItemInHand(Hand.MAIN_HAND, previousHeldItem);
+	}
+}
