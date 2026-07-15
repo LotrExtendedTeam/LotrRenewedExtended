@@ -10,6 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.brain.task.BoneMealCropsTask;
 import net.minecraft.entity.ai.brain.task.FarmTask;
 import net.minecraft.entity.ai.brain.task.FarmerWorkTask;
+import net.minecraft.item.HoeItem;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
@@ -34,7 +35,7 @@ public class ExtendedFarmingTasks {
 	}
 
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		ExtendedEntityUtils.getRandomPosInBounds(taskPosition, goalHolder.farmhand, 8, -4, 4);
+		ExtendedEntityUtils.getRandomPosInBounds(taskPosition, goalHolder.farmhand, 8, -3, 3);
 	}
 
 	public boolean isTaskValid(ServerWorld pServerLevel) {
@@ -42,7 +43,7 @@ public class ExtendedFarmingTasks {
 	}
 
 	public boolean validPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		if(isRePlaceablePos(pAboveBlockPos, pServerLevel)) {
+		if(isRePlaceablePos(pAboveBlockPos, pServerLevel) && pServerLevel.getFluidState(pAboveBlockPos).isEmpty()) {
 			BlockPos groundPos = pAboveBlockPos.below();
 			BlockState groundState = pServerLevel.getBlockState(groundPos);
 			if(groundState.getBlock() instanceof FarmlandBlock) {
@@ -72,7 +73,7 @@ public class ExtendedFarmingTasks {
 	}
 
 	public boolean closeEnoughToExecuteAction(Entity farmer, BlockPos targetPos) {
-		return targetPos.closerThan(farmer.position(), 1.0);
+		return targetPos.closerThan(farmer.position(), 1.5);
 	}
 
 	private boolean isRePlaceablePos(BlockPos pPos, ServerWorld pServerLevel) {

@@ -27,7 +27,7 @@ public class ExtendedHobbitFarmhandEntity extends HobbitEntity implements Extend
 	@Override
 	protected void addNPCAI() {
 		super.addNPCAI();
-		this.goalSelector.addGoal(3, new ExtendedFarmingGoalHolder(this, 1.1D).standardOrder());
+		this.goalSelector.addGoal(3, new ExtendedFarmingGoalHolder(this, 1.0D).standardOrder());
 	}
 
     @Override
