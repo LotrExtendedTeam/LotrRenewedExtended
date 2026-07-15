@@ -65,11 +65,8 @@ public abstract class ExtendedFarmingAbstractTask {
 	}
 
 	private enum ExtendedFarmingTaskType{
-		PLANTING_FARMLAND,
-		HARVESTING_FARMLAND,
-		NAVIGATING_TO_COMPOSTER,
 		MAKING_BONEMEAL,
-		NAVIGATING_TO_CHEST,
-		INTERRACTING_WITH_CHEST
+		ADDING_TO_CHEST,
+		TAKING_FROM_CHEST
 	}
 }

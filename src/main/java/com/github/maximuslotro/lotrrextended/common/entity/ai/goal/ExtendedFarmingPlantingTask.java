@@ -4,7 +4,7 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.brain.task.BoneMealCropsTask;
+import net.minecraft.entity.ai.brain.task.FarmTask;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -15,7 +15,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.IPlantable;
 
 /**
- * Based on {@link BoneMealCropsTask}
+ * Based on {@link FarmTask}
  * */
 public class ExtendedFarmingPlantingTask extends ExtendedFarmingAbstractTask {
 	private ItemStack previousHeldItem;
