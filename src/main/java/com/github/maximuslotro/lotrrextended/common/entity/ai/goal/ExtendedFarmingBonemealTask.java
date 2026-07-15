@@ -17,7 +17,7 @@ import net.minecraft.world.server.ServerWorld;
 /**
  * Based on {@link BoneMealCropsTask}
  * */
-public class ExtendedFarmingBonemealTask extends ExtendedFarmingAbstractTask{
+public class ExtendedFarmingBonemealTask extends ExtendedFarmingAbstractTask {
 	private ItemStack previousHeldItem;
 
 	public ExtendedFarmingBonemealTask(ExtendedFarmingGoalHolder goalHolder) {
@@ -26,15 +26,15 @@ public class ExtendedFarmingBonemealTask extends ExtendedFarmingAbstractTask{
 
 	@Override
 	public boolean isTaskValidForNPC(ServerWorld pServerLevel) {
-		if(!goalHolder.farmhandData.getFarmhandInfo().getFarmhandInputInventory().getItem(1).isEmpty()) {
-			return goalHolder.farmhandData.getFarmhandInfo().getFarmhandInputInventory().getItem(1).getItem().equals(Items.BONE_MEAL);
+		if(!goalHolder.farmhandData.getFarmhandInfo().getBonemealItem().isEmpty()) {
+			return goalHolder.farmhandData.getFarmhandInfo().getBonemealItem().getItem().equals(Items.BONE_MEAL);
 		}
 		return false;
 	}
 
 	@Override
 	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		Item plantItem = goalHolder.farmhandData.getFarmhandInfo().getFarmhandInputInventory().getItem(0).getItem();
+		Item plantItem = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().getItem();
 		BlockState plantState = pServerLevel.getBlockState(pAboveBlockPos);
 		Block plantBlock = plantState.getBlock();
 		if(plantBlock instanceof CropsBlock && !((CropsBlock)plantBlock).isMaxAge(plantState)) {
@@ -47,7 +47,7 @@ public class ExtendedFarmingBonemealTask extends ExtendedFarmingAbstractTask{
 
 	@Override
 	public void executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		ItemStack boneMeal = goalHolder.farmhandData.getFarmhandInfo().getFarmhandInputInventory().getItem(1);
+		ItemStack boneMeal = goalHolder.farmhandData.getFarmhandInfo().getBonemealItem();
 		if (!boneMeal.isEmpty() && BoneMealItem.growCrop(boneMeal, pServerLevel, pAboveBlockPos)) {
 			goalHolder.getEntity().swing(Hand.MAIN_HAND);
 			pServerLevel.levelEvent(2005, pAboveBlockPos, 0);

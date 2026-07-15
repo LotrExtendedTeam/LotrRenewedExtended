@@ -609,7 +609,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 	protected void pickUpItem(ItemEntity pItemEntity) {
 		ItemStack itemstack = pItemEntity.getItem();
 		if (this instanceof ExtendedIFarmhand && getUUID().equals(pItemEntity.getOwner())) {
-			ItemStack seeds = this.getFarmhandInfo().getFarmhandInputInventory().getItem(0);
+			ItemStack seeds = this.getFarmhandInfo().getSeedsItem();
 			boolean isSeedMatch = !seeds.isEmpty() && seeds.sameItem(itemstack) && ItemStack.tagMatches(seeds, itemstack);
 			boolean canFitInSeeds = isSeedMatch && seeds.getCount() < seeds.getMaxStackSize();
 			Inventory outputInv = this.getFarmhandInfo().getFarmhandOutputInventory();

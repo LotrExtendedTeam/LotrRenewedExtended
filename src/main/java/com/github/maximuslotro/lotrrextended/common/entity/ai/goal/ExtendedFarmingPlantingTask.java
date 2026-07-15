@@ -1,0 +1,72 @@
+package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
+
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
+
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.ai.brain.task.BoneMealCropsTask;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.IPlantable;
+
+/**
+ * Based on {@link BoneMealCropsTask}
+ * */
+public class ExtendedFarmingPlantingTask extends ExtendedFarmingAbstractTask {
+	private ItemStack previousHeldItem;
+
+	public ExtendedFarmingPlantingTask(ExtendedFarmingGoalHolder goalHolder) {
+		super(goalHolder);
+	}
+
+	@Override
+	public boolean isTaskValidForNPC(ServerWorld pServerLevel) {
+		if(!goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().isEmpty()) {
+			return goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().getCount()>1;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+		BlockState farmland = pServerLevel.getBlockState(pAboveBlockPos.below());
+		IPlantable plant = ExtendedItemStackUtils.getPlantFromItem(goalHolder.farmhandData.getFarmhandInfo().getSeedsItem());
+		return isRePlaceablePos(pAboveBlockPos, pServerLevel) 
+			&& farmland.isFertile(pServerLevel, pAboveBlockPos) 
+			&& farmland.canSustainPlant(pServerLevel, pAboveBlockPos.below(), Direction.UP, plant);
+	}
+
+	@Override
+	public void executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+		ItemStack seedsStack = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
+		IPlantable plant = ExtendedItemStackUtils.getPlantFromItem(seedsStack);
+		if (plant!=null) {
+			goalHolder.getEntity().swing(Hand.MAIN_HAND);
+			BlockState plantState = plant.getPlant(pServerLevel, pAboveBlockPos);
+			pServerLevel.setBlock(pAboveBlockPos, plantState, 3);
+			pServerLevel.playSound(null, pAboveBlockPos, SoundEvents.CROP_PLANTED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			seedsStack.shrink(1);
+		}
+	}
+
+	@Override
+	public void startTask() {
+		previousHeldItem = goalHolder.getEntity().getMainHandItem();
+		goalHolder.getEntity().setItemInHand(Hand.MAIN_HAND, new ItemStack(goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().getItem()));
+	}
+
+	@Override
+	public void stopTask() {
+		goalHolder.getEntity().setItemInHand(Hand.MAIN_HAND, previousHeldItem);
+	}
+
+	@Override
+	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
+		return targetPos.closerThan(farmer.position(), 1);
+	}
+}

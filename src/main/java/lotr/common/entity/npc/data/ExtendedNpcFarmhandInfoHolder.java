@@ -11,6 +11,7 @@ import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
@@ -381,6 +382,14 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 			farmhandInputInventory = makeFarmhandInputInventory();
 		}
 		return farmhandInputInventory;
+	}
+
+	public ItemStack getSeedsItem() {
+		return getFarmhandInputInventory().getItem(0);
+	}
+
+	public ItemStack getBonemealItem() {
+		return getFarmhandInputInventory().getItem(1);
 	}
 	/**
 	 * Gets the active storage inventory instance bound to this farmhand.

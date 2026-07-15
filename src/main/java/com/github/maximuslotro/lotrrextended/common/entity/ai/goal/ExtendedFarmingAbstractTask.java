@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedEntityUtils;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.entity.Entity;
@@ -11,11 +10,9 @@ import net.minecraft.entity.ai.brain.task.FarmTask;
 import net.minecraft.entity.ai.brain.task.FarmerWorkTask;
 import net.minecraft.item.HoeItem;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.IPlantable;
 
 /**
  * This and child classes are based on {@link FarmTask}, {@link FarmerWorkTask}, {@link BoneMealCropsTask}, {@link HoeItem}, {@link FarmlandBlock}
@@ -55,18 +52,6 @@ public abstract class ExtendedFarmingAbstractTask {
 	protected boolean isRePlaceablePos(BlockPos pPos, ServerWorld pServerLevel) {
 		BlockState blockstate = pServerLevel.getBlockState(pPos);
 		return blockstate.getMaterial().isReplaceable();
-	}
-
-	private boolean isPlaceablePos(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		BlockState plantState = pServerLevel.getBlockState(pAboveBlockPos);
-		Block blockBelow = pServerLevel.getBlockState(pAboveBlockPos.below()).getBlock();
-		return plantState.isAir() && blockBelow instanceof FarmlandBlock;
-	}
-
-	private boolean isUnderCrops(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		BlockState plantState = pServerLevel.getBlockState(pAboveBlockPos);
-		BlockState state = pServerLevel.getBlockState(pAboveBlockPos.below());
-		return plantState.getBlock() instanceof IPlantable && state.canSustainPlant(pServerLevel, pAboveBlockPos.below(), Direction.UP, (IPlantable) plantState.getBlock());
 	}
 
 	// Copy private method from FarmlandBlock

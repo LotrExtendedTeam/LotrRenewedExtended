@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FarmlandBlock;
+import net.minecraft.entity.Entity;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -65,5 +66,10 @@ public class ExtendedFarmingTillTask extends ExtendedFarmingAbstractTask{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
+		return targetPos.closerThan(farmer.position(), 1);
 	}
 }

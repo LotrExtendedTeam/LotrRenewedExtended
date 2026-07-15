@@ -23,24 +23,25 @@ import net.minecraft.world.server.ServerWorld;
 /**
  * Based on {@link FarmTask}
  * */
-public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask{
+public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 
 	public ExtendedFarmingHarvestTask(ExtendedFarmingGoalHolder goalHolder) {
 		super(goalHolder);
 	}
 
+	// Only harvest if there is empty slot or can fill with more seeds
 	@Override
 	public boolean isTaskValidForNPC(ServerWorld pServerLevel) {
-		if(goalHolder.farmhandData.getFarmhandInfo().getFarmhandInputInventory().getItem(0).isEmpty()) {
+		if(goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().isEmpty()) {
 			return false;
 		}
-		ItemStack seedsStack = goalHolder.farmhandData.getFarmhandInfo().getFarmhandInputInventory().getItem(0);
+		ItemStack seedsStack = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
 		return goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory().canAddItem(seedsStack);
 	}
 
 	@Override
 	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		Item plantItem = goalHolder.farmhandData.getFarmhandInfo().getFarmhandInputInventory().getItem(0).getItem();
+		Item plantItem = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().getItem();
 		BlockState plantState = pServerLevel.getBlockState(pAboveBlockPos);
 		Block plantBlock = plantState.getBlock();
 		if(plantBlock instanceof CropsBlock && ((CropsBlock)plantBlock).isMaxAge(plantState)) {
@@ -56,6 +57,7 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask{
 		goalHolder.getEntity().swing(Hand.MAIN_HAND);
 		//pServerLevel.destroyBlock(pAboveBlockPos, true, goalHolder.getEntity());
 		destroyBlock(pAboveBlockPos, pServerLevel, goalHolder.getEntity());
+		goalHolder.farmhandData.getFarmhandInfo().addCropsHarvested(1, 1);
 	}
 
 	// Copied from World.destroyBlock to Modify Block.dropResources

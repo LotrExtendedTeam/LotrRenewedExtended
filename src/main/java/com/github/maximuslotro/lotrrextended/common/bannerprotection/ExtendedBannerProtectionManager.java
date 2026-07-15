@@ -8,7 +8,6 @@ import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBanne
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity.ProtectionEntry;
-import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
 
 import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.data.NPCEntitySettingsManager;
@@ -64,7 +63,7 @@ public class ExtendedBannerProtectionManager {
 	}
 
 	private static ExtendedProtReturn getActualProtectionStatus(IWorld iWorld, BlockPos position, ProtectionInstance protInstance) {
-		AxisAlignedBB bannerScan = AxisAlignedBBUtils.makeCroppedBB(position).inflate(64.0D);
+		AxisAlignedBB bannerScan = new AxisAlignedBB(position).inflate(64.0D);
 		if(protInstance.extraScanArea>0) {
 			bannerScan = bannerScan.inflate(protInstance.extraScanArea);
 		}
@@ -72,7 +71,7 @@ public class ExtendedBannerProtectionManager {
 		if(bannersInArea.isEmpty()) {
 			return ExtendedProtReturn.NOBANNER;
 		}
-		AxisAlignedBB disputedArea = AxisAlignedBBUtils.makeCroppedBB(position);
+		AxisAlignedBB disputedArea = new AxisAlignedBB(position);
 		if(protInstance.extraDisputedArea>0) {
 			disputedArea = disputedArea.inflate(protInstance.extraDisputedArea);
 		}

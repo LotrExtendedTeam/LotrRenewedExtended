@@ -1,9 +1,10 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
@@ -23,10 +24,12 @@ public abstract class ExtendedHiredUnitFarmhandSlot extends Slot{
 
 		@Override
 		public boolean mayPlace(ItemStack itemStack) {
-			if (itemStack.getItem() instanceof BlockItem && ((BlockItem)itemStack.getItem()).getBlock() instanceof IPlantable) {
+			IPlantable plant = ExtendedItemStackUtils.getPlantFromItem(itemStack);
+			if(plant!=null) {
 				try {
-					return ((IPlantable)((BlockItem)itemStack.getItem()).getBlock()).getPlantType(null, null) == PlantType.CROP;
-				}catch (NullPointerException e) {}
+					//TODO is there a better way to handle this?
+					return plant.getPlantType(null, null) == PlantType.CROP;
+				} catch (NullPointerException e) {}
 			}
 			return false;
 		}

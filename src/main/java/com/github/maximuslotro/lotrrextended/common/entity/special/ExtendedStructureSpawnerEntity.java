@@ -13,7 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSe
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
-import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedAxisAlignedBBUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedEntityUtils;
 
 import lotr.common.entity.npc.ExtendedINPCEntity;
@@ -518,11 +518,11 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	}
 
 	public AxisAlignedBB getSpawnArea() {
-		return AxisAlignedBBUtils.makeOffsetBB(getSMinBlockPos(), -0.5f, -0.5f, getSMaxBlockPos(), 0.5f, 0.5f);
+		return ExtendedAxisAlignedBBUtils.makeOffsetBB(getSMinBlockPos(), -0.5f, -0.5f, getSMaxBlockPos(), 0.5f, 0.5f);
 	}
 
 	public AxisAlignedBB getCheckArea() {
-		return AxisAlignedBBUtils.makeOffsetBB(getCMinBlockPos(), -0.5f, -0.5f, getCMaxBlockPos(), 0.5f, 0.5f);
+		return ExtendedAxisAlignedBBUtils.makeOffsetBB(getCMinBlockPos(), -0.5f, -0.5f, getCMaxBlockPos(), 0.5f, 0.5f);
 	}
 
 	@Override
