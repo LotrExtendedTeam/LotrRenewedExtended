@@ -22,6 +22,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.google.common.base.Predicates;
 
 import lotr.common.entity.npc.ExtendedICaptainEntity;
+import lotr.common.entity.npc.ExtendedIFarmhand;
 import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.ExtendedINPCEntitySettings;
@@ -43,8 +44,10 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.UseAction;
@@ -68,6 +71,13 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 	 * */
 	protected MixinNPCEntity(EntityType<? extends CreatureEntity> type, World world) {
 		super(type, world);
+	}
+
+	@Inject(method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V", at = @At("TAIL"), remap=false)
+	public void constructorExtended(EntityType<? extends NPCEntity> type, World w, CallbackInfo ci) {
+		if(this instanceof ExtendedIFarmhand) {
+			setCanPickUpLoot(true);
+		}
 	}
 
 	/**
@@ -593,5 +603,42 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 			}
 		}
 		return false;
+	}
+
+	@Override
+	protected void pickUpItem(ItemEntity pItemEntity) {
+		ItemStack itemstack = pItemEntity.getItem();
+		if (this instanceof ExtendedIFarmhand && getUUID().equals(pItemEntity.getOwner())) {
+			ItemStack seeds = this.getFarmhandInfo().getFarmhandInputInventory().getItem(0);
+			boolean isSeedMatch = !seeds.isEmpty() && seeds.sameItem(itemstack) && ItemStack.tagMatches(seeds, itemstack);
+			boolean canFitInSeeds = isSeedMatch && seeds.getCount() < seeds.getMaxStackSize();
+			Inventory outputInv = this.getFarmhandInfo().getFarmhandOutputInventory();
+			if (canFitInSeeds || outputInv.canAddItem(itemstack)) {
+				this.onItemPickup(pItemEntity);
+				this.take(pItemEntity, itemstack.getCount());
+				ItemStack remaining = itemstack.copy();
+				if (isSeedMatch && canFitInSeeds) {
+					int maxStack = seeds.getMaxStackSize();
+					int seedSpaceRemaining = maxStack - seeds.getCount();
+					int toAdd = Math.min(seedSpaceRemaining, remaining.getCount());
+					seeds.grow(toAdd);
+					remaining.shrink(toAdd);
+				}
+				if (!remaining.isEmpty() && outputInv.canAddItem(remaining)) {
+					remaining = outputInv.addItem(remaining);
+				}
+				if (remaining.isEmpty()) {
+					pItemEntity.remove();
+				} else {
+					itemstack.setCount(remaining.getCount());
+				}
+			}
+		}
+
+	}
+
+	@Override
+	public boolean wantsToPickUp(ItemStack pStack) {
+		return this instanceof ExtendedIFarmhand;
 	}
 }

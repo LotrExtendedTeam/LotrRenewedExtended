@@ -36,13 +36,13 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 		this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND);
 		this.blit(pMatrixStack, leftPos, topPos, 0, 0, imageWidth, imageHeight);
 
-		if (getMenu().farmhandContainterSize < 1) {
+		if (getMenu().farmhandOutput.getContainerSize() < 1) {
 			this.blit(pMatrixStack, leftPos + 16, topPos + 92, 176, 36, 72, 18);
 		}
-		if (getMenu().farmhandContainterSize < 2) { 
+		if (getMenu().farmhandOutput.getContainerSize() < 2) { 
 			this.blit(pMatrixStack, leftPos + 88, topPos + 92, 176, 36, 72, 18);
 		}
-		if (getMenu().farmhandContainterSize < 9) {
+		if (getMenu().farmhandOutput.getContainerSize() < 9) {
 			this.blit(pMatrixStack, leftPos + 52, topPos + 110, 176, 36, 72, 18);
 		}
 		int[] xCoordinates = {
@@ -53,7 +53,7 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 				70, 88,   // Center bottom row (Slots 9, 10)
 				52, 106   // Edges bottom row  (Slots 11, 12)
 		};
-		for (int i = 0; i < getMenu().farmhandContainterSize; ++i) {
+		for (int i = 0; i < getMenu().farmhandOutput.getContainerSize(); ++i) {
 			int xPos = xCoordinates[i];
 			int yPos = (i < 8) ? 92 : 110;
 			// Draw the 18x18 active slot border

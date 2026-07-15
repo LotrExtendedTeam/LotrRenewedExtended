@@ -5,7 +5,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.brain.task.BoneMealCropsTask;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.BoneMealItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
@@ -24,22 +26,28 @@ public class ExtendedFarmingBonemealTask extends ExtendedFarmingAbstractTask{
 
 	@Override
 	public boolean isTaskValidForNPC(ServerWorld pServerLevel) {
-		if(!goalHolder.farmhandData.getFarmhandInfo().getFarmhandInventory().getItem(1).isEmpty()) {
-			return goalHolder.farmhandData.getFarmhandInfo().getFarmhandInventory().getItem(1).getItem().equals(Items.BONE_MEAL);
+		if(!goalHolder.farmhandData.getFarmhandInfo().getFarmhandInputInventory().getItem(1).isEmpty()) {
+			return goalHolder.farmhandData.getFarmhandInfo().getFarmhandInputInventory().getItem(1).getItem().equals(Items.BONE_MEAL);
 		}
 		return false;
 	}
 
 	@Override
 	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		BlockState blockstate = pServerLevel.getBlockState(pAboveBlockPos);
-		Block block = blockstate.getBlock();
-		return block instanceof CropsBlock && !((CropsBlock)block).isMaxAge(blockstate);
+		Item plantItem = goalHolder.farmhandData.getFarmhandInfo().getFarmhandInputInventory().getItem(0).getItem();
+		BlockState plantState = pServerLevel.getBlockState(pAboveBlockPos);
+		Block plantBlock = plantState.getBlock();
+		if(plantBlock instanceof CropsBlock && !((CropsBlock)plantBlock).isMaxAge(plantState)) {
+			if (plantItem instanceof BlockItem && ((BlockItem)plantItem.getItem()).getBlock()==plantBlock) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
 	public void executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		ItemStack boneMeal = goalHolder.farmhandData.getFarmhandInfo().getFarmhandInventory().getItem(1);
+		ItemStack boneMeal = goalHolder.farmhandData.getFarmhandInfo().getFarmhandInputInventory().getItem(1);
 		if (!boneMeal.isEmpty() && BoneMealItem.growCrop(boneMeal, pServerLevel, pAboveBlockPos)) {
 			goalHolder.getEntity().swing(Hand.MAIN_HAND);
 			pServerLevel.levelEvent(2005, pAboveBlockPos, 0);

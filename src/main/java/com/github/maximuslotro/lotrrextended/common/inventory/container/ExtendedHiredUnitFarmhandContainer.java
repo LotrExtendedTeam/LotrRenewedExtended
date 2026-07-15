@@ -22,19 +22,19 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 
 	private Slot seedsSlot;
 	private Slot bonemealSlot;
-	private IInventory farmhandSupplies;
-	public int farmhandContainterSize;
+	public IInventory farmhandInput;
+	public IInventory farmhandOutput;
 
 	public ExtendedHiredUnitFarmhandContainer(int pContainerId, PlayerInventory pPlayerInventory, PacketBuffer extraData) {
 		super(ExtendedContainerTypes.HIRED_UNIT_FARMHAND.get(), pContainerId, pPlayerInventory, extraData);
 
-		this.farmhandSupplies = getFarmhandInfo().getFarmhandInventory();
-		farmhandSupplies.startOpen(pPlayerInventory.player);
-		// Subtract 2 instead of 4 because we want size of output slots, not just additional output slots (minimum is 2 base)
-		farmhandContainterSize = Math.min(farmhandSupplies.getContainerSize()-2, 12);
+		this.farmhandInput = getFarmhandInfo().getFarmhandInputInventory();
+		farmhandInput.startOpen(pPlayerInventory.player);
+		this.farmhandOutput = getFarmhandInfo().getFarmhandOutputInventory();
+		farmhandOutput.startOpen(pPlayerInventory.player);
 		// Inventory slots
-		seedsSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.SeedsSlot(farmhandSupplies, 0, 44, 61, EMPTY_SLOT_SEEDS));
-		bonemealSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.BoneMealSlot(farmhandSupplies, 1, 116, 61, EMPTY_SLOT_BONEMEAL));
+		seedsSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.SeedsSlot(farmhandInput, 0, 44, 61, EMPTY_SLOT_SEEDS));
+		bonemealSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.BoneMealSlot(farmhandInput, 1, 116, 61, EMPTY_SLOT_BONEMEAL));
 		int[] xCoordinates = {
 				71, 89,   // Center of top row (Slots 1, 2)
 				53, 107,  // Mid-outer top row (Slots 3, 4)
@@ -43,10 +43,10 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 				71, 89,   // Center bottom row (Slots 9, 10)
 				53, 107   // Edges bottom row  (Slots 11, 12)
 		};
-		for (int i = 0; i < farmhandContainterSize; ++i) {
+		for (int i = 0; i < farmhandOutput.getContainerSize(); ++i) {
 			int xPos = xCoordinates[i];
 			int yPos = (i < 8) ? 93 : 111;
-			this.addSlot(new ExtendedHiredUnitFarmhandSlot.CropsSlot(farmhandSupplies, 2 + i, xPos, yPos));
+			this.addSlot(new ExtendedHiredUnitFarmhandSlot.CropsSlot(farmhandOutput, i, xPos, yPos));
 		}
 
 		// add the 3 rows of player inventory
@@ -72,8 +72,9 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 		if (slot != null && slot.hasItem()) {
 			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
-			if (pIndex < farmhandSupplies.getContainerSize()) {
-				if (!this.moveItemStackTo(itemstack1, farmhandSupplies.getContainerSize()+1, farmhandSupplies.getContainerSize()+34, true)) {
+			int totalFarmlandInvSize = farmhandInput.getContainerSize() + farmhandOutput.getContainerSize();
+			if (pIndex < totalFarmlandInvSize) {
+				if (!this.moveItemStackTo(itemstack1, totalFarmlandInvSize+1, totalFarmlandInvSize+36, true)) {
 					return ItemStack.EMPTY;
 				}
 			} else if (seedsSlot.mayPlace(itemstack1) && !this.moveItemStackTo(itemstack1, 0, 1, false)) {
@@ -97,11 +98,11 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 
 	@Override
 	public boolean stillValid(PlayerEntity pPlayer) {
-		if(!pPlayer.level.isClientSide() && farmhandContainterSize != getFarmhandInfo().getInventoryAdditionalSize()+2) {
+		if(!pPlayer.level.isClientSide() && farmhandOutput.getContainerSize() != getFarmhandInfo().getInventoryAdditionalSize()+2) {
 			// Close UI upon farmer container size change
 			return false;
 		}
-		return this.farmhandSupplies.stillValid(pPlayer) && this.getCompanion().isAlive();
+		return farmhandInput.stillValid(pPlayer) && farmhandOutput.stillValid(pPlayer) && this.getCompanion().isAlive();
 	}
 
 	public static void writeContainerInitData(PacketBuffer extraData, int entityId) {
@@ -111,6 +112,7 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 	@Override
 	public void removed(PlayerEntity pPlayer) {
 		super.removed(pPlayer);
-		this.farmhandSupplies.stopOpen(pPlayer);
+		farmhandInput.stopOpen(pPlayer);
+		farmhandOutput.stopOpen(pPlayer);
 	}
 }

@@ -4,7 +4,6 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedEntityUtils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.CropsBlock;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.brain.task.BoneMealCropsTask;
@@ -32,7 +31,7 @@ public abstract class ExtendedFarmingAbstractTask {
 
 	// default condition
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		ExtendedEntityUtils.getRandomPosInBounds(taskPosition, goalHolder.getEntity(), 8, -3, 3);
+		ExtendedEntityUtils.getRandomPosInBounds(taskPosition, goalHolder.getEntity(), 4, -1, 1);
 	}
 
 	public abstract boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel);
@@ -62,13 +61,6 @@ public abstract class ExtendedFarmingAbstractTask {
 		BlockState plantState = pServerLevel.getBlockState(pAboveBlockPos);
 		Block blockBelow = pServerLevel.getBlockState(pAboveBlockPos.below()).getBlock();
 		return plantState.isAir() && blockBelow instanceof FarmlandBlock;
-	}
-
-	private boolean isCropsPos(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		BlockState plantState = pServerLevel.getBlockState(pAboveBlockPos);
-		Block blockBelow = pServerLevel.getBlockState(pAboveBlockPos.below()).getBlock();
-		Block plantBlock = plantState.getBlock();
-		return plantBlock instanceof CropsBlock && ((CropsBlock)plantBlock).isMaxAge(plantState) || plantState.isAir() && blockBelow instanceof FarmlandBlock;
 	}
 
 	private boolean isUnderCrops(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {

@@ -43,6 +43,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 
 	public ExtendedFarmingGoalHolder standardOrder() {
 		farmingTasks.add(new ExtendedFarmingTillTask(this));
+		farmingTasks.add(new ExtendedFarmingHarvestTask(this));
 		farmingTasks.add(new ExtendedFarmingBonemealTask(this));
 		return this;
 	}
@@ -56,6 +57,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 			return false;
 		}
 		BlockPos.Mutable taskPosition = new BlockPos.Mutable();
+		// TODO decide if there is a better way to randomize task block, while still keeping the farming delay
 		if (this.mode == SelectionMode.PRIORITY) {
 			for (ExtendedFarmingAbstractTask task : farmingTasks) {
 				if (!task.isTaskValidForNPC(level)) {

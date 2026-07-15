@@ -25,10 +25,10 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
  * </p>
  */
 public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
-	/** The base minimum number of slots available in a farmhand's inventory. */
-	public static final int MINIMUM_STORAGE_SIZE = 4;
 	/** The NBT key used to store and retrieve the farmhand's item inventory list. */
 	public static final String FARMHANDITEMSLIST = "farmItems";
+	/** The NBT key used to store and retrieve the farmhand's crops inventory list. */
+	public static final String FARMHANDCROPSLIST = "farmCrops";
 	/** The NPC entity associated with this data holder. */
 	private final NPCEntity thisEntity;
 	/** The current farming level of the NPC. Defaults to 1. */
@@ -46,8 +46,10 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	private int cropsHarvested = 0;
 	/** Additional inventory slots unlocked via leveling up. Bounds are capped between 0 and 10. */
 	private int inventoryAdditionalSize = 0;
-	/** The current inventory instance allocated to this farmhand. */
-	private Inventory farmhandInventory;
+	/** The current input inventory instance allocated to this farmhand. */
+	private Inventory farmhandInputInventory;
+	/** The current output inventory instance allocated to this farmhand. */
+	private Inventory farmhandOutputInventory;
 	/** Flag indicating if updated farmhand data needs to be synchronized to tracking clients. */
 	private boolean resendData = false;
 	/**
@@ -65,16 +67,16 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	@Override
 	public void tick() {
 		if (!thisEntity.level.isClientSide) {
-			if(inventoryAdditionalSize != getFarmhandInventory().getContainerSize()-MINIMUM_STORAGE_SIZE) {
+			if(inventoryAdditionalSize != getFarmhandOutputInventory().getContainerSize()-2) {
 				if(((ExtendedINPCEntity)thisEntity).getUnitInfo().isNpcActiveDuty()) {
 					ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(((ExtendedINPCEntity)thisEntity).getUnitInfo().getOwnerUUID());
 					if(player.containerMenu instanceof ExtendedHiredUnitFarmhandContainer) {
 						player.closeContainer();
 					}
 				}
-				Inventory newFarmhandInventory = makeFarmhandInventory();
-				ExtendedNBTUtils.transpherInventory(getFarmhandInventory(), newFarmhandInventory);
-				farmhandInventory = newFarmhandInventory;
+				Inventory newFarmhandInventory = makeFarmhandOutputInventory();
+				ExtendedNBTUtils.transpherInventory(getFarmhandOutputInventory(), newFarmhandInventory);
+				farmhandOutputInventory = newFarmhandInventory;
 			}
 			if (resendData) {
 				sendDataToAllBeings();
@@ -117,8 +119,11 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 			if (holder.contains("size_add")) {
 				setInventoryAdditionalSize(holder.getInt("size_add"));
 			}
-			farmhandInventory = makeFarmhandInventory();
-			ExtendedNBTUtils.readInventoryFromNBT(nbt, farmhandInventory, FARMHANDITEMSLIST);
+			farmhandInputInventory = makeFarmhandInputInventory();
+			ExtendedNBTUtils.readInventoryFromNBT(nbt, farmhandInputInventory, FARMHANDITEMSLIST);
+			farmhandOutputInventory = makeFarmhandOutputInventory();
+			ExtendedNBTUtils.readInventoryFromNBT(nbt, farmhandOutputInventory, FARMHANDCROPSLIST);
+			thisEntity.setCanPickUpLoot(true);
 			markDirty();
 		}
 	}
@@ -136,7 +141,8 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 		holder.putInt("m_xp", getMaxFarmerXp());
 		holder.putInt("crops_h", getCropsHarvested());
 		holder.putInt("size_add", getInventoryAdditionalSize());
-		ExtendedNBTUtils.writeInventoryToNBT(nbt, getFarmhandInventory(), FARMHANDITEMSLIST);
+		ExtendedNBTUtils.writeInventoryToNBT(nbt, getFarmhandInputInventory(), FARMHANDITEMSLIST);
+		ExtendedNBTUtils.writeInventoryToNBT(nbt, getFarmhandOutputInventory(), FARMHANDCROPSLIST);
 		nbt.put("FarmhandInfo", holder);
 	}
 	/**
@@ -192,7 +198,9 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 				farmhandInfo.setMaxFarmerXp(buf.readVarInt());
 				farmhandInfo.setCropsHarvested(buf.readVarInt());
 				farmhandInfo.setInventoryAdditionalSize(buf.readVarInt());
-				farmhandInfo.farmhandInventory = null; // Ensure inventory is remade on next client access
+				// Ensure inventories is remade on next client access
+				farmhandInfo.farmhandInputInventory = null;
+				farmhandInfo.farmhandOutputInventory = null;
 			}
 		}
 	}
@@ -346,24 +354,44 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 		return inventoryAdditionalSize;
 	}
 	/**
-	 * Instantiates a new Minecraft {@link Inventory} object sized according to the 
-	 * combination of base storage size and current unlocked level bonus slots.
+	 * Instantiates a new {@link Inventory} sized to 2
 	 *
-	 * @return A new ready-for-allocation {@link Inventory} container.
+	 * @return A new {@link Inventory} container.
 	 */
-	public Inventory makeFarmhandInventory() {
-		return new Inventory(MINIMUM_STORAGE_SIZE+inventoryAdditionalSize);
+	public Inventory makeFarmhandInputInventory() {
+		return new Inventory(2);
 	}
 	/**
-	 * Gets the active item storage inventory instance bound to this farmhand.
-	 * Also ensures that the inventory is made if not loaded (just created) and exists with the proper size on the client
+	 * Instantiates a new {@link Inventory} sized according to the 
+	 * combination of base storage size and current unlocked level bonus slots.
+	 *
+	 * @return A new {@link Inventory} container.
+	 */
+	public Inventory makeFarmhandOutputInventory() {
+		return new Inventory(2+inventoryAdditionalSize);
+	}
+	/**
+	 * Gets the active resource inventory instance bound to this farmhand.
+	 * Also ensures that the inventory is made if not loaded (just created)
 	 *
 	 * @return The current {@link Inventory}.
 	 */
-	public Inventory getFarmhandInventory() {
-		if(farmhandInventory==null) {
-			farmhandInventory = makeFarmhandInventory();
+	public Inventory getFarmhandInputInventory() {
+		if(farmhandInputInventory==null) {
+			farmhandInputInventory = makeFarmhandInputInventory();
 		}
-		return farmhandInventory;
+		return farmhandInputInventory;
+	}
+	/**
+	 * Gets the active storage inventory instance bound to this farmhand.
+	 * Also ensures that the inventory is made if not loaded (just created)
+	 *
+	 * @return The current {@link Inventory}.
+	 */
+	public Inventory getFarmhandOutputInventory() {
+		if(farmhandOutputInventory==null) {
+			farmhandOutputInventory = makeFarmhandOutputInventory();
+		}
+		return farmhandOutputInventory;
 	}
 }
