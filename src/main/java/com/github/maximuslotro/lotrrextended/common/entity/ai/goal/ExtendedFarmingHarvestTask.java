@@ -70,11 +70,9 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 			if (!(blockstate.getBlock() instanceof AbstractFireBlock)) {
 				pServerLevel.levelEvent(2001, pPos, Block.getId(blockstate));
 			}
-
 			TileEntity tileentity = blockstate.hasTileEntity() ? pServerLevel.getBlockEntity(pPos) : null;
 			//Block.dropResources(blockstate, this, pPos, tileentity, pEntity, ItemStack.EMPTY);
 			dropResourcesOwning(blockstate, pServerLevel, pPos, tileentity, pEntity, ItemStack.EMPTY);
-
 			return pServerLevel.setBlock(pPos, fluidstate.createLegacyBlock(), 3, 512);
 		}
 	}
@@ -87,7 +85,6 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 			});
 			pState.spawnAfterBreak((ServerWorld)pLevel, pPos, pTool);
 		}
-
 	}
 
 	// Copied from Block.popResource
@@ -99,7 +96,7 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 			double d2 = (double)(pLevel.random.nextFloat() * 0.5F) + 0.25D;
 			ItemEntity itementity = new ItemEntity(pLevel, (double)pPos.getX() + d0, (double)pPos.getY() + d1, (double)pPos.getZ() + d2, pStack);
 			itementity.setDefaultPickUpDelay();
-			itementity.setOwner(pEntity.getUUID());
+			itementity.setOwner(pEntity.getUUID());// Add entity as owner
 			pLevel.addFreshEntity(itementity);
 		}
 	}

@@ -42,9 +42,10 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	}
 
 	public ExtendedFarmingGoalHolder standardOrder() {
+		farmingTasks.add(new ExtendedFarmingDepositTask(this));
 		farmingTasks.add(new ExtendedFarmingTillTask(this));
-		farmingTasks.add(new ExtendedFarmingPlantingTask(this));
 		farmingTasks.add(new ExtendedFarmingCollectTask(this));
+		farmingTasks.add(new ExtendedFarmingPlantingTask(this));
 		farmingTasks.add(new ExtendedFarmingHarvestTask(this));
 		farmingTasks.add(new ExtendedFarmingBonemealTask(this));
 		return this;

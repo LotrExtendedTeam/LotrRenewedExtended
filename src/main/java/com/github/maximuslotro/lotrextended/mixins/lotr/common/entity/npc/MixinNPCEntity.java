@@ -626,15 +626,17 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 				}
 				if (!remaining.isEmpty() && outputInv.canAddItem(remaining)) {
 					remaining = outputInv.addItem(remaining);
-				}
+				}				
 				if (remaining.isEmpty()) {
 					pItemEntity.remove();
 				} else {
 					itemstack.setCount(remaining.getCount());
+					pItemEntity.remove(); // Delete items that could not be picked up
 				}
+			}else {
+				pItemEntity.remove(); // Delete items that could not be picked up
 			}
 		}
-
 	}
 
 	@Override

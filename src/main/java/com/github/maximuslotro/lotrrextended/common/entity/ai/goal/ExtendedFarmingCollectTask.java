@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 
+import java.util.List;
+
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -22,14 +24,20 @@ public class ExtendedFarmingCollectTask extends ExtendedFarmingAbstractTask {
 		if (!seeds.isEmpty() && seeds.getCount() < seeds.getMaxStackSize()) {
 			return true;
 		}
-		return goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory().canAddItem(dummyPickupItem);
+		if(goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory().canAddItem(dummyPickupItem)) {
+			return true;
+		}
+		// Also valid if inventory is full, BUT there are dropped items nearby that are owned
+		List<ItemEntity> nearbyOwnedItems = pServerLevel.getEntitiesOfClass(ItemEntity.class, goalHolder.getEntity().getBoundingBox().inflate(8.0D, 3.0D, 8.0D), this::isItemEntityApplicable);
+		return !nearbyOwnedItems.isEmpty();
 	}
 
 	@Override
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		for(ItemEntity itementity : pServerLevel.getEntitiesOfClass(ItemEntity.class, goalHolder.getEntity().getBoundingBox().inflate(5.0D, 1.0D, 5.0D))) {
-			if (isItemEntityApplicable(itementity)) {
-				taskPosition.set(itementity.blockPosition());
+		List<ItemEntity> items = pServerLevel.getEntitiesOfClass(ItemEntity.class, goalHolder.getEntity().getBoundingBox().inflate(8.0D, 3.0D, 8.0D));
+		for (ItemEntity itemEntity : items) {
+			if (isItemEntityApplicable(itemEntity)) {
+				taskPosition.set(itemEntity.blockPosition());
 				return;
 			}
 		}
@@ -46,11 +54,15 @@ public class ExtendedFarmingCollectTask extends ExtendedFarmingAbstractTask {
 	}
 
 	private boolean isItemEntityApplicable(ItemEntity item) {
-		ItemStack seeds = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
-		if (!item.removed && !item.getItem().isEmpty() && !item.hasPickUpDelay() && goalHolder.getEntity().getUUID().equals(item.getOwner())
-			&& ((!seeds.isEmpty() && seeds.sameItem(item.getItem())  && ItemStack.tagMatches(seeds, item.getItem()) && seeds.getCount() < seeds.getMaxStackSize()) 
-				||goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory().canAddItem(item.getItem()))) {
-			return true;
+		if (item.isAlive() && !item.getItem().isEmpty() && !item.hasPickUpDelay() && goalHolder.getEntity().getUUID().equals(item.getOwner())) {
+			ItemStack seeds = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
+			boolean matchesSeeds = !seeds.isEmpty() && seeds.sameItem(item.getItem()) && ItemStack.tagMatches(seeds, item.getItem());
+			boolean hasSeedSpace = matchesSeeds && seeds.getCount() < seeds.getMaxStackSize();
+			if (hasSeedSpace || goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory().canAddItem(item.getItem())) {
+				return true;
+			}
+			// If inventory is totally full, it's STILL applicable so we can go over and delete it
+			return true; 
 		}
 		return false;
 	}
