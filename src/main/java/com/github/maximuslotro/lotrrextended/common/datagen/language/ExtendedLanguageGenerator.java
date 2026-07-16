@@ -507,7 +507,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.fellowship.data.owner", "Owner: ");
 		addD("command.lotrextended.fellowship.data.admins", "Admins: ");
 		addD("command.lotrextended.fellowship.data.members", "Members: ");
-        addD("command.lotrextended.fellowship.changecolor", "Faction color updated!");
+		addD("command.lotrextended.fellowship.changecolor", "Faction color updated!");
 
 		//Config Command Values
 		addD("command.lotrextended.config.cant", "can only be edited in server config while server is off!");
@@ -530,7 +530,15 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.enchant.modifier_removed", "%s removed from %s.");
 		addD("command.lotrextended.enchant.modifier_cant_modifier", "%s can not be applied as there is a conflicting modifier.");
 		addD("command.lotrextended.enchant.generated", "Generated random modifiers.");
-		
+
+		// Trigger Commands
+		addD("command.lotrextended.trigger.trader.success", "Attempt to spawn wandering trader at %s was successful.");
+		addD("command.lotrextended.trigger.trader.failure", "Attempt to spawn wandering trader at %s was unsuccessful.");
+		addD("command.lotrextended.trigger.bandit.success", "Attempt to spawn bandit at %s was successful.");
+		addD("command.lotrextended.trigger.bandit.failure", "Attempt to spawn bandit at %s was unsuccessful.");
+		addD("command.lotrextended.trigger.invasion.success", "An invasion was successfully spawned near %s.");
+		addD("command.lotrextended.trigger.invasion.failure", "Could not find an invasion to spawn near %s.");
+
 		//Extended containers
 		addD("container.lotrextended.reed_basket", "Reed Basket");
 		addD("container.lotrextended.stone_chest", "Stone Chest");

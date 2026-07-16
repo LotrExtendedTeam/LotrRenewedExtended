@@ -36,8 +36,7 @@ public class ExtendedModifierCommand {
 			.then(Commands.argument("reforge", BoolArgumentType.bool())
 				.executes(context -> generateEnchant(context.getSource(), BoolArgumentType.getBool(context, "reforge"), false))
 				.then(Commands.argument("noNegatives", BoolArgumentType.bool())
-					.executes(context -> generateEnchant(context.getSource(), BoolArgumentType.getBool(context, "reforge"), BoolArgumentType.getBool(context, "noNegatives")))))
-			;
+					.executes(context -> generateEnchant(context.getSource(), BoolArgumentType.getBool(context, "reforge"), BoolArgumentType.getBool(context, "noNegatives")))));
 		// Register multiple alias commands
 		dispatcher.register(Commands.literal("lotr_enchant").requires(context -> context.hasPermission(4)).then(clear).then(add).then(remove).then(generate));
 		dispatcher.register(Commands.literal("lotr_modifiers").requires(context -> context.hasPermission(4)).then(clear).then(add).then(remove).then(generate));

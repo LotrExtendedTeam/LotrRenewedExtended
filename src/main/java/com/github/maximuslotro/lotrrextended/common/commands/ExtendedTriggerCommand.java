@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.commands;
 
+import java.util.Collection;
+
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
@@ -12,85 +14,101 @@ import lotr.common.world.spawning.InvasionSpawner;
 import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
+import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedTriggerCommand {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("lotrExtendedTrigger")
 			.requires(context -> context.hasPermission(2))
 			.then(Commands.literal("attemptWanderingTraderSpawn")
-				.then(Commands.argument("disableBanner", BoolArgumentType.bool())
-					.then(Commands.argument("disableAlignment", BoolArgumentType.bool())
-						.executes(context -> triggerTraderSpawn(context.getSource(), BoolArgumentType.getBool(context, "disableBanner"), BoolArgumentType.getBool(context, "disableAlignment"))))))
+				.then(Commands.argument("targets", EntityArgument.players())
+					.then(Commands.argument("disableBanner", BoolArgumentType.bool())
+						.then(Commands.argument("disableAlignment", BoolArgumentType.bool())
+							.executes(context -> triggerTraderSpawn(context.getSource(), BoolArgumentType.getBool(context, "disableBanner"), 
+								BoolArgumentType.getBool(context, "disableAlignment"), EntityArgument.getPlayers(context, "targets")))))))
 			.then(Commands.literal("wanderingTraderSpawn")
-				.executes(context -> triggerGuaranteedTraderSpawn(context.getSource())))
+				.then(Commands.argument("targets", EntityArgument.players())
+					.executes(context -> triggerGuaranteedTraderSpawn(context.getSource(), EntityArgument.getPlayers(context, "targets")))))
 			.then(Commands.literal("attemptBanditSpawn")
-				.executes(context -> triggerBanditSpawn(context.getSource())))
+				.then(Commands.argument("targets", EntityArgument.players())
+					.executes(context -> triggerBanditSpawn(context.getSource(), EntityArgument.getPlayers(context, "targets")))))
 			.then(Commands.literal("banditSpawn")
-				.executes(context -> triggerGuaranteedBanditSpawn(context.getSource())))
+				.then(Commands.argument("targets", EntityArgument.players())
+					.executes(context -> triggerGuaranteedBanditSpawn(context.getSource(), EntityArgument.getPlayers(context, "targets")))))
 			.then(Commands.literal("spawnTolkien")
-				.executes(context -> triggerTolkien(context.getSource())))
+				.then(Commands.argument("targets", EntityArgument.players())
+					.executes(context -> triggerTolkien(context.getSource(), EntityArgument.getPlayers(context, "targets")))))
 			.then(Commands.literal("wightJumpscare")
-				.executes(context -> triggerJumpscare(context.getSource())))
+				.then(Commands.argument("targets", EntityArgument.players())
+					.executes(context -> triggerJumpscare(context.getSource(), EntityArgument.getPlayers(context, "targets")))))
 			.then(Commands.literal("invasion")
-				.executes(context -> triggerInvasionTest(context.getSource()))));
+				.then(Commands.argument("targets", EntityArgument.players())
+					.executes(context -> triggerInvasionTest(context.getSource(), EntityArgument.getPlayers(context, "targets"))))));
 	}
 
-	public static int triggerGuaranteedTraderSpawn(CommandSource source) throws CommandSyntaxException {
-		ServerPlayerEntity player = source.getPlayerOrException();
-		WanderingTradersSpawner.attemptSpawn(player.getLevel(), player, false, false);
-		return Command.SINGLE_SUCCESS;
-	}
-
-	public static int triggerTraderSpawn(CommandSource source, boolean disableBanner, boolean disableAlignment) throws CommandSyntaxException {
-		ServerPlayerEntity player = source.getPlayerOrException();
-		boolean result = WanderingTradersSpawner.attemptSpawn(player.getLevel(), player, disableBanner, disableAlignment);
-		if (result) {
-			source.sendSuccess(new StringTextComponent("Attempt to spawn wandering trader was successful."), true);
-		} else {
-			source.sendSuccess(new StringTextComponent("Attempt to spawn wandering trader was unsuccessful."), true);
+	public static int triggerGuaranteedTraderSpawn(CommandSource source, Collection<? extends ServerPlayerEntity> pTargets) throws CommandSyntaxException {
+		for(ServerPlayerEntity serverplayerentity : pTargets) {
+			WanderingTradersSpawner.attemptSpawn(serverplayerentity.getLevel(), serverplayerentity, false, false);
 		}
 		return Command.SINGLE_SUCCESS;
 	}
 
-	public static int triggerGuaranteedBanditSpawn(CommandSource source) throws CommandSyntaxException {
-		ServerPlayerEntity player = source.getPlayerOrException();
-		BanditsSpawner.attemptSpawn(player.getLevel(), player, true);
-		return Command.SINGLE_SUCCESS;
-	}
-
-	public static int triggerBanditSpawn(CommandSource source) throws CommandSyntaxException {
-		ServerPlayerEntity player = source.getPlayerOrException();
-		boolean result = BanditsSpawner.attemptSpawn(player.getLevel(), player, false);
-		if (result) {
-			source.sendSuccess(new StringTextComponent("Attempt to spawn bandit was successful."), true);
-		} else {
-			source.sendSuccess(new StringTextComponent("Attempt to spawn bandit was unsuccessful."), true);
+	public static int triggerTraderSpawn(CommandSource source, boolean disableBanner, boolean disableAlignment, Collection<? extends ServerPlayerEntity> pTargets) throws CommandSyntaxException {
+		for(ServerPlayerEntity serverplayerentity : pTargets) {
+			boolean result = WanderingTradersSpawner.attemptSpawn(serverplayerentity.getLevel(), serverplayerentity, disableBanner, disableAlignment);
+			if(result) {
+				source.sendSuccess(new TranslationTextComponent("command.lotrextended.trigger.trader.success", serverplayerentity.getDisplayName()), true);
+			} else {
+				source.sendSuccess(new TranslationTextComponent("command.lotrextended.trigger.trader.failure", serverplayerentity.getDisplayName()), true);
+			}
 		}
 		return Command.SINGLE_SUCCESS;
 	}
 
-	public static int triggerInvasionTest(CommandSource source) throws CommandSyntaxException {
-		ServerPlayerEntity player = source.getPlayerOrException();
-		boolean result = InvasionSpawner.requireInvasionSpawn(player.getLevel(), player);
-		if (result) {
-			source.sendSuccess(new StringTextComponent("An invasion was successfully spawned."), true);
-		} else {
-			source.sendFailure(new StringTextComponent("Could not find an invasion to spawn here."));
+	public static int triggerGuaranteedBanditSpawn(CommandSource source, Collection<? extends ServerPlayerEntity> pTargets) throws CommandSyntaxException {
+		for(ServerPlayerEntity player : pTargets) {
+			BanditsSpawner.attemptSpawn(player.getLevel(), player, true);
 		}
 		return Command.SINGLE_SUCCESS;
 	}
 
-	public static int triggerTolkien(CommandSource source) throws CommandSyntaxException {
-		ServerPlayerEntity player = source.getPlayerOrException();
-		ExtendedTolkienEntity.spawn(player.level, player);
+	public static int triggerBanditSpawn(CommandSource source, Collection<? extends ServerPlayerEntity> pTargets) throws CommandSyntaxException {
+		for (ServerPlayerEntity player : pTargets) {
+			boolean result = BanditsSpawner.attemptSpawn(player.getLevel(), player, false);
+			if (result) {
+				source.sendSuccess(new TranslationTextComponent("command.lotrextended.trigger.bandit.success", player.getDisplayName()), true);
+			} else {
+				source.sendSuccess(new TranslationTextComponent("command.lotrextended.trigger.bandit.failure", player.getDisplayName()), true);
+			}
+		}
 		return Command.SINGLE_SUCCESS;
 	}
 
-	public static int triggerJumpscare(CommandSource source) throws CommandSyntaxException {
-		ServerPlayerEntity player = source.getPlayerOrException();
-		player.getLevel().sendParticles((ServerPlayerEntity) player, ExtendedParticles.BARROW_WIGHT_JUMPSCARE.get(), false, player.getX(), player.getY(), player.getZ(), 1, 0, 0, 0, 1);
+	public static int triggerInvasionTest(CommandSource source, Collection<? extends ServerPlayerEntity> pTargets) throws CommandSyntaxException {
+		for (ServerPlayerEntity player : pTargets) {
+			boolean result = InvasionSpawner.requireInvasionSpawn(player.getLevel(), player);
+			if (result) {
+				source.sendSuccess(new TranslationTextComponent("command.lotrextended.trigger.invasion.success", player.getDisplayName()), true);
+			} else {
+				source.sendFailure(new TranslationTextComponent("command.lotrextended.trigger.invasion.failure", player.getDisplayName()));
+			}
+		}
+		return Command.SINGLE_SUCCESS;
+	}
+
+	public static int triggerTolkien(CommandSource source, Collection<? extends ServerPlayerEntity> pTargets) throws CommandSyntaxException {
+		for (ServerPlayerEntity player : pTargets) {
+			ExtendedTolkienEntity.spawn(player.getLevel(), player);
+		}
+		return Command.SINGLE_SUCCESS;
+	}
+
+	public static int triggerJumpscare(CommandSource source, Collection<? extends ServerPlayerEntity> pTargets) throws CommandSyntaxException {
+		for (ServerPlayerEntity player : pTargets) {
+			player.getLevel().sendParticles(player, ExtendedParticles.BARROW_WIGHT_JUMPSCARE.get(), false, player.getX(), player.getY(), player.getZ(), 1, 0, 0, 0, 1);
+		}
 		return Command.SINGLE_SUCCESS;
 	}
 }
