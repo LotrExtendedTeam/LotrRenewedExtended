@@ -80,7 +80,18 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		for (String entity : ExtendedEntities.REGISTEREDNONMOBENTITIESEXTENDED) {
 			addD("entity.lotrextended." + entity);
 		}
+		// Fix missing Renewed strings
 		addD("entity.lotr.boat", "Boat");
+		addD("death.attack.lotr.plant", "%s was slain by a plant");
+		addD("death.attack.lotr.plant.player", "%s was slain by a plant whilst fighting %2$s");
+		addD("death.attack.lotr.frost", "%s succumbed to the cold");
+		addD("death.attack.lotr.frost.player", "%s succumbed to the cold whilst fighting %2$s");
+		addD("death.attack.lotr.stalagmite", "%1$s was spiked by a stalagmite");
+		addD("death.attack.lotr.stalagmite.player", "%1$s was spiked on a stalagmite by %2$s");
+		addD("death.attack.lotr.quagmire", "%1$s got stuck in a swamp");
+		addD("death.attack.lotr.quagmire.player", "%1$s was thrown in a swamp by %2$s");
+		addD("death.attack.lotr.thrownSpear", "%1$s was speared by %2$s");
+		addD("death.attack.lotr.thrownSpear.item", "%1$s was speared by %2$s using %3$s");
 
 		// Generate Container Titles
 		for (Entry<String, String> entity : DataGenValueHolder.containerTitlesHolders.entrySet()) {
