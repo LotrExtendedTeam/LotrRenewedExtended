@@ -128,6 +128,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addD(entity.getKey(), entity.getValue());
 		}
 
+		// Generate Effect Name Strings
+		for (Entry<String, String> entity : DataGenValueHolder.effectsHolders.entrySet()) {
+			addD(entity.getKey(), entity.getValue());
+		}
+
 		for (String invasion : DataGenValueHolder.invasionNames) {
 			addD(invasion);
 		}
@@ -728,6 +733,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		//Damage types
 		addD("death.attack.lotrextended.thrownaxe", "%1$s was precision-axed by %2$s");
 		addD("death.attack.lotrextended.thrownaxe.item", "%1$s was precision-axed by %2$s using %3$s");
+		addD("death.attack.lotrextended.poison_drink", "%1$s drank the wrong drink");
+		addD("death.attack.lotrextended.poison_drink.player", "%1$s drank the wrong drink whilst fighting %2$s");
 
 		// Invasions
 		addD("chat.lotrextended.invasion.started", "%s have launched an invasion nearby!");

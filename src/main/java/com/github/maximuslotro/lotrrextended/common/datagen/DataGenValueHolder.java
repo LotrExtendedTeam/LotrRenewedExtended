@@ -17,4 +17,5 @@ public class DataGenValueHolder {
 	public static final List<String> biomeNames = new ArrayList<>();
 	public static final Map<String, String> hiredUnitStrings = new HashMap<>();
 	public static final List<String> invasionNames = new ArrayList<>();
+	public static final Map<String, String> effectsHolders = new HashMap<>();
 }

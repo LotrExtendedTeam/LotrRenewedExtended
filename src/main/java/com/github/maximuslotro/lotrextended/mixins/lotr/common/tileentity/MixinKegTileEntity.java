@@ -17,6 +17,7 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedSingleItemDataHolderIInventory;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedDrinkUtils;
 
 import lotr.common.inv.KegContainer;
 import lotr.common.item.VesselDrinkItem;
@@ -25,7 +26,6 @@ import lotr.common.recipe.DrinkBrewingRecipe;
 import lotr.common.recipe.LOTRRecipes;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.tileentity.KegTileEntity.KegMode;
-import lotr.common.util.DrinkUtils;
 import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
@@ -488,7 +488,7 @@ public abstract class MixinKegTileEntity extends LockableTileEntity implements E
 					}
 					ExtendedSingleItemDataHolderIInventory placeHolder = new ExtendedSingleItemDataHolderIInventory();
 					loottable.fill(placeHolder, lootcontext$builder.create(LootParameterSets.CHEST));
-					entity.fillBrewedWith(DrinkUtils.createDrink(new Random(), placeHolder.getItem(0)));
+					entity.fillBrewedWith(ExtendedDrinkUtils.createDrink(new Random(), placeHolder.getItem(0)));
 				}
 			}
 		}catch(NullPointerException e) {

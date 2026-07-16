@@ -17,6 +17,7 @@ import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTradeI
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTradeItemSupplierSingle;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ItemStackAndPrice;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedDrinkUtils;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -28,7 +29,6 @@ import com.google.gson.JsonSerializer;
 
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.item.VesselDrinkItem.Potency;
-import lotr.common.util.DrinkUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -590,9 +590,9 @@ public class ExtendedTraderProfile {
 				ExtendedLog.warn("Received invalid drink from args, SKIPPING!: "+item.get().getRegistryName().toString());
 				return this;
 			}
-			addMSell(new ItemStackAndPrice(DrinkUtils.drinkOfPotency(item.get(), Potency.LIGHT), lightCost),
-					new ItemStackAndPrice(DrinkUtils.drinkOfPotency(item.get(), Potency.MODERATE), moderateCost),
-					new ItemStackAndPrice(DrinkUtils.drinkOfPotency(item.get(), Potency.STRONG), strongCost));
+			addMSell(new ItemStackAndPrice(ExtendedDrinkUtils.drinkOfPotency(item.get(), Potency.LIGHT), lightCost),
+					new ItemStackAndPrice(ExtendedDrinkUtils.drinkOfPotency(item.get(), Potency.MODERATE), moderateCost),
+					new ItemStackAndPrice(ExtendedDrinkUtils.drinkOfPotency(item.get(), Potency.STRONG), strongCost));
 			return this;
 		}
 		/**
@@ -611,9 +611,9 @@ public class ExtendedTraderProfile {
 				ExtendedLog.warn("Received invalid drink from args, SKIPPING!: "+item.get().getRegistryName().toString());
 				return this;
 			}
-			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.LIGHT), DEFAULT_WEIGHT, lightCost, 200, true);
-			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.MODERATE), DEFAULT_WEIGHT, moderateCost, 200, true);
-			addSSell(DrinkUtils.drinkOfPotency(item.get(), Potency.STRONG), DEFAULT_WEIGHT, strongCost, 200, true);
+			addSSell(ExtendedDrinkUtils.drinkOfPotency(item.get(), Potency.LIGHT), DEFAULT_WEIGHT, lightCost, 200, true);
+			addSSell(ExtendedDrinkUtils.drinkOfPotency(item.get(), Potency.MODERATE), DEFAULT_WEIGHT, moderateCost, 200, true);
+			addSSell(ExtendedDrinkUtils.drinkOfPotency(item.get(), Potency.STRONG), DEFAULT_WEIGHT, strongCost, 200, true);
 			return this;
 		}
 		/**
@@ -630,7 +630,7 @@ public class ExtendedTraderProfile {
 				ExtendedLog.warn("Received invalid drink from args, SKIPPING!: "+item.get().getRegistryName().toString());
 				return this;
 			}
-			ItemStack drink = DrinkUtils.drinkOfPotency(item.get(), Potency.LIGHT);
+			ItemStack drink = ExtendedDrinkUtils.drinkOfPotency(item.get(), Potency.LIGHT);
 			drink.setCount(16);
 			addSSell(ExtendedKegItem.getOutputKegForVesselItem(drink), DEFAULT_WEIGHT, cost, 200, true);
 			return this;
