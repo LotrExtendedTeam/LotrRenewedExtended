@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.client.gui.screen.inventory;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedAnvilButton;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainerNew;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCAnvilButtonPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCRenameItemPacket;
@@ -83,6 +84,9 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 		if(this.menu.getSlot(0).hasItem() && this.menu.getReforgeCost()>0) {
 			this.reforgeButton.active=true;
 		}else {
+			this.reforgeButton.active=false;
+		}
+		if(!ExtendedServerConfig.enableExtendedModifiers.get()) {
 			this.reforgeButton.active=false;
 		}
 		if(this.menu.getSlot(0).hasItem() && this.menu.getEngraveCost()>0) {
@@ -188,6 +192,9 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 						textColor = ERRORTEXTCOLOR;
 					}
 				}
+			}else if(this.reforgeButton.isHovered() && !ExtendedServerConfig.enableExtendedModifiers.get()) {
+				itextcomponent = new StringTextComponent("Reforging Disabled");
+				textColor = ERRORTEXTCOLOR;
 			}else if(this.engraveButton.isHovered() && this.menu.getSlot(0).getItem().isDamageableItem() && this.menu.getEngraveCost()>0){
 				if(!this.menu.getSlot(2).hasItem()) {
 					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.missing_material");

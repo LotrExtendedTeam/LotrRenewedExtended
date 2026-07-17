@@ -63,7 +63,8 @@ public class InvasionSpawner {
                     break;
                 }
             } catch (IllegalArgumentException ex) {
-                ExtendedLog.error("Issue while determining LOTR when spawning an invasion.", ex);
+                ExtendedLog.error("Issue while determining LOTR when spawning an invasion.");
+                ex.printStackTrace();
             }
         }
 

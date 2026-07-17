@@ -68,7 +68,7 @@ public class ExtendedCaptainProfile {
 			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedServerCaptainProfile");
 			String id = jsonobject.get("id").getAsString();
 			if(id==null||!id.contains(":")) {
-				ExtendedLog.warn("Failed to load captain profile due to invalid id: %s!", id);
+				ExtendedLog.warn("Failed to load captain profile due to invalid id: {}!", id);
 				return null;
 			}
 			List<ResourceLocation> unitProfileIDs = new ArrayList<>();
@@ -79,7 +79,7 @@ public class ExtendedCaptainProfile {
 					if (unitIdStr.contains(":")) {
 						unitProfileIDs.add(new ResourceLocation(unitIdStr));
 					} else {
-						ExtendedLog.warn("Skipping invalid unit profile ID: %s in captain profile %s", unitIdStr, id);
+						ExtendedLog.warn("Skipping invalid unit profile ID: {} in captain profile {}", unitIdStr, id);
 					}
 				}
 			}

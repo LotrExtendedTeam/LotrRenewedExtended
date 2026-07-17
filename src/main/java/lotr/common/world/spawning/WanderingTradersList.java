@@ -189,7 +189,7 @@ public class WanderingTradersList {
 		register("lotr:nurn_river", new HashMap<>());
 		register("lotr:barrow_downs", new HashMap<>());
 		register("lotr:barrow_downs_river", new HashMap<>());
-		ExtendedLog.info2("Made {} wandering trader pool entries: "+BIOME_TRADER_WEIGHTS.size());
+		ExtendedLog.info("Made {} wandering trader pool entries: ", BIOME_TRADER_WEIGHTS.size());
 
 	};
 

@@ -40,7 +40,7 @@ public class ExtendedCOpenTradeMenuPacket {
     public static void handle(ExtendedCOpenTradeMenuPacket packet, Supplier<NetworkEvent.Context> context) {
     	Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.traderId);
     	if (!(entity instanceof ExtendedTraderEntity)) {
-    		ExtendedLog.error("Recieved a trader eneity not of type ExtendedTraderEntity from %s", context.get().getSender().getName().getString());
+    		ExtendedLog.error("Recieved a trader eneity not of type ExtendedTraderEntity from {}", context.get().getSender().getName().getString());
     		context.get().setPacketHandled(true);
     		return;
     	}

@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
@@ -71,15 +72,17 @@ public class ExtendedCServerSettingsPacket {
 	public static void handle(ExtendedCServerSettingsPacket packet, Supplier<NetworkEvent.Context> context) {
 		context.get().setPacketHandled(true);
 		ServerPlayerEntity player = context.get().getSender();
-		if(ServerLifecycleHooks.getCurrentServer().isDedicatedServer() &&
-				!ServerLifecycleHooks.getCurrentServer().getPlayerList().isOp(player.getGameProfile())) {
+		MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+		if(server.isDedicatedServer() && !server.getPlayerList().isOp(player.getGameProfile())) {
 			ExtendedLog.warn("{} tried editing server settings while not OP in multiplayer!", player.getName().getString());
 			return;
-		}
-		if(!ServerLifecycleHooks.getCurrentServer().isDedicatedServer() &&
-				!ServerLifecycleHooks.getCurrentServer().getPlayerList().isAllowCheatsForAllPlayers()) {
-			ExtendedLog.warn("{} tried editing server settings while in singleplayer cheat are not enabled!", player.getName().getString());
-			return;
+		}else if(!server.isDedicatedServer()){
+			boolean isOwnerWithCommands = server.isSingleplayerOwner(player.getGameProfile()) && server.getWorldData().getAllowCommands();
+		    boolean isCheatsAllowedForAll = server.getPlayerList().isAllowCheatsForAllPlayers();
+		    if (!isOwnerWithCommands && !isCheatsAllowedForAll) {
+		        ExtendedLog.warn("{} tried editing server settings while in singleplayer cheats are not enabled!", player.getName().getString());
+		        return;
+		    }
 		}
 		try {
 			switch (packet.getType()) {
@@ -158,11 +161,17 @@ public class ExtendedCServerSettingsPacket {
 				case VANILLA_ENCHANTING:
 					setBoolean(ExtendedServerConfig.enableVanillaEnchanting, packet.getBoolean());
 					break;
+				case VANILLA_ENCHANTING_REMOVE:
+					setBoolean(ExtendedServerConfig.removeVanillaEnchanting, packet.getBoolean());
+					break;
 				case VANILLA_XP:
 					setBoolean(ExtendedServerConfig.enableVanillaXp, packet.getBoolean());
 					break;
 				case EXTENDED_MODIFIERS:
 					setBoolean(ExtendedServerConfig.enableExtendedModifiers, packet.getBoolean());
+					break;
+				case EXTENDED_MODIFIERS_REMOVE:
+					setBoolean(ExtendedServerConfig.removeExtendedModifiers, packet.getBoolean());
 					break;
 				case EXTENDED_SPAWN_PROTECTION:
 					setBoolean(ExtendedServerConfig.enableExtendedSpawnProtection, packet.getBoolean());
@@ -273,8 +282,10 @@ public class ExtendedCServerSettingsPacket {
 		CHAIR_PROTECTION_OVERRIDE(ValueType.BOOLEAN),
 		// Modifiers
 		VANILLA_ENCHANTING(ValueType.BOOLEAN),
+		VANILLA_ENCHANTING_REMOVE(ValueType.BOOLEAN),
 		VANILLA_XP(ValueType.BOOLEAN),
 		EXTENDED_MODIFIERS(ValueType.BOOLEAN),
+		EXTENDED_MODIFIERS_REMOVE(ValueType.BOOLEAN),
 		// Protection
 		EXTENDED_SPAWN_PROTECTION(ValueType.BOOLEAN),
 		OVERWORLD_SPAWN_RADIUS(ValueType.INT),

@@ -158,12 +158,12 @@ public class ExtendedServerHiredUnitProfile {
 			JsonObject jsonobject = JSONUtils.convertToJsonObject(json, "ExtendedServerHiredUnitProfile");
 			String id = jsonobject.get("id").getAsString();
 			if(id==null||!id.contains(":")) {
-				ExtendedLog.warn("Failed to load hired unit profile due to invalid id: %s!", id);
+				ExtendedLog.warn("Failed to load hired unit profile due to invalid id: {}!", id);
 				return null;
 			}
 			EntityType<?> entityType = getEntityTypeFromString(jsonobject.get("entity_type").getAsString());
 			if (entityType == null) {
-				ExtendedLog.warn("Failed to load unit entity type: "+jsonobject.get("entity_type").getAsString());
+				ExtendedLog.warn("Failed to load unit entity type: {}", jsonobject.get("entity_type").getAsString());
 				return null;
 			}
 			// Language

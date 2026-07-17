@@ -5,6 +5,7 @@ import java.io.StringWriter;
 
 import com.github.maximuslotro.lotrrextended.client.gui.screen.settings.AbstractExtendedOptionsScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.settings.ExtendedClientOptionsScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.settings.ExtendedServerOptionsScreen;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.gui.MiddleEarthMasterMenuScreen;
@@ -44,7 +45,11 @@ public class ExtendedAbstractOptionsScreen extends MiddleEarthMenuScreen {
 		}
 		try {
 			if (lastSettingScreen != null) {
-				this.minecraft.setScreen(lastSettingScreen.newInstance());
+				if(ExtendedServerOptionsScreen.class.equals(lastSettingScreen) && !hasCheatsEnabled()) {
+					this.minecraft.setScreen(ExtendedClientOptionsScreen.class.newInstance());
+				}else {
+					this.minecraft.setScreen(lastSettingScreen.newInstance());
+				}
 			} else {
 				this.minecraft.setScreen(ExtendedClientOptionsScreen.class.newInstance());
 			}
@@ -58,5 +63,17 @@ public class ExtendedAbstractOptionsScreen extends MiddleEarthMenuScreen {
 		PrintWriter pw = new PrintWriter(sw);
 		e.printStackTrace(pw);
 		return sw.toString();
+	}
+
+	public boolean hasCheatsEnabled() {
+		boolean hasCheatsEnabled = false;
+		if (this.minecraft.getSingleplayerServer() != null) {
+		    hasCheatsEnabled = this.minecraft.getSingleplayerServer().isSingleplayerOwner(this.minecraft.player.getGameProfile()) 
+		            && this.minecraft.getSingleplayerServer().getWorldData().getAllowCommands()
+		            || this.minecraft.getSingleplayerServer().getPlayerList().isAllowCheatsForAllPlayers();
+		} else {
+			hasCheatsEnabled = this.minecraft.player.hasPermissions(2);
+		}
+		return hasCheatsEnabled;
 	}
 }

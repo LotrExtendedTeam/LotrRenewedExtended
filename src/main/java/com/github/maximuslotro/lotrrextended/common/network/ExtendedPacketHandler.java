@@ -66,7 +66,8 @@ public class ExtendedPacketHandler {
 		if (id >= 255) {
 			// Since IndexedMessageCodec.MessageHandler -> indicies.put((short)(index & 0xff), this);
 			// And 0xFF is 255, so using one byte for index, max messages for one channel is 255
-			ExtendedLog.error("Max made a Derp mistake. He needs to make a new network channel. ()_()", id);
+			ExtendedLog.error("Max made a Derp mistake. He needs to make a new network channel. ()_()");
+			throw new IllegalStateException("Max made a Derp mistake. He needs to make a new network channel. ()_()");
 		}
 	}
 

@@ -293,7 +293,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.serversettings.fixedstructuretowerhills.setting", "Tower Hills Towers: %s");
 		addD("gui.lotrextended.serversettings.fixedstructureorthanc.setting", "Orthanc: %s");
 		addD("gui.lotrextended.serversettings.extendedmodifiers.setting", "Extended Modifiers: %s");
+		addD("gui.lotrextended.serversettings.extendedmodifiersremove.setting", "Auto-Remove Modifiers: %s");
 		addD("gui.lotrextended.serversettings.vanillaenchanting.setting", "Vanilla Enchanting: %s");
+		addD("gui.lotrextended.serversettings.vanillaenchantingremove.setting", "Auto-Remove Enchants: %s");
 		addD("gui.lotrextended.serversettings.vanillaxp.setting", "Vanilla XP: %s");
 		addD("gui.lotrextended.serversettings.globalspawndamping.setting", "Spawn Rate: %s");
 		addD("gui.lotrextended.serversettings.passivetraders.setting", "Passive Traders: %s");

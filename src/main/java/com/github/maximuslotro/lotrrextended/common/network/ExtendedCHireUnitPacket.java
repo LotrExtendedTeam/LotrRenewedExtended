@@ -46,7 +46,7 @@ public class ExtendedCHireUnitPacket {
     	context.get().setPacketHandled(true);
         Entity entityCaptain = context.get().getSender().level.getEntity(packet.captainId);
         if (!(entityCaptain instanceof ExtendedCaptainEntity)) {
-            ExtendedLog.error("Received a captain entity not of type ExtendedCaptainEntity from %s", Objects.requireNonNull(context.get().getSender()).getName().getString());
+            ExtendedLog.error("Received a captain entity not of type ExtendedCaptainEntity from {}", Objects.requireNonNull(context.get().getSender()).getName().getString());
             return;
         }
 

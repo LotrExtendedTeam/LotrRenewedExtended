@@ -709,24 +709,24 @@ public class ExtendedStructureEntitySpawner {
 			List<ExtendedStructureEntitySpawnerEntry> alootpool = Lists.newArrayList(JSONUtils.getAsObject(jsonobject, "pools", new ExtendedStructureEntitySpawnerEntry[0], context, ExtendedStructureEntitySpawnerEntry[].class));
 			String id = jsonobject.get("id").getAsString();
 			if(id==null||!id.contains(":")) {
-				ExtendedLog.warn("Failed to load structure spawner due to invalid id: %s!", id);
+				ExtendedLog.warn("Failed to load structure spawner due to invalid id: {}!", id);
 				return null;
 			}
 			if(alootpool.size()<1) {
-				ExtendedLog.warn("Failed to load structure spawner due to spawner pool size less than 1: %s!", id);
+				ExtendedLog.warn("Failed to load structure spawner due to spawner pool size less than 1: {}!", id);
 				return null;
 			}
 			SpawnerType type = SpawnerType.bySpawnerName(jsonobject.get("spawner_type").getAsString());
 			if(type==SpawnerType.UNKNOWN) {
-				ExtendedLog.warn("Failed to load structure spawner %s due to invalid spawn type!", id);
+				ExtendedLog.warn("Failed to load structure spawner {} due to invalid spawn type!", id);
 				return null;
 			}
 			if(type==SpawnerType.SINGLE_FAMILY && alootpool.size()>1) {
-				ExtendedLog.warn("Failed to load structure spawner %s due to single_family_spawner type spawners not allowing more than one entity pool!", id);
+				ExtendedLog.warn("Failed to load structure spawner {} due to single_family_spawner type spawners not allowing more than one entity pool!", id);
 				return null;
 			}
 			if(type==SpawnerType.SINGLE_FAMILY && alootpool.size()==1 && alootpool.get(0).getSpawnerForTypeArguments() instanceof MultiSpawnType) {
-				ExtendedLog.warn("Failed to load structure spawner %s due to single_family_spawner type not supporting multiSpawnTypes (entity_types), should only contain an (entity_type)!", id);
+				ExtendedLog.warn("Failed to load structure spawner {} due to single_family_spawner type not supporting multiSpawnTypes (entity_types), should only contain an (entity_type)!", id);
 				return null;
 			}
 			ExtendedSpawnerBoundsEntry check = JSONUtils.getAsObject(jsonobject, "check_boundaries", ExtendedSpawnerBoundsEntry.DEFAULT, context, ExtendedSpawnerBoundsEntry.class);
@@ -735,19 +735,19 @@ public class ExtendedStructureEntitySpawner {
 			if(jsonobject.has("setHomeOnSpawn") && jsonobject.get("setHomeOnSpawn").getAsBoolean()) {
 				spawner.setSetHomePositionOnSpawn(true);
 				if(!jsonobject.has("homeRadius")) {
-					ExtendedLog.error("Loaded Structure Spawner with invalid settings! homeRadius must be set if setHomeOnSpawn is enabled. Ignoring spawner - %s", id);
+					ExtendedLog.error("Loaded Structure Spawner with invalid settings! homeRadius must be set if setHomeOnSpawn is enabled. Ignoring spawner - {}", id);
 					return null;
 				} else if(!spawner.setHomeRadius(jsonobject.get("homeRadius").getAsInt())) {
-					ExtendedLog.warn("Loaded Structure Spawner with invalid homeRadius set! Resetting to default! - %s", id);
+					ExtendedLog.warn("Loaded Structure Spawner with invalid homeRadius set! Resetting to default! - {}", id);
 				}
 			}
 			if(jsonobject.has("setHomeRandomly")) {
 				if(!spawner.isSetHomePositionOnSpawn() || type==SpawnerType.SINGLE_FAMILY) {
 					if(type==SpawnerType.SINGLE_FAMILY) {
-						ExtendedLog.warn("Loaded Structure Spawner with invalid settings! Can't set setHomeRandomly if single_family_spawner type! - %s", id);
+						ExtendedLog.warn("Loaded Structure Spawner with invalid settings! Can't set setHomeRandomly if single_family_spawner type! - {}", id);
 					}
 					if(!spawner.isSetHomePositionOnSpawn()) {
-						ExtendedLog.warn("Loaded Structure Spawner with invalid settings! Can't set setHomeRandomly if setHomeOnSpawn is not set! - %s", id);
+						ExtendedLog.warn("Loaded Structure Spawner with invalid settings! Can't set setHomeRandomly if setHomeOnSpawn is not set! - {}", id);
 					}
 				}else {
 					spawner.setSetHomeRandom(jsonobject.get("setHomeRandomly").getAsBoolean());
@@ -761,32 +761,32 @@ public class ExtendedStructureEntitySpawner {
 			}
 			if(jsonobject.has("entitySpawnTickRate")) {
 				if(!spawner.setEntitySpawnTickRate(jsonobject.get("entitySpawnTickRate").getAsInt())) {
-					ExtendedLog.warn("Loaded Structure Spawner with invalid entitySpawnTickRate set! Resetting to default! - %s", id);
+					ExtendedLog.warn("Loaded Structure Spawner with invalid entitySpawnTickRate set! Resetting to default! - {}", id);
 				}
 			}
 			if(jsonobject.has("playerMinSpawnDistance") || jsonobject.has("playerMaxSpawnDistance")) {
 				if(!jsonobject.has("playerMinSpawnDistance") || !jsonobject.has("playerMaxSpawnDistance")) {
-					ExtendedLog.error("Loaded Structure Spawner with invalid playerSpawnDistances set! Both must be set if either are set! Ignoring spawner - %s", id);
+					ExtendedLog.error("Loaded Structure Spawner with invalid playerSpawnDistances set! Both must be set if either are set! Ignoring spawner - {}", id);
 					return null;
 				}else {
 					if(!spawner.setPlayerMinSpawnDistance(jsonobject.get("playerMinSpawnDistance").getAsInt())) {
-						ExtendedLog.warn("Loaded Structure Spawner with invalid playerMinSpawnDistance set! Resetting to default! - %s", id);
+						ExtendedLog.warn("Loaded Structure Spawner with invalid playerMinSpawnDistance set! Resetting to default! - {}", id);
 					}
 					if(!spawner.setPlayerMaxSpawnDistance(jsonobject.get("playerMaxSpawnDistance").getAsInt())) {
-						ExtendedLog.warn("Loaded Structure Spawner with invalid playerMaxSpawnDistance set! Resetting to default! - %s", id);
+						ExtendedLog.warn("Loaded Structure Spawner with invalid playerMaxSpawnDistance set! Resetting to default! - {}", id);
 					}
 				}
 			}
 			if(jsonobject.has("numRolls")) {
 				if(!spawner.setPoolRolls(jsonobject.get("numRolls").getAsInt())) {
-					ExtendedLog.warn("Loaded Structure Spawner with invalid numRolls set! Resetting to default! - %s", id);
+					ExtendedLog.warn("Loaded Structure Spawner with invalid numRolls set! Resetting to default! - {}", id);
 				}
 			}
 			if(jsonobject.has("spawnCap")) {
 				if(type.isSingleSpawnType()) {
-					ExtendedLog.warn("Loaded Structure Spawner with invalid settings! spawnCap should be set to 0 if spawner is of the Single types - %s", id);
+					ExtendedLog.warn("Loaded Structure Spawner with invalid settings! spawnCap should be set to 0 if spawner is of the Single types - {}", id);
 				}else if(!spawner.setLocalSpawnCap(jsonobject.get("spawnCap").getAsInt())) {
-					ExtendedLog.warn("Loaded Structure Spawner with invalid spawnCap set! Resetting to default! - %s", id);
+					ExtendedLog.warn("Loaded Structure Spawner with invalid spawnCap set! Resetting to default! - {}", id);
 				}
 			}
 			if(jsonobject.has("disable_for_use_in_future")) {
@@ -795,18 +795,18 @@ public class ExtendedStructureEntitySpawner {
 			if(jsonobject.has("fixed_spawning")) {
 				spawner.setSpawnAtSpawner(jsonobject.get("fixed_spawning").getAsBoolean());
 				if(!spawner.shouldSpawnAtSpawner()) {
-					ExtendedLog.warn("Loaded Structure Spawner with weird fixed_spawning configuration, value is false by default, no need to force this! - %s", id);
+					ExtendedLog.warn("Loaded Structure Spawner with weird fixed_spawning configuration, value is false by default, no need to force this! - {}", id);
 				}
 				if(jsonobject.has("fixed_spawning_chance")) {
 					spawner.setSpawnerBasedSpawningChance(jsonobject.get("fixed_spawning_chance").getAsInt());
 					if(spawner.getSpawnerBasedSpawningChance()==100) {
-						ExtendedLog.warn("Loaded Structure Spawner with weird fixed_spawning_chance configuration, value is 100 by default, no need to force this! - %s", id);
+						ExtendedLog.warn("Loaded Structure Spawner with weird fixed_spawning_chance configuration, value is 100 by default, no need to force this! - {}", id);
 					}
 				}
 			}
 			if(jsonobject.has("randomDiscardChance")) {
 				if(!spawner.setRandomDiscardChance(jsonobject.get("randomDiscardChance").getAsInt())) {
-					ExtendedLog.warn("Loaded Structure Spawner with invalid randomDiscardChance set! Resetting to default! - %s", id);
+					ExtendedLog.warn("Loaded Structure Spawner with invalid randomDiscardChance set! Resetting to default! - {}", id);
 				}
 			}
 			if(jsonobject.has("bbInflateFactor")) {

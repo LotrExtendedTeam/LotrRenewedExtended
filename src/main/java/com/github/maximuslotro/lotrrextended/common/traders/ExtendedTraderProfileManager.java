@@ -62,14 +62,14 @@ public class ExtendedTraderProfileManager extends ReloadListener<Map<ResourceLoc
 					builder.put(spawnName, traderProfile);
 				}
 			} catch (Exception exception) {
-				ExtendedLog.error("Failed to load Trader Profile %s from file", spawnName);
+				ExtendedLog.error("Failed to load Trader Profile {} from file", spawnName);
 				exception.printStackTrace();
 			}
 
 		});
 		builder.put(LotrExtendedMod.EMPTY, ExtendedTraderProfile.EMPTY);
 		this.traderProfiles = builder.build();
-		ExtendedLog.info("Loaded Trader Profile from Json - %s profiles", traderProfiles.size()-1);
+		ExtendedLog.info("Loaded Trader Profile from Json - {} profiles", traderProfiles.size()-1);
 	}
 
 	/**
