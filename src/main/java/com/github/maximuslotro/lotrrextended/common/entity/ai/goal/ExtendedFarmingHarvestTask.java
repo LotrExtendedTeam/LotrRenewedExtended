@@ -45,7 +45,7 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 		BlockState plantState = pServerLevel.getBlockState(pAboveBlockPos);
 		Block plantBlock = plantState.getBlock();
 		if(plantBlock instanceof CropsBlock && ((CropsBlock)plantBlock).isMaxAge(plantState)) {
-			if (plantItem instanceof BlockItem && ((BlockItem)plantItem.getItem()).getBlock()==plantBlock) {
+			if (plantItem instanceof BlockItem && ((BlockItem)plantItem).getBlock()==plantBlock) {
 				return true;
 			}
 		}

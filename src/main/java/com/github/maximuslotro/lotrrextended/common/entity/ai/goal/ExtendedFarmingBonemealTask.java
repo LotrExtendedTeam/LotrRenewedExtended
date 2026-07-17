@@ -1,8 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.CropsBlock;
+import net.minecraft.block.IGrowable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.brain.task.BoneMealCropsTask;
 import net.minecraft.item.BlockItem;
@@ -34,12 +33,14 @@ public class ExtendedFarmingBonemealTask extends ExtendedFarmingAbstractTask {
 
 	@Override
 	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		Item plantItem = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().getItem();
 		BlockState plantState = pServerLevel.getBlockState(pAboveBlockPos);
-		Block plantBlock = plantState.getBlock();
-		if(plantBlock instanceof CropsBlock && !((CropsBlock)plantBlock).isMaxAge(plantState)) {
-			if (plantItem instanceof BlockItem && ((BlockItem)plantItem.getItem()).getBlock()==plantBlock) {
-				return true;
+		if (plantState.getBlock() instanceof IGrowable) {
+			Item plantItem = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().getItem();
+			if (plantItem instanceof BlockItem && ((BlockItem)plantItem).getBlock()==plantState.getBlock()) {
+				IGrowable igrowable = (IGrowable)plantState.getBlock();
+				if (igrowable.isValidBonemealTarget(pServerLevel, pAboveBlockPos, plantState, pServerLevel.isClientSide)) {
+					return true;
+				}
 			}
 		}
 		return false;

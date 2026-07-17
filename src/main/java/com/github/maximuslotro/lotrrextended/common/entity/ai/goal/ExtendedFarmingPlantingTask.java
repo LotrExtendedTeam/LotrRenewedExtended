@@ -26,10 +26,10 @@ public class ExtendedFarmingPlantingTask extends ExtendedFarmingAbstractTask {
 
 	@Override
 	public boolean isTaskValidForNPC(ServerWorld pServerLevel) {
-		if(!goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().isEmpty()) {
-			return goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().getCount()>1;
+		if(goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().isEmpty()) {
+			return false;
 		}
-		return false;
+		return goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().getCount()>1;
 	}
 
 	@Override
