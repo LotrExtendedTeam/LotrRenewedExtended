@@ -36,8 +36,9 @@ public class ExtendedFarmingPlantingTask extends ExtendedFarmingAbstractTask {
 	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
 		BlockState farmland = pServerLevel.getBlockState(pAboveBlockPos.below());
 		IPlantable plant = ExtendedItemStackUtils.getPlantFromItem(goalHolder.farmhandData.getFarmhandInfo().getSeedsItem());
-		return isRePlaceablePos(pAboveBlockPos, pServerLevel) 
-			&& farmland.isFertile(pServerLevel, pAboveBlockPos) 
+		return isRePlaceablePos(pAboveBlockPos, pServerLevel)
+			&& plant.getPlantType(pServerLevel, pAboveBlockPos) == PlantType.CROP
+			&& farmland.isFertile(pServerLevel, pAboveBlockPos)
 			&& farmland.canSustainPlant(pServerLevel, pAboveBlockPos.below(), Direction.UP, plant);
 	}
 

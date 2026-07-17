@@ -50,6 +50,11 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 				return true;
 			}
 		}
+		if (plantItem instanceof BlockItem && ((BlockItem)plantItem).getBlock() instanceof StemBlock) {
+			if (((StemBlock)((BlockItem)plantItem).getBlock()).getFruit()==plantBlock) {
+				return true;
+			}
+		}
 		return false;
 	}
 
