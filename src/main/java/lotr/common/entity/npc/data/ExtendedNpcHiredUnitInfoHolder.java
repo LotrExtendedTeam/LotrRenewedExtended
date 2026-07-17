@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnit
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedUnitInventory;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
@@ -502,6 +503,21 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 
 	public void setOrders(ExtendedUnitOrders orders) {
 		unitOrders = orders;
+	}
+
+	public static boolean canTypeAcceptOrders(ExtendedUnitCombatTypes unitType, ExtendedUnitOrders orders) {
+		if(unitType.isFarming() && !orders.isOrderAllowedForFarmhands()) {
+			return false;
+		}else if(!unitType.isFarming() && orders==ExtendedUnitOrders.FARMING){
+			return false;
+		}
+		return true;
+	}
+
+	public void trySetOrders(ExtendedUnitOrders orders) {
+		if(canTypeAcceptOrders(getUnitProfile().getUnitType(), orders)) {
+			setOrders(orders);
+		}
 	}
 
 	public void updateSlot(ItemStack stack, ExtendedEquipmentSlotType slot) {

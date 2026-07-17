@@ -59,7 +59,7 @@ public class MixinNPCNearestAttackableTargetGoal {
 			}
 			// Extended Start
 			if(entity instanceof ExtendedBanditEntity) {
-				return ((ExtendedINPCEntity)theNPC).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)theNPC).getUnitInfo().getOrders().doesOrderAllowsMovement();
+				return ((ExtendedINPCEntity)theNPC).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)theNPC).getUnitInfo().getOrders().doesOrderAllowsCombat();
 			}
 			// Extended End
 			return true;

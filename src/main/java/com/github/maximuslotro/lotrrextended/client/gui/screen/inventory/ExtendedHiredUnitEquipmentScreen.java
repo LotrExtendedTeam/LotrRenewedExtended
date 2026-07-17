@@ -69,7 +69,7 @@ public class ExtendedHiredUnitEquipmentScreen extends ExtendedHiredUnitScreen<Ex
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.minecraft.getTextureManager().bind(CONTAINER_BACKGROUND);
 		this.blit(pMatrixStack, leftPos, topPos, 0, 0, imageWidth, imageHeight);
-		if(getMenu().profile.getAttackType()==ExtendedUnitCombatTypes.RANGED) {
+		if(getMenu().profile.getUnitType()==ExtendedUnitCombatTypes.RANGED) {
 			this.blit(pMatrixStack, leftPos+127, topPos+53, 176, 0, 42, 43);
 		}
 		InventoryScreen.renderEntityInInventory(leftPos + 44, topPos + 110, 17, leftPos + 44 - this.xMouse, topPos + 110 - this.yMouse, getMenu().getCompanion());

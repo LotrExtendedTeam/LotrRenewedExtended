@@ -92,7 +92,7 @@ public class ExtendedNearestAttackableTargetNPCGoal<T extends LivingEntity> exte
      */
     public boolean addtionalCheck(LivingEntity entity) {
         if(entity instanceof ExtendedBanditEntity) {
-            return ((ExtendedINPCEntity)mob).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)mob).getUnitInfo().getOrders().doesOrderAllowsMovement();
+            return ((ExtendedINPCEntity)mob).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)mob).getUnitInfo().getOrders().doesOrderAllowsCombat();
         }
         if(entity instanceof PlayerEntity) {
             return additionalPlayeredCheck((PlayerEntity) entity);

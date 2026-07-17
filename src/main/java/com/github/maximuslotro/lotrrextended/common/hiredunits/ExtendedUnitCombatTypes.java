@@ -7,22 +7,20 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
  * Also used during data generation to validate inputs 
  * */
 public enum ExtendedUnitCombatTypes {
-	MELEE("melee", false, false, false), 
-	RANGED("ranged", true, false, false), 
-	MOUNTED_MELEE("mounted_melee", false, true, false), 
-	MOUNTED_RANGED("mounted_ranged", true, true, false),
-	FARMHAND("farmhard", false, false, true);
+	MELEE("melee", false, false), 
+	RANGED("ranged", true, false), 
+	MOUNTED_MELEE("mounted_melee", false, true), 
+	MOUNTED_RANGED("mounted_ranged", true, true),
+	FARMHAND("farmhard", false, false);
 
 	private final String name;
 	private final boolean ranged;
 	private final boolean mounted;
-	private final boolean farming;
 
-	private ExtendedUnitCombatTypes(String pName, boolean ranged, boolean mounted, boolean farming) {
+	private ExtendedUnitCombatTypes(String pName, boolean ranged, boolean mounted) {
 		this.name = pName;
 		this.ranged = ranged;
 		this.mounted = mounted;
-		this.farming = farming;
 	}
 
 	public static ExtendedUnitCombatTypes byName(String name) {
@@ -53,6 +51,6 @@ public enum ExtendedUnitCombatTypes {
 	}
 
 	public boolean isFarming() {
-		return farming;
+		return this==FARMHAND;
 	}
 }

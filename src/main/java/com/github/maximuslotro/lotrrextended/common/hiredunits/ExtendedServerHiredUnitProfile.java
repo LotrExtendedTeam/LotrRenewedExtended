@@ -135,7 +135,7 @@ public class ExtendedServerHiredUnitProfile {
 	 * @see ExtendedUnitCombatTypes
 	 * @return The attack type enum instance
 	 * */
-	public ExtendedUnitCombatTypes getAttackType() {
+	public ExtendedUnitCombatTypes getUnitType() {
 		return attackType;
 	}
 
@@ -208,7 +208,7 @@ public class ExtendedServerHiredUnitProfile {
 			hiringObject.addProperty("hiringAlignmentRequired", unitProfile.getHiringAlignmentRequired());
 			jsonobject.add("hiring", hiringObject);
 			// Attack information
-			jsonobject.addProperty("attack_type", unitProfile.getAttackType().getOperationTypeName());
+			jsonobject.addProperty("attack_type", unitProfile.getUnitType().getOperationTypeName());
 			// Equipment
 			jsonobject.add("equipmentPools", context.serialize(unitProfile.equipmentPools));
 			return jsonobject;

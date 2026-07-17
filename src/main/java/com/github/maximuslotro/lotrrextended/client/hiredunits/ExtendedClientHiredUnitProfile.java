@@ -77,7 +77,7 @@ public class ExtendedClientHiredUnitProfile {
 	 * @see ExtendedUnitCombatTypes
 	 * @return The attack type enum instance
 	 * */
-	public ExtendedUnitCombatTypes getAttackType() {
+	public ExtendedUnitCombatTypes getUnitType() {
 		return attackType;
 	}
 
@@ -99,7 +99,7 @@ public class ExtendedClientHiredUnitProfile {
 		buf.writeInt(serverProfile.getHiringCost());
 		buf.writeBoolean(serverProfile.isHiringRequiresPledge());
 		buf.writeInt(serverProfile.getHiringAlignmentRequired());
-		buf.writeUtf(serverProfile.getAttackType().getOperationTypeName());
+		buf.writeUtf(serverProfile.getUnitType().getOperationTypeName());
 	}
 
 	public static ExtendedClientHiredUnitProfile fromNetwork(CompoundNBT nbt) {
@@ -120,6 +120,6 @@ public class ExtendedClientHiredUnitProfile {
 		nbt.putInt("hiringCost", serverProfile.getHiringCost());
 		nbt.putBoolean("hiringRequiresPledge", serverProfile.isHiringRequiresPledge());
 		nbt.putInt("hiringAlignmentRequired", serverProfile.getHiringAlignmentRequired());
-		nbt.putString("attack_type", serverProfile.getAttackType().getOperationTypeName());
+		nbt.putString("attack_type", serverProfile.getUnitType().getOperationTypeName());
 	}
 }

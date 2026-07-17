@@ -96,12 +96,12 @@ public class ExtendedHiredUnitEquipmentContainer extends ExtendedHiredUnitContai
         armorSlots[3]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 3, 91, 97, ExtendedEquipmentSlotType.FEET, PlayerContainer.EMPTY_ARMOR_SLOT_BOOTS));
 
         // Setup hand slots
-        if(profile.getAttackType().isFarming()) {
+        if(profile.getUnitType().isFarming()) {
         	meleeSlot = (ExtendedHiredUnitEquipmentSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.FarmhandMeleeSlot(playerEquipment, 4, 145, 79, EMPTY_SLOT_HOE));
         }else {
         	meleeSlot = (ExtendedHiredUnitEquipmentSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.MeleeSlot(playerEquipment, 4, 145, 79, EMPTY_SLOT_SWORD));
         }
-        if(profile.getAttackType().isRanged()) {
+        if(profile.getUnitType().isRanged()) {
             rangedSlot = (RangedSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.RangedSlot(playerEquipment, 5, 145, 61, EMPTY_SLOT_BOW));
         }
         offhandSlot = (OffhandSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.OffhandSlot(playerEquipment, 9, 145, 97, PlayerContainer.EMPTY_ARMOR_SLOT_SHIELD));
@@ -109,14 +109,14 @@ public class ExtendedHiredUnitEquipmentContainer extends ExtendedHiredUnitContai
     }
 
     @Override
-    public ItemStack quickMoveStack(PlayerEntity player, int p_39254_) {
-    	Slot slot = this.slots.get(p_39254_);
+    public ItemStack quickMoveStack(PlayerEntity pPlayer, int pIndex) {
+    	Slot slot = this.slots.get(pIndex);
 
     	if(slot!=null && slot.hasItem()) {
     		// handle shift-clicking equipment and sending it back to the player's inventory
     		if(slot instanceof ExtendedHiredUnitEquipmentSlot) {
-    			if (player.inventory.getFreeSlot() > -1 || player.inventory.getSlotWithRemainingSpace(slot.getItem()) > -1) {
-    				player.addItem(slot.getItem());
+    			if (pPlayer.inventory.getFreeSlot() > -1 || pPlayer.inventory.getSlotWithRemainingSpace(slot.getItem()) > -1) {
+    				pPlayer.addItem(slot.getItem());
     				slot.set(ItemStack.EMPTY);
     				slot.setChanged();
     				ExtendedHiredUnitHelper.updateEquipmentSlot(getCompanion(), ((ExtendedHiredUnitEquipmentSlot)slot).getEquipmentSlotType(), ItemStack.EMPTY);
@@ -192,9 +192,9 @@ public class ExtendedHiredUnitEquipmentContainer extends ExtendedHiredUnitContai
     }
 
     @Override
-    public void slotChanged(Container pContainerToSend, int pSlotInd, ItemStack pStack) {
+    public void slotChanged(Container pContainerToSend, int pIndex, ItemStack pStack) {
     	for(Slot slot : slots) {
-    		if(slot instanceof ExtendedHiredUnitEquipmentSlot && slot.index==pSlotInd) {
+    		if(slot instanceof ExtendedHiredUnitEquipmentSlot && slot.index==pIndex) {
     			ExtendedHiredUnitHelper.updateEquipmentSlot(getCompanion(), ((ExtendedHiredUnitEquipmentSlot)slot).getEquipmentSlotType(), pStack);
     		}
     	}

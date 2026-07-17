@@ -24,18 +24,14 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<ExtendedHiredUnitOverviewContainer> {
-
 	private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/hired_unit_overview_menu.png");
 	private static final ResourceLocation ORDER_BUTTONS = new ResourceLocation(LotrExtendedMod.MODID, "textures/gui/order_buttons.png");
-
 	private DecimalFormat df = new DecimalFormat("#.#");
-	int sidebarX;
-	int row1;
-	int col1;
 
 	// buttons
-	private ExtendedImageAddOffsetButton patrolButton;
 	private ExtendedImageAddOffsetButton stationaryButton;
+	private ExtendedImageAddOffsetButton followsButton;
+	private ExtendedImageAddOffsetButton farmingButton;
 
 	// Current entity states
 	private ExtendedUnitOrders orders;
@@ -43,9 +39,8 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 	public ExtendedHiredUnitOverviewScreen(ExtendedHiredUnitOverviewContainer unitInventoryContainer, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(unitInventoryContainer, pPlayerInventory, pTitle);
 		df.setRoundingMode(RoundingMode.CEILING);
-		sidebarX = 80;
-		this.orders = unitInventoryContainer.initialOrders;
 		setIndex(0);
+		this.orders = unitInventoryContainer.initialOrders;
 	}
 
 	@Override
@@ -59,27 +54,9 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 	protected void init() {
 		super.init();
 
-		row1 = topPos + 42;
-		col1 = leftPos + sidebarX + 62;
-
-		// TODO: At some point add a guard mode
-		this.patrolButton = addButton(new ExtendedImageAddOffsetButton(col1, row1, 16, 12, 0, 0, 13, ORDER_BUTTONS, 
+		this.stationaryButton = addButton(new ExtendedImageAddOffsetButton(leftPos + 142, topPos + 42, 16, 12, 0, 0, 12, ORDER_BUTTONS,
 			btn -> {
-				if(orders != ExtendedUnitOrders.FOLLOW_PLAYER) {
-					orders = ExtendedUnitOrders.FOLLOW_PLAYER;
-					ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(menu.getCompanion().getId(), ExtendedUnitOrders.FOLLOW_PLAYER));
-				}
-			}) {
-			@Override
-			public boolean shouldShowEnabled() {
-				return orders.equals(ExtendedUnitOrders.FOLLOW_PLAYER);
-			}
-		}
-
-			);
-		this.stationaryButton = addButton(new ExtendedImageAddOffsetButton(col1, row1 + 14, 16, 12, 34, 0, 13, ORDER_BUTTONS,
-			btn -> {
-				if(orders != ExtendedUnitOrders.STATIONARY) {
+				if(ExtendedNpcHiredUnitInfoHolder.canTypeAcceptOrders(getMenu().profile.getUnitType(), ExtendedUnitOrders.STATIONARY)) {
 					orders = ExtendedUnitOrders.STATIONARY;
 					ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(menu.getCompanion().getId(), ExtendedUnitOrders.STATIONARY));
 				}
@@ -88,8 +65,32 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 			public boolean shouldShowEnabled() {
 				return orders.equals(ExtendedUnitOrders.STATIONARY);
 			}
-		}
-			);
+		});
+		this.followsButton = addButton(new ExtendedImageAddOffsetButton(leftPos + 142, topPos + 55, 16, 12, 16, 0, 12, ORDER_BUTTONS, 
+			btn -> {
+				if(ExtendedNpcHiredUnitInfoHolder.canTypeAcceptOrders(getMenu().profile.getUnitType(), ExtendedUnitOrders.FOLLOW_PLAYER)) {
+					orders = ExtendedUnitOrders.FOLLOW_PLAYER;
+					ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(menu.getCompanion().getId(), ExtendedUnitOrders.FOLLOW_PLAYER));
+				}
+			}) {
+			@Override
+			public boolean shouldShowEnabled() {
+				return orders.equals(ExtendedUnitOrders.FOLLOW_PLAYER);
+			}
+		});
+		this.farmingButton = addButton(new ExtendedImageAddOffsetButton(leftPos + 142, topPos + 68, 16, 12, 48, 0, 12, ORDER_BUTTONS, 
+			btn -> {
+				if(ExtendedNpcHiredUnitInfoHolder.canTypeAcceptOrders(getMenu().profile.getUnitType(), ExtendedUnitOrders.FARMING)) {
+					orders = ExtendedUnitOrders.FARMING;
+					ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(menu.getCompanion().getId(), ExtendedUnitOrders.FARMING));
+				}
+			}) {
+			@Override
+			public boolean shouldShowEnabled() {
+				return orders.equals(ExtendedUnitOrders.FARMING);
+			}
+		});
+		farmingButton.active=getMenu().profile.getUnitType().isFarming();
 	}
 
 	@Override
@@ -105,42 +106,37 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 		this.font.draw(matrix, title, titleLabelX - (font.width(title)/2), titleLabelY, 4210752);
 		this.font.draw(matrix, inventory.getDisplayName(), inventoryLabelX, inventoryLabelY, 4210752);
 
-		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.companion").withStyle(TextFormatting.UNDERLINE), sidebarX, this.titleLabelY + 12, 4210752);
+		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.companion").withStyle(TextFormatting.UNDERLINE), 80, this.titleLabelY + 12, 4210752);
 
-		this.font.draw(matrix, new TranslationTextComponent(menu.profile.getEntityUnitTypeName()), sidebarX, this.titleLabelY + 22, 4210752);
+		this.font.draw(matrix, new TranslationTextComponent(menu.profile.getEntityUnitTypeName()), 80, this.titleLabelY + 22, 4210752);
 
-		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.health").withStyle(TextFormatting.UNDERLINE), sidebarX, this.titleLabelY + 32, 4210752);
-		this.font.draw(matrix, new StringTextComponent(df.format(info.getHiredUnitHealth()) + "/" + info.getHiredUnitMaxHealth()), sidebarX, this.titleLabelY + 42, 4210752);
-		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.level", info.getUnitLevel()), sidebarX, this.titleLabelY + 56, 4210752);
-		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.xp", info.getCurrentXp() + "/" + info.getMaxXp()), sidebarX, this.titleLabelY + 64, 4210752);
-		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.mob_kills", info.getMobKills()), sidebarX, this.titleLabelY + 73, 4210752);
+		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.health").withStyle(TextFormatting.UNDERLINE), 80, this.titleLabelY + 32, 4210752);
+		this.font.draw(matrix, new StringTextComponent(df.format(info.getHiredUnitHealth()) + "/" + info.getHiredUnitMaxHealth()), 80, this.titleLabelY + 42, 4210752);
+		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.level", info.getUnitLevel()), 80, this.titleLabelY + 56, 4210752);
+		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.xp", info.getCurrentXp() + "/" + info.getMaxXp()), 80, this.titleLabelY + 64, 4210752);
+		this.font.draw(matrix, new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.title.mob_kills", info.getMobKills()), 80, this.titleLabelY + 73, 4210752);
 	}
 
 	@Override
 	protected void renderTooltip(MatrixStack stack, int pMouseX, int pMouseY) {
 		super.renderTooltip(stack, pMouseX, pMouseY);
 
-		if (this.patrolButton.isHovered()) {
+		renderTooltipForUnitButtons(stack, pMouseX, pMouseY, stationaryButton, ExtendedUnitOrders.STATIONARY, "stationary");
+		renderTooltipForUnitButtons(stack, pMouseX, pMouseY, followsButton, ExtendedUnitOrders.FOLLOW_PLAYER, "follows");
+		renderTooltipForUnitButtons(stack, pMouseX, pMouseY, farmingButton, ExtendedUnitOrders.FARMING, "farming");
+	}
+
+	public void renderTooltipForUnitButtons(MatrixStack stack, int pMouseX, int pMouseY, ExtendedImageAddOffsetButton button, ExtendedUnitOrders orderType, String designator) {
+		if (button.isHovered()) {
 			List<ITextComponent> tooltips = new ArrayList<>();
-			if (orders==ExtendedUnitOrders.FOLLOW_PLAYER) {
-				tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.follows_on_title"));
-				tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.follows_on_description").withStyle(TextFormatting.GRAY).withStyle(TextFormatting.ITALIC));
-				this.renderComponentTooltip(stack, tooltips, pMouseX, pMouseY);
-			}else {
-				tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.follows_off_title"));
-				tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.follows_off_description").withStyle(TextFormatting.GRAY).withStyle(TextFormatting.ITALIC));
-				this.renderComponentTooltip(stack, tooltips, pMouseX, pMouseY);
+			String status = orders==orderType? "gui.lotrextended.base.on" : "gui.lotrextended.base.off";
+			String message = "gui.lotrextended.hired_unit_tooltip."+ designator + (orders==orderType ? "_on_description" : "_off_description");
+			if(!button.active) {
+				status = "gui.lotrextended.base.disabled";
+				message = "gui.lotrextended.hired_unit_tooltip.description_disabled";
 			}
-		}
-		if (this.stationaryButton.isHovered()) {
-			List<ITextComponent> tooltips = new ArrayList<>();
-			if (orders==ExtendedUnitOrders.STATIONARY) {
-				tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.stationary_on_title"));
-				tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.stationary_on_description").withStyle(TextFormatting.GRAY).withStyle(TextFormatting.ITALIC));
-			} else {
-				tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.stationary_off_title"));
-				tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip.stationary_off_description").withStyle(TextFormatting.GRAY).withStyle(TextFormatting.ITALIC));
-			}
+			tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_tooltip."+designator+"_title", new TranslationTextComponent(status)));
+			tooltips.add(new TranslationTextComponent(message).withStyle(TextFormatting.GRAY).withStyle(TextFormatting.ITALIC));
 			this.renderComponentTooltip(stack, tooltips, pMouseX, pMouseY);
 		}
 	}

@@ -598,14 +598,16 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hired_unit_farmhand.crops_farmed", "Crops Harvested: %s");
 		addD("gui.lotrextended.hired_unit_farmhand.level.tooltip", "%1$s of %2$s Xp earned towards next level.");
 
-		addD("gui.lotrextended.hired_unit_tooltip.stationary_on_title", "Stationary: On");
-		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_title", "Stationary: Off");
-		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_description", "Disable Hired NPC from moving unless defending itself.");
+		addD("gui.lotrextended.hired_unit_tooltip.description_disabled", "This task is disabled for this type of unit.");
+		addD("gui.lotrextended.hired_unit_tooltip.stationary_title", "Stationary: %s");
 		addD("gui.lotrextended.hired_unit_tooltip.stationary_on_description", "Hired NPC will not move unless defending itself.");
-		addD("gui.lotrextended.hired_unit_tooltip.follows_on_title", "Follows: On");
-		addD("gui.lotrextended.hired_unit_tooltip.follows_off_title", "Follows: Off");
-		addD("gui.lotrextended.hired_unit_tooltip.follows_off_description", "Disable Hired NPC from following you.");
+		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_description", "Disable Hired NPC from moving unless defending itself.");
+		addD("gui.lotrextended.hired_unit_tooltip.follows_title", "Follows: %s");
 		addD("gui.lotrextended.hired_unit_tooltip.follows_on_description", "Hired NPC will continuously follow you.");
+		addD("gui.lotrextended.hired_unit_tooltip.follows_off_description", "Disable Hired NPC from following you.");
+		addD("gui.lotrextended.hired_unit_tooltip.farming_title", "Farming: %s");
+		addD("gui.lotrextended.hired_unit_tooltip.farming_on_description", "Farmhand will tend the land.");
+		addD("gui.lotrextended.hired_unit_tooltip.farming_off_description", "Disable Farmhand from farming.");
 
 		// custom enchantments
 		addD("enchant.lotrextended.baneorc", "Orcbane");

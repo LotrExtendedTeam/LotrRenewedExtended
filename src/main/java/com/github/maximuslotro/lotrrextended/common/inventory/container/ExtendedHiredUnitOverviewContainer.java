@@ -16,7 +16,6 @@ import net.minecraft.network.PacketBuffer;
 
 public class ExtendedHiredUnitOverviewContainer extends ExtendedHiredUnitContainer {
 	private final IInventory container;
-	private final int containerRows = 1;
 
 	public final ExtendedClientHiredUnitProfile profile;
 
@@ -53,24 +52,24 @@ public class ExtendedHiredUnitOverviewContainer extends ExtendedHiredUnitContain
 	}
 
 	@Override
-	public boolean stillValid(PlayerEntity p_39242_) {
-		return this.container.stillValid(p_39242_);
+	public boolean stillValid(PlayerEntity pPlayer) {
+		return this.container.stillValid(pPlayer);
 	}
 
 	@Override
-	public ItemStack quickMoveStack(PlayerEntity player, int p_39254_) {
+	public ItemStack quickMoveStack(PlayerEntity pPlayer, int pIndex) {
 		ItemStack itemstack = ItemStack.EMPTY;
-		Slot slot = this.slots.get(p_39254_);
+		Slot slot = this.slots.get(pIndex);
 
 		if (slot != null && slot.hasItem()) {
 			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 
-			if (p_39254_ < this.containerRows * 9) {
-				if (!this.moveItemStackTo(itemstack1, this.containerRows * 9, this.slots.size(), true)) {
+			if (pIndex < 9) {
+				if (!this.moveItemStackTo(itemstack1, 9, this.slots.size(), true)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.moveItemStackTo(itemstack1, 0, this.containerRows * 9, false)) {
+			} else if (!this.moveItemStackTo(itemstack1, 0, 9, false)) {
 				return ItemStack.EMPTY;
 			}
 
@@ -85,13 +84,9 @@ public class ExtendedHiredUnitOverviewContainer extends ExtendedHiredUnitContain
 	}
 
 	@Override
-	public void removed(PlayerEntity p_39251_) {
-		super.removed(p_39251_);
-		this.container.stopOpen(p_39251_);
-	}
-
-	public int getRowCount() {
-		return this.containerRows;
+	public void removed(PlayerEntity pPlayer) {
+		super.removed(pPlayer);
+		this.container.stopOpen(pPlayer);
 	}
 
 	public static void writeContainerInitData(PacketBuffer extraData, int entityId, ExtendedServerHiredUnitProfile serverUnitProfile, ExtendedUnitOrders currentOrders) {

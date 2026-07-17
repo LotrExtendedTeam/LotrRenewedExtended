@@ -51,7 +51,7 @@ public class ExtendedCSetHiredUnitOrdersPacket {
 				Entity entity = player.level.getEntity(packet.getEntityId());
 
 				if (entity instanceof NPCEntity && ((ExtendedINPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)entity).getUnitInfo().getUnitOwner()==player) {
-					((ExtendedINPCEntity)entity).getUnitInfo().setOrders(ExtendedUnitOrders.getByUnchangingIndex(packet.getOrderIndex()));
+					((ExtendedINPCEntity)entity).getUnitInfo().trySetOrders(ExtendedUnitOrders.getByUnchangingIndex(packet.getOrderIndex()));
 				}
 			}
 		});

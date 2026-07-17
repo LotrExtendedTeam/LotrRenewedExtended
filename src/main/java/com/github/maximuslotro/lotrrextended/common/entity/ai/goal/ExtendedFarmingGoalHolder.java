@@ -4,6 +4,8 @@ import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
+
 import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.ai.brain.task.BoneMealCropsTask;
@@ -57,6 +59,9 @@ public class ExtendedFarmingGoalHolder extends Goal {
 			throw new IllegalStateException("Farmhand can't have no farming tasks added!");
 		}
 		if (level==null || !net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(level, farmhand)) {
+			return false;
+		}
+		if(farmhandData.getUnitInfo().isNpcActiveDuty() && farmhandData.getUnitInfo().getOrders()==ExtendedUnitOrders.FARMING) {
 			return false;
 		}
 		BlockPos.Mutable taskPosition = new BlockPos.Mutable();
