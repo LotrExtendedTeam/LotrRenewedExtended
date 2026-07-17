@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 
 import java.util.List;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -67,18 +68,26 @@ public class ExtendedFarmingCollectTask extends ExtendedFarmingAbstractTask {
 		return false;
 	}
 	@Override
-	public void executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+	public boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
 		//Nothing to execute, NPC automatically picks up the items when it walks close enough
+		return true;
 	}
 
 	@Override
 	public void startTask() {
+		super.startTask();
 		previousHeldItem = goalHolder.getEntity().getMainHandItem();
 		goalHolder.getEntity().setItemInHand(Hand.MAIN_HAND, ItemStack.EMPTY);
 	}
 
 	@Override
 	public void stopTask() {
+		super.stopTask();
 		goalHolder.getEntity().setItemInHand(Hand.MAIN_HAND, previousHeldItem);
+	}
+
+	@Override
+	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
+		return targetPos.closerThan(farmer.position(), 1.25);
 	}
 }

@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FarmlandBlock;
-import net.minecraft.entity.Entity;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -41,7 +40,7 @@ public class ExtendedFarmingTillTask extends ExtendedFarmingAbstractTask{
 	}
 
 	@Override
-	public void executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+	public boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
 		goalHolder.getEntity().swing(Hand.MAIN_HAND);
 		boolean playTillSound = tryTillBlock(pAboveBlockPos, pServerLevel);
 		for (Direction dir : Direction.Plane.HORIZONTAL) {
@@ -53,6 +52,7 @@ public class ExtendedFarmingTillTask extends ExtendedFarmingAbstractTask{
 		if(playTillSound) {
 			pServerLevel.playSound(null, pAboveBlockPos, SoundEvents.HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		}
+		return true;
 	}
 
 	private boolean tryTillBlock(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
@@ -66,10 +66,5 @@ public class ExtendedFarmingTillTask extends ExtendedFarmingAbstractTask{
 			return true;
 		}
 		return false;
-	}
-
-	@Override
-	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
-		return targetPos.closerThan(farmer.position(), 1);
 	}
 }

@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IGrowable;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.brain.task.BoneMealCropsTask;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BoneMealItem;
@@ -47,28 +46,27 @@ public class ExtendedFarmingBonemealTask extends ExtendedFarmingAbstractTask {
 	}
 
 	@Override
-	public void executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+	public boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
 		ItemStack boneMeal = goalHolder.farmhandData.getFarmhandInfo().getBonemealItem();
 		if (!boneMeal.isEmpty() && BoneMealItem.growCrop(boneMeal, pServerLevel, pAboveBlockPos)) {
 			goalHolder.getEntity().swing(Hand.MAIN_HAND);
 			pServerLevel.levelEvent(2005, pAboveBlockPos, 0);
 			boneMeal.shrink(1);
 		}
+		return true;
 	}
 
-	@Override
-	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
-		return targetPos.closerThan(farmer.position(), 1);
-	}
 
 	@Override
 	public void startTask() {
+		super.startTask();
 		previousHeldItem = goalHolder.getEntity().getMainHandItem();
 		goalHolder.getEntity().setItemInHand(Hand.MAIN_HAND, new ItemStack(Items.BONE_MEAL));
 	}
 
 	@Override
 	public void stopTask() {
+		super.stopTask();
 		goalHolder.getEntity().setItemInHand(Hand.MAIN_HAND, previousHeldItem);
 	}
 }

@@ -33,7 +33,8 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	private static final int taskRetryCount = 16;//tweak how many tries this goal tries to find a valid task
 	private final SelectionMode mode = SelectionMode.PRIORITY;
 	private boolean isActionCompleted = false; // Prevents ticking after completion
-
+	private int tickTime;
+	
 	public ExtendedFarmingGoalHolder(NPCEntity farmhand, double walkSpeedModifier) {
 		this.farmhand = farmhand;
 		this.level = farmhand.level.isClientSide() ? null : (ServerWorld) farmhand.level;
@@ -50,6 +51,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		farmingTasks.add(new ExtendedFarmingPlantingTask(this));
 		farmingTasks.add(new ExtendedFarmingHarvestTask(this));
 		farmingTasks.add(new ExtendedFarmingBonemealTask(this));
+		farmingTasks.add(new ExtendedFarmingAquireTask(this));
 		return this;
 	}
 
@@ -61,8 +63,8 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		if (level==null || !net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(level, farmhand)) {
 			return false;
 		}
-		if(farmhandData.getUnitInfo().isNpcActiveDuty() && farmhandData.getUnitInfo().getOrders()==ExtendedUnitOrders.FARMING) {
-			return false;
+		if(farmhandData.getUnitInfo().isNpcActiveDuty() && farmhandData.getUnitInfo().getOrders()!=ExtendedUnitOrders.FARMING) {
+			return false; //Only allow hired units that are farming to run, regular NPCs are unaffected
 		}
 		BlockPos.Mutable taskPosition = new BlockPos.Mutable();
 		// TODO decide if there is a better way to randomize task block, while still keeping the farming delay
@@ -121,6 +123,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 
 	@Override
 	public void start() {
+		tickTime = 0;
 		isActionCompleted = false;
 		currentTask.startTask();
 		this.pathNav.moveTo(this.path, this.walkSpeedModifier);
@@ -136,17 +139,23 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		path=null;
 		targetFarmBlock=null;
 		isActionCompleted = false;
+		tickTime=0;
 	}
 
 	@Override
 	public void tick() {
+		tickTime++;
 		if (targetFarmBlock == null) {
 			return;
 		}
 		farmhand.getLookControl().setLookAt(targetFarmBlock.getX() + 0.5D, targetFarmBlock.getY() + 0.5D, targetFarmBlock.getZ() + 0.5D);
 		if(currentTask.closeEnoughToExecuteTask(farmhand, targetFarmBlock)) {
-			currentTask.executeTaskChecked(targetFarmBlock, level);
-			isActionCompleted = true; //Allow for task to be stopped even if there is pathfinding distance to target
+			if(currentTask.executeTaskChecked(targetFarmBlock, level)) {//Allow tasks to sit at a spot for a bit
+				isActionCompleted = true; //Allow for task to be stopped even if there is pathfinding distance to target
+			}
+		}
+		if(tickTime>300) {
+			isActionCompleted = true; //Because we allow tasks to persist when at location, ensure it is canceled if deadlock happens
 		}
 	}
 

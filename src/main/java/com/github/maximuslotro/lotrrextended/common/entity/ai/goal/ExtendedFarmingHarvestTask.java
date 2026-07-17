@@ -6,6 +6,7 @@ import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
+import net.minecraft.block.StemBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.brain.task.FarmTask;
 import net.minecraft.entity.item.ItemEntity;
@@ -53,11 +54,12 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 	}
 
 	@Override
-	public void executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+	public boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
 		goalHolder.getEntity().swing(Hand.MAIN_HAND);
 		//pServerLevel.destroyBlock(pAboveBlockPos, true, goalHolder.getEntity());
 		destroyBlock(pAboveBlockPos, pServerLevel, goalHolder.getEntity());
 		goalHolder.farmhandData.getFarmhandInfo().addCropsHarvested(1, 1);
+		return true;
 	}
 
 	// Copied from World.destroyBlock to Modify Block.dropResources
@@ -99,5 +101,10 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 			itementity.setOwner(pEntity.getUUID());// Add entity as owner
 			pLevel.addFreshEntity(itementity);
 		}
+	}
+
+	@Override
+	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
+		return targetPos.closerThan(farmer.position(), 1.5);
 	}
 }

@@ -3,7 +3,6 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.brain.task.FarmTask;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
@@ -13,6 +12,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.PlantType;
 
 /**
  * Based on {@link FarmTask}
@@ -42,7 +42,7 @@ public class ExtendedFarmingPlantingTask extends ExtendedFarmingAbstractTask {
 	}
 
 	@Override
-	public void executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+	public boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
 		ItemStack seedsStack = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
 		IPlantable plant = ExtendedItemStackUtils.getPlantFromItem(seedsStack);
 		if (plant!=null) {
@@ -52,21 +52,19 @@ public class ExtendedFarmingPlantingTask extends ExtendedFarmingAbstractTask {
 			pServerLevel.playSound(null, pAboveBlockPos, SoundEvents.CROP_PLANTED, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			seedsStack.shrink(1);
 		}
+		return true;
 	}
 
 	@Override
 	public void startTask() {
+		super.startTask();
 		previousHeldItem = goalHolder.getEntity().getMainHandItem();
 		goalHolder.getEntity().setItemInHand(Hand.MAIN_HAND, new ItemStack(goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().getItem()));
 	}
 
 	@Override
 	public void stopTask() {
+		super.stopTask();
 		goalHolder.getEntity().setItemInHand(Hand.MAIN_HAND, previousHeldItem);
-	}
-
-	@Override
-	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
-		return targetPos.closerThan(farmer.position(), 1);
 	}
 }

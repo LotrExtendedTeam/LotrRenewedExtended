@@ -28,7 +28,7 @@ public abstract class ExtendedFarmingAbstractTask {
 
 	// default condition
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		ExtendedEntityUtils.getRandomPosInBounds(taskPosition, goalHolder.getEntity(), 4, -1, 1);
+		ExtendedEntityUtils.getRandomPosInBounds(taskPosition, goalHolder.getEntity(), 5, -1, 1);
 	}
 
 	public abstract boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel);
@@ -38,16 +38,18 @@ public abstract class ExtendedFarmingAbstractTask {
 	public void stopTask() {}
 
 	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
-		return targetPos.closerThan(farmer.position(), 1.5);
+		return targetPos.closerThan(farmer.position(), 1);
 	}
 
-	public void executeTaskChecked(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+	// Return false to defer exiting the task
+	public boolean executeTaskChecked(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
 		if(isValidPosForTask(pAboveBlockPos, pServerLevel)) {
-			executeTask(pAboveBlockPos, pServerLevel);
+			return executeTask(pAboveBlockPos, pServerLevel);
 		}
+		return true;
 	}
-
-	public abstract void executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel);
+	// Return false to defer exiting the task
+	public abstract boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel);
 
 	protected boolean isRePlaceablePos(BlockPos pPos, ServerWorld pServerLevel) {
 		BlockState blockstate = pServerLevel.getBlockState(pPos);

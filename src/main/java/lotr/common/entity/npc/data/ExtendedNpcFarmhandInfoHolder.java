@@ -387,9 +387,14 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	public ItemStack getSeedsItem() {
 		return getFarmhandInputInventory().getItem(0);
 	}
-
+	public void setSeedsItem(ItemStack seeds) {
+		getFarmhandInputInventory().setItem(0, seeds);
+	}
 	public ItemStack getBonemealItem() {
 		return getFarmhandInputInventory().getItem(1);
+	}
+	public void setBonemealItem(ItemStack bonemeal) {
+		getFarmhandInputInventory().setItem(1, bonemeal);
 	}
 	/**
 	 * Gets the active storage inventory instance bound to this farmhand.

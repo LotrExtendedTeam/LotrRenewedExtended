@@ -1,11 +1,10 @@
 package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ChestBlock;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.ChestTileEntity;
@@ -13,7 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 
-public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractTask {
+public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask {
 
 	public ExtendedFarmingDepositTask(ExtendedFarmingGoalHolder goalHolder) {
 		super(goalHolder);
@@ -56,79 +55,52 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractTask {
 	}
 
 	@Override
-	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		BlockPos farmhandPos = goalHolder.getEntity().blockPosition();
-		int farmhandChunkX = farmhandPos.getX() >> 4;
-		int farmhandChunkZ = farmhandPos.getZ() >> 4;
-		List<BlockPos> validChests = new ArrayList<>();
-		for (TileEntity tileEntity : pServerLevel.blockEntityList) {
-			if (tileEntity != null && !tileEntity.isRemoved() && tileEntity.hasLevel()) {
-				BlockPos pos = tileEntity.getBlockPos();
-				int tileChunkX = pos.getX() >> 4;
-				int tileChunkZ = pos.getZ() >> 4;
-				if (Math.abs(tileChunkX - farmhandChunkX) <= 1 && Math.abs(tileChunkZ - farmhandChunkZ) <= 1) {
-					if (pServerLevel.getChunkSource().isTickingChunk(pos) && pServerLevel.getWorldBorder().isWithinBounds(pos)) {
-						if (tileEntity instanceof ChestTileEntity) {
-							if (isValidPosForTask(pos, pServerLevel)) {
-								validChests.add(pos.immutable());
-							}
-						}
+	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+		TileEntity blockEntity = pServerLevel.getBlockEntity(pAboveBlockPos);
+		if(blockEntity instanceof ChestTileEntity) {
+			BlockState chestState = blockEntity.getBlockState();
+			Inventory npcInv = goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory();
+			IInventory inventory = ChestBlock.getContainer((ChestBlock)chestState.getBlock(), chestState, pServerLevel, pAboveBlockPos, true);
+			for(int i = 0; i < npcInv.getContainerSize(); i++) {
+				ItemStack stack = npcInv.getItem(i);
+				if (stack.isEmpty()) {
+					continue;
+				}
+				for(int j = 0; j < inventory.getContainerSize(); j++) {
+					ItemStack itemstack = inventory.getItem(j);
+					if (itemstack.isEmpty() || (ExtendedItemStackUtils.isSameItemStackItemAndTag(itemstack, stack) && itemstack.getCount() < itemstack.getMaxStackSize())) {
+						return true;
 					}
 				}
 			}
 		}
-		if (!validChests.isEmpty()) {
-			Collections.shuffle(validChests);
-			taskPosition.set(validChests.get(0));
-		}
-	}
-
-	//Copied and modified from {@link Inventory#canAddItem}
-	public boolean canAddItem(ChestTileEntity chest, ItemStack pStack) {
-		if (pStack.isEmpty()) {
-			return false;
-		}
-		for(int i = 0; i < chest.getContainerSize(); i++) {
-			ItemStack itemstack = chest.getItem(i);
-			if (itemstack.isEmpty() || (ExtendedItemStackUtils.isSameItemStackItemAndTag(itemstack, pStack) && itemstack.getCount() < itemstack.getMaxStackSize())) {
-				return true;
-			}
-		}
 		return false;
 	}
 
 	@Override
-	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		TileEntity blockEntity = pServerLevel.getBlockEntity(pAboveBlockPos);
-		if(blockEntity instanceof ChestTileEntity) {
-			ChestTileEntity chest = (ChestTileEntity) blockEntity;
-			Inventory npcInv = goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory();
-			for(int i = 0; i < npcInv.getContainerSize(); i++) {
-				ItemStack stack = npcInv.getItem(i);
-				if(canAddItem(chest, stack)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public void executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+	public boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
 		TileEntity blockEntity = pServerLevel.getBlockEntity(pAboveBlockPos);
 		if (!(blockEntity instanceof ChestTileEntity)) {
-			return;
+			return true;
 		}
 		ChestTileEntity chest = (ChestTileEntity) blockEntity;
+		
+		if(!handleChestOpenDone(pServerLevel, chest)) {
+			return false;//Keep task ticking so chest can open
+		}
+
+		BlockState chestState = blockEntity.getBlockState();
 		Inventory farmhandOutputInv = goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory();
+		IInventory inventory = ChestBlock.getContainer((ChestBlock)chestState.getBlock(), chestState, pServerLevel, pAboveBlockPos, true);
+
 		for(int i = 0; i<farmhandOutputInv.getContainerSize(); i++) {
 			ItemStack outputStack = farmhandOutputInv.getItem(i);
 			if (outputStack.isEmpty()) {
 				continue;
 			}
 			// Try placing in same item slot fist
-			for (int j = 0; j < chest.getContainerSize(); j++) {
-				ItemStack chestStack = chest.getItem(j);
+			for (int j = 0; j < inventory.getContainerSize(); j++) {
+				ItemStack chestStack = inventory.getItem(j);
 				if (!chestStack.isEmpty() && ExtendedItemStackUtils.isSameItemStackItemAndTag(chestStack, outputStack)) {
 					int spaceLeft = chestStack.getMaxStackSize() - chestStack.getCount();
 					if (spaceLeft > 0) {
@@ -143,10 +115,10 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractTask {
 			}
 			// Then place in empty slot
 			if (!outputStack.isEmpty()) {
-				for (int j = 0; j < chest.getContainerSize(); j++) {
-					ItemStack chestStack = chest.getItem(j);
+				for (int j = 0; j < inventory.getContainerSize(); j++) {
+					ItemStack chestStack = inventory.getItem(j);
 					if (chestStack.isEmpty()) {
-						chest.setItem(j, outputStack.copy());
+						inventory.setItem(j, outputStack.copy());
 						outputStack.setCount(0);
 						break;
 					}
@@ -156,5 +128,6 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractTask {
 			farmhandOutputInv.setItem(i, outputStack);
 		}
 		chest.setChanged();
+		return true;
 	}
 }
