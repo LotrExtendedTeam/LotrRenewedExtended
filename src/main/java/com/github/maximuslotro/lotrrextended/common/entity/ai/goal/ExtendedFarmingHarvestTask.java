@@ -84,10 +84,11 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 		}
 	}
 
-	// Copied from Block.dropResources
+	// Copied from Block.dropResources to Modify Block.popResource
 	public static void dropResourcesOwning(BlockState pState, World pLevel, BlockPos pPos, @Nullable TileEntity pBlockEntity, Entity pEntity, ItemStack pTool) {
 		if (pLevel instanceof ServerWorld) {
 			Block.getDrops(pState, (ServerWorld)pLevel, pPos, pBlockEntity, pEntity, pTool).forEach((itemStack) -> {
+				//Block.popResource(pLevel, pPos, itemStack, pEntity);
 				popResourceOwning(pLevel, pPos, itemStack, pEntity);
 			});
 			pState.spawnAfterBreak((ServerWorld)pLevel, pPos, pTool);

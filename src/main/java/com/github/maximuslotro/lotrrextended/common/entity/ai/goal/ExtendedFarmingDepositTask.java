@@ -26,11 +26,17 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 			return false;
 		}
 		int occupiedSlots = 0;
+		int eligibleSlotsCount = 0; // Total slots ignoring non-edible seeds
 		boolean hasNearingFullStack = false;
 		double totalFillRatio = 0.0;
 
 		for (int i = 0; i < totalSlots; i++) {
 			ItemStack stack = outputInv.getItem(i);
+			// Skip non-edible seeds; they stay in the inventory for the composting task
+			if (isNonEdibleSeed(stack)) {
+				continue;
+			}
+			eligibleSlotsCount++;
 			if (!stack.isEmpty()) {
 				occupiedSlots++;
 				double slotFillPercent = (double) stack.getCount() / stack.getMaxStackSize();
@@ -41,16 +47,20 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 				}
 			}
 		}
+		// If the entire inventory is filtered out or empty of real crops, don't deposit
+		if (eligibleSlotsCount == 0) {
+			return false;
+		}
 		// For small starter inventories (2->3 slots):
 		// Only deposit if all slots are occupied AND at least one slot has a decent stack size.
 		// This prevents returning to the chest with just 1 wheat and 1 seed.
 		if (totalSlots <= 3) {
-			return (occupiedSlots >= totalSlots) && hasNearingFullStack;
+			return (occupiedSlots >= eligibleSlotsCount) && hasNearingFullStack;
 		}
 		// For larger inventories:
 		// Trigger a deposit if 75% of slots are occupied OR the overall volume is 70% full.
-		double slotOccupancyRate = (double) occupiedSlots / totalSlots;
-		double averageFillLevel = totalFillRatio / totalSlots;
+		double slotOccupancyRate = (double) occupiedSlots / eligibleSlotsCount;
+		double averageFillLevel = totalFillRatio / eligibleSlotsCount;
 		return slotOccupancyRate >= 0.75 || averageFillLevel >= 0.70;
 	}
 
@@ -63,7 +73,8 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 			IInventory inventory = ChestBlock.getContainer((ChestBlock)chestState.getBlock(), chestState, pServerLevel, pAboveBlockPos, true);
 			for(int i = 0; i < npcInv.getContainerSize(); i++) {
 				ItemStack stack = npcInv.getItem(i);
-				if (stack.isEmpty()) {
+				// Skip non-edible seeds
+				if (stack.isEmpty() || isNonEdibleSeed(stack)) {
 					continue;
 				}
 				for(int j = 0; j < inventory.getContainerSize(); j++) {
@@ -84,7 +95,7 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 			return true;
 		}
 		ChestTileEntity chest = (ChestTileEntity) blockEntity;
-		
+
 		if(!handleChestOpenDone(pServerLevel, chest)) {
 			return false;//Keep task ticking so chest can open
 		}
@@ -95,7 +106,8 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 
 		for(int i = 0; i<farmhandOutputInv.getContainerSize(); i++) {
 			ItemStack outputStack = farmhandOutputInv.getItem(i);
-			if (outputStack.isEmpty()) {
+			// Skip non-edible seeds entirely during deposit cycles
+			if (outputStack.isEmpty() || isNonEdibleSeed(outputStack)) {
 				continue;
 			}
 			// Try placing in same item slot fist

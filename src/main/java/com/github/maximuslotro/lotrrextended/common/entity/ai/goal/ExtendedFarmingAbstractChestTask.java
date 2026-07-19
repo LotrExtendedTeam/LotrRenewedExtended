@@ -40,7 +40,6 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 		previousHeldItem = goalHolder.getEntity().getMainHandItem();
 		goalHolder.getEntity().setItemInHand(Hand.MAIN_HAND, ItemStack.EMPTY);
 		chestOpenTime=0;
-
 	}
 
 	@Override

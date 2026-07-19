@@ -9,6 +9,7 @@ import net.minecraft.entity.ai.brain.task.BoneMealCropsTask;
 import net.minecraft.entity.ai.brain.task.FarmTask;
 import net.minecraft.entity.ai.brain.task.FarmerWorkTask;
 import net.minecraft.item.HoeItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
@@ -66,9 +67,8 @@ public abstract class ExtendedFarmingAbstractTask {
 		return false;
 	}
 
-	private enum ExtendedFarmingTaskType{
-		MAKING_BONEMEAL,
-		ADDING_TO_CHEST,
-		TAKING_FROM_CHEST
-	}
+	protected boolean isNonEdibleSeed(ItemStack stack) {
+        ItemStack activeSeeds = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
+        return !activeSeeds.isEmpty() && stack.getItem() == activeSeeds.getItem() && !stack.getItem().isEdible();
+    }
 }

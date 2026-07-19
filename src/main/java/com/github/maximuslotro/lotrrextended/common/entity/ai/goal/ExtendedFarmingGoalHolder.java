@@ -33,7 +33,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	private static final int taskRetryCount = 16;//tweak how many tries this goal tries to find a valid task
 	private final SelectionMode mode = SelectionMode.PRIORITY;
 	private boolean isActionCompleted = false; // Prevents ticking after completion
-	private int tickTime;
+	protected int tickTime;
 	
 	public ExtendedFarmingGoalHolder(NPCEntity farmhand, double walkSpeedModifier) {
 		this.farmhand = farmhand;
@@ -51,6 +51,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		farmingTasks.add(new ExtendedFarmingPlantingTask(this));
 		farmingTasks.add(new ExtendedFarmingHarvestTask(this));
 		farmingTasks.add(new ExtendedFarmingBonemealTask(this));
+		farmingTasks.add(new ExtendedFarmingBonemealCraftTask(this));
 		farmingTasks.add(new ExtendedFarmingAquireTask(this));
 		return this;
 	}
