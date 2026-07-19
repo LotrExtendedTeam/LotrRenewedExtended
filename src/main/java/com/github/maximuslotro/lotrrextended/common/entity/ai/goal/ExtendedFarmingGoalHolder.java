@@ -48,10 +48,10 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		farmingTasks.add(new ExtendedFarmingDepositTask(this));
 		farmingTasks.add(new ExtendedFarmingTillTask(this));
 		farmingTasks.add(new ExtendedFarmingCollectTask(this));
+		farmingTasks.add(new ExtendedFarmingBonemealCraftTask(this));
 		farmingTasks.add(new ExtendedFarmingPlantingTask(this));
 		farmingTasks.add(new ExtendedFarmingHarvestTask(this));
 		farmingTasks.add(new ExtendedFarmingBonemealTask(this));
-		farmingTasks.add(new ExtendedFarmingBonemealCraftTask(this));
 		farmingTasks.add(new ExtendedFarmingAquireTask(this));
 		return this;
 	}
@@ -98,10 +98,14 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	private boolean tryAssignTask(ExtendedFarmingAbstractTask task, BlockPos.Mutable taskPosition) {
 		task.setRandomBlockByTask(taskPosition, level);
 		if (!task.isValidPosForTask(taskPosition, level)) {
+			task.invalidateCache();
 			return false;
 		}
-		// Use an immutable position for path generation to ensure the pathfinder doesn't ingest mutations (ask me how I know)
+		// Use an immutable position for path generation to ensure the pathfinder doesn't ingest mutations (ask me how I know) Max derp
 		BlockPos targetPos = taskPosition.immutable();
+		if (!pathNav.isDone() && farmhand.distanceToSqr(targetPos.getX(), targetPos.getY(), targetPos.getZ()) > 1024.0) {
+            return false;
+        }
 		Path taskPath = pathNav.createPath(targetPos, 0);
 		if (taskPath != null) {
 			this.targetFarmBlock = targetPos;
@@ -119,7 +123,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		}
 		// Allow for executing action, even when navigation has ended at destination
 		boolean headingOrArrived = pathNav.isInProgress() || currentTask.closeEnoughToExecuteTask(farmhand, targetFarmBlock);
-		return headingOrArrived && !pathNav.isStuck() && currentTask.isTaskValidForNPC(this.level) && currentTask.isValidPosForTask(targetFarmBlock, level);
+		return headingOrArrived && !pathNav.isStuck() && currentTask.isTaskStillValidForNPC(this.level) && currentTask.isValidPosForTask(targetFarmBlock, level);
 	}
 
 	@Override
@@ -151,7 +155,8 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		}
 		farmhand.getLookControl().setLookAt(targetFarmBlock.getX() + 0.5D, targetFarmBlock.getY() + 0.5D, targetFarmBlock.getZ() + 0.5D);
 		if(currentTask.closeEnoughToExecuteTask(farmhand, targetFarmBlock)) {
-			if(currentTask.executeTaskChecked(targetFarmBlock, level)) {//Allow tasks to sit at a spot for a bit
+			// Don't worry about spot being valid since it was just checked during canContinueToUse()
+			if(currentTask.executeTask(targetFarmBlock, level)) {//Allow tasks to sit at a spot for a bit
 				isActionCompleted = true; //Allow for task to be stopped even if there is pathfinding distance to target
 			}
 		}

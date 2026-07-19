@@ -27,6 +27,10 @@ public abstract class ExtendedFarmingAbstractTask {
 
 	public abstract boolean isTaskValidForNPC(ServerWorld pServerLevel);
 
+	public boolean isTaskStillValidForNPC(ServerWorld pServerLevel){
+		return isTaskValidForNPC(pServerLevel);
+	}
+
 	// default condition
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
 		ExtendedEntityUtils.getRandomPosInBounds(taskPosition, goalHolder.getEntity(), 5, -1, 1);
@@ -38,17 +42,12 @@ public abstract class ExtendedFarmingAbstractTask {
 
 	public void stopTask() {}
 
+	public void invalidateCache() {}
+
 	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
 		return targetPos.closerThan(farmer.position(), 1);
 	}
 
-	// Return false to defer exiting the task
-	public boolean executeTaskChecked(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		if(isValidPosForTask(pAboveBlockPos, pServerLevel)) {
-			return executeTask(pAboveBlockPos, pServerLevel);
-		}
-		return true;
-	}
 	// Return false to defer exiting the task
 	public abstract boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel);
 
