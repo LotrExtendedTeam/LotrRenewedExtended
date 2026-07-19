@@ -12,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
@@ -385,6 +386,10 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	}
 
 	public ItemStack getSeedsItem() {
+		// Give natural NPCs seeds
+		if(!((ExtendedINPCEntity)this.thisEntity).getUnitInfo().isNpcActiveDuty() && getFarmhandInputInventory().getItem(0).isEmpty()) {
+			setSeedsItem(new ItemStack(Items.WHEAT_SEEDS, 64));
+		}
 		return getFarmhandInputInventory().getItem(0);
 	}
 	public void setSeedsItem(ItemStack seeds) {

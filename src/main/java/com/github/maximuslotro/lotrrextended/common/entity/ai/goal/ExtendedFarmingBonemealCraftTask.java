@@ -1,7 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 
-import com.github.maximuslotro.lotrrextended.common.utils.ExtendedEntityUtils;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ComposterBlock;
@@ -64,7 +62,7 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 				return;
 			}
 		}
-		ExtendedEntityUtils.getRandomPosInBounds(taskPosition, goalHolder.getEntity(), 5, -1, 1);
+		super.setRandomBlockByTask(taskPosition, pServerLevel);
 	}
 
 	@Override
