@@ -51,13 +51,19 @@ public abstract class ExtendedFarmingAbstractTask {
 		return targetPos.closerThan(farmer.position(), 1);
 	}
 
-	// Return false to defer exiting the task
+	/**
+	 * Return false to defer exiting the task
+	 * @param pAboveBlockPos position to modify 
+	 * @param pServerLevel world where task is being executed
+	 * @return True ends the task, False keeps it ticking
+	 * */ 
 	public abstract boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel);
 
 	protected boolean isRePlaceablePos(BlockPos pPos, ServerWorld pServerLevel) {
 		BlockState blockstate = pServerLevel.getBlockState(pPos);
 		FluidState fluidstate = pServerLevel.getFluidState(pPos);
-		return blockstate.getMaterial().isReplaceable() && fluidstate.isEmpty();
+		BlockState aboveState = pServerLevel.getBlockState(pPos.above());
+		return blockstate.getMaterial().isReplaceable() && aboveState.getMaterial().isReplaceable() && fluidstate.isEmpty();
 	}
 
 	// Copy private method from FarmlandBlock

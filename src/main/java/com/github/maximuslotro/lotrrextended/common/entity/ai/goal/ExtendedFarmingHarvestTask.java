@@ -25,7 +25,9 @@ import net.minecraft.world.server.ServerWorld;
  * Based on {@link FarmTask}
  * */
 public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
-
+	private static final int TICKTIME = 10;
+	private int harvestTick;
+	
 	public ExtendedFarmingHarvestTask(ExtendedFarmingGoalHolder goalHolder) {
 		super(goalHolder);
 	}
@@ -42,6 +44,9 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 
 	@Override
 	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+		if(harvestTick>0) {
+			return true;
+		}
 		Item plantItem = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().getItem();
 		BlockState plantState = pServerLevel.getBlockState(pAboveBlockPos);
 		Block plantBlock = plantState.getBlock();
@@ -60,11 +65,14 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 
 	@Override
 	public boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		goalHolder.getEntity().swing(Hand.MAIN_HAND);
-		//pServerLevel.destroyBlock(pAboveBlockPos, true, goalHolder.getEntity());
-		destroyBlock(pAboveBlockPos, pServerLevel, goalHolder.getEntity());
-		goalHolder.farmhandData.getFarmhandInfo().addCropsHarvested(1, 1);
-		return true;
+		if(harvestTick==0) {
+			goalHolder.getEntity().swing(Hand.MAIN_HAND);
+			//pServerLevel.destroyBlock(pAboveBlockPos, true, goalHolder.getEntity());
+			destroyBlock(pAboveBlockPos, pServerLevel, goalHolder.getEntity());
+			goalHolder.farmhandData.getFarmhandInfo().addCropsHarvested(1, 1);
+		}
+		harvestTick++;
+		return harvestTick==TICKTIME;
 	}
 
 	// Copied from World.destroyBlock to Modify Block.dropResources
@@ -112,5 +120,11 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 	@Override
 	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
 		return targetPos.closerThan(farmer.position(), 1.5);
+	}
+
+	@Override
+	public void startTask() {
+		super.startTask();
+		harvestTick=0;
 	}
 }

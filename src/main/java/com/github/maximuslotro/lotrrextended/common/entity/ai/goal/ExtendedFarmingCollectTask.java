@@ -21,13 +21,14 @@ public class ExtendedFarmingCollectTask extends ExtendedFarmingAbstractTask {
 
 	@Override
 	public boolean isTaskValidForNPC(ServerWorld pServerLevel) {
+		/*
 		ItemStack seeds = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
 		if (!seeds.isEmpty() && seeds.getCount() < seeds.getMaxStackSize()) {
 			return true;
 		}
 		if(goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory().canAddItem(dummyPickupItem)) {
 			return true;
-		}
+		}*/
 		// Also valid if inventory is full, BUT there are dropped items nearby that are owned
 		List<ItemEntity> nearbyOwnedItems = pServerLevel.getEntitiesOfClass(ItemEntity.class, goalHolder.getEntity().getBoundingBox().inflate(8.0D, 3.0D, 8.0D), this::isItemEntityApplicable);
 		return !nearbyOwnedItems.isEmpty();
@@ -56,12 +57,13 @@ public class ExtendedFarmingCollectTask extends ExtendedFarmingAbstractTask {
 
 	private boolean isItemEntityApplicable(ItemEntity item) {
 		if (item.isAlive() && !item.getItem().isEmpty() && !item.hasPickUpDelay() && goalHolder.getEntity().getUUID().equals(item.getOwner())) {
+			/*
 			ItemStack seeds = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
 			boolean matchesSeeds = !seeds.isEmpty() && seeds.sameItem(item.getItem()) && ItemStack.tagMatches(seeds, item.getItem());
 			boolean hasSeedSpace = matchesSeeds && seeds.getCount() < seeds.getMaxStackSize();
 			if (hasSeedSpace || goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory().canAddItem(item.getItem())) {
 				return true;
-			}
+			}*/
 			// If inventory is totally full, it's STILL applicable so we can go over and delete it
 			return true; 
 		}
@@ -88,6 +90,6 @@ public class ExtendedFarmingCollectTask extends ExtendedFarmingAbstractTask {
 
 	@Override
 	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
-		return targetPos.closerThan(farmer.position(), 0.25);
+		return targetPos.closerThan(farmer.position(), 0);
 	}
 }
