@@ -51,15 +51,17 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 	@Override
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
 		BlockPos farmhandPos = goalHolder.getEntity().blockPosition();
-		int farmhandChunkX = farmhandPos.getX() >> 4;
-		int farmhandChunkZ = farmhandPos.getZ() >> 4;
+		//int farmhandChunkX = farmhandPos.getX() >> 4;
+		//int farmhandChunkZ = farmhandPos.getZ() >> 4;
 		List<BlockPos> validChests = new ArrayList<>();
 		for (TileEntity tileEntity : pServerLevel.blockEntityList) {
 			if (tileEntity != null && !tileEntity.isRemoved() && tileEntity.hasLevel()) {
 				BlockPos pos = tileEntity.getBlockPos();
-				int tileChunkX = pos.getX() >> 4;
-				int tileChunkZ = pos.getZ() >> 4;
-				if (Math.abs(tileChunkX - farmhandChunkX) <= 1 && Math.abs(tileChunkZ - farmhandChunkZ) <= 1) {
+				//int tileChunkX = pos.getX() >> 4;
+				//int tileChunkZ = pos.getZ() >> 4;
+				//Math.abs(tileChunkX - farmhandChunkX) <= 1 && Math.abs(tileChunkZ - farmhandChunkZ) <= 1
+				// Check if pos is within 24 blocks circled and is on the same relative y-plane
+				if (pos.distSqr(farmhandPos)<576 && Math.abs(pos.getY()-farmhandPos.getY())<=YSPLIT) {
 					if (pServerLevel.getChunkSource().isTickingChunk(pos) && pServerLevel.getWorldBorder().isWithinBounds(pos)) {
 						if (tileEntity instanceof ChestTileEntity) {
 							if (isValidPosForTask(pos, pServerLevel)) {

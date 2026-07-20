@@ -20,6 +20,8 @@ import net.minecraft.world.server.ServerWorld;
  * This and child classes are based on {@link FarmTask}, {@link FarmerWorkTask}, {@link BoneMealCropsTask}, {@link HoeItem}, {@link FarmlandBlock}
  * */
 public abstract class ExtendedFarmingAbstractTask {
+	protected static final int YSPLIT = 1;
+
 	protected ExtendedFarmingGoalHolder goalHolder;
 
 	public ExtendedFarmingAbstractTask(ExtendedFarmingGoalHolder goalHolder) {
@@ -34,7 +36,7 @@ public abstract class ExtendedFarmingAbstractTask {
 
 	// default condition
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		ExtendedEntityUtils.getRandomPosInBounds(taskPosition, goalHolder.getEntity(), 5, -2, 1);
+		ExtendedEntityUtils.getRandomPosInBounds(taskPosition, goalHolder.getEntity(), 5, -YSPLIT, YSPLIT);
 	}
 
 	public abstract boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel);
