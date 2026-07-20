@@ -108,9 +108,9 @@ public class ExtendedFarmingGoalHolder extends Goal {
         }
 		Path taskPath = pathNav.createPath(targetPos, 0);
 		if (taskPath != null) {
-			this.targetFarmBlock = targetPos;
-			this.currentTask = task;
-			this.path = taskPath;
+			targetFarmBlock = targetPos;
+			currentTask = task;
+			path = taskPath;
 			return true;
 		}
 		return false;
@@ -131,7 +131,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		tickTime = 0;
 		isActionCompleted = false;
 		currentTask.startTask();
-		this.pathNav.moveTo(this.path, this.walkSpeedModifier);
+		pathNav.moveTo(path, walkSpeedModifier);
 	}
 
 	@Override
@@ -155,6 +155,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		}
 		farmhand.getLookControl().setLookAt(targetFarmBlock.getX() + 0.5D, targetFarmBlock.getY() + 0.5D, targetFarmBlock.getZ() + 0.5D);
 		if(currentTask.closeEnoughToExecuteTask(farmhand, targetFarmBlock)) {
+			pathNav.stop();
 			// Don't worry about spot being valid since it was just checked during canContinueToUse()
 			if(currentTask.executeTask(targetFarmBlock, level)) {//Allow tasks to sit at a spot for a bit
 				isActionCompleted = true; //Allow for task to be stopped even if there is pathfinding distance to target

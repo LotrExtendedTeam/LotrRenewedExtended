@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.brain.task.BoneMealCropsTask;
 import net.minecraft.entity.ai.brain.task.FarmTask;
 import net.minecraft.entity.ai.brain.task.FarmerWorkTask;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tags.FluidTags;
@@ -53,7 +54,8 @@ public abstract class ExtendedFarmingAbstractTask {
 
 	protected boolean isRePlaceablePos(BlockPos pPos, ServerWorld pServerLevel) {
 		BlockState blockstate = pServerLevel.getBlockState(pPos);
-		return blockstate.getMaterial().isReplaceable();
+		FluidState fluidstate = pServerLevel.getFluidState(pPos);
+		return blockstate.getMaterial().isReplaceable() && fluidstate.isEmpty();
 	}
 
 	// Copy private method from FarmlandBlock

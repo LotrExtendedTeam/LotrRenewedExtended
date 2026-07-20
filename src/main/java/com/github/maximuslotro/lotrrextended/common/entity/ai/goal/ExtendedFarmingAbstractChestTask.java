@@ -78,6 +78,6 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 
 	@Override
 	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
-		return targetPos.closerThan(farmer.position(), 3);
+		return targetPos.closerThan(farmer.position(), 2);
 	}
 }

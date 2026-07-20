@@ -25,7 +25,7 @@ public class ExtendedFarmingTillTask extends ExtendedFarmingAbstractTask{
 
 	@Override
 	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		if(isRePlaceablePos(pAboveBlockPos, pServerLevel) && pServerLevel.getFluidState(pAboveBlockPos).isEmpty()) {
+		if(isRePlaceablePos(pAboveBlockPos, pServerLevel)) {
 			BlockPos groundPos = pAboveBlockPos.below();
 			BlockState groundState = pServerLevel.getBlockState(groundPos);
 			if(groundState.getBlock() instanceof FarmlandBlock) {

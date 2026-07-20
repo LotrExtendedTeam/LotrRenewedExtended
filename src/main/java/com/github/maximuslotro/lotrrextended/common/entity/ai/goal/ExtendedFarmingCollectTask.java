@@ -88,6 +88,6 @@ public class ExtendedFarmingCollectTask extends ExtendedFarmingAbstractTask {
 
 	@Override
 	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
-		return targetPos.closerThan(farmer.position(), 1.25);
+		return targetPos.closerThan(farmer.position(), 0.25);
 	}
 }

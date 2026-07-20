@@ -26,7 +26,7 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	private static final double MAX_DISTANCE_SQ = Math.pow(10, 2);
 	private static final int MIN_KEEP = 0; // Min seed count to keep
 	private static final int BONEMEAL_THRESHOLD = 32; // Surplus seeds required to trigger
-	private static final int INTERACTION_COOLDOWN_TICKS = 5; // 0.5 seconds (20 ticks per second)
+	private static final int INTERACTION_COOLDOWN_TICKS = 5; // 0.25 seconds (20 ticks per second)
 	private int lastCompostTime;
 	private ItemStack previousHeldItem;
 
