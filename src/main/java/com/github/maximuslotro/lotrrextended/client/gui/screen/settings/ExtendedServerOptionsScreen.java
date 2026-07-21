@@ -129,12 +129,18 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 
 		SettingsCatagory modifiers = new SettingsCatagory(this, 4, x, y, xTabs);
 		addButton(modifiers.addCatagoryButton("gui.lotrextended.serversettings.category.modifiers"));
-		addButton(modifiers.addButton("gui.lotrextended.serversettings.extendedmodifiers.setting", 
+		addButton(modifiers.addButtonAddDisable("gui.lotrextended.serversettings.extendedmodifiers.setting", 
 				ExtendedServerConfig.enableExtendedModifiers, ExtendedSettingToggles.EXTENDED_MODIFIERS, 
-				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableExtendedModifiers"));
-		addButton(modifiers.addButton("gui.lotrextended.serversettings.vanillaenchanting.setting", 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableExtendedModifiers", ExtendedSettingToggles.EXTENDED_MODIFIERS_REMOVE));
+		addButton(modifiers.addButtonAddDisable("gui.lotrextended.serversettings.extendedmodifiersremove.setting", 
+				ExtendedServerConfig.removeExtendedModifiers, ExtendedSettingToggles.EXTENDED_MODIFIERS_REMOVE, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "removeExtendedModifiers", ExtendedSettingToggles.EXTENDED_MODIFIERS));
+		addButton(modifiers.addButtonAddDisable("gui.lotrextended.serversettings.vanillaenchanting.setting", 
 				ExtendedServerConfig.enableVanillaEnchanting, ExtendedSettingToggles.VANILLA_ENCHANTING, 
-				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableVanillaEnchanting"));
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableVanillaEnchanting", ExtendedSettingToggles.VANILLA_ENCHANTING_REMOVE));
+		addButton(modifiers.addButtonAddDisable("gui.lotrextended.serversettings.vanillaenchantingremove.setting", 
+				ExtendedServerConfig.removeVanillaEnchanting, ExtendedSettingToggles.VANILLA_ENCHANTING_REMOVE, 
+				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "removeVanillaEnchanting", ExtendedSettingToggles.VANILLA_ENCHANTING));
 		addButton(modifiers.addButton("gui.lotrextended.serversettings.vanillaxp.setting", 
 				ExtendedServerConfig.enableVanillaXp, ExtendedSettingToggles.VANILLA_XP, 
 				"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableVanillaXp"));
@@ -175,15 +181,15 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 		}
 	}
 
-	private static void toggleValue(ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type) {
-		ExtendedPacketHandler.sendToServer(new ExtendedCServerSettingsPacket(type, !configSpec.get()));
+	private static void setValue(ExtendedSettingToggles type, boolean value) {
+		ExtendedPacketHandler.sendToServer(new ExtendedCServerSettingsPacket(type, value));
 	}
 
-	private static void setValue(ForgeConfigSpec.DoubleValue configSpec, ExtendedSettingToggles type, double newValue) {
+	private static void setValue(ExtendedSettingToggles type, double newValue) {
 		ExtendedPacketHandler.sendToServer(new ExtendedCServerSettingsPacket(type, newValue));
 	}
 
-	private static void setValue(ForgeConfigSpec.IntValue configSpec, ExtendedSettingToggles type, int newValue) {
+	private static void setValue(ExtendedSettingToggles type, int newValue) {
 		ExtendedPacketHandler.sendToServer(new ExtendedCServerSettingsPacket(type, newValue));
 	}
 
@@ -262,7 +268,16 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 		}
 		public ExtendedTogglableTitleButton<Boolean> addButton(String stringMessageKey, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey) {
 			ExtendedTogglableTitleButton<Boolean> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, 
-					wdget -> toggleValue(configSpec, type), (wdget, matrixStack, pMouseX, pMouseY) -> {
+					wdget -> setValue(type, !configSpec.get()), (wdget, matrixStack, pMouseX, pMouseY) -> {
+						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX, pMouseY);
+					}, (wdget, tickData) -> configSpec.get(), enabled, disabled);
+			widgets.add(button);
+			offsetAmount+=1;
+			return button;
+		}
+		public ExtendedTogglableTitleButton<Boolean> addButtonAddDisable(String stringMessageKey, ForgeConfigSpec.BooleanValue configSpec, ExtendedSettingToggles type, String enabled, String disabled, String configKey, ExtendedSettingToggles typeDisable) {
+			ExtendedTogglableTitleButton<Boolean> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, 
+					wdget -> {boolean newValue = !configSpec.get();setValue(type, newValue); if(newValue) {setValue(typeDisable, false);}}, (wdget, matrixStack, pMouseX, pMouseY) -> {
 						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX, pMouseY);
 					}, (wdget, tickData) -> configSpec.get(), enabled, disabled);
 			widgets.add(button);
@@ -282,7 +297,7 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 			ExtendedSlider slider = new ExtendedSlider(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, localKey, minVal, maxVal, steps, () -> {
 				return configSpec.get();
 			}, sliderValue -> {
-				setValue(configSpec, type, sliderValue);
+				setValue(type, sliderValue);
 			});
 			sliders.add(slider);
 			offsetAmount+=1;
@@ -295,7 +310,7 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 			ExtendedSlider slider = new ExtendedSlider(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, localKey, minVal, maxVal, steps, () -> {
 				return (double)configSpec.get();
 			}, sliderValue -> {
-				setValue(configSpec, type, (int)sliderValue);
+				setValue(type, (int)sliderValue);
 			});
 			sliders.add(slider);
 			offsetAmount+=1;

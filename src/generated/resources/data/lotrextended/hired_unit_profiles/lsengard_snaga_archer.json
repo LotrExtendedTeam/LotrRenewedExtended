@@ -37,6 +37,13 @@
         }
       },
       {
+        "weight": 5,
+        "equipmentItem": {
+          "item": "lotr:fur_helmet",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
         "weight": 1,
         "equipmentItem": {
           "item": "lotr:black_warg_fur_helmet",
@@ -84,6 +91,13 @@
         "weight": 5,
         "equipmentItem": {
           "item": "lotr:uruk_chestplate",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 5,
+        "equipmentItem": {
+          "item": "lotr:fur_chestplate",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
         }
       },
@@ -139,6 +153,13 @@
         }
       },
       {
+        "weight": 5,
+        "equipmentItem": {
+          "item": "lotr:fur_leggings",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
         "weight": 1,
         "equipmentItem": {
           "item": "lotr:black_warg_fur_leggings",
@@ -186,6 +207,13 @@
         "weight": 5,
         "equipmentItem": {
           "item": "lotr:uruk_boots",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 5,
+        "equipmentItem": {
+          "item": "lotr:fur_boots",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
         }
       },

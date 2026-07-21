@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.commands;
 
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.mojang.brigadier.Command;
@@ -18,6 +19,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -27,17 +29,16 @@ public class ExtendedModifierCommand {
 
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		// Build the sub-command nodes
-		LiteralArgumentBuilder<CommandSource> clear = Commands.literal("clear").executes(context -> clearEnchants(context.getSource()));
+		LiteralArgumentBuilder<CommandSource> clear = Commands.literal("clear").executes(context -> clearModifiers(context.getSource()));
 		LiteralArgumentBuilder<CommandSource> add = Commands.literal("add").then(Commands.argument("modifierType", StringArgumentType.greedyString())
-			.suggests(ENCHANTMENTS).executes(context -> modifyEnchant(context.getSource(), StringArgumentType.getString(context, "modifierType"), true)));
+			.suggests(ENCHANTMENTS).executes(context -> modifyModifiers(context.getSource(), StringArgumentType.getString(context, "modifierType"), true)));
 		LiteralArgumentBuilder<CommandSource> remove = Commands.literal("remove").then(Commands.argument("modifierType", StringArgumentType.greedyString())
-			.suggests(ENCHANTMENTS).executes(context -> modifyEnchant(context.getSource(), StringArgumentType.getString(context, "modifierType"), false)));
-		LiteralArgumentBuilder<CommandSource> generate = Commands.literal("generate").executes(context -> generateEnchant(context.getSource(), false, false))
+			.suggests(ENCHANTMENTS).executes(context -> modifyModifiers(context.getSource(), StringArgumentType.getString(context, "modifierType"), false)));
+		LiteralArgumentBuilder<CommandSource> generate = Commands.literal("generate").executes(context -> generateModifiers(context.getSource(), false, false))
 			.then(Commands.argument("reforge", BoolArgumentType.bool())
-				.executes(context -> generateEnchant(context.getSource(), BoolArgumentType.getBool(context, "reforge"), false))
+				.executes(context -> generateModifiers(context.getSource(), BoolArgumentType.getBool(context, "reforge"), false))
 				.then(Commands.argument("noNegatives", BoolArgumentType.bool())
-					.executes(context -> generateEnchant(context.getSource(), BoolArgumentType.getBool(context, "reforge"), BoolArgumentType.getBool(context, "noNegatives")))))
-			;
+					.executes(context -> generateModifiers(context.getSource(), BoolArgumentType.getBool(context, "reforge"), BoolArgumentType.getBool(context, "noNegatives")))));
 		// Register multiple alias commands
 		dispatcher.register(Commands.literal("lotr_enchant").requires(context -> context.hasPermission(4)).then(clear).then(add).then(remove).then(generate));
 		dispatcher.register(Commands.literal("lotr_modifiers").requires(context -> context.hasPermission(4)).then(clear).then(add).then(remove).then(generate));
@@ -48,7 +49,11 @@ public class ExtendedModifierCommand {
 		return ISuggestionProvider.suggest(ExtendedModifiers.MODIFIER_MAP.keySet(), builder);
 	};
 
-	public static int modifyEnchant(CommandSource source, String enchantName, boolean add) {
+	public static int modifyModifiers(CommandSource source, String enchantName, boolean add) {
+		if (!ExtendedServerConfig.enableExtendedModifiers.get() && ExtendedServerConfig.removeExtendedModifiers.get()) {
+			source.sendFailure(new StringTextComponent("Modifiers are disabled"));
+			return 0;
+		}
 		if (!ExtendedModifiers.MODIFIER_MAP.containsKey(enchantName)) {
 			source.sendFailure(new TranslationTextComponent("command.lotrextended.enchant.modifier_invalid", enchantName));
 			return 0;
@@ -100,7 +105,7 @@ public class ExtendedModifierCommand {
 		return Command.SINGLE_SUCCESS;
 	}
 
-	public static int clearEnchants(CommandSource source) {
+	public static int clearModifiers(CommandSource source) {
 		if (!(source.getEntity() != null && source.getEntity() instanceof PlayerEntity)) {
 			source.sendFailure(new TranslationTextComponent("command.lotrextended.generic_error.only_player"));
 			return 0;
@@ -117,15 +122,22 @@ public class ExtendedModifierCommand {
 		return Command.SINGLE_SUCCESS;
 	}
 
-	public static int generateEnchant(CommandSource source, boolean reforge, boolean noNegatives) {
+	public static int generateModifiers(CommandSource source, boolean reforge, boolean noNegatives) {
 		if (!(source.getEntity() != null && source.getEntity() instanceof PlayerEntity)) {
 			source.sendFailure(new TranslationTextComponent("command.lotrextended.generic_error.only_player"));
 			return 0;
 		}
-
+		if (!ExtendedServerConfig.enableExtendedModifiers.get() && ExtendedServerConfig.removeExtendedModifiers.get()) {
+			source.sendFailure(new StringTextComponent("Modifiers are disabled"));
+			return 0;
+		}
 		ItemStack stack = ((PlayerEntity) source.getEntity()).getItemInHand(Hand.MAIN_HAND);
-		ExtendedModifierUtils.generateItemModifiersTagged(source.getEntity().random, stack, false, false);
-		source.sendSuccess(new TranslationTextComponent("command.lotrextended.enchant.generated"), true);
-		return Command.SINGLE_SUCCESS;
+		if(stack.isDamageableItem()) {
+			ExtendedModifierUtils.generateItemModifiersTagged(source.getEntity().random, stack, false, false);
+			source.sendSuccess(new TranslationTextComponent("command.lotrextended.enchant.generated"), true);
+			return Command.SINGLE_SUCCESS;
+		}
+		source.sendFailure(new StringTextComponent("Item not applicable for Modifiers"));
+		return 0;
 	}
 }

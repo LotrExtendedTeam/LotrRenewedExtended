@@ -80,7 +80,18 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		for (String entity : ExtendedEntities.REGISTEREDNONMOBENTITIESEXTENDED) {
 			addD("entity.lotrextended." + entity);
 		}
+		// Fix missing Renewed strings
 		addD("entity.lotr.boat", "Boat");
+		addD("death.attack.lotr.plant", "%s was slain by a plant");
+		addD("death.attack.lotr.plant.player", "%s was slain by a plant whilst fighting %2$s");
+		addD("death.attack.lotr.frost", "%s succumbed to the cold");
+		addD("death.attack.lotr.frost.player", "%s succumbed to the cold whilst fighting %2$s");
+		addD("death.attack.lotr.stalagmite", "%1$s was spiked by a stalagmite");
+		addD("death.attack.lotr.stalagmite.player", "%1$s was spiked on a stalagmite by %2$s");
+		addD("death.attack.lotr.quagmire", "%1$s got stuck in a swamp");
+		addD("death.attack.lotr.quagmire.player", "%1$s was thrown in a swamp by %2$s");
+		addD("death.attack.lotr.thrownSpear", "%1$s was speared by %2$s");
+		addD("death.attack.lotr.thrownSpear.item", "%1$s was speared by %2$s using %3$s");
 
 		// Generate Container Titles
 		for (Entry<String, String> entity : DataGenValueHolder.containerTitlesHolders.entrySet()) {
@@ -114,6 +125,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 		// Generate Hired Unit Strings
 		for (Entry<String, String> entity : DataGenValueHolder.hiredUnitStrings.entrySet()) {
+			addD(entity.getKey(), entity.getValue());
+		}
+
+		// Generate Effect Name Strings
+		for (Entry<String, String> entity : DataGenValueHolder.effectsHolders.entrySet()) {
 			addD(entity.getKey(), entity.getValue());
 		}
 
@@ -297,7 +313,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.serversettings.fixedstructuretowerhills.setting", "Tower Hills Towers: %s");
 		addD("gui.lotrextended.serversettings.fixedstructureorthanc.setting", "Orthanc: %s");
 		addD("gui.lotrextended.serversettings.extendedmodifiers.setting", "Extended Modifiers: %s");
+		addD("gui.lotrextended.serversettings.extendedmodifiersremove.setting", "Auto-Remove Modifiers: %s");
 		addD("gui.lotrextended.serversettings.vanillaenchanting.setting", "Vanilla Enchanting: %s");
+		addD("gui.lotrextended.serversettings.vanillaenchantingremove.setting", "Auto-Remove Enchants: %s");
 		addD("gui.lotrextended.serversettings.vanillaxp.setting", "Vanilla XP: %s");
 		addD("gui.lotrextended.serversettings.globalspawndamping.setting", "Spawn Rate: %s");
 		addD("gui.lotrextended.serversettings.passivetraders.setting", "Passive Traders: %s");
@@ -527,7 +545,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.fellowship.data.owner", "Owner: ");
 		addD("command.lotrextended.fellowship.data.admins", "Admins: ");
 		addD("command.lotrextended.fellowship.data.members", "Members: ");
-        addD("command.lotrextended.fellowship.changecolor", "Faction color updated!");
+		addD("command.lotrextended.fellowship.changecolor", "Faction color updated!");
 
 		//Config Command Values
 		addD("command.lotrextended.config.cant", "can only be edited in server config while server is off!");
@@ -550,7 +568,15 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.enchant.modifier_removed", "%s removed from %s.");
 		addD("command.lotrextended.enchant.modifier_cant_modifier", "%s can not be applied as there is a conflicting modifier.");
 		addD("command.lotrextended.enchant.generated", "Generated random modifiers.");
-		
+
+		// Trigger Commands
+		addD("command.lotrextended.trigger.trader.success", "Attempt to spawn wandering trader at %s was successful.");
+		addD("command.lotrextended.trigger.trader.failure", "Attempt to spawn wandering trader at %s was unsuccessful.");
+		addD("command.lotrextended.trigger.bandit.success", "Attempt to spawn bandit at %s was successful.");
+		addD("command.lotrextended.trigger.bandit.failure", "Attempt to spawn bandit at %s was unsuccessful.");
+		addD("command.lotrextended.trigger.invasion.success", "An invasion was successfully spawned near %s.");
+		addD("command.lotrextended.trigger.invasion.failure", "Could not find an invasion to spawn near %s.");
+
 		//Extended containers
 		addD("container.lotrextended.reed_basket", "Reed Basket");
 		addD("container.lotrextended.stone_chest", "Stone Chest");
@@ -724,6 +750,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		//Damage types
 		addD("death.attack.lotrextended.thrownaxe", "%1$s was precision-axed by %2$s");
 		addD("death.attack.lotrextended.thrownaxe.item", "%1$s was precision-axed by %2$s using %3$s");
+		addD("death.attack.lotrextended.poison_drink", "%1$s drank the wrong drink");
+		addD("death.attack.lotrextended.poison_drink.player", "%1$s drank the wrong drink whilst fighting %2$s");
 
 		// Invasions
 		addD("chat.lotrextended.invasion.started", "%s have launched an invasion nearby!");

@@ -7,11 +7,11 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollI
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedDrinkUtils;
 
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselDrinkItem.Potency;
-import lotr.common.util.DrinkUtils;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -907,7 +907,6 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_BOOTS, 10, 320, 1, false)
 		.addSSell(ExtendedItems.IMLADRIS_GUARD_SHIELD, 10, 240, 1, false)
 		.addSSell(new ItemStack(Items.ARROW, 4), 3)
-		.addSSell(new ItemStack(Items.ARROW, 4), 3)
 		.addSSell(new ItemStack(LOTRItems.HIGH_ELVEN_TORCH.get(), 4), 8)
 		.addSSell(LOTRItems.LEMBAS, 16)
 		.addSSell(new ItemStack(LOTRItems.BEECH_PLANKS.get(), 4), 4)
@@ -1630,7 +1629,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSSell(ExtendedItems.BONE_DAGGER, 3)
 		.addSSell(LOTRItems.URUK_DAGGER, 14)
 		.addSSell(ExtendedItems.URUK_CROSSBOW, 18)
-		.addSSell(DrinkUtils.drinkOfPotency(LOTRItems.ORC_DRAUGHT.get(), Potency.LIGHT), 9)
+		.addSSell(ExtendedDrinkUtils.drinkOfPotency(LOTRItems.ORC_DRAUGHT.get(), Potency.LIGHT), 9)
 		.addSSell(ExtendedItems.ORC_BOMB, 30)
 		.addSSell(LOTRItems.URUK_PICKAXE, 16)
 		.addSSell(LOTRItems.URUK_AXE, 16)

@@ -37,7 +37,7 @@ public class BanditsSpawner {
             try {
                 chance = BanditBiomeList.getChanceOfBanditFromBiomeName(biomeName);
             } catch (IllegalArgumentException ex) {
-                ExtendedLog.error("Issue while determining LOTR biome when spawning a bandit", ex);
+                ExtendedLog.error("Issue while determining LOTR biome when spawning a bandit");
             }
 
             int roll = world.random.nextInt(100) + 1;
@@ -62,7 +62,7 @@ public class BanditsSpawner {
             try {
                 chance = BanditBiomeList.getChanceOfBanditFromBiomeName(biomeName);
             } catch (IllegalArgumentException ex) {
-                ExtendedLog.error("Issue while determining LOTR biome when spawning a bandit", ex);
+                ExtendedLog.error("Issue while determining LOTR biome when spawning a bandit");
             }
 
             // all possible conditions that should make us quit and pick a new location

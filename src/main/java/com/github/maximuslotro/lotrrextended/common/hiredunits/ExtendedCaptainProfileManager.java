@@ -60,20 +60,20 @@ public class ExtendedCaptainProfileManager extends ReloadListener<Map<ResourceLo
 				ExtendedCaptainProfile captainProfile = deserialize(GSON, spawnListJson, ExtendedCaptainProfile.class);
 				if (captainProfile != null) {
 					if(!captainProfile.getId().equals(spawnName)) {
-						ExtendedLog.warn("Loaded a Captain Profile that has a diffrent file id and file name, THEY SHOULD BE THE SAME!, CHANGING TO FILE NAME ID! %1", spawnName);
-						captainProfile = new ExtendedCaptainProfile(spawnName, captainProfile.getUnitProfileIDs(), captainProfile.getInterractionAlignmentRequired());
+						ExtendedLog.warn("Loaded a Captain Profile that has a diffrent file id and file name, THEY SHOULD BE THE SAME!, CHANGING TO FILE NAME ID! {}", spawnName);
+						captainProfile = new ExtendedCaptainProfile(spawnName, captainProfile.getUnitProfileIDs());
 					}
 					builder.put(spawnName, captainProfile);
 				}
 			} catch (Exception exception) {
-				ExtendedLog.error("Failed to load Captain Profile %s from file", spawnName);
+				ExtendedLog.error("Failed to load Captain Profile {} from file", spawnName);
 				exception.printStackTrace();
 			}
 
 		});
 		builder.put(LotrExtendedMod.EMPTY, ExtendedCaptainProfile.EMPTY);
 		this.captainProfiles = builder.build();
-		ExtendedLog.info("Loaded Captain Profile from Json - %s captainProfiles", captainProfiles.size()-1);
+		ExtendedLog.info("Loaded Captain Profile from Json - {} captainProfiles", captainProfiles.size()-1);
 	}
 
 	/**

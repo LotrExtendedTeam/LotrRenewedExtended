@@ -8,6 +8,9 @@ import javax.annotation.Nullable;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedEquipmentSlotType;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
+import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentPool;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
@@ -688,16 +691,15 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 				ItemStackHelper.loadAllItems(unitInventory, itemsStacks);
 				for (int i = 0; i < INVENTORY_SIZE; i++) {
 					ItemStack stack = itemsStacks.get(i);
-					// Ensure pre 1.9.0 stacks have modifiers added (even player given items should have modifiers added)
-					if(stack.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(stack)) {
+					// Ensure pre 1.9.0 stacks have modifiers added, as well as if modifiers were enabled since item where given to unit
+					if(stack.isDamageableItem() && ExtendedServerConfig.enableExtendedModifiers.get() && !ExtendedModifierUtils.hasRandomModifiers(stack)) {
 						ExtendedModifierUtils.generateItemModifiersTagged(thisEntity.random, stack, false, false);
 					}
 					internalUnitInventory.setItem(i, stack);
 				}
 				if(unitInventory.getInt("unit_inventory_version")==1) {
 					ExtendedLog.info("Loaded Hired Unit Inventory in format [1]. Upgrading inventory to format ["+2+"]");
-					// 1.9.1 fixes base items having custom stack names which show in chat
-					// by re-setting all base equipment
+					// 1.9.1 fixes base items having custom stack names which show in chat by re-setting all base equipment
 					internalUnitInventory.setItem(19, getUnitProfile().getEquipmentPools().getRandomHelmetStack(thisEntity.getRandom()));
 					internalUnitInventory.setItem(20, getUnitProfile().getEquipmentPools().getRandomChestplateStack(thisEntity.getRandom()));
 					internalUnitInventory.setItem(21, getUnitProfile().getEquipmentPools().getRandomLeggingsStack(thisEntity.getRandom()));

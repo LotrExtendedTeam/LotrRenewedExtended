@@ -50,8 +50,10 @@ public class ExtendedConfigCommand {
 		command.then(buildBoolean("enableChairProtectionOverride", ExtendedServerConfig.enableChairProtectionOverride));
 		// Modifiers
 		command.then(buildBoolean("enableVanillaEnchanting", ExtendedServerConfig.enableVanillaEnchanting));
+		command.then(buildBoolean("removeVanillaEnchanting", ExtendedServerConfig.removeVanillaEnchanting));
 		command.then(buildBoolean("enableVanillaXp", ExtendedServerConfig.enableVanillaXp));
 		command.then(buildBoolean("enableExtendedModifiers", ExtendedServerConfig.enableExtendedModifiers));
+		command.then(buildBoolean("removeExtendedModifiers", ExtendedServerConfig.removeExtendedModifiers));
 		// Special
 		command.then(buildBoolean("enableExtendedLogging", ExtendedServerConfig.enableExtendedLogging));
 		command.then(buildBoolean("enableSpecialLogging", ExtendedServerConfig.enableSpecialLogging));

@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.loot.functions;
 
 import java.util.Random;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.google.gson.JsonDeserializationContext;
@@ -56,12 +57,12 @@ public class ExtendedModifierAdder extends LootFunction {
 	 * Creates a new modifier adder with the specified loot conditions
 	 * and configuration flags.
 	 *
-	 * @param conditions   loot conditions that must be satisfied before this function applies
+	 * @param pConditions   loot conditions that must be satisfied before this function applies
 	 * @param pReforging   whether reforging-only modifiers are allowed
 	 * @param pNoNegatives whether negative modifiers should be excluded
 	 */
-	private ExtendedModifierAdder(ILootCondition[] conditions, boolean pReforging, boolean pNoNegatives) {
-		super(conditions);
+	private ExtendedModifierAdder(ILootCondition[] pConditions, boolean pReforging, boolean pNoNegatives) {
+		super(pConditions);
 		this.reforging = pReforging;
 		this.noNegatives = pNoNegatives;
 	}
@@ -80,14 +81,18 @@ public class ExtendedModifierAdder extends LootFunction {
 	 * Uses {@link ExtendedModifierUtils#generateItemModifiersTagged(Random, ItemStack, boolean, boolean)}
 	 * to apply one or more modifiers depending on the configuration flags.
 	 * </p>
-	 *
+	 * Only when modifiers are enabled.
+	 * 
 	 * @param pStack   the {@link ItemStack} being modified
 	 * @param pContext the loot context providing conditions and randomness
 	 * @return the modified {@link ItemStack} with applied modifiers
 	 */
 	@Override
 	public ItemStack run(ItemStack pStack, LootContext pContext) {
-		return ExtendedModifierUtils.generateItemModifiersTagged(pContext.getRandom(), pStack, reforging, noNegatives);
+		if(ExtendedServerConfig.enableExtendedModifiers.get()) {
+			return ExtendedModifierUtils.generateItemModifiersTagged(pContext.getRandom(), pStack, reforging, noNegatives);
+		}
+		return pStack;
 	}
 	/**
 	 * Creates a new {@link Builder} for constructing

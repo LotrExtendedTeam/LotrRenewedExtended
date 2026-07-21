@@ -57,7 +57,7 @@ public class MixinHandheldWrapperModelJavaPatch {
 			overrideModelsField.setAccessible(true);
 			overrideModelsField.set(overrides, remappedOverrideModels);
 		} catch (Exception exception) {
-			ExtendedLog.error("Java9+ Failed to remap handheld model overrides for model %s", modelName);
+			ExtendedLog.error("Java9+ Failed to remap handheld model overrides for model {}", modelName);
 			exception.printStackTrace();
 		}
 	}

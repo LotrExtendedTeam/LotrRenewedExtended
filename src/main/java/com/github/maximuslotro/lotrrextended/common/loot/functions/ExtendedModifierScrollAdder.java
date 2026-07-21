@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.loot.functions;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
@@ -55,12 +56,12 @@ public class ExtendedModifierScrollAdder extends LootFunction {
      * Creates a new modifier scroll adder with the specified loot conditions,
      * probability, and skillful setting.
      *
-     * @param conditions loot conditions that must be met before this function applies
+     * @param pConditions loot conditions that must be met before this function applies
      * @param pChance    the 1-in-N chance of replacing the item with a modifier scroll
      * @param pSkillful  whether the generated scroll should apply skillful modifiers
      */
-	private ExtendedModifierScrollAdder(ILootCondition[] conditions, int pChance, boolean pSkillful) {
-		super(conditions);
+	private ExtendedModifierScrollAdder(ILootCondition[] pConditions, int pChance, boolean pSkillful) {
+		super(pConditions);
 		this.chance = pChance;
 		this.skillful = pSkillful;
 	}
@@ -83,17 +84,17 @@ public class ExtendedModifierScrollAdder extends LootFunction {
      * Otherwise, the original item stack is returned unchanged.
      * </p>
      *
-     * @param stack   the item stack being processed by the loot system
-     * @param context the current loot context providing randomness and conditions
+     * @param pStack   the item stack being processed by the loot system
+     * @param pContext the current loot context providing randomness and conditions
      * @return the resulting {@link ItemStack}, either unchanged or replaced with a scroll
      */
 	@Override
-	public ItemStack run(ItemStack stack, LootContext context) {
-		if(context.getRandom().nextInt(chance)==0) {
-			stack = new ItemStack(ExtendedItems.MODIFIER_SCROLL.get());
-			ExtendedModifierUtils.generateItemModifiersTagged(context.getRandom(), stack, skillful, true);
+	public ItemStack run(ItemStack pStack, LootContext pContext) {
+		if(ExtendedServerConfig.enableExtendedModifiers.get() && pContext.getRandom().nextInt(chance)==0) {
+			pStack = new ItemStack(ExtendedItems.MODIFIER_SCROLL.get());
+			ExtendedModifierUtils.generateItemModifiersTagged(pContext.getRandom(), pStack, skillful, true);
 		}
-		return stack;
+		return pStack;
 	}
 	/**
 	 * Returns a new {@link Builder} configured for a "Smith" scroll with a

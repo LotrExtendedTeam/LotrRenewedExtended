@@ -150,7 +150,9 @@ public class WoodPaletteProcessor extends StructureProcessor {
 			}
 		}
 		if(!applied) {
-			ExtendedLog.infoHideable(ExtendedServerConfig.enableExtendedLogging.get(), "Replacing "+basePallet.getName()+" pallet with "+pickedPallet.getName());
+			if(ExtendedServerConfig.enableExtendedLogging.get()) {
+				ExtendedLog.info("Replacing {} pallet with {}", basePallet.getName(), pickedPallet.getName());
+			}
 			applied = true;
 		}
 		if(pickedPallet.isEmpty() || pickedPallet.equals(basePallet)) {

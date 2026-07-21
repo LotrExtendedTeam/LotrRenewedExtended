@@ -42,8 +42,9 @@ public class ExtendedCOpenCoinExchangePacket {
     public static void handle(ExtendedCOpenCoinExchangePacket packet, Supplier<NetworkEvent.Context> context) {
     	context.get().setPacketHandled(true);
     	Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.traderId);
-    	if (!(entity instanceof ExtendedITraderEntity)) {
-    		ExtendedLog.error("Recieved a trader eneity not of type ExtendedTraderEntity from %s", context.get().getSender().getName().getString());
+    	if (!(entity instanceof ExtendedTraderEntity)) {
+    		ExtendedLog.error("Recieved a trader eneity not of type ExtendedTraderEntity from {}", context.get().getSender().getName().getString());
+    		context.get().setPacketHandled(true);
     		return;
     	}
 

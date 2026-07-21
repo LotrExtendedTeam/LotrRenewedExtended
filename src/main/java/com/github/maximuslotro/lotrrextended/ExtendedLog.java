@@ -15,29 +15,14 @@ public class ExtendedLog {
 	}
 
 	public static void debug(String s, Object... params) {
-		LOGGER.debug(String.format("LotrExtended: " + s, params));
+		LOGGER.debug("LotrExtended: " + s, params);
 	}
 
 	public static void info(String s) {
-		info(s, true);
+		LOGGER.info("LotrExtended: {}", s);
 	}
 
-	public static void infoHideable(boolean flag, String s) {
-		info(s, flag);
-	}
-
-	private static void info(String s, boolean override) {
-		if(override) {
-			LOGGER.info("LotrExtended: {}", s);
-		}
-	}
-
-	@Deprecated
 	public static void info(String s, Object... params) {
-		LOGGER.info(String.format("LotrExtended: " + s, params));
-	}
-
-	public static void info2(String s, Object... params) {
 		LOGGER.info("LotrExtended: " + s, params);
 	}
 
@@ -46,7 +31,7 @@ public class ExtendedLog {
 	}
 
 	public static void warn(String s, Object... params) {
-		LOGGER.warn(String.format("LotrExtended: " + s, params));
+		LOGGER.warn("LotrExtended: " + s, params);
 	}
 
 	public static void error(String s) {
@@ -54,6 +39,6 @@ public class ExtendedLog {
 	}
 
 	public static void error(String s, Object... params) {
-		LOGGER.error(String.format("LotrExtended: " + s, params));
+		LOGGER.error("LotrExtended: " + s, params);
 	}
 }

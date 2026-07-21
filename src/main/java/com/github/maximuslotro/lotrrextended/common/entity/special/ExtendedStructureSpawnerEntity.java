@@ -221,7 +221,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							Entity entityMale = generatedSpawn.create(world);
 							Entity entityFemale = generatedSpawn.create(world);
 							if(!(entityMale instanceof NPCEntity)||!(entityFemale instanceof NPCEntity)) {
-								ExtendedLog.error("Critical spawning error! Spawn family pool %s contains non NPCEntity", spawnerInstance.getId().toString());
+								ExtendedLog.error("Critical spawning error! Spawn family pool {} contains non NPCEntity", spawnerInstance.getId().toString());
 								return false;
 							}
 							NPCEntity entityMaleNpc = (NPCEntity) entityMale;
@@ -229,7 +229,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							if(((MixinNPCEntityInvoker)entityMaleNpc).invokeGenderProvider().equals(NPCGenderProvider.MALE)
 								||((MixinNPCEntityInvoker)entityMaleNpc).invokeGenderProvider().equals(NPCGenderProvider.FEMALE) || ((MixinNPCEntityInvoker)entityFemaleNpc).invokeGenderProvider().equals(NPCGenderProvider.MALE)
 								||((MixinNPCEntityInvoker)entityFemaleNpc).invokeGenderProvider().equals(NPCGenderProvider.FEMALE)) {
-								ExtendedLog.error("Failed spawning %s because it does not support multiple genders - %s", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
+								ExtendedLog.error("Failed spawning {} because it does not support multiple genders - {}", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
 								return false;
 							}
 							entityMaleNpc.getPersonalInfo().setMale(true);
@@ -292,7 +292,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 									return false;
 					            }
 							}else {
-								ExtendedLog.error("Failed spawning %s because it is not a supported Entity Class - %s", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
+								ExtendedLog.error("Failed spawning {} because it is not a supported Entity Class - {}", generatedSpawn.getRegistryName().toString(), spawnerInstance.getId().toString());
 								return false;
 							}
 							if(spawnerInstance.shouldRespawnOnDeath()){
@@ -340,7 +340,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	private void setSpawnerFromResourceLocation() {
 		spawnerInstance = ExtendedStructureEntitySpawnManager.INSTANCE.get(spawnerType);
 		if(spawnerInstance.isEmptySpawner()) {
-			ExtendedLog.warn("Structure Spawner loaded and invalid SpawnerType %s, spawner has been set to default %s preset!", spawnerType.toString(), LotrExtendedMod.EMPTY.toString());
+			ExtendedLog.warn("Structure Spawner loaded and invalid SpawnerType {}, spawner has been set to default {} preset!", spawnerType.toString(), LotrExtendedMod.EMPTY.toString());
 		}
 		this.getEntityData().set(DATA_SPAWNER_TYPE, spawnerType.toString());
 		reCalculateBounds();

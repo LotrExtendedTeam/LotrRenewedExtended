@@ -168,16 +168,27 @@ public class ExtendedModifierUtils {
 	 * the NBT data becomes empty, the tag is fully cleared.
 	 * </p>
 	 *
-	 * @param stack the {@link ItemStack} to clear
+	 * @param pStack the {@link ItemStack} to clear
 	 * @return {@code true} if one or more modifiers were cleared,
 	 *         {@code false} if the item had no modifiers
 	 */
-	public static boolean clearModifiers(ItemStack stack) {
-		if (!hasModifiers(stack)) {
+	public static boolean clearModifiers(ItemStack pStack) {
+		if (!hasModifiers(pStack)) {
 			return false;
 		}
-		stack.removeTagKey(NBTMODIFIER);
+		pStack.removeTagKey(NBTMODIFIER);
 		return true;
+	}
+	/**
+	 * Clears all {@link Enchantment}s from the given {@link ItemStack}.
+	 * <p>
+	 * This removes the "Enchantments" tag from the item.
+	 * </p>
+	 *
+	 * @param pStack the {@link ItemStack} to clear
+	 */
+	public static void clearEnchantments(ItemStack pStack) {
+		pStack.removeTagKey("Enchantments");
 	}
 	/**
 	 * Progresses the "bane" achievement mechanic for the given {@link ItemStack} when it kills an entity.
@@ -382,6 +393,20 @@ public class ExtendedModifierUtils {
 	 */
 	public static void addModifierAddedTag(ItemStack stack) {
 		stack.getOrCreateTag().putBoolean("ERModAdded", true);
+	}
+	/**
+	 * Removes the {@code "ERModAdded"} tag on the given {@link ItemStack}, marking
+	 * it as not having random modifiers applied.
+	 * <p>
+	 * This method does not remove modifiers by itself — it simply ensures that the item
+	 * can be recognized as not modified by {@link #hasRandomModifiers(ItemStack)}.
+	 * </p>
+	 *
+	 * @param pStack the {@link ItemStack} to clear the tag
+	 * @see #addModifierAddedTag(ItemStack)
+	 */
+	public static void removeModifierAddedTag(ItemStack pStack) {
+		pStack.removeTagKey("ERModAdded");
 	}
 	/**
 	 * Retrieves all modifiers associated with the given {@link ItemStack}.

@@ -38,7 +38,7 @@ public class ExtendedSignTextProcessorManager extends ReloadListener<Map<String,
 		if(signtexts.containsKey(key)) {
 			return signtexts.get(key);
 		}
-		ExtendedLog.warn("Sign asked for missing signTextList %s, passing empty (maybe disable this message for other modded structure files being placed?)", key);
+		ExtendedLog.warn("Sign asked for missing signTextList {}, passing empty (maybe disable this message for other modded structure files being placed?)", key);
 		return ExtendedSignTextList.EMPTY;
 	}
 
@@ -47,7 +47,7 @@ public class ExtendedSignTextProcessorManager extends ReloadListener<Map<String,
 		Builder<String, ExtendedSignTextList> builder = ImmutableMap.builder();
 		JsonElement jsonelement = json.remove(LotrExtendedMod.EMPTY.getPath());
 		if (jsonelement != null) {
-			ExtendedLog.warn("Datapack tried to redefine %s sign text lists, ignoring", ExtendedSignTextList.EMPTY);
+			ExtendedLog.warn("Datapack tried to redefine {} sign text lists, ignoring", ExtendedSignTextList.EMPTY);
 		}
 		json.forEach((listName, signTextListJson) -> {
 			try {
@@ -56,13 +56,13 @@ public class ExtendedSignTextProcessorManager extends ReloadListener<Map<String,
 					builder.put(listName, signTextList);
 				}
 			} catch (JsonSyntaxException exception) {
-				ExtendedLog.error("Failed to load Sign Text List %s from file", listName);
+				ExtendedLog.error("Failed to load Sign Text List {} from file", listName);
 				exception.printStackTrace();
 			}
 
 		});
 		this.signtexts = builder.build();
-		ExtendedLog.info("Loaded Structure Sign Texts from Json - %s lists", signtexts.size());
+		ExtendedLog.info("Loaded Structure Sign Texts from Json - {} lists", signtexts.size());
 	}
 
 	@Override
@@ -88,10 +88,10 @@ public class ExtendedSignTextProcessorManager extends ReloadListener<Map<String,
 				if (jsonelement != null) {
 					map.put(fileName, jsonelement);
 				} else {
-					ExtendedLog.error("Couldn't load data file %s from {} as it's null or empty", fileName, resourcelocation);
+					ExtendedLog.error("Couldn't load data file {} from {} as it's null or empty", fileName, resourcelocation);
 				}
 			} catch (IOException jsonParseException) {
-				ExtendedLog.error("Couldn't parse data file %s from {}", fileName, resourcelocation, jsonParseException);
+				ExtendedLog.error("Couldn't parse data file {} from {}", fileName, resourcelocation, jsonParseException);
 			}
 		}
 		return map;
