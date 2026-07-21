@@ -4,7 +4,7 @@ import java.util.EnumSet;
 
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
@@ -12,7 +12,7 @@ import net.minecraft.entity.ai.goal.TargetGoal;
 import net.minecraft.entity.passive.TameableEntity;
 
 /**
- * A custom targeting goal for {@link ExtendedNPCEntity} units that enables them to
+ * A custom targeting goal for {@link ExtendedINPCEntity} units that enables them to
  * retaliate against entities that have recently attacked their owner.
  * <p>
  * This logic is based on Minecraft's {@code HurtByTargetGoal}, extended with
@@ -23,7 +23,7 @@ public class ExtendedHiredPlayerHurtByEntityTargetGoal extends TargetGoal {
 	/**
      * The extended NPC entity that owns this goal.
      */
-	private final ExtendedNPCEntity extendedNpcEntity;
+	private final ExtendedINPCEntity extendedNpcEntity;
 	/**
      * The entity that most recently attacked the NPC's owner.
      */
@@ -36,11 +36,11 @@ public class ExtendedHiredPlayerHurtByEntityTargetGoal extends TargetGoal {
      * Constructs a new goal that makes the NPC retaliate against the last attacker
      * of its owner.
      *
-     * @param entity The NPC entity to assign this goal to. Must be an instance of {@link ExtendedNPCEntity}.
+     * @param entity The NPC entity to assign this goal to. Must be an instance of {@link ExtendedINPCEntity}.
      */
 	public ExtendedHiredPlayerHurtByEntityTargetGoal(NPCEntity entity) {
 		super(entity, false);
-		this.extendedNpcEntity = (ExtendedNPCEntity) entity;
+		this.extendedNpcEntity = (ExtendedINPCEntity) entity;
 		this.setFlags(EnumSet.of(Flag.TARGET));
 	}
 	/**
@@ -74,8 +74,8 @@ public class ExtendedHiredPlayerHurtByEntityTargetGoal extends TargetGoal {
 						}
 					}
 					// prevent hired units of the same player from fighting each other
-					if (this.ownerLastHurtBy instanceof ExtendedNPCEntity && ((ExtendedNPCEntity)ownerLastHurtBy).getUnitInfo().isNpcActiveDuty()) {
-						if (extendedNpcEntity.getUnitInfo().getOwnerUUID().equals(((ExtendedNPCEntity)ownerLastHurtBy).getUnitInfo().getOwnerUUID())) {
+					if (this.ownerLastHurtBy instanceof ExtendedINPCEntity && ((ExtendedINPCEntity)ownerLastHurtBy).getUnitInfo().isNpcActiveDuty()) {
+						if (extendedNpcEntity.getUnitInfo().getOwnerUUID().equals(((ExtendedINPCEntity)ownerLastHurtBy).getUnitInfo().getOwnerUUID())) {
 							if (!((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(this.mob.level, extendedNpcEntity.getUnitInfo().getOwnerUUID())).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit()) {
 								ownerLastHurtBy = null;
 								return false;

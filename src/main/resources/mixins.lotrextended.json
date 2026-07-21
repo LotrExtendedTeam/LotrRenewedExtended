@@ -185,7 +185,6 @@
 		"lotr.client.gui.util.MixinAlignmentRenderer",
 		"lotr.client.gui.MixinMiddleEarthMasterMenuScreen",
 		"lotr.client.gui.inv.MixinAlloyForgeScreen",
-		"lotr.client.gui.inv.MixinContainerScreenHelper",
 		"lotr.client.gui.inv.MixinFactionCraftingScreen",
 		"lotr.client.gui.inv.MixinPouchScreen",
 		"lotr.client.render.MixinRandomTextureVariantsAccessorJavaPatch",

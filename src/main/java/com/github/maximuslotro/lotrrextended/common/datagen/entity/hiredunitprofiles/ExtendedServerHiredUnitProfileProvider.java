@@ -14,10 +14,10 @@ import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
 import com.github.maximuslotro.lotrrextended.common.serialization.GsonSerializers;
 import com.google.gson.Gson;
 
@@ -69,9 +69,9 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 		}
 	}
 
-	private static void save(Gson pGson, DirectoryCache pCache, ExtendedServerHiredUnitProfile spawner, Path pPath) throws IOException {
+	private static void save(Gson pGson, DirectoryCache pCache, ExtendedServerHiredUnitProfile profile, Path pPath) throws IOException {
 		try {
-			String s = ExtendedServerHiredUnitProfileManager.serialize(pGson, spawner);
+			String s = ExtendedServerHiredUnitProfileManager.serialize(pGson, profile);
 			String s1 = SHA1.hashUnencodedChars(s).toString();
 			if (!Objects.equals(pCache.getHash(pPath), s1) || !Files.exists(pPath)) {
 				Files.createDirectories(pPath.getParent());
@@ -96,7 +96,7 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 		return "Extended Hired Unit Profile Provider";
 	}
 
-	public ExtendedServerHiredUnitProfile.Builder make(EntityType<?> unitEntityType, ExtendedUnitAttackType pAttackType) {
+	public ExtendedServerHiredUnitProfile.Builder make(EntityType<?> unitEntityType, ExtendedUnitCombatTypes pAttackType) {
 		return new ExtendedServerHiredUnitProfile.Builder(modId, unitEntityType, pAttackType);
 	}
 

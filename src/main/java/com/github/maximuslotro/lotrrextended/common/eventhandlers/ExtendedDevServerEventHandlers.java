@@ -3,13 +3,13 @@ package com.github.maximuslotro.lotrrextended.common.eventhandlers;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedILootTableAccessor;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedLargePotTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.tileentity.PlateTileEntity;
 import lotr.common.tileentity.VesselDrinkTileEntity;
-import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -95,32 +95,32 @@ public class ExtendedDevServerEventHandlers {
 		if(tileentity==null) {
 			return;
 		}
-		if (tileentity instanceof KegTileEntity&&((ExtendedLootTableAccessor)tileentity).getLootTable()!=null && !event.getPlayer().isCrouching()) {
+		if (tileentity instanceof KegTileEntity&&((ExtendedILootTableAccessor)tileentity).getLootTable()!=null && !event.getPlayer().isCrouching()) {
 			event.setCanceled(true);
 			TextComponent comp = new StringTextComponent("Keg opening disabled because devworld loot-table is set!");
 			comp.withStyle(TextFormatting.YELLOW);
 			event.getPlayer().sendMessage(comp, Util.NIL_UUID);
-			TextComponent comp2 = new StringTextComponent("Location: "+((ExtendedLootTableAccessor)tileentity).getLootTable().toString());
+			TextComponent comp2 = new StringTextComponent("Location: "+((ExtendedILootTableAccessor)tileentity).getLootTable().toString());
 			comp2.withStyle(TextFormatting.YELLOW);
 			event.getPlayer().sendMessage(comp2, Util.NIL_UUID);
 			return;
 		}
-		if (tileentity instanceof PlateTileEntity&&((ExtendedLootTableAccessor)tileentity).getLootTable()!=null && !event.getPlayer().isCrouching()) {
+		if (tileentity instanceof PlateTileEntity&&((ExtendedILootTableAccessor)tileentity).getLootTable()!=null && !event.getPlayer().isCrouching()) {
 			event.setCanceled(true);
 			TextComponent comp = new StringTextComponent("Plate has a devworld loot-table set!");
 			comp.withStyle(TextFormatting.YELLOW);
 			event.getPlayer().sendMessage(comp, Util.NIL_UUID);
-			TextComponent comp2 = new StringTextComponent("Location: "+((ExtendedLootTableAccessor)tileentity).getLootTable().toString());
+			TextComponent comp2 = new StringTextComponent("Location: "+((ExtendedILootTableAccessor)tileentity).getLootTable().toString());
 			comp2.withStyle(TextFormatting.YELLOW);
 			event.getPlayer().sendMessage(comp2, Util.NIL_UUID);
 			return;
 		}
-		if (tileentity instanceof VesselDrinkTileEntity&&((ExtendedLootTableAccessor)tileentity).getLootTable()!=null && !event.getPlayer().isCrouching()) {
+		if (tileentity instanceof VesselDrinkTileEntity&&((ExtendedILootTableAccessor)tileentity).getLootTable()!=null && !event.getPlayer().isCrouching()) {
 			event.setCanceled(true);
 			TextComponent comp = new StringTextComponent("Vessel has a devworld loot-table set!");
 			comp.withStyle(TextFormatting.YELLOW);
 			event.getPlayer().sendMessage(comp, Util.NIL_UUID);
-			TextComponent comp2 = new StringTextComponent("Location: "+((ExtendedLootTableAccessor)tileentity).getLootTable().toString());
+			TextComponent comp2 = new StringTextComponent("Location: "+((ExtendedILootTableAccessor)tileentity).getLootTable().toString());
 			comp2.withStyle(TextFormatting.YELLOW);
 			event.getPlayer().sendMessage(comp2, Util.NIL_UUID);
 			return;

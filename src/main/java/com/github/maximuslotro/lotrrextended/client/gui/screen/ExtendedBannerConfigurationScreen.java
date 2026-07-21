@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
-import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedTextFieldPermissionWidget;
+import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedBannerTextFieldPermissionWidget;
+import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedSimpleButton;
+import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTextureOffsetButton;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.ExtendedBannerProfileClient;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCBannerSaveInfoPacket;
@@ -15,20 +17,16 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenS
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity.ProtectionEntry;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
 
 import lotr.common.fac.Faction;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -57,7 +55,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	private List<Button> factionPermButtons = new ArrayList<>();
 	private BlockPos configurePos;
 	private int shownWhiteListButtonCount = 0;
-	private List<ExtendedTextFieldPermissionWidget> whitelistFields = new ArrayList<>();
+	private List<ExtendedBannerTextFieldPermissionWidget> whitelistFields = new ArrayList<>();
 	private int whiteListOffset = 0;
 	private Button createFellowship;
 	private Button createPlayer;
@@ -122,7 +120,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	public void init() {
 		super.init();
 		// General stuff
-		this.addButton(protectionTypeButton = new SimpleButton(this.leftPos + 30, this.topPos + 20, 140, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.type_faction"), button -> {
+		this.addButton(protectionTypeButton = new ExtendedSimpleButton(this.leftPos + 30, this.topPos + 20, 140, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.type_faction"), button -> {
 			rotatePermissionType();
 			needsUpdate = true;
 		}));
@@ -130,7 +128,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			protectionType==0 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_faction"):
 				protectionType==1 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_whitelist"): 
 					new TranslationTextComponent("gui.lotrextended.banner_configuration.type_custom"));
-		this.addButton(update = new SimpleButton(this.leftPos +this.imageWidth -115, this.topPos + this.imageHeight-25, 110, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.send_update"), button -> {
+		this.addButton(update = new ExtendedSimpleButton(this.leftPos +this.imageWidth -115, this.topPos + this.imageHeight-25, 110, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.send_update"), button -> {
 			needsUpdate = false;
 			whitelistFields.forEach((textButton) -> textButton.setFocus(false));
 			if(isEnabled) {
@@ -156,7 +154,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		//				ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.self_protection"+(ExtendedBannerConfigurationScreen.this.canSelfProtect ? ".on" : ".off")), 200), pMouseX, pMouseY);
 		//			}
 		//		});
-		this.addButton(new TextureOffsetButton(this.leftPos + 7, this.topPos + this.imageHeight-25, 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms.global"), button -> showDefaultPerms = !showDefaultPerms){
+		this.addButton(new ExtendedTextureOffsetButton(this.leftPos + 7, this.topPos + this.imageHeight-25, 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms.global"), button -> showDefaultPerms = !showDefaultPerms, guiTexture){
 			@Override
 			public boolean shouldOffset() {
 				return ExtendedBannerConfigurationScreen.this.showDefaultPerms;
@@ -189,7 +187,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 				}
 			}
 			int upLoc = this.topPos + ((perm.ordinal()==0||perm.ordinal()>4) ? this.imageHeight-15 : this.imageHeight-25);
-			TextureOffsetButton permButton = new PermissionButton(leftLoc, upLoc, 100 + perm.ordinal() * 10, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)), perm, -1, button -> {
+			ExtendedTextureOffsetButton permButton = new PermissionButton(leftLoc, upLoc, 100 + perm.ordinal() * 10, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)), perm, -1, button -> {
 				ExtendedBannerPermissions tweaking = ((PermissionButton)button).perm;
 				if(globalPerms.contains(tweaking)) {
 					globalPerms.remove(tweaking);
@@ -235,7 +233,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		this.alignmentField.setValue("+"+alignmentLevel);
 		this.alignmentField.setFocus(false);
 		this.alignmentField.setCanLoseFocus(true);
-		this.addButton(factionPermButton = new TextureOffsetButton(this.leftPos + 145, this.topPos + 80, 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms"), button -> showFactionPerms = !showFactionPerms){
+		this.addButton(factionPermButton = new ExtendedTextureOffsetButton(this.leftPos + 145, this.topPos + 80, 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms"), button -> showFactionPerms = !showFactionPerms, guiTexture){
 			@Override
 			public boolean shouldOffset() {
 				return ExtendedBannerConfigurationScreen.this.showFactionPerms;
@@ -260,7 +258,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			int leftLoc = this.leftPos + 43 + (perm.ordinal() * 15);
 
 			int upLoc = this.topPos + 100;
-			TextureOffsetButton permButton = new PermissionButton(leftLoc, upLoc, 100 + perm.ordinal() * 10, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)), perm, -1, button -> {
+			ExtendedTextureOffsetButton permButton = new PermissionButton(leftLoc, upLoc, 100 + perm.ordinal() * 10, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms."+perm.toString().toLowerCase(Locale.ENGLISH)), perm, -1, button -> {
 				ExtendedBannerPermissions tweaking = ((PermissionButton)button).perm;
 				if(factionPerms.contains(tweaking)) {
 					factionPerms.remove(tweaking);
@@ -316,7 +314,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		// Whitelist
 		whitelistFields.clear();
 		for(int i=0; i<4; i++) {
-			ExtendedTextFieldPermissionWidget textField =  new ExtendedTextFieldPermissionWidget(this.font, this.leftPos+32, this.topPos+51 + (i*30), 97, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.textBox"), i) {
+			ExtendedBannerTextFieldPermissionWidget textField =  new ExtendedBannerTextFieldPermissionWidget(this.font, this.leftPos+32, this.topPos+51 + (i*30), 97, 17, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.textBox"), i) {
 				@Override
 				public void setFocus(boolean pIsFocused) {
 					super.setFocus(pIsFocused);
@@ -419,12 +417,12 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			this.addButton(textField);
 			updateWhitelist = true;
 		}
-		this.addButton(createPlayer = new SimpleButton(this.leftPos + 29, this.topPos + 46, 64, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.add_player"), button -> {
+		this.addButton(createPlayer = new ExtendedSimpleButton(this.leftPos + 29, this.topPos + 46, 64, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.add_player"), button -> {
 			this.whitelist.add(new ProtectionEntry(new ExtendedBannerProfileClient("")).addPerm(ExtendedBannerPermissions.EVERYTHING));
 			justCreatedWhitelistEntry=true;
 			needsUpdate = true;
 		}));
-		this.addButton(createFellowship = new SimpleButton(this.leftPos + 92, this.topPos + 46, 79, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.add_fellowship"), button -> {
+		this.addButton(createFellowship = new ExtendedSimpleButton(this.leftPos + 92, this.topPos + 46, 79, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.whitelist.add_fellowship"), button -> {
 			this.whitelist.add(new ProtectionEntry(new ExtendedBannerProfileClient("f/")).addPerm(ExtendedBannerPermissions.EVERYTHING));
 			justCreatedWhitelistEntry=true;
 			needsUpdate = true;
@@ -530,7 +528,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			for(int i=0;i<shownWhiteListButtonCount; i++) {
 				blit(matStack, this.leftPos+29, this.topPos+46 + (i*30), 0, 192, 80, 17);
 				blit(matStack, this.leftPos+55, this.topPos+46 + (i*30), 1, 192, 79, 17);
-				ExtendedTextFieldPermissionWidget textField = whitelistFields.get(i);
+				ExtendedBannerTextFieldPermissionWidget textField = whitelistFields.get(i);
 				textField.setTextColor(whitelist.get(convertWhitelistOffset(i)).getProfile() instanceof ExtendedBannerProfileClient ? 14737632 : 65313);
 				textField.isVisible(true);
 				//textField.render(matStack, mouseX, mouseY, tick);
@@ -580,11 +578,6 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			button.visible = showFactionPerms;
 		}
 		super.render(matStack, mouseX, mouseY, tick);
-		for(Widget button : this.buttons) {
-			if(button.isHovered() && button.visible) {
-				button.renderToolTip(matStack, mouseX, mouseY);
-			}
-		}
 	}
 
 	@Override
@@ -655,83 +648,21 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		}
 	}
 
-	public static class PermissionButton extends TextureOffsetButton {
+	public static class PermissionButton extends ExtendedTextureOffsetButton {
 		public ExtendedBannerPermissions perm;
 		public int parentID;
 		public PermissionButton(int pX, int pY, int tX, int tY, int pWidth, int pHeight, ITextComponent pMessage, ExtendedBannerPermissions perm, int id, IPressable pOnPress) {
-			super(pX, pY, tX, tY, pWidth, pHeight, pMessage, pOnPress);
+			super(pX, pY, tX, tY, pWidth, pHeight, pMessage, pOnPress, guiTexture);
 			this.perm = perm;
 			this.parentID = id;
 		}
 	}
 
-	public static class IndexedButton extends TextureOffsetButton {
+	public static class IndexedButton extends ExtendedTextureOffsetButton {
 		public int id;
 		public IndexedButton(int pX, int pY, int tX, int tY, int pWidth, int pHeight, ITextComponent pMessage, int id, IPressable pOnPress) {
-			super(pX, pY, tX, tY, pWidth, pHeight, pMessage, pOnPress);
+			super(pX, pY, tX, tY, pWidth, pHeight, pMessage, pOnPress, guiTexture);
 			this.id = id;
-		}
-	}
-
-	public static class TextureOffsetButton extends SimpleButton {
-		private int xLoc;
-		private int yLoc;
-		public TextureOffsetButton(int pX, int pY, int tX, int tY, int pWidth, int pHeight, ITextComponent pMessage, IPressable pOnPress) {
-			super(pX, pY, pWidth, pHeight, pMessage, pOnPress);
-			xLoc = tX;
-			yLoc = tY;
-		}
-
-		@Override
-		public void renderButton(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
-			Minecraft minecraft = Minecraft.getInstance();
-			minecraft.getTextureManager().bind(guiTexture);
-			int amount = shouldOffset() ? this.height + hoverOffset() + (this.isHovered() ? hoverOffset() : 0): (this.isHovered() ? hoverOffset() : 0);
-			if(shouldDoDifferentOffset()){
-				amount = this.height + additionalOffset() + (this.shouldOffset() ? additionalOffset() : 0);
-			}
-			this.blit(pMatrixStack, this.x, this.y, xLoc, yLoc+amount, this.width, this.height);
-			this.renderBg(pMatrixStack, minecraft, pMouseX, pMouseY);
-
-		}
-
-		public int hoverOffset() {
-			return 0;
-		}
-
-		public boolean shouldOffset() {
-			return false;
-		}
-
-		public boolean shouldDoDifferentOffset() {
-			return false;
-		}
-
-		public int additionalOffset() {
-			return 0;
-		}
-	}
-
-	public static class SimpleButton extends Button {
-		public SimpleButton(int pX, int pY, int pWidth, int pHeight, ITextComponent pMessage, IPressable pOnPress) {
-			super(pX, pY, pWidth, pHeight, pMessage, pOnPress);
-		}
-
-		@Override
-		public void renderButton(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
-			Minecraft minecraft = Minecraft.getInstance();
-			FontRenderer fontrenderer = minecraft.font;
-			minecraft.getTextureManager().bind(WIDGETS_LOCATION);
-			RenderSystem.color4f(1.0F, 1.0F, 1.0F, this.alpha);
-			int i = this.getYImage(this.isHovered());
-			RenderSystem.enableBlend();
-			RenderSystem.defaultBlendFunc();
-			RenderSystem.enableDepthTest();
-			this.blit(pMatrixStack, this.x, this.y, 0, 46 + i * 20, this.width / 2, this.height);
-			this.blit(pMatrixStack, this.x + this.width / 2, this.y, 200 - this.width / 2, 46 + i * 20, this.width / 2, this.height);
-			this.renderBg(pMatrixStack, minecraft, pMouseX, pMouseY);
-			int j = getFGColor();
-			drawCenteredString(pMatrixStack, fontrenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
 		}
 	}
 }

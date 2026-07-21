@@ -8,7 +8,6 @@ import javax.annotation.Nullable;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -27,7 +26,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedServerHiredUnitProfile {
-	public static final ExtendedServerHiredUnitProfile EMPTY = new ExtendedServerHiredUnitProfile(LotrExtendedMod.EMPTY, false, "EMPTY", "EMPTY", "EMPTY", ExtendedHiredUnitEquipmentPool.EMPTY, 100000, false, 1000, ExtendedUnitAttackType.MELEE, EntityType.PIG);
+	public static final ExtendedServerHiredUnitProfile EMPTY = new ExtendedServerHiredUnitProfile(LotrExtendedMod.EMPTY, false, "EMPTY", "EMPTY", "EMPTY", ExtendedHiredUnitEquipmentPool.EMPTY, 100000, false, 1000, ExtendedUnitCombatTypes.MELEE, EntityType.PIG);
 	private final ResourceLocation id;
 	private final boolean translateStrings;
 	private final String entity_title;
@@ -37,10 +36,10 @@ public class ExtendedServerHiredUnitProfile {
 	private final int hiringCost;
 	private final boolean hiringRequiresPledge;
 	private final int hiringAlignmentRequired;
-	private final ExtendedUnitAttackType attackType;
+	private final ExtendedUnitCombatTypes attackType;
 	private final EntityType<?> unitEntityType;
 
-	public ExtendedServerHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, ExtendedHiredUnitEquipmentPool equipmentPools, int hiringCost, boolean hiringRequiresPledge, int hiringAlignmentRequired, ExtendedUnitAttackType attackType, EntityType<?> unitEntityType) {
+	public ExtendedServerHiredUnitProfile(ResourceLocation id, boolean translateStrings, String entity_title, String entity_shortname, String entity_unit_type, ExtendedHiredUnitEquipmentPool equipmentPools, int hiringCost, boolean hiringRequiresPledge, int hiringAlignmentRequired, ExtendedUnitCombatTypes attackType, EntityType<?> unitEntityType) {
 		this.id = id;
 		this.translateStrings = translateStrings;
 		this.entity_title = entity_title;
@@ -133,10 +132,10 @@ public class ExtendedServerHiredUnitProfile {
 
 	/**
 	 * Gets the attack type enum for this profile
-	 * @see ExtendedUnitAttackType
+	 * @see ExtendedUnitCombatTypes
 	 * @return The attack type enum instance
 	 * */
-	public ExtendedUnitAttackType getAttackType() {
+	public ExtendedUnitCombatTypes getUnitType() {
 		return attackType;
 	}
 
@@ -178,12 +177,12 @@ public class ExtendedServerHiredUnitProfile {
 			boolean hiringRequiresPledge = hiringObject.get("hiringRequiresPledge").getAsBoolean();
 			int hiringAlignmentRequired = hiringObject.get("hiringAlignmentRequired").getAsInt();
 			// Attack information
-			ExtendedUnitAttackType attackType;
+			ExtendedUnitCombatTypes attackType;
 			if(jsonobject.has("attack_type")) {
-				attackType = ExtendedUnitAttackType.byName(jsonobject.get("attack_type").getAsString());
+				attackType = ExtendedUnitCombatTypes.byName(jsonobject.get("attack_type").getAsString());
 			}else {
 				// Fallback for incorrect placement that occurred before 1.10.2
-				attackType = ExtendedUnitAttackType.byName(languageObject.get("attack_type").getAsString());
+				attackType = ExtendedUnitCombatTypes.byName(languageObject.get("attack_type").getAsString());
 			}
 			// Equipment
 			ExtendedHiredUnitEquipmentPool equipmentPools = JSONUtils.getAsObject(jsonobject, "equipmentPools", ExtendedHiredUnitEquipmentPool.EMPTY, context, ExtendedHiredUnitEquipmentPool.class);
@@ -209,7 +208,7 @@ public class ExtendedServerHiredUnitProfile {
 			hiringObject.addProperty("hiringAlignmentRequired", unitProfile.getHiringAlignmentRequired());
 			jsonobject.add("hiring", hiringObject);
 			// Attack information
-			jsonobject.addProperty("attack_type", unitProfile.getAttackType().getAttackTypeName());
+			jsonobject.addProperty("attack_type", unitProfile.getUnitType().getOperationTypeName());
 			// Equipment
 			jsonobject.add("equipmentPools", context.serialize(unitProfile.equipmentPools));
 			return jsonobject;
@@ -225,11 +224,11 @@ public class ExtendedServerHiredUnitProfile {
 		private int hiringCost;
 		private boolean hiringRequiresPledge;
 		private int hiringAlignmentRequired;
-		private ExtendedUnitAttackType attackType;
+		private ExtendedUnitCombatTypes attackType;
 		private final EntityType<?> unitEntityType;
 		private final String modId;
 
-		public Builder(String modId, EntityType<?> unitEntityType, ExtendedUnitAttackType pAttackType) {
+		public Builder(String modId, EntityType<?> unitEntityType, ExtendedUnitCombatTypes pAttackType) {
 			this.attackType = pAttackType;
 			this.unitEntityType = unitEntityType;
 			this.modId = modId;
@@ -358,16 +357,26 @@ public class ExtendedServerHiredUnitProfile {
 			equipmentPools.addMeleeStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon"), weight);
 			return this;
 		}
-
-/**
- * Add ranged weapon item to the equipment pool with weight (only if attack type supports ranged).
- *
- * @param stack The item stack representing the ranged weapon
- * @param weight The weight for random selection
- * @return This builder instance for chaining
- */
+		/**
+		 * Add melee weapon item to the equipment pool with weight.
+		 *
+		 * @param stack The item stack representing the melee weapon
+		 * @param weight The weight for random selection
+		 * @return This builder instance for chaining
+		 */
+		public ExtendedServerHiredUnitProfile.Builder addToolPoolItem(ItemStack stack, int weight) {
+			equipmentPools.addMeleeStack(setBaseItem(stack, "item.lotrextended.base_gear.tool"), weight);
+			return this;
+		}
+		/**
+		 * Add ranged weapon item to the equipment pool with weight (only if attack type supports ranged).
+		 *
+		 * @param stack The item stack representing the ranged weapon
+		 * @param weight The weight for random selection
+		 * @return This builder instance for chaining
+		 */
 		public ExtendedServerHiredUnitProfile.Builder addRangedPoolItem(ItemStack stack, int weight) {
-			if(attackType.isCanBeRanged()) {
+			if(attackType.isRanged()) {
 				equipmentPools.addRangedStack(setBaseItem(stack, "item.lotrextended.base_gear.weapon_ranged"), weight);
 			}
 			return this;

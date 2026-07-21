@@ -4,7 +4,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public abstract class ExtendedAbstractCloakingElfEntity extends ElfEntity implements ExtendedNPCEntitySettings {
+public abstract class ExtendedAbstractCloakingElfEntity extends ElfEntity implements ExtendedINPCEntitySettings {
 
     public double xCloakO;
     public double yCloakO;

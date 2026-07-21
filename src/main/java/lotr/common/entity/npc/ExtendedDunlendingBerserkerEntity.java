@@ -16,7 +16,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedDunlendingBerserkerEntity extends DunlendingWarriorEntity implements ExtendedNPCEntitySettings {
+public class ExtendedDunlendingBerserkerEntity extends DunlendingWarriorEntity implements ExtendedINPCEntitySettings {
 	private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(Items.IRON_AXE, LOTRItems.BRONZE_AXE);
 
 	public ExtendedDunlendingBerserkerEntity(EntityType<? extends ExtendedDunlendingBerserkerEntity> type, World w) {

@@ -20,7 +20,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedDwarvenCommanderEntity extends DwarfEntity implements ExtendedNPCEntitySettings, ExtendedCaptainEntity {
+public class ExtendedDwarvenCommanderEntity extends DwarfEntity implements ExtendedINPCEntitySettings, ExtendedICaptainEntity {
 
 	public ExtendedDwarvenCommanderEntity(EntityType<? extends ExtendedDwarvenCommanderEntity> type, World w) {
 		super(type, w);

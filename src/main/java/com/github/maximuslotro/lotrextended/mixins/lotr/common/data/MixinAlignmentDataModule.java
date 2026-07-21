@@ -95,7 +95,21 @@ public abstract class MixinAlignmentDataModule extends PlayerDataModule{
 	 * */
 	@Shadow(remap = false)
 	public void setCurrentViewedFaction(Faction fac) {}
-
+	/**
+	 * Gets the current pledged to faction
+	 * @Shadow (remap = false)
+	 * @return The pledged {@link Faction} for this player
+	 * */
+	@Shadow(remap = false)
+	public Faction getPledgeFaction() {return null;}
+	/**
+	 * Gets the players alignment for the passed faction
+	 * @Shadow (remap = false)
+	 * @param faction Faction to retrieve alignment from
+	 * @return The float alignment for the faction
+	 * */
+	@Shadow(remap = false)
+	public float getAlignment(final Faction faction) {return 0.0f;}
 	/**
 	 * @author maximuslotro
 	 * @reason Adds a advancement hook for when a players alignment level changes
@@ -111,8 +125,27 @@ public abstract class MixinAlignmentDataModule extends PlayerDataModule{
 		}
 		UUID uuid = (((MixinPlayerDataModuleInvoker)(PlayerDataModule)(Object)this)).invokeGetPlayerUUID();
 		if(uuid!=null) {
+			boolean isPledged = getPledgeFaction()!=null ? getPledgeFaction()==faction : false;
 			ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(uuid);
-			ExtendedCriteriaTriggers.ALIGNMENT_TRIGGER.trigger(player, faction, alignment);
+			ExtendedCriteriaTriggers.ALIGNMENT_TRIGGER.trigger(player, faction, alignment, isPledged);
+		}
+	}
+	/**
+	 * @author maximuslotro
+	 * @reason Adds a advancement hook for when a players pledge changes
+	 * @Inject (method = "setAlignment(Llotr/common/fac/Faction;F)V", at = @At("TAIL"), remap = false)
+	 * @param faction The Faction for which the players is pledging to
+	 * @param ci The local CallbackInfo instance for this Inject
+	 * */
+	@Inject(method = "setPledgeFaction(Llotr/common/fac/Faction;)V", at = @At("TAIL"), remap = false)
+	public void setAlignment(Faction faction, CallbackInfo ci) {
+		if(ServerLifecycleHooks.getCurrentServer() == null && LOTRMod.PROXY.isClient()) {
+			return;
+		}
+		UUID uuid = (((MixinPlayerDataModuleInvoker)(PlayerDataModule)(Object)this)).invokeGetPlayerUUID();
+		if(uuid!=null) {
+			ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(uuid);
+			ExtendedCriteriaTriggers.ALIGNMENT_TRIGGER.trigger(player, faction, getAlignment(faction), true);
 		}
 	}
 	/**

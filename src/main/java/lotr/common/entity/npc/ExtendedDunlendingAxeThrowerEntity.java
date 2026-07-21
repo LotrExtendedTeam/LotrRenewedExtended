@@ -23,7 +23,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedDunlendingAxeThrowerEntity extends DunlendingWarriorEntity implements ExtendedNPCEntitySettings{
+public class ExtendedDunlendingAxeThrowerEntity extends DunlendingWarriorEntity implements ExtendedINPCEntitySettings{
 	private static final SpawnEquipmentTable AXES = SpawnEquipmentTable.of(ExtendedItems.BRONZE_THROWABLE_AXE.get(), ExtendedItems.IRON_THROWABLE_AXE.get());
 
 	@SuppressWarnings("unchecked")

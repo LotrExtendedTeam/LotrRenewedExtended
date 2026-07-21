@@ -35,7 +35,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExtendedBanditEntity extends ManEntity implements ExtendedNPCEntitySettings {
+public class ExtendedBanditEntity extends ManEntity implements ExtendedINPCEntitySettings {
     private final ItemStackHandler inventory = new ItemStackHandler(9); // 9 slots
     private final List<ItemStack> stolenItems = new ArrayList<>();
     private boolean hasStolen = false;

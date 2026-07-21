@@ -14,7 +14,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedRivendellGuardEntity extends RivendellWarriorEntity implements ExtendedNPCEntitySettings {
+public class ExtendedRivendellGuardEntity extends RivendellWarriorEntity implements ExtendedINPCEntitySettings {
 
 	public ExtendedRivendellGuardEntity(EntityType<? extends ExtendedRivendellGuardEntity> type, World w) {
 		super(type, w);

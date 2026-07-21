@@ -21,7 +21,6 @@
       "trigger": "lotrextended:alignment_changed",
       "conditions": {
         "alignment": {
-          "faction": "any",
           "level": {
             "min": 1.0
           }

@@ -12,10 +12,11 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSUpdateTradeQuantitiesPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
-import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedItems;
 import lotr.common.util.CoinUtils;
+import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
 import net.minecraft.entity.item.ItemEntity;
@@ -48,7 +49,7 @@ public class ExtendedTradeContainer extends Container {
 
     public NPCEntity traderNPC;
 
-    public final ExtendedTraderEntity trader;
+    public final ExtendedIMerchantEntity trader;
 
     private IInventory displayInventory = new Inventory(18);//First row of 9 are items players buy from the trade, and the second row of 9 is items sold to the trader
     public Inventory sellInventory = new Inventory(9);
@@ -70,7 +71,7 @@ public class ExtendedTradeContainer extends Container {
         this.level = inventory.player.level;
         this.player = inventory.player;
         this.traderNPC = (NPCEntity) this.level.getEntity(nbt.getInt("entityId"));
-        this.trader = (ExtendedTraderEntity) traderNPC;
+        this.trader = (ExtendedIMerchantEntity) traderNPC;
 
         // read displayItems from NBT
         List<ItemStack> displayItems = new ArrayList<>();
@@ -243,7 +244,7 @@ public class ExtendedTradeContainer extends Container {
             	if(!CoinUtils.removeCoins(player, player.inventory, price)) {
             		return player.inventory.getCarried();
             	}
-                trader.playTradeSound();
+            	ExtendedTraderHelper.playTraderSound(traderNPC);
                 ItemStack itemForTrade = displayInventory.getItem(index).copy();
                 if (player.inventory.getCarried().isEmpty()) {
                     player.inventory.setCarried(itemForTrade);
@@ -416,7 +417,7 @@ public class ExtendedTradeContainer extends Container {
     			if(!level.isClientSide && totalCoinsTraded>0) {
     				ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, stack, totalCoinsTraded);
     			}
-    			trader.playTradeSound();
+    			ExtendedTraderHelper.playTraderSound(traderNPC);
     			if (player instanceof ServerPlayerEntity) {
                     ((ServerPlayerEntity)player).refreshContainer(this);
                  }
@@ -533,7 +534,7 @@ public class ExtendedTradeContainer extends Container {
             }
         }
         player.inventory.setChanged();
-        trader.playTradeSound();
+        ExtendedTraderHelper.playTraderSound(traderNPC);
         if (!player.level.isClientSide()) {
         	ExtendedPacketHandler.sendToClient(new ExtendedSUpdateTradeQuantitiesPacket(trader.getTraderData().getSoldQuantities(), trader.getTraderData().getBoughtQuantities()), (ServerPlayerEntity) player);
         }else {

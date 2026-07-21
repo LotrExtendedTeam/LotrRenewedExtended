@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
-import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
 
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.material.PushReaction;
@@ -93,7 +92,7 @@ public class ExtendedBannerEntity extends Entity {
 	}
 
 	public AxisAlignedBB getProtectionArea() {
-		return AxisAlignedBBUtils.makeCroppedBB(getX()-0.5, getBoundingBox().minY, getZ()-0.5).inflate(getProtectionRange()-0.01D);
+		return new AxisAlignedBB(getX()-0.5, getBoundingBox().minY, getZ()-0.5, getX()+0.5, getBoundingBox().minY+1, getZ()+0.5).inflate(getProtectionRange()-0.01D);
 	}
 
 	@Override

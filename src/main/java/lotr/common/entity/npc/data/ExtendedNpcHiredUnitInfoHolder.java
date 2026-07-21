@@ -7,21 +7,22 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedEquipmentSlotType;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentPool;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
-import com.github.maximuslotro.lotrrextended.common.inventory.UnitInventory;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
+import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedUnitInventory;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcUnitInfoPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import lotr.common.entity.npc.BreeGuardEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.GondorSoldierEntity;
 import lotr.common.entity.npc.GundabadOrcEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -69,7 +70,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	private float max_xp = 1.0f;
 	private int kills = 0;
 	private int baseHealth = 20;
-	private ExtendedUnitOrders unitOrders = ExtendedUnitOrders.GUARD_STATIONARY;
+	private ExtendedUnitOrders unitOrders = ExtendedUnitOrders.STATIONARY;
 	private boolean isHired = false;
 	private boolean wasHired = false;
 	// Temporary data
@@ -78,7 +79,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	public boolean isInteracting = false;
 	private int currentHealth = -1;
 
-	private UnitInventory internalUnitInventory = makeUnitInventory();
+	private ExtendedUnitInventory internalUnitInventory = makeUnitInventory();
 
 	public ExtendedNpcHiredUnitInfoHolder(NPCEntity thisEntity) {
 		this.thisEntity = thisEntity;
@@ -165,7 +166,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 		isHired = true;
 		wasHired = true;
 		setupUnitEquipment();
-		setOrders(ExtendedUnitOrders.PATROL_PLAYER);
+		setOrders(ExtendedUnitOrders.FOLLOW_PLAYER);
 		markDirty();
 		return true;
 	}
@@ -271,9 +272,9 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 				}else {
 					// Ensure update compatibility from versions 1.7.1->1.7.2
 					if (nbt.contains("following")&&nbt.getBoolean("following")) {
-						unitOrders = ExtendedUnitOrders.PATROL_PLAYER;
+						unitOrders = ExtendedUnitOrders.FOLLOW_PLAYER;
 					}else {
-						unitOrders = ExtendedUnitOrders.GUARD_STATIONARY;
+						unitOrders = ExtendedUnitOrders.STATIONARY;
 					}
 				}
 				markDirty();
@@ -384,7 +385,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 		Entity entity = world.getEntity(entityId);
 		boolean shouldRead = buf.readBoolean();
 		if (shouldRead && entity instanceof NPCEntity) {
-			ExtendedNpcHiredUnitInfoHolder unitInfo = ((ExtendedNPCEntity) entity).getUnitInfo();
+			ExtendedNpcHiredUnitInfoHolder unitInfo = ((ExtendedINPCEntity) entity).getUnitInfo();
 			if(unitInfo!=null) {
 				unitInfo.setOwnerUUID(buf.readUUID());
 				unitInfo.setHired(buf.readBoolean());
@@ -398,11 +399,20 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	}
 
 	// ######################################### Entity Info
+	/**
+	 * Should only ever be null if not hired. When hired or dismissed should always be present!
+	 * @return {@link UUID} of the owner
+	 * */
 	@Nullable
 	public UUID getOwnerUUID() {
 		return ownerUUID;
 	}
 
+	/**
+	 * Only not null when owner is online, refrain form using.
+	 * 
+	 * @return {@link LivingEntity} of the owner
+	 * */
 	@Nullable
 	public LivingEntity getUnitOwner() {
 		try {
@@ -445,12 +455,12 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
         ExtendedHiredUnitHelper.giveExperiencePoints(this, points);
     }
 	// ######################################### Inventory Management
-	public UnitInventory makeUnitInventory() {
+	public ExtendedUnitInventory makeUnitInventory() {
 		// 9 inventory slots + 10 player equipment slots + 10 base equipment slots
-		return new UnitInventory(INVENTORY_SIZE);
+		return new ExtendedUnitInventory(INVENTORY_SIZE);
 	}
 
-	public UnitInventory getInternalUnitInventory() {
+	public ExtendedUnitInventory getInternalUnitInventory() {
 		return internalUnitInventory;
 	}
 	// ######################################### Experience Points
@@ -494,6 +504,21 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 
 	public void setOrders(ExtendedUnitOrders orders) {
 		unitOrders = orders;
+	}
+
+	public static boolean canTypeAcceptOrders(ExtendedUnitCombatTypes unitType, ExtendedUnitOrders orders) {
+		if(unitType.isFarming() && !orders.isOrderAllowedForFarmhands()) {
+			return false;
+		}else if(!unitType.isFarming() && orders==ExtendedUnitOrders.FARMING){
+			return false;
+		}
+		return true;
+	}
+
+	public void trySetOrders(ExtendedUnitOrders orders) {
+		if(canTypeAcceptOrders(getUnitProfile().getUnitType(), orders)) {
+			setOrders(orders);
+		}
 	}
 
 	public void updateSlot(ItemStack stack, ExtendedEquipmentSlotType slot) {
@@ -849,7 +874,11 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			attributeInstance.addTransientModifier(HEALTH_MODIFIER);
 		}
 	}
-
+	/**
+	 * Gets the parent NPC entity context linked to this data holder instance.
+	 *
+	 * @return The parent {@link NPCEntity}.
+	 */
 	public NPCEntity getThisEntity() {
 		return thisEntity;
 	}

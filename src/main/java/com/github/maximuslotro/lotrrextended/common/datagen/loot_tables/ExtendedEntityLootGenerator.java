@@ -380,6 +380,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		add(LOTREntities.CARACAL.get(), LootTable.lootTable());
 		makeEntity(ExtendedEntities.HOBBIT_BARTENDER, hobbit, coinsRare);
 		makeEntity(ExtendedEntities.HOBBIT_FARMER, hobbit, coinsRare);
+		makeEntity(ExtendedEntities.HOBBIT_FARMHAND, hobbit);
 		makeEntity(ExtendedEntities.ODDMENT_COLLECTOR, manBase, shireHeather, leatherHat);
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.RIVENDELL_WANDERER, elfBaseMiruvorLembas);

@@ -13,9 +13,10 @@ import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSe
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
-import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedAxisAlignedBBUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedEntityUtils;
 
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.NPCGenderProvider;
@@ -47,7 +48,6 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.vector.Vector3d;
@@ -154,73 +154,59 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 				continue;
 			}
 			// Try spawning with 16 re-roles in invalid spawn found
+			BlockPos.Mutable spawnPos = new BlockPos.Mutable();
 			for(int attempt = 0; attempt <16; attempt++) {
 				// Check spawn cap number if not single type
 				//System.out.println("Main Loop, roll:"+roll+", attempt:"+attempt);
 				if(nearbyEntitySpawnCount < spawnerInstance.getLocalSpawnCap() || !spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
-					double x;
-					double y;
-					double z;
 					// Set spawn cords based upon spawner type
 					if(spawnerInstance.getSpawnType().isShouldCheckBoundries() && !shouldSpawnAtSpawner()) {
-						x = getX() + MathHelper.nextInt(random, -spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().horizontalBounds);
-						z = getZ() + MathHelper.nextInt(random, -spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().horizontalBounds);
-						y = getY() + MathHelper.nextInt(random, spawnerInstance.getSpawnBoundaries().lowerYvalue, spawnerInstance.getSpawnBoundaries().topYvalue);
-						// Replaced with above random check, for when spawning needs to happen but can't because inside
-						//y = world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, (int)x, (int)z);
-						//if(!spawnerInstance.getSpawnBoundaries().isInYRange(y, getY())) {
-						//	//System.out.println("Failed Y bounds check");
-						//	continue; // Try spawning again
-						//}
+						ExtendedEntityUtils.getRandomPosInBounds(spawnPos, this, spawnerInstance.getSpawnBoundaries().horizontalBounds, spawnerInstance.getSpawnBoundaries().lowerYvalue, spawnerInstance.getSpawnBoundaries().topYvalue);
 					}else {
-						x = getX();
-						y = getY();
-						z = getZ();
+						spawnPos.set(getX(), getY(), getZ());
 					}
-					// Set spawn position
-					BlockPos footPos = new BlockPos(x, y, z);
 					// Check if spawn position is valid for boundary check spawns, or when inside spawning instead of bound spawning
 					if(spawnerInstance.getSpawnType().isShouldCheckBoundries()) {
 						// TODO replace with cleaner checks
 						// Add check for inside spawning in a bounds check spawn type
 						if(spawnerInstance.shouldSpawnAtSpawner()) {
-							BlockState potentialFloorBlock1 = world.getBlockState(footPos);
-							if(!Block.isFaceFull(potentialFloorBlock1.getCollisionShape(world, footPos, ISelectionContext.empty()), Direction.UP) || !potentialFloorBlock1.getMaterial().isSolid()) {
-								BlockState potentialFloorBlock2 = world.getBlockState(footPos.below());
-								if(!Block.isFaceFull(potentialFloorBlock2.getCollisionShape(world, footPos.below(), ISelectionContext.empty()), Direction.UP) || !potentialFloorBlock2.getMaterial().isSolid()) {
-									BlockState potentialFloorBlock3 = world.getBlockState(footPos.below().below());
-									if(!Block.isFaceFull(potentialFloorBlock3.getCollisionShape(world, footPos.below().below(), ISelectionContext.empty()), Direction.UP) || !potentialFloorBlock3.getMaterial().isSolid()) {
+							BlockState potentialFloorBlock1 = world.getBlockState(spawnPos);
+							if(!Block.isFaceFull(potentialFloorBlock1.getCollisionShape(world, spawnPos, ISelectionContext.empty()), Direction.UP) || !potentialFloorBlock1.getMaterial().isSolid()) {
+								BlockState potentialFloorBlock2 = world.getBlockState(spawnPos.below());
+								if(!Block.isFaceFull(potentialFloorBlock2.getCollisionShape(world, spawnPos.below(), ISelectionContext.empty()), Direction.UP) || !potentialFloorBlock2.getMaterial().isSolid()) {
+									BlockState potentialFloorBlock3 = world.getBlockState(spawnPos.below().below());
+									if(!Block.isFaceFull(potentialFloorBlock3.getCollisionShape(world, spawnPos.below().below(), ISelectionContext.empty()), Direction.UP) || !potentialFloorBlock3.getMaterial().isSolid()) {
 										continue; // Try spawning again
 									}else {
-										BlockState footBlock = world.getBlockState(footPos);
-										BlockState headBlock = world.getBlockState(footPos.above());
+										BlockState footBlock = world.getBlockState(spawnPos);
+										BlockState headBlock = world.getBlockState(spawnPos.above());
 										if(!footBlock.getBlock().isPossibleToRespawnInThis() || !headBlock.getBlock().isPossibleToRespawnInThis()) {
 											continue; // Try spawning again
 										}
 									}
 								}
 								else {
-									BlockState footBlock = world.getBlockState(footPos.above());
-									BlockState headBlock = world.getBlockState(footPos.above().above());
+									BlockState footBlock = world.getBlockState(spawnPos.above());
+									BlockState headBlock = world.getBlockState(spawnPos.above().above());
 									if(!footBlock.getBlock().isPossibleToRespawnInThis() || !headBlock.getBlock().isPossibleToRespawnInThis()) {
 										continue; // Try spawning again
 									}
 								}
 							}else {
-								BlockState footBlock = world.getBlockState(footPos);
-								BlockState headBlock = world.getBlockState(footPos.above());
+								BlockState footBlock = world.getBlockState(spawnPos);
+								BlockState headBlock = world.getBlockState(spawnPos.above());
 								if(!footBlock.getBlock().isPossibleToRespawnInThis() || !headBlock.getBlock().isPossibleToRespawnInThis()) {
 									continue; // Try spawning again
 								}
 							}
 						} else {
-							BlockState floorBlock = world.getBlockState(new BlockPos(x, y -1, z));
-							if(!Block.isFaceFull(floorBlock.getCollisionShape(world, new BlockPos(x, y -1, z), ISelectionContext.empty()), Direction.UP) || !floorBlock.getMaterial().isSolid()) {
+							BlockState floorBlock = world.getBlockState(spawnPos.below());
+							if(!Block.isFaceFull(floorBlock.getCollisionShape(world, spawnPos.below(), ISelectionContext.empty()), Direction.UP) || !floorBlock.getMaterial().isSolid()) {
 								//System.out.println("Failed spawn check fullface+solid");
 								continue; // Try spawning again
 							}
-							BlockState footBlock = world.getBlockState(footPos);
-							BlockState headBlock = world.getBlockState(new BlockPos(x, y +1, z));
+							BlockState footBlock = world.getBlockState(spawnPos);
+							BlockState headBlock = world.getBlockState(spawnPos.below());
 							if(!footBlock.getBlock().isPossibleToRespawnInThis() || !headBlock.getBlock().isPossibleToRespawnInThis()) {
 								//System.out.println("Failed spawn check isPossibleToRespawnInThis");
 								continue; // Try spawning again
@@ -250,10 +236,10 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 							entityMaleNpc.getPersonalInfo().setName(((MixinNPCEntityInvoker)entityMaleNpc).invokeNameGenerator().generateName(random, true));
 							entityFemaleNpc.getPersonalInfo().setMale(false);
 							entityFemaleNpc.getPersonalInfo().setName(((MixinNPCEntityInvoker)entityFemaleNpc).invokeNameGenerator().generateName(random, false));
-							entityMaleNpc.moveTo(footPos, random.nextFloat() * 360.0F, 0.0F);
-							entityFemaleNpc.moveTo(footPos, random.nextFloat() * 360.0F, 0.0F);
-							entityMaleNpc.finalizeSpawn(world, world.getCurrentDifficultyAt(footPos), SpawnReason.SPAWNER, null, null);
-							entityFemaleNpc.finalizeSpawn(world, world.getCurrentDifficultyAt(footPos), SpawnReason.SPAWNER, null, null);
+							entityMaleNpc.moveTo(spawnPos, random.nextFloat() * 360.0F, 0.0F);
+							entityFemaleNpc.moveTo(spawnPos, random.nextFloat() * 360.0F, 0.0F);
+							entityMaleNpc.finalizeSpawn(world, world.getCurrentDifficultyAt(spawnPos), SpawnReason.SPAWNER, null, null);
+							entityFemaleNpc.finalizeSpawn(world, world.getCurrentDifficultyAt(spawnPos), SpawnReason.SPAWNER, null, null);
 							if(spawnerInstance.isPersistenceRequired()) {
 								entityMaleNpc.setPersistenceRequired();
 								entityFemaleNpc.setPersistenceRequired();
@@ -265,11 +251,11 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 								entityMaleNpc.restrictTo(this.blockPosition(), spawnerInstance.getHomeRadius());
 								entityFemaleNpc.restrictTo(this.blockPosition(), spawnerInstance.getHomeRadius());
 							}
-							ExtendedNpcMarriageHolder marriageInfoMale = ((ExtendedNPCEntity) entityMaleNpc).getMarriageInfo();
+							ExtendedNpcMarriageHolder marriageInfoMale = ((ExtendedINPCEntity) entityMaleNpc).getMarriageInfo();
 							marriageInfoMale.maleID=entityMaleNpc.getUUID();
 							marriageInfoMale.femaleID=entityFemaleNpc.getUUID();
 							marriageInfoMale.spouseID=entityFemaleNpc.getUUID();
-							ExtendedNpcMarriageHolder marriageInfoFemale = ((ExtendedNPCEntity) entityFemaleNpc).getMarriageInfo();
+							ExtendedNpcMarriageHolder marriageInfoFemale = ((ExtendedINPCEntity) entityFemaleNpc).getMarriageInfo();
 							marriageInfoFemale.maleID=entityMaleNpc.getUUID();
 							marriageInfoFemale.femaleID=entityFemaleNpc.getUUID();
 							marriageInfoFemale.spouseID=entityMaleNpc.getUUID();
@@ -283,9 +269,9 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 						}else {
 							// Moved code from ExtendedStructureSpawnerTileEntity
 							Entity entity = generatedSpawn.create(world);
-							entity.moveTo(x, y, z, random.nextFloat() * 360.0F, 0.0F);
+							entity.moveTo(spawnPos, random.nextFloat() * 360.0F, 0.0F);
 							if(entity instanceof MobEntity) {
-								((MobEntity)entity).finalizeSpawn(world, world.getCurrentDifficultyAt(footPos), SpawnReason.SPAWNER, null, null);
+								((MobEntity)entity).finalizeSpawn(world, world.getCurrentDifficultyAt(spawnPos), SpawnReason.SPAWNER, null, null);
 								if(spawnerInstance.isPersistenceRequired()) {
 									((MobEntity)entity).setPersistenceRequired();
 								}
@@ -293,7 +279,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 									((MobEntity)entity).restrictTo(BlockPos.ZERO, -1);
 								}else {
 									if(spawnerInstance.isSetHomeRandom()) {
-										((MobEntity)entity).restrictTo(footPos, spawnerInstance.getHomeRadius());
+										((MobEntity)entity).restrictTo(spawnPos, spawnerInstance.getHomeRadius());
 									}else {
 										((MobEntity)entity).restrictTo(this.blockPosition(), spawnerInstance.getHomeRadius());
 									}
@@ -532,11 +518,11 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	}
 
 	public AxisAlignedBB getSpawnArea() {
-		return AxisAlignedBBUtils.makeOffsetBB(getSMinBlockPos(), -0.5f, -0.5f, getSMaxBlockPos(), 0.5f, 0.5f);
+		return ExtendedAxisAlignedBBUtils.makeOffsetBB(getSMinBlockPos(), -0.5f, -0.5f, getSMaxBlockPos(), 0.5f, 0.5f);
 	}
 
 	public AxisAlignedBB getCheckArea() {
-		return AxisAlignedBBUtils.makeOffsetBB(getCMinBlockPos(), -0.5f, -0.5f, getCMaxBlockPos(), 0.5f, 0.5f);
+		return ExtendedAxisAlignedBBUtils.makeOffsetBB(getCMinBlockPos(), -0.5f, -0.5f, getCMaxBlockPos(), 0.5f, 0.5f);
 	}
 
 	@Override

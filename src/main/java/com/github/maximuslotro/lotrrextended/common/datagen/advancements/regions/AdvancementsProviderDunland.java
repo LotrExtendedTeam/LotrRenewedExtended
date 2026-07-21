@@ -79,7 +79,7 @@ public class AdvancementsProviderDunland extends ExtendedBaseAdvancementType{
 			addTradeEntityTrigger(make(), ExtendedEntities.DUNLENDING_BARTENDER.get()).parent(dunland));
 
 		Advancement mob_equiper = build(false, data(ExtendedItems.SILVER_COIN_ONE.get(), "mob_equiper", FrameType.TASK)
-			.setTitle("Equipper of the Mob").setDescription("Trade with a Dunlending Smith."),
+			.setTitle("Equipping the Mob").setDescription("Trade with a Dunlending Smith."),
 			addTradeEntityTrigger(make(), ExtendedEntities.DUNLENDING_SMITH.get()).parent(dunland));
 	}
 

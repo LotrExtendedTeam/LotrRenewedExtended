@@ -6,56 +6,49 @@ import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenCaptainPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenCoinExchangePacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenTradeMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
 
-import lotr.common.entity.npc.ExtendedTraderEntity;
-import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
+import lotr.common.entity.npc.ExtendedIWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.representation.ExtendedTrade;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 public class ExtendedTraderHelper {
 
-    private ExtendedTraderHelper() {}
-
+    public static void playTraderSound(Entity entity) {
+    	playTraderSound(entity.level, entity.blockPosition());
+    }
     public static void playTraderSound(World level, BlockPos pos) {
         level.playSound(null, pos, ExtendedSounds.TRADE.get(), SoundCategory.PLAYERS, 1, 1);
     }
 
-    public static ActionResultType openCoinExchange(NPCEntity entity, PlayerEntity player, ExtendedTraderEntity trader) {
+    public static ActionResultType openCoinExchange(NPCEntity entity, PlayerEntity player) {
         ExtendedPacketHandler.sendToServer(new ExtendedCOpenCoinExchangePacket(entity.getId()));
-        trader.updatePlayerInteractingWith(player.getUUID());
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }
-
-    public static ActionResultType openTradeMenu(NPCEntity entity, PlayerEntity player, ExtendedTraderEntity trader) {
+    public static ActionResultType openTradeMenu(NPCEntity entity, PlayerEntity player) {
         ExtendedPacketHandler.sendToServer(new ExtendedCOpenTradeMenuPacket(entity.getId()));
-        trader.updatePlayerInteractingWith(player.getUUID());
+        ((ExtendedIMerchantEntity)entity).updatePlayerInteractingWith(player.getUUID());
         return ActionResultType.sidedSuccess(entity.level.isClientSide());
     }
-
-    public static ActionResultType openTraderGui(NPCEntity entity, PlayerEntity player, ExtendedTraderEntity trader) {
-        if (trader.getPlayerInteractingWith().isPresent()) {
-            if (!entity.level.isClientSide) {
-            	player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_busy"), Util.NIL_UUID);
-            }
-            return ActionResultType.sidedSuccess(entity.level.isClientSide());
-        }
-
-        trader.updatePlayerInteractingWith(player.getUUID());
-
+    public static ActionResultType openCaptainMenu(NPCEntity entity, PlayerEntity player) {
+    	ExtendedPacketHandler.sendToServer(new ExtendedCOpenCaptainPacket(entity.getId()));
+    	return ActionResultType.sidedSuccess(entity.level.isClientSide());
+    }
+    public static ActionResultType openTraderGui(NPCEntity entity, PlayerEntity player) {
         if (entity.level.isClientSide()) {
             ExtendedClientsideSeparatedScreenHandler.openTraderMainMenuGui(entity, player);
         }
@@ -119,7 +112,7 @@ public class ExtendedTraderHelper {
         return boughtOriginalQuantity;
     }
 
-    public static void saveWanderingTraderEscortUUIDs(ExtendedWanderingTraderEntity trader, List<UUID> escorts, CompoundNBT tag) {
+    public static void saveWanderingTraderEscortUUIDs(ExtendedIWanderingTraderEntity trader, List<UUID> escorts, CompoundNBT tag) {
         ListNBT listnbt = new ListNBT();
         for (UUID escort : escorts) {
             CompoundNBT compoundnbt = new CompoundNBT();

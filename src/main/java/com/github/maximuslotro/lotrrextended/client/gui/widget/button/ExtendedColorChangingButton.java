@@ -51,5 +51,8 @@ public class ExtendedColorChangingButton extends Button {
 		this.renderBg(pMatrixStack, minecraft, pMouseX, pMouseY);
 		int j = getFGColor();
 		drawCenteredString(pMatrixStack, fontrenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
+		if (this.isHovered()) {
+			this.renderToolTip(pMatrixStack, pMouseX, pMouseY);
+		}
 	}
 }

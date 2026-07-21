@@ -1,5 +1,6 @@
 {
   "id": "lotrextended:gundabad_chieftain",
+  "alignmentRequired": 100,
   "unitProfileIDs": [
     "lotrextended:gundabad_orc",
     "lotrextended:gundabad_orc_archer",

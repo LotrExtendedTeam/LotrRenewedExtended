@@ -42,6 +42,7 @@ public class ExtendedEntitySettingsGenerator extends ExtendedEntitySettingsProvi
 		make(ExtendedEntities.BLUE_DWARVEN_AXE_THROWER.get(), FactionPointers.BLUE_MOUNTAINS).setBonus(2).setBankE("blue_mountains/warrior").save(pConsumer);
 		make(ExtendedEntities.HOBBIT_BARTENDER.get(), FactionPointers.HOBBITS).setBonus(1).setBank("hobbits/hobbit_bartender").save(pConsumer);
 		make(ExtendedEntities.HOBBIT_FARMER.get(), FactionPointers.HOBBITS).setBonus(1).setBank("hobbits/hobbit_farmer").save(pConsumer);
+		make(ExtendedEntities.HOBBIT_FARMHAND.get(), FactionPointers.HOBBITS).setBonus(1).setBank("hobbits/hobbit").save(pConsumer);
 		make(ExtendedEntities.ODDMENT_COLLECTOR.get(), ExtendedFactionPointers.ODDMENT_COLLECTORS).setBankE("oddment_collectors/oddment_collector").save(pConsumer);
 		make(ExtendedEntities.RIVENDELL_WANDERER.get(), FactionPointers.HIGH_ELVES).setBonus(1).setBank("high_elves/rivendell/wanderer").save(pConsumer);
 		make(ExtendedEntities.TOLKIEN.get(), FactionPointers.UNALIGNED).setBankE("tolkien").save(pConsumer);

@@ -17,22 +17,23 @@ import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHired
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerAttackedEntityTargetGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerHurtByEntityTargetGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedNearestAttackableTargetNPCGoal;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenCaptainPacket;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredMenuPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredOverviewMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.google.common.base.Predicates;
 
-import lotr.common.data.LOTRLevelData;
-import lotr.common.entity.npc.ExtendedCaptainEntity;
-import lotr.common.entity.npc.ExtendedNPCEntity;
-import lotr.common.entity.npc.ExtendedNPCEntitySettings;
-import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.ExtendedICaptainEntity;
+import lotr.common.entity.npc.ExtendedIFarmhand;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntitySettings;
+import lotr.common.entity.npc.ExtendedITraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.ai.NPCTargetSelector;
+import lotr.common.entity.npc.data.ExtendedNpcCaptainInfoHolder;
+import lotr.common.entity.npc.data.ExtendedNpcFarmhandInfoHolder;
 import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
-import lotr.common.fac.AlignmentPredicates;
 import lotr.common.fac.Faction;
 import lotr.common.item.LOTRSpawnEggItem;
 import lotr.common.util.ExtendedHiredUnitHelper;
@@ -43,8 +44,10 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.UseAction;
@@ -60,7 +63,7 @@ import net.minecraft.world.World;
  * @Mixin (NPCEntity.class)
  * */
 @Mixin(NPCEntity.class)
-public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedNPCEntity {
+public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedINPCEntity {
 	/**
 	 * Mixins with extend classes must add a constructor, but this will be stripped on runtime and will cease to exist
 	 * @param type A placeholder variable instance of CreatureEntity
@@ -68,6 +71,13 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	protected MixinNPCEntity(EntityType<? extends CreatureEntity> type, World world) {
 		super(type, world);
+	}
+
+	@Inject(method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V", at = @At("TAIL"), remap=false)
+	public void constructorExtended(EntityType<? extends NPCEntity> type, World w, CallbackInfo ci) {
+		if(this instanceof ExtendedIFarmhand) {
+			setCanPickUpLoot(true);
+		}
 	}
 
 	/**
@@ -87,6 +97,18 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * */
 	@Unique
 	private ExtendedNpcHiredUnitInfoHolder unitInfo = new ExtendedNpcHiredUnitInfoHolder((NPCEntity)(Object)this);
+
+	/**
+	 * A private data holder for the ExtendedNpcHiredUnitInfoHolder module
+	 * */
+	@Unique
+	private ExtendedNpcCaptainInfoHolder captainInfo = new ExtendedNpcCaptainInfoHolder((NPCEntity)(Object)this);
+
+	/**
+	 * A private data holder for the ExtendedNpcHiredUnitInfoHolder module
+	 * */
+	@Unique
+	private ExtendedNpcFarmhandInfoHolder farmhandInfo = new ExtendedNpcFarmhandInfoHolder((NPCEntity)(Object)this);
 
 	/**
 	 * Get if this NPC requires surface to spawn
@@ -197,6 +219,8 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		marriageInfo.writeToNbtI(nbt);
 		tradeInfo.writeToNbtI(nbt);
 		unitInfo.writeToNbtI(nbt);
+		captainInfo.writeToNbtI(nbt);
+		farmhandInfo.writeToNbtI(nbt);
 	}
 
 	/**
@@ -210,6 +234,8 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		marriageInfo.loadFromNbtI(nbt);
 		tradeInfo.loadFromNbtI(nbt);
 		unitInfo.loadFromNbtI(nbt);
+		captainInfo.loadFromNbtI(nbt);
+		farmhandInfo.loadFromNbtI(nbt);
 	}
 
 	/**
@@ -223,6 +249,8 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		marriageInfo.sendDataToPlayerI(player);
 		tradeInfo.sendDataToPlayerI(player);
 		unitInfo.sendDataToPlayerI(player);
+		captainInfo.sendDataToPlayerI(player);
+		farmhandInfo.sendDataToPlayerI(player);
 	}
 
 	/**
@@ -235,6 +263,8 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		marriageInfo.tickI();
 		tradeInfo.tickI();
 		unitInfo.tickI();
+		captainInfo.tickI();
+		farmhandInfo.tickI();
 	}
 
 	/**
@@ -264,12 +294,35 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 		return unitInfo;
 	}
 
+	/**
+	 * Gets the ExtendedNpcCaptainInfoHolder from this class on runtime via ExtendedNPCEntity
+	 * @return The ExtendedNpcCaptainInfoHolder of this NPCEntity instance
+	 * */
+	@Override
+	public ExtendedNpcCaptainInfoHolder getCaptainInfo() {
+		return captainInfo;
+	}
+
+	/**
+	 * Gets the ExtendedNpcFarmhandInfoHolder from this class on runtime via ExtendedNPCEntity
+	 * @return The ExtendedNpcFarmhandInfoHolder of this NPCEntity instance
+	 * */
+	@Override
+	public ExtendedNpcFarmhandInfoHolder getFarmhandInfo() {
+		return farmhandInfo;
+	}
+
 	@Override
 	public ItemStack getValidOtherFood() {
 		if(unitInfo.isNpcActiveDuty()) {
 			return unitInfo.getValidOtherFood();
 		}
 		return ItemStack.EMPTY;
+	}
+
+	@Override
+	public NPCEntity getNPC() {
+		return (NPCEntity)(Object)this;
 	}
 	/**
 	 * Overwrites the default spawn rule logic to include banner protection checks.
@@ -320,28 +373,18 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	public void mobInteract(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResultType> ci) {
 		if(player.getItemInHand(Hand.OFF_HAND).getItem().getUseAnimation(player.getItemInHand(hand))==UseAction.BLOCK) {
 			ci.setReturnValue(ActionResultType.PASS);
-		} else {
-			if(this instanceof ExtendedTraderEntity) {
-				if (player.getItemInHand(hand).getItem() instanceof SpawnEggItem || player.getItemInHand(hand).getItem() instanceof LOTRSpawnEggItem) {
-					ci.setReturnValue(ActionResultType.PASS);
-				}else {
-					ci.setReturnValue(ExtendedTraderHelper.openTraderGui((NPCEntity)(Object)this, player, (ExtendedTraderEntity)this));
-				}
-			}else if(this instanceof ExtendedCaptainEntity) {
-				if (player.getItemInHand(hand).getItem() instanceof SpawnEggItem || player.getItemInHand(hand).getItem() instanceof LOTRSpawnEggItem) {
-					ci.setReturnValue(ActionResultType.PASS);
-				}else {
-					if (this.level.isClientSide()) {
-						ExtendedPacketHandler.sendToServer(new ExtendedCOpenCaptainPacket(this.getId()));
-					}
-					ci.setReturnValue(ActionResultType.sidedSuccess(this.level.isClientSide()));
-				}
+		} else if(this instanceof ExtendedITraderEntity) {
+			if (player.getItemInHand(hand).getItem() instanceof SpawnEggItem || player.getItemInHand(hand).getItem() instanceof LOTRSpawnEggItem) {
+				ci.setReturnValue(ActionResultType.PASS);
+			}else {
+				ci.setReturnValue(ExtendedTraderHelper.openTraderGui((NPCEntity)(Object)this, player));
 			}
+
 		}
 		if (hand == Hand.MAIN_HAND) {
 			if (unitInfo.isNpcActiveDuty() && player.getUUID().equals(unitInfo.getOwnerUUID())) {
 				if (this.level.isClientSide()) {
-					ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredMenuPacket(getId()));
+					ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredOverviewMenuPacket(getId()));
 				}
 				ci.setReturnValue(ActionResultType.sidedSuccess(this.level.isClientSide()));
 			}
@@ -429,10 +472,10 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 */
 	@Overwrite(remap = false)
 	protected final int addAggressiveTargetingGoals() {
-	    if (this instanceof ExtendedNPCEntitySettings) {
-	        return this.addExtendedTargetingGoals(true);
-	    }
-	    return this.addTargetingGoals(true);
+		if (this instanceof ExtendedINPCEntitySettings) {
+			return this.addExtendedTargetingGoals(true);
+		}
+		return this.addTargetingGoals(true);
 	}
 
 	/**
@@ -445,10 +488,10 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 */
 	@Overwrite(remap = false)
 	protected final int addNonAggressiveTargetingGoals() {
-	    if (this instanceof ExtendedNPCEntitySettings) {
-	        return this.addExtendedTargetingGoals(false);
-	    }
-	    return this.addTargetingGoals(false);
+		if (this instanceof ExtendedINPCEntitySettings) {
+			return this.addExtendedTargetingGoals(false);
+		}
+		return this.addTargetingGoals(false);
 	}
 
 	/**
@@ -470,21 +513,21 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 */
 	@Unique
 	private int addExtendedTargetingGoals(boolean seekTargets) {
-	    if (this.addedTargetingGoals) {
-	        throw new IllegalStateException("Mod development error - NPC addTargetingGoals can only be called once!");
-	    } else {
-	        this.addedTargetingGoals = true;
-	        this.isTargetSeeker = seekTargets;
-	        int index =1;
-	        this.targetSelector.addGoal(index++, new ExtendedHiredPlayerHurtByEntityTargetGoal((NPCEntity)(Object)this));
-	        this.targetSelector.addGoal(index++, new ExtendedHiredPlayerAttackedEntityTargetGoal((NPCEntity)(Object)this));
-	        this.targetSelector.addGoal(index++, new ExtendedHiredHurtByTargetGoal((NPCEntity)(Object)this));
-	        if (seekTargets) {
-	            this.targetSelector.addGoal(index++, new ExtendedNearestAttackableTargetNPCGoal<PlayerEntity>((NPCEntity)(Object)this, PlayerEntity.class, true, Predicates.alwaysTrue()));
-	            this.targetSelector.addGoal(index++, new ExtendedNearestAttackableTargetNPCGoal<NPCEntity>((NPCEntity)(Object)this, NPCEntity.class, true, new NPCTargetSelector((NPCEntity)(Object)this)));
-	        }
-	        return index;
-	    }
+		if (this.addedTargetingGoals) {
+			throw new IllegalStateException("Mod development error - NPC addTargetingGoals can only be called once!");
+		} else {
+			this.addedTargetingGoals = true;
+			this.isTargetSeeker = seekTargets;
+			int index =1;
+			this.targetSelector.addGoal(index++, new ExtendedHiredPlayerHurtByEntityTargetGoal((NPCEntity)(Object)this));
+			this.targetSelector.addGoal(index++, new ExtendedHiredPlayerAttackedEntityTargetGoal((NPCEntity)(Object)this));
+			this.targetSelector.addGoal(index++, new ExtendedHiredHurtByTargetGoal((NPCEntity)(Object)this));
+			if (seekTargets) {
+				this.targetSelector.addGoal(index++, new ExtendedNearestAttackableTargetNPCGoal<PlayerEntity>((NPCEntity)(Object)this, PlayerEntity.class, true, Predicates.alwaysTrue()));
+				this.targetSelector.addGoal(index++, new ExtendedNearestAttackableTargetNPCGoal<NPCEntity>((NPCEntity)(Object)this, NPCEntity.class, true, new NPCTargetSelector((NPCEntity)(Object)this)));
+			}
+			return index;
+		}
 	}
 
 	/**
@@ -496,9 +539,9 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * @param index       The initial goal index prior to modification.
 	 */
 	@Inject(method = "addTargetingGoals(Z)I", 
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.BEFORE, 
-			ordinal = 0, remap = true),
-			locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.BEFORE, 
+		ordinal = 0, remap = true),
+		locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
 	private void extended$addAdditionalTargetingGoals(boolean seekTargets, CallbackInfoReturnable<Integer> cir, int index) {
 		this.targetSelector.addGoal(1, new ExtendedHiredPlayerHurtByEntityTargetGoal((NPCEntity)(Object)this));
 		this.targetSelector.addGoal(2, new ExtendedHiredPlayerAttackedEntityTargetGoal((NPCEntity)(Object)this));
@@ -518,8 +561,8 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * @return A new instance of {@link ExtendedHiredHurtByTargetGoal} with unit-aware, friendly-fire-safe behavior.
 	 */
 	@ModifyArg(method = "addTargetingGoals(Z)I",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", 
-			ordinal = 0, remap = true), index = 1, remap = false)
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", 
+		ordinal = 0, remap = true), index = 1, remap = false)
 	private Goal extended$replaceHurtGoalWithUnitRespectingGoal(Goal goal) {
 		return new ExtendedHiredHurtByTargetGoal((NPCEntity)(Object)this);
 	}
@@ -536,26 +579,78 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedN
 	 * @param index       The targeting goal index after custom goals have been injected.
 	 */
 	@Inject(method = "addTargetingGoals(Z)I", 
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.AFTER, 
-			ordinal = 0, remap = true),
-			locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/entity/ai/goal/Goal;)V", shift = At.Shift.AFTER, 
+		ordinal = 0, remap = true),
+		locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
 	private void extended$fixTargetingGoalsOffset(boolean seekTargets, CallbackInfoReturnable<Integer> cir, int index) {
 		index = 4;
 	}
 
 	/**
-	 * Overrides the method to add non-aggressive targeting goals for NPCs,
-	 * injecting extended targeting logic at the head of the goal list.
-	 * 
+	 * Server-side check for speechbanks
 	 * @author maximuslotro
-	 * @reason to inject extended targeting goals at the head
+	 * @reason Add proper checks if player can trade
 	 * @param player The player to check
 	 * @return True if player can trade with NPC
 	 */
 	@Overwrite(remap=false)
 	public boolean canTrade(PlayerEntity player) {
-		return isFriendlyAndAligned(player) 
-			&& this.getTraderInfo().shouldTick() 
-			&& LOTRLevelData.getSidedData(player).getAlignmentData().hasAlignment(getFaction(), AlignmentPredicates.greaterThanOrEqual(this.getTraderInfo().getProfile().getTradingAlignmentRequired()));
+		if(isFriendlyAndAligned(player)) {
+			if(this instanceof ExtendedIMerchantEntity && ((ExtendedIMerchantEntity)this).canTradeWithPlayer(player)) {
+				return true;
+			}else if(this instanceof ExtendedICaptainEntity && ((ExtendedICaptainEntity)this).canHireToPlayer(player)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	protected void pickUpItem(ItemEntity pItemEntity) {
+		ItemStack itemstack = pItemEntity.getItem();
+		if (this instanceof ExtendedIFarmhand && getUUID().equals(pItemEntity.getOwner())) {
+			ItemStack seeds = this.getFarmhandInfo().getSeedsItem();
+			boolean isSeedMatch = !seeds.isEmpty() && seeds.sameItem(itemstack) && ItemStack.tagMatches(seeds, itemstack);
+			boolean canFitInSeeds = isSeedMatch && seeds.getCount() < seeds.getMaxStackSize();
+			ItemStack bonemeal = this.getFarmhandInfo().getBonemealItem();
+			boolean isBonemealMatch = itemstack.getItem() == net.minecraft.item.Items.BONE_MEAL;
+			boolean canFitInBonemeal = isBonemealMatch && !bonemeal.isEmpty() && bonemeal.getCount() < bonemeal.getMaxStackSize();
+			Inventory outputInv = this.getFarmhandInfo().getFarmhandOutputInventory();
+			if (canFitInSeeds || canFitInBonemeal || (!isBonemealMatch && outputInv.canAddItem(itemstack))) {
+				this.onItemPickup(pItemEntity);
+				this.take(pItemEntity, itemstack.getCount());
+				ItemStack remaining = itemstack.copy();
+				if (isSeedMatch && canFitInSeeds) {
+					int maxStack = seeds.getMaxStackSize();
+					int seedSpaceRemaining = maxStack - seeds.getCount();
+					int toAdd = Math.min(seedSpaceRemaining, remaining.getCount());
+					seeds.grow(toAdd);
+					remaining.shrink(toAdd);
+				}
+				if (!remaining.isEmpty() && isBonemealMatch && canFitInBonemeal) {
+					int maxStack = bonemeal.getMaxStackSize();
+					int bonemealSpaceRemaining = maxStack - bonemeal.getCount();
+					int toAdd = Math.min(bonemealSpaceRemaining, remaining.getCount());
+					bonemeal.grow(toAdd);
+					remaining.shrink(toAdd);
+				}
+				if (!remaining.isEmpty() && !isBonemealMatch && outputInv.canAddItem(remaining)) {
+					remaining = outputInv.addItem(remaining);
+				}				
+				if (remaining.isEmpty()) {
+					pItemEntity.remove();
+				} else {
+					itemstack.setCount(remaining.getCount());
+					pItemEntity.remove(); // Delete items that could not be picked up
+				}
+			}else {
+				pItemEntity.remove(); // Delete items that could not be picked up
+			}
+		}
+	}
+
+	@Override
+	public boolean wantsToPickUp(ItemStack pStack) {
+		return this instanceof ExtendedIFarmhand;
 	}
 }

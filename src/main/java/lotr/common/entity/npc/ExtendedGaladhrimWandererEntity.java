@@ -39,194 +39,174 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractCloakingElfEntity implements ExtendedWanderingTraderEntity {
+public class ExtendedGaladhrimWandererEntity extends ExtendedAbstractCloakingElfEntity implements ExtendedIWanderingTraderEntity {
 
-    int lastTickVerifiedPlayerTradingWithIsOnline = 0;
+	int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
-    private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedGaladhrimWandererEntity.class, DataSerializers.OPTIONAL_UUID);
+	private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedGaladhrimWandererEntity.class, DataSerializers.OPTIONAL_UUID);
 
-    private List<UUID> escorts = new ArrayList<>();
+	private List<UUID> escorts = new ArrayList<>();
 
 
-    @Override
+	@Override
 	protected NPCNameGenerator getNameGenerator() {
-        return NPCNameGenerators.SINDARIN;
-    }
+		return NPCNameGenerators.SINDARIN;
+	}
 
 	@SuppressWarnings("unchecked")
 	public ExtendedGaladhrimWandererEntity(EntityType<? extends ExtendedAbstractCloakingElfEntity> type, World w) {
-        super(type, w);
-        this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeOnly());
-    }
+		super(type, w);
+		this.getNPCCombatUpdater().setAttackModeUpdater(StandardAttackModeUpdaters.meleeOnly());
+	}
 
-    @Override
-    public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
-        spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
-        this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.GALADHRIM_DAGGER.get()));
-        this.npcItemsInv.clearRangedWeapon(); // Eleven wanderers do not have ranged weapons
-        this.npcItemsInv.clearIdleItem();
-        return spawnData;
-    }
+	@Override
+	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
+		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
+		this.npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.GALADHRIM_DAGGER.get()));
+		this.npcItemsInv.clearRangedWeapon(); // Eleven wanderers do not have ranged weapons
+		this.npcItemsInv.clearIdleItem();
+		return spawnData;
+	}
 
-    @Override
-    public void updatePlayerInteractingWith(UUID uuid) {
-        this.entityData.set(PLAYER_TRADING_WITH, Optional.of(uuid));
-    }
+	@Override
+	public void updatePlayerInteractingWith(UUID uuid) {
+		this.entityData.set(PLAYER_TRADING_WITH, Optional.of(uuid));
+	}
 
-    @Override
+	@Override
 	public Optional<UUID> getPlayerInteractingWith() {
-        return this.entityData.get(PLAYER_TRADING_WITH);
-    }
+		return this.entityData.get(PLAYER_TRADING_WITH);
+	}
 
-    // Remove, drink, smoke and eat AIs
-    @Override
+	// Remove, drink, smoke and eat AIs
+	@Override
 	protected void addNPCAI() {
-        ((GroundPathNavigator)this.getNavigation()).setCanOpenDoors(true);
-        this.getNavigation().setCanFloat(true);
-        this.setPathfindingMalus(PathNodeType.DANGER_FIRE, 16.0F);
-        this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, -1.0F);
-        this.initialiseAttackGoals(this.getAttackGoalsHolder());
-        this.addNPCTargetingAI();
+		((GroundPathNavigator)this.getNavigation()).setCanOpenDoors(true);
+		this.getNavigation().setCanFloat(true);
+		this.setPathfindingMalus(PathNodeType.DANGER_FIRE, 16.0F);
+		this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, -1.0F);
+		this.initialiseAttackGoals(this.getAttackGoalsHolder());
+		this.addNPCTargetingAI();
 
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.addAttackGoal(2);
-        this.goalSelector.addGoal(4, new OpenDoorGoal(this, true));
-        this.goalSelector.addGoal(5, new ExtendedInteractableTalkToCurrentGoal(this, this));
-        this.goalSelector.addGoal(6, new ExtendedInteractableFriendlyNPCConversationGoal(this, this, 0.001F));
-        this.goalSelector.addGoal(7, new WatchSunriseSunsetGoal(this, 0.01F));
-        this.goalSelector.addGoal(8, new StargazingGoal(this, 4.0E-4F));
-        this.goalSelector.addGoal(9, new ExtendedInteractableWaterAvoidingRandomWalkingGoal(this, this,1.0));
-        this.goalSelector.addGoal(10, new NPCEatGoal(this, this.getEatPool(), 12000));
-        this.goalSelector.addGoal(10, new NPCDrinkGoal(this, this.getDrinkPool(), 8000));
-        this.goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.02F));
-        this.goalSelector.addGoal(11, new LookAtGoal(this, NPCEntity.class, 5.0F, 0.02F));
-        this.goalSelector.addGoal(12, new LookAtGoal(this, LivingEntity.class, 8.0F, 0.02F));
-        this.goalSelector.addGoal(13, new LookRandomlyGoal(this));
-    }
+		this.goalSelector.addGoal(0, new SwimGoal(this));
+		this.addAttackGoal(2);
+		this.goalSelector.addGoal(4, new OpenDoorGoal(this, true));
+		this.goalSelector.addGoal(5, new ExtendedInteractableTalkToCurrentGoal(this, this));
+		this.goalSelector.addGoal(6, new ExtendedInteractableFriendlyNPCConversationGoal(this, this, 0.001F));
+		this.goalSelector.addGoal(7, new WatchSunriseSunsetGoal(this, 0.01F));
+		this.goalSelector.addGoal(8, new StargazingGoal(this, 4.0E-4F));
+		this.goalSelector.addGoal(9, new ExtendedInteractableWaterAvoidingRandomWalkingGoal(this, this,1.0));
+		this.goalSelector.addGoal(10, new NPCEatGoal(this, this.getEatPool(), 12000));
+		this.goalSelector.addGoal(10, new NPCDrinkGoal(this, this.getDrinkPool(), 8000));
+		this.goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 8.0F, 0.02F));
+		this.goalSelector.addGoal(11, new LookAtGoal(this, NPCEntity.class, 5.0F, 0.02F));
+		this.goalSelector.addGoal(12, new LookAtGoal(this, LivingEntity.class, 8.0F, 0.02F));
+		this.goalSelector.addGoal(13, new LookRandomlyGoal(this));
+	}
 
-    @Override
-    protected void addNPCTargetingAI() {
-    	if(ExtendedServerConfig.enableLegacyTraderPassiveBehavior.get()) {
+	@Override
+	protected void addNPCTargetingAI() {
+		if(ExtendedServerConfig.enableLegacyTraderPassiveBehavior.get()) {
 			this.addNonAggressiveTargetingGoals();
 		}else {
 			this.addAggressiveTargetingGoals();
 		}
-    }
+	}
 
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(PLAYER_TRADING_WITH, Optional.empty());
-    }
+	@Override
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(PLAYER_TRADING_WITH, Optional.empty());
+	}
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return ElfEntity.regAttrs();
-    }
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return ElfEntity.regAttrs();
+	}
 
-    @Override
-    public void addAdditionalSaveData(CompoundNBT tag) {
-        super.addAdditionalSaveData(tag);
+	@Override
+	public void addAdditionalSaveData(CompoundNBT tag) {
+		super.addAdditionalSaveData(tag);
 
-        ExtendedTraderHelper.saveWanderingTraderEscortUUIDs(this, escorts, tag);
-    }
+		ExtendedTraderHelper.saveWanderingTraderEscortUUIDs(this, escorts, tag);
+	}
 
-    @Override
-    public void readAdditionalSaveData(CompoundNBT tag) {
-        super.readAdditionalSaveData(tag);
+	@Override
+	public void readAdditionalSaveData(CompoundNBT tag) {
+		super.readAdditionalSaveData(tag);
 
-        escorts = ExtendedTraderHelper.loadEscortUUIDs(tag);
-    }
+		escorts = ExtendedTraderHelper.loadEscortUUIDs(tag);
+	}
 
-    @Override
-    protected void initialiseAttackGoals(AttackGoalsHolder holder) {
-        holder.setMeleeAttackGoal(this.createElfMeleeAttackGoal());
-    }
+	@Override
+	protected void initialiseAttackGoals(AttackGoalsHolder holder) {
+		holder.setMeleeAttackGoal(this.createElfMeleeAttackGoal());
+	}
 
-    @Override
-    public void playTradeSound() {
-        ExtendedTraderHelper.playTraderSound(level, getOnPos());
-    }
+	@Override
+	public boolean isInteractingWithPlayer() {
+		return ExtendedInteractableHelper.isInteractingWithPlayer(getPlayerInteractingWith());
+	}
 
-    @Override
-    public boolean isInteractingWithPlayer() {
-        return ExtendedInteractableHelper.isInteractingWithPlayer(getPlayerInteractingWith());
-    }
+	@Override
+	public void removePlayerFromInteracting(PlayerEntity player) {
+		ExtendedInteractableHelper.removePlayerFromInteracting(player, entityData, PLAYER_TRADING_WITH);
+	}
 
-    @Override
-    public void removePlayerFromInteracting(PlayerEntity player) {
-    	ExtendedInteractableHelper.removePlayerFromInteracting(player, entityData, PLAYER_TRADING_WITH);
-    }
+	@Override
+	public void tick() {
+		super.tick();
 
-    @Override
-    public void openCoinExchange(PlayerEntity player) {
-        ExtendedTraderHelper.openCoinExchange(this, player, this);
-    }
+		if (level.isClientSide) {
+			moveCloak();
+			return;
+		}
 
-    @Override
-    public void openTradeMenu(PlayerEntity player) {
-        ExtendedTraderHelper.openTradeMenu(this, player, this);
-    }
+		if (lastTickVerifiedPlayerTradingWithIsOnline >= 100) {
+			if (entityData.get(PLAYER_TRADING_WITH).isPresent()) {
+				UUID uuid = entityData.get(PLAYER_TRADING_WITH).get();
+				if (level.getPlayerByUUID(uuid) == null) entityData.set(PLAYER_TRADING_WITH, Optional.empty());
+			}
 
-    @Override
-    public String getTraderName() {
-        return ExtendedTraderHelper.getTraderName(getDisplayName());
-    }
+			lastTickVerifiedPlayerTradingWithIsOnline = 0;
+		} else {
+			lastTickVerifiedPlayerTradingWithIsOnline++;
+		}
+	}
 
-    @Override
-    public void tick() {
-        super.tick();
+	@Override
+	public ResourceLocation getCapeTextureLocation() {
+		return new ResourceLocation("lotrextended", "textures/capes/galadhrim_trader.png");
+	}
 
-        if (level.isClientSide) {
-        	moveCloak();
-            return;
-        }
+	@Override
+	public String getDepartureLine() {
+		return "speechbank.galadhrim_wanderer.departure." + (random.nextInt(8) + 1);
+	}
 
-        if (lastTickVerifiedPlayerTradingWithIsOnline >= 100) {
-            if (entityData.get(PLAYER_TRADING_WITH).isPresent()) {
-                UUID uuid = entityData.get(PLAYER_TRADING_WITH).get();
-                if (level.getPlayerByUUID(uuid) == null) entityData.set(PLAYER_TRADING_WITH, Optional.empty());
-            }
+	@Override
+	public List<UUID> getEscortUUIDs() {
+		return escorts;
+	}
 
-            lastTickVerifiedPlayerTradingWithIsOnline = 0;
-        } else {
-            lastTickVerifiedPlayerTradingWithIsOnline++;
-        }
-    }
+	@Override
+	public void addEscort(UUID uuid) {
+		escorts.add(uuid);
+	}
 
-    @Override
-    public ResourceLocation getCapeTextureLocation() {
-        return new ResourceLocation("lotrextended", "textures/capes/galadhrim_trader.png");
-    }
-
-    @Override
-    public String getDepartureLine() {
-        return "speechbank.galadhrim_wanderer.departure." + (random.nextInt(8) + 1);
-    }
-
-    @Override
-    public List<UUID> getEscortUUIDs() {
-        return escorts;
-    }
-
-    @Override
-    public void addEscort(UUID uuid) {
-        escorts.add(uuid);
-    }
-
-    @Override
-    public NPCEntity createEscort() {
-        return LOTREntities.GALADHRIM_ELF.get().create(level);
-    }
+	@Override
+	public NPCEntity createEscort() {
+		return LOTREntities.GALADHRIM_ELF.get().create(level);
+	}
 
 	@Override
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.GALADHRIM_WANDERER;
 	}
 
-    @Override
-    public int getFactionColor() {
-        return this.getFaction().getColor();
-    }
+	@Override
+	public int getFactionColor() {
+		return this.getFaction().getColor();
+	}
 
 	@Override
 	public ResourceLocation getCloakTextureLocation() {

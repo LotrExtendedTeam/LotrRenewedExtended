@@ -4,12 +4,11 @@ import com.github.maximuslotro.lotrrextended.common.inventory.container.Extended
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-public class ExtendedGrindstoneScreen extends ContainerScreen<ExtendedGrindstoneContainer> {
+public class ExtendedGrindstoneScreen extends ExtendedContainerScreen<ExtendedGrindstoneContainer> {
 	private static final ResourceLocation GRINDSTONE_LOCATION = new ResourceLocation("textures/gui/container/grindstone.png");
 
 	public ExtendedGrindstoneScreen(ExtendedGrindstoneContainer pGrindstoneMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {

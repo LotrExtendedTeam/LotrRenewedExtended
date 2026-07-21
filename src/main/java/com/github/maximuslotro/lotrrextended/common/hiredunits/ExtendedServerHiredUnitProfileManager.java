@@ -63,7 +63,7 @@ public class ExtendedServerHiredUnitProfileManager extends ReloadListener<Map<Re
 						ExtendedLog.warn("Loaded a Hired Unit Profile that has a diffrent file id and file name, THEY SHOULD BE THE SAME!, CHANGING TO FILE NAME ID! {}", spawnName);
 						hiredUnitProfile = new ExtendedServerHiredUnitProfile(spawnName, hiredUnitProfile.stringsAreTranslated(), hiredUnitProfile.getEntityUnitTitle(), 
 							hiredUnitProfile.getEntityUnitShorthandName(), hiredUnitProfile.getEntityUnitTypeName(), hiredUnitProfile.getEquipmentPools(),
-							hiredUnitProfile.getHiringCost(), hiredUnitProfile.isHiringRequiresPledge(), hiredUnitProfile.getHiringAlignmentRequired(), hiredUnitProfile.getAttackType(), hiredUnitProfile.getUnitEntityType());
+							hiredUnitProfile.getHiringCost(), hiredUnitProfile.isHiringRequiresPledge(), hiredUnitProfile.getHiringAlignmentRequired(), hiredUnitProfile.getUnitType(), hiredUnitProfile.getUnitEntityType());
 					}
 					builder.put(spawnName, hiredUnitProfile);
 				}

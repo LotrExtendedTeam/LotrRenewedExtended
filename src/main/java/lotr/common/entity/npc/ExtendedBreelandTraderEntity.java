@@ -6,7 +6,6 @@ import java.util.UUID;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 
 import lotr.common.util.ExtendedInteractableHelper;
-import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -16,7 +15,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 
-public abstract class ExtendedBreelandTraderEntity extends BreeManEntity  implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
+public abstract class ExtendedBreelandTraderEntity extends BreeManEntity  implements ExtendedINPCEntitySettings, ExtendedIMerchantEntity {
 
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
@@ -47,11 +46,6 @@ public abstract class ExtendedBreelandTraderEntity extends BreeManEntity  implem
     }
 
     @Override
-    public void playTradeSound() {
-        ExtendedTraderHelper.playTraderSound(level, getOnPos());
-    }
-
-    @Override
     public boolean isInteractingWithPlayer() {
         return ExtendedInteractableHelper.isInteractingWithPlayer(getPlayerInteractingWith());
     }
@@ -59,21 +53,6 @@ public abstract class ExtendedBreelandTraderEntity extends BreeManEntity  implem
     @Override
     public void removePlayerFromInteracting(PlayerEntity player) {
     	ExtendedInteractableHelper.removePlayerFromInteracting(player, entityData, PLAYER_TRADING_WITH);
-    }
-
-    @Override
-    public void openCoinExchange(PlayerEntity player) {
-        ExtendedTraderHelper.openCoinExchange(this, player, this);
-    }
-
-    @Override
-    public void openTradeMenu(PlayerEntity player) {
-        ExtendedTraderHelper.openTradeMenu(this, player, this);
-    }
-
-    @Override
-    public String getTraderName() {
-        return ExtendedTraderHelper.getTraderName(getDisplayName());
     }
 
     @Override

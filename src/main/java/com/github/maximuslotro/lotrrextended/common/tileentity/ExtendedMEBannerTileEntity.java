@@ -20,7 +20,6 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerProtecti
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerProtectionOwners;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
-import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
 
 import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.data.ExtendedLOTRPlayerData;
@@ -153,9 +152,8 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				if(connectedEntity==null) {
 					createAndSetBannerEntity();
 				}else {
-					AxisAlignedBB checkBox = AxisAlignedBBUtils.makeCroppedBB(this.getBlockPos());
 					Predicate<ExtendedBannerEntity> predicate = (bannerEntity) -> bannerEntity.getUUID().equals(connectedEntity);
-					List<ExtendedBannerEntity> banners = level.getEntitiesOfClass(ExtendedBannerEntity.class, checkBox, predicate);
+					List<ExtendedBannerEntity> banners = level.getEntitiesOfClass(ExtendedBannerEntity.class, new AxisAlignedBB(this.getBlockPos()), predicate);
 					if(banners.size() == 0) {
 						createAndSetBannerEntity();
 					}else if(banners.size()>1){

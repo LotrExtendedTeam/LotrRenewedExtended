@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTypes;
 
-public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity implements ExtendedCaptainEntity {
+public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity implements ExtendedICaptainEntity {
 
 	public ExtendedGundabadOrcChieftain(EntityType<? extends ExtendedGundabadOrcChieftain> type, World w) {
 		super(type, w);
