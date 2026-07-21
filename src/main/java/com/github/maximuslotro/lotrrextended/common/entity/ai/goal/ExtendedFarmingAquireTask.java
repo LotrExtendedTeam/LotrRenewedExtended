@@ -11,17 +11,42 @@ import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
-
+/**
+ * Farming task responsible for searching nearby container entities and restocking the NPC's supplies.
+ * <p>
+ * This task activates when the NPC's required farming resources (such as seeds or bonemeal) fall below 
+ * restocking thresholds. It locates containers holding matching items, handles container interactions, 
+ * extracts the needed quantities to top off internal inventory stacks, and marks the container as dirty.
+ * </p>
+ * 
+ * @see ExtendedFarmingAbstractChestTask
+ * @see ExtendedFarmingGoalHolder
+ * @see ExtendedItemStackUtils
+ */
 public class ExtendedFarmingAquireTask extends ExtendedFarmingAbstractChestTask {
 	/**
-	 * Cache Bonemeal since slot can go to empty, whereas seeds can only go down to 1 item
-	 * */
+	 * Cached stack reference used for matching and measuring bone meal items 
+	 * during inventory checks and withdrawal logic.
+	 */
 	private final static ItemStack BONEMEAL = new ItemStack(Items.BONE_MEAL); 
-
+	/**
+	 * Constructs a new resource acquisition task bound to the given goal holder.
+	 *
+	 * @param goalHolder the parent goal holder managing this task instance
+	 */
 	public ExtendedFarmingAquireTask(ExtendedFarmingGoalHolder goalHolder) {
 		super(goalHolder);
 	}
-
+	/**
+	 * Checks whether the NPC is in need of supply restocking.
+	 * <p>
+	 * Evaluates current internal supply quantities (e.g., active seed type or bonemeal reserve) 
+	 * against low-resource thresholds to determine if a chest search should be triggered.
+	 * </p>
+	 *
+	 * @param pServerLevel world where the state evaluation occurs
+	 * @return {@code true} if any tracked supply stack is depleted or low enough to warrant restocking
+	 */
 	@Override
 	public boolean isTaskValidForNPC(ServerWorld pServerLevel) {
 		ItemStack seedsStack = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
@@ -33,7 +58,17 @@ public class ExtendedFarmingAquireTask extends ExtendedFarmingAbstractChestTask 
 		}
 		return false;
 	}
-
+	/**
+	 * Validates whether a given chest position contains needed supplies.
+	 * <p>
+	 * Wraps double-chest access checks and iterates over container contents, matching item IDs and NBT tags 
+	 * against currently required resources (seeds and/or bonemeal).
+	 * </p>
+	 *
+	 * @param chestBlockPos target block coordinates of the candidate container
+	 * @param pServerLevel  world where the container check takes place
+	 * @return {@code true} if the target container holds at least one matching item required for restocking
+	 */
 	@Override
 	public boolean isValidPosForTask(BlockPos chestBlockPos, ServerWorld pServerLevel) {
 		TileEntity blockEntity = pServerLevel.getBlockEntity(chestBlockPos);
@@ -61,7 +96,18 @@ public class ExtendedFarmingAquireTask extends ExtendedFarmingAbstractChestTask 
 		}
 		return false;
 	}
-
+	/**
+	 * Executes the resource withdrawal process at the target container.
+	 * <p>
+	 * Defers execution while the chest opening animation completes. Once open, calculates required deficit 
+	 * amounts, transfers matching items into the entity's inventory data structures, and marks the block entity as changed.
+	 * </p>
+	 *
+	 * @param chestBlockPos coordinates of the container being accessed
+	 * @param pServerLevel  world where the task is executing
+	 * @return {@code true} when the extraction operation completes or fails early (releasing task execution); 
+	 *         {@code false} while awaiting chest opening animation ticks
+	 */
 	@Override
 	public boolean executeTask(BlockPos chestBlockPos, ServerWorld pServerLevel) {
 		TileEntity blockEntity = pServerLevel.getBlockEntity(chestBlockPos);
@@ -101,7 +147,17 @@ public class ExtendedFarmingAquireTask extends ExtendedFarmingAbstractChestTask 
 		chest.setChanged();
 		return true;
 	}
-
+	/**
+	 * Iterates container slots to extract a target item up to a desired quantity.
+	 * <p>
+	 * Shrinks source item stacks in place as items are withdrawn and stops once the needed count is satisfied.
+	 * </p>
+	 *
+	 * @param inventory          container inventory accessor to withdraw from
+	 * @param targetMatchingItem archetype stack defining item identity and tag matching rules
+	 * @param amountNeeded       maximum total count of items to pull from the container
+	 * @return actual quantity of items successfully extracted from the inventory
+	 */
 	private int withdrawItemFromChest(IInventory inventory, ItemStack targetMatchingItem, int amountNeeded) {
 		int totalAcquired = 0;
 		for (int i = 0; i < inventory.getContainerSize(); i++) {
