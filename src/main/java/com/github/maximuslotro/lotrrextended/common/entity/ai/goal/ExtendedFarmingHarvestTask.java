@@ -127,4 +127,10 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 		super.startTask();
 		harvestTick=0;
 	}
+
+	@Override
+	public void stopTask() {
+		super.stopTask();
+		harvestTick=0; //Important, fixes isValidPosForTask being bypassed, allowing any block to be broken
+	}
 }
