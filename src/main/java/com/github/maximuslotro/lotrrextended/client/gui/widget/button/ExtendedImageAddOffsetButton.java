@@ -57,7 +57,6 @@ public class ExtendedImageAddOffsetButton extends Button {
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 		RenderSystem.enableDepthTest();
-		RenderSystem.enableDepthTest();
 		int i = yTexStart;
 		if (!active) {
 			i += yDiffTex*4;
