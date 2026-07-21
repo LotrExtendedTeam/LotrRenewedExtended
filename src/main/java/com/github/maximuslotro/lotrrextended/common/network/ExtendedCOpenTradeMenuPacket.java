@@ -11,6 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.inventory.container.Extended
 
 import io.netty.buffer.Unpooled;
 import lotr.common.entity.npc.ExtendedIMerchantEntity;
+import lotr.common.entity.npc.ExtendedITraderEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
@@ -40,7 +41,7 @@ public class ExtendedCOpenTradeMenuPacket {
     public static void handle(ExtendedCOpenTradeMenuPacket packet, Supplier<NetworkEvent.Context> context) {
     	context.get().setPacketHandled(true);
     	Entity entity = Objects.requireNonNull(context.get().getSender()).level.getEntity(packet.traderId);
-    	if (!(entity instanceof ExtendedTraderEntity)) {
+    	if (!(entity instanceof ExtendedITraderEntity)) {
     		ExtendedLog.error("Recieved a trader eneity not of type ExtendedTraderEntity from {}", context.get().getSender().getName().getString());
     		context.get().setPacketHandled(true);
     		return;

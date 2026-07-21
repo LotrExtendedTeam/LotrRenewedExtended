@@ -33,7 +33,7 @@ public class ExtendedCOpenCaptainPacket {
 
 	public static void handle(ExtendedCOpenCaptainPacket packet, Supplier<NetworkEvent.Context> context) {
 		Entity entity = context.get().getSender().level.getEntity(packet.captainId);
-		if (!(entity instanceof ExtendedCaptainEntity)) {
+		if (!(entity instanceof ExtendedICaptainEntity)) {
 			ExtendedLog.error("Received a captain entity not of type ExtendedCaptainEntity from {}", context.get().getSender().getName().getString());
 			context.get().setPacketHandled(true);
 			return;
