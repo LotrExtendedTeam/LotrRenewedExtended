@@ -76,8 +76,8 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	}
 
 	@Override
-	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		return pServerLevel.getBlockState(pAboveBlockPos).is(Blocks.COMPOSTER);
+	public boolean isValidPosForTask(BlockPos pComposterPos, ServerWorld pServerLevel) {
+		return pServerLevel.getBlockState(pComposterPos).is(Blocks.COMPOSTER);
 	}
 
 	@Override
@@ -128,20 +128,20 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	}
 
 	// Copied from ComposterBlock.extractProduce
-	public static BlockState extractProduce(BlockState pState, World pLevel, BlockPos pPos, Entity pEntity) {
+	public static BlockState extractProduce(BlockState pState, World pLevel, BlockPos pComposterPos, Entity pEntity) {
 		if (!pLevel.isClientSide) {
 			float f = 0.7F;
 			double d0 = (double)(pLevel.random.nextFloat() * 0.7F) + (double)0.15F;
 			double d1 = (double)(pLevel.random.nextFloat() * 0.7F) + (double)0.060000002F + 0.6D;
 			double d2 = (double)(pLevel.random.nextFloat() * 0.7F) + (double)0.15F;
-			ItemEntity itementity = new ItemEntity(pLevel, (double)pPos.getX() + d0, (double)pPos.getY() + d1, (double)pPos.getZ() + d2, new ItemStack(Items.BONE_MEAL));
+			ItemEntity itementity = new ItemEntity(pLevel, (double)pComposterPos.getX() + d0, (double)pComposterPos.getY() + d1, (double)pComposterPos.getZ() + d2, new ItemStack(Items.BONE_MEAL));
 			itementity.setDefaultPickUpDelay();
 			itementity.setOwner(pEntity.getUUID());// Add entity as owner
 			pLevel.addFreshEntity(itementity);
 		}
 
-		BlockState blockstate = ComposterBlock.empty(pState, pLevel, pPos);
-		pLevel.playSound((PlayerEntity)null, pPos, SoundEvents.COMPOSTER_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		BlockState blockstate = ComposterBlock.empty(pState, pLevel, pComposterPos);
+		pLevel.playSound((PlayerEntity)null, pComposterPos, SoundEvents.COMPOSTER_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		return blockstate;
 	}
 

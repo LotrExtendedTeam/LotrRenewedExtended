@@ -35,8 +35,8 @@ public class ExtendedFarmingAquireTask extends ExtendedFarmingAbstractChestTask 
 	}
 
 	@Override
-	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		TileEntity blockEntity = pServerLevel.getBlockEntity(pAboveBlockPos);
+	public boolean isValidPosForTask(BlockPos chestBlockPos, ServerWorld pServerLevel) {
+		TileEntity blockEntity = pServerLevel.getBlockEntity(chestBlockPos);
 		if(blockEntity instanceof ChestTileEntity) {
 			ChestTileEntity chest = (ChestTileEntity) blockEntity;
 			BlockState chestState = blockEntity.getBlockState();
@@ -45,7 +45,7 @@ public class ExtendedFarmingAquireTask extends ExtendedFarmingAbstractChestTask 
 			// Only look for seeds if the slot isn't empty
 			boolean needsSeeds = !seedsStack.isEmpty() && seedsStack.getCount() < seedsStack.getMaxStackSize();
 			boolean needsBonemeal = goalHolder.farmhandData.getFarmhandInfo().getBonemealItem().getCount() < BONEMEAL.getMaxStackSize();
-			IInventory inventory = ChestBlock.getContainer((ChestBlock)chestState.getBlock(), chestState, pServerLevel, pAboveBlockPos, true);
+			IInventory inventory = ChestBlock.getContainer((ChestBlock)chestState.getBlock(), chestState, pServerLevel, chestBlockPos, true);
 			for (int i = 0; i < inventory.getContainerSize(); i++) {
 				ItemStack chestStack = inventory.getItem(i);
 				if (chestStack.isEmpty()) {
@@ -63,8 +63,8 @@ public class ExtendedFarmingAquireTask extends ExtendedFarmingAbstractChestTask 
 	}
 
 	@Override
-	public boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		TileEntity blockEntity = pServerLevel.getBlockEntity(pAboveBlockPos);
+	public boolean executeTask(BlockPos chestBlockPos, ServerWorld pServerLevel) {
+		TileEntity blockEntity = pServerLevel.getBlockEntity(chestBlockPos);
 		if (!(blockEntity instanceof ChestTileEntity)) {
 			return true;
 		}
@@ -75,7 +75,7 @@ public class ExtendedFarmingAquireTask extends ExtendedFarmingAbstractChestTask 
 		}
 
 		BlockState chestState = blockEntity.getBlockState();
-		IInventory inventory = ChestBlock.getContainer((ChestBlock)chestState.getBlock(), chestState, pServerLevel, pAboveBlockPos, true);
+		IInventory inventory = ChestBlock.getContainer((ChestBlock)chestState.getBlock(), chestState, pServerLevel, chestBlockPos, true);
 
 		ItemStack seedsStack = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
 		if (!seedsStack.isEmpty() && seedsStack.getCount() < seedsStack.getMaxStackSize()) {

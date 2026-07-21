@@ -43,12 +43,12 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 	}
 
 	@Override
-	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+	public boolean isValidPosForTask(BlockPos cropPosition, ServerWorld pServerLevel) {
 		if(harvestTick>0) {
 			return true;
 		}
 		Item plantItem = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().getItem();
-		BlockState plantState = pServerLevel.getBlockState(pAboveBlockPos);
+		BlockState plantState = pServerLevel.getBlockState(cropPosition);
 		Block plantBlock = plantState.getBlock();
 		if(plantBlock instanceof CropsBlock && ((CropsBlock)plantBlock).isMaxAge(plantState)) {
 			if (plantItem instanceof BlockItem && ((BlockItem)plantItem).getBlock()==plantBlock) {
@@ -64,11 +64,11 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 	}
 
 	@Override
-	public boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+	public boolean executeTask(BlockPos cropPosition, ServerWorld pServerLevel) {
 		if(harvestTick==0) {
 			goalHolder.getEntity().swing(Hand.MAIN_HAND);
 			//pServerLevel.destroyBlock(pAboveBlockPos, true, goalHolder.getEntity());
-			destroyBlock(pAboveBlockPos, pServerLevel, goalHolder.getEntity());
+			destroyBlock(cropPosition, pServerLevel, goalHolder.getEntity());
 			goalHolder.farmhandData.getFarmhandInfo().addCropsHarvested(1, 1);
 		}
 		harvestTick++;
@@ -76,41 +76,41 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 	}
 
 	// Copied from World.destroyBlock to Modify Block.dropResources
-	public boolean destroyBlock(BlockPos pPos, ServerWorld pServerLevel, Entity pEntity) {
-		BlockState blockstate = pServerLevel.getBlockState(pPos);
+	public boolean destroyBlock(BlockPos cropPosition, ServerWorld pServerLevel, Entity pEntity) {
+		BlockState blockstate = pServerLevel.getBlockState(cropPosition);
 		if (blockstate.isAir()) {
 			return false;
 		} else {
-			FluidState fluidstate = pServerLevel.getFluidState(pPos);
+			FluidState fluidstate = pServerLevel.getFluidState(cropPosition);
 			if (!(blockstate.getBlock() instanceof AbstractFireBlock)) {
-				pServerLevel.levelEvent(2001, pPos, Block.getId(blockstate));
+				pServerLevel.levelEvent(2001, cropPosition, Block.getId(blockstate));
 			}
-			TileEntity tileentity = blockstate.hasTileEntity() ? pServerLevel.getBlockEntity(pPos) : null;
+			TileEntity tileentity = blockstate.hasTileEntity() ? pServerLevel.getBlockEntity(cropPosition) : null;
 			//Block.dropResources(blockstate, this, pPos, tileentity, pEntity, ItemStack.EMPTY);
-			dropResourcesOwning(blockstate, pServerLevel, pPos, tileentity, pEntity, ItemStack.EMPTY);
-			return pServerLevel.setBlock(pPos, fluidstate.createLegacyBlock(), 3, 512);
+			dropResourcesOwning(blockstate, pServerLevel, cropPosition, tileentity, pEntity, ItemStack.EMPTY);
+			return pServerLevel.setBlock(cropPosition, fluidstate.createLegacyBlock(), 3, 512);
 		}
 	}
 
 	// Copied from Block.dropResources to Modify Block.popResource
-	public static void dropResourcesOwning(BlockState pState, World pLevel, BlockPos pPos, @Nullable TileEntity pBlockEntity, Entity pEntity, ItemStack pTool) {
+	public static void dropResourcesOwning(BlockState pState, World pLevel, BlockPos cropPosition, @Nullable TileEntity pBlockEntity, Entity pEntity, ItemStack pTool) {
 		if (pLevel instanceof ServerWorld) {
-			Block.getDrops(pState, (ServerWorld)pLevel, pPos, pBlockEntity, pEntity, pTool).forEach((itemStack) -> {
+			Block.getDrops(pState, (ServerWorld)pLevel, cropPosition, pBlockEntity, pEntity, pTool).forEach((itemStack) -> {
 				//Block.popResource(pLevel, pPos, itemStack, pEntity);
-				popResourceOwning(pLevel, pPos, itemStack, pEntity);
+				popResourceOwning(pLevel, cropPosition, itemStack, pEntity);
 			});
-			pState.spawnAfterBreak((ServerWorld)pLevel, pPos, pTool);
+			pState.spawnAfterBreak((ServerWorld)pLevel, cropPosition, pTool);
 		}
 	}
 
 	// Copied from Block.popResource
-	public static void popResourceOwning(World pLevel, BlockPos pPos, ItemStack pStack, Entity pEntity) {
+	public static void popResourceOwning(World pLevel, BlockPos cropPosition, ItemStack pStack, Entity pEntity) {
 		if (!pLevel.isClientSide && !pStack.isEmpty() && pLevel.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !pLevel.restoringBlockSnapshots) {
 			float f = 0.5F;
 			double d0 = (double)(pLevel.random.nextFloat() * 0.5F) + 0.25D;
 			double d1 = (double)(pLevel.random.nextFloat() * 0.5F) + 0.25D;
 			double d2 = (double)(pLevel.random.nextFloat() * 0.5F) + 0.25D;
-			ItemEntity itementity = new ItemEntity(pLevel, (double)pPos.getX() + d0, (double)pPos.getY() + d1, (double)pPos.getZ() + d2, pStack);
+			ItemEntity itementity = new ItemEntity(pLevel, (double)cropPosition.getX() + d0, (double)cropPosition.getY() + d1, (double)cropPosition.getZ() + d2, pStack);
 			itementity.setDefaultPickUpDelay();
 			itementity.setOwner(pEntity.getUUID());// Add entity as owner
 			pLevel.addFreshEntity(itementity);

@@ -24,45 +24,43 @@ public class ExtendedFarmingTillTask extends ExtendedFarmingAbstractTask{
 	}
 
 	@Override
-	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		if(isRePlaceablePos(pAboveBlockPos, pServerLevel)) {
-			BlockPos groundPos = pAboveBlockPos.below();
-			BlockState groundState = pServerLevel.getBlockState(groundPos);
+	public boolean isValidPosForTask(BlockPos groundLevelPos, ServerWorld pServerLevel) {
+		if(isRePlaceablePos(groundLevelPos.above(), pServerLevel)) {
+			BlockState groundState = pServerLevel.getBlockState(groundLevelPos);
 			if(groundState.getBlock() instanceof FarmlandBlock) {
 				return false;
 			}
-			BlockState modified = groundState.getToolModifiedState(pServerLevel, groundPos, FakePlayerFactory.getMinecraft(pServerLevel), goalHolder.getEntity().getMainHandItem(), ToolType.HOE);
+			BlockState modified = groundState.getToolModifiedState(pServerLevel, groundLevelPos, FakePlayerFactory.getMinecraft(pServerLevel), goalHolder.getEntity().getMainHandItem(), ToolType.HOE);
 			if(modified!=null && modified.getBlock() instanceof FarmlandBlock) {
-				return !pServerLevel.getBlockState(groundPos.below()).is(BlockTags.SAND) && isNearWater(pServerLevel, groundPos);
+				return !pServerLevel.getBlockState(groundLevelPos.below()).is(BlockTags.SAND) && isNearWater(pServerLevel, groundLevelPos);
 			}
 		}
 		return false;
 	}
 
 	@Override
-	public boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
+	public boolean executeTask(BlockPos groundLevelPos, ServerWorld pServerLevel) {
 		goalHolder.getEntity().swing(Hand.MAIN_HAND);
-		boolean playTillSound = tryTillBlock(pAboveBlockPos, pServerLevel);
+		boolean playTillSound = tryTillBlock(groundLevelPos, pServerLevel);
 		for (Direction dir : Direction.Plane.HORIZONTAL) {
-			BlockPos sidePos = pAboveBlockPos.relative(dir);
+			BlockPos sidePos = groundLevelPos.relative(dir);
 			if(this.isValidPosForTask(sidePos, pServerLevel)) {
 				playTillSound |= tryTillBlock(sidePos, pServerLevel);
 			}
 		}
 		if(playTillSound) {
-			pServerLevel.playSound(null, pAboveBlockPos, SoundEvents.HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			pServerLevel.playSound(null, groundLevelPos, SoundEvents.HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		}
 		return true;
 	}
 
-	private boolean tryTillBlock(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		if (isRePlaceablePos(pAboveBlockPos, pServerLevel)) {
-			pServerLevel.destroyBlock(pAboveBlockPos, false);
-		}
-		BlockPos groundPos = pAboveBlockPos.below();
-		BlockState modified = pServerLevel.getBlockState(groundPos).getToolModifiedState(pServerLevel, groundPos, FakePlayerFactory.getMinecraft(pServerLevel), goalHolder.getEntity().getMainHandItem(), ToolType.HOE);
+	private boolean tryTillBlock(BlockPos groundLevelPos, ServerWorld pServerLevel) {
+		if (isRePlaceablePos(groundLevelPos.above(), pServerLevel)) {
+			pServerLevel.destroyBlock(groundLevelPos.above(), false);
+		};
+		BlockState modified = pServerLevel.getBlockState(groundLevelPos).getToolModifiedState(pServerLevel, groundLevelPos, FakePlayerFactory.getMinecraft(pServerLevel), goalHolder.getEntity().getMainHandItem(), ToolType.HOE);
 		if (modified != null) {
-			pServerLevel.setBlock(groundPos, modified, 11);
+			pServerLevel.setBlock(groundLevelPos, modified, 11);
 			return true;
 		}
 		return false;

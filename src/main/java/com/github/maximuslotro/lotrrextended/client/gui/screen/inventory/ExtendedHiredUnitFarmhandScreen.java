@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTextureOffsetButton;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitFarmhandContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -23,6 +24,21 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 		setIndex(2);
 	}
 
+	@Override
+	public void init() {
+		super.init();
+		// General stuff
+		this.addButton(new ExtendedTextureOffsetButton(this.leftPos + 155, this.topPos + 37, 176, 54, 10, 10, new StringTextComponent("INFO"), button -> {}, CONTAINER_BACKGROUND){
+			@Override
+			public int hoverOffset() {
+				return 10;
+			}
+			@Override
+			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
+				ExtendedHiredUnitFarmhandScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.hired_unit_farmhand.info.tooltip"), 200), pMouseX, pMouseY);
+			}
+		});	
+	}
 	@Override
 	public void render(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
 		this.renderBackground(pMatrixStack);

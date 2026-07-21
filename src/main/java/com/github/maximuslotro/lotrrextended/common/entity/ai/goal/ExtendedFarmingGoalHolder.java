@@ -34,13 +34,16 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	private final SelectionMode mode = SelectionMode.PRIORITY;
 	private boolean isActionCompleted = false; // Prevents ticking after completion
 	protected int tickTime;
-	
-	public ExtendedFarmingGoalHolder(NPCEntity farmhand, double walkSpeedModifier) {
+	protected static final double MAXFARMDISTANCE_SQU = Math.pow(24, 2);
+	private final float additionalProficiency;
+
+	public ExtendedFarmingGoalHolder(NPCEntity farmhand, double walkSpeedModifier, float pAdditionalProficiency) {
 		this.farmhand = farmhand;
 		this.level = farmhand.level.isClientSide() ? null : (ServerWorld) farmhand.level;
 		this.farmhandData = (ExtendedINPCEntity) farmhand;
 		this.walkSpeedModifier = walkSpeedModifier;
 		this.pathNav = farmhand.getNavigation();
+		this.additionalProficiency = pAdditionalProficiency;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
@@ -66,6 +69,9 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		}
 		if(farmhandData.getUnitInfo().isNpcActiveDuty() && farmhandData.getUnitInfo().getOrders()!=ExtendedUnitOrders.FARMING) {
 			return false; //Only allow hired units that are farming to run, regular NPCs are unaffected
+		}
+		if (!canFarmerExecuteChance()) {
+		    return false; // Failed level and bonus check
 		}
 		BlockPos.Mutable taskPosition = new BlockPos.Mutable();
 		// TODO decide if there is a better way to randomize task block, while still keeping the farming delay
@@ -95,6 +101,14 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		return false;
 	}
 
+	public boolean canFarmerExecuteChance() {
+		float baseChance = 0.1f + additionalProficiency;
+		int farmLevel = Math.max(1, Math.min(100, farmhandData.getFarmhandInfo().getFarmerLevel()));
+		float progress = (farmLevel - 1) / 99.0f;
+		float successChance = Math.min(0.5F, baseChance + (0.5F - baseChance) * progress);
+		return farmhand.random.nextFloat() < successChance;
+	}
+
 	private boolean tryAssignTask(ExtendedFarmingAbstractTask task, BlockPos.Mutable taskPosition) {
 		task.setRandomBlockByTask(taskPosition, level);
 		if (!task.isValidPosForTask(taskPosition, level)) {
@@ -103,7 +117,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		}
 		// Use an immutable position for path generation to ensure the pathfinder doesn't ingest mutations (ask me how I know) Max derp
 		BlockPos targetPos = taskPosition.immutable();
-		if (!pathNav.isDone() && farmhand.distanceToSqr(targetPos.getX(), targetPos.getY(), targetPos.getZ()) > 1024.0) {
+		if (!pathNav.isDone() && farmhand.distanceToSqr(targetPos.getX(), targetPos.getY(), targetPos.getZ()) > MAXFARMDISTANCE_SQU) {
             return false;
         }
 		Path taskPath = pathNav.createPath(targetPos, 0);

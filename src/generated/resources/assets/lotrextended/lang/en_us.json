@@ -2148,6 +2148,7 @@
   "gui.lotrextended.fellowships.title": "Middle-earth Fellowships",
   "gui.lotrextended.fellowships.use_command": "Please use the command for now!",
   "gui.lotrextended.hired_unit_farmhand.crops_farmed": "Crops Harvested: %s",
+  "gui.lotrextended.hired_unit_farmhand.info.tooltip": "A unit's farming level determines how many inventory slots it has and how efficient or fast it farms.",
   "gui.lotrextended.hired_unit_farmhand.level": "Farming Level: %s",
   "gui.lotrextended.hired_unit_farmhand.level.tooltip": "%1$s of %2$s Xp earned towards next level.",
   "gui.lotrextended.hired_unit_tooltip.description_disabled": "This task is disabled for this type of unit.",

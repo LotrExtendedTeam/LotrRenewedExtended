@@ -597,6 +597,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hired_unit_farmhand.level", "Farming Level: %s");
 		addD("gui.lotrextended.hired_unit_farmhand.crops_farmed", "Crops Harvested: %s");
 		addD("gui.lotrextended.hired_unit_farmhand.level.tooltip", "%1$s of %2$s Xp earned towards next level.");
+		addD("gui.lotrextended.hired_unit_farmhand.info.tooltip", "A unit's farming level determines how many inventory slots it has and how efficient or fast it farms.");
 
 		addD("gui.lotrextended.hired_unit_tooltip.description_disabled", "This task is disabled for this type of unit.");
 		addD("gui.lotrextended.hired_unit_tooltip.stationary_title", "Stationary: %s");

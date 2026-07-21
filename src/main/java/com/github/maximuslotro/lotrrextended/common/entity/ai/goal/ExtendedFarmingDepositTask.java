@@ -65,12 +65,12 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 	}
 
 	@Override
-	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		TileEntity blockEntity = pServerLevel.getBlockEntity(pAboveBlockPos);
+	public boolean isValidPosForTask(BlockPos chestBlockPos, ServerWorld pServerLevel) {
+		TileEntity blockEntity = pServerLevel.getBlockEntity(chestBlockPos);
 		if(blockEntity instanceof ChestTileEntity) {
 			BlockState chestState = blockEntity.getBlockState();
 			Inventory npcInv = goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory();
-			IInventory inventory = ChestBlock.getContainer((ChestBlock)chestState.getBlock(), chestState, pServerLevel, pAboveBlockPos, true);
+			IInventory inventory = ChestBlock.getContainer((ChestBlock)chestState.getBlock(), chestState, pServerLevel, chestBlockPos, true);
 			for(int i = 0; i < npcInv.getContainerSize(); i++) {
 				ItemStack stack = npcInv.getItem(i);
 				// Skip non-edible seeds
@@ -89,8 +89,8 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 	}
 
 	@Override
-	public boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		TileEntity blockEntity = pServerLevel.getBlockEntity(pAboveBlockPos);
+	public boolean executeTask(BlockPos chestBlockPos, ServerWorld pServerLevel) {
+		TileEntity blockEntity = pServerLevel.getBlockEntity(chestBlockPos);
 		if (!(blockEntity instanceof ChestTileEntity)) {
 			return true;
 		}
@@ -102,7 +102,7 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 
 		BlockState chestState = blockEntity.getBlockState();
 		Inventory farmhandOutputInv = goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory();
-		IInventory inventory = ChestBlock.getContainer((ChestBlock)chestState.getBlock(), chestState, pServerLevel, pAboveBlockPos, true);
+		IInventory inventory = ChestBlock.getContainer((ChestBlock)chestState.getBlock(), chestState, pServerLevel, chestBlockPos, true);
 
 		for(int i = 0; i<farmhandOutputInv.getContainerSize(); i++) {
 			ItemStack outputStack = farmhandOutputInv.getItem(i);

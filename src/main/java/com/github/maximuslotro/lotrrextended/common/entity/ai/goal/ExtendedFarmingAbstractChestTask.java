@@ -61,7 +61,7 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 				//int tileChunkZ = pos.getZ() >> 4;
 				//Math.abs(tileChunkX - farmhandChunkX) <= 1 && Math.abs(tileChunkZ - farmhandChunkZ) <= 1
 				// Check if pos is within 24 blocks circled and is on the same relative y-plane
-				if (pos.distSqr(farmhandPos)<576 && Math.abs(pos.getY()-farmhandPos.getY())<=YSPLIT) {
+				if (pos.distSqr(farmhandPos)<ExtendedFarmingGoalHolder.MAXFARMDISTANCE_SQU && Math.abs(pos.getY()-farmhandPos.getY())<=YSPLIT) {
 					if (pServerLevel.getChunkSource().isTickingChunk(pos) && pServerLevel.getWorldBorder().isWithinBounds(pos)) {
 						if (tileEntity instanceof ChestTileEntity) {
 							if (isValidPosForTask(pos, pServerLevel)) {
