@@ -56,6 +56,15 @@ public class ExtendedSlider extends AbstractSlider {
 		return this;
 	}
 
+
+	@Override
+	public void renderButton(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
+		super.renderButton(pMatrixStack, pMouseX, pMouseY, pPartialTicks);
+		if (this.isHovered()) {
+			this.renderToolTip(pMatrixStack, pMouseX, pMouseY);
+		}
+	}
+
 	@Override
 	public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
 		if(onTooltip!=null) {

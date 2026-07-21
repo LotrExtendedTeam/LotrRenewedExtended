@@ -3,20 +3,20 @@ package com.github.maximuslotro.lotrrextended.client.gui.widget;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBannerConfigurationScreen.TextureOffsetButton;
+import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTextureOffsetButton;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.util.text.ITextComponent;
 
-public class ExtendedTextFieldPermissionWidget extends TextFieldWidget{
+public class ExtendedBannerTextFieldPermissionWidget extends TextFieldWidget {
 	public final int id;
-	public List<TextureOffsetButton> permButtons = new ArrayList<>();
-	public TextureOffsetButton permShowButton;
-	public TextureOffsetButton deleteButton;
+	public List<ExtendedTextureOffsetButton> permButtons = new ArrayList<>();
+	public ExtendedTextureOffsetButton permShowButton;
+	public ExtendedTextureOffsetButton deleteButton;
 	public boolean showPerms = false;
 
-	public ExtendedTextFieldPermissionWidget(FontRenderer pFont, int pX, int pY, int pWidth, int pHeight, ITextComponent pMessage, int id) {
+	public ExtendedBannerTextFieldPermissionWidget(FontRenderer pFont, int pX, int pY, int pWidth, int pHeight, ITextComponent pMessage, int id) {
 		super(pFont, pX, pY, pWidth, pHeight, pMessage);
 		this.id = id;
 	}

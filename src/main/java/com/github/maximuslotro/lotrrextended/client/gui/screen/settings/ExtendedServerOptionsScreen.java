@@ -197,11 +197,6 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 			catagories.checkVisability();
 			catagories.handleUpdates();
 		}
-		for(Widget button : this.buttons) {
-			if(button.isHovered() && button.visible) {
-				button.renderToolTip(matStack, mouseX, mouseY);
-			}
-		}
 		super.render(matStack, mouseX, mouseY, tick);
 	}
 

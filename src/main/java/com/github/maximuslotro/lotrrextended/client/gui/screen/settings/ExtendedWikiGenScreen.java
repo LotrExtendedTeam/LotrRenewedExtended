@@ -201,11 +201,6 @@ public class ExtendedWikiGenScreen extends AbstractExtendedOptionsScreen {
 			catagories.checkVisability();
 			catagories.handleUpdates();
 		}
-		for(Widget widget : this.buttons) {
-			if(widget.isHovered() && widget.visible) {
-				widget.renderToolTip(matStack, mouseX, mouseY);
-			}
-		}
 		super.render(matStack, mouseX, mouseY, tick);
 	}
 
