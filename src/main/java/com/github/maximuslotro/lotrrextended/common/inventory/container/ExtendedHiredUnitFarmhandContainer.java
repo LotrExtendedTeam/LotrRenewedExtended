@@ -115,4 +115,8 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 		farmhandInput.stopOpen(pPlayer);
 		farmhandOutput.stopOpen(pPlayer);
 	}
+
+	public Slot getSeedsSlot() {
+		return seedsSlot;
+	}
 }
