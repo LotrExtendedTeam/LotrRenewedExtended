@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
+package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
 import javax.annotation.Nullable;
 
@@ -192,7 +192,7 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 			 double d0 = (double)(pLevel.random.nextFloat() * 0.5F) + 0.25D;
 			 double d1 = (double)(pLevel.random.nextFloat() * 0.5F) + 0.25D;
 			 double d2 = (double)(pLevel.random.nextFloat() * 0.5F) + 0.25D;
-			 ItemEntity itementity = new ItemEntity(pLevel, (double)cropPosition.getX() + d0, (double)cropPosition.getY() + d1, (double)cropPosition.getZ() + d2, pStack);
+			 ItemEntity itementity = new ItemEntity(pLevel, cropPosition.getX() + d0, cropPosition.getY() + d1, cropPosition.getZ() + d2, pStack);
 			 itementity.setDefaultPickUpDelay();
 			 itementity.setOwner(pEntity.getUUID());// Add entity as owner
 			 pLevel.addFreshEntity(itementity);

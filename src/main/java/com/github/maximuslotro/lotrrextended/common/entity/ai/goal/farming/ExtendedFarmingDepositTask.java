@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
+package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 

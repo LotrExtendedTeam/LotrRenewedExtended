@@ -1,6 +1,6 @@
 package lotr.common.entity.npc;
 
-import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedFarmingGoalHolder;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming.ExtendedFarmingGoalHolder;
 
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
