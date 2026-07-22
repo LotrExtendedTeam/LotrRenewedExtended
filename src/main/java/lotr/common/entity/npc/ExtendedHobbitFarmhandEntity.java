@@ -1,6 +1,5 @@
 package lotr.common.entity.npc;
 
-
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedFarmingGoalHolder;
 
 import lotr.common.init.LOTRItems;
@@ -16,6 +15,7 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 public class ExtendedHobbitFarmhandEntity extends HobbitEntity implements ExtendedINPCEntitySettings, ExtendedIFarmhand {
+	
     public ExtendedHobbitFarmhandEntity(EntityType<? extends HobbitEntity> type, World w) {
         super(type, w);
     }

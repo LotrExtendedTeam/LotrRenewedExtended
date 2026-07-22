@@ -74,6 +74,15 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	 *
 	 * @param farmhand               the NPC entity taking on farming duties
 	 * @param walkSpeedModifier      movement speed multiplier applied during path navigation
+	 */
+	public ExtendedFarmingGoalHolder(NPCEntity farmhand, double walkSpeedModifier) {
+		this(farmhand, walkSpeedModifier, 0);
+	}
+	/**
+	 * Constructs a new farming goal holder for the specified NPC, with a proficiency.
+	 *
+	 * @param farmhand               the NPC entity taking on farming duties
+	 * @param walkSpeedModifier      movement speed multiplier applied during path navigation
 	 * @param pAdditionalProficiency flat proficiency modifier boosting execution chance checks
 	 */
 	public ExtendedFarmingGoalHolder(NPCEntity farmhand, double walkSpeedModifier, float pAdditionalProficiency) {

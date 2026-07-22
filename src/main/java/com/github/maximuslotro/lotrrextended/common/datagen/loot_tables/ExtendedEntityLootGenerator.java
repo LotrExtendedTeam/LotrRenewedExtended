@@ -468,6 +468,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.BREE_MERCHANT, manBree); // TODO: Maybe add some other drops here?
 		makeEntity(ExtendedEntities.BREE_FARMER, manBree);
+		makeEntity(ExtendedEntities.BREE_FARMHAND, manBree);
 		makeEntity(ExtendedEntities.BREE_POTTER, manBree);
 		makeEntity(ExtendedEntities.BREE_BAKER, manBree);
 		makeEntity(ExtendedEntities.BREE_BUTCHER, manBree);

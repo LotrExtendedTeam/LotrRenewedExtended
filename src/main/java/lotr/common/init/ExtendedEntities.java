@@ -101,4 +101,5 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedDunlendingBartenderEntity>> DUNLENDING_BARTENDER;
 	public static RegistryObject<EntityType<ExtendedDunlendingSmithEntity>> DUNLENDING_SMITH;
 	public static RegistryObject<EntityType<ExtendedHobbitFarmhandEntity>> HOBBIT_FARMHAND;
+	public static RegistryObject<EntityType<ExtendedBreelandFarmhandEntity>> BREE_FARMHAND;
 }

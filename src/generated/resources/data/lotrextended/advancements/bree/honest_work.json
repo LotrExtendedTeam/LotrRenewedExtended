@@ -1,0 +1,33 @@
+{
+  "parent": "lotrextended:bree/one_for_bill_ferny",
+  "display": {
+    "icon": {
+      "item": "minecraft:iron_hoe",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.bree.honest_work.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.bree.honest_work.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "hire_units_from_bree_farmer": {
+      "trigger": "lotrextended:unit_hired",
+      "conditions": {
+        "captain_type": "lotr:bree_farmer"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "hire_units_from_bree_farmer"
+    ]
+  ]
+}

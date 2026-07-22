@@ -747,7 +747,7 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(new ItemStack(Items.STRING, 3), 1)
 		.addSBuy(Items.FEATHER, 2)
 		.addSBuy(LOTRItems.WOODEN_MUG.get(), 1)
-		.addSBuy(LOTRItems.WATERSKIN.get(), 2)
+		.addSBuy(LOTRItems.WATERSKIN.get(), 1)
 		.addSBuy(new ItemStack(Items.WHEAT, 2), 1)
 		.addSBuy(LOTRItems.ELF_BONE.get(), 1)
 		.addSBuy(LOTRItems.DWARF_BONE.get(), 1)

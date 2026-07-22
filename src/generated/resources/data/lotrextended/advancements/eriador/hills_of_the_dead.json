@@ -1,15 +1,15 @@
 {
-  "parent": "lotrextended:bree/of_hobbits_and_men",
+  "parent": "lotrextended:eriador/the_kindly_west",
   "display": {
     "icon": {
       "item": "minecraft:bone"
     },
     "title": {
-      "translate": "advancements.lotrextended.bree.hills_of_the_dead.title"
+      "translate": "advancements.lotrextended.eriador.hills_of_the_dead.title"
     },
     "description": {
       "color": "green",
-      "translate": "advancements.lotrextended.bree.hills_of_the_dead.description"
+      "translate": "advancements.lotrextended.eriador.hills_of_the_dead.description"
     },
     "frame": "task",
     "show_toast": true,

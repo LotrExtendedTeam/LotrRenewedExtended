@@ -54,6 +54,7 @@ public class ExtendedEntitySettingsGenerator extends ExtendedEntitySettingsProvi
 		make(ExtendedEntities.BREE_BUTCHER.get(), FactionPointers.BREE).setBonus(2).setBankE("bree/man").save(pConsumer);
 		make(ExtendedEntities.BREE_CHEESEMONGER.get(), FactionPointers.BREE).setBonus(2).setBankE("bree/man").save(pConsumer);
 		make(ExtendedEntities.BREE_FARMER.get(), FactionPointers.BREE).setBonus(2).setBankE("bree/man").save(pConsumer);
+		make(ExtendedEntities.BREE_FARMHAND.get(), FactionPointers.BREE).setBonus(1).setBankE("bree/man").save(pConsumer);
 		make(ExtendedEntities.BREE_FLORIST.get(), FactionPointers.BREE).setBonus(2).setBankE("bree/man").save(pConsumer);
 		make(ExtendedEntities.BREE_HOBBIT_BAKER.get(), FactionPointers.BREE).setBonus(2).setBankE("bree/hobbit").save(pConsumer);
 		make(ExtendedEntities.BREE_HOBBIT_BREWER.get(), FactionPointers.BREE).setBonus(2).setBankE("bree/hobbit").save(pConsumer);
