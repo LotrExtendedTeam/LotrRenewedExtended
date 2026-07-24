@@ -76,8 +76,8 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 			// Draw the 18x18 active slot border
 			this.blit(pMatrixStack, leftPos + xPos, topPos + yPos, 176, 18, 18, 18);
 		}
-		int barLength = (int) (42 * getMenu().getFarmhandInfo().getCurrentFarmerXp()/getMenu().getFarmhandInfo().getMaxFarmerXp());
-		fill(pMatrixStack, 67, 40, 67 + barLength, 43, 0x1CC226);
+		int barLength = (int) (42 * ((float)getMenu().getFarmhandInfo().getCurrentFarmerXp())/getMenu().getFarmhandInfo().getMaxFarmerXp());
+		fill(pMatrixStack, leftPos + 67, topPos + 40, leftPos + 67 + barLength, topPos + 43, 0xFF1CC226);
 		if (this.getMenu().getSeedsSlot().hasItem()) {
 			this.blit(pMatrixStack, leftPos + 51, topPos + 47, 188, 54, 2, 12);
 		}
