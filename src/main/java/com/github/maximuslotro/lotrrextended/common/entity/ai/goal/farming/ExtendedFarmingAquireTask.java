@@ -53,7 +53,7 @@ public class ExtendedFarmingAquireTask extends ExtendedFarmingAbstractChestTask 
 		if(!seedsStack.isEmpty() && seedsStack.getCount()<=16) {
 			return true;
 		}
-		if(goalHolder.farmhandData.getFarmhandInfo().getBonemealItem().getCount()<=16) {
+		if(ExtendedFarmingBonemealTask.doesCropSupportBonemeal(seedsStack) && goalHolder.farmhandData.getFarmhandInfo().getBonemealItem().getCount()<=16) {
 			return true;
 		}
 		return false;
@@ -79,7 +79,10 @@ public class ExtendedFarmingAquireTask extends ExtendedFarmingAbstractChestTask 
 
 			// Only look for seeds if the slot isn't empty
 			boolean needsSeeds = !seedsStack.isEmpty() && seedsStack.getCount() < seedsStack.getMaxStackSize();
-			boolean needsBonemeal = goalHolder.farmhandData.getFarmhandInfo().getBonemealItem().getCount() < BONEMEAL.getMaxStackSize();
+			boolean needsBonemeal = ExtendedFarmingBonemealTask.doesCropSupportBonemeal(seedsStack) && goalHolder.farmhandData.getFarmhandInfo().getBonemealItem().getCount() < BONEMEAL.getMaxStackSize();
+			if (!needsSeeds && !needsBonemeal) {
+	            return false; // Early exit if neither supply is needed
+	        }
 			IInventory inventory = ChestBlock.getContainer((ChestBlock)chestState.getBlock(), chestState, pServerLevel, chestBlockPos, true);
 			for (int i = 0; i < inventory.getContainerSize(); i++) {
 				ItemStack chestStack = inventory.getItem(i);
@@ -133,7 +136,7 @@ public class ExtendedFarmingAquireTask extends ExtendedFarmingAbstractChestTask 
 		}
 
 		ItemStack bonemealStack = goalHolder.farmhandData.getFarmhandInfo().getBonemealItem();
-		if (bonemealStack.getCount() < BONEMEAL.getMaxStackSize()) {
+		if (ExtendedFarmingBonemealTask.doesCropSupportBonemeal(seedsStack) && bonemealStack.getCount() < BONEMEAL.getMaxStackSize()) {
 			int amountNeeded = BONEMEAL.getMaxStackSize() - bonemealStack.getCount();
 			int acquired = withdrawItemFromChest(inventory, BONEMEAL, amountNeeded);
 			if (acquired > 0) {

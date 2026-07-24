@@ -48,7 +48,17 @@ public class ExtendedEntityUtils {
         Collections.sort(targets, sorter);
         return targets.isEmpty() ? null : targets.get(0);
     }
-
+    /**
+     * Mutates a mutable block position to a randomized location within specified horizontal and vertical bounds 
+     * relative to an entity's current position.
+     *
+     * @param position         the mutable position object to update
+     * @param entity           the origin entity used as the reference point and random generator source
+     * @param horizontalBounds maximum horizontal distance offset along X and Z axes
+     * @param minYBounds       minimum vertical Y axis offset relative to entity height
+     * @param maxYBounds       maximum vertical Y axis offset relative to entity height
+     * @return the mutated {@link net.minecraft.util.math.BlockPos.Mutable} instance updated with the new coordinates
+     */
     public static BlockPos getRandomPosInBounds(BlockPos.Mutable position, Entity entity, int horizontalBounds, int minYBounds, int maxYBounds) {
     	return position.set(
     			entity.getX() + MathHelper.nextInt(entity.random, -horizontalBounds, horizontalBounds), 

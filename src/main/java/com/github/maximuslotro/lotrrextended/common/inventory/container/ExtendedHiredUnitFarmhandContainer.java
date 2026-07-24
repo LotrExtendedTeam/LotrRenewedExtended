@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming.ExtendedFarmingBonemealTask;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 
 import lotr.common.entity.npc.ExtendedINPCEntity;
@@ -34,7 +35,7 @@ public class ExtendedHiredUnitFarmhandContainer extends ExtendedHiredUnitContain
 		farmhandOutput.startOpen(pPlayerInventory.player);
 		// Inventory slots
 		seedsSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.SeedsSlot(farmhandInput, 0, 44, 61, EMPTY_SLOT_SEEDS));
-		bonemealSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.BoneMealSlot(farmhandInput, 1, 116, 61, EMPTY_SLOT_BONEMEAL));
+		bonemealSlot = this.addSlot(new ExtendedHiredUnitFarmhandSlot.BoneMealSlot(farmhandInput, 1, 116, 61, EMPTY_SLOT_BONEMEAL, () -> {return ExtendedFarmingBonemealTask.doesCropSupportBonemeal(seedsSlot.getItem());}));
 		int[] xCoordinates = {
 				71, 89,   // Center of top row (Slots 1, 2)
 				53, 107,  // Mid-outer top row (Slots 3, 4)

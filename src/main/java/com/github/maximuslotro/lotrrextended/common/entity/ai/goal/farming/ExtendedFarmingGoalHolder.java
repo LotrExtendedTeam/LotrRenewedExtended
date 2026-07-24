@@ -194,7 +194,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	 */
 	private boolean tryAssignTask(ExtendedFarmingAbstractTask task, BlockPos.Mutable taskPosition) {
 		task.setRandomBlockByTask(taskPosition, level);
-		if (!task.isValidPosForTask(taskPosition, level)) {
+		if (!task.isValidPosForTaskMutable(taskPosition, level)) {
 			task.invalidateCache();
 			return false;
 		}

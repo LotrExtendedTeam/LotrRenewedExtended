@@ -2,6 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FarmlandBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -43,7 +45,10 @@ public class ExtendedFarmingTillTask extends ExtendedFarmingAbstractTask{
 	 */
 	@Override
 	public boolean isTaskValidForNPC(ServerWorld pServerLevel) {
-		return true;
+		if(goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().isEmpty()) {
+			return false;
+		}
+		return shouldTillSeed();
 	}
 	/**
 	 * Validates whether a target ground-level block position can be converted into farmland.
@@ -119,5 +124,13 @@ public class ExtendedFarmingTillTask extends ExtendedFarmingAbstractTask{
 			return true;
 		}
 		return false;
+	}
+
+	protected boolean shouldTillSeed() {
+		ItemStack activeSeeds = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
+		if(activeSeeds.getItem()==Items.SUGAR_CANE) {
+			return false;
+		}
+		return true;
 	}
 }

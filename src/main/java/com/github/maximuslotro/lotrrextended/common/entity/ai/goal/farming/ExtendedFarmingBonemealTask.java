@@ -1,5 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IGrowable;
 import net.minecraft.entity.ai.brain.task.BoneMealCropsTask;
@@ -11,6 +13,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.IPlantable;
 
 /**
  * Task responsible for applying bone meal fertilizer to growable crops assigned to the NPC.
@@ -44,13 +47,16 @@ public class ExtendedFarmingBonemealTask extends ExtendedFarmingAbstractTask {
 		super(goalHolder);
 	}
 	/**
-	 * Checks whether the task can currently be assigned based on bone meal supply availability.
+	 * Checks whether the task can currently be assigned based on crop compatibility and bone meal supply.
 	 *
 	 * @param pServerLevel world where the validation check takes place
-	 * @return {@code true} if the NPC holds a non-empty bone meal item stack
+	 * @return {@code true} if the seed item supports bone meal growth and the NPC holds a valid bone meal item
 	 */
 	@Override
 	public boolean isTaskValidForNPC(ServerWorld pServerLevel) {
+		if(!doesCropSupportBonemeal(goalHolder.farmhandData.getFarmhandInfo().getSeedsItem())) {
+			return false;
+		}
 		if(!goalHolder.farmhandData.getFarmhandInfo().getBonemealItem().isEmpty()) {
 			return goalHolder.farmhandData.getFarmhandInfo().getBonemealItem().getItem().equals(Items.BONE_MEAL);
 		}
@@ -124,5 +130,22 @@ public class ExtendedFarmingBonemealTask extends ExtendedFarmingAbstractTask {
 	public void stopTask() {
 		super.stopTask();
 		goalHolder.getEntity().setItemInHand(Hand.MAIN_HAND, previousHeldItem);
+	}
+	/**
+	 * Evaluates whether a candidate seed item stack produces a plant that supports bone meal growth.
+	 * <p>
+	 * Checks if the plant resolved from {@link ExtendedItemStackUtils#getPlantFromItem} implements 
+	 * {@link IGrowable}.
+	 * </p>
+	 *
+	 * @param pStack the seed or plantable item stack to evaluate
+	 * @return {@code true} if the plant is valid and implements {@link IGrowable}; {@code false} otherwise
+	 */
+	public static boolean doesCropSupportBonemeal(ItemStack pStack) {
+		IPlantable plant = ExtendedItemStackUtils.getPlantFromItem(pStack);
+		if(plant==null || !(plant instanceof IGrowable)) {
+			return false;
+		}
+		return true;
 	}
 }

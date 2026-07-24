@@ -100,7 +100,7 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	 */
 	public boolean isTaskStillValidForAmount(ServerWorld pServerLevel, int amount) {
 		ItemStack seedsStack = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
-		if (!isNonEdibleSeed(seedsStack)) {
+		if (shouldDepositItem(seedsStack)) {
 			return false;
 		}
 		Inventory inventory = goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory();
