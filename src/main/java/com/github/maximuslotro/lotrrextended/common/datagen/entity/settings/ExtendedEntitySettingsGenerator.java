@@ -96,5 +96,7 @@ public class ExtendedEntitySettingsGenerator extends ExtendedEntitySettingsProvi
 		make(ExtendedEntities.DUNLENDING_BERSERKER.get(), FactionPointers.DUNLAND).setBonus(2).setBankE("dunland/dunlending").save(pConsumer);
 		make(ExtendedEntities.DUNLENDING_BARTENDER.get(), FactionPointers.DUNLAND).setBonus(2).setBankE("dunland/bartender").save(pConsumer);
 		make(ExtendedEntities.DUNLENDING_SMITH.get(), FactionPointers.DUNLAND).setBonus(2).setBankE("dunland/smith").save(pConsumer);
+		make(ExtendedEntities.DUNLENDING_FARMER.get(), FactionPointers.DUNLAND).setBonus(2).setBankE("dunland/farmer").save(pConsumer);
+		make(ExtendedEntities.DUNLENDING_FARMHAND.get(), FactionPointers.DUNLAND).setBonus(1).setBankE("dunland/dunlending").save(pConsumer);
 	}
 }

@@ -107,5 +107,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_BERSERKER.get(), DunlendingRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_BARTENDER.get(), ExtendedDunlendingTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_SMITH.get(), ExtendedDunlendingTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_FARMER.get(), ExtendedDunlendingTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_FARMHAND.get(), DunlendingRenderer::new);
 	}
 }

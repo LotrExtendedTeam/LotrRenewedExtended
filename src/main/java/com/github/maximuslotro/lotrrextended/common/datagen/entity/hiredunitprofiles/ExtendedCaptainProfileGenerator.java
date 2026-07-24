@@ -28,6 +28,7 @@ public class ExtendedCaptainProfileGenerator extends ExtendedCaptainProfileProvi
 		make(ExtendedCaptainTypes.DUNLENDING_WARLORD, 100).addProfile(ExtendedHiredUnitTypes.DUNLENDING)
 		.addProfile(ExtendedHiredUnitTypes.DUNLENDING_WARRIOR).addProfile(ExtendedHiredUnitTypes.DUNLENDING_BOWMAN)
 		.addProfile(ExtendedHiredUnitTypes.DUNLENDING_AXE_THROWER).addProfile(ExtendedHiredUnitTypes.DUNLENDING_BERSERKER).save(pConsumer);
+		make(ExtendedCaptainTypes.DUNLENDING_FARMER, 0).addProfile(ExtendedHiredUnitTypes.DUNLENDING_FARMHAND).save(pConsumer);
 
 		make(ExtendedCaptainTypes.DWARF_COMMANDER, 200).addProfile(ExtendedHiredUnitTypes.DWARF)
 		.addProfile(ExtendedHiredUnitTypes.DWARF_WARRIOR).addProfile(ExtendedHiredUnitTypes.DWARF_ARCHER)

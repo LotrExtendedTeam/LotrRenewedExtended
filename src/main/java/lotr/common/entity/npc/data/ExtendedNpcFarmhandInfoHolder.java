@@ -125,7 +125,6 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 			ExtendedNBTUtils.readInventoryFromNBT(nbt, farmhandInputInventory, FARMHANDITEMSLIST);
 			farmhandOutputInventory = makeFarmhandOutputInventory();
 			ExtendedNBTUtils.readInventoryFromNBT(nbt, farmhandOutputInventory, FARMHANDCROPSLIST);
-			thisEntity.setCanPickUpLoot(true);
 			markDirty();
 		}
 	}

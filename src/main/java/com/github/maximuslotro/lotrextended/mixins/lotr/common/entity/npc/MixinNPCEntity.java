@@ -74,11 +74,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 	}
 
 	@Inject(method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V", at = @At("TAIL"), remap=false)
-	public void constructorExtended(EntityType<? extends NPCEntity> type, World w, CallbackInfo ci) {
-		if(this instanceof ExtendedIFarmhand) {
-			setCanPickUpLoot(true);
-		}
-	}
+	public void constructorExtended(EntityType<? extends NPCEntity> type, World w, CallbackInfo ci) {}
 
 	/**
 	 * A private data holder for the ExtendedNpcMarriageHolder module
@@ -603,6 +599,25 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public boolean canPickUpLootExtended() {
+		return this instanceof ExtendedIFarmhand;
+	}
+
+	@Override
+	public void aiStep() {
+		super.aiStep();
+		this.level.getProfiler().push("looting_extended");
+		if (!this.level.isClientSide && canPickUpLootExtended() && this.isAlive() && !this.dead && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this)) {
+			for(ItemEntity itementity : this.level.getEntitiesOfClass(ItemEntity.class, this.getBoundingBox().inflate(1.5D, 1.0D, 1.5D))) {
+				if (!itementity.removed && !itementity.getItem().isEmpty() && !itementity.hasPickUpDelay() && this.wantsToPickUp(itementity.getItem())) {
+					this.pickUpItem(itementity);
+				}
+			}
+		}
+		this.level.getProfiler().pop();
 	}
 
 	@Override

@@ -55,6 +55,7 @@ public class ExtendedHiredUnitTypes {
 	public static final ResourceLocation DUNLENDING_BOWMAN = make("dunlending_bowman");
 	public static final ResourceLocation DUNLENDING_AXE_THROWER = make("dunlending_axe_thrower");
 	public static final ResourceLocation DUNLENDING_BERSERKER = make("dunlending_berserker");
+	public static final ResourceLocation DUNLENDING_FARMHAND = make("dunlending_farmhand");
 
 	private static ResourceLocation make(String pId) {
 		return validate(new ResourceLocation(LotrExtendedMod.MODID, pId));

@@ -36,7 +36,7 @@
   * Captain hiring lists are now datapack driven
 * Items
   * Added Arnor Shield
-  * Added Dunlanding Shield
+  * Added Dunlending Shield
   * Added Tome of the Artisan
   * Added Tome of the Warrior
   * Added poisoning support for Extended’s Daggers
@@ -1289,7 +1289,7 @@
   * Updated Ithilien Ranger armor item textures in the Redone Renewed resource pack
   * Updated Umbar armor  item textures in the Redone Renewed resource pack
   * Updated Rohan Marshal armor item textures in the Redone Renewed resource pack
-  * Updated Dunlanding armor item textures in the Redone Renewed resource pack
+  * Updated Dunlending armor item textures in the Redone Renewed resource pack
 * Trading
   * Fixed quick stacking removing items directly from trade menu
   * Fixed players from placing items in "Buy Items" inventory (causing a crash)
