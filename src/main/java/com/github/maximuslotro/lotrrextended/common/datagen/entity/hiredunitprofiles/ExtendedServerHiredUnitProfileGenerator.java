@@ -74,6 +74,16 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addShieldItem(new ItemStack(ExtendedItems.BREE_SHIELD.get()), 1)
 		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.BREE_GUARD);
 
+		make(ExtendedEntities.BREE_FARMHAND.get(), ExtendedUnitCombatTypes.FARMHAND).setPurchaseInfo(40, false, 50)
+		.addHelmetPoolItem(ItemStack.EMPTY, 1)
+		.addChestplatePoolItem(ItemStack.EMPTY, 1)
+		.addLeggingPoolItem(ItemStack.EMPTY, 1)
+		.addBootsPoolItem(ItemStack.EMPTY, 1)
+		.addToolPoolItem(new ItemStack(Items.IRON_HOE), 5)
+		.addToolPoolItem(new ItemStack(LOTRItems.BRONZE_HOE.get()), 1)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.BREE_FARMHAND);
+
 		// Gundabad Units
 		make(LOTREntities.GUNDABAD_ORC.get(), ExtendedUnitCombatTypes.MELEE).setPurchaseInfo(15, false, 100)
 		.addHelmetPoolItem(new ItemStack(LOTRItems.BONE_HELMET.get()), 1)
@@ -570,5 +580,16 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addMeleePoolItem(new ItemStack(Items.IRON_AXE), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.DUNLENDING_BERSERKER);
+
+		make(ExtendedEntities.DUNLENDING_FARMHAND.get(), ExtendedUnitCombatTypes.FARMHAND).setPurchaseInfo(40, false, 50)
+		.addHelmetPoolItem(new ItemStack(LOTRItems.FUR_HELMET.get()), 1)
+		.addHelmetPoolItem(ItemStack.EMPTY, 3)
+		.addChestplatePoolItem(ItemStack.EMPTY, 1)
+		.addLeggingPoolItem(ItemStack.EMPTY, 1)
+		.addBootsPoolItem(ItemStack.EMPTY, 1)
+		.addToolPoolItem(new ItemStack(Items.IRON_HOE), 1)
+		.addToolPoolItem(new ItemStack(LOTRItems.BRONZE_HOE.get()), 5)
+		.addShieldItem(ItemStack.EMPTY, 1)
+		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.DUNLENDING_FARMHAND);
 	}
 }

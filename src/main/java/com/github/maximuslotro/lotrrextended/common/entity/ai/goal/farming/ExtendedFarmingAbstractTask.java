@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
+package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedEntityUtils;
 
@@ -11,6 +11,7 @@ import net.minecraft.entity.ai.brain.task.FarmerWorkTask;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
@@ -75,6 +76,21 @@ public abstract class ExtendedFarmingAbstractTask {
 		ExtendedEntityUtils.getRandomPosInBounds(taskPosition, goalHolder.getEntity(), 5, -YSPLIT, YSPLIT);
 	}
 	/**
+	 * Evaluates whether a mutable target block position is valid for executing this task.
+	 * <p>
+	 * Unlike {@link #isValidPosForTask(BlockPos, ServerWorld)}, subclasses overriding this method 
+	 * are permitted to mutate {@code pAboveBlockPos} in-place to adjust the final target coordinates 
+	 * (e.g., shifting execution down to the base block of stacked structures) when validation succeeds.
+	 * </p>
+	 *
+	 * @param pAboveBlockPos mutable target position to validate and potentially adjust in-place
+	 * @param pServerLevel   world where the task is being checked
+	 * @return {@code true} if the position (or its adjusted coordinates) is valid for task execution; {@code false} otherwise
+	 */
+	public boolean isValidPosForTaskMutable(BlockPos.Mutable pAboveBlockPos, ServerWorld pServerLevel) {
+		return isValidPosForTask(pAboveBlockPos, pServerLevel);
+	}
+	/**
 	 * Checks if a target block position is valid for executing this specific task.
 	 * <p>
 	 * <b>Note:</b> Because {@code pAboveBlockPos} may be mutable or reused, implementation methods 
@@ -118,7 +134,7 @@ public abstract class ExtendedFarmingAbstractTask {
 	public abstract boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel);
 	/**
 	 * Helper method to determine if a block position and the block directly above it are replaceable materials, 
-	 * and that no liquid is present.
+	 * and that no liquid is present, as well as another block above it are replaceable materials.
 	 *
 	 * @param pPos         ground position to evaluate
 	 * @param pServerLevel world where block checks occur
@@ -149,13 +165,16 @@ public abstract class ExtendedFarmingAbstractTask {
 		return false;
 	}
 	/**
-	 * Determines if an item stack matches the designated seed type assigned to the farmer, and that the seed is non-edible.
+	 * Determines if an item stack matches the designated seed type assigned to the farmer, and that it should be deposited.
 	 *
 	 * @param stack item stack to check
 	 * @return {@code true} if the stack matches the farmhand active seed item and is not edible
 	 */
-	protected boolean isNonEdibleSeed(ItemStack stack) {
+	protected boolean shouldDepositItem(ItemStack stack) {
+		if(stack.getItem()==Items.SUGAR_CANE) {
+			return true;
+		}
 		ItemStack activeSeeds = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
-		return !activeSeeds.isEmpty() && stack.getItem() == activeSeeds.getItem() && !stack.getItem().isEdible();
+		return !activeSeeds.isEmpty() && stack.getItem() == activeSeeds.getItem() && stack.getItem().isEdible();
 	}
 }

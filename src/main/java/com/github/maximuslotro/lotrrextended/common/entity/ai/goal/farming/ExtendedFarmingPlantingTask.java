@@ -1,8 +1,12 @@
-package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
+package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
+
+import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.SugarCaneBlock;
 import net.minecraft.entity.ai.brain.task.FarmTask;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
@@ -10,6 +14,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
@@ -64,25 +69,23 @@ public class ExtendedFarmingPlantingTask extends ExtendedFarmingAbstractTask {
 		return goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().getCount()>1;
 	}
 	/**
-	 * Validates whether a given block position above farmland is suitable for planting.
-	 * <p>
-	 * Evaluates whether the target position is replaceable, verifies that the plant item translates to 
-	 * an {@link IPlantable} of type {@link PlantType#CROP}, checks that the soil block below is fertile, 
-	 * and confirms via {@link BlockState#canSustainPlant} that the farmland can accept the plant.
-	 * </p>
+	 * Validates whether a given block position above soil is suitable for planting the active seed item.
 	 *
-	 * @param pAboveBlockPos target block coordinates above the farmland
-	 * @param pServerLevel   world where the check takes place
-	 * @return {@code true} if the position is replaceable and supported by fertile farmland below
+	 * @param cropPosition  target block coordinates above the soil
+	 * @param pServerLevel  world where the check takes place
+	 * @return {@code true} if the target position is replaceable and the block below can sustain the plant
 	 */
 	@Override
-	public boolean isValidPosForTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel) {
-		BlockState farmland = pServerLevel.getBlockState(pAboveBlockPos.below());
+	public boolean isValidPosForTask(BlockPos cropPosition, ServerWorld pServerLevel) {
+		BlockState farmland = pServerLevel.getBlockState(cropPosition.below());
+		if (farmland.is(Blocks.SUGAR_CANE)) {
+			return false;
+		}
 		IPlantable plant = ExtendedItemStackUtils.getPlantFromItem(goalHolder.farmhandData.getFarmhandInfo().getSeedsItem());
-		return isRePlaceablePos(pAboveBlockPos, pServerLevel)
-			&& plant.getPlantType(pServerLevel, pAboveBlockPos) == PlantType.CROP
-			&& farmland.isFertile(pServerLevel, pAboveBlockPos)
-			&& farmland.canSustainPlant(pServerLevel, pAboveBlockPos.below(), Direction.UP, plant);
+		return isRePlaceablePos(cropPosition, pServerLevel)
+			&& isSupportedPlantType(plant, pServerLevel, cropPosition)
+			&& (plant.getPlantType(pServerLevel, cropPosition) == PlantType.CROP ? farmland.isFertile(pServerLevel, cropPosition) : true)
+			&& farmland.canSustainPlant(pServerLevel, cropPosition.below(), Direction.UP, plant);
 	}
 	/**
 	 * Places the crop block at the target position.
@@ -131,5 +134,27 @@ public class ExtendedFarmingPlantingTask extends ExtendedFarmingAbstractTask {
 	public void stopTask() {
 		super.stopTask();
 		goalHolder.getEntity().setItemInHand(Hand.MAIN_HAND, previousHeldItem);
+	}
+	/**
+	 * Evaluates whether a plant instance is supported by this task.
+	 *
+	 * TODO evaluate if there is a better solution than accepting nullable world and positions
+	 * 
+	 * @param pPlant the plant instance to evaluate
+	 * @param level the level to evaluate at
+	 * @param pos  the position to evaluate at
+	 * @return {@code true} if the plant is a supported crop type; {@code false} otherwise
+	 */
+	public static boolean isSupportedPlantType(@Nullable IPlantable pPlant, @Nullable World level, @Nullable BlockPos pos) {
+		if(pPlant!=null) {
+			if (pPlant instanceof SugarCaneBlock) {
+				return true;
+			}
+			try {
+				//TODO is there a better way to handle this?
+				return pPlant.getPlantType(level, pos) == PlantType.CROP;
+			} catch (NullPointerException e) {}
+		}
+		return false;
 	}
 }

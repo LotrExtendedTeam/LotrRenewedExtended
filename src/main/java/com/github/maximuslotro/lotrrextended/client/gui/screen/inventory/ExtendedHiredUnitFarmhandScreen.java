@@ -13,11 +13,12 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<ExtendedHiredUnitFarmhandContainer> {
 
-	private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/hired_unit_farmhand_menu.png");
+	private static final ResourceLocation CONTAINER_BACKGROUND = new ResourceLocation(LotrExtendedMod.MODID,"textures/gui/container/unit_farmhand_menu.png");
 
 	public ExtendedHiredUnitFarmhandScreen(ExtendedHiredUnitFarmhandContainer unitEquipmentContainer, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(unitEquipmentContainer, pPlayerInventory, pTitle);
@@ -75,8 +76,11 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 			// Draw the 18x18 active slot border
 			this.blit(pMatrixStack, leftPos + xPos, topPos + yPos, 176, 18, 18, 18);
 		}
-		int barLength = (int) (42 * getMenu().getFarmhandInfo().getCurrentFarmerXp()/getMenu().getFarmhandInfo().getMaxFarmerXp());
-		fill(pMatrixStack, 67, 40, 67 + barLength, 43, 0x1CC226);
+		int barLength = (int) (42 * ((float)getMenu().getFarmhandInfo().getCurrentFarmerXp())/getMenu().getFarmhandInfo().getMaxFarmerXp());
+		fill(pMatrixStack, leftPos + 67, topPos + 40, leftPos + 67 + barLength, topPos + 43, 0xFF1CC226);
+		if (this.getMenu().getSeedsSlot().hasItem()) {
+			this.blit(pMatrixStack, leftPos + 51, topPos + 47, 188, 54, 2, 12);
+		}
 	}
 
 	@Override
@@ -100,6 +104,11 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 		if (this.isHovering(67, 40, 42, 3, pMouseX, pMouseY)) {
 			List<ITextComponent> tooltips = new ArrayList<>();
 			tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_farmhand.level.tooltip", getMenu().getFarmhandInfo().getCurrentFarmerXp(), getMenu().getFarmhandInfo().getMaxFarmerXp()));
+			this.renderComponentTooltip(stack, tooltips, pMouseX, pMouseY);
+		}
+		if ((this.isHovering(44, 61, 16, 16, pMouseX, pMouseY) || this.isHovering(51, 47, 2, 12, pMouseX, pMouseY)) && !this.getMenu().getSeedsSlot().hasItem()) {
+			List<ITextComponent> tooltips = new ArrayList<>();
+			tooltips.add(new TranslationTextComponent("gui.lotrextended.hired_unit_farmhand.crop.tooltip").withStyle(TextFormatting.RED));
 			this.renderComponentTooltip(stack, tooltips, pMouseX, pMouseY);
 		}
 	}

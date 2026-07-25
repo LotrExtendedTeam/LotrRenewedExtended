@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
+package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
@@ -74,6 +74,15 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	 *
 	 * @param farmhand               the NPC entity taking on farming duties
 	 * @param walkSpeedModifier      movement speed multiplier applied during path navigation
+	 */
+	public ExtendedFarmingGoalHolder(NPCEntity farmhand, double walkSpeedModifier) {
+		this(farmhand, walkSpeedModifier, 0);
+	}
+	/**
+	 * Constructs a new farming goal holder for the specified NPC, with a proficiency.
+	 *
+	 * @param farmhand               the NPC entity taking on farming duties
+	 * @param walkSpeedModifier      movement speed multiplier applied during path navigation
 	 * @param pAdditionalProficiency flat proficiency modifier boosting execution chance checks
 	 */
 	public ExtendedFarmingGoalHolder(NPCEntity farmhand, double walkSpeedModifier, float pAdditionalProficiency) {
@@ -87,10 +96,6 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	}
 	/**
 	 * Registers the standard set of default farming tasks in recommended priority order.
-	 * <p>
-	 * Added tasks include depositing, tilling, collecting ground items, crafting bonemeal, 
-	 * planting, harvesting, bonemealing crops, and acquiring seed inventory.
-	 * </p>
 	 *
 	 * @return this goal holder instance for method chaining
 	 */
@@ -103,6 +108,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		farmingTasks.add(new ExtendedFarmingHarvestTask(this));
 		farmingTasks.add(new ExtendedFarmingBonemealTask(this));
 		farmingTasks.add(new ExtendedFarmingAquireTask(this));
+		farmingTasks.add(new ExtendedFarmingSeedCraftTask(this));
 		return this;
 	}
 	/**
@@ -188,7 +194,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	 */
 	private boolean tryAssignTask(ExtendedFarmingAbstractTask task, BlockPos.Mutable taskPosition) {
 		task.setRandomBlockByTask(taskPosition, level);
-		if (!task.isValidPosForTask(taskPosition, level)) {
+		if (!task.isValidPosForTaskMutable(taskPosition, level)) {
 			task.invalidateCache();
 			return false;
 		}

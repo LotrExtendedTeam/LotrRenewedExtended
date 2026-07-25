@@ -23,8 +23,9 @@ public class ExtendedCaptainTypes {
 	public static final ResourceLocation LINDON_LORD = make("lindon_lord");
 	public static final ResourceLocation ISENGARD_CAPTAIN = make("lsengard_captain");
 	public static final ResourceLocation DUNLENDING_WARLORD = make("dunlending_warlord");
-
 	public static final ResourceLocation HOBBIT_FARMER = make("hobbit_farmer");
+	public static final ResourceLocation BREE_FARMER = make("bree_farmer");
+	public static final ResourceLocation DUNLENDING_FARMER = make("dunlending_farmer");
 
 	private static ResourceLocation make(String pId) {
 		return validate(new ResourceLocation(LotrExtendedMod.MODID, pId));

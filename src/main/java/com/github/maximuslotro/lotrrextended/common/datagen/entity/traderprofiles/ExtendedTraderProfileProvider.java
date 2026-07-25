@@ -86,12 +86,12 @@ public abstract class ExtendedTraderProfileProvider implements IDataProvider {
 							float soldAmount = soldCost / (float)entrySold.getKey().getCount();
 							float boughtAmount = buyCost / (float)entryBought.getKey().getCount();
 							if(soldAmount<boughtAmount) {
-								LOGGER.warn(entrySold.getKey().toString() + " tried being sold for less than the raw buy price of " + soldCost + "<" + buyCost +":fraction:"+ soldAmount + "<" + boughtAmount);
+								LOGGER.warn(entrySold.getKey().toString() + " tried being sold for less than the raw buy price of " + buyCost +":["+ soldAmount + "<" + boughtAmount+"]");
 								isHigher = true;
 							}
 							if(soldAmount==boughtAmount) {
 								if(buyCost!=1 && soldCost!=1) {
-									LOGGER.warn(entrySold.getKey().toString() + " tried being sold same as the buy price of " + soldCost +":fraction:" + soldAmount);
+									LOGGER.warn(entrySold.getKey().toString() + " tried being sold same as the buy price of " + soldCost +":[" + soldAmount+"]");
 								}
 							}
 							// TODO better min-max price validation 

@@ -60,4 +60,10 @@ public interface ExtendedINPCEntity {
 	 * @return an {@link NPCEntity} representing itself
 	 */
 	NPCEntity getNPC();
+	/**
+	 * Should NPC be able to pickup loot?
+	 *
+	 * @return True if should pickup
+	 */
+	boolean canPickUpLootExtended();
 }

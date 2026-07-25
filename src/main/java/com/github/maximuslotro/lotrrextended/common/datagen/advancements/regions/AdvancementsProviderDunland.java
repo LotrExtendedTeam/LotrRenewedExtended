@@ -74,13 +74,22 @@ public class AdvancementsProviderDunland extends ExtendedBaseAdvancementType{
 				.setTitle("We Fight for You!").setDescription("Hire a unit from a Dunlending Warlord."),
 				addUnitHireTrigger(make(), ExtendedEntities.DUNLENDING_WARLORD.get()).parent(dunland));
 
-		Advancement fine_dining = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "fine_dining", FrameType.TASK)
+		Advancement dunlending_bartender_trade = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "dunlending_bartender_trade", FrameType.TASK)
 			.setTitle("Fine Dining").setDescription("Trade with a Dunlending Bartender."),
 			addTradeEntityTrigger(make(), ExtendedEntities.DUNLENDING_BARTENDER.get()).parent(dunland));
 
-		Advancement mob_equiper = build(false, data(ExtendedItems.SILVER_COIN_ONE.get(), "mob_equiper", FrameType.TASK)
+		Advancement dunlending_smith_trade = build(false, data(ExtendedItems.SILVER_COIN_ONE.get(), "dunlending_smith_trade", FrameType.TASK)
 			.setTitle("Equipping the Mob").setDescription("Trade with a Dunlending Smith."),
 			addTradeEntityTrigger(make(), ExtendedEntities.DUNLENDING_SMITH.get()).parent(dunland));
+
+
+		Advancement dunlending_farmer_trade = build(false, data(LOTRItems.BRONZE_HOE.get(), "dunlending_farmer_trade", FrameType.TASK)
+			.setTitle("Feeding the Mob").setDescription("Trade with a Dunlending Farmer."),
+			addTradeEntityTrigger(make(), ExtendedEntities.DUNLENDING_FARMER.get()).parent(dunland));
+
+		Advancement dunlending_farmer_hire = build(false, data(LOTRItems.BRONZE_HOE.get(), "dunlending_farmer_hire", FrameType.TASK)
+			.setTitle("Wild Gatherers").setDescription("Hire a gatherer from a Dunlending Farmer."),
+			addUnitHireTrigger(make(), ExtendedEntities.DUNLENDING_FARMER.get()).parent(dunlending_farmer_trade));
 	}
 
 	@Override

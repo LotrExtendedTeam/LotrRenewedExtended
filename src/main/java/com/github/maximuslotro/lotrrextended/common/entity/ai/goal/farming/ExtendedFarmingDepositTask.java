@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
+package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
@@ -63,8 +63,8 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 
 		for (int i = 0; i < totalSlots; i++) {
 			ItemStack stack = outputInv.getItem(i);
-			// Skip non-edible seeds; they stay in the inventory for the composting task
-			if (isNonEdibleSeed(stack)) {
+			// Skip non-depositable seeds; they stay in the inventory for the composting task
+			if(!shouldDepositItem(stack)) {
 				continue;
 			}
 			eligibleSlotsCount++;
@@ -116,7 +116,7 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 			for(int i = 0; i < npcInv.getContainerSize(); i++) {
 				ItemStack stack = npcInv.getItem(i);
 				// Skip non-edible seeds
-				if (stack.isEmpty() || isNonEdibleSeed(stack)) {
+				if (stack.isEmpty() || !shouldDepositItem(stack)) {
 					continue;
 				}
 				for(int j = 0; j < inventory.getContainerSize(); j++) {
@@ -160,7 +160,7 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 		for(int i = 0; i<farmhandOutputInv.getContainerSize(); i++) {
 			ItemStack outputStack = farmhandOutputInv.getItem(i);
 			// Skip non-edible seeds entirely during deposit cycles
-			if (outputStack.isEmpty() || isNonEdibleSeed(outputStack)) {
+			if (outputStack.isEmpty() || !shouldDepositItem(outputStack)) {
 				continue;
 			}
 			// Try placing in same item slot fist

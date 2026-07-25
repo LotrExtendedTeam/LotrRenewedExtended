@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
+package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -6,7 +6,6 @@ import net.minecraft.block.ComposterBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.brain.task.FarmerWorkTask;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -101,7 +100,7 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	 */
 	public boolean isTaskStillValidForAmount(ServerWorld pServerLevel, int amount) {
 		ItemStack seedsStack = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
-		if (!isNonEdibleSeed(seedsStack)) {
+		if (shouldDepositItem(seedsStack)) {
 			return false;
 		}
 		Inventory inventory = goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory();
@@ -236,14 +235,14 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 			double d0 = (double)(pLevel.random.nextFloat() * 0.7F) + (double)0.15F;
 			double d1 = (double)(pLevel.random.nextFloat() * 0.7F) + (double)0.060000002F + 0.6D;
 			double d2 = (double)(pLevel.random.nextFloat() * 0.7F) + (double)0.15F;
-			ItemEntity itementity = new ItemEntity(pLevel, (double)pComposterPos.getX() + d0, (double)pComposterPos.getY() + d1, (double)pComposterPos.getZ() + d2, new ItemStack(Items.BONE_MEAL));
+			ItemEntity itementity = new ItemEntity(pLevel, pComposterPos.getX() + d0, pComposterPos.getY() + d1, pComposterPos.getZ() + d2, new ItemStack(Items.BONE_MEAL));
 			itementity.setDefaultPickUpDelay();
 			itementity.setOwner(pEntity.getUUID());// Add entity as owner
 			pLevel.addFreshEntity(itementity);
 		}
 
 		BlockState blockstate = ComposterBlock.empty(pState, pLevel, pComposterPos);
-		pLevel.playSound((PlayerEntity)null, pComposterPos, SoundEvents.COMPOSTER_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		pLevel.playSound(null, pComposterPos, SoundEvents.COMPOSTER_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		return blockstate;
 	}
 	/**

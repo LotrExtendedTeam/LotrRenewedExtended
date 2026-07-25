@@ -254,6 +254,20 @@
           }
         ]
       }
+    },
+    "kill_bree_farmhand": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:bree_farmhand"
+            },
+            "entity": "this"
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -274,7 +288,8 @@
       "kill_bree_smith",
       "kill_bree_stonemason",
       "kill_bree_man",
-      "kill_bree_stablemaster"
+      "kill_bree_stablemaster",
+      "kill_bree_farmhand"
     ]
   ]
 }

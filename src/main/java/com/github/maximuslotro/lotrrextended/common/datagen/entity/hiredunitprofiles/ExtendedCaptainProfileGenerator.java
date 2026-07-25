@@ -18,15 +18,17 @@ public class ExtendedCaptainProfileGenerator extends ExtendedCaptainProfileProvi
 		make(ExtendedCaptainTypes.BLUE_DWARF_COMMANDER, 200).addProfile(ExtendedHiredUnitTypes.BLUE_DWARF)
 		.addProfile(ExtendedHiredUnitTypes.BLUE_DWARF_WARRIOR).addProfile(ExtendedHiredUnitTypes.BLUE_DWARF_ARCHER)
 		.addProfile(ExtendedHiredUnitTypes.BLUE_DWARF_AXE_THROWER).save(pConsumer);
-
+		// Bree
 		make(ExtendedCaptainTypes.BREE_SHERIFF, 100).addProfile(ExtendedHiredUnitTypes.BREE_HOBBIT)
 		.addProfile(ExtendedHiredUnitTypes.BREE_MAN).addProfile(ExtendedHiredUnitTypes.BREE_GUARD).save(pConsumer);
+		make(ExtendedCaptainTypes.BREE_FARMER, 0).addProfile(ExtendedHiredUnitTypes.BREE_FARMHAND).save(pConsumer);
 
 		make(ExtendedCaptainTypes.DUNEDAIN_CAPTAIN, 300).addProfile(ExtendedHiredUnitTypes.DUNEDAIN_RANGER).save(pConsumer);
 
 		make(ExtendedCaptainTypes.DUNLENDING_WARLORD, 100).addProfile(ExtendedHiredUnitTypes.DUNLENDING)
 		.addProfile(ExtendedHiredUnitTypes.DUNLENDING_WARRIOR).addProfile(ExtendedHiredUnitTypes.DUNLENDING_BOWMAN)
 		.addProfile(ExtendedHiredUnitTypes.DUNLENDING_AXE_THROWER).addProfile(ExtendedHiredUnitTypes.DUNLENDING_BERSERKER).save(pConsumer);
+		make(ExtendedCaptainTypes.DUNLENDING_FARMER, 0).addProfile(ExtendedHiredUnitTypes.DUNLENDING_FARMHAND).save(pConsumer);
 
 		make(ExtendedCaptainTypes.DWARF_COMMANDER, 200).addProfile(ExtendedHiredUnitTypes.DWARF)
 		.addProfile(ExtendedHiredUnitTypes.DWARF_WARRIOR).addProfile(ExtendedHiredUnitTypes.DWARF_ARCHER)

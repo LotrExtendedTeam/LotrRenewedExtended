@@ -3,6 +3,10 @@ package com.github.maximuslotro.lotrrextended.common.utils;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.vector.Vector3d;
 
+/**
+ * Make better use of {@link AxisAlignedBB} in implementing methods
+ * */
+@Deprecated
 public class ExtendedAxisAlignedBBUtils {
 
 	public static AxisAlignedBB makeOffsetBB(Vector3d pos, double xOffset1, double zOffset1, Vector3d pos2, double xOffset2, double zOffset2) {

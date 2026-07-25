@@ -246,5 +246,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		single(LOTREntities.DUNLENDING.get()).setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.DUNLENDING_HOUSE);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.DUNLENDING_WARRIOR.get(), 3).addPool(LOTREntities.DUNLENDING_BOWMAN.get(), 1)
 			.build(), 2, 6, false, 16, 12).setBoundaries(20, -8, 12, 6, -1, 4).enableSpawningAtSpawner(20).save(pConsumer, ExtendedSpawners.DUNLENDING_AREA);
+		single(ExtendedEntities.DUNLENDING_FARMER.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.DUNLENDING_FARMER);
+		single(ExtendedEntities.DUNLENDING_FARMHAND.get()).setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.DUNLENDING_FARMHAND);
 	}
 }

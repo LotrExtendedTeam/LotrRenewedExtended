@@ -1,15 +1,15 @@
 {
-  "parent": "lotrextended:bree/hills_of_the_dead",
+  "parent": "lotrextended:eriador/hills_of_the_dead",
   "display": {
     "icon": {
       "item": "minecraft:bone"
     },
     "title": {
-      "translate": "advancements.lotrextended.bree.barrow_wight_slayer.title"
+      "translate": "advancements.lotrextended.eriador.barrow_wight_slayer.title"
     },
     "description": {
       "color": "green",
-      "translate": "advancements.lotrextended.bree.barrow_wight_slayer.description"
+      "translate": "advancements.lotrextended.eriador.barrow_wight_slayer.description"
     },
     "frame": "task",
     "show_toast": true,

@@ -468,6 +468,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.BREE_MERCHANT, manBree); // TODO: Maybe add some other drops here?
 		makeEntity(ExtendedEntities.BREE_FARMER, manBree);
+		makeEntity(ExtendedEntities.BREE_FARMHAND, manBree);
 		makeEntity(ExtendedEntities.BREE_POTTER, manBree);
 		makeEntity(ExtendedEntities.BREE_BAKER, manBree);
 		makeEntity(ExtendedEntities.BREE_BUTCHER, manBree);
@@ -526,6 +527,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.DUNLENDING_BERSERKER, manDunlending, arrows);
 		makeEntity(ExtendedEntities.DUNLENDING_BARTENDER, manDunlending);
 		makeEntity(ExtendedEntities.DUNLENDING_SMITH, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_FARMER, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_FARMHAND, manDunlending);
 	}
 
 	public ResourceLocation makeLootCommon(String name, LootTable.Builder builder) {

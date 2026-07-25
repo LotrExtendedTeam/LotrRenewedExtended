@@ -153,6 +153,8 @@ public class ExtendedSpawners {
 	public static final ResourceLocation DUNLENDING_SMITH = register("dunlending_smith");
 	public static final ResourceLocation DUNLENDING_AREA = register("dunlending_area_spawner");
 	public static final ResourceLocation DUNLENDING_HOUSE = register("dunlending_house");
+	public static final ResourceLocation DUNLENDING_FARMER = register("dunlending_farmer");
+	public static final ResourceLocation DUNLENDING_FARMHAND = register("dunlending_farmhand");
 
 	private static ResourceLocation register(String pId) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, pId), true);

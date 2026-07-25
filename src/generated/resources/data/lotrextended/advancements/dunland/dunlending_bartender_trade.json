@@ -5,11 +5,11 @@
       "item": "lotr:silver_coin_one"
     },
     "title": {
-      "translate": "advancements.lotrextended.dunland.mob_equiper.title"
+      "translate": "advancements.lotrextended.dunland.dunlending_bartender_trade.title"
     },
     "description": {
       "color": "green",
-      "translate": "advancements.lotrextended.dunland.mob_equiper.description"
+      "translate": "advancements.lotrextended.dunland.dunlending_bartender_trade.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -17,25 +17,25 @@
     "hidden": false
   },
   "criteria": {
-    "trade_dunlending_smith_buy": {
+    "trade_dunlending_bartender_buy": {
       "trigger": "lotrextended:trader_traded_with",
       "conditions": {
-        "entity": "lotr:dunlending_smith",
+        "entity": "lotr:dunlending_bartender",
         "istraderselling": "false"
       }
     },
-    "trade_dunlending_smith_sell": {
+    "trade_dunlending_bartender_sell": {
       "trigger": "lotrextended:trader_traded_with",
       "conditions": {
-        "entity": "lotr:dunlending_smith",
+        "entity": "lotr:dunlending_bartender",
         "istraderselling": "true"
       }
     }
   },
   "requirements": [
     [
-      "trade_dunlending_smith_buy",
-      "trade_dunlending_smith_sell"
+      "trade_dunlending_bartender_buy",
+      "trade_dunlending_bartender_sell"
     ]
   ]
 }
