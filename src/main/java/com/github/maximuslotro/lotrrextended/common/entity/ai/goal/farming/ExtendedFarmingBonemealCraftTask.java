@@ -39,10 +39,6 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	 */
 	private BlockPos cachedComposterPos = null;
 	/**
-	 * Maximum allowable squared distance from the NPC to its cached composter before forcing target re-validation.
-	 */
-	private static final double MAX_DISTANCE_SQ = Math.pow(10, 2);
-	/**
 	 * Minimum quantity of seeds that must remain in the NPC's inventory during composting operations.
 	 */
 	private static final int MIN_KEEP = 0;
