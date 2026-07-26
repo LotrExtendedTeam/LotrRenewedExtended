@@ -75,7 +75,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		this.alignmentLevel = Math.round(serverData.alignmentLevel * 10) / 10f;
 		this.previousAlignment = alignmentLevel;
 		this.whitelist = serverData.whitelist;
-		this.canSelfProtect = true; //serverData.canSelfProtect;
+		this.canSelfProtect = serverData.canSelfProtect;
 		this.protectionType = serverData.protectionType;
 		this.configurePos = serverData.configurePos;
 		this.isEnabled = serverData.enabled;
@@ -92,7 +92,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		this.alignmentLevel = Math.round(serverData.alignmentLevel * 10) / 10f;
 		this.previousAlignment = alignmentLevel;
 		this.whitelist = serverData.whitelist;
-		this.canSelfProtect = true; //serverData.canSelfProtect;
+		this.canSelfProtect = serverData.canSelfProtect;
 		this.protectionType = serverData.protectionType;
 		this.configurePos = serverData.configurePos;
 		this.isEnabled = serverData.enabled;
@@ -128,7 +128,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			protectionType==0 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_faction"):
 				protectionType==1 ? new TranslationTextComponent("gui.lotrextended.banner_configuration.type_whitelist"): 
 					new TranslationTextComponent("gui.lotrextended.banner_configuration.type_custom"));
-		this.addButton(update = new ExtendedSimpleButton(this.leftPos +this.imageWidth -115, this.topPos + this.imageHeight-25, 110, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.send_update"), button -> {
+		this.addButton(update = new ExtendedSimpleButton(this.leftPos + 85, this.topPos + this.imageHeight-25, 110, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.send_update"), button -> {
 			needsUpdate = false;
 			whitelistFields.forEach((textButton) -> textButton.setFocus(false));
 			if(isEnabled) {
@@ -141,19 +141,22 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			}
 		});
 		update.active = false;
-		//		this.addButton(new TextureOffsetButton(this.leftPos +this.imageWidth -140, this.topPos + this.imageHeight-25, 80, 192, 20, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.self_protection"), button -> {
-		//			canSelfProtect = !canSelfProtect;
-		//			needsUpdate = true;
-		//		}){
-		//			@Override
-		//			public boolean shouldOffset() {
-		//				return !ExtendedBannerConfigurationScreen.this.canSelfProtect;
-		//			}
-		//			@Override
-		//			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
-		//				ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.self_protection"+(ExtendedBannerConfigurationScreen.this.canSelfProtect ? ".on" : ".off")), 200), pMouseX, pMouseY);
-		//			}
-		//		});
+		this.addButton(new ExtendedTextureOffsetButton(this.leftPos + 62, this.topPos + this.imageHeight-25, 80, 192, 20, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.self_protection"), button -> {
+			canSelfProtect = !canSelfProtect;
+			needsUpdate = true;
+		}, guiTexture){
+			@Override
+			public boolean shouldOffset() {
+				return ExtendedBannerConfigurationScreen.this.canSelfProtect;
+			}
+			@Override
+			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
+				List<IReorderingProcessor> lines = font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.self_protection.setting")
+					.append(new TranslationTextComponent(ExtendedBannerConfigurationScreen.this.canSelfProtect ? "gui.lotrextended.base.on" : "gui.lotrextended.base.off")).withStyle(ExtendedBannerConfigurationScreen.this.canSelfProtect ? TextFormatting.GREEN : TextFormatting.RED)
+					.append(new StringTextComponent("\n")).append(new TranslationTextComponent("gui.lotrextended.banner_configuration.self_protection.disc").withStyle(TextFormatting.RED)), 200);
+				ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, lines, pMouseX, pMouseY);
+			}
+		});
 		this.addButton(new ExtendedTextureOffsetButton(this.leftPos + 7, this.topPos + this.imageHeight-25, 190, 192, 10, 10, new TranslationTextComponent("gui.lotrextended.banner_configuration.perms.global"), button -> showDefaultPerms = !showDefaultPerms, guiTexture){
 			@Override
 			public boolean shouldOffset() {

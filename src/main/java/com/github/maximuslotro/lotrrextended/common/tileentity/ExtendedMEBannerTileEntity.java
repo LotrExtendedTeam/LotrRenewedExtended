@@ -89,7 +89,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
      * Determines whether the banner should protect itself from being destroyed
      * by unauthorized players/entities.
      */
-	private boolean canProtectSelf = true;
+	private boolean selfProtecting = true;
 	/**
      * Whether this banner has already been used and should attach NBT
      * data to dropped items.
@@ -432,12 +432,12 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfileFellowship(fellowship.getFellowshipId())).setPerms(perms));
 	}
 
-	public boolean isCanProtectSelf() {
-		return canProtectSelf;
+	public boolean isSelfProtecting() {
+		return selfProtecting;
 	}
 
 	public void setCanProtectSelf(boolean canProtectSelf) {
-		this.canProtectSelf = canProtectSelf;
+		this.selfProtecting = canProtectSelf;
 	}
 
 	public ExtendedSBannerOpenChangedScreenPacket verifyInfo(ServerPlayerEntity serverPlayer) {
@@ -621,7 +621,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				factionPerms.add(ExtendedBannerPermissions.EVERYTHING);
 			}
 			if(pCompound.contains("protectionSelf")) {
-				canProtectSelf = pCompound.getBoolean("protectionSelf");
+				selfProtecting = pCompound.getBoolean("protectionSelf");
 			}
 			if(pCompound.contains("used")) {
 				used = pCompound.getBoolean("used");
@@ -690,8 +690,8 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				// Store the byte array in the CompoundNBT with the key "factionPerms"
 				pCompound.putByteArray("factionPerms", ordinalValues);
 			}
-			if(!canProtectSelf) {
-				pCompound.putBoolean("protectionSelf", canProtectSelf);
+			if(!selfProtecting) {
+				pCompound.putBoolean("protectionSelf", selfProtecting);
 			}
 			if(!protectionOverrideMessage.isEmpty()) {
 				pCompound.putString("customMessage", protectionOverrideMessage);

@@ -43,7 +43,7 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		this.factionPerms = new ArrayList<>();
 		this.alignmentLevel = 0;
 		this.whitelist = new ArrayList<>();
-		this.canSelfProtect = false;
+		this.canSelfProtect = true;
 		this.protectionType = 0;
 		this.configurePos = new BlockPos(0,0,0);
 		this.enabled = enabled;
@@ -55,7 +55,7 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		this.factionPerms = bannerEntity.getFactionPerms();
 		this.alignmentLevel = bannerEntity.getAlignmentLevel();
 		this.whitelist = bannerEntity.getProtectionWhitelist();
-		this.canSelfProtect = bannerEntity.isCanProtectSelf();
+		this.canSelfProtect = bannerEntity.isSelfProtecting();
 		this.protectionType = bannerEntity.getProtectionType().getId();
 		this.configurePos = bannerEntity.getBlockPos();
 		this.enabled = true;

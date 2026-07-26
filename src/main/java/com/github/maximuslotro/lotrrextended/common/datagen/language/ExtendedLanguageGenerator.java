@@ -427,8 +427,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.banner_configuration.send_update", "Sync Banner Now");
 		addD("gui.lotrextended.banner_configuration.send_update.disc", "Sync And Validate Banner Info With Server\nThis is done automatically when closing the GUI");
 		addD("gui.lotrextended.banner_configuration.self_protection", "Self Protection");
-		addD("gui.lotrextended.banner_configuration.self_protection.on", "Self Protection: On");
-		addD("gui.lotrextended.banner_configuration.self_protection.off", "Self Protection: Off");
+		addD("gui.lotrextended.banner_configuration.self_protection.setting", "Self Protection: %s");
+		addD("gui.lotrextended.banner_configuration.self_protection.disc", "Disabling this setting allows players to bypass all settings and break this banner!");
 		addD("gui.lotrextended.banner_configuration.faction.requires", "Required Alignment:");
 		addD("gui.lotrextended.banner_configuration.faction.aligned", "Protected by: %s");
 		addD("gui.lotrextended.banner_configuration.faction.textBox", "Alignment");
