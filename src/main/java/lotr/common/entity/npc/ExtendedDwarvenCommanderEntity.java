@@ -5,6 +5,7 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTy
 
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
 import lotr.common.entity.npc.data.NPCGenderProvider;
+import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -53,7 +54,7 @@ public class ExtendedDwarvenCommanderEntity extends DwarfEntity implements Exten
 		setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.GOLD_TRIMMED_DWARVEN_LEGGINGS.get()));
 		setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.GOLD_TRIMMED_DWARVEN_CHESTPLATE.get()));
 		setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
-		setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(Items.SHIELD));
+		setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.DWARVEN_SHIELD.get()));
 		return spawnData;
 	}
 

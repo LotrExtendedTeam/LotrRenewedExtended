@@ -1149,6 +1149,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeShieldRecipe(consumer, ExtendedItems.LINDON_SHIELD, ExtendedTags.Items.ELVEN_STEEL_INGOT, "elven_steel", LOTRRecipes.LINDON_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.URUK_SHIELD, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", LOTRRecipes.URUK_CRAFTING);
 		makeShieldRecipe(consumer, ExtendedItems.DUNLENDING_SHIELD, Tags.Items.INGOTS_IRON, "iron_ingot", LOTRRecipes.DUNLENDING_CRAFTING);
+		makeShieldRecipe(consumer, ExtendedItems.DWARVEN_SHIELD, ExtendedTags.Items.DWARVEN_STEEL_INGOT, "dwarven_steel_ingot", LOTRRecipes.DWARVEN_CRAFTING);
 		//Banners and patterns
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.DUNEDAIN_BANNER, ExtendedItems.DUNEDAIN_BANNER_PATTERN, LOTRRecipes.RANGER_CRAFTING);
 		makeBannerAndPatternRecipe(consumer, ExtendedItems.HOBBIT_BANNER, ExtendedItems.HOBBIT_BANNER_PATTERN, LOTRRecipes.HOBBIT_CRAFTING);

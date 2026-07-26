@@ -1248,6 +1248,7 @@ public class MixinLOTRItems {
 		ExtendedItems.ARNOR_SHIELD = regItemB("arnor_shield", () -> new LOTRShieldItem(LOTRMaterial.ARNOR));
 
 		//Blue Mountains equipment
+		ExtendedItems.DWARVEN_SHIELD = regItemB("dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.DWARVEN));
 		ExtendedItems.BLUE_DWARVEN_SHIELD = regItemB("blue_dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.BLUE_DWARVEN));
 
 		ExtendedItems.LEATHER_BOAR_ARMOR = regItemB("leather_boar_armor", () -> new ExtendedMountedDyeableArmorItem(8, "leather", MountType.BOAR, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));

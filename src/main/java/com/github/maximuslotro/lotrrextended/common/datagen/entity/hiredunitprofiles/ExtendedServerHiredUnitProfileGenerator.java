@@ -283,7 +283,7 @@ public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHired
 		.addMeleePoolItem(new ItemStack(LOTRItems.DWARVEN_SPEAR.get()), 1)
 		.addMeleePoolItem(new ItemStack(LOTRItems.DWARVEN_AXE.get()), 1)
 		.addMeleePoolItem(new ItemStack(ExtendedItems.DWARVEN_MATTOCK.get()), 1)
-		.addShieldItem(new ItemStack(Items.SHIELD), 1)
+		.addShieldItem(new ItemStack(ExtendedItems.DWARVEN_SHIELD.get()), 1)
 		.addShieldItem(ItemStack.EMPTY, 1)
 		.setIdlePoolFromMeleePool().save(pConsumer, ExtendedHiredUnitTypes.DWARF_WARRIOR);
 

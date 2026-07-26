@@ -1,4 +1,6 @@
 {
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
 	"parent": "lotr:item/template_shield",
 	"textures": {
 		"particle": "lotrextended:item/dunlending_shield_front",
