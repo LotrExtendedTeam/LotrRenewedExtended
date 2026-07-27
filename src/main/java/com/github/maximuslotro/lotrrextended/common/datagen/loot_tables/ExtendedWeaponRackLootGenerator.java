@@ -242,6 +242,31 @@ public class ExtendedWeaponRackLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.URUK_SHOVEL.get(), 50))
 				.add(addEntry(ExtendedItems.URUK_CROSSBOW.get(), 70))
 				.add(addEntry(ExtendedItems.ORC_BOW.get(), 60)));
+
+		make(consumer, ExtendedLootTables.DUNLAND_WEAPONRACKS, makePool()
+			.add(addEntry(Items.STONE_SWORD, 25))
+			.add(addEntry(Items.STONE_AXE, 25))
+			.add(addEntry(LOTRItems.STONE_DAGGER.get(), 25))
+			.add(addEntry(LOTRItems.STONE_SPEAR.get(), 25))
+			.add(addEntry(LOTRItems.BRONZE_AXE.get(), 25))
+			.add(addEntry(LOTRItems.BRONZE_DAGGER.get(), 25))
+			.add(addEntry(LOTRItems.BRONZE_SPEAR.get(), 25))
+			.add(addEntry(Items.IRON_AXE, 25))
+			.add(addEntry(LOTRItems.IRON_DAGGER.get(), 25))
+			.add(addEntry(LOTRItems.IRON_SPEAR.get(), 25))
+			.add(addEntry(LOTRItems.DUNLENDING_CLUB.get(), 100))
+			.add(addEntry(Items.BOW, 50)));
+
+		make(consumer, ExtendedLootTables.DUNLAND_SMITHY_WEAPONRACKS, makePool()
+			.add(addEntry(LOTRItems.BRONZE_SWORD.get(), 50))
+			.add(addEntry(LOTRItems.BRONZE_AXE.get(), 40))
+			.add(addEntry(LOTRItems.BRONZE_DAGGER.get(), 60))
+			.add(addEntry(LOTRItems.BRONZE_SPEAR.get(), 60))
+			.add(addEntry(Items.IRON_SWORD, 50))
+			.add(addEntry(Items.IRON_AXE, 40))
+			.add(addEntry(LOTRItems.IRON_DAGGER.get(), 60))
+			.add(addEntry(LOTRItems.IRON_SPEAR.get(), 60))
+			.add(addEntry(Items.BOW, 50)));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight){
