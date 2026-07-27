@@ -72,7 +72,7 @@ public class ExtendedModifiers {
 	public static final ExtendedModifier DWARF_BANE = registerInt("baneDwarf", "banedwarf", ExtendedModifierType.BANE, 1, 4, ExtendedModifierRarity.EARNED, ExtendedModifierScroll.NOSCROLL, 0, 3, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier ELF_BANE = registerInt("baneElf", "baneelf", ExtendedModifierType.BANE, 1, 4, ExtendedModifierRarity.EARNED, ExtendedModifierScroll.NOSCROLL, 0, 3, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier WARG_BANE = registerInt("baneWarg", "banewarg", ExtendedModifierType.BANE, 1, 4, ExtendedModifierRarity.EARNED, ExtendedModifierScroll.NOSCROLL, 0, 3, EquipmentSlotType.MAINHAND);
-	public static final ExtendedModifier WIGHT_BANE = registerInt("baneWight", "banewight", ExtendedModifierType.BANE, 1, 4, ExtendedModifierRarity.UNIQUE, ExtendedModifierScroll.NOSCROLL, 0, 3, EquipmentSlotType.MAINHAND);
+	public static final ExtendedModifier WIGHT_BANE = registerInt("baneWight", "banewight", ExtendedModifierType.BANE, 1, 4, ExtendedModifierRarity.EARNED, ExtendedModifierScroll.NOSCROLL, 0, 3, EquipmentSlotType.MAINHAND);
 	// === Looting Modifiers ===
 	public static final ExtendedModifier BLESSED = registerInt("looting3", "looting.three", ExtendedModifierType.LOOTING, 3, 3, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.GOLD, 1, 4, EquipmentSlotType.MAINHAND);
 	public static final ExtendedModifier FORTUNATE = registerInt("looting2", "looting.two", ExtendedModifierType.LOOTING, 2, 2, ExtendedModifierRarity.SKILLFUL, ExtendedModifierScroll.SILVER, 2, 3, EquipmentSlotType.MAINHAND);
