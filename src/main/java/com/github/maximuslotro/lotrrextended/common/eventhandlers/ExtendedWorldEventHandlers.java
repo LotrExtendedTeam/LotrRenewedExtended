@@ -35,7 +35,9 @@ import lotr.common.entity.npc.data.NPCEntitySettingsManager;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRDimensions;
+import lotr.common.init.LOTRItems;
 import lotr.common.init.LOTRMaterial;
+import lotr.common.world.map.CustomWaypointStructureHandler;
 import net.minecraft.block.BellBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -341,8 +343,7 @@ public class ExtendedWorldEventHandlers {
 
 	@SubscribeEvent
 	public static void onEntityLeave(EntityLeaveWorldEvent event) {
-	    if (!event.getWorld().isClientSide() && event.getEntity() instanceof ExtendedInvasionSpawnerEntity 
-	    	&& ExtendedLevelData.serverInstance().hasInvasion(event.getEntity().getUUID())) {
+	    if (!event.getWorld().isClientSide() && event.getEntity() instanceof ExtendedInvasionSpawnerEntity && ExtendedLevelData.serverInstance().hasInvasion(event.getEntity().getUUID())) {
 	    	// Un-register invasion when spawner is unloaded or deleted.
 			ExtendedLevelData.serverInstance().unregisterInvasion(event.getEntity().getUUID());
 	    }
@@ -354,6 +355,9 @@ public class ExtendedWorldEventHandlers {
 		BlockState clickedState = level.getBlockState(event.getPos());
 		PlayerEntity player = event.getPlayer();
 		if(event.getItemStack().getItem().is(ExtendedTags.Items.PLACEABLE_BOOKS)) {
+			if(event.getItemStack().getItem().equals(LOTRItems.RED_BOOK.get()) && CustomWaypointStructureHandler.INSTANCE.isProtectedByWaypointStructure(level, event.getPos(), player)){
+				return; // Don't try placing red books in waypoint protection (regular waypoint protection has a red book bypass for editing)
+			}
 			ExtendedPlaceableBookTypes type = ExtendedPlaceableBookTypes.getByItem(event.getItemStack().getItem());
 			if(type.notEmpty() && !(clickedState.getBlock() instanceof ExtendedPlacedBooksBlock)) {
 				BlockItemUseContext blockusecontext = new BlockItemUseContext(new ItemUseContext(player, event.getHand(), event.getHitVec()));
