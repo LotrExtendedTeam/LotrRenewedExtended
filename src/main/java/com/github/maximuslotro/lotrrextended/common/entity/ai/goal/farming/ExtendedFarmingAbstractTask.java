@@ -39,6 +39,10 @@ public abstract class ExtendedFarmingAbstractTask {
 	 */
 	protected static final int YSPLIT = 1;
 	/**
+	 * Maximum allowable squared distance from the NPC to its cached block before forcing target re-validation.
+	 */
+	protected static final double MAX_DISTANCE_SQ = Math.pow(10, 2);
+	/**
 	 * Parent goal instance holding references to the entity, world, and inventory data.
 	 */
 	protected ExtendedFarmingGoalHolder goalHolder;
