@@ -10,6 +10,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.ElytraItem;
@@ -31,7 +32,9 @@ public abstract class ExtendedHiredUnitEquipmentSlot extends Slot{
 		return equipmentSlotType;
 	}
 
-	public abstract boolean mayPlaceShifting(ItemStack pShiftingItem);
+	public boolean mayPlaceShifting(ItemStack pShiftingItem) {
+		return mayPlace(pShiftingItem);
+	}
 
 	public static class ArmorSlot extends ExtendedHiredUnitEquipmentSlot{
 		public ArmorSlot(IInventory pContainer, int pIndex, int pX, int pY, ExtendedEquipmentSlotType equipmentSlotType, ResourceLocation empty_SLOT_LOCATION) {
@@ -60,11 +63,6 @@ public abstract class ExtendedHiredUnitEquipmentSlot extends Slot{
 				return false;
 			}
 		}
-
-		@Override
-		public boolean mayPlaceShifting(ItemStack pShiftingItem) {
-			return mayPlace(pShiftingItem);
-		}
 	}
 
 	public static class RangedSlot extends ExtendedHiredUnitEquipmentSlot{
@@ -76,11 +74,6 @@ public abstract class ExtendedHiredUnitEquipmentSlot extends Slot{
 		@Override
 		public boolean mayPlace(ItemStack itemStack) {
 			return itemStack.getItem() instanceof BowItem || itemStack.getItem() instanceof ExtendedThrowableAxeItem;
-		}
-
-		@Override
-		public boolean mayPlaceShifting(ItemStack pShiftingItem) {
-			return mayPlace(pShiftingItem);
 		}
 	}
 
@@ -97,7 +90,10 @@ public abstract class ExtendedHiredUnitEquipmentSlot extends Slot{
 
 		@Override
 		public boolean mayPlaceShifting(ItemStack pShiftingItem) {
-			return pShiftingItem.getItem() instanceof SwordItem || pShiftingItem.getItem() instanceof HammerItem || pShiftingItem.getItem() instanceof SpearItem;
+			return pShiftingItem.getItem() instanceof SwordItem 
+				|| pShiftingItem.getItem() instanceof HammerItem 
+				|| pShiftingItem.getItem() instanceof SpearItem 
+				|| pShiftingItem.getItem() instanceof AxeItem;
 		}
 	}
 
@@ -110,11 +106,6 @@ public abstract class ExtendedHiredUnitEquipmentSlot extends Slot{
 		@Override
 		public boolean mayPlace(ItemStack itemStack) {
 			return itemStack.getItem() instanceof HoeItem;
-		}
-
-		@Override
-		public boolean mayPlaceShifting(ItemStack pShiftingItem) {
-			return mayPlace(pShiftingItem);
 		}
 	}
 
