@@ -157,8 +157,8 @@ public abstract class ExtendedSurfaceStructuresV5<C extends ExtendedPoolFeatureC
 					return false;
 				}
 			}
-			int i = chunkX >> 4;
-			int j = chunkZ >> 4;
+			int i = (chunkX >> 4);
+			int j = (chunkZ >> 4);
 			chunkRandom.setSeed((long)(i ^ j << 4) ^ seed);
 			chunkRandom.nextInt();
 			if(isNearStructure(ExtendedStructuresV5.GUNDABAD_CAMP.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10) || isNearStructure(ExtendedStructuresV5.GUNDABAD_ENCAMPMENT.get(), chunkGenerator, seed, chunkRandom, chunkX, chunkZ, 10)) {
@@ -229,6 +229,10 @@ public abstract class ExtendedSurfaceStructuresV5<C extends ExtendedPoolFeatureC
 			}
 		}
 		return additionalCheck(chunkGenerator, biomeSource, seed, chunkRandom, chunkX, chunkZ, biome, chunkPos, featureConfig);
+	}
+	@Override
+	protected boolean linearSeparation() {
+		return false;
 	}
 	/**
 	 * Hook for subclasses to add additional structure spawn checks.

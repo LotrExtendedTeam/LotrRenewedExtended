@@ -24,6 +24,10 @@
       "maxSpawnCount": 6,
       "entity_types": [
         {
+          "weight": 10,
+          "entity_type": "lotr:dunlending_warrior"
+        },
+        {
           "weight": 3,
           "entity_type": "lotr:dunlending_warrior"
         },

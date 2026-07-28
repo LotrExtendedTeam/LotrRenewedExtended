@@ -152,6 +152,7 @@ public class ExtendedSpawners {
 	public static final ResourceLocation DUNLENDING_BARTENDER = register("dunlending_bartender");
 	public static final ResourceLocation DUNLENDING_SMITH = register("dunlending_smith");
 	public static final ResourceLocation DUNLENDING_AREA = register("dunlending_area_spawner");
+	public static final ResourceLocation DUNLENDING_WARRIOR_AREA = register("dunlending_area_warrior");
 	public static final ResourceLocation DUNLENDING_HOUSE = register("dunlending_house");
 	public static final ResourceLocation DUNLENDING_FARMER = register("dunlending_farmer");
 	public static final ResourceLocation DUNLENDING_FARMHAND = register("dunlending_farmhand");

@@ -114,6 +114,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation DUNLAND_TAVERN_CHEST = registerChest("dunland_tavern");
 	public static final ResourceLocation DUNLAND_FARMER_CHEST = registerChest("dunland_farmer");
 	public static final ResourceLocation DUNLAND_FORT_CHEST = registerChest("dunland_fort");
+	public static final ResourceLocation DUNLAND_FOOD_CHEST = registerChest("dunland_food");
 	// KEGS
 	public static final ResourceLocation HOBBIT_KEGS = registerKeg("hobbit");
 	public static final ResourceLocation RANGER_KEGS = registerKeg("ranger");
