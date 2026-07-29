@@ -267,6 +267,12 @@ public class ExtendedWeaponRackLootGenerator extends ChestLootTables  {
 			.add(addEntry(LOTRItems.IRON_DAGGER.get(), 60))
 			.add(addEntry(LOTRItems.IRON_SPEAR.get(), 60))
 			.add(addEntry(Items.BOW, 50)));
+
+		make(consumer, ExtendedLootTables.DUNLAND_DWARVEN_SMITHY_WEAPONRACKS, makePool()
+			.add(addEntry(LOTRItems.DWARVEN_SWORD.get(), 50))
+			.add(addEntry(LOTRItems.DWARVEN_AXE.get(), 40))
+			.add(addEntry(LOTRItems.DWARVEN_DAGGER.get(), 60))
+			.add(addEntry(LOTRItems.DWARVEN_SPEAR.get(), 60)));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight){

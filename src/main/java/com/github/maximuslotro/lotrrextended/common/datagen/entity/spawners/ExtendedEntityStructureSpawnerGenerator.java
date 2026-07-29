@@ -37,6 +37,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		single(EntityType.FOX).save(pConsumer, ExtendedSpawners.FOX_SINGLE);
 		single(LOTREntities.CARACAL.get()).save(pConsumer, ExtendedSpawners.CARACAL_SINGLE);
 		single(EntityType.HORSE).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.HORSE_SINGLE);
+		single(EntityType.HORSE).setSpawnOffset2x2().setRandomDiscardChance(50).save(pConsumer, ExtendedSpawners.HORSE_SINGLE_DISCARD);
 		single(EntityType.DONKEY).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.DONKEY_SINGLE);
 		single(EntityType.MULE).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.MULE_SINGLE);
 		singleWeighted(EntityType.MULE, 1, 1, 1).addSinglePool(EntityType.DONKEY, 2, 1, 1).addSinglePool(EntityType.HORSE, 5, 1, 1)
@@ -246,8 +247,11 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 		single(LOTREntities.DUNLENDING.get()).setHomeInfo(false, 8).save(pConsumer, ExtendedSpawners.DUNLENDING_HOUSE);
 		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.DUNLENDING_WARRIOR.get(), 10).addPool(LOTREntities.DUNLENDING_WARRIOR.get(), 3).addPool(LOTREntities.DUNLENDING_BOWMAN.get(), 1)
 			.build(), 2, 6, false, 16, 12).setBoundaries(20, -8, 12, 6, -1, 4).enableSpawningAtSpawner(20).save(pConsumer, ExtendedSpawners.DUNLENDING_AREA);
-		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.DUNLENDING_WARRIOR.get(), 3).addPool(LOTREntities.DUNLENDING_BOWMAN.get(), 1)
+		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.DUNLENDING_WARRIOR.get(), 10).addPool(LOTREntities.DUNLENDING_BOWMAN.get(), 5)
+			.addPool(ExtendedEntities.DUNLENDING_AXE_THROWER.get(), 3).addPool(ExtendedEntities.DUNLENDING_BERSERKER.get(), 1)
 			.build(), 2, 6, false, 16, 12).setBoundaries(20, -8, 12, 6, -1, 3).enableSpawningAtSpawner(20).save(pConsumer, ExtendedSpawners.DUNLENDING_WARRIOR_AREA);
+		persisted(MultiSpawnType.Builder.multi().addPool(LOTREntities.DUNLENDING_WARRIOR.get(), 10).addPool(LOTREntities.DUNLENDING_WARRIOR.get(), 1).addPool(LOTREntities.DUNLENDING_BOWMAN.get(), 1)
+			.build(), 2, 6, false, 16, 12).setBoundaries(20, -8, 12, 2, -1, 4).enableSpawningAtSpawner(50).save(pConsumer, ExtendedSpawners.DUNLENDING_TAVERN_AREA);
 		single(ExtendedEntities.DUNLENDING_FARMER.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.DUNLENDING_FARMER);
 		single(ExtendedEntities.DUNLENDING_FARMHAND.get()).setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.DUNLENDING_FARMHAND);
 	}

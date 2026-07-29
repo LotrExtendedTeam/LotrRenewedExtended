@@ -179,6 +179,7 @@ public class ExtendedLootTables {
 
 	public static final ResourceLocation DUNLAND_WEAPONRACKS = registerWeaponRack("dunland");
 	public static final ResourceLocation DUNLAND_SMITHY_WEAPONRACKS = registerWeaponRack("dunland_smithy");
+	public static final ResourceLocation DUNLAND_DWARVEN_SMITHY_WEAPONRACKS = registerWeaponRack("dunland_smithy_dwarf");
 
 	// POTS
 	public static final ResourceLocation BLUE_MOUNTAINS_TRADER_HALL_POT = registerPot("blue_mountains_trader_hall");

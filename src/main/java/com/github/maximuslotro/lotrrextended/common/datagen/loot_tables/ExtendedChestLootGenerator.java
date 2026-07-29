@@ -3241,7 +3241,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 
 	make(consumer, ExtendedLootTables.DUNLAND_FOOD_CHEST, makeTable()
 		.withPool(LootPool.lootPool()
-				.setRolls(RandomValueRange.between(2, 4))
+				.setRolls(RandomValueRange.between(0, 2))
 				.add(addEntry(Items.LEATHER).setWeight(50).setRange(1, 4))
 				.add(addEntry(Items.COAL).setWeight(40).setRange(1, 3))
 				.add(addEntry(Items.CHARCOAL).setWeight(30).setRange(1, 3))
