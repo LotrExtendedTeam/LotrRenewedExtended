@@ -97,6 +97,7 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.ISENGARD_GATEHOUSE.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.ORTHANC.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.ISENGARD_CAMP.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.DUNLAND_HILLFORT.get());
 		provider.generator.getSettings().structureConfig = tempMap;
 	}
 
@@ -299,6 +300,8 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ISENGARD_GATEHOUSE);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ORTHANC);
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ISENGARD_CAMP);
+			}else if(biomeName.equals(LOTRBiomes.DUNLAND.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_DUNLAND_HILLFORT);
 			}
 		}
 	}

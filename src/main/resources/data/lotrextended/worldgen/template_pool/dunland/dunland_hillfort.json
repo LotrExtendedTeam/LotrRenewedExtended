@@ -1,0 +1,28 @@
+{
+	"name": "lotrextended:dunland/dunland_hillfort",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/dunland_hillfort_1",
+				"processors": "minecraft:empty",
+				"chunk_corner_offset": -12,
+				"snap_to_water_height": true
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/dunland_hillfort_2",
+				"processors": "minecraft:empty",
+				"chunk_corner_offset": -12,
+				"snap_to_water_height": true
+			}
+		}
+	]
+}

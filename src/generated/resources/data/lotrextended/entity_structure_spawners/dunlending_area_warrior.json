@@ -2,7 +2,7 @@
   "id": "lotrextended:dunlending_area_warrior",
   "spawner_type": "persisted_use_spawner",
   "check_boundaries": {
-    "topYvalue": 20,
+    "topYvalue": 15,
     "lowerYvalue": -8,
     "horizontal_bounds": 12
   },

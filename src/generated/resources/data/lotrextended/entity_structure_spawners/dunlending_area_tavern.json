@@ -2,14 +2,14 @@
   "id": "lotrextended:dunlending_area_tavern",
   "spawner_type": "persisted_use_spawner",
   "check_boundaries": {
-    "topYvalue": 20,
+    "topYvalue": 10,
     "lowerYvalue": -8,
     "horizontal_bounds": 12
   },
   "spawn_area": {
-    "topYvalue": 2,
+    "topYvalue": 1,
     "lowerYvalue": -1,
-    "horizontal_bounds": 4
+    "horizontal_bounds": 3
   },
   "fixed_spawning": true,
   "fixed_spawning_chance": 50,

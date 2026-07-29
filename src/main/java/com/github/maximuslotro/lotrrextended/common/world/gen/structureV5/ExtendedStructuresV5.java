@@ -98,6 +98,8 @@ public class ExtendedStructuresV5 {
 	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> ORTHANC = STRUCTURE_REGISTRY.register("orthanc", () -> new ExtendedStructureOrthanc(ExtendedStructureType.ISENGARD));
 	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> ISENGARD_CAMP = STRUCTURE_REGISTRY.register("isengard_camp", () -> new ExtendedIsengardStructure(ExtendedStructureType.ISENGARD));
 
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> DUNLAND_HILLFORT = STRUCTURE_REGISTRY.register("dunland_hillfort", () -> new ExtendedCheckAreaCrossStructure(ExtendedStructureType.DUNLAND));
+
 	/**
 	 * Initializes and registers all custom structures with their generation parameters.
 	 * <p>
@@ -150,7 +152,8 @@ public class ExtendedStructuresV5 {
 		register(LINDON_HALL.get(), true,              80, 65, 356254478);
 		register(ISENGARD_GATEHOUSE.get(), false,      1,  0,  0);
 		register(ORTHANC.get(), false,                 1,  0,  0);
-		register(ISENGARD_CAMP.get(), true,            20,  10,  848458030);
+		register(ISENGARD_CAMP.get(), true,            20, 10, 848458030);
+		register(DUNLAND_HILLFORT.get(), true,         20, 8, 3759009);
 	}
 
 	/**
