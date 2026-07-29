@@ -32,6 +32,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 public class ExtendedClientOptionsScreen extends AbstractExtendedOptionsScreen {
 	public List<SettingsCatagory> catagories = new ArrayList<>();
 	private int unlockClientDevCount=0;
+	public static int optionClient = 0;
 
 	public ExtendedClientOptionsScreen() {
 		super(new StringTextComponent("Client Options"), SettingsPage.CLIENT);
@@ -122,7 +123,7 @@ public class ExtendedClientOptionsScreen extends AbstractExtendedOptionsScreen {
 			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
 		addButton(gui.addButton("gui.lotrextended.settings.worldhelp.setting", button -> toggleLotrConfigValue(LOTRConfig.CLIENT.showWorldTypeHelp), (button, pd) -> LOTRConfig.CLIENT.showWorldTypeHelp.get(), 
 			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled"));
-		addButton(gui.addButton("gui.lotrextended.settings.show_hired_unit_hp_numbers.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.enableLargeHiredUnitHealthbars), (button, pd) -> ExtendedClientConfig.enableLargeHiredUnitHealthbars.get(),
+		addButton(gui.addButtonNew("gui.lotrextended.settings.show_hired_unit_hp_numbers.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.enableLargeHiredUnitHealthbars), (button, pd) -> ExtendedClientConfig.enableLargeHiredUnitHealthbars.get(),
 			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableShowHiredUnitHPNumbers"));
 		catagories.add(gui);
 
@@ -180,7 +181,7 @@ public class ExtendedClientOptionsScreen extends AbstractExtendedOptionsScreen {
 			}, sliderValue -> {
 				LOTRConfig.CLIENT.dolAmrothChestplateWings.setAndSave((int)sliderValue);
 			}));
-		addButton(model.addButton("gui.lotrextended.settings.earlyduckmodel.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.enableQuerkyDuckMode), (button, pd) -> ExtendedClientConfig.enableQuerkyDuckMode.get(), 
+		addButton(model.addButtonNew("gui.lotrextended.settings.earlyduckmodel.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.enableQuerkyDuckMode), (button, pd) -> ExtendedClientConfig.enableQuerkyDuckMode.get(), 
 			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableQuerkyDuckMode"));
 		catagories.add(model);
 
@@ -197,9 +198,9 @@ public class ExtendedClientOptionsScreen extends AbstractExtendedOptionsScreen {
 
 		SettingsCatagory misc = new SettingsCatagory(this, 7, x, y, xTabs);
 		addButton(misc.addCatagoryButton("gui.lotrextended.settings.miscellaneoussettings"));
-		addButton(misc.addButton("gui.lotrextended.settings.lotrextendedversioncheck.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.enableClientVersionCheck), (button, pd) -> ExtendedClientConfig.enableClientVersionCheck.get(), 
+		addButton(misc.addButtonNew("gui.lotrextended.settings.lotrextendedversioncheck.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.enableClientVersionCheck), (button, pd) -> ExtendedClientConfig.enableClientVersionCheck.get(), 
 			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableClientVersionCheck"));
-		addButton(misc.addButton("gui.lotrextended.settings.jeilotrversioncheck.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.disableJEILOTRversionCheck), (button, pd) -> ExtendedClientConfig.disableJEILOTRversionCheck.get(), 
+		addButton(misc.addButtonNew("gui.lotrextended.settings.jeilotrversioncheck.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.disableJEILOTRversionCheck), (button, pd) -> ExtendedClientConfig.disableJEILOTRversionCheck.get(), 
 			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "disableJEILOTRversionCheck"));
 		catagories.add(misc);
 
@@ -210,7 +211,7 @@ public class ExtendedClientOptionsScreen extends AbstractExtendedOptionsScreen {
 			}
 		};
 		addButton(dev.addCatagoryButton("gui.lotrextended.settings.devsettings"));
-		addButton(dev.addButton("gui.lotrextended.settings.devtoggle.setting", button -> {
+		addButton(dev.addButtonNew("gui.lotrextended.settings.devtoggle.setting", button -> {
 			if(ExtendedServerConfig.enableDevMode.get()) {
 				setForgeConfigValue(ExtendedClientConfig.enableClientDevMode, true);
 			}else{
@@ -224,18 +225,17 @@ public class ExtendedClientOptionsScreen extends AbstractExtendedOptionsScreen {
 				return ExtendedClientConfig.enableClientDevMode.get();
 			}
 		}, "gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "enableDevModeClient"));
-		addButton(dev.addButton("gui.lotrextended.settings.fsbr.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.forceStructureBlockAirViewing), (button, pd) -> ExtendedClientConfig.forceStructureBlockAirViewing.get(), 
+		addButton(dev.addButtonNew("gui.lotrextended.settings.fsbr.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.forceStructureBlockAirViewing), (button, pd) -> ExtendedClientConfig.forceStructureBlockAirViewing.get(), 
 			"gui.lotrextended.base.enabled", "gui.lotrextended.base.disabled", "forceStructureBlockAirViewing"));
-
-		addButton(dev.addSlider("gui.lotrextended.settings.structureblockoutlineviewdistance.setting", 32.0D, MixinConstants.StructureLimit, 1F, 
+		addButton(dev.addSliderNew("gui.lotrextended.settings.structureblockoutlineviewdistance.setting", 32.0D, MixinConstants.StructureLimit, 1F, 
 			() -> {
 				return (double)ExtendedClientConfig.structureBlockOutlineViewDistance.get();
 			}, sliderValue -> {
 				ExtendedClientConfig.structureBlockOutlineViewDistance.set((int)sliderValue);
 				MixinConstants.changeableNonConfigCrashableStrBlockRenderDistance = (int)sliderValue;
-			}).setToolTip((wdget, matrixStack, pMouseX1, pMouseY1) -> {
-				renderTooltip(matrixStack, font.split(new TranslationTextComponent("config.lotrextended.structureBlockOutlineDistance"), 200), pMouseX1, pMouseY1);
-			}));
+			}, "structureBlockOutlineDistance"));
+		addButton(dev.addButtonNew("gui.lotrextended.settings.spawneroutline.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.showSpawnerOutlines), (button, pd) -> ExtendedClientConfig.showSpawnerOutlines.get(), 
+			"gui.lotrextended.base.show", "gui.lotrextended.base.hide", "showSpawnerOutlines"));
 		catagories.add(dev);
 
 		for(SettingsCatagory catagory : catagories) {
@@ -337,7 +337,7 @@ public class ExtendedClientOptionsScreen extends AbstractExtendedOptionsScreen {
 			}
 			catagoryButton = new ExtendedColorChangingButton(catagoryXOffset, placementYOffset + 24 * index, 120, 20, new TranslationTextComponent(pMessage), 
 				button -> {
-					ExtendedClientOptionsScreen.option=index;
+					ExtendedClientOptionsScreen.optionClient=index;
 					if(screen.unlockClientDevCount==0&&index==0) {
 						screen.unlockClientDevCount=1;
 					}else if(screen.unlockClientDevCount==1&&index==2) {
@@ -358,13 +358,13 @@ public class ExtendedClientOptionsScreen extends AbstractExtendedOptionsScreen {
 				}, 0.13f, 0.92f, 0.71f) {
 				@Override
 				public boolean setColor(){
-					return ExtendedClientOptionsScreen.option==index;
+					return ExtendedClientOptionsScreen.optionClient==index;
 				}
 			};
 			return catagoryButton;
 		}
 		public Widget addButtonNew(String stringMessageKey, IPressable pOnPress, IOnTick<LOTRPlayerData> pOnTick, String enabled, String disabled, String configKey) {
-			ExtendedTogglableTitleButton<LOTRPlayerData> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, pOnPress, 
+			ExtendedTogglableTitleButton<LOTRPlayerData> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(stringMessageKey), pOnPress, 
 				(wdget, matrixStack, pMouseX, pMouseY) -> {
 					screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX, pMouseY);
 				}, pOnTick, enabled, disabled);
@@ -372,28 +372,20 @@ public class ExtendedClientOptionsScreen extends AbstractExtendedOptionsScreen {
 			offsetAmount+=1;
 			return button;
 		}
-		public Widget addButtonNew(String stringMessageKey, IPressable pOnPress, IOnTick<LOTRPlayerData> pOnTick, String enabled, String disabled) {
-			ExtendedTogglableTitleButton<LOTRPlayerData> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, stringMessageKey, pOnPress, pOnTick, enabled, disabled);
+		public Widget addButton(String stringMessageKey, IPressable pOnPress, IOnTick<LOTRPlayerData> pOnTick, String enabled, String disabled) {
+			ExtendedTogglableTitleButton<LOTRPlayerData> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(stringMessageKey), pOnPress, pOnTick, enabled, disabled);
 			bottons.add(button);
 			offsetAmount+=1;
 			return button;
 		}
-		@Deprecated
-		public Widget addButton(String pMessage, IPressable pOnPress, IOnTick<LOTRPlayerData> pOnTick, String enabled, String disabled, String configKey) {
-			ExtendedTogglableTitleButton<LOTRPlayerData> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(pMessage), pOnPress, 
-				(wdget, matrixStack, pMouseX, pMouseY) -> {
-					screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX, pMouseY);
-				}, pOnTick, enabled, disabled);
-			bottons.add(button);
+		public ExtendedSlider addSliderNew(String localKey, double minVal, double maxVal, float steps, IGetValue valueGetter, ISetValue valueSetter, String configKey) {
+			ExtendedSlider slider = new ExtendedSlider(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, localKey, minVal, maxVal, steps, valueGetter, valueSetter);
+			slider.setToolTip((wdget, matrixStack, pMouseX1, pMouseY1) -> {
+				screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(String.format("config.%s.%s", LotrExtendedMod.MODID, configKey)), 200), pMouseX1, pMouseY1);
+			});
+			sliders.add(slider);
 			offsetAmount+=1;
-			return button;
-		}
-		@Deprecated
-		public Widget addButton(String pMessage, IPressable pOnPress, IOnTick<LOTRPlayerData> pOnTick, String enabled, String disabled) {
-			ExtendedTogglableTitleButton<LOTRPlayerData> button = new ExtendedTogglableTitleButton<>(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, new TranslationTextComponent(pMessage), pOnPress, pOnTick, enabled, disabled);
-			bottons.add(button);
-			offsetAmount+=1;
-			return button;
+			return slider;
 		}
 		public ExtendedSlider addSlider(String localKey, double minVal, double maxVal, float steps, IGetValue valueGetter, ISetValue valueSetter) {
 			ExtendedSlider slider = new ExtendedSlider(placementXOffset, placementYOffset + 24 * offsetAmount, 200, 20, localKey, minVal, maxVal, steps, valueGetter, valueSetter);
@@ -410,7 +402,7 @@ public class ExtendedClientOptionsScreen extends AbstractExtendedOptionsScreen {
 		}
 
 		public void handleUpdates() {
-			if(ExtendedClientOptionsScreen.option==index) {
+			if(ExtendedClientOptionsScreen.optionClient==index) {
 				LOTRPlayerData pd = getPlayerData();
 				for(ExtendedTogglableTitleButton<LOTRPlayerData> widget : bottons) {
 					widget.onTick(pd);
@@ -419,21 +411,21 @@ public class ExtendedClientOptionsScreen extends AbstractExtendedOptionsScreen {
 		}
 		public void checkVisability(){
 			if(isDev()) {
-				if(ExtendedClientConfig.enableClientDevMode.get() || ExtendedServerConfig.enableDevMode.get()) {
+				if(ExtendedClientConfig.isDevMode()) {
 					catagoryButton.visible = true;
 				}else {
 					// Enable setting one up on disable
-					if(catagoryButton.visible && ExtendedClientOptionsScreen.option == index) {
-						ExtendedClientOptionsScreen.option = index-1;
+					if(catagoryButton.visible && ExtendedClientOptionsScreen.optionClient == index) {
+						ExtendedClientOptionsScreen.optionClient = index-1;
 					}
 					catagoryButton.visible = false;
 				}
 			}
 			for(Widget widget : bottons) {
-				widget.visible = ExtendedClientOptionsScreen.option==index; // Hide/Show widget if this category is selected
+				widget.visible = ExtendedClientOptionsScreen.optionClient==index; // Hide/Show widget if this category is selected
 			}
 			for(Widget widget : sliders) {
-				widget.visible = ExtendedClientOptionsScreen.option==index; // Hide/Show widget if this category is selected
+				widget.visible = ExtendedClientOptionsScreen.optionClient==index; // Hide/Show widget if this category is selected
 			}
 		}
 

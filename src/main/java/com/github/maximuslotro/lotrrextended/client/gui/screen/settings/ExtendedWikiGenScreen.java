@@ -43,6 +43,7 @@ public class ExtendedWikiGenScreen extends AbstractExtendedOptionsScreen {
 	private boolean make64icons= false;
 	private boolean makeItemIcons= false;
 	private String output = "No output";
+	public static int optionWiki = 0;
 
 	public ExtendedWikiGenScreen() {
 		super(new StringTextComponent("Wiki Generation"), SettingsPage.WIKI);
@@ -229,11 +230,11 @@ public class ExtendedWikiGenScreen extends AbstractExtendedOptionsScreen {
 			}
 			catagoryButton = new ExtendedColorChangingButton(catagoryXOffset, placementYOffset + 24 * index, 120, 20, new TranslationTextComponent(pMessage), 
 				button -> {
-					ExtendedWikiGenScreen.option=index;
+					ExtendedWikiGenScreen.optionWiki=index;
 				}, 0.13f, 0.92f, 0.71f) {
 				@Override
 				public boolean setColor(){
-					return ExtendedWikiGenScreen.option==index;
+					return ExtendedWikiGenScreen.optionWiki==index;
 				}
 			};
 			return catagoryButton;
@@ -261,7 +262,7 @@ public class ExtendedWikiGenScreen extends AbstractExtendedOptionsScreen {
 			sliders.clear();
 		}
 		public void handleUpdates() {
-			if(ExtendedClientOptionsScreen.option==index) {
+			if(ExtendedClientOptionsScreen.optionClient==index) {
 				for(ExtendedTogglableTitleButton<Boolean> widget : bottons) {
 					widget.onTick(true);
 				}
@@ -269,10 +270,10 @@ public class ExtendedWikiGenScreen extends AbstractExtendedOptionsScreen {
 		}
 		public void checkVisability(){
 			for(Widget widget : bottons) {
-				widget.visible = ExtendedWikiGenScreen.option==index; // Hide/Show widget if this category is selected
+				widget.visible = ExtendedWikiGenScreen.optionWiki==index; // Hide/Show widget if this category is selected
 			}
 			for(Widget widget : sliders) {
-				widget.visible = ExtendedWikiGenScreen.option==index; // Hide/Show widget if this category is selected
+				widget.visible = ExtendedWikiGenScreen.optionWiki==index; // Hide/Show widget if this category is selected
 			}
 		}
 	}

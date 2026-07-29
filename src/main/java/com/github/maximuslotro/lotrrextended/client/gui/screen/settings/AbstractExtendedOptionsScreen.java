@@ -11,7 +11,6 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 public abstract class AbstractExtendedOptionsScreen extends ExtendedBasicAbstractScreen{
 	private final SettingsPage currentPage;
-	public static int option = 0;
 	public AbstractExtendedOptionsScreen(ITextComponent pTitle, SettingsPage pCurrentPage) {
 		super(pTitle, 200, 256);
 		this.currentPage = pCurrentPage;

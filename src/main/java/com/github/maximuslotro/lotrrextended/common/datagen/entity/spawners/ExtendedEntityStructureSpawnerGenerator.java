@@ -254,5 +254,7 @@ public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStruc
 			.build(), 2, 6, false, 16, 12).setBoundaries(20, -8, 12, 2, -1, 4).enableSpawningAtSpawner(50).save(pConsumer, ExtendedSpawners.DUNLENDING_TAVERN_AREA);
 		single(ExtendedEntities.DUNLENDING_FARMER.get()).setRespawnOnDeath().setHomeInfo(false, 6).save(pConsumer, ExtendedSpawners.DUNLENDING_FARMER);
 		single(ExtendedEntities.DUNLENDING_FARMHAND.get()).setHomeInfo(false, 12).save(pConsumer, ExtendedSpawners.DUNLENDING_FARMHAND);
+		singleWeighted(EntityType.COW, 90, 1, 3).addSinglePool(EntityType.SHEEP, 90, 1, 3).addSinglePool(EntityType.PIG, 90, 1, 3)
+		.addSinglePool(EntityType.CHICKEN, 70, 1, 5).addSinglePool(EntityType.HORSE, 50, 1, 2).setSpawnOffset2x2().save(pConsumer, ExtendedSpawners.DUNLENDING_FARMER_ANIMALS);
 	}
 }

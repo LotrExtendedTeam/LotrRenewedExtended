@@ -159,7 +159,7 @@ public class ExtendedBannerEntity extends Entity {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public boolean isInvisibleTo(PlayerEntity pPlayer) {
-		if (pPlayer.isSpectator() || pPlayer.isCreative() || ExtendedClientConfig.enableClientDevMode.get()) {
+		if (pPlayer.isSpectator() || pPlayer.isCreative() || ExtendedClientConfig.isDevMode()) {
 			return false;
 		}
 		return true;

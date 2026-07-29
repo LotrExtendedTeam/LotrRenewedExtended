@@ -67,7 +67,7 @@ public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStr
 		if (rendertype != null) {
 			IVertexBuilder ivertexbuilder = pBuffer.getBuffer(rendertype);
 			this.model.renderExtendedToBuffer(pEntity, pMatrixStack, ivertexbuilder, pPartialTicks, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-			if (ExtendedClientConfig.enableClientDevMode.get()) {
+			if (ExtendedClientConfig.isDevMode() && ExtendedClientConfig.showSpawnerOutlines.get()) {
 				pMatrixStack.pushPose();
 				//RenderSystem.disableDepthTest();
 				RenderSystem.disableCull();
@@ -119,7 +119,7 @@ public class ExtendedStructureSpawnerRenderer extends EntityRenderer<ExtendedStr
 	@Override
 	protected boolean shouldShowName(ExtendedStructureSpawnerEntity pEntity) {
 		Minecraft minecraft = Minecraft.getInstance();
-		return ExtendedClientConfig.enableClientDevMode.get() && !minecraft.options.hideGui;
+		return ExtendedClientConfig.isDevMode() && !minecraft.options.hideGui;
 	}
 
 	/**

@@ -11,11 +11,12 @@ import net.minecraftforge.fml.config.ModConfig.Type;
 public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 	public static final ForgeConfigSpec CLIENT_SPEC = setupConfig(new ForgeConfigSpec.Builder()).build();
 	public static ForgeConfigSpec.BooleanValue enableClientDevMode;
+	public static ForgeConfigSpec.BooleanValue showSpawnerOutlines;
 	public static ConfigValue<String> lastClientBootVersion;
+
 	public static ForgeConfigSpec.BooleanValue disableJEILOTRversionCheck;
 	public static ForgeConfigSpec.BooleanValue enableClientVersionCheck;
 	public static ForgeConfigSpec.BooleanValue enableLargeHiredUnitHealthbars;
-
 	public static ForgeConfigSpec.BooleanValue enablePlantParticles;
 
 	public static ForgeConfigSpec.BooleanValue enableQuerkyDuckMode;
@@ -38,12 +39,13 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 		enablePlantParticles = createBooleanValue(builder, "enablePlantParticles", true, false, "Allow for certian plants to spawn particles.");
 		disableJEILOTRversionCheck = createBooleanValue(builder, "disableJEILOTRversionCheck", true, false, "Disable JEI-LOTR's broken version check.");
 		enableClientVersionCheck = createBooleanValue(builder, "enableClientVersionCheck", true, false, "Enable Extended client version check.");
-		enableLargeHiredUnitHealthbars = createBooleanValue(builder, "enableShowHiredUnitHPNumbers", false, false, "Enable large hired unit health bars with HP value");
+		enableLargeHiredUnitHealthbars = createBooleanValue(builder, "enableShowHiredUnitHPNumbers", false, false, "Enable large hired unit health bars with HP value.");
 		builder.pop();
 
 		builder.push("Technical Settings");
 		structureBlockOutlineViewDistance = createIntegerValue(builder, "structureBlockOutlineDistance", 96, 32, (int) MixinConstants.StructureLimit, false, "Change the distance at which structure block outlines render.");
 		forceStructureBlockAirViewing = createBooleanValue(builder, "forceStructureBlockAirViewing", false, false, "Force Structure Voids to render inside of Structure Block Outline Rendering.");
+		showSpawnerOutlines = createBooleanValue(builder, "showSpawnerOutlines", false, true, "Show the debug outline of entity spawners.");
 		builder.pop();
 
 		builder.push("Special settings");
@@ -55,5 +57,9 @@ public class ExtendedClientConfig extends ExtendedBaseConfigHelper{
 		enableQuerkyDuckMode = createBooleanValue(builder, "enableQuerkyDuckMode", false, false, "Enable early extended duck model querkyness.");
 		builder.pop();
 		return builder;
+	}
+
+	public static boolean isDevMode() {
+		return ExtendedServerConfig.enableDevMode.get() || enableClientDevMode.get();
 	}
 }

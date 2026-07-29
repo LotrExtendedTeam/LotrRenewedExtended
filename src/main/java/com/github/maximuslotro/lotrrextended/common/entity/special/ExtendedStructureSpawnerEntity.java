@@ -471,7 +471,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public boolean isInvisibleTo(PlayerEntity pPlayer) {
-		if (pPlayer.isSpectator() || pPlayer.isCreative() || ExtendedClientConfig.enableClientDevMode.get()) {
+		if (pPlayer.isSpectator() || pPlayer.isCreative() || ExtendedClientConfig.isDevMode()) {
 			isInvisible = false;
 			return false;
 		}
@@ -602,7 +602,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 			return false;
 		}
 		PlayerEntity entityplayer = ExtendedClientProxy.INSTANCE.getClientPlayerEntity();
-		return (entityplayer != null && entityplayer.isCreative() || ExtendedClientConfig.enableClientDevMode.get());
+		return (entityplayer != null && entityplayer.isCreative() || ExtendedClientConfig.isDevMode());
 	}
 
 	/**

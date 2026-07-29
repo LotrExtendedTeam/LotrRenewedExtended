@@ -394,6 +394,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.jeilotrversioncheck.setting", "Patch broken JEI-lotr VC: ");
 		addD("gui.lotrextended.settings.lotrextendedversioncheck.setting", "Extended Version Check: ");
 		addD("gui.lotrextended.settings.show_hired_unit_hp_numbers.setting", "Large Hired Unit HP Bars: ");
+		addD("gui.lotrextended.settings.spawneroutline.setting", "Spawner Outlines: ");
 
 		// World Prune stuff
 		addD("gui.lotrextended.worldprune.title", "World Prune Panel");
