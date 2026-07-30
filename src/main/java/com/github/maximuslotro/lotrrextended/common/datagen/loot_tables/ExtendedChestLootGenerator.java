@@ -1716,7 +1716,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_MINE_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
-				.setRolls(RandomValueRange.between(1, 4))
+				.setRolls(RandomValueRange.between(1, 3))
 				.add(addEntry(Items.STONE).setWeight(80).setRange(3, 8))
 				.add(addEntry(Items.COBBLESTONE).setWeight(80).setRange(3, 8))
 				.add(addEntry(LOTRItems.BLUE_ROCK.get()).setWeight(80).setRange(3, 8))
@@ -1749,13 +1749,12 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.when(RandomChance.randomChance(0.04f)) // 4% chance
 				.add(addEntry(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1).setExactly(1)
 					.apply(SetNBT.setTag(Util.make(new CompoundNBT(), (nbt) -> {
-						nbt.putString("coin_type", "dwarven");
+						nbt.putString("coin_type", "blue_dwarven");
 						}))))));
 
-		// add book of true silver
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_MINE_SUPPLY_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
-				.setRolls(RandomValueRange.between(1, 4))
+				.setRolls(RandomValueRange.between(1, 3))
 				.add(addEntry(Items.STONE).setWeight(80).setRange(3, 8))
 				.add(addEntry(Items.COBBLESTONE).setWeight(80).setRange(3, 8))
 				.add(addEntry(LOTRItems.BLUE_ROCK.get()).setWeight(80).setRange(3, 8))
@@ -1771,6 +1770,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.BRONZE_PICKAXE.get()).setWeight(60).setExactly(1))
 				.add(addEntry(Items.IRON_PICKAXE).setWeight(75).setExactly(1))
 				.add(addEntry(LOTRItems.BLUE_DWARVEN_PICKAXE.get()).setWeight(70).setExactly(1))
+				.add(addEntry(LOTRItems.BOOK_OF_TRUE_SILVER.get()).setWeight(20).setExactly(1))
 				.add(addEntry(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 				.add(addEntry(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
@@ -1778,7 +1778,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_HOUSE_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
-				.setRolls(RandomValueRange.between(1, 4))
+				.setRolls(RandomValueRange.between(1, 3))
 				.add(addEntry(Items.IRON_INGOT).setWeight(75).setExactly(1))
 				.add(addEntry(Items.IRON_NUGGET).setWeight(25).setRange(1, 5))
 				.add(addEntry(LOTRItems.DWARVEN_STEEL_INGOT.get()).setWeight(75).setExactly(1))
@@ -1834,7 +1834,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_SMITH_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
-				.setRolls(RandomValueRange.between(1, 4))
+				.setRolls(RandomValueRange.between(1, 3))
 				.add(addEntry(Items.IRON_INGOT).setWeight(40).setRange(1, 3))
 				.add(addEntry(Items.IRON_NUGGET).setWeight(50).setRange(1, 6))
 				.add(addEntry(LOTRItems.DWARVEN_STEEL_INGOT.get()).setWeight(40).setRange(1, 3))
@@ -1888,7 +1888,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_FOOD_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
-				.setRolls(RandomValueRange.between(1, 4))
+				.setRolls(RandomValueRange.between(1, 3))
 				.add(addEntry(LOTRItems.WOODEN_MUG.get()).setWeight(40).setRange(1, 2))
 				.add(addEntry(LOTRItems.CERAMIC_MUG.get()).setWeight(40).setRange(1, 2))
 				.add(addEntry(LOTRItems.ALE_HORN.get()).setWeight(40).setRange(1, 2))
@@ -2198,7 +2198,6 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 					.add(addEntry(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
 					.apply(ExtendedModifierScrollAdder.chanceSmithRare())));
-		// TODO add rivendell and lindon banner patterns
 		make(consumer, ExtendedLootTables.BLUE_MOUNTAINS_TRADER_HALL_ELF_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
 					.setRolls(RandomValueRange.between(1, 3))
@@ -2213,6 +2212,8 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(addEntry(Items.FEATHER).setWeight(50).setRange(1, 4))
 					.add(addEntry(Items.STICK).setWeight(10).setRange(1, 8))
 					.add(addEntry(Items.HAY_BLOCK).setWeight(50).setRange(1, 6))
+					.add(addEntry(ExtendedItems.LINDON_BANNER_PATTERN.get()).setWeight(1).setExactly(1))
+					.add(addEntry(ExtendedItems.RIVENDELL_BANNER_PATTERN.get()).setWeight(1).setExactly(1))
 					.add(addEntry(LOTRItems.SILVER_RING.get()).setWeight(10).setExactly(1))
 					.add(addEntry(LOTRItems.GOLD_RING.get()).setWeight(10).setExactly(1))
 					.add(addEntry(LOTRItems.GOLDEN_GOBLET.get()).setWeight(25).setRange(1, 3))
@@ -2609,6 +2610,98 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(addEntry(Items.ARROW).setWeight(100).setRange(1, 8))
 				.add(addEntry(ExtendedItems.LONGBOW.get()).setWeight(50).setExactly(1))
 				.add(addEntry(ExtendedItems.LINDON_BOW.get()).setWeight(10).setExactly(1))));
+
+		make(consumer, ExtendedLootTables.IRON_HILLS_MINE_CHEST, makeTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(1, 3))
+				.add(addEntry(Items.STONE).setWeight(80).setRange(3, 8))
+				.add(addEntry(Items.COBBLESTONE).setWeight(80).setRange(3, 8))
+				.add(addEntry(Items.GOLD_INGOT).setWeight(40).setRange(1, 3))
+				.add(addEntry(Items.GOLD_NUGGET).setWeight(60).setRange(1, 9))
+				.add(addEntry(Items.GOLD_ORE).setWeight(50).setRange(1, 2))
+				.add(addEntry(LOTRItems.SILVER_INGOT.get()).setWeight(40).setRange(1, 3))
+				.add(addEntry(LOTRItems.SILVER_NUGGET.get()).setWeight(60).setRange(1, 9))
+				.add(addEntry(LOTRItems.SILVER_ORE.get()).setWeight(50).setRange(1, 2))
+				.add(addEntry(Items.IRON_INGOT).setWeight(65).setRange(1, 4))
+				.add(addEntry(Items.IRON_NUGGET).setWeight(80).setRange(1, 8))
+				.add(addEntry(Items.IRON_ORE).setWeight(75).setRange(1, 3))
+				.add(addEntry(LOTRItems.MITHRIL_INGOT.get()).setWeight(8).setExactly(1))
+				.add(addEntry(LOTRItems.MITHRIL_NUGGET.get()).setWeight(15).setRange(1, 9))
+				.add(addEntry(Items.COAL).setWeight(100).setRange(3, 8))
+				.add(addEntry(Items.GLOWSTONE_DUST).setWeight(70).setRange(2, 7))
+				.add(addEntry(LOTRItems.GLOWSTONE_CRYSTAL.get()).setWeight(60).setRange(1, 3))
+				.add(addEntry(LOTRItems.GLOWSTONE_ORE.get()).setWeight(60).setRange(1, 3))
+				.add(addEntry(ExtendedItems.GLOWSTONE_CRYSTAL_CHANDELIER.get()).setWeight(20).setExactly(1))
+				.add(addEntry(Items.BREAD).setWeight(100).setRange(1, 3))
+				.add(addEntry(Items.TORCH).setWeight(100).setRange(2, 8))
+				.add(addEntry(LOTRItems.GAMMON.get()).setWeight(75).setRange(2, 5))
+				.add(addEntry(LOTRItems.DWARVEN_TORCH.get()).setWeight(100).setRange(2, 8))
+				.add(addEntry(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
+				.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
+				.add(addEntry(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceDefault()))
+			.withPool(LootPool.lootPool()
+				.setRolls(ConstantRange.exactly(1))
+				.when(RandomChance.randomChance(0.04f)) // 4% chance
+				.add(addEntry(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1).setExactly(1)
+					.apply(SetNBT.setTag(Util.make(new CompoundNBT(), (nbt) -> {
+						nbt.putString("coin_type", "iron_dwarven");
+						}))))));
+
+		make(consumer, ExtendedLootTables.IRON_HILLS_MEME_COIN, makeTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(ConstantRange.exactly(1))
+				.when(RandomChance.randomChance(0.05f)) // 5% chance
+				.add(addEntry(ExtendedItems.SILVER_COIN_HUNDRED.get()).setWeight(1).setExactly(1)
+					.apply(SetNBT.setTag(Util.make(new CompoundNBT(), (nbt) -> {
+						nbt.putString("coin_type", "dwarven");
+						}))))));
+
+		make(consumer, ExtendedLootTables.IRON_HILLS_MINE_SUPPLY_CHEST, makeTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(1, 3))
+				.add(addEntry(Items.STONE).setWeight(80).setRange(3, 8))
+				.add(addEntry(Items.COBBLESTONE).setWeight(80).setRange(3, 8))
+				.add(addEntry(LOTRItems.BLUE_ROCK.get()).setWeight(80).setRange(3, 8))
+				.add(addEntry(Items.COAL).setWeight(100).setRange(3, 8))
+				.add(addEntry(Items.GLOWSTONE_DUST).setWeight(70).setRange(2, 7))
+				.add(addEntry(Items.BREAD).setWeight(100).setRange(1, 3))
+				.add(addEntry(Items.COOKED_CHICKEN).setWeight(75).setRange(2, 5))
+				.add(addEntry(Items.COOKED_MUTTON).setWeight(75).setRange(2, 5))
+				.add(addEntry(Items.COOKED_PORKCHOP).setWeight(75).setRange(2, 5))
+				.add(addEntry(LOTRItems.GAMMON.get()).setWeight(75).setRange(2, 5))
+				.add(addEntry(Items.TORCH).setWeight(100).setRange(2, 8))
+				.add(addEntry(LOTRItems.DWARVEN_TORCH.get()).setWeight(100).setRange(2, 8))
+				.add(addEntry(LOTRItems.BRONZE_PICKAXE.get()).setWeight(60).setExactly(1))
+				.add(addEntry(Items.IRON_PICKAXE).setWeight(75).setExactly(1))
+				.add(addEntry(LOTRItems.DWARVEN_PICKAXE.get()).setWeight(70).setExactly(1))
+				.add(addEntry(LOTRItems.BOOK_OF_TRUE_SILVER.get()).setWeight(20).setExactly(1))
+				.add(addEntry(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
+				.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
+				.add(addEntry(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+				.apply(ExtendedModifierScrollAdder.chanceDefault())));
+
+		make(consumer, ExtendedLootTables.IRON_HILLS_FOOD_CHEST, makeTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(RandomValueRange.between(1, 3))
+				.add(addEntry(LOTRItems.WOODEN_MUG.get()).setWeight(40).setRange(1, 2))
+				.add(addEntry(LOTRItems.CERAMIC_MUG.get()).setWeight(40).setRange(1, 2))
+				.add(addEntry(LOTRItems.ALE_HORN.get()).setWeight(40).setRange(1, 2))
+				.add(addEntry(LOTRItems.WOODEN_CUP.get()).setWeight(40).setRange(1, 2))
+				.add(addEntry(LOTRItems.COPPER_GOBLET.get()).setWeight(40).setRange(1, 2))
+				.add(addEntry(Items.BREAD).setWeight(100).setRange(1, 4))
+				.add(addEntry(Items.COOKED_CHICKEN).setWeight(75).setRange(1, 3))
+				.add(addEntry(ExtendedItems.COOKED_DUCK.get()).setWeight(75).setRange(1, 3))
+				.add(addEntry(Items.COOKED_MUTTON).setWeight(75).setRange(1, 2))
+				.add(addEntry(Items.COOKED_PORKCHOP).setWeight(75).setRange(1, 3))
+				.add(addEntry(Items.COOKED_RABBIT).setWeight(75).setRange(1, 3))
+				.add(addEntry(Items.COOKED_COD).setWeight(75).setRange(1, 3))
+				.add(addEntry(Items.COOKED_SALMON).setWeight(75).setRange(1, 3))
+				.add(addEntry(Items.COOKED_BEEF).setWeight(75).setRange(1, 2))
+				.add(addEntry(LOTRItems.GAMMON.get()).setWeight(50).setRange(1, 2))
+				.add(addEntry(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
+				.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
+				.add(addEntry(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))));
 	}
 
 	public void acceptEvil(BiConsumer<ResourceLocation, Builder> consumer) {

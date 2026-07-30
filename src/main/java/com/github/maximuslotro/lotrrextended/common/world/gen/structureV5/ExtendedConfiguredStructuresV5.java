@@ -90,6 +90,8 @@ public class ExtendedConfiguredStructuresV5 {
 
 	public static StructureFeature<?, ?> CONFIGURED_DUNLAND_HILLFORT = register(ExtendedStructuresV5.DUNLAND_HILLFORT.get().configured(new ExtendedSinglePoolConfig("dunland/dunland_hillfort")));
 
+	public static StructureFeature<?, ?> CONFIGURED_IRON_HILLS_MINE = register(ExtendedStructuresV5.IRON_HILLS_MINE.get().configured(new ExtendedSinglePoolConfig("iron_hills/mine_entrance_pool")));
+
 	/**
      * Empty method intended to be called to ensure static initialization of this class
      * and the registration of configured structures.

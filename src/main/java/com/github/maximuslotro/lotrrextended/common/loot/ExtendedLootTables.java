@@ -115,6 +115,11 @@ public class ExtendedLootTables {
 	public static final ResourceLocation DUNLAND_FARMER_CHEST = registerChest("dunland_farmer");
 	public static final ResourceLocation DUNLAND_FORT_CHEST = registerChest("dunland_fort");
 	public static final ResourceLocation DUNLAND_FOOD_CHEST = registerChest("dunland_food");
+
+	public static final ResourceLocation IRON_HILLS_MINE_CHEST = registerChest("iron_hills_mine");
+	public static final ResourceLocation IRON_HILLS_MINE_SUPPLY_CHEST = registerChest("iron_hills_mine_supply");
+	public static final ResourceLocation IRON_HILLS_FOOD_CHEST = registerChest("iron_hills_food");
+	public static final ResourceLocation IRON_HILLS_MEME_COIN = registerChest("iron_hills_meme_coin");
 	// KEGS
 	public static final ResourceLocation HOBBIT_KEGS = registerKeg("hobbit");
 	public static final ResourceLocation RANGER_KEGS = registerKeg("ranger");
@@ -126,6 +131,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation ISENGARD_KEGS = registerKeg("isengard");
 	public static final ResourceLocation ISENGARD_ORTHANC_KEGS = registerKeg("isengard_orthanc");
 	public static final ResourceLocation DUNLAND_KEGS = registerKeg("dunland");
+	public static final ResourceLocation IRON_HILLS_KEGS = registerKeg("iron_hills");
 
 	// VESSELS (MUGS, CUPS, GOBBLETS, HORNS, BOTTLES)
 	public static final ResourceLocation HOBBIT_VESSELS = registerVessels("hobbit");
@@ -138,6 +144,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation ISENGARD_VESSELS = registerVessels("isengard");
 	public static final ResourceLocation ISENGARD_ORTHANC_VESSELS = registerVessels("isengard_orthanc");
 	public static final ResourceLocation DUNLAND_VESSELS = registerVessels("dunland");
+	public static final ResourceLocation IRON_HILLS_VESSELS = registerVessels("iron_hills");
 
 	// PLATES
 	public static final ResourceLocation HOBBIT_PLATES = registerPlate("hobbit");
@@ -168,6 +175,7 @@ public class ExtendedLootTables {
 	public static final ResourceLocation BREE_FARMER_WEAPONRACKS = registerWeaponRack("bree_farmer");
 	
 	public static final ResourceLocation BLUE_MOUNTAIN_WEAPONRACKS = registerWeaponRack("blue_mountains");
+
 	public static final ResourceLocation RIVENDELL_WEAPONRACKS = registerWeaponRack("rivendell");
 	public static final ResourceLocation RIVENDELL_SMITHY_WEAPONRACKS = registerWeaponRack("rivendell_smithy");
 	
@@ -180,6 +188,8 @@ public class ExtendedLootTables {
 	public static final ResourceLocation DUNLAND_WEAPONRACKS = registerWeaponRack("dunland");
 	public static final ResourceLocation DUNLAND_SMITHY_WEAPONRACKS = registerWeaponRack("dunland_smithy");
 	public static final ResourceLocation DUNLAND_DWARVEN_SMITHY_WEAPONRACKS = registerWeaponRack("dunland_smithy_dwarf");
+
+	public static final ResourceLocation IRON_HILLS_WEAPONRACKS = registerWeaponRack("iron_hills");
 
 	// POTS
 	public static final ResourceLocation BLUE_MOUNTAINS_TRADER_HALL_POT = registerPot("blue_mountains_trader_hall");

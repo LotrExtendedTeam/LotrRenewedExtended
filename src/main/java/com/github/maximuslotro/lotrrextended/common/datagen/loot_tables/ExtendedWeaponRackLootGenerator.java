@@ -269,10 +269,23 @@ public class ExtendedWeaponRackLootGenerator extends ChestLootTables  {
 			.add(addEntry(Items.BOW, 50)));
 
 		make(consumer, ExtendedLootTables.DUNLAND_DWARVEN_SMITHY_WEAPONRACKS, makePool()
-			.add(addEntry(LOTRItems.DWARVEN_SWORD.get(), 50))
-			.add(addEntry(LOTRItems.DWARVEN_AXE.get(), 40))
-			.add(addEntry(LOTRItems.DWARVEN_DAGGER.get(), 60))
-			.add(addEntry(LOTRItems.DWARVEN_SPEAR.get(), 60)));
+			.add(addEntry(LOTRItems.DWARVEN_SWORD.get(), 10))
+			.add(addEntry(LOTRItems.DWARVEN_AXE.get(), 4))
+			.add(addEntry(LOTRItems.DWARVEN_DAGGER.get(), 6))
+			.add(addEntry(LOTRItems.DWARVEN_SPEAR.get(), 8))
+			.add(addEntry(ExtendedItems.DWARVEN_THROWABLE_AXE.get(), 2)));
+
+		// Add dwarven hammer, battleaxe, pike
+		make(consumer, ExtendedLootTables.IRON_HILLS_WEAPONRACKS, makePool()
+			.add(addEntry(LOTRItems.DWARVEN_DAGGER.get(), 2))
+			.add(addEntry(LOTRItems.DWARVEN_AXE.get(), 1))
+			.add(addEntry(LOTRItems.DWARVEN_PICKAXE.get(), 2))
+			.add(addEntry(LOTRItems.DWARVEN_SHOVEL.get(), 1))
+			.add(addEntry(LOTRItems.DWARVEN_HOE.get(), 1))
+			.add(addEntry(LOTRItems.DWARVEN_SWORD.get(), 2))
+			.add(addEntry(LOTRItems.DWARVEN_SPEAR.get(), 1))
+			.add(addEntry(ExtendedItems.DWARVEN_THROWABLE_AXE.get(), 2))
+			.add(addEntry(ExtendedItems.DWARVEN_MATTOCK.get(), 2)));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight){
