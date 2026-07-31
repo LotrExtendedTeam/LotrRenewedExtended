@@ -4,9 +4,12 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedCrabanEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.*;
 import lotr.common.entity.npc.*;
 
+import net.minecraft.entity.*;
+import net.minecraft.world.gen.Heightmap;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,13 +31,9 @@ import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTREntities.EntitySizeHolder;
 import lotr.common.init.LOTREntities.SpawnEggInfo;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.IPlacementPredicate;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EntityType.Builder;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -57,6 +56,11 @@ public class MixinLOTREntities {
 	@Final
 	@Shadow(remap = false)
 	private static Map<EntityType<? extends LivingEntity>, Supplier<MutableAttribute>> ENTITY_ATTRIBUTE_FACTORIES;
+
+	@Shadow(remap=false)
+	private static <T extends MobEntity> RegistryObject<EntityType<T>> regLiving(String key, EntityType.IFactory<T> factory, Supplier<AttributeModifierMap.MutableAttribute> attribFactory, EntityClassification classif, EntitySizeHolder size, int trackRange, int updateFreq, boolean velUpdates, SpawnEggInfo.SpawnEggColors eggColors, EntitySpawnPlacementRegistry.PlacementType placementType, Heightmap.Type heightmapType, EntitySpawnPlacementRegistry.IPlacementPredicate<T> placementPredicate) {
+		return null;
+	}
 
 	/**
 	 * Get the base NPC register method from parent class
@@ -264,6 +268,7 @@ public class MixinLOTREntities {
 		ExtendedEntities.HORSE_BOAR = regAnimalD("wild_boar", ExtendedHorseBoarEntity::new, ExtendedHorseBoarEntity::createWildBoarAttributes, LOTREntities.EntitySizeHolder.size(0.9F, 0.9F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(6635562, 4069378));
 		ExtendedEntities.DUCK = regAnimalD("duck", ExtendedDuckEntity::new, ExtendedDuckEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.7F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(940841, 11374685), ExtendedDuckEntity::checkDuckSpawnRules);
 		ExtendedEntities.HEDGEHOG = regAnimalD("hedgehog", ExtendedHedgehogEntity::new, ExtendedHedgehogEntity::createHedgehogAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.4F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2167050, 14010033));
+		ExtendedEntities.CRABAN = regLiving("craban", ExtendedCrabanEntity::new, ExtendedCrabanEntity::createCrabanAttributes, EntityClassification.CREATURE, LOTREntities.EntitySizeHolder.size(0.4F, 0.4F), 10, 3, true, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2167050, 14010033), PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, CreatureEntity::checkMobSpawnRules); // TODO: Get correct spawn colors
 		// Hostile
 		ExtendedEntities.BARROW_WIGHT = regNPCD("barrow_wight", ExtendedBarrowWightEntity::new, ExtendedBarrowWightEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.8F, 1.9f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(529926, 3111505));
 		// Projectiles
