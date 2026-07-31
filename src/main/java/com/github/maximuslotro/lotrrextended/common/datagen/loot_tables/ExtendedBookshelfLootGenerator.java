@@ -43,6 +43,7 @@ public class ExtendedBookshelfLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.RED_BOOK.get()).setWeight(40).setRange(1, 2))
 				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(5).setRange(1, 2))
 				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(5).setRange(1, 2))
+				.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(5).setRange(1, 2))
 				.apply(ExtendedModifierScrollAdder.chanceCustom(20)))
 			.withPool(LootPool.lootPool()
 				.setRolls(ConstantRange.exactly(1))

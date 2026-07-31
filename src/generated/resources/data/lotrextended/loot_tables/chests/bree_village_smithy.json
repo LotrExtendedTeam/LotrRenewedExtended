@@ -832,6 +832,17 @@
             }
           ],
           "name": "lotr:combat_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:smith_tome"
         }
       ],
       "functions": [

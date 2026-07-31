@@ -1,7 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierTomeItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierReforgeTomeItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierRepairTomeItem;
 
 import lotr.common.item.CustomColoredNameItem;
 import lotr.common.item.RedBookItem;
@@ -34,6 +35,7 @@ public class ExtendedBookshelfSlot extends Slot {
 			|| stack.getItem() instanceof ExtendedModifierScrollItem || stack.getItem() == Items.PAPER
 			|| stack.getItem() == Items.MAP || stack.getItem() == Items.FILLED_MAP
 			|| stack.getItem() instanceof BannerPatternItem
-			|| stack.getItem() instanceof ExtendedModifierTomeItem);
+			|| stack.getItem() instanceof ExtendedModifierReforgeTomeItem
+			|| stack.getItem() instanceof ExtendedModifierRepairTomeItem);
 	}
 }

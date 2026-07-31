@@ -45,7 +45,7 @@ public class ExtendedMCBannerItem extends WallOrFloorItem {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void appendHoverText(ItemStack pItemStack, @Nullable World world, List<ITextComponent> textLines, ITooltipFlag p_77624_4_) {
-		appendHoverTextFromBannerBlockEntityTag(pItemStack, textLines);
+	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		appendHoverTextFromBannerBlockEntityTag(pStack, pTooltip);
 	}
 }

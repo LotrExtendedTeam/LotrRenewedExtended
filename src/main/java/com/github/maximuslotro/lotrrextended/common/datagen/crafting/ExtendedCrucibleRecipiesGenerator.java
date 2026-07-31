@@ -592,6 +592,7 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 
 		makeCrucibleRecipe(consumer, ExtendedItems.ARTISAN_TOME, ()->Items.IRON_NUGGET);
 		makeCrucibleRecipe(consumer, ExtendedItems.COMBAT_TOME, ()->Items.IRON_NUGGET);
+		makeCrucibleRecipe(consumer, ExtendedItems.SMITH_TOME, ()->Items.IRON_NUGGET);
 	}
 
 	private void buildOtherModsRecipes(Consumer<IFinishedRecipe> consumer) {

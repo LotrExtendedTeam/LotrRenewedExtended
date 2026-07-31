@@ -513,6 +513,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(addEntry(LOTRItems.STONEWARE_PLATE.get()).setWeight(10).setRange(1, 3))
 						.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(5).setExactly(1))
 						.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(1).setExactly(1))
+						.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(1).setExactly(1))
 						.add(addEntry(LOTRItems.GOLD_RING.get()).setWeight(10).setRange(1, 3))
 						.add(addEntry(LOTRItems.SILVER_RING.get()).setWeight(10).setRange(1, 3))
 						.apply(ExtendedModifierScrollAdder.chanceDefault())));
@@ -571,6 +572,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(addEntry(Items.SADDLE).setWeight(25).setExactly(1))
 						.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(5).setExactly(1))
 						.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(1).setExactly(1))
+						.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(1).setExactly(1))
 						.add(addEntry(LOTRItems.WOODEN_MUG.get()).setWeight(10).setRange(1, 3))
 						.add(addEntry(LOTRItems.CERAMIC_MUG.get()).setWeight(10).setRange(1, 3))
 						.add(addEntry(LOTRItems.ALE_HORN.get()).setWeight(10).setRange(1, 3))
@@ -622,6 +624,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 						.add(addEntry(Items.IRON_SWORD).setWeight(25).setExactly(1))
 						.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(10).setExactly(1))
 						.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(10).setExactly(1))
+						.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(10).setExactly(1))
 						.add(addEntry(LOTRItems.IRON_DAGGER.get()).setWeight(25).setExactly(1))
 						.add(addEntry(LOTRItems.IRON_SPEAR.get()).setWeight(25).setExactly(1))
 						.add(addEntry(LOTRItems.BRONZE_HELMET.get()).setWeight(10).setExactly(1))
@@ -1062,6 +1065,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(addEntry(LOTRItems.SILVER_RING.get()).setWeight(10).setRange(1, 2))
 					.add(addEntry(LOTRItems.MITHRIL_NUGGET.get()).setWeight(3).setRange(1, 3))
 					.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(20).setExactly(1))
+					.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(10).setExactly(1))
 					.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(10).setExactly(1))
 					.add(addEntry(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
@@ -1227,6 +1231,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(addEntry(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
 					.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(10).setExactly(1))
 					.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(10).setExactly(1))
+					.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(10).setExactly(1))
 					.apply(ExtendedModifierScrollAdder.chanceSmith())));
 
 		make(consumer, ExtendedLootTables.BREE_VILLAGE_POTTER_CHEST, makeTable()
@@ -1332,6 +1337,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(addEntry(Items.CHAINMAIL_BOOTS).setWeight(5).setExactly(1))
 					.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(1).setExactly(1))
 					.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(1).setExactly(1))
+					.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(1).setExactly(1))
 					.add(addEntry(ExtendedItems.LEATHER_HAT.get()).setWeight(50).setExactly(1))
 					.add(addEntry(LOTRItems.WOODEN_MUG.get()).setWeight(25).setRange(1, 3))
 					.add(addEntry(LOTRItems.CERAMIC_MUG.get()).setWeight(25).setRange(1, 3))
@@ -1818,6 +1824,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(addEntry(ExtendedItems.DWARF_MARRIAGE_RING.get()).setWeight(25).setExactly(1))
 				.add(addEntry(LOTRItems.BOOK_OF_TRUE_SILVER.get()).setWeight(10).setExactly(1))
 				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(5).setExactly(1))
+				.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(1).setExactly(1))
 				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(1).setExactly(1))
 				.add(addEntry(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
@@ -1873,6 +1880,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.GAMMON.get()).setWeight(25).setRange(1, 2))
 				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(10).setExactly(1))
 				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(10).setExactly(1))
+				.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(10).setExactly(1))
 				.add(addEntry(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 				.add(addEntry(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
@@ -1933,6 +1941,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(addEntry(ExtendedItems.DWARF_MARRIAGE_RING.get()).setWeight(15).setExactly(1))
 				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(5).setExactly(1))
 				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(1).setExactly(1))
+				.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(1).setExactly(1))
 				.add(addEntry(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 				.add(addEntry(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
@@ -1971,6 +1980,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(addEntry(LOTRItems.BOOK_OF_TRUE_SILVER.get()).setWeight(25).setExactly(1))
 					.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(10).setExactly(1))
 					.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(20).setExactly(1))
+					.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(10).setExactly(1))
 					.add(addEntry(LOTRItems.GOLD_RING.get()).setWeight(10).setRange(1, 2))
 					.add(addEntry(LOTRItems.SILVER_RING.get()).setWeight(10).setRange(1, 2))
 					.add(addEntry(LOTRItems.MITHRIL_NUGGET.get()).setWeight(3).setRange(1, 3))
@@ -2003,6 +2013,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.BOOK_OF_TRUE_SILVER.get()).setWeight(2).setExactly(1))
 				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(1).setExactly(1))
 				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(1).setExactly(1))
+				.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(1).setExactly(1))
 				.add(addEntry(ExtendedItems.BLUE_MOUNTAINS_BANNER_PATTERN.get()).setWeight(1).setExactly(1))
 				.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
@@ -2144,6 +2155,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(addEntry(Items.COOKED_SALMON).setWeight(50).setRange(1, 3))
 				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(5).setExactly(1))
 				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(1).setExactly(1))
+				.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(1).setExactly(1))
 				.add(addEntry(LOTRItems.BOOK_OF_TRUE_SILVER.get()).setWeight(5).setExactly(1))
 				.add(addEntry(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
@@ -2295,6 +2307,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.BOOK_OF_TRUE_SILVER.get()).setWeight(10).setExactly(1))
 				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(1).setExactly(1))
 				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(1).setExactly(1))
+				.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(1).setExactly(1))
 				.add(addEntry(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 				.add(addEntry(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
@@ -2338,6 +2351,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.GOLD_RING.get()).setWeight(1).setExactly(1))
 				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(10).setExactly(1))
 				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(10).setExactly(1))
+				.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(5).setExactly(1))
 				.add(addEntry(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 				.add(addEntry(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
@@ -2379,6 +2393,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.when(RandomChance.randomChance(0.5f)))
 				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(1).setExactly(1))
 				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(1).setExactly(1))
+				.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(1).setExactly(1))
 				.apply(ExtendedModifierScrollAdder.chanceCustom(10).setSkillful())));
 		make(consumer, ExtendedLootTables.RIVENDELL_WEAPONS_CHEST, makeTable()
 			.withPool(LootPool.lootPool()
@@ -2483,6 +2498,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.BOOK_OF_TRUE_SILVER.get()).setWeight(10).setExactly(1))
 				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(10).setExactly(1))
 				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(10).setExactly(1))
+				.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(5).setExactly(1))
 				.add(addEntry(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 				.add(addEntry(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
@@ -2527,6 +2543,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.GOLD_RING.get()).setWeight(1).setExactly(1))
 				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(10).setExactly(1))
 				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(10).setExactly(1))
+				.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(5).setExactly(1))
 				.add(addEntry(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 				.add(addEntry(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
@@ -2587,6 +2604,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.when(RandomChance.randomChance(0.5f)))
 				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(1).setExactly(1))
 				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(1).setExactly(1))
+				.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(1).setExactly(1))
 				.apply(ExtendedModifierScrollAdder.chanceCustom(10).setSkillful())));
 
 		make(consumer, ExtendedLootTables.LINDON_ARCHIVES_CHEST, makeTable()
@@ -2601,6 +2619,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.BOOK_OF_TRUE_SILVER.get()).setWeight(1).setExactly(1))
 				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(2).setExactly(1))
 				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(1).setExactly(1))
+				.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(1).setExactly(1))
 				.add(addEntry(ExtendedItems.LINDON_BANNER_PATTERN.get()).setWeight(2).setExactly(1))
 				.apply(ExtendedModifierScrollAdder.chanceDefault())));
 
@@ -2737,6 +2756,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 					.add(addEntry(Items.CHARCOAL).setWeight(70).setRange(5, 7))
 					.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(5).setExactly(1))
 					.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(1).setExactly(1))
+					.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(1).setExactly(1))
 					.add(addEntry(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 					.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 					.add(addEntry(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
@@ -2893,6 +2913,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 			.add(addEntry(LOTRItems.WATERSKIN.get()).setWeight(50).setRange(1, 2))
 			.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(5).setExactly(1))
 			.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(1).setExactly(1))
+			.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(1).setExactly(1))
 			.add(addEntry(LOTRItems.ORC_DRAUGHT.get()).setWeight(50).setExactly(1))
 			.apply(ExtendedModifierScrollAdder.chanceSmithWild())));
 
@@ -3235,6 +3256,7 @@ public class ExtendedChestLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.SMALL_POUCH.get()).setWeight(10).setExactly(1))
 				.add(addEntry(LOTRItems.MEDIUM_POUCH.get()).setWeight(5).setExactly(1))
 				.add(addEntry(LOTRItems.LARGE_POUCH.get()).setWeight(1).setExactly(1))
+				.add(addEntry(ExtendedItems.SMITH_TOME.get()).setWeight(10).setExactly(1))
 				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(20).setExactly(1))
 				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(20).setExactly(1))
 				.apply(ExtendedModifierScrollAdder.chanceSmith())));

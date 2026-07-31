@@ -177,6 +177,11 @@
           "type": "minecraft:item",
           "weight": 10,
           "name": "lotr:combat_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "lotr:combat_tome"
         }
       ],
       "functions": [
