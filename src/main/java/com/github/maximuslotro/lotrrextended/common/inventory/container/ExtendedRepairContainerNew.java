@@ -857,21 +857,20 @@ public class ExtendedRepairContainerNew extends Container {
 		if(!regularRapair) {
 			if(!(inputItem.getItem() instanceof ExtendedBowItem) && inputItem.getItem() instanceof BowItem) {
 				return repairMaterial.getItem() == Items.STRING;
-			}
-			if(inputItem.getItem() instanceof FishingRodItem) {
+			}else if(inputItem.getItem() instanceof FishingRodItem) {
 				return repairMaterial.getItem() == Items.STRING;
-			}
-			if(inputItem.getItem() instanceof ShearsItem) {
+			}else if(inputItem.getItem() instanceof ShearsItem) {
 				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
-			}
-			if(inputItem.getItem() instanceof SmokingPipeItem) {
+			}else if(inputItem.getItem() instanceof SmokingPipeItem) {
 				return Tags.Items.LEATHER.contains(repairMaterial.getItem());
-			}
-			if(!(inputItem.getItem() instanceof ExtendedCrossbowItem) && inputItem.getItem() instanceof CrossbowItem) {
+			}else if(!(inputItem.getItem() instanceof ExtendedCrossbowItem) && inputItem.getItem() instanceof CrossbowItem) {
 				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
-			}
-			if(inputItem.getItem() instanceof FlintAndSteelItem) {
+			}else if(inputItem.getItem() instanceof FlintAndSteelItem) {
 				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
+			}else if(inputItem.getItem().equals(Items.CARROT_ON_A_STICK)) {
+				return repairMaterial.getItem() == Items.CARROT;
+			}else if(inputItem.getItem().equals(Items.WARPED_FUNGUS_ON_A_STICK)) {
+				return repairMaterial.getItem() == Items.WARPED_FUNGUS;
 			}
 		}
 		return regularRapair;
