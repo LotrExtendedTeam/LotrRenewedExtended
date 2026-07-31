@@ -1,6 +1,6 @@
 {
 	"name": "lotrextended:dunland/dunland_village_building",
-	"fallback": "minecraft:empty",
+	"fallback": "lotrextended:dunland/dunland_village_building_fallback",
 	"elements": [
 		{
 			"weight": 10,

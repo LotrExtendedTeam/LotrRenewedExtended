@@ -6,7 +6,12 @@ import com.github.maximuslotro.lotrrextended.common.datagen.advancements.Extende
 import com.github.maximuslotro.lotrrextended.common.datagen.aggregation.ExtendedBiomeInfoGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.ExtendedCraftingRecipiesGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.crafting.ExtendedCrucibleRecipiesGenerator;
-import com.github.maximuslotro.lotrrextended.common.datagen.entity.ExtendedEntityRelatedGenerators;
+import com.github.maximuslotro.lotrrextended.common.datagen.entity.hiredunitprofiles.ExtendedCaptainProfileGenerator;
+import com.github.maximuslotro.lotrrextended.common.datagen.entity.hiredunitprofiles.ExtendedServerHiredUnitProfileGenerator;
+import com.github.maximuslotro.lotrrextended.common.datagen.entity.settings.ExtendedEntitySettingsGenerator;
+import com.github.maximuslotro.lotrrextended.common.datagen.entity.settings.ExtendedEntitySettingsMissingValidator;
+import com.github.maximuslotro.lotrrextended.common.datagen.entity.spawners.ExtendedEntityStructureSpawnerGenerator;
+import com.github.maximuslotro.lotrrextended.common.datagen.entity.traderprofiles.ExtendedTraderProfileGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.language.ExtendedLanguageGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.loot_tables.ExtendedLootTableGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedBlockstateModelGenerator;
@@ -32,9 +37,15 @@ public class DataGeneratorExtended {
 			generator.addProvider(new ExtendedCrucibleRecipiesGenerator(generator));
 			generator.addProvider(new ExtendedGlobalLootModifierGenerator(generator, LotrExtendedMod.MODID));
 			generator.addProvider(new ExtendedAdvancementProvider(generator, existingFileHelper));
-			ExtendedEntityRelatedGenerators.gatherData(generator, existingFileHelper, LotrExtendedMod.MODID);
+			generator.addProvider(new ExtendedServerHiredUnitProfileGenerator(generator, LotrExtendedMod.MODID));
+			generator.addProvider(new ExtendedTraderProfileGenerator(generator, LotrExtendedMod.MODID));
+			generator.addProvider(new ExtendedCaptainProfileGenerator(generator, LotrExtendedMod.MODID));
+			generator.addProvider(new ExtendedEntityStructureSpawnerGenerator(generator, LotrExtendedMod.MODID));
+			generator.addProvider(new ExtendedEntitySettingsGenerator(generator, existingFileHelper));
+			generator.addProvider(new ExtendedEntitySettingsMissingValidator(existingFileHelper));
 			generator.addProvider(new ExtendedBiomeInfoGenerator(generator, existingFileHelper));
-			//generator.addProvider(new ExtendedItemsValidator());
+			generator.addProvider(new ExtendedItemsValidator());
+			generator.addProvider(new ExtendedStructureValidator(generator, existingFileHelper, LotrExtendedMod.MODID));
 		}
 		if (event.includeClient()) {
 			ExtendedClientConfig.registerDataGen();
