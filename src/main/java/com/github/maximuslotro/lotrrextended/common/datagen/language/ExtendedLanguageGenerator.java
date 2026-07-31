@@ -435,6 +435,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.banner_configuration.faction.textBox", "Alignment");
 		addD("gui.lotrextended.banner_configuration.custom.description", "Protection Message:");
 		addD("gui.lotrextended.banner_configuration.custom.textBox", "Message");
+		addD("gui.lotrextended.banner_configuration.player.tooltip", "Placed by: %s");
 		addD("gui.lotrextended.banner_configuration.perms", "Show Permissions");
 		addD("gui.lotrextended.banner_configuration.perms.global", "Global Override Permissions");
 		addD("gui.lotrextended.banner_configuration.perms.global.disc", "These permissions take priority over all whitelist and faction permissions and apply to \"ALL\" players!");

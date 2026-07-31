@@ -28,7 +28,6 @@ public class ExtendedHiredUnitFarmhandScreen extends ExtendedHiredUnitScreen<Ext
 	@Override
 	public void init() {
 		super.init();
-		// General stuff
 		this.addButton(new ExtendedTextureOffsetButton(this.leftPos + 155, this.topPos + 37, 176, 54, 10, 10, new StringTextComponent("INFO"), button -> {}, CONTAINER_BACKGROUND){
 			@Override
 			public int hoverOffset() {

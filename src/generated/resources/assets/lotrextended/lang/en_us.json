@@ -2140,6 +2140,7 @@
   "gui.lotrextended.banner_configuration.perms.global.disc": "These permissions take priority over all whitelist and faction permissions and apply to \"ALL\" players!",
   "gui.lotrextended.banner_configuration.perms.knowledge": "Learning Block Permissions",
   "gui.lotrextended.banner_configuration.perms.knowledge.disc": "Allows accessing lecterns and bookshelves",
+  "gui.lotrextended.banner_configuration.player.tooltip": "Placed by: %s",
   "gui.lotrextended.banner_configuration.self_protection": "Self Protection",
   "gui.lotrextended.banner_configuration.self_protection.disc": "Disabling this setting allows players to bypass all settings and break this banner!",
   "gui.lotrextended.banner_configuration.self_protection.setting": "Self Protection: %s",
