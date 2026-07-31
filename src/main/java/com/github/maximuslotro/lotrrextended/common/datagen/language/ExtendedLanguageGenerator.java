@@ -435,6 +435,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.banner_configuration.faction.textBox", "Alignment");
 		addD("gui.lotrextended.banner_configuration.custom.description", "Protection Message:");
 		addD("gui.lotrextended.banner_configuration.custom.textBox", "Message");
+		addD("gui.lotrextended.banner_configuration.player.tooltip", "Placed by: %s");
 		addD("gui.lotrextended.banner_configuration.perms", "Show Permissions");
 		addD("gui.lotrextended.banner_configuration.perms.global", "Global Override Permissions");
 		addD("gui.lotrextended.banner_configuration.perms.global.disc", "These permissions take priority over all whitelist and faction permissions and apply to \"ALL\" players!");
@@ -488,6 +489,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.reforge_books.description", "Guarantees %s modifiers on Reforge");
 		addD("gui.lotrextended.reforge_books.combat", "Combat");
 		addD("gui.lotrextended.reforge_books.artisan", "Artisan");
+		addD("gui.lotrextended.repair_books.description", "%1$s %2$s on Repair");
+		addD("gui.lotrextended.repair_books.description.ignore", "Ignores");
+		addD("gui.lotrextended.repair_books.smith", "Modifier Material Cost");
 
 		//Bow values
 		addD("gui.lotrextended.bow.speed", "Draw Speed: %s");

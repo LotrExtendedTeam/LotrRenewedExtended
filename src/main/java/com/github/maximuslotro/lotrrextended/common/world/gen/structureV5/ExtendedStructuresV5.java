@@ -100,6 +100,8 @@ public class ExtendedStructuresV5 {
 
 	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> DUNLAND_HILLFORT = STRUCTURE_REGISTRY.register("dunland_hillfort", () -> new ExtendedCheckAreaCrossStructure(ExtendedStructureType.DUNLAND));
 
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> IRON_HILLS_MINE = STRUCTURE_REGISTRY.register("iron_hills_mine", () -> new ExtendedCheckAreaChunkStructure(ExtendedStructureType.IRON_HILLS));
+
 	/**
 	 * Initializes and registers all custom structures with their generation parameters.
 	 * <p>
@@ -154,6 +156,7 @@ public class ExtendedStructuresV5 {
 		register(ORTHANC.get(), false,                 1,  0,  0);
 		register(ISENGARD_CAMP.get(), true,            20, 10, 848458030);
 		register(DUNLAND_HILLFORT.get(), true,         20, 8, 3759009);
+		register(IRON_HILLS_MINE.get(), false,         30, 15, 984898);
 	}
 
 	/**

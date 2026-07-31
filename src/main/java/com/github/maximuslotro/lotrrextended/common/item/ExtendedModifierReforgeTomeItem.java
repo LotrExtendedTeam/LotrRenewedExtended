@@ -17,11 +17,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ExtendedModifierTomeItem extends Item {
+public class ExtendedModifierReforgeTomeItem extends Item {
 	private ExtendedModifierType[] bannedTypes;
 	private String langId;
 
-	public ExtendedModifierTomeItem(Properties pProperties, String pLangId, ExtendedModifierType... pBannedTypes) {
+	public ExtendedModifierReforgeTomeItem(Properties pProperties, String pLangId, ExtendedModifierType... pBannedTypes) {
 		super(pProperties);
 		langId = pLangId;
 		bannedTypes = pBannedTypes;
@@ -29,8 +29,8 @@ public class ExtendedModifierTomeItem extends Item {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void appendHoverText(ItemStack pItemStack, @Nullable World world, List<ITextComponent> textLines, ITooltipFlag p_77624_4_) {
-		textLines.add(1, (new TranslationTextComponent("gui.lotrextended.reforge_books.description", 
+	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		pTooltip.add(1, (new TranslationTextComponent("gui.lotrextended.reforge_books.description", 
 			new TranslationTextComponent("gui.lotrextended.reforge_books."+langId).withStyle(TextFormatting.AQUA))).withStyle(TextFormatting.GRAY));
 	}
 

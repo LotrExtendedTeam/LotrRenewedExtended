@@ -98,6 +98,7 @@ public class BiomeStructureAdder {
 		addStructureToMap(tempMap, ExtendedStructuresV5.ORTHANC.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.ISENGARD_CAMP.get());
 		addStructureToMap(tempMap, ExtendedStructuresV5.DUNLAND_HILLFORT.get());
+		addStructureToMap(tempMap, ExtendedStructuresV5.IRON_HILLS_MINE.get());
 		provider.generator.getSettings().structureConfig = tempMap;
 	}
 
@@ -302,6 +303,8 @@ public class BiomeStructureAdder {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_ISENGARD_CAMP);
 			}else if(biomeName.equals(LOTRBiomes.DUNLAND.getRegistryName())) {
 				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_DUNLAND_HILLFORT);
+			}else if(biomeName.equals(LOTRBiomes.IRON_HILLS.getRegistryName())) {
+				event.getGeneration().getStructures().add(() -> ExtendedConfiguredStructuresV5.CONFIGURED_IRON_HILLS_MINE);
 			}
 		}
 	}

@@ -2483,6 +2483,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.ARNOR_SHIELD.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.COMBAT_TOME.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.ARTISAN_TOME.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.SMITH_TOME.get().getRegistryName().getPath());
 	}
 
 	@Override

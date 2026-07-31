@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 50,
+          "weight": 10,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -27,7 +27,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 40,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -48,7 +48,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 60,
+          "weight": 6,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -69,7 +69,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 60,
+          "weight": 8,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -87,6 +87,27 @@
             }
           ],
           "name": "lotr:dwarven_spear"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.25,
+                "max": 0.7
+              }
+            }
+          ],
+          "name": "lotr:dwarven_throwing_axe"
         }
       ]
     }

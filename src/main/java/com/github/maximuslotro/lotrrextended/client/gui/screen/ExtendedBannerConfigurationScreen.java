@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
+import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedHiredUnitFarmhandScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedBannerTextFieldPermissionWidget;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedSimpleButton;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTextureOffsetButton;
@@ -67,6 +68,8 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	private String protMessage;
 	private ResourceLocation flagLoc = null;
 	private TranslationTextComponent factionMessage = null;
+	private String playerName;
+	private Button playerInfo;
 
 	public ExtendedBannerConfigurationScreen(ExtendedSBannerOpenScreenPacket serverData) {
 		super(new StringTextComponent("BANNERCONFIGURATION"), 200, 192);
@@ -83,6 +86,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		updateWhitelist = true;
 		this.isClientOP = serverData.isClientOP;
 		this.protMessage = serverData.protMessage;
+		this.playerName = serverData.bannerPlacer;
 	}
 
 	public void updateFromPacket(ExtendedSBannerOpenChangedScreenPacket serverData) {
@@ -102,6 +106,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 		whiteListOffset = 0;
 		justCreatedWhitelistEntry = false;
 		updateWhitelist = true;
+		this.playerName = serverData.bannerPlacer;
 	}
 
 	public BlockPos getConfigurePos() {
@@ -119,6 +124,16 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 	@Override
 	public void init() {
 		super.init();
+		playerInfo = this.addButton(new ExtendedTextureOffsetButton(this.leftPos + 184, this.topPos + 6, 80, 232, 10, 10, new StringTextComponent("PlayerName"), button -> {}, guiTexture){
+			@Override
+			public int hoverOffset() {
+				return 10;
+			}
+			@Override
+			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
+				ExtendedBannerConfigurationScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.banner_configuration.player.tooltip", playerName), 200), pMouseX, pMouseY);
+			}
+		});	
 		// General stuff
 		this.addButton(protectionTypeButton = new ExtendedSimpleButton(this.leftPos + 30, this.topPos + 20, 140, 20, new TranslationTextComponent("gui.lotrextended.banner_configuration.type_faction"), button -> {
 			rotatePermissionType();
@@ -492,8 +507,10 @@ public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScre
 			globalPermButtons.forEach((permButton) -> permButton.visible=false);
 			showFactionPerms=false;
 			this.font.draw(matStack, new TranslationTextComponent("gui.lotrextended.banner_configuration.disabled"), leftPos + 25, topPos + 64, 16711680);
+			playerInfo.visible=false;
 			return;
 		}
+		playerInfo.visible=true;
 		if(protectionType==0) {
 			//Faction
 			alignmentField.visible=true;

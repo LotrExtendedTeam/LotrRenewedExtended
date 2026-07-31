@@ -106,6 +106,7 @@ public class ExtendedFishingLootGenerator extends FishingLootTables  {
 				.add(addEntry(LOTRItems.MITHRIL_RING.get()).setWeight(1))
 				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(10))
 				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(10))
+				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(5))
 				.apply(ExtendedModifierScrollAdder.chanceCustom(100).setSkillful())));
 	}
 

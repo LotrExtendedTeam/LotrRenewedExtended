@@ -43,6 +43,7 @@ public class ExtendedSBannerOpenScreenPacket {
 	/** Whether the receiving client has OP-level permissions. */
 	public boolean isClientOP;
 	public String protMessage;
+	public String bannerPlacer;
 	/**
 	 * Empty constructor used during packet decoding.
 	 */
@@ -64,6 +65,7 @@ public class ExtendedSBannerOpenScreenPacket {
 		this.enabled=enabled;
 		this.isClientOP = false;
 		this.protMessage = "";
+		this.bannerPlacer = "";
 	}
 	/**
 	 * Creates a packet populated from a banner tile entity.
@@ -82,6 +84,7 @@ public class ExtendedSBannerOpenScreenPacket {
 		this.enabled = true;
 		this.isClientOP = pIsClientOP;
 		this.protMessage = bannerEntity.getProtectionOverrideMessage();
+		this.bannerPlacer = bannerEntity.getPlacedPlayerName();
 	}
 	/**
 	 * Encodes this packet into a {@link PacketBuffer} for transmission to the client.
@@ -114,6 +117,7 @@ public class ExtendedSBannerOpenScreenPacket {
 		buf.writeBoolean(packet.enabled);
 		buf.writeBoolean(packet.isClientOP);
 		buf.writeUtf(packet.protMessage);
+		buf.writeUtf(packet.bannerPlacer);
 	}
 	/**
 	 * Decodes a packet received from the server.
@@ -160,6 +164,7 @@ public class ExtendedSBannerOpenScreenPacket {
 		packet.enabled = buf.readBoolean();
 		packet.isClientOP = buf.readBoolean();
 		packet.protMessage = buf.readUtf();
+		packet.bannerPlacer = buf.readUtf();
 		return packet;
 	}
 	/**

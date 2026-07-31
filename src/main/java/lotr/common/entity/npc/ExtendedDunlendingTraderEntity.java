@@ -18,7 +18,7 @@ public abstract class ExtendedDunlendingTraderEntity extends DunlendingEntity im
 
 	int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
-	private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedBreelandHobbitTraderEntity.class, DataSerializers.OPTIONAL_UUID);
+	private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedDunlendingTraderEntity.class, DataSerializers.OPTIONAL_UUID);
 
 	public ExtendedDunlendingTraderEntity(EntityType<? extends DunlendingEntity> type, World w) {
 		super(type, w);
