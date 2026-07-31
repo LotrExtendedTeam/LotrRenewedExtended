@@ -10,7 +10,8 @@
 				"location": "lotrextended:dunland/dunland_hillfort_1",
 				"processors": "minecraft:empty",
 				"chunk_corner_offset": -12,
-				"snap_to_water_height": true
+				"snap_to_water_height": true,
+				"blacklist_name" : "START"
 			}
 		},
 		{
@@ -21,7 +22,8 @@
 				"location": "lotrextended:dunland/dunland_hillfort_2",
 				"processors": "minecraft:empty",
 				"chunk_corner_offset": -12,
-				"snap_to_water_height": true
+				"snap_to_water_height": true,
+				"blacklist_name" : "START"
 			}
 		}
 	]
