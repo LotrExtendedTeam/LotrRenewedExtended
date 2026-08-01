@@ -79,14 +79,13 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 			}
 		}
 		// If the entire inventory is filtered out or empty of real crops, don't deposit
-		if (eligibleSlotsCount == 0) {
+		if (eligibleSlotsCount == 0 || occupiedSlots == 0) {
 			return false;
 		}
 		// For small starter inventories (2->3 slots):
-		// Only deposit if all slots are occupied AND at least one slot has a decent stack size.
-		// This prevents returning to the chest with just 1 wheat and 1 seed.
+		// Trigger deposit if ANY depositable stack is >= 50% full, OR if all slots are occupied by depositable items.
 		if (totalSlots <= 3) {
-			return (occupiedSlots >= eligibleSlotsCount) && hasNearingFullStack;
+			return hasNearingFullStack || (occupiedSlots >= totalSlots);
 		}
 		// For larger inventories:
 		// Trigger a deposit if 75% of slots are occupied OR the overall volume is 70% full.

@@ -10,6 +10,7 @@ import net.minecraft.entity.ai.brain.task.FarmTask;
 import net.minecraft.entity.ai.brain.task.FarmerWorkTask;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.HoeItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tags.FluidTags;
@@ -169,16 +170,37 @@ public abstract class ExtendedFarmingAbstractTask {
 		return false;
 	}
 	/**
-	 * Determines if an item stack matches the designated seed type assigned to the farmer, and that it should be deposited.
+	 * Determines if an item stack in the output inventory should be deposited into storage.
 	 *
 	 * @param stack item stack to check
-	 * @return {@code true} if the stack matches the farmhand active seed item and is not edible
+	 * @return {@code true} if the item is a depositable harvest product (crops, sugar cane, or edible seed crops)
 	 */
 	protected boolean shouldDepositItem(ItemStack stack) {
-		if(stack.getItem()==Items.SUGAR_CANE) {
-			return true;
-		}
-		ItemStack activeSeeds = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
-		return !activeSeeds.isEmpty() && stack.getItem() == activeSeeds.getItem() && stack.getItem().isEdible();
+	    return shouldDepositItem(stack, goalHolder.farmhandData.getFarmhandInfo().getSeedsItem());
+	}
+
+	/**
+	 * Determines if an item stack should be deposited into storage relative to a active seed stack.
+	 * <p>
+	 * Sugar Cane and non-seed harvested crops (e.g., Wheat, Beetroot, Melons) are always depositable.
+	 * If the item matches the active seed item, it is only depositable if it is edible (e.g., Carrots, Potatoes).
+	 * </p>
+	 *
+	 * @param pStack       the item stack to evaluate
+	 * @param pActiveSeeds the active seed item stack assigned to the farmer
+	 * @return {@code true} if the item is a depositable harvest product; {@code false} otherwise
+	 */
+	public static boolean shouldDepositItem(ItemStack pStack, ItemStack pActiveSeeds) {
+	    if (pStack.isEmpty()) {
+	        return false;
+	    }
+	    Item item = pStack.getItem();
+	    if (item == Items.SUGAR_CANE) {
+	        return true;
+	    }
+	    if (!pActiveSeeds.isEmpty() && item == pActiveSeeds.getItem()) {
+	        return item.isEdible();
+	    }
+	    return true;
 	}
 }
