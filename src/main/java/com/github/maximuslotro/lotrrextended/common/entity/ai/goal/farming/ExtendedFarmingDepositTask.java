@@ -73,7 +73,7 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 				double slotFillPercent = (double) stack.getCount() / stack.getMaxStackSize();
 				totalFillRatio += slotFillPercent;
 				// Check if any single stack is at least 50% full
-				if (slotFillPercent >= 0.50) {
+				if (slotFillPercent >= 0.75) {
 					hasNearingFullStack = true;
 				}
 			}
