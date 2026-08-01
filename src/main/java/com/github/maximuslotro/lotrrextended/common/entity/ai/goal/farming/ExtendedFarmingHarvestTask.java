@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
+
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -13,9 +15,11 @@ import net.minecraft.block.CropsBlock;
 import net.minecraft.block.StemBlock;
 import net.minecraft.block.StemGrownBlock;
 import net.minecraft.block.SugarCaneBlock;
+import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.brain.task.FarmTask;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -23,6 +27,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
@@ -127,17 +133,13 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 		}
 		BlockState plantState = pServerLevel.getBlockState(cropPosition);
 		Block plantBlock = plantState.getBlock();
-		if(plantBlock instanceof CropsBlock && ((CropsBlock)plantBlock).isMaxAge(plantState)) {
-			if (((BlockItem)plantItem).getBlock()==plantBlock) {
-				return true;
-			}
-		}
-		if (plantBlock instanceof StemGrownBlock && ((BlockItem)plantItem).getBlock() instanceof StemBlock) {
+		if(plantBlock instanceof CropsBlock && ((BlockItem)plantItem).getBlock()==plantBlock && ((CropsBlock)plantBlock).isMaxAge(plantState)) {
+			return true;
+		} else if (plantBlock instanceof StemGrownBlock && ((BlockItem)plantItem).getBlock() instanceof StemBlock) {
 			if (((StemBlock)((BlockItem)plantItem).getBlock()).getFruit()==plantBlock) {
 				return true;
 			}
-		}
-		if (plantBlock instanceof SugarCaneBlock && ((BlockItem) plantItem).getBlock() instanceof SugarCaneBlock) {
+		} else if(plantBlock instanceof SugarCaneBlock && ((BlockItem) plantItem).getBlock()==plantBlock) {
 			BlockState aboveState = pServerLevel.getBlockState(cropPosition.above());
 			// Middle of stack
 			if (aboveState.getBlock() instanceof SugarCaneBlock && pServerLevel.getBlockState(cropPosition.below()).getBlock() instanceof SugarCaneBlock) {
@@ -146,6 +148,10 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 			BlockState aboveTwoState = pServerLevel.getBlockState(cropPosition.above(2));
 			// Bottom of stack
 			if (aboveState.getBlock() instanceof SugarCaneBlock && aboveTwoState.getBlock() instanceof SugarCaneBlock) {
+				return true;
+			}
+		} else if(plantBlock instanceof SweetBerryBushBlock && ((BlockItem)plantItem).getBlock()==plantBlock) {
+			if (plantState.getValue(SweetBerryBushBlock.AGE)>=3) {
 				return true;
 			}
 		}
@@ -184,6 +190,17 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 					destroyBlock(canePos, pServerLevel, goalHolder.getEntity());
 				}
 				goalHolder.farmhandData.getFarmhandInfo().addCropsHarvested(canePositionsToBreak.size(), 1);
+			} else if (targetState.getBlock() instanceof SweetBerryBushBlock) {
+				ItemStack popStack;
+				if(targetState.getBlock() instanceof ExtendedBerryBushBlock) {
+					popStack = new ItemStack(((ExtendedBerryBushBlock)targetState.getBlock()).getBerryItem(), 2 + pServerLevel.random.nextInt(2));
+				}else {
+					popStack = new ItemStack(Items.SWEET_BERRIES, 2 + pServerLevel.random.nextInt(2));
+				}
+				popResourceOwning(pServerLevel, cropPosition, popStack, goalHolder.getEntity());
+				pServerLevel.playSound((PlayerEntity)null, cropPosition, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + pServerLevel.random.nextFloat() * 0.4F);
+				pServerLevel.setBlock(cropPosition, targetState.setValue(ExtendedBerryBushBlock.AGE, Integer.valueOf(1)), 2);
+				goalHolder.farmhandData.getFarmhandInfo().addCropsHarvested(1, 1);
 			} else {
 				// Standard single block harvest
 				destroyBlock(cropPosition, pServerLevel, goalHolder.getEntity());
@@ -230,14 +247,12 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 	 * @param pEntity      entity credited with breaking the block
 	 * @param pTool        tool item stack used during breaking
 	 */
-	public static void dropResourcesOwning(BlockState pState, World pLevel, BlockPos cropPosition, @Nullable TileEntity pBlockEntity, Entity pEntity, ItemStack pTool) {
-		if (pLevel instanceof ServerWorld) {
-			Block.getDrops(pState, (ServerWorld)pLevel, cropPosition, pBlockEntity, pEntity, pTool).forEach((itemStack) -> {
-				//Block.popResource(pLevel, pPos, itemStack, pEntity);
-				popResourceOwning(pLevel, cropPosition, itemStack, pEntity);
-			});
-			pState.spawnAfterBreak((ServerWorld)pLevel, cropPosition, pTool);
-		}
+	public static void dropResourcesOwning(BlockState pState, ServerWorld pLevel, BlockPos cropPosition, @Nullable TileEntity pBlockEntity, Entity pEntity, ItemStack pTool) {
+		Block.getDrops(pState, (ServerWorld)pLevel, cropPosition, pBlockEntity, pEntity, pTool).forEach((itemStack) -> {
+			//Block.popResource(pLevel, pPos, itemStack, pEntity);
+			popResourceOwning(pLevel, cropPosition, itemStack, pEntity);
+		});
+		pState.spawnAfterBreak((ServerWorld)pLevel, cropPosition, pTool);
 	}
 	/**
 	 * Spawns an {@link ItemEntity} in the world configured with the breaking entity's UUID as owner.

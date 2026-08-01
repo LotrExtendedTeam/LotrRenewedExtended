@@ -7,8 +7,10 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SugarCaneBlock;
+import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.entity.ai.brain.task.FarmTask;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -77,7 +79,8 @@ public class ExtendedFarmingPlantingTask extends ExtendedFarmingAbstractTask {
 	 */
 	@Override
 	public boolean isValidPosForTask(BlockPos cropPosition, ServerWorld pServerLevel) {
-		BlockState farmland = pServerLevel.getBlockState(cropPosition.below());
+		BlockPos groundPos = cropPosition.below();
+		BlockState farmland = pServerLevel.getBlockState(groundPos);
 		if (farmland.is(Blocks.SUGAR_CANE)) {
 			return false;
 		}
@@ -85,7 +88,8 @@ public class ExtendedFarmingPlantingTask extends ExtendedFarmingAbstractTask {
 		return isRePlaceablePos(cropPosition, pServerLevel)
 			&& isSupportedPlantType(plant, pServerLevel, cropPosition)
 			&& (plant.getPlantType(pServerLevel, cropPosition) == PlantType.CROP ? farmland.isFertile(pServerLevel, cropPosition) : true)
-			&& farmland.canSustainPlant(pServerLevel, cropPosition.below(), Direction.UP, plant);
+			&& farmland.canSustainPlant(pServerLevel, groundPos, Direction.UP, plant)
+			&& !pServerLevel.getBlockState(groundPos.below()).is(BlockTags.SAND);
 	}
 	/**
 	 * Places the crop block at the target position.
@@ -150,8 +154,11 @@ public class ExtendedFarmingPlantingTask extends ExtendedFarmingAbstractTask {
 			if (pPlant instanceof SugarCaneBlock) {
 				return true;
 			}
+			if (pPlant instanceof SweetBerryBushBlock) {
+				return true;
+			}
 			try {
-				//TODO is there a better way to handle this?
+				//TODO is there a better way to handle this other than null passing?
 				return pPlant.getPlantType(level, pos) == PlantType.CROP;
 			} catch (NullPointerException e) {}
 		}
