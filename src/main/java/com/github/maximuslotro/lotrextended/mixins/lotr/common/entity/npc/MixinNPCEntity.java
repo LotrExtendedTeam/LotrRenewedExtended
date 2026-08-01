@@ -17,8 +17,10 @@ import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHired
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerAttackedEntityTargetGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredPlayerHurtByEntityTargetGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedNearestAttackableTargetNPCGoal;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming.ExtendedFarmingAbstractTask;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredOverviewMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 import com.google.common.base.Predicates;
 
 import lotr.common.entity.npc.ExtendedICaptainEntity;
@@ -627,11 +629,14 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 			ItemStack seeds = this.getFarmhandInfo().getSeedsItem();
 			boolean isSeedMatch = !seeds.isEmpty() && seeds.sameItem(itemstack) && ItemStack.tagMatches(seeds, itemstack);
 			boolean canFitInSeeds = isSeedMatch && seeds.getCount() < seeds.getMaxStackSize();
+			boolean isSingleStackOnly = isSeedMatch && !ExtendedFarmingAbstractTask.shouldDepositItem(itemstack, seeds);
+
 			ItemStack bonemeal = this.getFarmhandInfo().getBonemealItem();
 			boolean isBonemealMatch = itemstack.getItem() == net.minecraft.item.Items.BONE_MEAL;
 			boolean canFitInBonemeal = isBonemealMatch && !bonemeal.isEmpty() && bonemeal.getCount() < bonemeal.getMaxStackSize();
+
 			Inventory outputInv = this.getFarmhandInfo().getFarmhandOutputInventory();
-			if (canFitInSeeds || canFitInBonemeal || (!isBonemealMatch && outputInv.canAddItem(itemstack))) {
+			if (canFitInSeeds || canFitInBonemeal || (!isBonemealMatch && ExtendedItemStackUtils.canAddItemToInventory(outputInv, itemstack, isSingleStackOnly))) {
 				this.onItemPickup(pItemEntity);
 				this.take(pItemEntity, itemstack.getCount());
 				ItemStack remaining = itemstack.copy();
@@ -649,21 +654,16 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 					bonemeal.grow(toAdd);
 					remaining.shrink(toAdd);
 				}
-				if (!remaining.isEmpty() && !isBonemealMatch && outputInv.canAddItem(remaining)) {
-					remaining = outputInv.addItem(remaining);
+				if (!remaining.isEmpty() && !isBonemealMatch) {
+					remaining = ExtendedItemStackUtils.addStackToInventory(outputInv, remaining, isSingleStackOnly);
 				}				
-				if (remaining.isEmpty()) {
-					pItemEntity.remove();
-				} else {
-					itemstack.setCount(remaining.getCount());
-					pItemEntity.remove(); // Delete items that could not be picked up
-				}
+				// Delete the entity and discard any remaining unhandled count
+				pItemEntity.remove();
 			}else {
 				pItemEntity.remove(); // Delete items that could not be picked up
 			}
 		}
 	}
-
 	@Override
 	public boolean wantsToPickUp(ItemStack pStack) {
 		return this instanceof ExtendedIFarmhand;
