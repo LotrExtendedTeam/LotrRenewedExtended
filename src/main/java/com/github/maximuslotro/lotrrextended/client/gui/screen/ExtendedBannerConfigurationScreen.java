@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
-import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedHiredUnitFarmhandScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedBannerTextFieldPermissionWidget;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedSimpleButton;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTextureOffsetButton;

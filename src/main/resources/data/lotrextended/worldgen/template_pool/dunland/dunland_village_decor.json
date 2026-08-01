@@ -1,0 +1,78 @@
+{
+	"name": "lotrextended:dunland/dunland_village_decor",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:dunland/decor/dunland_road_dec_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:dunland/decor/dunland_road_dec_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:dunland/decor/dunland_road_dec_3",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:dunland/decor/dunland_road_dec_4",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:dunland/decor/dunland_road_wood_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:dunland/decor/dunland_road_wood_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:dunland/decor/dunland_road_wood_3",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:dunland/decor/dunland_road_wood_4",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}

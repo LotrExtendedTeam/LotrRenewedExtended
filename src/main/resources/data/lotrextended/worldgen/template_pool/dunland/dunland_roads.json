@@ -1,0 +1,42 @@
+{
+	"name": "lotrextended:dunland/dunland_roads",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:dunland/roads/dunland_road_a_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:dunland/roads/dunland_road_a_side",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:dunland/roads/dunland_road_a_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "terrain_matching",
+				"location": "lotrextended:dunland/roads/dunland_road_a_3",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}

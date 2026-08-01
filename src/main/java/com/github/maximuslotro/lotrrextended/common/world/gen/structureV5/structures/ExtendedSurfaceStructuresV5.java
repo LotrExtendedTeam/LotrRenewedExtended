@@ -228,6 +228,12 @@ public abstract class ExtendedSurfaceStructuresV5<C extends ExtendedPoolFeatureC
 				return false;
 			}
 		}
+		if(structureType==ExtendedStructureType.ISENGARD) {
+			// Orthanc
+			if(calculateChunkDistance(chunkX, chunkZ, 2340, 2628)<4) {
+				return false;
+			}
+		}
 		return additionalCheck(chunkGenerator, biomeSource, seed, chunkRandom, chunkX, chunkZ, biome, chunkPos, featureConfig);
 	}
 	@Override
