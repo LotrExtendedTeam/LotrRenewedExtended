@@ -99,6 +99,7 @@ public class ExtendedStructuresV5 {
 	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> ISENGARD_CAMP = STRUCTURE_REGISTRY.register("isengard_camp", () -> new ExtendedIsengardStructure(ExtendedStructureType.ISENGARD));
 
 	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> DUNLAND_HILLFORT = STRUCTURE_REGISTRY.register("dunland_hillfort", () -> new ExtendedCheckAreaCrossStructure(ExtendedStructureType.DUNLAND));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> DUNLAND_VILLAGE = STRUCTURE_REGISTRY.register("dunland_village", () -> new ExtendedCheckAreaCrossStructure(ExtendedStructureType.DUNLAND));
 
 	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> IRON_HILLS_MINE = STRUCTURE_REGISTRY.register("iron_hills_mine", () -> new ExtendedCheckAreaChunkStructure(ExtendedStructureType.IRON_HILLS));
 
@@ -155,7 +156,8 @@ public class ExtendedStructuresV5 {
 		register(ISENGARD_GATEHOUSE.get(), false,      1,  0,  0);
 		register(ORTHANC.get(), false,                 1,  0,  0);
 		register(ISENGARD_CAMP.get(), true,            20, 10, 848458030);
-		register(DUNLAND_HILLFORT.get(), true,         20, 8, 3759009);
+		register(DUNLAND_HILLFORT.get(), true,         40, 15, 3759009);
+		register(DUNLAND_VILLAGE.get(), true,          30, 10, 79907);
 		register(IRON_HILLS_MINE.get(), false,         30, 15, 984898);
 	}
 

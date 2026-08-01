@@ -89,6 +89,7 @@ public class ExtendedConfiguredStructuresV5 {
 	public static StructureFeature<?, ?> CONFIGURED_ISENGARD_CAMP = register(ExtendedStructuresV5.ISENGARD_CAMP.get().configured(new ExtendedSinglePoolConfig("isengard/camp_starts")));
 
 	public static StructureFeature<?, ?> CONFIGURED_DUNLAND_HILLFORT = register(ExtendedStructuresV5.DUNLAND_HILLFORT.get().configured(new ExtendedSinglePoolConfig("dunland/dunland_hillfort")));
+	public static StructureFeature<?, ?> CONFIGURED_DUNLAND_VILLAGE = register(ExtendedStructuresV5.DUNLAND_VILLAGE.get().configured(new ExtendedSinglePoolConfig("dunland/dunland_village")));
 
 	public static StructureFeature<?, ?> CONFIGURED_IRON_HILLS_MINE = register(ExtendedStructuresV5.IRON_HILLS_MINE.get().configured(new ExtendedSinglePoolConfig("iron_hills/mine_entrance_pool")));
 

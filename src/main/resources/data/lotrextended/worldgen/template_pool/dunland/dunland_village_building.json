@@ -14,7 +14,7 @@
 			}
 		},
 		{
-			"weight": 1,
+			"weight": 3,
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
@@ -25,7 +25,7 @@
 			}
 		},
 		{
-			"weight": 10,
+			"weight": 13,
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
@@ -36,7 +36,7 @@
 			}
 		},
 		{
-			"weight": 10,
+			"weight": 13,
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
@@ -47,7 +47,7 @@
 			}
 		},
 		{
-			"weight": 10,
+			"weight": 13,
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
@@ -72,47 +72,17 @@
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
-				"location": "lotrextended:dunland/building/dunland_house_v_small_1",
-				"processors": "minecraft:empty",
-				"snap_to_water_height" : true
-			}
-		},
-		{
-			"weight": 5,
-			"element": {
-				"element_type": "lotrextended:extended_single_pool_element",
-				"projection": "rigid",
-				"location": "lotrextended:dunland/building/dunland_house_small_1",
-				"processors": "minecraft:empty",
-				"snap_to_water_height" : true
-			}
-		},
-		{
-			"weight": 5,
-			"element": {
-				"element_type": "lotrextended:extended_single_pool_element",
-				"projection": "rigid",
-				"location": "lotrextended:dunland/building/dunland_house_medium_1",
-				"processors": "minecraft:empty",
-				"snap_to_water_height" : true
-			}
-		},
-		{
-			"weight": 5,
-			"element": {
-				"element_type": "lotrextended:extended_single_pool_element",
-				"projection": "rigid",
-				"location": "lotrextended:dunland/building/dunland_house_large_1",
-				"processors": "minecraft:empty",
-				"snap_to_water_height" : true
-			}
-		},
-		{
-			"weight": 5,
-			"element": {
-				"element_type": "lotrextended:extended_single_pool_element",
-				"projection": "rigid",
 				"location": "lotrextended:dunland/building/dunland_house_tiny_2",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_house_v_small_1",
 				"processors": "minecraft:empty",
 				"snap_to_water_height" : true
 			}
@@ -132,6 +102,16 @@
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_house_small_1",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
 				"location": "lotrextended:dunland/building/dunland_house_small_2",
 				"processors": "minecraft:empty",
 				"snap_to_water_height" : true
@@ -142,7 +122,27 @@
 			"element": {
 				"element_type": "lotrextended:extended_single_pool_element",
 				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_house_medium_1",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
 				"location": "lotrextended:dunland/building/dunland_house_medium_2",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_house_large_1",
 				"processors": "minecraft:empty",
 				"snap_to_water_height" : true
 			}
