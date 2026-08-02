@@ -37,6 +37,7 @@ import net.minecraft.world.server.ServerWorld;
  * @see ExtendedFarmingAbstractTask
  * @see ExtendedINPCEntity
  * @see ExtendedUnitOrders#FARMING
+ * @see FarmingType
  */
 public class ExtendedFarmingGoalHolder extends Goal {
 	/** The NPC entity performing the farming AI actions. */
@@ -69,24 +70,29 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	protected static final double MAXFARMDISTANCE_SQU = Math.pow(24, 2);
 	/** Flat bonus added to the base execution chance calculation. */
 	private final float additionalProficiency;
+	/** The specialized farming discipline assigned to this NPC farmhand. */
+	private final FarmingType farmingType;
 	/**
 	 * Constructs a new farming goal holder for the specified NPC.
 	 *
 	 * @param farmhand               the NPC entity taking on farming duties
+	 * @param pFarmingType      the specialized agricultural discipline for this NPC
 	 * @param walkSpeedModifier      movement speed multiplier applied during path navigation
 	 */
-	public ExtendedFarmingGoalHolder(NPCEntity farmhand, double walkSpeedModifier) {
-		this(farmhand, walkSpeedModifier, 0);
+	public ExtendedFarmingGoalHolder(NPCEntity farmhand, FarmingType pFarmingType, double walkSpeedModifier) {
+		this(farmhand, pFarmingType, walkSpeedModifier, 0);
 	}
 	/**
 	 * Constructs a new farming goal holder for the specified NPC, with a proficiency.
 	 *
 	 * @param farmhand               the NPC entity taking on farming duties
+	 * @param pFarmingType      the specialized agricultural discipline for this NPC
 	 * @param walkSpeedModifier      movement speed multiplier applied during path navigation
 	 * @param pAdditionalProficiency flat proficiency modifier boosting execution chance checks
 	 */
-	public ExtendedFarmingGoalHolder(NPCEntity farmhand, double walkSpeedModifier, float pAdditionalProficiency) {
+	public ExtendedFarmingGoalHolder(NPCEntity farmhand, FarmingType pFarmingType, double walkSpeedModifier, float pAdditionalProficiency) {
 		this.farmhand = farmhand;
+		this.farmingType = pFarmingType;
 		this.level = farmhand.level.isClientSide() ? null : (ServerWorld) farmhand.level;
 		this.farmhandData = (ExtendedINPCEntity) farmhand;
 		this.walkSpeedModifier = walkSpeedModifier;
@@ -289,7 +295,6 @@ public class ExtendedFarmingGoalHolder extends Goal {
 			isActionCompleted = true; //Because we allow tasks to persist when at location, ensure it is canceled if deadlock happens
 		}
 	}
-
 	/**
 	 * Strategy selection mode governing how tasks and target positions are evaluated during goal selection.
 	 */
@@ -300,6 +305,47 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		PRIORITY
 	}
 	/**
+     * Defines the specialized agricultural classification for an NPC farmhand.
+     * <p>
+     * Controls which crop types, wild plants, or specialized husbandry activities a farmhand
+     * can manage, and dictates which sub-tasks can be registered to the goal.
+     * </p>
+     * 
+     * @see ExtendedFarmingGoalHolder#getFarmingType()
+     */
+	public enum FarmingType {
+		/** Standard agriculture (wheat, carrots, potatoes, stems, sugar cane). */
+        GENERIC(true),
+        /** Wild forage, berries, reeds, and gathered plants. */
+        WILDS(true),
+        /** Arid/desert crops (reeds, papyrus, cactus, etc.). */
+        DESERT(true),
+        /** Tropical/jungle crops (corn, cocoa beans, jungle vegetation). */
+        JUNGLE(true),
+        /** Vineyard management (grapes and vines). */
+        VINEHAND(false),
+        /** Apiary management (bees and hives). */
+		BEEKEEPER(false);
+		/** Whether this farming type handles generic standard crops. */
+		final boolean genericCrops;
+		/**
+         * Constructs a new farming type definition.
+         *
+         * @param pGenericCrops {@code true} if this type includes standard crop handling
+         */
+		private FarmingType(boolean pGenericCrops){
+			this.genericCrops = pGenericCrops;
+		}
+		/**
+         * Checks whether this farming classification supports generic crops.
+         *
+         * @return {@code true} if generic crops are allowed
+         */
+		public boolean isGenericCrops() {
+			return genericCrops;
+		}
+	}
+	/**
 	 * Gets the underlying NPC entity managed by this goal holder.
 	 *
 	 * @return the farmhand NPC entity
@@ -307,4 +353,12 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	public NPCEntity getEntity() {
 		return farmhand;
 	}
+	/**
+     * Gets the specialized farming type classification for this goal holder.
+     *
+     * @return the assigned {@link FarmingType}
+     */
+    public FarmingType getFarmingType() {
+        return farmingType;
+    }
 }

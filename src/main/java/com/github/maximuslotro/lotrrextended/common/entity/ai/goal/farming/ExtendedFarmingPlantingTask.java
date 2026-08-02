@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming.ExtendedFarmingGoalHolder.FarmingType;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
 import net.minecraft.block.BlockState;
@@ -86,7 +87,7 @@ public class ExtendedFarmingPlantingTask extends ExtendedFarmingAbstractTask {
 		}
 		IPlantable plant = ExtendedItemStackUtils.getPlantFromItem(goalHolder.farmhandData.getFarmhandInfo().getSeedsItem());
 		return isRePlaceablePos(cropPosition, pServerLevel)
-			&& isSupportedPlantType(plant, pServerLevel, cropPosition)
+			&& isSupportedPlantType(plant, pServerLevel, cropPosition, goalHolder)
 			&& (plant.getPlantType(pServerLevel, cropPosition) == PlantType.CROP ? farmland.isFertile(pServerLevel, cropPosition) : true)
 			&& farmland.canSustainPlant(pServerLevel, groundPos, Direction.UP, plant)
 			&& !pServerLevel.getBlockState(groundPos.below()).is(BlockTags.SAND);
@@ -147,15 +148,18 @@ public class ExtendedFarmingPlantingTask extends ExtendedFarmingAbstractTask {
 	 * @param pPlant the plant instance to evaluate
 	 * @param level the level to evaluate at
 	 * @param pos  the position to evaluate at
+	 * @param goalHolder the farming tasks holder for this entity
 	 * @return {@code true} if the plant is a supported crop type; {@code false} otherwise
 	 */
-	public static boolean isSupportedPlantType(@Nullable IPlantable pPlant, @Nullable World level, @Nullable BlockPos pos) {
+	public static boolean isSupportedPlantType(@Nullable IPlantable pPlant, @Nullable World level, @Nullable BlockPos pos, ExtendedFarmingGoalHolder goalHolder) {
 		if(pPlant!=null) {
 			if (pPlant instanceof SugarCaneBlock) {
 				return true;
 			}
-			if (pPlant instanceof SweetBerryBushBlock) {
-				return true;
+			if (goalHolder.getFarmingType()==FarmingType.WILDS) {
+				if (pPlant instanceof SweetBerryBushBlock) {
+					return true;
+				}
 			}
 			try {
 				//TODO is there a better way to handle this other than null passing?
