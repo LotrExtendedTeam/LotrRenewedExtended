@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "lotr:charred_log"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.fangorn.fangorn_wasteland.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.fangorn.fangorn_wasteland.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "lotrextended:textures/gui/advancements/backgrounds/fangorn.png"
+  },
+  "criteria": {
+    "enter_fangorn_wasteland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:fangorn_wasteland"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_fangorn_wasteland"
+    ]
+  ]
+}

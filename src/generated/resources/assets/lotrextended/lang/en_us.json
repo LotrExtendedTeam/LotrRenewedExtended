@@ -285,6 +285,8 @@
   "advancements.lotrextended.fangorn.ent_50.title": "Fangorn Friend",
   "advancements.lotrextended.fangorn.ent_500.description": "Reach +500.0 alignment with the Ents.",
   "advancements.lotrextended.fangorn.ent_500.title": "Fangorn Elder",
+  "advancements.lotrextended.fangorn.fangorn_wasteland.description": "Enter the Fangorn Wasteland.",
+  "advancements.lotrextended.fangorn.fangorn_wasteland.title": "Where Once Stood Trees",
   "advancements.lotrextended.fangorn.lower_your_axe.description": "Enter Fangorn Forest.",
   "advancements.lotrextended.fangorn.lower_your_axe.title": "Lower Your Axe",
   "advancements.lotrextended.forodwaith.everlasting_chill.description": "Enter the region of Forodwaith.",
@@ -803,6 +805,8 @@
   "advancements.lotrextended.rohan.uruk_armor.title": "The Feared",
   "advancements.lotrextended.rohan.uruk_crafter.description": "Craft an item on the Uruk Crafting Table.",
   "advancements.lotrextended.rohan.uruk_crafter.title": "Uruk Crafter",
+  "advancements.lotrextended.rohan.uruk_highlands.description": "Enter the Uruk Highlands.",
+  "advancements.lotrextended.rohan.uruk_highlands.title": "Place of Devastation",
   "advancements.lotrextended.rohan.uruk_slayer.description": "Kill an Uruk.",
   "advancements.lotrextended.rohan.uruk_slayer.title": "Uruk Slayer",
   "advancements.lotrextended.rohan.uruk_smith.description": "Smelt an ingot of Uruk Steel in the Orc Forge.",
@@ -2828,5 +2832,7 @@
   "subtitles.lotrextended.entity.wight.death": "Wight death",
   "subtitles.lotrextended.entity.wight.spawn": "Wight spawns",
   "subtitles.lotrextended.event.trade": "Coins jingle",
-  "subtitles.lotrextended.item.horn_blow": "Horn blows"
+  "subtitles.lotrextended.item.horn_blow": "Horn blows",
+  "waypoint.lotrextended.uruk_highlands": "Uruk Highlands",
+  "waypoint.lotrextended.uruk_highlands.lore": "These lands in the foothills of the Mountains once belonged to Rohan, but are now desolate and burnt by the servants of the White Hand."
 }
