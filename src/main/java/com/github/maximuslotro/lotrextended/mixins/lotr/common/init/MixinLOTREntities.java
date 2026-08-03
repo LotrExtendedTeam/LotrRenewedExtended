@@ -62,8 +62,12 @@ public class MixinLOTREntities {
 		return null;
 	}
 
-	private static <T extends CreatureEntity> RegistryObject<EntityType<T>> regCreature(String key, EntityType.IFactory<T> factory, Supplier<AttributeModifierMap.MutableAttribute> attribFactory, EntitySizeHolder size, int trackRange, int updateFreq, SpawnEggInfo.SpawnEggColors eggColors, EntitySpawnPlacementRegistry.PlacementType placementType, Heightmap.Type heightmapType) {
-		return regLiving(key, factory, attribFactory, EntityClassification.CREATURE, size, trackRange, updateFreq, true, eggColors, placementType, heightmapType, CreatureEntity::checkMobSpawnRules);
+	private static <T extends CreatureEntity> RegistryObject<EntityType<T>> regCreatureD(String key, EntityType.IFactory<T> factory, Supplier<AttributeModifierMap.MutableAttribute> attribFactory, EntitySizeHolder size, int trackRange, int updateFreq, SpawnEggInfo.SpawnEggColors eggColors, EntitySpawnPlacementRegistry.PlacementType placementType, Heightmap.Type heightmapType) {
+		RegistryObject<EntityType<T>> entity = regLiving(key, factory, attribFactory, EntityClassification.CREATURE, size, trackRange, updateFreq, true, eggColors, placementType, heightmapType, CreatureEntity::checkMobSpawnRules);
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedEntities.REGISTEREDANIMALENTITIES.add(key);
+		}
+		return entity;
 	}
 
 	/**
@@ -272,7 +276,7 @@ public class MixinLOTREntities {
 		ExtendedEntities.HORSE_BOAR = regAnimalD("wild_boar", ExtendedHorseBoarEntity::new, ExtendedHorseBoarEntity::createWildBoarAttributes, LOTREntities.EntitySizeHolder.size(0.9F, 0.9F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(6635562, 4069378));
 		ExtendedEntities.DUCK = regAnimalD("duck", ExtendedDuckEntity::new, ExtendedDuckEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.7F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(940841, 11374685), ExtendedDuckEntity::checkDuckSpawnRules);
 		ExtendedEntities.HEDGEHOG = regAnimalD("hedgehog", ExtendedHedgehogEntity::new, ExtendedHedgehogEntity::createHedgehogAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.4F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2167050, 14010033));
-		ExtendedEntities.CRABAN = regCreature("craban", ExtendedCrabanEntity::new, ExtendedCrabanEntity::createCrabanAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.4F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2167050, 14010033), PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES); // TODO: Get correct spawn colors
+		ExtendedEntities.CRABAN = regCreatureD("craban", ExtendedCrabanEntity::new, ExtendedCrabanEntity::createCrabanAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.4F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2434341, 10490368), PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES);
 		// Hostile
 		ExtendedEntities.BARROW_WIGHT = regNPCD("barrow_wight", ExtendedBarrowWightEntity::new, ExtendedBarrowWightEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.8F, 1.9f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(529926, 3111505));
 		// Projectiles
