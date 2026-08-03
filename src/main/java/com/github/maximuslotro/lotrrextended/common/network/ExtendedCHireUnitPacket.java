@@ -81,7 +81,7 @@ public class ExtendedCHireUnitPacket {
         }
 
         // spawn the actual NPC
-        Entity newEntity = unitProfile.getUnitEntityType().spawn((ServerWorld) entityCaptain.level, null, player, new BlockPos(entityCaptain.getX(), entityCaptain.getY(), entityCaptain.getZ()), SpawnReason.TRIGGERED, false, false);
+        Entity newEntity = unitProfile.getUnitEntityType().spawn((ServerWorld) entityCaptain.level, null, player, new BlockPos(entityCaptain.getX(), entityCaptain.getY(), entityCaptain.getZ()), SpawnReason.TRIGGERED, true, false);
 
         if(unitProfile.getUnitType()==ExtendedUnitCombatTypes.FARMHAND && !(newEntity instanceof ExtendedIFarmhand)) {
         	ExtendedLog.error("Unit {} is farmand type, but does not implement ExtendedIFarmhand! DEVELOPMENT BUG, pls report!");
