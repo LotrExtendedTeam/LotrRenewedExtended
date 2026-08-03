@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.datagen.entity.spawners;
+package com.github.maximuslotro.lotrrextended.common.datagen.entity;
 
 import java.util.function.Consumer;
 
@@ -11,9 +11,9 @@ import lotr.common.init.LOTREntities;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
 
-public class ExtendedEntityStructureSpawnerGenerator extends ExtendedEntityStructureSpawnersProvider{
+public class ExtendedStructureSpawnerGenerator extends ExtendedStructureSpawnersProvider{
 
-	public ExtendedEntityStructureSpawnerGenerator(DataGenerator pDataGenerator, String pModId) {
+	public ExtendedStructureSpawnerGenerator(DataGenerator pDataGenerator, String pModId) {
 		super(pDataGenerator, pModId);
 	}
 

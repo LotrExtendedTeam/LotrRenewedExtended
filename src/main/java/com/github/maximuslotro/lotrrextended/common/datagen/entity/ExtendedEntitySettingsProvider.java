@@ -1,11 +1,8 @@
-package com.github.maximuslotro.lotrrextended.common.datagen.entity.settings;
+package com.github.maximuslotro.lotrrextended.common.datagen.entity;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
-import java.util.Objects;
 import java.util.TreeMap;
 import java.util.function.Consumer;
 
@@ -28,7 +25,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public abstract class ExtendedEntitySettingsProvider implements IDataProvider {
-	public static final Gson GSON_PRETTY_WRITER = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+	public static final Gson GSON = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 	private static final Logger LOGGER = LogManager.getLogger();
 	private final Map<ResourceLocation, ExtendedEntitySettingsBuilder> dataHere = new TreeMap<>();
 	protected final DataGenerator dataGenerator;
@@ -58,7 +55,7 @@ public abstract class ExtendedEntitySettingsProvider implements IDataProvider {
 				Path path1 = createPath(path, settings);
 
 				try {
-					save(GSON_PRETTY_WRITER, pCache, settings, path1);
+					IDataProvider.save(GSON, pCache, settings.writeToFile(), path1);
 				} catch (IOException ioexception) {
 					LOGGER.error("Couldn't save entity settings {}", path1, ioexception);
 				}
@@ -67,23 +64,6 @@ public abstract class ExtendedEntitySettingsProvider implements IDataProvider {
 		};
 		makeEntitySettingBuilders(consumer);
 		ExtendedLog.info("Built "+dataHere.size()+" entity settings.");
-	}
-
-	private static void save(Gson pGson, DirectoryCache pCache, ExtendedEntitySettingsBuilder settings, Path pPath) throws IOException {
-		try {
-			String s = pGson.toJson(settings.writeToFile());
-			String s1 = SHA1.hashUnencodedChars(s).toString();
-			if (!Objects.equals(pCache.getHash(pPath), s1) || !Files.exists(pPath)) {
-				Files.createDirectories(pPath.getParent());
-				try (BufferedWriter bufferedwriter = Files.newBufferedWriter(pPath)) {
-					bufferedwriter.write(s);
-				}
-			}
-
-			pCache.putNew(pPath, s1);
-		} catch (IOException ioexception) {
-			LOGGER.error("Couldn't save entity settings {}", pPath, ioexception);
-		}
 	}
 
 	private static Path createPath(Path pPath, ExtendedEntitySettingsBuilder settings) {

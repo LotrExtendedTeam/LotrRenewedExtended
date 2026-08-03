@@ -110,10 +110,6 @@ public class ExtendedTraderProfileManager extends ReloadListener<Map<ResourceLoc
 		return map;
 	}
 
-	public static String serialize(Gson gson, ExtendedTraderProfile data) {
-		return gson.toJson(data);
-	}
-
 	public static <T> T deserialize(Gson gson, JsonElement data, Class<T> classToConvert) {
 		return gson.fromJson(data, classToConvert);
 	}

@@ -370,7 +370,7 @@ public class ExtendedStructureSpawnerEntity extends Entity{
 	@Override
 	protected void addAdditionalSaveData(CompoundNBT pCompound) {
 		if(!spawnerInstance.isEmptySpawner() && spawnerInstance.isCustom()) {
-			pCompound.putString("spawnerData", ExtendedStructureEntitySpawnManager.serialize(ExtendedStructureEntitySpawnManager.GSON, spawnerInstance));
+			pCompound.putString("spawnerData", ExtendedStructureEntitySpawnManager.GSON.toJson(spawnerInstance));
 		} else if(!spawnerInstance.isEmptySpawner() && !spawnerInstance.isCustom()) {
 			pCompound.putString("setSpawnerType", spawnerInstance.getId().toString());
 		} else if(spawnerInstance.isEmptySpawner() && spawnerType !=null){

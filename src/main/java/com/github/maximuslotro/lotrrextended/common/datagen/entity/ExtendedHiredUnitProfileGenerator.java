@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.datagen.entity.hiredunitprofiles;
+package com.github.maximuslotro.lotrrextended.common.datagen.entity;
 
 import java.util.function.Consumer;
 
@@ -15,9 +15,9 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
-public class ExtendedServerHiredUnitProfileGenerator extends ExtendedServerHiredUnitProfileProvider{
+public class ExtendedHiredUnitProfileGenerator extends ExtendedHiredUnitProfileProvider{
 
-	public ExtendedServerHiredUnitProfileGenerator(DataGenerator pDataGenerator, String pModId) {
+	public ExtendedHiredUnitProfileGenerator(DataGenerator pDataGenerator, String pModId) {
 		super(pDataGenerator, pModId);
 	}
 

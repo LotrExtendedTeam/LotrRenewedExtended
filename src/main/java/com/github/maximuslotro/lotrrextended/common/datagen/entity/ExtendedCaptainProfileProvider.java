@@ -1,11 +1,8 @@
-package com.github.maximuslotro.lotrrextended.common.datagen.entity.hiredunitprofiles;
+package com.github.maximuslotro.lotrrextended.common.datagen.entity;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
-import java.util.Objects;
 import java.util.TreeMap;
 import java.util.function.Consumer;
 
@@ -16,7 +13,6 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainProfileManager;
 import com.github.maximuslotro.lotrrextended.common.serialization.GsonSerializers;
 import com.google.gson.Gson;
 
@@ -26,7 +22,7 @@ import net.minecraft.data.IDataProvider;
 import net.minecraft.util.ResourceLocation;
 
 public abstract class ExtendedCaptainProfileProvider implements IDataProvider {
-	public static final Gson GSON_PRETTY_WRITER = GsonSerializers.createCaptainSerializer().disableHtmlEscaping().setPrettyPrinting().create();
+	public static final Gson GSON = GsonSerializers.createCaptainSerializer().disableHtmlEscaping().setPrettyPrinting().create();
 	private static final Logger LOGGER = LogManager.getLogger();
 	private final Map<ResourceLocation, ExtendedCaptainProfile> dataHere = new TreeMap<>();
 	protected final DataGenerator dataGenerator;
@@ -49,7 +45,7 @@ public abstract class ExtendedCaptainProfileProvider implements IDataProvider {
 				Path path1 = createPath(path, profile);
 
 				try {
-					save(GSON_PRETTY_WRITER, pCache, profile, path1);
+					IDataProvider.save(GSON, pCache, GSON.toJsonTree(profile), path1);
 				} catch (IOException ioexception) {
 					LOGGER.error("Couldn't save captain profile {}", path1, ioexception);
 				}
@@ -64,24 +60,6 @@ public abstract class ExtendedCaptainProfileProvider implements IDataProvider {
 					LOGGER.warn("Didn't make expected captain profile type: "+key.toString());
 				}
 			}
-		}
-	}
-
-	private static void save(Gson pGson, DirectoryCache pCache, ExtendedCaptainProfile spawner, Path pPath) throws IOException {
-		try {
-			String s = ExtendedCaptainProfileManager.serialize(pGson, spawner);
-			String s1 = SHA1.hashUnencodedChars(s).toString();
-			if (!Objects.equals(pCache.getHash(pPath), s1) || !Files.exists(pPath)) {
-				Files.createDirectories(pPath.getParent());
-
-				try (BufferedWriter bufferedwriter = Files.newBufferedWriter(pPath)) {
-					bufferedwriter.write(s);
-				}
-			}
-
-			pCache.putNew(pPath, s1);
-		} catch (IOException ioexception) {
-			LOGGER.error("Couldn't save captain profile {}", pPath, ioexception);
 		}
 	}
 
