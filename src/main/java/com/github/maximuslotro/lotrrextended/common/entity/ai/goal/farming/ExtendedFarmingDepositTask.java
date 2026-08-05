@@ -142,7 +142,6 @@ public class ExtendedFarmingDepositTask extends ExtendedFarmingAbstractChestTask
 	 */
 	@Override
 	public boolean executeTask(BlockPos chestBlockPos, ServerWorld pServerLevel) {
-		super.executeTaskSuper(chestBlockPos, pServerLevel);
 		TileEntity blockEntity = pServerLevel.getBlockEntity(chestBlockPos);
 		if (!(blockEntity instanceof ChestTileEntity)) {
 			return true;

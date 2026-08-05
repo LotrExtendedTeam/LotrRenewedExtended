@@ -287,7 +287,7 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		if(currentTask.closeEnoughToExecuteTask(farmhand, targetFarmBlock)) {
 			pathNav.stop();
 			// Don't worry about spot being valid since it was just checked during canContinueToUse()
-			if(currentTask.executeTask(targetFarmBlock, level)) {//Allow tasks to sit at a spot for a bit
+			if(currentTask.executeTaskBase(targetFarmBlock, level)) {//Allow tasks to sit at a spot for a bit
 				isActionCompleted = true; //Allow for task to be stopped even if there is pathfinding distance to target
 			}
 		}

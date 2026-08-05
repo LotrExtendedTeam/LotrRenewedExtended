@@ -36,6 +36,10 @@ import net.minecraft.world.server.ServerWorld;
  */
 public abstract class ExtendedFarmingAbstractTask {
 	/**
+	 * Cached location of a validated work block to avoid repeated spatial searches while in range.
+	 */
+	protected BlockPos cachedWorkBlockPos = null;
+	/**
 	 * Vertical search offset radius around the NPC when selecting candidate target blocks.
 	 */
 	protected static final int YSPLIT = 1;
@@ -118,7 +122,9 @@ public abstract class ExtendedFarmingAbstractTask {
 	/**
 	 * Invalidate any position caches or internal state when target search fails.
 	 */
-	public void invalidateCache() {}
+	public void invalidateCache() {
+		cachedWorkBlockPos=null;
+	}
 	/**
 	 * Determines whether the NPC entity is within range to execute the action on the target block position.
 	 *
@@ -129,14 +135,21 @@ public abstract class ExtendedFarmingAbstractTask {
 	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
 		return targetPos.closerThan(farmer.position(), 1);
 	}
+	public boolean executeTaskBase(BlockPos pChosenBlockPos, ServerWorld pServerLevel) {
+		if(cachedWorkBlockPos==null) {
+			cachedWorkBlockPos = pChosenBlockPos.immutable();
+		}
+		return executeTask(pChosenBlockPos, pServerLevel);
+	}
+
 	/**
 	 * Performs the task action on the target block position.
 	 *
-	 * @param pAboveBlockPos position to modify or execute action upon
+	 * @param pChosenBlockPos position to modify or execute action upon
 	 * @param pServerLevel   world where task is being executed
 	 * @return {@code true} if the task action is completed, or {@code false} to defer exiting and keep ticking
 	 */
-	public abstract boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel);
+	public abstract boolean executeTask(BlockPos pChosenBlockPos, ServerWorld pServerLevel);
 	/**
 	 * Helper method to determine if a block position and the block directly above it are replaceable materials, 
 	 * and that no liquid is present, as well as another block above it are replaceable materials.

@@ -28,7 +28,6 @@ import net.minecraftforge.common.util.FakePlayerFactory;
  * @see ChestTileEntity
  */
 public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAbstractTask {
-	private BlockPos cachedComposterPos = null;
 	/**
 	 * Ticks elapsed since initiating a chest interaction cycle.
 	 */
@@ -106,9 +105,9 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 	 */
 	@Override
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		if (cachedComposterPos != null) {
-			if (goalHolder.getEntity().distanceToSqr(cachedComposterPos.getX() + 0.5, cachedComposterPos.getY() + 0.5, cachedComposterPos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
-				taskPosition.set(cachedComposterPos);
+		if (cachedWorkBlockPos != null) {
+			if (goalHolder.getEntity().distanceToSqr(cachedWorkBlockPos.getX() + 0.5, cachedWorkBlockPos.getY() + 0.5, cachedWorkBlockPos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
+				taskPosition.set(cachedWorkBlockPos);
 				return;
 			}
 		}
@@ -139,15 +138,7 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 			taskPosition.set(validChests.get(0));
 		}
 	}
-	@Override
-	public void invalidateCache() {
-		cachedComposterPos = null;
-	}
-	public void executeTaskSuper(BlockPos pComposterPos, ServerWorld pServerLevel) {
-		if(cachedComposterPos==null) {
-			cachedComposterPos = pComposterPos.immutable();
-		}
-	}
+
 	/**
 	 * Evaluates whether the NPC is within interaction range of the target chest position.
 	 *
