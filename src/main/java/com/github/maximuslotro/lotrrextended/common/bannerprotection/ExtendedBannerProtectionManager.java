@@ -47,28 +47,28 @@ public class ExtendedBannerProtectionManager {
 			return !isAllowed;
 		}
 	}
-	public static ExtendedProtReturn getProtectionStatus(IWorld iWorld, BlockPos position, ProtectionInstance protInstance) {
-		return getProtectionStatus(iWorld, position, protInstance, false, null);
-	}
 
-	public static ExtendedProtReturn getProtectionStatus(IWorld iWorld, BlockPos position, ProtectionInstance protInstance, boolean doLog, String source) {
+	public static ExtendedProtReturn getProtectionStatus(IWorld pLevel, BlockPos pPos, ProtectionInstance protInstance) {
 		if(!ExtendedServerConfig.enableBannerProtection.get()) {
 			return ExtendedProtReturn.ALLOWED;
 		}
-		ExtendedProtReturn isInteractionDenied = getActualProtectionStatus(iWorld, position, protInstance);
-		if(doLog && isInteractionDenied!=ExtendedProtReturn.NOBANNER && ExtendedServerConfig.enableExtendedLogging.get()) {
-			ExtendedLog.info("BannerInstance[{},PE=[{}], rejected={}, source:{}]", position.toString(), protInstance.toString(), isInteractionDenied, source);
+		ExtendedProtReturn isInteractionDenied = getActualProtectionStatus(pLevel, pPos, protInstance);
+		if(isInteractionDenied!=ExtendedProtReturn.NOBANNER && ExtendedServerConfig.enableExtendedLogging.get()) {
+			ExtendedLog.info("BannerInstance[{},PE=[{}], status={}]", pPos.toString(), protInstance.toString(), isInteractionDenied);
 		}
 		return isInteractionDenied;
 	}
 
-	private static ExtendedProtReturn getActualProtectionStatus(IWorld iWorld, BlockPos position, ProtectionInstance protInstance) {
-		AxisAlignedBB bannerScan = new AxisAlignedBB(position).inflate(64.0D);
-		List<ExtendedBannerEntity> bannersInArea = iWorld.getEntitiesOfClass(ExtendedBannerEntity.class, bannerScan, ExtendedBannerEntity::isValid);
+	private static ExtendedProtReturn getActualProtectionStatus(IWorld pLevel, BlockPos pPos, ProtectionInstance protInstance) {
+		AxisAlignedBB bannerScan = new AxisAlignedBB(pPos).inflate(64.0D);
+		List<ExtendedBannerEntity> bannersInArea = pLevel.getEntitiesOfClass(ExtendedBannerEntity.class, bannerScan, ExtendedBannerEntity::isValid);
 		if(bannersInArea.isEmpty()) {
 			return ExtendedProtReturn.NOBANNER;
 		}
-		AxisAlignedBB disputedArea = new AxisAlignedBB(position);
+		AxisAlignedBB disputedArea = new AxisAlignedBB(pPos);
+		if(protInstance.extraDisputedRange>0) {
+			disputedArea = disputedArea.inflate(protInstance.extraDisputedRange);
+		}
 		for(ExtendedBannerEntity banner : bannersInArea) {
 			if(banner.getProtectionRange()>0 && banner.getProtectionArea().intersects(disputedArea)) {
 				boolean denyEdits = protInstance.isProtected(banner.getConnectedTileEntity());
@@ -81,8 +81,22 @@ public class ExtendedBannerProtectionManager {
 	}
 
 	public abstract static class ProtectionInstance {
+		private int extraDisputedRange=0;
+		private boolean sendMessages=true;
 
 		public abstract boolean isProtected(ExtendedMEBannerTileEntity bannerInstance);
+
+		public void setExtraDisputedRange(int extraDisputedRange) {
+			this.extraDisputedRange = extraDisputedRange;
+		}
+
+		public void disableMessages() {
+			this.sendMessages = false;
+		}
+
+		public boolean shouldSendMessages() {
+			return this.sendMessages;
+		}
 
 		@Override
 		public String toString() {
@@ -168,8 +182,9 @@ public class ExtendedBannerProtectionManager {
 				return false;
 			}
 
+			// You Shall Not Pass
 			public void tellPlayerYSNP(IFormattableTextComponent iFormattableTextComponent) {
-				if(offendingPlayer instanceof FakePlayer) {
+				if(offendingPlayer instanceof FakePlayer || !shouldSendMessages()) {
 					return;
 				}
 				offendingPlayer.inventoryMenu.broadcastChanges();

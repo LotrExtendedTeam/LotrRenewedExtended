@@ -159,7 +159,7 @@ public class ExtendedBannerEventHandlers {
 				|| itemstack.getItem() instanceof ExtendedBoatItem 
 				|| itemstack.getItem() instanceof LOTRBoatItem
 				|| itemstack.getItem() instanceof LilyPadItem)){
-				if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new ProtectionInstance.PlayerProtection(event.getPlayer(), ExtendedBannerPermissions.EVERYTHING), true, "handleBannerBlockRightClick").isNotAllowed()) {
+				if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new ProtectionInstance.PlayerProtection(event.getPlayer(), ExtendedBannerPermissions.EVERYTHING)).isNotAllowed()) {
 					event.setCanceled(true);
 					if(itemstack.getItem() instanceof LilyPadItem) {
 						BlockRayTraceResult blockraytraceresult = Item.getPlayerPOVHitResult(world, event.getPlayer(), RayTraceContext.FluidMode.SOURCE_ONLY);
@@ -209,7 +209,7 @@ public class ExtendedBannerEventHandlers {
 					perm = ExtendedBannerPermissions.BANNER;
 				}
 			}
-			if (ExtendedBannerProtectionManager.getProtectionStatus(world, event.getPos(), new ProtectionInstance.PlayerProtection(event.getPlayer(), perm), true, "handleBannerBlockRightInteract").isNotAllowed()) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(world, event.getPos(), new ProtectionInstance.PlayerProtection(event.getPlayer(), perm)).isNotAllowed()) {
 				event.setCanceled(true);
 				if (block instanceof DoorBlock) {
 					if(bState.getValue(DoorBlock.HALF)==DoubleBlockHalf.UPPER) {

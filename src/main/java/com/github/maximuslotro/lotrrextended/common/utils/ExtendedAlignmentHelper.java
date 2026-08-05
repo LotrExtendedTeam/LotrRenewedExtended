@@ -11,6 +11,6 @@ public class ExtendedAlignmentHelper {
 	public static void sendAlignmentError(PlayerEntity pPlayer, String message, Faction pFaction) {
 		pPlayer.sendMessage(new TranslationTextComponent("chat.lotrextended.requires_alignment", 
 			new StringTextComponent(message).withStyle(TextFormatting.YELLOW), 
-			pFaction.getDisplayName()), Util.NIL_UUID);
+			pFaction.getColoredDisplayName()), Util.NIL_UUID);
 	}
 }

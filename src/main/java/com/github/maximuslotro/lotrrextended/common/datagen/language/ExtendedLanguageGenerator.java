@@ -471,8 +471,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.banner_item.info", "Banner contains protection information");
 
 		// Banner protection info
-		addD("message.lotrextended.banner.disabled", "Banner protection is disabled!");
 		addD("message.lotrextended.banner.land_protected", "This land is under the protection of %s");
+		addD("message.lotrextended.banner.land_protected.already", "Banner can not be placed since it overlaps with another's banner protection!");
 
 		// Additional item strings
 		addD("item."+ExtendedItems.COMMANDHORN.getId().getNamespace()+"."+ExtendedItems.COMMANDHORN.getId().getPath()+".halt", "Horn of Command - Halt Units");
