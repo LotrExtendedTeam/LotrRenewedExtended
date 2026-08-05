@@ -64,17 +64,11 @@ public class ExtendedBannerProtectionManager {
 
 	private static ExtendedProtReturn getActualProtectionStatus(IWorld iWorld, BlockPos position, ProtectionInstance protInstance) {
 		AxisAlignedBB bannerScan = new AxisAlignedBB(position).inflate(64.0D);
-		if(protInstance.extraScanArea>0) {
-			bannerScan = bannerScan.inflate(protInstance.extraScanArea);
-		}
 		List<ExtendedBannerEntity> bannersInArea = iWorld.getEntitiesOfClass(ExtendedBannerEntity.class, bannerScan, ExtendedBannerEntity::isValid);
 		if(bannersInArea.isEmpty()) {
 			return ExtendedProtReturn.NOBANNER;
 		}
 		AxisAlignedBB disputedArea = new AxisAlignedBB(position);
-		if(protInstance.extraDisputedArea>0) {
-			disputedArea = disputedArea.inflate(protInstance.extraDisputedArea);
-		}
 		for(ExtendedBannerEntity banner : bannersInArea) {
 			if(banner.getProtectionRange()>0 && banner.getProtectionArea().intersects(disputedArea)) {
 				boolean denyEdits = protInstance.isProtected(banner.getConnectedTileEntity());
@@ -87,16 +81,6 @@ public class ExtendedBannerProtectionManager {
 	}
 
 	public abstract static class ProtectionInstance {
-		protected int extraScanArea = 0;
-		protected int extraDisputedArea = 0;
-
-		public void setExtraScanArea(int extraScanArea) {
-			this.extraScanArea = extraScanArea;
-		}
-
-		public void setExtraDisputedArea(int extraDisputedArea) {
-			this.extraDisputedArea = extraDisputedArea;
-		}
 
 		public abstract boolean isProtected(ExtendedMEBannerTileEntity bannerInstance);
 

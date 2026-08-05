@@ -11,9 +11,11 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedAlignmentHelper;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
+import lotr.common.data.LOTRLevelData;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -47,11 +49,13 @@ import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -141,13 +145,28 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable {
 				Direction direction1 = direction.getOpposite();
 				blockstate = blockstate.setValue(FACING, direction1);
 				if (blockstate.canSurvive(iworldreader, blockpos)) {
-					if(blockpos.getY() < pContext.getLevel().dimensionType().logicalHeight() - 1 && pContext.getLevel().getBlockState(blockpos.above()).canBeReplaced(pContext)) {
+					if(blockpos.getY() < pContext.getLevel().dimensionType().logicalHeight() - 1 
+						&& pContext.getLevel().getBlockState(blockpos.above()).canBeReplaced(pContext) 
+						&& canPlaceBanner(pContext, type)) {
 						return blockstate;
 					}
 				}
 			}
 		}
 		return null;
+	}
+
+	public static boolean canPlaceBanner(BlockItemUseContext pContext, ExtendedBannerTypes type) {
+		if(pContext.getPlayer()!=null) {
+			if(!ExtendedServerConfig.enableBannerProtection.get()) {
+				pContext.getPlayer().sendMessage(new TranslationTextComponent("message.lotrextended.banner.disabled"), Util.NIL_UUID);
+				return false;
+			} else if(LOTRLevelData.serverInstance().getData(pContext.getPlayer()).getAlignmentData().getAlignment(type.getFaction())<1) {
+				ExtendedAlignmentHelper.sendAlignmentError(pContext.getPlayer(), "+1.0", type.getFaction().resolveFaction(pContext.getLevel()).get());
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@SuppressWarnings("deprecation")
