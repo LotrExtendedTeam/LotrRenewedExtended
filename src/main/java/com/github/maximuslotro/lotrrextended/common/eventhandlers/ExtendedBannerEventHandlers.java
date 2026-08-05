@@ -179,7 +179,8 @@ public class ExtendedBannerEventHandlers {
 	public static void handleBlockRightInteract(PlayerInteractEvent.RightClickBlock event) {
 		if(!event.getWorld().isClientSide()) {
 			World world = event.getWorld();
-			BlockState bState = world.getBlockState(event.getPos());
+			BlockPos eventPos = event.getPos();
+			BlockState bState = world.getBlockState(eventPos);
 			Block block = bState.getBlock();
 			ExtendedBannerPermissions perm = ExtendedBannerPermissions.EVERYTHING;
 			if(!event.getPlayer().isShiftKeyDown() || event.getPlayer().getItemInHand(event.getHand()).isEmpty()) {
@@ -191,7 +192,7 @@ public class ExtendedBannerEventHandlers {
 					|| block instanceof ExtendedConquestTableBlock || block instanceof GrindstoneBlock || block instanceof CartographyTableBlock
 					|| block instanceof EnchantingTableBlock || block instanceof LoomBlock || block instanceof StonecutterBlock) {
 					perm = ExtendedBannerPermissions.CRAFTING;
-				} else if (world.getBlockEntity(event.getPos()) instanceof IInventory) {
+				} else if (world.getBlockEntity(eventPos) instanceof IInventory) {
 					if (block instanceof KegBlock || block instanceof CampfireBlock) {
 						perm = ExtendedBannerPermissions.EDITABLES;
 					} else {
@@ -209,25 +210,15 @@ public class ExtendedBannerEventHandlers {
 					perm = ExtendedBannerPermissions.BANNER;
 				}
 			}
-			if (ExtendedBannerProtectionManager.getProtectionStatus(world, event.getPos(), new ProtectionInstance.PlayerProtection(event.getPlayer(), perm)).isNotAllowed()) {
+			if (ExtendedBannerProtectionManager.getProtectionStatus(world, eventPos, new ProtectionInstance.PlayerProtection(event.getPlayer(), perm)).isNotAllowed()) {
 				event.setCanceled(true);
-				if (block instanceof DoorBlock) {
-					if(bState.getValue(DoorBlock.HALF)==DoubleBlockHalf.UPPER) {
-						BlockState belowBlock = world.getBlockState(event.getPos().below());
-						if(belowBlock.hasProperty(DoorBlock.HALF) && belowBlock.hasProperty(DoorBlock.OPEN)) {
-							world.setBlockAndUpdate(event.getPos().below(), belowBlock.setValue(DoorBlock.OPEN, !bState.getValue(DoorBlock.OPEN)));
-						}
-						world.setBlockAndUpdate(event.getPos(), bState);
-					}else {
-						BlockState aboveBlock = world.getBlockState(event.getPos().above());
-						if(aboveBlock.hasProperty(DoorBlock.HALF) && aboveBlock.hasProperty(DoorBlock.OPEN)) {
-							world.setBlockAndUpdate(event.getPos().above(), aboveBlock.setValue(DoorBlock.OPEN, !bState.getValue(DoorBlock.OPEN)));
-						}
-						world.setBlockAndUpdate(event.getPos(), bState);
-					}
-				}
-				BlockState state = world.getBlockState(event.getPos());
-				world.sendBlockUpdated(event.getPos(), state, state, 2);
+				BlockState state = world.getBlockState(eventPos);
+				world.sendBlockUpdated(eventPos, state, state, 10);
+				BlockPos above = eventPos.above();
+				BlockState stateAbove = world.getBlockState(above);
+				world.sendBlockUpdated(above, stateAbove, stateAbove, 10);
+				BlockState stateTop = world.getBlockState(above.above());
+				world.sendBlockUpdated(above.above(), stateTop, stateTop, 10);
 				if (event.getPlayer() instanceof ServerPlayerEntity) {
 					((ServerPlayerEntity)event.getPlayer()).refreshContainer(event.getPlayer().inventoryMenu);
 				}
