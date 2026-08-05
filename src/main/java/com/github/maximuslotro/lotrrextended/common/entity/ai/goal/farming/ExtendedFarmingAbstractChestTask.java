@@ -4,11 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ChestBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.ItemFrameEntity;
+import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.properties.ChestType;
 import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.FakePlayerFactory;
@@ -125,7 +132,7 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 				if (pos.distSqr(farmhandPos)<ExtendedFarmingGoalHolder.MAXFARMDISTANCE_SQU && Math.abs(pos.getY()-farmhandPos.getY())<=YSPLIT) {
 					if (pServerLevel.getChunkSource().isTickingChunk(pos) && pServerLevel.getWorldBorder().isWithinBounds(pos)) {
 						if (tileEntity instanceof ChestTileEntity) {
-							if (isValidPosForTask(pos, pServerLevel)) {
+							if (isValidPosForTask(pos, pServerLevel) && hasHoeItemFrameOnFront(pos, pServerLevel)) {
 								validChests.add(pos.immutable());
 							}
 						}
@@ -138,7 +145,56 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 			taskPosition.set(validChests.get(0));
 		}
 	}
+	/**
+	 * Checks whether the given chest position, or its connected neighbor if part of a double chest,
+	 * has an item frame mounted on its front face containing a hoe.
+	 *
+	 * @param pos          the position of the target chest block
+	 * @param pServerLevel the server world context in which to query block states and entities
+	 * @return {@code true} if an item frame holding a {@link HoeItem} is mounted on the front face of this chest or its connected half; {@code false} otherwise
+	 */
+	private boolean hasHoeItemFrameOnFront(BlockPos pos, ServerWorld pServerLevel) {
+		if (checkSingleChestFront(pos, pServerLevel)) {
+			return true;
+		}
+		BlockState state = pServerLevel.getBlockState(pos);
+		if (state.getValue(ChestBlock.TYPE) != ChestType.SINGLE) {
+			BlockPos otherHalfPos = pos.relative(ChestBlock.getConnectedDirection(state));
+			if(pServerLevel.getBlockEntity(otherHalfPos) instanceof ChestTileEntity) {
+				if (pServerLevel.getBlockState(otherHalfPos).getValue(ChestBlock.FACING) == state.getValue(ChestBlock.FACING)) {
+					if (checkSingleChestFront(otherHalfPos, pServerLevel)) {
+						return true;
+					}
+				}
+			}
+		}
 
+		return false;
+	}
+	/**
+	 * Evaluates a single block position to determine if an item frame is mounted on its front facing direction
+	 * and holds a hoe item stack.
+	 *
+	 * @param pos          the specific block position of the chest segment to inspect
+	 * @param pServerLevel the server world context used to query entities and state
+	 * @return {@code true} if an item frame facing the chest's front direction contains a {@link HoeItem}; {@code false} otherwise
+	 */
+	private boolean checkSingleChestFront(BlockPos pos, ServerWorld pServerLevel) {
+		BlockState state = pServerLevel.getBlockState(pos);
+		
+		Direction chestFacing = state.getValue(ChestBlock.FACING);
+		BlockPos frontPos = pos.relative(chestFacing);
+		List<ItemFrameEntity> itemFrames = pServerLevel.getEntitiesOfClass(ItemFrameEntity.class, new AxisAlignedBB(frontPos));
+		for (ItemFrameEntity frame : itemFrames) {
+			if (frame.getDirection() == chestFacing) {
+				ItemStack displayedItem = frame.getItem();
+				if (!displayedItem.isEmpty() && displayedItem.getItem() instanceof HoeItem) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	/**
 	 * Evaluates whether the NPC is within interaction range of the target chest position.
 	 *
