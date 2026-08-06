@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedCo
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTogglableTitleButton;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedTogglableTitleButton.IOnTick;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientDebugToggles;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
@@ -236,6 +237,8 @@ public class ExtendedClientOptionsScreen extends AbstractExtendedOptionsScreen {
 			}, "structureBlockOutlineDistance"));
 		addButton(dev.addButtonNew("gui.lotrextended.settings.spawneroutline.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.showSpawnerOutlines), (button, pd) -> ExtendedClientConfig.showSpawnerOutlines.get(), 
 			"gui.lotrextended.base.show", "gui.lotrextended.base.hide", "showSpawnerOutlines"));
+		addButton(dev.addButton("gui.lotrextended.settings.pathnav.setting", button -> ExtendedClientDebugToggles.renderNavPaths=!ExtendedClientDebugToggles.renderNavPaths, (button, pd) -> ExtendedClientDebugToggles.renderNavPaths, 
+			"gui.lotrextended.base.shown", "gui.lotrextended.base.hidden"));
 		catagories.add(dev);
 
 		for(SettingsCatagory catagory : catagories) {
