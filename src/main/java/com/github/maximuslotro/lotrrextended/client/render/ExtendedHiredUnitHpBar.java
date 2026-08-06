@@ -110,7 +110,7 @@ public class ExtendedHiredUnitHpBar {
             matrixStackIn.translate(-9.5D, 0.0D, -0.02D);
             matrixStackIn.translate(TEXT_POS_X, TEXT_POS_Y, -0.1D);
             matrixStackIn.scale(textScale, textScale, 1.0F);
-            int color = ExtendedColorUtil.ARGB32.color(255, 255, 255, 255); // set black text color no opacity
+            int color = ExtendedColorUtil.color(255, 255, 255, 255); // set black text color no opacity
             ExtendedBarRendererHelper.drawString(matrixStackIn, font, (int) hp + "/" + (int) vit, (int) hpWidth, 20, color, false);
         }
 

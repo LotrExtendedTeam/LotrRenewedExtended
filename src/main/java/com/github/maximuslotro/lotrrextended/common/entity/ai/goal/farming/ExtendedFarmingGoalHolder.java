@@ -305,42 +305,42 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		PRIORITY
 	}
 	/**
-     * Defines the specialized agricultural classification for an NPC farmhand.
-     * <p>
-     * Controls which crop types, wild plants, or specialized husbandry activities a farmhand
-     * can manage, and dictates which sub-tasks can be registered to the goal.
-     * </p>
-     * 
-     * @see ExtendedFarmingGoalHolder#getFarmingType()
-     */
+	 * Defines the specialized agricultural classification for an NPC farmhand.
+	 * <p>
+	 * Controls which crop types, wild plants, or specialized husbandry activities a farmhand
+	 * can manage, and dictates which sub-tasks can be registered to the goal.
+	 * </p>
+	 * 
+	 * @see ExtendedFarmingGoalHolder#getFarmingType()
+	 */
 	public enum FarmingType {
 		/** Standard agriculture (wheat, carrots, potatoes, stems, sugar cane). */
-        GENERIC(true),
-        /** Wild forage, berries, reeds, and gathered plants. */
-        WILDS(true),
-        /** Arid/desert crops (reeds, papyrus, cactus, etc.). */
-        DESERT(true),
-        /** Tropical/jungle crops (corn, cocoa beans, jungle vegetation). */
-        JUNGLE(true),
-        /** Vineyard management (grapes and vines). */
-        VINEHAND(false),
-        /** Apiary management (bees and hives). */
+		GENERIC(true),
+		/** Wild forage, berries, reeds, and gathered plants. */
+		WILDS(true),
+		/** Arid/desert crops (reeds, papyrus, cactus, etc.). */
+		DESERT(true),
+		/** Tropical/jungle crops (corn, cocoa beans, jungle vegetation). */
+		JUNGLE(true),
+		/** Vineyard management (grapes and vines). */
+		VINEHAND(false),
+		/** Apiary management (bees and hives). */
 		BEEKEEPER(false);
 		/** Whether this farming type handles generic standard crops. */
 		final boolean genericCrops;
 		/**
-         * Constructs a new farming type definition.
-         *
-         * @param pGenericCrops {@code true} if this type includes standard crop handling
-         */
+		 * Constructs a new farming type definition.
+		 *
+		 * @param pGenericCrops {@code true} if this type includes standard crop handling
+		 */
 		private FarmingType(boolean pGenericCrops){
 			this.genericCrops = pGenericCrops;
 		}
 		/**
-         * Checks whether this farming classification supports generic crops.
-         *
-         * @return {@code true} if generic crops are allowed
-         */
+		 * Checks whether this farming classification supports generic crops.
+		 *
+		 * @return {@code true} if generic crops are allowed
+		 */
 		public boolean isGenericCrops() {
 			return genericCrops;
 		}
@@ -354,11 +354,11 @@ public class ExtendedFarmingGoalHolder extends Goal {
 		return farmhand;
 	}
 	/**
-     * Gets the specialized farming type classification for this goal holder.
-     *
-     * @return the assigned {@link FarmingType}
-     */
-    public FarmingType getFarmingType() {
-        return farmingType;
-    }
+	 * Gets the specialized farming type classification for this goal holder.
+	 *
+	 * @return the assigned {@link FarmingType}
+	 */
+	public FarmingType getFarmingType() {
+		return farmingType;
+	}
 }
