@@ -7,7 +7,6 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 
 import lotr.common.entity.npc.ExtendedIFarmhand;
 import lotr.common.entity.npc.ExtendedINPCEntity;
-import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
@@ -31,9 +30,10 @@ public class ExtendedExclamationMarkRenderer {
 		if(entity instanceof ExtendedIFarmhand && entity instanceof ExtendedINPCEntity && ((ExtendedINPCEntity)entity).getFarmhandInfo().hasWarning()) {
 			return RED;
 		}
+		/*
 		if(entity instanceof NPCEntity) {
 			return ((NPCEntity)entity).getFaction().getColorComponents();
-		}
+		}*/
 		return null;
 	}
 
@@ -62,9 +62,9 @@ public class ExtendedExclamationMarkRenderer {
 		matrixStack.translate(0.0D, height, 0.0D);
 		matrixStack.mulPose(renderMgr.cameraOrientation());
 		matrixStack.scale(SCALE, SCALE, SCALE);
-
-		float uMin = 0.25F, uMax = 0.0F, vMin = 0.0F, vMax = 1.0F;
-		float xLeft = -2.0F, xRight = 2.0F, yBottom = 0.0F, yTop = 16.0F;
+		float xLeft = -3.0F, xRight = 3.0F, yBottom = 0.0F, yTop = 16.0F;
+		// UV coordinates (6 pixels out of 16px total width = 0.375)
+		float uMin = 0.375F, uMax = 0.0F, vMin = 0.0F, vMax = 1.0F;
 
 		MatrixStack.Entry entry = matrixStack.last();
 		Matrix4f poseMatrix = entry.pose();

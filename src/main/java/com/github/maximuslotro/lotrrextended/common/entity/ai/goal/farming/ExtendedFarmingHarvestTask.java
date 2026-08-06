@@ -67,13 +67,13 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 	 */
 	private int harvestTick=0;
 	/**
-	 * Number of ticks the inventory has continuously been full.
+	 * Number of hits the inventory has continuously been full.
 	 */
-	private int fullInventoryTicks = 0;
+	private int fullInventoryHits = 0;
 	/**
-	 * Threshold in ticks before raising a notification (200 ticks = 10 seconds).
+	 * Threshold in hits before raising a notification
 	 */
-	private static final int FULL_INVENTORY_GRACE_PERIOD = 200;
+	private static final int FULL_INVENTORY_THRESHOLD = 200;
 	/**
 	 * Constructs a new crop harvest task bound to the specified goal holder.
 	 *
@@ -97,14 +97,15 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 		}
 		boolean canAddItem = goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory().canAddItem(seedsStack);
 		if(!canAddItem) {
-			fullInventoryTicks++;
-			if(fullInventoryTicks >= FULL_INVENTORY_GRACE_PERIOD) {
+			if(fullInventoryHits >= FULL_INVENTORY_THRESHOLD) {
 				goalHolder.farmhandData.getFarmhandInfo().setWarning(FarmingWarning.INVENTORY_FULL, true);
+			}else {
+				fullInventoryHits++;
 			}
 			return false;
 		}
-		if(fullInventoryTicks>0) {
-			fullInventoryTicks = 0;
+		if(fullInventoryHits>0) {
+			fullInventoryHits = 0;
 			goalHolder.farmhandData.getFarmhandInfo().setWarning(FarmingWarning.INVENTORY_FULL, false);
 		}
 		return canAddItem;
