@@ -127,10 +127,6 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 		return map;
 	}
 
-	public static String serialize(Gson gson, ExtendedStructureEntitySpawner data) {
-		return gson.toJson(data);
-	}
-
 	public static <T> T deserialize(Gson gson, JsonElement data, Class<T> classToConvert) {
 		return gson.fromJson(data, classToConvert);
 	}

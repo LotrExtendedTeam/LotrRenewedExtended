@@ -80,6 +80,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		for (String entity : ExtendedEntities.REGISTEREDNONMOBENTITIESEXTENDED) {
 			addD("entity.lotrextended." + entity);
 		}
+		// Add Waypoint Strings
+		for (String waypointData : DataGenValueHolder.waypointText) {
+			addD(waypointData);
+		}
+
 		// Fix missing Renewed strings
 		addD("entity.lotr.boat", "Boat");
 		addD("death.attack.lotr.plant", "%s was slain by a plant");
@@ -133,6 +138,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addD(entity.getKey(), entity.getValue());
 		}
 
+		// Generate Invasion Names TODO determine if these can be simplified using existing faction keys
 		for (String invasion : DataGenValueHolder.invasionNames) {
 			addD(invasion);
 		}
