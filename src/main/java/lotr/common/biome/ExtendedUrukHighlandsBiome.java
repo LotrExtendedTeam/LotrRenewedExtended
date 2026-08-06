@@ -13,6 +13,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.Builder;
 import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.biome.Biome.RainType;
+import net.minecraft.world.biome.BiomeGenerationSettings;
 
 public class ExtendedUrukHighlandsBiome extends RohanBiome {
 	public ExtendedUrukHighlandsBiome(boolean major) {
@@ -68,4 +69,7 @@ public class ExtendedUrukHighlandsBiome extends RohanBiome {
 	private final Object[] deadTrees() {
 		return new Object[] {LOTRBiomeFeatures.oakDead(), 1, LOTRBiomeFeatures.charred(), 3};
 	}
+
+	@Override
+	protected void addStructures(final BiomeGenerationSettings.Builder builder) {}
 }
