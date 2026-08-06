@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBerryBushBlock;
 
+import lotr.common.entity.npc.data.ExtendedNpcFarmhandInfoHolder.FarmingWarning;
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -66,6 +67,14 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 	 */
 	private int harvestTick=0;
 	/**
+	 * Number of ticks the inventory has continuously been full.
+	 */
+	private int fullInventoryTicks = 0;
+	/**
+	 * Threshold in ticks before raising a notification (200 ticks = 10 seconds).
+	 */
+	private static final int FULL_INVENTORY_GRACE_PERIOD = 200;
+	/**
 	 * Constructs a new crop harvest task bound to the specified goal holder.
 	 *
 	 * @param goalHolder the parent goal holder managing this task instance
@@ -82,11 +91,25 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 	 */
 	@Override
 	public boolean isTaskValidForNPC(ServerWorld pServerLevel) {
-		if(goalHolder.farmhandData.getFarmhandInfo().getSeedsItem().isEmpty()) {
+		ItemStack seedsStack = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
+		if(seedsStack.isEmpty()) {
 			return false;
 		}
-		ItemStack seedsStack = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
-		return goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory().canAddItem(seedsStack);
+		boolean canAddItem = goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory().canAddItem(seedsStack);
+		if(!canAddItem) {
+			fullInventoryTicks++;
+			if(fullInventoryTicks >= FULL_INVENTORY_GRACE_PERIOD) {
+				goalHolder.farmhandData.getFarmhandInfo().setWarning(FarmingWarning.INVENTORY_FULL, true);
+			}
+			return false;
+		}
+		if(fullInventoryTicks>0) {
+			fullInventoryTicks = 0;
+			goalHolder.farmhandData.getFarmhandInfo().setWarning(FarmingWarning.INVENTORY_FULL, false);
+		}
+		return canAddItem;
+
+
 	}
 	/**
 	 * Validates whether a mutable crop position is harvestable, mutating the position down to 
