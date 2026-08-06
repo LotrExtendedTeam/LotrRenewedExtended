@@ -3,26 +3,29 @@ package com.github.maximuslotro.lotrrextended.client.render;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.utils.ExtendedColorUtil;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 
 import lotr.common.entity.npc.ExtendedIFarmhand;
 import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.vector.Matrix3f;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.RenderLivingEvent;
 
 public class ExtendedExclamationMarkRenderer {
 	private static final ResourceLocation EXCLAMATION_TEXTURE = new ResourceLocation(LotrExtendedMod.MODID, "textures/entity/exclamation_mark.png");
+	private static final RenderType RENDER_TYPE = RenderType.entityCutoutNoCull(EXCLAMATION_TEXTURE);
 	private static final float[] RED = ExtendedColorUtil.unpackRGB(0xE40808);
+	private static final float SCALE = 0.035F;
 
 	private static float[] getMarkColor(LivingEntity entity) {
 		if(entity instanceof ExtendedIFarmhand && entity instanceof ExtendedINPCEntity && ((ExtendedINPCEntity)entity).getFarmhandInfo().hasWarning()) {
@@ -41,6 +44,9 @@ public class ExtendedExclamationMarkRenderer {
 			return;
 		}
 		Minecraft mc = Minecraft.getInstance();
+		if(mc.options.hideGui) {
+			return;
+		}
 		EntityRendererManager renderMgr = mc.getEntityRenderDispatcher();
 		if (!ForgeHooksClient.isNameplateInRenderDistance(entity, renderMgr.distanceToSqr(entity))) {
 			return;
@@ -51,36 +57,32 @@ public class ExtendedExclamationMarkRenderer {
 
 		MatrixStack matrixStack = event.getMatrixStack();
 		matrixStack.pushPose();
+
 		float height = entity.getBbHeight() + 0.5F;
 		matrixStack.translate(0.0D, height, 0.0D);
 		matrixStack.mulPose(renderMgr.cameraOrientation());
-		matrixStack.scale(-0.025F, -0.025F, 0.025F);
+		matrixStack.scale(SCALE, SCALE, SCALE);
 
-		RenderSystem.enableDepthTest();
-		RenderSystem.enableBlend();
-		RenderSystem.defaultBlendFunc();
-
-		mc.getTextureManager().bind(EXCLAMATION_TEXTURE);
-		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-
-		float uMin = 0.0F, uMax = 0.25F, vMin = 0.0F, vMax = 1.0F;
+		float uMin = 0.25F, uMax = 0.0F, vMin = 0.0F, vMax = 1.0F;
 		float xLeft = -2.0F, xRight = 2.0F, yBottom = 0.0F, yTop = 16.0F;
 
-		Matrix4f poseMatrix = matrixStack.last().pose();
-		Tessellator tessellator = Tessellator.getInstance();
-		BufferBuilder builder = tessellator.getBuilder();
+		MatrixStack.Entry entry = matrixStack.last();
+		Matrix4f poseMatrix = entry.pose();
+		Matrix3f normalMatrix = entry.normal();
 
-		builder.begin(7, DefaultVertexFormats.POSITION_COLOR_TEX_LIGHTMAP);
+		IRenderTypeBuffer bufferSource = event.getBuffers();
+		IVertexBuilder builder = bufferSource.getBuffer(RENDER_TYPE);
 		int light = event.getLight();
 
-		builder.vertex(poseMatrix, xLeft, yTop, 0.0F).color(rInt, gInt, bInt, 255).uv(uMin, vMin).uv2(light).endVertex();
-		builder.vertex(poseMatrix, xLeft, yBottom, 0.0F).color(rInt, gInt, bInt, 255).uv(uMin, vMax).uv2(light).endVertex();
-		builder.vertex(poseMatrix, xRight, yBottom, 0.0F).color(rInt, gInt, bInt, 255).uv(uMax, vMax).uv2(light).endVertex();
-		builder.vertex(poseMatrix, xRight, yTop, 0.0F).color(rInt, gInt, bInt, 255).uv(uMax, vMin).uv2(light).endVertex();
-		tessellator.end();
+		// Quad drawn counter-clockwise (bottom-left, top-left, top-right, bottom-right)
+		vertex(builder, poseMatrix, normalMatrix, xLeft, yBottom, rInt, gInt, bInt, uMin, vMax, light);
+		vertex(builder, poseMatrix, normalMatrix, xLeft, yTop, rInt, gInt, bInt, uMin, vMin, light);
+		vertex(builder, poseMatrix, normalMatrix, xRight, yTop, rInt, gInt, bInt, uMax, vMin, light);
+		vertex(builder, poseMatrix, normalMatrix, xRight, yBottom, rInt, gInt, bInt, uMax, vMax, light);
 
-		RenderSystem.disableDepthTest();
-		RenderSystem.disableBlend();
 		matrixStack.popPose();
+	}
+	private static void vertex(IVertexBuilder builder, Matrix4f poseMatrix, Matrix3f normalMatrix, float x, float y, int r, int g, int b, float u, float v, int packedLight) {
+		builder.vertex(poseMatrix, x, y, 0.0F).color(r, g, b, 255) .uv(u, v).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(packedLight).normal(normalMatrix, 0.0F, 1.0F, 0.0F).endVertex();
 	}
 }
