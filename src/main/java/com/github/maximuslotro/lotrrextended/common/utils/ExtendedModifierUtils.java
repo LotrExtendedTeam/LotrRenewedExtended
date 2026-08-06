@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
 
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBarrowBlade;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
-import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierTomeItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierReforgeTomeItem;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierRarity;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierScroll;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
@@ -691,7 +691,7 @@ public class ExtendedModifierUtils {
 				if(!modifier.canApplyToItem(pStack) && !(pStack.getItem()==ExtendedItems.MODIFIER_SCROLL.get() && modifier.getScroll()!=ExtendedModifierScroll.NOSCROLL)) {
 					continue;
 				}
-				if(modifierTweaker.getItem() instanceof ExtendedModifierTomeItem && ((ExtendedModifierTomeItem)modifierTweaker.getItem()).isBannedType(modifier.getModifierType())) {
+				if(modifierTweaker.getItem() instanceof ExtendedModifierReforgeTomeItem && ((ExtendedModifierReforgeTomeItem)modifierTweaker.getItem()).isBannedType(modifier.getModifierType())) {
 					continue;
 				}
 				list.add(modifier);

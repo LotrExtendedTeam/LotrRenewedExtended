@@ -80,6 +80,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		for (String entity : ExtendedEntities.REGISTEREDNONMOBENTITIESEXTENDED) {
 			addD("entity.lotrextended." + entity);
 		}
+		// Add Waypoint Strings
+		for (String waypointData : DataGenValueHolder.waypointText) {
+			addD(waypointData);
+		}
+
 		// Fix missing Renewed strings
 		addD("entity.lotr.boat", "Boat");
 		addD("death.attack.lotr.plant", "%s was slain by a plant");
@@ -133,6 +138,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addD(entity.getKey(), entity.getValue());
 		}
 
+		// Generate Invasion Names TODO determine if these can be simplified using existing faction keys
 		for (String invasion : DataGenValueHolder.invasionNames) {
 			addD(invasion);
 		}
@@ -150,6 +156,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.menu.titles", "Titles");
 		addD("gui.lotrextended.menu.achievements", "Achievements");
 		addD("gui.lotrextended.menu.advancements", "Advancements");
+		addD("gui.lotrextended.menu.back", "Back");
+		addD("gui.lotrextended.menu.overview", "Overview");
+		addD("gui.lotrextended.menu.equipment", "Equipment");
+		addD("gui.lotrextended.menu.farmhand", "Farmhand");
 
 		//Default option strings
 		addD("gui.lotrextended.base.disabled", "Disabled");
@@ -190,6 +200,22 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("chat.wandering_trader.arrive_near_you", "%1$s has arrived nearby");
 		addD("chat.wandering_trader.arrive_near_player", "%1$s has arrived nearby %2$s");
 		addD("chat.wandering_trader.left_the_area", "%1$s has left the area");
+
+		// hired unit messages and tooltips for captains
+		addD("gui.lotrextended.hiring.hire_button", "Hire");
+		addD("gui.lotrextended.hiring.hire_button.tooltip", "Enlist the service of NPCs");
+		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
+		addD("gui.lotrextended.hiring.captain_unfriendly", "Captain is unfriendly at the moment.");
+		
+		addD("gui.lotrextended.hiring.hire_unit", "Hire: %s");
+		addD("gui.lotrextended.hiring.hire_unit.amount", "Hire for %s coins");
+		addD("gui.lotrextended.hiring.hire_unit.not_pledged", "Insufficient pledge! Pledge required to hire this unit.");
+		addD("gui.lotrextended.hiring.hire_unit.not_enough_money", "Insufficient currency! %s coins required to hire this unit.");
+		addD("gui.lotrextended.hiring.hire_unit.not_alignment", "Insufficient alignment! %s alignment required to hire this unit.");
+		addD("gui.lotrextended.hiring.not_enough_money", "Not enough money. You need %s coins to hire that unit.");
+		addD("gui.lotrextended.hiring.not_pledged", "You need to be pledged to hire that unit.");
+		addD("gui.lotrextended.hiring.not_alignment", "Your alignment is too low. You need %s alignment to hire that unit.");
+		addD("gui.lotrextended.hiring.unit_has_been_hired", "The %1$s has been hired for %2$s coins.");
 
 		// wandering trader departure lines
 		// TODO: Eventually these should properly be moved to the speechbanks files but that is pretty complex to do
@@ -374,6 +400,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.jeilotrversioncheck.setting", "Patch broken JEI-lotr VC: ");
 		addD("gui.lotrextended.settings.lotrextendedversioncheck.setting", "Extended Version Check: ");
 		addD("gui.lotrextended.settings.show_hired_unit_hp_numbers.setting", "Large Hired Unit HP Bars: ");
+		addD("gui.lotrextended.settings.spawneroutline.setting", "Spawner Outlines: ");
 
 		// World Prune stuff
 		addD("gui.lotrextended.worldprune.title", "World Prune Panel");
@@ -407,13 +434,14 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.banner_configuration.send_update", "Sync Banner Now");
 		addD("gui.lotrextended.banner_configuration.send_update.disc", "Sync And Validate Banner Info With Server\nThis is done automatically when closing the GUI");
 		addD("gui.lotrextended.banner_configuration.self_protection", "Self Protection");
-		addD("gui.lotrextended.banner_configuration.self_protection.on", "Self Protection: On");
-		addD("gui.lotrextended.banner_configuration.self_protection.off", "Self Protection: Off");
+		addD("gui.lotrextended.banner_configuration.self_protection.setting", "Self Protection: %s");
+		addD("gui.lotrextended.banner_configuration.self_protection.disc", "Disabling this setting allows players to bypass all settings and break this banner!");
 		addD("gui.lotrextended.banner_configuration.faction.requires", "Required Alignment:");
 		addD("gui.lotrextended.banner_configuration.faction.aligned", "Protected by: %s");
 		addD("gui.lotrextended.banner_configuration.faction.textBox", "Alignment");
 		addD("gui.lotrextended.banner_configuration.custom.description", "Protection Message:");
 		addD("gui.lotrextended.banner_configuration.custom.textBox", "Message");
+		addD("gui.lotrextended.banner_configuration.player.tooltip", "Placed by: %s");
 		addD("gui.lotrextended.banner_configuration.perms", "Show Permissions");
 		addD("gui.lotrextended.banner_configuration.perms.global", "Global Override Permissions");
 		addD("gui.lotrextended.banner_configuration.perms.global.disc", "These permissions take priority over all whitelist and faction permissions and apply to \"ALL\" players!");
@@ -467,6 +495,9 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.reforge_books.description", "Guarantees %s modifiers on Reforge");
 		addD("gui.lotrextended.reforge_books.combat", "Combat");
 		addD("gui.lotrextended.reforge_books.artisan", "Artisan");
+		addD("gui.lotrextended.repair_books.description", "%1$s %2$s on Repair");
+		addD("gui.lotrextended.repair_books.description.ignore", "Ignores");
+		addD("gui.lotrextended.repair_books.smith", "Modifier Material Cost");
 
 		//Bow values
 		addD("gui.lotrextended.bow.speed", "Draw Speed: %s");
@@ -575,18 +606,6 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("container.lotrextended.repair.info.invalid_material", "Invalid Material!");
 		addD("container.lotrextended.repair.info.missing_material", "Missing Materials!");
 
-		// hired unit messages and tooltips for captains
-		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
-		addD("gui.lotrextended.hiring.captain_unfriendly", "Your alignment is too low.");
-		addD("gui.lotrextended.hiring.hire", "Hire: ");
-		addD("gui.lotrextended.hiring.not_enough_money", "Not enough money. You need %s coins to hire that unit.");
-		addD("gui.lotrextended.hiring.not_pledged", "You need to be pledged to hire that unit.");
-		addD("gui.lotrextended.hiring.not_alignment", "Your alignment is too low. You need %s alignment to hire that unit.");
-		addD("gui.lotrextended.hiring.unit_has_been_hired", "The %1$s has been hired for %2$s coins.");
-
-		// hired unit menus
-		addD("gui.lotrextended.menu.equipment", "Equipment");
-		addD("gui.lotrextended.menu.back", "Back");
 		// item names for base gear
 		addD("item.lotrextended.base_gear.chestplate", "Base Chestplate");
 		addD("item.lotrextended.base_gear.helmet", "Base Helmet");
@@ -598,6 +617,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("item.lotrextended.base_gear.weapon_idle", "Base Idle Weapon");
 		addD("item.lotrextended.base_gear.weapon_idle_mounted", "Base Idle Mounted Weapon");
 		addD("item.lotrextended.base_gear.shield", "Base Shield");
+		addD("item.lotrextended.base_gear.tool", "Base Tool");
 
 		// hired unit tooltips in unit GUI
 		addD("gui.lotrextended.hired_unit_tooltip.title.companion", "Companion:");
@@ -611,15 +631,22 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hired_unit_tooltip.title.level", "Level: %1$s");
 		addD("gui.lotrextended.hired_unit_tooltip.title.xp", "Xp: %1$s");
 		addD("gui.lotrextended.hired_unit_tooltip.title.mob_kills", "Mob Kills: %1$s");
+		addD("gui.lotrextended.hired_unit_farmhand.level", "Farming Level: %s");
+		addD("gui.lotrextended.hired_unit_farmhand.crops_farmed", "Crops Harvested: %s");
+		addD("gui.lotrextended.hired_unit_farmhand.level.tooltip", "%1$s of %2$s Xp earned towards next level.");
+		addD("gui.lotrextended.hired_unit_farmhand.info.tooltip", "A unit's farming level determines how many inventory slots it has and how efficient or fast it farms.");
+		addD("gui.lotrextended.hired_unit_farmhand.crop.tooltip", "Must contain at least one seed to continue farming!");
 
-		addD("gui.lotrextended.hired_unit_tooltip.stationary_on_title", "Stationary: On");
-		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_title", "Stationary: Off");
-		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_description", "Disable Hired NPC from moving unless defending itself.");
+		addD("gui.lotrextended.hired_unit_tooltip.description_disabled", "This task is disabled for this type of unit.");
+		addD("gui.lotrextended.hired_unit_tooltip.stationary_title", "Stationary: %s");
 		addD("gui.lotrextended.hired_unit_tooltip.stationary_on_description", "Hired NPC will not move unless defending itself.");
-		addD("gui.lotrextended.hired_unit_tooltip.follows_on_title", "Follows: On");
-		addD("gui.lotrextended.hired_unit_tooltip.follows_off_title", "Follows: Off");
-		addD("gui.lotrextended.hired_unit_tooltip.follows_off_description", "Disable Hired NPC from following you.");
+		addD("gui.lotrextended.hired_unit_tooltip.stationary_off_description", "Disable Hired NPC from moving unless defending itself.");
+		addD("gui.lotrextended.hired_unit_tooltip.follows_title", "Follows: %s");
 		addD("gui.lotrextended.hired_unit_tooltip.follows_on_description", "Hired NPC will continuously follow you.");
+		addD("gui.lotrextended.hired_unit_tooltip.follows_off_description", "Disable Hired NPC from following you.");
+		addD("gui.lotrextended.hired_unit_tooltip.farming_title", "Farming: %s");
+		addD("gui.lotrextended.hired_unit_tooltip.farming_on_description", "Farmhand will tend the land.");
+		addD("gui.lotrextended.hired_unit_tooltip.farming_off_description", "Disable Farmhand from farming.");
 
 		// custom enchantments
 		addD("enchant.lotrextended.baneorc", "Orcbane");

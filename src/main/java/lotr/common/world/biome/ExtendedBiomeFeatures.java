@@ -24,6 +24,8 @@ import lotr.common.init.LOTRBlocks;
 import lotr.common.world.gen.feature.BoulderFeatureConfig;
 import lotr.common.world.gen.feature.LOTRFeatures;
 import lotr.common.world.gen.tree.ClusterFoliagePlacer;
+import lotr.common.world.gen.tree.EmptyFoliagePlacer;
+import lotr.common.world.gen.tree.FangornTrunkPlacer;
 import lotr.common.world.gen.tree.PartyTrunkPlacer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -81,6 +83,22 @@ public class ExtendedBiomeFeatures {
 	private static BlockState EBONY_LOG;
 	private static BlockState EBONY_BRANCH;
 	private static BlockState EBONY_LEAVES;
+
+	private static BlockState CHARRED_LOG;
+	private static BlockState CHARRED_WOOD;
+	private static BlockState CHARRED_STRIPPED_LOG;
+
+	private static BlockState OAK_LOG;
+	private static BlockState OAK_WOOD;
+	private static BlockState OAK_STRIPPED_LOG;
+
+	private static BlockState BIRCH_LOG;
+	private static BlockState BIRCH_WOOD;
+	private static BlockState BIRCH_STRIPPED_LOG;
+
+	private static BlockState BEECH_LOG;
+	private static BlockState BEECH_WOOD;
+	private static BlockState BEECH_STRIPPED_LOG;
 
 	// Stones
 	private static BlockState BLUE_ROCK;
@@ -145,6 +163,10 @@ public class ExtendedBiomeFeatures {
 	private static BaseTreeFeatureConfig EBONY_TREE_BEES;
 	private static BaseTreeFeatureConfig EBONY_TREE_FANCY_BEES;
 
+	private static BaseTreeFeatureConfig CHARRED_FANGORN_DEAD;
+	private static BaseTreeFeatureConfig OAK_FANGORN_DEAD;
+	private static BaseTreeFeatureConfig BIRCH_FANGORN_DEAD;
+	private static BaseTreeFeatureConfig BEECH_FANGORN_DEAD;
 	//Chestnut
 	//TODO add to Celebrant, Pukel, Rhun, Adornland when biomes are added
 	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> chestnut() {
@@ -220,6 +242,22 @@ public class ExtendedBiomeFeatures {
 		return Feature.TREE.configured(EBONY_TREE_FANCY_BEES);
 	}
 
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> charredFangorn() {
+		return Feature.TREE.configured(CHARRED_FANGORN_DEAD);
+	}
+
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> deadOakFangorn() {
+		return Feature.TREE.configured(OAK_FANGORN_DEAD);
+	}
+
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> deadBeechFangorn() {
+		return Feature.TREE.configured(BEECH_FANGORN_DEAD);
+	}
+
+	public static ConfiguredFeature<BaseTreeFeatureConfig, ?> deadBirchFangorn() {
+		return Feature.TREE.configured(BIRCH_FANGORN_DEAD);
+	}
+
 	public static void setup(RegistryEvent.Register<Block> event) {
 		// tree block states
 		CHESTNUT_LOG = ExtendedBlocks.CHESTNUT_LOG.get().defaultBlockState();
@@ -241,6 +279,22 @@ public class ExtendedBiomeFeatures {
 		EBONY_LOG = ExtendedBlocks.EBONY_LOG.get().defaultBlockState();
 		EBONY_BRANCH = ExtendedBlocks.EBONY_BRANCH.get().defaultBlockState();
 		EBONY_LEAVES = ExtendedBlocks.EBONY_LEAVES.get().defaultBlockState();
+
+		CHARRED_LOG = LOTRBlocks.CHARRED_LOG.get().defaultBlockState();
+		CHARRED_WOOD = LOTRBlocks.CHARRED_WOOD.get().defaultBlockState();
+		CHARRED_STRIPPED_LOG = LOTRBlocks.STRIPPED_CHARRED_LOG.get().defaultBlockState();
+
+		OAK_LOG = Blocks.OAK_LOG.defaultBlockState();
+		OAK_WOOD = Blocks.OAK_WOOD.defaultBlockState();
+		OAK_STRIPPED_LOG = Blocks.STRIPPED_OAK_LOG.defaultBlockState();
+
+		BEECH_LOG = LOTRBlocks.BEECH_LOG.get().defaultBlockState();
+		BEECH_WOOD = LOTRBlocks.BEECH_WOOD.get().defaultBlockState();
+		BEECH_STRIPPED_LOG = LOTRBlocks.STRIPPED_BEECH_LOG.get().defaultBlockState();
+
+		BIRCH_LOG = Blocks.BIRCH_LOG.defaultBlockState();
+		BIRCH_WOOD = Blocks.BIRCH_WOOD.defaultBlockState();
+		BIRCH_STRIPPED_LOG = Blocks.STRIPPED_BIRCH_LOG.defaultBlockState();
 
 		// stone block states
 		BLUE_ROCK = LOTRBlocks.BLUE_ROCK.get().defaultBlockState();
@@ -315,6 +369,12 @@ public class ExtendedBiomeFeatures {
 		BUSH_PATCH_CONFIG = new BlockClusterFeatureConfig.Builder(new ExtendedListTypedBlockStateProvider(BLACKBERRYBUSH)
 			.addBlock(BLUEBERRYBUSH).addBlock(CRANBERRYBUSH).addBlock(ELDERBERRYBUSH).addBlock(RASPBERRYBUSH).addBlock(WILDBERRYBUSH), new SimpleBlockPlacer())
 			.tries(15).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK.getBlock())).noProjection().build();
+
+		CHARRED_FANGORN_DEAD = buildFangornTreeNoLeaves(CHARRED_LOG, CHARRED_WOOD, CHARRED_STRIPPED_LOG);		
+		OAK_FANGORN_DEAD = buildFangornTreeNoLeaves(OAK_LOG, OAK_WOOD, OAK_STRIPPED_LOG);		
+		BEECH_FANGORN_DEAD = buildFangornTreeNoLeaves(BEECH_LOG, BEECH_WOOD, BEECH_STRIPPED_LOG);		
+		BIRCH_FANGORN_DEAD = buildFangornTreeNoLeaves(BIRCH_LOG, BIRCH_WOOD, BIRCH_STRIPPED_LOG);			
+
 	}
 
 	public static void addBushes(BiomeGenerationSettings.Builder builder, int chance) {
@@ -499,5 +559,10 @@ public class ExtendedBiomeFeatures {
 
 	private static BaseTreeFeatureConfig buildPartyTree(BlockState log, BlockState wood, BlockState branch, BlockStateProvider leavesPool, int baseHeight, int heightRandA, FoliagePlacer foliage, List<TreeDecorator> decorators) {
 		return new Builder(new SimpleBlockStateProvider(log), leavesPool, foliage, new PartyTrunkPlacer(baseHeight, heightRandA, 0, wood, branch), new TwoLayerFeature(1, 1, 2)).ignoreVines().decorators(ImmutableList.copyOf(decorators)).build();
+	}
+
+	private static BaseTreeFeatureConfig buildFangornTreeNoLeaves(BlockState log, BlockState wood, BlockState strippedLog) {
+		return new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(log), new SimpleBlockStateProvider(Blocks.AIR.defaultBlockState()), new EmptyFoliagePlacer(),
+			new FangornTrunkPlacer(20, 20, 0, wood, strippedLog), new TwoLayerFeature(1, 0, 1)).ignoreVines().build();
 	}
 }

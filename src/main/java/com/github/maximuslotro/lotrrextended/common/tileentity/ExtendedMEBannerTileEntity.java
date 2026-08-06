@@ -20,7 +20,6 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerProtecti
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerProtectionOwners;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
-import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
 
 import lotr.common.data.ExtendedFellowshipDataModule;
 import lotr.common.data.ExtendedLOTRPlayerData;
@@ -60,70 +59,70 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
  */
 public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableTileEntity {
 	/**
-     * Whether this banner is the "active half" of a the two-block high banner instance.
-     */
+	 * Whether this banner is the "active half" of a the two-block high banner instance.
+	 */
 	private boolean isActiveHalf = false;
 	/**
-     * Whitelist of players/entities allowed to interact with this banner
-     * regardless of other protection rules.
-     */
+	 * Whitelist of players/entities allowed to interact with this banner
+	 * regardless of other protection rules.
+	 */
 	private final List<ProtectionEntry> protectionWhitelist = new ArrayList<>();
 	/**
-     * Alignment level used for faction-based protection logic.
-     * Default value is {@code 1}.
-     */
+	 * Alignment level used for faction-based protection logic.
+	 * Default value is {@code 1}.
+	 */
 	private float alignmentLevel = 1;
 	/**
-     * Defines who owns this banner for protection purposes.
-     * Defaults to {@link ExtendedBannerProtectionOwners#FACTION}.
-     */
+	 * Defines who owns this banner for protection purposes.
+	 * Defaults to {@link ExtendedBannerProtectionOwners#FACTION}.
+	 */
 	private ExtendedBannerProtectionOwners protectionType = ExtendedBannerProtectionOwners.FACTION;
 	/**
-     * Override permissions superseding any other set permission
-     */
+	 * Override permissions superseding any other set permission
+	 */
 	private final List<ExtendedBannerPermissions> globalPermsOverrides = new ArrayList<>();
 	/**
-     * Faction mode permissions
-     */
+	 * Faction mode permissions
+	 */
 	private final List<ExtendedBannerPermissions> factionPerms = new ArrayList<>();
 	/**
-     * Determines whether the banner should protect itself from being destroyed
-     * by unauthorized players/entities.
-     */
-	private boolean canProtectSelf = true;
+	 * Determines whether the banner should protect itself from being destroyed
+	 * by unauthorized players/entities.
+	 */
+	private boolean selfProtecting = true;
 	/**
-     * Whether this banner has already been used and should attach NBT
-     * data to dropped items.
-     */
+	 * Whether this banner has already been used and should attach NBT
+	 * data to dropped items.
+	 */
 	private boolean used = false;
 	/**
-     * UUID of the player who placed this banner.
-     */
+	 * UUID of the player who placed this banner.
+	 */
 	private UUID placedPlayerUUID = null;
 	/**
-     * Name of the player who placed this banner.
-     */
+	 * Name of the player who placed this banner.
+	 */
 	private String placedPlayerName = null;
 	/**
-     * UUID of an entity currently connected or linked to this banner.
-     */
+	 * UUID of an entity currently connected or linked to this banner.
+	 */
 	private UUID connectedEntity = null;
 	/**
-     * Current protection level applied to this banner.
-     */
+	 * Current protection level applied to this banner.
+	 */
 	private ExtendedBannerProtectionLevels protectionLevel = ExtendedBannerProtectionLevels.NONE;
 	/**
-     * Tracks whether this is the first tick since the tile entity was loaded.
-     */
+	 * Tracks whether this is the first tick since the tile entity was loaded.
+	 */
 	private boolean firstTick = false;
 	/**
-     * Name of the player who placed this banner.
-     */
+	 * Name of the player who placed this banner.
+	 */
 	private String protectionOverrideMessage = "";
 	/**
-     * Constructs a new {@code ExtendedMEBannerTileEntity} and registers it
-     * with the standing banner tile entity type.
-     */
+	 * Constructs a new {@code ExtendedMEBannerTileEntity} and registers it
+	 * with the standing banner tile entity type.
+	 */
 	public ExtendedMEBannerTileEntity() {
 		super(ExtendedTileEntities.BANNER_STANDING.get());
 	}
@@ -153,9 +152,8 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				if(connectedEntity==null) {
 					createAndSetBannerEntity();
 				}else {
-					AxisAlignedBB checkBox = AxisAlignedBBUtils.makeCroppedBB(this.getBlockPos());
 					Predicate<ExtendedBannerEntity> predicate = (bannerEntity) -> bannerEntity.getUUID().equals(connectedEntity);
-					List<ExtendedBannerEntity> banners = level.getEntitiesOfClass(ExtendedBannerEntity.class, checkBox, predicate);
+					List<ExtendedBannerEntity> banners = level.getEntitiesOfClass(ExtendedBannerEntity.class, new AxisAlignedBB(this.getBlockPos()), predicate);
 					if(banners.size() == 0) {
 						createAndSetBannerEntity();
 					}else if(banners.size()>1){
@@ -316,46 +314,65 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	public UUID getEntityID() {
 		return connectedEntity;
 	}
-
 	/**
-	 * Gets ID of player who placed the banner
-	 * @return UUID
-	 * */
+	 * Gets the UUID of the player who placed the banner.
+	 *
+	 * @return the placer's {@link UUID}, or {@code null} if no UUID is set
+	 */
 	public UUID getPlacedPlayerUUID() {
 		return placedPlayerUUID;
 	}
-
 	/**
-	 * Gets Name of player who placed the banner
-	 * @return UUID
-	 * */
+	 * Gets the username of the player who placed the banner.
+	 * <p>
+	 * If the username is not already cached in memory, this method will attempt to 
+	 * resolve it using the {@link UsernameCache} based on {@link #getPlacedPlayerUUID()}.
+	 * If the username cannot be resolved or no UUID exists, fallback default values 
+	 * are returned without updating the saved state.
+	 * </p>
+	 *
+	 * @return the placer's username, their stringified {@link UUID} if the username is unresolvable, or {@code "UNKNOWN"} if no UUID is associated
+	 */
 	public String getPlacedPlayerName() {
-		if(placedPlayerName==null) {
-			if(placedPlayerUUID==null) {
-				placedPlayerName="UNKNOWN";
-				markAndUpdate();
-				return placedPlayerName;
-			}
-            placedPlayerName = UsernameCache.getLastKnownUsername(placedPlayerUUID);
-			if(placedPlayerName==null) {
-				placedPlayerName="UNKNOWN";
-				markAndUpdate();
-				return placedPlayerName;
-			}
-			markAndUpdate();
-			ExtendedLog.warn("Fixed missing banner player username!");
+		if (placedPlayerName != null) {
+			return placedPlayerName;
 		}
+		if (placedPlayerUUID == null) {
+			// Don't save unknown placer names, just return error name
+			return "UNKNOWN";
+		}
+		placedPlayerName = UsernameCache.getLastKnownUsername(placedPlayerUUID);
+		if (placedPlayerName == null) {
+			// Don't save unknown player names, just return known UUID
+			return placedPlayerUUID.toString();
+		}
+		markAndUpdate();
+		ExtendedLog.warn("Fixed missing banner player username!");
 		return placedPlayerName;
 	}
-
+	/**
+	 * Sets the UUID of the player who placed the banner.
+	 *
+	 * @param placedPlayer the {@link UUID} of the player
+	 */
 	public void setPlacedPlayerUUID(UUID placedPlayer) {
 		this.placedPlayerUUID = placedPlayer;
 	}
-
+	/**
+	 * Sets the cached username of the player who placed the banner.
+	 *
+	 * @param placedPlayerName the username of the player
+	 */
 	public void setPlacedPlayerName(String placedPlayerName) {
 		this.placedPlayerName = placedPlayerName;
 	}
-
+	/**
+	 * Sets both the UUID and username of the player who placed the banner,
+	 * resets faction permissions to default full access, and persists the update.
+	 *
+	 * @param placedPlayer     the {@link UUID} of the player
+	 * @param placedPlayerName the username of the player
+	 */
 	public void setPlacedPlayerNameAndID(UUID placedPlayer, String placedPlayerName) {
 		setPlacedPlayerUUID(placedPlayer);
 		setPlacedPlayerName(placedPlayerName);
@@ -434,12 +451,12 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		protectionWhitelist.add(new ProtectionEntry(new ExtendedBannerProfileFellowship(fellowship.getFellowshipId())).setPerms(perms));
 	}
 
-	public boolean isCanProtectSelf() {
-		return canProtectSelf;
+	public boolean isSelfProtecting() {
+		return selfProtecting;
 	}
 
 	public void setCanProtectSelf(boolean canProtectSelf) {
-		this.canProtectSelf = canProtectSelf;
+		this.selfProtecting = canProtectSelf;
 	}
 
 	public ExtendedSBannerOpenChangedScreenPacket verifyInfo(ServerPlayerEntity serverPlayer) {
@@ -477,11 +494,11 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				}else {
 					// General username updating
 					String lastKnownUsername = UsernameCache.getLastKnownUsername(entry.getProfile().getId());
-                    if (lastKnownUsername != null && !lastKnownUsername.equals(entry.getProfile().getName())) {
-                        entry.updateProfile(new ExtendedBannerProfilePlayer(entry.getProfile().getId(), lastKnownUsername));
-                        fixedBroken = true;
-                    }
-                }
+					if (lastKnownUsername != null && !lastKnownUsername.equals(entry.getProfile().getName())) {
+						entry.updateProfile(new ExtendedBannerProfilePlayer(entry.getProfile().getId(), lastKnownUsername));
+						fixedBroken = true;
+					}
+				}
 			}else if(entry.getProfile() instanceof ExtendedBannerProfileFellowship) {
 				if(entry.getProfile().getId().equals(Util.NIL_UUID) && serverPlayer!=null) {
 					ExtendedFellowshipDataModule fellowshipModule = ((ExtendedLOTRPlayerData)LOTRLevelData.getSidedData(serverPlayer)).getFellowshipData();
@@ -623,7 +640,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				factionPerms.add(ExtendedBannerPermissions.EVERYTHING);
 			}
 			if(pCompound.contains("protectionSelf")) {
-				canProtectSelf = pCompound.getBoolean("protectionSelf");
+				selfProtecting = pCompound.getBoolean("protectionSelf");
 			}
 			if(pCompound.contains("used")) {
 				used = pCompound.getBoolean("used");
@@ -692,8 +709,8 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 				// Store the byte array in the CompoundNBT with the key "factionPerms"
 				pCompound.putByteArray("factionPerms", ordinalValues);
 			}
-			if(!canProtectSelf) {
-				pCompound.putBoolean("protectionSelf", canProtectSelf);
+			if(!selfProtecting) {
+				pCompound.putBoolean("protectionSelf", selfProtecting);
 			}
 			if(!protectionOverrideMessage.isEmpty()) {
 				pCompound.putString("customMessage", protectionOverrideMessage);

@@ -24,18 +24,20 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils
 
 import lotr.common.data.ExtendedLevelData;
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
-import lotr.common.entity.npc.ExtendedCaptainEntity;
+import lotr.common.entity.npc.ExtendedICaptainEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
-import lotr.common.entity.npc.ExtendedNPCEntity;
-import lotr.common.entity.npc.ExtendedTraderEntity;
-import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
+import lotr.common.entity.npc.ExtendedIWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.data.NPCEntitySettings;
 import lotr.common.entity.npc.data.NPCEntitySettingsManager;
 import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRDimensions;
+import lotr.common.init.LOTRItems;
 import lotr.common.init.LOTRMaterial;
+import lotr.common.world.map.CustomWaypointStructureHandler;
 import net.minecraft.block.BellBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -219,7 +221,7 @@ public class ExtendedWorldEventHandlers {
 	}
 
 	/**
-	 * Handles special logic when {@link ExtendedTraderEntity} or {@link ExtendedCaptainEntity} dies.
+	 * Handles special logic when {@link ExtendedIMerchantEntity} or {@link ExtendedICaptainEntity} dies.
 	 * <ul>
 	 *   <li>If the entity is a wandering trader, escorts are removed and players are notified.</li>
 	 *   <li>If the entity is persistent, it respawns via {@link ExtendedRespawnerEntity}.</li>
@@ -231,7 +233,7 @@ public class ExtendedWorldEventHandlers {
 	@SubscribeEvent
 	public static void handleCaptainTraderDeath$Extended(LivingDeathEvent event) {
 		Entity sourceEntity = event.getSource().getEntity();
-		if (sourceEntity instanceof NPCEntity && ((ExtendedNPCEntity)sourceEntity).getUnitInfo().isNpcActiveDuty()) {
+		if (sourceEntity instanceof NPCEntity && ((ExtendedINPCEntity)sourceEntity).getUnitInfo().isNpcActiveDuty()) {
 			// base amount of xp off kill alignment bonus
 			float xpPoints = 0;
 			if (event.getEntity() instanceof NPCEntity) {
@@ -250,13 +252,13 @@ public class ExtendedWorldEventHandlers {
 				}
 			}
 
-			((ExtendedNPCEntity)sourceEntity).getUnitInfo().giveExperiencePoints(xpPoints);
-			((ExtendedNPCEntity)sourceEntity).getUnitInfo().setMobKills(((ExtendedNPCEntity)sourceEntity).getUnitInfo().getMobKills() + 1);
-			((ExtendedNPCEntity)sourceEntity).getUnitInfo().markDirty();
+			((ExtendedINPCEntity)sourceEntity).getUnitInfo().giveExperiencePoints(xpPoints);
+			((ExtendedINPCEntity)sourceEntity).getUnitInfo().setMobKills(((ExtendedINPCEntity)sourceEntity).getUnitInfo().getMobKills() + 1);
+			((ExtendedINPCEntity)sourceEntity).getUnitInfo().markDirty();
 		}
 		// If an NPC is a wandering trader, no respawns, even it is a captain
-		if(event.getEntity() instanceof ExtendedTraderEntity && ((ExtendedNPCEntity) event.getEntity()).getTraderInfo().isTraderCurrentlyWandering()) {
-			ExtendedWanderingTraderEntity trader = (ExtendedWanderingTraderEntity) event.getEntity();
+		if(event.getEntity() instanceof ExtendedIMerchantEntity && ((ExtendedINPCEntity) event.getEntity()).getTraderInfo().isTraderCurrentlyWandering()) {
+			ExtendedIWanderingTraderEntity trader = (ExtendedIWanderingTraderEntity) event.getEntity();
 			if (trader.getEscortUUIDs() == null || trader.getEscortUUIDs().isEmpty()) {
 				return;
 			}
@@ -280,7 +282,7 @@ public class ExtendedWorldEventHandlers {
 		}
 		if(event.getEntity() instanceof MobEntity) {
 			MobEntity mob = (MobEntity) event.getEntity();
-			if((mob.isPersistenceRequired() && (mob instanceof ExtendedTraderEntity || mob instanceof ExtendedCaptainEntity || mob instanceof ExtendedLoreEntity))
+			if((mob.isPersistenceRequired() && (mob instanceof ExtendedIMerchantEntity || mob instanceof ExtendedICaptainEntity || mob instanceof ExtendedLoreEntity))
 					|| (mob.getPersistentData().contains("ExtendedRespawn") && mob.getPersistentData().getBoolean("ExtendedRespawn")) 
 					|| (mob.getPersistentData().contains("ExtendedRespawnOnDeath") && mob.getPersistentData().getBoolean("ExtendedRespawnOnDeath"))) {
 				// Make entity respawner
@@ -293,10 +295,10 @@ public class ExtendedWorldEventHandlers {
 
 				//Save trader trades
 				CompoundNBT compound =  new CompoundNBT();
-				if(mob instanceof ExtendedTraderEntity) {
-					((ExtendedTraderEntity) mob).getTraderData().writeToNbt(compound);
+				if(mob instanceof ExtendedIMerchantEntity) {
+					((ExtendedIMerchantEntity) mob).getTraderData().writeToNbt(compound);
 				}
-				if(mob instanceof ExtendedCaptainEntity) {
+				if(mob instanceof ExtendedICaptainEntity) {
 					// IDK maybe captains have data to save in the future
 				}
 				respawnerEntity.setEntityData(compound);
@@ -341,8 +343,7 @@ public class ExtendedWorldEventHandlers {
 
 	@SubscribeEvent
 	public static void onEntityLeave(EntityLeaveWorldEvent event) {
-	    if (!event.getWorld().isClientSide() && event.getEntity() instanceof ExtendedInvasionSpawnerEntity 
-	    	&& ExtendedLevelData.serverInstance().hasInvasion(event.getEntity().getUUID())) {
+	    if (!event.getWorld().isClientSide() && event.getEntity() instanceof ExtendedInvasionSpawnerEntity && ExtendedLevelData.serverInstance().hasInvasion(event.getEntity().getUUID())) {
 	    	// Un-register invasion when spawner is unloaded or deleted.
 			ExtendedLevelData.serverInstance().unregisterInvasion(event.getEntity().getUUID());
 	    }
@@ -354,6 +355,9 @@ public class ExtendedWorldEventHandlers {
 		BlockState clickedState = level.getBlockState(event.getPos());
 		PlayerEntity player = event.getPlayer();
 		if(event.getItemStack().getItem().is(ExtendedTags.Items.PLACEABLE_BOOKS)) {
+			if(event.getItemStack().getItem().equals(LOTRItems.RED_BOOK.get()) && CustomWaypointStructureHandler.INSTANCE.isProtectedByWaypointStructure(level, event.getPos(), player)){
+				return; // Don't try placing red books in waypoint protection (regular waypoint protection has a red book bypass for editing)
+			}
 			ExtendedPlaceableBookTypes type = ExtendedPlaceableBookTypes.getByItem(event.getItemStack().getItem());
 			if(type.notEmpty() && !(clickedState.getBlock() instanceof ExtendedPlacedBooksBlock)) {
 				BlockItemUseContext blockusecontext = new BlockItemUseContext(new ItemUseContext(player, event.getHand(), event.getHitVec()));

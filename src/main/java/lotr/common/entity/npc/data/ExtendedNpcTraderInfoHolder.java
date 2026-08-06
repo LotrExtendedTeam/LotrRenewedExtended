@@ -16,9 +16,9 @@ import com.github.maximuslotro.lotrrextended.common.traders.pools.ItemStackAndPr
 
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
-import lotr.common.entity.npc.ExtendedNPCEntity;
-import lotr.common.entity.npc.ExtendedTraderEntity;
-import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
+import lotr.common.entity.npc.ExtendedIWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.ExtendedTraderHelper;
 import lotr.common.util.TradeUtils;
@@ -119,7 +119,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 			return traderProfileHolder;
 		}
 		if(shouldLoad()) {
-			traderProfileHolder = ExtendedTraderProfileManager.INSTANCE.get(((ExtendedTraderEntity)thisEntity).getTraderProfileId());
+			traderProfileHolder = ExtendedTraderProfileManager.INSTANCE.get(((ExtendedIMerchantEntity)thisEntity).getTraderProfileId());
 			return traderProfileHolder;
 		}
 		ExtendedLog.error("ERROR ERROR! TRIED GETTING A TRADER PROFILE FROM A NON TRADER NPC");
@@ -359,7 +359,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 	 * */
 	@Override
 	public boolean shouldTick() {
-		return thisEntity instanceof ExtendedTraderEntity;
+		return thisEntity instanceof ExtendedIMerchantEntity;
 	}
 
 	/**
@@ -399,7 +399,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		Entity entity = world.getEntity(entityId);
 		if (entity instanceof NPCEntity) {
 			NPCEntity npc = (NPCEntity) entity;
-			ExtendedNpcTraderInfoHolder traderInfo = ((ExtendedNPCEntity) npc).getTraderInfo();
+			ExtendedNpcTraderInfoHolder traderInfo = ((ExtendedINPCEntity) npc).getTraderInfo();
 			if(traderInfo!=null) {
 				traderInfo.tradingAlignmentRequired = buf.readVarInt();
 				traderInfo.currentTraderLockTicksAmount = buf.readBoolean() ? 1 : 0;
@@ -436,7 +436,7 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 		if (isTraderCurrentlyWandering()) {
 			if (wanderingTraderAliveTime < 1) {
 				// notify players the traveling trader has departed
-				Style npcNameStyle = Style.EMPTY.withColor(Color.fromRgb(((ExtendedWanderingTraderEntity) npc).getFactionColor()));
+				Style npcNameStyle = Style.EMPTY.withColor(Color.fromRgb(((ExtendedIWanderingTraderEntity) npc).getFactionColor()));
 				for (PlayerEntity player : npc.level.players()) {
 					if(((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(player)).getExtendedMiscData().doHighContrastMessages()) {
 						player.sendMessage(new TranslationTextComponent("chat.wandering_trader.left_the_area", npc.getName().copy().withStyle(npcNameStyle)), Util.NIL_UUID);
@@ -447,13 +447,13 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
 
                 npc.remove();
 
-                if (((ExtendedWanderingTraderEntity)npc).getEscortUUIDs() != null && !((ExtendedWanderingTraderEntity)npc).getEscortUUIDs().isEmpty()) {
+                if (((ExtendedIWanderingTraderEntity)npc).getEscortUUIDs() != null && !((ExtendedIWanderingTraderEntity)npc).getEscortUUIDs().isEmpty()) {
                     AxisAlignedBB initial = new AxisAlignedBB(npc.getX(), npc.getY(), npc.getZ(),
                             npc.getX() + 1, npc.getY() + 1, npc.getZ() + 1);
                     List<NPCEntity> potentialEscorts = npc.level.getEntitiesOfClass(NPCEntity.class, initial.inflate(256));
 
                     for (NPCEntity entity : potentialEscorts) {
-                        if (((ExtendedWanderingTraderEntity)npc).getEscortUUIDs().contains(entity.getUUID())) {
+                        if (((ExtendedIWanderingTraderEntity)npc).getEscortUUIDs().contains(entity.getUUID())) {
                             entity.remove();
                         }
                     }
@@ -465,12 +465,12 @@ public class ExtendedNpcTraderInfoHolder implements ExtendedNpcDataInterface {
                 if (wanderingTraderAliveTime == 2400) {
                     AxisAlignedBB initial = new AxisAlignedBB(npc.getX(), npc.getY(), npc.getZ(), npc.getX() + 1, npc.getY() + 1, npc.getZ() + 1);
                     List<PlayerEntity> playersInRange = npc.level.getEntitiesOfClass(PlayerEntity.class, initial.inflate(80));
-                    Style npcNameStyle = Style.EMPTY.withColor(Color.fromRgb(((ExtendedWanderingTraderEntity) npc).getFactionColor()));
+                    Style npcNameStyle = Style.EMPTY.withColor(Color.fromRgb(((ExtendedIWanderingTraderEntity) npc).getFactionColor()));
                     for (PlayerEntity player : playersInRange) {
                     	if(((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(player)).getExtendedMiscData().doHighContrastMessages()) {
-    						player.sendMessage(new TranslationTextComponent(((ExtendedWanderingTraderEntity)npc).getDepartureLine(), npc.getName().copy().withStyle(npcNameStyle), player.getName()), Util.NIL_UUID);
+    						player.sendMessage(new TranslationTextComponent(((ExtendedIWanderingTraderEntity)npc).getDepartureLine(), npc.getName().copy().withStyle(npcNameStyle), player.getName()), Util.NIL_UUID);
     					}else {
-    						player.sendMessage(new TranslationTextComponent(((ExtendedWanderingTraderEntity)npc).getDepartureLine(), npc.getName().copy().withStyle(TextFormatting.YELLOW), player.getName()), Util.NIL_UUID);
+    						player.sendMessage(new TranslationTextComponent(((ExtendedIWanderingTraderEntity)npc).getDepartureLine(), npc.getName().copy().withStyle(TextFormatting.YELLOW), player.getName()), Util.NIL_UUID);
     					}
                     }
                 }

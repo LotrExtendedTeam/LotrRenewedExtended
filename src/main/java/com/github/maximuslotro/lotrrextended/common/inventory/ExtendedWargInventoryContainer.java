@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.inventory;
 
-import lotr.common.entity.npc.ExtendedRidableEntity;
+import lotr.common.entity.npc.ExtendedIRidableEntity;
 import lotr.common.entity.npc.WargEntity;
 import net.minecraft.entity.IEquipable;
 import net.minecraft.entity.player.PlayerEntity;
@@ -48,7 +48,7 @@ public class ExtendedWargInventoryContainer extends Container {
 	          */
 	         @Override
 			public boolean mayPlace(ItemStack pStack) {
-	            return ((ExtendedRidableEntity)warg).isArmor(pStack);
+	            return ((ExtendedIRidableEntity)warg).isArmor(pStack);
 	         }
 
 	         /**
@@ -58,7 +58,7 @@ public class ExtendedWargInventoryContainer extends Container {
 	         @Override
 			@OnlyIn(Dist.CLIENT)
 	         public boolean isActive() {
-	            return ((ExtendedRidableEntity)warg).canWearArmor();
+	            return ((ExtendedIRidableEntity)warg).canWearArmor();
 	         }
 
 	         /**

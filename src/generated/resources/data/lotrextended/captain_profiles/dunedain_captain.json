@@ -1,5 +1,6 @@
 {
   "id": "lotrextended:dunedain_captain",
+  "alignmentRequired": 300,
   "unitProfileIDs": [
     "lotrextended:dunedain_ranger"
   ]

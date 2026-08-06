@@ -11,6 +11,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStruc
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedILootTableAccessor;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedLargePotTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 import com.mojang.brigadier.Command;
@@ -22,7 +23,6 @@ import lotr.common.init.ExtendedEntities;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.tileentity.PlateTileEntity;
 import lotr.common.tileentity.VesselDrinkTileEntity;
-import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.command.CommandSource;
@@ -166,19 +166,19 @@ public class ExtendedStructureHelperComamnd {
 		TileEntity tileentity = source.getLevel().getBlockEntity(pos);
 		if (tileentity instanceof KegTileEntity && resourceLocation.toString().contains("kegs")) {
 			((KegTileEntity)tileentity).clearContent();
-			((ExtendedLootTableAccessor)tileentity).setLootTable(resourceLocation, 0L);
+			((ExtendedILootTableAccessor)tileentity).setLootTable(resourceLocation, 0L);
 			source.sendSuccess(new StringTextComponent("Set Keg Location: "+resourceLocation.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}
 		if (tileentity instanceof VesselDrinkTileEntity && resourceLocation.toString().contains("vessels")) {
 			((VesselDrinkTileEntity)tileentity).setEmpty();
-			((ExtendedLootTableAccessor)tileentity).setLootTable(resourceLocation, 0L);
+			((ExtendedILootTableAccessor)tileentity).setLootTable(resourceLocation, 0L);
 			source.sendSuccess(new StringTextComponent("Set Vessel Location: "+resourceLocation.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}
 		if (tileentity instanceof PlateTileEntity && resourceLocation.toString().contains("plates")) {
 			((PlateTileEntity)tileentity).setFoodItem(ItemStack.EMPTY);
-			((ExtendedLootTableAccessor)tileentity).setLootTable(resourceLocation, 0L);
+			((ExtendedILootTableAccessor)tileentity).setLootTable(resourceLocation, 0L);
 			source.sendSuccess(new StringTextComponent("Set Plate Location: "+resourceLocation.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}

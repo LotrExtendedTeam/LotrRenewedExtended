@@ -15,7 +15,7 @@ import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.data.PlayerMessageType;
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.fac.AlignmentPredicates;
 import lotr.common.fac.EntityFactionHelper;
@@ -103,8 +103,8 @@ public class MixinEntityFactionHelper {
 			}
 		}
 		// Extended Start
-		if(alignedTarget instanceof NPCEntity && ((ExtendedNPCEntity)alignedTarget).getUnitInfo().isNpcActiveDuty()) {
-			UUID hiredUnitOwnerUUID = ((ExtendedNPCEntity)alignedTarget).getUnitInfo().getOwnerUUID();
+		if(alignedTarget instanceof NPCEntity && ((ExtendedINPCEntity)alignedTarget).getUnitInfo().isNpcActiveDuty()) {
+			UUID hiredUnitOwnerUUID = ((ExtendedINPCEntity)alignedTarget).getUnitInfo().getOwnerUUID();
 			if(hiredUnitOwnerUUID!=null) {
 				// Check if player can hurt their units
 				if (hiredUnitOwnerUUID.equals(attacker.getUUID())) {

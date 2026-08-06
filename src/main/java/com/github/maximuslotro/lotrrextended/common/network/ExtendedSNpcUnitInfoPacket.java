@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import lotr.common.LOTRMod;
 import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class ExtendedSNpcUnitInfoPacket {
@@ -29,8 +28,7 @@ public class ExtendedSNpcUnitInfoPacket {
 	}
 
 	public static void handle(ExtendedSNpcUnitInfoPacket packet, Supplier<NetworkEvent.Context> context) {
-		World world = LOTRMod.PROXY.getClientWorld();
-		ExtendedNpcHiredUnitInfoHolder.readDataPacketFromServer(packet.buffer, world);
+		ExtendedNpcHiredUnitInfoHolder.readDataPacketFromServer(packet.buffer, LOTRMod.PROXY.getClientWorld());
 		context.get().setPacketHandled(true);
 	}
 }

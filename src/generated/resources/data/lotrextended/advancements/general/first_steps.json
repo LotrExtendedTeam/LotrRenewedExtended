@@ -1038,6 +1038,22 @@
           "biome": "lotr:nurn_river"
         }
       }
+    },
+    "enter_fangorn_wasteland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:fangorn_wasteland"
+        }
+      }
+    },
+    "enter_uruk_highlands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:uruk_highlands"
+        }
+      }
     }
   },
   "requirements": [
@@ -1169,7 +1185,9 @@
       "enter_mordor_river",
       "enter_gorgoroth_river",
       "enter_morgul_vale_river",
-      "enter_nurn_river"
+      "enter_nurn_river",
+      "enter_fangorn_wasteland",
+      "enter_uruk_highlands"
     ]
   ]
 }

@@ -380,6 +380,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		add(LOTREntities.CARACAL.get(), LootTable.lootTable());
 		makeEntity(ExtendedEntities.HOBBIT_BARTENDER, hobbit, coinsRare);
 		makeEntity(ExtendedEntities.HOBBIT_FARMER, hobbit, coinsRare);
+		makeEntity(ExtendedEntities.HOBBIT_FARMHAND, hobbit);
 		makeEntity(ExtendedEntities.ODDMENT_COLLECTOR, manBase, shireHeather, leatherHat);
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.RIVENDELL_WANDERER, elfBaseMiruvorLembas);
@@ -467,6 +468,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.BREE_MERCHANT, manBree); // TODO: Maybe add some other drops here?
 		makeEntity(ExtendedEntities.BREE_FARMER, manBree);
+		makeEntity(ExtendedEntities.BREE_FARMHAND, manBree);
 		makeEntity(ExtendedEntities.BREE_POTTER, manBree);
 		makeEntity(ExtendedEntities.BREE_BAKER, manBree);
 		makeEntity(ExtendedEntities.BREE_BUTCHER, manBree);
@@ -525,6 +527,8 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.DUNLENDING_BERSERKER, manDunlending, arrows);
 		makeEntity(ExtendedEntities.DUNLENDING_BARTENDER, manDunlending);
 		makeEntity(ExtendedEntities.DUNLENDING_SMITH, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_FARMER, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_FARMHAND, manDunlending);
 	}
 
 	public ResourceLocation makeLootCommon(String name, LootTable.Builder builder) {

@@ -10,6 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBoo
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedWeaponRackBlock;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoatItem;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.GateBlock;
@@ -52,6 +53,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.LilyPadItem;
 import net.minecraft.state.properties.DoubleBlockHalf;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
@@ -71,22 +73,24 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class ExtendedBannerEventHandlers {
 	@SubscribeEvent(priority=EventPriority.HIGH)
 	public static void handleBlockBreak(BlockEvent.BreakEvent event) {
-		//ExtendedLog.info("BreakEvent");
 		if (!event.getWorld().isClientSide()) {
-			if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new ProtectionInstance.PlayerProtection(event.getPlayer())).isNotAllowed()) {
+			BlockState state = event.getWorld().getBlockState(event.getPos());
+			if(state.getBlock() instanceof ExtendedMEBannerBlock) {
+				// Get active banner position
+				BlockPos eventPos = state.getValue(ExtendedMEBannerBlock.HALF)==DoubleBlockHalf.UPPER ? event.getPos().below() : event.getPos();
+				TileEntity banner = event.getWorld().getBlockEntity(eventPos);
+				// Allow breaking banner if it can't self protect
+				if(banner instanceof ExtendedMEBannerTileEntity && !((ExtendedMEBannerTileEntity)banner).isSelfProtecting()) {
+					return;// Allow other handles to override this one
+				}
+				//Prevent breaking active banner block unless having banner permission
+				if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), eventPos, new ProtectionInstance.PlayerProtection(event.getPlayer(), ExtendedBannerPermissions.BANNER)).isNotAllowed()) {
+					event.setCanceled(true);
+				}
+			}
+			// General block breaking stuff
+			else if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new ProtectionInstance.PlayerProtection(event.getPlayer())).isNotAllowed()) {
 				event.setCanceled(true);
-			}
-			//Prevent breaking top banner block breaking the entire banner unless having banner permission
-			else if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof ExtendedMEBannerBlock && event.getWorld().getBlockState(event.getPos()).getValue(ExtendedMEBannerBlock.HALF)==DoubleBlockHalf.UPPER) {
-				if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos().below(), new ProtectionInstance.PlayerProtection(event.getPlayer(), ExtendedBannerPermissions.BANNER)).isNotAllowed()) {
-					event.setCanceled(true);
-				}
-			}
-			//Prevent breaking main banner active half unless having banner permission
-			else if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof ExtendedMEBannerBlock && event.getWorld().getBlockState(event.getPos()).getValue(ExtendedMEBannerBlock.HALF)==DoubleBlockHalf.LOWER) {
-				if (ExtendedBannerProtectionManager.getProtectionStatus(event.getWorld(), event.getPos(), new ProtectionInstance.PlayerProtection(event.getPlayer(), ExtendedBannerPermissions.BANNER)).isNotAllowed()) {
-					event.setCanceled(true);
-				}
 			}
 			//Prevent breaking blocks under banner unless having banner permission
 			else if(event.getWorld().getBlockState(event.getPos().above()).getBlock() instanceof ExtendedMEBannerBlock && event.getWorld().getBlockState(event.getPos().above()).getValue(ExtendedMEBannerBlock.HALF)==DoubleBlockHalf.LOWER) {
@@ -101,7 +105,6 @@ public class ExtendedBannerEventHandlers {
 	public static void handleBlucketFill(FillBucketEvent event) {
 		World world = event.getWorld();
 		if (!world.isClientSide() && event.getTarget().getType() == Type.BLOCK) {
-			//ExtendedLog.info("FillBucketEvent");
 			BlockPos pos = ((BlockRayTraceResult) event.getTarget()).getBlockPos();
 			if (ExtendedBannerProtectionManager.getProtectionStatus(world, pos, new ProtectionInstance.PlayerProtection(event.getPlayer())).isNotAllowed()) {
 				event.setCanceled(true);

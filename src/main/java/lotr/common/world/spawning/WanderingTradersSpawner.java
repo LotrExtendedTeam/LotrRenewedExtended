@@ -6,7 +6,7 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
-import lotr.common.entity.npc.ExtendedWanderingTraderEntity;
+import lotr.common.entity.npc.ExtendedIWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.world.spawning.WanderingTradersList.ExtendedWanderingTraderData;
 import net.minecraft.block.BlockState;
@@ -64,7 +64,7 @@ public class WanderingTradersSpawner {
 				}
 
 				Entity trader = type.create((ServerWorld) world, null, null, player, position, SpawnReason.EVENT, true, false);
-				if (trader instanceof ExtendedWanderingTraderEntity && trader instanceof MobEntity) {
+				if (trader instanceof ExtendedIWanderingTraderEntity && trader instanceof MobEntity) {
 					// check spawn rules (banner protection for EVENT types)
 					if (!((MobEntity)trader).checkSpawnRules(world, SpawnReason.EVENT) && !disableBannerChecks) {
 						// Disable spawning under opposing banner protection
@@ -75,15 +75,15 @@ public class WanderingTradersSpawner {
 					trader.setYBodyRot(yaw);
 					trader.setYHeadRot(yaw);
 
-					((ExtendedWanderingTraderEntity) trader).getTraderData().setWanderingTraderAliveTime(24000);
-					((ExtendedWanderingTraderEntity) trader).getTraderData().setWanderingTrader(true);
+					((ExtendedIWanderingTraderEntity) trader).getTraderData().setWanderingTraderAliveTime(24000);
+					((ExtendedIWanderingTraderEntity) trader).getTraderData().setWanderingTrader(true);
 					((MobEntity) trader).restrictTo(position, 5); // restrict within 5 blocks of spawn point
 					((MobEntity)trader).setPersistenceRequired();
 					world.addFreshEntityWithPassengers(trader);
 
 					int escortCount = world.random.nextInt(3) + 2;
 					for (int i = 0; i < escortCount; i++) {
-						NPCEntity escort = ((ExtendedWanderingTraderEntity) trader).createEscort();
+						NPCEntity escort = ((ExtendedIWanderingTraderEntity) trader).createEscort();
 						if (escort != null) {
 							escort.setPersistenceRequired();
 							BlockPos escortPos = new BlockPos(trader.getX(), trader.getY(), trader.getZ());
@@ -91,11 +91,11 @@ public class WanderingTradersSpawner {
 							escort.setPos(trader.getX(), trader.getY(), trader.getZ());
 							world.addFreshEntityWithPassengers(escort);
 							escort.restrictTo(escortPos, 8);
-							((ExtendedWanderingTraderEntity) trader).addEscort(escort.getUUID());
+							((ExtendedIWanderingTraderEntity) trader).addEscort(escort.getUUID());
 						}
 					}
 
-					Style npcNameStyle = Style.EMPTY.withColor(Color.fromRgb(((ExtendedWanderingTraderEntity) trader).getFactionColor()));
+					Style npcNameStyle = Style.EMPTY.withColor(Color.fromRgb(((ExtendedIWanderingTraderEntity) trader).getFactionColor()));
 					if(((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(player)).getExtendedMiscData().doHighContrastMessages()) {
 						player.sendMessage(new TranslationTextComponent("chat.wandering_trader.arrive_near_you", trader.getName().copy().withStyle(npcNameStyle)), Util.NIL_UUID);
 					}else {

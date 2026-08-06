@@ -6,10 +6,10 @@ import com.github.maximuslotro.lotrrextended.common.inventory.container.Extended
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeSlots.ExtendedOutputCoinSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeSlots.ExtendedVisualCoinSlot;
 
-import lotr.common.entity.npc.ExtendedTraderEntity;
-import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.ExtendedItems;
 import lotr.common.util.CoinUtils;
+import lotr.common.util.ExtendedTraderHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -41,12 +41,12 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 	// 0->Input, 1-> Left Visual Output, 2-> Right Visual Output, 3-> Left output, 4-> Right output
 	public Inventory coinSlots = new Inventory(5);
 
-	public final ExtendedTraderEntity trader;
+	public final Entity trader;
 
 	public ExtendedCoinExchangeContainer(int containerId, PlayerInventory inventory, PacketBuffer extraData) {
 		super(ExtendedContainerTypes.COIN_TRADING.get(), containerId);
 
-		this.trader = (ExtendedTraderEntity) inventory.player.level.getEntity(extraData.readVarInt());
+		this.trader = inventory.player.level.getEntity(extraData.readVarInt());
 
 		inputSlot = addSlot(new ExtendedInputCoinSlot(this.coinSlots, 0, 80, 46) {
 			@Override
@@ -106,7 +106,7 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 	public void handleExchange(int side) {
 		boolean converted = false;
 		// Check for valid input item during exchange
-		if (!((NPCEntity)trader).level.isClientSide() && CoinUtils.isValidCoin(inputSlot.getItem())) {
+		if (!trader.level.isClientSide() && CoinUtils.isValidCoin(inputSlot.getItem())) {
 			// Check side for transfer and if valid item
 			if (side==1 && inputSlot.getItem().getItem() == ExtendedItems.SILVER_COIN_ONE.get()) {
 				converted = convertCurrencyUp(ExtendedItems.SILVER_COIN_ONE.get(), ExtendedItems.SILVER_COIN_TEN.get(), false);
@@ -118,7 +118,7 @@ public class ExtendedCoinExchangeContainer extends Container implements IContain
 				converted = convertCurrencyDown(ExtendedItems.SILVER_COIN_HUNDRED.get(), ExtendedItems.SILVER_COIN_TEN.get(), false);
 			}
 			if(converted) {
-				trader.playTradeSound(); // attempt to play sound due to successful convert
+				ExtendedTraderHelper.playTraderSound(trader);
 			}
 		}
 	}

@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
@@ -22,16 +22,16 @@ import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 public class ExtendedHiredHurtByTargetGoal extends HurtByTargetGoal {
 
 	/** The extended NPC entity using this goal. */
-	private final ExtendedNPCEntity extendedEntity;
+	private final ExtendedINPCEntity extendedEntity;
 
 	/**
 	 * Constructs a new targeting goal for the specified NPC entity.
 	 *
-	 * @param entity the base {@link NPCEntity} instance; must implement {@link ExtendedNPCEntity}
+	 * @param entity the base {@link NPCEntity} instance; must implement {@link ExtendedINPCEntity}
 	 */
 	public ExtendedHiredHurtByTargetGoal(NPCEntity entity) {
 		super(entity);
-		this.extendedEntity = (ExtendedNPCEntity) entity;
+		this.extendedEntity = (ExtendedINPCEntity) entity;
 	}
 
 	/**
@@ -54,9 +54,9 @@ public class ExtendedHiredHurtByTargetGoal extends HurtByTargetGoal {
 		//	return false;
 		} 
 		else if (extendedEntity.getUnitInfo().isNpcActiveDuty()
-				&& pPotentialTarget instanceof ExtendedNPCEntity
-				&& ((ExtendedNPCEntity)pPotentialTarget).getUnitInfo().isNpcActiveDuty()
-				&& ((ExtendedNPCEntity)pPotentialTarget).getUnitInfo().getOwnerUUID().equals(extendedEntity.getUnitInfo().getOwnerUUID())
+				&& pPotentialTarget instanceof ExtendedINPCEntity
+				&& ((ExtendedINPCEntity)pPotentialTarget).getUnitInfo().isNpcActiveDuty()
+				&& ((ExtendedINPCEntity)pPotentialTarget).getUnitInfo().getOwnerUUID().equals(extendedEntity.getUnitInfo().getOwnerUUID())
 				&& !((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(this.mob.level, extendedEntity.getUnitInfo().getOwnerUUID())).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit()) {
 			return false;
 		} else {

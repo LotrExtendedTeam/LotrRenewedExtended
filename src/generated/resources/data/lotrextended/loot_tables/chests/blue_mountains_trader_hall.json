@@ -1232,6 +1232,16 @@
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:smith_tome"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 5,
           "functions": [
             {

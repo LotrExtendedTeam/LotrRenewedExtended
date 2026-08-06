@@ -716,6 +716,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> URUK_SHIELD;
 	public static RegistryObject<Item> DUNLENDING_SHIELD;
 	public static RegistryObject<Item> ARNOR_SHIELD;
+	public static RegistryObject<Item> DWARVEN_SHIELD;
 
 	public static RegistryObject<Item> BOWSTRING;
 	public static RegistryObject<Item> GUNDABAD_URUK_BOW;
@@ -822,6 +823,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> MODIFIER_SCROLL;
 	public static RegistryObject<Item> COMBAT_TOME;
 	public static RegistryObject<Item> ARTISAN_TOME;
+	public static RegistryObject<Item> SMITH_TOME;
 
 	public static RegistryObject<Item> TAPESTRY;
 

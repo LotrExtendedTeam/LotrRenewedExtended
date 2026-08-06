@@ -1248,6 +1248,7 @@ public class MixinLOTRItems {
 		ExtendedItems.ARNOR_SHIELD = regItemB("arnor_shield", () -> new LOTRShieldItem(LOTRMaterial.ARNOR));
 
 		//Blue Mountains equipment
+		ExtendedItems.DWARVEN_SHIELD = regItemB("dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.DWARVEN));
 		ExtendedItems.BLUE_DWARVEN_SHIELD = regItemB("blue_dwarven_shield", () -> new LOTRShieldItem(LOTRMaterial.BLUE_DWARVEN));
 
 		ExtendedItems.LEATHER_BOAR_ARMOR = regItemB("leather_boar_armor", () -> new ExtendedMountedDyeableArmorItem(8, "leather", MountType.BOAR, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
@@ -1325,8 +1326,9 @@ public class MixinLOTRItems {
 		ExtendedItems.ENTITY_SPAWNER = regItemB("structure_entity_spawner", () -> new ExtendedEntitySpawnerItem(new Properties().tab(LOTRItemGroups.MISC).fireResistant()));
 		ExtendedItems.ROPE = regExtendedBlockItemD(ExtendedBlocks.ROPE, block -> new BlockItem(block, new Properties().stacksTo(64).tab(LOTRItemGroups.MISC)));
 		ExtendedItems.MODIFIER_SCROLL = regItemB("modifier_scroll", () -> new ExtendedModifierScrollItem(new Properties().tab(LOTRItemGroups.MISC).rarity(Rarity.UNCOMMON).stacksTo(1)));
-		ExtendedItems.COMBAT_TOME = regItemB("combat_tome", () -> new ExtendedModifierTomeItem(new Properties().tab(LOTRItemGroups.MISC).stacksTo(1), "combat", ExtendedModifierType.TOOL_SPEED, ExtendedModifierType.TOOL_SILK));
-		ExtendedItems.ARTISAN_TOME = regItemB("artisan_tome", () -> new ExtendedModifierTomeItem(new Properties().tab(LOTRItemGroups.MISC).stacksTo(1), "artisan", ExtendedModifierType.MELEE_KNOCKBACK, ExtendedModifierType.MELEE_DAMAGE, ExtendedModifierType.MELEE_REACH, ExtendedModifierType.MELEE_SPEED));
+		ExtendedItems.COMBAT_TOME = regItemB("combat_tome", () -> new ExtendedModifierReforgeTomeItem(new Properties().tab(LOTRItemGroups.MISC).stacksTo(1), "combat", ExtendedModifierType.TOOL_SPEED, ExtendedModifierType.TOOL_SILK));
+		ExtendedItems.ARTISAN_TOME = regItemB("artisan_tome", () -> new ExtendedModifierReforgeTomeItem(new Properties().tab(LOTRItemGroups.MISC).stacksTo(1), "artisan", ExtendedModifierType.MELEE_KNOCKBACK, ExtendedModifierType.MELEE_DAMAGE, ExtendedModifierType.MELEE_REACH, ExtendedModifierType.MELEE_SPEED));
+		ExtendedItems.SMITH_TOME = regItemB("smith_tome", () -> new ExtendedModifierRepairTomeItem(new Properties().tab(LOTRItemGroups.MISC).stacksTo(1), "ignore", "smith"));
 
 		//########################################################################LORE##########################################################
 		ExtendedItems.SHARDS_OF_NARSIL = regBlockItemProps(ExtendedBlocks.SHARDS_OF_NARSIL, LOTRItemGroups.STORY, (props) -> props.rarity(Rarity.RARE));

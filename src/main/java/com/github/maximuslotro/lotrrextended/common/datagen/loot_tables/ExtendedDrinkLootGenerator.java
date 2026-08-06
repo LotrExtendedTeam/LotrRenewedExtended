@@ -72,6 +72,17 @@ public class ExtendedDrinkLootGenerator extends ChestLootTables  {
 			.add(addEntry(LOTRItems.CIDER.get(), 2))
 			.add(addEntry(LOTRItems.PERRY.get(), 1))
 			.add(addEntry(LOTRItems.CHERRY_LIQUEUR.get(), 3)));
+
+		make(consumer, ExtendedLootTables.DUNLAND_KEGS, ExtendedLootTables.DUNLAND_VESSELS, makePool()
+			.add(addEntry(LOTRItems.ALE.get(), 2))
+			.add(addEntry(LOTRItems.CIDER.get(), 1))
+			.add(addEntry(LOTRItems.MEAD.get(), 1))
+			.add(addEntry(LOTRItems.RUM.get(), 1)));
+
+		make(consumer, ExtendedLootTables.IRON_HILLS_KEGS, ExtendedLootTables.IRON_HILLS_VESSELS, makePool()
+			.add(addEntry(LOTRItems.DWARVEN_ALE.get(), 4))
+			.add(addEntry(LOTRItems.DWARVEN_TONIC.get(), 1))
+			.add(addEntry(LOTRItems.ALE.get(), 1)));
 	}
 
 	public StandaloneLootEntry.Builder<?> addEntry(Item item, int weight){

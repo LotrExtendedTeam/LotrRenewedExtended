@@ -16,6 +16,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCrossbowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierRepairTomeItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
@@ -269,7 +270,7 @@ public class ExtendedRepairContainerNew extends Container {
 		baseCost = inputItem.getBaseRepairCost() + (mergableItem.isEmpty() ? 0 : mergableItem.getBaseRepairCost());
 		boolean isEnchantingItem = false;
 		boolean isModifierItem = false;
-		boolean isScrollOrBook = false;
+		boolean isRepairChangingItem = false;
 		boolean canCombineItemModifiers = false;
 		// Logic if there is an item in merge slot
 		if (!mergableItem.isEmpty()) {
@@ -277,8 +278,8 @@ public class ExtendedRepairContainerNew extends Container {
 			//if (!net.minecraftforge.common.ForgeHooks.onAnvilChange(this, inputItem, mergableItem, resultSlots, itemName, baseCost, this.player)) return;
 			isEnchantingItem = mergableItem.getItem() == Items.ENCHANTED_BOOK && !EnchantedBookItem.getEnchantments(mergableItem).isEmpty();
 			isModifierItem = (mergableItem.getItem() == ExtendedItems.MODIFIER_SCROLL.get() && !ExtendedModifierScrollItem.getModifier(mergableItem).isUnknown()) || mergableItem.getItem() == LOTRItems.BOOK_OF_TRUE_SILVER.get();
-			isScrollOrBook = isEnchantingItem || isModifierItem;
-			if (!isScrollOrBook && resultItem.getItem() == mergableItem.getItem() && resultItem.isDamageableItem()) {
+			isRepairChangingItem = mergableItem.getItem() instanceof ExtendedModifierRepairTomeItem;
+			if (!isEnchantingItem && !isModifierItem && !isRepairChangingItem && resultItem.getItem() == mergableItem.getItem() && resultItem.isDamageableItem()) {
 				int durabilityLeftBase = inputItem.getMaxDamage() - inputItem.getDamageValue();
 				int durabilityLeftMaterial = mergableItem.getMaxDamage() - mergableItem.getDamageValue();
 				int bonusDurability = durabilityLeftMaterial + resultItem.getMaxDamage() * 12 / 100;
@@ -292,7 +293,7 @@ public class ExtendedRepairContainerNew extends Container {
 					mergingCost += 2; // TODO add more dynamic cost
 				}
 			}
-			if (isScrollOrBook || (resultItem.getItem() == mergableItem.getItem() && resultItem.isDamageableItem())) {
+			if (isEnchantingItem || isModifierItem || (resultItem.getItem() == mergableItem.getItem() && resultItem.isDamageableItem())) {
 				canCombineItemModifiers= true;
 			}
 		}
@@ -512,25 +513,28 @@ public class ExtendedRepairContainerNew extends Container {
 		}
 		// The repair cost should always include the value of present modifiers and enchants
 		// Since the increase cost is +2 instead of *2+1 this balances things out
-		for(Enchantment modifier : inputEnchants.keySet()) {
-			int rairityCost = 0;
-			switch(modifier.getRarity()) {
-				case COMMON:
-					rairityCost = 1;
-					break;
-				case UNCOMMON:
-					rairityCost = 2;
-					break;
-				case RARE:
-					rairityCost = 4;
-					break;
-				case VERY_RARE:
-					rairityCost = 8;
+		// Added tome to remove this cost for late game players
+		if(!(isRepairChangingItem && mergableItem.getItem() instanceof ExtendedModifierRepairTomeItem)) {
+			for(Enchantment modifier : inputEnchants.keySet()) {
+				int rairityCost = 0;
+				switch(modifier.getRarity()) {
+					case COMMON:
+						rairityCost = 1;
+						break;
+					case UNCOMMON:
+						rairityCost = 2;
+						break;
+					case RARE:
+						rairityCost = 4;
+						break;
+					case VERY_RARE:
+						rairityCost = 8;
+				}
+				baseCost+= Math.max(1, rairityCost);
 			}
-			baseCost+= Math.max(1, rairityCost);
-		}
-		for(ExtendedModifier modifier : inputModifiers) {
-			baseCost+= Math.max(1, modifier.getModifierValue());
+			for(ExtendedModifier modifier : inputModifiers) {
+				baseCost+= Math.max(1, modifier.getModifierValue());
+			}
 		}
 		if (StringUtils.isBlank(this.itemName)) {
 			info("P5: Item Renaming");
@@ -853,21 +857,20 @@ public class ExtendedRepairContainerNew extends Container {
 		if(!regularRapair) {
 			if(!(inputItem.getItem() instanceof ExtendedBowItem) && inputItem.getItem() instanceof BowItem) {
 				return repairMaterial.getItem() == Items.STRING;
-			}
-			if(inputItem.getItem() instanceof FishingRodItem) {
+			}else if(inputItem.getItem() instanceof FishingRodItem) {
 				return repairMaterial.getItem() == Items.STRING;
-			}
-			if(inputItem.getItem() instanceof ShearsItem) {
+			}else if(inputItem.getItem() instanceof ShearsItem) {
 				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
-			}
-			if(inputItem.getItem() instanceof SmokingPipeItem) {
+			}else if(inputItem.getItem() instanceof SmokingPipeItem) {
 				return Tags.Items.LEATHER.contains(repairMaterial.getItem());
-			}
-			if(!(inputItem.getItem() instanceof ExtendedCrossbowItem) && inputItem.getItem() instanceof CrossbowItem) {
+			}else if(!(inputItem.getItem() instanceof ExtendedCrossbowItem) && inputItem.getItem() instanceof CrossbowItem) {
 				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
-			}
-			if(inputItem.getItem() instanceof FlintAndSteelItem) {
+			}else if(inputItem.getItem() instanceof FlintAndSteelItem) {
 				return Tags.Items.INGOTS_IRON.contains(repairMaterial.getItem());
+			}else if(inputItem.getItem().equals(Items.CARROT_ON_A_STICK)) {
+				return repairMaterial.getItem() == Items.CARROT;
+			}else if(inputItem.getItem().equals(Items.WARPED_FUNGUS_ON_A_STICK)) {
+				return repairMaterial.getItem() == Items.WARPED_FUNGUS;
 			}
 		}
 		return regularRapair;

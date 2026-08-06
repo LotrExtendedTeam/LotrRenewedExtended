@@ -449,6 +449,13 @@
         "item": "lotr:artisan_tome",
         "averageCost": 75
       }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:smith_tome",
+        "averageCost": 100
+      }
     }
   ]
 }

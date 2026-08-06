@@ -1,0 +1,44 @@
+{
+  "id": "lotrextended:dunlending_area_warrior",
+  "spawner_type": "persisted_use_spawner",
+  "check_boundaries": {
+    "topYvalue": 15,
+    "lowerYvalue": -8,
+    "horizontal_bounds": 12
+  },
+  "spawn_area": {
+    "topYvalue": 6,
+    "lowerYvalue": -1,
+    "horizontal_bounds": 3
+  },
+  "fixed_spawning": true,
+  "fixed_spawning_chance": 20,
+  "setHomeOnSpawn": true,
+  "homeRadius": 16,
+  "persistenceRequired": true,
+  "spawnCap": 12,
+  "pools": [
+    {
+      "weight": 100,
+      "minSpawnCount": 2,
+      "maxSpawnCount": 6,
+      "entity_types": [
+        {
+          "weight": 10,
+          "entity_type": "lotr:dunlending_warrior"
+        },
+        {
+          "weight": 5,
+          "entity_type": "lotr:dunlending_bowman"
+        },
+        {
+          "weight": 3,
+          "entity_type": "lotr:dunlending_axe_thrower"
+        },
+        {
+          "entity_type": "lotr:dunlending_berserker"
+        }
+      ]
+    }
+  ]
+}

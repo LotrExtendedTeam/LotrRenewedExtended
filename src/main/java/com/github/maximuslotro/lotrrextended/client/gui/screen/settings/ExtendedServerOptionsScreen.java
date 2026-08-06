@@ -26,6 +26,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 	public List<SettingsCatagory> catagories = new ArrayList<>();
+	public static int optionServer = 0;
 
 	public ExtendedServerOptionsScreen() {
 		super(new StringTextComponent("Server Options"), SettingsPage.SERVER);
@@ -203,11 +204,6 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 			catagories.checkVisability();
 			catagories.handleUpdates();
 		}
-		for(Widget button : this.buttons) {
-			if(button.isHovered() && button.visible) {
-				button.renderToolTip(matStack, mouseX, mouseY);
-			}
-		}
 		super.render(matStack, mouseX, mouseY, tick);
 	}
 
@@ -236,11 +232,11 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 			}
 			catagoryButton = new ExtendedColorChangingButton(catagoryXOffset, placementYOffset + 24 * index, 120, 20, new TranslationTextComponent(pMessage), 
 					button -> {
-						ExtendedServerOptionsScreen.option=index;
+						ExtendedServerOptionsScreen.optionServer=index;
 					}, 0.13f, 0.92f, 0.71f) {
 				@Override
 				public boolean setColor(){
-					return ExtendedServerOptionsScreen.option==index;
+					return ExtendedServerOptionsScreen.optionServer==index;
 				}
 			};
 			return catagoryButton;
@@ -251,13 +247,13 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 			}
 			catagoryButton = new ExtendedColorChangingButton(catagoryXOffset, placementYOffset + 24 * index, 120, 20, new TranslationTextComponent(pMessage), 
 					button -> {
-						ExtendedServerOptionsScreen.option=index;
+						ExtendedServerOptionsScreen.optionServer=index;
 					}, (wdget, matrixStack, pMouseX, pMouseY) -> {
 						screen.renderTooltip(matrixStack, screen.font.split(new TranslationTextComponent(toolTip), 200), pMouseX, pMouseY);
 					}, 0.13f, 0.92f, 0.71f) {
 				@Override
 				public boolean setColor(){
-					return ExtendedServerOptionsScreen.option==index;
+					return ExtendedServerOptionsScreen.optionServer==index;
 				}
 			};
 			return catagoryButton;
@@ -333,7 +329,7 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 
 		@SuppressWarnings("unchecked")
 		public void handleUpdates() {
-			if(ExtendedServerOptionsScreen.option==index) {
+			if(ExtendedServerOptionsScreen.optionServer==index) {
 				for(Widget widget : widgets) {
 					if(widget instanceof ExtendedTogglableTitleButton) {
 						((ExtendedTogglableTitleButton<Boolean>)widget).onTick(true);
@@ -343,10 +339,10 @@ public class ExtendedServerOptionsScreen extends AbstractExtendedOptionsScreen {
 		}
 		public void checkVisability(){
 			for(Widget widget : widgets) {
-				widget.visible = ExtendedServerOptionsScreen.option==index; // Hide/Show widget if this category is selected
+				widget.visible = ExtendedServerOptionsScreen.optionServer==index; // Hide/Show widget if this category is selected
 			}
 			for(Widget widget : sliders) {
-				widget.visible = ExtendedServerOptionsScreen.option==index; // Hide/Show widget if this category is selected
+				widget.visible = ExtendedServerOptionsScreen.optionServer==index; // Hide/Show widget if this category is selected
 			}
 		}
 

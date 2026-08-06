@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import lotr.common.entity.npc.ExtendedRidableEntity;
+import lotr.common.entity.npc.ExtendedIRidableEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.play.ServerPlayNetHandler;
 import net.minecraft.network.play.client.CEntityActionPacket;
@@ -17,7 +17,7 @@ import net.minecraft.network.play.client.CPlayerPacket;
  * <p>
  * This mixin adds two main enhancements:
  * <ul>
- *   <li>Allows players riding {@link ExtendedRidableEntity} mounts to open their inventories via the
+ *   <li>Allows players riding {@link ExtendedIRidableEntity} mounts to open their inventories via the
  *       {@link net.minecraft.network.play.client.CEntityActionPacket.Action#OPEN_INVENTORY} action.</li>
  *   <li>Prevents players from being kicked for floating when they are mounted, by resetting the
  *       {@code clientIsFloating} state and {@code aboveGroundTickCount} in {@link ServerPlayNetHandler#handleMovePlayer}.</li>
@@ -46,7 +46,7 @@ public class MixinServerPlayNetHandler {
 	private int aboveGroundTickCount;
 	/**
      * Intercepts {@link ServerPlayNetHandler#handlePlayerCommand} to allow mounted players
-     * to open the inventory of an {@link ExtendedRidableEntity}.
+     * to open the inventory of an {@link ExtendedIRidableEntity}.
      * <p>
      * If the action is {@link net.minecraft.network.play.client.CEntityActionPacket.Action#OPEN_INVENTORY} and the player is riding
      * an {@code ExtendedRidableEntity}, the inventory is opened and the packet handling is cancelled
@@ -70,8 +70,8 @@ public class MixinServerPlayNetHandler {
 			return;
 		}
 		//Allow alternate mounts to open inventories
-		if (this.player.getVehicle() instanceof ExtendedRidableEntity) {
-			((ExtendedRidableEntity)this.player.getVehicle()).openInventory(this.player);
+		if (this.player.getVehicle() instanceof ExtendedIRidableEntity) {
+			((ExtendedIRidableEntity)this.player.getVehicle()).openInventory(this.player);
 			this.player.resetLastActionTime();
 			ci.cancel();
 		}

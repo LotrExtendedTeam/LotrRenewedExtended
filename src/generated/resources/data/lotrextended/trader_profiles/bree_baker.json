@@ -85,28 +85,48 @@
       "weight": 50,
       "stack": {
         "item": "lotr:blueberry",
-        "averageCost": 1
+        "averageCost": 1,
+        "count": 2
       }
     },
     {
       "weight": 50,
       "stack": {
         "item": "lotr:blackberry",
-        "averageCost": 1
+        "averageCost": 1,
+        "count": 2
       }
     },
     {
       "weight": 50,
       "stack": {
         "item": "lotr:cranberry",
-        "averageCost": 1
+        "averageCost": 1,
+        "count": 2
       }
     },
     {
       "weight": 50,
       "stack": {
         "item": "lotr:elderberry",
-        "averageCost": 1
+        "averageCost": 1,
+        "count": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:raspberry",
+        "averageCost": 1,
+        "count": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:sweet_berries",
+        "averageCost": 1,
+        "count": 2
       }
     },
     {

@@ -1,14 +1,14 @@
 package lotr.common.entity.npc.ai.goal;
 
-import lotr.common.entity.npc.ExtendedTraderEntity;
+import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 
 public class ExtendedInteractableWaterAvoidingRandomWalkingGoal extends WaterAvoidingRandomWalkingGoal {
 
-    ExtendedTraderEntity interactableEntity;
+    ExtendedIMerchantEntity interactableEntity;
 
-    public ExtendedInteractableWaterAvoidingRandomWalkingGoal(CreatureEntity p_i47301_1_, ExtendedTraderEntity interactableEntity, double p_i47301_2_) {
+    public ExtendedInteractableWaterAvoidingRandomWalkingGoal(CreatureEntity p_i47301_1_, ExtendedIMerchantEntity interactableEntity, double p_i47301_2_) {
         super(p_i47301_1_, p_i47301_2_);
 
         this.interactableEntity = interactableEntity;

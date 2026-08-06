@@ -22,7 +22,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedBlueMountainsAxeThrowerEntity extends BlueDwarfWarriorEntity implements ExtendedNPCEntitySettings{
+public class ExtendedBlueMountainsAxeThrowerEntity extends BlueDwarfWarriorEntity implements ExtendedINPCEntitySettings{
 	@SuppressWarnings("unchecked")
 	public ExtendedBlueMountainsAxeThrowerEntity(EntityType<? extends BlueDwarfWarriorEntity> type, World w) {
 		super(type, w);

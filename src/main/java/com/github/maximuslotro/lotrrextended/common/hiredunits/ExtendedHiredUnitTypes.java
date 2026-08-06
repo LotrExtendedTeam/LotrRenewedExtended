@@ -13,10 +13,13 @@ import net.minecraftforge.fml.DatagenModLoader;
  */
 public class ExtendedHiredUnitTypes {
 	public static final Set<ResourceLocation> UNIT_TYPES = Sets.newHashSet();
+	// HOBBIT
+	public static final ResourceLocation HOBBIT_FARMHAND = make("hobbit_farmhand");
 	// BREE
 	public static final ResourceLocation BREE_MAN = make("bree_man");
 	public static final ResourceLocation BREE_HOBBIT = make("bree_hobbit");
 	public static final ResourceLocation BREE_GUARD = make("bree_guard");
+	public static final ResourceLocation BREE_FARMHAND = make("bree_farmhand");
 	// GUNDABD
 	public static final ResourceLocation GUNDABAD_ORC = make("gundabad_orc");
 	public static final ResourceLocation GUNDABAD_ORC_ARCHER = make("gundabad_orc_archer");
@@ -52,6 +55,7 @@ public class ExtendedHiredUnitTypes {
 	public static final ResourceLocation DUNLENDING_BOWMAN = make("dunlending_bowman");
 	public static final ResourceLocation DUNLENDING_AXE_THROWER = make("dunlending_axe_thrower");
 	public static final ResourceLocation DUNLENDING_BERSERKER = make("dunlending_berserker");
+	public static final ResourceLocation DUNLENDING_FARMHAND = make("dunlending_farmhand");
 
 	private static ResourceLocation make(String pId) {
 		return validate(new ResourceLocation(LotrExtendedMod.MODID, pId));

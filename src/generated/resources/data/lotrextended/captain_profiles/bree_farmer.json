@@ -1,0 +1,7 @@
+{
+  "id": "lotrextended:bree_farmer",
+  "alignmentRequired": 0,
+  "unitProfileIDs": [
+    "lotrextended:bree_farmhand"
+  ]
+}

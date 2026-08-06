@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements;
 import java.util.List;
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAbstractStringTrigger;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAlignmentLevelTrigger;
@@ -54,15 +55,17 @@ import net.minecraft.world.biome.Biome;
 
 public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<Advancement>>{
 
-	private Consumer<Advancement> con;
+	private Consumer<Advancement> consumer;
 	private int legacyMade =0;
 
 	@Override
 	public void accept(Consumer<Advancement> t) {
-		con= t;
+		consumer= t;
 		ExtendedAdvancementProvider.advancementsLegacyNumTotal+=getLegacyCount();
 		generateAdvancements();
-		//ExtendedLog.info("Made "+(legacyMade/(float)getLegacyCount())*100+"% of "+getFolder()+" advancements");
+		if(legacyMade!=getLegacyCount()) {
+			ExtendedLog.info("Made "+legacyMade+"/"+getLegacyCount()+" of "+getFolder()+" advancements");
+		}
 		ExtendedAdvancementProvider.advancementsLegacyNum += legacyMade;
 	}
 
@@ -150,10 +153,16 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		return builder.addCriterion("has_"+factionPointer.getName().getPath()+"_level_"+Math.round(level), trigger);
 	}
 
-	public static Advancement.Builder addAlignmentTrigger(Advancement.Builder builder, String faction, float level) {
-		ExtendedAlignmentPredicate pred = new ExtendedAlignmentPredicate(FloatBound.atLeast(level), faction);
+	public static Advancement.Builder addAlignmentPledgedTrigger(Advancement.Builder builder, FactionPointer factionPointer, float level) {
+		ExtendedAlignmentPredicate pred = new ExtendedAlignmentPredicate(FloatBound.atLeast(level), factionPointer.getNameString());
+		ExtendedAlignmentLevelTrigger.Instance trigger = ExtendedAlignmentLevelTrigger.Instance.alignmentLevelPledged(pred);
+		return builder.addCriterion("has_"+factionPointer.getName().getPath()+"_level_"+Math.round(level), trigger);
+	}
+
+	public static Advancement.Builder addAlignmentLevelTrigger(Advancement.Builder builder, float level) {
+		ExtendedAlignmentPredicate pred = new ExtendedAlignmentPredicate(FloatBound.atLeast(level), null);
 		ExtendedAlignmentLevelTrigger.Instance trigger = ExtendedAlignmentLevelTrigger.Instance.alignmentLevel(pred);
-		return builder.addCriterion("has_"+faction+"_level_"+Math.round(level), trigger);
+		return builder.addCriterion("has_any_level_"+Math.round(level), trigger);
 	}
 
 	public static Advancement.Builder addStringTrigger(Advancement.Builder builder, String triggerName) {
@@ -330,7 +339,7 @@ public abstract class ExtendedBaseAdvancementType implements Consumer<Consumer<A
 		if(data.isHidden()) {
 			ExtendedAdvancementProvider.secrets +=1;
 		}
-		return builder.save(con, "lotrextended:"+getFolder()+"/"+data.name);
+		return builder.save(consumer, "lotrextended:"+getFolder()+"/"+data.name);
 	}
 
 	public static RegistryKey<Biome> biome(PreRegisteredLOTRBiome biome){

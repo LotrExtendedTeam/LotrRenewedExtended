@@ -1,5 +1,6 @@
 {
   "id": "lotrextended:lsengard_captain",
+  "alignmentRequired": 150,
   "unitProfileIDs": [
     "lotrextended:lsengard_snaga",
     "lotrextended:lsengard_snaga_archer",

@@ -4,7 +4,7 @@
     {
       "rolls": {
         "min": 1.0,
-        "max": 4.0,
+        "max": 3.0,
         "type": "minecraft:uniform"
       },
       "entries": [
@@ -616,6 +616,16 @@
             }
           ],
           "name": "lotr:artisan_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:smith_tome"
         },
         {
           "type": "minecraft:item",

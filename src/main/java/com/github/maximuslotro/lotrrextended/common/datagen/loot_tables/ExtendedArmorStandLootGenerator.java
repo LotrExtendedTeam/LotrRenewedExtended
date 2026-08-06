@@ -73,7 +73,25 @@ public class ExtendedArmorStandLootGenerator extends ChestLootTables  {
 				.add(addEntry(LOTRItems.BONE_BOOTS.get()).setWeight(5))
 				.add(addEntry(Items.LEATHER_BOOTS).setWeight(5)))
 			);
-
+		make(consumer, ExtendedLootTables.DUNLAND_ARMOR_STAND, makeTable()
+			.withPool(LootPool.lootPool()
+				.setRolls(ConstantRange.exactly(1))
+				.when(RandomChance.randomChance(0.5f))
+				.add(addEntry(LOTRItems.DUNLENDING_HELMET.get()).setWeight(5))
+				.add(addEntry(LOTRItems.FUR_HELMET.get()).setWeight(5)))
+			.withPool(LootPool.lootPool()
+				.setRolls(ConstantRange.exactly(1))
+				.when(RandomChance.randomChance(0.5f))
+				.add(addEntry(LOTRItems.DUNLENDING_CHESTPLATE.get()).setWeight(5)))
+			.withPool(LootPool.lootPool()
+				.setRolls(ConstantRange.exactly(1))
+				.when(RandomChance.randomChance(0.5f))
+				.add(addEntry(LOTRItems.DUNLENDING_LEGGINGS.get()).setWeight(5)))
+			.withPool(LootPool.lootPool()
+				.setRolls(ConstantRange.exactly(1))
+				.when(RandomChance.randomChance(0.5f))
+				.add(addEntry(LOTRItems.DUNLENDING_BOOTS.get()).setWeight(5)))
+			);
 	}
 	public EItemLootEntry.ExtendedBuilder addEntry(Item item){
 		ItemStack stack = new ItemStack(item);

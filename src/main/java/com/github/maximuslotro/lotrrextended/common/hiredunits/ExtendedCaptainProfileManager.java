@@ -61,7 +61,7 @@ public class ExtendedCaptainProfileManager extends ReloadListener<Map<ResourceLo
 				if (captainProfile != null) {
 					if(!captainProfile.getId().equals(spawnName)) {
 						ExtendedLog.warn("Loaded a Captain Profile that has a diffrent file id and file name, THEY SHOULD BE THE SAME!, CHANGING TO FILE NAME ID! {}", spawnName);
-						captainProfile = new ExtendedCaptainProfile(spawnName, captainProfile.getUnitProfileIDs());
+						captainProfile = new ExtendedCaptainProfile(spawnName, captainProfile.getUnitProfileIDs(), captainProfile.getInterractionAlignmentRequired());
 					}
 					builder.put(spawnName, captainProfile);
 				}
@@ -112,10 +112,6 @@ public class ExtendedCaptainProfileManager extends ReloadListener<Map<ResourceLo
 		}
 
 		return map;
-	}
-
-	public static String serialize(Gson gson, ExtendedCaptainProfile data) {
-		return gson.toJson(data);
 	}
 
 	public static <T> T deserialize(Gson gson, JsonElement data, Class<T> classToConvert) {

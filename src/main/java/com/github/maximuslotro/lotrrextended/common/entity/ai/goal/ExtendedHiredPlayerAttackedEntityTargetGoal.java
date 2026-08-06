@@ -4,7 +4,7 @@ import java.util.EnumSet;
 
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
@@ -14,7 +14,7 @@ import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.passive.TameableEntity;
 
 /**
- * A custom target goal that allows an {@link ExtendedNPCEntity} to target and attack
+ * A custom target goal that allows an {@link ExtendedINPCEntity} to target and attack
  * entities recently attacked by its owner. This logic extends behavior from Minecraft's
  * {@code HurtByTargetGoal}, with extra rules for managing interactions with other NPCs,
  * tameable entities, and protected types.
@@ -25,7 +25,7 @@ public class ExtendedHiredPlayerAttackedEntityTargetGoal extends TargetGoal {
 	/**
      * The extended NPC entity that owns this goal.
      */
-	private final ExtendedNPCEntity extendedNpcEntity;
+	private final ExtendedINPCEntity extendedNpcEntity;
 	/**
      * The last entity attacked by the NPC's owner.
      */
@@ -38,11 +38,11 @@ public class ExtendedHiredPlayerAttackedEntityTargetGoal extends TargetGoal {
 	/**
      * Creates a new target goal for the given NPC entity.
      *
-     * @param entity The NPC entity to assign this goal to. Must be an instance of {@link ExtendedNPCEntity}.
+     * @param entity The NPC entity to assign this goal to. Must be an instance of {@link ExtendedINPCEntity}.
      */
 	public ExtendedHiredPlayerAttackedEntityTargetGoal(NPCEntity entity) {
 		super(entity, false);
-		this.extendedNpcEntity = (ExtendedNPCEntity) entity;
+		this.extendedNpcEntity = (ExtendedINPCEntity) entity;
 		this.setFlags(EnumSet.of(Flag.TARGET));
 	}
 
@@ -76,8 +76,8 @@ public class ExtendedHiredPlayerAttackedEntityTargetGoal extends TargetGoal {
 						return false;
 					}
 					// prevent hired units of the same player from fighting each other
-					else if (this.ownerLastAttacked instanceof ExtendedNPCEntity && ((ExtendedNPCEntity)ownerLastAttacked).getUnitInfo().isNpcActiveDuty()) {
-						if (extendedNpcEntity.getUnitInfo().getOwnerUUID().equals(((ExtendedNPCEntity)ownerLastAttacked).getUnitInfo().getOwnerUUID())) {
+					else if (this.ownerLastAttacked instanceof ExtendedINPCEntity && ((ExtendedINPCEntity)ownerLastAttacked).getUnitInfo().isNpcActiveDuty()) {
+						if (extendedNpcEntity.getUnitInfo().getOwnerUUID().equals(((ExtendedINPCEntity)ownerLastAttacked).getUnitInfo().getOwnerUUID())) {
 							if (!((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(this.mob.level, extendedNpcEntity.getUnitInfo().getOwnerUUID())).getExtendedMiscData().canHiredUnitAttackOtherHiredUnit()) {
 								ownerLastAttacked=null;
 								return false;

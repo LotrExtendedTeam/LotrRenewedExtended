@@ -15,8 +15,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedTogglableTitleButton<T> extends Button {
 	// Use translatable keys with %s parameters instead
-	@Deprecated
 	private final TextComponent baseMessage;
+	@Deprecated
 	private final String stringMessageKey;
 	private final String enabledKey;
 	private final String disabledKey;
@@ -24,7 +24,6 @@ public class ExtendedTogglableTitleButton<T> extends Button {
 	protected final IOnTick<T> onTick;
 	private boolean buttonForceDisabled = false;
 	private boolean buttonForceEnabled = false;
-	@Deprecated
 	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, TextComponent pMessage, IPressable pOnPress, ITooltip pOnTooltip, IOnTick<T> pOnTick, String enabledKey, String disabledKey) {
 		super(pX, pY, pWidth, pHeight, pMessage, pOnPress, pOnTooltip);
 		this.baseMessage = pMessage;
@@ -33,7 +32,6 @@ public class ExtendedTogglableTitleButton<T> extends Button {
 		this.onTick = pOnTick;
 		this.stringMessageKey = null;
 	}
-	@Deprecated
 	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, TextComponent pMessage, IPressable pOnPress, IOnTick<T> pOnTick, String enabledKey, String disabledKey) {
 		super(pX, pY, pWidth, pHeight, pMessage, pOnPress);
 		this.baseMessage = pMessage;
@@ -42,7 +40,7 @@ public class ExtendedTogglableTitleButton<T> extends Button {
 		this.onTick = pOnTick;
 		this.stringMessageKey = null;
 	}
-
+	@Deprecated
 	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, String stringMessageKey, IPressable pOnPress, ITooltip pOnTooltip, IOnTick<T> pOnTick, String enabledKey, String disabledKey) {
 		super(pX, pY, pWidth, pHeight, StringTextComponent.EMPTY, pOnPress, pOnTooltip);
 		this.baseMessage = null;
@@ -51,7 +49,7 @@ public class ExtendedTogglableTitleButton<T> extends Button {
 		this.onTick = pOnTick;
 		this.stringMessageKey = stringMessageKey;
 	}
-
+	@Deprecated
 	public ExtendedTogglableTitleButton(int pX, int pY, int pWidth, int pHeight, String stringMessageKey, IPressable pOnPress, IOnTick<T> pOnTick, String enabledKey, String disabledKey) {
 		super(pX, pY, pWidth, pHeight, StringTextComponent.EMPTY, pOnPress);
 		this.baseMessage = null;
@@ -116,6 +114,9 @@ public class ExtendedTogglableTitleButton<T> extends Button {
 		this.renderBg(pMatrixStack, minecraft, pMouseX, pMouseY);
 		int j = getFGColor();
 		drawCenteredString(pMatrixStack, fontrenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
+		if (this.isHovered()) {
+			this.renderToolTip(pMatrixStack, pMouseX, pMouseY);
+		}
 	}
 
 

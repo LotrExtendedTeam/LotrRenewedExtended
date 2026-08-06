@@ -6,7 +6,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.common.data.AlignmentDataModule;
 import lotr.common.data.LOTRLevelData;
-import lotr.common.entity.npc.ExtendedCaptainEntity;
+import lotr.common.entity.npc.ExtendedICaptainEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.fac.Faction;
 import lotr.common.util.CoinUtils;
@@ -16,6 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 		this.unitProfiles = profiles;
 		this.currentProfileIndex = 0;
 	}
-	
+
 	private ExtendedClientHiredUnitProfile getCurrentProfile() {
 		if (unitProfiles.isEmpty()) return null;
 		return unitProfiles.get(currentProfileIndex);
@@ -47,8 +48,27 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 	@Override
 	public void init() {
 		super.init();		
-		this.addButton(new Button(this.leftPos + (this.imageWidth - 125) / 2, this.topPos + 115, 125, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"), button -> talkWithNPC()));
-		hireButton = this.addButton(new Button((this.leftPos + (this.imageWidth - 150) / 2) -1, this.topPos + 92, 150, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire"), button -> hireFromNPC()));
+		hireButton = this.addButton(new Button((this.leftPos + (this.imageWidth - 150) / 2) -1, this.topPos + 92, 150, 20, new TranslationTextComponent("gui.lotrextended.hiring.hire_unit"), button -> hireFromNPC()) {
+			@Override
+			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
+				ExtendedClientHiredUnitProfile currentProfile = getCurrentProfile();
+				if (currentProfile == null) {
+					ExtendedCaptainMainScreen.this.renderTooltip(pPoseStack, font.split(new StringTextComponent("ERROR CAPTAIN PROFILE NOT FOUND!").withStyle(TextFormatting.RED), 200), pMouseX, pMouseY);
+					return;
+				}
+				Faction fac = npcEntity.getFaction();
+				AlignmentDataModule alignData = LOTRLevelData.sidedInstance(player.level).getData(player).getAlignmentData();
+				if(currentProfile.isHiringRequiresPledge() && !alignData.isPledgedTo(fac)) {
+					ExtendedCaptainMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.hiring.hire_unit.not_pledged").withStyle(TextFormatting.RED), 200), pMouseX, pMouseY);
+				}else if(currentProfile.getHiringAlignmentRequired()>alignData.getAlignment(fac)) {
+					ExtendedCaptainMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.hiring.hire_unit.not_alignment", currentProfile.getHiringAlignmentRequired()).withStyle(TextFormatting.RED), 200), pMouseX, pMouseY);
+				}else if(currentProfile.getHiringCost()>CoinUtils.totalValueInInventory(player.inventory)) {
+					ExtendedCaptainMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.hiring.hire_unit.not_enough_money", currentProfile.getHiringCost()).withStyle(TextFormatting.RED), 200), pMouseX, pMouseY);
+				}else {
+					ExtendedCaptainMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.hiring.hire_unit.amount", currentProfile.getHiringCost()), 200), pMouseX, pMouseY);
+				}
+			}
+		});
 		// only show if there are multiple profiles
 		if (unitProfiles.size() > 1) {
 			leftArrowButton = this.addButton(new Button(this.leftPos -13 , this.topPos + 92, 25, 20, new StringTextComponent("<<"), button -> {
@@ -60,50 +80,63 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 		}
 		updateHireButton();
 	}
-	
+
+	@Override
+	public void tick() {
+		super.tick();
+		ExtendedClientHiredUnitProfile currentProfile = getCurrentProfile();
+		if (currentProfile == null) {
+			hireButton.active=false;
+			return;
+		}
+		Faction fac = npcEntity.getFaction();
+		AlignmentDataModule alignData = LOTRLevelData.sidedInstance(player.level).getData(player).getAlignmentData();
+		if(currentProfile.isHiringRequiresPledge() && !alignData.isPledgedTo(fac)) {
+			hireButton.active=false;
+		}else if(currentProfile.getHiringAlignmentRequired()>alignData.getAlignment(fac)) {
+			hireButton.active=false;
+		}else if(currentProfile.getHiringCost()>CoinUtils.totalValueInInventory(player.inventory)) {
+			hireButton.active=false;
+		}else {
+			hireButton.active=true;
+		}
+	}
+
 	private void updateHireButton() {
 		ExtendedClientHiredUnitProfile currentProfile = getCurrentProfile();
-		if (currentProfile == null) return;
-		
-		TextComponent start = new TranslationTextComponent("gui.lotrextended.hiring.hire");
-		if(currentProfile.stringsAreTranslated()) {
-			start.append(new TranslationTextComponent(currentProfile.getEntityUnitTypeName()));
+		TextComponent unitName;
+		if (currentProfile == null) {
+			unitName = new StringTextComponent("ERROR NULL");
 		} else {
-			start.append(new StringTextComponent(currentProfile.getEntityUnitTypeName()));
+			unitName = currentProfile.stringsAreTranslated() ? new TranslationTextComponent(currentProfile.getEntityUnitTypeName()) : new StringTextComponent(currentProfile.getEntityUnitTypeName());
 		}
-		
-		hireButton.setMessage(start);
+		hireButton.setMessage(new TranslationTextComponent("gui.lotrextended.hiring.hire_unit", unitName));
 	}
-	
+
 	private void switchToPrevious() {
 		if (unitProfiles.size() <= 1) return;
 		int newIndex = (currentProfileIndex - 1 + unitProfiles.size()) % unitProfiles.size();
 		switchToProfile(newIndex);
 	}
-	
+
 	private void switchToNext() {
 		if (unitProfiles.size() <= 1) return;
 		int newIndex = (currentProfileIndex + 1) % unitProfiles.size();
 		switchToProfile(newIndex);
 	}
-	
+
 	private void switchToProfile(int newIndex) {
 		// Update the current profile index locally for immediate UI feedback
 		this.currentProfileIndex = Math.max(0, Math.min(newIndex, unitProfiles.size() - 1));
 		updateHireButton();
 	}
 
-	private void talkWithNPC() {
-		ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithTraderPacket(npcEntity.getId()));
-		closeConnection();
-	}
-
 	private void hireFromNPC() {
 		// Ensure the client does not disturb the server when a unit shouldn't actually be able to be hired by a player
 		ExtendedClientHiredUnitProfile currentProfile = getCurrentProfile();
 		if (currentProfile == null) return;
-		
-		if(npcEntity instanceof ExtendedCaptainEntity) {
+
+		if(npcEntity instanceof ExtendedICaptainEntity) {
 			Faction fac = npcEntity.getFaction();
 			AlignmentDataModule alignData = LOTRLevelData.sidedInstance(player.level).getData(player).getAlignmentData();
 			if(currentProfile.isHiringRequiresPledge() && !alignData.isPledgedTo(fac)) {
@@ -133,7 +166,7 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 		renderBackground(matStack);
 		TextComponent title = new StringTextComponent(npcEntity.getName().getString());
 		this.font.draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 67, 16777215);
-		
+
 		// Display unit type name and page indicator
 		ExtendedClientHiredUnitProfile currentProfile = getCurrentProfile();
 		if (currentProfile != null) {
@@ -142,7 +175,7 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 			TextComponent unitTypeText = currentProfile.stringsAreTranslated() ? 
 				new TranslationTextComponent(unitTypeName) : new StringTextComponent(unitTypeName);
 			this.font.draw(matStack, unitTypeText, this.leftPos + ((this.imageWidth - font.width(unitTypeText)) / 2), this.topPos + 80, 11184810);
-			
+
 			// Show page indicator if multiple profiles
 			if (unitProfiles.size() > 1) {
 				String pageIndicator = "(" + (currentProfileIndex + 1) + "/" + unitProfiles.size() + ")";
@@ -150,7 +183,7 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 				this.font.draw(matStack, pageText, this.leftPos + ((this.imageWidth - font.width(pageText)) / 2), this.topPos + 35, 11184810);
 			}
 		}
-		
+
 		super.render(matStack, mouseX, mouseY, tick);
 	}
 }

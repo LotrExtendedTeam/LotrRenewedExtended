@@ -1,0 +1,42 @@
+{
+  "parent": "lotrextended:dunland/land_of_the_wild_men",
+  "display": {
+    "icon": {
+      "item": "lotr:bronze_hoe",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.dunland.dunlending_farmer_trade.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.dunland.dunlending_farmer_trade.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_dunlending_farmer_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:dunlending_farmer",
+        "istraderselling": "false"
+      }
+    },
+    "trade_dunlending_farmer_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:dunlending_farmer",
+        "istraderselling": "true"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_dunlending_farmer_buy",
+      "trade_dunlending_farmer_sell"
+    ]
+  ]
+}

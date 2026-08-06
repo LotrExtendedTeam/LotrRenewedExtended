@@ -4,7 +4,7 @@
     {
       "rolls": {
         "min": 1.0,
-        "max": 4.0,
+        "max": 3.0,
         "type": "minecraft:uniform"
       },
       "entries": [
@@ -396,7 +396,7 @@
             },
             {
               "function": "minecraft:set_nbt",
-              "tag": "{coin_type:\"dwarven\"}"
+              "tag": "{coin_type:\"blue_dwarven\"}"
             }
           ],
           "name": "lotr:silver_coin_hundred"

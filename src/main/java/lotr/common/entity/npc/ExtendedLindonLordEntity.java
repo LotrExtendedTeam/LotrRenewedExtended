@@ -19,7 +19,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedLindonLordEntity extends LindonWarriorEntity  implements ExtendedNPCEntitySettings, ExtendedCaptainEntity {
+public class ExtendedLindonLordEntity extends LindonWarriorEntity  implements ExtendedINPCEntitySettings, ExtendedICaptainEntity {
 
 	public ExtendedLindonLordEntity(EntityType<? extends ExtendedLindonLordEntity> type, World w) {
 		super(type, w);

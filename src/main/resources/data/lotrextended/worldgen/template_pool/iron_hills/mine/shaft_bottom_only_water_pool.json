@@ -1,0 +1,46 @@
+{
+	"name": "lotrextended:iron_hills/mine/shaft_bottom_only_water_pool",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:iron_hills/mine/iron_hills_mine_shaft_bottom_2",
+				"processors": "minecraft:empty",
+				"should_protect_y_level": false
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:iron_hills/mine/iron_hills_mine_shaft_bottom_3",
+				"processors": "minecraft:empty",
+				"should_protect_y_level": false
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:iron_hills/mine/iron_hills_mine_shaft_bottom_4",
+				"processors": "minecraft:empty",
+				"should_protect_y_level": false
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:iron_hills/mine/iron_hills_mine_shaft_bottom_5",
+				"processors": "minecraft:empty",
+				"should_protect_y_level": false
+			}
+		}
+	]
+}

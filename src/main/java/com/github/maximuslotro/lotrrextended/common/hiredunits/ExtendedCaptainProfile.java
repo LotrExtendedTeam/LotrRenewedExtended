@@ -21,15 +21,18 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedCaptainProfile {
-	public static final ExtendedCaptainProfile EMPTY = new ExtendedCaptainProfile(LotrExtendedMod.EMPTY, new ArrayList<>());
+	public static final ExtendedCaptainProfile EMPTY = new ExtendedCaptainProfile(LotrExtendedMod.EMPTY, new ArrayList<>(), 1000);
 
 	private final ResourceLocation id;
 	private final List<ResourceLocation> unitProfileIDs;
-	private List<ExtendedServerHiredUnitProfile> unitProfiles;
+	private List<ExtendedServerHiredUnitProfile> cachedUnitProfiles;
+	/** Required alignment level to access this trader. */
+	private final int hiringAlignmentRequired;
 
-	public ExtendedCaptainProfile(ResourceLocation id, List<ResourceLocation> unitProfileIDs) {
+	public ExtendedCaptainProfile(ResourceLocation id, List<ResourceLocation> unitProfileIDs, int hiringAlignmentRequired) {
 		this.id = id;
 		this.unitProfileIDs = unitProfileIDs;
+		this.hiringAlignmentRequired = hiringAlignmentRequired;
 	}
 
 	/*
@@ -43,9 +46,13 @@ public class ExtendedCaptainProfile {
 		return unitProfileIDs;
 	}
 
+	public int getInterractionAlignmentRequired() {
+		return hiringAlignmentRequired;
+	}
+
 	public List<ExtendedServerHiredUnitProfile> getUnitProfiles() {
-		if(unitProfiles!=null) {
-			return unitProfiles;
+		if(cachedUnitProfiles!=null) {
+			return cachedUnitProfiles;
 		}
 		List<ExtendedServerHiredUnitProfile> serverProfiles = new ArrayList<>();
 
@@ -55,8 +62,8 @@ public class ExtendedCaptainProfile {
 				serverProfiles.add(unitProfile);
 			}
 		}
-		unitProfiles = serverProfiles;
-		return unitProfiles;
+		cachedUnitProfiles = serverProfiles;
+		return cachedUnitProfiles;
 	}
 
 	/*
@@ -71,6 +78,7 @@ public class ExtendedCaptainProfile {
 				ExtendedLog.warn("Failed to load captain profile due to invalid id: {}!", id);
 				return null;
 			}
+			int interractionAlignment = jsonobject.get("alignmentRequired").getAsInt();
 			List<ResourceLocation> unitProfileIDs = new ArrayList<>();
 			if (jsonobject.has("unitProfileIDs")) {
 				JsonArray array = JSONUtils.getAsJsonArray(jsonobject, "unitProfileIDs");
@@ -84,13 +92,14 @@ public class ExtendedCaptainProfile {
 				}
 			}
 
-			return new ExtendedCaptainProfile(new ResourceLocation(id), unitProfileIDs);
+			return new ExtendedCaptainProfile(new ResourceLocation(id), unitProfileIDs, interractionAlignment);
 		}
 
 		@Override
 		public JsonElement serialize(ExtendedCaptainProfile captainProfile, Type p_serialize_2_, JsonSerializationContext context) {
 			JsonObject jsonobject = new JsonObject();
 			jsonobject.addProperty("id", captainProfile.getId().toString());
+			jsonobject.addProperty("alignmentRequired", captainProfile.getInterractionAlignmentRequired());
 			JsonArray array = new JsonArray();
 			for (ResourceLocation unitId : captainProfile.getUnitProfileIDs()) {
 				array.add(unitId.toString());
@@ -104,10 +113,12 @@ public class ExtendedCaptainProfile {
 		private final ResourceLocation id;
 		private List<ResourceLocation> unitProfileIDs = new ArrayList<>();
 		private final String modId;
+		private final int alignmentRequired;
 
-		public Builder(ResourceLocation id, String modId) {
+		public Builder(ResourceLocation id, String modId, int interractionAlignmnetRequired) {
 			this.id = id;
 			this.modId = modId;
+			this.alignmentRequired = interractionAlignmnetRequired;
 		}
 
 		public ExtendedCaptainProfile.Builder addProfile(ResourceLocation profile) {
@@ -121,7 +132,7 @@ public class ExtendedCaptainProfile {
 		 * @return The built ExtendedServerCaptainProfile instance
 		 */
 		public ExtendedCaptainProfile build() {
-			ExtendedCaptainProfile spawner = new ExtendedCaptainProfile(id, unitProfileIDs);
+			ExtendedCaptainProfile spawner = new ExtendedCaptainProfile(id, unitProfileIDs, alignmentRequired);
 			return spawner;
 		}
 

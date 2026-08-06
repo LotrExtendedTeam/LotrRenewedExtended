@@ -300,10 +300,12 @@ public class MixinLOTREntities {
 		// Hobbit
 		ExtendedEntities.HOBBIT_BARTENDER = regNPCD("hobbit_bartender", ExtendedHobbitBartenderEntity::new, ExtendedHobbitBartenderEntity::createAttributes, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
 		ExtendedEntities.HOBBIT_FARMER = regNPCD("hobbit_farmer", ExtendedHobbitFarmerEntity::new, ExtendedHobbitFarmerEntity::createAttributes, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
+		ExtendedEntities.HOBBIT_FARMHAND = regNPCD("hobbit_farmhand", ExtendedHobbitFarmhandEntity::new, ExtendedHobbitFarmhandEntity::createAttributes, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
 		// Bree
 		ExtendedEntities.BREE_SHERIFF = regNPCD("bree_sheriff", ExtendedBreelandSheriffEntity::new, ExtendedBreelandSheriffEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(9335640, 3681573));
 		ExtendedEntities.BREE_MERCHANT = regNPCD("bree_merchant", ExtendedBreelandMerchantEntity::new, ExtendedBreelandMerchantEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 6573346));
 		ExtendedEntities.BREE_FARMER = regNPCD("bree_farmer", ExtendedBreelandFarmerEntity::new, ExtendedBreelandTraderEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 5193273));
+		ExtendedEntities.BREE_FARMHAND = regNPCD("bree_farmhand", ExtendedBreelandFarmhandEntity::new, ExtendedBreelandFarmhandEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 6573367));
 		ExtendedEntities.BREE_POTTER = regNPCD("bree_potter", ExtendedBreelandPotterEntity::new, ExtendedBreelandTraderEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 9218761));
 		ExtendedEntities.BREE_HOBBIT_POTTER = regNPCD("bree_hobbit_potter", ExtendedBreelandHobbitPotterEntity::new, ExtendedBreelandHobbitTraderEntity::createAttributes, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 9218761));
 		ExtendedEntities.BREE_SMITH = regNPCD("bree_smith", ExtendedBreelandSmithEntity::new, ExtendedBreelandSmithEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 2293760));
@@ -359,11 +361,13 @@ public class MixinLOTREntities {
 		ExtendedEntities.URUK_CAPTAIN = regNPCD("uruk_captain", ExtendedUrukCaptainEntity::new, ExtendedUrukCaptainEntity::createAttributes, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2369050, 5790015));
 		ExtendedEntities.URUK_SMITH = regNPCD("uruk_smith", ExtendedUrukSmithEntity::new, ExtendedUrukSmithEntity::createAttributes, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2369050, 13421772));
 		ExtendedEntities.URUK_SUPPLIER = regNPCD("uruk_supplier", ExtendedUrukSupplierEntity::new, ExtendedUrukSupplierEntity::createAttributes, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2369050, 13421772));
-		// Dunlanding
+		// Dunlending
 		ExtendedEntities.DUNLENDING_WARLORD = regNPCD("dunlending_warlord", ExtendedDunlendingWarlordEntity::new, ExtendedDunlendingWarlordEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(5192753, 9337975));
 		ExtendedEntities.DUNLENDING_AXE_THROWER = regNPCD("dunlending_axe_thrower", ExtendedDunlendingAxeThrowerEntity::new, ExtendedDunlendingAxeThrowerEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(5192753, 9337975));
 		ExtendedEntities.DUNLENDING_BERSERKER = regNPCD("dunlending_berserker", ExtendedDunlendingBerserkerEntity::new, ExtendedDunlendingBerserkerEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(5192753, 16050121));
 		ExtendedEntities.DUNLENDING_BARTENDER = regNPCD("dunlending_bartender", ExtendedDunlendingBartenderEntity::new, ExtendedDunlendingBartenderEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(15897714, 3679258));
 		ExtendedEntities.DUNLENDING_SMITH = regNPCD("dunlending_smith", ExtendedDunlendingSmithEntity::new, ExtendedDunlendingSmithEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(15897714, 3679258));
+		ExtendedEntities.DUNLENDING_FARMER = regNPCD("dunlending_farmer", ExtendedDunlendingFarmerEntity::new, ExtendedDunlendingFarmerEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(15897714, 3679258));
+		ExtendedEntities.DUNLENDING_FARMHAND = regNPCD("dunlending_farmhand", ExtendedDunlendingFarmhandEntity::new, ExtendedDunlendingFarmhandEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(15897714, 3679258));
 	}
 }

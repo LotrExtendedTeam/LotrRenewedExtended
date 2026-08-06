@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedAlignmentLevelTrigger;
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
 
 import lotr.common.init.ExtendedEntities;
@@ -200,11 +201,15 @@ public class AdvancementsProviderGeneral extends ExtendedBaseAdvancementType{
 
 		Advancement alignment = build(false, data(LOTRItems.SILVER_RING.get(), "alignment", FrameType.TASK)
 			.setTitle("Alignment").setDescription("Reach +1.0 alignment with any faction."),
-			addAlignmentTrigger(make(), "any", 1).parent(base));
-		
-		Advancement true_fealty = build(false, data(LOTRItems.GOLD_RING.get(), "true_fealty", FrameType.GOAL)
+			addAlignmentLevelTrigger(make(), 1).parent(base));
+
+		Advancement pledged = build(true, data(LOTRItems.GOLD_RING.get(), "pledged", FrameType.TASK)
+			.setTitle("Here Do I Swear").setDescription("Pledge your service to a faction."),
+			make().addCriterion("has_pledged", ExtendedAlignmentLevelTrigger.Instance.pledged()).parent(alignment));
+
+		Advancement true_fealty = build(false, data(LOTRItems.MITHRIL_RING.get(), "true_fealty", FrameType.GOAL)
 			.setTitle("True Fealty").setDescription("Reach +10000.0 alignment with any faction."),
-			addAlignmentTrigger(make(), "any", 10000).parent(alignment));
+			addAlignmentLevelTrigger(make(), 10000).parent(alignment));
 
 		Advancement fasttravel = build(false, data(Items.LEATHER_BOOTS, "fasttravel", FrameType.TASK)
 				.setTitle("Light Speed Traveler").setDescription("Fast travel to anywhere in Middle Earth."),
