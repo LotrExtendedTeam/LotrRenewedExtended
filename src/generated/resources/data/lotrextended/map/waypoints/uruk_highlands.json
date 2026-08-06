@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "waypoint.lotrextended.uruk_highlands",
+    "translate": true
+  },
+  "lore": {
+    "text": "waypoint.lotrextended.uruk_highlands.lore",
+    "translate": true
+  },
+  "x": 1147,
+  "z": 1059,
+  "travel_region": "lotr:rohan",
+  "faction": "lotr:isengard"
+}

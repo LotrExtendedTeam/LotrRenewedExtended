@@ -1,10 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.aggregation;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Objects;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,16 +18,7 @@ public abstract class ExtendedInfoGenerator implements IDataProvider {
 
 	protected static void save(Gson pGson, DirectoryCache pCache, JsonElement info, Path pPath) throws IOException {
 		try {
-			String s = pGson.toJson(info);
-			String s1 = SHA1.hashUnencodedChars(s).toString();
-			if (!Objects.equals(pCache.getHash(pPath), s1) || !Files.exists(pPath)) {
-				Files.createDirectories(pPath.getParent());
-				try (BufferedWriter bufferedwriter = Files.newBufferedWriter(pPath)) {
-					bufferedwriter.write(s);
-				}
-			}
-
-			pCache.putNew(pPath, s1);
+			IDataProvider.save(pGson, pCache, info, pPath);
 		} catch (IOException ioexception) {
 			LOGGER.error("Couldn't save info {}", pPath, ioexception);
 		}

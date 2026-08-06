@@ -1,11 +1,8 @@
-package com.github.maximuslotro.lotrrextended.common.datagen.entity.hiredunitprofiles;
+package com.github.maximuslotro.lotrrextended.common.datagen.entity;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
-import java.util.Objects;
 import java.util.TreeMap;
 import java.util.function.Consumer;
 
@@ -16,7 +13,6 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
 import com.github.maximuslotro.lotrrextended.common.serialization.GsonSerializers;
 import com.google.gson.Gson;
@@ -27,14 +23,14 @@ import net.minecraft.data.IDataProvider;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class ExtendedServerHiredUnitProfileProvider implements IDataProvider {
-	public static final Gson GSON_PRETTY_WRITER = GsonSerializers.createHiredUnitSerializer().disableHtmlEscaping().setPrettyPrinting().create();
+public abstract class ExtendedHiredUnitProfileProvider implements IDataProvider {
+	public static final Gson GSON = GsonSerializers.createHiredUnitSerializer().disableHtmlEscaping().setPrettyPrinting().create();
 	private static final Logger LOGGER = LogManager.getLogger();
 	private final Map<ResourceLocation, ExtendedServerHiredUnitProfile> dataHere = new TreeMap<>();
 	protected final DataGenerator dataGenerator;
 	protected final String modId;
 
-	public ExtendedServerHiredUnitProfileProvider(DataGenerator pDataGenerator, String pModId) {
+	public ExtendedHiredUnitProfileProvider(DataGenerator pDataGenerator, String pModId) {
 		this.dataGenerator = pDataGenerator;
 		this.modId = pModId;
 	}
@@ -44,14 +40,13 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 	@Override
 	public void run(DirectoryCache pCache) throws IOException {
 		Path path = this.dataGenerator.getOutputFolder();
-		Consumer<ExtendedServerHiredUnitProfile> consumer = (spawner) -> {
-			if (dataHere.put(spawner.getId(), spawner)!=null) {
-				throw new IllegalStateException("Duplicate hired unit profile " + spawner.getId().toString());
+		Consumer<ExtendedServerHiredUnitProfile> consumer = (profile) -> {
+			if (dataHere.put(profile.getId(), profile)!=null) {
+				throw new IllegalStateException("Duplicate hired unit profile " + profile.getId().toString());
 			} else {
-				Path path1 = createPath(path, spawner);
-
+				Path path1 = createPath(path, profile);
 				try {
-					save(GSON_PRETTY_WRITER, pCache, spawner, path1);
+					IDataProvider.save(GSON, pCache, GSON.toJsonTree(profile), path1);
 				} catch (IOException ioexception) {
 					LOGGER.error("Couldn't save hired unit profile {}", path1, ioexception);
 				}
@@ -66,24 +61,6 @@ public abstract class ExtendedServerHiredUnitProfileProvider implements IDataPro
 					LOGGER.warn("Didn't make expected unit profile type: "+key.toString());
 				}
 			}
-		}
-	}
-
-	private static void save(Gson pGson, DirectoryCache pCache, ExtendedServerHiredUnitProfile profile, Path pPath) throws IOException {
-		try {
-			String s = ExtendedServerHiredUnitProfileManager.serialize(pGson, profile);
-			String s1 = SHA1.hashUnencodedChars(s).toString();
-			if (!Objects.equals(pCache.getHash(pPath), s1) || !Files.exists(pPath)) {
-				Files.createDirectories(pPath.getParent());
-
-				try (BufferedWriter bufferedwriter = Files.newBufferedWriter(pPath)) {
-					bufferedwriter.write(s);
-				}
-			}
-
-			pCache.putNew(pPath, s1);
-		} catch (IOException ioexception) {
-			LOGGER.error("Couldn't save hired unit profile {}", pPath, ioexception);
 		}
 	}
 

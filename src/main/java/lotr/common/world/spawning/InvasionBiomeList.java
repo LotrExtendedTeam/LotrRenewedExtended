@@ -191,9 +191,17 @@ public class InvasionBiomeList {
                 ExtendedInvasions.ISENGARD, InvasionChance.UNCOMMON,
                 ExtendedInvasions.DUNLAND, InvasionChance.UNCOMMON
         ));
+        register("lotr:uruk_highlands", genMap(ExtendedInvasions.ROHAN, InvasionChance.COMMON));
+
 
         register("lotr:fangorn", new HashMap<>()); // no invasions in Fangorn
         register("lotr:mouths_of_entwash", genMap(ExtendedInvasions.MORDOR, InvasionChance.UNCOMMON));
+        register("lotr:fangorn_wasteland", genMap(
+        	ExtendedInvasions.ISENGARD, InvasionChance.UNCOMMON,
+        	ExtendedInvasions.ROHAN, InvasionChance.UNCOMMON
+        	//TODO add fangorn
+        	));
+
         register("lotr:enedwaith", genMap(
                 ExtendedInvasions.DUNEDAIN, InvasionChance.RARE,
                 ExtendedInvasions.GUNDABAD, InvasionChance.RARE,
