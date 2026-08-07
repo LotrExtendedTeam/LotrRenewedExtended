@@ -247,7 +247,7 @@
   "advancements.lotrextended.eriador.the_troll_fells.title": "As Charnecas dos Trolls",
   "advancements.lotrextended.eriador.the_wild_north.description": "Entre nas Charnecas Geladas.",
   "advancements.lotrextended.eriador.the_wild_north.title": "O Norte Selvagem",
-  "advancements.lotrextended.eriador.treasures_of_imladris.description": "Negocie com um Viajante de Valfenda."
+  "advancements.lotrextended.eriador.treasures_of_imladris.description": "Negocie com um Viajante de Valfenda.",
   "advancements.lotrextended.eriador.treasures_of_imladris.title": "Tesouros de Imladris",
   "advancements.lotrextended.eriador.watcher.description": "Adquira um conjunto completo de armadura de Guardião.",
   "advancements.lotrextended.eriador.watcher.title": "Vigilante",
@@ -497,7 +497,7 @@
   "advancements.lotrextended.lothlorien.elf_100.title": "Glandirithon",
   "advancements.lotrextended.lothlorien.elf_1000.description": "Alcance +1000.0 de alinhamento com os Galadhrim.",
   "advancements.lotrextended.lothlorien.elf_1000.title": "Hest Lórien",
-  "advancements.lotrextended.lothlorien.elf_200.description": "Alcance +200.0 de alinhamento com os Galadhrim."
+  "advancements.lotrextended.lothlorien.elf_200.description": "Alcance +200.0 de alinhamento com os Galadhrim.",
   "advancements.lotrextended.lothlorien.elf_200.title": "Maethor",
   "advancements.lotrextended.lothlorien.elf_2000.description": "Alcance +2000.0 de alinhamento com os Galadhrim.",
   "advancements.lotrextended.lothlorien.elf_2000.title": "Arphen Lórien",
@@ -748,7 +748,7 @@
   "advancements.lotrextended.shire.feeling_lucky.description": "Encontre um raro Trevo de Quatro Folhas.",
   "advancements.lotrextended.shire.feeling_lucky.title": "Com Sorte?",
   "advancements.lotrextended.shire.hobbit_bounder.description": "Alcance +500.0 de alinhamento com os Hobbits do Condado.",
-  "advancements.lotrextended.shire.hobbit_bounder.title": "Fronteiro Hobbit"
+  "advancements.lotrextended.shire.hobbit_bounder.title": "Fronteiro Hobbit",
   "advancements.lotrextended.shire.hobbit_chief_shirriff.description": "Alcance +2000.0 de alinhamento com os Hobbits do Condado.",
   "advancements.lotrextended.shire.hobbit_chief_shirriff.title": "Xerife-Chefe",
   "advancements.lotrextended.shire.hobbit_crafter.description": "Crie um item na Bancada de Trabalho Hobbit.",
@@ -997,7 +997,7 @@
   "block.lotr.limestone_stairs": "Escadas de Calcário",
   "block.lotr.limestone_tile": "Azulejo de Calcário",
   "block.lotr.limestone_tile_slab": "Laje de Azulejo de Calcário",
-  "block.lotr.limestone_tile_stairs": "Escadas de Azulejo de Calcário"
+  "block.lotr.limestone_tile_stairs": "Escadas de Azulejo de Calcário",
   "block.lotr.limestone_tile_wall": "Muro de Azulejo de Calcário",
   "block.lotr.limestone_wall": "Muro de Calcário",
   "block.lotr.lindon_banner": "Estandarte de Lindon",
@@ -1247,7 +1247,7 @@
   "block.lotr.willow_sapling": "Muda de Salgueiro",
   "block.lotr.willow_sign": "Placa de Salgueiro",
   "block.lotr.willow_slab": "Laje de Salgueiro",
-  "block.lotr.willow_stairs": "Escadas de Salgueiro"
+  "block.lotr.willow_stairs": "Escadas de Salgueiro",
   "block.lotr.willow_trapdoor": "Alçapão de Salgueiro",
   "block.lotr.willow_vines": "Vinhas de Salgueiro",
   "block.lotr.willow_wood": "Madeira de Salgueiro",
@@ -1497,7 +1497,7 @@
   "block.minecraft.banner.lotrextended_lindon.yellow": "Símbolo de Lindon Amarelo",
   "block.minecraft.banner.lotrextended_lothlorien.black": "Símbolo de Lothlórien Preto",
   "block.minecraft.banner.lotrextended_lothlorien.blue": "Símbolo de Lothlórien Azul",
-  "block.minecraft.banner.lotrextended_lothlorien.brown": "Símbolo de Lothlórien Marrom"
+  "block.minecraft.banner.lotrextended_lothlorien.brown": "Símbolo de Lothlórien Marrom",
   "block.minecraft.banner.lotrextended_lothlorien.cyan": "Símbolo de Lothlórien Ciano",
   "block.minecraft.banner.lotrextended_lothlorien.gray": "Símbolo de Lothlórien Cinza",
   "block.minecraft.banner.lotrextended_lothlorien.green": "Símbolo de Lothlórien Verde",
@@ -1997,7 +1997,7 @@
   "gui.lotrextended.settings.immersivespeechchat.setting": "Substituição de Chat de NPC: ",
   "gui.lotrextended.settings.immersivespeechduration.prefix": "Duração do Balão de Fala: ",
   "gui.lotrextended.settings.immersivespeechduration.suffix": " Segundos",
-  "gui.lotrextended.settings.imperial.setting": "Unidades Imperiais para Distâncias: "
+  "gui.lotrextended.settings.imperial.setting": "Unidades Imperiais para Distâncias: ",
   "gui.lotrextended.settings.jeilotrversioncheck.setting": "Corrigir verif. de versão quebrada do JEI-lotr: ",
   "gui.lotrextended.settings.lotrextendedversioncheck.setting": "Verificação de Versão do Extended: ",
   "gui.lotrextended.settings.manishwomen.setting": "Mulheres Humanas usam Modelo Alex: ",

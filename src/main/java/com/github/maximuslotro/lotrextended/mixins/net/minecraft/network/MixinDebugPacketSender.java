@@ -24,6 +24,15 @@ public class MixinDebugPacketSender {
 	@Shadow
 	private static void sendPacketToAllPlayers(ServerWorld pLevel, PacketBuffer pBuffer, ResourceLocation pType) {}
 
+	/**
+	 * @author Maximuslotro
+	 * @param pLevel World to send for
+	 * @param pMob Entity to send for
+	 * @param pPath Path to send for
+	 * @param pMaxDistanceToWaypoint node distance 
+	 * @reason To add pathfinding navigation debug display
+	 * 
+	 * */
 	@Overwrite
 	public static void sendPathFindingPacket(World pLevel, MobEntity pMob, @Nullable Path pPath, float pMaxDistanceToWaypoint) {
 		if(ExtendedServerDebugToggles.renderNavPaths && pPath!=null) {

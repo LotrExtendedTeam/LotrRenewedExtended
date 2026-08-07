@@ -1,0 +1,69 @@
+{
+	"line0": {
+		"string": [
+			"~~~~~~~~~~~~"
+		]
+	},
+	"line1": {
+		"string": [
+			"The Wild",
+			"The Fiery",
+			"The Rugged",
+			"The Bloody",
+			"The Iron",
+			"The Ashen",
+			"The Brazen",
+			"The Grim",
+			"The Horned",
+			"The Thirsty",
+			"The Hearty",
+			"The Drunken",
+			"The Howling",
+			"The Singing",
+			"The Dancing",
+			"The Savage",
+			"The Bitter",
+			"The Lost",
+			"The Hidden",
+			"The Lonely",
+			"The Ruined"
+		]
+	},
+	"line2": {
+		"string": [
+			"Boar",
+			"Crow",
+			"Wolf",
+			"Ox",
+			"Raven",
+			"Craban",
+			"Bear",
+			"Owl",
+			"Hound",
+			"Hawk",
+			"Clansman",
+			"Hillman",
+			"Ruffian",
+			"Outlaw",
+			"Huntsman",
+			"Dwarf",
+			"Strider",
+			"Spear",
+			"Axe",
+			"Horn",
+			"Lodge",
+			"Tavern",
+			"Alehouse",
+			"Pine",
+			"Stone",
+			"Crag",
+			"Mountain",
+			"Hill"
+		]
+	},
+	"line3": {
+		"string": [
+			"~~~~~~~~~~~~"
+		]
+	}
+}
