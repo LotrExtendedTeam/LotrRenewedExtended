@@ -1,0 +1,13 @@
+{
+  "parent": "lotr:durins_folk/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "A few moons more at the forge, and then I shall have the armour I need to go out hunting those Rakhâs!"
+      ]
+    }
+  ]
+}
