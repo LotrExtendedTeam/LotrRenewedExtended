@@ -401,6 +401,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.lotrextendedversioncheck.setting", "Extended Version Check: ");
 		addD("gui.lotrextended.settings.show_hired_unit_hp_numbers.setting", "Large Hired Unit HP Bars: ");
 		addD("gui.lotrextended.settings.spawneroutline.setting", "Spawner Outlines: ");
+		addD("gui.lotrextended.settings.pathnav.setting", "Path Navigation: ");
 
 		// World Prune stuff
 		addD("gui.lotrextended.worldprune.title", "World Prune Panel");
@@ -561,8 +562,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 		//Config Command Values
 		addD("command.lotrextended.config.cant", "can only be edited in server config while server is off!");
-		addD("command.lotrextended.config.current", "Current");
-		addD("command.lotrextended.config.value", " value");
+		addD("command.lotrextended.config.current_value", "Current %1$s value: %2$s");
 
 		//Version strings
 		addD("command.lotrextended.version.left", "A new version");

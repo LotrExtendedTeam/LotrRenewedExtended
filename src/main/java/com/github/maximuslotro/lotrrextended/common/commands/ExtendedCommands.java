@@ -17,5 +17,6 @@ public class ExtendedCommands {
 		ExtendedConfigCommand.register(dispatcher);
 		ExtendedTriggerCommand.register(dispatcher);
 		ExtendedSummonCommand.register(dispatcher);
+		ExtendedDebugCommand.register(dispatcher);
 	}
 }
