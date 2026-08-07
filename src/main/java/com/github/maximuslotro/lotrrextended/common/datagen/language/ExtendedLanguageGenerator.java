@@ -622,8 +622,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hired_unit_tooltip.title.attack", "Attack:");
 		addD("gui.lotrextended.hired_unit_tooltip.title.attack_damage", "Damage: %1$s");
 		addD("gui.lotrextended.hired_unit_tooltip.title.attack_speed", "Speed: %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.level", "Level: %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.xp", "Xp: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.level", "Combat Level: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.xp", "Combat Xp: %1$s");
 		addD("gui.lotrextended.hired_unit_tooltip.title.mob_kills", "Mob Kills: %1$s");
 		addD("gui.lotrextended.hired_unit_farmhand.level", "Farming Level: %s");
 		addD("gui.lotrextended.hired_unit_farmhand.crops_farmed", "Crops Harvested: %s");

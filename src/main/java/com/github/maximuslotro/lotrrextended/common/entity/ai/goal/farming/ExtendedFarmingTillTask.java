@@ -134,9 +134,7 @@ public class ExtendedFarmingTillTask extends ExtendedFarmingAbstractTask{
 			return false;
 		}
 		if(activeSeeds.getItem() instanceof BlockItem) {
-			if(((BlockItem)activeSeeds.getItem()).getBlock() instanceof SweetBerryBushBlock) {
-				return false;
-			}
+            return !(((BlockItem) activeSeeds.getItem()).getBlock() instanceof SweetBerryBushBlock);
 		}
 		return true;
 	}
