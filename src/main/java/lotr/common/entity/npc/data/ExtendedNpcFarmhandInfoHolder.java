@@ -1,5 +1,8 @@
 package lotr.common.entity.npc.data;
 
+import java.util.EnumSet;
+import java.util.Set;
+
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitFarmhandContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcFarmhandInfoPacket;
@@ -54,6 +57,10 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	private Inventory farmhandOutputInventory;
 	/** Flag indicating if updated farmhand data needs to be synchronized to tracking clients. */
 	private boolean resendData = false;
+	/** Set of active warning causes on the server side. */
+	private final Set<FarmingWarning> activeWarnings = EnumSet.noneOf(FarmingWarning.class);
+	/** Cached bitmask representation (used primarily on the client side). */
+	private int warningBitmask = 0;
 	/**
 	 * Constructs a new farmhand data holder for the specified NPC entity.
 	 *
@@ -121,6 +128,14 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 			if (holder.contains("size_add")) {
 				setInventoryAdditionalSize(holder.getInt("size_add"));
 			}
+
+			if (holder.contains("warnings")) {
+                int bitmask = holder.getInt("warnings");
+                setWarningBitmask(bitmask);
+                this.activeWarnings.clear();
+                this.activeWarnings.addAll(FarmingWarning.fromBitmask(bitmask));
+            }
+
 			farmhandInputInventory = makeFarmhandInputInventory();
 			ExtendedNBTUtils.readInventoryFromNBT(nbt, farmhandInputInventory, FARMHANDITEMSLIST);
 			farmhandOutputInventory = makeFarmhandOutputInventory();
@@ -142,6 +157,7 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 		holder.putInt("m_xp", getMaxFarmerXp());
 		holder.putInt("crops_h", getCropsHarvested());
 		holder.putInt("size_add", getInventoryAdditionalSize());
+		holder.putInt("warnings", getWarningBitmask());
 		ExtendedNBTUtils.writeInventoryToNBT(nbt, getFarmhandInputInventory(), FARMHANDITEMSLIST);
 		ExtendedNBTUtils.writeInventoryToNBT(nbt, getFarmhandOutputInventory(), FARMHANDCROPSLIST);
 		nbt.put("FarmhandInfo", holder);
@@ -179,6 +195,7 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 		buf.writeVarInt(getMaxFarmerXp());
 		buf.writeVarInt(getCropsHarvested());
 		buf.writeVarInt(getInventoryAdditionalSize());
+		buf.writeVarInt(getWarningBitmask());
 		return buf;
 	}
 	/**
@@ -199,6 +216,7 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 				farmhandInfo.setMaxFarmerXp(buf.readVarInt());
 				farmhandInfo.setCropsHarvested(buf.readVarInt());
 				farmhandInfo.setInventoryAdditionalSize(buf.readVarInt());
+				farmhandInfo.setWarningBitmask(buf.readVarInt());
 				// Ensure inventories is remade on next client access
 				farmhandInfo.farmhandInputInventory = null;
 				farmhandInfo.farmhandOutputInventory = null;
@@ -411,5 +429,74 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 			farmhandOutputInventory = makeFarmhandOutputInventory();
 		}
 		return farmhandOutputInventory;
+	}
+
+	public enum FarmingWarning {
+		INVENTORY_FULL(1 << 0),
+		NO_SEEDS(1 << 1);
+
+		private final int bitFlag;
+
+		FarmingWarning(int bitFlag) {
+			this.bitFlag = bitFlag;
+		}
+
+		public int getBitFlag() {
+			return bitFlag;
+		}
+
+		public static int toBitmask(Set<FarmingWarning> warnings) {
+			int mask = 0;
+			for (FarmingWarning warning : warnings) {
+				mask |= warning.getBitFlag();
+			}
+			return mask;
+		}
+
+		public static Set<FarmingWarning> fromBitmask(int bitmask) {
+			Set<FarmingWarning> set = EnumSet.noneOf(FarmingWarning.class);
+			for (FarmingWarning warning : values()) {
+				if ((bitmask & warning.getBitFlag()) != 0) {
+					set.add(warning);
+				}
+			}
+			return set;
+		}
+	}
+
+	public void setWarning(FarmingWarning warning, boolean active) {
+		boolean changed = active ? activeWarnings.add(warning) : activeWarnings.remove(warning);
+		if (changed) {
+			this.warningBitmask = FarmingWarning.toBitmask(this.activeWarnings);
+			markDirty();
+		}
+	}
+
+	public boolean hasWarning() {
+		return getWarningBitmask() != 0;
+	}
+
+	public boolean hasWarning(FarmingWarning warning) {
+		return (getWarningBitmask() & warning.getBitFlag()) != 0;
+	}
+
+	public int getWarningBitmask() {
+	    return this.warningBitmask;
+	}
+
+	public void setWarningBitmask(int bitmask) {
+		this.warningBitmask = bitmask;
+		if (thisEntity.level.isClientSide) {
+			this.activeWarnings.clear();
+			this.activeWarnings.addAll(FarmingWarning.fromBitmask(bitmask));
+		}
+	}
+
+	public void clearAllWarnings() {
+		if (!this.activeWarnings.isEmpty()) {
+			this.activeWarnings.clear();
+			this.warningBitmask = 0;
+			markDirty();
+		}
 	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
+import com.github.maximuslotro.lotrrextended.client.render.ExtendedExclamationMarkRenderer;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedHiredUnitHpBar;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
@@ -24,6 +25,7 @@ import lotr.common.init.LOTRDimensions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -38,6 +40,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderNameplateEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
@@ -151,7 +154,7 @@ public class ExtendedRendererEventHandler {
 		}
 		// Append on top
 		event.getToolTip().addAll(1, listedStartTooltips);
-		
+
 		if(stack.getItem() instanceof BowItem) {
 			float drawSpeed = 1;
 			float damage = 1.0f;
@@ -192,5 +195,9 @@ public class ExtendedRendererEventHandler {
 			event.getToolTip().add((new TranslationTextComponent("item.lotrextended.modifiers.horse")).withStyle(TextFormatting.GRAY));
 			event.getToolTip().add((new TranslationTextComponent("attribute.modifier.plus.0", ((HorseArmorItem)stack.getItem()).getProtection(), new TranslationTextComponent("attribute.name.generic.armor"))).withStyle(TextFormatting.BLUE));
 		}
+	}
+
+	public static void onPostRenderEntity(final RenderLivingEvent.Post<LivingEntity, EntityModel<LivingEntity>> event) {
+		ExtendedExclamationMarkRenderer.onPostRenderEntity(event);
 	}
 }

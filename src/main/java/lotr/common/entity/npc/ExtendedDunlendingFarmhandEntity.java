@@ -1,6 +1,7 @@
 package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming.ExtendedFarmingGoalHolder;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming.ExtendedFarmingGoalHolder.FarmingType;
 
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
@@ -14,6 +15,7 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 public class ExtendedDunlendingFarmhandEntity extends DunlendingEntity implements ExtendedIFarmhand {
+	private ExtendedFarmingGoalHolder farmGoals;
 
 	public ExtendedDunlendingFarmhandEntity(EntityType<? extends DunlendingEntity> type, World w) {
 		super(type, w);
@@ -26,7 +28,12 @@ public class ExtendedDunlendingFarmhandEntity extends DunlendingEntity implement
 	@Override
 	protected void addNPCAI() {
 		super.addNPCAI();
-		this.goalSelector.addGoal(3, new ExtendedFarmingGoalHolder(this, 1.0D).standardOrder());
+		this.goalSelector.addGoal(3, farmGoals = new ExtendedFarmingGoalHolder(this, FarmingType.WILDS, 1.0D).standardOrder());
+	}
+
+	@Override
+	public ExtendedFarmingGoalHolder getFarmingGoals() {
+		return farmGoals;
 	}
 
 	@Override

@@ -73,6 +73,7 @@ public class ExtendedClientProxy {
 		forgeBus.addListener(ExtendedRendererEventHandler::onPreRenderGameOverlay);
 		forgeBus.addListener(ExtendedRendererEventHandler::addTooltipsForModifiers);
 		forgeBus.addListener(ExtendedRendererEventHandler::onPostRenderGameOverlay);
+		forgeBus.addListener(ExtendedRendererEventHandler::onPostRenderEntity);
 		modBus.addListener(this::onParticleRegistry);
 		modBus.addListener(this::clientStartupEvent);
 		modBus.addListener(ExtendedBlockRenderer::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);
