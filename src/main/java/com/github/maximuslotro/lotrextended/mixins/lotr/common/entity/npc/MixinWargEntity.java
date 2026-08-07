@@ -22,6 +22,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorIte
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem.MountType;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedAlignmentHelper;
 
 import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.ai.goal.PanicIfBurningGoal;
@@ -73,12 +74,10 @@ import net.minecraft.util.HandSide;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.TransportationHelper;
-import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -365,7 +364,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 			this.doPlayerRide(pPlayer);
 			return ActionResultType.sidedSuccess(this.level.isClientSide);
 		}else {
-			pPlayer.sendMessage(new TranslationTextComponent("chat.lotrextended.action_requires_alignment", "+"+50), Util.NIL_UUID);
+			ExtendedAlignmentHelper.sendAlignmentError(pPlayer, "+50.0", getFaction());
 			return ActionResultType.sidedSuccess(this.level.isClientSide);
 		}
 	}

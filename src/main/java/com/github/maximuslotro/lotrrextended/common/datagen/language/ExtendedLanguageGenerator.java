@@ -148,7 +148,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("chat.lotrextended.hired_companion_levelup", "Your hired companion %1$s has reached level %2$s!");
 		addD("chat.lotrextended.no_custom", "Custom waypoint fast travel has been disabled on this server.");
 		addD("chat.lotrextended.no_default", "Default waypoint fast travel has been disabled on this server.");
-		addD("chat.lotrextended.action_requires_alignment", "This action requires %1$s alignment!");
+		addD("chat.lotrextended.requires_alignment", "You need at least %1$s %2$s alignment to perform this action");
 
 		// Add Menu strings
 		addD("gui.lotrextended.menu.fellowships", "Fellowships");
@@ -479,6 +479,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 		// Banner protection info
 		addD("message.lotrextended.banner.land_protected", "This land is under the protection of %s");
+		addD("message.lotrextended.banner.land_protected.already", "Banner can not be placed since it overlaps with another's banner protection!");
 
 		// Additional item strings
 		addD("item."+ExtendedItems.COMMANDHORN.getId().getNamespace()+"."+ExtendedItems.COMMANDHORN.getId().getPath()+".halt", "Horn of Command - Halt Units");

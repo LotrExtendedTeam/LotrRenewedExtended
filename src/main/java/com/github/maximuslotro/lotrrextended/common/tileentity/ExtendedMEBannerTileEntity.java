@@ -16,7 +16,6 @@ import com.github.maximuslotro.lotrrextended.common.bannerprotection.whitelist.E
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBannerEntity;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerProtectionLevels;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerProtectionOwners;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
@@ -110,7 +109,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	/**
 	 * Current protection level applied to this banner.
 	 */
-	private ExtendedBannerProtectionLevels protectionLevel = ExtendedBannerProtectionLevels.NONE;
+	private int protectionLevel = 0;
 	/**
 	 * Tracks whether this is the first tick since the tile entity was loaded.
 	 */
@@ -167,18 +166,18 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 		}
 	}
 
-	public static ExtendedBannerProtectionLevels getProtectionLevelFromBelowBlock(World level, BlockPos pos) {
+	public static int getProtectionLevelFromBelowBlock(World level, BlockPos pos) {
 		BlockState belowBlockstate = level.getBlockState(pos);
 		if(belowBlockstate.is(Blocks.GOLD_BLOCK)) {
-			return ExtendedBannerProtectionLevels.GOLD;
+			return 32;
 		}else if(belowBlockstate.is(LOTRBlocks.SILVER_BLOCK.get())) {
-			return ExtendedBannerProtectionLevels.SILVER;
+			return 16;
 		}else if(belowBlockstate.is(LOTRBlocks.BRONZE_BLOCK.get())) {
-			return ExtendedBannerProtectionLevels.BRONZE;
+			return 8;
 		}else if(belowBlockstate.is(LOTRBlocks.COPPER_BLOCK.get())) {
-			return ExtendedBannerProtectionLevels.COPPER;
+			return 4;
 		}else {
-			return ExtendedBannerProtectionLevels.NONE;
+			return 0;
 		}
 	}
 
@@ -211,7 +210,7 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * @return boolean
 	 * */
 	public boolean isProtecting() {
-		return protectionLevel.getProtectionRadius()>0;
+		return protectionLevel>0;
 	}
 
 	/**
@@ -219,24 +218,16 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 	 * @return int
 	 * */
 	public int getProtectionRadius() {
-		return protectionLevel.getProtectionRadius();
-	}
-
-	/**
-	 * Gets the banner's protection level
-	 * @return BannerProtectionLevel
-	 * */
-	public ExtendedBannerProtectionLevels getProtectionLevel() {
 		return protectionLevel;
 	}
 
 	/**
 	 * Sets the banner's protection level
-	 * @param protectionLevel {@link ExtendedBannerProtectionLevels} to be set
+	 * @param protectionLevel radius to be set
 	 * */
-	public void setProtectionLevel(ExtendedBannerProtectionLevels protectionLevel) {
+	public void setProtectionLevel(int protectionLevel) {
 		this.protectionLevel = protectionLevel;
-		if(protectionLevel.getProtectionRadius()>0) {
+		if(protectionLevel>0) {
 			used = true;
 		}
 	}
@@ -593,14 +584,18 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			CompoundNBT pCompound = loadableData.getCompound("ProtectionData");
 			protectionType = ExtendedBannerProtectionOwners.getByID(pCompound.getInt("protectionType"));
 			used = true;
+			if(pCompound.contains("alignmentThreshold")) {
+				alignmentLevel = pCompound.getFloat("alignmentThreshold");
+			}
 			if(pCompound.contains("placedPlayer")) {
 				placedPlayerUUID = pCompound.getUUID("placedPlayer");
 			}
 			if(pCompound.contains("placedPlayerName")) {
 				placedPlayerName = pCompound.getString("placedPlayerName");
 			}
-			if(pCompound.contains("alignmentThreshold")) {
-				alignmentLevel = pCompound.getFloat("alignmentThreshold");
+			// Load data for first tick
+			if(pCompound.contains("radius")) {
+				protectionLevel = pCompound.getInt("radius");
 			}
 			if(pCompound.contains("whitelistEntrys")) {
 				ListNBT whitelist = pCompound.getList("whitelistEntrys", 10);
@@ -677,8 +672,8 @@ public class ExtendedMEBannerTileEntity extends TileEntity implements ITickableT
 			if(placedPlayerName!=null) {
 				pCompound.putString("placedPlayerName", placedPlayerName);
 			}
-			if(protectionLevel.getProtectionRadius()>0) {
-				pCompound.putInt("radius", protectionLevel.getProtectionRadius());
+			if(protectionLevel>0) {
+				pCompound.putInt("radius", protectionLevel);
 			}
 			if(!protectionWhitelist.isEmpty()) {
 				ListNBT whitelist = new ListNBT();
