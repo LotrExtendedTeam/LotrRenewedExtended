@@ -873,6 +873,22 @@
           "biome": "lotr:barrow_downs"
         }
       }
+    },
+    "enter_fangorn_wasteland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:fangorn_wasteland"
+        }
+      }
+    },
+    "enter_uruk_highlands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "lotr:uruk_highlands"
+        }
+      }
     }
   },
   "requirements": [
@@ -1196,6 +1212,12 @@
     ],
     [
       "enter_barrow_downs"
+    ],
+    [
+      "enter_fangorn_wasteland"
+    ],
+    [
+      "enter_uruk_highlands"
     ]
   ]
 }

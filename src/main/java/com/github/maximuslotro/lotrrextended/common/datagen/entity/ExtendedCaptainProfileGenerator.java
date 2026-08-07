@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.datagen.entity.hiredunitprofiles;
+package com.github.maximuslotro.lotrrextended.common.datagen.entity;
 
 import java.util.function.Consumer;
 

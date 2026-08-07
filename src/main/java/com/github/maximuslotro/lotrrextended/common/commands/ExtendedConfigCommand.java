@@ -11,13 +11,9 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.ForgeConfigSpec;
 
-public class ExtendedConfigCommand {
+public class ExtendedConfigCommand extends ExtendedValueSetCommand {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		LiteralArgumentBuilder<CommandSource> command = Commands.literal("lotrExtendedConfig").requires(context -> context.hasPermission(4));
 		// Gameplay
@@ -124,62 +120,5 @@ public class ExtendedConfigCommand {
 					return Command.SINGLE_SUCCESS;})
 				)
 			.executes(context -> retrieveIntValue(context.getSource(), name, configType.get()));
-	}
-
-	public static int retrieveBooleanValue(CommandSource source, String name, boolean value) {
-		source.sendSuccess(new TranslationTextComponent("command.lotrextended.config.current").withStyle(TextFormatting.GREEN)
-			.append(new StringTextComponent(" "+name+" ").withStyle(TextFormatting.AQUA))
-			.append(new TranslationTextComponent("command.lotrextended.config.value").withStyle(TextFormatting.GOLD))
-			.append(new StringTextComponent(": "+Boolean.toString(value)).withStyle(TextFormatting.GOLD)), true);
-		return Command.SINGLE_SUCCESS;
-	}
-	public static int retrieveIntValue(CommandSource source, String name, int value) {
-		source.sendSuccess(new TranslationTextComponent("command.lotrextended.config.current").withStyle(TextFormatting.GREEN)
-			.append(new StringTextComponent(" "+name+" ").withStyle(TextFormatting.AQUA))
-			.append(new TranslationTextComponent("command.lotrextended.config.value").withStyle(TextFormatting.GOLD))
-			.append(new StringTextComponent(": "+Integer.toString(value)).withStyle(TextFormatting.GOLD)), true);
-		return Command.SINGLE_SUCCESS;
-	}
-	public static int retrieveDoubleValue(CommandSource source, String name, double value) {
-		source.sendSuccess(new TranslationTextComponent("command.lotrextended.config.current").withStyle(TextFormatting.GREEN)
-			.append(new StringTextComponent(" "+name+" ").withStyle(TextFormatting.AQUA))
-			.append(new TranslationTextComponent("command.lotrextended.config.value").withStyle(TextFormatting.GOLD))
-			.append(new StringTextComponent(": "+Double.toString(value)).withStyle(TextFormatting.GOLD)), true);
-		return Command.SINGLE_SUCCESS;
-	}
-
-	public static int cantSetValue(CommandSource source, String name) {
-		source.sendSuccess(new StringTextComponent(name+" ").withStyle(TextFormatting.AQUA)
-			.append(new TranslationTextComponent("command.lotrextended.config.cant").withStyle(TextFormatting.RED)), true);
-		return Command.SINGLE_SUCCESS;
-	}
-
-	public static int setBooleanValue(CommandSource source, String name, boolean value) {
-		TextComponent text = value ? new TranslationTextComponent("gui.lotrextended.base.enabled") : new TranslationTextComponent("gui.lotrextended.base.disabled");
-		if(value) {
-			text.withStyle(TextFormatting.GREEN);
-		}else {
-			text.withStyle(TextFormatting.RED);
-		}
-		source.sendSuccess(text.append(" "+name).withStyle(TextFormatting.AQUA), false);
-		return Command.SINGLE_SUCCESS;
-	}
-
-	public static int setIntValue(CommandSource source, String name, int value) {
-		TextComponent text = new TranslationTextComponent("gui.lotrextended.base.set");
-		text.withStyle(TextFormatting.GREEN);
-		text.append(" "+name+":").withStyle(TextFormatting.AQUA);
-		text.append(" "+ value).withStyle(TextFormatting.GOLD);
-		source.sendSuccess(text, false);
-		return Command.SINGLE_SUCCESS;
-	}
-
-	public static int setDoubleValue(CommandSource source, String name, double value) {
-		TextComponent text = new TranslationTextComponent("gui.lotrextended.base.set");
-		text.withStyle(TextFormatting.GREEN);
-		text.append(" "+name+":").withStyle(TextFormatting.AQUA);
-		text.append(" "+ value).withStyle(TextFormatting.GOLD);
-		source.sendSuccess(text, false);
-		return Command.SINGLE_SUCCESS;
 	}
 }

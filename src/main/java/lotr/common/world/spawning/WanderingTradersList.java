@@ -83,6 +83,7 @@ public class WanderingTradersList {
 
 		register("lotr:rohan", genMap("lotr:galadhrim_wanderer", 30, "lotr:oddment_collector", 70));
 		register("lotr:wold", genMap("lotr:galadhrim_wanderer", 30, "lotr:oddment_collector", 70));
+		register("lotr:uruk_highlands", genMap("lotr:oddment_collector", 1));
 
 		register("lotr:fangorn", genRates("lotr:galadhrim_wanderer"));
 		register("lotr:mouths_of_entwash", genRates("lotr:galadhrim_wanderer", "lotr:oddment_collector"));

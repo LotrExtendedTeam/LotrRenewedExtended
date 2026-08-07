@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
 
 import lotr.common.fac.FactionPointers;
+import lotr.common.init.ExtendedBiomes;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
@@ -25,6 +26,10 @@ public class AdvancementsProviderRohan extends ExtendedBaseAdvancementType{
 		Advancement vale_of_the_wizard = build(true, data(LOTRItems.URUK_BERSERKER_CLEAVER.get(), "vale_of_the_wizard", FrameType.TASK)
 				.setTitle("Vale of the Wizard").setDescription("Enter the valley of Nan Curunír."),
 				addBiomeTrigger(make(), LOTRBiomes.NAN_CURUNIR).parent(horse_lords));
+	
+		Advancement uruk_highlands = build(true, data(LOTRItems.URUK_BERSERKER_CLEAVER.get(), "uruk_highlands", FrameType.TASK)
+			.setTitle("Place of Devastation").setDescription("Enter the Uruk Highlands."),
+			addBiomeTrigger(make(), ExtendedBiomes.URUK_HIGHLANDS).parent(vale_of_the_wizard));
 
 		Advancement entwash = build(true, data(Items.FERN, "entwash", FrameType.TASK)
 		.setTitle("Last Marsh of the Ents").setDescription("Enter the Mouths of Entwash."),
