@@ -1,5 +1,5 @@
 {
   "faction": "lotr:lothlorien",
   "kill_bonus": 1,
-  "speechbank": "lotr:lothlorien/galadhrim_wanderer"
+  "speechbank": "lotrextended:lothlorien/galadhrim_wanderer"
 }

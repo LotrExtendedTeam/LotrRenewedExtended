@@ -1,5 +1,5 @@
 {
   "faction": "lotr:northern_orcs",
   "kill_bonus": 2,
-  "speechbank": "lotr:northern_orcs/gundabad/orc_scrounger"
+  "speechbank": "lotrextended:northern_orcs/gundabad/orc_scrounger"
 }

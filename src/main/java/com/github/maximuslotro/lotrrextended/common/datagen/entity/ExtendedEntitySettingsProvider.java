@@ -1,8 +1,13 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.entity;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Consumer;
 
@@ -20,6 +25,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
 import net.minecraft.entity.EntityType;
+import net.minecraft.resources.IResource;
 import net.minecraft.resources.ResourcePackType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -47,10 +53,7 @@ public abstract class ExtendedEntitySettingsProvider implements IDataProvider {
 				throw new IllegalStateException("Duplicate entity settings " + settings.getEntityType().getRegistryName().toString());
 			} else {
 				if(settings.speechbank!=null) {
-					ResourceLocation speechLoc = new ResourceLocation(settings.speechbank.getNamespace(), "speech/"+settings.speechbank.getPath().replace(".", "/")+"/en_us.json");
-					if (!fileHelper.exists(speechLoc, ResourcePackType.CLIENT_RESOURCES)) {
-						System.out.println("Missing speechbank "+ speechLoc.toString() +" for: " + settings.getEntityType().getRegistryName().toString());
-					}
+					validateSpeechbankRecursively(settings.speechbank, settings.getEntityType().getRegistryName(), new HashSet<>());
 				}
 				Path path1 = createPath(path, settings);
 
@@ -64,6 +67,33 @@ public abstract class ExtendedEntitySettingsProvider implements IDataProvider {
 		};
 		makeEntitySettingBuilders(consumer);
 		ExtendedLog.info("Built "+dataHere.size()+" entity settings.");
+	}
+
+	private void validateSpeechbankRecursively(ResourceLocation speechbank, ResourceLocation entityRegistryName, Set<ResourceLocation> visited) {
+		if (!visited.add(speechbank)) {
+			LOGGER.warn("Circular speechbank parent reference detected: {} for entity: {}", speechbank, entityRegistryName);
+			return;
+		}
+
+		ResourceLocation speechLoc = new ResourceLocation(speechbank.getNamespace(),  "speech/" + speechbank.getPath().replace(".", "/") + "/en_us.json");
+
+		if (!fileHelper.exists(speechLoc, ResourcePackType.CLIENT_RESOURCES)) {
+			System.out.println("Missing speechbank " + speechLoc.toString() + " for: " + entityRegistryName.toString());
+			return;
+		}
+
+		try (IResource resource = fileHelper.getResource(speechLoc, ResourcePackType.CLIENT_RESOURCES);
+			InputStream stream = resource.getInputStream();
+			InputStreamReader reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
+
+			JsonObject json = GSON.fromJson(reader, JsonObject.class);
+			if (json != null && json.has("parent")) {
+				ResourceLocation parentLoc = new ResourceLocation(json.get("parent").getAsString());
+				validateSpeechbankRecursively(parentLoc, entityRegistryName, visited);
+			}
+		} catch (IOException e) {
+			LOGGER.error("Failed to read speechbank file {} for entity {}", speechLoc, entityRegistryName, e);
+		}
 	}
 
 	private static Path createPath(Path pPath, ExtendedEntitySettingsBuilder settings) {
