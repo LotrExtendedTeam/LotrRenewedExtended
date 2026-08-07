@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming.ExtendedFarmingGoalHolder;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming.ExtendedFarmingPlantingTask;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
@@ -16,14 +17,21 @@ public abstract class ExtendedHiredUnitFarmhandSlot extends Slot {
 	}
 
 	public static class SeedsSlot extends ExtendedHiredUnitFarmhandSlot {
-		public SeedsSlot(IInventory pContainer, int pIndex, int pX, int pY, ResourceLocation empty_SLOT_LOCATION) {
+		ExtendedGoalHolderAccessor accessor;
+
+		public SeedsSlot(IInventory pContainer, int pIndex, int pX, int pY, ResourceLocation empty_SLOT_LOCATION, ExtendedGoalHolderAccessor pAccessor) {
 			super(pContainer, pIndex, pX, pY);
 			setBackground(PlayerContainer.BLOCK_ATLAS, empty_SLOT_LOCATION);
+			this.accessor = pAccessor;
 		}
 
 		@Override
 		public boolean mayPlace(ItemStack itemStack) {
-			return ExtendedFarmingPlantingTask.isSupportedPlantType(ExtendedItemStackUtils.getPlantFromItem(itemStack), null, null);
+			return ExtendedFarmingPlantingTask.isSupportedPlantType(ExtendedItemStackUtils.getPlantFromItem(itemStack), null, null, accessor.getHolder());
+		}
+		
+		public interface ExtendedGoalHolderAccessor {
+			ExtendedFarmingGoalHolder getHolder();
 		}
 	}
 

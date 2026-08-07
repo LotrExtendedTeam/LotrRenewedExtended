@@ -1,0 +1,20 @@
+{
+	"faction_spawn_lists": [
+		{
+			"faction": "lotr:isengard",
+			"base_weight": 1,
+			"lists": [
+				{
+					"list": "lotr:uruk_hai",
+					"weight": 8
+				},
+				{
+					"list": "lotr:isengard_wargs",
+					"weight": 1
+				}
+			]
+		}
+	],
+	"npc_density": 1.0,
+	"allow_darkness_spawns_in_daytime": true
+}

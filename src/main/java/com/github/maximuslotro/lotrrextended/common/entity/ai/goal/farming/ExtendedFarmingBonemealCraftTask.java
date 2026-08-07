@@ -35,10 +35,6 @@ import net.minecraft.world.server.ServerWorld;
  */
 public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTask {
 	/**
-	 * Cached location of a validated composter block to avoid repeated spatial searches while in range.
-	 */
-	private BlockPos cachedComposterPos = null;
-	/**
 	 * Minimum quantity of seeds that must remain in the NPC's inventory during composting operations.
 	 */
 	private static final int MIN_KEEP = 0;
@@ -115,9 +111,9 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	 */
 	@Override
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		if (cachedComposterPos != null) {
-			if (goalHolder.getEntity().distanceToSqr(cachedComposterPos.getX() + 0.5, cachedComposterPos.getY() + 0.5, cachedComposterPos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
-				taskPosition.set(cachedComposterPos);
+		if (cachedWorkBlockPos != null) {
+			if (goalHolder.getEntity().distanceToSqr(cachedWorkBlockPos.getX() + 0.5, cachedWorkBlockPos.getY() + 0.5, cachedWorkBlockPos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
+				taskPosition.set(cachedWorkBlockPos);
 				return;
 			}
 		}
@@ -133,13 +129,6 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	@Override
 	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
 		return targetPos.closerThan(farmer.position(), 1.5);
-	}
-	/**
-	 * Clears the cached composter position, forcing the NPC to relocate a target on subsequent passes.
-	 */
-	@Override
-	public void invalidateCache() {
-		cachedComposterPos = null;
 	}
 	/**
 	 * Validates whether a given block position contains a composter block.
@@ -167,9 +156,6 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	 */
 	@Override
 	public boolean executeTask(BlockPos pComposterPos, ServerWorld pServerLevel) {
-		if(cachedComposterPos==null) {
-			cachedComposterPos = pComposterPos.immutable();
-		}
 		int currentGoalTick = goalHolder.tickTime;
 		if (currentGoalTick - lastCompostTime < INTERACTION_COOLDOWN_TICKS) {
 			return false; // keep ticking and staying at the composter

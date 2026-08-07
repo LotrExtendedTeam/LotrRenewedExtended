@@ -7,6 +7,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.advancements.Extende
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
+import lotr.common.init.ExtendedBiomes;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.PreRegisteredLOTRBiome;
@@ -23,6 +24,10 @@ public class AdvancementsProviderFangorn extends ExtendedBaseAdvancementType{
 		Advancement fangorn = build(true, dataMain(Items.OAK_LEAVES, "lower_your_axe", FrameType.TASK)
 				.setTitle("Lower Your Axe").setDescription("Enter Fangorn Forest."),
 				addBiomeTriggers(make(), FANGORN_BIOMES));
+
+		Advancement fangorn_wasteland = build(false, dataMain(LOTRItems.CHARRED_LOG.get(), "fangorn_wasteland", FrameType.TASK)
+			.setTitle("Where Once Stood Trees").setDescription("Enter the Fangorn Wasteland."),
+			addBiomeTriggers(make(), ExtendedBiomes.FANGORN_WASTELAND));
 
 //		Advancement ent_slayer = build(true, data(Items.STICK, "ent_slayer", FrameType.TASK)
 //				.setTitle("Enemy of the Forest").setDescription("Kill an Ent."),

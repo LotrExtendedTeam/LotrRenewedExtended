@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.datagen.entity.settings;
+package com.github.maximuslotro.lotrrextended.common.datagen.entity;
 
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.data.DirectoryCache;

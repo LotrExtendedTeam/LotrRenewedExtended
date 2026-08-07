@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.utils;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.IDyeableArmorItem;
 import net.minecraft.item.Item;
@@ -83,5 +84,92 @@ public class ExtendedItemStackUtils {
 			return ((IPlantable)((BlockItem)stack.getItem()).getBlock());
 		}
 		return null;
+	}
+	/**
+	 * Checks whether an item stack can be added to the target inventory.
+	 * <p>
+	 * If {@code pFlagExtra} is {@code false}, standard inventory insertion rules apply via {@link Inventory#canAddItem(ItemStack)}.
+	 * If {@code pFlagExtra} is {@code true}, insertion is restricted to at most one stack of the matching item type:
+	 * <ul>
+	 *   <li>If a matching stack already exists, returns {@code true} only if it has remaining capacity.</li>
+	 *   <li>If no matching stack exists, returns {@code true} if an empty slot is available.</li>
+	 * </ul>
+	 * </p>
+	 *
+	 * @param pInv   the inventory to check
+	 * @param pStack the item stack seeking insertion
+	 * @param pFlagExtra  whether to enforce single-stack restricted insertion rules
+	 * @return {@code true} if the item stack can be added; {@code false} otherwise
+	 */
+	public static boolean canAddItemToInventory(Inventory pInv, ItemStack pStack, boolean pFlagExtra) {
+	    if (!pFlagExtra) {
+	        return pInv.canAddItem(pStack);
+	    }
+	    boolean hasEmptySlot = false;
+	    for (int i = 0; i < pInv.getContainerSize(); i++) {
+	        ItemStack slotStack = pInv.getItem(i);
+	        if (slotStack.isEmpty()) {
+	            hasEmptySlot = true;
+	        } else if (slotStack.sameItem(pStack) && ItemStack.tagMatches(slotStack, pStack)) {
+	        	return slotStack.getCount() < slotStack.getMaxStackSize();
+	        }
+	    }
+	    return hasEmptySlot;
+	}
+	/**
+	 * Inserts an item stack into the inventory, optionally enforcing single-stack constraints.
+	 * <p>
+	 * If {@code pFlagExtra} is {@code false}, delegates to standard inventory behavior via {@link Inventory#addItem(ItemStack)}.
+	 * <br>
+	 * If {@code pFlagExtra} is {@code true}, limits the item type to a single stack total across the entire inventory:
+	 * <ul>
+	 *   <li>Attempts to merge into an existing matching stack up to its maximum capacity.</li>
+	 *   <li>If no matching stack exists, populates the first available empty slot with a new stack.</li>
+	 * </ul>
+	 * Any excess items that cannot fit within the single-stack limit are retained in the returned stack.
+	 * </p>
+	 *
+	 * @param pInv         the target inventory
+	 * @param pInsertStack the item stack to insert
+	 * @param pFlagExtra   whether to enforce single-stack restricted insertion rules
+	 * @return the remaining item stack containing any items that could not be added
+	 */
+	public static ItemStack addStackToInventory(Inventory pInv, ItemStack pInsertStack, boolean pFlagExtra) {
+		if (!pFlagExtra) {
+	        return pInv.addItem(pInsertStack);
+	    }
+	    int existingSearchSlot = -1;
+	    int emptySlot = -1;
+	    // Search for an existing stack or the first empty slot
+	    for (int i = 0; i < pInv.getContainerSize(); i++) {
+	        ItemStack stack = pInv.getItem(i);
+	        if (stack.isEmpty()) {
+	            if (emptySlot == -1) {
+	                emptySlot = i;
+	            }
+	        } else if (stack.sameItem(pInsertStack) && ItemStack.tagMatches(stack, pInsertStack)) {
+	            existingSearchSlot = i;
+	            break; // Found the existing stack in output
+	        }
+	    }
+	    if (existingSearchSlot != -1) {
+	        ItemStack existing = pInv.getItem(existingSearchSlot);
+	        int spaceLeft = existing.getMaxStackSize() - existing.getCount();
+	        if (spaceLeft > 0) {
+	            int toAdd = Math.min(spaceLeft, pInsertStack.getCount());
+	            existing.grow(toAdd);
+	            pInsertStack.shrink(toAdd);
+	        }
+	        return pInsertStack;
+	    }
+	    if (emptySlot != -1) {
+	        int toAdd = Math.min(pInsertStack.getMaxStackSize(), pInsertStack.getCount());
+	        ItemStack newSeedStack = pInsertStack.copy();
+	        newSeedStack.setCount(toAdd);
+	        pInv.setItem(emptySlot, newSeedStack);
+	        pInsertStack.shrink(toAdd);
+	        return pInsertStack;
+	    }
+	    return pInsertStack;
 	}
 }

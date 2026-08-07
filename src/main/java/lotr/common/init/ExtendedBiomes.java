@@ -10,4 +10,6 @@ public class ExtendedBiomes {
 	public static PreRegisteredLOTRBiome GORGOROTH_RIVER;
 	public static PreRegisteredLOTRBiome MORGUL_VALE_RIVER;
 	public static PreRegisteredLOTRBiome NURN_RIVER;
+	public static PreRegisteredLOTRBiome URUK_HIGHLANDS;
+	public static PreRegisteredLOTRBiome FANGORN_WASTELAND;
 }

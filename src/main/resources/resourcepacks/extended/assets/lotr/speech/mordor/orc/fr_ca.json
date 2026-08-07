@@ -199,9 +199,9 @@
         "player_gender_pref": "m"
       },
       "lines": [
-        "Attrapez le, les gars !"
+        "Attrapez le, les gars !",
         "Tuez le tark!",
-        "Ce sale tark a essayé de me poignarder !",
+        "Ce sale tark a essayé de me poignarder !"
       ]
     },
     {
@@ -210,9 +210,9 @@
         "player_gender_pref": "f"
       },
       "lines": [
-        "Attrapez la, les gars !"
+        "Attrapez la, les gars !",
         "Tuez la tark!",
-        "Cette sale tark a essayé de me poignarder !",
+        "Cette sale tark a essayé de me poignarder !"
       ]
     },
     {
@@ -262,7 +262,7 @@
       },
       "lines": [
         "Quels sont vos ordres, mon seigneur ?",
-        "T'es peut être mon commandant, #p, mais t'es toujours un sale asticot !",
+        "T'es peut être mon commandant, #p, mais t'es toujours un sale asticot !"
       ]
     },
     {
@@ -273,7 +273,7 @@
       },
       "lines": [
         "Quels sont vos ordres, ma dame ?",
-        "T'es peut être ma commandante, #p, mais t'es toujours un sale asticot !",
+        "T'es peut être ma commandante, #p, mais t'es toujours un sale asticot !"
       ]
     }
   ]

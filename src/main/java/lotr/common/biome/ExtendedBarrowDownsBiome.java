@@ -17,12 +17,12 @@ import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.biome.Biome.RainType;
 import net.minecraft.world.biome.MobSpawnInfo.Spawners;
 
-public class BarrowDownsBiome extends LOTRBiomeBase {
-	public BarrowDownsBiome(boolean major) {
+public class ExtendedBarrowDownsBiome extends LOTRBiomeBase {
+	public ExtendedBarrowDownsBiome(boolean major) {
 		this(new Builder().precipitation(RainType.RAIN).biomeCategory(Category.PLAINS).depth(0.3F).scale(0.4F).temperature(0.6F).downfall(0.7F), major);
 	}
 
-	protected BarrowDownsBiome(Builder builder, boolean major) {
+	protected ExtendedBarrowDownsBiome(Builder builder, boolean major) {
 		super(builder, major);//OldFog 1514787
 		biomeColors.setFoliage(5928279).setWater(672836).setGrass(7314486).setSky(9674385).setClouds(11842740).setFog(10197915).setFoggy(true);
 	}
@@ -61,7 +61,7 @@ public class BarrowDownsBiome extends LOTRBiomeBase {
 		ExtendedBiomeFeatures.addMoss(builder, 2);
 	}
 
-	public static class BarrowDownsRiverBiome extends BarrowDownsBiome {
+	public static class BarrowDownsRiverBiome extends ExtendedBarrowDownsBiome {
 		public BarrowDownsRiverBiome() {
 			super(new Builder().precipitation(RainType.RAIN).biomeCategory(Category.RIVER).depth(-0.75F).scale(0.0F).temperature(0.6F).downfall(0.7F), false);
 		}

@@ -10,6 +10,7 @@ import net.minecraft.entity.ai.brain.task.FarmTask;
 import net.minecraft.entity.ai.brain.task.FarmerWorkTask;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.HoeItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tags.FluidTags;
@@ -35,13 +36,17 @@ import net.minecraft.world.server.ServerWorld;
  */
 public abstract class ExtendedFarmingAbstractTask {
 	/**
+	 * Cached location of a validated work block to avoid repeated spatial searches while in range.
+	 */
+	protected BlockPos cachedWorkBlockPos = null;
+	/**
 	 * Vertical search offset radius around the NPC when selecting candidate target blocks.
 	 */
 	protected static final int YSPLIT = 1;
 	/**
 	 * Maximum allowable squared distance from the NPC to its cached block before forcing target re-validation.
 	 */
-	protected static final double MAX_DISTANCE_SQ = Math.pow(10, 2);
+	protected static final double MAX_DISTANCE_SQ = Math.pow(12, 2);
 	/**
 	 * Parent goal instance holding references to the entity, world, and inventory data.
 	 */
@@ -117,7 +122,9 @@ public abstract class ExtendedFarmingAbstractTask {
 	/**
 	 * Invalidate any position caches or internal state when target search fails.
 	 */
-	public void invalidateCache() {}
+	public void invalidateCache() {
+		cachedWorkBlockPos=null;
+	}
 	/**
 	 * Determines whether the NPC entity is within range to execute the action on the target block position.
 	 *
@@ -128,14 +135,21 @@ public abstract class ExtendedFarmingAbstractTask {
 	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
 		return targetPos.closerThan(farmer.position(), 1);
 	}
+	public boolean executeTaskBase(BlockPos pChosenBlockPos, ServerWorld pServerLevel) {
+		if(cachedWorkBlockPos==null) {
+			cachedWorkBlockPos = pChosenBlockPos.immutable();
+		}
+		return executeTask(pChosenBlockPos, pServerLevel);
+	}
+
 	/**
 	 * Performs the task action on the target block position.
 	 *
-	 * @param pAboveBlockPos position to modify or execute action upon
+	 * @param pChosenBlockPos position to modify or execute action upon
 	 * @param pServerLevel   world where task is being executed
 	 * @return {@code true} if the task action is completed, or {@code false} to defer exiting and keep ticking
 	 */
-	public abstract boolean executeTask(BlockPos pAboveBlockPos, ServerWorld pServerLevel);
+	public abstract boolean executeTask(BlockPos pChosenBlockPos, ServerWorld pServerLevel);
 	/**
 	 * Helper method to determine if a block position and the block directly above it are replaceable materials, 
 	 * and that no liquid is present, as well as another block above it are replaceable materials.
@@ -169,16 +183,37 @@ public abstract class ExtendedFarmingAbstractTask {
 		return false;
 	}
 	/**
-	 * Determines if an item stack matches the designated seed type assigned to the farmer, and that it should be deposited.
+	 * Determines if an item stack in the output inventory should be deposited into storage.
 	 *
 	 * @param stack item stack to check
-	 * @return {@code true} if the stack matches the farmhand active seed item and is not edible
+	 * @return {@code true} if the item is a depositable harvest product (crops, sugar cane, or edible seed crops)
 	 */
 	protected boolean shouldDepositItem(ItemStack stack) {
-		if(stack.getItem()==Items.SUGAR_CANE) {
-			return true;
-		}
-		ItemStack activeSeeds = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
-		return !activeSeeds.isEmpty() && stack.getItem() == activeSeeds.getItem() && stack.getItem().isEdible();
+	    return shouldDepositItem(stack, goalHolder.farmhandData.getFarmhandInfo().getSeedsItem());
+	}
+
+	/**
+	 * Determines if an item stack should be deposited into storage relative to a active seed stack.
+	 * <p>
+	 * Sugar Cane and non-seed harvested crops (e.g., Wheat, Beetroot, Melons) are always depositable.
+	 * If the item matches the active seed item, it is only depositable if it is edible (e.g., Carrots, Potatoes).
+	 * </p>
+	 *
+	 * @param pStack       the item stack to evaluate
+	 * @param pActiveSeeds the active seed item stack assigned to the farmer
+	 * @return {@code true} if the item is a depositable harvest product; {@code false} otherwise
+	 */
+	public static boolean shouldDepositItem(ItemStack pStack, ItemStack pActiveSeeds) {
+	    if (pStack.isEmpty()) {
+	        return false;
+	    }
+	    Item item = pStack.getItem();
+	    if (item == Items.SUGAR_CANE) {
+	        return true;
+	    }
+	    if (!pActiveSeeds.isEmpty() && item == pActiveSeeds.getItem()) {
+	        return item.isEdible();
+	    }
+	    return true;
 	}
 }

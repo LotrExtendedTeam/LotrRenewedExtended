@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.datagen.entity.traderprofiles;
+package com.github.maximuslotro.lotrrextended.common.datagen.entity;
 
 import java.util.Arrays;
 import java.util.function.Consumer;

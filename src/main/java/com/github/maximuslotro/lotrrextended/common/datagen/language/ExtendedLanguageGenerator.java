@@ -80,6 +80,11 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		for (String entity : ExtendedEntities.REGISTEREDNONMOBENTITIESEXTENDED) {
 			addD("entity.lotrextended." + entity);
 		}
+		// Add Waypoint Strings
+		for (String waypointData : DataGenValueHolder.waypointText) {
+			addD(waypointData);
+		}
+
 		// Fix missing Renewed strings
 		addD("entity.lotr.boat", "Boat");
 		addD("death.attack.lotr.plant", "%s was slain by a plant");
@@ -133,6 +138,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			addD(entity.getKey(), entity.getValue());
 		}
 
+		// Generate Invasion Names TODO determine if these can be simplified using existing faction keys
 		for (String invasion : DataGenValueHolder.invasionNames) {
 			addD(invasion);
 		}
@@ -142,7 +148,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("chat.lotrextended.hired_companion_levelup", "Your hired companion %1$s has reached level %2$s!");
 		addD("chat.lotrextended.no_custom", "Custom waypoint fast travel has been disabled on this server.");
 		addD("chat.lotrextended.no_default", "Default waypoint fast travel has been disabled on this server.");
-		addD("chat.lotrextended.action_requires_alignment", "This action requires %1$s alignment!");
+		addD("chat.lotrextended.requires_alignment", "You need at least %1$s %2$s alignment to perform this action");
 
 		// Add Menu strings
 		addD("gui.lotrextended.menu.fellowships", "Fellowships");
@@ -395,6 +401,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.settings.lotrextendedversioncheck.setting", "Extended Version Check: ");
 		addD("gui.lotrextended.settings.show_hired_unit_hp_numbers.setting", "Large Hired Unit HP Bars: ");
 		addD("gui.lotrextended.settings.spawneroutline.setting", "Spawner Outlines: ");
+		addD("gui.lotrextended.settings.pathnav.setting", "Path Navigation: ");
 
 		// World Prune stuff
 		addD("gui.lotrextended.worldprune.title", "World Prune Panel");
@@ -472,6 +479,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 		// Banner protection info
 		addD("message.lotrextended.banner.land_protected", "This land is under the protection of %s");
+		addD("message.lotrextended.banner.land_protected.already", "Banner can not be placed since it overlaps with another's banner protection!");
 
 		// Additional item strings
 		addD("item."+ExtendedItems.COMMANDHORN.getId().getNamespace()+"."+ExtendedItems.COMMANDHORN.getId().getPath()+".halt", "Horn of Command - Halt Units");
@@ -554,8 +562,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 		//Config Command Values
 		addD("command.lotrextended.config.cant", "can only be edited in server config while server is off!");
-		addD("command.lotrextended.config.current", "Current");
-		addD("command.lotrextended.config.value", " value");
+		addD("command.lotrextended.config.current_value", "Current %1$s value: %2$s");
 
 		//Version strings
 		addD("command.lotrextended.version.left", "A new version");
@@ -622,8 +629,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.hired_unit_tooltip.title.attack", "Attack:");
 		addD("gui.lotrextended.hired_unit_tooltip.title.attack_damage", "Damage: %1$s");
 		addD("gui.lotrextended.hired_unit_tooltip.title.attack_speed", "Speed: %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.level", "Level: %1$s");
-		addD("gui.lotrextended.hired_unit_tooltip.title.xp", "Xp: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.level", "Combat Level: %1$s");
+		addD("gui.lotrextended.hired_unit_tooltip.title.xp", "Combat Xp: %1$s");
 		addD("gui.lotrextended.hired_unit_tooltip.title.mob_kills", "Mob Kills: %1$s");
 		addD("gui.lotrextended.hired_unit_farmhand.level", "Farming Level: %s");
 		addD("gui.lotrextended.hired_unit_farmhand.crops_farmed", "Crops Harvested: %s");

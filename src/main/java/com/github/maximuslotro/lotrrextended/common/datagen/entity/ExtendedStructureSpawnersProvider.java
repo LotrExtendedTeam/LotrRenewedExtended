@@ -1,13 +1,10 @@
-package com.github.maximuslotro.lotrrextended.common.datagen.entity.spawners;
+package com.github.maximuslotro.lotrrextended.common.datagen.entity;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.TreeMap;
 import java.util.function.Consumer;
 
@@ -18,7 +15,6 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.serialization.GsonSerializers;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
-import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnManager;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawner;
 import com.github.maximuslotro.lotrrextended.common.spawners.SpawnerType;
 import com.github.maximuslotro.lotrrextended.common.spawners.types.MultiSpawnType;
@@ -30,15 +26,15 @@ import net.minecraft.data.IDataProvider;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class ExtendedEntityStructureSpawnersProvider implements IDataProvider {
-	public static final Gson GSON_PRETTY_WRITER = GsonSerializers.createStructureSpawnerSerializer().disableHtmlEscaping().setPrettyPrinting().create();
+public abstract class ExtendedStructureSpawnersProvider implements IDataProvider {
+	public static final Gson GSON = GsonSerializers.createStructureSpawnerSerializer().disableHtmlEscaping().setPrettyPrinting().create();
 	private static final Logger LOGGER = LogManager.getLogger();
 	private final Map<ResourceLocation, ExtendedStructureEntitySpawner> dataHere = new TreeMap<>();
 	protected final DataGenerator dataGenerator;
 	protected final String modId;
 	protected static final List<ResourceLocation> madeSpawners = new ArrayList<>();
 
-	ExtendedEntityStructureSpawnersProvider(DataGenerator pDataGenerator, String pModId) {
+	ExtendedStructureSpawnersProvider(DataGenerator pDataGenerator, String pModId) {
 		this.dataGenerator = pDataGenerator;
 		this.modId = pModId;
 
@@ -50,19 +46,18 @@ public abstract class ExtendedEntityStructureSpawnersProvider implements IDataPr
 	public void run(DirectoryCache pCache) throws IOException {
 		Path path = this.dataGenerator.getOutputFolder();
 		Consumer<ExtendedStructureEntitySpawner> consumer = (spawner) -> {
-	         if (dataHere.put(spawner.getId(), spawner)!=null) {
-	            throw new IllegalStateException("Duplicate structure spawner type " + spawner.getId().toString());
-	         } else {
-	            Path path1 = createPath(path, spawner);
+			if (dataHere.put(spawner.getId(), spawner)!=null) {
+				throw new IllegalStateException("Duplicate structure spawner type " + spawner.getId().toString());
+			} else {
+				Path path1 = createPath(path, spawner);
+				try {
+					IDataProvider.save(GSON, pCache, GSON.toJsonTree(spawner), path1);
+				} catch (IOException ioexception) {
+					LOGGER.error("Couldn't save structure spawner {}", path1, ioexception);
+				}
 
-	            try {
-	               save(GSON_PRETTY_WRITER, pCache, spawner, path1);
-	            } catch (IOException ioexception) {
-	               LOGGER.error("Couldn't save structure spawner {}", path1, ioexception);
-	            }
-
-	         }
-	      };
+			}
+		};
 		makeStructureSpawnPools(consumer);
 		if(modId.equals(LotrExtendedMod.MODID)) {
 			for(ResourceLocation location : ExtendedSpawners.getSpawnersValidation()) {
@@ -72,24 +67,6 @@ public abstract class ExtendedEntityStructureSpawnersProvider implements IDataPr
 			}
 		}
 		ExtendedLog.info("Built "+dataHere.size()+" structure entity spawners.");
-	}
-
-	private static void save(Gson pGson, DirectoryCache pCache, ExtendedStructureEntitySpawner spawner, Path pPath) throws IOException {
-		try {
-			String s = ExtendedStructureEntitySpawnManager.serialize(pGson, spawner);
-			String s1 = SHA1.hashUnencodedChars(s).toString();
-			if (!Objects.equals(pCache.getHash(pPath), s1) || !Files.exists(pPath)) {
-				Files.createDirectories(pPath.getParent());
-
-				try (BufferedWriter bufferedwriter = Files.newBufferedWriter(pPath)) {
-					bufferedwriter.write(s);
-				}
-			}
-
-			pCache.putNew(pPath, s1);
-		} catch (IOException ioexception) {
-			LOGGER.error("Couldn't save structure spawn pool {}", pPath, ioexception);
-		}
 	}
 
 	private static Path createPath(Path pPath, ExtendedStructureEntitySpawner spawner) {

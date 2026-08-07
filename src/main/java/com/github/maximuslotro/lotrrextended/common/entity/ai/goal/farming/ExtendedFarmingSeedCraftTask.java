@@ -25,8 +25,6 @@ import net.minecraft.world.server.ServerWorld;
  * 
  */
 public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
-	/** Cached block position of the last validated crafting table to optimize target searching. */
-	private BlockPos cachedCraftingTablePos = null;
 	/** Maximum allowable squared distance (10 blocks squared = 100) for reusing the cached crafting table position. */
 	private static final double MAX_DISTANCE_SQ = Math.pow(10, 2);
 	/** Threshold count below which seed crafting becomes eligible to trigger for the NPC. */
@@ -97,9 +95,9 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 	 */
 	@Override
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		if (cachedCraftingTablePos != null) {
-			if (goalHolder.getEntity().distanceToSqr(cachedCraftingTablePos.getX() + 0.5, cachedCraftingTablePos.getY() + 0.5, cachedCraftingTablePos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
-				taskPosition.set(cachedCraftingTablePos);
+		if (cachedWorkBlockPos != null) {
+			if (goalHolder.getEntity().distanceToSqr(cachedWorkBlockPos.getX() + 0.5, cachedWorkBlockPos.getY() + 0.5, cachedWorkBlockPos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
+				taskPosition.set(cachedWorkBlockPos);
 				return;
 			}
 		}
@@ -115,13 +113,6 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 	@Override
 	public boolean closeEnoughToExecuteTask(Entity farmer, BlockPos targetPos) {
 		return targetPos.closerThan(farmer.position(), 1.5);
-	}
-	/**
-	 * Clears the cached crafting table block position, forcing a new location search on the next evaluation cycle.
-	 */
-	@Override
-	public void invalidateCache() {
-		cachedCraftingTablePos = null;
 	}
 	/**
 	 * Validates whether a given block position contains a crafting table.
@@ -148,9 +139,6 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 	 */
 	@Override
 	public boolean executeTask(BlockPos pComposterPos, ServerWorld pServerLevel) {
-		if(cachedCraftingTablePos==null) {
-			cachedCraftingTablePos = pComposterPos.immutable();
-		}
 		int currentGoalTick = goalHolder.tickTime;
 		if (currentGoalTick - lastCraftTime < INTERACTION_COOLDOWN_TICKS) {
 			return false; // keep ticking and staying at the crafting table

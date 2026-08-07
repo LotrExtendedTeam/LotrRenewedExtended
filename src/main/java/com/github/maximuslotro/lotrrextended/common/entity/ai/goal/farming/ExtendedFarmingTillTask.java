@@ -2,6 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FarmlandBlock;
+import net.minecraft.block.SweetBerryBushBlock;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tags.BlockTags;
@@ -130,6 +132,9 @@ public class ExtendedFarmingTillTask extends ExtendedFarmingAbstractTask{
 		ItemStack activeSeeds = goalHolder.farmhandData.getFarmhandInfo().getSeedsItem();
 		if(activeSeeds.getItem()==Items.SUGAR_CANE) {
 			return false;
+		}
+		if(activeSeeds.getItem() instanceof BlockItem) {
+            return !(((BlockItem) activeSeeds.getItem()).getBlock() instanceof SweetBerryBushBlock);
 		}
 		return true;
 	}
