@@ -19,6 +19,7 @@ import com.github.maximuslotro.lotrrextended.common.datagen.map.ExtendedTravelRe
 import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedBlockstateModelGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedEntityTextureValidator;
 import com.github.maximuslotro.lotrrextended.common.datagen.models.ExtendedItemModelGenerator;
+import com.github.maximuslotro.lotrrextended.common.datagen.structures.ExtendedStructureProcessorListGenerator;
 import com.github.maximuslotro.lotrrextended.common.datagen.tags.ExtendedTagRelatedGenerators;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 
@@ -48,6 +49,7 @@ public class DataGeneratorExtended {
 			generator.addProvider(new ExtendedStructureSpawnerGenerator(generator, LotrExtendedMod.MODID));
 			generator.addProvider(new ExtendedEntitySettingsGenerator(generator, existingFileHelper));
 			generator.addProvider(new ExtendedMapWaypointGenerator(generator, existingFileHelper, LotrExtendedMod.MODID));
+			generator.addProvider(new ExtendedStructureProcessorListGenerator(generator, LotrExtendedMod.MODID));
 			// Make Data from Data
 			generator.addProvider(new ExtendedBiomeInfoGenerator(generator, existingFileHelper));
 			// Validate Data

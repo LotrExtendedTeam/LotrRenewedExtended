@@ -19,7 +19,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedRespa
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
-import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedBlockStateUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils;
 
 import lotr.common.data.ExtendedLevelData;
@@ -376,7 +376,7 @@ public class ExtendedWorldEventHandlers {
 				newBlockState.setValue(FarmlandBlock.MOISTURE, 7);
 			}
 			if(newBlock instanceof SlabBlock) {
-				newBlockState = BlockStateUtils.copyBlockStateToBlockStateOverwriteSlab(newBlockState, clickedState);
+				newBlockState = ExtendedBlockStateUtils.copyBlockStateToBlockStateOverwriteSlab(newBlockState, clickedState);
 			}
 		    level.setBlock(event.getPos(), newBlockState, 3);
 			player.swing(event.getHand(), true);

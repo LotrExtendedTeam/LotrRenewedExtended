@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.structure.process
 
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProcessors;
 import com.mojang.serialization.Codec;
 
 import net.minecraft.item.ArmorItem;

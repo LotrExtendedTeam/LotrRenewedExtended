@@ -2,7 +2,7 @@
 	"processors": [
 		{
 			"processor_type": "lotrextended:wood_palette_processor",
-			"built_pallet" : "lotr:fir",
+			"built_pallet": "lotr:fir",
 			"woodTypes": [
 				{
 					"wood_type": "lotrextended:chestnut",

@@ -2,7 +2,7 @@ package lotr.common.block;
 
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedBlockStateUtils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -23,7 +23,7 @@ public class ExtendedAxialSlabDirtBlock extends ExtendedAxialSlabPlantableBlock 
 	@Override
 	public BlockState getToolModifiedState(BlockState state, World world, BlockPos pos, PlayerEntity player, ItemStack stack, ToolType toolType) {
         if (toolType == ToolType.SHOVEL) {
-        	BlockState newState = BlockStateUtils.copyBlockStateToBlock(slabPath.get(), state);
+        	BlockState newState = ExtendedBlockStateUtils.copyBlockStateToBlock(slabPath.get(), state);
 			// Allow shift clicking to set the grass type lotr/vanilla looking
         	if(newState.hasProperty(IExtendedSwappableTexture.USELOTRTEXTURE)) {
         		if(player.isCrouching()) {

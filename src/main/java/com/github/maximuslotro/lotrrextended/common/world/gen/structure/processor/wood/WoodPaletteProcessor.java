@@ -9,8 +9,8 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProcessors;
-import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedBlockStateUtils;
+import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.ExtendedStructureProcessors;
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
@@ -188,7 +188,7 @@ public class WoodPaletteProcessor extends StructureProcessor {
 				return blockInfoWorld;
 			}
 			//ExtendedLog.info("Replaced "+blockstate.getBlock().getRegistryName().toString() +" with"+ pickedBlock.getRegistryName().toString());
-			return new Template.BlockInfo(blockInfoWorld.pos, BlockStateUtils.copyBlockStateToBlock(pickedBlock, blockstate), null);
+			return new Template.BlockInfo(blockInfoWorld.pos, ExtendedBlockStateUtils.copyBlockStateToBlock(pickedBlock, blockstate), null);
 		}
 		return blockInfoWorld;
 	}

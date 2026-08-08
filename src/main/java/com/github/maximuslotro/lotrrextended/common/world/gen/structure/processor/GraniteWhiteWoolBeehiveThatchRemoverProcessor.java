@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.structure.process
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProcessors;
 import com.mojang.serialization.Codec;
 
 import lotr.common.init.LOTRBlocks;
@@ -23,6 +22,8 @@ import net.minecraft.world.gen.feature.template.Template;
  * <p>
  * Implemented as a singleton instance.
  */
+@Deprecated
+// TODO clean up structures pieces so that this is not needed
 public class GraniteWhiteWoolBeehiveThatchRemoverProcessor extends StructureProcessor {
 	/** Singleton instance of this processor. */
 	public static final GraniteWhiteWoolBeehiveThatchRemoverProcessor INSTANCE = new GraniteWhiteWoolBeehiveThatchRemoverProcessor();

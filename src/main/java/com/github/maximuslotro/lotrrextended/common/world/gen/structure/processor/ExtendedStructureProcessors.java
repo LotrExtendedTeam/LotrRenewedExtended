@@ -1,10 +1,6 @@
-package com.github.maximuslotro.lotrrextended.common.init;
+package com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.BrickWeathererProcessor;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.ExtendedArmorStandProcessor;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.GraniteWhiteWoolBeehiveThatchRemoverProcessor;
-import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.ReplaceAirWithGrassVoidsProcessor;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.wood.WoodPaletteProcessor;
 import com.mojang.serialization.Codec;
 
@@ -22,17 +18,6 @@ public class ExtendedStructureProcessors {
      * Processor for wood palette replacement during structure placement.
      */
 	public static final IStructureProcessorType<WoodPaletteProcessor> WOOD_PALETTE_PROCESSOR = register("wood_palette_processor", WoodPaletteProcessor.CODEC);
-	 /**
-     * Legacy processor for weathering Arnor bricks.
-     * <p>
-     * Kept for legacy support of 1.5.2 structures.
-     * Scheduled for removal by December 31st, 2025.
-     * 
-     * Looks like it was being used as a processor until 1.8.0
-     * Maybe remove by July 31st, 2026?
-     * @deprecated Scheduled for removal; retained only for legacy structure compatibility.
-     */
-	public static final IStructureProcessorType<BrickWeathererProcessor> ARNOR_WEATHERER_PROCESSOR = register("arnor_weatherer_processor", BrickWeathererProcessor.CODEC);
 	/**
      * Processor for weathering bricks.
      */
@@ -45,6 +30,10 @@ public class ExtendedStructureProcessors {
      * Processor for processing armor stand loot-tables
      */
 	public static final IStructureProcessorType<ExtendedArmorStandProcessor> ARMOR_STAND_PROCESSOR = register("armor_stand_processor", ExtendedArmorStandProcessor.CODEC);
+	/**
+     * Processor for processing block replacements
+     */
+	public static final IStructureProcessorType<ExtendedBlockReplacementProcessor> BLOCK_REPLACEMENT_PROCESSOR = register("block_replacement", ExtendedBlockReplacementProcessor.CODEC);
 
 	/**
      * Processor that removes thatch, polished granite, beehives, and white wool blocks

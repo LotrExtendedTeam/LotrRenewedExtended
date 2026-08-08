@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
-import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedBlockStateUtils;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
@@ -32,7 +32,7 @@ public interface ExtendedAgeingCheese extends ExtendedChangingOverTimeBlock<Exte
 	   }
 
 	   static Optional<BlockState> getPrevious(BlockState p_154900_) {
-	      return getPrevious(p_154900_.getBlock()).map((p_154903_) -> BlockStateUtils.copyBlockStateToBlock(p_154903_, p_154900_));
+	      return getPrevious(p_154900_.getBlock()).map((p_154903_) -> ExtendedBlockStateUtils.copyBlockStateToBlock(p_154903_, p_154900_));
 	   }
 
 	   static Optional<Block> getNext(Block p_154905_) {
@@ -41,7 +41,7 @@ public interface ExtendedAgeingCheese extends ExtendedChangingOverTimeBlock<Exte
 
 	   @Override
 	default Optional<BlockState> getNext(BlockState p_154893_) {
-	      return getNext(p_154893_.getBlock()).map((p_154896_) -> BlockStateUtils.copyBlockStateToBlock(p_154896_, p_154893_));
+	      return getNext(p_154893_.getBlock()).map((p_154896_) -> ExtendedBlockStateUtils.copyBlockStateToBlock(p_154896_, p_154893_));
 	   }
 
 	   @Override
