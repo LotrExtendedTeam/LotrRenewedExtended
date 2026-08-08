@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 public class ExtendedBirdEntity extends CreatureEntity {
 
     private static final DataParameter<Boolean> DATA_FLYING = EntityDataManager.defineId(ExtendedBirdEntity.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> DATA_FLYING_COOLDOWN = EntityDataManager.defineId(ExtendedBirdEntity.class, DataSerializers.INT);
 
     private final FlyingPathNavigator flyingNavigator;
     private final FlyingMovementController flyingController;
@@ -50,14 +51,7 @@ public class ExtendedBirdEntity extends CreatureEntity {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_FLYING, false);
-    }
-
-    public float getWingRotation() {
-        return wingRotation;
-    }
-
-    public float getPrevWingRotation() {
-        return prevWingRotation;
+        this.entityData.define(DATA_FLYING_COOLDOWN, 0);
     }
 
     @Override
@@ -76,18 +70,20 @@ public class ExtendedBirdEntity extends CreatureEntity {
         wingRotation += wingSpeed * 0.8F;
 
         if (!level.isClientSide) {
-            if (!this.onGround && !isFlying()) {
-                startFlying();
-            } else if (this.onGround && isFlying()) {
-                stopFlying();
+            if (this.entityData.get(DATA_FLYING_COOLDOWN) > 0) {
+                this.entityData.set(DATA_FLYING_COOLDOWN, this.entityData.get(DATA_FLYING_COOLDOWN) - 1);
             }
         }
     }
 
+    public boolean flyingOnCooldown() {
+        return this.entityData.get(DATA_FLYING_COOLDOWN) > 0;
+    }
+
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(5, new BirdEntityRandomFlyGoal(this));
+        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(6, new BirdEntityRandomFlyGoal(this));
     }
 
     public static AttributeModifierMap.MutableAttribute createBirdAttributes() {
@@ -108,7 +104,12 @@ public class ExtendedBirdEntity extends CreatureEntity {
         if (isFlying()) {
             this.entityData.set(DATA_FLYING, false);
             applyFlyingState(false);
+            startFlyingCooldown();
         }
+    }
+
+    public void startFlyingCooldown() {
+        this.entityData.set(DATA_FLYING_COOLDOWN, 400);
     }
 
     private void applyFlyingState(boolean flying) {
