@@ -94,7 +94,7 @@ public class ExtendedBirdEntity extends CreatureEntity {
         return MobEntity.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 8)
                 .add(Attributes.MOVEMENT_SPEED, 0.25F)
-                .add(Attributes.FLYING_SPEED, 0.25F);
+                .add(Attributes.FLYING_SPEED, 0.55F);
     }
 
     public void startFlying() {
@@ -137,5 +137,9 @@ public class ExtendedBirdEntity extends CreatureEntity {
 
     public boolean isFlying() {
         return this.entityData.get(DATA_FLYING);
+    }
+
+    public boolean isOnGround() {
+        return onGround;
     }
 }

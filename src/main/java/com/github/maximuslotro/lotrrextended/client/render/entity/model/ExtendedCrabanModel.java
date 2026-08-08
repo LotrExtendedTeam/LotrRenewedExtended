@@ -82,10 +82,11 @@ public class ExtendedCrabanModel<T extends ExtendedCrabanEntity> extends EntityM
 
         float wing = 0.0F;
         if (e.isFlying()) {
-            wing = MathHelper.sin(pAgeInTicks * 1.6F) * 0.9F;
+            wing = MathHelper.sin(pAgeInTicks * 1.2F) * 0.6F +.1F;
         }
 
         this.right_wing.zRot = wing;
+        System.out.println("Wing: " + wing);
         this.left_wing.zRot = -wing;
     }
 

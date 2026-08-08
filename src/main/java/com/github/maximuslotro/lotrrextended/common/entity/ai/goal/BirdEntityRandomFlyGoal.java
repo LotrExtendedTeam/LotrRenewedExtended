@@ -124,6 +124,10 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
     @Override
     public void stop() {
-        bird.stopFlying();
+        bird.getNavigation().stop();
+
+        if (bird.isOnGround()) {
+            bird.stopFlying();
+        }
     }
 }
