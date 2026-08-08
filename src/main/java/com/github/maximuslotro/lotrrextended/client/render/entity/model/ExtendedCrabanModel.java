@@ -1,13 +1,13 @@
 package com.github.maximuslotro.lotrrextended.client.render.entity.model;
 
+import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedCrabanEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
-public class ExtendedCrabanModel<T extends Entity> extends EntityModel<T> {
+public class ExtendedCrabanModel<T extends ExtendedCrabanEntity> extends EntityModel<T> {
     private final ModelRenderer Root, body, bodyntail, body_r1, tail, right_wing, left_wing, right_leg, left_leg, head, longbeak_r1;
 
     public ExtendedCrabanModel() {
@@ -79,6 +79,14 @@ public class ExtendedCrabanModel<T extends Entity> extends EntityModel<T> {
         this.head.yRot = pNetHeadYaw * ((float) Math.PI / 180F);
         this.left_leg.xRot = MathHelper.cos(pLimbSwing * 0.6662F) * 1.4F * pLimbSwingAmount;
         this.right_leg.xRot = MathHelper.cos(pLimbSwing * 0.6662F + (float) Math.PI) * 1.4F * pLimbSwingAmount;
+
+        float wing = 0.0F;
+        if (e.isFlying()) {
+            wing = MathHelper.sin(pAgeInTicks * 1.6F) * 0.9F;
+        }
+
+        this.right_wing.zRot = wing;
+        this.left_wing.zRot = -wing;
     }
 
     public void setRotationAngle(ModelRenderer m,float x,float y,float z){

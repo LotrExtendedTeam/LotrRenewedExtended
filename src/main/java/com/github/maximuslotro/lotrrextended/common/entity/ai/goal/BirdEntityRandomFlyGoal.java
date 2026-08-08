@@ -65,6 +65,13 @@ public class BirdEntityRandomFlyGoal extends Goal {
     public void start() {
         bird.startFlying();
 
+        bird.getNavigation().moveTo(
+                targetX,
+                targetY,
+                targetZ,
+                1.0D
+        );
+
         bird.getMoveControl().setWantedPosition(
                 targetX,
                 targetY,
@@ -78,6 +85,15 @@ public class BirdEntityRandomFlyGoal extends Goal {
     @Override
     public void tick() {
         flightTime++;
+
+        if (bird.getNavigation().isDone()) {
+            bird.getNavigation().moveTo(
+                    targetX,
+                    targetY,
+                    targetZ,
+                    1.0D
+            );
+        }
 
         // If we somehow lost our destination, set it again.
         if (!bird.getMoveControl().hasWanted()) {
