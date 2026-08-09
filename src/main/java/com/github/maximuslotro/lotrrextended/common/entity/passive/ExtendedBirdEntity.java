@@ -81,6 +81,11 @@ public class ExtendedBirdEntity extends CreatureEntity {
     }
 
     @Override
+    public boolean isPersistenceRequired() {
+    	return false; // Ensure not keeping around as this is an ambient creature and should despawn
+    }
+   
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new BirdEntityRandomFlyGoal(this));
@@ -140,7 +145,8 @@ public class ExtendedBirdEntity extends CreatureEntity {
         return this.entityData.get(DATA_FLYING);
     }
 
-    public boolean isOnGround() {
+    @Override
+	public boolean isOnGround() {
         return onGround;
     }
 }

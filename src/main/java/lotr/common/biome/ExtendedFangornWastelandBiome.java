@@ -2,6 +2,7 @@ package lotr.common.biome;
 
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedConfiguredFeatures;
 
+import lotr.common.init.ExtendedEntities;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.FangornBiome;
 import lotr.common.world.biome.LOTRBiomeFeatures;
@@ -9,6 +10,8 @@ import lotr.common.world.gen.feature.grassblend.GrassBlends;
 import net.minecraft.world.biome.Biome.Builder;
 import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.biome.Biome.RainType;
+import net.minecraft.world.biome.MobSpawnInfo.Spawners;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 
 public class ExtendedFangornWastelandBiome extends FangornBiome implements ExtendedBiomeSetter {
@@ -25,7 +28,7 @@ public class ExtendedFangornWastelandBiome extends FangornBiome implements Exten
 
 	@Override
 	protected void addAnimals(net.minecraft.world.biome.MobSpawnInfo.Builder builder) {
-		
+		builder.addSpawn(EntityClassification.CREATURE, new Spawners(ExtendedEntities.CRABAN.get(), 1, 1, 1));
 	}
 
 	@Override
