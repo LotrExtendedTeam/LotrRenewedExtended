@@ -3,16 +3,19 @@ package lotr.common.biome;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedConfiguredFeatures;
 
 import lotr.common.init.ExtendedBlocks;
+import lotr.common.init.ExtendedEntities;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.LOTRBiomeFeatures;
 import lotr.common.world.biome.RohanBiome;
 import lotr.common.world.gen.feature.TreeCluster;
 import lotr.common.world.gen.feature.grassblend.GrassBlends;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.Builder;
 import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.biome.Biome.RainType;
+import net.minecraft.world.biome.MobSpawnInfo.Spawners;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 
 public class ExtendedUrukHighlandsBiome extends RohanBiome {
@@ -23,6 +26,11 @@ public class ExtendedUrukHighlandsBiome extends RohanBiome {
 	protected ExtendedUrukHighlandsBiome(Builder builder, boolean major) {
 		super(builder, major);
 		biomeColors.setFoliage(8295258).setGrass(8295258);
+	}
+	@Override
+	protected void addAnimals(net.minecraft.world.biome.MobSpawnInfo.Builder builder) {
+		super.addAnimals(builder);
+		builder.addSpawn(EntityClassification.CREATURE, new Spawners(ExtendedEntities.CRABAN.get(), 1, 1, 1));
 	}
 
 	@Override
