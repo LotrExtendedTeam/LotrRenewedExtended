@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.entity.passive;
 
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.BirdEntityRandomFlyGoal;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.BirdEntityRandomWalkingAvoidWaterGoal;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
@@ -9,7 +10,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.controller.MovementController;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -87,7 +87,7 @@ public class ExtendedBirdEntity extends CreatureEntity {
    
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(5, new BirdEntityRandomWalkingAvoidWaterGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new BirdEntityRandomFlyGoal(this));
     }
 

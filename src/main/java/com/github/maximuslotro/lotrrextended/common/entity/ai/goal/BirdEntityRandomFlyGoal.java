@@ -82,6 +82,7 @@ public class BirdEntityRandomFlyGoal extends Goal {
                 // Wait until we've actually landed.
                 if (bird.isOnGround()) {
                     bird.stopFlying();
+                    return;
                 }
 
             } else {
