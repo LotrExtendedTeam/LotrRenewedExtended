@@ -1787,7 +1787,6 @@ public class ExtendedTraderProfileGenerator extends ExtendedTraderProfileProvide
 		.addSBuy(ExtendedItems.TOPAZ, 8)
 		.addSBuy(LOTRItems.HORN, 2)
 		// TODO add iron battleaxe and pike, bronze battleaxe, crossbow bolts
-		.addSSell(LOTRItems.HORN, 6)
 		.addSSell(LOTRItems.DUNLENDING_HELMET, 10)
 		.addSSell(LOTRItems.DUNLENDING_CHESTPLATE, 14)
 		.addSSell(LOTRItems.DUNLENDING_LEGGINGS, 12)

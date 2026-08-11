@@ -148,13 +148,6 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:horn",
-        "averageCost": 6
-      }
-    },
-    {
-      "weight": 50,
-      "stack": {
         "item": "lotr:dunlending_helmet",
         "averageCost": 10,
         "nbt": "{Damage:0}"
