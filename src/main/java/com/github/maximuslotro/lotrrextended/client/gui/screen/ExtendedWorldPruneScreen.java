@@ -205,6 +205,8 @@ public class ExtendedWorldPruneScreen extends ExtendedBasicAbstractScreen{
 		this.dryRun = packet.isDryRun();
 		if (stage == Stage.FINISHED || stage == Stage.CANCELED) {
 			running = false;
+		}else {
+			running = true;
 		}
 		// CHUNKS
 		this.totalChunks = packet.getTotalChunks();
