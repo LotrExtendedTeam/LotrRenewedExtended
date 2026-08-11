@@ -16,6 +16,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCrossbowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierReforgeTomeItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierRepairTomeItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
@@ -296,6 +297,11 @@ public class ExtendedRepairContainerNew extends Container {
 			if (isEnchantingItem || isModifierItem || (resultItem.getItem() == mergableItem.getItem() && resultItem.isDamageableItem())) {
 				canCombineItemModifiers= true;
 			}
+		}
+		if(mergableItem.getItem() instanceof ExtendedModifierReforgeTomeItem) {
+			this.resultSlots.setItem(0, ItemStack.EMPTY);
+			this.cost.set(0);
+			return;
 		}
 		if(isEnchantingItem && !ExtendedServerConfig.enableVanillaEnchanting.get()) {
 			this.resultSlots.setItem(0, ItemStack.EMPTY);
