@@ -95,6 +95,9 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 		if(seedsStack.isEmpty()) {
 			return false;
 		}
+		if(!goalHolder.farmhandData.getUnitInfo().isNpcActiveDuty()) {
+			return true;
+		}
 		boolean canAddItem = goalHolder.farmhandData.getFarmhandInfo().getFarmhandOutputInventory().canAddItem(seedsStack);
 		if(!canAddItem) {
 			if(fullInventoryHits >= FULL_INVENTORY_THRESHOLD) {
@@ -109,8 +112,6 @@ public class ExtendedFarmingHarvestTask extends ExtendedFarmingAbstractTask {
 			goalHolder.farmhandData.getFarmhandInfo().setWarning(FarmingWarning.INVENTORY_FULL, false);
 		}
 		return canAddItem;
-
-
 	}
 	/**
 	 * Validates whether a mutable crop position is harvestable, mutating the position down to 

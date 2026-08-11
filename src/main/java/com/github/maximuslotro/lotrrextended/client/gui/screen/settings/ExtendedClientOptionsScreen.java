@@ -236,7 +236,7 @@ public class ExtendedClientOptionsScreen extends AbstractExtendedOptionsScreen {
 				MixinConstants.changeableNonConfigCrashableStrBlockRenderDistance = (int)sliderValue;
 			}, "structureBlockOutlineDistance"));
 		addButton(dev.addButtonNew("gui.lotrextended.settings.spawneroutline.setting", button -> toggleForgeConfigValue(ExtendedClientConfig.showSpawnerOutlines), (button, pd) -> ExtendedClientConfig.showSpawnerOutlines.get(), 
-			"gui.lotrextended.base.show", "gui.lotrextended.base.hide", "showSpawnerOutlines"));
+			"gui.lotrextended.base.shown", "gui.lotrextended.base.hidden", "showSpawnerOutlines"));
 		addButton(dev.addButton("gui.lotrextended.settings.pathnav.setting", button -> ExtendedClientDebugToggles.renderNavPaths=!ExtendedClientDebugToggles.renderNavPaths, (button, pd) -> ExtendedClientDebugToggles.renderNavPaths, 
 			"gui.lotrextended.base.shown", "gui.lotrextended.base.hidden"));
 		catagories.add(dev);
