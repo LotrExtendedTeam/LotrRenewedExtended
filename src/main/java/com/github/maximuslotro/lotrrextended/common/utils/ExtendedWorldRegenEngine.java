@@ -257,7 +257,8 @@ public class ExtendedWorldRegenEngine {
 							CompoundNBT te = tileEntities.getCompound(blockEntityIndex);
 
 							// Check it actually has your data
-							if (te.getString("id").equals(ExtendedTileEntities.BANNER_STANDING.getId().toString()) && te.contains("ProtectionData", 10)) {
+							if ((te.getString("id").equals(ExtendedTileEntities.BANNER_STANDING.getId().toString()) ||
+								te.getString("id").equals("lotr:banner_s_tileentity")) && te.contains("ProtectionData", 10)) {
 								CompoundNBT protection = te.getCompound("ProtectionData");
 								if (!protection.getBoolean("used")) {
 									continue;
