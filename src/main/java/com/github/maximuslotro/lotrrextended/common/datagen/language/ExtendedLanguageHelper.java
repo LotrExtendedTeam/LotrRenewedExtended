@@ -156,17 +156,6 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 	}
 
 	public void addD(String key, String value) {
-	    if (key.startsWith("block.") || key.startsWith("item.")) {
-	        String lotrKey = key.replace("." + modidHere + ".", ".lotr.");
-	        // Copy value from old LOTR key and delete it from existingStrings
-	        if (existingStrings.containsKey(lotrKey)) {
-	            String existingValue = existingStrings.remove(lotrKey);
-	            if (existingValue != null && !existingValue.isEmpty()) {
-	                value = existingValue;
-	            }
-	        }
-	    }
-	    
 		if (!newStrings.containsKey(key)) {
 			newStrings.put(key, value);
 		} else {
@@ -228,6 +217,9 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 				continue;
 			}
 			if (entry.getKey().contains("message.lotrextended")) {
+				continue;
+			}
+			if (entry.getKey().contains("banner_pattern.desc")) {
 				continue;
 			}
 			if (entry.getKey().contains("entity_shortname.lotrextended.")||
