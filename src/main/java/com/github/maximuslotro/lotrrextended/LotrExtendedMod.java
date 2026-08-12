@@ -48,7 +48,6 @@ import lotr.common.world.gen.MiddleEarthChunkGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.server.ServerChunkProvider;
@@ -92,7 +91,6 @@ public class LotrExtendedMod{
 		forgeBus.addGenericListener(Item.class, ExtendedMissingMappings::onMissingItemMappings);
 		forgeBus.addGenericListener(EntityType.class, ExtendedMissingMappings::onMissingEntityMappings);
 		forgeBus.addGenericListener(EntityType.class, ExtendedMissingMappings::onMissingEntityMappings);
-		forgeBus.addGenericListener(TileEntityType.class, ExtendedMissingMappings::onMissingBlockEntityMappings);
 		forgeBus.addListener(EventPriority.LOW, this::extendedRegisterCommands);
 		forgeBus.addListener(this::extendedRegisterDataPackListeners);
 		forgeBus.addListener(EventPriority.HIGH, this::extendedAddFeatureToBiomes);
