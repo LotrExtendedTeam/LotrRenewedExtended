@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:carved_dol_guldur_brick_cut_from_dol_guldur_brick"
+    ]
+  },
+  "criteria": {
+    "has_dol_guldur_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:dol_guldur_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:carved_dol_guldur_brick_cut_from_dol_guldur_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dol_guldur_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

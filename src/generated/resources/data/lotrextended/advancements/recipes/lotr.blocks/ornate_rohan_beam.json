@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:ornate_rohan_beam"
+    ]
+  },
+  "criteria": {
+    "has_rohan_beam": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:rohan_beam"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:ornate_rohan_beam"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rohan_beam",
+      "has_the_recipe"
+    ]
+  ]
+}

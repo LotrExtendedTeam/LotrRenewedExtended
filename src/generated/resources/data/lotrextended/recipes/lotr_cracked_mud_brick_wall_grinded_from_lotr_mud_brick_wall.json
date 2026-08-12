@@ -1,8 +1,0 @@
-{
-  "type": "lotrextended:stone_grinding",
-  "ingredient": {
-    "item": "lotr:mud_brick_wall"
-  },
-  "result": "lotr:cracked_mud_brick_wall",
-  "experience": 1.0
-}

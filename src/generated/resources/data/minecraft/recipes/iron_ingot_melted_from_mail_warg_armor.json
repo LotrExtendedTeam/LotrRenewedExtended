@@ -1,0 +1,12 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotrextended:mail_warg_armor"
+  },
+  "result1": {
+    "item": "minecraft:iron_ingot",
+    "count": 6
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

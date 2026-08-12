@@ -2,7 +2,7 @@
   "parent": "lotrextended:bree/of_hobbits_and_men",
   "display": {
     "icon": {
-      "item": "lotr:silver_coin_one"
+      "item": "lotrextended:silver_coin_one"
     },
     "title": {
       "translate": "advancements.lotrextended.bree.insider_bargings.title"

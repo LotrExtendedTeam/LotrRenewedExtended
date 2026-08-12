@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "lotrextended:emerald_ore"
+  },
+  "result": "lotrextended:emerald",
+  "experience": 0.9,
+  "cookingtime": 100
+}

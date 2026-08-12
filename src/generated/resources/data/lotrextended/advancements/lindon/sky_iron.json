@@ -2,7 +2,7 @@
   "parent": "lotrextended:lindon/the_last_fair_realm",
   "display": {
     "icon": {
-      "item": "lotr:meteorite"
+      "item": "lotrextended:meteorite"
     },
     "title": {
       "translate": "advancements.lotrextended.lindon.sky_iron.title"
@@ -20,7 +20,7 @@
     "broke_meteorite": {
       "trigger": "extended:break_block",
       "conditions": {
-        "block": "lotr:meteorite"
+        "block": "lotrextended:meteorite"
       }
     }
   },

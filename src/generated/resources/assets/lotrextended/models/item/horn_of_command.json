@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lotrextended:item/horn_of_command"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "lotrextended:horn_type": 1.0
+      },
+      "model": "lotrextended:item/horn_of_command_halt"
+    },
+    {
+      "predicate": {
+        "lotrextended:horn_type": 2.0
+      },
+      "model": "lotrextended:item/horn_of_command_reddy"
+    },
+    {
+      "predicate": {
+        "lotrextended:horn_type": 3.0
+      },
+      "model": "lotrextended:item/horn_of_command_summon"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotrextended:mud_brick_slab"
+  },
+  "result": "lotrextended:cracked_mud_brick_slab",
+  "experience": 1.0
+}

@@ -51,7 +51,7 @@
               }
             }
           ],
-          "name": "lotr:galvorn_ingot"
+          "name": "lotrextended:galvorn_ingot"
         },
         {
           "type": "minecraft:item",
@@ -152,7 +152,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:lindon_banner"
+          "name": "lotrextended:lindon_banner"
         },
         {
           "type": "minecraft:item",
@@ -163,7 +163,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:lindon_banner_pattern"
+          "name": "lotrextended:lindon_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -211,7 +211,7 @@
               }
             }
           ],
-          "name": "lotr:galvorn_helmet"
+          "name": "lotrextended:galvorn_helmet"
         },
         {
           "type": "minecraft:item",
@@ -237,7 +237,7 @@
               }
             }
           ],
-          "name": "lotr:galvorn_chestplate"
+          "name": "lotrextended:galvorn_chestplate"
         },
         {
           "type": "minecraft:item",
@@ -263,7 +263,7 @@
               }
             }
           ],
-          "name": "lotr:galvorn_leggings"
+          "name": "lotrextended:galvorn_leggings"
         },
         {
           "type": "minecraft:item",
@@ -289,7 +289,7 @@
               }
             }
           ],
-          "name": "lotr:galvorn_boots"
+          "name": "lotrextended:galvorn_boots"
         },
         {
           "type": "minecraft:item",
@@ -299,7 +299,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:artisan_tome"
+          "name": "lotrextended:artisan_tome"
         },
         {
           "type": "minecraft:item",
@@ -309,7 +309,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:combat_tome"
+          "name": "lotrextended:combat_tome"
         },
         {
           "type": "minecraft:item",
@@ -319,7 +319,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:smith_tome"
+          "name": "lotrextended:smith_tome"
         }
       ],
       "functions": [

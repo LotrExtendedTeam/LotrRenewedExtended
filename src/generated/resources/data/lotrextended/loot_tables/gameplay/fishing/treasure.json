@@ -7,7 +7,7 @@
         {
           "type": "minecraft:item",
           "weight": 200,
-          "name": "lotr:pearl"
+          "name": "lotrextended:pearl"
         },
         {
           "type": "minecraft:item",
@@ -83,16 +83,16 @@
         {
           "type": "minecraft:item",
           "weight": 100,
-          "name": "lotr:silver_coin_one"
+          "name": "lotrextended:silver_coin_one"
         },
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "lotr:silver_coin_ten"
+          "name": "lotrextended:silver_coin_ten"
         },
         {
           "type": "minecraft:item",
-          "name": "lotr:silver_coin_hundred"
+          "name": "lotrextended:silver_coin_hundred"
         },
         {
           "type": "minecraft:item",
@@ -171,17 +171,17 @@
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "lotr:artisan_tome"
+          "name": "lotrextended:artisan_tome"
         },
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "lotr:combat_tome"
+          "name": "lotrextended:combat_tome"
         },
         {
           "type": "minecraft:item",
           "weight": 5,
-          "name": "lotr:combat_tome"
+          "name": "lotrextended:combat_tome"
         }
       ],
       "functions": [

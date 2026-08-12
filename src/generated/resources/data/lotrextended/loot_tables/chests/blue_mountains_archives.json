@@ -116,7 +116,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:artisan_tome"
+          "name": "lotrextended:artisan_tome"
         },
         {
           "type": "minecraft:item",
@@ -126,7 +126,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:combat_tome"
+          "name": "lotrextended:combat_tome"
         },
         {
           "type": "minecraft:item",
@@ -136,7 +136,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:smith_tome"
+          "name": "lotrextended:smith_tome"
         },
         {
           "type": "minecraft:item",
@@ -146,7 +146,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:blue_mountains_banner_pattern"
+          "name": "lotrextended:blue_mountains_banner_pattern"
         }
       ],
       "functions": [

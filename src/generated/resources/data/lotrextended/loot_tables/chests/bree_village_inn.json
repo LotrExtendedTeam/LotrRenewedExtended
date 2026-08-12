@@ -283,7 +283,7 @@
               }
             }
           ],
-          "name": "lotr:chestnut_log"
+          "name": "lotrextended:chestnut_log"
         },
         {
           "type": "minecraft:item",
@@ -403,7 +403,7 @@
               }
             }
           ],
-          "name": "lotr:cooked_duck"
+          "name": "lotrextended:cooked_duck"
         },
         {
           "type": "minecraft:item",
@@ -463,7 +463,7 @@
               }
             }
           ],
-          "name": "lotr:plum"
+          "name": "lotrextended:plum"
         },
         {
           "type": "minecraft:item",
@@ -478,7 +478,7 @@
               }
             }
           ],
-          "name": "lotr:blackberry"
+          "name": "lotrextended:blackberry"
         },
         {
           "type": "minecraft:item",
@@ -493,7 +493,7 @@
               }
             }
           ],
-          "name": "lotr:blueberry"
+          "name": "lotrextended:blueberry"
         },
         {
           "type": "minecraft:item",
@@ -508,7 +508,7 @@
               }
             }
           ],
-          "name": "lotr:cranberry"
+          "name": "lotrextended:cranberry"
         },
         {
           "type": "minecraft:item",
@@ -523,7 +523,7 @@
               }
             }
           ],
-          "name": "lotr:elderberry"
+          "name": "lotrextended:elderberry"
         },
         {
           "type": "minecraft:item",
@@ -538,7 +538,7 @@
               }
             }
           ],
-          "name": "lotr:raspberry"
+          "name": "lotrextended:raspberry"
         },
         {
           "type": "minecraft:item",
@@ -553,7 +553,7 @@
               }
             }
           ],
-          "name": "lotr:roasted_chestnut"
+          "name": "lotrextended:roasted_chestnut"
         },
         {
           "type": "minecraft:item",
@@ -568,7 +568,7 @@
               }
             }
           ],
-          "name": "lotr:cheese_slice"
+          "name": "lotrextended:cheese_slice"
         },
         {
           "type": "minecraft:item",
@@ -583,7 +583,7 @@
               }
             }
           ],
-          "name": "lotr:aged_cheese_slice"
+          "name": "lotrextended:aged_cheese_slice"
         },
         {
           "type": "minecraft:item",
@@ -598,7 +598,7 @@
               }
             }
           ],
-          "name": "lotr:plum"
+          "name": "lotrextended:plum"
         },
         {
           "type": "minecraft:item",
@@ -693,7 +693,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:leather_hat"
+          "name": "lotrextended:leather_hat"
         },
         {
           "type": "minecraft:item",

@@ -519,7 +519,7 @@
               }
             }
           ],
-          "name": "lotr:chestnut_log"
+          "name": "lotrextended:chestnut_log"
         },
         {
           "type": "minecraft:item",
@@ -765,7 +765,7 @@
               }
             }
           ],
-          "name": "lotr:plum"
+          "name": "lotrextended:plum"
         },
         {
           "type": "minecraft:item",
@@ -776,7 +776,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:bree_banner_pattern"
+          "name": "lotrextended:bree_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -986,7 +986,7 @@
               }
             }
           ],
-          "name": "lotr:longbow"
+          "name": "lotrextended:longbow"
         },
         {
           "type": "minecraft:item",
@@ -1260,7 +1260,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:leather_hat"
+          "name": "lotrextended:leather_hat"
         },
         {
           "type": "minecraft:item",

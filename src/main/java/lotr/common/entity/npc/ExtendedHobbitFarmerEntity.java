@@ -5,11 +5,10 @@ import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 
 import lotr.common.entity.npc.ai.goal.*;
-import lotr.common.init.ExtendedItems;
-
 import lotr.common.util.ExtendedInteractableHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;

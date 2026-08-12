@@ -1,12 +1,12 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_leaves",
-    "lotr:chestnut_leaves",
-    "lotr:chestnut_leaves_fruit",
-    "lotr:ebony_leaves",
-    "lotr:plum_leaves",
-    "lotr:plum_leaves_fruit",
-    "lotr:willow_leaves"
+    "lotrextended:banana_leaves",
+    "lotrextended:chestnut_leaves",
+    "lotrextended:chestnut_leaves_fruit",
+    "lotrextended:ebony_leaves",
+    "lotrextended:plum_leaves",
+    "lotrextended:plum_leaves_fruit",
+    "lotrextended:willow_leaves"
   ]
 }

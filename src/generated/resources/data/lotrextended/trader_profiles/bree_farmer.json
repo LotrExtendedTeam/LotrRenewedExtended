@@ -218,7 +218,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:branding_iron",
+        "item": "lotrextended:branding_iron",
         "averageCost": 25,
         "nbt": "{Damage:0}"
       }
@@ -226,7 +226,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:butter",
+        "item": "lotrextended:butter",
         "averageCost": 5
       }
     }

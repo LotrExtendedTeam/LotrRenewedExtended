@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotrextended:ebony_wood_stairs"
+      },
+      {
+        "item": "lotrextended:stripped_ebony_wood_stairs"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotrextended:ebony_planks",
+    "count": 3
+  }
+}

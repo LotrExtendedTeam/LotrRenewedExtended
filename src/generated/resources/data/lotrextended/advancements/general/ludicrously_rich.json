@@ -2,7 +2,7 @@
   "parent": "lotrextended:general/filthy_rich",
   "display": {
     "icon": {
-      "item": "lotr:silver_coin_hundred"
+      "item": "lotrextended:silver_coin_hundred"
     },
     "title": {
       "color": "gold",

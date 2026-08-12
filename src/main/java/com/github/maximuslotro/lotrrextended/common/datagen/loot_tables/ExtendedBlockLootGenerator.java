@@ -50,8 +50,8 @@ import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBoo
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedWeaponRackBlock;
-import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
-import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
@@ -87,8 +87,6 @@ import lotr.common.block.StrippableLogBlock;
 import lotr.common.block.StrippableWoodBlock;
 import lotr.common.block.VesselDrinkBlock;
 import lotr.common.block.WoodBeamBlock;
-import lotr.common.init.ExtendedBlocks;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.loot.functions.VesselDrink;
 import net.minecraft.advancements.criterion.EnchantmentPredicate;
@@ -528,9 +526,6 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 	protected Iterable<Block> getKnownBlocks() {
 		List<RegistryObject<Block>> filtered = new ArrayList<>();
 		for(Entry<String, RegistryObject<Block>> bl : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if((bl.getValue().get() instanceof ExtendedSpawnerBlock) || (bl.getValue().get() instanceof ExtendedGroupSpawnerBlock)){
-				continue;
-			}
 			filtered.add(bl.getValue());
 		}
 		filtered.add(LOTRBlocks.CHERRY_PIE);

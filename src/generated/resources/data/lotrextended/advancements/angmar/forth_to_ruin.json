@@ -2,7 +2,7 @@
   "parent": "lotrextended:angmar/the_ruin_of_arnor",
   "display": {
     "icon": {
-      "item": "lotr:angmar_chestplate",
+      "item": "lotrextended:angmar_chestplate",
       "nbt": "{Damage:0}"
     },
     "title": {
@@ -23,16 +23,16 @@
       "conditions": {
         "items": [
           {
-            "item": "lotr:angmar_helmet"
+            "item": "lotrextended:angmar_helmet"
           },
           {
-            "item": "lotr:angmar_chestplate"
+            "item": "lotrextended:angmar_chestplate"
           },
           {
-            "item": "lotr:angmar_leggings"
+            "item": "lotrextended:angmar_leggings"
           },
           {
-            "item": "lotr:angmar_boots"
+            "item": "lotrextended:angmar_boots"
           }
         ]
       }

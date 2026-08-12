@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotrextended:ruby_block"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:ruby",
+    "count": 9
+  }
+}

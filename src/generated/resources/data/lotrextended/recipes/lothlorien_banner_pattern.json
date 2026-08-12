@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:galadhrim",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotrextended:lothlorien_banner"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:lothlorien_banner_pattern"
+  }
+}

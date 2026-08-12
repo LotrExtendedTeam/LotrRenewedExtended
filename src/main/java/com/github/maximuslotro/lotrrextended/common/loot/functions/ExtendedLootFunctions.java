@@ -1,9 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.loot.functions;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 
 import lotr.common.entity.npc.WargEntity;
-import lotr.common.init.ExtendedItems;
 import net.minecraft.loot.ILootSerializer;
 import net.minecraft.loot.LootFunctionType;
 import net.minecraft.loot.functions.ILootFunction;

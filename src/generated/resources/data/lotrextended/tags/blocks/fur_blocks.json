@@ -1,15 +1,15 @@
 {
   "replace": false,
   "values": [
-    "lotr:black_fur_bundle",
-    "lotr:black_fur_carpet",
-    "lotr:brown_fur_carpet",
     "lotr:fur_bundle",
-    "lotr:gray_fur_bundle",
-    "lotr:gray_fur_carpet",
-    "lotr:silver_fur_bundle",
-    "lotr:silver_fur_carpet",
-    "lotr:white_fur_bundle",
-    "lotr:white_fur_carpet"
+    "lotrextended:black_fur_bundle",
+    "lotrextended:black_fur_carpet",
+    "lotrextended:brown_fur_carpet",
+    "lotrextended:gray_fur_bundle",
+    "lotrextended:gray_fur_carpet",
+    "lotrextended:silver_fur_bundle",
+    "lotrextended:silver_fur_carpet",
+    "lotrextended:white_fur_bundle",
+    "lotrextended:white_fur_carpet"
   ]
 }

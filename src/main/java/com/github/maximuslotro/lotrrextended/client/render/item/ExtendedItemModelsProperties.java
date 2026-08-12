@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.render.item;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitFarmhandContainer;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainerNew;
@@ -9,7 +10,6 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.DaggerItem;
 import net.minecraft.inventory.container.PlayerContainer;

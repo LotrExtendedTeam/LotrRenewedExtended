@@ -4,10 +4,10 @@ import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedStats;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedChestTileEntity;
 
 import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
-import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;

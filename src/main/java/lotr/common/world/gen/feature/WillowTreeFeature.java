@@ -1,8 +1,8 @@
 package lotr.common.world.gen.feature;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.mojang.serialization.Codec;
 import lotr.common.block.LOTRSaplingBlock;
-import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.VineBlock;
 import net.minecraft.block.material.Material;

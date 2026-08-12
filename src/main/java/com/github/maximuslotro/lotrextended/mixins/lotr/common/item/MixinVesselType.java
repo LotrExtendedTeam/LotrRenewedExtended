@@ -8,7 +8,8 @@ import java.util.function.Supplier;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
-import lotr.common.init.ExtendedItems;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+
 import lotr.common.item.VesselType;
 import lotr.common.util.LOTRUtil;
 import net.minecraft.item.Items;

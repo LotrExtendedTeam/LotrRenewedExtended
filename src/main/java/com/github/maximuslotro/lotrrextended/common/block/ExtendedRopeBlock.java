@@ -2,11 +2,11 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedRopeType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.state.properties.ExtendedBlockStateProperties;
 
 import lotr.common.block.LOTRBlockStates;
-import lotr.common.init.ExtendedBlocks;
-import lotr.common.init.ExtendedItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;

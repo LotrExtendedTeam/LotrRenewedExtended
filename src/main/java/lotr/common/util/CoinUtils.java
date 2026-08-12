@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCoinType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCoinItem;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
-import lotr.common.init.ExtendedItems;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

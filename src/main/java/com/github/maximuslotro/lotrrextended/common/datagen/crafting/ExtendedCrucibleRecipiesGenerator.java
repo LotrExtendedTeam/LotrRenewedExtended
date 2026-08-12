@@ -3,9 +3,9 @@ package com.github.maximuslotro.lotrrextended.common.datagen.crafting;
 import java.util.Map.Entry;
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.LOTRArmorItem;
 import net.minecraft.data.DataGenerator;

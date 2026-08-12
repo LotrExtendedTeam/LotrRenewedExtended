@@ -1,0 +1,12 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotrextended:eregion_helmet"
+  },
+  "result1": {
+    "item": "lotr:elven_steel_ingot",
+    "count": 5
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

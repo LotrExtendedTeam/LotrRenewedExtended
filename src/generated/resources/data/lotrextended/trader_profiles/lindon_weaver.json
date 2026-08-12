@@ -184,28 +184,28 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:black_fur",
+        "item": "lotrextended:black_fur",
         "averageCost": 2
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:gray_fur",
+        "item": "lotrextended:gray_fur",
         "averageCost": 2
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:silver_fur",
+        "item": "lotrextended:silver_fur",
         "averageCost": 3
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:white_fur",
+        "item": "lotrextended:white_fur",
         "averageCost": 25
       }
     },
@@ -365,7 +365,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:leather_hat",
+        "item": "lotrextended:leather_hat",
         "averageCost": 10
       }
     },
@@ -418,14 +418,14 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:lindon_banner",
+        "item": "lotrextended:lindon_banner",
         "averageCost": 4
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:lindon_banner_pattern",
+        "item": "lotrextended:lindon_banner_pattern",
         "averageCost": 4
       }
     }

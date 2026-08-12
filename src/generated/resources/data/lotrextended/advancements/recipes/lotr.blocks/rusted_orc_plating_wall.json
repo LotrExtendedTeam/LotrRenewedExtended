@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:rusted_orc_plating_wall"
+    ]
+  },
+  "criteria": {
+    "has_rusted_orc_plating": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:rusted_orc_plating"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:rusted_orc_plating_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rusted_orc_plating",
+      "has_the_recipe"
+    ]
+  ]
+}

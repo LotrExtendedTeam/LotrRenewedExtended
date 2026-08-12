@@ -16,7 +16,7 @@
               }
             }
           ],
-          "name": "lotr:cheese_curds"
+          "name": "lotrextended:cheese_curds"
         },
         {
           "type": "minecraft:item",
@@ -30,7 +30,7 @@
               }
             }
           ],
-          "name": "lotr:cheese_slice"
+          "name": "lotrextended:cheese_slice"
         },
         {
           "type": "minecraft:item",
@@ -40,7 +40,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:cheese_wheel"
+          "name": "lotrextended:cheese_wheel"
         },
         {
           "type": "minecraft:item",
@@ -54,7 +54,7 @@
               }
             }
           ],
-          "name": "lotr:aged_cheese_slice"
+          "name": "lotrextended:aged_cheese_slice"
         },
         {
           "type": "minecraft:item",
@@ -64,7 +64,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:aged_cheese_wheel"
+          "name": "lotrextended:aged_cheese_wheel"
         }
       ]
     }

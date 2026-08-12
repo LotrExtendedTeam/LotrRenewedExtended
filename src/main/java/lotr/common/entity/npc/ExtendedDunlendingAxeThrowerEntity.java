@@ -2,11 +2,11 @@ package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ThrowingAxeAttackGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedThrowableAxeEntity;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRAttributes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;

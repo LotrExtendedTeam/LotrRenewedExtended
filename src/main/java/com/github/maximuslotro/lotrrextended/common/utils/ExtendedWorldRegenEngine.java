@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -25,6 +26,7 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.mojang.datafixers.DataFixer;
 
 import lotr.common.init.LOTRDimensions;
+import lotr.common.init.LOTRTileEntities;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.ListNBT;
@@ -255,7 +257,7 @@ public class ExtendedWorldRegenEngine {
 							CompoundNBT te = tileEntities.getCompound(blockEntityIndex);
 
 							// Check it actually has your data
-							if (te.getString("id").equals("lotr:banner_s_tileentity") && te.contains("ProtectionData", 10)) {
+							if (te.getString("id").equals(ExtendedTileEntities.BANNER_STANDING.getId().toString()) && te.contains("ProtectionData", 10)) {
 								CompoundNBT protection = te.getCompound("ProtectionData");
 								if (!protection.getBoolean("used")) {
 									continue;
@@ -281,7 +283,7 @@ public class ExtendedWorldRegenEngine {
 								markProtectedChunks(worldKey, x, z, radius);
 								++this.bannerProtectedChunks;
 								protectedChunk=true;
-							}else if(te.getString("id").equals("lotr:custom_waypoint_marker")){
+							}else if(te.getString("id").equals(LOTRTileEntities.CUSTOM_WAYPOINT_MARKER.getId().toString())){
 								int x = te.getInt("x");
 								int z = te.getInt("z");
 								LOGGER.info("Waypoint found at {},{} (radius {})", x, z, 1);

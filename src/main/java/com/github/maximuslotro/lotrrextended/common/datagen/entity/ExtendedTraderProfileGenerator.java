@@ -3,13 +3,13 @@ package com.github.maximuslotro.lotrrextended.common.datagen.entity;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedDrinkUtils;
 
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselDrinkItem.Potency;
 import net.minecraft.data.DataGenerator;

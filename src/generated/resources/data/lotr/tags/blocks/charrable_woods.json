@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_wood",
-    "lotr:chestnut_wood",
-    "lotr:ebony_wood",
-    "lotr:plum_wood",
-    "lotr:willow_wood"
+    "lotrextended:banana_wood",
+    "lotrextended:chestnut_wood",
+    "lotrextended:ebony_wood",
+    "lotrextended:plum_wood",
+    "lotrextended:willow_wood"
   ]
 }

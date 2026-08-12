@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_log",
-    "lotr:chestnut_log",
-    "lotr:ebony_log",
-    "lotr:plum_log",
-    "lotr:willow_log"
+    "lotrextended:banana_log",
+    "lotrextended:chestnut_log",
+    "lotrextended:ebony_log",
+    "lotrextended:plum_log",
+    "lotrextended:willow_log"
   ]
 }

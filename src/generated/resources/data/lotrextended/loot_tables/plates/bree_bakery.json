@@ -40,7 +40,7 @@
               }
             }
           ],
-          "name": "lotr:cheese_slice"
+          "name": "lotrextended:cheese_slice"
         },
         {
           "type": "minecraft:item",
@@ -54,7 +54,7 @@
               }
             }
           ],
-          "name": "lotr:hobbit_pancake"
+          "name": "lotrextended:hobbit_pancake"
         },
         {
           "type": "minecraft:item",
@@ -68,7 +68,7 @@
               }
             }
           ],
-          "name": "lotr:hobbit_pancake_syrup"
+          "name": "lotrextended:hobbit_pancake_syrup"
         },
         {
           "type": "minecraft:item",
@@ -78,7 +78,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:hobbit_pancake_syrup_butter"
+          "name": "lotrextended:hobbit_pancake_syrup_butter"
         }
       ]
     }

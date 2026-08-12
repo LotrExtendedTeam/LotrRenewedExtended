@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:stripped_plum_branch"
+    ]
+  },
+  "criteria": {
+    "has_stripped_plum_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:stripped_plum_wood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:stripped_plum_branch"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stripped_plum_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,10 +1,10 @@
 package lotr.client.render.entity.layers;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.render.entity.model.LOTRBipedModel;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.init.ExtendedItems;
 import lotr.common.util.CalendarUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;

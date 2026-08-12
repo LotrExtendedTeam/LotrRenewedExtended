@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:smooth_red_rock"
+  },
+  "result": "lotrextended:smooth_red_rock_stairs",
+  "count": 1
+}

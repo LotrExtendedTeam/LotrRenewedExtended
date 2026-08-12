@@ -422,7 +422,7 @@
               }
             }
           ],
-          "name": "lotr:bone_axe"
+          "name": "lotrextended:bone_axe"
         },
         {
           "type": "minecraft:item",
@@ -443,7 +443,7 @@
               }
             }
           ],
-          "name": "lotr:bone_pickaxe"
+          "name": "lotrextended:bone_pickaxe"
         },
         {
           "type": "minecraft:item",
@@ -464,7 +464,7 @@
               }
             }
           ],
-          "name": "lotr:bone_sword"
+          "name": "lotrextended:bone_sword"
         },
         {
           "type": "minecraft:item",
@@ -485,7 +485,7 @@
               }
             }
           ],
-          "name": "lotr:bone_dagger"
+          "name": "lotrextended:bone_dagger"
         },
         {
           "type": "minecraft:item",
@@ -506,7 +506,7 @@
               }
             }
           ],
-          "name": "lotr:bone_spear"
+          "name": "lotrextended:bone_spear"
         },
         {
           "type": "minecraft:item",
@@ -527,7 +527,7 @@
               }
             }
           ],
-          "name": "lotr:angmar_axe"
+          "name": "lotrextended:angmar_axe"
         },
         {
           "type": "minecraft:item",
@@ -548,7 +548,7 @@
               }
             }
           ],
-          "name": "lotr:angmar_pickaxe"
+          "name": "lotrextended:angmar_pickaxe"
         },
         {
           "type": "minecraft:item",
@@ -569,7 +569,7 @@
               }
             }
           ],
-          "name": "lotr:angmar_sword"
+          "name": "lotrextended:angmar_sword"
         },
         {
           "type": "minecraft:item",
@@ -590,7 +590,7 @@
               }
             }
           ],
-          "name": "lotr:angmar_dagger"
+          "name": "lotrextended:angmar_dagger"
         },
         {
           "type": "minecraft:item",
@@ -611,7 +611,7 @@
               }
             }
           ],
-          "name": "lotr:angmar_spear"
+          "name": "lotrextended:angmar_spear"
         },
         {
           "type": "minecraft:item",
@@ -737,7 +737,7 @@
               }
             }
           ],
-          "name": "lotr:gundabad_uruk_sword"
+          "name": "lotrextended:gundabad_uruk_sword"
         },
         {
           "type": "minecraft:item",
@@ -758,7 +758,7 @@
               }
             }
           ],
-          "name": "lotr:gundabad_uruk_dagger"
+          "name": "lotrextended:gundabad_uruk_dagger"
         },
         {
           "type": "minecraft:item",
@@ -779,7 +779,7 @@
               }
             }
           ],
-          "name": "lotr:gundabad_uruk_spear"
+          "name": "lotrextended:gundabad_uruk_spear"
         },
         {
           "type": "minecraft:item",
@@ -821,7 +821,7 @@
               }
             }
           ],
-          "name": "lotr:orc_bow"
+          "name": "lotrextended:orc_bow"
         },
         {
           "type": "minecraft:item",
@@ -842,7 +842,7 @@
               }
             }
           ],
-          "name": "lotr:gundabad_uruk_bow"
+          "name": "lotrextended:gundabad_uruk_bow"
         }
       ]
     }

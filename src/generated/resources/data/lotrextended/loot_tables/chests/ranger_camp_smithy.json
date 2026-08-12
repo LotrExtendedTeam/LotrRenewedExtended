@@ -182,7 +182,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:dunedain_banner_pattern"
+          "name": "lotrextended:dunedain_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -193,7 +193,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:combat_tome"
+          "name": "lotrextended:combat_tome"
         },
         {
           "type": "minecraft:item",

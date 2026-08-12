@@ -5,77 +5,78 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.RegistryEvent.MissingMappings;
 import net.minecraftforge.event.RegistryEvent.MissingMappings.Mapping;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @SuppressWarnings("deprecation")
 public class ExtendedMissingMappings {
+	private static final String MODID = "lotrextended";
 	public static final Map<ResourceLocation, Block> BLOCKS = new HashMap<>();
 	public static final Map<ResourceLocation, Item> ITEMS = new HashMap<>();
 	public static final Map<ResourceLocation, EntityType<?>> ENTITIES = new HashMap<>();
+	public static final Map<ResourceLocation, TileEntityType<?>> BLOCK_ENTITIES = new HashMap<>();
 
 	private static boolean hasMappingsBeenCreated = false;
 
 	public static void ensureMappingsCreated() {
-	    if (!hasMappingsBeenCreated) {
-	        createMappings();
-	    }
-	}
-
-	public static void fixBlockMappings(MissingMappings<Block> event) {
-		for(Mapping<Block> mapping : event.getAllMappings()) {
-			ResourceLocation entryLocation = mapping.key;
-			//Handle Out Mod's Stuff, or handle Stuff That We Have Registered under "lotr" or Handle stuff we messed with
-			if (entryLocation.getNamespace().equals("lotrextended") || entryLocation.getNamespace().equals("lotr")) {
-				ensureMappingsCreated();
-				if (BLOCKS.containsKey(entryLocation)) {
-					Block block = BLOCKS.get(entryLocation);
-					mapping.remap(block);
-					ExtendedLog.info("Remapped block, old id was={}, new id is={}", entryLocation, block.getRegistryName());
-				}
-				continue;
-			}
+		if (!hasMappingsBeenCreated) {
+			createMappings();
 		}
 	}
 
-	public static void fixItemMappings(MissingMappings<Item> event) {
-		for(Mapping<Item> mapping : event.getAllMappings()) {
-			ResourceLocation entryLocation = mapping.key;
-			//Handle Out Mod's Stuff, or handle Stuff That We Have Registered under "lotr" or Handle stuff we messed with
-			if (entryLocation.getNamespace().equals("lotrextended") || entryLocation.getNamespace().equals("lotr")) {
-				ensureMappingsCreated();
-				if (ITEMS.containsKey(entryLocation)) {
-					Item item = ITEMS.get(entryLocation);
-					mapping.remap(item);
-					ExtendedLog.info("Remapped item, old id was={}, new id is={}", entryLocation, item.getRegistryName());
-				}
-				continue;
-			}
-		}
+	public static void onMissingBlockMappings(RegistryEvent.MissingMappings<Block> event) {
+		ExtendedMissingMappings.fixMappings(event, ExtendedMissingMappings.BLOCKS, ForgeRegistries.BLOCKS, "block");
 	}
 
-	public static void fixEntityMappings(MissingMappings<EntityType<?>> event) {
-		for(Mapping<EntityType<?>> mapping : event.getAllMappings()) {
+	public static void onMissingItemMappings(RegistryEvent.MissingMappings<Item> event) {
+		ExtendedMissingMappings.fixMappings(event, ExtendedMissingMappings.ITEMS, ForgeRegistries.ITEMS, "item");
+	}
+
+	public static void onMissingEntityMappings(RegistryEvent.MissingMappings<EntityType<?>> event) {
+		ExtendedMissingMappings.fixMappings(event, ExtendedMissingMappings.ENTITIES, ForgeRegistries.ENTITIES, "entity");
+	}
+
+	public static void onMissingBlockEntityMappings(RegistryEvent.MissingMappings<TileEntityType<?>> event) {
+		ExtendedMissingMappings.fixMappings(event, ExtendedMissingMappings.BLOCK_ENTITIES, ForgeRegistries.TILE_ENTITIES, "block_entity");
+	}
+
+	public static <T extends IForgeRegistryEntry<T>> void fixMappings(MissingMappings<T> event, Map<ResourceLocation, T> explicitOverrides, IForgeRegistry<T> registry, String typeName) {
+		ensureMappingsCreated();
+		for (Mapping<T> mapping : event.getAllMappings()) {
 			ResourceLocation entryLocation = mapping.key;
-			//Handle Out Mod's Stuff, or handle Stuff That We Have Registered under "lotr" or Handle stuff we messed with
-			if (entryLocation.getNamespace().equals("lotrextended") || entryLocation.getNamespace().equals("lotr")) {
-				ensureMappingsCreated();
-				if (ENTITIES.containsKey(entryLocation)) {
-					EntityType<?> entity = ENTITIES.get(entryLocation);
-					mapping.remap(entity);
-					ExtendedLog.info("Remapped entity, old id was={}, new id is={}", entryLocation, entity.getRegistryName());
-				}
+			// Check explicit manual overrides first
+			if (explicitOverrides.containsKey(entryLocation)) {
+				T target = explicitOverrides.get(entryLocation);
+				mapping.remap(target);
+				ExtendedLog.info("Remapped {} (explicit override), old id={}, new id={}", typeName, entryLocation, target.getRegistryName());
 				continue;
+			}
+			// Handle dynamic Namespace Fallback: Remap lotr:x -> lotrextended:x
+			if (entryLocation.getNamespace().equals("lotr") || entryLocation.getNamespace().equals(MODID)) {
+				ResourceLocation newLoc = new ResourceLocation(MODID, entryLocation.getPath());
+				if (registry.containsKey(newLoc)) {
+					T target = registry.getValue(newLoc);
+					if (target != null) {
+						mapping.remap(target);
+						ExtendedLog.info("Auto-remapped {} namespace, old id={}, new id={}", typeName, entryLocation, newLoc);
+						continue;
+					}
+				}
+				ExtendedLog.warn("Failed remapping lotr {} {}", typeName, entryLocation);
 			}
 		}
 	}
@@ -97,9 +98,10 @@ public class ExtendedMissingMappings {
 		addRemapBlock("morgul_wall_torch", "lotr", ExtendedBlocks.MORGUL_WALL_TORCH);
 
 		//Beta 1.2 Fixed incorrect naming of spawner blocks
-		addRemapBlock("entity_spawnerhobbit_farmer", "lotr", ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(ExtendedEntitySpawnTypes.HOBBIT_FARMER.getSerializedName()));
-		addRemapBlock("entity_spawnerhobbit_bartender", "lotr", ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(ExtendedEntitySpawnTypes.HOBBIT_BARTENDER.getSerializedName()));
-
+		//addRemapBlock("entity_spawnerhobbit_farmer", "lotr", ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(ExtendedEntitySpawnTypes.HOBBIT_FARMER.getSerializedName()));
+		//addRemapBlock("entity_spawnerhobbit_bartender", "lotr", ExtendedBlocks.ENTITYSPAWNERBLOCKS.get(ExtendedEntitySpawnTypes.HOBBIT_BARTENDER.getSerializedName()));
+		// REMOVED IN 1.11
+		
 		//Beta 1.3.0-alpha-1 Renamed Stone Taurethrim table name
 		addRemapBlockWithItem("taurethrim_stone_crafting_table", "lotr", ExtendedBlocks.TAURETHRIM_CRAFTING_TABLE, ExtendedItems.TAURETHRIM_CRAFTING_TABLE);
 
@@ -133,7 +135,7 @@ public class ExtendedMissingMappings {
 		addRemapItem("dwarven_throwable_axe", "lotr", ExtendedItems.DWARVEN_THROWABLE_AXE);
 		addRemapItem("iron_throwable_axe", "lotr", ExtendedItems.IRON_THROWABLE_AXE);
 		addRemapItem("lossarnach_throwable_axe", "lotr", ExtendedItems.LOSSARNACH_THROWABLE_AXE);
-		
+
 		//Beta 1.8.0 Rename Mordor Moss Vines to Dead Moss Vines
 		addRemapBlockWithItem("mordor_moss_vines", "lotr", ExtendedBlocks.DEAD_MOSS_VINES, ExtendedItems.DEAD_MOSS_VINES);
 
@@ -167,10 +169,12 @@ public class ExtendedMissingMappings {
 		addRemapItem("morgul_chestplate", "lotr", ExtendedItems.MORGUL_VASSAL_CHESTPLATE);
 		addRemapItem("morgul_leggings", "lotr", ExtendedItems.MORGUL_VASSAL_LEGGINGS);
 		addRemapItem("morgul_boots", "lotr", ExtendedItems.MORGUL_VASSAL_BOOTS);
-		
+
 		//Beta 1.10.3 Renamed Dunlanding Shield to Dunlending Shield
 		addRemapItem("dunlanding_shield", "lotr", ExtendedItems.DUNLENDING_SHIELD);
 
+		//Beta 1.11.0 Renamed Large Pot Morgul Flower id path
+		addRemapBlock("large_pot_morgum_flower", "lotr", ExtendedBlocks.LARGE_FLOWER_POT_MORGUL_FLOWER);
 	}
 
 	private static void addRemapBlock(String previousMapping, String previousNamespace, Supplier<? extends Block> remapBlock) {
@@ -185,5 +189,8 @@ public class ExtendedMissingMappings {
 	}
 	private static void addRemapEntity(String previousMapping, String previousNamespace,  Supplier<? extends EntityType<?>> remapEntity) {
 		ENTITIES.put(new ResourceLocation(previousNamespace, previousMapping), remapEntity.get());
+	}
+	private static void addRemapBlockEntity(String previousMapping, String previousNamespace,  Supplier<? extends TileEntityType<?>> remapBlockEntity) {
+		BLOCK_ENTITIES.put(new ResourceLocation(previousNamespace, previousMapping), remapBlockEntity.get());
 	}
 }

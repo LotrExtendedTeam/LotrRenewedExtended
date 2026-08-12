@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotrextended:mud"
+  },
+  "result": "lotrextended:mud_brick",
+  "count": 1
+}

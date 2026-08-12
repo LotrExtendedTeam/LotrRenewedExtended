@@ -2,9 +2,9 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.structure.process
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.mojang.serialization.Codec;
 
-import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;

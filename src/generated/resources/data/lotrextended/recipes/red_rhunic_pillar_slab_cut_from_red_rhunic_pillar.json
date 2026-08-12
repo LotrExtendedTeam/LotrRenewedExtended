@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotrextended:red_rhunic_pillar"
+  },
+  "result": "lotrextended:red_rhunic_pillar_slab",
+  "count": 1
+}

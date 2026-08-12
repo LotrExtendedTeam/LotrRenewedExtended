@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:gold_trimmed_rhunic_brick_stairs_cut_from_gold_trimmed_rhunic_brick"
+    ]
+  },
+  "criteria": {
+    "has_gold_trimmed_rhunic_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:gold_trimmed_rhunic_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:gold_trimmed_rhunic_brick_stairs_cut_from_gold_trimmed_rhunic_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gold_trimmed_rhunic_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

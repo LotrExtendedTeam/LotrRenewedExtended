@@ -2,7 +2,7 @@
   "parent": "lotrextended:eriador/livery_of_lord_elrond",
   "display": {
     "icon": {
-      "item": "lotr:imladris_guard_chestplate",
+      "item": "lotrextended:imladris_guard_chestplate",
       "nbt": "{Damage:0}"
     },
     "title": {
@@ -24,16 +24,16 @@
       "conditions": {
         "items": [
           {
-            "item": "lotr:imladris_guard_helmet"
+            "item": "lotrextended:imladris_guard_helmet"
           },
           {
-            "item": "lotr:imladris_guard_chestplate"
+            "item": "lotrextended:imladris_guard_chestplate"
           },
           {
-            "item": "lotr:imladris_guard_leggings"
+            "item": "lotrextended:imladris_guard_leggings"
           },
           {
-            "item": "lotr:imladris_guard_boots"
+            "item": "lotrextended:imladris_guard_boots"
           }
         ]
       }

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotrextended:mossy_taurethrim_brick"
+  },
+  "result": "lotrextended:mossy_taurethrim_brick_slab",
+  "count": 2
+}

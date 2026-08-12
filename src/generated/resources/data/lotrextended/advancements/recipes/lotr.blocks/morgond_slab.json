@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:morgond_slab"
+    ]
+  },
+  "criteria": {
+    "has_morgond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:morgond"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:morgond_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_morgond",
+      "has_the_recipe"
+    ]
+  ]
+}

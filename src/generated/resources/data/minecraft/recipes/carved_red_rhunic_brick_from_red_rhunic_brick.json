@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:red_rhunic_brick"
-  },
-  "result": "lotr:carved_red_rhunic_brick",
-  "count": 1
-}

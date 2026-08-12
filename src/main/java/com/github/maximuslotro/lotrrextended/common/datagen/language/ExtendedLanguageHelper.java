@@ -32,7 +32,6 @@ import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
 import net.minecraft.util.text.LanguageMap;
 
@@ -134,13 +133,6 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 		addD(key.getDescriptionId(), name);
 	}
 
-	public void addItemStack(Supplier<ItemStack> key, String name) {
-		add(key.get(), name);
-	}
-
-	public void add(ItemStack key, String name) {
-		addD(key.getDescriptionId(), name);
-	}
 
 	public void addEffect(Supplier<? extends Effect> key, String name) {
 		add(key.get(), name);
@@ -164,6 +156,17 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 	}
 
 	public void addD(String key, String value) {
+	    if (key.startsWith("block.") || key.startsWith("item.")) {
+	        String lotrKey = key.replace("." + modidHere + ".", ".lotr.");
+	        // Copy value from old LOTR key and delete it from existingStrings
+	        if (existingStrings.containsKey(lotrKey)) {
+	            String existingValue = existingStrings.remove(lotrKey);
+	            if (existingValue != null && !existingValue.isEmpty()) {
+	                value = existingValue;
+	            }
+	        }
+	    }
+	    
 		if (!newStrings.containsKey(key)) {
 			newStrings.put(key, value);
 		} else {

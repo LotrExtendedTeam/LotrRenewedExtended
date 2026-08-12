@@ -2,11 +2,11 @@ package com.github.maximuslotro.lotrrextended.common.datagen.language;
 import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBannerPatterns;
 
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.ExtendedItems;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.DyeColor;
@@ -23,14 +23,6 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void makeTranslations() {
-		//Add default made Spawner Names
-		for (Entry<String, RegistryObject<Block>> block : ExtendedBlocks.ENTITYGROUPSPAWNERBLOCKS.entrySet()) {
-			addOverrideRemove(block.getValue().get().getDescriptionId());
-		}
-		for (Entry<String, RegistryObject<Block>> block : ExtendedBlocks.ENTITYSPAWNERBLOCKS.entrySet()) {
-			addOverrideRemove(block.getValue().get().getDescriptionId());
-		}
-
 		// Try Add New Block Names
 		for (Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
 			if(block.getKey().contains("large_pot_")) {
@@ -61,8 +53,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 			}
 		}
 		for (Entry<String, String> entity : DataGenValueHolder.bannerPatternItemNameHolders.entrySet()) {
-			addOverride("item.lotr." + entity.getKey(), "Banner Pattern");
-			addOverride("item.lotr." + entity.getKey() + ".desc", ExtendedBannerPatterns.getHashtoname().get(entity.getValue()));
+			addOverride("item.lotrextended." + entity.getKey(), "Banner Pattern");
+			addOverride("item.lotrextended." + entity.getKey() + ".desc", ExtendedBannerPatterns.getHashtoname().get(entity.getValue()));
 		}
 
 		// Try Add New Entity Names

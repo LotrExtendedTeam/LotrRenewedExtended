@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:mordor_dirt_path_slab"
+    ]
+  },
+  "criteria": {
+    "has_mordor_dirt_path": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mordor_dirt_path"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:mordor_dirt_path_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mordor_dirt_path",
+      "has_the_recipe"
+    ]
+  ]
+}

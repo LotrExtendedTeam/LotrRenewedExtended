@@ -1,10 +1,10 @@
 package lotr.client.render.entity.layers;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.client.render.entity.model.ManModel;
 import lotr.common.entity.npc.ExtendedOddmentCollectorEntity;
-import lotr.common.init.ExtendedItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.IEntityRenderer;

@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_pressure_plate",
-    "lotr:chestnut_pressure_plate",
-    "lotr:ebony_pressure_plate",
-    "lotr:plum_pressure_plate",
-    "lotr:willow_pressure_plate"
+    "lotrextended:banana_pressure_plate",
+    "lotrextended:chestnut_pressure_plate",
+    "lotrextended:ebony_pressure_plate",
+    "lotrextended:plum_pressure_plate",
+    "lotrextended:willow_pressure_plate"
   ]
 }

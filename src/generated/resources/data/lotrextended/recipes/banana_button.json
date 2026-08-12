@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "lotrextended:banana_planks"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:banana_button"
+  }
+}

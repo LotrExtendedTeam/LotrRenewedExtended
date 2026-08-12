@@ -1,8 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.recipe;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;

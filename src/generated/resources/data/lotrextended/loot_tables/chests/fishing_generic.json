@@ -81,7 +81,7 @@
               }
             }
           ],
-          "name": "lotr:bowstring"
+          "name": "lotrextended:bowstring"
         },
         {
           "type": "minecraft:item",

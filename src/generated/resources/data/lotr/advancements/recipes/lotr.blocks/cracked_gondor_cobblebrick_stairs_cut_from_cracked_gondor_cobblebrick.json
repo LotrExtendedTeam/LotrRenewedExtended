@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:cracked_gondor_cobblebrick_stairs_cut_from_cracked_gondor_cobblebrick"
+    ]
+  },
+  "criteria": {
+    "has_cracked_gondor_cobblebrick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:cracked_gondor_cobblebrick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:cracked_gondor_cobblebrick_stairs_cut_from_cracked_gondor_cobblebrick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cracked_gondor_cobblebrick",
+      "has_the_recipe"
+    ]
+  ]
+}

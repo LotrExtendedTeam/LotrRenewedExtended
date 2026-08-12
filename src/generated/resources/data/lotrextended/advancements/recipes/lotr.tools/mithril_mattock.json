@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:mithril_mattock"
+    ]
+  },
+  "criteria": {
+    "has_mithril_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/mithril"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:mithril_mattock"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mithril_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

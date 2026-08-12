@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotrextended:mossy_rhunic_brick"
+  },
+  "result": "lotrextended:mossy_rhunic_brick_stairs",
+  "count": 1
+}

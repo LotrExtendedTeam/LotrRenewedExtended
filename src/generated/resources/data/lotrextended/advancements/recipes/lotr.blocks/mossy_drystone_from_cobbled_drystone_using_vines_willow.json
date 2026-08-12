@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:mossy_drystone_from_cobbled_drystone_using_vines_willow"
+    ]
+  },
+  "criteria": {
+    "has_cobbled_drystone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:cobbled_drystone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:mossy_drystone_from_cobbled_drystone_using_vines_willow"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cobbled_drystone",
+      "has_the_recipe"
+    ]
+  ]
+}

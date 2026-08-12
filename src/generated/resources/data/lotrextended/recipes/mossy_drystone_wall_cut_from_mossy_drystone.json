@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotrextended:mossy_drystone"
+  },
+  "result": "lotrextended:mossy_drystone_wall",
+  "count": 1
+}

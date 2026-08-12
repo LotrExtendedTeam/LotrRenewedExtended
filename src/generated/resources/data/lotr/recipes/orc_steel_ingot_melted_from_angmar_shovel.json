@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotrextended:angmar_shovel"
+  },
+  "result1": {
+    "item": "lotr:orc_steel_ingot"
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

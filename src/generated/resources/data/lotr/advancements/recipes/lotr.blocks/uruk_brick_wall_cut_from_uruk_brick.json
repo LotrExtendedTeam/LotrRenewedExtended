@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:uruk_brick_wall_cut_from_uruk_brick"
+    ]
+  },
+  "criteria": {
+    "has_uruk_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:uruk_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:uruk_brick_wall_cut_from_uruk_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_uruk_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

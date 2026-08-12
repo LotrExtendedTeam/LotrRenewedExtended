@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:cracked_gondor_brick_slab_cut_from_cracked_gondor_brick"
+    ]
+  },
+  "criteria": {
+    "has_cracked_gondor_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:cracked_gondor_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:cracked_gondor_brick_slab_cut_from_cracked_gondor_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cracked_gondor_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

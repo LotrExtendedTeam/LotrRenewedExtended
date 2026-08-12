@@ -1,6 +1,7 @@
 package lotr.common.entity.npc.data;
 
-import lotr.common.init.ExtendedItems;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+
 import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselType;
 import net.minecraft.item.Items;

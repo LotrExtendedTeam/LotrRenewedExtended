@@ -17,7 +17,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:mail_warg_armor"
+          "name": "lotrextended:mail_warg_armor"
         },
         {
           "type": "minecraft:item",
@@ -28,7 +28,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:isengard_warg_armor"
+          "name": "lotrextended:isengard_warg_armor"
         },
         {
           "type": "minecraft:item",

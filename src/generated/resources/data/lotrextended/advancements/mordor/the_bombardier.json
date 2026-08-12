@@ -2,7 +2,7 @@
   "parent": "lotrextended:mordor/morgul_crafter",
   "display": {
     "icon": {
-      "item": "lotr:orc_bomb"
+      "item": "lotrextended:orc_bomb"
     },
     "title": {
       "translate": "advancements.lotrextended.mordor.the_bombardier.title"
@@ -21,7 +21,7 @@
       "trigger": "lotrextended:crafting_with_block",
       "conditions": {
         "item": {
-          "item": "lotr:orc_bomb"
+          "item": "lotrextended:orc_bomb"
         },
         "crafting_block": {
           "block": "lotr:mordor_crafting_table"
@@ -32,7 +32,7 @@
       "trigger": "lotrextended:crafting_with_block",
       "conditions": {
         "item": {
-          "item": "lotr:orc_bomb"
+          "item": "lotrextended:orc_bomb"
         },
         "crafting_block": {
           "block": "lotr:angmar_crafting_table"
@@ -43,7 +43,7 @@
       "trigger": "lotrextended:crafting_with_block",
       "conditions": {
         "item": {
-          "item": "lotr:orc_bomb"
+          "item": "lotrextended:orc_bomb"
         },
         "crafting_block": {
           "block": "lotr:uruk_crafting_table"
@@ -54,10 +54,10 @@
       "trigger": "lotrextended:crafting_with_block",
       "conditions": {
         "item": {
-          "item": "lotr:orc_bomb"
+          "item": "lotrextended:orc_bomb"
         },
         "crafting_block": {
-          "block": "lotr:dol_guldur_crafting_table"
+          "block": "lotrextended:dol_guldur_crafting_table"
         }
       }
     }

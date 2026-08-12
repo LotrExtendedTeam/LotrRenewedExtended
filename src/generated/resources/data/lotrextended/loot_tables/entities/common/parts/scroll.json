@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "lotr:modifier_scroll"
+          "name": "lotrextended:modifier_scroll"
         }
       ],
       "conditions": [

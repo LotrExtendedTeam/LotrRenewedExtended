@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:dol_guldur_boots"
+    ]
+  },
+  "criteria": {
+    "has_orc_steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:orc_steel_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:dol_guldur_boots"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_orc_steel_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

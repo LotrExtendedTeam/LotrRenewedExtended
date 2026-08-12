@@ -81,7 +81,7 @@
               }
             }
           ],
-          "name": "lotr:rivendell_banner"
+          "name": "lotrextended:rivendell_banner"
         },
         {
           "type": "minecraft:item",
@@ -92,7 +92,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:rivendell_banner_pattern"
+          "name": "lotrextended:rivendell_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -103,7 +103,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:tapestry"
+          "name": "lotrextended:tapestry"
         },
         {
           "type": "minecraft:item",

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotrextended:banana_branch"
+      },
+      {
+        "item": "lotrextended:stripped_banana_branch"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotrextended:banana_planks",
+    "count": 2
+  }
+}

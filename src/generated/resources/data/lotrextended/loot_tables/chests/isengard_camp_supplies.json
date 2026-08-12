@@ -186,7 +186,7 @@
               }
             }
           ],
-          "name": "lotr:orc_steel_nugget"
+          "name": "lotrextended:orc_steel_nugget"
         },
         {
           "type": "minecraft:item",
@@ -197,7 +197,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:isengard_banner_pattern"
+          "name": "lotrextended:isengard_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -338,7 +338,7 @@
               }
             }
           ],
-          "name": "lotr:gray_fur"
+          "name": "lotrextended:gray_fur"
         },
         {
           "type": "minecraft:item",
@@ -353,7 +353,7 @@
               }
             }
           ],
-          "name": "lotr:skull_goblet"
+          "name": "lotrextended:skull_goblet"
         },
         {
           "type": "minecraft:item",
@@ -394,7 +394,7 @@
               }
             }
           ],
-          "name": "lotr:silver_fur"
+          "name": "lotrextended:silver_fur"
         },
         {
           "type": "minecraft:item",
@@ -787,7 +787,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:isengard_warg_armor"
+          "name": "lotrextended:isengard_warg_armor"
         },
         {
           "type": "minecraft:item",
@@ -1426,7 +1426,7 @@
               }
             }
           ],
-          "name": "lotr:longbow"
+          "name": "lotrextended:longbow"
         },
         {
           "type": "minecraft:item",
@@ -1447,7 +1447,7 @@
               }
             }
           ],
-          "name": "lotr:orc_bow"
+          "name": "lotrextended:orc_bow"
         }
       ],
       "conditions": [
