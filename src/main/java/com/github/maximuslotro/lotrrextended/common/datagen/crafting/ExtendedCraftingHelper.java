@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.datagen.crafting;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -23,12 +22,12 @@ import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeSeriali
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRStairsBlock;
-import lotr.common.block.LOTRWallBlock;
 import lotr.common.item.LOTRArmorItem;
 import lotr.common.item.LOTRHoeItem;
 import lotr.common.recipe.FactionBasedRecipeType;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.WallBlock;
 import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -2093,73 +2092,73 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 	}
 
 	public void checkForMissingRecipes() {
-		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if(block.getValue().get() instanceof AxialSlabBlock) {
-				if(!GENERATEDRECIPES.contains(block.getValue().get().getRegistryName().getPath())) {
-					System.out.println("MISSING SLAB RECIPE FOR: "+block.getValue().get().getRegistryName().toString());
+		for(RegistryObject<Block> block : ExtendedBlocks.BLOCKS.getEntries()) {
+			if(block.get() instanceof AxialSlabBlock) {
+				if(!GENERATEDRECIPES.contains(block.get().getRegistryName().getPath())) {
+					System.out.println("MISSING SLAB RECIPE FOR: "+block.get().getRegistryName().toString());
 				}
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRStairsBlock) {
-				if(!GENERATEDRECIPES.contains(block.getValue().get().getRegistryName().getPath())) {
-					System.out.println("MISSING STAIR RECIPE FOR: "+block.getValue().get().getRegistryName().toString());
+			if(block.get() instanceof LOTRStairsBlock) {
+				if(!GENERATEDRECIPES.contains(block.get().getRegistryName().getPath())) {
+					System.out.println("MISSING STAIR RECIPE FOR: "+block.get().getRegistryName().toString());
 				}
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRWallBlock) {
-				if(!GENERATEDRECIPES.contains(block.getValue().get().getRegistryName().getPath())) {
-					System.out.println("MISSING WALL RECIPE FOR: "+block.getValue().get().getRegistryName().toString());
+			if(block.get() instanceof WallBlock) {
+				if(!GENERATEDRECIPES.contains(block.get().getRegistryName().getPath())) {
+					System.out.println("MISSING WALL RECIPE FOR: "+block.get().getRegistryName().toString());
 				}
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRPillarBlock) {
-				if(!GENERATEDRECIPES.contains(block.getValue().get().getRegistryName().getPath())) {
-					System.out.println("MISSING PILLAR RECIPE FOR: "+block.getValue().get().getRegistryName().toString());
+			if(block.get() instanceof LOTRPillarBlock) {
+				if(!GENERATEDRECIPES.contains(block.get().getRegistryName().getPath())) {
+					System.out.println("MISSING PILLAR RECIPE FOR: "+block.get().getRegistryName().toString());
 				}
 				continue;
 			}
-			if(!GENERATEDRECIPES.contains(block.getValue().get().getRegistryName().getPath())) {
-				System.out.println("MISSING BLOCK RECIPE FOR: "+block.getValue().get().getRegistryName().toString());
+			if(!GENERATEDRECIPES.contains(block.get().getRegistryName().getPath())) {
+				System.out.println("MISSING BLOCK RECIPE FOR: "+block.get().getRegistryName().toString());
 			}
 		}
-		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
-			if(item.getValue().get() instanceof LOTRArmorItem) {
-				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
-					System.out.println("MISSING ARMOR RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
+		for(RegistryObject<Item> item : ExtendedItems.ITEMS.getEntries()) {
+			if(item.get() instanceof LOTRArmorItem) {
+				if(!GENERATEDRECIPES.contains(item.get().getRegistryName().getPath())) {
+					System.out.println("MISSING ARMOR RECIPE FOR: "+item.get().getRegistryName().toString());
 				}
 			}
-			if(item.getValue().get() instanceof ExtendedSwordItem) {
-				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
-					System.out.println("MISSING SWORD RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
+			if(item.get() instanceof ExtendedSwordItem) {
+				if(!GENERATEDRECIPES.contains(item.get().getRegistryName().getPath())) {
+					System.out.println("MISSING SWORD RECIPE FOR: "+item.get().getRegistryName().toString());
 				}
 			}
-			if(item.getValue().get() instanceof PickaxeItem) {
-				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
-					System.out.println("MISSING PICKAXE RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
+			if(item.get() instanceof PickaxeItem) {
+				if(!GENERATEDRECIPES.contains(item.get().getRegistryName().getPath())) {
+					System.out.println("MISSING PICKAXE RECIPE FOR: "+item.get().getRegistryName().toString());
 				}
 			}
-			if(item.getValue().get() instanceof ShovelItem) {
-				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
-					System.out.println("MISSING SHOVEL RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
+			if(item.get() instanceof ShovelItem) {
+				if(!GENERATEDRECIPES.contains(item.get().getRegistryName().getPath())) {
+					System.out.println("MISSING SHOVEL RECIPE FOR: "+item.get().getRegistryName().toString());
 				}
 			}
-			if(item.getValue().get() instanceof AxeItem) {
-				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
-					System.out.println("MISSING AXE RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
+			if(item.get() instanceof AxeItem) {
+				if(!GENERATEDRECIPES.contains(item.get().getRegistryName().getPath())) {
+					System.out.println("MISSING AXE RECIPE FOR: "+item.get().getRegistryName().toString());
 				}
 			}
-			if(item.getValue().get() instanceof LOTRHoeItem) {
-				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
-					System.out.println("MISSING HOE RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
+			if(item.get() instanceof LOTRHoeItem) {
+				if(!GENERATEDRECIPES.contains(item.get().getRegistryName().getPath())) {
+					System.out.println("MISSING HOE RECIPE FOR: "+item.get().getRegistryName().toString());
 				}
 			}
-			if(item.getValue().get() instanceof ExtendedThrowableAxeItem) {
-				if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
-					System.out.println("MISSING TOOL RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
+			if(item.get() instanceof ExtendedThrowableAxeItem) {
+				if(!GENERATEDRECIPES.contains(item.get().getRegistryName().getPath())) {
+					System.out.println("MISSING TOOL RECIPE FOR: "+item.get().getRegistryName().toString());
 				}
 			}
-			if(!GENERATEDRECIPES.contains(item.getValue().get().getRegistryName().getPath())) {
-				System.out.println("MISSING ITEM RECIPE FOR: "+item.getValue().get().getRegistryName().toString());
+			if(!GENERATEDRECIPES.contains(item.get().getRegistryName().getPath())) {
+				System.out.println("MISSING ITEM RECIPE FOR: "+item.get().getRegistryName().toString());
 			}
 		}
 	}

@@ -32,7 +32,50 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedWargFurType;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
 
-import lotr.common.block.*;
+import lotr.common.block.AxialSlabBlock;
+import lotr.common.block.BranchBlock;
+import lotr.common.block.ChandelierBlock;
+import lotr.common.block.DripstoneBlock;
+import lotr.common.block.ExtendedAxialSlabDirtBlock;
+import lotr.common.block.ExtendedAxialSlabPathBlock;
+import lotr.common.block.ExtendedAxialSlabPlantableBlock;
+import lotr.common.block.ExtendedAxialSlabPlantableSpreadableBlock;
+import lotr.common.block.ExtendedAxialSlabPlantableSpreadableGrowableBlock;
+import lotr.common.block.ExtendedAxialSlabStemableBlock;
+import lotr.common.block.ExtendedBottleVesselDrinkBlock;
+import lotr.common.block.ExtendedBrazierBlock;
+import lotr.common.block.ExtendedBurnableAxialSlabBlock;
+import lotr.common.block.ExtendedBurnableLOTRStairsBlock;
+import lotr.common.block.ExtendedChandelierBlock;
+import lotr.common.block.ExtendedDwarvenGateBlock;
+import lotr.common.block.ExtendedFactionCraftingTableBlock;
+import lotr.common.block.ExtendedGreenHearthBlock;
+import lotr.common.block.ExtendedLOTRTorchBlock;
+import lotr.common.block.ExtendedLOTRWallTorchBlock;
+import lotr.common.block.FallenLeavesBlock;
+import lotr.common.block.LOTRDoorBlock;
+import lotr.common.block.LOTRFenceBlock;
+import lotr.common.block.LOTRFenceGateBlock;
+import lotr.common.block.LOTRLeavesBlock;
+import lotr.common.block.LOTRPillarBlock;
+import lotr.common.block.LOTRPlanksBlock;
+import lotr.common.block.LOTRPottedPlantBlock;
+import lotr.common.block.LOTRSaplingBlock;
+import lotr.common.block.LOTRStairsBlock;
+import lotr.common.block.LOTRStrippedLogBlock;
+import lotr.common.block.LOTRStrippedWoodBlock;
+import lotr.common.block.LOTRTrapdoorBlock;
+import lotr.common.block.LOTRWoodButtonBlock;
+import lotr.common.block.LOTRWoodPressurePlateBlock;
+import lotr.common.block.LogSlabBlock;
+import lotr.common.block.LogStairsBlock;
+import lotr.common.block.StrippableBranchBlock;
+import lotr.common.block.StrippableLogBlock;
+import lotr.common.block.StrippableLogSlabBlock;
+import lotr.common.block.StrippableLogStairsBlock;
+import lotr.common.block.StrippableWoodBlock;
+import lotr.common.block.VesselDrinkBlock;
+import lotr.common.block.WoodBeamBlock;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import net.minecraft.block.AbstractBlock;
@@ -46,18 +89,16 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.trees.OakTree;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DatagenModLoader;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedBlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, LotrExtendedMod.MODID);
-	// Only used for dataGen
-	public static Map<String, RegistryObject<Block>> REGISTEREDBLOCKS = new HashMap<>();
 	// Only used for dataGen
 	public static Map<String, RegistryObject<Block>> REGISTEREDPOTS = new HashMap<>();
 
@@ -88,8 +129,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_CHESTNUT_WOOD = register("stripped_chestnut_wood", () -> new LOTRStrippedWoodBlock(STRIPPED_CHESTNUT_LOG));
 	public static RegistryObject<Block> CHESTNUT_BEAM = register("chestnut_beam", () -> new WoodBeamBlock(CHESTNUT_LOG));
 	public static RegistryObject<Block> CHESTNUT_BEAM_SLAB = register("chestnut_beam_slab", () -> new LogSlabBlock(CHESTNUT_BEAM));
-	public static RegistryObject<Block> CHESTNUT_SIGN = register("chestnut_sign", () -> new LOTRStandingSignBlock(CHESTNUT_PLANKS, ExtendedSignTypes.CHESTNUT));
-	public static RegistryObject<Block> CHESTNUT_WALL_SIGN = register("chestnut_wall_sign", () -> new LOTRWallSignBlock(CHESTNUT_SIGN));
+	public static RegistryObject<Block> CHESTNUT_SIGN = register("chestnut_sign", () -> new ExtendedStandingSignBlock(CHESTNUT_PLANKS, ExtendedSignTypes.CHESTNUT));
+	public static RegistryObject<Block> CHESTNUT_WALL_SIGN = register("chestnut_wall_sign", () -> new ExtendedWallSignBlock(CHESTNUT_SIGN, ExtendedSignTypes.CHESTNUT));
 	public static RegistryObject<Block> CHESTNUT_LOG_SLAB = register("chestnut_log_slab", () -> new StrippableLogSlabBlock(CHESTNUT_LOG, ExtendedBlocks.STRIPPED_CHESTNUT_LOG_SLAB));
 	public static RegistryObject<Block> CHESTNUT_WOOD_SLAB = register("chestnut_wood_slab", () -> new StrippableLogSlabBlock(CHESTNUT_WOOD, ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_SLAB));
 	public static RegistryObject<Block> CHESTNUT_WOOD_STAIRS = register("chestnut_wood_stairs", () -> new StrippableLogStairsBlock(CHESTNUT_WOOD, ExtendedBlocks.STRIPPED_CHESTNUT_WOOD_STAIRS));
@@ -119,8 +160,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_BANANA_WOOD = register("stripped_banana_wood", () -> new LOTRStrippedWoodBlock(STRIPPED_BANANA_LOG));
 	public static RegistryObject<Block> BANANA_BEAM = register("banana_beam", () -> new WoodBeamBlock(BANANA_LOG));
 	public static RegistryObject<Block> BANANA_BEAM_SLAB = register("banana_beam_slab", () -> new LogSlabBlock(BANANA_BEAM));
-	public static RegistryObject<Block> BANANA_SIGN = register("banana_sign", () -> new LOTRStandingSignBlock(BANANA_PLANKS, ExtendedSignTypes.BANANA));
-	public static RegistryObject<Block> BANANA_WALL_SIGN = register("banana_wall_sign", () -> new LOTRWallSignBlock(BANANA_SIGN));
+	public static RegistryObject<Block> BANANA_SIGN = register("banana_sign", () -> new ExtendedStandingSignBlock(BANANA_PLANKS, ExtendedSignTypes.BANANA));
+	public static RegistryObject<Block> BANANA_WALL_SIGN = register("banana_wall_sign", () -> new ExtendedWallSignBlock(BANANA_SIGN, ExtendedSignTypes.BANANA));
 	public static RegistryObject<Block> BANANA_LOG_SLAB = register("banana_log_slab", () -> new StrippableLogSlabBlock(BANANA_LOG, ExtendedBlocks.STRIPPED_BANANA_LOG_SLAB));
 	public static RegistryObject<Block> BANANA_WOOD_SLAB = register("banana_wood_slab", () -> new StrippableLogSlabBlock(BANANA_WOOD, ExtendedBlocks.STRIPPED_BANANA_WOOD_SLAB));
 	public static RegistryObject<Block> BANANA_WOOD_STAIRS = register("banana_wood_stairs", () -> new StrippableLogStairsBlock(BANANA_WOOD, ExtendedBlocks.STRIPPED_BANANA_WOOD_STAIRS));
@@ -152,8 +193,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_PLUM_WOOD = register("stripped_plum_wood", () -> new LOTRStrippedWoodBlock(STRIPPED_PLUM_LOG));
 	public static RegistryObject<Block> PLUM_BEAM = register("plum_beam", () -> new WoodBeamBlock(PLUM_LOG));
 	public static RegistryObject<Block> PLUM_BEAM_SLAB = register("plum_beam_slab", () -> new LogSlabBlock(PLUM_BEAM));
-	public static RegistryObject<Block> PLUM_SIGN = register("plum_sign", () -> new LOTRStandingSignBlock(PLUM_PLANKS, ExtendedSignTypes.PLUM));
-	public static RegistryObject<Block> PLUM_WALL_SIGN = register("plum_wall_sign", () -> new LOTRWallSignBlock(PLUM_SIGN));
+	public static RegistryObject<Block> PLUM_SIGN = register("plum_sign", () -> new ExtendedStandingSignBlock(PLUM_PLANKS, ExtendedSignTypes.PLUM));
+	public static RegistryObject<Block> PLUM_WALL_SIGN = register("plum_wall_sign", () -> new ExtendedWallSignBlock(PLUM_SIGN, ExtendedSignTypes.PLUM));
 	public static RegistryObject<Block> PLUM_LOG_SLAB = register("plum_log_slab", () -> new StrippableLogSlabBlock(PLUM_LOG, ExtendedBlocks.STRIPPED_PLUM_LOG_SLAB));
 	public static RegistryObject<Block> PLUM_WOOD_SLAB = register("plum_wood_slab", () -> new StrippableLogSlabBlock(PLUM_WOOD, ExtendedBlocks.STRIPPED_PLUM_WOOD_SLAB));
 	public static RegistryObject<Block> PLUM_WOOD_STAIRS = register("plum_wood_stairs", () -> new StrippableLogStairsBlock(PLUM_WOOD, ExtendedBlocks.STRIPPED_PLUM_WOOD_STAIRS));
@@ -182,8 +223,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_WILLOW_LOG = register("stripped_willow_log", () -> new LOTRStrippedLogBlock(WILLOW_LOG));
 	public static RegistryObject<Block> STRIPPED_WILLOW_WOOD = register("stripped_willow_wood", () -> new LOTRStrippedWoodBlock(STRIPPED_WILLOW_LOG));
 	public static RegistryObject<Block> WILLOW_BEAM = register("willow_beam", () -> new WoodBeamBlock(WILLOW_LOG));
-	public static RegistryObject<Block> WILLOW_SIGN = register("willow_sign", () -> new LOTRStandingSignBlock(WILLOW_PLANKS, ExtendedSignTypes.WILLOW));
-	public static RegistryObject<Block> WILLOW_WALL_SIGN = register("willow_wall_sign", () -> new LOTRWallSignBlock(WILLOW_SIGN));
+	public static RegistryObject<Block> WILLOW_SIGN = register("willow_sign", () -> new ExtendedStandingSignBlock(WILLOW_PLANKS, ExtendedSignTypes.WILLOW));
+	public static RegistryObject<Block> WILLOW_WALL_SIGN = register("willow_wall_sign", () -> new ExtendedWallSignBlock(WILLOW_SIGN, ExtendedSignTypes.WILLOW));
 	public static RegistryObject<Block> WILLOW_LOG_SLAB = register("willow_log_slab", () -> new StrippableLogSlabBlock(WILLOW_LOG, ExtendedBlocks.STRIPPED_WILLOW_LOG_SLAB));
 	public static RegistryObject<Block> WILLOW_WOOD_SLAB = register("willow_wood_slab", () -> new StrippableLogSlabBlock(WILLOW_WOOD, ExtendedBlocks.STRIPPED_WILLOW_WOOD_SLAB));
 	public static RegistryObject<Block> WILLOW_WOOD_STAIRS = register("willow_wood_stairs", () -> new StrippableLogStairsBlock(WILLOW_WOOD, ExtendedBlocks.STRIPPED_WILLOW_WOOD_STAIRS));
@@ -215,8 +256,8 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> STRIPPED_EBONY_WOOD = register("stripped_ebony_wood", () -> new LOTRStrippedWoodBlock(STRIPPED_EBONY_LOG));
 	public static RegistryObject<Block> EBONY_BEAM = register("ebony_beam", () -> new WoodBeamBlock(EBONY_LOG));
 	public static RegistryObject<Block> EBONY_BEAM_SLAB = register("ebony_beam_slab", () -> new LogSlabBlock(EBONY_BEAM));
-	public static RegistryObject<Block> EBONY_SIGN = register("ebony_sign", () -> new LOTRStandingSignBlock(EBONY_PLANKS, ExtendedSignTypes.EBONY));
-	public static RegistryObject<Block> EBONY_WALL_SIGN = register("ebony_wall_sign", () -> new LOTRWallSignBlock(EBONY_SIGN));
+	public static RegistryObject<Block> EBONY_SIGN = register("ebony_sign", () -> new ExtendedStandingSignBlock(EBONY_PLANKS, ExtendedSignTypes.EBONY));
+	public static RegistryObject<Block> EBONY_WALL_SIGN = register("ebony_wall_sign", () -> new ExtendedWallSignBlock(EBONY_SIGN, ExtendedSignTypes.EBONY));
 	public static RegistryObject<Block> EBONY_LOG_SLAB = register("ebony_log_slab", () -> new StrippableLogSlabBlock(EBONY_LOG, ExtendedBlocks.STRIPPED_EBONY_LOG_SLAB));
 	public static RegistryObject<Block> EBONY_WOOD_SLAB = register("ebony_wood_slab", () -> new StrippableLogSlabBlock(EBONY_WOOD, ExtendedBlocks.STRIPPED_EBONY_WOOD_SLAB));
 	public static RegistryObject<Block> EBONY_WOOD_STAIRS = register("ebony_wood_stairs", () -> new StrippableLogStairsBlock(EBONY_WOOD, ExtendedBlocks.STRIPPED_EBONY_WOOD_STAIRS));
@@ -231,27 +272,27 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> WHITE_MATTED_FUR = register("white_matted_fur", () -> new ExtendedMattedFurBlock(ExtendedWargFurType.WHITE));
 	public static RegistryObject<Block> WHITE_MATTED_FUR_SLAB = register("white_matted_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(WHITE_MATTED_FUR));
 	public static RegistryObject<Block> WHITE_MATTED_FUR_STAIRS = register("white_matted_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(WHITE_MATTED_FUR));
-	public static RegistryObject<Block> WHITE_MATTED_FUR_WALL = register("white_matted_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(WHITE_MATTED_FUR));
+	public static RegistryObject<Block> WHITE_MATTED_FUR_WALL = register("white_matted_fur_wall", () -> new ExtendedBurnableWallBlock(WHITE_MATTED_FUR));
 
 	public static RegistryObject<Block> SILVER_MATTED_FUR = register("silver_matted_fur", () -> new ExtendedMattedFurBlock(ExtendedWargFurType.SILVER));
 	public static RegistryObject<Block> SILVER_MATTED_FUR_SLAB = register("silver_matted_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(SILVER_MATTED_FUR));
 	public static RegistryObject<Block> SILVER_MATTED_FUR_STAIRS = register("silver_matted_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(SILVER_MATTED_FUR));
-	public static RegistryObject<Block> SILVER_MATTED_FUR_WALL = register("silver_matted_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(SILVER_MATTED_FUR));
+	public static RegistryObject<Block> SILVER_MATTED_FUR_WALL = register("silver_matted_fur_wall", () -> new ExtendedBurnableWallBlock(SILVER_MATTED_FUR));
 
 	public static RegistryObject<Block> GRAY_MATTED_FUR = register("gray_matted_fur", () -> new ExtendedMattedFurBlock(ExtendedWargFurType.GRAY));
 	public static RegistryObject<Block> GRAY_MATTED_FUR_SLAB = register("gray_matted_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(GRAY_MATTED_FUR));
 	public static RegistryObject<Block> GRAY_MATTED_FUR_STAIRS = register("gray_matted_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(GRAY_MATTED_FUR));
-	public static RegistryObject<Block> GRAY_MATTED_FUR_WALL = register("gray_matted_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(GRAY_MATTED_FUR));
+	public static RegistryObject<Block> GRAY_MATTED_FUR_WALL = register("gray_matted_fur_wall", () -> new ExtendedBurnableWallBlock(GRAY_MATTED_FUR));
 
 	public static RegistryObject<Block> BROWN_MATTED_FUR = register("matted_fur", () -> new ExtendedMattedFurBlock(ExtendedWargFurType.BROWN));
 	public static RegistryObject<Block> BROWN_MATTED_FUR_SLAB = register("matted_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(BROWN_MATTED_FUR));
 	public static RegistryObject<Block> BROWN_MATTED_FUR_STAIRS = register("matted_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(BROWN_MATTED_FUR));
-	public static RegistryObject<Block> BROWN_MATTED_FUR_WALL = register("matted_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(BROWN_MATTED_FUR));
+	public static RegistryObject<Block> BROWN_MATTED_FUR_WALL = register("matted_fur_wall", () -> new ExtendedBurnableWallBlock(BROWN_MATTED_FUR));
 
 	public static RegistryObject<Block> BLACK_MATTED_FUR = register("black_matted_fur", () -> new ExtendedMattedFurBlock(ExtendedWargFurType.BLACK));
 	public static RegistryObject<Block> BLACK_MATTED_FUR_SLAB = register("black_matted_fur_slab", () -> new ExtendedBurnableAxialSlabBlock(BLACK_MATTED_FUR));
 	public static RegistryObject<Block> BLACK_MATTED_FUR_STAIRS = register("black_matted_fur_stairs", () -> new ExtendedBurnableLOTRStairsBlock(BLACK_MATTED_FUR));
-	public static RegistryObject<Block> BLACK_MATTED_FUR_WALL = register("black_matted_fur_wall", () -> new ExtendedBurnableLOTRWallBlock(BLACK_MATTED_FUR));
+	public static RegistryObject<Block> BLACK_MATTED_FUR_WALL = register("black_matted_fur_wall", () -> new ExtendedBurnableWallBlock(BLACK_MATTED_FUR));
 
 	//Bundled Fur
 	public static RegistryObject<Block> WHITE_FUR_BUNDLE = register("white_fur_bundle", () -> new ExtendedBundleBlock(MaterialColor.WOOL));
@@ -281,19 +322,19 @@ public class ExtendedBlocks {
 
 	//GEM ORES
 	public static RegistryObject<Block> METEORITE_ORE = register("meteorite", () -> new ExtendedMaterialBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestLevel(3).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(50.0F, 1200.0F)));
-	public static RegistryObject<Block> AMBER_ORE = register("amber_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
-	public static RegistryObject<Block> TOPAZ_ORE = register("topaz_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
-	public static RegistryObject<Block> AMETHYST_ORE = register("amethyst_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
-	public static RegistryObject<Block> SAPPHIRE_ORE = register("sapphire_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
-	public static RegistryObject<Block> RUBY_ORE = register("ruby_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
-	public static RegistryObject<Block> DIAMOND_ORE = register("diamond_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
-	public static RegistryObject<Block> OPAL_ORE = register("opal_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
-	public static RegistryObject<Block> EMERALD_ORE = register("emerald_ore", () -> new LOTROreBlock(Properties.of(Material.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)).setOreLevel(2));
+	public static RegistryObject<Block> AMBER_ORE = register("amber_ore", () -> new ExtendedOreBlock(Properties.of(Material.STONE).harvestLevel(2).requiresCorrectToolForDrops().strength(3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE), rand -> MathHelper.nextInt(rand, 1, 3)));
+	public static RegistryObject<Block> TOPAZ_ORE = register("topaz_ore", () -> new ExtendedOreBlock(Properties.of(Material.STONE).harvestLevel(2).requiresCorrectToolForDrops().strength(3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE), rand -> MathHelper.nextInt(rand, 1, 3)));
+	public static RegistryObject<Block> AMETHYST_ORE = register("amethyst_ore", () -> new ExtendedOreBlock(Properties.of(Material.STONE).harvestLevel(2).requiresCorrectToolForDrops().strength(3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE), rand -> MathHelper.nextInt(rand, 1, 3)));
+	public static RegistryObject<Block> SAPPHIRE_ORE = register("sapphire_ore", () -> new ExtendedOreBlock(Properties.of(Material.STONE).harvestLevel(2).requiresCorrectToolForDrops().strength(3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE), rand -> MathHelper.nextInt(rand, 1, 3)));
+	public static RegistryObject<Block> RUBY_ORE = register("ruby_ore", () -> new ExtendedOreBlock(Properties.of(Material.STONE).harvestLevel(2).requiresCorrectToolForDrops().strength(3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE), rand -> MathHelper.nextInt(rand, 1, 4)));
+	public static RegistryObject<Block> DIAMOND_ORE = register("diamond_ore", () -> new ExtendedOreBlock(Properties.of(Material.STONE).harvestLevel(2).requiresCorrectToolForDrops().strength(3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE), rand -> MathHelper.nextInt(rand, 2, 6)));
+	public static RegistryObject<Block> OPAL_ORE = register("opal_ore", () -> new ExtendedOreBlock(Properties.of(Material.STONE).harvestLevel(2).requiresCorrectToolForDrops().strength(3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE), rand -> MathHelper.nextInt(rand, 1, 4)));
+	public static RegistryObject<Block> EMERALD_ORE = register("emerald_ore", () -> new ExtendedOreBlock(Properties.of(Material.STONE).harvestLevel(2).requiresCorrectToolForDrops().strength(3.0F).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE), rand -> MathHelper.nextInt(rand, 2, 6)));
 	//Remains ores
-	public static RegistryObject<Block> REMAINS_ORC = register("remains_ore_orc", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
-	public static RegistryObject<Block> REMAINS_ELF = register("remains_ore_elf", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
-	public static RegistryObject<Block> REMAINS_MAN = register("remains_ore_man", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
-	public static RegistryObject<Block> REMAINS_DWARF = register("remains_ore_dwarf", () -> new ExtendedRemainsBlock(Properties.copy(Blocks.DIRT), ToolType.SHOVEL).setOreLevel(0));
+	public static RegistryObject<Block> REMAINS_ORC = register("remains_ore_orc", () -> new ExtendedOreRemainsBlock(Properties.copy(Blocks.DIRT).harvestLevel(0).harvestTool(ToolType.SHOVEL)));
+	public static RegistryObject<Block> REMAINS_ELF = register("remains_ore_elf", () -> new ExtendedOreRemainsBlock(Properties.copy(Blocks.DIRT).harvestLevel(0).harvestTool(ToolType.SHOVEL)));
+	public static RegistryObject<Block> REMAINS_MAN = register("remains_ore_man", () -> new ExtendedOreRemainsBlock(Properties.copy(Blocks.DIRT).harvestLevel(0).harvestTool(ToolType.SHOVEL)));
+	public static RegistryObject<Block> REMAINS_DWARF = register("remains_ore_dwarf", () -> new ExtendedOreRemainsBlock(Properties.copy(Blocks.DIRT).harvestLevel(0).harvestTool(ToolType.SHOVEL)));
 
 	///////////////////////////////BRICKS
 	public static RegistryObject<Block> BARREN_DIRT = register("barren_dirt", () -> new ExtendedBarrenDirt(Properties.copy(Blocks.DIRT).harvestTool(ToolType.SHOVEL)));
@@ -318,20 +359,20 @@ public class ExtendedBlocks {
 	//Bone Block
 	public static RegistryObject<Block> BONE_BLOCK_SLAB = register("bone_block_slab", () -> new AxialSlabBlock(Blocks.BONE_BLOCK));
 	public static RegistryObject<Block> BONE_BLOCK_STAIRS = register("bone_block_stairs", () -> new LOTRStairsBlock(Blocks.BONE_BLOCK));
-	public static RegistryObject<Block> BONE_BLOCK_WALL = register("bone_block_wall", () -> new LOTRWallBlock(Blocks.BONE_BLOCK));
+	public static RegistryObject<Block> BONE_BLOCK_WALL = register("bone_block_wall", () -> new ExtendedWallBlock(Blocks.BONE_BLOCK));
 	//Scorched Stuff
 	public static RegistryObject<Block> SCORCHED_STONE = register("scorched_stone", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 	public static RegistryObject<Block> SCORCHED_STONE_SLAB = register("scorched_stone_slab", () -> new AxialSlabBlock(SCORCHED_STONE));
 	public static RegistryObject<Block> SCORCHED_STONE_STAIRS = register("scorched_stone_stairs", () -> new LOTRStairsBlock(SCORCHED_STONE));
-	public static RegistryObject<Block> SCORCHED_STONE_WALL = register("scorched_stone_wall", () -> new LOTRWallBlock(SCORCHED_STONE));
+	public static RegistryObject<Block> SCORCHED_STONE_WALL = register("scorched_stone_wall", () -> new ExtendedWallBlock(SCORCHED_STONE));
 	public static RegistryObject<Block> SCORCHED_COBBLESTONE = register("scorched_cobblestone", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 	public static RegistryObject<Block> SCORCHED_COBBLESTONE_SLAB = register("scorched_cobblestone_slab", () -> new AxialSlabBlock(SCORCHED_COBBLESTONE));
 	public static RegistryObject<Block> SCORCHED_COBBLESTONE_STAIRS = register("scorched_cobblestone_stairs", () -> new LOTRStairsBlock(SCORCHED_COBBLESTONE));
-	public static RegistryObject<Block> SCORCHED_COBBLESTONE_WALL = register("scorched_cobblestone_wall", () -> new LOTRWallBlock(SCORCHED_COBBLESTONE));
+	public static RegistryObject<Block> SCORCHED_COBBLESTONE_WALL = register("scorched_cobblestone_wall", () -> new ExtendedWallBlock(SCORCHED_COBBLESTONE));
 	public static RegistryObject<Block> SCORCHED_BRICK = register("scorched_brick", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 	public static RegistryObject<Block> SCORCHED_BRICK_SLAB = register("scorched_brick_slab", () -> new AxialSlabBlock(SCORCHED_BRICK));
 	public static RegistryObject<Block> SCORCHED_BRICK_STAIRS = register("scorched_brick_stairs", () -> new LOTRStairsBlock(SCORCHED_BRICK));
-	public static RegistryObject<Block> SCORCHED_BRICK_WALL = register("scorched_brick_wall", () -> new LOTRWallBlock(SCORCHED_BRICK));
+	public static RegistryObject<Block> SCORCHED_BRICK_WALL = register("scorched_brick_wall", () -> new ExtendedWallBlock(SCORCHED_BRICK));
 	//Arnor
 	public static RegistryObject<Block> CRACKED_ARNOR_PILLAR = register("cracked_arnor_pillar", () -> new LOTRPillarBlock(MaterialColor.STONE));
 	public static RegistryObject<Block> CRACKED_ARNOR_PILLAR_SLAB = register("cracked_arnor_pillar_slab", () -> new AxialSlabBlock(CRACKED_ARNOR_PILLAR));
@@ -343,47 +384,47 @@ public class ExtendedBlocks {
 	//		ExtendedBlocks.GNEISS_ROCK = registerB("gneiss", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 	//		ExtendedBlocks.GNEISS_ROCK_SLAB = registerB("gneiss_slab", () -> new AxialSlabBlock(ExtendedBlocks.GNEISS_ROCK));
 	//		ExtendedBlocks.GNEISS_ROCK_STAIRS = registerB("gneiss_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.GNEISS_ROCK));
-	//		ExtendedBlocks.GNEISS_ROCK_WALL = registerB("gneiss_wall", () -> new LOTRWallBlock(ExtendedBlocks.GNEISS_ROCK));
+	//		ExtendedBlocks.GNEISS_ROCK_WALL = registerB("gneiss_wall", () -> new ExtendedWallBlock(ExtendedBlocks.GNEISS_ROCK));
 	//		ExtendedBlocks.GNEISS_BRICK = registerB("gneiss_brick", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 	//		ExtendedBlocks.GNEISS_BRICK_SLAB = registerB("gneiss_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.GNEISS_BRICK));
 	//		ExtendedBlocks.GNEISS_BRICK_STAIRS = registerB("gneiss_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.GNEISS_BRICK));
-	//		ExtendedBlocks.GNEISS_BRICK_WALL = registerB("gneiss_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.GNEISS_BRICK));
+	//		ExtendedBlocks.GNEISS_BRICK_WALL = registerB("gneiss_brick_wall", () -> new ExtendedWallBlock(ExtendedBlocks.GNEISS_BRICK));
 	//		ExtendedBlocks.POLISHED_GNEISS = registerB("polished_gneiss", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 	//		ExtendedBlocks.POLISHED_GNEISS_SLAB = registerB("polished_gneiss_slab", () -> new AxialSlabBlock(ExtendedBlocks.POLISHED_GNEISS));
 	//		ExtendedBlocks.POLISHED_GNEISS_STAIRS = registerB("polished_gneiss_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.POLISHED_GNEISS));
-	//		ExtendedBlocks.POLISHED_GNEISS_WALL = registerB("polished_gneiss_wall", () -> new LOTRWallBlock(ExtendedBlocks.POLISHED_GNEISS));
+	//		ExtendedBlocks.POLISHED_GNEISS_WALL = registerB("polished_gneiss_wall", () -> new ExtendedWallBlock(ExtendedBlocks.POLISHED_GNEISS));
 	//		ExtendedBlocks.LIMESTONE_ROCK = registerB("limestone", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 	//		ExtendedBlocks.LIMESTONE_ROCK_SLAB = registerB("limestone_slab", () -> new AxialSlabBlock(ExtendedBlocks.LIMESTONE_ROCK));
 	//		ExtendedBlocks.LIMESTONE_ROCK_STAIRS = registerB("limestone_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.LIMESTONE_ROCK));
-	//		ExtendedBlocks.LIMESTONE_ROCK_WALL = registerB("limestone_wall", () -> new LOTRWallBlock(ExtendedBlocks.LIMESTONE_ROCK));
+	//		ExtendedBlocks.LIMESTONE_ROCK_WALL = registerB("limestone_wall", () -> new ExtendedWallBlock(ExtendedBlocks.LIMESTONE_ROCK));
 	//		ExtendedBlocks.LIMESTONE_BRICK = registerB("limestone_brick", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 	//		ExtendedBlocks.LIMESTONE_BRICK_SLAB = registerB("limestone_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.LIMESTONE_BRICK));
 	//		ExtendedBlocks.LIMESTONE_BRICK_STAIRS = registerB("limestone_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.LIMESTONE_BRICK));
-	//		ExtendedBlocks.LIMESTONE_BRICK_WALL = registerB("limestone_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.LIMESTONE_BRICK));
+	//		ExtendedBlocks.LIMESTONE_BRICK_WALL = registerB("limestone_brick_wall", () -> new ExtendedWallBlock(ExtendedBlocks.LIMESTONE_BRICK));
 	//		ExtendedBlocks.POLISHED_LIMESTONE = registerB("polished_limestone", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 	//		ExtendedBlocks.POLISHED_LIMESTONE_SLAB = registerB("polished_limestone_slab", () -> new AxialSlabBlock(ExtendedBlocks.POLISHED_LIMESTONE));
 	//		ExtendedBlocks.POLISHED_LIMESTONE_STAIRS = registerB("polished_limestone_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.POLISHED_LIMESTONE));
-	//		ExtendedBlocks.POLISHED_LIMESTONE_WALL = registerB("polished_limestone_wall", () -> new LOTRWallBlock(ExtendedBlocks.POLISHED_LIMESTONE));
+	//		ExtendedBlocks.POLISHED_LIMESTONE_WALL = registerB("polished_limestone_wall", () -> new ExtendedWallBlock(ExtendedBlocks.POLISHED_LIMESTONE));
 	//		ExtendedBlocks.SMOOTH_LIMESTONE = registerB("smooth_limestone", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 	//		ExtendedBlocks.SMOOTH_LIMESTONE_SLAB = registerB("smooth_limestone_slab", () -> new AxialSlabBlock(ExtendedBlocks.SMOOTH_LIMESTONE));
 	//		ExtendedBlocks.SMOOTH_LIMESTONE_STAIRS = registerB("smooth_limestone_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SMOOTH_LIMESTONE));
-	//		ExtendedBlocks.SMOOTH_LIMESTONE_WALL = registerB("smooth_limestone_wall", () -> new LOTRWallBlock(ExtendedBlocks.SMOOTH_LIMESTONE));
+	//		ExtendedBlocks.SMOOTH_LIMESTONE_WALL = registerB("smooth_limestone_wall", () -> new ExtendedWallBlock(ExtendedBlocks.SMOOTH_LIMESTONE));
 	//		ExtendedBlocks.LIMESTONE_TILE = registerB("limestone_tile", () -> new ExtendedStoneBlock(MaterialColor.STONE));
 	//		ExtendedBlocks.LIMESTONE_TILE_SLAB = registerB("limestone_tile_slab", () -> new AxialSlabBlock(ExtendedBlocks.LIMESTONE_TILE));
 	//		ExtendedBlocks.LIMESTONE_TILE_STAIRS = registerB("limestone_tile_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.LIMESTONE_TILE));
-	//		ExtendedBlocks.LIMESTONE_TILE_WALL = registerB("limestone_tile_wall", () -> new LOTRWallBlock(ExtendedBlocks.LIMESTONE_TILE));
+	//		ExtendedBlocks.LIMESTONE_TILE_WALL = registerB("limestone_tile_wall", () -> new ExtendedWallBlock(ExtendedBlocks.LIMESTONE_TILE));
 	//		ExtendedBlocks.SLATE_ROCK = registerB("slate", () -> new ExtendedStoneBlock(MaterialColor.QUARTZ));
 	//		ExtendedBlocks.SLATE_ROCK_SLAB = registerB("slate_slab", () -> new AxialSlabBlock(ExtendedBlocks.SLATE_ROCK));
 	//		ExtendedBlocks.SLATE_ROCK_STAIRS = registerB("slate_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SLATE_ROCK));
-	//		ExtendedBlocks.SLATE_ROCK_WALL = registerB("slate_wall", () -> new LOTRWallBlock(ExtendedBlocks.SLATE_ROCK));
+	//		ExtendedBlocks.SLATE_ROCK_WALL = registerB("slate_wall", () -> new ExtendedWallBlock(ExtendedBlocks.SLATE_ROCK));
 	//		ExtendedBlocks.SLATE_BRICK = registerB("slate_brick", () -> new ExtendedStoneBlock(MaterialColor.QUARTZ));
 	//		ExtendedBlocks.SLATE_BRICK_SLAB = registerB("slate_brick_slab", () -> new AxialSlabBlock(ExtendedBlocks.SLATE_BRICK));
 	//		ExtendedBlocks.SLATE_BRICK_STAIRS = registerB("slate_brick_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.SLATE_BRICK));
-	//		ExtendedBlocks.SLATE_BRICK_WALL = registerB("slate_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.SLATE_BRICK));
+	//		ExtendedBlocks.SLATE_BRICK_WALL = registerB("slate_brick_wall", () -> new ExtendedWallBlock(ExtendedBlocks.SLATE_BRICK));
 	//		ExtendedBlocks.POLISHED_SLATE = registerB("polished_slate", () -> new ExtendedStoneBlock(MaterialColor.QUARTZ));
 	//		ExtendedBlocks.POLISHED_SLATE_SLAB = registerB("polished_slate_slab", () -> new AxialSlabBlock(ExtendedBlocks.POLISHED_SLATE));
 	//		ExtendedBlocks.POLISHED_SLATE_STAIRS = registerB("polished_slate_stairs", () -> new LOTRStairsBlock(ExtendedBlocks.POLISHED_SLATE));
-	//		ExtendedBlocks.POLISHED_SLATE_WALL = registerB("polished_slate_wall", () -> new LOTRWallBlock(ExtendedBlocks.POLISHED_SLATE));
+	//		ExtendedBlocks.POLISHED_SLATE_WALL = registerB("polished_slate_wall", () -> new ExtendedWallBlock(ExtendedBlocks.POLISHED_SLATE));
 
 	public static RegistryObject<Block> MOSS_BLOCK = register("moss_block", () -> new ExtendedMossBlock(Properties.of(ExtendedMaterials.MOSS, MaterialColor.COLOR_GREEN).harvestTool(ToolType.HOE).strength(0.1f).sound(ExtendedSoundTypes.MOSS)));
 	public static RegistryObject<Block> MOSS_CARPET = register("moss_carpet", () -> new ExtendedMossCarpetBlock(Properties.of(Material.PLANT, MaterialColor.COLOR_GREEN).strength(0.1f).sound(ExtendedSoundTypes.MOSS)));
@@ -401,68 +442,68 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MUD_BRICK = register("mud_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_BROWN));
 	public static RegistryObject<Block> MUD_BRICK_SLAB = register("mud_brick_slab", () -> new AxialSlabBlock(MUD_BRICK));
 	public static RegistryObject<Block> MUD_BRICK_STAIRS = register("mud_brick_stairs", () -> new LOTRStairsBlock(MUD_BRICK));
-	public static RegistryObject<Block> MUD_BRICK_WALL = register("mud_brick_wall", () -> new LOTRWallBlock(MUD_BRICK));
+	public static RegistryObject<Block> MUD_BRICK_WALL = register("mud_brick_wall", () -> new ExtendedWallBlock(MUD_BRICK));
 	public static RegistryObject<Block> CRACKED_MUD_BRICK = register("cracked_mud_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_BROWN));
 	public static RegistryObject<Block> CRACKED_MUD_BRICK_SLAB = register("cracked_mud_brick_slab", () -> new AxialSlabBlock(CRACKED_MUD_BRICK));
 	public static RegistryObject<Block> CRACKED_MUD_BRICK_STAIRS = register("cracked_mud_brick_stairs", () -> new LOTRStairsBlock(CRACKED_MUD_BRICK));
-	public static RegistryObject<Block> CRACKED_MUD_BRICK_WALL = register("cracked_mud_brick_wall", () -> new LOTRWallBlock(CRACKED_MUD_BRICK));
+	public static RegistryObject<Block> CRACKED_MUD_BRICK_WALL = register("cracked_mud_brick_wall", () -> new ExtendedWallBlock(CRACKED_MUD_BRICK));
 	public static RegistryObject<Block> MOSSY_MUD_BRICK = register("mossy_mud_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_BROWN));
 	public static RegistryObject<Block> MOSSY_MUD_BRICK_SLAB = register("mossy_mud_brick_slab", () -> new AxialSlabBlock(MOSSY_MUD_BRICK));
 	public static RegistryObject<Block> MOSSY_MUD_BRICK_STAIRS = register("mossy_mud_brick_stairs", () -> new LOTRStairsBlock(MOSSY_MUD_BRICK));
-	public static RegistryObject<Block> MOSSY_MUD_BRICK_WALL = register("mossy_mud_brick_wall", () -> new LOTRWallBlock(MOSSY_MUD_BRICK));
+	public static RegistryObject<Block> MOSSY_MUD_BRICK_WALL = register("mossy_mud_brick_wall", () -> new ExtendedWallBlock(MOSSY_MUD_BRICK));
 	//Taurethrim
 	public static RegistryObject<Block> TAURETHRIM_BRICK = register("taurethrim_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_GREEN));
 	public static RegistryObject<Block> TAURETHRIM_BRICK_SLAB = register("taurethrim_brick_slab", () -> new AxialSlabBlock(TAURETHRIM_BRICK));
 	public static RegistryObject<Block> TAURETHRIM_BRICK_STAIRS = register("taurethrim_brick_stairs", () -> new LOTRStairsBlock(TAURETHRIM_BRICK));
-	public static RegistryObject<Block> TAURETHRIM_BRICK_WALL = register("taurethrim_brick_wall", () -> new LOTRWallBlock(TAURETHRIM_BRICK));
+	public static RegistryObject<Block> TAURETHRIM_BRICK_WALL = register("taurethrim_brick_wall", () -> new ExtendedWallBlock(TAURETHRIM_BRICK));
 	public static RegistryObject<Block> TAURETHRIM_PILLAR = register("taurethrim_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_GREEN));
 	public static RegistryObject<Block> TAURETHRIM_PILLAR_SLAB = register("taurethrim_pillar_slab", () -> new AxialSlabBlock(TAURETHRIM_PILLAR));
 
 	public static RegistryObject<Block> MOSSY_TAURETHRIM_BRICK = register("mossy_taurethrim_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_GREEN));
 	public static RegistryObject<Block> MOSSY_TAURETHRIM_BRICK_SLAB = register("mossy_taurethrim_brick_slab", () -> new AxialSlabBlock(MOSSY_TAURETHRIM_BRICK));
 	public static RegistryObject<Block> MOSSY_TAURETHRIM_BRICK_STAIRS = register("mossy_taurethrim_brick_stairs", () -> new LOTRStairsBlock(MOSSY_TAURETHRIM_BRICK));
-	public static RegistryObject<Block> MOSSY_TAURETHRIM_BRICK_WALL = register("mossy_taurethrim_brick_wall", () -> new LOTRWallBlock(MOSSY_TAURETHRIM_BRICK));
+	public static RegistryObject<Block> MOSSY_TAURETHRIM_BRICK_WALL = register("mossy_taurethrim_brick_wall", () -> new ExtendedWallBlock(MOSSY_TAURETHRIM_BRICK));
 
 	public static RegistryObject<Block> CRACKED_TAURETHRIM_BRICK = register("cracked_taurethrim_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_GREEN));
 	public static RegistryObject<Block> CRACKED_TAURETHRIM_BRICK_SLAB = register("cracked_taurethrim_brick_slab", () -> new AxialSlabBlock(CRACKED_TAURETHRIM_BRICK));
 	public static RegistryObject<Block> CRACKED_TAURETHRIM_BRICK_STAIRS = register("cracked_taurethrim_brick_stairs", () -> new LOTRStairsBlock(CRACKED_TAURETHRIM_BRICK));
-	public static RegistryObject<Block> CRACKED_TAURETHRIM_BRICK_WALL = register("cracked_taurethrim_brick_wall", () -> new LOTRWallBlock(CRACKED_TAURETHRIM_BRICK));
+	public static RegistryObject<Block> CRACKED_TAURETHRIM_BRICK_WALL = register("cracked_taurethrim_brick_wall", () -> new ExtendedWallBlock(CRACKED_TAURETHRIM_BRICK));
 
 	public static RegistryObject<Block> GOLDEN_TAURETHRIM_BRICK = register("golden_taurethrim_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_YELLOW));
 	public static RegistryObject<Block> GOLDEN_TAURETHRIM_BRICK_SLAB = register("golden_taurethrim_brick_slab", () -> new AxialSlabBlock(GOLDEN_TAURETHRIM_BRICK));
 	public static RegistryObject<Block> GOLDEN_TAURETHRIM_BRICK_STAIRS = register("golden_taurethrim_brick_stairs", () -> new LOTRStairsBlock(GOLDEN_TAURETHRIM_BRICK));
-	public static RegistryObject<Block> GOLDEN_TAURETHRIM_BRICK_WALL = register("golden_taurethrim_brick_wall", () -> new LOTRWallBlock(GOLDEN_TAURETHRIM_BRICK));
+	public static RegistryObject<Block> GOLDEN_TAURETHRIM_BRICK_WALL = register("golden_taurethrim_brick_wall", () -> new ExtendedWallBlock(GOLDEN_TAURETHRIM_BRICK));
 	public static RegistryObject<Block> GOLDEN_TAURETHRIM_PILLAR = register("golden_taurethrim_pillar", () -> new LOTRPillarBlock(MaterialColor.GOLD));
 	public static RegistryObject<Block> GOLDEN_TAURETHRIM_PILLAR_SLAB = register("golden_taurethrim_pillar_slab", () -> new AxialSlabBlock(GOLDEN_TAURETHRIM_PILLAR));
 
 	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_BRICK = register("obsidian_taurethrim_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_BLACK));
 	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_BRICK_SLAB = register("obsidian_taurethrim_brick_slab", () -> new AxialSlabBlock(OBSIDIAN_TAURETHRIM_BRICK));
 	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_BRICK_STAIRS = register("obsidian_taurethrim_brick_stairs", () -> new LOTRStairsBlock(OBSIDIAN_TAURETHRIM_BRICK));
-	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_BRICK_WALL = register("obsidian_taurethrim_brick_wall", () -> new LOTRWallBlock(OBSIDIAN_TAURETHRIM_BRICK));
+	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_BRICK_WALL = register("obsidian_taurethrim_brick_wall", () -> new ExtendedWallBlock(OBSIDIAN_TAURETHRIM_BRICK));
 	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_PILLAR = register("obsidian_taurethrim_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_BLACK));
 	public static RegistryObject<Block> OBSIDIAN_TAURETHRIM_PILLAR_SLAB = register("obsidian_taurethrim_pillar_slab", () -> new AxialSlabBlock(OBSIDIAN_TAURETHRIM_PILLAR));
 
 	public static RegistryObject<Block> OBSIDIAN_DWARVEN_BRICK = register("obsidian_dwarven_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_BLACK));
 	public static RegistryObject<Block> OBSIDIAN_DWARVEN_BRICK_SLAB = register("obsidian_dwarven_brick_slab", () -> new AxialSlabBlock(OBSIDIAN_DWARVEN_BRICK));
 	public static RegistryObject<Block> OBSIDIAN_DWARVEN_BRICK_STAIRS = register("obsidian_dwarven_brick_stairs", () -> new LOTRStairsBlock(OBSIDIAN_DWARVEN_BRICK));
-	public static RegistryObject<Block> OBSIDIAN_DWARVEN_BRICK_WALL = register("obsidian_dwarven_brick_wall", () -> new LOTRWallBlock(OBSIDIAN_DWARVEN_BRICK));
+	public static RegistryObject<Block> OBSIDIAN_DWARVEN_BRICK_WALL = register("obsidian_dwarven_brick_wall", () -> new ExtendedWallBlock(OBSIDIAN_DWARVEN_BRICK));
 	// ANGMAR
 	public static RegistryObject<Block> RED_ANGMAR_BRICK = register("red_angmar_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_RED));
 	public static RegistryObject<Block> RED_ANGMAR_BRICK_SLAB = register("red_angmar_brick_slab", () -> new AxialSlabBlock(RED_ANGMAR_BRICK));
 	public static RegistryObject<Block> RED_ANGMAR_BRICK_STAIRS = register("red_angmar_brick_stairs", () -> new LOTRStairsBlock(RED_ANGMAR_BRICK));
-	public static RegistryObject<Block> RED_ANGMAR_BRICK_WALL = register("red_angmar_brick_wall", () -> new LOTRWallBlock(RED_ANGMAR_BRICK));
+	public static RegistryObject<Block> RED_ANGMAR_BRICK_WALL = register("red_angmar_brick_wall", () -> new ExtendedWallBlock(RED_ANGMAR_BRICK));
 	public static RegistryObject<Block> CRACKED_RED_ANGMAR_BRICK = register("cracked_red_angmar_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_RED));
 	public static RegistryObject<Block> CRACKED_RED_ANGMAR_BRICK_SLAB = register("cracked_red_angmar_brick_slab", () -> new AxialSlabBlock(CRACKED_RED_ANGMAR_BRICK));
 	public static RegistryObject<Block> CRACKED_RED_ANGMAR_BRICK_STAIRS = register("cracked_red_angmar_brick_stairs", () -> new LOTRStairsBlock(CRACKED_RED_ANGMAR_BRICK));
-	public static RegistryObject<Block> CRACKED_RED_ANGMAR_BRICK_WALL = register("cracked_red_angmar_brick_wall", () -> new LOTRWallBlock(CRACKED_RED_ANGMAR_BRICK));
+	public static RegistryObject<Block> CRACKED_RED_ANGMAR_BRICK_WALL = register("cracked_red_angmar_brick_wall", () -> new ExtendedWallBlock(CRACKED_RED_ANGMAR_BRICK));
 	public static RegistryObject<Block> MOSSY_RED_ANGMAR_BRICK = register("mossy_red_angmar_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_RED));
 	public static RegistryObject<Block> MOSSY_RED_ANGMAR_BRICK_SLAB = register("mossy_red_angmar_brick_slab", () -> new AxialSlabBlock(MOSSY_RED_ANGMAR_BRICK));
 	public static RegistryObject<Block> MOSSY_RED_ANGMAR_BRICK_STAIRS = register("mossy_red_angmar_brick_stairs", () -> new LOTRStairsBlock(MOSSY_RED_ANGMAR_BRICK));
-	public static RegistryObject<Block> MOSSY_RED_ANGMAR_BRICK_WALL = register("mossy_red_angmar_brick_wall", () -> new LOTRWallBlock(MOSSY_RED_ANGMAR_BRICK));
+	public static RegistryObject<Block> MOSSY_RED_ANGMAR_BRICK_WALL = register("mossy_red_angmar_brick_wall", () -> new ExtendedWallBlock(MOSSY_RED_ANGMAR_BRICK));
 	public static RegistryObject<Block> SNOWY_RED_ANGMAR_BRICK = register("snowy_red_angmar_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_RED));
 	public static RegistryObject<Block> SNOWY_RED_ANGMAR_BRICK_SLAB = register("snowy_red_angmar_brick_slab", () -> new AxialSlabBlock(SNOWY_RED_ANGMAR_BRICK));
 	public static RegistryObject<Block> SNOWY_RED_ANGMAR_BRICK_STAIRS = register("snowy_red_angmar_brick_stairs", () -> new LOTRStairsBlock(SNOWY_RED_ANGMAR_BRICK));
-	public static RegistryObject<Block> SNOWY_RED_ANGMAR_BRICK_WALL = register("snowy_red_angmar_brick_wall", () -> new LOTRWallBlock(SNOWY_RED_ANGMAR_BRICK));
+	public static RegistryObject<Block> SNOWY_RED_ANGMAR_BRICK_WALL = register("snowy_red_angmar_brick_wall", () -> new ExtendedWallBlock(SNOWY_RED_ANGMAR_BRICK));
 	public static RegistryObject<Block> RED_ANGMAR_PILLAR = register("red_angmar_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_RED));
 	public static RegistryObject<Block> RED_ANGMAR_PILLAR_SLAB = register("red_angmar_pillar_slab", () -> new AxialSlabBlock(RED_ANGMAR_PILLAR));
 	public static RegistryObject<Block> CARVED_RED_ANGMAR_BRICK = register("carved_red_angmar_brick", () -> new ExtendedStoneBlock(RED_ANGMAR_BRICK));
@@ -471,19 +512,19 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> DOL_GULDUR_BRICK = register("dol_guldur_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_BLACK));
 	public static RegistryObject<Block> DOL_GULDUR_BRICK_SLAB = register("dol_guldur_brick_slab", () -> new AxialSlabBlock(DOL_GULDUR_BRICK));
 	public static RegistryObject<Block> DOL_GULDUR_BRICK_STAIRS = register("dol_guldur_brick_stairs", () -> new LOTRStairsBlock(DOL_GULDUR_BRICK));
-	public static RegistryObject<Block> DOL_GULDUR_BRICK_WALL = register("dol_guldur_brick_wall", () -> new LOTRWallBlock(DOL_GULDUR_BRICK));
+	public static RegistryObject<Block> DOL_GULDUR_BRICK_WALL = register("dol_guldur_brick_wall", () -> new ExtendedWallBlock(DOL_GULDUR_BRICK));
 	public static RegistryObject<Block> DOL_GULDUR_PILLAR = register("dol_guldur_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_GRAY));
 	public static RegistryObject<Block> DOL_GULDUR_PILLAR_SLAB = register("dol_guldur_pillar_slab", () -> new AxialSlabBlock(DOL_GULDUR_PILLAR));
 
 	public static RegistryObject<Block> MOSSY_DOL_GULDUR_BRICK = register("mossy_dol_guldur_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_BLACK));
 	public static RegistryObject<Block> MOSSY_DOL_GULDUR_BRICK_SLAB = register("mossy_dol_guldur_brick_slab", () -> new AxialSlabBlock(MOSSY_DOL_GULDUR_BRICK));
 	public static RegistryObject<Block> MOSSY_DOL_GULDUR_BRICK_STAIRS = register("mossy_dol_guldur_brick_stairs", () -> new LOTRStairsBlock(MOSSY_DOL_GULDUR_BRICK));
-	public static RegistryObject<Block> MOSSY_DOL_GULDUR_BRICK_WALL = register("mossy_dol_guldur_brick_wall", () -> new LOTRWallBlock(MOSSY_DOL_GULDUR_BRICK));
+	public static RegistryObject<Block> MOSSY_DOL_GULDUR_BRICK_WALL = register("mossy_dol_guldur_brick_wall", () -> new ExtendedWallBlock(MOSSY_DOL_GULDUR_BRICK));
 
 	public static RegistryObject<Block> CRACKED_DOL_GULDUR_BRICK = register("cracked_dol_guldur_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_BLACK));
 	public static RegistryObject<Block> CRACKED_DOL_GULDUR_BRICK_SLAB = register("cracked_dol_guldur_brick_slab", () -> new AxialSlabBlock(CRACKED_DOL_GULDUR_BRICK));
 	public static RegistryObject<Block> CRACKED_DOL_GULDUR_BRICK_STAIRS = register("cracked_dol_guldur_brick_stairs", () -> new LOTRStairsBlock(CRACKED_DOL_GULDUR_BRICK));
-	public static RegistryObject<Block> CRACKED_DOL_GULDUR_BRICK_WALL = register("cracked_dol_guldur_brick_wall", () -> new LOTRWallBlock(CRACKED_DOL_GULDUR_BRICK));
+	public static RegistryObject<Block> CRACKED_DOL_GULDUR_BRICK_WALL = register("cracked_dol_guldur_brick_wall", () -> new ExtendedWallBlock(CRACKED_DOL_GULDUR_BRICK));
 
 	public static RegistryObject<Block> CARVED_DOL_GULDUR_BRICK = register("carved_dol_guldur_brick", () -> new ExtendedStoneBlock(DOL_GULDUR_BRICK));
 
@@ -491,7 +532,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> RHUNIC_BRICK = register("rhunic_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_YELLOW));
 	public static RegistryObject<Block> RHUNIC_BRICK_SLAB = register("rhunic_brick_slab", () -> new AxialSlabBlock(RHUNIC_BRICK));
 	public static RegistryObject<Block> RHUNIC_BRICK_STAIRS = register("rhunic_brick_stairs", () -> new LOTRStairsBlock(RHUNIC_BRICK));
-	public static RegistryObject<Block> RHUNIC_BRICK_WALL = register("rhunic_brick_wall", () -> new LOTRWallBlock(RHUNIC_BRICK));
+	public static RegistryObject<Block> RHUNIC_BRICK_WALL = register("rhunic_brick_wall", () -> new ExtendedWallBlock(RHUNIC_BRICK));
 	public static RegistryObject<Block> RHUNIC_PILLAR = register("rhunic_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_YELLOW));
 	public static RegistryObject<Block> RHUNIC_PILLAR_SLAB = register("rhunic_pillar_slab", () -> new AxialSlabBlock(RHUNIC_PILLAR));
 	public static RegistryObject<Block> CARVED_RHUNIC_BRICK = register("carved_rhunic_brick", () -> new ExtendedStoneBlock(RHUNIC_BRICK));
@@ -499,27 +540,27 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> GOLD_TRIMMED_RHUNIC_BRICK = register("gold_trimmed_rhunic_brick", () -> new ExtendedStoneBlock(RHUNIC_BRICK));
 	public static RegistryObject<Block> GOLD_TRIMMED_RHUNIC_BRICK_SLAB = register("gold_trimmed_rhunic_brick_slab", () -> new AxialSlabBlock(RHUNIC_BRICK));
 	public static RegistryObject<Block> GOLD_TRIMMED_RHUNIC_BRICK_STAIRS = register("gold_trimmed_rhunic_brick_stairs", () -> new LOTRStairsBlock(RHUNIC_BRICK));
-	public static RegistryObject<Block> GOLD_TRIMMED_RHUNIC_BRICK_WALL = register("gold_trimmed_rhunic_brick_wall", () -> new LOTRWallBlock(RHUNIC_BRICK));
+	public static RegistryObject<Block> GOLD_TRIMMED_RHUNIC_BRICK_WALL = register("gold_trimmed_rhunic_brick_wall", () -> new ExtendedWallBlock(RHUNIC_BRICK));
 
 	public static RegistryObject<Block> CRACKED_RHUNIC_BRICK = register("cracked_rhunic_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_YELLOW));
 	public static RegistryObject<Block> CRACKED_RHUNIC_BRICK_SLAB = register("cracked_rhunic_brick_slab", () -> new AxialSlabBlock(CRACKED_RHUNIC_BRICK));
 	public static RegistryObject<Block> CRACKED_RHUNIC_BRICK_STAIRS = register("cracked_rhunic_brick_stairs", () -> new LOTRStairsBlock(CRACKED_RHUNIC_BRICK));
-	public static RegistryObject<Block> CRACKED_RHUNIC_BRICK_WALL = register("cracked_rhunic_brick_wall", () -> new LOTRWallBlock(CRACKED_RHUNIC_BRICK));
+	public static RegistryObject<Block> CRACKED_RHUNIC_BRICK_WALL = register("cracked_rhunic_brick_wall", () -> new ExtendedWallBlock(CRACKED_RHUNIC_BRICK));
 
 	public static RegistryObject<Block> MOSSY_RHUNIC_BRICK = register("mossy_rhunic_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_YELLOW));
 	public static RegistryObject<Block> MOSSY_RHUNIC_BRICK_SLAB = register("mossy_rhunic_brick_slab", () -> new AxialSlabBlock(MOSSY_RHUNIC_BRICK));
 	public static RegistryObject<Block> MOSSY_RHUNIC_BRICK_STAIRS = register("mossy_rhunic_brick_stairs", () -> new LOTRStairsBlock(MOSSY_RHUNIC_BRICK));
-	public static RegistryObject<Block> MOSSY_RHUNIC_BRICK_WALL = register("mossy_rhunic_brick_wall", () -> new LOTRWallBlock(MOSSY_RHUNIC_BRICK));
+	public static RegistryObject<Block> MOSSY_RHUNIC_BRICK_WALL = register("mossy_rhunic_brick_wall", () -> new ExtendedWallBlock(MOSSY_RHUNIC_BRICK));
 
 	public static RegistryObject<Block> FLOWERY_RHUNIC_BRICK = register("flowery_rhunic_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_YELLOW));
 	public static RegistryObject<Block> FLOWERY_RHUNIC_BRICK_SLAB = register("flowery_rhunic_brick_slab", () -> new AxialSlabBlock(FLOWERY_RHUNIC_BRICK));
 	public static RegistryObject<Block> FLOWERY_RHUNIC_BRICK_STAIRS = register("flowery_rhunic_brick_stairs", () -> new LOTRStairsBlock(FLOWERY_RHUNIC_BRICK));
-	public static RegistryObject<Block> FLOWERY_RHUNIC_BRICK_WALL = register("flowery_rhunic_brick_wall", () -> new LOTRWallBlock(FLOWERY_RHUNIC_BRICK));
+	public static RegistryObject<Block> FLOWERY_RHUNIC_BRICK_WALL = register("flowery_rhunic_brick_wall", () -> new ExtendedWallBlock(FLOWERY_RHUNIC_BRICK));
 
 	public static RegistryObject<Block> RED_RHUNIC_BRICK = register("red_rhunic_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_RED));
 	public static RegistryObject<Block> RED_RHUNIC_BRICK_SLAB = register("red_rhunic_brick_slab", () -> new AxialSlabBlock(RED_RHUNIC_BRICK));
 	public static RegistryObject<Block> RED_RHUNIC_BRICK_STAIRS = register("red_rhunic_brick_stairs", () -> new LOTRStairsBlock(RED_RHUNIC_BRICK));
-	public static RegistryObject<Block> RED_RHUNIC_BRICK_WALL = register("red_rhunic_brick_wall", () -> new LOTRWallBlock(RED_RHUNIC_BRICK));
+	public static RegistryObject<Block> RED_RHUNIC_BRICK_WALL = register("red_rhunic_brick_wall", () -> new ExtendedWallBlock(RED_RHUNIC_BRICK));
 	public static RegistryObject<Block> RED_RHUNIC_PILLAR = register("red_rhunic_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_RED));
 	public static RegistryObject<Block> RED_RHUNIC_PILLAR_SLAB = register("red_rhunic_pillar_slab", () -> new AxialSlabBlock(RED_RHUNIC_PILLAR));
 	public static RegistryObject<Block> CARVED_RED_RHUNIC_BRICK = register("carved_red_rhunic_brick", () -> new ExtendedStoneBlock(RED_RHUNIC_BRICK));
@@ -527,12 +568,12 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> CRACKED_RED_RHUNIC_BRICK = register("cracked_red_rhunic_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_RED));
 	public static RegistryObject<Block> CRACKED_RED_RHUNIC_BRICK_SLAB = register("cracked_red_rhunic_brick_slab", () -> new AxialSlabBlock(CRACKED_RED_RHUNIC_BRICK));
 	public static RegistryObject<Block> CRACKED_RED_RHUNIC_BRICK_STAIRS = register("cracked_red_rhunic_brick_stairs", () -> new LOTRStairsBlock(CRACKED_RED_RHUNIC_BRICK));
-	public static RegistryObject<Block> CRACKED_RED_RHUNIC_BRICK_WALL = register("cracked_red_rhunic_brick_wall", () -> new LOTRWallBlock(CRACKED_RED_RHUNIC_BRICK));
+	public static RegistryObject<Block> CRACKED_RED_RHUNIC_BRICK_WALL = register("cracked_red_rhunic_brick_wall", () -> new ExtendedWallBlock(CRACKED_RED_RHUNIC_BRICK));
 
 	public static RegistryObject<Block> MOSSY_RED_RHUNIC_BRICK = register("mossy_red_rhunic_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_RED));
 	public static RegistryObject<Block> MOSSY_RED_RHUNIC_BRICK_SLAB = register("mossy_red_rhunic_brick_slab", () -> new AxialSlabBlock(MOSSY_RED_RHUNIC_BRICK));
 	public static RegistryObject<Block> MOSSY_RED_RHUNIC_BRICK_STAIRS = register("mossy_red_rhunic_brick_stairs", () -> new LOTRStairsBlock(MOSSY_RED_RHUNIC_BRICK));
-	public static RegistryObject<Block> MOSSY_RED_RHUNIC_BRICK_WALL = register("mossy_red_rhunic_brick_wall", () -> new LOTRWallBlock(MOSSY_RED_RHUNIC_BRICK));
+	public static RegistryObject<Block> MOSSY_RED_RHUNIC_BRICK_WALL = register("mossy_red_rhunic_brick_wall", () -> new ExtendedWallBlock(MOSSY_RED_RHUNIC_BRICK));
 
 	public static RegistryObject<Block> ROHAN_BEAM = register("rohan_beam", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.5F, 6.0F)));
 	public static RegistryObject<Block> ORNATE_ROHAN_BEAM = register("ornate_rohan_beam", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.5F, 6.0F)));
@@ -543,12 +584,12 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> GOBLIN_BRICK = register("goblin_brick", () -> new ExtendedStoneBlock(MaterialColor.COLOR_GRAY));
 	public static RegistryObject<Block> GOBLIN_BRICK_SLAB = register("goblin_brick_slab", () -> new AxialSlabBlock(GOBLIN_BRICK));
 	public static RegistryObject<Block> GOBLIN_BRICK_STAIRS = register("goblin_brick_stairs", () -> new LOTRStairsBlock(GOBLIN_BRICK));
-	public static RegistryObject<Block> GOBLIN_BRICK_WALL = register("goblin_brick_wall", () -> new LOTRWallBlock(GOBLIN_BRICK));
+	public static RegistryObject<Block> GOBLIN_BRICK_WALL = register("goblin_brick_wall", () -> new ExtendedWallBlock(GOBLIN_BRICK));
 	public static RegistryObject<Block> GOBLIN_PILLAR = register("goblin_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_GRAY));
 	public static RegistryObject<Block> GOBLIN_PILLAR_SLAB = register("goblin_pillar_slab", () -> new AxialSlabBlock(GOBLIN_PILLAR));
 
-	public static RegistryObject<Block> ORC_PLATING_WALL = register("orc_plating_wall", () -> new LOTRWallBlock(LOTRBlocks.ORC_PLATING));
-	public static RegistryObject<Block> RUSTED_ORC_PLATING_WALL = register("rusted_orc_plating_wall", () -> new LOTRWallBlock(LOTRBlocks.RUSTED_ORC_PLATING));
+	public static RegistryObject<Block> ORC_PLATING_WALL = register("orc_plating_wall", () -> new ExtendedWallBlock(LOTRBlocks.ORC_PLATING));
+	public static RegistryObject<Block> RUSTED_ORC_PLATING_WALL = register("rusted_orc_plating_wall", () -> new ExtendedWallBlock(LOTRBlocks.RUSTED_ORC_PLATING));
 
 	//Gondor
 	public static RegistryObject<Block> CARVED_BLACK_GONDOR_BRICK = register("black_carved_gondor_brick", () -> new ExtendedStoneBlock(LOTRBlocks.NUMENOREAN_BRICK));
@@ -559,18 +600,18 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MORGOND = register("morgond", () -> new ExtendedStoneBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestLevel(2).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(500.0F, 1200.0F)));
 	public static RegistryObject<Block> MORGOND_SLAB = register("morgond_slab", () -> new AxialSlabBlock(MORGOND));
 	public static RegistryObject<Block> MORGOND_STAIRS = register("morgond_stairs", () -> new LOTRStairsBlock(MORGOND));
-	public static RegistryObject<Block> MORGOND_WALL = register("morgond_wall", () -> new LOTRWallBlock(MORGOND));
+	public static RegistryObject<Block> MORGOND_WALL = register("morgond_wall", () -> new ExtendedWallBlock(MORGOND));
 	public static RegistryObject<Block> MORGOND_DRIPSTONE = register("morgond_dripstone", () -> new DripstoneBlock(MORGOND));
 	public static RegistryObject<Block> MORGOND_PILLAR = register("morgond_pillar", () -> new LOTRPillarBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestLevel(2).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(500.0F, 1200.0F)));
 	public static RegistryObject<Block> MORGOND_PILLAR_SLAB = register("morgond_pillar_slab", () -> new AxialSlabBlock(MORGOND_PILLAR));
 	public static RegistryObject<Block> CARVED_MORGOND = register("carved_morgond", () -> new ExtendedStoneBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestLevel(2).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(500.0F, 1200.0F)));
 	public static RegistryObject<Block> CARVED_MORGOND_SLAB = register("carved_morgond_slab", () -> new AxialSlabBlock(CARVED_MORGOND));
 	public static RegistryObject<Block> CARVED_MORGOND_STAIRS = register("carved_morgond_stairs", () -> new LOTRStairsBlock(CARVED_MORGOND));
-	public static RegistryObject<Block> CARVED_MORGOND_WALL = register("carved_morgond_wall", () -> new LOTRWallBlock(CARVED_MORGOND));
+	public static RegistryObject<Block> CARVED_MORGOND_WALL = register("carved_morgond_wall", () -> new ExtendedWallBlock(CARVED_MORGOND));
 	public static RegistryObject<Block> SMOOTH_MORGOND = register("smooth_morgond", () -> new ExtendedStoneBlock(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestLevel(2).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(500.0F, 1200.0F)));
 	public static RegistryObject<Block> SMOOTH_MORGOND_SLAB = register("smooth_morgond_slab", () -> new AxialSlabBlock(SMOOTH_MORGOND));
 	public static RegistryObject<Block> SMOOTH_MORGOND_STAIRS = register("smooth_morgond_stairs", () -> new LOTRStairsBlock(SMOOTH_MORGOND));
-	public static RegistryObject<Block> SMOOTH_MORGOND_WALL = register("smooth_morgond_wall", () -> new LOTRWallBlock(SMOOTH_MORGOND));
+	public static RegistryObject<Block> SMOOTH_MORGOND_WALL = register("smooth_morgond_wall", () -> new ExtendedWallBlock(SMOOTH_MORGOND));
 	public static RegistryObject<Block> SMOOTH_MORGOND_DRIPSTONE = register("smooth_morgond_dripstone", () -> new DripstoneBlock(SMOOTH_MORGOND));
 
 	//Rohan
@@ -589,7 +630,7 @@ public class ExtendedBlocks {
 	//Drytone/stone
 	public static RegistryObject<Block> DRYSTONE_SLAB = register("drystone_slab", () -> new AxialSlabBlock(LOTRBlocks.DRYSTONE));
 	public static RegistryObject<Block> DRYSTONE_STAIRS = register("drystone_stairs", () -> new LOTRStairsBlock(LOTRBlocks.DRYSTONE));
-	public static RegistryObject<Block> DRYSTONE_WALL = register("drystone_wall", () -> new LOTRWallBlock(LOTRBlocks.DRYSTONE));
+	public static RegistryObject<Block> DRYSTONE_WALL = register("drystone_wall", () -> new ExtendedWallBlock(LOTRBlocks.DRYSTONE));
 	public static RegistryObject<Block> COBBLED_DRYSTONE = register("cobbled_drystone", () -> new ExtendedStoneBlock(LOTRBlocks.DRYSTONE));
 	public static RegistryObject<Block> CUT_DRYSTONE = register("cut_drystone", () -> new ExtendedStoneBlock(LOTRBlocks.DRYSTONE));
 	public static RegistryObject<Block> SMOOTH_STONE_STAIRS = register("smooth_stone_stairs", () -> new LOTRStairsBlock(Blocks.SMOOTH_STONE));
@@ -597,7 +638,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> MOSSY_DRYSTONE = register("mossy_drystone", () -> new ExtendedStoneBlock(LOTRBlocks.DRYSTONE));
 	public static RegistryObject<Block> MOSSY_DRYSTONE_SLAB = register("mossy_drystone_slab", () -> new AxialSlabBlock(MOSSY_DRYSTONE));
 	public static RegistryObject<Block> MOSSY_DRYSTONE_STAIRS = register("mossy_drystone_stairs", () -> new LOTRStairsBlock(MOSSY_DRYSTONE));
-	public static RegistryObject<Block> MOSSY_DRYSTONE_WALL = register("mossy_drystone_wall", () -> new LOTRWallBlock(MOSSY_DRYSTONE));
+	public static RegistryObject<Block> MOSSY_DRYSTONE_WALL = register("mossy_drystone_wall", () -> new ExtendedWallBlock(MOSSY_DRYSTONE));
 
 	//BUSHES
 	public static RegistryObject<Block> BLACKBERRY_HEDGE = register("blackberry_bush", () -> new ExtendedBerryHedgeBlock(ExtendedItems.BLACKBERRY, ExtendedItems.BLACKBERRY_HEDGE));
@@ -843,21 +884,18 @@ public class ExtendedBlocks {
 
 	public static void register(IEventBus bus) {
 		BLOCKS.register(bus);
+		bus.addGenericListener(Block.class, ExtendedSignTileEntitySetup::setup);
 		bus.addGenericListener(Block.class, ExtendedBiomeFeatures::setup);
 	}
 
 	/**
-	 * Register a block, with dataGen handling
+	 * Register a block
 	 * @param name A String name of the block
 	 * @param sup A Block supplier to build
 	 * @return A built RegistryObject for the Block 
 	 * */
 	private static RegistryObject<Block> register(String name, Supplier<? extends Block> sup) {
-		RegistryObject<Block> block = BLOCKS.register(name, sup);
-		if(DatagenModLoader.isRunningDataGen()) {
-			REGISTEREDBLOCKS.put(name, block);
-		}
-		return block;
+		return BLOCKS.register(name, sup);
 	}
 
 	/**

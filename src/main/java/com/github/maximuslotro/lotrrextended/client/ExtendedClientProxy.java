@@ -8,15 +8,15 @@ import com.github.maximuslotro.lotrextended.mixins.MIXINConfig;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.eventhandlers.ExtendedRendererEventHandler;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedScreenRegisterHandler;
+import com.github.maximuslotro.lotrrextended.client.render.ExtendedBlockItemColors;
 import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
-import com.github.maximuslotro.lotrrextended.client.render.color.ExtendedBlockItemColors;
 import com.github.maximuslotro.lotrrextended.client.render.entity.ExtendedEntityRenderers;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
 import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedTileEntityRenderers;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedSignTypes;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.google.common.collect.ImmutableSet;
 
-import lotr.common.block.ExtendedSignTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.Atlases;

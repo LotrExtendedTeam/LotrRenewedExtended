@@ -1,7 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.init;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -28,7 +26,15 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhit
 
 import lotr.common.init.LOTRItemGroups;
 import lotr.common.init.LOTRMaterial;
-import lotr.common.item.*;
+import lotr.common.item.EmptyVesselBlockItem;
+import lotr.common.item.FallenLeavesItem;
+import lotr.common.item.HammerItem;
+import lotr.common.item.LOTRArmorItem;
+import lotr.common.item.LOTRHoeItem;
+import lotr.common.item.LOTRShieldItem;
+import lotr.common.item.SpearItem;
+import lotr.common.item.VesselDrinkItem;
+import lotr.common.item.VesselType;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -57,10 +63,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ExtendedItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, LotrExtendedMod.MODID);
-	// Only used for dataGen
-	public static Map<String, RegistryObject<Item>> REGISTEREDITEMS = new HashMap<>();
-	// Only used for dataGen
-	public static Map<String, RegistryObject<Item>> REGISTEREDBLOCKITEMS = new HashMap<>();
 
 	//###########################################################BLOCKS################################################################
 	public static RegistryObject<Item> CHESTNUT_LOG = regBlockItem(ExtendedBlocks.CHESTNUT_LOG, LOTRItemGroups.BLOCKS);
@@ -707,12 +709,12 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BLUE_DWARVEN_THROWABLE_AXE = regItem("blue_dwarven_throwing_axe", () -> new ExtendedThrowableAxeItem(LOTRMaterial.BLUE_DWARVEN));
 	//######################################################################FOOD########################################################
 	//Berries
-	public static RegistryObject<Item> BLACKBERRY = regItem("blackberry", () -> new ExtendedBerries(ExtendedBlocks.BLACKBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLACKBERRY)));
-	public static RegistryObject<Item> BLUEBERRY = regItem("blueberry", () -> new ExtendedBerries(ExtendedBlocks.BLUEBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLUEBERRY)));
-	public static RegistryObject<Item> CRANBERRY = regItem("cranberry", () -> new ExtendedBerries(ExtendedBlocks.CRANBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CRANBERRY)));
-	public static RegistryObject<Item> ELDERBERRY = regItem("elderberry", () -> new ExtendedBerries(ExtendedBlocks.ELDERBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ELDERBERRY)));
-	public static RegistryObject<Item> RASPBERRY = regItem("raspberry", () -> new ExtendedBerries(ExtendedBlocks.RASPBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.RASPBERRY)));
-	public static RegistryObject<Item> WILDBERRY = regItem("wildberry", ()-> new ExtendedBerries(ExtendedBlocks.WILDBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.WILDBERRY)));
+	public static RegistryObject<Item> BLACKBERRY = regItem("blackberry", () -> new ExtendedBerryItem(ExtendedBlocks.BLACKBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLACKBERRY)));
+	public static RegistryObject<Item> BLUEBERRY = regItem("blueberry", () -> new ExtendedBerryItem(ExtendedBlocks.BLUEBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BLUEBERRY)));
+	public static RegistryObject<Item> CRANBERRY = regItem("cranberry", () -> new ExtendedBerryItem(ExtendedBlocks.CRANBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.CRANBERRY)));
+	public static RegistryObject<Item> ELDERBERRY = regItem("elderberry", () -> new ExtendedBerryItem(ExtendedBlocks.ELDERBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ELDERBERRY)));
+	public static RegistryObject<Item> RASPBERRY = regItem("raspberry", () -> new ExtendedBerryItem(ExtendedBlocks.RASPBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.RASPBERRY)));
+	public static RegistryObject<Item> WILDBERRY = regItem("wildberry", ()-> new ExtendedBerryItem(ExtendedBlocks.WILDBERRY_BUSH.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.WILDBERRY)));
 	public static RegistryObject<Item> BLACKBERRY_PIE  = regCakeItem(ExtendedBlocks.BLACKBERRY_PIE, LOTRItemGroups.FOOD);
 	public static RegistryObject<Item> BLUEBERRY_PIE  = regCakeItem(ExtendedBlocks.BLUEBERRY_PIE, LOTRItemGroups.FOOD);
 	public static RegistryObject<Item> CRANBERRY_PIE  = regCakeItem(ExtendedBlocks.CRANBERRY_PIE, LOTRItemGroups.FOOD);
@@ -737,7 +739,6 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BANANA = regItem("banana", () -> new ExtendedCompostableItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BANANA), 0.65F));
 	public static RegistryObject<Item> BANANA_BREAD = regItem("banana_bread", () -> new ExtendedCompostableItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.BANANA_BREAD), 0.85F));
 	public static RegistryObject<Item> BANANA_CAKE  = regCakeItem(ExtendedBlocks.BANANA_CAKE, LOTRItemGroups.FOOD);
-
 
 	public static RegistryObject<Item> ROASTED_CHESTNUT = regItem("roasted_chestnut", () -> new ExtendedCompostableItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.ROASTED_CHESTNUT), 0.5F));
 	public static RegistryObject<Item> PLUM = regItem("plum", () -> new ExtendedCompostableItem(new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.PLUM), 0.65F));
@@ -974,9 +975,6 @@ public class ExtendedItems {
 
 	private static RegistryObject<Item> regItem(String name, Supplier<? extends Item> sup) {
 		RegistryObject<Item> item = ITEMS.register(name, sup);
-		if(DatagenModLoader.isRunningDataGen()) {
-			ExtendedItems.REGISTEREDITEMS.put(name, item);
-		}
 		return item;
 	}
 	private static RegistryObject<Item> regBannerPaternItem(String name, BannerPattern bannerPattern, Supplier<? extends Item> sup)  {
@@ -994,11 +992,7 @@ public class ExtendedItems {
 		return item;
 	}
 	private static RegistryObject<Item> regGenericBlockItem(RegistryObject<Block> blockSup, Supplier<? extends BlockItem> sup) {
-		RegistryObject<Item> item = ITEMS.register(blockSup.getId().getPath(), sup);
-		if(DatagenModLoader.isRunningDataGen()) {
-			ExtendedItems.REGISTEREDBLOCKITEMS.put(blockSup.getId().getPath(), item);
-		}
-		return item;
+		return regItem(blockSup.getId().getPath(), sup);
 	}
 	private static RegistryObject<Item> regBlockItemProps(RegistryObject<Block> blockSup, ItemGroup group, Consumer<Properties> props) {
 		Properties properties =  new Properties().tab(group);
@@ -1009,11 +1003,7 @@ public class ExtendedItems {
 		return regBlockItemProps(blockSup, group, props -> {});
 	}
 	private static RegistryObject<Item> regCakeItem(RegistryObject<Block> blockSup, ItemGroup group) {
-		RegistryObject<Item> item = regBlockItemProps(blockSup, group, props -> props.stacksTo(1));
-		if(DatagenModLoader.isRunningDataGen()) {
-			ExtendedItems.REGISTEREDITEMS.put(item.getId().getPath(), item);
-		}
-		return item;
+		return regBlockItemProps(blockSup, group, props -> props.stacksTo(1));
 	}
 	private static RegistryObject<Item> regHiddenItemB(RegistryObject<Block> blockSup) {
 		return regGenericBlockItem(blockSup, () -> new BlockItem(blockSup.get(), new Properties()));

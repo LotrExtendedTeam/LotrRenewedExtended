@@ -307,41 +307,41 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 //		}
 
 		TreeMap<String, Item> weaponrackItems = new TreeMap<>();
-		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
-			if(item.getValue().get() instanceof SpearItem || item.getValue().get() instanceof DaggerItem
-				|| item.getValue().get() instanceof ExtendedDaggerItem
-				|| item.getValue().get() instanceof ExtendedSwordItem
-				|| item.getValue().get() instanceof HammerItem
-				|| item.getValue().get() instanceof PickaxeItem) {
-				weaponrackItems.put(item.getKey(), item.getValue().get());
+		for(RegistryObject<Item> item : ExtendedItems.ITEMS.getEntries()) {
+			if(item.get() instanceof SpearItem || item.get() instanceof DaggerItem
+				|| item.get() instanceof ExtendedDaggerItem
+				|| item.get() instanceof ExtendedSwordItem
+				|| item.get() instanceof HammerItem
+				|| item.get() instanceof PickaxeItem) {
+				weaponrackItems.put(item.getId().toString(), item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof ShovelItem) {
-				weaponrackItems.put(item.getKey(), item.getValue().get());
+			if(item.get() instanceof ShovelItem) {
+				weaponrackItems.put(item.getId().toString(), item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof AxeItem) {
-				weaponrackItems.put(item.getKey(), item.getValue().get());
+			if(item.get() instanceof AxeItem) {
+				weaponrackItems.put(item.getId().toString(), item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof LOTRHoeItem) {
-				weaponrackItems.put(item.getKey(), item.getValue().get());
+			if(item.get() instanceof LOTRHoeItem) {
+				weaponrackItems.put(item.getId().toString(), item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedChiselItem) {
-				weaponrackItems.put(item.getKey(), item.getValue().get());
+			if(item.get() instanceof ExtendedChiselItem) {
+				weaponrackItems.put(item.getId().toString(), item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedCommandHornItem) {
-				weaponrackItems.put(item.getKey(), item.getValue().get());
+			if(item.get() instanceof ExtendedCommandHornItem) {
+				weaponrackItems.put(item.getId().toString(), item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedBrandingIronItem) {
-				weaponrackItems.put(item.getKey(), item.getValue().get());
+			if(item.get() instanceof ExtendedBrandingIronItem) {
+				weaponrackItems.put(item.getId().toString(), item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedBoatItem) {
-				tag(ItemTags.BOATS).add(item.getValue().get());
+			if(item.get() instanceof ExtendedBoatItem) {
+				tag(ItemTags.BOATS).add(item.get());
 				continue;
 			}
 		}

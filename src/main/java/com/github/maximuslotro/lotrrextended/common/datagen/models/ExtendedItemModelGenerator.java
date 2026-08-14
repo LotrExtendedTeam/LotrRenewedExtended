@@ -4,23 +4,26 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.file.Path;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarsBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBirdcageBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedCakeBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandelierBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternElvenBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedStandingSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBerryItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCrossbowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
@@ -38,9 +41,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import lotr.common.block.ChandelierBlock;
+import lotr.common.block.ExtendedLOTRTorchBlock;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRSaplingBlock;
-import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.block.VesselDrinkBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTRItems;
@@ -119,104 +122,125 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	}
 	@Override
 	protected void registerModels() {
-		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDBLOCKITEMS.entrySet()) {
-			if((((BlockItem)item.getValue().get()).getBlock() instanceof LOTRDoorBlock) || (((BlockItem)item.getValue().get()).getBlock() instanceof DoorBlock)
-				|| (((BlockItem)item.getValue().get()).getBlock() instanceof ChandelierBlock)) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
-				continue;
-			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof LOTRSaplingBlock) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("block/"+item.getKey()));
-				continue;
-			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedLargePotBlock) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
-				continue;
-			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedLargeFlowerPotBlock && !item.getKey().contains("large_pot_")) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
-				continue;
-			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof LOTRStandingSignBlock) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
-				continue;
-			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedBirdcageBlock) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
-				continue;
-			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof VesselDrinkBlock) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
-				continue;
-			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedChainBlock) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
-				continue;
-			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedCrystalChandelierBlock) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
-				continue;
-			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedLanternElvenBlock) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
-				continue;
-			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedChainBlock) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
-				continue;
-			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedBarsBlock) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("block/"+item.getKey()));
-				continue;
-			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedNarsilShardsBlock) {
-				genHandheld(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
-				genSwordLarge(item.getValue().get());
-				continue;
-			}
-			if(((BlockItem)item.getValue().get()).getBlock() instanceof ExtendedVineBlock) {
-				if(item.getKey().contains(ExtendedItems.DEAD_MOSS_VINES.get().getRegistryName().getPath())) {
-					genGenerated(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()+"_hand"));
+		for(RegistryObject<Item> item : ExtendedItems.ITEMS.getEntries()) {
+			if(item.get() instanceof BlockItem) {
+				if((((BlockItem)item.get()).getBlock() instanceof LOTRDoorBlock) || (((BlockItem)item.get()).getBlock() instanceof DoorBlock)
+					|| (((BlockItem)item.get()).getBlock() instanceof ChandelierBlock)) {
+					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
 					continue;
-				}else {
-					genGenerated(item.getValue().get(), lotrExtendedLoc("block/"+item.getKey()));
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof LOTRSaplingBlock) {
+					genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedLargePotBlock) {
+					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedLargeFlowerPotBlock && !item.getId().getPath().contains("large_pot_")) {
+					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedStandingSignBlock) {
+					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedBirdcageBlock) {
+					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof VesselDrinkBlock) {
+					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedChainBlock) {
+					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedCakeBlock) {
+					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedCrystalChandelierBlock) {
+					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedLanternElvenBlock) {
+					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedChainBlock) {
+					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedBarsBlock) {
+					genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedLOTRTorchBlock) {
+					genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedNarsilShardsBlock) {
+					genHandheld(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					genSwordLarge(item.get());
+					continue;
+				}
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedVineBlock) {
+					if(item.getId().getPath().contains(ExtendedItems.DEAD_MOSS_VINES.get().getRegistryName().getPath())) {
+						genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()+"_hand"));
+						continue;
+					}else {
+						genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
+					}
+					continue;
+				}
+				if(item.get() instanceof FallenLeavesItem) {
+					try {
+						genGenerated(item.get(), true, lotrExtendedLoc("block/"+item.getId().getPath().substring(7)));
+					}catch(IllegalArgumentException e) {
+						genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath().substring(7)+"_0"));
+					}
+					continue;
+				}
+				if(item.get() instanceof ExtendedMCBannerItem) {
+					genGenerated(item.get(), lotrExtendedLoc("item/banner/"+item.getId().getPath()));
+					continue;
+				}
+				if(item.get() instanceof ExtendedBerryItem) {
+					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					continue;
+				}
+				if(item.get() instanceof ExtendedChiselItem) {
+					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					continue;
 				}
 				continue;
 			}
-			if(item.getValue().get() instanceof FallenLeavesItem) {
-				try {
-					genGenerated(item.getValue().get(), true, lotrExtendedLoc("block/"+item.getKey().substring(7)));
-				}catch(IllegalArgumentException e) {
-					genGenerated(item.getValue().get(), lotrExtendedLoc("block/"+item.getKey().substring(7)+"_0"));
-				}
+			if(item.get() instanceof ExtendedEntitySpawnerItem) {
 				continue;
 			}
-		}
-		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
-			if(item.getValue().get() instanceof ExtendedEntitySpawnerItem) {
+			if(item.get() instanceof ExtendedLeatherHatItem) {
+				genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()), lotrExtendedLoc("item/"+item.getId().getPath()+"_overlay"));
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedLeatherHatItem) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()), lotrExtendedLoc("item/"+item.getKey()+"_overlay"));
+			if(item.getId().getPath().contains("torch")) {
+				genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
 				continue;
 			}
-			if(item.getKey().contains("torch")) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("block/"+item.getKey()));
-				continue;
-			}
-			if(item.getValue().get() instanceof LOTRArmorItem) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
+			if(item.get() instanceof LOTRArmorItem) {
+				genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
 				continue;
 
 			}
-			if(item.getValue().get() instanceof VesselDrinkItem) {
-				genDrink(item.getValue().get(), "item/"+item.getKey());
+			if(item.get() instanceof VesselDrinkItem) {
+				genDrink(item.get(), "item/"+item.getId().getPath());
 				continue;
 
 			}
-			if(item.getValue().get() instanceof BannerPatternItem) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("item/banner_pattern"));
-				BannerPattern pattern = ((BannerPatternItem)item.getValue().get()).getBannerPattern();
+			if(item.get() instanceof BannerPatternItem) {
+				genGenerated(item.get(), lotrExtendedLoc("item/banner_pattern"));
+				BannerPattern pattern = ((BannerPatternItem)item.get()).getBannerPattern();
 				if (!this.existingFileHelper.exists(new ResourceLocation("minecraft", "textures/entity/banner/"+pattern.getFilename()+".png"), ResourcePackType.CLIENT_RESOURCES)) {
 					System.out.println("Missing banner banner pattern texture: " + pattern.getFilename() + ".png");
 				}
@@ -225,81 +249,77 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				}
 				continue;
 			}
-			if(item.getValue().get() instanceof SpearItem) {
-				genHandheld(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
-				genSpear(item.getValue().get());
+			if(item.get() instanceof SpearItem) {
+				genHandheld(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+				genSpear(item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedStaffItem) {
-				genHandheld(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
-				genStaff(item.getValue().get());
+			if(item.get() instanceof ExtendedStaffItem) {
+				genHandheld(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+				genStaff(item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedDaggerItem) {
-				genDagger(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()), lotrExtendedLoc("item/"+item.getKey()+"_poisoned"), false);
+			if(item.get() instanceof ExtendedDaggerItem) {
+				genDagger(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()), lotrExtendedLoc("item/"+item.getId().getPath()+"_poisoned"), false);
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedSwordItem || item.getValue().get() instanceof HammerItem) {
-				genHandheld(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
-				genSwordLarge(item.getValue().get());
+			if(item.get() instanceof ExtendedSwordItem || item.get() instanceof HammerItem) {
+				genHandheld(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+				genSwordLarge(item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof LOTRShieldItem) {
+			if(item.get() instanceof LOTRShieldItem) {
 				try {
-					getExistingFile(lotrExtendedLoc("item/"+item.getKey()));
-					getExistingFile(lotrExtendedLoc("item/"+item.getKey()+"_blocking"));
+					getExistingFile(lotrExtendedLoc("item/"+item.getId().getPath()));
+					getExistingFile(lotrExtendedLoc("item/"+item.getId().getPath()+"_blocking"));
 				}catch(IllegalStateException e) {
-					System.out.println("Missing shield model: "+item.getKey());
-					System.out.println("Missing shield model: "+item.getKey()+"_blocking");
+					System.out.println("Missing shield model: "+item.getId().getPath());
+					System.out.println("Missing shield model: "+item.getId().getPath()+"_blocking");
 				}
 				continue;
 			}
 
-			if(item.getValue().get() instanceof ExtendedBowItem) {
-				genBow(item.getValue().get());
+			if(item.get() instanceof ExtendedBowItem) {
+				genBow(item.get());
 				continue;
 			}
 
-			if((item.getValue().get() instanceof PickaxeItem) || (item.getValue().get() instanceof ShovelItem)
-				|| (item.getValue().get() instanceof AxeItem)
-				|| (item.getValue().get() instanceof LOTRHoeItem)
-				|| (item.getValue().get() instanceof ExtendedMattockItem)
-				|| (item.getValue().get() instanceof ExtendedThrowableAxeItem)) {
-				genHandheld(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
+			if((item.get() instanceof PickaxeItem) || (item.get() instanceof ShovelItem)
+				|| (item.get() instanceof AxeItem)
+				|| (item.get() instanceof LOTRHoeItem)
+				|| (item.get() instanceof ExtendedMattockItem)
+				|| (item.get() instanceof ExtendedThrowableAxeItem)) {
+				genHandheld(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedCommandHornItem) {
-				genCommandHorn(item.getValue().get(), "item/"+item.getKey());
+			if(item.get() instanceof ExtendedCommandHornItem) {
+				genCommandHorn(item.get(), "item/"+item.getId().getPath());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedBrandingIronItem) {
-				genBrandingIron(item.getValue().get(), "item/"+item.getKey());
+			if(item.get() instanceof ExtendedBrandingIronItem) {
+				genBrandingIron(item.get(), "item/"+item.getId().getPath());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedModifierScrollItem) {
-				genModifierScroll(item.getValue().get(), "item/"+item.getKey());
+			if(item.get() instanceof ExtendedModifierScrollItem) {
+				genModifierScroll(item.get(), "item/"+item.getId().getPath());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedCrossbowItem) {
-				genCrossbow(item.getValue().get(), new ResourceLocation(item.getValue().get().getRegistryName().getNamespace(), "item/"+item.getKey()));
+			if(item.get() instanceof ExtendedCrossbowItem) {
+				genCrossbow(item.get(), new ResourceLocation(item.get().getRegistryName().getNamespace(), "item/"+item.getId().getPath()));
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedMCBannerItem) {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("item/banner/"+item.getKey()));
-				continue;
-			}
-			if(item.getValue().get() instanceof ExtendedCoinItem) {
-				ItemModelBuilder builder = withExistingParent(item.getValue().get().getRegistryName().toString(), "lotrextended:item/template_coin");
-				gen(builder, new ResourceLocation(item.getValue().get().getRegistryName().getNamespace(), "item/"+item.getKey()));
+			if(item.get() instanceof ExtendedCoinItem) {
+				ItemModelBuilder builder = withExistingParent(item.get().getRegistryName().toString(), "lotrextended:item/template_coin");
+				gen(builder, new ResourceLocation(item.get().getRegistryName().getNamespace(), "item/"+item.getId().getPath()));
 				continue;
 			}
 			try {
-				genGenerated(item.getValue().get(), lotrExtendedLoc("item/"+item.getKey()));
+				genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
 				continue;
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			System.out.println("Didn't make ItemModel for: "+item.getKey());
+			System.out.println("Didn't make ItemModel for: "+item.getId().getPath());
 		}
 		for(String entity : ExtendedEntities.REGISTEREDNPCENTITIES) {
 			withExistingParent("lotr:"+entity+"_spawn_egg", "item/template_spawn_egg");

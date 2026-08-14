@@ -15,8 +15,6 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.TreeMap;
 import java.util.function.BiConsumer;
-import java.util.function.Supplier;
-
 import org.apache.commons.lang3.text.translate.JavaUnicodeEscaper;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
@@ -117,37 +115,20 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 		removeStrings.add(key);
 	}
 
-	public void addBlock(Supplier<? extends Block> key, String name) {
-		add(key.get(), name);
-	}
 
-	public void add(Block key, String name) {
+	public void addBlock(Block key, String name) {
 		addD(key.getDescriptionId(), name);
 	}
 
-	public void addItem(Supplier<? extends Item> key, String name) {
-		add(key.get(), name);
-	}
-
-	public void add(Item key, String name) {
+	public void addItem(Item key, String name) {
 		addD(key.getDescriptionId(), name);
 	}
 
-
-	public void addEffect(Supplier<? extends Effect> key, String name) {
-		add(key.get(), name);
-	}
-
-	public void add(Effect key, String name) {
+	public void addEffect(Effect key, String name) {
 		addD(key.getDescriptionId(), name);
 	}
 
-	public void addEntityType(Supplier<? extends EntityType<?>> key,
-			String name) {
-		add(key.get(), name);
-	}
-
-	public void add(EntityType<?> key, String name) {
+	public void addEntityType(EntityType<?> key, String name) {
 		addD(key.getDescriptionId(), name);
 	}
 

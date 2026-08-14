@@ -1,4 +1,4 @@
-package lotr.common.block;
+package com.github.maximuslotro.lotrrextended.common.block;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,17 +14,13 @@ public class ExtendedSignTypes {
 	public static final WoodType WILLOW = register("willow");
 	public static final WoodType EBONY = register("ebony");
 
-	private static String createFullName(String s) {
-		return "lotr/" + s;
-	}
-
 	public static void forEach(Consumer<WoodType> action) {
 		allExtendedModTypes.forEach(action);
 	}
 
 	private static WoodType register(String name) {
-		WoodType type = WoodType.create(createFullName(name));
-		WoodType.register(type);
+		WoodType type = WoodType.create("lotrextended:" + name);
+		//WoodType.register(type);
 		allExtendedModTypes.add(type);
 		return type;
 	}

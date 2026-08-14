@@ -6,8 +6,10 @@ import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedStandingSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedWallSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedFullModelBedBlock;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
@@ -27,13 +29,10 @@ import lotr.common.block.LOTRPlanksBlock;
 import lotr.common.block.LOTRPottedPlantBlock;
 import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.block.LOTRStairsBlock;
-import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.block.LOTRStrippedLogBlock;
 import lotr.common.block.LOTRStrippedWoodBlock;
 import lotr.common.block.LOTRTorchBlock;
 import lotr.common.block.LOTRTrapdoorBlock;
-import lotr.common.block.LOTRWallBlock;
-import lotr.common.block.LOTRWallSignBlock;
 import lotr.common.block.LOTRWoodButtonBlock;
 import lotr.common.block.LOTRWoodPressurePlateBlock;
 import lotr.common.block.LogSlabBlock;
@@ -49,6 +48,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.TrapDoorBlock;
+import net.minecraft.block.WallBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
@@ -80,127 +80,127 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 
 	@Override
 	protected void addTags() {
-		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if(block.getValue().get() instanceof LOTRPillarBlock) {
-				tag(PILLARS).add(block.getValue().get());
+		for(RegistryObject<Block> block : ExtendedBlocks.BLOCKS.getEntries()) {
+			if(block.get() instanceof LOTRPillarBlock) {
+				tag(PILLARS).add(block.get());
 			}
-			if(block.getValue().get() instanceof ExtendedThreeTallPillarBlock ) {
-				tag(ExtendedTags.Blocks.FIXED_SIZE_PILLARS).add(block.getValue().get());
+			if(block.get() instanceof ExtendedThreeTallPillarBlock ) {
+				tag(ExtendedTags.Blocks.FIXED_SIZE_PILLARS).add(block.get());
 			}
-			if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
-				tag(BlockTags.FLOWER_POTS).add(block.getValue().get());
+			if(block.get() instanceof LOTRPottedPlantBlock) {
+				tag(BlockTags.FLOWER_POTS).add(block.get());
 			}
-			if(block.getValue().get() instanceof ExtendedBedBlock||block.getValue().get() instanceof ExtendedFullModelBedBlock) {
-				tag(BlockTags.BEDS).add(block.getValue().get());
+			if(block.get() instanceof ExtendedBedBlock||block.get() instanceof ExtendedFullModelBedBlock) {
+				tag(BlockTags.BEDS).add(block.get());
 			}
-			if(block.getValue().get() instanceof LOTRPlanksBlock) {
-				tag(BlockTags.PLANKS).add(block.getValue().get());
+			if(block.get() instanceof LOTRPlanksBlock) {
+				tag(BlockTags.PLANKS).add(block.get());
 			}
-			if(block.getValue().get() instanceof LOTRLeavesBlock) {
-				tag(BlockTags.LEAVES).add(block.getValue().get());
+			if(block.get() instanceof LOTRLeavesBlock) {
+				tag(BlockTags.LEAVES).add(block.get());
 			}
-			if(block.getValue().get() instanceof LOTRSaplingBlock) {
-				tag(BlockTags.SAPLINGS).add(block.getValue().get());
+			if(block.get() instanceof LOTRSaplingBlock) {
+				tag(BlockTags.SAPLINGS).add(block.get());
 			}
-			if(block.getValue().get() instanceof LOTRStandingSignBlock) {
-				tag(BlockTags.STANDING_SIGNS).add(block.getValue().get());
+			if(block.get() instanceof ExtendedStandingSignBlock) {
+				tag(BlockTags.STANDING_SIGNS).add(block.get());
 			}
-			if(block.getValue().get() instanceof LOTRWallSignBlock) {
-				tag(BlockTags.WALL_SIGNS).add(block.getValue().get());
+			if(block.get() instanceof ExtendedWallSignBlock) {
+				tag(BlockTags.WALL_SIGNS).add(block.get());
 			}
-			if(block.getValue().get() instanceof LOTRWoodButtonBlock) {
-				tag(BlockTags.WOODEN_BUTTONS).add(block.getValue().get());
+			if(block.get() instanceof LOTRWoodButtonBlock) {
+				tag(BlockTags.WOODEN_BUTTONS).add(block.get());
 			}
-			if(block.getValue().get() instanceof LOTRTrapdoorBlock) {
-				tag(BlockTags.WOODEN_TRAPDOORS).add(block.getValue().get());
+			if(block.get() instanceof LOTRTrapdoorBlock) {
+				tag(BlockTags.WOODEN_TRAPDOORS).add(block.get());
 			}
-			if(block.getValue().get() instanceof TrapDoorBlock && !(block.getValue().get() instanceof LOTRTrapdoorBlock)) {
-				tag(BlockTags.TRAPDOORS).add(block.getValue().get());
+			if(block.get() instanceof TrapDoorBlock && !(block.get() instanceof LOTRTrapdoorBlock)) {
+				tag(BlockTags.TRAPDOORS).add(block.get());
 			}
-			if(block.getValue().get() instanceof LOTRWoodPressurePlateBlock) {
-				tag(BlockTags.WOODEN_PRESSURE_PLATES).add(block.getValue().get());
+			if(block.get() instanceof LOTRWoodPressurePlateBlock) {
+				tag(BlockTags.WOODEN_PRESSURE_PLATES).add(block.get());
 			}
-			if(block.getValue().get() instanceof LOTRDoorBlock) {
-				tag(BlockTags.WOODEN_DOORS).add(block.getValue().get());
+			if(block.get() instanceof LOTRDoorBlock) {
+				tag(BlockTags.WOODEN_DOORS).add(block.get());
 			}
-			if(block.getValue().get() instanceof DoorBlock && !(block.getValue().get() instanceof LOTRDoorBlock)) {
-				tag(BlockTags.DOORS).add(block.getValue().get());
+			if(block.get() instanceof DoorBlock && !(block.get() instanceof LOTRDoorBlock)) {
+				tag(BlockTags.DOORS).add(block.get());
 			}
-			if(block.getValue().get() instanceof AxialSlabBlock) {
-				tag(BlockTags.SLABS).add(block.getValue().get());
-				if(block.getValue().get().properties.material.isFlammable() 
-						&& !(block.getValue().get() instanceof ExtendedBurnableAxialSlabBlock)
-						&& !(block.getValue().get() instanceof LogSlabBlock)
-						&& !(block.getValue().get() instanceof StrippableLogSlabBlock)) {
-					tag(BlockTags.WOODEN_SLABS).add(block.getValue().get());
+			if(block.get() instanceof AxialSlabBlock) {
+				tag(BlockTags.SLABS).add(block.get());
+				if(block.get().properties.material.isFlammable() 
+						&& !(block.get() instanceof ExtendedBurnableAxialSlabBlock)
+						&& !(block.get() instanceof LogSlabBlock)
+						&& !(block.get() instanceof StrippableLogSlabBlock)) {
+					tag(BlockTags.WOODEN_SLABS).add(block.get());
 				}
-				if(block.getKey().contains("_log_slab")||block.getKey().contains("_wood_slab")) {
-					tag(LOG_SLABS).add(block.getValue().get());
+				if(block.getId().toString().contains("_log_slab")||block.getId().toString().contains("_wood_slab")) {
+					tag(LOG_SLABS).add(block.get());
 				}
-				if(block.getKey().contains("_beam_slab")) {
-					tag(WOODEN_BEAM_SLABS).add(block.getValue().get());
-				}
-			}
-			if(block.getValue().get() instanceof LOTRStairsBlock) {
-				tag(BlockTags.STAIRS).add(block.getValue().get());
-				if(block.getValue().get().properties.material.isFlammable() 
-						&& !(block.getValue().get() instanceof ExtendedBurnableLOTRStairsBlock)
-						&& !(block.getValue().get() instanceof LogStairsBlock)
-						&& !(block.getValue().get() instanceof StrippableLogStairsBlock)) {
-					tag(BlockTags.WOODEN_STAIRS).add(block.getValue().get());
-				}
-				if(block.getKey().contains("_wood_stairs")) {
-					tag(LOG_STAIRS).add(block.getValue().get());
+				if(block.getId().toString().contains("_beam_slab")) {
+					tag(WOODEN_BEAM_SLABS).add(block.get());
 				}
 			}
-			if(block.getValue().get() instanceof LOTRWallBlock) {
-				tag(BlockTags.WALLS).add(block.getValue().get());
-			}
-			if(block.getValue().get() instanceof LOTRFenceGateBlock) {
-				if(block.getValue().get().properties.material.isFlammable()) {
-					tag(WOODEN_FENCE_GATES).add(block.getValue().get());
+			if(block.get() instanceof LOTRStairsBlock) {
+				tag(BlockTags.STAIRS).add(block.get());
+				if(block.get().properties.material.isFlammable() 
+						&& !(block.get() instanceof ExtendedBurnableLOTRStairsBlock)
+						&& !(block.get() instanceof LogStairsBlock)
+						&& !(block.get() instanceof StrippableLogStairsBlock)) {
+					tag(BlockTags.WOODEN_STAIRS).add(block.get());
+				}
+				if(block.getId().toString().contains("_wood_stairs")) {
+					tag(LOG_STAIRS).add(block.get());
 				}
 			}
-			if(block.getValue().get() instanceof LOTRFenceBlock) {
-				if(block.getValue().get().properties.material.isFlammable()) {
-					tag(WOODEN_FENCES).add(block.getValue().get());
+			if(block.get() instanceof WallBlock) {
+				tag(BlockTags.WALLS).add(block.get());
+			}
+			if(block.get() instanceof LOTRFenceGateBlock) {
+				if(block.get().properties.material.isFlammable()) {
+					tag(WOODEN_FENCE_GATES).add(block.get());
 				}
 			}
-			if(block.getValue().get() instanceof LOTRTorchBlock) {
-				tag(BlockTags.WALL_POST_OVERRIDE).add(block.getValue().get());
+			if(block.get() instanceof LOTRFenceBlock) {
+				if(block.get().properties.material.isFlammable()) {
+					tag(WOODEN_FENCES).add(block.get());
+				}
 			}
-			if(block.getValue().get() instanceof ExtendedBrazierBlock) {
-				tag(BlockTags.WALL_POST_OVERRIDE).add(block.getValue().get());
+			if(block.get() instanceof LOTRTorchBlock) {
+				tag(BlockTags.WALL_POST_OVERRIDE).add(block.get());
 			}
-			if(block.getValue().get() instanceof ExtendedLanternBlock) {
-				tag(BlockTags.WALL_POST_OVERRIDE).add(block.getValue().get());
+			if(block.get() instanceof ExtendedBrazierBlock) {
+				tag(BlockTags.WALL_POST_OVERRIDE).add(block.get());
 			}
-			if(block.getValue().get() instanceof WoodBeamBlock) {
-				tag(WOODEN_BEAMS).add(block.getValue().get());
+			if(block.get() instanceof ExtendedLanternBlock) {
+				tag(BlockTags.WALL_POST_OVERRIDE).add(block.get());
 			}
-			if(block.getValue().get() instanceof BranchBlock) {
-				tag(BRANCHES).add(block.getValue().get());
+			if(block.get() instanceof WoodBeamBlock) {
+				tag(WOODEN_BEAMS).add(block.get());
 			}
-			if(block.getValue().get() instanceof ExtendedVineBlock) {
-				tag(ExtendedTags.Blocks.SHEARABLE_BLOCKS).add(block.getValue().get());
+			if(block.get() instanceof BranchBlock) {
+				tag(BRANCHES).add(block.get());
 			}
-			if(block.getValue().get() instanceof StrippableLogBlock) {
-				tag(CHARRABLE_LOGS).add(block.getValue().get());
+			if(block.get() instanceof ExtendedVineBlock) {
+				tag(ExtendedTags.Blocks.SHEARABLE_BLOCKS).add(block.get());
 			}
-			if(block.getValue().get() instanceof StrippableWoodBlock) {
-				tag(CHARRABLE_WOODS).add(block.getValue().get());
+			if(block.get() instanceof StrippableLogBlock) {
+				tag(CHARRABLE_LOGS).add(block.get());
 			}
-			if(block.getValue().get() instanceof LOTRStrippedLogBlock) {
-				tag(CHARRABLE_STRIPPED_LOGS).add(block.getValue().get());
+			if(block.get() instanceof StrippableWoodBlock) {
+				tag(CHARRABLE_WOODS).add(block.get());
 			}
-			if(block.getValue().get() instanceof LOTRStrippedWoodBlock) {
-				tag(CHARRABLE_STRIPPED_WOODS).add(block.getValue().get());
+			if(block.get() instanceof LOTRStrippedLogBlock) {
+				tag(CHARRABLE_STRIPPED_LOGS).add(block.get());
 			}
-			if(block.getKey().contains("packed_fur")||block.getKey().contains("fur_bundle")||block.getKey().contains("fur_carpet")) {
-				tag(ExtendedTags.Blocks.FUR_BLOCKS).add(block.getValue().get());
+			if(block.get() instanceof LOTRStrippedWoodBlock) {
+				tag(CHARRABLE_STRIPPED_WOODS).add(block.get());
 			}
-			if(block.getValue().get() instanceof ExtendedChainBlock) {
-				tag(ExtendedTags.Blocks.CHAINS).add(block.getValue().get());
+			if(block.getId().toString().contains("packed_fur")||block.getId().toString().contains("fur_bundle")||block.getId().toString().contains("fur_carpet")) {
+				tag(ExtendedTags.Blocks.FUR_BLOCKS).add(block.get());
+			}
+			if(block.get() instanceof ExtendedChainBlock) {
+				tag(ExtendedTags.Blocks.CHAINS).add(block.get());
 			}
 		}
 

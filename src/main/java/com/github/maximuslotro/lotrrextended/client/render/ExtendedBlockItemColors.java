@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.client.render.color;
+package com.github.maximuslotro.lotrrextended.client.render;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;

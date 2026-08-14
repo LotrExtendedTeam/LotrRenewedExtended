@@ -24,8 +24,14 @@ import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedLar
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedReedBasketBlock;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 
-import lotr.common.init.LOTRBlocks;
+import lotr.common.block.ChandelierBlock;
+import lotr.common.block.FallenLeavesBlock;
+import lotr.common.block.GateBlock;
+import lotr.common.block.NonWaterloggableLanternBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.SaplingBlock;
+import net.minecraft.block.TorchBlock;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -83,8 +89,20 @@ public class ExtendedBlockRenderer {
 	}
 
 	public static void setupBlockRenderers() {
-		for(RegistryObject<Block> reg: LOTRBlocks.BLOCKS.getEntries()) {
+		for(RegistryObject<Block> reg: ExtendedBlocks.BLOCKS.getEntries()) {
 			Block block = reg.get();
+			if (block instanceof ChandelierBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}
+			if (block instanceof SaplingBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}
+			if (block instanceof LeavesBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
+			}
+			if (block instanceof FallenLeavesBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
+			}
 			if(block instanceof ExtendedBedBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
@@ -105,6 +123,14 @@ public class ExtendedBlockRenderer {
 			}
 			if(block instanceof ExtendedWargCarpetBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+			}
+			if (block instanceof TorchBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+				continue;
+			}
+			if (block instanceof ExtendedBarsBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
+				continue;
 			}
 			if(block instanceof ExtendedMossCarpetBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
@@ -136,6 +162,9 @@ public class ExtendedBlockRenderer {
 			if(block instanceof ExtendedOrcBombBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
+			if (block instanceof GateBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
+			}
 			if(block instanceof ExtendedCrystalChandelierBlock) {
 				if(ModList.get().isLoaded("optfine")){
 					RenderTypeLookup.setRenderLayer(block, RenderType.translucent());
@@ -143,7 +172,7 @@ public class ExtendedBlockRenderer {
 					RenderTypeLookup.setRenderLayer(block, RenderType.solid());
 				}
 			}
-			if (block instanceof ExtendedLanternBlock) {
+			if (block instanceof ExtendedLanternBlock || block instanceof NonWaterloggableLanternBlock) {
 				if (block instanceof ExtendedLanternNumenoreanBlock) {
 					RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
 					continue;

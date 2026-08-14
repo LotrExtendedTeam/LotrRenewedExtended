@@ -1,17 +1,18 @@
-package lotr.common.block;
+package com.github.maximuslotro.lotrrextended.common.block;
 
 import java.util.function.Supplier;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.WallBlock;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 
-public class ExtendedBurnableLOTRWallBlock extends LOTRWallBlock {
+public class ExtendedBurnableWallBlock extends WallBlock {
 
-	public ExtendedBurnableLOTRWallBlock(Supplier<Block> block) {
-		super(block);
+	public ExtendedBurnableWallBlock(Supplier<Block> block) {
+		super(Properties.copy(block.get()));
 	}
 
 	@Override

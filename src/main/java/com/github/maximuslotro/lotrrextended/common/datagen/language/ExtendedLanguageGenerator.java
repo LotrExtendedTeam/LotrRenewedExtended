@@ -24,21 +24,21 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 	@Override
 	protected void makeTranslations() {
 		// Try Add New Block Names
-		for (Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if(block.getKey().contains("large_pot_")) {
+		for (RegistryObject<Block> block : ExtendedBlocks.BLOCKS.getEntries()) {
+			if(block.getId().getPath().contains("large_pot_")) {
 				// Skip adding all variations of large pots
 				continue;
 			}
-			if(block.getKey().contains("bookshelf")) {
+			if(block.getId().getPath().contains("bookshelf")) {
 				// We are using key for vanilla bookshelf localization
 				continue;
 			}
-			addBlock(block.getValue(), "");
+			addBlock(block.get(), "");
 		}
 
 		// Try Add New Item Names
-		for (Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
-			addItem(item.getValue(), "");
+		for (RegistryObject<Item> item : ExtendedItems.ITEMS.getEntries()) {
+			addItem(item.get(), "");
 		}
 
 		// Try Add New Biome Names

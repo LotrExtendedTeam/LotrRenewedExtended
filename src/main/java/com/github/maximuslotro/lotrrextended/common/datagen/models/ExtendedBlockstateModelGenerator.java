@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRuneBlock;
@@ -40,12 +39,15 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedOrcBombBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedOreRemainsBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMattedFurBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedStandingSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedWallSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWasteBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
@@ -73,7 +75,6 @@ import lotr.common.block.ExtendedHearthBlock;
 import lotr.common.block.ExtendedLOTRTorchBlock;
 import lotr.common.block.ExtendedLOTRWallTorchBlock;
 import lotr.common.block.ExtendedBrazierBlock;
-import lotr.common.block.ExtendedRemainsBlock;
 import lotr.common.block.ExtendedTwoTypeCraftingTableBlock;
 import lotr.common.block.FactionCraftingTableBlock;
 import lotr.common.block.FallenLeavesBlock;
@@ -84,18 +85,14 @@ import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRFenceBlock;
 import lotr.common.block.LOTRFenceGateBlock;
 import lotr.common.block.LOTRLeavesBlock;
-import lotr.common.block.LOTROreBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRPlanksBlock;
 import lotr.common.block.LOTRPottedPlantBlock;
 import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.block.LOTRStairsBlock;
-import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.block.LOTRStrippedLogBlock;
 import lotr.common.block.LOTRStrippedWoodBlock;
 import lotr.common.block.LOTRTrapdoorBlock;
-import lotr.common.block.LOTRWallBlock;
-import lotr.common.block.LOTRWallSignBlock;
 import lotr.common.block.LOTRWoodButtonBlock;
 import lotr.common.block.LOTRWoodPressurePlateBlock;
 import lotr.common.block.NettleBlock;
@@ -122,15 +119,18 @@ import net.minecraft.block.FourWayBlock;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.HorizontalFaceBlock;
 import net.minecraft.block.NetherRootsBlock;
+import net.minecraft.block.OreBlock;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SnowyDirtBlock;
 import net.minecraft.block.StairsBlock;
+import net.minecraft.block.StandingSignBlock;
 import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.block.VineBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.block.WallHeight;
+import net.minecraft.block.WallSignBlock;
 import net.minecraft.block.WallTorchBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.Property;
@@ -180,280 +180,280 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		genMirroredBlockItem(Blocks.DIRT, mcLoc("block/dirt"), false);
 		genMirroredBlockItem(Blocks.COARSE_DIRT, mcLoc("block/coarse_dirt"), false);
 		
-		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
+		for(RegistryObject<Block> block : ExtendedBlocks.BLOCKS.getEntries()) {
 			try {
-				if(registeredBlocks.contains(block.getValue().get())) {continue;}
-				if(block.getValue().get() instanceof ExtendedMattedFurBlock) {
-					genMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), true);
+				if(registeredBlocks.contains(block.get())) {continue;}
+				if(block.get() instanceof ExtendedMattedFurBlock) {
+					genMirroredBlockItem(block.get(), lotrExtendedLoc("block/"+block.getId().getPath()), true);
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedBundleBlock) {
-					genCubeBottomTopSideBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()+"_side"), lotrExtendedLoc("block/"+block.getKey()+"_bottom"), lotrExtendedLoc("block/"+block.getKey()+"_top"));
+				if(block.get() instanceof ExtendedBundleBlock) {
+					genCubeBottomTopSideBlockItem(block.get(), lotrExtendedLoc("block/"+block.getId().getPath()+"_side"), lotrExtendedLoc("block/"+block.getId().getPath()+"_bottom"), lotrExtendedLoc("block/"+block.getId().getPath()+"_top"));
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedBirdcageBlock) {
-					genBirdcageBlock((ExtendedBirdcageBlock) block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof ExtendedBirdcageBlock) {
+					genBirdcageBlock((ExtendedBirdcageBlock) block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedCrucibleBlock) {
-					genCrucibleBlockItem((ExtendedCrucibleBlock) block.getValue().get());
+				if(block.get() instanceof ExtendedCrucibleBlock) {
+					genCrucibleBlockItem((ExtendedCrucibleBlock) block.get());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedNarsilShardsBlock) {
-					genNarsilShardsBlock((ExtendedNarsilShardsBlock) block.getValue().get());
+				if(block.get() instanceof ExtendedNarsilShardsBlock) {
+					genNarsilShardsBlock((ExtendedNarsilShardsBlock) block.get());
 					continue;
 				}
-				if(block.getValue().get() instanceof VesselDrinkBlock) {
-					if(block.getValue().get()==ExtendedBlocks.SKULL_GOBLET.get()) {
-						genSkullGobletBlock((VesselDrinkBlock)block.getValue().get());
+				if(block.get() instanceof VesselDrinkBlock) {
+					if(block.get()==ExtendedBlocks.SKULL_GOBLET.get()) {
+						genSkullGobletBlock((VesselDrinkBlock)block.get());
 						continue;
 					}
-					if(block.getValue().get()==ExtendedBlocks.GLASS_BOTTLE.get()) {
-						genSkullGobletBlock((VesselDrinkBlock)block.getValue().get());
+					if(block.get()==ExtendedBlocks.GLASS_BOTTLE.get()) {
+						genSkullGobletBlock((VesselDrinkBlock)block.get());
 						continue;
 					}
 				}
-				if(block.getValue().get() instanceof ExtendedRemainsBlock) {
-					numberTexturedRandomYBlockItem(block.getValue().get(), "block/"+block.getKey(), 3);
+				if(block.get() instanceof ExtendedOreRemainsBlock) {
+					numberTexturedRandomYBlockItem(block.get(), "block/"+block.getId().getPath(), 3);
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedBookshelfBlock) {
-					genExistingMcBlock(block.getValue().get(), "block/bookshelf");
+				if(block.get() instanceof ExtendedBookshelfBlock) {
+					genExistingMcBlock(block.get(), "block/bookshelf");
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedWasteBlock) {
-					numberTexturedRandomYBlockItem(block.getValue().get(), "block/"+block.getKey(), 4);
+				if(block.get() instanceof ExtendedWasteBlock) {
+					numberTexturedRandomYBlockItem(block.get(), "block/"+block.getId().getPath(), 4);
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
-					genPlantAge3Block(block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof ExtendedBerryBushBlock) {
+					genPlantAge3Block(block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedLargePotBlock) {
-					genLargePotBlockItem((ExtendedLargePotBlock) block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof ExtendedLargePotBlock) {
+					genLargePotBlockItem((ExtendedLargePotBlock) block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedLargeFlowerPotBlock) {
-					genLargeFlowerPotBlockItem((ExtendedLargeFlowerPotBlock) block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof ExtendedLargeFlowerPotBlock) {
+					genLargeFlowerPotBlockItem((ExtendedLargeFlowerPotBlock) block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedChainBlock) {
-					genChainBlock(block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof ExtendedChainBlock) {
+					genChainBlock(block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedHoistBlock) {
-					genCubeBlockItem(block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof ExtendedHoistBlock) {
+					genCubeBlockItem(block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedBerryHedgeBlock) {
-					genBushAge3Block(block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof ExtendedBerryHedgeBlock) {
+					genBushAge3Block(block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedBedBlock) {
-					genBedBlockItem((ExtendedBedBlock) block.getValue().get(), block.getKey());
+				if(block.get() instanceof ExtendedBedBlock) {
+					genBedBlockItem((ExtendedBedBlock) block.get(), block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedVineBlock) {
-					if(block.getValue()==ExtendedBlocks.DEAD_MOSS_VINES) {
-						genVineBlock((ExtendedVineBlock) block.getValue().get(), block.getKey(), true);
+				if(block.get() instanceof ExtendedVineBlock) {
+					if(block==ExtendedBlocks.DEAD_MOSS_VINES) {
+						genVineBlock((ExtendedVineBlock) block.get(), block.getId().getPath(), true);
 					}else {
-						genVineBlock((ExtendedVineBlock) block.getValue().get(), block.getKey(), false);
+						genVineBlock((ExtendedVineBlock) block.get(), block.getId().getPath(), false);
 					}
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedWargCarpetBlock) {
-					String particle = block.getKey().substring(0, block.getKey().length() - 11)+"_matted_fur";
+				if(block.get() instanceof ExtendedWargCarpetBlock) {
+					String particle = block.getId().getPath().substring(0, block.getId().getPath().length() - 11)+"_matted_fur";
 					if(particle.contains("brown")) {
 						particle = "matted_fur";
 					}
-					genCarpetBlockItem((CarpetBlock) block.getValue().get(), block.getKey(), particle);
+					genCarpetBlockItem((CarpetBlock) block.get(), block.getId().getPath(), particle);
 					continue;
 				}
-				if(block.getValue().get() instanceof FallenLeavesBlock) {
-					genFallenLeavesBlock((FallenLeavesBlock) block.getValue().get(), block.getKey().substring(7));
+				if(block.get() instanceof FallenLeavesBlock) {
+					genFallenLeavesBlock((FallenLeavesBlock) block.get(), block.getId().getPath().substring(7));
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedPlacedBooksBlock) {
-					genPlaceableBooksBlock((ExtendedPlacedBooksBlock) block.getValue().get());
+				if(block.get() instanceof ExtendedPlacedBooksBlock) {
+					genPlaceableBooksBlock((ExtendedPlacedBooksBlock) block.get());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedAncientStoneRuneBlock) {
-					genAncientRuneBlockItem((ExtendedAncientStoneRuneBlock) block.getValue().get(), block.getKey());
+				if(block.get() instanceof ExtendedAncientStoneRuneBlock) {
+					genAncientRuneBlockItem((ExtendedAncientStoneRuneBlock) block.get(), block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedReedBasketBlock) {
-					genReedBarrelBlockItem((ExtendedReedBasketBlock) block.getValue().get(), block.getKey());
+				if(block.get() instanceof ExtendedReedBasketBlock) {
+					genReedBarrelBlockItem((ExtendedReedBasketBlock) block.get(), block.getId().getPath());
 					continue;
-				}if(block.getValue().get() instanceof ExtendedStoneGrinderBlock) {
-					genStoneGrinderBlockItem((ExtendedStoneGrinderBlock) block.getValue().get());
-					continue;
-				}
-				if(block.getValue().get() instanceof ExtendedBarsBlock) {
-					genBarsBlock((ExtendedBarsBlock) block.getValue().get(), block.getKey());
+				}if(block.get() instanceof ExtendedStoneGrinderBlock) {
+					genStoneGrinderBlockItem((ExtendedStoneGrinderBlock) block.get());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedBarrelBlock) {
-					genBarrelBlockItem((ExtendedBarrelBlock) block.getValue().get(), block.getKey());
+				if(block.get() instanceof ExtendedBarsBlock) {
+					genBarsBlock((ExtendedBarsBlock) block.get(), block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedBedrollBlock) {
-					genBedrollBlockItem((ExtendedBedrollBlock) block.getValue().get(), block.getKey());
+				if(block.get() instanceof ExtendedBarrelBlock) {
+					genBarrelBlockItem((ExtendedBarrelBlock) block.get(), block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedRopeBlock) {
-					genRopeBlock((ExtendedRopeBlock) block.getValue().get());
+				if(block.get() instanceof ExtendedBedrollBlock) {
+					genBedrollBlockItem((ExtendedBedrollBlock) block.get(), block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof BranchBlock) {
-					genBranchBlockItem((BranchBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)+"_log"));
+				if(block.get() instanceof ExtendedRopeBlock) {
+					genRopeBlock((ExtendedRopeBlock) block.get());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedConquestTableBlock) {
-					genConquestTableBlockItem((ExtendedConquestTableBlock) block.getValue().get(), block.getKey());
+				if(block.get() instanceof BranchBlock) {
+					genBranchBlockItem((BranchBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 7)+"_log"));
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedGroundDirtBlock) {
-					genMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), true);
+				if(block.get() instanceof ExtendedConquestTableBlock) {
+					genConquestTableBlockItem((ExtendedConquestTableBlock) block.get(), block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedDwarvenGateBlock) {
-					if(block.getKey().contains("blue")) {
-						genGateBlockItem((ExtendedDwarvenGateBlock) block.getValue().get(), lotrLoc("block/blue_rock"));
-					}else if(block.getKey().contains("red")) {
-						genGateBlockItem((ExtendedDwarvenGateBlock) block.getValue().get(), lotrLoc("block/red_rock"));
+				if(block.get() instanceof ExtendedGroundDirtBlock) {
+					genMirroredBlockItem(block.get(), lotrExtendedLoc("block/"+block.getId().getPath()), true);
+					continue;
+				}
+				if(block.get() instanceof ExtendedDwarvenGateBlock) {
+					if(block.getId().getPath().contains("blue")) {
+						genGateBlockItem((ExtendedDwarvenGateBlock) block.get(), lotrLoc("block/blue_rock"));
+					}else if(block.getId().getPath().contains("red")) {
+						genGateBlockItem((ExtendedDwarvenGateBlock) block.get(), lotrLoc("block/red_rock"));
 					}else {
-						genGateBlockItem((ExtendedDwarvenGateBlock) block.getValue().get(), mcLoc("block/stone"));
+						genGateBlockItem((ExtendedDwarvenGateBlock) block.get(), mcLoc("block/stone"));
 					}
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedGroundFarmlandBlock) {
-					genFarmlandBlockItem((ExtendedGroundFarmlandBlock) block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof ExtendedGroundFarmlandBlock) {
+					genFarmlandBlockItem((ExtendedGroundFarmlandBlock) block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedGroundGrassBlock) {
-					genGrassBlockItem((ExtendedGroundGrassBlock) block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof ExtendedGroundGrassBlock) {
+					genGrassBlockItem((ExtendedGroundGrassBlock) block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedOrcBombBlock) {
-					genOrcBombBlockItem((ExtendedOrcBombBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+				if(block.get() instanceof ExtendedOrcBombBlock) {
+					genOrcBombBlockItem((ExtendedOrcBombBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath()));
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedChimneyPotBlock) {
-					genChimneyBlock((ExtendedChimneyPotBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+				if(block.get() instanceof ExtendedChimneyPotBlock) {
+					genChimneyBlock((ExtendedChimneyPotBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath()));
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedGroundPathBlock) {
-					genPathBlockItem((ExtendedGroundPathBlock) block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof ExtendedGroundPathBlock) {
+					genPathBlockItem((ExtendedGroundPathBlock) block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof StrippableLogBlock) {
-					genLogBlockItem((StrippableLogBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+				if(block.get() instanceof StrippableLogBlock) {
+					genLogBlockItem((StrippableLogBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath()));
 					continue;
 				}
-				if(block.getValue().get() instanceof StrippableWoodBlock) {
-					genWoodBlockItem((StrippableWoodBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_log"));
+				if(block.get() instanceof StrippableWoodBlock) {
+					genWoodBlockItem((StrippableWoodBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)+"_log"));
 					continue;
 				}
-				if(block.getValue().get() instanceof LOTRStrippedLogBlock) {
-					genStrippedLogBlockItem((LOTRStrippedLogBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+				if(block.get() instanceof LOTRStrippedLogBlock) {
+					genStrippedLogBlockItem((LOTRStrippedLogBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath()));
 					continue;
 				}
-				if(block.getValue().get() instanceof LOTRStrippedWoodBlock) {
-					genStrippedWoodBlockItem((LOTRStrippedWoodBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_log"));
+				if(block.get() instanceof LOTRStrippedWoodBlock) {
+					genStrippedWoodBlockItem((LOTRStrippedWoodBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)+"_log"));
 					continue;
 				}
-				if(block.getValue().get() instanceof WoodBeamBlock) {
-					genBeamBlockItem((WoodBeamBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+				if(block.get() instanceof WoodBeamBlock) {
+					genBeamBlockItem((WoodBeamBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath()));
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedMEBannerBlock) {
-					genBannerBlock((ExtendedMEBannerBlock) block.getValue().get(), lotrExtendedLoc("block/banner/"+block.getKey()));
+				if(block.get() instanceof ExtendedMEBannerBlock) {
+					genBannerBlock((ExtendedMEBannerBlock) block.get(), lotrExtendedLoc("block/banner/"+block.getId().getPath()));
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedMEBannerWallBlock) {
-					genBannerWallBlock((ExtendedMEBannerWallBlock) block.getValue().get(), lotrExtendedLoc("block/banner/"+block.getKey().substring(0, block.getKey().length() - 12)+"_banner"));
+				if(block.get() instanceof ExtendedMEBannerWallBlock) {
+					genBannerWallBlock((ExtendedMEBannerWallBlock) block.get(), lotrExtendedLoc("block/banner/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 12)+"_banner"));
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedWeaponRackBlock) {
-					genWeaponRackBlock((ExtendedWeaponRackBlock) block.getValue().get());
+				if(block.get() instanceof ExtendedWeaponRackBlock) {
+					genWeaponRackBlock((ExtendedWeaponRackBlock) block.get());
 					continue;
 				}
-				if(block.getValue().get() instanceof LOTRStandingSignBlock) {
-					genSignBlock((LOTRStandingSignBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_planks"));
+				if(block.get() instanceof ExtendedStandingSignBlock) {
+					genSignBlock((ExtendedStandingSignBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)+"_planks"));
 					continue;
 				}
-				if(block.getValue().get() instanceof LOTRWallSignBlock) {
-					genWallSignBlock((LOTRWallSignBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 10)+"_planks"));
+				if(block.get() instanceof ExtendedWallSignBlock) {
+					genWallSignBlock((ExtendedWallSignBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 10)+"_planks"));
 					continue;
 				}
-				if(block.getValue().get() instanceof LOTRPlanksBlock) {
-					genCubeBlockItem(block.getValue().get(),"block/"+block.getKey());
+				if(block.get() instanceof LOTRPlanksBlock) {
+					genCubeBlockItem(block.get(),"block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ChandelierBlock) {
-					genChandelierBlock((ChandelierBlock)block.getValue().get(), block.getKey());
+				if(block.get() instanceof ChandelierBlock) {
+					genChandelierBlock((ChandelierBlock)block.get(), block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedMossCarpetBlock) {
-					genMossCarpetBlockItem((ExtendedMossCarpetBlock)block.getValue().get());
+				if(block.get() instanceof ExtendedMossCarpetBlock) {
+					genMossCarpetBlockItem((ExtendedMossCarpetBlock)block.get());
 					continue;
 				}
-				if(block.getValue().get() instanceof DripstoneBlock) {
-					genDripstoneBlockItem((DripstoneBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 10)));
+				if(block.get() instanceof DripstoneBlock) {
+					genDripstoneBlockItem((DripstoneBlock)block.get(),lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 10)));
 					continue;
 				}
-				if(block.getValue().get() instanceof LOTRTrapdoorBlock) {
-					genTrapdoorBlockItem((LOTRTrapdoorBlock)block.getValue().get(),"block/"+block.getKey());
+				if(block.get() instanceof LOTRTrapdoorBlock) {
+					genTrapdoorBlockItem((LOTRTrapdoorBlock)block.get(),"block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof TrapDoorBlock) {
-					genTrapdoorBlockItem((TrapDoorBlock)block.getValue().get(),"block/"+block.getKey());
+				if(block.get() instanceof TrapDoorBlock) {
+					genTrapdoorBlockItem((TrapDoorBlock)block.get(),"block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof LOTRSaplingBlock) {
-					genSaplingBlock((LOTRSaplingBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey()));
+				if(block.get() instanceof LOTRSaplingBlock) {
+					genSaplingBlock((LOTRSaplingBlock)block.get(),lotrExtendedLoc("block/"+block.getId().getPath()));
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedHangingBlock) {
-					genHangingBlock((ExtendedHangingBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey()));
+				if(block.get() instanceof ExtendedHangingBlock) {
+					genHangingBlock((ExtendedHangingBlock)block.get(),lotrExtendedLoc("block/"+block.getId().getPath()));
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedCrystalChandelierBlock) {
-					if(block.getKey().contains("edhelvir")) {
-						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.getValue().get(), lotrLoc("block/edhelvir_crystal"));
-					}else if(block.getKey().contains("glowstone")) {
-						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.getValue().get(), lotrLoc("block/glowstone_crystal"));
-					}else if(block.getKey().contains("gulduril")) {
-						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.getValue().get(), lotrLoc("block/gulduril_crystal"));
+				if(block.get() instanceof ExtendedCrystalChandelierBlock) {
+					if(block.getId().getPath().contains("edhelvir")) {
+						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.get(), lotrLoc("block/edhelvir_crystal"));
+					}else if(block.getId().getPath().contains("glowstone")) {
+						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.get(), lotrLoc("block/glowstone_crystal"));
+					}else if(block.getId().getPath().contains("gulduril")) {
+						genCrystalChandelierBlock((ExtendedCrystalChandelierBlock)block.get(), lotrLoc("block/gulduril_crystal"));
 					}
 					continue;
 				}
-				if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
-					genPottedSaplingBlock((LOTRPottedPlantBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey().substring(7)));
+				if(block.get() instanceof LOTRPottedPlantBlock) {
+					genPottedSaplingBlock((LOTRPottedPlantBlock)block.get(),lotrExtendedLoc("block/"+block.getId().getPath().substring(7)));
 					continue;
 				}
-				if(block.getValue().get() instanceof LOTRWoodPressurePlateBlock) {
-					genPressurePlateBlockItem((LOTRWoodPressurePlateBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 15)+"_planks"));
+				if(block.get() instanceof LOTRWoodPressurePlateBlock) {
+					genPressurePlateBlockItem((LOTRWoodPressurePlateBlock)block.get(),lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 15)+"_planks"));
 					continue;
 				}
-				if(block.getValue().get() instanceof LOTRWoodButtonBlock) {
-					genButtonBlockItem((LOTRWoodButtonBlock)block.getValue().get(),lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)+"_planks"));
+				if(block.get() instanceof LOTRWoodButtonBlock) {
+					genButtonBlockItem((LOTRWoodButtonBlock)block.get(),lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 7)+"_planks"));
 					continue;
 				}
-				if(block.getValue().get() instanceof LOTRDoorBlock) {
-					genDoorBlock((LOTRDoorBlock)block.getValue().get(),"block/"+block.getKey());
+				if(block.get() instanceof LOTRDoorBlock) {
+					genDoorBlock((LOTRDoorBlock)block.get(),"block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof DoorBlock) {
-					genDoorBlock((DoorBlock)block.getValue().get(),"block/"+block.getKey());
+				if(block.get() instanceof DoorBlock) {
+					genDoorBlock((DoorBlock)block.get(),"block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof LOTRFenceBlock) {
+				if(block.get() instanceof LOTRFenceBlock) {
 					boolean didGen = false;
 					for(String woodType : DataGenValueHolder.newWoodTypesHolder) {
-						if(block.getKey().contains(woodType)) {
+						if(block.getId().getPath().contains(woodType)) {
 							didGen = true;
-							genFenceBlockItem((LOTRFenceBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 6)+"_planks"));
+							genFenceBlockItem((LOTRFenceBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 6)+"_planks"));
 							continue;
 						}
 					}
@@ -461,12 +461,12 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						continue;
 					}
 				}
-				if(block.getValue().get() instanceof LOTRFenceGateBlock) {
+				if(block.get() instanceof LOTRFenceGateBlock) {
 					boolean didGen = false;
 					for(String woodType : DataGenValueHolder.newWoodTypesHolder) {
-						if(block.getKey().contains(woodType)) {
+						if(block.getId().getPath().contains(woodType)) {
 							didGen = true;
-							genFenceGateBlockItem((LOTRFenceGateBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 11)+"_planks"));
+							genFenceGateBlockItem((LOTRFenceGateBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 11)+"_planks"));
 							continue;
 						}
 					}
@@ -474,118 +474,118 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 						continue;
 					}
 				}
-				if(block.getValue().get() instanceof ExtendedMossBlock) {
-					genTintedMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+				if(block.get() instanceof ExtendedMossBlock) {
+					genTintedMirroredBlockItem(block.get(), lotrExtendedLoc("block/"+block.getId().getPath()));
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedStoneBlock) {
-					if(block.getKey().equals("cobbled_drystone")) {
-						genCubeBlockItem(block.getValue().get(), lotrLoc("block/drystone"));
+				if(block.get() instanceof ExtendedStoneBlock) {
+					if(block.getId().getPath().equals("cobbled_drystone")) {
+						genCubeBlockItem(block.get(), lotrLoc("block/drystone"));
 						continue;
 					}
-					if(block.getKey().equals("scorched_stone")) {
-						genMirroredBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), true);
+					if(block.getId().getPath().equals("scorched_stone")) {
+						genMirroredBlockItem(block.get(), lotrExtendedLoc("block/"+block.getId().getPath()), true);
 						continue;
 					}
-					if(block.getKey().equals("scorched_brick")) {
-						numberTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 3);
+					if(block.getId().getPath().equals("scorched_brick")) {
+						numberTexturedRandomBlockItem(block.get(), "block/"+block.getId().getPath(), 3);
 						continue;
 					}
-					if(block.getKey().contains("snowy")) {
-						numberTexturedRandomBlockItem(block.getValue().get(), "block/"+block.getKey(), 5);
+					if(block.getId().getPath().contains("snowy")) {
+						numberTexturedRandomBlockItem(block.get(), "block/"+block.getId().getPath(), 5);
 						continue;
 					}
-					if(block.getKey().equals("carved_red_angmar_brick") || block.getKey().equals("carved_morgond")) {
-						genCubeColumnBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrExtendedLoc("block/"+block.getKey()+"_top"));
+					if(block.getId().getPath().equals("carved_red_angmar_brick") || block.getId().getPath().equals("carved_morgond")) {
+						genCubeColumnBlockItem(block.get(), lotrExtendedLoc("block/"+block.getId().getPath()), lotrExtendedLoc("block/"+block.getId().getPath()+"_top"));
 						continue;
 					}
-					if(block.getKey().equals("gneiss") || block.getKey().equals("polished_limestone")) {
-						genCubeTopBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()), lotrExtendedLoc("block/"+block.getKey()+"_top"));
+					if(block.getId().getPath().equals("gneiss") || block.getId().getPath().equals("polished_limestone")) {
+						genCubeTopBlockItem(block.get(), lotrExtendedLoc("block/"+block.getId().getPath()), lotrExtendedLoc("block/"+block.getId().getPath()+"_top"));
 						continue;
 					}
-					genCubeBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+					genCubeBlockItem(block.get(), lotrExtendedLoc("block/"+block.getId().getPath()));
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedMaterialBlock) {
+				if(block.get() instanceof ExtendedMaterialBlock) {
 					try {
-						genCubeBlockItem(block.getValue().get(),"block/"+block.getKey());
+						genCubeBlockItem(block.get(),"block/"+block.getId().getPath());
 					}catch(IllegalArgumentException e) {
-						System.out.println(block.getKey()+" is not CubeBlockItem. Using alternative genEndSideNonRotatableBlockItem model.");
-						genEndSideNonRotatableBlockItem(block.getValue().get(),"block/"+block.getKey());
+						System.out.println(block.getId().getPath()+" is not CubeBlockItem. Using alternative genEndSideNonRotatableBlockItem model.");
+						genEndSideNonRotatableBlockItem(block.get(),"block/"+block.getId().getPath());
 					}
 					continue;
 				}
-				if(block.getValue().get() instanceof LOTRPillarBlock) {
-					genPillarBlockItem((LOTRPillarBlock) block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof LOTRPillarBlock) {
+					genPillarBlockItem((LOTRPillarBlock) block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedThreeTallPillarBlock) {
-					genSpecialPillarBlockItem((ExtendedThreeTallPillarBlock) block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof ExtendedThreeTallPillarBlock) {
+					genSpecialPillarBlockItem((ExtendedThreeTallPillarBlock) block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedLOTRTorchBlock) {
-					genTorchBlockItem((ExtendedLOTRTorchBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+				if(block.get() instanceof ExtendedLOTRTorchBlock) {
+					genTorchBlockItem((ExtendedLOTRTorchBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath()));
 					continue;
 				}
-				if(block.getValue().get() instanceof LOTRLeavesBlock) {
-					if(block.getKey().equals("chestnut_leaves")) {
-						numberTexturedBlockItem(block.getValue().get(), new int[] {5,5,1,1,1});
+				if(block.get() instanceof LOTRLeavesBlock) {
+					if(block.getId().getPath().equals("chestnut_leaves")) {
+						numberTexturedBlockItem(block.get(), new int[] {5,5,1,1,1});
 						continue;
 					}
-					if(block.getKey().equals("chestnut_leaves_fruit")) {
-						numberTexturedBlockItem(block.getValue().get(), new int[] {1});
+					if(block.getId().getPath().equals("chestnut_leaves_fruit")) {
+						numberTexturedBlockItem(block.get(), new int[] {1});
 						continue;
 					}
-					genCubeBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+					genCubeBlockItem(block.get(), lotrExtendedLoc("block/"+block.getId().getPath()));
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedFireBlock) {
-					genFireTextureBlock(block.getValue().get());
+				if(block.get() instanceof ExtendedFireBlock) {
+					genFireTextureBlock(block.get());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedLOTRWallTorchBlock) {
-					if(block.getKey().contains("_wall")) {
-						genTorchWallBlock((ExtendedLOTRWallTorchBlock)block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+				if(block.get() instanceof ExtendedLOTRWallTorchBlock) {
+					if(block.getId().getPath().contains("_wall")) {
+						genTorchWallBlock((ExtendedLOTRWallTorchBlock)block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)));
 						continue;
 					}
 				}
-				if(block.getValue().get() instanceof ExtendedBrazierBlock) {
-					genHangingBrazierBlockItem((ExtendedBrazierBlock) block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof ExtendedBrazierBlock) {
+					genHangingBrazierBlockItem((ExtendedBrazierBlock) block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedLanternElvenBlock) {
-					genElvenHangingLanternBlockItem((ExtendedLanternElvenBlock) block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof ExtendedLanternElvenBlock) {
+					genElvenHangingLanternBlockItem((ExtendedLanternElvenBlock) block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedLanternNumenoreanBlock) {
-					genNumenoreanHangingLanternBlockItem((ExtendedLanternNumenoreanBlock) block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof ExtendedLanternNumenoreanBlock) {
+					genNumenoreanHangingLanternBlockItem((ExtendedLanternNumenoreanBlock) block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if((block.getValue().get() instanceof ExtendedGrassVoidBlock)) {
-					registeredBlocks.add(block.getValue().get());
-					ModelFile voidModel = models().getBuilder("lotrextended:" + block.getValue().get().getRegistryName().getPath())
-							.texture("particle", lotrExtendedLoc("item/"+block.getKey()));
-					simpleBlock(block.getValue().get(), voidModel);
+				if((block.get() instanceof ExtendedGrassVoidBlock)) {
+					registeredBlocks.add(block.get());
+					ModelFile voidModel = models().getBuilder("lotrextended:" + block.get().getRegistryName().getPath())
+							.texture("particle", lotrExtendedLoc("item/"+block.getId().getPath()));
+					simpleBlock(block.get(), voidModel);
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedCakeBlock) {
-					genCakeBlock((ExtendedCakeBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()+"_bottom"), lotrExtendedLoc("block/"+block.getKey()+"_top"), lotrExtendedLoc("block/"+block.getKey()+"_side"), lotrExtendedLoc("block/"+block.getKey()+"_inner"));
+				if(block.get() instanceof ExtendedCakeBlock) {
+					genCakeBlock((ExtendedCakeBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath()+"_bottom"), lotrExtendedLoc("block/"+block.getId().getPath()+"_top"), lotrExtendedLoc("block/"+block.getId().getPath()+"_side"), lotrExtendedLoc("block/"+block.getId().getPath()+"_inner"));
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedHearthBlock) {
-					genHearthBlockType((ExtendedHearthBlock) block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof ExtendedHearthBlock) {
+					genHearthBlockType((ExtendedHearthBlock) block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedSingleChestBlock) {
-					genChestBlockItem(block.getValue().get(), block.getKey());
+				if(block.get() instanceof ExtendedSingleChestBlock) {
+					genChestBlockItem(block.get(), block.getId().getPath());
 					continue;
 				}
-				if(block.getValue().get() instanceof ExtendedStoneTextSignBlock) {
-					genNoModelBlockItem(block.getValue().get());
+				if(block.get() instanceof ExtendedStoneTextSignBlock) {
+					genNoModelBlockItem(block.get());
 					continue;
 				}
-				if(block.getKey().equals("barren_dirt")) {
-					genMirroredBlockItem(block.getValue().get(), mcLoc("block/dirt"), true);
+				if(block.getId().getPath().equals("barren_dirt")) {
+					genMirroredBlockItem(block.get(), mcLoc("block/dirt"), true);
 					continue;
 				}
 			}catch(IllegalArgumentException e) {
@@ -593,286 +593,286 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 			}
 		}
 		//Only Add entries to this loop if they depend on other models we are generating or are super-types of other block types
-		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if(registeredBlocks.contains(block.getValue().get())) {continue;}
+		for(RegistryObject<Block> block : ExtendedBlocks.BLOCKS.getEntries()) {
+			if(registeredBlocks.contains(block.get())) {continue;}
 			try {
-				if(block.getValue().get() instanceof AxialSlabBlock && !(block.getValue().get() instanceof VerticalOnlySlabBlock)) {
-					if(block.getKey().contains("_slab")) {
-						if(block.getKey().contains("drystone")&&!block.getKey().contains("mossy")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+				if(block.get() instanceof AxialSlabBlock && !(block.get() instanceof VerticalOnlySlabBlock)) {
+					if(block.getId().getPath().contains("_slab")) {
+						if(block.getId().getPath().contains("drystone")&&!block.getId().getPath().contains("mossy")) {
+							genSlabBlockItem((SlabBlock) block.get(), lotrLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)));
 							continue;
 						}
-						if(block.getKey().contains("pillar")) {
-							ResourceLocation TB = lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_face");
-							ResourceLocation S = lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5));
-							genSlabBlockItem((SlabBlock) block.getValue().get(), S, TB, TB, S);
+						if(block.getId().getPath().contains("pillar")) {
+							ResourceLocation TB = lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)+"_face");
+							ResourceLocation S = lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5));
+							genSlabBlockItem((SlabBlock) block.get(), S, TB, TB, S);
 							continue;
 						}
-						if(block.getValue().get() instanceof ExtendedAxialSlabPathBlock) {
-							if(block.getKey().equals("mud_path_slab")) {
+						if(block.get() instanceof ExtendedAxialSlabPathBlock) {
+							if(block.getId().getPath().equals("mud_path_slab")) {
 								genSwappablePathSlabBlock(
-									(SlabBlock) block.getValue().get(),
+									(SlabBlock) block.get(),
 									lotrExtendedLoc("block/mud"),
 									lotrExtendedLoc("block/mud"),
 									lotrExtendedLoc("block/mud_path"),
-									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/mud_path")),
+									models().cubeAll("lotrextended:"+block.get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/mud_path")),
 									lotrExtendedLoc("block/mud_path")
 									);
 								continue;
 							}
-							if(block.getKey().equals("grass_path_slab")) {
+							if(block.getId().getPath().equals("grass_path_slab")) {
 								genSwappablePathSlabBlock(
-										(SlabBlock) block.getValue().get(),
+										(SlabBlock) block.get(),
 										mcLoc("block/grass_path_side"),
 										mcLoc("block/dirt"),
 										mcLoc("block/grass_path_top"),
-										models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top")),
+										models().cubeAll("lotrextended:"+block.get().getRegistryName().getPath()+"_double", mcLoc("block/grass_path_top")),
 										mcLoc("block/grass_path")
 										);
 								continue;
 							}
-							if(block.getKey().equals("mordor_dirt_path_slab")) {
+							if(block.getId().getPath().equals("mordor_dirt_path_slab")) {
 								genSwappablePathSlabBlock(
-									(SlabBlock) block.getValue().get(),
+									(SlabBlock) block.get(),
 									lotrLoc("block/mordor_dirt_path_side"),
 									lotrLoc("block/mordor_dirt"),
 									lotrLoc("block/mordor_dirt_path_top"),
-									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrLoc("block/mordor_dirt_path_top")),
+									models().cubeAll("lotrextended:"+block.get().getRegistryName().getPath()+"_double", lotrLoc("block/mordor_dirt_path_top")),
 									lotrLoc("block/mordor_dirt_path")
 									);
 								continue;
 							}
-							if(block.getKey().equals("snow_path_slab")) {
+							if(block.getId().getPath().equals("snow_path_slab")) {
 								genSwappablePathSlabBlock(
-									(SlabBlock) block.getValue().get(),
+									(SlabBlock) block.get(),
 									lotrLoc("block/snow_path_side"),
 									mcLoc("block/snow"),
 									lotrLoc("block/snow_path_top"),
-									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrLoc("block/snow_path_top")),
+									models().cubeAll("lotrextended:"+block.get().getRegistryName().getPath()+"_double", lotrLoc("block/snow_path_top")),
 									lotrLoc("block/snow_path")
 									);
 								continue;
 							}
-							if(block.getKey().equals("chalk_path_slab")) {
+							if(block.getId().getPath().equals("chalk_path_slab")) {
 								genSwappablePathSlabBlock(
-									(SlabBlock) block.getValue().get(),
+									(SlabBlock) block.get(),
 									lotrLoc("block/chalk_path_side"),
 									lotrLoc("block/chalk"),
 									lotrLoc("block/chalk_path_top"),
-									models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrLoc("block/chalk_path_top")),
+									models().cubeAll("lotrextended:"+block.get().getRegistryName().getPath()+"_double", lotrLoc("block/chalk_path_top")),
 									lotrLoc("block/chalk_path")
 									);
 								continue;
 							}
 						}
-						if(block.getKey().contains("wood_slab")) {
-							genSlabBlockItemWOOD((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 10)+"_log"),
-									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+						if(block.getId().getPath().contains("wood_slab")) {
+							genSlabBlockItemWOOD((SlabBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 10)+"_log"),
+									lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)));
 							continue;
 						}
-						if(block.getKey().contains("log")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)),
-									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_top"),
-									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_top"),
-									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)), false, false);
+						if(block.getId().getPath().contains("log")) {
+							genSlabBlockItem((SlabBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)),
+									lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)+"_top"),
+									lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)+"_top"),
+									lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)), false, false);
 							continue;
 						}
 						boolean didGen = false;
 						for(String woodType : DataGenValueHolder.newWoodTypesHolder) {
-							if(block.getKey().contains(woodType)&&!block.getKey().contains("beam")) {
+							if(block.getId().getPath().contains(woodType)&&!block.getId().getPath().contains("beam")) {
 								didGen = true;
-								genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_planks"));
+								genSlabBlockItem((SlabBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)+"_planks"));
 								continue;
 							}
-							if(block.getKey().contains(woodType)&&block.getKey().contains("beam")) {
+							if(block.getId().getPath().contains(woodType)&&block.getId().getPath().contains("beam")) {
 								didGen = true;
-								genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)),
-										lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_top"),
-										lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_top"),
-										lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)), false, false);
+								genSlabBlockItem((SlabBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)),
+										lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)+"_top"),
+										lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)+"_top"),
+										lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)), false, false);
 								continue;
 							}
 						}
 						if(didGen) {
 							continue;
 						}
-						if(block.getKey().equals("coarse_dirt_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/coarse_dirt"));
+						if(block.getId().getPath().equals("coarse_dirt_slab")) {
+							genSlabBlockItem((SlabBlock) block.get(), mcLoc("block/coarse_dirt"));
 							continue;
 						}
-						if(block.getKey().equals("dirt_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/dirt"));
+						if(block.getId().getPath().equals("dirt_slab")) {
+							genSlabBlockItem((SlabBlock) block.get(), mcLoc("block/dirt"));
 							continue;
 						}
-						if(block.getKey().equals("snow_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/snow"), mcLoc("block/snow"), mcLoc("block/snow"), mcLoc("block/snow_block"));
+						if(block.getId().getPath().equals("snow_slab")) {
+							genSlabBlockItem((SlabBlock) block.get(), mcLoc("block/snow"), mcLoc("block/snow"), mcLoc("block/snow"), mcLoc("block/snow_block"));
 							continue;
 						}
-						if(block.getKey().equals("mordor_dirt_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), 
+						if(block.getId().getPath().equals("mordor_dirt_slab")) {
+							genSlabBlockItem((SlabBlock) block.get(), 
 								lotrLoc("block/mordor_dirt"),
 								lotrLoc("block/mordor_dirt"),
 								lotrLoc("block/mordor_dirt"),
-						models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrLoc("block/mordor_dirt")), false, true);
+						models().cubeAll("lotrextended:"+block.get().getRegistryName().getPath()+"_double", lotrLoc("block/mordor_dirt")), false, true);
 							continue;
 						}
-						if(block.getKey().equals("bone_block_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/bone_block_side"),
+						if(block.getId().getPath().equals("bone_block_slab")) {
+							genSlabBlockItem((SlabBlock) block.get(), mcLoc("block/bone_block_side"),
 									mcLoc("block/bone_block_top"),
 									mcLoc("block/bone_block_top"),
-							models().withExistingParent("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/bone_block")), false, true);
+							models().withExistingParent("lotrextended:"+block.get().getRegistryName().getPath()+"_double", mcLoc("block/bone_block")), false, true);
 							continue;
 						}
-						if(block.getKey().equals("podzol_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/podzol_top"),
+						if(block.getId().getPath().equals("podzol_slab")) {
+							genSlabBlockItem((SlabBlock) block.get(), mcLoc("block/podzol_top"),
 									mcLoc("block/podzol_top"),
 									mcLoc("block/podzol_top"),
-							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/podzol_top")), false, true);
+							models().cubeAll("lotrextended:"+block.get().getRegistryName().getPath()+"_double", mcLoc("block/podzol_top")), false, true);
 							continue;
 						}
-						if(block.getKey().equals("mycelium_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/mycelium_top"),
+						if(block.getId().getPath().equals("mycelium_slab")) {
+							genSlabBlockItem((SlabBlock) block.get(), mcLoc("block/mycelium_top"),
 									mcLoc("block/mycelium_top"),
 									mcLoc("block/mycelium_top"),
-							models().cubeAll("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", mcLoc("block/mycelium_top")), false, true);
+							models().cubeAll("lotrextended:"+block.get().getRegistryName().getPath()+"_double", mcLoc("block/mycelium_top")), false, true);
 							continue;
 						}
-						if(block.getKey().equals("grass_block_slab")) {
-							genSlabGrassBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/grass_block_side"),
+						if(block.getId().getPath().equals("grass_block_slab")) {
+							genSlabGrassBlockItem((SlabBlock) block.get(), mcLoc("block/grass_block_side"),
 									mcLoc("block/dirt"),
 									mcLoc("block/grass_block_top"),
 									mcLoc("block/grass_block_side_overlay"),
-									models().singleTexture("lotrextended:"+block.getValue().get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/tinted_cube_all"), "all", mcLoc("block/grass_block_top")),
+									models().singleTexture("lotrextended:"+block.get().getRegistryName().getPath()+"_double", lotrExtendedLoc("block/tinted_cube_all"), "all", mcLoc("block/grass_block_top")),
 									mcLoc("block/grass_block"));
 							continue;
 						}
-						if(block.getKey().equals("barren_dirt_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), mcLoc("block/dirt"));
+						if(block.getId().getPath().equals("barren_dirt_slab")) {
+							genSlabBlockItem((SlabBlock) block.get(), mcLoc("block/dirt"));
 							continue;
 						}
-						if(block.getKey().contains("snowy")) {
-							numberTexturedRandomSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)), 5);
+						if(block.getId().getPath().contains("snowy")) {
+							numberTexturedRandomSlabBlockItem((SlabBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)), 5);
 							continue;
 						}
-						if(block.getKey().equals("scorched_brick_slab")) {
-							genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/scorched_brick_1"));
+						if(block.getId().getPath().equals("scorched_brick_slab")) {
+							genSlabBlockItem((SlabBlock) block.get(), lotrExtendedLoc("block/scorched_brick_1"));
 							continue;
 						}
-						genSlabBlockItem((SlabBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+						genSlabBlockItem((SlabBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)));
 						continue;
 					}
 				}
-				if(block.getValue().get() instanceof LOTRStairsBlock) {
-					if(block.getKey().contains("_stairs")) {
-						if(block.getKey().contains("drystone")&&!block.getKey().contains("mossy")) {
-							genStairsBlockItem((StairsBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)));
+				if(block.get() instanceof LOTRStairsBlock) {
+					if(block.getId().getPath().contains("_stairs")) {
+						if(block.getId().getPath().contains("drystone")&&!block.getId().getPath().contains("mossy")) {
+							genStairsBlockItem((StairsBlock) block.get(), lotrLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 7)));
 							continue;
 						}
-						if(block.getKey().contains("smooth_mordor_rock")||block.getKey().contains("smooth_gondor_rock")||block.getKey().contains("smooth_rohan_rock")
-								||block.getKey().contains("smooth_blue_rock")||block.getKey().contains("smooth_red_rock")) {
-							genStairsBlockItem((StairsBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)));
+						if(block.getId().getPath().contains("smooth_mordor_rock")||block.getId().getPath().contains("smooth_gondor_rock")||block.getId().getPath().contains("smooth_rohan_rock")
+								||block.getId().getPath().contains("smooth_blue_rock")||block.getId().getPath().contains("smooth_red_rock")) {
+							genStairsBlockItem((StairsBlock) block.get(), lotrLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 7)));
 							continue;
 						}
-						if(block.getKey().contains("smooth_stone_stairs")) {
-							genStairsBlockItem((StairsBlock) block.getValue().get(), mcLoc("block/smooth_stone"));
+						if(block.getId().getPath().contains("smooth_stone_stairs")) {
+							genStairsBlockItem((StairsBlock) block.get(), mcLoc("block/smooth_stone"));
 							continue;
 						}
-						if(block.getKey().equals("scorched_brick_stairs")) {
-							genStairsBlockItem((StairsBlock) block.getValue().get(), lotrExtendedLoc("block/scorched_brick_1"));
+						if(block.getId().getPath().equals("scorched_brick_stairs")) {
+							genStairsBlockItem((StairsBlock) block.get(), lotrExtendedLoc("block/scorched_brick_1"));
 							continue;
 						}
-						if(block.getKey().contains("wood")) {
-							genStairsBlockItem((StairsBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 12)+"_log"));
+						if(block.getId().getPath().contains("wood")) {
+							genStairsBlockItem((StairsBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 12)+"_log"));
 							continue;
 						}
-						if(block.getKey().contains("log")) {
-							genStairsBlockItem((StairsBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)),
-									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)+"_top"),
-									lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)+"_top"));
+						if(block.getId().getPath().contains("log")) {
+							genStairsBlockItem((StairsBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 7)),
+									lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 7)+"_top"),
+									lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 7)+"_top"));
 							continue;
 						}
-						if(block.getKey().equals("bone_block_stairs")) {
-							genStairsBlockItem((StairsBlock) block.getValue().get(), mcLoc("block/bone_block_side"),
+						if(block.getId().getPath().equals("bone_block_stairs")) {
+							genStairsBlockItem((StairsBlock) block.get(), mcLoc("block/bone_block_side"),
 									mcLoc("block/bone_block_top"),
 									mcLoc("block/bone_block_top"));
 							continue;
 						}
-						if(block.getKey().contains("mud_path")) {
-							genStairsBlockItem((StairsBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)));
+						if(block.getId().getPath().contains("mud_path")) {
+							genStairsBlockItem((StairsBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 7)));
 							continue;
 						}
 						boolean didGen = false;
 						for(String woodType : DataGenValueHolder.newWoodTypesHolder) {
-							if(block.getKey().contains(woodType)) {
+							if(block.getId().getPath().contains(woodType)) {
 								didGen = true;
-								genStairsBlockItem((StairsBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)+"_planks"));
+								genStairsBlockItem((StairsBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 7)+"_planks"));
 								continue;
 							}
 						}
 						if(didGen) {
 							continue;
 						}
-						if(block.getKey().contains("snowy")) {
-							numberTexturedRandomStairsBlockItem((StairsBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)), 5);
+						if(block.getId().getPath().contains("snowy")) {
+							numberTexturedRandomStairsBlockItem((StairsBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 7)), 5);
 							continue;
 						}
-						genStairsBlockItem((StairsBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 7)));
+						genStairsBlockItem((StairsBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 7)));
 						continue;
 					}
 				}
-				if(block.getValue().get() instanceof LOTRWallBlock) {
-					if(block.getKey().contains("_wall")) {
-						if(block.getKey().contains("drystone")&&!block.getKey().contains("mossy")) {
-							genWallBlockItem((WallBlock) block.getValue().get(), lotrLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+				if(block.get() instanceof WallBlock) {
+					if(block.getId().getPath().contains("_wall")) {
+						if(block.getId().getPath().contains("drystone")&&!block.getId().getPath().contains("mossy")) {
+							genWallBlockItem((WallBlock) block.get(), lotrLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)));
 							continue;
 						}
-						if(block.getKey().contains("mud_path")) {
-							genWallBlockItem((WallBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)+"_1"));
+						if(block.getId().getPath().contains("mud_path")) {
+							genWallBlockItem((WallBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)+"_1"));
 							continue;
 						}
-						if(block.getKey().equals("scorched_brick_wall")) {
-							genWallBlockItem((WallBlock) block.getValue().get(), lotrExtendedLoc("block/scorched_brick_1"));
+						if(block.getId().getPath().equals("scorched_brick_wall")) {
+							genWallBlockItem((WallBlock) block.get(), lotrExtendedLoc("block/scorched_brick_1"));
 							continue;
 						}
-						if(block.getKey().contains("bone_block_wall")) {
-							genWallBlockItem((WallBlock) block.getValue().get(), mcLoc("block/bone_block_side"));
+						if(block.getId().getPath().contains("bone_block_wall")) {
+							genWallBlockItem((WallBlock) block.get(), mcLoc("block/bone_block_side"));
 							continue;
 						}
-						if(block.getKey().contains("rusted_orc_plating_wall")) {
-							genWallBlockItem((WallBlock) block.getValue().get(), lotrLoc("block/rusted_orc_plating"));
+						if(block.getId().getPath().contains("rusted_orc_plating_wall")) {
+							genWallBlockItem((WallBlock) block.get(), lotrLoc("block/rusted_orc_plating"));
 							continue;
 						}
-						if(block.getKey().contains("orc_plating_wall")) {
-							genWallBlockItem((WallBlock) block.getValue().get(), lotrLoc("block/orc_plating"));
+						if(block.getId().getPath().contains("orc_plating_wall")) {
+							genWallBlockItem((WallBlock) block.get(), lotrLoc("block/orc_plating"));
 							continue;
 						}
-						if(block.getKey().contains("snowy")) {
-							numberTexturedRandomWallBlockItem((WallBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)), 5);
+						if(block.getId().getPath().contains("snowy")) {
+							numberTexturedRandomWallBlockItem((WallBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)), 5);
 							continue;
 						}
-						genWallBlockItem((WallBlock) block.getValue().get(), lotrExtendedLoc("block/"+block.getKey().substring(0, block.getKey().length() - 5)));
+						genWallBlockItem((WallBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath().substring(0, block.getId().getPath().length() - 5)));
 						continue;
 					}
 				}
-				if(block.getValue().get() instanceof LOTROreBlock) {
-					genCubeBlockItem(block.getValue().get(), lotrExtendedLoc("block/"+block.getKey()));
+				if(block.get() instanceof OreBlock) {
+					genCubeBlockItem(block.get(), lotrExtendedLoc("block/"+block.getId().getPath()));
 					continue;
 				}
-				if(block.getValue().get() instanceof FactionCraftingTableBlock) {
-					if(block.getValue().get() instanceof ExtendedTwoTypeCraftingTableBlock) {
-						genTwoTextureTableBlockItem((ExtendedTwoTypeCraftingTableBlock) block.getValue().get(), "block/"+block.getKey());
+				if(block.get() instanceof FactionCraftingTableBlock) {
+					if(block.get() instanceof ExtendedTwoTypeCraftingTableBlock) {
+						genTwoTextureTableBlockItem((ExtendedTwoTypeCraftingTableBlock) block.get(), "block/"+block.getId().getPath());
 						continue;
 					}
-					genTopBottomTwoSidedNonRotatableBlockItem(block.getValue().get(), "block/"+block.getKey());
+					genTopBottomTwoSidedNonRotatableBlockItem(block.get(), "block/"+block.getId().getPath());
 					continue;
 				}
 			}catch(IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
 		}
-		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if(!registeredBlocks.contains(block.getValue().get())) {
-				System.out.println("Didn't make BlockStateOrModel for: "+block.getKey());
+		for(RegistryObject<Block> block : ExtendedBlocks.BLOCKS.getEntries()) {
+			if(!registeredBlocks.contains(block.get())) {
+				System.out.println("Didn't make BlockStateOrModel for: "+block.getId().getPath());
 			}
 		}
 	}
@@ -999,13 +999,13 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
         doorBlock(door, bottomLeft, bottomRight, topLeft, topRight);
 	}
 
-	private void genSignBlock(LOTRStandingSignBlock sign, ResourceLocation texture) {
+	private void genSignBlock(StandingSignBlock sign, ResourceLocation texture) {
 		registeredBlocks.add(sign);
 		ModelFile model = models().getBuilder("lotrextended:"+sign.getRegistryName().getPath()).texture("particle", texture);
 		simpleBlock(sign, model);
 	}
 
-	private void genWallSignBlock(LOTRWallSignBlock wallSign, ResourceLocation texture) {
+	private void genWallSignBlock(WallSignBlock wallSign, ResourceLocation texture) {
 		registeredBlocks.add(wallSign);
 		ModelFile model = models().getBuilder("lotrextended:"+wallSign.getRegistryName().getPath()).texture("particle", texture);
 		simpleBlock(wallSign, model);
@@ -2046,9 +2046,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 	private void genTorchBlockItem(ExtendedLOTRTorchBlock torch, ResourceLocation texture) {
 		registeredBlocks.add(torch);
 		ModelFile cubeModel = models().torch("lotrextended:"+torch.getRegistryName().getPath(), texture);
-		getVariantBuilder(torch).forAllStates(state -> ConfiguredModel.builder()
-.modelFile(cubeModel)
-.build());
+		getVariantBuilder(torch).forAllStates(state -> ConfiguredModel.builder().modelFile(cubeModel).build());
 	}
 
 	private void genTorchWallBlock(ExtendedLOTRWallTorchBlock torch, ResourceLocation texture) {
