@@ -25,6 +25,7 @@ import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedStra
 import com.github.maximuslotro.lotrrextended.common.tileentity.beds.ExtendedWhiteFurBedTileEntity;
 
 import lotr.common.init.LOTRItemGroups;
+import lotr.common.init.LOTRItems;
 import lotr.common.init.LOTRMaterial;
 import lotr.common.item.EmptyVesselBlockItem;
 import lotr.common.item.FallenLeavesItem;
@@ -975,6 +976,7 @@ public class ExtendedItems {
 
 	private static RegistryObject<Item> regItem(String name, Supplier<? extends Item> sup) {
 		RegistryObject<Item> item = ITEMS.register(name, sup);
+		LOTRItems.putItemInCreativeTabOrder(item.getId());
 		return item;
 	}
 	private static RegistryObject<Item> regBannerPaternItem(String name, BannerPattern bannerPattern, Supplier<? extends Item> sup)  {

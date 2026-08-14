@@ -4,8 +4,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import lotr.common.event.CompostingHelper;
-import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IGrowable;
@@ -51,10 +49,10 @@ public class ExtendedBerryHedgeBlock extends Block implements IGrowable{
 			.strength(0.2F)
 			.noOcclusion()
 			.harvestTool(ToolType.HOE)
-			.isValidSpawn(LOTRBlocks::allowSpawnOnLeaves)
-			.isRedstoneConductor(LOTRBlocks::posPredicateFalse)
-			.isSuffocating(LOTRBlocks::posPredicateFalse)
-			.isViewBlocking(LOTRBlocks::posPredicateFalse));
+			.isValidSpawn(ExtendedBlockParms::allowSpawnOnLeaves)
+			.isRedstoneConductor(ExtendedBlockParms::never)
+			.isSuffocating(ExtendedBlockParms::never)
+			.isViewBlocking(ExtendedBlockParms::never));
 		this.berryItem = berryItem;
 		if(DatagenModLoader.isRunningDataGen()) {
 			this.berryHedgeItem = berryBlock;
@@ -62,7 +60,7 @@ public class ExtendedBerryHedgeBlock extends Block implements IGrowable{
 			this.berryHedgeItem = null;
 		}
 		registerDefaultState(stateDefinition.any().setValue(AGE, 0));
-		CompostingHelper.prepareCompostable(this, 0.65F);
+		//CompostingHelper.prepareCompostable(this, 0.65F);
 	}
 
 	@Override

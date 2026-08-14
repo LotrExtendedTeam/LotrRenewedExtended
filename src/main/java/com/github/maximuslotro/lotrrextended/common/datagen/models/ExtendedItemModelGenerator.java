@@ -43,7 +43,6 @@ import com.google.gson.GsonBuilder;
 import lotr.common.block.ChandelierBlock;
 import lotr.common.block.ExtendedLOTRTorchBlock;
 import lotr.common.block.LOTRDoorBlock;
-import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.block.VesselDrinkBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTRItems;
@@ -56,6 +55,7 @@ import lotr.common.item.LOTRShieldItem;
 import lotr.common.item.SpearItem;
 import lotr.common.item.VesselDrinkItem;
 import net.minecraft.block.DoorBlock;
+import net.minecraft.block.SaplingBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
@@ -129,7 +129,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
 					continue;
 				}
-				if(((BlockItem)item.get()).getBlock() instanceof LOTRSaplingBlock) {
+				if(((BlockItem)item.get()).getBlock() instanceof SaplingBlock) {
 					genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
 					continue;
 				}

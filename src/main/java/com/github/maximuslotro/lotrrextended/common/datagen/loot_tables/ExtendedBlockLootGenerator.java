@@ -70,7 +70,6 @@ import lotr.common.block.LOTRFenceGateBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRPlanksBlock;
 import lotr.common.block.LOTRPottedPlantBlock;
-import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.block.LOTRStairsBlock;
 import lotr.common.block.LOTRStoneBlock;
 import lotr.common.block.LOTRStrippedLogBlock;
@@ -96,6 +95,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CakeBlock;
 import net.minecraft.block.DoorBlock;
+import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.block.TrapDoorBlock;
@@ -361,7 +361,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.get());
 				continue;
 			}
-			if(block.get() instanceof LOTRSaplingBlock) {
+			if(block.get() instanceof SaplingBlock) {
 				dropSelf(block.get());
 				continue;
 			}

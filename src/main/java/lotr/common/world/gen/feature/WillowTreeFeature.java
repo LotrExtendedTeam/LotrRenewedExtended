@@ -2,7 +2,6 @@ package lotr.common.world.gen.feature;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.mojang.serialization.Codec;
-import lotr.common.block.LOTRSaplingBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.VineBlock;
 import net.minecraft.block.material.Material;
@@ -18,6 +17,7 @@ import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraftforge.common.IPlantable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +65,7 @@ public class WillowTreeFeature extends Feature<NoFeatureConfig> implements IFeat
 
         BlockState below = world.getBlockState(pos.below());
         // determine if it is close enough to water
-        boolean isSoil = below.canSustainPlant(world, pos.below(), Direction.UP, (LOTRSaplingBlock) ExtendedBlocks.WILLOW_SAPLING.get());
+        boolean isSoil = below.canSustainPlant(world, pos.below(), Direction.UP, (IPlantable) ExtendedBlocks.WILLOW_SAPLING.get());
         if (!isSoil) canGrow = false;
 
         if (this.needsWater) {

@@ -32,6 +32,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHoistBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLeavesBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMaterialBlock;
@@ -84,11 +85,9 @@ import lotr.common.block.LOTRBlockStates;
 import lotr.common.block.LOTRDoorBlock;
 import lotr.common.block.LOTRFenceBlock;
 import lotr.common.block.LOTRFenceGateBlock;
-import lotr.common.block.LOTRLeavesBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRPlanksBlock;
 import lotr.common.block.LOTRPottedPlantBlock;
-import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.block.LOTRStairsBlock;
 import lotr.common.block.LOTRStrippedLogBlock;
 import lotr.common.block.LOTRStrippedWoodBlock;
@@ -122,6 +121,7 @@ import net.minecraft.block.NetherRootsBlock;
 import net.minecraft.block.OreBlock;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SnowyDirtBlock;
 import net.minecraft.block.StairsBlock;
@@ -410,8 +410,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genTrapdoorBlockItem((TrapDoorBlock)block.get(),"block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.get() instanceof LOTRSaplingBlock) {
-					genSaplingBlock((LOTRSaplingBlock)block.get(),lotrExtendedLoc("block/"+block.getId().getPath()));
+				if(block.get() instanceof SaplingBlock) {
+					genSaplingBlock((SaplingBlock)block.get(),lotrExtendedLoc("block/"+block.getId().getPath()));
 					continue;
 				}
 				if(block.get() instanceof ExtendedHangingBlock) {
@@ -527,7 +527,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genTorchBlockItem((ExtendedLOTRTorchBlock) block.get(), lotrExtendedLoc("block/"+block.getId().getPath()));
 					continue;
 				}
-				if(block.get() instanceof LOTRLeavesBlock) {
+				if(block.get() instanceof ExtendedLeavesBlock) {
 					if(block.getId().getPath().equals("chestnut_leaves")) {
 						numberTexturedBlockItem(block.get(), new int[] {5,5,1,1,1});
 						continue;
@@ -2030,7 +2030,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().wallInventory(wall.getRegistryName().toString(), texture);
 	}
 
-	private void genSaplingBlock(LOTRSaplingBlock sapling, ResourceLocation texture) {
+	private void genSaplingBlock(SaplingBlock sapling, ResourceLocation texture) {
 		registeredBlocks.add(sapling);
 		ModelFile model = models().cross("lotrextended:"+sapling.getRegistryName().getPath(), texture);
 		simpleBlock(sapling, model);

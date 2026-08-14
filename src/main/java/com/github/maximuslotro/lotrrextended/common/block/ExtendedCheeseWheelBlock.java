@@ -56,8 +56,8 @@ public class ExtendedCheeseWheelBlock extends ExtendedCakeBlock implements Exten
 	}
 
 	@Override
-	public boolean isRandomlyTicking(BlockState p_154935_) {
-		return ExtendedAgeingCheese.getNext(p_154935_.getBlock()).isPresent();
+	public boolean isRandomlyTicking(BlockState pState) {
+		return ExtendedAgeingCheese.getNext(pState.getBlock()).isPresent();
 	}
 
 	@Override

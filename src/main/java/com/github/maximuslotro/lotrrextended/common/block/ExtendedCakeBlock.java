@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import com.mojang.datafixers.util.Pair;
 
-import lotr.common.event.CompostingHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CakeBlock;
@@ -32,7 +31,7 @@ public class ExtendedCakeBlock extends CakeBlock {
 		this.foodProperties = pFood;
 		this.eatStat = pEatStat;
 		if(pCompostValue>0) {
-			CompostingHelper.prepareCompostable(this, pCompostValue);
+			//CompostingHelper.prepareCompostable(this, pCompostValue);
 		}
 	}
 

@@ -10,60 +10,58 @@ import net.minecraft.world.server.ServerWorld;
 
 
 public interface ExtendedChangingOverTimeBlock<T extends Enum<T>> {
-	   int SCAN_DISTANCE = 4;
+	int SCAN_DISTANCE = 4;
 
-	   Optional<BlockState> getNext(BlockState p_153040_);
+	public Optional<BlockState> getNext(BlockState pState);
 
-	   float getChanceModifier();
+	public float getChanceModifier();
 
-	   default void onRandomTick(BlockState p_153042_, ServerWorld p_153043_, BlockPos p_153044_, Random p_153045_) {
-	      float f = 0.05688889F;
-	      if (p_153045_.nextFloat() < f) {
-	         this.applyChangeOverTime(p_153042_, p_153043_, p_153044_, p_153045_);
-	      }
-
-	   }
-
-	   T getAge();
-
-	   @SuppressWarnings("rawtypes")
-	default void applyChangeOverTime(BlockState p_153047_, ServerWorld p_153048_, BlockPos p_153049_, Random p_153050_) {
-	      int i = this.getAge().ordinal();
-	      int j = 0;
-	      int k = 0;
-
-	      for(BlockPos blockpos : BlockPos.withinManhattan(p_153049_, 4, 4, 4)) {
-	         int l = blockpos.distManhattan(p_153049_);
-	         if (l > 4) {
-	            break;
-	         }
-
-	         if (!blockpos.equals(p_153049_)) {
-	            BlockState blockstate = p_153048_.getBlockState(blockpos);
-	            Block block = blockstate.getBlock();
-	            if (block instanceof ExtendedChangingOverTimeBlock) {
-	               Enum<?> oenum = ((ExtendedChangingOverTimeBlock)block).getAge();
-	               if (this.getAge().getClass() == oenum.getClass()) {
-	                  int i1 = oenum.ordinal();
-	                  if (i1 < i) {
-	                     return;
-	                  }
-
-	                  if (i1 > i) {
-	                     ++k;
-	                  } else {
-	                     ++j;
-	                  }
-	               }
-	            }
-	         }
-	      }
-
-	      float f = (float)(k + 1) / (float)(k + j + 1);
-	      float f1 = f * f * this.getChanceModifier();
-	      if (p_153050_.nextFloat() < f1) {
-	         this.getNext(p_153047_).ifPresent((p_153039_) -> p_153048_.setBlockAndUpdate(p_153049_, p_153039_));
-	      }
-
-	   }
+	public default void onRandomTick(BlockState pState, ServerWorld pLevel, BlockPos pPos, Random pRandom) {
+		if (pRandom.nextFloat() < 0.05688889F) {
+			this.applyChangeOverTime(pState, pLevel, pPos, pRandom);
+		}
 	}
+
+	public T getAge();
+
+	@SuppressWarnings("rawtypes")
+	public default void applyChangeOverTime(BlockState pState, ServerWorld pLevel, BlockPos pPos, Random pRandom) {
+		int i = this.getAge().ordinal();
+		int j = 0;
+		int k = 0;
+
+		for(BlockPos blockpos : BlockPos.withinManhattan(pPos, 4, 4, 4)) {
+			int l = blockpos.distManhattan(pPos);
+			if (l > 4) {
+				break;
+			}
+
+			if (!blockpos.equals(pPos)) {
+				BlockState blockstate = pLevel.getBlockState(blockpos);
+				Block block = blockstate.getBlock();
+				if (block instanceof ExtendedChangingOverTimeBlock) {
+					Enum<?> oenum = ((ExtendedChangingOverTimeBlock)block).getAge();
+					if (this.getAge().getClass() == oenum.getClass()) {
+						int i1 = oenum.ordinal();
+						if (i1 < i) {
+							return;
+						}
+
+						if (i1 > i) {
+							++k;
+						} else {
+							++j;
+						}
+					}
+				}
+			}
+		}
+
+		float f = (float)(k + 1) / (float)(k + j + 1);
+		float f1 = f * f * this.getChanceModifier();
+		if (pRandom.nextFloat() < f1) {
+			this.getNext(pState).ifPresent((p_153039_) -> pLevel.setBlockAndUpdate(pPos, p_153039_));
+		}
+
+	}
+}
