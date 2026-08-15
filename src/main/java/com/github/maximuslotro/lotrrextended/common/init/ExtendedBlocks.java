@@ -81,7 +81,6 @@ import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -113,7 +112,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> CHESTNUT_PLANKS = register("chestnut_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
 	public static RegistryObject<Block> CHESTNUT_LEAVES = register("chestnut_leaves", ExtendedLeavesBlock::new);
 	public static RegistryObject<Block> CHESTNUT_LEAVES_FRUIT = register("chestnut_leaves_fruit", ExtendedLeavesBlock::new);
-	public static RegistryObject<Block> CHESTNUT_SAPLING = register("chestnut_sapling", () -> new SaplingBlock(new ChestnutTree(), Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0f).sound(SoundType.GRASS)));
+	public static RegistryObject<Block> CHESTNUT_SAPLING = register("chestnut_sapling", () -> new ExtendedSaplingBlock(new ChestnutTree(), Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0f).sound(SoundType.GRASS)));
 	public static RegistryObject<Block> POTTED_CHESTNUT_SAPLING = register("potted_chestnut_sapling", () -> new LOTRPottedPlantBlock(CHESTNUT_SAPLING));
 	public static RegistryObject<Block> LARGE_POTTED_CHESTNUT_SAPLING = registerPOT("large_pot_chestnut_sapling", () -> new ExtendedLargeFlowerPotBlock(CHESTNUT_SAPLING));
 	public static RegistryObject<Block> CHESTNUT_SLAB = register("chestnut_slab", () -> new AxialSlabBlock(CHESTNUT_PLANKS));
@@ -144,7 +143,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> BANANA_WOOD = register("banana_wood", () -> new StrippableWoodBlock(BANANA_LOG, ExtendedBlocks.STRIPPED_BANANA_WOOD));
 	public static RegistryObject<Block> BANANA_PLANKS = register("banana_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
 	public static RegistryObject<Block> BANANA_LEAVES = register("banana_leaves", ExtendedLeavesBlock::new);
-	public static RegistryObject<Block> BANANA_SAPLING = register("banana_sapling", () -> new SaplingBlock(new BananaTree(), Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0f).sound(SoundType.GRASS)));
+	public static RegistryObject<Block> BANANA_SAPLING = register("banana_sapling", () -> new ExtendedSaplingBlock(new BananaTree(), Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0f).sound(SoundType.GRASS)));
 	public static RegistryObject<Block> POTTED_BANANA_SAPLING = register("potted_banana_sapling", () -> new LOTRPottedPlantBlock(BANANA_SAPLING));
 	public static RegistryObject<Block> LARGE_POTTED_BANANA_SAPLING = registerPOT("large_pot_banana_sapling", () -> new ExtendedLargeFlowerPotBlock(BANANA_SAPLING));
 	public static RegistryObject<Block> BANANA_SLAB = register("banana_slab", () -> new AxialSlabBlock(BANANA_PLANKS));
@@ -177,7 +176,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> PLUM_PLANKS = register("plum_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
 	public static RegistryObject<Block> PLUM_LEAVES = register("plum_leaves", () -> new ExtendedLeavesBlock(MaterialColor.COLOR_PURPLE));
 	public static RegistryObject<Block> PLUM_LEAVES_FRUIT = register("plum_leaves_fruit", () -> new ExtendedLeavesBlock(MaterialColor.COLOR_PURPLE));
-	public static RegistryObject<Block> PLUM_SAPLING = register("plum_sapling", () -> new SaplingBlock(new PlumTree(), Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0f).sound(SoundType.GRASS)));
+	public static RegistryObject<Block> PLUM_SAPLING = register("plum_sapling", () -> new ExtendedSaplingBlock(new PlumTree(), Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0f).sound(SoundType.GRASS)));
 	public static RegistryObject<Block> POTTED_PLUM_SAPLING = register("potted_plum_sapling", () -> new LOTRPottedPlantBlock(PLUM_SAPLING));
 	public static RegistryObject<Block> LARGE_POTTED_PLUM_SAPLING = registerPOT("large_pot_plum_sapling", () -> new ExtendedLargeFlowerPotBlock(PLUM_SAPLING));
 	public static RegistryObject<Block> PLUM_SLAB = register("plum_slab", () -> new AxialSlabBlock(PLUM_PLANKS));
@@ -240,7 +239,7 @@ public class ExtendedBlocks {
 	public static RegistryObject<Block> EBONY_WOOD = register("ebony_wood", () -> new StrippableWoodBlock(EBONY_LOG, ExtendedBlocks.STRIPPED_EBONY_WOOD));
 	public static RegistryObject<Block> EBONY_PLANKS = register("ebony_planks", () -> new LOTRPlanksBlock(MaterialColor.WOOD));
 	public static RegistryObject<Block> EBONY_LEAVES = register("ebony_leaves", ExtendedLeavesBlock::new);
-	public static RegistryObject<Block> EBONY_SAPLING = register("ebony_sapling", () -> new SaplingBlock(new EbonyTree(), Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0f).sound(SoundType.GRASS)));
+	public static RegistryObject<Block> EBONY_SAPLING = register("ebony_sapling", () -> new ExtendedSaplingBlock(new EbonyTree(), Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0f).sound(SoundType.GRASS)));
 	public static RegistryObject<Block> POTTED_EBONY_SAPLING = register("potted_ebony_sapling", () -> new LOTRPottedPlantBlock(EBONY_SAPLING));
 	public static RegistryObject<Block> LARGE_POTTED_EBONY_SAPLING = registerPOT("large_pot_ebony_sapling", () -> new ExtendedLargeFlowerPotBlock(EBONY_SAPLING));
 	public static RegistryObject<Block> EBONY_SLAB = register("ebony_slab", () -> new AxialSlabBlock(EBONY_PLANKS));

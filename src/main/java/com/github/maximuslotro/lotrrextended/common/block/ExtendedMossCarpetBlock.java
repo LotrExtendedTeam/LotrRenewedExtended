@@ -23,7 +23,7 @@ public class ExtendedMossCarpetBlock extends Block {
 
 	public ExtendedMossCarpetBlock(AbstractBlock.Properties pProperties) {
 		super(pProperties);
-		//CompostingHelper.prepareCompostable(this, 0.25f);
+		ExtendedDeferredComposterInjector.addCompostable(this, 0.25f);
 	}
 
 	@Override

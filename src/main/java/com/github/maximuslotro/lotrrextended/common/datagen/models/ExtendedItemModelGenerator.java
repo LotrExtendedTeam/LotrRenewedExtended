@@ -16,6 +16,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrystalChandel
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternElvenBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedNarsilShardsBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedSaplingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStandingSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedLargePotBlock;
@@ -55,7 +56,6 @@ import lotr.common.item.LOTRShieldItem;
 import lotr.common.item.SpearItem;
 import lotr.common.item.VesselDrinkItem;
 import net.minecraft.block.DoorBlock;
-import net.minecraft.block.SaplingBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
@@ -129,7 +129,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
 					continue;
 				}
-				if(((BlockItem)item.get()).getBlock() instanceof SaplingBlock) {
+				if(((BlockItem)item.get()).getBlock() instanceof ExtendedSaplingBlock) {
 					genGenerated(item.get(), lotrExtendedLoc("block/"+item.getId().getPath()));
 					continue;
 				}

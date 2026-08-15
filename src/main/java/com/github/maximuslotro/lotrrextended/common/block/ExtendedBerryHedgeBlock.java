@@ -60,7 +60,7 @@ public class ExtendedBerryHedgeBlock extends Block implements IGrowable{
 			this.berryHedgeItem = null;
 		}
 		registerDefaultState(stateDefinition.any().setValue(AGE, 0));
-		//CompostingHelper.prepareCompostable(this, 0.65F);
+		ExtendedDeferredComposterInjector.addCompostable(this, 0.65F);
 	}
 
 	@Override

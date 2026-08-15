@@ -16,7 +16,7 @@ import net.minecraft.world.server.ServerWorld;
 public class ExtendedMossBlock extends Block implements IGrowable {
 	public ExtendedMossBlock(Properties p_153790_) {
 		super(p_153790_);
-		//CompostingHelper.prepareCompostable(this, 0.65f);
+		ExtendedDeferredComposterInjector.addCompostable(this, 0.65f);
 	}
 
 	@SuppressWarnings("deprecation")

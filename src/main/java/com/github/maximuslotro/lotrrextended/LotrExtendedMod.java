@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended;
 
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedDeferredComposterInjector;
 import com.github.maximuslotro.lotrrextended.common.chairs.HackyChairDatabase;
 import com.github.maximuslotro.lotrrextended.common.commands.ExtendedCommands;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
@@ -142,6 +143,7 @@ public class LotrExtendedMod{
 			ExtendedStructureProcessors.init();
 			ExtendedStructuresV5.setupStructures();
 			ExtendedConfiguredStructuresV5.registerConfiguredStructures();
+			ExtendedDeferredComposterInjector.registerCompostables();
 		});
 	}
 

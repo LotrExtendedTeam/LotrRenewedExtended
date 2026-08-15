@@ -31,7 +31,7 @@ public class ExtendedCakeBlock extends CakeBlock {
 		this.foodProperties = pFood;
 		this.eatStat = pEatStat;
 		if(pCompostValue>0) {
-			//CompostingHelper.prepareCompostable(this, pCompostValue);
+			ExtendedDeferredComposterInjector.addCompostable(this, pCompostValue);
 		}
 	}
 

@@ -21,7 +21,7 @@ public class ExtendedLeavesBlock extends LeavesBlock {
 			.isValidSpawn(ExtendedBlockParms::allowSpawnOnLeaves)
 			.isSuffocating(ExtendedBlockParms::never)
 			.isViewBlocking(ExtendedBlockParms::never));
-		//CompostingHelper.prepareCompostable(this, 0.3F);
+		ExtendedDeferredComposterInjector.addCompostable(this, 0.3F);
 	}
 
 	@Override
@@ -33,5 +33,4 @@ public class ExtendedLeavesBlock extends LeavesBlock {
 	public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
 		return 60;
 	}
-
 }

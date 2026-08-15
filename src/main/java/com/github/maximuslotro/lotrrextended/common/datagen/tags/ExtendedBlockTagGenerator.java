@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedChainBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLeavesBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedSaplingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStandingSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
@@ -46,7 +47,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FlowerPotBlock;
-import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.data.DataGenerator;
@@ -99,7 +99,7 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 			if(block.get() instanceof ExtendedLeavesBlock) {
 				tag(BlockTags.LEAVES).add(block.get());
 			}
-			if(block.get() instanceof SaplingBlock) {
+			if(block.get() instanceof ExtendedSaplingBlock) {
 				tag(BlockTags.SAPLINGS).add(block.get());
 			}
 			if(block.get() instanceof ExtendedStandingSignBlock) {

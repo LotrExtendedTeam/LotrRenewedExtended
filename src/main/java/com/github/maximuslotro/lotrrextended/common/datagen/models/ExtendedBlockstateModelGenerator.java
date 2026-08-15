@@ -44,6 +44,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedOreRemainsBloc
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMattedFurBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedSaplingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStandingSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
@@ -121,7 +122,6 @@ import net.minecraft.block.NetherRootsBlock;
 import net.minecraft.block.OreBlock;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SnowyDirtBlock;
 import net.minecraft.block.StairsBlock;
@@ -410,8 +410,8 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 					genTrapdoorBlockItem((TrapDoorBlock)block.get(),"block/"+block.getId().getPath());
 					continue;
 				}
-				if(block.get() instanceof SaplingBlock) {
-					genSaplingBlock((SaplingBlock)block.get(),lotrExtendedLoc("block/"+block.getId().getPath()));
+				if(block.get() instanceof ExtendedSaplingBlock) {
+					genSaplingBlock((ExtendedSaplingBlock)block.get(),lotrExtendedLoc("block/"+block.getId().getPath()));
 					continue;
 				}
 				if(block.get() instanceof ExtendedHangingBlock) {
@@ -2030,7 +2030,7 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		itemModels().wallInventory(wall.getRegistryName().toString(), texture);
 	}
 
-	private void genSaplingBlock(SaplingBlock sapling, ResourceLocation texture) {
+	private void genSaplingBlock(ExtendedSaplingBlock sapling, ResourceLocation texture) {
 		registeredBlocks.add(sapling);
 		ModelFile model = models().cross("lotrextended:"+sapling.getRegistryName().getPath(), texture);
 		simpleBlock(sapling, model);

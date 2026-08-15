@@ -12,10 +12,12 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLanternNumenoreanBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLeavesBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMossCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedOrcBombBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedSaplingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedWargCarpetBlock;
 import com.github.maximuslotro.lotrrextended.common.block.beds.ExtendedBedBlock;
@@ -29,8 +31,6 @@ import lotr.common.block.FallenLeavesBlock;
 import lotr.common.block.GateBlock;
 import lotr.common.block.NonWaterloggableLanternBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.TorchBlock;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
@@ -94,10 +94,10 @@ public class ExtendedBlockRenderer {
 			if (block instanceof ChandelierBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
-			if (block instanceof SaplingBlock) {
+			if (block instanceof ExtendedSaplingBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
-			if (block instanceof LeavesBlock) {
+			if (block instanceof ExtendedLeavesBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
 			}
 			if (block instanceof FallenLeavesBlock) {

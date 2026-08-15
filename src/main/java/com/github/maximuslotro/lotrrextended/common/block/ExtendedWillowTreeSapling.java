@@ -3,7 +3,6 @@ package com.github.maximuslotro.lotrrextended.common.block;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -13,7 +12,7 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class ExtendedWillowTreeSapling extends SaplingBlock {
+public class ExtendedWillowTreeSapling extends ExtendedSaplingBlock {
 
     public ExtendedWillowTreeSapling(Tree tree, Properties pProperties) {
         super(tree, pProperties);

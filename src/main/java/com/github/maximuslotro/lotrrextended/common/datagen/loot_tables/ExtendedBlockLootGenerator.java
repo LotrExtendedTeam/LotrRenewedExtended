@@ -37,6 +37,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedOrcBombBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMattedFurBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedSaplingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStandingSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
@@ -95,7 +96,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CakeBlock;
 import net.minecraft.block.DoorBlock;
-import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.block.TrapDoorBlock;
@@ -361,7 +361,7 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 				dropSelf(block.get());
 				continue;
 			}
-			if(block.get() instanceof SaplingBlock) {
+			if(block.get() instanceof ExtendedSaplingBlock) {
 				dropSelf(block.get());
 				continue;
 			}
