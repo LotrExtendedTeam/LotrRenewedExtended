@@ -72,7 +72,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "day_or_night": "morning",
+        "daytime": "morning",
         "in_combat": "false",
         "in_conversation": "none"
       },
@@ -86,7 +86,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "day_or_night": "afternoon",
+        "daytime": "afternoon",
         "in_combat": "false",
         "in_conversation": "none"
       },
@@ -99,7 +99,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "day_or_night": "evening",
+        "daytime": "evening",
         "in_combat": "false",
         "in_conversation": "none"
       },
