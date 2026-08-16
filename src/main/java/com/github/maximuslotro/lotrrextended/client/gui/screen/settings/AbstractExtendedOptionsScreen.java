@@ -72,17 +72,17 @@ public abstract class AbstractExtendedOptionsScreen extends ExtendedBasicAbstrac
 			});
 		}
 		this.addButton(new ExtendedColorChangingButton(Math.max(0, this.leftPos - 140), this.topPos + 60 + (this.imageHeight + 20) / 4, 100, 20, 
-			new TranslationTextComponent("Wiki Stuff"), 
+			new TranslationTextComponent("Development"), 
 			button -> {
-				this.minecraft.setScreen(new ExtendedWikiGenScreen());
+				this.minecraft.setScreen(new ExtendedDevelopmentScreen());
 			}, 0.13f, 0.92f, 0.71f)  {
 			@Override
 			public boolean setColor(){
-				return AbstractExtendedOptionsScreen.this.currentPage==SettingsPage.WIKI;
+				return AbstractExtendedOptionsScreen.this.currentPage==SettingsPage.DEVELOPMENT;
 			}
 		});
 	}
 	public enum SettingsPage {
-		CLIENT, SERVER, WIKI
+		CLIENT, SERVER, DEVELOPMENT
 	}
 }

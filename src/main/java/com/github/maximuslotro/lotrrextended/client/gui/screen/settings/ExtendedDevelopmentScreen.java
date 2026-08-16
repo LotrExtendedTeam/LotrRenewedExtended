@@ -28,7 +28,7 @@ import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class ExtendedWikiGenScreen extends AbstractExtendedOptionsScreen {
+public class ExtendedDevelopmentScreen extends AbstractExtendedOptionsScreen {
 	public List<SettingsCatagory> catagories = new ArrayList<>();
 	private boolean isExporting = false;
 	private ExtendedBlockIconRenderer itemRenderer16;
@@ -43,10 +43,10 @@ public class ExtendedWikiGenScreen extends AbstractExtendedOptionsScreen {
 	private boolean make64icons= false;
 	private boolean makeItemIcons= false;
 	private String output = "No output";
-	public static int optionWiki = 0;
+	public static int optionDevelopment = 0;
 
-	public ExtendedWikiGenScreen() {
-		super(new StringTextComponent("Wiki Generation"), SettingsPage.WIKI);
+	public ExtendedDevelopmentScreen() {
+		super(new StringTextComponent("Development"), SettingsPage.DEVELOPMENT);
 	}
 
 	@Override
@@ -130,10 +130,12 @@ public class ExtendedWikiGenScreen extends AbstractExtendedOptionsScreen {
 			return null;
 		}, "", "", "Item generation output"));
 		catagories.add(itemGen);
-		SettingsCatagory spawnMaps = new SettingsCatagory(this, 1, x, y, xTabs) {
-		};
+		SettingsCatagory spawnMaps = new SettingsCatagory(this, 1, x, y, xTabs);
 		addButton(spawnMaps.addCatagoryButton("Distribution Maps"));
 		catagories.add(spawnMaps);
+		SettingsCatagory speechbank = new SettingsCatagory(this, 2, x, y, xTabs);
+		addButton(speechbank.addCatagoryButton("Speechbank Tools"));
+		catagories.add(speechbank);
 		for(SettingsCatagory catagory : catagories) {
 			catagory.checkVisability();
 		}
@@ -206,7 +208,7 @@ public class ExtendedWikiGenScreen extends AbstractExtendedOptionsScreen {
 	}
 
 	public static class SettingsCatagory {
-		private ExtendedWikiGenScreen screen;
+		private ExtendedDevelopmentScreen screen;
 		private final int index;
 		private final int placementXOffset;
 		private final int placementYOffset;
@@ -216,7 +218,7 @@ public class ExtendedWikiGenScreen extends AbstractExtendedOptionsScreen {
 		private final List<ExtendedSlider> sliders = new ArrayList<>();
 		private Widget catagoryButton;
 
-		public SettingsCatagory(ExtendedWikiGenScreen pScreen, int pIndex, int xStart, int yStart, int pCatagoryXOffset) {
+		public SettingsCatagory(ExtendedDevelopmentScreen pScreen, int pIndex, int xStart, int yStart, int pCatagoryXOffset) {
 			this.screen = pScreen;
 			this.index = pIndex;
 			this.placementXOffset = xStart;
@@ -230,11 +232,11 @@ public class ExtendedWikiGenScreen extends AbstractExtendedOptionsScreen {
 			}
 			catagoryButton = new ExtendedColorChangingButton(catagoryXOffset, placementYOffset + 24 * index, 120, 20, new TranslationTextComponent(pMessage), 
 				button -> {
-					ExtendedWikiGenScreen.optionWiki=index;
+					ExtendedDevelopmentScreen.optionDevelopment=index;
 				}, 0.13f, 0.92f, 0.71f) {
 				@Override
 				public boolean setColor(){
-					return ExtendedWikiGenScreen.optionWiki==index;
+					return ExtendedDevelopmentScreen.optionDevelopment==index;
 				}
 			};
 			return catagoryButton;
@@ -270,10 +272,10 @@ public class ExtendedWikiGenScreen extends AbstractExtendedOptionsScreen {
 		}
 		public void checkVisability(){
 			for(Widget widget : bottons) {
-				widget.visible = ExtendedWikiGenScreen.optionWiki==index; // Hide/Show widget if this category is selected
+				widget.visible = ExtendedDevelopmentScreen.optionDevelopment==index; // Hide/Show widget if this category is selected
 			}
 			for(Widget widget : sliders) {
-				widget.visible = ExtendedWikiGenScreen.optionWiki==index; // Hide/Show widget if this category is selected
+				widget.visible = ExtendedDevelopmentScreen.optionDevelopment==index; // Hide/Show widget if this category is selected
 			}
 		}
 	}
