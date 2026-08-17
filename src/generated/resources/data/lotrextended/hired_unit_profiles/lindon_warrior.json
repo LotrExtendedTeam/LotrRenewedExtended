@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.lindon_warrior",
-    "attack_type": "ranged"
+    "entity_unit_type": "entity.lotr.lindon_warrior"
   },
   "hiring": {
     "hiringCost": 45,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 400
   },
+  "attack_type": "ranged",
   "equipmentPools": {
     "helmets": [
       {
@@ -32,27 +32,48 @@
     ],
     "chestplates": [
       {
-        "weight": 1,
+        "weight": 1000,
         "equipmentItem": {
           "item": "lotr:lindon_chestplate",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:galvorn_chestplate",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
         }
       }
     ],
     "leggings": [
       {
-        "weight": 1,
+        "weight": 1000,
         "equipmentItem": {
           "item": "lotr:lindon_leggings",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:galvorn_leggings",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
         }
       }
     ],
     "boots": [
       {
-        "weight": 1,
+        "weight": 1000,
         "equipmentItem": {
           "item": "lotr:lindon_boots",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:galvorn_boots",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
         }
       }

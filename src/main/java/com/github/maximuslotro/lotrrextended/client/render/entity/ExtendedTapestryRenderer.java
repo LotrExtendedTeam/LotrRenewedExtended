@@ -31,7 +31,7 @@ public class ExtendedTapestryRenderer extends EntityRenderer<ExtendedTapestryEnt
 		Vector3d vector3d = this.getRenderOffset(pEntity, pPartialTicks);
 		pMatrixStack.translate(-vector3d.x(), -vector3d.y(), -vector3d.z());
 		double d0 = 0.46875D;
-		pMatrixStack.translate((double)direction.getStepX() * 0.46875D, (double)direction.getStepY() * 0.46875D, (double)direction.getStepZ() * 0.46875D);
+		pMatrixStack.translate((double)direction.getStepX() * d0, (double)direction.getStepY() * d0, (double)direction.getStepZ() * d0);
 		if(direction.getAxis()==Axis.X) {
 			pMatrixStack.mulPose(Vector3f.XP.rotationDegrees(180F));
 		}else if(direction.getAxis()==Axis.Z) {
@@ -59,6 +59,4 @@ public class ExtendedTapestryRenderer extends EntityRenderer<ExtendedTapestryEnt
 	public ResourceLocation getTextureLocation(ExtendedTapestryEntity pEntity) {
 		return new ResourceLocation(pEntity.type.getRegistryName().getNamespace(), "textures/entity/tapestry/"+pEntity.type.getRegistryName().getPath()+".png");
 	}
-
-
 }

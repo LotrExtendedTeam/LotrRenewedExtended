@@ -6,7 +6,6 @@ import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedJsonSerializers;
 import com.google.gson.JsonObject;
@@ -93,7 +92,7 @@ public class ExtendedCrucibleRecipeBuilder {
 	        Item output1 = this.result1.getItem();
 	        Item output2 = this.result2.getItem();
 	        if (VALID_SUB_OUTPUTS.containsKey(output1) && VALID_SUB_OUTPUTS.get(output1) != output2) {
-	        	ExtendedLog.info("Recipe "+outputLocation+" contains a second result that can be overwritten depending on durability");
+	        	//ExtendedLog.info("Recipe "+outputLocation+" contains a second result that can be overwritten depending on durability");
 	        }
 	    }
 	}

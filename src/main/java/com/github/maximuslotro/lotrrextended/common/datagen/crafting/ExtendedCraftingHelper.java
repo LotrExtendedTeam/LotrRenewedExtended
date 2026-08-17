@@ -1810,6 +1810,31 @@ ExtendedShapedRecipeBuilder.shaped(objectToBeCrafted.get(), 3)
 			.save(consumer, lotrLoc(name+"_from_"+resourceName));
 		}
 	}
+	protected void makePieRecipe(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> itemToBeCrafted, Supplier<? extends Item> resource, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
+		String name = itemToBeCrafted.get().getRegistryName().getPath();
+		GENERATEDRECIPES.add(name);
+		if (table == null) {
+			ExtendedShapedRecipeBuilder.shaped(itemToBeCrafted.get())
+			.pattern("MMM")
+			.pattern("BBB")
+			.pattern("WWW")
+			.define('M', Ingredient.of(Items.MILK_BUCKET))
+			.define('B', Ingredient.of(resource.get()))
+			.define('W', Ingredient.of(Items.WHEAT))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		} else {
+			ExtendedFactionShapedRecipeBuilder.shaped(itemToBeCrafted.get(), table)
+			.pattern("MMM")
+			.pattern("BBB")
+			.pattern("WWW")
+			.define('M', Ingredient.of(Items.MILK_BUCKET))
+			.define('B', Ingredient.of(resource.get()))
+			.define('W', Ingredient.of(Items.WHEAT))
+			.unlockedBy("has_"+resource.get().getRegistryName().getPath(), has(resource.get()))
+			.save(consumer, lotrLoc(name));
+		}
+	}
 
 	protected void makeTorchConversionRecipeDirect(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> fromItem, Supplier<? extends Item> toItem, @Nullable FactionBasedRecipeType<ICraftingRecipe> table) {
 		String name1 = fromItem.get().getRegistryName().getPath();

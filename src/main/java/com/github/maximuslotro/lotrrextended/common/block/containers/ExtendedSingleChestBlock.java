@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.block.containers;
 import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedChestTileEntity;
 
 import it.unimi.dsi.fastutil.floats.Float2FloatFunction;

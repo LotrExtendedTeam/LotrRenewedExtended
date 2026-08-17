@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:item/handheld_dagger",
+  "textures": {
+    "layer0": "lotr:item/dorwinion_elven_dagger_glowing"
+  }
+}

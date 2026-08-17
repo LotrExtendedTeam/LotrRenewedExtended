@@ -1,5 +1,5 @@
 {
-  "parent": "lotr:high_elves/common",
+  "parent": "lotrextended:high_elves/common",
   "speech": [
     {
       "conditions": {

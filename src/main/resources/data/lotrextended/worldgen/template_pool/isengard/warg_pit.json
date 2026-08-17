@@ -1,0 +1,39 @@
+{
+	"name": "lotrextended:isengard/warg_pit",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/pit/isengard_warg_pit_1",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"ground_level_delta": 4
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/pit/isengard_warg_pit_2",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"ground_level_delta": 4
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/pit/isengard_warg_pit_3",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"ground_level_delta": 4
+			}
+		}
+	]
+}

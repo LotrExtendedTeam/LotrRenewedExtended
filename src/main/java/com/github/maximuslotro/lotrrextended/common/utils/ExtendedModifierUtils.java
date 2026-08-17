@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.utils;
 
 import lotr.common.entity.npc.*;
 import lotr.common.init.ExtendedItems;
-import lotr.common.item.ExtendedBarrowBlade;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -38,7 +37,9 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedBarrowBlade;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierReforgeTomeItem;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierRarity;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierScroll;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
@@ -167,16 +168,27 @@ public class ExtendedModifierUtils {
 	 * the NBT data becomes empty, the tag is fully cleared.
 	 * </p>
 	 *
-	 * @param stack the {@link ItemStack} to clear
+	 * @param pStack the {@link ItemStack} to clear
 	 * @return {@code true} if one or more modifiers were cleared,
 	 *         {@code false} if the item had no modifiers
 	 */
-	public static boolean clearModifiers(ItemStack stack) {
-		if (!hasModifiers(stack)) {
+	public static boolean clearModifiers(ItemStack pStack) {
+		if (!hasModifiers(pStack)) {
 			return false;
 		}
-		stack.removeTagKey(NBTMODIFIER);
+		pStack.removeTagKey(NBTMODIFIER);
 		return true;
+	}
+	/**
+	 * Clears all {@link Enchantment}s from the given {@link ItemStack}.
+	 * <p>
+	 * This removes the "Enchantments" tag from the item.
+	 * </p>
+	 *
+	 * @param pStack the {@link ItemStack} to clear
+	 */
+	public static void clearEnchantments(ItemStack pStack) {
+		pStack.removeTagKey("Enchantments");
 	}
 	/**
 	 * Progresses the "bane" achievement mechanic for the given {@link ItemStack} when it kills an entity.
@@ -352,13 +364,13 @@ public class ExtendedModifierUtils {
 	 * This is determined by inspecting the {@code "ERModAdded"} boolean tag stored in the
 	 * {@link CompoundNBT} of the stack. If the tag exists and is set to
 	 * {@code true}, the item has had modifiers added using
-	 * {@link #generateItemModifiersTagged(Random, ItemStack, boolean, boolean)}.
+	 * {@link #generateItemModifiersTagged(Random, ItemStack, boolean, boolean, ItemStack)}.
 	 * </p>
 	 *
 	 * @param stack the {@link ItemStack} to check
 	 * @return {@code true} if the item has the {@code "ERModAdded"} tag set to {@code true}, otherwise {@code false}
 	 * @see #addModifierAddedTag(ItemStack)
-	 * @see #generateItemModifiersTagged(Random, ItemStack, boolean, boolean)
+	 * @see #generateItemModifiersTagged(Random, ItemStack, boolean, boolean, ItemStack)
 	 */
 	public static boolean hasRandomModifiers(ItemStack stack) {
 		if (stack.hasTag() && stack.getTag().contains("ERModAdded")) {
@@ -377,10 +389,24 @@ public class ExtendedModifierUtils {
 	 *
 	 * @param stack the {@link ItemStack} to tag
 	 * @see #hasRandomModifiers(ItemStack)
-	 * @see #generateItemModifiersTagged(Random, ItemStack, boolean, boolean)
+	 * @see #generateItemModifiersTagged(Random, ItemStack, boolean, boolean, ItemStack)
 	 */
 	public static void addModifierAddedTag(ItemStack stack) {
 		stack.getOrCreateTag().putBoolean("ERModAdded", true);
+	}
+	/**
+	 * Removes the {@code "ERModAdded"} tag on the given {@link ItemStack}, marking
+	 * it as not having random modifiers applied.
+	 * <p>
+	 * This method does not remove modifiers by itself — it simply ensures that the item
+	 * can be recognized as not modified by {@link #hasRandomModifiers(ItemStack)}.
+	 * </p>
+	 *
+	 * @param pStack the {@link ItemStack} to clear the tag
+	 * @see #addModifierAddedTag(ItemStack)
+	 */
+	public static void removeModifierAddedTag(ItemStack pStack) {
+		pStack.removeTagKey("ERModAdded");
 	}
 	/**
 	 * Retrieves all modifiers associated with the given {@link ItemStack}.
@@ -494,7 +520,24 @@ public class ExtendedModifierUtils {
 	 * Generates and applies one or more modifiers to the given {@link ItemStack}, then
 	 * marks the item with a persistent tag indicating that modifiers have been added.
 	 * <p>
-	 * This method behaves like {@link #generateItemModifiers(Random, ItemStack, boolean, boolean)},
+	 * This overload uses {@link ItemStack#EMPTY} as the modifier tweaker stack.
+	 * </p>
+	 *
+	 * @param pRandom     the {@link Random} instance used to generate modifier selection
+	 * @param pStack      the {@link ItemStack} to which modifiers will be applied
+	 * @param reforging   whether the item is being reforged
+	 * @param noNegatives if true, negative modifiers are excluded from the selection pool
+	 * @return the modified {@link ItemStack}, tagged as having modifiers added
+	 * @see #generateItemModifiersTagged(Random, ItemStack, boolean, boolean, ItemStack)
+	 */
+	public static ItemStack generateItemModifiersTagged(Random pRandom, ItemStack pStack, boolean reforging, boolean noNegatives) {
+		return generateItemModifiersTagged(pRandom, pStack, reforging, noNegatives, ItemStack.EMPTY);
+	}
+	/**
+	 * Generates and applies one or more modifiers to the given {@link ItemStack}, then
+	 * marks the item with a persistent tag indicating that modifiers have been added.
+	 * <p>
+	 * This method behaves like {@link #generateItemModifiers(Random, ItemStack, boolean, boolean, ItemStack)},
 	 * but additionally sets the {@code "ERModAdded"} tag on the {@link ItemStack}. This tag can be
 	 * checked using {@link #hasRandomModifiers(ItemStack)} to determine whether the item has been
 	 * processed by the modifier system.
@@ -504,13 +547,14 @@ public class ExtendedModifierUtils {
 	 * @param pStack       the {@link ItemStack} to which modifiers will be applied
 	 * @param reforging    whether the item is being reforged (affects which modifiers are eligible)
 	 * @param noNegatives  if true, negative modifiers are excluded from the selection pool
+	 * @param modifierTweaker additional stack passed for further modifier customization
 	 * @return the modified {@link ItemStack}, tagged as having modifiers added
-	 * @see #generateItemModifiers(Random, ItemStack, boolean, boolean)
+	 * @see #generateItemModifiers(Random, ItemStack, boolean, boolean, ItemStack)
 	 * @see #hasRandomModifiers(ItemStack)
 	 * @see #addModifierAddedTag(ItemStack)
 	 */
-	public static ItemStack generateItemModifiersTagged(Random pRandom, ItemStack pStack, boolean reforging, boolean noNegatives) {
-		generateItemModifiers(pRandom, pStack, reforging, noNegatives);
+	public static ItemStack generateItemModifiersTagged(Random pRandom, ItemStack pStack, boolean reforging, boolean noNegatives, ItemStack modifierTweaker) {
+		generateItemModifiers(pRandom, pStack, reforging, noNegatives, modifierTweaker);
 		addModifierAddedTag(pStack);
 		return pStack;
 	}
@@ -526,10 +570,11 @@ public class ExtendedModifierUtils {
 	 * @param pStack       the {@link ItemStack} to which modifiers will be applied
 	 * @param reforging    whether the item is being reforged (affects which modifiers are eligible)
 	 * @param noNegatives  if true, negative modifiers are excluded from the selection pool
+	 * @param modifierTweaker additional stack passed for further modifier customization
 	 * @return the modified {@link ItemStack}, possibly with one or more modifiers applied
 	 */
-	public static ItemStack generateItemModifiers(Random pRandom, ItemStack pStack, boolean reforging, boolean noNegatives) {
-		List<ExtendedModifier> list = selectModifiers(pRandom, pStack, reforging, noNegatives);
+	public static ItemStack generateItemModifiers(Random pRandom, ItemStack pStack, boolean reforging, boolean noNegatives, ItemStack modifierTweaker) {
+		List<ExtendedModifier> list = selectModifiers(pRandom, pStack, reforging, noNegatives, modifierTweaker);
 		if(reforging) {
 			List<ExtendedModifier> existingNonRemovable = getModifierList(pStack).stream().filter(m -> !m.getRarity().countsTowardsLimit()).collect(Collectors.toList());
 			list.addAll(existingNonRemovable);
@@ -563,33 +608,36 @@ public class ExtendedModifierUtils {
 	 * @param pItemStack   the {@link ItemStack} being modified
 	 * @param reforging    whether the item is being reforged (affects which modifiers are eligible)
 	 * @param noNegatives  if true, excludes all negative modifiers from selection
+	 * @param modifierTweaker additional stack passed for further modifier customization
 	 * @return a {@link List} of {@link ExtendedModifier} instances that can be applied to the item
 	 */
-	public static List<ExtendedModifier> selectModifiers(Random pRandom, ItemStack pItemStack, boolean reforging, boolean noNegatives) {
+	public static List<ExtendedModifier> selectModifiers(Random pRandom, ItemStack pItemStack, boolean reforging, boolean noNegatives, ItemStack modifierTweaker) {
 		List<ExtendedModifier> newModifiers = Lists.newArrayList();
 		boolean isScroll = pItemStack.getItem() == ExtendedItems.MODIFIER_SCROLL.get();
 		if(isScroll) {
 			noNegatives = true;
 		}
-		List<ExtendedModifier> applicableModifiers = getAvailableModifiersResults(reforging, pItemStack, noNegatives, isScroll);
+		List<ExtendedModifier> applicableModifiers = getAvailableModifiersResults(reforging, pItemStack, noNegatives, isScroll, modifierTweaker);
 		if (!applicableModifiers.isEmpty()) {
 			if(isScroll) {
 				newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 				return newModifiers;
 			}
 			int chance = pRandom.nextInt(100);
+			
 			if(chance < 60) {
+				// 45.45%
 				newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 				filterCompatibleModifiers(applicableModifiers, Util.lastOf(newModifiers));
 				if(chance < 15 && !applicableModifiers.isEmpty()) {
+					// 14.85%
 					newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 					filterCompatibleModifiers(applicableModifiers, Util.lastOf(newModifiers));
 					if(pRandom.nextInt(100) == 0 && !applicableModifiers.isEmpty()) {
+						// 0.15%
 						newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 					}
 				}
-			}else if(chance < 15) {
-				newModifiers.add(WeightedRandom.getRandomItem(pRandom, applicableModifiers));
 			}
 		}
 		return newModifiers;
@@ -625,9 +673,10 @@ public class ExtendedModifierUtils {
 	 * @param pStack       the {@link ItemStack} being evaluated
 	 * @param noNegatives  if true, excludes modifiers with negative levels
 	 * @param isScroll     whether the item is a modifier scroll (restricts allowed modifiers)
+	 * @param modifierTweaker additional stack passed for further modifier customization
 	 * @return a {@link List} of {@link ExtendedModifier} objects eligible for selection
 	 */
-	public static List<ExtendedModifier> getAvailableModifiersResults(boolean reforging, ItemStack pStack, boolean noNegatives, boolean isScroll) {
+	public static List<ExtendedModifier> getAvailableModifiersResults(boolean reforging, ItemStack pStack, boolean noNegatives, boolean isScroll, ItemStack modifierTweaker) {
 		List<ExtendedModifier> list = Lists.newArrayList();
 
 		for(ExtendedModifier modifier : ExtendedModifiers.ALL) {
@@ -640,6 +689,9 @@ public class ExtendedModifierUtils {
 					continue;
 				}
 				if(!modifier.canApplyToItem(pStack) && !(pStack.getItem()==ExtendedItems.MODIFIER_SCROLL.get() && modifier.getScroll()!=ExtendedModifierScroll.NOSCROLL)) {
+					continue;
+				}
+				if(modifierTweaker.getItem() instanceof ExtendedModifierReforgeTomeItem && ((ExtendedModifierReforgeTomeItem)modifierTweaker.getItem()).isBannedType(modifier.getModifierType())) {
 					continue;
 				}
 				list.add(modifier);
@@ -662,7 +714,7 @@ public class ExtendedModifierUtils {
 		if (enchantment == Enchantments.MOB_LOOTING || enchantment == Enchantments.BLOCK_FORTUNE) {
 			return ExtendedModifierType.LOOTING;
 		} else if (enchantment == Enchantments.KNOCKBACK) {
-			return ExtendedModifierType.MEELE_KNOCKBACK;
+			return ExtendedModifierType.MELEE_KNOCKBACK;
 		} else if (enchantment == Enchantments.FLAMING_ARROWS) {
 			return ExtendedModifierType.INFERNAL;
 		} else if (enchantment == Enchantments.FIRE_ASPECT) {

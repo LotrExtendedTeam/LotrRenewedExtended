@@ -7,16 +7,13 @@ import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.hiredunits.ExtendedClientHiredUnitProfile;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEquipmentSlotType;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitAttackType;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedEquipmentSlotType;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentSlot.ArmorSlot;
-import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentSlot.MeleeSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentSlot.OffhandSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitEquipmentSlot.RangedSlot;
 
-import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.ExtendedHiredUnitHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -34,19 +31,17 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedHiredUnitEquipmentContainer extends Container implements IContainerListener {
+public class ExtendedHiredUnitEquipmentContainer extends ExtendedHiredUnitContainer implements IContainerListener {
 
 	private ArmorSlot[] armorSlots = new ArmorSlot[4];
-	private MeleeSlot meleeSlot;
+	private ExtendedHiredUnitEquipmentSlot meleeSlot;
 	private OffhandSlot offhandSlot;
 	private RangedSlot rangedSlot;
-    public final int entityId;
     public final ExtendedClientHiredUnitProfile profile;
 
-    public static final ResourceLocation EMPTY_ARMOR_SLOT_BOW = new ResourceLocation(LotrExtendedMod.MODID, "item/empty_armor_slot_bow");
-    public static final ResourceLocation EMPTY_ARMOR_SLOT_SWORD = new ResourceLocation(LotrExtendedMod.MODID, "item/empty_armor_slot_sword");
-
-    private NPCEntity companion;
+    public static final ResourceLocation EMPTY_SLOT_BOW = new ResourceLocation(LotrExtendedMod.MODID, "item/empty_slot_bow");
+    public static final ResourceLocation EMPTY_SLOT_SWORD = new ResourceLocation(LotrExtendedMod.MODID, "item/empty_slot_sword");
+    public static final ResourceLocation EMPTY_SLOT_HOE = new ResourceLocation(LotrExtendedMod.MODID, "item/empty_slot_hoe");
 
     // TODO: Update this
     public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotrextended.hired_unit_equipment");
@@ -55,11 +50,10 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     private Inventory baseEquipment;
 
     public ExtendedHiredUnitEquipmentContainer(int pContainerId, PlayerInventory pPlayerInventory, PacketBuffer extraData) {
-        super(ExtendedContainerTypes.HIRED_UNIT_EQUIPMENT.get(), pContainerId);
+        super(ExtendedContainerTypes.HIRED_UNIT_EQUIPMENT.get(), pContainerId, pPlayerInventory, extraData);
 
         // Read in packet data
         CompoundNBT nbt = extraData.readAnySizeNbt();
-        this.entityId = nbt.getInt("entityId");
         this.profile = ExtendedClientHiredUnitProfile.fromNetwork(nbt);
 
         // Read equipment from NBT
@@ -83,50 +77,49 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
         	}
         }
 
-        // Get companion from this container
-        this.companion = (NPCEntity) pPlayerInventory.player.level.getEntity(entityId);
-
-
         // add the 3 rows of player inventory
         for (int l = 0; l < 3; ++l) {
             for (int j1 = 0; j1 < 9; ++j1) {
-                this.addSlot(new Slot(pPlayerInventory, j1 + l * 9 + 9, 8 + j1 * 18, 142 + l * 18));
+                this.addSlot(new Slot(pPlayerInventory, j1 + l * 9 + 9, 8 + j1 * 18, 140 + l * 18));
             }
         }
 
         // add the player's hotbar
         for (int i1 = 0; i1 < 9; ++i1) {
-            this.addSlot(new Slot(pPlayerInventory, i1, 8 + i1 * 18, 200));
+            this.addSlot(new Slot(pPlayerInventory, i1, 8 + i1 * 18, 198));
         }
 
         // setup 4 custom armor slots
-        armorSlots[0]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 0, 8, 31, ExtendedEquipmentSlotType.HEAD, PlayerContainer.EMPTY_ARMOR_SLOT_HELMET));
-        armorSlots[1]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 1, 8, 49, ExtendedEquipmentSlotType.CHEST, PlayerContainer.EMPTY_ARMOR_SLOT_CHESTPLATE));
-        armorSlots[2]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 2, 8, 67, ExtendedEquipmentSlotType.LEGS, PlayerContainer.EMPTY_ARMOR_SLOT_LEGGINGS));
-        armorSlots[3]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 3, 8, 85, ExtendedEquipmentSlotType.FEET, PlayerContainer.EMPTY_ARMOR_SLOT_BOOTS));
+        armorSlots[0]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 0, 91, 43, ExtendedEquipmentSlotType.HEAD, PlayerContainer.EMPTY_ARMOR_SLOT_HELMET));
+        armorSlots[1]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 1, 91, 61, ExtendedEquipmentSlotType.CHEST, PlayerContainer.EMPTY_ARMOR_SLOT_CHESTPLATE));
+        armorSlots[2]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 2, 91, 79, ExtendedEquipmentSlotType.LEGS, PlayerContainer.EMPTY_ARMOR_SLOT_LEGGINGS));
+        armorSlots[3]=(ArmorSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.ArmorSlot(playerEquipment, 3, 91, 97, ExtendedEquipmentSlotType.FEET, PlayerContainer.EMPTY_ARMOR_SLOT_BOOTS));
 
         // Setup hand slots
-        meleeSlot = (MeleeSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.MeleeSlot(playerEquipment, 4, 62, 67, EMPTY_ARMOR_SLOT_SWORD));
-        if(profile.getAttackType()==ExtendedUnitAttackType.RANGED) {
-            rangedSlot = (RangedSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.RangedSlot(playerEquipment, 5, 62, 49,EMPTY_ARMOR_SLOT_BOW));
+        if(profile.getUnitType().isFarming()) {
+        	meleeSlot = (ExtendedHiredUnitEquipmentSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.FarmhandMeleeSlot(playerEquipment, 4, 145, 79, EMPTY_SLOT_HOE));
+        }else {
+        	meleeSlot = (ExtendedHiredUnitEquipmentSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.MeleeSlot(playerEquipment, 4, 145, 79, EMPTY_SLOT_SWORD));
         }
-        offhandSlot = (OffhandSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.OffhandSlot(playerEquipment, 9, 62, 85, PlayerContainer.EMPTY_ARMOR_SLOT_SHIELD));
-
+        if(profile.getUnitType().isRanged()) {
+            rangedSlot = (RangedSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.RangedSlot(playerEquipment, 5, 145, 61, EMPTY_SLOT_BOW));
+        }
+        offhandSlot = (OffhandSlot)this.addSlot(new ExtendedHiredUnitEquipmentSlot.OffhandSlot(playerEquipment, 9, 145, 97, PlayerContainer.EMPTY_ARMOR_SLOT_SHIELD));
         this.addSlotListener(this);
     }
 
     @Override
-    public ItemStack quickMoveStack(PlayerEntity player, int p_39254_) {
-    	Slot slot = this.slots.get(p_39254_);
+    public ItemStack quickMoveStack(PlayerEntity pPlayer, int pIndex) {
+    	Slot slot = this.slots.get(pIndex);
 
     	if(slot!=null && slot.hasItem()) {
     		// handle shift-clicking equipment and sending it back to the player's inventory
     		if(slot instanceof ExtendedHiredUnitEquipmentSlot) {
-    			if (player.inventory.getFreeSlot() > -1 || player.inventory.getSlotWithRemainingSpace(slot.getItem()) > -1) {
-    				player.addItem(slot.getItem());
+    			if (pPlayer.inventory.getFreeSlot() > -1 || pPlayer.inventory.getSlotWithRemainingSpace(slot.getItem()) > -1) {
+    				pPlayer.addItem(slot.getItem());
     				slot.set(ItemStack.EMPTY);
     				slot.setChanged();
-    				ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ((ExtendedHiredUnitEquipmentSlot)slot).getEquipmentSlotType(), ItemStack.EMPTY);
+    				ExtendedHiredUnitHelper.updateEquipmentSlot(getCompanion(), ((ExtendedHiredUnitEquipmentSlot)slot).getEquipmentSlotType(), ItemStack.EMPTY);
     			} else {
     				return ItemStack.EMPTY;
     			}
@@ -148,7 +141,7 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     				if(!equipmentslot.hasItem() && equipmentslot.mayPlaceShifting(shiftingItem)) {
     					equipmentslot.set(shiftingItem);
     					equipmentslot.setChanged();
-    					ExtendedHiredUnitHelper.updateEquipmentSlot(companion, equipmentslot.getEquipmentSlotType(), shiftingItem);
+    					ExtendedHiredUnitHelper.updateEquipmentSlot(getCompanion(), equipmentslot.getEquipmentSlotType(), shiftingItem);
     					slot.set(ItemStack.EMPTY);
         				slot.setChanged();
         				//player.inventory.setItem(slot.index, ItemStack.EMPTY);
@@ -173,8 +166,8 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     }
 
     public static void writeContainerInitData(PacketBuffer extraData, int entityId, ExtendedServerHiredUnitProfile serverUnitProfile, List<ItemStack> equipment) {
-        CompoundNBT nbt = new CompoundNBT();
-        nbt.putInt("entityId", entityId); // write the entity Id
+    	ExtendedHiredUnitContainer.writeContainerInitData(extraData, entityId);
+    	CompoundNBT nbt = new CompoundNBT();
         ExtendedClientHiredUnitProfile.toNetwork(serverUnitProfile, nbt); // Write server unit profile to client
 
         // write their equipment including empty slots
@@ -194,21 +187,21 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
     }
 
     @Override
-    public void refreshContainer(Container p_71110_1_, NonNullList<ItemStack> p_71110_2_) {
+    public void refreshContainer(Container pContainerToSend, NonNullList<ItemStack> pItemsList) {
 
     }
 
     @Override
-    public void slotChanged(Container pContainer, int slotIndex, ItemStack itemStack) {
+    public void slotChanged(Container pContainerToSend, int pIndex, ItemStack pStack) {
     	for(Slot slot : slots) {
-    		if(slot instanceof ExtendedHiredUnitEquipmentSlot && slot.index==slotIndex) {
-    			ExtendedHiredUnitHelper.updateEquipmentSlot(companion, ((ExtendedHiredUnitEquipmentSlot)slot).getEquipmentSlotType(), itemStack);
+    		if(slot instanceof ExtendedHiredUnitEquipmentSlot && slot.index==pIndex) {
+    			ExtendedHiredUnitHelper.updateEquipmentSlot(getCompanion(), ((ExtendedHiredUnitEquipmentSlot)slot).getEquipmentSlotType(), pStack);
     		}
     	}
     }
 
     @Override
-    public void setContainerData(Container p_71112_1_, int p_71112_2_, int p_71112_3_) {
+    public void setContainerData(Container pContainer, int pVarToUpdate, int pNewValue) {
 
     }
 
@@ -217,27 +210,19 @@ public class ExtendedHiredUnitEquipmentContainer extends Container implements IC
 	}
 
 	@Nullable
-	public RangedSlot getRangedSlot() {
+	public Slot getRangedSlot() {
 		return rangedSlot;
 	}
 
-	public MeleeSlot getMeleeSlot() {
+	public Slot getMeleeSlot() {
 		return meleeSlot;
 	}
 
-	public OffhandSlot getOffhandSlot() {
+	public Slot getOffhandSlot() {
 		return offhandSlot;
 	}
 
 	public Inventory getBaseInventory() {
 		return baseEquipment;
-	}
-
-	public NPCEntity getCompanion() {
-		return companion;
-	}
-
-	public int getEntityId() {
-		return entityId;
 	}
 }

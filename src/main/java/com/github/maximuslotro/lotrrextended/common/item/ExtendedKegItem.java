@@ -3,6 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.item;
 import java.util.List;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrextended.mixins.lotr.common.item.MixinVesselDrinkItemAccessor;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
@@ -52,8 +53,8 @@ public class ExtendedKegItem extends BlockItem {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack pKegStack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-		CompoundNBT blockEntityTag = pKegStack.getTagElement("BlockEntityTag");
+	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		CompoundNBT blockEntityTag = pStack.getTagElement("BlockEntityTag");
 		if (blockEntityTag != null && blockEntityTag.contains("KegDroppableData")) {
 			CompoundNBT kegData = blockEntityTag.getCompound("KegDroppableData");
 			ListNBT items = kegData.getList("Items", 10);
@@ -82,18 +83,18 @@ public class ExtendedKegItem extends BlockItem {
 				if (brewTime > 0 && !recipe.isEmpty()) {
 					float progress = (float) brewTime / brewTimeTotal * 100f;
 					if(potencyName.equals(StringTextComponent.EMPTY)) {
-						tooltip.add(new TranslationTextComponent("Brewing %s", drinkName));
+						pTooltip.add(new TranslationTextComponent("Brewing %s", drinkName));
 					}else {
-						tooltip.add(new TranslationTextComponent("Brewing %s (%s)", drinkName, potencyName).withStyle(TextFormatting.GRAY));
+						pTooltip.add(new TranslationTextComponent("Brewing %s (%s)", drinkName, potencyName).withStyle(TextFormatting.GRAY));
 					}
-					tooltip.add(new TranslationTextComponent("Brew Progress: %s%%", (int) progress).withStyle(TextFormatting.GRAY));
+					pTooltip.add(new TranslationTextComponent("Brew Progress: %s%%", (int) progress).withStyle(TextFormatting.GRAY));
 
 					return;
 				}
 				if(potencyName.equals(StringTextComponent.EMPTY)) {
-					tooltip.add(new TranslationTextComponent("%s %s", drinkName, count).withStyle(TextFormatting.GRAY));
+					pTooltip.add(new TranslationTextComponent("%s %s", drinkName, count).withStyle(TextFormatting.GRAY));
 				}else {
-					tooltip.add(new TranslationTextComponent("%s (%s) %s", drinkName, potencyName, count).withStyle(TextFormatting.GRAY));
+					pTooltip.add(new TranslationTextComponent("%s (%s) %s", drinkName, potencyName, count).withStyle(TextFormatting.GRAY));
 				}
 				if (drink.drinkAlcoholicity > 0.0F) {
 					float alc = ((MixinVesselDrinkItemAccessor)drink).invokeGetAlcoholicityForStrength(output) * 10.0F;
@@ -104,24 +105,24 @@ public class ExtendedKegItem extends BlockItem {
 					else if (alc < 20.0F) color = TextFormatting.RED;
 					else color = TextFormatting.DARK_RED;
 
-					tooltip.add(new TranslationTextComponent("item.lotr.drink.alcoholicity", alc).withStyle(color));
+					pTooltip.add(new TranslationTextComponent("item.lotr.drink.alcoholicity", alc).withStyle(color));
 				}
 				if (kegData.contains("RecipesUsed")) {
 					ListNBT recipesList = kegData.getList("RecipesUsed", 10);
 					if(!recipesList.isEmpty()) {
-						tooltip.add(new TranslationTextComponent("Contains unclaimed recipe data").withStyle(TextFormatting.GRAY));
+						pTooltip.add(new TranslationTextComponent("Contains unclaimed recipe data").withStyle(TextFormatting.GRAY));
 					}
 				}
 
 				if (((MixinVesselDrinkItemAccessor)drink).getDrinkDamage() > 0.0F) {
 					float dmg = ((MixinVesselDrinkItemAccessor)drink).invokeGetDrinkDamageForStrength(output);
-					tooltip.add(new TranslationTextComponent("item.lotr.drink.damage", dmg).withStyle(TextFormatting.RED));
+					pTooltip.add(new TranslationTextComponent("item.lotr.drink.damage", dmg).withStyle(TextFormatting.RED));
 				}
 
-				if(flag.isAdvanced()) {
-					((MixinVesselDrinkItemAccessor)drink).invokeAddPreEffectsTooltip(output, world, tooltip, flag);
+				if(pFlag.isAdvanced()) {
+					((MixinVesselDrinkItemAccessor)drink).invokeAddPreEffectsTooltip(output, pLevel, pTooltip, pFlag);
 					LivingEntity relevantEntity = LOTRMod.PROXY.getClientPlayer();
-					VesselDrinkItem.addPotionEffectsToTooltip(output, tooltip, flag, ((MixinVesselDrinkItemAccessor)drink).invokeConvertPotionEffectsForStrengthAndEntity(output, relevantEntity));
+					VesselDrinkItem.addPotionEffectsToTooltip(output, pTooltip, pFlag, ((MixinVesselDrinkItemAccessor)drink).invokeConvertPotionEffectsForStrengthAndEntity(output, relevantEntity));
 				}
 			}
 		}

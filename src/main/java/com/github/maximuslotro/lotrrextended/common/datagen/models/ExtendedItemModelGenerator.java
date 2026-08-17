@@ -1,8 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.models;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedBarsBlock;
@@ -18,6 +21,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCrossbowItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedEntitySpawnerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedLeatherHatItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
@@ -27,6 +31,9 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedSwordItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedStaffItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
+import com.google.common.collect.ImmutableSet;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import lotr.common.block.ChandelierBlock;
 import lotr.common.block.LOTRDoorBlock;
@@ -35,6 +42,7 @@ import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.block.VesselDrinkBlock;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.init.ExtendedItems;
+import lotr.common.init.LOTRItems;
 import lotr.common.item.DaggerItem;
 import lotr.common.item.FallenLeavesItem;
 import lotr.common.item.HammerItem;
@@ -45,6 +53,8 @@ import lotr.common.item.SpearItem;
 import lotr.common.item.VesselDrinkItem;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.DirectoryCache;
+import net.minecraft.data.IDataProvider;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
@@ -61,18 +71,43 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedItemModelGenerator extends ItemModelProvider {
+	private static final Set<String> DIVERTED_MODELS = ImmutableSet.of(
+		"item/arnor_dagger", "item/blue_dwarven_dagger", "item/bronze_dagger", "item/dale_dagger",
+		"item/dol_amroth_dagger", "item/dorwinion_elven_dagger", "item/dwarven_dagger", "item/galadhrim_dagger",
+		"item/gondor_dagger", "item/harad_dagger", "item/iron_dagger", "item/lindon_dagger",
+		"item/mithril_dagger", "item/mordor_dagger", "item/rivendell_dagger", "item/rohan_dagger",
+		"item/stone_dagger", "item/umbar_dagger", "item/uruk_dagger", "item/wood_elven_dagger", "item/wooden_dagger");
+	private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
 
 	public ExtendedItemModelGenerator(DataGenerator generator, String modid, ExistingFileHelper existingFileHelper) {
 		super(generator, modid, existingFileHelper);
 	}
 
+	@Override
+	protected void generateAll(DirectoryCache cache) {
+		for (ItemModelBuilder model : generatedModels.values()) {
+			ResourceLocation loc = model.getLocation();
+			Path target;
+			if (DIVERTED_MODELS.contains(loc.getPath())) {
+				target = generator.getOutputFolder().resolve("resourcepacks/extended/assets/" + loc.getNamespace() + "/models/" + loc.getPath() + ".json");
+			} else {
+				target = generator.getOutputFolder().resolve("assets/" + loc.getNamespace() + "/models/" + loc.getPath() + ".json");
+			}
+			try {
+				IDataProvider.save(GSON, cache, model.toJson(), target);
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+		}
+	}
+
 	public ResourceLocation lotrExtendedLoc(String name) {
-        return new ResourceLocation("lotrextended", name);
-    }
+		return new ResourceLocation("lotrextended", name);
+	}
 
 	public ResourceLocation lotrLoc(String name) {
-        return new ResourceLocation("lotr", name);
-    }
+		return new ResourceLocation("lotr", name);
+	}
 
 	public void registerOverrides() {
 		genGenerated(ExtendedItems.MORGUL_BRAZIER.getId().getPath(), lotrExtendedLoc("item/"+ExtendedItems.MORGUL_BRAZIER.getId().getPath()));
@@ -85,7 +120,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	protected void registerModels() {
 		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDBLOCKITEMS.entrySet()) {
 			if((((BlockItem)item.getValue().get()).getBlock() instanceof LOTRDoorBlock) || (((BlockItem)item.getValue().get()).getBlock() instanceof DoorBlock)
-					|| (((BlockItem)item.getValue().get()).getBlock() instanceof ChandelierBlock)) {
+				|| (((BlockItem)item.getValue().get()).getBlock() instanceof ChandelierBlock)) {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
@@ -182,11 +217,11 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genGenerated(item.getKey(), lotrExtendedLoc("item/banner_pattern"));
 				BannerPattern pattern = ((BannerPatternItem)item.getValue().get()).getBannerPattern();
 				if (!this.existingFileHelper.exists(new ResourceLocation("minecraft", "textures/entity/banner/"+pattern.getFilename()+".png"), ResourcePackType.CLIENT_RESOURCES)) {
-	                System.out.println("Missing banner banner pattern texture: " + pattern.getFilename() + ".png");
-	            }
+					System.out.println("Missing banner banner pattern texture: " + pattern.getFilename() + ".png");
+				}
 				if (!this.existingFileHelper.exists(new ResourceLocation("minecraft", "textures/entity/shield/"+pattern.getFilename()+".png"), ResourcePackType.CLIENT_RESOURCES)) {
-	                System.out.println("Missing shield banner pattern texture: " + pattern.getFilename() + ".png");
-	            }
+					System.out.println("Missing shield banner pattern texture: " + pattern.getFilename() + ".png");
+				}
 				continue;
 			}
 			if(item.getValue().get() instanceof SpearItem) {
@@ -200,9 +235,8 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 				genStaff(item.getKey());
 				continue;
 			}
-			if(item.getValue().get() instanceof DaggerItem) {
-				genDaggerSneaking(item.getKey());
-				genDagger(item.getKey());
+			if(item.getValue().get() instanceof ExtendedDaggerItem) {
+				genDagger(item.getKey(), lotrExtendedLoc("item/"+item.getKey()), lotrExtendedLoc("item/"+item.getKey()+"_poisoned"));
 				continue;
 			}
 			if(item.getValue().get() instanceof ExtendedSwordItem || item.getValue().get() instanceof HammerItem) {
@@ -227,10 +261,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			}
 
 			if((item.getValue().get() instanceof PickaxeItem) || (item.getValue().get() instanceof ShovelItem)
-					|| (item.getValue().get() instanceof AxeItem)
-					|| (item.getValue().get() instanceof LOTRHoeItem)
-					|| (item.getValue().get() instanceof ExtendedMattockItem)
-					|| (item.getValue().get() instanceof ExtendedThrowableAxeItem)) {
+				|| (item.getValue().get() instanceof AxeItem)
+				|| (item.getValue().get() instanceof LOTRHoeItem)
+				|| (item.getValue().get() instanceof ExtendedMattockItem)
+				|| (item.getValue().get() instanceof ExtendedThrowableAxeItem)) {
 				genHandheld(item.getKey(), lotrExtendedLoc("item/"+item.getKey()));
 				continue;
 			}
@@ -273,6 +307,24 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		for(String entity : ExtendedEntities.REGISTEREDANIMALENTITIES) {
 			withExistingParent("lotr:"+entity+"_spawn_egg", "item/template_spawn_egg");
 		}
+		for(RegistryObject<Item> item : LOTRItems.ITEMS.getEntries()) {
+			if(item.get() instanceof DaggerItem) {
+				if(item.get()==LOTRItems.DORWINION_ELVEN_DAGGER.get()||item.get()==LOTRItems.GALADHRIM_DAGGER.get()
+					||item.get()==LOTRItems.LINDON_DAGGER.get()||item.get()==LOTRItems.RIVENDELL_DAGGER.get()||item.get()==LOTRItems.WOOD_ELVEN_DAGGER.get()) {
+					genDaggerElven(item.get().getRegistryName().getPath(), 
+						lotrLoc("item/"+item.get().getRegistryName().getPath()), 
+						lotrExtendedLoc("item/"+item.get().getRegistryName().getPath()+"_poisoned"), 
+						lotrLoc("item/"+item.get().getRegistryName().getPath()+"_glowing"), 
+						lotrExtendedLoc("item/"+item.get().getRegistryName().getPath()+"_glowing_poisoned")
+						);
+					continue;
+				}
+				genDagger(item.get().getRegistryName().getPath(), 
+					lotrLoc("item/"+item.get().getRegistryName().getPath()), 
+					lotrExtendedLoc("item/"+item.get().getRegistryName().getPath()+"_poisoned"));
+				continue;
+			}
+		}
 		registerOverrides();
 	}
 
@@ -283,28 +335,28 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 	private void genBow(String name) {
 		String bow = "lotr:"+name;
-//		String bowPulling0 = name+"_pulling_0";
-//		String bowPulling1 = name+"_pulling_1";
-//		String bowPulling2 = name+"_pulling_2";
+		//		String bowPulling0 = name+"_pulling_0";
+		//		String bowPulling1 = name+"_pulling_1";
+		//		String bowPulling2 = name+"_pulling_2";
 		String bowhandheld = "lotr:"+name+"_handheld";
 		String bowhandheldPulling0 = name+"_handheld_pulling_0";
 		String bowhandheldPulling1 = name+"_handheld_pulling_1";
 		String bowhandheldPulling2 = name+"_handheld_pulling_2";
 
-		ItemModelBuilder builder_bow_handleld = gen(withExistingParent(bowhandheld, "lotrextended:item/template_bow"), false, lotrExtendedLoc("item/"+name+"_handheld"));
-		ItemModelBuilder builder_bow_handleld_p0 = gen(withExistingParent("lotr:item/"+bowhandheldPulling0, bowhandheld), false, lotrExtendedLoc("item/"+name+"_handheld_pulling_0"));
-		ItemModelBuilder builder_bow_handleld_p1 = gen(withExistingParent("lotr:item/"+bowhandheldPulling1, bowhandheld), false, lotrExtendedLoc("item/"+name+"_handheld_pulling_1"));
-		ItemModelBuilder builder_bow_handleld_2 = gen(withExistingParent("lotr:item/"+bowhandheldPulling2, bowhandheld), false, lotrExtendedLoc("item/"+name+"_handheld_pulling_2"));
-		ItemModelBuilder builder_bow = gen(withExistingParent(bow, "lotrextended:item/template_bow"), false, lotrExtendedLoc("item/"+name));
-//		ItemModelBuilder builder_bow_p0 = gen(withExistingParent("lotr:item/"+bowPulling0, bow), false, lotrExtendedLoc("item/"+name+"_pulling_0"));
-//		ItemModelBuilder builder_bow_p1 = gen(withExistingParent("lotr:item/"+bowPulling1, bow), false, lotrExtendedLoc("item/"+name+"_pulling_1"));
-//		ItemModelBuilder builder_bow_p2 = gen(withExistingParent("lotr:item/"+bowPulling2, bow), false, lotrExtendedLoc("item/"+name+"_pulling_2"));
+		ItemModelBuilder builder_bow_handleld = gen(withExistingParent(bowhandheld, "lotrextended:item/template_bow"), lotrExtendedLoc("item/"+name+"_handheld"));
+		ItemModelBuilder builder_bow_handleld_p0 = gen(withExistingParent("lotr:item/"+bowhandheldPulling0, bowhandheld), lotrExtendedLoc("item/"+name+"_handheld_pulling_0"));
+		ItemModelBuilder builder_bow_handleld_p1 = gen(withExistingParent("lotr:item/"+bowhandheldPulling1, bowhandheld), lotrExtendedLoc("item/"+name+"_handheld_pulling_1"));
+		ItemModelBuilder builder_bow_handleld_2 = gen(withExistingParent("lotr:item/"+bowhandheldPulling2, bowhandheld), lotrExtendedLoc("item/"+name+"_handheld_pulling_2"));
+		ItemModelBuilder builder_bow = gen(withExistingParent(bow, "lotrextended:item/template_bow"), lotrExtendedLoc("item/"+name));
+		//		ItemModelBuilder builder_bow_p0 = gen(withExistingParent("lotr:item/"+bowPulling0, bow), false, lotrExtendedLoc("item/"+name+"_pulling_0"));
+		//		ItemModelBuilder builder_bow_p1 = gen(withExistingParent("lotr:item/"+bowPulling1, bow), false, lotrExtendedLoc("item/"+name+"_pulling_1"));
+		//		ItemModelBuilder builder_bow_p2 = gen(withExistingParent("lotr:item/"+bowPulling2, bow), false, lotrExtendedLoc("item/"+name+"_pulling_2"));
 		builder_bow_handleld.override().model(getExistingFile(lotrLoc(bowhandheldPulling0))).predicate(ExtendedItemModelsProperties.pulling, 1);
 		builder_bow_handleld.override().model(getExistingFile(lotrLoc(bowhandheldPulling1))).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.65F);
 		builder_bow_handleld.override().model(getExistingFile(lotrLoc(bowhandheldPulling2))).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.9F);
-//		builder_bow.override().model(getExistingFile(lotrLoc(bowPulling0))).predicate(ExtendedItemModelsProperties.pulling, 1);
-//		builder_bow.override().model(getExistingFile(lotrLoc(bowPulling1))).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.65F);
-//		builder_bow.override().model(getExistingFile(lotrLoc(bowPulling2))).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.9F);
+		//		builder_bow.override().model(getExistingFile(lotrLoc(bowPulling0))).predicate(ExtendedItemModelsProperties.pulling, 1);
+		//		builder_bow.override().model(getExistingFile(lotrLoc(bowPulling1))).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.65F);
+		//		builder_bow.override().model(getExistingFile(lotrLoc(bowPulling2))).predicate(ExtendedItemModelsProperties.pulling, 1).predicate(ExtendedItemModelsProperties.pull, 0.9F);
 	}
 
 	private ItemModelBuilder genDrink(String name, String location) {
@@ -316,39 +368,58 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 	private ItemModelBuilder genSwordLarge(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld", "lotr:item/handheld_large");
-		return gen(builder, false, lotrExtendedLoc("item/"+name+"_large"));
+		return gen(builder, lotrExtendedLoc("item/"+name+"_large"));
 	}
 
 	private ItemModelBuilder genStaff(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld", "lotr:item/handheld_spear");
-		return gen(builder, false, lotrExtendedLoc("item/"+name+"_large"));
+		return gen(builder, lotrExtendedLoc("item/"+name+"_large"));
 	}
 
 	private ItemModelBuilder genSpear(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld", "lotr:item/handheld_spear");
 		builder.override().model(getExistingFile(lotrLoc("item/"+name+"_handheld_pulling"))).predicate(mcLoc("pulling"), 1);
-		return gen(builder, false, lotrExtendedLoc("item/"+name+"_large"));
+		return gen(builder, lotrExtendedLoc("item/"+name+"_large"));
 	}
 
 	private ItemModelBuilder genSpearPulling(String name) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_handheld_pulling", "lotr:item/handheld_spear_pulling");
-		return gen(builder, false, lotrExtendedLoc("item/"+name+"_large"));
+		return gen(builder, lotrExtendedLoc("item/"+name+"_large"));
 	}
 
-	private ItemModelBuilder genDagger(String name) {
+	private ItemModelBuilder genDagger(String name, ResourceLocation texture, ResourceLocation texturePoisoned) {
+		ItemModelBuilder builderPos = gen(withExistingParent("lotrextended:"+name+"_poisoned", "lotr:item/handheld_dagger"), texturePoisoned);
+		ItemModelBuilder builderSneak = gen(withExistingParent("lotrextended:"+name+"_sneaking", "lotr:item/handheld_dagger_sneaking"), texture);
+		ItemModelBuilder builderSneakPos = gen(withExistingParent("lotrextended:"+name+"_sneaking_poisoned", "lotr:item/handheld_dagger_sneaking"), texturePoisoned);
 		ItemModelBuilder builder = withExistingParent("lotr:"+name, "lotr:item/handheld_dagger");
-		builder.override().model(getExistingFile(lotrLoc("item/"+name+"_sneaking"))).predicate(lotrLoc("sneaking"), 1);
-		return gen(builder, false, lotrExtendedLoc("item/"+name));
+		builder.override().model(builderPos).predicate(lotrLoc("sneaking"), 0).predicate(ExtendedItemModelsProperties.poisoned, 1);
+		builder.override().model(builderSneak).predicate(lotrLoc("sneaking"), 1).predicate(ExtendedItemModelsProperties.poisoned, 0);
+		builder.override().model(builderSneakPos).predicate(lotrLoc("sneaking"), 1).predicate(ExtendedItemModelsProperties.poisoned, 1);
+		return gen(builder, texture);
 	}
 
-	private ItemModelBuilder genDaggerSneaking(String name) {
-		ItemModelBuilder builder = withExistingParent("lotr:"+name+"_sneaking", "lotr:item/handheld_dagger_sneaking");
-		return gen(builder, false, lotrExtendedLoc("item/"+name));
+	private ItemModelBuilder genDaggerElven(String name, ResourceLocation texture, ResourceLocation texturePoisoned, ResourceLocation textureGlowing, ResourceLocation textureGlowingPoisoned) {
+		ItemModelBuilder builderGlow = gen(withExistingParent("lotrextended:"+name+"_glowing", "lotr:item/handheld_dagger"), textureGlowing);
+		ItemModelBuilder builderGlowSneak = gen(withExistingParent("lotrextended:"+name+"_glowing_sneaking", "lotr:item/handheld_dagger_sneaking"), textureGlowing);
+		ItemModelBuilder builderGlowPos = gen(withExistingParent("lotrextended:"+name+"_glowing_poisoned", "lotr:item/handheld_dagger"), textureGlowingPoisoned);
+		ItemModelBuilder builderGlowSneakPos = gen(withExistingParent("lotrextended:"+name+"_glowing_sneaking_poisoned", "lotr:item/handheld_dagger_sneaking"), textureGlowingPoisoned);
+		ItemModelBuilder builderSneak = gen(withExistingParent("lotrextended:"+name+"_sneaking", "lotr:item/handheld_dagger_sneaking"), texture);
+		ItemModelBuilder builderPos = gen(withExistingParent("lotrextended:"+name+"_poisoned", "lotr:item/handheld_dagger"), texturePoisoned);
+		ItemModelBuilder builderSneakPos = gen(withExistingParent("lotrextended:"+name+"_sneaking_poisoned", "lotr:item/handheld_dagger_sneaking"), texturePoisoned);
+		ItemModelBuilder builder = withExistingParent("lotr:"+name, "lotr:item/handheld_dagger");
+		builder.override().model(builderGlow).predicate(lotrLoc("elven_glow"), 1).predicate(lotrLoc("sneaking"), 0).predicate(ExtendedItemModelsProperties.poisoned, 0);
+		builder.override().model(builderGlowSneak).predicate(lotrLoc("elven_glow"), 1).predicate(lotrLoc("sneaking"), 1).predicate(ExtendedItemModelsProperties.poisoned, 0);
+		builder.override().model(builderGlowPos).predicate(lotrLoc("elven_glow"), 1).predicate(lotrLoc("sneaking"), 0).predicate(ExtendedItemModelsProperties.poisoned, 1);
+		builder.override().model(builderGlowSneakPos).predicate(lotrLoc("elven_glow"), 1).predicate(lotrLoc("sneaking"), 1).predicate(ExtendedItemModelsProperties.poisoned, 1);
+		builder.override().model(builderSneak).predicate(lotrLoc("elven_glow"), 0).predicate(lotrLoc("sneaking"), 1).predicate(ExtendedItemModelsProperties.poisoned, 0);
+		builder.override().model(builderPos).predicate(lotrLoc("elven_glow"), 0).predicate(lotrLoc("sneaking"), 0).predicate(ExtendedItemModelsProperties.poisoned, 1);
+		builder.override().model(builderSneakPos).predicate(lotrLoc("elven_glow"), 0).predicate(lotrLoc("sneaking"), 1).predicate(ExtendedItemModelsProperties.poisoned, 1);
+		return gen(builder, texture);
 	}
 
 	private ItemModelBuilder genGenerated(String name, ResourceLocation... layers) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name, "item/generated");
-		return gen(builder, false, layers);
+		return gen(builder, layers);
 	}
 
 	private ItemModelBuilder genGenerated(String name, boolean canFail, ResourceLocation... layers) {
@@ -358,7 +429,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 
 	private ItemModelBuilder genHandheld(String name, ResourceLocation... layers) {
 		ItemModelBuilder builder = withExistingParent("lotr:"+name, "item/handheld");
-		return gen(builder, false, layers);
+		return gen(builder, layers);
 	}
 
 	private ItemModelBuilder genCommandHorn(String name, String location) {
@@ -386,12 +457,12 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 	}
 
 	private ItemModelBuilder genCrossbow(String name, String location) {
-		ItemModelBuilder builder = gen(withExistingParent("lotr:"+name, mcLoc("item/crossbow")), false, lotrExtendedLoc(location+"_standby"));
-		ItemModelBuilder builder_0 = gen(withExistingParent(name+"_0", builder.getLocation()), false, lotrExtendedLoc(location+"_pulling_0"));
-		ItemModelBuilder builder_1 = gen(withExistingParent(name+"_1", builder.getLocation()), false, lotrExtendedLoc(location+"_pulling_1"));
-		ItemModelBuilder builder_2 = gen(withExistingParent(name+"_2", builder.getLocation()), false, lotrExtendedLoc(location+"_pulling_2"));
-		ItemModelBuilder builder_arrow = gen(withExistingParent(name+"_arrow", builder.getLocation()), false, lotrExtendedLoc(location+"_arrow"));
-		ItemModelBuilder builder_firework = gen(withExistingParent(name+"_firework", builder.getLocation()), false, lotrExtendedLoc(location+"_firework"));
+		ItemModelBuilder builder = gen(withExistingParent("lotr:"+name, mcLoc("item/crossbow")), lotrExtendedLoc(location+"_standby"));
+		ItemModelBuilder builder_0 = gen(withExistingParent(name+"_0", builder.getLocation()), lotrExtendedLoc(location+"_pulling_0"));
+		ItemModelBuilder builder_1 = gen(withExistingParent(name+"_1", builder.getLocation()), lotrExtendedLoc(location+"_pulling_1"));
+		ItemModelBuilder builder_2 = gen(withExistingParent(name+"_2", builder.getLocation()), lotrExtendedLoc(location+"_pulling_2"));
+		ItemModelBuilder builder_arrow = gen(withExistingParent(name+"_arrow", builder.getLocation()), lotrExtendedLoc(location+"_arrow"));
+		ItemModelBuilder builder_firework = gen(withExistingParent(name+"_firework", builder.getLocation()), lotrExtendedLoc(location+"_firework"));
 		builder.override().model(builder_0).predicate(new ResourceLocation("pulling"), 1);
 		builder.override().model(builder_1).predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.58F);
 		builder.override().model(builder_2).predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 1.0F);
@@ -406,7 +477,9 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 		builder.override().model(builder_iron_hot).predicate(ExtendedItemModelsProperties.heated, 1);
 		return builder;
 	}
-
+	private ItemModelBuilder gen(ItemModelBuilder builder, ResourceLocation... layers) {
+		return gen(builder, false, layers);
+	}
 	@SuppressWarnings("unchecked")
 	private ItemModelBuilder gen(ItemModelBuilder builder, boolean canFail, ResourceLocation... layers) {
 		try {
@@ -426,7 +499,7 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 					}
 				}
 			}else {
-				throw new IllegalArgumentException(e);
+				throw e;
 			}
 		}
 		return builder;

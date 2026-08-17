@@ -3,7 +3,7 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.feature;
 import java.util.BitSet;
 import java.util.Random;
 
-import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedBlockStateUtils;
 import com.mojang.serialization.Codec;
 
 import lotr.common.block.AxialSlabBlock;
@@ -138,7 +138,7 @@ public class ExtendedBlobFeature extends Feature<ExtendedBlobFeatureConfig> {
 														continue;
 													}
 													// No need for special copying since they are both VerticalOnlySlabBlock
-													world.setBlock(blockpos$mutable, BlockStateUtils.copyBlockStateToBlock(vanilla$crossover, state), 2);
+													world.setBlock(blockpos$mutable, ExtendedBlockStateUtils.copyBlockStateToBlock(vanilla$crossover, state), 2);
 												// Try to preserve the verticality of the existing block AxialSlabBlock that is vertical
 												} else if(state.getBlock() instanceof AxialSlabBlock && !(config.stateSlab.getBlock() instanceof AxialSlabBlock) && state.getValue(LOTRBlockStates.SLAB_AXIS) != Axis.Y) {
 													VerticalOnlySlabBlock vanilla$crossover = VerticalOnlySlabBlock.getVerticalSlabFor((SlabBlock) config.stateSlab.getBlock());
@@ -146,7 +146,7 @@ public class ExtendedBlobFeature extends Feature<ExtendedBlobFeatureConfig> {
 														continue;
 													}
 													// Also use this copy method so the AXIS can be converted to HORIZONTAL_AXIS
-													world.setBlock(blockpos$mutable, BlockStateUtils.copyBlockStateToBlockStateOverwriteSlab(vanilla$crossover.defaultBlockState(), state), 2);
+													world.setBlock(blockpos$mutable, ExtendedBlockStateUtils.copyBlockStateToBlockStateOverwriteSlab(vanilla$crossover.defaultBlockState(), state), 2);
 												// Try to preserve the vertical nature of the replacing axial block (in theory this should not ever be used)
 												} else if(!(state.getBlock() instanceof AxialSlabBlock) && config.stateSlab.getBlock() instanceof AxialSlabBlock && config.stateSlab.getValue(LOTRBlockStates.SLAB_AXIS) != Axis.Y) {
 													VerticalOnlySlabBlock vanilla$crossover = VerticalOnlySlabBlock.getVerticalSlabFor((SlabBlock) state.getBlock());
@@ -154,16 +154,16 @@ public class ExtendedBlobFeature extends Feature<ExtendedBlobFeatureConfig> {
 														continue;
 													}
 													// No need for secondary blockstate copy since both are in the Y-axis, only copy SlabBlock info
-													world.setBlock(blockpos$mutable, BlockStateUtils.copyBlockStateToBlock(vanilla$crossover, state), 2);
+													world.setBlock(blockpos$mutable, ExtendedBlockStateUtils.copyBlockStateToBlock(vanilla$crossover, state), 2);
 												// Just copy existing properties over if existing
 												} else {
 													// Also use this copy method so the HORIZONTAL_AXIS can be converted to AXIS
-													world.setBlock(blockpos$mutable, BlockStateUtils.copyBlockStateToBlockStateOverwriteSlab(config.stateSlab, state), 2);
+													world.setBlock(blockpos$mutable, ExtendedBlockStateUtils.copyBlockStateToBlockStateOverwriteSlab(config.stateSlab, state), 2);
 												}
 												++blocksPlaced;
 												continue;
 											}else if (config.targetStair.test(state, rand)) {
-												world.setBlock(blockpos$mutable, BlockStateUtils.copyBlockStateToBlockStateOverwrite(config.stateStair, state), 2);
+												world.setBlock(blockpos$mutable, ExtendedBlockStateUtils.copyBlockStateToBlockState(config.stateStair, state), 2);
 												++blocksPlaced;
 												continue;
 											}

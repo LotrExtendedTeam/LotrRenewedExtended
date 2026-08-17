@@ -1,9 +1,7 @@
 package lotr.common.entity.npc;
 
-import java.util.List;
-
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTypes;
 
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
 import lotr.common.init.ExtendedItems;
@@ -22,7 +20,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedUrukCaptainEntity extends UrukEntity implements ExtendedNPCEntitySettings, ExtendedCaptainEntity{
+public class ExtendedUrukCaptainEntity extends UrukEntity implements ExtendedINPCEntitySettings, ExtendedICaptainEntity{
 
 	public ExtendedUrukCaptainEntity(EntityType<? extends UrukEntity> type, World w) {
 		super(type, w);
@@ -53,19 +51,12 @@ public class ExtendedUrukCaptainEntity extends UrukEntity implements ExtendedNPC
 		this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.URUK_LEGGINGS.get()));
 		this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.URUK_CHESTPLATE.get()));
 		setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
-		this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.URUK_SHIELD.get()));
+		this.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 		return spawnData;
 	}
 
 	@Override
-	public List<ResourceLocation> getHireableProfiles() {
-		return java.util.Arrays.asList(ExtendedHiredUnitTypes.ISENGARD_SNAGA, ExtendedHiredUnitTypes.ISENGARD_SNAGA_ARCHER,
-				ExtendedHiredUnitTypes.ISENGARD_URUK, ExtendedHiredUnitTypes.ISENGARD_URUK_ARCHER, ExtendedHiredUnitTypes.ISENGARD_URUK_BERSERKER);
+	public ResourceLocation getCaptainProfile() {
+		return ExtendedCaptainTypes.ISENGARD_CAPTAIN;
 	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
-
 }

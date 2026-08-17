@@ -1,53 +1,72 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
+import com.mojang.datafixers.util.Pair;
+
 import lotr.common.event.CompostingHelper;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.CakeBlock;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Stats;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class ExtendedCakeBlock extends CakeBlock{
+public class ExtendedCakeBlock extends CakeBlock {
+	protected final Food foodProperties;
+	protected final ResourceLocation eatStat;
 
-	public ExtendedCakeBlock(Properties p_i48434_1_, float compostValue) {
-		super(p_i48434_1_);
-		if(compostValue>0) {
-			CompostingHelper.prepareCompostable(this, compostValue);
+	public ExtendedCakeBlock(Food pFood, ResourceLocation pEatStat) {
+		this(Properties.copy(Blocks.CAKE), 1.0F, pFood, pEatStat);
+	}
+
+	public ExtendedCakeBlock(Properties pProps, float pCompostValue, Food pFood, ResourceLocation pEatStat) {
+		super(pProps);
+		this.foodProperties = pFood;
+		this.eatStat = pEatStat;
+		if(pCompostValue>0) {
+			CompostingHelper.prepareCompostable(this, pCompostValue);
 		}
 	}
 
 	@Override
-	public ActionResultType use(BlockState p_225533_1_, World p_225533_2_, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
-		if (p_225533_2_.isClientSide) {
-			ItemStack itemstack = p_225533_4_.getItemInHand(p_225533_5_);
-			if (this.eat(p_225533_2_, p_225533_3_, p_225533_1_, p_225533_4_, p_225533_5_).consumesAction()) {
+	public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pRaytraceResult) {
+		if (pLevel.isClientSide) {
+			ItemStack itemstack = pPlayer.getItemInHand(pHand);
+			if (this.eat(pLevel, pPos, pState, pPlayer, pHand).consumesAction()) {
 				return ActionResultType.SUCCESS;
 			}
 			if (itemstack.isEmpty()) {
 				return ActionResultType.CONSUME;
 			}
 		}
-		return this.eat(p_225533_2_, p_225533_3_, p_225533_1_, p_225533_4_, p_225533_5_);
+		return this.eat(pLevel, pPos, pState, pPlayer, pHand);
 	}
 
-	protected ActionResultType eat(IWorld p_226911_1_, BlockPos p_226911_2_, BlockState p_226911_3_, PlayerEntity p_226911_4_, Hand p_225533_5_) {
-		if (!p_226911_4_.canEat(false)) {
+	protected ActionResultType eat(World pLevel, BlockPos pPos, BlockState pState, PlayerEntity pPlayer, Hand pHand) {
+		if (!pPlayer.canEat(false)) {
 			return ActionResultType.PASS;
 		} else {
-			p_226911_4_.awardStat(Stats.EAT_CAKE_SLICE);
-			p_226911_4_.getFoodData().eat(2, 0.1F);
-			int i = p_226911_3_.getValue(BITES);
+			pPlayer.awardStat(eatStat);
+			pPlayer.getFoodData().eat(foodProperties.getNutrition(), foodProperties.getSaturationModifier());
+			for(Pair<EffectInstance, Float> pair : foodProperties.getEffects()) {
+				if (!pLevel.isClientSide && pair.getFirst() != null && pLevel.random.nextFloat() < pair.getSecond()) {
+					pPlayer.addEffect(new EffectInstance(pair.getFirst()));
+				}
+			}
+			pLevel.playSound(null, pPos, SoundEvents.PLAYER_BURP, SoundCategory.BLOCKS, 1.0F, 0.8F + pLevel.random.nextFloat() * 0.4F);
+			int i = pState.getValue(BITES);
 			if (i < 6) {
-				p_226911_1_.setBlock(p_226911_2_,
-						p_226911_3_.setValue(BITES, i + 1), 3);
+				pLevel.setBlock(pPos, pState.setValue(BITES, i + 1), 3);
 			} else {
-				p_226911_1_.removeBlock(p_226911_2_, false);
+				pLevel.removeBlock(pPos, false);
 			}
 			return ActionResultType.SUCCESS;
 		}

@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "biomes": [
+    "lotr:rohan",
+    "lotr:wold",
+    "lotr:uruk_highlands"
+  ]
+}

@@ -11,7 +11,6 @@ import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.init.LOTRItems;
 import lotr.common.util.ExtendedInteractableHelper;
-import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
@@ -34,9 +33,8 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedDwarvenMinerEntity extends DwarfEntity implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
+public class ExtendedDwarvenMinerEntity extends DwarfEntity implements ExtendedINPCEntitySettings, ExtendedIMerchantEntity {
 
-	int lastTickCooldownReduced = 0;
 	int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
 	private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedDwarvenMinerEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -109,11 +107,6 @@ public class ExtendedDwarvenMinerEntity extends DwarfEntity implements ExtendedN
 	}
 
 	@Override
-	public void playTradeSound() {
-		ExtendedTraderHelper.playTraderSound(level, getOnPos());
-	}
-
-	@Override
 	public boolean isInteractingWithPlayer() {
 		return ExtendedInteractableHelper.isInteractingWithPlayer(getPlayerInteractingWith());
 	}
@@ -121,21 +114,6 @@ public class ExtendedDwarvenMinerEntity extends DwarfEntity implements ExtendedN
 	@Override
 	public void removePlayerFromInteracting(PlayerEntity player) {
 		ExtendedInteractableHelper.removePlayerFromInteracting(player, entityData, PLAYER_TRADING_WITH);
-	}
-
-	@Override
-	public void openCoinExchange(PlayerEntity player) {
-		ExtendedTraderHelper.openCoinExchange(this, player, this);
-	}
-
-	@Override
-	public void openTradeMenu(PlayerEntity player) {
-		ExtendedTraderHelper.openTradeMenu(this, player, this);
-	}
-
-	@Override
-	public String getTraderName() {
-		return ExtendedTraderHelper.getTraderName(getDisplayName());
 	}
 
 	@Override
@@ -156,8 +134,6 @@ public class ExtendedDwarvenMinerEntity extends DwarfEntity implements ExtendedN
 		} else {
 			lastTickVerifiedPlayerTradingWithIsOnline++;
 		}
-
-		ExtendedTraderHelper.tickTrader(this, this);
 	}
 
 	@Override
@@ -174,23 +150,8 @@ public class ExtendedDwarvenMinerEntity extends DwarfEntity implements ExtendedN
 	}
 
 	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
-
-	@Override
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.DWARVEN_MINER;
-	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
 	}
 }
 

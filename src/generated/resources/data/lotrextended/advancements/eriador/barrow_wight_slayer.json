@@ -1,0 +1,40 @@
+{
+  "parent": "lotrextended:eriador/hills_of_the_dead",
+  "display": {
+    "icon": {
+      "item": "minecraft:bone"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.eriador.barrow_wight_slayer.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.eriador.barrow_wight_slayer.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_barrow_wight": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "lotr:barrow_wight"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_barrow_wight"
+    ]
+  ]
+}

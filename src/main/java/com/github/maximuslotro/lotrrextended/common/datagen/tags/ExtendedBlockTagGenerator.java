@@ -364,6 +364,10 @@ public class ExtendedBlockTagGenerator extends ExtendedTagsProvider<Block> {
 		.add(Blocks.PINK_WOOL).add(Blocks.PURPLE_WOOL).add(Blocks.RED_WOOL).add(Blocks.WHITE_WOOL).add(Blocks.YELLOW_WOOL);
 
 		tag(ExtendedTags.Blocks.FUR_BLOCKS).add(LOTRBlocks.FUR_BUNDLE.get());
+
+		//tag(BlockTags.BEE_GROWABLES).add(ExtendedBlocks.BLACKBERRY_BUSH.get()).add(ExtendedBlocks.BLUEBERRY_BUSH.get()).add(ExtendedBlocks.CRANBERRY_BUSH.get())
+		//.add(ExtendedBlocks.ELDERBERRY_BUSH.get()).add(ExtendedBlocks.RASPBERRY_BUSH.get()).add(ExtendedBlocks.WILDBERRY_BUSH.get());
+
 	}
 
 	@Override

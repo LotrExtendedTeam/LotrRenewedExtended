@@ -76,6 +76,7 @@ public class ExtendedFishingLootGenerator extends FishingLootTables  {
 				.add(addEntry(LOTRItems.MAN_FLESH.get()).setWeight(5))
 				.add(addEntry(LOTRItems.MAGGOTY_BREAD.get()).setWeight(5))
 				.add(addEntry(Items.LILY_PAD).setWeight(15))
+				.add(addEntry(ExtendedItems.OBSIDIAN_SHARD.get()).setWeight(10))
 				.add(addEntry(Items.TRIPWIRE_HOOK).setWeight(1))));
 		make(consumer, ExtendedLootTables.MIDDLE_EARTH_FISHING_TREASURE, makeTable()
 			.withPool(LootPool.lootPool()
@@ -103,6 +104,9 @@ public class ExtendedFishingLootGenerator extends FishingLootTables  {
 				.add(addEntry(LOTRItems.SILVER_RING.get()).setWeight(10))
 				.add(addEntry(LOTRItems.GOLD_RING.get()).setWeight(5))
 				.add(addEntry(LOTRItems.MITHRIL_RING.get()).setWeight(1))
+				.add(addEntry(ExtendedItems.ARTISAN_TOME.get()).setWeight(10))
+				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(10))
+				.add(addEntry(ExtendedItems.COMBAT_TOME.get()).setWeight(5))
 				.apply(ExtendedModifierScrollAdder.chanceCustom(100).setSkillful())));
 	}
 

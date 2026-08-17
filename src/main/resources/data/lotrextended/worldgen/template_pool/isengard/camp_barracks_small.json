@@ -1,0 +1,28 @@
+{
+	"name": "lotrextended:isengard/camp_barracks_small",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/buildings/isengard_barracks_s_1",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"ground_level_delta": 2
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/buildings/isengard_barracks_s_2",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"ground_level_delta": 2
+			}
+		}
+	]
+}

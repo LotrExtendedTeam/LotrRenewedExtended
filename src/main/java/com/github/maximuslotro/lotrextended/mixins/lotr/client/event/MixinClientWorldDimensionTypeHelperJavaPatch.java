@@ -33,9 +33,9 @@ public class MixinClientWorldDimensionTypeHelperJavaPatch {
 
 			try {
 				world.dimensionType = newType;
-				ExtendedLog.debug("Java9+ Corrected the DimensionType of client world %s to %s", dimensionId, newType);
+				ExtendedLog.debug("Java9+ Corrected the DimensionType of client world {} to {}", dimensionId, newType);
 			} catch (Exception var5) {
-				ExtendedLog.error("Java9+ Failed to correct the DimensionType of client world %s", dimensionId);
+				ExtendedLog.error("Java9+ Failed to correct the DimensionType of client world {}", dimensionId);
 				var5.printStackTrace();
 			}
 		}

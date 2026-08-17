@@ -1,0 +1,213 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Good day.",
+        "Good day, #p.",
+        "These are dark times for Gondor.",
+        "These are dark times for Gondor, #p.",
+        "Men whisper of fell creatures spawning in the East, and tell tales of a nameless fear...",
+        "If you should chance upon a wild growth of westmansweed, you'd be wise to pick it and take it home.",
+        "I'd rather be down at the tavern right now.",
+        "They say the shadow of Mordor is growing in the East.",
+        "These are dark times. A great power is rising in the East.",
+        "How do you fare?",
+        "Do you have anything to drink?",
+        "There is little quite so beautiful as the sight of the Sun's first rays cast upon the white mountain-peaks.",
+        "Good day, #p! But do I mean to say that the day is good, or that it is a day to be good on?",
+        "We are truth-speakers, we Men of Gondor.",
+        "Gondor was once one of the greatest realms of Men. Yet today it is merely a land of crumbling brick, and false hearts...",
+        "What tidings do you carry?",
+        "Tell me, #p. What news of lands afar?",
+        "Are these the last days of Men? Once, Gondor was great, but with every passing day I fear more for our future.",
+        "There is a cold darkness coming down onto the realms of Men.",
+        "Tall ships and tall kings, three times three. What brought they from the foundered land, over the flowing sea? Seven stars, and seven stones, and one white tree.",
+        "They say those Southrons carry curved swords into battle. Curved swords!",
+        "I hope to see the glory of Gondor restored someday.",
+        "Gondor is not as great as it once was.",
+        "An evil is rising once more behind the walls of Mordor. I fear it shall be our doom.",
+        "Have you seen the Argonath, #p? They are a sight to behold!",
+        "Have you seen the Argonath, #p? When last I journeyed north, they had gone missing...",
+        "The vales of the Anduin are beautiful lands, almost rivalling the beauty of Gondor itself.",
+        "The White Tree is long since failed, yet our hearts still beat true.",
+        "It is said that the peaks of the White Mountains may be seen from anywhere one stands in Gondor.",
+        "I long to see the Swan Knights of Dor-en-Ernil ride into battle.",
+        "Stay far from the pines of Tawar-in-Drúedain, #p. Strange Men live there who worship stone and leaf.",
+        "If the beacons of the White Tower should be lit, then we will know at last that our doom has come.",
+        "The havens of Umbar were once part of our realm, but they have long since fallen into the hands of the Haradrim."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "This country was a great kingdom in days of old, but those days have long passed us by...",
+        "Ah, sweet galenas! Such a beautiful, fragrant herb. One often finds it growing in these lands, #p.",
+        "The westmansweed of these fields is a wonderful and fragrant herb.",
+        "The hearts of Men may grow false, #p, but our lands are still as fair as ever.",
+        "This realm is called Stoningland in the tongue of Rohan. Well, we cannot say we lack for stone, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Hello there, #p!",
+        "What news, #p?",
+        "The old tomb-mound of Elendil is named Halifirien in the tongue of Rohan. But his casket was sent to the Silent Street of the Stone City, five hundred years ago.",
+        "We built a wall around the fields of Pelennor to keep the Orc-raids out. We should do the same at Poros, if you ask me.",
+        "I have seen with my eyes the ruin of Osgiliath, where once was our capital city. But for five hundred years, that city has been host to naught but silent grief, a reminder of Gondor's darkening decline.",
+        "The scholars speak of days when Gondor was a shining jewel among the realms of Men. I fear those days are forever lost, #p.",
+        "Have you any fair tidings, #p?",
+        "Gondor has never since regained the glory it had during the days of the line of Anárion."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "This country is my home, #p. I fear for us all in these dark days.",
+        "Many Men out of Ithilien and the South-lands sought refuge here, one hundred years ago. I hope that one day our host will march east and take back those haunted homelands!",
+        "Greetings, #p. What news do you bring to Gondor from afar?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest & <champion"
+      },
+      "lines": [
+        "Ah, #p! I believe we have met before. Or am I mistaken?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<friend"
+      },
+      "lines": [
+        "We wish for no strangers in the land at this time, unless they be mighty men of arms in whose faith and help we can trust.",
+        "Know now, #p, that we wish for no strangers in Gondor at this time."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "Well met, #p!",
+        "Well met.",
+        "Do not be afraid, my friend #p. Rohan will come to our aid. They always come to our aid.",
+        "These are troubled times for our people. Darkness gathers in Mordor, and the lords of the White City are silent.",
+        "In my heart, #p, I still dream of a day when the Kings will return to the throne of Gondor.",
+        "I long to see a King on the throne of Gondor again.",
+        "I have heard stories that the Kings may one day return and rule Gondor once more. But those are just folk-tales; they cannot be true...",
+        "Gondor. Ah, Gondor. The great South-kingdom of old, once! But now, #p, this is our long dwindling. The twilight of the West.",
+        "Men from the outlands are coming to the heartlands, away from conflict. They bring trouble, but I think we'll manage.",
+        "Come, #p, tell me a tale to cheer my heart."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<atarms"
+      },
+      "lines": [
+        "I should warn you, #p. Gondor is not as it once was.",
+        "You don't look much like a Man of Gondor, #p. You're not from the South, are you?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<atarms"
+      },
+      "lines": [
+        "Welcome to Gondor.",
+        "Welcome to Gondor, #p.",
+        "Gondor welcomes you, #p.",
+        "Welcome, #p. Would that you had come to Gondor in happier days.",
+        "It is a shame you could not have come to Gondor in happier days, #p.",
+        "I wish that I could welcome you to Gondor in happier times.",
+        "Welcome, #p. What business brings you to Gondor?",
+        "Good day, #p! Welcome to the land of Gondor.",
+        "You come on a fine day, #p. The Orcs have not raided our lands in more than a week.",
+        "You may have travelled far to see Gondor, #p. Yet I think you have found it in dark days."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<captain"
+      },
+      "lines": [
+        "You're not from around these parts, are you, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Good day, my lord #p. Is there anything I can do for you?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=lord",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Good day, my lady #p. Is there anything I can do for you?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day",
+        "weather": "clear"
+      },
+      "lines": [
+        "Fine day for it."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "weather": "rain"
+      },
+      "lines": [
+        "Darkness is gathering on Gondor. And, #p, it seems rain-clouds are gathering on the horizon."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "You won't be doing any crimes here!",
+        "You are no friend of Gondor, #p.",
+        "We don't look kindly on criminals here!",
+        "This is a fell hour for Gondor indeed!"
+      ]
+    }
+  ]
+}

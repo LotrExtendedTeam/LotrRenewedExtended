@@ -1,5 +1,5 @@
 {
   "faction": "lotr:isengard",
   "kill_bonus": 5,
-  "speechbank": "lotr:isengard/uruk"
+  "speechbank": "lotrextended:isengard/captain"
 }

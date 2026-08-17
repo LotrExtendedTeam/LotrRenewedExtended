@@ -1,0 +1,10 @@
+{
+  "id": "lotrextended:blue_dwarven_commander",
+  "alignmentRequired": 200,
+  "unitProfileIDs": [
+    "lotrextended:blue_dwarf",
+    "lotrextended:blue_dwarven_warrior",
+    "lotrextended:blue_dwarven_archer",
+    "lotrextended:blue_dwarven_axe_thrower"
+  ]
+}

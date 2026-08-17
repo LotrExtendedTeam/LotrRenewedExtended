@@ -3,6 +3,9 @@ package lotr.common.world.spawning;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.bannerprotection.ExtendedBannerProtectionManager;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedInvasionSpawnerEntity;
+
+import lotr.common.data.LOTRLevelData;
+import lotr.common.fac.AlignmentPredicates;
 import lotr.common.world.ExtendedInvasions;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
@@ -40,7 +43,7 @@ public class InvasionSpawner {
             float angle = world.random.nextFloat() * 360.0F;
             int x = MathHelper.floor(player.getX()) + MathHelper.floor((MathHelper.sin(angle) * (24 + world.random.nextInt(20))));
             int z = MathHelper.floor(player.getZ()) + MathHelper.floor((MathHelper.cos(angle) * (24 + world.random.nextInt(20))));
-            int y = world.getHeight(Heightmap.Type.WORLD_SURFACE, x, z) + 3;
+            int y = world.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z) + 3;
 
             // check for protection
             BlockPos pos = new BlockPos(player.position());
@@ -52,7 +55,7 @@ public class InvasionSpawner {
                 ExtendedInvasions invasion = InvasionBiomeList.pickInvasionFromBiomeName(world, world.getBiomeName(pos));
                 if (invasion != null) {
                     ExtendedInvasionSpawnerEntity spawner = new ExtendedInvasionSpawnerEntity(world);
-                    spawner.setFaction(invasion.getKey());
+                    spawner.setTypeKey(invasion.getTypeKey());
                     spawner.setPos(x, y, z);
                     world.addFreshEntity(spawner);
                     spawner.startInvasion();
@@ -60,7 +63,8 @@ public class InvasionSpawner {
                     break;
                 }
             } catch (IllegalArgumentException ex) {
-                ExtendedLog.error("Issue while determining LOTR when spawning an invasion.", ex);
+                ExtendedLog.error("Issue while determining LOTR when spawning an invasion.");
+                ex.printStackTrace();
             }
         }
 
@@ -95,7 +99,10 @@ public class InvasionSpawner {
         for (Map.Entry<ExtendedInvasions, InvasionChance> entry : invasions.entrySet()) {
             double pickedNum = world.random.nextDouble();
             if (pickedNum <= entry.getValue().getChancePerSecond()) {
-
+            	boolean isNegative = entry.getKey().getFactionPointer().resolveFaction(world).map(faction -> LOTRLevelData.getSidedData(player).getAlignmentData().hasAlignment(faction, AlignmentPredicates.NEGATIVE)).orElse(false);
+            	if (!isNegative) {
+                    continue;
+                }
                 // only make a max of 8 attempts to spawn the invasion checking protection boundaries
                 // while verifying that invasion is possible in that biome
                 for (int attempts = 0; attempts < 8; attempts++) {
@@ -103,20 +110,20 @@ public class InvasionSpawner {
                     float angle = world.random.nextFloat() * 360.0F;
                     int x = MathHelper.floor(player.getX()) + MathHelper.floor((MathHelper.sin(angle) * (24 + world.random.nextInt(20))));
                     int z = MathHelper.floor(player.getZ()) + MathHelper.floor((MathHelper.cos(angle) * (24 + world.random.nextInt(20))));
-                    int y = world.getHeight(Heightmap.Type.WORLD_SURFACE, x, z) + 3;
+                    int y = world.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z) + 3;
 
-                    // check for protection
-                    BlockPos cPos = new BlockPos(player.position());
-                    if (ExtendedBannerProtectionManager.getProtectionStatus(world, cPos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
+                    // check for protection here (rather than check spawn rules as the entity needs a faction, which invasion entities do not)
+                    BlockPos spawnPos = new BlockPos(x, y, z);
+                    if (ExtendedBannerProtectionManager.getProtectionStatus(world, spawnPos, new ExtendedBannerProtectionManager.ProtectionInstance.AnyProtection()).isNotAllowed()) {
                         continue;
                     }
-
-                    if (!InvasionBiomeList.getInvasionsPerBiome(world.getBiomeName(cPos)).containsKey(entry.getKey())) {
+                    // Check again if position can have invasion, in the case of a border with a different biome
+                    if (!InvasionBiomeList.getInvasionsPerBiome(world.getBiomeName(spawnPos)).containsKey(entry.getKey())) {
                     	continue;
                     }
 
                     ExtendedInvasionSpawnerEntity spawner = new ExtendedInvasionSpawnerEntity(world);
-                    spawner.setFaction(entry.getKey().getKey());
+                    spawner.setTypeKey(entry.getKey().getTypeKey());
                     spawner.setPos(x, y, z);
                     world.addFreshEntity(spawner);
                     spawner.startInvasion();

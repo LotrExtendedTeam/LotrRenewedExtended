@@ -1,11 +1,14 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
+import lotr.common.block.RottenLogBlock;
+import lotr.common.block.RottenWoodBeamBlock;
 import lotr.common.event.CompostingHelper;
 import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.CauldronBlock;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -44,7 +47,9 @@ public class ExtendedMossCarpetBlock extends Block {
 	public boolean canSurvive(BlockState pState, IWorldReader pLevel, BlockPos pPos) {
 		BlockPos blockpos = pPos.below();
 		BlockState below = pLevel.getBlockState(blockpos);
-		if(below.getBlock() instanceof LeavesBlock || below.getBlock() instanceof ExtendedBerryHedgeBlock) {
+		if(below.getBlock() instanceof LeavesBlock || below.getBlock() instanceof ExtendedBerryHedgeBlock
+			|| below.getBlock() instanceof RottenLogBlock || below.getBlock() instanceof RottenWoodBeamBlock
+			|| below.getBlock() instanceof CauldronBlock) {
 			return true;
 		}
 		return below.isFaceSturdy(pLevel, blockpos, Direction.UP) && !below.is(ExtendedBlocks.MOSS_CARPET.get());

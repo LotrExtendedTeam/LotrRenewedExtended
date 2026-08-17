@@ -61,6 +61,10 @@ public class ExtendedTraderTypes {
 	// Isengard
 	public static final ResourceLocation ISENGARD_URUK_SUPPLIER = make("isengard_uruk_supplier");
 	public static final ResourceLocation ISENGARD_URUK_SMITH = make("isengard_uruk_smith");
+	// Dunlending
+	public static final ResourceLocation DUNLENDING_BARTENDER = make("dunlending_bartender");
+	public static final ResourceLocation DUNLENDING_SMITH = make("dunlending_smith");
+	public static final ResourceLocation DUNLENDING_FARMER = make("dunlending_farmer");
 
 	private static ResourceLocation make(String pId) {
 		return validate(new ResourceLocation(LotrExtendedMod.MODID, pId));

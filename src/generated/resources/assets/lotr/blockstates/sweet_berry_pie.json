@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "bites=0": {
+      "model": "lotrextended:block/sweet_berry_pie"
+    },
+    "bites=1": {
+      "model": "lotrextended:block/sweet_berry_pie1"
+    },
+    "bites=2": {
+      "model": "lotrextended:block/sweet_berry_pie2"
+    },
+    "bites=3": {
+      "model": "lotrextended:block/sweet_berry_pie3"
+    },
+    "bites=4": {
+      "model": "lotrextended:block/sweet_berry_pie4"
+    },
+    "bites=5": {
+      "model": "lotrextended:block/sweet_berry_pie5"
+    },
+    "bites=6": {
+      "model": "lotrextended:block/sweet_berry_pie6"
+    }
+  }
+}

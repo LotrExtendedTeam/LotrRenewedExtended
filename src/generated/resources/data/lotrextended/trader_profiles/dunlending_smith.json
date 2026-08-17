@@ -1,0 +1,378 @@
+{
+  "id": "lotrextended:dunlending_smith",
+  "tradingAlignmentRequired": 0,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:copper_ingot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:tin_ingot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:bronze_ingot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:iron_ingot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:iron_nugget",
+        "averageCost": 3,
+        "count": 9
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:gold_nugget",
+        "averageCost": 15,
+        "count": 9
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:string",
+        "averageCost": 1,
+        "count": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:leather",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:fur",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:black_fur",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:gray_fur",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:silver_fur",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:white_fur",
+        "averageCost": 25
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:rabbit_hide",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:emerald",
+        "averageCost": 15
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:sapphire",
+        "averageCost": 12
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:pearl",
+        "averageCost": 25
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:topaz",
+        "averageCost": 8
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 2
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:dunlending_helmet",
+        "averageCost": 10,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:dunlending_chestplate",
+        "averageCost": 14,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:dunlending_leggings",
+        "averageCost": 12,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:dunlending_boots",
+        "averageCost": 8,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:horn",
+        "averageCost": 6
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:fur_helmet",
+        "averageCost": 10,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:fur_chestplate",
+        "averageCost": 14,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:fur_leggings",
+        "averageCost": 12,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:fur_boots",
+        "averageCost": 8,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:bree_crafting_table",
+        "averageCost": 100
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:bronze_bars",
+        "averageCost": 20,
+        "count": 8
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:bronze_axe",
+        "averageCost": 10,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:bronze_dagger",
+        "averageCost": 7,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:bronze_sword",
+        "averageCost": 10,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:bronze_spear",
+        "averageCost": 13,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:iron_axe",
+        "averageCost": 15,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:iron_dagger",
+        "averageCost": 9,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:iron_sword",
+        "averageCost": 12,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:iron_spear",
+        "averageCost": 15,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:blacksmith_hammer",
+        "averageCost": 16,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:branding_iron",
+        "averageCost": 25,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 10,
+      "maxTransferQuantity": 1,
+      "shouldTradePersist": false,
+      "stacks": [
+        {
+          "item": "lotr:modifier_scroll",
+          "averageCost": 100,
+          "nbt": "{REScrollMod:\"toughness1\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "averageCost": 100,
+          "nbt": "{REScrollMod:\"strong1\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "averageCost": 100,
+          "nbt": "{REScrollMod:\"meleeSpeed1\"}"
+        },
+        {
+          "item": "lotr:modifier_scroll",
+          "averageCost": 100,
+          "nbt": "{REScrollMod:\"meleeReach1\"}"
+        }
+      ]
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:dunland_banner_pattern",
+        "averageCost": 25
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:dunlending_shield",
+        "averageCost": 20,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:combat_tome",
+        "averageCost": 75
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:artisan_tome",
+        "averageCost": 50
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:smith_tome",
+        "averageCost": 100
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTypes;
 
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.NPCGenderProvider;
@@ -20,9 +20,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-import java.util.List;
-
-public class ExtendedBlueMountainsCommanderEntity extends BlueDwarfEntity  implements ExtendedNPCEntitySettings, ExtendedCaptainEntity {
+public class ExtendedBlueMountainsCommanderEntity extends BlueDwarfEntity implements ExtendedINPCEntitySettings, ExtendedICaptainEntity {
 
 	public ExtendedBlueMountainsCommanderEntity(EntityType<? extends ExtendedBlueMountainsCommanderEntity> type, World w) {
 		super(type, w);
@@ -65,16 +63,7 @@ public class ExtendedBlueMountainsCommanderEntity extends BlueDwarfEntity  imple
 	}
 
 	@Override
-	public List<ResourceLocation> getHireableProfiles() {
-		return java.util.Arrays.asList(ExtendedHiredUnitTypes.BLUE_DWARF, 
-			ExtendedHiredUnitTypes.BLUE_DWARF_WARRIOR, 
-			ExtendedHiredUnitTypes.BLUE_DWARF_ARCHER,
-			ExtendedHiredUnitTypes.BLUE_DWARF_AXE_THROWER);
-	}
-
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
+	public ResourceLocation getCaptainProfile() {
+		return ExtendedCaptainTypes.BLUE_DWARF_COMMANDER;
 	}
 }

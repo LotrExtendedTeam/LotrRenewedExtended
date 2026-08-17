@@ -2,7 +2,7 @@
   "parent": "lotrextended:general/alignment",
   "display": {
     "icon": {
-      "item": "lotr:gold_ring"
+      "item": "lotr:mithril_ring"
     },
     "title": {
       "color": "gold",
@@ -22,7 +22,6 @@
       "trigger": "lotrextended:alignment_changed",
       "conditions": {
         "alignment": {
-          "faction": "any",
           "level": {
             "min": 10000.0
           }

@@ -1,0 +1,210 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"parent": "lotr:item/template_shield",
+	"textures": {
+		"particle": "lotrextended:item/dunlending_shield_front",
+		"front": "lotrextended:item/dunlending_shield_front",
+		"straps": "lotrextended:item/dunlending_shield_straps",
+		"back": "lotrextended:item/dunlending_shield_back"
+	},
+	"elements": [
+		{
+			"name": "center",
+			"from": [6, -12, 6.5],
+			"to": [10, 12, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 0, 0]},
+			"faces": {
+				"north": {"uv": [6.5, 2, 8.5, 14], "texture": "#front"},
+				"east": {"uv": [6.5, 2, 7, 14], "texture": "#front"},
+				"south": {"uv": [6.5, 2, 8.5, 14], "texture": "#back"},
+				"west": {"uv": [8, 2, 8.5, 14], "texture": "#front"},
+				"up": {"uv": [6.5, 2, 8.5, 2.5], "texture": "#front"},
+				"down": {"uv": [6.5, 13.5, 8.5, 14], "texture": "#front"}
+			}
+		},
+		{
+			"name": "left1",
+			"from": [10, -11, 6.5],
+			"to": [12, 11, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 0, 0]},
+			"faces": {
+				"north": {"uv": [5.5, 2.5, 6.5, 13.5], "texture": "#front"},
+				"east": {"uv": [5.5, 2.5, 6, 13.5], "texture": "#front"},
+				"south": {"uv": [5.5, 2.5, 6.5, 13.5], "texture": "#back"},
+				"west": {"uv": [5.5, 2.5, 6, 13.5], "texture": "#front"},
+				"up": {"uv": [5.5, 2.5, 6.5, 3], "texture": "#front"},
+				"down": {"uv": [5.5, 13, 6.5, 13.5], "texture": "#front"}
+			}
+		},
+		{
+			"name": "left2",
+			"from": [12, -10, 6.5],
+			"to": [13, 10, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 0, 0]},
+			"faces": {
+				"north": {"uv": [5, 3, 5.5, 13], "texture": "#front"},
+				"east": {"uv": [5, 3, 5.5, 13], "texture": "#front"},
+				"south": {"uv": [5, 3, 5.5, 13], "texture": "#back"},
+				"west": {"uv": [5, 3, 5.5, 13], "texture": "#front"},
+				"up": {"uv": [5, 3, 5.5, 3.5], "texture": "#front"},
+				"down": {"uv": [5, 12.5, 5.5, 13], "texture": "#front"}
+			}
+		},
+		{
+			"name": "left3",
+			"from": [13, -8, 6.5],
+			"to": [14, 8, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 0, 0]},
+			"faces": {
+				"north": {"uv": [5, 4, 4.5, 12], "texture": "#front"},
+				"east": {"uv": [4.5, 4, 5, 12], "texture": "#front"},
+				"south": {"uv": [4.5, 4, 5, 12], "texture": "#back"},
+				"west": {"uv": [4.5, 4, 5, 12], "texture": "#front"},
+				"up": {"uv": [4.5, 4, 5, 4.5], "texture": "#front"},
+				"down": {"uv": [4.5, 11.5, 5, 12], "texture": "#front"}
+			}
+		},
+		{
+			"name": "left4",
+			"from": [14, -4, 6.5],
+			"to": [15, 4, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 0, 0]},
+			"faces": {
+				"north": {"uv": [4, 6, 4.5, 10], "texture": "#front"},
+				"east": {"uv": [4, 6, 4.5, 10], "texture": "#front"},
+				"south": {"uv": [4.5, 6, 4, 10], "texture": "#back"},
+				"west": {"uv": [4, 6, 4.5, 10], "texture": "#front"},
+				"up": {"uv": [4, 6, 4.5, 6.5], "texture": "#front"},
+				"down": {"uv": [4, 9.5, 4.5, 10], "texture": "#front"}
+			}
+		},
+		{
+			"name": "right1",
+			"from": [4, -11, 6.5],
+			"to": [6, 11, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 0, 0]},
+			"faces": {
+				"north": {"uv": [8.5, 2.5, 9.5, 13.5], "texture": "#front"},
+				"east": {"uv": [9, 2.5, 9.5, 13.5], "texture": "#front"},
+				"south": {"uv": [8.5, 2.5, 9.5, 13.5], "texture": "#back"},
+				"west": {"uv": [9, 2.5, 9.5, 13.5], "texture": "#front"},
+				"up": {"uv": [8.5, 2.5, 9.5, 3], "texture": "#front"},
+				"down": {"uv": [8.5, 13, 9.5, 13.5], "texture": "#front"}
+			}
+		},
+		{
+			"name": "right2",
+			"from": [3, -10, 6.5],
+			"to": [4, 10, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 0, 0]},
+			"faces": {
+				"north": {"uv": [9.5, 3, 10, 13], "texture": "#front"},
+				"east": {"uv": [9.5, 3, 10, 13], "texture": "#front"},
+				"south": {"uv": [9.5, 3, 10, 13], "texture": "#back"},
+				"west": {"uv": [9.5, 3, 10, 13], "texture": "#front"},
+				"up": {"uv": [9.5, 3, 10, 3.5], "texture": "#front"},
+				"down": {"uv": [9.5, 12.5, 10, 13], "texture": "#front"}
+			}
+		},
+		{
+			"name": "right3",
+			"from": [2, -8, 6.5],
+			"to": [3, 8, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 0, 0]},
+			"faces": {
+				"north": {"uv": [10, 4, 10.5, 12], "texture": "#front"},
+				"east": {"uv": [10, 4, 10.5, 12], "texture": "#front"},
+				"south": {"uv": [10, 4, 10.5, 12], "texture": "#back"},
+				"west": {"uv": [10, 4, 10.5, 12], "texture": "#front"},
+				"up": {"uv": [10, 4, 10.5, 4.5], "texture": "#front"},
+				"down": {"uv": [10, 11.5, 10.5, 12], "texture": "#front"}
+			}
+		},
+		{
+			"name": "right4",
+			"from": [1, -4, 6.5],
+			"to": [2, 4, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 0, 0]},
+			"faces": {
+				"north": {"uv": [10.5, 6, 11, 10], "texture": "#front"},
+				"east": {"uv": [10.5, 6, 11, 10], "texture": "#front"},
+				"south": {"uv": [10.5, 6, 11, 10], "texture": "#back"},
+				"west": {"uv": [10.5, 6, 11, 10], "texture": "#front"},
+				"up": {"uv": [10.5, 6, 11, 6.5], "texture": "#front"},
+				"down": {"uv": [10.5, 9.5, 11, 10], "texture": "#front"}
+			}
+		},
+		{
+			"name": "left",
+			"from": [4, -3, 8],
+			"to": [6, 4, 15],
+			"faces": {
+				"north": {"uv": [0, 1, 2, 8], "texture": "#straps"},
+				"east": {"uv": [1, 1, 8, 8], "texture": "#straps"},
+				"south": {"uv": [0, 1, 2, 8], "texture": "#straps"},
+				"west": {"uv": [1, 1, 8, 8], "texture": "#straps"},
+				"up": {"uv": [12, 0, 14, 8], "texture": "#straps"},
+				"down": {"uv": [12, 8, 14, 0], "texture": "#straps"}
+			}
+		},
+		{
+			"name": "right",
+			"from": [10, -3, 8],
+			"to": [12, 4, 15],
+			"faces": {
+				"north": {"uv": [0, 1, 2, 8], "texture": "#straps"},
+				"east": {"uv": [1, 1, 8, 8], "texture": "#straps"},
+				"south": {"uv": [0, 1, 2, 8], "texture": "#straps"},
+				"west": {"uv": [1, 1, 8, 8], "texture": "#straps"},
+				"up": {"uv": [14, 0, 12, 8], "texture": "#straps"},
+				"down": {"uv": [14, 0, 12, 8], "texture": "#straps"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "shield",
+			"origin": [0, 0, 0],
+			"scope": 0,
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+		},
+		{
+			"name": "handles",
+			"origin": [8, 8, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [9, 10]
+		}
+	],
+	"gui_light": "front",
+	"overrides": [
+		{
+			"predicate": {
+				"blocking": 1
+			},
+			"model": "lotr:item/dunlending_shield_blocking"
+		}
+	],
+	"display": {
+		"ground": {
+			"translation": [0, 5.75, 0],
+			"scale": [0.3, 0.3, 0.3]
+		},
+		"gui": {
+			"rotation": [19, 129, 0],
+			"translation": [0, 4.25, 0],
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}

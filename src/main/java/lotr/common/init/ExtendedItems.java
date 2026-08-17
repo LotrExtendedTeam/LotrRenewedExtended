@@ -443,6 +443,13 @@ public class ExtendedItems {
 	public static RegistryObject<Item> BANANA_BREAD;
 	public static RegistryObject<Item> BANANA_BEER;
 	public static RegistryObject<Item> PLUM_KVASS;
+	public static RegistryObject<Item> BLUEBERRY_PIE;
+	public static RegistryObject<Item> BLACKBERRY_PIE;
+	public static RegistryObject<Item> RASPBERRY_PIE;
+	public static RegistryObject<Item> CRANBERRY_PIE;
+	public static RegistryObject<Item> ELDERBERRY_PIE;
+	public static RegistryObject<Item> WILDBERRY_PIE;
+	public static RegistryObject<Item> SWEET_BERRY_PIE;
 
 	public static RegistryObject<Item> HOBBIT_MARRIAGE_RING;
 	public static RegistryObject<Item> DWARF_MARRIAGE_RING;
@@ -707,8 +714,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> LINDON_SHIELD;
 	public static RegistryObject<Item> EREGION_SHIELD;
 	public static RegistryObject<Item> URUK_SHIELD;
-	public static RegistryObject<Item> DUNLANDING_SHIELD;
+	public static RegistryObject<Item> DUNLENDING_SHIELD;
 	public static RegistryObject<Item> ARNOR_SHIELD;
+	public static RegistryObject<Item> DWARVEN_SHIELD;
 
 	public static RegistryObject<Item> BOWSTRING;
 	public static RegistryObject<Item> GUNDABAD_URUK_BOW;
@@ -813,6 +821,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> CRACKED_STONE_PILLAR_SLAB;
 	
 	public static RegistryObject<Item> MODIFIER_SCROLL;
+	public static RegistryObject<Item> COMBAT_TOME;
+	public static RegistryObject<Item> ARTISAN_TOME;
+	public static RegistryObject<Item> SMITH_TOME;
 
 	public static RegistryObject<Item> TAPESTRY;
 
@@ -854,4 +865,7 @@ public class ExtendedItems {
 	public static RegistryObject<Item> IRON_CROSSBOW;
 	public static RegistryObject<Item> URUK_CROSSBOW;
 	public static RegistryObject<Item> MITHRIL_CROSSBOW;
+
+	public static RegistryObject<Item> ORC_PLATING_WALL;
+	public static RegistryObject<Item> RUSTED_ORC_PLATING_WALL;
 }

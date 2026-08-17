@@ -1,0 +1,544 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Short cuts make for long delays!",
+        "The only brew for the brave and true... comes from the Green Dragon!",
+        "Where would we Hobbits be without pipe-weed?",
+        "Don't you wish you lived in a Hobbit hole too?",
+        "Hobbit holes! Warmth, good food, and comfort.",
+        "It's a dangerous business, going out your front door.",
+        "The Sackville-Bagginses came for lunch yesterday. Now I can't find any of my plates, nor my mugs...",
+        "The road goes ever on and on...",
+        "Adventures? Nasty things, they are. Make you late for dinner.",
+        "There's nothing quite like a pint of ale from the Green Dragon!",
+        "I don't know what I'd do without a good leaf of Longbottom on a hot summer's day!",
+        "I have relatives in Buckland. They're funny fellows...",
+        "The market in Stock is a great place for food, drink and pipe-weed!",
+        "Have you seen the frogs in the marshes around Frogmorton way?",
+        "The Northern Moors are wild and windy, but full of fine inns with homely hearths.",
+        "People tell of Elves in the woods near Willowbottom. I reckon it's just the Largefoot family!",
+        "It's best to avoid Sarn Ford. That's where all the travelling folk meet, and some of them can be very queer!",
+        "I don't want any adventures, thank you very much!",
+        "My knowledge of potatoes is second to only the Gamgees'!",
+        "On a breezy day I like to lie beneath an oak tree and sleep. Like we Hobbits should!",
+        "Longbottom leaf is the leaf of wonders! Is it not, #p?",
+        "My flowerbeds could do with a good sprinkling!",
+        "For a jolly day out I suggest Needlehole... or food!",
+        "A fine meal is always the best option!",
+        "Mmm, buttered potato and peas...",
+        "Pipe-weed is good. Mushrooms are better!",
+        "I am fond of mushrooms out of a field.",
+        "Good plain food is the food for me.",
+        "I go to bed late and get up late for breakfast. It's the only way to be!",
+        "Gardening is a fine way to spend a day.",
+        "A cup of tea for me!",
+        "The parties in the Shire are the best you'll ever see. Food, drink and merriment!",
+        "You're almost as tall as old Bullroarer was! Have you heard the tale of how he created the game of golf?",
+        "They say the rich families keep treasure in their burrows. Chests packed with gold and silver... and jools!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Good day, #p.",
+        "Good day.",
+        "Good day!",
+        "Good day to you, #p! How are you doing?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "This here field is full of rabbits! Better get the little ones to chase them off!",
+        "My relatives in Bree tell of strange goings-on..."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Good morning!",
+        "Good morning to you!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Good morning, #p!",
+        "Good morning to you, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Good afternoon!",
+        "Good afternoon to you!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Good afternoon, #p!",
+        "Good afternoon to you, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "Good evening!",
+        "Good evening to you!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Good evening, #p!",
+        "Good evening to you, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn | dusk",
+        "weather": "clear"
+      },
+      "lines": [
+        "What a pretty sky up there!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dawn",
+        "sun_admiring": "true",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Isn't it a beautiful sunrise, #p?",
+        "Oh, good morning, #p. I was just watching the sun come up. Isn't it nice?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "dusk",
+        "sun_admiring": "true",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Isn't it a beautiful sunset, #p?",
+        "Oh, good evening, #p. I was just watching the sun go down. Isn't it nice?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "Well, I'd best be off to bed!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "May the hair on your toes never fall out, #p!",
+        "May the hair on your toes never fall out.",
+        "Always a pleasure, #p!",
+        "You're not bad for one of the Big Folk!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder"
+      },
+      "lines": [
+        "Oh, it's you, #p! I didn't recognise you at first, see.",
+        "See? I always said there was good Big Folk, like you, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "Well, if it isn't #p! How are you today?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=bounder",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "Well, if it isn't #p! How are you tonight?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Good day, sir!",
+        "Good day, sir #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff",
+        "day_or_night": "day",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Good day, miss!",
+        "Good day, miss #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=shirriff"
+      },
+      "lines": [
+        "Hello, #p! I ought to invite you in for afternoon tea one of these days.",
+        "Hello, #p! I ought to invite you in for second breakfast one of these days.",
+        "Hello, #p! I ought to invite you in for pipe-weed one of these days.",
+        "All's well in the Shire, thanks to you!",
+        "All's well in the Shire, thanks to you, #p!",
+        "Oh, #p... I must be inviting you to my cousin's thirty-third birthday party. Don't let me forget!",
+        "Oh, #p... I must be inviting you to my second cousin's marrying-party. Don't let me forget!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Is it time for second breakfast yet?",
+        "Anyone for a third breakfast?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "afternoon"
+      },
+      "lines": [
+        "Why, it's already time for afternoon tea!",
+        "I'd best be going for afternoon tea."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "daytime": "evening"
+      },
+      "lines": [
+        "It'll be time for supper soon!",
+        "About time I got to the supper table."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "weather": "rain"
+      },
+      "lines": [
+        "Stay out of the rain, #p!",
+        "Stay out of the rain!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend",
+        "biome": "#home"
+      },
+      "lines": [
+        "Welcome to the Shire!",
+        "Welcome to the Shire, #p!",
+        "Greetings, #p! I've seldom seen Big Folk like you around these parts!",
+        "Welcome to the Shire, traveller from afar! What news do you bring from the wide world?",
+        "Hello, #p. Are you staying long?",
+        "Big Folk in the Shire? Strange goings-on all round!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<friend"
+      },
+      "lines": [
+        "Oh, #p. I do believe we've met before?",
+        "#p, is it? Yes, I remember you now. You Big Folk all look similar to me.",
+        "Have we met, #p? I never forget a face!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "I do so miss the Shire.",
+        "I've never been so far from the Shire before.",
+        "If I take one more step, it'll be the farthest from home I've ever been.",
+        "Perhaps it's time to return home. I miss the Shire.",
+        "Adventures? Nasty things, they are. I think it's about time I returned home.",
+        "The road goes ever on and on, under trees and over streams, and I must follow, so it seems! But I shall be turning home soon.",
+        "Is this the land of your folk, #p? A strange place it is, and that's for sure!",
+        "Now we ought to find the way back home, #p.",
+        "Hobbit holes! Warmth, good food, and comfort. I do miss mine...",
+        "I've had my fill of foreign lands for now, #p. Shall we be a-wandering home soon?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:mordor | lotr:mordor_mountains | lotr:gorgoroth | lotr:morgul_vale | lotr:angmar | lotr:angmar_mountains"
+      },
+      "lines": [
+        "What a dreadful place! Let us return to the Shire at once!",
+        "How have we come to such a dreadful place?",
+        "What an awful land this is, #p!",
+        "What a frightful land! We must find our way back to the Shire!",
+        "This country is enough to fill even the stoutest hearts with dread!",
+        "I declare I've seen quite enough of this place! Let's go back to the Shire, and quickly!",
+        "Well, #p, this is a nasty place if I ever saw one!",
+        "I feel all ill at ease here. Say, #p, do you know the road back to the Shire?",
+        "I don't know how we ever came to find ourselves in such a place as this, #p.",
+        "Even the air here is nasty stuff!",
+        "They always warned me against following those roads out of the Shire!",
+        "I wish I'd paid more attention to my old Gaffer! Never should've left the Shire, no no!",
+        "If I'd known this was what lay beyond our Shire-borders, I never would've gone a-wandering!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Have you any pipe-weed, #p?",
+        "I find farming to be a pleasant pastime! Have you tried it, #p?",
+        "The finest pleasure is a meal well done. Do you know that feeling, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "day_or_night": "day"
+      },
+      "lines": [
+        "And how are you today, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "in_conversation": "other",
+        "rank": "<shirriff"
+      },
+      "lines": [
+        "Do you mind? I was in the middle of a conversation here!",
+        "#p! I was just in the middle of a conversation.",
+        "A bit rude to interrupt, isn't it?",
+        "There's no need to interrupt, is there?",
+        "I was just speaking! Wait your turn!",
+        "How rude! We were having a good chatter there, if you please.",
+        "Mind your own business. Can't you see we were talking?",
+        "Mind your own business, please! Now leave us alone.",
+        "I see you have no qualms about interrupting some good Hobbit chatter!",
+        "If you please, #p, I was in the middle of a conversation.",
+        "...and I turned to him and said - excuse me? Do you mind interrupting us, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "These Big Folk! They come over here and steal our farms. Keep the Shire for the Hobbits, that's what I say!",
+        "Not often we see Big Folk here in the Shire.",
+        "One of the Big Folk in the Shire? Mind you take care!",
+        "Who let you into the Shire? I hope you're not here to cause any mischief!",
+        "#p, is it? Not often one of you Big Folk wanders into our Shire.",
+        "I don't believe we've met, have we? Welcome to the Shire.",
+        "Have we met? No? Well, this is our Shire. Lovely place, isn't it?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest"
+      },
+      "lines": [
+        "What's your name, then? #p? I don't believe we've met.",
+        "I don't believe we've met before.",
+        "#p, you say? It's not often we meet one of you Big Folk.",
+        "And who are you? #p? Well, I hope you're not one of those strange folk!",
+        "Have we met?",
+        "Have we met? No? Well, I'll be on my way, then.",
+        "Hmm... I don't believe we've met.",
+        "One of the Big Folk? What was your name, again?",
+        "What was your name, again? Speak up!"
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ]
+      },
+      "lines": [
+        "Strange folk have been seen in these parts, and you look like one of them.",
+        "Aren't you one of those strange folk I've heard talk of?",
+        "There's talk of strange folk round here. Might you be one of them?",
+        "I've seen strange folk lurking around these parts, and you remind me of one of them. I don't trust you.",
+        "I don't know about you..."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "rank": "<guest"
+          }
+        ],
+        "biome": "#home"
+      },
+      "lines": [
+        "Big Folk make me uneasy. Mind you remember whose Shire this is."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "I hear you've been causing trouble round here.",
+        "You look like a troublemaker!",
+        "You look like a troublemaker, #p.",
+        "Stay away from the Shire, #p.",
+        "Stay out of the Shire!",
+        "I shan't be lending you any of my pipe-weed!",
+        "We don't take kindly to folk like you.",
+        "You're not a nice fellow, #p.",
+        "If you'll be begging my pardon, you make me feel uncomfortable.",
+        "You're one for the Mewlips, #p!",
+        "I knew you queer old Big Folk were trouble!",
+        "We don't appreciate folk like you in the Shire.",
+        "Don't try any of your Big Folk tricks on me!",
+        "Don't try any of your Big Folk tricks on me, #p!",
+        "May you never savour Longbottom Leaf again!",
+        "I knew I couldn't trust you. Your feet are too small!",
+        "The Green Dragon will never serve you!",
+        "Leave me in peace!",
+        "Leave me in peace, #p!",
+        "My cousin owns some very large dogs. You don't want to meet them, do you?",
+        "Interrupter of the peace!",
+        "Stop! Troublemaker!",
+        "Old Bullroarer would knock you down a hole or two!",
+        "The wolf that one hears is worse than the Orc that one fears. But get between a Hobbit and their peace...",
+        "Only a fool would interrupt my mealtimes!",
+        "Strange folk meet strange ends!",
+        "Don't make me fetch my scythe!",
+        "You may be taller than me, #p. But you're greater in no other way!",
+        "Folk like you should have been given a good drownding!",
+        "You must be one of those ne'er-do-wells I keep hearing talk of!",
+        "We in the Shire don't take kindly to ne'er-do-wells like you, #p.",
+        "Back off!",
+        "You're a ne'er-do-well if I ever saw one, #p.",
+        "I don't want no trouble, #p!",
+        "Now, now, let's not be having no trouble!",
+        "I don't want no trouble with you, #p.",
+        "Off you go now, or I'll be getting my rake!",
+        "Don't make me reach for my rake!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "The Shire is no place for troublemakers like you!",
+        "You'd better leave the Shire, #p, or I'll be a-calling the Shirriffs!",
+        "Get off my land!",
+        "Get off my land, #p!",
+        "My pitchfork is pointy enough to make you think twice about returning to the Shire!",
+        "The Shire has been peaceful for hundreds of years and I daresay you'll regret changing that!",
+        "Stay away from my potatoes!",
+        "The Shirriffs will see to you, #p!",
+        "Go back over the hedge!",
+        "Go back over the hedge, #p!",
+        "A troublemaker I see? The Shire only welcomes Hobbits! Begone!",
+        "I don't mean no harm, #p, but your kind aren't welcome here."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "daytime": "morning"
+      },
+      "lines": [
+        "Second breakfast would be too good for you, #p!"
+      ]
+    }
+  ]
+}

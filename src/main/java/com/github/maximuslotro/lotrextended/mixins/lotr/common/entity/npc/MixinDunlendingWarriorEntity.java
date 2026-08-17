@@ -13,6 +13,6 @@ public class MixinDunlendingWarriorEntity {
 	@ModifyArg(method = "finalizeSpawn(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/ILivingEntityData;Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/entity/ILivingEntityData;",
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;<init>(Lnet/minecraft/util/IItemProvider;)V", ordinal = 4))
 	private IItemProvider injected(IItemProvider regularItem) {
-		return ExtendedItems.DUNLANDING_SHIELD.get();
+		return ExtendedItems.DUNLENDING_SHIELD.get();
 	}
 }

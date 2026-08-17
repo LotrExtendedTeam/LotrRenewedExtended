@@ -499,6 +499,7 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, ExtendedItems.RIVENDELL_BOW, ExtendedItems.BOWSTRING, 3);
 
 		makeCrucibleRecipe(consumer, ExtendedItems.BLUE_DWARVEN_SHIELD, LOTRItems.DWARVEN_STEEL_INGOT);
+		makeCrucibleRecipe(consumer, ExtendedItems.DWARVEN_SHIELD, LOTRItems.DWARVEN_STEEL_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.BREE_SHIELD, ()->Items.IRON_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.DUNEDAIN_SHIELD, ()->Items.IRON_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.GUNDABAD_SHIELD, LOTRItems.URUK_STEEL_INGOT);
@@ -507,7 +508,7 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, ExtendedItems.EREGION_SHIELD, LOTRItems.ELVEN_STEEL_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.RIVENDELL_SHIELD, LOTRItems.ELVEN_STEEL_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.URUK_SHIELD, LOTRItems.URUK_STEEL_INGOT);
-		makeCrucibleRecipe(consumer, ExtendedItems.DUNLANDING_SHIELD, ()->Items.IRON_INGOT);
+		makeCrucibleRecipe(consumer, ExtendedItems.DUNLENDING_SHIELD, ()->Items.IRON_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.ARNOR_SHIELD, ()->Items.IRON_INGOT);
 
 		makeCrucibleRecipe(consumer, ExtendedItems.DOL_GULDUR_SWORD, LOTRItems.ORC_STEEL_INGOT, 2);
@@ -588,6 +589,10 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, ExtendedItems.BONE_HOE, ()->Items.BONE, 2);
 		makeCrucibleRecipe(consumer, ExtendedItems.BONE_SPEAR, ()->Items.BONE);
 		makeCrucibleRecipe(consumer, ExtendedItems.BONE_DAGGER, ()->Items.BONE);
+
+		makeCrucibleRecipe(consumer, ExtendedItems.ARTISAN_TOME, ()->Items.IRON_NUGGET);
+		makeCrucibleRecipe(consumer, ExtendedItems.COMBAT_TOME, ()->Items.IRON_NUGGET);
+		makeCrucibleRecipe(consumer, ExtendedItems.SMITH_TOME, ()->Items.IRON_NUGGET);
 	}
 
 	private void buildOtherModsRecipes(Consumer<IFinishedRecipe> consumer) {

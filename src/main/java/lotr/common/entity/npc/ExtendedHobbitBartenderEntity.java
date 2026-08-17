@@ -9,7 +9,6 @@ import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.init.LOTRItems;
 import lotr.common.util.ExtendedInteractableHelper;
-import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
@@ -37,9 +36,8 @@ import net.minecraft.world.World;
 /**
  * @author RichardB122, maximuslotro
  */
-public class ExtendedHobbitBartenderEntity extends HobbitEntity  implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
+public class ExtendedHobbitBartenderEntity extends HobbitEntity  implements ExtendedINPCEntitySettings, ExtendedIMerchantEntity {
 
-    int lastTickCooldownReduced = 0;
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedHobbitBartenderEntity.class, DataSerializers.OPTIONAL_UUID);
@@ -93,11 +91,6 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity  implements Exte
     }
 
     @Override
-    public void playTradeSound() {
-        ExtendedTraderHelper.playTraderSound(level, getOnPos());
-    }
-
-    @Override
     public boolean isInteractingWithPlayer() {
         return ExtendedInteractableHelper.isInteractingWithPlayer(getPlayerInteractingWith());
     }
@@ -105,21 +98,6 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity  implements Exte
     @Override
     public void removePlayerFromInteracting(PlayerEntity player) {
     	ExtendedInteractableHelper.removePlayerFromInteracting(player, entityData, PLAYER_TRADING_WITH);
-    }
-
-    @Override
-    public void openCoinExchange(PlayerEntity player) {
-        ExtendedTraderHelper.openCoinExchange(this, player, this);
-    }
-
-    @Override
-    public void openTradeMenu(PlayerEntity player) {
-        ExtendedTraderHelper.openTradeMenu(this, player, this);
-    }
-
-    @Override
-    public String getTraderName() {
-        return ExtendedTraderHelper.getTraderName(getDisplayName());
     }
 
     @Override
@@ -140,19 +118,7 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity  implements Exte
         } else {
             lastTickVerifiedPlayerTradingWithIsOnline++;
         }
-
-        ExtendedTraderHelper.tickTrader(this, this);
     }
-
-	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
 
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
@@ -173,10 +139,5 @@ public class ExtendedHobbitBartenderEntity extends HobbitEntity  implements Exte
 		}else {
 			this.addAggressiveTargetingGoals();
 		}
-	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
 	}
 }

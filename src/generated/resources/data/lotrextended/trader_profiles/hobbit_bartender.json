@@ -326,7 +326,7 @@
       "weight": 50,
       "stack": {
         "item": "lotr:hobbit_crafting_table",
-        "averageCost": 40
+        "averageCost": 100
       }
     },
     {

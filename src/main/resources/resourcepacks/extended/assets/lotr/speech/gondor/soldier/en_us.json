@@ -1,0 +1,176 @@
+{
+  "parent": "lotr:gondor/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "I am a soldier of Gondor.",
+        "I have trained all my life to kill Orcs. But may the Valar save me if a Troll comes knocking!",
+        "Curse the Southrons, and their curved swords!",
+        "They say the Men of Harad are well nigh all under the sway of the Enemy."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "If not for the brave Men of Gondor, the world would have succumbed to the Shadow a long time ago.",
+        "My kin protect these lands."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "Do not think Gondor weak, #p. In heart and spirit, we Men of Gondor shall always remain strong.",
+        "Beware the slimy Orc, but fear more the Wainrider on his chariot. Though that race we have neither fought nor faced for many generations."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest",
+        "biome": "lotr:anorien"
+      },
+      "lines": [
+        "We live in fear here, #p. If you seek safety, I would advise you to travel to the lands of the Prince."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=friend"
+      },
+      "lines": [
+        "There have been foul airs on the wind of late. We fear something is gathering behind the mountains of ash.",
+        "It would take thousands of Orcs to bring down even a dozen good Gondorians!",
+        "Should anything foul march upon Gondor, then the Rohirrim would ride to our aid. I am sure of it.",
+        "Our enemies are gathering beyond the Harnen.",
+        "There are ill rumours out of the Harad. Men say the Southrons are massing all their strength in the lands beyond the Harnen."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "If the Enemy should send all his might against us, #p... well, I doubt we would see another dawn!",
+        "I pity the rangers in Ithilien, #p. They will be the first to fall.",
+        "I very much doubt our aged defences can withstand the might of Mordor. Yet still, I shall fight to my last, for the freedom of Men."
+      ]
+    },
+    {
+      "conditions": {
+        "alternatives": [
+          {
+            "relation": "hostile"
+          },
+          {
+            "relation": "friendly",
+            "hired": "own"
+          }
+        ]
+      },
+      "lines": [
+        "For Gondor!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "Sons of Gondor! Hold your ground!",
+        "You are an enemy of the throne of Gondor, #p!",
+        "By the White Tree, I will see you slain!",
+        "I swear to Gondor that your death shall be swift!",
+        "Your death shall be swift, #p!",
+        "No pity for the foes of Gondor!",
+        "You will not see the end of this day, servant of the Shadow!",
+        "I will not allow you to harm the free folk of Gondor, #p!",
+        "See that you do us no more harm! Or I shall see to it myself!",
+        "You shall not lay another hand on our people!",
+        "In the name of the Kings of old, I shall destroy you!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "You may go no further. You will not enter Gondor!",
+        "You may not enter Gondor, #p!",
+        "Enemies have entered Gondor!",
+        "No enemies of Gondor may pass freely into our land!",
+        "Leave this land, #p, never to return!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "Begone, you fell creature of the Shadow!",
+        "Begone, thrall of the Shadow!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "Begone from Gondor, thrall of the Enemy!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "Crawl back to your master in the Land of Shadow!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "Begone from our lands, foul scum of Mordor!",
+        "Begone from our lands, thrall of Sauron!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "I fight for Gondor, #p.",
+        "May our deeds restore Gondor to its former glory!",
+        "The foes of Gondor shall fall before us!",
+        "Our enemies are right to fear the might of Gondor, #p!",
+        "You are a true friend of Gondor, #p.",
+        "Today, we fight! For Gondor!",
+        "We shall follow you through death and ruin!",
+        "We are proud to fight among a warrior so great as you!",
+        "For Gondor! For all the good in this world!",
+        "The scum of Mordor shall face our wrath!",
+        "Ruin to all the enemies of Gondor!"
+      ]
+    }
+  ]
+}

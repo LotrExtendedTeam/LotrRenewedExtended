@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.client.gui.screen.inventory;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedAnvilButton;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedRepairContainerNew;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCAnvilButtonPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCRenameItemPacket;
@@ -11,7 +12,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.AnvilScreen;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerInventory;
@@ -28,7 +28,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 /**
  * Based off of {@link AnvilScreen}
  * */
-public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainerNew> implements IContainerListener  {
+public class ExtendedAnvilScreen extends ExtendedContainerScreen<ExtendedRepairContainerNew> implements IContainerListener  {
 	private static final ResourceLocation ANVIL_LOCATION = new ResourceLocation(LotrExtendedMod.MODID, "textures/gui/container/anvil.png");
 	private static final TranslationTextComponent REFORGE_TEXT = new TranslationTextComponent("container.lotrextended.repair.reforge");
 	private static final TranslationTextComponent ENGRAVE_TEXT = new TranslationTextComponent("container.lotrextended.repair.engrave");
@@ -83,6 +83,9 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 		if(this.menu.getSlot(0).hasItem() && this.menu.getReforgeCost()>0) {
 			this.reforgeButton.active=true;
 		}else {
+			this.reforgeButton.active=false;
+		}
+		if(!ExtendedServerConfig.enableExtendedModifiers.get()) {
 			this.reforgeButton.active=false;
 		}
 		if(this.menu.getSlot(0).hasItem() && this.menu.getEngraveCost()>0) {
@@ -188,6 +191,9 @@ public class ExtendedAnvilScreen extends ContainerScreen<ExtendedRepairContainer
 						textColor = ERRORTEXTCOLOR;
 					}
 				}
+			}else if(this.reforgeButton.isHovered() && !ExtendedServerConfig.enableExtendedModifiers.get()) {
+				itextcomponent = new StringTextComponent("Reforging Disabled");
+				textColor = ERRORTEXTCOLOR;
 			}else if(this.engraveButton.isHovered() && this.menu.getSlot(0).getItem().isDamageableItem() && this.menu.getEngraveCost()>0){
 				if(!this.menu.getSlot(2).hasItem()) {
 					itextcomponent = new TranslationTextComponent("container.lotrextended.repair.info.missing_material");

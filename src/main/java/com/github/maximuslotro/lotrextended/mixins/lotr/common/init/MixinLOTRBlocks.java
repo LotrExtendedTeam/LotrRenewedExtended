@@ -41,9 +41,11 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCheeseState;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnGroupTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntitySpawnTypes;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedWargFurType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedFoods;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedMaterials;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedParticles;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSoundTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
 
 import lotr.common.block.*;
@@ -63,6 +65,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.trees.OakTree;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -906,6 +909,10 @@ public class MixinLOTRBlocks {
 		ExtendedBlocks.GOBLIN_BRICK_WALL = registerB("goblin_brick_wall", () -> new LOTRWallBlock(ExtendedBlocks.GOBLIN_BRICK));
 		ExtendedBlocks.GOBLIN_PILLAR = registerB("goblin_pillar", () -> new LOTRPillarBlock(MaterialColor.COLOR_GRAY));
 		ExtendedBlocks.GOBLIN_PILLAR_SLAB = registerB("goblin_pillar_slab", () -> new AxialSlabBlock(ExtendedBlocks.GOBLIN_PILLAR));
+		
+		ExtendedBlocks.ORC_PLATING_WALL = registerB("orc_plating_wall", () -> new LOTRWallBlock(LOTRBlocks.ORC_PLATING));
+		ExtendedBlocks.RUSTED_ORC_PLATING_WALL = registerB("rusted_orc_plating_wall", () -> new LOTRWallBlock(LOTRBlocks.RUSTED_ORC_PLATING));
+
 		//Gondor
 		ExtendedBlocks.CARVED_BLACK_GONDOR_BRICK = registerB("black_carved_gondor_brick", () -> new ExtendedStoneBlock(LOTRBlocks.NUMENOREAN_BRICK));
 		ExtendedBlocks.CARVED_BLACK_UMBAR_BRICK = registerB("carved_black_umbar_brick", () -> new ExtendedStoneBlock(LOTRBlocks.NUMENOREAN_BRICK));
@@ -1005,10 +1012,17 @@ public class MixinLOTRBlocks {
 		for(ExtendedEntitySpawnGroupTypes type : ExtendedEntitySpawnGroupTypes.values()) {
 			ExtendedBlocks.ENTITYGROUPSPAWNERBLOCKS.put(type.getSerializedName(), registerB("group_entity_spawner_"+type.getSerializedName(), () -> new ExtendedGroupSpawnerBlock(Properties.of(Material.STONE).strength(-1.0F).noCollission().noDrops(), type)));
 		}
-		ExtendedBlocks.CHEESE_WHEEL = registerB("cheese_wheel", () -> new ExtendedCheeseWheelBlock(Properties.copy(Blocks.CAKE), 1.0F, ExtendedItems.CHEESE_SLICE, ExtendedCheeseState.UNAFFECTED));
-		ExtendedBlocks.AGED_CHEESE_WHEEL = registerB("aged_cheese_wheel", () -> new ExtendedCheeseWheelBlock(Properties.copy(Blocks.CAKE), 1.0F, ExtendedItems.AGED_CHEESE_SLICE, ExtendedCheeseState.AGED));
+		ExtendedBlocks.CHEESE_WHEEL = registerB("cheese_wheel", () -> new ExtendedCheeseWheelBlock(Properties.copy(Blocks.CAKE), 1.0F, ExtendedItems.CHEESE_SLICE, ExtendedFoods.CHEESE_WHEEL_SLICE, ExtendedCheeseState.UNAFFECTED));
+		ExtendedBlocks.AGED_CHEESE_WHEEL = registerB("aged_cheese_wheel", () -> new ExtendedCheeseWheelBlock(Properties.copy(Blocks.CAKE), 1.1F, ExtendedItems.AGED_CHEESE_SLICE, ExtendedFoods.AGED_CHEESE_WHEEL_SLICE, ExtendedCheeseState.AGED));
 
-		ExtendedBlocks.BANANA_CAKE = registerB("banana_cake", () -> new ExtendedCakeBlock(Properties.copy(Blocks.CAKE), 1.0F));
+		ExtendedBlocks.BANANA_CAKE = registerB("banana_cake", () -> new ExtendedCakeBlock(ExtendedFoods.BANANA_CAKE, Stats.EAT_CAKE_SLICE));
+		ExtendedBlocks.BLACKBERRY_PIE = registerB("blackberry_pie", () -> new ExtendedCakeBlock(ExtendedFoods.BLACKBERRY_PIE, ExtendedStats.EAT_PIE_SLICE));
+		ExtendedBlocks.BLUEBERRY_PIE = registerB("blueberry_pie", () -> new ExtendedCakeBlock(ExtendedFoods.BLUEBERRY_PIE, ExtendedStats.EAT_PIE_SLICE));
+		ExtendedBlocks.CRANBERRY_PIE = registerB("cranberry_pie", () -> new ExtendedCakeBlock(ExtendedFoods.CRANBERRY_PIE, ExtendedStats.EAT_PIE_SLICE));
+		ExtendedBlocks.ELDERBERRY_PIE = registerB("elderberry_pie", () -> new ExtendedCakeBlock(ExtendedFoods.ELDERBERRY_PIE, ExtendedStats.EAT_PIE_SLICE));
+		ExtendedBlocks.RASPBERRY_PIE = registerB("raspberry_pie", () -> new ExtendedCakeBlock(ExtendedFoods.RASPBERRY_PIE, ExtendedStats.EAT_PIE_SLICE));
+		ExtendedBlocks.SWEET_BERRY_PIE = registerB("sweet_berry_pie", () -> new ExtendedCakeBlock(ExtendedFoods.SWEET_BERRY_PIE, ExtendedStats.EAT_PIE_SLICE));
+		ExtendedBlocks.WILDBERRY_PIE = registerB("wildberry_pie", () -> new ExtendedCakeBlock(ExtendedFoods.WILDBERRY_PIE, ExtendedStats.EAT_PIE_SLICE));
 
 		ExtendedBlocks.STONE_CHEST = registerB("stone_chest", () -> new ExtendedStoneChestBlock(ExtendedStoneChestTileEntity::new));
 		ExtendedBlocks.REED_BASKET = registerB("reed_basket", () -> new ExtendedReedBasketBlock(Properties.of(Material.GRASS).sound(SoundType.GRASS).strength(0.5F).noOcclusion()));

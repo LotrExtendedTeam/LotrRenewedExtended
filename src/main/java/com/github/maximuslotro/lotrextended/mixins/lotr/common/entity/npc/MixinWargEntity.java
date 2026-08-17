@@ -22,11 +22,12 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorIte
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem.MountType;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedAlignmentHelper;
 
 import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.ai.goal.PanicIfBurningGoal;
 import lotr.common.entity.ai.goal.RandomWalkingEvenWhenRiddenGoal;
-import lotr.common.entity.npc.ExtendedRidableEntity;
+import lotr.common.entity.npc.ExtendedIRidableEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.WargEntity;
 import lotr.common.entity.npc.ai.goal.WargLeapAndDisableShieldGoal;
@@ -56,6 +57,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -72,12 +74,10 @@ import net.minecraft.util.HandSide;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.TransportationHelper;
-import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -90,7 +90,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * This class is not documented on purpose as it is unused and subject to re-write or deletion
  * */
 @Mixin(WargEntity.class)
-public abstract class MixinWargEntity extends NPCEntity implements IInventoryChangedListener, IJumpingMount, IEquipable, ExtendedRidableEntity {
+public abstract class MixinWargEntity extends NPCEntity implements IInventoryChangedListener, IJumpingMount, IEquipable, ExtendedIRidableEntity {
 	@Unique
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("90833995-95a9-4586-b044-08e411e7d60c");
 	@Unique
@@ -357,11 +357,14 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
 		}
+		if(pPlayer.getItemInHand(Hand.OFF_HAND).getItem().getUseAnimation(pPlayer.getItemInHand(pHand))==UseAction.BLOCK) {
+			return ActionResultType.PASS;
+		}
 		if(hasAlignment) {
 			this.doPlayerRide(pPlayer);
 			return ActionResultType.sidedSuccess(this.level.isClientSide);
 		}else {
-			pPlayer.sendMessage(new TranslationTextComponent("chat.lotrextended.action_requires_alignment", "+"+50), Util.NIL_UUID);
+			ExtendedAlignmentHelper.sendAlignmentError(pPlayer, "+50.0", getFaction());
 			return ActionResultType.sidedSuccess(this.level.isClientSide);
 		}
 	}

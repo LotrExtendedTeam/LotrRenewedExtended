@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.bree_man",
-    "attack_type": "melee"
+    "entity_unit_type": "entity.lotr.bree_man"
   },
   "hiring": {
     "hiringCost": 20,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 100
   },
+  "attack_type": "melee",
   "equipmentPools": {
     "helmets": [
       {

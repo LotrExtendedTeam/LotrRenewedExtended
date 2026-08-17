@@ -56,7 +56,7 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		return instance.group(templateCodec(), processorsCodec(), projectionCodec(), waterloggingCodec(), maxPlaceDistanceCodec(), 
 			maxDepthCodec(), ingnoreBBconflictsCodec(), blacklistNameCodec(), snapUpToWaterheightCodec(), 
 			shiftStructureUpByCodec(), chunkCornerOffsetCodec(), foundationBlockCodec(),
-			shouldProtectYLevelCodec(), shouldResetMaxDepthCodec(), protectableYLevelCodec(), disableSpawnAaboveGroundCodec()).apply(instance, ExtendedSingleJigsawPiece::new);
+			shouldProtectYLevelCodec(), shouldResetMaxDepthCodec(), protectableYLevelCodec(), isUndergroundPieceCodec()).apply(instance, ExtendedSingleJigsawPiece::new);
 	});
 	/**
 	 * If true, liquids will propagate through waterloggable blocks; if false, water will stay confined inside the designated blocks.
@@ -116,7 +116,7 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 	/**
 	 * If true, structure pieces will not generate above ground
 	 */
-	protected final boolean disableSpawnAaboveGround;
+	protected final boolean undergroundPiece;
 
 	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Boolean> waterloggingCodec() {
 		return Codec.BOOL.optionalFieldOf("apply_waterlogging", true).forGetter((piece) -> {
@@ -190,9 +190,9 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		});
 	}
 
-	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Boolean> disableSpawnAaboveGroundCodec() {
+	protected static <E extends ExtendedSingleJigsawPiece> RecordCodecBuilder<E, Boolean> isUndergroundPieceCodec() {
 		return Codec.BOOL.optionalFieldOf("disable_spawn_above_ground", false).forGetter((piece) -> {
-			return piece.disableSpawnAaboveGround;
+			return piece.undergroundPiece;
 		});
 	}
 
@@ -233,7 +233,7 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		this.shouldProtectYLevel = shouldProtectYLevel;
 		this.shouldResetMaxDepth = shouldResetMaxDepth;
 		this.protectableYLevel = protectableYLevel;
-		this.disableSpawnAaboveGround = disableSpawnAaboveGround;
+		this.undergroundPiece = disableSpawnAaboveGround;
 	}
 	/**
 	 * Retrieves placement settings with liquid retention set according to {@link #apply_waterlogging}.
@@ -349,10 +349,12 @@ public class ExtendedSingleJigsawPiece extends SingleJigsawPiece {
 		return shouldResetMaxDepth;
 	}
 	/**
-	 * @return Whether this piece is allowed to spawn above the ground, used to disable mineshafts spawning above ground level
+	 * Used to disable mineshafts spawning above ground level
+	 * Also handles disabling this piece for land flattening
+	 * @return Whether this piece is allowed to spawn above the ground
 	 */
-	public boolean disableSpawnAboveGround() {
-		return disableSpawnAaboveGround;
+	public boolean isUndergroundPiece() {
+		return undergroundPiece;
 	}
 	/**
 	 * Returns the deserializer type used for this piece.

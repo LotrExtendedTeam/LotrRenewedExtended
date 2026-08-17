@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedOrcBombEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedTapestryEntity;
+import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedCrabanEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedDuckEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHedgehogEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedHorseBoarEntity;
@@ -34,6 +35,7 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedDuckEggEntity>> DUCK_EGG_ENTITY;
 	public static RegistryObject<EntityType<ExtendedHorseBoarEntity>> HORSE_BOAR;
 	public static RegistryObject<EntityType<ExtendedHedgehogEntity>> HEDGEHOG;
+	public static RegistryObject<EntityType<ExtendedCrabanEntity>> CRABAN;
 	public static RegistryObject<EntityType<ExtendedThrowableAxeEntity>> THROWN_AXE;
 	public static RegistryObject<EntityType<ExtendedStructureSpawnerEntity>> STRUCTURE_ENTITY_SPAWNER;
 	public static RegistryObject<EntityType<ExtendedRespawnerEntity>> RESPAWNER_ENTITY;
@@ -96,5 +98,12 @@ public class ExtendedEntities {
 	public static RegistryObject<EntityType<ExtendedUrukCaptainEntity>> URUK_CAPTAIN;
 	public static RegistryObject<EntityType<ExtendedUrukBerserkerEntity>> URUK_BERSERKER;
 	public static RegistryObject<EntityType<ExtendedDunlendingWarlordEntity>> DUNLENDING_WARLORD;
-
+	public static RegistryObject<EntityType<ExtendedDunlendingAxeThrowerEntity>> DUNLENDING_AXE_THROWER;
+	public static RegistryObject<EntityType<ExtendedDunlendingBerserkerEntity>> DUNLENDING_BERSERKER;
+	public static RegistryObject<EntityType<ExtendedDunlendingBartenderEntity>> DUNLENDING_BARTENDER;
+	public static RegistryObject<EntityType<ExtendedDunlendingSmithEntity>> DUNLENDING_SMITH;
+	public static RegistryObject<EntityType<ExtendedHobbitFarmhandEntity>> HOBBIT_FARMHAND;
+	public static RegistryObject<EntityType<ExtendedBreelandFarmhandEntity>> BREE_FARMHAND;
+	public static RegistryObject<EntityType<ExtendedDunlendingFarmerEntity>> DUNLENDING_FARMER;
+	public static RegistryObject<EntityType<ExtendedDunlendingFarmhandEntity>> DUNLENDING_FARMHAND;
 }

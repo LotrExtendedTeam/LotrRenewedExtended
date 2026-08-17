@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:wildberry_pie"
+    ]
+  },
+  "criteria": {
+    "has_wildberry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:wildberry"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:wildberry_pie"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wildberry",
+      "has_the_recipe"
+    ]
+  ]
+}

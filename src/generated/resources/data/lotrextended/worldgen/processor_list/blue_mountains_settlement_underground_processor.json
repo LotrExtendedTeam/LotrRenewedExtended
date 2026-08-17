@@ -1,0 +1,7 @@
+{
+  "processors": [
+    {
+      "processor_type": "lotrextended:air_replacer_grass_void_processor"
+    }
+  ]
+}

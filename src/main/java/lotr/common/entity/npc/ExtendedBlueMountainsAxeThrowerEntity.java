@@ -8,7 +8,6 @@ import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRAttributes;
-import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
@@ -23,7 +22,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedBlueMountainsAxeThrowerEntity extends BlueDwarfWarriorEntity implements ExtendedNPCEntitySettings{
+public class ExtendedBlueMountainsAxeThrowerEntity extends BlueDwarfWarriorEntity implements ExtendedINPCEntitySettings{
 	@SuppressWarnings("unchecked")
 	public ExtendedBlueMountainsAxeThrowerEntity(EntityType<? extends BlueDwarfWarriorEntity> type, World w) {
 		super(type, w);
@@ -34,7 +33,6 @@ public class ExtendedBlueMountainsAxeThrowerEntity extends BlueDwarfWarriorEntit
 	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
 		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
 		npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.BLUE_DWARVEN_THROWABLE_AXE.get()));
-		npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.BLUE_DWARVEN_DAGGER.get()));
 		npcItemsInv.setIdleItemsFromRangedWeapons();
 		setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
 		return spawnData;
@@ -43,7 +41,7 @@ public class ExtendedBlueMountainsAxeThrowerEntity extends BlueDwarfWarriorEntit
 	@Override
 	protected void initialiseAttackGoals(AttackGoalsHolder holder) {
 		super.initialiseAttackGoals(holder);
-		holder.setRangedAttackGoal(new ThrowingAxeAttackGoal<ExtendedBlueMountainsAxeThrowerEntity>(this, 1.25D, 20, 16.0F));
+		holder.setRangedAttackGoal(new ThrowingAxeAttackGoal<ExtendedBlueMountainsAxeThrowerEntity>(this, 1.25D, 40, 12.0F));
 	}
 
 	@Override
@@ -74,11 +72,5 @@ public class ExtendedBlueMountainsAxeThrowerEntity extends BlueDwarfWarriorEntit
 		axeEntity.shoot(dx, dy + dxzSq * 0.2D, dz, 1.6F, (float)getAttributeValue(LOTRAttributes.NPC_RANGED_INACCURACY.get()));
 		playSound(SoundEvents.TRIDENT_THROW, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F));
 		level.addFreshEntity(axeEntity);
-	}
-
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
 	}
 }

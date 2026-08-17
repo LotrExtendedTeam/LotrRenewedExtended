@@ -52,7 +52,7 @@ public class ExtendedTrade {
 		itemTag = item.save(itemTag);
 		tag.put("item", itemTag);
 		tag.putInt("quantityLeft", quantityLeft);
-		tag.putInt("amount", price);
+		tag.putInt("price", price);
 		tag.putInt("startingQuantity", originalQuantity);
 		tag.putBoolean("shouldTradePersist", shouldTradePersist);
 		return tag;
@@ -61,14 +61,17 @@ public class ExtendedTrade {
 	public static ExtendedTrade load(CompoundNBT tag) {
 		ItemStack item = ItemStack.of(tag.getCompound("item"));
 		int quantity = tag.getInt("quantityLeft");
-		int amount = tag.getInt("amount");
-		int originalQuantity = tag.getInt("startingQuantity");
-		boolean shouldTradePersist;
+		int amount;
+		if(tag.contains("price")) {
+			amount = tag.getInt("price");
+		}else {
+			amount = tag.getInt("amount"); // fallback to older name for value
+		}
+		boolean shouldTradePersist = true; // Handle a case where this previously didn't exist
 		if(tag.contains("shouldTradePersist")) {
 			shouldTradePersist = tag.getBoolean("shouldTradePersist");
-		}else {
-			shouldTradePersist = true; // Handle a case where this previously didn't exist
 		}
+		int originalQuantity = tag.getInt("startingQuantity");
 		// handle a case in which it was never set - use default of 100
 		if (originalQuantity == 0) {
 			originalQuantity = 100;

@@ -75,13 +75,13 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 				ExtendedStructureEntitySpawner spawnerData = deserialize(GSON, spawnListJson, ExtendedStructureEntitySpawner.class);
 				if (spawnerData != null) {
 					if(spawnerData.isCustom) {
-						ExtendedLog.warn("Loaded a Entity Structure Spawner with the customLoad flag enabled, THIS SHOULD NOT BE SET IN JSON! Disabling flag!", spawnName);
+						ExtendedLog.warn("Loaded a Entity Structure Spawner with the customLoad flag enabled {}, THIS SHOULD NOT BE SET IN JSON! Disabling flag!", spawnName);
 						spawnerData.isCustom = false;
 					}
 					builder.put(spawnName, spawnerData);
 				}
 			} catch (Exception exception) {
-				ExtendedLog.error("Failed to load Extended Entity Structure Spawner %s from file", spawnName);
+				ExtendedLog.error("Failed to load Extended Entity Structure Spawner {} from file", spawnName);
 				exception.printStackTrace();
 			}
 
@@ -89,7 +89,7 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 		builder.put(LotrExtendedMod.EMPTY, ExtendedStructureEntitySpawner.EMPTY);
         // TODO validate loaded data if applicable
 		this.spawners = builder.build();
-		ExtendedLog.info("Loaded Structure Entity Spawners from Json - %s spawners", spawners.size()-1);
+		ExtendedLog.info("Loaded Structure Entity Spawners from Json - {} spawners", spawners.size()-1);
 	}
 
 	/**
@@ -125,10 +125,6 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 		}
 
 		return map;
-	}
-
-	public static String serialize(Gson gson, ExtendedStructureEntitySpawner data) {
-		return gson.toJson(data);
 	}
 
 	public static <T> T deserialize(Gson gson, JsonElement data, Class<T> classToConvert) {

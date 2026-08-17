@@ -5,14 +5,11 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCExchangeCoinsPacket;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCStopInteractingWithInteractablePacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.CoinUtils;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -23,7 +20,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 /**
  * @author RichardB122
  */
-public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExchangeContainer> {
+public class ExtendedCoinExchangeScreen extends ExtendedContainerScreen<ExtendedCoinExchangeContainer> {
 
 	public static final ResourceLocation GUI_TEXTURE = new ResourceLocation("lotr:gui/coin_exchange.png");
 
@@ -112,13 +109,5 @@ public class ExtendedCoinExchangeScreen extends ContainerScreen<ExtendedCoinExch
 
 	private void attemptToExchange(int mode) {
 		ExtendedPacketHandler.sendToServer(new ExtendedCExchangeCoinsPacket(mode));
-	}
-
-	@Override
-	public void onClose() {
-		super.onClose();
-		// notify the server that player is no longer interacting with this trader
-		ExtendedPacketHandler.sendToServer(new ExtendedCStopInteractingWithInteractablePacket(((NPCEntity)container.trader).getId()));
-		container.trader.removePlayerFromInteracting(player); // remove the player from trading on the client side as well
 	}
 }

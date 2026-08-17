@@ -97,6 +97,9 @@ public class ExtendedCombatTracker implements ExtendedTracker {
 	}
 
 	public static void playerDamagedEvent(ServerPlayerEntity victim, ServerPlayerEntity attacker) {
+		if(victim.equals(attacker) || victim.isCreative() || victim.isSpectator() || attacker.isCreative() || attacker.isSpectator()) {
+			return;
+		}
 		if (ExtendedModTracker.autoBanMap.containsKey("disable_combatlogger")) {
 			return;
 		}
@@ -126,7 +129,7 @@ public class ExtendedCombatTracker implements ExtendedTracker {
 	}
 
 	public static void playerLoggedOutEvent(ServerPlayerEntity player) {
-		if (ExtendedCombatTracker.isInCombat(player.getUUID())) {
+		if (ExtendedCombatTracker.isInCombat(player.getUUID()) && !player.isCreative() && !player.isSpectator()) {
 			ExtendedCombatTracker.handleCombatLog(player);
 		}
 	}
@@ -174,7 +177,7 @@ public class ExtendedCombatTracker implements ExtendedTracker {
         if (attackersList.length() == 0) {
             return;
         }
-		ExtendedTracker.logToFile(LOGGER, LOG_FILE, "[CombatLogger] " + player.getGameProfile().getName() + " (" + uuid + ") logged against: [" + attackersList.toString() + "]");		
+		ExtendedTracker.logToFile(LOGGER, LOG_FILE, player.getGameProfile().getName() + " (" + uuid + ") logged against: [" + attackersList.toString() + "]");		
 		// Save flag to player data
 		ExtendedPlayerInfo info = ExtendedPlayerInfo.getPlayerInfo(uuid);
 		info.setCombatLogged(true);

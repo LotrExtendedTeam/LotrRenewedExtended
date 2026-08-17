@@ -36,7 +36,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
 import net.minecraft.util.text.LanguageMap;
 
-@SuppressWarnings("deprecation")
 public abstract class ExtendedLanguageHelper implements IDataProvider {
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 	private final Map<String, String> dataHere = new TreeMap<>();
@@ -84,6 +83,7 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 	}
 
 	// TODO fix this method saving corrupted lang files for some users
+	@SuppressWarnings("deprecation")
 	private void saveHere(DirectoryCache cache, Object object, Path target) throws IOException {
 		String data = GSON.toJson(object);
 		data = JavaUnicodeEscaper.outsideOf(0, 0x7f).translate(data); // Escape unicode after the fact so that it's not double escaped by GSON
@@ -222,6 +222,9 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 				continue;
 			}
 			if (entry.getKey().contains("enchant.lotrextended")) {
+				continue;
+			}
+			if (entry.getKey().contains("message.lotrextended")) {
 				continue;
 			}
 			if (entry.getKey().contains("entity_shortname.lotrextended.")||

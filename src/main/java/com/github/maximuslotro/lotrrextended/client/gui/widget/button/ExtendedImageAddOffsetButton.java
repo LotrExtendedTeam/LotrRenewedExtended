@@ -53,16 +53,20 @@ public class ExtendedImageAddOffsetButton extends Button {
 	public void renderButton(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
 		Minecraft minecraft = Minecraft.getInstance();
 		minecraft.getTextureManager().bind(this.resourceLocation);
-		int i = this.yTexStart;
-		if (this.isHovered()&&!shouldShowEnabled()) {
-			i += this.yDiffTex;
+		RenderSystem.color4f(1.0F, 1.0F, 1.0F, this.alpha);
+		RenderSystem.enableBlend();
+		RenderSystem.defaultBlendFunc();
+		RenderSystem.enableDepthTest();
+		int i = yTexStart;
+		if (!active) {
+			i += yDiffTex*4;
+		}else if (this.isHovered()&&!shouldShowEnabled()) {
+			i += yDiffTex*1;
 		}else if (!isHovered()&&shouldShowEnabled()) {
 			i += (yDiffTex*2);
-		}else if (this.isHovered()&&shouldShowEnabled()) {
+		}else if (isHovered()&&shouldShowEnabled()) {
 			i += (yDiffTex*3);
 		}
-
-		RenderSystem.enableDepthTest();
 		blit(pMatrixStack, this.x, this.y, (float)this.xTexStart, (float)i, this.width, this.height, this.textureWidth, this.textureHeight);
 		if (this.isHovered()) {
 			this.renderToolTip(pMatrixStack, pMouseX, pMouseY);

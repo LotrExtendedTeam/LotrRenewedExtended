@@ -4,7 +4,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public abstract class ExtendedAbstractCloakingElfEntity extends ElfEntity implements ExtendedNPCEntitySettings {
+public abstract class ExtendedAbstractCloakingElfEntity extends ElfEntity implements ExtendedINPCEntitySettings {
 
     public double xCloakO;
     public double yCloakO;
@@ -65,9 +65,4 @@ public abstract class ExtendedAbstractCloakingElfEntity extends ElfEntity implem
         this.zCloak += d2 * 0.25;
         this.yCloak += d1 * 0.25;
     }
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }

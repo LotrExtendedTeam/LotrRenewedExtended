@@ -12,7 +12,6 @@ import lotr.common.entity.npc.data.NPCFoodPools;
 import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.util.ExtendedInteractableHelper;
-import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.LivingEntity;
@@ -35,10 +34,8 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implements ExtendedNPCEntitySettings, ExtendedTraderEntity {
-    int lastTickCooldownReduced = 0;
+public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implements ExtendedINPCEntitySettings, ExtendedIMerchantEntity {
     int lastTickVerifiedPlayerTradingWithIsOnline = 0;
-
 
     private static final DataParameter<Optional<UUID>> PLAYER_TRADING_WITH = EntityDataManager.defineId(ExtendedGundabadOrcTraderEntity.class, DataSerializers.OPTIONAL_UUID);
 
@@ -140,13 +137,6 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implemen
 		} else {
 			lastTickVerifiedPlayerTradingWithIsOnline++;
 		}
-
-		ExtendedTraderHelper.tickTrader(this, this);
-	}
-
-	@Override
-	public void playTradeSound() {
-		ExtendedTraderHelper.playTraderSound(level, getOnPos());
 	}
 
 	@Override
@@ -170,21 +160,6 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implemen
 	}
 
 	@Override
-	public void openCoinExchange(PlayerEntity player) {
-		ExtendedTraderHelper.openCoinExchange(this, player, this);
-	}
-
-	@Override
-	public void openTradeMenu(PlayerEntity player) {
-		ExtendedTraderHelper.openTradeMenu(this, player, this);
-	}
-
-	@Override
-	public String getTraderName() {
-		return ExtendedTraderHelper.getTraderName(getDisplayName());
-	}
-
-	@Override
 	protected void addNPCTargetingAI() {
 		if(ExtendedServerConfig.enableLegacyTraderPassiveBehavior.get()) {
 			this.addNonAggressiveTargetingGoals();
@@ -194,22 +169,7 @@ public class ExtendedGundabadOrcTraderEntity extends GundabadOrcEntity  implemen
 	}
 
 	@Override
-	public int setLastTickCooldownReduced() {
-		return lastTickCooldownReduced;
-	}
-
-	@Override
-	public void getLastTickCooldownReduced(int cooldown) {
-		lastTickCooldownReduced = cooldown;
-	}
-
-	@Override
 	public ResourceLocation getTraderProfileId() {
 		return ExtendedTraderTypes.GUNDABAD_TRADER;
-	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
 	}
 }

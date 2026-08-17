@@ -4,7 +4,7 @@
     {
       "rolls": {
         "min": 1.0,
-        "max": 4.0,
+        "max": 3.0,
         "type": "minecraft:uniform"
       },
       "entries": [
@@ -250,6 +250,17 @@
             }
           ],
           "name": "lotr:blue_dwarven_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotr:book_of_true_silver"
         },
         {
           "type": "minecraft:item",

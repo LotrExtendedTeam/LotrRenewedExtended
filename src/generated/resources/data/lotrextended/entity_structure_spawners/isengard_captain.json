@@ -2,7 +2,7 @@
   "id": "lotrextended:isengard_captain",
   "spawner_type": "single_use_spawner",
   "setHomeOnSpawn": true,
-  "homeRadius": 12,
+  "homeRadius": 10,
   "persistenceRequired": true,
   "shouldRespawnOnDeath": true,
   "pools": [

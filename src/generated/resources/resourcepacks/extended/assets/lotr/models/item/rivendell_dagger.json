@@ -1,0 +1,64 @@
+{
+  "parent": "lotr:item/handheld_dagger",
+  "textures": {
+    "layer0": "lotr:item/rivendell_dagger"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "lotr:elven_glow": 1.0,
+        "lotr:sneaking": 0.0,
+        "lotrextended:poisoned": 0.0
+      },
+      "model": "lotrextended:item/rivendell_dagger_glowing"
+    },
+    {
+      "predicate": {
+        "lotr:elven_glow": 1.0,
+        "lotr:sneaking": 1.0,
+        "lotrextended:poisoned": 0.0
+      },
+      "model": "lotrextended:item/rivendell_dagger_glowing_sneaking"
+    },
+    {
+      "predicate": {
+        "lotr:elven_glow": 1.0,
+        "lotr:sneaking": 0.0,
+        "lotrextended:poisoned": 1.0
+      },
+      "model": "lotrextended:item/rivendell_dagger_glowing_poisoned"
+    },
+    {
+      "predicate": {
+        "lotr:elven_glow": 1.0,
+        "lotr:sneaking": 1.0,
+        "lotrextended:poisoned": 1.0
+      },
+      "model": "lotrextended:item/rivendell_dagger_glowing_sneaking_poisoned"
+    },
+    {
+      "predicate": {
+        "lotr:elven_glow": 0.0,
+        "lotr:sneaking": 1.0,
+        "lotrextended:poisoned": 0.0
+      },
+      "model": "lotrextended:item/rivendell_dagger_sneaking"
+    },
+    {
+      "predicate": {
+        "lotr:elven_glow": 0.0,
+        "lotr:sneaking": 0.0,
+        "lotrextended:poisoned": 1.0
+      },
+      "model": "lotrextended:item/rivendell_dagger_poisoned"
+    },
+    {
+      "predicate": {
+        "lotr:elven_glow": 0.0,
+        "lotr:sneaking": 1.0,
+        "lotrextended:poisoned": 1.0
+      },
+      "model": "lotrextended:item/rivendell_dagger_sneaking_poisoned"
+    }
+  ]
+}

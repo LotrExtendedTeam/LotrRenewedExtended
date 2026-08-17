@@ -1,11 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.commands;
 
 import com.github.maximuslotro.lotrextended.mixins.MIXINConfig;
+import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
-import lotr.common.data.ExtendedLevelData;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,14 +30,14 @@ public class ExtendedInfoCommand
 	public static int showPlayerData(CommandSource source) {
         // display ExtendedLevelData
         source.sendSuccess(new TranslationTextComponent("command.lotrextended.info.server_timeUntilTrader").
-                append(new StringTextComponent("" + ExtendedLevelData.serverInstance().getTimeUntilTrader())), false);
+                append(new StringTextComponent("" + ExtendedLevelData.serverInstance().getTraderData().getTimeUntilTrader())), false);
         if (source.getEntity() != null) {
             source.sendSuccess(new TranslationTextComponent("command.lotrextended.info.your_trader_cooldown").
-                    append(new StringTextComponent("" + ExtendedLevelData.serverInstance().getPlayersTraderCooldown(source.getEntity().getUUID()))), false);
+                    append(new StringTextComponent("" + ExtendedLevelData.serverInstance().getTraderData().getPlayersTraderCooldown(source.getEntity().getUUID()))), false);
         }
         if (source.getEntity() != null) {
             source.sendSuccess(new TranslationTextComponent("command.lotrextended.info.your_bandit_cooldown").
-                    append(new StringTextComponent("" + ExtendedLevelData.serverInstance().getPlayersBanditCooldown(source.getEntity().getUUID()))), false);
+                    append(new StringTextComponent("" + ExtendedLevelData.serverInstance().getBanditData().getPlayersBanditCooldown(source.getEntity().getUUID()))), false);
         }
 
         // display bane data

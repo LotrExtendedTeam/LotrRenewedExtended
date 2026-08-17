@@ -225,7 +225,7 @@
       "weight": 50,
       "stack": {
         "item": "minecraft:bamboo",
-        "averageCost": 16,
+        "averageCost": 1,
         "count": 8
       }
     },
@@ -279,6 +279,21 @@
       "stack": {
         "item": "lotr:suspicious_meat",
         "averageCost": 7
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:slime_ball",
+        "averageCost": 67
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:bamboo",
+        "averageCost": 16,
+        "count": 8
       }
     }
   ]

@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.block;
 
 import java.util.Random;
 
-import com.github.maximuslotro.lotrrextended.common.stats.ExtendedStats;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedCrucibleTileEntity;
 
 import net.minecraft.block.Block;

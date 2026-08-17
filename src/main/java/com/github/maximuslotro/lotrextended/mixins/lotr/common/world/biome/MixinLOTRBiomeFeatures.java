@@ -68,6 +68,12 @@ public class MixinLOTRBiomeFeatures {
 		if(table.getBlock()==LOTRBlocks.URUK_CRAFTING_TABLE.get()) {
 			info.cancel();
 		}
+		if(table.getBlock()==LOTRBlocks.DWARVEN_CRAFTING_TABLE.get()) {
+			info.cancel();
+		}
+		if(table.getBlock()==LOTRBlocks.DUNLENDING_CRAFTING_TABLE.get()) {
+			info.cancel();
+		}
 	}
 	/**
      * Injected at the end of the {@code setup} method to add extended biome feature

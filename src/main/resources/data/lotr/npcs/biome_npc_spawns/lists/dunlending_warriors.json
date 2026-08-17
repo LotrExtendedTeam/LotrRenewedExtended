@@ -1,0 +1,27 @@
+{
+	"entries": [
+		{
+			"mixed_entity_types": [
+				{
+					"entity_type": "lotr:dunlending_warrior",
+					"weight": 20
+				},
+				{
+					"entity_type": "lotr:dunlending_bowman",
+					"weight": 10
+				},
+				{
+					"entity_type": "lotr:dunlending_axe_thrower",
+					"weight": 10
+				},
+				{
+					"entity_type": "lotr:dunlending_berserker",
+					"weight": 5
+				}
+			],
+			"weight": 20,
+			"min_count": 2,
+			"max_count": 6
+		}
+	]
+}

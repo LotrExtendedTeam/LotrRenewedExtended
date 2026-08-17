@@ -41,7 +41,7 @@ public class ExtendedMissingMappings {
 				if (BLOCKS.containsKey(entryLocation)) {
 					Block block = BLOCKS.get(entryLocation);
 					mapping.remap(block);
-					ExtendedLog.info("Remapped block, old id was=%s, new id is=%s", entryLocation, block.getRegistryName());
+					ExtendedLog.info("Remapped block, old id was={}, new id is={}", entryLocation, block.getRegistryName());
 				}
 				continue;
 			}
@@ -57,7 +57,7 @@ public class ExtendedMissingMappings {
 				if (ITEMS.containsKey(entryLocation)) {
 					Item item = ITEMS.get(entryLocation);
 					mapping.remap(item);
-					ExtendedLog.info("Remapped item, old id was=%s, new id is=%s", entryLocation, item.getRegistryName());
+					ExtendedLog.info("Remapped item, old id was={}, new id is={}", entryLocation, item.getRegistryName());
 				}
 				continue;
 			}
@@ -73,7 +73,7 @@ public class ExtendedMissingMappings {
 				if (ENTITIES.containsKey(entryLocation)) {
 					EntityType<?> entity = ENTITIES.get(entryLocation);
 					mapping.remap(entity);
-					ExtendedLog.info("Remapped entity, old id was=%s, new id is=%s", entryLocation, entity.getRegistryName());
+					ExtendedLog.info("Remapped entity, old id was={}, new id is={}", entryLocation, entity.getRegistryName());
 				}
 				continue;
 			}
@@ -167,6 +167,10 @@ public class ExtendedMissingMappings {
 		addRemapItem("morgul_chestplate", "lotr", ExtendedItems.MORGUL_VASSAL_CHESTPLATE);
 		addRemapItem("morgul_leggings", "lotr", ExtendedItems.MORGUL_VASSAL_LEGGINGS);
 		addRemapItem("morgul_boots", "lotr", ExtendedItems.MORGUL_VASSAL_BOOTS);
+		
+		//Beta 1.10.3 Renamed Dunlanding Shield to Dunlending Shield
+		addRemapItem("dunlanding_shield", "lotr", ExtendedItems.DUNLENDING_SHIELD);
+
 	}
 
 	private static void addRemapBlock(String previousMapping, String previousNamespace, Supplier<? extends Block> remapBlock) {

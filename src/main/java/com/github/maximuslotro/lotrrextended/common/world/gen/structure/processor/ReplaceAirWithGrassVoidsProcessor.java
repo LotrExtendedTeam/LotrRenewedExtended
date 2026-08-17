@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.structure.process
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedStructureProcessors;
 import com.mojang.serialization.Codec;
 
 import lotr.common.init.ExtendedBlocks;
@@ -37,6 +36,8 @@ import net.minecraft.world.gen.feature.template.Template;
  * @see ExtendedBlocks#GRASS_VOID
  * @see ExtendedStructureProcessors#GRASS_VOID_AIR_PROCESSOR
  */
+@Deprecated
+//TODO remove and replace with ExtendedBlockReplacementProcessor
 public class ReplaceAirWithGrassVoidsProcessor extends StructureProcessor {
 	/** Singleton instance of this processor. */
 	public static final ReplaceAirWithGrassVoidsProcessor INSTANCE = new ReplaceAirWithGrassVoidsProcessor();

@@ -16,7 +16,7 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorIte
 import com.google.common.collect.ImmutableList;
 
 import lotr.client.render.entity.model.WargModel;
-import lotr.common.entity.npc.ExtendedRidableEntity;
+import lotr.common.entity.npc.ExtendedIRidableEntity;
 import lotr.common.entity.npc.WargEntity;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -197,7 +197,7 @@ public abstract class MixinWargModel<E extends WargEntity> extends SegmentedMode
 	 * */
 	@Overwrite(remap=false)
 	public void setLivingAnimations(E pEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTick) {
-		ItemStack itemstack = ((ExtendedRidableEntity)pEntity).getArmor();
+		ItemStack itemstack = ((ExtendedIRidableEntity)pEntity).getArmor();
 		if (itemstack.getItem() instanceof ExtendedMountedArmorItem) {
 			backHairL.visible=false;
 			backHairR.visible=false;

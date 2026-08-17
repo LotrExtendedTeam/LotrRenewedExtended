@@ -1,0 +1,110 @@
+{
+  "parent": "lotr:gondor/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "When I was younger, I dreamed of becoming a Swan Knight of Dol Amroth. Those times seem far away now.",
+        "I hope that my family shall not be conscripted into the levies of Gondor.",
+        "Truly, these days are the failing of the race of Men. It seems even my crops are failing."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "There's some troubling news going around. I can tell you that much.",
+        "We do what we can to survive, #p. But if the Enemy comes, we will not be able to do much.",
+        "Our crops have been failing, #p. I hope for better fortune next year."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=guest"
+      },
+      "lines": [
+        "The heroes of Gondor shall rise to protect us, #p.",
+        "I must return to work, #p. Those fields won't till themselves.",
+        "I shall not bore you with old tales of the village."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": "<atarms"
+      },
+      "lines": [
+        "Which village do you come from, #p?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "I am your true friend, #p, as long as you stand true for Gondor."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Are you one of the heroes of Gondor? Have you come to protect us?",
+        "Hail, #p, come from afar to win glory for Gondor!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "You're no friend of mine, #p.",
+        "You're a villain!",
+        "Get out of my sight, #p.",
+        "You're a nasty piece of work, #p.",
+        "Away with you!",
+        "Our people have no love for villains like you!",
+        "The heroes of Gondor will strike you down, #p.",
+        "You belong in the stocks, #p!",
+        "Don't look at me like that.",
+        "What do you want from me, you scoundrel?",
+        "We have no love for people of your sort.",
+        "You're a ne'er-do-well, #p, that's for sure."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Run along, #p, else I'll call the guards on you.",
+        "You shall get no welcome here.",
+        "You'd best be careful around here. It's not safe for criminals like you.",
+        "Leave Gondor while you still can, #p.",
+        "I suggest you leave this place, #p.",
+        "You'd be best to leave, #p. Or would you rather be forced out?",
+        "Off with you, #p! We don't welcome ne'er-do-wells in Gondor."
+      ]
+    }
+  ]
+}

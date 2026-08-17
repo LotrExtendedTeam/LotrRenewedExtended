@@ -83,9 +83,11 @@ public class BanditBiomeList {
         // Rohan
         bandits.put("lotr:rohan", BanditChance.RARE);
         bandits.put("lotr:wold", BanditChance.UNCOMMON);
+        bandits.put("lotr:uruk_highlands", BanditChance.UNCOMMON);
 
         bandits.put("lotr:fangorn", BanditChance.NONE);
         bandits.put("lotr:mouths_of_entwash", BanditChance.RARE);
+        bandits.put("lotr:fangorn_wasteland", BanditChance.UNCOMMON);
         bandits.put("lotr:enedwaith", BanditChance.COMMON);
 
         bandits.put("lotr:northern_dale", BanditChance.RARE);

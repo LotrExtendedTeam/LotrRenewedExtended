@@ -1,0 +1,100 @@
+{
+  "processors": [
+    {
+      "target_block": "minecraft:cake",
+      "replacements": {
+        "entries": [
+          {
+            "weight": 35,
+            "data": {
+              "Name": "minecraft:air"
+            }
+          },
+          {
+            "weight": 4,
+            "data": {
+              "Properties": {
+                "bites": "0"
+              },
+              "Name": "minecraft:cake"
+            }
+          },
+          {
+            "weight": 8,
+            "data": {
+              "Properties": {
+                "bites": "0"
+              },
+              "Name": "lotr:blackberry_pie"
+            }
+          },
+          {
+            "weight": 8,
+            "data": {
+              "Properties": {
+                "bites": "0"
+              },
+              "Name": "lotr:blueberry_pie"
+            }
+          },
+          {
+            "weight": 6,
+            "data": {
+              "Properties": {
+                "bites": "0"
+              },
+              "Name": "lotr:cranberry_pie"
+            }
+          },
+          {
+            "weight": 7,
+            "data": {
+              "Properties": {
+                "bites": "0"
+              },
+              "Name": "lotr:elderberry_pie"
+            }
+          },
+          {
+            "weight": 8,
+            "data": {
+              "Properties": {
+                "bites": "0"
+              },
+              "Name": "lotr:raspberry_pie"
+            }
+          },
+          {
+            "weight": 6,
+            "data": {
+              "Properties": {
+                "bites": "0"
+              },
+              "Name": "lotr:sweet_berry_pie"
+            }
+          },
+          {
+            "weight": 2,
+            "data": {
+              "Properties": {
+                "bites": "0"
+              },
+              "Name": "lotr:wildberry_pie"
+            }
+          },
+          {
+            "weight": 6,
+            "data": {
+              "Properties": {
+                "bites": "0"
+              },
+              "Name": "lotr:apple_crumble"
+            }
+          }
+        ],
+        "type": "minecraft:weighted_state_provider"
+      },
+      "processor_type": "lotrextended:block_replacement"
+    }
+  ]
+}

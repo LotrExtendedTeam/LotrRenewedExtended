@@ -36,6 +36,9 @@
           "entity_type": "lotr:bree_hobbit_florist"
         },
         {
+          "entity_type": "lotr:bree_leatherworker"
+        },
+        {
           "entity_type": "lotr:bree_stonemason"
         },
         {
@@ -46,6 +49,12 @@
         },
         {
           "entity_type": "lotr:bree_farmer"
+        },
+        {
+          "entity_type": "lotr:bree_potter"
+        },
+        {
+          "entity_type": "lotr:bree_hobbit_potter"
         }
       ]
     }

@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.serialization;
 
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentItem;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitEquipmentPool;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.signprocessors.ExtendedSignTextList;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawnerBoundsEntry;
@@ -38,6 +39,11 @@ public class GsonSerializers {
 			.registerTypeAdapter(ExtendedHiredUnitEquipmentPool.class, new ExtendedHiredUnitEquipmentPool.Serializer())
 			.registerTypeAdapter(ExtendedHiredUnitEquipmentItem.class, new ExtendedHiredUnitEquipmentItem.Serializer())
 			.registerTypeAdapter(ExtendedServerHiredUnitProfile.class, new ExtendedServerHiredUnitProfile.Serializer());
+	}
+
+	public static GsonBuilder createCaptainSerializer() {
+		return createConditionSerializer()
+			.registerTypeAdapter(ExtendedCaptainProfile.class, new ExtendedCaptainProfile.Serializer());
 	}
 
 	public static GsonBuilder createSignTextSerializer() {

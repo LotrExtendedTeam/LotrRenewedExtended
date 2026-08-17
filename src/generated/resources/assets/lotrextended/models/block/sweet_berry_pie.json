@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cake",
+  "textures": {
+    "particle": "lotrextended:block/sweet_berry_pie_side",
+    "bottom": "lotrextended:block/sweet_berry_pie_bottom",
+    "top": "lotrextended:block/sweet_berry_pie_top",
+    "side": "lotrextended:block/sweet_berry_pie_side"
+  }
+}

@@ -3,7 +3,7 @@ package lotr.common.block;
 import java.util.Random;
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedBlockStateUtils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -68,7 +68,7 @@ public class ExtendedAxialSlabPlantableSpreadableBlock extends ExtendedAxialSlab
 		if (!canBeGrass(blockState, world, thisPos, blockGrowable)) {
 			if (!world.isAreaLoaded(thisPos, 3))
 				return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
-			world.setBlockAndUpdate(thisPos, BlockStateUtils.copyBlockStateToBlock(slabBase.get(), blockState));
+			world.setBlockAndUpdate(thisPos, ExtendedBlockStateUtils.copyBlockStateToBlock(slabBase.get(), blockState));
 		} else {
 			if (world.getMaxLocalRawBrightness(thisPos.above()) >= 9) {
 				BlockState stateBlock = blockGrowable.get().defaultBlockState();
@@ -79,7 +79,7 @@ public class ExtendedAxialSlabPlantableSpreadableBlock extends ExtendedAxialSlab
 						continue;
 					}
 					if (world.getBlockState(blockpos).is(slabBase.get())) {
-						BlockState stateSlab = BlockStateUtils.copyBlockStateToBlock(this, world.getBlockState(blockpos));
+						BlockState stateSlab = ExtendedBlockStateUtils.copyBlockStateToBlock(this, world.getBlockState(blockpos));
 						if (canPropagate(stateSlab, world, blockpos, blockGrowable)) {
 							world.setBlockAndUpdate(blockpos, stateSlab);
 							continue;

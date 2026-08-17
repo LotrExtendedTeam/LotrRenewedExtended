@@ -30,7 +30,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
-public class ExtendedBarrowWightEntity extends NPCEntity implements ExtendedNPCEntitySettings {
+public class ExtendedBarrowWightEntity extends NPCEntity implements ExtendedINPCEntitySettings {
 	public ExtendedBarrowWightEntity(EntityType<? extends NPCEntity> type, World w) {
 		super(type, w);
 		this.spawnRequiresSurfaceBlock = true;
@@ -133,9 +133,4 @@ public class ExtendedBarrowWightEntity extends NPCEntity implements ExtendedNPCE
 	@Override
 	protected void playStepSound(BlockPos pPos, BlockState pBlock) {}
 
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }

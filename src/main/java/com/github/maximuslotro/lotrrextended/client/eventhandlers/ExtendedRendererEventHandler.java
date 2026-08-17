@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
+import com.github.maximuslotro.lotrrextended.client.render.ExtendedExclamationMarkRenderer;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedHiredUnitHpBar;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBowMaterial;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedCrossbowMaterial;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCrossbowItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
@@ -17,12 +19,13 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.LOTRDimensions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -37,14 +40,15 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderNameplateEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 public class ExtendedRendererEventHandler {
 
 	public static void renderHpBar(RenderNameplateEvent event) {
-		if (event.getEntity() instanceof NPCEntity && ((ExtendedNPCEntity)event.getEntity()).getUnitInfo().isNpcActiveDuty()) {
-			if (ExtendedClientProxy.usersUUID.equals(null) || !ExtendedClientProxy.usersUUID.equals(((ExtendedNPCEntity)event.getEntity()).getUnitInfo().getOwnerUUID())) {
+		if (event.getEntity() instanceof NPCEntity && ((ExtendedINPCEntity)event.getEntity()).getUnitInfo().isNpcActiveDuty()) {
+			if (ExtendedClientProxy.usersUUID.equals(null) || !ExtendedClientProxy.usersUUID.equals(((ExtendedINPCEntity)event.getEntity()).getUnitInfo().getOwnerUUID())) {
 				return;
 			}
 
@@ -99,6 +103,7 @@ public class ExtendedRendererEventHandler {
 
 	public static void addTooltipsForModifiers(ItemTooltipEvent event) {
 		ItemStack stack = event.getItemStack();
+		List<ITextComponent> listedStartTooltips = new ArrayList<>();
 		if(ExtendedModifierUtils.hasModifiers(stack)) {
 			List<ExtendedModifier> modifiers = ExtendedModifierUtils.getModifierList(stack);
 			if (!stack.hasCustomHoverName() && !modifiers.isEmpty()) {
@@ -128,7 +133,7 @@ public class ExtendedRendererEventHandler {
 						.withStyle(TextFormatting.GRAY));
 				}
 			}
-			event.getToolTip().addAll(1, entries);
+			listedStartTooltips.addAll(entries);
 		}else if(ExtendedModifierScrollItem.hasModifier(stack)) {
 			ExtendedModifier modifier = ExtendedModifierScrollItem.getModifier(stack);
 			List<ITextComponent> entries = new ArrayList<>();
@@ -142,8 +147,14 @@ public class ExtendedRendererEventHandler {
 					.append(new TranslationTextComponent(modifier.getModifierType().getKeyLocal()))
 					.withStyle(TextFormatting.GRAY));
 			}
-			event.getToolTip().addAll(1, entries);
+			listedStartTooltips.addAll(entries);
 		}
+		if(ExtendedDaggerItem.isPoisoned(stack)) {
+			listedStartTooltips.add((new TranslationTextComponent("gui.lotrextended.dagger.poisoned").withStyle(TextFormatting.DARK_GREEN)));
+		}
+		// Append on top
+		event.getToolTip().addAll(1, listedStartTooltips);
+
 		if(stack.getItem() instanceof BowItem) {
 			float drawSpeed = 1;
 			float damage = 1.0f;
@@ -184,5 +195,9 @@ public class ExtendedRendererEventHandler {
 			event.getToolTip().add((new TranslationTextComponent("item.lotrextended.modifiers.horse")).withStyle(TextFormatting.GRAY));
 			event.getToolTip().add((new TranslationTextComponent("attribute.modifier.plus.0", ((HorseArmorItem)stack.getItem()).getProtection(), new TranslationTextComponent("attribute.name.generic.armor"))).withStyle(TextFormatting.BLUE));
 		}
+	}
+
+	public static void onPostRenderEntity(final RenderLivingEvent.Post<LivingEntity, EntityModel<LivingEntity>> event) {
+		ExtendedExclamationMarkRenderer.onPostRenderEntity(event);
 	}
 }

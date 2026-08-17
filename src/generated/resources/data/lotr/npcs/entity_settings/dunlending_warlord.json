@@ -1,5 +1,5 @@
 {
   "faction": "lotr:dunland",
-  "kill_bonus": 2,
-  "speechbank": "lotr:dunland/warlord"
+  "kill_bonus": 5,
+  "speechbank": "lotrextended:dunland/warlord"
 }
