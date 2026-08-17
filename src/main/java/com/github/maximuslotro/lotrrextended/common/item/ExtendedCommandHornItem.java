@@ -6,7 +6,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHired
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitHornTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
-import com.github.maximuslotro.lotrrextended.common.item.clientside.ExtendedCommandHornClientSide;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedClientsideSeparatedScreenHandler;
 
 import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
@@ -22,6 +22,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 
 public class ExtendedCommandHornItem extends Item {
 	public static final String NBTvalue = "usage_type";
@@ -84,9 +86,7 @@ public class ExtendedCommandHornItem extends Item {
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		ItemStack heldItem = player.getItemInHand(hand);
 		if (getType(heldItem).isUnset()) {
-			if (world.isClientSide()) {
-				new ExtendedCommandHornClientSide().openMenu();
-			}
+			DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ExtendedClientsideSeparatedScreenHandler.openHornMenu());
 			return ActionResult.sidedSuccess(heldItem, world.isClientSide());
 		}else {
 			player.startUsingItem(hand);

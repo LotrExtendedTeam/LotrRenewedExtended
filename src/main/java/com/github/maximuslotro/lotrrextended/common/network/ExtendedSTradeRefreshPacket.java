@@ -2,9 +2,11 @@ package com.github.maximuslotro.lotrrextended.common.network;
 
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedClientsideSeparatedScreenHandler;
 
 import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class ExtendedSTradeRefreshPacket {
@@ -24,8 +26,9 @@ public class ExtendedSTradeRefreshPacket {
     }
 
 	public static void handle(ExtendedSTradeRefreshPacket packet, Supplier<Context> context) {
-		ExtendedClientsideSeparatedScreenHandler.closeTraderGui(packet.traderId);
         context.get().setPacketHandled(true);
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ExtendedClientsideSeparatedScreenHandler.closeTraderGui(packet.traderId));
+
 	}
 }
 

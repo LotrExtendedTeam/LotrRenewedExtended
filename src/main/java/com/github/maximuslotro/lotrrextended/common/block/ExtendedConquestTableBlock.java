@@ -1,7 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
-import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedClientsideSeparatedScreenHandler;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -18,6 +18,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 
 public class ExtendedConquestTableBlock extends HorizontalBlock {
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
@@ -41,9 +43,7 @@ public class ExtendedConquestTableBlock extends HorizontalBlock {
 	@Override
 	public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pHit) {
 		pLevel.playSound(null, pHit.getBlockPos(), ExtendedSounds.CONQUEST_TABLE_OPEN.get(), SoundCategory.BLOCKS, 2.0F, 1.0F);
-		if (pLevel.isClientSide) {
-			ExtendedClientsideSeparatedScreenHandler.openConquestGUI();
-		}
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ExtendedClientsideSeparatedScreenHandler.openConquestGUI());
 		return ActionResultType.sidedSuccess(pLevel.isClientSide);
 	}
 }

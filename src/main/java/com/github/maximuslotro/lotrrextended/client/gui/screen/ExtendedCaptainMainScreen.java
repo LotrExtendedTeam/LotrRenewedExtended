@@ -31,11 +31,11 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 	private Button leftArrowButton;
 	private Button rightArrowButton;
 
-	public ExtendedCaptainMainScreen(NPCEntity entity, PlayerEntity player, List<ExtendedClientHiredUnitProfile> profiles) {
+	public ExtendedCaptainMainScreen(NPCEntity entity, List<ExtendedClientHiredUnitProfile> profiles) {
 		super(new StringTextComponent("Captain Menu"), 176, 256);
-
+		Minecraft mc = Minecraft.getInstance();
 		this.npcEntity = entity;
-		this.player = player;
+		this.player = mc.player;
 		this.unitProfiles = profiles;
 		this.currentProfileIndex = 0;
 	}

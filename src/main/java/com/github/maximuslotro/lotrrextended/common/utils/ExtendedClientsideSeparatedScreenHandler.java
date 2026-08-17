@@ -1,9 +1,10 @@
-package com.github.maximuslotro.lotrrextended.common.utils.client;
+package com.github.maximuslotro.lotrrextended.common.utils;
 
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedBannerConfigurationScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedCaptainMainScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedExitStoneTextSignScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHoistOptionsScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHornSelectScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedMapScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedTraderMainScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedTradeScreen;
@@ -29,6 +30,10 @@ import net.minecraft.tileentity.TileEntity;
 
 public class ExtendedClientsideSeparatedScreenHandler {
 
+	public static void openHornMenu() {
+		Minecraft.getInstance().setScreen(new ExtendedHornSelectScreen());
+	}
+
 	public static void openTraderMainMenuGui(NPCEntity entity, PlayerEntity player) {
 		Minecraft.getInstance().setScreen(new ExtendedTraderMainScreen(entity, player));
 	}
@@ -38,7 +43,7 @@ public class ExtendedClientsideSeparatedScreenHandler {
 		ClientPlayerEntity player = mc.player;
 		Entity entity = mc.level.getEntity(packet.getCaptainId());		
 		if (entity instanceof ExtendedICaptainEntity && entity instanceof NPCEntity) {
-			Minecraft.getInstance().setScreen(new ExtendedCaptainMainScreen((NPCEntity) entity, player, packet.getClientProfiles()));
+			Minecraft.getInstance().setScreen(new ExtendedCaptainMainScreen((NPCEntity) entity, packet.getClientProfiles()));
 		}
 	}
 

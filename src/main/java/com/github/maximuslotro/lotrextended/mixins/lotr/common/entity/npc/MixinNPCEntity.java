@@ -337,21 +337,24 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 	public boolean checkSpawnRules(IWorld iworld, SpawnReason reason) {
 		if (super.checkSpawnRules(iworld, reason)) {
 			if (reason == SpawnReason.NATURAL) {
-				// Extended Start
-				if((this.spawnRequiresDarkness && !this.isValidLightLevelForDarkSpawn(iworld)) || ExtendedBannerProtectionManager.getProtectionStatus(level, this.blockPosition(), new ProtectionInstance.EntityProtection(this)).isNotAllowed()) {
+				if((this.spawnRequiresDarkness && !this.isValidLightLevelForDarkSpawn(iworld)) 
+					/*Extended Start*/|| ExtendedBannerProtectionManager.getProtectionStatus(level, this.blockPosition(), new ProtectionInstance.EntityProtection(this)).isNotAllowed()/*Extended End*/) {
 					return false;
 				}
-				// Extended End
 				if (this.spawnRequiresSurfaceBlock && !this.checkSpawningOnSurfaceBlock(iworld, reason)) {
 					return false;
 				}
 			}
+			// Extended Start
+			// Bandit, wandering traders, Tolkien, invasions
 			if (reason == SpawnReason.EVENT) {
 				return ExtendedBannerProtectionManager.getProtectionStatus(level, this.blockPosition(), new ProtectionInstance.EntityProtection(this)).isAllowed();
 			}
+			// Structures, Respawner
 			if (reason == SpawnReason.SPAWNER) {
 				return ExtendedBannerProtectionManager.getProtectionStatus(level, this.blockPosition(), new ProtectionInstance.EntityProtection(this)).isAllowed();
 			}
+			/*Extended End*/
 			return true;
 		} else {
 			return false;
