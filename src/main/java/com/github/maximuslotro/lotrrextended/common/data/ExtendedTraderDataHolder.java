@@ -72,7 +72,7 @@ public class ExtendedTraderDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void saveData(CompoundNBT pTag) {
+	public void saveData(CompoundNBT pTag, ServerWorld world) {
 		CompoundNBT traderData = new CompoundNBT();
 		traderData.putInt("timeUntilTrader", this.timeUntilTrader);
 		traderData.putBoolean("requireRandom", this.requireRandom);

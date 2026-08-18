@@ -12,7 +12,7 @@ public abstract class ExtendedAbstractLevelDataHolder {
 
 	public abstract void loadData(CompoundNBT pTag);
 
-	public abstract void saveData(CompoundNBT pTag);
+	public abstract void saveData(CompoundNBT pTag, ServerWorld world);
 
 	public abstract void tick(ServerWorld level);
 

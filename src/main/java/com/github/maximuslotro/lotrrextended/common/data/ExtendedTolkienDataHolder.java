@@ -42,7 +42,7 @@ public class ExtendedTolkienDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void saveData(CompoundNBT pTag) {
+	public void saveData(CompoundNBT pTag, ServerWorld world) {
 		ListNBT list = new ListNBT();
 		for (UUID uuid : tolkienTalkedTo) {
 			CompoundNBT entry = new CompoundNBT();

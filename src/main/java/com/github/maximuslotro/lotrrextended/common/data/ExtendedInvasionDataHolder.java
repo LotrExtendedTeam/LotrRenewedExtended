@@ -129,7 +129,7 @@ public class ExtendedInvasionDataHolder extends ExtendedAbstractLevelDataHolder 
 	public void loadData(CompoundNBT pTag) {}
 
 	@Override
-	public void saveData(CompoundNBT pTag) {}
+	public void saveData(CompoundNBT pTag, ServerWorld world) {}
 
 	@Override
 	public void tick(ServerWorld level) {

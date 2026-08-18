@@ -40,7 +40,7 @@ public class ExtendedBanditDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void saveData(CompoundNBT pTag) {
+	public void saveData(CompoundNBT pTag, ServerWorld world) {
 		ListNBT list = new ListNBT();
 		for (UUID uuid : playerBanditSpawnCooldowns.keySet()) {
 			CompoundNBT entry = new CompoundNBT();

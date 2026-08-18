@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import com.github.maximuslotro.lotrrextended.common.data.ExtendedFellowshipDataHolder;
+
 import lotr.common.data.ExtendedLOTRPlayerData;
 import lotr.common.data.LOTRLevelData;
 import net.minecraft.entity.player.PlayerEntity;
@@ -45,7 +47,7 @@ public class ExtendedFellowship {
 		return needsSaving;
 	}
 	public void createAndRegister(ServerWorld level) {
-		ExtendedFellowshipHolderServer.addFellowship(this);
+		ExtendedFellowshipDataHolder.addFellowship(this);
 		((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData(level, fellowshipOwner)).getFellowshipData().addFellowship(this);
 		markDirty();
 	}

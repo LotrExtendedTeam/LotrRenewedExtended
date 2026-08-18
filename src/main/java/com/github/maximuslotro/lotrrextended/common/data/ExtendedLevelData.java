@@ -1,9 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.data;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
-import lotr.common.LOTRLog;
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
+
 import lotr.common.data.SaveUtil;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.server.ServerWorld;
@@ -17,6 +19,8 @@ public class ExtendedLevelData {
 	private final ExtendedInvasionDataHolder invasionData;
 	private final ExtendedBarrowsDataHolder barrowData;
 	private final ExtendedTolkienDataHolder tolkienData;
+	// Access through static methods instead of though this field
+	private final ExtendedFellowshipDataHolder fellowshipData;
 
 	private boolean dirty = false;
 	private boolean needsLoad = true;
@@ -35,6 +39,7 @@ public class ExtendedLevelData {
 		invasionData = addHolder(new ExtendedInvasionDataHolder(this));
 		barrowData = addHolder(new ExtendedBarrowsDataHolder(this));
 		tolkienData = addHolder(new ExtendedTolkienDataHolder(this));
+		fellowshipData = addHolder(new ExtendedFellowshipDataHolder(this));
 	}
 
 	private <H extends ExtendedAbstractLevelDataHolder> H addHolder(H dataHolder) {
@@ -62,28 +67,29 @@ public class ExtendedLevelData {
 			}
 			CompoundNBT levelData = new CompoundNBT();
 			for(ExtendedAbstractLevelDataHolder holder : dataHolders) {
-				holder.saveData(levelData);
+				holder.saveData(levelData, world);
 			}
 
 			SaveUtil.saveNBTToFile(lotrDataFile, levelData);
 			this.dirty = false;
-		} catch (Exception e) {
-			LOTRLog.error("Error saving Extended mod data!");
-			e.printStackTrace();
+		} catch (IOException e) {
+			ExtendedLog.error("Error saving Extended mod data!", e);
 		}
 	}
-
+	// Should only be loaded once on server start
 	public void load(ServerWorld world) {
 		try {
+			if(!needsLoad) {
+				return;
+			}
 			CompoundNBT levelData = SaveUtil.loadNBTFromFile(getLOTRDataFile(world));
 			for(ExtendedAbstractLevelDataHolder holder : dataHolders) {
 				holder.loadData(levelData);
 			}
 			this.needsLoad = false;
 			this.save(world);
-		} catch (Exception e) {
-			LOTRLog.error("Error loading Extended mod data!");
-			e.printStackTrace();
+		} catch (IOException e) {
+			ExtendedLog.error("Error loading Extended mod data!", e);
 		}
 	}
 

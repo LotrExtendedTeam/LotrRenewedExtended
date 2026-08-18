@@ -87,7 +87,7 @@ public class ExtendedBarrowsDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void saveData(CompoundNBT pTag) {
+	public void saveData(CompoundNBT pTag, ServerWorld world) {
 		ListNBT list = new ListNBT();
 		for (UUID uuid : secondsInBarrows.keySet()) {
 			CompoundNBT entry = new CompoundNBT();

@@ -4,11 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ExtendedLog {
-	private static Logger LOGGER;
-
-	public static void make() {
-		LOGGER = LogManager.getLogger();
-	}
+	private static Logger LOGGER = LogManager.getLogger();
 
 	public static void debug(String s) {
 		LOGGER.debug("LotrExtended: {}", s);

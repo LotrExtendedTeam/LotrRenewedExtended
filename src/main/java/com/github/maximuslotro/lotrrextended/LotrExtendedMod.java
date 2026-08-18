@@ -82,7 +82,6 @@ public class LotrExtendedMod{
 	public static HackyChairDatabase hackyChairManager;
 
 	public LotrExtendedMod() {
-		ExtendedLog.make();
 		INSTANCE = this;
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ExtendedClientProxy::staticClientSetup);
 		modBus = FMLJavaModLoadingContext.get().getModEventBus();
