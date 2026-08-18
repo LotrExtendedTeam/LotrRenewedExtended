@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotrextended:willow_wood_stairs"
+      },
+      {
+        "item": "lotrextended:stripped_willow_wood_stairs"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotrextended:willow_planks",
+    "count": 3
+  }
+}

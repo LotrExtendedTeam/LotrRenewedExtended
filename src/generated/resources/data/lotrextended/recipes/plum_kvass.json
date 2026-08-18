@@ -1,0 +1,26 @@
+{
+  "type": "lotr:brewing",
+  "ingredients": [
+    {
+      "item": "lotrextended:plum"
+    },
+    {
+      "item": "lotrextended:plum"
+    },
+    {
+      "item": "lotrextended:plum"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:wheat"
+    }
+  ],
+  "result": "lotrextended:plum_kvass",
+  "experience": 1.0,
+  "brewtime": 12000
+}

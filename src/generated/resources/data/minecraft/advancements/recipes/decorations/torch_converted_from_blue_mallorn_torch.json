@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:torch_converted_from_blue_mallorn_torch"
+    ]
+  },
+  "criteria": {
+    "has_blue_mallorn_torch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:blue_mallorn_torch"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:torch_converted_from_blue_mallorn_torch"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blue_mallorn_torch",
+      "has_the_recipe"
+    ]
+  ]
+}

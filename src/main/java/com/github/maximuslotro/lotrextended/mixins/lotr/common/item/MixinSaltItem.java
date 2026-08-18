@@ -4,7 +4,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import lotr.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+
 import lotr.common.item.SaltItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

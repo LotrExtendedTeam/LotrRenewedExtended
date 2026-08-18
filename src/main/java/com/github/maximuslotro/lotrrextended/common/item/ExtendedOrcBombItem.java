@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
@@ -20,6 +21,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ExtendedOrcBombItem extends BlockItem {
+	public ExtendedOrcBombItem(Supplier<Block> pBlock, Properties pProperties) {
+		this(pBlock.get(), pProperties);
+	}
 	public ExtendedOrcBombItem(Block pBlock, Properties pProperties) {
 		super(pBlock, pProperties);
 		if(!(pBlock instanceof ExtendedOrcBombBlock)){

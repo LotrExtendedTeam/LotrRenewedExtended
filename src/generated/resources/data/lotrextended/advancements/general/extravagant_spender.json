@@ -2,7 +2,7 @@
   "parent": "lotrextended:general/big_spender",
   "display": {
     "icon": {
-      "item": "lotr:silver_coin_hundred"
+      "item": "lotrextended:silver_coin_hundred"
     },
     "title": {
       "color": "gold",

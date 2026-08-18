@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:lindon",
+  "pattern": [
+    " X#",
+    "X #",
+    " X#"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:bowstring"
+    },
+    "X": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "lotrextended:lindon_bow"
+  }
+}

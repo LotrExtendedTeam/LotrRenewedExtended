@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:rhunic",
+  "ingredients": [
+    {
+      "item": "lotrextended:rhunic_brick"
+    },
+    {
+      "item": "lotrextended:willow_vines"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:mossy_rhunic_brick"
+  }
+}

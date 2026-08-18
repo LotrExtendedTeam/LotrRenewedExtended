@@ -2,7 +2,7 @@
   "parent": "lotrextended:rhun/enter_rhun",
   "display": {
     "icon": {
-      "item": "lotr:rhunic_crafting_table"
+      "item": "lotrextended:rhunic_crafting_table"
     },
     "title": {
       "translate": "advancements.lotrextended.rhun.rhudel_crafter.title"
@@ -21,7 +21,7 @@
       "trigger": "lotrextended:crafting_with_block",
       "conditions": {
         "crafting_block": {
-          "block": "lotr:rhunic_crafting_table"
+          "block": "lotrextended:rhunic_crafting_table"
         }
       }
     }

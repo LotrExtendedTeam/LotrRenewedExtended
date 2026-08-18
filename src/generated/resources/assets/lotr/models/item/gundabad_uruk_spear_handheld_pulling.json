@@ -1,6 +1,0 @@
-{
-  "parent": "lotr:item/handheld_spear_pulling",
-  "textures": {
-    "layer0": "lotrextended:item/gundabad_uruk_spear_large"
-  }
-}

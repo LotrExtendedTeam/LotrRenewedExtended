@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:plum_planks"
+    }
+  },
+  "result": {
+    "item": "lotrextended:plum_boat"
+  }
+}

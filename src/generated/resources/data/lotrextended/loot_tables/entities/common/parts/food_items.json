@@ -200,7 +200,7 @@
               "count": 1.0
             }
           ],
-          "name": "lotr:plum"
+          "name": "lotrextended:plum"
         },
         {
           "type": "minecraft:item",
@@ -218,7 +218,7 @@
               "count": 1.0
             }
           ],
-          "name": "lotr:cooked_duck"
+          "name": "lotrextended:cooked_duck"
         },
         {
           "type": "minecraft:item",
@@ -236,7 +236,7 @@
               "count": 1.0
             }
           ],
-          "name": "lotr:roasted_chestnut"
+          "name": "lotrextended:roasted_chestnut"
         }
       ],
       "conditions": [

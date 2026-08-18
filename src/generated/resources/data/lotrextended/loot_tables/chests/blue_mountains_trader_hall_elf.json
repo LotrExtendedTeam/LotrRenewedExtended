@@ -187,7 +187,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:lindon_banner_pattern"
+          "name": "lotrextended:lindon_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -197,7 +197,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:rivendell_banner_pattern"
+          "name": "lotrextended:rivendell_banner_pattern"
         },
         {
           "type": "minecraft:item",

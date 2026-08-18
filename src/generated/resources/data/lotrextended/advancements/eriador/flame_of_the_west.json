@@ -2,7 +2,7 @@
   "parent": "lotrextended:eriador/its_still_sharp",
   "display": {
     "icon": {
-      "item": "lotr:anduril",
+      "item": "lotrextended:anduril",
       "nbt": "{Damage:0}"
     },
     "title": {
@@ -24,7 +24,7 @@
       "conditions": {
         "items": [
           {
-            "item": "lotr:anduril"
+            "item": "lotrextended:anduril"
           }
         ]
       }

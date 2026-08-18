@@ -78,14 +78,14 @@
       {
         "weight": 5,
         "equipmentItem": {
-          "item": "lotr:rivendell_bow",
+          "item": "lotrextended:rivendell_bow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:longbow",
+          "item": "lotrextended:longbow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -94,7 +94,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:rivendell_shield",
+          "item": "lotrextended:rivendell_shield",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.shield\",Damage:0,IsBaseArmor:1b}"
         }
       }

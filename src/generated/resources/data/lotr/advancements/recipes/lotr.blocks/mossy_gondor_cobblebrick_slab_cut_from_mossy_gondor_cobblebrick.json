@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:mossy_gondor_cobblebrick_slab_cut_from_mossy_gondor_cobblebrick"
+    ]
+  },
+  "criteria": {
+    "has_mossy_gondor_cobblebrick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mossy_gondor_cobblebrick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:mossy_gondor_cobblebrick_slab_cut_from_mossy_gondor_cobblebrick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mossy_gondor_cobblebrick",
+      "has_the_recipe"
+    ]
+  ]
+}

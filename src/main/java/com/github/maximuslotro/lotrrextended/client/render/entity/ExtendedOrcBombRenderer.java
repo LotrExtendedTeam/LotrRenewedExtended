@@ -1,9 +1,9 @@
 package com.github.maximuslotro.lotrrextended.client.render.entity;
 
 import com.github.maximuslotro.lotrrextended.common.entity.item.ExtendedOrcBombEntity;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import lotr.common.init.ExtendedBlocks;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

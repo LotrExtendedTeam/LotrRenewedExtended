@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:amber_from_smelting"
+    ]
+  },
+  "criteria": {
+    "has_amber_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:amber_ore"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:amber_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_amber_ore",
+      "has_the_recipe"
+    ]
+  ]
+}

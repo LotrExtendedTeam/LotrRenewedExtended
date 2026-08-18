@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dol_guldur",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:dol_guldur_pillar"
+    }
+  },
+  "result": {
+    "item": "lotrextended:dol_guldur_pillar_slab",
+    "count": 6
+  }
+}

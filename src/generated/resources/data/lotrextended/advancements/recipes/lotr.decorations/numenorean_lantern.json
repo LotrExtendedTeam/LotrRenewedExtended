@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:numenorean_lantern"
+    ]
+  },
+  "criteria": {
+    "has_morgond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:morgond"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:numenorean_lantern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_morgond",
+      "has_the_recipe"
+    ]
+  ]
+}

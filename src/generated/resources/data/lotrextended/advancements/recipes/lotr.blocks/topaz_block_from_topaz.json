@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:topaz_block_from_topaz"
+    ]
+  },
+  "criteria": {
+    "has_topaz": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:topaz"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:topaz_block_from_topaz"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_topaz",
+      "has_the_recipe"
+    ]
+  ]
+}

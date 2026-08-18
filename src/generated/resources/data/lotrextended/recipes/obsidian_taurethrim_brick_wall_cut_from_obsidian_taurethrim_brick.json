@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotrextended:obsidian_taurethrim_brick"
+  },
+  "result": "lotrextended:obsidian_taurethrim_brick_wall",
+  "count": 1
+}

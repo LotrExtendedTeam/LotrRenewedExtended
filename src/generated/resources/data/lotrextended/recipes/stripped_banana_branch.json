@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:branch",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:stripped_banana_wood"
+    }
+  },
+  "result": {
+    "item": "lotrextended:stripped_banana_branch",
+    "count": 6
+  }
+}

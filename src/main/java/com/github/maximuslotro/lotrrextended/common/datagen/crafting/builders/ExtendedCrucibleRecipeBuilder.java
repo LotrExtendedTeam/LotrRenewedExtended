@@ -6,11 +6,10 @@ import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedJsonSerializers;
 import com.google.gson.JsonObject;
 
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.Item;
@@ -66,14 +65,9 @@ public class ExtendedCrucibleRecipeBuilder {
 
 	public void save(Consumer<IFinishedRecipe> consumer) {
 		if(result2.isEmpty()) {
-			this.save(consumer, new ResourceLocation(LotrExtendedMod.MODID,  
-					this.result1.getItem().getRegistryName().getPath()
-					+"_from_"+this.ingredient.getItems()[0].getItem().getRegistryName().getPath()));
+			this.save(consumer, new ResourceLocation(this.result1.getItem().getRegistryName().toString()+"_melted_from_"+this.ingredient.getItems()[0].getItem().getRegistryName().getPath()));
 		}else {
-			this.save(consumer, new ResourceLocation(LotrExtendedMod.MODID,  
-					this.result1.getItem().getRegistryName().getPath()
-					+"_and_"+this.result2.getItem().getRegistryName().getPath()
-					+"_from_"+this.ingredient.getItems()[0].getItem().getRegistryName().getPath()));
+			this.save(consumer, new ResourceLocation(this.result1.getItem().getRegistryName().toString()+"_and_"+this.result2.getItem().getRegistryName().getPath()+"_melted_from_"+this.ingredient.getItems()[0].getItem().getRegistryName().getPath()));
 		}
 	}
 

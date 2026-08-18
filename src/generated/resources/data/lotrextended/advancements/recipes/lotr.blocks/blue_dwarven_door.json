@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:blue_dwarven_door"
+    ]
+  },
+  "criteria": {
+    "has_blue_rock": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:blue_rock"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:blue_dwarven_door"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blue_rock",
+      "has_the_recipe"
+    ]
+  ]
+}

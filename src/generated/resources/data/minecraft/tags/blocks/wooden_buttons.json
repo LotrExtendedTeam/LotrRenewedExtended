@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_button",
-    "lotr:chestnut_button",
-    "lotr:ebony_button",
-    "lotr:plum_button",
-    "lotr:willow_button"
+    "lotrextended:banana_button",
+    "lotrextended:chestnut_button",
+    "lotrextended:ebony_button",
+    "lotrextended:plum_button",
+    "lotrextended:willow_button"
   ]
 }

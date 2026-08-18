@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:galadhrim_pillar_slab_cut_from_galadhrim_pillar"
+    ]
+  },
+  "criteria": {
+    "has_galadhrim_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:galadhrim_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:galadhrim_pillar_slab_cut_from_galadhrim_pillar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_galadhrim_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}

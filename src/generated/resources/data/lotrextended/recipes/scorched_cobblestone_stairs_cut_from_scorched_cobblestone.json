@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotrextended:scorched_cobblestone"
+  },
+  "result": "lotrextended:scorched_cobblestone_stairs",
+  "count": 1
+}

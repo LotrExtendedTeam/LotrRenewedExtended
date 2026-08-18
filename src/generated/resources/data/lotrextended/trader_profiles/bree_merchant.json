@@ -48,7 +48,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:hobbit_pancake",
+        "item": "lotrextended:hobbit_pancake",
         "averageCost": 8
       }
     },
@@ -95,21 +95,21 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:bree_banner",
+        "item": "lotrextended:bree_banner",
         "averageCost": 50
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:bree_banner_pattern",
+        "item": "lotrextended:bree_banner_pattern",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:bree_shield",
+        "item": "lotrextended:bree_shield",
         "averageCost": 50,
         "nbt": "{Damage:0}"
       }
@@ -206,22 +206,22 @@
       "shouldTradePersist": false,
       "stacks": [
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 100,
           "nbt": "{REScrollMod:\"toughness1\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 100,
           "nbt": "{REScrollMod:\"strong1\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 100,
           "nbt": "{REScrollMod:\"meleeSpeed1\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 100,
           "nbt": "{REScrollMod:\"meleeReach1\"}"
         }

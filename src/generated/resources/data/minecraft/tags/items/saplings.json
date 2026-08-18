@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_sapling",
-    "lotr:chestnut_sapling",
-    "lotr:ebony_sapling",
-    "lotr:plum_sapling",
-    "lotr:willow_sapling"
+    "lotrextended:banana_sapling",
+    "lotrextended:chestnut_sapling",
+    "lotrextended:ebony_sapling",
+    "lotrextended:plum_sapling",
+    "lotrextended:willow_sapling"
   ]
 }

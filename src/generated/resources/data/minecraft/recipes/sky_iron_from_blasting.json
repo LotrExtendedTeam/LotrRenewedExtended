@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "lotr:meteorite"
-  },
-  "result": "lotr:sky_iron",
-  "experience": 1.0,
-  "cookingtime": 2400
-}

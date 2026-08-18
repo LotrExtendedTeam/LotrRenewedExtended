@@ -5,8 +5,9 @@ import javax.annotation.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+
 import lotr.common.block.VesselDrinkBlock;
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.item.VesselType;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;

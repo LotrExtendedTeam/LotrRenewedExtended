@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:smooth_red_rock_stairs"
+    ]
+  },
+  "criteria": {
+    "has_smooth_red_rock": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:smooth_red_rock"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:smooth_red_rock_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_smooth_red_rock",
+      "has_the_recipe"
+    ]
+  ]
+}

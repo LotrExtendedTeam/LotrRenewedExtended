@@ -1,0 +1,12 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotrextended:leather_boar_armor"
+  },
+  "result1": {
+    "item": "minecraft:leather",
+    "count": 6
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

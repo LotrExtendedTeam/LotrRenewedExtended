@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:smooth_blue_rock"
-  },
-  "result": "lotr:smooth_blue_rock_stairs",
-  "count": 1
-}

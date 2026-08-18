@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:goblin_brick"
-  },
-  "result": "lotr:goblin_brick_wall",
-  "count": 1
-}

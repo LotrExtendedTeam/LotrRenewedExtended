@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotr:drystone"
+    },
+    {
+      "item": "lotrextended:moss_block"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:mossy_drystone"
+  }
+}

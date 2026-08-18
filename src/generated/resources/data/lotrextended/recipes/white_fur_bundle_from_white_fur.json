@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:white_fur"
+    }
+  },
+  "result": {
+    "item": "lotrextended:white_fur_bundle"
+  }
+}

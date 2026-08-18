@@ -1,8 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.recipe;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 
-import lotr.common.init.ExtendedItems;
 import lotr.common.item.DaggerItem;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;

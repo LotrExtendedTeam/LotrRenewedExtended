@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:orc_bow"
+    ]
+  },
+  "criteria": {
+    "has_orc_steel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/orc_steel"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:orc_bow"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_orc_steel",
+      "has_the_recipe"
+    ]
+  ]
+}

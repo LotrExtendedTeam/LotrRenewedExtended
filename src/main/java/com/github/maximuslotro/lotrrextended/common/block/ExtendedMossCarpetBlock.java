@@ -1,9 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.block;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+
 import lotr.common.block.RottenLogBlock;
 import lotr.common.block.RottenWoodBeamBlock;
-import lotr.common.event.CompostingHelper;
-import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -23,7 +23,7 @@ public class ExtendedMossCarpetBlock extends Block {
 
 	public ExtendedMossCarpetBlock(AbstractBlock.Properties pProperties) {
 		super(pProperties);
-		CompostingHelper.prepareCompostable(this, 0.25f);
+		ExtendedDeferredComposterInjector.addCompostable(this, 0.25f);
 	}
 
 	@Override

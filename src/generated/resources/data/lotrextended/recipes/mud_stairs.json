@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    " ##",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:mud"
+    }
+  },
+  "result": {
+    "item": "lotrextended:mud_stairs",
+    "count": 4
+  }
+}

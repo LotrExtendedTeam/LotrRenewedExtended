@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_boat",
-    "lotr:chestnut_boat",
-    "lotr:ebony_boat",
-    "lotr:plum_boat",
-    "lotr:willow_boat"
+    "lotrextended:banana_boat",
+    "lotrextended:chestnut_boat",
+    "lotrextended:ebony_boat",
+    "lotrextended:plum_boat",
+    "lotrextended:willow_boat"
   ]
 }

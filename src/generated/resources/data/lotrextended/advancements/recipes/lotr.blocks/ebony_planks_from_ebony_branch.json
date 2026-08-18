@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:ebony_planks_from_ebony_branch"
+    ]
+  },
+  "criteria": {
+    "has_ebony_branch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:ebony_branch"
+          }
+        ]
+      }
+    },
+    "has_stripped_ebony_branch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:stripped_ebony_branch"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:ebony_planks_from_ebony_branch"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ebony_branch",
+      "has_stripped_ebony_branch",
+      "has_the_recipe"
+    ]
+  ]
+}

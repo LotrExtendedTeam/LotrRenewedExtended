@@ -26,7 +26,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 
 public class ExtendedDevServerEventHandlers {
 
-	public static void registerDevListender(IEventBus modBus, IEventBus forgeBus) {
+	public static void registerDevListenders(IEventBus forgeBus) {
 		forgeBus.addListener(ExtendedDevServerEventHandlers::commandEvent);
 		forgeBus.addListener(ExtendedDevServerEventHandlers::devBlockListener);
 	}

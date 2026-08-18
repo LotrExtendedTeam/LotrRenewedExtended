@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedCrucibleBlock;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCrucibleContainer;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedCrucibleRecipe;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeTypes;
@@ -12,7 +13,6 @@ import com.google.common.collect.Lists;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;

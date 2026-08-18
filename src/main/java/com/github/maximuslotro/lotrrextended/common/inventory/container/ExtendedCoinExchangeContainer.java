@@ -2,11 +2,11 @@ package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeSlots.ExtendedInputCoinSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeSlots.ExtendedOutputCoinSlot;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedCoinExchangeSlots.ExtendedVisualCoinSlot;
 
-import lotr.common.init.ExtendedItems;
 import lotr.common.util.CoinUtils;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.Entity;

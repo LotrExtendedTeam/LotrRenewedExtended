@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:snowy_red_angmar_brick"
-  },
-  "result": "lotr:snowy_red_angmar_brick_wall",
-  "count": 1
-}

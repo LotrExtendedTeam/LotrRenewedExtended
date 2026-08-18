@@ -76,28 +76,28 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:black_fur",
+        "item": "lotrextended:black_fur",
         "averageCost": 2
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:gray_fur",
+        "item": "lotrextended:gray_fur",
         "averageCost": 2
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:silver_fur",
+        "item": "lotrextended:silver_fur",
         "averageCost": 3
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:white_fur",
+        "item": "lotrextended:white_fur",
         "averageCost": 25
       }
     },
@@ -111,28 +111,28 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:emerald",
+        "item": "lotrextended:emerald",
         "averageCost": 15
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:sapphire",
+        "item": "lotrextended:sapphire",
         "averageCost": 12
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:pearl",
+        "item": "lotrextended:pearl",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:topaz",
+        "item": "lotrextended:topaz",
         "averageCost": 8
       }
     },
@@ -306,7 +306,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:branding_iron",
+        "item": "lotrextended:branding_iron",
         "averageCost": 25,
         "nbt": "{Damage:0}"
       }
@@ -317,22 +317,22 @@
       "shouldTradePersist": false,
       "stacks": [
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 100,
           "nbt": "{REScrollMod:\"toughness1\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 100,
           "nbt": "{REScrollMod:\"strong1\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 100,
           "nbt": "{REScrollMod:\"meleeSpeed1\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 100,
           "nbt": "{REScrollMod:\"meleeReach1\"}"
         }
@@ -341,14 +341,14 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:dunland_banner_pattern",
+        "item": "lotrextended:dunland_banner_pattern",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:dunlending_shield",
+        "item": "lotrextended:dunlending_shield",
         "averageCost": 20,
         "nbt": "{Damage:0}"
       }
@@ -356,21 +356,21 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:combat_tome",
+        "item": "lotrextended:combat_tome",
         "averageCost": 75
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:artisan_tome",
+        "item": "lotrextended:artisan_tome",
         "averageCost": 50
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:smith_tome",
+        "item": "lotrextended:smith_tome",
         "averageCost": 100
       }
     }

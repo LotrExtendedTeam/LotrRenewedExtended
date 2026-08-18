@@ -1,0 +1,8 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotrextended:rhunic_brick_wall"
+  },
+  "result": "lotrextended:cracked_rhunic_brick_wall",
+  "experience": 1.0
+}

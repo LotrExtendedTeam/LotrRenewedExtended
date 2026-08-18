@@ -1,0 +1,16 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:rhunic",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:rhunic_brick"
+    }
+  },
+  "result": {
+    "item": "lotrextended:rhunic_brick_slab",
+    "count": 6
+  }
+}

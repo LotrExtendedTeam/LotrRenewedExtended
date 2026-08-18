@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "lotr:cracked_arnor_pillar",
-    "lotr:cracked_stone_pillar",
-    "lotr:dol_guldur_pillar",
-    "lotr:goblin_pillar",
-    "lotr:golden_rohan_beam",
-    "lotr:golden_taurethrim_pillar",
-    "lotr:morgond_pillar",
-    "lotr:mossy_arnor_pillar",
-    "lotr:obsidian_taurethrim_pillar",
-    "lotr:ornate_golden_rohan_beam",
-    "lotr:ornate_rohan_beam",
-    "lotr:red_angmar_pillar",
-    "lotr:red_rhunic_pillar",
-    "lotr:rhunic_pillar",
-    "lotr:rohan_beam",
-    "lotr:taurethrim_pillar"
+    "lotrextended:cracked_arnor_pillar",
+    "lotrextended:cracked_stone_pillar",
+    "lotrextended:dol_guldur_pillar",
+    "lotrextended:goblin_pillar",
+    "lotrextended:golden_rohan_beam",
+    "lotrextended:golden_taurethrim_pillar",
+    "lotrextended:morgond_pillar",
+    "lotrextended:mossy_arnor_pillar",
+    "lotrextended:obsidian_taurethrim_pillar",
+    "lotrextended:ornate_golden_rohan_beam",
+    "lotrextended:ornate_rohan_beam",
+    "lotrextended:red_angmar_pillar",
+    "lotrextended:red_rhunic_pillar",
+    "lotrextended:rhunic_pillar",
+    "lotrextended:rohan_beam",
+    "lotrextended:taurethrim_pillar"
   ]
 }

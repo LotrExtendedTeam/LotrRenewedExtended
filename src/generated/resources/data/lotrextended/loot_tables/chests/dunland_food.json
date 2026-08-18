@@ -298,7 +298,7 @@
               }
             }
           ],
-          "name": "lotr:raw_duck"
+          "name": "lotrextended:raw_duck"
         },
         {
           "type": "minecraft:item",
@@ -388,7 +388,7 @@
               }
             }
           ],
-          "name": "lotr:cooked_duck"
+          "name": "lotrextended:cooked_duck"
         },
         {
           "type": "minecraft:item",

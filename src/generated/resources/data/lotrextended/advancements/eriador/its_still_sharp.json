@@ -2,7 +2,7 @@
   "parent": "lotrextended:eriador/elrond",
   "display": {
     "icon": {
-      "item": "lotr:shards_of_narsil"
+      "item": "lotrextended:shards_of_narsil"
     },
     "title": {
       "color": "gold",
@@ -23,7 +23,7 @@
       "conditions": {
         "items": [
           {
-            "item": "lotr:shards_of_narsil"
+            "item": "lotrextended:shards_of_narsil"
           }
         ]
       }

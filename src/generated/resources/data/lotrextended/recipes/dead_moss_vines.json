@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:vine"
+    },
+    {
+      "item": "lotr:salt"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:dead_moss_vines"
+  }
+}

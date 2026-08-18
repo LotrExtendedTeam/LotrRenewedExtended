@@ -2,7 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.enums;
 
 import java.util.function.Supplier;
 
-import lotr.common.init.ExtendedItems;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
 import net.minecraftforge.common.Tags.Items;

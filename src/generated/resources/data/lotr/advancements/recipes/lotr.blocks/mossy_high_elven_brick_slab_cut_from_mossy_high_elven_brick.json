@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:mossy_high_elven_brick_slab_cut_from_mossy_high_elven_brick"
+    ]
+  },
+  "criteria": {
+    "has_mossy_high_elven_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mossy_high_elven_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:mossy_high_elven_brick_slab_cut_from_mossy_high_elven_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mossy_high_elven_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

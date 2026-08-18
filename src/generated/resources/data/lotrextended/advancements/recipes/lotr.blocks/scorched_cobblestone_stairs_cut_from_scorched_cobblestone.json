@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:scorched_cobblestone_stairs_cut_from_scorched_cobblestone"
+    ]
+  },
+  "criteria": {
+    "has_scorched_cobblestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:scorched_cobblestone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:scorched_cobblestone_stairs_cut_from_scorched_cobblestone"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_scorched_cobblestone",
+      "has_the_recipe"
+    ]
+  ]
+}

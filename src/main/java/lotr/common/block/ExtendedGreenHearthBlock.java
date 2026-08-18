@@ -1,6 +1,7 @@
 package lotr.common.block;
 
-import lotr.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+
 import net.minecraft.block.Block;
 
 public class ExtendedGreenHearthBlock extends ExtendedHearthBlock{

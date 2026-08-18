@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:gondor",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:morgond"
+    }
+  },
+  "result": {
+    "item": "lotrextended:morgond_wall",
+    "count": 6
+  }
+}

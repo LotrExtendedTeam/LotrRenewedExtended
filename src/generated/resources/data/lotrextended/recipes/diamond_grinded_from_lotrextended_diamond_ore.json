@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotrextended:diamond_ore"
+  },
+  "result": "lotrextended:diamond",
+  "countMin": 1,
+  "countMax": 2,
+  "experience": 1.0
+}

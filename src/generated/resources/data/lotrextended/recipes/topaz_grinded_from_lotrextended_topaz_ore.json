@@ -1,0 +1,10 @@
+{
+  "type": "lotrextended:stone_grinding",
+  "ingredient": {
+    "item": "lotrextended:topaz_ore"
+  },
+  "result": "lotrextended:topaz",
+  "countMin": 1,
+  "countMax": 3,
+  "experience": 1.0
+}

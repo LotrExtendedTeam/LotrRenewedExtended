@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:angmar",
+  "ingredients": [
+    {
+      "item": "lotrextended:red_angmar_brick"
+    },
+    {
+      "item": "lotrextended:willow_vines"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:mossy_red_angmar_brick"
+  }
+}

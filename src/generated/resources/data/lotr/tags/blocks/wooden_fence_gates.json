@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_fence_gate",
-    "lotr:chestnut_fence_gate",
-    "lotr:ebony_fence_gate",
-    "lotr:plum_fence_gate",
-    "lotr:willow_fence_gate"
+    "lotrextended:banana_fence_gate",
+    "lotrextended:chestnut_fence_gate",
+    "lotrextended:ebony_fence_gate",
+    "lotrextended:plum_fence_gate",
+    "lotrextended:willow_fence_gate"
   ]
 }

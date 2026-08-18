@@ -1,11 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.loot.functions;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 
 import lotr.common.entity.npc.WargEntity;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;

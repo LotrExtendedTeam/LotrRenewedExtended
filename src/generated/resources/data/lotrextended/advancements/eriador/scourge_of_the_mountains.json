@@ -2,7 +2,7 @@
   "parent": "lotrextended:eriador/the_kindly_west",
   "display": {
     "icon": {
-      "item": "lotr:gundabad_uruk_chestplate",
+      "item": "lotrextended:gundabad_uruk_chestplate",
       "nbt": "{Damage:0}"
     },
     "title": {
@@ -23,16 +23,16 @@
       "conditions": {
         "items": [
           {
-            "item": "lotr:gundabad_uruk_helmet"
+            "item": "lotrextended:gundabad_uruk_helmet"
           },
           {
-            "item": "lotr:gundabad_uruk_chestplate"
+            "item": "lotrextended:gundabad_uruk_chestplate"
           },
           {
-            "item": "lotr:gundabad_uruk_leggings"
+            "item": "lotrextended:gundabad_uruk_leggings"
           },
           {
-            "item": "lotr:gundabad_uruk_boots"
+            "item": "lotrextended:gundabad_uruk_boots"
           }
         ]
       }

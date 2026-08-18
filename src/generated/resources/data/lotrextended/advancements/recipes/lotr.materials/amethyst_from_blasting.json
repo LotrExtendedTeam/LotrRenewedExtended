@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:amethyst_from_blasting"
+    ]
+  },
+  "criteria": {
+    "has_amethyst_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:amethyst_ore"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:amethyst_from_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_amethyst_ore",
+      "has_the_recipe"
+    ]
+  ]
+}

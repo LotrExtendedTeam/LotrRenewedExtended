@@ -176,6 +176,7 @@
 		"net.minecraft.pathfinding.MixinPathHeap",
 		"net.minecraft.server.dedicated.MixinDedicatedServer",
 		"net.minecraft.tileentity.MixinSignTileEntityAccessor",
+		"net.minecraft.tileentity.MixinTileEntity",
 		"net.minecraft.util.MixinFoodStats",
 		"net.minecraft.world.gen.feature.template.MixinTemplate",
 		"net.minecraft.world.gen.feature.jigsaw.MixinJigsawManager"

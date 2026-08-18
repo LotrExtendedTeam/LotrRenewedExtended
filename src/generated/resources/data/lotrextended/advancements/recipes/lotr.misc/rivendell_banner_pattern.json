@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:rivendell_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_rivendell_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:rivendell_banner"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:rivendell_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rivendell_banner",
+      "has_the_recipe"
+    ]
+  ]
+}

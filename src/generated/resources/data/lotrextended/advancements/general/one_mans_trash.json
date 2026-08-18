@@ -2,7 +2,7 @@
   "parent": "lotrextended:general/trade",
   "display": {
     "icon": {
-      "item": "lotr:silver_coin_one"
+      "item": "lotrextended:silver_coin_one"
     },
     "title": {
       "translate": "advancements.lotrextended.general.one_mans_trash.title"

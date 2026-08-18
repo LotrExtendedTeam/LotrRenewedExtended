@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:angmar_brick_stairs_cut_from_angmar_brick"
+    ]
+  },
+  "criteria": {
+    "has_angmar_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:angmar_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:angmar_brick_stairs_cut_from_angmar_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_angmar_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

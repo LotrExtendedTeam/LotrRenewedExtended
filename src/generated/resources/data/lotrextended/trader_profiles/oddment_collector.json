@@ -11,7 +11,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:black_uruk_steel_ingot",
+        "item": "lotrextended:black_uruk_steel_ingot",
         "averageCost": 5
       }
     },
@@ -88,28 +88,28 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:black_fur",
+        "item": "lotrextended:black_fur",
         "averageCost": 2
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:gray_fur",
+        "item": "lotrextended:gray_fur",
         "averageCost": 2
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:silver_fur",
+        "item": "lotrextended:silver_fur",
         "averageCost": 3
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:white_fur",
+        "item": "lotrextended:white_fur",
         "averageCost": 25
       }
     },
@@ -154,70 +154,70 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:diamond",
+        "item": "lotrextended:diamond",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:emerald",
+        "item": "lotrextended:emerald",
         "averageCost": 15
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:sapphire",
+        "item": "lotrextended:sapphire",
         "averageCost": 12
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:ruby",
+        "item": "lotrextended:ruby",
         "averageCost": 12
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:opal",
+        "item": "lotrextended:opal",
         "averageCost": 10
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:amethyst",
+        "item": "lotrextended:amethyst",
         "averageCost": 8
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:topaz",
+        "item": "lotrextended:topaz",
         "averageCost": 8
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:pearl",
+        "item": "lotrextended:pearl",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:coral",
+        "item": "lotrextended:coral",
         "averageCost": 6
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:dead_coral",
+        "item": "lotrextended:dead_coral",
         "averageCost": 2
       }
     },
@@ -240,7 +240,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:obsidian_shard",
+        "item": "lotrextended:obsidian_shard",
         "averageCost": 2
       }
     },
@@ -261,7 +261,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:conker",
+        "item": "lotrextended:conker",
         "averageCost": 1
       }
     }
