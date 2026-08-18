@@ -13,10 +13,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 
 import lotr.common.block.VesselDrinkBlock;
 import lotr.common.data.MiscDataModule;
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.item.VesselType;
 import net.minecraft.advancements.CriteriaTriggers;

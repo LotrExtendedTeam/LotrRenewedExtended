@@ -231,7 +231,7 @@
               }
             }
           ],
-          "name": "lotr:silver_coin_one"
+          "name": "lotrextended:silver_coin_one"
         },
         {
           "type": "minecraft:item",
@@ -246,7 +246,7 @@
               }
             }
           ],
-          "name": "lotr:silver_coin_ten"
+          "name": "lotrextended:silver_coin_ten"
         },
         {
           "type": "minecraft:item",
@@ -261,7 +261,7 @@
               }
             }
           ],
-          "name": "lotr:silver_coin_hundred"
+          "name": "lotrextended:silver_coin_hundred"
         },
         {
           "type": "minecraft:item",
@@ -471,7 +471,7 @@
               }
             }
           ],
-          "name": "lotr:longbow"
+          "name": "lotrextended:longbow"
         },
         {
           "type": "minecraft:item",
@@ -804,7 +804,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:bottle_of_poison"
+          "name": "lotrextended:bottle_of_poison"
         },
         {
           "type": "minecraft:item",
@@ -841,7 +841,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:artisan_tome"
+          "name": "lotrextended:artisan_tome"
         },
         {
           "type": "minecraft:item",
@@ -851,7 +851,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:combat_tome"
+          "name": "lotrextended:combat_tome"
         },
         {
           "type": "minecraft:item",
@@ -861,7 +861,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:smith_tome"
+          "name": "lotrextended:smith_tome"
         },
         {
           "type": "minecraft:item",
@@ -1071,7 +1071,7 @@
               }
             }
           ],
-          "name": "lotr:eregion_helmet"
+          "name": "lotrextended:eregion_helmet"
         },
         {
           "type": "minecraft:item",
@@ -1091,7 +1091,7 @@
               }
             }
           ],
-          "name": "lotr:eregion_chestplate"
+          "name": "lotrextended:eregion_chestplate"
         },
         {
           "type": "minecraft:item",
@@ -1111,7 +1111,7 @@
               }
             }
           ],
-          "name": "lotr:eregion_leggings"
+          "name": "lotrextended:eregion_leggings"
         },
         {
           "type": "minecraft:item",
@@ -1131,7 +1131,7 @@
               }
             }
           ],
-          "name": "lotr:eregion_boots"
+          "name": "lotrextended:eregion_boots"
         },
         {
           "type": "minecraft:item",
@@ -1151,7 +1151,7 @@
               }
             }
           ],
-          "name": "lotr:eregion_shield"
+          "name": "lotrextended:eregion_shield"
         }
       ],
       "conditions": [

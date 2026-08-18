@@ -24,7 +24,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:raw_duck",
+        "item": "lotrextended:raw_duck",
         "averageCost": 3
       }
     },
@@ -168,7 +168,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:cooked_duck",
+        "item": "lotrextended:cooked_duck",
         "averageCost": 6
       }
     },
@@ -377,7 +377,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:butter",
+        "item": "lotrextended:butter",
         "averageCost": 10
       }
     }

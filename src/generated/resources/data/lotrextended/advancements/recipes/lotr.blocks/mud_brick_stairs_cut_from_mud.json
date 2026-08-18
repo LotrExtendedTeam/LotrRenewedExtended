@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:mud_brick_stairs_cut_from_mud"
+    ]
+  },
+  "criteria": {
+    "has_mud": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:mud"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:mud_brick_stairs_cut_from_mud"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mud",
+      "has_the_recipe"
+    ]
+  ]
+}

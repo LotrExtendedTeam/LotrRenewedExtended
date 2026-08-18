@@ -1,8 +1,8 @@
 package lotr.common.entity.npc;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 
-import lotr.common.init.ExtendedItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;

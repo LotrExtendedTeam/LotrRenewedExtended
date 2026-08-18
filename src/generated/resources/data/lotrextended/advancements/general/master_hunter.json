@@ -2,7 +2,7 @@
   "parent": "lotrextended:general/warg_slayer",
   "display": {
     "icon": {
-      "item": "lotr:warg_fur_chestplate",
+      "item": "lotrextended:warg_fur_chestplate",
       "nbt": "{Damage:0}"
     },
     "title": {
@@ -23,16 +23,16 @@
       "conditions": {
         "items": [
           {
-            "item": "lotr:white_warg_fur_helmet"
+            "item": "lotrextended:white_warg_fur_helmet"
           },
           {
-            "item": "lotr:white_warg_fur_chestplate"
+            "item": "lotrextended:white_warg_fur_chestplate"
           },
           {
-            "item": "lotr:white_warg_fur_leggings"
+            "item": "lotrextended:white_warg_fur_leggings"
           },
           {
-            "item": "lotr:white_warg_fur_boots"
+            "item": "lotrextended:white_warg_fur_boots"
           }
         ]
       }
@@ -42,16 +42,16 @@
       "conditions": {
         "items": [
           {
-            "item": "lotr:silver_warg_fur_helmet"
+            "item": "lotrextended:silver_warg_fur_helmet"
           },
           {
-            "item": "lotr:silver_warg_fur_chestplate"
+            "item": "lotrextended:silver_warg_fur_chestplate"
           },
           {
-            "item": "lotr:silver_warg_fur_leggings"
+            "item": "lotrextended:silver_warg_fur_leggings"
           },
           {
-            "item": "lotr:silver_warg_fur_boots"
+            "item": "lotrextended:silver_warg_fur_boots"
           }
         ]
       }
@@ -61,16 +61,16 @@
       "conditions": {
         "items": [
           {
-            "item": "lotr:gray_warg_fur_helmet"
+            "item": "lotrextended:gray_warg_fur_helmet"
           },
           {
-            "item": "lotr:gray_warg_fur_chestplate"
+            "item": "lotrextended:gray_warg_fur_chestplate"
           },
           {
-            "item": "lotr:gray_warg_fur_leggings"
+            "item": "lotrextended:gray_warg_fur_leggings"
           },
           {
-            "item": "lotr:gray_warg_fur_boots"
+            "item": "lotrextended:gray_warg_fur_boots"
           }
         ]
       }
@@ -80,16 +80,16 @@
       "conditions": {
         "items": [
           {
-            "item": "lotr:warg_fur_helmet"
+            "item": "lotrextended:warg_fur_helmet"
           },
           {
-            "item": "lotr:warg_fur_chestplate"
+            "item": "lotrextended:warg_fur_chestplate"
           },
           {
-            "item": "lotr:warg_fur_leggings"
+            "item": "lotrextended:warg_fur_leggings"
           },
           {
-            "item": "lotr:warg_fur_boots"
+            "item": "lotrextended:warg_fur_boots"
           }
         ]
       }
@@ -99,16 +99,16 @@
       "conditions": {
         "items": [
           {
-            "item": "lotr:black_warg_fur_helmet"
+            "item": "lotrextended:black_warg_fur_helmet"
           },
           {
-            "item": "lotr:black_warg_fur_chestplate"
+            "item": "lotrextended:black_warg_fur_chestplate"
           },
           {
-            "item": "lotr:black_warg_fur_leggings"
+            "item": "lotrextended:black_warg_fur_leggings"
           },
           {
-            "item": "lotr:black_warg_fur_boots"
+            "item": "lotrextended:black_warg_fur_boots"
           }
         ]
       }

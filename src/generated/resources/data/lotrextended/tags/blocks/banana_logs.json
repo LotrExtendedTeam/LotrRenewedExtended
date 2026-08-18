@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_log",
-    "lotr:banana_wood",
-    "lotr:stripped_banana_log",
-    "lotr:stripped_banana_wood"
+    "lotrextended:banana_log",
+    "lotrextended:banana_wood",
+    "lotrextended:stripped_banana_log",
+    "lotrextended:stripped_banana_wood"
   ]
 }

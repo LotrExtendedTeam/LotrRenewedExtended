@@ -2,12 +2,12 @@ package com.github.maximuslotro.lotrrextended.common.world.gen.feature;
 
 import java.util.Random;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.mojang.serialization.Codec;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.IExtendedSwappableTexture;
 import lotr.common.block.LOTRBlockStates;
-import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SlabBlock;

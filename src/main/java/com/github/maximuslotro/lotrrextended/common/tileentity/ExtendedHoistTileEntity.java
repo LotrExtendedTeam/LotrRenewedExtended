@@ -2,7 +2,8 @@ package com.github.maximuslotro.lotrrextended.common.tileentity;
 
 import javax.annotation.Nullable;
 
-import lotr.common.init.ExtendedTileEntities;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;

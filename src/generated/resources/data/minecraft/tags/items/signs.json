@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_sign",
-    "lotr:chestnut_sign",
-    "lotr:ebony_sign",
-    "lotr:plum_sign",
-    "lotr:willow_sign"
+    "lotrextended:banana_sign",
+    "lotrextended:chestnut_sign",
+    "lotrextended:ebony_sign",
+    "lotrextended:plum_sign",
+    "lotrextended:willow_sign"
   ]
 }

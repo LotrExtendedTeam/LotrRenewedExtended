@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:chestnut_button"
+    ]
+  },
+  "criteria": {
+    "has_chestnut_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:chestnut_planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:chestnut_button"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_chestnut_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

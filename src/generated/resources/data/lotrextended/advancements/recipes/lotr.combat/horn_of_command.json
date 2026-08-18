@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:horn_of_command"
+    ]
+  },
+  "criteria": {
+    "has_horn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:horns"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:horn_of_command"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_horn",
+      "has_the_recipe"
+    ]
+  ]
+}

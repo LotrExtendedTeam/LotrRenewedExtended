@@ -8,15 +8,15 @@ import com.github.maximuslotro.lotrextended.mixins.MIXINConfig;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.eventhandlers.ExtendedRendererEventHandler;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedScreenRegisterHandler;
+import com.github.maximuslotro.lotrrextended.client.render.ExtendedBlockItemColors;
 import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
-import com.github.maximuslotro.lotrrextended.client.render.color.ExtendedBlockItemColors;
 import com.github.maximuslotro.lotrrextended.client.render.entity.ExtendedEntityRenderers;
 import com.github.maximuslotro.lotrrextended.client.render.item.ExtendedItemModelsProperties;
 import com.github.maximuslotro.lotrrextended.client.render.tileentity.ExtendedTileEntityRenderers;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedSignTypes;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.google.common.collect.ImmutableSet;
 
-import lotr.common.block.ExtendedSignTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.Atlases;
@@ -33,7 +33,6 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ClientChatEvent;
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -67,6 +66,7 @@ public class ExtendedClientProxy {
 		INSTANCE = this;
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+		// Forge bus
 		forgeBus.addListener(this::login);
 		forgeBus.addListener(this::commandevent);
 		forgeBus.addListener(ExtendedRendererEventHandler::renderHpBar);
@@ -74,7 +74,8 @@ public class ExtendedClientProxy {
 		forgeBus.addListener(ExtendedRendererEventHandler::addTooltipsForModifiers);
 		forgeBus.addListener(ExtendedRendererEventHandler::onPostRenderGameOverlay);
 		forgeBus.addListener(ExtendedRendererEventHandler::onPostRenderEntity);
-		modBus.addListener(this::onParticleRegistry);
+		// Mod bus
+		modBus.addListener(ExtendedClientParticles::register);
 		modBus.addListener(this::clientStartupEvent);
 		modBus.addListener(ExtendedBlockRenderer::addStupidChestTexturesTookMeSeveralDaysToGetThisRight);
 		modBus.addListener(ExtendedBlockItemColors::makeBlockColors);
@@ -85,8 +86,6 @@ public class ExtendedClientProxy {
 		//Moved to Mixin
 		//createPack("legacy", "Legacy TexturePack");
 		//createPack("renewed", "Remastered Renewed TexturePack");
-
-		//DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> this::setupUsersUUID);
 	}
 
 	public PlayerEntity getClientPlayerEntity() {
@@ -153,10 +152,6 @@ public class ExtendedClientProxy {
             }
         }
     }
-
-	public void onParticleRegistry(ParticleFactoryRegisterEvent event) {
-		ExtendedClientParticles.register(event);
-	}
 
 	public void startVersionChecks() {
 		String lastVersion = ExtendedClientConfig.lastClientBootVersion.get();

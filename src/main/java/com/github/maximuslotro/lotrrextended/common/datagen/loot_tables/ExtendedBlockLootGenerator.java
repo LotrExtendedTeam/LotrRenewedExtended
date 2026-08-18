@@ -2,7 +2,6 @@ package com.github.maximuslotro.lotrrextended.common.datagen.loot_tables;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedAncientStoneRuneBlock;
@@ -38,6 +37,8 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedOrcBombBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMattedFurBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedPlacedBooksBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedRopeBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedSaplingBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedStandingSignBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedStoneBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedThreeTallPillarBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedVineBlock;
@@ -50,8 +51,8 @@ import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedBoo
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedLargePotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedSingleChestBlock;
 import com.github.maximuslotro.lotrrextended.common.block.containers.ExtendedWeaponRackBlock;
-import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedGroupSpawnerBlock;
-import com.github.maximuslotro.lotrrextended.common.block.spawners.ExtendedSpawnerBlock;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
 import lotr.common.block.AxialSlabBlock;
 import lotr.common.block.BranchBlock;
@@ -70,15 +71,12 @@ import lotr.common.block.LOTRFenceGateBlock;
 import lotr.common.block.LOTRPillarBlock;
 import lotr.common.block.LOTRPlanksBlock;
 import lotr.common.block.LOTRPottedPlantBlock;
-import lotr.common.block.LOTRSaplingBlock;
 import lotr.common.block.LOTRStairsBlock;
-import lotr.common.block.LOTRStandingSignBlock;
 import lotr.common.block.LOTRStoneBlock;
 import lotr.common.block.LOTRStrippedLogBlock;
 import lotr.common.block.LOTRStrippedWoodBlock;
 import lotr.common.block.LOTRTorchBlock;
 import lotr.common.block.LOTRTrapdoorBlock;
-import lotr.common.block.LOTRWallBlock;
 import lotr.common.block.LOTRWallTorchBlock;
 import lotr.common.block.LOTRWoodButtonBlock;
 import lotr.common.block.LOTRWoodPressurePlateBlock;
@@ -87,8 +85,6 @@ import lotr.common.block.StrippableLogBlock;
 import lotr.common.block.StrippableWoodBlock;
 import lotr.common.block.VesselDrinkBlock;
 import lotr.common.block.WoodBeamBlock;
-import lotr.common.init.ExtendedBlocks;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.loot.functions.VesselDrink;
 import net.minecraft.advancements.criterion.EnchantmentPredicate;
@@ -103,6 +99,7 @@ import net.minecraft.block.DoorBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.block.TrapDoorBlock;
+import net.minecraft.block.WallBlock;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
@@ -149,315 +146,315 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		createCakePool(LOTRBlocks.CHERRY_PIE.get());
 		createCakePool(LOTRBlocks.APPLE_CRUMBLE.get());
 		// Generate Extended's block loot-tables
-		for(Entry<String, RegistryObject<Block>> block : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if(block.getValue().get() instanceof ExtendedAxialSlabPlantableSpreadableBlock) {
-				add(block.getValue().get(), createGrowableSlabItemTable((SlabBlock)block.getValue().get(),((ExtendedAxialSlabPlantableSpreadableBlock)block.getValue().get()).getBaseForLootTables().get()));
+		for(RegistryObject<Block> block : ExtendedBlocks.BLOCKS.getEntries()) {
+			if(block.get() instanceof ExtendedAxialSlabPlantableSpreadableBlock) {
+				add(block.get(), createGrowableSlabItemTable((SlabBlock)block.get(),((ExtendedAxialSlabPlantableSpreadableBlock)block.get()).getBaseForLootTables().get()));
 				continue;
 			}
-			if(block.getValue().get() instanceof AxialSlabBlock) {
-				add(block.getValue().get(), BlockLootTables::createSlabItemTable);
+			if(block.get() instanceof AxialSlabBlock) {
+				add(block.get(), BlockLootTables::createSlabItemTable);
 				continue;
 			}
-			if((block.getValue().get() instanceof LOTRWallBlock) || (block.getValue().get() instanceof ExtendedAncientStoneRuneBlock)) {
-				dropSelf(block.getValue().get());
+			if((block.get() instanceof WallBlock) || (block.get() instanceof ExtendedAncientStoneRuneBlock)) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedVineBlock) {
-				add(block.getValue().get(), BlockLootTables::createShearsOnlyDrop);
+			if(block.get() instanceof ExtendedVineBlock) {
+				add(block.get(), BlockLootTables::createShearsOnlyDrop);
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedFireBlock) {
-				add(block.getValue().get(), noDrop());
+			if(block.get() instanceof ExtendedFireBlock) {
+				add(block.get(), noDrop());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedStoneTextSignBlock) {
-				add(block.getValue().get(), noDrop());
+			if(block.get() instanceof ExtendedStoneTextSignBlock) {
+				add(block.get(), noDrop());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedPlacedBooksBlock) {
-				add(block.getValue().get(), noDrop());
+			if(block.get() instanceof ExtendedPlacedBooksBlock) {
+				add(block.get(), noDrop());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedBrazierBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedBrazierBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof DripstoneBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof DripstoneBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedLanternElvenBlock || block.getValue().get() instanceof ExtendedLanternNumenoreanBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedLanternElvenBlock || block.get() instanceof ExtendedLanternNumenoreanBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedCrucibleBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedCrucibleBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedBookshelfBlock) {
-				add(block.getValue().get(), (blockP) -> {
+			if(block.get() instanceof ExtendedBookshelfBlock) {
+				add(block.get(), (blockP) -> {
 			         return createSingleItemTableWithSilkTouch(Blocks.BOOKSHELF, Items.BOOK, ConstantRange.exactly(3));
 			      });
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedWasteBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedWasteBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedCrystalChandelierBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedCrystalChandelierBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedDwarvenGateBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedDwarvenGateBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedBirdcageBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedBirdcageBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedBarsBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedBarsBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRStairsBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof LOTRStairsBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedLargePotBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedLargePotBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedLargeFlowerPotBlock) {
-				dropExtendedPottedContents(block.getValue().get());
+			if(block.get() instanceof ExtendedLargeFlowerPotBlock) {
+				dropExtendedPottedContents(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedChainBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedChainBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedNarsilShardsBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedNarsilShardsBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRPillarBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof LOTRPillarBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedThreeTallPillarBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedThreeTallPillarBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedHoistBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedHoistBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ChandelierBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ChandelierBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedMaterialBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedMaterialBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRStoneBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof LOTRStoneBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedStoneBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedStoneBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedRopeBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedRopeBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedMossBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedMossBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedMossCarpetBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedMossCarpetBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedConquestTableBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedConquestTableBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof FactionCraftingTableBlock) {
-				if(block.getValue().get() instanceof ExtendedTwoTypeCraftingTableBlock) {
-					dropSelf(block.getValue().get());
+			if(block.get() instanceof FactionCraftingTableBlock) {
+				if(block.get() instanceof ExtendedTwoTypeCraftingTableBlock) {
+					dropSelf(block.get());
 					continue;
 				}
-				dropSelf(block.getValue().get());
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRTorchBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof LOTRTorchBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRWallTorchBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof LOTRWallTorchBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof StrippableLogBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof StrippableLogBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof StrippableWoodBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof StrippableWoodBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRStrippedLogBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof LOTRStrippedLogBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRStrippedWoodBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof LOTRStrippedWoodBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof WoodBeamBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof WoodBeamBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRPlanksBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof LOTRPlanksBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRFenceBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof LOTRFenceBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRFenceGateBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof LOTRFenceGateBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRTrapdoorBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof LOTRTrapdoorBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedWargCarpetBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedWargCarpetBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof TrapDoorBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof TrapDoorBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof StrippableBranchBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof StrippableBranchBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof BranchBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof BranchBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRWoodPressurePlateBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof LOTRWoodPressurePlateBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRWoodButtonBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof LOTRWoodButtonBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRStandingSignBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedStandingSignBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRSaplingBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedSaplingBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof VesselDrinkBlock) {
-				add(block.getValue().get(), ExtendedBlockLootGenerator::createDrinkVesselTable);
+			if(block.get() instanceof VesselDrinkBlock) {
+				add(block.get(), ExtendedBlockLootGenerator::createDrinkVesselTable);
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRDoorBlock) {
-				add(block.getValue().get(), BlockLootTables::createDoorTable);
+			if(block.get() instanceof LOTRDoorBlock) {
+				add(block.get(), BlockLootTables::createDoorTable);
 				continue;
 			}
-			if(block.getValue().get() instanceof DoorBlock) {
-				add(block.getValue().get(), BlockLootTables::createDoorTable);
+			if(block.get() instanceof DoorBlock) {
+				add(block.get(), BlockLootTables::createDoorTable);
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedBedBlock) {
-				add(block.getValue().get(), (blockLamda) -> createSinglePropConditionTable(blockLamda, BedBlock.PART, BedPart.HEAD));
+			if(block.get() instanceof ExtendedBedBlock) {
+				add(block.get(), (blockLamda) -> createSinglePropConditionTable(blockLamda, BedBlock.PART, BedPart.HEAD));
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedFullModelBedBlock) {
-				add(block.getValue().get(), (blockLamda) -> createSinglePropConditionTable(blockLamda, BedBlock.PART, BedPart.HEAD));
+			if(block.get() instanceof ExtendedFullModelBedBlock) {
+				add(block.get(), (blockLamda) -> createSinglePropConditionTable(blockLamda, BedBlock.PART, BedPart.HEAD));
 				continue;
 			}
-			if(block.getValue().get() instanceof LOTRPottedPlantBlock) {
-				dropPottedContents(block.getValue().get());
+			if(block.get() instanceof LOTRPottedPlantBlock) {
+				dropPottedContents(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedMattedFurBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedMattedFurBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedCakeBlock) {
-				createCakePool(block.getValue().get());
+			if(block.get() instanceof ExtendedCakeBlock) {
+				createCakePool(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedBundleBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedBundleBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedChimneyPotBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedChimneyPotBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedGroundDirtBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedGroundDirtBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedHearthBlock) {
-				dropOther(block.getValue().get(), LOTRBlocks.HEARTH_BLOCK.get());
+			if(block.get() instanceof ExtendedHearthBlock) {
+				dropOther(block.get(), LOTRBlocks.HEARTH_BLOCK.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedWeaponRackBlock) {
-				dropSelf(block.getValue().get());
+			if(block.get() instanceof ExtendedWeaponRackBlock) {
+				dropSelf(block.get());
 				continue;
 			}
-			if(block.getValue().get() instanceof FallenLeavesBlock) {
-				dropWhenSilkTouch(block.getValue().get());//TODO apply shears or explosion conition
+			if(block.get() instanceof FallenLeavesBlock) {
+				dropWhenSilkTouch(block.get());//TODO apply shears or explosion conition
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedGroundFarmlandBlock) {
-				dropOther(block.getValue().get(), ((ExtendedGroundFarmlandBlock)block.getValue().get()).getBase().get());
+			if(block.get() instanceof ExtendedGroundFarmlandBlock) {
+				dropOther(block.get(), ((ExtendedGroundFarmlandBlock)block.get()).getBase().get());
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedGroundGrassBlock) {
-				add(block.getValue().get(), (blockLamda) -> createSingleItemTableWithSilkTouch(blockLamda, ((ExtendedGroundGrassBlock)block.getValue().get()).getBase().get()));
+			if(block.get() instanceof ExtendedGroundGrassBlock) {
+				add(block.get(), (blockLamda) -> createSingleItemTableWithSilkTouch(blockLamda, ((ExtendedGroundGrassBlock)block.get()).getBase().get()));
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedGroundPathBlock) {
-				add(block.getValue().get(), (blockLamda) -> createSingleItemTableWithSilkTouch(blockLamda, ((ExtendedGroundPathBlock)block.getValue().get()).getBase().get()));
+			if(block.get() instanceof ExtendedGroundPathBlock) {
+				add(block.get(), (blockLamda) -> createSingleItemTableWithSilkTouch(blockLamda, ((ExtendedGroundPathBlock)block.get()).getBase().get()));
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedMEBannerBlock) {
-				add(block.getValue().get(), ExtendedBlockLootGenerator::createBannerDrop);
+			if(block.get() instanceof ExtendedMEBannerBlock) {
+				add(block.get(), ExtendedBlockLootGenerator::createBannerDrop);
 			}
-			if(block.getValue().get() instanceof ExtendedMEBannerWallBlock) {
-				add(block.getValue().get(), ExtendedBlockLootGenerator::createWallBannerDrop);
+			if(block.get() instanceof ExtendedMEBannerWallBlock) {
+				add(block.get(), ExtendedBlockLootGenerator::createWallBannerDrop);
 			}
-			if(block.getValue().get() instanceof ExtendedSingleChestBlock) {
-				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
+			if(block.get() instanceof ExtendedSingleChestBlock) {
+				add(block.get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
 			}
-			if(block.getValue().get() instanceof ExtendedBarrelBlock) {
-				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
+			if(block.get() instanceof ExtendedBarrelBlock) {
+				add(block.get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
 			}
-			if(block.getValue().get() instanceof ExtendedStoneGrinderBlock) {
-				add(block.getValue().get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
+			if(block.get() instanceof ExtendedStoneGrinderBlock) {
+				add(block.get(), ExtendedBlockLootGenerator::createNameableBlockEntityTable);
 			}
-			if(block.getValue().get() instanceof ExtendedOrcBombBlock) {
-				add(block.getValue().get(), LootTable.lootTable().withPool(applyExplosionCondition(block.getValue().get(), LootPool.lootPool().setRolls(ConstantRange.exactly(1))
-					.add(ItemLootEntry.lootTableItem(block.getValue().get()).when(BlockStateProperty.hasBlockStateProperties(block.getValue().get())
+			if(block.get() instanceof ExtendedOrcBombBlock) {
+				add(block.get(), LootTable.lootTable().withPool(applyExplosionCondition(block.get(), LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+					.add(ItemLootEntry.lootTableItem(block.get()).when(BlockStateProperty.hasBlockStateProperties(block.get())
 						.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedOrcBombBlock.UNSTABLE, false)))))));
 			}
-			if(block.getValue().get() instanceof ExtendedBerryHedgeBlock) {
-				ExtendedBerryHedgeBlock thingy = (ExtendedBerryHedgeBlock)block.getValue().get();
+			if(block.get() instanceof ExtendedBerryHedgeBlock) {
+				ExtendedBerryHedgeBlock thingy = (ExtendedBerryHedgeBlock)block.get();
 				add(thingy, (blockLamda) -> LootTable.lootTable()
 					.withPool(LootPool.lootPool()
 						.when(BlockStateProperty.hasBlockStateProperties(thingy).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedBerryHedgeBlock.AGE, 3)))
@@ -478,8 +475,8 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 					);
 				continue;
 			}
-			if(block.getValue().get() instanceof ExtendedBerryBushBlock) {
-				ExtendedBerryBushBlock blok = (ExtendedBerryBushBlock)block.getValue().get();
+			if(block.get() instanceof ExtendedBerryBushBlock) {
+				ExtendedBerryBushBlock blok = (ExtendedBerryBushBlock)block.get();
 				add(blok, (blockLamda) -> LootTable.lootTable()
 					.withPool(LootPool.lootPool()
 						.when(BlockStateProperty.hasBlockStateProperties(blok).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 3)))
@@ -527,11 +524,8 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 	@Override
 	protected Iterable<Block> getKnownBlocks() {
 		List<RegistryObject<Block>> filtered = new ArrayList<>();
-		for(Entry<String, RegistryObject<Block>> bl : ExtendedBlocks.REGISTEREDBLOCKS.entrySet()) {
-			if((bl.getValue().get() instanceof ExtendedSpawnerBlock) || (bl.getValue().get() instanceof ExtendedGroupSpawnerBlock)){
-				continue;
-			}
-			filtered.add(bl.getValue());
+		for(RegistryObject<Block> bl : ExtendedBlocks.BLOCKS.getEntries()) {
+			filtered.add(bl);
 		}
 		filtered.add(LOTRBlocks.CHERRY_PIE);
 		filtered.add(LOTRBlocks.APPLE_CRUMBLE);

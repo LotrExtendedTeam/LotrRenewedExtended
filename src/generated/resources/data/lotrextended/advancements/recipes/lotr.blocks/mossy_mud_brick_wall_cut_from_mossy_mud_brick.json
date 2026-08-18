@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:mossy_mud_brick_wall_cut_from_mossy_mud_brick"
+    ]
+  },
+  "criteria": {
+    "has_mossy_mud_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:mossy_mud_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:mossy_mud_brick_wall_cut_from_mossy_mud_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mossy_mud_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

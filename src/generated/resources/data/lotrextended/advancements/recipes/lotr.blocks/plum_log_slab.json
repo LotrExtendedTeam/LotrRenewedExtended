@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:plum_log_slab"
+    ]
+  },
+  "criteria": {
+    "has_plum_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:plum_log"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:plum_log_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_plum_log",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:mossy_dwarven_brick_slab_cut_from_mossy_dwarven_brick"
+    ]
+  },
+  "criteria": {
+    "has_mossy_dwarven_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mossy_dwarven_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:mossy_dwarven_brick_slab_cut_from_mossy_dwarven_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mossy_dwarven_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

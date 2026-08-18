@@ -4,9 +4,9 @@ import java.util.function.Function;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
-import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.ICommandSource;

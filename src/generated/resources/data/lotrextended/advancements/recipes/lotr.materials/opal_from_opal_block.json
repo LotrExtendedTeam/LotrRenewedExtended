@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:opal_from_opal_block"
+    ]
+  },
+  "criteria": {
+    "has_opal_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:opal_block"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:opal_from_opal_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_opal_block",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -39,7 +39,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:angmar_helmet",
+          "item": "lotrextended:angmar_helmet",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
         }
       },
@@ -97,7 +97,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:angmar_chestplate",
+          "item": "lotrextended:angmar_chestplate",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -141,7 +141,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:angmar_leggings",
+          "item": "lotrextended:angmar_leggings",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -185,7 +185,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:angmar_boots",
+          "item": "lotrextended:angmar_boots",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -223,7 +223,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:angmar_dagger",
+          "item": "lotrextended:angmar_dagger",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -232,14 +232,14 @@
       {
         "weight": 3,
         "equipmentItem": {
-          "item": "lotr:orc_bow",
+          "item": "lotrextended:orc_bow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:longbow",
+          "item": "lotrextended:longbow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       },

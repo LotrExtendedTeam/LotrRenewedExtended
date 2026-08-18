@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:taurethrim",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:obsidian_shard"
+    }
+  },
+  "result": {
+    "item": "lotrextended:obsidian_taurethrim_brick",
+    "count": 4
+  }
+}

@@ -2,7 +2,7 @@
   "parent": "lotrextended:iron_hills/iron_hills",
   "display": {
     "icon": {
-      "item": "lotr:silver_coin_one"
+      "item": "lotrextended:silver_coin_one"
     },
     "title": {
       "translate": "advancements.lotrextended.iron_hills.delving_deep.title"

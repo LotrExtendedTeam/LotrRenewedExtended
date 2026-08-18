@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 
 import lotr.common.entity.npc.ai.goal.*;
@@ -14,7 +15,6 @@ import lotr.common.entity.npc.data.NPCFoodPools;
 import lotr.common.entity.npc.data.NPCGenderProvider;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.util.ExtendedInteractableHelper;

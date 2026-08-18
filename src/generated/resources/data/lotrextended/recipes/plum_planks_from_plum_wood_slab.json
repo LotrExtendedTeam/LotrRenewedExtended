@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotrextended:plum_wood_slab"
+      },
+      {
+        "item": "lotrextended:stripped_plum_wood_slab"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotrextended:plum_planks",
+    "count": 2
+  }
+}

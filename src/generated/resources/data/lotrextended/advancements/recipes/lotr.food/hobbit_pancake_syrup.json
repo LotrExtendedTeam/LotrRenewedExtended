@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:hobbit_pancake_syrup"
+    ]
+  },
+  "criteria": {
+    "has_hobbit_pancake": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:hobbit_pancake"
+          }
+        ]
+      }
+    },
+    "has_maple_syrup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:hobbit_pancake"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:hobbit_pancake_syrup"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_hobbit_pancake",
+      "has_maple_syrup",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,11 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.inventory.container;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
 import com.github.maximuslotro.lotrrextended.common.recipe.ExtendedRecipeTypes;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedCrucibleTileEntity;
 
-import lotr.common.init.ExtendedBlocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;

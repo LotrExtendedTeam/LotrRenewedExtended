@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.recipe;
 
-import lotr.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;

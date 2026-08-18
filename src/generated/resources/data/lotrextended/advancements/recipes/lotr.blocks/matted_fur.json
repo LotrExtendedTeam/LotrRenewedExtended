@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:matted_fur"
+    ]
+  },
+  "criteria": {
+    "has_fur": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:fur"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:matted_fur"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fur",
+      "has_the_recipe"
+    ]
+  ]
+}

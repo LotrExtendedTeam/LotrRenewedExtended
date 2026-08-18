@@ -34,7 +34,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:duck_egg",
+        "item": "lotrextended:duck_egg",
         "averageCost": 1,
         "count": 2
       }
@@ -84,7 +84,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:blueberry",
+        "item": "lotrextended:blueberry",
         "averageCost": 1,
         "count": 2
       }
@@ -92,7 +92,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:blackberry",
+        "item": "lotrextended:blackberry",
         "averageCost": 1,
         "count": 2
       }
@@ -100,7 +100,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:cranberry",
+        "item": "lotrextended:cranberry",
         "averageCost": 1,
         "count": 2
       }
@@ -108,7 +108,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:elderberry",
+        "item": "lotrextended:elderberry",
         "averageCost": 1,
         "count": 2
       }
@@ -116,7 +116,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:raspberry",
+        "item": "lotrextended:raspberry",
         "averageCost": 1,
         "count": 2
       }
@@ -169,7 +169,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:butter",
+        "item": "lotrextended:butter",
         "averageCost": 1
       }
     },
@@ -211,21 +211,21 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:hobbit_pancake",
+        "item": "lotrextended:hobbit_pancake",
         "averageCost": 10
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:hobbit_pancake_syrup",
+        "item": "lotrextended:hobbit_pancake_syrup",
         "averageCost": 11
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:hobbit_pancake_syrup_butter",
+        "item": "lotrextended:hobbit_pancake_syrup_butter",
         "averageCost": 12
       }
     },

@@ -201,7 +201,7 @@
               }
             }
           ],
-          "name": "lotr:orc_steel_nugget"
+          "name": "lotrextended:orc_steel_nugget"
         },
         {
           "type": "minecraft:item",
@@ -227,7 +227,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:gundabad_orc_banner_pattern"
+          "name": "lotrextended:gundabad_orc_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -484,7 +484,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:artisan_tome"
+          "name": "lotrextended:artisan_tome"
         },
         {
           "type": "minecraft:item",
@@ -494,7 +494,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:combat_tome"
+          "name": "lotrextended:combat_tome"
         },
         {
           "type": "minecraft:item",
@@ -504,7 +504,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:smith_tome"
+          "name": "lotrextended:smith_tome"
         },
         {
           "type": "minecraft:item",

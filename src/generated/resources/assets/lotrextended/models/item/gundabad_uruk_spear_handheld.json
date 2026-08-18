@@ -1,0 +1,14 @@
+{
+  "parent": "lotr:item/handheld_spear",
+  "textures": {
+    "layer0": "lotrextended:item/gundabad_uruk_spear_large"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "minecraft:pulling": 1.0
+      },
+      "model": "lotrextended:item/gundabad_uruk_spear_handheld_pulling"
+    }
+  ]
+}

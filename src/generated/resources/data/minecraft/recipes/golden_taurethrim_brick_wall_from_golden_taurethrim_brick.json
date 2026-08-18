@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:golden_taurethrim_brick"
-  },
-  "result": "lotr:golden_taurethrim_brick_wall",
-  "count": 1
-}

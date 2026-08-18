@@ -3,9 +3,10 @@ package com.github.maximuslotro.lotrextended.mixins.lotr.common.entity.npc;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+
 import lotr.common.entity.npc.MordorOrcArcherEntity;
 import lotr.common.entity.npc.MordorOrcEntity;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;

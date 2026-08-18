@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:smooth_rohan_rock"
+  },
+  "result": "lotrextended:smooth_rohan_rock_stairs",
+  "count": 1
+}

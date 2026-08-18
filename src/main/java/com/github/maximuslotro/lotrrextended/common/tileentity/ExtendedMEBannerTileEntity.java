@@ -18,6 +18,7 @@ import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBanne
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerProtectionOwners;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
 
 import lotr.common.data.ExtendedFellowshipDataModule;
@@ -27,7 +28,6 @@ import lotr.common.fac.FactionPointer;
 import lotr.common.fac.FactionPointers;
 import lotr.common.fellowship.ExtendedFellowship;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.ExtendedTileEntities;
 import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

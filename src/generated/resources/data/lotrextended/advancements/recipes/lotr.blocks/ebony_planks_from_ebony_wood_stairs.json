@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:ebony_planks_from_ebony_wood_stairs"
+    ]
+  },
+  "criteria": {
+    "has_ebony_wood_stairs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:ebony_wood_stairs"
+          }
+        ]
+      }
+    },
+    "has_stripped_ebony_wood_stairs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:stripped_ebony_wood_stairs"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:ebony_planks_from_ebony_wood_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ebony_wood_stairs",
+      "has_stripped_ebony_wood_stairs",
+      "has_the_recipe"
+    ]
+  ]
+}

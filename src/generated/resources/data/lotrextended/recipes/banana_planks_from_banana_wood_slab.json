@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotrextended:banana_wood_slab"
+      },
+      {
+        "item": "lotrextended:stripped_banana_wood_slab"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotrextended:banana_planks",
+    "count": 2
+  }
+}

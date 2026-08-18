@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.Blocks;
 

@@ -1,8 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.tileentity;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
 
-import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 

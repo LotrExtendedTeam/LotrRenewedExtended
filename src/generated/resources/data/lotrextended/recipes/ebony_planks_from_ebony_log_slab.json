@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "lotrextended:ebony_log_slab"
+      },
+      {
+        "item": "lotrextended:stripped_ebony_log_slab"
+      }
+    ]
+  ],
+  "result": {
+    "item": "lotrextended:ebony_planks",
+    "count": 2
+  }
+}

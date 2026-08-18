@@ -36,7 +36,7 @@
               }
             }
           ],
-          "name": "lotr:butter"
+          "name": "lotrextended:butter"
         },
         {
           "type": "minecraft:item",
@@ -51,7 +51,7 @@
               }
             }
           ],
-          "name": "lotr:hobbit_pancake"
+          "name": "lotrextended:hobbit_pancake"
         },
         {
           "type": "minecraft:item",
@@ -66,7 +66,7 @@
               }
             }
           ],
-          "name": "lotr:hobbit_pancake_syrup"
+          "name": "lotrextended:hobbit_pancake_syrup"
         },
         {
           "type": "minecraft:item",
@@ -81,7 +81,7 @@
               }
             }
           ],
-          "name": "lotr:hobbit_pancake_syrup_butter"
+          "name": "lotrextended:hobbit_pancake_syrup_butter"
         },
         {
           "type": "minecraft:item",
@@ -272,7 +272,7 @@
               }
             }
           ],
-          "name": "lotr:cooked_duck"
+          "name": "lotrextended:cooked_duck"
         },
         {
           "type": "minecraft:item",
@@ -347,7 +347,7 @@
               }
             }
           ],
-          "name": "lotr:duck_egg"
+          "name": "lotrextended:duck_egg"
         },
         {
           "type": "minecraft:item",
@@ -493,7 +493,7 @@
               }
             }
           ],
-          "name": "lotr:plum"
+          "name": "lotrextended:plum"
         },
         {
           "type": "minecraft:item",
@@ -508,7 +508,7 @@
               }
             }
           ],
-          "name": "lotr:butter"
+          "name": "lotrextended:butter"
         },
         {
           "type": "minecraft:item",
@@ -609,7 +609,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:hobbit_banner_pattern"
+          "name": "lotrextended:hobbit_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -624,7 +624,7 @@
               }
             }
           ],
-          "name": "lotr:blackberry"
+          "name": "lotrextended:blackberry"
         },
         {
           "type": "minecraft:item",
@@ -639,7 +639,7 @@
               }
             }
           ],
-          "name": "lotr:blueberry"
+          "name": "lotrextended:blueberry"
         },
         {
           "type": "minecraft:item",
@@ -654,7 +654,7 @@
               }
             }
           ],
-          "name": "lotr:cranberry"
+          "name": "lotrextended:cranberry"
         },
         {
           "type": "minecraft:item",
@@ -669,7 +669,7 @@
               }
             }
           ],
-          "name": "lotr:elderberry"
+          "name": "lotrextended:elderberry"
         },
         {
           "type": "minecraft:item",
@@ -684,7 +684,7 @@
               }
             }
           ],
-          "name": "lotr:raspberry"
+          "name": "lotrextended:raspberry"
         },
         {
           "type": "minecraft:item",
@@ -699,7 +699,7 @@
               }
             }
           ],
-          "name": "lotr:hobbit_pancake"
+          "name": "lotrextended:hobbit_pancake"
         },
         {
           "type": "minecraft:item",
@@ -714,7 +714,7 @@
               }
             }
           ],
-          "name": "lotr:hobbit_pancake_syrup"
+          "name": "lotrextended:hobbit_pancake_syrup"
         },
         {
           "type": "minecraft:item",
@@ -729,7 +729,7 @@
               }
             }
           ],
-          "name": "lotr:hobbit_pancake_syrup_butter"
+          "name": "lotrextended:hobbit_pancake_syrup_butter"
         },
         {
           "type": "minecraft:item",
@@ -744,7 +744,7 @@
               }
             }
           ],
-          "name": "lotr:roasted_chestnut"
+          "name": "lotrextended:roasted_chestnut"
         },
         {
           "type": "minecraft:item",

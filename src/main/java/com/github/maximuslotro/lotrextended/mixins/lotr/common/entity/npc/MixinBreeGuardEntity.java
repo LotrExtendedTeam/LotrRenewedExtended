@@ -4,8 +4,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+
 import lotr.common.entity.npc.BreeGuardEntity;
-import lotr.common.init.ExtendedItems;
 import net.minecraft.util.IItemProvider;
 
 /**

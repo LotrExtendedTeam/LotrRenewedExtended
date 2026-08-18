@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:dwarven",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotrextended:durins_folk_banner"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:durin_banner_pattern"
+  }
+}

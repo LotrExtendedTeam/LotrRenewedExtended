@@ -304,7 +304,7 @@
               }
             }
           ],
-          "name": "lotr:cooked_duck"
+          "name": "lotrextended:cooked_duck"
         },
         {
           "type": "minecraft:item",
@@ -394,7 +394,7 @@
               }
             }
           ],
-          "name": "lotr:roasted_chestnut"
+          "name": "lotrextended:roasted_chestnut"
         },
         {
           "type": "minecraft:item",
@@ -793,7 +793,7 @@
               }
             }
           ],
-          "name": "lotr:skull_goblet"
+          "name": "lotrextended:skull_goblet"
         },
         {
           "type": "minecraft:item",

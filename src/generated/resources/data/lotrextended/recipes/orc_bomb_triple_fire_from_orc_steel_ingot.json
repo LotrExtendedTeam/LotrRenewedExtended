@@ -1,0 +1,21 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_morgul",
+  "pattern": [
+    "PBI"
+  ],
+  "key": {
+    "B": {
+      "item": "lotrextended:orc_bomb_double_fire"
+    },
+    "I": {
+      "tag": "forge:ingots/orc_steel"
+    },
+    "P": {
+      "item": "minecraft:gunpowder"
+    }
+  },
+  "result": {
+    "item": "lotrextended:orc_bomb_triple_fire"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:green_mallorn_torch_converted_from_torch"
+    ]
+  },
+  "criteria": {
+    "has_torch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:torch"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:green_mallorn_torch_converted_from_torch"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_torch",
+      "has_the_recipe"
+    ]
+  ]
+}

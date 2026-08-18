@@ -1,11 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.structures;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.BrickWeathererProcessor;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.ExtendedArmorStandProcessor;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.GraniteWhiteWoolBeehiveThatchRemoverProcessor;
 import com.github.maximuslotro.lotrrextended.common.world.gen.structure.processor.ReplaceAirWithGrassVoidsProcessor;
 
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;

@@ -25,7 +25,7 @@
               "Properties": {
                 "bites": "0"
               },
-              "Name": "lotr:blackberry_pie"
+              "Name": "lotrextended:blackberry_pie"
             }
           },
           {
@@ -34,7 +34,7 @@
               "Properties": {
                 "bites": "0"
               },
-              "Name": "lotr:blueberry_pie"
+              "Name": "lotrextended:blueberry_pie"
             }
           },
           {
@@ -43,7 +43,7 @@
               "Properties": {
                 "bites": "0"
               },
-              "Name": "lotr:cranberry_pie"
+              "Name": "lotrextended:cranberry_pie"
             }
           },
           {
@@ -52,7 +52,7 @@
               "Properties": {
                 "bites": "0"
               },
-              "Name": "lotr:elderberry_pie"
+              "Name": "lotrextended:elderberry_pie"
             }
           },
           {
@@ -61,7 +61,7 @@
               "Properties": {
                 "bites": "0"
               },
-              "Name": "lotr:raspberry_pie"
+              "Name": "lotrextended:raspberry_pie"
             }
           },
           {
@@ -70,7 +70,7 @@
               "Properties": {
                 "bites": "0"
               },
-              "Name": "lotr:sweet_berry_pie"
+              "Name": "lotrextended:sweet_berry_pie"
             }
           },
           {
@@ -79,7 +79,7 @@
               "Properties": {
                 "bites": "0"
               },
-              "Name": "lotr:wildberry_pie"
+              "Name": "lotrextended:wildberry_pie"
             }
           },
           {

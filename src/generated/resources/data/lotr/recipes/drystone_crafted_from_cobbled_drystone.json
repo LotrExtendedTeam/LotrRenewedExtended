@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotrextended:cobbled_drystone"
+    }
+  ],
+  "result": {
+    "item": "lotr:drystone"
+  }
+}

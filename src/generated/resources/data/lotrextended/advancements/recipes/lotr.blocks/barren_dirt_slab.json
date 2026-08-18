@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:barren_dirt_slab"
+    ]
+  },
+  "criteria": {
+    "has_barren_dirt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:barren_dirt"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:barren_dirt_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_barren_dirt",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "lotrextended:opal_ore"
+  },
+  "result": "lotrextended:opal",
+  "experience": 0.5,
+  "cookingtime": 200
+}

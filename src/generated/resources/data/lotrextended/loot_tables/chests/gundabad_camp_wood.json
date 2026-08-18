@@ -51,7 +51,7 @@
               }
             }
           ],
-          "name": "lotr:chestnut_log"
+          "name": "lotrextended:chestnut_log"
         },
         {
           "type": "minecraft:item",

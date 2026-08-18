@@ -3,10 +3,11 @@ package com.github.maximuslotro.lotrrextended.common.enums;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+
 import lotr.common.fac.FactionPointer;
 import lotr.common.fac.FactionPointers;
-import lotr.common.init.ExtendedBlocks;
-import lotr.common.init.ExtendedItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;

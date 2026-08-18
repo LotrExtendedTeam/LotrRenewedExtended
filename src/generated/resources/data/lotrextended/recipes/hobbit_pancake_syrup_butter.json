@@ -1,0 +1,21 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:hobbit",
+  "pattern": [
+    "XXX",
+    "XYX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "lotrextended:hobbit_pancake_syrup"
+    },
+    "Y": {
+      "item": "lotrextended:butter"
+    }
+  },
+  "result": {
+    "item": "lotrextended:hobbit_pancake_syrup_butter",
+    "count": 8
+  }
+}

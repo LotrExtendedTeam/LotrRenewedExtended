@@ -1,0 +1,6 @@
+{
+  "parent": "lotrextended:item/dunedain_bow_handheld",
+  "textures": {
+    "layer0": "lotrextended:item/dunedain_bow_handheld_pulling_0"
+  }
+}

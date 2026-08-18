@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "XSX",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:cheese_curds"
+    },
+    "X": {
+      "item": "lotr:salt"
+    },
+    "S": {
+      "tag": "forge:mushrooms"
+    }
+  },
+  "result": {
+    "item": "lotrextended:cheese_wheel"
+  }
+}

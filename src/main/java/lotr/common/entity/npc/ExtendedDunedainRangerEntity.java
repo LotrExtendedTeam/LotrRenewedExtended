@@ -1,5 +1,7 @@
 package lotr.common.entity.npc;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
 import lotr.common.entity.npc.ai.goal.ExtendedRangerRangedAttackGoal;
@@ -14,7 +16,6 @@ import lotr.common.entity.npc.data.ExtendedFoodPools;
 import lotr.common.entity.npc.data.NPCFoodPool;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRAttributes;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;

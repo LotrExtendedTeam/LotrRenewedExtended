@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_morgul",
+  "pattern": [
+    "YYY",
+    "Y#Y",
+    "YYY"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:morgul_torch"
+    },
+    "Y": {
+      "tag": "forge:nuggets/orc_steel"
+    }
+  },
+  "result": {
+    "item": "lotrextended:morgul_brazier"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:mossy_taurethrim_brick"
-  },
-  "result": "lotr:mossy_taurethrim_brick_stairs",
-  "count": 1
-}

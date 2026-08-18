@@ -2,7 +2,7 @@
   "parent": "lotrextended:lindon/the_last_fair_realm",
   "display": {
     "icon": {
-      "item": "lotr:silver_coin_one"
+      "item": "lotrextended:silver_coin_one"
     },
     "title": {
       "translate": "advancements.lotrextended.lindon.elder_craftsmanship.title"

@@ -1,15 +1,15 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_wood_stairs",
-    "lotr:chestnut_wood_stairs",
-    "lotr:ebony_wood_stairs",
-    "lotr:plum_wood_stairs",
-    "lotr:stripped_banana_wood_stairs",
-    "lotr:stripped_chestnut_wood_stairs",
-    "lotr:stripped_ebony_wood_stairs",
-    "lotr:stripped_plum_wood_stairs",
-    "lotr:stripped_willow_wood_stairs",
-    "lotr:willow_wood_stairs"
+    "lotrextended:banana_wood_stairs",
+    "lotrextended:chestnut_wood_stairs",
+    "lotrextended:ebony_wood_stairs",
+    "lotrextended:plum_wood_stairs",
+    "lotrextended:stripped_banana_wood_stairs",
+    "lotrextended:stripped_chestnut_wood_stairs",
+    "lotrextended:stripped_ebony_wood_stairs",
+    "lotrextended:stripped_plum_wood_stairs",
+    "lotrextended:stripped_willow_wood_stairs",
+    "lotrextended:willow_wood_stairs"
   ]
 }

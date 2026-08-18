@@ -41,7 +41,7 @@
               }
             }
           ],
-          "name": "lotr:silver_coin_one"
+          "name": "lotrextended:silver_coin_one"
         },
         {
           "type": "minecraft:item",
@@ -56,7 +56,7 @@
               }
             }
           ],
-          "name": "lotr:silver_coin_ten"
+          "name": "lotrextended:silver_coin_ten"
         },
         {
           "type": "minecraft:item",
@@ -71,7 +71,7 @@
               }
             }
           ],
-          "name": "lotr:silver_coin_hundred"
+          "name": "lotrextended:silver_coin_hundred"
         },
         {
           "type": "minecraft:item",
@@ -756,7 +756,7 @@
               }
             }
           ],
-          "name": "lotr:arnor_shield"
+          "name": "lotrextended:arnor_shield"
         },
         {
           "type": "minecraft:item",
@@ -897,7 +897,7 @@
               }
             }
           ],
-          "name": "lotr:barrow_blade"
+          "name": "lotrextended:barrow_blade"
         },
         {
           "type": "minecraft:item",

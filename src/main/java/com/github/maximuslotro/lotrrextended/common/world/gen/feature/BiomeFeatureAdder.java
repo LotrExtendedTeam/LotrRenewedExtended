@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.world.gen.feature;
 
-import lotr.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+
 import lotr.common.init.LOTRBiomes;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import net.minecraftforge.event.world.BiomeLoadingEvent;

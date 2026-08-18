@@ -342,7 +342,7 @@
               }
             }
           ],
-          "name": "lotr:rivendell_bow"
+          "name": "lotrextended:rivendell_bow"
         },
         {
           "type": "minecraft:item",
@@ -426,7 +426,7 @@
               }
             }
           ],
-          "name": "lotr:rivendell_shield"
+          "name": "lotrextended:rivendell_shield"
         },
         {
           "type": "minecraft:item",
@@ -521,7 +521,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:rivendell_banner"
+          "name": "lotrextended:rivendell_banner"
         },
         {
           "type": "minecraft:item",
@@ -531,7 +531,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:rivendell_banner_pattern"
+          "name": "lotrextended:rivendell_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -563,7 +563,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:artisan_tome"
+          "name": "lotrextended:artisan_tome"
         },
         {
           "type": "minecraft:item",
@@ -574,7 +574,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:combat_tome"
+          "name": "lotrextended:combat_tome"
         },
         {
           "type": "minecraft:item",
@@ -585,7 +585,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:smith_tome"
+          "name": "lotrextended:smith_tome"
         },
         {
           "type": "minecraft:item",

@@ -16,7 +16,7 @@
               "tag": "{coin_type:\"dwarven\"}"
             }
           ],
-          "name": "lotr:silver_coin_hundred"
+          "name": "lotrextended:silver_coin_hundred"
         }
       ],
       "conditions": [

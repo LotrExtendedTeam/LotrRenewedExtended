@@ -1,8 +1,0 @@
-{
-  "type": "lotrextended:stone_grinding",
-  "ingredient": {
-    "item": "lotr:taurethrim_brick"
-  },
-  "result": "lotr:cracked_taurethrim_brick",
-  "experience": 1.0
-}

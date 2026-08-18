@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "lotr:dead_moss_vines",
-    "lotr:rope",
-    "lotr:willow_vines"
+    "lotrextended:dead_moss_vines",
+    "lotrextended:rope",
+    "lotrextended:willow_vines"
   ]
 }

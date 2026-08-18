@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "lotr:high_elven_chain",
-    "lotr:orc_chain",
+    "lotrextended:high_elven_chain",
+    "lotrextended:orc_chain",
     "minecraft:chain"
   ]
 }

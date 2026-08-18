@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "lotr:silver_coin_hundred",
-    "lotr:silver_coin_one",
-    "lotr:silver_coin_ten"
+    "lotrextended:silver_coin_hundred",
+    "lotrextended:silver_coin_one",
+    "lotrextended:silver_coin_ten"
   ]
 }

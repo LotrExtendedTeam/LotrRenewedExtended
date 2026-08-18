@@ -70,49 +70,49 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:bucket_of_cheese_curds",
+        "item": "lotrextended:bucket_of_cheese_curds",
         "averageCost": 9
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:cheese_curds",
+        "item": "lotrextended:cheese_curds",
         "averageCost": 5
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:cheese_slice",
+        "item": "lotrextended:cheese_slice",
         "averageCost": 8
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:cheese_wheel",
+        "item": "lotrextended:cheese_wheel",
         "averageCost": 50
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:aged_cheese_slice",
+        "item": "lotrextended:aged_cheese_slice",
         "averageCost": 12
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:aged_cheese_wheel",
+        "item": "lotrextended:aged_cheese_wheel",
         "averageCost": 60
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:butter",
+        "item": "lotrextended:butter",
         "averageCost": 5
       }
     }

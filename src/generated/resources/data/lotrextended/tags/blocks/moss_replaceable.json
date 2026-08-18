@@ -3,12 +3,12 @@
   "values": [
     "#forge:dirt",
     "#minecraft:base_stone_overworld",
-    "lotr:barren_dirt",
-    "lotr:dead_moss_vines",
-    "lotr:mud",
-    "lotr:mud_grass",
-    "lotr:waste_block",
-    "lotr:willow_vines",
+    "lotrextended:barren_dirt",
+    "lotrextended:dead_moss_vines",
+    "lotrextended:mud",
+    "lotrextended:mud_grass",
+    "lotrextended:waste_block",
+    "lotrextended:willow_vines",
     "minecraft:vine"
   ]
 }

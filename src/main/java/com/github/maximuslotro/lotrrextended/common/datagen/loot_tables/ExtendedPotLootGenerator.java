@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedModifierScrollAdder;
 
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.data.loot.ChestLootTables;
 import net.minecraft.item.Item;

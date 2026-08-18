@@ -1,0 +1,12 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotrextended:white_warg_fur_chestplate"
+  },
+  "result1": {
+    "item": "lotrextended:white_fur",
+    "count": 8
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

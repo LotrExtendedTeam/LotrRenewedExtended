@@ -67,7 +67,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:cooked_duck",
+        "item": "lotrextended:cooked_duck",
         "averageCost": 3
       }
     },
@@ -177,56 +177,56 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:diamond",
+        "item": "lotrextended:diamond",
         "averageCost": 40
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:emerald",
+        "item": "lotrextended:emerald",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:sapphire",
+        "item": "lotrextended:sapphire",
         "averageCost": 20
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:ruby",
+        "item": "lotrextended:ruby",
         "averageCost": 20
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:opal",
+        "item": "lotrextended:opal",
         "averageCost": 15
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:amber",
+        "item": "lotrextended:amber",
         "averageCost": 15
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:amethyst",
+        "item": "lotrextended:amethyst",
         "averageCost": 12
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:topaz",
+        "item": "lotrextended:topaz",
         "averageCost": 12
       }
     }

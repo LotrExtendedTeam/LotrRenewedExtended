@@ -1,11 +1,11 @@
 {
   "replace": false,
   "values": [
-    "lotr:blackberry",
-    "lotr:blueberry",
-    "lotr:cranberry",
-    "lotr:elderberry",
-    "lotr:raspberry",
+    "lotrextended:blackberry",
+    "lotrextended:blueberry",
+    "lotrextended:cranberry",
+    "lotrextended:elderberry",
+    "lotrextended:raspberry",
     "minecraft:beetroot"
   ]
 }

@@ -366,7 +366,7 @@
               }
             }
           ],
-          "name": "lotr:orc_steel_nugget"
+          "name": "lotrextended:orc_steel_nugget"
         },
         {
           "type": "minecraft:item",

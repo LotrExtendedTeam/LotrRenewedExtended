@@ -1,8 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.tileentity.chests;
 
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
 
-import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.SoundEvent;

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SF",
+    "FS"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "F": {
+      "item": "lotrextended:gray_fur"
+    }
+  },
+  "result": {
+    "item": "lotrextended:gray_matted_fur"
+  }
+}

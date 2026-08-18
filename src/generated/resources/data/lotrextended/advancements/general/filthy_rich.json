@@ -2,7 +2,7 @@
   "parent": "lotrextended:general/trade",
   "display": {
     "icon": {
-      "item": "lotr:silver_coin_ten"
+      "item": "lotrextended:silver_coin_ten"
     },
     "title": {
       "translate": "advancements.lotrextended.general.filthy_rich.title"

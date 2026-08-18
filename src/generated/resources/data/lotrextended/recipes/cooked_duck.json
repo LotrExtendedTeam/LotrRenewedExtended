@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "lotrextended:raw_duck"
+  },
+  "result": "lotrextended:cooked_duck",
+  "experience": 0.35,
+  "cookingtime": 200
+}

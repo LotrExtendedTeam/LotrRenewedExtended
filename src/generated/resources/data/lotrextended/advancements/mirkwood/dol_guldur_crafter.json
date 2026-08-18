@@ -2,7 +2,7 @@
   "parent": "lotrextended:mirkwood/stay_on_the_path",
   "display": {
     "icon": {
-      "item": "lotr:dol_guldur_crafting_table"
+      "item": "lotrextended:dol_guldur_crafting_table"
     },
     "title": {
       "translate": "advancements.lotrextended.mirkwood.dol_guldur_crafter.title"
@@ -21,7 +21,7 @@
       "trigger": "lotrextended:crafting_with_block",
       "conditions": {
         "crafting_block": {
-          "block": "lotr:dol_guldur_crafting_table"
+          "block": "lotrextended:dol_guldur_crafting_table"
         }
       }
     }

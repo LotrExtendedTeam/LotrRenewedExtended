@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotrextended:black_matted_fur"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:black_fur",
+    "count": 2
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:scorched_stone"
-  },
-  "result": "lotr:scorched_brick_slab",
-  "count": 2
-}

@@ -1,15 +1,15 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_branch",
-    "lotr:chestnut_branch",
-    "lotr:ebony_branch",
-    "lotr:plum_branch",
-    "lotr:stripped_banana_branch",
-    "lotr:stripped_chestnut_branch",
-    "lotr:stripped_ebony_branch",
-    "lotr:stripped_plum_branch",
-    "lotr:stripped_willow_branch",
-    "lotr:willow_branch"
+    "lotrextended:banana_branch",
+    "lotrextended:chestnut_branch",
+    "lotrextended:ebony_branch",
+    "lotrextended:plum_branch",
+    "lotrextended:stripped_banana_branch",
+    "lotrextended:stripped_chestnut_branch",
+    "lotrextended:stripped_ebony_branch",
+    "lotrextended:stripped_plum_branch",
+    "lotrextended:stripped_willow_branch",
+    "lotrextended:willow_branch"
   ]
 }

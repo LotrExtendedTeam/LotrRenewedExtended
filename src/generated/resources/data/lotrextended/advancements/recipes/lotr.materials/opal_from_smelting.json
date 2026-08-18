@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:opal_from_smelting"
+    ]
+  },
+  "criteria": {
+    "has_opal_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:opal_ore"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:opal_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_opal_ore",
+      "has_the_recipe"
+    ]
+  ]
+}

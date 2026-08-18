@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.render.tileentity;
 
-import lotr.common.init.ExtendedTileEntities;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
+
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 public class ExtendedTileEntityRenderers {

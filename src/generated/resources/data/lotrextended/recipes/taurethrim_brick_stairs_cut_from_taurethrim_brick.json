@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotrextended:taurethrim_brick"
+  },
+  "result": "lotrextended:taurethrim_brick_stairs",
+  "count": 1
+}
