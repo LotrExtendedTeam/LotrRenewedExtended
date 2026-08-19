@@ -64,6 +64,6 @@ public class MixinLindonWarriorEntity extends LindonElfEntity{
 			at = @At("TAIL"))
 	public void finalizeSpawn$Extended(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag, CallbackInfoReturnable<ILivingEntityData> cir) {
 		setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.LINDON_SHIELD.get()));
-		this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.RIVENDELL_BOW.get()));
+		this.npcItemsInv.setRangedWeapon(new ItemStack(ExtendedItems.LINDON_BOW.get()));
 	}
 }

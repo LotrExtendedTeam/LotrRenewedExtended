@@ -497,6 +497,7 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, ExtendedItems.LONGBOW, ExtendedItems.BOWSTRING, 3);
 		makeCrucibleRecipe(consumer, ExtendedItems.RANGER_BOW, ExtendedItems.BOWSTRING, 3);
 		makeCrucibleRecipe(consumer, ExtendedItems.RIVENDELL_BOW, ExtendedItems.BOWSTRING, 3);
+		makeCrucibleRecipe(consumer, ExtendedItems.ROHAN_BOW, ExtendedItems.BOWSTRING, 3);
 
 		makeCrucibleRecipe(consumer, ExtendedItems.BLUE_DWARVEN_SHIELD, LOTRItems.DWARVEN_STEEL_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.DWARVEN_SHIELD, LOTRItems.DWARVEN_STEEL_INGOT);
