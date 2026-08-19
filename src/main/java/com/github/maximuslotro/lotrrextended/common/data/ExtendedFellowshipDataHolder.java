@@ -37,12 +37,12 @@ public class ExtendedFellowshipDataHolder extends ExtendedAbstractLevelDataHolde
 	public void saveData(CompoundNBT pTag, ServerWorld world) {
 		for (ExtendedFellowship fs : FELLOWSHIP_MAP.values()) {
 			if (fs.needsSave()) {
-				ExtendedIOUtils.save(getFellowshipDatafile(world, fs.getFellowshipId()), fs.save());
+				ExtendedIOUtils.save(getFellowshipDatafile(fs.getFellowshipId()), fs.save());
 			}
 		}
 	}
 
-	private File getFellowshipDatafile(ServerWorld pLevel, UUID pFellowshipId) {
+	private File getFellowshipDatafile(UUID pFellowshipId) {
 		return new File(FELLOWSHIP_FOLDER, pFellowshipId.toString() + ".dat");
 	}
 
@@ -50,16 +50,16 @@ public class ExtendedFellowshipDataHolder extends ExtendedAbstractLevelDataHolde
 		FELLOWSHIP_MAP.putIfAbsent(pFellowship.getFellowshipId(), pFellowship);
 	}
 
-	public ExtendedFellowship getFellowship(ServerWorld world, UUID pFellowshipId) {
-		ExtendedFellowship fellowship = FELLOWSHIP_MAP.computeIfAbsent(pFellowshipId, id -> loadFellowship(world, id));
+	public ExtendedFellowship getFellowship(UUID pFellowshipId) {
+		ExtendedFellowship fellowship = FELLOWSHIP_MAP.computeIfAbsent(pFellowshipId, id -> loadFellowship(id));
 		if (fellowship != null && fellowship.isDisbanded()) {
 			return null;
 		}
 		return fellowship;
 	}
 
-	private ExtendedFellowship loadFellowship(ServerWorld world, UUID pFellowshipId) {
-		File fsDat = getFellowshipDatafile(world, pFellowshipId);
+	private ExtendedFellowship loadFellowship(UUID pFellowshipId) {
+		File fsDat = getFellowshipDatafile(pFellowshipId);
 		CompoundNBT nbt = ExtendedIOUtils.load(fsDat);
 		if (nbt.isEmpty()) {
 			return null;

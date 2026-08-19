@@ -57,7 +57,7 @@ public class MixinLOTRLevelData {
 		List<ExtendedFellowship> fellowshipsMapShow = new ArrayList<>();
 		ExtendedFellowshipDataModule data = ((ExtendedLOTRPlayerData)getData(targetPlayer)).getFellowshipData();
 		for (UUID fsID : data.getFellowshipIDs()) {
-			ExtendedFellowship fs = ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(world, fsID);
+			ExtendedFellowship fs = ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(fsID);
 			if (fs != null && fs.isHideMapLocation())
 				fellowshipsMapShow.add(fs);
 		}

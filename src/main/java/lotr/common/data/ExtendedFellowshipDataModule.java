@@ -1,7 +1,6 @@
 package lotr.common.data;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +20,6 @@ import net.minecraft.util.Util;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
@@ -98,7 +96,7 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 			// Handle 1.0->1.9.3 fellowships having broken data
 			List<UUID> fellowshipIDTemp = new ArrayList<>(fellowshipIDs);
 			for (UUID id : fellowshipIDTemp) {
-				ExtendedFellowship fellowship =ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), id);
+				ExtendedFellowship fellowship =ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(id);
 				if (fellowship == null || !fellowship.isInFellowship(getPlayerUUID())) {
 					fellowshipIDs.remove(id);
 				}
@@ -110,13 +108,10 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 		return fellowshipIDs;
 	}
 
-	public List<ExtendedFellowship> getFellowships(World level) {
-		if(!(level instanceof ServerWorld)) {
-			return Collections.emptyList();
-		}
+	public List<ExtendedFellowship> getFellowships() {
 		List<ExtendedFellowship> ships = new ArrayList<>();
 		for (UUID ids : fellowshipIDs) {
-			ExtendedFellowship fellowship = ExtendedLevelData.serverInstance().getFellowshipData().getFellowship((ServerWorld) level, ids);
+			ExtendedFellowship fellowship = ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(ids);
 			if (fellowship != null) {
 				ships.add(fellowship);
 			}
@@ -335,7 +330,7 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 	 */
 	public ExtendedFellowship getFellowshipByName(String fsName) {
 		for (UUID fsID : fellowshipIDs) {
-			ExtendedFellowship fs = ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID);
+			ExtendedFellowship fs = ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(fsID);
 			if (fs != null && fs.getFellowshipName().equalsIgnoreCase(fsName))
 				return fs;
 		}
@@ -344,14 +339,14 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 
 	public ExtendedFellowship getFellowshipByID(UUID id) {
 		if(fellowshipIDs.contains(id)) {
-			return ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), id);
+			return ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(id);
 		}
 		return null;
 	}
 
 	public ExtendedFellowship getFellowshipByInviteName(String fsName) {
 		for (ExtendedFellowshipInvite fsID : invites) {
-			ExtendedFellowship fs = ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID.fellowshipID);
+			ExtendedFellowship fs = ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(fsID.fellowshipID);
 			if (fs != null && fs.getFellowshipName().equalsIgnoreCase(fsName))
 				return fs;
 		}
@@ -361,7 +356,7 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 	public List<String> listAllFellowshipNames() {
 		List<String> list = new ArrayList<>();
 		for (UUID fsID : fellowshipIDs) {
-			ExtendedFellowship fs = ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID);
+			ExtendedFellowship fs = ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(fsID);
 			if (fs != null && fs.isInFellowship(getPlayerUUID()))
 				list.add(fs.getFellowshipName());
 		}
@@ -371,7 +366,7 @@ public class ExtendedFellowshipDataModule extends ExtendedPlayerDataModule {
 	public List<String> listAllInviteNames() {
 		List<String> list = new ArrayList<>();
 		for (ExtendedFellowshipInvite fsID : invites) {
-			ExtendedFellowship fs = ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), fsID.fellowshipID);
+			ExtendedFellowship fs = ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(fsID.fellowshipID);
 			if (fs != null)
 				list.add(fs.getFellowshipName());
 		}

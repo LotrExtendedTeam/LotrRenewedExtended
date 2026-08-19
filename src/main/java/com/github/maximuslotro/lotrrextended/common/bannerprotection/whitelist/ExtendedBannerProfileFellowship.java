@@ -11,7 +11,6 @@ import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
 import lotr.common.fellowship.ExtendedFellowship;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 	private final UUID id;
@@ -132,7 +131,7 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 	}
 
 	private static ExtendedFellowship getFellowshipFromID(UUID id) {
-		return ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), id);
+		return ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(id);
 	}
 
 	@Override

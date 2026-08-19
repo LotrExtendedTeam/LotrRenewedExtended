@@ -19,6 +19,7 @@ public class ExtendedLevelData {
 	private final ExtendedBarrowsDataHolder barrowData;
 	private final ExtendedTolkienDataHolder tolkienData;
 	private final ExtendedFellowshipDataHolder fellowshipData;
+	private final ExtendedConquestDataHolder conquestData;
 
 	private boolean dirty = false;
 	private boolean needsLoad = true;
@@ -38,6 +39,7 @@ public class ExtendedLevelData {
 		barrowData = addHolder(new ExtendedBarrowsDataHolder(this));
 		tolkienData = addHolder(new ExtendedTolkienDataHolder(this));
 		fellowshipData = addHolder(new ExtendedFellowshipDataHolder(this));
+		conquestData = addHolder(new ExtendedConquestDataHolder(this));
 	}
 
 	private <H extends ExtendedAbstractLevelDataHolder> H addHolder(H dataHolder) {
@@ -118,5 +120,9 @@ public class ExtendedLevelData {
 
 	public ExtendedFellowshipDataHolder getFellowshipData() {
 		return fellowshipData;
+	}
+
+	public ExtendedConquestDataHolder getConquestData() {
+		return conquestData;
 	}
 }
