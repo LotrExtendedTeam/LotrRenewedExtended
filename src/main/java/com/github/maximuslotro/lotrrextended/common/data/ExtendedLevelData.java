@@ -1,25 +1,23 @@
 package com.github.maximuslotro.lotrrextended.common.data;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedIOUtils;
 
-import lotr.common.data.SaveUtil;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.LogicalSide;
 
 public class ExtendedLevelData {
 	private static final ExtendedLevelData SERVER_INSTANCE = new ExtendedLevelData(LogicalSide.SERVER);
+	private File EXTENDED_DATA_FILE;
 	private final List<ExtendedAbstractLevelDataHolder> dataHolders;
 	private final ExtendedTraderDataHolder traderData;
 	private final ExtendedBanditDataHolder banditData;
 	private final ExtendedInvasionDataHolder invasionData;
 	private final ExtendedBarrowsDataHolder barrowData;
 	private final ExtendedTolkienDataHolder tolkienData;
-	// Access through static methods instead of though this field
 	private final ExtendedFellowshipDataHolder fellowshipData;
 
 	private boolean dirty = false;
@@ -59,38 +57,37 @@ public class ExtendedLevelData {
 		this.dirty = true;
 	}
 
-	public void save(ServerWorld world) {
-		try {
-			File lotrDataFile = getLOTRDataFile(world);
-			if (!lotrDataFile.exists()) {
-				SaveUtil.saveNBTToFile(lotrDataFile, new CompoundNBT());
-			}
-			CompoundNBT levelData = new CompoundNBT();
-			for(ExtendedAbstractLevelDataHolder holder : dataHolders) {
-				holder.saveData(levelData, world);
-			}
-
-			SaveUtil.saveNBTToFile(lotrDataFile, levelData);
-			this.dirty = false;
-		} catch (IOException e) {
-			ExtendedLog.error("Error saving Extended mod data!", e);
+	public File getOrCreateDataFile(ServerWorld world) {
+		if(EXTENDED_DATA_FILE==null) {
+			EXTENDED_DATA_FILE = new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, world.getServer(), true), "EXTENDED.dat");
 		}
+		return EXTENDED_DATA_FILE;
+	}
+
+	public void save(ServerWorld world) {
+		CompoundNBT levelData = new CompoundNBT();
+		for(ExtendedAbstractLevelDataHolder holder : dataHolders) {
+			holder.saveData(levelData, world);
+		}
+		ExtendedIOUtils.save(getOrCreateDataFile(world), levelData);
+		this.dirty = false;
 	}
 	// Should only be loaded once on server start
 	public void load(ServerWorld world) {
-		try {
-			if(!needsLoad) {
-				return;
-			}
-			CompoundNBT levelData = SaveUtil.loadNBTFromFile(getLOTRDataFile(world));
-			for(ExtendedAbstractLevelDataHolder holder : dataHolders) {
-				holder.loadData(levelData);
-			}
-			this.needsLoad = false;
-			this.save(world);
-		} catch (IOException e) {
-			ExtendedLog.error("Error loading Extended mod data!", e);
+		if(!needsLoad) {
+			return;
 		}
+		// Copy ExtendedLevelDat from /lotr/EXTENDED.dat
+		File oldData = new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.LOTR_FOLDER, world.getServer(), false), "EXTENDED.dat");
+		if(oldData.exists()) {
+			ExtendedIOUtils.moveIfOldPath(getOrCreateDataFile(world).toPath(), oldData.toPath(), false);
+		}
+		CompoundNBT levelData = ExtendedIOUtils.load(getOrCreateDataFile(world));
+		for(ExtendedAbstractLevelDataHolder holder : dataHolders) {
+			holder.loadData(levelData, world);
+		}
+		this.needsLoad = false;
+		this.save(world);
 	}
 
 	public void tick(ServerWorld world) {
@@ -98,11 +95,6 @@ public class ExtendedLevelData {
 			holder.tick(world);
 		}
 	}
-
-	private static File getLOTRDataFile(ServerWorld world) {
-		return new File(SaveUtil.getOrCreateLOTRDir(world), "EXTENDED.dat");
-	}
-
 
 	public ExtendedTraderDataHolder getTraderData() {
 		return traderData;
@@ -122,5 +114,9 @@ public class ExtendedLevelData {
 
 	public ExtendedTolkienDataHolder getTolkienData() {
 		return tolkienData;
+	}
+
+	public ExtendedFellowshipDataHolder getFellowshipData() {
+		return fellowshipData;
 	}
 }

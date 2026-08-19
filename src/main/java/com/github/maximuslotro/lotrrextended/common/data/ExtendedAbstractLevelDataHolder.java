@@ -10,7 +10,7 @@ public abstract class ExtendedAbstractLevelDataHolder {
 		this.holder = pHolder;
 	}
 
-	public abstract void loadData(CompoundNBT pTag);
+	public abstract void loadData(CompoundNBT pTag, ServerWorld world);
 
 	public abstract void saveData(CompoundNBT pTag, ServerWorld world);
 

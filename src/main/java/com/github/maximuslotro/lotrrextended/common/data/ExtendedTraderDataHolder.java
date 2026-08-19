@@ -53,7 +53,7 @@ public class ExtendedTraderDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void loadData(CompoundNBT pTag) {
+	public void loadData(CompoundNBT pTag, ServerWorld world) {
 		CompoundNBT traderData = pTag.getCompound("traderData");
 		timeUntilTrader = traderData.getInt("timeUntilTrader");
 		requireRandom = traderData.getBoolean("requireRandom");

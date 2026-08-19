@@ -24,7 +24,7 @@ public class ExtendedBanditDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void loadData(CompoundNBT pTag) {
+	public void loadData(CompoundNBT pTag, ServerWorld world) {
 		ListNBT listnbt = pTag.getList("banditCooldowns", 10);
 		if (listnbt.isEmpty()) {
 			playerBanditSpawnCooldowns = new HashMap<>();

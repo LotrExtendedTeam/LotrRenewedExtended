@@ -126,7 +126,7 @@ public class ExtendedInvasionDataHolder extends ExtendedAbstractLevelDataHolder 
 	}
 
 	@Override
-	public void loadData(CompoundNBT pTag) {}
+	public void loadData(CompoundNBT pTag, ServerWorld world) {}
 
 	@Override
 	public void saveData(CompoundNBT pTag, ServerWorld world) {}

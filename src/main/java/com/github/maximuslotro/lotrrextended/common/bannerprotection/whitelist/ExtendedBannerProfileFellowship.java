@@ -6,7 +6,7 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
-import com.github.maximuslotro.lotrrextended.common.data.ExtendedFellowshipDataHolder;
+import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
 
 import lotr.common.fellowship.ExtendedFellowship;
 import net.minecraft.entity.player.PlayerEntity;
@@ -132,7 +132,7 @@ public class ExtendedBannerProfileFellowship extends ExtendedBannerProfileBase{
 	}
 
 	private static ExtendedFellowship getFellowshipFromID(UUID id) {
-		return ExtendedFellowshipDataHolder.getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), id);
+		return ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(ServerLifecycleHooks.getCurrentServer().overworld(), id);
 	}
 
 	@Override

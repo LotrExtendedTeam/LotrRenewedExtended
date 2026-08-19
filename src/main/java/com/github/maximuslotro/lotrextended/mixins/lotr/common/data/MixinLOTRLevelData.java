@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
-import com.github.maximuslotro.lotrrextended.common.data.ExtendedFellowshipDataHolder;
+import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
 
 import lotr.common.config.LOTRConfig;
 import lotr.common.data.ExtendedFellowshipDataModule;
@@ -57,7 +57,7 @@ public class MixinLOTRLevelData {
 		List<ExtendedFellowship> fellowshipsMapShow = new ArrayList<>();
 		ExtendedFellowshipDataModule data = ((ExtendedLOTRPlayerData)getData(targetPlayer)).getFellowshipData();
 		for (UUID fsID : data.getFellowshipIDs()) {
-			ExtendedFellowship fs = ExtendedFellowshipDataHolder.getFellowship(world, fsID);
+			ExtendedFellowship fs = ExtendedLevelData.serverInstance().getFellowshipData().getFellowship(world, fsID);
 			if (fs != null && fs.isHideMapLocation())
 				fellowshipsMapShow.add(fs);
 		}

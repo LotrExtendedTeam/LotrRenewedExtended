@@ -71,7 +71,7 @@ public class ExtendedBarrowsDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void loadData(CompoundNBT pTag) {
+	public void loadData(CompoundNBT pTag, ServerWorld world) {
 		ListNBT listnbt = pTag.getList("secondsInBarrows", 10);
 		if (listnbt.isEmpty()) {
 			secondsInBarrows = new HashMap<>();
