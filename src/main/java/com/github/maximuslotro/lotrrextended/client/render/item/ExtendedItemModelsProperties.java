@@ -53,6 +53,7 @@ public class ExtendedItemModelsProperties {
 		registerBowItemModelProperties(ExtendedItems.RANGER_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.RIVENDELL_BOW.get());
 		registerBowItemModelProperties(ExtendedItems.LINDON_BOW.get());
+		registerBowItemModelProperties(ExtendedItems.ROHAN_BOW.get());
 		// CROSSBOWS
 		registerCrossbowItemModelProperties(ExtendedItems.BRONZE_CROSSBOW.get());
 		registerCrossbowItemModelProperties(ExtendedItems.IRON_CROSSBOW.get());

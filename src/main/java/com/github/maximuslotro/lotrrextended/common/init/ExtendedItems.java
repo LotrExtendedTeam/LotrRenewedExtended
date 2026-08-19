@@ -870,6 +870,9 @@ public class ExtendedItems {
 	public static RegistryObject<Item> RANGER_BOW = regItem("ranger_bow",() -> new ExtendedBowItem(ExtendedBowMaterial.RANGER_NORTH));
 	public static RegistryObject<Item> DUNEDAIN_BOW = regItem("dunedain_bow",() -> new ExtendedBowItem(ExtendedBowMaterial.DUNEDAIN_NORTH));
 
+	// Rohan
+	public static RegistryObject<Item> ROHAN_BOW = regItem("rohan_bow",() -> new ExtendedBowItem(ExtendedBowMaterial.DUNEDAIN_NORTH));
+
 	//Bree equipment
 	public static RegistryObject<Item> BREE_SHIELD = regItem("bree_shield", () -> new LOTRShieldItem(LOTRMaterial.valueOf("BREE")));
 

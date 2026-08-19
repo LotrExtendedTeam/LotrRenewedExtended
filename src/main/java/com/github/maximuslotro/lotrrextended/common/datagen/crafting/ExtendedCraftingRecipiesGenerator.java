@@ -974,6 +974,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrossbowRecipe(consumer, ExtendedItems.IRON_CROSSBOW, Tags.Items.INGOTS_IRON, "iron_ingot", null);
 		makeCrossbowRecipe(consumer, ExtendedItems.URUK_CROSSBOW, ExtendedTags.Items.URUK_STEEL_INGOT, "uruk_steel", LOTRRecipes.URUK_CRAFTING);
 		makeCrossbowRecipe(consumer, ExtendedItems.MITHRIL_CROSSBOW, ExtendedTags.Items.MITHRIL_INGOT, "mithril_ingot", null);
+		makeBowRecipe(consumer, ExtendedItems.ROHAN_BOW, STICKS, "sticks", LOTRRecipes.ROHAN_CRAFTING);
 
 		GENERATEDRECIPES.add(ExtendedItems.CHISEL.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.CHISEL.get())

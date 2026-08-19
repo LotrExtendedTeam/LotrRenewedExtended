@@ -16,7 +16,8 @@ public enum ExtendedBowMaterial {
 	RANGER_NORTH(525, 20, 1.05F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	DUNEDAIN_NORTH(600, 20, 1.15F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	RIVENDELL(1050, 16, 1.25F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
-	LINDON(1050, 16, 1.25F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get()));
+	LINDON(1050, 16, 1.25F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
+	ROHAN(525, 20, 1.04F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get()));
 
 	private final int bowDurability;
 	// Number of ticks needed to draw bow to full power, default is 20 ticks (1 second)
