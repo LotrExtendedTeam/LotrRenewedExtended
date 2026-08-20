@@ -13,6 +13,7 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSUpdateTradeQuantitiesPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
+import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.CoinUtils;
@@ -259,10 +260,7 @@ public class ExtendedTradeContainer extends Container {
                 }
                 player.inventory.setChanged();
 
-                if (!tradedYet) {
-                    player.awardStat(ExtendedStats.TRADERS_TRADED);
-                    tradedYet = true;
-                }
+                awardTradeStats();
                 if (!player.level.isClientSide()) {
                 	ExtendedCriteriaTriggers.TRAGER_TRADED_TRIGGER.trigger((ServerPlayerEntity)player, traderNPC.getType(), true, itemForTrade, price);
                 	trader.getTraderData().incrementTradeSoldToPlayerCount(price);
@@ -390,10 +388,7 @@ public class ExtendedTradeContainer extends Container {
     					return ItemStack.EMPTY;
     				}
 
-    				if (!tradedYet) {
-    					player.awardStat(ExtendedStats.TRADERS_TRADED);
-    					tradedYet = true;
-    				}
+    				awardTradeStats();
 
     				// actually perform buy
     				stack.setCount(baseStackCount * tradesToPerform);
@@ -461,6 +456,14 @@ public class ExtendedTradeContainer extends Container {
     	return itemstack;
     }
 
+    public void awardTradeStats() {
+        if (!tradedYet) {
+            player.awardStat(ExtendedStats.TRADERS_TRADED);
+            LOTRLevelData.getSidedData(player).getFactionStatsData().getFactionStats(traderNPC.getFaction()).addTrade();
+            tradedYet = true;
+        }
+    }
+   
     /*
      * ONLY CALL SERVER SIDE!
      * */
@@ -499,9 +502,8 @@ public class ExtendedTradeContainer extends Container {
             }
         }
 
-        if (coinsGiven > 0 && !tradedYet) {
-            player.awardStat(ExtendedStats.TRADERS_TRADED, 1);
-            tradedYet = true;
+        if (coinsGiven > 0 ) {
+        	awardTradeStats();
         }
 
         if (!player.level.isClientSide()) {

@@ -93,6 +93,8 @@ public class ExtendedCHireUnitPacket {
         	}
             player.sendMessage(new TranslationTextComponent("gui.lotrextended.hiring.unit_has_been_hired", new TranslationTextComponent(unitProfile.getEntityUnitTypeName()), unitProfile.getHiringCost()), Util.NIL_UUID);
             ExtendedCriteriaTriggers.UNIT_HIRED_TRIGGER.trigger(player, entityCaptain.getType(), newEntity.getType(), unitProfile.getHiringCost());
+            LOTRLevelData.getSidedData(player).getFactionStatsData().getFactionStats(captainNpc.getFaction()).addHire();
+
         }
     }
 }
