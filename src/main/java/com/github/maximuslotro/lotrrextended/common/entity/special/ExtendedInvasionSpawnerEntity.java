@@ -258,7 +258,7 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
                 }
                 entity.setPersistenceRequired();
                 // set NBT data for invasion
-                entity.getPersistentData().putUUID("lotr:invasion_id", this.getUUID());
+                entity.getPersistentData().putUUID("ExtInvasion", this.getUUID());
 
                 world.addFreshEntityWithPassengers(entity);
                 return true;

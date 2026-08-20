@@ -489,6 +489,10 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	}
 
 	// ######################################### Mob kills
+	public void incrementMobKills() {
+		this.kills+=1;
+	}
+
 	public void setMobKills(int kills) {
 		this.kills = kills;;
 	}
