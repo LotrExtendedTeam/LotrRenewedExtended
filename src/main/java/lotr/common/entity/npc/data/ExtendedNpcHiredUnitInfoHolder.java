@@ -1,5 +1,6 @@
 package lotr.common.entity.npc.data;
 
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
@@ -20,13 +21,15 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcUnitInfoPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
+import lotr.common.data.ExtendedLOTRPlayerData;
+import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.BreeGuardEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.GondorSoldierEntity;
 import lotr.common.entity.npc.GundabadOrcEntity;
 import lotr.common.entity.npc.NPCEntity;
-import lotr.common.util.ExtendedHiredUnitHelper;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -41,12 +44,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.management.PreYggdrasilConverter;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
 public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface {
@@ -135,14 +142,14 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	}
 
 	public ItemStack getValidOtherFood() {
-        for (int i = 0; i < 9; ++i) {
-            ItemStack itemstack = this.internalUnitInventory.getItem(i);
-            if (itemstack.isEdible()) {
-                return itemstack;
-            }
-        }
-        return ItemStack.EMPTY;
-    }
+		for (int i = 0; i < 9; ++i) {
+			ItemStack itemstack = this.internalUnitInventory.getItem(i);
+			if (itemstack.isEdible()) {
+				return itemstack;
+			}
+		}
+		return ItemStack.EMPTY;
+	}
 
 	public boolean isNpcActiveDuty() {
 		return isHired;
@@ -451,9 +458,34 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 		return this.baseHealth;
 	}
 
-    public void giveExperiencePoints(float points) {
-        ExtendedHiredUnitHelper.giveExperiencePoints(this, points);
-    }
+	public void giveExperiencePoints(float points) {
+		float newExperience = getCurrentXp() + points;
+		if (newExperience >= getMaxXp()) {
+			setUnitLevel(getUnitLevel() + 1);
+			float difference = newExperience - getMaxXp();
+			setCurrentXp(difference);
+			setMaxXp(getMaxXp() + 2);
+			setHiredUnitHealth(getHiredUnitHealth() + 2);
+			setBaseHealth(getBaseHealth() + 2);
+			if (getUnitOwner() != null) {
+				boolean fancy = ((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) getUnitOwner())).getExtendedMiscData().doHighContrastMessages();
+				TextComponent unitName = getHiredUnitNameAndTitle();
+				TextComponent newlevel = new StringTextComponent(Integer.toString(getUnitLevel()));
+				if(fancy) {
+					unitName.withStyle(TextFormatting.AQUA);
+					newlevel.withStyle(TextFormatting.LIGHT_PURPLE);
+				}
+				TranslationTextComponent output = new TranslationTextComponent("chat.lotrextended.hired_companion_levelup", unitName, newlevel);
+				if(fancy) {
+					output.withStyle(TextFormatting.YELLOW);
+				}
+				getUnitOwner().sendMessage(output, getOwnerUUID());
+			}
+		} else {
+			setCurrentXp(newExperience);
+		}
+		markDirty();
+	}
 	// ######################################### Inventory Management
 	public ExtendedUnitInventory makeUnitInventory() {
 		// 9 inventory slots + 10 player equipment slots + 10 base equipment slots
@@ -878,6 +910,63 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			attributeInstance.addTransientModifier(HEALTH_MODIFIER);
 		}
 	}
+	public void dropCustomDeathLoot(Random random, int looting) {
+		// Only try dropping player equipment and general inventory space
+		for (int i = 0; i < 19; ++i) {
+			if(!getInternalUnitInventory().getItem(i).isEmpty()) {
+				ItemStack itemstack = getInternalUnitInventory().getItem(i).copy();
+				boolean isEquipedItem = !(itemstack.hasTag() && itemstack.getTag().getBoolean("IsBaseArmor"));
+				if(isEquipedItem && !EnchantmentHelper.hasVanishingCurse(itemstack)) {
+					getThisEntity().spawnAtLocation(itemstack);
+					getInternalUnitInventory().setItem(i, ItemStack.EMPTY);
+				}
+			}
+		}
+	}
+
+	public void die(DamageSource source) {
+		if (!getThisEntity().level.isClientSide && getThisEntity().level.getGameRules().getBoolean(GameRules.RULE_SHOWDEATHMESSAGES) && getUnitOwner() instanceof ServerPlayerEntity) {
+			if (((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) getUnitOwner())).getExtendedMiscData().shouldShowHiredUnitDeathMessages()){
+				boolean fancy = ((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) getUnitOwner())).getExtendedMiscData().doHighContrastMessages();
+				getUnitOwner().sendMessage(getCompanionDeathMessage(source, fancy), getOwnerUUID());
+			}
+		}
+	}
+
+	private TranslationTextComponent getCompanionDeathMessage(DamageSource source, boolean fancy) {
+		LivingEntity killerEntity = getThisEntity().getKillCredit();
+		String s = "death.attack." + source.msgId;
+		TextComponent unitName = getHiredUnitNameAndTitle();
+		if(fancy) {
+			unitName.withStyle(TextFormatting.AQUA);
+		}
+		TranslationTextComponent companionName = new TranslationTextComponent("chat.lotrextended.hired_companion_prefix", unitName);
+		if(fancy) {
+			companionName.withStyle(TextFormatting.YELLOW);
+		}
+		IFormattableTextComponent killerName = new StringTextComponent("");
+		if (killerEntity != null) {
+			if (killerEntity instanceof NPCEntity && ((ExtendedINPCEntity)killerEntity).getUnitInfo().isNpcActiveDuty()) {
+				killerName = ((ExtendedINPCEntity)killerEntity).getUnitInfo().getHiredUnitNameAndTitle();
+			}
+			else {
+				if(killerEntity.getDisplayName() instanceof IFormattableTextComponent) {
+					killerName = (IFormattableTextComponent) killerEntity.getDisplayName();
+				}else {
+					killerName = new StringTextComponent(killerEntity.getDisplayName().getString());
+				}
+			}
+			if(fancy) {
+				killerName.withStyle(TextFormatting.RED);
+			}
+		}
+		TranslationTextComponent output = killerEntity != null ? new TranslationTextComponent(s, companionName, killerName) : new TranslationTextComponent(s, companionName);
+		if(fancy) {
+			output.withStyle(TextFormatting.YELLOW);
+		}
+		return output;
+	}
+
 	/**
 	 * Gets the parent NPC entity context linked to this data holder instance.
 	 *

@@ -38,7 +38,6 @@ import lotr.common.entity.npc.data.ExtendedNpcMarriageHolder;
 import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
 import lotr.common.fac.Faction;
 import lotr.common.item.LOTRSpawnEggItem;
-import lotr.common.util.ExtendedHiredUnitHelper;
 import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
@@ -438,7 +437,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 	@Override
 	public void die(DamageSource damageSource) {
 		if(unitInfo.isNpcActiveDuty()) {
-			ExtendedHiredUnitHelper.die(unitInfo, damageSource);
+			unitInfo.die(damageSource);
 		}
 		super.die(damageSource);
 	}
@@ -459,7 +458,9 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 	@Inject(method = "dropCustomDeathLoot(Lnet/minecraft/util/DamageSource;IZ)V", at = @At("HEAD"), remap = true, cancellable = true)
 	protected void dropCustomDeathLootExtended(DamageSource source, int looting, boolean playerHit, CallbackInfo ci) {
 		if(unitInfo.isNpcActiveOrDismissed()) {
-			ExtendedHiredUnitHelper.dropCustomDeathLoot(unitInfo, random, looting);
+			// Disabled due to NPCEntity using new logic we don't want for unit drops
+	        //super.dropCustomDeathLoot(damageSource, looting, player);
+			unitInfo.dropCustomDeathLoot(random, looting);
 			ci.cancel();// Hired units should only handle it's own equipment.
 		}
 	}

@@ -18,7 +18,6 @@ import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.util.CoinUtils;
 import lotr.common.util.ExtendedTraderHelper;
-import lotr.common.util.TradeUtils;
 import lotr.common.util.representation.ExtendedTrade;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -38,9 +37,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
-/**
- * @author RichardB122
- */
+//TODO re-write entire container to directly access the trade inventory instead of using network packet changing
 public class ExtendedTradeContainer extends Container {
     public static final ITextComponent CONTAINER_TITLE = new TranslationTextComponent("container.lotrextended.trading");
 
@@ -428,7 +425,7 @@ public class ExtendedTradeContainer extends Container {
     				return ItemStack.EMPTY;
     			}
     		// attempt to move items to sell slots
-    		}else if (!level.isClientSide && TradeUtils.isValidSellItem(slotItem, trader.getTraderData().getBuys()) && sellInventory.canAddItem(slotItem)) {
+    		}else if (!level.isClientSide && isValidSellItem(slotItem, trader.getTraderData().getBuys()) && sellInventory.canAddItem(slotItem)) {
     			ItemStack remaining = sellInventory.addItem(slotItem);
     			sellInventory.setChanged();
     			slot.set(remaining);
@@ -551,4 +548,14 @@ public class ExtendedTradeContainer extends Container {
     public void setBoughtQuantities(int[] boughtQuantities) {
         this.boughtQuantities = boughtQuantities;
     }
+   
+	public static boolean isValidSellItem(ItemStack stack, List<ExtendedTrade> itemsBought) {
+		for (ExtendedTrade trade : itemsBought) {
+			ItemStack itemBought = trade.getStack();
+			if (itemBought.getItem().equals(stack.getItem())) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
