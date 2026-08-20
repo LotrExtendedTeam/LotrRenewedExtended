@@ -116,7 +116,7 @@ public class ExtendedWorldEventHandlers {
 	}
 
 	@SubscribeEvent
-	public static void onServerStopping(FMLServerStoppingEvent event) {
+	public static void onServerStopping$Extended(FMLServerStoppingEvent event) {
 		// Cache player list to prevent ConcurrentModificationException
 		/* Still throws error, TODO rework code
 		List<ServerPlayerEntity> players = event.getServer().getPlayerList().getPlayers();
@@ -126,13 +126,13 @@ public class ExtendedWorldEventHandlers {
 	}
 
 	@SubscribeEvent
-	public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+	public static void onPlayerLogout$Extended(PlayerEvent.PlayerLoggedOutEvent event) {
 		ExtendedVanillaProtectionHandlers.extendedWarnedPlayers.remove(event.getPlayer().getUUID());
 		ExtendedVanillaProtectionHandlers.wasInProtection.remove(event.getPlayer().getUUID());
 	}
 
 	@SubscribeEvent
-	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+	public static void onPlayerTick$Extended(TickEvent.PlayerTickEvent event) {
 		if (event.phase == TickEvent.Phase.END && event.player instanceof ServerPlayerEntity && ExtendedServerConfig.enableExtendedSpawnProtection.get()) {
 			ServerPlayerEntity player = (ServerPlayerEntity) event.player;
 
@@ -206,7 +206,7 @@ public class ExtendedWorldEventHandlers {
 	}
 
 	@SubscribeEvent
-	public static void handleCaptainTraderDeath$Extended(LivingDeathEvent event) {
+	public static void handleEntityDeath$Extended(LivingDeathEvent event) {
 		LivingEntity deadEntity = event.getEntityLiving();
 		Entity killerEntity = event.getSource().getEntity();
 		if(killerEntity!=null && !killerEntity.level.isClientSide()) {
@@ -314,7 +314,7 @@ public class ExtendedWorldEventHandlers {
 	}
 
 	@SubscribeEvent
-	public static void onEntityLeave(EntityLeaveWorldEvent event) {
+	public static void onEntityLeave$Extended(EntityLeaveWorldEvent event) {
 		if (!event.getWorld().isClientSide() && event.getEntity() instanceof ExtendedInvasionSpawnerEntity && ExtendedLevelData.serverInstance().getInvasionData().hasInvasion(event.getEntity().getUUID())) {
 			// Un-register invasion when spawner is unloaded or deleted.
 			ExtendedLevelData.serverInstance().getInvasionData().unregisterInvasion(event.getEntity().getUUID());
@@ -365,6 +365,7 @@ public class ExtendedWorldEventHandlers {
 				}
 			}
 			level.playSound((PlayerEntity)null, event.getPos(), SoundEvents.BOTTLE_EMPTY, SoundCategory.BLOCKS, 0.5F, 7.0F);
+			return;
 		}
 		if (clickedState.is(LOTRBlocks.WICKER_FENCE.get())) {
 			BlockPos checkPos = event.getPos().above();
@@ -412,12 +413,13 @@ public class ExtendedWorldEventHandlers {
 					player.swing(event.getHand(), true);
 				}
 				ExtendedDaggerItem.removePoison(event.getItemStack());
+				return;
 			}
 		}
 	}
 
 	@SubscribeEvent
-	public static void handleExtendedFastTravelWaypointEventPost(ExtendedFastTravelWaypointEvent.Post pEvent) {
+	public static void handleExtendedFastTravelWaypointEventPost$Extended(ExtendedFastTravelWaypointEvent.Post pEvent) {
 		ExtendedCriteriaTriggers.ABSTRACT_STRING_TRIGGER.trigger(pEvent.getPlayer(), "fastTraveled");
 	}
 
