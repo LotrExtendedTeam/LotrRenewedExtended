@@ -12,6 +12,7 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedIOUtils;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.server.ServerWorld;
 
+// TODO add conquest add logic
 public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder {
 	private Map<ExtendedConquestPos, ExtendedConquestRegion> CONQUEST_MAP = new HashMap<>();
 	private File CONQUEST_FOLDER;
@@ -23,7 +24,9 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 
 	@Override
 	public void tick(ServerWorld level) {
-		
+		// Line from wiki: Conquest decay begins only after there have been no changes in that square for one hour. 
+		// It then decreases by about one point every hour. In order to keep up high rates, you need to keep on fighting enemies in the desired region. 
+		// TODO write conquest decay logic
 	}
 
 	@Override
@@ -34,10 +37,13 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 	}
 
 	@Override
-	public void saveData(CompoundNBT pTag, ServerWorld world) {
-		for (Entry<ExtendedConquestPos, ExtendedConquestRegion> regions : CONQUEST_MAP.entrySet()) {
-			if (regions.getValue().needsSave()) {
-				ExtendedIOUtils.save(getConquestDatafile(regions.getKey()), regions.getValue().save());
+	public void saveData(CompoundNBT pTag, ServerWorld level) {
+		if (level.getGameTime() % 20L == 0L) {
+			//TODO figure out a less expensive way to handle this
+			for (Entry<ExtendedConquestPos, ExtendedConquestRegion> regions : CONQUEST_MAP.entrySet()) {
+				if (regions.getValue().needsSave()) {
+					ExtendedIOUtils.save(getConquestDatafile(regions.getKey()), regions.getValue().save());
+				}
 			}
 		}
 	}
