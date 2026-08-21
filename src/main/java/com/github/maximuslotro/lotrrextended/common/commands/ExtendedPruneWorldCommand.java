@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.staffserver;
+package com.github.maximuslotro.lotrrextended.common.commands;
 
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedWorldRegenEngineWatcher;
 import com.mojang.brigadier.Command;

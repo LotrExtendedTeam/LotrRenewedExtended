@@ -9,11 +9,12 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedIOUtils;
 
 import lotr.common.fellowship.ExtendedFellowship;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.server.ServerWorld;
 
 public class ExtendedFellowshipDataHolder extends ExtendedAbstractLevelDataHolder {
-	private Map<UUID, ExtendedFellowship> FELLOWSHIP_MAP = new HashMap<>();
-	private File FELLOWSHIP_FOLDER;
+	private final Map<UUID, ExtendedFellowship> fellowshipMap = new HashMap<>();
+	private File fellowshipDataFolder;
 
 	public ExtendedFellowshipDataHolder(ExtendedLevelData pHolder) {
 		super(pHolder);
@@ -23,19 +24,24 @@ public class ExtendedFellowshipDataHolder extends ExtendedAbstractLevelDataHolde
 	public void tick(ServerWorld level) {}
 
 	@Override
-	public void loadData(CompoundNBT pTag, ServerWorld world) {
-		FELLOWSHIP_FOLDER = ExtendedIOUtils.getDirOrMake(new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, world.getServer(), true), "fellowships"));
-		FELLOWSHIP_MAP.clear();
+	public void loadDataOnce(CompoundNBT pTag, MinecraftServer server) {
+		fellowshipDataFolder = ExtendedIOUtils.getDirOrMake(new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, server, true), "fellowships"));
+		fellowshipMap.clear();
 		// Copy fellowships from /lotr/fellowships folder
-		File oldDir = new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.LOTR_FOLDER, world.getServer(), false), "fellowships");
+		File oldDir = new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.LOTR_FOLDER, server, false), "fellowships");
 		if(oldDir.exists()) {
-			ExtendedIOUtils.moveIfOldPath(FELLOWSHIP_FOLDER.toPath(), oldDir.toPath(), true);
+			ExtendedIOUtils.moveIfOldPath(fellowshipDataFolder.toPath(), oldDir.toPath(), true);
 		}
 	}
 
 	@Override
-	public void saveData(CompoundNBT pTag, ServerWorld world) {
-		for (ExtendedFellowship fs : FELLOWSHIP_MAP.values()) {
+	public void clearData() {
+		fellowshipMap.clear();
+	}
+
+	@Override
+	public void saveData(CompoundNBT pTag) {
+		for (ExtendedFellowship fs : fellowshipMap.values()) {
 			if (fs.needsSave()) {
 				ExtendedIOUtils.save(getFellowshipDatafile(fs.getFellowshipId()), fs.save());
 			}
@@ -43,15 +49,15 @@ public class ExtendedFellowshipDataHolder extends ExtendedAbstractLevelDataHolde
 	}
 
 	private File getFellowshipDatafile(UUID pFellowshipId) {
-		return new File(FELLOWSHIP_FOLDER, pFellowshipId.toString() + ".dat");
+		return new File(fellowshipDataFolder, pFellowshipId.toString() + ".dat");
 	}
 
 	public void addFellowship(ExtendedFellowship pFellowship) {
-		FELLOWSHIP_MAP.putIfAbsent(pFellowship.getFellowshipId(), pFellowship);
+		fellowshipMap.putIfAbsent(pFellowship.getFellowshipId(), pFellowship);
 	}
 
 	public ExtendedFellowship getFellowship(UUID pFellowshipId) {
-		ExtendedFellowship fellowship = FELLOWSHIP_MAP.computeIfAbsent(pFellowshipId, id -> loadFellowship(id));
+		ExtendedFellowship fellowship = fellowshipMap.computeIfAbsent(pFellowshipId, id -> loadFellowship(id));
 		if (fellowship != null && fellowship.isDisbanded()) {
 			return null;
 		}

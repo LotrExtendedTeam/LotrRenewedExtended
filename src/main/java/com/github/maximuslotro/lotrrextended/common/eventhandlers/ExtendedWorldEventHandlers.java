@@ -22,8 +22,13 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedPlaceableBookT
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSDataRequestPacket;
+import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedCombatTracker;
+import com.github.maximuslotro.lotrrextended.common.staffserver.ExtendedModTracker;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedBlockStateUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedWorldRegenEngineWatcher;
 
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
@@ -130,9 +135,32 @@ public class ExtendedWorldEventHandlers {
 	}
 
 	@SubscribeEvent
+	public static void onPlayerLogin$Extended(PlayerEvent.PlayerLoggedInEvent event) {
+		if (ExtendedWorldRegenEngineWatcher.ACTIVE_ENGINE != null && !ExtendedWorldRegenEngineWatcher.ACTIVE_ENGINE.isFinished() 
+			&& !event.getPlayer().getUUID().equals(ExtendedWorldRegenEngineWatcher.ACTIVE_PLAYER)) {
+		    ((ServerPlayerEntity)event.getPlayer()).connection.disconnect(new StringTextComponent("Server pruning in progress"));
+		    return;
+		}
+		if (event.getPlayer() instanceof ServerPlayerEntity) {
+			// Handle first to ensure data is loaded
+			ExtendedLevelData.serverInstance().getPlayerData().login(event.getPlayer().getUUID());
+			ExtendedCombatTracker.playerLoggedInEvent((ServerPlayerEntity) event.getPlayer());
+			if(ExtendedServerConfig.enableStaffServer.get()) {
+				ExtendedPacketHandler.sendToClient(ExtendedSDataRequestPacket.requestModListPacket(), (ServerPlayerEntity) event.getPlayer());
+			}
+		}
+	}
+
+	@SubscribeEvent
 	public static void onPlayerLogout$Extended(PlayerEvent.PlayerLoggedOutEvent event) {
 		ExtendedVanillaProtectionHandlers.extendedWarnedPlayers.remove(event.getPlayer().getUUID());
 		ExtendedVanillaProtectionHandlers.wasInProtection.remove(event.getPlayer().getUUID());
+		if (event.getPlayer() instanceof ServerPlayerEntity) {
+			ExtendedCombatTracker.playerLoggedOutEvent((ServerPlayerEntity) event.getPlayer());
+			ExtendedModTracker.onPlayerLoggout(event.getPlayer().getUUID());
+			// Handle last to ensure data isn't lost
+			ExtendedLevelData.serverInstance().getPlayerData().logout(event.getPlayer().getUUID());
+		}
 	}
 
 	@SubscribeEvent

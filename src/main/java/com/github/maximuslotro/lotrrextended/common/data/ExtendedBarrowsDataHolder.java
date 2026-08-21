@@ -10,6 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
@@ -19,7 +20,7 @@ public class ExtendedBarrowsDataHolder extends ExtendedAbstractLevelDataHolder {
 	 *  -2 if the player was cursed
 	 *  -3 if the player left the barrow downs after having entered the first time
 	 */
-	private Map<UUID, Integer> secondsInBarrows = new HashMap<>();
+	private final Map<UUID, Integer> secondsInBarrows = new HashMap<>();
 
 	public ExtendedBarrowsDataHolder(ExtendedLevelData pHolder) {
 		super(pHolder);
@@ -71,10 +72,10 @@ public class ExtendedBarrowsDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void loadData(CompoundNBT pTag, ServerWorld world) {
+	public void loadDataOnce(CompoundNBT pTag, MinecraftServer server) {
 		ListNBT listnbt = pTag.getList("secondsInBarrows", 10);
+		secondsInBarrows.clear();
 		if (listnbt.isEmpty()) {
-			secondsInBarrows = new HashMap<>();
 			return;
 		}
 
@@ -87,7 +88,12 @@ public class ExtendedBarrowsDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void saveData(CompoundNBT pTag, ServerWorld world) {
+	public void clearData() {
+		secondsInBarrows.clear();
+	}
+
+	@Override
+	public void saveData(CompoundNBT pTag) {
 		ListNBT list = new ListNBT();
 		for (UUID uuid : secondsInBarrows.keySet()) {
 			CompoundNBT entry = new CompoundNBT();
@@ -104,5 +110,4 @@ public class ExtendedBarrowsDataHolder extends ExtendedAbstractLevelDataHolder {
 			incrementPlayerTimeInBarrows(level);
 		}
 	}
-
 }

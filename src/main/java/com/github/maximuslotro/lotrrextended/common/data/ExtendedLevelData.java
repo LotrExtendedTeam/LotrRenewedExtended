@@ -6,12 +6,13 @@ import java.util.*;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedIOUtils;
 
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.LogicalSide;
 
 public class ExtendedLevelData {
 	private static final ExtendedLevelData SERVER_INSTANCE = new ExtendedLevelData(LogicalSide.SERVER);
-	private File EXTENDED_DATA_FILE;
+	private File extendedDataFile;
 	private final List<ExtendedAbstractLevelDataHolder> dataHolders;
 	private final ExtendedTraderDataHolder traderData;
 	private final ExtendedBanditDataHolder banditData;
@@ -20,10 +21,10 @@ public class ExtendedLevelData {
 	private final ExtendedTolkienDataHolder tolkienData;
 	private final ExtendedFellowshipDataHolder fellowshipData;
 	private final ExtendedConquestDataHolder conquestData;
+	private final ExtendedPlayerInfoHolder playerData;
 
 	private boolean dirty = false;
 	private boolean needsLoad = true;
-
 	private final LogicalSide side;
 
 	public static ExtendedLevelData serverInstance() {
@@ -40,6 +41,7 @@ public class ExtendedLevelData {
 		tolkienData = addHolder(new ExtendedTolkienDataHolder(this));
 		fellowshipData = addHolder(new ExtendedFellowshipDataHolder(this));
 		conquestData = addHolder(new ExtendedConquestDataHolder(this));
+		playerData = addHolder(new ExtendedPlayerInfoHolder(this));
 	}
 
 	private <H extends ExtendedAbstractLevelDataHolder> H addHolder(H dataHolder) {
@@ -59,37 +61,47 @@ public class ExtendedLevelData {
 		this.dirty = true;
 	}
 
-	public File getOrCreateDataFile(ServerWorld world) {
-		if(EXTENDED_DATA_FILE==null) {
-			EXTENDED_DATA_FILE = new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, world.getServer(), true), "EXTENDED.dat");
+	public File getOrCreateDataFile(MinecraftServer server) {
+		if(extendedDataFile==null) {
+			extendedDataFile = new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, server, true), "EXTENDED.dat");
 		}
-		return EXTENDED_DATA_FILE;
+		return extendedDataFile;
 	}
 
-	public void save(ServerWorld world) {
+	public void save(MinecraftServer server) {
 		CompoundNBT levelData = new CompoundNBT();
 		for(ExtendedAbstractLevelDataHolder holder : dataHolders) {
-			holder.saveData(levelData, world);
+			holder.saveData(levelData);
 		}
-		ExtendedIOUtils.save(getOrCreateDataFile(world), levelData);
+		ExtendedIOUtils.save(getOrCreateDataFile(server), levelData);
 		this.dirty = false;
 	}
-	// Should only be loaded once on server start
-	public void load(ServerWorld world) {
+	public void loadAndLock(MinecraftServer server) {
 		if(!needsLoad) {
 			return;
 		}
 		// Copy ExtendedLevelDat from /lotr/EXTENDED.dat
-		File oldData = new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.LOTR_FOLDER, world.getServer(), false), "EXTENDED.dat");
+		File oldData = new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.LOTR_FOLDER, server, false), "EXTENDED.dat");
 		if(oldData.exists()) {
-			ExtendedIOUtils.moveIfOldPath(getOrCreateDataFile(world).toPath(), oldData.toPath(), false);
+			ExtendedIOUtils.moveIfOldPath(getOrCreateDataFile(server).toPath(), oldData.toPath(), false);
 		}
-		CompoundNBT levelData = ExtendedIOUtils.load(getOrCreateDataFile(world));
+		CompoundNBT levelData = ExtendedIOUtils.load(getOrCreateDataFile(server));
 		for(ExtendedAbstractLevelDataHolder holder : dataHolders) {
-			holder.loadData(levelData, world);
+			holder.loadDataOnce(levelData, server);
 		}
 		this.needsLoad = false;
-		this.save(world);
+		this.save(server);
+	}
+	/**
+	 * Resets instance when the server stops to prevent leaking between worlds
+	 */
+	public void resetOnServerStop() {
+		this.extendedDataFile = null;
+		this.needsLoad = true;
+		this.dirty = false;
+		for (ExtendedAbstractLevelDataHolder holder : dataHolders) {
+            holder.clearData();
+        }
 	}
 
 	public void tick(ServerWorld world) {
@@ -124,5 +136,9 @@ public class ExtendedLevelData {
 
 	public ExtendedConquestDataHolder getConquestData() {
 		return conquestData;
+	}
+
+	public ExtendedPlayerInfoHolder getPlayerData() {
+		return playerData;
 	}
 }

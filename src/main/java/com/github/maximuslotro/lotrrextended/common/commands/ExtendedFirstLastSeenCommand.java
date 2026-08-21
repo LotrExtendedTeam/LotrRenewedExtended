@@ -1,4 +1,4 @@
-package com.github.maximuslotro.lotrrextended.common.staffserver;
+package com.github.maximuslotro.lotrrextended.common.commands;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -9,6 +9,9 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
+import com.github.maximuslotro.lotrrextended.common.data.ExtendedPlayerInfo;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedEntityUtils;
 import com.google.common.collect.Lists;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
@@ -34,12 +37,12 @@ public class ExtendedFirstLastSeenCommand {
 	}
 
 	private static int firstJoinedPlayer(CommandSource source, String playername) {
-		@Nullable UUID player = ExtendedPlayerInfo.getPlayerUUIDFromUsername(playername);
-		if(player==null || !ExtendedPlayerInfo.doesPlayerInfoExist(player)) {
+		@Nullable UUID player = ExtendedEntityUtils.getPlayerUUIDFromUsername(playername);
+		if(player==null || !ExtendedLevelData.serverInstance().getPlayerData().doesPlayerInfoExist(player)) {
 			source.sendFailure(new StringTextComponent(TextFormatting.RED + "Player not found"));
 			return Command.SINGLE_SUCCESS;
 		}
-		ExtendedPlayerInfo profile = ExtendedPlayerInfo.getPlayerInfo(player);
+		ExtendedPlayerInfo profile = ExtendedLevelData.serverInstance().getPlayerData().getPlayerInfo(player);
 
 		Instant firstJoin = profile.getFirstLogin(); // your Instant
 		ZonedDateTime zdt = firstJoin.atZone(ZoneId.of("America/Chicago"));
@@ -49,7 +52,7 @@ public class ExtendedFirstLastSeenCommand {
 		String formattedDate = zdt.format(formatter);
 
 		source.sendSuccess(new StringTextComponent(TextFormatting.GREEN + playername+ " first joined on " + TextFormatting.YELLOW + formattedDate), true);
-		ExtendedPlayerInfo.clear(player);
+		ExtendedLevelData.serverInstance().getPlayerData().unload(player);
 		return Command.SINGLE_SUCCESS;
 	}
 
@@ -58,21 +61,21 @@ public class ExtendedFirstLastSeenCommand {
 			source.sendSuccess(new StringTextComponent(TextFormatting.GREEN + playername+ " is currently online"), true);
 			return Command.SINGLE_SUCCESS;
 		}
-		@Nullable UUID player = ExtendedPlayerInfo.getPlayerUUIDFromUsername(playername);
-		if(player==null || !ExtendedPlayerInfo.doesPlayerInfoExist(player)) {
+		@Nullable UUID player = ExtendedEntityUtils.getPlayerUUIDFromUsername(playername);
+		if(player==null || !ExtendedLevelData.serverInstance().getPlayerData().doesPlayerInfoExist(player)) {
 			source.sendFailure(new StringTextComponent(TextFormatting.RED + "Player not found"));
 			return Command.SINGLE_SUCCESS;
 		}
-		ExtendedPlayerInfo profile = ExtendedPlayerInfo.getPlayerInfo(player);
+		ExtendedPlayerInfo profile = ExtendedLevelData.serverInstance().getPlayerData().getPlayerInfo(player);
 		Instant lastLogout = profile.getLastLogout();
 		if(lastLogout==null) {
 			source.sendFailure(new StringTextComponent(TextFormatting.RED + playername + "has never logged out"));
-			ExtendedPlayerInfo.clear(player);
+			ExtendedLevelData.serverInstance().getPlayerData().unload(player);
 			return Command.SINGLE_SUCCESS;
 		}
 		String timeAgo = formatTimeAgo(lastLogout);
 		source.sendSuccess(new StringTextComponent(TextFormatting.GREEN + playername+ " was last seen " + TextFormatting.YELLOW + timeAgo), true);
-		ExtendedPlayerInfo.clear(player);
+		ExtendedLevelData.serverInstance().getPlayerData().unload(player);
 		return Command.SINGLE_SUCCESS;
 	}
 

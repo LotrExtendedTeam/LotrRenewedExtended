@@ -10,11 +10,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import lotr.common.world.spawning.InvasionSpawner;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.server.ServerWorld;
 
 public class ExtendedInvasionDataHolder extends ExtendedAbstractLevelDataHolder {
 
-	private Map<UUID, Integer> invasionEnemiesLeft = new ConcurrentHashMap<>();
+	private final Map<UUID, Integer> invasionEnemiesLeft = new ConcurrentHashMap<>();
 
 	/**
 	 * This variable stores a map of invasion UUIDs to players who have contributed to the invasion's UUIDs along with
@@ -23,7 +24,7 @@ public class ExtendedInvasionDataHolder extends ExtendedAbstractLevelDataHolder 
 	 * <p>
 	 * Does not need to be saved on server restart, as even if restart takes less than 5 minutes, we should not need to save the data here anyway
 	 */
-	private Map<UUID, ConcurrentHashMap<UUID, Integer>> recentPlayersByInvasion = new ConcurrentHashMap<>();
+	private final Map<UUID, ConcurrentHashMap<UUID, Integer>> recentPlayersByInvasion = new ConcurrentHashMap<>();
 
 	public ExtendedInvasionDataHolder(ExtendedLevelData pHolder) {
 		super(pHolder);
@@ -106,10 +107,19 @@ public class ExtendedInvasionDataHolder extends ExtendedAbstractLevelDataHolder 
 	}
 
 	@Override
-	public void loadData(CompoundNBT pTag, ServerWorld world) {}
+	public void loadDataOnce(CompoundNBT pTag, MinecraftServer server) {
+		invasionEnemiesLeft.clear();
+		recentPlayersByInvasion.clear();
+	}
 
 	@Override
-	public void saveData(CompoundNBT pTag, ServerWorld world) {}
+	public void clearData() {
+		invasionEnemiesLeft.clear();
+		recentPlayersByInvasion.clear();
+	}
+
+	@Override
+	public void saveData(CompoundNBT pTag) {}
 
 	@Override
 	public void tick(ServerWorld level) {

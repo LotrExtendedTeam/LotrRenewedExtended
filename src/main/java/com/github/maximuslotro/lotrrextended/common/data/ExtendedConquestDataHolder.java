@@ -12,13 +12,14 @@ import com.github.maximuslotro.lotrrextended.common.utils.ExtendedIOUtils;
 import lotr.common.fac.Faction;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.server.ServerWorld;
 
 // TODO add conquest add logic
 public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder {
-	private Map<ExtendedConquestPos, ExtendedConquestRegion> CONQUEST_MAP = new HashMap<>();
-	private File CONQUEST_FOLDER;
-	private File CONQUEST_DATA_FILE;
+	private final Map<ExtendedConquestPos, ExtendedConquestRegion> conquestMap = new HashMap<>();
+	private File conquestFilesFolder;
+	private File conquestDataFile;
 
 	public ExtendedConquestDataHolder(ExtendedLevelData pHolder) {
 		super(pHolder);
@@ -36,30 +37,35 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 	}
 
 	@Override
-	public void loadData(CompoundNBT pTag, ServerWorld world) {
-		CONQUEST_FOLDER = ExtendedIOUtils.getDirOrMake(new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, world.getServer(), true), "conquest_regions"));
-		CONQUEST_DATA_FILE = new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, world.getServer(), true), "CONQUEST.dat");
-		CONQUEST_MAP.clear();
+	public void loadDataOnce(CompoundNBT pTag, MinecraftServer server) {
+		conquestFilesFolder = ExtendedIOUtils.getDirOrMake(new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, server, true), "conquest_regions"));
+		conquestDataFile = new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, server, true), "CONQUEST.dat");
+		conquestMap.clear();
 	}
 
 	@Override
-	public void saveData(CompoundNBT pTag, ServerWorld level) {
-		if (level.getGameTime() % 20L == 0L) {
-			//TODO figure out a less expensive way to handle this
-			for (Entry<ExtendedConquestPos, ExtendedConquestRegion> regions : CONQUEST_MAP.entrySet()) {
-				if (regions.getValue().needsSave()) {
-					ExtendedIOUtils.save(getConquestDatafile(regions.getKey()), regions.getValue().save());
-				}
+	public void clearData() {
+		conquestMap.clear();
+		conquestFilesFolder=null;
+		conquestDataFile=null;
+	}
+
+	@Override
+	public void saveData(CompoundNBT pTag) {
+		//TODO figure out a less expensive way to handle this
+		for (Entry<ExtendedConquestPos, ExtendedConquestRegion> regions : conquestMap.entrySet()) {
+			if (regions.getValue().needsSave()) {
+				ExtendedIOUtils.save(getConquestDatafile(regions.getKey()), regions.getValue().save());
 			}
 		}
 	}
 
 	private File getConquestDatafile(ExtendedConquestPos conquestPos) {
-		return new File(CONQUEST_FOLDER, conquestPos.getPosX() + "." + conquestPos.getPosZ() + ".dat");
+		return new File(conquestFilesFolder, conquestPos.getPosX() + "." + conquestPos.getPosZ() + ".dat");
 	}
 
 	public ExtendedConquestRegion getConquestSquare(ExtendedConquestPos conquestPos) {
-		ExtendedConquestRegion conquestSquare = CONQUEST_MAP.computeIfAbsent(conquestPos, id -> loadConquestSquare(id));
+		ExtendedConquestRegion conquestSquare = conquestMap.computeIfAbsent(conquestPos, id -> loadConquestSquare(id));
 		return conquestSquare;
 	}
 

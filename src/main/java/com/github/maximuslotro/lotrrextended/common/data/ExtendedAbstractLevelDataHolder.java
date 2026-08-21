@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.data;
 
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.server.ServerWorld;
 
 public abstract class ExtendedAbstractLevelDataHolder {
@@ -10,11 +11,13 @@ public abstract class ExtendedAbstractLevelDataHolder {
 		this.holder = pHolder;
 	}
 
-	public abstract void loadData(CompoundNBT pTag, ServerWorld world);
+	public abstract void loadDataOnce(CompoundNBT pTag, MinecraftServer server);
 
-	public abstract void saveData(CompoundNBT pTag, ServerWorld world);
+	public abstract void saveData(CompoundNBT pTag);
 
 	public abstract void tick(ServerWorld level);
+
+	public abstract void clearData();
 
 	public void markDirty() {
 		holder.markDirty();

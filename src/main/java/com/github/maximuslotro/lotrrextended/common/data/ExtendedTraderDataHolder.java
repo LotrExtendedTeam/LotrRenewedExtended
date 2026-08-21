@@ -13,13 +13,13 @@ import lotr.common.world.spawning.WanderingTradersSpawner;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class ExtendedTraderDataHolder extends ExtendedAbstractLevelDataHolder {
-
-	private Map<UUID, Integer> playerTraderSpawnCooldowns = new HashMap<>();
+	private final Map<UUID, Integer> playerTraderSpawnCooldowns = new HashMap<>();
 	private int timeUntilTrader = 0;
 	private boolean requireRandom = true;
 
@@ -53,14 +53,14 @@ public class ExtendedTraderDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void loadData(CompoundNBT pTag, ServerWorld world) {
+	public void loadDataOnce(CompoundNBT pTag, MinecraftServer server) {
 		CompoundNBT traderData = pTag.getCompound("traderData");
 		timeUntilTrader = traderData.getInt("timeUntilTrader");
 		requireRandom = traderData.getBoolean("requireRandom");
 
 		ListNBT listnbt = pTag.getList("playerCooldowns", 10);
+		playerTraderSpawnCooldowns.clear();
 		if (listnbt.isEmpty()) {
-			playerTraderSpawnCooldowns = new HashMap<>();
 			return;
 		}
 		for (int i = 0; i < listnbt.size(); ++i) {
@@ -72,7 +72,12 @@ public class ExtendedTraderDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void saveData(CompoundNBT pTag, ServerWorld world) {
+	public void clearData() {
+		playerTraderSpawnCooldowns.clear();
+	}
+
+	@Override
+	public void saveData(CompoundNBT pTag) {
 		CompoundNBT traderData = new CompoundNBT();
 		traderData.putInt("timeUntilTrader", this.timeUntilTrader);
 		traderData.putBoolean("requireRandom", this.requireRandom);
@@ -141,5 +146,4 @@ public class ExtendedTraderDataHolder extends ExtendedAbstractLevelDataHolder {
 			markDirty();
 		}
 	}
-
 }

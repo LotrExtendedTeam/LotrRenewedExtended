@@ -10,10 +10,11 @@ import lotr.common.world.spawning.BanditsSpawner;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.server.ServerWorld;
 
 public class ExtendedBanditDataHolder extends ExtendedAbstractLevelDataHolder {
-	private Map<UUID, Integer> playerBanditSpawnCooldowns = new HashMap<>();
+	private final Map<UUID, Integer> playerBanditSpawnCooldowns = new HashMap<>();
 
 	public ExtendedBanditDataHolder(ExtendedLevelData pHolder) {
 		super(pHolder);
@@ -24,10 +25,10 @@ public class ExtendedBanditDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void loadData(CompoundNBT pTag, ServerWorld world) {
+	public void loadDataOnce(CompoundNBT pTag, MinecraftServer server) {
 		ListNBT listnbt = pTag.getList("banditCooldowns", 10);
+		playerBanditSpawnCooldowns.clear();
 		if (listnbt.isEmpty()) {
-			playerBanditSpawnCooldowns = new HashMap<>();
 			return;
 		}
 
@@ -40,7 +41,12 @@ public class ExtendedBanditDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void saveData(CompoundNBT pTag, ServerWorld world) {
+	public void clearData() {
+		playerBanditSpawnCooldowns.clear();
+	}
+
+	@Override
+	public void saveData(CompoundNBT pTag) {
 		ListNBT list = new ListNBT();
 		for (UUID uuid : playerBanditSpawnCooldowns.keySet()) {
 			CompoundNBT entry = new CompoundNBT();
@@ -97,5 +103,4 @@ public class ExtendedBanditDataHolder extends ExtendedAbstractLevelDataHolder {
 			}
 		}
 	}
-
 }
