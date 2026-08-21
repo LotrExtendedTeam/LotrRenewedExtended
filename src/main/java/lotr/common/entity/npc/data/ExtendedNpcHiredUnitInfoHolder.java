@@ -421,7 +421,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	 * @return {@link LivingEntity} of the owner
 	 * */
 	@Nullable
-	public LivingEntity getUnitOwner() {
+	public PlayerEntity getUnitOwner() {
 		try {
 			UUID uuid = this.getOwnerUUID();
 			return uuid == null ? null : thisEntity.level.getPlayerByUUID(uuid);

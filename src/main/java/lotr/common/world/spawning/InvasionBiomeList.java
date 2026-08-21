@@ -12,8 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import javax.annotation.Nonnull;
-
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 
 /**
@@ -628,7 +626,6 @@ public class InvasionBiomeList {
      * @param biomeName the biome registry name
      * @return a map of possible invasions and their chances, or an empty map if none apply
      */
-    @Nonnull
     public static Map<ExtendedInvasions, InvasionChance> getInvasionsPerBiome(ResourceLocation biomeName) {
     	if (!biomeName.getNamespace().contains("lotr")) {
     		ExtendedLog.info("Attempted to determine invasion for {" +  biomeName.toString() + "}, but it is not a LOTR Mod biome!");

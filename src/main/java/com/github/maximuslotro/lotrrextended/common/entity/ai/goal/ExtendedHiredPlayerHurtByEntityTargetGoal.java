@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.TargetGoal;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.player.PlayerEntity;
 
 /**
  * A custom targeting goal for {@link ExtendedINPCEntity} units that enables them to
@@ -57,7 +58,7 @@ public class ExtendedHiredPlayerHurtByEntityTargetGoal extends TargetGoal {
 	@Override
 	public boolean canUse() {
 		if (extendedNpcEntity.getUnitInfo().isNpcActiveDuty()) {
-			LivingEntity unitOwner = extendedNpcEntity.getUnitInfo().getUnitOwner();
+			PlayerEntity unitOwner = extendedNpcEntity.getUnitInfo().getUnitOwner();
 			if (unitOwner == null) {
 				return false;
 			} else {
@@ -95,7 +96,7 @@ public class ExtendedHiredPlayerHurtByEntityTargetGoal extends TargetGoal {
 	@Override
 	public void start() {
 		this.mob.setTarget(this.ownerLastHurtBy);
-		LivingEntity livingentity = extendedNpcEntity.getUnitInfo().getUnitOwner();
+		PlayerEntity livingentity = extendedNpcEntity.getUnitInfo().getUnitOwner();
 		if (livingentity != null) {
 			this.timestamp = livingentity.getLastHurtByMobTimestamp();
 		}

@@ -25,6 +25,8 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedBlockStateUtils;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedPlacementUtils;
 
+import lotr.common.data.LOTRLevelData;
+import lotr.common.data.LOTRPlayerData;
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import lotr.common.entity.npc.ExtendedICaptainEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
@@ -34,6 +36,8 @@ import lotr.common.entity.npc.ExtendedIWanderingTraderEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.data.NPCEntitySettings;
 import lotr.common.entity.npc.data.NPCEntitySettingsManager;
+import lotr.common.fac.EntityFactionHelper;
+import lotr.common.fac.Faction;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTRDimensions;
 import lotr.common.init.LOTRItems;
@@ -209,7 +213,10 @@ public class ExtendedWorldEventHandlers {
 	public static void handleEntityDeath$Extended(LivingDeathEvent event) {
 		LivingEntity deadEntity = event.getEntityLiving();
 		Entity killerEntity = event.getSource().getEntity();
-		if(killerEntity!=null && !killerEntity.level.isClientSide()) {
+		if(!deadEntity.level.isClientSide()) {
+			if(killerEntity==null) {
+				killerEntity = deadEntity.getKillCredit();
+			}
 			// Handle invasion kills
 			if(deadEntity.getPersistentData().hasUUID("lotr:invasion_id")||deadEntity.getPersistentData().contains("ExtInvasion")) {
 				//TODO remove old ID after a year or two from 1.11.0, by this point it should be out of use
@@ -221,7 +228,7 @@ public class ExtendedWorldEventHandlers {
 				}
 			}
 			// Handle hired unit level ups
-			if(killerEntity instanceof NPCEntity && ((ExtendedINPCEntity)killerEntity).getUnitInfo().isNpcActiveDuty()) {
+			if(killerEntity instanceof ExtendedINPCEntity && ((ExtendedINPCEntity)killerEntity).getUnitInfo().isNpcActiveDuty()) {
 				// base amount of xp off kill alignment bonus
 				float xpPoints = 0;
 				if(deadEntity instanceof NPCEntity) {
@@ -283,6 +290,24 @@ public class ExtendedWorldEventHandlers {
 					}
 					// Should be server world at this code since can only execute on server
 					((ServerWorld)mob.level).addFreshEntityWithPassengers(respawnerEntity);
+				}
+			}
+			// Handle Conquest points
+			PlayerEntity conquestPlayer = null;
+			if(killerEntity instanceof PlayerEntity) {
+				conquestPlayer = (PlayerEntity) killerEntity;
+			}else if(killerEntity instanceof ExtendedINPCEntity && ((ExtendedINPCEntity)killerEntity).getUnitInfo().isNpcActiveDuty()) {
+				if(((ExtendedINPCEntity)killerEntity).getUnitInfo().getUnitOwner()!=null) {
+					conquestPlayer = ((ExtendedINPCEntity)killerEntity).getUnitInfo().getUnitOwner();
+				}
+			}
+			if(conquestPlayer!=null) {
+				float conquestAmount = NPCEntitySettingsManager.getEntityTypeSettings(deadEntity).getKillAlignmentBonus();
+				LOTRPlayerData playerData = LOTRLevelData.getSidedData(conquestPlayer);
+				Faction deadFaction = EntityFactionHelper.getFaction(deadEntity);
+				Faction pedegeFaction = playerData.getAlignmentData().getPledgeFaction();
+				if(pedegeFaction!=null && pedegeFaction.isBadRelation(deadFaction) && conquestAmount>0) {
+					ExtendedLevelData.serverInstance().getConquestData().addConquest(conquestPlayer, conquestAmount, pedegeFaction, deadFaction);
 				}
 			}
 		}

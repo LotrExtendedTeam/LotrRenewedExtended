@@ -44,8 +44,6 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nonnull;
-
 public class ExtendedInvasionSpawnerEntity extends Entity {
     private static final DataParameter<ResourceLocation> DATA_TYPE_KEY = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, ExtendedDataSerializers.RESOURCE_LOCATION);
 
@@ -90,7 +88,6 @@ public class ExtendedInvasionSpawnerEntity extends Entity {
         bossBar.setVisible(getEnemiesLeft()>0);
     }
 
-    @Nonnull
     private Optional<Faction> attemptToGetFactionFromKey(FactionPointer factionPointer) {
         if (FactionSettingsManager.serverInstance() == null) {
         	return Optional.empty();

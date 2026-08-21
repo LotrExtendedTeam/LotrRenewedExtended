@@ -31,7 +31,7 @@ public class ExtendedPlayerInfo {
 	private static final Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(InstantTypeAdapter.class, new InstantTypeAdapter()).create();
 	private static HashMap<UUID, ExtendedPlayerInfo> cachedPlayerInfo = new HashMap<>();
 
-	private final UUID id;
+	private final @Nonnull UUID id;
 
 	private Instant firstLogin = Instant.now();
 
@@ -41,7 +41,7 @@ public class ExtendedPlayerInfo {
 
 	private boolean jailed = false;
 
-	private ExtendedPlayerInfo(UUID uuid) {
+	private ExtendedPlayerInfo(@Nonnull UUID uuid) {
 		this.id = uuid;
 	}
 
@@ -124,13 +124,13 @@ public class ExtendedPlayerInfo {
 		}
 	}
 
-	public static void login(UUID id) {
+	public static void login(@Nonnull UUID id) {
 		ExtendedPlayerInfo info = getPlayerInfo(id);
 		// Just need to create on login for first join purposes
 		info.savePlayerInfo();
 	}
 
-	public static void logout(UUID uuid) {
+	public static void logout(@Nonnull UUID uuid) {
 		ExtendedPlayerInfo info = getPlayerInfo(uuid);
 		info.lastLogout = Instant.now();
 		info.savePlayerInfo();

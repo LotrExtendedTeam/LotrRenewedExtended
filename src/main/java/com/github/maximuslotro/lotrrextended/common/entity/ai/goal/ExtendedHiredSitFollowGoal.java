@@ -16,6 +16,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
@@ -115,7 +116,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 		this.currentOrderType = ((ExtendedINPCEntity)entity).getUnitInfo().getOrders();
 		if(currentOrderType==ExtendedUnitOrders.FOLLOW_PLAYER) {
 			this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
-			LivingEntity livingOwner = ((ExtendedINPCEntity)entity).getUnitInfo().getUnitOwner();
+			PlayerEntity livingOwner = ((ExtendedINPCEntity)entity).getUnitInfo().getUnitOwner();
 			if (livingOwner == null) { // Null owner means player is offline, so we should stay put // TODO implementing stay put (disable random walking)
 				return false;
 			} else if (livingOwner.isSpectator()) {

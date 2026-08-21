@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.goal.TargetGoal;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.player.PlayerEntity;
 
 /**
  * A custom target goal that allows an {@link ExtendedINPCEntity} to target and attack
@@ -57,7 +58,7 @@ public class ExtendedHiredPlayerAttackedEntityTargetGoal extends TargetGoal {
 	@Override
 	public boolean canUse() {
 		if (extendedNpcEntity.getUnitInfo().isNpcActiveDuty()) {
-			LivingEntity unitOwner = extendedNpcEntity.getUnitInfo().getUnitOwner();
+			PlayerEntity unitOwner = extendedNpcEntity.getUnitInfo().getUnitOwner();
 			if (unitOwner == null) {
 				return false;
 			} else {
@@ -98,7 +99,7 @@ public class ExtendedHiredPlayerAttackedEntityTargetGoal extends TargetGoal {
 	@Override
 	public void start() {
 		this.mob.setTarget(this.ownerLastAttacked);
-		LivingEntity livingentity = extendedNpcEntity.getUnitInfo().getUnitOwner();
+		PlayerEntity livingentity = extendedNpcEntity.getUnitInfo().getUnitOwner();
 		if (livingentity != null) {
 			this.timestamp = livingentity.getLastHurtMobTimestamp();
 		}

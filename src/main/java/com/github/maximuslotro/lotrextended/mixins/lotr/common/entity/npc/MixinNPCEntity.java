@@ -417,7 +417,7 @@ public abstract class MixinNPCEntity extends CreatureEntity implements ExtendedI
 	@Override
 	public boolean isAlliedTo(Entity otherEntity) {
 		if (unitInfo.isNpcActiveDuty()) {
-			LivingEntity livingentity = unitInfo.getUnitOwner();
+			PlayerEntity livingentity = unitInfo.getUnitOwner();
 			if (otherEntity == livingentity) {
 				return true;
 			}

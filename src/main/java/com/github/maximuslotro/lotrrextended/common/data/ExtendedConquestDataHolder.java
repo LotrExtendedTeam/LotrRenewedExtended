@@ -9,6 +9,8 @@ import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConques
 import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConquestRegion;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedIOUtils;
 
+import lotr.common.fac.Faction;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.server.ServerWorld;
 
@@ -20,6 +22,10 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 
 	public ExtendedConquestDataHolder(ExtendedLevelData pHolder) {
 		super(pHolder);
+	}
+
+	public void addConquest(PlayerEntity player, float conquestAdd, Faction playerFaction, Faction opposingFactions) {
+		//TODO handle adding this data to CONQUEST_MAP
 	}
 
 	@Override
