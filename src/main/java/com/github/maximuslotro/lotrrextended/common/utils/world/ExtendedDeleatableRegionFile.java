@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.utils.world;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
@@ -28,6 +29,9 @@ public class ExtendedDeleatableRegionFile implements AutoCloseable {
 	private final IntBuffer timestamps;
 	protected final RegionBitmap usedSectors = new RegionBitmap();
 
+	public ExtendedDeleatableRegionFile(File pRegionFile, File pContainingFolder, boolean pSync) throws IOException {
+		this(pRegionFile.toPath(), pContainingFolder.toPath(), pSync);
+	}
 
 	public ExtendedDeleatableRegionFile(Path pRegionFile, Path pContainingFolder, boolean pSync) throws IOException {
 		if (!Files.isDirectory(pContainingFolder)) {
@@ -141,33 +145,74 @@ public class ExtendedDeleatableRegionFile implements AutoCloseable {
 
 	}
 
-
+	/**
+	 * Resolves the .mca region file path for a given chunk position in a world directory.
+	 * @param regionFolder Folder for world
+	 * @param chunkPos Chunk coordinates 
+	 * @return Path to region file containing the chunkPos
+	 */
+	public static File getRegionFilePath(File regionFolder, ChunkPos chunkPos) {
+		int regionX = chunkPos.x >> 5;
+		int regionZ = chunkPos.z >> 5;
+		return new File(regionFolder, "r." + regionX + "." + regionZ + ".mca");
+	}
+	/**
+	 * Deletes a chunk from the region file.
+	 * <p>
+	 * Clears the offset and timestamp entries in the header, deletes any external
+	 * {@code .mcc} file, and frees up the used sectors so future chunk writes can reuse them.
+	 *
+	 * @param pChunkPos Position of the chunk to delete.
+	 * @throws IOException If writing the updated header or deleting an external file fails.
+	 */
 	public synchronized void deleteChunk(ChunkPos pChunkPos) throws IOException {
 		int i = getOffsetIndex(pChunkPos);
 		int j = this.offsets.get(i);
-
-		// If the offset is already 0, the chunk is already deleted or doesn't exist
 		if (j == 0) {
 			return; 
 		}
-
 		int sectorNumber = getSectorNumber(j);
 		int numSectors = getNumSectors(j);
-
-		// 1. Update in-memory headers
+		// Wipe the offset and timestamp from the header tables
 		this.offsets.put(i, 0);
 		this.timestamps.put(i, 0);
-
-		// 2. Write the modified header back to the file
 		this.writeHeader();
-
-		// 3. Clean up external .mcc file if this chunk was oversized
+		// Remove external file if the chunk was over 1MB
 		Path externalPath = this.getExternalChunkPath(pChunkPos);
 		Files.deleteIfExists(externalPath);
-
-		// 4. Free up the file sectors so they can be reused by other chunks
+		// Mark the sectors as free so new chunks can reuse the space
 		if (sectorNumber != 0) {
 			this.usedSectors.free(sectorNumber, numSectors);
 		}
+	}
+
+	public synchronized long getChunkSizeBytes(ChunkPos pChunkPos) throws IOException {
+		int i = getOffset(pChunkPos);
+		if (i == 0) return 0L;
+
+		int sectorNumber = getSectorNumber(i);
+		int numSectors = getNumSectors(i);
+
+		// Read the 4-byte payload size header inside the sector
+		ByteBuffer bytebuffer = ByteBuffer.allocate(5);
+		this.file.read(bytebuffer, (long) sectorNumber * 4096L);
+		((Buffer) bytebuffer).flip();
+
+		long internalDataSize = 0L;
+		if (bytebuffer.remaining() >= 5) {
+			int length = bytebuffer.getInt();
+			byte version = bytebuffer.get();
+
+			// Check if chunk is stored in an external .mcc file (>1MB)
+			if ((version & 128) != 0) {
+				Path externalPath = this.getExternalChunkPath(pChunkPos);
+				if (Files.isRegularFile(externalPath)) {
+					return 4096L + Files.size(externalPath); // Sector stub + external file size
+				}
+			}
+			internalDataSize = length + 4; // Data size + 4-byte size header
+		}
+
+		return internalDataSize > 0 ? internalDataSize : (long) numSectors * 4096L;
 	}
 }
