@@ -46,7 +46,16 @@
       "weight": 50,
       "stack": {
         "item": "minecraft:potato",
-        "averageCost": 1
+        "averageCost": 1,
+        "count": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:leek",
+        "averageCost": 1,
+        "count": 2
       }
     },
     {
@@ -170,6 +179,13 @@
       "stack": {
         "item": "minecraft:bread",
         "averageCost": 5
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:leek_soup",
+        "averageCost": 10
       }
     },
     {

@@ -27,6 +27,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundGrassBlo
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedGroundPathBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHoistBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLeekBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMaterialBlock;
@@ -193,8 +194,8 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 			}
 			if(block.get() instanceof ExtendedBookshelfBlock) {
 				add(block.get(), (blockP) -> {
-			         return createSingleItemTableWithSilkTouch(Blocks.BOOKSHELF, Items.BOOK, ConstantRange.exactly(3));
-			      });
+					return createSingleItemTableWithSilkTouch(Blocks.BOOKSHELF, Items.BOOK, ConstantRange.exactly(3));
+				});
 				continue;
 			}
 			if(block.get() instanceof ExtendedWasteBlock) {
@@ -519,6 +520,10 @@ public class ExtendedBlockLootGenerator extends BlockLootTables  {
 		dropSelf(ExtendedBlocks.REMAINS_ORC.get());
 		dropSelf(ExtendedBlocks.REMAINS_DWARF.get());
 		add(ExtendedBlocks.PODZOL_SLAB.get(), createGrowableSlabItemTable((SlabBlock)ExtendedBlocks.PODZOL_SLAB.get(), ExtendedBlocks.DIRT_SLAB.get()));
+		ILootCondition.IBuilder leekConditionBuilder = BlockStateProperty.hasBlockStateProperties(ExtendedBlocks.LEEKS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ExtendedLeekBlock.AGE, 7));
+		add(ExtendedBlocks.LEEKS.get(), (blockLamda) -> applyExplosionDecay(blockLamda, LootTable.lootTable()
+			.withPool(LootPool.lootPool().add(ItemLootEntry.lootTableItem(ExtendedItems.LEEK.get())))
+			.withPool(LootPool.lootPool().when(leekConditionBuilder).add(ItemLootEntry.lootTableItem(ExtendedItems.LEEK.get()).apply(ApplyBonus.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
 	}
 
 	@Override

@@ -212,5 +212,6 @@ public class ExtendedTags {
 		public static final ITag.INamedTag<Item> FLESH = ItemTags.bind("lotrextended:flesh");
 		public static final ITag.INamedTag<Item> MORGOND_ROCKS = ItemTags.bind("lotrextended:morgond_rocks");
 
+		public static final ITag.INamedTag<Item> CROPS_LEEK = ItemTags.bind("forge:crops/wheat");
 	}
 }

@@ -321,6 +321,21 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 24,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotrextended:leek"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 25,
           "functions": [
             {
@@ -348,6 +363,21 @@
             }
           ],
           "name": "lotr:lettuce"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotrextended:leek"
         },
         {
           "type": "minecraft:item",

@@ -33,6 +33,7 @@ import com.github.maximuslotro.lotrrextended.common.block.ExtendedHangingBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedHoistBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLargeFlowerPotBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedLeavesBlock;
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedLeekBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMEBannerWallBlock;
 import com.github.maximuslotro.lotrrextended.common.block.ExtendedMaterialBlock;
@@ -113,6 +114,7 @@ import net.minecraft.block.CactusBlock;
 import net.minecraft.block.CakeBlock;
 import net.minecraft.block.CarpetBlock;
 import net.minecraft.block.ChainBlock;
+import net.minecraft.block.CropsBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.block.FourWayBlock;
@@ -243,6 +245,10 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 				}
 				if(block.get() instanceof ExtendedHoistBlock) {
 					genCubeBlockItem(block.get(), "block/"+block.getId().getPath());
+					continue;
+				}
+				if(block.get() instanceof ExtendedLeekBlock) {
+					genCropBlock((CropsBlock) block.get(), BlockStateProperties.AGE_7, 0, 0, 1, 1, 2, 2, 2, 3);
 					continue;
 				}
 				if(block.get() instanceof ExtendedBerryHedgeBlock) {
@@ -2621,5 +2627,20 @@ public class ExtendedBlockstateModelGenerator extends BlockStateProvider {
 		registeredBlocks.add(block);
 		ModelFile modelFile = models().withExistingParent("lotrextended:"+block.getRegistryName().getPath(), mcLoc("block/block")).texture("particle", lotrExtendedLoc("block/transparent_particle"));
 		simpleBlock(block, modelFile);
+	}
+
+	private void genCropBlock(CropsBlock pCropBlock, Property<Integer> pAgeProperty, int... pAgeToVisualStageMapping) {
+		if (pAgeProperty.getPossibleValues().size() != pAgeToVisualStageMapping.length) {
+			throw new IllegalArgumentException();
+		} else {
+			registeredBlocks.add(pCropBlock);
+			getVariantBuilder(pCropBlock)
+			.forAllStates(state -> {
+				Integer age = state.getValue(pAgeProperty);
+				ModelFile modelFile = models().withExistingParent("lotrextended:"+pCropBlock.getRegistryName().getPath()+"_stage"+pAgeToVisualStageMapping[age], "minecraft:block/crop")
+					.texture("crop", lotrExtendedLoc("block/"+pCropBlock.getRegistryName().getPath()+"_stage"+pAgeToVisualStageMapping[age]));
+				return ConfiguredModel.builder().modelFile(modelFile).build();
+			});
+		}
 	}
 }

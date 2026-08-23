@@ -31,6 +31,7 @@ import lotr.common.block.FallenLeavesBlock;
 import lotr.common.block.GateBlock;
 import lotr.common.block.NonWaterloggableLanternBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.CropsBlock;
 import net.minecraft.block.TorchBlock;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
@@ -93,95 +94,69 @@ public class ExtendedBlockRenderer {
 			Block block = reg.get();
 			if (block instanceof ChandelierBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if (block instanceof ExtendedSaplingBlock) {
+			}else if (block instanceof ExtendedSaplingBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if (block instanceof ExtendedLeavesBlock) {
+			}else if (block instanceof ExtendedLeavesBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
-			}
-			if (block instanceof FallenLeavesBlock) {
+			}else if (block instanceof FallenLeavesBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
-			}
-			if(block instanceof ExtendedBedBlock) {
+			}else if(block instanceof ExtendedBedBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if(block instanceof ExtendedFullModelBedBlock) {
+			}else if(block instanceof ExtendedFullModelBedBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if(block instanceof ExtendedReedBasketBlock) {
+			}else if(block instanceof ExtendedReedBasketBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if(block instanceof ExtendedHangingBlock) {
+			}else if(block instanceof ExtendedHangingBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if(block instanceof ExtendedMEBannerBlock) {
+			}else if(block instanceof ExtendedMEBannerBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if(block instanceof ExtendedMEBannerWallBlock) {
+			}else if(block instanceof ExtendedMEBannerWallBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if(block instanceof ExtendedWargCarpetBlock) {
+			}else if(block instanceof ExtendedWargCarpetBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if (block instanceof TorchBlock) {
+			}else if (block instanceof TorchBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-				continue;
-			}
-			if (block instanceof ExtendedBarsBlock) {
+			}else if (block instanceof ExtendedBarsBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
-				continue;
-			}
-			if(block instanceof ExtendedMossCarpetBlock) {
+			}else if(block instanceof ExtendedMossCarpetBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if(block instanceof ExtendedFireBlock) {
+			}else if(block instanceof ExtendedFireBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if(block instanceof ExtendedLargePotBlock) {
+			}else if(block instanceof ExtendedLargePotBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if(block instanceof ExtendedChainBlock) {
+			}else if(block instanceof ExtendedChainBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
-			}
-			if(block instanceof ExtendedVineBlock) {
+			}else if(block instanceof ExtendedVineBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if(block instanceof ExtendedLargeFlowerPotBlock) {
+			}else if(block instanceof ExtendedLargeFlowerPotBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if(block instanceof ExtendedBirdcageBlock) {
+			}else if(block instanceof ExtendedBirdcageBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if(block instanceof ExtendedCrucibleBlock) {
+			}else if(block instanceof ExtendedCrucibleBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if(block instanceof ExtendedBerryHedgeBlock) {
+			}else if(block instanceof ExtendedBerryHedgeBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
-			}
-			if(block instanceof ExtendedOrcBombBlock) {
+			}else if(block instanceof ExtendedOrcBombBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
-			}
-			if (block instanceof GateBlock) {
+			}else if (block instanceof GateBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
-			}
-			if(block instanceof ExtendedCrystalChandelierBlock) {
+			}else if(block instanceof ExtendedCrystalChandelierBlock) {
 				if(ModList.get().isLoaded("optfine")){
 					RenderTypeLookup.setRenderLayer(block, RenderType.translucent());
 				}else {
 					RenderTypeLookup.setRenderLayer(block, RenderType.solid());
 				}
-			}
-			if (block instanceof ExtendedLanternBlock || block instanceof NonWaterloggableLanternBlock) {
+			}else if (block instanceof ExtendedLanternBlock || block instanceof NonWaterloggableLanternBlock) {
 				if (block instanceof ExtendedLanternNumenoreanBlock) {
 					RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
 					continue;
 				}
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 				continue;
-			}
-			if(block instanceof ExtendedBarsBlock) {
+			}else if(block instanceof ExtendedBarsBlock) {
 				RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
+			}else if(block instanceof CropsBlock) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
 			}
 		}
 		RenderTypeLookup.setRenderLayer(ExtendedBlocks.BLACKBERRY_BUSH.get(), RenderType.cutout());

@@ -16,7 +16,7 @@
       "tag": "forge:eggs"
     },
     "Z": {
-      "item": "minecraft:wheat"
+      "tag": "forge:crops/wheat"
     }
   },
   "result": {

@@ -880,6 +880,8 @@ public class ExtendedBlocks {
 
 	public static RegistryObject<Block> NUMENOREAN_BARS = register("numenorean_bars", () -> new ExtendedBarsBlock(Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
 
+	public static RegistryObject<Block> LEEKS = register("leeks", () -> new ExtendedLeekBlock(Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.CROP)));
+
 	public static void register(IEventBus bus) {
 		BLOCKS.register(bus);
 		bus.addGenericListener(Block.class, ExtendedSignTileEntitySetup::setup);

@@ -43,5 +43,12 @@ public class ExtendedFoods {//saturation gained = nutrition × saturationMod × 
 
 	public static final Food BUTTER = new Food.Builder().nutrition(4).saturationMod(0.85F).build();
 
+	public static final Food LEEK = new Food.Builder().nutrition(2).saturationMod(0.3F).build();
+	public static final Food LEEK_SOUP = new Food.Builder().nutrition(8).saturationMod(0.8F).build();
+	public static final Food TURNIP = new Food.Builder().nutrition(2).saturationMod(0.3F).build();
+	public static final Food TURNIP_SOUP = new Food.Builder().nutrition(8).saturationMod(0.8F).build();
+	public static final Food YAM = new Food.Builder().nutrition(1).saturationMod(0.4F).build();
+	public static final Food ROASTED_YAM = new Food.Builder().nutrition(6).saturationMod(0.6F).build();
+
 	public static void init() {}
 }

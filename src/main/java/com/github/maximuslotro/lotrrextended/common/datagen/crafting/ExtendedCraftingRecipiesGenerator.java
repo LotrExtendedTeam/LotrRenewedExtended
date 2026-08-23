@@ -59,7 +59,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 
 	private void buildRecipes(Consumer<IFinishedRecipe> consumer) {
 		//Beds
-		makeBedRecipe(consumer, ExtendedItems.STRAW_BED, Items.WHEAT, null);
+		makeBedRecipe(consumer, ExtendedItems.STRAW_BED, Tags.Items.CROPS_WHEAT, null);
 		makeBedRecipeTag(consumer, ExtendedItems.ORC_BED, ExtendedTags.Items.WOOL_BLOCKS, LOTRRecipes.ANY_ORC);
 		makeBedRecipe(consumer, ExtendedItems.BLACK_FUR_BED, ExtendedItems.BLACK_FUR.get(), null);
 		makeBedRecipe(consumer, ExtendedItems.FUR_BED, LOTRItems.FUR.get(), null);
@@ -373,9 +373,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("M ")
 		.define('E', Items.EGG)
 		.define('M', Items.MILK_BUCKET)
-		.define('W', Items.WHEAT)
+		.define('W', Tags.Items.CROPS_WHEAT)
 		.unlockedBy("has_eggs", has(Items.EGG))
-		.unlockedBy("has_wheat", has(Items.WHEAT))
+		.unlockedBy("has_wheat", has(Tags.Items.CROPS_WHEAT))
 		.unlockedBy("has_milk", has(Items.MILK_BUCKET))
 		.save(consumer, ExtendedItems.HOBBIT_PANCAKE);
 		ExtendedFactionShapedRecipeBuilder.shaped(ExtendedItems.HOBBIT_PANCAKE.get(), 2, LOTRRecipes.HOBBIT_CRAFTING)
@@ -383,7 +383,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.pattern("M ")
 		.define('E', ExtendedItems.DUCK_EGG.get())
 		.define('M', Items.MILK_BUCKET)
-		.define('W', Items.WHEAT)
+		.define('W', Tags.Items.CROPS_WHEAT)
 		.unlockedBy("has_duck_egg", has(ExtendedItems.DUCK_EGG.get()))
 		.unlockedBy("has_milk", has(Items.MILK_BUCKET))
 		.save(consumer, new ResourceLocation(ExtendedItems.HOBBIT_PANCAKE.get().getRegistryName().toString()+"_with_duck_egg"));
@@ -1019,16 +1019,25 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('#', Ingredient.of(Items.MILK_BUCKET))
 		.define('X', Ingredient.of(ExtendedItems.BANANA.get()))
 		.define('S', Ingredient.of(Tags.Items.EGGS))
-		.define('Z', Ingredient.of(Items.WHEAT))
+		.define('Z', Ingredient.of(Tags.Items.CROPS_WHEAT))
 		.unlockedBy("has_"+ExtendedItems.BANANA.get().getRegistryName().getPath(), has(ExtendedItems.BANANA.get()))
 		.save(consumer, ExtendedItems.BANANA_CAKE);
 		GENERATEDRECIPES.add(ExtendedItems.BANANA_BREAD.get().getRegistryName().getPath());
 		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.BANANA_BREAD.get())
 		.pattern("XSX")
 		.define('S', Ingredient.of(ExtendedItems.BANANA.get()))
-		.define('X', Ingredient.of(Items.WHEAT))
+		.define('X', Ingredient.of(Tags.Items.CROPS_WHEAT))
 		.unlockedBy("has_"+ExtendedItems.BANANA.get().getRegistryName().getPath(), has(ExtendedItems.BANANA.get()))
 		.save(consumer, ExtendedItems.BANANA_BREAD);
+		GENERATEDRECIPES.add(ExtendedItems.LEEK_SOUP.get().getRegistryName().getPath());
+		ExtendedShapedRecipeBuilder.shaped(ExtendedItems.BANANA_BREAD.get())
+		.pattern("LPL")
+		.pattern(" B ")
+		.define('L', Ingredient.of(ExtendedTags.Items.CROPS_LEEK))
+		.define('P', Ingredient.of(Tags.Items.CROPS_POTATO))
+		.define('B', Ingredient.of(Items.BOWL))
+		.unlockedBy("has_"+ExtendedItems.LEEK.get().getRegistryName().getPath(), has(ExtendedItems.LEEK.get()))
+		.save(consumer, ExtendedItems.LEEK_SOUP);
 		makePieRecipe(consumer, ExtendedItems.BLACKBERRY_PIE, ExtendedItems.BLACKBERRY, null);
 		makePieRecipe(consumer, ExtendedItems.BLUEBERRY_PIE, ExtendedItems.BLUEBERRY, null);
 		makePieRecipe(consumer, ExtendedItems.CRANBERRY_PIE, ExtendedItems.CRANBERRY, null);
@@ -1553,7 +1562,7 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.define('M', Ingredient.of(Items.MILK_BUCKET))
 		.define('S', Ingredient.of(Items.SUGAR))
 		.define('E', Ingredient.of(Tags.Items.EGGS))
-		.define('W', Ingredient.of(Items.WHEAT))
+		.define('W', Ingredient.of(Tags.Items.CROPS_WHEAT))
 		.unlockedBy("has_"+Items.CAKE.getRegistryName().getPath(), has(Items.CAKE))
 		.save(consumer, mcLoc(Items.CAKE.getRegistryName().getPath()+"_more_eggs"));
 		ShapelessRecipeBuilder.shapeless(Items.PUMPKIN_PIE)
@@ -1707,9 +1716,9 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		.requires(Ingredient.of(ExtendedItems.PLUM.get()))
 		.requires(Ingredient.of(ExtendedItems.PLUM.get()))
 		.requires(Ingredient.of(ExtendedItems.PLUM.get()))
-		.requires(Ingredient.of(Items.WHEAT))
-		.requires(Ingredient.of(Items.WHEAT))
-		.requires(Ingredient.of(Items.WHEAT))
+		.requires(Ingredient.of(Tags.Items.CROPS_WHEAT))
+		.requires(Ingredient.of(Tags.Items.CROPS_WHEAT))
+		.requires(Ingredient.of(Tags.Items.CROPS_WHEAT))
 		.save(consumer, ExtendedItems.PLUM_KVASS.get().getRegistryName());
 	}
 
@@ -2477,6 +2486,8 @@ public class ExtendedCraftingRecipiesGenerator extends ExtendedCraftingHelper {
 		GENERATEDRECIPES.add(ExtendedItems.COMBAT_TOME.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.ARTISAN_TOME.get().getRegistryName().getPath());
 		GENERATEDRECIPES.add(ExtendedItems.SMITH_TOME.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedBlocks.LEEKS.get().getRegistryName().getPath());
+		GENERATEDRECIPES.add(ExtendedItems.LEEK.get().getRegistryName().getPath());
 	}
 
 	@Override

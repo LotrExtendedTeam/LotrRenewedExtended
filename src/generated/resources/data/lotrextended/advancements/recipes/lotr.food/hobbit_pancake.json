@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:wheat"
+            "tag": "forge:crops/wheat"
           }
         ]
       }

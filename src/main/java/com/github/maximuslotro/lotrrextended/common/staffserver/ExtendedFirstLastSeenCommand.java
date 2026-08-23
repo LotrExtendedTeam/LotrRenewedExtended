@@ -35,7 +35,7 @@ public class ExtendedFirstLastSeenCommand {
 
 	private static int firstJoinedPlayer(CommandSource source, String playername) {
 		@Nullable UUID player = ExtendedPlayerInfo.getPlayerUUIDFromUsername(playername);
-		if(!ExtendedPlayerInfo.doesPlayerInfoExist(player)) {
+		if(player==null || !ExtendedPlayerInfo.doesPlayerInfoExist(player)) {
 			source.sendFailure(new StringTextComponent(TextFormatting.RED + "Player not found"));
 			return Command.SINGLE_SUCCESS;
 		}
@@ -59,7 +59,7 @@ public class ExtendedFirstLastSeenCommand {
 			return Command.SINGLE_SUCCESS;
 		}
 		@Nullable UUID player = ExtendedPlayerInfo.getPlayerUUIDFromUsername(playername);
-		if(!ExtendedPlayerInfo.doesPlayerInfoExist(player)) {
+		if(player==null || !ExtendedPlayerInfo.doesPlayerInfoExist(player)) {
 			source.sendFailure(new StringTextComponent(TextFormatting.RED + "Player not found"));
 			return Command.SINGLE_SUCCESS;
 		}

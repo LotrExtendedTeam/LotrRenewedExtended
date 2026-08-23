@@ -11,13 +11,13 @@
       "item": "lotrextended:plum"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "forge:crops/wheat"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "forge:crops/wheat"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "forge:crops/wheat"
     }
   ],
   "result": "lotrextended:plum_kvass",

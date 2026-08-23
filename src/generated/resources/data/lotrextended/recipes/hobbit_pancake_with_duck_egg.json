@@ -13,7 +13,7 @@
       "item": "minecraft:milk_bucket"
     },
     "W": {
-      "item": "minecraft:wheat"
+      "tag": "forge:crops/wheat"
     }
   },
   "result": {

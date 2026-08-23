@@ -119,6 +119,13 @@
       }
     },
     {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:leek",
+        "averageCost": 3
+      }
+    },
+    {
       "stacks": [
         {
           "item": "minecraft:white_wool",
