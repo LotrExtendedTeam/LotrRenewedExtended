@@ -17,7 +17,9 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
@@ -61,6 +63,9 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	private final Set<FarmingWarning> activeWarnings = EnumSet.noneOf(FarmingWarning.class);
 	/** Cached bitmask representation (used primarily on the client side). */
 	private int warningBitmask = 0;
+	private BlockPos cachedCraftingTable;
+	private BlockPos cachedChest;
+	private BlockPos cachedComposter;
 	/**
 	 * Constructs a new farmhand data holder for the specified NPC entity.
 	 *
@@ -137,9 +142,28 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
             }
 
 			farmhandInputInventory = makeFarmhandInputInventory();
-			ExtendedNBTUtils.readInventoryFromNBT(nbt, farmhandInputInventory, FARMHANDITEMSLIST);
+			// Fix 1.10.3 saving to main NBT, not holder
+			if (holder.contains(FARMHANDITEMSLIST, 9)) {
+				ExtendedNBTUtils.readInventoryFromNBT(holder, farmhandInputInventory, FARMHANDITEMSLIST);
+		    }else {
+		    	ExtendedNBTUtils.readInventoryFromNBT(nbt, farmhandInputInventory, FARMHANDITEMSLIST);//Fallback
+		    }
 			farmhandOutputInventory = makeFarmhandOutputInventory();
-			ExtendedNBTUtils.readInventoryFromNBT(nbt, farmhandOutputInventory, FARMHANDCROPSLIST);
+			// Fix 1.10.3 saving to main NBT, not holder
+			if (holder.contains(FARMHANDCROPSLIST, 9)) {
+				ExtendedNBTUtils.readInventoryFromNBT(holder, farmhandOutputInventory, FARMHANDCROPSLIST);
+		    }else {
+		    	ExtendedNBTUtils.readInventoryFromNBT(nbt, farmhandOutputInventory, FARMHANDCROPSLIST);//Fallback
+		    }
+			if(holder.contains("ct")) {
+				cachedCraftingTable = NBTUtil.readBlockPos(holder.getCompound("ct"));
+			}
+			if(holder.contains("ch")) {
+				cachedChest = NBTUtil.readBlockPos(holder.getCompound("ch"));
+			}
+			if(holder.contains("co")) {
+				cachedComposter = NBTUtil.readBlockPos(holder.getCompound("co"));
+			}
 			markDirty();
 		}
 	}
@@ -158,8 +182,17 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 		holder.putInt("crops_h", getCropsHarvested());
 		holder.putInt("size_add", getInventoryAdditionalSize());
 		holder.putInt("warnings", getWarningBitmask());
-		ExtendedNBTUtils.writeInventoryToNBT(nbt, getFarmhandInputInventory(), FARMHANDITEMSLIST);
-		ExtendedNBTUtils.writeInventoryToNBT(nbt, getFarmhandOutputInventory(), FARMHANDCROPSLIST);
+		ExtendedNBTUtils.writeInventoryToNBT(holder, getFarmhandInputInventory(), FARMHANDITEMSLIST);
+		ExtendedNBTUtils.writeInventoryToNBT(holder, getFarmhandOutputInventory(), FARMHANDCROPSLIST);
+		if(cachedCraftingTable!=null) {
+			holder.put("ct", NBTUtil.writeBlockPos(cachedCraftingTable));
+		}
+		if(cachedChest!=null) {
+			holder.put("ch", NBTUtil.writeBlockPos(cachedChest));
+		}
+		if(cachedComposter!=null) {
+			holder.put("co", NBTUtil.writeBlockPos(cachedComposter));
+		}
 		nbt.put("FarmhandInfo", holder);
 	}
 	/**
@@ -498,5 +531,23 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 			this.warningBitmask = 0;
 			markDirty();
 		}
+	}
+	public BlockPos getCachedCraftingTable() {
+		return cachedCraftingTable;
+	}
+	public void setCachedCraftingTable(BlockPos cachedCraftingTable) {
+		this.cachedCraftingTable = cachedCraftingTable;
+	}
+	public BlockPos getCachedChest() {
+		return cachedChest;
+	}
+	public void setCachedChest(BlockPos cachedChest) {
+		this.cachedChest = cachedChest;
+	}
+	public BlockPos getCachedComposter() {
+		return cachedComposter;
+	}
+	public void setCachedComposter(BlockPos cachedComposter) {
+		this.cachedComposter = cachedComposter;
 	}
 }

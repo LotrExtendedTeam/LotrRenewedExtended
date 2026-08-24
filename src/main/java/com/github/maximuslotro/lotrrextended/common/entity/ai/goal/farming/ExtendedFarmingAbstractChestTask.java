@@ -3,6 +3,9 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
@@ -100,6 +103,15 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 		super.stopTask();
 		goalHolder.getEntity().setItemInHand(Hand.MAIN_HAND, previousHeldItem);
 	}
+	@Override
+    protected Optional<Supplier<BlockPos>> getCacheGetter() {
+        return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::getCachedChest);
+    }
+
+    @Override
+    protected Optional<Consumer<BlockPos>> getCacheSetter() {
+        return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::setCachedChest);
+    }
 	/**
 	 * Scans nearby loaded tile entities within distance and elevation limits to select a valid chest target.
 	 * <p>
@@ -112,9 +124,10 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 	 */
 	@Override
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		if (cachedWorkBlockPos != null) {
-			if (goalHolder.getEntity().distanceToSqr(cachedWorkBlockPos.getX() + 0.5, cachedWorkBlockPos.getY() + 0.5, cachedWorkBlockPos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
-				taskPosition.set(cachedWorkBlockPos);
+		BlockPos cachedChestPos = getCacheGetter().get().get();
+		if (cachedChestPos != null) {
+			if (goalHolder.getEntity().distanceToSqr(cachedChestPos.getX() + 0.5, cachedChestPos.getY() + 0.5, cachedChestPos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
+				taskPosition.set(cachedChestPos);
 				return;
 			}
 		}

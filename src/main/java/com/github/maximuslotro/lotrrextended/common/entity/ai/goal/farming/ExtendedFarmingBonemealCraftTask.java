@@ -1,5 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ComposterBlock;
@@ -99,6 +103,15 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 		int totalSeeds = inventory.countItem(seedsStack.getItem());
 		return totalSeeds > amount;
 	}
+	@Override
+    protected Optional<Supplier<BlockPos>> getCacheGetter() {
+        return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::getCachedComposter);
+    }
+
+    @Override
+    protected Optional<Consumer<BlockPos>> getCacheSetter() {
+        return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::setCachedComposter);
+    }
 	/**
 	 * Mutates the target block position buffer to point to a valid composter.
 	 * <p>
@@ -111,9 +124,10 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	 */
 	@Override
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		if (cachedWorkBlockPos != null) {
-			if (goalHolder.getEntity().distanceToSqr(cachedWorkBlockPos.getX() + 0.5, cachedWorkBlockPos.getY() + 0.5, cachedWorkBlockPos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
-				taskPosition.set(cachedWorkBlockPos);
+		BlockPos cachedComposterPos = getCacheGetter().get().get();
+		if (cachedComposterPos != null) {
+			if (goalHolder.getEntity().distanceToSqr(cachedComposterPos.getX() + 0.5, cachedComposterPos.getY() + 0.5, cachedComposterPos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
+				taskPosition.set(cachedComposterPos);
 				return;
 			}
 		}

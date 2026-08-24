@@ -1,5 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.block.BlockState;
@@ -87,6 +91,15 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 		}
 		return false;
 	}
+	@Override
+    protected Optional<Supplier<BlockPos>> getCacheGetter() {
+        return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::getCachedCraftingTable);
+    }
+
+    @Override
+    protected Optional<Consumer<BlockPos>> getCacheSetter() {
+        return Optional.of(goalHolder.farmhandData.getFarmhandInfo()::setCachedCraftingTable);
+    }
 	/**
 	 * Assigns a target block position for this task, utilizing cached coordinates if still within valid distance.
 	 *
@@ -95,9 +108,10 @@ public class ExtendedFarmingSeedCraftTask extends ExtendedFarmingAbstractTask {
 	 */
 	@Override
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
-		if (cachedWorkBlockPos != null) {
-			if (goalHolder.getEntity().distanceToSqr(cachedWorkBlockPos.getX() + 0.5, cachedWorkBlockPos.getY() + 0.5, cachedWorkBlockPos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
-				taskPosition.set(cachedWorkBlockPos);
+		BlockPos cachedCraftingTablePos = getCacheGetter().get().get();
+		if (cachedCraftingTablePos != null) {
+			if (goalHolder.getEntity().distanceToSqr(cachedCraftingTablePos.getX() + 0.5, cachedCraftingTablePos.getY() + 0.5, cachedCraftingTablePos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
+				taskPosition.set(cachedCraftingTablePos);
 				return;
 			}
 		}

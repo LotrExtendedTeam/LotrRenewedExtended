@@ -1,5 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming;
 
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedEntityUtils;
 
 import net.minecraft.block.BlockState;
@@ -35,10 +39,6 @@ import net.minecraft.world.server.ServerWorld;
  * </ul>
  */
 public abstract class ExtendedFarmingAbstractTask {
-	/**
-	 * Cached location of a validated work block to avoid repeated spatial searches while in range.
-	 */
-	protected BlockPos cachedWorkBlockPos = null;
 	/**
 	 * Vertical search offset radius around the NPC when selecting candidate target blocks.
 	 */
@@ -120,10 +120,27 @@ public abstract class ExtendedFarmingAbstractTask {
 	 */
 	public void stopTask() {}
 	/**
+     * Subclasses override this to supply a getter for their target cache if they require one.
+     *
+     * @return an {@link Optional} containing the getter, or {@link Optional#empty()} if unneeded.
+     */
+    protected Optional<Supplier<BlockPos>> getCacheGetter() {
+        return Optional.empty();
+    }
+
+    /**
+     * Subclasses override this to supply a setter for their target cache if they require one.
+     *
+     * @return an {@link Optional} containing the setter, or {@link Optional#empty()} if unneeded.
+     */
+    protected Optional<Consumer<BlockPos>> getCacheSetter() {
+        return Optional.empty();
+    }
+	/**
 	 * Invalidate any position caches or internal state when target search fails.
 	 */
 	public void invalidateCache() {
-		cachedWorkBlockPos=null;
+		getCacheSetter().ifPresent(setter -> setter.accept(null));
 	}
 	/**
 	 * Determines whether the NPC entity is within range to execute the action on the target block position.
@@ -136,9 +153,15 @@ public abstract class ExtendedFarmingAbstractTask {
 		return targetPos.closerThan(farmer.position(), 1);
 	}
 	public boolean executeTaskBase(BlockPos pChosenBlockPos, ServerWorld pServerLevel) {
-		if(cachedWorkBlockPos==null) {
-			cachedWorkBlockPos = pChosenBlockPos.immutable();
-		}
+		Optional<Supplier<BlockPos>> getterOpt = getCacheGetter();
+        Optional<Consumer<BlockPos>> setterOpt = getCacheSetter();
+        if (getterOpt.isPresent() && setterOpt.isPresent()) {
+            Supplier<BlockPos> getter = getterOpt.get();
+            Consumer<BlockPos> setter = setterOpt.get();
+            if (getter.get() == null && pChosenBlockPos != null) {
+                setter.accept(pChosenBlockPos.immutable());
+            }
+        }
 		return executeTask(pChosenBlockPos, pServerLevel);
 	}
 
