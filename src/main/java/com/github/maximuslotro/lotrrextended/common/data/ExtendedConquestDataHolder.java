@@ -10,9 +10,11 @@ import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConques
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedIOUtils;
 
 import lotr.common.fac.Faction;
+import lotr.common.world.map.MapSettingsManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.server.ServerWorld;
 
 // TODO add conquest add logic
@@ -20,13 +22,55 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 	private final Map<ExtendedConquestPos, ExtendedConquestRegion> conquestMap = new HashMap<>();
 	private File conquestFilesFolder;
 	private File conquestDataFile;
+	private int gridSquareScale=3;
+	private int mapScale;
+	private int mapXOffset;
+	private int mapZOffset;
+
 
 	public ExtendedConquestDataHolder(ExtendedLevelData pHolder) {
 		super(pHolder);
+		MapSettingsManager mapSettings = MapSettingsManager.serverInstance();
+		mapScale = mapSettings.getCurrentLoadedMap().getScaleFactor();
+		mapXOffset = mapSettings.getCurrentLoadedMap().getOriginX();
+		mapZOffset = mapSettings.getCurrentLoadedMap().getOriginZ();
 	}
 
-	public void addConquest(PlayerEntity player, float conquestAdd, Faction playerFaction, Faction opposingFactions) {
-		//TODO handle adding this data to CONQUEST_MAP
+	public int convertCordsToConquestX(int xCord) {
+		return convertMapToConquest((xCord >> mapScale) + mapXOffset);
+	}
+	public int convertCordsToConquestZ(int zCord) {
+		return convertMapToConquest((zCord >> mapScale) + mapZOffset);
+	}
+	public int convertMapToConquest(int mapCord) {
+		return mapCord >> gridSquareScale;
+	}
+	public int convertConquestToMap(int conquestCord) {
+		return conquestCord << gridSquareScale;
+	}
+
+	public ExtendedConquestPos convertCordsToConquest(int xCord, int zCord) {
+		return new ExtendedConquestPos(convertCordsToConquestX(xCord), convertCordsToConquestZ(zCord));
+	}
+
+	public void addConquest(PlayerEntity player, float conquestAdd, Faction playerFaction, Faction opposingFaction, Vector3i position) {
+		ExtendedConquestRegion conquestRegion = getConquestSquare(convertCordsToConquest(position.getX(), position.getZ()));
+		conquestRegion.addConquest(playerFaction.getName(), conquestAdd);
+		conquestRegion.addConquest(opposingFaction.getName(), -conquestAdd);
+		//TODO handle hired lesser kill amount
+		//TODO circular conquest
+		//TODO add player notification
+		//TODO handle other factions inc or dec
+	}
+
+	public ExtendedConquestRegion getConquestSquare(ExtendedConquestPos conquestPos) {
+		ExtendedConquestRegion conquestSquare = conquestMap.computeIfAbsent(conquestPos, id -> loadConquestSquare(id));
+		return conquestSquare;
+	}
+
+	private ExtendedConquestRegion loadConquestSquare(ExtendedConquestPos conquestPos) {
+		CompoundNBT nbt = ExtendedIOUtils.load(getConquestDatafile(conquestPos));
+		return nbt.isEmpty() ? new ExtendedConquestRegion(conquestPos) : ExtendedConquestRegion.loadFromNBT(nbt);
 	}
 
 	@Override
@@ -41,6 +85,10 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 		conquestFilesFolder = ExtendedIOUtils.getDirOrMake(new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, server, true), "conquest_regions"));
 		conquestDataFile = new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, server, true), "CONQUEST.dat");
 		conquestMap.clear();
+		CompoundNBT nbt = ExtendedIOUtils.load(conquestDataFile);
+		if (nbt.contains("conquest_scale")) {
+			gridSquareScale=nbt.getInt("conquest_scale");
+		}
 	}
 
 	@Override
@@ -58,19 +106,12 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 				ExtendedIOUtils.save(getConquestDatafile(regions.getKey()), regions.getValue().save());
 			}
 		}
+		CompoundNBT nbt = new CompoundNBT();
+		nbt.putInt("conquest_scale", gridSquareScale);
+		ExtendedIOUtils.save(conquestDataFile, nbt);
 	}
 
 	private File getConquestDatafile(ExtendedConquestPos conquestPos) {
 		return new File(conquestFilesFolder, conquestPos.getPosX() + "." + conquestPos.getPosZ() + ".dat");
-	}
-
-	public ExtendedConquestRegion getConquestSquare(ExtendedConquestPos conquestPos) {
-		ExtendedConquestRegion conquestSquare = conquestMap.computeIfAbsent(conquestPos, id -> loadConquestSquare(id));
-		return conquestSquare;
-	}
-
-	private ExtendedConquestRegion loadConquestSquare(ExtendedConquestPos conquestPos) {
-		CompoundNBT nbt = ExtendedIOUtils.load(getConquestDatafile(conquestPos));
-		return nbt.isEmpty() ? new ExtendedConquestRegion(conquestPos) : ExtendedConquestRegion.loadFromNBT(nbt);
 	}
 }

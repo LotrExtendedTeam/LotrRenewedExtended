@@ -33,14 +33,16 @@ public class ExtendedConquestRegion {
 		return conquestLevels.getOrDefault(faction, 0.0f);
 	}
 
-	public void setConquest(ResourceLocation faction, float amount) {
-		if(amount <= 0.0f) {
+	public void addConquest(ResourceLocation faction, float amount) {
+		float current = conquestLevels.getOrDefault(faction, 0.0f);
+		float newTotal = current + amount;
+		if(newTotal <= 0.0f) {
 			if(conquestLevels.remove(faction) != null) {
 				markDirty();
 			}
-		} else {
-			Float previous = conquestLevels.put(faction, amount);
-			if(previous == null || previous != amount) {
+		}else {
+			Float previous = conquestLevels.put(faction, newTotal);
+			if(previous == null || previous != newTotal) {
 				markDirty();
 			}
 		}

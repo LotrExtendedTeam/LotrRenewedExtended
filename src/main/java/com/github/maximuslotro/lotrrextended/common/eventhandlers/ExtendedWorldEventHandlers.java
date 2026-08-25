@@ -335,7 +335,7 @@ public class ExtendedWorldEventHandlers {
 				Faction deadFaction = EntityFactionHelper.getFaction(deadEntity);
 				Faction pedegeFaction = playerData.getAlignmentData().getPledgeFaction();
 				if(pedegeFaction!=null && pedegeFaction.isBadRelation(deadFaction) && conquestAmount>0) {
-					ExtendedLevelData.serverInstance().getConquestData().addConquest(conquestPlayer, conquestAmount, pedegeFaction, deadFaction);
+					ExtendedLevelData.serverInstance().getConquestData().addConquest(conquestPlayer, conquestAmount, pedegeFaction, deadFaction, deadEntity.blockPosition());
 				}
 			}
 		}
