@@ -73,6 +73,7 @@ public class ExtendedDeleteChunkComamnd {
 		String freedFormatted = String.format("%.2f KB", bytesFreed / 1024.0);
 
 		source.sendSuccess(new StringTextComponent("Successfully deleted chunk [" + chunkPos.x + ", " + chunkPos.z +  "] from disk. Freed " + freedFormatted + " of chunk data."), true);
+		source.sendSuccess(new StringTextComponent("Do note that this only is true if the entire region files was unloaded from memory!"), true);
 		return Command.SINGLE_SUCCESS;
 	}
 
