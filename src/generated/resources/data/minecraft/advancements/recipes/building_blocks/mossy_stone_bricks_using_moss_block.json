@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:mossy_stone_bricks_using_moss_block"
+    ]
+  },
+  "criteria": {
+    "has_stone_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:stone_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:mossy_stone_bricks_using_moss_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stone_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

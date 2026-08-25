@@ -1,0 +1,100 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": "<150"
+      },
+      "lines": [
+        "You think I'd sell mercenaries to scum like you? Ha!",
+        "Only the foulest of Men can command Uruk-hai, #p.",
+        "Work some more evil, and then I'll consider trading units with you.",
+        "Come back when you've proven your worth, maggot.",
+        "I'm not selling any Uruk-hai to you until you kill some more filthy enemies!",
+        "You can barely even ride a Warg, so why should I let you hire any stinking Goblin-Men?",
+        "Filth like you wanting to hire Uruk-hai? What's the next trick?",
+        "Go kill some of those filthy horse-men and then I might consider letting you command my mighty Uruk-hai.",
+        "Prove your worth, filth, and then come back!",
+        "You want some of my fine Uruk-hai! Ha! What kind of joke is this?",
+        "You won't be getting any soldiers from me, maggot. Go cut some heads and then come back!",
+        "You're not getting any soldiers from me, maggot! Start killing some Men or beat it!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": ">=150"
+      },
+      "lines": [
+        "What do silver coins and Man-flesh have in common? I never have enough of them!",
+        "You want some mercenaries, #p? I want some coins.",
+        "Get your fighting Uruk-hai here! Starting at just a few silver coins!",
+        "I want to get my stinking hands on some more silver coins!",
+        "My Uruk-hai are the strongest Orcs in all Middle-earth!",
+        "Your foes will tremble before our Warg riders, #p!",
+        "Bring me some silver coins, maggot!",
+        "I can build you an army worthy of Mordor!",
+        "Get me some coins and I'll get you some troops!",
+        "I got some fine troops that're good for killing!",
+        "If you get me some coins, I will sell you some of my boys!",
+        "My boys will serve you well in the slaying of those filthy horse-men!",
+        "No enemy may stand against the might of my fighting Uruk-hai!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "corporal"
+      },
+      "lines": [
+        "I have the mightiest Uruk-hai ready for you, #p!",
+        "My troops await your command my lord.",
+        "I have the strongest Isengarders prepared for you my lord.",
+        "I would love to see the blood you could spill with my fighting Uruk-hai under your command!",
+        "My Uruks await your command, #p."
+    ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this",
+        "align": ">=150"
+      },
+      "lines": [
+        "Use my soldiers to bring glory to the White Hand."
+      ]
+    },
+    {
+      "conditions": {
+        "in_combat": "true"
+      },
+      "lines": [
+        "I'll gut you like a stuck pig!",
+        "You'll wish you were dead!",
+        "Oh you look tasty.",
+        "I'll put your head on a skewer!",
+        "Looks like meat's back on the menu, boys!",
+        "I'm going to make you wish you were dead!",
+        "When I'm through with you, they'll be nothing left!",
+        "Well this should be fun!",
+        "Stupid maggot!",
+        "I could smell your stench a mile away!",
+        "I'll bleed you like a stuck pig!",
+        "Enjoy your last breath, scum!",
+        "You're nice and fresh!",
+        "Kill the scum!",
+        "Your blood smells fresh!",
+        "I'll skewer you like a piece of meat!",
+        "You'd better start running, maggot!",
+        "Nobody touches me, you filthy maggot!",
+        "I'll have your guts for garters, scum!",
+        "What are you looking at me like that for, scum?",
+        "I'll have your head on a spike, maggot!",
+        "I'll make dinner out of you, maggot!",
+        "You think you can beat me, filth?",
+        "I'll squish you like the filthy little worm you are!",
+        "You'll be dinner once I'm done with you, maggot!"
+      ]
+    }
+  ]
+}

@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.gundabad_orc",
-    "attack_type": "melee"
+    "entity_unit_type": "entity.lotr.gundabad_orc"
   },
   "hiring": {
     "hiringCost": 15,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 100
   },
+  "attack_type": "melee",
   "equipmentPools": {
     "helmets": [
       {
@@ -39,7 +39,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:angmar_helmet",
+          "item": "lotrextended:angmar_helmet",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
         }
       },
@@ -90,7 +90,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:angmar_chestplate",
+          "item": "lotrextended:angmar_chestplate",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -134,7 +134,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:angmar_leggings",
+          "item": "lotrextended:angmar_leggings",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -178,7 +178,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:angmar_boots",
+          "item": "lotrextended:angmar_boots",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -265,21 +265,21 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:angmar_spear",
+          "item": "lotrextended:angmar_spear",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:angmar_sword",
+          "item": "lotrextended:angmar_sword",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:angmar_dagger",
+          "item": "lotrextended:angmar_dagger",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -295,7 +295,7 @@
       {
         "weight": 3,
         "equipmentItem": {
-          "item": "lotr:gundabad_shield",
+          "item": "lotrextended:gundabad_shield",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.shield\",Damage:0,IsBaseArmor:1b}"
         }
       },

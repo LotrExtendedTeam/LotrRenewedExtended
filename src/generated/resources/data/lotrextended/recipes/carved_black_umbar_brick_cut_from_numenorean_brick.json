@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:numenorean_brick"
+  },
+  "result": "lotrextended:carved_black_umbar_brick",
+  "count": 1
+}

@@ -74,14 +74,14 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:diamond",
+        "item": "lotrextended:diamond",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:ruby",
+        "item": "lotrextended:ruby",
         "averageCost": 12
       }
     },
@@ -248,42 +248,42 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:black_fur",
+        "item": "lotrextended:black_fur",
         "averageCost": 4
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:gray_fur",
+        "item": "lotrextended:gray_fur",
         "averageCost": 4
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:silver_fur",
+        "item": "lotrextended:silver_fur",
         "averageCost": 6
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:orc_bomb",
+        "item": "lotrextended:orc_bomb",
         "averageCost": 30
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:orc_bomb_fire",
+        "item": "lotrextended:orc_bomb_fire",
         "averageCost": 40
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:uruk_crossbow",
+        "item": "lotrextended:uruk_crossbow",
         "averageCost": 18,
         "nbt": "{Damage:0}"
       }
@@ -322,37 +322,58 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:isengard_banner_pattern",
+        "item": "lotrextended:isengard_banner_pattern",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:isengard_banner",
+        "item": "lotrextended:isengard_banner",
         "averageCost": 50
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:mail_warg_armor",
+        "item": "lotrextended:mail_warg_armor",
         "averageCost": 20
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:isengard_warg_armor",
+        "item": "lotrextended:isengard_warg_armor",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:uruk_shield",
+        "item": "lotrextended:uruk_shield",
         "averageCost": 20,
         "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:combat_tome",
+        "averageCost": 50
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:artisan_tome",
+        "averageCost": 75
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:smith_tome",
+        "averageCost": 150
       }
     }
   ]

@@ -1,6 +1,7 @@
 package lotr.common.entity.npc;
 
-import lotr.common.init.ExtendedItems;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -14,7 +15,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedRivendellGuardEntity extends RivendellWarriorEntity implements ExtendedNPCEntitySettings {
+public class ExtendedRivendellGuardEntity extends RivendellWarriorEntity implements ExtendedINPCEntitySettings {
 
 	public ExtendedRivendellGuardEntity(EntityType<? extends ExtendedRivendellGuardEntity> type, World w) {
 		super(type, w);
@@ -36,10 +37,5 @@ public class ExtendedRivendellGuardEntity extends RivendellWarriorEntity impleme
 		setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ExtendedItems.IMLADRIS_GUARD_HELMET.get()));
 		setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.IMLADRIS_GUARD_SHIELD.get()));
 		return spawnData;
-	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
 	}
 }

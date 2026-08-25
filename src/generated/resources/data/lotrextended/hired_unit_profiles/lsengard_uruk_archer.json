@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.uruk_archer",
-    "attack_type": "ranged"
+    "entity_unit_type": "entity.lotr.uruk_archer"
   },
   "hiring": {
     "hiringCost": 60,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 200
   },
+  "attack_type": "ranged",
   "equipmentPools": {
     "helmets": [
       {
@@ -55,7 +55,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:gundabad_uruk_dagger",
+          "item": "lotrextended:gundabad_uruk_dagger",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -64,7 +64,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:orc_bow",
+          "item": "lotrextended:orc_bow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       }

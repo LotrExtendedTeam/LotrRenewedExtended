@@ -35,6 +35,7 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 	/** Whether banner protection is enabled for this banner. */
 	public boolean enabled;
 	public String protMessage;
+	public String bannerPlacer;
 
 	public ExtendedSBannerOpenChangedScreenPacket() {}
 
@@ -43,11 +44,12 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		this.factionPerms = new ArrayList<>();
 		this.alignmentLevel = 0;
 		this.whitelist = new ArrayList<>();
-		this.canSelfProtect = false;
+		this.canSelfProtect = true;
 		this.protectionType = 0;
 		this.configurePos = new BlockPos(0,0,0);
 		this.enabled = enabled;
 		this.protMessage = "";
+		this.bannerPlacer = "";
 	}
 
 	public ExtendedSBannerOpenChangedScreenPacket(ExtendedMEBannerTileEntity bannerEntity) {
@@ -55,11 +57,12 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		this.factionPerms = bannerEntity.getFactionPerms();
 		this.alignmentLevel = bannerEntity.getAlignmentLevel();
 		this.whitelist = bannerEntity.getProtectionWhitelist();
-		this.canSelfProtect = bannerEntity.isCanProtectSelf();
+		this.canSelfProtect = bannerEntity.isSelfProtecting();
 		this.protectionType = bannerEntity.getProtectionType().getId();
 		this.configurePos = bannerEntity.getBlockPos();
 		this.enabled = true;
 		this.protMessage = bannerEntity.getProtectionOverrideMessage();
+		this.bannerPlacer = bannerEntity.getPlacedPlayerName();
 	}
 
 	public static void encode(ExtendedSBannerOpenChangedScreenPacket packet, PacketBuffer buf) {
@@ -86,6 +89,7 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		buf.writeBlockPos(packet.configurePos);
 		buf.writeBoolean(packet.enabled);
 		buf.writeUtf(packet.protMessage);
+		buf.writeUtf(packet.bannerPlacer);
 	}
 
 	public static ExtendedSBannerOpenChangedScreenPacket decode(PacketBuffer buf) {
@@ -126,6 +130,7 @@ public class ExtendedSBannerOpenChangedScreenPacket {
 		packet.configurePos = buf.readBlockPos();
 		packet.enabled = buf.readBoolean();
 		packet.protMessage = buf.readUtf();
+		packet.bannerPlacer = buf.readUtf();
 		return packet;
 	}
 

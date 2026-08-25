@@ -129,7 +129,7 @@ public class ExtendedModTracker implements ExtendedTracker{
 				String modId = mod.toLowerCase(Locale.ROOT);
 				if (isAutoBan(modId)) {
 					String msg = getAutoBanMessage(modId);
-					ExtendedTracker.logToFile(LOGGER, LOG_FILE, "[ModChecker][AUTOBAN] " + gameProfile.getName() + " (" + uuid + ")  triggered autoban for mod: " + modId);
+					ExtendedTracker.logToFile(LOGGER, LOG_FILE, "[AUTOBAN] " + gameProfile.getName() + " (" + uuid + ")  triggered autoban for mod: " + modId);
 					server.getPlayerList().getBans().add(new ProfileBanEntry(gameProfile, null, "AntiCheat", null, msg));
 					return new StringTextComponent(msg);
 
@@ -141,7 +141,7 @@ public class ExtendedModTracker implements ExtendedTracker{
 			}
 			// Kick once, listing all disallowed mods
 			if (!disallowedMods.isEmpty()) {
-				ExtendedTracker.logToFile(LOGGER, LOG_FILE, "[ModChecker][DISALLOWED] " + gameProfile.getName() + " (" + uuid + ")  has disallowed mods on join: " + disallowedMods);
+				ExtendedTracker.logToFile(LOGGER, LOG_FILE, "[DISALLOWED] " + gameProfile.getName() + " (" + uuid + ")  has disallowed mods on join: " + disallowedMods);
 				String msg = getKickMessage(disallowedMods);
 				return new StringTextComponent(msg);
 			}
@@ -157,7 +157,7 @@ public class ExtendedModTracker implements ExtendedTracker{
 			removed.removeAll(currentMods);
 
 			if (!added.isEmpty() || !removed.isEmpty()) {
-				ExtendedTracker.logToFile(LOGGER, LOG_FILE, "[ModChecker][SUSPICIOUS] " + gameProfile.getName() + " (" + uuid + ") mod mismatch | Added: " + added + " | Removed: " + removed);
+				ExtendedTracker.logToFile(LOGGER, LOG_FILE, "[SUSPICIOUS] " + gameProfile.getName() + " (" + uuid + ") mod mismatch | Added: " + added + " | Removed: " + removed);
 			}
 		}
 		// Never enforce on second list to be able to mass ban cheaters later

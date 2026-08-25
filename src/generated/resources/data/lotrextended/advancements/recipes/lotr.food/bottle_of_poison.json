@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:bottle_of_poison"
+    ]
+  },
+  "criteria": {
+    "has_wildberry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:wildberry"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:bottle_of_poison"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wildberry",
+      "has_the_recipe"
+    ]
+  ]
+}

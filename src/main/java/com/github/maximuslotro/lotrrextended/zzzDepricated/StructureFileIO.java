@@ -53,7 +53,7 @@ public class StructureFileIO {
 					filenotfoundexception.printStackTrace();
 					return null;
 				} catch (Throwable throwable) {
-					ExtendedLog.error("Failed to load structure file: "+fileName, throwable.toString());
+					ExtendedLog.error("Failed to load structure file {}: "+fileName, throwable.toString());
 					return null;
 				}
 			}

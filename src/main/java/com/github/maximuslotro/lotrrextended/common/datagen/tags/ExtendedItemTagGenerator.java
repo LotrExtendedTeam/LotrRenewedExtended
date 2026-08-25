@@ -5,15 +5,16 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.function.Function;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBoatItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedSwordItem;
 
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.init.LOTRTags;
 import lotr.common.item.DaggerItem;
@@ -220,6 +221,9 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 
 		tag(Tags.Items.EGGS).add(ExtendedItems.DUCK_EGG.get());
 
+		tag(Tags.Items.CROPS).add(ExtendedItems.LEEK.get());
+		tag(ExtendedTags.Items.CROPS_LEEK).add(ExtendedItems.LEEK.get());
+
 		tag(ExtendedTags.Items.FLESH).add(Items.ROTTEN_FLESH, LOTRItems.MAN_FLESH.get());
 
 		tag(ExtendedTags.Items.FURS).add(ExtendedItems.BLACK_FUR.get(),ExtendedItems.GRAY_FUR.get(),ExtendedItems.SILVER_FUR.get(),ExtendedItems.WHITE_FUR.get());
@@ -276,7 +280,7 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 				}
 				continue;
 			}
-			if(item.get() instanceof DaggerItem) {
+			if(item.get() instanceof DaggerItem || item.get() instanceof ExtendedDaggerItem) {
 				continue;
 			}
 			if(item.get() instanceof ExtendedBowItem) {
@@ -306,40 +310,41 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 //		}
 
 		TreeMap<String, Item> weaponrackItems = new TreeMap<>();
-		for(Entry<String, RegistryObject<Item>> item : ExtendedItems.REGISTEREDITEMS.entrySet()) {
-			if((item.getValue().get() instanceof SpearItem) || (item.getValue().get() instanceof DaggerItem)
-					|| (item.getValue().get() instanceof ExtendedSwordItem)
-					|| (item.getValue().get() instanceof HammerItem)
-					|| (item.getValue().get() instanceof PickaxeItem)) {
-				weaponrackItems.put(item.getKey(), item.getValue().get());
+		for(RegistryObject<Item> item : ExtendedItems.ITEMS.getEntries()) {
+			if(item.get() instanceof SpearItem || item.get() instanceof DaggerItem
+				|| item.get() instanceof ExtendedDaggerItem
+				|| item.get() instanceof ExtendedSwordItem
+				|| item.get() instanceof HammerItem
+				|| item.get() instanceof PickaxeItem) {
+				weaponrackItems.put(item.getId().toString(), item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof ShovelItem) {
-				weaponrackItems.put(item.getKey(), item.getValue().get());
+			if(item.get() instanceof ShovelItem) {
+				weaponrackItems.put(item.getId().toString(), item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof AxeItem) {
-				weaponrackItems.put(item.getKey(), item.getValue().get());
+			if(item.get() instanceof AxeItem) {
+				weaponrackItems.put(item.getId().toString(), item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof LOTRHoeItem) {
-				weaponrackItems.put(item.getKey(), item.getValue().get());
+			if(item.get() instanceof LOTRHoeItem) {
+				weaponrackItems.put(item.getId().toString(), item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedChiselItem) {
-				weaponrackItems.put(item.getKey(), item.getValue().get());
+			if(item.get() instanceof ExtendedChiselItem) {
+				weaponrackItems.put(item.getId().toString(), item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedCommandHornItem) {
-				weaponrackItems.put(item.getKey(), item.getValue().get());
+			if(item.get() instanceof ExtendedCommandHornItem) {
+				weaponrackItems.put(item.getId().toString(), item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedBrandingIronItem) {
-				weaponrackItems.put(item.getKey(), item.getValue().get());
+			if(item.get() instanceof ExtendedBrandingIronItem) {
+				weaponrackItems.put(item.getId().toString(), item.get());
 				continue;
 			}
-			if(item.getValue().get() instanceof ExtendedBoatItem) {
-				tag(ItemTags.BOATS).add(item.getValue().get());
+			if(item.get() instanceof ExtendedBoatItem) {
+				tag(ItemTags.BOATS).add(item.get());
 				continue;
 			}
 		}

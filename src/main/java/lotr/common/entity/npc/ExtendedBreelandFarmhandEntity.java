@@ -1,0 +1,51 @@
+package lotr.common.entity.npc;
+
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming.ExtendedFarmingGoalHolder;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.farming.ExtendedFarmingGoalHolder.FarmingType;
+
+import lotr.common.init.LOTRItems;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
+import net.minecraft.world.World;
+
+public class ExtendedBreelandFarmhandEntity extends BreeManEntity implements ExtendedINPCEntitySettings, ExtendedIFarmhand {
+	private ExtendedFarmingGoalHolder farmGoals;
+
+    public ExtendedBreelandFarmhandEntity(EntityType<? extends BreeManEntity> type, World w) {
+        super(type, w);
+    }
+
+    public static AttributeModifierMap.MutableAttribute createAttributes() {
+        return BreeManEntity.regAttrs();
+    }
+
+	@Override
+	protected void addNPCAI() {
+		super.addNPCAI();
+		this.goalSelector.addGoal(3, farmGoals = new ExtendedFarmingGoalHolder(this, FarmingType.GENERIC, 1.0D).standardOrder());
+	}
+
+	@Override
+	public ExtendedFarmingGoalHolder getFarmingGoals() {
+		return farmGoals;
+	}
+
+    @Override
+    public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
+        spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
+		if(this.random.nextInt(5)==0) {
+	        npcItemsInv.setMeleeWeapon(new ItemStack(LOTRItems.BRONZE_HOE.get()));
+		}else {
+	        npcItemsInv.setMeleeWeapon(new ItemStack(Items.IRON_HOE));
+		}
+        npcItemsInv.setIdleItemsFromMeleeWeapons();
+        return spawnData;
+    }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:ranger",
+  "pattern": [
+    " X#",
+    "X #",
+    " X#"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:bowstring"
+    },
+    "X": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "lotrextended:ranger_bow"
+  }
+}

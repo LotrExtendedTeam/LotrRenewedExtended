@@ -1,0 +1,207 @@
+{
+  "id": "lotrextended:dunlending_farmer",
+  "tradingAlignmentRequired": 0,
+  "minimumTradesOffered": 3,
+  "maximumAdditionalTradesOffered": 6,
+  "shouldRefreshTrades": true,
+  "refreshTradesAtValue": 5000,
+  "lockTicksAfterRefresh": 6000,
+  "buyFromPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:bone_meal",
+        "averageCost": 1,
+        "count": 6
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:stone_hoe",
+        "averageCost": 1,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:bronze_hoe",
+        "averageCost": 6,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:iron_hoe",
+        "averageCost": 8,
+        "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:bucket",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:water_bucket",
+        "averageCost": 4
+      }
+    }
+  ],
+  "sellToPlayer": [
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:blueberry",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:blackberry",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:cranberry",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:elderberry",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:raspberry",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:sweet_berries",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:carrot",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lettuce",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:potato",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:leek",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:hay_block",
+        "averageCost": 12
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:lettuce",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:potato",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:wheat_seeds",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:wheat",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:apple",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "minecraft:apple",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotr:green_apple",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:conker",
+        "averageCost": 1
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:roasted_chestnut",
+        "averageCost": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:branding_iron",
+        "averageCost": 25,
+        "nbt": "{Damage:0}"
+      }
+    }
+  ]
+}

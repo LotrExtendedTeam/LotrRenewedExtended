@@ -11,12 +11,22 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 public abstract class AbstractExtendedOptionsScreen extends ExtendedBasicAbstractScreen{
 	private final SettingsPage currentPage;
-	public static int option = 0;
 	public AbstractExtendedOptionsScreen(ITextComponent pTitle, SettingsPage pCurrentPage) {
 		super(pTitle, 200, 256);
 		this.currentPage = pCurrentPage;
 	}
 
+	public boolean hasCheatsEnabled() {
+		boolean hasCheatsEnabled = false;
+		if (this.minecraft.getSingleplayerServer() != null) {
+		    hasCheatsEnabled = this.minecraft.getSingleplayerServer().isSingleplayerOwner(this.minecraft.player.getGameProfile()) 
+		            && this.minecraft.getSingleplayerServer().getWorldData().getAllowCommands()
+		            || this.minecraft.getSingleplayerServer().getPlayerList().isAllowCheatsForAllPlayers();
+		} else {
+			hasCheatsEnabled = this.minecraft.player.hasPermissions(2);
+		}
+		return hasCheatsEnabled;
+	}
 	@Override
 	public void init() {
 		super.init();
@@ -36,9 +46,7 @@ public abstract class AbstractExtendedOptionsScreen extends ExtendedBasicAbstrac
 				return AbstractExtendedOptionsScreen.this.currentPage==SettingsPage.CLIENT;
 			}
 		});
-		boolean showAdmin=false;
-		if ((this.minecraft.hasSingleplayerServer() && this.minecraft.getSingleplayerServer().getPlayerList().isAllowCheatsForAllPlayers())
-			|| this.minecraft.player.hasPermissions(2)) {
+		if (hasCheatsEnabled()) {
 			this.addButton(new ExtendedColorChangingButton(Math.max(0, this.leftPos - 140), this.topPos + 40 + (this.imageHeight + 20) / 4, 100, 20, 
 				new TranslationTextComponent("gui.lotrextended.serversettings.button"), 
 				button -> {
@@ -64,17 +72,17 @@ public abstract class AbstractExtendedOptionsScreen extends ExtendedBasicAbstrac
 			});
 		}
 		this.addButton(new ExtendedColorChangingButton(Math.max(0, this.leftPos - 140), this.topPos + 60 + (this.imageHeight + 20) / 4, 100, 20, 
-			new TranslationTextComponent("Wiki Stuff"), 
+			new TranslationTextComponent("Development"), 
 			button -> {
-				this.minecraft.setScreen(new ExtendedWikiGenScreen());
+				this.minecraft.setScreen(new ExtendedDevelopmentScreen());
 			}, 0.13f, 0.92f, 0.71f)  {
 			@Override
 			public boolean setColor(){
-				return AbstractExtendedOptionsScreen.this.currentPage==SettingsPage.WIKI;
+				return AbstractExtendedOptionsScreen.this.currentPage==SettingsPage.DEVELOPMENT;
 			}
 		});
 	}
 	public enum SettingsPage {
-		CLIENT, SERVER, WIKI, WORLDRESET
+		CLIENT, SERVER, DEVELOPMENT
 	}
 }

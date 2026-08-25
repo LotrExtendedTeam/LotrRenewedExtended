@@ -26,28 +26,19 @@ public class ExtendedRespawnerModel extends ExtendedNonLivingModel<ExtendedRespa
 
 	@Override
 	public void renderExtendedToBuffer(ExtendedRespawnerEntity entity, MatrixStack matrixStack, IVertexBuilder buffer, float ageInTicks, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-		matrixStack.pushPose();
 		if (entity != null) {
-			//float f = 0.53125F;
-			//float f1 = Math.max(entity.getBbWidth(), entity.getBbHeight());
-			//if ((double)f1 > 1.0D) {
-			//	f /= f1;
-			//}
-
-			//matrixStack.translate(0.0D, (double)0.4F, 0.0D);
+			matrixStack.pushPose();
+			//matrixStack.translate(0.0D, 1F, 0.0D);
 			matrixStack.mulPose(Vector3f.YP.rotationDegrees((float)MathHelper.lerp(ageInTicks, entity.spinO, entity.spin) * 10.0F));
-			//matrixStack.translate(0.0D, (double)-0.2F, 0.0D);
-			//matrixStack.mulPose(Vector3f.XP.rotationDegrees(-30.0F));
-			float scale = scale(entity.getTickpercentage(), 1.0F, 1200.0F, 0.1F, 0.9F);
-			if(scale >0.9F) {
-				matrixStack.scale(0.9F, 0.9F, 0.9F);
-			}else if(scale <0.1F) {
-				matrixStack.scale(0.1F, 0.1F, 0.1F);
+			float scale = scale(entity.isRespawnerTicking() ? entity.getTickpercentage() : 12000, 1.0F, 1200.0F, 0.1F, 0.9F);
+			scale = MathHelper.clamp(scale, 0.1F, 0.9F);
+			matrixStack.scale(scale, scale, scale);
+			if(entity.getTickpercentage()>0) {
+				coin.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 			}else {
-				matrixStack.scale(scale, scale, scale);
+				coin.render(matrixStack, buffer, packedLight, packedOverlay, red, green*0.3F, blue*0.3F, alpha);
 			}
+			matrixStack.popPose();
 		}
-		coin.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-		matrixStack.popPose();
 	}
 }

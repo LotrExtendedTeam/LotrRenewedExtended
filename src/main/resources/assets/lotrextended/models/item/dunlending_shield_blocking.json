@@ -1,0 +1,31 @@
+{
+	"parent": "lotr:item/dunlending_shield",
+	"overrides": [
+		{
+			"predicate": {
+				"blocking": 1
+			},
+			"model": "lotr:item/dunlending_shield_blocking"
+		}
+	],
+	"display": {
+	"thirdperson_righthand": {
+			"rotation": [36, -38, 4],
+			"translation": [1.25, 5.5, 3.75],
+			"scale": [0.75, 0.75, 0.75]
+		},
+	"thirdperson_lefthand": {
+			"rotation": [36, -38, 4],
+			"translation": [1.25, 5.5, 3.75],
+			"scale": [0.75, 0.75, 0.75]
+		},
+	"firstperson_righthand": {
+			"rotation": [0, -10, -2],
+			"translation": [-4, 3, -1.75]
+		},
+	"firstperson_lefthand": {
+			"rotation": [0, -10, -2],
+			"translation": [-4, 3, -1.75]
+		}
+	}
+}

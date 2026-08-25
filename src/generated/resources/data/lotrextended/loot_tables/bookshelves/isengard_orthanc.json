@@ -2,7 +2,7 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -107,6 +107,51 @@
             }
           ],
           "name": "lotr:red_book"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotrextended:artisan_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotrextended:combat_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotrextended:smith_tome"
         }
       ],
       "conditions": [
@@ -123,7 +168,7 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -153,7 +198,7 @@
               }
             }
           ],
-          "name": "lotr:angmar_banner_pattern"
+          "name": "lotrextended:angmar_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -168,7 +213,7 @@
               }
             }
           ],
-          "name": "lotr:dale_banner_pattern"
+          "name": "lotrextended:dale_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -183,7 +228,7 @@
               }
             }
           ],
-          "name": "lotr:dol_amroth_banner_pattern"
+          "name": "lotrextended:dol_amroth_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -198,7 +243,7 @@
               }
             }
           ],
-          "name": "lotr:dol_guldur_banner_pattern"
+          "name": "lotrextended:dol_guldur_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -213,7 +258,7 @@
               }
             }
           ],
-          "name": "lotr:dorwinion_banner_pattern"
+          "name": "lotrextended:dorwinion_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -228,7 +273,7 @@
               }
             }
           ],
-          "name": "lotr:dunland_banner_pattern"
+          "name": "lotrextended:dunland_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -243,7 +288,7 @@
               }
             }
           ],
-          "name": "lotr:gondor_banner_pattern"
+          "name": "lotrextended:gondor_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -258,7 +303,7 @@
               }
             }
           ],
-          "name": "lotr:isengard_banner_pattern"
+          "name": "lotrextended:isengard_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -273,7 +318,7 @@
               }
             }
           ],
-          "name": "lotr:lindon_banner_pattern"
+          "name": "lotrextended:lindon_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -288,7 +333,7 @@
               }
             }
           ],
-          "name": "lotr:lothlorien_banner_pattern"
+          "name": "lotrextended:lothlorien_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -303,7 +348,7 @@
               }
             }
           ],
-          "name": "lotr:mordor_banner_pattern"
+          "name": "lotrextended:mordor_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -318,7 +363,7 @@
               }
             }
           ],
-          "name": "lotr:rivendell_banner_pattern"
+          "name": "lotrextended:rivendell_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -333,7 +378,7 @@
               }
             }
           ],
-          "name": "lotr:rohan_banner_pattern"
+          "name": "lotrextended:rohan_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -348,7 +393,7 @@
               }
             }
           ],
-          "name": "lotr:woodland_realm_banner_pattern"
+          "name": "lotrextended:woodland_realm_banner_pattern"
         }
       ],
       "conditions": [

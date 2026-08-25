@@ -45,8 +45,10 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 
 	// Vanilla patches
 	public static ForgeConfigSpec.BooleanValue enableVanillaEnchanting;
+	public static ForgeConfigSpec.BooleanValue removeVanillaEnchanting;
 	public static ForgeConfigSpec.BooleanValue enableVanillaXp;
 	public static ForgeConfigSpec.BooleanValue enableExtendedModifiers;
+	public static ForgeConfigSpec.BooleanValue removeExtendedModifiers;
 
 	// Special Settings
 	public static ForgeConfigSpec.BooleanValue enableDevMode;
@@ -111,8 +113,10 @@ public class ExtendedServerConfig extends ExtendedBaseConfigHelper{
 
 		builder.push("Modifiers");
 		enableVanillaEnchanting = createBooleanValue(builder, "enableVanillaEnchanting", false, false, "Enables Vanilla's enchanting system");
+		removeVanillaEnchanting = createBooleanValue(builder, "removeVanillaEnchanting", false, false, "Auto-remove vanilla enchants from items, overrided by enableVanillaEnchanting");
 		enableVanillaXp = createBooleanValue(builder, "enableVanillaXp", false, false, "Enables Xp orbs and bar in Middle Earth");
 		enableExtendedModifiers = createBooleanValue(builder, "enableExtendedModifiers", true, false, "Enables Extended's modifier system");
+		removeExtendedModifiers = createBooleanValue(builder, "removeExtendedModifiers", false, false, "Auto-remove Extended modifiers from items, overrided by enableExtendedModifiers");
 		builder.pop();
 
 		builder.push("Special settings");

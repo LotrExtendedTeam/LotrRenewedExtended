@@ -53,7 +53,7 @@ public class MixinLOTRTickHandlerClientJavaPatch {
 					if (objectAsListener instanceof IResourceManagerReloadListener)
 						((IResourceManagerReloadListener) objectAsListener).onResourceManagerReload(resMgr);
 				}
-				ExtendedLog.info("Java9+ Successfully replaced %s instance with subclass instance", loggingNameOfField );
+				ExtendedLog.info("Java9+ Successfully replaced {} instance with subclass instance", loggingNameOfField );
 			}
 		}
 		else if("WorldRenderer".equals(loggingNameOfField)) {
@@ -68,11 +68,11 @@ public class MixinLOTRTickHandlerClientJavaPatch {
 					if (objectAsListener instanceof IResourceManagerReloadListener)
 						((IResourceManagerReloadListener) objectAsListener).onResourceManagerReload(resMgr);
 				}
-				ExtendedLog.info("Java9+ Successfully replaced %s instance with subclass instance", loggingNameOfField );
+				ExtendedLog.info("Java9+ Successfully replaced {} instance with subclass instance", loggingNameOfField );
 			}
 		}
 		else {
-			ExtendedLog.error("Java9+ Failed to set new %s", loggingNameOfField );
+			ExtendedLog.error("Java9+ Failed to set new {}", loggingNameOfField );
 			throw new RuntimeException("Recieved a type :"+loggingNameOfField+" not handlable by MixinLOTRTickHandlerClientJavaPatch, PLEASE REPORT THIS TO THE DEVS!");
 		}
 	}

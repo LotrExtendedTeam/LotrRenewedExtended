@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:drystone"
+  },
+  "result": "lotrextended:cobbled_drystone",
+  "count": 1
+}

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:cracked_stone_pillar"
-  },
-  "result": "lotr:cracked_stone_pillar_slab",
-  "count": 1
-}

@@ -2,18 +2,22 @@ package com.github.maximuslotro.lotrrextended.common.enums;
 
 import java.util.function.Supplier;
 
-import lotr.common.init.ExtendedItems;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
+import net.minecraftforge.common.Tags.Items;
 
 public enum ExtendedBowMaterial {
+	VANILLA(385, 20, 1F, 1, () -> Ingredient.of(Items.STRING)),
 	GENERIC(400, 20, 1.08F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	ORC(600, 20, 1.125F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	GUNDABAD_URUK(750, 30, 1.2F, 10, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	RANGER_NORTH(525, 20, 1.05F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	DUNEDAIN_NORTH(600, 20, 1.15F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
 	RIVENDELL(1050, 16, 1.25F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
-	LINDON(1050, 16, 1.25F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get()));
+	LINDON(1050, 16, 1.25F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get())),
+	ROHAN(525, 20, 1.04F, 12, () -> Ingredient.of(ExtendedItems.BOWSTRING.get()));
 
 	private final int bowDurability;
 	// Number of ticks needed to draw bow to full power, default is 20 ticks (1 second)

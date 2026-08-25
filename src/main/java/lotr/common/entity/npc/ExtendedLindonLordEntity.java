@@ -1,10 +1,10 @@
 package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -19,9 +19,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-import java.util.List;
-
-public class ExtendedLindonLordEntity extends LindonWarriorEntity  implements ExtendedNPCEntitySettings, ExtendedCaptainEntity {
+public class ExtendedLindonLordEntity extends LindonWarriorEntity  implements ExtendedINPCEntitySettings, ExtendedICaptainEntity {
 
 	public ExtendedLindonLordEntity(EntityType<? extends ExtendedLindonLordEntity> type, World w) {
 		super(type, w);
@@ -60,12 +58,7 @@ public class ExtendedLindonLordEntity extends LindonWarriorEntity  implements Ex
 	}
 
 	@Override
-	public List<ResourceLocation> getHireableProfiles() {
-		return java.util.Arrays.asList(ExtendedHiredUnitTypes.LINDON_ELF, ExtendedHiredUnitTypes.LINDON_WARRIOR);
-	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
+	public ResourceLocation getCaptainProfile() {
+		return ExtendedCaptainTypes.LINDON_LORD;
 	}
 }

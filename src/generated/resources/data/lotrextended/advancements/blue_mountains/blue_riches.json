@@ -2,7 +2,7 @@
   "parent": "lotrextended:blue_mountains/firebeards_and_broadbeams",
   "display": {
     "icon": {
-      "item": "lotr:silver_coin_one"
+      "item": "lotrextended:silver_coin_one"
     },
     "title": {
       "translate": "advancements.lotrextended.blue_mountains.blue_riches.title"

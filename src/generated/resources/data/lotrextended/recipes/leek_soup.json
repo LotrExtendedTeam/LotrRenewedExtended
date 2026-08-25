@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LPL",
+    " B "
+  ],
+  "key": {
+    "L": {
+      "tag": "forge:crops/wheat"
+    },
+    "P": {
+      "tag": "forge:crops/potato"
+    },
+    "B": {
+      "item": "minecraft:bowl"
+    }
+  },
+  "result": {
+    "item": "lotrextended:banana_bread"
+  }
+}

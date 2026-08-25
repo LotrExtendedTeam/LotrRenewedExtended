@@ -60,22 +60,22 @@ public class ExtendedServerHiredUnitProfileManager extends ReloadListener<Map<Re
 				ExtendedServerHiredUnitProfile hiredUnitProfile = deserialize(GSON, spawnListJson, ExtendedServerHiredUnitProfile.class);
 				if (hiredUnitProfile != null) {
 					if(!hiredUnitProfile.getId().equals(spawnName)) {
-						ExtendedLog.warn("Loaded a Hired Unit Profile that has a diffrent file id and file name, THEY SHOULD BE THE SAME!, CHANGING TO FILE NAME ID! %1", spawnName);
+						ExtendedLog.warn("Loaded a Hired Unit Profile that has a diffrent file id and file name, THEY SHOULD BE THE SAME!, CHANGING TO FILE NAME ID! {}", spawnName);
 						hiredUnitProfile = new ExtendedServerHiredUnitProfile(spawnName, hiredUnitProfile.stringsAreTranslated(), hiredUnitProfile.getEntityUnitTitle(), 
 							hiredUnitProfile.getEntityUnitShorthandName(), hiredUnitProfile.getEntityUnitTypeName(), hiredUnitProfile.getEquipmentPools(),
-							hiredUnitProfile.getHiringCost(), hiredUnitProfile.isHiringRequiresPledge(), hiredUnitProfile.getHiringAlignmentRequired(), hiredUnitProfile.getAttackType(), hiredUnitProfile.getUnitEntityType());
+							hiredUnitProfile.getHiringCost(), hiredUnitProfile.isHiringRequiresPledge(), hiredUnitProfile.getHiringAlignmentRequired(), hiredUnitProfile.getUnitType(), hiredUnitProfile.getUnitEntityType());
 					}
 					builder.put(spawnName, hiredUnitProfile);
 				}
 			} catch (Exception exception) {
-				ExtendedLog.error("Failed to load Hired Unit Profile %s from file", spawnName);
+				ExtendedLog.error("Failed to load Hired Unit Profile {} from file", spawnName);
 				exception.printStackTrace();
 			}
 
 		});
 		builder.put(LotrExtendedMod.EMPTY, ExtendedServerHiredUnitProfile.EMPTY);
 		this.hiredUnitProfiles = builder.build();
-		ExtendedLog.info("Loaded Hired Unit Profile from Json - %s hiredUnitProfiles", hiredUnitProfiles.size()-1);
+		ExtendedLog.info("Loaded Hired Unit Profile from Json - {} hiredUnitProfiles", hiredUnitProfiles.size()-1);
 	}
 
 	/**
@@ -116,15 +116,7 @@ public class ExtendedServerHiredUnitProfileManager extends ReloadListener<Map<Re
 		return map;
 	}
 
-	public static String serialize(Gson gson, ExtendedServerHiredUnitProfile data) {
-		return gson.toJson(data);
-	}
-
 	public static <T> T deserialize(Gson gson, JsonElement data, Class<T> classToConvert) {
-		return gson.fromJson(data, classToConvert);
-	}
-
-	public static <T> T deserialize(Gson gson, String data, Class<T> classToConvert) {
 		return gson.fromJson(data, classToConvert);
 	}
 }

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "lotrextended:amber_ore"
+  },
+  "result": "lotrextended:amber",
+  "experience": 0.9,
+  "cookingtime": 100
+}

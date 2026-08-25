@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:stripped_chestnut_wood_stairs"
+    ]
+  },
+  "criteria": {
+    "has_stripped_chestnut_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:stripped_chestnut_wood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:stripped_chestnut_wood_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stripped_chestnut_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

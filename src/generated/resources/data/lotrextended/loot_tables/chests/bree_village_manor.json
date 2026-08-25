@@ -2,7 +2,7 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -77,7 +77,7 @@
               }
             }
           ],
-          "name": "lotr:silver_coin_one"
+          "name": "lotrextended:silver_coin_one"
         },
         {
           "type": "minecraft:item",
@@ -92,7 +92,7 @@
               }
             }
           ],
-          "name": "lotr:silver_coin_ten"
+          "name": "lotrextended:silver_coin_ten"
         },
         {
           "type": "minecraft:item",
@@ -107,7 +107,7 @@
               }
             }
           ],
-          "name": "lotr:silver_coin_hundred"
+          "name": "lotrextended:silver_coin_hundred"
         },
         {
           "type": "minecraft:item",
@@ -118,7 +118,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:bree_banner_pattern"
+          "name": "lotrextended:bree_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",

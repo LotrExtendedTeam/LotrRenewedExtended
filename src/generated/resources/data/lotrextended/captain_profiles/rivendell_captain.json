@@ -1,0 +1,9 @@
+{
+  "id": "lotrextended:rivendell_captain",
+  "alignmentRequired": 300,
+  "unitProfileIDs": [
+    "lotrextended:rivendell_elf",
+    "lotrextended:rivendell_warrior",
+    "lotrextended:rivendell_guard"
+  ]
+}

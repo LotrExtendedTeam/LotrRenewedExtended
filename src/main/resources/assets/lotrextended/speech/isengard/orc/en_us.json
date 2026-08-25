@@ -1,0 +1,73 @@
+{
+  "parent": "lotrextended:isengard/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "Those stinkin Uruk-hai think they're better than us!",
+        "Those Uruks run in the sun like its nothing, skai!",
+        "I won't take orders from any Uruk rats! Skai!",
+        "Agh! Curse those filthy Uruks!",
+        "Sharku has búbhosh agh búrz gûldur!",
+        "The lands will burn in ghâsh! Yes! Yes! The orc will reign!",
+        "Stupid horse-men, thrakatuluk u bagronk!",
+        "I serve sharkû-goth!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day",
+        "weather": "rain | snow | ash | sandstorm"
+      },
+      "lines": [
+        "The clouds cover the sun!",
+        "No more cowering from that cursed glare",
+        "Move, you maggots! The sun can't bite us through those clouds.",
+        "By the white hand! The skies have been covered!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<solder"
+      },
+      "lines": [
+        "Do you serve sharkû-goth, maggot?",
+        "You look like you belong in the bagronk!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">corporal"
+      },
+      "lines": [
+        "Any orders from sharkû-goth?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "day",
+        "biome": "#foreign"
+      },
+      "lines": [
+        "Ghâsh! Ghâsh! It feels like ghâsh! Curse the light!",
+        "How can those accursed Uruks handle this Sun?",
+        "Skai! I need gimbat burzum!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "day_or_night": "night"
+      },
+      "lines": [
+        "Yes! Yes! Finally burzum-ishi!" 
+      ]
+    }
+  ]
+}

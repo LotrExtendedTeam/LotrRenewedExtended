@@ -2,6 +2,7 @@ package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBanditEscapeGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedBanditFollowAndStealGoal;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedItemStackUtils;
 
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
@@ -10,7 +11,6 @@ import lotr.common.entity.npc.ai.goal.TalkToCurrentGoal;
 import lotr.common.entity.npc.ai.goal.WatchSunriseSunsetGoal;
 import lotr.common.entity.npc.data.NPCFoodPool;
 import lotr.common.entity.npc.data.NPCFoodPools;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -35,7 +35,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExtendedBanditEntity extends ManEntity implements ExtendedNPCEntitySettings {
+public class ExtendedBanditEntity extends ManEntity implements ExtendedINPCEntitySettings {
     private final ItemStackHandler inventory = new ItemStackHandler(9); // 9 slots
     private final List<ItemStack> stolenItems = new ArrayList<>();
     private boolean hasStolen = false;
@@ -153,9 +153,4 @@ public class ExtendedBanditEntity extends ManEntity implements ExtendedNPCEntity
     public static MutableAttribute createAttributes() {
         return AbstractMannishEntity.regAttrs().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.22D);
     }
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }

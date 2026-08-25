@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.blue_mountains_dwarf",
-    "attack_type": "melee"
+    "entity_unit_type": "entity.lotr.blue_mountains_dwarf"
   },
   "hiring": {
     "hiringCost": 20,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 200
   },
+  "attack_type": "melee",
   "equipmentPools": {
     "helmets": [
       {
@@ -78,7 +78,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:blue_dwarven_mattock",
+          "item": "lotrextended:blue_dwarven_mattock",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       }

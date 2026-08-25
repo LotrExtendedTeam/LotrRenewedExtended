@@ -2,7 +2,7 @@
   "parent": "lotrextended:angmar/forth_to_ruin",
   "display": {
     "icon": {
-      "item": "lotr:morgul_vassal_chestplate",
+      "item": "lotrextended:morgul_vassal_chestplate",
       "nbt": "{Damage:0}"
     },
     "title": {
@@ -23,16 +23,16 @@
       "conditions": {
         "items": [
           {
-            "item": "lotr:morgul_vassal_helmet"
+            "item": "lotrextended:morgul_vassal_helmet"
           },
           {
-            "item": "lotr:morgul_vassal_chestplate"
+            "item": "lotrextended:morgul_vassal_chestplate"
           },
           {
-            "item": "lotr:morgul_vassal_leggings"
+            "item": "lotrextended:morgul_vassal_leggings"
           },
           {
-            "item": "lotr:morgul_vassal_boots"
+            "item": "lotrextended:morgul_vassal_boots"
           }
         ]
       }

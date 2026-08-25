@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.rivendell_elf",
-    "attack_type": "ranged"
+    "entity_unit_type": "entity.lotr.rivendell_elf"
   },
   "hiring": {
     "hiringCost": 30,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 300
   },
+  "attack_type": "ranged",
   "equipmentPools": {
     "helmets": [
       {
@@ -87,14 +87,14 @@
       {
         "weight": 5,
         "equipmentItem": {
-          "item": "lotr:rivendell_bow",
+          "item": "lotrextended:rivendell_bow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:longbow",
+          "item": "lotrextended:longbow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       }

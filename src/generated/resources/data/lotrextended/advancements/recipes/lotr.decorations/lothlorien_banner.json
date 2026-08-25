@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:lothlorien_banner"
+    ]
+  },
+  "criteria": {
+    "has_mallorn_stick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mallorn_stick"
+          }
+        ]
+      }
+    },
+    "has_mallorn_plank": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mallorn_planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:lothlorien_banner"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mallorn_stick",
+      "has_mallorn_plank",
+      "has_the_recipe"
+    ]
+  ]
+}

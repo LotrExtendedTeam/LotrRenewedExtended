@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:flowery_rhunic_brick"
+    ]
+  },
+  "criteria": {
+    "has_orange_chrysanthemum": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:orange_chrysanthemum"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:flowery_rhunic_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_orange_chrysanthemum",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -156,6 +156,21 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 60,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 4.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotrextended:leek"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 65,
           "functions": [
             {
@@ -230,7 +245,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:leather_hat"
+          "name": "lotrextended:leather_hat"
         },
         {
           "type": "minecraft:item",

@@ -34,7 +34,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
 
-public class ExtendedTolkienEntity extends ManEntity implements ExtendedNPCEntitySettings {
+public class ExtendedTolkienEntity extends ManEntity implements ExtendedINPCEntitySettings {
 	public ExtendedTolkienEntity(EntityType<ExtendedTolkienEntity> type, World world) {
 		super(type, world);
 	}
@@ -109,7 +109,7 @@ public class ExtendedTolkienEntity extends ManEntity implements ExtendedNPCEntit
 			float angle = world.random.nextFloat() * 360.0F;
 			int x = MathHelper.floor(player.getX()) + MathHelper.floor((MathHelper.sin(angle) * (24 + world.random.nextInt(20))));
 			int z = MathHelper.floor(player.getZ()) + MathHelper.floor((MathHelper.cos(angle) * (24 + world.random.nextInt(20))));
-			int y = world.getHeight(Heightmap.Type.WORLD_SURFACE, x, z);
+			int y = world.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
 			BlockPos pos = new BlockPos(x, y, z);
 
 			// if the type is invalid try again but add a few attempts
@@ -130,10 +130,5 @@ public class ExtendedTolkienEntity extends ManEntity implements ExtendedNPCEntit
 			}
 		}
 		return spawned;
-	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
 	}
 }

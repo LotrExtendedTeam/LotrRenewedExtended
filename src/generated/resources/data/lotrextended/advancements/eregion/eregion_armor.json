@@ -2,7 +2,7 @@
   "parent": "lotrextended:eregion/faded_splendor",
   "display": {
     "icon": {
-      "item": "lotr:eregion_helmet",
+      "item": "lotrextended:eregion_helmet",
       "nbt": "{Damage:0}"
     },
     "title": {
@@ -23,16 +23,16 @@
       "conditions": {
         "items": [
           {
-            "item": "lotr:eregion_helmet"
+            "item": "lotrextended:eregion_helmet"
           },
           {
-            "item": "lotr:eregion_chestplate"
+            "item": "lotrextended:eregion_chestplate"
           },
           {
-            "item": "lotr:eregion_leggings"
+            "item": "lotrextended:eregion_leggings"
           },
           {
-            "item": "lotr:eregion_boots"
+            "item": "lotrextended:eregion_boots"
           }
         ]
       }

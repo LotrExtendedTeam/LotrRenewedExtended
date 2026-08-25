@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:stripped_ebony_log"
+    }
+  },
+  "result": {
+    "item": "lotrextended:stripped_ebony_wood",
+    "count": 3
+  }
+}

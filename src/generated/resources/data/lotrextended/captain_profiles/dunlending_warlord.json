@@ -1,0 +1,11 @@
+{
+  "id": "lotrextended:dunlending_warlord",
+  "alignmentRequired": 100,
+  "unitProfileIDs": [
+    "lotrextended:dunlending",
+    "lotrextended:dunlending_warrior",
+    "lotrextended:dunlending_bowman",
+    "lotrextended:dunlending_axe_thrower",
+    "lotrextended:dunlending_berserker"
+  ]
+}

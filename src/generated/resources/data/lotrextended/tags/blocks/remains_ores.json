@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "lotr:remains_ore_dwarf",
-    "lotr:remains_ore_elf",
-    "lotr:remains_ore_man",
-    "lotr:remains_ore_orc"
+    "lotrextended:remains_ore_dwarf",
+    "lotrextended:remains_ore_elf",
+    "lotrextended:remains_ore_man",
+    "lotrextended:remains_ore_orc"
   ]
 }

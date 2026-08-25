@@ -2,7 +2,7 @@
   "parent": "lotrextended:mirkwood/stay_on_the_path",
   "display": {
     "icon": {
-      "item": "lotr:dol_guldur_chestplate",
+      "item": "lotrextended:dol_guldur_chestplate",
       "nbt": "{Damage:0}"
     },
     "title": {
@@ -23,16 +23,16 @@
       "conditions": {
         "items": [
           {
-            "item": "lotr:dol_guldur_helmet"
+            "item": "lotrextended:dol_guldur_helmet"
           },
           {
-            "item": "lotr:dol_guldur_chestplate"
+            "item": "lotrextended:dol_guldur_chestplate"
           },
           {
-            "item": "lotr:dol_guldur_leggings"
+            "item": "lotrextended:dol_guldur_leggings"
           },
           {
-            "item": "lotr:dol_guldur_boots"
+            "item": "lotrextended:dol_guldur_boots"
           }
         ]
       }

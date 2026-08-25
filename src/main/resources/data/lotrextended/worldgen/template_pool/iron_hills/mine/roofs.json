@@ -1,0 +1,33 @@
+{
+	"name": "lotrextended:iron_hills/mine/roofs",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:iron_hills/mine/iron_hills_mine_roof_1",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:iron_hills/mine/iron_hills_mine_roof_2",
+				"processors": "minecraft:empty"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:iron_hills/mine/iron_hills_mine_roof_3",
+				"processors": "minecraft:empty"
+			}
+		}
+	]
+}

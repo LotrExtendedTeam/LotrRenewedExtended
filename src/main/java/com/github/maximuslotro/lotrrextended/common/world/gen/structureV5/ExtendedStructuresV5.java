@@ -96,6 +96,12 @@ public class ExtendedStructuresV5 {
 
 	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> ISENGARD_GATEHOUSE = STRUCTURE_REGISTRY.register("isengard_gatehouse", () -> new ExtendedStructureIsengardGatehouse(ExtendedStructureType.ISENGARD));
 	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> ORTHANC = STRUCTURE_REGISTRY.register("orthanc", () -> new ExtendedStructureOrthanc(ExtendedStructureType.ISENGARD));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> ISENGARD_CAMP = STRUCTURE_REGISTRY.register("isengard_camp", () -> new ExtendedIsengardStructure(ExtendedStructureType.ISENGARD));
+
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> DUNLAND_HILLFORT = STRUCTURE_REGISTRY.register("dunland_hillfort", () -> new ExtendedCheckAreaCrossStructure(ExtendedStructureType.DUNLAND));
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> DUNLAND_VILLAGE = STRUCTURE_REGISTRY.register("dunland_village", () -> new ExtendedCheckAreaCrossStructure(ExtendedStructureType.DUNLAND));
+
+	public static final RegistryObject<Structure<ExtendedSinglePoolConfig>> IRON_HILLS_MINE = STRUCTURE_REGISTRY.register("iron_hills_mine", () -> new ExtendedCheckAreaChunkStructure(ExtendedStructureType.IRON_HILLS));
 
 	/**
 	 * Initializes and registers all custom structures with their generation parameters.
@@ -118,16 +124,16 @@ public class ExtendedStructuresV5 {
 		register(HOBBIT_TAVERN_SMALL.get(), true,      30, 15, 489984587);
 		register(HOBBIT_TAVERN_LARGE.get(), false,     50, 40, 230050245);
 		register(HOBBIT_WINDMILL.get(), true,          40, 20, 965983479);
-		register(RANGER_CAMP.get(), true,              55, 35, 6678446);
-		register(RANGER_ENCAMPMENT.get(), true,        60, 40, 232963172);
-		register(RANGER_FORT.get(), true,              56, 36, 213435145);
-		register(RANGER_HIDEOUT.get(), true,           50, 38, 75222251);
-		register(RANGER_WATCHTOWER.get(), true,        60, 38, 00246043);
-		register(RANGER_HOUSE_HIDEOUT.get(), true,     50, 35, 358719680);
-		register(RANGER_HOUSE_RUIN.get(), true,        52, 26, 34063920);
-		register(ARNOR_RUINS.get(), true,              29, 18, 365876386);
-		register(GUNDABAD_CAMP.get(), true,            45, 25, 967990477);
-		register(GUNDABAD_ENCAMPMENT.get(), true,      50, 35, 43757456);
+		register(RANGER_CAMP.get(), true,              55, 20, 6678446);
+		register(RANGER_ENCAMPMENT.get(), true,        60, 22, 232963172);
+		register(RANGER_FORT.get(), true,              56, 20, 213435145);
+		register(RANGER_HIDEOUT.get(), true,           50, 18, 75222251);
+		register(RANGER_WATCHTOWER.get(), true,        60, 22, 246043);
+		register(RANGER_HOUSE_HIDEOUT.get(), true,     50, 18, 358719680);
+		register(RANGER_HOUSE_RUIN.get(), true,        52, 18, 34063920);
+		register(ARNOR_RUINS.get(), true,              32, 10, 365876386);
+		register(GUNDABAD_CAMP.get(), true,            45, 15, 967990477);
+		register(GUNDABAD_ENCAMPMENT.get(), true,      50, 18, 43757456);
 		register(BARROW_DOWN_RUINS.get(), true,        7,  3,  45574576);
 		register(BARROW_DOWN_BARROWS.get(), true,      7,  3,  57854769);
 		register(BREE_HAMLET.get(), true,              40, 25, 57854769);
@@ -149,6 +155,10 @@ public class ExtendedStructuresV5 {
 		register(LINDON_HALL.get(), true,              80, 65, 356254478);
 		register(ISENGARD_GATEHOUSE.get(), false,      1,  0,  0);
 		register(ORTHANC.get(), false,                 1,  0,  0);
+		register(ISENGARD_CAMP.get(), true,            20, 10, 848458030);
+		register(DUNLAND_HILLFORT.get(), true,         40, 15, 3759009);
+		register(DUNLAND_VILLAGE.get(), true,          30, 10, 79907);
+		register(IRON_HILLS_MINE.get(), false,         30, 15, 984898);
 	}
 
 	/**

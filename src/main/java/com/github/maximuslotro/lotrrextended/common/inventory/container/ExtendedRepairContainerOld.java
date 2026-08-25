@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
@@ -15,7 +16,6 @@ import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import io.netty.buffer.Unpooled;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.ItemOwnership;
 import lotr.common.item.SmokingPipeItem;
@@ -58,7 +58,10 @@ import net.minecraftforge.common.Tags;
 /**
  * Based off of {@link RepairContainer}
  * Something is broken with the class in regards to saving old data using {@code lastCost} and {@code lastGemColoring} to try rectifying this
+ * 
+ * Un-used but kept as reference to pre-1.10.0 repair container logic
  * */
+@Deprecated
 public class ExtendedRepairContainerOld extends Container {
 
 	protected final CraftResultInventory resultSlots = new CraftResultInventory();

@@ -60,63 +60,63 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:diamond",
+        "item": "lotrextended:diamond",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:emerald",
+        "item": "lotrextended:emerald",
         "averageCost": 15
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:sapphire",
+        "item": "lotrextended:sapphire",
         "averageCost": 12
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:ruby",
+        "item": "lotrextended:ruby",
         "averageCost": 12
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:opal",
+        "item": "lotrextended:opal",
         "averageCost": 10
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:amber",
+        "item": "lotrextended:amber",
         "averageCost": 10
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:amethyst",
+        "item": "lotrextended:amethyst",
         "averageCost": 8
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:topaz",
+        "item": "lotrextended:topaz",
         "averageCost": 8
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:pearl",
+        "item": "lotrextended:pearl",
         "averageCost": 25
       }
     },
@@ -151,7 +151,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:cooked_duck",
+        "item": "lotrextended:cooked_duck",
         "averageCost": 3
       }
     },
@@ -239,14 +239,14 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:dwarven_marriage_ring",
+        "item": "lotrextended:dwarven_marriage_ring",
         "averageCost": 20
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:durin_banner_pattern",
+        "item": "lotrextended:durin_banner_pattern",
         "averageCost": 25
       }
     },
@@ -301,7 +301,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:dwarven_throwing_axe",
+        "item": "lotrextended:dwarven_throwing_axe",
         "averageCost": 15,
         "nbt": "{Damage:0}"
       }
@@ -405,7 +405,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:dwarven_boar_armor",
+        "item": "lotrextended:dwarven_boar_armor",
         "averageCost": 25
       }
     },
@@ -415,22 +415,22 @@
       "shouldTradePersist": false,
       "stacks": [
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"rangedKnockback2\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"rangedStrong3\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"toolSpeed4\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"toolSilk\"}"
         }
@@ -442,17 +442,17 @@
       "shouldTradePersist": false,
       "stacks": [
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"protectRanged2\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"strong3\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"toolSpeed3\"}"
         }
@@ -463,7 +463,7 @@
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
       "stack": {
-        "item": "lotr:modifier_scroll",
+        "item": "lotrextended:modifier_scroll",
         "averageCost": 150,
         "nbt": "{REScrollMod:\"toughness1\"}"
       }
@@ -479,9 +479,30 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:dwarven_mattock",
+        "item": "lotrextended:dwarven_mattock",
         "averageCost": 18,
         "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:combat_tome",
+        "averageCost": 50
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:artisan_tome",
+        "averageCost": 75
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:smith_tome",
+        "averageCost": 100
       }
     }
   ]

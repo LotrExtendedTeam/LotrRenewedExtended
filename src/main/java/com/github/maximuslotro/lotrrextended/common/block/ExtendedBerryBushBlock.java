@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.common.state.properties.ExtendedBlockStateProperties;
 
-import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
@@ -49,9 +48,9 @@ public class ExtendedBerryBushBlock extends SweetBerryBushBlock {
 			.harvestTool(ToolType.HOE)
 			.noCollission()
 			.noOcclusion()
-			.isRedstoneConductor(LOTRBlocks::posPredicateFalse)
-			.isSuffocating(LOTRBlocks::posPredicateFalse)
-			.isViewBlocking(LOTRBlocks::posPredicateFalse));
+			.isRedstoneConductor(ExtendedBlockParms::never)
+			.isSuffocating(ExtendedBlockParms::never)
+			.isViewBlocking(ExtendedBlockParms::never));
 		this.berryItem = berryItem;
 		this.berryHedgeBlock = berryHedgeBlock;
 		registerDefaultState(stateDefinition.any().setValue(AGE, 0).setValue(CLIPPED, false));
@@ -84,7 +83,7 @@ public class ExtendedBerryBushBlock extends SweetBerryBushBlock {
 
 	@Override
 	public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
-		return new ItemStack(berryItem.get());
+		return new ItemStack(getBerryItem());
 	}
 	@Override
 	protected boolean mayPlaceOn(BlockState p_200014_1_, IBlockReader p_200014_2_, BlockPos p_200014_3_) {
@@ -97,7 +96,7 @@ public class ExtendedBerryBushBlock extends SweetBerryBushBlock {
 	@Override
 	public void entityInside(BlockState pState, World pLevel, BlockPos pPos, Entity pEntity) {
 		if (pEntity instanceof LivingEntity && pEntity.getType() != EntityType.FOX && pEntity.getType() != EntityType.BEE) {
-	         pEntity.makeStuckInBlock(pState, new Vector3d((double)0.95F, 0.90D, (double)0.95F));
+			pEntity.makeStuckInBlock(pState, new Vector3d((double)0.95F, 0.90D, (double)0.95F));
 		}
 	}
 
@@ -111,11 +110,11 @@ public class ExtendedBerryBushBlock extends SweetBerryBushBlock {
 			return ActionResultType.sidedSuccess(world.isClientSide);
 		}
 		int i = blockState.getValue(AGE);
-		boolean flag = i == 3;
-		if (!flag && pPlayer.getItemInHand(hand).getItem() == Items.BONE_MEAL) {
+		boolean full = i == 3;
+		if (!full && pPlayer.getItemInHand(hand).getItem() == Items.BONE_MEAL) {
 			return ActionResultType.PASS;
-		} else if (i > 2) {
-			popResource(world, blockPos, new ItemStack(berryItem.get(), flag ? world.random.nextInt(3) + 1 : 0));
+		} else if (i > 1) {
+			popResource(world, blockPos, new ItemStack(getBerryItem(), 1 + world.random.nextInt(2) + (full ? 1 : 0)));
 			world.playSound(null, blockPos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
 			world.setBlock(blockPos, blockState.setValue(AGE, 1), 2);
 			return ActionResultType.sidedSuccess(world.isClientSide);

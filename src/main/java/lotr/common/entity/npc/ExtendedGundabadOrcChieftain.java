@@ -1,7 +1,6 @@
 package lotr.common.entity.npc;
 
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
-import lotr.common.init.ExtendedItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
@@ -16,12 +15,11 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-import java.util.List;
-
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
-public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity implements ExtendedCaptainEntity {
+public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity implements ExtendedICaptainEntity {
 
 	public ExtendedGundabadOrcChieftain(EntityType<? extends ExtendedGundabadOrcChieftain> type, World w) {
 		super(type, w);
@@ -62,10 +60,7 @@ public class ExtendedGundabadOrcChieftain extends ExtendedGundabadUrukEntity imp
 	}
 
 	@Override
-	public List<ResourceLocation> getHireableProfiles() {
-		return java.util.Arrays.asList(ExtendedHiredUnitTypes.GUNDABAD_ORC, 
-			ExtendedHiredUnitTypes.GUNDABAD_ORC_ARCHER,
-			ExtendedHiredUnitTypes.GUNDABAD_URUK, 
-			ExtendedHiredUnitTypes.GUNDABAD_URUK_ARCHER);
+	public ResourceLocation getCaptainProfile() {
+		return ExtendedCaptainTypes.GUNDABAD_CHIEFTAIN;
 	}
 }

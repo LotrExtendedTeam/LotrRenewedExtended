@@ -579,14 +579,14 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:chestnut_log",
+        "item": "lotrextended:chestnut_log",
         "averageCost": 3
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:chestnut_planks",
+        "item": "lotrextended:chestnut_planks",
         "averageCost": 3,
         "count": 4
       }
@@ -594,7 +594,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:chestnut_beam",
+        "item": "lotrextended:chestnut_beam",
         "averageCost": 3,
         "count": 3
       }
@@ -602,21 +602,21 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:chestnut_leaves",
+        "item": "lotrextended:chestnut_leaves",
         "averageCost": 3
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:chestnut_wood",
+        "item": "lotrextended:chestnut_wood",
         "averageCost": 4
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:chestnut_sapling",
+        "item": "lotrextended:chestnut_sapling",
         "averageCost": 6
       }
     },
@@ -667,14 +667,14 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:willow_log",
+        "item": "lotrextended:willow_log",
         "averageCost": 4
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:willow_planks",
+        "item": "lotrextended:willow_planks",
         "averageCost": 4,
         "count": 4
       }
@@ -682,7 +682,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:willow_beam",
+        "item": "lotrextended:willow_beam",
         "averageCost": 4,
         "count": 3
       }
@@ -690,21 +690,21 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:willow_leaves",
+        "item": "lotrextended:willow_leaves",
         "averageCost": 4
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:willow_wood",
+        "item": "lotrextended:willow_wood",
         "averageCost": 5
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:willow_sapling",
+        "item": "lotrextended:willow_sapling",
         "averageCost": 8
       }
     },
@@ -755,14 +755,14 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:plum_log",
+        "item": "lotrextended:plum_log",
         "averageCost": 5
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:plum_planks",
+        "item": "lotrextended:plum_planks",
         "averageCost": 5,
         "count": 4
       }
@@ -770,7 +770,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:plum_beam",
+        "item": "lotrextended:plum_beam",
         "averageCost": 5,
         "count": 3
       }
@@ -778,21 +778,21 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:plum_leaves",
+        "item": "lotrextended:plum_leaves",
         "averageCost": 5
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:plum_wood",
+        "item": "lotrextended:plum_wood",
         "averageCost": 6
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:plum_sapling",
+        "item": "lotrextended:plum_sapling",
         "averageCost": 10
       }
     }

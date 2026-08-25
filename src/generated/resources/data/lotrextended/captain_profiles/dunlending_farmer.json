@@ -1,0 +1,7 @@
+{
+  "id": "lotrextended:dunlending_farmer",
+  "alignmentRequired": 0,
+  "unitProfileIDs": [
+    "lotrextended:dunlending_farmhand"
+  ]
+}

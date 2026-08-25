@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:chestnut_planks_from_chestnut_branch"
+    ]
+  },
+  "criteria": {
+    "has_chestnut_branch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:chestnut_branch"
+          }
+        ]
+      }
+    },
+    "has_stripped_chestnut_branch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:stripped_chestnut_branch"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:chestnut_planks_from_chestnut_branch"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_chestnut_branch",
+      "has_stripped_chestnut_branch",
+      "has_the_recipe"
+    ]
+  ]
+}

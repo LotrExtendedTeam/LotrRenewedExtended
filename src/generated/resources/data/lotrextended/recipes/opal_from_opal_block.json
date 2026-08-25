@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotrextended:opal_block"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:opal",
+    "count": 9
+  }
+}

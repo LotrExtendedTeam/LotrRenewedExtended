@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "lotrextended:amethyst_ore"
+  },
+  "result": "lotrextended:amethyst",
+  "experience": 0.5,
+  "cookingtime": 100
+}

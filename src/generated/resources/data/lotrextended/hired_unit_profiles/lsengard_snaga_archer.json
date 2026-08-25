@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.isengard_snaga_archer",
-    "attack_type": "ranged"
+    "entity_unit_type": "entity.lotr.isengard_snaga_archer"
   },
   "hiring": {
     "hiringCost": 40,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 200
   },
+  "attack_type": "ranged",
   "equipmentPools": {
     "helmets": [
       {
@@ -37,23 +37,30 @@
         }
       },
       {
-        "weight": 1,
+        "weight": 5,
         "equipmentItem": {
-          "item": "lotr:black_warg_fur_helmet",
+          "item": "lotr:fur_helmet",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:gray_warg_fur_helmet",
+          "item": "lotrextended:black_warg_fur_helmet",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:warg_fur_helmet",
+          "item": "lotrextended:gray_warg_fur_helmet",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotrextended:warg_fur_helmet",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.helmet\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -88,23 +95,30 @@
         }
       },
       {
-        "weight": 1,
+        "weight": 5,
         "equipmentItem": {
-          "item": "lotr:black_warg_fur_chestplate",
+          "item": "lotr:fur_chestplate",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:gray_warg_fur_chestplate",
+          "item": "lotrextended:black_warg_fur_chestplate",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotrextended:gray_warg_fur_chestplate",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 3,
         "equipmentItem": {
-          "item": "lotr:warg_fur_chestplate",
+          "item": "lotrextended:warg_fur_chestplate",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -139,23 +153,30 @@
         }
       },
       {
-        "weight": 1,
+        "weight": 5,
         "equipmentItem": {
-          "item": "lotr:black_warg_fur_leggings",
+          "item": "lotr:fur_leggings",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:gray_warg_fur_leggings",
+          "item": "lotrextended:black_warg_fur_leggings",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotrextended:gray_warg_fur_leggings",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 3,
         "equipmentItem": {
-          "item": "lotr:warg_fur_leggings",
+          "item": "lotrextended:warg_fur_leggings",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -190,23 +211,30 @@
         }
       },
       {
-        "weight": 1,
+        "weight": 5,
         "equipmentItem": {
-          "item": "lotr:black_warg_fur_boots",
+          "item": "lotr:fur_boots",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:gray_warg_fur_boots",
+          "item": "lotrextended:black_warg_fur_boots",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotrextended:gray_warg_fur_boots",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 3,
         "equipmentItem": {
-          "item": "lotr:warg_fur_boots",
+          "item": "lotrextended:warg_fur_boots",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -237,7 +265,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:bone_dagger",
+          "item": "lotrextended:bone_dagger",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon\",Damage:0,IsBaseArmor:1b}"
         }
       },
@@ -253,14 +281,14 @@
       {
         "weight": 3,
         "equipmentItem": {
-          "item": "lotr:orc_bow",
+          "item": "lotrextended:orc_bow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       },
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:longbow",
+          "item": "lotrextended:longbow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       },

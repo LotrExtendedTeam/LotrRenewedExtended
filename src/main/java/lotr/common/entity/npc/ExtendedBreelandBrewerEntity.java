@@ -22,7 +22,7 @@ public class ExtendedBreelandBrewerEntity extends ExtendedBreelandTraderEntity {
 	@Override
 	public ILivingEntityData finalizeSpawn(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, ILivingEntityData spawnData, CompoundNBT dataTag) {
 		spawnData = super.finalizeSpawn(sw, diff, reason, spawnData, dataTag);
-		this.npcItemsInv.setIdleItem(new ItemStack(LOTRItems.WOODEN_MUG.get()));
+		this.npcItemsInv.setIdleItem(new ItemStack(LOTRItems.ALE.get()));
 		return spawnData;
 	}
 

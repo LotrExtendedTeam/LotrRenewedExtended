@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    " X ",
+    "#  "
+  ],
+  "key": {
+    "#": {
+      "tag": "lotrextended:anvil_iron_ingot"
+    },
+    "X": {
+      "tag": "forge:leather"
+    }
+  },
+  "result": {
+    "item": "lotrextended:branding_iron"
+  }
+}

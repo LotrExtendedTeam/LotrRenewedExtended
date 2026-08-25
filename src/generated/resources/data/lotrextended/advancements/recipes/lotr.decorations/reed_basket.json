@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:reed_basket"
+    ]
+  },
+  "criteria": {
+    "has_dried_reeds": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dried_reeds"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:reed_basket"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dried_reeds",
+      "has_the_recipe"
+    ]
+  ]
+}

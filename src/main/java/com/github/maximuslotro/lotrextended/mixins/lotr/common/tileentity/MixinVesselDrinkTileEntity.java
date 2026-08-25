@@ -16,11 +16,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedSingleItemDataHolderIInventory;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedILootTableAccessor;
 
 import lotr.common.item.VesselDrinkItem;
 import lotr.common.item.VesselType;
 import lotr.common.tileentity.VesselDrinkTileEntity;
-import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -39,12 +39,12 @@ import net.minecraft.world.server.ServerWorld;
 /**
  * Mixin extension for {@link VesselDrinkTileEntity} to support loot table injection and ticking.
  * Handles lazy generation of drink items from loot tables, enabling dynamic item content.
- * Implements {@link ExtendedLootTableAccessor} and {@link ITickableTileEntity}.
+ * Implements {@link ExtendedILootTableAccessor} and {@link ITickableTileEntity}.
  * <p>
  * Author: maximuslotro
  */
 @Mixin(VesselDrinkTileEntity.class)
-public class MixinVesselDrinkTileEntity implements ExtendedLootTableAccessor, ITickableTileEntity {
+public class MixinVesselDrinkTileEntity implements ExtendedILootTableAccessor, ITickableTileEntity {
 	/** The associated loot table for the drink item. */
 	@Unique
 	@Nullable

@@ -1,7 +1,8 @@
 package lotr.common.entity.npc;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
-import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedCaptainTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
 import lotr.common.entity.npc.ai.goal.ExtendedShieldSwapMeleeAttackGoal;
 import lotr.common.entity.npc.data.NPCGenderProvider;
@@ -20,9 +21,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-import java.util.List;
-
-public class ExtendedDwarvenCommanderEntity extends DwarfEntity implements ExtendedNPCEntitySettings, ExtendedCaptainEntity {
+public class ExtendedDwarvenCommanderEntity extends DwarfEntity implements ExtendedINPCEntitySettings, ExtendedICaptainEntity {
 
 	public ExtendedDwarvenCommanderEntity(EntityType<? extends ExtendedDwarvenCommanderEntity> type, World w) {
 		super(type, w);
@@ -55,7 +54,7 @@ public class ExtendedDwarvenCommanderEntity extends DwarfEntity implements Exten
 		setItemSlot(EquipmentSlotType.LEGS, new ItemStack(LOTRItems.GOLD_TRIMMED_DWARVEN_LEGGINGS.get()));
 		setItemSlot(EquipmentSlotType.CHEST, new ItemStack(LOTRItems.GOLD_TRIMMED_DWARVEN_CHESTPLATE.get()));
 		setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
-		setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(Items.SHIELD));
+		setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(ExtendedItems.DWARVEN_SHIELD.get()));
 		return spawnData;
 	}
 
@@ -65,14 +64,7 @@ public class ExtendedDwarvenCommanderEntity extends DwarfEntity implements Exten
 	}
 
 	@Override
-	public List<ResourceLocation> getHireableProfiles() {
-		return java.util.Arrays.asList(ExtendedHiredUnitTypes.DWARF, 
-			ExtendedHiredUnitTypes.DWARF_WARRIOR, 
-			ExtendedHiredUnitTypes.DWARF_ARCHER);
-	}
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
+	public ResourceLocation getCaptainProfile() {
+		return ExtendedCaptainTypes.DWARF_COMMANDER;
 	}
 }

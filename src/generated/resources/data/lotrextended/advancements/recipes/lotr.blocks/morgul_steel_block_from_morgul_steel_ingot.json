@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:morgul_steel_block_from_morgul_steel_ingot"
+    ]
+  },
+  "criteria": {
+    "has_morgul_steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:morgul_steel_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:morgul_steel_block_from_morgul_steel_ingot"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_morgul_steel_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -18,5 +18,6 @@ public class ExtendedCommands {
 		ExtendedTriggerCommand.register(dispatcher);
 		ExtendedSummonCommand.register(dispatcher);
 		ExtendedDeleteChunkComamnd.register(dispatcher);
+		ExtendedDebugCommand.register(dispatcher);
 	}
 }

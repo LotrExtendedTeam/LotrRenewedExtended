@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedPlayerTypedRunArroundLikeCrazyGoal;
@@ -21,11 +22,12 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorIte
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedMountedArmorItem.MountType;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWindowPacket;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedAlignmentHelper;
 
 import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.ai.goal.PanicIfBurningGoal;
 import lotr.common.entity.ai.goal.RandomWalkingEvenWhenRiddenGoal;
-import lotr.common.entity.npc.ExtendedRidableEntity;
+import lotr.common.entity.npc.ExtendedIRidableEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.WargEntity;
 import lotr.common.entity.npc.ai.goal.WargLeapAndDisableShieldGoal;
@@ -35,13 +37,17 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IEquipable;
 import net.minecraft.entity.IJumpingMount;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.Pose;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -51,6 +57,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -67,12 +74,12 @@ import net.minecraft.util.HandSide;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.TransportationHelper;
-import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -83,7 +90,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * This class is not documented on purpose as it is unused and subject to re-write or deletion
  * */
 @Mixin(WargEntity.class)
-public abstract class MixinWargEntity extends NPCEntity implements IInventoryChangedListener, IJumpingMount, IEquipable, ExtendedRidableEntity {
+public abstract class MixinWargEntity extends NPCEntity implements IInventoryChangedListener, IJumpingMount, IEquipable, ExtendedIRidableEntity {
 	@Unique
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("90833995-95a9-4586-b044-08e411e7d60c");
 	@Unique
@@ -257,6 +264,32 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	}
 
+	/**
+	 * Updates the control flags for the entity's goal selector.
+	 * <p>
+	 * This override modifies vanilla behavior to ensure that if the Warg is being 
+	 * ridden by an {@link NPCEntity}, it retains its own autonomous AI control 
+	 * (movement, looking, and jumping) rather than yielding full control to the passenger.
+	 * If the passenger is not an NPC (e.g., a player) or if there is no rider, it 
+	 * falls back to standard vanilla behavior.
+	 * </p>
+	 * 
+	 * @see MobEntity#updateControlFlags()
+	 */
+	@Override
+	protected void updateControlFlags() {
+		// If an NPC is riding, we want the Warg to keep its own brain!
+		if (this.getControllingPassenger() instanceof NPCEntity) {
+			// Force the flags to remain TRUE so the AI goals can still execute
+			this.goalSelector.setControlFlag(Goal.Flag.MOVE, true);
+			this.goalSelector.setControlFlag(Goal.Flag.LOOK, true);
+			this.goalSelector.setControlFlag(Goal.Flag.JUMP, !(this.getVehicle() instanceof BoatEntity));
+		} else {
+			// Fall back to vanilla behavior if a player or nothing is riding it
+			super.updateControlFlags();
+		}
+	}
+
 	@Override
 	public boolean isSaddled() {
 		return this.getFlag(4);
@@ -277,6 +310,16 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		int i = MathHelper.clamp(this.getTemper() + pAddedTemper, 0, this.getMaxTemper());
 		this.setTemper(i);
 		return i;
+	}
+	@Inject(method = "addWargRider(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;)V",
+		at = @At(value = "INVOKE", target = "Llotr/common/entity/npc/WargEntity;createWargRider()Llotr/common/entity/npc/NPCEntity;", 
+		shift = At.Shift.BY, by=2, remap=false), 
+		remap=false, locals = LocalCapture.CAPTURE_FAILHARD
+		)
+	private void beforeNullCheckRiderLogic(IServerWorld sw, DifficultyInstance diff, SpawnReason reason, CallbackInfo ci, NPCEntity rider) {
+		if (rider != null) {
+			equipSaddle(null);
+		}
 	}
 
 	@Override
@@ -314,18 +357,21 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
 		}
+		if(pPlayer.getItemInHand(Hand.OFF_HAND).getItem().getUseAnimation(pPlayer.getItemInHand(pHand))==UseAction.BLOCK) {
+			return ActionResultType.PASS;
+		}
 		if(hasAlignment) {
 			this.doPlayerRide(pPlayer);
 			return ActionResultType.sidedSuccess(this.level.isClientSide);
 		}else {
-			pPlayer.sendMessage(new TranslationTextComponent("chat.lotrextended.action_requires_alignment", "+"+50), Util.NIL_UUID);
+			ExtendedAlignmentHelper.sendAlignmentError(pPlayer, "+50.0", getFaction());
 			return ActionResultType.sidedSuccess(this.level.isClientSide);
 		}
 	}
 
 	@Override
 	public boolean isPushable() {
-		return !this.isVehicle();
+		return !this.isVehicle() || !this.canBeControlledByRider();
 	}
 
 	@Override
@@ -495,7 +541,8 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	@Override
 	protected boolean isImmobile() {
-		return super.isImmobile() && this.isVehicle() && this.isSaddled();
+		return  super.isImmobile() || (this.isVehicle() && this.isSaddled() && this.canBeControlledByRider());
+
 	}
 
 	@Unique
@@ -533,7 +580,7 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	@Override
 	public void travel(Vector3d pTravelVector) {
 		if (this.isAlive()) {
-			if (this.isVehicle() && this.canBeControlledByRider() && this.isSaddled()) {
+			if (this.isVehicle() && this.canBeControlledByRider() && this.isSaddled() && this.isTamed()) {
 				LivingEntity rider = (LivingEntity)this.getControllingPassenger();
 				this.yRot = rider.yRot;
 				this.yRotO = this.yRot;
@@ -602,12 +649,12 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	}
 
 	/**
-	 * @return true if all the conditions for steering the entity are met. For pigs, this is true if it is being ridden
-	 * by a player and the player is holding a carrot-on-a-stick
+	 * Currently only players can command wargs as allowing orcs to handle movement causes wargs to be very slow
+	 * @return true if entity can control this mount
 	 */
 	@Override
 	public boolean canBeControlledByRider() {
-		return this.getControllingPassenger() instanceof LivingEntity;
+		return this.getControllingPassenger() instanceof PlayerEntity;
 	}
 
 	/**
@@ -687,25 +734,58 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 	}
 
-	@Override
-	public double getPassengersRidingOffset() {
-		return (double)this.getBbHeight() * 0.75D;
-	}
+	//	@Override
+	//	public double getPassengersRidingOffset() {
+	//		return (double)this.getBbHeight() * 0.75D;
+	//	}
 
+	/**
+	 * Calculates a custom vertical riding offset based on the type of passenger.
+	 * <p>
+	 * Gives players a slightly higher seating position (75% of bounding box height) 
+	 * compared to non-player entities like NPCs or mobs (63% of bounding box height) 
+	 * to ensure proper visual scaling.
+	 * </p>
+	 *
+	 * @param pPassenger The entity currently riding this mount.
+	 * @return The vertical offset distance in blocks.
+	 */
+	public double getPassengersRidingOffsetExtended(Entity pPassenger) {
+		return pPassenger instanceof PlayerEntity ? getBbHeight() * 0.75D : getBbHeight() * 0.63F;
+	}
+	/**
+	 * Positions the passenger on top of this entity every tick.
+	 * <p>
+	 * This override applies a custom vertical offset using {@link #getPassengersRidingOffsetExtended}
+	 * and introduces a horizontal offset ({@code offsetBack}) to position the rider slightly 
+	 * backward on the mount's back using rotational vector math.
+	 * </p>
+	 * <p>
+	 * Additionally, if the rider is a player and the mount is both tamed and saddled, 
+	 * the mount's body and head rotation are synchronized to match the player's looking direction.
+	 * </p>
+	 *
+	 * @param pPassenger The passenger entity to position.
+	 * @see Entity#positionRider(Entity)
+	 */
 	@Override
 	public void positionRider(Entity pPassenger) {
 		if (this.hasPassenger(pPassenger) && pPassenger instanceof LivingEntity) {
-			double d0 = this.getY() + this.getPassengersRidingOffset() + pPassenger.getMyRidingOffset();
-			LivingEntity rider = (LivingEntity)pPassenger;
-			this.yRot = rider.yHeadRot;
-			this.yBodyRot = this.yRot;
+			double d0 = this.getY() + this.getPassengersRidingOffsetExtended(pPassenger) + pPassenger.getMyRidingOffset();
+			if(pPassenger instanceof PlayerEntity && this.isSaddled() && this.isTamed()) {
+				LivingEntity rider = (LivingEntity)pPassenger;
+				this.yRot = rider.yHeadRot;
+				this.yBodyRot = this.yRot;
+			}
 
 			double offsetBack = -0.2; // negative = behind mount, positive = forward
 
 			Vector3d vector3d = (new Vector3d(offsetBack, 0.0D, 0.0D)).yRot(-this.yRot * ((float)Math.PI / 180F) - ((float)Math.PI / 2F));
 			pPassenger.setPos(this.getX() + vector3d.x, d0, this.getZ() + vector3d.z);
-
-			rider.yBodyRot = this.yRot;
+			if(pPassenger instanceof PlayerEntity && this.isSaddled() && this.isTamed()) {
+				LivingEntity rider = (LivingEntity)pPassenger;
+				rider.yBodyRot = this.yRot;
+			}
 		}
 	}
 
@@ -756,7 +836,19 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 			}
 		}
 	}
-
+	/**
+	 * Attempts to find a valid, safe coordinate for a passenger to land when dismounting in a specific direction.
+	 * <p>
+	 * This method scans vertically from the bottom of the mount's bounding box up to its maximum height 
+	 * plus a padding threshold (0.75 blocks). It checks various player {@link Pose} variants to ensure the passenger 
+	 * can physically fit into the target space without suffocating or clipping into solid blocks.
+	 * </p>
+	 *
+	 * @param pDirection The directional offset vector relative to the mount's current position.
+	 * @param pPassenger The living entity attempting to dismount.
+	 * @return A {@link Vector3d} representing the target safe landing position, 
+	 * or {@code null} if no valid location is found within bounds.
+	 */
 	@Unique
 	@Nullable
 	private Vector3d getDismountLocationInDirection(Vector3d pDirection, LivingEntity pPassenger) {
@@ -793,8 +885,18 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 
 		return null;
 	}
-
-
+	/**
+	 * Determines the final landing coordinates for a passenger exiting this mount.
+	 * <p>
+	 * It prioritizes ejecting the passenger to their **dominant-hand side** first. If that side is 
+	 * blocked by terrain or solid blocks, it falls back to the **off-hand side**. If both escape 
+	 * directions are obstructed, the passenger is dropped directly onto the mount's current position.
+	 * </p>
+	 *
+	 * @param pLivingEntity The passenger entity requesting dismount placement.
+	 * @return The optimal {@link Vector3d} coordinates to place the dismounted entity.
+	 * @see Entity#getDismountLocationForPassenger(LivingEntity)
+	 */
 	@Override
 	public Vector3d getDismountLocationForPassenger(LivingEntity pLivingEntity) {
 		Vector3d vector3d = getCollisionHorizontalEscapeVector(this.getBbWidth(), pLivingEntity.getBbWidth(), this.yRot + (pLivingEntity.getMainArm() == HandSide.RIGHT ? 90.0F : -90.0F));
@@ -807,17 +909,37 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 			return vector3d3 != null ? vector3d3 : this.position();
 		}
 	}
-
+	/**
+	 * Lazily initialized capability handler instance. 
+	 * Used primarily to expose inventory slots (e.g., horse armor, chests, saddles) to automation or UI components.
+	 */
 	@Unique
 	private net.minecraftforge.common.util.LazyOptional<?> itemHandler = null;
-
+	/**
+	 * Retrieves the specified capability if it matches requirements.
+	 * <p>
+	 * Exposes the internal item handler capability if this entity is alive and the 
+	 * requested capability is an {@code ITEM_HANDLER_CAPABILITY}.
+	 * </p>
+	 * * @param capability The requested capability instance.
+	 * @param facing The directional face interacting with the capability (can be {@code null}).
+	 * @return A {@link net.minecraftforge.common.util.LazyOptional} containing the cast capability handler, 
+	 * or the super method's result if not matching.
+	 */
 	@Override
 	public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable net.minecraft.util.Direction facing) {
 		if (this.isAlive() && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && itemHandler != null)
 			return itemHandler.cast();
 		return super.getCapability(capability, facing);
 	}
-
+	/**
+	 * Invalidates and unregisters Forge capabilities attached to this entity.
+	 * <p>
+	 * Clears out the active {@link #itemHandler} reference and explicitly calls 
+	 * {@link net.minecraftforge.common.util.LazyOptional#invalidate()} to prevent memory leaks 
+	 * when the entity is unloaded or discarded from the world.
+	 * </p>
+	 */
 	@Override
 	protected void invalidateCaps() {
 		super.invalidateCaps();

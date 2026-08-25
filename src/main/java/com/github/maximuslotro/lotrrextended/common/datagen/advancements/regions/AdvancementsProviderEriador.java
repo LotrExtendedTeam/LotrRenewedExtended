@@ -3,13 +3,13 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedBiomes;
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
@@ -68,6 +68,14 @@ public class AdvancementsProviderEriador extends ExtendedBaseAdvancementType{
 //				.setTitle("A Fastness in the Wild").setDescription("Enter the Lands of the Angle."),
 //				addBiomeTrigger(make(),LOTRBiomes.THE_ANGLE).parent(eriadorBase));
 		
+		Advancement hills_of_the_dead = build(true, data(Items.BONE, "hills_of_the_dead", FrameType.TASK)
+			.setTitle("The Hills of the Dead").setDescription("Enter the Barrow-downs."),
+			addBiomeTriggers(make(), ExtendedBiomes.BARROW_DOWNS, ExtendedBiomes.BARROW_DOWNS_RIVER).parent(eriadorBase));
+		
+		Advancement wight = build(true, data(Items.BONE, "barrow_wight_slayer", FrameType.TASK)
+			.setTitle("Cold be Hand...").setDescription("Kill a Barrow-wight."),
+			addKillEntityTrigger(make(), ExtendedEntities.BARROW_WIGHT.get()).parent(hills_of_the_dead));
+
 		Advancement minhiriath = build(true, data(Items.GRASS_BLOCK, "between_the_rivers", FrameType.TASK)
 				.setTitle("Between the Rivers").setDescription("Enter the region of Minhiriath."),
 				addBiomeTrigger(make(), LOTRBiomes.MINHIRIATH).parent(eriadorBase));

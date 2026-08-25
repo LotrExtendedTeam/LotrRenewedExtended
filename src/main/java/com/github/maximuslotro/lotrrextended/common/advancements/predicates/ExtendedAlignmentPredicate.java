@@ -9,47 +9,51 @@ import com.google.gson.JsonObject;
 import lotr.common.fac.Faction;
 import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.JSONUtils;
 
 public class ExtendedAlignmentPredicate {
-	public static final ExtendedAlignmentPredicate ERROR = new ExtendedAlignmentPredicate(MinMaxBounds.FloatBound.ANY, null);
+	public static final ExtendedAlignmentPredicate ANY = new ExtendedAlignmentPredicate(MinMaxBounds.FloatBound.ANY, null);
 	private final MinMaxBounds.FloatBound alignment;
 	private final String factionDString;
 
-	public ExtendedAlignmentPredicate(MinMaxBounds.FloatBound p_i225753_1_, String factionDString) {
+	public ExtendedAlignmentPredicate(MinMaxBounds.FloatBound p_i225753_1_, @Nullable String factionDString) {
 		this.alignment = p_i225753_1_;
 		this.factionDString = factionDString;
 	}
 
 	public boolean matches(PlayerEntity player, Faction faction, Float level) {
-		if (this == ERROR || !(player instanceof ServerPlayerEntity)) {
-			return false;
-		}else if(!factionDString.equals(faction.getName().toString()) && !factionDString.equals("any")){
+		if (this == ANY) {
+			return true;
+		}else if(factionDString!=null && !factionDString.equals(faction.getName().toString())){
 			return false;
 		}
 		return alignment.matches(level);
 	}
 
 	public JsonElement serializeToJson() {
-		if (this == ERROR) {
+		if (this == ANY) {
 			return JsonNull.INSTANCE;
 		} else {
 			JsonObject jsonobject = new JsonObject();
-			jsonobject.addProperty("faction", this.factionDString);
+			if(factionDString!=null) {
+				jsonobject.addProperty("faction", this.factionDString);
+			}
 			jsonobject.add("level", this.alignment.serializeToJson());
 			return jsonobject;
 		}
 	}
 
-	public static ExtendedAlignmentPredicate fromJson(@Nullable JsonElement p_226857_0_) {
-		if (p_226857_0_ != null && !p_226857_0_.isJsonNull()) {
-			JsonObject jsonobject = JSONUtils.convertToJsonObject(p_226857_0_, "alignment");
+	public static ExtendedAlignmentPredicate fromJson(@Nullable JsonElement pJson) {
+		if (pJson != null && !pJson.isJsonNull()) {
+			JsonObject jsonobject = JSONUtils.convertToJsonObject(pJson, "alignment");
 			MinMaxBounds.FloatBound minmaxbounds$intbound = MinMaxBounds.FloatBound.fromJson(jsonobject.get("level"));
-			String faction$make = jsonobject.get("faction").getAsString();
+			String faction$make=null;
+			if(jsonobject.has("faction")) {
+				faction$make = jsonobject.get("faction").getAsString();
+			}
 			return new ExtendedAlignmentPredicate(minmaxbounds$intbound, faction$make);
 		} else {
-			return ERROR;
+			return ANY;
 		}
 	}
 }

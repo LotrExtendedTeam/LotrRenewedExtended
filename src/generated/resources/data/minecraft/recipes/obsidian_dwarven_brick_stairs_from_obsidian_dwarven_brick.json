@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:obsidian_dwarven_brick"
-  },
-  "result": "lotr:obsidian_dwarven_brick_stairs",
-  "count": 1
-}

@@ -129,7 +129,7 @@
               }
             }
           ],
-          "name": "lotr:plum"
+          "name": "lotrextended:plum"
         },
         {
           "type": "minecraft:item",
@@ -189,7 +189,7 @@
               }
             }
           ],
-          "name": "lotr:blackberry"
+          "name": "lotrextended:blackberry"
         },
         {
           "type": "minecraft:item",
@@ -204,7 +204,7 @@
               }
             }
           ],
-          "name": "lotr:blueberry"
+          "name": "lotrextended:blueberry"
         },
         {
           "type": "minecraft:item",
@@ -219,7 +219,7 @@
               }
             }
           ],
-          "name": "lotr:cranberry"
+          "name": "lotrextended:cranberry"
         },
         {
           "type": "minecraft:item",
@@ -234,7 +234,7 @@
               }
             }
           ],
-          "name": "lotr:elderberry"
+          "name": "lotrextended:elderberry"
         },
         {
           "type": "minecraft:item",
@@ -249,7 +249,7 @@
               }
             }
           ],
-          "name": "lotr:raspberry"
+          "name": "lotrextended:raspberry"
         },
         {
           "type": "minecraft:item",
@@ -308,7 +308,7 @@
               }
             }
           ],
-          "name": "lotr:cheese_curds"
+          "name": "lotrextended:cheese_curds"
         },
         {
           "type": "minecraft:item",
@@ -323,7 +323,7 @@
               }
             }
           ],
-          "name": "lotr:cheese_slice"
+          "name": "lotrextended:cheese_slice"
         },
         {
           "type": "minecraft:item",
@@ -334,14 +334,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.35,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:wooden_dagger"
@@ -355,14 +355,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.3,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:stone_dagger"
@@ -376,14 +376,14 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 0.9
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
           "name": "lotr:bronze_dagger"
@@ -397,14 +397,14 @@
               "count": 1
             },
             {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.2,
-                "max": 0.9
+                "max": 0.85
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder"
             }
           ],
           "name": "lotr:iron_dagger"

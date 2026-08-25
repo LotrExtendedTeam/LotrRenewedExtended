@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
 
-import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedBlockStateUtils;
 
-import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -62,7 +62,7 @@ public class ExtendedAxialSlabPlantableSpreadableGrowableBlock extends ExtendedA
 				return state;
 			}
 			// Else turn grass slab into path slab block (copy values if they exist)
-			return BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.GRASS_PATH_SLAB, state);
+			return ExtendedBlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.GRASS_PATH_SLAB.get(), state);
         }
         return null;
     }

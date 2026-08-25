@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:lindon_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_lindon_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:lindon_banner"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:lindon_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_lindon_banner",
+      "has_the_recipe"
+    ]
+  ]
+}

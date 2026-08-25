@@ -4,11 +4,11 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredSitFollowGoal;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitHornTypes;
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.item.clientside.ExtendedCommandHornClientSide;
 
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.init.LOTRItemGroups;
 import net.minecraft.entity.LivingEntity;
@@ -49,8 +49,8 @@ public class ExtendedCommandHornItem extends Item {
 		ExtendedUnitHornTypes type = getType(itemstack);
 		if(type.isSummon()) {
 			List<NPCEntity> teleportableUnits = world.getEntitiesOfClass(NPCEntity.class, new AxisAlignedBB(entityplayer.blockPosition()).inflate(64), (entity)->{
-				return ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedNPCEntity)entity).getUnitInfo().getOwnerUUID().equals(entityplayer.getUUID())
-					&& ((ExtendedNPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.PATROL_PLAYER;
+				return ((ExtendedINPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)entity).getUnitInfo().getOwnerUUID().equals(entityplayer.getUUID())
+					&& ((ExtendedINPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.FOLLOW_PLAYER;
 			});
 			for(NPCEntity unit : teleportableUnits) {
 				ExtendedHiredSitFollowGoal.teleportToOwner(unit, entityplayer, true);
@@ -58,21 +58,21 @@ public class ExtendedCommandHornItem extends Item {
 		}
 		if(type.isHalt()) {
 			List<NPCEntity> followingUnits = world.getEntitiesOfClass(NPCEntity.class, new AxisAlignedBB(entityplayer.blockPosition()).inflate(64), (entity)->{
-				return ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedNPCEntity)entity).getUnitInfo().getOwnerUUID().equals(entityplayer.getUUID())
-					&& ((ExtendedNPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.PATROL_PLAYER;
+				return ((ExtendedINPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)entity).getUnitInfo().getOwnerUUID().equals(entityplayer.getUUID())
+					&& ((ExtendedINPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.FOLLOW_PLAYER;
 			});
 			for(NPCEntity unit : followingUnits) {
-				((ExtendedNPCEntity)unit).getUnitInfo().setOrders(ExtendedUnitOrders.GUARD_STATIONARY);
+				((ExtendedINPCEntity)unit).getUnitInfo().setOrders(ExtendedUnitOrders.STATIONARY);
 			}
 			setType(itemstack, ExtendedUnitHornTypes.READY);
 		}
 		if(type.isReady()) {
 			List<NPCEntity> stationaryUnits = world.getEntitiesOfClass(NPCEntity.class, new AxisAlignedBB(entityplayer.blockPosition()).inflate(64), (entity)->{
-				return ((ExtendedNPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedNPCEntity)entity).getUnitInfo().getOwnerUUID().equals(entityplayer.getUUID())
-					&& ((ExtendedNPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.GUARD_STATIONARY;
+				return ((ExtendedINPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)entity).getUnitInfo().getOwnerUUID().equals(entityplayer.getUUID())
+					&& ((ExtendedINPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.STATIONARY;
 			});
 			for(NPCEntity unit : stationaryUnits) {
-				((ExtendedNPCEntity)unit).getUnitInfo().setOrders(ExtendedUnitOrders.PATROL_PLAYER);
+				((ExtendedINPCEntity)unit).getUnitInfo().setOrders(ExtendedUnitOrders.FOLLOW_PLAYER);
 			}
 			setType(itemstack, ExtendedUnitHornTypes.HALT);
 		}

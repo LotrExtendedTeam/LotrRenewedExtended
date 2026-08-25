@@ -55,7 +55,7 @@ public enum ExtendedModifierType {
 			item -> item instanceof SwordItem || item instanceof ToolItem),
 
 	/** Enhances knockback effect in melee combat. */
-	MEELE_KNOCKBACK("enchant.lotrextended.melee_knockback.disc", "+", 
+	MELEE_KNOCKBACK("enchant.lotrextended.melee_knockback.disc", "+", 
 			item -> item instanceof SwordItem || item instanceof ToolItem || item instanceof ExtendedThrowableAxeItem),
 
 	/** Increases ranged attack speed or draw speed. */
@@ -72,7 +72,7 @@ public enum ExtendedModifierType {
 
 	/** Grants bonus damage against specific enemy types (e.g., "Bane of..."). */
 	BANE("enchant.lotrextended.bane.desc", "+", 
-			item -> item instanceof SwordItem || item instanceof BowItem || item instanceof CrossbowItem || item instanceof ExtendedThrowableAxeItem),
+			item -> item instanceof SwordItem || item instanceof ExtendedThrowableAxeItem || item instanceof AxeItem),
 
 	/** Applies chilling or slowing effects to enemies. */
 	CHILLING("enchant.lotrextended.chilling.disc", "", 

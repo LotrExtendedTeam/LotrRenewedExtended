@@ -3,9 +3,9 @@ package com.github.maximuslotro.lotrrextended.common.datagen.crafting;
 import java.util.Map.Entry;
 import java.util.function.Consumer;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
 
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.LOTRArmorItem;
 import net.minecraft.data.DataGenerator;
@@ -497,8 +497,10 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, ExtendedItems.LONGBOW, ExtendedItems.BOWSTRING, 3);
 		makeCrucibleRecipe(consumer, ExtendedItems.RANGER_BOW, ExtendedItems.BOWSTRING, 3);
 		makeCrucibleRecipe(consumer, ExtendedItems.RIVENDELL_BOW, ExtendedItems.BOWSTRING, 3);
+		makeCrucibleRecipe(consumer, ExtendedItems.ROHAN_BOW, ExtendedItems.BOWSTRING, 3);
 
 		makeCrucibleRecipe(consumer, ExtendedItems.BLUE_DWARVEN_SHIELD, LOTRItems.DWARVEN_STEEL_INGOT);
+		makeCrucibleRecipe(consumer, ExtendedItems.DWARVEN_SHIELD, LOTRItems.DWARVEN_STEEL_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.BREE_SHIELD, ()->Items.IRON_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.DUNEDAIN_SHIELD, ()->Items.IRON_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.GUNDABAD_SHIELD, LOTRItems.URUK_STEEL_INGOT);
@@ -507,6 +509,8 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, ExtendedItems.EREGION_SHIELD, LOTRItems.ELVEN_STEEL_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.RIVENDELL_SHIELD, LOTRItems.ELVEN_STEEL_INGOT);
 		makeCrucibleRecipe(consumer, ExtendedItems.URUK_SHIELD, LOTRItems.URUK_STEEL_INGOT);
+		makeCrucibleRecipe(consumer, ExtendedItems.DUNLENDING_SHIELD, ()->Items.IRON_INGOT);
+		makeCrucibleRecipe(consumer, ExtendedItems.ARNOR_SHIELD, ()->Items.IRON_INGOT);
 
 		makeCrucibleRecipe(consumer, ExtendedItems.DOL_GULDUR_SWORD, LOTRItems.ORC_STEEL_INGOT, 2);
 		makeCrucibleRecipe(consumer, ExtendedItems.DOL_GULDUR_SHOVEL, LOTRItems.ORC_STEEL_INGOT);
@@ -586,6 +590,10 @@ public class ExtendedCrucibleRecipiesGenerator extends ExtendedCraftingHelper {
 		makeCrucibleRecipe(consumer, ExtendedItems.BONE_HOE, ()->Items.BONE, 2);
 		makeCrucibleRecipe(consumer, ExtendedItems.BONE_SPEAR, ()->Items.BONE);
 		makeCrucibleRecipe(consumer, ExtendedItems.BONE_DAGGER, ()->Items.BONE);
+
+		makeCrucibleRecipe(consumer, ExtendedItems.ARTISAN_TOME, ()->Items.IRON_NUGGET);
+		makeCrucibleRecipe(consumer, ExtendedItems.COMBAT_TOME, ()->Items.IRON_NUGGET);
+		makeCrucibleRecipe(consumer, ExtendedItems.SMITH_TOME, ()->Items.IRON_NUGGET);
 	}
 
 	private void buildOtherModsRecipes(Consumer<IFinishedRecipe> consumer) {

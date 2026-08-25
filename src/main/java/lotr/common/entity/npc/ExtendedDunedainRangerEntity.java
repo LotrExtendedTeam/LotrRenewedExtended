@@ -1,5 +1,7 @@
 package lotr.common.entity.npc;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+
 import lotr.common.entity.npc.ai.AttackGoalsHolder;
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
 import lotr.common.entity.npc.ai.goal.ExtendedRangerRangedAttackGoal;
@@ -14,7 +16,6 @@ import lotr.common.entity.npc.data.ExtendedFoodPools;
 import lotr.common.entity.npc.data.NPCFoodPool;
 import lotr.common.entity.npc.data.name.NPCNameGenerator;
 import lotr.common.entity.npc.data.name.NPCNameGenerators;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRAttributes;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
@@ -43,10 +44,10 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class ExtendedDunedainRangerEntity extends ManEntity implements ExtendedNPCEntitySettings {
+public class ExtendedDunedainRangerEntity extends ManEntity implements ExtendedINPCEntitySettings {
 
     private static final SpawnEquipmentTable WEAPONS = SpawnEquipmentTable.of(LOTRItems.ARNOR_SWORD, LOTRItems.BRONZE_SWORD, Items.IRON_SWORD, LOTRItems.ARNOR_DAGGER, LOTRItems.BRONZE_DAGGER, LOTRItems.IRON_DAGGER);
-    private static final SpawnEquipmentTable BOWS = SpawnEquipmentTable.of(ExtendedItems.DUNEDAIN_BOW, ExtendedItems.RANGER_BOW, ExtendedItems.LONGBOW, Items.BOW);
+    private static final SpawnEquipmentTable BOWS = SpawnEquipmentTable.of(ExtendedItems.DUNEDAIN_BOW, ExtendedItems.DUNEDAIN_BOW, ExtendedItems.RANGER_BOW, ExtendedItems.LONGBOW);
 
     private static final DataParameter<Integer> CLOAK_COOLDOWN = EntityDataManager.defineId(ExtendedDunedainRangerEntity.class, DataSerializers.INT);
     private static final DataParameter<Integer> AUTO_DECLOAK_IN = EntityDataManager.defineId(ExtendedDunedainRangerEntity.class, DataSerializers.INT);
@@ -279,9 +280,4 @@ public class ExtendedDunedainRangerEntity extends ManEntity implements ExtendedN
     public ResourceLocation getCloakTextureLocation() {
         return new ResourceLocation("lotrextended", "textures/capes/ranger.png");
     }
-
-	@Override
-	public boolean addExtendedGoals() {
-		return true;
-	}
 }

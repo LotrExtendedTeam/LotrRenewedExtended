@@ -3,12 +3,11 @@ package com.github.maximuslotro.lotrrextended.common.datagen.advancements.region
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.advancements.ExtendedBaseAdvancementType;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.google.common.collect.ImmutableList;
 
 import lotr.common.fac.FactionPointers;
-import lotr.common.init.ExtendedBiomes;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRBiomes;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.init.LOTREntities;
@@ -38,7 +37,8 @@ public class AdvancementsProviderBree extends ExtendedBaseAdvancementType{
 					ExtendedEntities.BREE_CHEESEMONGER.get(), ExtendedEntities.BREE_FARMER.get(), ExtendedEntities.BREE_FLORIST.get(), 
 					ExtendedEntities.BREE_INNKEEPER.get(), ExtendedEntities.BREE_LEATHERWORKER.get(), ExtendedEntities.BREE_LUMBERMAN.get(), 
 					ExtendedEntities.BREE_POTTER.get(), ExtendedEntities.BREE_MERCHANT.get(), ExtendedEntities.BREE_SHERIFF.get(), 
-					ExtendedEntities.BREE_SMITH.get(), ExtendedEntities.BREE_STONEMASON.get(), LOTREntities.BREE_MAN.get()).parent(bree));
+					ExtendedEntities.BREE_SMITH.get(), ExtendedEntities.BREE_STONEMASON.get(), LOTREntities.BREE_MAN.get(),
+					ExtendedEntities.BREE_STABLEMASTER.get(), ExtendedEntities.BREE_FARMHAND.get()).parent(bree));
 
 		Advancement bree_hobbit_slayer = build(true, data(LOTRItems.HOBBIT_BONE.get(), "bree_hobbit_slayer", FrameType.TASK)
 				.setTitle("Bree-Hobbit Slayer").setDescription("Kill a Bree-Hobbit."),
@@ -82,9 +82,11 @@ public class AdvancementsProviderBree extends ExtendedBaseAdvancementType{
 				ExtendedEntities.BREE_BUTCHER.get(), ExtendedEntities.BREE_HOBBIT_BUTCHER.get(),
 				ExtendedEntities.BREE_FLORIST.get(), ExtendedEntities.BREE_HOBBIT_FLORIST.get(),
 				ExtendedEntities.BREE_LEATHERWORKER.get(),
+				ExtendedEntities.BREE_STONEMASON.get(),
 				ExtendedEntities.BREE_LUMBERMAN.get(),
-				ExtendedEntities.BREE_POTTER.get(), ExtendedEntities.BREE_HOBBIT_POTTER.get(),
-				ExtendedEntities.BREE_STONEMASON.get()).parent(bree));
+				ExtendedEntities.BREE_SMITH.get(),
+				ExtendedEntities.BREE_FARMER.get(),
+				ExtendedEntities.BREE_POTTER.get(), ExtendedEntities.BREE_HOBBIT_POTTER.get()).parent(bree));
 
 		Advancement arms_for_the_road = build(true, data(ExtendedItems.SILVER_COIN_ONE.get(), "arms_for_the_road", FrameType.TASK)
 			.setTitle("Arms for the Road").setDescription("Trade with a Bree-land Smithy."),
@@ -102,17 +104,13 @@ public class AdvancementsProviderBree extends ExtendedBaseAdvancementType{
 			.setTitle("The Greenway Watch").setDescription("Hire a unit from a Bree-land Sheriff."),
 			addUnitHireTrigger(make(), ExtendedEntities.BREE_SHERIFF.get()).parent(bree));
 
-		Advancement hills_of_the_dead = build(true, data(Items.BONE, "hills_of_the_dead", FrameType.TASK)
-			.setTitle("The Hills of the Dead").setDescription("Enter the Barrow-downs."),
-			addBiomeTriggers(make(), ExtendedBiomes.BARROW_DOWNS, ExtendedBiomes.BARROW_DOWNS_RIVER).parent(bree));
-		
-		Advancement wight = build(true, data(Items.BONE, "barrow_wight_slayer", FrameType.TASK)
-			.setTitle("Cold be Hand...").setDescription("Kill a Barrow-wight."),
-			addKillEntityTrigger(make(), ExtendedEntities.BARROW_WIGHT.get()).parent(hills_of_the_dead));
-
 		Advancement bree_crafter = build(true, data(LOTRItems.BREE_CRAFTING_TABLE.get(), "bree_crafter", FrameType.TASK)
 			.setTitle("Bree-land Crafter").setDescription("Craft an item on the Bree-land Crafting Table."),
 			addCraftingTrigger(make(), LOTRBlocks.BREE_CRAFTING_TABLE.get()).parent(bree));
+
+		Advancement honest_work = build(true, data(Items.IRON_HOE, "honest_work", FrameType.TASK)
+			.setTitle("Honest Work").setDescription("Hire a farmhand from a Bree-land Farmer."),
+			addUnitHireTrigger(make(), ExtendedEntities.BREE_FARMER.get()).parent(one_for_bill_ferny));
 	}
 
 	@Override

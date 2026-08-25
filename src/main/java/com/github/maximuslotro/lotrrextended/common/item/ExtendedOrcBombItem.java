@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
@@ -20,6 +21,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ExtendedOrcBombItem extends BlockItem {
+	public ExtendedOrcBombItem(Supplier<Block> pBlock, Properties pProperties) {
+		this(pBlock.get(), pProperties);
+	}
 	public ExtendedOrcBombItem(Block pBlock, Properties pProperties) {
 		super(pBlock, pProperties);
 		if(!(pBlock instanceof ExtendedOrcBombBlock)){
@@ -30,11 +34,11 @@ public class ExtendedOrcBombItem extends BlockItem {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void appendHoverText(ItemStack pItemStack, @Nullable World world, List<ITextComponent> textLines, ITooltipFlag p_77624_4_) {
+	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
 		int strength = ((ExtendedOrcBombBlock)this.getBlock()).getBombStrength();
-		textLines.add(1, (new TranslationTextComponent("item.lotrextended.orc_bomb.strength_"+strength)).withStyle(TextFormatting.GRAY));
+		pTooltip.add(1, (new TranslationTextComponent("item.lotrextended.orc_bomb.strength_"+strength)).withStyle(TextFormatting.GRAY));
 		if(((ExtendedOrcBombBlock)this.getBlock()).isBombFire()) {
-			textLines.add(2, (new TranslationTextComponent("item.lotrextended.orc_bomb.fire_message")).withStyle(TextFormatting.RED));
+			pTooltip.add(2, (new TranslationTextComponent("item.lotrextended.orc_bomb.fire_message")).withStyle(TextFormatting.RED));
 		}
 	}
 

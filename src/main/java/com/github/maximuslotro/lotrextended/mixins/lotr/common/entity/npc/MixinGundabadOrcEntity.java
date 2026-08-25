@@ -7,9 +7,10 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+
 import lotr.common.entity.npc.GundabadOrcEntity;
 import lotr.common.entity.npc.SpawnEquipmentTable;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.item.Items;
 import net.minecraft.util.IItemProvider;
@@ -104,12 +105,12 @@ public class MixinGundabadOrcEntity{
 	/**
 	 * @reason Replaced setting the shield with the an Gundabad Orc Shield
 	 * @ModifyArg (method = "finalizeSpawn(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/ILivingEntityData;Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/entity/ILivingEntityData;",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;&lt;init&gt;(Lnet/minecraft/util/IItemProvider;)V"), index = 0)
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;<init>(Lnet/minecraft/util/IItemProvider;)V", ordinal = 0))
 	 * @param regularItem The regular item to be set
 	 * @return A Gundabad orc shield instance
 	 * */
 	@ModifyArg(method = "finalizeSpawn(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/ILivingEntityData;Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/entity/ILivingEntityData;",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;<init>(Lnet/minecraft/util/IItemProvider;)V"), index = 0)
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;<init>(Lnet/minecraft/util/IItemProvider;)V", ordinal = 0))
 	private IItemProvider injected(IItemProvider regularItem) {
 		return ExtendedItems.GUNDABAD_SHIELD.get();
 	}

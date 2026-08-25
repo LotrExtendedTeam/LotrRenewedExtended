@@ -2,7 +2,7 @@
   "parent": "lotrextended:eriador/the_hidden_valley",
   "display": {
     "icon": {
-      "item": "lotr:rivendell_banner"
+      "item": "lotrextended:rivendell_banner"
     },
     "title": {
       "translate": "advancements.lotrextended.eriador.last_homely_house.title"

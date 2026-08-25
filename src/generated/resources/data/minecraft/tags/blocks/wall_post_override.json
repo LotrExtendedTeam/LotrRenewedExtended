@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "lotr:high_elven_lantern",
-    "lotr:morgul_brazier",
-    "lotr:morgul_torch",
-    "lotr:numenorean_lantern"
+    "lotrextended:high_elven_lantern",
+    "lotrextended:morgul_brazier",
+    "lotrextended:morgul_torch",
+    "lotrextended:numenorean_lantern"
   ]
 }

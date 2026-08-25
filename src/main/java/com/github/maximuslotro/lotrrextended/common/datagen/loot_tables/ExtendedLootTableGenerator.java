@@ -53,6 +53,9 @@ public class ExtendedLootTableGenerator extends LootTableProvider {
 			if(ExtendedBookshelfLootGenerator.madeBookshelves.contains(location)) {
 				found = true;
 			}
+			if(ExtendedArmorStandLootGenerator.madeArmorStands.contains(location)) {
+				found = true;
+			}
 			if(!found) {
 				System.out.println("Didn't make a sepcified Loot-Table: "+location.toString());
 			}
@@ -71,6 +74,7 @@ public class ExtendedLootTableGenerator extends LootTableProvider {
 				Pair.of(ExtendedWeaponRackLootGenerator::new, LootParameterSets.CHEST),
 				Pair.of(ExtendedPotLootGenerator::new, LootParameterSets.CHEST),
 				Pair.of(ExtendedBookshelfLootGenerator::new, LootParameterSets.CHEST),
+				Pair.of(ExtendedArmorStandLootGenerator::new, LootParameterSets.CHEST),
 				Pair.of(ExtendedFishingLootGenerator::new, LootParameterSets.FISHING));
 	}
 

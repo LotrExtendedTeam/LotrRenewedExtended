@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.uruk_berserker",
-    "attack_type": "melee"
+    "entity_unit_type": "entity.lotr.uruk_berserker"
   },
   "hiring": {
     "hiringCost": 60,
     "hiringRequiresPledge": true,
     "hiringAlignmentRequired": 300
   },
+  "attack_type": "melee",
   "equipmentPools": {
     "helmets": [
       {
@@ -27,7 +27,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:warg_fur_chestplate",
+          "item": "lotrextended:warg_fur_chestplate",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.chestplate\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -36,7 +36,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:warg_fur_leggings",
+          "item": "lotrextended:warg_fur_leggings",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.leggings\",Damage:0,IsBaseArmor:1b}"
         }
       }
@@ -45,7 +45,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:warg_fur_boots",
+          "item": "lotrextended:warg_fur_boots",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.boots\",Damage:0,IsBaseArmor:1b}"
         }
       }

@@ -2,8 +2,8 @@
   "replace": false,
   "values": [
     "#lotrextended:base_stone_middle_earth",
-    "lotr:mud",
-    "lotr:mud_grass",
+    "lotrextended:mud",
+    "lotrextended:mud_grass",
     "minecraft:coarse_dirt",
     "minecraft:dirt",
     "minecraft:grass_block",

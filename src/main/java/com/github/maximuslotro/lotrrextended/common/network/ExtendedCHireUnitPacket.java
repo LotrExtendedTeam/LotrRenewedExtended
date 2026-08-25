@@ -4,6 +4,7 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
 
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
@@ -45,8 +46,8 @@ public class ExtendedCHireUnitPacket {
     public static void handle(ExtendedCHireUnitPacket packet, Supplier<NetworkEvent.Context> context) {
     	context.get().setPacketHandled(true);
         Entity entityCaptain = context.get().getSender().level.getEntity(packet.captainId);
-        if (!(entityCaptain instanceof ExtendedCaptainEntity)) {
-            ExtendedLog.error("Received a captain entity not of type ExtendedCaptainEntity from %s", Objects.requireNonNull(context.get().getSender()).getName().getString());
+        if (!(entityCaptain instanceof ExtendedICaptainEntity)) {
+            ExtendedLog.error("Received a captain entity not of type ExtendedCaptainEntity from {}", Objects.requireNonNull(context.get().getSender()).getName().getString());
             return;
         }
 
@@ -80,10 +81,13 @@ public class ExtendedCHireUnitPacket {
         }
 
         // spawn the actual NPC
-        Entity newEntity = unitProfile.getUnitEntityType().spawn((ServerWorld) entityCaptain.level, null, player, new BlockPos(entityCaptain.getX(), entityCaptain.getY(), entityCaptain.getZ()), SpawnReason.NATURAL, false, false);
+        Entity newEntity = unitProfile.getUnitEntityType().spawn((ServerWorld) entityCaptain.level, null, player, new BlockPos(entityCaptain.getX(), entityCaptain.getY(), entityCaptain.getZ()), SpawnReason.TRIGGERED, true, false);
 
+        if(unitProfile.getUnitType()==ExtendedUnitCombatTypes.FARMHAND && !(newEntity instanceof ExtendedIFarmhand)) {
+        	ExtendedLog.error("Unit {} is farmand type, but does not implement ExtendedIFarmhand! DEVELOPMENT BUG, pls report!");
+        }
         if (newEntity != null && newEntity instanceof NPCEntity) {
-        	((ExtendedNPCEntity)newEntity).getUnitInfo().setNpcAsHired(player, unitProfile.getId());
+        	((ExtendedINPCEntity)newEntity).getUnitInfo().setNpcAsHired(player, unitProfile.getId());
         	if(!player.isCreative()) {
         		CoinUtils.removeCoins(player, player.inventory, unitProfile.getHiringCost());
         	}

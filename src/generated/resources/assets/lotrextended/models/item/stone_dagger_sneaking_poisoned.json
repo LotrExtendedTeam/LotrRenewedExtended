@@ -1,0 +1,6 @@
+{
+  "parent": "lotr:item/handheld_dagger_sneaking",
+  "textures": {
+    "layer0": "lotrextended:item/stone_dagger_poisoned"
+  }
+}

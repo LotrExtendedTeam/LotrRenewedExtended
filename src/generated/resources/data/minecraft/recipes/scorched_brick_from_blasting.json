@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:stone_bricks"
   },
-  "result": "lotr:scorched_brick",
+  "result": "lotrextended:scorched_brick",
   "experience": 0.1,
   "cookingtime": 100
 }

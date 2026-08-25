@@ -1,0 +1,32 @@
+{
+  "parent": "lotrextended:general/alignment",
+  "display": {
+    "icon": {
+      "item": "lotr:gold_ring"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.general.pledged.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.general.pledged.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_pledged": {
+      "trigger": "lotrextended:alignment_changed",
+      "conditions": {
+        "pledged": "true"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pledged"
+    ]
+  ]
+}

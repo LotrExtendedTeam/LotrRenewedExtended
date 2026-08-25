@@ -88,49 +88,49 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:galvorn_ingot",
+        "item": "lotrextended:galvorn_ingot",
         "averageCost": 4
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:emerald",
+        "item": "lotrextended:emerald",
         "averageCost": 15
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:sapphire",
+        "item": "lotrextended:sapphire",
         "averageCost": 12
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:opal",
+        "item": "lotrextended:opal",
         "averageCost": 10
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:amethyst",
+        "item": "lotrextended:amethyst",
         "averageCost": 8
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:pearl",
+        "item": "lotrextended:pearl",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:dead_coral",
+        "item": "lotrextended:dead_coral",
         "averageCost": 2
       }
     },
@@ -278,7 +278,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:rivendell_bow",
+        "item": "lotrextended:rivendell_bow",
         "averageCost": 20,
         "nbt": "{Damage:0}"
       }
@@ -288,7 +288,7 @@
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
       "stack": {
-        "item": "lotr:imladris_guard_helmet",
+        "item": "lotrextended:imladris_guard_helmet",
         "averageCost": 270,
         "nbt": "{Damage:0}"
       }
@@ -298,7 +298,7 @@
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
       "stack": {
-        "item": "lotr:imladris_guard_chestplate",
+        "item": "lotrextended:imladris_guard_chestplate",
         "averageCost": 375,
         "nbt": "{Damage:0}"
       }
@@ -308,7 +308,7 @@
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
       "stack": {
-        "item": "lotr:imladris_guard_leggings",
+        "item": "lotrextended:imladris_guard_leggings",
         "averageCost": 330,
         "nbt": "{Damage:0}"
       }
@@ -318,7 +318,7 @@
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
       "stack": {
-        "item": "lotr:imladris_guard_boots",
+        "item": "lotrextended:imladris_guard_boots",
         "averageCost": 240,
         "nbt": "{Damage:0}"
       }
@@ -328,7 +328,7 @@
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
       "stack": {
-        "item": "lotr:imladris_guard_shield",
+        "item": "lotrextended:imladris_guard_shield",
         "averageCost": 200,
         "nbt": "{Damage:0}"
       }
@@ -347,22 +347,22 @@
       "shouldTradePersist": false,
       "stacks": [
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"rangedKnockback2\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"rangedStrong3\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"toolSpeed2\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"toolSilk\"}"
         }
@@ -374,17 +374,17 @@
       "shouldTradePersist": false,
       "stacks": [
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"protectRanged2\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"strong3\"}"
         },
         {
-          "item": "lotr:modifier_scroll",
+          "item": "lotrextended:modifier_scroll",
           "averageCost": 350,
           "nbt": "{REScrollMod:\"toolSpeed3\"}"
         }
@@ -395,7 +395,7 @@
       "maxTransferQuantity": 1,
       "shouldTradePersist": false,
       "stack": {
-        "item": "lotr:modifier_scroll",
+        "item": "lotrextended:modifier_scroll",
         "averageCost": 150,
         "nbt": "{REScrollMod:\"toughness1\"}"
       }
@@ -403,16 +403,37 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:rivendell_banner_pattern",
+        "item": "lotrextended:rivendell_banner_pattern",
         "averageCost": 25
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:rivendell_shield",
+        "item": "lotrextended:rivendell_shield",
         "averageCost": 20,
         "nbt": "{Damage:0}"
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:combat_tome",
+        "averageCost": 50
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:artisan_tome",
+        "averageCost": 50
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:smith_tome",
+        "averageCost": 100
       }
     }
   ]

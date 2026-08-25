@@ -7,21 +7,21 @@
         {
           "type": "minecraft:item",
           "weight": 200,
-          "name": "lotr:pearl"
+          "name": "lotrextended:pearl"
         },
         {
           "type": "minecraft:item",
           "functions": [
+            {
+              "function": "lotrextended:modifier_adder",
+              "no_negatives": true
+            },
             {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
                 "max": 0.75
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder",
-              "no_negatives": true
             }
           ],
           "name": "minecraft:bow"
@@ -31,15 +31,15 @@
           "weight": 20,
           "functions": [
             {
+              "function": "lotrextended:modifier_adder",
+              "no_negatives": true
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
                 "max": 0.75
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder",
-              "no_negatives": true
             }
           ],
           "name": "minecraft:fishing_rod"
@@ -49,15 +49,15 @@
           "weight": 20,
           "functions": [
             {
+              "function": "lotrextended:modifier_adder",
+              "no_negatives": true
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
                 "max": 0.75
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder",
-              "no_negatives": true
             }
           ],
           "name": "lotr:iron_dagger"
@@ -67,15 +67,15 @@
           "weight": 20,
           "functions": [
             {
+              "function": "lotrextended:modifier_adder",
+              "no_negatives": true
+            },
+            {
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.0,
                 "max": 0.75
               }
-            },
-            {
-              "function": "lotrextended:modifier_adder",
-              "no_negatives": true
             }
           ],
           "name": "lotr:bronze_dagger"
@@ -83,16 +83,16 @@
         {
           "type": "minecraft:item",
           "weight": 100,
-          "name": "lotr:silver_coin_one"
+          "name": "lotrextended:silver_coin_one"
         },
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "lotr:silver_coin_ten"
+          "name": "lotrextended:silver_coin_ten"
         },
         {
           "type": "minecraft:item",
-          "name": "lotr:silver_coin_hundred"
+          "name": "lotrextended:silver_coin_hundred"
         },
         {
           "type": "minecraft:item",
@@ -167,6 +167,21 @@
         {
           "type": "minecraft:item",
           "name": "lotr:mithril_ring"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "lotrextended:artisan_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "lotrextended:combat_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "lotrextended:combat_tome"
         }
       ],
       "functions": [

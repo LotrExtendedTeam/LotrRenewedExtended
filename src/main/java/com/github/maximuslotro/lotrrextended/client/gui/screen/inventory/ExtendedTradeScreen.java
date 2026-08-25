@@ -12,7 +12,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import lotr.common.util.CoinUtils;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+import lotr.common.util.ExtendedTraderHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -24,7 +24,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 /**
  * @author RichardB122
  */
-public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer> {
+public class ExtendedTradeScreen extends ExtendedContainerScreen<ExtendedTradeContainer> {
 
     private int guiLeft;
 
@@ -197,7 +197,7 @@ public class ExtendedTradeScreen extends ContainerScreen<ExtendedTradeContainer>
 
     private void sellItems() {
         if (container.getSellValue() > 0) {
-            container.trader.playTradeSound();
+            ExtendedTraderHelper.playTraderSound(this.container.traderNPC);
             ExtendedPacketHandler.sendToServer(new ExtendedCTradeSellItemsPacket());
         }
     }

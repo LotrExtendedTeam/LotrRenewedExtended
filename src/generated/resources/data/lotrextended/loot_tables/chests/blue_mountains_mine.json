@@ -4,7 +4,7 @@
     {
       "rolls": {
         "min": 1.0,
-        "max": 4.0,
+        "max": 3.0,
         "type": "minecraft:uniform"
       },
       "entries": [
@@ -283,7 +283,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:glowstone_crystal_chandelier"
+          "name": "lotrextended:glowstone_crystal_chandelier"
         },
         {
           "type": "minecraft:item",
@@ -385,7 +385,7 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -396,10 +396,10 @@
             },
             {
               "function": "minecraft:set_nbt",
-              "tag": "{coin_type:\"dwarven\"}"
+              "tag": "{coin_type:\"blue_dwarven\"}"
             }
           ],
-          "name": "lotr:silver_coin_hundred"
+          "name": "lotrextended:silver_coin_hundred"
         }
       ],
       "conditions": [

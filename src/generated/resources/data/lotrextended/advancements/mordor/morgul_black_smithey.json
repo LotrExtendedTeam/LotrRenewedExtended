@@ -2,7 +2,7 @@
   "parent": "lotrextended:mordor/durnaur_ore",
   "display": {
     "icon": {
-      "item": "lotr:black_uruk_steel_ingot"
+      "item": "lotrextended:black_uruk_steel_ingot"
     },
     "title": {
       "translate": "advancements.lotrextended.mordor.morgul_black_smithey.title"
@@ -21,7 +21,7 @@
       "trigger": "lotrextended:crafting_with_block",
       "conditions": {
         "item": {
-          "item": "lotr:black_uruk_steel_ingot"
+          "item": "lotrextended:black_uruk_steel_ingot"
         },
         "crafting_block": {
           "block": "lotr:orc_forge"

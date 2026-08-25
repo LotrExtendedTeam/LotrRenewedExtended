@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:coral_from_brain_coral_fan"
+    ]
+  },
+  "criteria": {
+    "has_brain_coral_fan": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:brain_coral_fan"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:coral_from_brain_coral_fan"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_brain_coral_fan",
+      "has_the_recipe"
+    ]
+  ]
+}

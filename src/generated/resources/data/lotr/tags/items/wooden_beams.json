@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_beam",
-    "lotr:chestnut_beam",
-    "lotr:ebony_beam",
-    "lotr:plum_beam",
-    "lotr:willow_beam"
+    "lotrextended:banana_beam",
+    "lotrextended:chestnut_beam",
+    "lotrextended:ebony_beam",
+    "lotrextended:plum_beam",
+    "lotrextended:willow_beam"
   ]
 }

@@ -23,7 +23,9 @@
 		"lotr.common.entity.npc.MixinBlueDwarfEntity",
 		"lotr.common.entity.npc.MixinBlueDwarfWarriorEntity",
 		"lotr.common.entity.npc.MixinBreeGuardEntity",
+		"lotr.common.entity.npc.MixinDunlendingWarriorEntity",
 		"lotr.common.entity.npc.MixinDwarfEntity",
+		"lotr.common.entity.npc.MixinDwarfWarriorEntity",
 		"lotr.common.entity.npc.MixinElfEntity",
 		"lotr.common.entity.npc.MixinGundabadOrcArcherEntity",
 		"lotr.common.entity.npc.MixinGundabadOrcEntity",
@@ -40,6 +42,7 @@
 		"lotr.common.entity.npc.MixinOrcEntity",
 		"lotr.common.entity.npc.MixinRivendellElfEntity",
 		"lotr.common.entity.npc.MixinRivendellWarriorEntity",
+		"lotr.common.entity.npc.MixinRohirrimBowmanEntity",
 		"lotr.common.entity.npc.MixinUrukArcherEntity",
 		"lotr.common.entity.npc.MixinUrukEntity",
 		"lotr.common.entity.npc.MixinWargEntity",
@@ -64,6 +67,7 @@
 		"lotr.common.inv.MixinFactionCraftingResultSlotAccessor",
 		"lotr.common.inv.MixinForgeResultSlot",
 		"lotr.common.inv.MixinPouchContainer",
+		"lotr.common.item.MixinDaggerItem",
 		"lotr.common.item.MixinDurnorItem",
 		"lotr.common.item.MixinRedBookItem",
 		"lotr.common.item.MixinSaltItem",
@@ -73,6 +77,7 @@
 		"lotr.common.item.MixinVesselType",
 		"lotr.common.network.MixinCPacketCreateCustomWaypoint",
 		"lotr.common.network.MixinCPacketMapTp",
+		"lotr.common.speech.MixinLOTRSpeechbankEngine",
 		"lotr.common.tileentity.MixinKegTileEntity",
 		"lotr.common.tileentity.MixinPlateTileEntity",
 		"lotr.common.tileentity.MixinVesselDrinkTileEntity",
@@ -134,6 +139,7 @@
 		"lotr.common.world.biome.MixinWesternIsles",
 		"lotr.common.world.biome.MixinWilderlandBiome",
 		"lotr.common.world.biome.MixinWoodlandRealmBiome",
+		"lotr.common.world.gen.MixinMiddleEarthChunkGenerator",
 		"lotr.common.world.gen.tree.MixinLOTRTrunkPlacersJavaPatch",
 		"lotr.common.world.spawning.MixinRenewedNPCSpawner",
 		"net.minecraft.advancements.criterion.MixinItemPredicate",
@@ -162,12 +168,19 @@
 		"net.minecraft.item.MixinItems",
 		"net.minecraft.item.MixinItemStack",
 		"net.minecraft.item.MixinShearsItem",
+		"net.minecraft.network.MixinDebugPacketSender",
 		"net.minecraft.network.login.MixinServerLoginNetHandler",
 		"net.minecraft.network.play.MixinServerPlayNetHandler",
+		"net.minecraft.pathfinding.MixinPath",
+		"net.minecraft.pathfinding.MixinPathAccessor",
+		"net.minecraft.pathfinding.MixinPathFinder",
+		"net.minecraft.pathfinding.MixinPathHeap",
 		"net.minecraft.server.dedicated.MixinDedicatedServer",
 		"net.minecraft.tileentity.MixinSignTileEntityAccessor",
+		"net.minecraft.tileentity.MixinTileEntity",
 		"net.minecraft.util.MixinFoodStats",
-		"net.minecraft.world.gen.feature.template.MixinTemplate"
+		"net.minecraft.world.gen.feature.template.MixinTemplate",
+		"net.minecraft.world.gen.feature.jigsaw.MixinJigsawManager"
 	],
 	"client": [
 		"craftedMods.jeiLotr.MixinJEILotr",
@@ -180,7 +193,6 @@
 		"lotr.client.gui.util.MixinAlignmentRenderer",
 		"lotr.client.gui.MixinMiddleEarthMasterMenuScreen",
 		"lotr.client.gui.inv.MixinAlloyForgeScreen",
-		"lotr.client.gui.inv.MixinContainerScreenHelper",
 		"lotr.client.gui.inv.MixinFactionCraftingScreen",
 		"lotr.client.gui.inv.MixinPouchScreen",
 		"lotr.client.render.MixinRandomTextureVariantsAccessorJavaPatch",
@@ -206,6 +218,7 @@
 		"net.minecraft.client.gui.screen.inventory.MixinFurnaceScreen",
 		"net.minecraft.client.gui.screen.inventory.MixinInventoryScreen",
 		"net.minecraft.client.multiplayer.MixinPlayerController",
+		"net.minecraft.client.renderer.debug.MixinDebugRenderer",
 		"net.minecraft.client.renderer.entity.layers.MixinBipedArmorLayer",
 		"net.minecraft.client.renderer.tileentity.MixinStructureTileEntityRenderer",
 		"net.minecraft.tileentity.MixinStructureBlockTileEntity",
@@ -214,5 +227,8 @@
 	"injectors": {
 		"defaultRequire": 1
 	},
-	"minVersion": "0.8"
+	"minVersion": "0.8",
+	"mixinextras": {
+		"minVersion": "0.5.4"
+	}
 }

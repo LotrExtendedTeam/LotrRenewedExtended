@@ -1,0 +1,161 @@
+{
+	"name": "lotrextended:dunland/dunland_village_building",
+	"fallback": "lotrextended:dunland/dunland_village_building_fallback",
+	"elements": [
+		{
+			"weight": 10,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_smith_1",
+				"processors": "lotrextended:dunland_processor",
+				"blacklist_name" : "FORGE",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 3,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_smith_2",
+				"processors": "lotrextended:dunland_processor",
+				"blacklist_name" : "FORGE",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 13,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_gatherer_1",
+				"processors": "lotrextended:dunland_processor",
+				"blacklist_name" : "GATHER",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 13,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_gatherer_2",
+				"processors": "lotrextended:dunland_processor",
+				"blacklist_name" : "GATHER",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 13,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_tavern_1",
+				"processors": "lotrextended:dunland_processor",
+				"blacklist_name" : "TAVERN",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_house_tiny_1",
+				"processors": "lotrextended:dunland_processor",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_house_tiny_2",
+				"processors": "lotrextended:dunland_processor",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_house_v_small_1",
+				"processors": "lotrextended:dunland_processor",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_house_v_small_2",
+				"processors": "lotrextended:dunland_processor",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_house_small_1",
+				"processors": "lotrextended:dunland_processor",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_house_small_2",
+				"processors": "lotrextended:dunland_processor",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_house_medium_1",
+				"processors": "lotrextended:dunland_processor",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_house_medium_2",
+				"processors": "lotrextended:dunland_processor",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_house_large_1",
+				"processors": "lotrextended:dunland_processor",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:dunland/building/dunland_house_large_2",
+				"processors": "lotrextended:dunland_processor",
+				"snap_to_water_height" : true
+			}
+		}
+	]
+}

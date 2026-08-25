@@ -11,9 +11,11 @@ import com.github.maximuslotro.lotrrextended.common.item.ExtendedMCBannerItem;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedAlignmentHelper;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
+import lotr.common.data.LOTRLevelData;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -23,6 +25,7 @@ import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -46,11 +49,13 @@ import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -90,13 +95,8 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable {
 	@Override
 	public boolean canSurvive(BlockState pState, IWorldReader world, BlockPos pos) {
 		if (pState.getValue(HALF) == DoubleBlockHalf.UPPER) {
-			boolean isPresent = pState.getBlock() == this;
-			if (!isPresent) {
-				return true;
-			} else {
-				BlockState belowState = world.getBlockState(pos.below());
-				return belowState.getBlock() == this && belowState.getValue(HALF) == DoubleBlockHalf.LOWER;
-			}
+			BlockState belowState = world.getBlockState(pos.below());
+			return belowState.getBlock() == this && belowState.getValue(HALF) == DoubleBlockHalf.LOWER;
 		} else {
 			return canSupportCenter(world, pos.below(), Direction.UP);
 		}
@@ -131,22 +131,42 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext pContext) {
 		BlockState blockstate = this.defaultBlockState();
-		World iworldreader = pContext.getLevel();
+		World world = pContext.getLevel();
 		BlockPos blockpos = pContext.getClickedPos();
-		blockstate = blockstate.setValue(WATERLOGGED, iworldreader.getFluidState(pContext.getClickedPos()).getType() == Fluids.WATER);
+		blockstate = blockstate.setValue(WATERLOGGED, world.getFluidState(pContext.getClickedPos()).getType() == Fluids.WATER);
 		Direction[] adirection = pContext.getNearestLookingDirections();
 		for (Direction direction : adirection) {
 			if (direction.getAxis().isHorizontal()) {
 				Direction direction1 = direction.getOpposite();
 				blockstate = blockstate.setValue(FACING, direction1);
-				if (blockstate.canSurvive(iworldreader, blockpos)) {
-					if(blockpos.getY() < pContext.getLevel().dimensionType().logicalHeight() - 1 && pContext.getLevel().getBlockState(blockpos.above()).canBeReplaced(pContext)) {
+				if (blockstate.canSurvive(world, blockpos)) {
+					if(blockpos.getY() < world.dimensionType().logicalHeight() - 1 && world.getBlockState(blockpos.above()).canBeReplaced(pContext)) {
 						return blockstate;
 					}
 				}
 			}
 		}
 		return null;
+	}
+
+	public static boolean canPlaceBanner(BlockItemUseContext pContext, ExtendedBannerTypes type) {
+		int protLevel = ExtendedMEBannerTileEntity.getProtectionLevelFromBelowBlock(pContext.getLevel(), pContext.getClickedPos().below());
+		if(pContext.getPlayer()!=null && protLevel>0) {
+			if(LOTRLevelData.getSidedData(pContext.getPlayer()).getAlignmentData().getAlignment(type.getFaction())<1) {
+				if(!pContext.getLevel().isClientSide()){
+					ExtendedAlignmentHelper.sendAlignmentError(pContext.getPlayer(), "+1.0", type.getFaction().resolveFaction(pContext.getLevel()).get());
+				}
+				return false;
+			}
+			ProtectionInstance protect = new ProtectionInstance.PlayerProtection(pContext.getPlayer());
+			protect.setExtraDisputedRange(protLevel);
+			protect.disableMessages();
+			if(!pContext.getLevel().isClientSide() && ExtendedBannerProtectionManager.getProtectionStatus(pContext.getLevel(), pContext.getClickedPos(), protect).isNotAllowed()) {
+				pContext.getPlayer().sendMessage(new TranslationTextComponent("message.lotrextended.banner.land_protected.already"), Util.NIL_UUID);
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -270,5 +290,15 @@ public class ExtendedMEBannerBlock extends Block implements IWaterLoggable {
 			}
 		}
 		return ActionResultType.PASS;
+	}
+
+	@Override
+	public boolean isFlammable(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+		return false;
+	}
+
+	@Override
+	public PushReaction getPistonPushReaction(BlockState pState) {
+		return PushReaction.BLOCK;
 	}
 }

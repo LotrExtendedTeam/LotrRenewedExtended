@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:orc_bomb_double_fire_from_orc_steel_ingot"
+    ]
+  },
+  "criteria": {
+    "has_orc_steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/orc_steel"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:orc_bomb_double_fire_from_orc_steel_ingot"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_orc_steel_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

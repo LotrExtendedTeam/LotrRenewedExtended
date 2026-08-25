@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "lotrextended:chestnut_logs"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:chestnut_planks",
+    "count": 4
+  }
+}

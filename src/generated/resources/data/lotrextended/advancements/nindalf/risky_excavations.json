@@ -2,7 +2,7 @@
   "parent": "lotrextended:nindalf/stench_of_evil",
   "display": {
     "icon": {
-      "item": "lotr:remains_ore_man"
+      "item": "lotrextended:remains_ore_man"
     },
     "title": {
       "color": "gold",
@@ -21,25 +21,25 @@
     "broke_remains_ore_dwarf": {
       "trigger": "extended:break_block",
       "conditions": {
-        "block": "lotr:remains_ore_dwarf"
+        "block": "lotrextended:remains_ore_dwarf"
       }
     },
     "broke_remains_ore_elf": {
       "trigger": "extended:break_block",
       "conditions": {
-        "block": "lotr:remains_ore_elf"
+        "block": "lotrextended:remains_ore_elf"
       }
     },
     "broke_remains_ore_man": {
       "trigger": "extended:break_block",
       "conditions": {
-        "block": "lotr:remains_ore_man"
+        "block": "lotrextended:remains_ore_man"
       }
     },
     "broke_remains_ore_orc": {
       "trigger": "extended:break_block",
       "conditions": {
-        "block": "lotr:remains_ore_orc"
+        "block": "lotrextended:remains_ore_orc"
       }
     }
   },

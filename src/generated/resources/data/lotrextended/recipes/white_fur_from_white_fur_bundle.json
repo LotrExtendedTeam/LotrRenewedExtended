@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotrextended:white_fur_bundle"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:white_fur",
+    "count": 4
+  }
+}

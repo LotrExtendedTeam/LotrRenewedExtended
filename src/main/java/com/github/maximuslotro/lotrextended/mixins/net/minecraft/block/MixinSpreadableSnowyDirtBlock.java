@@ -8,10 +8,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.github.maximuslotro.lotrrextended.common.utils.BlockStateUtils;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedBlockStateUtils;
 
 import lotr.common.block.ExtendedAxialSlabPlantableSpreadableBlock;
-import lotr.common.init.ExtendedBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SpreadableSnowyDirtBlock;
@@ -47,7 +47,7 @@ public abstract class MixinSpreadableSnowyDirtBlock {
 							continue;
 						}
 						if (world.getBlockState(blockpos).is(ExtendedBlocks.DIRT_SLAB.get())) {
-							BlockState blockstateSlab = BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.GRASS_BLOCK_SLAB.get(), world.getBlockState(blockpos));
+							BlockState blockstateSlab = ExtendedBlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.GRASS_BLOCK_SLAB.get(), world.getBlockState(blockpos));
 							if (ExtendedAxialSlabPlantableSpreadableBlock.canPropagate(blockstateSlab, world, blockpos, ()->Blocks.GRASS_BLOCK)) {
 								world.setBlockAndUpdate(blockpos, blockstateSlab);
 								continue;
@@ -73,7 +73,7 @@ public abstract class MixinSpreadableSnowyDirtBlock {
 							continue;
 						}
 						if (world.getBlockState(blockpos).is(ExtendedBlocks.DIRT_SLAB.get())) {
-							BlockState blockstateSlab = BlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.MYCELIUM_SLAB.get(), world.getBlockState(blockpos));
+							BlockState blockstateSlab = ExtendedBlockStateUtils.copyBlockStateToBlock(ExtendedBlocks.MYCELIUM_SLAB.get(), world.getBlockState(blockpos));
 							if (ExtendedAxialSlabPlantableSpreadableBlock.canPropagate(blockstateSlab, world, blockpos, ()->Blocks.MYCELIUM)) {
 								world.setBlockAndUpdate(blockpos, blockstateSlab);
 								continue;

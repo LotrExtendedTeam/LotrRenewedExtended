@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotrextended:combat_tome"
+  },
+  "result1": {
+    "item": "minecraft:iron_nugget"
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

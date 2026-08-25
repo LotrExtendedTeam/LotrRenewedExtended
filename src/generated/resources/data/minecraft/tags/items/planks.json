@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_planks",
-    "lotr:chestnut_planks",
-    "lotr:ebony_planks",
-    "lotr:plum_planks",
-    "lotr:willow_planks"
+    "lotrextended:banana_planks",
+    "lotrextended:chestnut_planks",
+    "lotrextended:ebony_planks",
+    "lotrextended:plum_planks",
+    "lotrextended:willow_planks"
   ]
 }

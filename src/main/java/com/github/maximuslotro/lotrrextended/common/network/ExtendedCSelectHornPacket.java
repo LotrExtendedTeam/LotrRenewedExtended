@@ -3,9 +3,9 @@ package com.github.maximuslotro.lotrrextended.common.network;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitHornTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
 
-import lotr.common.init.ExtendedItems;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;

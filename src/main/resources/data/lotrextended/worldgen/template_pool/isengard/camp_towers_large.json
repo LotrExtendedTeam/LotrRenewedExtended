@@ -1,0 +1,17 @@
+{
+	"name": "lotrextended:isengard/camp_towers_large",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/tower/isengard_tower_3",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true,
+				"ground_level_delta": 2
+			}
+		}
+	]
+}

@@ -3,9 +3,9 @@ package com.github.maximuslotro.lotrrextended.common.entity.ai.goal;
 import java.util.EnumSet;
 import java.util.Random;
 
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitOrders;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 
-import lotr.common.entity.npc.ExtendedNPCEntity;
+import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -72,6 +72,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 		if (!(entity.getNavigation() instanceof GroundPathNavigator) && !(entity.getNavigation() instanceof FlyingPathNavigator)) {
 			throw new IllegalArgumentException("Unsupported mob type for FollowOwnerGoal");
 		}
+		this.setFlags(EnumSet.of(Goal.Flag.MOVE));
 	}
 	/**
      * Determines whether this goal should continue executing.
@@ -81,22 +82,22 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 	@Override
 	public boolean canContinueToUse() {
 		// Check if orders have changed
-		if(currentOrderType!=((ExtendedNPCEntity)entity).getUnitInfo().getOrders()) {
+		if(currentOrderType!=((ExtendedINPCEntity)entity).getUnitInfo().getOrders()) {
 			return false;
 		}
-		if(currentOrderType==ExtendedUnitOrders.PATROL_PLAYER) {
+		if(currentOrderType==ExtendedUnitOrders.FOLLOW_PLAYER) {
 			if (this.navigation.isDone()) {
 				return false;
 			} // Stop entity following player if entity has been activated for combat
-			else if ((entity.getLastHurtByMob() != null && entity.getLastHurtByMob() != ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner()) || entity.getTarget() != null) {
+			else if ((entity.getLastHurtByMob() != null && entity.getLastHurtByMob() != ((ExtendedINPCEntity)this.entity).getUnitInfo().getUnitOwner()) || entity.getTarget() != null) {
 				return false;
 			} else {
 				return this.entity.distanceToSqr(this.owner) > (stopDistance * stopDistance); // Continue following player if to far away squared
 			}
 		}
-		if(currentOrderType==ExtendedUnitOrders.GUARD_STATIONARY) {
+		if(currentOrderType==ExtendedUnitOrders.STATIONARY) {
 			// Keep sitting unless attacked, or unit has been taken off ground or put underwater
-			return (entity.getLastHurtByMob() == null || entity.getLastHurtByMob() == ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner()) && entity.isOnGround();
+			return (entity.getLastHurtByMob() == null || entity.getLastHurtByMob() == ((ExtendedINPCEntity)this.entity).getUnitInfo().getUnitOwner()) && entity.isOnGround();
 		}
 		return false;
 	}
@@ -108,13 +109,13 @@ public class ExtendedHiredSitFollowGoal extends Goal {
      */
 	@Override
 	public boolean canUse() {
-		if (!((ExtendedNPCEntity)this.entity).getUnitInfo().isNpcActiveDuty() || ((ExtendedNPCEntity)this.entity).getUnitInfo().getOrders().isUnknown()) {
+		if (!((ExtendedINPCEntity)this.entity).getUnitInfo().isNpcActiveDuty() || ((ExtendedINPCEntity)this.entity).getUnitInfo().getOrders().isUnknown()) {
 			return false;
 		}
-		this.currentOrderType = ((ExtendedNPCEntity)entity).getUnitInfo().getOrders();
-		if(currentOrderType==ExtendedUnitOrders.PATROL_PLAYER) {
+		this.currentOrderType = ((ExtendedINPCEntity)entity).getUnitInfo().getOrders();
+		if(currentOrderType==ExtendedUnitOrders.FOLLOW_PLAYER) {
 			this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
-			LivingEntity livingOwner = ((ExtendedNPCEntity)entity).getUnitInfo().getUnitOwner();
+			LivingEntity livingOwner = ((ExtendedINPCEntity)entity).getUnitInfo().getUnitOwner();
 			if (livingOwner == null) { // Null owner means player is offline, so we should stay put // TODO implementing stay put (disable random walking)
 				return false;
 			} else if (livingOwner.isSpectator()) {
@@ -128,12 +129,12 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 				this.owner = livingOwner;
 				return true;
 			}
-		}else if(currentOrderType==ExtendedUnitOrders.GUARD_STATIONARY) {
+		}else if(currentOrderType==ExtendedUnitOrders.STATIONARY) {
 			this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
 			if (!this.entity.isOnGround()) {
 				return false;
 			} else {
-				LivingEntity livingOwner = ((ExtendedNPCEntity)this.entity).getUnitInfo().getUnitOwner();
+				LivingEntity livingOwner = ((ExtendedINPCEntity)this.entity).getUnitInfo().getUnitOwner();
 				if (livingOwner == null) { // Null owner means player is offline, so we should stay put
 					return true; // Sit if owner if offline
 				} else { // Enable unit stationary "sitting" if player is close
@@ -149,12 +150,12 @@ public class ExtendedHiredSitFollowGoal extends Goal {
      */
 	@Override
 	public void start() {
-		if(currentOrderType==ExtendedUnitOrders.PATROL_PLAYER) {
+		if(currentOrderType==ExtendedUnitOrders.FOLLOW_PLAYER) {
 			this.timeToRecalcPath = 0;
 			// Remove unit water malus when following player
 			this.oldWaterCost = this.entity.getPathfindingMalus(PathNodeType.WATER);
 			this.entity.setPathfindingMalus(PathNodeType.WATER, 0.0F);
-		}else if(currentOrderType==ExtendedUnitOrders.GUARD_STATIONARY) {
+		}else if(currentOrderType==ExtendedUnitOrders.STATIONARY) {
 			this.entity.getNavigation().stop();
 		}
 	}
@@ -163,12 +164,12 @@ public class ExtendedHiredSitFollowGoal extends Goal {
      */
 	@Override
 	public void stop() {
-		if(currentOrderType==ExtendedUnitOrders.PATROL_PLAYER) {
+		if(currentOrderType==ExtendedUnitOrders.FOLLOW_PLAYER) {
 			this.owner = null;
 			this.navigation.stop();
 			// Restore previous unit water malus when done following player
 			this.entity.setPathfindingMalus(PathNodeType.WATER, this.oldWaterCost);
-		}else if(currentOrderType==ExtendedUnitOrders.GUARD_STATIONARY) {
+		}else if(currentOrderType==ExtendedUnitOrders.STATIONARY) {
 		}
 	}
 	/**
@@ -176,7 +177,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
      */
 	@Override
 	public void tick() {
-		if(currentOrderType==ExtendedUnitOrders.PATROL_PLAYER) {
+		if(currentOrderType==ExtendedUnitOrders.FOLLOW_PLAYER) {
 			this.entity.getLookControl().setLookAt(this.owner, 10.0F, this.entity.getMaxHeadXRot());
 			if (--this.timeToRecalcPath <= 0) {
 				this.timeToRecalcPath = 10;
@@ -190,7 +191,7 @@ public class ExtendedHiredSitFollowGoal extends Goal {
 					}
 				}
 			}
-		}else if(currentOrderType==ExtendedUnitOrders.GUARD_STATIONARY) {
+		}else if(currentOrderType==ExtendedUnitOrders.STATIONARY) {
 		}
 	}
 	/**

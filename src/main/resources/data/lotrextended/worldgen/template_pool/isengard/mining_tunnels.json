@@ -1,0 +1,76 @@
+{
+	"name": "lotrextended:isengard/mining_tunnels",
+	"fallback": "lotrextended:isengard/mining_tunnels_fallback",
+	"elements": [
+		{
+			"weight": 10,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/mine/isengard_mine_cor_long_1",
+				"processors": "minecraft:empty",
+				"disable_spawn_above_ground": true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/mine/isengard_mine_cor_short_1",
+				"processors": "minecraft:empty",
+				"disable_spawn_above_ground": true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/mine/isengard_mine_cor_short_2",
+				"processors": "minecraft:empty",
+				"disable_spawn_above_ground": true
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/mine/isengard_mine_cor_long_colap_1",
+				"processors": "minecraft:empty",
+				"disable_spawn_above_ground": true
+			}
+		},
+		{
+			"weight": 3,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/mine/isengard_mine_cor_short_colap_1",
+				"processors": "minecraft:empty",
+				"disable_spawn_above_ground": true
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/mine/isengard_mine_l_1",
+				"processors": "minecraft:empty",
+				"disable_spawn_above_ground": true
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/mine/isengard_mine_t_1",
+				"processors": "minecraft:empty",
+				"disable_spawn_above_ground": true
+			}
+		}
+	]
+}

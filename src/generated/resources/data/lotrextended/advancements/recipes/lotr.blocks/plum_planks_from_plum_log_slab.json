@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:plum_planks_from_plum_log_slab"
+    ]
+  },
+  "criteria": {
+    "has_plum_log_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:plum_log_slab"
+          }
+        ]
+      }
+    },
+    "has_stripped_plum_log_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:stripped_plum_log_slab"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:plum_planks_from_plum_log_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_plum_log_slab",
+      "has_stripped_plum_log_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -20,6 +20,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUCK.get(), ExtendedDuckRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HORSE_BOAR.get(), ExtendedBoarRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HEDGEHOG.get(), ExtendedHedgehogRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.CRABAN.get(), ExtendedCrabanRenderer::new);
 		// Projectiles
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUCK_EGG_ENTITY.get(), manager -> new SpriteRenderer<>(manager, itemRenderer));
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.THROWN_CONKER.get(), manager -> new SpriteRenderer<>(manager, itemRenderer));
@@ -36,6 +37,7 @@ public class ExtendedEntityRenderers {
 		// Hobbit
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_BARTENDER.get(), ExtendedHobbitBartenderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_FARMER.get(), ExtendedHobbitFarmerRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.HOBBIT_FARMHAND.get(), HobbitRenderer::new);
 		// Gundabad
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_CAMP_TRADER.get(), ExtendedSmallOrcTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.GUNDABAD_ORC_CHIEFTAIN.get(), ExtendedLargeOrcTraderRenderer::new);
@@ -63,6 +65,7 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_HOBBIT_INNKEEPER.get(), ExtendedBreeHobbitTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_HOBBIT_FLORIST.get(), ExtendedBreeHobbitTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_HOBBIT_BREWER.get(), ExtendedBreeHobbitTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.BREE_FARMHAND.get(), BreeManRenderer::new);
 		// Ranger North
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNEDAIN_RANGER.get(), ExtendedDunedainRangerRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN.get(), ExtendedDunedainRangerCaptainRenderer::new);
@@ -99,7 +102,13 @@ public class ExtendedEntityRenderers {
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_SMITH.get(), ExtendedUrukTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_CAPTAIN.get(), ExtendedUrukTraderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.URUK_BERSERKER.get(), UrukRenderer::new);
-		// Dunlanding
+		// Dunlending
 		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_WARLORD.get(), ExtendedDunlendingTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_AXE_THROWER.get(), DunlendingRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_BERSERKER.get(), DunlendingRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_BARTENDER.get(), ExtendedDunlendingTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_SMITH.get(), ExtendedDunlendingTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_FARMER.get(), ExtendedDunlendingTraderRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExtendedEntities.DUNLENDING_FARMHAND.get(), DunlendingRenderer::new);
 	}
 }

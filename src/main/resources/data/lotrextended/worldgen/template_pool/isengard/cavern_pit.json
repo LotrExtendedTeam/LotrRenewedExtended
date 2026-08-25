@@ -1,0 +1,47 @@
+{
+	"name": "lotrextended:isengard/cavern_pit",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/pit/isengard_pit_4",
+				"processors": "lotrextended:basic_armor_stand_processor",
+				"apply_waterlogging" : false
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/pit/isengard_pit_4_1",
+				"processors": "lotrextended:basic_armor_stand_processor",
+				"apply_waterlogging" : false
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/pit/isengard_pit_4_2",
+				"processors": "lotrextended:basic_armor_stand_processor",
+				"apply_waterlogging" : false
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/pit/isengard_pit_4_3",
+				"processors": "lotrextended:basic_armor_stand_processor",
+				"apply_waterlogging" : false,
+				"disable_spawn_above_ground": true
+			}
+		}
+	]
+}

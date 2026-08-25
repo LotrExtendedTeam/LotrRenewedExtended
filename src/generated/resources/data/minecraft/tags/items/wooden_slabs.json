@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_slab",
-    "lotr:chestnut_slab",
-    "lotr:ebony_slab",
-    "lotr:plum_slab",
-    "lotr:willow_slab"
+    "lotrextended:banana_slab",
+    "lotrextended:chestnut_slab",
+    "lotrextended:ebony_slab",
+    "lotrextended:plum_slab",
+    "lotrextended:willow_slab"
   ]
 }

@@ -1,0 +1,256 @@
+{
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "I seek Man-flesh!",
+        "I smell Man-flesh!",
+        "Where is the Man-flesh?",
+        "What do you want?",
+        "I've had nothing but maggoty bread for three stinking days!",
+        "Maggoty bread again? Give me some Man-flesh!",
+        "I can't wait to get my teeth into some Man-flesh!",
+        "What are you after?",
+        "The air is foul here.",
+        "We shall break their bones and feast on their flesh!",
+        "Death to the lands of Men! Death to the filthy Elves!",
+        "Death to the line of Durin!",
+        "These rags stink!",
+        "The world of Men shall be broken and destroyed.",
+        "Ruin! Ruin to the free peoples!",
+        "Man-flesh!",
+        "Where's the nearest Man-flesh? I'm starving here!",
+        "Remember who it was that took the Mountain from the filthy Dwarves!",
+        "We drove the Dwarves out of all their mountain-mines! And they're never coming back!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=thrall"
+      },
+      "lines": [
+        "We serve a common purpose, #p.",
+        "We shall swarm into the lands of the free peoples like a plague! Leave nothing alive!",
+        "Our Wargs are the fiercest, nastiest wolves of all the Goblin-clans!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<snaga"
+      },
+      "lines": [
+        "Whom do you serve?",
+        "You ain't fit to ride the meanest Warg!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<raider"
+      },
+      "lines": [
+        "Get out of my sight, worm!",
+        "Get back to work, Snaga-scum!",
+        "You stink like a Snaga!",
+        "Our Wargs are nasty brutes! So watch out, or I'll set them on you! Ha!",
+        "Stay in line, #p, or the Uruks will sort you out!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=raider"
+      },
+      "lines": [
+        "Soon, #p! Soon we will raid the filthy sons of Men!",
+        "You're not bad for a Man!",
+        "You're not bad for a Man, #p! Even if you do have an air of Ranger about you!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=raider & <warlord"
+      },
+      "lines": [
+        "Filthy maggot! Oh, it's you, #p...",
+        "You still don't look like a Goblin-Man, #p!",
+        "Get readying yourself for war! There's always one on the way!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<ravager"
+      },
+      "lines": [
+        "If you can get me some Man-flesh, I won't eat you instead! Ha! Ha!",
+        "What are you after, maggot?",
+        "Follow your orders, scum!",
+        "Don't just stand there! Do something!",
+        "I don't trust you, maggot!",
+        "Move along, scum!",
+        "Are you trying to start a fight?",
+        "I don't trust filthy Men!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=scourge"
+      },
+      "lines": [
+        "At your service, #p!",
+        "What orders from the Mountain, #p?",
+        "The Uruks speak highly of you, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<scourge"
+      },
+      "lines": [
+        "Oi! Watch yer mouth!",
+        "Something smells disgusting here. It's you, #p! Go away!",
+        "You stink!",
+        "You smell like a rotten maggot!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<warlord"
+      },
+      "lines": [
+        "You don't look like a Goblin-Man!",
+        "Do you want something?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=warlord"
+      },
+      "lines": [
+        "What orders from Gundabad?",
+        "What orders from Gundabad, #p?",
+        "What do the Bosses command?",
+        "At your service, maggot! - I mean - #p!",
+        "I'll let the boys know it's time for an inspection!",
+        "I'll have your Warg made ready at once!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=chieftain"
+      },
+      "lines": [
+        "So? Are you the new Boss?",
+        "We march to war at your command!",
+        "Lead us to the ends of the earth, #p!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "I'll bleed you like a stuck pig!",
+        "Enjoy your last breath, scum!",
+        "You're nice and fresh!",
+        "Kill the scum!",
+        "Looks like meat's back on the menu, boys!",
+        "You stink of fear!",
+        "Die, Man-scum!",
+        "Your blood smells fresh!",
+        "I'll skewer you like a piece of meat!",
+        "You'd better start running, maggot!",
+        "Come any closer and I'll stick you like a fresh cut of meat!",
+        "We dine on Man-flesh tonight!",
+        "Once I'm done with you, you'll be nothing but a pile of bones!",
+        "I will feast on your flesh, Man-filth!",
+        "I'll make dinner out of you!",
+        "You've messed with the wrong Orc, Man-scum!",
+        "I will have your head, scum!",
+        "Filthy maggot tried to knife me!",
+        "Ranger scum! Come on, boys!",
+        "Worm!",
+        "Scum!",
+        "Maggot!",
+        "Snaga-filth!",
+        "I'll set the Wargs on you!",
+        "Our Wargs will sort you out!",
+        "You stink of Warg-dung!",
+        "You'll end up like the Dwarves of Moria!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "m"
+      },
+      "lines": [
+        "Get 'im, boys!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "player_gender_pref": "f"
+      },
+      "lines": [
+        "Get 'er, boys!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "Have you not been driven out by our armies yet, scum?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "rank": ">=thrall"
+      },
+      "lines": [
+        "Oath-breaking scum!",
+        "Oath-breaker! Snaga-filth!",
+        "We'll feast on your bones, traitor!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "What are your orders, my lord?",
+        "You may be my commander, #p, but you're still a filthy maggot!",
+        "Lead us on the raid, #p!",
+        "The air is ripe with the stink of fear!",
+        "The free peoples of the earth shall fall before our might!",
+        "Death! Death to all who oppose us!",
+        "Shall we hunt some Man-flesh, #p?",
+        "My stomach is dying for Man-flesh!",
+        "I am ready to hunt some Man-scum.",
+        "Death to those filthy Rangers and all their filthy friends!",
+        "Let us wreak havoc upon the world of Men!",
+        "Let's hunt some Men!",
+        "Stinking Rangers don't know what's coming for them!",
+        "Call the boys! We march to war!",
+        "Call the Wargs!",
+        "Let's hunt some Dwarves!"
+      ]
+    }
+  ]
+}

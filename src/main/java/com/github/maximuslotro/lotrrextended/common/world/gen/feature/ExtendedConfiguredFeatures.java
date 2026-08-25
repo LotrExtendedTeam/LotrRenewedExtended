@@ -1,11 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.world.gen.feature;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedWallsFeature.EdgeType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.placement.ExtendedCaveSurface;
 
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import net.minecraft.block.Blocks;
@@ -35,6 +35,8 @@ public class ExtendedConfiguredFeatures {
 	public static final ConfiguredFeature<ExtendedWallsFeatureConfig, ?> RING_OF_ISENGARD = register("ring_of_isengard", ExtendedFeature.WALLS_PRE.configured(ISENGARD_WALLS_CONFIG));
 
 	public static final ConfiguredFeature<ExtendedLandBlotFeatureConfig, ?> ISENGARD_SCORCHED_LAND = register("scorched_land_isengard", ExtendedFeature.LAND_BLOT_PRE.configured(new ExtendedLandBlotFeatureConfig(FeatureSpread.of(5, 7), ExtendedBiomeFeatures.MIDDLE_EARTH_SURFACE, 2.0f, ExtendedBlocks.WASTE_BLOCK.get().defaultBlockState(), true, 10, 1.5f, true, 30)));
+	public static final ConfiguredFeature<ExtendedLandBlotFeatureConfig, ?> FANGORN_WASTELAND_SCORCHED_LAND = register("scorched_land_fangorn_wasteland", ExtendedFeature.LAND_BLOT_PRE.configured(new ExtendedLandBlotFeatureConfig(FeatureSpread.of(5, 8), ExtendedBiomeFeatures.MIDDLE_EARTH_SURFACE, 2.0f, ExtendedBlocks.WASTE_BLOCK.get().defaultBlockState(), true, 10, 1.5f, true, 20)));
+	public static final ConfiguredFeature<ExtendedLandBlotFeatureConfig, ?> URUK_HIGHLAND_SCORCHED_LAND = register("scorched_land_uruk_highland", ExtendedFeature.LAND_BLOT_PRE.configured(new ExtendedLandBlotFeatureConfig(FeatureSpread.of(4, 8), ExtendedBiomeFeatures.MIDDLE_EARTH_SURFACE, 2.0f, ExtendedBlocks.WASTE_BLOCK.get().defaultBlockState(), true, 10, 1.5f, true, 30)));
 
 	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String configuredFeatureName, ConfiguredFeature<FC, ?> pConfiguredFeature) {
 		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(LotrExtendedMod.MODID, configuredFeatureName), pConfiguredFeature);

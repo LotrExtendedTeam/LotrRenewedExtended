@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.dwarf_archer",
-    "attack_type": "ranged"
+    "entity_unit_type": "entity.lotr.dwarf_archer"
   },
   "hiring": {
     "hiringCost": 50,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 300
   },
+  "attack_type": "ranged",
   "equipmentPools": {
     "helmets": [
       {
@@ -64,7 +64,7 @@
       {
         "weight": 1,
         "equipmentItem": {
-          "item": "lotr:longbow",
+          "item": "lotrextended:longbow",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.weapon_ranged\",Damage:0,IsBaseArmor:1b}"
         }
       },

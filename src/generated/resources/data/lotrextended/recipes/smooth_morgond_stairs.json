@@ -1,0 +1,18 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:gondor",
+  "pattern": [
+    "  #",
+    " ##",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:smooth_morgond"
+    }
+  },
+  "result": {
+    "item": "lotrextended:smooth_morgond_stairs",
+    "count": 4
+  }
+}

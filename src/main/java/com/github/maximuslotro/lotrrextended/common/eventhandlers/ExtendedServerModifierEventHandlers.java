@@ -19,6 +19,7 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifier;
 import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifierType;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
@@ -91,20 +92,46 @@ public class ExtendedServerModifierEventHandlers {
 		if(pEvent.getEntity() instanceof ServerPlayerEntity && pEvent.getEntity().tickCount%20 ==0) {
 			ServerPlayerEntity player = (ServerPlayerEntity)pEvent.getEntity();
 			PlayerInventory inventory = player.inventory;
+			boolean inventoryChanged = false;
 			for(int slotIndex=0; slotIndex < inventory.getContainerSize(); slotIndex++) {
 				ItemStack stack = inventory.getItem(slotIndex);
-				if(stack.isDamageableItem()) { 
-					if(!ExtendedModifierUtils.hasRandomModifiers(stack)) {
-						ExtendedModifierUtils.generateItemModifiersTagged(player.random, stack, false, false);
-					}
+				if(stack.isDamageableItem() && handleItemModifiers(stack, player)) { 
+					inventoryChanged = true;
+
 				}
 			}
 			ItemStack carried = inventory.getCarried();
-			if(carried.isDamageableItem() && !ExtendedModifierUtils.hasRandomModifiers(carried)) {
-				ExtendedModifierUtils.generateItemModifiersTagged(player.random, carried, false, false);
+			if(carried.isDamageableItem() && handleItemModifiers(carried, player)) {
 				player.broadcastCarriedItem();
 			}
+			if (inventoryChanged && player.containerMenu != null) {
+				player.containerMenu.broadcastChanges();
+			}
 		}
+	}
+
+	private static boolean handleItemModifiers(ItemStack pStack, ServerPlayerEntity player) {
+		boolean modified = false;
+		if (ExtendedServerConfig.enableExtendedModifiers.get()) {
+			if (!ExtendedModifierUtils.hasRandomModifiers(pStack)) {
+				ExtendedModifierUtils.generateItemModifiersTagged(player.random, pStack, false, false);
+				modified = true;
+			}
+		} else if (!ExtendedServerConfig.enableExtendedModifiers.get() && ExtendedServerConfig.removeExtendedModifiers.get()) {
+			if (ExtendedModifierUtils.hasModifiers(pStack) || ExtendedModifierUtils.hasRandomModifiers(pStack)) {
+				ExtendedModifierUtils.clearModifiers(pStack);
+				ExtendedModifierUtils.removeModifierAddedTag(pStack);
+				modified = true;
+			}
+		}
+
+		if (!ExtendedServerConfig.enableVanillaEnchanting.get() && ExtendedServerConfig.removeVanillaEnchanting.get()) {
+			if (pStack.isEnchanted()) {
+				ExtendedModifierUtils.clearEnchantments(pStack);
+				modified = true;
+			}
+		}
+		return modified;
 	}
 
 	@SubscribeEvent

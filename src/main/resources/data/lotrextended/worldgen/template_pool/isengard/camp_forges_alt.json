@@ -1,0 +1,36 @@
+{
+	"name": "lotrextended:isengard/camp_forges_alt",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/buildings/isengard_surface_forge_4",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/buildings/isengard_surface_forge_5",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/buildings/isengard_surface_forge_6",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
+			}
+		}
+	]
+}

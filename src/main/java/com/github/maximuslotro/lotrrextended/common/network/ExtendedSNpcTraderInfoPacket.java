@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import lotr.common.LOTRMod;
 import lotr.common.entity.npc.data.ExtendedNpcTraderInfoHolder;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class ExtendedSNpcTraderInfoPacket {
@@ -29,8 +28,7 @@ public class ExtendedSNpcTraderInfoPacket {
 	}
 
 	public static void handle(ExtendedSNpcTraderInfoPacket packet, Supplier<NetworkEvent.Context> context) {
-		World world = LOTRMod.PROXY.getClientWorld();
-		ExtendedNpcTraderInfoHolder.readDataPacketFromServer(packet.buffer, world);
+		ExtendedNpcTraderInfoHolder.readDataPacketFromServer(packet.buffer, LOTRMod.PROXY.getClientWorld());
 		context.get().setPacketHandled(true);
 	}
 }

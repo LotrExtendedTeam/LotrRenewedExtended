@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.loot.EItemLootEntry;
 import com.github.maximuslotro.lotrrextended.common.loot.conditions.ExtendedRemoveFromUnitDrops;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedModifierScrollSetter;
 import com.github.maximuslotro.lotrrextended.common.loot.functions.ExtendedSetWargFurType;
 
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.VesselDrinkItem;
@@ -380,6 +380,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		add(LOTREntities.CARACAL.get(), LootTable.lootTable());
 		makeEntity(ExtendedEntities.HOBBIT_BARTENDER, hobbit, coinsRare);
 		makeEntity(ExtendedEntities.HOBBIT_FARMER, hobbit, coinsRare);
+		makeEntity(ExtendedEntities.HOBBIT_FARMHAND, hobbit);
 		makeEntity(ExtendedEntities.ODDMENT_COLLECTOR, manBase, shireHeather, leatherHat);
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.RIVENDELL_WANDERER, elfBaseMiruvorLembas);
@@ -454,6 +455,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_SWORD.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_DAGGER.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.ARNOR_SPEAR.get()).setWeight(25).setDamageRange(0.35F, 0.8F).setExactly(1))
+						.add(EItemLootEntry.lootItem(ExtendedItems.ARNOR_SHIELD.get()).setWeight(20).setDamageRange(0.35F, 0.8F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_CHESTPLATE.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_LEGGINGS.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
 						.add(EItemLootEntry.lootItem(LOTRItems.MITHRIL_BOOTS.get()).setWeight(1).setDamageRange(0.95F, 0.99F).setExactly(1))
@@ -466,6 +468,7 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.DUNEDAIN_RANGER_CAPTAIN, manBase, arrows, rareDunedainRangerDrops);
 		makeEntity(ExtendedEntities.BREE_MERCHANT, manBree); // TODO: Maybe add some other drops here?
 		makeEntity(ExtendedEntities.BREE_FARMER, manBree);
+		makeEntity(ExtendedEntities.BREE_FARMHAND, manBree);
 		makeEntity(ExtendedEntities.BREE_POTTER, manBree);
 		makeEntity(ExtendedEntities.BREE_BAKER, manBree);
 		makeEntity(ExtendedEntities.BREE_BUTCHER, manBree);
@@ -497,6 +500,10 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 						.add(EItemLootEntry.lootItem(Items.PORKCHOP)
 								.apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
 								.apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
+		add(ExtendedEntities.CRABAN.get(), LootTable.lootTable()
+				.withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+						.add(EItemLootEntry.lootItem(Items.FEATHER)
+								.apply(SetCount.setCount(RandomValueRange.between(1, 2))))));
 		makeEntity(ExtendedEntities.RIVENDELL_CAPTAIN, elfRivendell);
 		makeEntity(ExtendedEntities.RIVENDELL_SMITH, elfRivendell);
 		makeEntity(ExtendedEntities.RIVENDELL_WEAVER, elfRivendell);
@@ -520,7 +527,12 @@ public class ExtendedEntityLootGenerator extends EntityLootTables  {
 		makeEntity(ExtendedEntities.URUK_SMITH, orcUruk);
 		makeEntity(ExtendedEntities.URUK_SUPPLIER, orcUruk);
 		makeEntity(ExtendedEntities.DUNLENDING_WARLORD, manDunlending);
-
+		makeEntity(ExtendedEntities.DUNLENDING_AXE_THROWER, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_BERSERKER, manDunlending, arrows);
+		makeEntity(ExtendedEntities.DUNLENDING_BARTENDER, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_SMITH, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_FARMER, manDunlending);
+		makeEntity(ExtendedEntities.DUNLENDING_FARMHAND, manDunlending);
 	}
 
 	public ResourceLocation makeLootCommon(String name, LootTable.Builder builder) {

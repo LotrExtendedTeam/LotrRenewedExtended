@@ -1,0 +1,204 @@
+{
+  "parent": "lotr:rohan/common",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly"
+      },
+      "lines": [
+        "These are the lands of our fathers, and our fathers' fathers. It is our duty to guard them.",
+        "There are many great horses in these lands, #p, and all are fit for battle.",
+        "They say the Southron hosts are increasing beyond the Southstream.",
+        "Before long, I fear, we shall need to ride out and defeat the cruel Men of Sutherstreams once more."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "#home"
+      },
+      "lines": [
+        "Ever we must rid our lands of the Orc filth that plagues us, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home"
+      },
+      "lines": [
+        "What business do you have in the Riddermark, #p?",
+        "See that you tread carefully in the Mark. We have many enemies of late."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman",
+        "in_conversation": "other"
+      },
+      "lines": [
+        "And what earns you the right to bustle in on our councils of war! Speak in your turn, #p."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<footman"
+      },
+      "lines": [
+        "Hail, #p! We are the riders of Rohan.",
+        "Seldom do we have travellers in this land. What is your purpose here?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=atarms"
+      },
+      "lines": [
+        "Let this be the hour when we draw swords together!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=rider"
+      },
+      "lines": [
+        "Shall we ride into battle together, #p?",
+        "Now we shall ride together as Eorlingas."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=captain"
+      },
+      "lines": [
+        "True oath-friend, #p, I would follow you even to the ends of the earth!",
+        "When the hour comes, #p, I would ride at your side."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">=marshal"
+      },
+      "lines": [
+        "When the hour comes, #p, I would ride in your éored."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "pledge_relation": "this"
+      },
+      "lines": [
+        "You serve now the House of Eorl, #p.",
+        "You serve now the House of Eorl. See that your deeds bring us glory on the field."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": "<guest",
+        "biome": "#home",
+        "daytime": "dusk | night"
+      },
+      "lines": [
+        "What business does a stranger from afar have, wandering the Mark on a time of night?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "biome": "lotr:anorien"
+      },
+      "lines": [
+        "Long have I wished to ride to Stoningland. Now perhaps we shall come even to the Mundburg itself?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "I shall not suffer your presence here!",
+        "Tremble where you stand, #p!",
+        "No pity for the foes of the Mark!",
+        "No pity for the foes of Eorl!",
+        "Leave, or face your doom!",
+        "Your villainy ends here!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "biome": "#home"
+      },
+      "lines": [
+        "It was foolish indeed of you to venture into our lands!",
+        "You shall not stain the Mark with your devilry!",
+        "Begone from our land, or face the sharp points of our spears!",
+        "Flee the Mark if you value your breath!",
+        "Flee the Mark, never to return!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:isengard"
+      },
+      "lines": [
+        "You shall meet your doom swiftly, thrall of Isengard!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge_relation": "bad"
+      },
+      "lines": [
+        "You shall regret swearing service to the Enemy!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile",
+        "pledge": "lotr:mordor"
+      },
+      "lines": [
+        "Crawl back to your master in the Land of Shadow!",
+        "You shall return to Sauron empty-handed!",
+        "No! No more of our horses for Mordor!",
+        "No! No more of our horses for the Lord of the Black Land!",
+        "You and your master shall have no more black horses from us!",
+        "Was it you who stole our horses away to Mordor, #p? You shall have no more!",
+        "No more horses of the Mark for you, nor your fell master!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "hired": "own"
+      },
+      "lines": [
+        "For Rohan! For our people!",
+        "Let this be the hour when we draw swords together, #p!",
+        "Let us fight together for the Riddermark, #p!",
+        "For the Riddermark!",
+        "Our enemies shall be brought to ruin!",
+        "We shall earn much glory on the field of battle together, #p.",
+        "The foes of the Mark shall tremble where they stand!",
+        "We ride out together. For glory. For Rohan!",
+        "The foes of Rohan shall tremble beneath our feet!",
+        "No Orc or wild Man shall pillage the Riddermark under our watch!",
+        "Let us hunt some Orc!",
+        "For the King of Rohan! For Edoras!",
+        "Let us ride together, and scour the Mark of all evildoers!"
+      ]
+    }
+  ]
+}

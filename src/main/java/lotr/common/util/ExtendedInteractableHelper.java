@@ -7,6 +7,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import java.util.Optional;
 import java.util.UUID;
 
+@Deprecated
 public class ExtendedInteractableHelper {
 
     public static void removePlayerFromInteracting(PlayerEntity player, EntityDataManager eData, DataParameter<Optional<UUID>> pKey) {

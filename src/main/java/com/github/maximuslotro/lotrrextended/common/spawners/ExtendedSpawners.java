@@ -18,6 +18,7 @@ public class ExtendedSpawners {
 	public static final ResourceLocation DUCK_SINGLE  = register("animal_duck_single_spawner");
 	public static final ResourceLocation SHEEP_SINGLE  = register("animal_sheep_single_spawner");
 	public static final ResourceLocation HORSE_SINGLE  = register("animal_horse_single_spawner");
+	public static final ResourceLocation HORSE_SINGLE_DISCARD  = register("animal_horse_single_discard");
 	public static final ResourceLocation HORSE_SINGLE_old  = registerNOC("generic_horse_single_spawner");
 	public static final ResourceLocation PIG_SINGLE  = register("animal_pig_single_spawner");
 	public static final ResourceLocation BOAR_SINGLE  = register("animal_boar_single_spawner");
@@ -149,6 +150,15 @@ public class ExtendedSpawners {
 	public static final ResourceLocation SARUMAN = register("isengard_saruman");
 	// DUNLENDING
 	public static final ResourceLocation DUNLENDING_WARLORD = register("dunlending_warlord");
+	public static final ResourceLocation DUNLENDING_BARTENDER = register("dunlending_bartender");
+	public static final ResourceLocation DUNLENDING_SMITH = register("dunlending_smith");
+	public static final ResourceLocation DUNLENDING_AREA = register("dunlending_area_spawner");
+	public static final ResourceLocation DUNLENDING_WARRIOR_AREA = register("dunlending_area_warrior");
+	public static final ResourceLocation DUNLENDING_TAVERN_AREA = register("dunlending_area_tavern");
+	public static final ResourceLocation DUNLENDING_HOUSE = register("dunlending_house");
+	public static final ResourceLocation DUNLENDING_FARMER = register("dunlending_farmer");
+	public static final ResourceLocation DUNLENDING_FARMHAND = register("dunlending_farmhand");
+	public static final ResourceLocation DUNLENDING_FARMER_ANIMALS = register("dunlending_animals");
 
 	private static ResourceLocation register(String pId) {
 		return register(new ResourceLocation(LotrExtendedMod.MODID, pId), true);

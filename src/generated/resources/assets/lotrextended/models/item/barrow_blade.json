@@ -1,0 +1,29 @@
+{
+  "parent": "lotr:item/handheld_dagger",
+  "textures": {
+    "layer0": "lotrextended:item/barrow_blade"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "lotr:sneaking": 0.0,
+        "lotrextended:poisoned": 1.0
+      },
+      "model": "lotrextended:item/barrow_blade_poisoned"
+    },
+    {
+      "predicate": {
+        "lotr:sneaking": 1.0,
+        "lotrextended:poisoned": 0.0
+      },
+      "model": "lotrextended:item/barrow_blade_sneaking"
+    },
+    {
+      "predicate": {
+        "lotr:sneaking": 1.0,
+        "lotrextended:poisoned": 1.0
+      },
+      "model": "lotrextended:item/barrow_blade_sneaking_poisoned"
+    }
+  ]
+}

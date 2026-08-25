@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:smooth_morgond"
-  },
-  "result": "lotr:smooth_morgond_stairs",
-  "count": 1
-}

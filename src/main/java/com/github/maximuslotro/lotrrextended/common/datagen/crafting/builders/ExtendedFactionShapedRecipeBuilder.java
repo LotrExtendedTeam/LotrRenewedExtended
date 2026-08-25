@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
@@ -96,23 +97,14 @@ public class ExtendedFactionShapedRecipeBuilder {
 		return this;
 	}
 
-	public void save(Consumer<IFinishedRecipe> p_200464_1_) {
-		this.save(p_200464_1_, ForgeRegistries.ITEMS.getKey(this.result));
+	public void save(Consumer<IFinishedRecipe> consumer, Supplier<? extends Item> item) {
+		this.save(consumer, item.get().getRegistryName());
 	}
 
-	public void save(Consumer<IFinishedRecipe> p_200466_1_, String p_200466_2_) {
-		ResourceLocation resourcelocation = ForgeRegistries.ITEMS.getKey(this.result);
-		if ((new ResourceLocation(p_200466_2_)).equals(resourcelocation)) {
-			throw new IllegalStateException("Shaped Recipe " + p_200466_2_ + " should remove its 'save' argument");
-		} else {
-			this.save(p_200466_1_, new ResourceLocation(p_200466_2_));
-		}
-	}
-
-	public void save(Consumer<IFinishedRecipe> p_200467_1_, ResourceLocation p_200467_2_) {
-		this.ensureValid(p_200467_2_);
-		this.advancement.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(p_200467_2_)).rewards(AdvancementRewards.Builder.recipe(p_200467_2_)).requirements(IRequirementsStrategy.OR);
-		p_200467_1_.accept(new ExtendedFactionShapedRecipeBuilder.Result(p_200467_2_, this.result, this.count, this.group == null ? "" : this.group, this.rows, this.key, this.advancement, new ResourceLocation(p_200467_2_.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + p_200467_2_.getPath()), tableType));
+	public void save(Consumer<IFinishedRecipe> consumer, ResourceLocation id) {
+		this.ensureValid(id);
+		this.advancement.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id)).rewards(AdvancementRewards.Builder.recipe(id)).requirements(IRequirementsStrategy.OR);
+		consumer.accept(new ExtendedFactionShapedRecipeBuilder.Result(id, this.result, this.count, this.group == null ? "" : this.group, this.rows, this.key, this.advancement, new ResourceLocation(id.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + id.getPath()), tableType));
 	}
 
 	// Extended Start

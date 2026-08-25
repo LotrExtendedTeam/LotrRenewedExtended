@@ -8,21 +8,21 @@ import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.common.datafixers.ExtendedMissingMappings;
 import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedStructureSpawnerEntity;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.loot.ExtendedLootTables;
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedSpawners;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedBookshelfTileEntity;
+import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedILootTableAccessor;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedLargePotTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedWeaponRackTileEntity;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.tileentity.KegTileEntity;
 import lotr.common.tileentity.PlateTileEntity;
 import lotr.common.tileentity.VesselDrinkTileEntity;
-import lotr.common.util.tileentity.ExtendedLootTableAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.command.CommandSource;
@@ -31,6 +31,8 @@ import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.command.arguments.BlockPosArgument;
 import net.minecraft.command.arguments.ResourceLocationArgument;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.item.ArmorStandEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.CompressedStreamTools;
@@ -40,6 +42,7 @@ import net.minecraft.resources.IResourceManager;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
@@ -108,6 +111,7 @@ public class ExtendedStructureHelperComamnd {
 
 	}
 
+	//TODO handle tile-entity remapping, and item remapping if needed
 	private static boolean remapUsingExtendedMappings(CompoundNBT root) {
 		boolean changed = false;
 		if (root.contains("palette", 9)) {
@@ -121,6 +125,24 @@ public class ExtendedStructureHelperComamnd {
 					state.putString("Name", newId.toString());
 					changed = true;
 				}
+	        }
+	    }
+		if (root.contains("blocks", 9)) {
+	        ListNBT blocks = root.getList("blocks", 10);
+	        for (int i = 0; i < blocks.size(); i++) {
+	            CompoundNBT entry = blocks.getCompound(i);
+	            if (!entry.contains("nbt", 10)) continue;
+	            CompoundNBT tileNbt = entry.getCompound("nbt");
+	            if (tileNbt.contains("id", 8)) {
+	                String oldId = tileNbt.getString("id");
+	                if (ExtendedMissingMappings.BLOCK_ENTITIES.containsKey(oldId)) {
+	                    ResourceLocation newId = new ResourceLocation(ExtendedMissingMappings.BLOCK_ENTITIES.get(oldId));
+	                    if (newId != null) {
+	                        tileNbt.putString("id", newId.toString());
+	                        changed = true;
+	                    }
+	                }
+	            }
 	        }
 	    }
 		if (root.contains("entities", 9)) {
@@ -162,19 +184,19 @@ public class ExtendedStructureHelperComamnd {
 		TileEntity tileentity = source.getLevel().getBlockEntity(pos);
 		if (tileentity instanceof KegTileEntity && resourceLocation.toString().contains("kegs")) {
 			((KegTileEntity)tileentity).clearContent();
-			((ExtendedLootTableAccessor)tileentity).setLootTable(resourceLocation, 0L);
+			((ExtendedILootTableAccessor)tileentity).setLootTable(resourceLocation, 0L);
 			source.sendSuccess(new StringTextComponent("Set Keg Location: "+resourceLocation.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}
 		if (tileentity instanceof VesselDrinkTileEntity && resourceLocation.toString().contains("vessels")) {
 			((VesselDrinkTileEntity)tileentity).setEmpty();
-			((ExtendedLootTableAccessor)tileentity).setLootTable(resourceLocation, 0L);
+			((ExtendedILootTableAccessor)tileentity).setLootTable(resourceLocation, 0L);
 			source.sendSuccess(new StringTextComponent("Set Vessel Location: "+resourceLocation.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}
 		if (tileentity instanceof PlateTileEntity && resourceLocation.toString().contains("plates")) {
 			((PlateTileEntity)tileentity).setFoodItem(ItemStack.EMPTY);
-			((ExtendedLootTableAccessor)tileentity).setLootTable(resourceLocation, 0L);
+			((ExtendedILootTableAccessor)tileentity).setLootTable(resourceLocation, 0L);
 			source.sendSuccess(new StringTextComponent("Set Plate Location: "+resourceLocation.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}
@@ -213,7 +235,25 @@ public class ExtendedStructureHelperComamnd {
 			source.sendSuccess(new StringTextComponent("Set Chest/Barrel Location: "+resourceLocation.toString()), false);
 			return Command.SINGLE_SUCCESS;
 		}
-		source.sendFailure(new StringTextComponent("Destination is not instanceof supported tile entities or tried setting invalid loot-table for tile entity!"));
+		if (resourceLocation.toString().contains("armorstand")) {
+			AxisAlignedBB area = new AxisAlignedBB(pos);
+			List<ArmorStandEntity> armorStands = source.getLevel().getEntitiesOfClass(ArmorStandEntity.class, area);
+			if (!armorStands.isEmpty()) {
+		        ArmorStandEntity armorStand = armorStands.get(0);
+		        armorStand.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+		        armorStand.setItemSlot(EquipmentSlotType.CHEST, ItemStack.EMPTY);
+		        armorStand.setItemSlot(EquipmentSlotType.LEGS, ItemStack.EMPTY);
+		        armorStand.setItemSlot(EquipmentSlotType.FEET, ItemStack.EMPTY);
+		        CompoundNBT forgeData = armorStand.getPersistentData();
+		        forgeData.putString("StandLootTable", resourceLocation.toString());
+		        source.sendSuccess(new StringTextComponent("Set ArmorStand Location: " + resourceLocation.toString()), false);
+		        return Command.SINGLE_SUCCESS;
+		    } else {
+		        source.sendFailure(new StringTextComponent("No armor stand found at the specified block position!"));
+		        return Command.SINGLE_SUCCESS;
+		    }
+		}
+		source.sendFailure(new StringTextComponent("Destination is not instanceof supported objects or tried setting invalid loot-table for object!"));
 		return Command.SINGLE_SUCCESS;
 	}
 

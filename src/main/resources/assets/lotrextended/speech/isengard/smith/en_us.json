@@ -1,0 +1,54 @@
+{
+  "parent": "lotrextended:isengard/supplier",
+  "speech": [
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": "<100"
+      },
+      "lines": [
+        "I won't give you my blade 'till I know you won't use it against us!",
+        "Prove yourself and I'll forge you a sharp and crooked blade!",
+        "I don't forge for filth like you."
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "align": ">=100"
+      },
+      "lines": [
+        "How about some armor, fresh off the forge!",
+        "I have armor fit for the strongest Uruk-hai!",
+        "With my armor on the Horse-men will run from you in fear!",
+        "My filthy swords may be crooked, but they're as sharp as Saruman's tongue!",
+        "My axes can chop down even the nastiest Tree-folk!",
+        "Many trees have fallen to the axes I forge!",
+        "My blades are forged in the blood of the Horse-men!",
+        "How about a dagger? Perfect for knifing someone!",
+        "You've got a filthy blade there, how about getting a sharper one?"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "friendly",
+        "rank": ">corporal"
+      },
+      "lines": [
+        "I have a dirty scimitar forged fresh for you, #p.",
+        "Want a blade? I know you'll make nasty use out of it #p.",
+        "I have a knife ready to gut some Horse-boys just for you!"
+      ]
+    },
+    {
+      "conditions": {
+        "relation": "hostile"
+      },
+      "lines": [
+        "I'll hammer you in like a crooked blade!",
+        "I'll hammer your skull in!",
+        "I'll throw your corpse into my forge!"
+      ]
+    }
+  ]
+}

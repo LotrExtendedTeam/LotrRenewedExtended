@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:any_morgul",
+  "pattern": [
+    "#",
+    "#",
+    "X"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:rods/wooden"
+    },
+    "#": {
+      "item": "lotrextended:morgul_steel_ingot"
+    }
+  },
+  "result": {
+    "item": "lotrextended:morgul_blade"
+  }
+}

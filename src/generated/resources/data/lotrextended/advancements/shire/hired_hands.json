@@ -1,0 +1,33 @@
+{
+  "parent": "lotrextended:shire/hobbit_farmer_trade",
+  "display": {
+    "icon": {
+      "item": "minecraft:iron_hoe",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.shire.hired_hands.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.shire.hired_hands.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "hire_units_from_hobbit_farmer": {
+      "trigger": "lotrextended:unit_hired",
+      "conditions": {
+        "captain_type": "lotr:hobbit_farmer"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "hire_units_from_hobbit_farmer"
+    ]
+  ]
+}

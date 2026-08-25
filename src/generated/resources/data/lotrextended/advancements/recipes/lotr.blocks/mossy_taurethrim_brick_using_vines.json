@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:mossy_taurethrim_brick_using_vines"
+    ]
+  },
+  "criteria": {
+    "has_taurethrim_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:taurethrim_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:mossy_taurethrim_brick_using_vines"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_taurethrim_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -8,7 +8,6 @@ import com.github.maximuslotro.lotrrextended.common.entity.special.ExtendedBanne
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerPermissions;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity;
 import com.github.maximuslotro.lotrrextended.common.tileentity.ExtendedMEBannerTileEntity.ProtectionEntry;
-import com.github.maximuslotro.lotrrextended.common.utils.AxisAlignedBBUtils;
 
 import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.data.NPCEntitySettingsManager;
@@ -48,33 +47,27 @@ public class ExtendedBannerProtectionManager {
 			return !isAllowed;
 		}
 	}
-	public static ExtendedProtReturn getProtectionStatus(IWorld iWorld, BlockPos position, ProtectionInstance protInstance) {
-		return getProtectionStatus(iWorld, position, protInstance, false, null);
-	}
 
-	public static ExtendedProtReturn getProtectionStatus(IWorld iWorld, BlockPos position, ProtectionInstance protInstance, boolean doLog, String source) {
+	public static ExtendedProtReturn getProtectionStatus(IWorld pLevel, BlockPos pPos, ProtectionInstance protInstance) {
 		if(!ExtendedServerConfig.enableBannerProtection.get()) {
 			return ExtendedProtReturn.ALLOWED;
 		}
-		ExtendedProtReturn isInteractionDenied = getActualProtectionStatus(iWorld, position, protInstance);
-		if(doLog && isInteractionDenied!=ExtendedProtReturn.NOBANNER) {
-			ExtendedLog.infoHideable(ExtendedServerConfig.enableExtendedLogging.get(), "BannerInstance["+position.toString()+",PE=["+protInstance.toString()+"], rejected="+isInteractionDenied+", source:"+source+"]");
+		ExtendedProtReturn isInteractionDenied = getActualProtectionStatus(pLevel, pPos, protInstance);
+		if(isInteractionDenied!=ExtendedProtReturn.NOBANNER && ExtendedServerConfig.enableExtendedLogging.get()) {
+			ExtendedLog.info("BannerInstance[{},PE=[{}], status={}]", pPos.toString(), protInstance.toString(), isInteractionDenied);
 		}
 		return isInteractionDenied;
 	}
 
-	private static ExtendedProtReturn getActualProtectionStatus(IWorld iWorld, BlockPos position, ProtectionInstance protInstance) {
-		AxisAlignedBB bannerScan = AxisAlignedBBUtils.makeCroppedBB(position).inflate(64.0D);
-		if(protInstance.extraScanArea>0) {
-			bannerScan = bannerScan.inflate(protInstance.extraScanArea);
-		}
-		List<ExtendedBannerEntity> bannersInArea = iWorld.getEntitiesOfClass(ExtendedBannerEntity.class, bannerScan, ExtendedBannerEntity::isValid);
+	private static ExtendedProtReturn getActualProtectionStatus(IWorld pLevel, BlockPos pPos, ProtectionInstance protInstance) {
+		AxisAlignedBB bannerScan = new AxisAlignedBB(pPos).inflate(64.0D);
+		List<ExtendedBannerEntity> bannersInArea = pLevel.getEntitiesOfClass(ExtendedBannerEntity.class, bannerScan, ExtendedBannerEntity::isValid);
 		if(bannersInArea.isEmpty()) {
 			return ExtendedProtReturn.NOBANNER;
 		}
-		AxisAlignedBB disputedArea = AxisAlignedBBUtils.makeCroppedBB(position);
-		if(protInstance.extraDisputedArea>0) {
-			disputedArea = disputedArea.inflate(protInstance.extraDisputedArea);
+		AxisAlignedBB disputedArea = new AxisAlignedBB(pPos);
+		if(protInstance.extraDisputedRange>0) {
+			disputedArea = disputedArea.inflate(protInstance.extraDisputedRange);
 		}
 		for(ExtendedBannerEntity banner : bannersInArea) {
 			if(banner.getProtectionRange()>0 && banner.getProtectionArea().intersects(disputedArea)) {
@@ -88,18 +81,22 @@ public class ExtendedBannerProtectionManager {
 	}
 
 	public abstract static class ProtectionInstance {
-		protected int extraScanArea = 0;
-		protected int extraDisputedArea = 0;
-
-		public void setExtraScanArea(int extraScanArea) {
-			this.extraScanArea = extraScanArea;
-		}
-
-		public void setExtraDisputedArea(int extraDisputedArea) {
-			this.extraDisputedArea = extraDisputedArea;
-		}
+		private int extraDisputedRange=0;
+		private boolean sendMessages=true;
 
 		public abstract boolean isProtected(ExtendedMEBannerTileEntity bannerInstance);
+
+		public void setExtraDisputedRange(int extraDisputedRange) {
+			this.extraDisputedRange = extraDisputedRange;
+		}
+
+		public void disableMessages() {
+			this.sendMessages = false;
+		}
+
+		public boolean shouldSendMessages() {
+			return this.sendMessages;
+		}
 
 		@Override
 		public String toString() {
@@ -185,8 +182,9 @@ public class ExtendedBannerProtectionManager {
 				return false;
 			}
 
+			// You Shall Not Pass
 			public void tellPlayerYSNP(IFormattableTextComponent iFormattableTextComponent) {
-				if(offendingPlayer instanceof FakePlayer) {
+				if(offendingPlayer instanceof FakePlayer || !shouldSendMessages()) {
 					return;
 				}
 				offendingPlayer.inventoryMenu.broadcastChanges();

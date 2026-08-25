@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "lotr:topaz_ore"
-  },
-  "result": "lotr:topaz",
-  "experience": 0.5,
-  "cookingtime": 200
-}

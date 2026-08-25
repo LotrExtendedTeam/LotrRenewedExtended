@@ -2,7 +2,7 @@
   "parent": "lotrextended:general/conqueror",
   "display": {
     "icon": {
-      "item": "lotr:gondor_banner"
+      "item": "lotrextended:gondor_banner"
     },
     "title": {
       "translate": "advancements.lotrextended.general.shared_dominion.title"

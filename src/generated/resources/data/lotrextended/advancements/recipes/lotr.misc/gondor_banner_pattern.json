@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:gondor_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_gondor_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:gondor_banner"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:gondor_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gondor_banner",
+      "has_the_recipe"
+    ]
+  ]
+}

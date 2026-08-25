@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:obsidian_dwarven_brick_stairs_on_blue_dwarven"
+    ]
+  },
+  "criteria": {
+    "has_obsidian_dwarven_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:obsidian_dwarven_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:obsidian_dwarven_brick_stairs_on_blue_dwarven"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_obsidian_dwarven_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

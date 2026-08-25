@@ -1,0 +1,16 @@
+{
+	"name": "lotrextended:isengard/camp_supplier",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "lotrextended:extended_single_pool_element",
+				"projection": "rigid",
+				"location": "lotrextended:isengard/buildings/isengard_barracks_supplier_1",
+				"processors": "minecraft:empty",
+				"snap_to_water_height" : true
+			}
+		}
+	]
+}

@@ -4,9 +4,12 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.common.entity.passive.ExtendedCrabanEntity;
 import com.github.maximuslotro.lotrrextended.common.entity.special.*;
 import lotr.common.entity.npc.*;
 
+import net.minecraft.entity.*;
+import net.minecraft.world.gen.Heightmap;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,13 +31,9 @@ import lotr.common.init.ExtendedEntities;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTREntities.EntitySizeHolder;
 import lotr.common.init.LOTREntities.SpawnEggInfo;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.IPlacementPredicate;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EntityType.Builder;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -57,6 +56,19 @@ public class MixinLOTREntities {
 	@Final
 	@Shadow(remap = false)
 	private static Map<EntityType<? extends LivingEntity>, Supplier<MutableAttribute>> ENTITY_ATTRIBUTE_FACTORIES;
+
+	@Shadow(remap=false)
+	private static <T extends MobEntity> RegistryObject<EntityType<T>> regLiving(String key, EntityType.IFactory<T> factory, Supplier<AttributeModifierMap.MutableAttribute> attribFactory, EntityClassification classif, EntitySizeHolder size, int trackRange, int updateFreq, boolean velUpdates, SpawnEggInfo.SpawnEggColors eggColors, EntitySpawnPlacementRegistry.PlacementType placementType, Heightmap.Type heightmapType, EntitySpawnPlacementRegistry.IPlacementPredicate<T> placementPredicate) {
+		return null;
+	}
+
+	private static <T extends CreatureEntity> RegistryObject<EntityType<T>> regCreatureD(String key, EntityType.IFactory<T> factory, Supplier<AttributeModifierMap.MutableAttribute> attribFactory, EntitySizeHolder size, int trackRange, int updateFreq, SpawnEggInfo.SpawnEggColors eggColors, EntitySpawnPlacementRegistry.PlacementType placementType, Heightmap.Type heightmapType) {
+		RegistryObject<EntityType<T>> entity = regLiving(key, factory, attribFactory, EntityClassification.CREATURE, size, trackRange, updateFreq, true, eggColors, placementType, heightmapType, CreatureEntity::checkMobSpawnRules);
+		if(DatagenModLoader.isRunningDataGen()) {
+			ExtendedEntities.REGISTEREDANIMALENTITIES.add(key);
+		}
+		return entity;
+	}
 
 	/**
 	 * Get the base NPC register method from parent class
@@ -264,6 +276,7 @@ public class MixinLOTREntities {
 		ExtendedEntities.HORSE_BOAR = regAnimalD("wild_boar", ExtendedHorseBoarEntity::new, ExtendedHorseBoarEntity::createWildBoarAttributes, LOTREntities.EntitySizeHolder.size(0.9F, 0.9F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(6635562, 4069378));
 		ExtendedEntities.DUCK = regAnimalD("duck", ExtendedDuckEntity::new, ExtendedDuckEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.7F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(940841, 11374685), ExtendedDuckEntity::checkDuckSpawnRules);
 		ExtendedEntities.HEDGEHOG = regAnimalD("hedgehog", ExtendedHedgehogEntity::new, ExtendedHedgehogEntity::createHedgehogAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.4F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2167050, 14010033));
+		ExtendedEntities.CRABAN = regCreatureD("craban", ExtendedCrabanEntity::new, ExtendedCrabanEntity::createCrabanAttributes, LOTREntities.EntitySizeHolder.size(0.4F, 0.4F), 10, 3, LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2434341, 10490368), PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES);
 		// Hostile
 		ExtendedEntities.BARROW_WIGHT = regNPCD("barrow_wight", ExtendedBarrowWightEntity::new, ExtendedBarrowWightEntity::createAttributes, LOTREntities.EntitySizeHolder.size(0.8F, 1.9f), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(529926, 3111505));
 		// Projectiles
@@ -300,10 +313,12 @@ public class MixinLOTREntities {
 		// Hobbit
 		ExtendedEntities.HOBBIT_BARTENDER = regNPCD("hobbit_bartender", ExtendedHobbitBartenderEntity::new, ExtendedHobbitBartenderEntity::createAttributes, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
 		ExtendedEntities.HOBBIT_FARMER = regNPCD("hobbit_farmer", ExtendedHobbitFarmerEntity::new, ExtendedHobbitFarmerEntity::createAttributes, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
+		ExtendedEntities.HOBBIT_FARMHAND = regNPCD("hobbit_farmhand", ExtendedHobbitFarmhandEntity::new, ExtendedHobbitFarmhandEntity::createAttributes, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(16752511, 8010275));
 		// Bree
 		ExtendedEntities.BREE_SHERIFF = regNPCD("bree_sheriff", ExtendedBreelandSheriffEntity::new, ExtendedBreelandSheriffEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(9335640, 3681573));
 		ExtendedEntities.BREE_MERCHANT = regNPCD("bree_merchant", ExtendedBreelandMerchantEntity::new, ExtendedBreelandMerchantEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 6573346));
 		ExtendedEntities.BREE_FARMER = regNPCD("bree_farmer", ExtendedBreelandFarmerEntity::new, ExtendedBreelandTraderEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 5193273));
+		ExtendedEntities.BREE_FARMHAND = regNPCD("bree_farmhand", ExtendedBreelandFarmhandEntity::new, ExtendedBreelandFarmhandEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 6573367));
 		ExtendedEntities.BREE_POTTER = regNPCD("bree_potter", ExtendedBreelandPotterEntity::new, ExtendedBreelandTraderEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 9218761));
 		ExtendedEntities.BREE_HOBBIT_POTTER = regNPCD("bree_hobbit_potter", ExtendedBreelandHobbitPotterEntity::new, ExtendedBreelandHobbitTraderEntity::createAttributes, LOTREntities.EntitySizeHolder.hobbitSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 9218761));
 		ExtendedEntities.BREE_SMITH = regNPCD("bree_smith", ExtendedBreelandSmithEntity::new, ExtendedBreelandSmithEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(14254950, 2293760));
@@ -359,7 +374,13 @@ public class MixinLOTREntities {
 		ExtendedEntities.URUK_CAPTAIN = regNPCD("uruk_captain", ExtendedUrukCaptainEntity::new, ExtendedUrukCaptainEntity::createAttributes, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2369050, 5790015));
 		ExtendedEntities.URUK_SMITH = regNPCD("uruk_smith", ExtendedUrukSmithEntity::new, ExtendedUrukSmithEntity::createAttributes, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2369050, 13421772));
 		ExtendedEntities.URUK_SUPPLIER = regNPCD("uruk_supplier", ExtendedUrukSupplierEntity::new, ExtendedUrukSupplierEntity::createAttributes, LOTREntities.EntitySizeHolder.urukSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(2369050, 13421772));
-		// Dunlanding
+		// Dunlending
 		ExtendedEntities.DUNLENDING_WARLORD = regNPCD("dunlending_warlord", ExtendedDunlendingWarlordEntity::new, ExtendedDunlendingWarlordEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(5192753, 9337975));
+		ExtendedEntities.DUNLENDING_AXE_THROWER = regNPCD("dunlending_axe_thrower", ExtendedDunlendingAxeThrowerEntity::new, ExtendedDunlendingAxeThrowerEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(5192753, 9337975));
+		ExtendedEntities.DUNLENDING_BERSERKER = regNPCD("dunlending_berserker", ExtendedDunlendingBerserkerEntity::new, ExtendedDunlendingBerserkerEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(5192753, 16050121));
+		ExtendedEntities.DUNLENDING_BARTENDER = regNPCD("dunlending_bartender", ExtendedDunlendingBartenderEntity::new, ExtendedDunlendingBartenderEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(15897714, 3679258));
+		ExtendedEntities.DUNLENDING_SMITH = regNPCD("dunlending_smith", ExtendedDunlendingSmithEntity::new, ExtendedDunlendingSmithEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(15897714, 3679258));
+		ExtendedEntities.DUNLENDING_FARMER = regNPCD("dunlending_farmer", ExtendedDunlendingFarmerEntity::new, ExtendedDunlendingFarmerEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(15897714, 3679258));
+		ExtendedEntities.DUNLENDING_FARMHAND = regNPCD("dunlending_farmhand", ExtendedDunlendingFarmhandEntity::new, ExtendedDunlendingFarmhandEntity::createAttributes, LOTREntities.EntitySizeHolder.manSize(), LOTREntities.SpawnEggInfo.SpawnEggColors.egg(15897714, 3679258));
 	}
 }

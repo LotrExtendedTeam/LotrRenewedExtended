@@ -51,7 +51,7 @@
               }
             }
           ],
-          "name": "lotr:galvorn_ingot"
+          "name": "lotrextended:galvorn_ingot"
         },
         {
           "type": "minecraft:item",
@@ -152,7 +152,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:lindon_banner"
+          "name": "lotrextended:lindon_banner"
         },
         {
           "type": "minecraft:item",
@@ -163,7 +163,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:lindon_banner_pattern"
+          "name": "lotrextended:lindon_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -201,17 +201,17 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
-          "name": "lotr:galvorn_helmet"
+          "name": "lotrextended:galvorn_helmet"
         },
         {
           "type": "minecraft:item",
@@ -227,17 +227,17 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
-          "name": "lotr:galvorn_chestplate"
+          "name": "lotrextended:galvorn_chestplate"
         },
         {
           "type": "minecraft:item",
@@ -253,17 +253,17 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
-          "name": "lotr:galvorn_leggings"
+          "name": "lotrextended:galvorn_leggings"
         },
         {
           "type": "minecraft:item",
@@ -279,17 +279,47 @@
               "count": 1
             },
             {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.25,
-                "max": 1.0
-              }
+              "function": "lotrextended:modifier_adder"
             },
             {
-              "function": "lotrextended:modifier_adder"
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
             }
           ],
-          "name": "lotr:galvorn_boots"
+          "name": "lotrextended:galvorn_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotrextended:artisan_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotrextended:combat_tome"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "name": "lotrextended:smith_tome"
         }
       ],
       "functions": [

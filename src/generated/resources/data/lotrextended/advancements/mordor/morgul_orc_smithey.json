@@ -2,7 +2,7 @@
   "parent": "lotrextended:mordor/guldural_ore",
   "display": {
     "icon": {
-      "item": "lotr:morgul_steel_ingot"
+      "item": "lotrextended:morgul_steel_ingot"
     },
     "title": {
       "translate": "advancements.lotrextended.mordor.morgul_orc_smithey.title"
@@ -21,7 +21,7 @@
       "trigger": "lotrextended:crafting_with_block",
       "conditions": {
         "item": {
-          "item": "lotr:morgul_steel_ingot"
+          "item": "lotrextended:morgul_steel_ingot"
         },
         "crafting_block": {
           "block": "lotr:orc_forge"

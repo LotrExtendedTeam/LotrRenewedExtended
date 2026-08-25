@@ -6,6 +6,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.IndirectEntityDamageSource;
 
 public class ExtendedDamageSourceRepository {
+	public static final DamageSource POISON_DRINK = new DamageSource("lotrextended.poison_drink").bypassArmor().setMagic();
+
 	public static DamageSource causeThrownAxeDamage(Entity axe, @Nullable Entity shooter) {
 		return new IndirectEntityDamageSource("lotrextended.thrownaxe", axe, shooter).setProjectile();
 	}

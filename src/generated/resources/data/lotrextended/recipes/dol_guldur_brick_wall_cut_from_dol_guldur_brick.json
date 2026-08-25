@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotrextended:dol_guldur_brick"
+  },
+  "result": "lotrextended:dol_guldur_brick_wall",
+  "count": 1
+}

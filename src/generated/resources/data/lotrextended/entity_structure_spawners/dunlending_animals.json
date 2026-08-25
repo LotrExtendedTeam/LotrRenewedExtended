@@ -1,0 +1,42 @@
+{
+  "id": "lotrextended:dunlending_animals",
+  "spawner_type": "single_use_spawner",
+  "bbInflateFactor": {
+    "x": 0.5,
+    "y": 1.0,
+    "z": 0.5
+  },
+  "persistenceRequired": true,
+  "pools": [
+    {
+      "weight": 90,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 3,
+      "entity_type": "minecraft:cow"
+    },
+    {
+      "weight": 90,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 3,
+      "entity_type": "minecraft:sheep"
+    },
+    {
+      "weight": 90,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 3,
+      "entity_type": "minecraft:pig"
+    },
+    {
+      "weight": 70,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 5,
+      "entity_type": "minecraft:chicken"
+    },
+    {
+      "weight": 50,
+      "minSpawnCount": 1,
+      "maxSpawnCount": 2,
+      "entity_type": "minecraft:horse"
+    }
+  ]
+}

@@ -4,21 +4,35 @@ import java.util.function.Function;
 
 import javax.annotation.Nullable;
 
-import lotr.common.init.ExtendedTileEntities;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
 import net.minecraft.block.BlockState;
+import net.minecraft.command.CommandSource;
+import net.minecraft.command.ICommandSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.DyeColor;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IReorderingProcessor;
+import net.minecraft.util.math.vector.Vector2f;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentUtils;
+import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/**
+ * Based on {@link SignTileEntity}
+ * */
 public class ExtendedStoneTextSignTileEntity extends TileEntity {
 	private ITextComponent[] messages = new ITextComponent[]{StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY};
 	private boolean isEditable = true;
@@ -53,15 +67,11 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 			String s = p_230337_2_.getString("Text" + (i + 1));
 			ITextComponent itextcomponent = ITextComponent.Serializer.fromJson(s.isEmpty() ? "\"\"" : s);
 			if (this.level instanceof ServerWorld) {
-				/*
 				try {
-					this.messages[i] = TextComponentUtils.updateForEntity(this.createCommandSourceStack((ServerPlayerEntity)null), itextcomponent, (Entity)null, 0);
+					this.messages[i] = TextComponentUtils.updateForEntity(this.createCommandSourceStack(null), itextcomponent, null, 0);
 				} catch (CommandSyntaxException commandsyntaxexception) {
 					this.messages[i] = itextcomponent;
-				}*/
-				// Extended Start
-				this.messages[i] = itextcomponent;
-				// Extended End
+				}
 			} else {
 				this.messages[i] = itextcomponent;
 			}
@@ -161,7 +171,6 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 		return this.playerWhoMayEdit;
 	}
 
-	/*
 	public boolean executeClickCommands(PlayerEntity p_174882_1_) {
 		for(ITextComponent itextcomponent : this.messages) {
 			Style style = itextcomponent == null ? null : itextcomponent.getStyle();
@@ -178,9 +187,9 @@ public class ExtendedStoneTextSignTileEntity extends TileEntity {
 
 	public CommandSource createCommandSourceStack(@Nullable ServerPlayerEntity pPlayer) {
 		String s = pPlayer == null ? "StoneSign" : pPlayer.getName().getString();
-		ITextComponent itextcomponent = (ITextComponent)(pPlayer == null ? new StringTextComponent("StoneSign") : pPlayer.getDisplayName());
+		ITextComponent itextcomponent = pPlayer == null ? new StringTextComponent("StoneSign") : pPlayer.getDisplayName();
 		return new CommandSource(ICommandSource.NULL, Vector3d.atCenterOf(this.worldPosition), Vector2f.ZERO, (ServerWorld)this.level, 2, s, itextcomponent, this.level.getServer(), pPlayer);
-	}*/
+	}
 
 	public DyeColor getColor() {
 		return this.color;

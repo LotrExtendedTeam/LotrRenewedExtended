@@ -5,14 +5,14 @@
     "translateStrings": true,
     "entity_title": "entity.lotrextended.hiredunits.entity_title",
     "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
-    "entity_unit_type": "entity.lotr.dunlending_warrior",
-    "attack_type": "melee"
+    "entity_unit_type": "entity.lotr.dunlending_warrior"
   },
   "hiring": {
     "hiringCost": 30,
     "hiringRequiresPledge": false,
     "hiringAlignmentRequired": 150
   },
+  "attack_type": "melee",
   "equipmentPools": {
     "helmets": [
       {
@@ -119,7 +119,7 @@
       {
         "weight": 4,
         "equipmentItem": {
-          "item": "minecraft:shield",
+          "item": "lotrextended:dunlending_shield",
           "nbt": "{langTitle:\"item.lotrextended.base_gear.shield\",Damage:0,IsBaseArmor:1b}"
         }
       },

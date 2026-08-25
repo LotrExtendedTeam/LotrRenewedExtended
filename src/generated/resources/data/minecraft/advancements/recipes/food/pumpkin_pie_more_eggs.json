@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:pumpkin_pie_more_eggs"
+    ]
+  },
+  "criteria": {
+    "has_pumpkin_pie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:pumpkin_pie"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:pumpkin_pie_more_eggs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pumpkin_pie",
+      "has_the_recipe"
+    ]
+  ]
+}

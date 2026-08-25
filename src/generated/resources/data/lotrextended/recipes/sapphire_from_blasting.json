@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "lotrextended:sapphire_ore"
+  },
+  "result": "lotrextended:sapphire",
+  "experience": 0.5,
+  "cookingtime": 100
+}

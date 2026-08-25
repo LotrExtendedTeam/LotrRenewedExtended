@@ -24,7 +24,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:raw_duck",
+        "item": "lotrextended:raw_duck",
         "averageCost": 3
       }
     },
@@ -46,7 +46,16 @@
       "weight": 50,
       "stack": {
         "item": "minecraft:potato",
-        "averageCost": 1
+        "averageCost": 1,
+        "count": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:leek",
+        "averageCost": 1,
+        "count": 2
       }
     },
     {
@@ -168,7 +177,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:cooked_duck",
+        "item": "lotrextended:cooked_duck",
         "averageCost": 6
       }
     },
@@ -184,6 +193,13 @@
       "stack": {
         "item": "minecraft:bread",
         "averageCost": 5
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:leek_soup",
+        "averageCost": 10
       }
     },
     {
@@ -377,7 +393,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:butter",
+        "item": "lotrextended:butter",
         "averageCost": 10
       }
     }

@@ -1,0 +1,41 @@
+{
+  "parent": "lotrextended:dunland/land_of_the_wild_men",
+  "display": {
+    "icon": {
+      "item": "lotrextended:silver_coin_one"
+    },
+    "title": {
+      "translate": "advancements.lotrextended.dunland.dunlending_smith_trade.title"
+    },
+    "description": {
+      "color": "green",
+      "translate": "advancements.lotrextended.dunland.dunlending_smith_trade.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trade_dunlending_smith_buy": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:dunlending_smith",
+        "istraderselling": "false"
+      }
+    },
+    "trade_dunlending_smith_sell": {
+      "trigger": "lotrextended:trader_traded_with",
+      "conditions": {
+        "entity": "lotr:dunlending_smith",
+        "istraderselling": "true"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trade_dunlending_smith_buy",
+      "trade_dunlending_smith_sell"
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:uruk_pillar_slab_cut_from_uruk_pillar"
+    ]
+  },
+  "criteria": {
+    "has_uruk_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:uruk_pillar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:uruk_pillar_slab_cut_from_uruk_pillar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_uruk_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}

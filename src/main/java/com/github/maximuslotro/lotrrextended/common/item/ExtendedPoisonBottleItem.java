@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
-import lotr.common.item.ExtendedPoisonedDrinks;
+import com.github.maximuslotro.lotrrextended.common.utils.ExtendedDrinkUtils;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,29 +26,21 @@ public class ExtendedPoisonBottleItem extends Item {
 		PlayerEntity playerentity = entity instanceof PlayerEntity ? (PlayerEntity) entity : null;
 		if (playerentity instanceof ServerPlayerEntity) {
 			CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayerEntity) playerentity, stack);
-		}
-
-		if (!world.isClientSide && playerentity != null && !playerentity.abilities.instabuild) {
-			ExtendedPoisonedDrinks.severlyPoisonPlayer(playerentity);
-		}
-
-		if (playerentity != null) {
 			playerentity.awardStat(Stats.ITEM_USED.get(this));
-			if (!playerentity.abilities.instabuild) {
-				stack.shrink(1);
-			}
 		}
-
-		if (playerentity == null || !playerentity.abilities.instabuild) {
+		if (!world.isClientSide) {
+			ExtendedDrinkUtils.addDeadlyPoison(entity);
+		}
+		if (playerentity != null && !playerentity.abilities.instabuild) {
+			stack.shrink(1);
+			ItemStack emptyBottle = new ItemStack(Items.GLASS_BOTTLE);
 			if (stack.isEmpty()) {
-				return new ItemStack(Items.GLASS_BOTTLE);
-			}
-
-			if (playerentity != null) {
-				playerentity.inventory.add(new ItemStack(Items.GLASS_BOTTLE));
+				return emptyBottle;
+			} else if (!playerentity.inventory.add(emptyBottle)) {
+				// If the player has leftover poison bottles in this hand stack, try to put the empty bottle in their inventory.
+				playerentity.drop(emptyBottle, false);
 			}
 		}
-
 		return stack;
 	}
 

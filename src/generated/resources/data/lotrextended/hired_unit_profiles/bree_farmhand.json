@@ -1,0 +1,75 @@
+{
+  "id": "lotrextended:bree_farmhand",
+  "entity_type": "lotr:bree_farmhand",
+  "language": {
+    "translateStrings": true,
+    "entity_title": "entity.lotrextended.hiredunits.entity_title",
+    "entity_shortname": "entity.lotrextended.hiredunits.entity_shortname",
+    "entity_unit_type": "entity.lotr.bree_farmhand"
+  },
+  "hiring": {
+    "hiringCost": 40,
+    "hiringRequiresPledge": false,
+    "hiringAlignmentRequired": 50
+  },
+  "attack_type": "farmhard",
+  "equipmentPools": {
+    "helmets": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:air"
+        }
+      }
+    ],
+    "chestplates": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:air"
+        }
+      }
+    ],
+    "leggings": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:air"
+        }
+      }
+    ],
+    "boots": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:air"
+        }
+      }
+    ],
+    "setIdleFromMelee": true,
+    "melee": [
+      {
+        "weight": 5,
+        "equipmentItem": {
+          "item": "minecraft:iron_hoe",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.tool\",Damage:0,IsBaseArmor:1b}"
+        }
+      },
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "lotr:bronze_hoe",
+          "nbt": "{langTitle:\"item.lotrextended.base_gear.tool\",Damage:0,IsBaseArmor:1b}"
+        }
+      }
+    ],
+    "offhand": [
+      {
+        "weight": 1,
+        "equipmentItem": {
+          "item": "minecraft:air"
+        }
+      }
+    ]
+  }
+}

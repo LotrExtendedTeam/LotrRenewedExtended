@@ -75,15 +75,6 @@
 			}
 		},
 		{
-			"weight": 15,
-			"element": {
-				"element_type": "minecraft:single_pool_element",
-				"projection": "rigid",
-				"location": "lotrextended:general/ruins/central_pillar_ruin_9",
-				"processors": "lotrextended:arnor_ruins_processor"
-			}
-		},
-		{
 			"weight": 10,
 			"element": {
 				"element_type": "minecraft:single_pool_element",

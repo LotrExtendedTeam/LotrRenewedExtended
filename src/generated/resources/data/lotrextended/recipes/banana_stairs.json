@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    " ##",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:banana_planks"
+    }
+  },
+  "result": {
+    "item": "lotrextended:banana_stairs",
+    "count": 4
+  }
+}
