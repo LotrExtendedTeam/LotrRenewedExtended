@@ -74,6 +74,9 @@ public class ExtendedSlider extends AbstractSlider {
 
 	@Override
 	protected void updateMessage() {
+		if(localKey.isEmpty()) {
+			this.setMessage(new StringTextComponent(String.valueOf(toValue(value))));
+		}
 		this.setMessage(new TranslationTextComponent(localKey, toValue(value)));
 	}
 

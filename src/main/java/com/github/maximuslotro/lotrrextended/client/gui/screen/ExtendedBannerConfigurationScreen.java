@@ -32,7 +32,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedBannerConfigurationScreen extends ExtendedBasicAbstractScreen {
+public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedScreen {
 	private static final ResourceLocation guiTexture = new ResourceLocation("lotrextended:textures/gui/banner_gui.png");
 	private List<ExtendedBannerPermissions> globalPerms;
 	private List<ExtendedBannerPermissions> factionPerms;

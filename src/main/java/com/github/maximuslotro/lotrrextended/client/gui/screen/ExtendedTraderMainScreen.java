@@ -17,7 +17,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
+public class ExtendedTraderMainScreen extends ExtendedAbstractWindowedScreen {
 
 	private NPCEntity entity;
 	private final PlayerEntity player;

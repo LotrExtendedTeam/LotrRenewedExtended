@@ -21,7 +21,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.List;
 
-public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
+public class ExtendedCaptainMainScreen extends ExtendedAbstractWindowedScreen {
 
 	private NPCEntity npcEntity;
 	private final PlayerEntity player;

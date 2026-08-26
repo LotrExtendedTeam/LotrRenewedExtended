@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConquestPos;
 import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConquestRegion;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedIOUtils;
@@ -26,7 +27,6 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 	private int mapScale;
 	private int mapXOffset;
 	private int mapZOffset;
-
 
 	public ExtendedConquestDataHolder(ExtendedLevelData pHolder) {
 		super(pHolder);
@@ -61,6 +61,8 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 		//TODO circular conquest
 		//TODO add player notification
 		//TODO handle other factions inc or dec
+		ExtendedLog.info("Added Conquest for {} for faction {} against {} for amount: {}", player.getDisplayName().getString(), 
+				playerFaction.getName().toString(), opposingFaction.getName().toString(), conquestAdd);
 	}
 
 	public ExtendedConquestRegion getConquestSquare(ExtendedConquestPos conquestPos) {
