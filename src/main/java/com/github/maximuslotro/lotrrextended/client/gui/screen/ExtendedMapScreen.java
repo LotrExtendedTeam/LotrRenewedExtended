@@ -6,13 +6,15 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import lotr.common.world.map.MapSettingsManager;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 
 public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 	private final static ResourceLocation MAP_ICONS = new ResourceLocation("lotrextended", "textures/gui/map_icons.png");;
-
+	private static Minecraft mc = Minecraft.getInstance();
 	private ResourceLocation MAP_TEXTURE;
+	private ResourceLocation MAP_TEXTURE_OVERLAY;
 	private int mapWidth; 
 	private int mapHeight;
 	private int mapOriginX;
@@ -34,6 +36,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 	boolean showConquest = false;
 	boolean showMap = true;
 	boolean showGUI = true;
+	int selectedFaction = 0;
 
 	public ExtendedMapScreen() {
 		super(new StringTextComponent("CONQUEST"));
@@ -49,6 +52,10 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		this.mapHeight = mapSettings.getCurrentLoadedMap().getHeight();
 		this.scaleFactor = mapSettings.getCurrentLoadedMap().getScaleFactor();
 		this.MAP_TEXTURE = new ResourceLocation("lotr", "textures/map/loaded_map.png");
+		ResourceLocation overlay = new ResourceLocation("lotrextended", "textures/map/middle_earth_overlay.png");
+		if(mc.getResourceManager().hasResource(overlay)) {
+			this.MAP_TEXTURE_OVERLAY = overlay;
+		}
 
 		if (this.minecraft != null && this.minecraft.player != null) {
 			double playerWorldX = this.minecraft.player.getX();
@@ -59,12 +66,15 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 			this.offsetZ = (this.height / 2) - (cordToMapPixelZ(this.minecraft.player.getZ()) * zoom);
 		}
 		clampBoundaries();
-		addButton(new ExtendedSimpleButton(width-200, height-120, 200, 20, new StringTextComponent("GUI"), (button)-> showGUI=!showGUI));
-		addButton(new ExtendedSimpleButton(width-200, height-100, 200, 20, new StringTextComponent("Map"), (button)-> showMap=!showMap));
-		addButton(new ExtendedSimpleButton(width-200, height-80, 200, 20, new StringTextComponent("Debug"), (button)-> showDebug=!showDebug));
-		addButton(new ExtendedSimpleButton(width-200, height-60, 200, 20, new StringTextComponent("Conquest"), (button)-> showConquest=!showConquest));
-		addButton(new ExtendedSlider(width-200, height-40, 200, 20, "", 1, 16, 1, () -> conquestScaleSize, (v)-> conquestScaleSize =(int) v));
+		addButton(new ExtendedSimpleButton(width-100, height-120, 100, 20, new StringTextComponent("GUI"), (button)-> showGUI=!showGUI));
+		addButton(new ExtendedSimpleButton(width-100, height-100, 100, 20, new StringTextComponent("MapOVERLAY"), (button)-> showMap=!showMap));
+		addButton(new ExtendedSimpleButton(width-100, height-80, 100, 20, new StringTextComponent("Debug"), (button)-> showDebug=!showDebug));
+		addButton(new ExtendedSimpleButton(width-100, height-60, 100, 20, new StringTextComponent("Conquest"), (button)-> showConquest=!showConquest));
+		addButton(new ExtendedSlider(width-100, height-40, 100, 20, "Conquest Scale", 1, 16, 1, () -> conquestScaleSize, (v)-> conquestScaleSize =(int) v));
 		//addButton(new ExtendedSlider(width-200, height-20, 200, 20, "", minZoom, maxZoom, 0.125F, () -> zoom, (v)-> zoom =(float) v));
+		
+		addButton(new ExtendedSlider((this.width/2)-150, height-50, 300, 14, "Selected Faction", 1, 300, 1, () -> selectedFaction, (v)-> selectedFaction =(int) v)
+			.setSliderTexture(MAP_ICONS, 16).setDrawBackground(false).setSliderTextureUV(0, 14));
 	}
 
 	private double mapPixelToScreenX(double mapPixelX) {
@@ -179,8 +189,11 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		matrixStack.translate(this.offsetX, this.offsetZ, 0);
 		matrixStack.scale(this.zoom, this.zoom, 1.0f);
 		// Render Map
-		if(showMap) {
-			this.minecraft.getTextureManager().bind(MAP_TEXTURE);
+		this.minecraft.getTextureManager().bind(MAP_TEXTURE);
+		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+		blit(matrixStack, 0, 0, 0, 0, mapWidth, mapHeight, mapWidth, mapHeight);
+		if(showMap && MAP_TEXTURE_OVERLAY!=null) {
+			this.minecraft.getTextureManager().bind(MAP_TEXTURE_OVERLAY);
 			RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 			blit(matrixStack, 0, 0, 0, 0, mapWidth, mapHeight, mapWidth, mapHeight);
 		}
@@ -242,7 +255,8 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 				String.format("Map Dimensions: %dx%d", mapWidth, mapHeight),
 				String.format("Map Origin: X=%d, Z=%d", mapOriginX, mapOriginZ),
 				String.format("Texture Path: %s", MAP_TEXTURE != null ? MAP_TEXTURE.toString() : "NULL"),
-				String.format("Conquest Scale: %d", conquestScaleSize)
+				String.format("Conquest Scale: %d", conquestScaleSize),
+				String.format("Selected Faction: %d", selectedFaction)
 		};
 
 		for(int i = 0; i < debugLines.length; i++) {
