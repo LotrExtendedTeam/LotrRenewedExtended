@@ -8,13 +8,17 @@ import java.util.Map.Entry;
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConquestPos;
 import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConquestRegion;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedSConquestDataPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedIOUtils;
 
 import lotr.common.fac.Faction;
 import lotr.common.world.map.MapSettingsManager;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.server.ServerWorld;
 
@@ -73,6 +77,11 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 	private ExtendedConquestRegion loadConquestSquare(ExtendedConquestPos conquestPos) {
 		CompoundNBT nbt = ExtendedIOUtils.load(getConquestDatafile(conquestPos));
 		return nbt.isEmpty() ? new ExtendedConquestRegion(conquestPos) : ExtendedConquestRegion.loadFromNBT(nbt);
+	}
+
+	public void sendConquestDataToClient(ResourceLocation pFaction, ServerPlayerEntity pPlayer) {
+		ExtendedSConquestDataPacket packet = new ExtendedSConquestDataPacket(pFaction, gridSquareScale);
+		ExtendedPacketHandler.sendToClient(packet, pPlayer);
 	}
 
 	@Override
