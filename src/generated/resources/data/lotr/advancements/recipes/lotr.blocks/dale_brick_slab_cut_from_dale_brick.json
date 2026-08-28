@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:dale_brick_slab_cut_from_dale_brick"
+    ]
+  },
+  "criteria": {
+    "has_dale_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dale_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:dale_brick_slab_cut_from_dale_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dale_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

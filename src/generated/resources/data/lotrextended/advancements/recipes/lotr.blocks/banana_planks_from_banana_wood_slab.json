@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:banana_planks_from_banana_wood_slab"
+    ]
+  },
+  "criteria": {
+    "has_banana_wood_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:banana_wood_slab"
+          }
+        ]
+      }
+    },
+    "has_stripped_banana_wood_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:stripped_banana_wood_slab"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:banana_planks_from_banana_wood_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_banana_wood_slab",
+      "has_stripped_banana_wood_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

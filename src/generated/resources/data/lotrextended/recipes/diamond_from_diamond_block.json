@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotrextended:diamond_block"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:diamond",
+    "count": 9
+  }
+}

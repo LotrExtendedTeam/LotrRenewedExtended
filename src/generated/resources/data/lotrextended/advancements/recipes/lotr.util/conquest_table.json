@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:conquest_table"
+    ]
+  },
+  "criteria": {
+    "has_bronze_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:bronze_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:conquest_table"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bronze_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

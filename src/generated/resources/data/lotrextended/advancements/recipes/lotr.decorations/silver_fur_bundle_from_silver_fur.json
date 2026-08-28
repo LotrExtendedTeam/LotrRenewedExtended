@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:silver_fur_bundle_from_silver_fur"
+    ]
+  },
+  "criteria": {
+    "has_silver_fur": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:silver_fur"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:silver_fur_bundle_from_silver_fur"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_silver_fur",
+      "has_the_recipe"
+    ]
+  ]
+}

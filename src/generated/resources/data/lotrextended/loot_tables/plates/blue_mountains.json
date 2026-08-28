@@ -2,7 +2,7 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -128,7 +128,7 @@
               }
             }
           ],
-          "name": "lotr:cooked_duck"
+          "name": "lotrextended:cooked_duck"
         },
         {
           "type": "minecraft:item",
@@ -160,22 +160,10 @@
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
           "name": "minecraft:rabbit_stew"
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
           "name": "minecraft:mushroom_stew"
         }
       ]

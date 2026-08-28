@@ -2,7 +2,7 @@
   "parent": "lotrextended:lothlorien/lothlorien",
   "display": {
     "icon": {
-      "item": "lotr:silver_coin_one"
+      "item": "lotrextended:silver_coin_one"
     },
     "title": {
       "translate": "advancements.lotrextended.lothlorien.gifts_from_afar.title"

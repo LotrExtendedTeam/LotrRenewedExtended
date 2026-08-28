@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "lotrextended:moss_block"
+    }
+  },
+  "result": {
+    "item": "lotrextended:moss_carpet",
+    "count": 3
+  }
+}

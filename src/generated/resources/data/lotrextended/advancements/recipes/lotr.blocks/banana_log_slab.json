@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:banana_log_slab"
+    ]
+  },
+  "criteria": {
+    "has_banana_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:banana_log"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:banana_log_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_banana_log",
+      "has_the_recipe"
+    ]
+  ]
+}

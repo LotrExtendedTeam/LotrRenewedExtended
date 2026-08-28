@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:scorched_cobblestone"
+    }
+  },
+  "result": {
+    "item": "lotrextended:scorched_cobblestone_wall",
+    "count": 6
+  }
+}

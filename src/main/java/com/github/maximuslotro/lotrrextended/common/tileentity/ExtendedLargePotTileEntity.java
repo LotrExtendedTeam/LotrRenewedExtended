@@ -5,8 +5,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
 
-import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

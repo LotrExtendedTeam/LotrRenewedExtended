@@ -283,7 +283,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:glowstone_crystal_chandelier"
+          "name": "lotrextended:glowstone_crystal_chandelier"
         },
         {
           "type": "minecraft:item",
@@ -385,7 +385,7 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -399,7 +399,7 @@
               "tag": "{coin_type:\"blue_dwarven\"}"
             }
           ],
-          "name": "lotr:silver_coin_hundred"
+          "name": "lotrextended:silver_coin_hundred"
         }
       ],
       "conditions": [

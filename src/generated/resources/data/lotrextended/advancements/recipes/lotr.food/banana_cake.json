@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:banana_cake"
+    ]
+  },
+  "criteria": {
+    "has_banana": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:banana"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:banana_cake"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_banana",
+      "has_the_recipe"
+    ]
+  ]
+}

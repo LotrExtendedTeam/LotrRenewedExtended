@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotr:numenorean_brick"
+  },
+  "result": "lotrextended:black_carved_gondor_brick",
+  "count": 1
+}

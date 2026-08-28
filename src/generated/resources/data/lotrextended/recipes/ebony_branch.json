@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:branch",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:ebony_wood"
+    }
+  },
+  "result": {
+    "item": "lotrextended:ebony_branch",
+    "count": 6
+  }
+}

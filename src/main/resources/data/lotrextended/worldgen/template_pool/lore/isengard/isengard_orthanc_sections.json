@@ -10,7 +10,7 @@
 				"location": "lotrextended:lore/isengard/orthanc_1",
 				"processors": "minecraft:empty",
 				"foundation_block": {
-					"Name": "lotr:morgond"
+					"Name": "lotrextended:morgond"
 				}
 			}
 		},

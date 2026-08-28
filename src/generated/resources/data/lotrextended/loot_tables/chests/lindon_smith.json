@@ -66,7 +66,7 @@
               }
             }
           ],
-          "name": "lotr:galvorn_ingot"
+          "name": "lotrextended:galvorn_ingot"
         },
         {
           "type": "minecraft:item",
@@ -357,7 +357,7 @@
               }
             }
           ],
-          "name": "lotr:lindon_bow"
+          "name": "lotrextended:lindon_bow"
         },
         {
           "type": "minecraft:item",
@@ -441,7 +441,7 @@
               }
             }
           ],
-          "name": "lotr:lindon_shield"
+          "name": "lotrextended:lindon_shield"
         },
         {
           "type": "minecraft:item",
@@ -536,7 +536,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:lindon_banner"
+          "name": "lotrextended:lindon_banner"
         },
         {
           "type": "minecraft:item",
@@ -546,7 +546,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:lindon_banner_pattern"
+          "name": "lotrextended:lindon_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -578,7 +578,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:artisan_tome"
+          "name": "lotrextended:artisan_tome"
         },
         {
           "type": "minecraft:item",
@@ -589,7 +589,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:combat_tome"
+          "name": "lotrextended:combat_tome"
         },
         {
           "type": "minecraft:item",
@@ -600,7 +600,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:smith_tome"
+          "name": "lotrextended:smith_tome"
         },
         {
           "type": "minecraft:item",

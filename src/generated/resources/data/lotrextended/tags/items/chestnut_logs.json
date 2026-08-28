@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "lotr:chestnut_log",
-    "lotr:chestnut_wood",
-    "lotr:stripped_chestnut_log",
-    "lotr:stripped_chestnut_wood"
+    "lotrextended:chestnut_log",
+    "lotrextended:chestnut_wood",
+    "lotrextended:stripped_chestnut_log",
+    "lotrextended:stripped_chestnut_wood"
   ]
 }

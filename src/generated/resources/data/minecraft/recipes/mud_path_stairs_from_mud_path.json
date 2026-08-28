@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "lotr:mud_path"
-  },
-  "result": "lotr:mud_path_stairs",
-  "count": 1
-}

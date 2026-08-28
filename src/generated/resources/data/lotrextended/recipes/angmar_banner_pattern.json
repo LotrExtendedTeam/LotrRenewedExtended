@@ -1,0 +1,15 @@
+{
+  "type": "lotr:faction_shapeless",
+  "table": "lotr:angmar",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "lotrextended:angmar_banner"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:angmar_banner_pattern"
+  }
+}

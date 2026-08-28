@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "lotrextended:chestnut_planks"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:chestnut_button"
+  }
+}

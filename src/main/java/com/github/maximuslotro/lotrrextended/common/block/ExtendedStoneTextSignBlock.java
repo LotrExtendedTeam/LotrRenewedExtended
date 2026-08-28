@@ -18,6 +18,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.ContainerBlock;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.IWaterLoggable;
+import net.minecraft.block.WallSignBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -44,6 +45,9 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
+/**
+ * Based on {@link WallSignBlock}
+ * */
 public class ExtendedStoneTextSignBlock extends ContainerBlock implements IWaterLoggable {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
@@ -130,52 +134,34 @@ public class ExtendedStoneTextSignBlock extends ContainerBlock implements IWater
 	@Override
 	public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pHit) {
 		ItemStack itemstack = pPlayer.getItemInHand(pHand);
-		if(itemstack.getItem() instanceof DyeItem) {
-			boolean flag = pPlayer.abilities.mayBuild;
-			if (pLevel.isClientSide) {
-				return flag ? ActionResultType.SUCCESS : ActionResultType.CONSUME;
-			} else {
-				TileEntity tileentity = pLevel.getBlockEntity(pPos);
-				if (tileentity instanceof ExtendedStoneTextSignTileEntity) {
-					ExtendedStoneTextSignTileEntity signtileentity = (ExtendedStoneTextSignTileEntity)tileentity;
-					if (flag) {
-						boolean flag1 = signtileentity.setColor(((DyeItem)itemstack.getItem()).getDyeColor());
-						if (flag1 && !pPlayer.isCreative()) {
+		boolean canBuild = pPlayer.abilities.mayBuild;
+		if (pLevel.isClientSide) {
+			return canBuild ? ActionResultType.SUCCESS : ActionResultType.CONSUME;
+		} else {
+			TileEntity tileentity = pLevel.getBlockEntity(pPos);
+			if (tileentity instanceof ExtendedStoneTextSignTileEntity) {
+				ExtendedStoneTextSignTileEntity signtileentity = (ExtendedStoneTextSignTileEntity)tileentity;
+				if (canBuild && itemstack.getItem() instanceof DyeItem) {
+					if (signtileentity.setColor(((DyeItem)itemstack.getItem()).getDyeColor())) {
+						if(!pPlayer.isCreative()){
 							itemstack.shrink(1);
 						}
-						// Extended Start
 						return ActionResultType.SUCCESS;
-						// Extended End
 					}
-					//return signtileentity.executeClickCommands(pPlayer) ? ActionResultType.SUCCESS : ActionResultType.PASS;
-					return ActionResultType.PASS;
-				}
-				return ActionResultType.PASS;
-			}
-		}else if(itemstack.getItem() instanceof ExtendedChiselItem) {
-			if (pLevel.isClientSide) {
-				return ActionResultType.SUCCESS;
-			} else {
-				TileEntity tileentity = pLevel.getBlockEntity(pPos);
-				if (tileentity instanceof ExtendedStoneTextSignTileEntity) {
-					ExtendedStoneTextSignTileEntity signtileentity = (ExtendedStoneTextSignTileEntity)tileentity;
+				}else if (canBuild && itemstack.getItem() instanceof ExtendedChiselItem) {
 					if (signtileentity.getPlayerWhoMayEdit()==null) {
 						signtileentity.setAllowedPlayerEditor(pPlayer);
 						ExtendedPacketHandler.sendToClient(new ExtendedSOpenStoneTextSignPacket(((ExtendedStoneTextSignTileEntity)pLevel.getBlockEntity(pPos)).getBlockPos()), (ServerPlayerEntity) pPlayer);
 						if (!pPlayer.isCreative()) {
 							itemstack.hurtAndBreak(1, pPlayer, (player) -> player.broadcastBreakEvent(pPlayer.getUsedItemHand()));
 						}
-						// Extended Start
 						return ActionResultType.SUCCESS;
-						// Extended End
 					}
-					//return signtileentity.executeClickCommands(pPlayer) ? ActionResultType.SUCCESS : ActionResultType.PASS;
-					return ActionResultType.PASS;
 				}
-				return ActionResultType.PASS;
+				return signtileentity.executeClickCommands(pPlayer) ? ActionResultType.SUCCESS : ActionResultType.PASS;
 			}
+			return ActionResultType.PASS;
 		}
-		return ActionResultType.PASS;
 	}
 
 	@Override

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:obsidian_taurethrim_brick_stairs"
+    ]
+  },
+  "criteria": {
+    "has_obsidian_taurethrim_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:obsidian_taurethrim_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:obsidian_taurethrim_brick_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_obsidian_taurethrim_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

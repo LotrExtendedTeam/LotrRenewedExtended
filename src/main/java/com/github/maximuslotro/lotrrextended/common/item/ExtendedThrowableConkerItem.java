@@ -1,9 +1,9 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
+import com.github.maximuslotro.lotrrextended.common.block.ExtendedDeferredComposterInjector;
 import com.github.maximuslotro.lotrrextended.common.dispenser.ExtendedDispenserConker;
 import com.github.maximuslotro.lotrrextended.common.entity.projectile.ExtendedConkerEntity;
 
-import lotr.common.event.CompostingHelper;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -20,7 +20,7 @@ public class ExtendedThrowableConkerItem extends Item{
 	public ExtendedThrowableConkerItem(Properties p_i48487_1_) {
 		super(p_i48487_1_);
 		DispenserBlock.registerBehavior(this, new ExtendedDispenserConker());
-		CompostingHelper.prepareCompostable(this, 0.3F);
+		ExtendedDeferredComposterInjector.addCompostable(this, 0.3F);
 	}
 
 	@Override

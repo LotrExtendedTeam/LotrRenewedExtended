@@ -1,0 +1,838 @@
+{
+  "parent": "lotrextended:general/first_steps",
+  "display": {
+    "icon": {
+      "item": "minecraft:apple"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancements.lotrextended.general.balanced_diet_extended.title"
+    },
+    "description": {
+      "color": "light_purple",
+      "translate": "advancements.lotrextended.general.balanced_diet_extended.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "apple": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:apple"
+        }
+      }
+    },
+    "mushroom_stew": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:mushroom_stew"
+        }
+      }
+    },
+    "bread": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:bread"
+        }
+      }
+    },
+    "porkchop": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:porkchop"
+        }
+      }
+    },
+    "cooked_porkchop": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:cooked_porkchop"
+        }
+      }
+    },
+    "golden_apple": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:golden_apple"
+        }
+      }
+    },
+    "cod": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:cod"
+        }
+      }
+    },
+    "salmon": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:salmon"
+        }
+      }
+    },
+    "tropical_fish": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:tropical_fish"
+        }
+      }
+    },
+    "pufferfish": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:pufferfish"
+        }
+      }
+    },
+    "cooked_cod": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:cooked_cod"
+        }
+      }
+    },
+    "cooked_salmon": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:cooked_salmon"
+        }
+      }
+    },
+    "cookie": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:cookie"
+        }
+      }
+    },
+    "melon_slice": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:melon_slice"
+        }
+      }
+    },
+    "beef": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:beef"
+        }
+      }
+    },
+    "cooked_beef": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:cooked_beef"
+        }
+      }
+    },
+    "chicken": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:chicken"
+        }
+      }
+    },
+    "cooked_chicken": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:cooked_chicken"
+        }
+      }
+    },
+    "rotten_flesh": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:rotten_flesh"
+        }
+      }
+    },
+    "spider_eye": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:spider_eye"
+        }
+      }
+    },
+    "carrot": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:carrot"
+        }
+      }
+    },
+    "potato": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:potato"
+        }
+      }
+    },
+    "baked_potato": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:baked_potato"
+        }
+      }
+    },
+    "poisonous_potato": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:poisonous_potato"
+        }
+      }
+    },
+    "golden_carrot": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:golden_carrot"
+        }
+      }
+    },
+    "pumpkin_pie": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:pumpkin_pie"
+        }
+      }
+    },
+    "rabbit": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:rabbit"
+        }
+      }
+    },
+    "cooked_rabbit": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:cooked_rabbit"
+        }
+      }
+    },
+    "rabbit_stew": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:rabbit_stew"
+        }
+      }
+    },
+    "mutton": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:mutton"
+        }
+      }
+    },
+    "cooked_mutton": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:cooked_mutton"
+        }
+      }
+    },
+    "beetroot": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:beetroot"
+        }
+      }
+    },
+    "beetroot_soup": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:beetroot_soup"
+        }
+      }
+    },
+    "dried_kelp": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:dried_kelp"
+        }
+      }
+    },
+    "suspicious_stew": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:suspicious_stew"
+        }
+      }
+    },
+    "sweet_berries": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:sweet_berries"
+        }
+      }
+    },
+    "honey_bottle": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "minecraft:honey_bottle"
+        }
+      }
+    },
+    "mirk_shroom": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:mirk_shroom"
+        }
+      }
+    },
+    "morgul_shroom": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:morgul_shroom"
+        }
+      }
+    },
+    "lembas": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:lembas"
+        }
+      }
+    },
+    "gammon": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:gammon"
+        }
+      }
+    },
+    "green_apple": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:green_apple"
+        }
+      }
+    },
+    "suspicious_meat": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:suspicious_meat"
+        }
+      }
+    },
+    "man_flesh": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:man_flesh"
+        }
+      }
+    },
+    "pear": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:pear"
+        }
+      }
+    },
+    "cherry": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:cherry"
+        }
+      }
+    },
+    "maple_syrup": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:maple_syrup"
+        }
+      }
+    },
+    "lettuce": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:lettuce"
+        }
+      }
+    },
+    "mallorn_nut": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:mallorn_nut"
+        }
+      }
+    },
+    "blubber": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:blubber"
+        }
+      }
+    },
+    "fish_and_chips": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:fish_and_chips"
+        }
+      }
+    },
+    "maggoty_bread": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:maggoty_bread"
+        }
+      }
+    },
+    "cram": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotr:cram"
+        }
+      }
+    },
+    "blueberry": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:blueberry"
+        }
+      }
+    },
+    "blackberry": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:blackberry"
+        }
+      }
+    },
+    "cranberry": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:cranberry"
+        }
+      }
+    },
+    "raspberry": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:raspberry"
+        }
+      }
+    },
+    "elderberry": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:elderberry"
+        }
+      }
+    },
+    "wildberry": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:wildberry"
+        }
+      }
+    },
+    "cheese_curds": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:cheese_curds"
+        }
+      }
+    },
+    "cheese_slice": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:cheese_slice"
+        }
+      }
+    },
+    "aged_cheese_slice": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:aged_cheese_slice"
+        }
+      }
+    },
+    "roasted_chestnut": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:roasted_chestnut"
+        }
+      }
+    },
+    "banana": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:banana"
+        }
+      }
+    },
+    "banana_bread": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:banana_bread"
+        }
+      }
+    },
+    "plum": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:plum"
+        }
+      }
+    },
+    "raw_duck": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:raw_duck"
+        }
+      }
+    },
+    "cooked_duck": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:cooked_duck"
+        }
+      }
+    },
+    "hobbit_pancake": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:hobbit_pancake"
+        }
+      }
+    },
+    "hobbit_pancake_syrup": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:hobbit_pancake_syrup"
+        }
+      }
+    },
+    "hobbit_pancake_syrup_butter": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:hobbit_pancake_syrup_butter"
+        }
+      }
+    },
+    "butter": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:butter"
+        }
+      }
+    },
+    "leek": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:leek"
+        }
+      }
+    },
+    "leek_soup": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "lotrextended:leek_soup"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "apple"
+    ],
+    [
+      "mushroom_stew"
+    ],
+    [
+      "bread"
+    ],
+    [
+      "porkchop"
+    ],
+    [
+      "cooked_porkchop"
+    ],
+    [
+      "golden_apple"
+    ],
+    [
+      "cod"
+    ],
+    [
+      "salmon"
+    ],
+    [
+      "tropical_fish"
+    ],
+    [
+      "pufferfish"
+    ],
+    [
+      "cooked_cod"
+    ],
+    [
+      "cooked_salmon"
+    ],
+    [
+      "cookie"
+    ],
+    [
+      "melon_slice"
+    ],
+    [
+      "beef"
+    ],
+    [
+      "cooked_beef"
+    ],
+    [
+      "chicken"
+    ],
+    [
+      "cooked_chicken"
+    ],
+    [
+      "rotten_flesh"
+    ],
+    [
+      "spider_eye"
+    ],
+    [
+      "carrot"
+    ],
+    [
+      "potato"
+    ],
+    [
+      "baked_potato"
+    ],
+    [
+      "poisonous_potato"
+    ],
+    [
+      "golden_carrot"
+    ],
+    [
+      "pumpkin_pie"
+    ],
+    [
+      "rabbit"
+    ],
+    [
+      "cooked_rabbit"
+    ],
+    [
+      "rabbit_stew"
+    ],
+    [
+      "mutton"
+    ],
+    [
+      "cooked_mutton"
+    ],
+    [
+      "beetroot"
+    ],
+    [
+      "beetroot_soup"
+    ],
+    [
+      "dried_kelp"
+    ],
+    [
+      "suspicious_stew"
+    ],
+    [
+      "sweet_berries"
+    ],
+    [
+      "honey_bottle"
+    ],
+    [
+      "mirk_shroom"
+    ],
+    [
+      "morgul_shroom"
+    ],
+    [
+      "lembas"
+    ],
+    [
+      "gammon"
+    ],
+    [
+      "green_apple"
+    ],
+    [
+      "suspicious_meat"
+    ],
+    [
+      "man_flesh"
+    ],
+    [
+      "pear"
+    ],
+    [
+      "cherry"
+    ],
+    [
+      "maple_syrup"
+    ],
+    [
+      "lettuce"
+    ],
+    [
+      "mallorn_nut"
+    ],
+    [
+      "blubber"
+    ],
+    [
+      "fish_and_chips"
+    ],
+    [
+      "maggoty_bread"
+    ],
+    [
+      "cram"
+    ],
+    [
+      "blueberry"
+    ],
+    [
+      "blackberry"
+    ],
+    [
+      "cranberry"
+    ],
+    [
+      "raspberry"
+    ],
+    [
+      "elderberry"
+    ],
+    [
+      "wildberry"
+    ],
+    [
+      "cheese_curds"
+    ],
+    [
+      "cheese_slice"
+    ],
+    [
+      "aged_cheese_slice"
+    ],
+    [
+      "roasted_chestnut"
+    ],
+    [
+      "banana"
+    ],
+    [
+      "banana_bread"
+    ],
+    [
+      "plum"
+    ],
+    [
+      "raw_duck"
+    ],
+    [
+      "cooked_duck"
+    ],
+    [
+      "hobbit_pancake"
+    ],
+    [
+      "hobbit_pancake_syrup"
+    ],
+    [
+      "hobbit_pancake_syrup_butter"
+    ],
+    [
+      "butter"
+    ],
+    [
+      "leek"
+    ],
+    [
+      "leek_soup"
+    ]
+  ]
+}

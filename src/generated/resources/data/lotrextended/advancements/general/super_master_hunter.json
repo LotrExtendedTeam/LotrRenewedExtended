@@ -2,7 +2,7 @@
   "parent": "lotrextended:general/master_hunter",
   "display": {
     "icon": {
-      "item": "lotr:white_warg_fur_chestplate",
+      "item": "lotrextended:white_warg_fur_chestplate",
       "nbt": "{Damage:0}"
     },
     "title": {
@@ -24,16 +24,16 @@
       "conditions": {
         "items": [
           {
-            "item": "lotr:white_warg_fur_helmet"
+            "item": "lotrextended:white_warg_fur_helmet"
           },
           {
-            "item": "lotr:white_warg_fur_chestplate"
+            "item": "lotrextended:white_warg_fur_chestplate"
           },
           {
-            "item": "lotr:white_warg_fur_leggings"
+            "item": "lotrextended:white_warg_fur_leggings"
           },
           {
-            "item": "lotr:white_warg_fur_boots"
+            "item": "lotrextended:white_warg_fur_boots"
           }
         ]
       }

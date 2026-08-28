@@ -2,16 +2,10 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
           "name": "minecraft:bread"
         },
         {
@@ -110,7 +104,7 @@
               }
             }
           ],
-          "name": "lotr:plum"
+          "name": "lotrextended:plum"
         },
         {
           "type": "minecraft:item",
@@ -124,7 +118,7 @@
               }
             }
           ],
-          "name": "lotr:blackberry"
+          "name": "lotrextended:blackberry"
         },
         {
           "type": "minecraft:item",
@@ -138,7 +132,7 @@
               }
             }
           ],
-          "name": "lotr:blueberry"
+          "name": "lotrextended:blueberry"
         },
         {
           "type": "minecraft:item",
@@ -152,7 +146,7 @@
               }
             }
           ],
-          "name": "lotr:cranberry"
+          "name": "lotrextended:cranberry"
         },
         {
           "type": "minecraft:item",
@@ -166,7 +160,7 @@
               }
             }
           ],
-          "name": "lotr:elderberry"
+          "name": "lotrextended:elderberry"
         },
         {
           "type": "minecraft:item",
@@ -180,7 +174,7 @@
               }
             }
           ],
-          "name": "lotr:raspberry"
+          "name": "lotrextended:raspberry"
         },
         {
           "type": "minecraft:item",
@@ -278,7 +272,21 @@
               }
             }
           ],
-          "name": "lotr:roasted_chestnut"
+          "name": "lotrextended:roasted_chestnut"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotrextended:leek"
         }
       ]
     }

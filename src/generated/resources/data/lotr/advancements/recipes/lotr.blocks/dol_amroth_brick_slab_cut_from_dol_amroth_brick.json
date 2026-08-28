@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:dol_amroth_brick_slab_cut_from_dol_amroth_brick"
+    ]
+  },
+  "criteria": {
+    "has_dol_amroth_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dol_amroth_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:dol_amroth_brick_slab_cut_from_dol_amroth_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dol_amroth_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

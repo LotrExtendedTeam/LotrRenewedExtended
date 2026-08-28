@@ -42,6 +42,7 @@
 		"lotr.common.entity.npc.MixinOrcEntity",
 		"lotr.common.entity.npc.MixinRivendellElfEntity",
 		"lotr.common.entity.npc.MixinRivendellWarriorEntity",
+		"lotr.common.entity.npc.MixinRohirrimBowmanEntity",
 		"lotr.common.entity.npc.MixinUrukArcherEntity",
 		"lotr.common.entity.npc.MixinUrukEntity",
 		"lotr.common.entity.npc.MixinWargEntity",
@@ -176,6 +177,7 @@
 		"net.minecraft.pathfinding.MixinPathHeap",
 		"net.minecraft.server.dedicated.MixinDedicatedServer",
 		"net.minecraft.tileentity.MixinSignTileEntityAccessor",
+		"net.minecraft.tileentity.MixinTileEntity",
 		"net.minecraft.util.MixinFoodStats",
 		"net.minecraft.world.gen.feature.template.MixinTemplate",
 		"net.minecraft.world.gen.feature.jigsaw.MixinJigsawManager"

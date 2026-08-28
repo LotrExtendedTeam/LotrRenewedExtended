@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "lotr:matted_fur_slab"
+      "item": "lotrextended:matted_fur_slab"
     }
   ],
   "result": {

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:plum_log"
+    }
+  },
+  "result": {
+    "item": "lotrextended:plum_wood",
+    "count": 3
+  }
+}

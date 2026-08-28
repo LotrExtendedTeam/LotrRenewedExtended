@@ -1,0 +1,16 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotrextended:golden_birdcage"
+  },
+  "result1": {
+    "item": "minecraft:gold_ingot",
+    "count": 4
+  },
+  "result2": {
+    "item": "minecraft:gold_nugget",
+    "count": 6
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

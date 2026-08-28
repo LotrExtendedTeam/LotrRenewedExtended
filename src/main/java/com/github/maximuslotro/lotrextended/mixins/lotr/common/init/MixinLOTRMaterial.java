@@ -7,7 +7,8 @@ import java.util.function.Supplier;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
-import lotr.common.init.ExtendedItems;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+
 import lotr.common.init.LOTRItems;
 import lotr.common.init.LOTRMaterial;
 import net.minecraft.item.crafting.Ingredient;

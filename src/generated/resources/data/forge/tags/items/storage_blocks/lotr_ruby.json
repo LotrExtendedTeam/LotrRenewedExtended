@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "lotr:ruby_block"
+    "lotrextended:ruby_block"
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotr:dwarven_brick_slab_cut_from_dwarven_brick"
+    ]
+  },
+  "criteria": {
+    "has_dwarven_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:dwarven_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotr:dwarven_brick_slab_cut_from_dwarven_brick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dwarven_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

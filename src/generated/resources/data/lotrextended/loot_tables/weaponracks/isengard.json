@@ -2,7 +2,7 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -170,7 +170,7 @@
               }
             }
           ],
-          "name": "lotr:uruk_crossbow"
+          "name": "lotrextended:uruk_crossbow"
         },
         {
           "type": "minecraft:item",
@@ -191,7 +191,7 @@
               }
             }
           ],
-          "name": "lotr:orc_bow"
+          "name": "lotrextended:orc_bow"
         }
       ]
     }

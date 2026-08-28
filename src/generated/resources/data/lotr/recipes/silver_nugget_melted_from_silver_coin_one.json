@@ -1,0 +1,11 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotrextended:silver_coin_one"
+  },
+  "result1": {
+    "item": "lotr:silver_nugget"
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

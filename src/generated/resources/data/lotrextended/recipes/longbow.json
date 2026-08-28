@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X #",
+    "X##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:bowstring"
+    },
+    "X": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "lotrextended:longbow"
+  }
+}

@@ -45,7 +45,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:raw_duck",
+        "item": "lotrextended:raw_duck",
         "averageCost": 3
       }
     },
@@ -74,6 +74,14 @@
       "weight": 50,
       "stack": {
         "item": "minecraft:potato",
+        "averageCost": 1,
+        "count": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:leek",
         "averageCost": 1,
         "count": 2
       }
@@ -175,7 +183,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:cooked_duck",
+        "item": "lotrextended:cooked_duck",
         "averageCost": 6
       }
     },
@@ -269,28 +277,35 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:butter",
+        "item": "lotrextended:leek_soup",
         "averageCost": 10
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:hobbit_pancake",
+        "item": "lotrextended:butter",
         "averageCost": 10
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:hobbit_pancake_syrup",
+        "item": "lotrextended:hobbit_pancake",
+        "averageCost": 10
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:hobbit_pancake_syrup",
         "averageCost": 13
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:hobbit_pancake_syrup_butter",
+        "item": "lotrextended:hobbit_pancake_syrup_butter",
         "averageCost": 15
       }
     },
@@ -311,7 +326,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:hobbit_marriage_ring",
+        "item": "lotrextended:hobbit_marriage_ring",
         "averageCost": 14
       }
     },

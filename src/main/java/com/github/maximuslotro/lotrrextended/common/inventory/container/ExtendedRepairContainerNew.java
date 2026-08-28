@@ -10,12 +10,14 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedContainerTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedBrandingIronItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedChiselItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCrossbowItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedDaggerItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedGemstoneColoringItem;
+import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierReforgeTomeItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierRepairTomeItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedModifierScrollItem;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedThrowableAxeItem;
@@ -24,7 +26,6 @@ import com.github.maximuslotro.lotrrextended.common.modifiers.ExtendedModifiers;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
 import io.netty.buffer.Unpooled;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.item.DaggerItem;
 import lotr.common.item.ItemOwnership;
@@ -296,6 +297,11 @@ public class ExtendedRepairContainerNew extends Container {
 			if (isEnchantingItem || isModifierItem || (resultItem.getItem() == mergableItem.getItem() && resultItem.isDamageableItem())) {
 				canCombineItemModifiers= true;
 			}
+		}
+		if(mergableItem.getItem() instanceof ExtendedModifierReforgeTomeItem) {
+			this.resultSlots.setItem(0, ItemStack.EMPTY);
+			this.cost.set(0);
+			return;
 		}
 		if(isEnchantingItem && !ExtendedServerConfig.enableVanillaEnchanting.get()) {
 			this.resultSlots.setItem(0, ItemStack.EMPTY);

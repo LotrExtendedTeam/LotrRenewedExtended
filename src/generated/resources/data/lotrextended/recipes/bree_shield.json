@@ -1,0 +1,20 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:bree",
+  "pattern": [
+    "PIP",
+    "PPP",
+    " P "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "lotrextended:bree_shield"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    " ##",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:ebony_planks"
+    }
+  },
+  "result": {
+    "item": "lotrextended:ebony_stairs",
+    "count": 4
+  }
+}

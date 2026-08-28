@@ -5,11 +5,11 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedStats;
 import com.github.maximuslotro.lotrrextended.common.tileentity.chests.ExtendedStoneChestTileEntity;
 
-import lotr.common.data.ExtendedLevelData;
 import lotr.common.entity.npc.ExtendedBarrowWightEntity;
 import lotr.common.init.ExtendedEntities;
 import net.minecraft.block.BlockState;
@@ -168,7 +168,7 @@ public class ExtendedStoneChestBlock extends ExtendedSingleChestBlock {
 	private boolean spawnWightCursed(World pWorld, BlockPos locPos, @Nullable PlayerEntity pPlayerEntity, boolean forcedSpawn) {
 		ServerWorld serverWorld = (ServerWorld) pWorld;
 		ExtendedLevelData serverInstance = ExtendedLevelData.serverInstance();
-		if(forcedSpawn || (pPlayerEntity== null || serverInstance.isPlayerBarrowCursed(pPlayerEntity))) {
+		if(forcedSpawn || (pPlayerEntity== null || serverInstance.getBarrowData().isPlayerBarrowCursed(pPlayerEntity))) {
 			ExtendedBarrowWightEntity barrowWight = new ExtendedBarrowWightEntity(ExtendedEntities.BARROW_WIGHT.get(), serverWorld);
 			int tries = 0;
 			while (tries < 49) {
@@ -180,7 +180,7 @@ public class ExtendedStoneChestBlock extends ExtendedSingleChestBlock {
 					serverWorld.addFreshEntity(barrowWight);
 					serverWorld.playSound(null, barrowWight, ExtendedSounds.WIGHT_SPAWN.get(), SoundCategory.HOSTILE, 1.0f, 0.7f);
 					if(!forcedSpawn && pPlayerEntity!=null) {
-						serverInstance.removeCurse(pPlayerEntity);
+						serverInstance.getBarrowData().removeCurse(pPlayerEntity);
 					}
 					return true;
 				}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:cracked_stone_pillar"
+    }
+  },
+  "result": {
+    "item": "lotrextended:cracked_stone_pillar_slab",
+    "count": 6
+  }
+}

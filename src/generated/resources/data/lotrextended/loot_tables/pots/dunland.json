@@ -2,7 +2,7 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -410,7 +410,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:dunland_banner_pattern"
+          "name": "lotrextended:dunland_banner_pattern"
         },
         {
           "type": "minecraft:item",

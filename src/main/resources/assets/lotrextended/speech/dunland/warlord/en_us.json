@@ -87,7 +87,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "day_or_night": "morning",
+        "daytime": "morning",
         "rank": ">=warrior",
         "in_combat": "false",
         "in_conversation": "none"
@@ -98,7 +98,7 @@
     {
       "conditions": {
         "relation": "friendly",
-        "day_or_night": "afternoon",
+        "daytime": "afternoon",
         "rank": ">=warrior",
         "in_combat": "false",
         "in_conversation": "none"

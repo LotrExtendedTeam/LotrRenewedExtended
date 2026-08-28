@@ -1,6 +1,7 @@
 package com.github.maximuslotro.lotrrextended.common.item;
 
-import lotr.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+
 import lotr.common.init.LOTRBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

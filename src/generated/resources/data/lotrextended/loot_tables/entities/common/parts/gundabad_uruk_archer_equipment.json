@@ -27,7 +27,7 @@
               }
             }
           ],
-          "name": "lotr:gundabad_shield"
+          "name": "lotrextended:gundabad_shield"
         },
         {
           "type": "minecraft:item",
@@ -52,7 +52,7 @@
               }
             }
           ],
-          "name": "lotr:gundabad_uruk_bow"
+          "name": "lotrextended:gundabad_uruk_bow"
         },
         {
           "type": "minecraft:item",
@@ -77,7 +77,7 @@
               }
             }
           ],
-          "name": "lotr:gundabad_uruk_sword"
+          "name": "lotrextended:gundabad_uruk_sword"
         },
         {
           "type": "minecraft:item",
@@ -102,7 +102,7 @@
               }
             }
           ],
-          "name": "lotr:gundabad_uruk_dagger"
+          "name": "lotrextended:gundabad_uruk_dagger"
         },
         {
           "type": "minecraft:item",
@@ -127,7 +127,7 @@
               }
             }
           ],
-          "name": "lotr:gundabad_uruk_spear"
+          "name": "lotrextended:gundabad_uruk_spear"
         }
       ],
       "conditions": [

@@ -3,7 +3,6 @@ package lotr.common.world;
 import lotr.common.fac.FactionPointer;
 import lotr.common.fac.FactionPointers;
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTREntities;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.EntityType;
@@ -20,6 +19,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
 public enum ExtendedInvasions {
 

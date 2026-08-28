@@ -2,7 +2,7 @@
   "parent": "lotrextended:eriador/the_kindly_west",
   "display": {
     "icon": {
-      "item": "lotr:dunedain_bow",
+      "item": "lotrextended:dunedain_bow",
       "nbt": "{Damage:0}"
     },
     "title": {

@@ -1,8 +1,8 @@
 package lotr.common.biome;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedConfiguredFeatures;
 
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedEntities;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.LOTRBiomeFeatures;

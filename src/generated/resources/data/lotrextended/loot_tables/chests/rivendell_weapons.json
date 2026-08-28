@@ -42,7 +42,7 @@
               }
             }
           ],
-          "name": "lotr:rivendell_bow"
+          "name": "lotrextended:rivendell_bow"
         },
         {
           "type": "minecraft:item",
@@ -126,7 +126,7 @@
               }
             }
           ],
-          "name": "lotr:rivendell_shield"
+          "name": "lotrextended:rivendell_shield"
         },
         {
           "type": "minecraft:item",
@@ -230,7 +230,7 @@
               }
             }
           ],
-          "name": "lotr:imladris_guard_helmet"
+          "name": "lotrextended:imladris_guard_helmet"
         },
         {
           "type": "minecraft:item",
@@ -250,7 +250,7 @@
               }
             }
           ],
-          "name": "lotr:imladris_guard_chestplate"
+          "name": "lotrextended:imladris_guard_chestplate"
         },
         {
           "type": "minecraft:item",
@@ -270,7 +270,7 @@
               }
             }
           ],
-          "name": "lotr:imladris_guard_leggings"
+          "name": "lotrextended:imladris_guard_leggings"
         },
         {
           "type": "minecraft:item",
@@ -290,7 +290,7 @@
               }
             }
           ],
-          "name": "lotr:imladris_guard_boots"
+          "name": "lotrextended:imladris_guard_boots"
         }
       ]
     }

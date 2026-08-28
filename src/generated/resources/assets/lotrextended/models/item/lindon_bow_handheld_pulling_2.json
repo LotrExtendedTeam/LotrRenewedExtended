@@ -1,0 +1,6 @@
+{
+  "parent": "lotrextended:item/lindon_bow_handheld",
+  "textures": {
+    "layer0": "lotrextended:item/lindon_bow_handheld_pulling_2"
+  }
+}

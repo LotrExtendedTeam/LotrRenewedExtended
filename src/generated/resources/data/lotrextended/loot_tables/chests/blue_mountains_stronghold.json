@@ -141,7 +141,7 @@
               }
             }
           ],
-          "name": "lotr:blue_dwarven_throwing_axe"
+          "name": "lotrextended:blue_dwarven_throwing_axe"
         },
         {
           "type": "minecraft:item",
@@ -162,7 +162,7 @@
               }
             }
           ],
-          "name": "lotr:blue_dwarven_mattock"
+          "name": "lotrextended:blue_dwarven_mattock"
         },
         {
           "type": "minecraft:item",
@@ -267,7 +267,7 @@
               }
             }
           ],
-          "name": "lotr:blue_dwarven_shield"
+          "name": "lotrextended:blue_dwarven_shield"
         },
         {
           "type": "minecraft:item",
@@ -278,7 +278,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:blue_mountains_banner"
+          "name": "lotrextended:blue_mountains_banner"
         },
         {
           "type": "minecraft:item",
@@ -289,7 +289,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:blue_mountains_banner_pattern"
+          "name": "lotrextended:blue_mountains_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -322,7 +322,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:dwarven_marriage_ring"
+          "name": "lotrextended:dwarven_marriage_ring"
         },
         {
           "type": "minecraft:item",
@@ -333,7 +333,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:artisan_tome"
+          "name": "lotrextended:artisan_tome"
         },
         {
           "type": "minecraft:item",
@@ -343,7 +343,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:combat_tome"
+          "name": "lotrextended:combat_tome"
         },
         {
           "type": "minecraft:item",
@@ -353,7 +353,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:smith_tome"
+          "name": "lotrextended:smith_tome"
         },
         {
           "type": "minecraft:item",
@@ -525,7 +525,7 @@
               }
             }
           ],
-          "name": "lotr:cooked_duck"
+          "name": "lotrextended:cooked_duck"
         },
         {
           "type": "minecraft:item",

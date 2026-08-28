@@ -3,8 +3,8 @@ package com.github.maximuslotro.lotrrextended.common.entity.passive;
 import javax.annotation.Nullable;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntityGender;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;

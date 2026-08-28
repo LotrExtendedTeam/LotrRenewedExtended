@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lotrextended:mud_brick"
+    },
+    {
+      "item": "lotrextended:moss_carpet"
+    }
+  ],
+  "result": {
+    "item": "lotrextended:mossy_mud_brick"
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "lotr:ruby_ore"
-  },
-  "result": "lotr:ruby",
-  "experience": 0.5,
-  "cookingtime": 100
-}

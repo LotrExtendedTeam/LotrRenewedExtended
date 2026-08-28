@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:taurethrim_axe"
+    ]
+  },
+  "criteria": {
+    "has_obsidian_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:obsidian_shard"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:taurethrim_axe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_obsidian_shard",
+      "has_the_recipe"
+    ]
+  ]
+}

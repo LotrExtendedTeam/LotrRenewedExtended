@@ -2,7 +2,7 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -85,7 +85,7 @@
               }
             }
           ],
-          "name": "lotr:warg_fur_helmet"
+          "name": "lotrextended:warg_fur_helmet"
         },
         {
           "type": "minecraft:item",
@@ -101,7 +101,7 @@
               }
             }
           ],
-          "name": "lotr:gray_warg_fur_helmet"
+          "name": "lotrextended:gray_warg_fur_helmet"
         },
         {
           "type": "minecraft:item",
@@ -117,7 +117,7 @@
               }
             }
           ],
-          "name": "lotr:black_warg_fur_helmet"
+          "name": "lotrextended:black_warg_fur_helmet"
         },
         {
           "type": "minecraft:item",
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -228,7 +228,7 @@
               }
             }
           ],
-          "name": "lotr:warg_fur_chestplate"
+          "name": "lotrextended:warg_fur_chestplate"
         },
         {
           "type": "minecraft:item",
@@ -244,7 +244,7 @@
               }
             }
           ],
-          "name": "lotr:gray_warg_fur_chestplate"
+          "name": "lotrextended:gray_warg_fur_chestplate"
         },
         {
           "type": "minecraft:item",
@@ -260,7 +260,7 @@
               }
             }
           ],
-          "name": "lotr:black_warg_fur_chestplate"
+          "name": "lotrextended:black_warg_fur_chestplate"
         },
         {
           "type": "minecraft:item",
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -371,7 +371,7 @@
               }
             }
           ],
-          "name": "lotr:warg_fur_leggings"
+          "name": "lotrextended:warg_fur_leggings"
         },
         {
           "type": "minecraft:item",
@@ -387,7 +387,7 @@
               }
             }
           ],
-          "name": "lotr:gray_warg_fur_leggings"
+          "name": "lotrextended:gray_warg_fur_leggings"
         },
         {
           "type": "minecraft:item",
@@ -403,7 +403,7 @@
               }
             }
           ],
-          "name": "lotr:black_warg_fur_leggings"
+          "name": "lotrextended:black_warg_fur_leggings"
         },
         {
           "type": "minecraft:item",
@@ -448,7 +448,7 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -514,7 +514,7 @@
               }
             }
           ],
-          "name": "lotr:warg_fur_boots"
+          "name": "lotrextended:warg_fur_boots"
         },
         {
           "type": "minecraft:item",
@@ -530,7 +530,7 @@
               }
             }
           ],
-          "name": "lotr:gray_warg_fur_boots"
+          "name": "lotrextended:gray_warg_fur_boots"
         },
         {
           "type": "minecraft:item",
@@ -546,7 +546,7 @@
               }
             }
           ],
-          "name": "lotr:black_warg_fur_boots"
+          "name": "lotrextended:black_warg_fur_boots"
         },
         {
           "type": "minecraft:item",

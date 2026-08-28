@@ -2,7 +2,7 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -375,7 +375,7 @@
               }
             }
           ],
-          "name": "lotr:mithril_mattock"
+          "name": "lotrextended:mithril_mattock"
         },
         {
           "type": "minecraft:item",
@@ -396,7 +396,7 @@
               }
             }
           ],
-          "name": "lotr:barrow_blade"
+          "name": "lotrextended:barrow_blade"
         }
       ]
     }

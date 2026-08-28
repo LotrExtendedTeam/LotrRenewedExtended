@@ -96,7 +96,7 @@
               }
             }
           ],
-          "name": "lotr:cooked_duck"
+          "name": "lotrextended:cooked_duck"
         },
         {
           "type": "minecraft:item",
@@ -167,7 +167,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:dunland_banner_pattern"
+          "name": "lotrextended:dunland_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -178,7 +178,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:dunland_banner"
+          "name": "lotrextended:dunland_banner"
         },
         {
           "type": "minecraft:item",
@@ -529,7 +529,7 @@
               }
             }
           ],
-          "name": "lotr:dunlending_shield"
+          "name": "lotrextended:dunlending_shield"
         },
         {
           "type": "minecraft:item",

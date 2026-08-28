@@ -1,0 +1,7 @@
+{
+  "type": "lotrextended:crafting_special_tablearmordye",
+  "recipe_type": "lotr:any_faction",
+  "ingredient": {
+    "item": "lotrextended:leather_boar_armor"
+  }
+}

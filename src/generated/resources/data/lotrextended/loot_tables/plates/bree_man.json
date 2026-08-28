@@ -2,76 +2,34 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
           "name": "minecraft:cooked_porkchop"
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
           "name": "minecraft:cooked_cod"
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
           "name": "minecraft:cooked_salmon"
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
           "name": "minecraft:cooked_chicken"
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
           "name": "minecraft:cooked_beef"
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
           "name": "minecraft:cooked_porkchop"
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
           "name": "minecraft:cooked_mutton"
         },
         {
@@ -132,52 +90,22 @@
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
           "name": "minecraft:cooked_rabbit"
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
           "name": "minecraft:rabbit_stew"
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
           "name": "minecraft:brown_mushroom"
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
           "name": "minecraft:red_mushroom"
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            }
-          ],
           "name": "minecraft:mushroom_stew"
         },
         {
@@ -262,7 +190,7 @@
               }
             }
           ],
-          "name": "lotr:cooked_duck"
+          "name": "lotrextended:cooked_duck"
         },
         {
           "type": "minecraft:item",
@@ -276,7 +204,7 @@
               }
             }
           ],
-          "name": "lotr:plum"
+          "name": "lotrextended:plum"
         },
         {
           "type": "minecraft:item",
@@ -290,7 +218,7 @@
               }
             }
           ],
-          "name": "lotr:blackberry"
+          "name": "lotrextended:blackberry"
         },
         {
           "type": "minecraft:item",
@@ -304,7 +232,7 @@
               }
             }
           ],
-          "name": "lotr:blueberry"
+          "name": "lotrextended:blueberry"
         },
         {
           "type": "minecraft:item",
@@ -318,7 +246,7 @@
               }
             }
           ],
-          "name": "lotr:cranberry"
+          "name": "lotrextended:cranberry"
         },
         {
           "type": "minecraft:item",
@@ -332,7 +260,7 @@
               }
             }
           ],
-          "name": "lotr:elderberry"
+          "name": "lotrextended:elderberry"
         },
         {
           "type": "minecraft:item",
@@ -346,7 +274,7 @@
               }
             }
           ],
-          "name": "lotr:raspberry"
+          "name": "lotrextended:raspberry"
         },
         {
           "type": "minecraft:item",
@@ -360,7 +288,7 @@
               }
             }
           ],
-          "name": "lotr:roasted_chestnut"
+          "name": "lotrextended:roasted_chestnut"
         },
         {
           "type": "minecraft:item",
@@ -374,7 +302,7 @@
               }
             }
           ],
-          "name": "lotr:cheese_slice"
+          "name": "lotrextended:cheese_slice"
         },
         {
           "type": "minecraft:item",
@@ -388,7 +316,25 @@
               }
             }
           ],
-          "name": "lotr:aged_cheese_slice"
+          "name": "lotrextended:aged_cheese_slice"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "lotrextended:leek"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "lotrextended:leek_soup"
         }
       ]
     }

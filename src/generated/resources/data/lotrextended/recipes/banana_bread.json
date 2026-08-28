@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XSX"
+  ],
+  "key": {
+    "S": {
+      "item": "lotrextended:banana"
+    },
+    "X": {
+      "tag": "forge:crops/wheat"
+    }
+  },
+  "result": {
+    "item": "lotrextended:banana_bread"
+  }
+}

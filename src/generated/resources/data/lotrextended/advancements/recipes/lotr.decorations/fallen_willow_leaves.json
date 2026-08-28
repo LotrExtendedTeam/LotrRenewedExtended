@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:fallen_willow_leaves"
+    ]
+  },
+  "criteria": {
+    "has_willow_leaves": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:willow_leaves"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:fallen_willow_leaves"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_willow_leaves",
+      "has_the_recipe"
+    ]
+  ]
+}

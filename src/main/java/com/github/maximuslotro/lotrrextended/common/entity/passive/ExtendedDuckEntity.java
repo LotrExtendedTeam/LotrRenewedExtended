@@ -4,11 +4,11 @@ import java.util.Random;
 
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedAvoidEntityGoal;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedEntityGender;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

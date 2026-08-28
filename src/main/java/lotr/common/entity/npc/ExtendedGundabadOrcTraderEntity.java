@@ -4,12 +4,12 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderTypes;
 
 import lotr.common.entity.npc.ai.StandardAttackModeUpdaters;
 import lotr.common.entity.npc.ai.goal.*;
 import lotr.common.entity.npc.data.NPCFoodPools;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import lotr.common.util.ExtendedInteractableHelper;
 import net.minecraft.entity.EntityType;

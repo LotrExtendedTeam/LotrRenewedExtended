@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lotr:banana_stairs",
-    "lotr:chestnut_stairs",
-    "lotr:ebony_stairs",
-    "lotr:plum_stairs",
-    "lotr:willow_stairs"
+    "lotrextended:banana_stairs",
+    "lotrextended:chestnut_stairs",
+    "lotrextended:ebony_stairs",
+    "lotrextended:plum_stairs",
+    "lotrextended:willow_stairs"
   ]
 }

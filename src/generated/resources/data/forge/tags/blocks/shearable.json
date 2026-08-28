@@ -2,7 +2,7 @@
   "replace": false,
   "values": [
     "#lotrextended:fur_blocks",
-    "lotr:dead_moss_vines",
-    "lotr:willow_vines"
+    "lotrextended:dead_moss_vines",
+    "lotrextended:willow_vines"
   ]
 }

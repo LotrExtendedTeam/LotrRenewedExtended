@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "lotr:green_fire_hearth_block",
-    "lotr:waste_block"
+    "lotrextended:green_fire_hearth_block",
+    "lotrextended:waste_block"
   ]
 }

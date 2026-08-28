@@ -13,9 +13,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.github.maximuslotro.lotrrextended.common.datagen.DataGenValueHolder;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.google.common.collect.ImmutableList;
 
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.ExtendedRecipes;
 import lotr.common.recipe.FactionTableType;
 import lotr.common.recipe.LOTRRecipes;

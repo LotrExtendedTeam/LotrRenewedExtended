@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:black_uruk_steel_ingot"
+    ]
+  },
+  "criteria": {
+    "has_durnor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:durnor"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:black_uruk_steel_ingot"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_durnor",
+      "has_the_recipe"
+    ]
+  ]
+}

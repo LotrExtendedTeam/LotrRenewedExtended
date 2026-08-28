@@ -1,6 +1,0 @@
-{
-  "parent": "lotr:item/longbow_handheld",
-  "textures": {
-    "layer0": "lotrextended:item/longbow_handheld_pulling_0"
-  }
-}

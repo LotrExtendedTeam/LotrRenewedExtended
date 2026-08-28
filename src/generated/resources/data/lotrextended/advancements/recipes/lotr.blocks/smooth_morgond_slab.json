@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:smooth_morgond_slab"
+    ]
+  },
+  "criteria": {
+    "has_smooth_morgond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:smooth_morgond"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:smooth_morgond_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_smooth_morgond",
+      "has_the_recipe"
+    ]
+  ]
+}

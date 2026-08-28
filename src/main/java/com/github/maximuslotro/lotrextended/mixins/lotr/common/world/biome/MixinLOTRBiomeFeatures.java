@@ -8,12 +8,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import lotr.common.world.biome.LOTRBiomeFeatures;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * Mixin targeting {@link LOTRBiomeFeatures} to modify biome feature behavior
@@ -73,20 +70,6 @@ public class MixinLOTRBiomeFeatures {
 		}
 		if(table.getBlock()==LOTRBlocks.DUNLENDING_CRAFTING_TABLE.get()) {
 			info.cancel();
-		}
-	}
-	/**
-     * Injected at the end of the {@code setup} method to add extended biome feature
-     * setup after vanilla block registry events.
-     *
-     * @param event The block registry event.
-     * @param info Callback info.
-     * @Inject (method = "setup(Lnet/minecraftforge/event/RegistryEvent$Register;)V", at = @At("TAIL"), remap = false)
-     */
-	@Inject(method = "setup(Lnet/minecraftforge/event/RegistryEvent$Register;)V", at = @At("TAIL"), remap = false)
-	private static void setup(RegistryEvent.Register<Block> event, CallbackInfo info) {
-		if (event.getRegistry() == ForgeRegistries.BLOCKS) {
-			ExtendedBiomeFeatures.setup(event);
 		}
 	}
 	/**

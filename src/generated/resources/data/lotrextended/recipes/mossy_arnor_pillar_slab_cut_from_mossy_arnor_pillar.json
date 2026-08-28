@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotrextended:mossy_arnor_pillar"
+  },
+  "result": "lotrextended:mossy_arnor_pillar_slab",
+  "count": 1
+}

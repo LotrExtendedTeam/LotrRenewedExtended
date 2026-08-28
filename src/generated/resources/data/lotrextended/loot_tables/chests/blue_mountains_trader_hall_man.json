@@ -224,7 +224,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:bree_banner_pattern"
+          "name": "lotrextended:bree_banner_pattern"
         },
         {
           "type": "minecraft:item",

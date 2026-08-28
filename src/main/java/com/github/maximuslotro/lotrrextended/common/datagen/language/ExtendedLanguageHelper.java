@@ -15,8 +15,6 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.TreeMap;
 import java.util.function.BiConsumer;
-import java.util.function.Supplier;
-
 import org.apache.commons.lang3.text.translate.JavaUnicodeEscaper;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
@@ -32,7 +30,6 @@ import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
 import net.minecraft.util.text.LanguageMap;
 
@@ -118,44 +115,20 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 		removeStrings.add(key);
 	}
 
-	public void addBlock(Supplier<? extends Block> key, String name) {
-		add(key.get(), name);
-	}
 
-	public void add(Block key, String name) {
+	public void addBlock(Block key, String name) {
 		addD(key.getDescriptionId(), name);
 	}
 
-	public void addItem(Supplier<? extends Item> key, String name) {
-		add(key.get(), name);
-	}
-
-	public void add(Item key, String name) {
+	public void addItem(Item key, String name) {
 		addD(key.getDescriptionId(), name);
 	}
 
-	public void addItemStack(Supplier<ItemStack> key, String name) {
-		add(key.get(), name);
-	}
-
-	public void add(ItemStack key, String name) {
+	public void addEffect(Effect key, String name) {
 		addD(key.getDescriptionId(), name);
 	}
 
-	public void addEffect(Supplier<? extends Effect> key, String name) {
-		add(key.get(), name);
-	}
-
-	public void add(Effect key, String name) {
-		addD(key.getDescriptionId(), name);
-	}
-
-	public void addEntityType(Supplier<? extends EntityType<?>> key,
-			String name) {
-		add(key.get(), name);
-	}
-
-	public void add(EntityType<?> key, String name) {
+	public void addEntityType(EntityType<?> key, String name) {
 		addD(key.getDescriptionId(), name);
 	}
 
@@ -225,6 +198,9 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 				continue;
 			}
 			if (entry.getKey().contains("message.lotrextended")) {
+				continue;
+			}
+			if (entry.getKey().contains("banner_pattern.desc")) {
 				continue;
 			}
 			if (entry.getKey().contains("entity_shortname.lotrextended.")||

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    " ##",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:scorched_brick"
+    }
+  },
+  "result": {
+    "item": "lotrextended:scorched_brick_stairs",
+    "count": 4
+  }
+}

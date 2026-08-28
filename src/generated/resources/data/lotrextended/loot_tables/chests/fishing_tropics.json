@@ -111,7 +111,7 @@
               }
             }
           ],
-          "name": "lotr:bowstring"
+          "name": "lotrextended:bowstring"
         },
         {
           "type": "minecraft:item",
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",

@@ -2,11 +2,11 @@ package com.github.maximuslotro.lotrrextended.common.recipe;
 
 import java.util.Random;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 
-import lotr.common.init.ExtendedBlocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

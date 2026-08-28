@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lotrextended:obsidian_dwarven_brick"
+  },
+  "result": "lotrextended:obsidian_dwarven_brick_wall",
+  "count": 1
+}

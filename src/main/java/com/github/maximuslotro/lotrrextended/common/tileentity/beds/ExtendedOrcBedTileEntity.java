@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.tileentity.beds;
 
-import lotr.common.init.ExtendedTileEntities;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
 
 public class ExtendedOrcBedTileEntity extends ExtendedBedTileEntity<ExtendedOrcBedTileEntity>{
 

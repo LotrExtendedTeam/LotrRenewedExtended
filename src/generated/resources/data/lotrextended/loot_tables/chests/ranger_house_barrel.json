@@ -206,7 +206,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:dunedain_banner_pattern"
+          "name": "lotrextended:dunedain_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -341,7 +341,7 @@
               }
             }
           ],
-          "name": "lotr:silver_coin_one"
+          "name": "lotrextended:silver_coin_one"
         },
         {
           "type": "minecraft:item",
@@ -383,7 +383,7 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -488,7 +488,7 @@
               }
             }
           ],
-          "name": "lotr:dunedain_bow"
+          "name": "lotrextended:dunedain_bow"
         },
         {
           "type": "minecraft:item",
@@ -509,7 +509,7 @@
               }
             }
           ],
-          "name": "lotr:dunedain_shield"
+          "name": "lotrextended:dunedain_shield"
         },
         {
           "type": "minecraft:item",
@@ -530,7 +530,7 @@
               }
             }
           ],
-          "name": "lotr:longbow"
+          "name": "lotrextended:longbow"
         },
         {
           "type": "minecraft:item",

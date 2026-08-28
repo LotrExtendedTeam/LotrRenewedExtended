@@ -255,7 +255,7 @@
               }
             }
           ],
-          "name": "lotr:silver_coin_one"
+          "name": "lotrextended:silver_coin_one"
         },
         {
           "type": "minecraft:item",
@@ -402,7 +402,7 @@
               }
             }
           ],
-          "name": "lotr:longbow"
+          "name": "lotrextended:longbow"
         },
         {
           "type": "minecraft:item",
@@ -648,7 +648,7 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -748,7 +748,7 @@
               }
             }
           ],
-          "name": "lotr:arnor_shield"
+          "name": "lotrextended:arnor_shield"
         }
       ],
       "conditions": [

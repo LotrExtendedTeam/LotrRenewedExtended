@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "lotr:black_fur",
-    "lotr:gray_fur",
-    "lotr:silver_fur",
-    "lotr:white_fur"
+    "lotrextended:black_fur",
+    "lotrextended:gray_fur",
+    "lotrextended:silver_fur",
+    "lotrextended:white_fur"
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:mithril_birdcage"
+    ]
+  },
+  "criteria": {
+    "has_mithril_bars": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotr:mithril_bars"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:mithril_birdcage"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mithril_bars",
+      "has_the_recipe"
+    ]
+  ]
+}

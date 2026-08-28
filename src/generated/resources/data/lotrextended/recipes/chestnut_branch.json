@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lotr:branch",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:chestnut_wood"
+    }
+  },
+  "result": {
+    "item": "lotrextended:chestnut_branch",
+    "count": 6
+  }
+}

@@ -111,16 +111,6 @@ public class ExtendedAlloyCookingRecipeBuilder {
 		this.save(p_218630_1_, ForgeRegistries.ITEMS.getKey(this.result));
 	}
 
-	public void save(Consumer<IFinishedRecipe> p_218632_1_, String p_218632_2_) {
-		ResourceLocation resourcelocation = ForgeRegistries.ITEMS.getKey(this.result);
-		ResourceLocation resourcelocation1 = new ResourceLocation(p_218632_2_);
-		if (resourcelocation1.equals(resourcelocation)) {
-			throw new IllegalStateException("Recipe " + resourcelocation1 + " should remove its 'save' argument");
-		} else {
-			this.save(p_218632_1_, resourcelocation1);
-		}
-	}
-
 	public void save(Consumer<IFinishedRecipe> p_218635_1_, ResourceLocation p_218635_2_) {
 		this.ensureValid(p_218635_2_);
 		this.advancement.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(p_218635_2_)).rewards(AdvancementRewards.Builder.recipe(p_218635_2_)).requirements(IRequirementsStrategy.OR);

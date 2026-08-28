@@ -174,7 +174,7 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:crossed_wattle_and_daub",
+        "item": "lotrextended:crossed_wattle_and_daub",
         "averageCost": 7,
         "count": 4
       }
@@ -189,14 +189,14 @@
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:large_pot",
+        "item": "lotrextended:large_pot",
         "averageCost": 7
       }
     },
     {
       "weight": 50,
       "stack": {
-        "item": "lotr:large_flower_pot",
+        "item": "lotrextended:large_flower_pot",
         "averageCost": 7
       }
     },

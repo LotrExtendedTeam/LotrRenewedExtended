@@ -1,11 +1,11 @@
 package com.github.maximuslotro.lotrrextended.common.world.gen.feature;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedTags;
 import com.github.maximuslotro.lotrrextended.common.world.gen.feature.ExtendedWallsFeature.EdgeType;
 import com.github.maximuslotro.lotrrextended.common.world.gen.placement.ExtendedCaveSurface;
 
-import lotr.common.init.ExtendedBlocks;
 import lotr.common.init.LOTRBlocks;
 import lotr.common.world.biome.ExtendedBiomeFeatures;
 import net.minecraft.block.Blocks;

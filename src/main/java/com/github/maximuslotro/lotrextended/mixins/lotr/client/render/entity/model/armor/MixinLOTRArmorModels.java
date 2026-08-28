@@ -8,6 +8,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+
 import lotr.client.render.entity.model.armor.ExtendedArnorHelmetModel;
 import lotr.client.render.entity.model.armor.ExtendedModelGalvornHelmet;
 import lotr.client.render.entity.model.armor.ExtendedModelGoldenTaurethrimHelmet;
@@ -21,7 +23,6 @@ import lotr.client.render.entity.model.armor.ExtendedModelWargHat;
 import lotr.client.render.entity.model.armor.HighElvenHelmetModel;
 import lotr.client.render.entity.model.armor.LOTRArmorModels;
 import lotr.client.render.entity.model.armor.SpecialArmorModelHolder.SpecialArmorModelFactory;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.item.Item;
 /**

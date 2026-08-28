@@ -304,7 +304,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:bree_banner_pattern"
+          "name": "lotrextended:bree_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -514,7 +514,7 @@
               }
             }
           ],
-          "name": "lotr:longbow"
+          "name": "lotrextended:longbow"
         },
         {
           "type": "minecraft:item",
@@ -820,7 +820,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:artisan_tome"
+          "name": "lotrextended:artisan_tome"
         },
         {
           "type": "minecraft:item",
@@ -831,7 +831,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:combat_tome"
+          "name": "lotrextended:combat_tome"
         },
         {
           "type": "minecraft:item",
@@ -842,7 +842,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:smith_tome"
+          "name": "lotrextended:smith_tome"
         }
       ],
       "functions": [

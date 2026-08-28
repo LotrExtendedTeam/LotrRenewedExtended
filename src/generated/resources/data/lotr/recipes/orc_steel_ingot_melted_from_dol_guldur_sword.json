@@ -1,0 +1,12 @@
+{
+  "type": "lotrextended:crucible_specific",
+  "ingredient": {
+    "item": "lotrextended:dol_guldur_sword"
+  },
+  "result1": {
+    "item": "lotr:orc_steel_ingot",
+    "count": 2
+  },
+  "melt_time": 400,
+  "experience": 1.0
+}

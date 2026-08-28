@@ -171,7 +171,7 @@
               }
             }
           ],
-          "name": "lotr:orc_steel_nugget"
+          "name": "lotrextended:orc_steel_nugget"
         },
         {
           "type": "minecraft:item",
@@ -182,7 +182,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:gundabad_orc_banner_pattern"
+          "name": "lotrextended:gundabad_orc_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -308,7 +308,7 @@
               }
             }
           ],
-          "name": "lotr:gray_fur"
+          "name": "lotrextended:gray_fur"
         },
         {
           "type": "minecraft:item",
@@ -323,7 +323,7 @@
               }
             }
           ],
-          "name": "lotr:silver_fur"
+          "name": "lotrextended:silver_fur"
         },
         {
           "type": "minecraft:item",
@@ -641,7 +641,7 @@
               }
             }
           ],
-          "name": "lotr:warg_fur_helmet"
+          "name": "lotrextended:warg_fur_helmet"
         },
         {
           "type": "minecraft:item",
@@ -662,7 +662,7 @@
               }
             }
           ],
-          "name": "lotr:warg_fur_chestplate"
+          "name": "lotrextended:warg_fur_chestplate"
         },
         {
           "type": "minecraft:item",
@@ -683,7 +683,7 @@
               }
             }
           ],
-          "name": "lotr:warg_fur_leggings"
+          "name": "lotrextended:warg_fur_leggings"
         },
         {
           "type": "minecraft:item",
@@ -704,7 +704,7 @@
               }
             }
           ],
-          "name": "lotr:warg_fur_boots"
+          "name": "lotrextended:warg_fur_boots"
         },
         {
           "type": "minecraft:item",
@@ -724,28 +724,7 @@
               }
             }
           ],
-          "name": "lotr:gray_warg_fur_helmet"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 30,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            },
-            {
-              "function": "lotrextended:modifier_adder"
-            },
-            {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.2,
-                "max": 0.85
-              }
-            }
-          ],
-          "name": "lotr:gray_warg_fur_chestplate"
+          "name": "lotrextended:gray_warg_fur_helmet"
         },
         {
           "type": "minecraft:item",
@@ -766,7 +745,7 @@
               }
             }
           ],
-          "name": "lotr:gray_warg_fur_leggings"
+          "name": "lotrextended:gray_warg_fur_chestplate"
         },
         {
           "type": "minecraft:item",
@@ -787,7 +766,28 @@
               }
             }
           ],
-          "name": "lotr:gray_warg_fur_boots"
+          "name": "lotrextended:gray_warg_fur_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 30,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
+            }
+          ],
+          "name": "lotrextended:gray_warg_fur_boots"
         },
         {
           "type": "minecraft:item",
@@ -807,49 +807,7 @@
               }
             }
           ],
-          "name": "lotr:silver_warg_fur_helmet"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 20,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            },
-            {
-              "function": "lotrextended:modifier_adder"
-            },
-            {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.2,
-                "max": 0.85
-              }
-            }
-          ],
-          "name": "lotr:silver_warg_fur_chestplate"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 20,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1
-            },
-            {
-              "function": "lotrextended:modifier_adder"
-            },
-            {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.2,
-                "max": 0.85
-              }
-            }
-          ],
-          "name": "lotr:silver_warg_fur_leggings"
+          "name": "lotrextended:silver_warg_fur_helmet"
         },
         {
           "type": "minecraft:item",
@@ -870,7 +828,49 @@
               }
             }
           ],
-          "name": "lotr:silver_warg_fur_boots"
+          "name": "lotrextended:silver_warg_fur_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
+            }
+          ],
+          "name": "lotrextended:silver_warg_fur_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "lotrextended:modifier_adder"
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.2,
+                "max": 0.85
+              }
+            }
+          ],
+          "name": "lotrextended:silver_warg_fur_boots"
         },
         {
           "type": "minecraft:item",
@@ -890,7 +890,7 @@
               }
             }
           ],
-          "name": "lotr:black_warg_fur_helmet"
+          "name": "lotrextended:black_warg_fur_helmet"
         },
         {
           "type": "minecraft:item",
@@ -911,7 +911,7 @@
               }
             }
           ],
-          "name": "lotr:black_warg_fur_chestplate"
+          "name": "lotrextended:black_warg_fur_chestplate"
         },
         {
           "type": "minecraft:item",
@@ -932,7 +932,7 @@
               }
             }
           ],
-          "name": "lotr:black_warg_fur_leggings"
+          "name": "lotrextended:black_warg_fur_leggings"
         },
         {
           "type": "minecraft:item",
@@ -953,7 +953,7 @@
               }
             }
           ],
-          "name": "lotr:black_warg_fur_boots"
+          "name": "lotrextended:black_warg_fur_boots"
         },
         {
           "type": "minecraft:item",
@@ -973,7 +973,7 @@
               }
             }
           ],
-          "name": "lotr:white_warg_fur_chestplate"
+          "name": "lotrextended:white_warg_fur_chestplate"
         },
         {
           "type": "minecraft:item",
@@ -993,7 +993,7 @@
               }
             }
           ],
-          "name": "lotr:white_warg_fur_leggings"
+          "name": "lotrextended:white_warg_fur_leggings"
         },
         {
           "type": "minecraft:item",
@@ -1013,7 +1013,7 @@
               }
             }
           ],
-          "name": "lotr:white_warg_fur_boots"
+          "name": "lotrextended:white_warg_fur_boots"
         },
         {
           "type": "minecraft:item",
@@ -1526,7 +1526,7 @@
               }
             }
           ],
-          "name": "lotr:longbow"
+          "name": "lotrextended:longbow"
         },
         {
           "type": "minecraft:item",
@@ -1547,7 +1547,7 @@
               }
             }
           ],
-          "name": "lotr:orc_bow"
+          "name": "lotrextended:orc_bow"
         },
         {
           "type": "minecraft:item",
@@ -1568,7 +1568,7 @@
               }
             }
           ],
-          "name": "lotr:gundabad_uruk_bow"
+          "name": "lotrextended:gundabad_uruk_bow"
         }
       ],
       "conditions": [

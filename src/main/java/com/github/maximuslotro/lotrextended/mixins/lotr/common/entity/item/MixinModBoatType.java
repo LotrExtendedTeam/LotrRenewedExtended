@@ -7,9 +7,10 @@ import java.util.function.Supplier;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
+
 import lotr.common.entity.item.LOTRBoatEntity.ModBoatType;
-import lotr.common.init.ExtendedBlocks;
-import lotr.common.init.ExtendedItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 

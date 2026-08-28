@@ -1,0 +1,17 @@
+{
+  "type": "lotr:faction_shaped",
+  "table": "lotr:dwarven",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "lotrextended:obsidian_shard"
+    }
+  },
+  "result": {
+    "item": "lotrextended:obsidian_dwarven_brick",
+    "count": 4
+  }
+}

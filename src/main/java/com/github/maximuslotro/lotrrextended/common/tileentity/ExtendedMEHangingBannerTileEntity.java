@@ -1,8 +1,8 @@
 package com.github.maximuslotro.lotrrextended.common.tileentity;
 
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedBannerTypes;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedTileEntities;
 
-import lotr.common.init.ExtendedTileEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:stripped_ebony_branch"
+    ]
+  },
+  "criteria": {
+    "has_stripped_ebony_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:stripped_ebony_wood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:stripped_ebony_branch"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stripped_ebony_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

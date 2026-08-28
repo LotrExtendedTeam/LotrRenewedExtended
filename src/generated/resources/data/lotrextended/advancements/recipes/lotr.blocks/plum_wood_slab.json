@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:plum_wood_slab"
+    ]
+  },
+  "criteria": {
+    "has_plum_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:plum_wood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:plum_wood_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_plum_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

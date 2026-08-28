@@ -42,7 +42,7 @@
               }
             }
           ],
-          "name": "lotr:longbow"
+          "name": "lotrextended:longbow"
         },
         {
           "type": "minecraft:item",
@@ -63,7 +63,7 @@
               }
             }
           ],
-          "name": "lotr:lindon_bow"
+          "name": "lotrextended:lindon_bow"
         }
       ]
     }

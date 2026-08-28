@@ -2,10 +2,10 @@ package com.github.maximuslotro.lotrrextended.common.loot.modifiers;
 
 import java.util.List;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.google.gson.JsonObject;
 
 import lotr.common.entity.npc.WargEntity;
-import lotr.common.init.ExtendedItems;
 import lotr.common.init.LOTRItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;

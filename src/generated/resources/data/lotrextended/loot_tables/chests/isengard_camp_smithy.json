@@ -107,7 +107,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:isengard_banner_pattern"
+          "name": "lotrextended:isengard_banner_pattern"
         },
         {
           "type": "minecraft:item",
@@ -254,7 +254,7 @@
               }
             }
           ],
-          "name": "lotr:uruk_crossbow"
+          "name": "lotrextended:uruk_crossbow"
         },
         {
           "type": "minecraft:item",
@@ -306,7 +306,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:isengard_warg_armor"
+          "name": "lotrextended:isengard_warg_armor"
         },
         {
           "type": "minecraft:item",
@@ -353,7 +353,7 @@
               }
             }
           ],
-          "name": "lotr:skull_goblet"
+          "name": "lotrextended:skull_goblet"
         },
         {
           "type": "minecraft:item",
@@ -379,7 +379,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:artisan_tome"
+          "name": "lotrextended:artisan_tome"
         },
         {
           "type": "minecraft:item",
@@ -389,7 +389,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:combat_tome"
+          "name": "lotrextended:combat_tome"
         },
         {
           "type": "minecraft:item",
@@ -399,7 +399,7 @@
               "count": 1
             }
           ],
-          "name": "lotr:smith_tome"
+          "name": "lotrextended:smith_tome"
         },
         {
           "type": "minecraft:item",

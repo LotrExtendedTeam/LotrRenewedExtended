@@ -5,11 +5,11 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedTapestryType;
 import com.google.common.collect.Lists;
 
 import lotr.common.init.ExtendedEntities;
-import lotr.common.init.ExtendedItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.HangingEntity;

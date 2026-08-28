@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "lotrextended:isengard_banner_pattern"
+    ]
+  },
+  "criteria": {
+    "has_isengard_banner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "lotrextended:isengard_banner"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "lotrextended:isengard_banner_pattern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_isengard_banner",
+      "has_the_recipe"
+    ]
+  ]
+}
