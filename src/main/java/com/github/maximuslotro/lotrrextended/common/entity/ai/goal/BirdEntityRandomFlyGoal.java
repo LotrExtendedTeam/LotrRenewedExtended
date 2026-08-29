@@ -95,6 +95,11 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
         flightTime++;
 
+        if (landing && bird.isOnGround()) {
+            finishLanding();
+            return;
+        }
+
         if (isStuck()) {
             if (!findRecoveryTarget()) {
                 if (landing) {
@@ -121,6 +126,11 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
             moveToTarget();
             resetProgressCheck();
+            return;
+        }
+
+        if (!takingOff && bird.isOnGround()) {
+            finishLanding();
             return;
         }
 
@@ -405,6 +415,12 @@ public class BirdEntityRandomFlyGoal extends Goal {
             return;
         }
 
+        bird.stopFlying();
+    }
+
+    private void finishLanding() {
+        landing = false;
+        takingOff = false;
         bird.stopFlying();
     }
 
