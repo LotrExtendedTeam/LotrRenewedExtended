@@ -10,11 +10,20 @@ public class BirdEntityRandomWalkingAvoidWaterGoal extends WaterAvoidingRandomWa
     public BirdEntityRandomWalkingAvoidWaterGoal(ExtendedBirdEntity bird, double speedModifier) {
         super(bird, speedModifier);
         this.bird = bird;
+        this.setInterval(40);
     }
 
     @Override
     public boolean canUse() {
-        return canWalk() && super.canUse();
+        if (!canWalk()) {
+            return false;
+        }
+
+        if (this.bird.consumeGroundedMovementRequest()) {
+            this.trigger();
+        }
+
+        return super.canUse();
     }
 
     @Override

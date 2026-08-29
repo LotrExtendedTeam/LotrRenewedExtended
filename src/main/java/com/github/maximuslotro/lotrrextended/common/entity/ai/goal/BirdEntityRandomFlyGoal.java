@@ -14,7 +14,9 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
     private static final int MAX_FLIGHT_TIME = 250;
     private static final int MAX_STUCK_TICKS = 40;
-    private static final double TAKEOFF_HEIGHT = 3.0D;
+    private static final int TAKEOFF_TARGET_ATTEMPTS = 12;
+    private static final double TAKEOFF_DISTANCE = 4.0D;
+    private static final double TAKEOFF_RISE = 1.75D;
     private static final double TAKEOFF_STEP = 0.25D;
     private static final double TAKEOFF_REACHED_DISTANCE_SQR = 0.75D;
     private static final double MIN_PROGRESS_DISTANCE_SQR = 0.0625D;
@@ -56,7 +58,17 @@ public class BirdEntityRandomFlyGoal extends Goal {
         if (bird.flyingOnCooldown()) return false;
 
         // roughly once every 8 ticks
-        return random.nextInt(8) == 0 && findTakeoffTarget();
+        if (random.nextInt(8) != 0) {
+            return false;
+        }
+
+        if (findTakeoffTarget()) {
+            return true;
+        }
+
+        bird.requestGroundedMovement();
+        bird.startBlockedTakeoffCooldown();
+        return false;
     }
 
     @Override
@@ -87,7 +99,7 @@ public class BirdEntityRandomFlyGoal extends Goal {
             return;
         }
 
-        if (takingOff && (bird.distanceToSqr(targetX, targetY, targetZ) < TAKEOFF_REACHED_DISTANCE_SQR || bird.getY() >= targetY - 0.25D)) {
+        if (takingOff && bird.distanceToSqr(targetX, targetY, targetZ) < TAKEOFF_REACHED_DISTANCE_SQR) {
             takingOff = false;
             if (!findAirTarget()) {
                 bird.stopFlying();
@@ -163,14 +175,25 @@ public class BirdEntityRandomFlyGoal extends Goal {
     }
 
     private boolean findTakeoffTarget() {
-        if (!hasClearTakeoffPath()) {
-            return false;
+        for (int i = 0; i < TAKEOFF_TARGET_ATTEMPTS; i++) {
+            double angle = random.nextDouble() * Math.PI * 2.0D;
+            double xOffset = Math.cos(angle) * TAKEOFF_DISTANCE;
+            double yOffset = TAKEOFF_RISE;
+            double zOffset = Math.sin(angle) * TAKEOFF_DISTANCE;
+
+            double x = bird.getX() + xOffset;
+            double y = Math.min(bird.getY() + yOffset, bird.level.getMaxBuildHeight() - 1);
+            double z = bird.getZ() + zOffset;
+
+            if (canFitAt(x, y, z) && hasClearTakeoffPath(x - bird.getX(), y - bird.getY(), z - bird.getZ())) {
+                targetX = x;
+                targetY = y;
+                targetZ = z;
+                return true;
+            }
         }
 
-        targetX = bird.getX();
-        targetY = Math.min(bird.getY() + TAKEOFF_HEIGHT, bird.level.getMaxBuildHeight() - 1);
-        targetZ = bird.getZ();
-        return canFitAt(targetX, targetY, targetZ);
+        return false;
     }
 
     private boolean findAirTarget() {
@@ -265,9 +288,13 @@ public class BirdEntityRandomFlyGoal extends Goal {
         return findAirTarget();
     }
 
-    private boolean hasClearTakeoffPath() {
-        for (double yOffset = TAKEOFF_STEP; yOffset <= TAKEOFF_HEIGHT; yOffset += TAKEOFF_STEP) {
-            if (!bird.level.noCollision(bird, bird.getBoundingBox().move(0.0D, yOffset, 0.0D))) {
+    private boolean hasClearTakeoffPath(double xOffset, double yOffset, double zOffset) {
+        double distance = Math.sqrt(xOffset * xOffset + yOffset * yOffset + zOffset * zOffset);
+
+        for (double step = TAKEOFF_STEP; step <= distance; step += TAKEOFF_STEP) {
+            double progress = step / distance;
+
+            if (!bird.level.noCollision(bird, bird.getBoundingBox().move(xOffset * progress, yOffset * progress, zOffset * progress))) {
                 return false;
             }
         }

@@ -22,6 +22,8 @@ public class ExtendedBirdEntity extends CreatureEntity {
 
     private static final DataParameter<Boolean> DATA_FLYING = EntityDataManager.defineId(ExtendedBirdEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> DATA_FLYING_COOLDOWN = EntityDataManager.defineId(ExtendedBirdEntity.class, DataSerializers.INT);
+    private static final int FLYING_COOLDOWN = 400;
+    private static final int BLOCKED_TAKEOFF_COOLDOWN = 80;
 
     private final FlyingPathNavigator flyingNavigator;
     private final FlyingMovementController flyingController;
@@ -33,6 +35,8 @@ public class ExtendedBirdEntity extends CreatureEntity {
 
     public float wingSpeed = 0.0F;
     public float prevWingSpeed = 0.0F;
+
+    private boolean groundedMovementRequested;
 
     public ExtendedBirdEntity(EntityType<? extends ExtendedBirdEntity> type, World world) {
         super(type, world);
@@ -114,7 +118,28 @@ public class ExtendedBirdEntity extends CreatureEntity {
     }
 
     public void startFlyingCooldown() {
-        this.entityData.set(DATA_FLYING_COOLDOWN, 400);
+        startFlyingCooldown(FLYING_COOLDOWN);
+    }
+
+    public void startBlockedTakeoffCooldown() {
+        startFlyingCooldown(BLOCKED_TAKEOFF_COOLDOWN);
+    }
+
+    private void startFlyingCooldown(int ticks) {
+        this.entityData.set(DATA_FLYING_COOLDOWN, ticks);
+    }
+
+    public void requestGroundedMovement() {
+        this.groundedMovementRequested = true;
+    }
+
+    public boolean consumeGroundedMovementRequest() {
+        if (!this.groundedMovementRequested) {
+            return false;
+        }
+
+        this.groundedMovementRequested = false;
+        return true;
     }
 
     private void applyFlyingState(boolean flying) {
