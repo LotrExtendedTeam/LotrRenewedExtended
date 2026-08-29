@@ -53,7 +53,7 @@ public class ExtendedTraderDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void loadDataOnce(CompoundNBT pTag, MinecraftServer server) {
+	public void loadDataServer(CompoundNBT pTag, MinecraftServer server) {
 		CompoundNBT traderData = pTag.getCompound("traderData");
 		timeUntilTrader = traderData.getInt("timeUntilTrader");
 		requireRandom = traderData.getBoolean("requireRandom");

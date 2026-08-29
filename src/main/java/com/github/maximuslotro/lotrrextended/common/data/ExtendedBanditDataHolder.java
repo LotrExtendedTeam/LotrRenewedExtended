@@ -25,7 +25,7 @@ public class ExtendedBanditDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void loadDataOnce(CompoundNBT pTag, MinecraftServer server) {
+	public void loadDataServer(CompoundNBT pTag, MinecraftServer server) {
 		ListNBT listnbt = pTag.getList("banditCooldowns", 10);
 		playerBanditSpawnCooldowns.clear();
 		if (listnbt.isEmpty()) {

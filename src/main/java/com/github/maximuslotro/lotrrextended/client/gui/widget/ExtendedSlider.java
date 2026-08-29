@@ -1,6 +1,5 @@
 package com.github.maximuslotro.lotrrextended.client.gui.widget;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -30,6 +29,8 @@ public class ExtendedSlider extends AbstractSlider {
 	protected boolean drawBackground = true;
 	protected int textureUBackground = 0;
 	protected int textureVBackground = 46;
+	protected int textureWidth = 256;
+	protected int textureHeight = 256;
 
 	public ExtendedSlider(int pX, int pY, int pWidth, int pHeight, String localKey, double minVal, double maxVal, float steps, IGetValue valueGetter, ISetValue valueSetter) {
 		super(pX, pY, pWidth, pHeight, StringTextComponent.EMPTY, 0);
@@ -37,9 +38,6 @@ public class ExtendedSlider extends AbstractSlider {
 		this.minValue = minVal;
 		this.maxValue = maxVal;
 		this.steps = steps;
-		if(steps<0.1) {
-			ExtendedLog.error("Step count set to low: "+steps);
-		}
 		this.valueGetter = valueGetter;
 		this.valueSetter = valueSetter;
 		this.value = toPercentage(valueGetter.getValue());
@@ -64,6 +62,12 @@ public class ExtendedSlider extends AbstractSlider {
 		return this;
 	}
 
+	public ExtendedSlider setTextureSize(int width, int height) {
+		this.textureWidth = width;
+		this.textureHeight = height;
+		return this;
+	}
+
 	public ExtendedSlider setDrawBackground(boolean drawBackground) {
 		this.drawBackground = drawBackground;
 		return this;
@@ -73,13 +77,13 @@ public class ExtendedSlider extends AbstractSlider {
 	protected void renderBg(MatrixStack pMatrixStack, Minecraft pMinecraft, int pMouseX, int pMouseY) {
 		pMinecraft.getTextureManager().bind(customTexture);
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-		int hoverOffset = (this.isHovered() ? 2 : 1) * 20;
 		int handleX = this.x + (int) (this.value * (double) (this.width - this.handleLength));
-		if (this.customTexture.equals(WIDGETS_LOCATION) && this.handleLength == 8) {
-			this.blit(pMatrixStack, handleX, this.y, 0, 46 + hoverOffset, 4, 20);
-			this.blit(pMatrixStack, handleX + 4, this.y, 196, 46 + hoverOffset, 4, 20);
+		if(this.customTexture.equals(WIDGETS_LOCATION) && this.handleLength == 8) {
+			int hoverOffset = (this.isHovered() ? 2 : 1) * this.height;
+			blit(pMatrixStack, handleX, this.y, this.getBlitOffset(), 0, 46 + hoverOffset, 4, 20, textureWidth, textureHeight);
+			blit(pMatrixStack, handleX + 4, this.y, this.getBlitOffset(), 196, 46 + hoverOffset, 4, 20, textureWidth, textureHeight);
 		} else {
-			this.blit(pMatrixStack, handleX, this.y, this.textureU, this.textureV + hoverOffset, this.handleLength, this.height);
+			blit(pMatrixStack, handleX, this.y, this.getBlitOffset(), this.textureU, this.textureV + (this.isHovered() ? this.height : 0), this.handleLength, this.height, this.textureWidth, this.textureHeight);
 		}
 	}
 
@@ -92,7 +96,7 @@ public class ExtendedSlider extends AbstractSlider {
 	}
 
 	private double clamp(double pValue) {
-		if (this.steps > 0.0F) {
+		if(this.steps > 0.0F) {
 			// Snap to nearest step
 			pValue = steps * Math.round(pValue / steps);
 			// Round to 2 decimals (works because step >= 0.01)
@@ -106,6 +110,44 @@ public class ExtendedSlider extends AbstractSlider {
 		return this;
 	}
 
+	@Override
+	public void onClick(double pMouseX, double pMouseY) {
+		this.setValueFromMouseX(pMouseX);
+	}
+	@Override
+	protected void onDrag(double pMouseX, double pMouseY, double pDragX, double pDragY) {
+		this.setValueFromMouseX(pMouseX);
+	}
+	protected void setValueFromMouseX(double pMouseX) {
+		if(width<=handleLength) {
+			throw new IllegalStateException("Handle length must be larger than slider width!");
+		}
+		this.setSliderValue((pMouseX - (this.x + (this.handleLength / 2.0D))) / (double)(width - handleLength));
+	}
+	protected void setValueFromMouseY(double pMouseY) {
+		if(height<=handleLength) {
+			throw new IllegalStateException("Handle length must be larger than slider height!");
+		}
+		this.setSliderValue((pMouseY - (this.y + (this.handleLength / 2.0D))) / (double)(height - handleLength));
+	}
+	@Override
+	public boolean keyPressed(int pKeyCode, int pScanCode, int pModifiers) {
+		boolean isLeft = pKeyCode == 263;
+		if (isLeft || pKeyCode == 262) {
+			float stepAmount = isLeft ? -1.0F : 1.0F;
+			this.setSliderValue(this.value + (stepAmount / Math.max(1.0D, this.width - this.handleLength)));
+			return true;
+		}
+		return false;
+	}
+	protected void setSliderValue(double pValue) {
+		double d0 = this.value;
+		this.value = MathHelper.clamp(pValue, 0.0D, 1.0D);
+		if(d0 != this.value) {
+			this.applyValue();
+		}
+		this.updateMessage();
+	}
 
 	@Override
 	public void renderButton(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
@@ -115,13 +157,13 @@ public class ExtendedSlider extends AbstractSlider {
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 		RenderSystem.enableDepthTest();
-		if (this.drawBackground) {
+		if(this.drawBackground) {
 			minecraft.getTextureManager().bind(customTexture);
-			if (this.customTexture.equals(WIDGETS_LOCATION)) {
-				this.blit(pMatrixStack, this.x, this.y, 0, 46, this.width / 2, this.height);
-				this.blit(pMatrixStack, this.x + this.width / 2, this.y, 200 - this.width / 2, 46, this.width / 2, this.height);
+			if(this.customTexture.equals(WIDGETS_LOCATION)) {
+				blit(pMatrixStack, this.x, this.y, this.getBlitOffset(), 0, 46, this.width / 2, this.height, textureWidth, textureHeight);
+				blit(pMatrixStack, this.x + this.width / 2, this.y, this.getBlitOffset(), 200 - this.width / 2, 46, this.width / 2, this.height, textureWidth, textureHeight);
 			} else {
-				this.blit(pMatrixStack, this.x, this.y, this.textureUBackground, this.textureVBackground, this.width, this.height);
+				blit(pMatrixStack, this.x, this.y, this.getBlitOffset(), this.textureUBackground, this.textureVBackground, this.width, this.height, textureWidth, textureHeight);
 			}
 		}
 		this.renderBg(pMatrixStack, minecraft, pMouseX, pMouseY);
@@ -145,6 +187,7 @@ public class ExtendedSlider extends AbstractSlider {
 	protected void updateMessage() {
 		if(localKey.isEmpty()) {
 			this.setMessage(new StringTextComponent(String.valueOf(toValue(value))));
+			return;
 		}
 		this.setMessage(new TranslationTextComponent(localKey, toValue(value)));
 	}

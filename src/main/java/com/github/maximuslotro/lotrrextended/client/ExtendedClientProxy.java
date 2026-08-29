@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.github.maximuslotro.lotrextended.mixins.MIXINConfig;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
+import com.github.maximuslotro.lotrrextended.client.eventhandlers.ExtendedClientWorldEventHandlers;
 import com.github.maximuslotro.lotrrextended.client.eventhandlers.ExtendedRendererEventHandler;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedScreenRegisterHandler;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedBlockItemColors;
@@ -81,6 +82,7 @@ public class ExtendedClientProxy {
 		modBus.addListener(ExtendedBlockItemColors::makeBlockColors);
 		modBus.addListener(ExtendedItemModelsProperties::addGuiItemSprites);
 		modBus.addListener(ExtendedBlockItemColors::makeItemsColors);
+		forgeBus.register(ExtendedClientWorldEventHandlers.class);
 		ExtendedClientConfig.register();
 		MC = Minecraft.getInstance();
 		//Moved to Mixin

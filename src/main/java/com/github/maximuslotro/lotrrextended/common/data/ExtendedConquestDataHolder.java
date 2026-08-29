@@ -22,7 +22,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.server.ServerWorld;
 
-// TODO add conquest add logic
+// TODO add missing logic
 public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder {
 	private final Map<ExtendedConquestPos, ExtendedConquestRegion> conquestMap = new HashMap<>();
 	private File conquestFilesFolder;
@@ -34,10 +34,6 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 
 	public ExtendedConquestDataHolder(ExtendedLevelData pHolder) {
 		super(pHolder);
-		MapSettingsManager mapSettings = MapSettingsManager.serverInstance();
-		mapScale = mapSettings.getCurrentLoadedMap().getScaleFactor();
-		mapXOffset = mapSettings.getCurrentLoadedMap().getOriginX();
-		mapZOffset = mapSettings.getCurrentLoadedMap().getOriginZ();
 	}
 
 	public int convertCordsToConquestX(int xCord) {
@@ -61,7 +57,7 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 		ExtendedConquestRegion conquestRegion = getConquestSquare(convertCordsToConquest(position.getX(), position.getZ()));
 		conquestRegion.addConquest(playerFaction.getName(), conquestAdd);
 		conquestRegion.addConquest(opposingFaction.getName(), -conquestAdd);
-		//TODO handle hired lesser kill amount
+		//TODO handle hired unit lesser kill amount
 		//TODO circular conquest
 		//TODO add player notification
 		//TODO handle other factions inc or dec
@@ -80,19 +76,25 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 	}
 
 	public void sendConquestDataToClient(ResourceLocation pFaction, ServerPlayerEntity pPlayer) {
-		ExtendedSConquestDataPacket packet = new ExtendedSConquestDataPacket(pFaction, gridSquareScale);
+		ExtendedSConquestDataPacket packet = new ExtendedSConquestDataPacket(pFaction, gridSquareScale, conquestMap);
 		ExtendedPacketHandler.sendToClient(packet, pPlayer);
+	}
+
+	public void receiveConquestDataOnClient(ExtendedSConquestDataPacket pPacket) {
+		this.gridSquareScale = pPacket.getConquestScale();
+		this.conquestMap.clear();
+		this.conquestMap.putAll(pPacket.getConquestMap());
 	}
 
 	@Override
 	public void tick(ServerWorld level) {
-		// Line from wiki: Conquest decay begins only after there have been no changes in that square for one hour. 
-		// It then decreases by about one point every hour. In order to keep up high rates, you need to keep on fighting enemies in the desired region. 
+		// Line from wiki: "Conquest decay begins only after there have been no changes in that square for one hour. 
+		// It then decreases by about one point every hour. In order to keep up high rates, you need to keep on fighting enemies in the desired region. "
 		// TODO write conquest decay logic
 	}
 
 	@Override
-	public void loadDataOnce(CompoundNBT pTag, MinecraftServer server) {
+	public void loadDataServer(CompoundNBT pTag, MinecraftServer server) {
 		conquestFilesFolder = ExtendedIOUtils.getDirOrMake(new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, server, true), "conquest_regions"));
 		conquestDataFile = new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, server, true), "CONQUEST.dat");
 		conquestMap.clear();
@@ -100,6 +102,19 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 		if (nbt.contains("conquest_scale")) {
 			gridSquareScale=nbt.getInt("conquest_scale");
 		}
+		loadDataShared();
+	}
+
+	@Override
+	public void loadDataClient() {
+		loadDataShared();
+	}
+
+	private void loadDataShared() {
+		MapSettingsManager mapSettings = MapSettingsManager.sidedInstance(holder.getSide());
+		mapScale = mapSettings.getCurrentLoadedMap().getScaleFactor();
+		mapXOffset = mapSettings.getCurrentLoadedMap().getOriginX();
+		mapZOffset = mapSettings.getCurrentLoadedMap().getOriginZ();
 	}
 
 	@Override

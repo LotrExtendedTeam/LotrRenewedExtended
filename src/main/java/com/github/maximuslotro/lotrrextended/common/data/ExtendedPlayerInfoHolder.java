@@ -38,7 +38,7 @@ public class ExtendedPlayerInfoHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void loadDataOnce(CompoundNBT pTag, MinecraftServer server) {
+	public void loadDataServer(CompoundNBT pTag, MinecraftServer server) {
 		playerFolder = ExtendedIOUtils.getDirOrMake(new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, server, true), "playerdata"));
 		cachedPlayerInfo.clear();
 	}

@@ -72,7 +72,7 @@ public class ExtendedBarrowsDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void loadDataOnce(CompoundNBT pTag, MinecraftServer server) {
+	public void loadDataServer(CompoundNBT pTag, MinecraftServer server) {
 		ListNBT listnbt = pTag.getList("secondsInBarrows", 10);
 		secondsInBarrows.clear();
 		if (listnbt.isEmpty()) {

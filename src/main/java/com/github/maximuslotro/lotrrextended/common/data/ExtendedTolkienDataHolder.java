@@ -23,7 +23,7 @@ public class ExtendedTolkienDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void loadDataOnce(CompoundNBT pTag, MinecraftServer server) {
+	public void loadDataServer(CompoundNBT pTag, MinecraftServer server) {
 		int tolkienVersion = pTag.getInt("tolkienVersion");
 		tolkienTalkedTo.clear();
 		if(tolkienVersion!=tolkienTalkedToVersion) {

@@ -107,7 +107,7 @@ public class ExtendedInvasionDataHolder extends ExtendedAbstractLevelDataHolder 
 	}
 
 	@Override
-	public void loadDataOnce(CompoundNBT pTag, MinecraftServer server) {
+	public void loadDataServer(CompoundNBT pTag, MinecraftServer server) {
 		invasionEnemiesLeft.clear();
 		recentPlayersByInvasion.clear();
 	}

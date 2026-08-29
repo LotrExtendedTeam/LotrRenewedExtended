@@ -24,7 +24,7 @@ public class ExtendedFellowshipDataHolder extends ExtendedAbstractLevelDataHolde
 	public void tick(ServerWorld level) {}
 
 	@Override
-	public void loadDataOnce(CompoundNBT pTag, MinecraftServer server) {
+	public void loadDataServer(CompoundNBT pTag, MinecraftServer server) {
 		fellowshipDataFolder = ExtendedIOUtils.getDirOrMake(new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, server, true), "fellowships"));
 		fellowshipMap.clear();
 		// Copy fellowships from /lotr/fellowships folder

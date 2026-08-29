@@ -65,7 +65,7 @@ public class ExtendedTickHandlerServer {
             ServerWorld world = (ServerWorld) event.getWorld();
             if (world.dimension().equals(World.OVERWORLD)) {
             	// IMPORTANT! Clear levelData on world unload, so data does not presist across saves!
-                ExtendedLevelData.serverInstance().resetOnServerStop();
+                ExtendedLevelData.serverInstance().resetOnServerExit();
             }
         }
     }

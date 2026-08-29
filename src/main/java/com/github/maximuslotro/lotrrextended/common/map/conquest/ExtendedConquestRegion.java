@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 
 public class ExtendedConquestRegion {
@@ -27,6 +28,10 @@ public class ExtendedConquestRegion {
 
 	public int getPosZ() {
 		return pos.getPosZ();
+	}
+
+	public ExtendedConquestPos getPos() {
+		return pos;
 	}
 
 	public float getConquest(ResourceLocation faction) {
@@ -102,6 +107,28 @@ public class ExtendedConquestRegion {
 			}
 		}
 		region.isDirty = false;
+		return region;
+	}
+
+	public void writeBuf(PacketBuffer buf) {
+		pos.writeBuf(buf);
+
+		buf.writeInt(conquestLevels.size());
+		for(Map.Entry<ResourceLocation, Float> entry : conquestLevels.entrySet()) {
+			buf.writeResourceLocation(entry.getKey());
+			buf.writeFloat(entry.getValue());
+		}
+	}
+
+	public static ExtendedConquestRegion readBuf(PacketBuffer buf) {
+		ExtendedConquestRegion region = new ExtendedConquestRegion(ExtendedConquestPos.readBuf(buf));
+
+		int conquestSize = buf.readInt();
+		for(int i=0; i<conquestSize; i++) {
+			ResourceLocation faction = buf.readResourceLocation();
+			float level = buf.readFloat();
+			region.conquestLevels.put(faction, level);
+		}
 		return region;
 	}
 }

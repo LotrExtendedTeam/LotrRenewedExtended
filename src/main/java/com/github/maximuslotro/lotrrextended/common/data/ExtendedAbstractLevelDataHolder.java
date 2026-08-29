@@ -11,7 +11,9 @@ public abstract class ExtendedAbstractLevelDataHolder {
 		this.holder = pHolder;
 	}
 
-	public abstract void loadDataOnce(CompoundNBT pTag, MinecraftServer server);
+	public abstract void loadDataServer(CompoundNBT pTag, MinecraftServer server);
+
+	public void loadDataClient() {}
 
 	public abstract void saveData(CompoundNBT pTag);
 

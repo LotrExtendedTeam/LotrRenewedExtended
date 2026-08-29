@@ -11,7 +11,18 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.LogicalSide;
 
 public class ExtendedLevelData {
-	private static final ExtendedLevelData SERVER_INSTANCE = new ExtendedLevelData(LogicalSide.SERVER);
+    private static class ServerHolder {// Lazy holder for Server Instance
+        private static final ExtendedLevelData INSTANCE = new ExtendedLevelData(LogicalSide.SERVER);
+    }
+    private static class ClientHolder {// Lazy holder for Client Instance
+        private static final ExtendedLevelData INSTANCE = new ExtendedLevelData(LogicalSide.CLIENT);
+    }
+	public static ExtendedLevelData serverInstance() {
+        return ServerHolder.INSTANCE;
+    }
+    public static ExtendedLevelData clientInstance() {
+        return ClientHolder.INSTANCE;
+    }
 	private File extendedDataFile;
 	private final List<ExtendedAbstractLevelDataHolder> dataHolders;
 	private final ExtendedTraderDataHolder traderData;
@@ -27,11 +38,7 @@ public class ExtendedLevelData {
 	private boolean needsLoad = true;
 	private final LogicalSide side;
 
-	public static ExtendedLevelData serverInstance() {
-		return SERVER_INSTANCE;
-	}
-
-	public ExtendedLevelData(LogicalSide side) {
+	private ExtendedLevelData(LogicalSide side) {
 		this.side = side;
 		dataHolders = new ArrayList<>();
 		traderData = addHolder(new ExtendedTraderDataHolder(this));
@@ -61,6 +68,10 @@ public class ExtendedLevelData {
 		this.dirty = true;
 	}
 
+	public LogicalSide getSide() {
+		return side;
+	}
+
 	public File getOrCreateDataFile(MinecraftServer server) {
 		if(extendedDataFile==null) {
 			extendedDataFile = new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, server, true), "EXTENDED.dat");
@@ -76,6 +87,7 @@ public class ExtendedLevelData {
 		ExtendedIOUtils.save(getOrCreateDataFile(server), levelData);
 		this.dirty = false;
 	}
+
 	public void loadAndLock(MinecraftServer server) {
 		if(!needsLoad) {
 			return;
@@ -87,15 +99,23 @@ public class ExtendedLevelData {
 		}
 		CompoundNBT levelData = ExtendedIOUtils.load(getOrCreateDataFile(server));
 		for(ExtendedAbstractLevelDataHolder holder : dataHolders) {
-			holder.loadDataOnce(levelData, server);
+			holder.loadDataServer(levelData, server);
 		}
 		this.needsLoad = false;
 		this.save(server);
 	}
+
+	public void loadClientSafe() {
+		if(side.isClient()) {
+			for(ExtendedAbstractLevelDataHolder holder : dataHolders) {
+				holder.loadDataClient();
+			}
+		}
+	}
 	/**
 	 * Resets instance when the server stops to prevent leaking between worlds
 	 */
-	public void resetOnServerStop() {
+	public void resetOnServerExit() {
 		this.extendedDataFile = null;
 		this.needsLoad = true;
 		this.dirty = false;
