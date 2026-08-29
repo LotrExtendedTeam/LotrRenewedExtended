@@ -12,14 +12,24 @@ import java.util.Random;
 
 public class BirdEntityRandomFlyGoal extends Goal {
 
+    private static final int MAX_FLIGHT_TIME = 250;
+    private static final int MAX_STUCK_TICKS = 40;
+    private static final double MIN_PROGRESS_DISTANCE_SQR = 0.0625D;
+    private static final double LANDING_HORIZONTAL_DISTANCE_SQR = 0.49D;
+    private static final double LANDING_VERTICAL_DISTANCE = 0.75D;
+
     private final ExtendedBirdEntity bird;
     private final Random random;
 
     private double targetX;
     private double targetY;
     private double targetZ;
+    private double lastX;
+    private double lastY;
+    private double lastZ;
 
     private int flightTime;
+    private int stuckTicks;
 
     private boolean landing;
 
@@ -50,11 +60,10 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
         bird.startFlying();
 
-        bird.getNavigation().moveTo(targetX, targetY, targetZ, 1.0D);
-        bird.getMoveControl().setWantedPosition(targetX, targetY, targetZ, 1.0D);
-
         landing = false;
         flightTime = 0;
+        resetProgressCheck();
+        moveToTarget();
     }
 
     @Override
@@ -62,13 +71,24 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
         flightTime++;
 
-        if (!landing && flightTime >= 250) {
+        if (isStuck()) {
+            if (!findRecoveryTarget()) {
+                bird.stopFlying();
+                return;
+            }
+
+            moveToTarget();
+            resetProgressCheck();
+            return;
+        }
+
+        if (!landing && flightTime >= MAX_FLIGHT_TIME) {
 
             if (findLandingTarget()) {
                 landing = true;
             } else {
                 // Couldn't find somewhere to land, try again next tick.
-                flightTime = 249;
+                flightTime = MAX_FLIGHT_TIME - 1;
             }
         }
 
@@ -79,8 +99,8 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
             if (landing) {
 
-                // Wait until we've actually landed.
-                if (bird.isOnGround()) {
+                // Let gravity take over once the bird is directly above the landing block.
+                if (bird.isOnGround() || isAtLandingTarget()) {
                     bird.stopFlying();
                     return;
                 }
@@ -88,36 +108,41 @@ public class BirdEntityRandomFlyGoal extends Goal {
             } else {
 
                 // Continue flying to another point.
-                findAirTarget();
+                if (!findAirTarget()) {
+                    return;
+                }
             }
 
-            bird.getNavigation().moveTo(targetX, targetY, targetZ, 1.0D);
-            bird.getMoveControl().setWantedPosition(targetX, targetY, targetZ, 1.0D);
+            moveToTarget();
+            resetProgressCheck();
         }
 
         // Recover if navigation finishes unexpectedly.
         if (bird.getNavigation().isDone()) {
 
-            if (landing) {
-                findLandingTarget();
-            } else {
-                findAirTarget();
+            if (!findRecoveryTarget()) {
+                bird.stopFlying();
+                return;
             }
 
-            bird.getNavigation().moveTo(targetX, targetY, targetZ, 1.0D);
-            bird.getMoveControl().setWantedPosition(targetX, targetY, targetZ, 1.0D);
+            moveToTarget();
+            resetProgressCheck();
         }
     }
 
     @Override
     public boolean canContinueToUse() {
-        return bird.isFlying();
+        return bird.isFlying() && !bird.isPassenger() && !bird.isVehicle();
     }
 
     @Override
     public void stop() {
         bird.getNavigation().stop();
-        bird.startFlyingCooldown();
+        if (bird.isFlying()) {
+            bird.stopFlying();
+        } else {
+            bird.startFlyingCooldown();
+        }
     }
 
     private boolean findAirTarget() {
@@ -129,10 +154,10 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
             double y = bird.getY() + 3 + random.nextInt(8);
 
-            // prevent birds from flying 12 blocks in the air or the world build height
+            // Prevent birds from flying more than 12 blocks over the terrain or outside build height.
             double max = Math.min(
                 bird.level.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (int) x, (int) z) + 12,
-                bird.level.getMaxBuildHeight()
+                bird.level.getMaxBuildHeight() - 1
             );
             y = Math.min(y, max);
 
@@ -163,25 +188,68 @@ public class BirdEntityRandomFlyGoal extends Goal {
                     z) - 1;
 
             BlockPos ground = new BlockPos(x, y, z);
+            BlockPos landingPos = ground.above();
 
             BlockState groundState = bird.level.getBlockState(ground);
-            BlockState above = bird.level.getBlockState(ground.above());
+            BlockState landingState = bird.level.getBlockState(landingPos);
 
             if (groundState.isFaceSturdy(
                     bird.level,
                     ground,
                     Direction.UP)
-                    && above.getMaterial().isReplaceable()) {
+                    && landingState.getCollisionShape(bird.level, landingPos).isEmpty()) {
 
-                targetX = x + 0.25D;
-                targetY = y;
-                targetZ = z + 0.25D;
+                targetX = x + 0.5D;
+                targetY = landingPos.getY();
+                targetZ = z + 0.5D;
 
                 return true;
             }
         }
 
         return false;
+    }
+
+    private void moveToTarget() {
+        bird.getNavigation().moveTo(targetX, targetY, targetZ, 1.0D);
+        bird.getMoveControl().setWantedPosition(targetX, targetY, targetZ, 1.0D);
+    }
+
+    private boolean findRecoveryTarget() {
+        if (landing) {
+            if (findLandingTarget()) {
+                return true;
+            }
+
+            landing = false;
+            flightTime = MAX_FLIGHT_TIME - 1;
+        }
+
+        return findAirTarget();
+    }
+
+    private boolean isAtLandingTarget() {
+        double dx = bird.getX() - targetX;
+        double dz = bird.getZ() - targetZ;
+        return dx * dx + dz * dz < LANDING_HORIZONTAL_DISTANCE_SQR
+                && Math.abs(bird.getY() - targetY) < LANDING_VERTICAL_DISTANCE;
+    }
+
+    private boolean isStuck() {
+        if (bird.distanceToSqr(lastX, lastY, lastZ) > MIN_PROGRESS_DISTANCE_SQR) {
+            resetProgressCheck();
+            return false;
+        }
+
+        stuckTicks++;
+        return stuckTicks >= MAX_STUCK_TICKS;
+    }
+
+    private void resetProgressCheck() {
+        lastX = bird.getX();
+        lastY = bird.getY();
+        lastZ = bird.getZ();
+        stuckTicks = 0;
     }
 
 }
