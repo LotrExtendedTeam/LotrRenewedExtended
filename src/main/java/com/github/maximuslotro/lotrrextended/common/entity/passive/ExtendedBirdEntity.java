@@ -26,8 +26,6 @@ public class ExtendedBirdEntity extends CreatureEntity {
     private static final int BLOCKED_TAKEOFF_COOLDOWN = 80;
 
     private final FlyingPathNavigator flyingNavigator;
-    private final FlyingMovementController flyingController;
-    private final MovementController walkingController;
     private final GroundPathNavigator groundNavigator;
 
     public float wingRotation = 0.0F;
@@ -43,12 +41,10 @@ public class ExtendedBirdEntity extends CreatureEntity {
 
         this.flyingNavigator = new FlyingPathNavigator(this, world);
         this.groundNavigator = new GroundPathNavigator(this, world);
-        this.flyingController = new FlyingMovementController(this, 20, true);
-        this.walkingController = new  MovementController(this);
 
         // start as walking
-        this.navigation = groundNavigator;
-        this.moveControl = walkingController;
+        this.navigation = this.groundNavigator;
+        this.moveControl = new MovementController(this);
     }
 
     @Override
@@ -144,8 +140,9 @@ public class ExtendedBirdEntity extends CreatureEntity {
 
     private void applyFlyingState(boolean flying) {
         this.navigation.stop();
-        this.moveControl = flying ? flyingController : walkingController;
-        this.navigation = flying ? flyingNavigator : groundNavigator;
+        this.moveControl = flying ? new FlyingMovementController(this, 20, true) : new MovementController(this);
+        this.navigation = flying ? this.flyingNavigator : this.groundNavigator;
+        this.navigation.stop();
         this.setNoGravity(flying);
     }
 
