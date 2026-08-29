@@ -21,7 +21,8 @@ public class BirdEntityRandomFlyGoal extends Goal {
     private static final double TAKEOFF_REACHED_DISTANCE_SQR = 0.75D;
     private static final double MIN_PROGRESS_DISTANCE_SQR = 0.0625D;
     private static final double LANDING_HORIZONTAL_DISTANCE_SQR = 0.49D;
-    private static final double LANDING_VERTICAL_DISTANCE = 0.75D;
+    private static final double LANDING_DESCENT_Y_OFFSET = -0.25D;
+    private static final double LANDING_DESCENT_SPEED = 0.55D;
 
     private final ExtendedBirdEntity bird;
     private final Random random;
@@ -90,6 +91,12 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
         if (isStuck()) {
             if (!findRecoveryTarget()) {
+                if (landing) {
+                    moveToTarget();
+                    resetProgressCheck();
+                    return;
+                }
+
                 bird.stopFlying();
                 return;
             }
@@ -128,9 +135,13 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
             if (landing) {
 
-                // Let gravity take over once the bird is directly above the landing block.
-                if (bird.isOnGround() || isAtLandingTarget()) {
+                if (bird.isOnGround()) {
                     bird.stopFlying();
+                    return;
+                }
+
+                if (isOverLandingTarget()) {
+                    descendToLandingTarget();
                     return;
                 }
 
@@ -149,7 +160,18 @@ public class BirdEntityRandomFlyGoal extends Goal {
         // Recover if navigation finishes unexpectedly.
         if (bird.getNavigation().isDone()) {
 
+            if (landing && isOverLandingTarget()) {
+                descendToLandingTarget();
+                return;
+            }
+
             if (!findRecoveryTarget()) {
+                if (landing) {
+                    moveToTarget();
+                    resetProgressCheck();
+                    return;
+                }
+
                 bird.stopFlying();
                 return;
             }
@@ -306,11 +328,15 @@ public class BirdEntityRandomFlyGoal extends Goal {
         return bird.level.noCollision(bird, bird.getBoundingBox().move(x - bird.getX(), y - bird.getY(), z - bird.getZ()));
     }
 
-    private boolean isAtLandingTarget() {
+    private void descendToLandingTarget() {
+        bird.getNavigation().stop();
+        bird.getMoveControl().setWantedPosition(targetX, targetY + LANDING_DESCENT_Y_OFFSET, targetZ, LANDING_DESCENT_SPEED);
+    }
+
+    private boolean isOverLandingTarget() {
         double dx = bird.getX() - targetX;
         double dz = bird.getZ() - targetZ;
-        return dx * dx + dz * dz < LANDING_HORIZONTAL_DISTANCE_SQR
-                && Math.abs(bird.getY() - targetY) < LANDING_VERTICAL_DISTANCE;
+        return dx * dx + dz * dz < LANDING_HORIZONTAL_DISTANCE_SQR;
     }
 
     private boolean isStuck() {
