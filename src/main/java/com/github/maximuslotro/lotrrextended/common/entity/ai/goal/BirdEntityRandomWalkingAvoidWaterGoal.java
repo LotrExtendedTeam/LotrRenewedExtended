@@ -26,7 +26,7 @@ public class BirdEntityRandomWalkingAvoidWaterGoal extends WaterAvoidingRandomWa
     public boolean canUse() {
         this.pathStarted = false;
 
-        if (!canWalk()) {
+        if (!canStartWalking()) {
             return false;
         }
 
@@ -39,11 +39,11 @@ public class BirdEntityRandomWalkingAvoidWaterGoal extends WaterAvoidingRandomWa
 
     @Override
     public boolean canContinueToUse() {
-        if (!canWalk()) {
+        if (!canKeepWalking()) {
             return false;
         }
 
-        if (!this.pathStarted || this.bird.getNavigation().isStuck()) {
+        if (isPathFailed()) {
             this.bird.getNavigation().stop();
             return false;
         }
@@ -53,7 +53,7 @@ public class BirdEntityRandomWalkingAvoidWaterGoal extends WaterAvoidingRandomWa
 
     @Override
     public void start() {
-        this.pathStarted = canWalk() && this.bird.getNavigation().moveTo(this.wantedX, this.wantedY, this.wantedZ, this.speedModifier);
+        this.pathStarted = canStartWalking() && moveToWantedPosition();
 
         if (!this.pathStarted) {
             this.bird.getNavigation().stop();
@@ -66,6 +66,10 @@ public class BirdEntityRandomWalkingAvoidWaterGoal extends WaterAvoidingRandomWa
         if (!this.bird.isFlying()) {
             this.bird.getNavigation().stop();
         }
+    }
+
+    private boolean moveToWantedPosition() {
+        return this.bird.getNavigation().moveTo(this.wantedX, this.wantedY, this.wantedZ, this.speedModifier);
     }
 
     @Nullable
@@ -90,18 +94,34 @@ public class BirdEntityRandomWalkingAvoidWaterGoal extends WaterAvoidingRandomWa
             return false;
         }
 
-        if (!this.bird.level.noCollision(this.bird, this.bird.getBoundingBox().move(xOffset, position.y - this.bird.getY(), zOffset))) {
-            return false;
-        }
+        return canFitAt(position) && canReach(position);
+    }
 
+    private boolean canFitAt(Vector3d position) {
+        return this.bird.level.noCollision(
+                this.bird,
+                this.bird.getBoundingBox().move(
+                        position.x - this.bird.getX(),
+                        position.y - this.bird.getY(),
+                        position.z - this.bird.getZ()));
+    }
+
+    private boolean canReach(Vector3d position) {
         Path path = this.bird.getNavigation().createPath(new BlockPos(position.x, position.y, position.z), 1);
         return path != null && path.canReach();
     }
 
-    private boolean canWalk() {
+    private boolean isPathFailed() {
+        return !this.pathStarted || this.bird.getNavigation().isStuck();
+    }
+
+    private boolean canStartWalking() {
+        return canKeepWalking() && (this.bird.isOnGround() || this.bird.isInWaterOrBubble());
+    }
+
+    private boolean canKeepWalking() {
         return !this.bird.isFlying()
                 && !this.bird.isPassenger()
-                && !this.bird.isVehicle()
-                && (this.bird.isOnGround() || this.bird.isInWaterOrBubble());
+                && !this.bird.isVehicle();
     }
 }

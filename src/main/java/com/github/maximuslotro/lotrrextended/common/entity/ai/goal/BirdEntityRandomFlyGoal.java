@@ -14,9 +14,14 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
     private static final int MAX_FLIGHT_TIME = 250;
     private static final int LANDING_SEARCH_START_TIME = 200;
+    private static final int TAKEOFF_CHANCE = 8;
     private static final int MAX_STUCK_TICKS = 40;
     private static final int TAKEOFF_TARGET_ATTEMPTS = 12;
     private static final int AIR_TARGET_ATTEMPTS = 15;
+    private static final int AIR_TARGET_HORIZONTAL_RANGE = 12;
+    private static final int AIR_TARGET_MIN_RISE = 3;
+    private static final int AIR_TARGET_RANDOM_RISE = 8;
+    private static final int MAX_TERRAIN_FLIGHT_HEIGHT = 12;
     private static final int LANDING_TARGET_ATTEMPTS = 30;
     private static final int LANDING_TARGET_RANGE = 20;
     private static final int EMERGENCY_LANDING_TARGET_RANGE = 4;
@@ -56,16 +61,19 @@ public class BirdEntityRandomFlyGoal extends Goal {
     @Override
     public boolean canUse() {
 
-        if (bird.isPassenger() || bird.isVehicle())
+        if (bird.isPassenger() || bird.isVehicle()) {
             return false;
+        }
 
-        if (bird.isFlying())
+        if (bird.isFlying()) {
             return false;
+        }
 
-        if (bird.flyingOnCooldown()) return false;
+        if (bird.flyingOnCooldown()) {
+            return false;
+        }
 
-        // roughly once every 8 ticks
-        if (random.nextInt(8) != 0) {
+        if (random.nextInt(TAKEOFF_CHANCE) != 0) {
             return false;
         }
 
@@ -80,7 +88,6 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
     @Override
     public void start() {
-
         bird.startFlying();
 
         takingOff = true;
@@ -92,7 +99,6 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
     @Override
     public void tick() {
-
         flightTime++;
 
         if (landing && bird.isOnGround()) {
@@ -100,32 +106,11 @@ public class BirdEntityRandomFlyGoal extends Goal {
             return;
         }
 
-        if (isStuck()) {
-            if (!findRecoveryTarget()) {
-                if (landing) {
-                    moveToTarget();
-                    resetProgressCheck();
-                    return;
-                }
-
-                bird.stopFlying();
-                return;
-            }
-
-            moveToTarget();
-            resetProgressCheck();
+        if (recoverIfStuck()) {
             return;
         }
 
-        if (takingOff && bird.distanceToSqr(targetX, targetY, targetZ) < TAKEOFF_REACHED_DISTANCE_SQR) {
-            takingOff = false;
-            if (!findAirTarget()) {
-                bird.stopFlying();
-                return;
-            }
-
-            moveToTarget();
-            resetProgressCheck();
+        if (completeTakeoffIfReady()) {
             return;
         }
 
@@ -134,82 +119,135 @@ public class BirdEntityRandomFlyGoal extends Goal {
             return;
         }
 
+        if (handleFlightTimeLimit()) {
+            return;
+        }
+
+        if (handleReachedTarget()) {
+            return;
+        }
+
+        recoverIfNavigationFinished();
+    }
+
+    private boolean recoverIfStuck() {
+        if (!isStuck()) {
+            return false;
+        }
+
+        if (!findRecoveryTarget()) {
+            if (landing) {
+                moveToTarget();
+                resetProgressCheck();
+                return true;
+            }
+
+            bird.stopFlying();
+            return true;
+        }
+
+        moveToTarget();
+        resetProgressCheck();
+        return true;
+    }
+
+    private boolean completeTakeoffIfReady() {
+        if (!takingOff || bird.distanceToSqr(targetX, targetY, targetZ) >= TAKEOFF_REACHED_DISTANCE_SQR) {
+            return false;
+        }
+
+        takingOff = false;
+        if (!findAirTarget()) {
+            bird.stopFlying();
+            return true;
+        }
+
+        moveToTarget();
+        resetProgressCheck();
+        return true;
+    }
+
+    private boolean handleFlightTimeLimit() {
         if (landing && flightTime >= MAX_FLIGHT_TIME) {
             if (isOverLandingTarget()) {
                 descendToLandingTarget();
             } else {
                 forceLanding();
             }
-            return;
-        }
 
-        if (!landing && flightTime >= LANDING_SEARCH_START_TIME && findLandingTarget()) {
-            beginLanding();
-            return;
+            return true;
         }
 
         if (!landing && flightTime >= MAX_FLIGHT_TIME) {
             forceLanding();
+            return true;
+        }
+
+        if (!landing && flightTime >= LANDING_SEARCH_START_TIME && findLandingTarget()) {
+            beginLanding();
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean handleReachedTarget() {
+        if (bird.distanceToSqr(targetX, targetY, targetZ) >= TARGET_REACHED_DISTANCE_SQR) {
+            return false;
+        }
+
+        if (landing) {
+            if (bird.isOnGround()) {
+                finishLanding();
+                return true;
+            }
+
+            if (isOverLandingTarget()) {
+                descendToLandingTarget();
+                return true;
+            }
+        } else {
+            if (flightTime >= LANDING_SEARCH_START_TIME) {
+                if (findLandingTarget()) {
+                    beginLanding();
+                }
+
+                return true;
+            }
+
+            if (!findAirTarget()) {
+                return true;
+            }
+        }
+
+        moveToTarget();
+        resetProgressCheck();
+        return true;
+    }
+
+    private void recoverIfNavigationFinished() {
+        if (!bird.getNavigation().isDone()) {
             return;
         }
 
-        double dist = bird.distanceToSqr(targetX, targetY, targetZ);
+        if (landing && isOverLandingTarget()) {
+            descendToLandingTarget();
+            return;
+        }
 
-        // Reached destination
-        if (dist < TARGET_REACHED_DISTANCE_SQR) {
-
+        if (!findRecoveryTarget()) {
             if (landing) {
-
-                if (bird.isOnGround()) {
-                    bird.stopFlying();
-                    return;
-                }
-
-                if (isOverLandingTarget()) {
-                    descendToLandingTarget();
-                    return;
-                }
-
-            } else {
-
-                if (flightTime >= LANDING_SEARCH_START_TIME) {
-                    if (findLandingTarget()) {
-                        beginLanding();
-                    }
-                    return;
-                }
-
-                if (!findAirTarget()) {
-                    return;
-                }
-            }
-
-            moveToTarget();
-            resetProgressCheck();
-        }
-
-        // Recover if navigation finishes unexpectedly.
-        if (bird.getNavigation().isDone()) {
-
-            if (landing && isOverLandingTarget()) {
-                descendToLandingTarget();
+                moveToTarget();
+                resetProgressCheck();
                 return;
             }
 
-            if (!findRecoveryTarget()) {
-                if (landing) {
-                    moveToTarget();
-                    resetProgressCheck();
-                    return;
-                }
-
-                bird.stopFlying();
-                return;
-            }
-
-            moveToTarget();
-            resetProgressCheck();
+            bird.stopFlying();
+            return;
         }
+
+        moveToTarget();
+        resetProgressCheck();
     }
 
     @Override
@@ -239,9 +277,7 @@ public class BirdEntityRandomFlyGoal extends Goal {
             double z = bird.getZ() + zOffset;
 
             if (canFitAt(x, y, z) && hasClearTakeoffPath(x - bird.getX(), y - bird.getY(), z - bird.getZ())) {
-                targetX = x;
-                targetY = y;
-                targetZ = z;
+                setTarget(x, y, z);
                 return true;
             }
         }
@@ -253,14 +289,14 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
         for (int i = 0; i < AIR_TARGET_ATTEMPTS; i++) {
 
-            int x = bird.blockPosition().getX() + random.nextInt(25) - 12;
-            int z = bird.blockPosition().getZ() + random.nextInt(25) - 12;
+            int x = bird.blockPosition().getX() + randomOffset(AIR_TARGET_HORIZONTAL_RANGE);
+            int z = bird.blockPosition().getZ() + randomOffset(AIR_TARGET_HORIZONTAL_RANGE);
 
-            double y = bird.getY() + 3 + random.nextInt(8);
+            double y = bird.getY() + AIR_TARGET_MIN_RISE + random.nextInt(AIR_TARGET_RANDOM_RISE);
 
             // Prevent birds from flying more than 12 blocks over the terrain or outside build height.
             double max = Math.min(
-                bird.level.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (int) x, (int) z) + 12,
+                bird.level.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z) + MAX_TERRAIN_FLIGHT_HEIGHT,
                 bird.level.getMaxBuildHeight() - 1
             );
             y = Math.min(y, max);
@@ -270,11 +306,7 @@ public class BirdEntityRandomFlyGoal extends Goal {
             double centerZ = z + 0.5D;
 
             if (bird.level.isEmptyBlock(pos) && canFitAt(centerX, y, centerZ)) {
-
-                targetX = centerX;
-                targetY = y;
-                targetZ = centerZ;
-
+                setTarget(centerX, y, centerZ);
                 return true;
             }
         }
@@ -285,8 +317,8 @@ public class BirdEntityRandomFlyGoal extends Goal {
     private boolean findLandingTarget() {
         for (int i = 0; i < LANDING_TARGET_ATTEMPTS; i++) {
 
-            int x = bird.blockPosition().getX() + random.nextInt(LANDING_TARGET_RANGE * 2 + 1) - LANDING_TARGET_RANGE;
-            int z = bird.blockPosition().getZ() + random.nextInt(LANDING_TARGET_RANGE * 2 + 1) - LANDING_TARGET_RANGE;
+            int x = bird.blockPosition().getX() + randomOffset(LANDING_TARGET_RANGE);
+            int z = bird.blockPosition().getZ() + randomOffset(LANDING_TARGET_RANGE);
 
             if (trySetLandingTarget(x, z)) {
                 return true;
@@ -330,21 +362,21 @@ public class BirdEntityRandomFlyGoal extends Goal {
         BlockState groundState = bird.level.getBlockState(ground);
         BlockState landingState = bird.level.getBlockState(landingPos);
 
-        if (groundState.isFaceSturdy(
-                bird.level,
-                ground,
-                Direction.UP)
-                && landingState.getCollisionShape(bird.level, landingPos).isEmpty()
-                && canFitAt(x + 0.5D, landingPos.getY(), z + 0.5D)) {
-
-            targetX = x + 0.5D;
-            targetY = landingPos.getY();
-            targetZ = z + 0.5D;
-
+        if (isLandingSpot(ground, landingPos, groundState, landingState)) {
+            setTarget(x + 0.5D, landingPos.getY(), z + 0.5D);
             return true;
         }
 
         return false;
+    }
+
+    private boolean isLandingSpot(BlockPos ground, BlockPos landingPos, BlockState groundState, BlockState landingState) {
+        return groundState.isFaceSturdy(
+                bird.level,
+                ground,
+                Direction.UP)
+                && landingState.getCollisionShape(bird.level, landingPos).isEmpty()
+                && canFitAt(landingPos.getX() + 0.5D, landingPos.getY(), landingPos.getZ() + 0.5D);
     }
 
     private void moveToTarget() {
@@ -377,6 +409,16 @@ public class BirdEntityRandomFlyGoal extends Goal {
         }
 
         return findAirTarget();
+    }
+
+    private int randomOffset(int range) {
+        return random.nextInt(range * 2 + 1) - range;
+    }
+
+    private void setTarget(double x, double y, double z) {
+        targetX = x;
+        targetY = y;
+        targetZ = z;
     }
 
     private boolean hasClearTakeoffPath(double xOffset, double yOffset, double zOffset) {
