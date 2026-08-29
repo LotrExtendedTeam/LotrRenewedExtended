@@ -31,6 +31,7 @@ public class ExtendedSlider extends AbstractSlider {
 	protected int textureVBackground = 46;
 	protected int textureWidth = 256;
 	protected int textureHeight = 256;
+	protected boolean disableMessage = false;
 
 	public ExtendedSlider(int pX, int pY, int pWidth, int pHeight, String localKey, double minVal, double maxVal, float steps, IGetValue valueGetter, ISetValue valueSetter) {
 		super(pX, pY, pWidth, pHeight, StringTextComponent.EMPTY, 0);
@@ -73,17 +74,28 @@ public class ExtendedSlider extends AbstractSlider {
 		return this;
 	}
 
+	public ExtendedSlider disableMessage() {
+		this.disableMessage = true;
+		return this;
+	}
+
+	private boolean isHandleHoveredX(int mouseX, int mouseY) {
+        int handleX = this.x + (int) (this.value * (double) (this.width - this.handleLength));
+        return mouseX >= handleX && mouseX < handleX + this.handleLength && mouseY >= this.y && mouseY < this.y + this.height;
+    }
+
 	@Override
 	protected void renderBg(MatrixStack pMatrixStack, Minecraft pMinecraft, int pMouseX, int pMouseY) {
 		pMinecraft.getTextureManager().bind(customTexture);
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		int handleX = this.x + (int) (this.value * (double) (this.width - this.handleLength));
+		boolean handleHovered = isHandleHoveredX(pMouseX, pMouseY);
 		if(this.customTexture.equals(WIDGETS_LOCATION) && this.handleLength == 8) {
-			int hoverOffset = (this.isHovered() ? 2 : 1) * this.height;
+			int hoverOffset = (handleHovered ? 2 : 1) * this.height;
 			blit(pMatrixStack, handleX, this.y, this.getBlitOffset(), 0, 46 + hoverOffset, 4, 20, textureWidth, textureHeight);
 			blit(pMatrixStack, handleX + 4, this.y, this.getBlitOffset(), 196, 46 + hoverOffset, 4, 20, textureWidth, textureHeight);
 		} else {
-			blit(pMatrixStack, handleX, this.y, this.getBlitOffset(), this.textureU, this.textureV + (this.isHovered() ? this.height : 0), this.handleLength, this.height, this.textureWidth, this.textureHeight);
+			blit(pMatrixStack, handleX, this.y, this.getBlitOffset(), this.textureU, this.textureV + (handleHovered ? this.height : 0), this.handleLength, this.height, this.textureWidth, this.textureHeight);
 		}
 	}
 
@@ -168,9 +180,10 @@ public class ExtendedSlider extends AbstractSlider {
 		}
 		this.renderBg(pMatrixStack, minecraft, pMouseX, pMouseY);
 
-		int j = getFGColor();
-		drawCenteredString(pMatrixStack, fontrenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
-
+		if(!disableMessage) {
+			int j = getFGColor();
+			drawCenteredString(pMatrixStack, fontrenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
+		}
 		if (this.isHovered()) {
 			this.renderToolTip(pMatrixStack, pMouseX, pMouseY);
 		}

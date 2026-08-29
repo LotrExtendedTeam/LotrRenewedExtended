@@ -17,11 +17,11 @@ public abstract class ExtendedAbstractBasicScreen extends Screen {
 		super(pTitle);
 	}
 
-	public static void fillFloat(MatrixStack pPoseStack, float pMinX, float pMinY, float pMaxX, float pMaxY, int pColor) {
-		innerFill(pPoseStack.last().pose(), pMinX, pMinY, pMaxX, pMaxY, pColor);
+	public static void fillFloat(MatrixStack pPoseStack, float pMinX, float pMinY, float pMaxX, float pMaxY, int pColorRGBA) {
+		innerFill(pPoseStack.last().pose(), pMinX, pMinY, pMaxX, pMaxY, pColorRGBA);
 	}
 
-	private static void innerFill(Matrix4f pMatrix, float pMinX, float pMinY, float pMaxX, float pMaxY, int pColor) {
+	private static void innerFill(Matrix4f pMatrix, float pMinX, float pMinY, float pMaxX, float pMaxY, int pColorRGBA) {
 		if (pMinX < pMaxX) {
 			float i = pMinX;
 			pMinX = pMaxX;
@@ -34,10 +34,10 @@ public abstract class ExtendedAbstractBasicScreen extends Screen {
 			pMaxY = j;
 		}
 
-		float f3 = (float)(pColor >> 24 & 255) / 255.0F;
-		float f = (float)(pColor >> 16 & 255) / 255.0F;
-		float f1 = (float)(pColor >> 8 & 255) / 255.0F;
-		float f2 = (float)(pColor & 255) / 255.0F;
+		float f3 = (float)(pColorRGBA >> 24 & 255) / 255.0F;
+		float f = (float)(pColorRGBA >> 16 & 255) / 255.0F;
+		float f1 = (float)(pColorRGBA >> 8 & 255) / 255.0F;
+		float f2 = (float)(pColorRGBA & 255) / 255.0F;
 		BufferBuilder bufferbuilder = Tessellator.getInstance().getBuilder();
 		RenderSystem.enableBlend();
 		RenderSystem.disableTexture();

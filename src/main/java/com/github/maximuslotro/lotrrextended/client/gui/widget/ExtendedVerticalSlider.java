@@ -35,12 +35,16 @@ public class ExtendedVerticalSlider extends ExtendedSlider {
 		return false;
 	}
 
+	private boolean isHandleHoveredY(int mouseX, int mouseY) {
+        int handleY = this.y + (int) (this.value * (double) (this.height - this.handleLength));
+        return mouseX >= this.x && mouseX < this.x + this.width && mouseY >= handleY && mouseY < handleY + this.handleLength;
+    }
 	@Override
 	protected void renderBg(MatrixStack pMatrixStack, Minecraft pMinecraft, int pMouseX, int pMouseY) {
 		pMinecraft.getTextureManager().bind(customTexture);
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-		int hoverOffset = (this.isHovered() ? 2 : 1) * handleLength;
 	    int handleY = this.y + (int) (this.value * (this.height - handleLength));
+		int hoverOffset = (isHandleHoveredY(pMouseX, pMouseY) ? 2 : 1) * width;
 	    blit(pMatrixStack, this.x, handleY, this.getBlitOffset(), this.textureU + hoverOffset, this.textureV, this.width, handleLength, textureWidth, textureHeight);
 	}
 
