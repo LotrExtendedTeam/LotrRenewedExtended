@@ -13,12 +13,18 @@ import java.util.Random;
 public class BirdEntityRandomFlyGoal extends Goal {
 
     private static final int MAX_FLIGHT_TIME = 250;
+    private static final int LANDING_SEARCH_START_TIME = 200;
     private static final int MAX_STUCK_TICKS = 40;
     private static final int TAKEOFF_TARGET_ATTEMPTS = 12;
+    private static final int AIR_TARGET_ATTEMPTS = 15;
+    private static final int LANDING_TARGET_ATTEMPTS = 30;
+    private static final int LANDING_TARGET_RANGE = 20;
+    private static final int EMERGENCY_LANDING_TARGET_RANGE = 4;
     private static final double TAKEOFF_DISTANCE = 4.0D;
     private static final double TAKEOFF_RISE = 1.75D;
     private static final double TAKEOFF_STEP = 0.25D;
     private static final double TAKEOFF_REACHED_DISTANCE_SQR = 0.75D;
+    private static final double TARGET_REACHED_DISTANCE_SQR = 4.0D;
     private static final double MIN_PROGRESS_DISTANCE_SQR = 0.0625D;
     private static final double LANDING_HORIZONTAL_DISTANCE_SQR = 0.49D;
     private static final double LANDING_DESCENT_Y_OFFSET = -0.25D;
@@ -118,20 +124,29 @@ public class BirdEntityRandomFlyGoal extends Goal {
             return;
         }
 
-        if (!landing && flightTime >= MAX_FLIGHT_TIME) {
-
-            if (findLandingTarget()) {
-                landing = true;
+        if (landing && flightTime >= MAX_FLIGHT_TIME) {
+            if (isOverLandingTarget()) {
+                descendToLandingTarget();
             } else {
-                // Couldn't find somewhere to land, try again next tick.
-                flightTime = MAX_FLIGHT_TIME - 1;
+                forceLanding();
             }
+            return;
+        }
+
+        if (!landing && flightTime >= LANDING_SEARCH_START_TIME && findLandingTarget()) {
+            beginLanding();
+            return;
+        }
+
+        if (!landing && flightTime >= MAX_FLIGHT_TIME) {
+            forceLanding();
+            return;
         }
 
         double dist = bird.distanceToSqr(targetX, targetY, targetZ);
 
         // Reached destination
-        if (dist < 4.0D) {
+        if (dist < TARGET_REACHED_DISTANCE_SQR) {
 
             if (landing) {
 
@@ -147,7 +162,13 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
             } else {
 
-                // Continue flying to another point.
+                if (flightTime >= LANDING_SEARCH_START_TIME) {
+                    if (findLandingTarget()) {
+                        beginLanding();
+                    }
+                    return;
+                }
+
                 if (!findAirTarget()) {
                     return;
                 }
@@ -220,7 +241,7 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
     private boolean findAirTarget() {
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < AIR_TARGET_ATTEMPTS; i++) {
 
             int x = bird.blockPosition().getX() + random.nextInt(25) - 12;
             int z = bird.blockPosition().getZ() + random.nextInt(25) - 12;
@@ -252,35 +273,65 @@ public class BirdEntityRandomFlyGoal extends Goal {
     }
 
     private boolean findLandingTarget() {
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < LANDING_TARGET_ATTEMPTS; i++) {
 
-            int x = bird.blockPosition().getX() + random.nextInt(41) - 20;
-            int z = bird.blockPosition().getZ() + random.nextInt(41) - 20;
+            int x = bird.blockPosition().getX() + random.nextInt(LANDING_TARGET_RANGE * 2 + 1) - LANDING_TARGET_RANGE;
+            int z = bird.blockPosition().getZ() + random.nextInt(LANDING_TARGET_RANGE * 2 + 1) - LANDING_TARGET_RANGE;
 
-            int y = bird.level.getHeight(
-                    Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
-                    x,
-                    z) - 1;
-
-            BlockPos ground = new BlockPos(x, y, z);
-            BlockPos landingPos = ground.above();
-
-            BlockState groundState = bird.level.getBlockState(ground);
-            BlockState landingState = bird.level.getBlockState(landingPos);
-
-            if (groundState.isFaceSturdy(
-                    bird.level,
-                    ground,
-                    Direction.UP)
-                    && landingState.getCollisionShape(bird.level, landingPos).isEmpty()
-                    && canFitAt(x + 0.5D, landingPos.getY(), z + 0.5D)) {
-
-                targetX = x + 0.5D;
-                targetY = landingPos.getY();
-                targetZ = z + 0.5D;
-
+            if (trySetLandingTarget(x, z)) {
                 return true;
             }
+        }
+
+        return false;
+    }
+
+    private boolean findEmergencyLandingTarget() {
+        int birdX = bird.blockPosition().getX();
+        int birdZ = bird.blockPosition().getZ();
+
+        if (trySetLandingTarget(birdX, birdZ)) {
+            return true;
+        }
+
+        for (int radius = 1; radius <= EMERGENCY_LANDING_TARGET_RANGE; radius++) {
+            for (int x = birdX - radius; x <= birdX + radius; x++) {
+                for (int z = birdZ - radius; z <= birdZ + radius; z++) {
+                    if ((x == birdX - radius || x == birdX + radius || z == birdZ - radius || z == birdZ + radius)
+                            && trySetLandingTarget(x, z)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean trySetLandingTarget(int x, int z) {
+        int y = bird.level.getHeight(
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+                x,
+                z) - 1;
+
+        BlockPos ground = new BlockPos(x, y, z);
+        BlockPos landingPos = ground.above();
+
+        BlockState groundState = bird.level.getBlockState(ground);
+        BlockState landingState = bird.level.getBlockState(landingPos);
+
+        if (groundState.isFaceSturdy(
+                bird.level,
+                ground,
+                Direction.UP)
+                && landingState.getCollisionShape(bird.level, landingPos).isEmpty()
+                && canFitAt(x + 0.5D, landingPos.getY(), z + 0.5D)) {
+
+            targetX = x + 0.5D;
+            targetY = landingPos.getY();
+            targetZ = z + 0.5D;
+
+            return true;
         }
 
         return false;
@@ -303,8 +354,16 @@ public class BirdEntityRandomFlyGoal extends Goal {
                 return true;
             }
 
+            if (flightTime >= MAX_FLIGHT_TIME) {
+                return findEmergencyLandingTarget();
+            }
+
             landing = false;
             flightTime = MAX_FLIGHT_TIME - 1;
+        }
+
+        if (flightTime >= MAX_FLIGHT_TIME) {
+            return findEmergencyLandingTarget();
         }
 
         return findAirTarget();
@@ -331,6 +390,22 @@ public class BirdEntityRandomFlyGoal extends Goal {
     private void descendToLandingTarget() {
         bird.getNavigation().stop();
         bird.getMoveControl().setWantedPosition(targetX, targetY + LANDING_DESCENT_Y_OFFSET, targetZ, LANDING_DESCENT_SPEED);
+    }
+
+    private void beginLanding() {
+        landing = true;
+        takingOff = false;
+        moveToTarget();
+        resetProgressCheck();
+    }
+
+    private void forceLanding() {
+        if (findEmergencyLandingTarget()) {
+            beginLanding();
+            return;
+        }
+
+        bird.stopFlying();
     }
 
     private boolean isOverLandingTarget() {
