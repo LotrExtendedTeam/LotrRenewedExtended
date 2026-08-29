@@ -243,7 +243,9 @@ public class BirdEntityRandomFlyGoal extends Goal {
 
     private void moveToTarget() {
         bird.getNavigation().moveTo(targetX, targetY, targetZ, 1.0D);
-        bird.getMoveControl().setWantedPosition(targetX, targetY, targetZ, 1.0D);
+        if (takingOff) {
+            bird.getMoveControl().setWantedPosition(targetX, targetY, targetZ, 1.0D);
+        }
     }
 
     private boolean findRecoveryTarget() {
