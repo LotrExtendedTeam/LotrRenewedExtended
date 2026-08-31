@@ -41,7 +41,7 @@ public class ExtendedBanditDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void clearData() {
+	protected void clearData() {
 		playerBanditSpawnCooldowns.clear();
 	}
 

@@ -19,7 +19,7 @@ public abstract class ExtendedAbstractLevelDataHolder {
 
 	public abstract void tick(ServerWorld level);
 
-	public abstract void clearData();
+	protected abstract void clearData();
 
 	public void markDirty() {
 		holder.markDirty();

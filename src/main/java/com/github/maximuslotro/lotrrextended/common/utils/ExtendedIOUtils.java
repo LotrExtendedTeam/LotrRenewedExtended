@@ -25,22 +25,22 @@ public class ExtendedIOUtils {
 
 	public static CompoundNBT load(File file) {
 		try {
-			if (file.exists()) {
+			if(file.exists()) {
 				FileInputStream fileStream = new FileInputStream(file);
 				CompoundNBT compound = CompressedStreamTools.readCompressed(fileStream);
 				fileStream.close();
 				return compound;
 			}
-		} catch (IOException e) {
+		} catch(IOException e) {
 			ExtendedLog.error("Failed to load file: "+file.toString(), e);
 		}
 		return new CompoundNBT();
 	}
 
 	public static CompoundNBT loadInternal(ResourceLocation file, MinecraftServer server) {
-		try (IResource iresource = server.getDataPackRegistries().getResourceManager().getResource(file)) {
+		try(IResource iresource = server.getDataPackRegistries().getResourceManager().getResource(file)) {
 			return CompressedStreamTools.readCompressed(iresource.getInputStream());
-		} catch (Exception e) {
+		} catch(Exception e) {
 			ExtendedLog.error("Failed to find file: "+file.toString(), e);
 		}
 		return new CompoundNBT();
@@ -49,13 +49,13 @@ public class ExtendedIOUtils {
 	public static void save(File file, CompoundNBT compound) {
 		try {
 			CompressedStreamTools.writeCompressed(compound, new FileOutputStream(file));
-		} catch (IOException e) {
+		} catch(IOException e) {
 			ExtendedLog.error("Error saving data file: {} for data [{}]", file.toString(), compound.toString(), e);
 		}
 	}
 
 	public static File getDirOrMake(File pFolderName) {
-		if (!pFolderName.exists()) {
+		if(!pFolderName.exists()) {
 			pFolderName.mkdirs();
 		}
 		return pFolderName;
@@ -63,7 +63,7 @@ public class ExtendedIOUtils {
 
 	public static File getDirInServer(FolderName pFolderName, MinecraftServer server, boolean shouldCreate) {
 		File dir = server.getWorldPath(pFolderName).toFile();
-		if (shouldCreate && !dir.exists()) {
+		if(shouldCreate && !dir.exists()) {
 			dir.mkdirs();
 		}
 		return dir;
@@ -71,17 +71,17 @@ public class ExtendedIOUtils {
 
 	public static void moveIfOldPath(Path newPath, Path oldPath, boolean bypassNewFolderCheck) {
 		try {
-			if ((bypassNewFolderCheck || !Files.exists(newPath)) && Files.exists(oldPath)) {
+			if((bypassNewFolderCheck || !Files.exists(newPath)) && Files.exists(oldPath)) {
 				// Handle moving folders
-				if (Files.isDirectory(oldPath)) {
+				if(Files.isDirectory(oldPath)) {
 		            Files.createDirectories(newPath);
 		            List<Path> children;
-		            try (Stream<Path> s = Files.list(oldPath)) {
+		            try(Stream<Path> s = Files.list(oldPath)) {
 		                children = s.collect(Collectors.toList());
 		            }		            // Handle recursive folders
-		            for (Path child : children) {
+		            for(Path child : children) {
 		                Path targetChild = newPath.resolve(child.getFileName());
-		                if (Files.isDirectory(child)) {
+		                if(Files.isDirectory(child)) {
 		                    moveIfOldPath(targetChild, child, bypassNewFolderCheck);
 		                } else {
 		                    Files.move(child, targetChild, StandardCopyOption.REPLACE_EXISTING);
@@ -89,33 +89,49 @@ public class ExtendedIOUtils {
 		            }
 		            tryDeleteDirectory(oldPath);
 		        } else {
-		            if (newPath.getParent() != null) {
+		            if(newPath.getParent() != null) {
 		                Files.createDirectories(newPath.getParent());
 		            }
 		            Files.move(oldPath, newPath, StandardCopyOption.REPLACE_EXISTING);
-		            if (oldPath.getParent() != null) {
+		            if(oldPath.getParent() != null) {
 		                tryDeleteDirectory(oldPath.getParent());
 		            }
 		        }
 				ExtendedLog.info("Migrated {} -> {}", oldPath.toString(), newPath.toString());
 			}
-		} catch (IOException e) {
+		} catch(IOException e) {
 			ExtendedLog.warn("Failed moving files: from {} -> {}", oldPath.toString(), newPath.toString(), e);
 		}
 	}
 
 	public static void tryDeleteDirectory(Path path) {
 		try {
-			if (Files.isDirectory(path)) {
+			if(Files.isDirectory(path)) {
 				// Open the stream inside try-with-resources to ensure it closes properly
-				try (Stream<Path> stream = Files.list(path)) {
-					if (!stream.findAny().isPresent()) {
+				try(Stream<Path> stream = Files.list(path)) {
+					if(!stream.findAny().isPresent()) {
 						Files.delete(path);
 					}
 				}
 			}
-		} catch (IOException e) {
+		} catch(IOException e) {
 			ExtendedLog.warn("Failed deleting path: {}", path.toString(), e);
 		}
+	}
+
+	public static void tryDeleteDirectoryContents(Path path) {
+	    if (!Files.exists(path)) return;
+	    
+	    try(Stream<Path> stream = Files.list(path)) {
+	        stream.forEach(child -> {
+	            try {
+	                Files.delete(child);
+	            } catch (IOException e) {
+	                ExtendedLog.warn("Failed deleting file: {}", child, e);
+	            }
+	        });
+	    } catch (IOException e) {
+	        ExtendedLog.warn("Failed reading directory: {}", path, e);
+	    }
 	}
 }

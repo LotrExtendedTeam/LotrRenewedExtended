@@ -42,7 +42,7 @@ public class ExtendedTolkienDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void clearData() {
+	protected void clearData() {
 		tolkienTalkedTo.clear();
 	}
 

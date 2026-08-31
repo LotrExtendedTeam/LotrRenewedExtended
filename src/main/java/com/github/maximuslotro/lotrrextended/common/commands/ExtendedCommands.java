@@ -20,5 +20,6 @@ public class ExtendedCommands {
 		ExtendedDebugCommand.register(dispatcher);
 		ExtendedFirstLastSeenCommand.register(dispatcher);
 		ExtendedPruneWorldCommand.register(dispatcher);
+		ExtendedConquestCommand.register(dispatcher);
 	}
 }

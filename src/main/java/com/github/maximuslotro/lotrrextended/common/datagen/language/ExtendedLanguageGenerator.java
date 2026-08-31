@@ -170,6 +170,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.base.on", "On");
 		addD("gui.lotrextended.base.off", "Off");
 		addD("gui.lotrextended.base.return", "Return");
+		addD("gui.lotrextended.base.player_not_found", "Player not found");
 
 		// trade system
 		addD("gui.lotrextended.trading.trade_button", "Trade");
@@ -580,6 +581,24 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.trigger.bandit.failure", "Attempt to spawn bandit at %s was unsuccessful.");
 		addD("command.lotrextended.trigger.invasion.success", "An invasion was successfully spawned near %s.");
 		addD("command.lotrextended.trigger.invasion.failure", "Could not find an invasion to spawn near %s.");
+
+		// Conquest command
+		addD("command.lotrextended.seen.rate.get", "Global conquest rate is %1$s");
+		addD("command.lotrextended.conquest.rate.set", "Set global conquest rate to %1$s");
+		addD("command.lotrextended.conquest.rate.get", "Global conquest rate is %1$s");
+		addD("command.lotrextended.conquest.scale.get", "Conquest grid scale is %1$s, which is %2$s map pixels across");
+		addD("command.lotrextended.conquest.scale.set", "Set conquest grid scale to %1$s, which is %2$s map pixels across");
+		addD("command.lotrextended.conquest.clear", "Cleared all conquest");
+		addD("command.lotrextended.conquest.get", "%1$s has %2$s conquest strength at %3$s");
+		addD("command.lotrextended.conquest.get.failure", "No %1$s conquest present at %2$s");
+		addD("command.lotrextended.conquest.modify.set", "Set %1$s conquest strength to %2$s at %3$s");
+		addD("command.lotrextended.conquest.modify.add", "Added %1$s to %2$s conquest strength at %3$s");
+
+		// Player time commands
+		addD("command.lotrextended.seen.joined", "%1$s first joined on %2$s");
+		addD("command.lotrextended.seen.online", "%1$s is currently online");
+		addD("command.lotrextended.seen.never", "%1$s has never logged out");
+		addD("command.lotrextended.seen.last", "%1$s was last seen %2$s");
 
 		//Extended containers
 		addD("container.lotrextended.reed_basket", "Reed Basket");

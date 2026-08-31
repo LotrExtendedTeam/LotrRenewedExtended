@@ -72,7 +72,7 @@ public class ExtendedTraderDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void clearData() {
+	protected void clearData() {
 		playerTraderSpawnCooldowns.clear();
 	}
 

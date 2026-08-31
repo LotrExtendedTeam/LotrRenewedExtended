@@ -19,27 +19,29 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
+import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class ExtendedFirstLastSeenCommand {
 
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("firstjoined")
-				.then((Commands.argument("playername", StringArgumentType.word())
-						.executes(ctx -> firstJoinedPlayer(ctx.getSource(), StringArgumentType.getString(ctx, "playername")))))
-				);
+			.then((Commands.argument("playername", StringArgumentType.word())
+				.executes(ctx -> firstJoinedPlayer(ctx.getSource(), StringArgumentType.getString(ctx, "playername")))))
+			);
 		dispatcher.register(Commands.literal("seen")
-				.then((Commands.argument("playername", StringArgumentType.word())
-						.executes(ctx -> seenPlayer(ctx.getSource(), StringArgumentType.getString(ctx, "playername")))))
-				);
+			.then((Commands.argument("playername", StringArgumentType.word())
+				.executes(ctx -> seenPlayer(ctx.getSource(), StringArgumentType.getString(ctx, "playername")))))
+			);
 	}
 
 	private static int firstJoinedPlayer(CommandSource source, String playername) {
 		@Nullable UUID player = ExtendedEntityUtils.getPlayerUUIDFromUsername(playername);
 		if(player==null || !ExtendedLevelData.serverInstance().getPlayerData().doesPlayerInfoExist(player)) {
-			source.sendFailure(new StringTextComponent(TextFormatting.RED + "Player not found"));
+			source.sendFailure(new TranslationTextComponent("gui.lotrextended.base.player_not_found").withStyle(TextFormatting.RED));
 			return Command.SINGLE_SUCCESS;
 		}
 		ExtendedPlayerInfo profile = ExtendedLevelData.serverInstance().getPlayerData().getPlayerInfo(player);
@@ -50,31 +52,34 @@ public class ExtendedFirstLastSeenCommand {
 		String suffix = getDaySuffix(day);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d'" + suffix + "' yyyy, 'at' HH:mm");
 		String formattedDate = zdt.format(formatter);
-
-		source.sendSuccess(new StringTextComponent(TextFormatting.GREEN + playername+ " first joined on " + TextFormatting.YELLOW + formattedDate), true);
+		IFormattableTextComponent playerName = new StringTextComponent(playername).withStyle(TextFormatting.GREEN);
+		IFormattableTextComponent joinDate = new StringTextComponent(formattedDate).withStyle(TextFormatting.YELLOW);
+		source.sendSuccess(new TranslationTextComponent("command.lotrextended.seen.joined", playerName, joinDate).withStyle(TextFormatting.GREEN), true);
 		ExtendedLevelData.serverInstance().getPlayerData().unload(player);
 		return Command.SINGLE_SUCCESS;
 	}
 
 	private static int seenPlayer(CommandSource source, String playername) {
 		if(Lists.newArrayList(ServerLifecycleHooks.getCurrentServer().getPlayerNames()).contains(playername)) {
-			source.sendSuccess(new StringTextComponent(TextFormatting.GREEN + playername+ " is currently online"), true);
+			source.sendSuccess(new TranslationTextComponent("command.lotrextended.seen.online", playername).withStyle(TextFormatting.GREEN), true);
 			return Command.SINGLE_SUCCESS;
 		}
 		@Nullable UUID player = ExtendedEntityUtils.getPlayerUUIDFromUsername(playername);
 		if(player==null || !ExtendedLevelData.serverInstance().getPlayerData().doesPlayerInfoExist(player)) {
-			source.sendFailure(new StringTextComponent(TextFormatting.RED + "Player not found"));
+			source.sendFailure(new TranslationTextComponent("gui.lotrextended.base.player_not_found").withStyle(TextFormatting.RED));
 			return Command.SINGLE_SUCCESS;
 		}
 		ExtendedPlayerInfo profile = ExtendedLevelData.serverInstance().getPlayerData().getPlayerInfo(player);
 		Instant lastLogout = profile.getLastLogout();
 		if(lastLogout==null) {
-			source.sendFailure(new StringTextComponent(TextFormatting.RED + playername + "has never logged out"));
+			source.sendFailure(new TranslationTextComponent("command.lotrextended.seen.never").withStyle(TextFormatting.RED));
 			ExtendedLevelData.serverInstance().getPlayerData().unload(player);
 			return Command.SINGLE_SUCCESS;
 		}
 		String timeAgo = formatTimeAgo(lastLogout);
-		source.sendSuccess(new StringTextComponent(TextFormatting.GREEN + playername+ " was last seen " + TextFormatting.YELLOW + timeAgo), true);
+		IFormattableTextComponent playerName = new StringTextComponent(playername).withStyle(TextFormatting.GREEN);
+		IFormattableTextComponent joinDate = new StringTextComponent(timeAgo).withStyle(TextFormatting.YELLOW);
+		source.sendSuccess(new TranslationTextComponent("command.lotrextended.seen.last", playerName, joinDate).withStyle(TextFormatting.GREEN), true);
 		ExtendedLevelData.serverInstance().getPlayerData().unload(player);
 		return Command.SINGLE_SUCCESS;
 	}
@@ -114,14 +119,14 @@ public class ExtendedFirstLastSeenCommand {
 		if (day >= 11 && day <= 13) return "th";
 		int lastDigit = day % 10;
 		switch (lastDigit) {
-			case 1:
-				return "st";
-			case 2:
-				return "nd";
-			case 3:
-				return "rd";
-			default:
-				return "th";
+		case 1:
+			return "st";
+		case 2:
+			return "nd";
+		case 3:
+			return "rd";
+		default:
+			return "th";
 		}
 	}
 }

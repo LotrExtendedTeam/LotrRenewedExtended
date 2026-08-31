@@ -88,7 +88,7 @@ public class ExtendedBarrowsDataHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void clearData() {
+	protected void clearData() {
 		secondsInBarrows.clear();
 	}
 

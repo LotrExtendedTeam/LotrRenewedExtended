@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedMapScreen;
 import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
 import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConquestPos;
 import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConquestRegion;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -62,7 +64,13 @@ public class ExtendedSConquestDataPacket {
 	public static void handle(ExtendedSConquestDataPacket packet, Supplier<NetworkEvent.Context> context) {
 		context.get().setPacketHandled(true);
 		context.get().enqueueWork(() -> {
-			DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () ->  ExtendedLevelData.clientInstance().getConquestData().receiveConquestDataOnClient(packet));
+			DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () ->  {
+				ExtendedLevelData.clientInstance().getConquestData().receiveConquestDataOnClient(packet);
+				Minecraft mc = Minecraft.getInstance();
+				if(mc!=null && mc.screen instanceof ExtendedMapScreen) {
+					((ExtendedMapScreen)mc.screen).refreshConquestData();
+				}
+			});
 		});
 	}
 }

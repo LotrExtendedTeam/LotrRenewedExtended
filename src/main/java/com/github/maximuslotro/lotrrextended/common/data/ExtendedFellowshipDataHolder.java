@@ -35,7 +35,7 @@ public class ExtendedFellowshipDataHolder extends ExtendedAbstractLevelDataHolde
 	}
 
 	@Override
-	public void clearData() {
+	protected void clearData() {
 		fellowshipMap.clear();
 	}
 

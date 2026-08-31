@@ -51,7 +51,7 @@ public class ExtendedPlayerInfoHolder extends ExtendedAbstractLevelDataHolder {
 	}
 
 	@Override
-	public void clearData() {
+	protected void clearData() {
 		cachedPlayerInfo.clear();
 		playerFolder=null;
 	}

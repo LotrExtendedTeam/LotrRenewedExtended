@@ -113,7 +113,7 @@ public class ExtendedInvasionDataHolder extends ExtendedAbstractLevelDataHolder 
 	}
 
 	@Override
-	public void clearData() {
+	protected void clearData() {
 		invasionEnemiesLeft.clear();
 		recentPlayersByInvasion.clear();
 	}
