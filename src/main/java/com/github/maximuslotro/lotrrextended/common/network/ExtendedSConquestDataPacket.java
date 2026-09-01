@@ -43,7 +43,7 @@ public class ExtendedSConquestDataPacket {
 		Map<ExtendedConquestPos, ExtendedConquestRegion> conquestMap = new HashMap<>();
 		for(int i=0; i<mapSize; i++) {
 			ExtendedConquestRegion region = ExtendedConquestRegion.readBuf(buf);
-			ExtendedConquestPos pos = region.getPos();
+			ExtendedConquestPos pos = region.getConquestPos();
 			conquestMap.put(pos, region);
 		}
 		return new ExtendedSConquestDataPacket(faction, conquestScale, conquestMap);

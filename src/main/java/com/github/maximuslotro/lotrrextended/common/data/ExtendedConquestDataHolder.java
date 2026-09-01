@@ -2,9 +2,9 @@ package com.github.maximuslotro.lotrrextended.common.data;
 
 import java.io.File;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.Nonnull;
 
@@ -29,7 +29,7 @@ import net.minecraft.world.server.ServerWorld;
 
 // TODO add missing logic
 public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder {
-	private final Map<ExtendedConquestPos, ExtendedConquestRegion> conquestMap = new HashMap<>();
+	private final Map<ExtendedConquestPos, ExtendedConquestRegion> conquestMap = new ConcurrentHashMap<>();
 	private File conquestFilesFolder;
 	private File conquestDataFile;
 	private int gridSquareScale=3;
@@ -83,8 +83,8 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 		return convertMapPixelToConquestZ(mapPixelZ);
 	}
 	public int getConquestSizeInMapPixels() {
-        return getMapPixelsPerConquestRegion();
-    }
+		return getMapPixelsPerConquestRegion();
+	}
 	public ExtendedConquestPos convertCordsToConquest(int xCord, int zCord) {
 		return new ExtendedConquestPos(convertCordsToConquestX(xCord), convertCordsToConquestZ(zCord));
 	}
@@ -98,20 +98,27 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 		//TODO circular conquest
 		//TODO add player notification
 		//TODO handle other factions inc or dec
-		ExtendedLog.info("Added Conquest for {} for faction {} against {} for amount: {}", player.getDisplayName().getString(), 
-			playerFaction.getName().toString(), opposingFaction.getName().toString(), conquestAdd);
+		ExtendedLog.info("Added {} conquest strength for {} for faction {} against {} for new amount {} ", conquestAdd, player.getDisplayName().getString(), 
+			playerFaction.getName().toString(), opposingFaction.getName().toString(), conquestRegion.getConquest(playerFaction.getName()));
 	}
 	public ExtendedConquestRegion getConquestSquareCords(Vector3d position) {
 		return getConquestSquare(convertCordsToConquest((int)position.x(), (int)position.z));
 	}
 	public ExtendedConquestRegion getConquestSquare(ExtendedConquestPos conquestPos) {
-		ExtendedConquestRegion conquestSquare = conquestMap.computeIfAbsent(conquestPos, id -> loadConquestSquare(id));
-		return conquestSquare;
+		return conquestMap.computeIfAbsent(conquestPos, id -> loadConquestSquare(id));
 	}
 
 	private ExtendedConquestRegion loadConquestSquare(ExtendedConquestPos conquestPos) {
 		CompoundNBT nbt = ExtendedIOUtils.load(getConquestDatafile(conquestPos));
-		return nbt.isEmpty() ? new ExtendedConquestRegion(conquestPos) : ExtendedConquestRegion.loadFromNBT(nbt);
+		if (nbt.isEmpty()) {
+			return new ExtendedConquestRegion(conquestPos);
+		}
+		ExtendedConquestRegion loadedRegion = ExtendedConquestRegion.loadFromNBT(nbt);
+		if (!conquestPos.equals(loadedRegion.getConquestPos())) {
+			ExtendedLog.warn("Mismatched region position loaded at {}. Correcting key position.", conquestPos);
+			loadedRegion.setConquestPos(conquestPos);
+		}
+		return loadedRegion;
 	}
 
 	public void sendConquestDataToClient(ResourceLocation pFaction, ServerPlayerEntity pPlayer) {
@@ -200,9 +207,12 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 	 * @param gridSquareScale The new grid square scale, represented in powers of 2
 	 * */
 	public void setGridSquareScale(int gridSquareScale) {
-		this.gridSquareScale = gridSquareScale;
-		if(this.holder.getSide().isServer()) {
-			saveDataFile();
+		if (this.gridSquareScale != gridSquareScale) {
+			this.gridSquareScale = gridSquareScale;
+			this.conquestMap.clear();
+			if (this.holder.getSide().isServer()) {
+				saveDataFile();
+			}
 		}
 	}
 

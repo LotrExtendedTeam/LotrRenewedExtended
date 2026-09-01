@@ -146,16 +146,16 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		return (screenZ - this.offsetZ) / this.zoom;
 	}
 	private double cordToMapPixelX(double cord) {
-	    return (cord / mapScale) + this.mapOriginX;
+		return (cord / mapScale) + this.mapOriginX;
 	}
 	private double cordToMapPixelZ(double cord) {
-	    return (cord / mapScale) + this.mapOriginZ;
+		return (cord / mapScale) + this.mapOriginZ;
 	}
 	private double mapPixelToCordX(double mapPixel) {
-	    return (mapPixel - this.mapOriginX) * mapScale;
+		return (mapPixel - this.mapOriginX) * mapScale;
 	}
 	private double mapPixelToCordZ(double mapPixel) {
-	    return (mapPixel - this.mapOriginZ) * mapScale;
+		return (mapPixel - this.mapOriginZ) * mapScale;
 	}
 	private void clampMapBoundaries() {
 		float scaledWidth = mapWidth * zoom;
@@ -275,6 +275,9 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		if(showDebug) {
 			renderDebugInfo(matrixStack, mouseX, mouseY);
 		}
+		if(showConquest) {
+			renderConquestTooltip(matrixStack, mouseX, mouseY);
+		}
 	}
 
 	private void renderSelectedFaction(MatrixStack matrixStack) {
@@ -330,6 +333,25 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 
 	private void renderMapSquare(MatrixStack matrixStack, float mapPixelX, float mapPixelZ, int scaleSize, int colorARGB) {
 		fillFloat(matrixStack, mapPixelX, mapPixelZ, (mapPixelX + scaleSize), (mapPixelZ + scaleSize), colorARGB);
+	}
+
+	private void renderConquestTooltip(MatrixStack matrixStack, int mouseX, int mouseY) {
+		if (selectedFaction == null || conquestRegions.isEmpty()) {
+			return;
+		}
+		double mouseMapPixelX = screenToMapPixelX(mouseX);
+		double mouseMapPixelZ = screenToMapPixelZ(mouseY);
+		int conquestPixels = conquestData.getConquestSizeInMapPixels();
+		for (Entry<ExtendedConquestPos, ExtendedConquestRegion> entry : conquestRegions.entrySet()) {
+			int mapPixelX = conquestData.convertConquestToMapPixelX(entry.getKey().getPosX());
+			int mapPixelZ = conquestData.convertConquestToMapPixelZ(entry.getKey().getPosZ());
+			float levelFaction = entry.getValue().getConquest(selectedFaction.getName());
+			if (levelFaction>0 && mouseMapPixelX >= mapPixelX && mouseMapPixelX < (mapPixelX + conquestPixels) 
+				&& mouseMapPixelZ >= mapPixelZ && mouseMapPixelZ < (mapPixelZ + conquestPixels)) {
+				renderTooltip(matrixStack, new StringTextComponent(String.format("Conquest Strength: %.1f", levelFaction)), mouseX, mouseY);
+				break;
+			}
+		}
 	}
 
 	private void renderDebugInfo(MatrixStack matrixStack, int mouseX, int mouseY) {
