@@ -221,6 +221,9 @@ public class ExtendedItemTagGenerator extends ExtendedTagsProvider<Item> {
 
 		tag(Tags.Items.EGGS).add(ExtendedItems.DUCK_EGG.get());
 
+		tag(Tags.Items.CROPS).add(ExtendedItems.LEEK.get());
+		tag(ExtendedTags.Items.CROPS_LEEK).add(ExtendedItems.LEEK.get());
+
 		tag(ExtendedTags.Items.FLESH).add(Items.ROTTEN_FLESH, LOTRItems.MAN_FLESH.get());
 
 		tag(ExtendedTags.Items.FURS).add(ExtendedItems.BLACK_FUR.get(),ExtendedItems.GRAY_FUR.get(),ExtendedItems.SILVER_FUR.get(),ExtendedItems.WHITE_FUR.get());

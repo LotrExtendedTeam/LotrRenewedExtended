@@ -42,6 +42,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemGroup;
@@ -50,6 +51,7 @@ import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.Rarity;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SignItem;
+import net.minecraft.item.SoupItem;
 import net.minecraft.item.TallBlockItem;
 import net.minecraft.item.WallOrFloorItem;
 import net.minecraft.tileentity.BannerPattern;
@@ -752,6 +754,10 @@ public class ExtendedItems {
 
 	public static RegistryObject<Item> BANANA_BEER = regItem("banana_beer", () -> VesselDrinkItem.newAlcohol(0.5F, 4, 0.6F));
 	public static RegistryObject<Item> PLUM_KVASS = regItem("plum_kvass", () -> VesselDrinkItem.newAlcohol(0.2F, 4, 0.4F));
+
+	
+	public static RegistryObject<Item> LEEK = regItem("leek", () -> new BlockNamedItem(ExtendedBlocks.LEEKS.get(), new Properties().tab(LOTRItemGroups.FOOD).food(ExtendedFoods.LEEK)));
+	public static RegistryObject<Item> LEEK_SOUP = regItem("leek_soup", () -> new SoupItem(new Properties().tab(LOTRItemGroups.FOOD).stacksTo(1).food(ExtendedFoods.LEEK_SOUP)));
 	//#######################################################################EQUIPMENT##################################################
 	public static RegistryObject<Item> LEATHER_WARG_ARMOR = regItem("leather_warg_armor", () -> new ExtendedMountedDyeableArmorItem(8, "leather", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 	public static RegistryObject<Item> MAIL_WARG_ARMOR = regItem("mail_warg_armor", () -> new ExtendedMountedArmorItem(10, "mail", MountType.WARG, new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));

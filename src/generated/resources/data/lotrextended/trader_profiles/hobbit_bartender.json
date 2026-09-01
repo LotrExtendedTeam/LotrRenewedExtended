@@ -81,6 +81,14 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotrextended:leek",
+        "averageCost": 1,
+        "count": 2
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "minecraft:cod",
         "averageCost": 2
       }
@@ -263,6 +271,13 @@
       "weight": 50,
       "stack": {
         "item": "minecraft:mushroom_stew",
+        "averageCost": 10
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
+        "item": "lotrextended:leek_soup",
         "averageCost": 10
       }
     },

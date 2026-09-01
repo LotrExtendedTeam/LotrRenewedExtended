@@ -55,6 +55,7 @@ import lotr.common.item.LOTRHoeItem;
 import lotr.common.item.LOTRShieldItem;
 import lotr.common.item.SpearItem;
 import lotr.common.item.VesselDrinkItem;
+import net.minecraft.block.CropsBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
@@ -186,6 +187,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 					genSwordLarge(item.get());
 					continue;
 				}
+				if(((BlockItem)item.get()).getBlock() instanceof CropsBlock) {
+					genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
+					continue;
+				}
 				if(((BlockItem)item.get()).getBlock() instanceof ExtendedVineBlock) {
 					if(item.getId().getPath().contains(ExtendedItems.DEAD_MOSS_VINES.get().getRegistryName().getPath())) {
 						genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()+"_hand"));
@@ -231,12 +236,10 @@ public class ExtendedItemModelGenerator extends ItemModelProvider {
 			if(item.get() instanceof LOTRArmorItem) {
 				genGenerated(item.get(), lotrExtendedLoc("item/"+item.getId().getPath()));
 				continue;
-
 			}
 			if(item.get() instanceof VesselDrinkItem) {
 				genDrink(item.get(), "item/"+item.getId().getPath());
 				continue;
-
 			}
 			if(item.get() instanceof BannerPatternItem) {
 				genGenerated(item.get(), lotrExtendedLoc("item/banner_pattern"));

@@ -8,7 +8,7 @@
       "item": "lotrextended:banana"
     },
     "X": {
-      "item": "minecraft:wheat"
+      "tag": "forge:crops/wheat"
     }
   },
   "result": {

@@ -209,7 +209,7 @@ public class WanderingTradersList {
 					throw new IllegalArgumentException("Recieved a trader id that does not exist: "+traderId.toString());
 				}
 				EntityType<?> traderType = ForgeRegistries.ENTITIES.getValue(traderId);
-				if(traderType==null||ServerLifecycleHooks.getCurrentServer()==null) {
+				if(traderType==null || ServerLifecycleHooks.getCurrentServer()==null) {
 					throw new IllegalStateException("Can't create wandering trader pools on client!");
 				}
 				Faction traderFaction = NPCEntitySettingsManager.serverInstance().getCurrentLoadedEntitySettings().getEntityTypeSettings(traderType).getAssignedFaction(ServerLifecycleHooks.getCurrentServer().overworld());

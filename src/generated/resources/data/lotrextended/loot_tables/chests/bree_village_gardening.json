@@ -246,6 +246,21 @@
               }
             }
           ],
+          "name": "lotrextended:leek"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 75,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
           "name": "lotr:lettuce"
         },
         {

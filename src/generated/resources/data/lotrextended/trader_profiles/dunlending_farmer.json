@@ -121,6 +121,13 @@
     {
       "weight": 50,
       "stack": {
+        "item": "lotrextended:leek",
+        "averageCost": 3
+      }
+    },
+    {
+      "weight": 50,
+      "stack": {
         "item": "minecraft:hay_block",
         "averageCost": 12
       }
