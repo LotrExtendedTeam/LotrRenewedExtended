@@ -1,0 +1,43 @@
+{
+  "minecraft:cooked_chicken": {
+    "model": "lotr:item/plate_food/cooked_chicken",
+    "height": 0.21
+  },
+  "minecraft:chicken": {
+    "model": "lotr:item/plate_food/chicken",
+    "height": 0.21
+  },
+  "minecraft:bread": {
+    "model": "lotr:item/plate_food/bread",
+    "height": 0.14
+  },
+  "lotr:maggoty_bread": {
+    "model": "lotr:item/plate_food/maggoty_bread",
+    "height": 0.14
+  },
+  "minecraft:pumpkin_pie": {
+    "model": "lotr:item/plate_food/pumpkin_pie",
+    "height": 0.1
+  },
+  "minecraft:bowl": {
+    "model": "lotr:item/plate_food/bowl"
+  },
+  "minecraft:mushroom_stew": {
+    "model": "lotr:item/plate_food/mushroom_stew"
+  },
+  "minecraft:rabbit_stew": {
+    "model": "lotr:item/plate_food/rabbit_stew"
+  },
+  "minecraft:beetroot_soup": {
+    "model": "lotr:item/plate_food/beetroot_soup"
+  },
+  "lotr:maple_syrup": {
+    "model": "lotr:item/plate_food/maple_syrup"
+  },
+  "minecraft:suspicious_stew": {
+    "model": "lotr:item/plate_food/suspicious_stew"
+  },
+  "lotrextended:leek_soup": {
+    "model": "lotrextended:item/plate_food/leek_soup"
+  }
+}
