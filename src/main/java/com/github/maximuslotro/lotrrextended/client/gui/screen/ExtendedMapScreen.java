@@ -348,7 +348,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 			float levelFaction = entry.getValue().getConquest(selectedFaction.getName());
 			if (levelFaction>0 && mouseMapPixelX >= mapPixelX && mouseMapPixelX < (mapPixelX + conquestPixels) 
 				&& mouseMapPixelZ >= mapPixelZ && mouseMapPixelZ < (mapPixelZ + conquestPixels)) {
-				renderTooltip(matrixStack, new StringTextComponent(String.format("Conquest Strength: %.1f", levelFaction)), mouseX, mouseY);
+				renderTooltip(matrixStack, new StringTextComponent(String.format("Conquest Strength: %.2f", levelFaction)), mouseX, mouseY);
 				break;
 			}
 		}

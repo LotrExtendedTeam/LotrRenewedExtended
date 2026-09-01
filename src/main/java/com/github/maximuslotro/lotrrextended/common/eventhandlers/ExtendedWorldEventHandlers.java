@@ -322,11 +322,13 @@ public class ExtendedWorldEventHandlers {
 			}
 			// Handle Conquest points
 			PlayerEntity conquestPlayer = null;
+			boolean fromHiredUnit = false;
 			if(killerEntity instanceof PlayerEntity) {
 				conquestPlayer = (PlayerEntity) killerEntity;
 			}else if(killerEntity instanceof ExtendedINPCEntity && ((ExtendedINPCEntity)killerEntity).getUnitInfo().isNpcActiveDuty()) {
 				if(((ExtendedINPCEntity)killerEntity).getUnitInfo().getUnitOwner()!=null) {
 					conquestPlayer = ((ExtendedINPCEntity)killerEntity).getUnitInfo().getUnitOwner();
+					fromHiredUnit = true;
 				}
 			}
 			if(conquestPlayer!=null) {
@@ -335,7 +337,7 @@ public class ExtendedWorldEventHandlers {
 				Faction deadFaction = EntityFactionHelper.getFaction(deadEntity);
 				Faction pedegeFaction = playerData.getAlignmentData().getPledgeFaction();
 				if(pedegeFaction!=null && pedegeFaction.isBadRelation(deadFaction) && conquestAmount>0) {
-					ExtendedLevelData.serverInstance().getConquestData().addConquest(conquestPlayer, conquestAmount, pedegeFaction, deadFaction, deadEntity.blockPosition());
+					ExtendedLevelData.serverInstance().getConquestData().addConquest(conquestPlayer, conquestAmount, pedegeFaction, deadFaction, deadEntity.blockPosition(), fromHiredUnit);
 				}
 			}
 		}
