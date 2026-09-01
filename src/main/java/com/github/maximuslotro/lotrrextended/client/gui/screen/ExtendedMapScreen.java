@@ -9,7 +9,6 @@ import java.util.Map.Entry;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedSlider;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedSimpleButton;
 import com.github.maximuslotro.lotrrextended.client.render.utils.ExtendedColorUtil;
@@ -38,6 +37,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 	private final static int CONQUEST_SQUARE_RED = 0x80FF0000;
 	private final static int CONQUEST_SQUARE_GREEN = 0x8000FF00;
 	private final static int CONQUEST_SQUARE_GRAY = 0x80808080;
+	private final static int MAP_BACKGROUND = 0xFF024B75;
 	private static Minecraft mc = Minecraft.getInstance();
 	private ResourceLocation MAP_TEXTURE;
 	private ResourceLocation MAP_TEXTURE_OVERLAY;
@@ -87,7 +87,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		this.mapOriginZ = mapSettings.getCurrentLoadedMap().getOriginZ();
 		this.mapWidth = mapSettings.getCurrentLoadedMap().getWidth();
 		this.mapHeight = mapSettings.getCurrentLoadedMap().getHeight();
-		this.mapScale = mapSettings.getCurrentLoadedMap().getScalePower();
+		this.mapScale = 1 << mapSettings.getCurrentLoadedMap().getScalePower();
 		this.MAP_TEXTURE = new ResourceLocation("lotr", "textures/map/loaded_map.png");
 		ResourceLocation overlay = new ResourceLocation("lotrextended", "textures/map/middle_earth_overlay.png");
 		if(mc.getResourceManager().hasResource(overlay)) {
@@ -133,9 +133,6 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		this.offsetX = (this.width / 2) - (cordToMapPixelX(x) * zoom);
 		this.offsetZ = (this.height / 2) - (cordToMapPixelZ(z) * zoom);
 	}
-	private int getScaleFactor() {
-	    return (1 << mapScale);
-	}
 	private double mapPixelToScreenX(double mapPixelX) {
 		return (mapPixelX * this.zoom) + this.offsetX;
 	}
@@ -149,28 +146,16 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 		return (screenZ - this.offsetZ) / this.zoom;
 	}
 	private double cordToMapPixelX(double cord) {
-	    return (cord / getScaleFactor()) - this.mapOriginX;
+	    return (cord / mapScale) + this.mapOriginX;
 	}
 	private double cordToMapPixelZ(double cord) {
-	    return (cord / getScaleFactor()) - this.mapOriginZ;
+	    return (cord / mapScale) + this.mapOriginZ;
 	}
 	private double mapPixelToCordX(double mapPixel) {
-	    return (mapPixel + this.mapOriginX) * getScaleFactor();
+	    return (mapPixel - this.mapOriginX) * mapScale;
 	}
 	private double mapPixelToCordZ(double mapPixel) {
-	    return (mapPixel + this.mapOriginZ) * getScaleFactor();
-	}
-	public int convertWorldToMapPixelX(int xBlock) {
-	    return Math.floorDiv(xBlock, getScaleFactor()) + mapOriginX;
-	}
-	public int convertWorldToMapPixelZ(int zBlock) {
-	    return Math.floorDiv(zBlock, getScaleFactor()) + mapOriginZ;
-	}
-	public int convertMapPixelToWorldX(int mapPixelX) {
-	    return (mapPixelX - mapOriginX) * getScaleFactor();
-	}
-	public int convertMapPixelToWorldZ(int mapPixelZ) {
-	    return (mapPixelZ - mapOriginZ) * getScaleFactor();
+	    return (mapPixel - this.mapOriginZ) * mapScale;
 	}
 	private void clampMapBoundaries() {
 		float scaledWidth = mapWidth * zoom;
@@ -257,7 +242,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 	@Override
 	public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		//renderBackground(matrixStack);
-		fill(matrixStack, 0, 0, this.width, this.height, 0xFF024B75);//Render blue sea endlessly
+		fill(matrixStack, 0, 0, this.width, this.height, MAP_BACKGROUND);
 
 		matrixStack.pushPose(); // Render movable map components inside pose
 		// Render pose in map pixel space
@@ -330,7 +315,6 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 				int mapPixelX = conquestData.convertConquestToMapPixelX(region.getKey().getPosX());
 				int mapPixelZ = conquestData.convertConquestToMapPixelZ(region.getKey().getPosZ());
 				renderMapSquare(matrixStack, mapPixelX, mapPixelZ, conquestData.getConquestSizeInMapPixels(), CONQUEST_SQUARE_RED);
-				ExtendedLog.info("rendering at  "+mapPixelX+":"+mapPixelZ);
 			}
 		}
 		if(showConquestDEBUG) {
@@ -359,7 +343,7 @@ public class ExtendedMapScreen extends ExtendedAbstractBasicScreen {
 				String.format("Mouse Position: X=%d, Y=%d", mouseX, mouseY),
 				String.format("Mouse Image Cords: X=%.1f, Z=%.1f", mouseMapPixelX, mouseMapPixelZ),
 				String.format("Hover World Cords: X=%.1f, Z=%.1f", mouseWorldX, mouseWorldZ),
-				String.format("Map Scale Factor: %d blocks/pixel", getScaleFactor()),
+				String.format("Map Scale Factor: %d blocks/pixel", mapScale),
 				String.format("Render Offset: X=%.2f, Z=%.2f", offsetX, offsetZ),
 				String.format("Zoom Scale: %.3fx", zoom),
 				String.format("Is Dragging: %b", isDraggingMap),
