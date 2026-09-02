@@ -30,7 +30,7 @@ public class ExtendedUrukHighlandsBiome extends RohanBiome {
 	@Override
 	protected void addAnimals(net.minecraft.world.biome.MobSpawnInfo.Builder builder) {
 		super.addAnimals(builder);
-		builder.addSpawn(EntityClassification.CREATURE, new Spawners(ExtendedEntities.CRABAN.get(), 1, 1, 1));
+		builder.addSpawn(EntityClassification.CREATURE, new Spawners(ExtendedEntities.CRABAN.get(), 10, 2, 6));
 	}
 
 	@Override
