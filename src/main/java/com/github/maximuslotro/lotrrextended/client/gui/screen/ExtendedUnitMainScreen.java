@@ -6,11 +6,11 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import lotr.common.entity.npc.NPCEntity;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedUnitMainScreen extends ExtendedBasicAbstractScreen {
@@ -22,6 +22,8 @@ public class ExtendedUnitMainScreen extends ExtendedBasicAbstractScreen {
 	private Button inventoryButton;
 	private Button dismissButton;
 	private Button transferButton;
+	private Button dismissConfirmButton;
+	private Button transferConfirmButton;
 
 	private final boolean hasHireData;
 	public ExtendedUnitMainScreen(NPCEntity entity, PlayerEntity player, boolean hasHireData) {
@@ -66,32 +68,74 @@ public class ExtendedUnitMainScreen extends ExtendedBasicAbstractScreen {
 				}
 			}
 		});
+		dismissConfirmButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 190, 120, 20, new TranslationTextComponent("gui.lotrextended.hired_unit.dismiss_button_confirm").withStyle(TextFormatting.RED), button -> dismissUnitConfirmed()) {
+			@Override
+			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
+				ExtendedUnitMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.hired_unit.dismiss_button_confirm.tooltip").withStyle(TextFormatting.RED), 200), pMouseX, pMouseY);
+			}
+		});
+		dismissConfirmButton.visible = false;
+		transferConfirmButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 190, 120, 20, new TranslationTextComponent("gui.lotrextended.hired_unit.transfer_button_confirm").withStyle(TextFormatting.RED), button -> transferUnitConfirmed()) {
+			@Override
+			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
+				ExtendedUnitMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.hired_unit.transfer_button_confirm.tooltip").withStyle(TextFormatting.RED), 200), pMouseX, pMouseY);
+			}
+		});
+		transferConfirmButton.visible = false;
+		// disable bellow buttons if no hiring data present
+		dismissButton.active = hasHireData;
+		transferButton.active = hasHireData;
+		dismissConfirmButton.active = hasHireData;
+		transferConfirmButton.active = hasHireData;
+
+
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
-		dismissButton.active = hasHireData;
-		transferButton.active = hasHireData;
+		if(dismissConfirmButton.visible && transferConfirmButton.visible) {
+			//Disable both buttons if for some reason both are rendering
+			dismissConfirmButton.visible = false;
+			transferConfirmButton.visible = false;
+		}
 	}
 
 	private void talkWithNPC() {
 		ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithNPCPacket(entity.getId()));
-		Minecraft mc = Minecraft.getInstance();
-		mc.player.closeContainer();
+		this.minecraft.setScreen(null);
 	}
 
 	private void openInterface() {
 		ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredOverviewMenuPacket(entity.getId()));
+		this.minecraft.setScreen(null);
 	}
 
 	private void dismissUnit() {
 		if (hasHireData) {
+			dismissConfirmButton.visible=true;
+			transferConfirmButton.visible=false;
+		}
+	}
+
+	private void dismissUnitConfirmed() {
+		if (hasHireData) {
+			ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithNPCPacket(entity.getId()));
+			this.minecraft.setScreen(null);
 		}
 	}
 
 	private void transferUnit() {
 		if (hasHireData) {
+			dismissConfirmButton.visible=false;
+			transferConfirmButton.visible=true;
+		}
+	}
+
+	private void transferUnitConfirmed() {
+		if (hasHireData) {
+			//ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithNPCPacket(entity.getId()));
+			this.minecraft.setScreen(null);
 		}
 	}
 

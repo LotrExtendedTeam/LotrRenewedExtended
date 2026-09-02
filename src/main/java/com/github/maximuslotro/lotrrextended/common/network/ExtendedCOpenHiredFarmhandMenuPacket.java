@@ -30,10 +30,6 @@ public class ExtendedCOpenHiredFarmhandMenuPacket {
 		buf.writeInt(msg.entityId);
 	}
 
-	public int getEntityId() {
-		return this.entityId;
-	}
-
 	public static void handle(ExtendedCOpenHiredFarmhandMenuPacket msg, Supplier<NetworkEvent.Context> context) {
 		context.get().enqueueWork(() -> {
 			ServerPlayerEntity pPlayer = context.get().getSender();

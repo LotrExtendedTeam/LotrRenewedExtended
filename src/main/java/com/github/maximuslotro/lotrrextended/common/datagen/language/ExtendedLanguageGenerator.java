@@ -210,12 +210,16 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 		
 		// hired unit GUI
-		addD("gui.lotrextended.hired_unit.interface_button", "Inventory & Settings");
-		addD("gui.lotrextended.hired_unit.interface_button.tooltip", "Access unit inventory and command settings");
+		addD("gui.lotrextended.hired_unit.interface_button", "Equipment & Tasks");
+		addD("gui.lotrextended.hired_unit.interface_button.tooltip", "Access unit equipment and command tasks");
 		addD("gui.lotrextended.hired_unit.dismiss_button", "Dismiss");
 		addD("gui.lotrextended.hired_unit.dismiss_button.tooltip", "Dismiss unit from your service");
+		addD("gui.lotrextended.hired_unit.dismiss_button_confirm", "Confirm Dismissal");
+		addD("gui.lotrextended.hired_unit.dismiss_button_confirm.tooltip", "This operation is irreversible");
 		addD("gui.lotrextended.hired_unit.transfer_button", "Transfer");
 		addD("gui.lotrextended.hired_unit.transfer_button.tooltip", "Transfer unit to another online player");
+		addD("gui.lotrextended.hired_unit.transfer_button_confirm", "Confirm Transfer");
+		addD("gui.lotrextended.hired_unit.transfer_button_confirm.tooltip", "Transfering units to another player is irreversible");
 		addD("gui.lotrextended.hired_unit.error.old_hiring_tooltip_1_11", "Operation not available for unit hired before 1.11.0");
 
 		addD("gui.lotrextended.hired_unit_tooltip.title.companion", "Companion:");

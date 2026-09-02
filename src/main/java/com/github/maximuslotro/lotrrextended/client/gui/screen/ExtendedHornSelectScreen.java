@@ -29,11 +29,11 @@ public class ExtendedHornSelectScreen extends ExtendedBasicAbstractScreen {
 		super.init();
 		this.addButton(new Button(this.leftPos + 40, this.topPos + 40, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_halt_reddy"), button -> {
 			ExtendedPacketHandler.sendToServer(new ExtendedCSelectHornPacket(ExtendedUnitHornTypes.HALT));
-			this.minecraft.player.closeContainer();
+			this.minecraft.setScreen(null);
 		}));
 		this.addButton(new Button(this.leftPos + 40, this.topPos + 75, 120, 20, new TranslationTextComponent("gui.lotrextended.horn_select.option_summon"), button -> {
 			ExtendedPacketHandler.sendToServer(new ExtendedCSelectHornPacket(ExtendedUnitHornTypes.SUMMON));
-			this.minecraft.player.closeContainer();
+			this.minecraft.setScreen(null);
 		}));
 	}
 
@@ -56,12 +56,11 @@ public class ExtendedHornSelectScreen extends ExtendedBasicAbstractScreen {
 		super.tick();
 		ItemStack itemstack = this.minecraft.player.getMainHandItem();
 		if (itemstack == null || itemstack.getItem() != ExtendedItems.COMMANDHORN.get()) {
-			this.minecraft.player.closeContainer();
-			this.onClose();
+			this.minecraft.setScreen(null);
+			return;
 		}
 		if(!ExtendedCommandHornItem.getType(itemstack).isUnset()){
-			this.minecraft.player.closeContainer();
-			this.onClose();
+			this.minecraft.setScreen(null);
 			return;
 		}
 	}

@@ -9,7 +9,6 @@ import lotr.common.entity.npc.ExtendedICaptainEntity;
 import lotr.common.entity.npc.ExtendedIMerchantEntity;
 import lotr.common.entity.npc.ExtendedITraderEntity;
 import lotr.common.entity.npc.NPCEntity;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Util;
@@ -119,7 +118,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 
 	private void talkWithNPC() {
 		ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithNPCPacket(entity.getId()));
-		closeThisMenu();
+		this.minecraft.setScreen(null);
 	}
 
 	private void tradeWithNPC() {
@@ -152,11 +151,10 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 	private void sendClientErrorMessage() {
 		if (!LOTRMod.PROXY.getSidedAttackTarget(entity).isPresent()) {
 			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_alignment_too_low"), Util.NIL_UUID);
-			closeThisMenu();
 		}else {
 			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_unfrendly"), Util.NIL_UUID);
-			closeThisMenu();
 		}
+		this.minecraft.setScreen(null);
 	}
 
 	@Override
@@ -167,12 +165,5 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 		this.font.draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 95, 16777215);
 
 		super.render(matStack, mouseX, mouseY, tick);
-	}
-
-	private void closeThisMenu() {
-		Minecraft mc = Minecraft.getInstance();
-		if(mc.player != null) {
-			mc.player.closeContainer();
-		}
 	}
 }
