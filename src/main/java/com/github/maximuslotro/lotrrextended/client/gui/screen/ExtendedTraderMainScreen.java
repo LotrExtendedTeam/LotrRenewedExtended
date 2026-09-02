@@ -1,6 +1,6 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCTalkWithTraderPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCTalkWithNPCPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
@@ -43,10 +43,10 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 	public void init() {
 		super.init();
 		// Talk button
-		talkButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 115, 120, 20, new TranslationTextComponent("gui.lotrextended.trading.talk_button"), button -> talkWithNPC()) {
+		talkButton = this.addButton(new Button(this.leftPos + (this.imageWidth - 120) / 2, this.topPos + 115, 120, 20, new TranslationTextComponent("gui.lotrextended.entity.talk_button"), button -> talkWithNPC()) {
 			@Override
 			public void renderToolTip(MatrixStack pPoseStack, int pMouseX, int pMouseY) {
-				ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.trading.talk_button.tooltip", entity.getName()), 200), pMouseX, pMouseY);
+				ExtendedTraderMainScreen.this.renderTooltip(pPoseStack, font.split(new TranslationTextComponent("gui.lotrextended.entity.talk_button.tooltip", entity.getName()), 200), pMouseX, pMouseY);
 			}
 		});
 		// Trade Button
@@ -118,7 +118,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 	}
 
 	private void talkWithNPC() {
-		ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithTraderPacket(entity.getId()));
+		ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithNPCPacket(entity.getId()));
 		closeThisMenu();
 	}
 

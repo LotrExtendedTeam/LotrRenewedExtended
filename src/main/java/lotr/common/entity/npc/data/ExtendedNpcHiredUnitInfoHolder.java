@@ -20,6 +20,8 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcUnitInfoPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedModifierUtils;
 
+import lotr.common.data.LOTRLevelData;
+import lotr.common.data.LOTRPlayerData;
 import lotr.common.entity.npc.BreeGuardEntity;
 import lotr.common.entity.npc.ExtendedDunedainRangerEntity;
 import lotr.common.entity.npc.ExtendedINPCEntity;
@@ -73,6 +75,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	private ExtendedUnitOrders unitOrders = ExtendedUnitOrders.STATIONARY;
 	private boolean isHired = false;
 	private boolean wasHired = false;
+	private @Nullable UnitHiredInformation hiringInfomation;
 	// Temporary data
 	private int lastHealed = 0;
 	private boolean resendData = false;
@@ -126,6 +129,16 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			// Ensure unit base health is updated after level-ups
 			checkHealthStat();
 
+			if(getUnitOwner()!=null && hasHireInfo()) {
+				LOTRPlayerData playerData = LOTRLevelData.getSidedData((PlayerEntity) getUnitOwner());
+				if((playerData.getAlignmentData().getAlignment(thisEntity.getFaction()) < getHireInfo().getAlignmentRequired())
+					|| (getHireInfo().isPledgeRequired() && !playerData.getAlignmentData().isPledgedTo(thisEntity.getFaction()))) {
+					getUnitOwner().sendMessage(new TranslationTextComponent("chat.lotrextended.hired_unit.desert", getHiredUnitNameAndTitle()), getUnitOwner().getUUID());
+					isHired=false;
+					markDirty();
+				}
+			}
+
 			// Handle loading init data or fixing broken data
 			if (resendData) {
 				sendDataToAllBeings();
@@ -135,20 +148,20 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	}
 
 	public ItemStack getValidOtherFood() {
-        for (int i = 0; i < 9; ++i) {
-            ItemStack itemstack = this.internalUnitInventory.getItem(i);
-            if (itemstack.isEdible()) {
-                return itemstack;
-            }
-        }
-        return ItemStack.EMPTY;
-    }
+		for (int i = 0; i < 9; ++i) {
+			ItemStack itemstack = this.internalUnitInventory.getItem(i);
+			if (itemstack.isEdible()) {
+				return itemstack;
+			}
+		}
+		return ItemStack.EMPTY;
+	}
 
 	public boolean isNpcActiveDuty() {
 		return isHired;
 	}
 
-	public boolean wasNpcActiveDismissed() {
+	public boolean isNPCDismissed() {
 		return wasHired;
 	}
 
@@ -156,7 +169,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 		return isHired || wasHired;
 	}
 
-	public boolean setNpcAsHired(PlayerEntity setOwner, ResourceLocation loc) {
+	public boolean setNpcAsHired(PlayerEntity setOwner, ResourceLocation loc, UnitHiredInformation pHiringInfo) {
 		this.unitProfile = loc;
 		if(getUnitProfile()==null) {
 			return false;
@@ -165,6 +178,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 		this.setOwnerUUID(setOwner.getUUID());
 		isHired = true;
 		wasHired = true;
+		hiringInfomation = pHiringInfo;
 		setupUnitEquipment();
 		setOrders(ExtendedUnitOrders.FOLLOW_PLAYER);
 		markDirty();
@@ -216,6 +230,9 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 				}
 				if(holder.contains("unit_orders")) {
 					unitOrders = ExtendedUnitOrders.getByUnchangingIndex(holder.getInt("unit_orders"));
+				}
+				if(holder.contains("hire_info")) {
+					hiringInfomation = UnitHiredInformation.loadFromNBT(holder.getCompound("hire_info"));
 				}
 				markDirty();
 			}else {
@@ -302,6 +319,9 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			holder.putInt("base_health", this.getBaseHealth());
 			holder.putBoolean("is_hired", isHired);
 			holder.putInt("current_health", (int) this.thisEntity.getHealth());
+			if(hiringInfomation!=null) {
+				holder.put("hire_info", hiringInfomation.saveToNBT());
+			}
 		}
 		nbt.put("HiredUnitInfo", holder);
 	}
@@ -340,6 +360,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			buf.writeUUID(ownerUUID);
 			buf.writeBoolean(isHired);
 			buf.writeBoolean(wasHired);
+			//TODO don't sync below data for non-owner entities
 			buf.writeInt(unit_level);
 			buf.writeFloat(current_xp);
 			buf.writeFloat(max_xp);
@@ -451,9 +472,9 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 		return this.baseHealth;
 	}
 
-    public void giveExperiencePoints(float points) {
-        ExtendedHiredUnitHelper.giveExperiencePoints(this, points);
-    }
+	public void giveExperiencePoints(float points) {
+		ExtendedHiredUnitHelper.giveExperiencePoints(this, points);
+	}
 	// ######################################### Inventory Management
 	public ExtendedUnitInventory makeUnitInventory() {
 		// 9 inventory slots + 10 player equipment slots + 10 base equipment slots
@@ -520,7 +541,17 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			setOrders(orders);
 		}
 	}
+	// ######################################### Hiring
 
+	public boolean hasHireInfo() {
+		return hiringInfomation!=null;
+	}
+
+	public UnitHiredInformation getHireInfo() {
+		return hiringInfomation;
+	}
+
+	// ######################################### LOGIC
 	public void updateSlot(ItemStack stack, ExtendedEquipmentSlotType slot) {
 		if (slot == ExtendedEquipmentSlotType.HEAD) {
 			internalUnitInventory.setItem(9, stack);
@@ -881,5 +912,37 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	 */
 	public NPCEntity getThisEntity() {
 		return thisEntity;
+	}
+
+	public static class UnitHiredInformation {
+		private int alignmentRequired;
+		private boolean pledgeRequired;
+
+		public UnitHiredInformation(int alignmentRequired, boolean pledgeRequired) {
+			this.alignmentRequired = alignmentRequired;
+			this.pledgeRequired = pledgeRequired;
+		}
+
+		public int getAlignmentRequired() {
+			return alignmentRequired;
+		}
+		public boolean isPledgeRequired() {
+			return pledgeRequired;
+		}
+
+		public CompoundNBT saveToNBT() {
+			CompoundNBT nbt = new CompoundNBT();
+			nbt.putInt("align", alignmentRequired);
+			nbt.putBoolean("pledged", pledgeRequired);
+			int alignmentRequired = nbt.getInt("align");
+			boolean pledgeRequired = nbt.getBoolean("pledged");
+			return nbt;
+		}
+
+		public static UnitHiredInformation loadFromNBT(CompoundNBT nbt) {
+			int alignmentRequired = nbt.getInt("align");
+			boolean pledgeRequired = nbt.getBoolean("pledged");
+			return new UnitHiredInformation(alignmentRequired, pledgeRequired);
+		}
 	}
 }

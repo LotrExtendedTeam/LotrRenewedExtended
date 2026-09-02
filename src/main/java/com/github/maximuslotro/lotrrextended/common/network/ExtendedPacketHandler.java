@@ -30,7 +30,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedCSelectHornPacket.class, ExtendedCSelectHornPacket::encode, ExtendedCSelectHornPacket::decode, ExtendedCSelectHornPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCExchangeCoinsPacket.class, ExtendedCExchangeCoinsPacket::encode, ExtendedCExchangeCoinsPacket::decode, ExtendedCExchangeCoinsPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenCoinExchangePacket.class, ExtendedCOpenCoinExchangePacket::encode, ExtendedCOpenCoinExchangePacket::decode, ExtendedCOpenCoinExchangePacket::handle);
-		CHANNEL.registerMessage(id++, ExtendedCTalkWithTraderPacket.class, ExtendedCTalkWithTraderPacket::encode, ExtendedCTalkWithTraderPacket::decode, ExtendedCTalkWithTraderPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCTalkWithNPCPacket.class, ExtendedCTalkWithNPCPacket::encode, ExtendedCTalkWithNPCPacket::decode, ExtendedCTalkWithNPCPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenTradeMenuPacket.class, ExtendedCOpenTradeMenuPacket::encode, ExtendedCOpenTradeMenuPacket::decode, ExtendedCOpenTradeMenuPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCTradeSellItemsPacket.class, ExtendedCTradeSellItemsPacket::encode, ExtendedCTradeSellItemsPacket::decode, ExtendedCTradeSellItemsPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSUpdateTradeQuantitiesPacket.class, ExtendedSUpdateTradeQuantitiesPacket::encode, ExtendedSUpdateTradeQuantitiesPacket::decode, ExtendedSUpdateTradeQuantitiesPacket::handle);
@@ -65,6 +65,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSNpcCaptainInfoPacket.class, ExtendedSNpcCaptainInfoPacket::encode, ExtendedSNpcCaptainInfoPacket::decode, ExtendedSNpcCaptainInfoPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCOpenHiredFarmhandMenuPacket.class, ExtendedCOpenHiredFarmhandMenuPacket::encode, ExtendedCOpenHiredFarmhandMenuPacket::decode, ExtendedCOpenHiredFarmhandMenuPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSNpcFarmhandInfoPacket.class, ExtendedSNpcFarmhandInfoPacket::encode, ExtendedSNpcFarmhandInfoPacket::decode, ExtendedSNpcFarmhandInfoPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedSOpenHiredMenuPacket.class, ExtendedSOpenHiredMenuPacket::encode, ExtendedSOpenHiredMenuPacket::decode, ExtendedSOpenHiredMenuPacket::handle);
 
 		if (id >= 255) {
 			// Since IndexedMessageCodec.MessageHandler -> indicies.put((short)(index & 0xff), this);

@@ -8,16 +8,23 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandle
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSNpcFarmhandInfoPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedNBTUtils;
 
+import lotr.common.data.ExtendedLOTRPlayerData;
+import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.ExtendedIFarmhand;
 import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
@@ -80,8 +87,9 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 				if(((ExtendedINPCEntity)thisEntity).getUnitInfo().isNpcActiveDuty()) {
 					ServerPlayerEntity player = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(((ExtendedINPCEntity)thisEntity).getUnitInfo().getOwnerUUID());
 					if(player!=null && player.containerMenu instanceof ExtendedHiredUnitFarmhandContainer) {
-						player.closeContainer();
+							player.closeContainer();
 					}
+
 				}
 				Inventory newFarmhandInventory = makeFarmhandOutputInventory();
 				ExtendedNBTUtils.transpherInventory(getFarmhandOutputInventory(), newFarmhandInventory);
@@ -130,11 +138,11 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 			}
 
 			if (holder.contains("warnings")) {
-                int bitmask = holder.getInt("warnings");
-                setWarningBitmask(bitmask);
-                this.activeWarnings.clear();
-                this.activeWarnings.addAll(FarmingWarning.fromBitmask(bitmask));
-            }
+				int bitmask = holder.getInt("warnings");
+				setWarningBitmask(bitmask);
+				this.activeWarnings.clear();
+				this.activeWarnings.addAll(FarmingWarning.fromBitmask(bitmask));
+			}
 
 			farmhandInputInventory = makeFarmhandInputInventory();
 			ExtendedNBTUtils.readInventoryFromNBT(nbt, farmhandInputInventory, FARMHANDITEMSLIST);
@@ -325,6 +333,23 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 			// Scales slots so the 12th slot (10th additional slot) unlocks EXACTLY at Level 100
 			int earnedSlots = (this.farmerLevel - 1) * 10 / 99;
 			setInventoryAdditionalSize(earnedSlots);
+
+			ExtendedNpcHiredUnitInfoHolder unitInfo = ((ExtendedINPCEntity)thisEntity).getUnitInfo();
+			if(unitInfo.isNpcActiveDuty() && unitInfo.getUnitOwner()!=null) {
+				boolean fancy = ((ExtendedLOTRPlayerData)LOTRLevelData.serverInstance().getData((PlayerEntity) unitInfo.getUnitOwner())).getExtendedMiscData().doHighContrastMessages();
+	        	TextComponent unitName = unitInfo.getHiredUnitNameAndTitle();
+	        	TextComponent newlevel = new StringTextComponent(Integer.toString(this.getFarmerLevel()));
+	        	if(fancy) {
+	        		unitName.withStyle(TextFormatting.AQUA);
+	        		newlevel.withStyle(TextFormatting.LIGHT_PURPLE);
+	            }
+	        	TranslationTextComponent output = new TranslationTextComponent("chat.lotrextended.hired_unit.levelup.farming", unitName, newlevel);
+	            if(fancy) {
+	            	output.withStyle(TextFormatting.YELLOW);
+	            }
+	            unitInfo.getUnitOwner().sendMessage(output, unitInfo.getOwnerUUID());
+			}
+     
 		}
 		markDirty();
 	}
@@ -481,7 +506,7 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	}
 
 	public int getWarningBitmask() {
-	    return this.warningBitmask;
+		return this.warningBitmask;
 	}
 
 	public void setWarningBitmask(int bitmask) {

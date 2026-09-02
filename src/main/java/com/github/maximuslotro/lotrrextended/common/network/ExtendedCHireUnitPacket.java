@@ -9,6 +9,7 @@ import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitComba
 import lotr.common.data.LOTRLevelData;
 import lotr.common.data.LOTRPlayerData;
 import lotr.common.entity.npc.*;
+import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder.UnitHiredInformation;
 import lotr.common.util.CoinUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SpawnReason;
@@ -87,7 +88,8 @@ public class ExtendedCHireUnitPacket {
         	ExtendedLog.error("Unit {} is farmand type, but does not implement ExtendedIFarmhand! DEVELOPMENT BUG, pls report!");
         }
         if (newEntity != null && newEntity instanceof NPCEntity) {
-        	((ExtendedINPCEntity)newEntity).getUnitInfo().setNpcAsHired(player, unitProfile.getId());
+        	UnitHiredInformation hireInfo = new UnitHiredInformation(unitProfile.getHiringAlignmentRequired(), unitProfile.isHiringRequiresPledge());
+        	((ExtendedINPCEntity)newEntity).getUnitInfo().setNpcAsHired(player, unitProfile.getId(), hireInfo);
         	if(!player.isCreative()) {
         		CoinUtils.removeCoins(player, player.inventory, unitProfile.getHiringCost());
         	}
