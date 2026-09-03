@@ -2,6 +2,7 @@ package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCOpenHiredOverviewMenuPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCTalkWithNPCPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCUnitDismissPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
@@ -120,7 +121,7 @@ public class ExtendedUnitMainScreen extends ExtendedBasicAbstractScreen {
 
 	private void dismissUnitConfirmed() {
 		if (hasHireData) {
-			ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithNPCPacket(entity.getId()));
+			ExtendedPacketHandler.sendToServer(new ExtendedCUnitDismissPacket(entity.getId()));
 			this.minecraft.setScreen(null);
 		}
 	}

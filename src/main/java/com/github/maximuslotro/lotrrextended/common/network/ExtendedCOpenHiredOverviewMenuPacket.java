@@ -43,13 +43,13 @@ public class ExtendedCOpenHiredOverviewMenuPacket {
 			}
 			ExtendedNpcHiredUnitInfoHolder info = ((ExtendedINPCEntity)entity).getUnitInfo();
 			PacketBuffer initData = new PacketBuffer(Unpooled.buffer());
-			ExtendedHiredUnitOverviewContainer.writeContainerInitData(initData, msg.entityId, info.getUnitProfile(), info.getOrders());
+			ExtendedHiredUnitOverviewContainer.writeContainerInitData(initData, msg.entityId, info);
 			info.isInteracting = true;
 			NetworkHooks.openGui(Objects.requireNonNull(context.get().getSender()),
 				new SimpleNamedContainerProvider((windowId, playerInventory, player) ->
 				ExtendedContainerTypes.HIRED_UNIT_OVERVIEW.get().create(windowId, playerInventory, initData),
 				info.getHiredUnitName()),
-				buf -> ExtendedHiredUnitOverviewContainer.writeContainerInitData(buf, msg.entityId, info.getUnitProfile(), info.getOrders())
+				buf -> ExtendedHiredUnitOverviewContainer.writeContainerInitData(buf, msg.entityId, info)
 				);
 		});
 		context.get().setPacketHandled(true);

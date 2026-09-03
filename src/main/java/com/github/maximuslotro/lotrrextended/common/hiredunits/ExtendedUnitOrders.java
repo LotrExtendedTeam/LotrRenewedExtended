@@ -6,7 +6,7 @@ public enum ExtendedUnitOrders {
 	STATIONARY(0, false, false, true),		// Guard a specific spot and don't move unless attacked, then return
 	PATROL_AREA(1, false, true, false),		// Guard a specific spot, but have a walkable radius. Used for farming to restrict to area
 	FOLLOW_PLAYER(2, true, true, true),		// Follow the player
-	DISMISSED(3, false, true, false),			// Dismissed, un-needed as units have wasHired field now (currently unused)
+	DISMISSED(3, false, true, true),		// Dismissed, un-needed as units have wasHired field now (currently unused)
 	FARMING(4, false, false, true),			// Farming
 	UNKNOWN(99, false, true, true);			// Unknown order type (currently unused)
 

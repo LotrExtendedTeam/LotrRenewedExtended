@@ -129,10 +129,10 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			// Ensure unit base health is updated after level-ups
 			checkHealthStat();
 
-			if(getUnitOwner()!=null && hasHireInfo()) {
+			if(isHired && getUnitOwner()!=null && hasHireInfo()) {
 				LOTRPlayerData playerData = LOTRLevelData.getSidedData((PlayerEntity) getUnitOwner());
 				if((playerData.getAlignmentData().getAlignment(thisEntity.getFaction()) < getHireInfo().getAlignmentRequired())
-						|| (getHireInfo().isPledgeRequired() && !playerData.getAlignmentData().isPledgedTo(thisEntity.getFaction()))) {
+					|| (getHireInfo().isPledgeRequired() && !playerData.getAlignmentData().isPledgedTo(thisEntity.getFaction()))) {
 					relieveUnitFromDuty(true);
 				}
 			}
@@ -333,10 +333,11 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	}
 	/**
 	 * Enable hired unit ticks and data when active
+	 * Also enable tick if marked as dismissed to allow one final tick to sync dismiss data
 	 * */
 	@Override
 	public boolean shouldTick() {
-		return isNpcActiveDuty();
+		return isNpcActiveDuty() || resendData;
 	}
 
 	private void setHired(boolean isHired) {
@@ -353,17 +354,14 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	@Override
 	public PacketBuffer createDataPacketToClient(PacketBuffer buf) { 
 		buf.writeVarInt(thisEntity.getId());
-		buf.writeBoolean(this.getOwnerUUID()!=null);
-		if(this.getOwnerUUID()!=null) {
-			buf.writeUUID(ownerUUID);
-			buf.writeBoolean(isHired);
-			buf.writeBoolean(wasHired);
-			//TODO don't sync below data for non-owner entities
-			buf.writeInt(unit_level);
-			buf.writeFloat(current_xp);
-			buf.writeFloat(max_xp);
-			buf.writeInt(kills);
+		boolean hasOwner = (this.ownerUUID != null);
+		buf.writeBoolean(hasOwner);
+		if (hasOwner) {
+			buf.writeUUID(this.ownerUUID);
 		}
+		buf.writeBoolean(isHired);
+		buf.writeBoolean(wasHired);
+
 		return buf;
 	}
 
@@ -402,17 +400,14 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	public static void readDataPacketFromServer(PacketBuffer buf, World world) {
 		int entityId = buf.readVarInt();
 		Entity entity = world.getEntity(entityId);
-		boolean shouldRead = buf.readBoolean();
-		if (shouldRead && entity instanceof NPCEntity) {
+		if (entity instanceof NPCEntity) {
 			ExtendedNpcHiredUnitInfoHolder unitInfo = ((ExtendedINPCEntity) entity).getUnitInfo();
 			if(unitInfo!=null) {
-				unitInfo.setOwnerUUID(buf.readUUID());
+				boolean hasOwner = buf.readBoolean();
+			    UUID ownerUUID = hasOwner ? buf.readUUID() : null;
+				unitInfo.setOwnerUUID(ownerUUID);
 				unitInfo.setHired(buf.readBoolean());
 				unitInfo.setWasHired(buf.readBoolean());
-				unitInfo.setUnitLevel(buf.readInt());
-				unitInfo.setCurrentXp(buf.readFloat());
-				unitInfo.setMaxXp(buf.readFloat());
-				unitInfo.setMobKills(buf.readInt());
 			}
 		}
 	}
@@ -862,7 +857,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	public ITextComponent getHiredUnitName() {
 		if(getUnitProfile().stringsAreTranslated()) {
 			return new TranslationTextComponent(getUnitProfile().getEntityUnitShorthandName(),
-					new StringTextComponent(thisEntity.getPersonalInfo().getName()));
+				new StringTextComponent(thisEntity.getPersonalInfo().getName()));
 		}
 		return new StringTextComponent(getUnitProfile().getEntityUnitShorthandName());
 	}
@@ -870,7 +865,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	public TextComponent getHiredUnitNameAndTitle() {
 		if(getUnitProfile().stringsAreTranslated()) {
 			return new TranslationTextComponent(getUnitProfile().getEntityUnitTitle(),
-					new StringTextComponent(thisEntity.getPersonalInfo().getName()), new TranslationTextComponent(getUnitProfile().getEntityUnitTypeName()));
+				new StringTextComponent(thisEntity.getPersonalInfo().getName()), new TranslationTextComponent(getUnitProfile().getEntityUnitTypeName()));
 		}
 		return new StringTextComponent(getUnitProfile().getEntityUnitShorthandName());
 	}
@@ -919,6 +914,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			getUnitOwner().sendMessage(new TranslationTextComponent("chat.lotrextended.hired_unit.dismissed", getHiredUnitNameAndTitle()), getUnitOwner().getUUID());
 		}
 		isHired=false;
+		setOrders(ExtendedUnitOrders.DISMISSED);
 		markDirty();
 	}
 
