@@ -25,12 +25,9 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedSOpenWargWin
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedAlignmentHelper;
 
 import lotr.common.data.LOTRLevelData;
-import lotr.common.entity.ai.goal.PanicIfBurningGoal;
-import lotr.common.entity.ai.goal.RandomWalkingEvenWhenRiddenGoal;
 import lotr.common.entity.npc.ExtendedIRidableEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.WargEntity;
-import lotr.common.entity.npc.ai.goal.WargLeapAndDisableShieldGoal;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -44,9 +41,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -176,19 +170,9 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		this.entityData.define(DATA_ID_OWNER_UUID, Optional.empty());
 	}
 
-	@Override
-	protected void addNPCAI() {
-		super.addNPCAI();
-		goalSelector.addGoal(0, new SwimGoal(this));
-		goalSelector.addGoal(1, new PanicIfBurningGoal(this, 1.6D));
-		goalSelector.addGoal(3, new WargLeapAndDisableShieldGoal((WargEntity)(Object)this, 0.45F));
-		addAttackGoal(4);
+	@Inject(method = "addNPCAI()V", at = @At("TAIL"), remap = false)
+	protected void addNPCAIExtended(CallbackInfo ci) {
 		goalSelector.addGoal(5, new ExtendedPlayerTypedRunArroundLikeCrazyGoal((WargEntity)(Object)this, 1.2D));
-		goalSelector.addGoal(7, new RandomWalkingEvenWhenRiddenGoal(this, 1.0D));
-		goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 12.0F, 0.02F));
-		goalSelector.addGoal(8, new LookAtGoal(this, NPCEntity.class, 8.0F, 0.02F));
-		goalSelector.addGoal(9, new LookAtGoal(this, LivingEntity.class, 12.0F, 0.02F));
-		goalSelector.addGoal(10, new LookRandomlyGoal(this));
 	}
 
 	/**

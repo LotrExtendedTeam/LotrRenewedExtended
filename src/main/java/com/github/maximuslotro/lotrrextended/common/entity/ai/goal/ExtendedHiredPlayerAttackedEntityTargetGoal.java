@@ -84,7 +84,7 @@ public class ExtendedHiredPlayerAttackedEntityTargetGoal extends TargetGoal {
 							}
 						}
 					}
-					return this.canAttack(this.ownerLastAttacked, EntityPredicate.DEFAULT);//&& this.hirable.wantsToAttack(this.ownerLastHurt, livingentity);
+					return this.canAttack(this.ownerLastAttacked, EntityPredicate.DEFAULT);
 				}
 			}
 		}
