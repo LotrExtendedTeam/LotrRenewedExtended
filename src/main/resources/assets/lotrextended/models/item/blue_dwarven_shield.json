@@ -232,7 +232,7 @@
 	],
 	"gui_light": "front",
 	"overrides": [
-		{"predicate": {"blocking": 1}, "model": "lotr:item/blue_dwarven_shield_blocking"}
+		{"predicate": {"blocking": 1}, "model": "lotrextended:item/blue_dwarven_shield_blocking"}
 	],
 	"display": {
 		"ground": {

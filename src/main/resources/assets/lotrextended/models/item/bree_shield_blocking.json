@@ -1,11 +1,11 @@
 {
-	"parent": "lotr:item/bree_shield",
+	"parent": "lotrextended:item/bree_shield",
 	"overrides": [
 		{
 			"predicate": {
 				"blocking": 1
 			},
-			"model": "lotr:item/bree_shield_blocking"
+			"model": "lotrextended:item/bree_shield_blocking"
 		}
 	],
 	"display": {

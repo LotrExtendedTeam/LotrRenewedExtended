@@ -1,11 +1,11 @@
 {
-	"parent": "lotr:item/lindon_shield",
+	"parent": "lotrextended:item/lindon_shield",
 	"overrides": [
 		{
 			"predicate": {
 				"blocking": 1
 			},
-			"model": "lotr:item/lindon_shield_blocking"
+			"model": "lotrextended:item/lindon_shield_blocking"
 		}
 	],
 	"display": {
