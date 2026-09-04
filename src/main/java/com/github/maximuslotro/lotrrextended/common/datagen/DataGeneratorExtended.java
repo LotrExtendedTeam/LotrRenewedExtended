@@ -66,7 +66,7 @@ public class DataGeneratorExtended {
 			generator.addProvider(new ExtendedItemModelGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedEntityTextureValidator(LotrExtendedMod.MODID, existingFileHelper));
 			generator.addProvider(new ExtendedSoundDefinitionsGenerator(generator, LotrExtendedMod.MODID, existingFileHelper));
-			generator.addProvider(new ExtendedLanguageGenerator(generator, LotrExtendedMod.MODID,"en_us"));
+			generator.addProvider(new ExtendedLanguageGenerator(generator, existingFileHelper, LotrExtendedMod.MODID,"en_us"));
 		}
 	}
 }

@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +16,6 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.TreeMap;
 import java.util.function.BiConsumer;
-import org.apache.commons.lang3.text.translate.JavaUnicodeEscaper;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.google.common.collect.ImmutableMap;
@@ -32,6 +32,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
 import net.minecraft.util.text.LanguageMap;
+import net.minecraftforge.common.data.ExistingFileHelper;
 
 public abstract class ExtendedLanguageHelper implements IDataProvider {
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
@@ -41,11 +42,13 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 	private final Map<String, String> existingStrings = new TreeMap<>();
 	private final List<String> removeStrings = new ArrayList<>();
 	protected final DataGenerator genHere;
+    private final ExistingFileHelper fileHelper;
 	protected final String modidHere;
 	protected final String localeHere;
 
-	public ExtendedLanguageHelper(DataGenerator gen, String modid, String locale) {
+	public ExtendedLanguageHelper(DataGenerator gen, ExistingFileHelper fileHelper, String modid, String locale) {
 		this.genHere = gen;
+		this.fileHelper = fileHelper;
 		this.modidHere = modid;
 		this.localeHere = locale;
 	}
@@ -75,19 +78,17 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 			for(String key : sortedKeys) {
 				sortedData.put(key, dataHere.getOrDefault(key, "MISSING VALUE ON SORT!"));
 			}
-			saveHere(cache, sortedData, this.genHere.getOutputFolder().resolve("assets/" + modidHere + "/lang/" + localeHere + ".json"));
+			Path targetEnPath = this.genHere.getOutputFolder().resolve("assets/" + modidHere + "/lang/" + localeHere + ".json");
+            saveHere(cache, sortedData, targetEnPath);
 		}
 	}
 
-	// TODO fix this method saving corrupted lang files for some users
-	@SuppressWarnings("deprecation")
 	private void saveHere(DirectoryCache cache, Object object, Path target) throws IOException {
 		String data = GSON.toJson(object);
-		data = JavaUnicodeEscaper.outsideOf(0, 0x7f).translate(data); // Escape unicode after the fact so that it's not double escaped by GSON
 		String hash = IDataProvider.SHA1.hashString(data, StandardCharsets.UTF_8).toString();
 		if (!Objects.equals(cache.getHash(target), hash) || !Files.exists(target)) {
 			Files.createDirectories(target.getParent());
-			try (BufferedWriter bufferedwriter = Files.newBufferedWriter(target)) {
+			try (BufferedWriter bufferedwriter = Files.newBufferedWriter(target, StandardCharsets.UTF_8)) {
 				bufferedwriter.write(data);
 			}
 		}
