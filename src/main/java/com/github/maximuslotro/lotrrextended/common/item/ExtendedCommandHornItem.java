@@ -2,7 +2,7 @@ package com.github.maximuslotro.lotrrextended.common.item;
 
 import java.util.List;
 
-import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredSitFollowGoal;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredFollowGoal;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitHornTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
@@ -53,7 +53,7 @@ public class ExtendedCommandHornItem extends Item {
 					&& ((ExtendedINPCEntity)entity).getUnitInfo().getOrders()==ExtendedUnitOrders.FOLLOW_PLAYER;
 			});
 			for(NPCEntity unit : teleportableUnits) {
-				ExtendedHiredSitFollowGoal.teleportToOwner(unit, entityplayer, true);
+				ExtendedHiredFollowGoal.teleportToOwner(unit, entityplayer, true);
 			}
 		}
 		if(type.isHalt()) {

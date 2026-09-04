@@ -15,6 +15,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredFollowGoal;
+import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredSitGoal;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedPlayerTypedRunArroundLikeCrazyGoal;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedAttributes;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInventoryContainer;
@@ -98,9 +100,16 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 	private int temper;
 	@Unique
 	private float playerJumpPendingScale;
-
-	protected MixinWargEntity(EntityType<? extends WargEntity> type, World w) {
-		super(type, w);
+	/**
+	 * Required constructor for Mixins extending other classes.
+	 * <p>
+	 * Although required for compilation, this constructor will be stripped at runtime and is not executed.
+	 *
+	 * @param type  A placeholder {@link EntityType} for {@link WargEntity}, required for superclass initialization.
+	 * @param world A placeholder {@link World} instance, required for superclass initialization.
+	 */
+	protected MixinWargEntity(EntityType<? extends WargEntity> type, World world) {
+		super(type, world);
 	}
 
 	@Inject(method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V", at = @At("TAIL"), remap=false)
@@ -169,10 +178,17 @@ public abstract class MixinWargEntity extends NPCEntity implements IInventoryCha
 		this.entityData.define(DATA_ID_FLAGS, (byte)0);
 		this.entityData.define(DATA_ID_OWNER_UUID, Optional.empty());
 	}
-
+	/**
+	 * Injects a custom AI goal at the end of the {@code addNPCAI} method execution.
+	 * 
+	 * @param ci The {@link CallbackInfo} provided by the Mixin injector.
+	 * @Inject (method = "addNPCAI()V", at = @At("TAIL"), remap = false)
+	 */
 	@Inject(method = "addNPCAI()V", at = @At("TAIL"), remap = false)
 	protected void addNPCAIExtended(CallbackInfo ci) {
+		goalSelector.addGoal(2, new ExtendedHiredSitGoal((WargEntity)(Object)this));
 		goalSelector.addGoal(5, new ExtendedPlayerTypedRunArroundLikeCrazyGoal((WargEntity)(Object)this, 1.2D));
+		goalSelector.addGoal(6, new ExtendedHiredFollowGoal((WargEntity)(Object)this, 1.3D, 8.0F, 6.0F));
 	}
 
 	/**
