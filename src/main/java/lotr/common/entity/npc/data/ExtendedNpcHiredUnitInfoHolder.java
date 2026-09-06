@@ -81,7 +81,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	private boolean resendData = false;
 	public boolean isInteracting = false;
 	private int currentHealth = -1;
-	private String squad;
+	private @Nullable String squad;
 
 	private ExtendedUnitInventory internalUnitInventory = makeUnitInventory();
 
@@ -552,16 +552,20 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	}
 
 	// ######################################### LOGIC
-	public String getSquad() {
+	public @Nullable String getSquad() {
 		return squad;
 	}
 
-	public boolean isSquad(@Nullable String squad) {
-		return this.squad!=null && !this.squad.isEmpty() && squad.equals(squad);
+	public boolean isSquad(@Nullable String pSquad) {
+		if(this.squad==null) {
+			return pSquad==null || pSquad.isEmpty();
+		}else {
+			return this.squad.equals(pSquad);
+		}
 	}
 
-	public void setSquad(String squad) {
-		this.squad = squad;
+	public void setSquad(@Nullable String pSquad) {
+		this.squad = (pSquad==null || pSquad.isEmpty()) ? null : pSquad;
 	}
 
 	public void updateSlot(ItemStack stack, ExtendedEquipmentSlotType slot) {

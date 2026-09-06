@@ -7,7 +7,7 @@ import java.util.UUID;
 import com.github.maximuslotro.lotrextended.mixins.MIXINConfig;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.client.eventhandlers.ExtendedRendererEventHandler;
-import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedScreenRegisterHandler;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedContainerScreenRegisterHandler;
 import com.github.maximuslotro.lotrrextended.client.render.ExtendedBlockItemColors;
 import com.github.maximuslotro.lotrrextended.client.render.block.ExtendedBlockRenderer;
 import com.github.maximuslotro.lotrrextended.client.render.entity.ExtendedEntityRenderers;
@@ -127,7 +127,7 @@ public class ExtendedClientProxy {
 			ExtendedItemModelsProperties.registerAlternativeHandheldTextures();
 			setupUsersUUID();
 		});
-		ExtendedScreenRegisterHandler.register();
+		ExtendedContainerScreenRegisterHandler.register();
 		ExtendedEntityRenderers.registerEntityRenderers();
 		ExtendedTileEntityRenderers.registerTileEntityRenderers();
 

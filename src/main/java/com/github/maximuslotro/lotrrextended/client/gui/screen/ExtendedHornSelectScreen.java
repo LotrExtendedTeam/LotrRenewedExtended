@@ -1,7 +1,5 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
-import org.lwjgl.opengl.GL11;
-
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitHornTypes;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
 import com.github.maximuslotro.lotrrextended.common.item.ExtendedCommandHornItem;
@@ -9,19 +7,16 @@ import com.github.maximuslotro.lotrrextended.common.network.ExtendedCSelectHornP
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedHornSelectScreen extends ExtendedBasicAbstractScreen {
-	private static final ResourceLocation guiTexture = new ResourceLocation("lotrextended:textures/gui/horn_select.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation("lotrextended:textures/gui/horn_select.png");
 
 	public ExtendedHornSelectScreen() {
-		super(new StringTextComponent("HORNSELECT"), 176, 113);
+		super(new TranslationTextComponent("gui.lotrextended.horn_select.title"), 176, 113);
 	}
 
 	@Override
@@ -40,14 +35,19 @@ public class ExtendedHornSelectScreen extends ExtendedBasicAbstractScreen {
 	@Override
 	public void render(MatrixStack matStack, int mouseX, int mouseY, float tick) {
 		renderBackground(matStack);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		minecraft.getTextureManager().bind(guiTexture);
+		minecraft.getTextureManager().bind(TEXTURE);
 		blit(matStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-		TextComponent title = new TranslationTextComponent("gui.lotrextended.horn_select.title");
-		this.font.draw(matStack, title, leftPos + (88 - (font.width(title) / 2)), topPos + 11, 4210752);
+		this.font.draw(matStack, title, leftPos + ((this.imageWidth - font.width(title)) / 2), topPos + 11, 4210752);
 		super.render(matStack, mouseX, mouseY, tick);
-		for (Widget button : this.buttons) {
-			itemRenderer.renderGuiItem(new ItemStack(ExtendedItems.COMMANDHORN.get(), 1), button.x - 22, button.y + 2);
+		ItemStack halt = ExtendedCommandHornItem.setType(this.minecraft.player.getMainHandItem().copy(), ExtendedUnitHornTypes.HALT);
+		ItemStack summon = ExtendedCommandHornItem.setType(this.minecraft.player.getMainHandItem().copy(), ExtendedUnitHornTypes.SUMMON);
+		itemRenderer.renderGuiItem(halt, this.leftPos + 18, this.topPos + 42);
+		itemRenderer.renderGuiItem(summon, this.leftPos + 18, this.topPos + 77);
+		if(isHovering(18, 42, 16, 16, mouseX, mouseY)) {
+			this.renderTooltip(matStack, halt, mouseX, mouseY);
+		}
+		if(isHovering(18, 77, 16, 16, mouseX, mouseY)) {
+			this.renderTooltip(matStack, summon, mouseX, mouseY);
 		}
 	}
 
@@ -55,11 +55,7 @@ public class ExtendedHornSelectScreen extends ExtendedBasicAbstractScreen {
 	public void tick() {
 		super.tick();
 		ItemStack itemstack = this.minecraft.player.getMainHandItem();
-		if (itemstack == null || itemstack.getItem() != ExtendedItems.COMMANDHORN.get()) {
-			this.minecraft.setScreen(null);
-			return;
-		}
-		if(!ExtendedCommandHornItem.getType(itemstack).isUnset()){
+		if (itemstack == null || itemstack.getItem() != ExtendedItems.COMMANDHORN.get() || !ExtendedCommandHornItem.getType(itemstack).isUnset()) {
 			this.minecraft.setScreen(null);
 			return;
 		}

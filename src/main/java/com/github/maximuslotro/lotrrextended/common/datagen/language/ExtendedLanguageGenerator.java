@@ -168,6 +168,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.base.on", "On");
 		addD("gui.lotrextended.base.off", "Off");
 		addD("gui.lotrextended.base.return", "Return");
+		addD("gui.lotrextended.base.unset", "Unset");
 
 		// npc generic buttons
 		addD("gui.lotrextended.entity.talk_button", "Talk");
@@ -513,6 +514,8 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.horn_select.title", "Horn of Command Type Selection");
 		addD("gui.lotrextended.horn_select.option_summon", "Summon Units");
 		addD("gui.lotrextended.horn_select.option_halt_reddy", "Halt/Ready Units");
+		addD("gui.lotrextended.horn_select.squad.title", "Assign Hired Unit Squad");
+		addD("gui.lotrextended.horn_select.squad.textfield", "Hired Unit Squad Input Box");
 
 		// Stone Carving Screen
 		addD("gui.lotrextended.stone_engraving.title", "Engrave Message");
@@ -521,15 +524,16 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.banner_item.info", "Banner contains protection information");
 
 		// Banner protection info
-		addD("message.lotrextended.banner.land_protected", "This land is under the protection of %s");
+		addD("message.lotrextended.banner.land_protected", "This land is under the protection of %1$s");
 		addD("message.lotrextended.banner.land_protected.already", "Banner can not be placed since it overlaps with another's banner protection!");
 
 		// Additional item strings
-		addD("item."+ExtendedItems.COMMANDHORN.getId().getNamespace()+"."+ExtendedItems.COMMANDHORN.getId().getPath()+".halt", "Horn of Command - Halt Units");
-		addD("item."+ExtendedItems.COMMANDHORN.getId().getNamespace()+"."+ExtendedItems.COMMANDHORN.getId().getPath()+".reddy", "Horn of Command - Ready Units");
-		addD("item."+ExtendedItems.COMMANDHORN.getId().getNamespace()+"."+ExtendedItems.COMMANDHORN.getId().getPath()+".summon", "Horn of Command - Summon Units");
-		addOverride("item."+ExtendedItems.MODIFIER_SCROLL.getId().getNamespace()+"."+ExtendedItems.MODIFIER_SCROLL.getId().getPath(), "Modifier Scroll");
-		addOverride("item."+ExtendedItems.MODIFIER_SCROLL.getId().getNamespace()+"."+ExtendedItems.MODIFIER_SCROLL.getId().getPath()+".named", "%s Modifier Scroll");
+		addD("item.lotrextended.horn_of_command.halt", "Horn of Command - Halt Units");
+		addD("item.lotrextended.horn_of_command.reddy", "Horn of Command - Ready Units");
+		addD("item.lotrextended.horn_of_command.summon", "Horn of Command - Summon Units");
+		addD("item.lotrextended.horn_of_command.squad", "Squad: %1$s");
+		addOverride("item.lotrextended."+ExtendedItems.MODIFIER_SCROLL.getId().getPath(), "Modifier Scroll");
+		addOverride("item.lotrextended."+ExtendedItems.MODIFIER_SCROLL.getId().getPath()+".named", "%1$s Modifier Scroll");
 		addD("item.lotrextended.orc_bomb.fire_message", "Ignites the surrounding area");
 		addD("item.lotrextended.orc_bomb.strength_0", "Single Strength");
 		addD("item.lotrextended.orc_bomb.strength_1", "Double Strength");

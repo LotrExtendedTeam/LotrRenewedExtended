@@ -109,7 +109,6 @@ public class ExtendedUnitMainScreen extends ExtendedBasicAbstractScreen {
 
 	private void openInterface() {
 		ExtendedPacketHandler.sendToServer(new ExtendedCOpenHiredOverviewMenuPacket(entity.getId()));
-		this.minecraft.setScreen(null);
 	}
 
 	private void dismissUnit() {

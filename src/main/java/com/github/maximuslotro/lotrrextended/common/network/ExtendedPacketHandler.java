@@ -67,6 +67,7 @@ public class ExtendedPacketHandler {
 		CHANNEL.registerMessage(id++, ExtendedSNpcFarmhandInfoPacket.class, ExtendedSNpcFarmhandInfoPacket::encode, ExtendedSNpcFarmhandInfoPacket::decode, ExtendedSNpcFarmhandInfoPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedSOpenHiredMenuPacket.class, ExtendedSOpenHiredMenuPacket::encode, ExtendedSOpenHiredMenuPacket::decode, ExtendedSOpenHiredMenuPacket::handle);
 		CHANNEL.registerMessage(id++, ExtendedCUnitDismissPacket.class, ExtendedCUnitDismissPacket::encode, ExtendedCUnitDismissPacket::decode, ExtendedCUnitDismissPacket::handle);
+		CHANNEL.registerMessage(id++, ExtendedCSelectHornSquadPacket.class, ExtendedCSelectHornSquadPacket::encode, ExtendedCSelectHornSquadPacket::decode, ExtendedCSelectHornSquadPacket::handle);
 
 		if (id >= 255) {
 			// Since IndexedMessageCodec.MessageHandler -> indicies.put((short)(index & 0xff), this);

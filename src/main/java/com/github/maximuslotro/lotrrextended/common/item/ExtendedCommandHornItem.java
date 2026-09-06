@@ -7,22 +7,31 @@ import javax.annotation.Nullable;
 import com.github.maximuslotro.lotrrextended.common.entity.ai.goal.ExtendedHiredFollowGoal;
 import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitHornTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
+import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
 import com.github.maximuslotro.lotrrextended.common.item.clientside.ExtendedCommandHornClientSide;
+import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
 
 import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
 import lotr.common.entity.npc.data.ExtendedNpcHiredUnitInfoHolder;
-import lotr.common.init.LOTRItemGroups;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.UseAction;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 public class ExtendedCommandHornItem extends Item {
@@ -31,10 +40,6 @@ public class ExtendedCommandHornItem extends Item {
 
 	public ExtendedCommandHornItem(Properties properties) {
 		super(properties);
-	}
-
-	public ExtendedCommandHornItem() {
-		super(new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT));
 	}
 
 	@Override
@@ -88,7 +93,7 @@ public class ExtendedCommandHornItem extends Item {
 	}
 
 	private boolean isValidUnit(NPCEntity entity, ItemStack itemstack, LivingEntity player, ExtendedUnitOrders requiredOrders) {
-		if (entity instanceof ExtendedINPCEntity) {
+		if(entity instanceof ExtendedINPCEntity) {
 			ExtendedNpcHiredUnitInfoHolder unitInfo = ((ExtendedINPCEntity) entity).getUnitInfo();
 			return unitInfo.isNpcActiveDuty() && unitInfo.getOwnerUUID().equals(player.getUUID()) 
 				&& unitInfo.getOrders() == requiredOrders && unitInfo.isSquad(getSquad(itemstack));
@@ -99,8 +104,8 @@ public class ExtendedCommandHornItem extends Item {
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		ItemStack heldItem = player.getItemInHand(hand);
-		if (getType(heldItem).isUnset()) {
-			if (world.isClientSide()) {
+		if(getType(heldItem).isUnset()) {
+			if(world.isClientSide()) {
 				new ExtendedCommandHornClientSide().openMenu();
 			}
 			return ActionResult.sidedSuccess(heldItem, world.isClientSide());
@@ -111,8 +116,30 @@ public class ExtendedCommandHornItem extends Item {
 	}
 
 	@Override
+    public ActionResultType onItemUseFirst(ItemStack pStack, ItemUseContext context) {
+        if(context.getLevel().getBlockState(context.getClickedPos()).getBlock() == ExtendedBlocks.CONQUEST_TABLE.get()) {
+        	if(context.getLevel().isClientSide()) {
+            	ExtendedClientsideSeparatedScreenHandler.openHornSquadSelect(getSquad(pStack));
+        	}
+            return ActionResultType.sidedSuccess(context.getLevel().isClientSide());
+        }
+        return ActionResultType.PASS;
+    }
+
+	@Override
 	public String getDescriptionId(ItemStack itemstack) {
 		return super.getDescriptionId()+getType(itemstack).getDisc();
+	}
+
+	@Override
+	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		IFormattableTextComponent squadName;
+		if(getSquad(pStack)!=null) {
+			squadName = new StringTextComponent(getSquad(pStack)).withStyle(TextFormatting.WHITE);
+		}else {
+			squadName = new TranslationTextComponent("gui.lotrextended.base.unset").withStyle(TextFormatting.GRAY);
+		}
+		pTooltip.add(1, new TranslationTextComponent("item.lotrextended.horn_of_command.squad", squadName).withStyle(TextFormatting.WHITE));
 	}
 
 	public static ExtendedUnitHornTypes getType(ItemStack itemStack) {
@@ -122,12 +149,13 @@ public class ExtendedCommandHornItem extends Item {
 		return ExtendedUnitHornTypes.getByUnchangingIndex(itemStack.getTag().getInt(HORNTYPE));
 	}
 
-	public static void setType(ItemStack itemStack, ExtendedUnitHornTypes type) {
+	public static ItemStack setType(ItemStack itemStack, ExtendedUnitHornTypes type) {
 		if(type==ExtendedUnitHornTypes.NOTSET) {
 			itemStack.removeTagKey(HORNTYPE);
 		}else {
 			itemStack.getOrCreateTag().putInt(HORNTYPE, type.getUnchangingIndex());
 		}
+		return itemStack;
 	}
 
 	public static @Nullable String getSquad(ItemStack itemStack) {
@@ -137,11 +165,12 @@ public class ExtendedCommandHornItem extends Item {
 		return itemStack.getTag().getString(SQUAD);
 	}
 
-	public static void setSquad(ItemStack itemStack, String type) {
-		if(type==null || type.isEmpty()) {
+	public static ItemStack setSquad(ItemStack itemStack, @Nullable String pSquadName) {
+		if(pSquadName==null || pSquadName.isEmpty()) {
 			itemStack.removeTagKey(SQUAD);
 		}else {
-			itemStack.getOrCreateTag().putString(SQUAD, type);
+			itemStack.getOrCreateTag().putString(SQUAD, pSquadName);
 		}
+		return itemStack;
 	}
 }

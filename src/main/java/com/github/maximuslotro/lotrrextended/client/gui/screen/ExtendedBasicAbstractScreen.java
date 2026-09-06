@@ -25,4 +25,10 @@ public abstract class ExtendedBasicAbstractScreen extends Screen {
 		this.leftPos = (this.width - imageWidth) / 2;
 		this.topPos = (this.height - imageHeight) / 2;
 	}
+
+	protected boolean isHovering(int pX, int pY, int pWidth, int pHeight, double pMouseX, double pMouseY) {
+		pMouseX = pMouseX - this.leftPos;
+		pMouseY = pMouseY - this.topPos;
+		return pMouseX >= (pX - 1) && pMouseX < (pX + pWidth + 1) && pMouseY >= (pY - 1) && pMouseY < (pY + pHeight + 1);
+	}
 }

@@ -915,7 +915,7 @@ public class ExtendedItems {
 	// misc equipment
 	public static RegistryObject<Item> LEATHER_HAT = regItem("leather_hat", ExtendedLeatherHatItem::new);
 	public static RegistryObject<Item> BARROW_BLADE = regItem("barrow_blade", ()-> new ExtendedBarrowBlade(LOTRItemGroups.COMBAT));
-	public static RegistryObject<Item> COMMANDHORN = regItem("horn_of_command", ExtendedCommandHornItem::new);
+	public static RegistryObject<Item> COMMANDHORN = regItem("horn_of_command", ()-> new ExtendedCommandHornItem(new Properties().stacksTo(1).tab(LOTRItemGroups.COMBAT)));
 
 	//########################################################################UTIL##########################################################
 	public static RegistryObject<Item> ORC_STEEL_DOOR = regTallBlockItem(ExtendedBlocks.ORC_STEEL_DOOR, LOTRItemGroups.UTIL);

@@ -36,7 +36,6 @@ public class ExtendedCaptainMainScreen extends ExtendedBasicAbstractScreen {
 
 	public ExtendedCaptainMainScreen(NPCEntity entity, PlayerEntity player, List<ExtendedClientHiredUnitProfile> profiles) {
 		super(new StringTextComponent("Captain Menu"), 176, 256);
-
 		this.npcEntity = entity;
 		this.player = player;
 		this.unitProfiles = profiles;

@@ -27,13 +27,13 @@ public class ExtendedCSelectHornPacket {
 	}
 
 	public static void handle(ExtendedCSelectHornPacket packet, Supplier<Context> context) {
-		ServerPlayerEntity player = context.get().getSender();
-		ItemStack itemstack = player.getMainHandItem();
-	    if (itemstack != null && itemstack.getItem() == ExtendedItems.COMMANDHORN.get()) {
-	    	if(ExtendedCommandHornItem.getType(itemstack).isUnset()) {
-	    		ExtendedCommandHornItem.setType(itemstack, packet.type);
-	    	}
-	    }
+		context.get().enqueueWork(()->{
+			ServerPlayerEntity player = context.get().getSender();
+			ItemStack itemstack = player.getMainHandItem();
+		    if (itemstack != null && itemstack.getItem() == ExtendedItems.COMMANDHORN.get()) {
+		    	ExtendedCommandHornItem.setType(itemstack, packet.type);
+		    }
+		});
 		context.get().setPacketHandled(true);
 	}
 }
