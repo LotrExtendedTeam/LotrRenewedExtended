@@ -5,6 +5,7 @@ import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedCaptainMa
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedExitStoneTextSignScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHoistOptionsScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHornSquadScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedRaidalScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedTraderMainScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedUnitMainScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedTradeScreen;
@@ -74,6 +75,10 @@ public class ExtendedClientsideSeparatedScreenHandler {
 
 	public static void openBannerGUI(ExtendedSBannerOpenScreenPacket packet) {
 		Minecraft.getInstance().setScreen(new ExtendedBannerConfigurationScreen(packet));
+	}
+
+	public static void openHornModeSelect() {
+		Minecraft.getInstance().setScreen(new ExtendedRaidalScreen());
 	}
 
 	public static void openHornSquadSelect(String currentSquadName) {

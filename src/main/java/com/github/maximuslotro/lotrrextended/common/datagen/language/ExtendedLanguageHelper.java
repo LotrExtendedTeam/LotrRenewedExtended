@@ -236,11 +236,14 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 
 	public void makeLocalisationsFile() {
 		// Check entries from existingStrings that do not exists in the mod
-		long unusedEntries = existingStrings.keySet().stream()
-		    .filter(key -> !newStrings.containsKey(key) && !overrideStrings.containsKey(key))
-		    .count();
-		if(unusedEntries>0) {
-			System.out.println("Found " + unusedEntries + " unused lang entries");
+		List<String> unusedKeys = existingStrings.keySet().stream()
+            .filter(key -> !newStrings.containsKey(key) && !overrideStrings.containsKey(key))
+            .filter(key -> !key.startsWith("block.lotrextended") && !key.startsWith("item.lotrextended.morgul"))
+            .collect(Collectors.toList());
+	
+		if(!unusedKeys.isEmpty()) {
+			System.out.println("Found " + unusedKeys.size() + " unused lang entries");
+			unusedKeys.forEach(existingStrings::remove);
 		}
 		//.forEach(key -> System.out.println("Found unused lang entry: " + key));
 		// Create sorted map while skipping keys containing 'placeholder'

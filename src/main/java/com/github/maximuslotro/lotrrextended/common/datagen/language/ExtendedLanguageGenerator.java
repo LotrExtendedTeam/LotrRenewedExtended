@@ -521,39 +521,44 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Stone Carving Screen
 		addD("gui.lotrextended.stone_engraving.title", "Engrave Message");
 
-		// Banner Item Info
-		addD("gui.lotrextended.banner_item.info", "Banner contains protection information");
-
 		// Banner protection info
 		addD("message.lotrextended.banner.land_protected", "This land is under the protection of %1$s");
 		addD("message.lotrextended.banner.land_protected.already", "Banner can not be placed since it overlaps with another's banner protection!");
 
-		// Additional item strings
-		addD("item.lotrextended.horn_of_command.halt", "Horn of Command - Halt Units");
-		addD("item.lotrextended.horn_of_command.reddy", "Horn of Command - Ready Units");
-		addD("item.lotrextended.horn_of_command.summon", "Horn of Command - Summon Units");
-		addD("item.lotrextended.horn_of_command.squad", "Squad: %1$s");
-		addOverride("item.lotrextended."+ExtendedItems.MODIFIER_SCROLL.getId().getPath(), "Modifier Scroll");
-		addOverride("item.lotrextended."+ExtendedItems.MODIFIER_SCROLL.getId().getPath()+".named", "%1$s Modifier Scroll");
-		addD("item.lotrextended.orc_bomb.fire_message", "Ignites the surrounding area");
-		addD("item.lotrextended.orc_bomb.strength_0", "Single Strength");
-		addD("item.lotrextended.orc_bomb.strength_1", "Double Strength");
-		addD("item.lotrextended.orc_bomb.strength_2", "Triple Strength");
-		addD("item.lotrextended.modifiers.warg", "When on Warg:");
-		addD("item.lotrextended.modifiers.boar", "When on Boar:");
-		addD("item.lotrextended.modifiers.horse", "When on Horse:");
+		// Additional item name strings
+		addOverride("item.lotrextended.modifier_scroll", "Modifier Scroll");
+		addOverride("item.lotrextended.modifier_scroll.named", "%1$s Modifier Scroll");
+
+		// Item description strings
+		// Command horn
+		addD("gui.lotrextended.horn_of_command.type", "Current Mode - %1$s");
+		addD("gui.lotrextended.horn_of_command.type.halt", "Halt Units");
+		addD("gui.lotrextended.horn_of_command.type.reddy", "Ready Units");
+		addD("gui.lotrextended.horn_of_command.type.summon", "Summon Units");
+		addD("gui.lotrextended.horn_of_command.squad", "Squad: %1$s");
+		// Orc bombs
+		addD("gui.lotrextended.orc_bomb.fire_message", "Ignites the surrounding area");
+		addD("gui.lotrextended.orc_bomb.strength_0", "Single Strength");
+		addD("gui.lotrextended.orc_bomb.strength_1", "Double Strength");
+		addD("gui.lotrextended.orc_bomb.strength_2", "Triple Strength");
+		// Armor stats descriptions
+		addD("gui.lotrextended.modifiers.warg", "When on Warg:");
+		addD("gui.lotrextended.modifiers.boar", "When on Boar:");
+		addD("gui.lotrextended.modifiers.horse", "When on Horse:");
+		// Reforge Books
 		addD("gui.lotrextended.reforge_books.description", "Guarantees %s modifiers on Reforge");
 		addD("gui.lotrextended.reforge_books.combat", "Combat");
 		addD("gui.lotrextended.reforge_books.artisan", "Artisan");
+		// Repair books
 		addD("gui.lotrextended.repair_books.description", "%1$s %2$s on Repair");
 		addD("gui.lotrextended.repair_books.description.ignore", "Ignores");
 		addD("gui.lotrextended.repair_books.smith", "Modifier Material Cost");
-
+		// Banner Item Info
+		addD("gui.lotrextended.banner_item.info", "Banner contains protection information");
 		//Bow values
 		addD("gui.lotrextended.bow.speed", "Draw Speed: %s");
 		addD("gui.lotrextended.bow.damage", "Ranged Damage: %s");
 		addD("gui.lotrextended.bow.range", "Range: %s");
-
 		//Dagger values
 		addD("gui.lotrextended.dagger.poisoned", "Inflicts poison");
 

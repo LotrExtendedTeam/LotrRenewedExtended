@@ -9,7 +9,6 @@ import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitHornTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedBlocks;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
-import com.github.maximuslotro.lotrrextended.common.item.clientside.ExtendedCommandHornClientSide;
 import com.github.maximuslotro.lotrrextended.common.utils.client.ExtendedClientsideSeparatedScreenHandler;
 
 import lotr.common.entity.npc.ExtendedINPCEntity;
@@ -105,13 +104,20 @@ public class ExtendedCommandHornItem extends Item {
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		ItemStack heldItem = player.getItemInHand(hand);
 		if(getType(heldItem).isUnset()) {
-			if(world.isClientSide()) {
-				new ExtendedCommandHornClientSide().openMenu();
-			}
-			return ActionResult.sidedSuccess(heldItem, world.isClientSide());
+			openHornSelectRedial(world);
 		}else {
-			player.startUsingItem(hand);
-			return ActionResult.sidedSuccess(heldItem, world.isClientSide());
+			if(player.isShiftKeyDown()) {
+				openHornSelectRedial(world);
+			}else {
+				player.startUsingItem(hand);
+			}
+		}
+		return ActionResult.sidedSuccess(heldItem, world.isClientSide());
+	}
+
+	private void openHornSelectRedial(World world) {
+		if(world.isClientSide()) {
+			ExtendedClientsideSeparatedScreenHandler.openHornModeSelect();
 		}
 	}
 
@@ -127,19 +133,21 @@ public class ExtendedCommandHornItem extends Item {
     }
 
 	@Override
-	public String getDescriptionId(ItemStack itemstack) {
-		return super.getDescriptionId()+getType(itemstack).getDisc();
-	}
-
-	@Override
 	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		IFormattableTextComponent modeName;
+		if(!getType(pStack).isUnset()) {
+			modeName = new TranslationTextComponent(getType(pStack).getType()).withStyle(getType(pStack).getFormatting());
+		}else {
+			modeName = new TranslationTextComponent("gui.lotrextended.base.unset").withStyle(TextFormatting.GRAY);
+		}
+		pTooltip.add(1, new TranslationTextComponent("gui.lotrextended.horn_of_command.type", modeName).withStyle(TextFormatting.WHITE));
 		IFormattableTextComponent squadName;
 		if(getSquad(pStack)!=null) {
 			squadName = new StringTextComponent(getSquad(pStack)).withStyle(TextFormatting.WHITE);
 		}else {
 			squadName = new TranslationTextComponent("gui.lotrextended.base.unset").withStyle(TextFormatting.GRAY);
 		}
-		pTooltip.add(1, new TranslationTextComponent("item.lotrextended.horn_of_command.squad", squadName).withStyle(TextFormatting.WHITE));
+		pTooltip.add(2, new TranslationTextComponent("gui.lotrextended.horn_of_command.squad", squadName).withStyle(TextFormatting.WHITE));
 	}
 
 	public static ExtendedUnitHornTypes getType(ItemStack itemStack) {

@@ -1,17 +1,24 @@
 package com.github.maximuslotro.lotrrextended.common.enums;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import net.minecraft.util.text.TextFormatting;
+
 public enum ExtendedUnitHornTypes {
-	NOTSET(0, ""),
-	HALT(1, ".halt"),
-	READY(2, ".reddy"),
-	SUMMON(3, ".summon");
+	NOTSET(0, "", TextFormatting.WHITE),
+	HALT(1, "halt", TextFormatting.RED),
+	READY(2, "reddy", TextFormatting.GREEN),
+	SUMMON(3, "summon", TextFormatting.BLUE);
 
 	private final int unchangingIndex;
 	private final String disc;
-	
-	private ExtendedUnitHornTypes(int pIndex, String pDisc) {
+	private final TextFormatting color;
+	private ExtendedUnitHornTypes(int pIndex, String pDisc, TextFormatting pColor) {
 		this.unchangingIndex = pIndex;
 		this.disc = pDisc;
+		this.color = pColor;
 	}
 
 	public int getUnchangingIndex() {
@@ -34,8 +41,12 @@ public enum ExtendedUnitHornTypes {
 		return this==NOTSET;
 	}
 
-	public String getDisc() {
-		return disc;
+	public String getType() {
+		return "gui.lotrextended.horn_of_command.type."+disc;
+	}
+
+	public TextFormatting getFormatting() {
+		return color;
 	}
 
 	public static ExtendedUnitHornTypes getByUnchangingIndex(int pIndex) {
@@ -45,5 +56,11 @@ public enum ExtendedUnitHornTypes {
 			}
 		}
 		return NOTSET;
+	}
+
+	public static List<ExtendedUnitHornTypes> getSelectableHornTypes() {
+		return Arrays.stream(values())
+			.filter(type -> type.getUnchangingIndex() > 0)
+			.collect(Collectors.toList());
 	}
 }
