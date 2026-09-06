@@ -1,11 +1,11 @@
 {
-	"parent": "lotr:item/arnor_shield",
+	"parent": "lotrextended:item/arnor_shield",
 	"overrides": [
 		{
 			"predicate": {
 				"blocking": 1
 			},
-			"model": "lotr:item/arnor_shield_blocking"
+			"model": "lotrextended:item/arnor_shield_blocking"
 		}
 	],
 	"display": {

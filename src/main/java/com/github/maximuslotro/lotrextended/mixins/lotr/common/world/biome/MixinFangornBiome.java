@@ -26,7 +26,7 @@ public class MixinFangornBiome {
 	@Inject(method = "addAnimals(Lnet/minecraft/world/biome/MobSpawnInfo$Builder;)V", at = @At("TAIL"), remap = false)
 	protected void addAnimalsExtended(MobSpawnInfo.Builder builder, CallbackInfo ci) {
 		builder.addSpawn(EntityClassification.CREATURE, new Spawners(ExtendedEntities.HEDGEHOG.get(), 1, 2, 3));
-		builder.addSpawn(EntityClassification.CREATURE, new Spawners(ExtendedEntities.CRABAN.get(), 1, 1, 1));
+		builder.addSpawn(EntityClassification.CREATURE, new Spawners(ExtendedEntities.CRABAN.get(), 10, 2, 6));
 	}
 
 	/**

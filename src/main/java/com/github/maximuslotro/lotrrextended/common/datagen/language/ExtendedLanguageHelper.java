@@ -1,5 +1,6 @@
 package com.github.maximuslotro.lotrrextended.common.datagen.language;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,13 +17,16 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.TreeMap;
 import java.util.function.BiConsumer;
-import org.apache.commons.lang3.text.translate.JavaUnicodeEscaper;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
 import net.minecraft.block.Block;
@@ -31,7 +36,9 @@ import net.minecraft.data.IDataProvider;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
+import net.minecraft.util.JSONUtils;
 import net.minecraft.util.text.LanguageMap;
+import net.minecraftforge.common.data.ExistingFileHelper;
 
 public abstract class ExtendedLanguageHelper implements IDataProvider {
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
@@ -41,11 +48,13 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 	private final Map<String, String> existingStrings = new TreeMap<>();
 	private final List<String> removeStrings = new ArrayList<>();
 	protected final DataGenerator genHere;
+    private final ExistingFileHelper fileHelper;
 	protected final String modidHere;
 	protected final String localeHere;
 
-	public ExtendedLanguageHelper(DataGenerator gen, String modid, String locale) {
+	public ExtendedLanguageHelper(DataGenerator gen, ExistingFileHelper fileHelper, String modid, String locale) {
 		this.genHere = gen;
+		this.fileHelper = fileHelper;
 		this.modidHere = modid;
 		this.localeHere = locale;
 	}
@@ -75,19 +84,18 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 			for(String key : sortedKeys) {
 				sortedData.put(key, dataHere.getOrDefault(key, "MISSING VALUE ON SORT!"));
 			}
-			saveHere(cache, sortedData, this.genHere.getOutputFolder().resolve("assets/" + modidHere + "/lang/" + localeHere + ".json"));
+			Path targetEnPath = this.genHere.getOutputFolder().resolve("assets/" + modidHere + "/lang/" + localeHere + ".json");
+            saveHere(cache, sortedData, targetEnPath);
+            syncOtherLanguageFiles(cache, sortedData);
 		}
 	}
 
-	// TODO fix this method saving corrupted lang files for some users
-	@SuppressWarnings("deprecation")
 	private void saveHere(DirectoryCache cache, Object object, Path target) throws IOException {
 		String data = GSON.toJson(object);
-		data = JavaUnicodeEscaper.outsideOf(0, 0x7f).translate(data); // Escape unicode after the fact so that it's not double escaped by GSON
 		String hash = IDataProvider.SHA1.hashString(data, StandardCharsets.UTF_8).toString();
 		if (!Objects.equals(cache.getHash(target), hash) || !Files.exists(target)) {
 			Files.createDirectories(target.getParent());
-			try (BufferedWriter bufferedwriter = Files.newBufferedWriter(target)) {
+			try (BufferedWriter bufferedwriter = Files.newBufferedWriter(target, StandardCharsets.UTF_8)) {
 				bufferedwriter.write(data);
 			}
 		}
@@ -149,14 +157,28 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 	public void addExistingLocalisationsToMap() {
 		Builder<String, String> builder = ImmutableMap.builder();
 		BiConsumer<String, String> biconsumer = builder::put;
-		try (InputStream inputstream = LanguageMap.class.getResourceAsStream("/assets/" + modidHere + "/lang/" + localeHere + ".json")) {
-			LanguageMap.loadFromJson(inputstream, biconsumer);
-		} catch (JsonParseException | NullPointerException | IOException exception) {
-			ExtendedLog.error("Couldn't read strings from /assets/" + modidHere + "/lang/" + localeHere + ".json");
-			exception.printStackTrace();
-			return;
-		}
-		final Map<String, String> map = new java.util.HashMap<>(builder.build());
+        Path path = this.genHere.getOutputFolder().resolve("assets/" + modidHere + "/lang/" + localeHere + ".json");
+        if(Files.exists(path)) {
+            try(InputStream inputstream = Files.newInputStream(path)) {
+                LanguageMap.loadFromJson(inputstream, biconsumer);
+            } catch(JsonParseException | NullPointerException | IOException exception) {
+                ExtendedLog.error("Couldn't read strings from " + path);
+            }
+        } else {
+            try(InputStream inputstream = LanguageMap.class.getResourceAsStream("/assets/" + modidHere + "/lang/" + localeHere + ".json")) {
+                if(inputstream != null) {
+                    LanguageMap.loadFromJson(inputstream, biconsumer);
+                }
+            } catch(JsonParseException | NullPointerException | IOException exception) {
+                ExtendedLog.error("Couldn't read strings from classpath asset /assets/" + modidHere + "/lang/" + localeHere + ".json");
+            }
+        }
+        Map<String, String> map;
+        try {
+            map = builder.build();
+        } catch (IllegalArgumentException e) {
+            map = new HashMap<>();
+        }
 		for (Entry<String, String> entry : map.entrySet()) {
 			if (entry.getValue().isEmpty()) {
 				continue;
@@ -247,4 +269,54 @@ public abstract class ExtendedLanguageHelper implements IDataProvider {
 			dataHere.remove(str);
 		}
 	}
+
+	private void syncOtherLanguageFiles(DirectoryCache cache, Map<String, String> parentMap) throws IOException {
+        Path root = this.genHere.getOutputFolder().getParent().getParent().getParent();
+        if(root == null) {
+        	return;
+        }
+        Path mainLangDir = root.resolve("src/main/resources/assets/" + modidHere + "/lang");
+        if(!Files.exists(mainLangDir) || !Files.isDirectory(mainLangDir)) {
+        	ExtendedLog.warn("Additional language files not found at {}!", mainLangDir.toString());
+            return;
+        }
+        try(Stream<Path> stream = Files.list(mainLangDir)) {
+            List<Path> localizationFiles = stream
+                    .filter(p -> p.toString().endsWith(".json"))
+                    .filter(p -> !p.getFileName().toString().equalsIgnoreCase(localeHere + ".json"))
+                    .collect(Collectors.toList());
+            for(Path localizationFile : localizationFiles) {
+                Map<String, String> loadedLocalizationMap = loadJsonToMap(localizationFile);
+                Map<String, String> finalLocaliztionMap = new TreeMap<>();
+                for(Entry<String, String> entry : loadedLocalizationMap.entrySet()) {
+                    String key = entry.getKey();
+                    if(!parentMap.containsKey(key)) {
+                        if(key.startsWith("item.lotr.")) {
+                            key = key.replace("item.lotr.", "item." + modidHere + ".");
+                        } else if(key.startsWith("block.lotr.")) {
+                            key = key.replace("block.lotr.", "block." + modidHere + ".");
+                        }
+                    }
+                    if(parentMap.containsKey(key)) {
+                    	finalLocaliztionMap.put(key, entry.getValue());
+                    }
+                }
+                saveHere(cache, finalLocaliztionMap, localizationFile);
+            }
+        }
+    }
+	private Map<String, String> loadJsonToMap(Path path) {
+        Map<String, String> localizations = new LinkedHashMap<>();
+        try(BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+            JsonObject jsonObject = JSONUtils.fromJson(GSON, reader, JsonObject.class);
+            if (jsonObject != null) {
+                for(Entry<String, JsonElement> entry : jsonObject.entrySet()) {
+                	localizations.put(entry.getKey(), entry.getValue().getAsString());
+                }
+            }
+        } catch (Exception e) {
+            ExtendedLog.error("Could not parse target lang file: " + path);
+        }
+        return localizations;
+    }
 }

@@ -12,12 +12,13 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.BannerPattern;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
-	public ExtendedLanguageGenerator(DataGenerator gen, String modid, String locale) {
-		super(gen, modid, locale);
+	public ExtendedLanguageGenerator(DataGenerator gen, ExistingFileHelper fileHelper, String modid, String locale) {
+		super(gen, fileHelper, modid, locale);
 	}
 
 	@SuppressWarnings("deprecation")
