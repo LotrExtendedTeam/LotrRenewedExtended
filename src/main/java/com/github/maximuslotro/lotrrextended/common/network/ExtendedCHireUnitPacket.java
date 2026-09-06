@@ -29,19 +29,27 @@ public class ExtendedCHireUnitPacket {
 
     private int captainId;
     private ResourceLocation unitProfileID;
+    private String squad;
 
-    public ExtendedCHireUnitPacket(int captainId, ResourceLocation unitID) {
+    public ExtendedCHireUnitPacket(int captainId, ResourceLocation unitID, String squad) {
        this.captainId = captainId;
        this.unitProfileID = unitID;
+       this.squad = squad;
     }
 
     public static void encode(ExtendedCHireUnitPacket packet, PacketBuffer buf) {
         buf.writeInt(packet.captainId);
         buf.writeResourceLocation(packet.unitProfileID);
+        if(packet.squad!=null && !packet.squad.isEmpty()) {
+        	buf.writeBoolean(true);
+        	buf.writeUtf(packet.squad);
+        }else {
+        	buf.writeBoolean(false);
+        }
     }
 
     public static ExtendedCHireUnitPacket decode(PacketBuffer buf) {
-        return new ExtendedCHireUnitPacket(buf.readInt(), buf.readResourceLocation());
+        return new ExtendedCHireUnitPacket(buf.readInt(), buf.readResourceLocation(), buf.readBoolean() ? buf.readUtf() : "");
     }
 
     public static void handle(ExtendedCHireUnitPacket packet, Supplier<NetworkEvent.Context> context) {
@@ -90,6 +98,9 @@ public class ExtendedCHireUnitPacket {
         if (newEntity != null && newEntity instanceof NPCEntity) {
         	UnitHiredInformation hireInfo = new UnitHiredInformation(unitProfile.getHiringAlignmentRequired(), unitProfile.isHiringRequiresPledge());
         	((ExtendedINPCEntity)newEntity).getUnitInfo().setNpcAsHired(player, unitProfile.getId(), hireInfo);
+        	if(packet.squad!=null && !packet.squad.isEmpty()) {
+        		((ExtendedINPCEntity)newEntity).getUnitInfo().setSquad(packet.squad);
+        	}
         	if(!player.isCreative()) {
         		CoinUtils.removeCoins(player, player.inventory, unitProfile.getHiringCost());
         	}

@@ -81,6 +81,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	private boolean resendData = false;
 	public boolean isInteracting = false;
 	private int currentHealth = -1;
+	private String squad;
 
 	private ExtendedUnitInventory internalUnitInventory = makeUnitInventory();
 
@@ -232,6 +233,9 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 				if(holder.contains("hire_info")) {
 					hiringInfomation = UnitHiredInformation.loadFromNBT(holder.getCompound("hire_info"));
 				}
+				if(holder.contains("squad")) {
+					squad = holder.getString("squad");
+				}
 				markDirty();
 			}else {
 				this.isHired = false;
@@ -319,6 +323,9 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 			holder.putInt("current_health", (int) this.thisEntity.getHealth());
 			if(hiringInfomation!=null) {
 				holder.put("hire_info", hiringInfomation.saveToNBT());
+			}
+			if(squad!=null && !squad.isEmpty()) {
+				holder.putString("squad", squad);
 			}
 		}
 		nbt.put("HiredUnitInfo", holder);
@@ -545,6 +552,18 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	}
 
 	// ######################################### LOGIC
+	public String getSquad() {
+		return squad;
+	}
+
+	public boolean isSquad(@Nullable String squad) {
+		return this.squad!=null && !this.squad.isEmpty() && squad.equals(squad);
+	}
+
+	public void setSquad(String squad) {
+		this.squad = squad;
+	}
+
 	public void updateSlot(ItemStack stack, ExtendedEquipmentSlotType slot) {
 		if (slot == ExtendedEquipmentSlotType.HEAD) {
 			internalUnitInventory.setItem(9, stack);

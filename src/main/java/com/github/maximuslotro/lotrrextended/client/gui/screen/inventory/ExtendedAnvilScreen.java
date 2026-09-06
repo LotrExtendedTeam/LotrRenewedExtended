@@ -133,7 +133,7 @@ public class ExtendedAnvilScreen extends ExtendedContainerScreen<ExtendedRepairC
 	@Override
 	public void resize(Minecraft pMinecraft, int pWidth, int pHeight) {
 		String s = this.name.getValue();
-		this.init(pMinecraft, pWidth, pHeight);
+		super.resize(pMinecraft, pWidth, pHeight);
 		this.name.setValue(s);
 	}
 
