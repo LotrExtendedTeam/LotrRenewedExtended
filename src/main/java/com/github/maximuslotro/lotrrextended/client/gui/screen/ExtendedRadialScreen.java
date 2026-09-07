@@ -1,14 +1,7 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.lwjgl.opengl.GL11;
 
-import com.github.maximuslotro.lotrrextended.common.enums.ExtendedUnitHornTypes;
-import com.github.maximuslotro.lotrrextended.common.init.ExtendedItems;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCSelectHornPacket;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -16,21 +9,22 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.ITextComponent;
 
-public class ExtendedRaidalScreen extends Screen {
-	private final List<ExtendedUnitHornTypes> options;
+public abstract class ExtendedRadialScreen extends Screen {
 	private final int innerRadius = 20;
-	private int outerRadius = 120;
-	private int hoveredIndex = -1;
-	int centerX;
-	int centerY;
+	protected int outerRadius = 120;
+	protected int hoveredIndex = -1;
+	protected int centerX;
+	protected int centerY;
 
-	public ExtendedRaidalScreen() {
-		super(new TranslationTextComponent("gui.lotrextended.horn_select.title"));
-		this.options = ExtendedUnitHornTypes.getSelectableHornTypes().stream().collect(Collectors.toList());
+	public ExtendedRadialScreen(ITextComponent pTitle) {
+		super(pTitle);
 	}
+
+	public abstract int getOptionsCount();
+
+	public abstract ExtendedColoredText getText(int index);
 
 	@Override
 	public void init() {
@@ -40,11 +34,10 @@ public class ExtendedRaidalScreen extends Screen {
 		outerRadius = Math.min(120, (height-30)/2);
 	}
 
-
 	@Override
 	public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		super.render(matrixStack, mouseX, mouseY, partialTicks);
-		int count = options.size();
+		int count = getOptionsCount();
 		if (count == 0) {
 			return;
 		}
@@ -72,7 +65,7 @@ public class ExtendedRaidalScreen extends Screen {
 		    int g = 40;
 		    int b = 40;
 		    int a = 230;
-		    Integer color = options.get(i).getFormatting().getColor();
+		    Integer color = getText(i).getColor();
 		    if (color != null) {
 		        r = (color >> 16) & 0xFF;
 		        g = (color >> 8) & 0xFF;
@@ -92,7 +85,7 @@ public class ExtendedRaidalScreen extends Screen {
 			int textRadius = (innerRadius + outerRadius) / 2;
 			int textX = (int) (centerX + Math.cos(midAngle) * textRadius);
 			int textY = (int) (centerY + Math.sin(midAngle) * textRadius);
-			TranslationTextComponent text = new TranslationTextComponent(options.get(i).getType());
+			ITextComponent text = getText(i).getText();
 			int color = (i == hoveredIndex) ? 0xFFFFFF : 0xAAAAAA;
 			drawCenteredString(matrixStack, this.font, text, textX, textY - 4, color);
 		}
@@ -121,30 +114,5 @@ public class ExtendedRaidalScreen extends Screen {
 		RenderSystem.enableCull();
 	    RenderSystem.enableTexture();
 	    matrixStack.popPose();
-	}
-
-	@Override
-	public boolean mouseClicked(double mouseX, double mouseY, int button) {
-		if (button == 0 && hoveredIndex != -1) {
-			ExtendedPacketHandler.sendToServer(new ExtendedCSelectHornPacket(options.get(hoveredIndex)));
-			this.onClose();
-			return true;
-		}
-		return super.mouseClicked(mouseX, mouseY, button);
-	}
-
-	@Override
-	public boolean isPauseScreen() {
-		return false;
-	}
-
-	@Override
-	public void tick() {
-		super.tick();
-		ItemStack itemstack = this.minecraft.player.getMainHandItem();
-		if (itemstack == null || itemstack.getItem() != ExtendedItems.COMMANDHORN.get()) {
-			this.onClose();
-			return;
-		}
 	}
 }

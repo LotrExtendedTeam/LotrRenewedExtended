@@ -136,7 +136,7 @@ public class ExtendedCommandHornItem extends Item {
 	public void appendHoverText(ItemStack pStack, @Nullable World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
 		IFormattableTextComponent modeName;
 		if(!getType(pStack).isUnset()) {
-			modeName = new TranslationTextComponent(getType(pStack).getType()).withStyle(getType(pStack).getFormatting());
+			modeName = getType(pStack).getText().withStyle(getType(pStack).getFormatting());
 		}else {
 			modeName = new TranslationTextComponent("gui.lotrextended.base.unset").withStyle(TextFormatting.GRAY);
 		}
