@@ -1,9 +1,11 @@
 package com.github.maximuslotro.lotrrextended.client.gui.screen;
 
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 public abstract class ExtendedBasicAbstractScreen extends Screen {
+	public static final ResourceLocation EXTENDED_WIDGETS = new ResourceLocation("lotrextended:textures/gui/extended_widgets.png");
 	/** The X size of the inventory window in pixels. */
 	protected int imageWidth;
 	/** The Y size of the inventory window in pixels. */

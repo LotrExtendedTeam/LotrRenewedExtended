@@ -43,7 +43,7 @@ public class ExtendedHornSquadScreen extends ExtendedBasicAbstractScreen {
 		}));
 		this.addButton(setButton = new Button(this.leftPos + 30, this.topPos + 67, 116, 20, new TranslationTextComponent("gui.lotrextended.base.set"), button -> {
 			ExtendedPacketHandler.sendToServer(new ExtendedCSelectHornSquadPacket(newSquadName));
-			this.minecraft.setScreen(null);
+			this.onClose();
 		}));
 		clearButton.active = !newSquadName.isEmpty();
 		setButton.active=false;
@@ -54,7 +54,7 @@ public class ExtendedHornSquadScreen extends ExtendedBasicAbstractScreen {
 		super.tick();
 		ItemStack itemstack = this.minecraft.player.getMainHandItem();
 		if (itemstack == null || itemstack.getItem() != ExtendedItems.COMMANDHORN.get()) {
-			this.minecraft.setScreen(null);
+			this.onClose();
 			return;
 		}
 		squadTextField.tick();

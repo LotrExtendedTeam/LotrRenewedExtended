@@ -173,12 +173,12 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 
 		// npc generic buttons
 		addD("gui.lotrextended.entity.talk_button", "Talk");
-		addD("gui.lotrextended.entity.talk_button.tooltip", "Talk with %1$s");
+		addD("gui.lotrextended.entity.talk_button.tooltip", "Talk with %1$s.");
 		// trade system
 		addD("gui.lotrextended.trading.trade_button", "Trade");
-		addD("gui.lotrextended.trading.trade_button.tooltip", "Browse goods and strike a deal");
+		addD("gui.lotrextended.trading.trade_button.tooltip", "Browse goods and strike a deal.");
 		addD("gui.lotrextended.trading.exchange_button", "Exchange Coins");
-		addD("gui.lotrextended.trading.exchange_button.tooltip", "Exchange coin denominations");
+		addD("gui.lotrextended.trading.exchange_button.tooltip", "Exchange coin denominations.");
 		addD("gui.lotrextended.trading.trader_busy", "The trader is busy with another player at the moment.");
 		addD("gui.lotrextended.trading.trader_alignment_too_low", "Your alignment is too low.");
 		addD("gui.lotrextended.trading.trader_unfrendly", "Trader is unfriendly at the moment.");
@@ -188,15 +188,15 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.trading.tooltip.cooldown", "On Cooldown");
 		addD("gui.lotrextended.trading.tooltip.new_trade_freq", "A trade comes back every minute.");
 		addD("gui.lotrextended.trading.tooltip.trades_used", "%1$s/%2$s Used");
-		addD("gui.lotrextended.trading.coin_exchange.tooltip.down", "Break a higher denomination coin into lower denomination coins");
-		addD("gui.lotrextended.trading.coin_exchange.tooltip.up", "Convert lower denomination coins into a higher denomination coin");
+		addD("gui.lotrextended.trading.coin_exchange.tooltip.down", "Break a higher denomination coin into lower denomination coins.");
+		addD("gui.lotrextended.trading.coin_exchange.tooltip.up", "Convert lower denomination coins into a higher denomination coin.");
 		addD("chat.wandering_trader.arrive_near_you", "%1$s has arrived nearby");
 		addD("chat.wandering_trader.arrive_near_player", "%1$s has arrived nearby %2$s");
 		addD("chat.wandering_trader.left_the_area", "%1$s has left the area");
 
 		// hired unit messages and tooltips for captains
 		addD("gui.lotrextended.hiring.hire_button", "Hire");
-		addD("gui.lotrextended.hiring.hire_button.tooltip", "Enlist the service of NPCs");
+		addD("gui.lotrextended.hiring.hire_button.tooltip", "Enlist the service of NPCs.");
 		addD("gui.lotrextended.hiring.captain_alignment_too_low", "Your alignment is too low.");
 		addD("gui.lotrextended.hiring.captain_unfriendly", "Captain is unfriendly at the moment.");
 		
@@ -213,15 +213,15 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		
 		// hired unit GUI
 		addD("gui.lotrextended.hired_unit.interface_button", "Equipment & Tasks");
-		addD("gui.lotrextended.hired_unit.interface_button.tooltip", "Access unit equipment and command tasks");
+		addD("gui.lotrextended.hired_unit.interface_button.tooltip", "Access unit equipment and command tasks.");
 		addD("gui.lotrextended.hired_unit.dismiss_button", "Dismiss");
-		addD("gui.lotrextended.hired_unit.dismiss_button.tooltip", "Dismiss unit from your service");
+		addD("gui.lotrextended.hired_unit.dismiss_button.tooltip", "Dismiss unit from your service.");
 		addD("gui.lotrextended.hired_unit.dismiss_button_confirm", "Confirm Dismissal");
-		addD("gui.lotrextended.hired_unit.dismiss_button_confirm.tooltip", "This operation is irreversible");
+		addD("gui.lotrextended.hired_unit.dismiss_button_confirm.tooltip", "This operation is irreversible!");
 		addD("gui.lotrextended.hired_unit.transfer_button", "Transfer");
-		addD("gui.lotrextended.hired_unit.transfer_button.tooltip", "Transfer unit to another online player");
+		addD("gui.lotrextended.hired_unit.transfer_button.tooltip", "Transfer unit to another online player.");
 		addD("gui.lotrextended.hired_unit.transfer_button_confirm", "Confirm Transfer");
-		addD("gui.lotrextended.hired_unit.transfer_button_confirm.tooltip", "Transfering units to another player is irreversible");
+		addD("gui.lotrextended.hired_unit.transfer_button_confirm.tooltip", "Transfering units to another player is irreversible!");
 		addD("gui.lotrextended.hired_unit.error.old_hiring_tooltip_1_11", "Operation not available for unit hired before 1.11.0");
 
 		addD("gui.lotrextended.hired_unit_tooltip.title.companion", "Companion:");
@@ -514,9 +514,13 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		// Horn Select strings
 		addD("gui.lotrextended.horn_select.title", "Horn of Command Type Selection");
 		addD("gui.lotrextended.horn_select.option_summon", "Summon Units");
-		addD("gui.lotrextended.horn_select.option_halt_reddy", "Halt/Ready Units");
+		addD("gui.lotrextended.horn_select.option_halt_ready", "Halt/Ready Units");
 		addD("gui.lotrextended.horn_select.squad.title", "Assign Hired Unit Squad");
-		addD("gui.lotrextended.horn_select.squad.textfield", "Hired Unit Squad Input Box");
+		addD("gui.lotrextended.horn_select.squad.textfield", "Hired unit squad text box");
+		addD("gui.lotrextended.horn_select.menutype.title", "Horn Selection Menu Type");
+		addD("gui.lotrextended.horn_select.menutype.tooltip", "Set horn type selection menu style.");
+		addD("gui.lotrextended.horn_select.menutype.legacy", "Legacy Button Menu");
+		addD("gui.lotrextended.horn_select.menutype.extended", "Extended Radial Menu");
 
 		// Stone Carving Screen
 		addD("gui.lotrextended.stone_engraving.title", "Engrave Message");

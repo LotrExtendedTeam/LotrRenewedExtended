@@ -118,7 +118,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 
 	private void talkWithNPC() {
 		ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithNPCPacket(entity.getId()));
-		this.minecraft.setScreen(null);
+		this.onClose();
 	}
 
 	private void tradeWithNPC() {
@@ -154,7 +154,7 @@ public class ExtendedTraderMainScreen extends ExtendedBasicAbstractScreen {
 		}else {
 			player.sendMessage(new TranslationTextComponent("gui.lotrextended.trading.trader_unfrendly"), Util.NIL_UUID);
 		}
-		this.minecraft.setScreen(null);
+		this.onClose();
 	}
 
 	@Override

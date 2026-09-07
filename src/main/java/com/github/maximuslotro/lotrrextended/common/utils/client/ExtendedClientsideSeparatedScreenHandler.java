@@ -5,11 +5,14 @@ import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedCaptainMa
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedExitStoneTextSignScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHoistOptionsScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHornSelectRadialScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHornSelectScreen;
+import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHornSelectTypeScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedHornSquadScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedTraderMainScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.ExtendedUnitMainScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedTradeScreen;
 import com.github.maximuslotro.lotrrextended.client.gui.screen.inventory.ExtendedWargInventoryScreen;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedClientConfig;
 import com.github.maximuslotro.lotrrextended.common.inventory.ExtendedWargInventoryContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenChangedScreenPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSBannerOpenScreenPacket;
@@ -78,7 +81,13 @@ public class ExtendedClientsideSeparatedScreenHandler {
 	}
 
 	public static void openHornModeSelect() {
-		Minecraft.getInstance().setScreen(new ExtendedHornSelectRadialScreen());
+		if(ExtendedClientConfig.hornSelectScreenType.get()==0) {
+			Minecraft.getInstance().setScreen(new ExtendedHornSelectTypeScreen());
+		}else if(ExtendedClientConfig.hornSelectScreenType.get()==1) {
+			Minecraft.getInstance().setScreen(new ExtendedHornSelectScreen());
+		}else if(ExtendedClientConfig.hornSelectScreenType.get()==2) {
+			Minecraft.getInstance().setScreen(new ExtendedHornSelectRadialScreen());
+		}
 	}
 
 	public static void openHornSquadSelect(String currentSquadName) {

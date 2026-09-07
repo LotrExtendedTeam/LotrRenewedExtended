@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedImageAddOffsetButton;
+import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedAddOffsetImageButton;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitOverviewContainer;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedCSetHiredUnitOrdersPacket;
@@ -29,9 +29,9 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 	private DecimalFormat df = new DecimalFormat("#.#");
 
 	// buttons
-	private ExtendedImageAddOffsetButton stationaryButton;
-	private ExtendedImageAddOffsetButton followsButton;
-	private ExtendedImageAddOffsetButton farmingButton;
+	private ExtendedAddOffsetImageButton stationaryButton;
+	private ExtendedAddOffsetImageButton followsButton;
+	private ExtendedAddOffsetImageButton farmingButton;
 
 	// Current entity states
 	private ExtendedUnitOrders orders;
@@ -54,7 +54,7 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 	protected void init() {
 		super.init();
 
-		this.stationaryButton = addButton(new ExtendedImageAddOffsetButton(leftPos + 142, topPos + 42, 16, 12, 0, 0, 12, ORDER_BUTTONS,
+		this.stationaryButton = addButton(new ExtendedAddOffsetImageButton(leftPos + 142, topPos + 42, 16, 12, 0, 0, 12, ORDER_BUTTONS,
 			btn -> {
 				if(ExtendedNpcHiredUnitInfoHolder.canTypeAcceptOrders(getMenu().profile.getUnitType(), ExtendedUnitOrders.STATIONARY)) {
 					orders = ExtendedUnitOrders.STATIONARY;
@@ -66,7 +66,7 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 				return orders.equals(ExtendedUnitOrders.STATIONARY);
 			}
 		});
-		this.followsButton = addButton(new ExtendedImageAddOffsetButton(leftPos + 142, topPos + 55, 16, 12, 16, 0, 12, ORDER_BUTTONS, 
+		this.followsButton = addButton(new ExtendedAddOffsetImageButton(leftPos + 142, topPos + 55, 16, 12, 16, 0, 12, ORDER_BUTTONS, 
 			btn -> {
 				if(ExtendedNpcHiredUnitInfoHolder.canTypeAcceptOrders(getMenu().profile.getUnitType(), ExtendedUnitOrders.FOLLOW_PLAYER)) {
 					orders = ExtendedUnitOrders.FOLLOW_PLAYER;
@@ -78,7 +78,7 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 				return orders.equals(ExtendedUnitOrders.FOLLOW_PLAYER);
 			}
 		});
-		this.farmingButton = addButton(new ExtendedImageAddOffsetButton(leftPos + 142, topPos + 68, 16, 12, 48, 0, 12, ORDER_BUTTONS, 
+		this.farmingButton = addButton(new ExtendedAddOffsetImageButton(leftPos + 142, topPos + 68, 16, 12, 48, 0, 12, ORDER_BUTTONS, 
 			btn -> {
 				if(ExtendedNpcHiredUnitInfoHolder.canTypeAcceptOrders(getMenu().profile.getUnitType(), ExtendedUnitOrders.FARMING)) {
 					orders = ExtendedUnitOrders.FARMING;
@@ -126,7 +126,7 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 		renderTooltipForUnitButtons(stack, pMouseX, pMouseY, farmingButton, ExtendedUnitOrders.FARMING, "farming");
 	}
 
-	public void renderTooltipForUnitButtons(MatrixStack stack, int pMouseX, int pMouseY, ExtendedImageAddOffsetButton button, ExtendedUnitOrders orderType, String designator) {
+	public void renderTooltipForUnitButtons(MatrixStack stack, int pMouseX, int pMouseY, ExtendedAddOffsetImageButton button, ExtendedUnitOrders orderType, String designator) {
 		if (button.isHovered()) {
 			List<ITextComponent> tooltips = new ArrayList<>();
 			String status = orders==orderType? "gui.lotrextended.base.on" : "gui.lotrextended.base.off";

@@ -104,7 +104,7 @@ public class ExtendedUnitMainScreen extends ExtendedBasicAbstractScreen {
 
 	private void talkWithNPC() {
 		ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithNPCPacket(entity.getId()));
-		this.minecraft.setScreen(null);
+		this.onClose();
 	}
 
 	private void openInterface() {
@@ -121,7 +121,7 @@ public class ExtendedUnitMainScreen extends ExtendedBasicAbstractScreen {
 	private void dismissUnitConfirmed() {
 		if (hasHireData) {
 			ExtendedPacketHandler.sendToServer(new ExtendedCUnitDismissPacket(entity.getId()));
-			this.minecraft.setScreen(null);
+			this.onClose();
 		}
 	}
 
@@ -135,7 +135,7 @@ public class ExtendedUnitMainScreen extends ExtendedBasicAbstractScreen {
 	private void transferUnitConfirmed() {
 		if (hasHireData) {
 			//ExtendedPacketHandler.sendToServer(new ExtendedCTalkWithNPCPacket(entity.getId()));
-			this.minecraft.setScreen(null);
+			this.onClose();
 		}
 	}
 

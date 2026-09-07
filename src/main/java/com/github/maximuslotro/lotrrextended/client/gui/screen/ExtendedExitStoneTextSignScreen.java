@@ -82,7 +82,7 @@ public class ExtendedExitStoneTextSignScreen extends Screen {
 
 	private void onDone() {
 		this.sign.setChanged();
-		this.minecraft.setScreen((Screen)null);
+		this.onClose();
 	}
 
 	@Override
