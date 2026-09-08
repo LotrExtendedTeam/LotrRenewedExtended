@@ -13,7 +13,6 @@ import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConques
 import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConquestRegion;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSConquestDataPacket;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedSConquestResetPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedIOUtils;
 
 import lotr.common.fac.Faction;
@@ -44,6 +43,15 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 	public ExtendedConquestDataHolder(ExtendedLevelData pHolder) {
 		super(pHolder);
 	}
+
+	@Override
+	public void tick(ServerWorld level) {
+		// Line from wiki: "Conquest decay begins only after there have been no changes in that square for one hour. 
+		// It then decreases by about one point every hour. In order to keep up high rates, you need to keep on fighting enemies in the desired region. "
+		// TODO write conquest decay logic
+	}
+
+	//######################### Coordinate transformations
 	public int getBlocksPerMapPixel() {
 		return 1 << mapScale;
 	}
@@ -91,7 +99,10 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 	public ExtendedConquestPos convertCordsToConquest(int xCord, int zCord) {
 		return new ExtendedConquestPos(convertCordsToConquestX(xCord), convertCordsToConquestZ(zCord));
 	}
-
+	public ExtendedConquestPos convertVectorToConquest(Vector3d position) {
+		return convertCordsToConquest((int)position.x(), (int)position.z);
+	}
+	//######################### Conquest handling
 	public void addConquest(PlayerEntity player, float conquestAdd, Faction playerFaction, Faction opposingFaction, BlockPos position, boolean hiredUnit) {
 		ExtendedConquestRegion conquestRegion = getConquestSquare(convertCordsToConquest(position.getX(), position.getZ()));
 		conquestAdd *= conquestRate;
@@ -106,46 +117,102 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 		ExtendedLog.info("Added {} conquest strength for {} for faction {} against {} for new amount {} ", conquestAdd, player.getDisplayName().getString(), 
 			playerFaction.getName().toString(), opposingFaction.getName().toString(), conquestRegion.getConquest(playerFaction.getName()));
 	}
-	public ExtendedConquestRegion getConquestSquareCords(Vector3d position) {
-		return getConquestSquare(convertCordsToConquest((int)position.x(), (int)position.z));
+	//########### Conquest map
+	public ExtendedConquestRegion getConquestSquare(Vector3d position) {
+		return getConquestSquare(convertVectorToConquest(position));
 	}
 	public ExtendedConquestRegion getConquestSquare(ExtendedConquestPos conquestPos) {
 		lazyLoadConquestData();
 		return conquestMap.computeIfAbsent(conquestPos, id -> loadConquestSquare(id));
 	}
 
+	public @Nonnull Map<ExtendedConquestPos, ExtendedConquestRegion> getConquestMap() {
+		lazyLoadConquestData();
+		return Collections.unmodifiableMap(conquestMap);
+	}
+	public boolean isConquestMapEmpty() {
+		return conquestMap.isEmpty();
+	}
+
+	public void clearConquestMap() {
+		conquestMap.clear();
+		lazyLoadedData=true;
+		if(this.holder.getSide().isServer()) {
+			if(this.conquestFilesFolder != null && this.conquestFilesFolder.exists()) {
+				ExtendedIOUtils.tryDeleteDirectoryContents(this.conquestFilesFolder.toPath());
+			}
+			ExtendedPacketHandler.sendToAllClients(ExtendedSConquestDataPacket.makeResetPacket(gridSquareScale));
+		}
+	}
+	//########### Conquest scale
+	public int getGridSquareScale() {
+		return gridSquareScale;
+	}
+	/**
+	 * If called on server, ensure the conquest map was also wiped afterwards
+	 * @param gridSquareScale The new grid square scale, represented in powers of 2
+	 * */
+	public void setGridSquareScale(int gridSquareScale) {
+		if(this.gridSquareScale != gridSquareScale) {
+			this.gridSquareScale = gridSquareScale;
+			this.conquestMap.clear();
+			this.lazyLoadedData = false;
+			if (this.holder.getSide().isServer()) {
+				saveDataFile();
+			}
+		}
+	}
+
+	//########### Conquest rate
+	public float getConquestRate() {
+		return conquestRate;
+	}
+
+	public void setConquestRate(float conquestRate) {
+		this.conquestRate = conquestRate;
+		if(this.holder.getSide().isServer()) {
+			saveDataFile();
+		}
+	}
+
+	//######################### Data Read/Write + Send/Receive sync
 	private ExtendedConquestRegion loadConquestSquare(ExtendedConquestPos conquestPos) {
 		CompoundNBT nbt = ExtendedIOUtils.load(getConquestDatafile(conquestPos));
-		if (nbt.isEmpty()) {
+		if(nbt.isEmpty()) {
 			return new ExtendedConquestRegion(conquestPos);
 		}
 		ExtendedConquestRegion loadedRegion = ExtendedConquestRegion.loadFromNBT(nbt);
-		if (!conquestPos.equals(loadedRegion.getConquestPos())) {
+		if(!conquestPos.equals(loadedRegion.getConquestPos())) {
 			ExtendedLog.warn("Mismatched region position loaded at {}. Correcting key position.", conquestPos);
 			loadedRegion.setConquestPos(conquestPos);
 		}
 		return loadedRegion;
 	}
 
-	public void sendConquestDataToClient(ResourceLocation pFaction, ServerPlayerEntity pPlayer) {
-		lazyLoadConquestData();
-		ExtendedSConquestDataPacket packet = new ExtendedSConquestDataPacket(pFaction, gridSquareScale, conquestMap);
-		ExtendedPacketHandler.sendToClient(packet, pPlayer);
+	private void lazyLoadConquestData() {
+		if(!lazyLoadedData) {
+			if(this.holder.getSide().isServer() && conquestFilesFolder != null && conquestFilesFolder.exists() && conquestFilesFolder.isDirectory()) {
+				File[] files = conquestFilesFolder.listFiles((folder, name) -> name.endsWith(".dat"));
+				if(files != null) {
+					for(File file : files) {
+						String dataFile = file.getName();
+						String[] cords = dataFile.substring(0, dataFile.length() - 4).split("\\.");
+						if(cords.length == 2) {
+							try {
+								int x = Integer.parseInt(cords[0]);
+								int z = Integer.parseInt(cords[1]);
+								ExtendedConquestPos pos = new ExtendedConquestPos(x, z);
+								conquestMap.computeIfAbsent(pos, this::loadConquestSquare);
+							} catch (NumberFormatException e) {
+								ExtendedLog.warn("Failed to parse conquest pos from filename: " + dataFile);
+							}
+						}
+					}
+				}
+			}
+			lazyLoadedData = true;
+		}
 	}
-
-	public void receiveConquestDataOnClient(ExtendedSConquestDataPacket pPacket) {
-		this.gridSquareScale = pPacket.getConquestScale();
-		this.conquestMap.clear();
-		this.conquestMap.putAll(pPacket.getConquestMap());
-	}
-
-	@Override
-	public void tick(ServerWorld level) {
-		// Line from wiki: "Conquest decay begins only after there have been no changes in that square for one hour. 
-		// It then decreases by about one point every hour. In order to keep up high rates, you need to keep on fighting enemies in the desired region. "
-		// TODO write conquest decay logic
-	}
-
 	@Override
 	public void loadDataServer(CompoundNBT pTag, MinecraftServer server) {
 		conquestFilesFolder = ExtendedIOUtils.getDirOrMake(new File(ExtendedIOUtils.getDirInServer(ExtendedIOUtils.EXTENDED_FOLDER, server, true), "conquest_regions"));
@@ -153,10 +220,10 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 		conquestMap.clear();
 		lazyLoadedData=false;
 		CompoundNBT nbt = ExtendedIOUtils.load(conquestDataFile);
-		if (nbt.contains("conquest_scale")) {
+		if(nbt.contains("conquest_scale")) {
 			gridSquareScale=nbt.getInt("conquest_scale");
 		}
-		if (nbt.contains("conquest_rate")) {
+		if(nbt.contains("conquest_rate")) {
 			conquestRate=nbt.getFloat("conquest_rate");
 		}
 		loadDataShared();
@@ -174,6 +241,18 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 		mapOriginZ = mapSettings.getCurrentLoadedMap().getOriginZ();
 	}
 
+	public void sendConquestDataToClient(ResourceLocation pFaction, ServerPlayerEntity pPlayer) {
+		lazyLoadConquestData();
+		ExtendedSConquestDataPacket packet = new ExtendedSConquestDataPacket(pFaction, gridSquareScale, conquestMap);
+		ExtendedPacketHandler.sendToClient(packet, pPlayer);
+	}
+
+	public void receiveConquestDataOnClient(ExtendedSConquestDataPacket pPacket) {
+		this.gridSquareScale = pPacket.getConquestScale();
+		this.conquestMap.clear();
+		this.conquestMap.putAll(pPacket.getConquestMap());
+	}
+
 	@Override
 	protected void clearData() {
 		conquestMap.clear();
@@ -185,7 +264,7 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 	@Override
 	public void saveData(CompoundNBT pTag) {
 		//TODO figure out a less expensive way to handle this
-		for (Entry<ExtendedConquestPos, ExtendedConquestRegion> regions : conquestMap.entrySet()) {
+		for(Entry<ExtendedConquestPos, ExtendedConquestRegion> regions : conquestMap.entrySet()) {
 			if (regions.getValue().needsSave()) {
 				ExtendedIOUtils.save(getConquestDatafile(regions.getKey()), regions.getValue().save());
 			}
@@ -203,74 +282,4 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 	private File getConquestDatafile(ExtendedConquestPos conquestPos) {
 		return new File(conquestFilesFolder, conquestPos.getPosX() + "." + conquestPos.getPosZ() + ".dat");
 	}
-	public @Nonnull Map<ExtendedConquestPos, ExtendedConquestRegion> getConquestMap() {
-		lazyLoadConquestData();
-		return Collections.unmodifiableMap(conquestMap);
-	}
-
-	public int getGridSquareScale() {
-		return gridSquareScale;
-	}
-
-	/**
-	 * If called on server, ensure the conquest map was also wiped afterwards
-	 * @param gridSquareScale The new grid square scale, represented in powers of 2
-	 * */
-	public void setGridSquareScale(int gridSquareScale) {
-		if (this.gridSquareScale != gridSquareScale) {
-			this.gridSquareScale = gridSquareScale;
-			this.conquestMap.clear();
-			this.lazyLoadedData = false;
-			if (this.holder.getSide().isServer()) {
-				saveDataFile();
-			}
-		}
-	}
-
-	public float getConquestRate() {
-		return conquestRate;
-	}
-
-	public void setConquestRate(float conquestRate) {
-		this.conquestRate = conquestRate;
-		if(this.holder.getSide().isServer()) {
-			saveDataFile();
-		}
-	}
-
-	public void clearConquestMap() {
-		conquestMap.clear();
-		lazyLoadedData=true;
-		if(this.holder.getSide().isServer()) {
-			if (this.conquestFilesFolder != null && this.conquestFilesFolder.exists()) {
-				ExtendedIOUtils.tryDeleteDirectoryContents(this.conquestFilesFolder.toPath());
-			}
-			ExtendedPacketHandler.sendToAllClients(new ExtendedSConquestResetPacket(gridSquareScale));
-		}
-	}
-
-	private void lazyLoadConquestData() {
-		if (!lazyLoadedData) {
-            if (this.holder.getSide().isServer() && conquestFilesFolder != null && conquestFilesFolder.exists() && conquestFilesFolder.isDirectory()) {
-                File[] files = conquestFilesFolder.listFiles((folder, name) -> name.endsWith(".dat"));
-                if (files != null) {
-                    for (File file : files) {
-                        String dataFile = file.getName();
-                        String[] cords = dataFile.substring(0, dataFile.length() - 4).split("\\.");
-                        if (cords.length == 2) {
-                            try {
-                                int x = Integer.parseInt(cords[0]);
-                                int z = Integer.parseInt(cords[1]);
-                                ExtendedConquestPos pos = new ExtendedConquestPos(x, z);
-                                conquestMap.computeIfAbsent(pos, this::loadConquestSquare);
-                            } catch (NumberFormatException e) {
-                                ExtendedLog.warn("Failed to parse conquest pos from filename: " + dataFile);
-                            }
-                        }
-                    }
-                }
-            }
-            lazyLoadedData = true;
-        }
-    }
 }

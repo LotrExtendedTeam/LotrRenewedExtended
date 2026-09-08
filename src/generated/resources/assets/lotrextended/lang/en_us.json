@@ -2245,6 +2245,8 @@
   "gui.lotrextended.horn_select.option_halt_reddy": "Halt/Ready Units",
   "gui.lotrextended.horn_select.option_summon": "Summon Units",
   "gui.lotrextended.horn_select.title": "Horn of Command Type Selection",
+  "gui.lotrextended.map.conquest.strength": "Conquest Strength: %s",
+  "gui.lotrextended.map.teleport": "Press '%s' to /tp",
   "gui.lotrextended.menu.achievements": "Achievements",
   "gui.lotrextended.menu.advancements": "Advancements",
   "gui.lotrextended.menu.back": "Back",

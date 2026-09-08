@@ -16,17 +16,6 @@ public abstract class AbstractExtendedOptionsScreen extends ExtendedAbstractWind
 		this.currentPage = pCurrentPage;
 	}
 
-	public boolean hasCheatsEnabled() {
-		boolean hasCheatsEnabled = false;
-		if (this.minecraft.getSingleplayerServer() != null) {
-		    hasCheatsEnabled = this.minecraft.getSingleplayerServer().isSingleplayerOwner(this.minecraft.player.getGameProfile()) 
-		            && this.minecraft.getSingleplayerServer().getWorldData().getAllowCommands()
-		            || this.minecraft.getSingleplayerServer().getPlayerList().isAllowCheatsForAllPlayers();
-		} else {
-			hasCheatsEnabled = this.minecraft.player.hasPermissions(2);
-		}
-		return hasCheatsEnabled;
-	}
 	@Override
 	public void init() {
 		super.init();

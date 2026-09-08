@@ -11,17 +11,33 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
 
+/**
+ * A class of modified vanilla methods expose additional functionality along with helper methods
+ * */
 public abstract class ExtendedAbstractBasicScreen extends Screen {
+	public static final int WHITE_TEXT = 16777215;
 
 	protected ExtendedAbstractBasicScreen(ITextComponent pTitle) {
 		super(pTitle);
 	}
 
-	public static void fillFloat(MatrixStack pPoseStack, float pMinX, float pMinY, float pMaxX, float pMaxY, int pColorRGBA) {
-		innerFill(pPoseStack.last().pose(), pMinX, pMinY, pMaxX, pMaxY, pColorRGBA);
+	public boolean hasCheatsEnabled() {
+		boolean hasCheatsEnabled = false;
+		if (this.minecraft.getSingleplayerServer() != null) {
+		    hasCheatsEnabled = this.minecraft.getSingleplayerServer().isSingleplayerOwner(this.minecraft.player.getGameProfile()) 
+		            && this.minecraft.getSingleplayerServer().getWorldData().getAllowCommands()
+		            || this.minecraft.getSingleplayerServer().getPlayerList().isAllowCheatsForAllPlayers();
+		} else {
+			hasCheatsEnabled = this.minecraft.player.hasPermissions(2);
+		}
+		return hasCheatsEnabled;
 	}
 
-	private static void innerFill(Matrix4f pMatrix, float pMinX, float pMinY, float pMaxX, float pMaxY, int pColorRGBA) {
+	public static void fillFloat(MatrixStack pPoseStack, float pMinX, float pMinY, float pMaxX, float pMaxY, int pColorRGBA) {
+		innerFillFloat(pPoseStack.last().pose(), pMinX, pMinY, pMaxX, pMaxY, pColorRGBA);
+	}
+
+	private static void innerFillFloat(Matrix4f pMatrix, float pMinX, float pMinY, float pMaxX, float pMaxY, int pColorRGBA) {
 		if (pMinX < pMaxX) {
 			float i = pMinX;
 			pMinX = pMaxX;
@@ -79,5 +95,37 @@ public abstract class ExtendedAbstractBasicScreen extends Screen {
 		bufferbuilder.end();
 		RenderSystem.enableAlphaTest();
 		WorldVertexBufferUploader.end(bufferbuilder);
+	}
+
+	public void fillGradientHorizontal(MatrixStack pPoseStack, int pX1, int pY1, int pX2, int pY2, int pColorFrom, int pColorTo) {
+	    RenderSystem.disableTexture();
+	    RenderSystem.enableBlend();
+	    RenderSystem.disableAlphaTest();
+	    RenderSystem.defaultBlendFunc();
+	    RenderSystem.shadeModel(7425);
+	    Tessellator tessellator = Tessellator.getInstance();
+	    BufferBuilder bufferbuilder = tessellator.getBuilder();
+	    bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+	    fillGradientHorizontal(pPoseStack.last().pose(), bufferbuilder, pX1, pY1, pX2, pY2, this.getBlitOffset(), pColorFrom, pColorTo);
+	    tessellator.end();
+	    RenderSystem.shadeModel(7424);
+	    RenderSystem.disableBlend();
+	    RenderSystem.enableAlphaTest();
+	    RenderSystem.enableTexture();
+	}
+
+	private static void fillGradientHorizontal(Matrix4f pMatrix, BufferBuilder pBuilder, int pX1, int pY1, int pX2, int pY2, int pBlitOffset, int pColorA, int pColorB) {
+	    float f  = (float)(pColorA >> 24 & 255) / 255.0F; // Alpha Left
+	    float f1 = (float)(pColorA >> 16 & 255) / 255.0F; // Red Left
+	    float f2 = (float)(pColorA >> 8 & 255) / 255.0F;  // Green Left
+	    float f3 = (float)(pColorA & 255) / 255.0F;       // Blue Left
+	    float f4 = (float)(pColorB >> 24 & 255) / 255.0F; // Alpha Right
+	    float f5 = (float)(pColorB >> 16 & 255) / 255.0F; // Red Right
+	    float f6 = (float)(pColorB >> 8 & 255) / 255.0F;  // Green Right
+	    float f7 = (float)(pColorB & 255) / 255.0F;       // Blue Right
+	    pBuilder.vertex(pMatrix, (float)pX2, (float)pY1, (float)pBlitOffset).color(f5, f6, f7, f4).endVertex();
+	    pBuilder.vertex(pMatrix, (float)pX1, (float)pY1, (float)pBlitOffset).color(f1, f2, f3, f).endVertex();
+	    pBuilder.vertex(pMatrix, (float)pX1, (float)pY2, (float)pBlitOffset).color(f1, f2, f3, f).endVertex();
+	    pBuilder.vertex(pMatrix, (float)pX2, (float)pY2, (float)pBlitOffset).color(f5, f6, f7, f4).endVertex();
 	}
 }

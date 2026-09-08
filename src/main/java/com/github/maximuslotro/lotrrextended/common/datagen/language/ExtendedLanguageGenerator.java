@@ -412,6 +412,10 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.worldprune.finished", "Pruning complete! Deleted %s regions, saving %s, and skipped %s");
 		addD("gui.lotrextended.worldprune.finished.dry", "[Dry Run] Would delete %s regions, saving %s");
 		addD("gui.lotrextended.worldprune.canceled", "Pruning canceled (%s/%s regions processed)");
+		// Map
+		addD("gui.lotrextended.map.teleport", "Press '%s' to /tp");
+		addD("gui.lotrextended.map.conquest.strength", "Conquest Strength: %s");
+
 		// Banner Menu strings
 		addD("gui.lotrextended.banner_configuration.title", "Banner Protection");
 		addD("gui.lotrextended.banner_configuration.disabled", "Banner Protection Is Disabled");

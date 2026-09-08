@@ -34,6 +34,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedScreen {
 	private static final ResourceLocation guiTexture = new ResourceLocation("lotrextended:textures/gui/banner_gui.png");
+	private static final TranslationTextComponent TITLE = new TranslationTextComponent("gui.lotrextended.banner_configuration.title");
 	private List<ExtendedBannerPermissions> globalPerms;
 	private List<ExtendedBannerPermissions> factionPerms;
 	private float alignmentLevel;
@@ -71,7 +72,7 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 	private Button playerInfo;
 
 	public ExtendedBannerConfigurationScreen(ExtendedSBannerOpenScreenPacket serverData) {
-		super(new StringTextComponent("BANNERCONFIGURATION"), 200, 192);
+		super(TITLE, 200, 192);
 		this.globalPerms = serverData.globalPerms;
 		this.factionPerms = serverData.factionPerms;
 		this.alignmentLevel = Math.round(serverData.alignmentLevel * 10) / 10f;
@@ -494,7 +495,6 @@ public class ExtendedBannerConfigurationScreen extends ExtendedAbstractWindowedS
 		renderBackground(matStack);
 		this.minecraft.getTextureManager().bind(guiTexture);
 		blit(matStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-		TranslationTextComponent title = new TranslationTextComponent("gui.lotrextended.banner_configuration.title");
 		this.font.draw(matStack, title, leftPos + (this.imageWidth/2) - (font.width(title)/2), topPos + 7, 4210752);
 		if(!isEnabled) {
 			alignmentField.visible=false;

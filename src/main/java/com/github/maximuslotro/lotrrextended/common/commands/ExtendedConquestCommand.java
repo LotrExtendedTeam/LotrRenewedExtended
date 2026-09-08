@@ -55,7 +55,7 @@ public class ExtendedConquestCommand extends LOTRBaseCommand {
 	}
 
 	public static int getConquest(CommandSource source, Vector3d pos, Faction faction) {
-		ExtendedConquestRegion region = ExtendedLevelData.serverInstance().getConquestData().getConquestSquareCords(pos);
+		ExtendedConquestRegion region = ExtendedLevelData.serverInstance().getConquestData().getConquestSquare(pos);
 		float conquest = region.getConquest(faction.getName());
 		if(conquest>0) {
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.conquest.get", faction.getName().toString(), conquest, pos.toString()), true);
@@ -66,7 +66,7 @@ public class ExtendedConquestCommand extends LOTRBaseCommand {
 	}
 
 	public static int modifyConquest(CommandSource source, Vector3d pos, Faction faction, float amount, boolean shouldSet) {
-		ExtendedConquestRegion region = ExtendedLevelData.serverInstance().getConquestData().getConquestSquareCords(pos);
+		ExtendedConquestRegion region = ExtendedLevelData.serverInstance().getConquestData().getConquestSquare(pos);
 		if(shouldSet) {
 			region.setConquestRaw(faction.getName(), amount);
 			source.sendSuccess(new TranslationTextComponent("command.lotrextended.conquest.modify.set", faction.getName().toString(), amount, pos.toString()), true);

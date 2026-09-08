@@ -14,11 +14,9 @@ import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public class ExtendedTraderMainScreen extends ExtendedAbstractWindowedScreen {
-
 	private NPCEntity entity;
 	private final PlayerEntity player;
 
@@ -31,7 +29,7 @@ public class ExtendedTraderMainScreen extends ExtendedAbstractWindowedScreen {
 	private boolean canTraderTrade = false;
 	private boolean canTraderHire = false;
 	public ExtendedTraderMainScreen(NPCEntity entity, PlayerEntity player) {
-		super(new StringTextComponent("Trader Menu"), 176, 256);
+		super(new StringTextComponent(entity.getName().getString()), 176, 256);
 		if(!(entity instanceof ExtendedITraderEntity)) {
 			throw new IllegalArgumentException("Recieved trader NPC that does not impliment ExtendedTraderEntity");
 		}
@@ -162,10 +160,7 @@ public class ExtendedTraderMainScreen extends ExtendedAbstractWindowedScreen {
 	@Override
 	public void render(MatrixStack matStack, int mouseX, int mouseY, float tick) {
 		renderBackground(matStack);
-
-		TextComponent title = new StringTextComponent(entity.getName().getString());
 		this.font.draw(matStack, title, this.leftPos + ((this.imageWidth - font.width(title)) / 2), this.topPos + 95, 16777215);
-
 		super.render(matStack, mouseX, mouseY, tick);
 	}
 
