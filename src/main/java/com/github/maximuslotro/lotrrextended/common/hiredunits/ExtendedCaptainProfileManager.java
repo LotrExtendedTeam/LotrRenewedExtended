@@ -10,7 +10,7 @@ import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.serialization.GsonSerializers;
+import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedGsonSerializers;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import com.google.common.collect.Maps;
@@ -28,7 +28,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class ExtendedCaptainProfileManager extends ReloadListener<Map<ResourceLocation, JsonElement>> {
 	public static final ExtendedCaptainProfileManager INSTANCE = new ExtendedCaptainProfileManager();
-	public static final Gson GSON = GsonSerializers.createCaptainSerializer().disableHtmlEscaping().create();
+	public static final Gson GSON = ExtendedGsonSerializers.createCaptainSerializer().disableHtmlEscaping().setPrettyPrinting().create();
 	private static final int PATH_SUFFIX_LENGTH = ".json".length();
 	private final String directory = "captain_profiles";
 	private Map<ResourceLocation, ExtendedCaptainProfile> captainProfiles = ImmutableMap.of();

@@ -5,7 +5,7 @@ import com.github.maximuslotro.lotrrextended.client.ExtendedClientProxy;
 import com.github.maximuslotro.lotrrextended.common.advancements.ExtendedCriteriaTriggers;
 import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
 import com.github.maximuslotro.lotrrextended.common.init.ExtendedSounds;
-import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedDataSerializers;
+import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedIDataSerializerSerializers;
 
 import lotr.common.LOTRLog;
 import lotr.common.data.ExtendedLOTRPlayerData;
@@ -45,7 +45,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class ExtendedInvasionSpawnerEntity extends Entity {
-    private static final DataParameter<ResourceLocation> DATA_TYPE_KEY = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, ExtendedDataSerializers.RESOURCE_LOCATION);
+    private static final DataParameter<ResourceLocation> DATA_TYPE_KEY = EntityDataManager.defineId(ExtendedInvasionSpawnerEntity.class, ExtendedIDataSerializerSerializers.RESOURCE_LOCATION);
 
     private static final float ROTATION_SPEED = 0.5F;
     private static final double INVASION_FOLLOW_RANGE = 40.0;

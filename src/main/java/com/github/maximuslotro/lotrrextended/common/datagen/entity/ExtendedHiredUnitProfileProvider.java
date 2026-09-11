@@ -13,8 +13,8 @@ import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedHiredUnitTypes;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfile;
+import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedServerHiredUnitProfileManager;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitCombatTypes;
-import com.github.maximuslotro.lotrrextended.common.serialization.GsonSerializers;
 import com.google.gson.Gson;
 
 import net.minecraft.data.DataGenerator;
@@ -24,7 +24,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 
 public abstract class ExtendedHiredUnitProfileProvider implements IDataProvider {
-	public static final Gson GSON = GsonSerializers.createHiredUnitSerializer().disableHtmlEscaping().setPrettyPrinting().create();
+	public static final Gson GSON = ExtendedServerHiredUnitProfileManager.GSON;
 	private static final Logger LOGGER = LogManager.getLogger();
 	private final Map<ResourceLocation, ExtendedServerHiredUnitProfile> dataHere = new TreeMap<>();
 	protected final DataGenerator dataGenerator;

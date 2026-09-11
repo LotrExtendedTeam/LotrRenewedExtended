@@ -10,6 +10,7 @@ import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEn
 import com.github.maximuslotro.lotrrextended.common.spawners.ExtendedStructureEntitySpawnerEntry;
 import com.github.maximuslotro.lotrrextended.common.traders.ExtendedTraderProfile;
 import com.github.maximuslotro.lotrrextended.common.traders.pools.ExtendedTraderPoolItem;
+import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedBiomeInformation;
 import com.google.gson.GsonBuilder;
 
 import net.minecraft.loot.BinomialRange;
@@ -18,7 +19,7 @@ import net.minecraft.loot.IntClamper;
 import net.minecraft.loot.RandomValueRange;
 import net.minecraft.util.ResourceLocation;
 
-public class GsonSerializers {
+public class ExtendedGsonSerializers {
 	public static GsonBuilder createConditionSerializer() {
 		return new GsonBuilder()
 			.registerTypeAdapter(RandomValueRange.class, new RandomValueRange.Serializer())
@@ -56,5 +57,10 @@ public class GsonSerializers {
 		return createConditionSerializer()
 			.registerTypeAdapter(ExtendedTraderProfile.class, new ExtendedTraderProfile.Serializer())
 			.registerTypeAdapter(ExtendedTraderPoolItem.class, new ExtendedTraderPoolItem.Serializer());
+	}
+
+	public static GsonBuilder createBiomeInformationSerializer() {
+		return createConditionSerializer()
+			.registerTypeAdapter(ExtendedBiomeInformation.class, new ExtendedBiomeInformation.Serializer());
 	}
 }

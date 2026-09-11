@@ -23,13 +23,13 @@ import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
 
-public class ExtendedBiomeInfoGenerator extends ExtendedInfoGenerator {
+public class ExtendedBiomeDataAggregator extends ExtendedInfoAggregator {
 	public static final Gson GSON_PRETTY_WRITER = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 	private final Map<EntityType<?>, List<ResourceLocation>> entityBiomeMap = new HashMap<>();
 	protected final DataGenerator dataGenerator;
 	private final ExistingFileHelper fileHelper;
 
-	public ExtendedBiomeInfoGenerator(DataGenerator pDataGenerator, ExistingFileHelper fileHelper) {
+	public ExtendedBiomeDataAggregator(DataGenerator pDataGenerator, ExistingFileHelper fileHelper) {
 		this.dataGenerator = pDataGenerator;
 		this.fileHelper = fileHelper;
 	}

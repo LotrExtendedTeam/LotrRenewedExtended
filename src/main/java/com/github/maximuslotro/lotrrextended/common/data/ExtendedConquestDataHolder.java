@@ -14,6 +14,7 @@ import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConques
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedSConquestDataPacket;
 import com.github.maximuslotro.lotrrextended.common.utils.ExtendedIOUtils;
+import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedBiomeInformationManager;
 
 import lotr.common.fac.Faction;
 import lotr.common.world.map.MapSettingsManager;
@@ -109,10 +110,10 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 		if(hiredUnit) {
 			conquestAdd *= 0.25F;
 		}
+		conquestAdd *= ExtendedBiomeInformationManager.INSTANCE.get(player.level.getBiome(position)).getConquestRate();
+		//TODO circular conquest
 		conquestRegion.addConquestRaw(playerFaction.getName(), conquestAdd);
 		conquestRegion.addConquestRaw(opposingFaction.getName(), -conquestAdd);
-		//TODO circular conquest
-		//TODO handle other factions inc or dec
 		player.sendMessage(new StringTextComponent(String.format("+%.2f Conquest", conquestAdd)), Util.NIL_UUID);
 		ExtendedLog.info("Added {} conquest strength for {} for faction {} against {} for new amount {} ", conquestAdd, player.getDisplayName().getString(), 
 			playerFaction.getName().toString(), opposingFaction.getName().toString(), conquestRegion.getConquest(playerFaction.getName()));

@@ -13,7 +13,7 @@ import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class ExtendedInfoGenerator implements IDataProvider {
+public abstract class ExtendedInfoAggregator implements IDataProvider {
 	private static final Logger LOGGER = LogManager.getLogger();
 
 	protected static void save(Gson pGson, DirectoryCache pCache, JsonElement info, Path pPath) throws IOException {

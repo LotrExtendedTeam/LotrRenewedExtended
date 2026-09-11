@@ -12,7 +12,7 @@ import net.minecraftforge.registries.DataSerializerEntry;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class ExtendedDataSerializers {
+public class ExtendedIDataSerializerSerializers {
 	public static final IDataSerializer<Vector3d> VECTOR3D_POS = new IDataSerializer<Vector3d>() {
 		@Override
 		public void write(PacketBuffer pBuffer, Vector3d pValue) {

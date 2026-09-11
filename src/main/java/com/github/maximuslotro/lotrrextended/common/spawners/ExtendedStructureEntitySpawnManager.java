@@ -14,7 +14,7 @@ import java.util.Set;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.serialization.GsonSerializers;
+import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedGsonSerializers;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import com.google.common.collect.Maps;
@@ -31,7 +31,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<ResourceLocation, JsonElement>> {
 	public static final ExtendedStructureEntitySpawnManager INSTANCE = new ExtendedStructureEntitySpawnManager();
-	public static final Gson GSON = GsonSerializers.createStructureSpawnerSerializer().disableHtmlEscaping().create();
+	public static final Gson GSON = ExtendedGsonSerializers.createStructureSpawnerSerializer().disableHtmlEscaping().setPrettyPrinting().create();
 	private static final int PATH_SUFFIX_LENGTH = ".json".length();
 	private final String directory = "entity_structure_spawners";
 	private Map<ResourceLocation, ExtendedStructureEntitySpawner> spawners = ImmutableMap.of();

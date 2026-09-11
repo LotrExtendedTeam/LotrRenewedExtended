@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
 import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
-import com.github.maximuslotro.lotrrextended.common.serialization.GsonSerializers;
+import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedGsonSerializers;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.ImmutableMap.Builder;
@@ -25,7 +25,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class ExtendedSignTextProcessorManager extends ReloadListener<Map<String, JsonElement>> {
 	public static final ExtendedSignTextProcessorManager INSTANCE = new ExtendedSignTextProcessorManager();
-	public static final Gson GSON = GsonSerializers.createSignTextSerializer().disableHtmlEscaping().create();
+	public static final Gson GSON = ExtendedGsonSerializers.createSignTextSerializer().disableHtmlEscaping().setPrettyPrinting().create();
 	private static final int PATH_SUFFIX_LENGTH = ".json".length();
 	private final String directory = "structure_sign_texts";
 	private Map<String, ExtendedSignTextList> signtexts = ImmutableMap.of();

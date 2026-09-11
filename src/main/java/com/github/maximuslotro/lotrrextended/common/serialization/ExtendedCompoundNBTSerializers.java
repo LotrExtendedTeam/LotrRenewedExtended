@@ -7,7 +7,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.util.math.vector.Vector3i;
 
-public class ExtendedSerialization {
+public class ExtendedCompoundNBTSerializers {
 	public static class Vector3fSerializer {
 		public static CompoundNBT writeVector3f(Vector3f v) {
 			CompoundNBT tag = new CompoundNBT();
