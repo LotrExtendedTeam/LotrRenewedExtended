@@ -17,8 +17,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 
 public class ExtendedBiomeInformationManager extends JsonReloadListener {
-	public static final ExtendedBiomeInformationManager INSTANCE = new ExtendedBiomeInformationManager();
 	public static final Gson GSON = ExtendedGsonSerializers.createBiomeInformationSerializer().disableHtmlEscaping().setPrettyPrinting().create();
+	public static final ExtendedBiomeInformationManager INSTANCE = new ExtendedBiomeInformationManager();
 	public static final String directory = "biome_information";
 	private Map<ResourceLocation, ExtendedBiomeInformation> biomeInformations;
 

@@ -1,11 +1,5 @@
 package com.github.maximuslotro.lotrrextended.common.spawners;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,23 +11,17 @@ import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.serialization.ExtendedGsonSerializers;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
-import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
 
-import net.minecraft.client.resources.ReloadListener;
+import net.minecraft.client.resources.JsonReloadListener;
 import net.minecraft.profiler.IProfiler;
-import net.minecraft.resources.IResource;
 import net.minecraft.resources.IResourceManager;
-import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 
-public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<ResourceLocation, JsonElement>> {
-	public static final ExtendedStructureEntitySpawnManager INSTANCE = new ExtendedStructureEntitySpawnManager();
+public class ExtendedStructureEntitySpawnManager extends JsonReloadListener {
 	public static final Gson GSON = ExtendedGsonSerializers.createStructureSpawnerSerializer().disableHtmlEscaping().setPrettyPrinting().create();
-	private static final int PATH_SUFFIX_LENGTH = ".json".length();
-	private final String directory = "entity_structure_spawners";
+	public static final ExtendedStructureEntitySpawnManager INSTANCE = new ExtendedStructureEntitySpawnManager();
 	private Map<ResourceLocation, ExtendedStructureEntitySpawner> spawners = ImmutableMap.of();
 	/**
 	 * A Map of spawn ids and connected lists of entity ids for each spawn id
@@ -41,7 +29,9 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
 	private HashMap<String, List<ResourceLocation>> cachedSpawnLists = new HashMap<>();
 
 	// Don't allow more than one instance than {@see ExtendedStructureEntitySpawnManager#INSTANCE }
-	private ExtendedStructureEntitySpawnManager() {}
+	private ExtendedStructureEntitySpawnManager() {
+		super(GSON, "entity_structure_spawners");
+	}
 
 	public ExtendedStructureEntitySpawner get(ResourceLocation p_186521_1_) {
 		return this.spawners.getOrDefault(p_186521_1_, ExtendedStructureEntitySpawner.EMPTY);
@@ -90,41 +80,6 @@ public class ExtendedStructureEntitySpawnManager extends ReloadListener<Map<Reso
         // TODO validate loaded data if applicable
 		this.spawners = builder.build();
 		ExtendedLog.info("Loaded Structure Entity Spawners from Json - {} spawners", spawners.size()-1);
-	}
-
-	/**
-	 * Code copied from {@link net.minecraft.client.resources.JsonReloadListener} due to if this class extended it, it would cause server crashes
-	 * when running a reload since all data files would disappear?
-	 * Extending {@link ReloadListener} and copying the method fixes this data corruption
-	 * From Minecraft 1.16.5
-	 * */
-	@Override
-	protected Map<ResourceLocation, JsonElement> prepare(IResourceManager pResourceManager, IProfiler pProfiler) {
-		Map<ResourceLocation, JsonElement> map = Maps.newHashMap();
-		int i = this.directory.length() + 1;
-		for(ResourceLocation resourcelocation : pResourceManager.listResources(this.directory, (p_223379_0_) -> p_223379_0_.endsWith(".json"))) {
-			String s = resourcelocation.getPath();
-			ResourceLocation localPathLocation = new ResourceLocation(resourcelocation.getNamespace(), s.substring(i, s.length() - PATH_SUFFIX_LENGTH));
-			try (
-					IResource iresource = pResourceManager.getResource(resourcelocation);
-					InputStream inputstream = iresource.getInputStream();
-					Reader reader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
-					) {
-				JsonElement jsonelement = JSONUtils.fromJson(GSON, reader, JsonElement.class);
-				if (jsonelement != null) {
-					JsonElement nullChecker = map.put(localPathLocation, jsonelement);
-					if (nullChecker != null) {
-						throw new IllegalStateException("Duplicate data file ignored with ID " + localPathLocation);
-					}
-				} else {
-					ExtendedLog.error("Couldn't load data file {} from {} as it's null or empty", localPathLocation, resourcelocation);
-				}
-			} catch (IllegalArgumentException | IOException | JsonParseException jsonParseException) {
-				ExtendedLog.error("Couldn't parse data file {} from {}", localPathLocation, resourcelocation, jsonParseException);
-			}
-		}
-
-		return map;
 	}
 
 	public static <T> T deserialize(Gson gson, JsonElement data, Class<T> classToConvert) {

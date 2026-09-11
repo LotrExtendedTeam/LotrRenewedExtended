@@ -1,8 +1,10 @@
 package com.github.maximuslotro.lotrrextended.common.commands;
 
 
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.data.ExtendedLevelData;
 import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConquestRegion;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.FloatArgumentType;
@@ -37,9 +39,11 @@ public class ExtendedConquestCommand extends LOTRBaseCommand {
 		LiteralArgumentBuilder<CommandSource> getRate = Commands.literal("getRate").executes(context -> getConquestRate(context.getSource()));
 		LiteralArgumentBuilder<CommandSource> setRate = Commands.literal("setRate").then(Commands.argument("rate", FloatArgumentType.floatArg(0.1F))
 			.executes(context -> setConquestRate(context.getSource(), FloatArgumentType.getFloat(context, "rate"))));
-
+		LiteralArgumentBuilder<CommandSource> enable = Commands.literal("enable").executes(context -> enableDisableConquest(context.getSource(), true));
+		LiteralArgumentBuilder<CommandSource> disable = Commands.literal("disable").executes(context -> enableDisableConquest(context.getSource(), false));
 		dispatcher.register(Commands.literal("conquest").requires(context -> context.hasPermission(4))
-			.then(clear).then(getScale).then(setScale).then(setConquest).then(addConquest).then(getConquest).then(getRate).then(setRate));
+			.then(clear).then(getScale).then(setScale).then(setConquest).then(addConquest).then(getConquest).then(getRate).then(setRate)
+			.then(enable).then(disable));
 	}
 
 	public static int getConquestRate(CommandSource source) {
@@ -96,6 +100,19 @@ public class ExtendedConquestCommand extends LOTRBaseCommand {
 		int mapScale = ExtendedLevelData.serverInstance().getConquestData().getConquestSizeInMapPixels();
 		source.sendSuccess(new TranslationTextComponent("command.lotrextended.conquest.scale.set", scale, mapScale), true);
 		clearConquest(source);
+		return Command.SINGLE_SUCCESS;
+	}
+
+	public static int enableDisableConquest(CommandSource source, boolean enable) {
+		ExtendedServerConfig.enableConquest.set(enable);
+		TranslationTextComponent result;
+		if(enable) {
+			result = new TranslationTextComponent("gui.lotrextended.base.enabled");
+		}else {
+			result = new TranslationTextComponent("gui.lotrextended.base.disabled");
+		}
+		ExtendedPacketHandler.syncServerConfigWithAllClients();
+		source.sendSuccess(new TranslationTextComponent("command.lotrextended.conquest.toggle", result), true);
 		return Command.SINGLE_SUCCESS;
 	}
 }

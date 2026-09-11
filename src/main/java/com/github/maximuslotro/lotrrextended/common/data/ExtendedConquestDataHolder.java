@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Nonnull;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.common.config.ExtendedServerConfig;
 import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConquestPos;
 import com.github.maximuslotro.lotrrextended.common.map.conquest.ExtendedConquestRegion;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
@@ -105,6 +106,9 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 	}
 	//######################### Conquest handling
 	public void addConquest(PlayerEntity player, float conquestAdd, Faction playerFaction, Faction opposingFaction, BlockPos position, boolean hiredUnit) {
+		if(!ExtendedServerConfig.enableConquest.get()) {
+			return;
+		}
 		ExtendedConquestRegion conquestRegion = getConquestSquare(convertCordsToConquest(position.getX(), position.getZ()));
 		conquestAdd *= conquestRate;
 		if(hiredUnit) {

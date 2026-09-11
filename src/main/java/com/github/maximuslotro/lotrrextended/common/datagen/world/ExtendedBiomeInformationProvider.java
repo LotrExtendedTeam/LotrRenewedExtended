@@ -10,15 +10,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.github.maximuslotro.lotrrextended.ExtendedLog;
+import com.github.maximuslotro.lotrrextended.LotrExtendedMod;
 import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedBiomeInformation;
 import com.github.maximuslotro.lotrrextended.common.world.biome.ExtendedBiomeInformationManager;
 import com.google.gson.Gson;
 
+import lotr.common.init.LOTRBiomes;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.RegistryObject;
 
 public abstract class ExtendedBiomeInformationProvider implements IDataProvider {
 	public static final Gson GSON = ExtendedBiomeInformationManager.GSON;
@@ -52,6 +55,13 @@ public abstract class ExtendedBiomeInformationProvider implements IDataProvider 
 		};
 		makeBiomeInformation(consumer);
 		ExtendedLog.info("Built "+dataHere.size()+" biome information.");
+		if(modId.equals(LotrExtendedMod.MODID)) {
+			for(RegistryObject<Biome> key : LOTRBiomes.BIOMES.getEntries()) {
+				if(!dataHere.containsKey(key.getId())) {
+					LOGGER.warn("Didn't make expected biome information: "+key.getId().toString());
+				}
+			}
+		}
 	}
 
 	private static Path createPath(Path pPath, ExtendedBiomeInformation profile) {

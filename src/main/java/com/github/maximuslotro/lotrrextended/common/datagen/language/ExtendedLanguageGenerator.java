@@ -333,6 +333,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("gui.lotrextended.serversettings.overworldspawnradius.setting", "Overworld Spawn Radius: %s blocks");
 		addD("gui.lotrextended.serversettings.middleearthspawnradius.setting", "ME Spawn Radius: %s blocks");
 		addD("gui.lotrextended.serversettings.no_perm", "Requires singleplayer cheats or server operator permissions.");
+		addD("gui.lotrextended.serversettings.enableconquest.setting", "Conquest: %s");
 		addD("gui.lotrextended.settings.title", "Middle-earth Options");
 		addD("gui.lotrextended.settings.button", "Client Options");
 		addD("gui.lotrextended.settings.worldsettings", "World Settings");
@@ -597,6 +598,7 @@ public class ExtendedLanguageGenerator extends ExtendedLanguageHelper {
 		addD("command.lotrextended.conquest.get.failure", "No %1$s conquest present at %2$s");
 		addD("command.lotrextended.conquest.modify.set", "Set %1$s conquest strength to %2$s at %3$s");
 		addD("command.lotrextended.conquest.modify.add", "Added %1$s to %2$s conquest strength at %3$s");
+		addD("command.lotrextended.conquest.toggle", "%s conquest");
 
 		// Player time commands
 		addD("command.lotrextended.seen.joined", "%1$s first joined on %2$s");
