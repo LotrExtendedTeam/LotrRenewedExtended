@@ -13,12 +13,13 @@ import lotr.common.data.LOTRLevelData;
 import lotr.common.entity.npc.ExtendedIFarmhand;
 import lotr.common.entity.npc.ExtendedINPCEntity;
 import lotr.common.entity.npc.NPCEntity;
+import net.minecraft.block.Block;
+import net.minecraft.block.CropsBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.text.StringTextComponent;
@@ -428,11 +429,15 @@ public class ExtendedNpcFarmhandInfoHolder implements ExtendedNpcDataInterface {
 	}
 
 	public ItemStack getSeedsItem() {
-		// Give natural NPCs seeds
-		if(!((ExtendedINPCEntity)this.thisEntity).getUnitInfo().isNpcActiveDuty() && getFarmhandInputInventory().getItem(0).isEmpty()) {
-			setSeedsItem(new ItemStack(Items.WHEAT_SEEDS, 64));
-		}
-		return getFarmhandInputInventory().getItem(0);
+		if(((ExtendedINPCEntity)this.thisEntity).getUnitInfo().isNpcActiveDuty() || !getFarmhandInputInventory().getItem(0).isEmpty()) {
+	        return getFarmhandInputInventory().getItem(0);
+	    }
+
+		Block cropBlock = this.thisEntity.level.getBlockState(this.thisEntity.blockPosition().above()).getBlock();
+	    if(cropBlock instanceof CropsBlock) {
+		    setSeedsItem(new ItemStack(((CropsBlock)cropBlock).getBaseSeedId(), 64));
+	    }
+	    return getFarmhandInputInventory().getItem(0);
 	}
 	public void setSeedsItem(ItemStack seeds) {
 		getFarmhandInputInventory().setItem(0, seeds);
