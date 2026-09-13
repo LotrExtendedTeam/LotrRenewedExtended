@@ -11,6 +11,7 @@
 		"lotr.common.MixinLOTRServerProxy",
 		"lotr.common.block.MixinBranchBlock",
 		"lotr.common.block.MixinDripstoneBlock",
+		"lotr.common.block.MixinFactionCraftingTableBlock",
 		"lotr.common.block.MixinGateBlock",
 		"lotr.common.block.MixinRottenLogBlock",
 		"lotr.common.block.MixinSignSetupHelperJavaPatch",

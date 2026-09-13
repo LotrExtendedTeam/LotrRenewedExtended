@@ -27,6 +27,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
 
@@ -102,7 +103,10 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 		return new ExtendedConquestPos(convertCordsToConquestX(xCord), convertCordsToConquestZ(zCord));
 	}
 	public ExtendedConquestPos convertVectorToConquest(Vector3d position) {
-		return convertCordsToConquest((int)position.x(), (int)position.z);
+		return convertCordsToConquest((int)position.x(), (int)position.z());
+	}
+	public ExtendedConquestPos convertVectorToConquest(Vector3i position) {
+		return convertCordsToConquest(position.getX(), position.getZ());
 	}
 	//######################### Conquest handling
 	public void addConquest(PlayerEntity player, float conquestAdd, Faction playerFaction, Faction opposingFaction, BlockPos position, boolean hiredUnit) {
@@ -123,6 +127,9 @@ public class ExtendedConquestDataHolder extends ExtendedAbstractLevelDataHolder 
 			playerFaction.getName().toString(), opposingFaction.getName().toString(), conquestRegion.getConquest(playerFaction.getName()));
 	}
 	//########### Conquest map
+	public ExtendedConquestRegion getConquestSquare(Vector3i position) {
+		return getConquestSquare(convertVectorToConquest(position));
+	}
 	public ExtendedConquestRegion getConquestSquare(Vector3d position) {
 		return getConquestSquare(convertVectorToConquest(position));
 	}
