@@ -46,6 +46,7 @@ import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
@@ -84,7 +85,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	private int currentHealth = -1;
 	private ExtendedUnitInventory internalUnitInventory = makeUnitInventory();
 	private @Nullable String squad;
-	private int guardRadius = 16;
+	private int guardRadius = 8;
 
 	public ExtendedNpcHiredUnitInfoHolder(NPCEntity thisEntity) {
 		this.thisEntity = thisEntity;
@@ -229,16 +230,16 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 					this.setCurrentHealth(holder.getInt("current_health"));
 				}
 				if(holder.contains("unit_orders")) {
-					unitOrders = ExtendedUnitOrders.getByUnchangingIndex(holder.getInt("unit_orders"));
+					this.unitOrders = ExtendedUnitOrders.getByUnchangingIndex(holder.getInt("unit_orders"));
 				}
 				if(holder.contains("hire_info")) {
-					hiringInfomation = UnitHiredInformation.loadFromNBT(holder.getCompound("hire_info"));
+					this.hiringInfomation = UnitHiredInformation.loadFromNBT(holder.getCompound("hire_info"));
 				}
 				if(holder.contains("squad")) {
-					squad = holder.getString("squad");
+					this.squad = holder.getString("squad");
 				}
 				if(holder.contains("gradius")) {
-					guardRadius = holder.getInt("gradius");
+					this.setGuardRadius(holder.getInt("gradius"));
 				}
 				markDirty();
 			}else {
@@ -530,10 +531,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 
 	protected void setOrders(ExtendedUnitOrders orders) {
 		unitOrders = orders;
-		if(orders!=ExtendedUnitOrders.FARMING && guardRadius<0){
-			guardRadius = 0;
-		}
-		if(orders.isHasRadius() && guardRadius>=0) {
+		if(orders.isHasRadius()) {
 			this.getThisEntity().restrictTo(this.getThisEntity().blockPosition(), guardRadius);
 		}else {
 			this.getThisEntity().restrictTo(BlockPos.ZERO, -1);
@@ -586,7 +584,7 @@ public class ExtendedNpcHiredUnitInfoHolder implements ExtendedNpcDataInterface 
 	}
 
 	public void setGuardRadius(int guardRadius) {
-		this.guardRadius = Math.max(-1, Math.min(32, guardRadius));
+		this.guardRadius = MathHelper.clamp(guardRadius, 1, 64);
 		if(this.getThisEntity().hasRestriction()) {
 			this.getThisEntity().restrictTo(this.getThisEntity().getRestrictCenter(), guardRadius);
 		}

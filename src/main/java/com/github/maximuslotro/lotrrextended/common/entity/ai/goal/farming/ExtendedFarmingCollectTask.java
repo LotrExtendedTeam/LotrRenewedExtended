@@ -74,11 +74,12 @@ public class ExtendedFarmingCollectTask extends ExtendedFarmingAbstractTask {
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
 		List<ItemEntity> items = pServerLevel.getEntitiesOfClass(ItemEntity.class, goalHolder.getEntity().getBoundingBox().inflate(8.0D, 3.0D, 8.0D));
 		for (ItemEntity itemEntity : items) {
-			if (isItemEntityApplicable(itemEntity)) {
+			if (isItemEntityApplicable(itemEntity) && goalHolder.isWithinBounds(itemEntity.blockPosition())) {
 				taskPosition.set(itemEntity.blockPosition());
 				return;
 			}
 		}
+		taskPosition.set(BlockPos.ZERO);
 	}
 	/**
 	 * Validates whether a specific block position contains at least one applicable item entity.

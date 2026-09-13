@@ -113,10 +113,8 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 	@Override
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
 		if (cachedWorkBlockPos != null) {
-			if (goalHolder.getEntity().distanceToSqr(cachedWorkBlockPos.getX() + 0.5, cachedWorkBlockPos.getY() + 0.5, cachedWorkBlockPos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
-				taskPosition.set(cachedWorkBlockPos);
-				return;
-			}
+			taskPosition.set(cachedWorkBlockPos);
+			return;
 		}
 		BlockPos farmhandPos = goalHolder.getEntity().blockPosition();
 		//int farmhandChunkX = farmhandPos.getX() >> 4;
@@ -129,7 +127,7 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 				//int tileChunkZ = pos.getZ() >> 4;
 				//Math.abs(tileChunkX - farmhandChunkX) <= 1 && Math.abs(tileChunkZ - farmhandChunkZ) <= 1
 				// Check if pos is within 24 blocks circled and is on the same relative y-plane
-				if (pos.distSqr(farmhandPos)<ExtendedFarmingGoalHolder.MAXFARMDISTANCE_SQU && Math.abs(pos.getY()-farmhandPos.getY())<=YSPLIT) {
+				if (goalHolder.isWithinBounds(pos) && Math.abs(pos.getY()-farmhandPos.getY())<=YSPLIT) {
 					if (pServerLevel.getChunkSource().isTickingChunk(pos) && pServerLevel.getWorldBorder().isWithinBounds(pos)) {
 						if (tileEntity instanceof ChestTileEntity) {
 							if (isValidPosForTask(pos, pServerLevel) && hasHoeItemFrameOnFront(pos, pServerLevel)) {
@@ -143,6 +141,8 @@ public abstract class ExtendedFarmingAbstractChestTask extends ExtendedFarmingAb
 		if (!validChests.isEmpty()) {
 			Collections.shuffle(validChests);
 			taskPosition.set(validChests.get(0));
+		}else {
+			taskPosition.set(BlockPos.ZERO);
 		}
 	}
 	/**

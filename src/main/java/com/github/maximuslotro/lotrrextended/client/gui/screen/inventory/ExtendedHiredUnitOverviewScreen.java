@@ -10,7 +10,8 @@ import com.github.maximuslotro.lotrrextended.client.gui.widget.ExtendedSlider;
 import com.github.maximuslotro.lotrrextended.client.gui.widget.button.ExtendedAddOffsetImageButton;
 import com.github.maximuslotro.lotrrextended.common.hiredunits.ExtendedUnitOrders;
 import com.github.maximuslotro.lotrrextended.common.inventory.container.ExtendedHiredUnitOverviewContainer;
-import com.github.maximuslotro.lotrrextended.common.network.ExtendedCSetHiredUnitDataPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCSetHiredUnitOrdersPacket;
+import com.github.maximuslotro.lotrrextended.common.network.ExtendedCSetHiredUnitRadiusPacket;
 import com.github.maximuslotro.lotrrextended.common.network.ExtendedPacketHandler;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -34,12 +35,12 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 	private ExtendedAddOffsetImageButton followsButton;
 	private ExtendedAddOffsetImageButton farmingButton;
 	private ExtendedAddOffsetImageButton guardButton;
-	private ExtendedSlider guardModeSlider;
+	private ExtendedSlider rangeSlider;
 
 	// Current entity states
 	private ExtendedUnitOrders orders;
 	private ExtendedUnitOrders lastOrders = null;
-	private int radius;
+	private double radius;
 
 	public ExtendedHiredUnitOverviewScreen(ExtendedHiredUnitOverviewContainer unitInventoryContainer, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
 		super(unitInventoryContainer, pPlayerInventory, pTitle);
@@ -80,27 +81,26 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 				return orders.equals(ExtendedUnitOrders.FARMING);
 			}
 		});
-		guardModeSlider = addButton(new ExtendedSlider(leftPos+38, topPos + 85, 100, 20, "gui.lotrextended.hired_unit.range.guard", orders==ExtendedUnitOrders.FARMING ? -1 :0, 32, 1, 
+		rangeSlider = addButton(new ExtendedSlider(leftPos+38, topPos + 85, 100, 20, "gui.lotrextended.hired_unit.range.guard", 1, 64, 1, 
 			() -> radius, this::handleRadiusSlider).setToolTip((wdget, matrixStack, pMouseX, pMouseY)->{
 				ExtendedHiredUnitOverviewScreen.this.renderTooltip(matrixStack, new TranslationTextComponent("gui.lotrextended.hired_unit.range.tooltip"), pMouseX, pMouseY);
 			}));
-		guardModeSlider.active = orders.isHasRadius();
+		rangeSlider.active = orders.isHasRadius();
 		farmingButton.active = getMenu().profile.getUnitType().isFarming();
+		guardButton.active = !farmingButton.active;
 	}
 
 	@Override
 	public void render(MatrixStack pMatrixStack, int pMouseX, int pMouseY, float pPartialTicks) {
 		this.renderBackground(pMatrixStack);
-		guardModeSlider.active = orders.isHasRadius();
+		rangeSlider.active = orders.isHasRadius();
 		if(lastOrders!=orders) {
 			if(orders==ExtendedUnitOrders.GUARD_AREA) {
-				guardModeSlider.setMessageKey("gui.lotrextended.hired_unit.range.guard");
-				guardModeSlider.setMinValue(0);
-				guardModeSlider.updateMessage();
+				rangeSlider.setMessageKey("gui.lotrextended.hired_unit.range.guard");
+				rangeSlider.updateMessage();
 			}else if(orders==ExtendedUnitOrders.FARMING) {
-				guardModeSlider.setMessageKey("gui.lotrextended.hired_unit.range.farming");
-				guardModeSlider.setMinValue(-1);
-				guardModeSlider.updateMessage();
+				rangeSlider.setMessageKey("gui.lotrextended.hired_unit.range.farming");
+				rangeSlider.updateMessage();
 			}
 			lastOrders= orders;
 		}
@@ -111,19 +111,13 @@ public class ExtendedHiredUnitOverviewScreen extends ExtendedHiredUnitScreen<Ext
 	public void handleSetOrders(ExtendedUnitOrders pOrders) {
 		if(ExtendedNpcHiredUnitInfoHolder.canTypeAcceptOrders(getMenu().profile.getUnitType(), pOrders)) {
 			orders = pOrders;
-			if(radius<0 && pOrders!=ExtendedUnitOrders.FARMING) {
-				radius=0;
-			}
-			ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitDataPacket(menu.getCompanion().getId(), orders, radius));
+			ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitOrdersPacket(menu.getCompanion().getId(), orders));
 		}
 	}
 
 	public void handleRadiusSlider(double pRadius) {
-		this.radius = (int) pRadius;
-		if(radius<0 && orders!=ExtendedUnitOrders.FARMING) {
-			radius=0;
-		}
-	    ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitDataPacket(menu.getCompanion().getId(), orders, radius));
+		this.radius = pRadius;
+	    ExtendedPacketHandler.sendToServer(new ExtendedCSetHiredUnitRadiusPacket(menu.getCompanion().getId(), (int) Math.floor(radius)));
 	}
 
 	@Override

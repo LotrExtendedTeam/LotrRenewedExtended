@@ -48,6 +48,8 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	protected final ServerWorld level;
 	/** Navigation movement speed modifier applied when traveling to farm target blocks. */
 	private final double walkSpeedModifier;
+	/** Maximum allowable squared distance from the NPC to a block, used for natural farmhands (64 blocks). */
+	protected static final double MAX_DISTANCE_SQ = Math.pow(2, 6);
 	/** Calculated path navigation route to the currently selected farm block target. */
 	protected Path path;
 	/** Path navigator instance handling entity movement. */
@@ -66,8 +68,6 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	private boolean isActionCompleted = false;
 	/** Ticks elapsed since the goal began running, used for anti-deadlock timeout safety. */
 	protected int tickTime;
-	/** Maximum allowable squared distance (24 blocks squared = 576) between NPC and target position. */
-	protected static final double MAXFARMDISTANCE_SQU = Math.pow(24, 2);
 	/** Flat bonus added to the base execution chance calculation. */
 	private final float additionalProficiency;
 	/** The specialized farming discipline assigned to this NPC farmhand. */
@@ -199,14 +199,18 @@ public class ExtendedFarmingGoalHolder extends Goal {
 	 * @return {@code true} if a valid position and navigation path were established for the task
 	 */
 	private boolean tryAssignTask(ExtendedFarmingAbstractTask task, BlockPos.Mutable taskPosition) {
-		task.setRandomBlockByTask(taskPosition, level);
+		if (!task.setRandomBlockInBounds(taskPosition, level)) {
+			task.invalidateCache();
+			return false;
+		}
 		if (!task.isValidPosForTaskMutable(taskPosition, level)) {
 			task.invalidateCache();
 			return false;
 		}
 		// Use an immutable position for path generation to ensure the pathfinder doesn't ingest mutations (ask me how I know) Max derp
 		BlockPos targetPos = taskPosition.immutable();
-		if (!pathNav.isDone() && farmhand.distanceToSqr(targetPos.getX(), targetPos.getY(), targetPos.getZ()) > MAXFARMDISTANCE_SQU) {
+		// Rechecks bounds since isValidPosForTaskMutable may have mutated value
+		if (!pathNav.isDone() || !isWithinBounds(targetPos)) {
 			return false;
 		}
 		Path taskPath = pathNav.createPath(targetPos, 0);
@@ -217,6 +221,12 @@ public class ExtendedFarmingGoalHolder extends Goal {
 			return true;
 		}
 		return false;
+	}
+	public boolean isWithinBounds(BlockPos taskPosition) {
+		if(farmhand.hasRestriction()) {
+			return farmhand.isWithinRestriction(taskPosition);
+		}
+		return farmhand.distanceToSqr(taskPosition.getX() + 0.5, taskPosition.getY() + 0.5, taskPosition.getZ() + 0.5) <= MAX_DISTANCE_SQ;
 	}
 	/**
 	 * Checks whether the current task goal should continue execution.

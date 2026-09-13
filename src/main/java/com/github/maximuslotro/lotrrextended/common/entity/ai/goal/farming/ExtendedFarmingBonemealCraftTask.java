@@ -112,10 +112,8 @@ public class ExtendedFarmingBonemealCraftTask extends ExtendedFarmingAbstractTas
 	@Override
 	public void setRandomBlockByTask(BlockPos.Mutable taskPosition, ServerWorld pServerLevel) {
 		if (cachedWorkBlockPos != null) {
-			if (goalHolder.getEntity().distanceToSqr(cachedWorkBlockPos.getX() + 0.5, cachedWorkBlockPos.getY() + 0.5, cachedWorkBlockPos.getZ() + 0.5) <= MAX_DISTANCE_SQ) {
-				taskPosition.set(cachedWorkBlockPos);
-				return;
-			}
+			taskPosition.set(cachedWorkBlockPos);
+			return;
 		}
 		super.setRandomBlockByTask(taskPosition, pServerLevel);
 	}

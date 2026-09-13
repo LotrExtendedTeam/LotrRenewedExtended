@@ -12,47 +12,36 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkEvent;
 
-public class ExtendedCSetHiredUnitDataPacket {
+public class ExtendedCSetHiredUnitOrdersPacket {
 	private final int entityId;
 	private final int orderIndex;
-	private final int radius;
 
-	public ExtendedCSetHiredUnitDataPacket(int entityId, ExtendedUnitOrders order, int radius) {
-		this(entityId, order.getUnchangingIndex(), radius);
+	public ExtendedCSetHiredUnitOrdersPacket(int entityId, ExtendedUnitOrders order) {
+		this.entityId = entityId;
+		this.orderIndex = order.getUnchangingIndex();
 	}
 
-	public ExtendedCSetHiredUnitDataPacket(int entityId, int pOrderIndex, int radius) {
+	public ExtendedCSetHiredUnitOrdersPacket(int entityId, int pOrderIndex) {
 		this.entityId = entityId;
 		this.orderIndex = pOrderIndex;
-		this.radius = radius;
 	}
 
-	public static ExtendedCSetHiredUnitDataPacket decode(PacketBuffer buf) {
-		return new ExtendedCSetHiredUnitDataPacket(buf.readInt(), buf.readInt(), buf.readInt());
+	public static ExtendedCSetHiredUnitOrdersPacket decode(PacketBuffer buf) {
+		return new ExtendedCSetHiredUnitOrdersPacket(buf.readInt(), buf.readInt());
 	}
 
-	public static void encode(ExtendedCSetHiredUnitDataPacket msg, PacketBuffer buf) {
+	public static void encode(ExtendedCSetHiredUnitOrdersPacket msg, PacketBuffer buf) {
 		buf.writeInt(msg.entityId);
 		buf.writeInt(msg.orderIndex);
-		buf.writeInt(msg.radius);
 	}
 
-	public int getEntityId() {
-		return this.entityId;
-	}
-
-	public int getOrderIndex() {
-		return orderIndex;
-	}
-
-	public static void handle(ExtendedCSetHiredUnitDataPacket packet, Supplier<NetworkEvent.Context> context) {
+	public static void handle(ExtendedCSetHiredUnitOrdersPacket packet, Supplier<NetworkEvent.Context> context) {
 		context.get().enqueueWork(() -> {
 			ServerPlayerEntity player = context.get().getSender();
 			if (player != null && player.level instanceof ServerWorld) {
-				Entity entity = player.level.getEntity(packet.getEntityId());
+				Entity entity = player.level.getEntity(packet.entityId);
 				if (entity instanceof NPCEntity && ((ExtendedINPCEntity)entity).getUnitInfo().isNpcActiveDuty() && ((ExtendedINPCEntity)entity).getUnitInfo().getUnitOwner()==player) {
-					((ExtendedINPCEntity)entity).getUnitInfo().setGuardRadius(packet.radius);
-					((ExtendedINPCEntity)entity).getUnitInfo().trySetOrders(ExtendedUnitOrders.getByUnchangingIndex(packet.getOrderIndex()));
+					((ExtendedINPCEntity)entity).getUnitInfo().trySetOrders(ExtendedUnitOrders.getByUnchangingIndex(packet.orderIndex));
 				}
 			}
 		});
